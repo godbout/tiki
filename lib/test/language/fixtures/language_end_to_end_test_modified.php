@@ -1,7 +1,7 @@
 <?php
 // Header is ignored in Language_GetStringsEndToEndTest::getLangDefinition()
 
-$lang = [
+$lang = array(
 // "Bytecode Cache" => "Bytecode Cache",
 // "Using <strong>%0</strong>.These stats affect all PHP applications running on the server" => "Using <strong>%0</strong>.These stats affect all PHP applications running on the server",
 // "Configuration setting <em>xcache.admin.enable_auth</em> prevents from accessing statistics. This will also prevent the cache from being cleared when clearing template cache" => "Configuration setting <em>xcache.admin.enable_auth</em> prevents from accessing statistics. This will also prevent the cache from being cleared when clearing template cache",
@@ -28,4 +28,4 @@ $lang = [
 // "Wiki settings" => "Wiki settings",
 // "Help on \$admintitle Config" => "Help on \$admintitle Config",
 "Congratulations!\n\nYour server can send emails.\n\n" => "Gratulation!\n\nDein Server kann Emails senden.\n\n",
-];
+);

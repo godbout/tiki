@@ -1,15 +1,42 @@
 // $Id$
 
+header.container,
+.middle_outer > .container {
+  margin-bottom: 0;
+}
+
+// Enable topbar backgrounds to extend left and right to contain margins.
+//.topbar,
+.layout_social .container.middle .topbar, // layout_social
+.layout_basic .header_container .page-header,
+.layout_classic .header_container .page-header,
+.layout_classic .container .topbar {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
 #top_modules,
 #topbar_modules,
 #pagebottom_modules,
-#bottom_modules {
-	display: flex !important;
-	flex-direction: row !important;
+.bottom_modules {
+	display: flex;
+	flex-direction: row;
 	justify-content: space-between;
 }
 
-#bottom_modules { align-items: flex-start; }
+.topbar .navbar { padding: 0; }
+
+.bottom_modules {
+	align-items: flex-start;
+	flex-wrap: wrap;
+}
+
+//.bottom_modules {
+//  display: grid;
+//  grid-template-columns: repeat(auto-fill, minmax(273px, 1fr));
+//  grid-gap: 30px;
+//  grid-row-gap: 30px;
+//}
 
 //***** Site Header & Identity *****/
 .box-quickadmin li {
@@ -95,10 +122,6 @@ li.archivedate {
 	margin: 0;
 }
 
-.search_mod_buttons {
-	min-width: 16em;
-}
-
 .box-search .form-group {
 	padding: 0;
 }
@@ -126,7 +149,10 @@ li.archivedate {
 
 // Modules with nobox=y should have same whitespace below as cards do.
 #col2 .module,
-#col3 .module { margin-bottom: 1.25rem; }
+#col3 .module,
+#pagetop_modules .module {
+	margin-bottom: 1.25rem;
+}
 
 .box-forums_most_read_topics .hits {
 	font-style: italic;
@@ -297,7 +323,8 @@ footer.footer .modules > .module:not(.card) {
 	margin-right: auto;
 }
 
-.page-header .box-login_box {
+// make all top zone modules "right justified" apart from the first one which usually is the logo
+.top_modules .module:nth-child(2) {
 	margin-left: auto;
 }
 
@@ -306,6 +333,8 @@ div.cvsup {
 	text-align: left;
 	//	color: $gray-light; (moved to _tiki-selectors.scss)
 }
+
+
 
 .topbar .form-group {
 	margin-bottom: 0;
@@ -326,8 +355,7 @@ div.cvsup {
 //}
 
 .navbar-fixed-top,
-.layout_social .topbar_modules,
-.layout_social_modules .topbar_modules {
+.layout_social .topbar_modules {
 	.sitelogo a img {
 		display: inline;
 		margin-top: $navbar-fixed-height / 10;
@@ -367,12 +395,6 @@ div.cvsup {
 	//  }
 }
 
-.layout_social_modules {
-	#topbar_modules {
-		display: block;
-	}
-}
-
 .navbar-fixed-top,
 #navbar-collapse-social {
 	.navbar {
@@ -380,6 +402,11 @@ div.cvsup {
 		min-height: 32px;
 
 	}
+}
+
+.box-menu .nav .nav-link {
+	padding-left: 0;
+	padding-right: 0;
 }
 
 @include media-breakpoint-up(sm) {
@@ -405,3 +432,5 @@ div.cvsup {
 		}
 	}
 }
+
+.card-body ol { padding-left: 2rem; }

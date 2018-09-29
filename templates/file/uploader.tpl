@@ -7,7 +7,7 @@
 {block name="content"}
 	{if $uploadInModal}
 
-		<form class="file-uploader" enctype="multipart/form-data" method="post" action="{service controller=file action=upload galleryId=$galleryId image_max_size_x=$image_max_size_x image_max_size_y=$image_max_size_y}" data-gallery-id="{$galleryId|escape}" data-image_max_size_x="{$image_max_size_x|escape}" data-image_max_size_y="{$image_max_size_y|escape}">
+		<form class="file-uploader" enctype="multipart/form-data" method="post" action="{service controller=file action=upload galleryId=$galleryId image_max_size_x=$image_max_size_x image_max_size_y=$image_max_size_y}" data-gallery-id="{$galleryId|escape}" data-image_max_size_x="{$image_max_size_x|escape}" data-image_max_size_y="{$image_max_size_y|escape}" data-ticket="{ticket mode=get}">
 			<div class="progress hidden">
 				<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
 					<span class="sr-only"><span class="count">0</span>% Complete</span>
@@ -22,7 +22,7 @@
 					{tr}Images will not be resized, for resizing edit this tracker field and set image max width and height in "Options for files" section.{/tr}
 				{/remarksbox}
 			{/if}
-
+			{ticket}
 			<input type="file" name="file[]" {if $limit !== 1}multiple{/if} {if $typeFilter}accept="{$typeFilter|escape}"{/if} />
 			<p class="drop-message text-center">
 				{if $limit !== 1}{tr}Or drop files here from your file manager.{/tr}{else}{tr}Or drop file here from your file manager.{/tr}{/if}
@@ -33,6 +33,7 @@
 			</ul>
 
 			<div class="submit">
+				{ticket}
 				<input type="submit" class="btn btn-secondary" value="{tr}Select{/tr}">
 			</div>
 		</form>

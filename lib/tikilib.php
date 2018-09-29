@@ -805,7 +805,7 @@ class TikiLib extends TikiDb_Bridge
 			$conditions['email'] = $email;
 		}
 
-		$this->table('tiki_user_watches')->deleteMultiple($conditions);
+		return $this->table('tiki_user_watches')->deleteMultiple($conditions);
 	}
 
 	/*token notification*/
@@ -1055,7 +1055,7 @@ class TikiLib extends TikiDb_Bridge
 						$res['perm'] = $this->user_has_perm_on_object($res['user'], $object, 'tracker', 'tiki_p_view_trackers');
 						break;
 					case 'tracker_item_modified':
-						$res['perm'] = $this->user_has_perm_on_object($res['user'], $info['trackerId'], 'tracker', 'tiki_p_view_trackers');
+						$res['perm'] = $this->user_has_perm_on_object($res['user'], $object, 'trackeritem', 'tiki_p_view_trackers');
 						break;
 					case 'blog_post':
 						$res['perm'] = ($this->user_has_perm_on_object($res['user'], $object, 'blog', 'tiki_p_read_blog') ||
@@ -1071,7 +1071,7 @@ class TikiLib extends TikiDb_Bridge
 								$this->user_has_perm_on_object($res['user'], $object, 'forum', 'tiki_p_admin_forum'));
 						break;
 					case 'forum_post_thread':
-						$res['perm'] = ($this->user_has_perm_on_object($res['user'], $forumId, 'forum', 'tiki_p_forum_read') ||
+						$res['perm'] = ($this->user_has_perm_on_object($res['user'], $object, 'thread', 'tiki_p_forum_read') ||
 								$this->user_has_perm_on_object($res['user'], $object, 'forum', 'tiki_p_admin_forum'));
 						break;
 					case 'file_gallery_changed':
@@ -1079,14 +1079,18 @@ class TikiLib extends TikiDb_Bridge
 								$this->user_has_perm_on_object($res['user'], $object, 'file gallery', 'tiki_p_download_files'));
 						break;
 					case 'article_submitted':
-					case 'topic_article_created':
 					case 'article_edited':
-					case 'topic_article_edited':
 					case 'article_deleted':
+						$userlib = TikiLib::lib('user');
+						$res['perm'] = (empty($object) && $userlib->user_has_permission($res['user'], 'tiki_p_read_article'))
+							|| $this->user_has_perm_on_object($res['user'], $object, 'article', 'tiki_p_read_article');
+						break;
+					case 'topic_article_created':
+					case 'topic_article_edited':
 					case 'topic_article_deleted':
 						$userlib = TikiLib::lib('user');
-						$res['perm'] = ($userlib->user_has_permission($res['user'], 'tiki_p_read_article') &&
-								(empty($object) || $this->user_has_perm_on_object($res['user'], $object, 'topic', 'tiki_p_topic_read')));
+						$res['perm'] = (empty($object) && $userlib->user_has_permission($res['user'], 'tiki_p_read_article'))
+							|| $this->user_has_perm_on_object($res['user'], $object, 'topic', 'tiki_p_read_article');
 						break;
 					case 'calendar_changed':
 						$res['perm'] = $this->user_has_perm_on_object($res['user'], $object, 'calendar', 'tiki_p_view_calendar');
@@ -1920,7 +1924,7 @@ class TikiLib extends TikiDb_Bridge
 		$n = 0;
 
 		foreach ($result as $res) {
-			$objperm = $this->get_perm_object($res['forumId'], 'forums', '', false);
+			$objperm = $this->get_perm_object($res['threadId'], 'thread', '', false);
 			if ($objperm['tiki_p_forum_read'] == 'y') {
 				$retids[] = $res['threadId'];
 
@@ -2486,10 +2490,39 @@ class TikiLib extends TikiDb_Bridge
 	 */
 	public function convertAbsoluteLinksToRelative($data)
 	{
-		global $prefs;
+		global $prefs, $tikilib;
 
 		if ($prefs['feature_absolute_to_relative_links'] != 'y' || $this->getMatchBaseUrlSchema($data) === null) {
 			return $data;
+		}
+
+		$from = 0;
+		$to = strlen($data);
+		$replace = [];
+		foreach ($this->getWikiMarkers() as $marker) {
+			while (false !== $open = $this->findText($data, $marker[0], $from, $to)) {
+				if (false !== $close = $this->findText($data, $marker[1], $open, $to)) {
+					$from = $close;
+					$size = ($close - $open) + strlen($marker[1]);
+					$markerBody = substr($data, $open, $size);
+					$key = "§" . md5($tikilib->genPass()) . "§" ;
+					$replace[$key] = $markerBody;
+					$data = str_replace($markerBody, $key, $data);
+				}
+			}
+		}
+
+		// convert absolute to relative links
+		$pluginMatches = WikiParser_PluginMatcher::match($data);
+		foreach ($pluginMatches as $pluginMatch) {
+			$pluginBody = $pluginMatch->getBody();
+			if (empty($pluginBody)) {
+				$pluginBody = $pluginMatch->getArguments();
+			}
+
+			$key = "§" . md5($tikilib->genPass()) . "§" ;
+			$replace[$key] = $pluginBody;
+			$data = str_replace($pluginBody, $key, $data);
 		}
 
 		// Detect tiki internal links
@@ -2530,6 +2563,28 @@ class TikiLib extends TikiDb_Bridge
 				$newLink = '[' . $newPath . $matches[3][$i] . ']';
 				$data = str_replace($matches[0][$i], $newLink, $data);
 			}
+		}
+
+		// Detect links outside wikiplugin or wiki markers
+		preg_match_all('/(http|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/', $data, $matches);
+
+		$counter = count($matches[0]);
+		for ($i = 0; $i < $counter; $i++) {
+			// Check if link part is valid url
+			if (filter_var($matches[0][$i], FILTER_VALIDATE_URL) === false) {
+				continue;
+			}
+
+			// Check if url matches tiki instance links
+			if ($url = $this->getMatchBaseUrlSchema($matches[0][$i])) {
+				$newPath = str_replace($url, '', $matches[0][$i]);
+				$newLink = '((' . $newPath . '))';
+				$data = str_replace($matches[0][$i], $newLink, $data);
+			}
+		}
+
+		foreach ($replace as $key => $body) {
+			$data = str_replace($key, $body, $data);
 		}
 
 		return $data;
@@ -3501,6 +3556,7 @@ class TikiLib extends TikiDb_Bridge
 
 		switch ($objectType) {
 			case 'tracker':
+			case 'trackeritem':
 				return 'trackers';
 			case 'image gallery':
 			case 'image':
@@ -3510,8 +3566,10 @@ class TikiLib extends TikiDb_Bridge
 				return 'file galleries';
 			case 'article':
 			case 'submission':
+			case 'topic':
 				return 'cms';
 			case 'forum':
+			case 'thread':
 				return 'forums';
 			case 'blog':
 			case 'blog post':
@@ -4174,7 +4232,7 @@ class TikiLib extends TikiDb_Bridge
 		}
 		// Collect pages before modifying data
 		$pointedPages = $parserlib->get_pages($data, true);
-		$this->check_alias($data, $name);
+
 		if (! isset($_SERVER["SERVER_NAME"])) {
 			$_SERVER["SERVER_NAME"] = $_SERVER["HTTP_HOST"];
 		}
@@ -4658,7 +4716,7 @@ class TikiLib extends TikiDb_Bridge
 		$this->invalidate_cache($pageName);
 		// Collect pages before modifying edit_data (see update of links below)
 		$pages = $parserlib->get_pages($edit_data, true);
-		$this->check_alias($edit_data, $pageName);
+
 		if (! $this->page_exists($pageName)) {
 			return false;
 		}
@@ -6465,228 +6523,6 @@ JS;
 	}
 
 	/**
-	 * @param $theme
-	 * @return array
-	 */
-	public function getSlideshowTheme($theme)
-	{
-		global $prefs;
-
-		$result = [];
-		//this makes it so that any input so long as the characters are the same can be used
-		$theme = ($theme == 'default' ? $prefs['feature_jquery_ui_theme'] : $theme);
-
-		$theme = strtolower($theme);
-		$theme = str_replace(' ', '', $theme);
-		$theme = str_replace('-', '', $theme);
-
-		$result['themeName'] = $theme;
-		switch ($theme) {
-			case "none":
-				$result['backgroundColor'] = 'inherit';
-				$result['headerFontColor'] = 'inherit';
-				$result['headerBackgroundColor'] = 'inherit';
-				$result['slideFontColor'] = 'inherit';
-				$result['listItemHighlightColor'] = 'inherit';
-				break;
-			case "uilightness":
-				$result['backgroundColor'] = '#F6A828';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#1C94C4';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#333';
-				$result['listItemHighlightColor'] = '#363636';
-				break;
-			case "uidarkness":
-				$result['backgroundColor'] = '#333';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = 'white';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = 'white';
-				$result['listItemHighlightColor'] = '#1C94C4';
-				break;
-			case "smoothness":
-				$result['backgroundColor'] = '#E6E6E6';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#212121';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#222';
-				$result['listItemHighlightColor'] = '';
-				break;
-			case "start":
-				$result['backgroundColor'] = '#2191c0';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#acdd4a';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = 'white';
-				$result['listItemHighlightColor'] = '#77D5F7';
-				break;
-			case "redmond":
-				$result['backgroundColor'] = '#C5DBEC';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#2E6E9E';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#222';
-				$result['listItemHighlightColor'] = '#E17009';
-				break;
-			case "sunny":
-				$result['backgroundColor'] = '#FEEEBD';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#0074C7';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#383838';
-				$result['listItemHighlightColor'] = '#4C3000';
-				break;
-			case "overcast":
-				$result['backgroundColor'] = '#C9C9C9';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#212121';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#333';
-				$result['listItemHighlightColor'] = '#599FCF';
-				break;
-			case "lefrog":
-				$result['backgroundColor'] = '#285C00';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = 'white';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = 'white';
-				$result['listItemHighlightColor'] = '#F9DD34';
-				break;
-			case "flick":
-				$result['backgroundColor'] = '#DDD';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#0073EA';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#444';
-				$result['listItemHighlightColor'] = '#FF0084';
-				break;
-			case "peppergrinder":
-				$result['backgroundColor'] = '#ECEADF';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#654B24';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#1F1F1F';
-				$result['listItemHighlightColor'] = '#B83400';
-				break;
-			case "eggplant":
-				$result['backgroundColor'] = '#3D3644';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = 'white';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = 'white';
-				$result['listItemHighlightColor'] = '#FFDB1F';
-				break;
-			case "darkhive":
-				$result['backgroundColor'] = '#444';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#0972A5';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = 'white';
-				$result['listItemHighlightColor'] = '#2E7DB2';
-				break;
-			case "cupertino":
-				$result['backgroundColor'] = '#D7EBF9';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#2694E8';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#362B36';
-				$result['listItemHighlightColor'] = '#2694E8';
-				break;
-			case "southstreet":
-				$result['backgroundColor'] = '#F5F3E5';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#459E00';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#312E25';
-				$result['listItemHighlightColor'] = '#459E00';
-				break;
-			case "blitzer":
-				$result['backgroundColor'] = '#EEE';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#C00';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#333';
-				$result['listItemHighlightColor'] = '#004276';
-				break;
-			case "humanity":
-				$result['backgroundColor'] = '#EDE4D4';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#B85700';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#1E1B1D';
-				$result['listItemHighlightColor'] = '#592003';
-				break;
-			case "hotsneaks":
-				$result['backgroundColor'] = '#35414F';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#E1E463';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#93C3CD';
-				$result['listItemHighlightColor'] = '#DB4865';
-				break;
-			case "excitebike":
-				$result['backgroundColor'] = '#EEE';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#E69700';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#1484E6';
-				$result['listItemHighlightColor'] = '#2293F7';
-				break;
-			case "vader":
-				$result['backgroundColor'] = '#121212';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#ADADAD';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#EEE';
-				$result['listItemHighlightColor'] = '#ADADAD';
-				break;
-			case "dotluv":
-				$result['backgroundColor'] = '#111';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#0b3e6f';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#D9D9D9';
-				$result['listItemHighlightColor'] = '#0b58a2';
-				break;
-			case "mintchoc":
-				$result['backgroundColor'] = '#453326';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#BAEC7E';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#ffffff';
-				$result['listItemHighlightColor'] = '#619226';
-				break;
-			case "blacktie":
-				$result['backgroundColor'] = '#333333';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#a3a3a3';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#eeeeee';
-				$result['listItemHighlightColor'] = '#ffeb80';
-				break;
-			case "trontastic":
-				$result['backgroundColor'] = '#222222';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#9fda58';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#ffffff';
-				$result['listItemHighlightColor'] = '#f1fbe5';
-				break;
-			case "swankypurse":
-				$result['backgroundColor'] = '#261803';
-				$result['backgroundImage'] = 'vendor_bundled/vendor/jquery/jquery-s5/images/bg.png';
-				$result['headerFontColor'] = '#eacd86';
-				$result['headerBackgroundColor'] = '';
-				$result['slideFontColor'] = '#efec9f';
-				$result['listItemHighlightColor'] = '#d5ac5d';
-				break;
-		}
-
-		return $result;
-	}
-
-	/**
 	 * @param $page
 	 * @return mixed
 	 */
@@ -6748,24 +6584,47 @@ JS;
 		return (substr($haystack, $start) === $needle);
 	}
 
-	function check_alias($edit, $page)
+	/**
+	 * Checks if all link aliases contained in a page are valid, it automatically flashes the error in case there are invalid aliases
+	 * @param String $edit  Contains page edit content
+	 * @param String $page  Page name
+	 * @return bool returns false if there is at least one invalid alias
+	 * @throws Exception
+	 */
+	function check_duplicate_alias($edit, $page)
 	{
-		$smarty = TikiLib::lib('smarty');
+		$errors = [];
+
 		$parserlib = TikiLib::lib('parser');
+		$table = $this->table('tiki_object_relations');
+
+		$smarty = TikiLib::lib('smarty');
+		$smarty->loadPlugin('smarty_modifier_sefurl');
+
 		foreach ($parserlib->get_pages($edit, true) as $pointedPage => $types) {
-			if (isset($types[0]) && $types[0] == 'alias') {
-				$alias = $this->table('tiki_object_relations')->fetchColumn('source_itemId', ['target_itemId' => $pointedPage]);
-				if (($key = array_search($page, $alias)) !== false) {
-					unset($alias[$key]);
-				}
-				if (isset($alias) && count($alias) > 0) {
-					$aliasmsg = "Can't duplicate alias link, <b>" . $pointedPage . "</b> link already present in <b>" . implode(',', $alias) . "</b> page";
-					$smarty->assign('msg', $aliasmsg);
-					$smarty->display("error.tpl");
-					return false;
-				}
+			if (empty($types[0]) || $types[0] != 'alias') {
+				continue;
 			}
+
+			$conflictPages = $table->fetchColumn('source_itemId', ['target_itemId' => $pointedPage, 'source_itemId' => $table->not($page)]);
+
+			if (empty($conflictPages)) {
+				continue;
+			}
+
+			$url = [];
+			foreach ($conflictPages as $pageName) {
+				$url[] = sprintf('<a href="%s">%s</a>', smarty_modifier_sefurl($pageName, 'wiki'), $pageName);
+			}
+
+			$errors[] = tr('Alias <b>%0</b> link already present in %1 page(s)', $pointedPage, implode(', ', $url));
 		}
+
+		if (! empty($errors)) {
+			Feedback::error(implode('<br>', $errors));
+		}
+
+		return empty($errors);
 	}
 
 	/**
@@ -6780,6 +6639,48 @@ JS;
 		$csv = stream_get_contents($fh);
 		fclose($fh);
 		return trim($csv);
+	}
+
+	/**
+	 * Find a text inside string range
+	 *
+	 * @param string $text
+	 * @param string $string
+	 * @param int $from
+	 * @param int $to
+	 * @return mixed
+	 */
+	public function findText($text, $string, $from, $to)
+	{
+		if ($from >= strlen($text)) {
+			return false;
+		}
+
+		$pos = strpos($text, $string, $from);
+
+		if ($pos === false || $pos + strlen($string) > $to) {
+			return false;
+		}
+
+		return $pos;
+	}
+
+	/**
+	 * Return wiki markers
+	 *
+	 * @return array
+	 */
+	public function getWikiMarkers()
+	{
+		$listMarkers = [
+			['~np~', '~/np~'],
+			['-+', '+-'],
+			['~pp~', '~/pp~'],
+			['~pre~', '~/pre~'],
+			['-=', '=-'],
+		];
+
+		return $listMarkers;
 	}
 }
 // end of class ------------------------------------------------------

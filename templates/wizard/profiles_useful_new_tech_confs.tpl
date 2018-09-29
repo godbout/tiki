@@ -1,18 +1,19 @@
 {* $Id$ *}
 
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Profiles Wizard{/tr}" title="{tr}Configuration Profiles Wizard{/tr}" >
-		<i class="fa fa-cubes fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
-	</span>
-	{tr}Check out this set of useful configurations that involve using some new technology for your site{/tr}. </br></br></br>
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="{tr}Configuration Profiles Wizard{/tr}" >
+			<i class="fas fa-cubes fa-stack-2x"></i>
+			<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		</span>
+	</div>
 	<div class="media-body">
-		<fieldset>
-			<legend>{tr}Profiles:{/tr}</legend>
+		<h4 class="mt-0 mb-4">{tr}Check out this set of useful configurations that involve using some new technology for your site{/tr}. </h4>
+		<h3>{tr}Profiles:{/tr}</h3>
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}Write Together{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Together_15&show_details_for=Together_15&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Together_15&show_details_for=Together_15&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
 					{tr}This profile adds a simple wiki page on a side module (using the Module menupage), showing the button to start co-writing with TogetherJS.{/tr}
 					<br/>
@@ -40,7 +41,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Post-it Sticky Note{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Post-it_Sticky_Note_15&show_details_for=Post-it_Sticky_Note_15&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Post-it_Sticky_Note_15&show_details_for=Post-it_Sticky_Note_15&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile allows to display a sticky note (a "post-it") in your tiki site{/tr}.
 					<br/>
@@ -69,7 +70,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-6">
-					<!--	<b>{tr}Profile X{/tr}</b> (<a href="tiki-admin.php?profile=Profile_X&show_details_for=Profile_X&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)<br/>
+					<!--	<b>{tr}Profile X{/tr}</b> (<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Profile_X&show_details_for=Profile_X&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)<br/>
 					<br>
 					{tr}This profile allows to {/tr}
 					<ul>
@@ -81,7 +82,7 @@
 					-->
 				</div>
 				<div class="col-md-6">
-					<!--	<b>{tr}Profile X{/tr}</b> (<a href="tiki-admin.php?profile=Profile_X&show_details_for=Profile_X&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)<br/>
+					<!--	<b>{tr}Profile X{/tr}</b> (<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Profile_X&show_details_for=Profile_X&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)<br/>
 					<br>
 					{tr}This profile allows to {/tr}
 					<ul>
@@ -93,6 +94,5 @@
 					-->
 				</div>
 			</div>
-		</fieldset>
 	</div>
 </div>

@@ -49,25 +49,19 @@
 		<div class="col-sm-4 col-md-3">
 			<div class="input">
 				<p class="picker" data-selector=".table-striped > tbody > tr:nth-of-type(odd)" data-element="background-color">
-					<label for="sg-striped-bgcolor-odd">Bg (odd rows):</label>
-					<input id="sg-striped-bgcolor-odd" data-selector=".table-striped > tbody > tr:nth-of-type(odd)" data-element="background-color" data-var="@table-bg-accent" type="text">
-					<div class="input-group-append">
-						<span class="input-group-text"><i></i></span>
-					</div>>
+					<label for="tc-striped-bgcolor-odd">Bg (odd rows):</label>
+					<input id="tc-striped-bgcolor-odd" data-selector=".table-striped > tbody > tr:nth-of-type(odd)" data-element="background-color" data-var="@table-bg-accent" type="text">
+					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p class="picker" data-selector=".table-striped > tbody > tr:nth-of-type(even)" data-element="background-color">
-					<label for="sg-striped-bgcolor-even">Bg (even rows):</label>
-					<input id="sg-striped-bgcolor-even" data-selector=".table-striped > tbody > tr:nth-of-type(even)" data-element="background-color" type="text">
-					<div class="input-group-append">
-						<span class="input-group-text"><i></i></span>
-					</div>
+					<label for="tc-striped-bgcolor-even">Bg (even rows):</label>
+					<input id="tc-striped-bgcolor-even" data-selector=".table-striped > tbody > tr:nth-of-type(even)" data-element="background-color" type="text">
+					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p class="picker" data-selector="table tr" data-element="color">
-					<label for="sg-table-color">Text color:</label>
-					<input id="sg-table-color" data-selector="table tr" data-element="color" type="text">
-					<div class="input-group-append">
-						<span class="input-group-text"><i></i></span>
-					</div>
+					<label for="tc-table-color">Text color:</label>
+					<input id="tc-table-color" data-selector="table tr" data-element="color" type="text">
+					<span class="input-group-addon"><i></i></span>
 				</p>
 			</div>
 		</div>
@@ -117,19 +111,17 @@
 		<div class="col-sm-4 col-md-3">
 			<div class="input">
 				<p class="picker" data-selector=".table-bordered tr" data-element="background-color">
-					<label for="sg-bordered-bgcolor">Background:</label>
-					<input id="sg-bordered-bgcolor" data-selector=".table-bordered tr" data-element="background-color" data-var="@table-bg" type="text">
-					<div class="input-group-append">
-						<span class="input-group-text"><i></i></span>
-					</div>>
+					<label for="tc-bordered-bgcolor">Background:</label>
+					<input id="tc-bordered-bgcolor" data-selector=".table-bordered tr" data-element="background-color" data-var="@table-bg" type="text">
+					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p>
-					<label for="sg-cells-border">Border:</label>
-					<input id="sg-cells-border" class="nocolor" data-selector=".table-bordered .tb" data-element="border" type="text">
+					<label for="tc-cells-border">Border:</label>
+					<input id="tc-cells-border" class="nocolor" data-selector=".table-bordered .tb" data-element="border" type="text">
 				</p>
 				<p>
-					<label for="sg-cells-padding">Padding:</label>
-					<input id="sg-cells-padding" class="nocolor" data-selector=".table > tbody > tr > td" data-element="padding" type="text">
+					<label for="tc-cells-padding">Padding:</label>
+					<input id="tc-cells-padding" class="nocolor" data-selector=".table > tbody > tr > td" data-element="padding" type="text">
 				</p>
 			</div>
 		</div>

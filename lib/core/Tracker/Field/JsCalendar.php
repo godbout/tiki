@@ -9,67 +9,61 @@ class Tracker_Field_JsCalendar extends Tracker_Field_DateTime
 {
 	public static function getTypes()
 	{
-		return [
+		$definition = [
 			'j' => [
-				'name' => tr('Date and Time (Date Picker)'),
-				'description' => tr('Provide a jQuery UI date picker to select a date and, optionally, a time.'),
-				'prefs' => ['trackerfield_jscalendar'],
-				'tags' => ['advanced'],
-				'default' => 'y',
+				'name'              => tr('Date and Time (Date Picker)'),
+				'description'       => tr('Provide a jQuery UI date picker to select a date and, optionally, a time.'),
+				'prefs'             => ['trackerfield_jscalendar'],
+				'tags'              => ['advanced'],
+				'default'           => 'y',
 				'supported_changes' => ['f', 'j'],
-				'params' => [
-					'datetime' => [
-						'name' => tr('Type'),
-						'description' => tr('Components to be included'),
-						'filter' => 'text',
-						'options' => [
-							'dt' => tr('Date and Time'),
-							'd' => tr('Date only'),
-						],
-						'legacy_index' => 0,
-					],
-					'useNow' => [
-						'name' => tr('Default value'),
-						'description' => tr('Default date and time for new items'),
-						'filter' => 'int',
-						'options' => [
+				'params'            => [
+					'useNow'          => [
+						'name'         => tr('Default value'),
+						'description'  => tr('Default date and time for new items'),
+						'filter'       => 'int',
+						'options'      => [
 							0 => tr('None (undefined)'),
 							1 => tr('Item creation date and time'),
 						],
 						'legacy_index' => 1,
 					],
-					'useTimeAgo' => [
-						'name' => tr('Time Ago'),
-						'description' => tr('Use timeago.js if the feature is enabled'),
-						'filter' => 'int',
-						'options' => [
-							0 => tr('No'),
-							1 => tr('Yes'),
-						],
-					],
-					'notBefore' => [
-						'name' => tr('Not before'),
-						'description' => tr('Field ID from this tracker to compare the value against and validate it is not before that timestamp.'),
-						'filter' => 'int',
-						'legacy_index' => 2,
+					'notBefore'       => [
+						'name'              => tr('Not before'),
+						'description'       => tr(
+							'Field ID from this tracker to compare the value against and validate it is not before that timestamp.'
+						),
+						'filter'            => 'int',
+						'legacy_index'      => 2,
 						'profile_reference' => 'tracker_field',
-						'parent' => 'input[name=trackerId]',
-						'parentkey' => 'tracker_id',
-						'sort_order' => 'position_nasc',
+						'parent'            => 'input[name=trackerId]',
+						'parentkey'         => 'tracker_id',
+						'sort_order'        => 'position_nasc',
 					],
-					'notAfter' => [
-						'name' => tr('Not after'),
-						'description' => tr('Field ID from this tracker to compare the value against and validate it is not after that timestamp.'),
-						'filter' => 'int',
-						'legacy_index' => 3,
+					'notAfter'        => [
+						'name'              => tr('Not after'),
+						'description'       => tr(
+							'Field ID from this tracker to compare the value against and validate it is not after that timestamp.'
+						),
+						'filter'            => 'int',
+						'legacy_index'      => 3,
 						'profile_reference' => 'tracker_field',
-						'parent' => 'input[name=trackerId]',
-						'parentkey' => 'tracker_id',
-						'sort_order' => 'position_nasc',
+						'parent'            => 'input[name=trackerId]',
+						'parentkey'         => 'tracker_id',
+						'sort_order'        => 'position_nasc',
 					],
 				],
 			],
 		];
+
+		$parentDef = parent::getTypes();
+
+		// params not relevant for datepicker field
+		unset($parentDef['f']['startyear'], $parentDef['f']['endyear'], $parentDef['f']['blankdate']);
+
+		$definition['j']['params'] = array_merge($definition['j']['params'], $parentDef['f']['params']);
+
+		return $definition;
 	}
 
 	function getFieldData(array $requestData = [])

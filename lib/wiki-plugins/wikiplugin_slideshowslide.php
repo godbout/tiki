@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: $
+// $Id$
 
 function wikiplugin_slideshowslide_info()
 {
@@ -21,6 +21,13 @@ function wikiplugin_slideshowslide_info()
 				'required' => false,
 				'name' => tra('Slide Background color'),
 				'description' => tr('Set background color for slide.'),
+				'default' => '',
+				'since' => '19.0',
+			],
+			'textColor' => [
+				'required' => false,
+				'name' => tra('Slide Text color'),
+				'description' => tr('Set Text color for slide.'),
 				'default' => '',
 				'since' => '19.0',
 			],
@@ -70,6 +77,18 @@ function wikiplugin_slideshowslide_info()
 				'required' => false,
 				'name' => tra('Mute Background Video'),
 				'description' => tra('Flags if the audio should be muted for background video'),
+				'filter' => 'word',
+				'default' => 'y',
+				'since' => '19.0',
+				'options' => [
+					['text' => 'No', 'value' => 'n'],
+					['text' => 'Yes', 'value' => 'y'],
+				],
+			],
+			'videoLoop' => [
+				'required' => false,
+				'name' => tra('Loop Background Video'),
+				'description' => tra('Flags if the background video played in loop'),
 				'filter' => 'word',
 				'default' => 'y',
 				'since' => '19.0',
@@ -139,54 +158,15 @@ function wikiplugin_slideshowslide_info()
 					['text' => 'Zoom', 'value' => 'zoom'],
 				],
 			],
-			'fragments' => [
-				'required' => false,
-				'name' => tra('Fragments'),
-				'description' => tra('Turns fragments on and off globally'),
-				'filter' => 'word',
-				'default' => 'y',
-				'since' => '19.0',
-				'options' => [
-					['text' => 'On', 'value' => 'y'],
-					['text' => 'Off', 'value' => 'n'],
-				],
-			],
-			'fragmentClass' => [
-				'required' => false,
-				'name' => tra('Fragment Effects'),
-				'description' => tra(''),
-				'filter' => 'word',
-				'default' => '',
-				'since' => '19.0',
-				'options' => [
-					['text' => 'Grow', 'value' => 'grow'],
-					['text' => 'Shrink', 'value' => 'shrink'],
-					['text' => 'Fade-OUT', 'value' => 'fade-out'],
-					['text' => 'Fade-UP', 'value' => 'fade-up'],
-					['text' => 'Current-Visible', 'value' => 'current-visible'],
-				],
-			],
-			'fragmentHighlightColor' => [
-				'required' => false,
-				'name' => tra('Fragment Highlight Color'),
-				'description' => tra(''),
-				'filter' => 'word',
-				'default' => '',
-				'since' => '19.0',
-				'options' => [
-					['text' => 'None', 'value' => 'none'],
-					['text' => 'highlight-red', 'value' => 'highlight-red'],
-					['text' => 'highlight-green', 'value' => 'highlight-green'],
-					['text' => 'highlight-blue', 'value' => 'highlight-blue']
-				],
-			],
 		],
 	];
 }
 
 function wikiplugin_slideshowslide($data, $params)
 {
-	
+	if(strstr($_SERVER['PHP_SELF'],'tiki-slideshow.php')=='') {
+		return $data;
+	}
 	$defaults = [];
 	$plugininfo = wikiplugin_slideshowslide_info();
 	foreach ($plugininfo['params'] as $key => $param) {
@@ -197,8 +177,7 @@ function wikiplugin_slideshowslide($data, $params)
 		}
 	}
 	$params = array_merge($defaults, $params);
-
-	$slideShowSlideParams=array("data-background-color"=>'bgColor',"data-background-image"=>'backgroundUrl',"data-background-size"=>'parallaxBackgroundSize',"data-background-horizontal"=>'parallaxBackgroundHorizontal',"data-background-vertical"=>'parallaxBackgroundVertical',"data-background-video"=>'backgroundVideoUrl',"data-background-transitionspeed"=>'transitionSpeed',"data-background-transition"=>'backgroundTransition',"data-fragments"=>'fragments',"data-fragment-class"=>'fragmentClass',"data-fragment-highlight-color"=>'fragmentHighlightColor');
+	$slideShowSlideParams=array("data-background-color"=>'bgColor',"data-background-image"=>'backgroundUrl',"data-background-size"=>'parallaxBackgroundSize',"data-background-horizontal"=>'parallaxBackgroundHorizontal',"data-background-vertical"=>'parallaxBackgroundVertical',"data-background-video"=>'backgroundVideoUrl',"data-background-transitionspeed"=>'transitionSpeed',"data-background-transition"=>'backgroundTransition');
 	$slideSettings = '';
 	foreach($slideShowSlideParams as $key=>$param) {
 		if($params[$param]){ 
@@ -212,8 +191,6 @@ function wikiplugin_slideshowslide($data, $params)
 		}
 	}
 	$slideSettings =str_replace(array("'y'","'n'"),array("'true'","'false'"),$slideSettings);
-
-
 	$transitionIn = (isset($params['transitionIn']) ? $params['transitionIn']."-in" : '');
 	$transitionOut = (isset($params['transitionOut']) ? $params['transitionOut']."-out" : '');
 	if($transitionIn  || $transitionOut) {
@@ -222,5 +199,11 @@ function wikiplugin_slideshowslide($data, $params)
 	if($params['videoMuted']=='y') {
 		$slideSettings.=" data-background-video-muted";
 	}
-	return "</section><section data-plugin-slide ".$slideSettings.">".TikiLib::lib('parser')->parse_data($data, ['is_html' => true, 'parse_wiki' => true]).'</section>';
+	if($params['videoLoop']=='y') {
+		$slideSettings.=" data-background-video-loop";
+	}
+	if($params['textColor']) {
+		$textColorStyle='style="color:'.$params['textColor'].'"';
+	}
+	return "<sslide id= data-plugin-slide ".$slideSettings." ".$textColorStyle.">".html_entity_decode(TikiLib::lib('parser')->parse_data(trim($data), ['is_html' => true, 'parse_wiki' => true])).'</sslide>';
 }

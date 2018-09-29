@@ -25,6 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($_POST['auto-install-package'] && $access->checkCsrf()) {
 		$smarty->assign('composer_output', $composerManager->installPackage($_POST['auto-install-package']));
 	}
+	if ($_POST['auto-update-package'] && $access->checkCsrf()) {
+		$smarty->assign('composer_output', $composerManager->updatePackage($_POST['auto-update-package']));
+	}
 	if ($_POST['auto-remove-package'] && $access->checkCsrf()) {
 		$smarty->assign('composer_output', $composerManager->removePackage($_POST['auto-remove-package']));
 	}

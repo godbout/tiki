@@ -56,6 +56,7 @@ class Search_ContentSource_SheetSource implements Search_ContentSource_Interface
 			'title' => $typeFactory->sortable($info['title']),
 			'description' => $typeFactory->sortable($info['description']),
 			'modification_date' => $typeFactory->timestamp($lastModif),
+			'date' => $typeFactory->timestamp($lastModif),
 			'contributors' => $typeFactory->multivalue($contributors),
 
 			'sheet_content' => $typeFactory->plaintext($text),
@@ -72,6 +73,7 @@ class Search_ContentSource_SheetSource implements Search_ContentSource_Interface
 			'title',
 			'description',
 			'modification_date',
+			'date',
 			'contributors',
 
 			'sheet_content',
@@ -85,6 +87,7 @@ class Search_ContentSource_SheetSource implements Search_ContentSource_Interface
 		return [
 			'title' => true,
 			'description' => true,
+			'date' => true,
 
 			'sheet_content' => false,
 		];

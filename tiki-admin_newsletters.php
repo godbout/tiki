@@ -28,7 +28,7 @@ $perms = Perms::get(['type' => 'newsletter', 'object' => $_REQUEST['nlId']]);
 
 if ($perms->admin_newsletters != 'y') {
 	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("You do not have permission to use this feature"));
+	$smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
 	$smarty->display("error.tpl");
 	die;
 }

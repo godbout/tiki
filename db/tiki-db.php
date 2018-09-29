@@ -28,8 +28,8 @@ if (file_exists($local_php)) {
 	$re = include($local_php);
 }
 
-if (! isset($client_charset)) {
-	$client_charset = 'utf8';
+if (! isset($client_charset) || $client_charset == 'utf8') {
+	$client_charset = 'utf8mb4';
 }
 
 $credentials = [

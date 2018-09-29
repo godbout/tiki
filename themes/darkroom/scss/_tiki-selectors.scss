@@ -51,7 +51,7 @@ h3.card-title {
 	border-width: 0 8px .5rem 8px;
 }
 
-.card-primary .card-header { background: #292929; }
+.card .card-header { background: #292929; } // Was .card-primary - still ok?
 
 .navbar-fixed-top .container,
 .navbar-dark,

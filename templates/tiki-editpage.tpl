@@ -31,7 +31,7 @@
 		{$wikiHeaderTpl}
 	{/if}
 	{if $prefs.ajax_autosave eq "y"}
-		<div class="pull-right">
+		<div class="float-sm-right">
 			{self_link _icon_name="view" _class="previewBtn tips" _ajax="n" _title=":{tr}Preview your changes{/tr}"}
 			{/self_link}
 		</div>

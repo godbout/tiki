@@ -1,5 +1,5 @@
 {title}{tr}Rankings{/tr}{/title}
-	<form action="{$rpage}" method="post" class="form-inline" role="form">
+	<form action="{$rpage}" method="post" class="form-inline mb-3" role="form">
 		<div class="form-group">
 			<select name="which" class="form-control mr-3 mb-4">
 				{section name=ix loop=$allrankings}
@@ -22,7 +22,7 @@
 	<div class="table-responsive">
 		<table class="table">
 			<tr>
-				<th>{tr}Rank{/tr}</th>
+				<th class="text-center">{tr}Rank{/tr}</th>
 				<th>{$rankings[ix].title}</th>
 				<th>{$rankings[ix].y}</th>
 			</tr>

@@ -658,7 +658,7 @@ class RegistrationLib extends TikiLib
 					pass: { required: "This field is required"},
 					passAgain: { equalTo: "Passwords do not match"}
 				},
-				submitHandler: function(){return process_submit(this.currentForm);}
+				submitHandler: function(form, event){return process_submit(form, event);}
 			});
 		';
 			TikiLib::lib('header')->add_jq_onready($js);

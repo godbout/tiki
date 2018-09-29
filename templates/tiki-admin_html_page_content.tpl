@@ -12,6 +12,7 @@
 {if $zone}
 	<h2>{tr}Edit zone{/tr}</h2>
 	<form action="tiki-admin_html_page_content.php" method="post">
+		{ticket}
 		<input type="hidden" name="pageName" value="{$pageName|escape}">
 		<input type="hidden" name="zone" value="{$zone|escape}">
 		<div class="form-group row">
@@ -33,7 +34,7 @@
 		<div class="form-group row">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-7 col-sm-offset-1 mb-3">
-				<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+				<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
 			</div>
 		</div>
 	</form>
@@ -44,6 +45,7 @@
 {include file='find.tpl'}
 
 <form action="tiki-admin_html_page_content.php" method="post">
+	{ticket}
 	<input type="hidden" name="pageName" value="{$pageName|escape}">
 	<input type="hidden" name="zone" value="{$zone|escape}">
 	<table class="table table-striped table-hover">
@@ -79,7 +81,13 @@
 	<div class="form-group row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-7 col-sm-offset-2">
-			<input type="submit" class="btn btn-primary btn-sm" name="editmany" value="{tr}Mass update{/tr}">
+			<input
+				type="submit"
+				class="btn btn-primary btn-sm"
+				name="editmany"
+				value="{tr}Mass update{/tr}"
+				onclick="checkTimeout()"
+			>
 		</div>
 	</div>
 </form>

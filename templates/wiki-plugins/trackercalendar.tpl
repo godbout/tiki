@@ -30,6 +30,7 @@
 				right: data.views
 			},
 			editable: true,
+			height: 'auto',
 			timezone: '{{$prefs.display_timezone}}',
 			//theme: true, TODO: add support of jQuery UI theme to the plugin's PHP
 			events: $.service('tracker_calendar', 'list', $.extend(data.filterValues, {
@@ -65,7 +66,7 @@
 			defaultView: data.dView,
 			defaultDate: data.dDate,
 			eventAfterRender : function( event, element, view ) {
-				element.popover({trigger: 'hover focus', title: event.title, content: event.description, html: true, container: 'body', placement:'bottom'});
+				element.popover({trigger: 'hover focus', title: event.title, content: event.description, html: true, container: 'body', placement:'bottom', boundary: 'viewPort'});
 			},
 			eventClick: function(event) {
 				if (data.url) {

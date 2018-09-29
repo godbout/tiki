@@ -55,7 +55,8 @@ class HotwordsLib extends TikiLib
 	/**
 	 * @param $word
 	 * @param $url
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function add_hotword($word, $url)
 	{
@@ -63,19 +64,20 @@ class HotwordsLib extends TikiLib
 
 		$url = addslashes($url);
 		$query = "delete from `tiki_hotwords` where `word`=?";
-		$result = $this->query($query, [$word]);
+		$this->query($query, [$word]);
 		$query = "insert into `tiki_hotwords`(`word`,`url`) values(?,?)";
-		$result = $this->query($query, [$word,$url]);
-		return true;
+		return $this->query($query, [$word,$url]);
 	}
 
 	/**
 	 * @param $word
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_hotword($word)
 	{
 		$query = "delete from `tiki_hotwords` where `word`=?";
-		$result = $this->query($query, [$word]);
+		return $this->query($query, [$word]);
 	}
 }
 $hotwordlib = new HotwordsLib;

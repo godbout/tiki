@@ -51,10 +51,10 @@ function smarty_function_select_all($params, $smarty)
 		$onclick .= "switchCheckboxes(this.form,'" . htmlspecialchars(smarty_modifier_escape($cn, 'javascript')) . "',this.checked$hidden_too);";
 	}
 
-	return "<div>\n" .
-			'<input name="switcher' . $id . '" id="clickall' . $id . '" type="checkbox" onclick="' . $onclick . '"' .
+	return "<div class=\"form-check\">\n" .
+			'<input name="switcher' . $id . '" id="clickall' . $id . '" class="form-check-input position-static" type="checkbox" onclick="' . $onclick . '"' .
 			( empty($params['label']) ? ' title="' . tra('Select All') . '"' : '' ) .
 			'/>' . "\n" .
-			( ! empty($params['label']) ? '<label for="clickall' . $id . '">' . $params['label'] . "</label>\n" : '' ) .
+			( ! empty($params['label']) ? '<label class="form-check-label" for="clickall' . $id . '">' . $params['label'] . "</label>\n" : '' ) .
 			"</div>\n";
 }

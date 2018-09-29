@@ -14,18 +14,24 @@ $access->check_feature('feature_hotwords');
 $access->check_permission('tiki_p_admin');
 
 // Process the form to add a user here
-if (isset($_REQUEST["add"])) {
-	check_ticket('admin-hotwords');
+if (isset($_REQUEST["add"]) && $access->checkCsrf()) {
 	if (empty($_REQUEST["word"]) || empty($_REQUEST["url"])) {
-		$smarty->assign('msg', tra("You have to provide a hotword and a URL"));
-		$smarty->display("error.tpl");
-		die;
+		Feedback::errorPage(tr('You have to provide a hotword and a URL'));
 	}
-	$hotwordlib->add_hotword($_REQUEST["word"], $_REQUEST["url"]);
+	$result = $hotwordlib->add_hotword($_REQUEST["word"], $_REQUEST["url"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Hotword added'));
+	} else {
+		Feedback::error(tr('Hotword not added'));
+	}
 }
-if (isset($_REQUEST["remove"]) && ! empty($_REQUEST["remove"])) {
-	$access->check_authenticity();
-	$hotwordlib->remove_hotword($_REQUEST["remove"]);
+if (isset($_REQUEST["remove"]) && ! empty($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Delete hotword?'))) {
+	$result = $hotwordlib->remove_hotword($_REQUEST["remove"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Hotword deleted'));
+	} else {
+		Feedback::error(tr('Hotword not deleted'));
+	}
 }
 if (! isset($_REQUEST["sort_mode"])) {
 	$sort_mode = 'word_desc';
@@ -52,7 +58,6 @@ $words = $hotwordlib->list_hotwords($offset, $maxRecords, $sort_mode, $find);
 $smarty->assign_by_ref('cant_pages', $words["cant"]);
 // Get users (list of users)
 $smarty->assign_by_ref('words', $words["data"]);
-ask_ticket('admin-hotwords');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template

@@ -62,19 +62,29 @@ class BlogLib extends TikiDb_Bridge
 		$cant = 0;
 		$nb = 0;
 		$i = 0;
-		//FIXME Perm:filter ?
-		foreach ($result as $res) {
-			if ($objperm = $tikilib->get_perm_object($res['blogId'], 'blog', '', false)) {
-				if ($objperm['tiki_p_read_blog'] == 'y' || ($ref == 'post' && $objperm['tiki_p_blog_post_view_ref'] == 'y') || ($ref == 'blog' && $objperm['tiki_p_blog_view_ref'] == 'y')) {
-					++$cant;
-					if ($maxRecords == - 1 || ($i >= $offset && $nb < $maxRecords)) {
-						$ret[] = $res;
-						++$nb;
-					}
-					++$i;
-				}
-			}
+
+		switch($ref) {
+			case 'post':
+				$perm = ['read_blog', 'blog_post_view_ref'];
+				break;
+			case 'blog':
+				$perm = ['read_blog', 'blog_view_ref'];
+				break;
+			default:
+				$perm = 'read_blog';
 		}
+
+		$result = Perms::filter(['type' => 'blog'], 'object', $result, ['object' => 'blogId'], $perm);
+		
+		foreach ($result as $res) {
+			++$cant;
+			if ($maxRecords == - 1 || ($i >= $offset && $nb < $maxRecords)) {
+				$ret[] = $res;
+				++$nb;
+			}
+			++$i;
+		}
+
 		$retval = [];
 		$retval["data"] = $ret;
 		$retval["cant"] = $cant;
@@ -714,21 +724,20 @@ class BlogLib extends TikiDb_Bridge
 		}
 
 		$query .= " ORDER BY `commentDate` desc";
-		$result = $this->query($query, $bindvars, $maxRecords);
+		$result = $this->fetchAll($query, $bindvars, $maxRecords);
+		$result = Perms::filter(['type' => 'blog post'], 'object', $result, ['object' => 'postId'], ['read_blog', 'blog_post_view_ref']);
 
 		$ret = [];
-		while ($res = $result->fetchRow()) {
-			if ($tikilib->user_has_perm_on_object($user, $res['postId'], 'post', 'tiki_p_read_blog') || $tikilib->user_has_perm_on_object($user, $res['postId'], 'post', 'tiki_p_blog_post_view_ref')) {
-				// Private posts can be accessed on the following conditions:
-				// user has tiki_p_admin or tiki_p_blog_admin or has written the post
-				// If blog is configured with 'Allow other user to post in this blog', then also if user has tiki_p_blog_post or is owner of this blog
-				if (($res['priv'] != 'y')
-						or ($tiki_p_admin == 'y' )
-						or ($tiki_p_blog_admin == 'y')
-						or ( ($res["public"] == 'y') && ($user && $user == $res["user"]) )
-						or ( ($res["public"] == 'y') && ($tiki_p_blog_post == 'y') ) ) {
-					$ret[] = $res;
-				}
+		foreach ($result as $res) {
+			// Private posts can be accessed on the following conditions:
+			// user has tiki_p_admin or tiki_p_blog_admin or has written the post
+			// If blog is configured with 'Allow other user to post in this blog', then also if user has tiki_p_blog_post or is owner of this blog
+			if (($res['priv'] != 'y')
+					or ($tiki_p_admin == 'y' )
+					or ($tiki_p_blog_admin == 'y')
+					or ( ($res["public"] == 'y') && ($user && $user == $res["user"]) )
+					or ( ($res["public"] == 'y') && ($tiki_p_blog_post == 'y') ) ) {
+				$ret[] = $res;
 			}
 		}
 
@@ -781,7 +790,7 @@ class BlogLib extends TikiDb_Bridge
 		$cant = $this->getOne($query_cant, $bindvars);
 		$ret = [];
 
-		$result = Perms::filter([ 'type' => 'blog' ], 'object', $result, [ 'object' => 'blogId' ], ['read_blog', 'blog_view_ref']);
+		$result = Perms::filter(['type' => 'blog post'], 'object', $result, ['object' => 'postId'], ['read_blog', 'blog_post_view_ref']);
 
 		foreach ($result as $res) {
 			$query2 = "select `title` from `tiki_blogs` where `blogId`=?";

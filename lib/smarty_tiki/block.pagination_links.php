@@ -121,7 +121,7 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 		$params['itemname'] = 'Page';
 	}
 	if (! isset($params['noimg'])) {
-		$params['noimg'] = ($prefs['pagination_icons'] == 'n' ? 'y' : 'n');
+		$params['noimg'] = ($prefs['pagination_icons'] == 'n');
 	}
 	if (! isset($params['usedots'])) {
 		$params['usedots'] = 'y';
@@ -217,32 +217,8 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 	) : 0;
 	$max_links = (1 + $max_ending_links + $max_middle_links) * 2 + 1;
 
-	// Handle next/prev images
-	if ($params['noimg'] == 'n') {
-		$tmp = [
-			'first' => tr("First %0", $params['itemname']),
-			'last' => tr("Last %0", $params['itemname']),
-			'next' => tr("Next %0", $params['itemname']),
-			'previous' => tr("Prev %0", $params['itemname']),
-			'next_fast' => tra('Fast Next'),
-			'previous_fast' => tra('Fast Prev'),
-		];
-		$images = [];
-		foreach ($tmp as $ik => $iv) {
-			$images[$ik] = smarty_function_icon(
-				[
-					'_id' => 'resultset_' . $ik,
-					'alt' => $iv,
-					'style' => 'vertical-align:middle;',
-				],
-				$smarty
-			);
-		}
-		unset($tmp);
-	}
-
 	if ($params['cant'] > 0) {
-		$make_prevnext_link = function ($url, $content, $params, $class = 'prevnext', $linkoffset) {
+		$make_prevnext_link = function ($url, $content, $params, $class = 'prevnext', $linkoffset = 0) {
 			$smarty = TikiLib::lib('smarty');
 
 			$link = '<a class="page-link ' . $class . '" ';
@@ -277,11 +253,12 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 
 			if ($prefs['nextprev_pagination'] != 'n' || $params['show_numbers'] !== 'y') {
 				if ($params['offset'] == 0) {
-					$html .= '<li class="page-item disabled"><span class="page-link">«</span></li>';
+					$html .= '<li class="page-item disabled"><span class="page-link">' .
+						($params['noimg'] ? tr('Previous') : '«') . '</span></li>';
 				} else {
 					$html .= '<li class="page-item">' . $make_prevnext_link(
 						$url . $prev_offset,
-						'«',
+							$params['noimg'] ? tr('Previous') : '«',
 						$params,
 						'prevnext prev',
 						$prev_offset_val
@@ -334,11 +311,12 @@ function smarty_block_pagination_links($params, $url, $smarty, &$repeat)
 
 			if ($prefs['nextprev_pagination'] != 'n' || $params['show_numbers'] !== 'y') {
 				if ($params['offset'] + $params['step'] >= $params['cant']) {
-					$html .= '<li class="page-item disabled"><span class="page-link">»</span></li>';
+					$html .= '<li class="page-item disabled"><span class="page-link">' .
+						($params['noimg'] ? tr('Next') : '»') . '</span></li>';
 				} else {
 					$html .= '<li class="page-item">' . $make_prevnext_link(
 						$url . $next_offset,
-						'»',
+							$params['noimg'] ? tr('Next') : '»',
 						$params,
 						'prevnext next',
 						$next_offset_val

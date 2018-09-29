@@ -1,6 +1,6 @@
 <div class="tocnav">
 	<div class="clearfix">
-		<div class="pull-left breadcrumb">
+		<div class="float-left breadcrumb">
 			{if $home_info}{if $home_info.page_alias}{assign var=icon_title value=$home_info.page_alias}{else}{assign var=icon_title value=$home_info.pageName}{/if}
 				{if $prefs.feature_wiki_structure_drilldownmenu eq 'y'}
 					<span class="dropdown">
@@ -42,7 +42,7 @@
 			{/section}
 		</div>
 		{if $struct_editable eq 'a'}
-			<div class="pull-right">
+			<div class="float-sm-right">
 				<form action="tiki-editpage.php" method="post" role="form" class="form-inline">
 					<div class="form-group row">
 						<input type="hidden" name="current_page_id" value="{$page_info.page_ref_id}">
@@ -67,7 +67,7 @@
 			</div>
 		{else}
 			{if $struct_editable eq 'y'}
-							<span class="pull-right">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</span>
+							<span class="float-sm-right">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</span>
 			{/if}
 		{/if}
 	</div>

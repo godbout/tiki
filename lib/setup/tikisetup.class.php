@@ -157,6 +157,12 @@ $PHP_CONFIG_FILE_PATH/php.ini or $httpd_conf.
 
 		if (ini_get('session.save_handler') == 'files') {
 			$save_path = ini_get('session.save_path');
+			if (empty($save_path)) {
+				$save_path = session_save_path();
+				if (empty($save_path)) {
+					$save_path = sys_get_temp_dir();
+				}
+			}
 			// check if we can check it. The session.save_path can be outside
 			// the open_basedir paths.
 			$open_basedir = ini_get('open_basedir');

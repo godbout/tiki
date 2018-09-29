@@ -1,28 +1,29 @@
 {* $Id$ *}
 
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Profiles Wizard{/tr}" title="{tr}Configuration Profiles Wizard{/tr}" >
-		<i class="fa fa-cubes fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
-	</span>
-	{tr}Check out these more advanced configurations that demonstrate some other Tiki Features that you might be interested in for your site{/tr}. </br></br>
-	{remarksbox type="warning" title="{tr}Warning{/tr}"}
-		<a target="tikihelp" class="tikihelp" style="float:right" title="{tr}Demo Profiles:{/tr}
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="{tr}Configuration Profiles Wizard{/tr}" >
+			<i class="fas fa-cubes fa-stack-2x"></i>
+			<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		</span>
+	</div>
+	<div class="media-body">
+		<h4 class="mt-0 mb-4">{tr}Check out these more advanced configurations that demonstrate some other Tiki Features that you might be interested in for your site{/tr}.</h4>
+		{remarksbox type="warning" title="{tr}Warning{/tr}"}
+			<a target="tikihelp" class="tikihelp" style="float:right" title="{tr}Demo Profiles:{/tr}
 				{tr}They are initially intended for testing environments, so that, after you have played with the feature, you don't have to deal with removing the created objects, nor with restoring the potentially changed settings in your site{/tr}.
 				<br/><br/>
 				{tr}Once you know what they do, you can also apply them in your production site, in order to have working templates of the underlying features, that you can further adapt to your site later on{/tr}."
 				>
-			{icon name="help"}
-		</a>
-	{tr}They are not to be initially applied in production environments since they cannot be easily reverted and changes and new objects in your site are created for real{/tr}
-	{/remarksbox}
-	<div class="media">
-		<fieldset>
-			<legend>{tr}Profiles:{/tr}</legend>
+				{icon name="help"}
+			</a>
+			{tr}They are not to be initially applied in production environments since they cannot be easily reverted and changes and new objects in your site are created for real{/tr}
+		{/remarksbox}
+		<h3>{tr}Profiles:{/tr}</h3>
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}Shopping Cart{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Shopping_Cart&show_details_for=Shopping_Cart&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Shopping_Cart&show_details_for=Shopping_Cart&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile provides a Shopping Cart and the corresponding basic payment system.{/tr}
 					{tr}It currently uses the PayPal shopping cart rather than the built in Tiki{/tr}.
@@ -52,7 +53,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Easy GeoBlog{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Easy+GeoBlog&show_details_for=Easy+GeoBlog&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Easy+GeoBlog&show_details_for=Easy+GeoBlog&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile demonstrates the geolocation of Blog posts, in conjunction with other associated features{/tr}
 					<br/>
@@ -85,7 +86,7 @@
 			<div class="row">
 				<div class="col-md-6">
 							<h4>{tr}Profile Conditional_Display_in_Forms{/tr}</h4>
-							(<a href="tiki-admin.php?profile=Conditional_Display_in_Forms_14&show_details_for=Conditional_Display_in_Forms_14&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+							(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Conditional_Display_in_Forms_14&show_details_for=Conditional_Display_in_Forms_14&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 							<br>
 							{tr}This profile demonstrates the setup to conditionally hide or display some fields in a form{/tr}.
 					<br/>
@@ -114,7 +115,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Profile Execute_on_list{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Execute+on+list&show_details_for=Execute+on+list&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Execute+on+list&show_details_for=Execute+on+list&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile demonstrates how to perform actions on several items from a list using Plugin ListExecute{/tr}.
 					<br/>
@@ -141,6 +142,5 @@
 					</div>
 				</div>
 			</div>
-		</fieldset>
 	</div>
 </div>

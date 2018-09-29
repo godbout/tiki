@@ -40,9 +40,21 @@ class FilesCheckCommand extends Command
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$checkImageGallery = new CheckImageGallery();
-		$result = $checkImageGallery->analyse();
-		$this->printResults($output, $result, tr('Image Gallery'));
+		$perms = \Perms::get();
+		if (! $perms->view_image_gallery) {
+			global $user;
+			$output->writeln('<info>== ' . tr('Image Gallery') . ' ==</info>');
+			$output->writeln('<error>' . tr('Checking for image gallery files skipped!') . '</error>');
+			$output->writeln(
+				'<info>'
+				. tr('The user (%0) do not have at least the "view_image_gallery" permission, please select other user using the "--as-user" parameter', $user)
+				. '</info>'
+			);
+		} else {
+			$checkImageGallery = new CheckImageGallery();
+			$result = $checkImageGallery->analyse();
+			$this->printResults($output, $result, tr('Image Gallery'));
+		}
 
 		$output->writeln('');
 

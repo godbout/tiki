@@ -21,7 +21,7 @@
 // Note: the difference is invisible but " :" has an UTF-8 non-breaking-space, not a regular space, but the UTF-8 equivalent of the HTML &nbsp;.
 // This allows correctly displaying emails and JavaScript messages, not only web pages as would happen with &nbsp;.
 
-$lang = [
+$lang = array(
 // "Bytecode Cache" => "Bytecode Cache",
 // "Using <strong>%0</strong>.These stats affect all PHP applications running on the server" => "Using <strong>%0</strong>.These stats affect all PHP applications running on the server",
 // "Configuration setting <em>xcache.admin.enable_auth</em> prevents from accessing statistics. This will also prevent the cache from being cleared when clearing template cache" => "Configuration setting <em>xcache.admin.enable_auth</em> prevents from accessing statistics. This will also prevent the cache from being cleared when clearing template cache",
@@ -46,4 +46,4 @@ $lang = [
 "Wiki settings" => "Настройки Wiki",
 // "Help on \$admintitle Config" => "Help on \$admintitle Config",
 "Congratulations!\n\nYour server can send emails.\n\n" => "Поздравляем!\n\nВаш сервер умеет рассылать письма.\n\n",
-];
+);

@@ -981,10 +981,10 @@ class CategLib extends ObjectLib
 			}
 			switch ($type) {
 				case 'children':
-					$kept = $filterBaseCategory['children'];
+					$kept = $filterBaseCategory['children'] ?? [];
 					break;
 				case 'descendants':
-					$kept = $filterBaseCategory['descendants'];
+					$kept = $filterBaseCategory['descendants'] ?? [];
 					break;
 				case 'roots':
 					$kept = $cachelib->getSerialized('roots', 'allcategs');

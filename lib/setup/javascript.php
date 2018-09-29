@@ -201,6 +201,7 @@ if (inArray(m, allTimeZoneCodes)) {
 	$jqueryTiki['infoboxTypes'] = Services_Object_Controller::supported();
 	$jqueryTiki['googleStreetView'] = $prefs['geo_google_streetview'] === 'y' ? true : false;
 	$jqueryTiki['googleStreetViewOverlay'] = $prefs['geo_google_streetview_overlay'] === 'y' ? true : false;
+	$jqueryTiki['googleMapsAPIKey'] = $prefs['gmap_key'];
 	$jqueryTiki['structurePageRepeat'] = $prefs['page_n_times_in_a_structure'] === 'y' ? true : false;
 	$jqueryTiki['mobile'] = $prefs['mobile_mode'] === 'y' ? true : false;
 	$jqueryTiki['no_cookie'] = false;

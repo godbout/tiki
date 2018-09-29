@@ -316,7 +316,12 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 		$filterFieldHere = $this->getTrackerDefinition()->getField($filterFieldIdHere);
 		$filterFieldThere = $trklib->get_tracker_field($filterFieldIdThere);
 
-		$sortFieldIds = array_filter($this->getOption('sortField'));
+		$sortFieldIds = $this->getOption('sortField');
+		if (is_array($sortFieldIds)) {
+			$sortFieldIds = array_filter($sortFieldIds);
+		} else {
+			$sortFieldIds = [];
+		}
 		$status = $this->getOption('status', 'opc');
 		$tracker = Tracker_Definition::get($trackerId);
 
@@ -369,6 +374,19 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 			if ($filterFieldHere['type'] == 'w') {
 				$localValue = $trklib->get_item_value($trackerId, $localValue, $filterFieldIdThere);
 			}
+			// u = user selector, might be mulitple users so need to find multiple values
+			if ($filterFieldHere['type'] == 'u' && ! empty($filterFieldHere['options_map']['multiple'])) {
+				$theUsers = explode(',', $localValue);
+				$items = [];
+				foreach ($theUsers as $theUser) {
+					$items = array_merge(
+						$items,
+						$trklib->get_items_list($trackerId, $filterFieldIdThere, $theUser, $status, false, $sortFieldIds)
+					);
+				}
+
+				return $items;
+			}
 			// Skip nulls
 			if ($localValue) {
 				$items = $trklib->get_items_list($trackerId, $filterFieldIdThere, $localValue, $status, false, $sortFieldIds);
@@ -409,7 +427,8 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 					' ',
 					isset($context['list_mode']) ? $context['list_mode'] : '',
 					$this->getOption('linkToItems'),
-					$this->getOption('displayFieldIdThereFormat')
+					$this->getOption('displayFieldIdThereFormat'),
+					$trklib->get_tracker_item($itemId)
 				);
 			} else {
 				$list[$itemId] = $trklib->get_isMain_value($trackerId, $itemId);

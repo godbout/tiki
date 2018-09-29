@@ -1,13 +1,13 @@
 <div class="activity" data-id="{$activityframe.object.id|escape}">
 	{if $activity_format eq 'summary' and $activityframe.summary neq 'content'}
 		<div class="media" data-href="{service controller=object action=infobox type=$activityframe.object.type object=$activityframe.object.id format=extended}">
-			<div class="pull-left">
+			<div class="float-left">
 				{$activityframe.activity.user|avatarize:'':'img/noavatar.png'}
 			</div>
 			<div class="media-body">
 				<h4 class="media-heading">{$activityframe.heading}</h4>
 				{if $activityframe.activity.type && $activityframe.activity.object}
-					<span class="pull-right">
+					<span class="float-sm-right">
 						{$activityframe.activity.modification_date|tiki_short_datetime}
 					</span>
 					<div>
@@ -19,19 +19,19 @@
 		</div>
 	{elseif $activity_format eq 'summary'}
 		<div class="media" data-href="{service controller=object action=infobox type=$activityframe.object.type object=$activityframe.object.id format=extended}">
-			<div class="pull-left">
+			<div class="float-left">
 				{$activityframe.activity.user|avatarize:'':'img/noavatar.png'}
 			</div>
 			<div class="media-body">
 				<h4 class="media-heading">{$activityframe.heading}</h4>
-				<span class="pull-right">
+				<span class="float-sm-right">
 					{$activityframe.activity.modification_date|tiki_short_datetime}
 				</span>
 				<div class="content">{$activityframe.content}</div>
 			</div>
 		</div>
 	{else}
-		<span class="pull-right">
+		<span class="float-sm-right">
 			{$activityframe.activity.modification_date|tiki_short_datetime}
 		</span>
 		<strong style="vertical-align: middle;">{$activityframe.activity.user|avatarize:'':'img/noavatar.png'} {$activityframe.heading}</strong>

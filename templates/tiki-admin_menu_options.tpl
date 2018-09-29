@@ -27,11 +27,11 @@
 		<h2>{tr}Menu options{/tr} <span class="badge badge-secondary">{$cant_pages}</span></h2>
 
 		<div class="navbar mb-4 clearfix">
-			{button _text='{tr}Save Options{/tr}' _class='save_menu  btn btn-sm disabled pull-left mb-2' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
+			{button _text='{tr}Save Options{/tr}' _class='save_menu  btn btn-sm disabled float-left mb-2' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
 			<ol class="new-option col-sm-12">
 				<li id="node_new" class="clearfix new">
 					<div class="col-sm-12">
-						<div class="pull-left label-group">
+						<div class="float-left label-group">
 							<div class="input-group input-group-sm" style="max-width: 100%">
 								<div class="input-group-append">
 									<span class="input-group-text">{icon name='sort'}</span>
@@ -48,7 +48,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="pull-left url-group hidden">
+						<div class="float-left url-group hidden">
 							<div class="input-group input-group-sm">
 								<div class="input-group-prepend">
 									<a href="#" class="input-group-text" onclick='return false;'>
@@ -136,7 +136,7 @@
 									{$tooltip = "|{tr}separator{/tr}"}
 								{/if}
 
-								<div class="pull-left label-group mr-4">
+								<div class="float-left label-group mr-4">
 									<div class="input-group input-group-sm">
 										<div class="input-group-append">
 											<span class="input-group-text">{icon name='sort'}</span>
@@ -153,7 +153,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="pull-left url-group">
+								<div class="float-left url-group">
 									<div class="input-group input-group-sm">
 										<div class="input-group-append">
 										<a href="{$option.sefurl|escape}" class="input-group-text tips confirm" title="|{tr}Test URL{/tr}">

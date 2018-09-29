@@ -36,10 +36,7 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 			required semantics.
 		*/
 
-		$data = [
-			'title' => $typeFactory->sortable(tr('Unknown')),
-			'language' => $typeFactory->identifier('unknown'),
-		];
+		$data = [];
 
 		$item = $this->trklib->get_tracker_item($objectId);
 
@@ -68,12 +65,12 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 
 		$ownerGroup = $itemObject->getOwnerGroup();
 		$data = array_merge(
-			$data,
 			[
 				'title' => $typeFactory->sortable($this->trklib->get_isMain_value($item['trackerId'], $objectId)),
 				'modification_date' => $typeFactory->timestamp($item['lastModif']),
 				'creation_date' => $typeFactory->timestamp($item['created']),
 				'contributors' => $typeFactory->multivalue(array_unique([$item['createdBy'], $item['lastModifBy']])),
+				'date' => $typeFactory->timestamp($item['created']),
 
 				'tracker_status' => $typeFactory->identifier($item['status']),
 				'tracker_id' => $typeFactory->identifier($item['trackerId']),
@@ -84,8 +81,16 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 				'_extra_users' => $specialUsers,
 				'_permission_accessor' => $itemObject->getPerms(),
 				'_extra_groups' => $ownerGroup ? [$ownerGroup] : null,
-			]
+			],
+			$data
 		);
+
+		if (empty($data['title'])) {
+			$data['title'] = $typeFactory->sortable(tr('Unknown'));
+		}
+		if (empty($data['language'])) {
+			$data['language'] = $typeFactory->identifier('unknown');
+		}
 
 		return $data;
 	}
@@ -103,6 +108,7 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 			'language',
 			'modification_date',
 			'creation_date',
+			'date',
 			'contributors',
 
 			'tracker_status',
@@ -135,6 +141,7 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 		}
 
 		$data['title'] = true;
+		$data['date'] = true;
 		return $data;
 	}
 

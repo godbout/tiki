@@ -31,6 +31,7 @@ class Search_ContentSource_CalendarSource implements Search_ContentSource_Interf
 			'title' => $typeFactory->sortable($item['name']),
 			'creation_date' => $typeFactory->timestamp($item['created']),
 			'modification_date' => $typeFactory->timestamp($item['lastmodif']),
+			'date' => $typeFactory->timestamp($item['created']),
 			'description' => $typeFactory->plaintext($item['description']),
 			'language' => $typeFactory->identifier('unknown'),
 
@@ -51,6 +52,7 @@ class Search_ContentSource_CalendarSource implements Search_ContentSource_Interf
 			'language',
 			'creation_date',
 			'modification_date',
+			'date',
 
 			'personal',
 			'user',
@@ -66,6 +68,7 @@ class Search_ContentSource_CalendarSource implements Search_ContentSource_Interf
 		return [
 			'title' => true,
 			'description' => true,
+			'date' => true,
 		];
 	}
 }

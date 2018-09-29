@@ -130,7 +130,7 @@ function wikiplugin_flash($data, $params)
 	if (isset($params['fileId']) && ! isset($params['movie'])) {
 		$filegallib = TikiLib::lib('filegal');
 		$file_info = $filegallib->get_file_info($params['fileId']);
-		if (! $userlib->user_has_perm_on_object($user, $file_info['galleryId'], 'file gallery', 'tiki_p_view_file_gallery')) {
+		if (! $userlib->user_has_perm_on_object($user, $file_info['fileId'], 'file', 'tiki_p_view_file_gallery')) {
 			return tra('Permission denied');
 		}
 		$params['movie'] = $prefs['fgal_podcast_dir'] . $file_info['path'];

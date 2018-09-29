@@ -324,14 +324,16 @@ class PdfGenerator
 			$coverImage = $pdfSettings['coverpage_image_settings'] != 'off' ? $pdfSettings['coverpage_image_settings'] : '';
 			$mpdf->SetHeader();		//resetting header footer for cover page
 			$mpdf->SetFooter();
-			$mpdf->AddPage($pdfPage['orientation'], '', '', '', '', 0, 0, 0, 0, 0, 0); //adding new page with 0 margins
+			$mpdf->AddPage($pdfSettings['orientation'], '', '', '', '', 0, 0, 0, 0, 0, 0); //adding new page with 0 margins
 			$coverPage[2] = $coverPage[2] == '' ? 'center' : $coverPage[2];
 			//getting border settings
 			if (count($coverPage) > 5) {
 				$borderWidth = $coverPage[5] == '' ? 1 : $coverPage[5];
 				$coverPageTextStyles = 'border:' . $borderWidth . ' solid ' . $coverPage[6] . ';';
+			} else {
+				$coverPageTextStyles = '';
 			}
-			$bgColor = $cover[3] == '' ? 'background-color:' . $coverPage[3] : '';
+			$bgColor = $coverPage[3] == '' ? 'background-color:' . $coverPage[3] : '';
 			$mpdf->WriteHTML('<body style="' . $bgColor . ';margin:0px;padding:0px"><div style="height:100%;background-image:url(' . $coverImage . ');padding:20px;background-repeat: no-repeat;background-position: center; "><div style="' . $coverPageTextStyles . 'height:95%;">
 <div style="text-align:' . $coverPage[2] . ';margin-top:30%;color:' . $coverPage[4] . '"><div style=margin-bottom:10px;font-size:50px>' . $coverPage[0] . '</div>' . $coverPage[1] . '</div></div></body>');
 		}
@@ -356,9 +358,9 @@ class PdfGenerator
 				} elseif ($pdfPage['footer']) {
 					$footer = $pdfPage['footer'];
 				}
-				$mpdf->SetHeader(str_ireplace("{PAGETITLE}", $params['page'], $header));
+				$mpdf->SetHeader(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"), $header));
 				$mpdf->AddPage($pdfPage['orientation'], '', '', '', '', $pdfPage['margin_left'], $pdfPage['margin_right'], $pdfPage['margin_top'], $pdfPage['margin_bottom'], $pdfPage['margin_header'], $pdfPage['margin_footer'], '', '', '', '', '', '', '', '', '', $pdfPage['pagesize']);
-				$mpdf->SetFooter(str_ireplace("{PAGETITLE}", $params['page'], $footer)); //footer needs to be reset after page content is added
+				$mpdf->SetFooter(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"), $footer)); //footer needs to be reset after page content is added
 
 			//checking watermark on page
 				$mpdf->SetWatermarkText($pdfPage['watermark']);
@@ -381,9 +383,9 @@ class PdfGenerator
 				$backgroundImage = '';
 				$bgColor = "";
 				if ($pdfPage['background'] != '') {
-					$bgColor = "background-color:" . $pdfPage['background'];
+					$bgColor = "background: linear-gradient(top, ".$pdfPage['background'].", ".$pdfPage['background'].");";
 				}
-				$mpdf->WriteHTML('<html><body style="' . $bgColor . ';margin:0px;padding:0px;">' . $cssStyles);
+				$mpdf->WriteHTML('<html><body style="'.$bgColor.'-webkit-print-color-adjust: exact;margin:0px;padding:0px;">' . $cssStyles);
 				$pagesTotal += floor(strlen($pdfPage['pageContent']) / 3000);
 				//checking if page content is less than mPDF character limit, otherwise split it and loop to writeHTML
 				for ($charLimit = 0; $charLimit <= strlen($pdfPage['pageContent']); $charLimit += $pdfLimit) {
@@ -814,28 +816,49 @@ $(".convert-mailto").removeClass("convert-mailto").each(function () {
 
 		for ($i = 0,$linkCnt = 1; $i < $len; $i++) {
 			$anchor = $anchors->item(0);
-			$link = $doc->createElement('span', $anchor->nodeValue);
-			$link->setAttribute('class', $anchor->getAttribute('class'));
+			if(!is_null($anchor)) {
+				$link = $doc->createElement('span', $anchor->nodeValue);
+				$link->setAttribute('class', $anchor->getAttribute('class'));
 
-			//checking if links to be added as footnote
-			if ($hyperlinkSetting != "off") {
-				// Check if there is a url in the text
-				$linkSup = $doc->createElement("sup");
-				if (preg_match("/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/", $anchor->getAttribute('href'), $url)) {
-					$linkAn = $doc->createElement("hyperanchor", "[" . $linkCnt . "]");
-					$linkAn->setAttribute("href", "#" . $pageCounter . "lnk" . $linkCnt);
-					$linkSup->appendChild($linkAn);
-					$link->appendChild($linkSup);
-					$hrefData = $doc->createElement("a", $anchor->getAttribute('href'));
-					$hrefData->setAttribute("name", $pageCounter . "lnk" . $linkCnt);
-					$hrefDiv->setAttribute("style", "border-top:1px solid #ccc;line-height:1.2em");
-					$hrefDiv->appendChild($doc->createElement("sup", "&nbsp;[" . $linkCnt . "]&nbsp;"));
-					$hrefDiv->appendChild($hrefData);
-					$hrefDiv->appendChild($doc->createElement("br"));
-					$linkCnt++;
+				//checking if links to be added as footnote
+				if ($hyperlinkSetting != "off") {
+					// Check if there is a url in the text
+					$linkSup = $doc->createElement("sup");
+					if (preg_match(
+						"/(http|https)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/",
+						$anchor->getAttribute('href'), $url
+					)
+					) {
+						$linkAn = $doc->createElement(
+							"hyperanchor", "[" . $linkCnt . "]"
+						);
+						$linkAn->setAttribute(
+							"href", "#" . $pageCounter . "lnk" . $linkCnt
+						);
+						$linkSup->appendChild($linkAn);
+						$link->appendChild($linkSup);
+						$hrefData = $doc->createElement(
+							"a", $anchor->getAttribute('href')
+						);
+						$hrefData->setAttribute(
+							"name", $pageCounter . "lnk" . $linkCnt
+						);
+						$hrefDiv->setAttribute(
+							"style",
+							"border-top:1px solid #ccc;line-height:1.2em"
+						);
+						$hrefDiv->appendChild(
+							$doc->createElement(
+								"sup", "&nbsp;[" . $linkCnt . "]&nbsp;"
+							)
+						);
+						$hrefDiv->appendChild($hrefData);
+						$hrefDiv->appendChild($doc->createElement("br"));
+						$linkCnt++;
+					}
 				}
+				$anchor->parentNode->replaceChild($link, $anchor);
 			}
-			$anchor->parentNode->replaceChild($link, $anchor);
 		}
 
 		$hrefDiv->setAttribute('class', "footnotearea");

@@ -106,5 +106,12 @@ function prefs_search_list()
 			'type' => 'flag',
 			'default' => 'y',
 		],
+		'search_file_thumbnail_preview' => [
+			'name' => tra('File thumbnail preview'),
+			'description' => tra('Have a preview of attachments in search results'),
+			'type' => 'flag',
+			'packages_required' => ['media-alchemyst/media-alchemyst' => 'MediaAlchemyst\Alchemyst'],
+			'default' => 'n',
+		],
 	];
 }

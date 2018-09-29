@@ -390,7 +390,30 @@ class TikiLdapLib
 		} elseif (! empty($this->options['usergroupattr'])) {
 			// get membership from user information
 
-			$ugi = &$this->user_attributes[$this->options['usergroupattr']];
+			if ($this->options['usergroupattr'] === 'distinguishedName') {
+				// get membership from user DN
+
+				// split DN into RDN strings
+				$dn_string = $this->user_attributes[$this->options['usergroupattr']];
+				$rdn_strings = explode(',', $dn_string);
+
+				// add value of RDNs with OU type
+				$ugi = [];
+				foreach ($rdn_strings as $rdn_string) {
+					// split RDN string in type and value
+					$rdn_parts = explode('=', $rdn_string, 2);
+					$rdn_type = $rdn_parts[0];
+					$rdn_value = $rdn_parts[1];
+
+					// add RDN value if type is OU
+					if (strtoupper($rdn_type) === 'OU') {
+						$ugi[] = $rdn_value;
+					}
+				}
+			} else {
+				$ugi = &$this->user_attributes[$this->options['usergroupattr']];
+			}
+
 			if (! empty($ugi)) {
 				if (! is_array($ugi)) {
 					$ugi = [$ugi];
@@ -409,7 +432,7 @@ class TikiLdapLib
 
 				$filter = Filter::andFilter($filter1, $filter3);
 			} else { // User has no group
-				$filter = null;
+				return [];
 			}
 		} else {
 			// not possible to get groups - return empty array

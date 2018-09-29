@@ -8,6 +8,7 @@
 	<form role="form" action="{$smarty.server.PHP_SELF}?{query}" method="post">
 		<input type="hidden" name="galleryId" value="{$galleryId|escape}">
 		<input type="hidden" name="filegals_manager" {if isset($filegals_manager)}value="{$filegals_manager}"{/if}>
+		{ticket}
 
 		{tabset name="list_file_gallery"}
 			{tab name="{tr}Properties{/tr}"}
@@ -299,7 +300,13 @@ if ($(this).val() != '') {
 
 		<div class="form-group row">
 			<div class="col-md-8 col-md-offset-4">
-				<input type="submit" class="btn btn-secondary" value="{tr}Save{/tr}" name="edit">
+				<input
+					type="submit"
+					class="btn btn-secondary"
+					value="{tr}Save{/tr}"
+					name="edit"
+					onclick="checkTimeout()"
+				>
 			</div>
 		</div>
 	</form>

@@ -32,6 +32,16 @@
 					<li class="dropdown-title">
 						{tr}Quick Administration{/tr}
 					</li>
+					<li class="dropdown-item mb-2 mt-4">
+						<form method="post" action="tiki-admin.php" class="form-inline my-2 my-md-0 ml-auto" role="form">
+							<div class="input-group">
+								<input type="text" name="lm_criteria" value="{$smarty.request.lm_criteria|escape}" class="form-control form-control-sm" placeholder="Search preferences...">
+								<button type="submit" class="btn btn-primary btn-sm input-group-append">
+									<span class="icon icon-search fas fa-search fa-fw "></span>
+								</button>
+							</div>
+						</form>
+					</li>
 					<li class="dropdown-divider"></li>
 					<li class="dropdown-item">
 						<a href="tiki-wizard_admin.php?stepNr=0&amp;url=index.php">

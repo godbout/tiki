@@ -184,7 +184,7 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 		$mapping = array_filter($mapping);
 
 		if (! empty($mapping)) {
-			$this->connection->mapping($this->index, $type, $mapping, function () {
+			$this->connection->mapping($this->index, $mapping, function () {
 				return $this->getIndexDefinition();
 			});
 		}
@@ -335,13 +335,32 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 		foreach ($foreign as $indexName => $foreignQuery) {
 			if ($this->connection->getIndexStatus($indexName)) {
 				$indices[] = $indexName;
-				$queryPart = ['query' => [
-					'indices' => [
-						'index' => $indexName,
-						'query' => $foreignQuery['query'],
-						'no_match_query' => $queryPart['query'],
-					],
-				]];
+				if ($this->connection->getVersion() >= 6) {
+					if (! isset($queryPart['query']['dis_max'])) {
+						$queryPart['query']['dis_max']['queries'] = [
+							$queryPart['query']
+						];
+						unset($queryPart['query']['match']);
+					}
+					$queryPart['query']['dis_max']['queries'][] = [
+						'bool' => [
+							'must' => [
+								$foreignQuery['query'],
+								[
+									'match' => ['_index' => $this->connection->resolveAlias($indexName)]
+								]
+							]
+						]
+					];
+				} else {
+					$queryPart = ['query' => [
+						'indices' => [
+							'index' => $indexName,
+							'query' => $foreignQuery['query'],
+							'no_match_query' => $queryPart['query'],
+						],
+					]];
+				}
 			} else {
 				Feedback::error(tr('Federated index %0 not found', $indexName));
 			}

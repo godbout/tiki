@@ -28,8 +28,10 @@ class Math_Formula_Function_ForEach extends Math_Formula_Function
 
 		$out = [];
 
-		foreach ($list as $values) {
-			$out[] = $this->evaluateChild($formula, $values);
+		if (is_array($list)) {
+			foreach ($list as $values) {
+				$out[] = $this->evaluateChild($formula, $values);
+			}
 		}
 
 		return $out;

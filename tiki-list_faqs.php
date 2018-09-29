@@ -32,7 +32,7 @@ $smarty->assign('description', $info["description"]);
 $smarty->assign('canSuggest', $info["canSuggest"]);
 if (isset($_REQUEST["remove"])) {
 	if ($tiki_p_admin_faqs != 'y') {
-		$smarty->assign('msg', tra("You do not have permission to use this feature"));
+		$smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
 		$smarty->display("error.tpl");
 		die;
 	}

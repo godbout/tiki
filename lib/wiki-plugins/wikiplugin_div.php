@@ -161,28 +161,47 @@ function wikiplugin_div_info()
 				'advanced' => true,
 				'default' => '',
 			],
-
+			'data' => [
+				'required' => false,
+				'name' => tra('Data attributes'),
+				'description' => tra('URL encoded list or attributes and values.'),
+				'filter' => 'text',
+				'safe' => true,
+				'advanced' => true,
+				'since' => '19.0',
+				'default' => '',
+			],
+			'aria' => [
+				'required' => false,
+				'name' => tra('ARIA attributes'),
+				'description' => tra('URL encoded list or attributes and values, e.g. label, expanded etc.'),
+				'filter' => 'text',
+				'safe' => true,
+				'advanced' => true,
+				'since' => '19.0',
+				'default' => '',
+			],
+			'role' => [
+				'required' => false,
+				'name' => tra('Role attribute'),
+				'description' => tra('e.g. button, heading, search etc.'),
+				'since' => '19.0',
+				'filter' => 'text',
+				'safe' => true,
+				'default' => '',
+			],
 		],
 	];
-
-	if ($prefs['wiki_plugindiv_approvable'] != 'y') {
-		unset($info['validate']);
-		// If any other unsafe parameters are created, unset them here
-		unset($info['params']['style']);
-	}
 
 	return $info;
 }
 
-function wikiplugin_div($data, $params)
+function wikiplugin_div($content, $params)
 {
 	global $prefs;
 
 	extract($params, EXTR_SKIP);
-	if ($prefs['wiki_plugindiv_approvable'] != 'y' || ! isset($style)) {
-		// If any other unsafe parameters are created, unset them here
-		$style = '';
-	}
+
 	$possibletypes = ['div','span','pre','b','i','tt','p','blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
 	$t    = (isset($type) and in_array($type, $possibletypes)) ? "$type" : "div";
 	$c    = (isset($class)) ? " class='$class'" : "";
@@ -194,6 +213,26 @@ function wikiplugin_div($data, $params)
 	$fl   = (isset($float) && ($float == 'left' || $float == 'right' || $float == 'none')) ? " float: $float;" : '';
 	$cl   = (isset($clear) && ($clear == 'left' || $clear == 'right' || $clear == 'both' || $clear == 'none')) ? " clear: $clear;" : '';
 
+	if (! empty($params['data'])) {
+		parse_str($params['data'],$attrs);
+		$dt = ' ';
+		foreach ($attrs as $attr => $value) {
+			$dt .= " data-$attr=\"$value\"";
+		}
+	} else {
+		$dt = '';
+	}
+	if (! empty($params['aria'])) {
+		parse_str($params['aria'],$attrs);
+		$ar = ' ';
+		foreach ($attrs as $attr => $value) {
+			$ar .= " aria-$attr=\"$value\"";
+		}
+	} else {
+		$ar = '';
+	}
+	$ro = isset($params['role']) ? "role=\"{$params['role']}\"" : '';
+
 	if (! empty($title)) {
 		$title = " title=\"$title\"";
 	} else {
@@ -204,7 +243,7 @@ function wikiplugin_div($data, $params)
 	if (! empty($format)) {
 		$begin .= " style=\"$format\"";
 	}
-	$begin .= " $c $id $oc>";
+	$begin .= "$c$id$oc$dt$ar$ro>";
 	$end = "</$t>";
-	return $begin . $data . $end;
+	return $begin . $content . $end;
 }

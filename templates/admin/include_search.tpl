@@ -13,7 +13,7 @@
 {/if}
 
 
-<form action="tiki-admin.php?page=search" method="post">
+<form action="tiki-admin.php?page=search" method="post" class="admin">
 	{ticket}
 
 	<div class="row">
@@ -156,6 +156,7 @@
 			<fieldset>
 				<legend>{tr}Features{/tr}</legend>
 				{preference name=search_autocomplete}
+				{preference name=search_file_thumbnail_preview}
 			</fieldset>
 
 			<fieldset>

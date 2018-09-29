@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-$lang = [
+$lang = array(
 // "Bytecode Cache" => "Bytecode Cache",
 "Used" => "Usado",
 // "Available" => "Available",
@@ -13,4 +13,4 @@ $lang = [
 "%0 enabled" => "%0 habilitado",
 "Features" => "Recursos",
 // "Enable/disable Tiki features here, but configure them elsewhere" => "Enable/disable Tiki features here, but configure them elsewhere",
-];
+);

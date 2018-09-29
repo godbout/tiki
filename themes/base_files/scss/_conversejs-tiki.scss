@@ -21,26 +21,34 @@
 		}
 
 		.button-primary {
-		  @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
+			@include button-variant($primary, $primary);
 		}
 
 		.button-info {
-		  @include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
+			@include button-variant($info, $info);
 		}
 
 		.toggle-controlbox {
-			background-color:$btn-primary-bg; padding:8px 10px 0 10px;
-			span { color:$btn-primary-color; }
+			background-color:$primary;
+			span {
+				color: color-yiq($primary);
+			}
 		}
 
 		#minimized-chats {
 			.chat-head-chatbox {
-				background-color:$btn-primary-bg;
-				.restore-chat, .chatbox-btn { color:$btn-primary-color; }
+				background-color: $primary;
+				.restore-chat,
+				.chatbox-btn {
+					color: color-yiq($primary);
+				}
 			}
 			.chat-head-chatroom {
-				background-color:$btn-info-bg;
-				.restore-chat, .chatbox-btn { color:$btn-info-color; }
+				background-color: $info;
+				.restore-chat,
+				.chatbox-btn {
+					color: color-yiq($info);
+				}
 			}
 		}
 
@@ -51,54 +59,53 @@
 		}
 
 		#controlbox {
-		  .controlbox-head, .controlbox-panes,
-		  .controlbox-pane {
-			background-color: inherit;
-		  }
-		  .controlbox-head {
-			border-bottom: 1px solid $nav-tabs-border-color;
-			.chatbox-btn {
-			  color: $body-color;
+			.controlbox-head, .controlbox-panes,
+			.controlbox-pane {
+				background-color: inherit;
 			}
-		  }
+			.controlbox-head {
+	//			border-bottom: 1px solid $nav-tabs-border-color;
+				.chatbox-btn {
+					color: $body-color;
+				}
+			}
 		}
 
-			#controlbox-tabs {
-				border-bottom:1px solid $nav-tabs-border-color;
-				li a {
-					margin-left:2px; height:48px; line-height:48px; color:$link-color;
-					border:1px solid transparent; box-shadow:none;
-					background-color:transparent;
-					&:hover { color:$link-color; }
+			// #controlbox-tabs {
+			// 	border-bottom:1px solid $nav-tabs-border-color;
+			// 	li a {
+			// 		margin-left:2px; height:48px; line-height:48px; color:$link-color;
+			// 		border:1px solid transparent; box-shadow:none;
+			// 		background-color:transparent;
+			// 		&:hover { color:$link-color; }
 	//				&.current, &.current:hover, &.current:focus { //TemporaryBS4
 	//					color:$nav-tabs-active-link-hover-color;
 	//					background-color:$nav-tabs-active-link-hover-bg;
 	//					border:1px solid $nav-tabs-active-link-hover-border-color;
 	//					border-bottom-color:transparent; height:48px;
-					}
-				}
+				// 	}
+				// }
 	//		}
 
-			#chatrooms dl.rooms-list {
-				dt { color:$body-color; text-shadow:none; }
-				dd.available-chatroom {
+			#chatrooms .rooms-list {
+//				color:$body-color; text-shadow:none;
+				.available-chatroom {
 					&:hover {
 						background-color:inherit;
 						a { color:$body-color; }
 					}
-					a.room-info { margin-top:2px; }
 				}
 			}
 
 			#fancy-xmpp-status-select, .fancy-dropdown {
-			  	@include button-variant($btn-info-color, $btn-info-bg, $btn-info-border);
+			  	@include button-variant($info, $info);
 				.choose-xmpp-status, .toggle-xmpp-contact-form, a.change-xmpp-status-message {
 					color:inherit; text-shadow:none;
 				}
 			}
-			.xmpp-status-menu li a {
-				&.online, &.dnd, &.away { color:#1f7e9a; }
-			}
+//			.xmpp-status-menu li a {
+//				&.online, &.dnd, &.away { color:#1f7e9a; }
+//			}
 
 			#converse-roster {
 				.roster-filter-form {
@@ -131,45 +138,69 @@
 					&:hover { color:$link-hover-color; }
 				}
 			}
-//		}
 
 
 // chatroom
 		.chatbox {
 			form.sendXMPPMessage .chat-toolbar {
-				background-color:$btn-primary-bg;
-				ul { background-color:$btn-primary-bg; }
-				> li { margin:-2px; }
-				a, .toggle-smiley, .unencrypted { color:$btn-primary-color; }
+				background-color:$primary; border-top-color:$info;
+				ul {
+					background-color: $primary;
+				}
+
+				.fa-paperclip,
+				.toggle-smiley,
+				.unencrypted,
+				.toggle-occupants {
+					color: color-yiq($primary);
+					&:hover {
+						color: color-yiq(darken($primary, 7.5%));
+					}
+				}
 
 				.toggle-smiley ul li:hover {
-					background-color:$btn-primary-color;
-					a { color:$btn-primary-bg; }
+					background-color:$primary;
+					a {
+						color: color-yiq(darken($primary, 7.5%));
+					}
 				}
 				.chat-toolbar-text { text-shadow:none; }
 			}
 			.dropdown { background-color:transparent; }
 			.chat-head {
-				border-bottom:1px solid $body-color;
-				&.chat-head-chatbox { background-color:$btn-primary-bg; }
-				.chat-title, .close-chatbox-button, .toggle-chatbox-button { color:$btn-primary-color; }
+//				border-bottom:1px solid $body-color;
+				&.chat-head-chatbox {
+					background-color: $primary;
+				}
+				.chat-title,
+				.close-chatbox-button,
+				.toggle-chatbox-button {
+					color: color-yiq($primary);
+				}
 			}
 
 			.chat-body {
 				background-color:inherit;
-				.chat-content { height:calc(100% - 95px); color:$body-color; background-color:inherit; }
+				.chat-content { color:$body-color; background-color:inherit; }
 				.chat-info { color:$link-color; }
-				.chat-message span.chat-msg-me { color:$btn-info-bg; }
-				.chat-message span.chat-msg-them { color:$btn-primary-bg; }
+				.chat-message span.chat-msg-me {
+					color: color-yiq($info);
+				}
+				.chat-message span.chat-msg-them {
+					color: color-yiq($primary);
+				}
 			}
 		}
 
 		.chatroom {
 			.box-flyout {
 				.chat-head-chatroom {
-					background-color:$btn-info-bg;
+					background-color:$info;
 					.close-chatbox-button, .toggle-chatbox-button, .toggle-bookmark, .chat-title,
-					.chatroom-description, .configure-chatroom-button { color:$btn-info-color; }
+					.chatroom-description,
+					.configure-chatroom-button {
+						color: color-yiq($info);
+					}
 				}
 
 				.chatroom-body {
@@ -181,6 +212,7 @@
 					}
 					.chatroom-form-container { background-color:inherit; color:$body-color; }
 					.room-invite .invited-contact { border-color:$input-border-color; }
+					.chat-area .new-msgs-indicator { background-color:$info; color:color-yiq($info); }
 				}
 			}
 		}

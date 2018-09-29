@@ -10,11 +10,11 @@ class Services_StyleGuide_Controller
 {
 	function setUp()
 	{
-		Services_Exception_Disabled::check('theme_styleguide');
+		Services_Exception_Disabled::check('theme_customizer');
 	}
 
 	/**
-	 * Display the style guide tool
+	 * Display the theme customizer tool
 	 *
 	 * @param JitFilter $input
 	 *
@@ -47,12 +47,12 @@ class Services_StyleGuide_Controller
 		TikiLib::lib('header')
 			->add_jsfile('vendor_bundled/vendor/itsjavi/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.js')
 			->add_cssfile('vendor_bundled/vendor/itsjavi/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.css')
-			->add_cssfile('themes/base_files/css/style-guide.css')
-			->add_jsfile('lib/jquery_tiki/style-guide.js')
+			->add_cssfile('themes/base_files/css/theme-customizer.css')
+			->add_jsfile('lib/jquery_tiki/theme-customizer.js')
 		;
 
 		return [
-			'title' => tr('Style Guide'),
+			'title' => tr('Theme Customizer'),
 			'sections' => $sections,
 		];
 	}

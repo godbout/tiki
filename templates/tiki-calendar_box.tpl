@@ -35,7 +35,7 @@
 	</a>
 	<p class="text-muted"><strong>{tr}Created by:{/tr}{$celluser}</strong></p>
 	{if $show_description eq 'y'}
-		<div class="panel-body">
+		<div class="card-body">
 			{$celldescription|truncate:250:'...'}<br/><br/>
 			<strong>{tr}Created by:{/tr}{$celluser}</strong>
 		</div>

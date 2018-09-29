@@ -486,13 +486,16 @@ class CalendarLib extends TikiLib
 	}
 
 	/**
-	 * @param $user
-	 * @param $calitemId
-	 * @param $data
+	 * @param       $user
+	 * @param       $calitemId
+	 * @param       $data
 	 * @param array $customs
+	 * @param bool  $isBulk
+	 *
 	 * @return bool
+	 * @throws Exception
 	 */
-	function set_item($user, $calitemId, $data, $customs = [])
+	function set_item($user, $calitemId, $data, $customs = [], $isBulk = false)
 	{
 		global $prefs;
 		if (! isset($data['calendarId'])) {
@@ -581,10 +584,6 @@ class CalendarLib extends TikiLib
 			$data['nlId'] = 0;
 		}
 
-		if (! isset($data['recurrenceId']) || ! ($data['recurrenceId'] > 0)) {
-			$data['recurrenceId'] = null;
-		}
-
 		$data['user'] = $user;
 
 		$realcolumns = ['calitemId', 'calendarId', 'start', 'end', 'locationId', 'categoryId', 'nlId','priority',
@@ -595,7 +594,9 @@ class CalendarLib extends TikiLib
 
 		if ($calitemId) {
 			$finalEvent = 'tiki.calendaritem.update';
-			$new = false;
+
+			$oldData = TikiDb::get()->table('tiki_calendar_items')->fetchFullRow(['calitemId' => $calitemId]);
+			$data = array_merge($oldData, $data);
 			$data['lastmodif'] = $this->now;
 
 			$l = [];
@@ -613,6 +614,14 @@ class CalendarLib extends TikiLib
 			$r[] = (int)$calitemId;
 
 			$result = $this->query($query, $r);
+
+			$trackerItemsIds = $this->getAttachedTrackerItems($calitemId);
+
+			require_once 'lib/search/refresh-functions.php';
+			foreach ($trackerItemsIds as $trackerItemId) {
+				refresh_index('trackeritem', $trackerItemId);
+			}
+
 		} else {
 			$finalEvent = 'tiki.calendaritem.create';
 			$new = true;
@@ -634,7 +643,7 @@ class CalendarLib extends TikiLib
 
 			$query = 'INSERT INTO `tiki_calendar_items` (' . implode(',', $l) . ') VALUES (' . implode(',', $z) . ')';
 			$result = $this->query($query, $r);
-			$calitemId = $this->GetOne("select `calitemId` from `tiki_calendar_items` where `calendarId`=? and `created`=?", [$data["calendarId"],$this->now]);
+			$calitemId = $this->GetOne("SELECT MAX(`calitemId`) FROM `tiki_calendar_items` where `calendarId`=?", [$data["calendarId"]]);
 		}
 
 		if ($calitemId) {
@@ -660,9 +669,30 @@ class CalendarLib extends TikiLib
 			'type' => 'calendaritem',
 			'object' => $calitemId,
 			'user' => $GLOBALS['user'],
+			'bulk_import' => $isBulk,
 		]);
 
 		return $calitemId;
+	}
+
+	/**
+	 * Get all tracker items attached to a calender item
+	 *
+	 * @param $calitemId
+	 *
+	 * @return array
+	 * @throws Exception
+	 */
+	public function getAttachedTrackerItems($calitemId)
+	{
+		$trackerItems = [];
+		$attributes = TikiLib::lib('attribute')->find_objects_with('tiki.calendar.item', $calitemId);
+
+		foreach ($attributes as $attribute) {
+			$trackerItems[] = (int)$attribute['itemId'];
+		}
+
+		return $trackerItems;
 	}
 
 	/**
@@ -716,7 +746,7 @@ class CalendarLib extends TikiLib
 	 * @param $user
 	 * @param $calitemId
 	 */
-	function drop_item($user, $calitemId)
+	function drop_item($user, $calitemId, $isBulk = false)
 	{
 		if ($calitemId) {
 			$query = "delete from `tiki_calendar_items` where `calitemId`=?";
@@ -727,6 +757,7 @@ class CalendarLib extends TikiLib
 				'type' => 'calendaritem',
 				'object' => $calitemId,
 				'user' => $user,
+				'bulk_import' => $isBulk,
 			]);
 		}
 	}

@@ -180,21 +180,22 @@ class Services_Search_CustomSearchController
 
 		$index = $unifiedsearchlib->getIndex();
 		$resultSet = $query->search($index);
-		$errors = Feedback::get();
-		if ($errors !== false) {
-			echo $errors;
-			return;
+		if (! empty($_SESSION['tikifeedback']) && $_SESSION['tikifeedback'][0]['type'] === 'error') {
+			Feedback::send_headers();
+		} else {
+			$resultSet->setTsSettings($builder->getTsSettings());
+			$resultSet->setId('wpcs-' . $id);
+			$resultSet->setTsOn($tsret['tsOn']);
+
+			$formatter = $builder->getFormatter();
+			$results = $formatter->format($resultSet);
+
+			$parserLib = TikiLib::lib('parser');
+			$results = $parserLib->searchFilePreview($results, true);
+			$results = $parserLib->parse_data($results, ['is_html' => true, 'skipvalidation' => true]);
+
+			return ['html' => $results];
 		}
-		$resultSet->setTsSettings($builder->getTsSettings());
-		$resultSet->setId('wpcs-' . $id);
-		$resultSet->setTsOn($tsret['tsOn']);
-
-		$formatter = $builder->getFormatter();
-		$results = $formatter->format($resultSet);
-
-		$results = TikiLib::lib('parser')->parse_data($results, ['is_html' => true, 'skipvalidation' => true]);
-
-		return ['html' => $results];
 	}
 
 	private function cs_dataappend_language(Search_Query $query, $config, $value)
@@ -339,10 +340,14 @@ class Services_Search_CustomSearchController
 
 	private function cs_dataappend_daterange(Search_Query $query, $config, $value)
 	{
-		if ($vals = preg_split('/,/', $value)) {
+		if ($vals = explode(',', $value)) {
 			if (count($vals) == 2) {
 				$from = $vals[0];
 				$to = $vals[1];
+				if ((empty($config['_showtime']) || $config['_showtime'] === 'n') &&
+						(empty($config['_toendofday']) || $config['_toendofday'] === 'y')) {
+					$to += (24 * 60 * 3600) - 1;	// end date should be the end of the day, not the beginning
+				}
 				if (! empty($config['_field'])) {
 					$field = $config['_field'];
 				} else {

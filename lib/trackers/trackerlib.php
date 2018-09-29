@@ -405,10 +405,6 @@ class TrackerLib extends TikiLib
 			$bindvars[] = $trackerId;
 			$query_cant = "select count(*) from `tiki_comments` t left join `tiki_tracker_items` a on t.`object`=a.`itemId` where $mid and a.`trackerId`=? AND t.`objectType` = 'trackeritem' order by t.`commentDate` desc";
 		} else {
-			if (! $this->user_has_perm_on_object($user, $trackerId, 'tracker', 'tiki_p_view_trackers')) {
-				return ['cant' => 0];
-			}
-
 			$query = "select t.*, t.object itemId, a.`trackerId` from `tiki_comments` t left join `tiki_tracker_items` a on t.`object`=a.`itemId` where $mid AND t.`objectType` = 'trackeritem' order by `commentDate` desc";
 			$query_cant = "select count(*) from `tiki_comments` where $mid AND `objectType` = 'trackeritem'";
 		}
@@ -416,16 +412,18 @@ class TrackerLib extends TikiLib
 		$ret = $this->fetchAll($query, $bindvars, $maxRecords, $offset);
 		$cant = $this->getOne($query_cant, $bindvars);
 
-		foreach ($ret as &$res) {
-			if (! $trackerId && ! $this->user_has_perm_on_object($user, $res['trackerId'], 'tracker', 'tiki_p_view_trackers')) {
+		foreach ($ret as $key => &$res) {
+			$itemObject = Tracker_Item::fromId($res['itemId']);
+			if (! $itemObject->canView()) {
 				--$cant;
+				unset($ret[$key]);
 				continue;
 			}
 			$res["parsed"] = $this->parse_comment($res["data"]);
 		}
 
 		return [
-			'data' => $ret,
+			'data' => array_values($ret),
 			'cant' => $cant,
 		];
 	}
@@ -641,7 +639,8 @@ class TrackerLib extends TikiLib
 		$trackerItemFields = $this->table('tiki_tracker_item_fields');
 		//FIXME Perm:filter ?
 		foreach ($result as $res) {
-			if (! $this->user_has_perm_on_object($user, $res['trackerId'], 'tracker', 'tiki_p_view_trackers')) {
+			$itemObject = Tracker_Item::fromId($res['itemId']);
+			if (! $itemObject->canView()) {
 				continue;
 			}
 			$itemId = $res["itemId"];
@@ -1437,9 +1436,13 @@ class TrackerLib extends TikiLib
 					}
 				} elseif ($filter['type'] == 'REL' && ($fv || $ev)) {
 					$rv = $ev ?: $fv;
-					$mid .= " AND (ttif$i.`value` LIKE ? OR ttif$i.`value` LIKE ?)";
-					$bindvars[] = "%$rv";
-					$bindvars[] = "%$rv\n%";
+					$options = explode("\n", $rv);
+					foreach ($options as $option) {
+						$mid .= " AND (ttif$i.`value` LIKE ? OR ttif$i.`value` LIKE ?)";
+						$option = trim($option);
+						$bindvars[] = "%$option";
+						$bindvars[] = "%$option\n%";
+					}
 				} elseif ($ev > '') {
 					if (is_array($ev)) {
 						$keys = array_keys($ev);
@@ -3776,7 +3779,7 @@ class TrackerLib extends TikiLib
 
 		$main_field_type = $this->get_main_field_type($trackerId);
 
-		if (in_array($main_field_type, ['r','q'])) {	// for ItemLink and AutoIncrement fields use the proper output method
+		if (in_array($main_field_type, ['r','q', 'p'])) {	// for ItemLink, AutoIncrement and UserPref fields use the proper output method
 			$definition = Tracker_Definition::get($trackerId);
 			$field = $definition->getField($this->get_main_field($trackerId));
 			$item = $this->get_tracker_item($itemId);
@@ -5916,14 +5919,16 @@ class TrackerLib extends TikiLib
 		// check wether we have a value assigned to $fields.
 		// This might be the case if $fields was passed through $params and not from the tracker definition.
 		// Build the $items['fieldId'] = value structure
-		if (isset($field['value'])) {
-			$item[$field['fieldId']] = $field['value'];
-		} elseif (isset($item['itemId'])) {
-			$item[$field['fieldId']] = $this->get_item_value(null, $item['itemId'], $field['fieldId']);
-		} elseif (isset($params['value'])) {
-			$field['value'] = $params['value'];
-			$field['ins_' . $field['fieldId']] = $field['value'];
-			$item[$field['fieldId']] = $field['value'];
+		if (isset($field['fieldId'])) {
+			if (isset($field['value'])) {
+				$item[$field['fieldId']] = $field['value'];
+			} elseif (isset($item['itemId'])) {
+				$item[$field['fieldId']] = $this->get_item_value(null, $item['itemId'], $field['fieldId']);
+			} elseif (isset($params['value'])) {
+				$field['value'] = $params['value'];
+				$field['ins_' . $field['fieldId']] = $field['value'];
+				$item[$field['fieldId']] = $field['value'];
+			}
 		}
 
 		// get the handler for the specific fieldtype.
@@ -6271,7 +6276,7 @@ class TrackerLib extends TikiLib
 		return array_filter(
 			array_map(function ($user) {
 				return trim($user);
-			}, str_getcsv($value))
+			}, is_array($value) ? $value : str_getcsv($value))
 		);
 	}
 

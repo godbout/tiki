@@ -45,9 +45,16 @@
 					<input type="text" name="s_f_attachments-comment" maxlength="250" id="attach-comment">
 				</div>
 			</div>
-			<div class="form-group pull-right">
-				<input type="submit" class="btn btn-primary btn-sm" name="s_f_attachments-upload" value="{tr}Attach{/tr}">
+			<div class="form-group float-sm-right">
+				<input
+					type="submit"
+					class="btn btn-primary btn-sm"
+					name="s_f_attachments-upload"
+					value="{tr}Attach{/tr}"
+					onclick="checkTimeout()"
+				>
 				<input type="hidden" name="s_f_attachments-page" value="{$page|escape}">
+				{ticket}
 			</div>
 		</form>
 	{/if}

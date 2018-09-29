@@ -14,31 +14,20 @@ $force_no_compression = true;
 $skip = false;
 $thumbnail_format = 'jpeg';
 
-if (isset($_GET['fileId']) && isset($_GET['thumbnail']) && isset($_COOKIE[ session_name() ]) && count($_GET) == 2) {
-	$tikiroot = dirname($_SERVER['PHP_SELF']);
-	$session_params = session_get_cookie_params();
-	session_set_cookie_params($session_params['lifetime'], $tikiroot);
-	unset($session_params);
-	session_start();
+require_once('tiki-setup.php');
 
-	if (isset($_SESSION['allowed'][$_GET['fileId']])) {
-		require_once 'tiki-setup_base.php';
-
-		$query = "select * from `tiki_files` where `fileId`=?";
-		$result = $tikilib->query($query, [(int)$_GET['fileId']]);
-		if ($result) {
-			$info = $result->fetchRow();
-			$skip = true;
-		} else {
-			$info = [];
-		}
+if (isset($_GET['fileId']) && isset($_GET['thumbnail']) && isset($_COOKIE[ session_name() ]) && count($_GET) == 2 && isset($_SESSION['allowed'][$_GET['fileId']])) {
+	$query = "select * from `tiki_files` where `fileId`=?";
+	$result = $tikilib->query($query, [(int)$_GET['fileId']]);
+	if ($result) {
+		$info = $result->fetchRow();
+		$skip = true;
 	} else {
-		session_write_close();
+		$info = [];
 	}
 }
 
 if (! $skip) {
-	require_once('tiki-setup.php');
 	$filegallib = TikiLib::lib('filegal');
 	$access->check_feature('feature_file_galleries');
 }
@@ -89,7 +78,7 @@ if (! $skip) {
 			$access->display_error('', tra('Permission denied'), 401);
 		}
 
-		if (! $zip && $tiki_p_admin_file_galleries != 'y' && ! $userlib->user_has_perm_on_object($user, $info['galleryId'], 'file gallery', 'tiki_p_download_files')) {
+		if (! $zip && $tiki_p_admin_file_galleries != 'y' && ! $userlib->user_has_perm_on_object($user, $info['fileId'], 'file', 'tiki_p_download_files')) {
 			if (! $user) {
 				$_SESSION['loginfrom'] = $_SERVER['REQUEST_URI'];
 			}
@@ -97,7 +86,7 @@ if (! $skip) {
 		}
 		if (isset($_GET['thumbnail']) && is_numeric($_GET['thumbnail'])) { //check also perms on thumb
 			$info_thumb = $filegallib->get_file($_GET['thumbnail']);
-			if (! $zip && $tiki_p_admin_file_galleries != 'y' && ! $userlib->user_has_perm_on_object($user, $info_thumb['galleryId'], 'file gallery', 'tiki_p_download_files')) {
+			if (! $zip && $tiki_p_admin_file_galleries != 'y' && ! $userlib->user_has_perm_on_object($user, $info_thumb['fileId'], 'file', 'tiki_p_download_files')) {
 				if (! $user) {
 					$_SESSION['loginfrom'] = $_SERVER['REQUEST_URI'];
 				}
@@ -143,11 +132,16 @@ if (! isset($_GET['thumbnail']) && ! isset($_GET['icon'])) {
 		$logslib->add_action('Downloaded', $info['galleryId'], 'file gallery', 'fileId=' . $info['fileId']);
 	}
 
-	if (! empty($_REQUEST['lock'])) {
+	if (! empty($_REQUEST['lock']) && $access->checkCsrfForm(tr('Lock file?'))) {
 		if (! empty($info['lockedby']) && $info['lockedby'] != $user) {
-			$access->display_error('', tra(sprintf('The file has been locked by %s', $info['lockedby'])), 401);
+			Feedback::error(tr(sprintf('The file has been locked by %s', $info['lockedby'])));
 		}
-		$filegallib->lock_file($info['fileId'], $user);
+		$result = $filegallib->lock_file($info['fileId'], $user);
+		if ($result && $result->numRows()) {
+			Feedback::success(tr('File locked'));
+		} else {
+			Feedback::error(tr('File not locked'));
+		}
 	}
 }
 

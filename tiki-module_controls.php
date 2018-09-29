@@ -15,7 +15,7 @@ global $tiki_p_configure_modules, $prefs, $user;
 $check_req = (isset($_REQUEST["mc_unassign"]) || isset($_REQUEST["mc_up"]) || isset($_REQUEST["mc_down"]) || isset($_REQUEST["mc_move"]));
 if ($tiki_p_configure_modules != 'y' && $check_req) {
 	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("You do not have permission to use this feature"));
+	$smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
 	$smarty->display("error.tpl");
 	die;
 }
@@ -53,7 +53,7 @@ if ($check_req) {
 	$url = preg_replace('/(.*)(\?|&){1}(mc_up|mc_down|mc_move|mc_unassign)=[^&]*/', '\1', $url);
 }
 // Fix locaton if parameter was removed...
-if ($url != $request_uri) {
+if ($url != $request_uri || isset($_POST['redirect'])) {
 	$access = TikiLib::lib('access');
 	$access->redirect($url);
 }

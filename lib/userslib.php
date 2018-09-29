@@ -3704,7 +3704,7 @@ class UsersLib extends TikiLib
 			],
 			[
 				'name' => 'tiki_p_read_article',
-				'description' => tra('Can read articles'),
+				'description' => tra('Can read articles (applies to article or topic level)'),
 				'level' => 'basic',
 				'type' => 'articles',
 				'admin' => false,
@@ -3741,15 +3741,6 @@ class UsersLib extends TikiLib
 			[
 				'name' => 'tiki_p_rate_article',
 				'description' => tra('Can rate articles'),
-				'level' => 'basic',
-				'type' => 'articles',
-				'admin' => false,
-				'prefs' => ['feature_articles'],
-				'scope' => 'object',
-			],
-			[
-				'name' => 'tiki_p_topic_read',
-				'description' => tra('Can read a topic (applies only to individual topic permissions)'),
 				'level' => 'basic',
 				'type' => 'articles',
 				'admin' => false,

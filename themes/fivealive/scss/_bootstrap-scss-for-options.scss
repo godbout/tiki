@@ -1,564 +1,700 @@
-// Links
+// $Id
+// This file contains CSS (SCSS) that theme options have in common, mostly color variations from the parent theme.
+// The file _variables-for-options.scss is used with this file. Theme options import these files and apply their variable definitions.
+
+$imagePath: "../images/";
+// body {
+//	background-image: url('#{$imagePath}bg.jpg');
+
+.middle_outer {
+  -webkit-box-shadow: inset 0 54px 0 0 $middle_outer-inset-shadow-bg;
+  -moz-box-shadow: inset 0 54px 0 0 $middle_outer-inset-shadow-bg;
+  box-shadow: inset 0 54px 0 0 $middle_outer-inset-shadow-bg;
+}
+
+.topbar,
+.navbar-dark,
+.topbar .navbar-dark .navbar-nav > li,
+.topbar .nav > li {
+  background: $middle_outer-inset-shadow-bg;
+}
+
+//body.tiki > nav.navbar.fixed-top.bg-light { background-color: $bg-light-alt !important; }
+
+//.topbar .cssmenu_horiz ul { background: #063035; }
+
+//.navbar-nav > li.dropdown {
+//  border-bottom: 1px solid #18a3bb;
+//}
+
+//.topbar .navbar-nav > li.dropdown {
+//  border-bottom: none;
+//}
+
+//#page-header .dropdown-menu,
+//.topbar .cssmenu_horiz ul {
+//  background: #18a3bb;
+//}
 
 a,
 .btn-link {
-	color: $link-color;
-
-	&:hover,
-	&:focus {
-		color: $link-hover-color;
-	}
-
-	//  &:focus {
-	//    .tab-focus();
-	//  }
+  color: $link-color;
+}
+a:hover,
+.btn-link:hover,
+a:focus,
+.btn-link:focus {
+  color: $link-hover-color;
+}
+//.btn-primary {
+//  color: #ffffff;
+//  background-color: $btn-primary-bg; //#18a3bb;
+//  border-color: $btn-primary-border; //#77d6e5;
+//}
+//.btn-primary:focus,
+//.btn-primary.focus {
+//  color: #ffffff;
+//  background-color: $btn-primary-focus-bg; //#127c8e;
+//  border-color: $btn-primary-focus-border; // #23a5b9;
+//}
+//.btn-primary:hover {
+//  color: #ffffff;
+//  background-color: $btn-primary-hover-bg; //#127c8e;
+//  border-color: $btn-primary-hover-border; //#44c7db;
+//}
+//.btn-primary:active,
+//.btn-primary.active,
+//.open > .dropdown-toggle.btn-primary {
+//  color: #ffffff;
+//  background-color: $btn-primary-active-bg; //#127c8e;
+//  border-color: $btn-primary-active-border; //#44c7db;
+//}
+//.btn-primary:active:hover,
+//.btn-primary.active:hover,
+//.open > .dropdown-toggle.btn-primary:hover,
+//.btn-primary:active:focus,
+//.btn-primary.active:focus,
+//.open > .dropdown-toggle.btn-primary:focus,
+//.btn-primary:active.focus,
+//.btn-primary.active.focus,
+//.open > .dropdown-toggle.btn-primary.focus {
+//  color: #ffffff;
+//  background-color: $btn-primary-active-hover-bg; //#0e606e;
+//  border-color: $btn-primary-active-hover-border; //#23a5b9;
+//}
+//.btn-primary:active,
+//.btn-primary.active,
+//.open > .dropdown-toggle.btn-primary {
+//  background-image: none;
+//}
+//.btn-primary.disabled:hover,
+//.btn-primary[disabled]:hover,
+//fieldset[disabled] .btn-primary:hover,
+//.btn-primary.disabled:focus,
+//.btn-primary[disabled]:focus,
+//fieldset[disabled] .btn-primary:focus,
+//.btn-primary.disabled.focus,
+//.btn-primary[disabled].focus,
+//fieldset[disabled] .btn-primary.focus {
+// background-color: $btn-primary-disabled-bg; //#18a3bb;
+//  border-color: $btn-primary-disabled-border; //#77d6e5;
+//}
+//.btn-primary .badge {
+//  color: $btn-primary-badge-color; //#18a3bb;
+//  background-color: $btn-primary-badge-bg; //#ffffff;
+//}
+//.btn-secondary {
+//  color: #ffffff;
+//  background-color: $btn-secondary-bg; //#18a3bb;
+//  border-color: $btn-secondary-border; //#77d6e5;
+//}
+//.btn-secondary:focus,
+//.btn-secondary.focus {
+//  color: #ffffff;
+//  background-color: $btn-secondary-focus-bg; //#127c8e;
+//  border-color: $btn-secondary-focus-border; //#23a5b9;
+//}
+//.btn-secondary:hover {
+//  color: #ffffff;
+//  background-color: $btn-secondary-hover-bg; //#127c8e;
+//  border-color: $btn-secondary-border; //#44c7db;
+//}
+//.btn-secondary:active,
+//.btn-secondary.active,
+//.open > .dropdown-toggle.btn-secondary {
+//  color: #ffffff;
+//  background-color: $btn-secondary-active-bg; //#127c8e;
+//  border-color: $btn-secondary-border; // #44c7db;
+//}
+//.btn-secondary:active:hover,
+//.btn-secondary.active:hover,
+//.open > .dropdown-toggle.btn-secondary:hover,
+//.btn-secondary:active:focus,
+//.btn-secondary.active:focus,
+//.open > .dropdown-toggle.btn-secondary:focus,
+//.btn-secondary:active.focus,
+//.btn-secondary.active.focus,
+//.open > .dropdown-toggle.btn-secondary.focus {
+//  color: #ffffff;
+//  background-color: $btn-secondary-active-hover-bg; //#0e606e;
+//  border-color: $btn-secondary-active-hover-border; //#23a5b9;
+//}
+//.btn-secondary:active,
+//.btn-secondary.active,
+//.open > .dropdown-toggle.btn-secondary {
+//  background-image: none;
+//}
+//.btn-secondary.disabled:hover,
+//.btn-secondary[disabled]:hover,
+//fieldset[disabled] .btn-secondary:hover,
+//.btn-secondary.disabled:focus,
+//.btn-secondary[disabled]:focus,
+//fieldset[disabled] .btn-secondary:focus,
+//.btn-secondary.disabled.focus,
+//.btn-secondary[disabled].focus,
+//fieldset[disabled] .btn-secondary.focus {
+//  background-color: $btn-secondary-disabled-hover-color; //  #18a3bb;
+//  border-color: $btn-secondary-disabled-hover-border; //#77d6e5;
+//}
+//.btn-secondary .badge {
+//  color: $btn-secondary-badge-color; //#18a3bb;
+//  background-color: $btn-secondary-bg-color; //#ffffff;
+//}
+hr {
+  border-top: 1px solid $hr-border-color;
 }
 
-// Alternate buttons
-// --------------------------------------------------
-
-.btn-default {
-	.button-variant($btn-default-color; $btn-default-bg; $btn-default-border);
+.table th,
+.table td {
+  border-top: 1px solid $table-border-color;
+}
+.table > thead > tr > th {
+  border-bottom: 2px solid $table-border-color;
 }
 
-.btn-primary {
-	.button-variant($btn-primary-color; $btn-primary-bg; $btn-primary-border);
+.table > tbody + tbody {
+  border-top: 2px solid $table-border-color;
+}
+.table .table {
+  background-color: #ffffff;
+}
+.table .table-bordered {
+  border: 1px solid $table-border-color;
+}
+.table .table-bordered th,
+.table .table-bordered td {
+  border: 1px solid $table-border-color;
+}
+.table .table-striped > tbody > tr:nth-child(odd) > td,
+.table .table-striped > tbody > tr:nth-child(odd) > th {
+  background-color: $table-accent-bg;
+}
+.table .table-hover > tbody > tr:hover > td,
+.table .table-hover > tbody > tr:hover > th {
+  background-color: $table-hover-bg;
+}
+.form-control {
+  color: $input-color;
+  background-color: $input-bg;
+  background-image: none;
+  border: 1px solid $input-border;
+}
+.navbar-dark .navbar-brand {
+  color: #ffffff;
+}
+.navbar-dark .navbar-brand:hover,
+.navbar-dark .navbar-brand:focus {
+  color: #e6e6e6;
+  background-color: transparent;
+}
+.navbar-default .navbar-text {
+  color: #ffffff;
+}
+.bg-dark .navbar-nav .nav-link {
+  color: #ffffff;
+  &:hover,
+  &:focus {
+	color: $bg-dark-link-hover-color;
+	background: $bg-dark-link-hover-bg;
+  }
+}
+.navbar-dark .navbar-nav > li > a:hover,
+.navbar-dark .navbar-nav > li > a:focus {
+  color: #f9f9f9;
+//  background-color: #14899e;
+}
+.navbar-dark .navbar-nav > .active > a,
+.navbar-dark .navbar-nav > .active > a:hover,
+.navbar-dark .navbar-nav > .active > a:focus {
+  color: #ffffff;
+//  background-color: #063065;
+}
+.navbar-dark .navbar-nav > .disabled > a,
+.navbar-dark .navbar-nav > .disabled > a:hover,
+.navbar-dark .navbar-nav > .disabled > a:focus {
+  color: #ffffff;
+  background-color: transparent;
+}
+.navbar-dark .navbar-toggle {
+  border-color: #dddddd;
+}
+.navbar-dark .navbar-toggle:hover,
+.navbar-dark .navbar-toggle:focus {
+  background-color: #dddddd;
+}
+.navbar-dark .navbar-toggle .icon-bar {
+  background-color: #888888;
+}
+.navbar-dark .navbar-collapse,
+.navbar-dark .navbar-form {
+  border-color: transparent;
+}
+.navbar-dark .navbar-nav > .open > a,
+.navbar-dark .navbar-nav > .open > a:hover,
+.navbar-dark .navbar-nav > .open > a:focus {
+//  background-color: #14899e;
+  color: #ffffff;
+}
+.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+  color: #ffffff;
+}
+//.navbar-dark .navbar-nav .open .dropdown-menu > li > a:hover,
+//.navbar-dark .navbar-nav .open .dropdown-menu > li > a:focus {
+//  color: #f9f9f9;
+//  background-color: #14899e;
+//}
+//.navbar-dark .navbar-nav .open .dropdown-menu > .active > a,
+//.navbar-dark .navbar-nav .open .dropdown-menu > .active > a:hover,
+//.navbar-dark .navbar-nav .open .dropdown-menu > .active > a:focus {
+//  color: #ffffff;
+//  background-color: #14899e;
+//}
+//.navbar-dark .navbar-nav .open .dropdown-menu > .disabled > a,
+//.navbar-dark .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+//.navbar-dark .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+//  color: #ffffff;
+//  background-color: transparent;
+//}
+//.navbar-dark .navbar-link {
+//  color: #ffffff;
+//}
+.navbar-dark .navbar-link:hover {
+  color: #f9f9f9;
+}
+.navbar-primary {
+  background-color: #771e54;
+  border-color: #4e1437;
+}
+.navbar-primary .navbar-brand {
+  color: #eeeeee;
+}
+.navbar-primary .navbar-brand:hover,
+.navbar-primary .navbar-brand:focus {
+  color: #ffffff;
+//  background-color: transparent;
+}
+.navbar-primary .navbar-text {
+  color: #eeeeee;
+}
+.navbar-primary .navbar-nav > li > a {
+  color: #eeeeee;
+}
+.navbar-primary .navbar-nav > li > a:hover,
+.navbar-primary .navbar-nav > li > a:focus {
+  color: #ffffff;
+//  background-color: transparent;
+}
+.navbar-primary .navbar-nav > .active > a,
+.navbar-primary .navbar-nav > .active > a:hover,
+.navbar-primary .navbar-nav > .active > a:focus {
+  color: #ffffff;
+//  background-color: #0b4c58;
+}
+.navbar-primary .navbar-nav > .disabled > a,
+.navbar-primary .navbar-nav > .disabled > a:hover,
+.navbar-primary .navbar-nav > .disabled > a:focus {
+  color: #444444;
+//  background-color: transparent;
+}
+.navbar-primary .navbar-toggle {
+  border-color: #333333;
+}
+.navbar-primary .navbar-toggle:hover,
+.navbar-primary .navbar-toggle:focus {
+  background-color: #333333;
+}
+.navbar-primary .navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
+.navbar-primary .navbar-collapse,
+.navbar-primary .navbar-form {
+  border-color: #0d5865;
+}
+.dropdown-menu {
+  background-color: $dropdown-bg; //#005064;
+  border: 1px solid $dropdown-border-color; // rgba(0, 0, 0, 0.15);
 }
 
-//fieldset {
-//  border: 1px solid $fieldset-border-color;
+.dropdown-item a,
+.dropdown-item .btn.btn-link {
+  color: $dropdown-link-color;
+  &:hover,
+  &:focus {
+	color: $dropdown-link-hover-color;
+  }
+  &:active,
+  &.active {
+	color: $dropdown-link-active-color;
+  }
+  &.disabled,
+  &:disabled {
+	color: $dropdown-link-disabled-color;
+  }
+}
+
+.dropdown-item,
+.dropdown-item .btn.btn-link {
+  &:hover,
+  &:focus {
+//	color: $dropdown-link-hover-color;
+	background: $dropdown-link-hover-bg;
+  }
+  &:active,
+  &.active {
+//	color: $dropdown-link-active-color;
+	background: $dropdown-link-active-bg;
+  }
+  &.disabled,
+  &:disabled {
+//	color: $dropdown-link-disabled-color;
+//	background: $dropdown-item-disabled-bg;
+  }
+  .dropdown-header {
+	color: $dropdown-header-color;
+  }
+  .dropdown-divider {
+	background: $dropdown-divider-bg;
+  }
+}
+
+.nav-pills > li.active > a,
+.nav-pills > li.active > a:hover,
+.nav-pills > li.active > a:focus {
+  color: #ffffff;
+  background-color: $nav-pills-link-active-bg; //#0b8a98;
+}
+.pagination > li > a,
+.pagination > li > span {
+  color: $pagination-color; //#0b8a98;
+  background-color: $pagination-bg; //#ffffff;
+  border: 1px solid $pagination-border-color; //#dddddd;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: $pagination-hover-color; //#18a3bb;
+  background-color: $pagination-hover-bg; //#eeeeee;
+  border-color: $pagination-hover-border-color; //#dddddd;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  color: #ffffff;
+  background-color: $pagination-active-bg; //#0b8a98;
+  border-color: $pagination-active-border-color; //#0b8a98;
+}
+.pagination > .disabled > span,
+.pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus,
+.pagination > .disabled > a,
+.pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: $pagination-disabled-color; //#999999;
+  background-color: $pagination-disabled-bg; //#ffffff;
+  border-color: $pagination-disabled-border-color; //#dddddd;
+}
+//.card {
+//  background-color: #ffffff;
+//}
+.col2,
+.col3 {
+  .card-header {
+	border-bottom: 1px solid $card-border-color;
+  }
+}
+//.card-header > .dropdown .dropdown-toggle {
+//  color: inherit;
+//}
+//.card-title {
+//  color: inherit;
+//}
+//.card-title > a {
+//  color: inherit;
+//}
+//.card-footer {
+//  background-color: #f5f5f5;
+//  border-top: 1px solid #dddddd;
 //}
 
-// Horizontal rules
+//.label {
+//  color: #ffffff;
+//}
+//.label[href]:hover,
+//.label[href]:focus {
+//  color: #ffffff;
+//}
+//.label-default {
+//  background-color: #999999;
+//}
+//.label-default[href]:hover,
+//.label-default[href]:focus {
+//  background-color: #808080;
+//}
+//.label-primary {
+//  background-color: #0b8a98;
+//}
+//.label-primary[href]:hover,
+//.label-primary[href]:focus {
+//  background-color: #085f68;
+//}
+//.label-success {
+//  background-color: #5cb85c;
+//}
+//.label-success[href]:hover,
+//.label-success[href]:focus {
+//  background-color: #449d44;
+//}
+//.label-info {
+//  background-color: #5bc0de;
+//}
+//.label-info[href]:hover,
+//.label-info[href]:focus {
+//  background-color: #31b0d5;
+//}
+//.label-warning {
+//  background-color: #f0ad4e;
+//}
+//.label-warning[href]:hover,
+//.label-warning[href]:focus {
+//  background-color: #ec971f;
+//}
+//.label-danger {
+//  background-color: #d9534f;
+//}
+//.label-danger[href]:hover,
+//.label-danger[href]:focus {
+//  background-color: #c9302c;
+//}
 
-hr {
-	border-top: 1px solid $hr-border;
+header.page-header {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-bottom: none;
 }
-
-// Alerts
-// Alternate styles
-//
-// Generate contextual modifier classes for colorizing the alert.
-/*
-.alert-success {
-  .alert-variant($alert-success-bg; $alert-success-border; $alert-success-text);
+header.page-header a,
+header.page-header a.btn-link {
+  color: #ffffff !important;
 }
-.alert-info {
-  .alert-variant($alert-info-bg; $alert-info-border; $alert-info-text);
-}
-.alert-warning {
-  .alert-variant($alert-warning-bg; $alert-warning-border; $alert-warning-text);
-}
-.alert-danger {
-  .alert-variant($alert-danger-bg; $alert-danger-border; $alert-danger-text);
-}
-*/
-
-// Tables
-.table {
-	// Cells
-	> thead,
-	> tbody,
-	> tfoot {
-		> tr {
-			> th,
-			> td {
-				border-top: 1px solid $table-border-color;
-			}
-		}
-	}
-	// Bottom align for column headings
-	> thead > tr > th {
-		border-bottom: 2px solid $table-border-color;
-	}
-	// Remove top border from thead by default
-	> caption + thead,
-	> colgroup + thead,
-	> thead:first-child {
-		> tr:first-child {
-			> th,
-			> td {
-				border-top: 0;
-			}
-		}
-	}
-	// Account for multiple tbody instances
-	> tbody + tbody {
-		border-top: 2px solid $table-border-color;
-	}
-
-	// Nesting
-	.table {
-		background-color: $body-bg;
-	}
-
-	// Bordered version
-	//
-	// Add borders all around the table and between all the columns.
-
-	.table-bordered {
-		border: 1px solid $table-border-color;
-		> thead,
-		> tbody,
-		> tfoot {
-			> tr {
-				> th,
-				> td {
-					border: 1px solid $table-border-color;
-				}
-			}
-		}
-	}
-
-	// Zebra-striping
-	//
-	// Default zebra-stripe styles (alternating gray and transparent backgrounds)
-
-	.table-striped {
-		> tbody > tr:nth-child(odd) {
-			> td,
-			> th {
-				background-color: $table-bg-accent;
-			}
-		}
-	}
-
-	// Hover effect
-	//
-	// Placed here since it has to come after the potential zebra striping
-
-	.table-hover {
-		> tbody > tr:hover {
-			> td,
-			> th {
-				background-color: $table-bg-hover;
-			}
-		}
-	}
-}
-
-// Table backgrounds
-//
-// Exact selectors below required to override `.table-striped` and prevent
-// inheritance to nested tables.
-
-// Generate the contextual variants
-// .table-row-variant(active; $table-bg-active);
-// .table-row-variant(success; $state-success-bg);
-// .table-row-variant(info; $state-info-bg);
-// .table-row-variant(warning; $state-warning-bg);
-// .table-row-variant(danger; $state-danger-bg);
-
 .form-control {
-	color: $input-color;
-	background-color: $input-bg;
-	background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
-	border: 1px solid $input-border;
+  background-color: $input-bg; //#ddf8f9;
+  border-color: $input-border-top-color $input-border-right-color $input-border-bottom-color $input-border-left-color; //#b4f3fb #ffffff #ffffff #b4f3fb;
 }
 
-// Alternate navbars
-// --------------------------------------------------
+input[type="checkbox"].preffilter-toggle-round:checked + label::before {
+  background: darken($input-bg,8%);
+}
+//.navbar-collapse {
+//  border: none;
+//}
 
-// Default navbar
-.navbar-default {
-	background-color: $navbar-default-bg;
-	border-color: $navbar-default-border;
+#footer {
+  background: black;
+  color: #f4f4f4;
+  padding: 1px 0 2px 0;
+  width: 100%;
+}
+.footer {
+  border-top: 1px solid $footer-accent-color; //#19a5be;
+  border-bottom: 1px solid $footer-accent-color; //#19a5be;
+}
+.footer_liner .card-header {
+  color: #ffffff;
+  border-bottom: 1px dotted $footer-accent-color; //#19a5be;
+}
+.footer_liner legend,
+.footer_liner a,
+.footer_liner a:visited {
+  color: $footer-accent-color; //#19a5be;
+}
+//.footer_liner a.btn-secondary,
+//.footer_liner a.btn-secondary:visited {
+//  color: $footer-btn-secondary-color; //#f4f4f4;
+//}
+// .admin-navbar,
+//.navbar-nav .open .dropdown-menu,
+//.navbar-nav .open .dropdown-menu li,
+//.navbar-dark .navbar-nav > li > a {
+//  background: #063035;
+//}
+//.navbar-dark .navbar-nav > li > a:hover {
+//  background: #1cb9d5;
+//}
 
-	.navbar-brand {
-		color: $navbar-default-brand-color;
-		&:hover,
-		&:focus {
-			color: $navbar-default-brand-hover-color;
-			background-color: $navbar-default-brand-hover-bg;
-		}
+.nav-tabs .nav-link {
+  color: $nav-tabs-link-color; //#ffffff;
+  background-color: $nav-tabs-link-bg; // #0c8a99;
+  border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: $nav-tabs-link-active-color; // #000;
+	background-color: $nav-tabs-link-active-bg; //#a8e2ec;
+}
+
+
+
+.postbody-title .title > .card-title a.link,
+.card-header a {
+  color: #ffffff;
+}
+.blog-postbody-title h2.panel-title {
+  font-size: 20px;
+}
+.siteloginbar_popup .dropdown-menu > li > a {
+  color: #ffffff;
+}
+header.header .sitetitle,
+header.header .sitesubtitle {
+  color: #0b8a98;
+  text-shadow: none;
+}
+.searchresults blockquote em,
+.highlight
+//.btn-secondary.highlight a,
+//.btn-secondary a.highlight
+  {
+  background: #f2dede;
+  color: #a94442;
+  border-color: #ebccd1;
+}
+//.btn-secondary.highlight:hover {
+//  background: #dca7a7;
+//}
+.cssmenu_horiz li ul,
+.cssmenu_vert li ul {
+  background-color: #005064;
+  border: 1px solid #cccccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+.cssmenu_horiz li ul > li > a,
+.cssmenu_vert li ul > li > a {
+  padding: 3px 20px;
+  font-weight: normal;
+  color: #ffffff;
+  background: #005064;
+}
+//.cssmenu_horiz > li > a:hover,
+//.cssmenu_vert > li > a:hover,
+//.cssmenu_horiz ul > li > a:hover,
+//.cssmenu_vert ul > li > a:hover,
+//.cssmenu_horiz > li > a:focus,
+//.cssmenu_vert > li > a:focus,
+//.cssmenu_horiz ul > li > a:focus,
+//.cssmenu_vert ul > li > a:focus {
+//  text-decoration: none;
+//  color: #f2f2f2;
+//  background-color: #005064;
+//}
+//.topbar .cssmenu_horiz li a:hover {
+//  background: #14899e;
+//}
+.topbar .navbar-nav > li > a,
+.topbar .navbar > li > a,
+.topbar .cssmenu_horiz > li > a {
+  color: #ffffff;
+}
+//.sf-arrows .sf-with-ul:after {
+//  border: 5px solid transparent;
+//  border-top-color: #0b8a98;
+//}
+//.cssmenu_vert.sf-arrows li > .sf-with-ul:after {
+//  border-color: transparent;
+//  border-left-color: #0b8a98;
+//  /* edit this to suit design (no rgba in IE8) */
+//}
+//.sf-arrows ul .sf-with-ul:after,
+//.cssmenu_vert.sf-arrows ul > li > .sf-with-ul:after {
+//  border-color: transparent;
+//  border-left-color: #ffffff;
+//  /* edit this to suit design (no rgba in IE8) */
+//}
+//.sf-arrows ul li > .sf-with-ul:focus:after,
+//.sf-arrows ul li:hover > .sf-with-ul:after,
+//.sf-arrows ul .sfHover > .sf-with-ul:after {
+// border-color: transparent;
+//  border-left-color: #f2f2f2;
+//}
+//.cssmenu_vert.sf-arrows li > .sf-with-ul:focus:after,
+//.cssmenu_vert.sf-arrows li:hover > .sf-with-ul:after,
+//.cssmenu_vert.sf-arrows .sfHover > .sf-with-ul:after {
+//  border-color: transparent;
+//  border-left-color: #f2f2f2;
+//}
+.chosen-container-multi .chosen-choices {
+  background-color: #ffffff;
+  color: #555555;
+  border: 1px solid #b4f3fb;
+}
+.chosen-container-single .chosen-single,
+.chosen-container-active.chosen-with-drop .chosen-single,
+.chosen-container .chosen-drop,
+.chosen-container-multi .chosen-choices .search-choice {
+  background-color: #ddf8f9;
+  color: #555555;
+  border: 1px solid #b4f3fb;
+}
+.chosen-container-single .chosen-search input[type="text"] {
+  background-color: #ddf8f9;
+  border: 1px solid #b4f3fb;
+}
+.chosen-container .chosen-results li.highlighted {
+  background-color: #003c4a;
+  color: #f2f2f2;
+}
+.autotoc > .nav {
+  background: $autotoc-nav-bg; //#005064;
+}
+.autotoc * {
+  color: $autotoc-color; //#ffffff;
+}
+.autotoc .nav > li > a:hover,
+.autotoc .nav .nav > li > a:hover {
+  color: $autotoc-nav-link-hover-color; //#f2f2f2;
+  background: $autotoc-nav-link-hover-bg; //#2e1f39;
+}
+#col2 .card-title,
+#col3 .card-title,
+a.flipmoduletitle,
+#col2 .card-secondary > .card-header a,
+#col3 .card-secondary > .card-header a {
+  color: $side-column-heading-color; //#169FB6;
+}
+
+footer#footer {
+  .footer_liner {
+	border-top: 1px solid $footer_liner-border-color;
+	border-bottom: 1px solid $footer_liner-border-color;
+	.card-header {
+	  border-bottom: 1px dotted $footer_liner-card-inner-border;
 	}
-
-	.navbar-text {
-		color: $navbar-default-color;
-	}
-
-	.navbar-nav {
-		> li > a {
-			color: $navbar-default-link-color;
-
-			&:hover,
-			&:focus {
-				color: $navbar-default-link-hover-color;
-				background-color: $navbar-default-link-hover-bg;
-			}
-		}
-		> .active > a {
-			&,
-			&:hover,
-			&:focus {
-				color: $navbar-default-link-active-color;
-				background-color: //$navbar-default-link-active-bg  //Deprecated?;
-			}
-		}
-		> .disabled > a {
-			&,
-			&:hover,
-			&:focus {
-				color: $navbar-default-link-disabled-color;
-				background-color: $navbar-default-link-disabled-bg;
-			}
-		}
-	}
-
-	.navbar-toggle {
-		border-color: $navbar-default-toggle-border-color;
-		&:hover,
-		&:focus {
-			background-color: $navbar-default-toggle-hover-bg;
-		}
-		.icon-bar {
-			background-color: $navbar-default-toggle-icon-bar-bg;
-		}
-	}
-
-	.navbar-collapse,
-	.navbar-form {
-		border-color: $navbar-default-border;
-	}
-
-	// Dropdown menu items
-	.navbar-nav {
-		// Remove background color from open dropdown
-		> .open > a {
-			&,
-			&:hover,
-			&:focus {
-				background-color: //$navbar-default-link-active-bg  //Deprecated?;
-				color: $navbar-default-link-active-color;
-			}
-		}
-
-		//    @media (max-width: $grid-float-breakpoint-max) {
-		// Dropdowns get custom display when collapsed
-		.open .dropdown-menu {
-			> li > a {
-				color: $navbar-default-link-color;
-				&:hover,
-				&:focus {
-					color: $navbar-default-link-hover-color;
-					background-color: $navbar-default-link-hover-bg;
-				}
-			}
-			> .active > a {
-				&,
-				&:hover,
-				&:focus {
-					color: $navbar-default-link-active-color;
-					background-color: //$navbar-default-link-active-bg  //Deprecated?;
-				}
-			}
-			> .disabled > a {
-				&,
-				&:hover,
-				&:focus {
-					color: $navbar-default-link-disabled-color;
-					background-color: $navbar-default-link-disabled-bg;
-				}
-			}
-		}
-	}
-	//  }
-
-	// Links in navbars
-	//
-	// Add a class to ensure links outside the navbar nav are colored correctly.
-
-	.navbar-link {
-		color: $navbar-default-link-color;
-		&:hover {
-			color: $navbar-default-link-hover-color;
-		}
-	}
-
-}
-
-// Inverse navbar
-
-.navbar-inverse {
-	background-color: $navbar-inverse-bg;
-	border-color: $navbar-inverse-border;
-
-	.navbar-brand {
-		color: $navbar-inverse-brand-color;
-		&:hover,
-		&:focus {
-			color: $navbar-inverse-brand-hover-color;
-			background-color: $navbar-inverse-brand-hover-bg;
-		}
-	}
-
-	.navbar-text {
-		color: $navbar-inverse-color;
-	}
-
-	.navbar-nav {
-		> li > a {
-			color: $navbar-inverse-link-color;
-
-			&:hover,
-			&:focus {
-				color: $navbar-inverse-link-hover-color;
-				background-color: $navbar-inverse-link-hover-bg;
-			}
-		}
-		> .active > a {
-			&,
-			&:hover,
-			&:focus {
-				color: $navbar-inverse-link-active-color;
-				background-color: $navbar-inverse-link-active-bg;
-			}
-		}
-		> .disabled > a {
-			&,
-			&:hover,
-			&:focus {
-				color: $navbar-inverse-link-disabled-color;
-				background-color: $navbar-inverse-link-disabled-bg;
-			}
-		}
-	}
-
-	// Darken the responsive nav toggle
-	.navbar-toggle {
-		border-color: $navbar-inverse-toggle-border-color;
-		&:hover,
-		&:focus {
-			background-color: $navbar-inverse-toggle-hover-bg;
-		}
-		.icon-bar {
-			background-color: $navbar-inverse-toggle-icon-bar-bg;
-		}
-	}
-
-	.navbar-collapse,
-	.navbar-form {
-		border-color: darken($navbar-inverse-bg, 7%);
-	}
-}
-
-// The dropdown menu (ul)
-.dropdown-menu {
-	background-color: $dropdown-bg;
-	border: 1px solid $dropdown-border-color;
-	// Dividers (basically an hr) within the dropdown
-	// .divider {
-	//   .nav-divider($dropdown-divider-bg);
-	//}
-
-	// Links within the dropdown menu
-	> li > a {
-		color: $dropdown-link-color;
-	}
-}
-
-// Hover/Focus state
-.dropdown-menu > li > a {
-	&:hover,
-	&:focus {
-		color: $dropdown-link-hover-color;
-		background-color: $dropdown-link-hover-bg;
-	}
-}
-
-// Active state
-.dropdown-menu > .active > a {
-	&,
-	&:hover,
-	&:focus {
-		color: $dropdown-link-active-color;
-		background-color: $dropdown-link-active-bg;
-	}
-}
-
-// Disabled state
-//
-// Gray out text and ensure the hover/focus state remains gray
-
-.dropdown-menu > .disabled > a {
-	&,
-	&:hover,
-	&:focus {
-		color: $dropdown-link-disabled-color;
-	}
-}
-
-// Nuke hover/focus effects
-.dropdown-menu > .disabled > a {
-	&:hover,
-	&:focus {
-		background-color: transparent;
-		background-image: none; // Remove CSS gradient
-	}
-}
-
-// Pills
-// -------------------------
-.nav-pills {
-	> li {
-		// Active state
-		&.active > a {
-			&,
-			&:hover,
-			&:focus {
-				color: $nav-pills-active-link-hover-color;
-				background-color: $nav-pills-active-link-hover-bg;
-			}
-		}
-	}
-}
-
-// Pagination (multiple pages)
-// --------------------------------------------------
-.pagination {
-	> li {
-		> a,
-		> span {
-			color: $pagination-color;
-			background-color: $pagination-bg;
-			border: 1px solid $pagination-border;
-		}
-	}
-
-	> li > a,
-	> li > span {
-		&:hover,
-		&:focus {
-			color: $pagination-hover-color;
-			background-color: $pagination-hover-bg;
-			border-color: $pagination-hover-border;
-		}
-	}
-
-	> .active > a,
-	> .active > span {
-		&,
-		&:hover,
-		&:focus {
-			color: $pagination-active-color;
-			background-color: $pagination-active-bg;
-			border-color: $pagination-active-border;
-		}
-	}
-
-	> .disabled {
-		> span,
-		> span:hover,
-		> span:focus,
-		> a,
-		> a:hover,
-		> a:focus {
-			color: $pagination-disabled-color;
-			background-color: $pagination-disabled-bg;
-			border-color: $pagination-disabled-border;
-		}
-	}
-}
-
-//
-// Panels
-// --------------------------------------------------
-
-// Base class
-.panel {
-	//  margin-bottom: $line-height-base;
-	background-color: $panel-bg;
-}
-
-// Optional heading
-.panel-heading {
-	border-bottom: 1px solid transparent;
-	// .border-top-radius(($panel-border-radius - 1));
-
-	> .dropdown .dropdown-toggle {
-		color: inherit;
-	}
-}
-
-// Within heading, strip any `h*` tag of its default margins for spacing.
-.panel-title {
-	color: inherit;
-
-	> a {
-		color: inherit;
-	}
-}
-
-// Optional footer (stays gray in every modifier class)
-.panel-footer {
-	background-color: $panel-footer-bg;
-	border-top: 1px solid $panel-inner-border;
-}
-
-// Contextual variations
-.panel-default {
-	.panel-variant($panel-default-border; $panel-default-text; $panel-default-heading-bg; $panel-default-border);
-}
-
-.panel-primary {
-	.panel-variant($panel-primary-border; $panel-primary-text; $panel-primary-heading-bg; $panel-primary-border);
-}
-
-.panel-success {
-	.panel-variant($panel-success-border; $panel-success-text; $panel-success-heading-bg; $panel-success-border);
-}
-
-.panel-info {
-	.panel-variant($panel-info-border; $panel-info-text; $panel-info-heading-bg; $panel-info-border);
-}
-
-.panel-warning {
-	.panel-variant($panel-warning-border; $panel-warning-text; $panel-warning-heading-bg; $panel-warning-border);
-}
-
-.panel-danger {
-	.panel-variant($panel-danger-border; $panel-danger-text; $panel-danger-heading-bg; $panel-danger-border);
-}
-
-//
-// Labels
-// --------------------------------------------------
-
-.label {
-	color: $label-color;
-
-	// Add hover effects, but only for links
-	&[href] {
-		&:hover,
-		&:focus {
-			color: $label-link-hover-color;
-		}
-	}
-}
-
-// Colors
-// Contextual variations (linked labels get darker on :hover)
-
-.label-default {
-	.label-variant($label-default-bg);
-}
-
-.label-primary {
-	.label-variant($label-primary-bg);
-}
-
-.label-success {
-	.label-variant($label-success-bg);
-}
-
-.label-info {
-	.label-variant($label-info-bg);
-}
-
-.label-warning {
-	.label-variant($label-warning-bg);
-}
-
-.label-danger {
-	.label-variant($label-danger-bg);
+  }
 }

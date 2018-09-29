@@ -7,7 +7,7 @@
 <div class="mb-4 nohighlight">
 	{if $searchStyle neq "menu" && $prefs.feature_search_show_object_filter eq 'y'}
 		<div class="t_navbar mb-3">
-			{tr}Search in:{/tr}
+			<span class="mr-3">{tr}Search in:{/tr}</span>
 			{foreach item=name key=k from=$where_list}
 				{button _auto_args='where,highlight' href="tiki-searchresults.php?where=$k" _selected="{if $where == $k}y{else}n{/if}" _selected_class="highlight" class="btn btn-primary" _text="$name"}
 			{/foreach}
@@ -25,10 +25,9 @@
 				{/if}
 			</div>
 			{if !( $searchStyle eq "menu" )}
-				<div class="form-group row">
-					<label class="searchboolean col-form-label" for="boolean">
-						{tr}Advanced search:{/tr} <input type="checkbox" class="form-check-input" name="boolean" id="boolean" {if $boolean eq 'y'} checked="checked"{/if}>
-					</label>
+				<div class="form-check mr-3">
+					<input type="checkbox" class="form-check-input" name="boolean" id="boolean" {if $boolean eq 'y'} checked="checked"{/if}>
+					<label class="searchboolean col-check-label mr-3" for="boolean">{tr}Advanced search{/tr} </label>
 					<a href="{bootstrap_modal controller=search action=help}">{tr}Search Help{/tr} {icon name='help'}</a>
 				</div>
 
@@ -51,7 +50,7 @@
 
 				{if $prefs.feature_multilingual eq 'y' and ($where eq 'wikis' || $where eq 'articles')}
 					<label class="searchLang" for="searchLang">
-						<select id="searchLang" name="searchLang">
+						<select id="searchLang" name="searchLang" class="form-control mr-3">
 							<option value="" >{tr}any language{/tr}</option>
 							{section name=ix loop=$languages}
 								<option value="{$languages[ix].value|escape}" {if $searchLang eq $languages[ix].value}selected="selected"{/if}>
@@ -83,14 +82,14 @@
 								{$cat_tree}
 								<div class="clearfix">
 									{if $tiki_p_admin_categories eq 'y'}
-										<div class="pull-right"><a href="tiki-admin_categories.php" class="link">{tr}Admin Categories{/tr} {icon name='wrench'}</a></div>
+										<div class="float-sm-right"><a href="tiki-admin_categories.php" class="link">{tr}Admin Categories{/tr} {icon name='wrench'}</a></div>
 									{/if}
 									{select_all checkbox_names='cat_categories[]' label="{tr}Select/deselect all categories{/tr}"}
 								</div>
 							{else}
 								<div class="clearfix">
 									{if $tiki_p_admin_categories eq 'y'}
-										<div class="pull-right"><a href="tiki-admin_categories.php" class="link">{tr}Admin Categories{/tr} {icon name='wrench'}</a></div>
+										<div class="float-sm-right"><a href="tiki-admin_categories.php" class="link">{tr}Admin Categories{/tr} {icon name='wrench'}</a></div>
 									{/if}
 									{tr}No categories defined{/tr}
 								</div>
@@ -155,7 +154,7 @@
 				{if $forumId}<input type="hidden" name="forumId" value="{$forumId|escape}">{/if}
 			{/if}
 			<label class="findsubmit">
-				<input type="submit" class="btn btn-info" name="search" value="{tr}Go{/tr}">
+				<input type="submit" class="btn btn-info mr-2" name="search" value="{tr}Go{/tr}">
 			</label>
 			{if !$searchNoResults}
 				{button _auto_args='highlight' href="tiki-searchresults.php?highlight=" _text="{tr}Clear Filter{/tr}"}
@@ -177,7 +176,7 @@
 {/if}
 
 {if ! $searchNoResults}
-	<ul class="searchresults">
+	<ul class="searchresults mb-4">
 		{section name=search loop=$results}
 			<li>
 				{if $prefs.feature_search_show_object_type eq 'y' && $results[search].type > ''}

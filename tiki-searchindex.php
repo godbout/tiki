@@ -130,7 +130,9 @@ if (count($filter) || count($postfilter)) {
 			$formatter = Search_Formatter_Factory::newFormatter($plugin);
 
 			$wiki = $formatter->format($results);
-			$html = TikiLib::lib('parser')->parse_data(
+			$parserLib = TikiLib::lib('parser');
+			$wiki = $parserLib->searchFilePreview($wiki);
+			$html = $parserLib->parse_data(
 				$wiki,
 				[
 					'is_html' => true,

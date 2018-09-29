@@ -7,6 +7,9 @@
 
 namespace Tiki\Lib\Image;
 
+use \Imagick;
+use \ImagickException;
+
 /**
  *
  */

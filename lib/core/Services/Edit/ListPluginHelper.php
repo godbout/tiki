@@ -173,7 +173,7 @@ class Services_Edit_ListPluginHelper
 			'output' => [
 				'icon' => 'listgui_output',
 				'params' => [
-					'empty' => [],
+					'inline' => [],
 					'template' => [
 						'options' => [
 							'input' => [
@@ -304,6 +304,12 @@ class Services_Edit_ListPluginHelper
 															'fade' => [],
 														],
 													],
+													'indicators' => [
+														'options' => [
+															'y' => [],
+															'n' => [],
+														],
+													],
 												],
 											],
 										],
@@ -343,8 +349,16 @@ class Services_Edit_ListPluginHelper
 							'count' => [
 							],
 						],
+						'params' => [
+							'downloadable' => [
+								'type' => 'text',
+							],
+						],
 					],
 					'wiki' => [
+						'type' => 'pagename',
+					],
+					'tplwiki' => [
 						'type' => 'pagename',
 					],
 				],
@@ -495,7 +509,7 @@ class Services_Edit_ListPluginHelper
 					'format',
 				],
 				'params' => [
-					'empty' => [],
+					'inline' => [],
 				],
 			],
 			'group' => [    // what is this?

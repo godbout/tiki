@@ -20,6 +20,7 @@
 {/if}
 
 <form action="tiki-admin_html_pages.php" method="post" id="editpageform">
+	{ticket}
 	<input type="hidden" name="pageName" value="{$pageName|escape}">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Page name{/tr}</label>
@@ -68,7 +69,7 @@
 		<div class="col-sm-3"></div>
 		<div class="col-sm-7 col-sm-offset-1 mb-3">
 			<input type="submit" class="btn btn-secondary" name="preview" value="{tr}Preview{/tr}">
-			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
 		</div>
 	</div>
  </form>
@@ -118,7 +119,7 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_html_pages.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].pageName|escape:"url"}">
+								<a href="tiki-admin_html_pages.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].pageName|escape:"url"}" onclick="confirmSimple(event, '{tr}Remove HTML page?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>

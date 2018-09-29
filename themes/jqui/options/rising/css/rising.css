@@ -35,18 +35,16 @@ a:active, a:hover {
 	color: #000;
 }
 
-h1, h2, h3, h4, h5, h6, #top .pagetitle
-a {
+h1, h2, h3, h4, h5, h6, #top .pagetitle a {
 	color: #c2251f
 }
 
-#top .pagetitle
-a {
+#top .pagetitle a {
 	color: #a31a1a
 }
 
-.btn-default,
-.btn-default:visited,
+.btn-primary,
+.btn-primary:visited,
 .btn:visited,
 button,
 input[type="reset"],
@@ -57,7 +55,7 @@ input[type="submit"],
 	color: #555
 }
 
-.btn-default:hover,
+.btn-primary:hover,
 button:hover,
 input[type="reset"]:hover,
 input[type="submit"]:hover,
@@ -78,10 +76,4 @@ li.cs_advanced {
 	list-style: none;
 	float: left;
 	padding: 0 1em 0 0;
-}
-
-/* menus */
-
-.sf-sub-indicator {
-    background: url(../images/arrows-ea2e11.png) -10px -100px;
 }

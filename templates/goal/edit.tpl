@@ -18,9 +18,9 @@
 		{tabset}
 			{tab name="{tr}General{/tr}"}
 				<div class="form-group row">
-					<div class="checkbox col-md-offset-3">
-						<label>
-							<input type="checkbox" name="enabled" value="1" {if $goal.enabled}checked{/if}>
+					<div class="form-check col-md-offset-3">
+						<input type="checkbox" name="enabled" class="form-check-input" value="1" {if $goal.enabled}checked{/if}>
+						<label class="form-check-label" for="enabled">
 							{tr}Enabled{/tr}
 						</label>
 					</div>

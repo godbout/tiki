@@ -1,12 +1,12 @@
 {* Display the list of available translations for an object and manage its translations *}
 {** Currently works for the following object types: 'article' and 'wiki page' **}
-
+{strip}
 {if empty($submenu) || $submenu neq 'y'}
 	<div class="btn-group">
 		{if $prefs.lang_available_translations_dropdown neq 'y' }
 			{* For all object types: First show the translate icon and on hover the language of the current object *}
 			{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-			<a class="btn btn-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+			<a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" title="{tr}Translation{/tr}">
 				{icon name="translate"}
 			</a>
 		{else}
@@ -144,3 +144,4 @@
 	{/if}
 	</div>
 {/if}
+{/strip}

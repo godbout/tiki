@@ -995,20 +995,18 @@ class HeaderLib
 	{
 		global $tikidomainslash;
 		$out = [];
-			$target = 'temp/public/' . $tikidomainslash;
-
-		foreach ($files as $file) {
-			$hash = md5($file);
-			$min = $target . "minified_$hash.css";
-
-			$minifier = new MatthiasMullie\Minify\CSS($file);
-
-			if (! file_exists($min)) {
-				$minifier->minify($min);
-				chmod($min, 0644);
+		$publicDirectory = 'temp/public/' . $tikidomainslash;
+		foreach ($files as $originalFile) {
+			/* This does not use the same cachelib-based caching strategy as get_minified_css_single() since I could not see any improvement.
+			I tested on Windows 8 with an HDD and a filesystem-based CacheLib. CacheLibFileSystem::getCached() may be inefficient. The strategy may still improve performance for other setups, such as those using CacheLibMemcache. Chealer 2018-08-31 */
+			$fileContentsHash = md5_file($originalFile);
+			$minimalFilePath = $publicDirectory . "minified_$fileContentsHash.css";
+			if (! file_exists($minimalFilePath)) {
+				(new MatthiasMullie\Minify\CSS($originalFile))->minify($minimalFilePath);
+				chmod($minimalFilePath, 0644);
 			}
 
-			$out[] = $min;
+			$out[] = $minimalFilePath;
 		}
 
 		return $out;
@@ -1017,22 +1015,31 @@ class HeaderLib
 	private function get_minified_css_single($files)
 	{
 		global $tikidomainslash;
-		$hash = md5(serialize($files));
-		$target = 'temp/public/' . $tikidomainslash;
-		$file = $target . "minified_$hash.css";
+		$cachelib = TikiLib::lib('cache');
 
-		if (! file_exists($file)) {
+		$fileSetHash = md5(serialize($files));
+		
+		/* The minimal file's name contains a hash based on the file contents, so that browsers will automatically load changes when files are modified.
+		However, since that hash is itself costly to create, it is cached server-side. Therefore, client caches will be refreshed when the server-side cache is cleared, after an upgrade for instance. */
+		$fileSetContentsHash = $cachelib->getCached($fileSetHash, 'minify_css_contents_by_paths');
+		if (! $fileSetContentsHash) {
+			$fileSetContentsHash = $this->getFilesContentsHash($files);
+			$cachelib->cacheItem($fileSetHash, $fileSetContentsHash, 'minify_css_contents_by_paths');
+		}
+		$minimalFilePath = 'temp/public/' . $tikidomainslash . "minified_$fileSetContentsHash.css";
+
+		if (! file_exists($minimalFilePath)) {
 			$minifier = new MatthiasMullie\Minify\CSS();
 
-			foreach ($files as $f) {
-				$minifier->add($f);
+			foreach ($files as $originalFile) {
+				$minifier->add($originalFile);
 			}
 
-			$minifier->minify($file);
-			chmod($file, 0644);
+			$minifier->minify($minimalFilePath);
+			chmod($minimalFilePath, 0644);
 		}
 
-		return [ $file ];
+		return [ $minimalFilePath ];
 	}
 
 	public function minify_css($file)
@@ -1085,74 +1092,7 @@ class HeaderLib
 		return array_merge($files['default'], $files['screen']);
 	}
 
-	/**
-	 * Compile a new css file in temp/public using the provided theme and the custom LESS string
-	 *
-	 * @param string $custom_less        The LESS syntax string
-	 * @param string $themename          Theme to base the compile on
-	 * @param string $themeoptionname    Theme option name (for future use)
-	 * @param bool $use_cache            (for future use and testing)
-	 * @return array                     Array of CSS file paths out (can be theme and option if there's an error)
-	 */
-	function compile_custom_less($custom_less, $themename, $themeoptionname = '', $use_cache = true)
-	{
-
-		global $tikidomainslash, $tikiroot;
-
-		$hash = md5($custom_less . $themename . $themeoptionname);
-		$target = "temp/public/$tikidomainslash";
-		$css_file = $target . "custom_less_$hash.css";
-		$css_files = [$css_file];
-
-		if (! file_exists($css_file) || ! $use_cache) {
-			$themeLib = TikiLib::lib('theme');
-
-			$theme_less_file = $themeLib->get_theme_path($themename, '', $themename . '.less');
-			$themeoption_less_file = $themeLib->get_theme_path($themename, $themeoptionname, $themeoptionname . '.less');
-
-			if ($theme_less_file === $themeoption_less_file) {
-				$themeoption_less_file = '';	// some theme options are CSS only
-			}
-
-			$options = [
-				'compress' => true,
-				'cache_dir' => realpath($target),
-			];
-
-			$parser = new Less_Parser($options);
-
-			try {
-				$nesting = count(array_filter(explode(DIRECTORY_SEPARATOR, $tikiroot)));
-				$depth = count(array_filter(explode(DIRECTORY_SEPARATOR, $target)));
-				$offset = $nesting ? str_repeat('../', $depth) : '';
-
-				// less.php does all the work of course
-				$parser->parseFile($theme_less_file, $offset . $tikiroot);	// appears to need the relative path from temp/public where the CSS will be cached
-				if ($themeoption_less_file) {
-					$parser->parseFile($themeoption_less_file, $offset . $tikiroot);
-				}
-				$parser->parse($custom_less);
-				$css = $parser->getCss();
-
-				file_put_contents($css_file, $css);
-				chmod($css_file, 0644);
-
-				$css_files = [$css_file];
-			} catch (Exception $e) {
-				if (is_writeable($css_file)) {
-					unlink($css_file);
-				}
-
-				Feedback::error(tra('Custom Less compilation failed with error:') . $e->getMessage());
-				$css_files = [
-					$themeLib->get_theme_path($themename, '', $themename . '.css'),
-					$themeLib->get_theme_path($themename, $themeoptionname, ($themeoptionname ?: $themename) . '.css'),
-				];
-			}
-		}
-
-		return $css_files;
-	}
+	// TODO compile_custom_scss function here
 
 	function add_map()
 	{

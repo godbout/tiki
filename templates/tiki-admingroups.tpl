@@ -36,7 +36,7 @@
 				<table id="{$ts.tableid}" class="table normal table-striped table-hover" data-count="{$cant_pages|escape}">
 						<thead>
 							<tr>
-								<th id="checkbox" style="width: 20px;">{select_all checkbox_names='checked[]'}</th>
+								<th id="checkbox">{select_all checkbox_names='checked[]'}</th>
 								<th id="id">{self_link _sort_arg='sort_mode' _sort_field='id'}{tr}ID{/tr}{/self_link}</th>
 								<th id="group">{self_link _sort_arg='sort_mode' _sort_field='groupName'}{tr}Name{/tr}{/self_link}</th>
 								<th id="inherits">{tr}Inherits Permissions from{/tr}</th>
@@ -153,7 +153,7 @@
 		{* ----------------------- tab with form --------------------------------------- *}
 	{if !$ts.ajax}
 		{if !empty($user) and $prefs.feature_user_watches eq 'y' && !empty($groupname)}
-			<div class="pull-right">
+			<div class="float-sm-right">
 				{if not $group_info.isWatching}
 					{self_link watch=$groupname _class="tips" _title="{$groupname}:{tr}Group is NOT being monitored. Click icon to START monitoring.{/tr}"}
 						{icon name='watch' alt="{tr}Group is NOT being monitored. Click icon to START monitoring.{/tr}"}
@@ -448,7 +448,7 @@
 				</div>
 			</div>
 
-			{if $group ne ''and $groupname neq 'Anonymous'}
+			{if $group ne '' and $groupname neq 'Anonymous'}
 				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}Assign group <em>management</em> permissions{/tr}</label>
 					<div class="col-md-9">

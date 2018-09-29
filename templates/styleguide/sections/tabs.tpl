@@ -2,7 +2,7 @@
 	<h2>Tabs</h2>
 	<div class="row">
 		<div class="col-sm-8 col-md-9">
-			{tabset name='sg-tabs'}
+			{tabset name='tc-tabs'}
 				{tab name='Title 1'}
 					Arcu lacus pulvinar tristique amet natoque tincidunt facilisis aliquam, integer est magna amet? Ultricies?
 					Elit nascetur amet nunc, auctor amet. Est platea magna pulvinar. Placerat, vut, velit et. Turpis proin!
@@ -40,20 +40,18 @@
 
 		<div class="col-sm-4 col-md-3">
 			<div class="input">
-				<p class="picker" data-selector=".style-guide .nav-tabs > li:not(.active) > a" data-element="color">
-					<label for="sg-tab-color">Tab text color:</label>
-					<input id="sg-tab-color" data-selector=".style-guide .nav-tabs > li:not(.active) > a" data-element="color" type="text">
-					<div class="input-group-append">
-						<span class="input-group-text"><i></i></span>
-					</div>
+				<p class="picker" data-selector=".customizer .nav-tabs > li:not(.active) > a" data-element="color">
+					<label for="tc-tab-color">Tab text color:</label>
+					<input id="tc-tab-color" data-selector=".customizer .nav-tabs > li:not(.active) > a" data-element="color" type="text">
+					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p>
-					<label for="sg-tab-margin">Tab margin:</label>
-					<input id="sg-tab-margin" class="nocolor" data-selector=".style-guide .nav-tabs > li > a" data-element="margin-right" type="text">
+					<label for="tc-tab-margin">Tab margin:</label>
+					<input id="tc-tab-margin" class="nocolor" data-selector=".customizer .nav-tabs > li > a" data-element="margin-right" type="text">
 				</p>
 				<p>
-					<label for="sg-tab-padding">Text padding:</label>
-					<input id="sg-tab-padding" class="nocolor" data-selector=".style-guide .tab-content" data-element="padding" type="text">
+					<label for="tc-tab-padding">Text padding:</label>
+					<input id="tc-tab-padding" class="nocolor" data-selector=".customizer .tab-content" data-element="padding" type="text">
 				</p>
 			</div>
 		</div>

@@ -10,7 +10,7 @@
 		}
 	}
 {/jq}
-<form role="form" action="tiki-admin.php?page=i18n" method="post">
+<form role="form" action="tiki-admin.php?page=i18n" method="post" class="admin">
 	{ticket}
 	<input type="hidden" name="i18nsetup" />
 	<div class="t_navbar mb-4 clearfix">

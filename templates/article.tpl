@@ -53,7 +53,7 @@
 
 	<div class="articleheading media clearfix">
 
-		<div class="pull-left">
+		<div class="float-left">
 			{capture name=imgTitle}{if $show_image_caption eq 'y' and $image_caption}{$image_caption|escape}{elseif isset($topicName)}{tr}{$topicName}{/tr}{/if}{/capture}
 			{assign var="big_image" value=$prefs.art_header_text_pos eq 'below' && $list_image_x > 0}
 		{*	{if $big_image}

@@ -3,7 +3,7 @@
 {/if}
 {if $infoPublic eq 'y' || true}
 	<div class="clearfix">
-		<div class="pull-right">
+		<div class="float-sm-right">
 			{if $tiki_p_admin eq 'y' or $userinfo.object_id eq $user}
 				{if $tiki_p_admin eq 'y'}
 					<a class="link tips" href="tiki-assignuser.php?assign_user={$userwatch|escape:"url"}" title=":{tr}Assign group{/tr}">
@@ -252,7 +252,7 @@
 			{if $user and $prefs.feature_messages eq 'y' and $tiki_p_messages eq 'y' and $userinfo['user_allowmsgs'] eq 'y'}
 				<div class="profile-buttons">
 					<a href="{bootstrap_modal controller=user action=send_message userwatch=$userwatch}" class="btn btn-primary">
-						<i class="fa fa-envelope-o"></i>
+						<i class="far fa-envelope"></i>
 						{tr}Send me a message{/tr}
 					</a>
 					{if $prefs.feature_friends eq 'y'}

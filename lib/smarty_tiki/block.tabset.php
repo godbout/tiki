@@ -93,7 +93,7 @@ function smarty_block_tabset($params, $content, $smarty, &$repeat)
 				$button_params['_onclick'] = "setCookie('$smarty_tabset_name','" . ($cookietab == 'n' ? 1 : 'n' ) . "', 'tabs') ;";
 				$button_params['_class'] = 'btn-sm btn-secondary';
 				$notabs = smarty_function_button($button_params, $smarty);
-				$notabs = "<div class='pull-right'>$notabs</div>";
+				$notabs = "<div class='float-right'>$notabs</div>";
 				$content_class = '';
 			} else {
 				$content_class = ' full_width';	// no no-tabs button

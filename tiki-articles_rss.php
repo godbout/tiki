@@ -87,7 +87,7 @@ if (isset($_REQUEST["categId"])) {
 	}
 }
 
-if ($topic and ! $tikilib->user_has_perm_on_object($user, $topic, 'topic', 'tiki_p_topic_read')) {
+if ($topic and ! $tikilib->user_has_perm_on_object($user, $topic, 'topic', 'tiki_p_read_article')) {
 	$smarty->assign('errortype', 401);
 	$errmsg = tra("You do not have permission to view this section");
 	require_once('tiki-rss_error.php');

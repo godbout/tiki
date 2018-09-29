@@ -1,9 +1,9 @@
 {* $Id$ *}
 
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
-		<i class="fa fa-arrow-circle-up fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
+	<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
+		<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
+		<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
 	{tr}Main new and improved features and settings in Tiki 18.{/tr}
 	<a href="https://doc.tiki.org/Tiki18" target="tikihelp" class="tikihelp text-info" title="{tr}Tiki18:{/tr}
@@ -22,13 +22,13 @@
 			<div class="adminoption form-group row">
 				<label class="col-sm-3 col-form-label"><b>{tr}Control Panels{/tr}</b>:</label>
 				<div class="col-sm-offset-1 col-sm-11">
-					{icon name="admin_packages" size=2 iclass="pull-left"}
+					{icon name="admin_packages" size=2 iclass="float-left"}
 					{tr}Composer Web Install (<b>Packages</b>).{/tr}
 					<a href="https://doc.tiki.org/Packages">{tr}More Information{/tr}...</a><br/><br/>
 				</div>
 				<label class="col-sm-3 col-form-label"><b>{tr}Style guide tool{/tr}</b>:</label>
 				<div class="col-sm-offset-1 col-sm-9">
-					{icon name="admin_look" size=2 iclass="pull-left"}
+					{icon name="admin_look" size=2 iclass="float-left"}
 					{tr}Look and feel colors can be customized with a style guide tool.{/tr}
 					<a href="https://doc.tiki.org/Style-Guide">{tr}More Information{/tr}...</a><br/><br/>
 				</div>
@@ -37,6 +37,7 @@
 			</div>
 			{preference name='sitemap_enable'}
 			{preference name='feature_sefurl_routes'}
+			{preference name='fallbackBaseUrl'}
 			{preference name='wiki_make_ordered_list_items_display_unique_numbers'}
 		</fieldset>
 		<fieldset class="table clearfix featurelist">
@@ -74,31 +75,31 @@
 			<div class="adminoption form-group row">
 				<label class="col-sm-3 col-form-label"><b>{tr}Control Panels{/tr}</b>:</label>
 				<div class="col-sm-offset-1 col-sm-11">
-					{icon name="admin_rtc" size=2 iclass="pull-left"}
+					{icon name="admin_rtc" size=2 iclass="float-left"}
 					{tr}Real-time collaboration tools (<b>RTC</b>).{/tr}
 					<a href="https://doc.tiki.org/RTC">{tr}More Information{/tr}...</a><br/><br/>
 				</div>
 				<label class="col-sm-3 col-form-label"><b>{tr}Console{/tr}</b>:</label>
 				<div class="col-sm-offset-1 col-sm-11">
-					{icon name="terminal" size=2 iclass="pull-left"}
+					{icon name="terminal" size=2 iclass="float-left"}
 					{tr}New actions can be performed.{/tr}
 					<a href="https://doc.tiki.org/Console">{tr}More Information{/tr}...</a><br/><br/>
 				</div>
 				<label class="col-sm-3 col-form-label"><b>{tr}Menus{/tr}</b>:</label>
 				<div class="col-sm-offset-1 col-sm-11">
-					{icon name="navicon" size=2 iclass="pull-left"}
+					{icon name="navicon" size=2 iclass="float-left"}
 					{tr}Drag and drop added to menu management.{/tr}
 					<a href="https://doc.tiki.org/Menu#Drag_and_drop">{tr}More Information{/tr}...</a><br/><br/>
 				</div>
 				<label class="col-sm-3 col-form-label"><b>{tr}Profiles{/tr}</b>:</label>
 				<div class="col-sm-offset-1 col-sm-9">
-					{icon name="admin_profiles" size=2 iclass="pull-left"}
+					{icon name="admin_profiles" size=2 iclass="float-left"}
 					{tr}Dry-run/Preview and Selective Rollback were added, as well as new options to allow exporting files and tracker items.{/tr}
 					<a href="https://doc.tiki.org/Tiki18#Profiles">{tr}More Information{/tr}...</a><br/><br/>
 				</div>
 				<label class="col-sm-3 col-form-label"><b>{tr}Search{/tr}</b>:</label>
 				<div class="col-sm-offset-1 col-sm-9">
-					{icon name="admin_search" size=2 iclass="pull-left"}
+					{icon name="admin_search" size=2 iclass="float-left"}
 					{tr}Calendars and Calendar Items will now appear in search results of the unified search index.{/tr}
 					<a href="https://doc.tiki.org/Tiki18#Search">{tr}More Information{/tr}...</a><br/><br/>
 				</div>

@@ -23,7 +23,7 @@
 			<div class="header_container">
 				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
 					<header class="header page-header" id="page-header">
-						{modulelist zone=top class='row top_modules'}
+						{modulelist zone=top class='top_modules d-flex justify-content-between'}
 					</header>
 				</div>
 			</div>
@@ -33,12 +33,12 @@
 
 	<div class="middle_outer" id="middle_outer" >
 		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} clearfix middle" id="middle">
-			<div class="topbar" id="topbar">
-				{modulelist zone=topbar}
+			<div class="topbar bg-dark" id="topbar">
+				{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
 			</div>
-			<div class="row" id="row-middle">
+			<div class="row row-middle" id="row-middle">
 				{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
-					<div class="col1 col-md-12" id="col1">
+					<div class="col col1 col-md-12" id="col1">
 
 						{if $prefs.feature_layoutshadows eq 'y'}
 						<div id="tiki-center-shadow">{eval var=$prefs.center_shadow_start}{/if}
@@ -58,7 +58,7 @@
 					</div>
 				{elseif zone_is_empty('left') or $prefs.feature_left_column eq 'n'}
 				{if $prefs.feature_right_column eq 'user'}
-					<div class="col-sm-12 d-none d-lg-block text-right side-col-toggle">
+					<div class="side-col-toggle-container justify-content-end">
 						{$icon_name = (not empty($smarty.cookies.hide_zone_right)) ? 'toggle-left' : 'toggle-right'}
 						{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 					</div>
@@ -84,7 +84,7 @@
 					</div>
 				{elseif zone_is_empty('right') or $prefs.feature_right_column eq 'n'}
 				{if $prefs.feature_left_column eq 'user'}
-					<div class="col-sm-12 d-none d-lg-block text-left side-col-toggle">
+					<div class="side-col-toggle-container justify-content-start">
 						{$icon_name = (not empty($smarty.cookies.hide_zone_left)) ? 'toggle-right' : 'toggle-left'}
 						{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 					</div>
@@ -109,18 +109,20 @@
 						{modulelist zone=left}
 					</div>
 				{else}
+				<div class="side-col-toggle-container d-flex">
 					{if $prefs.feature_left_column eq 'user'}
-						<div class="col-sm-6 d-none d-lg-block text-left side-col-toggle">
+						<div class="text-left side-col-toggle flex-fill">
 							{$icon_name = (not empty($smarty.cookies.hide_zone_left)) ? 'toggle-right' : 'toggle-left'}
 							{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 						</div>
 					{/if}
 					{if $prefs.feature_right_column eq 'user'}
-						<div class="col-sm-6 d-none d-lg-block text-right side-col-toggle">
+						<div class="text-right side-col-toggle flex-fill">
 							{$icon_name = (not empty($smarty.cookies.hide_zone_right)) ? 'toggle-left' : 'toggle-right'}
 							{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 						</div>
 					{/if}
+				</div>
 					<div class="col col1 col-sm-12 col-lg-8 order-xs-1 order-lg-2" id="col1">
 						{if $prefs.feature_layoutshadows eq 'y'}
 						<div id="tiki-center-shadow">{eval var=$prefs.center_shadow_start}{/if}
@@ -151,10 +153,10 @@
 	{if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 	{if $prefs.feature_layoutshadows eq 'y'}
 	<div id="footer-shadow">{eval var=$prefs.footer_shadow_start}{/if}
-		<footer class="footer" id="footer">
+		<footer class="footer main-footer" id="footer">
 			<div class="footer_liner">
 				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}" style="padding-left: 0; padding-right: 0;">
-					{modulelist zone=bottom class='mx-0'}
+					{modulelist zone=bottom class='bottom_modules px-3'}
 				</div>
 			</div>
 		</footer>

@@ -3,7 +3,7 @@
 	{tr}Text area (that apply throughout many features){/tr}
 {/remarksbox}
 
-<form action="tiki-admin.php?page=textarea" method="post">
+<form action="tiki-admin.php?page=textarea" method="post" class="admin">
 	{ticket}
 
 	<div class="row">
@@ -113,7 +113,6 @@
 				{preference name=feature_use_three_colon_centertag}
 				{preference name=feature_simplebox_delim}
 				{preference name=mail_template_custom_text}
-				{preference name=wiki_plugindiv_approvable}
 			</fieldset>
 
 			<fieldset>
@@ -134,6 +133,7 @@
 				{remarksbox type='tip' title="{tr}Tip{/tr}"}
 					{tr}External links will be identified with:{/tr} {icon name="link-external"}
 				{/remarksbox}
+				{preference name=allowImageLazyLoad}
 			</fieldset>
 		{/tab}
 

@@ -138,9 +138,15 @@ class Search_Formatter_Builder
 		$this->alternateOutput = $match->getBody();
 	}
 
+	/**
+	 * @param WikiParser_PluginMatcher_Match $output
+	 *
+	 * @throws Exception
+	 */
 	private function handleOutput($output)
 	{
 		$smarty = TikiLib::lib('smarty');
+		$tikilib = TikiLib::lib('tiki');
 		$arguments = $this->parser->parse($output->getArguments());
 
 		if (isset($arguments['template'])) {
@@ -183,10 +189,30 @@ class Search_Formatter_Builder
 			$plugin = new Search_Formatter_Plugin_SmartyTemplate($arguments['template']);
 			$plugin->setData($outputData);
 			$plugin->setFields($this->findFields($outputData, $templateData));
-		} elseif (isset($arguments['wiki']) && TikiLib::lib('tiki')->page_exists($arguments['wiki'])) {
-			$wikitpl = "tplwiki:" . $arguments['wiki'];
-			$wikicontent = $smarty->fetch($wikitpl);
-			$plugin = new Search_Formatter_Plugin_WikiTemplate($wikicontent);
+		} elseif (isset($arguments['tplwiki'])) {
+			if ($tikilib->page_exists($arguments['tplwiki'])) {
+				$wikitpl = "tplwiki:" . $arguments['tplwiki'];
+				$abuilder = new Search_Formatter_ArrayBuilder;
+				$outputData = $abuilder->getData($output->getBody());
+				foreach ($this->paginationArguments as $k => $v) {
+					$outputData[$k] = $this->paginationArguments[$k];
+				}
+				$data = $tikilib->get_page_info($arguments['tplwiki']);
+				$wikicontent = $data['data'];
+				$plugin = new Search_Formatter_Plugin_SmartyTemplate($wikitpl);
+				$plugin->setData($outputData);
+				$plugin->setFields($this->findFields($outputData, $wikicontent));
+			} else {
+				Feedback::error(tr('Template tplwiki page "%0" not found', $arguments['tplwiki']));
+			}
+		} elseif (isset($arguments['wiki'])) {
+			if ($tikilib->page_exists($arguments['wiki'])) {
+				$wikitpl = "tplwiki:" . $arguments['wiki'];
+				$wikicontent = $smarty->fetch($wikitpl);
+				$plugin = new Search_Formatter_Plugin_WikiTemplate($wikicontent);
+			} else {
+				Feedback::error(tr('Template wiki page "%0" not found', $arguments['wiki']));
+			}
 		} else {
 			$plugin = new Search_Formatter_Plugin_WikiTemplate($output->getBody());
 		}

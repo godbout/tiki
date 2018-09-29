@@ -17,6 +17,10 @@
 //   background: darken($state-danger-bg, 15%);
 // }
 
+.tiki .mx--15px {
+  margin-left: -15px;
+  margin-right: -15px;
+}
 
 // Avoid long URLs overflow and wrap them into several lines instead
 a {
@@ -278,6 +282,11 @@ span.btn-link {
 	cursor: pointer;
 }
 
+// Create whitespace below buttons when the row wraps added by Gary on July 31, 2018.
+.t_navbar.mb-3 > .btn {
+  margin-bottom: 6px;
+}
+
 // div #metadata fieldset.tabcontent, div #metadata div.tabs {
 //  background-color: transparent;
 // }
@@ -320,13 +329,9 @@ span.btn-link {
 }
 
 .jscal input[type=text] {
-	width: 90%;
+	width: calc(100% - 26px);
 	display: inline-block;
 	margin-right: 2px;
-}
-
-.jscal.datetime input[type=text] {	/* shows the timezone too */
-	width: 50%;
 }
 
 //date picker dropdowns
@@ -434,3 +439,11 @@ div.categbar {
 	text-align: right;
 	clear: both;
 }
+
+// Special class to make semi-transparent elements and make them opaque on mouse over
+.opacity50 {opacity: .5; transition: opacity 1s !important}
+.opacity100, .opacity50:hover, .opacity50:focus {opacity: 1}
+
+.sitelogo .btn {display: none}
+.sitelogo:hover .btn {display: block}
+

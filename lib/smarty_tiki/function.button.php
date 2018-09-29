@@ -37,10 +37,15 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  *  - _selected_text: button text to use if _selected is set to y
  *  - _selected_icon_name: button icon to use if _selected is set to y
  */
+/**
+ * @param array $params
+ * @param \Smarty_Internal_Template $smarty
+ * @return string
+ */
 function smarty_function_button($params, $smarty)
 {
-	if (! is_array($params) || ! isset($params['_text'])) {
-		return;
+	if (! is_array($params) || (! isset($params['_text']) && ! isset($params['_icon_name']))) {
+		return '';
 	}
 	global $tikilib, $prefs, $auto_query_args;
 

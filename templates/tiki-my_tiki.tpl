@@ -46,7 +46,7 @@
 					{/section}
 				</table>
 			</div>
-				<ul class="nav nav-pills pull-right">
+				<ul class="nav nav-pills float-sm-right">
 					<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_pages|@count}</span></a></li>
 				</ul>
 		</div>
@@ -78,7 +78,7 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills pull-right">
+			<ul class="nav nav-pills float-sm-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_galleries|@count}</span></a></li>
 			</ul>
 		</div>
@@ -110,7 +110,7 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills pull-right">
+			<ul class="nav nav-pills float-sm-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_articles|@count}</span></a></li>
 			</ul>
 		</div>
@@ -142,7 +142,7 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills pull-right">
+			<ul class="nav nav-pills float-sm-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_items|@count}</span></a></li>
 				<li><a href="#">{tr}Comments{/tr} <span class="badge badge-secondary">{$nb_item_comments}</span></a></li>
 			</ul>
@@ -177,7 +177,7 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills pull-right">
+			<ul class="nav nav-pills float-sm-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$msgs|@count}</span></a></li>
 			</ul>
 		</div>
@@ -203,7 +203,7 @@
 				{/section}
 			</table>
 			</div>
-			<ul class="nav nav-pills pull-right">
+			<ul class="nav nav-pills float-sm-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$tasks|@count}</span></a></li>
 			</ul>
 		</div>
@@ -233,7 +233,7 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills pull-right">
+			<ul class="nav nav-pills float-sm-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_forum_topics|@count}</span></a></li>
 			</ul>
 		</div>
@@ -263,7 +263,7 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills pull-right">
+			<ul class="nav nav-pills float-sm-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_forum_replies|@count}</span></a></li>
 			</ul>
 		</div>
@@ -293,7 +293,7 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills pull-right">
+			<ul class="nav nav-pills float-sm-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_blogs|@count}</span></a></li>
 			</ul>
 			<div class="clearfix">
@@ -319,7 +319,7 @@
 						{/section}
 					</table>
 				</div>
-				<ul class="nav nav-pills pull-right">
+				<ul class="nav nav-pills float-sm-right">
 					<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_blog_posts|@count}</span></a></li>
 				</ul>
 			</div>

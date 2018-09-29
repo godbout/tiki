@@ -1,5 +1,5 @@
 {* $Id$ *}
-<div class="actions blogpostactions pull-right btn-group">
+<div class="actions blogpostactions float-sm-right btn-group">
 	{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 	<a class="btn btn-link" data-toggle="dropdown" href="#">
 		{icon name="menu-extra"}

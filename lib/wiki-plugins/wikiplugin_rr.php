@@ -473,12 +473,6 @@ function wikiplugin_rr($data, $params)
 	// Only insert user identification in filenames when "per user" caching strategy is chosen
 	$userinfilename = userInFilename($user, $cachestrategy);
 
-	if ($convertPath = getCommandPath('convert')) {
-		define('convert', $convertPath);
-	} else {
-		return displayRrErrorBox("errors", "…convert… " . tra("command unavailable"), tra("You need to ensure that you have __imagemagick__ installed successfully on the server.") . "\n" . tra("See requirements on [https://doc.tiki.org/PluginR]."));
-	}
-
 	if (isset($params["loadandsave"])) {
 		$loadandsave = $params["loadandsave"];
 		if ($loadandsave == "TRUE" or $loadandsave == "1") {
@@ -506,6 +500,19 @@ function wikiplugin_rr($data, $params)
 	if (! $r_path = getCommandPath('R')) {
 		return displayRrErrorBox("errors", "…R… " . tra("command unavailable"), tra("The __R__ package needs to be installed on the server.") . "\n" . tra("See requirements on [https://doc.tiki.org/PluginR]."));
 	}
+	if ($r_path == 'NO_ACCESS') {
+		return displayRrErrorBox("errors", "…R… " . tra("command unavailable"), tra("The path to the __R__ command could not be found on your system.") . ' ' . tra("Maybe this file is inaccessible due to safe mode restrictions.") . "\n" . tra("See requirements on [https://doc.tiki.org/PluginR]."));
+	}
+
+	if ($convertPath = getCommandPath('convert')) {
+		if ($convertPath == 'NO_ACCESS') {
+			return displayRrErrorBox("errors", "…R… " . tra("command unavailable"), tra("The path to the __convert__ command could not be found on your system.") . ' ' . tra("Maybe this file is inaccessible due to safe mode restrictions.") . "\n" . tra("See requirements on [https://doc.tiki.org/PluginR]."));
+		}
+		define('convert', $convertPath);
+	} else {
+		return displayRrErrorBox("errors", "…convert… " . tra("command unavailable"), tra("You need to ensure that you have __imagemagick__ installed successfully on the server.") . "\n" . tra("See requirements on [https://doc.tiki.org/PluginR]."));
+	}
+
 	if ($loadandsave == 1 && isset($_REQUEST['itemId'])  && $_REQUEST['itemId'] > 0) {
 		// --save : data sets are saved at the end of the R session
 		// --quiet : Do not print out the initial copyright and welcome messages from R
@@ -727,7 +734,7 @@ function wikiplugin_rr($data, $params)
 			}
 		}
 		if ($dbversion_tiki >= 13.0) {
-			$ret .= ' <a href="#" onclick="parentNode.submit();return false;" >' . '<span class="icon fa fa-refresh" Title="' . tr("Cached R output from %0. If you click, you will re-run all R scripts in this page", $cache_last_modif_readable) . '"></span></a> </form>';
+			$ret .= ' <a href="#" onclick="parentNode.submit();return false;" >' . '<span class="icon fas fa-sync" Title="' . tr("Cached R output from %0. If you click, you will re-run all R scripts in this page", $cache_last_modif_readable) . '"></span></a> </form>';
 		} else {
 			// Maybe this should be an input tag with maybe still the image
 			$ret .= ' <a href="#" onclick="parentNode.submit();return false;" >' . '<img src=img/icons/arrow_refresh.png alt=Refresh Title="' . tr("Cached R output from %0. If you click, you will re-run all R scripts in this page", $cache_last_modif_readable) . '"></a> </form>';
@@ -967,6 +974,11 @@ function runR($output, $convert, $sha1, $input, $r_echo, $ws, $params, $user, $r
 		// Windows compatibility
 		if (strncmp(PHP_OS, 'WIN', 3) == 0) {
 			$cmd = str_replace('/', '\\', $cmd);
+		}
+		// function_exists('exec') doe not seem to cover all restrictions. Ref: https://stackoverflow.com/questions/2749591/php-exec-check-if-enabled-or-disabled
+		if (! exec('echo EXEC') == 'EXEC') {
+			$runR_errors = ['error' => true, 'type' => 'error', 'title' => 'command unavailable', 'body' => 'Function "exec" is required for Plugin R/RR. It is probably disabled.'];
+			return;
 		}
 		$stdout = "";
 		exec($cmd, $stdout);
@@ -1225,7 +1237,7 @@ function displayRrErrorBox($type = 'errors', $title, $body)
 	return $error_text;
 }
 
-/* Either returns the full path to the command, of FALSE if not found.
+/* Either returns the full path to the command, of FALSE if not found, or NO_ACCESS if found but not accessible..
  * Works on flavors of UNIX
  */
 function getCommandPath($command, $options = '')
@@ -1240,6 +1252,10 @@ function getCommandPath($command, $options = '')
 	if (empty($commandPath)) {
 		return false;
 	} else {
+		if (! file_exists($commandPath)) {
+			// In this last case, usually the file is present but the server's access restrictions prevent it from being executed.
+			return 'NO_ACCESS';
+		}
 		return $commandPath . $options;
 	}
 }

@@ -6,6 +6,7 @@
 
 <h2>{tr}Create/edit cookies{/tr}</h2>
 <form action="tiki-admin_cookies.php" method="post" class="form-horizontal" role="form">
+	{ticket}
 	<input type="hidden" name="cookieId" value="{$cookieId|escape}">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" for="cookie">{tr}Cookie{/tr}</label>
@@ -14,12 +15,13 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+		<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
 	</div>
 </form>
 
 <h2>{tr}Upload Cookies from textfile{/tr}</h2>
 <form enctype="multipart/form-data" action="tiki-admin_cookies.php" method="post" class="form-horizontal" role="form">
+	{ticket}
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" for="cookie">{tr}Upload from disk{/tr}</label>
 		<div class="col-sm-9">
@@ -28,14 +30,20 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-primary btn-sm" name="upload" value="{tr}Upload{/tr}">
+		<input
+			type="submit"
+			class="btn btn-primary btn-sm"
+			name="upload"
+			value="{tr}Upload{/tr}"
+			onclick="checkTimeout()"
+		>
 	</div>
 </form>
 
 <h2>{tr}Cookies{/tr}</h2>
 {if $channels}
 	<div class="t_navbar">
-		{button href="?removeall=1" _icon_name="trash" _text="{tr}Remove all cookies{/tr}"}
+		{button href="?removeall=1" _icon_name="trash" _text="{tr}Remove all cookies{/tr}" _onclick="confirmSimple(event, '{tr}Remove all cookies?{/tr}', '{ticket mode=get}')"}
 	</div>
 {/if}
 
@@ -67,7 +75,7 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_cookies.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].cookieId}">
+								<a href="tiki-admin_cookies.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].cookieId}" onclick="confirmSimple(event, '{tr}Remove cookie?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>

@@ -213,7 +213,7 @@ $query = "select a.*, tf.*, max(b.`commentDate`) as `lastPost` from
 		$ret = [];
 		$count = 0;
 		while (($res = $result->fetchRow()) && $count < $limit) {
-			if ($this->user_has_perm_on_object($user, $res['object'], 'forum', 'tiki_p_forum_read')) {
+			if ($this->user_has_perm_on_object($user, $res['threadId'], 'thread', 'tiki_p_forum_read')) {
 				if ($mid == '') { // no forumId selected
 					$aux['name'] = $res['name'] . ': ' . $res['title']; //forum name plus topic
 				} else { // forumId selected
@@ -493,7 +493,7 @@ $query = "select a.*, tf.*, max(b.`commentDate`) as `lastPost` from
 		$ret = [];
 
 		while ($res = $result->fetchRow()) {
-			if ($this->user_has_perm_on_object($user, $res['galleryId'], 'file gallery', 'tiki_p_view_file_gallery')) {
+			if ($this->user_has_perm_on_object($user, $res['fileId'], 'file', 'tiki_p_view_file_gallery')) {
 				$aux["name"] = $res["filename"];
 				$aux["hits"] = $res["hits"];
 				$aux["href"] = 'tiki-download_file.php?fileId=' . $res["fileId"];
@@ -549,7 +549,7 @@ $query = "select a.*, tf.*, max(b.`commentDate`) as `lastPost` from
 		$ret = [];
 
 		while ($res = $result->fetchRow()) {
-			if ($this->user_has_perm_on_object($user, $res['galleryId'], 'file gallery', 'tiki_p_view_file_gallery')) {
+			if ($this->user_has_perm_on_object($user, $res['fileId'], 'file', 'tiki_p_view_file_gallery')) {
 				$aux["name"] = $res["filename"];
 				$aux["hits"] = $res["created"];
 				$aux["href"] = 'tiki-download_file.php?fileId=' . $res["fileId"];
@@ -661,7 +661,7 @@ $query = "select a.*, tf.*, max(b.`commentDate`) as `lastPost` from
 		$ret = [];
 
 		while ($res = $result->fetchRow()) {
-			if ($this->user_has_perm_on_object($user, $res['blogId'], 'blog', 'tiki_p_read_blog')) {
+			if ($this->user_has_perm_on_object($user, $res['postId'], 'blog post', 'tiki_p_read_blog')) {
 				$q = "select `title` from `tiki_blogs` where `blogId`=?";
 
 				$name = $this->getOne($q, [$res["blogId"]]);

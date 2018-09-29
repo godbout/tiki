@@ -300,6 +300,11 @@ if (! empty($_REQUEST['remove'])) {
 	}
 
 	$transaction->commit();
+
+	$smarty->loadPlugin('smarty_modifier_sefurl');
+	// redirect to the tracker item list of the last item deleted
+	$access->redirect(smarty_modifier_sefurl($item_info['trackerId'], 'tracker'));
+
 } elseif (isset($_REQUEST['batchaction']) and ($_REQUEST['batchaction'] == 'o' || $_REQUEST['batchaction'] == 'p' || $_REQUEST['batchaction'] == 'c')) {
 	check_ticket('view-trackers');
 	$transaction = $tikilib->begin();
@@ -521,6 +526,7 @@ $smarty->assign('ins_fields', $ins_fields['data']);
 $smarty->assign_by_ref('items', $items["data"]);
 $smarty->assign_by_ref('item_count', $items['cant']);
 $smarty->assign_by_ref('listfields', $listfields);
+$smarty->assign_by_ref('fields_count', count($xfields['data']));
 $users = $userlib->list_all_users();
 $smarty->assign_by_ref('users', $users);
 if ($tiki_p_export_tracker == 'y') {

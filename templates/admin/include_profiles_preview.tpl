@@ -48,7 +48,7 @@
 	{/foreach}
 {else}
 	<div class="alert alert-info text-center">
-		<h4><span class="icon icon-information fa fa-info-circle fa-fw"></span>&nbsp;<span class="rboxtitle">{tr}Information{/tr}</span></h4>
+		<h4><span class="icon icon-information fas fa-info-circle fa-fw"></span>&nbsp;<span class="rboxtitle">{tr}Information{/tr}</span></h4>
 		<div class="rboxcontent">{tr}Profile without changes.{/tr}</div>
 	</div>
 {/if}

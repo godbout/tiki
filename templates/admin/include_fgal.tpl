@@ -7,7 +7,7 @@
 	{tr}To configure the directory path use UNIX like paths for example files/ or c:/foo/files or /www/files/{/tr}
 {/remarksbox}
 
-<form action="tiki-admin.php?page=fgal" method="post">
+<form action="tiki-admin.php?page=fgal" method="post" class="admin">
 	{ticket}
 
 	<div class="row">
@@ -133,6 +133,15 @@
 				<legend>{tr}Upload Regex{/tr}{help url="File+Gallery+Config#Filename_must_match:"}</legend>
 				{preference name='fgal_match_regex'}
 				{preference name='fgal_nmatch_regex'}
+			</fieldset>
+
+			<fieldset>
+				<legend> {tr}Settings for Media Alchemyst{/tr}{help url="Media-Alchemyst"}</legend>
+				{preference name=alchemy_ffmpeg_path}
+				{preference name=alchemy_ffprobe_path}
+				{preference name=alchemy_unoconv_path}
+				{preference name=alchemy_gs_path}
+				{preference name=alchemy_imagine_driver}
 			</fieldset>
 		{/tab}
 
@@ -335,7 +344,7 @@
 				<div class="adminoptionboxchild" id="fgal_viewerjs_feature_childcontainer">
 					{preference name='fgal_viewerjs_uri'}
 					{if $viewerjs_err}
-						<div class="col-sm-8 pull-right">
+						<div class="col-sm-8 float-sm-right">
 							{remarksbox type='errors' title="{tr}Warning{/tr}"}{$viewerjs_err}{/remarksbox}
 						</div>
 					{/if}

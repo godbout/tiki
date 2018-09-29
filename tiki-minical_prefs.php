@@ -10,7 +10,7 @@ include_once('lib/minical/minicallib.php');
 $access->check_feature('feature_minical');
 $access->check_user($user);
 //if ($tiki_p_minical != 'y') {
-//  $smarty->assign('msg',tra("You do not have permission to use this feature"));
+//  $smarty->assign('msg',tra("You do not have the permission that is needed to use this feature"));
 //  $smarty->display("error.tpl");
 //  die;
 //}

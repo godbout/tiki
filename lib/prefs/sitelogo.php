@@ -14,6 +14,7 @@ function prefs_sitelogo_list()
 			'description' => 'This can be a conventional path to the image file, or the syntax for an image in a Tiki gallery.',
 			'default' => 'img/tiki/Tiki_WCG.png',
 			'tags' => ['basic'],
+			'fgal_picker' => 'y',
 		],
 		'sitelogo_bgcolor' => [
 			'name' => tra('Logo background color'),

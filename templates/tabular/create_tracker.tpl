@@ -28,9 +28,22 @@
 			</div>
 		</div>
 		<div class="form-group row">
+			<label class="col-form-label col-sm-3">{tr}File Delimiter{/tr}</label>
+			<div class="col-sm-9">
+				<select class="form-control file-delimiter">
+					<option value="comma" selected>{tr}Comma (,){/tr}</option>
+					<option value="semicolon">{tr}Semicolon (;){/tr}</option>
+				</select>
+				<input type="hidden" id="delimiter" name="delimiter" value="comma">
+			</div>
+		</div>
+		<div class="form-group row file-container">
 			<label class="col-form-label  col-sm-3">{tr}File{/tr}</label>
 			<div class="col-sm-9">
 				<input type="file" name="file" accept="text/csv" required>
+				<div id="file-size-error" class="alert alert-danger mt-3" style="display:none">
+					{tr _0=$config.upload_max_filesize}<strong>Error:</strong> Selected file has <span id="file-size"></span> bytes. The max file size upload is %0 bytes.{/tr}
+				</div>
 			</div>
 		</div>
 		<div id="tracker-columns" class="form-group row" style="display:none">
@@ -154,9 +167,22 @@
 	</form>
 
 	{jq}
-		$('input[name="file"]').on('change', function() {
+		var uploadMaxFileSize = {{$config.upload_max_filesize}};
+		var submitFormButton = $('input[type="submit"]');
+		var fileSelect = $('input[name="file"]');
+		var delimiterElement = $("#delimiter");
+		var delimiter = ',';
 
-			var fileUpload = $('input[name="file"]')[0];
+		$('.file-delimiter').on('change', function(e) {
+			var currentValue = $(this).val();
+			delimiter = ((currentValue == 'comma') ? ',' : ';');
+			delimiterElement.val(currentValue);
+			fileSelect.trigger("change");
+		});
+
+		fileSelect.on('change', function(e) {
+
+			var fileUpload = fileSelect[0];
 
 			// remove existing elements
 			$('#tracker-columns').find('tr[id^="row"]:not(".hidden")').each(function(){
@@ -171,10 +197,13 @@
 			if (typeof (FileReader) != "undefined" && fileUpload.value != '') {
 
 				var reader = new FileReader();
+				var file = e.target.files[0];
+				var fileSize = file.size;
+
 
 				reader.onload = function (e) {
 					var rows = e.target.result.split("\n");
-					var columns = rows[0].split(',');
+					var columns = rows[0].split(delimiter);
 					// @todo get ajax to process the columns row csv without loading js csv libs
 
 					for(i = 0; i < columns.length; i++) {
@@ -191,6 +220,15 @@
 				}
 
 				reader.readAsText(fileUpload.files[0]);
+
+				if (fileSize <= uploadMaxFileSize) {
+					submitFormButton.prop('disabled', false);
+					$('#file-size-error').hide();
+				} else {
+					submitFormButton.prop('disabled', true);
+					$('#file-size').html(fileSize);
+					$('#file-size-error').show();
+				}
 			}
 		});
 

@@ -233,7 +233,7 @@ class UserModulesLib extends TikiLib
 		$query = "select `position` from `tiki_user_assigned_modules` where `moduleId`=? and `user`=?";
 		$r = $this->query($query, [$moduleId, $user]);
 		$res = $r->fetchRow();
-		$this->set_column_user_module($moduleId, $user, ($res['position'] == 'r' ? 'l' : 'r'));
+		$this->set_column_user_module($moduleId, $user, ($res['position'] == 'right' ? 'left' : 'right'));
 	}
 	/// Add a module to all the user who have assigned module and who don't have already this module
 	function add_module_users($moduleId, $name, $title, $position, $order, $cache_time, $rows, $groups, $params, $type)

@@ -4,7 +4,7 @@
 {/remarksbox}
 {if !empty($msgs)}
 {/if}
-<form role="form" method="post" action="tiki-admin.php?page=articles" enctype="multipart/form-data">
+<form role="form" method="post" action="tiki-admin.php?page=articles" enctype="multipart/form-data" class="admin">
 	{ticket}
 	<div class="t_navbar mb-4 clearfix">
 		<a role="link" class="btn btn-link tips" href="tiki-list_articles.php" title=":{tr}List of articles{/tr}">

@@ -59,7 +59,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki' => [
 			'name' => tra('Wiki'),
-			'description' => tra('Collaboratively authored documents with edit history.'),
+			'description' => tra('Pages and collaboratively authored documents with edit history.'),
 			'type' => 'flag',
 			'help' => 'Wiki',
 			'default' => 'y',
@@ -551,14 +551,14 @@ function prefs_feature_list($partial = false)
 			'tags' => ['basic'],
 		],
 		'feature_comments_post_as_anonymous' => [
-			'name' => tra('Allow logged-in users to post commments anonymously'),
+			'name' => tra('Allow logged-in users to post comments anonymously'),
 			'description' => tra('This can be used to encourage honest feedback without self-censorship, such as in a forum for brainstorming or feedback for improvement.'),
 			'help' => 'Comments',
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'feature_wiki_description' => [
-			'name' => tra('Display page description'),
+			'name' => tra('Show the page description'),
 			'description' => tra('Display the wiki page description between the page title and the page content.'),
 			'type' => 'flag',
 			'default' => 'n',
@@ -572,7 +572,7 @@ function prefs_feature_list($partial = false)
 			'tags' => ['basic'],
 		],
 		'feature_wiki_pageid' => [
-			'name' => tra('Display page ID'),
+			'name' => tra('Show the page ID'),
 			'description' => tra('Each wiki page has a numeric ID and this can be displayed.'),
 			'type' => 'flag',
 			'default' => 'n',
@@ -1867,7 +1867,7 @@ function prefs_feature_list($partial = false)
 				'user' => tra('User decides'),
 				'n' => tra('Never'),
 			],
-			'default' => 'y',
+			'default' => 'user',
 			'tags' => ['basic'],
 		],
 		'feature_right_column' => [
@@ -1882,7 +1882,7 @@ function prefs_feature_list($partial = false)
 				'user' => tra('User decides'),
 				'n' => tra('Never'),
 			],
-			'default' => 'y',
+			'default' => 'user',
 			'tags' => ['basic'],
 		],
 		'feature_siteloclabel' => [
@@ -1989,7 +1989,7 @@ function prefs_feature_list($partial = false)
 			'description' => tra('Adds animation effects to CSS "Suckerfish" menus.'),
 			'type' => 'flag',
 			'help' => 'JQuery#Superfish',
-			'default' => 'y',		// Effects on CSS (Suckerfish) menus
+			'default' => 'n',		// Effects on CSS (Suckerfish) menus
 		],
 
 		'feature_jquery_reflection' => [
@@ -2005,6 +2005,7 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'help' => 'JQuery#UI',
 			'default' => 'y',				// include UI lib for more effects
+			'warning' => tra('This feature is required for the interface for many features to work properly.'),
 		],
 		'feature_jquery_ui_theme' => [
 			'name' => tra('jQuery UI theme'),

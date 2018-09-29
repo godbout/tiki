@@ -3,12 +3,10 @@
 
 {title help="Credits"}{tr}Manage Credits{/tr}{/title}
 
-<form method="get" action="tiki-admin_credits.php">
-
-		{tr}Username:{/tr}
-		<input class="form-control" type="text" name="userfilter" value="{$userfilter|escape}">
-		<input  class="btn btn-primary" type="submit" value="{tr}Search{/tr}">
-
+<form method="get" action="tiki-admin_credits.php" class="form-inline">
+	<label class="my-1 mr-2" for="userfilter">{tr}Username:{/tr}</label>
+	<input class="form-control" type="text" name="userfilter" id="userfilter" value="{$userfilter|escape}">
+	<input  class="btn btn-info" type="submit" value="{tr}Search{/tr}">
 </form>
 
 {if $new_month}{$new_month}{/if}
@@ -27,7 +25,11 @@
 			</tr>
 			{foreach key=id item=data from=$credits}
 			<tr>
-				<td><input class="form-control" type="checkbox" name="delete[]" value="{$id|escape}"></td>
+				<td>
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" name="delete[]" value="{$id|escape}">
+					</div>
+				</td>
 				<td><input class="form-control" type="text" name="credits[{$id|escape}][credit_type]" value="{$data.credit_type|escape}" readonly="readonly"></td>
 				<td><input class="form-control" type="text" name="credits[{$id|escape}][creation_date]" value="{$data.creation_date|escape}"></td>
 				<td><input class="form-control" type="text" name="credits[{$id|escape}][expiration_date]" value="{$data.expiration_date|escape}"></td>

@@ -11,10 +11,17 @@ if (basename($_SERVER['SCRIPT_NAME']) === basename(__FILE__)) {
 
 function svn_last_update()
 {
-	static $cache = [];
+	$cachelib = TikiLib::lib('cache');
+	$cache = $cachelib->getSerialized('svn_last_update');
+	
+	if ($cache && is_readable('.svn') && $cache['wcdb_mtime'] < filemtime('.svn/wc.db')) {
+		$cache = false;
+	}
 
 	if ($cache) {
 		return $cache;
+	} else {
+		$cache = [];
 	}
 
 	if (is_readable('.svn')) {
@@ -63,12 +70,16 @@ function svn_last_update()
 				}
 			}
 		}
+		$cache['wcdb_mtime'] = filemtime('.svn/wc.db');
 	}
 
 	if (! $cache) {
 		$cache['lastup'] = null;
 		$cache['svnrev'] = null;
+		$cache['wcdb_mtime'] = null;
 	}
+
+	$cachelib->cacheItem('svn_last_update', serialize($cache));
 
 	return $cache;
 }

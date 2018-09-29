@@ -12,10 +12,11 @@ class CsvSource implements SourceInterface
 	private $schema;
 	private $file;
 
-	function __construct(\Tracker\Tabular\Schema $schema, $fileName)
+	function __construct(\Tracker\Tabular\Schema $schema, $fileName, $delimiter = ',')
 	{
 		$this->schema = $schema->getPlainOutputSchema();
 		$this->file = new \SplFileObject($fileName, 'r');
+		$this->file->setCsvControl($delimiter);
 	}
 
 	function getEntries()

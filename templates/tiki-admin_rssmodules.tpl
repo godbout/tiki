@@ -24,7 +24,7 @@
 {tabset name="admin_rssmodules"}
 
 	{tab name="{tr}External Feeds{/tr}"}
-		<a class="btn btn-secondary pull-right" href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;refresh_all=y"
+		<a class="btn btn-secondary float-sm-right" href="tiki-admin_rssmodules.php?offset={$offset|escape}&amp;sort_mode={$sort_mode|escape}&amp;refresh_all=y"
 			data-toggle="tooltip" data-placement="top" title="Please be patient, this may take a while.">
 			{icon name="refresh" _menu_text='y' _menu_icon='y' alt="{tr}Refresh All feeds{/tr}"}
 		</a>

@@ -16,7 +16,6 @@ if ($prefs['feature_categories'] == 'y') {
 	$categlib = TikiLib::lib('categ');
 }
 $access->check_feature('feature_blogs');
-$access->check_permission('tiki_p_read_blog');
 if (isset($_REQUEST["remove"])) {
 	// Check if it is the owner
 	$data = $bloglib->get_blog($_REQUEST["remove"]);

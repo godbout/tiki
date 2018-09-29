@@ -11,7 +11,7 @@
 			<div class="card-header">
 				{tr}Edit queued message{/tr}
 			</div>
-			<div class="panel-body">
+			<div class="card-body">
 				<div class="form-group row">
 					<label for="title" class="col-form-label col-sm-2">
 						{tr}Title{/tr}

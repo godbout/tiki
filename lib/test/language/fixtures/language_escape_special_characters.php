@@ -1,7 +1,7 @@
 <?php
 // File header
 
-$lang = [
+$lang = array(
 // "First string" => "First string",
 // "Second string" => "Second string",
 "Used string" => "Another translation",
@@ -9,4 +9,4 @@ $lang = [
 // "etc" => "etc",
 "Congratulations!\n\nYour server can send emails.\n\n" => "Gratulation!\n\nDein Server kann Emails senden.\n\n",
 // "Handling actions of plugin \"%s\" failed" => "Handling actions of plugin \"%s\" failed",
-];
+);

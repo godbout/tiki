@@ -58,7 +58,7 @@ function wikiplugin_convene_info()
 			],
 			'adminperms' => [
 				'required' => false,
-				'name' => tra('Ovserve Admin Permissions'),
+				'name' => tra('Observe Admin Permissions'),
 				'description' => tra("Only admins can edit or delete other users' votes and dates. N.B. This is a guide only as if a user can edit the page they can change this setting, it is intended to make the plugin esier to use for most users."),
 				'since' => '9.0',
 				'filter' => 'alpha',
@@ -235,8 +235,8 @@ function wikiplugin_convene($data, $params)
 		$editThisUser = $canAdmin || $user === $GLOBALS['user'];
 
 		if ($params['avatars'] === 'y') {
-			$avatar = " <div class='pull-right'>" . smarty_modifier_avatarize($user) . '</div>';
-			$rightPadding = 'padding-right: 45px';
+			$avatar = " <div class='float-right'>" . smarty_modifier_avatarize($user) . '</div>';
+			$rightPadding = 'padding-right: 45px; max-width: 10em; white-space: nowrap;overflow: hidden; text-overflow: ellipsis;';
 		} else {
 			$avatar = '';
 			$rightPadding = '';
@@ -252,10 +252,10 @@ function wikiplugin_convene($data, $params)
 
 		foreach ($row as $stamp => $vote) {
 			if ($vote == 1) {
-				$class = "convene-ok text-center text-success";
+				$class = "convene-ok text-center alert-success";
 				$text = smarty_function_icon(['name' => 'ok', 'iclass' => 'tips', 'ititle' => ':' . tr('OK'), 'size' => 2], $smarty->getEmptyInternalTemplate());
 			} elseif ($vote == -1) {
-				$class = "convene-no text-center text-danger";
+				$class = "convene-no text-center alert-danger";
 				$text = smarty_function_icon(['name' => 'remove', 'iclass' => 'tips', 'ititle' => ':' . tr('Not OK'), 'size' => 2], $smarty->getEmptyInternalTemplate());
 			} else {
 				$class = "convene-unconfirmed text-center text-muted";
@@ -299,7 +299,7 @@ function wikiplugin_convene($data, $params)
 	foreach ($votes as $stamp => $total) {
 		$pic = "";
 		if ($total == $votes[$topVoteStamp]) {
-			$pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'tips text-success', 'ititle' => ':' . tr("Selected Date"), 'size' => 2], $smarty->getEmptyInternalTemplate()) : "");
+			$pic .= ($canEdit ? smarty_function_icon(['name' => 'ok', 'iclass' => 'tips alert-success', 'ititle' => ':' . tr("Selected Date"), 'size' => 2], $smarty->getEmptyInternalTemplate()) : "");
 			if ($canEdit && $votes[$topVoteStamp] >= $minvotes) {
 				$pic .= "<a class='btn btn-primary btn-sm' href='tiki-calendar_edit_item.php?todate=$stamp&calendarId=$calendarid' title='"
 					. tr("Add as Calendar Event") . "'>"
@@ -596,11 +596,10 @@ FORM;
 						$('.conveneDeleteDate$i').hide();
 						$('.conveneMain$i').hide();
 						updateButton.parent().parent()
-							.addClass('ui-state-highlight')
+							.addClass('convene-highlight')
 							.find('td').not(':first')
 							.addClass('conveneTd$i')
-							.removeClass('ui-state-default')
-							.addClass('ui-state-highlight');
+							.addClass('convene-highlight');
 		
 						updateButton.find('.icon').setIcon("save");
 						var parent = updateButton.parent().parent();
@@ -618,21 +617,21 @@ FORM;
 		
 									switch($(this).val() * 1) {
 										case 1:  
-											cl = 'convene-ok text-success';
+											cl = 'convene-ok alert-success';
 											icon = 'ok';
 											break;
 										case -1:
-											cl = 'convene-no text-danger';
+											cl = 'convene-no alert-danger';
 											icon = 'remove';
 											break;
 										default:
-											cl = 'convene-unconfirmed text-muted';
+											cl = 'convene-unconfirmed alert-muted';
 											icon = 'help';
 									}
 		
 									$(this)
 										.parent()
-										.removeClass('convene-no convene-ok convene-unconfirmed text-success text-danger text-muted')
+										.removeClass('convene-no convene-ok convene-unconfirmed alert-success alert-danger alert-muted')
 										.addClass(cl)
 										.find (".icon")
 											.setIcon(icon);
@@ -652,10 +651,9 @@ FORM;
 					$('.conveneDeleteUser$i').show();
 					$('.conveneDeleteDate$i').show();
 					$(this).parent().parent()
-						.removeClass('ui-state-highlight')
+						.removeClass('convene-highlight')
 						.find('.conveneTd$i')
-						.removeClass('ui-state-highlight')
-						.addClass('ui-state-default');
+						.removeClass('convene-highlight');
 	
 					$('.conveneMain$i').show();
 					$(this).find('span.icon-pencil');
@@ -722,11 +720,11 @@ JQ
 	return
 	<<<RETURN
 ~np~
-	<div class="panel">
-		<div class="panel-heading">
-			<h3 class="panel-title">$title</h3>
+	<div class="card">
+		<div class="card-header">
+			<h3 class="card-title">$title</h3>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 		    $result
 		</div>
 	</div>

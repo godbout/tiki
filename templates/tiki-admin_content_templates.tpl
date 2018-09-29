@@ -42,7 +42,7 @@
 						{section name=ix loop=$channels[user].sections}
 							{$channels[user].sections[ix]}
 							{if $channels[user].edit}
-								<a class="tips" title=":{tr}Delete{/tr}" class="link" href="tiki-admin_content_templates.php?removesection={$channels[user].sections[ix]}&amp;rtemplateId={$channels[user].templateId}" >
+								<a class="tips" title=":{tr}Delete{/tr}" class="link" href="tiki-admin_content_templates.php?removesection={$channels[user].sections[ix]}&amp;rtemplateId={$channels[user].templateId}" onclick="confirmSimple(event, '{tr}Remove section?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' alt="{tr}Remove section{/tr}"}
 								</a>
 							{/if}
@@ -74,7 +74,7 @@
 									{/if}
 									{if $channels[user].remove}
 										<action>
-											<a href="tiki-admin_content_templates.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].templateId}" >
+											<a href="tiki-admin_content_templates.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].templateId}" onclick="confirmSimple(event, '{tr}Remove template?{/tr}', '{ticket mode=get}')">
 												{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 											</a>
 										</action>
@@ -111,6 +111,7 @@
 				{button href="tiki-admin_content_templates.php" cookietab="2" _icon_name="create" _text="{tr}Create{/tr}"}
 			{/if}
 			<form action="tiki-admin_content_templates.php" method="post" class="form-horizontal" role="form">
+				{ticket}
 				<input type="hidden" name="templateId" value="{$templateId|escape}">
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label" for="name">{tr}Name{/tr} *</label>
@@ -227,7 +228,13 @@
 				</div>
 				<div class="form-group text-center">
 					<input type="submit" name="preview" class="btn btn-primary" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
-					<input type="submit" name="save" class="btn btn-secondary" value="{tr}Save{/tr}" onclick="needToConfirm=false;">
+					<input
+						type="submit"
+						name="save"
+						class="btn btn-secondary"
+						value="{tr}Save{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 
 				{jq}

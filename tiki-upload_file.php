@@ -11,8 +11,9 @@
 $section = 'file_galleries';
 $isUpload = false;
 
-if (isset($_GET['upload']) or isset($_REQUEST['upload'])) {
+if (isset($_POST['upload'])) {
 	$isUpload = true;
+	unset($_POST['upload']);
 	unset($_GET['upload']);
 	unset($_REQUEST['upload']);
 }
@@ -146,8 +147,7 @@ if (empty($_REQUEST['returnUrl'])) {
 }
 
 // Process an upload here
-if ($isUpload) {
-	check_ticket('upload-file');
+if ($isUpload && $access->checkCsrf()) {
 
 	$optionalRequestParams = [
 		'fileId',
@@ -182,6 +182,9 @@ if ($isUpload) {
 
 	if ($fileInfo = $filegallib->actionHandler('uploadFile', $uploadParams)) {
 		$fileId = $fileInfo['fileId'];
+		Feedback::success(tr('File properties modified'));
+	} else {
+		Feedback::note(tr('No changes resulted from request'));
 	}
 }
 
@@ -220,10 +223,10 @@ include_once('categorize_list.php');
 
 include_once('tiki-section_options.php');
 
-ask_ticket('upload-file');
-
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
+
+$smarty->assign('category_jail', TikiLib::lib('tiki')->get_jail(false));
 
 // Display the template
 if ($prefs['javascript_enabled'] != 'y' or ! $isUpload || ! empty($_REQUEST['fileId'])) {
@@ -233,7 +236,7 @@ if ($prefs['javascript_enabled'] != 'y' or ! $isUpload || ! empty($_REQUEST['fil
 	$smarty->assign('mid', 'tiki-upload_file.tpl');
 	if (! empty($_REQUEST['filegals_manager'])) {
 		$smarty->assign('filegals_manager', $_REQUEST['filegals_manager']);
-		$smarty->assign('insertion_syntax', $jitRequest->insertion_syntax->word());
+		$smarty->assign('insertion_syntax', $jitRequest->insertion_syntax->text());
 		$smarty->display("tiki_full.tpl");
 	} else {
 		$smarty->display("tiki.tpl");

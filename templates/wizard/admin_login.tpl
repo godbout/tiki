@@ -1,14 +1,16 @@
 {* $Id$ *}
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Wizard{/tr}" title="Configuration Wizard">
-		<i class="fa fa-gear fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
-	</span>
-	{tr}Configure the login, registration and validation preferences for the new accounts{/tr}.<br/></br></br>
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="Configuration Wizard">
+			<i class="fas fa-cog fa-stack-2x"></i>
+			<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		</span>
+	</div>
 	<div class="media-body">
 		{icon name="admin_login" size=3 iclass="adminWizardIconright"}
+		<h4 class="mt-0 mb-4">{tr}Configure the log-in, registration and validation preferences for the new accounts{/tr}</h4>
 		<fieldset>
-			<legend>{tr}Registration & Log in options{/tr}</legend>
+			<legend>{tr}Registration and log-in options{/tr}</legend>
 			<div style="position:relative;">
 				<div class="adminoptionbox clearfix featurelist">
 					{preference name=allowRegister}
@@ -35,7 +37,7 @@
 				{tr}The profile will enable the feature 'Trackers' for you and a few other settings required. Once the profile is applied, you will be provided with instructions about further steps that you need to perform manually.{/tr}">
 				{icon name="help"}
 				</a> :
-				<a href="tiki-admin.php?profile=User_Trackers&show_details_for=User_Trackers&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a> ({tr}new window{/tr})
+				<a href="tiki-admin.php?ticket={ticket mode=get}&profile=User_Trackers&show_details_for=User_Trackers&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a> ({tr}new window{/tr})
 			</em>
 			<br/><br/>
 		</fieldset>

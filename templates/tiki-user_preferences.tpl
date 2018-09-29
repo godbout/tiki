@@ -482,7 +482,7 @@
 							</label>
 						</div>
 					{/if}
-					{if $prefs.feature_messages eq 'y'and $tiki_p_messages eq 'y'}
+					{if $prefs.feature_messages eq 'y' and $tiki_p_messages eq 'y'}
 						<div class="form-check">
 							<label class="form-check-label">
 								<input class="form-check-input" type="checkbox" name="mytiki_msgs" {if $user_prefs.mytiki_msgs eq 'y'}checked="checked"{/if}>{tr}My messages{/tr}

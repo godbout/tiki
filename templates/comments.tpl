@@ -29,17 +29,15 @@
 			{if $forumId}<input type="hidden" name="forumId" value="{$forumId|escape}">{/if}
 
 			{if $tiki_p_admin_forum eq 'y'}
-				<div class="card bg--primary form-group row">
-					<div class="card-header">
-						{tr}Moderator actions for selected topics{/tr}
-					</div>
+				<div class="card form-group row mx-0">
 					<div class="card-body form-inline">
-						<span class="infos pull-right">
+						{tr}Moderator actions for selected topics:{/tr}
+						<span class="infos float-sm-right">
 							{if $reported > 0}
-								<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge badge-secondary">{$reported}</span></a>
+								<a class="btn btn-primary btn-sm mx-2 tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge badge-secondary">{$reported}</span></a>
 							{/if}
 							{if $queued > 0}
-								<a class="btn btn-primary btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge badge-secondary">{$queued}</span></a>
+								<a class="btn btn-primary btn-sm mx-2 tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge badge-secondary">{$queued}</span></a>
 							{/if}
 						</span>
 						{if $topics|@count > 1}
@@ -48,7 +46,7 @@
 								formaction="{bootstrap_modal controller=forum action=merge_topic}"
 								title=":{tr}Merge{/tr}"
 								form="comment-form"
-								class="btn btn-primary btn-sm tips"
+								class="btn btn-primary btn-sm mx-2 tips"
 								onclick="confirmAjax(event)"
 							>
 								{icon name="merge"}
@@ -59,7 +57,7 @@
 							formaction="{bootstrap_modal controller=forum action=delete_topic}"
 							title=":{tr}Delete{/tr}"
 							form="comment-form"
-							class="btn btn-danger btn-sm tips"
+							class="btn btn-danger btn-sm mx-2 tips"
 							onclick="confirmAjax(event)"
 						>
 							{icon name="remove"}
@@ -204,6 +202,7 @@
 						<input type="hidden" name="thread_sort_mode" value="{$thread_sort_mode|escape}">
 						<input type="hidden" name="comments_objectId" value="{$comments_objectId|escape}">
 						<input type="hidden" name="comments_title" value="{if isset($page) and $page}{$page|escape}{/if}">
+						{if $forumId}<input type="hidden" name="forumId" value="{$forumId|escape}">{/if}
 
 						{* Traverse request variables that were set to this page adding them as hidden data *}
 						{section name=i loop=$comments_request_data}
@@ -299,7 +298,7 @@
 									}
 									needToConfirm=false;
 									});{/jq}
-								<input type="submit" class="btn btn-primary btn-sm" name="comments_cancelComment" value="{tr}Cancel{/tr}" onclick="hide('{$postclass}open'); return false">
+								<input type="submit" class="btn btn-secondary btn-sm" name="comments_cancelComment" value="{tr}Cancel{/tr}" onclick="hide('{$postclass}open'); return false">
 							</div>
 						</div>
 					</form>

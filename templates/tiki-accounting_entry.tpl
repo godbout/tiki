@@ -109,7 +109,7 @@ var account='';
 				{/section}
 				<tr id="Row_SplitDebit"{if count($creditAccount)>1} style="display:none;"{/if}>
 					<td colspan="3">
-						<input class="btn btn-primary btn-sm pull-right" type="button" value="{tr}Add entry{/tr}" id="SplitDebit" onclick="javascript:splitDebit()">
+						<input class="btn btn-primary btn-sm float-sm-right" type="button" value="{tr}Add entry{/tr}" id="SplitDebit" onclick="javascript:splitDebit()">
 					</td>
 				</tr>
 			</table>

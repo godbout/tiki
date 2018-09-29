@@ -345,7 +345,7 @@ class CheckSchemaUpgrade
 		$db = new PDO('mysql:host=' . $dbConfig['host'], $dbConfig['user'], $dbConfig['pass']);
 		$db->query('DROP DATABASE IF EXISTS `' . $dbConfig['dbs'] . '`;');
 		$db->query(
-			'CREATE DATABASE `' . $dbConfig['dbs'] . '` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;'
+			'CREATE DATABASE `' . $dbConfig['dbs'] . '` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;'
 		);
 		$db->query('USE `' . $dbConfig['dbs'] . '`');
 		return $db;
@@ -530,9 +530,9 @@ class CheckSchemaUpgrade
 	 */
 	protected function scrubDbCleanThingsThatShouldChange($dbConnection, $dbConfig, $whatDb)
 	{
-		// clean index rebuild related tables
+		// clean index rebuild related tables and tables marked as unused
 		$statement = $dbConnection->prepare(
-			"SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = :db AND TABLE_NAME LIKE 'index_%'"
+			"SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = :db AND (TABLE_NAME LIKE 'index_%' OR TABLE_NAME LIKE 'zzz_unused_%')"
 		);
 		$result = $statement->execute([':db' => $dbConfig['dbs']]);
 		if ($result === false) {
@@ -553,16 +553,23 @@ class CheckSchemaUpgrade
 		// remove messages from action log (are not part of the schema)
 		$dbConnection->exec("DELETE FROM `tiki_actionlog`");
 
-		if ($whatDb == self::DB_OLD) {
-			// reload tiki_menu_options in the upgraded tiki to account for the case where an old entry is removed
-			$dbConnection->exec("CREATE TABLE  `tiki_menu_options_tmp` AS SELECT * FROM `tiki_menu_options` ORDER BY optionId ASC");
-			$dbConnection->exec("ALTER TABLE `tiki_menu_options_tmp` CHANGE COLUMN optionId optionId int NULL");
-			$dbConnection->exec("UPDATE  `tiki_menu_options_tmp` SET optionId=NULL");
-			$dbConnection->exec("DELETE FROM `tiki_menu_options`");
-			$dbConnection->exec("ALTER TABLE `tiki_menu_options` AUTO_INCREMENT = 1");
-			$dbConnection->exec("INSERT INTO `tiki_menu_options` SELECT * FROM `tiki_menu_options_tmp`");
-			$dbConnection->exec("DROP TABLE `tiki_menu_options_tmp`");
-		}
+		// reload tiki_menu_options in the upgraded tiki to account for the case where an old entry is removed
+		$dbConnection->exec("CREATE TABLE  `tiki_menu_options_tmp` AS SELECT * FROM `tiki_menu_options` ORDER BY menuId,type,name,url,position");
+		$dbConnection->exec("ALTER TABLE `tiki_menu_options_tmp` CHANGE COLUMN optionId optionId int NULL");
+		$dbConnection->exec("UPDATE  `tiki_menu_options_tmp` SET optionId=NULL");
+		$dbConnection->exec("DELETE FROM `tiki_menu_options`");
+		$dbConnection->exec("ALTER TABLE `tiki_menu_options` AUTO_INCREMENT = 1");
+		$dbConnection->exec("INSERT INTO `tiki_menu_options` SELECT * FROM `tiki_menu_options_tmp`");
+		$dbConnection->exec("DROP TABLE `tiki_menu_options_tmp`");
+
+		// reload tiki_actionlog_conf in the upgraded tiki to account for the case where an old entry is removed
+		$dbConnection->exec("CREATE TABLE  `tiki_actionlog_conf_tmp` AS SELECT * FROM `tiki_actionlog_conf` ORDER BY action,objectType,status");
+		$dbConnection->exec("ALTER TABLE `tiki_actionlog_conf_tmp` CHANGE COLUMN id id int NULL");
+		$dbConnection->exec("UPDATE  `tiki_actionlog_conf_tmp` SET id=NULL");
+		$dbConnection->exec("DELETE FROM `tiki_actionlog_conf`");
+		$dbConnection->exec("ALTER TABLE `tiki_actionlog_conf` AUTO_INCREMENT = 1");
+		$dbConnection->exec("INSERT INTO `tiki_actionlog_conf` SELECT * FROM `tiki_actionlog_conf_tmp`");
+		$dbConnection->exec("DROP TABLE `tiki_actionlog_conf_tmp`");
 	}
 
 	/**

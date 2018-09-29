@@ -26,7 +26,7 @@
 			{button href="tiki-forums.php" _icon_name="list" _type="link" class="btn btn-link" _text="{tr}Forum List{/tr}"}
 		{/if}
 
-		<div class="btn-group pull-right">
+		<div class="btn-group float-sm-right">
 			{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 			<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 				{icon name='menu-extra'}
@@ -56,7 +56,7 @@
 								{icon name="watch"} {tr}Monitor topics and threads{/tr}
 							</a>
 						{else}
-							<a class="pull-right tips" href="tiki-view_forum.php?forumId={$forumId}&amp;watch_event=forum_post_topic_and_thread&amp;watch_object={$forumId}&amp;watch_action=remove">
+							<a class="float-sm-right tips" href="tiki-view_forum.php?forumId={$forumId}&amp;watch_event=forum_post_topic_and_thread&amp;watch_object={$forumId}&amp;watch_action=remove">
 								{icon name="stop-watching"} {tr}Stop monitoring topics and threads{/tr}
 							</a>
 						{/if}
@@ -375,7 +375,7 @@
 		</div> <!-- end forumpost -->
 	{/if}
 	{if $prefs.feature_forum_content_search eq 'y' and $prefs.feature_search eq 'y'}
-		<div class="row mb-4">
+		<div class="row mb-4 mx-0">
 		<div class="col-md-5 col-md-offset-7">
 			<form id="search-form" class="form" role="form" method="get" action="tiki-search{if $prefs.feature_forum_local_tiki_search eq 'y'}index{else}results{/if}.php">
 				<div class="form-group row">
@@ -404,7 +404,7 @@
 			{tr}Moderator actions on selected topics{/tr}
 		</div>
 		<div class="card-body">
-			<div class="pull-left">
+			<div class="float-left">
 				{if $comments_coms|@count > 1}
 					<button
 						type="submit"
@@ -462,7 +462,7 @@
 					</button>
 				{/if}
 			</div>
-			<div class="pull-right">
+			<div class="float-sm-right">
 				{if $reported > 0}
 					<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge badge-secondary">{$reported}<span></a>
 				{/if}
@@ -710,6 +710,9 @@
 												{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 											</a>
 										</action>
+										<action>
+											{permission_link mode=text type="thread" permType="forums" id=$comments_coms[ix].threadId title=$comments_coms[ix].title}
+										</action>
 									{/if}
 								{/strip}
 							{/actions}
@@ -757,11 +760,11 @@
 				<div class="card-header filter-card-header">
 					<h4 class="card-title">
 						<a data-toggle="collapse" href="#filterCollapse" class="collapsed">
-							{tr}Filter Posts{/tr}
+							{tr}Filter Posts{/tr} {icon name="angle-down"}
 						</a>
 					</h4>
 				</div>
-				<div id="filterCollapse" class="panel-collapse collapse">
+				<div id="filterCollapse" class="card-collapse collapse">
 					<div class="card-body">
 						<form id='time_control' method="post" action="tiki-view_forum.php">
 							{if $comments_offset neq 0}
@@ -775,7 +778,7 @@
 							{/if}
 							<input type="hidden" name="thread_sort_mode" value="{$thread_sort_mode|escape}">
 							<input type="hidden" name="forumId" value="{$forumId|escape}">
-							<div class="form-group row">
+							<div class="form-group row mx-0">
 								<label class="col-md-4 col-form-label form-control-sm" for="filter_time">{tr}Last post date{/tr}</label>
 								<div class="col-md-8">
 									<select id="filter_time" name="time_control" class="form-control form-control-sm">
@@ -787,7 +790,7 @@
 								</div>
 							</div>
 							{if $prefs.feature_forum_topics_archiving eq 'y'}
-								<div class="form-group row">
+								<div class="form-group row mx-0">
 									<label class="col-md-4 col-form-label form-control-sm" for="show_archived">{tr}Show archived posts{/tr}</label>
 									<div class="col-md-8">
 										<input type="checkbox" class="form-check-input" id="show_archived" name="show_archived" {if $show_archived eq 'y'}checked="checked"{/if}>
@@ -795,7 +798,7 @@
 								</div>
 							{/if}
 							{if $user}
-								<div class="form-group row">
+								<div class="form-group row mx-0">
 									<label class="col-md-4 col-form-label form-control-sm" for="filter_poster">{tr}Containing posts by{/tr}</label>
 									<div class="col-md-8">
 										<select id="filter_poster" class="form-control form-control-sm" name="poster">
@@ -809,7 +812,7 @@
 									</div>
 								</div>
 							{/if}
-							<div class="form-group row">
+							<div class="form-group row mx-0">
 								<label class="col-md-4 col-form-label form-control-sm" for="filter_type">{tr}Type{/tr}</label>
 								<div class="col-md-8">
 									<select id="filter_type" name="filter_type" class="form-control form-control-sm">
@@ -831,7 +834,7 @@
 									</select>
 								</div>
 							</div>
-							<div class="form-group row">
+							<div class="form-group row mx-0">
 								<label class="col-md-4 col-form-label form-control-sm" for="filter_replies">{tr}Replies{/tr}</label>
 								<div class="col-md-8">
 									<select id="filter_replies" name="reply_state" class="form-control form-control-sm">
@@ -844,11 +847,9 @@
 									</select>
 								</div>
 							</div>
-							<div class="form-group row">
-								<div class="col-md-offset-4">
+								<div class="d-flex justify-content-around">
 									<input type="submit" class="btn btn-primary btn-sm" id="filter_submit" value="{tr}Filter{/tr}">
 								</div>
-							</div>
 						</form>
 					</div>
 				</div>

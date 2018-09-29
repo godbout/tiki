@@ -21,9 +21,10 @@
 						{tr}Translations in the database{/tr}: <span class="badge badge-secondary">{$db_translation_count}</span>
 					</label>
 					{if $prefs.lang_control_contribution eq 'y'}
-						<label>
-							<input type="checkbox" name="all"> {tr}Merge all translations, whether or not they are marked as general (for contribution){/tr}
-						</label>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" name="all" id="all">
+						<label class="form-check-label" for="all">{tr}Merge all translations, whether or not they are marked as general (for contribution){/tr}</label>
+						</div>
 					{/if}
 				</div>
 				<div class="form-group row">

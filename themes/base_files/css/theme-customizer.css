@@ -1,0 +1,494 @@
+/*
+==========================================================================
+Misc. Stuff
+==========================================================================
+*/
+footer {
+  padding-bottom: 50px;
+}
+
+.tiki .page-header {
+  padding-bottom: 20px;
+}
+
+.colorpicker-element .input-group-append i, .colorpicker-element .input-group-addon i {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  vertical-align: sub;
+  cursor: pointer;
+}
+
+.input-group-append, .input-group-addon {
+  display: inline-block;
+  width: auto;
+  margin-left: 5px;
+  padding: 3px;
+  border: 2px solid #aaa !important;
+  border-radius: 3px !important;
+}
+
+.box-search .input-group-btn:last-child > .btn,
+.box-search .input-group .form-control {
+  z-index: 0;
+}
+
+/*
+==========================================================================
+Theme Customizer Main Styles
+==========================================================================
+*/
+.customizer h1, .customizer h2 {
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  font-weight: 600;
+  border-bottom: 1px solid #000;
+}
+.customizer h1 + p, .customizer > div {
+  margin-bottom: 40px;
+}
+.customizer select {
+  display: block !important;
+}
+.customizer .chosen-container {
+  display: none;
+}
+.customizer .row {
+  margin: 0 0 25px 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.customizer .row:last-child {
+  border-bottom: none;
+}
+.customizer .col-md-9 {
+  padding-left: 0;
+  padding-right: 30px;
+}
+.customizer .col-md-3 {
+  padding-left: 0;
+  padding-right: 0;
+}
+.customizer .input {
+  display: inline-block;
+}
+.customizer .input p {
+  margin-bottom: 0.75em;
+  font-size: inherit !important;
+  font-weight: normal !important;
+  font-style: normal !important;
+  text-transform: none !important;
+}
+.customizer .input input, .customizer .input textarea, .customizer .input select {
+  width: 80px;
+  padding: 4px;
+  border-radius: 3px;
+  border: 1px solid #aaa;
+}
+.customizer .input input {
+  background-color: #fff;
+  color: #000;
+}
+.customizer .input input[disabled] {
+  background-color: #ff0000;
+  border: 1px solid #ff0000;
+  cursor: not-allowed;
+}
+.customizer .colors {
+  margin-bottom: 80px;
+}
+.customizer .colors p:first-child {
+  margin-bottom: 0.5em;
+  font-size: 1.5em !important;
+  line-height: 1.1;
+}
+.customizer .colors .input {
+  display: inline-table;
+  margin: 0 30px 25px 0;
+}
+.customizer .colors .input span {
+  width: 150px;
+  height: 150px;
+  margin: 0 0 0.75em;
+}
+.customizer .colors .input span i {
+  width: 100%;
+  height: 100%;
+}
+.customizer .colors .input input {
+  display: block;
+}
+.customizer .colors .input .error:after {
+  padding-right: 0;
+  text-align: left;
+}
+.customizer .fonts .h3a {
+  font-size: 1.5em;
+}
+.customizer .fonts .input input {
+  width: 150px;
+}
+.customizer .fonts .input label {
+  width: 94px;
+}
+.customizer .fonts .input .check {
+  width: auto;
+  margin: 0 5px 0 0;
+  vertical-align: middle;
+}
+.customizer .fonts .input .error:after {
+  padding-right: 0;
+}
+.customizer .headings .h1, .customizer .headings .h2, .customizer .headings .h3, .customizer .headings .h4, .customizer .headings .h5, .customizer .headings .h6 {
+  text-decoration: underline;
+}
+.customizer .headings .input label {
+  width: 95px;
+}
+.customizer .headings .input .check {
+  width: auto;
+  margin: 0 5px 0 0;
+  vertical-align: middle;
+}
+.customizer .headings .input .error:not(.picker):after {
+  padding-right: 0px;
+}
+.customizer .tables .col-md-9 > p {
+  font-size: 1.5em;
+  line-height: 1.1;
+}
+.customizer .tables .row:last-child .error:after {
+  text-align: left;
+}
+.customizer .tables .row:last-child .picker.error:after {
+  text-align: right;
+  padding-right: 88px;
+}
+.customizer .tables .input label {
+  width: 135px;
+}
+.customizer .tables .input .nocolor {
+  width: 200px;
+}
+.customizer .buttons button {
+  margin-right: 10px;
+}
+.customizer .buttons .input label {
+  width: 95px;
+}
+.customizer .forms span:not(.input-group-addon) {
+  display: inline-block;
+  width: 85px;
+}
+.customizer .forms .col-md-9 label {
+  display: block;
+}
+.customizer .forms .col-md-9 .has-error input {
+  margin: 0;
+}
+.customizer .forms .col-md-9 .has-error .label-warning {
+  display: inline;
+}
+.customizer .forms .input label {
+  width: 95px;
+}
+.customizer .forms .input .error:after {
+  text-align: right;
+  padding-right: 35px;
+}
+.customizer .forms .input p:last-child input {
+  width: 200px;
+}
+.customizer .lists .input input {
+  width: 200px;
+}
+.customizer .lists .input label {
+  width: 125px;
+}
+.customizer .lists .input .error:after {
+  text-align: left;
+  padding-right: 0;
+}
+.customizer .navbars {
+  min-height: 300px;
+}
+.customizer .navbars ul {
+  margin: 0;
+  list-style-type: none !important;
+}
+.customizer .navbars .row {
+  overflow: visible;
+}
+.customizer .navbars .navbar-nav {
+  padding: 0 !important;
+}
+.customizer .navbars .dropdown-menu {
+  padding: 5px 0 !important;
+}
+.customizer .navbars .input label {
+  width: 95px;
+}
+.customizer .dropdowns {
+  margin-bottom: 100px;
+}
+.customizer .dropdowns .dropdown-menu {
+  display: block;
+  padding: 5px 0 !important;
+}
+.customizer .dropdowns .input label {
+  width: 95px;
+}
+.customizer .dropdowns .input .error:after {
+  text-align: left;
+  padding-right: 0;
+}
+.customizer .dropdowns .input .picker.error:after {
+  text-align: right;
+  padding-right: 94px;
+}
+.customizer .tabs .input label {
+  width: 135px;
+}
+.customizer .tabs .input .nocolor {
+  width: 140px;
+}
+.customizer .tabs .input .error:after {
+  text-align: left;
+  padding-right: 0;
+}
+.customizer .alerts > div {
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+.customizer .alerts .input label {
+  width: 95px;
+}
+.customizer .alerts .input .error:after {
+  padding-right: 40px;
+}
+.customizer .icons .sample span {
+  display: inline-table;
+  min-width: 32px;
+  min-height: 32px;
+  margin: 0 10px 10px 0;
+  padding: 0.35em;
+  border-radius: 50%;
+  color: #fff;
+  background: #337ab7;
+  text-align: center;
+  cursor: pointer;
+}
+.customizer .icons .sample span:before {
+  display: table-cell;
+  vertical-align: middle;
+}
+.customizer .icons .input label {
+  width: 95px;
+}
+.customizer .custom-css .input {
+  width: 100%;
+}
+.customizer .custom-css .input textarea {
+  width: 100%;
+  height: 200px;
+  margin: 0;
+  resize: none;
+  color: #000;
+  font-family: "Helvetica Neue";
+  font-size: 14px;
+  background-color: #fff;
+}
+.customizer .custom-css .input > span {
+  display: none;
+}
+.customizer .custom-css .copy-custom-css {
+  margin-left: 10px;
+}
+.customizer .custom-css .delete-custom-css {
+  float: right;
+}
+.customizer .custom-css .css-error {
+  position: relative;
+}
+.customizer .custom-css .css-error textarea {
+  background-color: #f2dede;
+  border: 1px solid #d43f3a;
+}
+.customizer .custom-css .css-error > span {
+  position: absolute;
+  display: block;
+  width: 100px;
+  top: 5px;
+  left: 5px;
+  border-bottom: 1px dotted red;
+}
+.customizer p.error input, .customizer p.error textarea {
+  border-color: #d43f3a;
+  background-color: #f2dede !important;
+}
+.customizer p.error:after {
+  content: "invalid value";
+  display: block;
+  padding-right: 35px;
+  color: #a94442;
+  font-size: 0.85em;
+  text-align: right;
+}
+
+.tc-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #000;
+}
+.tc-footer span {
+  color: #fff;
+}
+.tc-footer .btn {
+  margin-right: 12px;
+  padding: 5px 10px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+.tc-footer .keep-changes {
+  margin: 0 5px;
+  vertical-align: middle;
+}
+.tc-footer [id*=plugin-edit] {
+  display: none;
+}
+.tc-footer .editplugin {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+}
+.tc-footer .container {
+  background-color: inherit;
+  border: none;
+}
+.tc-footer .footer-ui {
+  float: left;
+  padding: 10px 0;
+}
+.tc-footer .dropup {
+  float: right;
+}
+.tc-footer .dropup > a {
+  display: block;
+  padding: 15px;
+  color: #fff;
+}
+.tc-footer .dropup.open > a, .tc-footer .dropup > a:hover {
+  background-color: #262626;
+}
+.tc-footer .dropup a:hover {
+  text-decoration: none;
+}
+.tc-footer .dropup .dropdown-menu {
+  left: -2px;
+  margin-bottom: -1px;
+  border-radius: 4px 4px 0 0;
+}
+
+/*
+==========================================================================
+Theme Customizer Responsive Design Stuff
+==========================================================================
+*/
+@media (max-width: 1199.98px) {
+  .customizer .tables .input label, .customizer .navbars .input label, .customizer .dropdowns .input label {
+    display: block;
+  }
+}
+@media (max-width: 991.98px) {
+  footer {
+    padding-bottom: 75px;
+  }
+
+  .customizer .colors .input span {
+    width: 110px;
+    height: 110px;
+  }
+  .customizer .tabs .input label, .customizer .tables .input label, .customizer .navbars .input label, .customizer .dropdowns .input label {
+    display: block;
+  }
+
+  .tc-footer .footer-ui > span {
+    display: block;
+    margin-top: 7px;
+  }
+  .tc-footer .keep-changes {
+    margin-left: 0;
+  }
+  .tc-footer .icon {
+    display: none;
+  }
+}
+@media (max-width: 767.98px) {
+  footer {
+    padding-bottom: 124px;
+  }
+
+  .customizer .col-md-3 {
+    padding-left: 0;
+  }
+  .customizer .input {
+    max-width: 300px;
+    padding-top: 20px;
+  }
+  .customizer .colors .input {
+    padding-top: 0;
+  }
+  .customizer .colors .input span {
+    width: 80px;
+    height: 80px;
+  }
+  .customizer .buttons button {
+    margin-bottom: 5px;
+  }
+  .customizer .navbars .navbar-form .form-control {
+    width: auto;
+  }
+  .customizer .dropdowns .input {
+    padding-top: 160px;
+  }
+  .customizer .alerts .input {
+    padding-top: 0;
+  }
+
+  .tc-footer .footer-ui > span {
+    position: absolute;
+    display: table;
+    top: 6px;
+    right: 10px;
+    width: 130px;
+  }
+  .tc-footer .footer-ui > span input, .tc-footer .footer-ui > span span {
+    display: table-cell;
+  }
+  .tc-footer .dropup {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+  }
+  .tc-footer .dropup > a {
+    padding: 10px;
+  }
+  .tc-footer .btn {
+    display: block;
+    width: 170px;
+    margin-bottom: 10px;
+    padding: 4px 10px;
+  }
+  .tc-footer .icon {
+    display: none;
+  }
+  .tc-footer #generate-css {
+    margin-bottom: 0;
+  }
+}
+
+/*# sourceMappingURL=../css/theme-customizer.css.map */

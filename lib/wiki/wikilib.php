@@ -698,7 +698,7 @@ class WikiLib extends TikiLib
 			foreach ($matches as $match) {
 				$arguments = $argParser->parse($match->getArguments());
 				if ($match->getName() == 'include') {
-					$result[] = [
+					$result[$relation['type'] . ':' . $relation['itemId']] = [
 						'type' => $relation['type'],
 						'itemId' => $relation['itemId'],
 						'start' => $arguments['start'],
@@ -708,7 +708,7 @@ class WikiLib extends TikiLib
 			}
 		}
 
-		return $result;
+		return array_values($result);
 	}
 
 	public function set_page_cache($page, $cache)
@@ -932,7 +932,7 @@ class WikiLib extends TikiLib
 			$bindvars = [];
 		}
 		$query = 'select `user`,`attId`,`page`,`filename`,`filesize`,`filetype`,`hits`,`created`,`comment`,`path` ';
-		$query .= ' from `tiki_wiki_attachments` $mid order by ' . $this->convertSortMode($sort_mode);
+		$query .= ' from `tiki_wiki_attachments` '. $mid .' order by ' . $this->convertSortMode($sort_mode);
 		$query_cant = "select count(*) from `tiki_wiki_attachments` $mid";
 		$result = $this->query($query, $bindvars, $maxRecords, $offset);
 		$cant = $this->getOne($query_cant, $bindvars);
@@ -1312,7 +1312,7 @@ class WikiLib extends TikiLib
 	// Returns backlinks for a given page
 	public function get_backlinks($page)
 	{
-		global $user, $prefs;
+		global $prefs;
 		$query = "select `fromPage` from `tiki_links` where `toPage` = ?";
 		$result = $this->query($query, [ $page ]);
 		$ret = [];
@@ -1337,11 +1337,21 @@ class WikiLib extends TikiLib
 					continue;
 				}
 			}
-			if ($this->user_has_perm_on_object($user, $objectId, $type, 'tiki_p_view')) {
-				$aux["type"] = $type;
-				$aux["objectId"] = $objectId;
-				$ret[] = $aux;
+			if ($type == 'trackeritemfield') {
+				list($itemId, $fieldId) = explode(':', $objectId);
+				$itemObject = Tracker_Item::fromId($itemId);
+				if (! $itemObject->canView() || ! $itemObject->canViewField($fieldId)) {
+					continue;
+				}
+			} else {
+				$objectperms = Perms::get(['type' => $type, 'object' => $objectId]);
+				if (! $objectperms->view) {
+					continue;
+				}
 			}
+			$aux["type"] = $type;
+			$aux["objectId"] = $objectId;
+			$ret[] = $aux;
 		}
 
 		return $ret;

@@ -293,6 +293,8 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 				$defaultGalleryId = 0;
 			}
 			$deepGallerySearch = $this->getOption('galleryId');
+			//in case $deepGallerySearch is false
+			$deepGallerySearch = $deepGallerySearch === 1 ? 1 : 0;
 			$image_x = $this->getOption('image_x');
 			$image_y = $this->getOption('image_y');
 

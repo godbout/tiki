@@ -41,6 +41,7 @@ class Search_ContentSource_BlogPostSource implements Search_ContentSource_Interf
 			'language' => $typeFactory->identifier('unknown'),
 			'creation_date' => $typeFactory->timestamp($post['created']),
 			'modification_date' => $typeFactory->timestamp($post['created']),
+			'date' => $typeFactory->timestamp($post['created']),
 			'contributors' => $typeFactory->multivalue([$post['user']]),
 
 			'blog_id' => $typeFactory->identifier($post['blogId']),
@@ -63,6 +64,7 @@ class Search_ContentSource_BlogPostSource implements Search_ContentSource_Interf
 			'language',
 			'creation_date',
 			'modification_date',
+			'date',
 			'contributors',
 
 			'blog_id',
@@ -80,6 +82,7 @@ class Search_ContentSource_BlogPostSource implements Search_ContentSource_Interf
 	{
 		return [
 			'title' => true,
+			'date' => true,
 
 			'blog_excerpt' => false,
 			'blog_content' => false,

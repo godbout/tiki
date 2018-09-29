@@ -32,37 +32,29 @@
 
 	<div class="card d-none">
 		<div class="card-header">
-			<div class="form-row align-items-center">
-				<div class="col-auto">
-					<div class="input-group">
-						<div class="input-group-prepend">
-							<div class="input-group-text">
-								{icon name="search"}
-							</div>
-						</div>
-						<input type="text" placeholder="{$object_selector.placeholder|escape}..." value="" class="filter form-control" autocomplete="off">
-						<div class="input-group-btn">
-							<input type="button" class="btn btn-info search" value="{tr}Find{/tr}">
-						</div>
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<div class="input-group-text">
+						{icon name="search"}
 					</div>
+				</div>
+				<input type="text" placeholder="{$object_selector.placeholder|escape}..." value="" class="filter form-control" autocomplete="off">
+				<div class="input-group-append">
+					<input type="button" class="btn btn-info search" value="{tr}Find{/tr}">
 				</div>
 			</div>
 		</div>
 		<div class="card-body">
 			<div class="results">
 				<p class="too-many">{tr}Search and select what you are looking for from the options that appear.{/tr}</p>
-				<div class="radio">
-					<label>
-						<input type="radio" {if ! $object_selector.current_selection} checked="checked" {/if} value="" name="{$object_selector.id|escape}_sel" class="protected">
-						&mdash;
-					</label>
+				<div class="form-check">
+					<input name="{$object_selector.id|escape}_sel" class="form-check-input protected" type="radio" value="{$object|escape}" {if ! $object_selector.current_selection} checked="checked" {/if} value="" id="{$object_selector.id|escape}_sel_empty">
+					<label class="form-check-label" for="{$object_selector.id|escape}_sel_empty">&mdash;</label>
 				</div>
 				{if $object_selector.current_selection}
-					<div class="radio">
-						<label>
-							<input type="radio" checked="checked" value="{$object_selector.current_selection|escape}" data-label="{$object_selector.current_selection.title|escape}" name="{$object_selector.id|escape}_sel">
-							{$object_selector.current_selection.title|escape}
-						</label>
+					<div class="form-check">
+						<input type="radio" checked="checked" value="{$object_selector.current_selection|escape}" name="{$object_selector.id|escape}_sel" name="{$object_selector.id|escape}_sel_selected">
+						<label class="form-check-label" for="{$object_selector.id|escape}_sel_selected">{$object_selector.current_selection.title|escape}</label>
 					</div>
 				{/if}
 			</div>

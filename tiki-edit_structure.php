@@ -9,7 +9,7 @@
 // $Id$
 
 $section = 'wiki page';
-$auto_query_args = ['page_ref_id'];
+$auto_query_args = ['page_ref_id', 'offset', 'find_objects'];
 require_once('tiki-setup.php');
 
 $structlib = TikiLib::lib('struct');
@@ -169,6 +169,35 @@ if ($editable === 'y') {
 			$structlib->demote_node($_REQUEST["page_ref_id"]);
 		}
 	}
+	if (isset($_REQUEST["find_objects"])) {
+		$find_objects = $_REQUEST["find_objects"];
+	} else {
+		$find_objects = '';
+	}
+	$smarty->assign('find_objects', $find_objects);
+
+	$filter = [];
+	if (! empty($_REQUEST['categId'])) {
+		$filter['categId'] = $_REQUEST['categId'];
+		$smarty->assign('find_categId', $_REQUEST['categId']);
+	} else {
+		$smarty->assign('find_categId', '');
+	}
+
+	if (! isset($_REQUEST["offset"])) {
+		$offset = 0;
+	} else {
+		$offset = $_REQUEST["offset"];
+	}
+	$smarty->assign_by_ref('offset', $offset);
+
+	// Get all wiki pages for the dropdown menu
+	$listpages = $tikilib->list_pages(
+		$offset, $prefs['maxRecords'], 'pageName_asc', $find_objects, '', false, true,
+		false, false, $filter
+	);
+	$smarty->assign_by_ref('listpages', $listpages);
+
 } // end of security hardening
 
 $page_info = $structlib->s_get_page_info($_REQUEST["page_ref_id"]);
@@ -183,24 +212,6 @@ if ($max != 0) {
 	$last_child = $subpages[$max - 1];
 	$smarty->assign('insert_after', $last_child["page_ref_id"]);
 }
-if (isset($_REQUEST["find_objects"])) {
-	$find_objects = $_REQUEST["find_objects"];
-} else {
-	$find_objects = '';
-}
-
-$smarty->assign('find_objects', $find_objects);
-
-$filter = '';
-if (! empty($_REQUEST['categId'])) {
-	$filter['categId'] = $_REQUEST['categId'];
-	$smarty->assign('find_categId', $_REQUEST['categId']);
-} else {
-	$smarty->assign('find_categId', '');
-}
-// Get all wiki pages for the dropdown menu
-$listpages = $tikilib->list_pages(0, -1, 'pageName_asc', $find_objects, '', false, true, false, false, $filter);
-$smarty->assign_by_ref('listpages', $listpages["data"]);
 
 $structures = $structlib->list_structures(0, -1, 'pageName_asc');
 $structures_filtered = array_filter($structures['data'], function ($struct) {

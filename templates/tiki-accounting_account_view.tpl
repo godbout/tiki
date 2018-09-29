@@ -17,13 +17,13 @@
 		</dl>
 		{button href="tiki-accounting.php?bookId=$bookId" _text="Back to book page"}
 		{if $tiki_p_acct_manage_accounts=='y'}
-			<button type="submit" class="btn btn-default btn-sm pull-right" name="action" value="edit">
+			<button type="submit" class="btn btn-default btn-sm float-sm-right" name="action" value="edit">
 				{tr}Edit this account{/tr}
 			</button>
 			{if $account.changeable==1}
 				<button
 					type="submit"
-					class="btn btn-warning btn-sm pull-right"
+					class="btn btn-warning btn-sm float-sm-right"
 					name="action"
 					value="delete"
 					onclick="confirmSimple(event, '{tr _0="{$account.accountName|escape:'attr'}" _1="{$book.bookName|escape:'attr'}"}Delete account %0 from book %1?{/tr}')"

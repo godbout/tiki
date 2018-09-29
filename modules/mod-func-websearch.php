@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: mod-func-websearch.php 66101 2018-07-11 18:03:14Z manasse $
+// $Id$
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
@@ -17,7 +17,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 function module_websearch_info()
 {
 	return [
-		'name' => tra('Search on the web'),
+		'name' => tra('websearch'),
 		'description' => tra('Displays a simple form to perform a web search with choice on multiple search engines.'),
 		'prefs' => [],
 		'params' => [

@@ -320,7 +320,9 @@ class Tiki_Profile_InstallHandler_FileGallery extends Tiki_Profile_InstallHandle
 	 * Remove file gallery
 	 *
 	 * @param string $fileGallery
+	 *
 	 * @return bool
+	 * @throws Exception
 	 */
 	function remove($fileGallery)
 	{
@@ -329,8 +331,9 @@ class Tiki_Profile_InstallHandler_FileGallery extends Tiki_Profile_InstallHandle
 			$galleryId = $filegallib
 				->table('tiki_file_galleries')
 				->fetchOne('galleryId', ['name' => $fileGallery]);
-			if (! empty($galleryId) && $filegallib->remove_file_gallery($galleryId)) {
-				return true;
+			if (! empty($galleryId)) {
+				$result = $filegallib->remove_file_gallery($galleryId);
+				return $result && $result->numRows();
 			}
 		}
 		return false;

@@ -62,6 +62,7 @@ class Search_ContentSource_ArticleSource implements Search_ContentSource_Interfa
 			'language' => $typeFactory->identifier($article['lang'] ? $article['lang'] : 'unknown'),
 			'creation_date' => $typeFactory->timestamp($article['created']),
 			'modification_date' => $typeFactory->timestamp($article['publishDate']),
+			'date' => $typeFactory->timestamp($article['publishDate']),
 			'contributors' => $typeFactory->multivalue([$article['author']]),
 			'description' => $typeFactory->plaintext($article['heading']),
 
@@ -97,6 +98,7 @@ class Search_ContentSource_ArticleSource implements Search_ContentSource_Interfa
 			'modification_date',
 			'contributors',
 			'description',
+			'date',
 
 			'sitetitle',
 			 'siteurl',
@@ -124,6 +126,7 @@ class Search_ContentSource_ArticleSource implements Search_ContentSource_Interfa
 		return [
 			'title' => true,
 			'description' => true,
+			'date' => true,
 
 			'article_content' => false,
 			'article_topline' => false,

@@ -79,7 +79,7 @@ function important($message)
  */
 function check_svn_version()
 {
-	return (float)trim(`svn --version --quiet 2> /dev/null`) > SVN_MIN_VERSION;
+	return version_compare(trim(`svn --version --quiet 2> /dev/null`), SVN_MIN_VERSION, '>');
 }
 
 /**

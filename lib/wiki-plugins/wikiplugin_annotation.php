@@ -194,7 +194,7 @@ FORM;
 	if ($tiki_p_edit == 'y') {
 		$editor_form = <<<EDITORFORM
 		<div class="editor panel">
-			<div class="panel-body">
+			<div class="card-body">
 				<form method="post" action="#">
 					<div class="form-group row">
 						<label style="width:100%">
@@ -212,7 +212,7 @@ FORM;
 						<div class="col-sm-9 col-sm-offset-3">
 							$ticketHtml
 							<input type="submit" class="btn btn-primary btn-sm" value="$saveStr">
-							<div class="pull-right">
+							<div class="float-right">
 								<a class="btn btn-primary btn-sm minimize" href="#" title="$closeStr">$close</a>
 								<a class="btn btn-primary btn-sm delete" href="#" title="$removeStr">$delete</a>
 							</div>

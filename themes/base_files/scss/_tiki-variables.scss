@@ -51,16 +51,13 @@ $chosen-focus-border: 1px solid $input-focus-border-color;
 $chosen-focus-box-shadow: "0 1px 1px rgba(0, 0, 0, .075) inset, 0 0 8px rgba(82, 168, 236, .6)";
 $chosen-focus-transition: "border linear .2s, box-shadow linear .2s";
 $chosen-height: $input-height;
-$chosen-multi-height: $input-height + .4rem;
+$chosen-multi-height: $input-height;
 $chosen-active-result: $input-color;
 $chosen-single-height: $input-height; // "Make inputs at least the height of their button counterpart (base line-height + padding + border)"
 $chosen-padding-base-vertical: $padding-y;
 $chosen-padding-base-horizontal: $padding-x;
 $chosen-font-size-base: $font-size-base;
 $chosen-line-height: $line-height-base;
-
-$chosen-sprite-path: "../../../vendor_bundled/vendor/alxlit/bootstrap-chosen/chosen-sprite.png";
-$chosen-sprite-retina-path: "../../../vendor_bundled/vendor/alxlit/bootstrap-chosen/chosen-sprite$2x.png";
 
 // Calendars
 $calendarweek-bottom-border-color: $table-border-color;

@@ -31,13 +31,15 @@ if (empty($info)) {
 }
 $itemInfo = $trklib->get_tracker_item($info["itemId"]);
 $itemUsers = $trklib->get_item_creators($itemInfo['trackerId'], $itemInfo['itemId']);
+$itemPerms = Perms::get(['type' => 'trackeritem', 'object' => $info['itemId']]);
+$globalperms = Perms::get();
 
 if (isset($info['user']) && $info['user'] == $user) {
 } elseif (! empty($itemUsers) && in_array($user, $itemUsers)) {
-} elseif ((isset($itemInfo['status']) and $itemInfo['status'] == 'p' && ! $tikilib->user_has_perm_on_object($user, $itemInfo['trackerId'], 'tracker', 'tiki_p_view_trackers_pending'))
-	||  (isset($itemInfo['status']) and $itemInfo['status'] == 'c' && ! $tikilib->user_has_perm_on_object($user, $itemInfo['trackerId'], 'tracker', 'tiki_p_view_trackers_closed'))
-	||  ($tiki_p_admin_trackers != 'y' && ! $tikilib->user_has_perm_on_object($user, $itemInfo['trackerId'], 'tracker', 'tiki_p_view_trackers'))
-	||  ($tiki_p_admin_trackers != 'y' && ! $tikilib->user_has_perm_on_object($user, $itemInfo['trackerId'], 'tracker', 'tiki_p_tracker_view_attachments'))
+} elseif ((isset($itemInfo['status']) and $itemInfo['status'] == 'p' && ! $itemPerms->view_trackers_pending)
+	||  (isset($itemInfo['status']) and $itemInfo['status'] == 'c' && ! $itemPerms->view_trackers_closed)
+	||  (! $globalperms->admin_trackers && ! $itemPerms->view_trackers)
+	||  (! $globalperms->admin_trackers && ! $itemPerms->tracker_view_attachments)
 	) {
 	$smarty->assign('errortype', 401);
 	$smarty->assign('msg', tra('Permission denied'));

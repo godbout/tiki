@@ -49,7 +49,7 @@
 						{if !isset($line) || $line ne 'y'}</td><td class="tracker_filter_input tracker_field{$filter.fieldId}">{elseif $indrop ne 'y' or ($filter.format ne 'd' and $filter.format ne 'm')}:{/if}
 	{*------drop-down, multiple *}
 						{if $filter.format eq 'd' or $filter.format eq 'm'}
-							<select id="f_{$filter.fieldId}" name="f_{$filter.fieldId}{if $filter.format eq "m"}[]{/if}" {if $filter.format eq "m"} size="5" multiple="multiple"{/if}>
+							<select id="f_{$filter.fieldId}" name="f_{$filter.fieldId}{if $filter.format eq "m"}[]{/if}" {if $filter.format eq "m"} size="5" multiple="multiple"{/if} class="form-control">
 								{if $indrop eq 'y'}<option value="">--{$filter.name|tr_if}--</option>{/if}
 								<option value="">{tr}Any{/tr}</option>
 								{$last = ''}
@@ -85,39 +85,81 @@
 								{capture name=i_f}f_{$filter.fieldId}{/capture}
 								{initials_filter_links _initial=$smarty.capture.i_f}
 							{/if}
-							<input id="f_{$filter.fieldId}" type="text" name="f_{$filter.fieldId}" value="{$filter.selected}">
+							<input id="f_{$filter.fieldId}" type="text" name="f_{$filter.fieldId}" value="{$filter.selected}" class="form-control">
 	{*------sqlsearch *}
 						{elseif $filter.format eq 'sqlsearch'}
-							<input id="f_{$filter.fieldId}" type="text" name="f_{$filter.fieldId}" value="{$filter.selected}">
+							<input id="f_{$filter.fieldId}" type="text" name="f_{$filter.fieldId}" value="{$filter.selected}" class="form-control">
 							<a href="{bootstrap_modal controller=tracker action=search_help}">{icon name='help'}</a>
 	{*------rating *}
 						{elseif $filter.format eq '*'}
-							<select id="f_{$filter.fieldId}" name="f_{$filter.fieldId}">
+							<select id="f_{$filter.fieldId}" name="f_{$filter.fieldId}" class="form-control">
 								<option value="">{tr}Any{/tr}</option>
 								{foreach from=$filter.opts item=option}
 									<option value="{$option.id|escape}"{if $option.selected eq 'y'} selected="selected"{/if}>{$option.name|escape}</option>
 								{/foreach}
 							</select>
+	{*------relation *}
+						{elseif $filter.format eq 'REL'}
+							<textarea name="f_{$filter.fieldId}" class="d-none">
+								{$filter.opts.field_selection}
+							</textarea>
+							{object_selector_multi _id="object_filter_{$filter.fieldId}" _name="object_filter_{$filter.fieldId}" _filter=$filter.opts.field_filter _value=$filter.opts.field_selection _format=$filter.opts.field_format }
+							<div class="text-center mt-3 mb-3">{tr}Or{/tr}</div>
+							<select name="other_filter_{$filter.fieldId}" class="form-control">
+								<option value=''>{tr}-- Choose an option --{/tr}</option>
+								{foreach from=$filter.opts.other_options item=option}
+									<option value="{$option.id|escape}"{if $option.selected eq 'y'} selected="selected"{/if}>{$option.name|escape}</option>
+								{/foreach}
+							</select>
+							{jq}
+								$('select[name="other_filter_{{$filter.fieldId}}"]').on('change', function() {
+
+									var $container = $('#object_filter_{{$filter.fieldId}}').parent();
+									// Reset Object Selector values
+									$('textarea[name^="object_filter_{{$filter.fieldId}}"]').val('');
+									$container.find('.results :checked').each(function(){
+										$(this).prop('checked', false);
+									});
+									$container.find('option:selected').each(function(){
+										$(this).prop('selected', false);
+									});
+									$container.find('select').trigger('chosen:updated');
+
+									var val = $(this).val();
+									$target = $('[name="f_{{$filter.fieldId}}"]').val(val);
+								});
+
+
+								$('textarea[name="object_filter_{{$filter.fieldId}}"]').on('change', function() {
+									// Reset other values
+									var $select = $('select[name="other_filter_{{$filter.fieldId}}"]')
+									$select.val('');
+									$select.trigger('chosen:updated');
+
+									var val = $(this).val();
+									$target = $('[name="f_{{$filter.fieldId}}"]').val(val);
+								});
+							{/jq}
 	{*------checkbox, radio *}
 						{else}
-							<label>
-								<input {if $filter.format eq "c"}type="checkbox"{else}type="radio"{/if}
+							<div class="form-check {if isset($line) && $line eq 'y'}form-check-inline{/if}">
+								<input class="form-check-input"
+									id="f_{$filter.fieldId}"
+									type="{if $filter.format eq "c"}checkbox{else}radio{/if}"
 									name="f_{$filter.fieldId}{if $filter.format eq "c"}[]{/if}"
-									value=""{if !$filter.selected} checked="checked"{/if}
-								>
-								{tr}Any{/tr}
-							</label>
-							{if !isset($line) || $line ne 'y'}<br>{/if}
+									value="" {if !$filter.selected} checked="checked"{/if}>
+								<label class="form-check-label" for="f_{$filter.fieldId}">{tr}Any{/tr}</label>
+							</div>
 							{section name=io loop=$filter.opts}
-								<label>
-									<input {if $filter.format eq "c"}type="checkbox"{else}type="radio"{/if}
-										name="f_{$filter.fieldId}{if $filter.format eq "c"}[]{/if}"
-										value="{$filter.opts[io].id|regex_replace:"/=.*/":""|escape:url}"
-										{if $filter.opts[io].selected eq "y"} checked="checked"{/if}
-									>
-								</label>
-								{$filter.opts[io].name|regex_replace:"/^[^=]*=/":""|tr_if}
-								{if !isset($line) || $line ne 'y'}<br>{/if}
+							<div class="form-check {if isset($line) && $line eq 'y'}form-check-inline{/if}">
+								<input class="form-check-input"
+									id="f_{$filter.fieldId}_{$smarty.section.io.index}"
+									type="{if $filter.format eq "c"}checkbox{else}radio{/if}"
+									name="f_{$filter.fieldId}{if $filter.format eq "c"}[]{/if}"
+									value="{$filter.opts[io].id|regex_replace:"/=.*/":""|escape:url}"
+									{if $filter.opts[io].selected eq "y"} checked="checked"{/if}>
+								<label class="form-check-label" for="f_{$filter.fieldId}_{$smarty.section.io.index}">{$filter.opts[io].name|regex_replace:"/^[^=]*=/":""|tr_if}</label>
+							</div>
 							{/section}
 						{/if}
 					</td>

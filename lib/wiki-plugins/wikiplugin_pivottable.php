@@ -240,6 +240,19 @@ function wikiplugin_pivottable_info()
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
 				]
+			],
+			'translate' => [
+				'name' => tr('Translate displayed data'),
+				'description' => tr('Use translated data values for calculations and display.') . ' ' . tr('Default value: No'),
+				'since' => '18.3',
+				'required' => false,
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('No'), 'value' => 'n'],
+					['text' => tra('Yes'), 'value' => 'y']
+				]
 			]
 		],
 	];
@@ -270,6 +283,8 @@ function wikiplugin_pivottable($data, $params)
 	if (file_exists('vendor_bundled/vendor/nicolaskruchten/pivottable/dist/pivot.' . $lang . '.js')) {
 		$headerlib->add_jsfile('vendor_bundled/vendor/nicolaskruchten/pivottable/dist/pivot.' . $lang . '.js', true);
 	}
+
+	$translate = (! empty($params['translate']) && $params['translate'] == 'y') ? true : false;
 
 	$smarty = TikiLib::lib('smarty');
 	$smarty->assign('lang', $lang);
@@ -377,9 +392,9 @@ function wikiplugin_pivottable($data, $params)
 
 		$heatmapParams = [];
 		if ($rendererName === 'Heatmap') {
-			$validConfig = is_array($params['heatmapDomain'])
+			$validConfig = ! (empty($params['heatmapDomain']) && empty($params['heatmapColors']))
+				&& is_array($params['heatmapDomain'])
 				&& is_array($params['heatmapColors'])
-				&& ! (empty($params['heatmapDomain']) && empty($params['heatmapColors']))
 				&& count($params['heatmapDomain']) === count($params['heatmapColors']);
 
 			if ($validConfig) {
@@ -397,7 +412,7 @@ function wikiplugin_pivottable($data, $params)
 		$query->filterContent($trackerId, 'tracker_id');
 
 		$unifiedsearchlib = TikiLib::lib('unifiedsearch');
-		if ($params['overridePermissions'] === 'y') {
+		if (!empty($params['overridePermissions']) && $params['overridePermissions'] === 'y') {
 			$unifiedsearchlib->initQueryBase($query);
 			$unifiedsearchlib->initQueryPresentation($query);
 		} else {
@@ -413,9 +428,11 @@ function wikiplugin_pivottable($data, $params)
 			return WikiParser_PluginOutput::userError(tr('Unified search index not found.'));
 		}
 
-		$query->setRange(0, TikiLib::lib('trk')->get_nb_items($trackerId));
-
-		$result = $query->search($index);
+		$result = [];
+		foreach ($query->scroll($index) as $row) {
+			$result[] = $row;
+		}
+		$result = Search_ResultSet::create($result);
 		$result->setId('wppivottable-' . $id);
 
 		$resultBuilder = new Search_ResultSet_WikiBuilder($result);
@@ -498,7 +515,12 @@ function wikiplugin_pivottable($data, $params)
 			throw new Services_Exception_NotAvailable(tr('Activity stream currently unavailable.'));
 		}
 
-		$result = $query->search($index);
+		$result = [];
+		foreach ($query->scroll($index) as $row) {
+			$result[] = $row;
+		}
+		$result = Search_ResultSet::create($result);
+		$result->setId('wppivottable-' . $id);
 
 		$paginationArguments = $builder->getPaginationArguments();
 
@@ -588,8 +610,14 @@ function wikiplugin_pivottable($data, $params)
 		$row = [];
 		foreach ($entry as $fieldName => $value) {
 			if ($entry['object_type'] != 'activity' && $field = $definition->getFieldFromPermName($fieldName)) {
-				$row[$field['name']] = $value;
+				// Actual data values
+				if ($translate) {
+					$row[$field['name']] = tra($value);
+				} else {
+					$row[$field['name']] = $value;
+				}
 			} else {
+				// predefined fields (created date, lastmod, etc.)
 				$row[$fieldName] = $value;
 			}
 		}
@@ -736,9 +764,11 @@ function wikiplugin_pivottable($data, $params)
 			}
 			if ($groupColors) {
 				foreach ($highlight as &$row) {
-					$group = $row['group'];
-					if ($group && ! empty($groupColors[$group])) {
-						$row['color'] = $groupColors[$group];
+					if (! empty($row['group'])) {
+						$group = $row['group'];
+						if ($group && ! empty($groupColors[$group])) {
+							$row['color'] = $groupColors[$group];
+						}
 					}
 				}
 			}
@@ -788,6 +818,7 @@ function wikiplugin_pivottable($data, $params)
 		'yAxisLabel' => empty($params['yAxisLabel']) ? null : $params['yAxisLabel'],
 		'chartTitle' => empty($params['chartTitle']) ? null : $params['chartTitle'],
 		'chartHoverBar' => empty($params['chartHoverBar']) ? null : $params['chartHoverBar'],
+		'translate' => empty($params['translate']) ? null : $params['translate'],
 		'index' => $id
 	]);
 

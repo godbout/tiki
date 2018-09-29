@@ -83,6 +83,16 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 							'save' => tr('On Save'),
 						],
 					],
+					'parentFilter' => [
+						'name' => tr('Extra Filter Field'),
+						'description' => tr('Filter objects by value of another field. Use a jQuery seletor to target the element in the page.'),
+						'filter' => 'text',
+					],
+					'parentFilterKey' => [
+						'name' => tr('Extra Filter Key'),
+						'description' => tr('Key to filter objects by using the value from the Extra Filter Field above.'),
+						'filter' => 'text',
+					],
 				],
 			],
 		];
@@ -144,7 +154,9 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 			[
 				'labels' => $labels,
 				'filter' => $filter,
-				'format' => $this->getOption('format')
+				'format' => $this->getOption('format'),
+				'parent' => $this->getOption('parentFilter'),
+				'parentkey' => $this->getOption('parentFilterKey'),
 			]
 		);
 	}
@@ -455,4 +467,66 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 			}
 		}
 	}
+
+	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
+	{
+		$baseKey = $this->getBaseKey();
+
+		$data = $this->getFieldData();
+		$value = $this->getValue();
+
+		// we don't have all the data in the field definition at this point, so just render the labels here
+		$objectLib = TikiLib::lib('object');
+		$format = $this->getOption('format');
+		$labels = [];
+		static $called = [];
+		foreach ($data['relations'] as $identifier) {
+			list($type, $object) = explode(':', $identifier);
+			if (in_array($type.$object, $called)) {
+				// prevent circular-reference calls to objectlib->get_title method as getDocumentPart is used to populate the
+				// search results with field values which is called in get_title itself
+				// only happens for bi-directional tracker item relation
+				continue;
+			}
+			$called[] = $type.$object;
+			$labels[] = $objectLib->get_title($type, $object, $format);
+		}
+
+		$plain = implode(', ', $labels);
+
+		$text = '';
+		$count = count($labels);
+		for ($i = 0; $i < $count; $i++) {
+			$text .= $labels[$i];
+			if ($i === $count - 2) {
+				$text .= ' ' . tr('and') . ' ';
+			} else if ($i < $count - 1) {
+				$text .= ', ';
+			}
+		}
+		return [
+			$baseKey => $typeFactory->sortable($value),
+			"{$baseKey}_multi" => $typeFactory->multivalue(explode("\n", $value)),
+			"{$baseKey}_plain" => $typeFactory->plaintext($plain),
+			"{$baseKey}_text" => $typeFactory->plaintext($text),
+		];
+	}
+
+	function getProvidedFields()
+	{
+		$baseKey = $this->getBaseKey();
+		return [
+			$baseKey,				// comma separated object_type:object_id
+			"{$baseKey}_multi",		// array [object_type:object_id]
+			"{$baseKey}_plain",		// comma separated formatted object titles
+			"{$baseKey}_text",		// comma separated formatted object titles with "and" before the last one
+		];
+	}
+
+	function getGlobalFields()
+	{
+		$baseKey = $this->getBaseKey();
+		return ["{$baseKey}_plain" => true];	// index contents with the object titles
+	}
+
 }

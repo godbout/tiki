@@ -1,4 +1,4 @@
-{* $Id: mod-websearch.tpl 66556 2018-07-11 12:21:21Z manasse $ *}
+{* $Id$ *}
 {jq}
 $(document).ready(function(){
     var pagehelp ="";

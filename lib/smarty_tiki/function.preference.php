@@ -57,6 +57,9 @@ function smarty_function_preference($params, $smarty)
 		if (isset($params['size'])) {
 			$info['size'] = $params['size'];
 		}
+		if (isset($params['fgal_picker'])) {
+			$info['fgal_picker'] = true;
+		}
 
 		$smarty->assign('p', $info);
 

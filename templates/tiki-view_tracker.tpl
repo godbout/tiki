@@ -9,12 +9,18 @@
 {/if}
 <div class="t_navbar mb-4">
 	{if $tiki_p_create_tracker_items eq 'y' && $prefs.tracker_legacy_insert neq 'y'}
-		<a class="btn btn-primary" href="{bootstrap_modal controller=tracker action=insert_item trackerId=$trackerId}">
-			{icon name="create"} {tr}Create Item{/tr}
-		</a>
+		{if $fields_count gt 0}
+			<a class="btn btn-primary" href="{bootstrap_modal controller=tracker action=insert_item trackerId=$trackerId}">
+				{icon name="create"} {tr}Create Item{/tr}
+			</a>
+		{else}
+			<a class="btn btn-primary disabled" aria-disabled="true" href="{bootstrap_modal controller=tracker action=insert_item trackerId=$trackerId}">
+				{icon name="create"} {tr}Create Item{/tr}
+			</a>
+		{/if}
 	{/if}
 	{include file="tracker_actions.tpl" showitems="n"}
-	<div class="btn-group pull-right">
+	<div class="btn-group float-sm-right">
 		{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 		<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 			{icon name='menu-extra'}
@@ -323,7 +329,7 @@
 					$("#newItemForm").validate({
 						{{$validationjs}},
 						ignore: '.ignore',
-						submitHandler: function(){return process_submit(this.currentForm);}
+						submitHandler: function(form, event){return process_submit(form, event);}
 					});
 				{/jq}
 			{/if}

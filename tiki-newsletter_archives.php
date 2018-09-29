@@ -24,7 +24,7 @@ $access->check_permission_either(['tiki_p_view_newsletter']);
 
 if (isset($_REQUEST['remove']) && ! empty($_REQUEST['nlId'])) {
 	if (! $tikilib->user_has_perm_on_object($user, $_REQUEST['nlId'], 'newsletter', 'tiki_p_admin_newsletters')) {
-		$smarty->assign('msg', tra("You do not have permission to use this feature"));
+		$smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
 		$smarty->display("error.tpl");
 		die;
 	}

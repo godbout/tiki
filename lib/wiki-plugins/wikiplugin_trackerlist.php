@@ -1048,6 +1048,7 @@ function wikiplugin_trackerlist($data, $params)
 		'calendarviewnavbar' => 'y',
 		'calendartitle' => '',
 		'calendardelta' => '',
+		'calendarpopup' => 'y',
 		'force_compile' => 'n',
 		'editable' => [],
 		'editableall' => 'n',
@@ -1934,7 +1935,10 @@ function wikiplugin_trackerlist($data, $params)
 		$smarty->assign_by_ref('listfields', $listfields);
 		$smarty->assign_by_ref('popupfields', $popupfields);
 		if (! empty($filterfield)) {
-			$urlquery['filterfield'] = is_array($filtervalue) ? implode(':', $filterfield) : $filterfield;
+			$filterfield_flatten = array_filter($filterfield, function($f) {
+				return !is_array($f);
+			});
+			$urlquery['filterfield'] = is_array($filtervalue) ? implode(':', $filterfield_flatten) : $filterfield_flatten;
 			if (! is_array($filtervalue)) {
 				$filtervalue = [$filtervalue];
 			}
@@ -2031,7 +2035,7 @@ function wikiplugin_trackerlist($data, $params)
 				$filterfield = [$filterfield];
 			}
 
-			if (is_array($$filtervalue) == false) {
+			if (is_array($filtervalue) == false) {
 				$filtervalue = [$filtervalue];
 			}
 
@@ -2050,6 +2054,9 @@ function wikiplugin_trackerlist($data, $params)
 			$catfilternotvalue = [];
 			if (! empty($filterfield)) {
 				foreach ($filterfield as $k => $ff) {
+					if(! empty($ff['usersearch'])) {
+						continue;
+					}
 					$filterfieldinfo = $trklib->get_tracker_field($ff);
 					if ($filterfieldinfo['type'] == 'e') {
 						$catfilters[] = $k;
@@ -2316,7 +2323,7 @@ function wikiplugin_trackerlist($data, $params)
 				$smarty->assign('daystart', $startPeriod['date']);
 				$dayend = $calendarlib->infoDate($startNextPeriod['date'] - 1);
 				$smarty->assign('dayend', $dayend['date']);
-				$smarty->assign('today', TikiLib::make_time(0, 0, 0, TikiLib::date_format('%m'), TikiLib::date_format('%d'), TikiLib::date_format('%Y')));
+				$smarty->assign('today', $tikilib->make_time(0, 0, 0, TikiLib::date_format('%m'), TikiLib::date_format('%d'), TikiLib::date_format('%Y')));
 				$smarty->assign('sticky_popup', $calendarstickypopup);
 				$smarty->assign('calendar_popup', $calendarpopup);
 				$smarty->assign('showpopup', 'n');

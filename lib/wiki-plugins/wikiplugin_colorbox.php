@@ -142,9 +142,6 @@ function wikiplugin_colorbox($data, $params)
 		if ($prefs['feature_file_galleries'] != 'y') {
 			return tra('This feature is disabled') . ': feature_file_galleries';
 		}
-		if (! $tikilib->user_has_perm_on_object($user, $params['fgalId'], 'file gallery', 'tiki_p_view_file_gallery')) {
-			return tra('Permission denied');
-		}
 		if (empty($params['sort_mode'])) {
 			$params['sort_mode'] = 'created_desc';
 		}

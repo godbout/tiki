@@ -505,10 +505,14 @@ h3.panel-title {
   padding-left: 1.3em;
 }
 .modcontrols {
-  display: block;
-  float: right;
-  width: 64px;
-  height: 16px;
+	visibility: hidden;
+	float: right;
+}
+.modcontrols > div > button.btn-link {
+	padding: 0;
+}
+.module:hover .modcontrols {
+	visibility: visible;
 }
 .box-minichat {
   width: 100%;

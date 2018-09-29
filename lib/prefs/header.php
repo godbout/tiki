@@ -38,7 +38,6 @@ function prefs_header_list()
 			'hint' => tr('Use [https://doc.tiki.org/PluginJS|PluginJS] to include Javascript on a single wiki page.'),
 			'default' => '',
 			'shorthint' => tra('Do not include the < script > tags.'),
-			'filter' => 'none',
 		],
 		'header_custom_less' => [
 			'name' => tra('Custom Less'),
@@ -46,8 +45,10 @@ function prefs_header_list()
 			'type' => 'textarea',
 			'size' => 5,
 			'default' => '',
-			'hint' => tra('Custom Less (CSS precompiler) variable definitions'),
+			'hint' => tra('Custom Less (CSS precompiler) - no longer used'),
 			'filter' => 'none',
+			'tags' => ['deprecated'],
+			'warning' => tra('CSS Less is no longer used in Tiki 19+. Custom SCSS feature coming soon...'),
 		],
 	];
 }

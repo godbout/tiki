@@ -7,7 +7,7 @@
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
-
+global $pdfStyles;
 $section = 'wiki page';
 require_once('tiki-setup.php');
 $tikilib = TikiLib::lib('tiki');
@@ -45,7 +45,7 @@ if (! isset($_SESSION["thedate"])) {
 if (! isset($_REQUEST["page"])) {
 	$_REQUEST["page"] = $wikilib->get_default_wiki_page();
 }
-$page = htmlspecialchars($_REQUEST['page']);
+$page = $wikilib->get_page_by_slug($_REQUEST['page']);
 $smarty->assign('page', $page);
 
 // If the page doesn't exist then display an error
@@ -156,17 +156,22 @@ if (isset($_REQUEST['pdf'])) {
 		if ($_REQUEST['printslides']) {
 			$customCSS
 				= "<style type='text/css'>img{max-height:300px;width:auto;} body{font-size:1em} h1{font-size:1.5em}  section{height:300px;border:1px solid #000;margin-bottom:1%;padding:1%;}</style> ";
-			$pdata = $customCSS. $pdata;
+			$pdata = $customCSS . $pdata;
 		} else {
 			//getting css
-			$customCSS.=file_get_contents('vendor_bundled/vendor/components/revealjs/css/reveal.scss');
-			$customCSS.=file_get_contents('vendor_bundled/vendor/components/revealjs/css/theme/'.$theme.'.css');
-			$customCSS.='.reveal section{width:70%;text-align:center;padding-top:50px;margin:auto;text-align:center} .reveal h1{font-size:2em} .reveal{font-size:1.3em;line-height:1.5em}';
-			$pdata='<div class="reveal">'.$pdata.'</div>';
+			$customCSS .= file_get_contents(
+				'vendor_bundled/vendor/components/revealjs/css/reveal.scss'
+			);
+			$customCSS .= file_get_contents(
+				'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme
+				. '.css'
+			);
+			$customCSS .= '.reveal section{width:70%;text-align:center;padding-top:50px;margin:auto;text-align:center} .reveal h1{font-size:2em} .reveal{font-size:1.3em;line-height:1.5em}section{text-align:center;margin: auto;width:100%;}';
+			$pdata = '<div class="reveal">' . $pdata . '</div>';
 
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
-				'<style>'.$customCSS.'</style>' . $pdata
+				'<style>' . $customCSS . '</style>'.$pdfStyles. $pdata
 			);
 		}
 
@@ -209,13 +214,11 @@ $headerlib->add_cssfile(
 	'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme . '.css'
 );
 $headerlib->add_css(
-	'.reveal span{font-family: "FontAwesome";font-style: normal;} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;bottom:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;bottom:0px;left:-2000px;width:100%;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}'
-);
+	'.reveal span{font-family: "Font Awesome 5 Free";font-style: normal;font-weight:900} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;top:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;top:50px;left:-2000px;width:200px;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;padding: 10px;border-top-right-radius: 25px;border-bottom-right-radius: 25px;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:500em !important}} @media all and (orientation: portrait){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:135% !important}} @media all and (orientation: landscape) and (max-width:1024px){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:125% !important}} #reveal-controls span,#listSlides{cursor:pointer;color:#999;padding:0.15em} #reveal-controls span:hover,#listSlides:hover{color:#fff} footer{visibility:hidden}');
 
 $headerlib->add_jq_onready(
-	'$("<link/>", {rel: "stylesheet",type: "text/css",href: "vendor_bundled/vendor/components/revealjs/css/theme/'
-	. $theme . '.css", id:"themeCSS"}).appendTo("head");
-	$("body").append("<style type=\"text/css\">.reveal h1 {font-size: 2.8em;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.06);}.reveal table {overflow: hidden;} </style>");
+	'$("<link/>", {rel: "stylesheet",type: "text/css",href: "", id:"themeCSS"}).appendTo("head");
+	$("body").append("<style type=\"text/css\">.reveal h1 {font-size: 2.8em;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.06);}.reveal table {overflow: hidden;} .reveal section img {border:0px;background:none;box-shadow:none}</style>");
 	$("#page-bar").remove();
 	$(".icon_edit_section").remove();
 	$(".editplugin").remove();
@@ -223,6 +226,7 @@ $headerlib->add_jq_onready(
 	$(".wikitext").remove();
 	$(".icon_edit_section").remove();
 	$("#toc").remove();
+	$("footer").remove();
 	$(".heading-link").remove();
 	Reveal.initialize();
 	if(fragments=="y") {
@@ -232,17 +236,69 @@ $headerlib->add_jq_onready(
 	$("#ss-settings").click(function () {
 		var position = $("#ss-options").position();
 		if(position.left==0){
+			$("#ss-settings").switchClass("fa-times","fa-cogs");
 			$("#ss-options").animate({left: \'-2000px\'});
 		}
 		else {
+			$("#ss-settings").switchClass("fa-cogs","fa-times");
 			$("#ss-options").animate({left: \'0px\'});}
 		});
 		Reveal.addEventListener( \'slidechanged\', function( event ) {
 			var position = $("#ss-options").position();
 			if(position.left==0){
+				$("#ss-settings").switchClass("fa-times","fa-cogs");
 				$("#ss-options").animate({left: \'-2000px\'});
 			}
 		});
+		
+		//reveal controls
+		$("body").delegate("#play","click", function () {
+			if($("#play").hasClass("fa-play-circle")) {
+				$("#play").switchClass("fa-play-circle","fa-pause-circle", 1000, "easeInOutQuad");
+				Reveal.configure({ autoSlide:10000 });
+				$(this).attr("style","color:#fff");
+				
+			}
+			else {
+				$("#play").switchClass("fa-pause-circle","fa-play-circle", 1000, "easeInOutQuad");
+				Reveal.configure({ autoSlide: 0 });
+				$(this).attr("style","");
+			}
+		});
+		$("body").delegate("#firstSlide","click", function () {
+			Reveal.slide( 0, 0,0 ); //Reveal.slide( indexh, indexv, indexf );
+		});
+		$("body").delegate("#lastSlide","click", function () {
+			Reveal.slide( Reveal.getTotalSlides()-1, 0,0 ); //Reveal.slide( indexh, indexv, indexf );
+		});
+		$("body").delegate("#nextSlide","click", function () {
+			var currentSlide=Reveal.getIndices().h;
+			Reveal.slide(currentSlide+1,0,0); //Reveal.slide( indexh, indexv, indexf );
+		});
+		$("body").delegate("#prevSlide","click", function () {
+			var currentSlide=Reveal.getIndices().h;
+			if(currentSlide>0) {
+			Reveal.slide(currentSlide-1,0,0);
+			 } //Reveal.slide( indexh, indexv, indexf );
+		});
+		$("body").delegate("#listSlides","click", function () {
+			Reveal.toggleOverview();
+		});
+		$("body").delegate("#loop","click", function () {
+			if($("#loop").hasClass("icon-inactive")){
+				$("#loop").switchClass("icon-inactive","icon-active");
+				Reveal.configure({loop: true});
+				$(this).attr("style","color:#fff");
+			}
+			else{
+				$("#loop").switchClass("icon-active","icon-inactive");
+				Reveal.configure({loop: false});
+				$(this).attr("style","");
+			}
+			
+		});
+		//end of controls
+		
 		$( "#showtheme" ).change(function() {
 			var selectedCSS=$("#showtheme" ).val();
 			$("#themeCSS").attr("href","vendor_bundled/vendor/components/revealjs/css/theme/"+selectedCSS+".css");
@@ -257,11 +313,30 @@ $headerlib->add_jq_onready(
 				$( "#exportPDF" ).attr("href",pdfURL);
 			}
 		});
-		'
+		//Append slide title with URL on slide change
+		Reveal.addEventListener( "slidechanged", function( event ) { location.hash = "/"+$(".present").children("h1").attr("id");});'
 );
 
 ask_ticket('index-raw');
 
+
+$themesArr=[['black','Black'],
+			['blood','Blood'],
+			['beige','Beige'],
+			['league','League'],
+			['moon','Moon'],
+			['night','Night'],
+			['serif','Serif'],
+			['simple','Simple'],
+			['sky','Sky'],
+			['solarized','Solarized']];
+
+foreach($themesArr as $themeOption){
+	$themeOption[0]==$theme?$selected='selected="selected"':$selected='';
+	$themeOptions.='<option value="'.$themeOption[0].'" '.$selected.'>'.tra($themeOption[1]).'</option>';
+}
+
+$smarty->assign('themeOptions', $themeOptions);
 // Display the Index Template
 $smarty->assign('mid', 'tiki-show_page_raw.tpl');
 
@@ -273,28 +348,19 @@ $smarty->display("tiki_full.tpl");
 
 function formatContent($content, $tagArr)
 {
-	$headingsTags = explode('<h1', $content);
-	$firstSlide = 0;
-	foreach ($headingsTags as $slide) {
-		if ($firstSlide == 0) {
-			//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
-			$sectionCheck = strpos($slide, '</section><section');
-			if ($sectionCheck == true) {
-				$slidePlugin = explode("</section>", $slide);
-				$slideContent .= $slidePlugin[1] . '</section>';
-			}
-			$firstSlide = 1;
-		} else {
-			$slideContent .= '<section><h1 ' . $slide . '</section>';
-		}
 
-	}
 	$doc = new DOMDocument();
 	$doc->loadHTML(
-		'<html>' . $slideContent . '</html>',
+		mb_convert_encoding('<html>' . $content . '</html>', 'HTML-ENTITIES', 'UTF-8'),
 		LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
 	);
 	$xpath = new DOMXpath($doc);
+	$expression = '(//sslide//h1|//sslide//h2|//sslide//h3)';
+	$elements = $xpath->query($expression);
+
+	foreach ($elements as $index => $element) {
+		dom_rename_element($element, 'sheading');
+	}
 
 	foreach ($tagArr as $tag) {
 		$list = $xpath->query(
@@ -325,8 +391,47 @@ function formatContent($content, $tagArr)
 	}
 
 
-	$slideContent = str_replace(['<html>', '</html>'], '', $doc->saveHTML());
+	$content = str_replace(['<html>', '</html>'], '', $doc->saveHTML());
 
+
+	$headingsTags = preg_split('/<h[123]/', $content);
+	$firstSlide = 0;
+	foreach ($headingsTags as $slide) {
+		if ($firstSlide == 0) {
+			//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
+			$sectionCheck = strpos($slide, '</section><section');
+			if ($sectionCheck == true) {
+				$slidePlugin = explode("</section>", $slide);
+				$slideContent .= $slidePlugin[1] . '</section>';
+			}
+			$firstSlide = 1;
+		} else {
+			$slideContent .= '<section><h1' . str_replace(
+					array('</h2>', '</h3>'), '</h1>', $slide
+				) . '</section>';
+		}
+
+	}
 	//images alignment left or right
-	return $slideContent;
+	//replacment for slideshowslide
+
+	return html_entity_decode(str_replace(
+		array('<sslide', 'sheading'), array('</section><section', 'h1'),
+		$slideContent
+	));
+}
+
+function dom_rename_element(DOMElement $node, $name)
+{
+	$renamed = $node->ownerDocument->createElement($name);
+
+	foreach ($node->attributes as $attribute) {
+		$renamed->setAttribute($attribute->nodeName, $attribute->nodeValue);
+	}
+
+	while ($node->firstChild) {
+		$renamed->appendChild($node->firstChild);
+	}
+
+	return $node->parentNode->replaceChild($renamed, $node);
 }

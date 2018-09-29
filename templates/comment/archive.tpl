@@ -7,7 +7,7 @@
 {block name="content"}
 	{if $status neq 'DONE'}
 		<form method="post" action="{service controller="comment" action="archive"}">
-			<div class="panel">
+			<div class="card">
 				<div class="card-header">
 					{if $do eq 'archive'}
 						{tr}Are you sure you want to archive this comment?{/tr}
@@ -15,7 +15,7 @@
 						{tr}Are you sure you want to unarchive this comment?{/tr}
 					{/if}
 				</div>
-				<div class="panel-body">
+				<div class="card-body">
 					<input type="hidden" name="do" value="{$do|escape}">
 					<input type="hidden" name="threadId" value="{$threadId|escape}">
 					<input type="hidden" name="confirm" value="1">

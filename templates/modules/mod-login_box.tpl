@@ -39,7 +39,7 @@ if (jqueryTiki.no_cookie) {
 	{if $mode eq "header"}<div class="siteloginbar{if $user} logged-in{/if}">{/if}
 	{if $user}
 		{if empty($mode) or $mode eq "module"}
-			<div class="form-group row mx-0">{tr}Logged in as:{/tr} <span style="white-space: nowrap">&nbsp;{$user|userlink}</span></div>
+			<div class="form-group row mx-0">{tr}Logged in as:{/tr} <span class="d-inline-block col-12 text-truncate">&nbsp;{$user|userlink}</span></div>
 			<div class="text-center">
 				{button href="tiki-logout.php" _text="{tr}Log out{/tr}"}
 			</div>
@@ -80,11 +80,10 @@ if (jqueryTiki.no_cookie) {
 										{tr}Email address or {/tr}
 									{/if}
 									{if $prefs.login_autogenerate eq 'y'}
-										{tr}User account ID{/tr}
+										{tr}User account ID:{/tr}
 									{else}
-										{tr}Username{/tr}
+										{tr}Username:{/tr}
 									{/if}
-									:
 								{/if}
 							</label>
 							<input type="hidden" name="su" value="1" class="form-control" />
@@ -109,7 +108,7 @@ if (jqueryTiki.no_cookie) {
 		{elseif $mode eq "header"}
 			<span style="white-space: nowrap">{$user|userlink}</span> <a href="tiki-logout.php" title="{tr}Log out{/tr}">{tr}Log out{/tr}</a>
 		{elseif $mode eq "popup"}
-			<div class="siteloginbar_popup dropdown pull-right" role="group">
+			<div class="siteloginbar_popup dropdown float-sm-right mr-auto" role="group">
 				<button type="button" class="dropdown-toggle login_link btn btn-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{if isset($module_params.show_user_avatar) && $module_params.show_user_avatar eq 'y'}{$user|avatarize:n:n:n:n}{/if}
 					{if isset($module_params.show_user_name) && $module_params.show_user_name eq 'y'}{$user|username:n:n:n}{/if}
@@ -117,7 +116,7 @@ if (jqueryTiki.no_cookie) {
 					<span class="sr-only">{tr}Toggle Dropdown{/tr}</span>
 				</button>
 				{if empty($module_params.menu_id)}
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu dropdown-menu-right">
 							<li class="dropdown-item">
 							<a href="tiki-user_information.php" title="{tr}My Account{/tr}">{if isset($module_params.show_user_name) && $module_params.show_user_name eq 'y'}{tr}My Account{/tr}{else}{tr}{$user|username|escape:"html"}{/tr}{/if}</a>
 							</li>
@@ -168,11 +167,11 @@ if (jqueryTiki.no_cookie) {
 	{else}
 		{assign var='close_tags' value=''}
 		{if $mode eq "popup"}
-			<div class="siteloginbar_popup dropdown btn-group pull-right">
+			<div class="siteloginbar_popup dropdown btn-group float-sm-right drop-left">
 				<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
 					{tr}Log in{/tr}
 				</button>
-				<div class="siteloginbar_poppedup dropdown-menu pull-right modal-sm"><div class="card-body">
+				<div class="siteloginbar_poppedup dropdown-menu dropdown-menu-right float-sm-right modal-sm"><div class="card-body">
 					{capture assign="close_tags"}</div></div></div>{$close_tags}{/capture}
 		{/if}
 
@@ -206,11 +205,10 @@ if (jqueryTiki.no_cookie) {
 						{tr}Email address or {/tr}
 					{/if}
 					{if $prefs.login_autogenerate eq 'y'}
-						{tr}User account ID{/tr}
+						{tr}User account ID:{/tr}
 					{else}
-						{tr}Username{/tr}
+						{tr}Username:{/tr}
 					{/if}
-					:
 				{/if}
 			</label>
 			{if !isset($loginuser) or $loginuser eq ''}
@@ -231,7 +229,7 @@ if (jqueryTiki.no_cookie) {
 			{if $prefs.rememberme eq 'always'}
 				<input type="hidden" name="rme" id="login-remember-module-input_{$module_logo_instance}" value="on" />
 			{else}
-				<div class="form-group row mx-0">
+				<div class="form-check">
 					<div class="checkbox rme">
 						<label for="login-remember-module_{$module_logo_instance}"><input type="checkbox" class="form-check-input" name="rme" id="login-remember-module_{$module_logo_instance}" value="on" />
 							{tr}Remember me{/tr}
@@ -293,9 +291,9 @@ if (jqueryTiki.no_cookie) {
 			</div>
 		{/if}
 		{if $prefs.feature_show_stay_in_ssl_mode eq 'y' && $show_stay_in_ssl_mode eq 'y'}
-			<div>
-				<label for="login-stayssl_{$module_logo_instance}">{tr}Stay in SSL mode:{/tr}</label>?
+			<div class="form-check">
 				<input type="checkbox" class="form-check-input" name="stay_in_ssl_mode" id="login-stayssl_{$module_logo_instance}" {if $stay_in_ssl_mode eq 'y'}checked="checked"{/if} />
+				<label class="form-check-label" for="login-stayssl_{$module_logo_instance}">{tr}Stay in SSL mode{/tr}</label>
 			</div>
 		{/if}
 		{* This is needed as unchecked checkboxes are not sent. The other way of setting hidden field with same name is potentially non-standard *}

@@ -8,7 +8,7 @@
 </div>
 <form enctype="multipart/form-data" action="tiki-article_types.php" method="post" role="form" class="form">
 	<h2>{tr}Add Type{/tr}</h2>
-		<div class="form-group row">
+		<div class="form-group row mx-0">
 			<div class="input-group">
 				<input type="text" name="new_type" class="form-control" placeholder="{tr}Add article type{/tr}...">
 				<div class="input-group-btn">
@@ -20,7 +20,7 @@
 	{section name=user loop=$types}
 		<h3>{tr}{$types[user].type|escape}{/tr}</h3>
 		<a class="link" href="tiki-view_articles.php?type={$types[user].type|escape:url}">{tr}View articles with this type{/tr}</a>
-			<div class="table-responsive article-types">
+			<div class="table-responsive article-types mb-4">
 				<table class="table table-striped table-hover">
 				<tr>
 					<th>{tr}Articles{/tr}</th>
@@ -154,7 +154,7 @@
 			</table>
 		</div>
 		{if $prefs.article_custom_attributes eq 'y'}
-			<div class="table-responsive article-types">
+			<div class="table-responsive article-types mb-4">
 				<table class="table table-striped table-hover">
 					<tr>
 						<th>{tr}Custom attribute{/tr}</th>
@@ -171,14 +171,14 @@
 						</tr>
 					{/foreach}
 					<tr>
-						<td><input type="text" name="new_attribute[{$types[user].type|escape}]" value="" maxlength="56"></td>
+						<td><input type="text" name="new_attribute[{$types[user].type|escape}]" value="" class="form-control col-sm-4"></td>
 						<td>&nbsp;</td>
 					</tr>
 				</table>
 			</div>
 		{/if}
-		<input type="submit" class="btn btn-primary" name="update_type" value="{tr}Save{/tr}"><br>
-		<hr>
-		<br>
+		<div class="text-center my-3">
+			<input type="submit" class="btn btn-primary" name="update_type" value="{tr}Save{/tr}">
+		</div>
 	{/section}
 </form>

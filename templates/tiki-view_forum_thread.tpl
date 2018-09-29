@@ -11,16 +11,19 @@
 	{if $tiki_p_admin_forum eq "y"}
 		{button href="tiki-admin_forums.php?forumId=$forumId" _class="btn btn-link" _icon_name="wrench" _text="{tr}Edit Forum{/tr}"}
 	{/if}
-	{if $tiki_p_admin_forum eq 'y' or !isset($all_forums) or $all_forums|@count > 1}
+	{if $tiki_p_admin_forum eq 'y' or (!isset($all_forums) and $tiki_p_forum_read eq "y") or $all_forums|@count > 1}
 		{button href="tiki-forums.php" _class="btn btn-link" _icon_name="list" _text="{tr}Forum List{/tr}"}
 	{/if}
-	{button href="tiki-view_forum.php?forumId=$forumId" _class="btn btn-link" _icon_name="list" _text="{tr}Topic List{/tr}"}
+	{if $tiki_p_forum_read eq "y"}
+		{button href="tiki-view_forum.php?forumId=$forumId" _class="btn btn-link" _icon_name="list" _text="{tr}Topic List{/tr}"}
+	{/if}
 </div>
 {if $post_reported eq 'y'}
 	{remarksbox type=warning title="{tr}The post has been reported and will be reviewed by a moderator.{/tr}"}{/remarksbox}
 {/if}
 <br>
-<div id="thread-breadcrumb" class="breadcrumb">
+<div id="thread-breadcrumb" class="breadcrumb d-flex justify-content-between mb-4">
+	<div>
 	<a class="link" href="{if $prefs.feature_sefurl eq 'y'}forums{else}tiki-forums.php{/if}">
 		{tr}Forums{/tr}
 	</a>
@@ -35,21 +38,22 @@
 	{/if}
 	{$prefs.site_crumb_seper}
 	{$thread_info.title|escape}
-</div>
-
-{block name=thread_actions}
-	<div class="text-right mb-4">
+	<div>
 		{if empty($thread_info.topic.threadId)}
 			<span>
-				{if ($prev_topic and $prev_topic ne $comments_parentId) or $next_topic}[ {if $prev_topic and $prev_topic ne $comments_parentId}<a href="tiki-view_forum_thread.php?comments_parentId={$prev_topic}&amp;topics_offset={$topics_prev_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{tr}prev topic{/tr}</a>{if $next_topic} | {/if}{/if}
-				{if $next_topic}<a href="tiki-view_forum_thread.php?comments_parentId={$next_topic}&amp;topics_offset={$topics_next_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{tr}next topic{/tr}</a>{/if} ]{/if}
+				{if ($prev_topic and $prev_topic ne $comments_parentId) or $next_topic}{if $prev_topic and $prev_topic ne $comments_parentId}<a href="tiki-view_forum_thread.php?comments_parentId={$prev_topic}&amp;topics_offset={$topics_prev_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{icon name="angle-left"}{tr}Previous topic{/tr}</a>{if $next_topic} | {/if}{/if}
+				{if $next_topic}<a href="tiki-view_forum_thread.php?comments_parentId={$next_topic}&amp;topics_offset={$topics_next_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{tr}next topic{/tr}{icon name="angle-right"}</a>{/if}{/if}
 			</span>
 		{else}
 			<span>
 				{tr}You are viewing a reply to{/tr} <a class="link" href="tiki-view_forum_thread.php?comments_parentId={$thread_info.topic.threadId}{if $smarty.request.topics_offset}&amp;topics_offset={$smarty.request.topics_offset}{/if}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}">{$thread_info.topic.title}</a>
 			</span>
 		{/if}
-		&nbsp;
+	</div>
+	</div>
+	<div class="text-right">
+{block name=thread_actions}
+&nbsp;
 		<div class="btn-group">
 			{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 			<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
@@ -114,7 +118,7 @@
 			</ul>
 			{if ! $js}</li></ul>{/if}
 		</div>
-
+	</div>
 	</div>
 {/block}
 
@@ -129,7 +133,7 @@
 	{if $prefs.feature_freetags eq 'y' and $tiki_p_view_freetags eq 'y' and $prefs.freetags_show_middle eq 'y'
 		and !$thread_info.topic.threadId}
 		{include file='freetag_list.tpl'}
-		<div class="text-right mb-3">
+		<div class="text-right mb-4">
 			{wikiplugin _name="addfreetag" object="forum post:$comments_parentId"}{/wikiplugin}
 		</div>
 	{/if}
@@ -140,7 +144,7 @@
 {include file='comments.tpl'}
 
 	<form role="form" id='time_control' method="get" action="tiki-view_forum_thread.php">
-		<div class="form-group row">
+		<div class="form-group row mx-0">
 			<input type="hidden" name="comments_offset" value="0"><!--Reset offset to 0 when applying a new filter -->
 			<input type="hidden" name="comments_threadId" value="{$comments_threadId|escape}">
 			<input type="hidden" name="comments_parentId" value="{$comments_parentId|escape}">
@@ -173,7 +177,7 @@
 	</form>
 
 
-<div class="form-group pull-right">
+<div class="form-group float-sm-right">
 	{if $prefs.feature_forum_quickjump eq 'y' && $all_forums|@count > 1}
 		<form class="form-horizontal" role="form" id='quick' method="get" action="tiki-view_forum.php">
 			<label class="col-sm-6 col-form-label" for="forumId">{tr}Jump to forum:{/tr}</label>

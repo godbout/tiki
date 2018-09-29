@@ -27,19 +27,19 @@
 		<div class="col-sm-4 col-md-3">
 			<div class="input">
 				<p>
-					<label for="sg-font-size">Font size:</label>
-					<input id="sg-font-size" class="nocolor" data-selector="p" data-element="font-size" type="text">
+					<label for="tc-font-size">Font size:</label>
+					<input id="tc-font-size" class="nocolor" data-selector="p" data-element="font-size" type="text">
 				</p>
 				<p>
-					<input id="sg-font-bold" class="nocolor check" data-selector="p" data-element="font-weight" type="checkbox" data-check="600" data-default="normal">
+					<input id="tc-font-bold" class="nocolor check" data-selector="p" data-element="font-weight" type="checkbox" data-check="600" data-default="normal">
 					Bold
 				</p>
 				<p>
-					<input id="sg-font-italic" class="nocolor check" data-selector="p" data-element="font-style" type="checkbox" data-check="italic" data-default="normal">
+					<input id="tc-font-italic" class="nocolor check" data-selector="p" data-element="font-style" type="checkbox" data-check="italic" data-default="normal">
 					Italic
 				</p>
 				<p>
-					<input id="sg-font-upper" class="nocolor check" data-selector="p" data-element="text-transform" type="checkbox" data-check="uppercase" data-default="none">
+					<input id="tc-font-upper" class="nocolor check" data-selector="p" data-element="text-transform" type="checkbox" data-check="uppercase" data-default="none">
 					Uppercase
 				</p>
 			</div>

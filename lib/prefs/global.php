@@ -99,6 +99,14 @@ function prefs_global_list($partial = false)
 			'default' => 'y',
 			'tags' => ['basic'],
 		],
+		'allowImageLazyLoad' => [
+			'name' => tra('Allow image lazy loading'),
+			'type' => 'flag',
+			'description' => tr('Allow that images are loaded in a lazy way'),
+			'default' => 'n',
+			'tags' => ['advanced'],
+			'packages_required' => ['npm-asset/lozad' => 'vendor/npm-asset/lozad/dist/lozad.js'],
+		],
 		'wikiLicensePage' => [
 			'name' => tra('License page'),
 			'description' => tra('The wiki page where the license information is written.'),

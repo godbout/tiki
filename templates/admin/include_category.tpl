@@ -1,5 +1,5 @@
 {* $Id$ *}
-<form action="tiki-admin.php?page=category" method="post">
+<form action="tiki-admin.php?page=category" method="post" class="admin">
 	{ticket}
 	<div class="row">
 		<div class="form-group col-lg-12 clearfix">

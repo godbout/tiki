@@ -7,7 +7,7 @@
 
 class Search_Index_AbstractIndexDecorator implements Search_Index_Interface
 {
-	private $protected;
+	protected $parent;
 
 	function __construct(Search_Index_Interface $index)
 	{

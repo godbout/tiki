@@ -12,6 +12,8 @@
 /ZendStudioServer
 _custom/lib/setup/custom.php
 /bin
+/composer.json
+/composer.lock
 db/*.ini
 db/.htaccess
 db/cert/*.pem

@@ -1,4 +1,4 @@
-CREATE TABLE `tiki_invit` (
+CREATE TABLE IF NOT EXISTS `tiki_invit` (
   `id` int(11) NOT NULL auto_increment,
   `inviter` varchar(200) NOT NULL,
   `groups` varchar(255) default NULL,
@@ -10,7 +10,7 @@ CREATE TABLE `tiki_invit` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM;
 
-CREATE TABLE `tiki_invited` (
+CREATE TABLE IF NOT EXISTS `tiki_invited` (
   `id` int(11) NOT NULL auto_increment,
   `id_invit` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,

@@ -1,6 +1,6 @@
 <div class="t_navbar mb-4">
 	{button href="tiki-directory_browse.php" _icon_name="binoculars" class="btn btn-link" _type="link" _text="{tr}Browse{/tr}"}
-	{button href="tiki-directory_admin.php" _icon_name="gear" class="btn btn-link" _type="link" _text="{tr}Admin{/tr}"}
+	{button href="tiki-directory_admin.php" _icon_name="cog" class="btn btn-link" _type="link" _text="{tr}Admin{/tr}"}
 
 	{if $tiki_p_admin_directory_cats eq 'y'}
 		{button href="tiki-directory_admin_categories.php" _icon_name="sitemap" class="btn btn-link" _type="link" _text="{tr}Directory Categories{/tr}"}

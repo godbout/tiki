@@ -1,5 +1,5 @@
 <?php
-// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
+// (c) Copyright 2002-2017 by authors of the Tiki Wiki/CMS/Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
@@ -23,7 +23,6 @@ class CheckImageGallery extends AbstractCheckGallery
 	public function analyse()
 	{
 		$imagesPerQuery = 100;
-		$offset = 0;
 
 		$usesDatabase = $this->areFilesStoredInDatabase();
 
@@ -38,10 +37,9 @@ class CheckImageGallery extends AbstractCheckGallery
 		$galleryList = $this->getGalleryIdList();
 
 		foreach ($galleryList as $gallery) {
-			list($imageList, $filesCount) = $this->getImageList($gallery, $offset, $imagesPerQuery);
-			$filesCountTotal += $filesCount;
-
+			$offset = 0;
 			do {
+				list($imageList, $filesCount) = $this->getImageList($gallery, $offset, $imagesPerQuery);
 				foreach ($imageList as $image) {
 					if ($image['path']) {
 						$filesInDiskCount++;
@@ -55,6 +53,8 @@ class CheckImageGallery extends AbstractCheckGallery
 						$filesInDbCount++;
 					}
 				}
+				$offset += $imagesPerQuery;
+				$filesCountTotal += count($imageList);
 			} while (count($imageList) == $imagesPerQuery);
 		}
 

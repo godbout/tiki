@@ -1,4 +1,4 @@
-<form action="tiki-admin.php?page=trackers" method="post">
+<form action="tiki-admin.php?page=trackers" method="post" class="admin">
 	{ticket}
 
 	<div class="row">
@@ -39,6 +39,7 @@
 				{preference name=feature_sefurl_tracker_prefixalias}
 				{preference name=tracker_prefixalias_on_links}
 				{preference name=feature_sefurl_title_trackeritem}
+				{preference name=tracker_list_order}
 			</fieldset>
 			<fieldset class="table">
 				<legend>{tr}Field settings{/tr}</legend>

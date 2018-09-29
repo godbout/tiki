@@ -168,7 +168,7 @@ function wikiplugin_split($data, $params, $pos)
 					$percent = true;
 				}
 			}
-			$tdtotal += $tdsize[$i];
+			$tdtotal += floatval($tdsize[$i]);
 		}
 		$tdtotaltd = floor($tdtotal / 100 * 100);
 		if ($tdtotaltd == 100) { // avoir IE to do to far

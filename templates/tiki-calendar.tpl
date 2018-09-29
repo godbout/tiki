@@ -9,7 +9,7 @@
 {/title}
 <div id="calscreen">
 	<div class="t_navbar mb-4">
-		<div class="btn-group pull-right">
+		<div class="btn-group float-sm-right">
 			{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 			<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 				{icon name='menu-extra'}
@@ -206,7 +206,7 @@
 				allDayText: "{tr}all-day{/tr}",
 				firstDay: {{$firstDayofWeek}},
 				slotMinutes: {{$prefs.calendar_timespan}},
-				defaultView: {{if $prefs.calendar_view_mode === 'week'}}'agendaWeek'{{else if $prefs.calendar_view_mode === 'day'}}'agendaDay'{{else}}'month'{{/if}},
+				defaultView: {{if $prefs.calendar_view_mode === 'week'}}'agendaWeek'{{elseif $prefs.calendar_view_mode === 'day'}}'agendaDay'{{else}}'month'{{/if}},
 				eventAfterRender : function( event, element, view ) {
 					element.attr('title',event.title);
 					element.data('content', event.description);

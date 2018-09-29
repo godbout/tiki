@@ -3,7 +3,7 @@
 
 <div class="t_navbar mb-4">
 	{if $tiki_p_admin_quizzes eq 'y'}
-			{button href="tiki-edit_quiz.php" class="btn btn-link" _type="link" _icon_name="gear" _text="{tr}Admin Quizzes{/tr}"}
+			{button href="tiki-edit_quiz.php" class="btn btn-link" _type="link" _icon_name="cog" _text="{tr}Admin Quizzes{/tr}"}
 	{/if}
 	{if $tiki_p_view_quiz_stats eq 'y'}
 		{button href="tiki-quiz_stats.php" class="btn btn-link" _type="link" _icon_name="bar-chart" _text="{tr}Quiz Stats{/tr}"}

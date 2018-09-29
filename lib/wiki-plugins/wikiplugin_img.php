@@ -619,7 +619,9 @@ function wikiplugin_img($data, $params)
 	$imgdata['sizes']  = '';
 	$imgdata['featured']  = 'n';
 
-	$params = array_map(function ($param) {return  str_replace('"', '%22', $param);}, $params);
+	$params = array_map(function ($param) {
+		return str_replace('"', '&quot;', $param);
+	}, $params);
 
 	$imgdata = array_merge($imgdata, $params);
 
@@ -821,7 +823,7 @@ function wikiplugin_img($data, $params)
 				} elseif (! Image::isAvailable()) {
 					return '^' . tra('Server does not support image manipulation.') . '^';
 				} elseif (! empty($imgdata['fileId'])) {
-					if (! $userlib->user_has_perm_on_object($user, $dbinfo['galleryId'], 'file gallery', 'tiki_p_download_files')) {
+					if (! $userlib->user_has_perm_on_object($user, $imgdata['fileId'], 'file', 'tiki_p_download_files')) {
 						return $notice;
 					}
 				} elseif (! empty($imgdata['id'])) {
@@ -1144,6 +1146,15 @@ function wikiplugin_img($data, $params)
 		$smarty->assign('header_featured_images', $header_featured_images);
 	}
 
+	$lozardImg = false;
+	if ($prefs['allowImageLazyLoad'] === 'y') {
+		if (! file_exists('vendor/npm-asset/lozad/dist/lozad.js')) {
+			Feedback::error(tr('Image lazy loading is enabled but Tiki requires package npm-asset/lozad. If you do not have permission to install this package, ask the site administrator.'));
+		} else {
+			$lozardImg = true;
+		}
+	}
+
 	$tagName = '';
 	if (! empty($dbinfo['filetype'])  && ! empty($mimetypes['svg']) && $dbinfo['filetype'] == $mimetypes['svg']) {
 		$tagName = 'div';
@@ -1166,6 +1177,9 @@ function wikiplugin_img($data, $params)
 	} else {
 		$tagName = 'img';
 		$replimg = '<img src="' . $src . '" ';
+		if ($lozardImg) {
+			$replimg = '<img';
+		}
 		if ($srcset) {
 			$replimg .= 'srcset="' . $srcset . '" ';
 		}
@@ -1180,6 +1194,37 @@ function wikiplugin_img($data, $params)
 			$imgdata['class'] .= ' featured';
 		}
 		$imgdata['class'] = trim($imgdata['class']);
+	}
+
+	if ($lozardImg) {
+		$imgdata['class'] .= ' lozad';
+		$imgdata['data-src'] = true;
+		TikiLib::lib('header')->add_css('
+			.lozadFade {
+				animation-name: lozadFade;
+				animation-duration: 1s;
+			}
+			@keyframes lozadFade {
+				from {
+					opacity: 0;
+				}
+				to {
+					opacity: 1;
+				}
+			}
+		');
+		TikiLib::lib('header')->add_jsfile('vendor/npm-asset/lozad/dist/lozad.js');
+		$lozadScript = "
+			lozad('.lozad', {
+				load: function(el) {
+					el.src = el.dataset.src;
+					el.onload = function() {
+						el.classList.add('lozadFade');
+					}
+				}
+			}).observe();
+		";
+		TikiLib::lib('header')->add_jq_onready($lozadScript);
 	}
 
 	if (! empty($imgdata_dim)) {
@@ -1246,9 +1291,9 @@ function wikiplugin_img($data, $params)
 	} elseif (! empty($imgdata['desc'])) {
 		$replimg .= ' alt="' . $imgdata['desc'] . '"';
 	} elseif (! empty($dbinfo['description'])) {
-		$replimg .= ' alt="' . str_replace('"', '%22', $dbinfo['description']) . '"';
+		$replimg .= ' alt="' . str_replace('"', '&quot;', $dbinfo['description']) . '"';
 	} elseif (! empty($dbinfo['name'])) {
-		$replimg .= ' alt="' . str_replace('"', '%22', $dbinfo['name']) . '"';
+		$replimg .= ' alt="' . str_replace('"', '&quot;', $dbinfo['name']) . '"';
 	} else {
 		$replimg .= ' alt="Image"';
 	}
@@ -1260,6 +1305,10 @@ function wikiplugin_img($data, $params)
 	if (! empty($imgdata['class'])) {
 		$replimg .= ' class="' . $imgdata['class'] . '"';
 	}
+	//data-src
+	if (! empty($imgdata['data-src'])) {
+		$replimg .= ' data-src="' . $src . '"';
+	}
 
 	//title (also used for description and link title below)
 	//first set description, which is used for title if no title is set
@@ -1270,8 +1319,8 @@ function wikiplugin_img($data, $params)
 			$desc = $dbinfo['comment'];
 			$imgname = $dbinfo['comment'];
 		} else {
-			$desc = ! empty($dbinfo['description']) ? str_replace('"', '%22', $dbinfo['description']) : '';
-			$imgname = ! empty($dbinfo['name']) ? str_replace('"', '%22', $dbinfo['name']) : '';
+			$desc = ! empty($dbinfo['description']) ? str_replace('"', '&quot;', $dbinfo['description']) : '';
+			$imgname = ! empty($dbinfo['name']) ? str_replace('"', '&quot;', $dbinfo['name']) : '';
 		}
 		if (! empty($imgdata['desc'])) {
 			switch ($imgdata['desc']) {
@@ -1336,10 +1385,12 @@ function wikiplugin_img($data, $params)
 		$javaset = '';
 	}
 	// Set link to user setting or to image itself if thumb is set
+	$imgtarget = "";
 	if (! empty($imgdata['link']) || (! empty($imgdata['thumb']) && ! (isset($params['link']) && empty($params['link'])))) {
 		$mouseover = '';
 		if (! empty($imgdata['link'])) {
 			$link = $imgdata['link'];
+			$imgtarget = " target='_blank' ";
 		} elseif ((($imgdata['thumb'] == 'browse') || ($imgdata['thumb'] == 'browsepopup')) && ! empty($imgdata['id'])) {
 			$link = 'tiki-browse_image.php?imageId=' . $imgdata['id'];
 		} elseif ($javaset == 'true') {
@@ -1393,7 +1444,6 @@ function wikiplugin_img($data, $params)
 		}
 		// Set other link-related attributes
 		// target
-		$imgtarget = '';
 		if (($prefs['popupLinks'] == 'y' && (preg_match('#^([a-z0-9]+?)://#i', $link)
 			|| preg_match('#^www\.([a-z0-9\-]+)\.#i', $link))) || ($imgdata['thumb'] == 'popup')
 			|| ($imgdata['thumb'] == 'browsepopup')

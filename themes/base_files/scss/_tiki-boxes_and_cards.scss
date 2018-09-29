@@ -69,10 +69,15 @@ a.flipmodtitle .icon {
 }
 
 .modcontrols {
-	display: block;
+	visibility: hidden;
 	float: right;
-	width: 64px;
-	height: 16px;
+	> div > button.btn-link {
+		padding: 0;
+	}
+}
+
+.module:hover .modcontrols {
+	visibility: visible;
 }
 
 // MiniChat

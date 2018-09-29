@@ -164,7 +164,7 @@ EOF;
 	if (! isset($fileInfo['created'])) {
 		return tra("File not found.");
 	} else {
-		$globalperms = Perms::get([ 'type' => 'file gallery', 'object' => $fileInfo['galleryId'] ]);
+		$globalperms = Perms::get([ 'type' => 'file', 'object' => $fileInfo['fileId'] ]);
 
 		if ($globalperms->view_file_gallery != 'y') {
 			return "";

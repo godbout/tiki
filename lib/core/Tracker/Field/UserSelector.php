@@ -217,9 +217,6 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 
 			if ($this->getOption('multiple') == 2) {
 				$userlib = TikiLib::lib('user');
-				if (! empty($groupIds)) {
-					$groupIds = explode('|', $groupIds);
-				}
 				$groups = $userlib->list_all_groups_with_permission();
 				$groups = $userlib->get_group_info($groups);
 				if (! empty($groupIds)) {
@@ -329,8 +326,8 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 
 	function importRemoteField(array $info, array $syncInfo)
 	{
-		$groupIds = $this->getOption('groupIds', '');
-		$groupIds = array_filter(explode('|', $groupIds));
+		$groupIds = $this->getOption('groupIds');
+		$groupIds = array_filter($groupIds);
 		$groupIds = array_map('intval', $groupIds);
 
 		$controller = new Services_RemoteController($syncInfo['provider'], 'user');
@@ -544,10 +541,7 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 		$tikilib = TikiLib::lib('tiki');
 		$users = [];
 
-		$groupIds = $this->getOption('groupIds', '');
-		if (! empty($groupIds)) {
-			$groupIds = explode('|', $groupIds);
-		}
+		$groupIds = $this->getOption('groupIds');
 		$groups = $userlib->list_all_groups_with_permission();
 		$groups = $userlib->get_group_info($groups);
 		if (! empty($groupIds)) {

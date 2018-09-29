@@ -1,5 +1,5 @@
 {* $Id$ *}
-<form action="tiki-admin.php?page=rtc" method="post">
+<form action="tiki-admin.php?page=rtc" method="post" class="admin">
 	{ticket}
 	<div class="t_navbar mb-4">
 		{button href="tiki-admingroups.php" _class="btn-link tips" _type="text" _icon_name="group" _text="{tr}Groups{/tr}" _title=":{tr}Group Administration{/tr}"}

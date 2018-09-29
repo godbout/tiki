@@ -173,5 +173,24 @@ function prefs_tracker_list()
 			'type' => 'flag',
 			'default' => 'n',
 		],
+		'tracker_list_order' => [
+			'name' => tr('Tracker list order'),
+			'description' => tr('Default order for the main tracker list.'),
+			'type' => 'list',
+			'perspective' => false,
+			'options' => [
+				'trackerId_asc' => tra('Id Ascending'),
+				'trackerId_desc' => tra('Id Descending'),
+				'created_asc' => tra('Created Ascending'),
+				'created_desc' => tra('Created Descending'),
+				'name_asc' => tra('Name Ascending'),
+				'name_desc' => tra('Name Descending'),
+				'lastModif_asc' => tra('Last Modified Ascending'),
+				'lastModif_desc' => tra('Last Modified Descending'),
+				'items_asc' => tra('Number of Items Ascending'),
+				'items_desc' => tra('Number of Items Descending'),
+			],
+			'default' => 'created_desc',
+		],
 	];
 }

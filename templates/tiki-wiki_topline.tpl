@@ -2,7 +2,7 @@
 <div class="wikitopline clearfix" style="clear: both;">
 	<div class="content">
 		{if !isset($hide_page_header) or !$hide_page_header}
-			<div class="wikiinfo pull-left">
+			<div class="wikiinfo float-left">
 				{if $prefs.wiki_page_name_above eq 'y' and $print_page ne 'y'}
 					<a href="tiki-index.php?page={$page|escape:"url"}" class="titletop" title="{tr}refresh{/tr}">{$page|escape}</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{* The hard-coded spaces help selecting the page name for inclusion in a wiki link *}
 				{/if}
@@ -19,13 +19,19 @@
 				{/if}
 			</div>
 		{/if} {*hide_page_header*}
+		{if $pdf_export eq 'y'}
+			<div class="wikiinfo float-left" id="pdfinfo" style="display:none">
+				<div class="alert alert-info" style="width:500px"><h4><span class="icon icon-information fas fa-info-circle fa-fw "></span>&nbsp;<span class="rboxtitle">{tr}Please wait{/tr}</span></h4><div class="rboxcontent" style="display: inline"><span class="fas fa-circle-notch fa-spin" style="font-size:24px"></span>{tr} The PDF is being prepared, please wait...{/tr}</div></div>
+			</div>
+		{/if}
 	</div> {* div.content *}
 </div> {* div.wikitopline *}
 
 {if !isset($versioned) and $print_page ne 'y' and (!isset($hide_page_header) or !$hide_page_header)}
 	<div class="wikiactions_wrapper">
-		<div class="wikiactions icons btn-group pull-right">
-			<div class="btn-group">
+	{strip}
+		<div class="wikiactions float-sm-right">
+			<div class="btn-group ml-2">
 				{* Show language dropdown only if there is more than 1 language or user has right to edit *}
 				{if ($tiki_p_admin eq 'y' or $tiki_p_admin_wiki eq 'y' or $tiki_p_edit eq 'y' or $tiki_p_edit eq 'y' or $tiki_p_edit_inline eq 'y') or $translationsCount gt 1}
 					{if $prefs.feature_multilingual eq 'y' && $prefs.show_available_translations eq 'y' && $machine_translate_to_lang eq '' }
@@ -38,13 +44,13 @@
 				{* if we want a ShareThis icon and we want it displayed prominently *}
 				{if $prefs.feature_wiki_sharethis eq "y" and $prefs.wiki_sharethis_encourage eq "y"}
 					{* Similar as in the blogs except there can be only one per page, so it is simpler *}
-					<div class="btn-group">
+					<div class="btn-group sharethis">
 						{literal}
 						<script type="text/javascript">
 							//Create your sharelet with desired properties and set button element to false
 							var object = SHARETHIS.addEntry({ title:'{/literal}{$page|escape:"url"}{literal}'}, {button:false});
 							//Output your customized button
-							document.write('<a class="btn btn-link tips" id="share" href="#"{/literal} title="{tr}ShareThis{/tr}">{icon name="sharethis"}{literal}</a>');
+							document.write('<a class="btn btn-info tips" id="share" href="#"{/literal} title="{tr}ShareThis{/tr}">{icon name="sharethis"}{literal}</a>');
 							//Tie customized button to ShareThis button functionality.
 							var element = document.getElementById("share");
 							object.attachButton(element);
@@ -56,7 +62,7 @@
 				{if $prefs.feature_backlinks eq 'y' and $backlinks|default:null and $tiki_p_view_backlink eq 'y'}
 					<div class="btn-group backlinks">
 						{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-						<a role="button" data-toggle="dropdown" data-hover="dropdown" class="btn btn-link dropdown-toggle">
+						<a href="#" role="button" data-toggle="dropdown" data-hover="dropdown" class="btn btn-info dropdown-toggle">
 							{icon name="backlink"}
 						</a>
 						<ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -64,13 +70,14 @@
 								{tr}Backlinks{/tr}
 							</li>
 							<li class="dropdown-divider"></li>
-							<li role="presentation" class="dropdown-item">
-								{section name=back loop=$backlinks}
-									<a role="menuitem" tabindex="-1" href="{$backlinks[back].objectId|sefurl:$backlinks[back].type}" title="{object_title id=$backlinks[back].objectId type=$backlinks[back].type|escape}">
-									  {if $prefs.wiki_backlinks_name_len ge '1'}{object_title id=$backlinks[back].objectId type=$backlinks[back].type|truncate:$prefs.wiki_backlinks_name_len:"...":true|escape}{else}{object_title id=$backlinks[back].objectId type=$backlinks[back].type|escape}{/if}
+							{section name=back loop=$backlinks}
+								{capture name=backlink_title}{object_title id=$backlinks[back].objectId type=$backlinks[back].type}{/capture}
+								<li role="presentation" class="dropdown-item">
+									<a role="menuitem" tabindex="-1" href="{$backlinks[back].objectId|sefurl:$backlinks[back].type}" title="{$smarty.capture.backlink_title|escape}">
+									  {if $prefs.wiki_backlinks_name_len ge '1'}{$smarty.capture.backlink_title|truncate:$prefs.wiki_backlinks_name_len:"...":true|escape}{else}{$smarty.capture.backlink_title|escape}{/if}
 									</a>
-								{/section}
-							</li>
+								</li>
+							{/section}
 						</ul>
 						{if ! $js}</li></ul>{/if}
 					</div>
@@ -78,7 +85,7 @@
 				{if $structure eq 'y' or ( $structure eq 'n' and count($showstructs) neq 0 )}
 					<div class="btn-group structures">
 						{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-						<a class="btn btn-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+						<a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
 							{icon name="structure"}
 						</a>
 						<ul class="dropdown-menu dropdown-menu-right" role="menu">
@@ -114,14 +121,10 @@
 				{assign var="hasPageAction" value="0"}
 				{capture name="pageActions"}
 					{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-					<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
-						{icon name='menu-extra'}
+					<a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#"  title="{tr}Page actions{/tr}">
+						{icon name="cog"}
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right">
-						<li class="dropdown-title">
-							{tr}Page actions{/tr}
-						</li>
-						<li class="dropdown-divider"></li>
 						<li class="dropdown-item">
 							{if $pdf_export eq 'y'}
 								<a href="tiki-print.php?{query _keepall='y' display="pdf" page=$page}">
@@ -140,9 +143,7 @@
 								<li class="dropdown-item">
 									<a {ajax_href template="tiki-editpage.tpl"}tiki-editpage.php?page={$page|escape:"url"}{if !empty($page_ref_id) and (empty($needsStaging) or $needsStaging neq 'y')}&amp;page_ref_id={$page_ref_id}{/if}{/ajax_href}>
 										{icon name="edit"} {tr}Edit{/tr}
-										{assign var="hasPageAction" value="1"}
-									</a>
-								</li>
+										{assign var="hasPageAction" value="1"}</a></li>
 								{if $prefs.wiki_edit_icons_toggle eq 'y' and ($prefs.wiki_edit_plugin eq 'y' or $prefs.wiki_edit_section eq 'y')}
 									{jq}
 										$("#wiki_plugin_edit_view").click( function () {
@@ -260,7 +261,9 @@
 								</a>
 							</li>
 						{/if}
-						{monitor_link type="wiki page" object=$page class="" linktext="{tr}Notification{/tr}" tag="li"}
+						<li class="dropdown-item">
+							{monitor_link type="wiki page" object=$page class="" linktext="{tr}Notification{/tr}"}
+						</li>
 						{if !empty($user) and $prefs.feature_user_watches eq 'y'}
 							{if $user_watching_page eq 'n'}
 								<li class="dropdown-item">
@@ -321,11 +324,12 @@
 					{if ! $js}</li></ul>{/if}
 				{/capture}
 				{if $hasPageAction eq '1'}
-					<div class="btn-group page_actions">
+					<div class="btn-group page_actions" role="group">
 						{$smarty.capture.pageActions}
 					</div>
 				{/if}
 			</div>
 		</div> {* END of wikiactions *}
+	{/strip}
 	</div>
 {/if}

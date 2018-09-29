@@ -115,7 +115,7 @@ function prefs_wikiplugin_list($partial = false)
 			];
 		}
 		$out['wikiplugin_snarf_cache'] = ['default' => 0];
-		$out['wikiplugin_list_gui'] = ['default' => 'n'];
+		$out['wikiplugin_list_gui'] = ['default' => 'y'];
 		$out['wikiplugin_list_convert_trackerlist'] = ['default' => 'n'];
 		$out['wikiplugin_maximum_passes'] = ['default' => 500];
 

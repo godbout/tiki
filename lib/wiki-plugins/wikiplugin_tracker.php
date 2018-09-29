@@ -68,7 +68,7 @@ function wikiplugin_tracker_info()
 					'Sets button style classes for action buttons. If multiple buttons have been set
 					in the %0 parameter, the same number of colon-separated styles must be set here. Example:',
 					'<code>action</code>'
-				) . "<code>btn btn-secondary:btn btn-success:btn btn-primary pull-right</code>",
+				) . "<code>btn btn-secondary:btn btn-success:btn btn-primary float-right</code>",
 				'since' => '14.1',
 				'separator' => ':',
 				'default' => 'btn btn-secondary'
@@ -1518,7 +1518,7 @@ function wikiplugin_tracker($data, $params)
 		} elseif (! empty($itemId)) {
 			if (isset($fields) && empty($wiki) && empty($tpl)) {
 				$fl = $fields;
-				$filter = '';
+				$filter = [];
 				foreach ($flds['data'] as $f) {
 					if (in_array($f['fieldId'], $fl)) {
 						$filter[] = $f;
@@ -1823,7 +1823,7 @@ function wikiplugin_tracker($data, $params)
 				}
 
 				// if we are doing a transaction then pick up values "saved" so far
-				if ($transactionName && isset($_SESSION[$transactionName][$transactionStep]['ins_fields']['data'])) {
+				if (!empty($transactionName) && isset($_SESSION[$transactionName][$transactionStep]['ins_fields']['data'])) {
 					foreach ($_SESSION[$transactionName][$transactionStep]['ins_fields']['data'] as $txField) {
 						if ($txField['fieldId'] == $f['fieldId']) {
 							$item[$f['fieldId']] = $txField['value'];

@@ -1,14 +1,14 @@
 {* $Id$ *}
 
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
-		<i class="fa fa-arrow-circle-up fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
+	<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
+		<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
+		<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
 	{tr}New permissions and action log settings{/tr}.
 	<br/><br/><br/>
 	<div class="media-body">
-		{icon name="key" size=3 iclass="pull-right"}
+		{icon name="key" size=3 iclass="float-sm-right"}
 		<fieldset>
 			<legend>{tr}Permissions{/tr}</legend>
 			<b>{tr}Wiki{/tr}</b>:
@@ -61,7 +61,7 @@
 			</ul>
 		</fieldset>
 		<br/>
-		{icon name="book" size=3 iclass="pull-right"}
+		{icon name="book" size=3 iclass="float-sm-right"}
 		<fieldset>
 			<legend>{tr}Action log settings{/tr}</legend>
 			<b>{tr}BigBlueButton{/tr}</b>:

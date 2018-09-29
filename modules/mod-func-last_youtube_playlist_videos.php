@@ -19,6 +19,7 @@ function module_last_youtube_playlist_videos_info()
 		'name' => tra('YouTube Playlist'),
 		'description' => tra('Display a YouTube playlist'),
 		'prefs' => ['wikiplugin_youtube'],
+		'packages_required' => ['google/apiclient' => 'Google_Client'],
 		'documentation' => 'Module last_youtube_playlist_videos',
 	'params' => [
 			'id' => [
@@ -110,6 +111,11 @@ function module_last_youtube_playlist_videos_info()
  */
 function module_last_youtube_playlist_videos($mod_reference, $module_params)
 {
+	if (! class_exists('Google_Client')) {
+		Feedback::error(tr('To display a YouTube playlist, Tiki needs the google/apiclient package. If you do not have permission to install this package, ask the site administrator.'));
+		return;
+	}
+
 	global $prefs;
 	$tikilib = TikiLib::lib('tiki');
 	$data = [];

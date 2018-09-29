@@ -14,9 +14,7 @@ $access->check_feature('feature_html_pages');
 $access->check_permission('tiki_p_edit_html_pages');
 
 if (! isset($_REQUEST["pageName"])) {
-	$smarty->assign('msg', tra("No page indicated"));
-	$smarty->display("error.tpl");
-	die;
+	Feedback::errorPage(tr('No page indicated'));
 }
 $auto_query_args = [
 	'find',
@@ -39,19 +37,33 @@ if ($_REQUEST["zone"]) {
 }
 $smarty->assign('content', $info["content"]);
 $smarty->assign('type', $info["type"]);
-if (isset($_REQUEST["editmany"])) {
-	check_ticket('admin-html-page-content');
+if (isset($_REQUEST["editmany"]) && $access->checkCsrf()) {
 	$zones = $htmlpageslib->list_html_page_content($_REQUEST["pageName"], 0, -1, 'zone_asc', '');
 	$temp_max = count($zones["data"]);
+	$totalResult = 0;
 	for ($i = 0; $i < $temp_max; $i++) {
 		if (isset($_REQUEST[$zones["data"][$i]["zone"]])) {
-			$htmlpageslib->replace_html_page_content($_REQUEST["pageName"], $zones["data"][$i]["zone"], $_REQUEST[$zones["data"][$i]["zone"]]);
+			$result = $htmlpageslib->replace_html_page_content($_REQUEST["pageName"], $zones["data"][$i]["zone"], $_REQUEST[$zones["data"][$i]["zone"]]);
+			if ($result && $result->numRows()) {
+				$totalResult = $totalResult + $result->numRows();
+			}
 		}
 	}
+	if ($totalResult) {
+		Feedback::success(
+			$totalResult === 1 ? tr('One dynamic zone updated') : tr('%0 dynamic zones updated', $totalResult)
+		);
+	} else {
+		Feedback::error(tr('Dynamic zones not updated'));
+	}
 }
-if (isset($_REQUEST["save"])) {
-	check_ticket('admin-html-page-content');
-	$htmlpageslib->replace_html_page_content($_REQUEST["pageName"], $_REQUEST["zone"], $_REQUEST["content"]);
+if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
+	$result = $htmlpageslib->replace_html_page_content($_REQUEST["pageName"], $_REQUEST["zone"], $_REQUEST["content"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Hotword saved'));
+	} else {
+		Feedback::error(tr('Hotword not saved'));
+	}
 	$smarty->assign('zone', '');
 	$smarty->assign('content', '');
 }
@@ -76,7 +88,6 @@ $smarty->assign_by_ref('sort_mode', $sort_mode);
 $channels = $htmlpageslib->list_html_page_content($_REQUEST["pageName"], $offset, $maxRecords, $sort_mode, $find);
 $smarty->assign_by_ref('cant_pages', $channels["cant"]);
 $smarty->assign_by_ref('channels', $channels["data"]);
-ask_ticket('admin-html-page-content');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template

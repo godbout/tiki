@@ -206,7 +206,7 @@ class XMPPLib extends TikiLib
 			'whitelisted_plugins' => ['tiki'],
 			'view_mode' => $params['view_mode'],
 			'debug' => $prefs['xmpp_conversejs_debug'] === 'y',
-
+			'use_emojione' => false
 		];
 
 		if ($params['room']) {
@@ -230,11 +230,15 @@ class XMPPLib extends TikiLib
 
 		$js = '
 (function () {
+	var error = console && console.error
+		? console.error.bind(console)
+		: function(msg) { return feedback(msg, "error", false); };
+
 	converse.plugins.add("tiki", {
 		"initialize": function () {
 			var _converse = this._converse;
 			_converse.api.listen.on("noResumeableSession", function (xhr) {
-				feedback (tr("XMPP Module error") + ": " + xhr.statusText, "error", false);
+				error(tr("XMPP Module error") + ": " + xhr.statusText);
 				$("#conversejs").fadeOut("fast");
 			});
 		}

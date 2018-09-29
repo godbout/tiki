@@ -59,6 +59,7 @@ class Search_ContentSource_WikiSource implements Search_ContentSource_Interface
 			'language' => $typeFactory->identifier(empty($info['lang']) ? 'unknown' : $info['lang']),
 			'creation_date' => $typeFactory->timestamp($info['created']),
 			'modification_date' => $typeFactory->timestamp($info['lastModif']),
+			'date' => $typeFactory->timestamp($info['created']),
 			'description' => $typeFactory->plaintext($info['description']),
 			'contributors' => $typeFactory->multivalue($contributors),
 
@@ -126,6 +127,7 @@ class Search_ContentSource_WikiSource implements Search_ContentSource_Interface
 			'language',
 			'creation_date',
 			'modification_date',
+			'date',
 			'description',
 			'contributors',
 
@@ -155,6 +157,7 @@ class Search_ContentSource_WikiSource implements Search_ContentSource_Interface
 		return [
 			'title' => true,
 			'description' => true,
+			'date' => true,
 
 			'wiki_content' => false,
 			'wiki_keywords' => true,

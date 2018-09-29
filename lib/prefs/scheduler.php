@@ -17,10 +17,17 @@ function prefs_scheduler_list($partial = false)
 			'tags' => ['advanced'],
 		],
 		'scheduler_notify_on_stalled' => [
-			'name' => tr('Notify admins on stalled schedulers'),
-			'description' => tr('Send an email notification to Tiki admins when a stalled scheduler is detected.'),
+			'name' => tr('Notify on stalled schedulers'),
+			'description' => tr('Send an email notification when a stalled scheduler is detected.'),
 			'type' => 'flag',
 			'default' => 'y',
+			'tags' => ['advanced'],
+		],
+		'scheduler_users_to_notify_on_stalled' => [
+			'name' => tr('Users to notify on stalled task'),
+			'description' => tr('List of users/emails separated by comma to be notified when a scheduler task is set to stalled.</br><code>Ex: admin,operations@example.com</code></br><strong>If empty, the email will be sent to all administrators.</strong>'),
+			'type' => 'text',
+			'default' => '',
 			'tags' => ['advanced'],
 		],
 		'scheduler_healing_timeout' => [
@@ -33,10 +40,17 @@ function prefs_scheduler_list($partial = false)
 			'tags' => ['advanced'],
 		],
 		'scheduler_notify_on_healing' => [
-			'name' => tr('Notify admins on healed schedulers'),
-			'description' => tr('Send an email notification to Tiki admins when a stalled scheduler was healed..'),
+			'name' => tr('Notify on healed schedulers'),
+			'description' => tr('Send an email notification when a stalled scheduler is healed.'),
 			'type' => 'flag',
 			'default' => 'y',
+			'tags' => ['advanced'],
+		],
+		'scheduler_users_to_notify_on_healed' => [
+			'name' => tr('Users to notify on healed task'),
+			'description' => tr('List of users/emails separated by comma to be notified when a scheduler task is set to healed.</br><code>Ex: admin,operations@example.com</code></br><strong>If empty, the email will be sent to all administrators.</strong>'),
+			'type' => 'text',
+			'default' => '',
 			'tags' => ['advanced'],
 		],
 		'scheduler_keep_logs' => [

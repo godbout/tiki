@@ -723,7 +723,7 @@ class Services_Tracker_Controller
 				'',
 				'',
 				// not custom submit handler that is only needed when called by this service
-				'submitHandler: function(form, event){return process_submit(form);}'
+				'submitHandler: function(form, event){return process_submit(form, event);}'
 			);
 			TikiLib::lib('header')->add_jq_onready('$("#cloneItemForm' . $trackerId . '").validate({' . $validationjs . $this->get_validation_options());
 		}
@@ -779,10 +779,10 @@ class Services_Tracker_Controller
 
 		$fields = $input->fields->none();
 		$forced = $input->forced->none();
+		$processedFields = $itemObject->prepareInput($input);
+		$toRemove = [];
 
 		if (empty($fields)) {
-			$toRemove = [];
-			$processedFields = $itemObject->prepareInput($input);
 
 			$fields = [];
 			foreach ($processedFields as $k => $f) {
@@ -806,6 +806,21 @@ class Services_Tracker_Controller
 				}
 			}
 			$fields = $out;
+
+			// if fields are specified in the form creation url then use only those ones
+			if (! empty($fields) && $_SERVER['REQUEST_METHOD'] !== 'POST') {
+				foreach ($processedFields as $k => $f) {
+					$permName = $f['permName'];
+
+					if (! isset($fields[$permName])) {
+						$toRemove[$permName] = $k;
+					}
+				}
+
+				foreach ($toRemove as $permName => $key) {
+					unset($processedFields[$key]);
+				}
+			}
 		}
 
 		global $prefs;
@@ -816,13 +831,14 @@ class Services_Tracker_Controller
 				'',
 				'',
 				// not custom submit handler that is only needed when called by this service
-				'submitHandler: function(form, event){return process_submit(form);}'
+				'submitHandler: function(form, event){return process_submit(form, event);}'
 			);
 			TikiLib::lib('header')->add_jq_onready('$("#insertItemForm' . $trackerId . '").validate({' . $validationjs . $this->get_validation_options('#insertItemForm' . $trackerId));
 		}
 
 		$itemId = 0;
-		if (! empty($fields) && $_SERVER['REQUEST_METHOD'] == 'POST') {
+		$util = new Services_Utilities();
+		if (! empty($fields) && $util->isActionPost()) {
 			foreach ($forced as $key => $value) {
 				if ($itemObject->canModifyField($key)) {
 					$fields[$key] = $value;
@@ -988,7 +1004,7 @@ class Services_Tracker_Controller
 				'',
 				'',
 				// not custom submit handler that is only needed when called by this service
-				'submitHandler: function(form, event){return process_submit(form);}'
+				'submitHandler: function(form, event){return process_submit(form, event);}'
 			);
 			TikiLib::lib('header')->add_jq_onready('$("#updateItemForm' . $trackerId . '").validate({' . $validationjs . $this->get_validation_options());
 		}

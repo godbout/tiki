@@ -124,7 +124,7 @@
 {button _text="{tr}Save{/tr}" _style="display:none;" _class="save_structure" _type="primary" _ajax="n" _auto_args="save_structure,page_ref_id"}
 
 {if $editable == 'y'}
-	<form action="tiki-edit_structure.php" method="post" class="form-inline" role="form">
+	<form action="tiki-edit_structure.php" method="get" class="form-inline" role="form">
 		<div class="card">
 			<div class="card-header">
 				<strong>{tr}Add pages{/tr}</strong> <small>{tr}Use an existing page by dragging it into the structure above{/tr}</small>
@@ -154,12 +154,13 @@
 					{/if}
 				</div>
 				<ul id="page_list_container">
-					{section name=list loop=$listpages}
+					{foreach $listpages.data as $aPage}
 						<li class="ui-state-default">
-							{$listpages[list].pageName|escape}
+							{$aPage.pageName|escape}
 						</li>
-					{/section}
+					{/foreach}
 				</ul>
+				{pagination_links cant=$listpages.cant step=$maxRecords offset=$offset}{/pagination_links}
 			</div>
 		</div>
 	</form>
@@ -196,12 +197,12 @@
 					{/section}
 				</select>
 			</div>
-			<label class="pull-left" for="begin1">{tr}at the beginning{/tr}</label>
-			<div class="pull-left"><input type="radio" id="begin1" name="begin" value="1" checked="checked" {if $structures|@count eq '1'} disabled="disabled"{/if}></div>
-			<label class="pull-left" for="begin2">{tr}at the end{/tr}</label>
-			<div class="pull-left"><input type="radio" id="begin2" name="begin" value="0" {if $structures|@count eq '1'}disabled="disabled"{/if}></div>
+			<label class="float-left" for="begin1">{tr}at the beginning{/tr}</label>
+			<div class="float-left"><input type="radio" id="begin1" name="begin" value="1" checked="checked" {if $structures|@count eq '1'} disabled="disabled"{/if}></div>
+			<label class="float-left" for="begin2">{tr}at the end{/tr}</label>
+			<div class="float-left"><input type="radio" id="begin2" name="begin" value="0" {if $structures|@count eq '1'}disabled="disabled"{/if}></div>
 			<hr>
-			<div class="pull-left input_submit_container">
+			<div class="float-left input_submit_container">
 				<input type="submit" class="btn btn-primary" name="move_to" value="{tr}Move{/tr}" {if $structures|@count eq '1'} disabled="disabled"{/if}>
 			</div>
 		</form>

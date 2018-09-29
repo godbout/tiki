@@ -1,5 +1,5 @@
 {* $Id$ *}
-<form action="tiki-admin.php?page=look" id="look" name="look" class="labelColumns" class="admin" method="post">
+<form action="tiki-admin.php?page=look" id="look" name="look" class="labelColumns admin" method="post">
 	{ticket}
 	<div class="clearfix mb-4">
 		{if $prefs.feature_theme_control eq y}
@@ -193,7 +193,7 @@
 			</fieldset>
 			<fieldset>
 				<legend>{tr}Editing{/tr}</legend>
-				{preference name=theme_styleguide}
+				{preference name=theme_customizer}
 				{preference name=feature_editcss}
 				{preference name=feature_view_tpl}
 				{if $prefs.feature_view_tpl eq 'y'}

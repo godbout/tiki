@@ -63,8 +63,9 @@ class Services_Xmpp_Controller
 			die(tr('Invalid user'));
 		}
 
-		// TODO: Check with jonnybradley if this is a good idea
-		$tokenlib = AuthTokens::build();
+		// TODO: Check with jonnybradley if this is a good idea (jonnyb thinks it's fine but is no expert ;)
+		global $prefs;
+		$tokenlib = AuthTokens::build($prefs);
 		$tokens = $tokenlib->getTokens(['entry' => 'openfireaccesskey']);
 		$key = ! empty($tokens) ? md5("{$user}{$tokens[0]['token']}") : null;
 

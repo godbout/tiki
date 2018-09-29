@@ -33,6 +33,7 @@ class Search_ContentSource_FileGallerySource implements Search_ContentSource_Int
 			'title' => $typeFactory->sortable($item['name']),
 			'creation_date' => $typeFactory->timestamp($item['created']),
 			'modification_date' => $typeFactory->timestamp($item['lastModif']),
+			'date' => $typeFactory->timestamp($item['created']),
 			'description' => $typeFactory->plaintext($item['description']),
 			'language' => $typeFactory->identifier('unknown'),
 
@@ -52,6 +53,7 @@ class Search_ContentSource_FileGallerySource implements Search_ContentSource_Int
 			'language',
 			'creation_date',
 			'modification_date',
+			'date',
 
 			'gallery_id',
 
@@ -66,6 +68,7 @@ class Search_ContentSource_FileGallerySource implements Search_ContentSource_Int
 		return [
 			'title' => true,
 			'description' => true,
+			'date' => true,
 		];
 	}
 }

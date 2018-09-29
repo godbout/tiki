@@ -9,7 +9,7 @@
 		{elseif $blog_post_context eq 'excerpt'}
 			<bold>{object_link type="blog post" id=$post_info.postId title=$post_info.title}</bold>
 		{else}
-			<h2 class="panel-title">
+			<h2 class="card-title">
 				{object_link type="blog post" id=$post_info.postId title=$post_info.title}{if $post_info.priv eq 'y'} <span class="label label-warning">{tr}private{/tr}</span>{/if}
 			</h2>
 			<a aria-hidden="true" class="tiki_anchor" href="{$post_info.postId|sefurl:blogpost}" title="{tr}permanent link{/tr}">{icon name="link"}</a>

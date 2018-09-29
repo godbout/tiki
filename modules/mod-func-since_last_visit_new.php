@@ -201,10 +201,7 @@ function module_since_last_visit_new($mod_reference, $params = null)
 			$visible = false;
 			// Only show new comments related to posts the user is allowed to see
 			if ($userlib->user_has_perm_on_object($user, $res['object'], $res['objectType'], 'tiki_p_read_comments')) {
-				// Only show new comments related to posts in blogs the user is allowed to see
-				$query = 'select `blogId` from `tiki_blog_posts` where `postId`=? ';
-				$blogId = $tikilib->getOne($query, (int) $res['object']);
-				$visible = $userlib->user_has_perm_on_object($user, $blogId, 'blog', 'tiki_p_read_blog');
+				$visible = $userlib->user_has_perm_on_object($user, $res['object'], $res['objectType'], $perm);
 			}
 		} else {
 			$visible = ! isset($perm) || $userlib->user_has_perm_on_object($user, $res['object'], $res['objectType'], $perm);
@@ -243,7 +240,7 @@ function module_since_last_visit_new($mod_reference, $params = null)
 
 		$count = 0;
 		while ($res = $result->fetchRow()) {
-			if ($userlib->user_has_perm_on_object($user, $res['object'], $res['objectType'], 'tiki_p_forum_read')) {
+			if ($userlib->user_has_perm_on_object($user, $res['parentId'], 'thread', 'tiki_p_forum_read')) {
 				$ret['items']['posts']['list'][$count]['href']
 					= 'tiki-view_forum_thread.php?comments_parentId=';
 				if ($res['parentId']) {
@@ -297,12 +294,19 @@ function module_since_last_visit_new($mod_reference, $params = null)
 			$bindvars = [(int) $last, time()];
 		} else {
 			$query = 'select `articleId`,`title`,`publishDate`,`authorName` from `tiki_articles` where `publishDate`>? and `publishDate`<=? and `expireDate`>? order by `articleId` desc';
-			$bindvars = [(int) $last,time(),time()];
+      $bindvars = [(int) $last,time(),time()];
 		}
-		$result = $tikilib->query($query, $bindvars, $resultCount);
+		$result = $tikilib->fetchAll($query, $bindvars, $resultCount);
+
+		$articleIds = array_map(
+			function($res) {
+				return $res['articleId'];
+			}, $result
+		);
+		Perms::bulk(['type' => 'article'], 'object', $articleIds);
 
 		$count = 0;
-		while ($res = $result->fetchRow()) {
+		foreach ($result as $res) {
 			if ($userlib->user_has_perm_on_object($user, $res['articleId'], 'article', 'tiki_p_read_article')) {
 				$ret['items']['articles']['list'][$count]['href']  = filter_out_sefurl('tiki-read_article.php?articleId=' . $res['articleId'], 'article', $res['title']);
 				$ret['items']['articles']['list'][$count]['title'] = $tikilib->get_short_datetime($res['publishDate']) . ' ' . tra('by') . ' ' . $res['authorName'];
@@ -365,7 +369,7 @@ function module_since_last_visit_new($mod_reference, $params = null)
 
 		$count = 0;
 		while ($res = $result->fetchRow()) {
-			if ($userlib->user_has_perm_on_object($user, $res['blogId'], 'blog', 'tiki_p_read_blog')) {
+			if ($userlib->user_has_perm_on_object($user, $res['postId'], 'blog post', 'tiki_p_read_blog')) {
 				$ret['items']['blogPosts']['list'][$count]['href']  = filter_out_sefurl('tiki-view_blog_post.php?postId=' . $res['postId'], 'blogpost', $res['title']);
 				$ret['items']['blogPosts']['list'][$count]['title'] = $tikilib->get_short_datetime($res['created']) . ' ' . tra('by') . ' ' . smarty_modifier_username($res['user']);
 				$ret['items']['blogPosts']['list'][$count]['label'] = $res['title'];
@@ -506,7 +510,8 @@ function module_since_last_visit_new($mod_reference, $params = null)
 		$tracker_name = [];
 		$cachelib = TikiLib::lib('cache');
 		while ($res = $result->fetchRow()) {
-			if ($userlib->user_has_perm_on_object($user, $res['trackerId'], 'tracker', 'tiki_p_view_trackers')) {
+			$itemObject = Tracker_Item::fromId($res['itemId']);
+			if ($itemObject->canView()) {
 				// Initialize tracker counter if needed.
 				if (! isset($counta[$res['trackerId']])) {
 					$counta[$res['trackerId']] = 0;
@@ -565,7 +570,8 @@ function module_since_last_visit_new($mod_reference, $params = null)
 		$cachelib = TikiLib::lib('cache');
 
 		while ($res = $result->fetchRow()) {
-			if ($userlib->user_has_perm_on_object($user, $res['trackerId'], 'tracker', 'tiki_p_view_trackers')) {
+			$itemObject = Tracker_Item::fromId($res['itemId']);
+			if ($itemObject->canView()) {
 				// Initialize tracker counter if needed.
 				if (! isset($countb[$res['trackerId']])) {
 					$countb[$res['trackerId']] = 0;

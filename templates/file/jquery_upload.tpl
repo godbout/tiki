@@ -5,7 +5,7 @@
 	<div class="col-md-12">
 		<div class="well fileupload mb-0">
 			<h3 class="text-center">{icon name="cloud-upload"} {tr}Drop files or {/tr}
-				<div class="btn btn-secondary fileinput-button">
+				<div class="btn btn-primary fileinput-button">
 					<span>{tr}Choose files{/tr}</span>
 					{* The file input field used as target for the file upload widget *}
 					<input id="fileupload" type="file" name="files[]" multiple>
@@ -23,7 +23,7 @@
 		{tr}Automatic upload{/tr}
 	</label>{* The container for the uploaded files *}
 </div>
-<div class="hidden">
+<div class="d-none">
 	{icon name='file' id='file_icon'}
 	{icon name='pdf' id='pdf_icon'}
 	{icon name='video' id='video_icon'}

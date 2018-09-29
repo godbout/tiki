@@ -123,7 +123,7 @@
 		<input type="hidden" name="page" value="{$page|escape}">
 		<input type="hidden" name="history_offset" value="{$history_offset}">
 		<div class="clearfix">
-			<div class="pull-left col-sm-9" style="margin-bottom: 10px">
+			<div class="float-left col-sm-9" style="margin-bottom: 10px">
 				<input type="checkbox" name="paginate" id="paginate"{if $paginate} checked="checked"{/if}>
 				<label for="paginate">{tr}Enable pagination{/tr}</label>
 				{if $paginate}
@@ -132,7 +132,7 @@
 				{/if}
 			</div>
 			{if $prefs.feature_multilingual eq 'y' and $tiki_p_edit eq 'y'}
-				<div class="col-sm-6 pull-left mb-3">
+				<div class="col-sm-6 float-left mb-3">
 					<div class="input-group input-group-sm">
 						<span class="input-group-append">
 							{icon name='admin_i18n' class='tips' title=":{tr}Translation{/tr}"}
@@ -155,7 +155,7 @@
 				</div>
 			{/if}
 			{if ($prefs.default_wiki_diff_style ne "old") and $history}
-				<div class="input-group input-group-sm col-sm-4 pull-right mb-4">
+				<div class="input-group input-group-sm col-sm-4 float-sm-right mb-4">
 					<select class="form-control" name="diff_style" id="diff_style_all"{if $prefs.javascript_enabled eq "y"} style="display: none"{/if}>
 						<option value="htmldiff" {if $diff_style == "htmldiff"}selected="selected"{/if}>
 							{tr}HTML diff{/tr}

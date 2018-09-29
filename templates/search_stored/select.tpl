@@ -6,14 +6,14 @@
 
 {block name="content"}
 <form role="form" method="post" action="{service controller=search_stored action=select}">
-	<div class="panel panel-primary">
+	<div class="card">
 		<div class="card-header">
 			<label>
 				<input type="radio" name="queryId" value="" checked>
 				{tr}Create New{/tr}
 			</label>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 			<div class="form-group row">
 				<label for="label" class="col-form-label">{tr}Label{/tr}</label>
 				<input type="text" class="form-control" name="label"/>
@@ -36,11 +36,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="panel">
+	<div class="card">
 		<div class="card-header">
 			<h4>{tr}Use Existing{/tr}</h4>
 		</div>
-		<div class="panel-body">
+		<div class="card-body">
 		<table class="table">
 			<thead>
 				<tr>

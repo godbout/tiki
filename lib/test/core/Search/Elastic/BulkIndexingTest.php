@@ -14,7 +14,8 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit_Framework_TestCase
 			10,
 			function ($data) use (& $parts) {
 				$parts[] = $data;
-			}
+			},
+			'_doc'
 		);
 
 		$bulk->index('test', 'foo', 1, ['a' => 1]);
@@ -26,8 +27,8 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit_Framework_TestCase
 		$this->assertCount(1, $parts);
 
 		$this->assertContains(json_encode(['a' => 3]) . "\n", $parts[0]);
-		$this->assertContains(json_encode(['index' => ['_index' => 'test', '_type' => 'foo', '_id' => 2]]) . "\n", $parts[0]);
-		$this->assertContains(json_encode(['delete' => ['_index' => 'test', '_type' => 'bar', '_id' => 4]]) . "\n", $parts[0]);
+		$this->assertContains(json_encode(['index' => ['_index' => 'test', '_type' => '_doc', '_id' => 'foo-2']]) . "\n", $parts[0]);
+		$this->assertContains(json_encode(['delete' => ['_index' => 'test', '_type' => '_doc', '_id' => 'bar-4']]) . "\n", $parts[0]);
 	}
 
 	function testDoubleFlushHasNoImpact()
@@ -37,7 +38,8 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit_Framework_TestCase
 			10,
 			function ($data) use (& $parts) {
 				$parts[] = $data;
-			}
+			},
+			'_doc'
 		);
 
 		$bulk->index('test', 'foo', 1, ['a' => 1]);
@@ -57,7 +59,8 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit_Framework_TestCase
 			10,
 			function ($data) use (& $parts) {
 				$parts[] = $data;
-			}
+			},
+			'_doc'
 		);
 
 		foreach (range(1, 15) as $i) {
@@ -76,7 +79,8 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit_Framework_TestCase
 			15,
 			function ($data) use (& $parts) {
 				$parts[] = $data;
-			}
+			},
+			'_doc'
 		);
 
 		foreach (range(1, 45) as $i) {

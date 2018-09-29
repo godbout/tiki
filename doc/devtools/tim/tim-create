@@ -11,17 +11,17 @@ setup()
 #--- onexit() -----------------------------------------------------
 #  @param $1 integer  (optional) Exit status.  If not set, use `$?'
 function onexit() {
-    local exit_status=${1:-$?}
-    if [ $exit_status != 0 ];
-    then
-	log "FAILED INSTALL"
-	echo "FAILED INSTALL" > ${INSTANCE_LOCK}
-    else
-	log "FINISHED SUCCESSFULLY"
-	rm ${INSTANCE_LOCK}
-    fi
-    echo Exiting $0 with exit status: $exit_status
-    exit $exit_status
+	local exit_status=${1:-$?}
+	if [ $exit_status != 0 ];
+	then
+		log "FAILED INSTALL"
+		echo "FAILED INSTALL" > ${INSTANCE_LOCK}
+	else
+		log "FINISHED SUCCESSFULLY"
+		rm ${INSTANCE_LOCK}
+	fi
+	echo Exiting $0 with exit status: $exit_status
+	exit $exit_status
 }
 
 trap onexit 1 2 3 15 ERR
@@ -92,6 +92,12 @@ create()
 	# tim-create runs as a separate process and doesn't know $COMMAND
 	# we set it manually here to be shown in logs
 	COMMAND="create"
+
+	if [ ! -w "${LOCKSDIR}" ] ;
+	then
+		echo "FAIL: Lock files directory '${LOCKSDIR}' is not writable"
+		exit 1
+	fi
 
 	if [[ -e $INSTANCE_LOCK ]] ; then echo "FAIL: Lock file already exists. Reason: $INSTANCE_LOCK_REASON."; exit 1; fi
 	#TODO: remove stale locks

@@ -15,6 +15,8 @@ tiki-check.php is designed to run in 2 modes
 tiki-check.php should not crash but rather avoid running tests which lead to tiki-check crashes.
 */
 
+use Tiki\Package\ComposerManager;
+
 // TODO : Create sane 3rd mode for Monitoring Software like Nagios, Icinga, Shinken
 // * needs authentication, if not standalone
 isset($_REQUEST['nagios']) ? $nagios = true : $nagios = false;
@@ -1389,23 +1391,40 @@ if ($connection || ! $standalone) {
 		);
 	}
 
+	// UTF-8 MB4 test (required for Tiki19+
+	$query = "SELECT COUNT(*) FROM `information_schema`.`character_sets` WHERE `character_set_name` = 'utf8mb4';";
+	$result = query($query, $connection);
+	if (! empty($result[0]['COUNT(*)'])) {
+		$mysql_properties['utf8mb4'] = array(
+			'fitness' => tra('good'),
+			'setting' => 'available',
+			'message' => tr('Your database supports the utf8mb4 character set required in Tiki19 and above.')
+		);
+	} else {
+		$mysql_properties['utf8mb4'] = array(
+			'fitness' => tra('bad'),
+			'setting' => 'not available',
+			'message' => tra('Your database does not support the utf8mb4 character set required in Tiki19 and above. You need to upgrade your mysql or mariadb installation.')
+		);
+	}
+
 	// UTF-8 Charset
 	$charset_types = "client connection database results server system";
 	foreach (explode(' ', $charset_types) as $type) {
 		$query = "SHOW VARIABLES LIKE 'character_set_" . $type . "';";
 		$result = query($query, $connection);
 		foreach ($result as $value) {
-			if ($value['Value'] == 'utf8') {
+			if ($value['Value'] == 'utf8mb4') {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('good'),
 					'setting' => $value['Value'],
-					'message' => tra('Tiki is fully UTF-8 and so should be every part of the stack.')
+					'message' => tra('Tiki is fully utf8mb4 and so should be every part of the stack.')
 				);
 			} else {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('ugly'),
 					'setting' => $value['Value'],
-					'message' => tra('On a fresh install everything should be set to UTF-8 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
+					'message' => tra('On a fresh install everything should be set to utf8mb4 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
 				);
 			}
 		}
@@ -1416,17 +1435,17 @@ if ($connection || ! $standalone) {
 		$query = "SHOW VARIABLES LIKE 'collation_" . $type . "';";
 		$result = query($query, $connection);
 		foreach ($result as $value) {
-			if (substr($value['Value'], 0, 4) == 'utf8') {
+			if (substr($value['Value'], 0, 7) == 'utf8mb4') {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('good'),
 					'setting' => $value['Value'],
-					'message' => tra('Tiki is fully UTF-8 and so should be every part of the stack. utf8_unicode_ci is the default collation for Tiki.')
+					'message' => tra('Tiki is fully utf8mb4 and so should be every part of the stack. utf8mb4_unicode_ci is the default collation for Tiki.')
 				);
 			} else {
 				$mysql_properties[$value['Variable_name']] = array(
 					'fitness' => tra('ugly'),
 					'setting' => $value['Value'],
-					'message' => tra('On a fresh install everything should be set to UTF-8 to avoid unexpected results. utf8_unicode_ci is the default collation for Tiki. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
+					'message' => tra('On a fresh install everything should be set to utf8mb4 to avoid unexpected results. utf8mb4_unicode_ci is the default collation for Tiki. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
 				);
 			}
 		}
@@ -1752,7 +1771,53 @@ if (check_isIIS()) {
 	}
 }
 
+// Check Tiki Packages
+if (! $standalone) {
+	global $tikipath;
 
+	$composerManager = new ComposerManager($tikipath);
+	$installedLibs = $composerManager->getInstalled();
+
+	$packagesToCheck = array(
+		array(
+			'name' => 'media-alchemyst/media-alchemyst',
+			'preferences' => array(
+				'alchemy_ffmpeg_path' => tr('ffmpeg path'),
+				'alchemy_ffprobe_path' => tr('ffprobe path'),
+				'alchemy_unoconv_path' => tr('unoconv path'),
+				'alchemy_gs_path' => tr('ghostscript path')
+			)
+		),
+		array(
+			'name' => 'php-unoconv/php-unoconv',
+			'preferences' => array(
+				'alchemy_unoconv_path' => tr('unoconv path')
+			)
+		)
+	);
+
+	$packagesToDisplay = array();
+	foreach ($installedLibs as $instaledPackage) {
+		$key = array_search($instaledPackage['name'], array_column($packagesToCheck, 'name'));
+		if ($key !== false) {
+			$warnings = checkPreferencesPaths($packagesToCheck[$key]['preferences']);
+			$packageInfo = array(
+				'name' => $instaledPackage['name'],
+				'version' => $instaledPackage['installed'],
+				'status' => count($warnings) > 0 ? tr('ugly') : tr('good'),
+				'message' => $warnings
+			);
+		} else {
+			$packageInfo = array(
+				'name' => $instaledPackage['name'],
+				'version' => $instaledPackage['installed'],
+				'status' => tr('good'),
+				'message' => array()
+			);
+		}
+		$packagesToDisplay[] = $packageInfo;
+	}
+}
 
 // Security Checks
 // get all dangerous php settings and check them
@@ -1804,8 +1869,8 @@ if (isset($prefs) && $prefs['feature_blogs'] == 'y') {
 $fcts = array(
 		 array(
 			'function' => 'exec',
-			'risky' => tra('Exec can potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled.'),
-			'safe' => tra('Exec can be potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki does not need it; it is good that it is disabled.')
+			'risky' => tra('Exec can potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki does not need it; perhaps it should be disabled.') . ' ' . tra('However, the Plugins R/RR need it. If you use the Plugins R/RR and the other PHP software on the server can be trusted, this should be enabled.'),
+			'safe' => tra('Exec can be potentially be used to execute arbitrary code on the server.') . ' ' . tra('Tiki needs it to run the Plugins R/RR.') . tra('If this is needed and the other PHP software on the server can be trusted, this should be enabled.')
 		 ),
 		 array(
 			'function' => 'passthru',
@@ -2098,6 +2163,9 @@ if (! $standalone) {
 	} else {
 		$smarty->assign('engineTypeNote', false);
 	}
+
+	$smarty->assign('composer_available', $composerManager->composerIsAvailable());
+	$smarty->assign('packages', $packagesToDisplay);
 }
 
 $sensitiveDataDetectedFiles = array();
@@ -2512,6 +2580,28 @@ if ($standalone && ! $nagios) {
 	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 	$smarty->assign('mid', 'tiki-check.tpl');
 	$smarty->display('tiki.tpl');
+}
+
+/**
+ * Check if paths set in preferences exist in the system
+ *
+ * @param array $preferences An array with preference_key and preference_name
+ *
+ * @return array An array with warning messages.
+ */
+function checkPreferencesPaths(array $preferences)
+{
+	global $prefs;
+
+	$warnings = array();
+
+	foreach ($preferences as $prefKey => $prefName) {
+		if (isset($prefs[$prefKey]) && ! file_exists($prefs[$prefKey])) {
+			$warnings[] = tr("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $prefName);
+		}
+	}
+
+	return $warnings;
 }
 
 /**

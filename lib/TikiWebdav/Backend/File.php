@@ -682,10 +682,11 @@ class TikiWebdav_Backends_File extends ezcWebdavSimpleBackend implements ezcWebd
 
 				if ($doMove) {
 					// Move in an other gallery
-					return (bool) $filegallib->move_file_gallery(
+					$result = $filegallib->move_file_gallery(
 						$newId,
 						$infos['dest']['parentId']
 					);
+					return $result && $result->numRows();
 				}
 
 				return true;
@@ -725,13 +726,13 @@ class TikiWebdav_Backends_File extends ezcWebdavSimpleBackend implements ezcWebd
 				}
 
 				if ($doMove) {
-					return (bool) $filegallib->set_file_gallery(
+					$result = $filegallib->set_file_gallery(
 						$newId,
 						$infos['dest']['parentId']
 					);
 				}
 
-				return true;
+				return $result && $result->numRows();
 		}
 
 		return false;
@@ -1074,10 +1075,11 @@ class TikiWebdav_Backends_File extends ezcWebdavSimpleBackend implements ezcWebd
 					);
 				} elseif ($doMove) {
 				// Move is not needed if the rename occurred, since filegal renaming function handle the move already
-					$noErrors = (bool) $filegallib->move_file_gallery(
+					$result = $filegallib->move_file_gallery(
 						$infos['source']['id'],
 						$infos['dest']['parentId']
 					);
+					$noErrors = $result && $result->numRows();
 				}
 
 				break;
@@ -1121,10 +1123,11 @@ class TikiWebdav_Backends_File extends ezcWebdavSimpleBackend implements ezcWebd
 				}
 
 				if ($doMove && $noErrors) {
-					$noErrors = (bool) $filegallib->set_file_gallery(
+					$result = $filegallib->set_file_gallery(
 						$infos['source']['id'],
 						$infos['dest']['parentId']
 					);
+					$noErrors = $result && $result->numRows();
 				}
 
 				break;

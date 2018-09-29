@@ -24,36 +24,34 @@
 {$mid_data}
 {if $is_slideshow eq 'y'}
 	</div>
-		<div id="ss-settings-holder" title="Click for slideshow operations"><span class="fa fa-cogs" style="font-size:1.5rem;color:#666" id="ss-settings"></span></div>
+		<div id="ss-settings-holder" title="Click for slideshow operations"><span class="fas fa-cogs" style="font-size:1rem;color:#666" id="ss-settings"></span></div>
 		<div id="ss-options" class="d-flex flex-row justify-content-around align-content-end flex-wrap">
 			<div class="p-2">
 				<select id="showtheme" class="form-control">
-					<option value="">Change Theme</option>
-					<option value="black">Black: Black background, white text, blue links</option>
-					<option value="blood">Blood: Dark gray background, dark text, maroon links</option>
-					<option value="beige">Beige: Beige background, dark text, brown links</option>
-					<option value="league">League: Gray background, white text, blue links</option>
-					<option value="moon">Moon: Navy blue background, blue links</option>
-					<option value="night">Night: Black background, thick white text, orange links</option>
-					<option value="serif">Serif: Cappuccino background, gray text, brown links</option>
-					<option value="simple">Simple: White background, black text, blue links</option>
-					<option value="sky">Sky: Blue background, thin dark text, blue links</option>
-					<option value="solarized">Solarized: Cream-colored background, dark green text, blue links</option>
+					<option value="">{tr}Change Theme{/tr}</option>
+					{$themeOptions}
 				</select>
 			</div>
 			<div class="p-2">
 				<select id="showtransition" class="form-control">
-					<option value="">Change Transition</option>
-					<option value="zoom">Zoom</option>
-					<option value="fade">Fade</option>
-					<option value="slide">Slide</option>
-					<option value="convex">Convex</option>
-					<option value="concave">Concave</option>
-					<option value="">off</option>
+					<option value="">{tr}Change Transition{/tr}</option>
+					<option value="zoom">{tr}Zoom{/tr}</option>
+					<option value="fade">{tr}Fade{/tr}</option>
+					<option value="slide">{tr}Slide{/tr}</option>
+					<option value="convex">{tr}Convex{/tr}</option>
+					<option value="concave">{tr}Concave{/tr}</option>
+					<option value="">{tr}Off{/tr}</option>
 				</select>
 			</div>
-			<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&landscape=1" target="_blank" id="exportPDF"><span class="fa fa-file-pdf-o"></span> Export PDF</a></div>				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&printslides=1" target="_blank"><span class="fa fa-print"></span> Handouts</a></div>
-			<div class="p-2"><a href="tiki-index.php?page={$page}"><span class="fa fa-sign-out"></span>&nbsp;Exit</a></div>
+			<div class="p-2" id="reveal-controls"><span class="fas fa-fast-backward mr-1"  id="firstSlide" title="Go to First Slide"></span><span class="fas fa-step-backward mr-1" id="prevSlide" title="Go to Previous Slide"></span><span class="fas fa-play-circle mr-1" id="play"></span><span class="fas fa-undo mr-1 icon-inactive" id="loop" title="Auto-play in loop"></span><span class="fas fa-step-forward mr-1"  id="nextSlide" title="Go to Next Slide"></span><span class="fas fa-fast-forward"  id="lastSlide" title="Go to Last Slide"></span></div>
+			<div class="p-2" id="listSlides"><span class="fas fa-list mr-1"   title="List Slides"></span> List Slides</div>
+
+			{if $prefs.feature_slideshow_pdfexport eq 'y'}
+				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&landscape=1" target="_blank" id="exportPDF"><span class="far fa-file-pdf"></span> {tr}Export PDF{/tr}</a></div>
+				<div class="p-2"><a href="tiki-slideshow.php?page={$page}&pdf=1&printslides=1" target="_blank"><span class="fas fa-print"></span> {tr} Handouts{/tr}</a></div>
+			{/if}
+
+			<div class="p-2"><a href="tiki-index.php?page={$page}"><span class="fas fa-sign-out-alt"></span> {tr}Exit Slideshow{/tr}</a></div>
 		</div>
 {else}
 			</div>

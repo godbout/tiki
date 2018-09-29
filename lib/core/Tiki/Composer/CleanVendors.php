@@ -113,21 +113,6 @@ class CleanVendors
 				'video.html'
 			]
 		);
-		self::removeMultiple(
-			$vendors . 'jquery/plugins/chosen',
-			[
-				'docsupport',
-				'chosen.css',
-				'chosen.jquery.min.js',
-				'chosen.min.css',
-				'chosen.proto.js',
-				'chosen.proto.min.js',
-				'chosen-sprite.png',
-				'chosen-sprite@2x.png',
-				'index.proto.html',
-				'options.html'
-			]
-		);
 		$fs->remove($vendors . 'jquery/plugins/colorbox/content');
 		self::removeMultiple(
 			$vendors . 'jquery/plugins/galleriffic',
@@ -345,11 +330,11 @@ class CleanVendors
 		//Remove extra files to keep the system tidy
 		$fs->remove($vendors . 'phpcas/phpcas/CAS-1.3.3/docs');
 		$fs->remove($vendors . 'zendframework/zend-json/doc');
-		$fs->remove($vendors . 'fortawesome/font-awesome/src/_includes/examples');
-		$fs->remove($vendors . 'fortawesome/font-awesome/src/3.2.1/examples');
+		$fs->remove($vendors . 'bower-asset/fontawesome/advanced-options');
+		$fs->remove($vendors . 'bower-asset/fontawesome/svg-with-js');
+		$fs->remove($vendors . 'bower-asset/fontawesome/use-on-desktop');
 		$fs->remove($vendors . 'tijsverkoyen/css-to-inline-styles/TijsVerkoyen/CssToInlineStyles/tests/examples');
 		$fs->remove($vendors . 'phpcas/phpcas/CAS-1.3.3/docs/examples');
-		$fs->remove($vendors . 'fortawesome/font-awesome/src/_includes/tests');
 		$fs->remove($vendors . 'tijsverkoyen/css-to-inline-styles/TijsVerkoyen/CssToInlineStyles/tests');
 		$fs->remove($vendors . 'twitter/bootstrap/js/tests');
 		$fs->remove($vendors . 'symfony/dependency-injection/Symfony/Component/DependencyInjection/Tests');
@@ -366,8 +351,6 @@ class CleanVendors
 
 		$fs->remove($vendors . 'phpcas/phpcas/CAS-1.3.3/docs');
 		$fs->remove($vendors . 'jquery/plugins/jquery-json/test');
-		$fs->remove($vendors . 'alxlit/bootstrap-chosen/example.html');
-		$fs->remove($vendors . 'alxlit/bootstrap-chosen/example.png');
 		$fs->remove($vendors . 'chartjs/Chart.js/samples');
 		//duplicate with mottie/tablesorter
 		$fs->remove($vendors . 'components/tablesorter');
@@ -470,6 +453,18 @@ class CleanVendors
 				'javascript/playground.html',
 				'javascript/readme.mdown',
 				'readme.mdown',
+			]
+		);
+
+		self::removeMultiple(
+			$vendors . 'haubek/bootstrap4c-chosen',
+			[
+				'dist',
+				'src/scss/build.scss',
+				'example.html',
+				'gulpfile.js',
+				'HISTORY.md',
+				'yarn.lock',
 			]
 		);
 	}

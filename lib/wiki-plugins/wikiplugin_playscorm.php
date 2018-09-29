@@ -113,7 +113,7 @@ function wikiplugin_playscorm($data, $params)
 	$moodle_cm_id = '';
 
 	$info = TikiLib::lib('filegal')->get_file($fileId);
-	if (! $userlib->user_has_perm_on_object($user, $info['galleryId'], 'file gallery', 'tiki_p_download_files')) {
+	if (! $userlib->user_has_perm_on_object($user, $info['fileId'], 'file', 'tiki_p_download_files')) {
 		return '';
 	}
 

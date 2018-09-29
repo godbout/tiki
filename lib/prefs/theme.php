@@ -93,9 +93,9 @@ function prefs_theme_list($partial = false)
 			'help' => 'Icons',
 			'tags' => ['basic'],
 		],
-		'theme_styleguide' => [
-			'name' => tra('Style guide tool'),
-			'description' => tra('Activate the style guide tool to enable easy theme customization.'),
+		'theme_customizer' => [
+			'name' => tra('Theme Customizer tool'),
+			'description' => tra('Activate the theme customizer tool to enable easy theme customization.'),
 			'type' => 'flag',
 			'help' => 'Themes',
 			'default' => 'n',

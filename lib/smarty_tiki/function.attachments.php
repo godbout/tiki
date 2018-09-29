@@ -32,6 +32,7 @@ function s_f_attachments_actionshandler($params)
 	}
 
 	$filegallib = TikiLib::lib('filegal');
+	$access = TikiLib::lib('access');
 
 	foreach ($params as $k => $v) {
 		switch ($k) {
@@ -45,7 +46,14 @@ function s_f_attachments_actionshandler($params)
 					}
 					$pageRenderer->setShowAttachments( 'y' );
 				*/
-				$filegallib->actionHandler('removeFile', [ 'fileId' => $v ]);
+				if ($access->checkCsrfForm(tr('Delete file?'))) {
+					$result = $filegallib->actionHandler('removeFile', [ 'fileId' => $v ]);
+					if ($result && $result->numrows()) {
+						Feedback::success(tr('File (ID %0) removed', $v));
+					} else {
+						Feedback::error(tr('File (ID %0) not removed', $v));
+					}
+				}
 				break;
 
 			case 'upload':
@@ -56,22 +64,30 @@ function s_f_attachments_actionshandler($params)
 					$smarty->loadPlugin('smarty_function_query');
 
 					$galleryId = $filegallib->get_attachment_gallery($params['page'], 'wiki page', true);
-					$filegallib->actionHandler(
-						'uploadFile',
-						[
-							'galleryId' => [$galleryId],
-							'comment' => $params['comment'],
-							'returnUrl' => smarty_function_query(
-								[
-									'_type' => 'absolute_path',
-									's_f_attachments-upload' => 'NULL',
-									's_f_attachments-page' => 'NULL',
-									's_f_attachments-comment' => 'NULL'
-								],
-								$smarty
-							)
-						]
-					);
+					if ($access->checkCsrf()) {
+						$result = $filegallib->actionHandler(
+							'uploadFile',
+							[
+								'galleryId' => [$galleryId],
+								'comment' => $params['comment'],
+								'returnUrl' => smarty_function_query(
+									[
+										'_type' => 'absolute_path',
+										's_f_attachments-upload' => 'NULL',
+										's_f_attachments-page' => 'NULL',
+										's_f_attachments-comment' => 'NULL',
+										'ticket' => 'NULL',
+									],
+									$smarty
+								),
+							]
+						);
+						if ($result) {
+							Feedback::success(tr('File uploaded'));
+						} else {
+							Feedback::error(tr('File not uploaded'));
+						}
+					}
 				}
 
 				break;
@@ -150,7 +166,7 @@ function smarty_function_attachments($params, $template)
 		$files = ['data' => [], 'cant' => 0];
 	}
 
-	// Reajust perms using special wiki attachments perms
+	// Readjust perms using special wiki attachments perms
 	global $tiki_p_wiki_admin_attachments, $tiki_p_wiki_view_attachments;
 
 	foreach ($files[ 'data' ] as &$file) {

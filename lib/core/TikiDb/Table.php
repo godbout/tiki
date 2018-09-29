@@ -43,12 +43,16 @@ class TikiDb_Table
 		$bindvars = [];
 		$query = $this->buildInsert($values, $ignore, $bindvars);
 
-		$this->db->queryException($query, $bindvars);
+		$result = $this->db->queryException($query, $bindvars);
 
 		if ($this->autoIncrement) {
 			if ($insertedId = $this->db->lastInsertId()) {
 				return $insertedId;
+			} else {
+				return false;
 			}
+		} else {
+			return $result;
 		}
 	}
 
@@ -66,12 +70,19 @@ class TikiDb_Table
 		$query .= ' ON DUPLICATE KEY UPDATE ';
 		$query .= $this->buildUpdateList($data, $bindvars);
 
-		$this->db->queryException($query, $bindvars);
+		$result = $this->db->queryException($query, $bindvars);
 
 		if ($this->autoIncrement) {
 			if ($insertedId = $this->db->lastInsertId()) {
 				return $insertedId;
+			//Multiple actions in a query (e.g., INSERT + UPDATE) returns result class instead of the id number
+			} elseif (is_object($result)) {
+				return $result;
+			} else {
+				return false;
 			}
+		} else {
+			return $result;
 		}
 	}
 
@@ -101,6 +112,12 @@ class TikiDb_Table
 		return $this->updateMultiple($values, $conditions, 1);
 	}
 
+	/**
+	 * @param array $values
+	 * @param array $conditions
+	 * @param null $limit
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function updateMultiple(array $values, array $conditions, $limit = null)
 	{
 		$bindvars = [];

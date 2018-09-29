@@ -67,6 +67,7 @@
 
 				{preference name=session_protected}
 				{preference name=login_http_basic}
+				{preference name=pass_blacklist}
 
 				{tr}Please also see:{/tr} <a href="tiki-admin.php?page=login">{tr}HTTPS (SSL) and other login preferences{/tr}</a>
 

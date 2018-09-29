@@ -3,12 +3,13 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: Trackerrender.php 66105 2018-04-19 18:11:02Z luciash $
+// $Id$
 
 class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFormatter_Abstract
 {
 	private $date = null;
 	private $target_currency = null;
+	private $symbol = 'y';
 
 	function __construct($arguments)
 	{
@@ -20,6 +21,10 @@ class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFor
 
 		if (isset($arguments['target_currency'])) {
 			$this->target_currency = $arguments['target_currency'];
+		}
+
+		if (isset($arguments['symbol'])) {
+			$this->symbol = $arguments['symbol'];
 		}
 	}
 
@@ -90,8 +95,13 @@ class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFor
 			$locale = 'en_US';
 		}
 
+		$symbol = 'n';
+		if ($this->symbol != 'y') {
+			$symbol = 'i';
+		}
+
 		TikiLib::lib('smarty')->loadPlugin('smarty_modifier_money_format');
 		
-		return '~np~' . smarty_modifier_money_format($amount, $locale, $currency, '%(#10n', 1) . '~/np~';
+		return '~np~' . smarty_modifier_money_format($amount, $locale, $currency, '%(#10'.$symbol, 1) . '~/np~';
 	}
 }

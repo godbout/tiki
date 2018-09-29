@@ -298,7 +298,7 @@ fi
 # -------------------------------------
 
 DIR_LIST_DEFAULT="addons admin db doc dump files img installer lang lib modules permissioncheck storage temp templates tests themes tiki_tests vendor vendor_extra whelp"
-DIR_LIST_WRITABLE="db dump img/wiki img/wiki_up img/trackers modules/cache storage storage/public temp temp/cache temp/public temp/templates_c templates themes whelp mods files tiki_tests/tests temp/unified-index"
+DIR_LIST_WRITABLE="db dump img/wiki img/wiki_up img/trackers modules/cache storage storage/public temp temp/cache temp/public temp/templates_c templates themes whelp mods files tiki_tests/tests temp/unified-index vendor"
 DIRS=${DIR_LIST_WRITABLE}
 
 # part 4 - several functions
@@ -728,6 +728,22 @@ what to answer, just press enter to each question (to use default value)"
 		done
 	fi
 
+	# make sure composer files can be created by tiki-admin.php?page=packages
+	echo "Checking non-bundled composer : "
+	if [ ! -f composer.json ]; then
+		echo -n " Creating composer.json..."
+		cp composer.json.dist composer.json
+	else
+		echo -n " Found composer.json..."
+	fi
+	if [ ! -f composer.lock ]; then
+		echo -n " created composer.lock..."
+		echo "{}" > composer.lock
+	else
+		echo -n " found composer.json..."
+	fi
+	echo " done."
+
 	echo "Checking dirs : "
 	for dir in $DIRS; do
 		echo -n "  $dir ... "
@@ -788,8 +804,12 @@ what to answer, just press enter to each question (to use default value)"
 	echo -n "Fix special dirs ..."
 	if [ "$USER" = 'root' -o "$USERINAGROUP" = "yes" ]; then
 		chmod -R g+w $DIRS
+		chmod g+w composer.json
+		chmod g+w composer.lock
 	else
 		chmod -fR go+w $DIRS
+		chmod go+w composer.json
+		chmod go+w composer.lock
 	fi
 
 #	chmod 664 robots.txt tiki-install.php

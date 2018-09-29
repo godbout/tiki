@@ -32,6 +32,7 @@ class Search_ContentSource_ForumSource implements Search_ContentSource_Interface
 		$data = [
 			'title' => $typeFactory->sortable($item['name']),
 			'creation_date' => $typeFactory->timestamp($item['created']),
+			'date' => $typeFactory->timestamp($item['created']),
 			'description' => $typeFactory->plaintext($item['description']),
 			'language' => $typeFactory->identifier($item['forumLanguage'] ?: 'unknown'),
 
@@ -48,6 +49,7 @@ class Search_ContentSource_ForumSource implements Search_ContentSource_Interface
 		return [
 			'title',
 			'creation_date',
+			'date',
 			'description',
 			'language',
 
@@ -64,6 +66,7 @@ class Search_ContentSource_ForumSource implements Search_ContentSource_Interface
 		return [
 			'title' => true,
 			'description' => true,
+			'date' => true,
 		];
 	}
 }

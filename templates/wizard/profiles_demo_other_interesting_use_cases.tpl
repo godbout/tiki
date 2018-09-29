@@ -1,28 +1,29 @@
 {* $Id$ *}
 
 <div class="media">
-	<span class="pull-left fa-stack fa-lg margin-right-18em" alt="{tr}Configuration Profiles Wizard{/tr}" title="{tr}Configuration Profiles Wizard{/tr}" >
-		<i class="fa fa-cubes fa-stack-2x"></i>
-		<i class="fa fa-rotate-270 fa-magic fa-stack-2x margin-left-9em"></i>
-	</span>
-	{tr}Each of these profiles create a working instance of some features, such as wiki structures, forums, trackers and wiki pages, customized for specific purposes{/tr}. <br><br>
-	{remarksbox type="warning" title="{tr}Warning{/tr}"}
-		<a target="tikihelp" class="tikihelp" style="float:right" title="{tr}Demo Profiles:{/tr}
-				{tr}They are initially intended for testing environments, so that, after you have played with the feature, you don't have to deal with removing the created objects, nor with restoring the potentially changed settings in your site{/tr}.
-				<br/><br/>
-				{tr}Once you know what they do, you can also apply them in your production site, in order to have working templates of the underlying features, that you can further adapt to your site later on{/tr}."
-				>
-			{icon name="help"}
-		</a>
-	{tr}They are not to be initially applied in production environments since they cannot be easily reverted and changes and new objects in your site are created for real{/tr}
-	{/remarksbox}
-	<div class="media-box">
-		<fieldset>
-			<legend>{tr}Profiles:{/tr}</legend>
+	<div class="mr-4">
+		<span class="fa-stack fa-lg" style="width: 100px;" title="{tr}Configuration Profiles Wizard{/tr}" >
+			<i class="fas fa-cubes fa-stack-2x"></i>
+			<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+		</span>
+	</div>
+	<div class="media-body">
+		<h4 class="mt-0 mb-4">{tr}Each of these profiles create a working instance of some features, such as wiki structures, forums, trackers and wiki pages, customized for specific purposes{/tr}.</h4>
+		{remarksbox type="warning" title="{tr}Warning{/tr}"}
+			<a target="tikihelp" class="tikihelp" style="float:right" title="{tr}Demo Profiles:{/tr}
+					{tr}They are initially intended for testing environments, so that, after you have played with the feature, you don't have to deal with removing the created objects, nor with restoring the potentially changed settings in your site{/tr}.
+					<br/><br/>
+					{tr}Once you know what they do, you can also apply them in your production site, in order to have working templates of the underlying features, that you can further adapt to your site later on{/tr}."
+			>
+				{icon name="help"}
+			</a>
+			{tr}They are not to be initially applied in production environments since they cannot be easily reverted and changes and new objects in your site are created for real{/tr}
+		{/remarksbox}
+		<h3>{tr}Profiles:{/tr}</h3>
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}Structured Master Documents{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Structured+Master+Documents&show_details_for=Structured+Master+Documents&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Structured+Master+Documents&show_details_for=Structured+Master+Documents&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile will get you started with Wiki Structures, containing multiple wiki pages with a hierarchical order, like master documents from office suites, and more{/tr}.
 					<br/>
@@ -51,7 +52,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Consensus Forums{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Consensus+Forums&show_details_for=Consensus+Forums&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Consensus+Forums&show_details_for=Consensus+Forums&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile sets up the configuration needed to facilitate forums that help their users to seek consensus on the discussion topics held{/tr}.
 					<br/>
@@ -82,7 +83,7 @@
 			<div class="row">
 				<div class="col-md-6">
 					<h4>{tr}Barter Market{/tr}</h4>
-					(<a href="tiki-admin.php?profile=Barter_Market&show_details_for=Barter_Market&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Barter_Market&show_details_for=Barter_Market&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile creates three trackers with some demo data to showcase a basic setup for a barter market of linked offers and wants of goods, services and knowledge.{/tr}
 					<br/>
@@ -111,7 +112,7 @@
 				</div>
 				<div class="col-md-6">
 					<h4>{tr}Revision Approval (ISO9001){/tr}</h4>
-					(<a href="tiki-admin.php?profile=Revision+Approval+%28ISO9001%29&show_details_for=Revision+Approval+%28ISO9001%29&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Revision+Approval+%28ISO9001%29&show_details_for=Revision+Approval+%28ISO9001%29&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br>
 					{tr}This profile sets up the configuration needed to facilitate the handling of document revision approval for quality certification systems (such as ISO9001){/tr}.
 					<br/>
@@ -138,6 +139,5 @@
 					</div>
 				</div>
 			</div>
-		</fieldset>
 	</div>
 </div>

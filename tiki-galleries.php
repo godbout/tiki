@@ -38,9 +38,17 @@ $tikilib->get_perm_object($_REQUEST['galleryId'], 'image gallery');
 if (isset($_REQUEST['migrate_images_to_fgal'])) {
 	$access->check_feature('feature_file_galleries');
 	$access->check_permission('tiki_p_admin');
-	TikiLib::lib('filegal')->migrateFilesFromImageGalleries();
-	Feedback::success(tra('All files copied'));
-	$access->redirect('tiki-galleries.php');
+
+	$fileGalLib = TikiLib::lib('filegal');
+	$gallerySaveDir = $fileGalLib->get_gallery_save_dir($fileGalLib->default_file_gallery());
+
+	if (! $gallerySaveDir || is_writable($gallerySaveDir)) {
+		$fileGalLib->migrateFilesFromImageGalleries();
+		Feedback::success(tra('All files copied'));
+		$access->redirect('tiki-galleries.php');
+	} else {
+		Feedback::error(tr('No files migrated, destination path %0 not writable', $gallerySaveDir));
+	}
 }
 
 $foo = parse_url($_SERVER['REQUEST_URI']);

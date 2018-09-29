@@ -11,7 +11,7 @@
 $section = 'mytiki';
 require_once('tiki-setup.php');
 
-$access->check_feature(['feature_modulecontrols', 'user_assigned_modules']);
+$access->check_feature(['user_assigned_modules']);
 $access->check_user($user);
 $access->check_permission('tiki_p_configure_modules');
 
@@ -43,11 +43,11 @@ if (isset($_REQUEST["down"])) {
 }
 if (isset($_REQUEST["left"])) {
 	check_ticket('user-modules');
-	$usermoduleslib->set_column_user_module($_REQUEST["left"], $user, 'l');
+	$usermoduleslib->set_column_user_module($_REQUEST["left"], $user, 'left');
 }
 if (isset($_REQUEST["right"])) {
 	check_ticket('user-modules');
-	$usermoduleslib->set_column_user_module($_REQUEST["right"], $user, 'r');
+	$usermoduleslib->set_column_user_module($_REQUEST["right"], $user, 'right');
 }
 $orders = [];
 for ($i = 1; $i < 50; $i++) {
@@ -61,8 +61,8 @@ if (count($assignables) > 0) {
 	$smarty->assign('canassign', 'n');
 }
 $modules = $usermoduleslib->get_user_assigned_modules($user);
-$smarty->assign('modules_l', $usermoduleslib->get_user_assigned_modules_pos($user, 'l'));
-$smarty->assign('modules_r', $usermoduleslib->get_user_assigned_modules_pos($user, 'r'));
+$smarty->assign('modules_l', $usermoduleslib->get_user_assigned_modules_pos($user, 'left'));
+$smarty->assign('modules_r', $usermoduleslib->get_user_assigned_modules_pos($user, 'right'));
 $smarty->assign_by_ref('assignables', $assignables);
 $smarty->assign_by_ref('modules', $modules);
 include_once('tiki-mytiki_shared.php');

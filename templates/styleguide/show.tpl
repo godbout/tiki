@@ -5,7 +5,7 @@
 {/block}
 
 {block name="content"}
-	<div class="style-guide">
+	<div class="customizer">
 		{if in_array('colors', $sections)}{include file='templates/styleguide/sections/colors.tpl'}{/if}
 		{if in_array('fonts', $sections)}{include file='templates/styleguide/sections/fonts.tpl'}{/if}
 		{if in_array('headings', $sections)}{include file='templates/styleguide/sections/headings.tpl'}{/if}
@@ -23,16 +23,16 @@
 	{preference name="header_custom_css" syntax="css"}
 	{preference name="header_custom_less" syntax="css"}
 
-	<div class="sg-footer">
+	<div class="tc-footer">
 		<div class="container">
 
 			<div class="footer-ui">
 <!--
 				<button class="btn btn-danger apply-custom-css">Apply Custom CSS</button>
-				<button id="generate-var" class="btn btn-secondary generate-var" download="styleguide.less">
+				<button id="generate-var" class="btn btn-secondary generate-var" download="themecustomizer.less">
 					Generate LESS
 				</button>
-				<button id="generate-css" class="btn btn-secondary generate-css" download="styleguide.css">
+				<button id="generate-css" class="btn btn-secondary generate-css" download="themecustomizer.css">
 					Generate CSS
 				</button>
 -->
@@ -49,8 +49,8 @@
 				<a id="dLabel" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 					Select a section:
 				</a>
-				<ul class="dropdown-menu" aria-labelledby="dLabel">
-				</ul>
+				<div class="dropdown-menu" aria-labelledby="dLabel">
+				</div>
 			</div>
 		</div>
 	</div>

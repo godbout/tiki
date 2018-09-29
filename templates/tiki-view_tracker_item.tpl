@@ -8,7 +8,7 @@
 
 	{* --------- navigation ------ *}
 	<div class="t_navbar mb-4">
-		<div class="pull-right btn-group">
+		<div class="float-sm-right btn-group">
 			{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 			<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 				{icon name='menu-extra'}
@@ -87,6 +87,11 @@
 						{permission_link mode=text type=trackeritem id=$itemId permType=trackers parentId=$trackerId}
 					</li>
 				{/if}
+				<li>
+					{if $prefs.user_favorites eq 'y' and isset($itemId)}
+						{favorite button_classes="favorite-icon" label="{tr}Favorite{/tr}"  type="trackeritem" object=$itemId }
+					{/if}
+				</li>
 			</ul>
 			{if ! $js}</li></ul>{/if}
 		</div>

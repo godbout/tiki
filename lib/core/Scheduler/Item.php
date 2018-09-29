@@ -94,7 +94,7 @@ class Scheduler_Item
 
 		$threshold = $tikilib->get_preference('scheduler_stalled_timeout', 15);
 
-		if ($threshold === 0) {
+		if ($threshold == 0) {
 			return false;
 		}
 
@@ -137,9 +137,13 @@ class Scheduler_Item
 			$notify = $tikilib->get_preference('scheduler_notify_on_stalled', 'y') === 'y';
 		}
 
-		if ($notify) {
-			Tiki\Notifications\Email::sendSchedulerNotification('scheduler_stalled_notification_subject.tpl', 'scheduler_stalled_notification.tpl', $this);
+		if (! $notify) {
+			return;
 		}
+
+		$users = Scheduler_Utils::getSchedulerNotificationUsers('scheduler_users_to_notify_on_stalled');
+
+		Tiki\Notifications\Email::sendSchedulerNotification('scheduler_stalled_notification_subject.tpl', 'scheduler_stalled_notification.tpl', $this, $users);
 	}
 
 	/**
@@ -157,7 +161,7 @@ class Scheduler_Item
 
 		$threshold = $tikilib->get_preference('scheduler_healing_timeout', 30);
 
-		if ($threshold === 0 && ! $force) {
+		if ($threshold == 0 && ! $force) {
 			return false;
 		}
 
@@ -182,7 +186,9 @@ class Scheduler_Item
 		}
 
 		if ($notify) {
-			Tiki\Notifications\Email::sendSchedulerNotification('scheduler_healed_notification_subject.tpl', 'scheduler_healed_notification.tpl', $this);
+			$users = Scheduler_Utils::getSchedulerNotificationUsers('scheduler_users_to_notify_on_healed');
+
+			Tiki\Notifications\Email::sendSchedulerNotification('scheduler_healed_notification_subject.tpl', 'scheduler_healed_notification.tpl', $this, $users);
 		}
 
 		$this->reduceLogs();

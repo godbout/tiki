@@ -60,7 +60,7 @@ function prefs_calendar_list()
 		],
 		'calendar_timespan' => [
 			'name' => tra('Split hours in periods of'),
-			'description' => '',
+			'description' => 'Times shown in week and day view.',
 			'type' => 'list',
 			'units' => tra('minutes'),
 			'options' => [
@@ -71,6 +71,20 @@ function prefs_calendar_list()
 				'30' => tra('30'),
 			],
 			'default' => '30',
+		],
+		'calendar_minute_interval' => [
+			'name' => tra('Minute Interval'),
+			'description' => 'Interval to show between minutes on time selectors',
+			'type' => 'list',
+			'units' => tra('minutes'),
+			'options' => [
+				'1' => tra('1'),
+				'5' => tra('5'),
+				'10' => tra('10'),
+				'15' => tra('15'),
+				'30' => tra('30'),
+			],
+			'default' => '5',
 		],
 		'calendar_start_year' => [
 			'name' => tra('First year in the dropdown'),

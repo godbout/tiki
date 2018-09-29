@@ -5,7 +5,7 @@
 	{/block}
 	<div class="t_navbar mb-4">
 		{if $tiki_p_admin_forum eq 'y'}
-			{button href="tiki-admin_forums.php" _type="link" class="btn btn-link" _icon_name="gear" _text="{tr}Admin{/tr}"}
+			{button href="tiki-admin_forums.php" _type="link" class="btn btn-link" _icon_name="cog" _text="{tr}Admin{/tr}"}
 		{/if}
 		{if $tiki_p_forum_read eq 'y' and $prefs.feature_forum_rankings eq 'y'}
 			{button href="tiki-forum_rankings.php" _type="link" class="btn btn-link" _icon_name="ranking" _text="{tr}Rankings{/tr}"}
@@ -33,7 +33,7 @@
 					</form>
 				{/if}
 				{if $prefs.feature_forums_search eq 'y' and $prefs.feature_search eq 'y'}
-					<div class="row mb-4">
+					<div class="row mb-4 mx-0">
 						<div class="col-md-5 col-md-offset-7">
 						<form class="form" method="get" role="form" action="{if $prefs.feature_search_fulltext neq 'y'}tiki-searchindex.php{else}tiki-searchresults.php{/if}">
 							<div class="form-group row">
@@ -158,6 +158,9 @@
 										<a href="tiki-admin_forums.php?forumId={$channels[user].forumId}&amp;cookietab=2#content_admin_forums1-2">
 											{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 										</a>
+									</action>
+									<action>
+										{permission_link mode=text type="forum" permType="forums" id=$channels[user].forumId}
 									</action>
 								{/if}
 							{/strip}

@@ -53,13 +53,9 @@ if (! $blog_data) {
 	die;
 }
 
-$tikilib->get_perm_object($blogId, 'blog');
+$tikilib->get_perm_object($postId, 'blog post');
 
-$access->check_permission('tiki_p_read_blog', '', 'blog', $blogId);
-
-# Check also for local permissions at blog level, to ensure that when tiki_p_read_blog is not allowed at object level,
-# regardless of the global perm set, their posts are not allowed either to be read
-$access->check_permission('tiki_p_read_blog', '', 'blog', $blogId);
+$access->check_permission('tiki_p_read_blog', '', 'blog post', $postId);
 
 $ownsblog = 'n';
 if ($user && $user == $blog_data["user"]) {

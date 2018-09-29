@@ -135,5 +135,27 @@ function prefs_jquery_list($partial = false)
 			'type' => 'flag',
 			'default' => 'n',
 		],
+		'jquery_smartmenus_enable' => [
+			'name' => tra('SmartMenus'),
+			'description' => tra('Add "SmartMenus" to Bootstrap menus. See smartmenus.org for more.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'tags' => ['experimental'],
+		],
+		'jquery_smartmenus_mode' => [
+			'name' => tra('SmartMenus Mode'),
+			'type' => 'list',
+			'options' => [
+				'' => tra('None'),
+				'blue' => tra('Blue'),
+				'clean' => tra('Clean'),
+				'mint' => tra('Mint'),
+				'simple' => tra('Simple'),
+			],
+			'default' => '',
+			'dependencies' => [
+				'jquery_smartmenus_enable',
+			],
+		],
 	];
 }

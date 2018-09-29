@@ -1,4 +1,4 @@
-<form action="tiki-admin.php?page=calendar" method="post">
+<form action="tiki-admin.php?page=calendar" method="post" class="admin">
 	{ticket}
 	<div class="t_navbar mb-4 clearfix">
 		<a role="link" class="btn btn-link tips" href="tiki-admin_calendars.php" title=":{tr}Calendars listing{/tr}">
@@ -27,6 +27,7 @@
 		{preference name=calendar_list_begins_focus}
 		{preference name=calendar_firstDayofWeek}
 		{preference name=calendar_timespan}
+		{preference name=calendar_minute_interval}
 		{preference name=feature_cal_manual_time}
 		{preference name=calendar_export}
 		{preference name=calendar_export_item}

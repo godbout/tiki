@@ -77,7 +77,7 @@ if ((isset($_POST['send']) && $access->checkCsrf()) || isset($_POST['preview']))
 			} elseif (in_array($_POST['groupbr'], $groups)) {
 				$all_users = $userlib->get_group_users($_POST['groupbr']);
 			} else {
-				$access->display_error('', tra("You do not have permission to use this feature") . ": " . $permission, '403', false);
+				$access->display_error('', tra("You do not have the permission that is needed to use this feature") . ": " . $permission, '403', false);
 			}
 			$smarty->assign('groupbr', $_POST['groupbr']);
 		}
@@ -152,7 +152,7 @@ function perm_broadcast_check($access, $userlib)
 	);
 
 	if (empty($groups_perm)) {
-		$access->display_error('', tra("You do not have permission to use this feature") . ": " . $permission, '403', false);
+		$access->display_error('', tra("You do not have the permission that is needed to use this feature") . ": " . $permission, '403', false);
 		exit;
 	}
 }

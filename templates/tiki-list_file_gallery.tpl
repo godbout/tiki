@@ -10,7 +10,7 @@
 	{/if}
 {/title}
 <div class="t_navbar mb-4">
-	<div class="btn-group pull-right">
+	<div class="btn-group float-sm-right">
 		{if ! $js}<ul class="cssmenu_horiz"><li class="dropdown-item">{/if}
 		<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 			{icon name='menu-extra'}
@@ -60,7 +60,7 @@
 					</li>
 				{/if}
 			{/if}
-			{if $tiki_p_create_file_galleries eq 'y' and $dup_mode ne 'y' and $gal_info.type neq 'user'}
+			{if $tiki_p_create_file_galleries eq 'y' and $dup_mode ne 'y' and $gal_info.type neq 'user' and $all_galleries|@count gt 0}
 				<li class="dropdown-item">
 					<a href="tiki-list_file_gallery.php?dup_mode=1&galleryId={$galleryId}">{icon name="copy"} {tr}Duplicate{/tr}</a>
 				</li>
@@ -72,6 +72,7 @@
 			{/if}
 			{if $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
 				<li class="dropdown-item">
+					{* links to a form so no confirm popup needed *}
 					<a href="tiki-object_watches.php?objectId={$galleryId|escape:"url"}&amp;watch_event=file_gallery_changed&amp;objectType=File+Gallery&amp;objectName={$gal_info.name|escape:"url"}&amp;objectHref={'tiki-list_file_gallery.php?galleryId='|cat:$galleryId|escape:"url"}" class="icon">
 						{icon name='watch-group'} {tr}Group monitor{/tr}
 					</a>
@@ -80,11 +81,11 @@
 			{if $user and $prefs.feature_user_watches eq 'y'}
 				<li class="dropdown-item">
 					{if !isset($user_watching_file_gallery) or $user_watching_file_gallery eq 'n'}
-						<a href="{query _type='relative' galleryName=$name watch_event='file_gallery_changed' watch_object=$galleryId watch_action='add'}" title="{tr}Monitor this gallery{/tr}">
+						<a href="{query _type='relative' galleryName=$name watch_event='file_gallery_changed' watch_object=$galleryId watch_action='add'}" title="{tr}Monitor this gallery{/tr}" onclick="confirmSimple(event, '{tr}Monitor gallery?{/tr}', '{ticket mode=get}')">
 							{icon name='watch'} {tr}Monitor{/tr}
 						</a>
 					{else}
-						<a href="{query _type='relative' galleryName=$name watch_event='file_gallery_changed' watch_object=$galleryId watch_action='remove'}" title="{tr}Stop monitoring this gallery{/tr}">
+						<a href="{query _type='relative' galleryName=$name watch_event='file_gallery_changed' watch_object=$galleryId watch_action='remove'}" title="{tr}Stop monitoring this gallery{/tr}" onclick="confirmSimple(event, '{tr}Stop monitoring gallery?{/tr}', '{ticket mode=get}')">
 							{icon name='stop-watching'} {tr}Stop monitoring{/tr}
 						</a>
 					{/if}
@@ -172,8 +173,10 @@
 
 {if !empty($filegals_manager)}
 	{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Be careful to set the right permissions on the files you link to{/tr}.{/remarksbox}
-	<label for="keepOpenCbx">{tr}Keep gallery window open{/tr}</label>
-	<input type="checkbox" id="keepOpenCbx" checked="checked">
+	<div class="form-check">
+		<input type="checkbox" class="form-check-input" id="keepOpenCbx" checked="checked">
+		<label for="keepOpenCbx" class="form-check-label">{tr}Keep gallery window open{/tr}</label>
+	</div>
 {/if}
 
 {if isset($fileChangedMessage) and $fileChangedMessage neq ''}
@@ -184,13 +187,20 @@
 				class="form-inline">
 			<input type="hidden" name="galleryId" value="{$galleryId|escape}">
 			<input type="hidden" name="fileId" value="{$fileId|escape}">
+			{ticket}
 			<div class="form-group row">
 				<label for="comment">
 					{tr}Comment{/tr} ({tr}optional{/tr}):
 				</label>
 					<input type="text" name="comment" id="comment" class="form-control">
 			</div>
-				<button type="submit" class="btn btn-primary btn-sm">{icon name='ok'} {tr}Save{/tr}</button>
+				<button
+					type="submit"
+					class="btn btn-primary btn-sm"
+					onclick="checkTimeout()"
+				>
+					{icon name='ok'} {tr}Save{/tr}
+				</button>
 		</form>
 	{/remarksbox}
 {/if}
@@ -224,16 +234,16 @@
 				<div class="col-sm-6">
 					{include file='find.tpl' find_show_num_rows = 'y' find_show_categories_multi='y' find_durations=$find_durations find_show_sub='y' find_in="<ul><li>{tr}Name{/tr}</li><li>{tr}Filename{/tr}</li><li>{tr}Description{/tr}</li></ul>"}
 					<form id="search-by-id" class="form" role="form" method="get" action="tiki-list_file_gallery.php">
-						<div class="input-group" style="margin-top: 10px; margin-bottom: 10px">
-							<span class="input-group-append">
-								{icon name="search"}
-							</span>
+						<div class="input-group my-3">
+							<div class="input-group-prepend">
+								<div class="input-group-text">{icon name="search"}</div>
+							</div>
 							<input class="form-control" type="text" name="fileId" id="fileId" {if isset($fileId)} value="{$fileId}"{/if} placeholder="1234" title="{tr}Search for the file with this number, in all galleries{/tr}">
 							{jq}
 								jQuery("#fileId").tooltip();
 							{/jq}
 							<div class="input-group-btn">
-								<button type="submit" class="btn btn-primary" style="text-align: right">{tr}Search by identifier{/tr}</button>
+								<button type="submit" class="btn btn-info">{tr}Search by identifier{/tr}</button>
 							</div>
 						</div>
 					</form>
@@ -259,6 +269,7 @@
 	{else}
 		<div class="pageview">
 			<form id="size-form" class="form form-inline" role="form" action="tiki-list_file_gallery.php">
+				{ticket}
 				<input type="hidden" name="view" value="page">
 				<input type="hidden" name="galleryId" value="{$galleryId}">
 				<input type="hidden" name="maxRecords" value=1>
@@ -266,7 +277,13 @@
 				<label for="maxWidth">
 					{tr}Maximum width{/tr}&nbsp;<input id="maxWidth" class="form-control" type="text" name="maxWidth" value="{$maxWidth}">
 				</label>
-				<input type="submit" class="wikiaction btn btn-primary" name="setSize" value="{tr}Submit{/tr}">
+				<input
+					type="submit"
+					class="wikiaction btn btn-primary"
+					name="setSize"
+					onclick="checkTimeout()"
+					value="{tr}Submit{/tr}"
+				>
 			</form>
 		</div><br>
 		{pagination_links cant=$cant step=$maxRecords offset=$offset}
@@ -316,17 +333,19 @@
 		</div>
 	{/if}
 	{if $prefs.fgal_elfinder_feature eq 'y' and $view eq 'finder'}<br>
-		<div class="elFinderDialog" style="height: 100%"></div>
+		<div class="elFinderDialog" style="height: 100%" data-ticket="{ticket mode=get}"></div>
 		{jq}
 
 var elfoptions = initElFinder({
 	defaultGalleryId: {{$galleryId}},
 	deepGallerySearch:1,
+	requestType: 'post',
 	getFileCallback: function(file,elfinder) { window.handleFinderFile(file,elfinder); },
 	height: 600
 });
 
 var elFinderInstnce = $(".elFinderDialog").elfinder(elfoptions).elfinder('instance');
+elFinderInstnce.customData['ticket'] = $(".elFinderDialog").data('ticket');
 // when changing folders update the buttons in the navebar above
 elFinderInstnce.bind("open", function (data) {
 	$.getJSON($.service('file_finder', 'finder'), {
@@ -356,7 +375,7 @@ window.handleFinderFile = function (file, elfinder) {
 		hash = file.hash;
 	}
 	$.ajax({
-		type: 'GET',
+		type: 'POST',
 		url: $.service('file_finder', 'finder'),
 		dataType: 'json',
 		data: {
@@ -368,7 +387,7 @@ window.handleFinderFile = function (file, elfinder) {
 		},
 		success: function (data) {
 			{{if !empty($filegals_manager)}}
-				window.opener.insertAt('{{$filegals_manager}}', data.wiki_syntax);
+				window.opener.insertAt('{{$filegals_manager}}', processFgalSyntax(data), false, false, true);
 				checkClose();
 			{{/if}}
 		}

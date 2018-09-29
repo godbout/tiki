@@ -73,7 +73,7 @@ function wikiplugin_sql($data, $params)
 
 	$perms = Perms::get([ 'type' => 'dsn', 'object' => $db ]);
 	if (! $perms->dsn_query) {
-		return tra('You do not have permission to use this feature');
+		return tra('You do not have the permission that is needed to use this feature');
 	}
 
 	$bindvars = [];

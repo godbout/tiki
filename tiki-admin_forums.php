@@ -30,10 +30,9 @@ $auto_query_args = [
 
 $commentslib = TikiLib::lib('comments');
 if (isset($_REQUEST['lock']) && isset($_REQUEST['forumId'])) {
-	check_ticket('view-forum');
-	if ($_REQUEST['lock'] == 'y') {
+	if ($_REQUEST['lock'] == 'y' && $access->checkCsrfForm(tr('Lock forum?'))) {
 		$commentslib->lock_object_thread('forum:' . ((int)$_REQUEST['forumId']));
-	} elseif ($_REQUEST['lock'] == 'n') {
+	} elseif ($_REQUEST['lock'] == 'n' && $access->checkCsrfForm(tr('Unlock forum?'))) {
 		$commentslib->unlock_object_thread('forum:' . ((int)$_REQUEST['forumId']));
 	}
 }
@@ -46,8 +45,7 @@ if ($prefs['feature_multilingual'] === 'y') {
 	$_REQUEST["forumLanguage"] = '';
 }
 
-if (isset($_REQUEST["save"])) {
-	check_ticket('admin-forums');
+if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
 	$_REQUEST['useMail'] = isset($_REQUEST['useMail']) ? 'y' : 'n';
 	$useMail = $_REQUEST['useMail'];
 	$_REQUEST['usePruneUnreplied'] = isset($_REQUEST['usePruneUnreplied']) ? 'y' : 'n';
@@ -162,6 +160,12 @@ if (isset($_REQUEST["save"])) {
 		$_REQUEST['forumLanguage']
 	);
 
+	if ($fid) {
+		Feedback::success(tr('Forum saved'));
+	} else {
+		Feedback::error(tr('Forum not saved'));
+	}
+
 	$attributelib = TikiLib::lib('attribute');
 	$attributelib->set_attribute('forum', $fid, 'tiki.object.image', (int) $_REQUEST['image']);
 
@@ -177,8 +181,19 @@ if (isset($_REQUEST["save"])) {
 
 	$cookietab = 1;
 }
-if (! empty($_REQUEST['duplicate']) && ! empty($_REQUEST['name']) && ! empty($_REQUEST['forumId'])) {
-	$newForumId = $commentslib->duplicate_forum($_REQUEST['forumId'], $_REQUEST['name'], isset($_REQUEST['description']) ? $_REQUEST['description'] : '');
+if (! empty($_REQUEST['duplicate']) && ! empty($_REQUEST['duplicate_name']) && ! empty($_REQUEST['duplicate_forumId'])
+	&& $access->checkCsrf())
+{
+	$newForumId = $commentslib->duplicate_forum(
+		$_REQUEST['duplicate_forumId'],
+		$_REQUEST['duplicate_name'],
+		isset($_REQUEST['description']) ? $_REQUEST['description'] : ''
+	);
+	if ($newForumId) {
+		Feedback::success(tr('Forum duplicated'));
+	} else {
+		Feedback::error(tr('Forum not duplicated'));
+	}
 	if (isset($_REQUEST['dupCateg']) && $_REQUEST['dupCateg'] == 'on' && $prefs['feature_categories'] == 'y') {
 		$categlib = TikiLib::lib('categ');
 		$cats = $categlib->get_object_categories('forum', $_REQUEST['forumId']);
@@ -319,6 +334,7 @@ if (! empty($_REQUEST['dup_mode'])) {
 		$smarty->assign_by_ref('allForums', $allForums['data']);
 	}
 	$smarty->assign_by_ref('dup_mode', $_REQUEST['dup_mode']);
+	$cookitab = 2;
 }
 $users = $userlib->list_all_users();
 $smarty->assign_by_ref('users', $users);
@@ -475,7 +491,6 @@ $smarty->assign(
 $sections = $tikilib->get_forum_sections();
 $smarty->assign_by_ref('sections', $sections);
 include_once('tiki-section_options.php');
-ask_ticket('admin-forums');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template

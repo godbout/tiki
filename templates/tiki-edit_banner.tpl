@@ -119,7 +119,7 @@
 	</div>
 
 	<div class="card">
-		<div class="panel-body">
+		<div class="card-body">
 			<h4>{tr}Show the banner only in these hours:{/tr}</h4>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}from{/tr}</label>
@@ -136,8 +136,8 @@
 		</div>
 	</div>
 
-	<div class="panel">
-		<div class="panel-body">
+	<div class="card">
+		<div class="card-body">
 			<h4>{tr}Show the banner only on:{/tr}</h4>
 			<div class="col-sm-12">
 				<div class="form-group row">
@@ -153,8 +153,8 @@
 		</div>
 	</div>
 
-	<div class="panel">
-		<div class="panel-body">
+	<div class="card">
+		<div class="card-body">
 			<h4>{tr}Select ONE method for the banner:{/tr}</h4>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useHTML" {if $use eq 'useHTML'}checked="checked"{/if}>{tr}Use HTML{/tr}</label></label>
@@ -247,8 +247,8 @@
 </form>
 
 {if $zones}
-	<div align="left" class="panel">
-		<div class="panel-body">
+	<div align="left" class="card">
+		<div class="card-body">
 			<h2>{tr}Remove zones (info entered for any banner in the zones will be lost){/tr}</h2>
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">

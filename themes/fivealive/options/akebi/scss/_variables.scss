@@ -1,0 +1,130 @@
+// $Id$ Custom variables for the Akebi theme option of the FiveAlive and FiveAlive-lite themes
+// $Id$ Custom variables for the Akebi theme option of the FiveAlive and FiveAlive-lite themes
+
+//Custom styles for the FiveAliveHS Akebi option theme.
+
+// - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$light: #18a3bb;
+
+$bg-light: #18a3bb !important;
+
+$link-color: #0b8a98;
+$link-hover-color: #18a3bb;
+
+// $btn-primary-bg: #18a3bb;
+// $btn-primary-border: #77d6e5;
+// $btn-primary-focus-bg: #127c8e;
+// $btn-primary-focus-border: #23a5b9;
+// $btn-primary-hover-bg: #127c8e;
+// $btn-primary-hover-border: #44c7db;
+// $btn-primary-active-bg: #127c8e;
+// $btn-primary-active-border: #44c7db;
+// $btn-primary-active-hover-bg: #0e606e;
+// $btn-primary-active-hover-border: #23a5b9;
+// $btn-primary-disabled-bg: #18a3bb;
+// $btn-primary-disabled-border: #77d6e5;
+// $btn-primary-badge-color: #18a3bb;
+// $btn-primary-badge-bg: #ffffff;
+
+// $btn-secondary-bg: #18a3bb;
+// $btn-secondary-border: #77d6e5;
+// $btn-secondary-focus-bg: #127c8e;
+// $btn-secondary-focus-border: #23a5b9;
+// $btn-secondary-hover-bg: #127c8e;
+// $btn-secondary-border: #44c7db;
+// $btn-secondary-active-bg: #127c8e;
+// $btn-secondary-border: #44c7db;
+// $btn-secondary-active-hover-bg: #0e606e;
+// $btn-secondary-active-hover-border: #23a5b9;
+// $btn-secondary-disabled-hover-color: #18a3bb;
+// $btn-secondary-disabled-hover-border: #77d6e5;
+// $btn-secondary-badge-color: #18a3bb;
+// $btn-secondary-bg-color: #ffffff;
+
+$navbar-dark-color: #fff;
+
+// navbar link hover colors
+$bg-dark-link-hover-color: #f2f2f2;
+$bg-dark-link-hover-bg: #003c4a;
+
+
+$hr-border-color: #18a3bb;
+
+$bg-dark: #063035;
+$bg-light: #0a8794;
+$card-border-color: #169FB6;
+$table-border-color: #1296a9;
+$table-accent-bg: #f9f9f9;
+$table-hover-bg: #f5f5f5;
+
+$input-color: #555555;
+$input-bg: #ddf8f9;
+$input-border: #b4f3fb;
+$input-border-top-color: #83c5ce;
+$input-border-right-color: #fff;
+$input-border-bottom-color: #fff;
+$input-border-left-color: #83c5ce;
+
+$dropdown-bg: #005064;
+$dropdown-border-color: rgba(0, 0, 0, 0.15);
+
+$dropdown-link-color: #ffffff;
+$dropdown-link-hover-color: #f2f2f2;
+$dropdown-link-hover-bg: #003c4a;
+$dropdown-link-active-color: red;
+$dropdown-link-active-bg: #0b8a98;
+$dropdown-link-disabled-color: #f2f2f2;
+$dropdown-header-color: #ffffff;
+$dropdown-divider-bg: $dropdown-bg;
+
+$nav-tabs-link-color: #000;
+$nav-tabs-link-bg: $input-bg;
+$nav-tabs-link-active-color: #fff;
+$nav-tabs-link-active-bg: $dropdown-link-hover-bg;
+
+
+$nav-pills-link-active-bg: #0b8a98;
+$pagination-color: #0b8a98;
+$pagination-bg: #ffffff;
+$pagination-border-color: #dddddd;
+$pagination-hover-color: #18a3bb;
+$pagination-hover-bg: #eeeeee;
+$pagination-hover-border-color: #dddddd;
+$pagination-active-bg: #0b8a98;
+$pagination-active-border-color: #0b8a98;
+$pagination-disabled-color: #999999;
+$pagination-disabled-bg: #ffffff;
+$pagination-disabled-border-color: #dddddd;
+
+
+// - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
+$bg-light-alt: #117485 !important;
+
+$side-column-heading-color: #169FB6;
+
+$middle_outer-inset-shadow-bg: #063035;
+$footer_liner-card-inner-border: #19a5be;
+
+$footer-accent-color: #19a5be;
+$footer-btn-secondary-color: #f4f4f4;
+$footer_liner-border-color: $footer-accent-color;
+
+$autotoc-nav-bg: #005064;
+$autotoc-color: #ffffff;
+$autotoc-nav-link-hover-color: #f2f2f2;
+$autotoc-nav-link-hover-bg: #2e1f39;
+
+// - - - - - - - - - -  - - - - - - Other CSS, if any - - - - - - - - - - - - - - - - - //
+
+.header_outer,
+.layout_basic #top_modules,
+.postbody-title,
+.tiki > .navbar.fixed-top.bg-light/*,
+.tiki > .fixed-top.bg-light*/ {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0a8794+0,169fb6+53,18a4bc+72,19a5bd+100 */
+  background: #0a8794; /* Old browsers */
+  background: -moz-linear-gradient(left,  #0a8794 0%, #169fb6 53%, #18a4bc 72%, #19a5bd 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #0a8794 0%,#169fb6 53%,#18a4bc 72%,#19a5bd 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #0a8794 0%,#169fb6 53%,#18a4bc 72%,#19a5bd 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0a8794', endColorstr='#19a5bd',GradientType=1 ); /* IE6-9 */
+}
