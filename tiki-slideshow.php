@@ -228,6 +228,7 @@ $headerlib->add_jq_onready(
 	$("#toc").remove();
 	$("footer").remove();
 	$(".heading-link").remove();
+	location.hash = location.hash.replace("!_","");
 	Reveal.initialize();
 	if(fragments=="y") {
 		$( "li" ).addClass( "fragment "+fragmentClass+" "+fragmentHighlightColor );
@@ -314,7 +315,8 @@ $headerlib->add_jq_onready(
 			}
 		});
 		//Append slide title with URL on slide change
-		Reveal.addEventListener( "slidechanged", function( event ) { location.hash = "/"+$(".present").children("h1").attr("id");});'
+		Reveal.addEventListener( "slidechanged", function( event ) { location.hash = "!_"+$(".present table tr td").children("h1").attr("id");});'
+
 );
 
 ask_ticket('index-raw');
