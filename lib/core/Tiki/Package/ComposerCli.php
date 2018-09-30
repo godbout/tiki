@@ -272,6 +272,9 @@ class ComposerCli
 				$builder->setEnv('COMPOSER_HOME', $this->basePath . self::COMPOSER_HOME);
 			}
 
+			// HTTP_ACCEPT_ENCODING interfere with the composer output, so set it to know value
+			$builder->setEnv('HTTP_ACCEPT_ENCODING', '');
+
 			$process = $builder->getProcess();
 
 			$command = $process->getCommandLine();
