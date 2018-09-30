@@ -561,7 +561,7 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 					case 'category':
 						if ($node->hasAttribute('nicename')) {
 							if ($node->getAttribute('domain') == 'tag') {
-								$data['tags'][] = $node->textContent;
+							    $data['tags'][] = $node->textContent;
 							} elseif ($node->getAttribute('domain') == 'category') {
 								$data['categories'][] = $node->textContent;
 							}
@@ -569,6 +569,12 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 						break;
 					case 'content:encoded':
 						$data['content'] = (string) $this->parseContent($node->textContent);
+						//parse html content
+						if(class_exists('EditLib')) {
+		                    $editlib = new EditLib();
+		                    $content = $data['content'];
+		                    $data['content'] = $editlib->parse_html($content);
+                        }
 						break;
 					case 'excerpt:encoded':
 						$data['excerpt'] = (string) $node->textContent;
