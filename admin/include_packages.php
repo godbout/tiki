@@ -89,6 +89,7 @@ if ($lastResult !== null && ! empty($lastResult['errors'])) {
 
 if ($installableList === false) {
 	$packagesMissing = false;
+	$installableList = [];
 } else {
 	$packagesMissing = array_reduce(
 		$installableList,
