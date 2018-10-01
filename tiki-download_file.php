@@ -408,8 +408,37 @@ if (! $content_changed and ! isset($_GET['display'])) {
 }
 
 if (! empty($filepath) and ! $content_changed) {
-	header('Content-Length: ' . filesize($filepath));
-	readfile($filepath);
+	$filesize = filesize($filepath);
+	header("Accept-Ranges: bytes");
+	if (empty($_SERVER['HTTP_RANGE'])) {
+		header('Content-Length: ' . $filesize);
+		readfile($filepath);
+	} else {
+		// support media range requests here, e.g. bytes=524288-524288 bytes=0- or bytes=0-1 etc
+		$range = preg_split('/[=-]/', $_SERVER['HTTP_RANGE']);
+		$start = strlen($range[1]) ? (int) $range[1] : 0;
+		if ($start >= $filesize) {
+			$start = $filesize - 1;
+		}
+		$end = strlen($range[2]) ? (int) $range[2] : $filesize - 1;
+		if ($end >= $filesize) {
+			$end = $filesize - 1;
+		}
+		header('HTTP/1.1 206 Partial Content');
+		header('Content-Length: ' . $end - $start + 1);
+		header("Content-Range: bytes $start-$end/$filesize");
+		header("Content-Disposition: inline; filename=\"$file\"");
+
+		$fp = fopen($filepath, 'r');
+		fseek($fp, $start);
+		$chunkSize = 8192;	// should be a pref?
+
+		while ($end) {
+			$read = ($end > $chunkSize) ? $chunkSize : $end;
+			$end -= $read;
+			echo fread($fp, $read);
+		}
+	}
 } else {
 	if (function_exists('mb_strlen')) {
 		header('Content-Length: ' . mb_strlen($content, '8bit'));
