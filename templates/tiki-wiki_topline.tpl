@@ -126,9 +126,14 @@
 					</a>
 					<ul class="dropdown-menu dropdown-menu-right">
 						<li class="dropdown-item">
-							{if $pdf_export eq 'y'}
+							{if $pdf_export eq 'y' and $pdf_warning eq 'n'}
 								<a href="tiki-print.php?{query _keepall='y' display="pdf" page=$page}">
-									{icon name="pdf"} {tr}PDF{/tr}
+									{icon name="pdf"} {tr} PDF{/tr}
+									{assign var="hasPageAction" value="1"}
+								</a>
+							{elseif $tiki_p_admin eq "y" and $pdf_warning eq 'y'}
+								<a href="tiki-admin.php?page=packages" target="_blank" style="color:#ff0000" title="{tr}Warning:mPDF Package Missing{/tr}">
+									{icon name="warning"} {tr} PDF{/tr}
 									{assign var="hasPageAction" value="1"}
 								</a>
 							{/if}
