@@ -387,6 +387,10 @@ function iconset_default()
 			'fullscreen' => [
 				'id' => 'expand-arrows-alt',
 			],
+            'google' => [
+                'id' => 'google',
+                'prepend' => 'fab fa-'
+            ],
 			'group' => [
 				'id' => 'users',
 			],
@@ -556,6 +560,10 @@ function iconset_default()
 			'page-break' => [
 				'id' => 'cut',
 			],
+            'paypal' => [
+                'id' => 'paypal',
+                'prepend' => 'fab fa-'
+            ],
 			//paste in defaults
 			//pause in defaults
 			'pdf' => [
@@ -626,6 +634,10 @@ function iconset_default()
 			'sharethis' => [
 				'id' => 'share-alt',
 			],
+            'skype' => [
+                'id' => 'skype',
+                'prepend' => 'fab fa-'
+            ],
 			'smile' => [
 				'id' => 'smile',
 				'prepend' => 'far fa-'
@@ -782,8 +794,12 @@ function iconset_default()
 				'prepend' => 'far fa-'
 			],
 			'wysiwyg' => [
-				'id' => 'file-text',
+				'id' => 'file-alt',
 			],
+            'youtube' => [
+                'id' => 'youtube',
+                'prepend' => 'fab fa-'
+            ],
 			'zip' => [
 				'id' => 'file-archive',
 				'prepend' => 'far fa-'
