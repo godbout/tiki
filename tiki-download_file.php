@@ -425,7 +425,8 @@ if (! empty($filepath) and ! $content_changed) {
 			$end = $filesize - 1;
 		}
 		header('HTTP/1.1 206 Partial Content');
-		header('Content-Length: ' . $end - $start + 1);
+		// FIXME Safari seems to fail when getting range 0-1 with Content-Length: 2 so leave it out for now
+		//header('Content-Length: ' . ($end - $start + 1));
 		header("Content-Range: bytes $start-$end/$filesize");
 		header("Content-Disposition: inline; filename=\"$file\"");
 
