@@ -782,8 +782,12 @@ function iconset_default()
 				'prepend' => 'far fa-'
 			],
 			'wysiwyg' => [
-				'id' => 'file-text',
+				'id' => 'file-alt',
 			],
+            'youtube' => [
+                'id' => 'youtube',
+                'prepend' => 'fab fa-'
+            ],
 			'zip' => [
 				'id' => 'file-archive',
 				'prepend' => 'far fa-'
