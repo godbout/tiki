@@ -132,7 +132,7 @@
 									{assign var="hasPageAction" value="1"}
 								</a>
 							{elseif $tiki_p_admin eq "y" and $pdf_warning eq 'y'}
-								<a href="tiki-admin.php?page=packages" target="_blank" style="color:#ff0000" title="{tr}Warning:mPDF Package Missing{/tr}">
+								<a href="tiki-admin.php?page=packages" target="_blank" class="text-danger" title="{tr}Warning:mPDF Package Missing{/tr}">
 									{icon name="warning"} {tr} PDF{/tr}
 									{assign var="hasPageAction" value="1"}
 								</a>
