@@ -5,7 +5,7 @@
 {/block}
 
 {block name="content"}
-	<form class="form" id="forumImportFromProfile" action="{service controller=tracker action=import_profile trackerId=$trackerId}" method="post" enctype="multipart/form-data" role="form">
+	<form class="form" id="forumImportFromProfile" action="{service controller=tracker action=import_profile trackerId=$trackerId confirm=1}" method="post" enctype="multipart/form-data" role="form">
 		{remarksbox type="warning" title="{tr}Warning{/tr}"}
 			{tr}Please note: This is an experimental new feature - work in progress{/tr}
 		{/remarksbox}
