@@ -27,9 +27,9 @@ $theme-colors: (
 // 	"success":         	#5cb85c,
  	"info":           	#5bc0de,
 // 	"warning":         	#f0ad4e,
- 	"danger":          	#ff5c1a
+ 	"danger":          	#ff5c1a,
 //		"light":			#ffffff,
-// 	"dark":				#000000
+ 	"dark":				#efefef
 );
 
 // Options
@@ -49,9 +49,10 @@ $border-radius-sm:            .1rem;
 
 // Fonts
 $font-family-serif: 'Source Serif Pro', serif;
-$font-family-sans-serif: 'Open Sans', sans-serif;
+$font-family-sans-serif: 'Mukta', sans-serif;
 $font-family-base: $font-family-serif;
 $headings-font-family: inherit;
+$headings-font-weight: 800;
 // Tables
 //$table-border-color: #dddddd;
 
@@ -69,12 +70,14 @@ $btn-border-radius: 5px;
 // Dropdowns
 // Navs
 // Navbar
-//$navbar-dark-color: #ffffff;
-//$navbar-dark-bg: #1f5daa;
+$navbar-dark-color: #333; // unintuitive but has to match class of div in tpl
+$navbar-dark-active-color: $navbar-dark-color;
+$navbar-dark-active-hover-color: $navbar-dark-active-color;
+$navbar-dark-bg: #efefef; // ditto
+$navbar-dark-hover-color: #ff5c1a;
+$navbar-nav-link-padding-x: 2rem;
 //$navbar-dark-border: darken($navbar-dark-bg, 6.5%);
 
-// Navbarlinks ??
-//$navbar-dark-color: #ffffff;
 //$navbar-dark-hover-color: darken(#fff, 10%);
 //$navbar-dark-hover-bg: #3270bd;
 //$navbar-dark-active-color: #ffffff;
