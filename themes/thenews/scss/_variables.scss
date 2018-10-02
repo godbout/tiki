@@ -22,37 +22,42 @@ $primary: #005faa;
 //$danger: #df6e1e;
 
 $theme-colors: (
- 	"primary":        	#005faa // ,
-// 	"secondary": 		#dddddd,
+ 	"primary":        	#0099cc,
+ 	"secondary": #52269c,
 // 	"success":         	#5cb85c,
-// 	"info":           	#5bc0de,
+ 	"info":           	#5bc0de,
 // 	"warning":         	#f0ad4e,
-// 	"danger":          	#d9534f,
+ 	"danger":          	#ff5c1a,
 //		"light":			#ffffff,
-// 	"dark":				#000000
+ 	"dark":				#efefef
 );
 
 // Options
 // Spacing
 
 // Body
-$body-bg: #f4f4f4;
+$body-bg: #fff;
 //$body-color: $gray-800;
 
 // Links
+$link-color: #09c;
+$link-hover-color: #ff5c1a;
 // Components
 $border-radius:               0rem;
 $border-radius-lg:            .2rem;
 $border-radius-sm:            .1rem;
 
 // Fonts
-$font-family-serif: Georgia, "Times New Roman", Times, serif;
+$font-family-serif: 'Source Serif Pro', serif;
+$font-family-sans-serif: 'Mukta', sans-serif;
 $font-family-base: $font-family-serif;
-
+$headings-font-family: inherit;
+$headings-font-weight: 800;
 // Tables
 //$table-border-color: #dddddd;
 
 // Buttons
+$btn-border-radius: 5px;
 //$btn-default-color: #ffffff;
 //$btn-default-bg: #3676c4;
 //$btn-default-border: #3676c4;
@@ -65,12 +70,14 @@ $font-family-base: $font-family-serif;
 // Dropdowns
 // Navs
 // Navbar
-//$navbar-dark-color: #ffffff;
-//$navbar-dark-bg: #1f5daa;
+$navbar-dark-color: #333; // unintuitive but has to match class of div in tpl
+$navbar-dark-active-color: $navbar-dark-color;
+$navbar-dark-active-hover-color: $navbar-dark-active-color;
+$navbar-dark-bg: #efefef; // ditto
+$navbar-dark-hover-color: #ff5c1a;
+$navbar-nav-link-padding-x: 2rem;
 //$navbar-dark-border: darken($navbar-dark-bg, 6.5%);
 
-// Navbarlinks ??
-//$navbar-dark-color: #ffffff;
 //$navbar-dark-hover-color: darken(#fff, 10%);
 //$navbar-dark-hover-bg: #3270bd;
 //$navbar-dark-active-color: #ffffff;
@@ -80,6 +87,8 @@ $font-family-base: $font-family-serif;
 // Pagination
 // Jumbotron
 // Cards
+$card-bg: #fbfbfb;
+$card-border-color: transparent;
 //$card-border-radius: $border-radius-lg;
 //$card-text: #fff;//@gray-lighter;
 //$card-header-bg: #386dbb;
