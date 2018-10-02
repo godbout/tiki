@@ -13,9 +13,13 @@
 	{tabset name="admin_look"}
 		{tab name="{tr}Theme{/tr}"}
 			<br>
+			<legend>{tr}Main theme{/tr}</legend>
 			<div class="row">
 				<div class="col-md-8 adminoptionbox">
 					{preference name=theme}
+					<div class="adminoptionbox theme_childcontainer custom_url">
+						{preference name=theme_custom_url}
+					</div>
 					{preference name=theme_option}
 					{preference name=theme_option_includes_main}
 					{preference name=theme_navbar_color_variant}
@@ -32,16 +36,21 @@
 					</div>
 				</div>
 			</div>
-			<div class="adminoptionbox theme_childcontainer custom_url">
-				{preference name=theme_custom_url}
+			{preference name=change_theme}
+			<div class="adminoptionboxchild" id="change_theme_childcontainer">
+				{preference name=available_themes}
 			</div>
+			{preference name=useGroupTheme}
+			<hr>
+
+			<legend>{tr}Admin theme{/tr}</legend>
 			<div class="adminoptionbox">
 				{preference name=theme_admin}
 				{preference name=theme_option_admin}
 			</div>
-			{preference name=site_layout}
-			{preference name=site_layout_admin}
-			{preference name=site_layout_per_object}
+			<hr>
+
+			<legend>{tr}Other{/tr}</legend>
 			{preference name=theme_iconset}
 			{if $prefs.javascript_enabled eq 'n' or $prefs.feature_jquery eq 'n'}
 				{* TODO I don't see where this is used in in admin/include_look.php *}
@@ -52,24 +61,30 @@
 					{preference name=feature_jquery_ui_theme}
 				{/if}
 			</div>
-			{preference name=change_theme}
-			<div class="adminoptionboxchild" id="change_theme_childcontainer">
-				{preference name=available_themes}
-			</div>
-			{preference name=feature_fixed_width}
-			<div class="adminoptionboxchild" id="feature_fixed_width_childcontainer">
-				{preference name=layout_fixed_width}
-			</div>
-			{preference name=useGroupTheme}
 			{preference name=feature_theme_control}
 			<div class="adminoptionboxchild" id="feature_theme_control_childcontainer">
 				{preference name=feature_theme_control_savesession}
 				{preference name=feature_theme_control_parentcategory}
 				{preference name=feature_theme_control_autocategorize}
 			</div>
+			<hr>
 		{/tab}
-		{tab name="{tr}General Layout{/tr}"}
+		{tab name="{tr}Layout{/tr}"}
 			<br>
+			<legend>{tr}General layout{/tr}</legend>
+			{preference name=site_layout}
+			{preference name=site_layout_per_object}
+			{preference name=feature_fixed_width}
+			<div class="adminoptionboxchild" id="feature_fixed_width_childcontainer">
+				{preference name=layout_fixed_width}
+			</div>
+
+			<legend>{tr}Admin pages layout{/tr} (<small>{tr}Admin theme must be selected first{/tr}</small>)</legend>
+			{preference name=site_layout_admin}
+			
+			<!--legend>{tr}Fixed vs full width layout{/tr}</legend-->
+			<hr>
+			
 			<legend>{tr}Logo and Title{/tr}</legend>
 			{preference name=feature_sitelogo}
 			<div class="adminoptionboxchild" id="feature_sitelogo_childcontainer">
@@ -87,6 +102,8 @@
 					{preference name=sitesubtitle}
 				</fieldset>
 			</div>
+			<hr>
+
 			<div class="adminoptionbox">
 				<fieldset>
 					<legend>{tr}Module zone visibility{/tr}</legend>
@@ -97,11 +114,13 @@
 					{preference name=feature_right_column}
 					{preference name=module_zones_pagebottom}
 					{preference name=module_zones_bottom}
-					<hr>
+					<br>
 					{preference name=module_file}
 					{preference name=module_zone_available_extra}
 				</fieldset>
 			</div>
+			<hr>
+
 			<div class="adminoptionbox">
 				<fieldset>
 					<legend>{tr}Site report bar{/tr}</legend>
@@ -110,10 +129,12 @@
 					{preference name=feature_site_send_link}
 				</fieldset>
 			</div>
+			<hr>
 		{/tab}
 		{if $prefs.site_layout eq 'classic'}
 			{tab name="{tr}Shadow layer{/tr}"}
 				<br>
+				<legend>{tr}Shadow layer{/tr}</legend>
 				{preference name=feature_layoutshadows}
 				<div class="adminoptionboxchild" id="feature_layoutshadows_childcontainer">
 					{preference name=main_shadow_start}
@@ -129,13 +150,12 @@
 					{preference name=box_shadow_start}
 					{preference name=box_shadow_end}
 				</div>
+				<hr>
 			{/tab}
 		{/if}
 		{tab name="{tr}Pagination{/tr}"}
 			<br>
-			{preference name=user_selector_threshold}
-			{preference name=maxRecords}
-			{preference name=tiki_object_selector_threshold}
+			<legend>{tr}Pagination{/tr}</legend>
 			{preference name=nextprev_pagination}
 			{preference name=direct_pagination}
 			<div class="adminoptionboxchild" id="direct_pagination_childcontainer">
@@ -146,6 +166,12 @@
 			{preference name=pagination_fastmove_links}
 			{preference name=pagination_hide_if_one_page}
 			{preference name=pagination_icons}
+
+			<legend>{tr}Limits{/tr}</legend>
+			{preference name=user_selector_threshold}
+			{preference name=maxRecords}
+			{preference name=tiki_object_selector_threshold}
+			<hr>
 		{/tab}
 		{tab name="{tr}UI Effects{/tr}"}
 			<br>
@@ -165,6 +191,8 @@
 					{preference name=jquery_effect_tabs_direction}
 				</fieldset>
 			</div>
+			<hr>
+
 			<fieldset>
 				<legend>{tr}Other{/tr}</legend>
 				<div class="admin featurelist">
@@ -178,6 +206,7 @@
 					{preference name=feature_conditional_formatting}
 				</div>
 			</fieldset>
+			<hr>
 		{/tab}
 		{tab name="{tr}Customization{/tr}"}
 			<br>
@@ -192,6 +221,8 @@
 				{preference name="layout_add_body_group_class"}
 				{preference name=categories_add_class_to_body_tag}
 			</fieldset>
+			<hr>
+
 			<fieldset>
 				<legend>{tr}Editing{/tr}</legend>
 				{preference name=theme_customizer}
@@ -209,15 +240,31 @@
 					</div>
 				{/if}
 			</fieldset>
+			<hr>
 		{/tab}
 		{tab name="{tr}Miscellaneous{/tr}"}
 			<br>
-			{preference name=feature_tabs}
-			<div class="adminoptionboxchild" id="feature_tabs_childcontainer">
-				{preference name=layout_tabs_optional}
-			</div>
-			{preference name=site_favicon_enable}
-			{preference name=image_responsive_class}
+			<fieldset class="adminoptionbox">
+				<legend>{tr}Tabs{/tr}</legend>
+				{preference name=feature_tabs}
+				<div class="adminoptionboxchild" id="feature_tabs_childcontainer">
+					{preference name=layout_tabs_optional}
+				</div>
+			</fieldset>
+			<hr>
+			
+			<fieldset class="adminoptionbox">
+				<legend>{tr}Favicons{/tr}</legend>
+				{preference name=site_favicon_enable}
+			</fieldset>
+			<hr>
+			
+			<fieldset class="adminoptionbox">
+				<legend>{tr}Responsive images{/tr}</legend>
+				{preference name=image_responsive_class}
+			</fieldset>
+			<hr>
+			
 			<div class="adminoptionbox">
 				<fieldset class="table">
 					<legend>{tr}Context menus{/tr} (<small>{tr}currently used in file galleries only{/tr}</small>)</legend>
@@ -225,6 +272,8 @@
 					{preference name=use_context_menu_text}
 				</fieldset>
 			</div>
+			<hr>
+			
 			<fieldset>
 				<legend>{tr}Separators{/tr}</legend>
 				{preference name=site_crumb_seper}
@@ -236,11 +285,15 @@
 					<span class="col-md-8 col-md-push-4 form-text">{tr}Examples:{/tr} &nbsp; | &nbsp; / &nbsp; ¦ &nbsp; :</span>
 				</div>
 			</fieldset>
+			<hr>
+
+			<legend>{tr}Smarty templates (TPL files){/tr}</legend>
 			{preference name=log_tpl}
 			{preference name=smarty_compilation}
 			{preference name=smarty_cache_perms}
 			{preference name=categories_used_in_tpl}
 			{preference name=feature_html_head_base_tag}
+			<hr>
 		{/tab}
 	{/tabset}
 	{include file='admin/include_apply_bottom.tpl'}
