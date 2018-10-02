@@ -134,7 +134,7 @@
 
 		<nav class="navbar navbar-expand-md navbar-dark {*navbar=dark*}{*navbar-primary*} bg-dark {*bg-light*}
 		fixed-top" {*style="background: mycustomcolorcode;"*}>
-		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} d-flex justify-content-between">
+		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} d-flex justify-content-between in-navbar">
 			<a class="navbar-brand" href="./">{if $prefs.sitelogo_icon}<img
 					src="{$prefs.sitelogo_icon}">{/if} {$prefs.sitetitle|escape}</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
