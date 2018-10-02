@@ -902,8 +902,12 @@ class CategLib extends ObjectLib
 			$result = $this->query($query, []);
 			while ($res = $result->fetchRow()) {
 				$id = $res["categId"];
-				$query = "select count(*) from `tiki_category_objects` where `categId`=?";
-				$res["objects"] = $this->getOne($query, [$id]);
+				if ($prefs['category_browse_count_objects'] === 'y') {
+					$query = "select count(*) from `tiki_category_objects` where `categId`=?";
+					$res['objects'] = $this->getOne($query, [$id]);
+				} else {
+					$res['objects'] = null;
+				}
 				$res['children'] = [];
 				$res['descendants'] = [];
 				if ($localized) {
