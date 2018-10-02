@@ -423,10 +423,12 @@ div.cvsup {
 	color: $gray-300;
 }
 
+.fixed-top,
 .layout_social .topbar_modules,
 .layout_social_modules .topbar_modules {
-	h1.sitetitle {
-		color: $navbar-light-color;
+	h1.sitetitle > a,
+	h2.sitesubtitle {
+		color: $navbar-dark-color;
 	}
 	.navbar-inverse .navbar-collapse,
 	.navbar-inverse .navbar-form,
