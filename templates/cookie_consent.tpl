@@ -6,14 +6,16 @@
 		{/if}
 	>
 		<form method="POST">
-			<div class="description">
+			<div class="description mb-1">
 				{wiki}{tr}{$prefs.cookie_consent_description}{/tr}{/wiki}
 			</div>
 			{if !empty($prefs.cookie_consent_question)}
-				<span class="question form-check">
-					<label class="form-check-label">{wiki}{tr}{$prefs.cookie_consent_question}{/tr}{/wiki}
-				</span>
-			<input type="checkbox" class="form-check-input" name="cookie_consent_checkbox"></form>&nbsp;
+			<div class="form-check mb-1">
+				<input class="form-check-input" type="checkbox" name="cookie_consent_checkbox" id="cookie_consent_checkbox">
+				<label class="form-check-label question" for="cookie_consent_checkbox">
+					{wiki}{tr}{$prefs.cookie_consent_question}{/tr}{/wiki}
+				</label>
+			</div>
 			{else}
 				<input type="hidden" name="cookie_consent_checkbox" value="1">
 			{/if}
