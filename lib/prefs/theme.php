@@ -84,6 +84,17 @@ function prefs_theme_list($partial = false)
 			'description' => tra('Don\'t include the main theme stylesheet because its contents are included in the option stylesheet.'),
 			'default' => 'n',
 		],
+        'theme_navbar_color_variant' => [
+            'name' => tra('Navbar background color'),
+            'type' => 'radio',
+            'options' => [
+                'dark' => tra('Dark'),
+                'light' => tra('Light'),
+            ],
+            'help' => 'Themes',
+            'description' => tra('Select a dark or light navbar (containing horizontal menu, etc.), as styled by the theme.'),
+            'default' => 'dark',
+        ],
 		'theme_iconset' => [
 			'name' => tr('Icons'),
 			'description' => tr('Icon set used by the site.'),

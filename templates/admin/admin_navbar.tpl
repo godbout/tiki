@@ -1,4 +1,4 @@
-<nav class="navbar-expand-md navbar-light bg-light admin-navbar" role="navigation">
+<nav class="navbar-expand-md {if $prefs.theme_navbar_color_variant eq 'dark'}bg-dark {else}bg-light{/if} admin-navbar" role="navigation">
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin-navbar-collapse-1" aria-controls="admin-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>

@@ -132,8 +132,7 @@
 			</div>
 		</footer>
 
-		<nav class="navbar navbar-expand-md navbar-dark {*navbar=dark*}{*navbar-primary*} bg-dark {*bg-light*}
-		fixed-top" {*style="background: mycustomcolorcode;"*}>
+		<nav class="navbar navbar-expand-md {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if} fixed-top">
 		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} d-flex justify-content-between in-navbar">
 			<a class="navbar-brand" href="./">{if $prefs.sitelogo_icon}<img
 					src="{$prefs.sitelogo_icon}">{/if} {$prefs.sitetitle|escape}</a>
