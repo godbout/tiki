@@ -158,9 +158,16 @@ body.fullscreen.tiki.navbar-padding {
 		margin-top: 10px;
 		margin-bottom: 0;
 	}
+	h2.sitesubtitle {
+		font-size: 1.2rem
+	}
 	h1.sitetitle,
 	h2.sitesubtitle {
 		display: inline-block
+	}
+	.sitetitle,
+	.sitesubtitle {
+		margin-right: 1rem
 	}
 
 	#topbar_modules {
