@@ -2527,6 +2527,9 @@ img.pref_dependency {
     display: flex; }
 
 a.admbox, a.admbox:visited {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 120px;
   text-align: center;
   vertical-align: middle;
