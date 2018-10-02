@@ -3,7 +3,7 @@
 	{if $tiki_p_admin eq 'y'}
 		<div class="t_navbar mb-4">
 			<div class="btn-group">
-				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{icon name="create"} {tr}Create{/tr}
 				</button>
 				<ul class="dropdown-menu">

@@ -276,7 +276,7 @@ function wikiplugin_layout($data, $params)
 	}
 	if ($params['actionbuttons'] == 'n') {
 		$headerlib->add_css("#page-bar{display:none} ");
-		$headerlib->add_js("$('.page_actions a').removeClass('btn btn-primary dropdown-toggle');"); //making action toggle smaller
+		$headerlib->add_js("$('.page_actions a').removeClass('btn btn-info dropdown-toggle');"); //making action toggle smaller
 	}
 
 	if (isset($params['bgimage'])) {
