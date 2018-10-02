@@ -82,8 +82,13 @@ function wikiplugin_diagram($data, $params)
 		$sourcepage = $page;
 	}
 
-	//checking if user has edit permissions on the wiki page using the current permission library to obey global/categ/object perms
-	$objectperms = Perms::get([ 'type' => 'wiki page', 'object' => $sourcepage ]);
+	//checking if user has edit permissions on the wiki page/file using the current permission library to obey global/categ/object perms
+	if ($fileId) {
+		$objectperms = Perms::get(['type' => 'file', 'object' => $fileId]);
+	} else {
+		$objectperms = Perms::get([ 'type' => 'wiki page', 'object' => $sourcepage ]);
+	}
+
 	if ($objectperms->edit) {
 		$allowEdit = true;
 	} else {
