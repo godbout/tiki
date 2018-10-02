@@ -734,7 +734,7 @@ class Services_Tracker_Controller
 
 		$id = 0;
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$itemObject = $this->utilities->cloneItem($definition, $itemData);
+			$itemObject = $this->utilities->cloneItem($definition, $itemData, $itemId);
 			$id = $itemObject->getId();
 
 			$processedItem = $this->utilities->processValues($definition, $itemData);

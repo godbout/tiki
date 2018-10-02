@@ -582,7 +582,7 @@ EXPORT;
 		return $newTrackerId;
 	}
 
-	function cloneItem($definition, $itemData)
+	function cloneItem($definition, $itemData, $itemId)
 	{
 		$transaction = TikiLib::lib('tiki')->begin();
 
