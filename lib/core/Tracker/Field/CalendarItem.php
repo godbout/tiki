@@ -81,16 +81,24 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 	function handleSave($value, $oldValue)
 	{
 		$calendarId = $this->getOption('calendarId');
-
-		$event = [];
+		$calitemId = $this->getCalendarItemId();
+		$event = $this->calendarLib->get_item($calitemId);
 
 		if ($this->getOption('showEventIdInput')) {
+			// check if event changed or removed
 			$setCalitemId = isset($_POST['calitemId_' . $this->getFieldId()]) ? $_POST['calitemId_' . $this->getFieldId()] : 0;
-			if ($setCalitemId) {
+
+			if ($setCalitemId && $setCalitemId !== $calitemId) {
 				$event = $this->calendarLib->get_item($setCalitemId);
 				if ($event) {
 					$value = $event['start'];
+					$this->setCalendarItemId($calitemId);
+				} else {
+					Feedback::error(tr('Calendar Item %0 not found', $setCalitemId));
 				}
+				return [
+					'value' => $value,
+				];
 			} else if ($setCalitemId === '') {		// event detached
 				$this->removeCalendarItemId();
 				return [
@@ -106,67 +114,37 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 			$trklib = TikiLib::lib('trk');
 
 			$itemId = $this->getItemId();
-
 			if ($itemId) {
+
 				$trackerId = $this->getConfiguration('trackerId');
-				if ($event['calitemId']) {
-					$calitemId = $event['calitemId'];
-					$name = $event['name'];
-				} else {
-					$calitemId = $this->getCalendarItemId();
-					$event = $this->calendarLib->get_item($setCalitemId);
 
-					if ($event) {
-						$name = $event['name'];
-					} else {
-						$name = $trklib->get_isMain_value($trackerId, $itemId);	// use the item title for new events
-					}
-				}
+				if (! $event) {	// new calendar item please
 
-				$data = [
-					'calendarId' => $calendarId,
-					'start'      => $value,
-					//		'end'
-					//		'locationId',
-					//		'categoryId',
-					//		'nlId',
-					//		'priority',
-					//		'status',
-					//		'url',
-					//		'lang'
-					'name'       => $name,
-					//		'description',
-					//		'user',
-					//		'created',
-					//		'lastmodif',
-					//		'allday',
-					//		'recurrenceId',
-					//		'changed'
-				];
+					$data = [
+						'calendarId' => $calendarId,
+						'start'      => $value,
+						'end'        => $value + 3600,
+						//		'locationId',
+						//		'categoryId',
+						//		'nlId',
+						//		'priority',
+						//		'status',
+						//		'url',
+						//		'lang'
+						// use the item title for new events
+						'name'       => $trklib->get_isMain_value($trackerId, $itemId),
+						//		'description',
+						//		'user',
+						//		'created',
+						//		'lastmodif',
+						//		'allday',
+						//		'recurrenceId',
+						//		'changed'
+					];
 
-				if (! $this->calendarLib->get_calendarid($calitemId)) {
-					$new = true;
-					$calitemId = 0;
-					$data['end'] = $value + 3600;
-				} else {
-					$new = false;
-				}
-				// save the event whether new or not as start time or the title/name might have changed
-
-				$calitemId = $this->calendarLib->set_item($user, $calitemId, $data);
-
-				if ($new || ($calitemId != $this->getCalendarItemId())) {    // added a new one or changed event id?
+					$calitemId = $this->calendarLib->set_item($user, 0, $data);
 					$this->setCalendarItemId($calitemId);
 				}
-			}
-			//$itemInfo = $calendarlib->get_item($calitemId);
-		} else if (! $value && $oldValue && $itemId = $this->getItemId()) {
-			// delete an item?
-			$calitemId = $this->getCalendarItemId();
-			if ($calitemId) {
-				$this->calendarLib->drop_item($GLOBALS['user'], $calitemId);
-				// also remove attribute
-				$this->removeCalendarItemId();
 			}
 		}
 
