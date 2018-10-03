@@ -36,7 +36,7 @@
 			<div class="topbar bg-dark" id="topbar">
 				{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
 			</div>
-			<div class="row row-middle" id="row-middle">
+			<div class="row row-middle w-100" id="row-middle">
 				{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
 					<div class="col col1 col-md-12" id="col1">
 

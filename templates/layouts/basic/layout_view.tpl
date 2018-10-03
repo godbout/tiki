@@ -20,7 +20,7 @@
 	</header>
 {/if}
 
-	<div class="row row-middle" id="row-middle">
+	<div class="row row-middle w-100" id="row-middle">
 		{modulelist zone=topbar class="topbar_modules d-flex justify-content-between topbar {if $prefs.theme_navbar_color_variant eq 'dark'}bg-dark{else}bg-light{/if} w-100 mb-sm"}
 		{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
 			<div class="col col1 col-md-12" id="col1">

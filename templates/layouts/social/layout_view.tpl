@@ -24,7 +24,7 @@
 		{/if}
 		{*<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">*}
 
-		<div class="row row-middle" id="row-middle">
+		<div class="row row-middle w-100" id="row-middle">
 			{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
 				<div class="col col1 col-md-12" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
