@@ -144,6 +144,8 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 
 					$calitemId = $this->calendarLib->set_item($user, 0, $data);
 					$this->setCalendarItemId($calitemId);
+				} else if ($event['start'] != $value) {
+					$value = (int) $event['start'];
 				}
 			}
 		}
