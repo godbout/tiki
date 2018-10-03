@@ -408,10 +408,13 @@ class CalRecurrence extends TikiLib
 		$startOffset = 0;
 		$endOffset = dayInSeconds - 1;
 		if (! $this->isAllday()) {
+			// prevent timezone offset being applied twice, once for the date and once for the time so add it back here to start and end times
+			$server_offset = TikiDate::tzServerOffset(TikiLib::lib('tiki')->get_display_timezone());
+
 			$tmp = str_pad($this->getStart(), 4, '0', STR_PAD_LEFT);
-			$startOffset = substr($tmp, 0, 2) * 60 * 60 + substr($tmp, -2) * 60;
+			$startOffset = substr($tmp, 0, 2) * 60 * 60 + substr($tmp, -2) * 60 + $server_offset;
 			$tmp = str_pad($this->getEnd(), 4, '0', STR_PAD_LEFT);
-			$endOffset = substr($tmp, 0, 2) * 60 * 60 + substr($tmp, -2) * 60;
+			$endOffset = substr($tmp, 0, 2) * 60 * 60 + substr($tmp, -2) * 60 + $server_offset;
 		}
 
 		$tx = TikiDb::get()->begin();
