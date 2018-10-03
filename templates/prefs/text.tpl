@@ -21,11 +21,10 @@
 			{$fileId = {ldelim}|cat:'fileId'|cat:{rdelim}}
 				<a class="input-group-append btn btn-primary" title="{tr}Upload image{/tr}" href="#"
 						onclick="$('#{$p.id|escape}').select(); openFgalsWindow('tiki-upload_file.php?filegals_manager={$p.id|escape}&insertion_syntax={$fileId|sefurl:display}', true);return false;">
-					{icon name='image'} {tr}Upload image{/tr}
+					{icon name='image'}&nbsp;{tr}Upload image{/tr}
 				</a>
 			</div>
 		{/if}
 
 		{include file="prefs/shared.tpl"}
-	</div>
 </div>
