@@ -14,6 +14,7 @@ use MediaAlchemyst\Specification\Image;
 use MediaVorus\Media\MediaInterface;
 use MediaVorus\MediaVorus;
 use Neutron\TemporaryFilesystem\Manager as FsManager;
+use TikiLib;
 
 /**
  * Wrapper of the library Media Alchemy, for media processing
@@ -102,9 +103,16 @@ class AlchemyLib
 
 			return $targetImageType;
 		} catch (\Exception $e) {
-			\Feedback::error(tr('Failed to convert document into image.'), true);
+			$logsLib = TikiLib::lib('logs');
+			$logsLib->add_log('Alchemy', $e->getMessage());
+
+			\Feedback::error(tr('Failed to convert document into image. Please check Tiki Action Log for more information.'));
 		}
 
 		return null;
 	}
 }
+
+
+
+
