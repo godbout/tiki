@@ -303,7 +303,7 @@ function prefs_global_list($partial = false)
 			'dependencies' => [
 				'feature_trackers',
 			],
-			'hint' => tra('Go to the "Admin Groups" page to select which tracker and fields to display'),
+			'hint' => tra('Go to [tiki-admingroups.php|Admin Groups] to select which tracker and fields to display.'),
 			'default' => 'n',
 		],
 		'groupTracker' => [
@@ -313,7 +313,7 @@ function prefs_global_list($partial = false)
 			'dependencies' => [
 				'feature_trackers',
 			],
-			'hint' => tra('Go to the "Admin Groups" page to select which tracker and fields to display'),
+			'hint' => tra('Go to [tiki-admingroups.php|Admin Groups] to select which tracker and fields to display.'),
 			'default' => 'n',
 		],
 		'eponymousGroups' => [

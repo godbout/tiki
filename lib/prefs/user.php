@@ -96,7 +96,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_default_picture_id' => [
 			'name' => tra('File ID of default profile picture'),
-			'deacription' => tra('File ID of image to use in file gallery as the profile picture if user has no profile picture in file galleries'),
+			'description' => tra('File ID of image to use in file gallery as the profile picture if user has no profile picture in file galleries'),
 			'keywords' => 'avatar',
 			'help' => 'User+Preferences',
 			'type' => 'text',
@@ -204,7 +204,7 @@ function prefs_user_list($partial = false)
 		],
 		'user_trackersync_trackers' => [
 			'name' => tra('User tracker IDs to sync prefs from'),
-			'description' => tra('Enter the comma-separated IDs of trackers to sync user preferences from.'),
+			'description' => tra('Select one or more trackers to sync user preferences from.'),
 			'type' => 'text',
 			'size' => '10',
 			'dependencies' => [
