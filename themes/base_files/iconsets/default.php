@@ -281,6 +281,9 @@ function iconset_default()
 			'close' => [
 				'id' => 'times',
 			],
+            'cloud-upload' => [
+                'id' => 'cloud-upload-alt',
+             ],
 			//code in defaults
 			'code_file' => [
 				'id' => 'file-code',
