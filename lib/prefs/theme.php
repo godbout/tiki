@@ -95,6 +95,18 @@ function prefs_theme_list($partial = false)
             'description' => tra('Select a dark or light navbar (containing horizontal menu, etc.), as styled by the theme.'),
             'default' => 'dark',
         ],
+		'theme_navbar_fixed_topbar_offset' => [
+			'name' => tra('Fixed topbar offset'),
+			'type' => 'text',
+			'size' => '4',
+			'filter' => 'digits',
+			'units' => 'px',
+			'help' => 'Themes',
+			'description' => tra('The offset value of the top padding should be the same height as the navbar in the fixed top position to prevent the navbar from obscuring the page content.'),
+			'default' => '',
+			'keywords' => tra('topbar offset, top offset, fixed topbar, top padding, offset'),
+			'tags' => ['basic'],
+		],
 		'theme_iconset' => [
 			'name' => tr('Icons'),
 			'description' => tr('Icon set used by the site.'),

@@ -4,7 +4,7 @@
 	{include file='header.tpl'}
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body{html_body_attributes class="navbar-padding"}>
+<body{html_body_attributes class="navbar-padding"}{if $prefs.theme_navbar_fixed_topbar_offset ne ''} style="padding-top: {$prefs.theme_navbar_fixed_topbar_offset}px"{/if}>
 {$cookie_consent_html}
 
 {include file="layout_fullscreen_check.tpl"}

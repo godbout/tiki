@@ -23,6 +23,7 @@
 					{preference name=theme_option}
 					{preference name=theme_option_includes_main}
 					{preference name=theme_navbar_color_variant}
+					{preference name=theme_navbar_fixed_topbar_offset}
 				</div>
 				<div class="col-md-4">
 					<div class="card">
