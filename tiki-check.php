@@ -1782,16 +1782,49 @@ if (! $standalone) {
 		array(
 			'name' => 'media-alchemyst/media-alchemyst',
 			'preferences' => array(
-				'alchemy_ffmpeg_path' => tr('ffmpeg path'),
-				'alchemy_ffprobe_path' => tr('ffprobe path'),
-				'alchemy_unoconv_path' => tr('unoconv path'),
-				'alchemy_gs_path' => tr('ghostscript path')
+				'alchemy_ffmpeg_path' => array(
+					'name' => tr('ffmpeg path'),
+					'type' => 'path'
+				),
+				'alchemy_ffprobe_path' => array(
+					'name' => tr('ffprobe path'),
+					'type' => 'path'
+				),
+				'alchemy_unoconv_path' => array(
+					'name' => tr('unoconv path'),
+					'type' => 'path'
+				),
+				'alchemy_gs_path' => array(
+					'name' => tr('ghostscript path'),
+					'type' => 'path'
+				),
+				'alchemy_imagine_driver' => array(
+					'name' => tr('Alchemy Image library'),
+					'type' => 'classOptions',
+					'options' => array(
+						'imagick' => array(
+							'name' => tra('Imagemagick'),
+							'classLib' => 'Imagine\Imagick\Imagine',
+							'className' => 'Imagick',
+							'extension' => false
+						),
+						'gd' => array(
+							'name' => tra('GD'),
+							'classLib' => 'Imagine\Gd\Imagine',
+							'className' => false,
+							'extension' => 'gd'
+						)
+					),
+				),
 			)
 		),
 		array(
 			'name' => 'php-unoconv/php-unoconv',
 			'preferences' => array(
-				'alchemy_unoconv_path' => tr('unoconv path')
+				'alchemy_unoconv_path' => array(
+					'name' => tr('unoconv path'),
+					'type' => 'path'
+				)
 			)
 		)
 	);
@@ -1800,7 +1833,7 @@ if (! $standalone) {
 	foreach ($installedLibs as $instaledPackage) {
 		$key = array_search($instaledPackage['name'], array_column($packagesToCheck, 'name'));
 		if ($key !== false) {
-			$warnings = checkPreferencesPaths($packagesToCheck[$key]['preferences']);
+			$warnings = checkPreferences($packagesToCheck[$key]['preferences']);
 			$packageInfo = array(
 				'name' => $instaledPackage['name'],
 				'version' => $instaledPackage['installed'],
@@ -2583,21 +2616,39 @@ if ($standalone && ! $nagios) {
 }
 
 /**
- * Check if paths set in preferences exist in the system
+ * Check if paths set in preferences exist in the system, or if classes exist in project/system
  *
- * @param array $preferences An array with preference_key and preference_name
+ * @param array $preferences An array with preference key and preference info
  *
  * @return array An array with warning messages.
  */
-function checkPreferencesPaths(array $preferences)
+function checkPreferences(array $preferences)
 {
 	global $prefs;
 
 	$warnings = array();
 
-	foreach ($preferences as $prefKey => $prefName) {
-		if (isset($prefs[$prefKey]) && ! file_exists($prefs[$prefKey])) {
-			$warnings[] = tr("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $prefName);
+	foreach ($preferences as $prefKey => $pref) {
+		if ($pref['type'] == 'path') {
+			if (isset($prefs[$prefKey]) && ! file_exists($prefs[$prefKey])) {
+				$warnings[] = tr("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $pref['name']);
+			}
+		} elseif($pref['type'] == 'classOptions') {
+			if (isset($prefs[$prefKey])) {
+				$options = $pref['options'][$prefs[$prefKey]];
+
+				if (! empty($options['classLib']) && ! class_exists($options['classLib'])) {
+					$warnings[] = tr("The lib '%0' on preference '%1', option '%2' does not exist", $options['classLib'], $pref['name'], $options['name']);
+				}
+
+				if (! empty($options['className']) && ! class_exists($options['className'])) {
+					$warnings[] = tr("The class '%0' needed for preference '%1', with option '%2' selected, does not exist", $options['className'], $pref['name'], $options['name']);
+				}
+
+				if (! empty($options['extension']) && ! extension_loaded($options['extension'])) {
+					$warnings[] = tr("The extension '%0' on preference '%1', with option '%2' selected, is not loaded", $options['extension'], $pref['name'], $options['name']);
+				}
+			}
 		}
 	}
 

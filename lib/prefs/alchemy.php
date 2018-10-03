@@ -7,7 +7,7 @@
 
 function prefs_alchemy_list()
 {
-	return [
+	$prefs = [
 		'alchemy_ffmpeg_path' => [
 			'name' => tra('ffmpeg path'),
 			'description' => tra('Path to the location of the ffmpeg binary'),
@@ -49,4 +49,14 @@ function prefs_alchemy_list()
 			'default' => '/usr/bin/gs',
 		],
 	];
+
+	if (!class_exists('\Imagick')) {
+		$prefs['alchemy_imagine_driver']['options']['imagick'] .=  tr(' (Extension not loaded)');
+	}
+
+	if (!extension_loaded('gd')) {
+		$prefs['alchemy_imagine_driver']['options']['gd'] .=  tr(' (Extension not loaded)');
+	}
+
+	return $prefs;
 }
