@@ -126,41 +126,48 @@ if ($prefs['javascript_enabled'] == 'y') {	// we have JavaScript
 	$tz = TikiDate::getTimezoneAbbreviations();
 	$headerlib->add_js(
 		'
-function inArray(item, array) {
-    for (var i in array) {
-        if (array[i] === item) {
-            return i;
-        }
-    }
-    return false;
-}
-var allTimeZoneCodes = ' . json_encode(array_map("strtoupper", $tz)) . ';
-var now = new Date();
-var now_string = now.toString();
-var offsethours = - now.getTimezoneOffset() / 60;
-setCookie("local_tzoffset", offsethours);
-var m = now_string.match(/[ \(]([A-Z]{3,6})[ \)]?[ \d]*$/);	// try three or more char tz first at the end or just before the year
-if (!m) {
-	m = now_string.match(/[ \(]([A-Z]{1,6})[ \)]?[ \d]*$/);	// might be a "military" one if not
-}
-if (m) {
-	m = m[1];
-} else {	// IE (sometimes) gives UTC +offset instead of the abbreviation
-	// sadly this workaround will fail for non-whole hour offsets
-	var hours = - now.getTimezoneOffset() / 60;
-	m = "GMT" + (hours > 0 ? "+" : "") + hours;
-}
-// Etc/GMT+ is equivalent to GMT-
-if (m.substring(0,4) == "GMT+") {
-	m = "Etc/GMT-" + m.substring(4);
-	setCookie("local_tz", m);
-}
-if (m.substring(0,4) == "GMT-") {
-	m = "Etc/GMT+" + m.substring(4);
-	setCookie("local_tz", m);
-}
-if (inArray(m, allTimeZoneCodes)) {
-	setCookie("local_tz", m);
+try {
+	var timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+	setCookie("local_tz", timezone);
+} catch (e) {}
+
+if (! timezone) {
+	function inArray(item, array) {
+		for (var i in array) {
+			if (array[i] === item) {
+				return i;
+			}
+		}
+		return false;
+	}
+	var allTimeZoneCodes = ' . json_encode(array_map("strtoupper", $tz)) . ';
+	var now = new Date();
+	var now_string = now.toString();
+	var offsethours = - now.getTimezoneOffset() / 60;
+	setCookie("local_tzoffset", offsethours);
+	var m = now_string.match(/[ \(]([A-Z]{3,6})[ \)]?[ \d]*$/);	// try three or more char tz first at the end or just before the year
+	if (!m) {
+		m = now_string.match(/[ \(]([A-Z]{1,6})[ \)]?[ \d]*$/);	// might be a "military" one if not
+	}
+	if (m) {
+		m = m[1];
+	} else {	// IE (sometimes) gives UTC +offset instead of the abbreviation
+		// sadly this workaround will fail for non-whole hour offsets
+		var hours = - now.getTimezoneOffset() / 60;
+		m = "GMT" + (hours > 0 ? "+" : "") + hours;
+	}
+	// Etc/GMT+ is equivalent to GMT-
+	if (m.substring(0,4) == "GMT+") {
+		m = "Etc/GMT-" + m.substring(4);
+		setCookie("local_tz", m);
+	}
+	if (m.substring(0,4) == "GMT-") {
+		m = "Etc/GMT+" + m.substring(4);
+		setCookie("local_tz", m);
+	}
+	if (inArray(m, allTimeZoneCodes)) {
+		setCookie("local_tz", m);
+	}
 }
 ',
 		2

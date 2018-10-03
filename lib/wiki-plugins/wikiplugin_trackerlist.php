@@ -1711,7 +1711,7 @@ function wikiplugin_trackerlist($data, $params)
 		}
 
 		if (! isset($exactvalue)) {
-			$exactvalue = '';
+			$exactvalue = [];
 		} else {
 			foreach ($exactvalue as $i => $f) {
 				if ($f == '#user') {
@@ -1909,7 +1909,7 @@ function wikiplugin_trackerlist($data, $params)
 			if ($allfields["data"][$i]['name'] == 'page' && empty($filterfield) && empty($displayList) && ! empty($view) && $view == 'page') {
 				$filterfield = $allfields["data"][$i]['fieldId'];
 				$filtervalue = $_REQUEST['page'];
-				$exactvalue = '';
+				$exactvalue = [];
 			}
 			if ($definition->isEnabled('useRatings')
 					and $allfields["data"][$i]['type'] == 's' and $allfields["data"][$i]['name'] == 'Rating') {
