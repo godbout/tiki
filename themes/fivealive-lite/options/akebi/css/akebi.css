@@ -131,7 +131,7 @@ hr {
   background-image: none;
   border: 1px solid #b4f3fb; }
 
-.navbar-dark .navbar-brand, .dropdown-item, .dropdown-item a {
+.navbar-dark .navbar-brand, .dropdown-item, .dropdown-item a, .dropdown-menu .tikihelp {
   color: #fff; }
 
 .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
