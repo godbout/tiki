@@ -27,4 +27,5 @@
 		{/if}
 
 		{include file="prefs/shared.tpl"}
+	</div>
 </div>
