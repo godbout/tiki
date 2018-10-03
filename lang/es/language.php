@@ -4345,6 +4345,7 @@ $lang = array(
 "Use a tracker to collect more user information" => "Utiliza un formulario-bd para recopilar más información de los usuarios",
 "Display a tracker form for the user to complete as part of the registration process. This tracker will receive and store additional information about each user" => "Muestra un formulario-bd para que lo complete el usuario, como parte del proceso de registro. Utiliza este formulario-bd para almacenar información adicional sobre cada usuario",
 "Go to the \"Admin Groups\" page to select which tracker and fields to display" => "Utiliza la página \"Admin Grupos\" para seleccionar qué formulario-bd y los campos que se han de mostrar",
+"Go to [tiki-admingroups.php|Admin Groups] to select which tracker and fields to display" => "Utiliza la página \"Admin Grupos\" para seleccionar qué formulario-bd y los campos que se han de mostrar",
 // "Use tracker to collect more group information" => "Use tracker to collect more group information",
 // "Create a new group for each user" => "Create a new group for each user",
 // "Automatically create a group for each user in order to, for example, assign permissions on the individual-user level" => "Automatically create a group for each user in order to, for example, assign permissions on the individual-user level",

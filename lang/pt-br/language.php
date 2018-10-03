@@ -12592,6 +12592,7 @@ $lang = array(
 // "View Password List" => "View Password List",
 // "Theme Screenshot" => "Theme Screenshot",
 "General Layout" => "Layout do site",
+"Layout" => "Layout do site",
 // "Logo and Title" => "Logo and Title",
 // "Module zone visibility" => "Module zone visibility",
 // "Site report bar" => "Site report bar",

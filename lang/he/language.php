@@ -12584,6 +12584,7 @@ $lang = array(
 // "View Password List" => "View Password List",
 // "Theme Screenshot" => "Theme Screenshot",
 "General Layout" => "פריסה כללית",
+"Layout" => "פריסה כללית",
 // "Logo and Title" => "Logo and Title",
 // "Module zone visibility" => "Module zone visibility",
 // "Site report bar" => "Site report bar",
