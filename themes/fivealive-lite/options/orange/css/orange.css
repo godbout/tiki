@@ -131,7 +131,7 @@ hr {
   background-image: none;
   border: 1px solid #fac5b1; }
 
-.navbar-dark .navbar-brand, .dropdown-item, .dropdown-item a {
+.navbar-dark .navbar-brand, .dropdown-item, .dropdown-item a, .dropdown-menu .tikihelp {
   color: #fff; }
 
 .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {
@@ -207,7 +207,7 @@ hr {
   border-color: #0d5865; }
 
 .dropdown-menu {
-  background-color: #e77d4f;
+  background-color: #d36d41;
   border: 1px solid rgba(0, 0, 0, 0.15); }
 
 .dropdown-item:hover, .dropdown-item .btn.btn-link:hover, .dropdown-item:focus, .dropdown-item .btn.btn-link:focus {
