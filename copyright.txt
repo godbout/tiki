@@ -2798,8 +2798,8 @@ Nickname: robertokir
 Name: Roberto Kirschbaum
 First Commit: 2017-06-27
 Last Commit: 2018-10-04
-Number of Commits: 193
-SF Role: Developer, Release Technicians
+Number of Commits: 196
+SF Role: Admin, Developer, Release Technicians
 
 Nickname: robertplummer
 Name: Robert Plummer
