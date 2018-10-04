@@ -16,7 +16,7 @@
 	{if $smarty.session.fullscreen ne 'y'}
 		<div class="fixed-topbar"></div>
 	{/if}
-	<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} clearfix middle" id="middle">
+	<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} middle px-0" id="middle">
 		{if $smarty.session.fullscreen ne 'y'}
 		<div class="topbar" id="topbar">
 			{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
@@ -24,7 +24,7 @@
 		{/if}
 		{*<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">*}
 
-		<div class="row row-middle w-100" id="row-middle">
+		<div class="row row-middle w-100 mx-0" id="row-middle">
 			{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
 				<div class="col col1 col-md-12" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
@@ -88,7 +88,7 @@
 			{else}
 				<div class="side-col-toggle-container d-flex">
 					{if $prefs.feature_left_column eq 'user'}
-						<div class="text-left side-col-toggle flex-fill">
+						<div class="text-left side-col-toggle flex-fill ml-3">
 							{$icon_name = (not empty($smarty.cookies.hide_zone_left)) ? 'toggle-right' : 'toggle-left'}
 							{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 						</div>

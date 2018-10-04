@@ -21,7 +21,7 @@
 	<div id="header-shadow">{eval var=$prefs.header_shadow_start}{/if}
 		<div class="header_outer" id="header_outer">
 			<div class="header_container">
-				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
+				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} px-0">
 					<header class="header page-header" id="page-header">
 						{modulelist zone=top class='top_modules d-flex justify-content-between'}
 					</header>
@@ -32,11 +32,11 @@
 {/if}
 
 	<div class="middle_outer" id="middle_outer" >
-		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} clearfix middle" id="middle">
+		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} middle px-0" id="middle">
 			<div class="topbar bg-dark" id="topbar">
 				{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
 			</div>
-			<div class="row row-middle w-100" id="row-middle">
+			<div class="row row-middle w-100 mx-0" id="row-middle">
 				{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
 					<div class="col col1 col-md-12" id="col1">
 
@@ -111,7 +111,7 @@
 				{else}
 				<div class="side-col-toggle-container d-flex">
 					{if $prefs.feature_left_column eq 'user'}
-						<div class="text-left side-col-toggle flex-fill">
+						<div class="text-left side-col-toggle flex-fill ml-3">
 							{$icon_name = (not empty($smarty.cookies.hide_zone_left)) ? 'toggle-right' : 'toggle-left'}
 							{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 						</div>
@@ -155,7 +155,7 @@
 	<div id="footer-shadow">{eval var=$prefs.footer_shadow_start}{/if}
 		<footer class="footer main-footer" id="footer">
 			<div class="footer_liner">
-				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}" style="padding-left: 0; padding-right: 0;">
+				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} px-0">
 					{modulelist zone=bottom class='bottom_modules px-3'}
 				</div>
 			</div>
