@@ -220,7 +220,7 @@
 						</tr>
 					{/if}
 
-					{if $prefs.feature_messages eq 'y'and $tiki_p_messages eq 'y'}
+					{if $prefs.feature_messages eq 'y' and $tiki_p_messages eq 'y'}
 						<tr>
 							<td>{tr}My messages{/tr}</td>
 							<td>
