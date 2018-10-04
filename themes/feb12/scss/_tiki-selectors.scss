@@ -22,13 +22,6 @@ header.container {
 	border-bottom: none;
 }
 
-.layout_basic {
-  #page-header,
-  .footer_liner {
-  margin-left: -15px; margin-right: -15px;
-}
-}
-
 .top_modules {
 	background: url('#{$imagePath}header.jpg') repeat-x bottom;
 //	margin-left: 0;

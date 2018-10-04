@@ -6234,9 +6234,9 @@ form.simple label .warning {
 div.cvsup {
   color: #dee2e6; }
 
-.layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle {
-  color: #212529; }
-  .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse {
+.fixed-top h1.sitetitle > a, .layout_social .topbar_modules h1.sitetitle > a, .layout_social_modules .topbar_modules h1.sitetitle > a, .fixed-top h2.sitesubtitle, .layout_social .topbar_modules h2.sitesubtitle, .layout_social_modules .topbar_modules h2.sitesubtitle {
+  color: #fff; }
+  .fixed-top .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .fixed-top .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .fixed-top .navbar-inverse, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse {
     border-color: transparent; }
 
 .prio5 {
@@ -6723,10 +6723,6 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 header.container {
   margin-top: 30px;
   border-bottom: none; }
-
-.layout_basic #page-header, .layout_basic .footer_liner {
-  margin-left: -15px;
-  margin-right: -15px; }
 
 .top_modules {
   background: url("../images/header.jpg") repeat-x bottom; }

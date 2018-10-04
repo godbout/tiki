@@ -13,14 +13,14 @@
 	{include file='tiki-ajax_header.tpl'}
 {/if}
 
-<div class="container{if isset($smarty.session.fullscreen) && $smarty.session.fullscreen eq 'y'}-fluid{/if}">
+<div class="container{if isset($smarty.session.fullscreen) && $smarty.session.fullscreen eq 'y'}-fluid{/if} px-0">
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
-	<header class="page-header mx--15px" id="page-header">
+	<header class="page-header" id="page-header">
 		{modulelist zone=top class='top_modules d-flex justify-content-between'}
 	</header>
 {/if}
 
-	<div class="row row-middle w-100" id="row-middle">
+	<div class="row row-middle w-100 mx-0" id="row-middle">
 		{modulelist zone=topbar class="topbar_modules d-flex justify-content-between topbar {if $prefs.theme_navbar_color_variant eq 'dark'}bg-dark{else}bg-light{/if} w-100 mb-sm"}
 		{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
 			<div class="col col1 col-md-12" id="col1">
@@ -86,7 +86,7 @@
 		{else}
 			<div class="side-col-toggle-container d-flex">
 			{if $prefs.feature_left_column eq 'user'}
-				<div class="text-left side-col-toggle flex-fill">
+				<div class="text-left side-col-toggle flex-fill ml-3">
 					{$icon_name = (not empty($smarty.cookies.hide_zone_left)) ? 'toggle-right' : 'toggle-left'}
 					{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 				</div>
