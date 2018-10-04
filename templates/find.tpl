@@ -30,14 +30,13 @@
 	*                  {include file='find.tpl' find_show_languages='y' find_show_categories='y' find_show_num_rows='y'}
 *}
 
-<div class="find mb-4">
-	<form method="post" role="form" class="">
-		<div class="form-row align-items-center">
+<div class="find mb-2">
+	<form method="post" role="form">
+		<div class="form-group-row">
 	{if !isset($map_only) or $map_only ne 'y'}
 		{if !empty($filegals_manager)}<input type="hidden" name="filegals_manager" value="{$filegals_manager|escape}">{/if}
 		{query _type='form_input' maxRecords='NULL' type='NULL' types='NULL' find='NULL' topic='NULL' lang='NULL' exact_match='NULL' categId='NULL' cat_categories='NULL' filegals_manager='NULL' save='NULL' offset=0 searchlist='NULL' searchmap='NULL'}
-		<div class="find-text form-group">
-				<div class="input-group">
+			<div class="input-group">
 <input class="form-control" type="text" name="find" id="find" value="{$find|escape}" placeholder="{if empty($whatlabel)}{tr}Find{/tr}...{else}{tr}{$whatlabel}{/tr}{/if}" title="{$find_in|escape}" data-html="true" data-toggle="focus">
 					{if isset($autocomplete)}
 						{jq}$("#find").tiki("autocomplete", "{{$autocomplete}}");{/jq}
@@ -45,7 +44,7 @@
 					{jq}
 						jQuery("#find").tooltip();
 					{/jq}
-				</div>
+			</div>
 				{if !empty($find) or !empty($find_type) or !empty($find_topic) or !empty($find_lang) or !empty($find_langOrphan) or !empty($find_categId) or !empty($find_orphans) or !empty($find_other_val) or $maxRecords ne $prefs.maxRecords}{* $find_date_from & $find_date_to get set usually *}
 					<div class="find-clear-filter text-center">
 						<a href="{$smarty.server.PHP_SELF|escape}?{query find='' type='' types='' topic='' lang='' langOrphan='' categId='' maxRecords=$prefs.maxRecords find_from_Month='' find_from_Day='' find_from_Year='' find_to_Month='' find_to_Day='' find_to_Year=''}" title="{tr}Clear Filter{/tr}" class="btn btn-link">{tr}Clear Filter{/tr}</a>
@@ -168,29 +167,25 @@
 						{if count($categories) gt 0}
 							{$cat_tree}
 							<div class="clearfix">
-								{if $tiki_p_admin_categories eq 'y'}
-									<div class="float-sm-right">
-										<a href="tiki-admin_categories.php" class="link">
-											{tr}Admin Categories{/tr} {icon name='wrench'}
-										</a>
-									</div>
-								{/if}
 								{select_all checkbox_names='cat_categories[]' label="{tr}Select/deselect all categories{/tr}"}
+							</div>
 						{else}
 							<div class="clearfix">
-								{if $tiki_p_admin_categories eq 'y'}
-									<div class="float-sm-right">
-										<a href="tiki-admin_categories.php" class="link">
-											{tr}Admin Categories{/tr} {icon name='wrench'}
-										</a>
-									</div>
-								{/if}
 								{tr}No categories defined{/tr}
-						{/if}
 							</div> {* end .clear *}
+						{/if}
+						{if $tiki_p_admin_categories eq 'y'}
+							<div class="{*float-sm-right*}">
+								<a href="tiki-admin_categories.php" class="link">
+									{icon name='wrench'} {tr}Admin Categories{/tr}
+								</a>
+							</div>
+						{/if}
+
 					</div> {* end #multiselect *}
 				</div> {* end #category_multiselect_find *}
 			</div>
+
 		{/if}
 		{if !empty($types) and isset($types_tag) and $types_tag eq 'checkbox'}
 			<div class="form-group findtypes text-center">
@@ -253,10 +248,14 @@
 			</div>
 		{/if}
 		{if isset($find_show_num_rows) && $find_show_num_rows eq 'y'}
-			<label class="mr-2" for="findnumrows">
-				{tr}Displayed rows{/tr}
-			</label>
-			<input type="text" name="maxRecords" id="findnumrows" value="{$maxRecords|escape}" class="form-control">
+			<div class="form-group row mx-0">
+				<label class="col-sm-5 col-form-label mr-2" for="findnumrows">
+					{tr}Displayed rows{/tr}
+				</label>
+				<div class="col-sm-5">
+					<input type="text" name="maxRecords" id="findnumrows" value="{$maxRecords|escape}" class="form-control">
+				</div>
+			</div>
 		{/if}
 	{/if}
 	{if isset($gmapbuttons) && $gmapbuttons}
@@ -270,8 +269,9 @@
 		{/if}
 	</div>
 	{/if}
-		<button type="submit" class="btn btn-info ml-3 mb-3" name="search">{tr}Find{/tr}</button>
-			</div>
+		<div class="row mx-0">
+			<button type="submit" class="btn btn-info" name="search">{tr}Find{/tr}</button>
+		</div>
 	</form>
 </div>
 <!-- End of find -->
