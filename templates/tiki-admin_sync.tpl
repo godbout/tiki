@@ -5,7 +5,7 @@
 <form action="tiki-admin_sync.php" method="post" class="form-horizontal" role="form">
 	{ticket}
 	<div class="form-group row">
-		<label for="url" class="col-sm-3 col-form-label">{tr}Remove Server Address{/tr}</label>
+		<label for="url" class="col-sm-3 col-form-label">{tr}Remote Server Address{/tr}</label>
 		<div class="col-sm-9">
 			<input type="text" maxlength="255" class="form-control" name="url" value="">
 		</div>
