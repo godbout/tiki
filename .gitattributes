@@ -1,4 +1,5 @@
 * text=auto !eol
+/.gitlab-ci.yml -text
 /INSTALL -text
 /README -text
 _custom/readme.txt -text

@@ -1,0 +1,135 @@
+image: rjsmelo/ubuntu-php:7.1-qa
+
+cache:
+  paths:
+    - .composercache/files
+
+variables:
+  MYSQL_ROOT_PASSWORD: secret
+  MYSQL_DATABASE: tikitest
+  MYSQL_USER: tikiuser
+  MYSQL_PASSWORD: tikipass
+  ELASTICSEARCH_HOST: elasticsearch
+  COMPOSER_CACHE_DIR: "$CI_PROJECT_DIR/.composercache"
+
+stages:
+  - lint
+  - tiki-check
+  - unit-tests
+
+#
+# Lint
+#
+
+phpcs:
+  stage: lint
+  script:
+    - git log -m -1 --name-only --pretty="format:" | grep -v "^$" | sort -u | grep '\.php$' - 2>&1 > /dev/null || { git log -m -1 --name-only && echo && echo 'No files to be processed. Skipping...' && echo && exit 0; }
+    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+    - git log -m -1 --name-only
+    - git log -m -1 --name-only --pretty="format:" | grep -v "^$" | sort -u | xargs php vendor_bundled/vendor/squizlabs/php_codesniffer/bin/phpcs -s --runtime-set ignore_warnings_on_exit true
+  allow_failure: true
+
+#
+# Check Tikiwiki development specific check (related also with release)
+#
+
+sql-engine:
+  stage: tiki-check
+  script:
+    - php -d display_errors=On doc/devtools/check_sql_engine.php
+  allow_failure: false
+
+schema-sql-drop:
+  stage: tiki-check
+  script:
+    - php -d display_errors=On doc/devtools/check_schema_sql_drop.php
+  allow_failure: false
+
+schema-naming-convention:
+  stage: tiki-check
+  script:
+    - php -d display_errors=On doc/devtools/check_schema_naming_convention.php
+  allow_failure: false
+
+.template-tiki-schema-upgrade: &template-tiki-schema-upgrade
+  stage: tiki-check
+  cache:
+    paths:
+      - .composercache/files
+      - doc/devtools/dbdiff/cache
+  services:
+    - mysql:5.6
+  script:
+    - 'mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql --skip-column-names -B -e "SELECT CONCAT(''Version: '', VERSION(), CHAR(13), ''sql_mode: '', @@GLOBAL.sql_mode)"'
+    - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
+    - php -v
+    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+    - composer --ansi install -d doc/devtools/dbdiff/ --no-progress --prefer-dist -n
+    - echo "GRANT ALL ON tikiold.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
+    - echo "GRANT ALL ON tikinew.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
+    - '[ ! -d doc/devtools/dbdiff/cache ] && mkdir doc/devtools/dbdiff/cache'
+    - '[ ! -f doc/devtools/dbdiff/cache/$DBFILE ] && curl -sS https://gitlab.com/tikiwiki-ci/tikiwiki-ci-databases/raw/master/$DBFILE.gz -o doc/devtools/dbdiff/cache/$DBFILE.gz && gzip -d doc/devtools/dbdiff/cache/$DBFILE.gz'
+    - php -d display_errors=On doc/devtools/check_schema_upgrade.php -m $DBVER --db1=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikiold --db2=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikinew
+  allow_failure: false
+
+db-upgrade-18-lts:
+  <<: *template-tiki-schema-upgrade
+  variables:
+    DBFILE: ci_18.sql
+    DBVER: 18
+
+db-upgrade-17:
+  <<: *template-tiki-schema-upgrade
+  variables:
+    DBFILE: ci_17.sql
+    DBVER: 17
+
+db-upgrade-15-lts:
+  <<: *template-tiki-schema-upgrade
+  variables:
+    DBFILE: ci_15.sql
+    DBVER: 15
+
+db-upgrade-12-lts:
+  <<: *template-tiki-schema-upgrade
+  variables:
+    DBFILE: ci_12.sql
+    DBVER: 12
+
+#
+# Unit Tests
+#
+
+.template-unit-tests: &template-unit-tests
+  stage: unit-tests
+  services:
+    - mysql:5.6
+    - elasticsearch:5
+  script:
+    - curl -sS -XGET 'http://elasticsearch:9200'
+    - mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql --skip-column-names -B -e 'SELECT VERSION()'
+    - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
+    - php -v
+    - echo '<?php $db_tiki = "mysqli"; $dbversion_tiki = "19.0"; $host_tiki = "mysql"; $user_tiki = "tikiuser"; $pass_tiki = "tikipass"; $dbs_tiki = "tikitest"; $client_charset = "utf8"; ' > lib/test/local.php
+    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+    - php -d display_errors=On vendor_bundled/vendor/phpunit/phpunit/phpunit --colors=always
+
+unit-tests-71:
+  <<: *template-unit-tests
+  image: rjsmelo/ubuntu-php:7.1-qa
+
+unit-tests-72:
+  image: rjsmelo/ubuntu-php:7.2-qa
+  stage: unit-tests
+  services:
+    - mysql:5.6
+    - elasticsearch:5
+  script:
+    - curl -sS -XGET 'http://elasticsearch:9200'
+    - mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql --skip-column-names -B -e 'SELECT VERSION()'
+    - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
+    - php -v
+    - echo '<?php PHPUnit_Framework_Error_Deprecated::$enabled = false; $db_tiki = "mysqli"; $dbversion_tiki = "19.0"; $host_tiki = "mysql"; $user_tiki = "tikiuser"; $pass_tiki = "tikipass"; $dbs_tiki = "tikitest"; $client_charset = "utf8"; ' > lib/test/local.php
+    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+    - php -d display_errors=On vendor_bundled/vendor/phpunit/phpunit/phpunit --colors=always

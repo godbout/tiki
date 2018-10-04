@@ -5936,7 +5936,12 @@ class TrackerLib extends TikiLib
 
 		if ($handler && isset($params['process']) && $params['process'] == 'y') {
 			if ($field['type'] === 'e') {	// category
-				$requestData = ['ins_' . $field['fieldId'] => explode(',', $field['value'])];
+				if (! is_array($field['value'])) {
+					$categIds = explode(',', $field['value']);
+				} else {
+					$categIds = $field['value'];
+				}
+				$requestData = ['ins_' . $field['fieldId'] => $categIds];
 			} else {
 				$requestData = $field;
 			}
