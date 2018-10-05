@@ -93,7 +93,11 @@ class Search_MySql_Table extends TikiDb_Table
 			} else {
 				$msg = tr('Field %0 does not exist in the current index. If this is a tracker field, the proper syntax is tracker_field_%0.', $fieldName, $fieldName);
 			}
-			throw new Search_MySql_QueryException($msg);
+			$e = new Search_MySql_QueryException($msg);
+			if ($fieldName == 'tracker_id') {
+				$e->suppress_feedback = true;
+			}
+			throw $e;
 		}
 
 		$indexName = $fieldName . '_' . $type;

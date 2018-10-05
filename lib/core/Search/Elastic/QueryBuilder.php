@@ -287,7 +287,11 @@ class Search_Elastic_QueryBuilder
 			} else {
 				$msg = tr('Field %0 does not exist in the current index. If this is a tracker field, the proper syntax is tracker_field_%0.', $field, $field);
 			}
-			throw new Search_Elastic_QueryParsingException($msg);
+			$e = new Search_Elastic_QueryParsingException($msg);
+			if ($field == 'tracker_id') {
+				$e->suppress_feedback = true;
+			}
+			throw $e;
 		}
 		return $field;
 	}

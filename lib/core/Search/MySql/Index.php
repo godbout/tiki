@@ -130,7 +130,9 @@ class Search_MySql_Index implements Search_Index_Interface
 
 			return $resultSet;
 		} catch (Search_MySql_QueryException $e) {
-			Feedback::error($e->getMessage());
+			if (empty($e->suppress_feedback)) {
+				Feedback::error($e->getMessage());
+			}
 			$resultSet = new Search_ResultSet([], 0, $resultStart, $resultCount);
 			return $resultSet;
 		}
