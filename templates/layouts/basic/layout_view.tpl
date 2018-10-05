@@ -13,15 +13,19 @@
 	{include file='tiki-ajax_header.tpl'}
 {/if}
 
-<div class="container{if isset($smarty.session.fullscreen) && $smarty.session.fullscreen eq 'y'}-fluid{/if} px-0">
+<div class="container{if isset($smarty.session.fullscreen) && $smarty.session.fullscreen eq 'y'}-fluid{/if}">
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
-	<header class="page-header" id="page-header">
+	<div class="row">
+	<header class="page-header w-100" id="page-header">
 		{modulelist zone=top class='top_modules d-flex justify-content-between'}
 	</header>
+	</div>
 {/if}
 
-	<div class="row row-middle w-100 mx-0" id="row-middle">
+	<div class="row row-middle" id="row-middle">
+
 		{modulelist zone=topbar class="topbar_modules d-flex justify-content-between topbar {if $prefs.theme_navbar_color_variant eq 'dark'}bg-dark{else}bg-light{/if} w-100 mb-sm"}
+
 		{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
 			<div class="col col1 col-md-12" id="col1">
 				{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
@@ -43,7 +47,7 @@
 					{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 				</div>
 			{/if}
-
+		<div class="d-flex w-100 flex-row">
 			<div class="col col1 col-md-12 col-lg-9" id="col1">
 				{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 					{modulelist zone=pagetop}
@@ -92,7 +96,7 @@
 				</div>
 			{/if}
 			{if $prefs.feature_right_column eq 'user'}
-				<div class="text-right side-col-toggle flex-fill">
+				<div class="text-right side-col-toggle flex-fill mr-3">
 					{$icon_name = (not empty($smarty.cookies.hide_zone_right)) ? 'toggle-left' : 'toggle-right'}
 					{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 				</div>
@@ -122,14 +126,14 @@
 	</div>
 
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
-	<footer class="footer main-footer" id="footer">
+	<footer class="row footer main-footer" id="footer">
 		<div class="footer_liner">
 			{modulelist zone=bottom class='bottom_modules px-3 mx-0'}
 		</div>
 	</footer>
 {/if}
+	</div>
 </div>
-
 {include file='footer.tpl'}
 </body>
 </html>

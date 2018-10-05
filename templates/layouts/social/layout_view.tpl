@@ -16,16 +16,17 @@
 	{if $smarty.session.fullscreen ne 'y'}
 		<div class="fixed-topbar"></div>
 	{/if}
-	<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} middle px-0" id="middle">
+	<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} middle" id="middle">
 		{if $smarty.session.fullscreen ne 'y'}
-		<div class="topbar" id="topbar">
+		<div class="row topbar" id="topbar">
 			{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
 		</div>
 		{/if}
 		{*<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">*}
 
-		<div class="row row-middle w-100 mx-0" id="row-middle">
+		<div class="row row-middle" id="row-middle">
 			{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
+				<div class="d-flex flex-row w-100">
 				<div class="col col1 col-md-12" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}
@@ -39,6 +40,7 @@
 						{modulelist zone=pagebottom}
 					{/if}
 				</div>
+			</div>
 			{elseif zone_is_empty('left') or $prefs.feature_left_column eq 'n'}
 				{if $prefs.feature_right_column eq 'user'}
 					<div class="side-col-toggle-container justify-content-end">
@@ -46,6 +48,7 @@
 						{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 					</div>
 				{/if}
+			<div class="d-flex flex-row w-100">
 				<div class="col col1 col-md-12 col-lg-9" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}
@@ -62,6 +65,7 @@
 				<div class="col col3 col-md-12 col-lg-3" id="col3">
 					{modulelist zone=right}
 				</div>
+			</div>
 			{elseif zone_is_empty('right') or $prefs.feature_right_column eq 'n'}
 				{if $prefs.feature_left_column eq 'user'}
 					<div class="side-col-toggle-container justify-content-start">
@@ -69,6 +73,7 @@
 						{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 					</div>
 				{/if}
+			<div class="d-flex flex-row w-100">
 				<div class="col col1 col-md-12 col-lg-9 order-md-1 order-lg-2" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}
@@ -85,6 +90,7 @@
 				<div class="col col2 col-md-12 col-lg-3 order-sm-2 order-md-2 order-lg-1" id="col2">
 					{modulelist zone=left}
 				</div>
+			</div>
 			{else}
 				<div class="side-col-toggle-container d-flex">
 					{if $prefs.feature_left_column eq 'user'}
@@ -100,6 +106,7 @@
 						</div>
 					{/if}
 				</div>
+			<div class="d-flex flex-row w-100">
 				<div class="col col1 col-sm-12 col-lg-8 order-xs-1 order-lg-2" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}
@@ -119,7 +126,9 @@
 				<div class="col col3 col-sm-6 col-lg-2 order-md-3" id="col3">
 					{modulelist zone=right}
 				</div>
+			</div>
 			{/if}
+
 		</div> {* row *}
 	</div> {* container *}
 
@@ -127,6 +136,7 @@
 		<footer class="footer main-footer" id="footer">
 			<div class="footer_liner">
 				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
+
 					{modulelist zone=bottom class='bottom_modules px-3 mx--15px'} <!-- div.modules -->
 				</div>
 			</div>
