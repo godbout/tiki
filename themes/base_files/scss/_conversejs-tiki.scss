@@ -1,220 +1,204 @@
-.tiki {
-	#converse-embedded-chat, #conversejs {
-		font-family: $font-family-base; color:$body-color;
-		a, a:visited { color:$link-color; }
+.tiki #conversejs, .tiki #conversejs.converse-embedded {
+	font-family: $font-family-base;
+	color: $body-color;
+
+	a, a:visited {
+		color: $link-color;
+		&:hover { color: $link-hover-color; }
+	}
+
+	input[type=text], textarea, select {
+		background-color: $input-bg;
+		color: $input-color;
+		border-color: $input-border-color;
+	}
+
+	form {
 		input[type=text], textarea, select {
-			background-color:$input-bg; color:$input-color;
-			border-color:$input-border-color;
+			background-color: $input-bg;
+			color: $input-color;
+			border-color: $input-border-color;
 		}
 
-		form.pure-form {
-			input[type=text], textarea, select {
-				background-color:$input-bg; color:$input-color;
-				border-color:$input-border-color;
+		&.converse-form {
+			background-color: inherit;
+			.form-help {
+				&, &:hover { color: $body-color; }
 			}
-			&.converse-form {
-				background-color:inherit;
-				.form-help {
-					&, &:hover { color:$body-color; }
-				}
-			}
+		}
+	}
+
+	.toggle-controlbox {
+		background-color: $primary;
+		span { color: color-yiq($primary); }
+	}
+
+	&.converse-overlayed #controlbox .controlbox-head .chatbox-btn {
+		color: $body-color;
+	}
+
+	#minimized-chats {
+		.chat-head-chatbox {
+			background-color: $primary;
+			.restore-chat, .chatbox-btn { color: color-yiq($primary); }
 		}
 
-		.button-primary {
-			@include button-variant($primary, $primary);
+		.chat-head-chatroom {
+			background-color: $info;
+			.restore-chat, .chatbox-btn { color: color-yiq($info); }
 		}
-
-		.button-info {
-			@include button-variant($info, $info);
-		}
-
-		.toggle-controlbox {
-			background-color:$primary;
-			span {
-				color: color-yiq($primary);
-			}
-		}
-
-		#minimized-chats {
-			.chat-head-chatbox {
-				background-color: $primary;
-				.restore-chat,
-				.chatbox-btn {
-					color: color-yiq($primary);
-				}
-			}
-			.chat-head-chatroom {
-				background-color: $info;
-				.restore-chat,
-				.chatbox-btn {
-					color: color-yiq($info);
-				}
-			}
-		}
+	}
 
 
 //  controlbox
-		#controlbox, .chatbox {
-			.box-flyout { background-color:$body-bg; }
+	#controlbox {
+		.box-flyout { background-color: $body-bg; }
+		.controlbox-head, .controlbox-panes, .controlbox-pane {
+			background-color: inherit;
 		}
 
-		#controlbox {
-			.controlbox-head, .controlbox-panes,
-			.controlbox-pane {
-				background-color: inherit;
+		#chatrooms {
+			.list-toggle { color: $body-color; }
+			.rooms-list .available-chatroom {
+				&:hover {
+					background-color: inherit;
+					a { color: $body-color; }
+				}
 			}
-			.controlbox-head {
-	//			border-bottom: 1px solid $nav-tabs-border-color;
-				.chatbox-btn {
+		}
+
+		// #fancy-xmpp-status-select, .fancy-dropdown {
+		// 	@include button-variant($info, $info);
+		// 	.choose-xmpp-status, .toggle-xmpp-contact-form, a.change-xmpp-status-message {
+		// 		color:inherit; text-shadow:none;
+		// 	}
+		// }
+
+		#converse-roster {
+			.group-toggle { color: $body-color; }
+
+			.roster-filter-form {
+//				.filter-type { border-color:$input-border-color; }
+				.roster-filter {
+					background-color: $input-bg;
+					color: $input-color;
+					border-color: $input-border-color;
+				}
+			}
+
+			.roster-contacts {
+				dt {
 					color: $body-color;
+					a { color: inherit; }
+					&:hover { background-color: transparent; }
+				}
+
+				dd {
+					color: $link-color;
+					background-color: transparent;
+
+					a, span {
+						color: inherit;
+						text-shadow: none;
+						&:hover { color: $body-color; }
+					}
 				}
 			}
 		}
 
-			// #controlbox-tabs {
-			// 	border-bottom:1px solid $nav-tabs-border-color;
-			// 	li a {
-			// 		margin-left:2px; height:48px; line-height:48px; color:$link-color;
-			// 		border:1px solid transparent; box-shadow:none;
-			// 		background-color:transparent;
-			// 		&:hover { color:$link-color; }
-	//				&.current, &.current:hover, &.current:focus { //TemporaryBS4
-	//					color:$nav-tabs-active-link-hover-color;
-	//					background-color:$nav-tabs-active-link-hover-bg;
-	//					border:1px solid $nav-tabs-active-link-hover-border-color;
-	//					border-bottom-color:transparent; height:48px;
-				// 	}
-				// }
-	//		}
-
-			#chatrooms .rooms-list {
-//				color:$body-color; text-shadow:none;
-				.available-chatroom {
-					&:hover {
-						background-color:inherit;
-						a { color:$body-color; }
-					}
-				}
-			}
-
-			#fancy-xmpp-status-select, .fancy-dropdown {
-			  	@include button-variant($info, $info);
-				.choose-xmpp-status, .toggle-xmpp-contact-form, a.change-xmpp-status-message {
-					color:inherit; text-shadow:none;
-				}
-			}
-//			.xmpp-status-menu li a {
-//				&.online, &.dnd, &.away { color:#1f7e9a; }
-//			}
-
-			#converse-roster {
-				.roster-filter-form {
-					.filter-type { border-color:$input-border-color; }
-					.roster-filter {
-						background-color:$input-bg; color:$input-color;
-						border-color:$input-border-color;
-					}
-				}
-				.roster-contacts {
-					dt {
-						color:$body-color;
-						a { color:inherit; }
-						&:hover { background-color:transparent; }
-					}
-					dd {
-						color:$link-color; background-color:transparent;
-						a, span {
-							color:inherit; text-shadow:none;
-							&:hover { color:$body-color; }
-						}
-					}
-				}
-			}
-
-			#converse-register {
-				background-color:transparent;
-				.form-help .url {
-					color:$link-color;
-					&:hover { color:$link-hover-color; }
-				}
-			}
+		// #converse-register {
+		// 	background-color:transparent;
+		// 	.form-help .url {
+		// 		color:$link-color;
+		// 		&:hover { color:$link-hover-color; }
+		// 	}
+		// }
+	}
 
 
 // chatroom
-		.chatbox {
-			form.sendXMPPMessage .chat-toolbar {
-				background-color:$primary; border-top-color:$info;
-				ul {
-					background-color: $primary;
-				}
+	.chatbox {
+		.box-flyout {
+			background-color: $body-bg;
+			border: 1px solid $input-border-color;
+		}
 
-				.fa-paperclip,
-				.toggle-smiley,
-				.unencrypted,
-				.toggle-occupants {
-					color: color-yiq($primary);
-					&:hover {
-						color: color-yiq(darken($primary, 7.5%));
-					}
-				}
+		form.sendXMPPMessage {
+			background-color: $input-bg;
 
-				.toggle-smiley ul li:hover {
-					background-color:$primary;
-					a {
-						color: color-yiq(darken($primary, 7.5%));
-					}
-				}
-				.chat-toolbar-text { text-shadow:none; }
-			}
-			.dropdown { background-color:transparent; }
-			.chat-head {
-//				border-bottom:1px solid $body-color;
-				&.chat-head-chatbox {
-					background-color: $primary;
-				}
-				.chat-title,
-				.close-chatbox-button,
-				.toggle-chatbox-button {
-					color: color-yiq($primary);
-				}
-			}
+			.chat-toolbar {
+				background-color: $primary;
+				border-top-color: $info;
+				ul, li .toolbar-menu { background-color: $primary; }
 
-			.chat-body {
-				background-color:inherit;
-				.chat-content { color:$body-color; background-color:inherit; }
-				.chat-info { color:$link-color; }
-				.chat-message span.chat-msg-me {
-					color: color-yiq($info);
-				}
-				.chat-message span.chat-msg-them {
+				.fa-eye, .fa-paperclip, .toggle-smiley, .unencrypted, .toggle-occupants {
 					color: color-yiq($primary);
+					&:hover { color: darken(color-yiq($primary), 7.5%); }
 				}
 			}
 		}
 
-		.chatroom {
-			.box-flyout {
-				.chat-head-chatroom {
-					background-color:$info;
-					.close-chatbox-button, .toggle-chatbox-button, .toggle-bookmark, .chat-title,
-					.chatroom-description,
-					.configure-chatroom-button {
-						color: color-yiq($info);
+		.chat-head {
+			&.chat-head-chatbox { background-color: $primary; }
+			.chat-title, a.chatbox-btn.fa { color: color-yiq($primary); }
+			a:hover.chatbox-btn.fa { color: darken(color-yiq($primary), 7.5%); }
+		}
+
+		.chat-body {
+			background-color: inherit;
+
+			.chat-content {
+				color: $body-color;
+				background-color: inherit;
+
+				.chat-msg__author { color: $primary; }
+				.chat-msg__text { color: $body-color; }
+			}
+		}
+	}
+
+	.chatroom {
+		.box-flyout {
+			.chat-head-chatroom {
+				background-color: $info;
+				border-bottom:1px solid $body-color;
+
+				.close-chatbox-button, .toggle-chatbox-button, .configure-chatroom-button,
+				.toggle-bookmark, .chat-title, .chatroom-description {
+					color: color-yiq($info);
+				}
+			}
+
+			.chatroom-body {
+				background-color: inherit;
+				p { color: $body-color; }
+
+				.occupants {
+					background-color: inherit;
+					border-left-color: $body-color;
+
+					ul {
+						padding: 0;
+						li.occupant .occupant-status {
+							margin-left: 1px;
+							box-shadow: 0 0 1px 1px #444;
+						}
 					}
 				}
 
-				.chatroom-body {
-					p { color:$body-color; }
-					.occupants {
-						background-color:inherit; border-left-color:$body-color;
-						ul li.moderator { color:$link-color; }
-						ul li.occupant .occupant-status { margin-left:1px; box-shadow:0 0 1px 1px #444; }
-					}
-					.chatroom-form-container { background-color:inherit; color:$body-color; }
-					.room-invite .invited-contact { border-color:$input-border-color; }
-					.chat-area .new-msgs-indicator { background-color:$info; color:color-yiq($info); }
+				.chatroom-form-container {
+					background-color: inherit;
+					color: $body-color;
 				}
+
+				.chat-area .new-msgs-indicator {
+					background-color: $info;
+					color: color-yiq($info);
+				}
+
+				.chat-info { color: $info; }
 			}
 		}
 	}
 }
+
