@@ -6606,7 +6606,11 @@ JS;
 				continue;
 			}
 
-			$conflictPages = $table->fetchColumn('source_itemId', ['target_itemId' => $pointedPage, 'source_itemId' => $table->not($page)]);
+			$conflictPages = $table->fetchColumn('source_itemId', [
+				'target_itemId' => $pointedPage,
+				'source_itemId' => $table->not($page),
+				'relation' => $table->like('%alias%')
+			]);
 
 			if (empty($conflictPages)) {
 				continue;
