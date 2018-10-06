@@ -32,24 +32,28 @@
 
 <div class="find mb-2">
 	<form method="post" role="form">
-		<div class="form-group-row">
-	{if !isset($map_only) or $map_only ne 'y'}
-		{if !empty($filegals_manager)}<input type="hidden" name="filegals_manager" value="{$filegals_manager|escape}">{/if}
-		{query _type='form_input' maxRecords='NULL' type='NULL' types='NULL' find='NULL' topic='NULL' lang='NULL' exact_match='NULL' categId='NULL' cat_categories='NULL' filegals_manager='NULL' save='NULL' offset=0 searchlist='NULL' searchmap='NULL'}
+		<div class="form-group row mx-0">
+			{if !isset($map_only) or $map_only ne 'y'}
+			{if !empty($filegals_manager)}<input type="hidden" name="filegals_manager"
+												 value="{$filegals_manager|escape}">{/if}
+			{query _type='form_input' maxRecords='NULL' type='NULL' types='NULL' find='NULL' topic='NULL' lang='NULL' exact_match='NULL' categId='NULL' cat_categories='NULL' filegals_manager='NULL' save='NULL' offset=0 searchlist='NULL' searchmap='NULL'}
 			<div class="input-group">
-<input class="form-control" type="text" name="find" id="find" value="{$find|escape}" placeholder="{if empty($whatlabel)}{tr}Find{/tr}...{else}{tr}{$whatlabel}{/tr}{/if}" title="{$find_in|escape}" data-html="true" data-toggle="focus">
-					{if isset($autocomplete)}
-						{jq}$("#find").tiki("autocomplete", "{{$autocomplete}}");{/jq}
-					{/if}
-					{jq}
-						jQuery("#find").tooltip();
-					{/jq}
-			</div>
-				{if !empty($find) or !empty($find_type) or !empty($find_topic) or !empty($find_lang) or !empty($find_langOrphan) or !empty($find_categId) or !empty($find_orphans) or !empty($find_other_val) or $maxRecords ne $prefs.maxRecords}{* $find_date_from & $find_date_to get set usually *}
-					<div class="find-clear-filter text-center">
-						<a href="{$smarty.server.PHP_SELF|escape}?{query find='' type='' types='' topic='' lang='' langOrphan='' categId='' maxRecords=$prefs.maxRecords find_from_Month='' find_from_Day='' find_from_Year='' find_to_Month='' find_to_Day='' find_to_Year=''}" title="{tr}Clear Filter{/tr}" class="btn btn-link">{tr}Clear Filter{/tr}</a>
-					</div>
+				<input class="form-control" type="text" name="find" id="find" value="{$find|escape}"
+					   placeholder="{if empty($whatlabel)}{tr}Find{/tr}...{else}{tr}{$whatlabel}{/tr}{/if}"
+					   title="{$find_in|escape}" data-html="true" data-toggle="focus">
+				{if isset($autocomplete)}
+					{jq}$("#find").tiki("autocomplete", "{{$autocomplete}}");{/jq}
 				{/if}
+				{jq}
+					jQuery("#find").tooltip();
+				{/jq}
+			</div>
+			{if !empty($find) or !empty($find_type) or !empty($find_topic) or !empty($find_lang) or !empty($find_langOrphan) or !empty($find_categId) or !empty($find_orphans) or !empty($find_other_val) or $maxRecords ne $prefs.maxRecords}{* $find_date_from & $find_date_to get set usually *}
+				<div class="find-clear-filter text-center">
+					<a href="{$smarty.server.PHP_SELF|escape}?{query find='' type='' types='' topic='' lang='' langOrphan='' categId='' maxRecords=$prefs.maxRecords find_from_Month='' find_from_Day='' find_from_Year='' find_to_Month='' find_to_Day='' find_to_Year=''}"
+					   title="{tr}Clear Filter{/tr}" class="btn btn-link">{tr}Clear Filter{/tr}</a>
+				</div>
+			{/if}
 		</div>
 		{if !empty($types) and ( !isset($types_tag) or $types_tag eq 'select' )}
 			<div class="form-group row">
@@ -60,7 +64,8 @@
 					<select name="type" class="findtypes form-control form-control-sm">
 						<option value='' {if $find_type eq ''}selected="selected"{/if}>{tr}any type{/tr}</option>
 						{section name=t loop=$types}
-							<option value="{$types[t].type|escape}" {if $find_type eq $types[t].type}selected="selected"{/if}>
+							<option value="{$types[t].type|escape}"
+									{if $find_type eq $types[t].type}selected="selected"{/if}>
 								{$types[t].type|tr_if|escape}
 							</option>
 						{/section}
@@ -77,7 +82,8 @@
 					<select name="topic" class="findtopics form-control form-control-sm">
 						<option value='' {if $find_topic eq ''}selected="selected"{/if}>{tr}any topic{/tr}</option>
 						{foreach $topics as $topic}
-							<option value="{$topic.topicId|escape}" {if $find_topic eq $topic.topicId}selected="selected"{/if}>
+							<option value="{$topic.topicId|escape}"
+									{if $find_topic eq $topic.topicId}selected="selected"{/if}>
 								{$topic.name|tr_if|escape}
 							</option>
 						{/foreach}
@@ -93,9 +99,11 @@
 				<div class="col-sm-8">
 					<span class="findlang">
 						<select name="lang" class="in form-control form-control-sm">
-							<option value='' {if $find_lang eq ''}selected="selected"{/if}>{tr}any language{/tr}</option>
+							<option value=''
+									{if $find_lang eq ''}selected="selected"{/if}>{tr}any language{/tr}</option>
 							{section name=ix loop=$languages}
-								<option value="{$languages[ix].value|escape}" {if $find_lang eq $languages[ix].value}selected="selected"{/if}>
+								<option value="{$languages[ix].value|escape}"
+										{if $find_lang eq $languages[ix].value}selected="selected"{/if}>
 									{$languages[ix].name}
 								</option>
 							{/section}
@@ -110,7 +118,8 @@
 								<select name="langOrphan" class="notin form-control form-control-sm">
 									<option value='' {if $find_langOrphan eq ''}selected="selected"{/if}></option>
 									{section name=ix loop=$languages}
-										<option value="{$languages[ix].value|escape}" {if $find_langOrphan eq $languages[ix].value}selected="selected"{/if}>
+										<option value="{$languages[ix].value|escape}"
+												{if $find_langOrphan eq $languages[ix].value}selected="selected"{/if}>
 											{$languages[ix].name}
 										</option>
 									{/section}
@@ -147,7 +156,8 @@
 					</label>
 					<div id="category_singleselect_find" class="col-sm-8">
 						<select name="categId" class="findcateg form-control form-control-sm">
-							<option value='' {if $find_categId eq ''}selected="selected"{/if}>{tr}any category{/tr}</option>
+							<option value=''
+									{if $find_categId eq ''}selected="selected"{/if}>{tr}any category{/tr}</option>
 							{foreach $categories as $identifier => $category}
 								<option value="{$identifier}" {if $find_categId eq $identifier}selected="selected"{/if}>
 									{$category.categpath|tr_if|escape}
@@ -155,14 +165,16 @@
 							{/foreach}
 						</select>
 						{if $prefs.javascript_enabled eq 'y' && $find_show_categories_multi eq 'y'}
-							<a href="#category_select_find_type" onclick="show('category_multiselect_find');hide('category_singleselect_find');javascript:document.getElementById('category_select_find_type').value='y';">
+							<a href="#category_select_find_type"
+							   onclick="show('category_multiselect_find');hide('category_singleselect_find');javascript:document.getElementById('category_select_find_type').value='y';">
 								{tr}Multiple select{/tr}
 							</a>
 						{/if}
 						<input id="category_select_find_type" name="find_show_categories_multi" value="n" type="hidden">
 					</div>
 				{/if}
-				<div id="category_multiselect_find" class="col-sm-8 col-sm-offset-4" style="display: {if $find_show_categories_multi eq 'y' && $findSelectedCategoriesNumber > 1}block{else}none{/if};">
+				<div id="category_multiselect_find" class="col-sm-8 col-sm-offset-4"
+					 style="display: {if $find_show_categories_multi eq 'y' && $findSelectedCategoriesNumber > 1}block{else}none{/if};">
 					<div class="multiselect">
 						{if count($categories) gt 0}
 							{$cat_tree}
@@ -172,7 +184,8 @@
 						{else}
 							<div class="clearfix">
 								{tr}No categories defined{/tr}
-							</div> {* end .clear *}
+							</div>
+							{* end .clear *}
 						{/if}
 						{if $tiki_p_admin_categories eq 'y'}
 							<div class="{*float-sm-right*}">
@@ -185,14 +198,14 @@
 					</div> {* end #multiselect *}
 				</div> {* end #category_multiselect_find *}
 			</div>
-
 		{/if}
 		{if !empty($types) and isset($types_tag) and $types_tag eq 'checkbox'}
 			<div class="form-group findtypes text-center">
 				{foreach key=key item=value from=$types}
 					<div class="form-check form-check-inline">
 						<label class="col-form-label mr-3">
-							<input type="checkbox" class="form-check-inline" name="types[]" value="{$key|escape}" {if is_array($find_type) && in_array($key, $find_type)}checked="checked"{/if}> {tr}{$value}{/tr}
+							<input type="checkbox" class="form-check-inline" name="types[]" value="{$key|escape}"
+								   {if is_array($find_type) && in_array($key, $find_type)}checked="checked"{/if}> {tr}{$value}{/tr}
 						</label>
 					</div>
 				{/foreach}
@@ -218,21 +231,23 @@
 		{if !empty($find_durations)}
 			{foreach key=key item=duration from=$find_durations}
 				<div class="form-group row">
-				<label class="find_duration col-form-label col-sm-6">
-					{tr}{$duration.label}{/tr}
-				</label>
-				<div class="col-sm-6">
-					{html_select_duration prefix=$duration.prefix default=$duration.default default_unit=$duration.default_unit}
-				</div>
+					<label class="find_duration col-form-label col-sm-6">
+						{tr}{$duration.label}{/tr}
+					</label>
+					<div class="col-sm-6">
+						{html_select_duration prefix=$duration.prefix default=$duration.default default_unit=$duration.default_unit}
+					</div>
 				</div>
 			{/foreach}
 		{/if}
 		{if !empty($show_find_orphans) and $show_find_orphans eq 'y'}
 			<div class="form-group find-orphans" style="margin-top: -15px;">
 				<div class="form-check col-sm-push-4">
-					<label class="find_orphans col-form-label" style="padding-left: 0; font-weight: bold;" for="find_orphans">
+					<label class="find_orphans col-form-label" style="padding-left: 0; font-weight: bold;"
+						   for="find_orphans">
 						{tr}Orphans{/tr}
-						<input type="checkbox" style="margin-left: 30px;" name="find_orphans" id="find_orphans" {if isset($find_orphans) and $find_orphans eq 'y'}checked="checked"{/if}>
+						<input type="checkbox" style="margin-left: 30px;" name="find_orphans" id="find_orphans"
+							   {if isset($find_orphans) and $find_orphans eq 'y'}checked="checked"{/if}>
 					</label>
 				</div>
 			</div>
@@ -243,7 +258,9 @@
 					{tr}{$find_other}{/tr}
 				</label>
 				<div class="col-sm-6">
-					<input type="text" name="find_other" id="find_other" value="{if !empty($find_other_val)}{$find_other_val|escape}{/if}" class="form-control form-control-sm">
+					<input type="text" name="find_other" id="find_other"
+						   value="{if !empty($find_other_val)}{$find_other_val|escape}{/if}"
+						   class="form-control form-control-sm">
 				</div>
 			</div>
 		{/if}
@@ -253,22 +270,23 @@
 					{tr}Displayed rows{/tr}
 				</label>
 				<div class="col-sm-5">
-					<input type="text" name="maxRecords" id="findnumrows" value="{$maxRecords|escape}" class="form-control">
+					<input type="text" name="maxRecords" id="findnumrows" value="{$maxRecords|escape}"
+						   class="form-control">
 				</div>
 			</div>
 		{/if}
-	{/if}
-	{if isset($gmapbuttons) && $gmapbuttons}
-	<div class="find-map form-group row">
-		{if isset($mapview) && $mapview}
-			<input class="btn btn-primary btn-sm" type="submit" name="searchlist" value="{tr}Hide Map{/tr}">
-			<input type="hidden" name="mapview" value="y">
-		{else}
-			<input type="submit" class="btn btn-primary btn-sm" name="searchmap" value="{tr}Show Map{/tr}">
-			<input type="hidden" name="mapview" value="n">
 		{/if}
-	</div>
-	{/if}
+		{if isset($gmapbuttons) && $gmapbuttons}
+			<div class="find-map form-group row">
+				{if isset($mapview) && $mapview}
+					<input class="btn btn-primary btn-sm" type="submit" name="searchlist" value="{tr}Hide Map{/tr}">
+					<input type="hidden" name="mapview" value="y">
+				{else}
+					<input type="submit" class="btn btn-primary btn-sm" name="searchmap" value="{tr}Show Map{/tr}">
+					<input type="hidden" name="mapview" value="n">
+				{/if}
+			</div>
+		{/if}
 		<div class="row mx-0">
 			<button type="submit" class="btn btn-info" name="search">{tr}Find{/tr}</button>
 		</div>
