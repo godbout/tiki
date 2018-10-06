@@ -284,6 +284,9 @@ input[type="checkbox"].preffilter-toggle-round:checked + label::before {
   color: #fff;
   background-color: #003c4a; }
 
+.topbar .cssmenu_horiz ul {
+  background: #005064; }
+
 .postbody-title .title > .card-title a.link, .card-header a {
   color: #fff; }
 

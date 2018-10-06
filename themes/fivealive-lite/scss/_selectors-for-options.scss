@@ -634,7 +634,9 @@ input[type="checkbox"].preffilter-toggle-round:checked + label::before {
 	background-color: $nav-tabs-link-active-bg; //#a8e2ec;
 }
 
-
+.topbar .cssmenu_horiz ul {
+  background: $dropdown-bg;
+}
 
 .postbody-title .title > .card-title a.link,
 .card-header a {
