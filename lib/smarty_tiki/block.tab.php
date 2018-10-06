@@ -80,7 +80,7 @@ function smarty_block_tab($params, $content, $smarty, &$repeat)
 			$active = (isset($params['print']) && $params['print'] == 'y') ? 'active' : '';
 		}
 
-		$ret = "<div id='{$id}' class='tab-pane $active'>$content</div>";
+		$ret = "<div id='{$id}' class='tab-pane pt-3 $active'>$content</div>";
 
 		return $ret;
 	}
