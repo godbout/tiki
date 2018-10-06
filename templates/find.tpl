@@ -32,7 +32,7 @@
 
 <div class="find mb-2">
 	<form method="post" role="form">
-		<div class="form-group-row">
+		<div class="form-group row mx-0">
 			{if !isset($map_only) or $map_only ne 'y'}
 			{if !empty($filegals_manager)}<input type="hidden" name="filegals_manager"
 												 value="{$filegals_manager|escape}">{/if}
