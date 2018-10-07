@@ -97,6 +97,25 @@ db-upgrade-12-lts:
     DBFILE: ci_12.sql
     DBVER: 12
 
+sql-engine-conversion:
+  stage: tiki-check
+  cache:
+    paths:
+    - .composercache/files
+    - doc/devtools/dbdiff/cache
+  services:
+  - mysql:5.6
+  script:
+  - 'mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql --skip-column-names -B -e "SELECT CONCAT(''Version: '', VERSION(), CHAR(13), ''sql_mode: '', @@GLOBAL.sql_mode)"'
+  - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
+  - php -v
+  - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+  - composer --ansi install -d doc/devtools/dbdiff/ --no-progress --prefer-dist -n
+  - echo "GRANT ALL ON tikiold.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
+  - echo "GRANT ALL ON tikinew.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
+  - php -d display_errors=On doc/devtools/check_sql_engine_conversion.php --db1=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikiold --db2=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikinew
+  allow_failure: false
+
 #
 # Unit Tests
 #

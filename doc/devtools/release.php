@@ -834,7 +834,7 @@ function check_database_files_and_upgrade($mainversion, &$error_msg)
 		'db-upgrade-' => '1.1.2.2. Structure',
 		'schema-sql-drop' => '1.1.2.3. Drop Table',
 		'sql-engine' => '1.1.2.4. MyISAM',
-		// '' => '1.1.2.5. InnoDB', // still to be implemented
+		'sql-engine-conversion' => '1.1.2.5. InnoDB',
 	];
 
 	$allOk = true;
