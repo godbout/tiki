@@ -36,9 +36,10 @@ $theme-colors: (
 // Spacing
 
 // Body
-//$body-color: $gray-800;
+$body-color: $gray-800;
 
 // Links
+$link-hover-decoration: none;
 // Components
 //$padding-base-vertical: .5rem;
 //$padding-large-vertical: .9rem;
@@ -69,6 +70,7 @@ $dropdown-link-hover-bg: darken(#1376a8, 10%);
 $dropdown-link-active-bg: #ffffff;
 $dropdown-header-color: #fff;
 // Navs
+$nav-tabs-border-color:             $gray-300;
 // Navbar
 $navbar-height: 30px;
 //$navbar-dark-color: #ffffff;
@@ -90,11 +92,18 @@ $navbar-dark-disabled-color: #cccccc;
 // Cards
 $card-header-bg: transparent;
 //$card-border-radius: $border-radius-lg;
-//$card-text: #fff;//@gray-lighter;
-//$card-header-bg: #386dbb;
+$card-text: $body-color;
+$card-header-bg: transparent;
+//$card-bg: transparent;
+//$card-border-color: transparent;
+//$card-inner-border: transparent;
+$card-spacer-y: 0.5rem;
+$card-spacer-x: 1rem;
 
 // Tooltips
 // Popovers
+$popover-body-color: $body-color;
+
 // Badges
 // Modals
 //$modal-header-border-color: #386dbb;
@@ -110,3 +119,38 @@ $card-header-bg: transparent;
 // Code
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
+
+// - - - - - - - - - - Tiki selector variables ( for _tiki-selectors.scss ) - - - - - - - - - //
+
+// $Id$ tiki-selector-variables.scss file, to provide values for "legacy" Tiki CSS selectors (not covered by Bootstrap).
+// These FiveAlive-lite theme option values are used by themes/fivealive-lite/less/_tiki-selectors.scss
+
+$imagePath: "../images/";
+$side-column-border: none;
+$side-column-card-header-background: #ffffff;
+// #f5399c
+$side-column-card-header-color: #1174a5;
+// #3f1020;
+$side-column-card-header-border-color: #1174a5;
+$side-column-card-header-border-width: 0 0 1px 0;
+$header_outer-background: darken(#28aae1, 10%);
+// url('#{$imagePath}siteheadertile.png') 0 0 no-repeat;
+$header_container_header-background: url('#{$imagePath}siteheader.png') -248px 0 no-repeat;
+$header-color: #ffffff;
+$topbar_container_background: #28aae1;
+$form-control-background: #f9dcec;
+$form-control-border-colors: #9ae8fa #e3f7fb #e3f7fb #9ae8fa;
+$footer-color: #696969;
+$footer-border-color: #28aae1;
+$footer-link-color: #a9a9a9;
+$navbar-dark-navbar-nav-li-a-background: #28aae1;
+$postbody-title-background: $header_outer-background;
+$postbody-title-color: #000000;
+// url('#{$imagePath}siteheader.png') no-repeat -480px -200px;
+$brand-primary-of-option: $primary;
+$navbar-default-link-background: $navbar-dark-navbar-nav-li-a-background;
+$side-column-border: none;
+$topbar_container_background: $navbar-dark-navbar-nav-li-a-background;
+$navbar-fixed-height: 46px;
+// .secondary_site_menu .navbar-nav li.dropdown { border-bottom: none;}
+
