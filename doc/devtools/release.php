@@ -169,6 +169,12 @@ if (! $options['no-copyright-update'] && important_step("Update '" . COPYRIGHTS_
 	}
 }
 
+if (! $options['no-check-db'] && important_step("Check Database related files and upgrade scripts")) {
+	$error_msg = '';
+	check_database_files_and_upgrade($mainversion, $error_msg) or error($error_msg . "If you want to disable this checks use --no-check-db\n");
+	info('>> Current database scripts successfully passed the check.');
+}
+
 if (! $options['no-check-php'] && important_step("Check syntax of all PHP files")) {
 	$error_msg = '';
 	$dir = '.';
@@ -784,6 +790,141 @@ function check_php_syntax(&$dir, &$error_msg, $hide_php_warnings)
 }
 
 /**
+ * Check the CI Pipeline for the result of the specific checks regarding the DB structure
+ *
+ * @param string $mainversion
+ * @param string $error_msg
+ * @return bool
+ */
+function check_database_files_and_upgrade($mainversion, &$error_msg)
+{
+	$gitlabUrl = 'https://gitlab.com';
+	$gitlabRepo = $gitlabUrl . '/tikiwiki/tiki';
+
+	$branchToCheck = $mainversion . '.x';
+
+	$pipeline = gitlabGetPipelineIdByBranch($gitlabRepo, $branchToCheck);
+
+	if (empty($pipeline)) {
+		echo color('Could not retrieve pipeline information for branch ' . $branchToCheck . "\n", 'red');
+		echo color(
+			'You can check manually using ' . $gitlabRepo . '/pipelines/?scope=branches&format=json' . "\n",
+			'yellow'
+		);
+		$error_msg .= 'Information about the CI pipeline could not be retrieved' . "\n";
+		return false;
+	}
+
+	echo color(
+		'Checking jobs for branch ' . $branchToCheck . ', pipeline: ' . $gitlabUrl . $pipeline['url'] . "\n",
+		'yellow'
+	);
+
+	$jobs = gitlabGetJobStatusByPipeline($gitlabRepo, $pipeline['id']);
+
+	if (empty($pipeline)) {
+		echo color('Could not retrieve jobs information for pipeline ' . $pipeline['id'] . "\n", 'red');
+		echo color('You can check manually using ' . $gitlabUrl . $pipeline['url'] . "\n", 'yellow');
+		$error_msg .= 'Information about jobs in the CI pipeline could not be retrieved' . "\n";
+		return false;
+	}
+
+	$checkList = [
+		'schema-naming-convention' => '1.1.2.1. Check _tiki.sql suffixes',
+		'db-upgrade-' => '1.1.2.2. Structure',
+		'schema-sql-drop' => '1.1.2.3. Drop Table',
+		'sql-engine' => '1.1.2.4. MyISAM',
+		'sql-engine-conversion' => '1.1.2.5. InnoDB',
+	];
+
+	$allOk = true;
+
+	foreach ($checkList as $checkPrefix => $checkName) {
+		foreach ($jobs['tiki-check'] as $jobName => $job) {
+			if (strpos($jobName, $checkPrefix) === 0) {
+				echo color(
+					$checkName . ': ' . $job['status'] . ', job: ' . $jobName . ', url: ' . $gitlabUrl . $job['url'] . "\n",
+					$job['status'] == 'passed' ? 'green' : 'red'
+				);
+				if ($job['status'] != 'passed') {
+					$error_msg .= 'Issues with job ' . $jobName . ' in the CI Pipeline' . "\n";
+					$allOk = false;
+				}
+			}
+		}
+	}
+
+	return $allOk;
+}
+
+/**
+ * Returns the ID of the last pipeline run for a given branch
+ *
+ * @param string $repoUrl Url of the repo in gitlab
+ * @param string $branch Branch to use for filtering
+ * @return array|bool The result or false if error
+ */
+function gitlabGetPipelineIdByBranch($repoUrl, $branch)
+{
+	$lastPipelineByBranch = $repoUrl . '/pipelines/?scope=branches&format=json';
+
+	if (getenv('TEST_GITLAB_PIPELINE')) {
+		$lastPipelineByBranch = getenv('TEST_GITLAB_PIPELINE'); // to allow fake the answer while testing
+	}
+
+	$content = file_get_contents($lastPipelineByBranch);
+	$jsonContent = json_decode($content, true);
+	if (empty($jsonContent)) {
+		return false;
+	}
+
+	$pipeline = array_filter(
+		$jsonContent['pipelines'],
+		function ($pipeline) use ($branch) {
+			return $pipeline['ref']['name'] === $branch;
+		}
+	);
+	$pipeline = reset($pipeline);
+
+	return ['id' => $pipeline['id'], 'url' => $pipeline['path']];
+}
+
+/**
+ * Returns the list of stages and the jobs for each of the stages
+ *
+ * @param string $repoUrl Url of the repo in gitlab
+ * @param string $pipelineId Pipeline ID from where to retrieve the list of jobs
+ * @return array|bool The result or false if error
+ */
+function gitlabGetJobStatusByPipeline($repoUrl, $pipelineId)
+{
+	$pipelineJobsUrl = $repoUrl . '/pipelines/' . $pipelineId . '?format=json';
+
+	if (getenv('TEST_GITLAB_JOBS')) {
+		$pipelineJobsUrl = getenv('TEST_GITLAB_JOBS'); // to allow fake the answer while testing
+	}
+
+	$content = file_get_contents($pipelineJobsUrl);
+	$jsonContent = json_decode($content, true);
+	if (empty($jsonContent)) {
+		return false;
+	}
+
+	$stages = [];
+	foreach ($jsonContent['details']['stages'] as $stage) {
+		$jobs = [];
+		foreach ($stage['groups'] as $group) {
+			foreach ($group['jobs'] as $job) {
+				$jobs[$job['name']] = ['status' => $job['status']['text'], 'url' => $job['status']['details_path']];
+			}
+		}
+		$stages[$stage['name']] = $jobs;
+	}
+
+	return $stages;
+}
+
+/**
  * @return array|bool
  */
 function get_options()
@@ -800,6 +941,7 @@ function get_options()
 		'svn-mirror-uri' => false,
 		'no-commit' => false,
 		'no-check-svn' => false,
+		'no-check-db' => false,
 		'no-check-php' => false,
 		'no-check-php-warnings' => false,
 		'no-check-smarty' => false,
@@ -1354,6 +1496,7 @@ Options:
 	--svn-mirror-uri=URI	: use another repository URI to update the copyrights file (to avoid retrieving data from sourceforge, which is usually slow)
 	--no-commit		: do not commit any changes back to SVN
 	--no-check-svn		: do not check if there is uncommited changes on the checkout used for the release
+	--no-check-db		: do not check database scripts and database upgrades
 	--no-check-php		: do not check syntax of all PHP files
 	--no-check-php-warnings	: do not display PHP warnings and notices during the PHP syntax check
 	--no-check-smarty	: do not check syntax of all Smarty templates
