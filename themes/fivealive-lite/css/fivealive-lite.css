@@ -57,7 +57,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #343a40;
   text-align: left;
   background-color: #fff; }
 
@@ -133,7 +133,7 @@ a {
   -webkit-text-decoration-skip: objects; }
   a:hover {
     color: #0a4360;
-    text-decoration: underline; }
+    text-decoration: none; }
 
 a:not([href]):not([tabindex]) {
   color: inherit;
@@ -1328,7 +1328,7 @@ select.form-control:focus::-ms-value {
   padding-bottom: 0.375rem;
   margin-bottom: 0;
   line-height: 1.5;
-  color: #212529;
+  color: #343a40;
   background-color: transparent;
   border: solid transparent;
   border-width: 1px 0; }
@@ -1916,11 +1916,11 @@ textarea.form-control {
   background-color: transparent; }
   .btn-link:hover {
     color: #0a4360;
-    text-decoration: underline;
+    text-decoration: none;
     background-color: transparent;
     border-color: transparent; }
   .btn-link:focus, .btn-link.focus {
-    text-decoration: underline;
+    text-decoration: none;
     border-color: transparent;
     box-shadow: none; }
   .btn-link:disabled, .btn-link.disabled {
@@ -1996,7 +1996,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
   font-size: 1rem;
-  color: #212529;
+  color: #343a40;
   text-align: left;
   list-style: none;
   background-color: #1376a8;
@@ -2856,13 +2856,13 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1.25rem; }
+  padding: 1rem; }
 
 .card-title {
-  margin-bottom: 0.75rem; }
+  margin-bottom: 0.5rem; }
 
 .card-subtitle {
-  margin-top: -0.375rem;
+  margin-top: -0.25rem;
   margin-bottom: 0; }
 
 .card-text:last-child {
@@ -2871,10 +2871,10 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .card-link:hover {
   text-decoration: none; }
   .card-link + .card-link {
-    margin-left: 1.25rem; }
+    margin-left: 1rem; }
 
 .card-header {
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1rem;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125); }
@@ -2884,21 +2884,21 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     border-top: 0; }
 
 .card-footer {
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1rem;
   background-color: rgba(0, 0, 0, 0.03);
   border-top: 1px solid rgba(0, 0, 0, 0.125); }
   .card-footer:last-child {
     border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px); }
 
 .card-header-tabs {
-  margin-right: -0.625rem;
-  margin-bottom: -0.75rem;
-  margin-left: -0.625rem;
+  margin-right: -0.5rem;
+  margin-bottom: -0.5rem;
+  margin-left: -0.5rem;
   border-bottom: 0; }
 
 .card-header-pills {
-  margin-right: -0.625rem;
-  margin-left: -0.625rem; }
+  margin-right: -0.5rem;
+  margin-left: -0.5rem; }
 
 .card-img-overlay {
   position: absolute;
@@ -2982,7 +2982,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
           border-radius: 0; } }
 
 .card-columns .card {
-  margin-bottom: 0.75rem; }
+  margin-bottom: 0.5rem; }
   @media (min-width: 576px) {
   .card-columns {
     column-count: 3;
@@ -3333,7 +3333,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     text-decoration: none;
     background-color: #f8f9fa; }
   .list-group-item-action:active {
-    color: #212529;
+    color: #343a40;
     background-color: #e9ecef; }
 
 .list-group-item {
@@ -3795,7 +3795,7 @@ button.close {
 
 .popover-body {
   padding: 0.5rem 0.75rem;
-  color: #212529; }
+  color: #343a40; }
 
 .carousel {
   position: relative; }
@@ -5865,7 +5865,7 @@ button.close {
     color: #1d2124 !important; }
 
 .text-body {
-  color: #212529 !important; }
+  color: #343a40 !important; }
 
 .text-muted {
   color: #868e96 !important; }
@@ -5979,7 +5979,7 @@ a.fc-event:hover {
 
 .note-list .postbody-title {
   background: #fff;
-  color: #212529; }
+  color: #343a40; }
 
 .post-approved-n {
   border-left: 3px dotted #28a745; }
@@ -6188,7 +6188,7 @@ form.simple label .warning {
 
 .ui-dialog {
   background: #fff;
-  color: #212529; }
+  color: #343a40; }
 
 .cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover {
   text-decoration: none;
@@ -6213,9 +6213,9 @@ div.cvsup {
     border-color: transparent; }
 
 .prio5 {
-  color: #212529; }
+  color: #343a40; }
   .prio5 a {
-    color: #212529; }
+    color: #343a40; }
 
 .prio4 {
   color: #28a745; }
@@ -6247,7 +6247,7 @@ div.cvsup {
   background: #dee2e6; }
 
 .readlink {
-  color: #212529; }
+  color: #343a40; }
 
 .webmail_item {
   border: 1px solid #dee2e6; }
@@ -6283,11 +6283,11 @@ div.cvsup {
 
 .odd {
   background: transparent;
-  color: #212529; }
+  color: #343a40; }
 
 .even {
   background: rgba(0, 0, 0, 0.05);
-  color: #212529; }
+  color: #343a40; }
 
 .objectperms .checkBoxHeader:nth-of-type(odd) > div > label, .objectperms td.checkBoxCell:nth-of-type(odd), .objectperms .checkBoxHeader:nth-of-type(odd) > .checkBoxLabel {
   background: rgba(0, 0, 0, 0.05); }
@@ -6300,17 +6300,17 @@ div.cvsup {
 
 .toolbars-picker {
   background: #fff;
-  border: thin solid #212529;
-  color: #212529; }
+  border: thin solid #343a40;
+  color: #343a40; }
 
 .toolbars-picker a {
   border: 1px solid #fff;
-  color: #212529; }
+  color: #343a40; }
 
 .toolbars-picker a:hover {
   border: 1px solid #dc3545;
   background: #dee2e6;
-  color: #212529; }
+  color: #343a40; }
 
 .textarea-toolbar > div {
   background-color: #e9ecef;
@@ -6323,7 +6323,7 @@ div.cvsup {
 #intertrans-form {
   background-color: #fff;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  color: #212529; }
+  color: #343a40; }
 
 #edit_translations tr.last {
   border-bottom: 2px solid #28a745; }
@@ -6394,7 +6394,7 @@ ul.all_languages > li {
 
 .tiki .cke_wysiwyg_frame, .tiki .cke_wysiwyg_div {
   background: #fff;
-  color: #212529; }
+  color: #343a40; }
 
 .tiki_plugin {
   background-color: transparent;
@@ -6417,12 +6417,12 @@ ul.all_languages > li {
 
 .plugin-form-float {
   background: #fff;
-  color: #212529;
-  border: solid 2px #212529; }
+  color: #343a40;
+  border: solid 2px #343a40; }
 
 body.wikitext {
   background: #fff;
-  color: #212529; }
+  color: #343a40; }
 
 .editable-inline {
   padding-right: 20px;
@@ -6462,7 +6462,7 @@ body.wikitext {
 
 #autosave_preview {
   background-color: #fff;
-  color: #212529; }
+  color: #343a40; }
 
 #autosave_preview_grippy {
   background-color: #dee2e6;
@@ -6584,24 +6584,24 @@ div.drillshow {
 
 .tiki .ui-widget-content, span.plugin-mouseover {
   background: #fff;
-  color: #212529;
+  color: #343a40;
   border: 1px solid rgba(0, 0, 0, 0.2); }
 
 .tiki .ui-widget-header {
   background: #fff;
-  color: #212529;
+  color: #343a40;
   border: 1px solid rgba(0, 0, 0, 0.2); }
 
 .tiki .ui-dialog-content {
   background: #fff;
-  color: #212529; }
+  color: #343a40; }
   .tiki .ui-dialog-content select, .tiki .ui-dialog-content input, .tiki .ui-dialog-content optgroup, .tiki .ui-dialog-content textarea {
     background: #fff;
     color: #495057; }
 
 .tiki .ui-widget button {
   background: #fff;
-  color: #212529; }
+  color: #343a40; }
 
 .tiki .modal-content .ui-state-default {
   color: #1174a5; }
@@ -6761,6 +6761,12 @@ header.header .sitetitle, header.header .sitesubtitle {
 .topbar {
   margin-bottom: 2rem; }
 
+.page-header .navbar.bg-dark, .layout_classic #topbar_modules .navbar.bg-dark, .page-header .navbar.bg-light, .layout_classic #topbar_modules .navbar.bg-light {
+  background: transparent !important; }
+
+.layout_classic #top_modules.bg-dark, .layout_classic #top_modules.bg-light, .layout_classic #topbar_modules, .layout_classic #topbar.bg-dark, .layout_classic #topbar.bg-light {
+  background: transparent !important; }
+
 .card-title {
   font-size: 1.1rem; }
 
@@ -6787,8 +6793,8 @@ header.header .sitetitle, header.header .sitesubtitle {
 .header_container > .header {
   background: none; }
 
-header.header .module.secondary_site_menu {
-  background: none; }
+#fullscreenbutton a {
+  color: #000; }
 
 .page-header {
   margin-top: 0;
@@ -6807,24 +6813,6 @@ header.header .module.secondary_site_menu {
 
 .navbar-collapse {
   border: none; }
-
-#footer {
-  background: #000;
-  color: #696969;
-  padding: 1px 0 2px 0;
-  width: 100%; }
-
-.footer {
-  border-top: 1px solid #28aae1;
-  border-bottom: 1px solid #28aae1; }
-
-.footer_liner .card, .footer_liner .card > .card-header {
-  border: none; }
-  .footer_liner h3.card-header {
-    color: #fff;
-    border-bottom: 1px dotted #28aae1; }
-  .footer_liner legend, .footer_liner a, .footer_liner a:visited {
-    color: #a9a9a9; }
 
 .topbar .nav > li > a {
   padding-bottom: 2px;
@@ -6850,13 +6838,43 @@ header.header .sitetitle, header.header .sitesubtitle, header.header a, header.h
   text-shadow: none; }
 
 .popover {
-  color: #212529; }
+  color: #343a40; }
 
 label a:hover {
   text-decoration: none; }
 
 .bg-dark {
   background-color: #28aae1 !important; }
+
+.nav-tabs .nav-item {
+  margin-right: 1px; }
+
+#footer {
+  background: #000;
+  color: #696969;
+  padding: 1px 0 2px 0;
+  width: 100%; }
+
+.footer {
+  border-top: 1px solid #28aae1;
+  border-bottom: 1px solid #28aae1; }
+
+.footer_liner .card, .footer_liner .card-header {
+  border: none; }
+  .footer_liner h3.card-header {
+    color: #fff;
+    border-bottom: 1px dotted #28aae1; }
+  .footer_liner legend, .footer_liner a, .footer_liner a:visited {
+    color: #a9a9a9; }
+
+label a:hover {
+  text-decoration: none; }
+
+.bg-dark {
+  background-color: #28aae1 !important; }
+
+.nav-tabs .nav-item {
+  margin-right: 1px; }
 
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
@@ -6870,7 +6888,7 @@ table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:n
     background: #e9ecef; }
   table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
     background-color: rgba(13, 13, 13, 0);
-    color: #212529; }
+    color: #343a40; }
 
 div.tablesorter-resizable-container {
   clear: both;
@@ -7021,7 +7039,7 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     margin-right: 4px; }
 
 .tiki .pvtUi {
-  color: #212529; }
+  color: #343a40; }
   .tiki table.pvtTable {
     font-size: 1rem; }
   .tiki table.pvtTable tr th {
@@ -7031,7 +7049,7 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     font-size: 1rem;
     padding: 5px; }
   .tiki table.pvtTable tr td {
-    color: #212529;
+    color: #343a40;
     background-color: transparent;
     border-color: #dee2e6; }
   .tiki .pvtTotal, .tiki .pvtGrandTotal {
@@ -7057,9 +7075,9 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     padding: 2px 5px;
     white-space: nowrap;
     background: #fff;
-    border: 1px solid #212529;
+    border: 1px solid #343a40;
     border-radius: 0.25rem;
-    color: #212529; }
+    color: #343a40; }
   .tiki .pvtTriangle {
     cursor: pointer;
     color: grey; }
@@ -7096,9 +7114,9 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     padding: 5px; }
   .tiki .pvtFilterBox button {
     background: #fff;
-    border: 1px solid #212529;
+    border: 1px solid #343a40;
     border-radius: 0.25rem;
-    color: #212529; }
+    color: #343a40; }
   .tiki .pvtFilterBox button:hover {
     background: #fff; }
   .tiki .pvtFilterBox button + button {
@@ -7106,27 +7124,27 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     margin-bottom: 4px; }
   .tiki .c3 line, .tiki .c3 path, .tiki .c3 svg {
     fill: none;
-    stroke: #212529; }
+    stroke: #343a40; }
   .tiki select {
     font-size: 1rem; }
 
 .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-  border: 1px solid #212529;
+  border: 1px solid #343a40;
   background: #fff;
   font-weight: normal;
-  color: #212529;
+  color: #343a40;
   font-size: 1rem; }
   .tiki .ui-state-hover, .tiki .ui-widget-content .ui-state-hover, .tiki .ui-widget-header .ui-state-hover, .tiki .ui-state-focus, .tiki .ui-widget-content .ui-state-focus, .tiki .ui-widget-header .ui-state-focus, .tiki .ui-button:hover, .tiki .ui-button:focus {
-    border: 1px solid #212529;
+    border: 1px solid #343a40;
     background: #fff;
     font-weight: normal;
-    color: #212529; }
+    color: #343a40; }
   .tiki .ui-widget-header a {
     color: #1174a5; }
 
 .tiki #conversejs, .tiki #conversejs.converse-embedded {
   font-family: Lato, sans-serif;
-  color: #212529; }
+  color: #343a40; }
   .tiki #conversejs a, .tiki #conversejs.converse-embedded a, .tiki #conversejs a:visited, .tiki #conversejs.converse-embedded a:visited {
     color: #1174a5; }
   .tiki #conversejs a:hover, .tiki #conversejs.converse-embedded a:hover, .tiki #conversejs a:visited:hover, .tiki #conversejs.converse-embedded a:visited:hover {
@@ -7142,13 +7160,13 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
   .tiki #conversejs form.converse-form, .tiki #conversejs.converse-embedded form.converse-form {
     background-color: inherit; }
   .tiki #conversejs form.converse-form .form-help, .tiki #conversejs.converse-embedded form.converse-form .form-help, .tiki #conversejs form.converse-form .form-help:hover, .tiki #conversejs.converse-embedded form.converse-form .form-help:hover {
-    color: #212529; }
+    color: #343a40; }
   .tiki #conversejs .toggle-controlbox, .tiki #conversejs.converse-embedded .toggle-controlbox {
     background-color: #1174a5; }
   .tiki #conversejs .toggle-controlbox span, .tiki #conversejs.converse-embedded .toggle-controlbox span {
     color: #fff; }
   .tiki #conversejs.converse-overlayed #controlbox .controlbox-head .chatbox-btn, .tiki #conversejs.converse-embedded.converse-overlayed #controlbox .controlbox-head .chatbox-btn {
-    color: #212529; }
+    color: #343a40; }
   .tiki #conversejs #minimized-chats .chat-head-chatbox, .tiki #conversejs.converse-embedded #minimized-chats .chat-head-chatbox {
     background-color: #1174a5; }
   .tiki #conversejs #minimized-chats .chat-head-chatbox .restore-chat, .tiki #conversejs.converse-embedded #minimized-chats .chat-head-chatbox .restore-chat, .tiki #conversejs #minimized-chats .chat-head-chatbox .chatbox-btn, .tiki #conversejs.converse-embedded #minimized-chats .chat-head-chatbox .chatbox-btn {
@@ -7162,19 +7180,19 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
   .tiki #conversejs #controlbox .controlbox-head, .tiki #conversejs.converse-embedded #controlbox .controlbox-head, .tiki #conversejs #controlbox .controlbox-panes, .tiki #conversejs.converse-embedded #controlbox .controlbox-panes, .tiki #conversejs #controlbox .controlbox-pane, .tiki #conversejs.converse-embedded #controlbox .controlbox-pane {
     background-color: inherit; }
   .tiki #conversejs #controlbox #chatrooms .list-toggle, .tiki #conversejs.converse-embedded #controlbox #chatrooms .list-toggle {
-    color: #212529; }
+    color: #343a40; }
   .tiki #conversejs #controlbox #chatrooms .rooms-list .available-chatroom:hover, .tiki #conversejs.converse-embedded #controlbox #chatrooms .rooms-list .available-chatroom:hover {
     background-color: inherit; }
     .tiki #conversejs #controlbox #chatrooms .rooms-list .available-chatroom:hover a, .tiki #conversejs.converse-embedded #controlbox #chatrooms .rooms-list .available-chatroom:hover a {
-      color: #212529; }
+      color: #343a40; }
   .tiki #conversejs #controlbox #converse-roster .group-toggle, .tiki #conversejs.converse-embedded #controlbox #converse-roster .group-toggle {
-    color: #212529; }
+    color: #343a40; }
   .tiki #conversejs #controlbox #converse-roster .roster-filter-form .roster-filter, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-filter-form .roster-filter {
     background-color: #fff;
     color: #495057;
     border-color: #ced4da; }
   .tiki #conversejs #controlbox #converse-roster .roster-contacts dt, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dt {
-    color: #212529; }
+    color: #343a40; }
     .tiki #conversejs #controlbox #converse-roster .roster-contacts dt a, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dt a {
       color: inherit; }
     .tiki #conversejs #controlbox #converse-roster .roster-contacts dt:hover, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dt:hover {
@@ -7186,7 +7204,7 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
       color: inherit;
       text-shadow: none; }
       .tiki #conversejs #controlbox #converse-roster .roster-contacts dd a:hover, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dd a:hover, .tiki #conversejs #controlbox #converse-roster .roster-contacts dd span:hover, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dd span:hover {
-        color: #212529; }
+        color: #343a40; }
   .tiki #conversejs .chatbox .box-flyout, .tiki #conversejs.converse-embedded .chatbox .box-flyout {
     background-color: #fff;
     border: 1px solid #ced4da; }
@@ -7210,24 +7228,24 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
   .tiki #conversejs .chatbox .chat-body, .tiki #conversejs.converse-embedded .chatbox .chat-body {
     background-color: inherit; }
   .tiki #conversejs .chatbox .chat-body .chat-content, .tiki #conversejs.converse-embedded .chatbox .chat-body .chat-content {
-    color: #212529;
+    color: #343a40;
     background-color: inherit; }
   .tiki #conversejs .chatbox .chat-body .chat-content .chat-msg__author, .tiki #conversejs.converse-embedded .chatbox .chat-body .chat-content .chat-msg__author {
     color: #1174a5; }
   .tiki #conversejs .chatbox .chat-body .chat-content .chat-msg__text, .tiki #conversejs.converse-embedded .chatbox .chat-body .chat-content .chat-msg__text {
-    color: #212529; }
+    color: #343a40; }
   .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom {
     background-color: #17a2b8;
-    border-bottom: 1px solid #212529; }
+    border-bottom: 1px solid #343a40; }
   .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .close-chatbox-button, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .close-chatbox-button, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .toggle-chatbox-button, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .toggle-chatbox-button, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .configure-chatroom-button, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .configure-chatroom-button, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .toggle-bookmark, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .toggle-bookmark, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .chat-title, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .chat-title, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .chatroom-description, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .chatroom-description {
     color: #fff; }
   .tiki #conversejs .chatroom .box-flyout .chatroom-body, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chatroom-body {
     background-color: inherit; }
   .tiki #conversejs .chatroom .box-flyout .chatroom-body p, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chatroom-body p {
-    color: #212529; }
+    color: #343a40; }
   .tiki #conversejs .chatroom .box-flyout .chatroom-body .occupants, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chatroom-body .occupants {
     background-color: inherit;
-    border-left-color: #212529; }
+    border-left-color: #343a40; }
     .tiki #conversejs .chatroom .box-flyout .chatroom-body .occupants ul, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chatroom-body .occupants ul {
       padding: 0; }
       .tiki #conversejs .chatroom .box-flyout .chatroom-body .occupants ul li.occupant .occupant-status, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chatroom-body .occupants ul li.occupant .occupant-status {
@@ -7235,7 +7253,7 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
         box-shadow: 0 0 1px 1px #444; }
   .tiki #conversejs .chatroom .box-flyout .chatroom-body .chatroom-form-container, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chatroom-body .chatroom-form-container {
     background-color: inherit;
-    color: #212529; }
+    color: #343a40; }
   .tiki #conversejs .chatroom .box-flyout .chatroom-body .chat-area .new-msgs-indicator, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chatroom-body .chat-area .new-msgs-indicator {
     background-color: #17a2b8;
     color: #fff; }

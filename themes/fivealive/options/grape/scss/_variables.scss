@@ -9,20 +9,24 @@ $bg-light: #a02871 !important;
 $link-color: #a02871;
 $link-hover-color: #a02871;
 
-// $btn-primary-bg: #a02871;
-// $btn-primary-border: #8e286a;
-// $btn-primary-focus-bg: #661d4c;
-// $btn-primary-focus-border: #8e286a;
-// $btn-primary-hover-bg: #661d4c;
-// $btn-primary-hover-border: #5e1b46;
-// $btn-primary-active-bg: #661d4c;
-// $btn-primary-active-border: #5e1b46;
-// $btn-primary-active-hover-bg: #5e1b46;
-// $btn-primary-active-hover-border: #8e286a;
-// $btn-primary-disabled-bg: #a02871;
-// $btn-primary-disabled-border: #8e286a;
-// $btn-primary-badge-color: #a02871;
-// $btn-primary-badge-bg: #ffffff;
+$btn-primary-color: #ffffff;
+$btn-primary-bg: #a02871;
+$btn-primary-border: #8e286a;
+$btn-primary-focus-color: #ffffff;
+$btn-primary-focus-bg: #661d4c;
+$btn-primary-border: #8e286a;
+$btn-primary-hover-color: #ffffff;
+$btn-primary-hover-bg: #661d4c;
+$btn-primary-hover-border: #5e1b46;
+$btn-primary-active-color: #ffffff;
+$btn-primary-active-bg: #661d4c;
+$btn-primary-active-border: #5e1b46;
+$btn-primary-active-hover-bg-color: #4a1538;
+$btn-primary-active-hover-border: #8e286a;
+$btn-primary-disabled-hover: #a02871;
+$btn-primary-disabled-border: #8e286a;
+$btn-primary-badge-color: #a02871;
+$btn-primary-badge-bg: #ffffff;
 
 // $btn-secondary-bg: #a02871;
 // $btn-secondary-border: #8e286a;
@@ -39,6 +43,25 @@ $link-hover-color: #a02871;
 // $btn-secondary-badge-color: #a02871;
 // $btn-secondary-bg-color: #ffffff;
 
+$btn-info-color: #fff;
+$btn-info-bg: #e5d7dc;
+$btn-info-border: #e5d0cf;
+// $btn-info-focus-color: ;
+// $btn-info-focus-bg: ;
+// $btn-info-focus-border: ;
+$btn-info-hover-color: $btn-info-color;
+$btn-info-hover-bg: lighten($btn-info-bg, 10%);
+$btn-info-hover-border: lighten($btn-info-border, 10%);
+// $btn-info-active-color: ;
+$btn-info-active-bg: $btn-info-bg;
+// $btn-info-active-border: ;
+// $btn-info-active-hover: ;
+// $btn-info-active-hover-border: ;
+// $btn-info-disabled-hover-color: ;
+// $btn-info-disabled-hover-border: ;
+// $btn-info-badge-color: ;
+// $btn-info-badge-bg: ;
+
 $navbar-dark-color: #fff;
 
 // navbar link hover colors
@@ -49,16 +72,17 @@ $bg-dark-link-hover-bg: #003c4a;
 $hr-border-color: #a02871;
 
 $bg-dark: #063035;
+$bg-light: #f4dded;
 
 $card-border-color: #bc2f84;
-$bg-light: #0a8794;
+
 $table-border-color: #a82a76;
 $table-accent-bg: #f9f9f9;
 $table-hover-bg: #f5f5f5;
 
 $input-color: #555555;
 $input-bg: #f4dded;
-$input-border: #e4afd3;
+$input-border-color: #e4afd3;
 $input-border-top-color: #e4afd3;
 $input-border-right-color: #fff;
 $input-border-bottom-color: #fff;
@@ -100,7 +124,8 @@ $theme-colors: (
         "dark":				#261122
 );
 
-
+$enable-gradients: true;
+$enable-shadows: true;
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
 //$bg-light-alt: #117485 !important;
 
@@ -109,7 +134,7 @@ $side-column-heading-color: #bc2f84;
 $middle_outer-inset-shadow-bg: #261122;
 $footer_liner-card-inner-border: #a52873;
 
-$footer-accent-color: $input-border;
+$footer-accent-color: $input-border-color;
 $footer-btn-secondary-color: #f4f4f4;
 $footer_liner-border-color: $footer-accent-color;
 
@@ -123,14 +148,13 @@ $autotoc-nav-link-hover-bg: #3b284a;
 .header_outer,
 .layout_basic #top_modules,
 .postbody-title,
-.tiki > .navbar.fixed-top.bg-light/*,
-.tiki > .fixed-top.bg-light*/ {
+.tiki > .navbar.fixed-top.bg-dark,
+//.topbar, .navbar-dark, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li,
+.bg-dark {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#642759+0,732860+19,92286b+43,a32872+67,a52873+100 */
-  background: #642759; /* Old browsers */
-  background: -moz-linear-gradient(left,  #642759 0%, #732860 19%, #92286b 43%, #a32872 67%, #a52873 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  #642759 0%,#732860 19%,#92286b 43%,#a32872 67%,#a52873 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  #642759 0%,#732860 19%,#92286b 43%,#a32872 67%,#a52873 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: #642759 !important; /* Old browsers */
+  background: -moz-linear-gradient(left,  #642759 0%, #732860 19%, #92286b 43%, #a32872 67%, #a52873 100%) !important; /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #642759 0%,#732860 19%,#92286b 43%,#a32872 67%,#a52873 100%) !important; /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #642759 0%,#732860 19%,#92286b 43%,#a32872 67%,#a52873 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#642759', endColorstr='#a52873',GradientType=1 ); /* IE6-9 */
 }
-
-$enable-gradients: true;

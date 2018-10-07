@@ -9,20 +9,20 @@ $bg-light: #b51360 !important;
 $link-color: #b51360;
 $link-hover-color: #e10c7c;
 
-// $btn-primary-bg: #b51360;
-// $btn-primary-border: #8e01d4;
-// $btn-primary-focus-bg: #4e0174;
-// $btn-primary-focus-border: #390055;
-// $btn-primary-hover-bg: #4e0174;
-// $btn-primary-hover-border: #650197;
-// $btn-primary-active-bg: #4e0174;
-// $btn-primary-active-border: #650197;
-// $btn-primary-active-hover-bg: #4e0174;
-// $btn-primary-active-hover-border: #390055;
-// $btn-primary-disabled-bg: #b51360;
-// $btn-primary-disabled-border: #8e01d4;
-// $btn-primary-badge-color: #b51360;
-// $btn-primary-badge-bg: #ffffff;
+$btn-primary-bg: #b51360;
+$btn-primary-border: #9c154e;
+$btn-primary-focus-bg: #97164c;
+$btn-primary-focus-border: #6b1736;
+$btn-primary-hover-bg: #cd1572;
+$btn-primary-hover-border: #b51561;
+$btn-primary-active-bg: #98184d;
+$btn-primary-active-border: #6c1937;
+$btn-primary-active-hover-bg: #4e0174;
+$btn-primary-active-hover-border: #390055;
+$btn-primary-disabled-bg: #d61577;
+$btn-primary-disabled-border: #cb1873;
+$btn-primary-badge-color: #b51360;
+$btn-primary-badge-bg: #ffffff;
 
 // $btn-secondary-bg: #b51360;
 // $btn-secondary-border: #8e01d4;
@@ -39,6 +39,25 @@ $link-hover-color: #e10c7c;
 // $btn-secondary-badge-color: #b51360;
 // $btn-secondary-bg-color: #ffffff;
 
+$btn-info-color: #fff;
+$btn-info-bg: #e5d7dc;
+$btn-info-border: #e5d0cf;
+// $btn-info-focus-color: ;
+// $btn-info-focus-bg: ;
+// $btn-info-focus-border: ;
+$btn-info-hover-color: $btn-info-color;
+$btn-info-hover-bg: lighten($btn-info-bg, 10%);
+$btn-info-hover-border: lighten($btn-info-border, 10%);
+// $btn-info-active-color: ;
+$btn-info-active-bg: $btn-info-bg;
+// $btn-info-active-border: ;
+// $btn-info-active-hover: ;
+// $btn-info-active-hover-border: ;
+// $btn-info-disabled-hover-color: ;
+// $btn-info-disabled-hover-border: ;
+// $btn-info-badge-color: ;
+// $btn-info-badge-bg: ;
+
 $navbar-dark-color: #fff;
 
 // navbar link hover colors
@@ -50,6 +69,7 @@ $hr-border-color: #f459ab;
 
 $bg-dark: #35061d;
 $bg-light: #0a8794;
+
 $card-border-color: #49006c;
 $table-border-color: #f459ab;
 $table-accent-bg: #f9f9f9;
@@ -57,7 +77,7 @@ $table-hover-bg: #f5f5f5;
 
 $input-color: #555555;
 $input-bg: #f9dcec;
-$input-border: #fa9ccd;
+$input-border-color: #fa9ccd;
 $input-border-top-color: #fa9ccd;
 $input-border-right-color: #fcf6f9;
 $input-border-bottom-color: #fcf6f9;
@@ -98,6 +118,8 @@ $theme-colors: (
 		"dark":				#35061d
 );
 
+$enable-gradients: true;
+$enable-shadows: true;
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
 $bg-light-alt: #117485 !important;
 
@@ -120,14 +142,13 @@ $autotoc-nav-link-hover-bg: #61102d;
 .header_outer,
 .layout_basic #top_modules,
 .postbody-title,
-.tiki > .navbar.fixed-top.bg-light/*,
-.tiki > .fixed-top.bg-light*/ {
+.tiki > .navbar.fixed-top.bg-dark,
+//.topbar, .navbar-dark, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li,
+.bg-dark {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#b3135f+0,b61261+9,c21069+18,e70b80+69,ea0a81+100 */
-  background: #b3135f; /* Old browsers */
-  background: -moz-linear-gradient(left,  #b3135f 0%, #b61261 9%, #c21069 18%, #e70b80 69%, #ea0a81 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(left,  #b3135f 0%,#b61261 9%,#c21069 18%,#e70b80 69%,#ea0a81 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to right,  #b3135f 0%,#b61261 9%,#c21069 18%,#e70b80 69%,#ea0a81 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: #b3135f !important; /* Old browsers */
+  background: -moz-linear-gradient(left,  #b3135f 0%, #b61261 9%, #c21069 18%, #e70b80 69%, #ea0a81 100%) !important; /* FF3.6-15 */
+  background: -webkit-linear-gradient(left,  #b3135f 0%,#b61261 9%,#c21069 18%,#e70b80 69%,#ea0a81 100%) !important; /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right,  #b3135f 0%,#b61261 9%,#c21069 18%,#e70b80 69%,#ea0a81 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3135f', endColorstr='#ea0a81',GradientType=1 ); /* IE6-9 */
 }
-
-.bg-dark {background: #35061d !important; }

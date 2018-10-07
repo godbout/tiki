@@ -6718,7 +6718,7 @@ code, pre.codelisting {
 .adminoptionboxchild {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
   .adminoptionboxchild legend {
-    font-size: 2rem; }
+    font-size: 1.35rem; }
 
 input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
@@ -6763,6 +6763,11 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 html {
   background-color: #414141; }
 
+.middle_outer {
+  -webkit-box-shadow: inset 0 54px 0 0 #043b5a;
+  -moz-box-shadow: inset 0 54px 0 0 #043b5a;
+  box-shadow: inset 0 54px 0 0 #043b5a; }
+
 .header_outer, .layout_basic #top_modules {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#136d9f+0,28a7de+100 */
   background: #136d9f;
@@ -6782,10 +6787,18 @@ html {
 #fullscreenbutton a {
   color: #000; }
 
-.middle_outer {
-  -webkit-box-shadow: inset 0 54px 0 0 #043b5a;
-  -moz-box-shadow: inset 0 54px 0 0 #043b5a;
-  box-shadow: inset 0 54px 0 0 #043b5a; }
+.form-control, select, input[type="text"], input[type="password"], input[type="file"], input[type="email"], input[type="search"], input[type="number"], input#login-pass, textarea, .adminoptionbox option {
+  background-color: #f9dcec;
+  border-color: #9ae8fa #e3f7fb #e3f7fb #9ae8fa; }
+
+.navbar-collapse {
+  border: none; }
+
+.page-header .navbar.bg-dark, .layout_classic #topbar_modules .navbar.bg-dark, .page-header .navbar.bg-light, .layout_classic #topbar_modules .navbar.bg-light {
+  background: transparent !important; }
+
+.layout_classic #top_modules.bg-dark, .layout_classic #topbar_modules, .layout_classic #topbar.bg-dark {
+  background: transparent !important; }
 
 #topbar {
   min-height: 54px;
@@ -6861,16 +6874,30 @@ section {
   background: #414141;
   color: #fff; }
 
-.footer_liner {
-  padding: 15px 0;
-  color: #f9f9f9; }
-  .footer_liner a {
-    color: #efefef; }
-  .footer_liner legend {
-    color: #f9f9f9; }
-  .footer_liner .card, .footer_liner .card-header, .footer_liner .card-footer {
-    background: transparent;
-    border-color: transparent; }
+#footer {
+  background: #000;
+  color: #696969;
+  padding: 1px 0 2px 0;
+  width: 100%; }
+
+.footer {
+  border-top: 1px solid #28aae1;
+  border-bottom: 1px solid #28aae1; }
+
+.footer_liner .card, .footer_liner .card-header, .footer_liner .card-footer {
+  background: transparent;
+  border-color: transparent; }
+  .footer_liner h3.card-header {
+    color: #fff;
+    border-bottom: 1px dotted #28aae1; }
+  .footer_liner legend, .footer_liner a, .footer_liner a:visited {
+    color: #a9a9a9; }
+
+label a:hover {
+  text-decoration: none; }
+
+.bg-dark {
+  background-color: #1174a5 !important; }
 
 .nav-tabs .nav-item {
   margin-right: 1px; }
