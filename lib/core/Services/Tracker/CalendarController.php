@@ -113,7 +113,7 @@ class Services_Tracker_CalendarController
 				'color' => $this->getColor(isset($row[$coloring]) ? $row[$coloring] : '', $colormap),
 				'textColor' => '#000',
 				'resourceId' => ($resource && isset($row[$resource])) ? strtolower($row[$resource]) : '',
-				'resourceEditable' => false,
+				'resourceEditable' => true,
 			];
 		}
 

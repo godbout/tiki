@@ -14,10 +14,13 @@
 				end = event.start;
 			}
 
-			request['fields~' + data.begin] = event.start.unix();
-			request['fields~' + data.end] = end.unix();
+			// Events after drop/resize it looses the timezone info (ambiguous-zone)
+			// Re-add the utc offset will make the date to timestamp conversion to use the correct UTC datetime.
+			request['fields~' + data.begin] = event.start.utcOffset(data.utcOffset, true).unix();
+			request['fields~' + data.end] = end.utcOffset(data.utcOffset, true).unix();
+			request['fields~' + data.resource] = event.resourceId;
 
-			$.post($.service('tracker', 'update_item'), request);
+			$.post($.service('tracker', 'update_item'), request, null, 'json');
 		};
 
 		$(this).fullCalendar({
