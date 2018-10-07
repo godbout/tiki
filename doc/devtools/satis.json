@@ -1897,6 +1897,8 @@
 		"zetacomponents/base": ">=1.8",
 		"zetacomponents/webdav": ">=1.1.3"
 	},
+	"require-dependencies": true,
+	"require-dev-dependencies": true,
 	"archive": {
 		"directory": "dist",
 		"format": "zip",
