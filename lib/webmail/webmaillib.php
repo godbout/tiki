@@ -658,7 +658,8 @@ class WebMailLib extends TikiLib
 
 		$folders = $storage->getFolders();
 		foreach ($folders as $folder) {
-			if (strpos($folder->getGlobalName(), tr('Sent')) !== false) {
+			if (strpos($folder->getGlobalName(), 'Sent') !== false ||
+					strpos($folder->getGlobalName(), tr('Sent')) !== false) {
 
 				try {
 					$storage->appendMessage($message, $folder->getGlobalName());
