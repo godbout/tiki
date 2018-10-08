@@ -171,11 +171,13 @@ function wikiplugin_preview($data, $params)
 			file_put_contents($filePath, $info['data']);
 			$sourceNeedsClean = true;
 		}
+
+		$newFileExtension = $animation ? '.gif' : '.png';
 		$newFilePath = $tikipath . DIRECTORY_SEPARATOR
 			. 'temp' . DIRECTORY_SEPARATOR
 			. 'cache' . DIRECTORY_SEPARATOR
 			. $tikidomain . DIRECTORY_SEPARATOR
-			. 'target_' . $cacheType . $cacheName . '.png';
+			. 'target_' . $cacheType . $cacheName . $newFileExtension;
 
 		// This will allow apps executed by Alchemy (like when converting doc to pdf) to have a writable home
 		// save existing ENV
