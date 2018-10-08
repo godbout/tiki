@@ -901,6 +901,8 @@ if ($_REQUEST['locSection'] == 'compose') {
 
 		if ($mail->send($to_array, 'smtp')) {
 			$msg = tra('Your email was sent');
+			// save the mail in the sent folder
+			$webmaillib->saveSentMessage($mail->getMessage());
 		} else {
 			if (is_array($mail->errors)) {
 				$msg = '';

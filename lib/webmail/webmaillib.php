@@ -643,5 +643,34 @@ class WebMailLib extends TikiLib
 
 		return $getAllParts ? $cont : $cont[0];
 	}	// end get_mail_content()
+
+	/**
+	 * Saves the message to the "Sent" folder
+	 *
+	 * @param \Zend\Mail\Message|string $message
+	 */
+	function saveSentMessage($message) {
+		$storage = $this->get_mail_storage();
+
+		if (! is_string($message)) {
+			$message = $message->toString();
+		}
+
+		$folders = $storage->getFolders();
+		foreach ($folders as $folder) {
+			if (strpos($folder->getGlobalName(), 'Sent') !== false ||
+					strpos($folder->getGlobalName(), tr('Sent')) !== false) {
+
+				try {
+					$storage->appendMessage($message, $folder->getGlobalName());
+				} catch (Exception $e) {
+					Feedback::error($e->getMessage());
+				}
+				break;
+			}
+		}
+
+	}
+
 } # class WebMailLib
 $webmaillib = new WebMailLib;
