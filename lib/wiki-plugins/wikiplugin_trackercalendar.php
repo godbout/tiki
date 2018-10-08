@@ -434,6 +434,7 @@ function wikiplugin_trackercalendar($data, $params)
 			'useSessionStorage' => $params['external'] === 'y' ? $params['useSessionStorage'] : '',
 			'timeFormat' => $prefs['display_12hr_clock'] === 'y' ? 'h(:mm)TT' : 'HH:mm',
 			'weekends' => $params['weekends'] === 'y' ? 1 : 0,
+			'utcOffset' => TikiDate::tzServerOffset(TikiLib::lib('tiki')->get_display_timezone())/60, // In minutes
 		]
 	);
 	$smarty->assign('filters', $filters);
