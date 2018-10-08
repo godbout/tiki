@@ -218,6 +218,15 @@ class TikiMail
 		}
 	}
 
+	/**
+	 * Get the Zend Message object
+	 *
+	 * @return \Zend\Mail\Message
+	 */
+	function getMessage() {
+		return $this->mail;
+	}
+
 	function send($recipients, $type = 'mail')
 	{
 		global $tikilib, $prefs;
