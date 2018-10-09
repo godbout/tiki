@@ -7,7 +7,7 @@
 					<div class="input-group{*form-row align-items-center*}">
 					{*	<div class="{*col-auto*}{*mr-2"> *}
 							<label class="sr-only" for="search_mod_input_{$search_mod_usage_counter}">Find</label>
-							<input style="{if $smod_params.compact eq "y"}{*width:72%;border-bottom-right-radius:0;border-top-right-radius: 0;*}{/if}" placeholder="{tr}Find{/tr}" class="form-control my-1" id="search_mod_input_{$search_mod_usage_counter}" name="{if $smod_params.search_action eq 'tiki-searchindex.php'}filter~content{else}find{/if}" {if !empty($smod_params.input_size)}size="{$smod_params.input_size}" style="width: auto"{/if} type="text" accesskey="s" value="{$smod_params.input_value|escape}">
+							<input style="min-width: 4rem;{if $smod_params.compact eq "y"}{*width:72%;border-bottom-right-radius:0;border-top-right-radius: 0;*}{/if}" placeholder="{tr}Find{/tr}" class="form-control my-1" id="search_mod_input_{$search_mod_usage_counter}" name="{if $smod_params.search_action eq 'tiki-searchindex.php'}filter~content{else}find{/if}" {if !empty($smod_params.input_size)}size="{$smod_params.input_size}" style="width: auto"{/if} type="text" accesskey="s" value="{$smod_params.input_value|escape}">
 					{*	</div>*}
 							{if $smod_params.show_object_filter eq 'y'}
 								<label class="col-form-label" for="filterType">
