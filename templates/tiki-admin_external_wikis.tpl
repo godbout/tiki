@@ -59,6 +59,8 @@
 			<tr>
 				<td class="text">{$channels[user].name}</td>
 				<td class="text">{$channels[user].extwiki}</td>
+                <td class="text">{$channels[user].indexname}</td>
+                <td class="text">{$channels[user].groups}</td>
 				<td class="action">
 					{actions}
 						{strip}
