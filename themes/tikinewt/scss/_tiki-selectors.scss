@@ -41,11 +41,6 @@ body > .container {
 	border-width: 0 1px 1px 1px;
 }
 
-#top_modules, #topbar_modules, #pagebottom_modules {
-	margin-left: -10px;
-	margin-right: -10px;
-}
-
 header.container {
 	//  border: 1px solid #aaaaaa;
 	//  border-bottom: none;
@@ -73,12 +68,12 @@ header.container {
 //	background-color: //$navbar-default-link-active-bg  //Deprecated?;
 }
 
-.middle {
-	& > .row {
-		margin-top: 5px;
-		border-right: 6px solid #ffffff;
-	}
-}
+//.middle {
+//	& > .row {
+//		margin-top: 5px;
+//		border-right: 6px solid #ffffff;
+//	}
+//}
 
 #col1 {
 	background: #f3f6f9;
