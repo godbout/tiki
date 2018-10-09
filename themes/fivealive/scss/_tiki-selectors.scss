@@ -6,6 +6,10 @@ $imagePath: "../images/";
 //	background-image: url('#{$imagePath}bg.jpg');
 // }
 
+.dropdown-item .text-danger {
+  color: #fec0bd !important;
+}
+
 html {  background-color: #414141; }
 
 .middle_outer {

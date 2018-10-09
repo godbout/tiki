@@ -6,6 +6,11 @@
 // }
 
 $imagePath: "../images/";
+
+.dropdown-item .text-danger {
+  color: #fec0bd !important;
+}
+
 .middle_outer {
 	-webkit-box-shadow: inset 0 24px 0 0 #28a7de;
 	box-shadow: inset 0 24px 0 0 #28a7de;
