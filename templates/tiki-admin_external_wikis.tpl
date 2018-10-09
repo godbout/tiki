@@ -47,10 +47,10 @@
 				<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'extwiki_desc'}extwiki_asc{else}extwiki_desc{/if}">{tr}ExtWiki{/tr}</a>
 			</th>
 			<th>
-				<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'index_desc'}index_asc{else}index_desc{/if}">{tr}Index{/tr}</a>
+				<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'indexname_desc'}indexname_asc{else}indexname_desc{/if}">{tr}Index{/tr}</a>
 			</th>
 			<th>
-				<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'searchas_desc'}searchas_asc{else}searchas_desc{/if}">{tr}Search As{/tr}</a>
+				<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'groups_desc'}groups_asc{else}groups_desc{/if}">{tr}Search As{/tr}</a>
 			</th>
 			<th></th>
 		</tr>
