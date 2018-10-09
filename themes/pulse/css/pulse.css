@@ -6724,7 +6724,7 @@ code, pre.codelisting {
 .adminoptionboxchild {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
   .adminoptionboxchild legend {
-    font-size: 2rem; }
+    font-size: 1.35rem; }
 
 input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #ededed; }
@@ -6925,6 +6925,11 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
   div.ts-wrapperdiv div.ts-pager .right-margin {
     vertical-align: bottom;
     margin-right: 4px; }
+
+table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
+  color: #444;
+  background: #fff;
+  border: #cbc8d0; }
 
 .tiki .pvtUi {
   color: #444; }

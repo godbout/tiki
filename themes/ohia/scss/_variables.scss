@@ -73,10 +73,10 @@ $btn-font-weight: normal;
 
 $btn-primary-color: #fd0006;
 $btn-primary-bg: #2f2f2f;
-//  $btn-primary-border: #5f5f5f;
+$btn-primary-border: #5f5f5f;
 
 $btn-secondary-color: #fd0006;
-$btn-secondary-bg: $btn-primary-bg;
+$btn-secondary-bg: lighten($btn-primary-bg, 15%);
 //  $btn-secondary-border: $btn-primary-border;
 
 $btn-success-color: #ffffff;

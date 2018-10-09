@@ -61,11 +61,12 @@ $btn-link-disabled-color:		 #777777;
 $input-color-placeholder: 		#777777;
 
 // Dropdowns
-$dropdown-bg:                    #1376a8;
-$dropdown-link-color:            #fff;
-$dropdown-link-hover-color:      darken(#fff, 5%);
-$dropdown-link-hover-bg:         lighten($dropdown-bg, 10%);
-
+$dropdown-bg: #1376a8;
+$dropdown-link-color: $gray-200;
+$dropdown-link-hover-color: #ffffff;
+$dropdown-link-hover-bg: darken(#1376a8, 10%);
+$dropdown-link-active-bg: #ffffff;
+$dropdown-header-color: #fff;
 // Navs
 $nav-tabs-border-color:             $gray-300;
 // Navbar

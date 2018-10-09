@@ -6649,7 +6649,7 @@ code, pre.codelisting {
 .adminoptionboxchild {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
   .adminoptionboxchild legend {
-    font-size: 2rem; }
+    font-size: 1.35rem; }
 
 input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }
@@ -6696,22 +6696,18 @@ button, input, optgroup, select, textarea {
   background: #242424;
   color: #cfcfcf; }
 
-.container {
-  border: 1px solid #4c4c4c;
-  margin-bottom: 5px; }
+.bg-dark, .topbar_modules.navbar-dark.bg-dark {
+  background: #343a40 !important; }
 
-.topbar, .navbar-dark, .navbar-dark .navbar-collapse, .navbar-dark .navbar-form, .navbar-dark .container {
-  background: #7a0101;
-  border-color: transparent; }
+.bg-light, .topbar_modules.navbar-dark.bg-dark {
+  background: #7a0101 !important; }
 
 .navbar-light.navbar-fixed-top > .container {
   border: none;
   margin-bottom: 0; }
 
-.header-container .container, .navbar-light.navbar-fixed-top {
-  background: url("../images/header.png"); }
-  .header-container .container a, .navbar-light.navbar-fixed-top a, .header-container .container a:visited, .navbar-light.navbar-fixed-top a:visited, .header-container .container .btn-link, .navbar-light.navbar-fixed-top .btn-link {
-    color: #f4f4f4; }
+.header-container .container a, .navbar-light.navbar-fixed-top a, .header-container .container a:visited, .navbar-light.navbar-fixed-top a:visited, .header-container .container .btn-link, .navbar-light.navbar-fixed-top .btn-link {
+  color: #f4f4f4; }
 
 .box-quickadmin .cssmenu_horiz ul li {
   background-color: #4c4c4c; }
@@ -6721,10 +6717,6 @@ button, input, optgroup, select, textarea {
 
 #topbar_modules .box-search {
   margin-top: 8px; }
-
-#col2, #col3 {
-  padding-right: 0;
-  padding-left: 0; }
 
 .card-title, .card-header {
   font-weight: bold; }
@@ -6738,16 +6730,15 @@ button, input, optgroup, select, textarea {
   border-width: 1px 1px 0 1px; }
 
 footer.footer .modules {
-  background: url("../images/header.png");
-  background-size: contain;
+  background: #030511;
+  padding-top: 1rem;
   color: #f4f4f4;
-  font-size: 0.9em;
-  min-height: 90px; }
+  font-size: 0.9em; }
   footer.footer .modules a, footer.footer .modules a:visited {
     color: #f4f4f4; }
 
 .popover {
-  background-color: #dee2e6; }
+  background-color: #0b123c; }
 
 .popover-header {
   background-color: #696969;
@@ -6938,6 +6929,11 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
   div.ts-wrapperdiv div.ts-pager .right-margin {
     vertical-align: bottom;
     margin-right: 4px; }
+
+table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
+  color: #ededed;
+  background: #242424;
+  border: #4c4c4c; }
 
 .tiki .pvtUi {
   color: #e9ecef; }
