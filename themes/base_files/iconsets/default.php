@@ -640,6 +640,9 @@ function iconset_default()
 			'sharethis' => [
 				'id' => 'share-alt',
 			],
+			'shorten' => [
+				'id' => 'crop',
+			],
             'skype' => [
                 'id' => 'skype',
                 'prepend' => 'fab fa-'
