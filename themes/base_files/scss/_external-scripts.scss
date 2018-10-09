@@ -2,7 +2,7 @@
 // Tiki overrides, adjustments, etc. for external libs and scripts that are added in vendor, etc. can be added here
 // instead of having to be added to the theme SCSS file.
 
-@import "tablesorter-custom.scss";
+@import "tablesorter-custom";
 @import "tablesorter-tiki";
 @import "pivot-tiki";
 @import "jquery-ui-tiki";

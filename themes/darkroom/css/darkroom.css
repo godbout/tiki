@@ -6982,6 +6982,11 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     vertical-align: bottom;
     margin-right: 4px; }
 
+table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
+  color: #cfcfcf;
+  background: #242424;
+  border: #4c4c4c; }
+
 .tiki .pvtUi {
   color: #d8d8d8; }
   .tiki table.pvtTable {

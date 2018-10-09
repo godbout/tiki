@@ -240,6 +240,35 @@ textarea,
 	//  background: $navbar-default-navbar-nav-li-a-background; // #cdbe23;
 }
 
+.dropdown-menu {
+  background-color: $dropdown-bg; //#005064;
+  border: 1px solid $dropdown-border-color; // rgba(0, 0, 0, 0.15);
+}
+
+.dropdown-item a,
+.dropdown-item .btn.btn-link {
+  color: $dropdown-link-color;
+  &:hover,
+  &:focus {
+	color: $dropdown-link-hover-color;
+  }
+  &:active,
+  &.active {
+	color: $dropdown-link-active-color;
+  }
+  &.disabled,
+  &:disabled {
+	color: $dropdown-link-disabled-color;
+  }
+  .dropdown-header {
+	color: $dropdown-header-color;
+  }
+  .dropdown-divider {
+	background: $dropdown-divider-bg;
+  }
+}
+
+
 .postbody-title {
 	background: $postbody-title-background; //url('#{$imagePath}siteheader.png') no-repeat -480px -200px;
 }

@@ -6833,6 +6833,12 @@ h3.card-title {
 .popover {
   color: #404040; }
 
+.bg-dark .bg-dark, .tiki .navbar.navbar-dark.bg-dark .navbar.navbar-dark.bg-dark, .tiki.navbar.bg-light .navbar.bg-light, .page-header {
+  background-image: none !important;
+  background: transparent !important;
+  border-left: none;
+  border-right: none; }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {
@@ -6994,6 +7000,11 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
   div.ts-wrapperdiv div.ts-pager .right-margin {
     vertical-align: bottom;
     margin-right: 4px; }
+
+table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
+  color: #4d4d4d;
+  background: #fff;
+  border: #ced4da; }
 
 .tiki .pvtUi {
   color: #404040; }

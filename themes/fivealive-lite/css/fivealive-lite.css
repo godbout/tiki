@@ -6827,6 +6827,23 @@ header.header .sitetitle, header.header .sitesubtitle {
   .topbar .form-group {
     margin-bottom: 0; }
 
+.dropdown-menu {
+  background-color: #1376a8;
+  border: 1px solid rgba(0, 0, 0, 0.15); }
+
+.dropdown-item a, .dropdown-item .btn.btn-link {
+  color: #e9ecef; }
+  .dropdown-item a:hover, .dropdown-item .btn.btn-link:hover, .dropdown-item a:focus, .dropdown-item .btn.btn-link:focus {
+    color: #fff; }
+  .dropdown-item a:active, .dropdown-item .btn.btn-link:active, .dropdown-item a.active, .dropdown-item .btn.btn-link.active {
+    color: #fff; }
+  .dropdown-item a.disabled, .dropdown-item .btn.btn-link.disabled, .dropdown-item a:disabled, .dropdown-item .btn.btn-link:disabled {
+    color: #868e96; }
+  .dropdown-item a .dropdown-header, .dropdown-item .btn.btn-link .dropdown-header {
+    color: #fff; }
+  .dropdown-item a .dropdown-divider, .dropdown-item .btn.btn-link .dropdown-divider {
+    background: #e9ecef; }
+
 .postbody-title {
   background: #1a8cbc; }
 
@@ -7037,6 +7054,11 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
   div.ts-wrapperdiv div.ts-pager .right-margin {
     vertical-align: bottom;
     margin-right: 4px; }
+
+table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
+  color: #495057;
+  background: #fff;
+  border: #ced4da; }
 
 .tiki .pvtUi {
   color: #343a40; }

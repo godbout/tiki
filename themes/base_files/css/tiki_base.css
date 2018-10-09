@@ -3348,6 +3348,11 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     vertical-align: bottom;
     margin-right: 4px; }
 
+table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
+  color: #495057;
+  background: #fff;
+  border: #ced4da; }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {
