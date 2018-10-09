@@ -19,8 +19,8 @@
 					<ul class="nav nav-tabs">
 						{foreach key=pos item=slvn_item from=$slvn_info.items}
 							{if $slvn_item.count > 0}
-								<li class="tab-item text-center">
-									<a data-toggle="tab" href="#fragment-{$fragment}" class="tab-link">
+								<li class="nav-item text-center">
+									<a data-toggle="tab" href="#fragment-{$fragment}" class="nav-link">
 										{if $pos eq "blogs"}
 											{icon name="bold" size=1 ititle="Blogs"}
 										{elseif $pos eq "blogPosts"}
