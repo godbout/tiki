@@ -3014,6 +3014,13 @@ body.fullscreen.tiki.navbar-padding {
 .tiki .popover p:last-child {
   margin-bottom: 0; }
 
+.tiki .popover {
+  max-width: 301px; }
+  .tiki .popover .popover-body .table {
+    margin-bottom: 0; }
+  .tiki .popover .popover-body .table td {
+    word-break: break-word; }
+
 .tiki .media-overflow-visible, .tiki .media-overflow-visible .media-body {
   overflow: visible; }
 
