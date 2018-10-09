@@ -318,6 +318,9 @@ function iconset_default()
 			'create' => [
 				'id' => 'plus',
 			],
+            'dashboard' => [
+                'id' => 'tachometer-alt',
+            ],
 			//database in defaults
 			'delete' => [
 				'id' => 'times',
