@@ -133,7 +133,7 @@
 
 		<div class="d-flex justify-content-between mb-3">
 			{if $prefs.feature_multilingual eq 'y' and $tiki_p_edit eq 'y'}
-				<div class="">
+				<div class="col-md-6">
 					<div class="input-group">
 						<div class="input-group-prepend bg-info">
 							<div class="input-group-text bg-info">
@@ -160,7 +160,7 @@
 
 
 			{if ($prefs.default_wiki_diff_style ne "old") and $history}
-				<div class="input-group col-sm-4">
+				<div class="input-group col-sm-6">
 					<select class="form-control" name="diff_style" id="diff_style_all"{if $prefs.javascript_enabled eq "y"} style="display: none"{/if}>
 						<option value="htmldiff" {if $diff_style == "htmldiff"}selected="selected"{/if}>
 							{tr}HTML diff{/tr}
