@@ -122,40 +122,45 @@
 	<form id="pagehistory" action="tiki-pagehistory.php?page={$page}">
 		<input type="hidden" name="page" value="{$page|escape}">
 		<input type="hidden" name="history_offset" value="{$history_offset}">
-		<div class="clearfix">
-			<div class="float-left col-sm-9" style="margin-bottom: 10px">
+		<div class="mb-4">
 				<input type="checkbox" name="paginate" id="paginate"{if $paginate} checked="checked"{/if}>
 				<label for="paginate">{tr}Enable pagination{/tr}</label>
 				{if $paginate}
-					<input type="text" name="history_pagesize" id="history_pagesize" value="{$history_pagesize}" class="form-control" style="width: 5em; display: inline-block">
-					<label for="history_pagesize">{tr}per page{/tr}</label>
+					<input type="text" name="history_pagesize" id="history_pagesize" value="{$history_pagesize}" class="form-control-sm" style="width: 5em; display: inline-block">
+					<label for="history_pagesize">{tr}rows per page{/tr}</label>
 				{/if}
-			</div>
+		</div>
+
+		<div class="d-flex justify-content-between mb-3">
 			{if $prefs.feature_multilingual eq 'y' and $tiki_p_edit eq 'y'}
-				<div class="col-sm-6 float-left mb-3">
-					<div class="input-group input-group-sm">
-						<span class="input-group-append">
-							{icon name='admin_i18n' class='tips' title=":{tr}Translation{/tr}"}
-						</span>
+				<div class="">
+					<div class="input-group">
+						<div class="input-group-prepend bg-info">
+							<div class="input-group-text bg-info">
+								{icon name='admin_i18n' class='tips' title=":{tr}Translation{/tr}"}
+							</div>
+						</div>
 						<select name="tra_lang" class="form-control">
 							{section name=ix loop=$languages}
 								<option value="{$languages[ix].value|escape}"{if $lang eq $languages[ix].value} selected="selected"{/if}>{$languages[ix].name}</option>
 							{/section}
 						</select>
 						<div class="input-group-btn">
-							<input type="submit" class="btn btn-primary btn-sm" name="update_translation" value="{tr}Update Translation{/tr}"/>
+							<input type="submit" class="btn btn-primary" name="update_translation" value="{tr}Update Translation{/tr}"/>
 							{if $show_translation_history}
 								<input type="hidden" name="show_translation_history" value="1">
-								{button show_translation_history=0 _text="{tr}Hide translation history{/tr}" _auto_args="*" _class="btn btn-info btn-sm"}
+								{button show_translation_history=0 _text="{tr}Hide translation history{/tr}" _auto_args="*" _class="btn btn-info"}
 							{else}
-								{button show_translation_history=1 _text="{tr}Show translation history{/tr}" _auto_args="*" _class="btn btn-info btn-sm"}
+								{button show_translation_history=1 _text="{tr}Show translation history{/tr}" _auto_args="*" _class="btn btn-info"}
 							{/if}
 						</div>
 					</div>
 				</div>
 			{/if}
+
+
 			{if ($prefs.default_wiki_diff_style ne "old") and $history}
-				<div class="input-group input-group-sm col-sm-4 float-sm-right mb-4">
+				<div class="input-group col-sm-4">
 					<select class="form-control" name="diff_style" id="diff_style_all"{if $prefs.javascript_enabled eq "y"} style="display: none"{/if}>
 						<option value="htmldiff" {if $diff_style == "htmldiff"}selected="selected"{/if}>
 							{tr}HTML diff{/tr}
@@ -203,7 +208,7 @@
 					{/if}
 					{if $prefs.javascript_enabled eq "y"}
 						<span class="input-group-btn">
-							{button _text="{tr}Advanced{/tr}" _id="toggle_diffs" _ajax="n" _class="btn btn-secondary btn-sm ml-3"}
+							{button _text="{tr}Advanced{/tr}" _id="toggle_diffs" _ajax="n" _class="btn btn-secondary ml-3"}
 						</span>
 						{jq}
 	$("form#pagehistory")
@@ -270,6 +275,8 @@
 				</div>
 				<input type="hidden" name="show_all_versions" value="{$show_all_versions}">
 			{/if}
+			</div>
+			<div>
 			<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 				<table class="table table-condensed table-hover table-striped">
 					<tr>
@@ -311,7 +318,7 @@
 							{/if}
 							<td class="text-left">
 								{$info.lastModif|tiki_short_datetime}
-								{icon name="user"}{$info.user|userlink}
+								{icon name="user"} {$info.user|userlink}
 								{if $prefs.feature_wiki_history_ip ne 'n'}{tr _0=$info.ip}from %0{/tr}{/if}
 
 								{if (isset($flaggedrev_approval) and $flaggedrev_approval) and $tiki_p_wiki_view_latest eq 'y'
@@ -393,7 +400,7 @@
 							{/if}
 							<td class="text-left">
 								{$element.lastModif|tiki_short_datetime}
-								{icon name="user"}{$element.user|userlink}
+								{icon name="user"} {$element.user|userlink}
 								{if $prefs.feature_wiki_history_ip ne 'n'}{tr _0=$element.ip}from %0{/tr}{/if}
 
 								{if $element.comment}<span class="form-text">{$element.comment|escape}</span>{/if}
@@ -501,7 +508,7 @@
 					{/foreach}
 				</table>
 			</div>
-			<div class="input-group col-sm-6">
+			<div class="input-group col-sm-6 mb-4">
 				<select class="form-control" name="action">
 					<option value="no_action" selected="selected">
 						{tr}Select action to perform with checked{/tr}...

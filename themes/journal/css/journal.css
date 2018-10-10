@@ -6559,10 +6559,12 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   border-top: 1px solid #dee2e6; }
 
 .diffadded {
-  background: #22b24c; }
+  background: #22b24c;
+  color: #dbf8e3; }
 
 .diffdeleted {
-  background: #f57a00; }
+  background: #f57a00;
+  color: #fffaf5; }
 
 .diffinldel {
   background: #f5e625; }
@@ -6572,10 +6574,10 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   color: #495057; }
 
 .diffchar {
-  color: #ff9429; }
+  color: #fffaf5; }
 
 .diffadded .diffchar {
-  color: #30d761; }
+  color: #dbf8e3; }
 /* Structures drill-down menu */
 div.drillshow {
   border: 1px solid #dee2e6; }
