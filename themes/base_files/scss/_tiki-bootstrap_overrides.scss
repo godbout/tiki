@@ -92,11 +92,17 @@ body.fullscreen.tiki.navbar-padding {
 }
 
 
-
-.tiki .popover p:last-child {
-	margin-bottom: 0;
+.tiki .popover {
+	p:last-child { margin-bottom: 0; }
 }
 
+.tiki .popover {
+	max-width: $popover-max-width + 25px;
+	.popover-body .table {
+		margin-bottom: 0;
+		td { word-break: break-word; }
+	}
+}
 
 
 .tiki .media-overflow-visible,

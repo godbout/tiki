@@ -5,6 +5,9 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser;
+use Tiki\Lib\Alchemy\Guesser;
+
 /**
  * Parser Library
  *
@@ -3374,7 +3377,7 @@ class ParserLib extends TikiDb_Bridge
 	 */
 	public function searchFilePreview($content)
 	{
-		global $prefs;
+		global $prefs, $user, $tikipath, $tikidomain;
 		if ($prefs['search_file_thumbnail_preview'] !== 'y') {
 			return $content;
 		}
@@ -3384,6 +3387,8 @@ class ParserLib extends TikiDb_Bridge
 			$fileIds = $matchFiles[1];
 			$fileGalleryLib = TikiLib::lib('filegal');
 			$userLib = TikiLib::lib('user');
+			$guesser = new Guesser();
+			MimeTypeGuesser::getInstance()->register($guesser);
 			foreach ($fileIds as $fileId) {
 				$info = $fileGalleryLib->get_file($fileId);
 				if (empty($info)) {
@@ -3427,12 +3432,31 @@ class ParserLib extends TikiDb_Bridge
 					$cacheType = 'preview_' . $fileId . '_';
 
 					if (! $cacheLib->isCached($cacheName, $cacheType) && Tiki\Lib\Alchemy\AlchemyLib::isLibraryAvailable()) {
+						// This will allow apps executed by Alchemy (like when converting doc to pdf) to have a writable home
+						// save existing ENV
+						$envHomeDefined = isset($_ENV) && array_key_exists('HOME', $_ENV);
+						if ($envHomeDefined) {
+							$envHomeCopy = $_ENV['HOME'];
+						}
+
+						// set a proper home folder
+						$_ENV['HOME'] = $tikipath . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $tikidomain;
+
 						$sourceFile = 'temp/source_' . $fileId;
 						$targetFile = 'temp/target_' . $fileId . '.png';
 						file_put_contents($sourceFile, $info['data']);
 
+						$guesser->add($sourceFile, $info['filetype']);
+
 						$alchemy = new Tiki\Lib\Alchemy\AlchemyLib();
 						$alchemy->convertToImage($sourceFile, $targetFile, '200px', '400px', false);
+
+						// Restore the environment
+						if ($envHomeDefined) {
+							$_ENV['HOME'] = $envHomeCopy;
+						} else {
+							unset($_ENV['HOME']);
+						}
 
 						if (file_exists($targetFile)) {
 							$cacheContent = file_get_contents($targetFile);
