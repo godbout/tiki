@@ -113,7 +113,7 @@ if (isset($attributes['tiki.content.url'])) {
 
 	$client = $tikilib->get_http_client($src);
 	$response = $client->send();
-	header('Content-Type: ' . $response->getHeaders()->get('Content-Type'));
+	header('Content-Type: ' . $response->getHeaders()->get('Content-Type')->getFieldValue());
 	echo $response->getBody();
 	exit();
 }
