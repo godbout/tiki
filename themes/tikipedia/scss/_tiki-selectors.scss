@@ -30,14 +30,13 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 1px solid #aaaaaa;
   color: #000000;
   font-weight: normal;
-  //	margin: 0;
   padding-bottom: 0.17em;
   padding-top: 0.5em;
 }
 
 #page-bar {
   position: absolute;
-  top: -36px;
+  top: -52px;
   right: 15px;
   .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu {
 	top: 100%;
@@ -100,9 +99,6 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 0.5em;
   padding-right: 0.5em;
   color: #0645ad;
-  //	font-size: 0.8em;
-  //	border: solid #b2dcfa;
-  //	border-width: 0 1px;
   border: none;
   border-bottom: 1px solid #ffffff;
 }
@@ -213,7 +209,7 @@ body.fullscreen #col1 {
   }
 
   body:not(.layout_social) #left_modules {
-	margin-top: -60px;
+	margin-top: -10px;
   }
 }
 
@@ -449,3 +445,5 @@ a.forumnameread { font-weight: bold; }
   h3 { font-size: 120%; }
   h4 { font-size: 105%; }
 }
+
+legend.table { background: transparent; }

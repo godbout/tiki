@@ -6529,10 +6529,12 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   border-top: 1px solid #dee2e6; }
 
 .diffadded {
-  background: #bbfa7c; }
+  background: #bbfa7c;
+  color: #fff; }
 
 .diffdeleted {
-  background: #d9534f; }
+  background: #d9534f;
+  color: #fff; }
 
 .diffinldel {
   background: #fad67d; }
@@ -6542,10 +6544,10 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   color: #495057; }
 
 .diffchar {
-  color: #e27c79; }
+  color: #fff; }
 
 .diffadded .diffchar {
-  color: #d5fcad; }
+  color: #fff; }
 /* Structures drill-down menu */
 div.drillshow {
   border: 1px solid #dee2e6; }
@@ -6713,7 +6715,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #page-bar {
   position: absolute;
-  top: -36px;
+  top: -52px;
   right: 15px; }
   #page-bar .dropup .dropdown-menu, #page-bar .navbar-fixed-bottom .dropdown .dropdown-menu {
     top: 100%;
@@ -6820,7 +6822,7 @@ body.fullscreen #col1 {
     max-width: 11.5789474%; }
 
   body:not(.layout_social) #left_modules {
-    margin-top: -60px; } }
+    margin-top: -10px; } }
 
 #col2 .box-logo {
   text-align: center; }
@@ -6970,6 +6972,9 @@ a.forumnameread {
     font-size: 120%; }
   .infobox h4 {
     font-size: 105%; }
+
+legend.table {
+  background: transparent; }
 
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAACMtMP///yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
