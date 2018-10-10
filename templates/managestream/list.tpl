@@ -6,28 +6,20 @@
 				<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					{icon name="create"} {tr}Create{/tr}
 				</button>
-				<ul class="dropdown-menu">
-					<li class="dropdown-item">
-						<a href="{bootstrap_modal controller=managestream action=sample}">
-							{tr}Sample Rule{/tr}
-						</a>
-					</li>
-					<li class="dropdown-item">
-						<a href="{bootstrap_modal controller=managestream action=record}">
-							{tr}Basic Rule (Record Event){/tr}
-						</a>
-					</li>
-					<li class="dropdown-item">
-						<a href="{bootstrap_modal controller=managestream action=tracker_filter}">
-							{tr}Tracker Rule{/tr}
-						</a>
-					</li>
-					<li class="dropdown-item">
-						<a href="{bootstrap_modal controller=managestream action=advanced}">
-							{tr}Advanced Rule{/tr}
-						</a>
-					</li>
-				</ul>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="{bootstrap_modal controller=managestream action=sample}">
+						{tr}Sample Rule{/tr}
+					</a>
+					<a class="dropdown-item" href="{bootstrap_modal controller=managestream action=record}">
+						{tr}Basic Rule (Record Event){/tr}
+					</a>
+					<a class="dropdown-item" href="{bootstrap_modal controller=managestream action=tracker_filter}">
+						{tr}Tracker Rule{/tr}
+					</a>
+					<a class="dropdown-item" href="{bootstrap_modal controller=managestream action=advanced}">
+						{tr}Advanced Rule{/tr}
+					</a>
+				</div>
 			</div>
 			{button href="tiki-admin.php?page=community" _icon_name="settings" _text="{tr}Community{/tr}" _class="tips" _title=":{tr}Community Control Panel{/tr}"}
 			{* former add_dracula() *}

@@ -20,25 +20,19 @@
 				<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
 					{icon name="import"} {tr}Import{/tr}
 				</button>
-				<ul class="dropdown-menu">
-					<li class="dropdown-item">
-						<a href="{bootstrap_modal controller=tracker action=import}">
-							{tr}Import Structure{/tr}
-						</a>
-					</li>
-					<li class="dropdown-item">
-						<a href="{bootstrap_modal controller=tracker action=import_profile}">
-							{tr}Import From Profile/YAML{/tr}
-						</a>
-					</li>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="{bootstrap_modal controller=tracker action=import}">
+						{tr}Import Structure{/tr}
+					</a>
+					<a class="dropdown-item" href="{bootstrap_modal controller=tracker action=import_profile}">
+						{tr}Import From Profile/YAML{/tr}
+					</a>
 					{if $prefs.tracker_tabular_enabled eq 'y' && $tiki_p_admin_trackers eq 'y'}
-						<li class="dropdown-item">
-							<a href="{service controller=tabular action=manage}">
-								{tr}Manage Tabular Formats{/tr}
-							</a>
-						</li>
+						<a class="dropdown-item" href="{service controller=tabular action=manage}">
+							{tr}Manage Tabular Formats{/tr}
+						</a>
 					{/if}
-				</ul>
+				</div>
 			</div>
 			{if $prefs.tracker_tabular_enabled eq 'y'}
 				<a class="btn btn-primary" href="{service controller=tabular action=manage}">

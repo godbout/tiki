@@ -29,28 +29,24 @@
 				<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 					{icon name='menu-extra'}
 				</a>
-				<ul class="dropdown-menu dropdown-menu-right">
-					<li class="dropdown-title">
+				<div class="dropdown-menu dropdown-menu-right">
+					<h6 class="dropdown-header">
 						{tr}Monitoring{/tr}
-					</li>
-					<li class="dropdown-divider"></li>
-					<li class="dropdown-item">
-						{if $user_watching_articles eq 'n'}
-							{self_link watch_event='article_*' watch_object='*' watch_action='add' _icon_name='watch' _text="{tr}Monitor articles{/tr}"}
-							{/self_link}
-						{else}
-							{self_link watch_event='article_*' watch_object='*' watch_action='remove' _icon_name='stop-watching' _text="{tr}Stop monitoring articles{/tr}"}
-							{/self_link}
-						{/if}
-					</li>
-					<li class="dropdown-item">
-						{if $prefs.feature_group_watches eq 'y' and $tiki_p_admin_users eq 'y'}
-							<a href="tiki-object_watches.php?watch_event=article_*&amp;objectId=*">
-								{icon name='watch-group'} {tr}Group monitor{/tr}
-							</a>
-						{/if}
-					</li>
-				</ul>
+					</h6>
+					<div class="dropdown-divider"></div>
+					{if $user_watching_articles eq 'n'}
+						{self_link watch_event='article_*' watch_object='*' watch_action='add' _icon_name='watch' _class='dropdown-item' _text="{tr}Monitor articles{/tr}"}
+						{/self_link}
+					{else}
+						{self_link watch_event='article_*' watch_object='*' watch_action='remove' _icon_name='stop-watching' _class='dropdown-item' _text="{tr}Stop monitoring articles{/tr}"}
+						{/self_link}
+					{/if}
+					{if $prefs.feature_group_watches eq 'y' and $tiki_p_admin_users eq 'y'}
+						<a class="dropdown-item" href="tiki-object_watches.php?watch_event=article_*&amp;objectId=*">
+							{icon name='watch-group'} {tr}Group monitor{/tr}
+						</a>
+					{/if}
+				</div>
 				{if ! $js}</li></ul>{/if}
 			</div>
 		</div>
@@ -268,34 +264,28 @@
 						<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 							{icon name="wrench"}
 						</a>
-						<ul class="dropdown-menu dropdown-menu-right">
-							<li class="dropdown-title">
+						<div class="dropdown-menu dropdown-menu-right">
+							<h6 class="dropdown-title">
 								{tr _0="{$listpages[ix].title}"}Actions for %0{/tr}
-							</li>
-							<li class="dropdown-divider"></li>
+							</h6>
+							<div class="dropdown-divider"></div>
 							{if $listpages[ix].perms.tiki_p_edit_article eq 'y' or (!empty($user) and $listpages[ix].author eq $user
 							and $listpages[ix].creator_edit eq 'y')}
-								<li class="dropdown-item">
-									<a href="tiki-edit_article.php?articleId={$listpages[ix].articleId}">
-										{icon name='edit'} {tr}Edit{/tr}
-									</a>
-								</li>
+								<a class="dropdown-item" href="tiki-edit_article.php?articleId={$listpages[ix].articleId}">
+									{icon name='edit'} {tr}Edit{/tr}
+								</a>
 							{/if}
 							{if $prefs.feature_cms_print eq 'y'}
-								<li class="dropdown-item">
-									<a href="tiki-print_article.php?articleId={$listpages[ix].articleId}">
-										{icon name='print'} {tr}Print{/tr}
-									</a>
-								</li>
+								<a class="dropdown-item" href="tiki-print_article.php?articleId={$listpages[ix].articleId}">
+									{icon name='print'} {tr}Print{/tr}
+								</a>
 							{/if}
 							{if $listpages[ix].perms.tiki_p_remove_article eq 'y'}
-								<li class="dropdown-item">
-									<a href="tiki-list_articles.php?remove={$listpages[ix].articleId}">
-										{icon name='remove'} {tr}Remove{/tr}
-									</a>
-								</li>
+								<a class="dropdown-item" href="tiki-list_articles.php?remove={$listpages[ix].articleId}">
+									{icon name='remove'} {tr}Remove{/tr}
+								</a>
 							{/if}
-						</ul>
+						</div>
 					</div>
 				{/if}
 			</div>

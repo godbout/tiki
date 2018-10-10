@@ -15,46 +15,36 @@
 					<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 						{icon name='menu-extra'}
 					</a>
-					<ul class="dropdown-menu dropdown-menu-right">
-						<li class="dropdown-title">
+					<div class="dropdown-menu dropdown-menu-right">
+						<h6 class="dropdown-header">
 							{tr}Article actions{/tr}
-						</li>
-						<li class="dropdown-divider"></li>
+						</h6>
+						<div class="dropdown-divider"></div>
 						{if $tiki_p_edit_article eq 'y'}
-							<li class="dropdown-item">
-								<a href="tiki-edit_article.php?articleId={$articleId}">
-									{icon name='edit'} {tr}Edit{/tr}
-								</a>
-							</li>
+							<a class="dropdown-item" href="tiki-edit_article.php?articleId={$articleId}">
+								{icon name='edit'} {tr}Edit{/tr}
+							</a>
 						{/if}
 						{if $prefs.feature_cms_print eq 'y'}
-							<li class="dropdown-item">
-								<a href="tiki-print_article.php?articleId={$articleId}">
-									{icon name='print'} {tr}Print{/tr}
-								</a>
-							</li>
+							<a class="dropdown-item" href="tiki-print_article.php?articleId={$articleId}">
+								{icon name='print'} {tr}Print{/tr}
+							</a>
 						{/if}
 						{if $prefs.user_favorites eq 'y'}
-							<li class="dropdown-item">
-								{favorite type="article" object=$articleId button_classes="icon"}
-							</li>
+							{favorite type="article" object=$articleId button_classes="dropdown-item icon"}
 						{/if}
 						{if $prefs.feature_tell_a_friend eq 'y' && $tiki_p_tell_a_friend eq 'y'}
-							<li class="dropdown-item">
-								<a href="tiki-tell_a_friend.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
-									{icon name='envelope'} {tr}Send a link{/tr}
-								</a>
-							</li>
+							<a  class="dropdown-item" href="tiki-tell_a_friend.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
+								{icon name='envelope'} {tr}Send a link{/tr}
+							</a>
 						{/if}
 						{if $prefs.feature_share eq 'y' && $tiki_p_share eq 'y'}
-							<li class="dropdown-item">
-								<a class="tips" href="tiki-share.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
-									{icon name='share'} {tr}Share{/tr}
-								</a>
-							</li>
+							<a class="dropdown-item tips" href="tiki-share.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
+								{icon name='share'} {tr}Share{/tr}
+							</a>
 						{/if}
 						{if $prefs.feature_cms_sharethis eq "y"}
-							<li class="dropdown-item">
+							<div class="dropdown-item">
 								{capture name=shared_title}
 									{tr}ShareThis{/tr}
 								{/capture}
@@ -66,24 +56,20 @@
 									document.write('<a id="share{/literal}{$articleId}{literal}" href="javascript:void(0);">{/literal}{icon name="sharethis"} {tr}ShareThis{/tr}{literal}</a>');
 									//Tie customized button to ShareThis button functionality.
 									var element{/literal}{$articleId}{literal} = document.getElementById("share{/literal}{$articleId}{literal}"); object{/literal}{$articleId}{literal}.attachButton(element{/literal}{$articleId}{literal}); </script>{/literal}
-							</li>
+							</div>
 						{/if}
 						{if $prefs.sefurl_short_url eq 'y'}
-							<li class="dropdown-item">
-								<a id="short_url_link" href="#" onclick="(function() { $(document.activeElement).attr('href', 'tiki-short_url.php?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title)); })();">
-									{icon name="link"} {tr}Get a short URL{/tr}
-									{assign var="hasPageAction" value="1"}
-								</a>
-							</li>
+							<a class="dropdown-item" id="short_url_link" href="#" onclick="(function() { $(document.activeElement).attr('href', 'tiki-short_url.php?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title)); })();">
+								{icon name="link"} {tr}Get a short URL{/tr}
+								{assign var="hasPageAction" value="1"}
+							</a>
 						{/if}
-						<li class="dropdown-item">
 							{if $tiki_p_remove_article eq 'y'}
-								<a href="tiki-list_articles.php?remove={$articleId}">
+								<a class="dropdown-item" href="tiki-list_articles.php?remove={$articleId}">
 									{icon name='remove'} {tr}Remove{/tr}
 								</a>
 							{/if}
-						</li>
-					</ul>
+					</div>
 					{if ! $js}</li></ul>{/if}
 				</div>
 			</div>
