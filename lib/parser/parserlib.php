@@ -5,6 +5,9 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser;
+use Tiki\Lib\Alchemy\Guesser;
+
 /**
  * Parser Library
  *
@@ -3384,6 +3387,8 @@ class ParserLib extends TikiDb_Bridge
 			$fileIds = $matchFiles[1];
 			$fileGalleryLib = TikiLib::lib('filegal');
 			$userLib = TikiLib::lib('user');
+			$guesser = new Guesser();
+			MimeTypeGuesser::getInstance()->register($guesser);
 			foreach ($fileIds as $fileId) {
 				$info = $fileGalleryLib->get_file($fileId);
 				if (empty($info)) {
@@ -3430,6 +3435,8 @@ class ParserLib extends TikiDb_Bridge
 						$sourceFile = 'temp/source_' . $fileId;
 						$targetFile = 'temp/target_' . $fileId . '.png';
 						file_put_contents($sourceFile, $info['data']);
+
+						$guesser->add($sourceFile, $info['filetype']);
 
 						$alchemy = new Tiki\Lib\Alchemy\AlchemyLib();
 						$alchemy->convertToImage($sourceFile, $targetFile, '200px', '400px', false);
