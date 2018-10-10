@@ -70,9 +70,9 @@
                                 <input type="hidden" name="installed" value="{$entry.installed}">
                                 {ticket}
                                 {if $entry.installed && $entry.upgradeVersion}
-                                    <button name="auto-update-package" value="{$entry.key}">{tr}Update{/tr}</button>
+                                    <button class="btn btn-primary" name="auto-update-package" value="{$entry.key}">{tr}Update{/tr}</button>
                                 {/if}
-                                <button name="auto-remove-package" value="{$entry.key}">{tr}Remove{/tr}</button>
+                                <button class="btn btn-danger" name="auto-remove-package" value="{$entry.key}">{tr}Remove{/tr}</button>
                             </form>
                         {else}
                             {tr}Removal not available{/tr}
@@ -98,7 +98,7 @@
                             <form action="tiki-admin.php?page=packages&cookietab=1" method="post">
                                 <input type="hidden" name="redirect" value="0">
                                 {ticket}
-                                <button name="auto-fix-missing-packages" value="auto-fix-missing-packages">{tr}Fix Missing Packages{/tr}</button>
+                                <button class="btn btn-primary" name="auto-fix-missing-packages" value="auto-fix-missing-packages">{tr}Fix Missing Packages{/tr}</button>
                             </form>
                             <br />
                             The results of the execution of the commands will be displayed after the process finishes.
@@ -141,7 +141,7 @@
                 <th>{tr}Version{/tr}</th>
                 <th>{tr}Licence{/tr}</th>
                 <th>{tr}Required by{/tr}</th>
-                <th>{tr}Install{/tr}</th>
+                <th>{tr}Action{/tr}</th>
             </tr>
             {foreach item=entry from=$composer_packages_available}
                 <tr>
@@ -153,7 +153,7 @@
                         <form action="tiki-admin.php?page=packages&cookietab=2" method="post">
                             <input type="hidden" name="redirect" value="0">
                             {ticket}
-                            <button name="auto-install-package" value="{$entry.key}">{tr}Install Package{/tr}</button>
+                            <button class="btn btn-primary" name="auto-install-package" value="{$entry.key}">{tr}Install{/tr}</button>
                         </form>
                     </td>
                 </tr>
@@ -247,7 +247,7 @@
         <form action="tiki-admin.php?page=packages&cookietab=4" method="post">
             <input type="hidden" name="redirect" value="0">
             {ticket}
-            <button name="auto-run-diagnostics" value="run">{tr}Diagnose Composer{/tr}</button>
+            <button class="btn btn-primary" name="auto-run-diagnostics" value="run">{tr}Diagnose Composer{/tr}</button>
         </form>
         <br />
         <h4>{tr}Composer management{/tr}</h4>
@@ -255,10 +255,10 @@
             <input type="hidden" name="redirect" value="0">
             {ticket}
             {if ! $composer_available}
-                <button name="install-composer" value="run">{tr}Install Composer{/tr}</button>
+                <button class="btn btn-primary" name="install-composer" value="run">{tr}Install Composer{/tr}</button>
             {/if}
-            <button name="remove-composer-locker" value="run">{tr}Remove composer.lock{/tr}</button>
-            <button name="clean-vendor-folder" value="run">{tr}Clean vendor folder{/tr}</button>
+            <button class="btn btn-primary" name="remove-composer-locker" value="run">{tr}Remove composer.lock{/tr}</button>
+            <button class="btn btn-primary" name="clean-vendor-folder" value="run">{tr}Clean vendor folder{/tr}</button>
         </form>
         <br />
 
