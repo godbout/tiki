@@ -16,6 +16,7 @@ use Symfony\Component\Process\ProcessBuilder;
 class ComposerCli
 {
 
+	const COMPOSER_URL = 'https://getcomposer.org/';
 	const COMPOSER_PHAR = 'temp/composer.phar';
 	const COMPOSER_CONFIG = 'composer.json';
 	const COMPOSER_HOME = 'temp/composer';
@@ -613,5 +614,35 @@ class ComposerCli
 			$string .= tr('Errors:') . "\n" . $errors;
 		}
 		return $string;
+	}
+
+	/**
+	 * Add composer.phar to temp/ folder
+	 */
+	public function installComposer()
+	{
+		$result = false;
+		$message = tr('Tiki requires curl extension to be able to install composer.');
+
+		if (function_exists('curl_init') && function_exists('curl_exec')) {
+			$fileName = 'temp/composer.phar';
+
+			$fp = fopen ($fileName, 'w+');
+			$ch = curl_init(self::COMPOSER_URL . 'composer.phar');
+			curl_setopt($ch, CURLOPT_FILE, $fp);
+			$data = curl_exec($ch);
+			curl_close($ch);
+			fclose($fp);
+
+			if ($data) {
+				$result = true;
+				$message = tr('composer.phar installed in temp folder.');
+			} else {
+				unlink($fileName);
+				$message = tr('There was a problem when installing Composer.');
+			}
+		}
+
+		return array($result, $message);
 	}
 }
