@@ -7,32 +7,28 @@
 		<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 			{icon name='menu-extra'}
 		</a>
-		<ul class="dropdown-menu dropdown-menu-right">
-			<li class="dropdown-title">
+		<div class="dropdown-menu dropdown-menu-right">
+			<h6 class="dropdown-title">
 				{tr}Gallery actions{/tr}
-			</li>
-			<li class="dropdown-divider"></li>
+			</h6>
+			<div class="dropdown-divider"></div>
 			{if $user and $prefs.feature_user_watches eq 'y'}
-				<li class="dropdown-item">
-					{if $user_watching_gal eq 'n'}
-						<a href="tiki-browse_gallery.php?galleryId={$galleryId}&amp;watch_event=image_gallery_changed&amp;watch_object={$galleryId}&amp;watch_action=add">
-							{icon name='watch'} {tr}Monitor{/tr}
-						</a>
-					{else}
-						<a href="tiki-browse_gallery.php?galleryId={$galleryId}&amp;watch_event=image_gallery_changed&amp;watch_object={$galleryId}&amp;watch_action=remove">
-							{icon name='stop-watching'} {tr}Stop monitoring{/tr}
-						</a>
-					{/if}
-				</li>
+				{if $user_watching_gal eq 'n'}
+					<a class="dropdown-item" href="tiki-browse_gallery.php?galleryId={$galleryId}&amp;watch_event=image_gallery_changed&amp;watch_object={$galleryId}&amp;watch_action=add">
+						{icon name='watch'} {tr}Monitor{/tr}
+					</a>
+				{else}
+					<a class="dropdown-item" href="tiki-browse_gallery.php?galleryId={$galleryId}&amp;watch_event=image_gallery_changed&amp;watch_object={$galleryId}&amp;watch_action=remove">
+						{icon name='stop-watching'} {tr}Stop monitoring{/tr}
+					</a>
+				{/if}
 			{/if}
 			{if $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
-				<li class="dropdown-item">
-					<a href="tiki-object_watches.php?objectId={$galleryId|escape:"url"}&amp;watch_event=image_gallery_changed&amp;objectType=image+gallery&amp;objectName={$name|escape:"url"}&amp;objectHref={'tiki-browse_gallery.php?galleryId='|cat:$galleryId|escape:"url"}">
-						{icon name='group'} {tr}Group Monitor{/tr}
-					</a>
-				</li>
+				<a class="dropdown-item" href="tiki-object_watches.php?objectId={$galleryId|escape:"url"}&amp;watch_event=image_gallery_changed&amp;objectType=image+gallery&amp;objectName={$name|escape:"url"}&amp;objectHref={'tiki-browse_gallery.php?galleryId='|cat:$galleryId|escape:"url"}">
+					{icon name='group'} {tr}Group Monitor{/tr}
+				</a>
 			{/if}
-		</ul>
+		</div>
 		{if ! $js}</li></ul>{/if}
 	</div>
 	{if $tiki_p_list_image_galleries eq 'y'}

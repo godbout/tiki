@@ -14,9 +14,9 @@
 				{icon name='menu-extra'}
 			</a>
 			<ul class="dropdown-menu dropdown-menu-right">
-				<li class="dropdown-title">
+				<h6 class="dropdown-header">
 					{tr}Tracker item actions{/tr}
-				</li>
+				</h6>
 				<li class="divider"></li>
 				<li>
 					{if $viewItemPretty.override}
