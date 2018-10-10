@@ -131,7 +131,7 @@ function wikiplugin_file_info()
 			'browserdisplay' => [
 				'required' => false,
 				'name' => tra('Browser Display'),
-				'description' => tra('Display in different browser wiindow or tab instead of downloading.'),
+				'description' => tra('Display in different browser window or tab instead of downloading.'),
 				'since' => '18.1',
 				'filter' => 'alpha',
 				'parentparam' => ['name' => 'type', 'value' => 'gallery'],
