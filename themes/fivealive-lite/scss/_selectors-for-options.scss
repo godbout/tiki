@@ -362,7 +362,7 @@ hr {
   &:active,
   &.active {
     color: $dropdown-link-hover-color;
-    background: $dropdown-link-hover-bg;
+    background: $dropdown-link-active-bg;
   }
   &.disabled,
   &:disabled {

@@ -89,14 +89,14 @@ $input-border-right-color: #fbf1ed;
 $input-border-bottom-color: #fbf1ed;
 $input-border-left-color: #fac5b1;
 
-$dropdown-bg: #d36d41;
+$dropdown-bg: #c44a23;
 $dropdown-border-color: rgba(0, 0, 0, 0.15);
 
 $dropdown-link-color: #ffffff;
 $dropdown-link-hover-color: #f2f2f2;
-$dropdown-link-hover-bg: #ae421f;
-$dropdown-link-active-color: red;
-$dropdown-link-active-bg: #c74b23;
+$dropdown-link-hover-bg: #e36732;
+$dropdown-link-active-color: $dropdown-link-color;
+$dropdown-link-active-bg: #ae421f;
 $dropdown-link-disabled-color: #f2f2f2;
 $dropdown-header-color: #ffffff;
 $dropdown-divider-bg: $dropdown-bg;
@@ -126,7 +126,7 @@ $theme-colors: (
 );
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
-$bg-light-alt: #117485 !important;
+//$bg-light-alt: #117485 !important;
 
 $side-column-heading-color: #e77d4f;
 
