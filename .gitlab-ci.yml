@@ -59,7 +59,8 @@ schema-naming-convention:
       - .composercache/files
       - doc/devtools/dbdiff/cache
   services:
-    - mysql:5.6
+    - name: $IMAGE
+      alias: mysql
   script:
     - 'mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql --skip-column-names -B -e "SELECT CONCAT(''Version: '', VERSION(), CHAR(13), ''sql_mode: '', @@GLOBAL.sql_mode)"'
     - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
@@ -70,32 +71,56 @@ schema-naming-convention:
     - echo "GRANT ALL ON tikinew.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
     - '[ ! -d doc/devtools/dbdiff/cache ] && mkdir doc/devtools/dbdiff/cache'
     - '[ ! -f doc/devtools/dbdiff/cache/$DBFILE ] && curl -sS https://gitlab.com/tikiwiki-ci/tikiwiki-ci-databases/raw/master/$DBFILE.gz -o doc/devtools/dbdiff/cache/$DBFILE.gz && gzip -d doc/devtools/dbdiff/cache/$DBFILE.gz'
-    - php -d display_errors=On doc/devtools/check_schema_upgrade.php -m $DBVER --db1=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikiold --db2=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikinew
+    - php -d display_errors=On doc/devtools/check_schema_upgrade.php -m $DBVER -e $ENGINE --db1=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikiold --db2=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikinew
   allow_failure: false
+
+db-upgrade-18-lts-5.5-mariadb:
+  <<: *template-tiki-schema-upgrade
+  variables:
+    DBFILE: ci_18.sql
+    DBVER: 18
+    IMAGE: mariadb:5.6
+    ENGINE: InnoDB
+
+db-upgrade-18-lts-myisam:
+  <<: *template-tiki-schema-upgrade
+  variables:
+    DBFILE: ci_18.sql
+    DBVER: 18
+    IMAGE: mysql:5.6
+    ENGINE: MyISAM
 
 db-upgrade-18-lts:
   <<: *template-tiki-schema-upgrade
   variables:
     DBFILE: ci_18.sql
     DBVER: 18
+    IMAGE: mysql:5.6
+    ENGINE: InnoDB
 
 db-upgrade-17:
   <<: *template-tiki-schema-upgrade
   variables:
     DBFILE: ci_17.sql
     DBVER: 17
+    IMAGE: mysql:5.7
+    ENGINE: InnoDB
 
 db-upgrade-15-lts:
   <<: *template-tiki-schema-upgrade
   variables:
     DBFILE: ci_15.sql
     DBVER: 15
+    IMAGE: mysql:5.6
+    ENGINE: InnoDB
 
 db-upgrade-12-lts:
   <<: *template-tiki-schema-upgrade
   variables:
     DBFILE: ci_12.sql
     DBVER: 12
+    IMAGE: mysql:5.5
+    ENGINE: InnoDB
 
 sql-engine-conversion:
   stage: tiki-check
