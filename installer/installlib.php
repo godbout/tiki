@@ -86,6 +86,8 @@ class Installer extends TikiDb_Bridge
 		// Mark InnoDB usage for updates
 		if (strcasecmp($this->getCurrentEngine(), "InnoDB") == 0) {
 			$this->useInnoDB = true;
+		} else {
+			$this->useInnoDB = false;
 		}
 
 		if (! $this->tableExists('tiki_schema')) {
