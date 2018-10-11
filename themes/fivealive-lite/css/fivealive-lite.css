@@ -2107,7 +2107,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #fff; }
+    background-color: #0e567a; }
   .dropdown-item.disabled, .dropdown-item:disabled {
     color: #868e96;
     background-color: transparent; }
@@ -6813,7 +6813,7 @@ header.header .sitetitle, header.header .sitesubtitle {
   margin-bottom: -3px !important; }
 
 .form-control, select, input[type="text"], input[type="password"], input[type="file"], input[type="email"], input[type="search"], input[type="number"], input#login-pass, textarea, .adminoptionbox option {
-  background-color: #f9dcec;
+  background-color: #fff;
   border-color: #9ae8fa #e3f7fb #e3f7fb #9ae8fa; }
 
 .navbar-collapse {

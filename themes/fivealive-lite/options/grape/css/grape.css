@@ -173,23 +173,23 @@ hr {
   background: transparent !important; }
 
 .dropdown-menu {
-  background-color: #c82b8b;
+  background-color: #8e286a;
   border: 1px solid rgba(0, 0, 0, 0.15); }
 
 .dropdown-item, .dropdown-item a, .dropdown-item .btn.btn-link {
   color: #fff; }
   .dropdown-item:hover, .dropdown-item a:hover, .dropdown-item .btn.btn-link:hover, .dropdown-item:focus, .dropdown-item a:focus, .dropdown-item .btn.btn-link:focus {
-    color: #f9f9f9;
+    color: #f2f2f2;
     background: #742157; }
   .dropdown-item:active, .dropdown-item a:active, .dropdown-item .btn.btn-link:active, .dropdown-item.active, .dropdown-item a.active, .dropdown-item .btn.btn-link.active {
-    color: #f9f9f9;
-    background: #742157; }
+    color: #f2f2f2;
+    background: #2e1f39; }
   .dropdown-item.disabled, .dropdown-item a.disabled, .dropdown-item .btn.btn-link.disabled, .dropdown-item:disabled, .dropdown-item a:disabled, .dropdown-item .btn.btn-link:disabled {
     color: #f2f2f2; }
   .dropdown-item .dropdown-header, .dropdown-item a .dropdown-header, .dropdown-item .btn.btn-link .dropdown-header {
     color: #fff; }
   .dropdown-item .dropdown-divider, .dropdown-item a .dropdown-divider, .dropdown-item .btn.btn-link .dropdown-divider {
-    background: #c82b8b; }
+    background: #8e286a; }
 
 .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   color: #fff;
@@ -262,7 +262,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label::before {
   background-color: #742157; }
 
 .topbar .cssmenu_horiz ul {
-  background: #c82b8b; }
+  background: #8e286a; }
 
 .postbody-title .title > .card-title a.link, .card-header a {
   color: #fff; }
@@ -286,7 +286,7 @@ header.header .sitetitle, header.header .sitesubtitle {
   border-color: #ebccd1; }
 
 .cssmenu_horiz li ul, .cssmenu_vert li ul {
-  background-color: #c82b8b;
+  background-color: #8e286a;
   border: 1px solid rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
@@ -297,11 +297,11 @@ header.header .sitetitle, header.header .sitesubtitle {
   padding: 3px 20px;
   font-weight: normal;
   color: #fff;
-  background: #c82b8b; }
+  background: #8e286a; }
 
 .cssmenu_horiz > li > a:hover, .cssmenu_vert > li > a:hover, .cssmenu_horiz ul > li > a:hover, .cssmenu_vert ul > li > a:hover, .cssmenu_horiz > li > a:focus, .cssmenu_vert > li > a:focus, .cssmenu_horiz ul > li > a:focus, .cssmenu_vert ul > li > a:focus {
   text-decoration: none;
-  color: #f9f9f9;
+  color: #f2f2f2;
   background-color: #742157; }
 
 .topbar .navbar-nav > li > a, .topbar .navbar > li > a, .topbar .cssmenu_horiz > li > a {
