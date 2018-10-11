@@ -21,8 +21,8 @@ $btn-primary-active-bg: #918f1b;
 $btn-primary-active-border: #44c7db;
 $btn-primary-active-hover-bg-color: #737115;
 $btn-primary-active-hover-border: #dacc1b;
-$btn-primary-disabled-hover: #baba25;
-$btn-primary-disabled-border: #f0e884;
+$btn-primary-disabled-bg: #baba25;
+$btn-primary-disabled-border: #dacc1b;
 $btn-primary-badge-color: #baba25;
 $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-color: ;
@@ -54,7 +54,7 @@ $btn-info-hover-color: $btn-info-color;
 $btn-info-hover-bg: lighten($btn-info-bg, 10%);
 $btn-info-hover-border: lighten($btn-info-border, 10%);
 // $btn-info-active-color: ;
-// $btn-info-active-bg: ;
+$btn-info-active-bg: $btn-info-bg;
 // $btn-info-active-border: ;
 // $btn-info-active-hover: ;
 // $btn-info-active-hover-border: ;
@@ -75,7 +75,9 @@ $hr-border-color: #baba25;
 $navbar-fixed-top-bg: #96a032;
 $bg-dark: #cdbe23;
 $bg-light: #baba25;
+
 $card-border-color: #cdbe23;
+
 $table-border-color: #dbd11a;
 $table-accent-bg: #f9f9f9;
 $table-hover-bg: #dbd11a; // Maybe can be improved.
