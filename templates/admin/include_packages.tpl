@@ -1,5 +1,13 @@
 {* $Id$ *}
 
+{if ! $composer_available}
+    {remarksbox type="warning" title="{tr}Composer not found{/tr}"}
+    {tr}Composer could not be executed, so the automated check on the packages cannot be performed.{/tr}
+    <br/>
+    {tr}In <a href="javascript:void(0)" class="install-composer">Diagnose</a> tab you can install composer.{/tr}
+    {/remarksbox}
+{/if}
+
 {if isset($composer_output)}
     {remarksbox type="note" title="{tr}Note{/tr}"}
 
@@ -33,11 +41,6 @@
     {tab name="{tr}Packages Installed{/tr}"}
         <br />
         <h4>{tr}Composer Packages{/tr} <small>{tr}Status of the packages registered in the composer.json file{/tr}</small></h4>
-        {if ! $composer_available}
-            {remarksbox type="warning" title="{tr}Composer not found{/tr}"}
-                {tr}Composer could not be executed, so the automated check on the packages cannot be performed.{/tr}
-            {/remarksbox}
-        {/if}
         <table class="table">
             <tr>
                 <th>{tr}Package Name{/tr}</th>
@@ -67,9 +70,9 @@
                                 <input type="hidden" name="installed" value="{$entry.installed}">
                                 {ticket}
                                 {if $entry.installed && $entry.upgradeVersion}
-                                    <button name="auto-update-package" value="{$entry.key}">{tr}Update{/tr}</button>
+                                    <button class="btn btn-primary" name="auto-update-package" value="{$entry.key}">{tr}Update{/tr}</button>
                                 {/if}
-                                <button name="auto-remove-package" value="{$entry.key}">{tr}Remove{/tr}</button>
+                                <button class="btn btn-danger" name="auto-remove-package" value="{$entry.key}">{tr}Remove{/tr}</button>
                             </form>
                         {else}
                             {tr}Removal not available{/tr}
@@ -95,7 +98,7 @@
                             <form action="tiki-admin.php?page=packages&cookietab=1" method="post">
                                 <input type="hidden" name="redirect" value="0">
                                 {ticket}
-                                <button name="auto-fix-missing-packages" value="auto-fix-missing-packages">{tr}Fix Missing Packages{/tr}</button>
+                                <button class="btn btn-primary" name="auto-fix-missing-packages" value="auto-fix-missing-packages">{tr}Fix Missing Packages{/tr}</button>
                             </form>
                             <br />
                             The results of the execution of the commands will be displayed after the process finishes.
@@ -138,7 +141,7 @@
                 <th>{tr}Version{/tr}</th>
                 <th>{tr}Licence{/tr}</th>
                 <th>{tr}Required by{/tr}</th>
-                <th>{tr}Install{/tr}</th>
+                <th>{tr}Action{/tr}</th>
             </tr>
             {foreach item=entry from=$composer_packages_available}
                 <tr>
@@ -150,7 +153,7 @@
                         <form action="tiki-admin.php?page=packages&cookietab=2" method="post">
                             <input type="hidden" name="redirect" value="0">
                             {ticket}
-                            <button name="auto-install-package" value="{$entry.key}">{tr}Install Package{/tr}</button>
+                            <button class="btn btn-primary" name="auto-install-package" value="{$entry.key}">{tr}Install{/tr}</button>
                         </form>
                     </td>
                 </tr>
@@ -208,11 +211,7 @@
     {tab name="{tr}Packages Bundled{/tr}"}
         <br>
         <h4>{tr}Composer Packages Bundled{/tr} <small>{tr}status of the packages registered in the vendor_bundled/composer.json file{/tr}</small></h4>
-        {if ! $composer_available}
-            {remarksbox type="warning" title="{tr}Composer not found{/tr}"}
-            {tr}Composer could not be executed, so the automated check on the packages cannot be performed.{/tr}
-            {/remarksbox}
-        {else}
+        {if $composer_available}
             {remarksbox type="info" title="{tr}For information only{/tr}"}
             {tr}These packages are bundled with Tiki, and displayed here for informational purposes.{/tr}
             {/remarksbox}
@@ -248,19 +247,22 @@
         <form action="tiki-admin.php?page=packages&cookietab=4" method="post">
             <input type="hidden" name="redirect" value="0">
             {ticket}
-            <button name="auto-run-diagnostics" value="run">{tr}Diagnose Composer{/tr}</button>
+            <button class="btn btn-primary" name="auto-run-diagnostics" value="run">{tr}Diagnose Composer{/tr}</button>
         </form>
         <br />
         <h4>{tr}Composer management{/tr}</h4>
         <form action="tiki-admin.php?page=packages&cookietab=4" method="post">
             <input type="hidden" name="redirect" value="0">
             {ticket}
-            <button name="remove-composer-locker" value="run">{tr}Remove composer.lock{/tr}</button>
-            <button name="clean-vendor-folder" value="run">{tr}Clean vendor folder{/tr}</button>
+            {if ! $composer_available}
+                <button class="btn btn-primary" name="install-composer" value="run">{tr}Install Composer{/tr}</button>
+            {/if}
+            <button class="btn btn-primary" name="remove-composer-locker" value="run">{tr}Remove composer.lock{/tr}</button>
+            <button class="btn btn-primary" name="clean-vendor-folder" value="run">{tr}Clean vendor folder{/tr}</button>
         </form>
         <br />
 
-    {if isset($diagnostic_composer_location) || $diagnostic_composer_output || $composer_management_success || $composer_management_error}
+        {if isset($diagnostic_composer_location) || $diagnostic_composer_output || $composer_management_success || $composer_management_error}
             <br />
             <h4>Results</h4>
             {if isset($diagnostic_composer_location) }
@@ -286,3 +288,11 @@
         {/if}
     {/tab}
 {/tabset}
+
+{jq}
+    $(document).ready(function(){
+        $(".install-composer").click(function(){
+            $('.nav-tabs a[href="#contenttabs_admin_packages-4"]').tab('show');
+        });
+    });
+{/jq}

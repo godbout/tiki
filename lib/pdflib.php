@@ -808,7 +808,7 @@ $(".convert-mailto").removeClass("convert-mailto").each(function () {
 	function processHyperlinks($content, $hyperlinkSetting, $pageCounter)
 	{
 		$doc = new DOMDocument();
-		$doc->loadHTML($content);
+		$doc->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
 		$anchors = $doc->getElementsByTagName('a');
 		$len = $anchors->length;
 		$href = '';
