@@ -6691,8 +6691,14 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   .btn-primary.btn-files:not(:disabled):not(.disabled):active:focus, .btn-primary.btn-files:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.btn-files.dropdown-toggle:focus {
     box-shadow: 0 0 0 0.2rem rgba(116, 0, 195, 0.5); }
 
-.dropdown-item .text-danger {
-  color: #fec0bd !important; }
+.dropdown-menu > .btn-link:not(.text-danger) {
+  color: #fff; }
+
+.dropdown-item.btn-link.text-danger {
+  background: #fae3e5 !important;
+  border-radius: 0 !important; }
+  .dropdown-item.btn-link.text-danger:hover {
+    background: #f3b7bd !important; }
 
 .middle_outer {
   -webkit-box-shadow: inset 0 24px 0 0 #28a7de;
