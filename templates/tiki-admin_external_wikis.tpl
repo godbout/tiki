@@ -46,6 +46,12 @@
 			<th>
 				<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'extwiki_desc'}extwiki_asc{else}extwiki_desc{/if}">{tr}ExtWiki{/tr}</a>
 			</th>
+			<th>
+				<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'indexname_desc'}indexname_asc{else}indexname_desc{/if}">{tr}Index{/tr}</a>
+			</th>
+			<th>
+				<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={if $sort_mode eq 'groups_desc'}groups_asc{else}groups_desc{/if}">{tr}Search As{/tr}</a>
+			</th>
 			<th></th>
 		</tr>
 
@@ -53,6 +59,8 @@
 			<tr>
 				<td class="text">{$channels[user].name}</td>
 				<td class="text">{$channels[user].extwiki}</td>
+                <td class="text">{$channels[user].indexname}</td>
+                <td class="text">{$channels[user].groups}</td>
 				<td class="action">
 					{actions}
 						{strip}
