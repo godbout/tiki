@@ -429,7 +429,7 @@ function wikiplugin_swiper($data, $params)
 	if ($params['fgalId']) {
 		$files = $filegallib->get_files(0, -1, '', '', $params['fgalId']);
 	} 
-	if ($fileIds) {
+	if ($params['fileIds']) {
 		$params['fileIds'] = explode(',', $params['fileIds']);
 		foreach ($params['fileIds'] as $fileId) {
 			$file = $filegallib->get_file($fileId);
