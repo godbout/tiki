@@ -313,10 +313,13 @@ function wikiplugin_slideshow($data, $params)
 				var minwidth="";
 				$(this).find("img").each(function(){
 					if(this.width>200){
-					$(tr).find("td").attr("style","vertical-align:top");
-					imgsrc=this.src;
-					minwidth=(this.width)/2;
-					this.remove();
+						$(tr).find("td").attr("style","vertical-align:top");
+						imgsrc=this.src;
+						minwidth=(this.width)/2; 
+						this.remove();
+						if(minwidth>450){ //to avoid distortion of text, in case of large image
+							minwidth=450;
+						}
 					}
 				});
 				if(imgsrc!="") {
