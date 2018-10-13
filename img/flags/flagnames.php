@@ -102,6 +102,7 @@ tra('Ecuador');
 tra('Egypt');
 tra('El Salvador');
 tra('El_Salvador');
+tra('England');
 tra('Equatorial Guinea');
 tra('Equatorial_Guinea');
 tra('Eritrea');
