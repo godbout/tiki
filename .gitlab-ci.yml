@@ -128,7 +128,7 @@ db-upgrade-12-lts:
     DBFILE: ci_12.sql
     DBVER: 12
     IMAGE: mysql:5.5
-    ENGINE: InnoDB
+    ENGINE: MyISAM
 
 sql-engine-conversion:
   stage: tiki-check
