@@ -286,7 +286,7 @@ function upgrade_20180923_convert_collation_to_utf8mb4_tiki($installer)
 		'tiki_scheduler_run',
 	];
 
-	// Update table indexes to be utf8mb4 compliant
+	// Update table indexes to be utf8mb4 compliant (767 bytes for InnoDB for mysql < 5.7 as the key restriction)
 	$query = <<<SQL
 ALTER TABLE `tiki_referer_stats` DROP PRIMARY KEY;
 ALTER TABLE `tiki_referer_stats` ADD PRIMARY KEY (`referer`(191));
@@ -482,7 +482,7 @@ SQL;
 		$installer->query('ALTER TABLE `' . $table . '` convert to character set DEFAULT COLLATE DEFAULT');
 	}
 
-
+	// Alter table automatically increase field size, but since we converted from utf8 to utf8mb4, we can restore the original field size
 	$query = <<<SQL
 ALTER TABLE `messu_archive` CHANGE `user_to` `user_to` text COLLATE utf8mb4_unicode_ci;
 ALTER TABLE `tiki_quizzes` CHANGE `sEpilogue` `sEpilogue` text COLLATE utf8mb4_unicode_ci;
@@ -649,4 +649,15 @@ ALTER TABLE `users_groups` CHANGE `registrationUsersFieldIds` `registrationUsers
 SQL;
 
 	$installer->query($query);
+
+	// mysql 5.7 and maria 10.2 add default '' during the conversion, remove that from the field definition
+	$query = <<<SQL
+ALTER TABLE `tiki_addon_profiles` CHANGE `addon` `addon` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL;
+ALTER TABLE `tiki_addon_profiles` CHANGE `version` `version` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL;
+ALTER TABLE `tiki_pages_changes` CHANGE `version` `version` int(10) NOT NULL;
+ALTER TABLE `tiki_pages_changes` CHANGE `page_id` `page_id` int(14) NOT NULL;
+ALTER TABLE `tiki_addon_profiles` CHANGE `profile` `profile` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL;
+SQL;
+	$installer->query($query);
+
 }
