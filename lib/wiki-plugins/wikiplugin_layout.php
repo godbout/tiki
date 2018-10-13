@@ -301,19 +301,19 @@ function wikiplugin_layout($data, $params)
 	) {
 		$headerlib->add_css(
 			"#row-middle{width:" . $params["contentwidth"]
-			. ";margin:auto;margin-top:" . $params['topmargin']
+			. " !important;margin:auto;margin-top:" . $params['topmargin']
 			. ";min-width:380px;border-radius:".$params['contentradius'].";box-shadow:".$params['contentboxshadow']."} #col1{min-width:380px;margin:auto}"
 		);
 
 	}
 	if (isset($params['headerwidth'])) {
 		$headerlib->add_css(
-			"#page-header{width:" . $params["headerwidth"] . ";margin:auto}"
+			"#page-header{width:" . $params["headerwidth"] . " !important;margin:auto }"
 		);
 	}
 	if (isset($params['footerwidth'])) {
 		$headerlib->add_css(
-			"#footer{width:" . $params["footerwidth"] . ";margin:auto}"
+			"#footer{width:" . $params["footerwidth"] . " !important;margin:auto}"
 		);
 	}
 	if (isset($params['fgalId']) || $params['fileIds']) {
