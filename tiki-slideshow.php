@@ -422,7 +422,7 @@ function formatContent($content, $tagArr)
 			$firstSlide = 1;
 		} else {
 			$slideContent .= '<section><table width="100%" cellpadding="0" cellspace="0"><tr><td colspan="2" style="border-bottom:0px"><h1' . str_replace(
-					array('</h2>', '</h3>'), '</h1></td></tr><tr><td>', $slide
+					array('</h1>','</h2>', '</h3>'), '</h1></td></tr><tr><td>', $slide
 				) . '</td></tr></table></section>';
 		}
 

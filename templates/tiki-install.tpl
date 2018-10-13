@@ -101,8 +101,8 @@
 					</ul>
 					<form action="tiki-install.php" method="post" role="form">
 						<div class="form-inline mb-3">
-							<label for="general-lang" class="mr-2">{tr}Select your language{/tr}</label>
-							<select name="lang" id="general-lang" onchange="$('.install-steps').tikiModal(tr('Loading...')); $('input[name=lang]:hidden').val($(this).val()); this.form.submit();" title="{tr}Select your language{/tr}" class="form-control">
+							<label for="general-lang">{tr}Select your language{/tr}</label>
+							<select name="lang" id="general-lang" onchange="$('.install-steps').tikiModal(tr('Loading...')); $('input[name=lang]:hidden').val($(this).val()); this.form.submit();" title="{tr}Select your language{/tr}" class="form-control mx-2">
 								{section name=ix loop=$languages}
 									<option value="{$languages[ix].value|escape}"
 										{if $prefs.site_language eq $languages[ix].value}selected="selected"{/if}>{$languages[ix].name}
