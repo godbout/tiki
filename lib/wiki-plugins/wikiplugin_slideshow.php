@@ -261,7 +261,7 @@ function wikiplugin_slideshow($data, $params)
 	if(strstr($_SERVER['PHP_SELF'],'tiki-slideshow.php')=='') {
 		if (strstr($_SERVER['PHP_SELF'], 'tiki-index.php')) {
 			return '<a class="btn btn-primary hidden-print" data-role="button" data-inline="true" title="Start Slideshow" href="./tiki-slideshow.php?page='
-				. $_REQUEST['page'] . '">'.tr('Click here to start presentation').'</a>';
+				. $_REQUEST['page'] . '">'.tr('Start Slideshow Presentation').'</a>';
 		}
 		return;
 	}
@@ -312,7 +312,7 @@ function wikiplugin_slideshow($data, $params)
 				var imgsrc="";
 				var minwidth="";
 				$(this).find("img").each(function(){
-					if(this.width>200){
+					if(this.width>200 && this.height>200){
 						$(tr).find("td").attr("style","vertical-align:top");
 						imgsrc=this.src;
 						minwidth=(this.width)/2; 
