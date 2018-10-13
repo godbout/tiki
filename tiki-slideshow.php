@@ -421,8 +421,8 @@ function formatContent($content, $tagArr)
 			}
 			$firstSlide = 1;
 		} else {
-			$slideContent .= '<section><table width="100%" cellpadding="0" cellspace="0"><tr><td><h1' . str_replace(
-					array('</h2>', '</h3>'), '</h1>', $slide
+			$slideContent .= '<section><table width="100%" cellpadding="0" cellspace="0"><tr><td colspan="2" style="border-bottom:0px"><h1' . str_replace(
+					array('</h2>', '</h3>'), '</h1></td></tr><tr><td>', $slide
 				) . '</td></tr></table></section>';
 		}
 
@@ -432,7 +432,7 @@ function formatContent($content, $tagArr)
 	//replacment for slideshowslide
 
 	return html_entity_decode(str_replace(
-		array('<sslide', 'sheading'), array('</td></tr></table></section><section', 'h1'),
+		array('<sslide', '<sheading','</sheading>'), array('</td></tr></table></section><section', '<table><tr><td colspan="2" style="border-bottom:0px"><h1','</sheading></tr></td><tr><td>'),
 		$slideContent
 	));
 }
