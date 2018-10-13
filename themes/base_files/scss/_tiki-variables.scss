@@ -58,6 +58,7 @@ $chosen-padding-base-vertical: $padding-y;
 $chosen-padding-base-horizontal: $padding-x;
 $chosen-font-size-base: $font-size-base;
 $chosen-line-height: $line-height-base;
+$chosen-text-muted-bg-info: lighten($info,90%);
 
 // Calendars
 $calendarweek-bottom-border-color: $table-border-color;

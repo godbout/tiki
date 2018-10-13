@@ -5,21 +5,23 @@
 $light: #e10c7c;
 
 $bg-light: #e10c7c !important;
-
 $link-color: #b51360;
 $link-hover-color: #e10c7c;
-
+$btn-primary-color: #ffffff;
 $btn-primary-bg: #e10c7c;
 $btn-primary-border: #f588c1;
+$btn-primary-focus-color: #ffffff;
 $btn-primary-focus-bg: #b50964;
-$btn-primary-focus-border: #ea1484;
+$btn-primary-border: #ea1484;
+$btn-primary-hover-color: #ffffff;
 $btn-primary-hover-bg: #b50964;
 $btn-primary-hover-border: #f050a4;
+$btn-primary-active-color: #ffffff;
 $btn-primary-active-bg: #b50964;
 $btn-primary-active-border: #f050a4;
-$btn-primary-active-hover-bg: #930751;
+$btn-primary-active-hover-bg-color: #930751;
 $btn-primary-active-hover-border: #ea1484;
-$btn-primary-disabled-bg: #e10c7c;
+$btn-primary-disabled-hover: #e10c7c;
 $btn-primary-disabled-border: #f588c1;
 $btn-primary-badge-color: #e10c7c;
 $btn-primary-badge-bg: #ffffff;
@@ -90,8 +92,8 @@ $dropdown-border-color: rgba(0, 0, 0, 0.15);
 $dropdown-link-color: #ffffff;
 $dropdown-link-hover-color: #f2f2f2;
 $dropdown-link-hover-bg: #61102d;
-$dropdown-link-active-color: red;
-$dropdown-link-active-bg: #b51360;
+$dropdown-link-active-color: #f2f2f2;
+$dropdown-link-active-bg: #e60b7f;
 $dropdown-link-disabled-color: #f2f2f2;
 $dropdown-header-color: #ffffff;
 $dropdown-divider-bg: $dropdown-bg;
@@ -116,14 +118,14 @@ $pagination-disabled-bg: #ffffff;
 $pagination-disabled-border-color: #dddddd;
 
 $theme-colors: (
-		"light":			#ffffff,
-		"dark":				#35061d
+		"light":			#e60b7f,
+		"dark":				#b50964
 );
 
 $enable-gradients: true;
 $enable-shadows: true;
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
-$bg-light-alt: #117485 !important;
+//$bg-light-alt: #117485 !important;
 
 $side-column-heading-color: #e60b7f;
 
@@ -154,3 +156,19 @@ $autotoc-nav-link-hover-bg: #61102d;
   background: linear-gradient(to right,  #b3135f 0%,#b61261 9%,#c21069 18%,#e70b80 69%,#ea0a81 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3135f', endColorstr='#ea0a81',GradientType=1 ); /* IE6-9 */
 }
+$chosen-container-multi-choices-bg: #ffffff;
+$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-border: #fa9ccd;
+$chosen-container-single-bg: #f9dcec;
+$chosen-container-single-color: #555555;
+$chosen-container-single-border: #fa9ccd;
+$chosen-container-single-input-bg: #f9dcec;
+$chosen-container-single-input-border: #fa9ccd;
+$chosen-container-chosen-results-li-highlighted-bg: #61102d;
+$chosen-container-chosen-results-li-highlighted-color: #f2f2f2;
+$autotoc-nav-bg: #ffffff;
+$autotoc-nav-border: #e60b7f;
+$autotoc-color: #b51360;
+$autotoc-nav-li-link-hover-color: #f2f2f2;
+$autotoc-nav-li-link-hover-bg: #61102d;
+$middle_outer-inset-shadow-bg: #35061d;

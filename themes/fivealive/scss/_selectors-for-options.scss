@@ -333,26 +333,29 @@ hr {
   border: 1px solid $dropdown-border-color; // rgba(0, 0, 0, 0.15);
 }
 
+.dropdown-item,
 .dropdown-item a,
 .dropdown-item .btn.btn-link {
   color: $dropdown-link-color;
   &:hover,
   &:focus {
-	color: $dropdown-link-hover-color;
+    color: $dropdown-link-hover-color;
+	  background: $dropdown-link-hover-bg;
   }
   &:active,
   &.active {
-	color: $dropdown-link-active-color;
+    color: $dropdown-link-hover-color;
+    background: $dropdown-link-active-bg;
   }
   &.disabled,
   &:disabled {
-	color: $dropdown-link-disabled-color;
+    color: $dropdown-link-disabled-color;
   }
   .dropdown-header {
-	color: $dropdown-header-color;
+    color: $dropdown-header-color;
   }
   .dropdown-divider {
-	background: $dropdown-divider-bg;
+    background: $dropdown-divider-bg;
   }
 }
 

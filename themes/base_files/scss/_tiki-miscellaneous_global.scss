@@ -447,3 +447,7 @@ div.categbar {
 .sitelogo .btn {display: none}
 .sitelogo:hover .btn {display: block}
 
+// Special links in "More" button of page-bar
+.dropdown-menu > .btn-link {
+	padding: 0.25rem 1.5rem;
+}
