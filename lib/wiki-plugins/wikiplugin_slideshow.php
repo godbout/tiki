@@ -239,6 +239,18 @@ function wikiplugin_slideshow_info()
                     ['text' => 'Off', 'value' => 'n'],
                 ],
             ],
+			'alignImage' => [
+				'required' => false,
+				'name' => tra('Auto-align Images'),
+				'description' => tra('Automatically move images to left hand side of slide text, will only align images greater than 200px in width'),
+				'filter' => 'word',
+				'default' => 'n',
+				'since' => '19.0',
+				'options' => [
+					['text' => 'Off', 'value' => 'n'],
+					['text' => 'On', 'value' => 'y']
+				],
+			],
 
 		],
 	];
@@ -291,6 +303,28 @@ function wikiplugin_slideshow($data, $params)
 		$headerlib->add_js(
 			'$( "#showtheme" ).val( "'.$params['theme'].'" );'
 		);
+	}
+	if($params['alignImage']=='y'){
+		$headerlib->add_jq_onready('(function(){
+			var images = [];
+			$("section table tr").each(function(){
+				var tr=this;
+				var imgsrc="";
+				var minwidth="";
+				$(this).find("img").each(function(){
+					if(this.width>200){
+					$(tr).find("td").attr("style","vertical-align:top");
+					imgsrc=this.src;
+					minwidth=(this.width)/2;
+					this.remove();
+					}
+				});
+				if(imgsrc!="") {
+					var tableData = $("<td><img src="+imgsrc+" style=\"max-height:70%;min-width:"+minwidth+"px\"></td>");
+					$(this).append(tableData);
+				}
+			})
+		})()');
 	}
 	$headerlib->add_js(
 	"Reveal.configure({".$revealSettings."});
