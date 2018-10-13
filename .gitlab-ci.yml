@@ -74,22 +74,6 @@ schema-naming-convention:
     - php -d display_errors=On doc/devtools/check_schema_upgrade.php -m $DBVER -e $ENGINE --db1=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikiold --db2=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikinew
   allow_failure: false
 
-db-upgrade-18-lts-5.5-mariadb:
-  <<: *template-tiki-schema-upgrade
-  variables:
-    DBFILE: ci_18.sql
-    DBVER: 18
-    IMAGE: mariadb:5.6
-    ENGINE: InnoDB
-
-db-upgrade-18-lts-myisam:
-  <<: *template-tiki-schema-upgrade
-  variables:
-    DBFILE: ci_18.sql
-    DBVER: 18
-    IMAGE: mysql:5.6
-    ENGINE: MyISAM
-
 db-upgrade-18-lts:
   <<: *template-tiki-schema-upgrade
   variables:
@@ -97,6 +81,14 @@ db-upgrade-18-lts:
     DBVER: 18
     IMAGE: mysql:5.6
     ENGINE: InnoDB
+
+db-upgrade-18-lts-myisam:
+  <<: *template-tiki-schema-upgrade
+  variables:
+    DBFILE: ci_18.sql
+    DBVER: 18
+    IMAGE: mysql:5.5
+    ENGINE: MyISAM
 
 db-upgrade-17:
   <<: *template-tiki-schema-upgrade
@@ -114,13 +106,29 @@ db-upgrade-15-lts:
     IMAGE: mysql:5.6
     ENGINE: InnoDB
 
+db-upgrade-15-lts-5.5-mariadb:
+  <<: *template-tiki-schema-upgrade
+  variables:
+    DBFILE: ci_18.sql
+    DBVER: 18
+    IMAGE: mariadb:5.5
+    ENGINE: MyISAM
+
+db-upgrade-15-lts-10.2-mariadb:
+  <<: *template-tiki-schema-upgrade
+  variables:
+    DBFILE: ci_18.sql
+    DBVER: 18
+    IMAGE: mariadb:10.2
+    ENGINE: InnoDB
+
 db-upgrade-12-lts:
   <<: *template-tiki-schema-upgrade
   variables:
     DBFILE: ci_12.sql
     DBVER: 12
     IMAGE: mysql:5.5
-    ENGINE: InnoDB
+    ENGINE: MyISAM
 
 sql-engine-conversion:
   stage: tiki-check
