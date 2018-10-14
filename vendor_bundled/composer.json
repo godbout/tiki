@@ -220,6 +220,7 @@
 	],
 	"scripts": {
 		"pre-install-cmd": [
+		  	"Tiki\\Composer\\RestoreVendors::restore",
 			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::cleanLinks"
 		],
 		"post-install-cmd": [
@@ -229,6 +230,7 @@
 			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::clean"
 		],
 		"pre-update-cmd": [
+			"Tiki\\Composer\\RestoreVendors::restore",
 			"Tiki\\Composer\\ThemeInstaller::setup",
 			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::cleanLinks"
 		],

@@ -202,9 +202,8 @@
 
 
 				reader.onload = function (e) {
-					var rows = e.target.result.split("\n");
-					var columns = rows[0].split(delimiter);
-					// @todo get ajax to process the columns row csv without loading js csv libs
+					var rows = Plotly.d3.csv.parse(e.target.result);
+					var columns = Object.keys(rows[0]);
 
 					for(i = 0; i < columns.length; i++) {
 						var $elem = $('#row-template').clone();
