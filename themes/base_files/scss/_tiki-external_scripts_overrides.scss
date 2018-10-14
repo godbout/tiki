@@ -1,23 +1,5 @@
 // $Id$
 
-// Tweaks to improve spacing of text in jquery.s5 slides
-.s5-slide * {
-	line-height: 1.3em;
-}
-
-.s5-slide h1, .s5-slide h2, .s5-slide h3, .s5-slide h4 {
-	line-height: 1em;
-}
-
-.s5-slide * li {
-	padding-top: 0.3em;
-	padding-bottom: 0.3em;
-}
-
-.s5-footer {
-	font-size: 110%;
-}
-
 // jquery-ui dialogs help
 .ui-dialog {
 	webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
@@ -60,6 +42,14 @@ div.form-group label.error {
 }
 
 .chosen-container + .alert {margin-top: 20px;}
+
+.chosen-container .chosen-results li.active-result.text-muted.bg-info {
+  background: $info;
+}
+
+.chosen-container .chosen-results li.active-result.text-muted.bg-info {
+  color: $chosen-text-muted-bg-info;
+}
 
 // AnythingSlider (wikiplugin_slider) compatibility
 

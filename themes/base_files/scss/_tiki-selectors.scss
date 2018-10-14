@@ -1028,6 +1028,7 @@ div.drillshow {
 	display: $breadcrumb-display; // block;
 }
 
+// jQuery-UI
 .tiki .ui-widget-content,
 span.plugin-mouseover  {
 	background: $modal-content-bg;
@@ -1038,7 +1039,7 @@ span.plugin-mouseover  {
 .tiki .ui-widget-header {
 	background: $modal-content-bg;
 	color: $body-color;
-	border: 1px solid $modal-content-border-color;
+	border-color: $modal-content-border-color;
 }
 
 .tiki .ui-dialog-content {

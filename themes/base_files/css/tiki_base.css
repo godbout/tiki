@@ -641,7 +641,7 @@ div.drillshow {
 .tiki .ui-widget-header {
   background: #fff;
   color: #212529;
-  border: 1px solid rgba(0, 0, 0, 0.2); }
+  border-color: rgba(0, 0, 0, 0.2); }
 
 .tiki .ui-dialog-content {
   background: #fff;
@@ -1059,6 +1059,9 @@ div.categbar {
 
 .sitelogo:hover .btn {
   display: block; }
+
+.dropdown-menu > .btn-link {
+  padding: 0.25rem 1.5rem; }
 
 header.container, .middle_outer > .container {
   margin-bottom: 0; }

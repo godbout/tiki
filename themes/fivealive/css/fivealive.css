@@ -2135,7 +2135,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background: #fff linear-gradient(180deg, #fff, #fff) repeat-x; }
+    background: #0e567a linear-gradient(180deg, #326f8e, #0e567a) repeat-x; }
   .dropdown-item.disabled, .dropdown-item:disabled {
     color: #868e96;
     background-color: transparent;
