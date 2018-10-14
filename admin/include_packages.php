@@ -89,6 +89,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$smarty->assign('composer_management_error', $composerResultMessage);
 		}
 	}
+	if ($_POST['update-composer']) {
+		$composerWrapper = new ComposerCli($tikipath);
+		list($composerResult, $composerResultMessage) = $composerWrapper->updateComposer();
+		if ($composerResult) {
+			$smarty->assign('composer_management_success', $composerResultMessage);
+		} else {
+			$smarty->assign('composer_management_error', $composerResultMessage);
+		}
+	}
 }
 
 $installableList = $composerManager->getInstalled();
