@@ -285,16 +285,6 @@
 					"type": "zip"
 				}
 			}
-		},		{
-			"type": "package",
-			"package": {
-				"name": "hesammousavi/bootstrap-v4-rtl",
-				"version": "dev-master",
-				"dist": {
-					"url": "https://github.com/Hesammousavi/bootstrap-v4-rtl/archive/master.zip",
-					"type": "zip"
-				}
-			}
 		},
 		{
 			"type": "package",
