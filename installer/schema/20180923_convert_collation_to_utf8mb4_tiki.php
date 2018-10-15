@@ -472,9 +472,16 @@ ALTER TABLE `tiki_file_drafts` DROP PRIMARY KEY;
 ALTER TABLE `tiki_file_drafts` ADD PRIMARY KEY (`fileId`,`user`(177));
 ALTER TABLE `tiki_newsletter_subscriptions` DROP PRIMARY KEY;
 ALTER TABLE `tiki_newsletter_subscriptions` ADD PRIMARY KEY (`nlId`,`email`(178),`isUser`);
+ALTER TABLE `tiki_forums_reported` DROP PRIMARY KEY;
+ALTER TABLE `tiki_forums_reported` ADD PRIMARY KEY (`threadId`, `forumId`, `parentId`, `user`(182));
 SQL;
 
-	$installer->query($query);
+	$statements = explode(";", $query);
+	foreach ($statements as $q) {
+		if (! empty(trim($q))) {
+			$installer->query($q);
+		}
+	}
 
 	$installer->query("ALTER DATABASE `" . $dbs_tiki . "` CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci'");
 
@@ -648,5 +655,10 @@ ALTER TABLE `tiki_h5p_libraries` CHANGE `preloaded_css` `preloaded_css` text COL
 ALTER TABLE `users_groups` CHANGE `registrationUsersFieldIds` `registrationUsersFieldIds` text COLLATE utf8mb4_unicode_ci;
 SQL;
 
-	$installer->query($query);
+	$statements = explode(";", $query);
+	foreach ($statements as $q) {
+		if (! empty(trim($q))) {
+			$installer->query($q);
+		}
+	}
 }

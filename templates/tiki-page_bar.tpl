@@ -8,7 +8,7 @@
 				</a>
 			{/if}
 			{if $tiki_p_admin_wiki eq 'y' or $tiki_p_assign_perm_wiki_page eq 'y'}
-				{permission_link mode=link type="wiki page" _class="dropdown-item btn-link text-primary" id=$page permType=wiki title=$page}
+				{permission_link mode=link type="wiki page" addclass="dropdown-item" id=$page permType=wiki title=$page}
 			{/if}
 			{if $prefs.feature_page_contribution eq 'y' and $tiki_p_page_contribution_view eq 'y'}
 				{button _keepall='y' href="tiki-page_contribution.php" page=$page _type="link" _class="dropdown-item" _text="{tr}Contributions by author{/tr}"}

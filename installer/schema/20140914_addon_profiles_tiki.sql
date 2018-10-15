@@ -3,5 +3,5 @@ CREATE TABLE IF NOT EXISTS `tiki_addon_profiles` (
   `version` VARCHAR(100),
   `profile` VARCHAR(100),
   `install_date` TIMESTAMP,
-  PRIMARY KEY (`addon`,`version`,`profile`)
+  PRIMARY KEY (`addon`,`version`(55),`profile`)
 ) ENGINE=MyISAM;

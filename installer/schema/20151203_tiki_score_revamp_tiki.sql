@@ -65,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `tiki_object_scores` (
   pointsBalance INT NOT NULL,
   date INT NOT NULL,
   reversalOf INT UNSIGNED
-);
+) ENGINE=MyISAM;
 # Import legacy score from users table
 INSERT INTO tiki_object_scores (triggerObjectType, triggerObjectId, triggerUser, triggerEvent, ruleId, recipientObjectType, recipientObjectId, pointsAssigned, pointsBalance, date)
 SELECT 'legacy_score', '0', login, 'tiki.legacy.score', 'Legacy Score', 'user', login, score, score, UNIX_TIMESTAMP() FROM users_users;

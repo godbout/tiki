@@ -256,6 +256,8 @@
             {ticket}
             {if ! $composer_available}
                 <button class="btn btn-primary" name="install-composer" value="run">{tr}Install Composer{/tr}</button>
+            {else}
+                <button class="btn btn-primary" name="update-composer" value="run">{tr}Update Composer{/tr}</button>
             {/if}
             <button class="btn btn-primary" name="remove-composer-locker" value="run">{tr}Remove composer.lock{/tr}</button>
             <button class="btn btn-primary" name="clean-vendor-folder" value="run">{tr}Clean vendor folder{/tr}</button>

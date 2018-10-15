@@ -417,7 +417,6 @@ class CleanVendors
 				'dist/plotly.min.js',
 				'dist/plot-schema.json',
 				'dist/plotly-basic.js',
-				'dist/plotly-basic.min.js',
 				'dist/plotly-cartesian.js',
 				'dist/plotly-finance.js',
 				'dist/plotly-finance.min.js',

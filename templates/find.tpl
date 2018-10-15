@@ -32,8 +32,8 @@
 
 <div class="find mb-2">
 	<form method="post" role="form">
-		<div class="form-group row mx-0">
-			{if !isset($map_only) or $map_only ne 'y'}
+		{if !isset($map_only) or $map_only ne 'y'}
+			<div class="form-group row mx-0">
 			{if !empty($filegals_manager)}<input type="hidden" name="filegals_manager"
 												 value="{$filegals_manager|escape}">{/if}
 			{query _type='form_input' maxRecords='NULL' type='NULL' types='NULL' find='NULL' topic='NULL' lang='NULL' exact_match='NULL' categId='NULL' cat_categories='NULL' filegals_manager='NULL' save='NULL' offset=0 searchlist='NULL' searchmap='NULL'}

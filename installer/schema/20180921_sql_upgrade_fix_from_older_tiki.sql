@@ -1,3 +1,10 @@
+-- Fix upgrade from 9.x
+ALTER TABLE `tiki_forums_reported` DROP PRIMARY KEY;
+ALTER TABLE `tiki_forums_reported` ADD PRIMARY KEY (`threadId`, `forumId`, `parentId`, `user`); -- Changed in 20121210_better_forum_reported_index_tiki.sql but never make it to tiki.sql
+DELETE FROM `users_permissions` WHERE `permName` = 'tiki_p_view_poll_choices';
+ALTER TABLE `tiki_modules` CHANGE `position` `position` varchar(20) NOT NULL DEFAULT '';
+ALTER TABLE `tiki_profile_symbols` CHANGE `value` `value` varchar(160) NOT NULL;
+
 -- Fix upgrade from 12.x
 CREATE TABLE IF NOT EXISTS `tiki_payment_requests` (
     `paymentRequestId` INT NOT NULL AUTO_INCREMENT,

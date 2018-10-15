@@ -486,6 +486,9 @@ class Services_Tracker_TabularController
 		$tabularlib = TikiLib::lib('tabular');
 		Services_Exception_Denied::checkGlobal('tiki_p_tabular_admin');
 
+		$headerlib = TikiLib::lib('header');
+		$headerlib->add_jsfile('vendor_bundled/vendor/plotly/plotly.js/dist/plotly-basic.min.js', true);
+
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			// Create a tracker
 			$trackerUtilities = new Services_Tracker_Utilities();
