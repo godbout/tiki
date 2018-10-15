@@ -1,6 +1,6 @@
 start transaction;
 DELETE FROM `tiki_secdb`;
-ALTER TABLE `tiki_secdb` DROP PRIMARY KEY, ADD PRIMARY KEY (`filename`, `tiki_version`);
+ALTER TABLE `tiki_secdb` DROP PRIMARY KEY, ADD PRIMARY KEY (`filename`(171),`tiki_version`(20));
 
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./about.php', '1aacabf604794ca6d606341a0e5c6ad5', '19.0alpha');
 INSERT INTO `tiki_secdb` (`filename`, `md5_value`, `tiki_version`) VALUES('./addons/index.php', 'b1e7fe7b51a31ab74b7a2dd0f69d9555', '19.0alpha');
