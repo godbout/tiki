@@ -1066,7 +1066,7 @@ div.categbar {
 header.container, .middle_outer > .container {
   margin-bottom: 0; }
 
-#top_modules, #topbar_modules, #pagebottom_modules, .bottom_modules {
+#top_modules, #topbar_modules, #pagetop_modules, #pagebottom_modules, .bottom_modules {
   display: flex;
   flex-direction: row;
   justify-content: space-between; }
@@ -1074,7 +1074,7 @@ header.container, .middle_outer > .container {
 .topbar .navbar {
   padding: 0; }
 
-.bottom_modules {
+#pagetop_modules, #pagebottom_modules, .bottom_modules {
   align-items: flex-start;
   flex-wrap: wrap; }
 

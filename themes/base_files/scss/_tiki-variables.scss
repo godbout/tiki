@@ -1,7 +1,9 @@
 // $Id$
 // Values are specified here to be used in the files imported by tiki_base.scss and theme style sheets.
+
 @import "bs3-bs4-transition.scss";
 @import "../../default/scss/variables";
+@import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/buttons";
 $padding-y: .5rem; // Not sure where this is used besides buttons and pagination; not sure where it's defined in BS4
 $padding-x: .75rem;
 $module-h3-card-title-font-size: $h4-font-size !default;
@@ -127,3 +129,16 @@ $tiki-sheet-border-color: $table-border-color;
 // CKEditor colors
 $editor-bg: $body-bg !default;
 $editor-text-color: $body-color !default;
+
+//jQuery-UI
+$ui-default-border: $nav-tabs-border-color;
+$ui-default-bg: $body-bg;
+$ui-font-weight: $font-weight-normal;
+$ui-default-color: $link-color;
+$ui-default-link-color: $link-color;
+$ui-default-link-active-color: $nav-tabs-link-active-color;
+$ui-default-link-active-bg: $nav-tabs-link-active-bg;
+$ui-active-border-color: $nav-tabs-link-hover-border-color;
+$ui-active-bg: $nav-tabs-link-active-bg;
+$ui-font-weight: $font-weight-normal;
+$ui-active-color: $nav-tabs-link-active-color;
