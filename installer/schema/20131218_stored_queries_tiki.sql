@@ -6,4 +6,4 @@ CREATE TABLE IF NOT EXISTS `tiki_search_queries` (
 	`priority` VARCHAR(15) NOT NULL,
 	`query` BLOB,
 	INDEX `query_userId` (`userId`)
-);
+) ENGINE=MyISAM;

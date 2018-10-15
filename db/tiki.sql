@@ -984,7 +984,7 @@ CREATE TABLE `tiki_forums_reported` (
   `user` varchar(200) default '',
   `timestamp` int(14) default NULL,
   `reason` varchar(250) default NULL,
-  PRIMARY KEY (`threadId`)
+  PRIMARY KEY (`threadId`, `forumId`, `parentId`, `user`(182))
 ) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_galleries`;
@@ -3208,8 +3208,8 @@ CREATE TABLE `tiki_pages_translation_bits` (
 
 DROP TABLE IF EXISTS `tiki_pages_changes`;
 CREATE TABLE `tiki_pages_changes` (
-  `page_id` int(14),
-  `version` int(10),
+  `page_id` int(14) DEFAULT '0',
+  `version` int(10) DEFAULT '0',
   `segments_added` int(10),
   `segments_removed` int(10),
   `segments_total` int(10),
@@ -4031,9 +4031,9 @@ CREATE TABLE `tiki_goal_events` (
 
 DROP TABLE IF EXISTS `tiki_addon_profiles`;
 CREATE TABLE `tiki_addon_profiles` (
-  `addon` VARCHAR(100),
-  `version` VARCHAR(100),
-  `profile` VARCHAR(100),
+  `addon` VARCHAR(100) NOT NULL DEFAULT '',
+  `version` VARCHAR(100) NOT NULL DEFAULT '',
+  `profile` VARCHAR(100) NOT NULL DEFAULT '',
   `install_date` TIMESTAMP,
   PRIMARY KEY (`addon`,`version`(10),`profile`(81))
 ) ENGINE=MyISAM;
