@@ -45,8 +45,8 @@ a.flipmodtitle .icon {
 }
 
 .module .card-body {
-	ol,
-	ul {
+	&>ol,
+	&>ul {
 		margin-left: -15px;
 		overflow: hidden;
 		margin-top: 0;
