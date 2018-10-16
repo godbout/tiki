@@ -11,18 +11,13 @@
 
 		{remarksbox type="tip" title="{tr}Tip{/tr}"}
 			{tr}Mouse over the icons to know more about the features and preferences that are new for you{/tr}.
-			<a href="http://doc.tiki.org/Wizards" target="tikihelp" class="tikihelp" style="float:right" title="{tr}Help icon:{/tr}
+			{tr}Example: {/tr}
+			<a href="http://doc.tiki.org/Wizards" target="tikihelp" class="tikihelp" title="{tr}Help icon:{/tr}
 				{tr}You will get more information about the features and preferences whenever this icon is available and you pass your mouse over it{/tr}.
 				<br/><br/>{tr}Moreover, if you click on it, you'll be directed in a new window to the corresponding documentation page for further information on that feature or topic{/tr}."
 			>
 				{icon name="help"}
 			</a>
-			<a target="tikihelp" class="tikihelp" style="float:right" title="{tr}Information icon:{/tr}
-				{tr}You will get more information about the features and preferences whenever this icon is available and you pass your mouse over it{/tr}.
-			">
-				{icon name="information"}
-			</a>
-			{tr}Example: {/tr}
 		{/remarksbox}
 
 		<div class="media mb-5">
