@@ -127,7 +127,7 @@
 
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 	<footer class="row footer main-footer" id="footer">
-		<div class="footer_liner">
+		<div class="footer_liner w-100">
 			{modulelist zone=bottom class='bottom_modules px-3 mx-0'}
 		</div>
 	</footer>
