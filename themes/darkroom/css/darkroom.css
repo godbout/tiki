@@ -6724,7 +6724,7 @@ h3.card-title {
 .card .card-header {
   background: #292929; }
 
-.navbar-fixed-top .container, .navbar-dark, .topbar, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li, .btn, .nav-tabs > li > a, .input-group-addon {
+.navbar-fixed-top .container, .navbar-dark, .topbar, .btn, .nav-tabs > li > a, .input-group-addon, .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active, .tiki .ui-state-active, .tiki .ui-widget-content .ui-state-active, .tiki .ui-widget-header .ui-state-active, .tiki a.ui-button:active, .tiki .ui-button:active, .tiki .ui-button.ui-state-active:hover {
   background: #818181;
   /* Old browsers */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #818181), color-stop(100%, #393939));
@@ -6735,7 +6735,43 @@ h3.card-title {
   /* Opera 11.10+ */
   background: linear-gradient(to bottom, #818181 0%, #393939 100%) !important;
   /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#818181', endColorstr='#393939', GradientType=0); }
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#818181', endColorstr='#393939', GradientType=0);
+  border-color: transparent !important; }
+
+.tiki .nav-link.active {
+  border-color: #dee2e6 !important; }
+
+.nav-tabs > li.active.show > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus, .tiki .ui-state-active, .tiki .ui-widget-content .ui-state-active, .tiki .ui-widget-header .ui-state-active, .tiki a.ui-button:active, .tiki .ui-button:active, .tiki .ui-button.ui-state-active:hover {
+  color: #fff;
+  border-color: #dee2e6 !important; }
+
+.tiki .ui-state-default:not(.ui-state-active) a:hover, .tiki a.ui-button:hover, .tiki a:link.ui-button:hover, .tiki a:visited.ui-button:hover, .tiki .ui-button:hover {
+  color: #858585; }
+
+.tiki .ui-widget.ui-widget-content {
+  border: none; }
+
+.tiki .elfinder-touch .std42-dialog .ui-dialog-titlebar .elfinder-titlebar-button {
+  background: #f2f2f2; }
+
+.tiki .elfinder-cwd-file.directory.ui-selected {
+  background: #f2f2f2; }
+
+.tiki .ui-state-hover, .tiki .ui-widget-content .ui-state-hover, .tiki .ui-widget-header .ui-state-hover, .tiki .ui-state-focus, .tiki .ui-widget-content .ui-state-focus, .tiki .ui-widget-header .ui-state-focus, .tiki .ui-button:hover, .tiki .ui-button:focus {
+  border: 1px solid #ccc;
+  background: #818181;
+  /* Old browsers */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #818181), color-stop(100%, #393939));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #818181 0%, #393939 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #818181 0%, #393939 100%);
+  /* Opera 11.10+ */
+  background: linear-gradient(to bottom, #818181 0%, #393939 100%) !important;
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#818181', endColorstr='#393939', GradientType=0);
+  font-weight: normal;
+  color: #f2f2f2; }
 
 .top_modules .navbar-dark {
   background: transparent !important;
@@ -6748,7 +6784,7 @@ h3.card-title {
   margin-bottom: 1.3rem; }
 
 #topbar_modules .navbar-dark {
-  background: transparent;
+  background: transparent !important;
   border: none;
   margin-bottom: 0; }
 
@@ -6760,9 +6796,6 @@ h3.card-title {
 
 .nav > li > a {
   padding: 0.4rem 10px; }
-
-.nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-  color: #fff; }
 
 select {
   background: #292929; }
@@ -7085,8 +7118,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .tiki .ui-state-default a, .tiki .ui-state-default a:link, .tiki .ui-state-default a:visited, .tiki a.ui-button, .tiki a:link.ui-button, .tiki a:visited.ui-button, .tiki .ui-button {
     color: #ababab; }
   .tiki .ui-state-active a, .tiki .ui-state-active a:link, .tiki .ui-state-active a:visited {
-    color: #dee2e6;
-    background: #474747; }
+    color: #dee2e6; }
   .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
     border: 1px solid #ddd;
     background: #474747;
