@@ -1,31 +1,14 @@
 {* $Id$ *}
-<div class="row form-group row">
-	{if $prefs.feature_bidi eq 'y'}
-		<div dir="rtl">
-			<div class="col-sm-9 form-check">
-			{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
-				<input type="checkbox" class="form-check-input" id="showOnLogin" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} />
-				<label class="form-check-label" for="showOnLogin">{tr}Show on admin log-in{/tr}</label>
-
-				{assign var="showOnLoginDisplayed" value="y" scope="root"}
-			{else}
-				&nbsp;
-			{/if}
-			</div>
-	{else}
-			<div class="col-sm-9">
-			</div>
-			<div class="col-sm-3 form-check">
-			{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
-				<input type="checkbox" class="form-check-input" id="showOnLogin" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} />
-				<label class="form-check-label" for="showOnLogin">{tr}Show on admin log-in{/tr}</label>
-
-				{assign var="showOnLoginDisplayed" value="y" scope="root"}
-				{else}
-					&nbsp;
-			{/if}
-			</div>
-	{/if}
+{if $prefs.feature_bidi eq 'y'}<div class="row form-group row text-left">{else}<div class="row form-group row">{/if}
+	<div class="col-sm-12">
+		{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
+			<input type="checkbox" class="form-check-input" id="showOnLogin" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} />
+			<label class="form-check-label" for="showOnLogin">{tr}Show on admin log-in{/tr}</label>
+			{assign var="showOnLoginDisplayed" value="y" scope="root"}
+		{else}
+			&nbsp;
+		{/if}
+	</div>
 	{if $prefs.connect_feature eq "y"}
 		{if !isset($provideFeedback) or $provideFeedback neq 'y'}
 			{capture name=likeicon}{icon name="thumbs-up"}{/capture}
@@ -46,29 +29,18 @@
 					{tr}Click to read more{/tr}
 				">
 					{icon name='help'}
-				</a>
-			</label>
+				</a> </label>
 			{$headerlib->add_jsfile("lib/jquery_tiki/tiki-connect.js")}
 
 			{assign var="provideFeedback" value="y" scope="root"}
 		{else}
-			&nbsp;
+
 		{/if}
-	{/if}
-	{if $prefs.feature_bidi eq 'y'}
-		</div>
 	{/if}
 </div>
 
-<div class="row form-group row">
-{if $prefs.feature_bidi eq 'y'}
-<div dir="rtl">
-	<div class="col-sm-3">
-{else}
-	<div class="col-sm-9">
-	</div>
-	<div class="col-sm-3">
-{/if}
+{if $prefs.feature_bidi eq 'y'}<div class="row form-group row text-left">{else}<div class="row form-group row">{/if}
+	<div class="col-sm-12">
 		<input type="hidden" name="url" value="{$homepageUrl}">
 		<input type="hidden" name="wizard_step" value="{$wizard_step}">
 		{if isset($useDefaultPrefs)}
@@ -77,22 +49,16 @@
 		{if isset($useUpgradeWizard)}
 			<input type="hidden" name="use-upgrade-wizard" value="{$useUpgradeWizard}">
 		{/if}
-		{if $prefs.feature_bidi neq 'y'}
-			{if !isset($firstWizardPage)}<input type="submit" class="btn btn-primary btn-sm" name="back" value="{tr}Back{/tr}" />{/if}
-		{/if}&nbsp;
-		<input type="submit" class="btn btn-secondary btn-sm" name="{if isset($firstWizardPage)}use-default-prefs{else}continue{/if}" value="{if isset($lastWizardPage)}{tr}Finish{/tr}{elseif isset($firstWizardPage)}{tr}Start{/tr}{else}{if $isEditable eq true}{tr}Save and Continue{/tr}{else}{tr}Next{/tr}{/if}{/if}" />
-		<input type="submit" class="btn btn-warning btn-sm" name="close" value="{tr}Close{/tr}" />
-		{if $prefs.feature_bidi eq 'y'}
-			{if !isset($firstWizardPage)}<input type="submit" class="btn btn-primary btn-sm" name="back" value="{tr}Back{/tr}" />{/if}
-		{/if}&nbsp;
+		{if !isset($firstWizardPage)}
+			<input type="submit" class="btn btn-primary btn-sm" name="back" value="{tr}Back{/tr}" />
+		{/if}
+		<input type="submit" class="btn btn-secondary btn-sm" name="{if isset($firstWizardPage)}use-default-prefs{else}continue{/if}" value="{if isset($lastWizardPage)}{tr}Finish{/tr}{elseif isset($firstWizardPage)}{tr}Start{/tr}{else}{if $isEditable eq true}{tr}Save and Continue{/tr}{else}{tr}Next{/tr}{/if}{/if}"/>
+		<input type="submit" class="btn btn-warning btn-sm" name="close" value="{tr}Close{/tr}"/>
 	</div>
-	<div class="col-sm-9 text-center">
+	<div class="col-sm-12 text-center">
 		{if !isset($showWizardPageTitle) or $showWizardPageTitle neq 'y'}
 			<h1 class="adminWizardPageTitle">{$pageTitle}</h1>
 			{assign var="showWizardPageTitle" value="y" scope="root"}
 		{/if}
 	</div>
-{if $prefs.feature_bidi eq 'y'}
-</div>
-{/if}
 </div>
