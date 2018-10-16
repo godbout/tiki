@@ -2,6 +2,9 @@
 // For theme overrides of jQuery-UI styles
 
 .tiki {
+	.ui-widget.ui-widget-content {
+		border: none;
+	}
 	.ui-widget-header {
 		background: $ui-default-bg;
 //		color: #fff;
@@ -12,7 +15,7 @@
 	}
 	.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
 		color: $ui-default-link-active-color;
-		background: $ui-default-link-active-bg;
+	//	background: $ui-default-link-active-bg;
 	}
 	.ui-state-default,
 	.ui-widget-content .ui-state-default,
@@ -67,5 +70,16 @@
 		border-top: none;
 		border-left: none;
 		border-right: none;
+	}
+	.ui-tabs-nav {
+		.ui-state-default,
+		.ui-widget-content .ui-state-default,
+		.ui-widget-header .ui-state-default,
+		.ui-state-active,
+		.ui-widget-content .ui-state-active,
+		.ui-widget-header .ui-state-active,
+		.ui-state-default.ui-tab.ui-tabs-active.ui-state-active {
+			border-bottom-width: 0 !important;
+		}
 	}
 }
