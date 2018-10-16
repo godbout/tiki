@@ -47,7 +47,7 @@
 					{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 				</div>
 			{/if}
-		<div class="d-flex w-100 flex-row">
+		<div class="d-flex w-100 flex-row flex-wrap">
 			<div class="col col1 col-md-12 col-lg-9" id="col1">
 				{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 					{modulelist zone=pagetop}
