@@ -199,8 +199,8 @@ $tooltip-opacity: .9;
 $tooltip-arrow-color: $tooltip-bg;
 
 //Popovers
-$popover-bg: #ffffff;
-$popover-border-color: rgba(0,0,0,.2);
+$popover-bg: #292929;
+$popover-border-color: darken($popover-bg,3%);
 $popover-header-bg: darken($popover-bg,3%);
 $popover-arrow-color: $popover-bg;
 
