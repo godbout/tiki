@@ -94,9 +94,9 @@ function smarty_function_object_selector_multi($params, $smarty)
 	}
 
 	if ($arguments['simplename']) {
-		$arguments['class'] .= ' hidden';
+		$arguments['class'] .= ' d-none';
 	} else {
-		$arguments['simpleclass'] .= ' hidden';
+		$arguments['simpleclass'] .= ' d-none';
 	}
 
 	$arguments['current_selection_simple'] = array_map(function ($item) {

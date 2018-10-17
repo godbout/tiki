@@ -6,7 +6,7 @@
 
 	{* </div> *}
 	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
-		<form method="post" action="" class="form form-inline my-2 my-md-0" role="form" style="min-height: 60px; width: 180px;">
+		<form method="post" action="" class="form form-inline my-2 my-md-0" role="form" style="min-height: 60px; width: 165px;">
 			<div class="form=check">
 				{ticket}
 				<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round form-check-input {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
@@ -14,8 +14,8 @@
 			</div>
 
 			<ul class="nav navbar-nav filter-menu"{if not $pref_filters.advanced.selected} style="display: none;"{/if}>
-				<li class="nav-item dropdown mr-2" style="padding-top: 6px;">
-					<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" title="{tr}Settings{/tr}" style="width: 60px;">
+				<li class="nav-item dropdown mr-0" style="padding-top: 6px;">
+					<a href="#" class="nav-link dropdown-toggle pr-0" data-toggle="dropdown" title="{tr}Settings{/tr}" style="width: 48px;">
 						{icon name="filter"}
 					</a>
 					<ul class="dropdown-menu" role="menu">
@@ -125,20 +125,20 @@
 			</ul>
 		</form>
 		{include file="admin/admin_navbar_menu.tpl"}
-		<ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
+		<ul class="navbar-nav flex-row  d-none d-md-flex mr-2">
 			<li class="nav-item">
 				<form method="post" action="" class="form-inline my-2 my-md-0 ml-auto" role="form">
-					<div class="form-group row">
+					<div class="form-group row mx-0">
 						<input type="hidden" name="filters">
-						<input type="text" name="lm_criteria" style="width: 170px;"value="{$lm_criteria|escape}" class="form-control" placeholder="{tr}Search preferences{/tr}...">
+						<input type="text" name="lm_criteria" style="width: 163px;"value="{$lm_criteria|escape}" class="form-control form-control-sm" placeholder="{tr}Search preferences{/tr}...">
 					</div>
-					<button type="submit" class="btn btn-primary" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
+					<button type="submit" class="btn btn-info btn-sm" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
 				</form>
 			</li>
 		</ul>
 	</div>
 	{if $include != "list_sections"}
-		<div class="adminanchors card"><div class="card-body"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div></div>
+		<div class="adminanchors card mb-4"><div class="card-body {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if}"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div></div>
 	{/if}
 </nav>
 

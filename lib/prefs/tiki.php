@@ -71,6 +71,15 @@ function prefs_tiki_list()
 			'default' => 'n',
 			'tags' => ['basic'],
 		],
+		'tiki_prefix_css' => [
+			'name' => tra('Prefix CSS'),
+			'description' => tra('Use -prefix-free JavaScript library to add vendor specific css prefixes.'),
+			'type' => 'flag',
+			'perspective' => false,
+			'default' => 'n',
+			'tags' => ['experimental'],
+			'warning' => tra('May be replaced by a server-side option soon.'),
+		],
 		'tiki_same_day_time_only' => [
 			'name' => tra('Skip date for same day'),
 			'description' => tra('When displaying short date and time, skip date for today. Only time will be displayed.'),
