@@ -11,12 +11,15 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#b3135f', endColorstr='#ea0a81',GradientType=1);
   /* IE6-9 */ }
 
+.bg-dark {
+  background: #063035 !important; }
+
 .middle_outer {
   -webkit-box-shadow: inset 0 54px 0 0 #35061d;
   -moz-box-shadow: inset 0 54px 0 0 #35061d;
   box-shadow: inset 0 54px 0 0 #35061d; }
 
-.topbar, .navbar-dark, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
+.layout_basic #topbar_modules.bg-dark, .topbar, .navbar-dark, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
   background: #35061d; }
 
 a, .btn-link {

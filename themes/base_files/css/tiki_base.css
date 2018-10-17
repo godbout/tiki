@@ -1417,7 +1417,7 @@ a.flipmodtitle .icon {
     padding-left: 2rem; }
 
 .module .card-body > ol, .module .card-body > ul {
-  margin-left: -15px;
+  margin-left: -7px;
   overflow: hidden;
   margin-top: 0;
   margin-bottom: 0; }
