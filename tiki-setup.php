@@ -566,6 +566,10 @@ if ($prefs['feature_jquery_validation'] == 'y') {
 	$headerlib->add_jsfile('lib/validators/validator_tiki.js');
 }
 
+if ($prefs['tiki_prefix_css'] == 'y') {
+	$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/prefixfree/prefixfree.js');
+}
+
 // note: jquery.async.js load a copy of jquery
 // Used by treetable and a few more places
 $headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/async/jquery.async.js');

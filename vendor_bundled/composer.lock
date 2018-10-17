@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "67f14416b14f69fabf6e788bca2edba9",
+    "content-hash": "ecd2ddb337a60074aeac7e5cb8b49d56",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -2296,6 +2296,22 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "npm-asset/prefixfree",
+            "version": "v1.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LeaVerou/prefixfree.git",
+                "reference": "846904c874a2bf436ff8a9623585f935d7ef4009"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/prefixfree/npm-asset-prefixfree-846904c874a2bf436ff8a9623585f935d7ef4009-zip-825a34.zip",
+                "reference": "846904c874a2bf436ff8a9623585f935d7ef4009",
+                "shasum": "a5a380fab28e73d2912aaa53de19da847b1dea1f"
+            },
+            "type": "npm-asset"
         },
         {
             "name": "npm-asset/sass-svg-uri",
