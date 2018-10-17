@@ -141,7 +141,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 								modal: 1
 							}),
 							function () {
-								$(this).tikiModal().trigger("tiki.modal.redraw");
+								$(this).tikiModal().parents(".modal").trigger("tiki.modal.redraw");
 								if (jqueryTiki.chosen) {
 									$(this).applyChosen();
 								}

@@ -72,7 +72,7 @@ if (strstr($_SERVER['SCRIPT_NAME'], 'tiki-index.php')
 			$homePageContent .= '<h1>' . tr('Congratulations') . "</h1>\n";
 			$homePageContent .= tr('This is the default homepage for your Tiki. If you are seeing this page, your installation was successful.') . "\n\n<br>";
 			$homePageContent .= tr('You can change this page after logging in. Please review the [http://doc.tiki.org/wiki+syntax|wiki syntax] for editing details.') . "\n\n\n<br>";
-			$homePageContent .= '<h2>' . tr('Get started.') . "</h2>\n";
+			$homePageContent .= '<h2>' . tr('Get started') . ".</h2>\n";
 			$homePageContent .= tr('To begin configuring your site:') . "\n";
 			$homePageContent .= "<ul>\n";
 			$homePageContent .= "<li>" . tr('1) Log in with your newly created password.') . "</li>\n";

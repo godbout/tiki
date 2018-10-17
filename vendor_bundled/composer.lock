@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4dca37c12dfc0ab223c8e45bf4ef1f78",
+    "content-hash": "67f14416b14f69fabf6e788bca2edba9",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -186,19 +186,24 @@
         },
         {
             "name": "blueimp/jquery-file-upload",
-            "version": "v9.22.0",
+            "version": "v9.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vkhramtsov/jQuery-File-Upload.git",
-                "reference": "c9a396a360f961bc05abbd61514d647590b765bb"
+                "reference": "3c3cdcad290d5cca0e0c4a2a8c88e88c2d824548"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-c9a396a360f961bc05abbd61514d647590b765bb-zip-3b5d7c.zip",
-                "reference": "c9a396a360f961bc05abbd61514d647590b765bb",
-                "shasum": "b0cadee24210489c7653f4241457cedcff6e0281"
+                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-3c3cdcad290d5cca0e0c4a2a8c88e88c2d824548-zip-a4bce4.zip",
+                "reference": "3c3cdcad290d5cca0e0c4a2a8c88e88c2d824548",
+                "shasum": "dd861397a609f9c793ff8a80d0f02f44fc22f2c1"
             },
             "type": "library",
+            "autoload": {
+                "classmap": [
+                    "server/php/UploadHandler.php"
+                ]
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
@@ -232,7 +237,7 @@
                 "upload",
                 "widget"
             ],
-            "time": "2018-06-21T08:29:55+00:00"
+            "time": "2018-10-15T09:30:44+00:00"
         },
         {
             "name": "bower-asset/fontawesome",

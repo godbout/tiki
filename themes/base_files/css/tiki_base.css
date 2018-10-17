@@ -3618,6 +3618,27 @@ div.tiki_plugin {
   cursor: default;
   border-radius: 0; }
 
+.autotoc .nav {
+  margin: 0;
+  overflow: hidden; }
+  .autotoc .nav > li {
+    width: 100%; }
+  .autotoc .nav > li > a {
+    white-space: initial; }
+  .autotoc .nav > li > a.active + ul, .autotoc .nav > li.open > ul {
+    display: block !important; }
+  .autotoc .nav > li .active, .autotoc .nav > li.open > a {
+    padding-left: 19px;
+    background-color: #f8f9fa;
+    color: #0056b3;
+    border-left: 1px solid #212529; }
+  .autotoc .nav .nav > li.open > a, .autotoc .nav .nav > li .active, .autotoc .nav .nav > li a:hover {
+    padding-left: 29px; }
+  .autotoc .nav .nav .nav > li.open > a, .autotoc .nav .nav .nav > li .active, .autotoc .nav .nav .nav > li a:hover {
+    padding-left: 39px; }
+  .autotoc .nav .nav .nav .nav > li.open > a, .autotoc .nav .nav .nav .nav > li .active, .autotoc .nav .nav .nav .nav > li a:hover {
+    padding-left: 49px; }
+
 .back-to-top {
   display: none;
   padding: 4px 10px;

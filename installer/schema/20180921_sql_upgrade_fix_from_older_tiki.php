@@ -15,6 +15,8 @@ function upgrade_20180921_sql_upgrade_fix_from_older_tiki($installer)
 ALTER TABLE `tiki_forums_reported` DROP PRIMARY KEY;
 ALTER TABLE `tiki_forums_reported` ADD PRIMARY KEY (`threadId`, `forumId`, `parentId`, `user`); -- Changed in 20121210_better_forum_reported_index_tiki.sql but never make it to tiki.sql
 DELETE FROM `users_permissions` WHERE `permName` = 'tiki_p_view_poll_choices';
+ALTER TABLE `tiki_secdb` DROP PRIMARY KEY;
+ALTER TABLE `tiki_secdb` ADD PRIMARY KEY (`filename`(215),`tiki_version`(40));
 UPDATE `tiki_modules` SET `position` = '' WHERE `position` IS NULL;
 ALTER TABLE `tiki_modules` CHANGE `position` `position` varchar(20) NOT NULL DEFAULT '';
 ALTER TABLE `tiki_profile_symbols` CHANGE `value` `value` varchar(160) NOT NULL;
