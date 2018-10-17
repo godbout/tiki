@@ -50,7 +50,7 @@
 							//Create your sharelet with desired properties and set button element to false
 							var object = SHARETHIS.addEntry({ title:'{/literal}{$page|escape:"url"}{literal}'}, {button:false});
 							//Output your customized button
-							document.write('<a class="btn btn-info tips" id="share" href="#"{/literal} title="{tr}ShareThis{/tr}">{icon name="sharethis"}{literal}</a>');
+							document.write('<a class="btn btn-info btn-sm tips" id="share" href="#"{/literal} title="{tr}ShareThis{/tr}">{icon name="sharethis"}{literal}</a>');
 							//Tie customized button to ShareThis button functionality.
 							var element = document.getElementById("share");
 							object.attachButton(element);
@@ -62,7 +62,7 @@
 				{if $prefs.feature_backlinks eq 'y' and $backlinks|default:null and $tiki_p_view_backlink eq 'y'}
 					<div class="btn-group backlinks">
 						{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-						<a href="#" role="button" data-toggle="dropdown" data-hover="dropdown" class="btn btn-info dropdown-toggle">
+						<a href="#" role="button" data-toggle="dropdown" data-hover="dropdown" class="btn btn-info btn-sm dropdown-toggle">
 							{icon name="backlink"}
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" role="menu">
@@ -85,7 +85,7 @@
 				{if $structure eq 'y' or ( $structure eq 'n' and count($showstructs) neq 0 )}
 					<div class="btn-group structures">
 						{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-						<a href="#" class="btn btn-info dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+						<a href="#" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
 							{icon name="structure"}
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" role="menu">
@@ -121,7 +121,7 @@
 				{assign var="hasPageAction" value="0"}
 				{capture name="pageActions"}
 					{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-					<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#"  title="{tr}Page actions{/tr}">
+					<a class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#"  title="{tr}Page actions{/tr}">
 						{icon name="cog"}
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
