@@ -16,6 +16,8 @@ function wikiplugin_slider_info()
 		'iconname' => 'tv',
 		'introduced' => 8,
 		'tags' => [ 'basic' ],
+		'last_supported_version' => 'This preference (and all the related code) will be removed after Tiki21',
+		'is_superceded_by' => 'Superceded by preference <a href=\'https://doc.tiki.org/PluginSwiper\'>wikiplugin_swiper</a>',
 		'params' => [
 			'titles' => [
 				'required' => false,
