@@ -50,10 +50,10 @@
 					<a class="dropdown-item" href="tiki-admin.php?page=look">
 						{icon name="image"} {tr}Themes{/tr}
 					</a>
-					<a href="tiki-adminusers.php">
+					<a class="dropdown-item"  href="tiki-adminusers.php">
 						{icon name="user"} {tr}Users{/tr}
 					</a>
-					<a href="tiki-admingroups.php">
+					<a class="dropdown-item"  href="tiki-admingroups.php">
 						{icon name="group"} {tr}Groups{/tr}
 					</a>
 					<div class="dropdown-item">
