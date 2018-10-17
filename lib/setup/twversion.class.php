@@ -28,7 +28,7 @@ class TWVersion
 
 		// Set everything else, including defaults.
 		$this->version 	= '20.0svn';	// needs to have no spaces for releases
-		$this->star	= 'Denebola';
+		$this->star	= 'TBA';
 		$this->releases	= [];
 
 		// Check for Subversion or not
