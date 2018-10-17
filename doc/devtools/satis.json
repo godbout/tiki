@@ -1765,6 +1765,7 @@
 		"npm-asset/node-ensure": ">=0.0.0",
 		"npm-asset/pdfjs-dist": ">=2.0.487",
 		"npm-asset/popper.js": ">=1.14.3",
+		"npm-asset/prefixfree": ">=1.0.10",
 		"npm-asset/punycode": ">=2.1.0",
 		"npm-asset/sass-svg-uri": ">=1.0",
 		"npm-asset/schema-utils": ">=0.4.5",
