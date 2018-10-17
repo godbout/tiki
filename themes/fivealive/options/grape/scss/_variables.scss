@@ -71,7 +71,7 @@ $bg-dark-link-hover-bg: #003c4a;
 
 $hr-border-color: #a02871;
 
-$bg-dark: #063035;
+$bg-dark: #261122;
 $bg-light: #f4dded;
 
 $card-border-color: #bc2f84;
@@ -145,12 +145,12 @@ $autotoc-nav-link-hover-bg: #3b284a;
 
 // - - - - - - - - - -  - - - - - - Other CSS, if any - - - - - - - - - - - - - - - - - //
 
+//.topbar, .navbar-dark, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li,
+//.bg-dark
 .header_outer,
 .layout_basic #top_modules,
 .postbody-title,
-.tiki > .navbar.fixed-top.bg-dark,
-//.topbar, .navbar-dark, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li,
-.bg-dark {
+.tiki > .navbar.fixed-top.bg-dark {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#642759+0,732860+19,92286b+43,a32872+67,a52873+100 */
   background: #642759 !important; /* Old browsers */
   background: -moz-linear-gradient(left,  #642759 0%, #732860 19%, #92286b 43%, #a32872 67%, #a52873 100%) !important; /* FF3.6-15 */
