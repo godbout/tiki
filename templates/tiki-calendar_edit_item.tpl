@@ -179,7 +179,7 @@
 					</div>
 				</div> <!-- / .form-group -->
 				<div class="row">
-					<div class="col-sm-9 col-sm-push-3">
+					<div class="col-sm-9 offset-sm-3">
 						{if $edit}
 							<div id="recurrenceRules" style=" {if ( !($calitem.recurrenceId gt 0) and $recurrent neq 1 ) && $prefs.javascript_enabled eq 'y'} display:none; {/if}" >
 								{if $calitem.recurrenceId gt 0}
@@ -197,8 +197,10 @@
 								{/if}
 								{if $recurrence.id eq 0 or $recurrence.weekly}
 									<div class="form-group row">
-										<div class="col-sm-offset-1 col-sm-4 input-group">
-											<span class="input-group-append">{tr}Each{/tr}</span>
+										<div class="col-sm-6 input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text">{tr}Each{/tr}</span>
+											</div>
 											<select name="weekday" class="form-control">
 												<option value="0" {if $recurrence.weekday eq '0'} selected="selected" {/if} >
 													{tr}Sunday{/tr}
@@ -223,7 +225,9 @@
 													{tr}Saturday{/tr}
 												</option>
 											</select>
-											<span class="input-group-append">{tr}of the week{/tr}</span>
+											<div class="input-group-append">
+												<span class="input-group-text">{tr}of the week{/tr}</span>
+											</div>
 										</div>
 										<hr/>
 									</div>
@@ -773,7 +777,7 @@
 			{if $edit}
 				{if $recurrence.id gt 0}
 					<div class="row">
-						<div class="col-sm-9 col-sm-push-3">
+						<div class="col-sm-9 offset-sm-3">
 							<input type="radio" id="id_affectEvt" name="affect" value="event" checked="checked">
 							<label for="id_affectEvt">
 								{tr}Update this event only{/tr}
@@ -802,23 +806,21 @@
 	</div> <!-- /.modal-body -->
 	{if $edit}
 		<div class="modal-footer">
-			<div class="row submit">
-				<div class="col-sm-9 col-sm-push-3">
-					<input type="submit" class="btn btn-primary" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
-					<input type="submit" class="btn btn-secondary" name="act" value="{tr}Save{/tr}" onclick="needToConfirm=false;">
-					{if $id}
-						<input type="submit" class="btn btn-danger" onclick="needToConfirm=false;document.location='tiki-calendar_edit_item.php?calitemId={$id}&amp;delete=y';return false;" value="{tr}Delete event{/tr}">
+			<div class="col-sm-9 offset-sm-3">
+				<input type="submit" class="btn btn-primary" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
+				<input type="submit" class="btn btn-secondary" name="act" value="{tr}Save{/tr}" onclick="needToConfirm=false;">
+				{if $id}
+					<input type="submit" class="btn btn-danger" onclick="needToConfirm=false;document.location='tiki-calendar_edit_item.php?calitemId={$id}&amp;delete=y';return false;" value="{tr}Delete event{/tr}">
+				{/if}
+				{if $recurrence.id}
+					<input type="submit" class="btn btn-danger" onclick="needToConfirm=false;document.location='tiki-calendar_edit_item.php?recurrenceId={$recurrence.id}&amp;delete=y';return false;" value="{tr}Delete recurrent events{/tr}">
+				{/if}
+				{if $prefs.calendar_fullcalendar eq 'y'}
+					{if $prefs.calendar_export_item == 'y'}
+						{button href='tiki-calendar_export_ical.php? export=y&calendarItem='|cat:$id _text="{tr}Export Event as iCal{/tr}"}
 					{/if}
-					{if $recurrence.id}
-						<input type="submit" class="btn btn-danger" onclick="needToConfirm=false;document.location='tiki-calendar_edit_item.php?recurrenceId={$recurrence.id}&amp;delete=y';return false;" value="{tr}Delete recurrent events{/tr}">
-					{/if}
-					{if $prefs.calendar_fullcalendar eq 'y'}
-						{if $prefs.calendar_export_item == 'y'}
-							{button href='tiki-calendar_export_ical.php? export=y&calendarItem='|cat:$id _text="{tr}Export Event as iCal{/tr}"}
-						{/if}
-					{/if}
-					<input type="submit" class="btn btn-primary" onclick="needToConfirm=false;document.location='{$referer|escape:'html'}';return false;" value="{tr}Cancel{/tr}">
-				</div>
+				{/if}
+				<input type="submit" class="btn btn-primary" onclick="needToConfirm=false;document.location='{$referer|escape:'html'}';return false;" value="{tr}Cancel{/tr}">
 			</div>
 		</div>
 	{/if}
