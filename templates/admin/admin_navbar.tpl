@@ -132,7 +132,7 @@
 						<input type="hidden" name="filters">
 						<input type="text" name="lm_criteria" style="width: 163px;"value="{$lm_criteria|escape}" class="form-control form-control-sm" placeholder="{tr}Search preferences{/tr}...">
 					</div>
-					<button type="submit" class="btn btn-info btn-sm" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
+					<button type="submit" class="btn btn-info btn-sm" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}<span class="title">{tr}Search{/tr}</span></button>
 				</form>
 			</li>
 		</ul>
