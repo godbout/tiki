@@ -168,7 +168,7 @@ class Tracker_Field_CalendarItem extends Tracker_Field_JsCalendar
 			if ($calItem) {
 				$recurrenceId = $calItem['recurrenceId'];
 			} else {
-				Feedback::error(tr('CalendarItem Tracker Field %0 item not found %1', $this->getFieldId(), $calitemId), 'session');
+				Feedback::error(tr('CalendarItem Tracker Field %0 calendar item not found %1 for itemId %2', $this->getFieldId(), $calitemId, $this->getItemId()), 'session');
 				$calitemId = null;
 			}
 		}

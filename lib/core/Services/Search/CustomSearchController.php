@@ -346,7 +346,7 @@ class Services_Search_CustomSearchController
 				$to = $vals[1];
 				if ((empty($config['_showtime']) || $config['_showtime'] === 'n') &&
 						(empty($config['_toendofday']) || $config['_toendofday'] === 'y')) {
-					$to += (24 * 60 * 3600) - 1;	// end date should be the end of the day, not the beginning
+					$to += (24 * 3600) - 1;	// end date should be the end of the day, not the beginning
 				}
 				if (! empty($config['_field'])) {
 					$field = $config['_field'];
