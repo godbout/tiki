@@ -404,101 +404,95 @@
 					</div>
 				</div> <!-- / .row -->
 			{/if}{* end recurrence *}
-			<div class="row mt-md-3">
-				<div class="form-group col-lg-6 date">
-					<div class="row">
-						<label class="col-form-label col-sm-2">{tr}Start{/tr}</label>
-						{if $edit}
-							<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}7{else}5{/if} start">
-								{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-									{jscalendar id="start" date=$calitem.start fieldname="save[date_start]" showtime='y'}
-								{else}
-									{html_select_date prefix="start_date_" time=$calitem.start field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
+			<div class="row mt-md-3 form-group date">
+				<label class="col-form-label col-sm-3">{tr}Start{/tr}</label>
+				{if $edit}
+					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}5{else}4{/if} start">
+						{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
+							{jscalendar id="start" date=$calitem.start fieldname="save[date_start]" showtime='y'}
+						{else}
+							{html_select_date prefix="start_date_" time=$calitem.start field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
+						{/if}
+					</div>
+					{if $prefs.feature_jscalendar eq 'n' or $prefs.javascript_enabled eq 'n'}
+						<div class="col-sm-3 start time">
+							{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
+						</div>
+					{/if}
+					<label class="col-sm-2 checkbox">
+						<input type="checkbox" class="form-check-input" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
+						{tr}All day{/tr}
+					</label>
+				{else}
+					<div class="col-sm-9">
+						<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
+							{if $calitem.allday}
+								<abbr class="dtstart" title="{$calitem.start|tiki_short_date:'n'}">
+									{$calitem.start|tiki_long_date}
+								</abbr>
+							{else}
+								<abbr class="dtstart" title="{$calitem.start|isodate}">
+									{$calitem.start|tiki_long_datetime}
+								</abbr>
+							{/if}
+						</div>
+					</div>
+				{/if}
+			</div> <!-- / .form-group -->
+			<div class="row mt-md-3 form-group date">
+				<label class="col-form-label col-sm-3">{tr}End{/tr}</label>
+				{if $edit}
+					<input type="hidden" name="save[end_or_duration]" value="end" id="end_or_duration">
+					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}5{else}4{/if} end ">
+							{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
+								{jscalendar id="end" date=$calitem.end fieldname="save[date_end]" showtime='y'}
+							{else}
+								{html_select_date prefix="end_date_" time=$calitem.end field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
+							{/if}
+					</div>
+					{if $prefs.feature_jscalendar eq 'n' or $prefs.javascript_enabled eq 'n'}
+						<div class="col-sm-3 end time">
+							{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
+						</div>
+					{/if}
+					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}7{else}4{/if} duration time" style="display:none;">
+						{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_minute_interval class='form-control date nochosen'}
+					</div>
+					<div class="col-sm-2 time">
+						<a href="#" id="durationBtn" class="btn btn-sm btn-primary">
+							{tr}Show duration{/tr}
+						</a>
+					</div>
+				{else}
+					<div class="col-sm-12">
+						<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
+							{if $calitem.allday}
+								{if $calitem.end}
+									<abbr class="dtend" title="{$calitem.end|tiki_short_date:'n'}">
 								{/if}
-							</div>
-							{if $prefs.feature_jscalendar eq 'n' or $prefs.javascript_enabled eq 'n'}
-								<div class="col-sm-3 start time">
-									{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
-								</div>
+								{$calitem.end|tiki_long_date}
+								{if $calitem.end}
+									</abbr>
+								{/if}
+							{else}
+								{if $calitem.end}
+									<abbr class="dtend" title="{$calitem.end|isodate}">
+								{/if}
+								{$calitem.end|tiki_long_datetime}
+								{if $calitem.end}
+									</abbr>
+								{/if}
 							{/if}
-							<label class="col-sm-2 checkbox">
-								<input type="checkbox" class="form-check-input" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
-								{tr}All day{/tr}
-							</label>
-						{else}
-							<div class="col-sm-12">
-								<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
-									{if $calitem.allday}
-										<abbr class="dtstart" title="{$calitem.start|tiki_short_date:'n'}">
-											{$calitem.start|tiki_long_date}
-										</abbr>
-									{else}
-										<abbr class="dtstart" title="{$calitem.start|isodate}">
-											{$calitem.start|tiki_long_datetime}
-										</abbr>
-									{/if}
-								</div>
-							</div>
-						{/if}
+						</div>
 					</div>
-				</div> <!-- / .form-group -->
-				<div class="form-group col-lg-6 date">
-					<div class="row">
-						<label class="col-form-label col-sm-2">{tr}End{/tr}</label>
-						{if $edit}
-							<input type="hidden" name="save[end_or_duration]" value="end" id="end_or_duration">
-							<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}7{else}4{/if} end ">
-									{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-										{jscalendar id="end" date=$calitem.end fieldname="save[date_end]" showtime='y'}
-									{else}
-										{html_select_date prefix="end_date_" time=$calitem.end field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
-									{/if}
-							</div>
-							{if $prefs.feature_jscalendar eq 'n' or $prefs.javascript_enabled eq 'n'}
-								<div class="col-sm-3 end time">
-									{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
-								</div>
-							{/if}
-							<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}7{else}4{/if} duration time" style="display:none;">
-								{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_minute_interval class='form-control date nochosen'}
-							</div>
-							<div class="col-sm-2 time">
-								<a href="#" id="durationBtn" class="btn btn-sm btn-primary">
-									{tr}Show duration{/tr}
-								</a>
-							</div>
-						{else}
-							<div class="col-sm-12">
-								<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
-									{if $calitem.allday}
-										{if $calitem.end}
-											<abbr class="dtend" title="{$calitem.end|tiki_short_date:'n'}">
-										{/if}
-										{$calitem.end|tiki_long_date}
-										{if $calitem.end}
-											</abbr>
-										{/if}
-									{else}
-										{if $calitem.end}
-											<abbr class="dtend" title="{$calitem.end|isodate}">
-										{/if}
-										{$calitem.end|tiki_long_datetime}
-										{if $calitem.end}
-											</abbr>
-										{/if}
-									{/if}
-								</div>
-							</div>
-						{/if}
-						{if $impossibleDates}
-							<br>
-							<span style="color:#900;">
-								{tr}Events cannot end before they start{/tr}
-							</span>
-						{/if}
-					</div>
-				</div> <!-- / .form-group -->
-			</div>
+				{/if}
+				{if $impossibleDates}
+					<br>
+					<span style="color:#900;">
+						{tr}Events cannot end before they start{/tr}
+					</span>
+				{/if}
+			</div> <!-- / .form-group -->
 			{if $edit or !empty($calitem.parsed)}
 				<div class="form-group row">
 					<label class="col-form-label col-sm-3">{tr}Description{/tr}</label>
