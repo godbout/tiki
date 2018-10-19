@@ -208,29 +208,21 @@ class Tracker_Item
 	{
 		$this->owners = $this->getItemOwners();
 		$this->ownerGroup = $this->getItemGroupOwner();
-
 		$this->perms = $this->getItemPermissions();
-
-		if (! $this->perms) {
-			$this->perms = $this->getTrackerPermissions();
-		}
-	}
-
-	private function getTrackerPermissions()
-	{
-		if ($this->definition) {
-			$trackerId = $this->definition->getConfiguration('trackerId');
-			return Perms::get('tracker', $trackerId);
-		}
-
-		$accessor = new Perms_Accessor;
-		$accessor->setResolver(new Perms_Resolver_Default(false));
-		return $accessor;
 	}
 
 	private function getItemPermissions()
 	{
-		if (! $this->isNew()) {
+		if ($this->isNew()) {
+			if ($this->definition) {
+				$trackerId = $this->definition->getConfiguration('trackerId');
+				return Perms::get('tracker', $trackerId);
+			} else {
+				$accessor = new Perms_Accessor;
+				$accessor->setResolver(new Perms_Resolver_Default(false));
+				return $accessor;
+			}
+		} else {
 			$itemId = $this->info['itemId'];
 			return Perms::get('trackeritem', $itemId, $this->info['trackerId']);
 		}

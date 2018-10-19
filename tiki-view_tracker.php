@@ -427,43 +427,27 @@ $smarty->assign('initial', $initial);
 $writerfield = $trackerDefinition->getWriterField();
 $writergroupfield = $trackerDefinition->getWriterGroupField();
 
-if ($my and $writerfield) {
-	$filterfield = $writerfield;
-} elseif ($ours and $writergroupfield) {
-	$filterfield = $writergroupfield;
+if (isset($_REQUEST["filterfield"])) {
+	$filterfield = $_REQUEST["filterfield"];
 } else {
-	if (isset($_REQUEST["filterfield"])) {
-		$filterfield = $_REQUEST["filterfield"];
-	} else {
-		$filterfield = '';
-	}
+	$filterfield = '';
 }
 $smarty->assign('filterfield', $filterfield);
-if ($my and $writerfield) {
-	$exactvalue = $my;
-	$filtervalue = '';
-	$_REQUEST['status'] = 'opc';
-} elseif ($ours and $writergroupfield) {
-	$exactvalue = $userlib->get_user_groups($user);
-	$filtervalue = '';
-	$_REQUEST['status'] = 'opc';
+if (isset($_REQUEST["filtervalue"]) and is_array($_REQUEST["filtervalue"]) and isset($_REQUEST["filtervalue"]["$filterfield"])) {
+	$filtervalue = $_REQUEST["filtervalue"]["$filterfield"];
+} elseif (isset($_REQUEST["filtervalue"])) {
+	$filtervalue = $_REQUEST["filtervalue"];
 } else {
-	if (isset($_REQUEST["filtervalue"]) and is_array($_REQUEST["filtervalue"]) and isset($_REQUEST["filtervalue"]["$filterfield"])) {
-		$filtervalue = $_REQUEST["filtervalue"]["$filterfield"];
-	} elseif (isset($_REQUEST["filtervalue"])) {
-		$filtervalue = $_REQUEST["filtervalue"];
-	} else {
-		$filtervalue = '';
-	}
-	if (! empty($_REQUEST['filtervalue_other'])) {
-		$filtervalue = $_REQUEST['filtervalue_other'];
-	}
-	$field = $trackerDefinition->getField($filterfield);
-	if ($field && in_array($field['type'], ['d', 'D', 'R'])) {
-		$exactvalue = $filtervalue;
-	} else {
-		$exactvalue = '';
-	}
+	$filtervalue = '';
+}
+if (! empty($_REQUEST['filtervalue_other'])) {
+	$filtervalue = $_REQUEST['filtervalue_other'];
+}
+$field = $trackerDefinition->getField($filterfield);
+if ($field && in_array($field['type'], ['d', 'D', 'R'])) {
+	$exactvalue = $filtervalue;
+} else {
+	$exactvalue = '';
 }
 $smarty->assign('filtervalue', $filtervalue);
 if (is_array($filtervalue)) {

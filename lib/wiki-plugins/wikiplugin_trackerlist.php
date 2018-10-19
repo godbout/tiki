@@ -1826,53 +1826,8 @@ function wikiplugin_trackerlist($data, $params)
 				}
 			}
 		}
-		if ($tiki_p_admin_trackers != 'y' && $perms['tiki_p_view_trackers'] != 'y' && ($definition->isEnabled('writerCanModify') or $definition->isEnabled('userCanSeeOwn')) && $user && $userCreatorFieldIds) { //patch this should be in list_items
-			if (is_array($filterfield)) {
-				$filterfield[] = ['usersearch' => $userCreatorFieldIds];
-			} elseif (empty($filterfield)) {
-				$filterfield = [['usersearch' => $userCreatorFieldIds]];
-			} else {
-				$filterfield = [$filterfield, ['usersearch' => $userCreatorFieldIds]];
-			}
-			if (is_array($exactvalue)) {
-				$exactvalue[] = $user;
-			} elseif (empty($exactvalue)) {
-				$exactvalue = [$user];
-			} else {
-				$exactvalue = [$exactvalue, $user];
-			}
-			if (is_array($filtervalue)) {
-				$filtervalue[] = '';
-			} elseif (empty($filtervalue)) {
-				$filtervalue = [''];
-			} else {
-				$filtervalue = [$filtervalue, ''];
-			}
-		}
 		if ($tiki_p_admin_trackers != 'y' && $perms['tiki_p_view_trackers'] != 'y' && $user && $groupCreatorFieldId) {
 			if ($filterfield != $groupCreatorFieldId || (is_array($filterfield) && ! in_array($groupCreatorFieldId, $filterfield))) {
-				$groups = $userlib->get_user_groups($user);
-				if (is_array($filterfield)) {
-					$filterfield[] = $groupCreatorFieldId;
-				} elseif (empty($filterfield)) {
-					$filterfield = [$groupCreatorFieldId];
-				} else {
-					$filterfield = [$filterfield, $groupCreatorFieldId];
-				}
-				if (is_array($exactvalue)) {
-					$exactvalue[] = $groups;
-				} elseif (empty($exactvalue)) {
-					$exactvalue = [$groups];
-				} else {
-					$exactvalue = [$exactvalue, $groups];
-				}
-				if (is_array($filtervalue)) {
-					$filtervalue[] = '';
-				} elseif (empty($filtervalue)) {
-					$filtervalue = [''];
-				} else {
-					$filtervalue = [$filtervalue, ''];
-				}
 				global $group;// awful trick - but the filter garantee that the group is ok
 				$smarty->assign_by_ref('ours', $group);
 				$perms = array_merge($perms, $trklib->get_special_group_tracker_perm($tracker_info));
