@@ -1585,19 +1585,6 @@ class TrackerLib extends TikiLib
 		// but the sql query returns items the user has no permissions or the filter criteria does not match,
 		// then only a subset of what is available  would be returned.
 
-
-		// Due to performance issues with trackers having more than 5k items, we make it optional
-		// $exactPaging true : slow on large tracker, check each item for permission and filtering
-		//              false: pass offset directly to sql, could lead to wrong pagination if perms / filter are used on items
-
-		// Need to get this into tracker setup, so one can decide for each tracker how $exactPaging should work.
-		// $definition = Tracker_Definition::get($trackerId);
-
-
-		// default is old behaviour as of tiki14 - get offset directly from sql without taking permissions or filter into account.
-		$exactPaging = false;
-
-		// defaults for $exactPaging == false
 		// original requested number of items
 		$maxRecordsRequested = $maxRecords;
 		// original page (from pagination)
@@ -1615,22 +1602,41 @@ class TrackerLib extends TikiLib
 		// number of records in the result set
 		$resultCount = 0;
 
-		// settings for $exactPaging == true
-		if ($exactPaging == true) {
-			// outer loop - grab more records bc it might be we must filter out records.
-			// 300 seems to be ok, bc paganination offers this as well as the size of the resultset
-			// NOTE: This value is important with respect to memory usage and performance - especially when lots of items (like 10k+) are in use.
-			$maxRecords = 300;
-			// offset used for sql query
-			$offset = 0;
-		}
+		// outer loop - grab more records bc it might be we must filter out records.
+		// 300 seems to be ok, bc paganination offers this as well as the size of the resultset
+		// NOTE: This value is important with respect to memory usage and performance - especially when lots of items (like 10k+) are in use.
+		$maxRecords = 300;
+		// offset used for sql query
+		$offset = 0;
 
+		// optimize permission check - preload ownership fields to be able to quickly enforce canSeeOwn or wrtier group can modify permissions
+		$definition = Tracker_Definition::get($trackerId);
+		$ownershipFields = $definition->getItemOwnerFields();
+		if ($groupField = $definition->getWriterGroupField()) {
+			$ownershipFields[] = $groupField;
+		}
 
 		while (! $finished) {
 			$ret1 = $this->fetchAll($query, $bindvars, $maxRecords, $offset);
 			// add. security - should not be necessary bc of check at the end. no records left - end outer loop
 			if (count($ret1) == 0) {
 				$finished = true;
+			}
+
+			if (! $skip_permission_check) {
+				// preload permissions for all items to be checked
+				Perms::bulk(['type' => 'trackeritem', 'parentId' => $trackerId], 'object', $ret1, 'itemId');
+
+				// preload ownership field values for all items to be checked
+				$ownershipData = [];
+				$table = $this->itemFields();
+				$rows = $table->fetchAll(['itemId', 'fieldId', 'value'], [
+					'itemId' => $table->in(array_map(function($row){ return $row['itemId']; }, $ret1)),
+					'fieldId' => $table->in($ownershipFields)
+				]);
+				foreach ($rows as $row) {
+					$ownershipData[$row['itemId']][$row['fieldId']] = $this->parse_user_field($row['value']);
+				}
 			}
 
 			foreach ($ret1 as $res) {
@@ -1641,12 +1647,9 @@ class TrackerLib extends TikiLib
 					break;
 				}
 
-				$res['itemUsers'] = [];
-				if ($listfields !== null) {
-					$res['field_values'] = $this->get_item_fields($trackerId, $res['itemId'], $listfields, $res['itemUsers']);
-				}
-
 				if (! $skip_permission_check) {
+					// this is needed by permission checking inside tracker item
+					$res += $ownershipData[$res['itemId']] ?? [];
 					$itemObject = Tracker_Item::fromInfo($res);
 					if (! $itemObject->canView()) {
 						$cant--;
@@ -1654,6 +1657,11 @@ class TrackerLib extends TikiLib
 						$currentCount++;
 						continue;
 					}
+				}
+
+				$res['itemUsers'] = [];
+				if ($listfields !== null) {
+					$res['field_values'] = $this->get_item_fields($trackerId, $res['itemId'], $listfields, $res['itemUsers']);
 				}
 
 				if (! empty($asort_mode)) {
@@ -1695,8 +1703,7 @@ class TrackerLib extends TikiLib
 				$currentOffset++;
 
 				// field is stored in $res. See wether we can add it to the resultset, based on the requested offset
-				// if clause logic mainly for $exactPaging == true
-				if (($currentOffset > $offsetRequested) || ($exactPaging == false)) {
+				if (($currentOffset > $offsetRequested)) {
 					$resultCount++;
 					if (empty($kx)) {
 						// ex: if the sort field is non visible, $kx is null
@@ -1706,19 +1713,13 @@ class TrackerLib extends TikiLib
 					}
 				}
 
-				// logic for $exactPaging == true. enough items - need to leave the foreach loop
-				if ($resultCount == $maxRecordsRequested) {
+				if ($resultCount >= $maxRecordsRequested) {
 					$finished = true;
 					break;
 				}
 			} // foreach
 
-			// foreach loop done - depending on $exactPaging we finish or might need to go ahead
-			if ($exactPaging == false) {
-				$finished = true;
-			}
-
-			// are items left? - this part is only relevant when $exactPaging == true
+			// are items left?
 			if ($currentCount == $totalCount) {
 				$finished = true;
 			} else {
