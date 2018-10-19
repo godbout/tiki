@@ -2094,23 +2094,7 @@ class TrackerLib extends TikiLib
 			'aggregate' => sha1("trackeritem/$currentItemId"),
 		];
 
-		$encoded = json_encode($arguments);
-
-		// each field can be 64KB but \ActivityLib::recordEvent tries to store all these args in a BLOB
-		if (strlen($encoded) >= 65535) {
-			unset($arguments['values'], $arguments['old_values']);
-			$encoded = json_encode($arguments);
-		}
-
-		if (strlen($encoded) >= 65535) {
-			unset($arguments['old_values_by_permname']);	// fields are duplicated sadly
-			$encoded = json_encode($arguments);
-		}
-
-		if (strlen($encoded) >= 65535) {
-			unset($arguments['values_by_permname']);		// no field values at all
-		}
-
+		// this needs to trigger no matter of the size as trackeritem categorization depends on this and other event types as well
 		TikiLib::events()->trigger(
 			$final_event,
 			$arguments
