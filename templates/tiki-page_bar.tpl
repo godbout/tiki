@@ -15,7 +15,7 @@
 			{/if}
 		{/if}
 		{if $prefs.feature_likePages eq 'y' and $tiki_p_wiki_view_similar eq 'y'}
-			{button _keepall='y' href="tiki-likepages.php" page=$page _type="link" _class="dropdown-item text-info" _text="{tr}Similar{/tr}"}
+			{button _keepall='y' href="tiki-likepages.php" page=$page _type="link" _class="dropdown-item" _text="{tr}Similar{/tr}"}
 		{/if}
 
 		{if $prefs.feature_wiki_undo eq 'y' and $canundo eq 'y'}
