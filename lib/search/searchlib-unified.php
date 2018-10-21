@@ -476,8 +476,8 @@ class UnifiedSearchLib
 	function getLastLogItem()
 	{
 		global $prefs;
-		$files['web'] = $prefs['tmpDir'] . '/Search_Indexer.log';
-		$files['console'] = $prefs['tmpDir'] . '/Search_Indexer_console.log';
+		$files['web'] = $this->getLogFilename(1);
+		$files['console'] = $this->getLogFilename(2);
 		foreach ($files as $type => $file) {
 			if ($fp = @fopen($file, "r")) {
 				$pos = -2;
