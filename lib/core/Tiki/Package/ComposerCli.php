@@ -321,6 +321,21 @@ class ComposerCli
 		return $json;
 	}
 
+	/**
+	 * Execute Clear-Cache command
+	 *
+	 * @return array
+	 */
+	public function execClearCache()
+	{
+		if (! $this->canExecuteComposer()) {
+			return [];
+		}
+		list(, $errors, ) = $this->execComposer(['clear-cache']);
+
+		return $errors;
+	}
+
 
 	/**
 	 * Check if the composer.json file exists

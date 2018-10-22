@@ -1365,7 +1365,12 @@ if ($install_step == '4') {
 }
 
 if (((isset($value) && $value == 'utf8mb4') || $install_step == '7') && $db = TikiDB::get()) {
-	$result = $db->fetchAll('SELECT TABLE_COLLATION FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND TABLE_COLLATION NOT LIKE "utf8mb4%"', $dbs_tiki);
+	$result = $db->fetchAll(
+		'SELECT TABLE_COLLATION FROM INFORMATION_SCHEMA.TABLES '
+		. ' WHERE TABLE_SCHEMA = ? AND TABLE_COLLATION NOT LIKE "utf8mb4%" '
+		. ' AND NOT (TABLE_NAME LIKE "index_%" OR TABLE_NAME LIKE "zzz_unused_%")', // Ignore tables that are not converted - but are generated
+		$dbs_tiki
+	);
 	if (! empty($result)) {
 		$smarty->assign('legacy_collation', $result[0]['TABLE_COLLATION']);
 	}
