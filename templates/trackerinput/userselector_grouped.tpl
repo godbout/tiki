@@ -10,6 +10,7 @@
 	</div>
 	<div class="col-xs-6">
 		{tr}Select user(s):{/tr}
+		<input type="hidden" name="{$field.ins_id}[]" value="">
 		<select name="{$field.ins_id}[]" id="user_selector_{$field.fieldId}" multiple="multiple" class="form-control col-xs-6">
 			{section name=ix loop=$data.selected_users}
 				<option value="{$data.selected_users[ix]}" selected>{if ($field.showRealname == 'y')}{$data.selected_users[ix]|username}{else}{$data.selected_users[ix]}{/if}</option>

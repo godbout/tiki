@@ -143,6 +143,10 @@ function smarty_function_user_selector($params, $smarty)
 
 		asort($users, SORT_NATURAL | SORT_FLAG_CASE);
 
+		if ($params['multiple'] === 'true' && $params['allowNone'] === 'y') {
+			$ret .= '<input type="hidden" name="' . $params['name'] . '[]" value="">';
+		}
+
 		$ret .= '<select name="' . $params['name'] . ( $params['multiple'] === 'true' ? '[]' : '' ) . '" id="' . $params['id'] . '"' . $sz . $ed . $mt . ' style="' . $params['style'] . '" class="form-control">';
 		if ($params['allowNone'] === 'y') {
 			$ret .= '<option value=""' . (empty($params['user']) ? ' selected="selected"' : '') . ' >' . tra($params['noneLabel']) . '</option>';
