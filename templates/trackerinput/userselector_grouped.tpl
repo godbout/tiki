@@ -1,6 +1,6 @@
 {* $Id$ *}
 <div class="row">
-	<div class="col-xs-6">
+	<div class="col-sm-6">
 		{tr}Filter by group:{/tr}
 		<select id="user_group_selector_{$field.fieldId}" multiple="multiple" class="form-control">
 			{section name=ix loop=$data.groups}
@@ -8,9 +8,10 @@
 			{/section}
 		</select>
 	</div>
-	<div class="col-xs-6">
+	<div class="col-sm-6">
 		{tr}Select user(s):{/tr}
-		<select name="{$field.ins_id}[]" id="user_selector_{$field.fieldId}" multiple="multiple" class="form-control col-xs-6">
+		<input type="hidden" name="{$field.ins_id}[]" value="">
+		<select name="{$field.ins_id}[]" id="user_selector_{$field.fieldId}" multiple="multiple" class="form-control">
 			{section name=ix loop=$data.selected_users}
 				<option value="{$data.selected_users[ix]}" selected>{if ($field.showRealname == 'y')}{$data.selected_users[ix]|username}{else}{$data.selected_users[ix]}{/if}</option>
 			{/section}
