@@ -38,6 +38,10 @@
 		color: $body-color;
 	}
 
+	.message.chat-msg:hover {
+		background-color: transparent;
+	}
+
 	#minimized-chats {
 		.chat-head-chatbox {
 			background-color: $primary;
