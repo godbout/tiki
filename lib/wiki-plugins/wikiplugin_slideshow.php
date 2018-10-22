@@ -305,27 +305,33 @@ function wikiplugin_slideshow($data, $params)
 		);
 	}
 	if($params['alignImage']=='y'){
-		$headerlib->add_jq_onready('(function(){
+		$headerlib->add_js('(function(){
+
 			var images = [];
 			$("section table tr").each(function(){
 				var tr=this;
 				var imgsrc="";
 				var minwidth="";
-				$(this).find("img").each(function(){
-					if(this.width>200 && this.height>200){
-						$(tr).find("td").attr("style","vertical-align:top");
-						imgsrc=this.src;
-						minwidth=(this.width)/2; 
-						this.remove();
-						if(minwidth>450){ //to avoid distortion of text, in case of large image
-							minwidth=450;
+				
+				if($(this).text().length>20){
+				
+					$(this).find("img").each(function(){
+					
+						if(this.width>200 ){
+							$(tr).find("td").attr("style","vertical-align:top");
+							imgsrc=this.src;
+							minwidth=(this.width)/2; 
+							this.remove();
+							if(minwidth>450){ //to avoid distortion of text, in case of large image
+								minwidth=450;
+							}
 						}
+					});
+					if(imgsrc!="") {
+						var tableData = $("<td style=\"width:50%\"><img src="+imgsrc+" style=\"min-width:"+minwidth+"px;max-height:85%\"></td>");
+						$(this).append(tableData);
 					}
-				});
-				if(imgsrc!="") {
-					var tableData = $("<td><img src="+imgsrc+" style=\"max-height:70%;min-width:"+minwidth+"px\"></td>");
-					$(this).append(tableData);
-				}
+				}	
 			})
 		})()');
 	}

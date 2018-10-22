@@ -167,11 +167,11 @@ if (isset($_REQUEST['pdf'])) {
 				. '.css'
 			);
 			$customCSS .= '.reveal section{width:70%;text-align:center;padding-top:50px;margin:auto;text-align:center} .reveal h1{font-size:2em} .reveal{font-size:1.3em;line-height:1.5em}section{text-align:center;margin: auto;width:100%;}';
-			$pdata = '<div class="reveal">' . $pdata . '</div>';
+			$pdata = '<pdfsettings header="off" footer="off"></pdfsettings><div class="reveal">' . $pdata . '</div>';
 
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
-				'<style>' . $customCSS . '</style>'.$pdfStyles. $pdata
+				$pdfStyles. $pdata.'<style>' . str_replace(array(".reveal {","vertical-align: baseline;"),array(".reveal,.reveal table{ ","vertical-align:top;"),$customCSS) . ' .reveal table{font-size:1.3em;font-weight:normal;line-height:1.4em;height:auto;!important}</style>'
 			);
 		}
 
@@ -218,17 +218,13 @@ $headerlib->add_css(
 
 $headerlib->add_jq_onready(
 	'$("<link/>", {rel: "stylesheet",type: "text/css",href: "", id:"themeCSS"}).appendTo("head");
-	$("body").append("<style type=\"text/css\">.reveal h1 {font-size: 2.8em;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.03);}.reveal table {overflow: hidden;} .reveal section img {border:0px;background:none;box-shadow:none} .reveal table th, .reveal table td{text-align:center}</style>");
-	$("#page-bar").remove();
-	$(".icon_edit_section").remove();
-	$(".editplugin").remove();
-	$("#show-errors-button").remove();
-	$(".wikitext").remove();
-	$(".icon_edit_section").remove();
-	$("#toc").remove();
-	$("footer").remove();
-	$(".heading-link").remove();
-	Reveal.initialize();
+	$("body").append("<style type=\"text/css\">.reveal li,.reveal section p { font-size: 1.3em !important; line-height:1.4em } .reveal li{margin:0.3em 0.5em 0.3em 0.5em} .reveal li ul li{font-size:1.05em !important; margin:0em !important}.reveal section pre code { font-size: 0.7em !important;} .reveal h1 {font-size: 2.8em;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.03);}.reveal table {overflow: hidden;} .reveal section img {border:0px;background:none;box-shadow:none} .reveal table th, .reveal table td{text-align:center;vertical-align:top !important} .reveal ul{vertical-align:top !important}</style>");
+	var extraElements=["#page-bar",".icon_edit_section",".icon-link-external",".editplugin","#show-errors-button",".wikitext",".icon_edit_section","#toc","footer",".heading-link"];
+	jQuery.each( extraElements, function( i, val ) {
+		$( val ).remove();
+	});
+
+	
 	if(fragments=="y") {
 		$( "li" ).addClass( "fragment "+fragmentClass+" "+fragmentHighlightColor );
 	}
@@ -315,22 +311,43 @@ $headerlib->add_jq_onready(
 			}
 		});
 		//Append slide title with URL on slide change
-		Reveal.addEventListener( "slidechanged", function( event ) { location.hash = "!_"+$(".present table tr td").children("h1").attr("id");});
-		var found=0;
-		if(location.hash && found==0){
-		 var goToSlide = location.hash.replace("#!_","");
-		 var slideCount=0;
-		 $( "section table tr td" ).each(function( index ) {
-			if($(this).children("h1").attr("id")==goToSlide){
-			 Reveal.slide(slideCount);
-			 found=1;
+		Reveal.addEventListener( "slidechanged", function( event ) { location.hash = "!_"+$(".present table tr td").children("h1").attr("id");
+		//fonts adjustment
+			if($( ".present" ).innerHeight() >= $(document).innerHeight()){
+				if($( ".present" ).innerHeight()-$(document).innerHeight()>30){
+					var overflow=$( ".present" ).innerHeight()-$(document).innerHeight();
+					if(overflow<100){fontsize="1.3";}
+					if(overflow<100){fontsize="1.3";}
+					else if(overflow<350){fontsize="1.1";}
+					else if(overflow<600){fontsize="1.0";}
+					else{fontsize="0.9";}
+					$( ".present li" ).attr("style","font-size:"+fontsize+"em !important; line-height:1.15em !important;margin:0.2em;");
+					$( ".present p" ).attr("style","font-size:"+fontsize+"em !important;margin:10px 0px;line-height:1.2em !important");
+				}
 			}
-			else{
-			slideCount++;
-			} 
-		});}'
-
-);
+			
+			
+		});
+		Reveal.initialize({ width: "98%",height: "100%",center: false});
+		Reveal.addEventListener( \'ready\', function( event ) {
+		
+			var found=0;
+			if(location.hash && found==0){
+		 		var goToSlide = location.hash.replace("#!_","");
+		 		var slideCount=0;
+		 		$( "section table tr td" ).each(function( index ) {
+					if(found==1){return;}
+					if($(this).children("h1").attr("id")==goToSlide && found==0){
+			 			Reveal.slide(slideCount);
+			 			found=1;
+					}
+					if($(this).children("h1").attr("id")){
+						slideCount++;
+					}
+			 	});
+			 }
+		});
+		');
 
 ask_ticket('index-raw');
 
