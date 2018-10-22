@@ -1713,7 +1713,7 @@ class TrackerLib extends TikiLib
 					}
 				}
 
-				if ($resultCount >= $maxRecordsRequested) {
+				if ($resultCount == $maxRecordsRequested) {
 					$finished = true;
 					break;
 				}
