@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ecd2ddb337a60074aeac7e5cb8b49d56",
+    "content-hash": "94aabddb2b69bcb0a0669f26e9c01324",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -241,17 +241,17 @@
         },
         {
             "name": "bower-asset/fontawesome",
-            "version": "5.4.0",
+            "version": "5.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "5362994408184a0f86b2b63b5971eac15eca1664"
+                "reference": "559a780f29c9a7efe08835c5ff3d05f57e4389a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-5362994408184a0f86b2b63b5971eac15eca1664-zip-5faa6b.zip",
-                "reference": "5362994408184a0f86b2b63b5971eac15eca1664",
-                "shasum": "22d9509f7c69c3149814f3ed00a8d4213add759a"
+                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-559a780f29c9a7efe08835c5ff3d05f57e4389a3-zip-1ccaea.zip",
+                "reference": "559a780f29c9a7efe08835c5ff3d05f57e4389a3",
+                "shasum": "751619b83cd916b793853cfbc6bd8ccd4209a1c0"
             },
             "type": "bower-asset"
         },
@@ -656,9 +656,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
+                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
+                "shasum": ""
             },
             "type": "component",
             "extra": {
@@ -905,7 +905,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Üngür",
+                    "name": "Osman Ungur",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -977,9 +977,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/fullcalendar/fullcalendar/fullcalendar-fullcalendar-3ddb3c8d1461c6b841aed3487ba07d8ba338adb6-zip-38ef6e.zip",
+                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/3ddb3c8d1461c6b841aed3487ba07d8ba338adb6",
                 "reference": "3ddb3c8d1461c6b841aed3487ba07d8ba338adb6",
-                "shasum": "8c2a4de63c685f4f77239e1a1bf0924c0bcfdc48"
+                "shasum": ""
             },
             "require": {
                 "components/jquery": "2 - 3",
@@ -1151,9 +1151,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
+                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
+                "shasum": ""
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1345,17 +1345,17 @@
         },
         {
             "name": "jcbrand/converse.js",
-            "version": "v4.0.2",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/conversejs/converse.js.git",
-                "reference": "79b8ed71776da4c6e8b0a38995914a7129536f41"
+                "reference": "279fda78773c927668f744b3840448de25c09b8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-79b8ed71776da4c6e8b0a38995914a7129536f41-zip-93379e.zip",
-                "reference": "79b8ed71776da4c6e8b0a38995914a7129536f41",
-                "shasum": "e6376a61936253fe01018966e478d065507aeacb"
+                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-279fda78773c927668f744b3840448de25c09b8f-zip-95cc5f.zip",
+                "reference": "279fda78773c927668f744b3840448de25c09b8f",
+                "shasum": "4c38c0737afbbe73bfe153e0febe77826b7f705f"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1370,7 +1370,7 @@
                 "presence",
                 "xmpp"
             ],
-            "time": "2018-10-02T20:51:01+00:00"
+            "time": "2018-10-22T09:41:40+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -1712,9 +1712,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.1",
@@ -2235,9 +2235,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nolimits4web/swiper/nolimits4web-swiper-bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd-zip-506058.zip",
+                "url": "https://api.github.com/repos/nolimits4web/swiper/zipball/bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd",
                 "reference": "bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd",
-                "shasum": "4b797f22f91cf0d5bb663baed6f44f4a1561a540"
+                "shasum": ""
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2306,10 +2306,10 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
+                "type": "tar",
+                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz",
                 "reference": null,
-                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -3285,9 +3285,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
+                "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -3856,9 +3856,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-ctype/symfony-polyfill-ctype-e3d826245268269cd66f8326bd8bc066687b4a19-zip-b18935.zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
                 "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
-                "shasum": "fd7ab319a82c0036fbf48ae958f1f6ba1309bc5b"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3"
@@ -4128,9 +4128,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/true/punycode/true-punycode-a4d0c11a36dd7f4e7cd7096076cab6d3378a071e-zip-4ceb35.zip",
+                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
                 "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
-                "shasum": "0153b28196219934ea010de766dea03de32a7d89"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
