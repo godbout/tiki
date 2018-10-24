@@ -2250,10 +2250,10 @@ class Services_Tracker_Controller
 			}
 		},
 		highlight: function(element) {
-			$(element).parents("div, p").first().addClass("has-error");
+			$(element).addClass("is-invalid");
 		},
 		unhighlight: function(element) {
-			$(element).parents("div, p").first().removeClass("has-error");
+			$(element).removeClass("is-invalid");
 		},
 		ignore: ".ignore"
 		});';
