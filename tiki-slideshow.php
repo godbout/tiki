@@ -327,7 +327,7 @@ $headerlib->add_jq_onready(
 					$( ".present h1" ).attr("style","font-size:2em");
 					
 					}
-					$( ".present li" ).attr("style","font-size:"+fontsize+" !important; line-height:1.15em !important;margin:0.2em 0.5em 0.2em 0.2em;");
+					$( ".present li" ).attr("style","font-size:"+fontsize+" !important; line-height:1.15em !important;margin:0.2em 0.5em 0.2em 0.5em;");
 					$( ".present p" ).attr("style","font-size:"+fontsize+" !important;margin:10px 0px;line-height:1.2em !important");
 				}
 			}
