@@ -2239,7 +2239,7 @@ class Services_Tracker_Controller
 	function get_validation_options($formId = '')
 	{
 		$jsString = ',
-		errorClass: "label label-warning",
+		errorClass: "invalid-feedback",
 		errorPlacement: function(error,element) {
 			if ($(element).parents(".input-group").length > 0) {
 				error.insertAfter($(element).parents(".input-group").first());
