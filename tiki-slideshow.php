@@ -318,11 +318,17 @@ $headerlib->add_jq_onready(
 					var overflow=$( ".present" ).innerHeight()-$(document).innerHeight();
 					if(overflow<100){fontsize="1.3";}
 					if(overflow<100){fontsize="1.3";}
-					else if(overflow<350){fontsize="1.1";}
-					else if(overflow<600){fontsize="1.0";}
-					else{fontsize="0.9";}
-					$( ".present li" ).attr("style","font-size:"+fontsize+"em !important; line-height:1.15em !important;margin:0.2em;");
-					$( ".present p" ).attr("style","font-size:"+fontsize+"em !important;margin:10px 0px;line-height:1.2em !important");
+					else if(overflow<350){fontsize="1.1em";}
+					else if(overflow<600){fontsize="1.0em";}
+					else if(overflow<800){fontsize="0.9em";}
+					if(window.innerWidth<=1024 && window.innerHeight < window.innerWidth){fontsize="16px";
+					$( ".present td" ).attr("style","font-size:16px;border-bottom:none");
+					$( ".present td div" ).attr("style","font-size:16px");
+					$( ".present h1" ).attr("style","font-size:2em");
+					
+					}
+					$( ".present li" ).attr("style","font-size:"+fontsize+" !important; line-height:1.15em !important;margin:0.2em 0.5em 0.2em 0.2em;");
+					$( ".present p" ).attr("style","font-size:"+fontsize+" !important;margin:10px 0px;line-height:1.2em !important");
 				}
 			}
 			
