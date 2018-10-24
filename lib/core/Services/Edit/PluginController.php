@@ -190,7 +190,16 @@ class Services_Edit_PluginController
 				$rules = json_encode([
 					'rules' => $validationRules,
 					'errorClass' => 'invalid-feedback',
+					'highlight' => 'hiFunction',
+					'unhighlight' => 'unFunction',
 				]);
+
+				// add the highlight and unhighlight functions back in, not as strings
+				$rules = str_replace(
+					['"hiFunction"', '"unFunction"'],
+					['function(element) {$(element).addClass(\'is-invalid\');}', 'function(element) {$(element).removeClass(\'is-invalid\');}'],
+					$rules
+				);
 				TikiLib::lib('header')->add_jq_onready('$("#plugin_params > form").validate(' . $rules . ');');
 			}
 
