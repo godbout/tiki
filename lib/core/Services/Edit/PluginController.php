@@ -187,7 +187,10 @@ class Services_Edit_PluginController
 			}
 
 			if ($validationRules) {
-				$rules = json_encode(['rules' => $validationRules]);
+				$rules = json_encode([
+					'rules' => $validationRules,
+					'errorClass' => 'invalid-feedback',
+				]);
 				TikiLib::lib('header')->add_jq_onready('$("#plugin_params > form").validate(' . $rules . ');');
 			}
 

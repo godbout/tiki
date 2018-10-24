@@ -13,6 +13,9 @@
 		{if $param.area}{$inputId=$param.area|escape}{else}{$inputId="param_{$name|escape}_input"}{/if}
 		<div class="col-sm-3">
 			<label for="{$inputId}">{$param.name|escape}</label>
+			{if not empty($param.required)}
+				<strong class="mandatory_star text-danger tips" title="|{tr}Required{/tr}">*</strong>
+			{/if}
 			{if not empty($param.type)}
 				{$onclick = "openFgalsWindow('{$prefs.home_file_gallery|sefurl:'file gallery':true}filegals_manager={$param.area|escape}&id=1', true);return false;"}
 				{if $param.type eq 'image'}
