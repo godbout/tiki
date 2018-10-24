@@ -174,7 +174,7 @@
 				</div>
 			{/if}
 
-			<div class="articleheading">
+			<div class="articleheading media">
 				<div {if $listpages[ix].isfloat eq 'n'}class="media-left"{/if}>
 					{if $listpages[ix].show_image eq 'y'}
 						{if $listpages[ix].useImage eq 'y'}

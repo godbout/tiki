@@ -32,7 +32,7 @@ class Email
 		}
 
 		//Only support Forum/Blog Post comments
-		if (! in_array($type, ['forum', 'blog post'])) {
+		if (! in_array($type, ['forum', 'blog post', 'trackeritem'])) {
 			return [];
 		}
 

@@ -116,7 +116,7 @@
 									{assign var="show_details_for_domain" value=$profile.domain|escape}
 									<td>{$profile.name|escape}: {tr}See profile info below (may take a few seconds to load){/tr}.</td>
 								{else}
-									<td><a href="javascript:$.profilesShowDetails( '{$baseURI}', 'profile-{$k}', '{$profile.domain|escape}', '{$profile.name|escape}', '{ticket mode=get}' )">{$profile.name|escape}</a>{if $profile.installed} <em>{tr}applied{/tr}</em>{/if}</td>
+									<td><a href="javascript:$.profilesShowDetails( '{$baseURI}', 'profile-{$k}', '{$profile.domain|escape}', '{$profile.name|escape}', '{ticket mode=get}', '{{ticket mode=get force=new}}' )">{$profile.name|escape}</a>{if $profile.installed} <em>{tr}applied{/tr}</em>{/if}</td>
 								{/if}
 
 								<td>{$profile.domain}</td>
@@ -128,7 +128,7 @@
 						{/if}
 					</table>
 					{if isset($show_details_for_profile_num) && $show_details_for_profile_num != ""}
-						{jq}$.profilesShowDetails('{{$baseURI}}', 'profile-{{$show_details_for_profile_num}}', '{{$show_details_for_domain}}', '{{$show_details_for_fullname}}', '{{ticket mode=get}}');{/jq}
+						{jq}$.profilesShowDetails('{{$baseURI}}', 'profile-{{$show_details_for_profile_num}}', '{{$show_details_for_domain}}', '{{$show_details_for_fullname}}', '{{ticket mode=get}}', '{{ticket mode=get force=new}}');{/jq}
 					{/if}
 				</div>
 			{/if}
