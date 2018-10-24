@@ -313,7 +313,7 @@ function wikiplugin_slideshow($data, $params)
 				var imgsrc="";
 				var minwidth="";
 				
-				if($(this).text().length>20){
+				if($(this).text().length>20 && window.innerHeight < window.innerWidth){ //checking for text content and screen orientation
 				
 					$(this).find("img").each(function(){
 					
