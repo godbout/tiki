@@ -468,7 +468,7 @@
 						</a>
 					</div>
 				{else}
-					<div class="col-sm-12">
+					<div class="col-sm-9">
 						<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
 							{if $calitem.allday}
 								{if $calitem.end}
