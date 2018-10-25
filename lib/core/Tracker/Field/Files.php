@@ -441,7 +441,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 
 				foreach ($this->getConfiguration('files') as $fileId => $file) {
 					$ret .= '<li>';
-					if ($prefs->vimeo_upload == 'y' && $this->getOption('displayMode') == 'vimeo') {
+					if ($prefs['vimeo_upload'] == 'y' && $this->getOption('displayMode') == 'vimeo') {
 						$ret .= smarty_function_icon(['name' => 'vimeo'], $smarty->getEmptyInternalTemplate());
 					} else {
 						$ret .= smarty_modifier_iconify('tiki-download_file.php?fileId=' . $fileId, $file['filetype'], $fileId, 2);
