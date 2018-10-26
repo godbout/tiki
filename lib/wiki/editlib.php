@@ -1267,6 +1267,21 @@ class EditLib
 		}
 	}
 
+    //this function add a line break
+    function addLine($str)
+    {
+        $arr = array(
+            "&lt;"      => "<",
+            "&gt;"      => ">",
+			"&quot;"    => '"',
+			"&amp;"     => "&",
+			"&#92;"     => chr(92),
+            "&#39"      => chr(39),
+            "&#039;"    => chr(39)
+        );
+        return nl2br(strtr($str,$arr));
+    }
+
 	/**
 	 * wrapper around zaufi's HTML sucker code just to use the html to wiki bit
 	 *
@@ -1279,7 +1294,7 @@ class EditLib
 	function parse_html(&$inHtml)
 	{
 		include('lib/htmlparser/htmlparser.inc');
-
+		$inHtml = $this->addLine($inHtml);
 		// Read compiled (serialized) grammar
 		$grammarfile = TIKI_PATH . '/lib/htmlparser/htmlgrammar.cmp';
 		if (! $fp = @fopen($grammarfile, 'r')) {
