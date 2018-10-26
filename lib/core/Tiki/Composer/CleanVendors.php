@@ -345,7 +345,6 @@ class CleanVendors
 		$fs->remove($vendors . 'blueimp/javascript-load-image/css');
 		$fs->remove($vendors . 'blueimp/javascript-load-image/index.html');
 		$fs->remove($vendors . 'blueimp/jquery-file-upload/cors');
-		$fs->remove($vendors . 'blueimp/jquery-file-upload/server');
 		$fs->remove($vendors . 'Sam152/Javascript-Equal-Height-Responsive-Rows/demo.html');
 		$fs->remove($vendors . 'jquery/jtrack/demo.html');
 
@@ -354,6 +353,18 @@ class CleanVendors
 		$fs->remove($vendors . 'chartjs/Chart.js/samples');
 		//duplicate with mottie/tablesorter
 		$fs->remove($vendors . 'components/tablesorter');
+
+		self::removeMultiple(
+			$vendors . 'blueimp/jquery-file-upload/server',
+			[
+				'gae-go',
+				'gae-python',
+				'php/files',
+				'php/Dockerfile',
+				'php/docker-compose.yml',
+				'php/index.php',
+			]
+		);
 
 		self::removeMultiple(
 			$vendors . 'smarty/smarty',
