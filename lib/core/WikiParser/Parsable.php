@@ -337,7 +337,7 @@ if ( \$('#$id') ) {
 
 		// Replace boxes
 		$delim = (isset($prefs['feature_simplebox_delim']) && $prefs['feature_simplebox_delim'] != "" ) ? preg_quote($prefs['feature_simplebox_delim']) : preg_quote("^");
-		$data = preg_replace("/${delim}(.+?)${delim}/s", "<div class=\"well\">$1</div>", $data);
+		$data = preg_replace("/${delim}(.+?)${delim}/s", "<div class=\"card bg-light\"><div class=\"card-body\">$1</div></div>", $data);
 
 		// Underlined text
 		$data = preg_replace("/===(.+?)===/", "<u>$1</u>", $data);

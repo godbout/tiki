@@ -402,9 +402,9 @@ class PdfGenerator
 		}
 		$mpdf->setWatermarkText($pdfSettings['watermark']);
 		$mpdf->SetWatermarkImage($pdfSettings['watermark_image'], 0.15, '');
-		//resetting header,footer and watermark to blank
-		$mpdf->SetHeader(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['header']));
-		$mpdf->SetFooter(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['footer']));
+		//resetting header,footer
+		$pdfSettings['header']=="off"?$mpdf->SetHeader():$mpdf->SetHeader(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['header']));
+		$pdfSettings['footer']=="off"?$mpdf->SetFooter():$mpdf->SetFooter(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['footer']));
 		$this->clearTempImg($tempImgArr);
 		$tempFile = fopen("temp/public/pdffile_" . session_id() . ".txt", "w");
 		fwrite($tempFile, ($pagesTotal * 30));

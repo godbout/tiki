@@ -7,6 +7,9 @@
     "jquery/jquery-sheet": {
       "Fix visibility issues": "../installer/composer-patches/jquery-sheet_fix-visibility-issues.patch"
     },
+    "jquery/plugins/jquery-validation": {
+      "Fix remote validation unhighlights": "../installer/composer-patches/jquery-validator_fix-remote-validation-unhighlights.patch"
+    },
     "pear/text_wiki": {
       "Recursive call to constructor": "../installer/composer-patches/text_wiki__recursive_call_to_constructor.json"
     },
