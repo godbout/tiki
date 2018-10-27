@@ -1,0 +1,51 @@
+TIKI THEMES
+
+Few basic themes, such as the default themes, are distributed with Tiki but you'll find more available and you can
+create or adapt an existing theme (respect licencing instructions) for your own purpose. The default themes are here
+to help you to start with your Tiki and to understand how this work in Tiki.
+
+To add a new theme or to move a themes from a Tiki to another just drop your theme folder into the themes folder (the
+folder containing this file). This folder contain sub-folder so everything part of your design has its place and things
+stay clean.
+
+You can find a list of available themes and more information at https://themes.tiki.org/Themes
+You can find and propose a Tiki theme at https://themes.tiki.org/Marketplace-Themes
+You can get help with Tiki using: https://tiki.org/Help
+You can hire a Tiki Consultant that will help you using: https://tiki.org/Consultants
+
+Please note that Tiki have also a Theme customizer (was Style Guide Tool before Tiki19) https://doc.tiki.org/Theme-Customizer
+
+
+FOR DEVELOPPERS
+
+If you are a developper or a designer, you can create easily a Tiki theme.
+
+Most of the folders that are in your theme are not mandatory. While you have many folders, you don't have to use them
+all. For example, you can the use  the "fonts" folders to store your theme fonts internally or use external fonts or
+use the default fonts from the browser.
+
+You can refer to the default theme (themes/default/) and the fivealive theme (theme/fivealive/) folders to see samples
+of the possible folders and how to organise properly the content of your theme.
+
+Some folders contain files that can be edited manually and that are or can be auto-generated using less (Tiki18 and
+before) or sass/scss (from Tiki19).
+
+Each folder's name is crealy informative:
+* css: that must contain the theme .css files (manually editable or auto-generated)
+* favicons: where you can place your theme customs favicons (check the Tiki favicon feature)
+* fonts: where you can place your theme customs fonts
+* icons: where you can place your theme customs icons
+* images: where you can place your theme images (logo, backgrouns, etc)
+* jquery-ui: where you can place your theme jquery additional scripts
+* js: where you can place your theme additional javascript
+* less: where you can place your theme less files to be compiled to create your css file (Tiki18 and before)
+* options: where you can place different flavours for a theme (check the fivealive theme for better understanding)
+* scss: where you can place your theme scss files to be compiled to create your css file (from Tiki19)
+* templates: where you can place your theme custom templates files
+
+For more details and help;
+https://themes.tiki.org/Creating-a-Tiki-theme
+https://themes.tiki.org/Theme-making-Questions-and-Answers
+https://themes.tiki.org/Customizing-Icons
+https://themes.tiki.org/Template-Tricks
+https://doc.tiki.org/Favicon

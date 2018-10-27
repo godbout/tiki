@@ -6642,6 +6642,7 @@ tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
 themes/.htaccess -text
+themes/README -text
 themes/amelia/css/amelia.css -text
 themes/amelia/css/index.php -text
 themes/amelia/css/newsletter.css -text
@@ -6869,6 +6870,7 @@ themes/darkshine/scss/index.php -text
 themes/darkshine/scss/newsletter.scss -text
 themes/default/css/default.css -text
 themes/default/css/index.php -text
+themes/default/favicons/index.php -text
 themes/default/fonts/index.php -text
 themes/default/icons/index.php -text
 themes/default/images/default.png -text
@@ -7000,6 +7002,7 @@ themes/fivealive/css/custom.css_example -text
 themes/fivealive/css/fivealive.css -text
 themes/fivealive/css/index.php -text
 themes/fivealive/css/newsletter.css -text
+themes/fivealive/favicons/index.php -text
 themes/fivealive/fonts/index.php -text
 themes/fivealive/icons/index.php -text
 themes/fivealive/images/fivealive.png -text
