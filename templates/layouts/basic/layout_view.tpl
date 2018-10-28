@@ -37,7 +37,7 @@
 				{block name=navigation}{/block}
 				{block name=content}{/block}
 				{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-					{modulelist zone=pagebottom}
+					{modulelist zone=pagebottom mt-3}
 				{/if}
 			</div>
 		{elseif zone_is_empty('left') or $prefs.feature_left_column eq 'n'}
@@ -58,7 +58,7 @@
 				{block name=navigation}{/block}
 				{block name=content}{/block}
 				{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-					{modulelist zone=pagebottom}
+					{modulelist zone=pagebottom class='mt-3'}
 				{/if}
 			</div>
 			<div class="col col3 col-md-12 col-lg-3" id="col3">
@@ -81,7 +81,7 @@
 				{block name=navigation}{/block}
 				{block name=content}{/block}
 				{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-					{modulelist zone=pagebottom}
+					{modulelist zone=pagebottom class='mt-3'}
 				{/if}
 			</div>
 			<div class="col col2 col-md-12 col-lg-3 order-sm-2 order-md-2 order-lg-1" id="col2">
@@ -113,7 +113,7 @@
 				{block name=navigation}{/block}
 				{block name=content}{/block}
 				{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-					{modulelist zone=pagebottom}
+					{modulelist zone=pagebottom class='mt-3'}
 				{/if}
 			</div>
 			<div class="col col2 col-sm-6 col-lg-2 order-md-2 order-lg-1" id="col2">

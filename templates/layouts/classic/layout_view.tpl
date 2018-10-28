@@ -52,7 +52,7 @@
 							{block name=navigation}{/block}
 							{block name=content}{/block}
 							{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-								{modulelist zone=pagebottom}
+								{modulelist zone=pagebottom class='mt-3'}
 							{/if}
 							{if $prefs.feature_layoutshadows eq 'y'}{eval var=$prefs.center_shadow_end}</div>{/if}
 
@@ -78,7 +78,7 @@
 							{block name=navigation}{/block}
 							{block name=content}{/block}
 							{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-								{modulelist zone=pagebottom}
+								{modulelist zone=pagebottom class='mt-3'}
 							{/if}
 							{if $prefs.feature_layoutshadows eq 'y'}{eval var=$prefs.center_shadow_end}</div>{/if}
 					</div>
@@ -142,7 +142,7 @@
 							{block name=navigation}{/block}
 							{block name=content}{/block}
 							{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-								{modulelist zone=pagebottom}
+								{modulelist zone=pagebottom class='mt-3'}
 							{/if}
 							{if $prefs.feature_layoutshadows eq 'y'}{eval var=$prefs.center_shadow_end}</div>{/if}
 					</div>
