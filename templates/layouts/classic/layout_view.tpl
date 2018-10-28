@@ -39,7 +39,7 @@
 			<div class="row row-middle" id="row-middle">
 				{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
 				<div class="d-flex flex-row w-100">
-					<div class="col col1 col-md-12" id="col1">
+					<div class="col col1 col-md-12" id="col1 pb-4">
 
 						{if $prefs.feature_layoutshadows eq 'y'}
 						<div id="tiki-center-shadow">{eval var=$prefs.center_shadow_start}{/if}
@@ -52,7 +52,7 @@
 							{block name=navigation}{/block}
 							{block name=content}{/block}
 							{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-								{modulelist zone=pagebottom}
+								{modulelist zone=pagebottom class='mt-3'}
 							{/if}
 							{if $prefs.feature_layoutshadows eq 'y'}{eval var=$prefs.center_shadow_end}</div>{/if}
 
@@ -66,7 +66,7 @@
 					</div>
 				{/if}
 				<div class="d-flex flex-row flex-wrap w-100">
-					<div class="col col1 col-md-12 col-lg-9" id="col1">
+					<div class="col col1 col-md-12 col-lg-9 pb-4" id="col1">
 						{if $prefs.feature_layoutshadows eq 'y'}
 						<div id="tiki-center-shadow">{eval var=$prefs.center_shadow_start}{/if}
 							{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
@@ -78,7 +78,7 @@
 							{block name=navigation}{/block}
 							{block name=content}{/block}
 							{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-								{modulelist zone=pagebottom}
+								{modulelist zone=pagebottom class='mt-3'}
 							{/if}
 							{if $prefs.feature_layoutshadows eq 'y'}{eval var=$prefs.center_shadow_end}</div>{/if}
 					</div>
@@ -94,7 +94,7 @@
 					</div>
 				{/if}
 				<div class="d-flex flex-row flex-wrap w-100">
-					<div class="col col1 col-md-12 col-lg-9 order-md-1 order-lg-2" id="col1">
+					<div class="col col1 col-md-12 col-lg-9 order-md-1 order-lg-2 pb-4" id="col1">
 						{if $prefs.feature_layoutshadows eq 'y'}
 						<div id="tiki-center-shadow">{eval var=$prefs.center_shadow_start}{/if}
 							{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
@@ -123,14 +123,14 @@
 						</div>
 					{/if}
 					{if $prefs.feature_right_column eq 'user'}
-						<div class="text-right side-col-toggle flex-fill">
+						<div class="text-right side-col-toggle flex-fill mr-3">
 							{$icon_name = (not empty($smarty.cookies.hide_zone_right)) ? 'toggle-left' : 'toggle-right'}
 							{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 						</div>
 					{/if}
 				</div>
 				<div class="d-flex flex-row flex-wrap w-100">
-					<div class="col col1 col-sm-12 col-lg-8 order-xs-1 order-lg-2" id="col1">
+					<div class="col col1 col-sm-12 col-lg-8 order-xs-1 order-lg-2 pb-4" id="col1">
 						{if $prefs.feature_layoutshadows eq 'y'}
 						<div id="tiki-center-shadow">{eval var=$prefs.center_shadow_start}{/if}
 							{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
@@ -142,7 +142,7 @@
 							{block name=navigation}{/block}
 							{block name=content}{/block}
 							{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-								{modulelist zone=pagebottom}
+								{modulelist zone=pagebottom class='mt-3'}
 							{/if}
 							{if $prefs.feature_layoutshadows eq 'y'}{eval var=$prefs.center_shadow_end}</div>{/if}
 					</div>
@@ -164,7 +164,7 @@
 		<footer class="footer main-footer" id="footer">
 			<div class="footer_liner">
 				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
-					{modulelist zone=bottom class='bottom_modules px-3 mx--15px'}
+					{modulelist zone=bottom class='bottom_modules p-3 mx--15px'}
 				</div>
 			</div>
 		</footer>

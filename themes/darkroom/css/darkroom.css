@@ -2791,7 +2791,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
     color: rgba(255, 255, 255, 0.9); }
   .navbar-light .navbar-nav .nav-link {
-    color: #fd0006; }
+    color: #fff; }
   .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
     color: rgba(255, 255, 255, 0.7); }
   .navbar-light .navbar-nav .nav-link.disabled {
@@ -2799,12 +2799,12 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
     color: rgba(255, 255, 255, 0.9); }
   .navbar-light .navbar-toggler {
-    color: #fd0006;
+    color: #fff;
     border-color: rgba(255, 255, 255, 0.1); }
   .navbar-light .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fd0006' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); }
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); }
   .navbar-light .navbar-text {
-    color: #fd0006; }
+    color: #fff; }
   .navbar-light .navbar-text a {
     color: rgba(255, 255, 255, 0.9); }
   .navbar-light .navbar-text a:hover, .navbar-light .navbar-text a:focus {
@@ -2842,7 +2842,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   word-wrap: break-word;
   background-color: #474747;
   background-clip: border-box;
-  border: 1px solid rgba(255, 255, 255, 0.125);
+  border: 1px solid transparent;
   border-radius: 0.25rem; }
   .card > hr {
     margin-right: 0;
@@ -2877,7 +2877,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   padding: 0.75rem 1.25rem;
   margin-bottom: 0;
   background-color: rgba(255, 255, 255, 0.03);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.125); }
+  border-bottom: 1px solid transparent; }
   .card-header:first-child {
     border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0; }
   .card-header + .list-group .list-group-item:first-child {
@@ -2886,7 +2886,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 .card-footer {
   padding: 0.75rem 1.25rem;
   background-color: rgba(255, 255, 255, 0.03);
-  border-top: 1px solid rgba(255, 255, 255, 0.125); }
+  border-top: 1px solid transparent; }
   .card-footer:last-child {
     border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px); }
 
@@ -6142,17 +6142,17 @@ body.fullscreen {
 
 #debugconsole {
   background: #fff;
-  color: #fd0006;
-  border: 2px solid #fd0006; }
+  color: #fff;
+  border: 2px solid #fff; }
 
 #debugconsole form {
-  color: #fd0006; }
+  color: #fff; }
 
 #debugconsole a {
-  color: #fd0006; }
+  color: #fff; }
 
 #debugconsole a.btn {
-  color: #fd0006; }
+  color: #fff; }
 
 a.icon, img.icon {
   background: transparent; }
@@ -6322,7 +6322,7 @@ div.cvsup {
 
 #intertrans-form {
   background-color: #474747;
-  border: 1px solid rgba(255, 255, 255, 0.125);
+  border: 1px solid transparent;
   color: #d8d8d8; }
 
 #edit_translations tr.last {
@@ -6406,7 +6406,7 @@ ul.all_languages > li {
 
 .autotoc > .nav {
   background: #474747;
-  border: 1px solid rgba(255, 255, 255, 0.125);
+  border: 1px solid transparent;
   border-radius: 0.25rem; }
 
 .autotoc * {
@@ -6615,7 +6615,7 @@ div.drillshow {
   color: #ababab; }
 
 .tiki .col1 .table-responsive {
-  border: 1px solid rgba(255, 255, 255, 0.125); }
+  border: 1px solid transparent; }
 
 .codecaption {
   display: inline-block;
@@ -6694,10 +6694,13 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 body, body.fullscreen {
   background-image: url("../images/474747_5e5e5e_40.png"); }
 
+#middle {
+  padding-top: 10px; }
+
 .btn-success, .btn-danger, .btn-success.disabled, .btn-success:disabled, .btn-danger.disabled, .btn-danger:disabled {
   color: #f8f9fa; }
 
-.container {
+.container:not(.in-navbar) {
   background: #0c0c0c; }
 
 body.layout_social > .container {
@@ -6721,10 +6724,13 @@ h3.card-title {
   border: solid #292929;
   border-width: 0 8px 0.5rem 8px; }
 
+.module.card {
+  border: none; }
+
 .card .card-header {
   background: #292929; }
 
-.navbar-fixed-top .container, .navbar-dark, .topbar, .btn, .nav-tabs > li > a, .input-group-addon, .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active, .tiki .ui-state-active, .tiki .ui-widget-content .ui-state-active, .tiki .ui-widget-header .ui-state-active, .tiki a.ui-button:active, .tiki .ui-button:active, .tiki .ui-button.ui-state-active:hover {
+.navbar-fixed-top .container, .navbar-dark, .navbar-light, .topbar, .btn, .nav-tabs > li > a, .input-group-addon, .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active, .tiki .ui-state-active, .tiki .ui-widget-content .ui-state-active, .tiki .ui-widget-header .ui-state-active, .tiki a.ui-button:active, .tiki .ui-button:active, .tiki .ui-button.ui-state-active:hover {
   background: #818181;
   /* Old browsers */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #818181), color-stop(100%, #393939));
@@ -6773,7 +6779,7 @@ h3.card-title {
   font-weight: normal;
   color: #f2f2f2; }
 
-.top_modules .navbar-dark {
+.top_modules .navbar-dark, .top_modules .navbar-light {
   background: transparent !important;
   border: none; }
 
@@ -6783,7 +6789,7 @@ h3.card-title {
 .topbar {
   margin-bottom: 1.3rem; }
 
-#topbar_modules .navbar-dark {
+#topbar_modules .navbar-dark, #top_modules .navbar-dark, #topbar_modules .navbar-light, #top_modules .navbar-light {
   background: transparent !important;
   border: none;
   margin-bottom: 0; }
@@ -6827,10 +6833,6 @@ textarea, input {
 
 .box-quickadmin .cssmenu_horiz ul li {
   background-color: #474747; }
-
-#admin-navbar-collapse-1 {
-  border: 8px solid #292929;
-  border-bottom: none; }
 
 .cssmenu_horiz a, .cssmenu_vert a {
   color: #ababab; }

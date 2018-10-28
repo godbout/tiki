@@ -27,5 +27,11 @@ class RestoreVendors
 		if (!file_exists($vendors . 'plotly/plotly.js/dist/plotly-basic.min.js') && !empty($package[0])) {
 			$repoManager->removePackage($package[0]);
 		}
+
+		$package = $repoManager->findPackages('blueimp/jquery-file-upload');
+
+		if (!file_exists($vendors . 'blueimp/jquery-file-upload/server/php/UploadHandler.php') && !empty($package[0])) {
+			$repoManager->removePackage($package[0]);
+		}
 	}
 }
