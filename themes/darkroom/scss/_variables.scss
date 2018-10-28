@@ -73,7 +73,7 @@ $table-border-color: #292929;
 
 $btn-font-weight: normal;
 
-$btn-secondary-color: #fd0006;
+$btn-secondary-color: #dddddd;
 //$btn-secondary-bg: $btn-primary-bg;
 //$btn-secondary-border: $btn-primary-border;
 
@@ -123,13 +123,13 @@ $dropdown-header-color: $gray-600;
 
 //Navs
 //Navbar
-$navbar-light-color: #fd0006;
+$navbar-light-color: #fff;
 $navbar-light-bg: #030511;
 $navbar-light-border: lighten($navbar-light-bg,6.5%);
 
 //Navbarlinks??
 //Navbarlinks
-$navbar-light-link-color: #fd0006;
+$navbar-light-link-color: #fff;
 $navbar-light-link-hover-color: #f4f4f4;
 $navbar-light-link-hover-bg: transparent;
 $navbar-light-link-active-color: #f4f4f4;
@@ -183,6 +183,7 @@ $jumbotron-heading-color: inherit;
 //Cards
 $card-bg: #474747;
 $card-inner-border: #474747;
+$card-border-color: transparent;
 $card-footer-bg: #474747;
 $card-primary-bg: #ababab;
 
