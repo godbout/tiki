@@ -39,7 +39,7 @@
 				{/if}
 				{if $view neq 'list'}
 					<li class="dropdown-item">
-						{self_link _icon_name="list" _class="btn-info" _text="{tr}List{/tr}" view="list" galleryId=$galleryId}{/self_link}
+						{self_link _icon_name="list" _text="{tr}List{/tr}" view="list" galleryId=$galleryId}{/self_link}
 					</li>
 				{/if}
 				{if $view neq 'page' and $filescount gt 0}
