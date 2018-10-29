@@ -10,7 +10,7 @@ function wikiplugin_layout_info()
 		'name'          => tra('Layout'),
 		'documentation' => 'PluginLayout',
 		'description'   => tra(
-			'Plugin to control width/background/header and footer of individual page, helpful in creating landing pages for projects'
+			'Enable display of only the wiki content of the page, and control display of page background, width of page header and footer; helpful in creating landing pages for a projects, etc.'
 		),
 		'prefs'         => ['wikiplugin_layout'],
 		'iconname'      => 'tv',
@@ -20,7 +20,7 @@ function wikiplugin_layout_info()
 			'header'       => [
 				'required'    => false,
 				'name'        => tra('Display page header'),
-				'description' => tra('Set to No, to hide header on the page'),
+				'description' => tra('Set to No to hide the header of the page.'),
 				'filter'      => 'alpha',
 				'default'     => 'y',
 				'since'       => '19.0',
@@ -32,8 +32,8 @@ function wikiplugin_layout_info()
 			],
 			'footer'       => [
 				'required'    => false,
-				'name'        => tra('Display Page Footer'),
-				'description' => tra('Set to No, to hide header on the page'),
+				'name'        => tra('Display page footer'),
+				'description' => tra('Set to No to hide the footer of the page.'),
 				'filter'      => 'alpha',
 				'default'     => 'y',
 				'since'       => '19.0',
@@ -42,10 +42,10 @@ function wikiplugin_layout_info()
 					['text' => 'No ', 'value' => 'n'],
 				],
 			],
-			'leftbar'      => [
+			'leftcolumn'      => [
 				'required'    => false,
-				'name'        => tra('Display Page Left Bar'),
-				'description' => tra('Set to No, to hide left on the page'),
+				'name'        => tra('Display page left column'),
+				'description' => tra('Set to No to hide the left column of the page.'),
 				'filter'      => 'alpha',
 				'default'     => 'y',
 				'since'       => '19.0',
@@ -54,10 +54,10 @@ function wikiplugin_layout_info()
 					['text' => 'No ', 'value' => 'n'],
 				],
 			],
-			'rightbar'     => [
+			'rightcolumn'     => [
 				'required'    => false,
-				'name'        => tra('Display Page Right Bar'),
-				'description' => tra('Set to No, to hide right on the page'),
+				'name'        => tra('Display page right column'),
+				'description' => tra('Set to No to hide the right column of the page.'),
 				'filter'      => 'alpha',
 				'default'     => 'y',
 				'since'       => '19.0',
@@ -68,8 +68,8 @@ function wikiplugin_layout_info()
 			],
 			'fullwidth'    => [
 				'required'    => false,
-				'name'        => tra('Page Full Width'),
-				'description' => tra('100% Page width'),
+				'name'        => tra('Page full width'),
+				'description' => tra('Set content container to be 100% of the page width.'),
 				'filter'      => 'alpha',
 				'default'     => 'n',
 				'since'       => '19.0',
@@ -80,9 +80,9 @@ function wikiplugin_layout_info()
 			],
 			'contentwidth' => [
 				'required'    => false,
-				'name'        => tra('Page Content Width'),
+				'name'        => tra('Page content width'),
 				'description' => tra(
-					'Enter page content width in px or % for example 1000px, leave blank for same width as page body.)'
+					'Enter the page content width in px or %; for example, 1000px. Note that large px widths may cause content overflow in small screens. Leave blank for the same width as page body.'
 				),
 				'filter'      => 'text',
 				'default'     => '',
@@ -92,9 +92,9 @@ function wikiplugin_layout_info()
 
 			'bgimage' => [
 				'required'    => false,
-				'name'        => tra('Page Background Image URL'),
+				'name'        => tra('Page background image URL'),
 				'description' => tra(
-					'Enter image url, in case of single image'
+					'Enter image URL, for a single image.'
 				),
 				'filter'      => 'text',
 				'default'     => '',
@@ -102,8 +102,10 @@ function wikiplugin_layout_info()
 			],
 			'bgrepeat'    => [
 				'required'    => false,
-				'name'        => tra('Background Repear'),
-				'description' => tra('Cover,Repeat,no-repeat'),
+				'name'        => tra('Background repeat'),
+				'description' => tra(
+					'Set the background image to stretch to cover the page, or to repeat (tile), or display once at its original size (no-repeat).'
+				),
 				'filter'      => 'alpha',
 				'default'     => 'n',
 				'since'       => '19.0',
@@ -116,9 +118,9 @@ function wikiplugin_layout_info()
 
 			'fgalId'              => [
 				'required'          => false,
-				'name'              => tra('Page Background Sliding Images'),
+				'name'              => tra('Page background sliding images'),
 				'description'       => tra(
-					'Enter file gallery id for fading background'
+					'Enter file gallery ID for a slideshow-like changing background.'
 				),
 				'since'             => '19',
 				'separator'         => ':',
@@ -128,16 +130,16 @@ function wikiplugin_layout_info()
 				'required'    => false,
 				'name'        => tra('File IDs'),
 				'description' => tra(
-					'List of IDs of images from the File Galleries separated by commas.'
+					'List of IDs of images from the file galleries, separated by commas.'
 				),
 				'filter'      => 'striptags',
 				'default'     => '',
 			],
 			'topmargin'  => [
 				'required'    => false,
-				'name'        => tra('Page Content Top Margin'),
+				'name'        => tra('Page content top margin'),
 				'description' => tra(
-					'Enter value in % or px for example 30%, 300px, default will be 0'
+					'Enter value in % or px; for example, 30% or 300px. The default value is 0.'
 				),
 				'filter'      => 'text',
 				'default'     => '0',
@@ -146,9 +148,9 @@ function wikiplugin_layout_info()
 			],
 			'headerwidth'     => [
 				'required'    => false,
-				'name'        => tra('Page Header Width'),
+				'name'        => tra('Page header width'),
 				'description' => tra(
-					'Enter page header width in px or %, leave blank for same width as page body.)'
+					'Enter page header width in px or %; leave blank for same width as page body.'
 				),
 				'filter'      => 'text',
 				'default'     => 0,
@@ -157,9 +159,9 @@ function wikiplugin_layout_info()
 			],
 			'footerwidth'     => [
 				'required'    => false,
-				'name'        => tra('Page Footer Width'),
+				'name'        => tra('Page footer width'),
 				'description' => tra(
-					'Enter page footer width in px or %, leave blank for same width as page body.)'
+					'Enter page footer width in px or %; leave blank for same width as page body.'
 				),
 				'filter'      => 'text',
 				'default'     => 0,
@@ -168,7 +170,7 @@ function wikiplugin_layout_info()
 			],
 			'bgcolor' => [
 				'required'    => false,
-				'name'        => tra('Page Background Color'),
+				'name'        => tra('Page background color'),
 				'description' => tra(
 					'Enter a valid CSS color code, or an rgba value if opacity is desired; for example: #000 or rgba(00, 00, 00, 0.5).'
 				),
@@ -179,7 +181,7 @@ function wikiplugin_layout_info()
 			],
 			'contentbg'           => [
 				'required'    => false,
-				'name'        => tra('Content Background Color'),
+				'name'        => tra('Content background color'),
 				'description' => tra(
 					'Enter a valid CSS color code, or an rgba value if opacity is desired; for example: #000 or rgba(00, 00, 00, 0.5).'
 				),
@@ -189,9 +191,9 @@ function wikiplugin_layout_info()
 			],
 			'contenttextcolor'    => [
 				'required'    => false,
-				'name'        => tra('Content Text Color'),
+				'name'        => tra('Content text color'),
 				'description' => tra(
-					'Enter a valid CSS color code, for example #000,#fff,#ccc'
+					'Enter a valid CSS color code; for example, #000, #fff, or #cccccc.'
 				),
 				'filter'      => 'text',
 				'default'     => '',
@@ -199,9 +201,9 @@ function wikiplugin_layout_info()
 			],
 			'contentradius'    => [
 				'required'    => false,
-				'name'        => tra('Content Border Radius'),
+				'name'        => tra('Content border radius'),
 				'description' => tra(
-					'To make content div round cornered, for example 10px'
+					'Enter the radius size to give the content container round corners; for example, 10px.'
 				),
 				'filter'      => 'text',
 				'advance'     => true,
@@ -210,9 +212,9 @@ function wikiplugin_layout_info()
 			],
 			'contentboxshadow'    => [
 				'required'    => false,
-				'name'        => tra('Content Border Shadow'),
+				'name'        => tra('Content border shadow'),
 				'description' => tra(
-					'For shadow around content box, for example: 10px 10px 5px grey, 1px 2px 4px rgba(0, 0, 0, .5), 0 4px 8px 0 rgba(0, 0, 0, 0.2)'
+					'For a shadow around the content container, using CSS syntax; for example: 10px 10px 5px grey, 1px 2px 4px rgba(0, 0, 0, .5), 0 4px 8px 0 rgba(0, 0, 0, 0.2).'
 				),
 				'filter'      => 'text',
 				'advance'     => true,
@@ -222,9 +224,9 @@ function wikiplugin_layout_info()
 
 			'transitiondelay'   => [
 				'required'    => false,
-				'name'        => tra('Transition Delay'),
+				'name'        => tra('Transition delay'),
 				'description' => tra(
-					'Time interval to pause before moving to next slide in seconds.'
+					'The time interval to pause before moving to the next background slide, in seconds.'
 				),
 				'filter'      => 'digits',
 				'default'     => '5',
@@ -232,9 +234,9 @@ function wikiplugin_layout_info()
 			],
 			'actionbuttons' => [
 				'required'    => false,
-				'name'        => tra('Display Page Action Buttons'),
+				'name'        => tra('Display page action buttons'),
 				'description' => tra(
-					'Set to No, to hide page action buttons, with and under content'
+					'Set to No to hide the page action buttons, in and under content.'
 				),
 				'filter'      => 'alpha',
 				'default'     => 'y',
@@ -247,8 +249,8 @@ function wikiplugin_layout_info()
 			],
 			'topbar'       => [
 				'required'    => false,
-				'name'        => tra('Display top bar(under header)'),
-				'description' => tra('Set to No, to hide topbar on the page'),
+				'name'        => tra('Display topbar (below the page header)'),
+				'description' => tra('Set to No to hide the topbar on the page.'),
 				'filter'      => 'alpha',
 				'default'     => 'y',
 				'since'       => '19.0',
@@ -259,10 +261,10 @@ function wikiplugin_layout_info()
 
 				],
 			],
-			'pagetopbar'       => [
+			'pagetopzone'       => [
 				'required'    => false,
-				'name'        => tra('Display page top bar(above page content)'),
-				'description' => tra('Set to No, to hide page topbar module zone'),
+				'name'        => tra('Display the pagetop module zone (above the page content)'),
+				'description' => tra('Set to No, to hide the pagetop module zone.'),
 				'filter'      => 'alpha',
 				'default'     => 'y',
 				'since'       => '19.0',
@@ -273,10 +275,10 @@ function wikiplugin_layout_info()
 
 				],
 			],
-			'pagebottombar'       => [
+			'pagebottomzone'       => [
 				'required'    => false,
-				'name'        => tra('Display page bottom bar(under page content)'),
-				'description' => tra('Set to No, to hide page bottom bar module zone'),
+				'name'        => tra('Display pagebottom module zone (below the page content)'),
+				'description' => tra('Set to No to hide the pagebottom module zone.'),
 				'filter'      => 'alpha',
 				'default'     => 'y',
 				'since'       => '19.0',
@@ -304,13 +306,13 @@ function wikiplugin_layout($data, $params)
 	if ($params['footer'] == 'n') {
 		$headerlib->add_css("#footer{display:none}");
 	}
-	if ($params['leftbar'] == 'n') {
+	if ($params['leftcolumn'] == 'n') {
 		$headerlib->add_css("#col2{display:none} .toggle_zone.left{display:none}");
 		$headerlib->add_js(
 			'if ($( "#col1" ).hasClass( "col-lg-8" )) {$("#col1").removeClass("col-lg-8").addClass("col-lg-10");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}'
 		);
 	}
-	if ($params['rightbar'] == 'n') {
+	if ($params['rightcolumn'] == 'n') {
 		$headerlib->add_css("#col3{display:none} .toggle_zone.right{display:none}");
 		$headerlib->add_js(
 			'if ($( "#col1" ).hasClass( "col-lg-10" )) {$("#col1").removeClass("col-lg-10").addClass("col-lg-12");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}'
@@ -319,10 +321,10 @@ function wikiplugin_layout($data, $params)
 	if ($params['topbar'] == 'n') {
 		$headerlib->add_css("#topbar_modules{display:none !important}");
 	}
-	if ($params['pagetopbar'] == 'n') {
+	if ($params['pagetopzone'] == 'n') {
 		$headerlib->add_css("#pagetop_modules{display:none !important}");
 	}
-	if ($params['pagebottombar'] == 'n') {
+	if ($params['pagebottomzone'] == 'n') {
 		$headerlib->add_css("#pagebottom_modules{display:none !important}");
 	}
 	if ($params['actionbuttons'] == 'n') {
