@@ -52,7 +52,7 @@ function prefs_print_list()
 			'name' => tra('Print Friendly PDF'),
 			'description' => tra('Useful for dark themes, enabling this option will change the theme background color to white and the color of text to black. If not activated, theme colors will be retained in the pdf file.'),
 			'type' => 'flag',
-			'default' => 'n'
+			'default' => 'y'
 
 		],
 		'print_pdf_mpdf_orientation' => [
