@@ -37,7 +37,7 @@
 				{block name=navigation}{/block}
 				{block name=content}{/block}
 				{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-					{modulelist zone=pagebottom mt-3}
+					{modulelist zone=pagebottom class='mt-3'}
 				{/if}
 			</div>
 		{elseif zone_is_empty('left') or $prefs.feature_left_column eq 'n'}
