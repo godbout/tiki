@@ -156,7 +156,7 @@ if (isset($_REQUEST['pdf'])) {
 		if ($_REQUEST['printslides']) {
 			$customCSS
 				= "<style type='text/css'>img{max-height:300px;width:auto;} body{font-size:1em} h1{font-size:1.5em}  section{height:300px;border:1px solid #000;margin-bottom:1%;padding:1%;}</style> ";
-			$pdata = $customCSS . $pdata;
+			$pdata = $customCSS .'<pdfsettings printFriendly="y" header="off" footer="off"></pdfsettings>' . $pdata;
 		} else {
 			//getting css
 			$customCSS .= file_get_contents(
@@ -167,7 +167,7 @@ if (isset($_REQUEST['pdf'])) {
 				. '.css'
 			);
 			$customCSS .= '.reveal section{width:90%;text-align:center;padding-top:30px;margin:auto;} section{text-align:center;margin: auto;width:100%;} .ss-heading{text-align:center;line-height:2.5em}';
-			$pdata = '<pdfsettings printFriendly="off" header="off" footer="off"></pdfsettings><div class="reveal">' . $pdata . '</div>';
+			$pdata = '<pdfsettings header="off" footer="off"></pdfsettings><div class="reveal">' . $pdata . '</div>';
 
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
