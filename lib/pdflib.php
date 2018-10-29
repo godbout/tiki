@@ -311,6 +311,7 @@ class PdfGenerator
 		//checking if print friendly option is enabled, then attach print css otherwise theme styles will be retained by theme css
 		if ($pdfSettings['print_pdf_mpdf_printfriendly'] == 'y') {
 			 $printcss = file_get_contents('themes/base_files/css/printpdf.css'); // external css
+			$themecss=''; //execluding theme css in case print friendly is set to yes.
 		} else {//preserving theme styles by removing media print styles to print what is shown on screen
 			$themecss = str_replace(["media print","color : fff"], ["media p","color : #fff"], $themecss);
 			$printcss = file_get_contents('themes/base_files/css/printqueries.css'); //for bootstrap print hidden, screen hidden styles on divs
