@@ -220,9 +220,9 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 				$groups = $userlib->list_all_groups_with_permission();
 				$groups = $userlib->get_group_info($groups);
 				if (! empty($groupIds)) {
-					$groups = array_filter($groups, function ($group) use ($groupIds) {
+					$groups = array_values(array_filter($groups, function ($group) use ($groupIds) {
 						return in_array($group['id'], $groupIds);
-					});
+					}));
 				}
 				$groups = array_map(function ($group) {
 					return $group['groupName'];
