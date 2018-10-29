@@ -171,7 +171,7 @@ if (isset($_REQUEST['pdf'])) {
 
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
-				$pdfStyles. $pdata.'<style>' .str_replace(array(".reveal {","vertical-align: baseline;"),array(".reveal,.reveal table{ ","vertical-align:top;"),$customCSS) . ' .reveal table{font-size:1.3em;font-weight:normal;line-height:1.4em;height:auto;!important; text-align:center} </style>'
+				$pdfStyles. $pdata.'<style>' .str_replace(array(".reveal {","vertical-align: baseline;"),array(".reveal,.reveal table{ ","vertical-align:top;"),$customCSS) . ' .reveal table, .reveal li{font-size:1.3em;font-weight:normal;line-height:1.4em;height:auto;!important; text-align:center} img{max-height:400px} </style>'
 			);
 		}
 
