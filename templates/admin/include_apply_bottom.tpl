@@ -1,6 +1,6 @@
 {* $Id$ *}
 {if empty($applyTitle)}
-	{$applyTitle=":{tr}Apply changes{/tr}"}
+	{$applyTitle="{tr}Apply changes{/tr}"}
 {/if}
 {if empty($applyValue)}
 	{$applyValue="{tr}Apply{/tr}"}
