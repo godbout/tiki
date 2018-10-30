@@ -5,7 +5,6 @@
 $imagePath: "../images/";
 // body {
 //	background-image: url('#{$imagePath}bg.jpg');
-
 // Common values
 $btn-info-active-bg: darken($btn-info-bg, 5%);
 
@@ -70,7 +69,7 @@ a:focus,
 
 // Adding from bootstrap default
 .btn-primary {
-	color: #ffffff;
+	color: #fff;
 	background-color: $btn-primary-bg;
 	border-color: $btn-primary-border;
 }
@@ -788,4 +787,3 @@ footer#footer {
 		background-repeat: no-repeat;
 	}
 }
-

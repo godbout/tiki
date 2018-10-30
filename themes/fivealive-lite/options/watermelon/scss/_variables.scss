@@ -1,6 +1,10 @@
 // $Id$ Custom variables for the Watermelon theme option of the FiveAlive and FiveAlive-lite themes
+
+// - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 $white:    #fff;
 $black:    #000;
+$light: #b51360;
+
 $bg-dark: #a51e37;
 
 $link-color: #c21e3b;
@@ -23,6 +27,7 @@ $btn-primary-disabled-hover: #e1640b;
 $btn-primary-disabled-border: #e7768a;
 $btn-primary-badge-color: #e1360d;
 $btn-primary-badge-bg: #ffffff;
+
 // $btn-secondary-color: ;
 // $btn-secondary-bg: ;
 // $btn-secondary-border: ;
