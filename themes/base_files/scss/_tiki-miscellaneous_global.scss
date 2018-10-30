@@ -269,7 +269,7 @@ img.icon {
 	//  background: transparent;
 }
 
-a .icon {
+a .icon:not(.icon-help,.icon-reset) {
 	font-size: 1.2em;
 }
 
