@@ -1,29 +1,31 @@
 // $Id$ Custom variables for the Kiwi theme option of the FiveAlive and FiveAlive-lite themes
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
-$light: #baba25;
+$white:    #fff;
+$black:    #000;
+$light: #a59705;
 
-$bg-light: #baba25 !important;
+$bg-light: #a59705; //#a59705 !important;
 
 $link-color: #638637;
-$link-hover-color: #baba25;
+$link-hover-color: #a59705;
 $btn-primary-color: #ffffff;
-$btn-primary-bg: #baba25;
+$btn-primary-bg: #a59705;
 $btn-primary-border: #f0e884;
 $btn-primary-focus-color: #ffffff;
 $btn-primary-focus-bg: #918f1b;
 $btn-primary-border: #dacc1b;
 $btn-primary-hover-color: #ffffff;
 $btn-primary-hover-bg: #918f1b;
-$btn-primary-hover-border: #44c7db;
+$btn-primary-hover-border: darken($btn-primary-hover-bg, 10%);
 $btn-primary-active-color: #ffffff;
 $btn-primary-active-bg: #918f1b;
-$btn-primary-active-border: #44c7db;
+$btn-primary-active-border: $btn-primary-hover-border;
 $btn-primary-active-hover-bg-color: #737115;
 $btn-primary-active-hover-border: #dacc1b;
-$btn-primary-disabled-bg: #baba25;
+$btn-primary-disabled-bg: #a59705;
 $btn-primary-disabled-border: #dacc1b;
-$btn-primary-badge-color: #baba25;
+$btn-primary-badge-color: #a59705;
 $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-color: ;
 // $btn-secondary-bg: ;
@@ -63,18 +65,24 @@ $btn-info-active-bg: $btn-info-bg;
 // $btn-info-badge-color: ;
 // $btn-info-badge-bg: ;
 
-$navbar-dark-color: #fff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
-$bg-dark-link-hover-bg: #638637;
+//$bg-dark-link-hover-bg: #638637;
 
-
-$hr-border-color: #baba25;
+$hr-border-color: #a59705;
 
 $navbar-fixed-top-bg: #96a032;
 $bg-dark: #cdbe23;
-$bg-light: #baba25;
+$bg-light: #a59705;
 
 $card-border-color: #cdbe23;
 
@@ -90,7 +98,7 @@ $input-border-right-color: #fff;
 $input-border-bottom-color: #fff;
 $input-border-left-color: #f5fb86;
 
-$dropdown-bg: #a7a71f;
+$dropdown-bg: #908205;
 $dropdown-border-color: rgba(0, 0, 0, 0.15);
 
 $dropdown-link-color: #ffffff;
@@ -107,12 +115,11 @@ $nav-tabs-link-bg: $input-bg;
 $nav-tabs-link-active-color: #fff;
 $nav-tabs-link-active-bg: $dropdown-link-hover-bg;
 
-
 $nav-pills-link-active-bg: #638637;
 $pagination-color: #638637;
 $pagination-bg: #ffffff;
 $pagination-border-color: #dddddd;
-$pagination-hover-color: #baba25;
+$pagination-hover-color: #a59705;
 $pagination-hover-bg: #eeeeee;
 $pagination-hover-border-color: #dddddd;
 $pagination-active-bg: #638637;
@@ -121,10 +128,6 @@ $pagination-disabled-color: #999999;
 $pagination-disabled-bg: #ffffff;
 $pagination-disabled-border-color: #dddddd;
 
-$theme-colors: (
-		"light":			#ffffff,
-		"dark":				#313109
-);
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
 //$bg-light-alt: #117485 !important;
@@ -138,7 +141,7 @@ $footer-accent-color: #ebdc14;
 $footer-btn-secondary-color: #f4f4f4;
 $footer_liner-border-color: $footer-accent-color;
 
-$autotoc-nav-bg: #658838; //#baba25;
+$autotoc-nav-bg: #658838; //#a59705;
 $autotoc-color: #ffffff;
 $autotoc-nav-link-hover-color: #f2f2f2;
 $autotoc-nav-link-hover-bg: #587631;
@@ -152,9 +155,8 @@ $autotoc-nav-link-hover-bg: #587631;
 .tiki > .fixed-top.bg-light*/ {
  }
 
-//.bg-dark {background: #313109 !important; }
-$chosen-container-multi-choices-bg: #ffffff;
-$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-bg: $input-bg;
+$chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #f5fb86;
 $chosen-container-single-bg: #f8f9d4;
 $chosen-container-single-color: #555555;
@@ -168,4 +170,4 @@ $autotoc-nav-border: #cdbe23;
 $autotoc-color: #638637;
 $autotoc-nav-li-link-hover-color: #f2f2f2;
 $autotoc-nav-li-link-hover-bg: #587631;
-$middle_outer-inset-shadow-bg: #cdbe23;
+$middle_outer-inset-shadow-bg: #a59705;

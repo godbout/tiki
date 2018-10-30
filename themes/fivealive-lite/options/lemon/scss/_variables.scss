@@ -1,6 +1,8 @@
 // $Id$ Custom variables for the Lemon theme option of the FiveAlive and FiveAlive-lite themes
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$white:    #fff;
+$black:    #000;
 $light: #f9a013;
 
 $bg-light: #f9a013 !important;
@@ -55,7 +57,7 @@ $btn-info-hover-color: $btn-info-color;
 $btn-info-hover-bg: lighten($btn-info-bg, 10%);
 $btn-info-hover-border: lighten($btn-info-border, 10%);
 // $btn-info-active-color: ;
-// $btn-info-active-bg: ;
+$btn-info-active-bg: $btn-info-bg;
 // $btn-info-active-border: ;
 // $btn-info-active-hover: ;
 // $btn-info-active-hover-border: ;
@@ -64,12 +66,18 @@ $btn-info-hover-border: lighten($btn-info-border, 10%);
 // $btn-info-badge-color: ;
 // $btn-info-badge-bg: ;
 
-$navbar-dark-color: #fff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
-$bg-dark-link-hover-bg: #4a2801;
-
+//$bg-dark-link-hover-bg: #638637;
 
 $hr-border-color: #ffc506;
 
@@ -120,10 +128,6 @@ $pagination-disabled-color: #999999;
 $pagination-disabled-bg: #ffffff;
 $pagination-disabled-border-color: #dddddd;
 
-$theme-colors: (
-		"light":			#ffffff,
-		"dark":				#2c1c04
-);
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
 $bg-light-alt: #ffc506 !important;
@@ -149,12 +153,10 @@ $autotoc-nav-link-hover-bg: #b25025;
 .postbody-title,
 .tiki > .navbar.fixed-top.bg-light/*,
 .tiki > .fixed-top.bg-light*/ {
-
 }
 
-//.bg-dark {background: #2c1c04 !important; }
-$chosen-container-multi-choices-bg: #ffffff;
-$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-bg: $input-bg;
+$chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #fee194;
 $chosen-container-single-bg: #fdf1d0;
 $chosen-container-single-color: #555555;

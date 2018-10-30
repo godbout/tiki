@@ -2,6 +2,8 @@
 // These FiveAlive-lite Grape theme option variables are applied to fivealive-lite/scss/fivealive-lite_option_selectors.scss.
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$white:    #fff;
+$black:    #000;
 $light: #a02871;
 
 $bg-light: #a02871 !important;
@@ -53,7 +55,7 @@ $btn-info-hover-color: $btn-info-color;
 $btn-info-hover-bg: lighten($btn-info-bg, 10%);
 $btn-info-hover-border: lighten($btn-info-border, 10%);
 // $btn-info-active-color: ;
-// $btn-info-active-bg: ;
+$btn-info-active-bg: $btn-info-bg;
 // $btn-info-active-border: ;
 // $btn-info-active-hover: ;
 // $btn-info-active-hover-border: ;
@@ -62,7 +64,14 @@ $btn-info-hover-border: lighten($btn-info-border, 10%);
 // $btn-info-badge-color: ;
 // $btn-info-badge-bg: ;
 
-$navbar-dark-color: #fff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
@@ -81,6 +90,8 @@ $table-border-color: #a82a76;
 $table-accent-bg: #f9f9f9;
 $table-hover-bg: #f5f5f5;
 
+$component-active-bg: $card-border-color;
+
 $input-color: #555555;
 $input-bg: #f4dded;
 $input-border-color: #e4afd3;
@@ -88,6 +99,7 @@ $input-border-top-color: #e4afd3;
 $input-border-right-color: #fff;
 $input-border-bottom-color: #fff;
 $input-border-left-color: #e4afd3;
+$input-focus-border-color: lighten($component-active-bg, 25%);
 
 $dropdown-bg: #8e286a; //#c82b8b;
 $dropdown-border-color: rgba(0, 0, 0, 0.15);
@@ -153,13 +165,12 @@ $autotoc-nav-link-hover-bg: #3b284a;
 
 }
 
-$enable-gradients: true;
-$chosen-container-multi-choices-bg: #ffffff;
-$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-bg: $input-bg;
+$chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #e4afd3;
 $chosen-container-single-bg: #f8f9d4;
 $chosen-container-single-color: #555555;
-$chosen-container-single-border: #e4afd3;
+$chosen-container-single-border: $input-border-color;
 $chosen-container-single-input-bg: #f8f9d4;
 $chosen-container-single-input-border: #e4afd3;
 $chosen-container-chosen-results-li-highlighted-bg: #2e1f39;
