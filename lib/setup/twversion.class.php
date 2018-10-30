@@ -270,6 +270,7 @@ class TWVersion
 				'18.2',
 				'19.0alpha',
 				'19.0beta1',
+				'19.0RC1',
 			];
 	}
 
