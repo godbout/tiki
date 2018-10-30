@@ -45,6 +45,12 @@ function module_adminbar($mod_reference, $module_params)
 					$(\'.js-sliding-panel-admin-bar\').toggleClass("open");
 					$(\'header.page-header\').toggleClass("has-admin-bar-sliding-panel");
 					$(\'.icon-admin-bar\').toggleClass("open");
+					$(\'body.tiki\').toggleClass("open");
+				});
+			});
+			$(function() {
+				$(".navbar-toggler").click(function() {
+					$(\'.navbar-toggler\').toggleClass("open");
 				});
 			});
 
