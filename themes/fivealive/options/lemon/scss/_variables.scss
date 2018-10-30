@@ -2,6 +2,8 @@
 //Custom styles for the FiveAliveHS Lemon option theme.
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$white:    #fff;
+$black:    #000;
 $light: #f9a013;
 
 $bg-light: #f9a013 !important;
@@ -62,7 +64,14 @@ $btn-info-active-bg: $btn-info-bg;
 // $btn-info-badge-color: ;
 // $btn-info-badge-bg: ;
 
-$navbar-dark-color: #fff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
@@ -71,9 +80,9 @@ $bg-dark-link-hover-bg: #003c4a;
 
 $hr-border-color: #ffc506;
 
-$bg-dark: #063035;
-$bg-light: #0a8794;
-
+$navbar-fixed-top-bg: #e4af00;
+$bg-dark: #cb9e10;
+$bg-light: #cb9e10;
 $card-border-color: #e4af00;
 $table-border-color: #a99628;
 $table-accent-bg: #f9f9f9;
@@ -81,11 +90,11 @@ $table-hover-bg: #f5f5f5;
 
 $input-color: #555555;
 $input-bg: #fdf1d0;
-$input-border-color: #fee195;
-$input-border-top-color: #fee196;
+$input-border-color: #fee194;
+$input-border-top-color: #ceb688;
 $input-border-right-color: #fff;
 $input-border-bottom-color: #fff;
-$input-border-left-color: #fee197;
+$input-border-left-color: #ceb688;
 
 $dropdown-bg: #c75a29;
 $dropdown-border-color: rgba(0, 0, 0, 0.15);
@@ -158,8 +167,8 @@ $autotoc-nav-link-hover-bg: #b25025;
 }
 
 //.bg-dark {background: #2c1c04 !important; }
-$chosen-container-multi-choices-bg: #ffffff;
-$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-bg: $input-bg;
+$chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #fee194;
 $chosen-container-single-bg: #fdf1d0;
 $chosen-container-single-color: #555555;

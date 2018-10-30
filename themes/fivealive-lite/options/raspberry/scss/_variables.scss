@@ -1,10 +1,13 @@
 // $Id$ Custom variables for the Raspberry theme option of the FiveAlive and FiveAlive-lite themes
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$white:    #fff;
+$black:    #000;
 $light: #e10c7c;
-$primary: #e10c7c;
+//$primary: #e10c7c;
 
 $bg-light: #e10c7c !important;
+
 $link-color: #b51360;
 $link-hover-color: #e10c7c;
 $btn-primary-color: #ffffff;
@@ -25,6 +28,7 @@ $btn-primary-disabled-hover: #e10c7c;
 $btn-primary-disabled-border: #f588c1;
 $btn-primary-badge-color: #e10c7c;
 $btn-primary-badge-bg: #ffffff;
+
 // $btn-secondary-color: ;
 // $btn-secondary-bg: ;
 // $btn-secondary-border: ;
@@ -63,7 +67,14 @@ $btn-info-active-bg: darken($btn-info-bg,5%);
 // $btn-info-badge-color: ;
 // $btn-info-badge-bg: ;
 
-$navbar-dark-color: #fff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
@@ -106,7 +117,6 @@ $nav-tabs-link-bg: $input-bg;
 $nav-tabs-link-active-color: #fff;
 $nav-tabs-link-active-bg: $dropdown-link-hover-bg;
 
-
 $nav-pills-link-active-bg: #b51360;
 $pagination-color: #b51360;
 $pagination-bg: #ffffff;
@@ -120,10 +130,6 @@ $pagination-disabled-color: #999999;
 $pagination-disabled-bg: #ffffff;
 $pagination-disabled-border-color: #dddddd;
 
-$theme-colors: (
-		"light":			#e60b7f,
-		"dark":				#b50964
-);
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
 //$bg-light-alt: #117485 !important;
@@ -144,8 +150,15 @@ $autotoc-nav-link-hover-bg: #61102d;
 
 // - - - - - - - - - -  - - - - - - Other CSS, if any - - - - - - - - - - - - - - - - - //
 
-$chosen-container-multi-choices-bg: #ffffff;
-$chosen-container-multi-choices-color: #555555;
+.header_outer,
+.layout_basic #top_modules,
+.postbody-title,
+.tiki > .navbar.fixed-top.bg-light/*,
+.tiki > .fixed-top.bg-light*/ {
+}
+
+$chosen-container-multi-choices-bg: $input-bg;
+$chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #fa9ccd;
 $chosen-container-single-bg: #f9dcec;
 $chosen-container-single-color: #555555;

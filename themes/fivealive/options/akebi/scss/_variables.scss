@@ -4,6 +4,9 @@
 //Custom styles for the FiveAliveHS Akebi option theme.
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+
+$white:    #fff;
+$black:    #000;
 $light: #18a3bb;
 
 $bg-light: #18a3bb !important;
@@ -64,12 +67,18 @@ $btn-info-active-bg: $btn-info-bg;
 // $btn-info-badge-color: ;
 // $btn-info-badge-bg: ;
 
-$navbar-dark-color: #fff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
 $bg-dark-link-hover-bg: #003c4a;
-
 
 $hr-border-color: #18a3bb;
 
@@ -120,11 +129,6 @@ $pagination-disabled-color: #999999;
 $pagination-disabled-bg: #ffffff;
 $pagination-disabled-border-color: #dddddd;
 
-$theme-colors: (
-        "light":			#ffffff,
-        "dark":				#261122
-);
-
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
 $bg-light-alt: #117485 !important;
@@ -159,12 +163,12 @@ $autotoc-nav-link-hover-bg: #2e1f39;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0a8794', endColorstr='#19a5bd',GradientType=1 ); /* IE6-9 */
 }
 
-$chosen-container-multi-choices-bg: #ffffff;
-$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-bg: $input-bg;
+$chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #b4f3fb;
 $chosen-container-single-bg: #f8f9d4;
 $chosen-container-single-color: #555555;
-$chosen-container-single-border: #b4f3fb;
+$chosen-container-single-border: $input-border-color;
 $chosen-container-single-input-bg: #f8f9d4;
 $chosen-container-single-input-border: #b4f3fb;
 $chosen-container-chosen-results-li-highlighted-bg: #003c4a;

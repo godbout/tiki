@@ -2,6 +2,8 @@
 //Custom styles for the FiveAliveHS Grape option theme.
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$white:    #fff;
+$black:    #000;
 $light: #a02871;
 
 $bg-light: #a02871 !important;
@@ -62,7 +64,14 @@ $btn-info-active-bg: $btn-info-bg;
 // $btn-info-badge-color: ;
 // $btn-info-badge-bg: ;
 
-$navbar-dark-color: #fff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
@@ -71,7 +80,8 @@ $bg-dark-link-hover-bg: #003c4a;
 
 $hr-border-color: #a02871;
 
-$bg-dark: #261122;
+$navbar-fixed-top-bg: #8e286a;
+$bg-dark: #8e286a;
 $bg-light: #f4dded;
 
 $card-border-color: #bc2f84;
@@ -80,6 +90,8 @@ $table-border-color: #a82a76;
 $table-accent-bg: #f9f9f9;
 $table-hover-bg: #f5f5f5;
 
+$component-active-bg: $card-border-color;
+
 $input-color: #555555;
 $input-bg: #f4dded;
 $input-border-color: #e4afd3;
@@ -87,12 +99,13 @@ $input-border-top-color: #e4afd3;
 $input-border-right-color: #fff;
 $input-border-bottom-color: #fff;
 $input-border-left-color: #e4afd3;
+$input-focus-border-color: lighten($component-active-bg, 25%);
 
 $dropdown-bg: #8e286a; //#c82b8b;
 $dropdown-border-color: rgba(0, 0, 0, 0.15);
 
 $dropdown-link-color: #ffffff;
-$dropdown-link-hover-color: #f9f9f9;
+$dropdown-link-hover-color: #f2f2f2;
 $dropdown-link-hover-bg: #742157;
 $dropdown-link-active-color: #ffffff;
 $dropdown-link-active-bg: #2e1f39;
@@ -120,8 +133,8 @@ $pagination-disabled-bg: #ffffff;
 $pagination-disabled-border-color: #dddddd;
 
 $theme-colors: (
-        "light":			#ffffff,
-        "dark":				#261122
+		"light":			#ffffff,
+		"dark":				#261122
 );
 
 $enable-gradients: true;
@@ -131,7 +144,7 @@ $enable-shadows: true;
 
 $side-column-heading-color: #bc2f84;
 
-$middle_outer-inset-shadow-bg: #261122;
+$middle_outer-inset-shadow-bg: #8e286a;
 $footer_liner-card-inner-border: #a52873;
 
 $footer-accent-color: $input-border-color;
@@ -160,12 +173,12 @@ $autotoc-nav-link-hover-bg: #3b284a;
 }
 
 $enable-gradients: true;
-$chosen-container-multi-choices-bg: #ffffff;
-$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-bg: $input-bg;
+$chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #e4afd3;
 $chosen-container-single-bg: #f8f9d4;
 $chosen-container-single-color: #555555;
-$chosen-container-single-border: #e4afd3;
+$chosen-container-single-border: $input-border-color;
 $chosen-container-single-input-bg: #f8f9d4;
 $chosen-container-single-input-border: #e4afd3;
 $chosen-container-chosen-results-li-highlighted-bg: #2e1f39;
