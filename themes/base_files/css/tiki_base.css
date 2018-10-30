@@ -869,7 +869,7 @@ body.fullscreen {
 a.icon, img.icon {
   border: none; }
 
-a .icon {
+a.icon:not(.icon-help,.icon-reset) {
   font-size: 1.2em; }
 
 .nav a .icon.icon-menuitem {

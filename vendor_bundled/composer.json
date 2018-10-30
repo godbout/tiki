@@ -239,6 +239,9 @@
 			"Tiki\\Composer\\BootstrapCompiler::build",
 			"Tiki\\Composer\\CleanVendors::clean",
 			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::clean"
+		],
+		"pre-autoload-dump": [
+			"Tiki\\Composer\\Autoload::change"
 		]
 	},
 	"repositories": [

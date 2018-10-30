@@ -478,7 +478,7 @@ function wikiplugin_swiper($data, $params)
 		}
 	}
 	$swiperSettings=str_replace(array("'y'","'n'"),array("'true'","'false'"),$swiperSettings);
-	$headerlib->add_css('#swiper-container'.$uid.' {width: '.$params['width'].';min-height: '.$params['height'].';background:'.$params['background'].';margin-bottom:20px;} #swiper-container'.$uid.' .swiper-slide {font-size:'.$params['descriptionSize'].';color:'.$params['descriptionColor'].';min-height:'.$params['height'].';text-align: center;width:100%;overflow:hidden;} .gallery-top {height: 80%;width: 100%;}.gallery-thumbs {height: 20%;box-sizing: border-box;padding: 10px 0;}.gallery-thumbs img {max-height:120px;height:120px;width:auto;}.gallery-thumbs .swiper-slide {width: 25%; height: 100%;opacity: 0.4;}.gallery-thumbs .swiper-slide-active {opacity: 1;} #swiper-container'.$uid.' .swiper-slide h1{font-size:'.$params['titleSize'].';color:'.$params['titleColor'].'} .slide-content'.$uid.'{min-width:60%;position:absolute;'.$params['slideContentPostion'].';background:'.$params['slideContentBg'].';padding:1%;text-align:left}  .parallax-bg { position: absolute;left: 0;top: 0;width: 130%;height: 100%;-webkit-background-size: cover;background-size: cover;background-position: center; 
+	$headerlib->add_css('#swiper-container'.$uid.' {width: '.$params['width'].';min-height: '.$params['height'].';background:'.$params['background'].';margin-bottom:20px;} #swiper-container'.$uid.' .swiper-slide {font-size:'.$params['descriptionSize'].';color:'.$params['descriptionColor'].';min-height:'.$params['height'].';text-align: center;width:100%;overflow:hidden;} .gallery-top {height: 80%;width: 100%;}.gallery-thumbs {height: 20%;box-sizing: border-box;padding: 10px 0;}.gallery-thumbs img {max-height:120px;height:120px;width:auto;  margin-bottom:2%;cursor:pointer}.gallery-thumbs .swiper-slide {width: 25%; height: 100%;opacity: 0.4;}.gallery-thumbs .swiper-slide-active {opacity: 1;} #swiper-container'.$uid.' .swiper-slide h1{font-size:'.$params['titleSize'].';color:'.$params['titleColor'].'} .slide-content'.$uid.'{min-width:60%;position:absolute;'.$params['slideContentPostion'].';background:'.$params['slideContentBg'].';padding:1%;text-align:left}  .parallax-bg { position: absolute;left: 0;top: 0;width: 130%;height: 100%;-webkit-background-size: cover;background-size: cover;background-position: center; 
 	} .swiper-slide img{max-width:100%}');
 	$thumbsSettings='';
 	if($params['displayThumbnails']=="y") {
@@ -511,11 +511,11 @@ function wikiplugin_swiper($data, $params)
 			});'.$thumbAfter;
 	if($params['sliderPosition']=='abovetopbar') {
 		$headerlib->add_css("#swiper-container".$uid."{visibility:hidden;}");
-		$swiperOpts.='var container=$(".container").first();$("#swiper-container'.$uid.'").insertBefore( container );';
+		$swiperOpts.='var container=$(".container").first();$("#swiper-container'.$uid.'").insertBefore( container );$("#gallery-thumbs'.$uid.'").insertAfter( "#swiper-container'.$uid.'" );';
 	}
 	elseif($params['sliderPosition']=='undertopbar') {
 		$headerlib->add_css("#swiper-container".$uid."{visibility:hidden;}");
-		$headerlib->add_js('$( document ).ready(function() { $("#swiper-container'.$uid.'").insertAfter( "#page-header" );})');
+		$headerlib->add_js('$( document ).ready(function() { $("#swiper-container'.$uid.'").insertAfter( "#page-header" );  $("#gallery-thumbs'.$uid.'").insertAfter( "#swiper-container'.$uid.'" );})');
 	}
 	//delaying initialization till window is fully loaded
 	$swiperOpts.='setTimeout( function(){
