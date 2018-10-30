@@ -16,7 +16,7 @@
 					<h4>{tr}Installation{/tr}</h4>
 				</div>
 				<div class="card-body">
-					<ol>
+					{if $lang eq 'he' or $lang eq 'ar'}<ol class="px-4">{else}<ol>{/if}
 						<li>{if $install_step eq '0'}<strong>{else}<a href="#" onclick="$('#install_step0').submit();return false;" title="{tr}Welcome{/tr} / {tr}Restart the installer.{/tr}">{/if}{tr}Welcome{/tr}{if $install_step eq '0'}</strong>{else}</a>{/if}</li>
 						<li>{if $install_step eq '1'}<strong>{else}<a href="#" onclick="$('#install_step1').submit();return false;" title="{tr}License{/tr}">{/if}{tr}License{/tr}{if $install_step eq '1'}</strong>{else}</a>{/if}</li>
 						<li>{if $install_step eq '2'}<strong>{elseif $install_step ge '3' or $dbcon eq 'y'}<a href="#" onclick="$('#install_step2').submit();return false;" title="{tr}Review the System Requirements{/tr}">{/if}{tr}Review the System Requirements{/tr}{if $install_step eq '2'}</strong>{elseif $install_step ge '3' or $dbcon eq 'y'}</a>{/if}</li>
@@ -79,7 +79,7 @@
 					<h4>{tr}Help{/tr}</h4>
 				</div>
 				<div class="card-body">
-					<ul class="nav nav-pills nav-stacked">
+					{if $lang eq 'he' or $lang eq 'ar'}<ul class="nav nav-pills nav-stacked px-4">{else}<ul class="nav nav-pills nav-stacked">{/if}
 						<li><a href="https://tiki.org" target="_blank"><img src="themes/base_files/favicons/favicon-16x16.png" alt="{tr}Tiki Icon{/tr}"> {tr}Tiki Project Web Site{/tr}</a></li>
 						<li><a href="https://doc.tiki.org" target="_blank" title="{tr}Documentation{/tr}">{icon name="documentation"} {tr}Documentation{/tr}</a></li>
 						<li><a href="https://tiki.org/forums" target="_blank" title="{tr}Forums{/tr}">{icon name="admin_forums"} {tr}Support Forums{/tr}</a></li>
@@ -93,7 +93,8 @@
 			{if $install_step eq '0' or !$install_step}{* start of installation *}
 				<div class="install-step0">
 					<h1 class="pagetitle">{tr}Welcome{/tr}</h1>
-					<p>{tr _0=$tiki_version_name}Welcome to the <strong>Tiki %0</strong> installer.{/tr} {tr}Use this script to install a new database or upgrade your existing database.{/tr}</p>
+					<p>{tr _0=$tiki_version_name}Welcome to the <strong>Tiki %0</strong> installer.{/tr}<br>
+						{tr}Use this script to install a new database or upgrade your existing database.{/tr}</p>
 					<ul>
 						<li>{tr}For the latest information about this release, please read the{/tr} <a href="https://doc.tiki.org/Tiki{$tiki_version_short|urlencode}" target="_blank">{tr}Release Notes{/tr}</a>.</li>
 						<li>{tr}For complete documentation, please visit{/tr} <a href="https://doc.tiki.org" target="_blank">doc.tiki.org</a>.</li>
@@ -101,8 +102,8 @@
 					</ul>
 					<form action="tiki-install.php" method="post" role="form">
 						<div class="form-inline mb-3">
-							<label for="general-lang" class="mr-2">{tr}Select your language{/tr}</label>
-							<select name="lang" id="general-lang" onchange="$('.install-steps').tikiModal(tr('Loading...')); $('input[name=lang]:hidden').val($(this).val()); this.form.submit();" title="{tr}Select your language{/tr}" class="form-control">
+							<label class="col-form-label" for="general-lang">{tr}Select your language{/tr}</label>
+							<select name="lang" id="general-lang" onchange="$('.install-steps').tikiModal(tr('Loading...')); $('input[name=lang]:hidden').val($(this).val()); this.form.submit();" title="{tr}Select your language{/tr}" class="form-control mx-2">
 								{section name=ix loop=$languages}
 									<option value="{$languages[ix].value|escape}"
 										{if $prefs.site_language eq $languages[ix].value}selected="selected"{/if}>{$languages[ix].name}
@@ -174,14 +175,14 @@
 						<p>{tr}To test your system configuration, Tiki will attempt to send a test message to you.{/tr}</p>
 						<form action="tiki-install.php#mail" method="post" role="form">
 							<div class="form-group row mt-4">
-								<label class="col-sm-2" for="email_test_to">{tr}Test email:{/tr}</label>
+								<label class="col-form-label" class="col-sm-2" for="email_test_to">{tr}Test email:{/tr}</label>
 								<div class="col-sm-6">
 									<input type="text" class="form-control" name="email_test_to" id="email_test_to" value="{if isset($email_test_to)}{$email_test_to|escape}{/if}" placeholder="{tr}tiki@example.com{/tr}">
 								</div>
 								{if isset($email_test_err)}
 									<span class="attention"><em>{$email_test_err}</em></span>
 								{else}
-									<div class="col-sm-4 mb-3"><i>{tr}Email address to send test to.{/tr}</i></div>
+									<div class="col-sm-4 mt-2"><i>{tr}Email address to send test to.{/tr}</i></div>
 								{/if}
 							</div>
 							<div class="form-group row mb-3">
@@ -281,9 +282,9 @@
 								<legend>{tr}Database information{/tr}</legend>
 								<p>{tr}Enter your database connection information.{/tr}</p>
 								<div class="form-group row">
-									<label for="db">{tr}DBMS driver:{/tr}</label>
-									<div style="margin-left:1em">
-										<select class=form-control name="db" id="db">
+									<label for="db" class="col-form-label">{tr}DBMS driver:{/tr}</label>
+									<div class="mx-3">
+										<select class="form-control" name="db" id="db">
 											{foreach key=dsn item=dbname from=$dbservers}
 												{if $dsn|stristr:"mysql"}
 													<option value="{$dsn}"{if isset($smarty.request.db) and $smarty.request.db eq $dsn} selected="selected"{/if}>{$dbname}</option>
@@ -300,8 +301,8 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="host">{tr}Host name:{/tr}</label>
-									<div style="margin-left:1em">
+									<label class="col-form-label" for="host">{tr}Host name:{/tr}</label>
+									<div class="mx-3">
 										<input type="text" class=form-control name="host" id="host" value="{if isset($smarty.request.host)}{$smarty.request.host|escape:"html"}{elseif isset($preconfighost)}{$preconfighost|escape:"html"}{else}localhost{/if}" size="40" />
 											<a href="javascript:void(0)" onclick="flip('host_help');" title="{tr}Help{/tr}">
 												{icon name="help"}
@@ -314,14 +315,14 @@
 									</div>
 								</div>
 								<div class="form-group row">
-									<label for="name">{tr}Database name:{/tr}</label>
-									<div style="margin-left:1em;">
+									<label class="col-form-label" for="name">{tr}Database name:{/tr}</label>
+									<div class="mx-3">
 										<input type="text" class=form-control id="name" name="name" size="40" value="{if isset($smarty.request.name)}{$smarty.request.name|escape:"html"}{elseif isset($preconfigname)}{$preconfigname|escape:"html"}{/if}" placeholder="{tr}Database name{/tr}"/>
 										<a href="javascript:void(0)" onclick="flip('name_help');" title="{tr}Help{/tr}">
 											{icon name="help"}
 										</a>
 										<br><em>{tr}Name of the database to be used. This database will be created if it does not exist and permissions allow creation.{/tr}</em>
-										<div style="margin-left:1em;display:none;" id="name_help">
+										<div class="mx-3" style="display:none;" id="name_help">
 											<p>{tr}You can create the database using Adminer, MySQL Workbench, phpMyAdmin, cPanel, or ask your hosting provider. If the database doesn't exist and the supplied username has permissions, it will be created.{/tr}</p>
 											<p>{tr}If you are using a database which is already being used for something else (not recommended), check db/tiki.sql to make sure the table names used by Tiki are not already used.{/tr}</p>
 										</div>
@@ -334,20 +335,20 @@
 								<legend>{tr}Database user{/tr}</legend>
 								<p>{tr}Enter a database user with administrator permission for the Tiki database.{/tr}</p>
 								<div style="padding:5px;">
-									<label for="user">{tr}User name:{/tr}</label> <input type="text" class=form-control id="user" name="user" value="{if (isset($smarty.request.user))}{$smarty.request.user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" maxlength="16" placeholder="{tr}Database username{/tr}">
+									<label class="col-form-label" for="user">{tr}User name:{/tr}</label> <input type="text" class=form-control id="user" name="user" value="{if (isset($smarty.request.user))}{$smarty.request.user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" maxlength="16" placeholder="{tr}Database username{/tr}">
 								</div>
 
 								<div style="padding:5px;">
 									{if isset($preconfigpass)}
-										<label for="pass">{tr}Password:{/tr}</label> <input type="text" class=form-control id="pass" name="pass" value="{$preconfigpass|escape:"html"}" >
+										<label class="col-form-label" for="pass">{tr}Password:{/tr}</label> <input type="text" class=form-control id="pass" name="pass" value="{$preconfigpass|escape:"html"}" >
 									{else}
-										<label for="pass">{tr}Password:{/tr}</label> <input type="password" class=form-control id="pass" name="pass" >
+										<label class="col-form-label" for="pass">{tr}Password:{/tr}</label> <input type="password" class=form-control id="pass" name="pass" >
 									{/if}
 								</div>
 
 								<div style="padding:5px;">
 									<input type="checkbox" id="create-new-user" name="create_new_user" />
-									<label for="create-new-user">{tr}Create the above database user just for this Tiki database.{/tr}</label>&nbsp;
+									<label class="col-form-label" for="create-new-user">{tr}Create the above database user just for this Tiki database.{/tr}</label>&nbsp;
 								</div>
 							</fieldset>
 
@@ -357,10 +358,10 @@
 								<p>{tr}Enter database administrator user name and password.{/tr}<br>
 								<em>{tr}This is a DB admin user which has permission to create new databases and new users.{/tr}</em></p>
 								<div style="padding:5px;">
-									<label for="user">{tr}DB admin user name:{/tr}</label> <input type="text" class=form-control id="root_user" name="root_user" value="{if (isset($smarty.request.root_user))}{$smarty.request.root_user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" placeholder="{tr}DB admin user name{/tr}">
+									<label class="col-form-label" for="user">{tr}DB admin user name:{/tr}</label> <input type="text" class=form-control id="root_user" name="root_user" value="{if (isset($smarty.request.root_user))}{$smarty.request.root_user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" placeholder="{tr}DB admin user name{/tr}">
 								</div>
 								<div style="padding:5px;">
-									<label for="pass">{tr}DB admin password:{/tr}</label> <input type="password" class=form-control id="root_pass" name="root_pass" value="{if (isset($smarty.request.root_pass))}{$smarty.request.root_pass|escape:"html"}{/if}">
+									<label class="col-form-label" for="pass">{tr}DB admin password:{/tr}</label> <input type="password" class=form-control id="root_pass" name="root_pass" value="{if (isset($smarty.request.root_pass))}{$smarty.request.root_pass|escape:"html"}{/if}">
 								</div>
 							</fieldset>
 							<script type='text/javascript'><!--//--><![CDATA[//><!--
@@ -386,9 +387,9 @@
 							<input type="hidden" name="resetdb" value="y">
 							<fieldset>
 								<legend>{tr}Character set{/tr}</legend>
-								<p>{tr}Highly recommended for new installations. However, if you are upgrading or migrating a previous tiki database, you are recommended to uncheck this box{/tr}</p>
+								<p>{tr}Highly recommended for new installations. However, if you are upgrading or migrating a previous tiki database, you are recommended to uncheck this box{/tr}.</p>
 								<input type="checkbox" name="force_utf8" id="force_utf8" value="y" checked="checked">
-								<label for="force_utf8">{tr}Always force connection to use UTF-8{/tr}</label>
+								<label class="col-form-label" for="force_utf8">{tr}Always force connection to use UTF-8{/tr}</label>
 								<p><a href="https://doc.tiki.org/Understanding+Encoding" onclick="window.open(this.href); return false;">{tr}More information{/tr}</a></p>
 							</fieldset>
 							<div class="form-group row text-center">
@@ -468,7 +469,7 @@
 											<div id="install-table">
 										{/if}
 										{if $hasInnoDB}
-											<label for="dbEnginge">{tr}Select database engine{/tr}</label>
+											<label class="col-form-label" for="dbEnginge">{tr}Select database engine{/tr}</label>
 											<select name="useInnoDB" id="dbEnginge" class="form-control">
 												<option value="0">{tr}MyISAM{/tr}</option>
 												<option selected="selected" value="1">{tr}InnoDB{/tr}</option>
@@ -562,7 +563,7 @@
 										{/if}
 										<p>
 											<input type="checkbox" name="validPatches[]" value="{$item[2]|escape}" id="ignore_{$item[2]|escape}">
-											<label for="ignore_{$item[2]|escape}">{$item[2]|escape}</label>
+											<label class="col-form-label" for="ignore_{$item[2]|escape}">{$item[2]|escape}</label>
 										</p>
 										{assign var='patch' value=$item[2]}
 										<textarea rows="6" cols="80">
@@ -602,7 +603,7 @@
 									{tr}General{/tr} <a href="https://doc.tiki.org/general+admin" target="_blank" title="{tr}Help{/tr}">{icon name="help"}</a>
 								</legend>
 								<div class="form-group row mx-0">
-									<label for="browsertitle">
+									<label class="col-form-label" for="browsertitle">
 										{tr}Browser title:{/tr}
 									</label>
 									<input class="form-control" type="text" size="40" name="browsertitle" id="browsertitle" value="{if $prefs.browsertitle}{$prefs.browsertitle|escape}{else}{tr}My Tiki{/tr}{/if}">
@@ -611,7 +612,7 @@
 									</span>
 								</div>
 								<div class="form-group row mx-0">
-									<label for="sender_email">
+									<label class="col-form-label" for="sender_email">
 										{tr}Sender email:{/tr}
 									</label>
 									<input type="text" class="form-control" size="40" name="sender_email" id="sender_email" value="{$prefs.sender_email|escape}" placeholder="{tr}tiki@example.com{/tr}">
@@ -622,11 +623,11 @@
 								<div class="p-3">
 									<details>
 											<summary><label>{tr}Network Proxy?{/tr}</label> {tr}Toggle section display{/tr}</summary>
-											<div style="margin-left:1em"><label for="use_proxy">{tr}Use proxy{/tr}</label> <input type="checkbox" name="use_proxy" id="use_proxy"{if $prefs.use_proxy eq 'y'} checked="checked"{/if}><a href="https://doc.tiki.org/General+Settings" target="_blank" title="{tr}Help{/tr}">{icon name="help"}</a></div>
-											<div style="margin-left:1em"><label for="proxy_host">{tr}Proxy host name{/tr}</label><input type="text" class="form-control" size="40" name="proxy_host" id="proxy_host" value="{$prefs.proxy_host|escape}"></div>
-											<div style="margin-left:1em"><label for="proxy_port">{tr}Port{/tr}</label><input type="text" class="form-control" size="40" name="proxy_port" id="proxy_port" value="{$prefs.proxy_port|escape}"></div>
-											<div style="margin-left:1em"><label for="proxy_user">{tr}Proxy username{/tr}</label><input type="text" class="form-control" size="40" name="proxy_user" id="proxy_user" value="{$prefs.proxy_user|escape}"></div>
-											<div style="margin-left:1em"><label for="proxy_pass">{tr}Proxy password{/tr}</label><input type="text" class="form-control" size="40" name="proxy_pass" id="proxy_pass" value="{$prefs.proxy_pass|escape}"></div>
+											<div class="mx-3"><label for="use_proxy">{tr}Use proxy{/tr}</label> <input type="checkbox" name="use_proxy" id="use_proxy"{if $prefs.use_proxy eq 'y'} checked="checked"{/if}><a href="https://doc.tiki.org/General+Settings" target="_blank" title="{tr}Help{/tr}">{icon name="help"}</a></div>
+											<div class="mx-3"><label for="proxy_host">{tr}Proxy host name{/tr}</label><input type="text" class="form-control" size="40" name="proxy_host" id="proxy_host" value="{$prefs.proxy_host|escape}"></div>
+											<div class="mx-3"><label for="proxy_port">{tr}Port{/tr}</label><input type="text" class="form-control" size="40" name="proxy_port" id="proxy_port" value="{$prefs.proxy_port|escape}"></div>
+											<div class="mx-3"><label for="proxy_user">{tr}Proxy username{/tr}</label><input type="text" class="form-control" size="40" name="proxy_user" id="proxy_user" value="{$prefs.proxy_user|escape}"></div>
+											<div class="mx-3"><label for="proxy_pass">{tr}Proxy password{/tr}</label><input type="text" class="form-control" size="40" name="proxy_pass" id="proxy_pass" value="{$prefs.proxy_pass|escape}"></div>
 									</details>
 								</div>
 							</fieldset>
@@ -700,7 +701,7 @@
 									{tr}Administrator{/tr}
 								</legend>
 								<div class="form-group row mx-0">
-									<label for="admin_email">
+									<label class="col-form-label" for="admin_email">
 										{tr}Admin email:{/tr}
 									</label>
 									<input type="text" class="form-control" size="40" name="admin_email" id="admin_email" value="{if isset($admin_email)}{$admin_email}{/if}" placeholder="{tr}admin@example.com{/tr}">
@@ -747,7 +748,7 @@
 									<div class="form-group row"><label class="col-form-label col-sm-4" for="admin_account">{tr}Administrator account (optional):</label><div class="col-sm-4"> <input type="text" name="admin_account" class="form-control"></div><div class="col-sm-4"><em>The default account is <strong>admin</strong></em>{/tr}</div></div>
 									{if !empty($disableAccounts)}
 										<hr>
-										<label for="fix_disable_accounts">{tr}Check this box if you have a lot of disabled accounts after an upgrade to tiki4.{/tr}</label>
+										<label class="col-form-label" for="fix_disable_accounts">{tr}Check this box if you have a lot of disabled accounts after an upgrade to tiki4.{/tr}</label>
 										<input type="checkbox" id="fix_disable_accounts" name="fix_disable_accounts">
 										<br/>
 										{tr}List of accounts that will be enabled:{/tr}
@@ -879,7 +880,7 @@
 									{if $client_charset_in_file eq 'utf8'}
 										<div class="form-row align-items-center">
 											<div class="input-group col-auto">
-												<label for="previous_encoding" class="mr-2">{tr}Previous table encoding:{/tr}</label>
+												<label class="col-form-label" for="previous_encoding" class="mr-2">{tr}Previous table encoding:{/tr}</label>
 												<select class="form-control" name="previous_encoding" id="previous_encoding">
 													<option value="">{tr}Please select{/tr}</option>
 													<option value="armscii8" title="Armenian, Binary">armscii8</option>
@@ -983,7 +984,7 @@
 		</div>
 	{*</div><!-- End of install-body -->*}
 
-	<div class="row install-footer text-center">
+	<div class="row install-footer text-center mx-1">
 		<hr>
 		<a href="https://tiki.org" target="_blank" title="{tr}Powered by{/tr} {tr}Tiki Wiki CMS Groupware{/tr} &copy; 2002–{$smarty.now|date_format:"%Y"} " class="btn"><img src="img/tiki/tikibutton.png" alt="{tr}Powered by Tiki Wiki CMS Groupware{/tr}"></a>
 	</div><!-- End of install-footer -->

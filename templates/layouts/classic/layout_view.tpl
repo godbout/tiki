@@ -65,7 +65,7 @@
 						{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 					</div>
 				{/if}
-				<div class="d-flex flex-row w-100">
+				<div class="d-flex flex-row flex-wrap w-100">
 					<div class="col col1 col-md-12 col-lg-9" id="col1">
 						{if $prefs.feature_layoutshadows eq 'y'}
 						<div id="tiki-center-shadow">{eval var=$prefs.center_shadow_start}{/if}
@@ -93,7 +93,7 @@
 						{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 					</div>
 				{/if}
-				<div class="d-flex flex-row w-100">
+				<div class="d-flex flex-row flex-wrap w-100">
 					<div class="col col1 col-md-12 col-lg-9 order-md-1 order-lg-2" id="col1">
 						{if $prefs.feature_layoutshadows eq 'y'}
 						<div id="tiki-center-shadow">{eval var=$prefs.center_shadow_start}{/if}
@@ -129,7 +129,7 @@
 						</div>
 					{/if}
 				</div>
-				<div class="d-flex flex-row w-100">
+				<div class="d-flex flex-row flex-wrap w-100">
 					<div class="col col1 col-sm-12 col-lg-8 order-xs-1 order-lg-2" id="col1">
 						{if $prefs.feature_layoutshadows eq 'y'}
 						<div id="tiki-center-shadow">{eval var=$prefs.center_shadow_start}{/if}

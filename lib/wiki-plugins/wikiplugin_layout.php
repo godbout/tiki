@@ -245,6 +245,48 @@ function wikiplugin_layout_info()
 					['text' => 'No ', 'value' => 'n'],
 				],
 			],
+			'topbar'       => [
+				'required'    => false,
+				'name'        => tra('Display top bar(under header)'),
+				'description' => tra('Set to No, to hide topbar on the page'),
+				'filter'      => 'alpha',
+				'default'     => 'y',
+				'since'       => '19.0',
+				'advanced'    => true,
+				'options'     => [
+					['text' => 'Yes', 'value' => 'y'],
+					['text' => 'No ', 'value' => 'n'],
+
+				],
+			],
+			'pagetopbar'       => [
+				'required'    => false,
+				'name'        => tra('Display page top bar(above page content)'),
+				'description' => tra('Set to No, to hide page topbar module zone'),
+				'filter'      => 'alpha',
+				'default'     => 'y',
+				'since'       => '19.0',
+				'advanced'    => true,
+				'options'     => [
+					['text' => 'Yes', 'value' => 'y'],
+					['text' => 'No ', 'value' => 'n'],
+
+				],
+			],
+			'pagebottombar'       => [
+				'required'    => false,
+				'name'        => tra('Display page bottom bar(under page content)'),
+				'description' => tra('Set to No, to hide page bottom bar module zone'),
+				'filter'      => 'alpha',
+				'default'     => 'y',
+				'since'       => '19.0',
+				'advanced'    => true,
+				'options'     => [
+					['text' => 'Yes', 'value' => 'y'],
+					['text' => 'No ', 'value' => 'n'],
+
+				],
+			],
 
 
 		],
@@ -274,6 +316,15 @@ function wikiplugin_layout($data, $params)
 			'if ($( "#col1" ).hasClass( "col-lg-10" )) {$("#col1").removeClass("col-lg-10").addClass("col-lg-12");}if($( "#col1" ).hasClass( "col-lg-9" )) {$("#col1").removeClass("col-lg-9").addClass("col-lg-12");}'
 		);
 	}
+	if ($params['topbar'] == 'n') {
+		$headerlib->add_css("#topbar_modules{display:none !important}");
+	}
+	if ($params['pagetopbar'] == 'n') {
+		$headerlib->add_css("#pagetop_modules{display:none !important}");
+	}
+	if ($params['pagebottombar'] == 'n') {
+		$headerlib->add_css("#pagebottom_modules{display:none !important}");
+	}
 	if ($params['actionbuttons'] == 'n') {
 		$headerlib->add_css("#page-bar{display:none} ");
 		$headerlib->add_js("$('.page_actions a').removeClass('btn btn-primary dropdown-toggle');"); //making action toggle smaller
@@ -301,19 +352,19 @@ function wikiplugin_layout($data, $params)
 	) {
 		$headerlib->add_css(
 			"#row-middle{width:" . $params["contentwidth"]
-			. ";margin:auto;margin-top:" . $params['topmargin']
+			. " !important;margin:auto;margin-top:" . $params['topmargin']
 			. ";min-width:380px;border-radius:".$params['contentradius'].";box-shadow:".$params['contentboxshadow']."} #col1{min-width:380px;margin:auto}"
 		);
 
 	}
 	if (isset($params['headerwidth'])) {
 		$headerlib->add_css(
-			"#page-header{width:" . $params["headerwidth"] . ";margin:auto}"
+			"#page-header{width:" . $params["headerwidth"] . " !important;margin:auto }"
 		);
 	}
 	if (isset($params['footerwidth'])) {
 		$headerlib->add_css(
-			"#footer{width:" . $params["footerwidth"] . ";margin:auto}"
+			"#footer{width:" . $params["footerwidth"] . " !important;margin:auto}"
 		);
 	}
 	if (isset($params['fgalId']) || $params['fileIds']) {

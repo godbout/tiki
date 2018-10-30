@@ -18,7 +18,7 @@
 	{/if}
 	<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} middle" id="middle">
 		{if $smarty.session.fullscreen ne 'y'}
-		<div class="row topbar" id="topbar">
+		<div class="row topbar mx-0 {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if}" id="topbar">
 			{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
 		</div>
 		{/if}
@@ -26,7 +26,7 @@
 
 		<div class="row row-middle" id="row-middle">
 			{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
-				<div class="d-flex flex-row w-100">
+				<div class="d-flex flex-row flex-wrap w-100">
 				<div class="col col1 col-md-12" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}
@@ -48,7 +48,7 @@
 						{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 					</div>
 				{/if}
-			<div class="d-flex flex-row w-100">
+			<div class="d-flex flex-row flex-wrap w-100">
 				<div class="col col1 col-md-12 col-lg-9" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}
@@ -73,7 +73,7 @@
 						{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
 					</div>
 				{/if}
-			<div class="d-flex flex-row w-100">
+			<div class="d-flex flex-row flex-wrap w-100">
 				<div class="col col1 col-md-12 col-lg-9 order-md-1 order-lg-2" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}
@@ -106,7 +106,7 @@
 						</div>
 					{/if}
 				</div>
-			<div class="d-flex flex-row w-100">
+			<div class="d-flex flex-row flex-wrap w-100">
 				<div class="col col1 col-sm-12 col-lg-8 order-xs-1 order-lg-2" id="col1">
 					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
 						{modulelist zone=pagetop}

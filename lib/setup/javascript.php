@@ -131,6 +131,9 @@ try {
 	setCookie("local_tz", timezone);
 } catch (e) {}
 
+// this is used by tiki-confirm.js checkTimeout, so needs to be always set
+var now = new Date();
+
 if (! timezone) {
 	function inArray(item, array) {
 		for (var i in array) {
@@ -141,7 +144,6 @@ if (! timezone) {
 		return false;
 	}
 	var allTimeZoneCodes = ' . json_encode(array_map("strtoupper", $tz)) . ';
-	var now = new Date();
 	var now_string = now.toString();
 	var offsethours = - now.getTimezoneOffset() / 60;
 	setCookie("local_tzoffset", offsethours);

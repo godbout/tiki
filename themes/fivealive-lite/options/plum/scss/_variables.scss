@@ -46,7 +46,7 @@ $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-badge-color: ;
 // $btn-secondary-badge-bg: ;
 
-$btn-info-color: #282828;
+$btn-info-color: #ffffff;
 $btn-info-bg: #e5d7dc;
 $btn-info-border: #e5d0cf;
 // $btn-info-focus-color: ;
@@ -56,7 +56,7 @@ $btn-info-hover-color: $btn-info-color;
 $btn-info-hover-bg: lighten($btn-info-bg, 10%);
 $btn-info-hover-border: lighten($btn-info-border, 10%);
 // $btn-info-active-color: ;
-// $btn-info-active-bg: ;
+$btn-info-active-bg: $btn-info-bg;
 // $btn-info-active-border: ;
 // $btn-info-active-hover: ;
 // $btn-info-active-hover-border: ;
@@ -77,14 +77,16 @@ $hr-border-color: #7a04b5;
 $navbar-fixed-top-bg: #49006c;
 $bg-dark: #15001f;
 $bg-light: #0a8794;
+
 $card-border-color: #49006c;
+
 $table-border-color: #c564f5;
 $table-accent-bg: #f9f9f9;
 $table-hover-bg: #f5f5f5;
 
 $input-color: #555555;
 $input-bg: #f4e1ff;
-$input-border: #f9f0ff;
+$input-border-color: #f9f0ff;
 $input-border-top-color: #db9fff;
 $input-border-right-color: #f9f0ff;
 $input-border-bottom-color: #f9f0ff;
@@ -95,9 +97,9 @@ $dropdown-border-color: rgba(0, 0, 0, 0.15);
 
 $dropdown-link-color: #ffffff;
 $dropdown-link-hover-color: #f2f2f2;
-$dropdown-link-hover-bg: #380052;
-$dropdown-link-active-color: red;
-$dropdown-link-active-bg: #7a04b5;
+$dropdown-link-hover-bg: #15001f;
+$dropdown-link-active-color: #f2f2f2;
+$dropdown-link-active-bg: #380052;
 $dropdown-link-disabled-color: #f2f2f2;
 $dropdown-header-color: #ffffff;
 $dropdown-divider-bg: $dropdown-bg;
@@ -106,7 +108,6 @@ $nav-tabs-link-color: #000;
 $nav-tabs-link-bg: $input-bg;
 $nav-tabs-link-active-color: #fff;
 $nav-tabs-link-active-bg: $dropdown-link-hover-bg;
-
 
 $nav-pills-link-active-bg: #7a04b5;
 $pagination-color: #7a04b5;

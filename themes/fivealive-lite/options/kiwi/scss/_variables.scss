@@ -21,8 +21,8 @@ $btn-primary-active-bg: #918f1b;
 $btn-primary-active-border: #44c7db;
 $btn-primary-active-hover-bg-color: #737115;
 $btn-primary-active-hover-border: #dacc1b;
-$btn-primary-disabled-hover: #baba25;
-$btn-primary-disabled-border: #f0e884;
+$btn-primary-disabled-bg: #baba25;
+$btn-primary-disabled-border: #dacc1b;
 $btn-primary-badge-color: #baba25;
 $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-color: ;
@@ -54,7 +54,7 @@ $btn-info-hover-color: $btn-info-color;
 $btn-info-hover-bg: lighten($btn-info-bg, 10%);
 $btn-info-hover-border: lighten($btn-info-border, 10%);
 // $btn-info-active-color: ;
-// $btn-info-active-bg: ;
+$btn-info-active-bg: $btn-info-bg;
 // $btn-info-active-border: ;
 // $btn-info-active-hover: ;
 // $btn-info-active-hover-border: ;
@@ -67,7 +67,7 @@ $navbar-dark-color: #fff;
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
-$bg-dark-link-hover-bg: #003c4a;
+$bg-dark-link-hover-bg: #638637;
 
 
 $hr-border-color: #baba25;
@@ -75,14 +75,16 @@ $hr-border-color: #baba25;
 $navbar-fixed-top-bg: #96a032;
 $bg-dark: #cdbe23;
 $bg-light: #baba25;
+
 $card-border-color: #cdbe23;
+
 $table-border-color: #dbd11a;
 $table-accent-bg: #f9f9f9;
 $table-hover-bg: #dbd11a; // Maybe can be improved.
 
 $input-color: #343a40;
 $input-bg: #f8f9d4;
-$input-border: #f8f9d4;
+$input-border-color: #f8f9d4;
 $input-border-top-color: #f5fb86;
 $input-border-right-color: #fff;
 $input-border-bottom-color: #fff;
@@ -93,9 +95,9 @@ $dropdown-border-color: rgba(0, 0, 0, 0.15);
 
 $dropdown-link-color: #ffffff;
 $dropdown-link-hover-color: #f2f2f2;
-$dropdown-link-hover-bg: #003c4a;
-$dropdown-link-active-color: red;
-$dropdown-link-active-bg: #638637;
+$dropdown-link-hover-bg: #638637;
+$dropdown-link-active-color: $dropdown-link-color;
+$dropdown-link-active-bg: $dropdown-link-hover-bg;
 $dropdown-link-disabled-color: #f2f2f2;
 $dropdown-header-color: #ffffff;
 $dropdown-divider-bg: $dropdown-bg;
@@ -125,11 +127,11 @@ $theme-colors: (
 );
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
-$bg-light-alt: #117485 !important;
+//$bg-light-alt: #117485 !important;
 
 $side-column-heading-color: #cdbe23;
 
-$middle_outer-inset-shadow-bg: #313109;
+$middle_outer-inset-shadow-bg: #cdbe23;
 $footer_liner-card-inner-border: #ebdc14;
 
 $footer-accent-color: #ebdc14;

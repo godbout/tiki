@@ -1,6 +1,7 @@
 .tiki #conversejs, .tiki #conversejs.converse-embedded {
 	font-family: $font-family-base;
 	color: $body-color;
+	text-shadow: none;
 
 	a, a:visited {
 		color: $link-color;
@@ -37,6 +38,10 @@
 		color: $body-color;
 	}
 
+	.message.chat-msg:hover {
+		background-color: transparent;
+	}
+
 	#minimized-chats {
 		.chat-head-chatbox {
 			background-color: $primary;
@@ -44,8 +49,8 @@
 		}
 
 		.chat-head-chatroom {
-			background-color: $info;
-			.restore-chat, .chatbox-btn { color: color-yiq($info); }
+			background-color: $secondary;
+			.restore-chat, .chatbox-btn { color: color-yiq($secondary); }
 		}
 	}
 
@@ -67,52 +72,17 @@
 			}
 		}
 
-		// #fancy-xmpp-status-select, .fancy-dropdown {
-		// 	@include button-variant($info, $info);
-		// 	.choose-xmpp-status, .toggle-xmpp-contact-form, a.change-xmpp-status-message {
-		// 		color:inherit; text-shadow:none;
-		// 	}
-		// }
-
 		#converse-roster {
 			.group-toggle { color: $body-color; }
 
 			.roster-filter-form {
-//				.filter-type { border-color:$input-border-color; }
 				.roster-filter {
 					background-color: $input-bg;
 					color: $input-color;
 					border-color: $input-border-color;
 				}
 			}
-
-			.roster-contacts {
-				dt {
-					color: $body-color;
-					a { color: inherit; }
-					&:hover { background-color: transparent; }
-				}
-
-				dd {
-					color: $link-color;
-					background-color: transparent;
-
-					a, span {
-						color: inherit;
-						text-shadow: none;
-						&:hover { color: $body-color; }
-					}
-				}
-			}
 		}
-
-		// #converse-register {
-		// 	background-color:transparent;
-		// 	.form-help .url {
-		// 		color:$link-color;
-		// 		&:hover { color:$link-hover-color; }
-		// 	}
-		// }
 	}
 
 
@@ -128,7 +98,7 @@
 
 			.chat-toolbar {
 				background-color: $primary;
-				border-top-color: $info;
+				border-top-color: $secondary;
 				ul, li .toolbar-menu { background-color: $primary; }
 
 				.fa-eye, .fa-paperclip, .toggle-smiley, .unencrypted, .toggle-occupants {
@@ -151,7 +121,7 @@
 				color: $body-color;
 				background-color: inherit;
 
-				.chat-msg__author { color: $primary; }
+				.chat-msg__author { color: $link-color; }
 				.chat-msg__text { color: $body-color; }
 			}
 		}
@@ -160,12 +130,12 @@
 	.chatroom {
 		.box-flyout {
 			.chat-head-chatroom {
-				background-color: $info;
+				background-color: $secondary;
 				border-bottom:1px solid $body-color;
 
 				.close-chatbox-button, .toggle-chatbox-button, .configure-chatroom-button,
 				.toggle-bookmark, .chat-title, .chatroom-description {
-					color: color-yiq($info);
+					color: color-yiq($secondary);
 				}
 			}
 
@@ -197,8 +167,13 @@
 				}
 
 				.chat-info { color: $info; }
+				.message .separator { border-color: $info; }
 			}
 		}
 	}
-}
 
+	&.converse-overlayed #minimized-chats #toggle-minimized-chats {
+		background-color: $info;
+		color: color-yiq($info);
+	}
+}

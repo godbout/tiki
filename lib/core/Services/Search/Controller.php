@@ -56,6 +56,8 @@ class Services_Search_Controller
 
 		list($engine, $version) = $unifiedsearchlib->getEngineAndVersion();
 
+		$lastLogItem = $unifiedsearchlib->getLastLogItem();
+
 		return [
 			'title' => tr('Rebuild Index'),
 			'stat' => $stat,
@@ -69,6 +71,8 @@ class Services_Search_Controller
 			'num_queries' => ($num_queries_after - $num_queries_before),
 			'log_file_browser' => $unifiedsearchlib->getLogFilename(1),
 			'log_file_console' => $unifiedsearchlib->getLogFilename(2),
+			'lastLogItemWeb' => $lastLogItem['web'] ?: tr('Unable to get info from log file.'),
+			'lastLogItemConsole' => $lastLogItem['console'] ?: tr('Unable to get info from log file.'),
 		];
 	}
 

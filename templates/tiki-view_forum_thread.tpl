@@ -42,7 +42,7 @@
 		{if empty($thread_info.topic.threadId)}
 			<span>
 				{if ($prev_topic and $prev_topic ne $comments_parentId) or $next_topic}{if $prev_topic and $prev_topic ne $comments_parentId}<a href="tiki-view_forum_thread.php?comments_parentId={$prev_topic}&amp;topics_offset={$topics_prev_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{icon name="angle-left"}{tr}Previous topic{/tr}</a>{if $next_topic} | {/if}{/if}
-				{if $next_topic}<a href="tiki-view_forum_thread.php?comments_parentId={$next_topic}&amp;topics_offset={$topics_next_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{tr}next topic{/tr}{icon name="angle-right"}</a>{/if}{/if}
+				{if $next_topic}<a href="tiki-view_forum_thread.php?comments_parentId={$next_topic}&amp;topics_offset={$topics_next_offset}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}{$comments_per_page_param}{$thread_style_param}{$thread_sort_mode_param}{$comments_threshold_param}" class="link">{tr}Next topic{/tr} {icon name="angle-right"}</a>{/if}{/if}
 			</span>
 		{else}
 			<span>
@@ -59,20 +59,17 @@
 			<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
 				{icon name='menu-extra'}
 			</a>
-			<ul class="dropdown-menu dropdown-menu-right">
-				<li class="dropdown-title">
+			<div class="dropdown-menu dropdown-menu-right">
+				<h6 class="dropdown-title">
 					{tr}Thread actions{/tr}
-				</li>
-				<li class="dropdown-divider"></li>
-				<li class="dropdown-item">
-					{if $pdf_export eq 'y'}
-						<a href="{$smarty.server.PHP_SELF}?{query display='pdf'}">
-							{icon name="pdf"} {tr}PDF{/tr}
-						</a>
+				</h6>
+				<div class="dropdown-divider"></div>
+				{if $pdf_export eq 'y'}
+					<a class="dropdown-item" href="{$smarty.server.PHP_SELF}?{query display='pdf'}">
+						{icon name="pdf"} {tr}PDF{/tr}
+					</a>
 					{/if}
-				</li>
-				<li class="dropdown-item">
-					<a href="{$smarty.server.PHP_SELF}?{query display='print'}">
+					<a class="dropdown-item" href="{$smarty.server.PHP_SELF}?{query display='print'}">
 						{icon name="print"} {tr}Print this page{/tr}
 					</a>
 				</li>
@@ -80,42 +77,35 @@
 					<a href="{$smarty.server.PHP_SELF}?{query display='print_all'}">
 						{icon name="print"} {tr}Print all pages{/tr}
 					</a>
-				</li>
 				{if $prefs.sefurl_short_url eq 'y'}
-					<li class="dropdown-item">
-						<a id="short_url_link" href="#" onclick="(function() { $(document.activeElement).attr('href', 'tiki-short_url.php?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title)); })();">
-							{icon name="link"} {tr}Get a short URL{/tr}
-							{assign var="hasPageAction" value="1"}
-						</a>
-					</li>
+					<a class="dropdown-item" id="short_url_link" href="#" onclick="(function() { $(document.activeElement).attr('href', 'tiki-short_url.php?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title)); })();">
+						{icon name="link"} {tr}Get a short URL{/tr}
+						{assign var="hasPageAction" value="1"}
+					</a>
 				{/if}
 				{if $prefs.feature_forum_topics_archiving eq 'y' && $tiki_p_admin_forum eq 'y'}
-					<li class="dropdown-item">
-						{if $thread_info.archived eq 'y'}
-							<a href="{$smarty.server.PHP_SELF}?{query archive="n"}">
-								{icon name="file-archive-open"} {tr}Unarchive{/tr}
-							</a>
-						{else}
-							<a href="{$smarty.server.PHP_SELF}?{query archive='y'}">
-								{icon name="file-archive"} {tr}Archive{/tr}
-							</a>
-						{/if}
-					</li>
+					{if $thread_info.archived eq 'y'}
+						<a class="dropdown-item" href="{$smarty.server.PHP_SELF}?{query archive="n"}">
+							{icon name="file-archive-open"} {tr}Unarchive{/tr}
+						</a>
+					{else}
+						<a class="dropdown-item" href="{$smarty.server.PHP_SELF}?{query archive='y'}">
+							{icon name="file-archive"} {tr}Archive{/tr}
+						</a>
+					{/if}
 				{/if}
 				{if isset($tiki_p_forum_lock) and $tiki_p_forum_lock eq 'y'}
-					<li class="dropdown-item">
-						{if $thread_info.locked eq 'y'}
-							<a href="{query _type='relative' lock='n'}">
+					{if $thread_info.locked eq 'y'}
+							<a class="dropdown-item" href="{query _type='relative' lock='n'}">
 								{icon name="unlock"} {tr}Unlock{/tr}
 							</a>
 						{else}
-							<a href="{query _type='relative' lock='y'}">
+							<a class="dropdown-item" href="{query _type='relative' lock='y'}">
 								{icon name="lock"} {tr}Lock{/tr}
 							</a>
 						{/if}
-					</li>
 				{/if}
-			</ul>
+			</div>
 			{if ! $js}</li></ul>{/if}
 		</div>
 	</div>

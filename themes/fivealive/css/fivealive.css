@@ -2123,19 +2123,19 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   padding: 0.25rem 1.5rem;
   clear: both;
   font-weight: 400;
-  color: #fff;
+  color: #e9ecef;
   text-align: inherit;
   white-space: nowrap;
   background-color: transparent;
   border: 0; }
   .dropdown-item:hover, .dropdown-item:focus {
-    color: #f2f2f2;
+    color: #fff;
     text-decoration: none;
-    background: #1896d6 linear-gradient(180deg, #3ba6dc, #1896d6) repeat-x; }
+    background: #0e567a linear-gradient(180deg, #326f8e, #0e567a) repeat-x; }
   .dropdown-item.active, .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background: #1174a5 linear-gradient(180deg, #3589b3, #1174a5) repeat-x; }
+    background: #0e567a linear-gradient(180deg, #326f8e, #0e567a) repeat-x; }
   .dropdown-item.disabled, .dropdown-item:disabled {
     color: #868e96;
     background-color: transparent;
@@ -2149,13 +2149,13 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   padding: 0.5rem 1.5rem;
   margin-bottom: 0;
   font-size: 0.875rem;
-  color: #868e96;
+  color: #fff;
   white-space: nowrap; }
 
 .dropdown-item-text {
   display: block;
   padding: 0.25rem 1.5rem;
-  color: #fff; }
+  color: #e9ecef; }
 
 .btn-group, .btn-group-vertical {
   position: relative;
@@ -6060,7 +6060,7 @@ a.fc-event:hover {
   background: url("../../../img/icons/dots.gif"); }
 
 .dropdown-menu {
-  color: #868e96; }
+  color: #fff; }
 
 #topbar_modules_social .form-control {
   margin-top: 0.5rem; }
@@ -6079,11 +6079,11 @@ a.fc-event:hover {
 
 .cssmenu_horiz ul li a, .cssmenu_vert ul li a {
   background: #1376a8;
-  color: #fff; }
+  color: #e9ecef; }
 
 .cssmenu_horiz > ul > li:hover > a, .cssmenu_vert > ul > li:hover > a {
-  color: #f2f2f2;
-  background: #1896d6; }
+  color: #fff;
+  background: #0e567a; }
 
 .sf-arrows .sf-with-ul:after {
   border: 5px solid transparent;
@@ -6096,16 +6096,16 @@ a.fc-event:hover {
 
 .sf-arrows ul .sf-with-ul:after, .cssmenu_vert.sf-arrows ul > li > .sf-with-ul:after {
   border-color: transparent;
-  border-left-color: #fff;
+  border-left-color: #e9ecef;
   /* edit this to suit design (no rgba in IE8) */ }
 
 .sf-arrows ul li > .sf-with-ul:focus:after, .sf-arrows ul li:hover > .sf-with-ul:after, .sf-arrows ul .sfHover > .sf-with-ul:after {
   border-color: transparent;
-  border-left-color: #f2f2f2; }
+  border-left-color: #fff; }
 
 .cssmenu_vert.sf-arrows li > .sf-with-ul:focus:after, .cssmenu_vert.sf-arrows li:hover > .sf-with-ul:after, .cssmenu_vert.sf-arrows .sfHover > .sf-with-ul:after {
   border-color: transparent;
-  border-left-color: #f2f2f2; }
+  border-left-color: #fff; }
 
 .topbar .cssmenu_horiz ul {
   background: #1376a8; }
@@ -6118,7 +6118,7 @@ a.fc-event:hover {
   border-top-color: #fff; }
 
 .dropdown-menu .dropdown-title, .dropdown-menu li label {
-  color: #fff; }
+  color: #e9ecef; }
 
 .thumbinfosothers {
   color: #e9ecef; }
@@ -6261,8 +6261,8 @@ form.simple label .warning {
 
 .cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover {
   text-decoration: none;
-  color: #f2f2f2;
-  background-color: #1896d6; }
+  color: #fff;
+  background-color: #0e567a; }
 
 .box-quickadmin .cssmenu_horiz ul li {
   background-color: #fff; }
@@ -6596,10 +6596,12 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   border-top: 1px solid #dee2e6; }
 
 .diffadded {
-  background: #3fa533; }
+  background: #3fa533;
+  color: #e3f6e1; }
 
 .diffdeleted {
-  background: #c3631f; }
+  background: #c3631f;
+  color: #fbefe6; }
 
 .diffinldel {
   background: #c3a124; }
@@ -6609,10 +6611,10 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   color: #495057; }
 
 .diffchar {
-  color: #df7c36; }
+  color: #fbefe6; }
 
 .diffadded .diffchar {
-  color: #53c645; }
+  color: #e3f6e1; }
 /* Structures drill-down menu */
 div.drillshow {
   border: 1px solid #dee2e6; }
@@ -6659,7 +6661,7 @@ div.drillshow {
 .tiki .ui-widget-header {
   background: #fff;
   color: #343a40;
-  border: 1px solid rgba(0, 0, 0, 0.2); }
+  border-color: rgba(0, 0, 0, 0.2); }
 
 .tiki .ui-dialog-content {
   background: #fff;
@@ -6679,7 +6681,7 @@ div.drillshow {
   color: #0a4360; }
 
 .dropdown-menu {
-  color: #fff; }
+  color: #e9ecef; }
 
 .tiki .col1 .table-responsive {
   border: 1px solid rgba(0, 0, 0, 0.125); }
@@ -6760,6 +6762,9 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   .btn-primary.btn-files:not(:disabled):not(.disabled):active:focus, .btn-primary.btn-files:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.btn-files.dropdown-toggle:focus {
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125), 0 0 0 0.2rem rgba(116, 0, 195, 0.5); }
 
+.dropdown-item .text-danger {
+  color: #fec0bd !important; }
+
 html {
   background-color: #414141; }
 
@@ -6821,18 +6826,12 @@ html {
   z-index: 10;
   -webkit-transition: all 0.6s ease-in-out; }
 
-.navbar-static-top {
-  z-index: 999; }
-
 .topbar .navbar-nav > li > a {
   text-transform: uppercase;
   font-weight: bold; }
 
 .nav-justified .navbar-nav {
   width: 100%; }
-
-h1, h2, h3, h4 {
-  vertical-align: middle; }
 
 #page-header h1, #page-header h2, #page-header h3 a, #page-header a, #page-header a:hover {
   color: #f8f8f8;
@@ -6845,6 +6844,23 @@ h1, h2, h3, h4 {
 
 .dropdown-menu {
   text-transform: none; }
+
+.dropdown-menu {
+  background-color: #1376a8;
+  border: 1px solid rgba(0, 0, 0, 0.15); }
+
+.dropdown-item a, .dropdown-item .btn.btn-link {
+  color: #e9ecef; }
+  .dropdown-item a:hover, .dropdown-item .btn.btn-link:hover, .dropdown-item a:focus, .dropdown-item .btn.btn-link:focus {
+    color: #fff; }
+  .dropdown-item a:active, .dropdown-item .btn.btn-link:active, .dropdown-item a.active, .dropdown-item .btn.btn-link.active {
+    color: #fff; }
+  .dropdown-item a.disabled, .dropdown-item .btn.btn-link.disabled, .dropdown-item a:disabled, .dropdown-item .btn.btn-link:disabled {
+    color: #868e96; }
+  .dropdown-item a .dropdown-header, .dropdown-item .btn.btn-link .dropdown-header {
+    color: #fff; }
+  .dropdown-item a .dropdown-divider, .dropdown-item .btn.btn-link .dropdown-divider {
+    background: #e9ecef; }
 
 h1 {
   font-size: 50px; }
@@ -7064,6 +7080,11 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     vertical-align: bottom;
     margin-right: 4px; }
 
+table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
+  color: #495057;
+  background: #fff;
+  border: #ced4da; }
+
 .tiki .pvtUi {
   color: #343a40; }
   .tiki table.pvtTable {
@@ -7154,23 +7175,50 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
   .tiki select {
     font-size: 1rem; }
 
-.tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-  border: 1px solid #343a40;
-  background: #fff;
-  font-weight: normal;
-  color: #343a40;
-  font-size: 1rem; }
-  .tiki .ui-state-hover, .tiki .ui-widget-content .ui-state-hover, .tiki .ui-widget-header .ui-state-hover, .tiki .ui-state-focus, .tiki .ui-widget-content .ui-state-focus, .tiki .ui-widget-header .ui-state-focus, .tiki .ui-button:hover, .tiki .ui-button:focus {
+.tiki .ui-widget.ui-widget-content {
+  border: none; }
+  .tiki .ui-widget-header {
+    background: #fff;
+    border-color: #dee2e6; }
+  .tiki .ui-state-default a, .tiki .ui-state-default a:link, .tiki .ui-state-default a:visited, .tiki a.ui-button, .tiki a:link.ui-button, .tiki a:visited.ui-button, .tiki .ui-button {
+    color: #1174a5; }
+  .tiki .ui-state-active a, .tiki .ui-state-active a:link, .tiki .ui-state-active a:visited {
+    color: #495057; }
+  .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
+    border: 1px solid #dee2e6;
+    background: #fff;
+    font-weight: 400;
+    color: #1174a5; }
+  .tiki .ui-state-active, .tiki .ui-widget-content .ui-state-active, .tiki .ui-widget-header .ui-state-active, .tiki a.ui-button:active, .tiki .ui-button:active, .tiki .ui-button.ui-state-active:hover {
+    border: 1px solid #e9ecef #e9ecef #dee2e6;
+    border-bottom-width: 0;
+    background: #fff;
+    font-weight: 400;
+    color: #495057; }
+  .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
+    border: 1px solid #343a40;
+    background: #fff;
+    font-weight: normal;
+    color: #343a40;
+    font-size: 1rem; }
+  .tiki .ui-widget-content .ui-state-focus, .tiki .ui-widget-header .ui-state-focus, .tiki .ui-button:hover, .tiki .ui-button:focus {
     border: 1px solid #343a40;
     background: #fff;
     font-weight: normal;
     color: #343a40; }
   .tiki .ui-widget-header a {
     color: #1174a5; }
+  .tiki .ui-tabs-nav.ui-widget-header {
+    border-top: none;
+    border-left: none;
+    border-right: none; }
+  .tiki .ui-tabs-nav .ui-state-default, .tiki .ui-tabs-nav .ui-widget-content .ui-state-default, .tiki .ui-tabs-nav .ui-widget-header .ui-state-default, .tiki .ui-tabs-nav .ui-state-active, .tiki .ui-tabs-nav .ui-widget-content .ui-state-active, .tiki .ui-tabs-nav .ui-widget-header .ui-state-active, .tiki .ui-tabs-nav .ui-state-default.ui-tab.ui-tabs-active.ui-state-active {
+    border-bottom-width: 0 !important; }
 
 .tiki #conversejs, .tiki #conversejs.converse-embedded {
   font-family: Lato, sans-serif;
-  color: #343a40; }
+  color: #343a40;
+  text-shadow: none; }
   .tiki #conversejs a, .tiki #conversejs.converse-embedded a, .tiki #conversejs a:visited, .tiki #conversejs.converse-embedded a:visited {
     color: #1174a5; }
   .tiki #conversejs a:hover, .tiki #conversejs.converse-embedded a:hover, .tiki #conversejs a:visited:hover, .tiki #conversejs.converse-embedded a:visited:hover {
@@ -7193,12 +7241,14 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     color: #fff; }
   .tiki #conversejs.converse-overlayed #controlbox .controlbox-head .chatbox-btn, .tiki #conversejs.converse-embedded.converse-overlayed #controlbox .controlbox-head .chatbox-btn {
     color: #343a40; }
+  .tiki #conversejs .message.chat-msg:hover, .tiki #conversejs.converse-embedded .message.chat-msg:hover {
+    background-color: transparent; }
   .tiki #conversejs #minimized-chats .chat-head-chatbox, .tiki #conversejs.converse-embedded #minimized-chats .chat-head-chatbox {
     background-color: #1174a5; }
   .tiki #conversejs #minimized-chats .chat-head-chatbox .restore-chat, .tiki #conversejs.converse-embedded #minimized-chats .chat-head-chatbox .restore-chat, .tiki #conversejs #minimized-chats .chat-head-chatbox .chatbox-btn, .tiki #conversejs.converse-embedded #minimized-chats .chat-head-chatbox .chatbox-btn {
     color: #fff; }
   .tiki #conversejs #minimized-chats .chat-head-chatroom, .tiki #conversejs.converse-embedded #minimized-chats .chat-head-chatroom {
-    background-color: #4d3a7d; }
+    background-color: #7400c3; }
   .tiki #conversejs #minimized-chats .chat-head-chatroom .restore-chat, .tiki #conversejs.converse-embedded #minimized-chats .chat-head-chatroom .restore-chat, .tiki #conversejs #minimized-chats .chat-head-chatroom .chatbox-btn, .tiki #conversejs.converse-embedded #minimized-chats .chat-head-chatroom .chatbox-btn {
     color: #fff; }
   .tiki #conversejs #controlbox .box-flyout, .tiki #conversejs.converse-embedded #controlbox .box-flyout {
@@ -7217,20 +7267,6 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     background-color: #fff;
     color: #495057;
     border-color: #ced4da; }
-  .tiki #conversejs #controlbox #converse-roster .roster-contacts dt, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dt {
-    color: #343a40; }
-    .tiki #conversejs #controlbox #converse-roster .roster-contacts dt a, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dt a {
-      color: inherit; }
-    .tiki #conversejs #controlbox #converse-roster .roster-contacts dt:hover, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dt:hover {
-      background-color: transparent; }
-  .tiki #conversejs #controlbox #converse-roster .roster-contacts dd, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dd {
-    color: #1174a5;
-    background-color: transparent; }
-    .tiki #conversejs #controlbox #converse-roster .roster-contacts dd a, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dd a, .tiki #conversejs #controlbox #converse-roster .roster-contacts dd span, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dd span {
-      color: inherit;
-      text-shadow: none; }
-      .tiki #conversejs #controlbox #converse-roster .roster-contacts dd a:hover, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dd a:hover, .tiki #conversejs #controlbox #converse-roster .roster-contacts dd span:hover, .tiki #conversejs.converse-embedded #controlbox #converse-roster .roster-contacts dd span:hover {
-        color: #343a40; }
   .tiki #conversejs .chatbox .box-flyout, .tiki #conversejs.converse-embedded .chatbox .box-flyout {
     background-color: #fff;
     border: 1px solid #ced4da; }
@@ -7238,7 +7274,7 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     background-color: #fff; }
   .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar, .tiki #conversejs.converse-embedded .chatbox form.sendXMPPMessage .chat-toolbar {
     background-color: #1174a5;
-    border-top-color: #4d3a7d; }
+    border-top-color: #7400c3; }
   .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar ul, .tiki #conversejs.converse-embedded .chatbox form.sendXMPPMessage .chat-toolbar ul, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar li .toolbar-menu, .tiki #conversejs.converse-embedded .chatbox form.sendXMPPMessage .chat-toolbar li .toolbar-menu {
     background-color: #1174a5; }
   .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .fa-eye, .tiki #conversejs.converse-embedded .chatbox form.sendXMPPMessage .chat-toolbar .fa-eye, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .fa-paperclip, .tiki #conversejs.converse-embedded .chatbox form.sendXMPPMessage .chat-toolbar .fa-paperclip, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley, .tiki #conversejs.converse-embedded .chatbox form.sendXMPPMessage .chat-toolbar .toggle-smiley, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .unencrypted, .tiki #conversejs.converse-embedded .chatbox form.sendXMPPMessage .chat-toolbar .unencrypted, .tiki #conversejs .chatbox form.sendXMPPMessage .chat-toolbar .toggle-occupants, .tiki #conversejs.converse-embedded .chatbox form.sendXMPPMessage .chat-toolbar .toggle-occupants {
@@ -7261,7 +7297,7 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
   .tiki #conversejs .chatbox .chat-body .chat-content .chat-msg__text, .tiki #conversejs.converse-embedded .chatbox .chat-body .chat-content .chat-msg__text {
     color: #343a40; }
   .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom {
-    background-color: #4d3a7d;
+    background-color: #7400c3;
     border-bottom: 1px solid #343a40; }
   .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .close-chatbox-button, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .close-chatbox-button, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .toggle-chatbox-button, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .toggle-chatbox-button, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .configure-chatroom-button, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .configure-chatroom-button, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .toggle-bookmark, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .toggle-bookmark, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .chat-title, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .chat-title, .tiki #conversejs .chatroom .box-flyout .chat-head-chatroom .chatroom-description, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chat-head-chatroom .chatroom-description {
     color: #fff; }
@@ -7285,6 +7321,11 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     color: #fff; }
   .tiki #conversejs .chatroom .box-flyout .chatroom-body .chat-info, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chatroom-body .chat-info {
     color: #4d3a7d; }
+  .tiki #conversejs .chatroom .box-flyout .chatroom-body .message .separator, .tiki #conversejs.converse-embedded .chatroom .box-flyout .chatroom-body .message .separator {
+    border-color: #4d3a7d; }
+  .tiki #conversejs.converse-overlayed #minimized-chats #toggle-minimized-chats, .tiki #conversejs.converse-embedded.converse-overlayed #minimized-chats #toggle-minimized-chats {
+    background-color: #4d3a7d;
+    color: #fff; }
 
 .chosen-select, .chosen-select-deselect {
   width: 100%; }

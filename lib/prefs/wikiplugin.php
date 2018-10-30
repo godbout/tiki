@@ -141,11 +141,6 @@ function prefs_wikiplugin_list($partial = false)
 			'default' => in_array($plugin, $defaultPlugins) ? 'y' : 'n',
 		];
 
-		if ($plugin == 'slider') {
-			$prefs['wikiplugin_' . $plugin]['last_supported_version'] = 'This preference (and all the related code) will be removed after Tiki21';
-			$prefs['wikiplugin_' . $plugin]['is_superceded_by'] = 'Superceded by preference <a href=\'https://doc.tiki.org/PluginSwiper\'>wikiplugin_swiper</a>';
-		}
-
 		if (isset($info['tags'])) {
 			$prefs['wikiplugin_' . $plugin]['tags'] = (array) $info['tags'];
 		}

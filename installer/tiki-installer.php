@@ -147,7 +147,7 @@ if (! empty($_POST['lang'])) {
 	$language = $prefs['site_language'] = $prefs['language'] = $_POST['lang'];
 	if (Language::isRTL()) {
 		$prefs['feature_bidi'] = 'y';
-		TikiLib::lib('header')->add_cssfile('vendor_bundled/vendor/morteza/bootstrap-rtl/dist/css/bootstrap-rtl.min.css', 99); // 99 is high rank order as it should load after all other css files
+		TikiLib::lib('header')->add_cssfile('vendor_bundled/vendor/hesammousavi/bootstrap-v4-rtl/bootstrap-rtl.min.css', 99); // 99 is high rank order as it should load after all other css files
 	}
 } else {
 	$language = $prefs['site_language'] = $prefs['language'] = 'en';
@@ -1365,7 +1365,12 @@ if ($install_step == '4') {
 }
 
 if (((isset($value) && $value == 'utf8mb4') || $install_step == '7') && $db = TikiDB::get()) {
-	$result = $db->fetchAll('SELECT TABLE_COLLATION FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = ? AND TABLE_COLLATION NOT LIKE "utf8mb4%"', $dbs_tiki);
+	$result = $db->fetchAll(
+		'SELECT TABLE_COLLATION FROM INFORMATION_SCHEMA.TABLES '
+		. ' WHERE TABLE_SCHEMA = ? AND TABLE_COLLATION NOT LIKE "utf8mb4%" '
+		. ' AND NOT (TABLE_NAME LIKE "index_%" OR TABLE_NAME LIKE "zzz_unused_%")', // Ignore tables that are not converted - but are generated
+		$dbs_tiki
+	);
 	if (! empty($result)) {
 		$smarty->assign('legacy_collation', $result[0]['TABLE_COLLATION']);
 	}

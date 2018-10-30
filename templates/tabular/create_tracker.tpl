@@ -70,12 +70,12 @@
 										<span class="align">{tr}Left{/tr}</span>
 										<input class="display-align" type="hidden" value="left">
 									</button>
-									<ul class="dropdown-menu dropdown-menu-right" role="menu">
-										<li class="dropdown-item"><a class="align-option" href="#left">{tr}Left{/tr}</a></li>
-										<li class="dropdown-item"><a class="align-option" href="#center">{tr}Center{/tr}</a></li>
-										<li class="dropdown-item"><a class="align-option" href="#right">{tr}Right{/tr}</a></li>
-										<li class="dropdown-item"><a class="align-option" href="#justify">{tr}Justify{/tr}</a></li>
-									</ul>
+									<div class="dropdown-menu dropdown-menu-right" role="menu">
+										<a class="dropdown-item align-option" href="#left">{tr}Left{/tr}</a>
+										<a class="dropdown-item align-option" href="#center">{tr}Center{/tr}</a>
+										<a class="dropdown-item align-option" href="#right">{tr}Right{/tr}</a>
+										<a class="dropdown-item align-option" href="#justify">{tr}Justify{/tr}</a>
+									</div>
 								</div>
 							</div>
 						</td>
@@ -202,9 +202,8 @@
 
 
 				reader.onload = function (e) {
-					var rows = e.target.result.split("\n");
-					var columns = rows[0].split(delimiter);
-					// @todo get ajax to process the columns row csv without loading js csv libs
+					var rows = Plotly.d3.csv.parse(e.target.result);
+					var columns = Object.keys(rows[0]);
 
 					for(i = 0; i < columns.length; i++) {
 						var $elem = $('#row-template').clone();

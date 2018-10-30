@@ -1,6 +1,5 @@
-<div class="tocnav">
-	<div class="clearfix">
-		<div class="float-left breadcrumb">
+<div class="tocnav row mx-0 justify-content-between">
+		<div class="breadcrumb">
 			{if $home_info}{if $home_info.page_alias}{assign var=icon_title value=$home_info.page_alias}{else}{assign var=icon_title value=$home_info.pageName}{/if}
 				{if $prefs.feature_wiki_structure_drilldownmenu eq 'y'}
 					<span class="dropdown">
@@ -42,12 +41,11 @@
 			{/section}
 		</div>
 		{if $struct_editable eq 'a'}
-			<div class="float-sm-right">
-				<form action="tiki-editpage.php" method="post" role="form" class="form-inline">
-					<div class="form-group row">
+					<form action="tiki-editpage.php" method="post" role="form" class="form-inline">
+					<div class="form-group">
 						<input type="hidden" name="current_page_id" value="{$page_info.page_ref_id}">
 						<div class="input-group">
-							<span class="input-group-append">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</span>
+							<div class="input-group-prepend"><div class="input-group-text" style="font-size:50% !important">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</div></div>
 							<input type="text" id="structure_add_page" name="page" class="form-control form-control-sm">
 							{autocomplete element='#structure_add_page' type='pagename'}
 							<div class="input-group-btn">
@@ -55,14 +53,13 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group row">
+					<div class="form-group">
 						{* Cannot add peers to head of structure *}
 						{if $page_info and !$parent_info}
 							<input type="hidden" name="add_child" value="checked">
 						{else}
 							<input type="checkbox" name="add_child"> {tr}Child{/tr}
 						{/if}
-					</div>
 				</form>
 			</div>
 		{else}
@@ -70,5 +67,4 @@
 							<span class="float-sm-right">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</span>
 			{/if}
 		{/if}
-	</div>
 </div>

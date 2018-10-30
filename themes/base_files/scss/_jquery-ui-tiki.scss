@@ -2,18 +2,84 @@
 // For theme overrides of jQuery-UI styles
 
 .tiki {
-	.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+	.ui-widget.ui-widget-content {
+		border: none;
+	}
+	.ui-widget-header {
+		background: $ui-default-bg;
+//		color: #fff;
+		border-color: $ui-default-border;
+	}
+	.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited, a.ui-button, a:link.ui-button, a:visited.ui-button, .ui-button {
+		color: $ui-default-link-color;
+	}
+	.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+		color: $ui-default-link-active-color;
+	//	background: $ui-default-link-active-bg;
+	}
+	.ui-state-default,
+	.ui-widget-content .ui-state-default,
+	.ui-widget-header .ui-state-default,
+	.ui-button,
+	html .ui-button.ui-state-disabled:hover,
+	html .ui-button.ui-state-disabled:active {
+		border: 1px solid $ui-default-border; //$btn-primary-border;
+		background: $ui-default-bg; //$btn-primary-bg;
+		font-weight: $ui-font-weight;
+		color: $ui-default-color; //$btn-primary-color;
+	}
+	.ui-state-active,
+	.ui-widget-content .ui-state-active,
+	.ui-widget-header .ui-state-active,
+	a.ui-button:active,
+	.ui-button:active,
+	.ui-button.ui-state-active:hover {
+		border: 1px solid $ui-active-border-color;
+		border-bottom-width: 0;
+		background: $ui-active-bg;
+		font-weight: $ui-font-weight;
+		color: $ui-active-color;
+	}
+//	.ui-state-default,
+//	.ui-widget-content .ui-state-default,
+//	.ui-widget-header .ui-state-default,
+	.ui-button,
+	html .ui-button.ui-state-disabled:hover,
+	html .ui-button.ui-state-disabled:active {
 		border: 1px solid $btn-primary-border;
 		background: $btn-primary-bg;
 		font-weight: $jq-ui-btn-font-weight;
 		color: $btn-primary-color;
 		font-size: $font-size-base;
 	}
-	.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus, .ui-button:hover, .ui-button:focus {
+//	.ui-widget-content,
+//	.ui-state-hover,
+//	.ui-widget-header .ui-state-hover,
+//	.ui-state-focus,
+	.ui-widget-content .ui-state-focus,
+	.ui-widget-header .ui-state-focus,
+	.ui-button:hover,
+	.ui-button:focus {
 		border: 1px solid $btn-primary-border;
 		background: $btn-primary-bg;
 		font-weight: normal;
 		color: $btn-primary-color;
 	}
 	.ui-widget-header a { color: $link-color; }
+	.ui-tabs-nav.ui-widget-header {
+		border-top: none;
+		border-left: none;
+		border-right: none;
+	}
+	.ui-tabs-nav {
+		.ui-state-default,
+		.ui-widget-content .ui-state-default,
+		.ui-widget-header .ui-state-default,
+		.ui-state-active,
+		.ui-widget-content .ui-state-active,
+		.ui-widget-header .ui-state-active,
+		.ui-state-default.ui-tab.ui-tabs-active.ui-state-active {
+			border-bottom-width: 0 !important;
+		}
+	}
 }

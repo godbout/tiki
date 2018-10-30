@@ -14,6 +14,7 @@ class CsvSource implements SourceInterface
 
 	function __construct(\Tracker\Tabular\Schema $schema, $fileName, $delimiter = ',')
 	{
+		ini_set('auto_detect_line_endings',true);
 		$this->schema = $schema->getPlainOutputSchema();
 		$this->file = new \SplFileObject($fileName, 'r');
 		$this->file->setCsvControl($delimiter);

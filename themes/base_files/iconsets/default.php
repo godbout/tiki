@@ -318,6 +318,9 @@ function iconset_default()
 			'create' => [
 				'id' => 'plus',
 			],
+            'dashboard' => [
+                'id' => 'tachometer-alt',
+            ],
 			//database in defaults
 			'delete' => [
 				'id' => 'times',
@@ -636,6 +639,9 @@ function iconset_default()
 			//share in defaults
 			'sharethis' => [
 				'id' => 'share-alt',
+			],
+			'shorten' => [
+				'id' => 'crop',
 			],
             'skype' => [
                 'id' => 'skype',

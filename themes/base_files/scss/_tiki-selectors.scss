@@ -914,12 +914,12 @@ h6 a.tiki_anchor:hover {
 
 .diffadded {
 	background: theme-color("success");
-//	color: $state-success-text;
+	color: lighten(theme-color("success"),50%);
 }
 
 .diffdeleted {
 	background: theme-color("danger");
-//	color: $state-danger-text;
+	color: lighten(theme-color("danger"),50%);
 }
 
 .diffinldel {
@@ -932,11 +932,11 @@ h6 a.tiki_anchor:hover {
 }
 
 .diffchar {
-	color: lighten(theme-color("danger"), 10%);
+	color: lighten(theme-color("danger"), 50%);
 }
 
 .diffadded .diffchar {
-	color: lighten(theme-color("success"), 10%);
+	color: lighten(theme-color("success"), 50%);
 }
 
 //.searchresults blockquote em.hlt1,
@@ -1028,6 +1028,7 @@ div.drillshow {
 	display: $breadcrumb-display; // block;
 }
 
+// jQuery-UI
 .tiki .ui-widget-content,
 span.plugin-mouseover  {
 	background: $modal-content-bg;
@@ -1038,7 +1039,7 @@ span.plugin-mouseover  {
 .tiki .ui-widget-header {
 	background: $modal-content-bg;
 	color: $body-color;
-	border: 1px solid $modal-content-border-color;
+	border-color: $modal-content-border-color;
 }
 
 .tiki .ui-dialog-content {

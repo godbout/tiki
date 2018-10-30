@@ -80,7 +80,7 @@ class TWVersion
 				27 => 'Tabby\'s',		// 16.x
 				28 => 'Zeta Boötis',	// 17.x
 				29 => 'Alcyone',	// 18.x
-				30 => 'TBA',	// 19.x
+				30 => 'Denebola',	// 19.x
 		];
 	}
 
@@ -269,6 +269,7 @@ class TWVersion
 				'18.1',
 				'18.2',
 				'19.0alpha',
+				'19.0beta1',
 			];
 	}
 

@@ -1,3 +1,26 @@
+<?php
+// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
+//
+// All Rights Reserved. See copyright.txt for details and a complete list of authors.
+// Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
+// $Id: 20180921_php_upgrade_fix_from_older_tiki.php 67992 2018-10-15 00:30:07Z rjsmelo $
+
+/**
+ * @param $installer
+ */
+function upgrade_20180921_sql_upgrade_fix_from_older_tiki($installer)
+{
+	$query = <<<SQL
+-- Fix upgrade from 9.x
+ALTER TABLE `tiki_forums_reported` DROP PRIMARY KEY;
+ALTER TABLE `tiki_forums_reported` ADD PRIMARY KEY (`threadId`, `forumId`, `parentId`, `user`); -- Changed in 20121210_better_forum_reported_index_tiki.sql but never make it to tiki.sql
+DELETE FROM `users_permissions` WHERE `permName` = 'tiki_p_view_poll_choices';
+ALTER TABLE `tiki_secdb` DROP PRIMARY KEY;
+ALTER TABLE `tiki_secdb` ADD PRIMARY KEY (`filename`(215),`tiki_version`(40));
+UPDATE `tiki_modules` SET `position` = '' WHERE `position` IS NULL;
+ALTER TABLE `tiki_modules` CHANGE `position` `position` varchar(20) NOT NULL DEFAULT '';
+ALTER TABLE `tiki_profile_symbols` CHANGE `value` `value` varchar(160) NOT NULL;
+
 -- Fix upgrade from 12.x
 CREATE TABLE IF NOT EXISTS `tiki_payment_requests` (
     `paymentRequestId` INT NOT NULL AUTO_INCREMENT,
@@ -220,3 +243,7 @@ ALTER TABLE `tiki_discount` ADD KEY `code` (`code`);
 -- Fix upgrade from 18.x
 INSERT IGNORE INTO `tiki_menu_options` (`menuId`, `type`, `name`, `url`, `position`, `section`, `perm`, `groupname`, `userlevel`) VALUES (42,'o','References','tiki-references.php',255,'feature_wiki,feature_references','tiki_p_edit_references','', 0);
 ALTER TABLE `tiki_queue` CHANGE `handler` `handler` varchar(64) DEFAULT NULL;
+SQL;
+
+	$installer->query($query);
+}

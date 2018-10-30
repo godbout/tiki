@@ -346,6 +346,10 @@ class PdfGenerator
 		$pdfLimit = ini_get('pcre.backtrack_limit');
 		//end of coverpage generation
 		foreach ($pdfPages as $pdfPage) {
+			$resetPage='';
+			if($pageNo==1){
+				$resetPage=1;
+			}
 			if (strip_tags(trim($pdfPage['pageContent'])) != '') {
 				//checking header and footer
 				if ($pdfPage['header'] == "off") {
@@ -359,7 +363,7 @@ class PdfGenerator
 					$footer = $pdfPage['footer'];
 				}
 				$mpdf->SetHeader(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"), $header));
-				$mpdf->AddPage($pdfPage['orientation'], '', '', '', '', $pdfPage['margin_left'], $pdfPage['margin_right'], $pdfPage['margin_top'], $pdfPage['margin_bottom'], $pdfPage['margin_header'], $pdfPage['margin_footer'], '', '', '', '', '', '', '', '', '', $pdfPage['pagesize']);
+				$mpdf->AddPage($pdfPage['orientation'], '', $resetPage, '', '', $pdfPage['margin_left'], $pdfPage['margin_right'], $pdfPage['margin_top'], $pdfPage['margin_bottom'], $pdfPage['margin_header'], $pdfPage['margin_footer'], '', '', '', '', '', '', '', '', '', $pdfPage['pagesize']);
 				$mpdf->SetFooter(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"), $footer)); //footer needs to be reset after page content is added
 
 			//checking watermark on page
@@ -398,9 +402,9 @@ class PdfGenerator
 		}
 		$mpdf->setWatermarkText($pdfSettings['watermark']);
 		$mpdf->SetWatermarkImage($pdfSettings['watermark_image'], 0.15, '');
-		//resetting header,footer and watermark to blank
-		$mpdf->SetHeader($pdfSettings['header']);
-		$mpdf->SetFooter($pdfSettings['footer']);
+		//resetting header,footer
+		$pdfSettings['header']=="off"?$mpdf->SetHeader():$mpdf->SetHeader(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['header']));
+		$pdfSettings['footer']=="off"?$mpdf->SetFooter():$mpdf->SetFooter(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['footer']));
 		$this->clearTempImg($tempImgArr);
 		$tempFile = fopen("temp/public/pdffile_" . session_id() . ".txt", "w");
 		fwrite($tempFile, ($pagesTotal * 30));
@@ -808,7 +812,7 @@ $(".convert-mailto").removeClass("convert-mailto").each(function () {
 	function processHyperlinks($content, $hyperlinkSetting, $pageCounter)
 	{
 		$doc = new DOMDocument();
-		$doc->loadHTML($content);
+		$doc->loadHTML(mb_convert_encoding($content, 'HTML-ENTITIES', 'UTF-8'));
 		$anchors = $doc->getElementsByTagName('a');
 		$len = $anchors->length;
 		$href = '';

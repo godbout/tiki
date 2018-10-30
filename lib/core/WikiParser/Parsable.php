@@ -260,6 +260,9 @@ if ( \$('#$id') ) {
 		// FIXME produces false positive for strings containing html comments. e.g: --some text<!-- comment -->
 		$data = preg_replace("#(?<!<!|//)--([^\s>].+?)--#", "<strike>$1</strike>", $data);
 
+		// Handle comments again in case parse_first method above returned wikiplugins with comments (e.g. PluginInclude a wiki page with comments)
+		$data = preg_replace(';~tc~(.*?)~/tc~;s', '', $data);
+
 		// Handle html comment sections
 		$data = preg_replace(';~hc~(.*?)~/hc~;s', '<!-- $1 -->', $data);
 
@@ -334,7 +337,7 @@ if ( \$('#$id') ) {
 
 		// Replace boxes
 		$delim = (isset($prefs['feature_simplebox_delim']) && $prefs['feature_simplebox_delim'] != "" ) ? preg_quote($prefs['feature_simplebox_delim']) : preg_quote("^");
-		$data = preg_replace("/${delim}(.+?)${delim}/s", "<div class=\"well\">$1</div>", $data);
+		$data = preg_replace("/${delim}(.+?)${delim}/s", "<div class=\"card bg-light\"><div class=\"card-body\">$1</div></div>", $data);
 
 		// Underlined text
 		$data = preg_replace("/===(.+?)===/", "<u>$1</u>", $data);

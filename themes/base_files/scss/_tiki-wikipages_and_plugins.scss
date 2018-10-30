@@ -406,6 +406,31 @@ div.tiki_plugin {
   border-radius: 0;
 }
 
+.autotoc .nav {
+	margin: 0; overflow: hidden;
+	> li {
+		width: 100%;
+		> a { white-space: initial; }
+		> a.active + ul, &.open > ul { display: block !important; }
+		.active, &.open > a {
+			padding-left: 19px;
+			background-color: $gray-100;
+			color: $link-hover-color;
+			border-left: 1px solid $btn-primary-border;
+		}
+	}
+	.nav > li {
+		&.open > a, .active, a:hover { padding-left: 29px; }
+	}
+	.nav .nav > li {
+		&.open > a, .active, a:hover { padding-left: 39px; }
+	}
+	.nav .nav .nav > li {
+		&.open > a, .active, a:hover { padding-left: 49px; }
+	}
+}
+
+
 .back-to-top {
   display: none;
   padding: 4px 10px;

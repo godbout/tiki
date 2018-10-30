@@ -5,7 +5,9 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser;
 use Tiki\Lib\Alchemy\AlchemyLib;
+use Tiki\Lib\Alchemy\Guesser;
 
 /**
  * Plugin definition for preview
@@ -171,11 +173,13 @@ function wikiplugin_preview($data, $params)
 			file_put_contents($filePath, $info['data']);
 			$sourceNeedsClean = true;
 		}
+
+		$newFileExtension = $animation ? '.gif' : '.png';
 		$newFilePath = $tikipath . DIRECTORY_SEPARATOR
 			. 'temp' . DIRECTORY_SEPARATOR
 			. 'cache' . DIRECTORY_SEPARATOR
 			. $tikidomain . DIRECTORY_SEPARATOR
-			. 'target_' . $cacheType . $cacheName . '.png';
+			. 'target_' . $cacheType . $cacheName . $newFileExtension;
 
 		// This will allow apps executed by Alchemy (like when converting doc to pdf) to have a writable home
 		// save existing ENV
@@ -185,6 +189,10 @@ function wikiplugin_preview($data, $params)
 		}
 		// set a proper home folder
 		$_ENV['HOME'] = $tikipath . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $tikidomain;
+
+		$guesser = new Guesser();
+		$guesser->add($filePath, $info['filetype']);
+		MimeTypeGuesser::getInstance()->register($guesser);
 
 		$alchemy = new AlchemyLib();
 		$contentType = $alchemy->convertToImage($filePath, $newFilePath, $width, $height, $animation);

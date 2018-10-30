@@ -576,10 +576,12 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   border-top: 1px solid #dee2e6; }
 
 .diffadded {
-  background: #28a745; }
+  background: #28a745;
+  color: #d8f6df; }
 
 .diffdeleted {
-  background: #dc3545; }
+  background: #dc3545;
+  color: #fff; }
 
 .diffinldel {
   background: #ffc107; }
@@ -589,10 +591,10 @@ h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tik
   color: #495057; }
 
 .diffchar {
-  color: #e4606d; }
+  color: #fff; }
 
 .diffadded .diffchar {
-  color: #34ce57; }
+  color: #d8f6df; }
 /* Structures drill-down menu */
 div.drillshow {
   border: 1px solid #dee2e6; }
@@ -639,7 +641,7 @@ div.drillshow {
 .tiki .ui-widget-header {
   background: #fff;
   color: #212529;
-  border: 1px solid rgba(0, 0, 0, 0.2); }
+  border-color: rgba(0, 0, 0, 0.2); }
 
 .tiki .ui-dialog-content {
   background: #fff;
@@ -1058,10 +1060,13 @@ div.categbar {
 .sitelogo:hover .btn {
   display: block; }
 
+.dropdown-menu > .btn-link {
+  padding: 0.25rem 1.5rem; }
+
 header.container, .middle_outer > .container {
   margin-bottom: 0; }
 
-#top_modules, #topbar_modules, #pagebottom_modules, .bottom_modules {
+#top_modules, #topbar_modules, #pagetop_modules, #pagebottom_modules, .bottom_modules {
   display: flex;
   flex-direction: row;
   justify-content: space-between; }
@@ -1069,7 +1074,7 @@ header.container, .middle_outer > .container {
 .topbar .navbar {
   padding: 0; }
 
-.bottom_modules {
+#pagetop_modules, #pagebottom_modules, .bottom_modules {
   align-items: flex-start;
   flex-wrap: wrap; }
 
@@ -1321,9 +1326,6 @@ div.cvsup {
     .box-search .panel-body .form-inline .input-group .input-group-addon, .box-search .panel-body .form-inline .input-group .input-group-btn, .box-search .panel-body .form-inline .input-group .form-control {
       width: 100%; } }
 
-.card-body ol {
-  padding-left: 2rem; }
-
 .textarea-toolbar img.icon {
   vertical-align: middle;
   margin: 1px 3px; }
@@ -1409,11 +1411,13 @@ a.flipmodtitle .icon {
 
 .card-body table {
   width: 100%; }
+  .card-body a.linkmenu {
+    display: block; }
+  .card-body ol {
+    padding-left: 2rem; }
 
-.card-body a.linkmenu {
-  display: block; }
-
-.card-body ol, .card-body ul {
+.module .card-body > ol, .module .card-body > ul {
+  margin-left: -7px;
   overflow: hidden;
   margin-top: 0;
   margin-bottom: 0; }
@@ -3014,6 +3018,13 @@ body.fullscreen.tiki.navbar-padding {
 .tiki .popover p:last-child {
   margin-bottom: 0; }
 
+.tiki .popover {
+  max-width: 301px; }
+  .tiki .popover .popover-body .table {
+    margin-bottom: 0; }
+  .tiki .popover .popover-body .table td {
+    word-break: break-word; }
+
 .tiki .media-overflow-visible, .tiki .media-overflow-visible .media-body {
   overflow: visible; }
 
@@ -3348,6 +3359,11 @@ div.ts-wrapperdiv span.tablesorter-column-selector label {
     vertical-align: bottom;
     margin-right: 4px; }
 
+table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom, table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
+  color: #495057;
+  background: #fff;
+  border: #ced4da; }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {
@@ -3601,6 +3617,27 @@ div.tiki_plugin {
   border-bottom-color: transparent;
   cursor: default;
   border-radius: 0; }
+
+.autotoc .nav {
+  margin: 0;
+  overflow: hidden; }
+  .autotoc .nav > li {
+    width: 100%; }
+  .autotoc .nav > li > a {
+    white-space: initial; }
+  .autotoc .nav > li > a.active + ul, .autotoc .nav > li.open > ul {
+    display: block !important; }
+  .autotoc .nav > li .active, .autotoc .nav > li.open > a {
+    padding-left: 19px;
+    background-color: #f8f9fa;
+    color: #0056b3;
+    border-left: 1px solid #212529; }
+  .autotoc .nav .nav > li.open > a, .autotoc .nav .nav > li .active, .autotoc .nav .nav > li a:hover {
+    padding-left: 29px; }
+  .autotoc .nav .nav .nav > li.open > a, .autotoc .nav .nav .nav > li .active, .autotoc .nav .nav .nav > li a:hover {
+    padding-left: 39px; }
+  .autotoc .nav .nav .nav .nav > li.open > a, .autotoc .nav .nav .nav .nav > li .active, .autotoc .nav .nav .nav .nav > li a:hover {
+    padding-left: 49px; }
 
 .back-to-top {
   display: none;

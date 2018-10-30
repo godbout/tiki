@@ -176,6 +176,7 @@
 				</div>
 				{preference name=jquery_fitvidjs}
 				{preference name=jquery_timeago}
+				{preference name=tiki_prefix_css}
 				<div class="adminoptionboxchild">
 					<fieldset>
 						<legend>{tr}Experimental{/tr}</legend>

@@ -34,7 +34,7 @@ function smarty_function_object_selector($params, $smarty)
 		'simpleid' => null,
 		'simplename' => null,
 		'simplevalue' => null,
-		'simpleclass' => 'hidden',
+		'simpleclass' => 'd-none',
 		'name' => null,
 		'class' => null,
 		'id' => null,
@@ -86,7 +86,7 @@ function smarty_function_object_selector($params, $smarty)
 	if ($arguments['simplevalue'] && ! $arguments['value'] && isset($arguments['filter']['type'])) {
 		$arguments['value'] = "{$arguments['filter']['type']}:{$arguments['simplevalue']}";
 		$arguments['simpleclass'] = null;
-		$arguments['class'] .= ' hidden';
+		$arguments['class'] .= ' d-none';
 	}
 
 	$selector = TikiLib::lib('objectselector');

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fec7f4564d6c1360d9e474ad3a6a38d0",
+    "content-hash": "94aabddb2b69bcb0a0669f26e9c01324",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -186,19 +186,24 @@
         },
         {
             "name": "blueimp/jquery-file-upload",
-            "version": "v9.22.0",
+            "version": "v9.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vkhramtsov/jQuery-File-Upload.git",
-                "reference": "c9a396a360f961bc05abbd61514d647590b765bb"
+                "reference": "3c3cdcad290d5cca0e0c4a2a8c88e88c2d824548"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-c9a396a360f961bc05abbd61514d647590b765bb-zip-3b5d7c.zip",
-                "reference": "c9a396a360f961bc05abbd61514d647590b765bb",
-                "shasum": "b0cadee24210489c7653f4241457cedcff6e0281"
+                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-3c3cdcad290d5cca0e0c4a2a8c88e88c2d824548-zip-a4bce4.zip",
+                "reference": "3c3cdcad290d5cca0e0c4a2a8c88e88c2d824548",
+                "shasum": "dd861397a609f9c793ff8a80d0f02f44fc22f2c1"
             },
             "type": "library",
+            "autoload": {
+                "classmap": [
+                    "server/php/UploadHandler.php"
+                ]
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
@@ -232,21 +237,21 @@
                 "upload",
                 "widget"
             ],
-            "time": "2018-06-21T08:29:55+00:00"
+            "time": "2018-10-15T09:30:44+00:00"
         },
         {
             "name": "bower-asset/fontawesome",
-            "version": "5.3.1",
+            "version": "5.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "ff2853acce00085b5830a050a2afa328fd212562"
+                "reference": "559a780f29c9a7efe08835c5ff3d05f57e4389a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-ff2853acce00085b5830a050a2afa328fd212562-zip-35de3b.zip",
-                "reference": "ff2853acce00085b5830a050a2afa328fd212562",
-                "shasum": "ceb8a502172e5ddb5b7c20f638d0d201c90c20c0"
+                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-559a780f29c9a7efe08835c5ff3d05f57e4389a3-zip-1ccaea.zip",
+                "reference": "559a780f29c9a7efe08835c5ff3d05f57e4389a3",
+                "shasum": "751619b83cd916b793853cfbc6bd8ccd4209a1c0"
             },
             "type": "bower-asset"
         },
@@ -1222,6 +1227,38 @@
             "time": "2018-08-22T05:48:15+00:00"
         },
         {
+            "name": "hesammousavi/bootstrap-v4-rtl",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Hesammousavi/bootstrap-v4-rtl.git",
+                "reference": "9ec4397c4580ed4557a6502976c8ee0cabdcd4e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/hesammousavi/bootstrap-v4-rtl/hesammousavi-bootstrap-v4-rtl-9ec4397c4580ed4557a6502976c8ee0cabdcd4e4-zip-3989cf.zip",
+                "reference": "9ec4397c4580ed4557a6502976c8ee0cabdcd4e4",
+                "shasum": "94e0f97c43ccfe4b7a0774b5ca7465de80673f18"
+            },
+            "type": "project",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hesam Mousavi",
+                    "email": "hesammoousavi@gmail.com"
+                }
+            ],
+            "description": "boootstrap4 right to left",
+            "keywords": [
+                "bootstra",
+                "bootstrap-rtl"
+            ],
+            "time": "2018-09-15T10:19:58+00:00"
+        },
+        {
             "name": "itsjavi/bootstrap-colorpicker",
             "version": "2.5.3",
             "source": {
@@ -1308,17 +1345,17 @@
         },
         {
             "name": "jcbrand/converse.js",
-            "version": "v4.0.2",
+            "version": "v4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/conversejs/converse.js.git",
-                "reference": "79b8ed71776da4c6e8b0a38995914a7129536f41"
+                "reference": "279fda78773c927668f744b3840448de25c09b8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-79b8ed71776da4c6e8b0a38995914a7129536f41-zip-93379e.zip",
-                "reference": "79b8ed71776da4c6e8b0a38995914a7129536f41",
-                "shasum": "e6376a61936253fe01018966e478d065507aeacb"
+                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-279fda78773c927668f744b3840448de25c09b8f-zip-95cc5f.zip",
+                "reference": "279fda78773c927668f744b3840448de25c09b8f",
+                "shasum": "4c38c0737afbbe73bfe153e0febe77826b7f705f"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1333,7 +1370,7 @@
                 "presence",
                 "xmpp"
             ],
-            "time": "2018-10-02T20:51:01+00:00"
+            "time": "2018-10-22T09:41:40+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -2047,17 +2084,6 @@
             "time": "2018-06-01T06:45:43+00:00"
         },
         {
-            "name": "morteza/bootstrap-rtl",
-            "version": "3.3.2",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/morteza/bootstrap-rtl/morteza-bootstrap-rtl-3.3.2.zip",
-                "reference": null,
-                "shasum": "7666baeeaf2b067c634443a30a5f77a2b88e29dd"
-            },
-            "type": "library"
-        },
-        {
             "name": "mottie/tablesorter",
             "version": "v2.31.0",
             "source": {
@@ -2259,6 +2285,22 @@
             "license": [
                 "MIT"
             ]
+        },
+        {
+            "name": "npm-asset/prefixfree",
+            "version": "v1.0.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LeaVerou/prefixfree.git",
+                "reference": "846904c874a2bf436ff8a9623585f935d7ef4009"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/prefixfree/npm-asset-prefixfree-846904c874a2bf436ff8a9623585f935d7ef4009-zip-825a34.zip",
+                "reference": "846904c874a2bf436ff8a9623585f935d7ef4009",
+                "shasum": "a5a380fab28e73d2912aaa53de19da847b1dea1f"
+            },
+            "type": "npm-asset"
         },
         {
             "name": "npm-asset/sass-svg-uri",
@@ -7561,17 +7603,17 @@
         },
         {
             "name": "wimg/php-compatibility",
-            "version": "8.2.0",
+            "version": "9.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCompatibility/PHPCompatibility.git",
-                "reference": "eaf613c1a8265bcfd7b0ab690783f2aef519f78a"
+                "reference": "e9f4047e5edf53c88f36f1dafc0d49454ce13e25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/wimg/php-compatibility/wimg-php-compatibility-eaf613c1a8265bcfd7b0ab690783f2aef519f78a-zip-877e66.zip",
-                "reference": "eaf613c1a8265bcfd7b0ab690783f2aef519f78a",
-                "shasum": "e28609a65fe26093de7df36c8a6ef8b0ce3b774e"
+                "url": "https://composer.tiki.org/dist/wimg/php-compatibility/wimg-php-compatibility-e9f4047e5edf53c88f36f1dafc0d49454ce13e25-zip-9fef36.zip",
+                "reference": "e9f4047e5edf53c88f36f1dafc0d49454ce13e25",
+                "shasum": "902391ecbd730342e58574c790c955ef227d8a1e"
             },
             "require": {
                 "php": ">=5.3",
@@ -7588,29 +7630,34 @@
                 "roave/security-advisories": "dev-master || Helps prevent installing dependencies with known security issues."
             },
             "type": "phpcodesniffer-standard",
-            "autoload": {
-                "psr-4": {
-                    "PHPCompatibility\\": "PHPCompatibility/"
-                }
-            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "LGPL-3.0-or-later"
             ],
             "authors": [
                 {
+                    "name": "Contributors",
+                    "homepage": "https://github.com/PHPCompatibility/PHPCompatibility/graphs/contributors"
+                },
+                {
                     "name": "Wim Godden",
+                    "homepage": "https://github.com/wimg",
+                    "role": "lead"
+                },
+                {
+                    "name": "Juliette Reinders Folmer",
+                    "homepage": "https://github.com/jrfnl",
                     "role": "lead"
                 }
             ],
-            "description": "A set of sniffs for PHP_CodeSniffer that checks for PHP version compatibility.",
+            "description": "A set of sniffs for PHP_CodeSniffer that checks for PHP cross-version compatibility.",
             "homepage": "http://techblog.wimgodden.be/tag/codesniffer/",
             "keywords": [
                 "compatibility",
                 "phpcs",
                 "standards"
             ],
-            "time": "2018-07-17T13:42:26+00:00"
+            "time": "2018-10-07T17:38:02+00:00"
         }
     ],
     "aliases": [],
@@ -7618,6 +7665,7 @@
     "stability-flags": {
         "ahand/mobileesp": 20,
         "candy-chat/xmpp-prebind-php": 20,
+        "hesammousavi/bootstrap-v4-rtl": 20,
         "robicch/jquery-gantt": 20,
         "twbs/bootstrap": 10,
         "zendframework/zendsearch": 20,

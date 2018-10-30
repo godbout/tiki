@@ -1,0 +1,22 @@
+--- a/dist/jquery.validate.js  2018-10-25 13:23:06.000000000 +0100
++++ b/dist/jquery.validate.js  2018-10-25 13:24:22.000000000 +0100
+@@ -741,9 +741,16 @@
+ 		},
+
+ 		invalidElements: function() {
+-			return $( this.errorList ).map(function() {
+-				return this.element;
+-			});
++			var
++				v = this,
++				invalid = v.invalid,
++				elements = $([]);
++			$.each(invalid, function(key, value) {
++				if ( value !== false && v.invalid.hasOwnProperty( key ) ) {
++					elements = elements.add( v.findByName( key ) );
++				}
++			} );
++			return elements;
+ 		},
+
+ 		showLabel: function( element, message ) {

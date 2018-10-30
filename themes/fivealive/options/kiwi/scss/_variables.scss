@@ -62,7 +62,7 @@ $navbar-dark-color: #fff;
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
-$bg-dark-link-hover-bg: #003c4a;
+$bg-dark-link-hover-bg: #638637;
 
 
 $hr-border-color: #baba25;
@@ -89,9 +89,9 @@ $dropdown-border-color: rgba(0, 0, 0, 0.15);
 
 $dropdown-link-color: #ffffff;
 $dropdown-link-hover-color: #f2f2f2;
-$dropdown-link-hover-bg: #003c4a;
-$dropdown-link-active-color: red;
-$dropdown-link-active-bg: #638637;
+$dropdown-link-hover-bg: #638637;
+$dropdown-link-active-color: $dropdown-link-color;
+$dropdown-link-active-bg: $dropdown-link-hover-bg;
 $dropdown-link-disabled-color: #f2f2f2;
 $dropdown-header-color: #ffffff;
 $dropdown-divider-bg: $dropdown-bg;
@@ -123,11 +123,11 @@ $theme-colors: (
 $enable-gradients: true;
 $enable-shadows: true;
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
-$bg-light-alt: #117485 !important;
+//$bg-light-alt: #117485 !important;
 
 $side-column-heading-color: #cdbe23;
 
-$middle_outer-inset-shadow-bg: #313109;
+$middle_outer-inset-shadow-bg: #cdbe23;
 $footer_liner-card-inner-border: #ebdc14;
 
 $footer-accent-color: #ebdc14;
@@ -154,4 +154,20 @@ $autotoc-nav-link-hover-bg: #587631;
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#797922', endColorstr='#b1b129',GradientType=1 );
 }
 
-//$middle_outer-inset-shadow-bg: #8e286a;
+//.bg-dark {background: #313109 !important; }
+$chosen-container-multi-choices-bg: #ffffff;
+$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-border: #f5fb86;
+$chosen-container-single-bg: #f8f9d4;
+$chosen-container-single-color: #555555;
+$chosen-container-single-border: #f5fb86;
+$chosen-container-single-input-bg: #f8f9d4;
+$chosen-container-single-input-border: #f5fb86;
+$chosen-container-chosen-results-li-highlighted-bg: #587631;
+$chosen-container-chosen-results-li-highlighted-color: #f2f2f2;
+$autotoc-nav-bg: #ffffff;
+$autotoc-nav-border: #cdbe23;
+$autotoc-color: #638637;
+$autotoc-nav-li-link-hover-color: #f2f2f2;
+$autotoc-nav-li-link-hover-bg: #587631;
+$middle_outer-inset-shadow-bg: #313109;

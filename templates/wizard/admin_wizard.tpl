@@ -1,6 +1,6 @@
 {* $Id$ *}
 
-<div class="col-lg-10 col-lg-offset-1">
+<div class="col-lg-12">
 	<fieldset>
 		<legend>{tr}Get Started{/tr}</legend>
 
@@ -11,18 +11,13 @@
 
 		{remarksbox type="tip" title="{tr}Tip{/tr}"}
 			{tr}Mouse over the icons to know more about the features and preferences that are new for you{/tr}.
-			<a href="http://doc.tiki.org/Wizards" target="tikihelp" class="tikihelp" style="float:right" title="{tr}Help icon:{/tr}
+			{tr}Example: {/tr}
+			<a href="http://doc.tiki.org/Wizards" target="tikihelp" class="tikihelp" title="{tr}Help icon:{/tr}
 				{tr}You will get more information about the features and preferences whenever this icon is available and you pass your mouse over it{/tr}.
 				<br/><br/>{tr}Moreover, if you click on it, you'll be directed in a new window to the corresponding documentation page for further information on that feature or topic{/tr}."
 			>
 				{icon name="help"}
 			</a>
-			<a target="tikihelp" class="tikihelp" style="float:right" title="{tr}Information icon:{/tr}
-				{tr}You will get more information about the features and preferences whenever this icon is available and you pass your mouse over it{/tr}.
-			">
-				{icon name="information"}
-			</a>
-			{tr}Example: {/tr}
 		{/remarksbox}
 
 		<div class="media mb-5">
@@ -30,7 +25,7 @@
 				<i class="fas fa-cubes fa-stack-2x"></i>
 				<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
-			<div class="media-body ml-4">
+			<div class="media-body mx-4">
 				<legend>{tr}Configuration Profiles Wizard{/tr}</legend>
 				<p>{tr}You may start by applying some of our configuration templates through the <b>Configuration Profiles Wizard</b>{/tr}.
 					{tr}They are like the <b>Macros</b> from many computer languages{/tr}.
@@ -52,7 +47,7 @@
 				<i class="fas fa-cog fa-stack-2x"></i>
 				<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
-			<div class="media-body ml-4">
+			<div class="media-body mx-4">
 				<legend>{tr}Configuration Wizard{/tr}</legend>
 				<p>
 					{tr}Alternatively, you may use the <b>Configuration Wizard</b>{/tr}.
@@ -72,7 +67,7 @@
 				<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
 				<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 			</span>
-			<div class="media-body ml-4">
+			<div class="media-body mx-4">
 				<legend>{tr}Upgrade Wizard{/tr}</legend>
 				<p>
 					{tr}Or you may use the <b>Upgrade Wizard</b>{/tr}.
@@ -95,7 +90,7 @@
 				<i class="fas fa-sliders-h fa-stack-2x"></i>
 				<i class="fas fa-cogs fa-stack-2x ml-5"></i>
 			</span>
-			<div class="media-body ml-4">
+			<div class="media-body mx-4">
 				<legend>{tr}Control Panels{/tr}</legend>
 				<p>
 					{tr}Use the <b>Control Panels</b> to manually browse through the full list of preferences{/tr}.
@@ -112,7 +107,7 @@
 				<i class="fas fa-heartbeat fa-stack-2x"></i>
 				<i class="fas fa-server fa-stack-2x ml-5"></i>
 			</span>
-			<div class="media-body ml-4">
+			<div class="media-body mx-4">
 		<legend>{tr}Server Fitness{/tr}</legend>
 				<p>
 					{tr _0=$tiki_version}You can check if your server meets the requirements for running Tiki version %0{/tr}.

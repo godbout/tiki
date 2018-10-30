@@ -13,20 +13,29 @@ button, input, optgroup, select, textarea {
 	color: #cfcfcf;
 }
 
-.container {
-	border: 1px solid #4c4c4c;
-	margin-bottom: 5px;
-	//  margin-top: 18px;
-}
+.bg-dark,
+.topbar_modules.navbar-dark.bg-dark { background: #343a40 !important; }
 
-.topbar,
-.navbar-dark,
-.navbar-dark .navbar-collapse,
-.navbar-dark .navbar-form,
-.navbar-dark .container {
-	background: #7a0101;
-	border-color: transparent;
-}
+.bg-light,
+.topbar_modules.navbar-dark.bg-dark { background: #7a0101 !important; }
+
+
+
+//.top_modules { background: #030511; }
+
+// prevent unwanted background-on-background or on middle box-shadow
+//.layout_classic #topbar_modules {
+//  .navbar.bg-dark,
+//  .navbar.bg-light { background: transparent !important; }
+//}
+
+//.layout_classic {
+//  #top_modules.bg-dark,
+//  #top_modules.bg-light,
+//  #topbar_modules,
+//  #topbar.bg-dark,
+//  #topbar.bg-light{ background: transparent !important; }
+//}
 
 .navbar-light.navbar-fixed-top > .container {
 	border: none;
@@ -35,8 +44,7 @@ button, input, optgroup, select, textarea {
 
 .header-container .container,
 .navbar-light.navbar-fixed-top {
-	background: url('#{$imagePath}header.png');
-//	background-size: cover;
+
 	a,
 	a:visited,
 	.btn-link {
@@ -56,13 +64,6 @@ button, input, optgroup, select, textarea {
 	margin-top: 8px;
 }
 
-#col2,
-#col3 {
-	padding-right: 0;
-	padding-left: 0;
-}
-
-
 .card-title,
 .card-header {
 	font-weight: bold;
@@ -81,18 +82,17 @@ $nav-tabs-active-link-hover-color: #ffffff;
 }
 
 footer.footer .modules {
-	background: url('#{$imagePath}header.png');
-  background-size: contain;
+	background: #030511;
+  padding-top: 1rem;
   	color: #f4f4f4;
 	font-size: 0.9em;
-	min-height: 90px;
 	a, a:visited {
 		color: #f4f4f4;
 	}
 }
 
 .popover {
-	background-color: $gray-300;
+	background-color: lighten(#030511, 10%);
 }
 
 .popover-header {

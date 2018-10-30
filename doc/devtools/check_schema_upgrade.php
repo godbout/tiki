@@ -160,7 +160,7 @@ class CheckSchemaUpgrade
 	{
 		$this->printMessageError("\n" . 'How to execute this command:');
 		$this->printMessage(
-			'php check_schema_upgrade [-v] [-p] [-m=<major>] --db1=<user:pass@host:db> --db2=<user:pass@host:db>'
+			'php check_schema_upgrade [-v] [-p] [-e=<MyISAM|InnoDB>] [-m=<major>] --db1=<user:pass@host:db> --db2=<user:pass@host:db>'
 		);
 		$this->printMessage('db1 and db2 are the databases to be used to load the schema');
 		$this->printMessageError('!! Both databases will be erased !!' . "\n");
@@ -225,6 +225,7 @@ class CheckSchemaUpgrade
 		$this->previousMajor = $this->getOption($options, 'm', 'major');
 		$this->verbose = $this->getOption($options, 'v', 'verbose') === false ? true : false;
 		$this->ignorePreferenceChanges = $this->getOption($options, 'p', 'preferences') === false ? false : true;
+		$this->useInnoDB = strtolower($this->getOption($options, 'e', 'engine')) === 'myisam' ? false : true;
 
 		$this->oldDbRaw = $this->getOption($options, null, 'db1');
 		$result = $this->parseDbRaw($this->oldDbRaw);
@@ -345,7 +346,7 @@ class CheckSchemaUpgrade
 		$db = new PDO('mysql:host=' . $dbConfig['host'], $dbConfig['user'], $dbConfig['pass']);
 		$db->query('DROP DATABASE IF EXISTS `' . $dbConfig['dbs'] . '`;');
 		$db->query(
-			'CREATE DATABASE `' . $dbConfig['dbs'] . '` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;'
+			'CREATE DATABASE `' . $dbConfig['dbs'] . '` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;'
 		);
 		$db->query('USE `' . $dbConfig['dbs'] . '`');
 		return $db;
@@ -448,6 +449,8 @@ class CheckSchemaUpgrade
 					if ($this->useInnoDB) {
 						// Convert all MyISAM statments to InnoDB
 						$statement = str_ireplace("MyISAM", "InnoDB", $statement);
+					} else {
+						$statement = str_ireplace("InnoDB", "MyISAM", $statement);
 					}
 
 					if ($dbConnection->exec($statement) === false) {
@@ -689,11 +692,12 @@ class CheckSchemaUpgrade
 	 */
 	protected function getOpts()
 	{
-		$shortOpts = 'm:vp';
+		$shortOpts = 'm:vpe:';
 		$longOpts = [
 			'major:',
 			'verbose',
 			'preferences',
+			'engine:',
 			'db1:',
 			'db2:',
 		];

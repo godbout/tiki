@@ -2239,21 +2239,26 @@ class Services_Tracker_Controller
 	function get_validation_options($formId = '')
 	{
 		$jsString = ',
-		errorClass: "label label-warning",
+		onkeyup: false,
+		errorClass: "invalid-feedback",
 		errorPlacement: function(error,element) {
 			if ($(element).parents(".input-group").length > 0) {
 				error.insertAfter($(element).parents(".input-group").first());
-			} else if ($(element).parents(".has-error").length > 0) {
-				error.appendTo($(element).parents(".has-error").first());
 			} else {
-				error.insertAfter(element);
+				error.appendTo($(element).parents().first());
 			}
 		},
 		highlight: function(element) {
-			$(element).parents("div, p").first().addClass("has-error");
+			$(element).addClass("is-invalid");
+
+			// Highlight chosen element if exists
+			$("#" + element.getAttribute("id") + "_chosen").addClass("is-invalid");
 		},
 		unhighlight: function(element) {
-			$(element).parents("div, p").first().removeClass("has-error");
+			$(element).removeClass("is-invalid");
+
+			// Unhighlight chosen element if exists
+			$("#" + element.getAttribute("id") + "_chosen").removeClass("is-invalid");
 		},
 		ignore: ".ignore"
 		});';

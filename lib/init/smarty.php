@@ -534,16 +534,38 @@ class Smarty_Tiki extends Smarty
 
 	/**
 	 * Returns the file path associated to the template name
+	 * Check if the path is a template inside one of the template dirs and not an arbitrary file
 	 * @param $template
 	 * @return string
 	 */
 	function get_filename($template)
 	{
-		if (preg_match('/^[a-z]+\:/', $template) || file_exists($template)) {
+		if (substr($template, 0, 5) === 'file:') {
+			$template = substr($template, 5);
+		}
+
+		// could be extends: or something else?
+		if (preg_match('/^[a-z]+\:/', $template)) {
 			return $template;
 		}
+
 		//get the list of template directories
 		$dirs = $this->getTemplateDir();
+
+		// sanity check
+		if (file_exists($template)) {
+			$valid_path = false;
+			foreach ($dirs as $dir) {
+				if (strpos(realpath($template), realpath($dir)) === 0) {
+					$valid_path = true;
+				}
+			}
+			if (! $valid_path) {
+				Feedback::error(tr("Invalid template name: %0", $template));
+				return "";
+			}
+			return $template;
+		}
 
 		//go through directories in search of the template
 		foreach ($dirs as $dir) {
@@ -690,6 +712,9 @@ class Smarty_Tiki extends Smarty
 		}
 		$this->addTemplateDir($this->main_template_dir . '/layouts/');
 		$this->addTemplateDir($this->main_template_dir);
+
+		//Test templates
+		$this->addTemplateDir(TIKI_PATH.'/lib/test/core/Search/');
 	}
 
 	/**

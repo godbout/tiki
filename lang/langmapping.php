@@ -69,7 +69,6 @@ $langmapping = [
 	'tr' => ['Türkçe', tra("Turkish")],
 	'tw' => ['正體中文', tra("Traditional Chinese")],
 	'uk' => ['Українська', tra("Ukrainian")],
-	 'ur' => ['اردو', tra("Urdu")],
-
+	'ur' => ['اردو', tra("Urdu")],
 	'vi' => ['Tiếng Việt', tra("Vietnamese")],
 ];

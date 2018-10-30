@@ -6,6 +6,7 @@
 // $Id$
 
 use Tiki\Package\ComposerManager;
+use Tiki\Package\ComposerCli;
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
@@ -77,6 +78,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			} else {
 				$smarty->assign('composer_management_success', tr('Vendor folder do not exists'));
 			}
+		}
+	}
+	if ($_POST['install-composer']) {
+		$composerWrapper = new ComposerCli($tikipath);
+		list($composerResult, $composerResultMessage) = $composerWrapper->installComposer();
+		if ($composerResult) {
+			$smarty->assign('composer_management_success', $composerResultMessage);
+		} else {
+			$smarty->assign('composer_management_error', $composerResultMessage);
+		}
+	}
+	if ($_POST['update-composer']) {
+		$composerWrapper = new ComposerCli($tikipath);
+		list($composerResult, $composerResultMessage) = $composerWrapper->updateComposer();
+		if ($composerResult) {
+			$smarty->assign('composer_management_success', $composerResultMessage);
+		} else {
+			$smarty->assign('composer_management_error', $composerResultMessage);
 		}
 	}
 }

@@ -8,7 +8,7 @@
 {* thumbnail actions wrench *}
 {capture name="thumbactions"}
 	{if ($prefs.fgal_show_thumbactions eq 'y' or $show_details eq 'y')}
-	<div class="thumbactions">
+	<div class="thumbactions mt-3">
 		{if !isset($gal_info.show_action) or $gal_info.show_action neq 'n'}
 			{if ( $prefs.use_context_menu_icon eq 'y' or $prefs.use_context_menu_text eq 'y' )
 			and $prefs.javascript_enabled eq 'y'}
@@ -22,8 +22,8 @@
 	</div> {* thumbactions *}
 	{/if}
 {/capture}
-<div class="clearfix thumbnailcontener-heightauto">
-	<div class="thumbnail" style="float:left;">
+<div class="media {*clearfix thumbnailcontener-heightauto*}">
+	<div class="mr-3{*thumbnail*}"{* style="float:left;"*}>
 		{include file='fgal_thumbnailframe.tpl'}
 		{if $show_infos eq 'y'}
 			<div class="thumbinfos">
@@ -31,15 +31,14 @@
 			</div>
 		{/if}
 	</div> {* thumbnail *}
-	<div style="float:left">
-		<div class='box-data'>
+	<div class="media-body"{*style="float:left"*}>
+		{*<div class='box-data'>*}
 			{include file='file_properties_table.tpl'}
-		</div>
+		{*</div>*}
 	</div>
-	<br clear="all">
-	<div>
-		{include file='tiki-upload_file_progress.tpl' fileId=$file.id name=$file.filename}
-	</div>
+</div> {* thumbnailcontener *}
+	{*<br clear="all">*}
+	{include file='tiki-upload_file_progress.tpl' fileId=$file.id name=$file.filename}
 	{if isset($metarray) and $metarray|count gt 0}
 		<br>
 		<div class="text-left">
@@ -48,4 +47,4 @@
 			{/remarksbox}
 		</div>
 	{/if}
-</div> {* thumbnailcontener *}
+

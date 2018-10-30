@@ -8,6 +8,7 @@
 namespace Tiki\Package;
 
 use Symfony\Component\Process\Exception\ExceptionInterface as ProcessExceptionInterface;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessBuilder;
 
 /**
@@ -16,6 +17,8 @@ use Symfony\Component\Process\ProcessBuilder;
 class ComposerCli
 {
 
+	const COMPOSER_URL = 'https://getcomposer.org/installer';
+	const COMPOSER_SETUP = 'temp/composer-setup.php';
 	const COMPOSER_PHAR = 'temp/composer.phar';
 	const COMPOSER_CONFIG = 'composer.json';
 	const COMPOSER_HOME = 'temp/composer';
@@ -318,6 +321,21 @@ class ComposerCli
 		return $json;
 	}
 
+	/**
+	 * Execute Clear-Cache command
+	 *
+	 * @return array
+	 */
+	public function execClearCache()
+	{
+		if (! $this->canExecuteComposer()) {
+			return [];
+		}
+		list(, $errors, ) = $this->execComposer(['clear-cache']);
+
+		return $errors;
+	}
+
 
 	/**
 	 * Check if the composer.json file exists
@@ -613,5 +631,74 @@ class ComposerCli
 			$string .= tr('Errors:') . "\n" . $errors;
 		}
 		return $string;
+	}
+
+	/**
+	 * Add composer.phar to temp/ folder
+	 */
+	public function installComposer()
+	{
+		$expectedSig = trim(file_get_contents('https://composer.github.io/installer.sig'));
+
+		if (! copy(self::COMPOSER_URL, self::COMPOSER_SETUP)) {
+			return [false, tr('Unable to download composer installer from %0', self::COMPOSER_URL)];
+		}
+
+		$actualSig = hash_file('SHA384', self::COMPOSER_SETUP);
+
+		if ($expectedSig !== $actualSig) {
+			unlink(self::COMPOSER_SETUP);
+			return [false, tr('Invalid composer installer signature.')];
+		}
+
+		$env = [];
+		if (! getenv('HOME') && ! getenv('COMPOSER_HOME')) {
+			$env['COMPOSER_HOME'] = $this->basePath . self::COMPOSER_HOME;
+		}
+
+		$command = [$this->getPhpPath(), self::COMPOSER_SETUP, '--quiet', '--install-dir=temp'];
+		$process = new Process($command, null, $env);
+		$process->run();
+
+		$output = $process->getOutput();
+		$result = $process->isSuccessful();
+
+		if ($result) {
+			$message = tr('composer.phar installed in temp folder.');
+		} else {
+			$message = tr('There was a problem when installing Composer.');
+		}
+
+		if (! empty($output)) {
+			$message .= '<br>' . str_replace("\n", '<br>', $output);
+		}
+
+		unlink(self::COMPOSER_SETUP);
+
+		return [$result, $message];
+	}
+
+	/**
+	 * Add composer.phar to temp/ folder
+	 */
+	public function updateComposer()
+	{
+		$env = [];
+		if (! getenv('HOME') && ! getenv('COMPOSER_HOME')) {
+			$env['COMPOSER_HOME'] = $this->basePath . self::COMPOSER_HOME;
+		}
+
+		$command = [$this->getComposerPharPath(), 'self-update', '--no-progress'];
+		$process = new Process($command, null, $env);
+		$process->start();
+		$output = '';
+		foreach ($process as $type => $data) {
+			$output .= $data;
+		}
+
+		$result = $process->isSuccessful();
+		$message = str_replace("\n", '<br>', trim($output));
+
+		return [$result, $message];
 	}
 }

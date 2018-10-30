@@ -16,7 +16,7 @@ $white:    #fff !default;
  $black:    #000 !default;
 
 $primary: #1174a5;
-//$success: #48ca3b;
+$success: #56ca75;
 //$info: #4d3a7d;
 //$warning: #debb27;
 //$danger: #df6e1e;
@@ -61,13 +61,13 @@ $headings-font-weight: 700;
 //$btn-primary-bg: #3676c4;
 
 // Forms
-//$input-border: #dddddd;
+//$input-border-color: #dddddd;
 // Dropdowns
 $dropdown-bg: #1376a8;
 $dropdown-link-color: $gray-200;
 $dropdown-link-hover-color: #ffffff;
 $dropdown-link-hover-bg: darken(#1376a8, 10%);
-$dropdown-link-active-bg: #ffffff;
+$dropdown-link-active-bg: #0e567a;
 $dropdown-header-color: #fff;
 // Navs
 $nav-tabs-border-color:             $gray-300;
@@ -138,7 +138,7 @@ $header_outer-background: darken(#28aae1, 10%);
 $header_container_header-background: url('#{$imagePath}siteheader.png') -248px 0 no-repeat;
 $header-color: #ffffff;
 $topbar_container_background: #28aae1;
-$form-control-background: #f9dcec;
+$form-control-background: #ffffff;
 $form-control-border-colors: #9ae8fa #e3f7fb #e3f7fb #9ae8fa;
 $footer-color: #696969;
 $footer-border-color: #28aae1;
@@ -153,4 +153,3 @@ $side-column-border: none;
 $topbar_container_background: $navbar-dark-navbar-nav-li-a-background;
 $navbar-fixed-height: 46px;
 // .secondary_site_menu .navbar-nav li.dropdown { border-bottom: none;}
-

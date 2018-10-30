@@ -17,6 +17,7 @@ header.container,
 
 #top_modules,
 #topbar_modules,
+#pagetop_modules,
 #pagebottom_modules,
 .bottom_modules {
 	display: flex;
@@ -26,6 +27,8 @@ header.container,
 
 .topbar .navbar { padding: 0; }
 
+#pagetop_modules,
+#pagebottom_modules,
 .bottom_modules {
 	align-items: flex-start;
 	flex-wrap: wrap;
@@ -432,5 +435,3 @@ div.cvsup {
 		}
 	}
 }
-
-.card-body ol { padding-left: 2rem; }

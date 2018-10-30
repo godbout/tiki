@@ -239,6 +239,18 @@ function wikiplugin_slideshow_info()
                     ['text' => 'Off', 'value' => 'n'],
                 ],
             ],
+			'alignImage' => [
+				'required' => false,
+				'name' => tra('Auto-align Images'),
+				'description' => tra('Automatically move images to left hand side of slide text, will only align images greater than 200px in width'),
+				'filter' => 'word',
+				'default' => 'n',
+				'since' => '19.0',
+				'options' => [
+					['text' => 'Off', 'value' => 'n'],
+					['text' => 'On', 'value' => 'y']
+				],
+			],
 
 		],
 	];
@@ -249,7 +261,7 @@ function wikiplugin_slideshow($data, $params)
 	if(strstr($_SERVER['PHP_SELF'],'tiki-slideshow.php')=='') {
 		if (strstr($_SERVER['PHP_SELF'], 'tiki-index.php')) {
 			return '<a class="btn btn-primary hidden-print" data-role="button" data-inline="true" title="Start Slideshow" href="./tiki-slideshow.php?page='
-				. $_REQUEST['page'] . '">'.tr('Click here to start presentation').'</a>';
+				. $_REQUEST['page'] . '">'.tr('Start Slideshow Presentation').'</a>';
 		}
 		return;
 	}
@@ -291,6 +303,37 @@ function wikiplugin_slideshow($data, $params)
 		$headerlib->add_js(
 			'$( "#showtheme" ).val( "'.$params['theme'].'" );'
 		);
+	}
+	if($params['alignImage']=='y'){
+		$headerlib->add_js('(function(){
+
+			var images = [];
+			$("section table tr").each(function(){
+				var tr=this;
+				var imgsrc="";
+				var minwidth="";
+				
+				if($(this).text().length>20 && window.innerHeight < window.innerWidth){ //checking for text content and screen orientation
+				
+					$(this).find("img").each(function(){
+					
+						if(this.width>200 ){
+							$(tr).find("td").attr("style","vertical-align:top");
+							imgsrc=this.src;
+							minwidth=(this.width)/2; 
+							this.remove();
+							if(minwidth>450){ //to avoid distortion of text, in case of large image
+								minwidth=450;
+							}
+						}
+					});
+					if(imgsrc!="") {
+						var tableData = $("<td style=\"width:50%\"><img src="+imgsrc+" style=\"min-width:"+minwidth+"px;max-height:85%\"></td>");
+						$(this).append(tableData);
+					}
+				}	
+			})
+		})()');
 	}
 	$headerlib->add_js(
 	"Reveal.configure({".$revealSettings."});

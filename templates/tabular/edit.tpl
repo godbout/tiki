@@ -50,12 +50,12 @@
 												<span class="align">{tr}Left{/tr}</span>
 												<input class="display-align" type="hidden" value="left">
 											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li class="dropdown-item"><a class="align-option" href="#left">{tr}Left{/tr}</a></li>
-												<li class="dropdown-item"><a class="align-option" href="#center">{tr}Center{/tr}</a></li>
-												<li class="dropdown-item"><a class="align-option" href="#right">{tr}Right{/tr}</a></li>
-												<li class="dropdown-item"><a class="align-option" href="#justify">{tr}Justify{/tr}</a></li>
-											</ul>
+											<div class="dropdown-menu dropdown-menu-right" role="menu">
+												<a class="dropdown-item align-option" href="#left">{tr}Left{/tr}</a>
+												<a class="dropdown-item align-option" href="#center">{tr}Center{/tr}</a>
+												<a class="dropdown-item align-option" href="#right">{tr}Right{/tr}</a>
+												<a class="dropdown-item align-option" href="#justify">{tr}Justify{/tr}</a>
+											</div>
 										</div>
 									</div>
 								</td>
@@ -79,12 +79,12 @@
 													<span class="align">{$column->getDisplayAlign()|ucfirst|tra}</span>
 													<input class="display-align" type="hidden" value="{$column->getDisplayAlign()|escape}">
 												</button>
-												<ul class="dropdown-menu dropdown-menu-right" role="menu">
-													<li class="dropdown-item"><a class="align-option" href="#left">{tr}Left{/tr}</a></li>
-													<li class="dropdown-item"><a class="align-option" href="#center">{tr}Center{/tr}</a></li>
-													<li class="dropdown-item"><a class="align-option" href="#right">{tr}Right{/tr}</a></li>
-													<li class="dropdown-item"><a class="align-option" href="#justify">{tr}Justify{/tr}</a></li>
-												</ul>
+												<div class="dropdown-menu dropdown-menu-right" role="menu">
+													<a class="dropdown-item align-option" href="#left">{tr}Left{/tr}</a>
+													<a class="dropdown-item align-option" href="#center">{tr}Center{/tr}</a>
+													<a class="dropdown-item align-option" href="#right">{tr}Right{/tr}</a>
+													<a class="dropdown-item align-option" href="#justify">{tr}Justify{/tr}</a>
+												</div>
 											</div>
 										</div>
 									</td>
@@ -159,11 +159,11 @@
 												<span class="position-label">{tr}Default{/tr}</span>
 												<input class="position" type="hidden" value="default">
 											</button>
-											<ul class="dropdown-menu dropdown-menu-right" role="menu">
-												<li class="dropdown-item"><a class="position-option" href="#default">{tr}Default{/tr}</a></li>
-												<li class="dropdown-item"><a class="position-option" href="#primary">{tr}Primary{/tr}</a></li>
-												<li class="dropdown-item"><a class="position-option" href="#side">{tr}Side{/tr}</a></li>
-											</ul>
+											<div class="dropdown-menu dropdown-menu-right" role="menu">
+												<a class="dropdown-item position-option" href="#default">{tr}Default{/tr}</a>
+												<a class="dropdown-item position-option" href="#primary">{tr}Primary{/tr}</a>
+												<a class="dropdown-item position-option" href="#side">{tr}Side{/tr}</a>
+											</div>
 										</div>
 									</div>
 								</td>
@@ -183,11 +183,11 @@
 													<span class="position-label">{$filter->getPosition()|ucfirst|tra}</span>
 													<input class="position" type="hidden" value="{$filter->getPosition()|escape}">
 												</button>
-												<ul class="dropdown-menu dropdown-menu-right" role="menu">
-													<li class="dropdown-item"><a class="position-option" href="#default">{tr}Default{/tr}</a></li>
-													<li class="dropdown-item"><a class="position-option" href="#primary">{tr}Primary{/tr}</a></li>
-													<li class="dropdown-item"><a class="position-option" href="#side">{tr}Side{/tr}</a></li>
-												</ul>
+												<div class="dropdown-menu dropdown-menu-right" role="menu">
+													<a class="dropdown-item position-option" href="#default">{tr}Default{/tr}</a>
+													<a class="dropdown-item position-option" href="#primary">{tr}Primary{/tr}</a>
+													<a class="dropdown-item position-option" href="#side">{tr}Side{/tr}</a>
+												</div>
 											</div>
 										</div>
 									</td>

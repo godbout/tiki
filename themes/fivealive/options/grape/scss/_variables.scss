@@ -71,7 +71,7 @@ $bg-dark-link-hover-bg: #003c4a;
 
 $hr-border-color: #a02871;
 
-$bg-dark: #063035;
+$bg-dark: #261122;
 $bg-light: #f4dded;
 
 $card-border-color: #bc2f84;
@@ -88,14 +88,14 @@ $input-border-right-color: #fff;
 $input-border-bottom-color: #fff;
 $input-border-left-color: #e4afd3;
 
-$dropdown-bg: #a02871;
+$dropdown-bg: #8e286a; //#c82b8b;
 $dropdown-border-color: rgba(0, 0, 0, 0.15);
 
 $dropdown-link-color: #ffffff;
 $dropdown-link-hover-color: #f9f9f9;
 $dropdown-link-hover-bg: #742157;
-$dropdown-link-active-color: red;
-$dropdown-link-active-bg: #742157;
+$dropdown-link-active-color: #ffffff;
+$dropdown-link-active-bg: #2e1f39;
 $dropdown-link-disabled-color: #f2f2f2;
 $dropdown-header-color: #ffffff;
 $dropdown-divider-bg: $dropdown-bg;
@@ -145,12 +145,12 @@ $autotoc-nav-link-hover-bg: #3b284a;
 
 // - - - - - - - - - -  - - - - - - Other CSS, if any - - - - - - - - - - - - - - - - - //
 
+//.topbar, .navbar-dark, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li,
+//.bg-dark
 .header_outer,
 .layout_basic #top_modules,
 .postbody-title,
-.tiki > .navbar.fixed-top.bg-dark,
-//.topbar, .navbar-dark, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li,
-.bg-dark {
+.tiki > .navbar.fixed-top.bg-dark {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#642759+0,732860+19,92286b+43,a32872+67,a52873+100 */
   background: #642759 !important; /* Old browsers */
   background: -moz-linear-gradient(left,  #642759 0%, #732860 19%, #92286b 43%, #a32872 67%, #a52873 100%) !important; /* FF3.6-15 */
@@ -158,3 +158,21 @@ $autotoc-nav-link-hover-bg: #3b284a;
   background: linear-gradient(to right,  #642759 0%,#732860 19%,#92286b 43%,#a32872 67%,#a52873 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#642759', endColorstr='#a52873',GradientType=1 ); /* IE6-9 */
 }
+
+$enable-gradients: true;
+$chosen-container-multi-choices-bg: #ffffff;
+$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-border: #e4afd3;
+$chosen-container-single-bg: #f8f9d4;
+$chosen-container-single-color: #555555;
+$chosen-container-single-border: #e4afd3;
+$chosen-container-single-input-bg: #f8f9d4;
+$chosen-container-single-input-border: #e4afd3;
+$chosen-container-chosen-results-li-highlighted-bg: #2e1f39;
+$chosen-container-chosen-results-li-highlighted-color: #f2f2f2;
+$autotoc-nav-bg: #ffffff;
+$autotoc-nav-border: #8e286a;
+$autotoc-color: #8e286a;
+$autotoc-nav-li-link-hover-color: #f2f2f2;
+$autotoc-nav-li-link-hover-bg: #2e1f39;
+$middle_outer-inset-shadow-bg: #261122;
