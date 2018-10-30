@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "94aabddb2b69bcb0a0669f26e9c01324",
+    "content-hash": "7bab35ce51255174decf9d016d003d51",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -186,17 +186,17 @@
         },
         {
             "name": "blueimp/jquery-file-upload",
-            "version": "v9.23.0",
+            "version": "v9.25.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vkhramtsov/jQuery-File-Upload.git",
-                "reference": "3c3cdcad290d5cca0e0c4a2a8c88e88c2d824548"
+                "reference": "28891f9b2bc339bcc1ca8d548e5401e8563bf04b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-3c3cdcad290d5cca0e0c4a2a8c88e88c2d824548-zip-a4bce4.zip",
-                "reference": "3c3cdcad290d5cca0e0c4a2a8c88e88c2d824548",
-                "shasum": "dd861397a609f9c793ff8a80d0f02f44fc22f2c1"
+                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-28891f9b2bc339bcc1ca8d548e5401e8563bf04b-zip-cff578.zip",
+                "reference": "28891f9b2bc339bcc1ca8d548e5401e8563bf04b",
+                "shasum": "22f9518e8c8e92de7e93e557a191603ec9faf36c"
             },
             "type": "library",
             "autoload": {
@@ -237,7 +237,7 @@
                 "upload",
                 "widget"
             ],
-            "time": "2018-10-15T09:30:44+00:00"
+            "time": "2018-10-26T07:21:48+00:00"
         },
         {
             "name": "bower-asset/fontawesome",
@@ -1291,17 +1291,17 @@
         },
         {
             "name": "jasig/phpcas",
-            "version": "1.3.5",
+            "version": "1.3.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/apereo/phpCAS.git",
-                "reference": "61c8899c8f91204e8b9135d795461e50fe5c2db0"
+                "reference": "7972833e84f6ee5fa41f1479eab5d855109627f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jasig/phpcas/jasig-phpcas-61c8899c8f91204e8b9135d795461e50fe5c2db0-zip-a73eb1.zip",
-                "reference": "61c8899c8f91204e8b9135d795461e50fe5c2db0",
-                "shasum": "dedc8fe2cef8bcb80e7acbc8514493a80b5c9cec"
+                "url": "https://composer.tiki.org/dist/jasig/phpcas/jasig-phpcas-7972833e84f6ee5fa41f1479eab5d855109627f5-zip-3d992d.zip",
+                "reference": "7972833e84f6ee5fa41f1479eab5d855109627f5",
+                "shasum": "b977fa6a8ca85996c6df1998194648d6a6b11a5a"
             },
             "require": {
                 "ext-curl": "*",
@@ -1338,24 +1338,25 @@
             "description": "Provides a simple API for authenticating users against a CAS server",
             "homepage": "https://wiki.jasig.org/display/CASC/phpCAS",
             "keywords": [
+                "apereo",
                 "cas",
                 "jasig"
             ],
-            "time": "2017-04-10T19:12:45+00:00"
+            "time": "2018-10-25T20:22:09+00:00"
         },
         {
             "name": "jcbrand/converse.js",
-            "version": "v4.0.3",
+            "version": "v4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/conversejs/converse.js.git",
-                "reference": "279fda78773c927668f744b3840448de25c09b8f"
+                "reference": "f471dd2474d4b2dae6f43035a4ce454d0ee3772c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-279fda78773c927668f744b3840448de25c09b8f-zip-95cc5f.zip",
-                "reference": "279fda78773c927668f744b3840448de25c09b8f",
-                "shasum": "4c38c0737afbbe73bfe153e0febe77826b7f705f"
+                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-f471dd2474d4b2dae6f43035a4ce454d0ee3772c-zip-a7536f.zip",
+                "reference": "f471dd2474d4b2dae6f43035a4ce454d0ee3772c",
+                "shasum": "b1699c8134015df0c0ecbc80d10c9eb3bc825e3b"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1370,7 +1371,7 @@
                 "presence",
                 "xmpp"
             ],
-            "time": "2018-10-22T09:41:40+00:00"
+            "time": "2018-10-29T21:28:28+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -1579,7 +1580,12 @@
                 "reference": null,
                 "shasum": "a25b855fa7fa31dbeb57f252731e7ad6c3f3e6ff"
             },
-            "type": "library"
+            "type": "library",
+            "extra": {
+                "patches_applied": {
+                    "Fix remote validation unhighlights": "../installer/composer-patches/jquery-validator_fix-remote-validation-unhighlights.patch"
+                }
+            }
         },
         {
             "name": "jquery/plugins/media",
@@ -1893,17 +1899,17 @@
         },
         {
             "name": "matthiasmullie/path-converter",
-            "version": "1.1.1",
+            "version": "1.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/matthiasmullie/path-converter.git",
-                "reference": "3082a6838be02b930239a97d38b5c9da4d693aca"
+                "reference": "5e4b121c8b9f97c80835c1d878b0812ba1d607c9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/matthiasmullie/path-converter/matthiasmullie-path-converter-3082a6838be02b930239a97d38b5c9da4d693aca-zip-bee2dd.zip",
-                "reference": "3082a6838be02b930239a97d38b5c9da4d693aca",
-                "shasum": "c36a54ff69c6d9b2f7ca35d8a87f4d39650396a9"
+                "url": "https://composer.tiki.org/dist/matthiasmullie/path-converter/matthiasmullie-path-converter-5e4b121c8b9f97c80835c1d878b0812ba1d607c9-zip-f54f9f.zip",
+                "reference": "5e4b121c8b9f97c80835c1d878b0812ba1d607c9",
+                "shasum": "6450c8e267e38662e9b88742e4938e240b5b93ce"
             },
             "require": {
                 "ext-pcre": "*",
@@ -1938,7 +1944,7 @@
                 "paths",
                 "relative"
             ],
-            "time": "2018-02-02T11:30:10+00:00"
+            "time": "2018-10-25T15:19:41+00:00"
         },
         {
             "name": "mediumjs/mediumjs",
@@ -2291,7 +2297,7 @@
             "version": "v1.0.10",
             "source": {
                 "type": "git",
-                "url": "https://github.com/LeaVerou/prefixfree.git",
+                "url": "git@github.com:LeaVerou/prefixfree.git",
                 "reference": "846904c874a2bf436ff8a9623585f935d7ef4009"
             },
             "dist": {
@@ -3336,17 +3342,17 @@
         },
         {
             "name": "smarty/smarty",
-            "version": "v3.1.32",
+            "version": "v3.1.33",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "ac9d4b587e5bf53381e21881820a9830765cb459"
+                "reference": "dd55b23121e55a3b4f1af90a707a6c4e5969530f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/smarty/smarty/smarty-smarty-ac9d4b587e5bf53381e21881820a9830765cb459-zip-43cf57.zip",
-                "reference": "ac9d4b587e5bf53381e21881820a9830765cb459",
-                "shasum": "4906f34eb83f3dc802df920b4f9fadfb21ed2a57"
+                "url": "https://composer.tiki.org/dist/smarty/smarty/smarty-smarty-dd55b23121e55a3b4f1af90a707a6c4e5969530f-zip-fa69ea.zip",
+                "reference": "dd55b23121e55a3b4f1af90a707a6c4e5969530f",
+                "shasum": "a3fdacbb9ed1bdc3c76ca157d9e1b98b72cd5f97"
             },
             "require": {
                 "php": ">=5.2"
@@ -3385,7 +3391,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-04-24T14:53:33+00:00"
+            "time": "2018-09-12T20:54:16+00:00"
         },
         {
             "name": "sorich87/bootstrap-tour",
