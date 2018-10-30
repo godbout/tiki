@@ -2,9 +2,12 @@
 //Custom styles for the FiveAliveHS Raspberry option theme.
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$white:    #fff;
+$black:    #000;
 $light: #e10c7c;
 
 $bg-light: #e10c7c !important;
+
 $link-color: #b51360;
 $link-hover-color: #e10c7c;
 $btn-primary-color: #ffffff;
@@ -41,7 +44,7 @@ $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-badge-color: #ea1f20;
 // $btn-secondary-bg-color: #ffffff;
 
-$btn-info-color: #fff;
+$btn-info-color: #282828;
 $btn-info-bg: #e5d7dc;
 $btn-info-border: #e5d0cf;
 // $btn-info-focus-color: ;
@@ -51,7 +54,7 @@ $btn-info-hover-color: $btn-info-color;
 $btn-info-hover-bg: lighten($btn-info-bg, 10%);
 $btn-info-hover-border: lighten($btn-info-border, 10%);
 // $btn-info-active-color: ;
-$btn-info-active-bg: $btn-info-bg;
+$btn-info-active-bg: darken($btn-info-bg,5%);
 // $btn-info-active-border: ;
 // $btn-info-active-hover: ;
 // $btn-info-active-hover-border: ;
@@ -60,7 +63,14 @@ $btn-info-active-bg: $btn-info-bg;
 // $btn-info-badge-color: ;
 // $btn-info-badge-bg: ;
 
-$navbar-dark-color: #fff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
@@ -69,9 +79,9 @@ $bg-dark-link-hover-bg: #003c4a;
 
 $hr-border-color: #e10c7c;
 
-$bg-dark: #063035;
-$bg-light: #0a8794;
-
+$navbar-fixed-top-bg: #b50964;
+$bg-dark: #b50964;
+$bg-light: #e60b7f;
 $card-border-color: #e60b7f;
 
 $table-border-color: #f459ab;
@@ -102,7 +112,6 @@ $nav-tabs-link-color: #000;
 $nav-tabs-link-bg: $input-bg;
 $nav-tabs-link-active-color: #fff;
 $nav-tabs-link-active-bg: $dropdown-link-hover-bg;
-
 
 $nav-pills-link-active-bg: #b51360;
 $pagination-color: #b51360;
@@ -156,8 +165,9 @@ $autotoc-nav-link-hover-bg: #61102d;
   background: linear-gradient(to right,  #b3135f 0%,#b61261 9%,#c21069 18%,#e70b80 69%,#ea0a81 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b3135f', endColorstr='#ea0a81',GradientType=1 ); /* IE6-9 */
 }
-$chosen-container-multi-choices-bg: #ffffff;
-$chosen-container-multi-choices-color: #555555;
+
+$chosen-container-multi-choices-bg: $input-bg;
+$chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #fa9ccd;
 $chosen-container-single-bg: #f9dcec;
 $chosen-container-single-color: #555555;

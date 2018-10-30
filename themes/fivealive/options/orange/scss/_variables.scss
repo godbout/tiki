@@ -2,6 +2,8 @@
 //Custom styles for the FiveAliveHS Orange option theme.
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$white:    #fff;
+$black:    #000;
 $light: #e77d4f;
 
 $bg-light: #e77d4f !important;
@@ -43,7 +45,7 @@ $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-badge-color: #e77d4f;
 // $btn-secondary-bg-color: #ffffff;
 
-$btn-info-color: #fff;
+$btn-info-color: #282828;
 $btn-info-bg: #e5d7dc;
 $btn-info-border: #e5d0cf;
 // $btn-info-focus-color: ;
@@ -62,7 +64,14 @@ $btn-info-active-bg: $btn-info-bg;
 // $btn-info-badge-color: ;
 // $btn-info-badge-bg: ;
 
-$navbar-dark-color: #fff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
@@ -159,8 +168,8 @@ $autotoc-nav-link-hover-bg: #ae421f;
 }
 
 //.bg-dark {background: #33140a !important; }
-$chosen-container-multi-choices-bg: #ffffff;
-$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-bg: $input-bg;
+$chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #fac5b1;
 $chosen-container-single-bg: #f8e4dd;
 $chosen-container-single-color: #555555;

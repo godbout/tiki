@@ -1,10 +1,13 @@
 // $Id$
-//Custom styles for the FiveAliveHS Watermelon option theme.
+//Custom styles for the FiveAlive Watermelon option theme.
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$white:    #fff;
+$black:    #000;
 $light: #b51360;
 
 $bg-dark: #a51e37;
+
 $link-color: #c21e3b;
 $link-hover-color: #ee2e52;
 $btn-primary-color: #ffffff;
@@ -41,7 +44,7 @@ $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-badge-color: #b51360;
 // $btn-secondary-bg-color: #ffffff;
 
-$btn-info-color: #fff;
+$btn-info-color: #282828;
 $btn-info-bg: #e5d7dc;
 $btn-info-border: #e5d0cf;
 // $btn-info-focus-color: ;
@@ -60,7 +63,14 @@ $btn-info-active-bg: darken($btn-info-bg, 5%);
 // $btn-info-badge-color: ;
 // $btn-info-badge-bg: ;
 
-$navbar-dark-color: #fff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
@@ -122,6 +132,7 @@ $theme-colors: (
 
 $enable-gradients: true;
 $enable-shadows: true;
+
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
 $bg-light-alt: #851e0e !important;
 
@@ -156,8 +167,8 @@ $autotoc-nav-link-hover-bg: #61102d;
 }
 
 //.bg-dark {background: #35061d !important; }
-$chosen-container-multi-choices-bg: #ffffff;
-$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-bg: $input-bg;
+$chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #fb999e;
 $chosen-container-single-bg: #f9dfe2;
 $chosen-container-single-color: #555555;
