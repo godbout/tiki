@@ -43,8 +43,8 @@ $ICEcoderUserSettings = array(
 "ftpSites"		=> array(),
 "githubLocalPaths"	=> array(),
 "githubRemotePaths"	=> array(),
-"previousFiles"		=> "|var|www|virtual|i18n.tiki.org|html|templates|menu|quicklinks.tpl,|var|www|virtual|i18n.tiki.org|html|templates|module|execute.tpl,|var|www|virtual|i18n.tiki.org|html|tiki-index.php,|var|www|virtual|i18n.tiki.org|html|templates|tiki-show_page.tpl",
-"last10Files"		=> "|var|www|virtual|i18n.tiki.org|html|templates|tiki-show_page.tpl,|var|www|virtual|i18n.tiki.org|html|tiki-index.php,|var|www|virtual|i18n.tiki.org|html|templates|module|execute.tpl,|var|www|virtual|i18n.tiki.org|html|templates|metadata|meta_view_dialog.tpl,|var|www|virtual|i18n.tiki.org|html|lib|captcha|Captcha_Questions.php,|var|www|virtual|i18n.tiki.org|html|lib|captcha|captchalib.php,|var|www|virtual|i18n.tiki.org|html|templates|menu|quicklinks.tpl,|var|www|virtual|i18n.tiki.org|html|lib|banners|bannerlib.php,|var|www|virtual|i18n.tiki.org|html|templates|lists|articles.tpl,|var|www|virtual|i18n.tiki.org|html|templates|layouts|classic|layout_view.tpl",
+"previousFiles"		=> "|var|www|virtual|i18n.tiki.org|html|tiki-adminusers.php,|var|www|virtual|i18n.tiki.org|html|templates|tiki-adminusers.tpl",
+"last10Files"		=> "|var|www|virtual|i18n.tiki.org|html|templates|tiki-adminusers.tpl,|var|www|virtual|i18n.tiki.org|html|tiki-adminusers.php,|var|www|virtual|i18n.tiki.org|html|templates|tiki-show_page.tpl,|var|www|virtual|i18n.tiki.org|html|tiki-index.php,|var|www|virtual|i18n.tiki.org|html|templates|module|execute.tpl,|var|www|virtual|i18n.tiki.org|html|templates|metadata|meta_view_dialog.tpl,|var|www|virtual|i18n.tiki.org|html|lib|captcha|Captcha_Questions.php,|var|www|virtual|i18n.tiki.org|html|lib|captcha|captchalib.php,|var|www|virtual|i18n.tiki.org|html|templates|menu|quicklinks.tpl,|var|www|virtual|i18n.tiki.org|html|lib|banners|bannerlib.php",
 "favoritePaths"		=> array()
 );
 
