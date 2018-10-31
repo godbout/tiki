@@ -4,6 +4,9 @@
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 
 // Colors
+$white:    #fff;
+$black:    #000;
+
 $gray-700: #495057;
 $gray-900: #212529;
 
@@ -19,9 +22,9 @@ $theme-colors: (
  	"success":         	#5cb85c,
  	"info":           	#5bc0de,
  	"warning":         	#f0ad4e,
- 	"danger":          	#d9534f //,
-//	"light":			#ffffff,
-// 	"dark":				#000000
+ 	"danger":          	#d9534f,
+	"light":			#ffffff,
+ 	"dark":				#000000
 );
 
 // Options
@@ -50,7 +53,8 @@ $btn-primary: $primary;
 // Forms
 
 // Dropdowns
-$dropdown-bg: #a8cce2;
+$dropdown-bg: #4d90bd;
+$dropdown-link-hover-bg: darken($dropdown-bg,10%);
 
 // Navs
 
@@ -59,9 +63,17 @@ $navbar-dark-color: #ffffff;
 $navbar-dark-bg: #426d95;
 
 // Navbar links
-$navbar-dark-color: #ffffff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
+//$navbar-dark-color: #ffffff;
 //#777777;
-$navbar-dark-hover-color: darken(#fff, 10%);
+//$navbar-dark-hover-color: darken(#fff, 10%);
 // #333333;
 $navbar-dark-hover-bg: transparent;
 $navbar-dark-active-color: $navbar-dark-hover-color;
