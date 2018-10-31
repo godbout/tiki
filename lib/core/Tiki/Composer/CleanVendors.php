@@ -413,25 +413,6 @@ class CleanVendors
 				'src',
 				'dist/extras',
 				'dist/topojson',
-				'dist/plotly.js',
-				'dist/plotly.min.js',
-				'dist/plot-schema.json',
-				'dist/plotly-basic.js',
-				'dist/plotly-cartesian.js',
-				'dist/plotly-finance.js',
-				'dist/plotly-finance.min.js',
-				'dist/plotly-geo-assets.js',
-				'dist/plotly-geo.js',
-				'dist/plotly-geo.min.js',
-				'dist/plotly-gl2d.js',
-				'dist/plotly-gl2d.min.js',
-				'dist/plotly-gl3d.js',
-				'dist/plotly-gl3d.min.js',
-				'dist/plotly-mapbox.js',
-				'dist/plotly-mapbox.min.js',
-				'dist/plotly-with-meta.js',
-				'dist/translation-keys.txt',
-				'dist/plotly-locale-*'
 			]
 		);
 
