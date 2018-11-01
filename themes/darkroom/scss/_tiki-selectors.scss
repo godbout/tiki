@@ -11,6 +11,8 @@ body.fullscreen {
 	background-image: url('#{$imagePath}474747_5e5e5e_40.png');
 }
 
+#middle { padding-top: 10px; }
+
 .btn-success,
 .btn-danger,
 .btn-success.disabled, .btn-success:disabled,
@@ -18,7 +20,7 @@ body.fullscreen {
   color: #f8f9fa;
 }
 
-.container {
+.container:not(.in-navbar) {
 	background: #0c0c0c;
 }
 
@@ -39,8 +41,6 @@ body.layout_social > .container {
 	color: $body-color !important;
 }
 
-
-
 h3.card-title {
 	color: #9d9d9d;
 	font-size: 24px;
@@ -51,16 +51,18 @@ h3.card-title {
 	border-width: 0 8px .5rem 8px;
 }
 
+.module.card { border: none; }
+
 .card .card-header { background: #292929; } // Was .card-primary - still ok?
 
 .navbar-fixed-top .container,
 .navbar-dark,
+.navbar-light,
 .topbar,
-//.topbar .navbar-dark .navbar-nav > li,
-//.topbar .nav > li,
 .btn,
 .nav-tabs > li > a,
 .input-group-addon,
+
 // jQuery-UI overrides
 .tiki .ui-state-default,
 .tiki .ui-widget-content .ui-state-default,
@@ -89,6 +91,7 @@ h3.card-title {
 .nav-tabs > li.active.show > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus,
+
 	//jQuery-UI overrides
 .tiki .ui-state-active,
 .tiki .ui-widget-content .ui-state-active,
@@ -132,10 +135,12 @@ h3.card-title {
 	color: #f2f2f2;
 }
 
-
-.top_modules .navbar-dark {
-	background: transparent !important;
-	border: none;
+.top_modules {
+	.navbar-dark,
+	.navbar-light {
+		background: transparent !important;
+		border: none;
+	}
 }
 
 .btn.btn-link {background: none !important;}
@@ -144,10 +149,14 @@ h3.card-title {
 	margin-bottom: 1.3rem;
 }
 
-#topbar_modules .navbar-dark {
-	background: transparent !important;
-	border: none;
-	margin-bottom: 0;
+#topbar_modules,
+#top_modules {
+	.navbar-dark,
+	.navbar-light {
+		background: transparent !important;
+		border: none;
+		margin-bottom: 0;
+	}
 }
 
 #topbar_modules .form-group {
@@ -161,8 +170,6 @@ h3.card-title {
 .nav > li > a {
 	padding: .4rem 10px;
 }
-
-
 
 select {
 	background: #292929
@@ -207,11 +214,6 @@ input {
 	background-color: $body-bg;
 }
 
-#admin-navbar-collapse-1 {
-	border: 8px solid #292929;
-	border-bottom: none;
-}
-
 .cssmenu_horiz a,
 .cssmenu_vert a {
 	color: $link-color;
@@ -252,3 +254,20 @@ input {
 	}
 }
 
+.chosen-container-single .chosen-single div {
+	padding-left: 1rem;
+}
+// Copied from example at https://www.jqueryscript.net/demo/Bootstrap-4-Chosen-Plugin/
+.chosen-container-single .chosen-single div::after {
+	display: inline-block;
+	position: relative;
+	top: .25rem;
+	left: -1rem;
+	width: 2rem;
+	height: 2rem;
+	content: "";
+	background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23adb5bd' d='M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z'/%3E%3C/svg%3E");
+	background-size: 2rem 2rem;
+	background-position: center center;
+	background-repeat: no-repeat;
+}

@@ -251,6 +251,9 @@ class Services_Search_CustomSearchController
 					$query->filterContent($config['_value'], $config['_field']);
 				}
 			} else {
+				if ($config['type'] == 'select' && ! empty($config['multiple']) && ! empty($config['_operator'])) {
+					$value = str_replace(' ', " {$config['_operator']} ", $value);
+				}
 				// covers everything else including radio that have no _value set (use sent value)
 				if (empty($config['_field'])) {
 					$query->filterContent($value);
@@ -259,7 +262,6 @@ class Services_Search_CustomSearchController
 				}
 			}
 		}
-		return false;
 	}
 
 	private function cs_handle_textrange($rangeName, Search_Query $query, $config, $value)

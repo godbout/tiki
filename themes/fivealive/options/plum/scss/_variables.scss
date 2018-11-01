@@ -2,13 +2,17 @@
 //Custom styles for the FiveAliveHS Plum option theme.
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
+$white:    #fff;
+$black:    #000;
 $light: #7a04b5;
 
 $bg-light: #7a04b5 !important;
 
 $link-color: #7a04b5;
 $link-hover-color: #7a04b5;
-
+$link-color: #7a04b5;
+$link-hover-color: #7a04b5;
+$btn-primary-color: #ffffff;
 $btn-primary-bg: #7a04b5;
 $btn-primary-border: #8e01d4;
 $btn-primary-focus-color: #ffffff;
@@ -20,9 +24,9 @@ $btn-primary-hover-border: #650197;
 $btn-primary-active-color: #ffffff;
 $btn-primary-active-bg: #4e0174;
 $btn-primary-active-border: #650197;
-$btn-primary-active-hover-bg: #4e0174;
+$btn-primary-active-hover-bg-color: #360051;
 $btn-primary-active-hover-border: #390055;
-$btn-primary-disabled-bg: #7a04b5;
+$btn-primary-disabled-hover: #7a04b5;
 $btn-primary-disabled-border: #8e01d4;
 $btn-primary-badge-color: #7a04b5;
 $btn-primary-badge-bg: #ffffff;
@@ -42,7 +46,7 @@ $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-badge-color: #7a04b5;
 // $btn-secondary-bg-color: #ffffff;
 
-$btn-info-color: #fff;
+$btn-info-color: #ffffff;
 $btn-info-bg: #e5d7dc;
 $btn-info-border: #e5d0cf;
 // $btn-info-focus-color: ;
@@ -61,16 +65,23 @@ $btn-info-active-bg: $btn-info-bg;
 // $btn-info-badge-color: ;
 // $btn-info-badge-bg: ;
 
-$navbar-dark-color: #fff;
+$navbar-dark-color:                 rgba($white, .75);
+$navbar-dark-hover-color:           rgba($white, .85);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        rgba($white, .25);
+$navbar-light-color:                rgba($black, .5);
+$navbar-light-hover-color:          rgba($black, .7);
+$navbar-light-active-color:         rgba($black, .9);
+$navbar-light-disabled-color:       rgba($black, .3);
 
 // navbar link hover colors
 $bg-dark-link-hover-color: #f2f2f2;
 $bg-dark-link-hover-bg: #003c4a;
 
-
 $hr-border-color: #7a04b5;
 
-$bg-dark: #180124;
+$navbar-fixed-top-bg: #49006c;
+$bg-dark: #15001f;
 $bg-light: #0a8794;
 
 $card-border-color: #49006c;
@@ -158,8 +169,8 @@ $autotoc-nav-link-hover-bg: #2e1f39;
 }
 
 .bg-dark {background: #15001f !important; }
-$chosen-container-multi-choices-bg: #ffffff;
-$chosen-container-multi-choices-color: #555555;
+$chosen-container-multi-choices-bg: $input-bg;
+$chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #f5fb86b;
 $chosen-container-single-bg: #f8f9d4;
 $chosen-container-single-color: #555555;

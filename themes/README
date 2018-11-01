@@ -1,0 +1,47 @@
+TIKI THEMES
+
+A number of visual themes (also known as skins or templates) are distributed with Tiki but more are available, and you can
+create an original theme or adapt an existing theme made for plain HTML or for another platform such as WordPress (respecting licence restictions) for your own purpose.
+The bundled themes can serve as models of how themes work in Tiki.
+
+Tiki's themes (stylesheets and associated files) are in the "themes" directory in the root directory of the Tiki installation.
+If a new theme has only a stylesheet (CSS file), then only a "css" sub-directory is needed in the theme's directory.
+The path to the theme stylesheet is, for example, "themes/mynewtheme/css/mynewtheme.css".
+Only the directories that actually contain content are necessary. For example, if your theme uses custom fonts that are locally stored,
+there needs to be a "fonts" directory within the new theme's directory to contain these fonts.
+
+Please refer to the "Default" theme (themes/default/) or the "FiveAlive" theme (themes/fivealive/) folders to see the standard file system
+organization and content for themes.
+
+More information about themes can be found at https://themes.tiki.org .
+More themes can be found at https://themes.tiki.org/Marketplace Themes . Currently these are available for Tiki 18 and before, but updates are coming.
+Help with Tiki is available at: https://tiki.org/Help .
+A Tiki consultant (providing paid services) can be found and contacted at: https://tiki.org/Consultants .
+
+Please note that Tiki also has a theme customizer (called the Style Guide Tool before Tiki 19 - note: the feature isn't functional yet in Tiki 19).
+See https://doc.tiki.org/Theme-Customizer .
+
+
+FOR DEVELOPERS
+
+Web developers/designers with some knowledge of CSS can create or adapt a visual theme for Tiki. Please see the links below.
+
+These are the supported theme sub-directories and their contents:
+* css: contains the theme .css files (manually editable or compiled from SCSS files)
+* favicons: where you can place your theme-specific favicons (check the Tiki favicon feature)
+* fonts: contains theme-specific custom fonts
+* icons: contains theme-specific custom icons
+* images: contains theme-specific images (primarily background images but could also be logos, etc)
+* jquery-ui: contains theme-specific jquery scripts
+* js: contains theme-specific JavaScript
+* less: (Tiki 13 to 18) contains Less files to be compiled to create the theme CSS file
+* options: contains "child" themes that are variants of the main theme (for example, check the FiveAlive theme)
+* scss: (Tiki 19 and newer) contains SCSS files to be compiled to create the theme CSS file
+* templates: contains theme-specific variants of the default Smarty template (.tpl) files
+
+For more details and help:
+https://themes.tiki.org/Creating-a-Tiki-theme
+https://themes.tiki.org/Theme-making-Questions-and-Answers
+https://themes.tiki.org/Customizing-Icons
+https://themes.tiki.org/Template-Tricks
+https://doc.tiki.org/Favicon

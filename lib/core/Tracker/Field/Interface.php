@@ -48,4 +48,14 @@ interface Tracker_Field_Interface
 	//function handleSave($value, $oldValue);
 
 	//function isValid($ins_fields_data);
+
+	/**
+	 * Augmentable fields allow adding a value to the set of pre-existing values.
+	 */
+	function addValue($value);
+
+	/**
+	 * Augmentable fields allow removing a value from the set of pre-existing values.
+	 */
+	function removeValue($value);
 }

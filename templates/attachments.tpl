@@ -6,10 +6,10 @@
 	<div
 		{if isset($pagemd5) && $pagemd5}
 			{assign var=cookie_key value="show_attzone$pagemd5"}
-			id="attzone{$pagemd5}"
+			id="attzone{$pagemd5}" class="w-100"
 		{else}
 			{assign var=cookie_key value="show_attzone"}
-			id="attzone"
+			id="attzone" class="w-100"
 		{/if}
 		{if (isset($smarty.session.tiki_cookie_jar.$cookie_key) and $smarty.session.tiki_cookie_jar.$cookie_key eq 'y')
 			or (!isset($smarty.session.tiki_cookie_jar.$cookie_key) and $prefs.w_displayed_default eq 'y')}
@@ -99,31 +99,33 @@
 
 	{if ($tiki_p_wiki_attach_files eq 'y' or $tiki_p_wiki_admin_attachments eq 'y')
 		and (!isset($attach_box) or $attach_box ne 'n') and $editable}
-		<div class="file-upload well well-sm">
-			<form class="form-horizontal" enctype="multipart/form-data" action="tiki-index.php?page={$page|escape:"url"}" method="post">
-				{if $page_ref_id}
-					<input type="hidden" name="page_ref_id" value="{$page_ref_id|escape}">
-				{/if}
-				{if !empty($smarty.request.no_bl)}
-					<input type="hidden" name="no_bl" value="{$smarty.request.no_bl|escape}">
-				{/if}
-				<div class="form-group row">
-					<label class="col-sm-2 col-form-label" for="attach-upload">{tr}Upload file{/tr}</label><input type="hidden" name="MAX_FILE_SIZE" value="1000000000">
-					<div class="col-sm-10">
-						<input class="form-control" name="userfile1" type="file" id="attach-upload">
+		<div class="file-upload card bg-light">
+			<div class="card-body">
+				<form class="form-horizontal" enctype="multipart/form-data" action="tiki-index.php?page={$page|escape:"url"}" method="post">
+					{if $page_ref_id}
+						<input type="hidden" name="page_ref_id" value="{$page_ref_id|escape}">
+					{/if}
+					{if !empty($smarty.request.no_bl)}
+						<input type="hidden" name="no_bl" value="{$smarty.request.no_bl|escape}">
+					{/if}
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="attach-upload">{tr}Upload file{/tr}</label><input type="hidden" name="MAX_FILE_SIZE" value="1000000000">
+						<div class="col-sm-10">
+							<input class="form-control" name="userfile1" type="file" id="attach-upload">
+						</div>
 					</div>
-				</div>
 
-				<div class="form-group row">
-					<label class="col-sm-2 col-form-label" for="attach-comment">{tr}Comment{/tr}</label>
-					<div class="col-sm-8">
-						<input class="form-control" type="text" name="attach_comment" maxlength="250" id="attach-comment" placeholder="{tr}File upload comment{/tr}...">
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label" for="attach-comment">{tr}Comment{/tr}</label>
+						<div class="col-sm-8">
+							<input class="form-control" type="text" name="attach_comment" maxlength="250" id="attach-comment" placeholder="{tr}File upload comment{/tr}...">
+						</div>
+						<div class="col-sm-2">
+							<input type="submit" class="btn btn-primary" name="attach" value="{tr}Attach{/tr}">
+						</div>
 					</div>
-					<div class="col-sm-2">
-						<input type="submit" class="btn btn-primary" name="attach" value="{tr}Attach{/tr}">
-					</div>
-				</div>
-			</form>
+				</form>
+			</div>
 		</div>
 	{/if}
 </div>

@@ -62,6 +62,7 @@ class TrackerField extends Type
 		$fields = $trklib->list_tracker_fields($trackerId, 0, -1, 'position_asc', '');
 
 		$list = ['' => ''];
+		$list['itemId'] = tr('Tracker Item Id');
 		foreach ($fields['data'] as $trkField) {
 			$fieldId = $trkField['fieldId'];
 			$fieldName = $trkField['name'];

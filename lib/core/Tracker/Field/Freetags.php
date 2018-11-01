@@ -90,6 +90,28 @@ class Tracker_Field_Freetags extends Tracker_Field_Abstract implements Tracker_F
 		return $data;
 	}
 
+	function addValue($value) {
+		$freetaglib = TikiLib::lib('freetag');
+		$tags = $freetaglib->_parse_tag($this->getValue());
+		if (! in_array($value, $tags)) {
+			$tags[] = $value;
+		}
+		return implode(' ', array_map(function($t){
+			return strstr($t, ' ') ? '"'.$t.'"' : $t;
+		}, $tags));
+	}
+
+	function removeValue($value) {
+		$freetaglib = TikiLib::lib('freetag');
+		$tags = $freetaglib->_parse_tag($this->getValue());
+		$tags = array_filter($tags, function($t) use ($value) {
+			return $t != $value;
+		});
+		return implode(' ', array_map(function($t){
+			return strstr($t, ' ') ? '"'.$t.'"' : $t;
+		}, $tags));
+	}
+
 	function renderInput($context = [])
 	{
 		return $this->renderTemplate('trackerinput/freetags.tpl', $context);

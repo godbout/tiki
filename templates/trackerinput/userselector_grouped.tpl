@@ -24,11 +24,18 @@
 		var $selector = $('#user_selector_{{$field.fieldId}}'),
 			selected = $selector.val(),
 			group_users = {};
-		$selector.empty();
 		$.map($(this).val(), function(group) {
 			$.extend(group_users, users{{$field.fieldId}}[group] || {});
 		});
-		$.map(Object.keys(group_users), function(user){
+		var all_users = Object.keys(group_users);
+		var to_remove = $.map(selected, function(user) {
+			return $.inArray(user, all_users) < 0 ? user : null;
+		});
+		if (to_remove.length > 0 && ! confirm(tr("Please confirm if you want to remove the following users:")+" "+to_remove.join(', '))) {
+			return;
+		}
+		$selector.empty();
+		$.map(all_users, function(user){
 			return {value: user, label: group_users[user]};
 		}
 		).sort(function(u1, u2) {

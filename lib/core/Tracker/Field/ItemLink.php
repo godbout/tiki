@@ -254,6 +254,22 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 		return $data;
 	}
 
+	function addValue($value) {
+		$existing = explode(',', $this->getValue());
+		if (! in_array($value, $existing)) {
+			$existing[] = $value;
+		}
+		return implode(',', $existing);
+	}
+
+	function removeValue($value) {
+		$existing = explode(',', $this->getValue());
+		$existing = array_filter($existing, function($v) use ($value) {
+			return $v != $value;
+		});
+		return implode(',', $existing);
+	}
+
 	function useSelector()
 	{
 		global $prefs;

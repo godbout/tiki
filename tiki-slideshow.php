@@ -156,23 +156,23 @@ if (isset($_REQUEST['pdf'])) {
 		if ($_REQUEST['printslides']) {
 			$customCSS
 				= "<style type='text/css'>img{max-height:300px;width:auto;} body{font-size:1em} h1{font-size:1.5em}  section{height:300px;border:1px solid #000;margin-bottom:1%;padding:1%;}</style> ";
-			$pdata = $customCSS . $pdata;
+			$pdata = $customCSS .'<pdfsettings printFriendly="y" header="off" footer="off"></pdfsettings>' . $pdata;
 		} else {
 			//getting css
 			$customCSS .= file_get_contents(
-				'vendor_bundled/vendor/components/revealjs/css/reveal.scss'
+				'vendor_bundled/vendor/components/revealjs/css/reveal.css'
 			);
 			$customCSS .= file_get_contents(
 				'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme
 				. '.css'
 			);
-			$customCSS .= '.reveal section{width:70%;text-align:center;padding-top:50px;margin:auto;text-align:center} .reveal h1{font-size:2em} .reveal{font-size:1.3em;line-height:1.5em}section{text-align:center;margin: auto;width:100%;}';
+			$customCSS .= '.reveal section{width:90%;text-align:center;padding-top:30px;margin:auto;} section{text-align:center;margin: auto;width:100%;} .ss-heading{text-align:center;line-height:2.5em}';
 			$pdata = '<pdfsettings header="off" footer="off"></pdfsettings><div class="reveal">' . $pdata . '</div>';
 
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
-				$pdfStyles. $pdata.'<style>' . str_replace(array(".reveal {","vertical-align: baseline;"),array(".reveal,.reveal table{ ","vertical-align:top;"),$customCSS) . ' .reveal table{font-size:1.3em;font-weight:normal;line-height:1.4em;height:auto;!important}</style>'
-			);
+				$pdata.'<style>' .str_replace(array(".reveal {","vertical-align: baseline;"),array(".reveal,.reveal table{ ","vertical-align:top;"),$customCSS) . ' .reveal table, .reveal li{font-size:1.3em;font-weight:normal;line-height:1.4em;height:auto;!important; text-align:center} img{max-height:400px} </style>'
+			).$pdfStyles;
 		}
 
 		$pdf = $generator->getPdf(
@@ -444,7 +444,7 @@ function formatContent($content, $tagArr)
 			}
 			$firstSlide = 1;
 		} else {
-			$slideContent .= '<section><table width="100%" cellpadding="0" cellspace="0"><tr><td colspan="2" style="border-bottom:0px"><h1' . str_replace(
+			$slideContent .= '<section><table width="100%" cellpadding="0" cellspace="0"><tr><td colspan="2" style="border-bottom:0px;text-align:center" class="ss-heading"><h1' . str_replace(
 					array('</h1>','</h2>', '</h3>'), '</h1></td></tr><tr><td>', $slide
 				) . '</td></tr></table></section>';
 		}

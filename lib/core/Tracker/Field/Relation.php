@@ -128,6 +128,22 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		];
 	}
 
+	function addValue($value) {
+		$existing = explode("\n", $this->getValue());
+		if (! in_array($value, $existing)) {
+			$existing[] = $value;
+		}
+		return implode("\n", $existing);
+	}
+
+	function removeValue($value) {
+		$existing = explode("\n", $this->getValue());
+		$existing = array_filter($existing, function($v) use ($value) {
+			return $v != $value;
+		});
+		return implode("\n", $existing);
+	}
+
 	function renderInput($context = [])
 	{
 		if ($this->getOption(self::OPT_READONLY)) {

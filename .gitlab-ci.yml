@@ -52,6 +52,15 @@ schema-naming-convention:
     - php -d display_errors=On doc/devtools/check_schema_naming_convention.php
   allow_failure: false
 
+translation:
+  stage: tiki-check
+  script:
+  - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
+  - php -v
+  - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+  - git log --first-parent --pretty="format:%h" -1 --skip=1 | xargs -I gitHash php -d display_errors=On doc/devtools/translate.php --diff-command="git diff gitHash" --git --audit
+  allow_failure: true
+
 .template-tiki-schema-upgrade: &template-tiki-schema-upgrade
   stage: tiki-check
   cache:

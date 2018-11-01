@@ -310,10 +310,12 @@ class PdfGenerator
 
 		//checking if print friendly option is enabled, then attach print css otherwise theme styles will be retained by theme css
 		if ($pdfSettings['print_pdf_mpdf_printfriendly'] == 'y') {
-			 $printcss = file_get_contents('themes/base_files/css/printpdf.css'); // external css
+			$printcss = file_get_contents('themes/base_files/css/printpdf.css'); // external css
+			$bodycss='tiki tiki-print'; //execluding theme css in case print friendly is set to yes.
 		} else {//preserving theme styles by removing media print styles to print what is shown on screen
 			$themecss = str_replace(["media print","color : fff"], ["media p","color : #fff"], $themecss);
 			$printcss = file_get_contents('themes/base_files/css/printqueries.css'); //for bootstrap print hidden, screen hidden styles on divs
+			$bodycss='';
 		}
 
 		$pdfPages = $this->getPDFPages($html, $pdfSettings);
@@ -352,12 +354,12 @@ class PdfGenerator
 			}
 			if (strip_tags(trim($pdfPage['pageContent'])) != '') {
 				//checking header and footer
-				if ($pdfPage['header'] == "off") {
+				if (trim(strtolower($pdfPage['header'])) == "off") {
 					$header = "";
 				} else {
 					$pdfPage['header'] == '' ? $header = $pdfSettings['header'] : $header = $pdfPage['header'];
 				}
-				if ($pdfPage['footer'] == "off") {
+				if (trim(strtolower($pdfPage['footer'])) == "off") {
 					$footer = "";
 				} elseif ($pdfPage['footer']) {
 					$footer = $pdfPage['footer'];
@@ -389,7 +391,7 @@ class PdfGenerator
 				if ($pdfPage['background'] != '') {
 					$bgColor = "background: linear-gradient(top, ".$pdfPage['background'].", ".$pdfPage['background'].");";
 				}
-				$mpdf->WriteHTML('<html><body style="'.$bgColor.'-webkit-print-color-adjust: exact;margin:0px;padding:0px;">' . $cssStyles);
+				$mpdf->WriteHTML('<html><body class="'.$bodycss.'" style="'.$bgColor.'-webkit-print-color-adjust: exact;margin:0px;padding:0px;">' . $cssStyles);
 				$pagesTotal += floor(strlen($pdfPage['pageContent']) / 3000);
 				//checking if page content is less than mPDF character limit, otherwise split it and loop to writeHTML
 				for ($charLimit = 0; $charLimit <= strlen($pdfPage['pageContent']); $charLimit += $pdfLimit) {
@@ -403,8 +405,8 @@ class PdfGenerator
 		$mpdf->setWatermarkText($pdfSettings['watermark']);
 		$mpdf->SetWatermarkImage($pdfSettings['watermark_image'], 0.15, '');
 		//resetting header,footer
-		$pdfSettings['header']=="off"?$mpdf->SetHeader():$mpdf->SetHeader(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['header']));
-		$pdfSettings['footer']=="off"?$mpdf->SetFooter():$mpdf->SetFooter(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['footer']));
+		trim(strtolower($pdfSettings['header']))=="off"?$mpdf->SetHeader():$mpdf->SetHeader(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['header']));
+		trim(strtolower($pdfSettings['footer']))=="off"?$mpdf->SetFooter():$mpdf->SetFooter(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['footer']));
 		$this->clearTempImg($tempImgArr);
 		$tempFile = fopen("temp/public/pdffile_" . session_id() . ".txt", "w");
 		fwrite($tempFile, ($pagesTotal * 30));

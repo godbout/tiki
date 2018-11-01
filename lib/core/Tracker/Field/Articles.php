@@ -71,6 +71,22 @@ class Tracker_Field_Articles extends Tracker_Field_Abstract
 		];
 	}
 
+	function addValue($articleId) {
+		$existing = explode(',', $this->getValue());
+		if (! in_array($articleId, $existing)) {
+			$existing[] = $articleId;
+		}
+		return implode(',', $existing);
+	}
+
+	function removeValue($articleId) {
+		$existing = explode(',', $this->getValue());
+		$existing = array_filter($existing, function($v) use ($articleId) {
+			return $v != $articleId;
+		});
+		return implode(',', $existing);
+	}
+
 	function renderInput($context = [])
 	{
 		global $prefs;
