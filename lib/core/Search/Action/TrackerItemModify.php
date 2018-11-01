@@ -15,6 +15,8 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 			'field' => true,
 			'value' => false,
 			'calc' => false,
+			'add' => false,
+			'remove' => false,
 			'aggregate_fields' => false,
 		];
 	}
@@ -26,6 +28,8 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 		$field = $data->field->word();
 		$value = $data->value->text();
 		$calc = $data->calc->text();
+		$add = $data->add->text();
+		$remove = $data->remove->text();
 		$aggregateFields = $data->aggregate_fields->none();
 
 		if ($aggregateFields && $object_type != 'aggregate') {
@@ -58,8 +62,8 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 			}
 		}
 
-		if (empty($value) && empty($calc)) {
-			throw new Search_Action_Exception(tr('tracker_item_modify action missing value or calc parameter.'));
+		if (empty($value) && empty($calc) && empty($add) && empty($remove)) {
+			throw new Search_Action_Exception(tr('tracker_item_modify action missing value, calc, add or remove parameter.'));
 		}
 
 		return true;
@@ -92,7 +96,7 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 
 	function requiresInput(JitFilter $data)
 	{
-		return empty($data->value->text()) && empty($data->calc->text());
+		return empty($data->value->text()) && empty($data->calc->text()) && empty($data->add->text()) && empty($data->remove->text());
 	}
 
 	private function executeOnItem($object_id, $data)
@@ -100,6 +104,8 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 		$field = $data->field->word();
 		$value = $data->value->text();
 		$calc = $data->calc->text();
+		$add = $data->add->text();
+		$remove = $data->remove->text();
 
 		$trklib = TikiLib::lib('trk');
 
@@ -126,6 +132,18 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 			} catch (Math_Formula_Exception $e) {
 				throw new Search_Action_Exception(tr('Error applying tracker_item_modify calc formula to item %0: %1', $object_id, $e->getMessage()));
 			}
+		}
+
+		if (! empty($add)) {
+			$fieldInfo = $definition->getField($field);
+			$handler = $definition->getFieldFactory()->getHandler($fieldInfo, $info);
+			$value = $handler->addValue($add);
+		}
+
+		if (! empty($remove)) {
+			$fieldInfo = $definition->getField($field);
+			$handler = $definition->getFieldFactory()->getHandler($fieldInfo, $info);
+			$value = $handler->removeValue($remove);
 		}
 
 		$utilities = new Services_Tracker_Utilities;

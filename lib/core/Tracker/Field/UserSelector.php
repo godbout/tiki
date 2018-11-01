@@ -187,6 +187,32 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 		return $data;
 	}
 
+	function addValue($user) {
+		$value = $this->getValue();
+		if ($value) {
+			$users = TikiLib::lib('trk')->parse_user_field($value);
+		} else {
+			$users = [];
+		}
+		if (! in_array($user, $users)) {
+			$users[] = $user;
+		}
+		return TikiLib::lib('tiki')->str_putcsv($users);
+	}
+
+	function removeValue($user) {
+		$value = $this->getValue();
+		if ($value) {
+			$users = TikiLib::lib('trk')->parse_user_field($value);
+		} else {
+			$users = [];
+		}
+		$users = array_filter($users, function($u) use ($user) {
+			return $u != $user;
+		});
+		return TikiLib::lib('tiki')->str_putcsv($users);
+	}
+
 	function renderInput($context = [])
 	{
 		global $user, $prefs;

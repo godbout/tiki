@@ -128,6 +128,22 @@ class Tracker_Field_Dropdown extends Tracker_Field_Abstract implements Tracker_F
 		];
 	}
 
+	function addValue($value) {
+		$existing = explode(',', $this->getValue());
+		if (! in_array($value, $existing)) {
+			$existing[] = $value;
+		}
+		return implode(',', $existing);
+	}
+
+	function removeValue($value) {
+		$existing = explode(',', $this->getValue());
+		$existing = array_filter($existing, function($v) use ($value) {
+			return $v != $value;
+		});
+		return implode(',', $existing);
+	}
+
 	function renderInput($context = [])
 	{
 		return $this->renderTemplate('trackerinput/dropdown.tpl', $context);

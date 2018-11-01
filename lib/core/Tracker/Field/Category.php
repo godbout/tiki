@@ -153,6 +153,22 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 		return $data;
 	}
 
+	function addValue($category) {
+		$existing = explode(',', $this->getValue());
+		if (! in_array($category, $existing)) {
+			$existing[] = $category;
+		}
+		return implode(',', $existing);
+	}
+
+	function removeValue($category) {
+		$existing = explode(',', $this->getValue());
+		$existing = array_filter($existing, function($v) use ($category) {
+			return $v != $category;
+		});
+		return implode(',', $existing);
+	}
+
 	public function renderInput($context = [])
 	{
 		$itemId = $this->getItemId();

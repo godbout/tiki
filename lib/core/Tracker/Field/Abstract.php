@@ -516,4 +516,18 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 	{
 		$this->baseKeyPrefix = $prefix;
 	}
+
+	/**
+	 * Default implementation is to replace the value
+	 */
+	public function addValue($value) {
+		return $value;
+	}
+
+	/**
+	 * Default implementation is to remove the value
+	 */
+	public function removeValue($value) {
+		return '';
+	}
 }
