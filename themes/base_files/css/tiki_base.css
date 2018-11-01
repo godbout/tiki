@@ -1108,6 +1108,28 @@ div.categbar {
 .dropdown-menu > .btn-link {
   padding: 0.25rem 1.5rem; }
 
+.uol ol:not(.media-list), ol.uol {
+  counter-reset: item; }
+
+.uol ol:not(.media-list) > li {
+  display: block;
+  text-indent: -1rem; }
+
+.uol ol:not(.media-list) > li:before {
+  content: counters(item, ".") ".\0000a0";
+  counter-increment: item; }
+
+.uol ol:not(.media-list) > li ol > li:before {
+  content: counters(item, ".") "\0000a0";
+  counter-increment: item; }
+
+.nouol ol > li {
+  display: list-item;
+  text-indent: 0; }
+
+.nouol ol > li:before, .nouol ol > li ol > li:before {
+  content: ""; }
+
 header.container, .middle_outer > .container {
   margin-bottom: 0; }
 
