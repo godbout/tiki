@@ -108,7 +108,7 @@ class Item
 				break;
 			case self::TYPE_TRACKER_FIELD:
 				preg_match($this->from, $path, $matches);
-				if (! empty($matches[1])) {
+				if (isset($matches[1])) {
 					return true;
 				}
 				break;
@@ -141,18 +141,22 @@ class Item
 
 				preg_match($this->from, $path, $matches);
 
-				if (empty($matches[1])) {
+				if (! isset($matches[1])) {
 					return false;
 				}
 
-				$itemId = TikiLib::lib('trk')->get_item_id(
-					$redirectDetails['tracker'],
-					$redirectDetails['tracker_field'],
-					$matches[1]
-				);
+				if ($redirectDetails['tracker_field'] == 'itemId') {
+					$itemId = $matches[1];
+				} else {
+					$itemId = TikiLib::lib('trk')->get_item_id(
+						$redirectDetails['tracker'],
+						$redirectDetails['tracker_field'],
+						$matches[1]
+					);
+				}
 
 				if (empty($itemId)) {
-					return false;
+					$itemId = '0';
 				}
 
 				$objectType = 'tracker item';
@@ -260,21 +264,26 @@ class Item
 			case self::TYPE_TRACKER_FIELD:
 				preg_match($this->from, $path, $matches);
 
-				if (empty($matches[1])) {
+				if (! isset($matches[1])) {
 					return false;
 				}
 
 				$redirectDetails = json_decode($this->redirect, true);
 
 				$trklib = TikiLib::lib('trk');
-				$itemId = $trklib->get_item_id(
-					$redirectDetails['tracker'],
-					$redirectDetails['tracker_field'],
-					$matches[1]
-				);
+
+				if ($redirectDetails['tracker_field'] == 'itemId') {
+					$itemId = $matches[1];
+				} else {
+					$itemId = $trklib->get_item_id(
+						$redirectDetails['tracker'],
+						$redirectDetails['tracker_field'],
+						$matches[1]
+					);
+				}
 
 				if (empty($itemId)) {
-					return false;
+					$itemId = '0';
 				}
 
 				require_once('tiki-sefurl.php');
