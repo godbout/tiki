@@ -222,11 +222,7 @@
 		}
 
 		body {
-			-webkit-transform: translate(0, 0);
-			-moz-transform: translate(0, 0);
-			-ms-transform: translate(0, 0);
-			-o-transform: translate(0, 0);
-			transform: translate(0, 0);
+			
 			transition: transform ease-in 0.15s;
 		}
 
