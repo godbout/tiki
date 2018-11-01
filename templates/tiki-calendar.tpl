@@ -177,6 +177,52 @@
 		{/if}
 	{else}
 		{jq}
+			var FC = $.fullCalendar;
+			var MonthView = FC.MonthView;
+			var MultiMonthView;
+
+			MultiMonthView = MonthView.extend({
+
+				fixedWeekCount: false,
+				showNonCurrentDates: true,
+
+				buildGotoAnchorHtml: function (gotoOptions, attrs, innerHtml) {
+					if (attrs.class == 'fc-day-number' && $.isNumeric(innerHtml)) {
+						innerHtml = gotoOptions.format('M/D');
+					}
+
+					return MonthView.prototype.buildGotoAnchorHtml.call(this, gotoOptions, attrs, innerHtml);
+				},
+
+				// If date is out of calendar date ranges
+				isDateInOtherMonth: function (date, dateProfile) {
+					return !dateProfile.currentUnzonedRange.containsDate(date);
+				}
+			});
+
+			var currentDate = $.fullCalendar.moment('{{$viewyear}}-{{$viewmonth}}-{{$viewday}}');
+
+			FC.defineView('year', {
+				'class': MultiMonthView,
+				duration: { months: 12 },
+				intervalStart: currentDate.startOf('year'),
+				intervalEnd: currentDate.startOf('year').add('11', 'months').endOf('month'),
+			});
+
+			FC.defineView('semester', {
+				'class': MultiMonthView,
+				duration: { months: 6 },
+				intervalStart: currentDate.startOf('month'),
+				intervalEnd: currentDate.add('5', 'months').endOf('month'),
+			});
+
+			FC.defineView('quarter', {
+				'class': MultiMonthView,
+				duration: { months: 3 },
+				intervalStart: currentDate.startOf('month'),
+				intervalEnd: currentDate.add('2', 'months').endOf('month'),
+			});
+
 			$('#calendar').fullCalendar({
 				themeSystem: 'bootstrap4',
 				timeFormat: '{{$timeFormat}}',
@@ -184,7 +230,7 @@
 				header: {
 					left: 'prev,next today',
 					center: 'title',
-					right: 'month,agendaWeek,agendaDay'
+					right: 'year,semester,quarter,month,agendaWeek,agendaDay'
 				},
 				editable: true,
 				events: 'tiki-calendar_json.php',
@@ -199,6 +245,9 @@
 				dayNamesShort: ["{tr}Sun{/tr}", "{tr}Mon{/tr}", "{tr}Tue{/tr}", "{tr}Wed{/tr}", "{tr}Thu{/tr}", "{tr}Fri{/tr}", "{tr}Sat{/tr}"],
 				buttonText: {
 					today: "{tr}today{/tr}",
+					year: "{tr}year{/tr}",
+					semester: "{tr}semester{/tr}",
+					quarter: "{tr}quarter{/tr}",
 					month: "{tr}month{/tr}",
 					week: "{tr}week{/tr}",
 					day: "{tr}day{/tr}"
@@ -206,7 +255,7 @@
 				allDayText: "{tr}all-day{/tr}",
 				firstDay: {{$firstDayofWeek}},
 				slotMinutes: {{$prefs.calendar_timespan}},
-				defaultView: {{if $prefs.calendar_view_mode === 'week'}}'agendaWeek'{{elseif $prefs.calendar_view_mode === 'day'}}'agendaDay'{{else}}'month'{{/if}},
+				defaultView: {{if $prefs.calendar_view_mode === 'week'}}'agendaWeek'{{elseif $prefs.calendar_view_mode === 'day'}}'agendaDay'{{else}}'{{$prefs.calendar_view_mode}}'{{/if}},
 				eventAfterRender : function( event, element, view ) {
 					element.attr('title',event.title);
 					element.data('content', event.description);
@@ -257,7 +306,8 @@
 						calitemId: event.id,
 						delta: delta.asSeconds()
 					});
-				}
+				},
+				height: 'auto'
 			});
 		{/jq}
 
