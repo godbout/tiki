@@ -1267,8 +1267,12 @@ class EditLib
 		}
 	}
 
-    //this function add a line break
-    function addLine($str)
+	/**
+	 * add a line break at the end of each line
+	 * @param $str the html text in which to insert lines
+	 * @return string
+	 */
+    function addLineBreak($str)
     {
         $arr = array(
             "&lt;"      => "<",
