@@ -69,4 +69,12 @@ class Tracker_Field_Action implements Tracker_Field_Interface
 	{
 		return null;
 	}
+
+	function addValue($value) {
+		return null;
+	}
+
+	function removeValue($value) {
+		return null;
+	}
 }
