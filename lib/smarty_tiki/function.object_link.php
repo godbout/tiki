@@ -193,25 +193,12 @@ function smarty_function_object_link_default($smarty, $object, $title = null, $t
 
 function smarty_function_object_link_trackeritem($smarty, $object, $title = null, $type = 'wiki page', $url = null, $params = [])
 {
-	global $prefs;
-	$pre = null;
-
 	$item = Tracker_Item::fromId($object);
 
-	//Set show status to 'y' by default
-	if (! empty($prefs['tracker_status_in_objectlink'])) {
-		$show_status = $prefs['tracker_status_in_objectlink'];
-	} else {
-		$show_status = 'y';
-	}
-
-	if (($show_status == 'y') && $item && $status = $item->getDisplayedStatus()) {
-		$smarty->loadPlugin('smarty_function_icon');
-		$pre = smarty_function_icon([
-			'name' => 'status-' . $status,
-			'iclass' => 'tips',
-			'ititle' => ':' . tr($status),
-		], $smarty);
+	$smarty->loadPlugin('smarty_function_tracker_item_status_icon');
+	$pre = smarty_function_tracker_item_status_icon(['item' => $item], $smarty);
+	if (!empty($pre)) {
+		$pre .= " ";
 	}
 
 	if ($item && $item->canView()) {

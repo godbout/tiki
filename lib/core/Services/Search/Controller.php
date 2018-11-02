@@ -103,6 +103,9 @@ class Services_Search_Controller
 	{
 		global $prefs;
 
+		$smarty = TikiLib::lib('smarty');
+		$smarty->loadPlugin('smarty_function_tracker_item_status_icon');
+
 		try {
 			$filter = $input->filter->none() ?: [];
 			$format = $input->format->text() ?: '{title}';
@@ -124,8 +127,8 @@ class Services_Search_Controller
 
 			$result = $query->search($lib->getIndex());
 
-			$result->applyTransform(function ($item) use ($format) {
-				return [
+			$result->applyTransform(function ($item) use ($format, $smarty) {
+				$transformed = [
 					'object_type' => $item['object_type'],
 					'object_id' => $item['object_id'],
 					'title' => preg_replace_callback('/\{(\w+)\}/', function ($matches) use ($item, $format) {
@@ -146,6 +149,10 @@ class Services_Search_Controller
 						}
 					}, $format),
 				];
+				if ($item['object_type'] == 'trackeritem') {
+					$transformed['status_icon'] = smarty_function_tracker_item_status_icon(['item' => $item['object_id']], $smarty->getEmptyInternalTemplate());
+				} 
+				return $transformed;
 			});
 
 			return [

@@ -49,7 +49,12 @@
 				{foreach from=$object_selector_multi.current_selection item=object name=ix}
 					<div class="form-check">
 						<input id="{$object_selector_multi.id|escape}_selected_{$smarty.foreach.ix.index}" class="form-check-input" type="checkbox" value="{$object|escape}" checked>
-						<label class="form-check-label" for="{$object_selector_multi.id|escape}_selected_{$smarty.foreach.ix.index}">{$object.title|escape}</label>
+						<label class="form-check-label" for="{$object_selector_multi.id|escape}_selected_{$smarty.foreach.ix.index}">
+							{if $object|substring:0:11 eq 'trackeritem'}
+								{tracker_item_status_icon item=$object|substring:12}
+							{/if}
+							{$object.title|escape}
+						</label>
 					</div>
 				{/foreach}
 			</div>

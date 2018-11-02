@@ -4160,6 +4160,7 @@ lib/smarty_tiki/function.svn_rev.php -text
 lib/smarty_tiki/function.thumb.php -text
 lib/smarty_tiki/function.ticket.php -text
 lib/smarty_tiki/function.toolbars.php -text
+lib/smarty_tiki/function.tracker_item_status_icon.php -text
 lib/smarty_tiki/function.trackerfields.php -text
 lib/smarty_tiki/function.trackerheader.php -text
 lib/smarty_tiki/function.trackerinput.php -text
