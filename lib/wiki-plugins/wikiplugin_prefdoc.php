@@ -277,6 +277,19 @@ class PrefsDoc extends TWVersion
 			}
 			$this->prefDescription .= '<span class="far fa-hand-pointer text-info" title="Short Hint"></span><i> ' . $param->shorthint . '</i>';
 		}
+		// if the pref is makred as deprecated, show as such and use the warning as the deprecated notice.
+		if (! empty($param->tags)) {
+			foreach ($param->tags as $tag) {
+				if ($tag === 'deprecated') {
+					if (!$param->warning) {
+						$param->warning = 'Will be removed in an upcoming version of Tiki.';
+					}
+					$this->prefDescription .= ' <span class="fas fa-broom text-warning" title="Deprecated: ' . $param->warning . '"></span>';
+					unset ($param->warning);
+				}
+			}
+		}
+
 		if ($param->warning) {
 			if ($this->prefDescription) {					// new line if existing content
 				$this->prefDescription .= '<br>';
