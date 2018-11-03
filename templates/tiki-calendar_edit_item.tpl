@@ -190,7 +190,7 @@
 										<input type="hidden" name="recurrenceType" value="weekly">{tr}On a weekly basis{/tr}<br>
 									{/if}
 								{else}
-									<input type="radio" id="id_recurrenceTypeW" name="recurrenceType" value="weekly" {if $recurrence.weekly or $calitem.calitemId eq 0} checked="checked" {/if} >
+									<input type="radio" id="id_recurrenceTypeW" name="recurrenceType" value="weekly" {if $recurrence.weekly or $recurrence.id eq 0} checked="checked" {/if} >
 									<label for="id_recurrenceTypeW">
 										{tr}On a weekly basis{/tr}
 									</label>
@@ -267,7 +267,7 @@
 									{/if}
 								{else}
 									{* new recurrences default to yearly for now *}
-									<input type="radio" id="id_recurrenceTypeY" name="recurrenceType" value="yearly" checked="checked">
+									<input type="radio" id="id_recurrenceTypeY" name="recurrenceType" value="yearly">
 									<label for="id_recurrenceTypeY">
 										{tr}On a yearly basis{/tr}
 									</label>
@@ -413,7 +413,7 @@
 				{if $edit}
 					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}5{else}4{/if} start">
 						{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-							{jscalendar id="start" date=$calitem.start fieldname="save[date_start]" showtime='y'}
+							{jscalendar id="start" date=$calitem.start fieldname="save[date_start]" showtime='y' isutc=($prefs.users_prefs_display_timezone eq 'Site')}
 						{else}
 							{html_select_date prefix="start_date_" time=$calitem.start field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
 						{/if}
@@ -449,7 +449,7 @@
 					<input type="hidden" name="save[end_or_duration]" value="end" id="end_or_duration">
 					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}5{else}4{/if} end ">
 							{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-								{jscalendar id="end" date=$calitem.end fieldname="save[date_end]" showtime='y'}
+							{jscalendar id="end" date=$calitem.end fieldname="save[date_end]" showtime='y' isutc=($prefs.users_prefs_display_timezone eq 'Site')}
 							{else}
 								{html_select_date prefix="end_date_" time=$calitem.end field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
 							{/if}
