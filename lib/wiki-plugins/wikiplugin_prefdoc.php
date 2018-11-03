@@ -277,7 +277,7 @@ class PrefsDoc extends TWVersion
 			}
 			$this->prefDescription .= '<span class="far fa-hand-pointer text-info" title="Short Hint"></span><i> ' . $param->shorthint . '</i>';
 		}
-		// if the pref is makred as deprecated, show as such and use the warning as the deprecated notice.
+		// if the pref is marked as deprecated, show as such and use the warning as the deprecated notice.
 		if (! empty($param->tags)) {
 			foreach ($param->tags as $tag) {
 				if ($tag === 'deprecated') {
