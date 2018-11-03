@@ -87,9 +87,10 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_gal_batch' => [
 			'name' => tra('Enable directory batch loading'),
+			'description' => tra('Import large number of files by placing them them in a local directory accessible via a network share, scp, ftp, or other protocols.'),
 			'type' => 'flag',
 			'default' => 'n',
-			'hint' => tra('If you enable Directory Batch Loading, you need to setup a web-readable directory (outside of your web space is better). Then setup a way to upload images in that dir, either by scp, ftp, or other protocols.')
+			'hint' => tra('You will need to setup a web-readable directory (outside of your web space is better). Then create a way to upload images to that directory.')
 		],
 		'feature_gal_rankings' => [
 			'name' => tra('Rankings'),
@@ -519,7 +520,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_minichat' => [
 			'name' => tra('Minichat'),
-			'description' => tra('Real-time group text chatting'),
+			'description' => tra('Real-time group text chatting enabled through a module.'),
 			'help' => 'Minichat',
 			'type' => 'flag',
 			'default' => 'n',
@@ -674,6 +675,7 @@ function prefs_feature_list($partial = false)
 		'feature_webmail' => [
 			'name' => tra('Webmail'),
 			'help' => 'Webmail',
+			'description' => 'Provides a webmail interface for site users\' own IMAP or POP accounts.',
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['experimental'],
@@ -703,14 +705,14 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_mindmap' => [
 			'name' => tra('Mindmap'),
-			'description' => tra('Mindmap'),
+			'description' => tra('Display in a graphical way the connection among wiki pages.'),
 			'help' => 'MindMap',
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'feature_print_indexed' => [
 			'name' => tra('Print indexed'),
-			'description' => tra('Print indexed'),
+			'description' => tra('Generate a printable version of the whole wiki or a subset of pages, filtered by category.'),
 			'help' => 'Print+Indexed',
 			'type' => 'flag',
 			'default' => 'n',
@@ -730,7 +732,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_slideshow' => [
 			'name' => tra('Slideshow (reveal.js)'),
-			'description' => tra('Wiki-page-based slideshow'),
+			'description' => tra('Create simple presentations via Wiki Syntax.'),
 			'help' => 'Slideshow',
 			'type' => 'flag',
 			'keywords' => 'slide slides presentation',
@@ -1495,7 +1497,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_search_show_forbidden_cat' => [
 			'name' => tra('Ignore category viewing restrictions'),
-			'description' => tra('Allow showing forbidden (restricted) items in search result.'),
+			'description' => tra('Display items the user may not be entitled to view in search results.'),
 			'warning' => tra('Will improve performance, but may show forbidden results'),
 			'type' => 'flag',
 			'help' => 'Search',
@@ -1543,7 +1545,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_referer_highlight' => [
 			'name' => tra('Referer search highlighting'),
-			'description' => tr('Referrer search highlighting is when a user goes to a search engine such as Google or Yahoo and performs a search that generates links to your pages. When they click on the link and this feature is active, Tiki notices that they have come from a search engine site and highlights the search words they used. The result is similar to using the search using Tiki’s own search facility.'),
+			'description' => tr('When a user lands on a Tiki page from a search engine, Tiki highlights the search words they used. Its similar to using Tiki’s search facility.'),
 			'type' => 'flag',
 			'help' => 'Referer+Search+Highlighting',
 			'default' => 'y',
@@ -1554,14 +1556,14 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'help' => 'Search+Stats',
 			'default' => 'n',
-			'description' => tr('This option enables administrators to collect and view statistics on search activity.'),
+			'description' => tr('Enables administrators to collect and view statistics on search activity.'),
 			'keywords' => 'stat analytics',
 			'view' => 'tiki-search_stats.php',
 			'dbfeatures' => ['mysql_fulltext'],
 		],
 		'feature_search_show_forbidden_obj' => [
 			'name' => tra('Ignore individual object permissions'),
-			'description' => tra('Allow forbidden items in search results.'),
+			'description' => tra('Display items the user may not be entitled to view in search results.'),
 			'warning' => tra('Will improve performance, but may show forbidden results.'),
 			'type' => 'flag',
 			'perspective' => false,
@@ -1570,7 +1572,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_search_show_object_filter' => [
 			'name' => tra('Object filter'),
-			'description' => tra('Allow filtering of objects.'),
+			'description' => tra('Enables object type filters to be displayed above the search results to further reduce search results by object type.'),
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['basic'],

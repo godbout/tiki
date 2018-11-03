@@ -3308,6 +3308,7 @@ $lang = array(
 // "Online diaries or journals" => "Online diaries or journals",
 "Enable directory batch loading" => "Activar a carga en lote de directorio",
 "If you enable Directory Batch Loading, you need to setup a web-readable directory (outside of your web space is better). Then setup a way to upload images in that dir, either by scp, ftp, or other protocols" => "Se activa carga en lote de directorio, debe configurar un directorio lexible desde o servidor web (é preferible fóra do espazo web de páxinas). Logo configure unha forma de cargar imaxes nese directorio, xa sexa por scp, ftp ou outros protocolos",
+"You will need to setup a web-readable directory (outside of your web space is better). Then create a way to upload images to that directory" => "Se activa carga en lote de directorio, debe configurar un directorio lexible desde o servidor web (é preferible fóra do espazo web de páxinas). Logo configure unha forma de cargar imaxes nese directorio, xa sexa por scp, ftp ou outros protocolos",
 "Rankings" => "Clasificacións",
 // "Users can see several charts or rankings about the file" => "Users can see several charts or rankings about the file",
 // "Image gallery" => "Image gallery",

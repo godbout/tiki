@@ -10,8 +10,9 @@ function prefs_search_list()
 	global $prefs;
 	return  [
 		'search_parsed_snippet' => [
-			'name' => tra('Parse the results'),
+			'name' => tra('Parse search results'),
 			'warning' => tra('May impact performance'),
+			'description' => tra('When enabled search results are parsed so content formatting is visible in the search results'),
 			'type' => 'flag',
 			'default' => 'y',
 		],

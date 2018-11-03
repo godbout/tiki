@@ -3308,6 +3308,7 @@ $lang = array(
 // "Online diaries or journals" => "Online diaries or journals",
 "Enable directory batch loading" => "Schakel folder bulk aanlevering in",
 "If you enable Directory Batch Loading, you need to setup a web-readable directory (outside of your web space is better). Then setup a way to upload images in that dir, either by scp, ftp, or other protocols" => "Indien u Folder Bulk Aanlevering inschakelt, dient u een leesbare folder aan te maken (buiten uw webruimte is beter). Voorzie dan een manier om afbeeldingen aan te leveren, bijv. via scp, ftp, of een ander protokol",
+"You will need to setup a web-readable directory (outside of your web space is better). Then create a way to upload images to that directory" => "Indien u Folder Bulk Aanlevering inschakelt, dient u een leesbare folder aan te maken (buiten uw webruimte is beter). Voorzie dan een manier om afbeeldingen aan te leveren, bijv. via scp, ftp, of een ander protokol",
 "Rankings" => "Rangordes",
 // "Users can see several charts or rankings about the file" => "Users can see several charts or rankings about the file",
 // "Image gallery" => "Image gallery",

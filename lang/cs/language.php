@@ -3308,6 +3308,7 @@ $lang = array(
 // "Online diaries or journals" => "Online diaries or journals",
 "Enable directory batch loading" => "Povolit directory batch loading",
 "If you enable Directory Batch Loading, you need to setup a web-readable directory (outside of your web space is better). Then setup a way to upload images in that dir, either by scp, ftp, or other protocols" => "Pokud povolíte Hromadné nahrávání adresáře, budete muset nastavit adresář přístupný z webu (nejlépe, pokud bude umístěný mimo Váš kořen webu). Poté nastavte způsob nahrávání obrázků do tohoto adresáře, buď pomocí scp, ftp, ne",
+"You will need to setup a web-readable directory (outside of your web space is better). Then create a way to upload images to that directory" => "Pokud povolíte Hromadné nahrávání adresáře, budete muset nastavit adresář přístupný z webu (nejlépe, pokud bude umístěný mimo Váš kořen webu). Poté nastavte způsob nahrávání obrázků do tohoto adresáře, buď pomocí scp, ftp, ne",
 "Rankings" => "Žebříčky",
 // "Users can see several charts or rankings about the file" => "Users can see several charts or rankings about the file",
 // "Image gallery" => "Image gallery",
