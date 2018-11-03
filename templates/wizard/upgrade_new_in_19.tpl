@@ -1,4 +1,4 @@
-{* $Id: upgrade_new_in_18.tpl 67592 2018-09-22 11:43:32Z chibaguy $ *}
+{* $Id$ *}
 
 <div class="media">
 	<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">

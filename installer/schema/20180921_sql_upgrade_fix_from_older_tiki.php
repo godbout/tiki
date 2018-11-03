@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: 20180921_php_upgrade_fix_from_older_tiki.php 67992 2018-10-15 00:30:07Z rjsmelo $
+// $Id$
 
 /**
  * @param $installer
