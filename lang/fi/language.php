@@ -3308,6 +3308,7 @@ $lang = array(
 // "Online diaries or journals" => "Online diaries or journals",
 "Enable directory batch loading" => "Oikeuta hakemisto ryhmä lataus",
 "If you enable Directory Batch Loading, you need to setup a web-readable directory (outside of your web space is better). Then setup a way to upload images in that dir, either by scp, ftp, or other protocols" => "Jos käytät Hakemisto Ryhmä Latausta, sinun on tehtävä hakemisto sivuston ulkopuolelle (ulkopuolinen hakemisto on parempi). Aseta polku siihen hakemistoon, molemmat scp, ftp, tai muut protokollat",
+"You will need to setup a web-readable directory (outside of your web space is better). Then create a way to upload images to that directory" => "Jos käytät Hakemisto Ryhmä Latausta, sinun on tehtävä hakemisto sivuston ulkopuolelle (ulkopuolinen hakemisto on parempi). Aseta polku siihen hakemistoon, molemmat scp, ftp, tai muut protokollat",
 "Rankings" => "Arvostukset",
 // "Users can see several charts or rankings about the file" => "Users can see several charts or rankings about the file",
 // "Image gallery" => "Image gallery",

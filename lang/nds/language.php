@@ -5285,6 +5285,7 @@ $lang = array(
 // "SCORM Tracker" => "SCORM Tracker",
 // "The ID number of the tracker used to store SCORM metadata" => "The ID number of the tracker used to store SCORM metadata",
 "Parse the results" => "Inlees de Rutkåmen",
+"Parse search results" => "Inlees de Rutkåmen",
 "Default where" => "Vörinstellt Grenzen",
 "When object filter is not on, limit to search one type of object" => "Wenn de Objektfilter is nich ankregen, grenz de Söök op een Årt vun Objekt in",
 "Entire site" => "Heele Steed",
