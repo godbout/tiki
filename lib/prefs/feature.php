@@ -827,6 +827,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_action_calendar' => [
 			'name' => tra('Action calendar'),
+			'description' => tra('Displays a calendar of system events, such as wiki page modifications, forum posts and article publications. Days with events show links to the action calendar page.'),
 			'help' => 'Action+Calendar',
 			'type' => 'flag',
 			'default' => 'n',
