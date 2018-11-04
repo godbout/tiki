@@ -48,6 +48,7 @@ Disallow: /doc/
 Disallow: /dump/
 Disallow: /installer/
 Disallow: /lang/
+Allow: /lang/*.js$
 Disallow: /maps/
 Disallow: /mods/
 Disallow: /modules/
@@ -65,6 +66,8 @@ Allow: /vendor*.css$
 Allow: /vendor*.otf$
 Allow: /vendor*.eot$
 Allow: /vendor*.ttf$
+Allow: /vendor*.woff$
+Allow: /vendor*.woff2$
 Disallow: /about.php
 Disallow: /get_strings.php
 Disallow: /tiki-admin
