@@ -1,4 +1,5 @@
-{* $Id*}
+{* $Id: $ *}
+{tikimodule error=$module_params.error title=$tpl_module_title name="quickadminbar" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
 
 {if $tiki_p_admin == "y"} {$main_admin_icons = [
 "general" => [
@@ -62,7 +63,7 @@
 'help' => 'Packages'
 ]
 ]}
-	<a class="js-admin-bar link-admin-bar"> <i class="fas fa-cog icon-admin-bar"></i> </a>
+	<a class="js-admin-bar link-admin-bar float-sm-right mr-auto"> <i class="fas fa-cog icon-admin-bar"></i> </a>
 	<div class="sliding-panel-admin-bar js-sliding-panel-admin-bar card-header">
 		<div class="card-header left"></div>
 		<div class="container-fluid container-sliding-panel d-flex flex-column h-100 justify-content-center">
@@ -182,7 +183,7 @@
 								{assign var=class value="admbox basic btn btn-primary"}
 								<div class="swiper-slide">
 									{* FIXME: Buttons are forced to be squares, not fluid. Labels which exceed 2 lines will be cut. *}
-									<a href="tiki-admin.php?page={$page}" alt="{$info.title} {$info.description}" class="d-flex flex-column justify-content-center align-items-center btn-primary tips bottom slow {if $info.disabled}disabled-clickable{/if}" title="{$info.title|escape}{if $info.disabled} ({tr}Disabled{/tr}){/if}|{$info.description}">
+									<a href="tiki-admin.php?page={$page}" alt="{$info.title} {$info.description}" class="d-flex flex-column justify-content-center align-items-center btn-primary  {if $info.disabled}disabled-clickable{/if}" title="{$info.title|escape}{if $info.disabled} ({tr}Disabled{/tr}){/if}|{$info.description}">
 										{icon name="admin_$page"}
 										<span class="title">{$info.title|escape}</span> </a>
 								</div>
@@ -449,3 +450,4 @@
 	</style>
 {/literal}
 {/if}
+{/tikimodule}

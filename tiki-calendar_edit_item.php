@@ -128,6 +128,7 @@ if (isset($_REQUEST['save']) && ! isset($_REQUEST['preview']) && ! isset($_REQUE
 	$_REQUEST['changeCal'] = true;
 }
 
+$displayTimezone = TikiLib::lib('tiki')->get_display_timezone();
 if (isset($_REQUEST['act']) || isset($_REQUEST['preview']) || isset($_REQUEST['changeCal'])) {
 	$save = $_POST['save'];
 	$save['allday'] = empty($_POST['allday']) ? 0 : 1;
@@ -140,7 +141,7 @@ if (isset($_REQUEST['act']) || isset($_REQUEST['preview']) || isset($_REQUEST['c
 	if (isset($save['date_start']) || isset($save['date_end'])) {
 		if (isset($_REQUEST['tzoffset'])) {
 			$browser_offset = 0 - intval($_REQUEST['tzoffset']) * 60;
-			$server_offset = TikiDate::tzServerOffset(TikiLib::lib('tiki')->get_display_timezone());
+			$server_offset = TikiDate::tzServerOffset($displayTimezone);
 			$save['date_start'] = $save['date_start'] - $server_offset + $browser_offset;
 			$save['date_end'] = $save['date_end'] - $server_offset + $browser_offset;
 		}
@@ -408,6 +409,13 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 	$hour_minmax = ceil(($calendar['startday']) / (60 * 60)) . '-' . ceil(($calendar['endday']) / (60 * 60));
 } elseif (isset($_REQUEST['calitemId']) and ($tiki_p_change_events == 'y' or $tiki_p_view_events == 'y')) {
 	$calitem = $calendarlib->get_item($_REQUEST['calitemId']);
+
+	if ($prefs['feature_jscalendar'] === 'y' && $prefs['users_prefs_display_timezone'] === 'Site') {
+		// using site timezone always so alter the stored utc date by the server offset for the datetimepicker
+		$tzServerOffset = TikiDate::tzServerOffset($displayTimezone);
+		$calitem['start'] += $tzServerOffset;
+		$calitem['end'] += $tzServerOffset;
+	}
 	$id = $_REQUEST['calitemId'];
 	$calendar = $calendarlib->get_calendar($calitem['calendarId']);
 	$smarty->assign('edit', true);
@@ -419,49 +427,58 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 		$now = $_REQUEST['todate'];
 		if (isset($_REQUEST['tzoffset'])) {
 			$browser_offset = 0 - intval($_REQUEST['tzoffset']) * 60;
-			$server_offset = TikiDate::tzServerOffset(TikiLib::lib('tiki')->get_display_timezone());
+			$server_offset = TikiDate::tzServerOffset($displayTimezone);
 			$now = $now - $server_offset + $browser_offset;
 		}
 	} else {
 		$now = $tikilib->now;
 	}
+	if (! empty($_REQUEST['tzoffset'])) {
+		$browser_offset = 0 - intval($_REQUEST['tzoffset']) * 60;
+		$now = $now + $browser_offset;
+	}
 	//if current time of day is within the calendar day (between startday and endday), then use now as start, otherwise use beginning of calendar day
-	$now_start = $tikilib->make_time(
+	$day_start = $tikilib->make_time(
 		abs(ceil($calendar['startday'] / (60 * 60))),
-		TikiLib::date_format('%M', $now),
-		TikiLib::date_format('%S', $now),
+		0,
+		0,
 		TikiLib::date_format('%m', $now),
 		TikiLib::date_format('%d', $now),
 		TikiLib::date_format('%Y', $now)
 	);
-	$now_end = $tikilib->make_time(
+	$day_end = $tikilib->make_time(
 		abs(ceil($calendar['endday'] / (60 * 60))),
-		TikiLib::date_format('%M', $now),
-		TikiLib::date_format('%S', $now),
+		0,
+		0,
 		TikiLib::date_format('%m', $now),
 		TikiLib::date_format('%d', $now),
 		TikiLib::date_format('%Y', $now)
 	);
-	if ($now_start < $now && ($now_start + (60 * 60)) < $now_end) {
-		$now_start = $now;
-	} else if ($now_start === $now && isset($_REQUEST['todate'])) {
-		// if the now_start ($_REQUEST['todate']) is the day start then make the start hour of the event "now"
+	if ($day_start < $now && ($now + (60 * 60)) < $day_end) {
+		$start = $now;
+	} else if ($day_start < $now && isset($_REQUEST['todate'])) {
+		// if $now ($_REQUEST['todate']) is before the day start then make the start hour of the event "now"
 		// as it will have been a whole day that was clicked on
-		$now_start = $tikilib->make_time(
+		$start = $tikilib->make_time(
 			TikiLib::date_format('%H', $tikilib->now),
-			TikiLib::date_format('%M', $now),
-			TikiLib::date_format('%S', $now),
+			0,
+			0,
 			TikiLib::date_format('%m', $now),
 			TikiLib::date_format('%d', $now),
 			TikiLib::date_format('%Y', $now)
 		);
+	} else {
+		$start = $day_start;
 	}
+	if ($prefs['users_prefs_display_timezone'] === 'Site') {
+		$server_offset = TikiDate::tzServerOffset($displayTimezone);
+		$start = $start + $server_offset;
+	}
+	$end = $start + (60 * 60);	// default to 1 hour long
 
 	//if $now_end is midnight, make it one second before
-	if (TikiLib::date_format('%H%M%s', $now_start + (60 * 60)) == '000000') {
-		$now_end = $now_start + (60 * 60) - 1;
-	} else {
-		$now_end = $now_start + (60 * 60);
+	if (TikiLib::date_format('%H%M%s', $end) == '000000') {
+		$end -= 1;
 	}
 
 	$calitem = [
@@ -475,8 +492,8 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 		'locationId' => 0,
 		'categoryId' => 0,
 		'nlId' => 0,
-		'start' => $now_start,
-		'end' => $now_end,
+		'start' => $start,
+		'end' => $end,
 		'duration' => (60 * 60),
 		'recurrenceId' => 0,
 		'allday' => $calendar['allday'] == 'y' ? 1 : 0

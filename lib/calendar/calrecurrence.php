@@ -302,7 +302,7 @@ class CalRecurrence extends TikiLib
 	 */
 	public function createEvents()
 	{
-		// calculate the date of every events to create
+		// calculate the date of every event to create (now all in UTC)
 		$dates = [];
 		$start = TikiLib::date_format2('Y/m/d', $this->getStartPeriod());
 		$start = explode("/", $start);
@@ -315,7 +315,7 @@ class CalRecurrence extends TikiLib
 					$firstEventDate += 7;
 				}
 				for ($i = 0; $i < $nbRec; $i++) {
-					$dates[] = TikiLib::make_time(0, 0, 0, $start[1], $start[2] + $firstEventDate + ($i * 7), $start[0]);
+					$dates[] = mktime(0, 0, 0, $start[1], $start[2] + $firstEventDate + ($i * 7), $start[0]);
 				}
 			} elseif ($this->isMonthly()) {
 				$firstIsNextMonth = ($this->getDayOfMonth() < $start[2]);
@@ -326,7 +326,7 @@ class CalRecurrence extends TikiLib
 					if ($this->getDayOfMonth() > $nbDaysInMonth) {
 						continue;
 					}
-					$dates[] = TikiLib::make_time(0, 0, 0, $startMonth + $i, $this->getDayOfMonth(), $start[0]);
+					$dates[] = mktime(0, 0, 0, $startMonth + $i, $this->getDayOfMonth(), $start[0]);
 					$occurrences++;
 				}
 			} elseif ($this->isYearly()) {
@@ -341,7 +341,7 @@ class CalRecurrence extends TikiLib
 							continue;
 						}
 					}
-					$dates[] = TikiLib::make_time(0, 0, 0, substr($dt, 0, 2), substr($dt, -2), $start[0] + $offset + $i);
+					$dates[] = mktime(0, 0, 0, substr($dt, 0, 2), substr($dt, -2), $start[0] + $offset + $i);
 					$occurrences++;
 				}
 			} else {
@@ -355,7 +355,7 @@ class CalRecurrence extends TikiLib
 				if ($firstEventDate < 0) {
 					$firstEventDate += 7;
 				}
-				$currDate = TikiLib::make_time(0, 0, 0, $start[1], $start[2] + $firstEventDate, $start[0]);
+				$currDate = mktime(0, 0, 0, $start[1], $start[2] + $firstEventDate, $start[0]);
 				while ($currDate < $this->getEndPeriod()) {
 					$dates[] = $currDate;
 					$currDate += weekInSeconds;
@@ -363,37 +363,37 @@ class CalRecurrence extends TikiLib
 			} elseif ($this->isMonthly()) {
 				$firstIsNextMonth = ($this->getDayOfMonth() < $start[2]);
 				$startMonth = $firstIsNextMonth ? $start[1] + 1 : $start[1];
-				$currDate = TikiLib::make_time(0, 0, 0, $startMonth, $this->getDayOfMonth(), $start[0]);
+				$currDate = mktime(0, 0, 0, $startMonth, $this->getDayOfMonth(), $start[0]);
 				$i = 0;
 				while ($currDate < $this->getEndPeriod()) {
-					$nbDaysInMonth = TikiLib::date_format2('t', TikiLib::make_time(0, 0, 0, $startMonth + $i, 1, $start[0]));
+					$nbDaysInMonth = TikiLib::date_format2('t', mktime(0, 0, 0, $startMonth + $i, 1, $start[0]));
 					if ($this->getDayOfMonth() > $nbDaysInMonth) {
 						$i++;
-						$currDate = TikiLib::make_time(0, 0, 0, substr($dt, 0, 2), substr($dt, -2), $start[0] + $offset + $i);
+						$currDate = mktime(0, 0, 0, $startMonth + $i, $this->getDayOfMonth(), $start[0]);
 						continue;
 					}
 					$dates[] = $currDate;
 					$i++;
-					$currDate = TikiLib::make_time(0, 0, 0, $startMonth + $i, $this->getDayOfMonth(), $start[0]);
+					$currDate = mktime(0, 0, 0, $startMonth + $i, $this->getDayOfMonth(), $start[0]);
 				}
 			} elseif ($this->isYearly()) {
 				$yymm = TikiLib::date_format2('md', $this->getStartPeriod());
 				$isLeapDay = ($this->getDateOfYear() == 229); // Feb 29th case.
 				$offset = ($this->getDateOfYear() < $yymm) ? 1 : 0;
 				$dt = str_pad($this->getDateOfYear(), 4, "0", STR_PAD_LEFT);
-				$currDate = TikiLib::make_time(0, 0, 0, substr($dt, 0, 2), substr($dt, -2), $start[0] + $offset);
+				$currDate = mktime(0, 0, 0, substr($dt, 0, 2), substr($dt, -2), $start[0] + $offset);
 				$i = 0;
 				while ($currDate < $this->getEndPeriod()) {
 					if ($isLeapDay) {
-						if (TikiLib::date_format2('L', TikiLib::make_time(0, 0, 0, 1, 1, $start[0] + $offset + $i)) == 0) {
+						if (TikiLib::date_format2('L', mktime(0, 0, 0, 1, 1, $start[0] + $offset + $i)) == 0) {
 							$i++;
-							$currDate = TikiLib::make_time(0, 0, 0, substr($dt, 0, 2), substr($dt, -2), $start[0] + $offset + $i);
+							$currDate = mktime(0, 0, 0, substr($dt, 0, 2), substr($dt, -2), $start[0] + $offset + $i);
 							continue;
 						}
 					}
 					$dates[] = $currDate;
 					$i++;
-					$currDate = TikiLib::make_time(0, 0, 0, substr($dt, 0, 2), substr($dt, -2), $start[0] + $offset + $i);
+					$currDate = mktime(0, 0, 0, substr($dt, 0, 2), substr($dt, -2), $start[0] + $offset + $i);
 				}
 			} else {
 				// there should be no other case
@@ -408,40 +408,38 @@ class CalRecurrence extends TikiLib
 		$startOffset = 0;
 		$endOffset = dayInSeconds - 1;
 		if (! $this->isAllday()) {
-			// prevent timezone offset being applied twice, once for the date and once for the time so add it back here to start and end times
-			$server_offset = TikiDate::tzServerOffset(TikiLib::lib('tiki')->get_display_timezone());
-
 			$tmp = str_pad($this->getStart(), 4, '0', STR_PAD_LEFT);
-			$startOffset = substr($tmp, 0, 2) * 60 * 60 + substr($tmp, -2) * 60 + $server_offset;
+			$startOffset = substr($tmp, 0, 2) * 60 * 60 + substr($tmp, -2) * 60;
 			$tmp = str_pad($this->getEnd(), 4, '0', STR_PAD_LEFT);
-			$endOffset = substr($tmp, 0, 2) * 60 * 60 + substr($tmp, -2) * 60 + $server_offset;
+			$endOffset = substr($tmp, 0, 2) * 60 * 60 + substr($tmp, -2) * 60;
 		}
 
 		$tx = TikiDb::get()->begin();
 		$calendarlib = TikiLib::lib('calendar');
 		global $user;
 
+		// $dates are all in the local server timezone
 		foreach ($dates as $aDate) {
 			$data = [
-							'calendarId' => $this->getCalendarId(),
-							'start' => ($aDate + $startOffset),
-							'end' => ($aDate + $endOffset),
-							'locationId' => $this->getLocationId(),
-							'categoryId' => $this->getCategoryId(),
-							'nlId' => $this->getNlId(),
-							'priority' => $this->getPriority(),
-							'status' => $this->getStatus(),
-							'url' => $this->getUrl(),
-							'lang' => $this->getLang(),
-							'name' => $this->getName(),
-							'description' => $this->getDescription(),
-							'user' => $this->getUser(),
-							'created' => $this->getCreated(),
-							'lastmodif' => $this->getCreated(),
-							'allday' => $this->isAllday(),
-							'recurrenceId' => $this->getId(),
-							'changed' => 0
-						 ];
+				'calendarId'   => $this->getCalendarId(),
+				'start'        => ($aDate + $startOffset),
+				'end'          => ($aDate + $endOffset),
+				'locationId'   => $this->getLocationId(),
+				'categoryId'   => $this->getCategoryId(),
+				'nlId'         => $this->getNlId(),
+				'priority'     => $this->getPriority(),
+				'status'       => $this->getStatus(),
+				'url'          => $this->getUrl(),
+				'lang'         => $this->getLang(),
+				'name'         => $this->getName(),
+				'description'  => $this->getDescription(),
+				'user'         => $this->getUser(),
+				'created'      => $this->getCreated(),
+				'lastmodif'    => $this->getCreated(),
+				'allday'       => $this->isAllday(),
+				'recurrenceId' => $this->getId(),
+				'changed'      => 0,
+			];
 
 			$initial = $this->getInitialItem();
 			$diff = array_diff($data, $initial);
