@@ -889,6 +889,9 @@ class TrackerLib extends TikiLib
 				$myfield['value'] = $this->get_item_value(
 					$trackerId, $itemId, $field
 				);
+				if (! isset($item['itemId'])) {
+					$item['itemId'] = $itemId;
+				}
 				$value = trim($this->field_render_value(
 					['field' => $myfield, 'process' => 'y', 'list_mode' => $list_mode, 'item' => $item])
 				);
