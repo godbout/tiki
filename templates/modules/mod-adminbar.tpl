@@ -371,12 +371,13 @@
 			max-width: 1140px;
 		}
 		//adding safe colors for nav bar dark
-		.navbar-dark .sliding-panel-admin-bar .container-sliding-panel a{
+		  .navbar-dark .col-left-sliding-panel a {
 			color:#222 !important;
 		}
 
 		.navbar-dark .sliding-panel-admin-bar .container-sliding-panel .btn-primary:hover{
-			color:#333;
+			background-color:#333;
+			border-color:#000;
 		}
 		.sliding-panel-admin-bar .box-adminbar {
 			position: relative;
