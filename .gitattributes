@@ -2358,6 +2358,7 @@ lib/core/Math/Formula/Function/Clean.php -text
 lib/core/Math/Formula/Function/Coalesce.php -text
 lib/core/Math/Formula/Function/Concat.php -text
 lib/core/Math/Formula/Function/Contains.php -text
+lib/core/Math/Formula/Function/Count.php -text
 lib/core/Math/Formula/Function/Date.php -text
 lib/core/Math/Formula/Function/Div.php -text
 lib/core/Math/Formula/Function/Equals.php -text
@@ -2585,6 +2586,7 @@ lib/core/Search/Formatter/Plugin/AbstractTableTemplate.php -text
 lib/core/Search/Formatter/Plugin/ArrayTemplate.php -text
 lib/core/Search/Formatter/Plugin/CsvTemplate.php -text
 lib/core/Search/Formatter/Plugin/Interface.php -text
+lib/core/Search/Formatter/Plugin/ReportTemplate.php -text
 lib/core/Search/Formatter/Plugin/SmartyTemplate.php -text
 lib/core/Search/Formatter/Plugin/WikiTemplate.php -text
 lib/core/Search/Formatter/Plugin/index.php -text

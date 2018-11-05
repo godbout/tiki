@@ -54,28 +54,26 @@ class Math_Formula_Runner
 
 	function evaluateData($data, array $variables = [])
 	{
+		$current = $this->variables;
+		if (! empty($variables)) {
+			$this->variables = array_merge($this->variables, $variables);
+		}
 		if ($data instanceof Math_Formula_InternalString) {
-			return $data->getContent();
+			$out = $data->getContent();
 		} elseif ($data instanceof Math_Formula_Element) {
 			$op = $this->getOperation($data);
-
-			$current = $this->variables;
-			if (! empty($variables)) {
-				$this->variables = array_merge($this->variables, $variables);
-			}
 			$out = $op->evaluateTemplate($data, [ $this, 'evaluateData' ]);
-			$this->variables = $current;
-
-			return $out;
 		} elseif (is_numeric($data)) {
-			return (double) $data;
+			$out = (double) $data;
 		} elseif (isset($this->variables[$data])) {
-			return $this->variables[$data];
+			$out = $this->variables[$data];
 		} elseif (false !== $value = $this->findVariable(explode('.', $data), $this->variables)) {
-			return $value;
+			$out = $value;
 		} else {
 			throw new Math_Formula_Exception(tr('Variable not found "%0".', $data));
 		}
+		$this->variables = $current;
+		return $out;
 	}
 
 	private function findVariable($path, $variables)

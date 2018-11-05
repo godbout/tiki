@@ -213,6 +213,8 @@ class Search_Formatter_Builder
 			} else {
 				Feedback::error(tr('Template wiki page "%0" not found', $arguments['wiki']));
 			}
+		} elseif (isset($arguments['report'])) {
+			$plugin = new Search_Formatter_Plugin_ReportTemplate($output->getBody());
 		} else {
 			$plugin = new Search_Formatter_Plugin_WikiTemplate($output->getBody());
 		}
