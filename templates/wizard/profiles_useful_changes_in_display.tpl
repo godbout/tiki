@@ -43,14 +43,14 @@
 				<div class="col-md-6">
 
 					<h4>{tr}Hide Fixed Top Navigation Bar on scroll{/tr}</h4>
-					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Hide+Fixed+Top+Nav+Bar+on+Scroll&show_details_for=Hide+Fixed+Top+Nav+Bar+on+Scroll&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Hide+Fixed+Top+Nav+Bar+on+Scroll+19&show_details_for=Hide+Fixed+Top+Nav+Bar+on+Scroll+19&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
 					{tr}This profile hides the fixed top navigation bar (in the top section of modules) on page scroll, while displaying the topbar module in a sticky position at the top afterwards.{/tr}
 					<br/>
 					<a href="https://doc.tiki.org/Navigation+Bar" target="tikihelp" class="tikihelp" title="{tr}Hide Fixed Top Navi Bar on Scroll{/tr}:
 						{tr}More details{/tr}:
 						<ul>
-							<li>{tr}Site layout (in Control Panels > Look and Feel) will be set to 'Fixed top navbar 1 (uses 'top' module zone)'{/tr}</li>
+							<li>{tr}Site layout (in Control Panels > Look and Feel > General layout) will be set to 'Classic Bootstrap (fixed top navbar)'{/tr}</li>
 							<li>{tr}Preference Site logo (feature_sitelogo) will be disabled so that logos and site title are not shown twice{/tr}</li>
 							<li>{tr}After scrolling down a bit, the fixed top bar will disappear and the topbar zone (if any) will become sticky{/tr}</li>
 							<li>{tr}This profile is best demonstrated after applying the Collaborative Community profile which include site title and topbar module with menus{/tr}</li>
