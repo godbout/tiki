@@ -54,7 +54,7 @@
 	<config name="installed_paths" value="vendor_bundled/vendor/wimg/php-compatibility" />
 	<config name="testVersion" value="5.6-"/>
 	<rule ref="PHPCompatibility"/>
-	<rule ref="PHPCompatibility.PHP.RemovedExtensions">
+	<rule ref="PHPCompatibility.Extensions.RemovedExtensions">
 		<exclude-pattern>*/tiki-check.php</exclude-pattern>
 	</rule>
 
