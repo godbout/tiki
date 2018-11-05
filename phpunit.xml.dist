@@ -49,12 +49,17 @@
 		</whitelist>
 	</filter>
 
-	<!--
-		uncomment the logging node below if you need xml coverage info, for IDEs that support phpunit
-		Info from http://www.phpunit.de/manual/3.3/en/phpunit-book.html#appendixes.configuration
+
 	<logging>
+		<log type="junit" target="lib/test/junit.xml"/>
+		<!--
+		Coverage analysis more than double the time to run tests.  So instead of enabling this,
+		on the build server command line, use:
+		- -coverage-clover lib/test/clover.xml
+		Note that you will need php-xdebug installed to run it.
 		<log type="coverage-clover" target="lib/test/clover.xml" />
+		<log type="coverage-text" target="php://stdout" showUncoveredFiles="false" showOnlySummary="true" />
+	  -->
 	</logging>
-	-->
 
 </phpunit>
