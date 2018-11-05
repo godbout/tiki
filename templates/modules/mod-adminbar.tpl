@@ -63,8 +63,8 @@
 'help' => 'Packages'
 ]
 ]}
-	<a class="js-admin-bar link-admin-bar float-sm-right mr-auto"> <i class="fas fa-cog icon-admin-bar"></i> </a>
-	<div class="sliding-panel-admin-bar js-sliding-panel-admin-bar card-header">
+	<a class="js-admin-bar link-admin-bar float-sm-right mr-auto btn btn-link">{icon name='cog'}</a>
+	<div class="sliding-panel-admin-bar js-sliding-panel-admin-bar card-header hidden">
 		<div class="card-header left"></div>
 		<div class="container-fluid container-sliding-panel d-flex flex-column h-100 justify-content-center">
 
@@ -370,7 +370,14 @@
 			z-index: 1;
 			max-width: 1140px;
 		}
+		//adding safe colors for nav bar dark
+		.navbar-dark .sliding-panel-admin-bar .container-sliding-panel a{
+			color:#222 !important;
+		}
 
+		.navbar-dark .sliding-panel-admin-bar .container-sliding-panel .btn-primary:hover{
+			color:#333;
+		}
 		.sliding-panel-admin-bar .box-adminbar {
 			position: relative;
 			z-index: 1;
