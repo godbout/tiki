@@ -271,7 +271,7 @@ class ComposerCli
 
 			$builder->setArguments($args);
 
-			if (! getenv('HOME') && ! getenv('COMPOSER_HOME')) {
+			if (! getenv('COMPOSER_HOME')) {
 				$builder->setEnv('COMPOSER_HOME', $this->basePath . self::COMPOSER_HOME);
 			}
 
@@ -651,8 +651,8 @@ class ComposerCli
 			return [false, tr('Invalid composer installer signature.')];
 		}
 
-		$env = [];
-		if (! getenv('HOME') && ! getenv('COMPOSER_HOME')) {
+		$env = null;
+		if (! getenv('COMPOSER_HOME')) {
 			$env['COMPOSER_HOME'] = $this->basePath . self::COMPOSER_HOME;
 		}
 
@@ -683,8 +683,8 @@ class ComposerCli
 	 */
 	public function updateComposer()
 	{
-		$env = [];
-		if (! getenv('HOME') && ! getenv('COMPOSER_HOME')) {
+		$env = null;
+		if (! getenv('COMPOSER_HOME')) {
 			$env['COMPOSER_HOME'] = $this->basePath . self::COMPOSER_HOME;
 		}
 
