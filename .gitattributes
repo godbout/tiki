@@ -2388,6 +2388,7 @@ lib/core/Math/Formula/Function/StrReplace.php -text
 lib/core/Math/Formula/Function/StrToTime.php -text
 lib/core/Math/Formula/Function/Sub.php -text
 lib/core/Math/Formula/Function/Substring.php -text
+lib/core/Math/Formula/Function/Subtotal.php -text
 lib/core/Math/Formula/Function/Upper.php -text
 lib/core/Math/Formula/Function/index.php -text
 lib/core/Math/Formula/InternalString.php -text
