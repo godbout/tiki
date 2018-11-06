@@ -1298,7 +1298,7 @@ class EditLib
 	function parse_html(&$inHtml)
 	{
 		include('lib/htmlparser/htmlparser.inc');
-		$inHtml = $this->addLine($inHtml);
+		$inHtml = $this->addLineBreak($inHtml);
 		// Read compiled (serialized) grammar
 		$grammarfile = TIKI_PATH . '/lib/htmlparser/htmlgrammar.cmp';
 		if (! $fp = @fopen($grammarfile, 'r')) {
