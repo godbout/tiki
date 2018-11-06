@@ -37,7 +37,15 @@ class SlugManager
 		}, $this->generators);
 	}
 
-	function generate($generator, $pageName, $asciiOnly = false)
+	/**
+	 * @param $generator
+	 * @param $pageName
+	 * @param bool $asciiOnly
+	 * @param bool $ignoreCounter If true, generated alias won't contain the counter in case of multiple pages with same slug
+	 * @return mixed
+	 * @throws \Exception
+	 */
+	function generate($generator, $pageName, $asciiOnly = false, $ignoreCounter = false)
 	{
 		$exists = $this->validationCallback;
 
@@ -49,6 +57,9 @@ class SlugManager
 		$impl = $this->generators[$generator];
 
 		$slug = $impl->generate($pageName);
+		if ($ignoreCounter) {
+			return $slug;
+		}
 
 		$counter = 2;
 		while ($exists($slug)) {

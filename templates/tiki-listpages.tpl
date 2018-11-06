@@ -27,7 +27,7 @@
 					<ul>
 					{foreach from=$aliases item=alias}
 						<li>
-							<a href="{$alias.toPage|sefurl}" title="{$alias.fromPage|escape}" class="alias">{$alias.toPage|escape}</a>
+							<a href="{$alias.parsedAlias|sefurl}" title="{$alias.fromPage|escape}" class="alias">{$alias.toPage|escape}</a>
 						</li>
 					{/foreach}
 					</ul>

@@ -515,6 +515,13 @@ function possibly_look_for_page_aliases($query)
 	if ($prefs['feature_wiki_pagealias'] == 'y' && $query) {
 		$semanticlib = TikiLib::lib('semantic');
 		$aliases = $semanticlib->getAliasContaining($query, false, $lang);
+
+		if(! empty($aliases)) {
+			foreach ($aliases as &$alias) {
+				$alias['parsedAlias'] = TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $alias['toPage'], $prefs['url_only_ascii'] === 'y', true);
+			}
+		}
+
 		$smarty->assign('aliases', $aliases);
 	} else {
 		$smarty->assign('aliases', null);
