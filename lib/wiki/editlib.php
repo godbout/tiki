@@ -1268,6 +1268,25 @@ class EditLib
 	}
 
 	/**
+	 * add a line break at the end of each line
+	 * @param $str the html text in which to insert lines
+	 * @return string
+	 */
+    function addLineBreak($str)
+    {
+        $arr = array(
+            "&lt;"      => "<",
+            "&gt;"      => ">",
+			"&quot;"    => '"',
+			"&amp;"     => "&",
+			"&#92;"     => chr(92),
+            "&#39"      => chr(39),
+            "&#039;"    => chr(39)
+        );
+        return nl2br(strtr($str,$arr));
+    }
+
+	/**
 	 * wrapper around zaufi's HTML sucker code just to use the html to wiki bit
 	 *
 	 * @param string $inHtml -- HTML in
@@ -1279,7 +1298,7 @@ class EditLib
 	function parse_html(&$inHtml)
 	{
 		include('lib/htmlparser/htmlparser.inc');
-
+		$inHtml = $this->addLine($inHtml);
 		// Read compiled (serialized) grammar
 		$grammarfile = TIKI_PATH . '/lib/htmlparser/htmlgrammar.cmp';
 		if (! $fp = @fopen($grammarfile, 'r')) {
