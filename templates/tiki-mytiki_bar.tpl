@@ -69,7 +69,7 @@
 			{/if}
 
 			{if $prefs.feature_mailin eq 'y' and !empty($user) and ($tiki_p_send_mailin eq 'y' or $tiki_p_admin_mailin eq 'y')}
-				<li>{button _icon_name="mail-forward" _type="link" _text="{tr}Mail-in{/tr}" href="tiki-user_mailin.php"}</li>
+				<li>{button _icon_name="reply" _type="link" _text="{tr}Mail-in{/tr}" href="tiki-user_mailin.php"}</li>
 			{/if}
 		</ul>
 	</div>

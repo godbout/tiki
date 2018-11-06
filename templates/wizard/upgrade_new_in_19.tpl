@@ -44,6 +44,7 @@
 			<legend>{tr}New Wiki Plugins{/tr}</legend>
 			{preference name=wikiplugin_diagram}
 			{preference name=wikiplugin_ganttchart}
+			{preference name=wikiplugin_layout}
 			{preference name=wikiplugin_slideshowslide}
 			{preference name=wikiplugin_swiper}
 			{preference name=wikiplugin_xmpp}
@@ -52,7 +53,6 @@
 			<legend>{tr}Improved Plugins{/tr}</legend>
 			{preference name=wikiplugin_button}
 			{preference name=wikiplugin_img}
-			{preference name=wikiplugin_layout}
 			{preference name=wikiplugin_pivottable}
 			{preference name=wikiplugin_img}
 			{preference name=wikiplugin_slideshow}

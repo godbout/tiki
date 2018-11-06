@@ -190,7 +190,7 @@
 			</div>
 
 			{if $tiki_p_admin eq 'y'}
-				<div class="form-group row">
+				<div class="form-group row mx-0">
 					<label for="batchaction" class="col-form-label">{tr}Perform action with selected{/tr}</label>
 					<div class="input-group col-sm-6">
 						<select name="batchaction" class="form-control">
