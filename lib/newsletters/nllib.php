@@ -1234,6 +1234,41 @@ class NlLib extends TikiLib
 		return $retval;
 	}
 
+	/**
+	 * Get all emails from tracker
+	 *
+	 * @param int $trackerId
+	 * @return mixed
+	 */
+	public function get_emails_from_tracker($trackerId)
+	{
+		$emails = false;
+		$trklib = TikiLib::lib('trk');
+		$listItems = $trklib->list_tracker_items($trackerId, 0, -1, '', '');
+
+		if (empty($listItems['data'])) {
+			return false;
+		}
+
+		foreach ($listItems['data'] as $field) {
+			if (empty($field['field_values'])) {
+				continue;
+			}
+
+			foreach ($field['field_values'] as $fieldValue) {
+				if (empty($fieldValue['value']) || false == preg_match('/[a-z0-9\-_.]+?@[\w\-\.]+/i', $fieldValue['value'], $m)) {
+					continue;
+				}
+
+				if (count($m) > 0 && validate_email($m[0])) {
+					$emails[] = strtolower($m[0]);
+				}
+			}
+		}
+
+		return $emails;
+	}
+
 	private function get_edition_mail($editionId, $target, $is_html = null, $replyTo = null, $sendFrom = null)
 	{
 		global $prefs, $base_url;

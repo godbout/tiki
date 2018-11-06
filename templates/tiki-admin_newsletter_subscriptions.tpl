@@ -323,6 +323,33 @@
 					</div>
 				</div>
 			</form>
+			<h2>{tr}Import emails from tracker{/tr}</h2>
+			<form action="tiki-admin_newsletter_subscriptions.php" method="post">
+				<input type="hidden" name="nlId" value="{$nlId|escape}">
+				<div class="form-group row">
+					<label class="col-sm-3 col-form-label">{tr}Tracker:{/tr}</label>
+					<div class="col-sm-7 col-sm-offset-1 mb-3">
+						<select name="tracker" class="form-control">
+							<option value="">---</option>
+							{section name=tracker loop=$listTrackers}
+								<option value="{$listTrackers[tracker].trackerId|escape}">{$listTrackers[tracker].name|escape}</option>
+							{/section}
+						</select>
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-3 col-form-label">{tr}Don't send confirmation emails{/tr}</label>
+					<div class="col-sm-7 col-sm-offset-1 mb-3">
+						<input type="checkbox" name="confirmEmail" checked="checked">
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-3 col-form-label"></label>
+					<div class="col-sm-7 col-sm-offset-1 mb-3">
+						<input type="submit" class="btn btn-primary" name="addTracker" value="{tr}Add{/tr}">
+					</div>
+				</div>
+			</form>
 		{/if}
 
 		<h2>{tr}Subscribe group{/tr}</h2>

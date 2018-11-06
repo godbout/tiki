@@ -118,7 +118,7 @@ if (isset($_REQUEST["add"]) && isset($_REQUEST['group']) && $_REQUEST['group'] !
 	$nllib->add_group_users($_REQUEST["nlId"], $_REQUEST['group'], $confirmEmail, $addEmail);
 }
 
-if (((isset($_REQUEST["addbatch"]) && isset($_FILES['batch_subscription'])) || (isset($_REQUEST['importPage']) && ! empty($_REQUEST['wikiPageName']))) && $tiki_p_batch_subscribe_email == 'y' && $tiki_p_subscribe_email == 'y') {
+if (((isset($_REQUEST["addbatch"]) && isset($_FILES['batch_subscription'])) || (isset($_REQUEST['importPage']) && ! empty($_REQUEST['wikiPageName'])) || (isset($_REQUEST['tracker']))) && $tiki_p_batch_subscribe_email == 'y' && $tiki_p_subscribe_email == 'y') {
 	check_ticket('admin-nl-subscription');
 	// array with success and errors
 	$ok = [];
@@ -134,6 +134,14 @@ if (((isset($_REQUEST["addbatch"]) && isset($_FILES['batch_subscription'])) || (
 
 		if (! $emails) {
 			$smarty->assign('msg', tra('Error importing from wiki page: ') . $_REQUEST['wikiPageName']);
+			$smarty->display('error.tpl');
+			die;
+		}
+	} elseif (isset($_REQUEST['tracker'])) {
+		$emails = $nllib->get_emails_from_tracker($_REQUEST['tracker']);
+
+		if (! $emails) {
+			$smarty->assign('msg', tra('Error importing from tracker ID: ') . $_REQUEST['tracker']);
 			$smarty->display('error.tpl');
 			die;
 		}
@@ -260,6 +268,13 @@ foreach ($channels['data'] as $aUser) {
 $smarty->assign_by_ref('users', $users);
 $newsletters = $nllib->list_newsletters(0, -1, "created_desc", false, '', '', 'n');
 $smarty->assign_by_ref('newsletters', $newsletters['data']);
+
+if (isset($tiki_p_admin_trackers) && $tiki_p_admin_trackers == 'y') {
+	$trklib = TikiLib::lib('trk');
+	$listTrackers = $trklib->list_trackers();
+	$smarty->assign_by_ref('listTrackers', $listTrackers['data']);
+}
+
 include_once('tiki-section_options.php');
 ask_ticket('admin-nl-subsriptions');
 
