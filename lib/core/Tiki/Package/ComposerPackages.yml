@@ -92,3 +92,10 @@ WebODF:
   requiredBy:
     - feature_docs
   requiredVersion: ^0.5.9
+PhpReadability:
+  licence: Apache-2.0
+  licenceUrl: "https://github.com/j0k3r/php-readability/blob/master/LICENSE.md"
+  name: j0k3r/php-readability
+  requiredBy:
+    - "Fetch page content"
+  requiredVersion: ^1.1.10

@@ -45,14 +45,11 @@ class PageContentLib
 
 		// give it to Readability
 		global $prefs;
-		if (is_file($prefs['page_content_fetch_readability'])) {
-			require_once($prefs['page_content_fetch_readability']);
-		}
-		if (! class_exists('Readability')) {
+		if (! class_exists('Readability\Readability')) {
 			return false;
 		}
 
-		$readability = new Readability($html, $url);
+		$readability = new Readability\Readability($html, $url);
 
 		$result = $readability->init();
 

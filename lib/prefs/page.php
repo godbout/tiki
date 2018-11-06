@@ -28,17 +28,9 @@ function prefs_page_list()
 		'page_content_fetch' => [
 			'name' => tra('Fetch page content from incoming feeds'),
 			'description' => tra('Page content from the source will be fetched before sending the content to the generators.'),
-			'dependencies' => ['page_content_fetch_readability'],
 			'type' => 'flag',
 			'default' => 'n',
-		],
-		'page_content_fetch_readability' => [
-			'name' => tra('Path to PHP-Readability library'),
-			'description' => tra('Enter path to PHP-Readability library php file here.'),
-			'type' => 'text',
-			'size' => 20,
-			'detail' => tr('Not included with Tiki due to licensing reasons.'),
-			'default' => '',
+			'packages_required' => ['j0k3r/php-readability' => 'Readability\Readability'],
 		],
 	];
 }

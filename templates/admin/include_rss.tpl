@@ -247,7 +247,6 @@
 		{tab name="{tr}Incoming Feeds{/tr}"}
 			<br>
 			{preference name=page_content_fetch}
-			{preference name=page_content_fetch_readability}
 			{preference name=tracker_article_tracker}
 			<div class="adminoptionboxchild" id="tracker_article_tracker_container">
 				{preference name=tracker_article_trackerId}

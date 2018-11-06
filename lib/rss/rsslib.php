@@ -788,7 +788,6 @@ class RSSLib extends TikiDb_Bridge
 			$id = $this->table('tiki_articles')->fetchOne('articleId', [
 				'linkto' => $data['url'],
 				'topicId' => $configuration['topic'],
-				'hash' => $hash,
 			]);
 			if (! $id) {
 				$id = 0;
