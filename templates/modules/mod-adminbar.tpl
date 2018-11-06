@@ -64,7 +64,7 @@
 ]
 ]}
 	<a class="js-admin-bar link-admin-bar float-sm-right mr-auto btn btn-link">{icon name='cog'}</a>
-	<div class="sliding-panel-admin-bar js-sliding-panel-admin-bar card-header hidden">
+	<div class="sliding-panel-admin-bar js-sliding-panel-admin-bar card-header  invisible">
 		<div class="card-header left"></div>
 		<div class="container-fluid container-sliding-panel d-flex flex-column h-100 justify-content-center">
 
@@ -371,7 +371,7 @@
 			max-width: 1140px;
 		}
 		//adding safe colors for nav bar dark
-		  .navbar-dark .col-left-sliding-panel a {
+		  .navbar-dark #adminbar a {
 			color:#222 !important;
 		}
 
