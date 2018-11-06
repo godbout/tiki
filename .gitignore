@@ -35,6 +35,7 @@ lang/.htaccess
 lib/.htaccess
 lib/core/Tracker/Filter/Control/DateRange[!!-~](1).php
 lib/test/clover.xml
+lib/test/junit.xml
 lib/test/core/Search/Index/test_index
 lib/test/core/Search/test_index
 lib/test/local.php
