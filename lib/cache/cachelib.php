@@ -264,7 +264,7 @@ class Cachelib
 							$file == "index.php" or
 							$file == "README" or
 							$file == "web.config" or
-							($virtuals && in_array($file, $virtuals))) and
+							($virtuals && in_array($file, $virtuals)) and
 							!in_array($file, $unoconvFolders)
 				) {
 					continue;
