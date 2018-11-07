@@ -109,12 +109,14 @@ class TrackerWriter
 			}
 		}
 
-		$iterate(function ($line, $info, $columns) use ($utilities, $schema) {
-			$definition = $schema->getDefinition();
+		$definition = $schema->getDefinition();
+		$defaultStatus = $definition->getConfiguration('newItemStatus');
+
+		$iterate(function ($line, $info, $columns) use ($utilities, $definition, $defaultStatus) {
+			if (empty($info['status'])) {
+				$info['status'] = $defaultStatus;
+			}
 			if ($info['itemId']) {
-				if (empty($info['status'])) {
-					$info['status'] = $definition->getConfiguration('newItemStatus');
-				}
 				$success = $utilities->updateItem($definition, $info);
 			} else {
 				$success = $utilities->insertItem($definition, $info);
