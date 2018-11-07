@@ -14,26 +14,26 @@
 {tabset}
 	{tab name="{tr}General{/tr}"}
 		<h2>{tr}General{/tr}</h2>
-		<div class="box">
-			<h3 class="boxtitle">{tr}This book{/tr}</h3>
-			<div class="box-data" style="width: 500px">
-				<dl class="dl-horizontal">
-					<dt>{tr}Id{/tr}</dt><dd>{$book.bookId}</dd>
-					<dt>{tr}Name{/tr}</dt><dd>{$book.bookName}</dd>
-					<dt>{tr}Start date{/tr}</dt><dd>{$book.bookStartDate}</dd>
-					<dt>{tr}End date{/tr}</dt><dd>{$book.bookEndDate}</dd>
-					<dt>{tr}Closed{/tr}</dt><dd>{if $book.bookClosed=='y'}{tr}Yes{/tr}{else}{tr}No{/tr}{/if}</dd>
-					<dt>{tr}Currency{/tr}</dt><dd>{$book.bookCurrency} ({if $book.bookCurrencyPos==-1}{tr}before{/tr}{elseif $book.bookCurrencyPos==1}{tr}after{/tr}{else}{tr}don't display{/tr}{/if})</dd>
-					<dt>{tr}Decimals{/tr}</dt><dd>{$book.bookDecimals}</dd>
-					<dt>{tr}Decimal Point{/tr}</dt><dd>{$book.bookDecPoint}</dd>
-					<dt>{tr}Thousands separator{/tr}</dt><dd>{$book.bookThousand}</dd>
-					<dt>{tr}Auto Tax{/tr}</dt><dd>{if $book.bookAutoTax=='y'}{tr}Yes{/tr}{else}{tr}No{/tr}{/if}</dd>
+		<div class="card">
+			<h3 class="card-heading">{tr}This book{/tr}</h3>
+			<div class="card-body">
+				<dl class="row mx-0">
+					<dt class="col-sm-3">{tr}Id{/tr}</dt><dd class="col-sm-9">{$book.bookId}</dd>
+					<dt class="col-sm-3">{tr}Name{/tr}</dt><dd class="col-sm-9">{$book.bookName}</dd>
+					<dt class="col-sm-3">{tr}Start date{/tr}</dt><dd class="col-sm-9">{$book.bookStartDate}</dd>
+					<dt class="col-sm-3">{tr}End date{/tr}</dt><dd class="col-sm-9">{$book.bookEndDate}</dd>
+					<dt class="col-sm-3">{tr}Closed{/tr}</dt><dd class="col-sm-9">{if $book.bookClosed=='y'}{tr}Yes{/tr}{else}{tr}No{/tr}{/if}</dd>
+					<dt class="col-sm-3">{tr}Currency{/tr}</dt><dd class="col-sm-9">{$book.bookCurrency} ({if $book.bookCurrencyPos==-1}{tr}before{/tr}{elseif $book.bookCurrencyPos==1}{tr}after{/tr}{else}{tr}don't display{/tr}{/if})</dd>
+					<dt class="col-sm-3">{tr}Decimals{/tr}</dt><dd class="col-sm-9">{$book.bookDecimals}</dd>
+					<dt class="col-sm-3">{tr}Decimal Point{/tr}</dt><dd class="col-sm-9">{$book.bookDecPoint}</dd>
+					<dt class="col-sm-3">{tr}Thousands separator{/tr}</dt><dd class="col-sm-9">{$book.bookThousand}</dd>
+					<dt class="col-sm-3">{tr}Auto Tax{/tr}</dt><dd class="col-sm-9">{if $book.bookAutoTax=='y'}{tr}Yes{/tr}{else}{tr}No{/tr}{/if}</dd>
 				</dl>
 			</div>
 		</div>
-		<div class="box">
-			<h3 class="boxtitle">{tr}Tasks{/tr}</h3>
-			<div class="box-data col-md-12">
+		<div class="card">
+			<h3 class="card-heading">{tr}Tasks{/tr}</h3>
+			<div class="card-body">
 				{if $canBook}
 					{button href="tiki-accounting_entry.php?bookId={$bookId|escape:'attr'}" _text="{tr}Book new entries{/tr}"}
 					{button href="tiki-accounting_stack.php?bookId={$bookId|escape:'attr'}&hideform=1" _text="{tr}Confirm stack entries{/tr}"}
