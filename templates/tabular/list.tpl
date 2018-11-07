@@ -50,18 +50,17 @@
 {/if}
 {if $filters.default.selected}
 	<h4>{tr}Applied filters{/tr}</h4>
-	<dl class="dl-horizontal">
+	<dl class="row mx-0">
 		{foreach $filters.default.controls as $filter}
 			{if $filter.selected}
-				<dt>{$filter.label|escape}</dt>
-				<dd>{$filter.description|escape}</dd>
+				<dt class="col-sm-3">{$filter.label|escape}</dt><dd class="col-sm-9">{$filter.description|escape}</dd>
 			{/if}
 		{/foreach}
 	</dl>
 {/if}
 {if $filters.side.usable}
 	<div class="row">
-		<div class="col-md-9">
+		<div class="col-sm-9">
 			<table class="table">
 				<tr>
 					{foreach $columns as $column}
@@ -73,12 +72,12 @@
 						{foreach $row as $i => $col}
 							<td class="text-{$columns[$i]->getDisplayAlign()|escape}">{$col}</td>
 						{/foreach}
-					</td>
+					</tr>
 				{/foreach}
 			</table>
 			{pagination_links resultset=$resultset}{service controller=tabular action=list tabularId=$tabularId _params=$baseArguments}{/pagination_links}
 		</div>
-		<div class="col-md-3">
+		<div class="col-sm-3">
 			<form method="get" action="{service controller=tabular action=list}">
 				{foreach $filters.side.controls as $filter}
 					<div class="form-group row">
@@ -116,7 +115,7 @@
 				{foreach $row as $i => $col}
 					<td class="text-{$columns[$i]->getDisplayAlign()|escape}">{$col}</td>
 				{/foreach}
-			</td>
+			</tr>
 		{/foreach}
 	</table>
 	{pagination_links resultset=$resultset}{service controller=tabular action=list tabularId=$tabularId _params=$baseArguments}{/pagination_links}

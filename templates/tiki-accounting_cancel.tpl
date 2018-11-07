@@ -4,10 +4,10 @@
 {/title}
 <div id="original">
 	<h4>{tr}Canceled Journal{/tr}</h4>
-	<dl class="dl-horizontal">
-		<dt>{tr}ID{/tr}</dt><dd>{$entry.journalId}</dd>
-		<dt>{tr}Booking Date{/tr}</dt><dd>{$entry.journalDate|date_format:"%Y-%m-%d"}</dd>
-		<dt>{tr}Description{/tr}</dt><dd>{$entry.journalDescription}</dd>
+	<dl class="row mx-0">
+		<dt class="col-sm-3">{tr}ID{/tr}</dt><dd class="col-sm-9">{$entry.journalId}</dd>
+		<dt class="col-sm-3">{tr}Booking Date{/tr}</dt><dd class="col-sm-9">{$entry.journalDate|date_format:"%Y-%m-%d"}</dd>
+		<dt class="col-sm-3">{tr}Description{/tr}</dt><dd class="col-sm-9">{$entry.journalDescription}</dd>
 	</dl>
 	<div id="debit">
 		<h4>{tr}Debit{/tr}</h4>
