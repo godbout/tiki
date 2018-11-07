@@ -252,6 +252,10 @@ class Cachelib
 			} else {
 				$extracheck = '';
 			}
+
+			// Folders created by unoconv/libreoffice that should be removed
+			$unoconvFolders = ['.cache', '.config'];
+
 			while (false !== ($file = readdir($dir))) {
 				if (// .RData case needed to clean also cached data created through mod PluginR
 							( substr($file, 0, 1) == "." &&	substr($file, -5) != $extracheck ) or
@@ -260,7 +264,8 @@ class Cachelib
 							$file == "index.php" or
 							$file == "README" or
 							$file == "web.config" or
-							($virtuals && in_array($file, $virtuals))
+							($virtuals && in_array($file, $virtuals))) and
+							!in_array($file, $unoconvFolders)
 				) {
 					continue;
 				}
