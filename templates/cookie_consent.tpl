@@ -1,25 +1,29 @@
 {* $Id$ *}
 {strip}
-	<div id="{$prefs.cookie_consent_dom_id}"
+	<div id="{$prefs.cookie_consent_dom_id}" class="alert alert-primary col-sm-8 mx-auto" role="alert"
 		{if $prefs.javascript_enabled eq 'y' and not empty($prefs.cookie_consent_mode)}
 			style="display:none;" class="{$prefs.cookie_consent_mode}"
 		{/if}
 	>
 		<form method="POST">
-			<div class="description mb-1">
+			<div class="description mb-3">
 				{wiki}{tr}{$prefs.cookie_consent_description}{/tr}{/wiki}
 			</div>
-			{if !empty($prefs.cookie_consent_question)}
-			<div class="form-check mb-1">
-				<input class="form-check-input" type="checkbox" name="cookie_consent_checkbox" id="cookie_consent_checkbox">
-				<label class="form-check-label question" for="cookie_consent_checkbox">
-					{wiki}{tr}{$prefs.cookie_consent_question}{/tr}{/wiki}
-				</label>
+			<div class="row mx-0">
+				{if !empty($prefs.cookie_consent_question)}
+					<div class="form-check col-sm-9">
+						<input class="form-check-input" type="checkbox" name="cookie_consent_checkbox" id="cookie_consent_checkbox">
+						<label class="form-check-label question" for="cookie_consent_checkbox">
+							{wiki}{tr}{$prefs.cookie_consent_question}{/tr}{/wiki}
+						</label>
+					</div>
+				{else}
+					<input type="hidden" name="cookie_consent_checkbox" value="1">
+				{/if}
+				<div class="col-sm-3">
+					<input type="submit" class="btn btn-success" id="cookie_consent_button" name="cookie_consent_button" value="{tr}{$prefs.cookie_consent_button}{/tr}">
+				</div>
 			</div>
-			{else}
-				<input type="hidden" name="cookie_consent_checkbox" value="1">
-			{/if}
-			<input type="submit" class="btn btn-primary" id="cookie_consent_button" name="cookie_consent_button" value="{tr}{$prefs.cookie_consent_button}{/tr}">
 		</form>
 	</div>
 	{jq}

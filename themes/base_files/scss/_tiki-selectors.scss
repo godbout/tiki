@@ -300,16 +300,21 @@ table.treetable.objectperms td.removed {
 }
 
 // cookie consent style
-#cookie_consent_div {
-	padding: $alert-padding-x $alert-padding-y;
-	border: 1px solid darken(theme-color("info"), 10%);
-	color: $white;
-	background-color: theme-color("info");
-}
+//#cookie_consent_div {
+//	padding: $alert-padding-x $alert-padding-y;
+//	border: 1px solid darken(theme-color("info"), 10%);
+//	color: $white;
+//	background-color: theme-color("info");
+//}
 
-#cookie_consent_div.banner {
-	padding: $alert-padding-x $alert-padding-y;
-	border: 1px solid theme-color("info");
+//#cookie_consent_div.banner {
+//	padding: $alert-padding-x $alert-padding-y;
+//	border: 1px solid theme-color("info");
+//}
+
+#cookie_consent_div .description a {
+	color: adjust-hue($primary, 30%);
+	font-weight: bold;
 }
 
 // print mode only - to make sure print templates will use and print on seamless white bg color
