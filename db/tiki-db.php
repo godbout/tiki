@@ -211,7 +211,7 @@ $db = $initializer->getConnection($credentials['primary']);
 
 if (! $db && ! defined('TIKI_IN_INSTALLER')) {
 	if (PHP_SAPI === 'cli') {
-		die("\033[31mDid you forget to start MySQL?\033[0m\n");
+		die("\033[31mDid you forget to start MySQL or is there a problem to connect with your database?\033[0m\n");
 	} elseif (! empty($dbfail_url)) {
 		header('location: ' . $dbfail_url);
 	} else {
