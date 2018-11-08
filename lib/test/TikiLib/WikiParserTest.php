@@ -45,8 +45,8 @@ class TikiLib_WikiParserTest extends PHPUnit_Framework_TestCase
 			['-=foo=-', '<div class="titlebar">foo</div>' . "\n"],	// title bar
 			['-= foo =-', '<div class="titlebar"> foo </div>' . "\n"],	// title bar
 
-			['^foo^', '<div class="well">foo</div><br />'],	// box
-			['^ foo ^', '<div class="well"> foo </div><br />'],	// box
+			['^foo^', '<div class="card bg-light"><div class="card-body">foo</div></div><br />'],	// box
+			['^ foo ^', '<div class="card bg-light"><div class="card-body"> foo </div></div><br />'],	// box
 
 			['::foo::', '<div style="text-align: center;">foo</div><br />'],	// center align
 			[':: foo ::', '<div style="text-align: center;"> foo </div><br />'],	// center align

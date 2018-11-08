@@ -13,7 +13,7 @@ class Services_Comment_ControllerTest extends PHPUnit_Framework_TestCase
 	{
 		global $prefs, $user;
 		$user = '';
-
+		$prefs['feature_absolute_to_relative_links'] = 'n';
 		$prefs['feature_article_comments'] = 'y';
 		$prefs['feature_antibot'] = 'n';
 		$prefs['feature_user_watches'] = 'y';
