@@ -38,9 +38,17 @@ function wikiplugin_footnotearea_info()
 	];
 }
 
-function wikiplugin_footnotearea($data, $params)
+/**
+ * @param $data
+ * @param $params
+ * @param $offset
+ * @param $context
+ * @return string
+ * @throws Exception
+ */
+function wikiplugin_footnotearea($data, $params, $offset, $context)
 {
-	global $footnotes;
+	$footnotes = $context->footnotes;
 	$smarty = TikiLib::lib('smarty');
 
 	if (isset($params['sameasstyle'])) {
@@ -48,14 +56,17 @@ function wikiplugin_footnotearea($data, $params)
 	} else {
 		$smarty->assign('sameType', 'disc');
 	}
+
 	$html = '';
+
 	if (isset($params['class'])) {                                       // if class was given
 		if (isset($footnotes['lists'][$params['class']])) {        // if the class exists
-			$html = genFootnoteArea($params['class'], $footnotes['lists'][$params['class']]);
+			$html = genFootnoteArea($footnotes['lists'][$params['class']]);
 			unset($footnotes['lists'][$params['class']]['entry']);
 		}
+	} else {
+		$html = genFootnoteArea($footnotes['lists']['.def.']);
 	}
-	$html = genFootnoteArea($selectedFootnotes);
 
 	return $html;
 }
@@ -72,7 +83,7 @@ function wikiplugin_footnotearea($data, $params)
 function genFootnoteArea($list)
 {
 	$smarty = TikiLib::lib('smarty');
-	$smarty->assign('footnotes', $list);
+	$smarty->assign('footnotes', $list['entry']);
 	$smarty->assign('listType', $list['listType']);
 
 	return $smarty->fetch('templates/wiki-plugins/wikiplugin_footnotearea.tpl');
