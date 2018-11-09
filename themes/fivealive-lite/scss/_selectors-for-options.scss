@@ -728,10 +728,23 @@ header.header .sitesubtitle {
 }
 
 .autotoc .nav > li > a:hover,
-.autotoc .nav .nav > li > a:hover {
+.autotoc .nav .nav > li > a:hover,
+.autotoc .nav > li > a:focus {
 	color: $autotoc-nav-link-hover-color; //#f2f2f2;
 	background: $autotoc-nav-link-hover-bg; //#2e1f39;
 }
+
+.autotoc .nav {
+	> li {
+		.active, &.open > a {
+			color: $autotoc-nav-link-hover-color;
+			background: $autotoc-nav-link-hover-bg;
+		}
+	}
+}
+
+.autotoc .nav .dropdown-item {
+	color: $autotoc-color;}
 
 #col2 .card-title,
 #col3 .card-title,
