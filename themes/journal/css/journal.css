@@ -6152,15 +6152,9 @@ table.treetable.objectperms td.removed {
   color: #dee2e6;
   background: transparent url("../../../img/loading-light.gif") no-repeat 50% 50%; }
 
-#cookie_consent_div {
-  padding: 1.25rem 0.75rem;
-  border: 1px solid #264d73;
-  color: #fff;
-  background-color: #369; }
-
-#cookie_consent_div.banner {
-  padding: 1.25rem 0.75rem;
-  border: 1px solid #369; }
+#cookie_consent_div .description a {
+  color: #ebac64;
+  font-weight: bold; }
 
 html#print, body.print * {
   background: #fff;

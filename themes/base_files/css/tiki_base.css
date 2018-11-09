@@ -169,15 +169,9 @@ table.treetable.objectperms td.removed {
   color: #dee2e6;
   background: transparent url("../../../img/loading-light.gif") no-repeat 50% 50%; }
 
-#cookie_consent_div {
-  padding: 1.25rem 0.75rem;
-  border: 1px solid #117a8b;
-  color: #fff;
-  background-color: #17a2b8; }
-
-#cookie_consent_div.banner {
-  padding: 1.25rem 0.75rem;
-  border: 1px solid #17a2b8; }
+#cookie_consent_div .description a {
+  color: #0400ff;
+  font-weight: bold; }
 
 html#print, body.print * {
   background: #fff;
@@ -864,8 +858,7 @@ address, blockquote, dd, dl, dt, h1, h2, h3, h4, h5, h6, li, nav, noscript, ol, 
 
 #cookie_consent_div .description {
   font-style: normal;
-  font-size: 1.1em;
-  font-weight: bold; }
+  font-size: 1.1em; }
 
 body.db_error {
   background: none; }

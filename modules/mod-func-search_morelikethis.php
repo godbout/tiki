@@ -80,7 +80,7 @@ function module_search_morelikethis($mod_reference, $module_params)
 	}
 
 	$object = [];
-	if ($module_params['object'] && $module_params['type']) {
+	if (isset($module_params['object']) && isset($module_params['type'])) {
 		$object['object'] = $module_params['object'];
 		$object['type'] = $module_params['type'];
 	} else {

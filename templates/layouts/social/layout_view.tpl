@@ -160,13 +160,6 @@
 
 		{include file='footer.tpl'}
 </body>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.tooltips').tooltip({
-            'container': 'body'
-        });
-    });
-</script>
 </html>
 {if $prefs.feature_debug_console eq 'y' and not empty($smarty.request.show_smarty_debug)}
 	{debug}

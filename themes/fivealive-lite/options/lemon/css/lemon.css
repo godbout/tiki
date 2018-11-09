@@ -8,6 +8,11 @@ body.layout_social.tiki.navbar-padding {
   -moz-box-shadow: inset 0 28px 0 0 #cb9e10;
   box-shadow: inset 0 28px 0 0 #cb9e10; }
 
+.fullscreen .middle_outer {
+  -webkit-box-shadow: inset 0 3px 0 0 #f9a013;
+  box-shadow: inset 0 3px 0 0 #f9a013;
+  border-top: none; }
+
 .middle .topbar {
   font-size: 0.925rem; }
 
