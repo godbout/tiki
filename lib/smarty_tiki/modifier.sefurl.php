@@ -33,7 +33,9 @@ function smarty_modifier_sefurl($source, $type = 'wiki', $with_next = '', $all_l
 			break;
 	}
 
+	$urlAnchor = '';
 	if (substr($type, -7) == 'comment') {
+		$urlAnchor = '#threadId=' . (int)$source;
 		$type = substr($type, 0, strlen($type) - 8);
 		$info = TikiLib::lib('comments')->get_comment((int)$source);
 		$source = $info['object'];
@@ -185,8 +187,8 @@ function smarty_modifier_sefurl($source, $type = 'wiki', $with_next = '', $all_l
 
 	if ($prefs['feature_sefurl'] == 'y' && $smarty) {
 		include_once('tiki-sefurl.php');
-		return TikiLib::tikiUrlOpt(filter_out_sefurl($href, $type, $title, $with_next, $with_title));
+		return TikiLib::tikiUrlOpt(filter_out_sefurl($href, $type, $title, $with_next, $with_title)) . $urlAnchor;
 	} else {
-		return TikiLib::tikiUrlOpt($href);
+		return TikiLib::tikiUrlOpt($href) . $urlAnchor;
 	}
 }

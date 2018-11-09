@@ -82,6 +82,9 @@ function smarty_function_object_link($params, $smarty)
 		case 'forum post':
 			$function = 'smarty_function_object_link_forumpost';
 			break;
+		case 'comment':
+			$function = 'smarty_function_object_link_comment';
+			break;
 		default:
 			$function = 'smarty_function_object_link_default';
 			break;
@@ -189,6 +192,20 @@ function smarty_function_object_link_default($smarty, $object, $title = null, $t
 	}
 
 	return $html;
+}
+
+function smarty_function_object_link_comment($smarty, $object, $title = null, $type = 'wiki page', $url = null, $params = [])
+{
+	$smarty->loadPlugin('smarty_modifier_sefurl');
+	$comments_lib = TikiLib::lib('comments');
+	$comment = $comments_lib->get_comment($object);
+	$url = smarty_modifier_sefurl($object, $comment['objectType'] . '_comment');
+
+	if (empty($title)) {
+		$title = TikiLib::lib('object')->get_title($type, $object, empty($params['format']) ? null : $params['format']);
+	}
+
+	return '<a href="' . $url . '">' . $title . '</a>';
 }
 
 function smarty_function_object_link_trackeritem($smarty, $object, $title = null, $type = 'wiki page', $url = null, $params = [])
