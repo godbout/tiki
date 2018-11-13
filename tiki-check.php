@@ -1874,7 +1874,7 @@ if (! $standalone) {
 		$ocrMessage = tr('Tesseract PHP dependency installed.');
 		$ocrStatus = 'good';
 	}else{
-		$ocrMessage = tr('The Tesseract version installed in lower then the required version.');
+		$ocrMessage = tr('The installed Tesseract version is lower than the required version.');
 		$ocrStatus = 'ugly';
 	}
 
@@ -1920,7 +1920,7 @@ if (! $standalone) {
 		$ocrMessage = tr('Tesseract meets or exceeds the version requirements.');
 		$ocrStatus = 'good';
 	}else {
-		$ocrMessage = tr('The Tesseract version installed in lower then the required version.');
+		$ocrMessage = tr('The installed Tesseract version is lower than the required version.');
 		$ocrStatus = 'ugly';
 	}
 
