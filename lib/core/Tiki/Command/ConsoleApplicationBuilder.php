@@ -71,6 +71,14 @@ class ConsoleApplicationBuilder
 					new PluginRefreshRunCommand,
 					new InstallerLockCommand,
 					new PatchCommand,
+					new OCRFileCommand,
+				],
+			],
+			'checkIsOCRAvailable' => [
+				'action' => self::ACTION_NOT_AVAILABLE,
+				'commands' => [
+					new OCRFileCommand,
+					new OCRAllCommand,
 				],
 			],
 			'checkIsInstalledAndDoNotRequireUpdate' => [
@@ -243,6 +251,23 @@ class ConsoleApplicationBuilder
 		$result = (is_file($this->baseDir . '/db/redact/local.php') && ($this->site == 'redact')) ? true : false;
 
 		return $result;
+	}
+
+	/**
+	 * Check if OCR is available
+	 * @return bool
+	 */
+	protected function checkIsOCRAvailable () : bool
+	{
+		$installer = new Installer;
+		$result = $installer->isInstalled() ? true : false;
+
+		$ocr = \TikiLib::lib('ocr');
+		if ($result && $ocr->checkOCRDependencies())
+		{
+			return true;
+		}
+		return false;
 	}
 
 	/**

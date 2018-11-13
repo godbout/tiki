@@ -653,5 +653,20 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'options' => $showOptions,
 			'default' => '',
 		],
+		'fgal_ocr_enable' => [
+			'name' => tra('OCR Files'),
+			'type' => 'flag',
+			'default' => 'n',
+			'description' => tra('Extract and index text from supported file types.'),
+			'keywords' => 'ocr optical character recognition',
+			'dependencies' => ['feature_file_galleries'],
+			'packages_required' => ['thiagoalessio/tesseract_ocr' => 'thiagoalessio\TesseractOCR\TesseractOCR'],
+		],
+		'fgal_ocr_every_file' => [
+			'name' => tra('OCR Every File'),
+			'type' => 'flag',
+			'description' => tra('Attempt to OCR every supported file.'),
+			'default' => 'n',
+		],
 	];
 }

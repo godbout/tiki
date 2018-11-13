@@ -65,6 +65,7 @@ class Search_ContentSource_FileSource implements Search_ContentSource_Interface,
 			'gallery_id' => $typeFactory->identifier($file['galleryId']),
 			'file_comment' => $typeFactory->plaintext($file['comment']),
 			'file_content' => $typeFactory->plaintext($file['search_data']),
+			'ocr_content' => $typeFactory->plaintext($file['ocr_data']),
 
 			'parent_object_type' => $typeFactory->identifier('file gallery'),
 			'parent_object_id' => $typeFactory->identifier($file['galleryId']),
@@ -91,6 +92,7 @@ class Search_ContentSource_FileSource implements Search_ContentSource_Interface,
 			'gallery_id',
 			'file_comment',
 			'file_content',
+			'ocr_content',
 
 			'parent_view_permission',
 			'parent_object_id',
@@ -108,6 +110,7 @@ class Search_ContentSource_FileSource implements Search_ContentSource_Interface,
 
 			'file_comment' => false,
 			'file_content' => false,
+			'ocr_content' => false,
 		];
 	}
 }

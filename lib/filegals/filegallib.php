@@ -433,7 +433,8 @@ class FileGalLib extends TikiLib
 		$id = 0,
 		$metadata = null,
 		$image_x = null,
-		$image_y = null
+		$image_y = null,
+        $ocr_state = null
 	) {
 
 		global $prefs, $user;
@@ -498,6 +499,14 @@ class FileGalLib extends TikiLib
 			$lastModif = $created;
 		}
 
+		$ocrLib = Tikilib::lib('ocr');
+		$ocr_state = $ocrLib::OCR_STATUS_SKIP;
+		if ($params['ocrFiles'][$key] || $prefs['fgal_ocr_every_file'] === 'y'){
+			if (in_array($type,$ocrLib::OCR_MIME_NATIVE)){
+				$ocr_state = $ocrLib::OCR_STATUS_PENDING;
+			}
+		}
+
 		$fileData = [
 			'galleryId' => $galleryId,
 			'name' => trim($name),
@@ -519,7 +528,9 @@ class FileGalLib extends TikiLib
 			'author' => $author,
 			'lockedby' => $lockedby,
 			'deleteAfter' => $deleteAfter,
+            'ocr_state' => $ocr_state,
 		];
+
 		$fileData['filetype'] = $this->fixMime($fileData);
 		if (empty($id)) {
 			$fileId = $filesTable->insert($fileData);
@@ -1218,6 +1229,7 @@ class FileGalLib extends TikiLib
 			$fields = ['fileId', 'galleryId', 'name', 'description', 'created', 'filename', 'filesize', 'filetype', 'user', 'author', 'hits', 'votes', 'points', 'path', 'reference_url', 'is_reference', 'hash', 'lastModif', 'lastModifUser', 'lockedby', 'comment', 'archiveId'];
 			if ($include_search_data) {
 				$fields[] = 'search_data';
+				$fields[] = 'ocr_data';
 			}
 			if ($include_data) {
 				$fields[] = 'data';
@@ -3837,6 +3849,14 @@ class FileGalLib extends TikiLib
 						$type = "image/jpeg";
 					}
 
+					$ocrLib = Tikilib::lib('ocr');
+                    $ocr_state = $ocrLib::OCR_STATUS_SKIP;
+                    if ($params['ocrFiles'][$key] || $prefs['fgal_ocr_every_file'] === 'y'){
+					    if (in_array($type,$ocrLib::OCR_MIME_NATIVE)){
+					        $ocr_state = $ocrLib::OCR_STATUS_PENDING;
+                        }
+                    }
+
 					// No resizing
 					if (! move_uploaded_file($file_tmp_name, $tmp_dest)) {
 						if ($tiki_p_admin == 'y') {
@@ -3944,7 +3964,8 @@ class FileGalLib extends TikiLib
 								$params['author'][$key],
 								$fileInfo['lastModif'],
 								$fileInfo['lockedby'],
-								$deleteAfter
+								$deleteAfter,
+                                $ocr_state
 							);
 							if ($prefs['fgal_limit_hits_per_file'] == 'y') {
 								$this->set_download_limit($editFileId, $params['hit_limit'][$key]);
@@ -3976,7 +3997,8 @@ class FileGalLib extends TikiLib
 								'',
 								$filemeta,
 								$image_x,
-								$image_y
+								$image_y,
+                                $ocr_state
 							);
 						}
 						if (! $fileId) {
@@ -4218,7 +4240,7 @@ class FileGalLib extends TikiLib
 		}
 	}
 
-	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '')
+	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '', $ocrFiles = null)
 	{
 		global $user;
 		if (empty($asuser) || ! Perms::get()->admin) {
@@ -4230,7 +4252,7 @@ class FileGalLib extends TikiLib
 		}
 
 		$tx = $this->begin();
-		$ret = $this->insert_file($gal_info['galleryId'], $name, $description, $name, $data, $size, $type, $asuser, $fhash, '', null, $created, null, null, 0, null, $image_x, $image_y);
+		$ret = $this->insert_file($gal_info['galleryId'], $name, $description, $name, $data, $size, $type, $asuser, $fhash, '', null, $created, null, null, 0, null, $image_x, $image_y, $ocrFiles);
 		$tx->commit();
 
 		return $ret;

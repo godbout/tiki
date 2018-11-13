@@ -69,6 +69,13 @@ PHPSaml:
   requiredBy:
     - saml_auth_enabled
   requiredVersion: ^2.10
+TesseractOCR:
+  licence: MIT
+  licenceUrl: "https://github.com/thiagoalessio/tesseract-ocr-for-php/blob/master/MIT-LICENSE"
+  name: thiagoalessio/tesseract_ocr
+  requiredBy:
+  - fgal_ocr_enable
+  requiredVersion: ^2.7.0
 MediaAlchemyst:
   licence: MIT
   licenceUrl: "https://github.com/alchemy-fr/Media-Alchemyst/blob/master/LICENSE"

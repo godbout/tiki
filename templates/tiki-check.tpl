@@ -502,3 +502,29 @@
 		{/foreach}
 	</table>
 </div>
+
+
+<h2>{tr}OCR Status{/tr}</h2>
+<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<th>{tr}Requirements{/tr}</th>
+			<th>{tr}Version{/tr}</th>
+			<th>{tr}Status{/tr}</th>
+			<th>{tr}Message{/tr}</th>
+		</tr>
+
+		{foreach from=$ocr key=key item=item}
+			<tr>
+				<td class="text">{$item.name}</td>
+				<td class="text">{$item.version}</td>
+				<td class="text">
+					<span class="text-{$fmap[$item.status]['class']}">
+						{icon name="{$fmap[$item.status]['icon']}"} {$item.status}
+					</span>
+				</td>
+				<td class="text">{$item.message}</td>
+			</tr>
+		{/foreach}
+	</table>
+</div>

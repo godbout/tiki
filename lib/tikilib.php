@@ -47,7 +47,7 @@ class TikiLib extends TikiDb_Bridge
 	/** Gets a library reference
 	 *
 	 * @param $name string        The name of the library as specified in the id attribute in db/config/tiki.xml
-	 * @return object|\AccountingLib|\ActivityLib|\AdminLib|\AreasLib|\ArtLib|\AttributeLib|\AutoSaveLib|\BannerLib|\BigBlueButtonLib|\blacklistLib|\BlogLib|\CacheLib|\CalendarLib|\Captcha|\CartLib|\CategLib|\Comments|\ContactLib|\ContributionLib|\CreditsLib|\CryptLib|\cssLib|\Tiki\CustomRoute\CustomRouteLib|\DCSLib|\EditLib|\ErrorReportLib|\FaqLib|\FederatedSearchLib|\FileGalBatchLib|\FileGalLib|\FlaggedRevisionLib|\FreetagLib|\GeoLib|\GoalEventLib|\GoalLib|\GoalRewardLib|\GroupAlertLib|\H5PLib|\HeaderLib|\HistLib|\IconsetLib|\ImageGalsLib|\KalturaLib|\KalturaLib|\Language|\LanguageTranslations|\LdapLib|\LoginLib|\LogsLib|\LogsQueryLib|\MailinLib|\Memcachelib|\MenuLib|\Messu|\MimeLib|\ModLib|\MonitorLib|\MonitorMailLib|\MultilingualLib|\NotificationLib|\OAuthLib|\ObjectLib|\PageContentLib|\ParserLib|\PaymentLib|\PerspectiveLib|\PollLib|\PreferencesLib|\QuantifyLib|\QueueLib|\QuizLib|\RatingConfigLib|\RatingLib|\ReferencesLib|\RegistrationLib|\RelationLib|\RSSLib|\SchedulersLib|\ScoreLib|\ScormLib|\SearchStatsLib|\SemanticLib|\ServiceLib|\SheetLib|\Smarty_Tiki|\SocialLib|\StatsLib|\StoredSearchLib|\StructLib|\TemplatesLib|\ThemeControlLib|\ThemeLib|\Tiki_Connect_Client|\Tiki_Connect_Server|\Tiki_Event_Manager|\Tiki_Profile_SymbolLoader|\Tiki\Object\Selector|\Tiki\Recommendation\BatchProcessor|\Tiki\Wiki\SlugManager|\TikiAccessLib|\TikiCalendarLib|\TikiDate|\TodoLib|\Tracker\Tabular\Manager|\TrackerLib|\TWVersion|\UnifiedSearchLib|\UserMailinLib|\UserModulesLib|\UserPrefsLib|\UsersLib|\Validators|\VimeoLib|\WikiLib|\WizardLib|\WYSIWYGLib|\XMPPLib|\ZoteroLib
+	 * @return object|\AccountingLib|\ActivityLib|\AdminLib|\AreasLib|\ArtLib|\AttributeLib|\AutoSaveLib|\BannerLib|\BigBlueButtonLib|\blacklistLib|\ocrLib|\BlogLib|\CacheLib|\CalendarLib|\Captcha|\CartLib|\CategLib|\Comments|\ContactLib|\ContributionLib|\CreditsLib|\CryptLib|\cssLib|\Tiki\CustomRoute\CustomRouteLib|\DCSLib|\EditLib|\ErrorReportLib|\FaqLib|\FederatedSearchLib|\FileGalBatchLib|\FileGalLib|\FlaggedRevisionLib|\FreetagLib|\GeoLib|\GoalEventLib|\GoalLib|\GoalRewardLib|\GroupAlertLib|\H5PLib|\HeaderLib|\HistLib|\IconsetLib|\ImageGalsLib|\KalturaLib|\KalturaLib|\Language|\LanguageTranslations|\LdapLib|\LoginLib|\LogsLib|\LogsQueryLib|\MailinLib|\Memcachelib|\MenuLib|\Messu|\MimeLib|\ModLib|\MonitorLib|\MonitorMailLib|\MultilingualLib|\NotificationLib|\OAuthLib|\ObjectLib|\PageContentLib|\ParserLib|\PaymentLib|\PerspectiveLib|\PollLib|\PreferencesLib|\QuantifyLib|\QueueLib|\QuizLib|\RatingConfigLib|\RatingLib|\ReferencesLib|\RegistrationLib|\RelationLib|\RSSLib|\SchedulersLib|\ScoreLib|\ScormLib|\SearchStatsLib|\SemanticLib|\ServiceLib|\SheetLib|\Smarty_Tiki|\SocialLib|\StatsLib|\StoredSearchLib|\StructLib|\TemplatesLib|\ThemeControlLib|\ThemeLib|\Tiki_Connect_Client|\Tiki_Connect_Server|\Tiki_Event_Manager|\Tiki_Profile_SymbolLoader|\Tiki\Object\Selector|\Tiki\Recommendation\BatchProcessor|\Tiki\Wiki\SlugManager|\TikiAccessLib|\TikiCalendarLib|\TikiDate|\TodoLib|\Tracker\Tabular\Manager|\TrackerLib|\TWVersion|\UnifiedSearchLib|\UserMailinLib|\UserModulesLib|\UserPrefsLib|\UsersLib|\Validators|\VimeoLib|\WikiLib|\WizardLib|\WYSIWYGLib|\XMPPLib|\ZoteroLib
 	 * @throws Exception
 	 */
 	public static function lib($name)
@@ -6935,3 +6935,71 @@ function makeBool($val, $default)
 End:
  * vim: fdm=marker tabstop=4 shiftwidth=4 noet:
  */
+
+
+/**
+ *
+ * Writes a temporary directory and/or file in a cryptographically secure way.
+ *
+ * @param string|null $data Data to be written to file, null if we are creating directories only.
+ * @param string      $directory Directory for the file to be created in. using the string 'random' will generate a random directory. Sending NULL will create a directory only.
+ * @param bool        $system If files should be stored in the system directory (outside the web root), will fall back to tiki /temp directory upon failure.
+ * @param string      $prefix A string to add to the beginning of the file name.
+ * @param string      $append A string to append the file name, such as an extension.
+ *
+ * @return string            The path and filename of the file written.
+ * @throws exception        If a file can not be created, an exception will be thrown.
+ */
+
+function writeTempFile(?string $data, string $directory = '', bool $system = true, string $prefix = '', string $append = ''): ?string {
+	global $prefs;
+
+	if ($directory === 'random') {
+		if ($system) {
+			$directory = dechex(rand(0, 2 ** 62)) . dechex(rand(0, 2 ** 62)) . '/';
+		} else {
+			$directory = bin2hex(random_bytes(16)) . '/';
+		}
+	}
+
+	if (strlen($prefix) + strlen($append) > 223) {
+		throw new Exception('File name must be under 255 characters.');
+	}
+
+	if ($system) {
+		if (file_exists($prefs['tmpDir'] . $directory)) {
+			$dirName = $prefs['tmpDir'] . $directory;
+		} elseif (mkdir($prefs['tmpDir'] . $directory)) {
+			$dirName = $prefs['tmpDir'] . $directory;
+		}
+	}
+
+	if (! isset($dirName)) {
+		if (file_exists('temp/' . $directory)) {
+			$dirName = 'temp/' . $directory;
+		} elseif (mkdir('temp/' . $directory)) {
+			$dirName = 'temp/' . $directory;
+			@file_put_contents('temp/' . $directory . 'index.php', '');
+		} else {
+			throw new Exception ("Can not create temp/$directory directory.");
+		}
+	}
+
+	if (! is_null($data)) {
+
+		do {
+			if ($system) {
+				// since md5, and random_bytes are slow, we generate similar data without them.
+				$fileName = $prefix . dechex(rand(0, 2 ** 62)) . dechex(rand(0, 2 ** 62)) . $append;
+			} else {
+				$fileName = $prefix . bin2hex(random_bytes(16)) . $append;
+			}
+		} while (file_exists($dirName . $fileName));
+
+
+		if (@file_put_contents($dirName . $fileName, $data) === false) {
+			throw new exception ("Can not write to $dirName$fileName file.");
+		}
+	}
+	return $dirName . $fileName;
+}

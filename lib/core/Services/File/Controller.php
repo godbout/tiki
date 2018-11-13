@@ -82,6 +82,9 @@ class Services_File_Controller
 
 		$fileId = $input->fileId->int();
 		$asuser = $input->user->text();
+		if ($input->ocrFiles->word()){
+            $ocrFiles = 3;
+        }
 
 		if (empty($asuser)) {
 			$asuser = $GLOBALS['user'];
@@ -155,7 +158,7 @@ class Services_File_Controller
 			if ($fileId) {
 				$this->utilities->updateFile($gal_info, $name, $size, $type, $data, $fileId, $asuser);
 			} else {
-				$fileId = $this->utilities->uploadFile($gal_info, $name, $size, $type, $data, $asuser, $image_x, $image_y);
+				$fileId = $this->utilities->uploadFile($gal_info, $name, $size, $type, $data, $asuser, $image_x, $image_y, '','',$ocrFiles);
 			}
 		} else {
 			$fileId = false;
@@ -221,6 +224,9 @@ class Services_File_Controller
 			}
 			if (is_array($input->user->asArray())) {
 				$input->offsetSet('user', $input->asArray('user')[0]);
+			}
+			if (is_array($input->ocrFiles->asArray())) {
+				$input->offsetSet('ocrFiles', $input->asArray('ocrFiles')[0]);
 			}
 			if (is_array($input->listtoalert->asArray())) {
 				$input->offsetSet('listtoalert', $input->asArray('listtoalert')[0]);

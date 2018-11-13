@@ -406,6 +406,14 @@
 				</div>
 			</fieldset>
 
+			<fieldset>
+				<legend>{tr}OCR Indexing{/tr}</legend>
+				{preference name=fgal_ocr_enable}
+				<div class="adminoptionboxchild" id="fgal_ocr_enable_childcontainer">
+					{preference name=fgal_ocr_every_file}
+				</div>
+			</fieldset>
+
 		{/tab}
 	{/tabset}
 	{include file='admin/include_apply_bottom.tpl'}

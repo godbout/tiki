@@ -2019,6 +2019,7 @@ installer/schema/20180609_change_log_column_type_tiki.sql -text
 installer/schema/20180625_user_reports_null_last_reports_tiki.sql -text
 installer/schema/20180705_fix_calendaritem_tracker_attributes_tiki.sql -text
 installer/schema/20180803_semaphore_value_tiki.sql -text
+installer/schema/20180808_ocr_tiki.sql -text
 installer/schema/20180815_merge_topic_read_perm_tiki.sql -text
 installer/schema/20180918_remove_poweredby_module_tiki.sql -text
 installer/schema/20180921_sql_upgrade_fix_from_older_tiki.php -text
@@ -2899,6 +2900,8 @@ lib/core/Tiki/Command/MailQueueSendCommand.php -text
 lib/core/Tiki/Command/MultiTikiListCommand.php -text
 lib/core/Tiki/Command/MultiTikiMoveCommand.php -text
 lib/core/Tiki/Command/NotificationDigestCommand.php -text
+lib/core/Tiki/Command/OCRAllCommand.php -text
+lib/core/Tiki/Command/OCRFileCommand.php -text
 lib/core/Tiki/Command/PatchCommand.php -text
 lib/core/Tiki/Command/PreferencesDeleteCommand.php -text
 lib/core/Tiki/Command/PreferencesGetCommand.php -text
@@ -3545,6 +3548,7 @@ lib/notifications/notificationemaillib.php -text
 lib/notifications/notificationlib.php -text
 lib/oauthlib.php -text
 lib/objectlib.php -text
+lib/ocrlib.php -text
 lib/ointegratelib.php -text
 lib/openlayers/OpenLayers.js -text
 lib/openlayers/OpenLayers.light.js -text
