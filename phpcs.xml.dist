@@ -54,9 +54,9 @@
 	<config name="installed_paths" value="vendor_bundled/vendor/wimg/php-compatibility" />
 	<config name="testVersion" value="5.6-"/>
 	<rule ref="PHPCompatibility"/>
-	<rule ref="PHPCompatibility.PHP.RemovedExtensions">
+	<!--rule ref="PHPCompatibility.PHP.RemovedExtensions">
 		<exclude-pattern>*/tiki-check.php</exclude-pattern>
-	</rule>
+	</rule-->
 
 	<!-- Tiki uses the Zend Coding Standards
 		reference: https://github.com/zendframework/zend-coding-standard/blob/master/ruleset.xml -->
