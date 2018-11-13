@@ -76,6 +76,14 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
+	public function testAddLineBreakToParagraph()
+	{
+		$htmlContent = '<p>Hello world</p>p>';
+		$output = $this->obj->addLineBreakToParagraph($htmlContent);
+
+		$this->assertEquals("\nText parsed :\n", $output);
+	}
+
 	public function testParseData()
 	{
 		ob_start();
