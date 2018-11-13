@@ -211,10 +211,20 @@ class TikiMail
 
 	function setHeader($name, $value)
 	{
-		if ($name === 'Message-ID') {
-			$this->mail->getHeaders()->addHeader(Zend\Mail\Header\MessageId::fromString('Message-ID: ' . trim($value, "<>")));
-		} else {
-			$this->mail->getHeaders()->addHeaderLine($name, $value);
+		$headers = $this->mail->getHeaders();
+		switch ($name) {
+			case 'Message-Id':
+				$headers->addHeader(Zend\Mail\Header\MessageId::fromString('Message-ID: ' . trim($value)));
+				break;
+			case 'In-Reply-To':
+				$headers->addHeader(Zend\Mail\Header\InReplyTo::fromString('In-Reply-To: ' . trim($value)));
+				break;
+			case 'References':
+				$headers->addHeader(Zend\Mail\Header\References::fromString('References: ' . trim($value)));
+				break;
+			default:
+				$this->mail->getHeaders()->addHeaderLine($name, $value);
+				break;
 		}
 	}
 

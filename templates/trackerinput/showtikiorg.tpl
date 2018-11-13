@@ -57,10 +57,8 @@
 		{/remarksbox}
 		{tr}Version:{/tr} 
 		<select name="svntag" class="form-control">
-			<option selected="selected">trunk</option>
-			<option>18.x</option>
+			<option selected="selected">18.x</option>
 			<option>17.x</option>
-			<option>16.x</option>
 			<option>15.x</option>
 			<option>12.x</option>
 		</select>

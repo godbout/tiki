@@ -310,9 +310,16 @@ header.header .sitetitle, header.header .sitesubtitle {
 .autotoc * {
   color: #c74b23; }
 
-.autotoc .nav > li > a:hover, .autotoc .nav .nav > li > a:hover {
+.autotoc .nav > li > a:hover, .autotoc .nav .nav > li > a:hover, .autotoc .nav > li > a:focus {
   color: #f2f2f2;
   background: #ae421f; }
+
+.autotoc .nav > li .active, .autotoc .nav > li.open > a {
+  color: #f2f2f2;
+  background: #ae421f; }
+
+.autotoc .nav .dropdown-item {
+  color: #c74b23; }
 
 #col2 .card-title, #col3 .card-title, a.flipmoduletitle, #col2 .card-secondary > .card-header a, #col3 .card-secondary > .card-header a {
   color: #e77d4f; }

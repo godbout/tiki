@@ -1,6 +1,6 @@
 <div class="footnotearea">
 	{foreach $footnotes as $number => $footnote}
-		<div {if $footnote['class']}class="{$footnote['class']}" {/if}id="footnote{$footnote.globalId}">
+		<div {if $footnote['class']}class="{$footnote['class']}" {/if}id="footnote{$footnote['unique']}">
 			<span>
 				<a href="#ref_footnote{$footnote['unique']}">{$number|numStyle:$listType}</a>
 				{if isset($footnote['sameas'])}

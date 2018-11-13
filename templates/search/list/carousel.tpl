@@ -18,7 +18,7 @@
 	{* Wrapper for slides *}
 	<div class="carousel-inner">
 		{foreach from=$results item=row}
-			<div class="item{if $row@index eq 0} active{/if}">
+			<div class="carousel-item{if $row@index eq 0} active{/if}">
 				{if $body and $body.field}
 					{if $body.mode eq 'raw'}
 						{$row[$body.field]}
@@ -27,7 +27,7 @@
 					{/if}
 				{/if}
 
-				<div class="carousel-caption">
+				<div class="carousel-caption d-none d-md-block">
 					{if $caption and $caption.field}
 						{if $caption.mode eq 'raw'}
 							{$row[$caption.field]}
@@ -41,11 +41,11 @@
 	</div>
 
 	{* Controls *}
-	<a class="left carousel-control" href="#{$containerId}" role="button" data-slide="prev">
+	<a class="carousel-control-prev" href="#{$containerId}" role="button" data-slide="prev">
 		{icon name='chevron-left'}
 		<span class="sr-only">Previous</span>
 	</a>
-	<a class="right carousel-control" href="#{$containerId}" role="button" data-slide="next">
+	<a class="carousel-control-next" href="#{$containerId}" role="button" data-slide="next">
 		{icon name='chevron-right'}
 		<span class="sr-only">Next</span>
 	</a>
