@@ -23,7 +23,7 @@ class ocrLib extends TikiLib
 	/**
 	 * @var int the fileid of the file currently being OCR'd
 	 */
-	public $ocrIngNow;
+	private $ocrIngNow;
 	/**
 	 * @var int fileid of the next file flagged to be processed by the OCR engine.
 	 */
@@ -46,18 +46,6 @@ class ocrLib extends TikiLib
 
 
 	/**
-	 * Set default values
-	 *
-	 * ocr constructor.
-	 */
-	public function __construct()
-	{
-
-		$this->setOCRNow();
-		$this->nextOCRfile();
-	}
-
-	/**
 	 * Sets $ocrIngNow with the current file flagged as currently being processed.
 	 */
 	private function setOCRNow(){
@@ -75,6 +63,7 @@ class ocrLib extends TikiLib
 	 */
 	public function checkFileGalID(){
 
+		$this->nextOCRfile();
 		$query = 'SELECT 1 FROM `tiki_files` WHERE `fileId` = ' . $this->nextOCRFile . ' LIMIT 1';
 		$result = $this->query($query, []);
 		if (!$result->numRows()){
@@ -86,7 +75,7 @@ class ocrLib extends TikiLib
 	/**
 	 * Sets $nextOCRFile with the fileid of the next file scheduled to be processed by the OCR engine.
 	 */
-	private function nextOCRfile(){
+	public function nextOCRfile(){
 
 		$query = 'SELECT `fileId` FROM `tiki_files` WHERE `ocr_state` = ' . self::OCR_STATUS_PENDING . ' LIMIT 1';
 		$result = $this->query($query, []);
@@ -118,6 +107,7 @@ class ocrLib extends TikiLib
 
 	private function startOCR() : bool
 	{
+		$this->nextOCRfile();
 		if (!$this->nextOCRFile){
 			return false;
 		}
@@ -257,6 +247,7 @@ class ocrLib extends TikiLib
 		if (! $this->startOCR()) {
 			return ('No files to OCR');
 		}
+		$this->setOCRNow();
 
 		$file = TikiLib::lib('filegal')->get_file($this->ocrIngNow);
 

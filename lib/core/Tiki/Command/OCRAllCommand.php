@@ -30,6 +30,8 @@ class OCRAllCommand extends Command
 		$outputStyle = new OutputFormatterStyle('red');
 		$output->getFormatter()->setStyle('error', $outputStyle);
 
+		$ocrLib->nextOCRfile();
+
 		if (! $ocrLib->nextOCRFile) {
 			$output->writeln('<comment>No files to OCR</comment>');
 			exit;

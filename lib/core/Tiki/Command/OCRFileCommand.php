@@ -38,6 +38,8 @@ class OCRFileCommand extends Command
 		$outputStyle = new OutputFormatterStyle('red');
 		$output->getFormatter()->setStyle('error', $outputStyle);
 
+		$ocrLib->nextOCRfile();
+
 		$fgalId = $input->getOption('file-gal-id');
 		if ($fgalId) {
 			if (preg_match('/^\d+$/', $fgalId)) {
