@@ -60,6 +60,24 @@ class Perms_Context
 		}
 	}
 
+	function activatePermanently() {
+		global $user, $globalperms;
+		$perms = Perms::getInstance();
+		$smarty = TikiLib::lib('smarty');
+		$user = $this->user;
+		$perms->setGroups($this->groupList);
+
+		$globalperms = Perms::get();
+		$globalperms->globalize(self::$permissionList, $smarty, false);
+
+		if (is_object($smarty)) {
+			$smarty->assign('globalperms', $globalperms);
+		}
+
+		$this->previousUser = $user;
+		$this->previousGroupList = $perms->getGroups();
+	}
+
 	function __destruct()
 	{
 		global $user, $globalperms;

@@ -54,6 +54,10 @@ class File
 		$this->setParam('filename', tr("New File"));
 	}
 
+	function __get($name) {
+		return $this->getParam($name);
+	}
+
 	static function filename($filename = "")
 	{
 		$tikilib = TikiLib::lib('tiki');
@@ -178,5 +182,14 @@ class File
 		);
 
 		return $textDiff->getDiff();
+	}
+
+	function galleryDefinition() {
+		return TikiLib::lib('filegal')->getGalleryDefinition($this->getParam('galleryId'));
+	}
+
+	function getContents() {
+		$wrapper = $this->galleryDefinition()->getFileWrapper($this->getParam('data'), $this->getParam('path'));
+		return $wrapper->getContents();
 	}
 }

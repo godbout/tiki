@@ -1749,7 +1749,7 @@ class FileGalLib extends TikiLib
 		);
 	}
 
-	private function getGalleryDefinition($galleryId)
+	function getGalleryDefinition($galleryId)
 	{
 		static $loaded = [];
 
@@ -2803,7 +2803,7 @@ class FileGalLib extends TikiLib
 			if (! empty($prefs['fgal_delete_after_email'])) {
 				$wrapper = $definition->getFileWrapper($fileInfo['data'], $fileInfo['path']);
 
-				$fileInfo['data'] = $wrapper->getContent();
+				$fileInfo['data'] = $wrapper->getContents();
 
 				$smarty->assign('fileInfo', $fileInfo);
 				$smarty->assign('galInfo', $galInfo);
@@ -3585,6 +3585,18 @@ class FileGalLib extends TikiLib
 
 
 		return $res;
+	}
+
+	function can_upload_to($gal_info) {
+		global $user, $prefs;
+
+		if ($prefs['feature_use_fgal_for_user_files'] !== 'y' || $gal_info['type'] !== 'user') {
+			$perms = Perms::get('file gallery', $gal_info['galleryId']);
+			return $perms->upload_files;
+		} else {
+			$perms = TikiLib::lib('tiki')->get_local_perms($user, $gal_info['galleryId'], 'file gallery', $gal_info, false);		//get_perm_object($galleryId, 'file gallery', $galinfo);
+			return $perms['tiki_p_upload_files'] === 'y';
+		}
 	}
 
 	/**

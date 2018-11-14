@@ -15,14 +15,8 @@ class Services_File_Utilities
 			throw new Services_Exception(tr('Requested gallery does not exist.'), 404);
 		}
 
-		if ($prefs['feature_use_fgal_for_user_files'] !== 'y' || $gal_info['type'] !== 'user') {
-			$perms = Perms::get('file gallery', $galleryId);
-			$canUpload = $perms->upload_files;
-		} else {
-			global $user;
-			$perms = TikiLib::lib('tiki')->get_local_perms($user, $galleryId, 'file gallery', $gal_info, false);		//get_perm_object($galleryId, 'file gallery', $galinfo);
-			$canUpload = $perms['tiki_p_upload_files'] === 'y';
-		}
+		$canUpload = TikiLib::lib('filegal')->can_upload_to($gal_info);
+
 		if (! $canUpload) {
 			throw new Services_Exception(tr('Permission denied.'), 403);
 		}

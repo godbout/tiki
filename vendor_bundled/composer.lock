@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7bab35ce51255174decf9d016d003d51",
+    "content-hash": "a6bac7603db46166764b63ee01157662",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -186,17 +186,17 @@
         },
         {
             "name": "blueimp/jquery-file-upload",
-            "version": "v9.25.1",
+            "version": "v9.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vkhramtsov/jQuery-File-Upload.git",
-                "reference": "28891f9b2bc339bcc1ca8d548e5401e8563bf04b"
+                "reference": "8804b363c4289622eb52761f2728a314951a8c33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-28891f9b2bc339bcc1ca8d548e5401e8563bf04b-zip-cff578.zip",
-                "reference": "28891f9b2bc339bcc1ca8d548e5401e8563bf04b",
-                "shasum": "22f9518e8c8e92de7e93e557a191603ec9faf36c"
+                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-8804b363c4289622eb52761f2728a314951a8c33-zip-4f508c.zip",
+                "reference": "8804b363c4289622eb52761f2728a314951a8c33",
+                "shasum": "3c6f7e7f12739f0eed878da7ea3176a10573082b"
             },
             "type": "library",
             "autoload": {
@@ -237,21 +237,21 @@
                 "upload",
                 "widget"
             ],
-            "time": "2018-10-26T07:21:48+00:00"
+            "time": "2018-11-08T05:47:37+00:00"
         },
         {
             "name": "bower-asset/fontawesome",
-            "version": "5.4.1",
+            "version": "5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "559a780f29c9a7efe08835c5ff3d05f57e4389a3"
+                "reference": "4f4cb7c2f55d14d24f10390ebfeab0d25af612f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-559a780f29c9a7efe08835c5ff3d05f57e4389a3-zip-1ccaea.zip",
-                "reference": "559a780f29c9a7efe08835c5ff3d05f57e4389a3",
-                "shasum": "751619b83cd916b793853cfbc6bd8ccd4209a1c0"
+                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-4f4cb7c2f55d14d24f10390ebfeab0d25af612f3-zip-d76452.zip",
+                "reference": "4f4cb7c2f55d14d24f10390ebfeab0d25af612f3",
+                "shasum": "3d47992a1438391a6764d367e076d5c73bd4055f"
             },
             "type": "bower-asset"
         },
@@ -329,17 +329,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.10.1",
+            "version": "4.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor-releases.git",
-                "reference": "e5999810955383eb4f72c03a5af7f2dfd59390a0"
+                "reference": "70e6f8f01c3d7d8f713291984017a6005c4e737a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-e5999810955383eb4f72c03a5af7f2dfd59390a0-zip-fc9ef3.zip",
-                "reference": "e5999810955383eb4f72c03a5af7f2dfd59390a0",
-                "shasum": "19056b1a46c6365a50fa17475a43703b323ac862"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-70e6f8f01c3d7d8f713291984017a6005c4e737a-zip-af8a90.zip",
+                "reference": "70e6f8f01c3d7d8f713291984017a6005c4e737a",
+                "shasum": "ac3cb389867037a4219e0b43a9d6189e222ff1ad"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -366,7 +366,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2018-09-11T18:33:38+00:00"
+            "time": "2018-11-08T18:19:19+00:00"
         },
         {
             "name": "ckeditor/ckeditor/skins/bootstrapck",
@@ -2190,17 +2190,17 @@
         },
         {
             "name": "nicolaskruchten/pivottable",
-            "version": "v2.22.0",
+            "version": "v2.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolaskruchten/pivottable.git",
-                "reference": "e3dd0d7843cc9220df00dde9f9e32d70eecfd747"
+                "reference": "a9cabee5382be0aaf0984ac906d9fa2e0376d2c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-e3dd0d7843cc9220df00dde9f9e32d70eecfd747-zip-2c335e.zip",
-                "reference": "e3dd0d7843cc9220df00dde9f9e32d70eecfd747",
-                "shasum": "c9b09c0393a7c5a1384f4dd5226cb80134927fcf"
+                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-a9cabee5382be0aaf0984ac906d9fa2e0376d2c1-zip-5046c2.zip",
+                "reference": "a9cabee5382be0aaf0984ac906d9fa2e0376d2c1",
+                "shasum": "b4cdcee28301b37c39c98c8a17217934def19a53"
             },
             "require": {
                 "components/jquery": ">=1.9"
@@ -2229,21 +2229,21 @@
                 "pivottable",
                 "table"
             ],
-            "time": "2018-09-22T02:10:34+00:00"
+            "time": "2018-11-04T18:21:09+00:00"
         },
         {
             "name": "nolimits4web/swiper",
-            "version": "v4.4.1",
+            "version": "v4.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nolimits4web/swiper.git",
-                "reference": "bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd"
+                "reference": "08e6fcbab7d399fc19a427ebf2b8112f173a6ac2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nolimits4web/swiper/zipball/bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd",
-                "reference": "bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd",
-                "shasum": ""
+                "url": "https://composer.tiki.org/dist/nolimits4web/swiper/nolimits4web-swiper-08e6fcbab7d399fc19a427ebf2b8112f173a6ac2-zip-c3e47f.zip",
+                "reference": "08e6fcbab7d399fc19a427ebf2b8112f173a6ac2",
+                "shasum": "294f4a1d8520a7086e63282fcf9c2b8ef4b7acad"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2276,7 +2276,7 @@
                 "swiper",
                 "touch"
             ],
-            "time": "2018-09-14T16:51:56+00:00"
+            "time": "2018-11-01T10:58:11+00:00"
         },
         {
             "name": "npm-asset/popper.js",
@@ -2953,17 +2953,17 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.11",
+            "version": "2.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "7053f06f91b3de78e143d430e55a8f7889efc08b"
+                "reference": "8814dc7841db159daed0b32c2b08fb7e03c6afe7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-7053f06f91b3de78e143d430e55a8f7889efc08b-zip-e6f746.zip",
-                "reference": "7053f06f91b3de78e143d430e55a8f7889efc08b",
-                "shasum": "84355bf7288c96562013139ff566886a161d4ada"
+                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-8814dc7841db159daed0b32c2b08fb7e03c6afe7-zip-618753.zip",
+                "reference": "8814dc7841db159daed0b32c2b08fb7e03c6afe7",
+                "shasum": "b6140916b8b463d590b781249c9ac83b8a02f070"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -3041,7 +3041,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2018-04-15T16:55:05+00:00"
+            "time": "2018-11-04T05:45:48+00:00"
         },
         {
             "name": "player/flv",
@@ -3330,6 +3330,413 @@
             "time": "2015-08-10T12:35:38+00:00"
         },
         {
+            "name": "sabre/dav",
+            "version": "3.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabre-io/dav.git",
+                "reference": "a9780ce4f35560ecbd0af524ad32d9d2c8954b80"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabre-io/dav/zipball/a9780ce4f35560ecbd0af524ad32d9d2c8954b80",
+                "reference": "a9780ce4f35560ecbd0af524ad32d9d2c8954b80",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-date": "*",
+                "ext-dom": "*",
+                "ext-iconv": "*",
+                "ext-mbstring": "*",
+                "ext-pcre": "*",
+                "ext-simplexml": "*",
+                "ext-spl": "*",
+                "lib-libxml": ">=2.7.0",
+                "php": ">=5.5.0",
+                "psr/log": "^1.0",
+                "sabre/event": ">=2.0.0, <4.0.0",
+                "sabre/http": "^4.2.1",
+                "sabre/uri": "^1.0.1",
+                "sabre/vobject": "^4.1.0",
+                "sabre/xml": "^1.4.0"
+            },
+            "require-dev": {
+                "evert/phpdoc-md": "~0.1.0",
+                "monolog/monolog": "^1.18",
+                "phpunit/phpunit": "> 4.8, <6.0.0",
+                "sabre/cs": "^1.0.0"
+            },
+            "suggest": {
+                "ext-curl": "*",
+                "ext-pdo": "*"
+            },
+            "bin": [
+                "bin/sabredav",
+                "bin/naturalselection"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sabre\\DAV\\": "lib/DAV/",
+                    "Sabre\\DAVACL\\": "lib/DAVACL/",
+                    "Sabre\\CalDAV\\": "lib/CalDAV/",
+                    "Sabre\\CardDAV\\": "lib/CardDAV/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "me@evertpot.com",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "WebDAV Framework for PHP",
+            "homepage": "http://sabre.io/",
+            "keywords": [
+                "CalDAV",
+                "CardDAV",
+                "WebDAV",
+                "framework",
+                "iCalendar"
+            ],
+            "time": "2018-10-19T09:58:27+00:00"
+        },
+        {
+            "name": "sabre/event",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabre-io/event.git",
+                "reference": "831d586f5a442dceacdcf5e9c4c36a4db99a3534"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabre-io/event/zipball/831d586f5a442dceacdcf5e9c4c36a4db99a3534",
+                "reference": "831d586f5a442dceacdcf5e9c4c36a4db99a3534",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "sabre/cs": "~0.0.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sabre\\Event\\": "lib/"
+                },
+                "files": [
+                    "lib/coroutine.php",
+                    "lib/Loop/functions.php",
+                    "lib/Promise/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "me@evertpot.com",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "sabre/event is a library for lightweight event-based programming",
+            "homepage": "http://sabre.io/event/",
+            "keywords": [
+                "EventEmitter",
+                "async",
+                "events",
+                "hooks",
+                "plugin",
+                "promise",
+                "signal"
+            ],
+            "time": "2015-11-05T20:14:39+00:00"
+        },
+        {
+            "name": "sabre/http",
+            "version": "v4.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabre-io/http.git",
+                "reference": "acccec4ba863959b2d10c1fa0fb902736c5c8956"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabre-io/http/zipball/acccec4ba863959b2d10c1fa0fb902736c5c8956",
+                "reference": "acccec4ba863959b2d10c1fa0fb902736c5c8956",
+                "shasum": ""
+            },
+            "require": {
+                "ext-ctype": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.4",
+                "sabre/event": ">=1.0.0,<4.0.0",
+                "sabre/uri": "~1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.3",
+                "sabre/cs": "~0.0.1"
+            },
+            "suggest": {
+                "ext-curl": " to make http requests with the Client class"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/functions.php"
+                ],
+                "psr-4": {
+                    "Sabre\\HTTP\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "me@evertpot.com",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The sabre/http library provides utilities for dealing with http requests and responses. ",
+            "homepage": "https://github.com/fruux/sabre-http",
+            "keywords": [
+                "http"
+            ],
+            "time": "2018-02-23T11:10:29+00:00"
+        },
+        {
+            "name": "sabre/uri",
+            "version": "1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabre-io/uri.git",
+                "reference": "ada354d83579565949d80b2e15593c2371225e61"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabre-io/uri/zipball/ada354d83579565949d80b2e15593c2371225e61",
+                "reference": "ada354d83579565949d80b2e15593c2371225e61",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.7"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=4.0,<6.0",
+                "sabre/cs": "~1.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "lib/functions.php"
+                ],
+                "psr-4": {
+                    "Sabre\\Uri\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "me@evertpot.com",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Functions for making sense out of URIs.",
+            "homepage": "http://sabre.io/uri/",
+            "keywords": [
+                "rfc3986",
+                "uri",
+                "url"
+            ],
+            "time": "2017-02-20T19:59:28+00:00"
+        },
+        {
+            "name": "sabre/vobject",
+            "version": "4.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabre-io/vobject.git",
+                "reference": "122cacbdea2c6133ac04db86ec05854beef75adf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabre-io/vobject/zipball/122cacbdea2c6133ac04db86ec05854beef75adf",
+                "reference": "122cacbdea2c6133ac04db86ec05854beef75adf",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.5",
+                "sabre/xml": ">=1.5 <3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "> 4.8.35, <6.0.0",
+                "sabre/cs": "^1.0.0"
+            },
+            "suggest": {
+                "hoa/bench": "If you would like to run the benchmark scripts"
+            },
+            "bin": [
+                "bin/vobject",
+                "bin/generate_vcards"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sabre\\VObject\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "me@evertpot.com",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Dominik Tobschall",
+                    "email": "dominik@fruux.com",
+                    "homepage": "http://tobschall.de/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Ivan Enderlin",
+                    "email": "ivan.enderlin@hoa-project.net",
+                    "homepage": "http://mnt.io/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The VObject library for PHP allows you to easily parse and manipulate iCalendar and vCard objects",
+            "homepage": "http://sabre.io/vobject/",
+            "keywords": [
+                "availability",
+                "freebusy",
+                "iCalendar",
+                "ical",
+                "ics",
+                "jCal",
+                "jCard",
+                "recurrence",
+                "rfc2425",
+                "rfc2426",
+                "rfc2739",
+                "rfc4770",
+                "rfc5545",
+                "rfc5546",
+                "rfc6321",
+                "rfc6350",
+                "rfc6351",
+                "rfc6474",
+                "rfc6638",
+                "rfc6715",
+                "rfc6868",
+                "vCalendar",
+                "vCard",
+                "vcf",
+                "xCal",
+                "xCard"
+            ],
+            "time": "2018-04-20T07:22:50+00:00"
+        },
+        {
+            "name": "sabre/xml",
+            "version": "1.5.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sabre-io/xml.git",
+                "reference": "59b20e5bbace9912607481634f97d05a776ffca7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sabre-io/xml/zipball/59b20e5bbace9912607481634f97d05a776ffca7",
+                "reference": "59b20e5bbace9912607481634f97d05a776ffca7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-xmlreader": "*",
+                "ext-xmlwriter": "*",
+                "lib-libxml": ">=2.6.20",
+                "php": ">=5.5.5",
+                "sabre/uri": ">=1.0,<3.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*",
+                "sabre/cs": "~1.0.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sabre\\Xml\\": "lib/"
+                },
+                "files": [
+                    "lib/Deserializer/functions.php",
+                    "lib/Serializer/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Evert Pot",
+                    "email": "me@evertpot.com",
+                    "homepage": "http://evertpot.com/",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Markus Staab",
+                    "email": "markus.staab@redaxo.de",
+                    "role": "Developer"
+                }
+            ],
+            "description": "sabre/xml is an XML library that you may not hate.",
+            "homepage": "https://sabre.io/xml/",
+            "keywords": [
+                "XMLReader",
+                "XMLWriter",
+                "dom",
+                "xml"
+            ],
+            "time": "2016-10-09T22:57:52+00:00"
+        },
+        {
             "name": "simile_timeline/simile_timeline",
             "version": "2.3.0",
             "dist": {
@@ -3491,17 +3898,17 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.17",
+            "version": "v3.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "e5389132dc6320682de3643091121c048ff796b3"
+                "reference": "99b2fa8acc244e656cdf324ff419fbe6fd300a4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/config/symfony-config-e5389132dc6320682de3643091121c048ff796b3-zip-301a61.zip",
-                "reference": "e5389132dc6320682de3643091121c048ff796b3",
-                "shasum": "52a99fd5aa54979afda68e068f00158c5fd3fa58"
+                "url": "https://composer.tiki.org/dist/symfony/config/symfony-config-99b2fa8acc244e656cdf324ff419fbe6fd300a4d-zip-3422fe.zip",
+                "reference": "99b2fa8acc244e656cdf324ff419fbe6fd300a4d",
+                "shasum": "09a3e011754db407652ad5ba52cfc16063f88de8"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3551,21 +3958,21 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2018-09-08T13:15:14+00:00"
+            "time": "2018-10-31T09:06:03+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.17",
+            "version": "v3.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "3b2b415d4c48fbefca7dc742aa0a0171bfae4e0b"
+                "reference": "1d228fb4602047d7b26a0554e0d3efd567da5803"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-3b2b415d4c48fbefca7dc742aa0a0171bfae4e0b-zip-93f4a3.zip",
-                "reference": "3b2b415d4c48fbefca7dc742aa0a0171bfae4e0b",
-                "shasum": "ad3cfbf8e67b89864d2c7a4b0aaa4d5c9aad2746"
+                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-1d228fb4602047d7b26a0554e0d3efd567da5803-zip-00abb8.zip",
+                "reference": "1d228fb4602047d7b26a0554e0d3efd567da5803",
+                "shasum": "cc9a6e90229c7bea982953282154f44ea5c31de4"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3620,11 +4027,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T16:33:53+00:00"
+            "time": "2018-10-30T16:50:50+00:00"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.1.6",
+            "version": "v4.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -3677,17 +4084,17 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.1.6",
+            "version": "v4.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "e3f76ce6198f81994e019bb2b4e533e9de1b9b90"
+                "reference": "19090917b848a799cbae4800abf740fe4eb71c1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-e3f76ce6198f81994e019bb2b4e533e9de1b9b90-zip-31d8fa.zip",
-                "reference": "e3f76ce6198f81994e019bb2b4e533e9de1b9b90",
-                "shasum": "dfdbd2842d7b9192a11ae878c7ce47f44377b118"
+                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-19090917b848a799cbae4800abf740fe4eb71c1d-zip-7b872d.zip",
+                "reference": "19090917b848a799cbae4800abf740fe4eb71c1d",
+                "shasum": "b1f4993bbac00ff2c753777097fb513db86fe1b7"
             },
             "require": {
                 "php": "^7.1.3",
@@ -3729,21 +4136,21 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T16:36:10+00:00"
+            "time": "2018-10-31T09:09:42+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.17",
+            "version": "v3.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "aea20fef4e92396928b5db175788b90234c0270d"
+                "reference": "9c98452ac7fff4b538956775630bc9701f5384ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-aea20fef4e92396928b5db175788b90234c0270d-zip-505ddf.zip",
-                "reference": "aea20fef4e92396928b5db175788b90234c0270d",
-                "shasum": "4d670c050f2567ed8ed5b11cd6a63bb9a51ea682"
+                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-9c98452ac7fff4b538956775630bc9701f5384ba-zip-646f0b.zip",
+                "reference": "9c98452ac7fff4b538956775630bc9701f5384ba",
+                "shasum": "aeb1923569e675a98e9d97f536b22685bdb73c77"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3800,21 +4207,21 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T12:28:39+00:00"
+            "time": "2018-10-31T10:49:51+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.1.6",
+            "version": "v4.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "596d12b40624055c300c8b619755b748ca5cf0b5"
+                "reference": "fd7bd6535beb1f0a0a9e3ee960666d0598546981"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-596d12b40624055c300c8b619755b748ca5cf0b5-zip-4c5fd3.zip",
-                "reference": "596d12b40624055c300c8b619755b748ca5cf0b5",
-                "shasum": "e1994d707a7d3a4593fabb19c3a57be19b2f0226"
+                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-fd7bd6535beb1f0a0a9e3ee960666d0598546981-zip-cbd6f4.zip",
+                "reference": "fd7bd6535beb1f0a0a9e3ee960666d0598546981",
+                "shasum": "4c1fc4ee8f5744f024c32e47107aca37e5092663"
             },
             "require": {
                 "php": "^7.1.3",
@@ -3850,11 +4257,11 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T12:40:59+00:00"
+            "time": "2018-10-30T13:18:25+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.9.0",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
@@ -3862,9 +4269,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/e3d826245268269cd66f8326bd8bc066687b4a19",
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-ctype/symfony-polyfill-ctype-e3d826245268269cd66f8326bd8bc066687b4a19-zip-b18935.zip",
                 "reference": "e3d826245268269cd66f8326bd8bc066687b4a19",
-                "shasum": ""
+                "shasum": "fd7ab319a82c0036fbf48ae958f1f6ba1309bc5b"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -3912,17 +4319,17 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.9.0",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8"
+                "reference": "c79c051f5b3a46be09205c73b80b346e4153e494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-d0cd638f4634c16d8df4508e847f14e9e43168b8-zip-940b7f.zip",
-                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8",
-                "shasum": "7bc7d51e2e2463fb27400c260e9a1823e2302c5c"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-c79c051f5b3a46be09205c73b80b346e4153e494-zip-b04f60.zip",
+                "reference": "c79c051f5b3a46be09205c73b80b346e4153e494",
+                "shasum": "3715b1d65b74fbad8a131eb7e1116568273f7b1d"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -3967,21 +4374,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-08-06T14:22:27+00:00"
+            "time": "2018-09-21T13:07:52+00:00"
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.17",
+            "version": "v3.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "1dc2977afa7d70f90f3fefbcd84152813558910e"
+                "reference": "35c2914a9f50519bd207164c353ae4d59182c2cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-1dc2977afa7d70f90f3fefbcd84152813558910e-zip-96a6fd.zip",
-                "reference": "1dc2977afa7d70f90f3fefbcd84152813558910e",
-                "shasum": "d15fa58bcdab34e2c5b05a35f85a39280a9108d8"
+                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-35c2914a9f50519bd207164c353ae4d59182c2cb-zip-72b930.zip",
+                "reference": "35c2914a9f50519bd207164c353ae4d59182c2cb",
+                "shasum": "0fdee375c30257bd224e74ff4c94f3b2a6663c24"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8"
@@ -4016,11 +4423,11 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T12:28:39+00:00"
+            "time": "2018-10-14T17:33:21+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.17",
+            "version": "v3.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -4877,9 +5284,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-ldap/zendframework-zend-ldap-b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49-zip-8cf400.zip",
+                "url": "https://api.github.com/repos/zendframework/zend-ldap/zipball/b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
                 "reference": "b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
-                "shasum": "b1212f5466b9a85267f26e9683a66474a23fc770"
+                "shasum": ""
             },
             "require": {
                 "ext-ldap": "*",

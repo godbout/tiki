@@ -3117,6 +3117,10 @@ lib/core/Tiki/Render/Editable.php -text
 lib/core/Tiki/Render/Lazy.php -text
 lib/core/Tiki/Render/index.php -text
 lib/core/Tiki/Request.php -text
+lib/core/Tiki/SabreDav/BasicAuth.php -text
+lib/core/Tiki/SabreDav/Directory.php -text
+lib/core/Tiki/SabreDav/File.php -text
+lib/core/Tiki/SabreDav/Utilities.php -text
 lib/core/Tiki/Security.php -text
 lib/core/Tiki/TimeLimit.php -text
 lib/core/Tiki/Transition.php -text
@@ -8136,6 +8140,7 @@ themes/yeti/templates/index.php -text
 /tiki-report_direct_object_perms.php -text
 /tiki-rollback.php -text
 /tiki-rss_error.php -text
+/tiki-sabredav.php -text
 /tiki-search_replace.php -text
 /tiki-search_stats.php -text
 /tiki-searchindex.php -text

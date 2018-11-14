@@ -14,6 +14,9 @@ class Definition
 	function __construct($info)
 	{
 		$this->info = $info;
+		if (isset($this->info['id']) && ! isset($this->info['galleryId'])) {
+			$this->info['galleryId'] = $this->info['id'];
+		}
 		$this->handler = $this->getHandler($info);
 	}
 
