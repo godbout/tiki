@@ -259,11 +259,12 @@ class ConsoleApplicationBuilder
 	 */
 	protected function checkIsOCRAvailable () : bool
 	{
-		$installer = new Installer;
-		$result = $installer->isInstalled() ? true : false;
+		if (!$this->checkIsInstalled()){
+			return false;
+		}
 
 		$ocr = \TikiLib::lib('ocr');
-		if ($result && $ocr->checkOCRDependencies())
+		if ($ocr->checkOCRDependencies())
 		{
 			return true;
 		}
