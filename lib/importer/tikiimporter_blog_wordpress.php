@@ -525,12 +525,12 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 	}
 
 	/**
-	 * add a line break by replacing paragraph by <br /> because
+	 * replacing paragraph by <br /> because
 	 * parse html is of EditLib doesn't support paragraph
 	 * @param $str the html text in which to insert lines
 	 * @return string
 	 */
-	function addLineBreakToParagraph($content)
+	function replaceParagraphWithLineBreak($content)
 	{
 		$newcontent = preg_replace("/<p[^>]*?>/", "", $content);
 		$newcontent = str_replace("</p>", "<br />", $newcontent);
@@ -586,7 +586,7 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 						if(class_exists('EditLib')) {
 							$editlib = new EditLib();
 							$content = $data['content'];
-							$content = $this->addLineBreakToParagraph($content);
+							$content = $this->replaceParagraphWithLineBreak($content);
 							$data['content'] = $editlib->parse_html($content);
 						}
 						break;
