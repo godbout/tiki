@@ -30,7 +30,8 @@ class OCRAllCommand extends Command
 		$outputStyle = new OutputFormatterStyle('red');
 		$output->getFormatter()->setStyle('error', $outputStyle);
 
-		$ocrLib->nextOCRfile();
+		// Set $nextOCRFile with the fileid of the next file scheduled to be processed by the OCR engine.
+		$ocrLib->nextOCRFile = $ocrLib->table('tiki_files')->fetchOne('fileId', ['ocr_state' => $ocrLib::OCR_STATUS_PENDING]);
 
 		if (! $ocrLib->nextOCRFile) {
 			$output->writeln('<comment>No files to OCR</comment>');
@@ -44,7 +45,8 @@ class OCRAllCommand extends Command
 			);
 		}
 
-		$queueCount = $ocrLib->getOCRQueueCount();
+		//Retrieve the number of files marked as waiting to be processed.
+		$queueCount = $ocrLib->table('tiki_files')->fetchCount(['ocr_state' => $ocrLib::OCR_STATUS_PENDING]);
 
 		$progress = new ProgressBar($output, $queueCount + 1);
 		if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {

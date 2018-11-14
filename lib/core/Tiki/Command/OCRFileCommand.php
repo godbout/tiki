@@ -38,7 +38,8 @@ class OCRFileCommand extends Command
 		$outputStyle = new OutputFormatterStyle('red');
 		$output->getFormatter()->setStyle('error', $outputStyle);
 
-		$ocrLib->nextOCRfile();
+		// Set $nextOCRFile with the fileid of the next file scheduled to be processed by the OCR engine.
+		$ocrLib->nextOCRFile = $ocrLib->table('tiki_files')->fetchOne('fileId', ['ocr_state' => $ocrLib::OCR_STATUS_PENDING]);
 
 		$fgalId = $input->getOption('file-gal-id');
 		if ($fgalId) {

@@ -19,7 +19,6 @@ use thiagoalessio\TesseractOCR\FriendlyErrors;
 class ocrLib extends TikiLib
 {
 
-
 	/**
 	 * @var int the fileid of the file currently being OCR'd
 	 */
@@ -46,17 +45,6 @@ class ocrLib extends TikiLib
 
 
 	/**
-	 * Sets $ocrIngNow with the current file flagged as currently being processed.
-	 */
-	private function setOCRNow(){
-
-		$query = 'SELECT `fileId` FROM `tiki_files` WHERE `ocr_state` = ' . self::OCR_STATUS_PROCESSING . ' LIMIT 1';
-		$result = $this->query($query, []);
-		$result = $result->fetchRow();
-		$this->ocrIngNow = $result['fileId'];
-	}
-
-	/**
 	 * Checks if a file  id can be processed or not.
 	 *
 	 * @throws Exception If the file is not suitable to be OCR'd, throw an exception
@@ -69,67 +57,6 @@ class ocrLib extends TikiLib
 			throw new Exception('The File ID specified does not exist.');
 		}
 
-	}
-
-	/**
-	 * Sets $nextOCRFile with the fileid of the next file scheduled to be processed by the OCR engine.
-	 */
-	public function nextOCRfile(){
-
-		$query = 'SELECT `fileId` FROM `tiki_files` WHERE `ocr_state` = ' . self::OCR_STATUS_PENDING . ' LIMIT 1';
-		$result = $this->query($query, []);
-		$result = $result->fetchRow();
-		$this->nextOCRFile = $result['fileId'];
-	}
-
-	/**
-	 * Sets the database and class vars to reflect that an OCR has finished.
-	 */
-	private function finishedOCR(){
-		// first change the ocr state from processing to finished OCR'ing
-		$query = 'UPDATE `tiki_files` SET `ocr_state` = ' . self::OCR_STATUS_FINISHED . ' WHERE `tiki_files`.`fileId` = '.$this->ocrIngNow.';';
-		$this->query($query);
-		$this->setOCRNow();             // now update the class var to reflect the change in state (remove processing flag)
-	}
-	/**
-	 * Sets set the flag to reflect that it is no longer processing but, still needs to be ORR'd
-	 */
-	private function unsuccessfulOCR(){
-		// first change the ocr state from processing to finished OCR'ing
-		$query = 'UPDATE `tiki_files` SET `ocr_state` = ' . self::OCR_STATUS_PENDING . ' WHERE `tiki_files`.`fileId` = '.$this->ocrIngNow.';';
-		$this->query($query);
-	}
-	/**
-	 * Sets the database and class vars to reflect that the next file in the queue has begun
-	 * @return bool True if there is a file started, false if no file started.
-	 */
-
-	private function startOCR() : bool
-	{
-		if (!$this->nextOCRFile){
-			return false;
-		}
-		// first update the the next file in queue to reflect that it is now processing
-		$query = 'UPDATE `tiki_files` SET `ocr_state` = ' . self::OCR_STATUS_PROCESSING . ' WHERE `tiki_files`.`fileId` = '.$this->nextOCRFile.';';
-		$this->query($query);
-		$this->nextOCRfile();            // now update the class var to reflect the change in state (set next file in queue)
-		$this->setOCRNow();
-		return true;
-	}
-
-	/**
-	 *
-	 * Retrieves the number of files marked as waiting to be processed.
-	 *
-	 * @return int The number of queued files
-	 */
-
-	public function getOCRQueueCount() :int
-	{
-		$query = 'SELECT COUNT(*) FROM `tiki_files` WHERE `ocr_state` = ' . self::OCR_STATUS_PENDING;
-		$result = $this->query($query, []);
-		$result = $result->fetchRow();
-		return (int) reset($result);
 	}
 
 	/**
@@ -242,10 +169,16 @@ class ocrLib extends TikiLib
 	public function OCRfile() : string
 	{
 
-		if (! $this->startOCR()) {
+		if (!$this->nextOCRFile) {
 			return ('No files to OCR');
 		}
-		$this->setOCRNow();
+
+		// Set the database state to reflect that the next file in the queue has begun
+		$this->table('tiki_files')->update(['ocr_state' => self::OCR_STATUS_PROCESSING], ['fileId' => $this->nextOCRFile]);
+		// Set $nextOCRFile with the fileid of the next file scheduled to be processed by the OCR engine.
+		$this->nextOCRFile = $this->table('tiki_files')->fetchOne('fileId', ['ocr_state' => self::OCR_STATUS_PENDING]);
+		// Sets $ocrIngNow with the current file flagged as currently being processed.
+		$this->ocrIngNow = $this->table('tiki_files')->fetchOne('fileId', ['ocr_state' => self::OCR_STATUS_PROCESSING]);
 
 		$file = TikiLib::lib('filegal')->get_file($this->ocrIngNow);
 
@@ -264,10 +197,12 @@ class ocrLib extends TikiLib
 			$unifiedsearchlib->invalidateObject('file', $this->ocrIngNow);
 			$unifiedsearchlib->processUpdateQueue();
 			$finished = $this->ocrIngNow;
-			$this->finishedOCR();
+			// change the ocr state from processing to finished OCR'ing
+			$this->ocrIngNow = $this->table('tiki_files')->update(['ocr_state' => self::OCR_STATUS_FINISHED], ['fileId' => $this->ocrIngNow]);
 
 		} catch (Exception $e) {
-			$this->unsuccessfulOCR();
+			// Set the database flag to reflect that it is no longer processing but, still needs to be ORR'd
+			$this->table('tiki_files')->update(['ocr_state' => self::OCR_STATUS_PENDING], ['fieldId' => $this->ocrIngNow]);
 			if ($file['data'])
 			{
 				unlink($fileName);
