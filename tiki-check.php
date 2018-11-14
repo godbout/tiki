@@ -1859,30 +1859,34 @@ if (! $standalone) {
 	$TesseractVersion = '2.7.0';
 	/** @var string Current Tesseract installed version */
 	$ocrVersion = false;
-	foreach ($packagesToDisplay as $arrayValue){
-		if ($arrayValue['name'] === 'thiagoalessio/tesseract_ocr'){
+	foreach ($packagesToDisplay as $arrayValue) {
+		if ($arrayValue['name'] === 'thiagoalessio/tesseract_ocr') {
 			$ocrVersion = $arrayValue['version'];
 			break;
 		}
 	}
 
-	if (!$ocrVersion){
+	if (! $ocrVersion) {
 		$ocrVersion = tr('Not Installed');
-		$ocrMessage = tr('Tesseract PHP package could not be found. Try installing through Packages.');
+		$ocrMessage = tr(
+			'Tesseract PHP package could not be found. Try installing through Packages.'
+		);
 		$ocrStatus = 'ugly';
-	}elseif (version_compare($ocrVersion,$TesseractVersion,'>=')) {
+	} elseif (version_compare($ocrVersion, $TesseractVersion, '>=')) {
 		$ocrMessage = tr('Tesseract PHP dependency installed.');
 		$ocrStatus = 'good';
-	}else{
-		$ocrMessage = tr('The installed Tesseract version is lower than the required version.');
+	} else {
+		$ocrMessage = tr(
+			'The installed Tesseract version is lower than the required version.'
+		);
 		$ocrStatus = 'ugly';
 	}
 
 	$ocrToDisplay = [[
-						 'name' => tr('Tesseract package'),
+						 'name'    => tr('Tesseract package'),
 						 'version' => $ocrVersion,
-						 'status' => $ocrStatus,
-						 'message' =>$ocrMessage
+						 'status'  => $ocrStatus,
+						 'message' => $ocrMessage,
 					 ]];
 
 	/**
@@ -1890,45 +1894,53 @@ if (! $standalone) {
 	 */
 
 	$ocr = Tikilib::lib('ocr');
-	$langCount = count ($ocr->getTesseractLangs());
+	$langCount = count($ocr->getTesseractLangs());
 
-	if ($langCount >= 63){
+	if ($langCount >= 63) {
 		$ocrMessage = tr('All languages installed');
 		$ocrStatus = 'good';
-	}else{
-		$ocrMessage = tr('Not all languages installed. You may need to install additional languages for multilingual support');
+	} else {
+		$ocrMessage = tr(
+			'Not all languages installed. You may need to install additional languages for multilingual support'
+		);
 		$ocrStatus = 'ugly';
 	}
 
 	$ocrToDisplay[] = [
-		'name' => tr('Tesseract languages'),
-		'status' => $ocrStatus,
-		'message' =>$ocrMessage
+		'name'    => tr('Tesseract languages'),
+		'status'  => $ocrStatus,
+		'message' => $ocrMessage,
 	];
 
 	if ($ocrVersion !== 'Not Installed') {
 		$ocrVersion = $ocr->getTesseractVersion();
-	}else{
+	} else {
 		$ocrVersion = false;
 	}
 
-	if (!$ocrVersion) {
+	if (! $ocrVersion) {
 		$ocrVersion = tr('Not Found');
-		$ocrMessage = tr('Tesseract could not be found. Try installing or configuring $PATH');
+		$ocrMessage = tr(
+			'Tesseract could not be found. Try installing or configuring $PATH'
+		);
 		$ocrStatus = 'ugly';
-	}elseif ($ocr->checkTesseractVersion()){
-		$ocrMessage = tr('Tesseract meets or exceeds the version requirements.');
+	} elseif ($ocr->checkTesseractVersion()) {
+		$ocrMessage = tr(
+			'Tesseract meets or exceeds the version requirements.'
+		);
 		$ocrStatus = 'good';
-	}else {
-		$ocrMessage = tr('The installed Tesseract version is lower than the required version.');
+	} else {
+		$ocrMessage = tr(
+			'The installed Tesseract version is lower than the required version.'
+		);
 		$ocrStatus = 'ugly';
 	}
 
 	$ocrToDisplay[] = [
-		'name' => tr('Tesseract binary'),
+		'name'    => tr('Tesseract binary'),
 		'version' => $ocrVersion,
-		'status' => $ocrStatus,
-		'message' =>$ocrMessage
+		'status'  => $ocrStatus,
+		'message' => $ocrMessage,
 	];
 	$smarty->assign('ocr', $ocrToDisplay);
 }
