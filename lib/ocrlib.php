@@ -63,7 +63,6 @@ class ocrLib extends TikiLib
 	 */
 	public function checkFileGalID(){
 
-		$this->nextOCRfile();
 		$query = 'SELECT 1 FROM `tiki_files` WHERE `fileId` = ' . $this->nextOCRFile . ' LIMIT 1';
 		$result = $this->query($query, []);
 		if (!$result->numRows()){
@@ -107,7 +106,6 @@ class ocrLib extends TikiLib
 
 	private function startOCR() : bool
 	{
-		$this->nextOCRfile();
 		if (!$this->nextOCRFile){
 			return false;
 		}
@@ -259,8 +257,8 @@ class ocrLib extends TikiLib
 		}
 		try {
 			$OCRText = (new TesseractOCR($fileName))->run();
-			$query = 'UPDATE `tiki_files` SET `ocr_data` = \'' . $OCRText
-				. '\' WHERE `tiki_files`.`fileId` = ' . $this->ocrIngNow . ';';
+			$query = 'UPDATE `tiki_files` SET `ocr_data` = ' . $this->qstr($OCRText)
+				. ' WHERE `tiki_files`.`fileId` = ' . $this->ocrIngNow . ';';
 			$this->query($query);
 			$unifiedsearchlib = \TikiLib::lib('unifiedsearch');
 			$unifiedsearchlib->invalidateObject('file', $this->ocrIngNow);
