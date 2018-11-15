@@ -93,7 +93,7 @@ function prefs_theme_list($partial = false)
             ],
             'help' => 'Themes',
             'description' => tra('Select a dark or light navbar (containing horizontal menu, etc.), as styled by the theme.'),
-            'default' => 'dark',
+            'default' => 'light',
         ],
 		'theme_navbar_fixed_topbar_offset' => [
 			'name' => tra('Fixed topbar offset'),
