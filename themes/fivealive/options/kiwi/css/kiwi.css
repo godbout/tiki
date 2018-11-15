@@ -256,7 +256,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label::before {
 .topbar .cssmenu_horiz ul {
   background: #baba25; }
 
-.postbody-title .title > .card-title a.link, .card-header a {
+.blog-postbody-title, .blog-postbody-title a, .postbody-title .title > .card-title a.link, .postbody .card-header a {
   color: #fff; }
 
 .blog-postbody-title h2.panel-title {
