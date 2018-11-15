@@ -20,6 +20,11 @@
 {block name="content"}
 	{if $cant gt 0}
 		{include file="comment/list_inner.tpl"}
+		<script type="text/javascript">
+			$(function() {
+				$('#comment-container').applyColorbox();
+			})
+		</script>
 	{else}
 		{remarksbox type=info}
 			{tr}There are no comments at this time.{/tr}
