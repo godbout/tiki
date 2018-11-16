@@ -180,7 +180,10 @@
 			{jq}
 				var id = '#comment-container-below';
 				$(id).comment_load($(id).data('target'));
-				$(document).ajaxComplete(function(){$(id).tiki_popover();});
+				$(document).ajaxComplete(function(){
+					$(id).tiki_popover();
+					$(id).applyColorbox();
+				});
 			{/jq}
 
 		{/if}
