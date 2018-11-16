@@ -72,31 +72,46 @@
 
 [class*="tracker-status"] {
 	&:before {
-		display: inline-block;
-		font: normal normal normal 14px/1 FontAwesome;
-		font-size: inherit;
-		text-rendering: auto;
-		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		width: 1.28571429em;
-		text-align: center;
+		-webkit-font-smoothing: antialiased;
+		display: inline-block;
+		font-family: "Font Awesome 5 Free";
+		font-style: normal;
+		font-variant: normal;
+		text-rendering: auto;
+		line-height: 1;
 	}
 	&.highlighted:before {
-		color: inherit;
+		color: inherit !important;
 	}
 }
 
+.chosen-container .chosen-results li.result-selected.tracker-status-open:before,
+.chosen-container .chosen-results li.result-selected.tracker-status-pending:before,
+.chosen-container .chosen-results li.result-selected.tracker-status-closed:before {
+	top: 0;
+	width: auto;
+	height: auto;
+	margin-left: 0;
+}
+
+.chosen-container .chosen-results li.result-selected.tracker-status-open:before,
 .tracker-status-open:before {
 	content: "\f111";
 	color: green;
+	font-weight: 900;
 }
 
+.chosen-container .chosen-results li.result-selected.tracker-status-pending:before,
 .tracker-status-pending:before {
 	content: "\f042";
 	color: orange;
+	font-weight: 900;
 }
 
+.chosen-container .chosen-results li.result-selected.tracker-status-closed:before,
 .tracker-status-closed:before {
-	content: "\f05c";
+	content: "\f057";
 	color: grey;
+	font-weight: 400;
 }
