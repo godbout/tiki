@@ -1609,6 +1609,13 @@ class ParserLib extends TikiDb_Bridge
 	{
 		global $prefs;
 
+		// Replace monospaced text
+		$line = preg_replace("/(^|\s)-\+(.*?)\+-/", "$1<code>$2</code>", $line);
+		// Replace bold text
+		$line = preg_replace("/__(.*?)__/", "<strong>$1</strong>", $line);
+		// Replace italic text
+		$line = preg_replace("/\'\'(.*?)\'\'/", "<em>$1</em>", $line);
+
 		if (! $ck_editor) {
 			if ($prefs['feature_hotwords'] == 'y') {
 				// Replace Hotwords before begin
@@ -1620,13 +1627,6 @@ class ParserLib extends TikiDb_Bridge
 				$line = $this->autolinks($line);
 			}
 		}
-
-		// Replace monospaced text
-		$line = preg_replace("/(^|\s)-\+(.*?)\+-/", "$1<code>$2</code>", $line);
-		// Replace bold text
-		$line = preg_replace("/__(.*?)__/", "<strong>$1</strong>", $line);
-		// Replace italic text
-		$line = preg_replace("/\'\'(.*?)\'\'/", "<em>$1</em>", $line);
 
 		if (! $ck_editor) {
 			// Replace definition lists
