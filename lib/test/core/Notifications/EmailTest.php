@@ -65,11 +65,12 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
 		self::$objects['comments'][] = $commentId;
 
+		$md5Header = md5('forum.' . $forumId) . '@' . $_SERVER["SERVER_NAME"];
 		$headers = Email::getEmailThreadHeaders('forum', $commentId);
 
 		$this->assertEquals($messageId, $headers['Message-Id']);
-		$this->assertEquals(md5('forum.' . $forumId) . '@' . $_SERVER["SERVER_NAME"], $headers['In-Reply-To']);
-		$this->assertEquals(md5('forum.' . $forumId) . '@' . $_SERVER["SERVER_NAME"], $headers['References']);
+		$this->assertArrayNotHasKey('In-Reply-To', $headers);
+		$this->assertEquals($md5Header, $headers['References']);
 
 		//2nd post in same thread:
 
@@ -92,7 +93,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertEquals($messageId2, $headers2['Message-Id']);
 		$this->assertEquals($messageId, $headers2['In-Reply-To']);
-		$this->assertEquals($messageId . ', ' . md5('forum.' . $forumId) . '@' . $_SERVER["SERVER_NAME"], $headers2['References']);
+		$this->assertEquals($md5Header . ' ' . $messageId, $headers2['References']);
 
 		//3rd post in same thread (no reply):
 		$messageId3 = '';
@@ -112,8 +113,8 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 		$headers3 = Email::getEmailThreadHeaders('forum', $commentId3);
 
 		$this->assertEquals($messageId3, $headers3['Message-Id']);
-		$this->assertEquals(md5('forum.' . $forumId) . '@' . $_SERVER["SERVER_NAME"], $headers3['In-Reply-To']);
-		$this->assertEquals(md5('forum.' . $forumId) . '@' . $_SERVER["SERVER_NAME"], $headers3['References']);
+		$this->assertArrayNotHasKey('In-Reply-To', $headers3);
+		$this->assertEquals($md5Header, $headers3['References']);
 
 		//4th post in same thread, reply to comment 2:
 		$messageId4 = '';
@@ -135,7 +136,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertEquals($messageId4, $headers4['Message-Id']);
 		$this->assertEquals($messageId2, $headers4['In-Reply-To']);
-		$this->assertEquals($messageId2 . ', ' . $messageId . ', ' . md5('forum.' . $forumId) . '@' . $_SERVER["SERVER_NAME"], $headers4['References']);
+		$this->assertEquals($md5Header . ' ' . $messageId . ' ' . $messageId2, $headers4['References']);
 	}
 
 	/**
@@ -170,11 +171,12 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
 		self::$objects['comments'][] = $commentId;
 
+		$md5Header = md5('blog post.' . $blogPostId) . '@' . $_SERVER["SERVER_NAME"];
 		$headers = Email::getEmailThreadHeaders('blog post', $commentId);
 
 		$this->assertEquals($messageId, $headers['Message-Id']);
-		$this->assertEquals(md5('blog post.' . $blogPostId) . '@' . $_SERVER["SERVER_NAME"], $headers['In-Reply-To']);
-		$this->assertEquals(md5('blog post.' . $blogPostId) . '@' . $_SERVER["SERVER_NAME"], $headers['References']);
+		$this->assertArrayNotHasKey('In-Reply-To', $headers);
+		$this->assertEquals($md5Header, $headers['References']);
 
 		//2nd comment (reply to first - will have a parentId but no in_reply_to in database)
 		$messageId2 = '';
@@ -195,7 +197,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertEquals($messageId2, $headers2['Message-Id']);
 		$this->assertEquals($messageId, $headers2['In-Reply-To']);
-		$this->assertEquals($messageId . ', ' . md5('blog post.' . $blogPostId) . '@' . $_SERVER["SERVER_NAME"], $headers2['References']);
+		$this->assertEquals($md5Header . ' ' . $messageId, $headers2['References']);
 
 		//3rd comment (no reply to other comment):
 		$messageId3 = '';
@@ -215,8 +217,8 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 		$headers3 = Email::getEmailThreadHeaders('blog post', $commentId3);
 
 		$this->assertEquals($messageId3, $headers3['Message-Id']);
-		$this->assertEquals(md5('blog post.' . $blogPostId) . '@' . $_SERVER["SERVER_NAME"], $headers3['In-Reply-To']);
-		$this->assertEquals(md5('blog post.' . $blogPostId) . '@' . $_SERVER["SERVER_NAME"], $headers3['References']);
+		$this->assertArrayNotHasKey('In-Reply-To', $headers3);
+		$this->assertEquals($md5Header, $headers3['References']);
 
 		//4th comment, reply to comment 2:
 		$messageId4 = '';
@@ -237,6 +239,6 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 
 		$this->assertEquals($messageId4, $headers4['Message-Id']);
 		$this->assertEquals($messageId2, $headers4['In-Reply-To']);
-		$this->assertEquals($messageId2 . ', ' . $messageId . ', ' . md5('blog post.' . $blogPostId) . '@' . $_SERVER["SERVER_NAME"], $headers4['References']);
+		$this->assertEquals($md5Header . ' ' . $messageId  . ' ' . $messageId2, $headers4['References']);
 	}
 }

@@ -383,7 +383,7 @@ class HistLib extends TikiLib
 
 		// WARNING: This assumes the current version of each page will be found in tiki_history
 		$query = "select distinct ta.`action`, ta.`lastModif`, ta.`user`, ta.`ip`, ta.`object`, thf.`comment`, thf.`version`, thf.`page_id` from `tiki_actionlog` ta
-			inner join (select th.`version`, th.`comment`, th.`pageName`, th.`lastModif`, tp.`page_id` from `tiki_history` as th LEFT OUTER JOIN `tiki_pages` tp ON tp.`pageName` = th.`pageName` AND tp.`version` = th.`version`) as thf on ta.`object`=thf.`pageName` and ta.`lastModif`=thf.`lastModif` and ta.`objectType`='wiki page' " . $categjoin . $where . " order by ta." . $this->convertSortMode($sort_mode);
+			inner join (select th.`version`, th.`comment`, th.`pageName`, th.`lastModif`, tp.`page_id` from `tiki_history` as th LEFT OUTER JOIN `tiki_pages` tp ON tp.`pageName` = th.`pageName` AND tp.`version` = th.`version`) as thf on ta.`object`=thf.`pageName` and ta.`lastModif`=thf.`lastModif` and ta.`objectType`='wiki page' and ta.`action` <> 'Removed version' " . $categjoin . $where . " order by ta." . $this->convertSortMode($sort_mode);
 
 		// TODO: Optimize. This fetches all records just to be able to give a count.
 		$result = Perms::filter([ 'type' => 'wiki page' ], 'object', $this->fetchAll($query, $bindvars), [ 'object' => 'object' ], 'view');

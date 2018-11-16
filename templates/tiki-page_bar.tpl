@@ -70,9 +70,9 @@
 				{/if}
 				{if $prefs.flaggedrev_approval neq 'y' or ! $revision_approval or $lastVersion eq $revision_displayed}
 					{if isset($page_ref_id)}
-						{button _keepall='y' href="tiki-editpage.php" page=$page page_ref_id=$page_ref_id _class=$thisPageClass _text="{tr}Edit{/tr}" _title="{tr}Edit this page{/tr}"}
+						{button _keepall='y' href="tiki-editpage.php" page=$page page_ref_id=$page_ref_id _class="$thisPageClass mb-2" _text="{tr}Edit{/tr}" _title="{tr}Edit this page{/tr}"}
 					{else}
-						{button _keepall='y' href="tiki-editpage.php" page=$page _class=$thisPageClass _text="{tr}Edit{/tr}" _title="{tr}Edit this page{/tr}"}
+						{button _keepall='y' href="tiki-editpage.php" page=$page _class="$thisPageClass mb-2" _text="{tr}Edit{/tr}" _title="{tr}Edit this page{/tr}"}
 					{/if}
 				{elseif $tiki_p_wiki_view_latest eq 'y'}
 					{self_link latest=1 _class="btn btn-warning"}
@@ -83,26 +83,26 @@
 
 			{if $page|lower ne 'sandbox'}
 				{if $tiki_p_rename eq 'y' && (isset($editable) and $editable)}
-					{button _keepall='y' href="tiki-rename_page.php" page=$page _text="{tr}Rename{/tr}"}
+					{button _keepall='y' _class="mb-2" href="tiki-rename_page.php" page=$page _text="{tr}Rename{/tr}"}
 				{/if}
 				{if $prefs.feature_wiki_usrlock eq 'y' and $user and $tiki_p_lock eq 'y'}
 					{if !$lock}
-						<a class="btn btn-primary" href="{bootstrap_modal controller=wiki action=lock_pages checked=$page}">
+						<a class="btn btn-primary mb-2" href="{bootstrap_modal controller=wiki action=lock_pages checked=$page}">
 							{tr}Lock{/tr}
 						</a>
 					{elseif $tiki_p_admin_wiki eq 'y' or $user eq $page_user}
-						<a class="btn btn-primary" href="{bootstrap_modal controller=wiki action=unlock_pages checked=$page}">
+						<a class="btn btn-primary mb-2" href="{bootstrap_modal controller=wiki action=unlock_pages checked=$page}">
 							{tr}Unlock{/tr}
 						</a>
 					{/if}
 				{/if}
 				{if $prefs.feature_history eq 'y' and $tiki_p_wiki_view_history eq 'y'}
-					{button _keepall='y' _type="info" href="tiki-pagehistory.php" page=$page _text="{tr}History{/tr}"}
+					{button _keepall='y' _type="info mb-2" href="tiki-pagehistory.php" page=$page _text="{tr}History{/tr}"}
 				{/if}
 			{/if}
 
 			{if $prefs.feature_source eq 'y' and $tiki_p_wiki_view_source eq 'y'}
-				{button _keepall='y' _type="info" href="tiki-pagehistory.php" page=$page source="0" _text="{tr}Source{/tr}"}
+				{button _keepall='y' _type="info mb-2" href="tiki-pagehistory.php" page=$page source="0" _text="{tr}Source{/tr}"}
 			{/if}
 
 			{if $prefs.feature_wiki_comments eq 'y'
@@ -120,7 +120,7 @@
 						{/jq}
 						{/if}
 
-						<a class="btn btn-secondary" id="comment-toggle" href="{service controller=comment action=list type="wiki page" objectId=$page}#comment-container">
+						<a class="btn btn-secondary mb-2" id="comment-toggle" href="{service controller=comment action=list type="wiki page" objectId=$page}#comment-container">
 							{tr}Comments{/tr}
 							{if $count_comments}
 								&nbsp;<span class="count_comments badge badge-secondary">{$count_comments}</span>
@@ -155,13 +155,13 @@
 					{/capture}
 
 					{if (isset($atts) and $atts|@count gt 0) || $editable}
-						{button href="#attachments" _flip_id="attzone{if isset($pagemd5)}{$pagemd5}{/if}" _type="secondary" _text=$thistext _flip_default_open=$prefs.w_displayed_default _flip_hide_text="n"}
+						{button href="#attachments" _flip_id="attzone{if isset($pagemd5)}{$pagemd5}{/if}" _type="secondary mb-2" _text=$thistext _flip_default_open=$prefs.w_displayed_default _flip_hide_text="n"}
 					{/if}
 				{/if}{* attachments *}
 
 			{/if}
 			{if $more_section|trim neq ''}
-				<div class="btn-group dropup">
+				<div class="btn-group dropup mb-2">
 					<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">{tr}More{/tr}</button>
 					<div class="dropdown-menu" role="menu">
 						{$more_section}

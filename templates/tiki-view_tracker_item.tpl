@@ -14,11 +14,11 @@
 				{icon name='menu-extra'}
 			</a>
 			<ul class="dropdown-menu dropdown-menu-right">
-				<h6 class="dropdown-header">
+				<li class="dropdown-title">
 					{tr}Tracker item actions{/tr}
-				</h6>
-				<li class="divider"></li>
-				<li>
+				</li>
+				<li class="dropdown-divider"></li>
+				<li class="dropdown-item">
 					{if $viewItemPretty.override}
 						{self_link print='y' vi_tpl={$viewItemPretty.value}}
 							{icon name="print"} {tr}Print{/tr}
@@ -29,33 +29,36 @@
 						{/self_link}
 					{/if}
 				</li>
-                <li>
-					{if $pdf_export eq 'y'}
+
+                {if $pdf_export eq 'y'}
+					<li class="dropdown-item">
 						<a href="{$smarty.server.PHP_SELF}?{query pdf='y'}">
 							{icon name="pdf"} {tr}PDF{/tr}
 						</a>
-					{/if}
-				</li>
+					</li>
+                {/if}
 
 				{if $item_info.logs.cant|default:null}
-					<li>
+					<li class="dropdown-item">
 						<a href="tiki-tracker_view_history.php?itemId={$itemId}">
 							{icon name="history"} {tr}History{/tr}
 						</a>
 					</li>
 				{/if}
 				{if $canRemove}
-					<li>
+					<li class="dropdown-item">
 						{self_link remove=$itemId}
 							{icon name="delete"} {tr}Delete{/tr}
 						{/self_link}
 					</li>
 				{/if}
-				<li>
-					{monitor_link type=trackeritem object=$itemId linktext="{tr}Notification{/tr}" class="link" title=""}
-				</li>
+				{if $prefs.monitor_enabled eq 'y'}
+					<li class="dropdown-item">
+						{monitor_link type=trackeritem object=$itemId linktext="{tr}Notification{/tr}" class="link" title=""}
+					</li>
+				{/if}
 				{if $prefs.feature_user_watches eq 'y' and $tiki_p_watch_trackers eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						{if $user_watching_tracker ne 'y'}
 							<a href="tiki-view_tracker_item.php?trackerId={$trackerId}&amp;itemId={$itemId}&amp;watch=add">
 								{icon name="watch"} {tr}Monitor{/tr}
@@ -67,7 +70,7 @@
 						{/if}
 					</li>
 					{if $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
-						<li>
+						<li class="dropdown-item">
 							<a href="tiki-object_watches.php?objectId={$itemId|escape:"url"}&amp;watch_event=tracker_item_modified&amp;objectType=tracker+{$trackerId}&amp;objectName={$tracker_info.name|escape:"url"}&amp;objectHref={'tiki-view_tracker_item.php?trackerId='|cat:$trackerId|cat:'&itemId='|cat:$itemId|escape:"url"}">
 								{icon name="watch-group"} {tr}Group monitor{/tr}
 							</a>
@@ -75,7 +78,7 @@
 					{/if}
 				{/if}
 				{if $prefs.sefurl_short_url eq 'y'}
-					<li>
+					<li class="dropdown-item">
 						<a id="short_url_link" href="#" onclick="(function() { $(document.activeElement).attr('href', 'tiki-short_url.php?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title)); })();">
 							{icon name="link"} {tr}Get a short URL{/tr}
 							{assign var="hasPageAction" value="1"}
@@ -83,15 +86,15 @@
 					</li>
 				{/if}
 				{if $tiki_p_admin_trackers eq "y"}
-					<li>
+					<li class="dropdown-item">
 						{permission_link mode=text type=trackeritem id=$itemId permType=trackers parentId=$trackerId}
 					</li>
 				{/if}
-				<li>
-					{if $prefs.user_favorites eq 'y' and isset($itemId)}
+                {if $prefs.user_favorites eq 'y' and isset($itemId)}
+					<li class="dropdown-item">
 						{favorite button_classes="favorite-icon" label="{tr}Favorite{/tr}"  type="trackeritem" object=$itemId }
-					{/if}
-				</li>
+					</li>
+                {/if}
 			</ul>
 			{if ! $js}</li></ul>{/if}
 		</div>
@@ -177,7 +180,10 @@
 			{jq}
 				var id = '#comment-container-below';
 				$(id).comment_load($(id).data('target'));
-				$(document).ajaxComplete(function(){$(id).tiki_popover();});
+				$(document).ajaxComplete(function(){
+					$(id).tiki_popover();
+					$(id).applyColorbox();
+				});
 			{/jq}
 
 		{/if}

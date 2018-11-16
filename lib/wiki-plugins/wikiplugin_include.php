@@ -300,9 +300,9 @@ function wikiplugin_include($dataIn, $params)
 			$tip = tr('Include Plugin') . ' | ' . tr('Edit the included page:') . ' &quot;' . $page . '&quot;';
 			$returnto = ! empty($GLOBALS['page']) ? $GLOBALS['page'] : $_SERVER['REQUEST_URI'];
 			if (empty($_REQUEST['display']) || $_REQUEST['display'] != 'pdf') {
-				$text .= '<a class="editplugin tips" ' . // ironically smarty_block_self_link doesn't work for this! ;)
+				$text .= '<a class="editplugin" ' . // ironically smarty_block_self_link doesn't work for this! ;)
 				smarty_block_ajax_href(['template' => 'tiki-editpage.tpl'], 'tiki-editpage.php?page=' . urlencode($page) . '&returnto=' . urlencode($returnto), $smarty, $tmp = false) . '>' .
-				smarty_function_icon([ '_id' => 'page_edit', 'title' => $tip, 'class' => 'icon tips'], $smarty->getEmptyInternalTemplate()) . '</a>';
+				smarty_function_icon(['name' => 'edit', 'iclass' => 'tips', 'ititle' => $tip], $smarty->getEmptyInternalTemplate()) . '</a>';
 			}
 		}
 	}
