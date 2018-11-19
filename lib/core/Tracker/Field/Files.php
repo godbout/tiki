@@ -626,12 +626,22 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 				if (isset($out[$id])) {
 					$out2["$id"] = $out[$id];
 				} else {
+					$itemId = $this->getItemId();
+					$smarty = TikiLib::lib('smarty');
+					$smarty->loadPlugin('smarty_function_object_link');
+
 					Feedback::warning(tr(
-						'File #%0 missing (was attached to trackerfield #%1 on item #%2)',
+						'File #%0 missing (was attached to trackerfield "%1" on item "%2")',
 						$id,
-						$this->getConfiguration('fieldId'),
-						$this->getItemId()
-					));
+						$this->getConfiguration('permName'),
+						smarty_function_object_link(
+							[
+								'id'    => $itemId,
+								'type'  => 'trackeritem'
+							],
+							$smarty
+						)
+				));
 				}
 			}
 			$out = $out2;
