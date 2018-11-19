@@ -1,6 +1,6 @@
 <ul class="{if $bs_menu_class}{$bs_menu_class}{else}navbar-nav mr-auto{if $prefs.jquery_smartmenus_enable eq 'y'} {*sm*}{if not empty($prefs.jquery_smartmenus_mode)} sm-{$prefs.jquery_smartmenus_mode}{/if}{/if}{/if}">
 	{foreach from=$list item=item}
-		{if $item.children|default:null|count}
+		{if not empty($item.children)}
 			<li class="nav-item dropdown{if $item.selected|default:null} active{/if} {$item.class|escape}">
 				<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
 					{tr}{$item.name}{/tr}
