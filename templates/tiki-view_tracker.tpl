@@ -10,11 +10,11 @@
 <div class="t_navbar mb-4">
 	{if $tiki_p_create_tracker_items eq 'y' && $prefs.tracker_legacy_insert neq 'y'}
 		{if $fields_count gt 0}
-			<a class="btn btn-primary" href="{bootstrap_modal controller=tracker action=insert_item trackerId=$trackerId}">
+			<a class="btn btn-primary" href="{bootstrap_modal controller=tracker action=insert_item trackerId=$trackerId size='modal-lg'}">
 				{icon name="create"} {tr}Create Item{/tr}
 			</a>
 		{else}
-			<a class="btn btn-primary disabled" aria-disabled="true" href="{bootstrap_modal controller=tracker action=insert_item trackerId=$trackerId}">
+			<a class="btn btn-primary disabled" aria-disabled="true" href="{bootstrap_modal controller=tracker action=insert_item trackerId=$trackerId size='modal-lg'}">
 				{icon name="create"} {tr}Create Item{/tr}
 			</a>
 		{/if}
@@ -243,7 +243,7 @@
 												{strip}
 													{if $prefs.tracker_legacy_insert neq 'y'}
 														<action>
-															<a href="{bootstrap_modal controller=tracker action=update_item trackerId=$trackerId itemId=$items[user].itemId}"
+															<a href="{bootstrap_modal controller=tracker action=update_item trackerId=$trackerId itemId=$items[user].itemId size='modal-lg'}"
 																onclick="$('[data-toggle=popover]').popover('hide');"
 															>
 																{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
@@ -260,7 +260,7 @@
 													{/if}
 													{if $tiki_p_create_tracker_items eq 'y' and $prefs.tracker_clone_item eq 'y'}
 														<action>
-															<a href="{bootstrap_modal controller=tracker action=clone_item trackerId=$trackerId itemId=$items[user].itemId}"
+															<a href="{bootstrap_modal controller=tracker action=clone_item trackerId=$trackerId itemId=$items[user].itemId size='modal-lg'}"
 																onclick="$('[data-toggle=popover]').popover('hide');"
 															>
 																{icon name="copy" _menu_text='y' _menu_icon='y' alt="{tr}Duplicate{/tr}"}
