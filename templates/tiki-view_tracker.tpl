@@ -243,7 +243,7 @@
 												{strip}
 													{if $prefs.tracker_legacy_insert neq 'y'}
 														<action>
-															<a href="{bootstrap_modal controller=tracker action=update_item trackerId=$trackerId itemId=$items[user].itemId}"
+															<a href="{bootstrap_modal controller=tracker action=update_item trackerId=$trackerId itemId=$items[user].itemId size='modal-lg'}"
 																onclick="$('[data-toggle=popover]').popover('hide');"
 															>
 																{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
@@ -260,7 +260,7 @@
 													{/if}
 													{if $tiki_p_create_tracker_items eq 'y' and $prefs.tracker_clone_item eq 'y'}
 														<action>
-															<a href="{bootstrap_modal controller=tracker action=clone_item trackerId=$trackerId itemId=$items[user].itemId}"
+															<a href="{bootstrap_modal controller=tracker action=clone_item trackerId=$trackerId itemId=$items[user].itemId size='modal-lg'}"
 																onclick="$('[data-toggle=popover]').popover('hide');"
 															>
 																{icon name="copy" _menu_text='y' _menu_icon='y' alt="{tr}Duplicate{/tr}"}
