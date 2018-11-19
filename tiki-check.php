@@ -852,7 +852,21 @@ if ($s >= 30 && $s <= 90) {
 		'message' => tra('The max_input_time is at') . ' ' . $s . '. ' . tra('It is likely that some scripts, such as admin functions, will not finish in this time! The max_input_time should be increased to at least 30 seconds.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
 	);
 }
-
+// max_file_uploads
+$max_file_uploads = ini_get('max_file_uploads');
+if ($max_file_uploads) {
+	$php_properties['max_file_uploads'] = array(
+		'fitness' => tra('info'),
+		'setting' => $max_file_uploads,
+		'message' => tra('The max_file_uploads is at') . ' ' . $max_file_uploads . '. ' . tra('This is the maximum number of files allowed to be uploaded simultaneously.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
+	);
+}else {
+	$php_properties['max_file_uploads'] = array(
+		'fitness' => tra('info'),
+		'setting' => 'Not Available',
+		'message' => tra('The maximum number of files allowed to be uploaded is not available')
+	);
+}
 // upload_max_filesize
 $upload_max_filesize = ini_get('upload_max_filesize');
 $s = trim($upload_max_filesize);
