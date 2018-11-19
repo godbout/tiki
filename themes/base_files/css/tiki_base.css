@@ -3177,6 +3177,10 @@ body.fullscreen.tiki.navbar-padding {
 .col-sm-2 .form-inline .form-control, .col-md-2 .form-inline .form-control {
   width: 100%; }
 
+.form-group.row {
+  margin-left: 0;
+  margin-right: 0; }
+
 .side-col-toggle-container {
   width: 100%;
   height: 1.5rem;

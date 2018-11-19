@@ -38,14 +38,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="hidden">
+							<tr class="d-none">
 								<td>
 									<div class="input-group input-group-sm">
 										<div class="input-group-prepend">
 											<span class="input-group-text">{icon name=sort}</span>
 										</div>
-										<input type="text" class="field-label form-control" />
-										<div class="input-group-btn">
+										<input type="text" class="field-label form-control">
+										<div class="input-group-append">
 											<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 												<span class="align">{tr}Left{/tr}</span>
 												<input class="display-align" type="hidden" value="left">
@@ -60,10 +60,10 @@
 									</div>
 								</td>
 								<td><span class="field">Field Name</span>:<span class="mode">Mode</span></td>
-								<td><input class="primary" type="radio" name="pk" /></td>
-								<td><input class="unique-key" type="checkbox" /></td>
-								<td><input class="read-only" type="checkbox" /></td>
-								<td><input class="export-only" type="checkbox" /></td>
+								<td><input class="primary" type="radio" name="pk"></td>
+								<td><input class="unique-key" type="checkbox"></td>
+								<td><input class="read-only" type="checkbox"></td>
+								<td><input class="export-only" type="checkbox"></td>
 								<td class="text-right"><button class="remove">{icon name=remove}</button></td>
 							</tr>
 							{foreach $schema->getColumns() as $column}
@@ -73,8 +73,8 @@
 											<div class="input-group-prepend">
 												<span class="input-group-text">{icon name=sort}</span>
 											</div>
-											<input type="text" class="field-label form-control" style="width: auto" value="{$column->getLabel()|escape}" />
-											<div class="input-group-btn">
+											<input type="text" class="field-label form-control" value="{$column->getLabel()|escape}">
+											<div class="input-group-append">
 												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 													<span class="align">{$column->getDisplayAlign()|ucfirst|tra}</span>
 													<input class="display-align" type="hidden" value="{$column->getDisplayAlign()|escape}">
@@ -94,10 +94,10 @@
 											<span class="mode">{$column->getMode()|escape}</span>
 										</a>
 									</td>
-									<td><input class="primary" type="radio" name="pk" {if $column->isPrimaryKey()} checked {/if} /></td>
-									<td><input class="unique-key" type="checkbox" {if $column->isUniqueKey()} checked {/if} /></td>
-									<td><input class="read-only" type="checkbox" {if $column->isReadOnly()} checked {/if} /></td>
-									<td><input class="export-only" type="checkbox" {if $column->isExportOnly()} checked {/if} /></td>
+									<td><input class="primary" type="radio" name="pk" {if $column->isPrimaryKey()} checked {/if}></td>
+									<td><input class="unique-key" type="checkbox" {if $column->isUniqueKey()} checked {/if}></td>
+									<td><input class="read-only" type="checkbox" {if $column->isReadOnly()} checked {/if}></td>
+									<td><input class="export-only" type="checkbox" {if $column->isExportOnly()} checked {/if}></td>
 									<td class="text-right"><button class="remove">{icon name=remove}</button></td>
 								</tr>
 							{/foreach}
@@ -114,12 +114,12 @@
 								</td>
 								<td>
 									<a href="{service controller=tabular action=select trackerId=$trackerId}" class="btn btn-primary add-field">{tr}Select Mode{/tr}</a>
-									<textarea name="fields" class="hidden">{$schema->getFormatDescriptor()|json_encode}</textarea>
+									<textarea name="fields" class="d-none">{$schema->getFormatDescriptor()|json_encode}</textarea>
 								</td>
 								<td colspan="3">
 									<div class="radio">
 										<label>
-											<input class="primary" type="radio" name="pk" {if ! $schema->getPrimaryKey()} checked {/if} />
+											<input class="primary" type="radio" name="pk" {if ! $schema->getPrimaryKey()} checked {/if}>
 											{tr}No primary key{/tr}
 										</label>
 									</div>
@@ -147,14 +147,14 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr class="hidden">
+							<tr class="d-none">
 								<td>
 									<div class="input-group input-group-sm">
 										<div class="input-group-prepend">
 											<span class="input-group-text">{icon name=sort}</span>
 										</div>
-										<input type="text" class="filter-label form-control" value="Label" />
-										<div class="input-group-btn">
+										<input type="text" class="filter-label form-control" value="Label">
+										<div class="input-group-append">
 											<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 												<span class="position-label">{tr}Default{/tr}</span>
 												<input class="position" type="hidden" value="default">
@@ -174,11 +174,11 @@
 								<tr>
 									<td>
 										<div class="input-group input-group-sm">
-											<div class="input-group-append">
+											<div class="input-group-prepend">
 												<span class="input-group-text">{icon name=sort}</span>
 											</div>
-											<input type="text" class="field-label form-control" value="{$filter->getLabel()|escape}" />
-											<div class="input-group-btn">
+											<input type="text" class="field-label form-control" value="{$filter->getLabel()|escape}">
+											<div class="input-group-append">
 												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 													<span class="position-label">{$filter->getPosition()|ucfirst|tra}</span>
 													<input class="position" type="hidden" value="{$filter->getPosition()|escape}">
@@ -208,7 +208,7 @@
 								</td>
 								<td>
 									<a href="{service controller=tabular action=select_filter trackerId=$trackerId}" class="btn btn-primary add-filter">{tr}Select Mode{/tr}</a>
-									<textarea name="filters" class="hidden">{$filterCollection->getFilterDescriptor()|json_encode}</textarea>
+									<textarea name="filters" class="d-none">{$filterCollection->getFilterDescriptor()|json_encode}</textarea>
 								</td>
 							</tr>
 						</tfoot>
