@@ -1191,6 +1191,7 @@ class WikiLib extends TikiLib
 				}
 			}
 
+			asort($ret);
 			return $ret;
 		} else {
 			return [];
