@@ -129,12 +129,16 @@ were migrated from the folder "vendor" to the folder "vendor_bundled".
 It looks like your instance still has these libraries in the vendor folder, to avoid issues your "vendor/autoload.php"
 was renamed to "vendor/autoload-disabled.php".
 
-If you are sure that want to use the libraries in addition to the ones bundled with tiki, please rename back your
-"vendor/autoload.php" and place a file with the name "do_not_clean.txt" in the vendor folder.
+If you are sure that you want to use the libraries in addition to the ones bundled with tiki, please rename 
+"vendor/autoload-disabled.php" back to "vendor/autoload.php" and place a file with the name "do_not_clean.txt" in the vendor folder.
 
-Tiki will not load your "vendor/autoload.php" when is detected as being a stalled folder unless a file called
-"vendor/do_not_clean.txt" exists. That will also prevent, in future runs of composer, the automatic disabling of
+Tiki will not load your "vendor/autoload.php" when is detected as being a stale folder unless a file called
+"vendor/do_not_clean.txt" exists. A "vendor/do_not_clean.txt" will prevent, in future runs of composer, the automatic disabling of
 "vendor/autoload.php".
+
+Most probably you did not add your own custom libraries in addition to the ones bundled with tiki, so you can empty your "vendor" directory
+with: "rm -rf vendor/*".
+If you have your own custom libraries, you should remove all the other ones from the "vendor" directory.
 EOD;
 
 					file_put_contents($oldVendorFolder . '/autoload-disabled-README.txt', $message . "\n");
