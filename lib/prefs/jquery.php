@@ -157,5 +157,23 @@ function prefs_jquery_list($partial = false)
 				'jquery_smartmenus_enable',
 			],
 		],
+		'jquery_ui_modals_draggable' => [
+			'name' => tra('Draggable Modals'),
+			'description' => tra('Modal popups can be moved around.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'dependencies' => [
+				'feature_jquery_ui',
+			],
+		],
+		'jquery_ui_modals_resizable' => [
+			'name' => tra('Resizable Modals'),
+			'description' => tra('Modal popups can be resized.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'dependencies' => [
+				'feature_jquery_ui',
+			],
+		],
 	];
 }

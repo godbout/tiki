@@ -263,6 +263,39 @@ var syntaxHighlighter = {
 ';
 	}
 
+	if ($prefs['jquery_ui_modals_draggable'] === 'y') {
+		$js .= '
+$(document).on("shown.bs.modal", function (event) {
+	$(event.target).find(".modal-dialog")
+		.css({left: "", top: ""})
+		.draggable({
+			 handle: ".modal-header",
+			 cursor: "grabbing"
+		});
+});
+';
+		$headerlib->add_css('.modal-header {cursor: grab}');
+	}
+
+	if ($prefs['jquery_ui_modals_resizable'] === 'y') {
+		$js .= '
+$(document).on("tiki.modal.redraw", function (event) {
+	var $modalContent = $(event.target);
+	if ($modalContent.is(".ui-resizable")) {
+		$modalContent.resizable( "destroy" );
+	}
+	$modalContent
+		.css({width: "", height: ""})	
+		.resizable({
+			minHeight: 100,
+			minWidth: 200
+		})
+		.find(".modal-body").css({
+			"overflow": "auto"
+		});
+});';
+	}
+
 	$headerlib->add_js($js);
 }
 

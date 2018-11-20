@@ -205,6 +205,8 @@
 					{preference name=wiki_heading_links}
 					{preference name=feature_equal_height_rows_js}
 					{preference name=feature_conditional_formatting}
+					{preference name=jquery_ui_modals_draggable}
+					{preference name=jquery_ui_modals_resizable}
 				</div>
 			</fieldset>
 			<hr>
