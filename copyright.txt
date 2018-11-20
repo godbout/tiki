@@ -12,7 +12,7 @@ This is how we implement the Tiki Social Contract.
 http://tiki.org/Social+Contract
 
 List of members of the Community
-As of 2018-10-30, the community has:
+As of 2018-11-20, the community has:
   * 634 members on SourceForge.net,
   * 345 of those people who made at least one code commit
 
@@ -132,8 +132,8 @@ SF Role: Developer
 Nickname: amnabilal
 Name: Amna Bilal
 First Commit: 2016-05-19
-Last Commit: 2018-10-30
-Number of Commits: 336
+Last Commit: 2018-11-12
+Number of Commits: 353
 SF Role: Developer
 
 Nickname: amotl
@@ -307,8 +307,8 @@ SF Role: Developer
 Nickname: benoitg
 Name: Benoit GrÃ©goire
 First Commit: 2018-03-17
-Last Commit: 2018-10-01
-Number of Commits: 2
+Last Commit: 2018-11-08
+Number of Commits: 7
 SF Role: Developer
 
 Nickname: bergmann
@@ -368,11 +368,9 @@ Name: Bluy Brink
 SF Role: Developer
 
 Nickname: bnk18
-Name: BNk
 First Commit: 2018-08-21
-Last Commit: 2018-09-26
-Number of Commits: 7
-SF Role: Developer
+Last Commit: 2018-10-31
+Number of Commits: 9
 
 Nickname: bobenrieth
 SF Role: Developer
@@ -523,8 +521,8 @@ SF Role: Developer
 Nickname: chibaguy
 Name: Gary Cunningham-Lee
 First Commit: 2006-02-04
-Last Commit: 2018-10-30
-Number of Commits: 3897
+Last Commit: 2018-11-15
+Number of Commits: 3906
 SF Role: Admin
 
 Nickname: chris_holman
@@ -777,8 +775,8 @@ SF Role: Developer
 Nickname: drsassafras
 Name: Dr. Sassafras
 First Commit: 2014-04-03
-Last Commit: 2018-10-03
-Number of Commits: 495
+Last Commit: 2018-11-14
+Number of Commits: 515
 SF Role: Developer
 
 Nickname: duebel
@@ -1511,8 +1509,8 @@ SF Role: Developer
 Nickname: jonnybradley
 Name: jonny Bradley
 First Commit: 2007-08-15
-Last Commit: 2018-10-30
-Number of Commits: 11506
+Last Commit: 2018-11-20
+Number of Commits: 11538
 SF Role: Admin
 
 Nickname: jorgercosta
@@ -1598,8 +1596,8 @@ SF Role: Developer
 Nickname: jyhem
 Name: Jean-Marc Libs
 First Commit: 2006-12-11
-Last Commit: 2018-09-27
-Number of Commits: 1399
+Last Commit: 2018-11-20
+Number of Commits: 1402
 SF Role: Admin
 
 Nickname: jyhemsvnbot
@@ -1689,8 +1687,8 @@ SF Role: Developer
 Nickname: kroky6
 Name: Victor Emanouilov
 First Commit: 2016-08-02
-Last Commit: 2018-10-29
-Number of Commits: 822
+Last Commit: 2018-11-19
+Number of Commits: 833
 SF Role: Developer
 
 Nickname: krose
@@ -1878,14 +1876,14 @@ SF Role: Developer
 
 Nickname: luci
 First Commit: 2018-05-03
-Last Commit: 2018-10-12
-Number of Commits: 4
+Last Commit: 2018-11-06
+Number of Commits: 5
 
 Nickname: luciash
 Name: luciash d&#39; being
 First Commit: 2003-08-05
-Last Commit: 2018-10-12
-Number of Commits: 1821
+Last Commit: 2018-11-16
+Number of Commits: 1828
 SF Role: Admin
 
 Nickname: lueders
@@ -1906,8 +1904,8 @@ SF Role: Developer
 
 Nickname: lyabs243
 First Commit: 2018-08-28
-Last Commit: 2018-10-12
-Number of Commits: 5
+Last Commit: 2018-11-06
+Number of Commits: 12
 
 Nickname: m_akat
 Name: loxs
@@ -1967,8 +1965,8 @@ SF Role: Developer
 Nickname: marclaporte
 Name: Marc Laporte
 First Commit: 2003-11-28
-Last Commit: 2018-10-24
-Number of Commits: 1883
+Last Commit: 2018-11-13
+Number of Commits: 1884
 SF Role: Admin
 
 Nickname: marcmont
@@ -2611,15 +2609,15 @@ SF Role: Developer
 Nickname: polynamaude
 Name: Polyna-Maude Racicot-Summerside
 First Commit: 2018-09-19
-Last Commit: 2018-10-09
-Number of Commits: 4
+Last Commit: 2018-10-31
+Number of Commits: 5
 SF Role: Developer
 
 Nickname: pom2ter
 Name: Benoit Roy
 First Commit: 2016-01-20
-Last Commit: 2018-10-29
-Number of Commits: 114
+Last Commit: 2018-11-16
+Number of Commits: 119
 SF Role: Developer
 
 Nickname: popovich
@@ -2765,8 +2763,8 @@ SF Role: Developer
 Nickname: rjsmelo
 Name: Ricardo Melo
 First Commit: 2015-10-08
-Last Commit: 2018-10-24
-Number of Commits: 805
+Last Commit: 2018-11-09
+Number of Commits: 807
 SF Role: Developer
 
 Nickname: rleibman
@@ -2797,8 +2795,8 @@ Number of Commits: 1
 Nickname: robertokir
 Name: Roberto Kirschbaum
 First Commit: 2017-06-27
-Last Commit: 2018-10-30
-Number of Commits: 213
+Last Commit: 2018-11-20
+Number of Commits: 222
 SF Role: Admin, Developer, Release Technicians
 
 Nickname: robertplummer
@@ -3357,8 +3355,8 @@ SF Role: Developer
 Nickname: xavidp
 Name: Xavier de Pedro
 First Commit: 2005-07-08
-Last Commit: 2018-09-25
-Number of Commits: 2021
+Last Commit: 2018-11-05
+Number of Commits: 2023
 SF Role: Admin
 
 Nickname: xbtheria
@@ -3386,8 +3384,8 @@ SF Role: Developer
 Nickname: xorti
 Name: Jorge SÃ¡ Pereira
 First Commit: 2018-03-29
-Last Commit: 2018-10-30
-Number of Commits: 166
+Last Commit: 2018-11-20
+Number of Commits: 190
 SF Role: Developer
 
 Nickname: yanturgeon
@@ -3405,8 +3403,8 @@ SF Role: Developer
 Nickname: yonixxx
 Name: Bernard Sfez
 First Commit: 2008-02-25
-Last Commit: 2018-10-27
-Number of Commits: 489
+Last Commit: 2018-11-08
+Number of Commits: 495
 SF Role: Admin, Developer
 
 Nickname: ysoya
