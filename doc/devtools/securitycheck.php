@@ -62,6 +62,10 @@ $safePaths = [
 
 	/* The following need to be refactored to a lib */
 	'\./tiki-testGD.php',
+
+	/* vendor and vendor_bundled dirs, not tiki files*/
+	'\./vendor_bundled/*',
+	'\./vendor/*',
 ];
 
 if (! file_exists('tiki-setup.php')) {
@@ -140,7 +144,7 @@ function includeonly_pattern() // {{{
  */
 function includeonly_pattern3() // {{{
 {
-	return "/basename\s*\(\s*\\\$_SERVER\s*\[\s*[\"']SCRIPT_NAME[\"']\s*\]\s*\)\s*==\s*basename\s*\(\s*__FILE__\s*\)\s*\)/";
+	return "/basename\s*\(\s*\\\$_SERVER\s*\[\s*[\"']SCRIPT_NAME[\"']\s*\]\s*\)\s*===?\s*basename\s*\(\s*__FILE__\s*\)\s*\)/";
 } // }}}
 
 
