@@ -107,6 +107,9 @@ FileETag none
         Header set Access-Control-Allow-Origin "*"
     </FilesMatch>
 
+	# -- Enable video/audio seek -- #
+	Header set Accept-Ranges bytes
+
 </IfModule>
 
 # -- Expires Headers -- #
