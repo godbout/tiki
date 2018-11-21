@@ -81,7 +81,7 @@ Converting these elements to HTML may still be better. Chealer *}
 			{icon name="ok" class="pref_dependency tips text-success" title="{tr}Requires package:{/tr} "|cat:$dep.label|escape|cat:" (OK)"}
 		{else}
 			<div class="alert alert-warning pref_dependency highlight"{if not $p.modified and not $p.value} style="display:none;"{/if}>
-				<a href="tiki-admin.php?page=packages" target="_blank" >{tr}Missing package:{/tr}</a> <a href="{$dep.link|escape}" class="alert-link">{$dep.label|escape}</a>
+				<a href="tiki-admin.php?page=packages" target="_blank" >{tr}Missing tiki package:{/tr}</a> <a href="{$dep.link|escape}" class="alert-link">{$dep.label|escape}</a>
 			</div>
 		{/if}
 	{/foreach}
