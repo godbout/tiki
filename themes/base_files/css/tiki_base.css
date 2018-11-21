@@ -3514,7 +3514,19 @@ table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:n
 
 .footnotearea {
   margin-top: 2em;
-  font-size: 0.9em; }
+  font-size: 0.9em;
+  border-collapse:separate;
+  border-spacing: 0 0em;}
+
+.footnotearea div{
+  display: table-row;}
+
+.footnotearea span{
+  display: table-cell;
+  vertical-align: top;}
+
+.footnotearea span p{
+  margin: 0 !important;}
 
 .footnotearea .sameas {
   vertical-align: super;

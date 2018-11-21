@@ -9,7 +9,9 @@
 					{/foreach}
 				{/if}
 			</span>
-			{$footnote['data']}
+			<span>
+				{$footnote['data']}
+			</span>
 		</div>
 	{/foreach}
 </div>
