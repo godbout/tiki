@@ -111,8 +111,6 @@
 
 {include file='pagehistory.tpl'}
 
-<hr style="clear: both;"/>
-
 {if !isset($noHistory)}
 	{if $preview || $source || $diff_style}
 		<h2>
@@ -122,18 +120,10 @@
 	<form id="pagehistory" action="tiki-pagehistory.php?page={$page}">
 		<input type="hidden" name="page" value="{$page|escape}">
 		<input type="hidden" name="history_offset" value="{$history_offset}">
-		<div class="mb-4">
-				<input type="checkbox" name="paginate" id="paginate"{if $paginate} checked="checked"{/if}>
-				<label for="paginate">{tr}Enable pagination{/tr}</label>
-				{if $paginate}
-					<input type="text" name="history_pagesize" id="history_pagesize" value="{$history_pagesize}" class="form-control form-control-sm" style="width: 5em; display: inline-block">
-					<label for="history_pagesize">{tr}rows per page{/tr}</label>
-				{/if}
-		</div>
 
-		<div class="row d-flex justify-content-between mb-3">
-			{if $prefs.feature_multilingual eq 'y' and $tiki_p_edit eq 'y'}
-				<div class="col-md-7">
+		<div class="mb-4">
+					{if $prefs.feature_multilingual eq 'y' and $tiki_p_edit eq 'y'}
+
 					<div class="input-group">
 						<div class="input-group-prepend bg-info">
 							<div class="input-group-text bg-info">
@@ -145,7 +135,7 @@
 								<option value="{$languages[ix].value|escape}"{if $lang eq $languages[ix].value} selected="selected"{/if}>{$languages[ix].name}</option>
 							{/section}
 						</select>
-						<div class="input-group-btn">
+						<div class="input-group-btn ml-4">
 							<input type="submit" class="btn btn-primary" name="update_translation" value="{tr}Update Translation{/tr}"/>
 							{if $show_translation_history}
 								<input type="hidden" name="show_translation_history" value="1">
@@ -155,12 +145,22 @@
 							{/if}
 						</div>
 					</div>
-				</div>
+
 			{/if}
+		</div>
 
-
+		<div class="row mb-4">
+			<div class="col-sm-6">
+				<input type="checkbox" name="paginate" id="paginate"{if $paginate} checked="checked"{/if}>
+				<label for="paginate">{tr}Enable pagination{/tr}</label>
+				{if $paginate}
+					<input type="text" name="history_pagesize" id="history_pagesize" value="{$history_pagesize}" class="form-control form-control-sm" style="width: 5em; display: inline-block">
+					<label for="history_pagesize">{tr}rows per page{/tr}</label>
+				{/if}
+			</div>
+			<div class="col-sm-6">
 			{if ($prefs.default_wiki_diff_style ne "old") and $history}
-				<div class="input-group col-sm-5">
+				<div class="input-group">
 					<select class="form-control" name="diff_style" id="diff_style_all"{if $prefs.javascript_enabled eq "y"} style="display: none"{/if}>
 						<option value="htmldiff" {if $diff_style == "htmldiff"}selected="selected"{/if}>
 							{tr}HTML diff{/tr}
@@ -276,6 +276,7 @@
 				<input type="hidden" name="show_all_versions" value="{$show_all_versions}">
 			{/if}
 			</div>
+		</div>
 			<div>
 			<div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 				<table class="table table-condensed table-hover table-striped">
@@ -508,7 +509,7 @@
 					{/foreach}
 				</table>
 			</div>
-			<div class="input-group col-sm-6 mb-4">
+			<div class="input-group col-sm-8 mb-4">
 				<select class="form-control" name="action">
 					<option value="no_action" selected="selected">
 						{tr}Select action to perform with checked{/tr}...
