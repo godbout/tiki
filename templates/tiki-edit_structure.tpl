@@ -66,7 +66,7 @@
 				<input type="hidden" name="page_ref_id" value="{$structure_id}">
 				<div class="input-group">
 					<input type="text" class="form-control form-control-sm" name="pageAlias" id="pageAlias" value="{$topPageAlias|escape}">
-					<div class="input-group-btn">
+					<div class="input-group-append">
 						<input type="submit" class="btn btn-primary" name="create" value="{tr}Update{/tr}">
 					</div>
 				</div>
@@ -136,7 +136,7 @@
 						<label class="sr-only" for="find_objects">{tr}Find{/tr}</label>
 						<div class="input-group">
 							<input type="text" name="find_objects" id="find_objects" value="{$find_objects|escape}" class="form-control form-control-sm" placeholder="{tr}Find{/tr}...">
-							<div class="input-group-btn">
+							<div class="input-group-append">
 								<input type="submit" class="btn btn-primary btn-sm" value="{tr}Filter{/tr}" name="search_objects">
 							</div>
 							{autocomplete element='#find_objects' type='pagename'}

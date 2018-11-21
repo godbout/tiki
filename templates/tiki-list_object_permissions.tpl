@@ -90,7 +90,7 @@
 									<div class="col-lg-4">
 										<div class="input-group">
 											<input type="text" name="toGroup" class="form-control">
-										<span class="input-group-btn">
+										<span class="input-group-append">
 											<button class="btn btn-primary" name="duplicate" value="duplicate">
 												{tr}OK{/tr}
 											</button>
@@ -159,7 +159,7 @@
 								<div class="col-lg-4">
 									<div class="input-group">
 										<input type="text" name="toGroup" class="form-control">
-										<span class="input-group-btn">
+										<span class="input-group-append">
 											<button class="btn btn-primary" name="duplicate" value="duplicate">
 												{tr}OK{/tr}
 											</button>

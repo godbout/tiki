@@ -148,7 +148,7 @@
 									<option value="delete_forum">{tr}Delete{/tr}</option>
 								{/if}
 							</select>
-							<span class="input-group-btn">
+							<span class="input-group-append">
 							<button
 								type="submit"
 								form='admin_forums'

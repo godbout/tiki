@@ -22,7 +22,7 @@
 						</option>
 					{/section}
 				</select>
-				<span class="input-group-btn">
+				<span class="input-group-append">
 					<input type="submit" class="btn btn-secondary" name="select_language" value="{tr}Choose language{/tr}" onclick="needToConfirm=false;">
 				</span>
 			</div>

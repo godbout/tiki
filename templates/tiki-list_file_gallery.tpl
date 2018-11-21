@@ -159,7 +159,7 @@
 	{if $edit_mode neq 'y' and $prefs.fgal_show_slideshow eq 'y' and $gal_info.show_slideshow eq 'y'}
 		{button _icon_name="chart" _text="{tr}SlideShow{/tr}" href="#" _onclick="javascript:window.open('tiki-list_file_gallery.php?galleryId=$galleryId&amp;slideshow','','menubar=no,width=600,height=500,resizable=yes');return false;"}
 	{/if}
-	{if $edit_mode neq 'y' and $prefs.h5p_enabled eq 'y' and $tiki_p_upload_files eq 'y'}
+	{if $edit_mode neq 'y' and $prefs.h5p_enabled eq 'y' and $tiki_p_upload_files eq 'y' and $tiki_p_h5p_edit eq 'y'}
 		<a href="{service controller='h5p' action='edit' modal=1}" class="btn btn-link create-h5p">{icon name='plus'} {tr}Create H5P{/tr}</a>
 		{jq}$(".create-h5p").clickModal({title: "{tr}Create H5P{/tr}"});{/jq}
 	{/if}
@@ -233,35 +233,33 @@
 			{if $prefs.fgal_search eq 'y'}
 				<div class="col-sm-6">
 					{include file='find.tpl' find_show_num_rows = 'y' find_show_categories_multi='y' find_durations=$find_durations find_show_sub='y' find_in="<ul><li>{tr}Name{/tr}</li><li>{tr}Filename{/tr}</li><li>{tr}Description{/tr}</li></ul>"}
-					<form id="search-by-id" class="form" role="form" method="get" action="tiki-list_file_gallery.php">
-						<div class="input-group my-3">
-							<div class="input-group-prepend">
-								<div class="input-group-text">{icon name="search"}</div>
-							</div>
-							<input class="form-control" type="text" name="fileId" id="fileId" {if isset($fileId)} value="{$fileId}"{/if} placeholder="1234" title="{tr}Search for the file with this number, in all galleries{/tr}">
-							{jq}
-								jQuery("#fileId").tooltip();
-							{/jq}
-							<div class="input-group-btn">
-								<button type="submit" class="btn btn-info">{tr}Search by identifier{/tr}</button>
-							</div>
-						</div>
-					</form>
 				</div>
 			{/if}
-			{if $prefs.fgal_search_in_content eq 'y' and $galleryId > 0}
+			{if ($prefs.fgal_search_in_content eq 'y' or $prefs.fgal_search eq 'y') and $galleryId > 0}
 				<div class="col-sm-6">
-					<form id="search-form" class="form" role="form" method="get" action="tiki-search{if $prefs.feature_forum_local_tiki_search eq 'y'}index{else}results{/if}.php">
-						<input type="hidden" name="where" value="files">
-						<input type="hidden" name="galleryId" value="{$galleryId}">
-						<label for="highlight" class="find_content sr-only">{tr}Search in content{/tr}</label>
-						<div class="input-group">
-							<input name="highlight" size="30" type="text" placeholder="{tr}Search in content{/tr}..." class="form-control">
-							<div class="input-group-btn">
-								<input type="submit" class="wikiaction btn btn-info" name="search" value="{tr}Go{/tr}">
+					{if $prefs.fgal_search_in_content eq 'y'}
+						<form id="search-form" class="form" role="form" method="get" action="tiki-search{if $prefs.feature_forum_local_tiki_search eq 'y'}index{else}results{/if}.php">
+							<input type="hidden" name="where" value="files">
+							<input type="hidden" name="galleryId" value="{$galleryId}">
+							<label for="highlight" class="find_content sr-only">{tr}Search in content{/tr}</label>
+							<div class="input-group">
+								<input name="highlight" size="30" type="text" placeholder="{tr}Search in content{/tr}..." class="form-control tips bottom" title="|{tr}Search for text within files in all galleries{/tr}">
+								<div class="input-group-append">
+									<input type="submit" class="wikiaction btn btn-info" name="search" value="{tr}Go{/tr}">
+								</div>
 							</div>
-						</div>
-					</form>
+						</form>
+					{/if}
+					{if $prefs.fgal_search eq 'y'}
+						<form id="search-by-id" class="form" role="form" method="get" action="tiki-list_file_gallery.php">
+							<div class="input-group" style="margin-top: 10px; margin-bottom: 10px">
+								<input class="form-control tips bottom" type="text" name="fileId" id="fileId" {if isset($fileId)} value="{$fileId}"{/if} placeholder="{tr}Search by identifier{/tr}..." title="|{tr}Search for the file with this number, in all galleries{/tr}">
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-info">{tr}Go{/tr}</button>
+								</div>
+							</div>
+						</form>
+					{/if}
 				</div>
 			{/if}
 			</div>

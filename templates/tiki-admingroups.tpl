@@ -123,7 +123,7 @@
 							<option value="no_action" selected="selected">{tr}Select action to perform with checked{/tr}...</option>
 							<option value="remove_groups" >{tr}Remove{/tr}</option>
 						</select>
-					<div class="input-group-btn">
+					<div class="input-group-append">
 						<input
 							type="submit"
 							form="checkform1"
@@ -572,7 +572,7 @@
 										</option>
 										<option value="manage_groups">{tr}Unassign{/tr}</option>
 									</select>
-									<span class="input-group-btn">
+									<span class="input-group-append">
 										<input
 											type="submit"
 											class="btn btn-primary"
@@ -675,7 +675,7 @@
 						</option>
 						<option value="unban_user">{tr}Unban{/tr}</option>
 					</select>
-					<span class="input-group-btn">
+					<span class="input-group-append">
 						<input
 							type="submit"
 							class="btn btn-primary"

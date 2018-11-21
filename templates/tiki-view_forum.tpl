@@ -372,7 +372,7 @@
 						</span>
 						</div>
 						<input name="highlight" id="findinforums" type="text" class="form-control" placeholder="{tr}Find{/tr}...">
-						<div class="input-group-btn">
+						<div class="input-group-append">
 							<input type="hidden" name="where" value="forums">
 							<input type="hidden" name="forumId" value="{$forum_info.forumId}">
 							<input type="submit" class="wikiaction btn btn-primary" name="search" value="{tr}Find{/tr}">

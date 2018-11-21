@@ -201,7 +201,7 @@ potato,,vegetable
 									{/if}
 								{/foreach}
 							</select>
-							<span class="input-group-btn">
+							<span class="input-group-append">
 								<input
 									type="submit"
 									class="btn btn-primary"
@@ -226,7 +226,7 @@ potato,,vegetable
 									{/if}
 								{/foreach}
 							</select>
-							<span class="input-group-btn">
+							<span class="input-group-append">
 								<input
 									type="submit"
 									class="btn btn-primary"
@@ -324,7 +324,7 @@ $("#add_object_type").change(function () {
 						</label>
 						<div class="col-sm-6 input-group">
 							<input type="text" name="find_objects" id="find_objects" class="form-control">
-							<span class="input-group-btn">
+							<span class="input-group-append">
 								<input type="submit" class="btn btn-primary" value="{tr}Filter{/tr}" name="search_objects">
 							</span>
 						</div>
@@ -378,7 +378,7 @@ $("#add_object_type").change(function () {
 											</option>
 										{/section}
 									</select>
-									<span class="input-group-btn">
+									<span class="input-group-append">
 										<input
 											type="submit"
 											class="btn btn-primary"
@@ -404,7 +404,7 @@ $("#add_object_type").change(function () {
 											</option>
 										{/section}
 									</select>
-									<span class="input-group-btn">
+									<span class="input-group-append">
 										<input
 											type="submit"
 											class="btn btn-primary"
@@ -430,7 +430,7 @@ $("#add_object_type").change(function () {
 											</option>
 										{/section}
 									</select>
-									<span class="input-group-btn">
+									<span class="input-group-append">
 										<input
 											type="submit"
 											class="btn btn-primary"
@@ -456,7 +456,7 @@ $("#add_object_type").change(function () {
 											</option>
 										{/section}
 									</select>
-									<span class="input-group-btn">
+									<span class="input-group-append">
 										<input
 											type="submit"
 											class="btn btn-primary"
@@ -482,7 +482,7 @@ $("#add_object_type").change(function () {
 											</option>
 										{/section}
 									</select>
-									<span class="input-group-btn">
+									<span class="input-group-append">
 										<input
 											type="submit"
 											class="btn btn-primary"
@@ -508,7 +508,7 @@ $("#add_object_type").change(function () {
 											</option>
 										{/section}
 									</select>
-									<span class="input-group-btn">
+									<span class="input-group-append">
 										<input
 											type="submit"
 											class="btn btn-primary"
@@ -534,7 +534,7 @@ $("#add_object_type").change(function () {
 											</option>
 										{/section}
 									</select>
-									<span class="input-group-btn">
+									<span class="input-group-append">
 										<input
 											type="submit"
 											class="btn btn-primary"
@@ -560,7 +560,7 @@ $("#add_object_type").change(function () {
 											</option>
 										{/section}
 									</select>
-									<span class="input-group-btn">
+									<span class="input-group-append">
 										<input
 											type="submit"
 											class="btn btn-primary"
@@ -586,7 +586,7 @@ $("#add_object_type").change(function () {
 											</option>
 										{/section}
 									</select>
-									<span class="input-group-btn">
+									<span class="input-group-append">
 										<input
 											type="submit"
 											class="btn btn-primary"
@@ -612,7 +612,7 @@ $("#add_object_type").change(function () {
 											</option>
 										{/section}
 									</select>
-									<span class="input-group-btn">
+									<span class="input-group-append">
 										<input
 											type="submit"
 											class="btn btn-primary"

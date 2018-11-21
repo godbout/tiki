@@ -15,7 +15,7 @@
 								<option value="{$itemId}">{$label|escape}</option>
 							{/foreach}
 						</select>
-						<span class="input-group-btn">
+						<span class="input-group-append">
 							<a class="btn btn-primary insert-tracker-item" href="{service controller=tracker action=insert_item trackerId=$field.options_map.trackerId next=$data.next|escape}">{tr}OK{/tr}</a>
 						</span>
 					</div>

@@ -238,7 +238,7 @@
 						<option value="remove_articles">{tr}Remove{/tr}</option>
 					</select>
 				</label>
-				<span class="input-group-btn">
+				<span class="input-group-append">
 				<input type="submit" class="btn btn-warning" value="{tr}OK{/tr}">
 				</span>
 			</div>

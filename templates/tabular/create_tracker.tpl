@@ -65,7 +65,7 @@
 						<td>
 							<div class="input-group input-group-sm">
 								<input type="text" class="field-label form-control" readonly/>
-								<div class="input-group-btn">
+								<div class="input-group-append">
 									<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 										<span class="align">{tr}Left{/tr}</span>
 										<input class="display-align" type="hidden" value="left">

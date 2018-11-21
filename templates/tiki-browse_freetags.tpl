@@ -13,7 +13,7 @@
 					<span class="input-group-text" id="basic-addon1">{icon name="tags"}&nbsp;{tr}Tags{/tr}</span>
 				</div>
 				<input type="text" id="tagBox" class="form-control" name="tag" value="{$tagString|escape}">
-				<div class="input-group-append input-group-btn">
+				<div class="input-group-append input-group-append">
 					<input type="submit" class="btn btn-primary tips" value="{tr}Go{/tr}">
 				</div>
 			</div>
@@ -126,7 +126,7 @@
 		<div class="form-inline mb-4 row">
 			<div class="input-group col-sm-6">
 				<input type="text" name="find" value="{$find|escape}" class="form-control form-control-sm" placeholder="{tr}Find{/tr}...">
-				<div class="input-group-btn input-group-append">
+				<div class="input-group-append input-group-append">
 					<input type="submit" class="btn btn-info btn-sm" value="{tr}Filter{/tr}">
 				</div>
 			</div>

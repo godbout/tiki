@@ -133,7 +133,7 @@ $('#scblink').click(function(e){
 					<option value="{$lang.value}"{if in_array($lang.value, $languageList)} selected="selected"{/if}>{$lang.name}</option>
 				{/foreach}
 			</select>
-			<span class="input-group-btn">
+			<span class="input-group-append">
 				<input type="submit" class="btn btn-primary" value="{tr}Select{/tr}">
 			</span>
 		</div>

@@ -54,7 +54,7 @@
 			</select>
 		</div>
 		<div class="input-group">
-			<span class="input-group-btn" style="padding-top: 10px;">
+			<span class="input-group-append" style="padding-top: 10px;">
 				<input
 					type="submit"
 					class="btn btn-primary"

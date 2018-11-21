@@ -350,7 +350,7 @@
 								{tr}Remove{/tr}
 							</option>
 						</select>
-						<span class="input-group-btn">
+						<span class="input-group-append">
 							<button
 								type="submit"
 								class="btn btn-secondary"

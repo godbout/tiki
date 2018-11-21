@@ -48,7 +48,7 @@
 							<div class="input-group-prepend"><div class="input-group-text" style="font-size:50% !important">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</div></div>
 							<input type="text" id="structure_add_page" name="page" class="form-control form-control-sm">
 							{autocomplete element='#structure_add_page' type='pagename'}
-							<div class="input-group-btn">
+							<div class="input-group-append">
 								<input type="submit" class="btn btn-primary btn-sm" name="insert_into_struct" value="{tr}Add Page{/tr}">
 							</div>
 						</div>
