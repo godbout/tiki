@@ -3071,6 +3071,10 @@ body.layout_social.tiki.navbar-padding {
 body.fullscreen.tiki.navbar-padding {
   padding-top: 0; }
 
+.col2 .card-header, .col3 .card-header {
+  padding-left: 1rem;
+  padding-right: 1rem; }
+
 .panel-body ul.nav {
   overflow: visible; }
 
