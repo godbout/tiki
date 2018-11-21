@@ -337,7 +337,7 @@
 									</option>
 								{/if}
 							</select>
-							<span class="input-group-btn">
+							<span class="input-group-append">
 								<button
 									type="submit"
 									form="checkform"

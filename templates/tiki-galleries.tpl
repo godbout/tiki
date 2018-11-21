@@ -286,7 +286,7 @@
 							{/if}
 						{/foreach*}
 					</select>
-					<span class="input-group-btn">
+					<span class="input-group-append">
 						<input type="submit" class="btn btn-primary" value="{tr}Filter{/tr}">
 					</span>
 				</div>

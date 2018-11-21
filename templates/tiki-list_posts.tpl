@@ -90,7 +90,7 @@
 				<select name="remove" class="form-control text-danger">
 					<option value="y">{tr}Delete{/tr}</option>
 				</select>
-				<div class="input-group-btn">
+				<div class="input-group-append">
 					<input type="submit" class="btn btn-primary" name="remove" value="{tr}Ok{/tr}">
 				</div>
 			</div>

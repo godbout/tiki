@@ -8,7 +8,7 @@
 		<form name='minichatinputform' action='javascript:minichatpost();'>
 			<div class="input-group input-group-sm">
 				<input class="form-control" name='minichatinput' id='minichatinput' type='text' autocomplete='off'>
-				<span class="input-group-btn"><input class="btn btn-secondary" type='submit' value="{tr}OK{/tr}"></span>
+				<span class="input-group-append"><input class="btn btn-secondary" type='submit' value="{tr}OK{/tr}"></span>
 			</div>
 		</form>
 	</div>

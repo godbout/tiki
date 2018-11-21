@@ -46,7 +46,7 @@
 			<div class="col-sm-7">
 				<div class="input-group">
 					<input type="text" name="filter" id="filter" value="{$filter|escape}" class="form-control input-sm">
-					<div class="input-group-btn">
+					<div class="input-group-append">
 						<input type="submit" class="btn btn-info btn-sm" name="filteruseq" value="{tr}Filter{/tr}">
 					</div>
 				</div>

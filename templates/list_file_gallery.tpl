@@ -145,7 +145,7 @@
 									{/if}
 								{/if}
 							</select>
-							<span class="input-group-btn">
+							<span class="input-group-append">
 								<button
 									class="btn btn-secondary"
 									form="fgalform"

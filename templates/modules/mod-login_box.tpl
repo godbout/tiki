@@ -327,7 +327,7 @@ if (jqueryTiki.no_cookie) {
 					<div class="form-group row mx-0">
 						<div class="input-group input-group-sm">
 							<input class="form-control" type="text" name="openid_url"/>
-							<span class="input-group-btn"><button type="submit" class="btn btn-primary" title="{tr}Go{/tr}"><img alt="{tr}OpenID Login{/tr}" class="img-circle" src="img/icons/login-OpenID-bg.gif"></button></span>
+							<span class="input-group-append"><button type="submit" class="btn btn-primary" title="{tr}Go{/tr}"><img alt="{tr}OpenID Login{/tr}" class="img-circle" src="img/icons/login-OpenID-bg.gif"></button></span>
 						</div>
 						<span class="form-text"><a class="linkmodule tikihelp" target="_blank" href="http://doc.tiki.org/OpenID">{tr}What is OpenID?{/tr}</a></span>
 					</div>

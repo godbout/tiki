@@ -120,7 +120,7 @@
 								</span>
 							</div>
 							<input id="criteria" type="text" name="criteria" class="form-control mr-3" placeholder="{tr}Search preferences{/tr}...">
-							<div class="input-group-btn">
+							<div class="input-group-append">
 								<input type="submit" class="btn btn-info" value="{tr}Search{/tr}">
 							</div>
 						</div>

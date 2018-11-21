@@ -11,7 +11,7 @@
 		<div class="form-group row mx-0">
 			<div class="input-group">
 				<input type="text" name="new_type" class="form-control" placeholder="{tr}Add article type{/tr}...">
-				<div class="input-group-btn">
+				<div class="input-group-append">
 					<button type="submit" class="btn btn-secondary" name="add_type">{tr}Add{/tr}</button>
 				</div>
 			</div>

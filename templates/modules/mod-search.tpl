@@ -58,14 +58,16 @@
 							{/if}
 
 							{if $smod_params.compact eq "y"}
-								<button type="submit" class="btn btn-info my-1 search_mod_magnifier input-group-append">
-									{icon name="search"}
-								</button>
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-info my-1 search_mod_magnifier">
+										{icon name="search"}
+									</button>
+								</div>
 							</div>
 
 							<div class="btn-group search_mod_buttons box" style="display: none; position: absolute; right: 0; z-index: 2; white-space: nowrap;">{* TODO: move the style to themes/base_files/scss/_tiki-modules.scss *}
 							{else}
-								<div class="input-group-btn btn-group my-1">
+								<div class="input-group-append btn-group my-1">
 							{/if}
 							{foreach $smod_params.additional_filters as $key => $filter}
 								<input type="hidden" name="filter~{$key|escape}" value="{$filter|escape}"/>

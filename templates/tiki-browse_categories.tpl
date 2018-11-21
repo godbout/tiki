@@ -110,7 +110,7 @@
 				</span>
 			</div>
 			<input class="form-control input-sm" type="text" name="find" id="find" value="{$find|escape}">
-			<div class="input-group-btn">
+			<div class="input-group-append">
 				<input type="submit" class="btn btn-info" value="{tr}Find{/tr}" name="search">
 			</div>
 		</div>

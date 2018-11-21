@@ -24,7 +24,7 @@
 									</span>
 								</div>
 								<input type="text" name="find" class="form-control" value="{$find|escape}" placeholder="{tr}Find{/tr}...">
-								<div class="input-group-btn">
+								<div class="input-group-append">
 									<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 									<input type="submit" class="btn btn-info" value="{tr}Search by name{/tr}" name="search">
 								</div>
@@ -44,7 +44,7 @@
 										</span>
 									</div>
 									<input name="highlight" type="text" class="form-control" placeholder="{tr}Find{/tr}...">
-									<div class="input-group-btn">
+									<div class="input-group-append">
 										<input type="hidden" name="where" value="forums">
 										<input type="hidden" name="filter~type" value="forum post">
 										<input type="submit" class="wikiaction btn btn-info" name="search" value="{tr}Search in content{/tr}">

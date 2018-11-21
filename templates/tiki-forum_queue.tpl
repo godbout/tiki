@@ -119,7 +119,7 @@
 			<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 			<div class="input-group">
 				<input type="text" name="find" value="{$find|escape}" class="form-control" placeholder="{tr}Find{/tr}...">
-				<div class="input-group-btn">
+				<div class="input-group-append">
 					<input type="submit" class="btn btn-primary" name="filter" value="{tr}Filter{/tr}">
 				</div>
 			</div>

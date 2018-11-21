@@ -135,7 +135,7 @@
 								<option value="{$languages[ix].value|escape}"{if $lang eq $languages[ix].value} selected="selected"{/if}>{$languages[ix].name}</option>
 							{/section}
 						</select>
-						<div class="input-group-btn ml-4">
+						<div class="input-group-append ml-4">
 							<input type="submit" class="btn btn-primary" name="update_translation" value="{tr}Update Translation{/tr}"/>
 							{if $show_translation_history}
 								<input type="hidden" name="show_translation_history" value="1">
@@ -207,7 +207,7 @@
 						</select>
 					{/if}
 					{if $prefs.javascript_enabled eq "y"}
-						<span class="input-group-btn">
+						<span class="input-group-append">
 							{button _text="{tr}Advanced{/tr}" _id="toggle_diffs" _ajax="n" _class="btn btn-secondary ml-3"}
 						</span>
 						{jq}
@@ -518,7 +518,7 @@
 						{tr}Remove{/tr}
 					</option>
 				</select>
-				<span class="input-group-btn">
+				<span class="input-group-append">
 					<button
 						type="submit"
 						form="pagehistory"
