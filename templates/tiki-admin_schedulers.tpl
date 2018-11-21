@@ -86,8 +86,8 @@
 											</action>
 										{else}
 											<action>
-												<a href="{bootstrap_modal controller=scheduler action=run schedulerId=$schedulers[scheduler].id}" disabled>
-													{icon name="gear" _menu_text='y' _menu_icon='y' alt="{tr}Run now{/tr}"}
+												<a href="{service controller=scheduler action=run schedulerId=$schedulers[scheduler].id modal=1}" onclick="runNow(event)" disabled>
+													{icon name="play" _menu_text='y' _menu_icon='y' alt="{tr}Run now{/tr}"}
 												</a>
 											</action>
 										{/if}

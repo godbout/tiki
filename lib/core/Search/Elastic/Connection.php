@@ -29,7 +29,11 @@ class Search_Elastic_Connection
 
 	function __destruct()
 	{
-		$this->flush();
+		try {
+			$this->flush();
+		} catch (Search_Elastic_TransportException $e) {
+			 // Left in blank
+		}
 	}
 
 	function startBulk($size = 500)

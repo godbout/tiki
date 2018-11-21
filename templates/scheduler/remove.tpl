@@ -10,7 +10,7 @@
 		<p>{tr _0=$name}Do you really want to remove the %0 scheduler?{/tr}</p>
 		<div class="submit">
 			<input type="hidden" name="schedulerId" value="{$schedulerId|escape}">
-			<input type="submit" class="btn btn-primary btn-sm" value="{tr}Remove{/tr}">
+			<input type="submit" class="btn btn-primary" value="{tr}Remove{/tr}">
 			{ticket mode='confirm'}
 		</div>
 	</form>

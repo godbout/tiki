@@ -212,6 +212,7 @@ if (isset($_REQUEST['add'])) {
 	$cookietab = '2';
 }
 
+$headerlib->add_jsfile('lib/jquery_tiki/tiki-schedulers.js');
 $smarty->assign('schedulerinfo', $schedulerinfo);
 $smarty->assign('schedulerruns', isset($schedulerRuns) ? $schedulerRuns : []);
 $smarty->assign('schedulerId', $_REQUEST['scheduler']);

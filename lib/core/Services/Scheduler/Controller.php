@@ -83,7 +83,14 @@ class Services_Scheduler_Controller
 		$schedulerTask = Scheduler_Item::fromArray($scheduler, $logger);
 
 		$message = tr('Execution output:') . '<br><br>';
+
+		// Prevent feedback collection during scheduler run from UI
+		$feedback = isset($_SESSION['tikifeedback']) ? $_SESSION['tikifeedback'] : [];
+
 		$result = $schedulerTask->execute(true);
+
+		// Remove feedback collected during the scheduler process
+		$_SESSION['tikifeedback'] = $feedback;
 
 		if ($result['status'] == 'failed') {
 			$message .= tr('Scheduler %0 - FAILED', $schedulerTask->name) . '<br>' . $result['message'];
@@ -91,6 +98,8 @@ class Services_Scheduler_Controller
 			$message .= tr('Scheduler %0 - OK', $schedulerTask->name) . '<br>';
 			$message .= $result['message'];
 		}
+
+		$message = str_replace(PHP_EOL, '<br>', $message);
 
 		return [
 			'title' => tr('Running %0', $schedulerTask->name),

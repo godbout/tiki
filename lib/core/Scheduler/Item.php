@@ -285,7 +285,7 @@ class Scheduler_Item
 		if ($userTriggered) {
 			$userlib = TikiLib::lib('user');
 			$email = $userlib->get_user_email($user);
-			$outputMessage = sprintf('Run triggered by %s - %s. ', $user, $email) . $outputMessage;
+			$outputMessage = sprintf('Run triggered by %s - %s.' . PHP_EOL, $user, $email) . $outputMessage;
 		}
 
 		$endTime = $schedlib->end_scheduler_run($this->id, $runId, $executionStatus, $outputMessage);
