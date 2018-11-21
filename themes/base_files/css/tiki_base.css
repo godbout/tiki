@@ -2084,23 +2084,23 @@ table.treetable tr.expanded span.indenter a {
   [class*="tracker-status"].highlighted:before {
     color: inherit !important; }
 
-.chosen-container .chosen-results li.result-selected.tracker-status-open:before, .chosen-container .chosen-results li.result-selected.tracker-status-pending:before, .chosen-container .chosen-results li.result-selected.tracker-status-closed:before {
+.chosen-container .chosen-results li.result-selected.tracker-status-open:before, .chosen-container .chosen-results li.result-selected.tracker-status-o:before, .chosen-container .chosen-results li.result-selected.tracker-status-pending:before, .chosen-container .chosen-results li.result-selected.tracker-status-p:before, .chosen-container .chosen-results li.result-selected.tracker-status-closed:before, .chosen-container .chosen-results li.result-selected.tracker-status-c:before {
   top: 0;
   width: auto;
   height: auto;
   margin-left: 0; }
 
-.chosen-container .chosen-results li.result-selected.tracker-status-open:before, .tracker-status-open:before {
+.chosen-container .chosen-results li.result-selected.tracker-status-open:before, .chosen-container .chosen-results li.result-selected.tracker-status-o:before, .tracker-status-open:before, .tracker-status-o:before {
   content: "\f111";
   color: green;
   font-weight: 900; }
 
-.chosen-container .chosen-results li.result-selected.tracker-status-pending:before, .tracker-status-pending:before {
+.chosen-container .chosen-results li.result-selected.tracker-status-pending:before, .chosen-container .chosen-results li.result-selected.tracker-status-p:before, .tracker-status-pending:before, .tracker-status-p:before {
   content: "\f042";
   color: orange;
   font-weight: 900; }
 
-.chosen-container .chosen-results li.result-selected.tracker-status-closed:before, .tracker-status-closed:before {
+.chosen-container .chosen-results li.result-selected.tracker-status-closed:before, .chosen-container .chosen-results li.result-selected.tracker-status-c:before, .tracker-status-closed:before, .tracker-status-c:before {
   content: "\f057";
   color: grey;
   font-weight: 400; }
