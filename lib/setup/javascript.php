@@ -281,6 +281,9 @@ $(document).on("shown.bs.modal", function (event) {
 		$js .= '
 $(document).on("tiki.modal.redraw", function (event) {
 	var $modalContent = $(event.target);
+	if (! $modalContent.is(".modal-content")) {
+		$modalContent = $modalContent.find(".modal-content")
+	}
 	if ($modalContent.is(".ui-resizable")) {
 		$modalContent.resizable( "destroy" );
 	}
