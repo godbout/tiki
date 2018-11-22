@@ -25,7 +25,7 @@
         deny from all
     </IfModule>
 </FilesMatch>
-<FilesMatch "(changelog.txt|_htaccess)$">
+<FilesMatch "(changelog.txt|_htaccess|README)$">
     <IfModule mod_authz_core.c>
        Require all denied
     </IfModule>
