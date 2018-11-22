@@ -52,8 +52,8 @@ body.fullscreen.tiki.navbar-padding {
 	padding-top: 0;
 }
 
-.col2,
-.col3 {
+#col2,
+#col3 {
 	.card-header {
 		padding-left: 1rem;
 		padding-right: 1rem;
@@ -90,9 +90,9 @@ body.fullscreen.tiki.navbar-padding {
 // .tiki .popover.tour-tour { max-width: 276px; } Not needed since default is now this width.
 
 // limit width of popups for file galleries
-.tiki.tiki-list_file_gallery .col1 .popover,
-.tiki.tiki_file_galleries .col1 .popover,
-.tiki.tiki_trackers .col1 .popover,
+.tiki.tiki-list_file_gallery #col1 .popover,
+.tiki.tiki_file_galleries #col1 .popover,
+.tiki.tiki_trackers #col1 .popover,
 .tiki .wikiplugin-trackerlist .popover {
 	max-width: 50vw;
 //	word-wrap: normal;
@@ -118,7 +118,7 @@ body.fullscreen.tiki.navbar-padding {
 	overflow: visible;
 }
 
-.tiki .col1 .table-responsive {
+.tiki #col1 .table-responsive {
 	width: 100%;
 	margin-bottom: 15px;
 	overflow-y: hidden;
@@ -249,67 +249,67 @@ body.fullscreen.tiki.navbar-padding {
 
 @media (min-width: 992px) {
   // When hidden we simply do not display the columns
-.hide_zone_left .col2,
-.hide_zone_right .col3 {
+.hide_zone_left #col2,
+.hide_zone_right #col3 {
 	display: none;
 }
 
 // Overrides in case of 3-col layout
-.hide_zone_left .col1.col-lg-8 { // when left col is hidden
+.hide_zone_left #col1.col-lg-8 { // when left col is hidden
 	width: 83.3334%; // TODO: make it computed scss variable?
 	flex: 0 0 83.3334%;
 	max-width: 83.3334%;
 }
-.hide_zone_right .col1.col-lg-8 { // when right col is hidden
+.hide_zone_right #col1.col-lg-8 { // when right col is hidden
 	width: 83.3334%; // TODO: make it computed scss variable?
 	flex: 0 0 83.3334%;
 	max-width: 83.3334%;
 }
 
 // Overrides in case of 2-col layout with no right column or no left column, respectively
-.hide_zone_left .col1.col-lg-9,
-.hide_zone_right .col1.col-lg-9{
+.hide_zone_left #col1.col-lg-9,
+.hide_zone_right #col1.col-lg-9{
 	width: 100%;
 }
 
 // Overrides in case of 2-col layout with no right column
-.hide_zone_left .col1.col-lg-9 {
+.hide_zone_left #col1.col-lg-9 {
 	width: 100%;
 	flex: 0 0 100%;
 	max-width: 100%;
 }
 
 // Overrides in case of 2-col layout with no left column
-.hide_zone_right .col1.col-lg-9 {
+.hide_zone_right #col1.col-lg-9 {
 	width: 100%;
 	flex: 0 0 100%;
 	max-width: 100%;
 }
 
 // Left col toggled on, right col assigned off
-.hide_zone_right .col1.col-lg-9.order-lg-2 {
+.hide_zone_right #col1.col-lg-9.order-lg-2 {
   width: 75%;
   flex: 0 0 75%;
   max-width: 75%;
 }
 
 // Left col assigned off, right col toggled off
-.hide_zone_right .col1.col-lg-9:not(.order-lg-2) {
+.hide_zone_right #col1.col-lg-9:not(.order-lg-2) {
   width: 100%;
   flex: 0 0 100%;
   max-width: 100%;
 }
 
 // Right col assigned off, left col toggled off
-.hide_zone_right.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2,
-.hide_zone_left .side-col-toggle + .col1.col-lg-9.order-lg-2{
+.hide_zone_right.hide_zone_left .side-col-toggle + #col1.col-lg-9.order-lg-2,
+.hide_zone_left .side-col-toggle + #col1.col-lg-9.order-lg-2{
   width: 100%;
   flex: 0 0 100%;
   max-width: 100%;
 }
 
-.hide_zone_left.hide_zone_right .col1.col-lg-8,
-.hide_zone_left.hide_zone_right .col1.col-lg-9 { // when both are hidden, in 3-col and 2-col cases
+.hide_zone_left.hide_zone_right #col1.col-lg-8,
+.hide_zone_left.hide_zone_right #col1.col-lg-9 { // when both are hidden, in 3-col and 2-col cases
   width: 100%;
   flex: 0 0 100%;
   max-width: 100%;
