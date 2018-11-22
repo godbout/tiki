@@ -186,17 +186,17 @@
         },
         {
             "name": "blueimp/jquery-file-upload",
-            "version": "v9.25.1",
+            "version": "v9.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vkhramtsov/jQuery-File-Upload.git",
-                "reference": "28891f9b2bc339bcc1ca8d548e5401e8563bf04b"
+                "reference": "ff5accfe2e5c4a522777faa980a90cf86a636d1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-28891f9b2bc339bcc1ca8d548e5401e8563bf04b-zip-cff578.zip",
-                "reference": "28891f9b2bc339bcc1ca8d548e5401e8563bf04b",
-                "shasum": "22f9518e8c8e92de7e93e557a191603ec9faf36c"
+                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-ff5accfe2e5c4a522777faa980a90cf86a636d1d-zip-cd8368.zip",
+                "reference": "ff5accfe2e5c4a522777faa980a90cf86a636d1d",
+                "shasum": "27d81ed67d36135422541cd620d3992a756f1547"
             },
             "type": "library",
             "autoload": {
@@ -237,21 +237,21 @@
                 "upload",
                 "widget"
             ],
-            "time": "2018-10-26T07:21:48+00:00"
+            "time": "2018-11-13T05:41:39+00:00"
         },
         {
             "name": "bower-asset/fontawesome",
-            "version": "5.4.1",
+            "version": "5.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "559a780f29c9a7efe08835c5ff3d05f57e4389a3"
+                "reference": "4f4cb7c2f55d14d24f10390ebfeab0d25af612f3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-559a780f29c9a7efe08835c5ff3d05f57e4389a3-zip-1ccaea.zip",
-                "reference": "559a780f29c9a7efe08835c5ff3d05f57e4389a3",
-                "shasum": "751619b83cd916b793853cfbc6bd8ccd4209a1c0"
+                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-4f4cb7c2f55d14d24f10390ebfeab0d25af612f3-zip-d76452.zip",
+                "reference": "4f4cb7c2f55d14d24f10390ebfeab0d25af612f3",
+                "shasum": "3d47992a1438391a6764d367e076d5c73bd4055f"
             },
             "type": "bower-asset"
         },
@@ -329,17 +329,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.10.1",
+            "version": "4.11.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor-releases.git",
-                "reference": "e5999810955383eb4f72c03a5af7f2dfd59390a0"
+                "reference": "70e6f8f01c3d7d8f713291984017a6005c4e737a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-e5999810955383eb4f72c03a5af7f2dfd59390a0-zip-fc9ef3.zip",
-                "reference": "e5999810955383eb4f72c03a5af7f2dfd59390a0",
-                "shasum": "19056b1a46c6365a50fa17475a43703b323ac862"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-70e6f8f01c3d7d8f713291984017a6005c4e737a-zip-af8a90.zip",
+                "reference": "70e6f8f01c3d7d8f713291984017a6005c4e737a",
+                "shasum": "ac3cb389867037a4219e0b43a9d6189e222ff1ad"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -366,7 +366,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2018-09-11T18:33:38+00:00"
+            "time": "2018-11-08T18:19:19+00:00"
         },
         {
             "name": "ckeditor/ckeditor/skins/bootstrapck",
@@ -1346,17 +1346,17 @@
         },
         {
             "name": "jcbrand/converse.js",
-            "version": "v4.0.4",
+            "version": "v4.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/conversejs/converse.js.git",
-                "reference": "f471dd2474d4b2dae6f43035a4ce454d0ee3772c"
+                "reference": "588b015e621719b22f1803c4adb5052be534d49c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-f471dd2474d4b2dae6f43035a4ce454d0ee3772c-zip-a7536f.zip",
-                "reference": "f471dd2474d4b2dae6f43035a4ce454d0ee3772c",
-                "shasum": "b1699c8134015df0c0ecbc80d10c9eb3bc825e3b"
+                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-588b015e621719b22f1803c4adb5052be534d49c-zip-ba783c.zip",
+                "reference": "588b015e621719b22f1803c4adb5052be534d49c",
+                "shasum": "937ff7e394963c37d0fe172a442a8cbff7e989a8"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1371,7 +1371,7 @@
                 "presence",
                 "xmpp"
             ],
-            "time": "2018-10-29T21:28:28+00:00"
+            "time": "2018-11-15T12:24:22+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -2102,17 +2102,17 @@
         },
         {
             "name": "mottie/tablesorter",
-            "version": "v2.31.0",
+            "version": "v2.31.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mottie/tablesorter.git",
-                "reference": "9d53e3b35b494dc1c2e7d7266cec437fc9f26e39"
+                "reference": "fa56764ad5630ed3ab9da4a30fdb8dd34bfbaf1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-9d53e3b35b494dc1c2e7d7266cec437fc9f26e39-zip-8506a7.zip",
-                "reference": "9d53e3b35b494dc1c2e7d7266cec437fc9f26e39",
-                "shasum": "95d96ce8699634d5f881c635252d4b4d313a2d7a"
+                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-fa56764ad5630ed3ab9da4a30fdb8dd34bfbaf1f-zip-2318d3.zip",
+                "reference": "fa56764ad5630ed3ab9da4a30fdb8dd34bfbaf1f",
+                "shasum": "97e86d8819de08fd3ed1ab7fe2fc9f0e6e5c731f"
             },
             "require": {
                 "components/jquery": ">=1.2.6"
@@ -2149,7 +2149,7 @@
                 "sorting",
                 "table"
             ],
-            "time": "2018-08-27T16:34:23+00:00"
+            "time": "2018-11-20T21:54:28+00:00"
         },
         {
             "name": "nagarajanchinnasamy/subtotal",
@@ -2201,17 +2201,17 @@
         },
         {
             "name": "nicolaskruchten/pivottable",
-            "version": "v2.22.0",
+            "version": "v2.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolaskruchten/pivottable.git",
-                "reference": "e3dd0d7843cc9220df00dde9f9e32d70eecfd747"
+                "reference": "a9cabee5382be0aaf0984ac906d9fa2e0376d2c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-e3dd0d7843cc9220df00dde9f9e32d70eecfd747-zip-2c335e.zip",
-                "reference": "e3dd0d7843cc9220df00dde9f9e32d70eecfd747",
-                "shasum": "c9b09c0393a7c5a1384f4dd5226cb80134927fcf"
+                "url": "https://composer.tiki.org/dist/nicolaskruchten/pivottable/nicolaskruchten-pivottable-a9cabee5382be0aaf0984ac906d9fa2e0376d2c1-zip-5046c2.zip",
+                "reference": "a9cabee5382be0aaf0984ac906d9fa2e0376d2c1",
+                "shasum": "b4cdcee28301b37c39c98c8a17217934def19a53"
             },
             "require": {
                 "components/jquery": ">=1.9"
@@ -2240,21 +2240,21 @@
                 "pivottable",
                 "table"
             ],
-            "time": "2018-09-22T02:10:34+00:00"
+            "time": "2018-11-04T18:21:09+00:00"
         },
         {
             "name": "nolimits4web/swiper",
-            "version": "v4.4.1",
+            "version": "v4.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nolimits4web/swiper.git",
-                "reference": "bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd"
+                "reference": "08e6fcbab7d399fc19a427ebf2b8112f173a6ac2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nolimits4web/swiper/nolimits4web-swiper-bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd-zip-506058.zip",
-                "reference": "bb11f20d5ebfa6b1ae0a89f8d35d621c074306fd",
-                "shasum": "4b797f22f91cf0d5bb663baed6f44f4a1561a540"
+                "url": "https://composer.tiki.org/dist/nolimits4web/swiper/nolimits4web-swiper-08e6fcbab7d399fc19a427ebf2b8112f173a6ac2-zip-c3e47f.zip",
+                "reference": "08e6fcbab7d399fc19a427ebf2b8112f173a6ac2",
+                "shasum": "294f4a1d8520a7086e63282fcf9c2b8ef4b7acad"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2287,16 +2287,16 @@
                 "swiper",
                 "touch"
             ],
-            "time": "2018-09-14T16:51:56+00:00"
+            "time": "2018-11-01T10:58:11+00:00"
         },
         {
             "name": "npm-asset/popper.js",
-            "version": "1.14.4",
+            "version": "1.14.5",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/popper-js/npm-asset-popper-js-1.14.4.zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/popper-js/npm-asset-popper-js-1.14.5.zip",
                 "reference": null,
-                "shasum": "ef8f96cf4219a05d7ee28dcfc04fe0cdb99c1c64"
+                "shasum": "18e530a5eea79413888120929be1503c8dff8831"
             },
             "type": "npm-asset",
             "license": [
@@ -2964,17 +2964,17 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.11",
+            "version": "2.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "7053f06f91b3de78e143d430e55a8f7889efc08b"
+                "reference": "8814dc7841db159daed0b32c2b08fb7e03c6afe7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-7053f06f91b3de78e143d430e55a8f7889efc08b-zip-e6f746.zip",
-                "reference": "7053f06f91b3de78e143d430e55a8f7889efc08b",
-                "shasum": "84355bf7288c96562013139ff566886a161d4ada"
+                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-8814dc7841db159daed0b32c2b08fb7e03c6afe7-zip-618753.zip",
+                "reference": "8814dc7841db159daed0b32c2b08fb7e03c6afe7",
+                "shasum": "b6140916b8b463d590b781249c9ac83b8a02f070"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -3052,7 +3052,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2018-04-15T16:55:05+00:00"
+            "time": "2018-11-04T05:45:48+00:00"
         },
         {
             "name": "player/flv",
@@ -3078,17 +3078,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.41.3",
+            "version": "v1.42.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "a070a8d2dd89f8ecbee89eecee77979298bfd886"
+                "reference": "8fed2ccf74638456ed8f9a32676da1c86c09cfe6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-a070a8d2dd89f8ecbee89eecee77979298bfd886-zip-d27326.zip",
-                "reference": "a070a8d2dd89f8ecbee89eecee77979298bfd886",
-                "shasum": "861187374221015d60c76cbf85c1f4a6d6ab9c4b"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-8fed2ccf74638456ed8f9a32676da1c86c09cfe6-zip-3e9c05.zip",
+                "reference": "8fed2ccf74638456ed8f9a32676da1c86c09cfe6",
+                "shasum": "2a8c1e84dc0ed6c3536ce559f61005aed1b2c6d1"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -3110,7 +3110,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2018-09-25T18:07:01+00:00"
+            "time": "2018-11-08T17:52:06+00:00"
         },
         {
             "name": "psr/container",
@@ -3163,17 +3163,17 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/psr/log/psr-log-4ebe3a8bf773a19edfe0a84b6585ba3d401b724d-zip-6434e8.zip",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "shasum": "c69a0972ac57d81a78bf392a0a892b61a97e5449"
+                "url": "https://composer.tiki.org/dist/psr/log/psr-log-6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd-zip-b599c5.zip",
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "shasum": "a74026797cd47e3576920bdfd6a3116de297f607"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -3206,7 +3206,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2018-11-20T15:27:04+00:00"
         },
         {
             "name": "rangy/rangy",
@@ -3502,17 +3502,17 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.17",
+            "version": "v3.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "e5389132dc6320682de3643091121c048ff796b3"
+                "reference": "99b2fa8acc244e656cdf324ff419fbe6fd300a4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/config/symfony-config-e5389132dc6320682de3643091121c048ff796b3-zip-301a61.zip",
-                "reference": "e5389132dc6320682de3643091121c048ff796b3",
-                "shasum": "52a99fd5aa54979afda68e068f00158c5fd3fa58"
+                "url": "https://composer.tiki.org/dist/symfony/config/symfony-config-99b2fa8acc244e656cdf324ff419fbe6fd300a4d-zip-3422fe.zip",
+                "reference": "99b2fa8acc244e656cdf324ff419fbe6fd300a4d",
+                "shasum": "09a3e011754db407652ad5ba52cfc16063f88de8"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3562,21 +3562,21 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2018-09-08T13:15:14+00:00"
+            "time": "2018-10-31T09:06:03+00:00"
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.17",
+            "version": "v3.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "3b2b415d4c48fbefca7dc742aa0a0171bfae4e0b"
+                "reference": "1d228fb4602047d7b26a0554e0d3efd567da5803"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-3b2b415d4c48fbefca7dc742aa0a0171bfae4e0b-zip-93f4a3.zip",
-                "reference": "3b2b415d4c48fbefca7dc742aa0a0171bfae4e0b",
-                "shasum": "ad3cfbf8e67b89864d2c7a4b0aaa4d5c9aad2746"
+                "url": "https://composer.tiki.org/dist/symfony/console/symfony-console-1d228fb4602047d7b26a0554e0d3efd567da5803-zip-00abb8.zip",
+                "reference": "1d228fb4602047d7b26a0554e0d3efd567da5803",
+                "shasum": "cc9a6e90229c7bea982953282154f44ea5c31de4"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3631,11 +3631,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T16:33:53+00:00"
+            "time": "2018-10-30T16:50:50+00:00"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v4.1.6",
+            "version": "v4.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -3688,17 +3688,17 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.1.6",
+            "version": "v4.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "e3f76ce6198f81994e019bb2b4e533e9de1b9b90"
+                "reference": "19090917b848a799cbae4800abf740fe4eb71c1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-e3f76ce6198f81994e019bb2b4e533e9de1b9b90-zip-31d8fa.zip",
-                "reference": "e3f76ce6198f81994e019bb2b4e533e9de1b9b90",
-                "shasum": "dfdbd2842d7b9192a11ae878c7ce47f44377b118"
+                "url": "https://composer.tiki.org/dist/symfony/debug/symfony-debug-19090917b848a799cbae4800abf740fe4eb71c1d-zip-7b872d.zip",
+                "reference": "19090917b848a799cbae4800abf740fe4eb71c1d",
+                "shasum": "b1f4993bbac00ff2c753777097fb513db86fe1b7"
             },
             "require": {
                 "php": "^7.1.3",
@@ -3740,21 +3740,21 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T16:36:10+00:00"
+            "time": "2018-10-31T09:09:42+00:00"
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.17",
+            "version": "v3.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "aea20fef4e92396928b5db175788b90234c0270d"
+                "reference": "9c98452ac7fff4b538956775630bc9701f5384ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-aea20fef4e92396928b5db175788b90234c0270d-zip-505ddf.zip",
-                "reference": "aea20fef4e92396928b5db175788b90234c0270d",
-                "shasum": "4d670c050f2567ed8ed5b11cd6a63bb9a51ea682"
+                "url": "https://composer.tiki.org/dist/symfony/dependency-injection/symfony-dependency-injection-9c98452ac7fff4b538956775630bc9701f5384ba-zip-646f0b.zip",
+                "reference": "9c98452ac7fff4b538956775630bc9701f5384ba",
+                "shasum": "aeb1923569e675a98e9d97f536b22685bdb73c77"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8",
@@ -3811,21 +3811,21 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T12:28:39+00:00"
+            "time": "2018-10-31T10:49:51+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.1.6",
+            "version": "v4.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "596d12b40624055c300c8b619755b748ca5cf0b5"
+                "reference": "fd7bd6535beb1f0a0a9e3ee960666d0598546981"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-596d12b40624055c300c8b619755b748ca5cf0b5-zip-4c5fd3.zip",
-                "reference": "596d12b40624055c300c8b619755b748ca5cf0b5",
-                "shasum": "e1994d707a7d3a4593fabb19c3a57be19b2f0226"
+                "url": "https://composer.tiki.org/dist/symfony/filesystem/symfony-filesystem-fd7bd6535beb1f0a0a9e3ee960666d0598546981-zip-cbd6f4.zip",
+                "reference": "fd7bd6535beb1f0a0a9e3ee960666d0598546981",
+                "shasum": "4c1fc4ee8f5744f024c32e47107aca37e5092663"
             },
             "require": {
                 "php": "^7.1.3",
@@ -3861,11 +3861,11 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T12:40:59+00:00"
+            "time": "2018-10-30T13:18:25+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.9.0",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
@@ -3923,17 +3923,17 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.9.0",
+            "version": "v1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8"
+                "reference": "c79c051f5b3a46be09205c73b80b346e4153e494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-d0cd638f4634c16d8df4508e847f14e9e43168b8-zip-940b7f.zip",
-                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8",
-                "shasum": "7bc7d51e2e2463fb27400c260e9a1823e2302c5c"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-c79c051f5b3a46be09205c73b80b346e4153e494-zip-b04f60.zip",
+                "reference": "c79c051f5b3a46be09205c73b80b346e4153e494",
+                "shasum": "3715b1d65b74fbad8a131eb7e1116568273f7b1d"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -3978,21 +3978,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-08-06T14:22:27+00:00"
+            "time": "2018-09-21T13:07:52+00:00"
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.17",
+            "version": "v3.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "1dc2977afa7d70f90f3fefbcd84152813558910e"
+                "reference": "35c2914a9f50519bd207164c353ae4d59182c2cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-1dc2977afa7d70f90f3fefbcd84152813558910e-zip-96a6fd.zip",
-                "reference": "1dc2977afa7d70f90f3fefbcd84152813558910e",
-                "shasum": "d15fa58bcdab34e2c5b05a35f85a39280a9108d8"
+                "url": "https://composer.tiki.org/dist/symfony/process/symfony-process-35c2914a9f50519bd207164c353ae4d59182c2cb-zip-72b930.zip",
+                "reference": "35c2914a9f50519bd207164c353ae4d59182c2cb",
+                "shasum": "0fdee375c30257bd224e74ff4c94f3b2a6663c24"
             },
             "require": {
                 "php": "^5.5.9|>=7.0.8"
@@ -4027,11 +4027,11 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-10-02T12:28:39+00:00"
+            "time": "2018-10-14T17:33:21+00:00"
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.17",
+            "version": "v3.4.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
