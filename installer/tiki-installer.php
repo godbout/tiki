@@ -1029,6 +1029,7 @@ if ($dbcon
 	$smarty->assign('logged', 'y');
 
 	if (isset($_POST['scratch'])) {
+		$installer->generateProgressPage();
 		$installer->cleanInstall();
 		if ($has_tiki_db) {
 			$logmsg = 'database "' . $dbs_tiki . '" destroyed and reinstalled';
