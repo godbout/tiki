@@ -3121,7 +3121,10 @@ lib/core/Tiki/Request.php -text
 lib/core/Tiki/SabreDav/BasicAuth.php -text
 lib/core/Tiki/SabreDav/Directory.php -text
 lib/core/Tiki/SabreDav/File.php -text
+lib/core/Tiki/SabreDav/LocksBackend.php -text
 lib/core/Tiki/SabreDav/Utilities.php -text
+lib/core/Tiki/SabreDav/WikiDirectory.php -text
+lib/core/Tiki/SabreDav/WikiPage.php -text
 lib/core/Tiki/Security.php -text
 lib/core/Tiki/TimeLimit.php -text
 lib/core/Tiki/Transition.php -text

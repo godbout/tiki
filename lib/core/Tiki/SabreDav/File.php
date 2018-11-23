@@ -27,6 +27,10 @@ class File extends DAV\File {
 		$this->file = TikiFile::id($path_or_id);
 	}
 
+	function getFile() {
+		return $this->file;
+	}
+
 	function getName() {
 		return $this->file->filename;
 	}

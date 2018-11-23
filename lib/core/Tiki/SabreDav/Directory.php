@@ -27,11 +27,19 @@ class Directory extends DAV\Collection {
 	}
 
 	function getChildren() {
-		$results = $this->galleryChildren();
+		global $prefs;
+
 		$children = array();
+		$info = $this->definition->getInfo();
+		if ($info['galleryId'] == $prefs['fgal_root_id']) {
+			$children[] = new WikiDirectory();
+		}
+
+		$results = $this->galleryChildren();
 		foreach($results['data'] as $row) {
 			$children[] = $this->getChildFromDB($row);
 		}
+
 		return $children;
 	}
 
@@ -44,6 +52,10 @@ class Directory extends DAV\Collection {
 	}
 
 	function getChild($name) {
+		$wikiDir = new WikiDirectory();
+		if ($name === $wikiDir->getName()) {
+			return $wikiDir;
+		}
 		$results = $this->galleryChildren();
 		foreach ($results['data'] as $row) {
 			if ($row['filename'] === $name) {
@@ -58,7 +70,7 @@ class Directory extends DAV\Collection {
 		$results = $this->galleryChildren();
 		foreach ($results['data'] as $row) {
 			if ($row['filename'] === $name) {
-				return $true;
+				return true;
 			}
 		}
 		return false;
@@ -119,6 +131,11 @@ class Directory extends DAV\Collection {
 		$info = $this->definition->getInfo();
 		
 		TikiLib::lib('filegal')->remove_file_gallery($info['galleryId'], $info['galleryId']);
+	}
+
+	function getGalleryId() {
+		$info = $this->definition->getInfo();
+		return $info['galleryId'];
 	}
 
 	private function galleryChildren($find = null) {

@@ -11,6 +11,7 @@
 use Sabre\DAV;
 use Tiki\SabreDav\Directory;
 use Tiki\SabreDav\BasicAuth;
+use Tiki\SabreDav\LocksBackend;
 
 require_once 'tiki-setup.php';
 $access->check_feature('feature_webdav');
@@ -26,5 +27,9 @@ $server->addPlugin(new DAV\Browser\Plugin());
 $authBackend = new BasicAuth();
 $authPlugin = new DAV\Auth\Plugin($authBackend);
 $server->addPlugin($authPlugin);
+
+$locksBackend = new LocksBackend($tikipath.'temp/davlocks');
+$locksPlugin = new DAV\Locks\Plugin($locksBackend);
+$server->addPlugin($locksPlugin);
 
 $server->exec();

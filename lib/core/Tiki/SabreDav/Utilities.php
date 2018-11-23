@@ -55,6 +55,6 @@ class Utilities {
     $filesize = strlen($content);
     $mime = TikiLib::lib('mime')->from_content($name, $content);
 
-    return compact($content, $filesize, $mime);
+    return compact('content', 'filesize', 'mime');
   }
 }

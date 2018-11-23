@@ -1209,6 +1209,12 @@ class WikiLib extends TikiLib
 		return ($info['flag'] == 'L') ? $info['user'] : null;
 	}
 
+	public function get_locked() {
+		$locked = [];
+		$query = "select `pageName`, 'lockedby', 'lastModif' from `tiki_pages` where `flag`='L'";
+		return $this->fetchAll($query);
+	}
+
 	public function is_editable($page, $user, $info = null)
 	{
 		global $prefs;
