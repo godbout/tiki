@@ -577,4 +577,18 @@ HTML;
 		echo $page_content;
 		ob_flush();
 	}
+
+	function pushStateToBrowser($targetElement, $content) 
+	{
+		$scripts = <<<JS
+		<script class="progress_bar_script">
+			var element = parent.document.getElementById("{$targetElement}");
+			if(element) {
+				element.innerHTML = "{$content}";
+			}
+		</script>
+JS;
+		echo $scripts;
+		ob_flush();
+	}
 }
