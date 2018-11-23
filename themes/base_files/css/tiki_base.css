@@ -1101,16 +1101,19 @@ div.categbar {
 .dropdown-menu > .btn-link {
   padding: 0.25rem 1.5rem; }
 
+.uol {
+  margin-left: 2rem; }
+
 .uol ol:not(.media-list), ol.uol {
   counter-reset: item; }
 
 .uol ol:not(.media-list) > li {
-  display: block;
-  text-indent: -1rem; }
+  display: block; }
 
 .uol ol:not(.media-list) > li:before {
   content: counters(item, ".") ".\0000a0";
-  counter-increment: item; }
+  counter-increment: item;
+  margin-left: -3rem; }
 
 .uol ol:not(.media-list) > li ol > li:before {
   content: counters(item, ".") "\0000a0";
