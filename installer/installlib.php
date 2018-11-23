@@ -265,7 +265,7 @@ class Installer extends TikiDb_Bridge
 			print('Fatal: Cannot open ' . $file);
 			exit(1);
 		}
-
+		$this->pushStateToBrowser('build_patch', $file);
 		if ($clearTable == true) {
 			$statement = 'truncate table ' . $targetTable;
 			$this->query($statement);
@@ -395,6 +395,7 @@ class Installer extends TikiDb_Bridge
 			}
 			$patch = new Patch($patchName, $status);
 			$patch->optional = substr($patchName, 0, 8) == 'optional'; // Ignore patches starting with "optional". These patches have drawbacks and should be manually run by informed administrators.
+			$this->pushStateToBrowser('build_patch', $patchName);
 			Patch::$list[$patchName] = $patch;
 		}
 	}
@@ -411,6 +412,7 @@ class Installer extends TikiDb_Bridge
 				continue;
 			}
 			$filename = basename($file);
+			$this->pushStateToBrowser('build_script', $patchName);
 			$this->scripts[] = substr($filename, 0, -4);
 		}
 	} // }}}
