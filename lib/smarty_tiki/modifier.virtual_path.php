@@ -13,11 +13,15 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
-function smarty_modifier_virtual_path($fileId, $type = 'file')
+function smarty_modifier_virtual_path($fileOrPageId, $type = 'file')
 {
-	global $prefs;
-	global $base_url;
+	global $prefs, $base_url;
+	
 	$filegallib = TikiLib::lib('filegal');
 
-	return  $base_url . 'tiki-webdav.php' . ($filegallib->get_full_virtual_path($fileId, $type));
+	if ($type == 'wiki page') {
+		return $base_url . 'tiki-webdav.php/Wiki Pages/' . $fileOrPageId;
+	} else {
+		return $base_url . 'tiki-webdav.php' . ($filegallib->get_full_virtual_path($fileOrPageId, $type));
+	}
 }

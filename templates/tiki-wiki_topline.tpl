@@ -284,6 +284,12 @@
 								</a>
 							{/if}
 						{/if}
+						{if $prefs.feature_webdav eq 'y'}
+							<a class="dropdown-item" href="javascript:open_webdav('{$page|virtual_path:'wiki page'|escape:'javascript'|escape}')" class="icon">
+								{icon name="file-archive-open"} {tr}Open in WebDAV{/tr}
+								{assign var="hasPageAction" value="1"}
+							</a>
+						{/if}
 						{if $user and $prefs.user_favorites eq 'y'}
 							{favorite type="wiki page" object=$page button_classes="dropdown-item icon"}
 								{assign var="hasPageAction" value="1"}
