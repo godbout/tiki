@@ -29,6 +29,10 @@ class Installer extends TikiDb_Bridge
 
 	public $useInnoDB = true;
 
+	public static $createdTables = 0;
+
+	public static $numberOfTablesToCreate = 0;
+
 	/**
 	 * TODO: make private to enforce Singleton
 	 */
@@ -291,11 +295,21 @@ class Installer extends TikiDb_Bridge
 		// split the file into several queries?
 		$statements = preg_split("#(;\s*\n)|(;\s*\r\n)#", $command);
 
+		foreach($statements as $statement) {
+			if(basename($file, 'tiki.sql')) {
+				if(preg_match('/CREATE\sTABLE\s`([a-zA-Z_]+)`.*/', $statement, $create_query_matches_parts)) {
+					self::$numberOfTablesToCreate++;
+				}
+			}
+		}
+
 		$status = true;
 		foreach ($statements as $statement) {
 			if(basename($file, 'tiki.sql')) {
 				if(preg_match('/CREATE\sTABLE\s`([a-zA-Z_]+)`.*/', $statement, $create_query_matches_parts)) {
 					$this->pushStateToBrowser('table_name', $create_query_matches_parts[1]);
+					++self::$createdTables;
+					$this->updateProgressBarState('progress_database_status', self::$createdTables);
 				}
 			}
 			if(basename($file, 'tiki_fulltext_indexes.sql')) {
@@ -596,6 +610,22 @@ HTML;
 			if(element) {
 				element.innerHTML = "{$content}";
 			}
+		</script>
+JS;
+		echo $scripts;
+		ob_flush();
+	}
+
+	function updateProgressBarState($progress_name, $level)
+	{
+		$percent = intval($level/self::$numberOfTablesToCreate * 100)."%";
+		
+		$scripts = <<<JS
+		<script class="progress_bar_script">
+			var element = parent.document.getElementById("{$progress_name}");
+			element.style.width = "{$percent}";
+			var progress_status_element = parent.document.getElementById("progress_database_status_percentage");
+			progress_status_element.innerHTML = "{$percent}";
 		</script>
 JS;
 		echo $scripts;
