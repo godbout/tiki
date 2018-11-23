@@ -1,13 +1,15 @@
 {* $Id$ *}
 
 <div class="media">
+	<div class="mr-4">
 	<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
 		<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
 		<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
-	{tr}Here you can see listed other features and settings that were not included in the previous sections{/tr}.
+	</div>
 	<br/><br/><br/>
 	<div class="media-body">
+		{tr}Here you can see listed other features and settings that were not included in the previous sections{/tr}.
 		<fieldset>
 			<legend>{tr}Ratings in Forums{/tr}</legend>
 			{icon name="admin_rating" size=3 iclass="float-sm-right"}

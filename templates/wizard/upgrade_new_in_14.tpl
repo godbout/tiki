@@ -1,12 +1,16 @@
 {* $Id$ *}
 
 <div class="media">
+	<div class="mr-4">
 	<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
 		<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
 		<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
-	{tr}Main new features and settings in Tiki 14{/tr}.
-	<a href="http://doc.tiki.org/Tiki14" target="tikihelp" class="tikihelp" title="{tr}Tiki14:{/tr}
+	</div>
+	<br/><br/><br/>
+	<div class="media-body">
+		{tr}Main new features and settings in Tiki 14{/tr}.
+		<a href="http://doc.tiki.org/Tiki14" target="tikihelp" class="tikihelp" title="{tr}Tiki14:{/tr}
 			{tr}Tiki14 is a standard non-LTS version{/tr}.
 			{tr}It will be supported until 15.1 is released{/tr}.
 			{tr}The requirements are the same as in the previous version (IE9, PHP 5.5){/tr}.
@@ -14,10 +18,8 @@
 			<br/><br/>
 			{tr}Click to read more{/tr}
 		">
-		{icon name="help" size=1}
-	</a>
-	<br/><br/><br/>
-	<div class="media-body">
+			{icon name="help" size=1}
+		</a>
 		<fieldset class="table clearfix featurelist">
 			<legend>{tr}New modules{/tr}</legend>
 			{tr}A new module called <strong>Module zone</strong> was added{/tr}

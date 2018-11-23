@@ -1,22 +1,24 @@
 {* $Id$ *}
 
 <div class="media">
+	<div class="mr-4">
 	<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
 		<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
 		<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
-	{tr}Main new and improved features and settings in Tiki 18.{/tr}
-	<a href="https://doc.tiki.org/Tiki18" target="tikihelp" class="tikihelp text-info" title="{tr}Tiki18:{/tr}
+	</div>
+	<br/><br/><br/>
+	<div class="media-body">
+		{tr}Main new and improved features and settings in Tiki 18.{/tr}
+		<a href="https://doc.tiki.org/Tiki18" target="tikihelp" class="tikihelp text-info" title="{tr}Tiki18:{/tr}
 			{tr}This is an LTS version.{/tr}
 			{tr}As it is a Long-Term Support (LTS) version, it will be supported for 5 years.{/tr}
 			{tr}Many libraries have been upgraded.{/tr}
 			<br/><br/>
 			{tr}Click to read more{/tr}
 		">
-		{icon name="help" size=1}
-	</a>
-	<br/><br/><br/>
-	<div class="media-body">
+			{icon name="help" size=1}
+		</a>
 		<fieldset class="table clearfix featurelist">
 			<legend>{tr}New Features{/tr}</legend>
 			<div class="adminoption form-group row">

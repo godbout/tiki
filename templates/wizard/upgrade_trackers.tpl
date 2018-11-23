@@ -1,17 +1,19 @@
 {* $Id$ *}
 
 <div class="media">
+	<div class="mr-4">
 	<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
 		<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
 		<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
-	<p>
-		{tr}Here you can set up a few options and features related to Trackers which were added across several versions of Tiki{/tr}.
-		{tr}You might have not specially noticed when they appeared but you should know about these enhancements since you might be interested in using some of them in your site{/tr}.
-	</p>
-	{icon name="admin_trackers" size=3 iclass="float-sm-right"}
+	</div>
 	</br>
 	<div class="media-body">
+		<p>
+			{tr}Here you can set up a few options and features related to Trackers which were added across several versions of Tiki{/tr}.
+			{tr}You might have not specially noticed when they appeared but you should know about these enhancements since you might be interested in using some of them in your site{/tr}.
+		</p>
+		{icon name="admin_trackers" size=3 iclass="float-sm-right"}
 		<fieldset>
 			<legend>{tr}Tracker settings{/tr}</legend>
 			<div class="admin clearfix featurelist">
