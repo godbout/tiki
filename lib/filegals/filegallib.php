@@ -2701,8 +2701,14 @@ class FileGalLib extends TikiLib
 		return false;
 	}
 
+	/**
+	 * Only used in webdav context - gets the URI of the file or gallery
+	 * with default/root file gallery path removed.
+	 */
 	function get_full_virtual_path($id, $type = 'file')
 	{
+		global $prefs;
+
 		if (! $id > 0) {
 			return false;
 		}
@@ -2712,7 +2718,10 @@ class FileGalLib extends TikiLib
 				if ($id == -1) {
 					return '/';
 				}
-				$res = $this->table('tiki_file_galleries')->fetchRow(['name', 'parentId'], ['galleryId' => (int) $id]);
+				$res = $this->table('tiki_file_galleries')->fetchRow(['galleryId', 'name', 'parentId'], ['galleryId' => (int) $id]);
+				if ($res['galleryId'] == $prefs['fgal_root_id']) {
+					$res['name'] = '';
+				}
 				break;
 
 			case 'file':
@@ -2723,8 +2732,11 @@ class FileGalLib extends TikiLib
 
 		if ($res) {
 			$parentPath = $this->get_full_virtual_path($res['parentId'], 'filegal');
-
-			return $parentPath . ( $parentPath == '/' ? '' : '/' ) . $res['name'];
+			if (empty($res['name'])) {
+				return $parentPath;
+			} else {
+				return $parentPath . ( $parentPath == '/' ? '' : '/' ) . $res['name'];
+			}
 		}
 
 		return false;
