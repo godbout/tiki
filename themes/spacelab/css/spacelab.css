@@ -6578,8 +6578,8 @@ body.wikitext {
 .admintoclevel .actions input {
   border: solid 1px #999; }
 
-.TextArea-fullscreen {
-  background-color: #999; }
+.TextArea-fullscreen, .CodeMirror-fullscreen, .TextArea-fullscreen .edit-zone-footer, .CodeMirror-fullscreen .edit-zone-footer {
+  background-color: #fff; }
 
 .TextArea-fullscreen .actions, .CodeMirror-fullscreen .actions {
   background-color: #fff;

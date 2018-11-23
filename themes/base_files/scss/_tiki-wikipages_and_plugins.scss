@@ -634,8 +634,21 @@ li .url-group {
 	width: 100% !important;
 }
 
-.TextArea-fullscreen .edit-zone-footer {
-	background: $body-bg;
+.TextArea-fullscreen .edit-zone-footer,
+.CodeMirror-fullscreen .edit-zone-footer {
+	position: absolute;
+	margin: 0 !important;
+	padding: 4px 12px 12px;
+	width: 100%;
+	bottom: 49px;
+	z-index: 2;
+
+	.form-check {
+		position: absolute;
+		padding: 4px 12px 12px;
+		bottom: 49px;
+		right: 0;
+	}
 }
 
 .TextArea-fullscreen .actions,

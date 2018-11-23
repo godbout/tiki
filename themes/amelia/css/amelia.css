@@ -6462,8 +6462,8 @@ body.wikitext {
 .admintoclevel .actions input {
   border: solid 1px #555; }
 
-.TextArea-fullscreen {
-  background-color: #555; }
+.TextArea-fullscreen, .CodeMirror-fullscreen, .TextArea-fullscreen .edit-zone-footer, .CodeMirror-fullscreen .edit-zone-footer {
+  background-color: #108a93; }
 
 .TextArea-fullscreen .actions, .CodeMirror-fullscreen .actions {
   background-color: #108a93;
