@@ -293,6 +293,16 @@ class Installer extends TikiDb_Bridge
 
 		$status = true;
 		foreach ($statements as $statement) {
+			if(basename($file, 'tiki.sql')) {
+				if(preg_match('/CREATE\sTABLE\s`([a-zA-Z_]+)`.*/', $statement, $create_query_matches_parts)) {
+					$this->pushStateToBrowser('table_name', $create_query_matches_parts[1]);
+				}
+			}
+			if(basename($file, 'tiki_fulltext_indexes.sql')) {
+				if(preg_match('/CREATE\sFULLTEXT\s[a-zA-Z\s]*\s([a-z_]*)\(/', $statement, $create_query_matches_parts)) {
+					$this->pushStateToBrowser('table_index', $create_query_matches_parts[1]);
+				}
+			}
 			if (trim($statement)) {
 				if (preg_match('/^\s*(?!-- )/m', $statement)) {// If statement is not commented
 					if ($this->useInnoDB && $convertFormat) {
