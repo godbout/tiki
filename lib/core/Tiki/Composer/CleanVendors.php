@@ -310,8 +310,6 @@ class CleanVendors
 		);
 
 		$fs->remove($vendors . 'twitter/bootstrap/docs');
-		$fs->remove($vendors . 'zetacomponents/base/design');
-		$fs->remove($vendors . 'zetacomponents/webdav/design');
 		$fs->remove($vendors . 'nicolaskruchten/pivottable/images/animation.gif');
 
 		// These are removed to avoid composer warnings caused by classes declared in multiple locations

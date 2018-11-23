@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a6bac7603db46166764b63ee01157662",
+    "content-hash": "86d84790716021fda8979b3e184b665a",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -186,17 +186,17 @@
         },
         {
             "name": "blueimp/jquery-file-upload",
-            "version": "v9.27.0",
+            "version": "v9.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vkhramtsov/jQuery-File-Upload.git",
-                "reference": "8804b363c4289622eb52761f2728a314951a8c33"
+                "reference": "ff5accfe2e5c4a522777faa980a90cf86a636d1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-8804b363c4289622eb52761f2728a314951a8c33-zip-4f508c.zip",
-                "reference": "8804b363c4289622eb52761f2728a314951a8c33",
-                "shasum": "3c6f7e7f12739f0eed878da7ea3176a10573082b"
+                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-ff5accfe2e5c4a522777faa980a90cf86a636d1d-zip-cd8368.zip",
+                "reference": "ff5accfe2e5c4a522777faa980a90cf86a636d1d",
+                "shasum": "27d81ed67d36135422541cd620d3992a756f1547"
             },
             "type": "library",
             "autoload": {
@@ -237,7 +237,7 @@
                 "upload",
                 "widget"
             ],
-            "time": "2018-11-08T05:47:37+00:00"
+            "time": "2018-11-13T05:41:39+00:00"
         },
         {
             "name": "bower-asset/fontawesome",
@@ -1346,17 +1346,17 @@
         },
         {
             "name": "jcbrand/converse.js",
-            "version": "v4.0.4",
+            "version": "v4.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/conversejs/converse.js.git",
-                "reference": "f471dd2474d4b2dae6f43035a4ce454d0ee3772c"
+                "reference": "588b015e621719b22f1803c4adb5052be534d49c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-f471dd2474d4b2dae6f43035a4ce454d0ee3772c-zip-a7536f.zip",
-                "reference": "f471dd2474d4b2dae6f43035a4ce454d0ee3772c",
-                "shasum": "b1699c8134015df0c0ecbc80d10c9eb3bc825e3b"
+                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-588b015e621719b22f1803c4adb5052be534d49c-zip-ba783c.zip",
+                "reference": "588b015e621719b22f1803c4adb5052be534d49c",
+                "shasum": "937ff7e394963c37d0fe172a442a8cbff7e989a8"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1371,7 +1371,7 @@
                 "presence",
                 "xmpp"
             ],
-            "time": "2018-10-29T21:28:28+00:00"
+            "time": "2018-11-15T12:24:22+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -2091,17 +2091,17 @@
         },
         {
             "name": "mottie/tablesorter",
-            "version": "v2.31.0",
+            "version": "v2.31.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mottie/tablesorter.git",
-                "reference": "9d53e3b35b494dc1c2e7d7266cec437fc9f26e39"
+                "reference": "fa56764ad5630ed3ab9da4a30fdb8dd34bfbaf1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-9d53e3b35b494dc1c2e7d7266cec437fc9f26e39-zip-8506a7.zip",
-                "reference": "9d53e3b35b494dc1c2e7d7266cec437fc9f26e39",
-                "shasum": "95d96ce8699634d5f881c635252d4b4d313a2d7a"
+                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-fa56764ad5630ed3ab9da4a30fdb8dd34bfbaf1f-zip-2318d3.zip",
+                "reference": "fa56764ad5630ed3ab9da4a30fdb8dd34bfbaf1f",
+                "shasum": "97e86d8819de08fd3ed1ab7fe2fc9f0e6e5c731f"
             },
             "require": {
                 "components/jquery": ">=1.2.6"
@@ -2138,7 +2138,7 @@
                 "sorting",
                 "table"
             ],
-            "time": "2018-08-27T16:34:23+00:00"
+            "time": "2018-11-20T21:54:28+00:00"
         },
         {
             "name": "nagarajanchinnasamy/subtotal",
@@ -2280,12 +2280,12 @@
         },
         {
             "name": "npm-asset/popper.js",
-            "version": "1.14.4",
+            "version": "1.14.5",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/popper-js/npm-asset-popper-js-1.14.4.zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/popper-js/npm-asset-popper-js-1.14.5.zip",
                 "reference": null,
-                "shasum": "ef8f96cf4219a05d7ee28dcfc04fe0cdb99c1c64"
+                "shasum": "18e530a5eea79413888120929be1503c8dff8831"
             },
             "type": "npm-asset",
             "license": [
@@ -3067,17 +3067,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.41.3",
+            "version": "v1.42.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "a070a8d2dd89f8ecbee89eecee77979298bfd886"
+                "reference": "8fed2ccf74638456ed8f9a32676da1c86c09cfe6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-a070a8d2dd89f8ecbee89eecee77979298bfd886-zip-d27326.zip",
-                "reference": "a070a8d2dd89f8ecbee89eecee77979298bfd886",
-                "shasum": "861187374221015d60c76cbf85c1f4a6d6ab9c4b"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-8fed2ccf74638456ed8f9a32676da1c86c09cfe6-zip-3e9c05.zip",
+                "reference": "8fed2ccf74638456ed8f9a32676da1c86c09cfe6",
+                "shasum": "2a8c1e84dc0ed6c3536ce559f61005aed1b2c6d1"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -3099,7 +3099,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2018-09-25T18:07:01+00:00"
+            "time": "2018-11-08T17:52:06+00:00"
         },
         {
             "name": "psr/container",
@@ -3152,17 +3152,17 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/psr/log/psr-log-4ebe3a8bf773a19edfe0a84b6585ba3d401b724d-zip-6434e8.zip",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "shasum": "c69a0972ac57d81a78bf392a0a892b61a97e5449"
+                "url": "https://composer.tiki.org/dist/psr/log/psr-log-6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd-zip-b599c5.zip",
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "shasum": "a74026797cd47e3576920bdfd6a3116de297f607"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -3195,7 +3195,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2018-11-20T15:27:04+00:00"
         },
         {
             "name": "rangy/rangy",
@@ -6356,136 +6356,6 @@
                 "zf2"
             ],
             "time": "2013-03-13T20:49:31+00:00"
-        },
-        {
-            "name": "zetacomponents/base",
-            "version": "1.9.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zetacomponents/Base.git",
-                "reference": "489e20235989ddc97fdd793af31ac803972454f1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/zetacomponents/base/zetacomponents-base-489e20235989ddc97fdd793af31ac803972454f1-zip-f8cdc1.zip",
-                "reference": "489e20235989ddc97fdd793af31ac803972454f1",
-                "shasum": "32baa4baecfcab04d422902253b884eab16f86a3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "~5.7",
-                "zetacomponents/unit-test": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Sergey Alexeev"
-                },
-                {
-                    "name": "Sebastian Bergmann"
-                },
-                {
-                    "name": "Jan Borsodi"
-                },
-                {
-                    "name": "Raymond Bosman"
-                },
-                {
-                    "name": "Frederik Holljen"
-                },
-                {
-                    "name": "Kore Nordmann"
-                },
-                {
-                    "name": "Derick Rethans"
-                },
-                {
-                    "name": "Vadym Savchuk"
-                },
-                {
-                    "name": "Tobias Schlitt"
-                },
-                {
-                    "name": "Alexandru Stanoi"
-                }
-            ],
-            "description": "The Base package provides the basic infrastructure that all packages rely on. Therefore every component relies on this package.",
-            "homepage": "https://github.com/zetacomponents",
-            "time": "2017-11-28T11:30:00+00:00"
-        },
-        {
-            "name": "zetacomponents/webdav",
-            "version": "1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/zetacomponents/Webdav.git",
-                "reference": "44a182f559e5c7bebccab5a112dd3ba8c84a48c0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/zetacomponents/webdav/zetacomponents-webdav-44a182f559e5c7bebccab5a112dd3ba8c84a48c0-zip-29cb96.zip",
-                "reference": "44a182f559e5c7bebccab5a112dd3ba8c84a48c0",
-                "shasum": "dbb389dad1f51d1331a2bc56c251967e24de9618"
-            },
-            "require": {
-                "zetacomponents/base": "~1.8"
-            },
-            "require-dev": {
-                "zetacomponents/unit-test": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Apache-2.0"
-            ],
-            "authors": [
-                {
-                    "name": "Sergey Alexeev"
-                },
-                {
-                    "name": "Sebastian Bergmann"
-                },
-                {
-                    "name": "Jan Borsodi"
-                },
-                {
-                    "name": "Raymond Bosman"
-                },
-                {
-                    "name": "Frederik Holljen"
-                },
-                {
-                    "name": "Kore Nordmann"
-                },
-                {
-                    "name": "Derick Rethans"
-                },
-                {
-                    "name": "Vadym Savchuk"
-                },
-                {
-                    "name": "Tobias Schlitt"
-                },
-                {
-                    "name": "Alexandru Stanoi"
-                }
-            ],
-            "description": "This component allows you to set up and run your own WebDAV (RFC 2518) server, to enable online content editing for the users of your system through the WebDAV HTTP extension.",
-            "homepage": "https://github.com/zetacomponents",
-            "time": "2014-09-27T19:26:10+00:00"
         }
     ],
     "packages-dev": [

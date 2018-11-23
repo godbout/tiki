@@ -2215,18 +2215,6 @@ lang/vi/language.js -text
 lang/vi/language.php -text
 lang/web.config -text
 lib/.htaccess -text
-lib/TikiWebdav/Auth/Default.php -text
-lib/TikiWebdav/Auth/Wiki.php -text
-lib/TikiWebdav/Auth/index.php -text
-lib/TikiWebdav/Backend/File.php -text
-lib/TikiWebdav/Backend/Wiki.php -text
-lib/TikiWebdav/Backend/index.php -text
-lib/TikiWebdav/PathFactories/File.php -text
-lib/TikiWebdav/PathFactories/Wiki.php -text
-lib/TikiWebdav/PathFactories/index.php -text
-lib/TikiWebdav/Server.php -text
-lib/TikiWebdav/autoload.php -text
-lib/TikiWebdav/index.php -text
 lib/accounting/accountinglib.php -text
 lib/accounting/index.php -text
 lib/activity/activitylib.php -text
@@ -8144,7 +8132,6 @@ themes/yeti/templates/index.php -text
 /tiki-report_direct_object_perms.php -text
 /tiki-rollback.php -text
 /tiki-rss_error.php -text
-/tiki-sabredav.php -text
 /tiki-search_replace.php -text
 /tiki-search_stats.php -text
 /tiki-searchindex.php -text

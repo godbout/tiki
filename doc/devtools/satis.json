@@ -1816,6 +1816,7 @@
 		"rmm5t/jquery-timeago": "^1.5",
 		"robloach/component-installer": "^0.2",
 		"robicch/jquery-gantt": "dev-master",
+		"sabre/dav": ">=3.2.3",
 		"sebastian/code-unit-reverse-lookup": ">=1.0.0",
 		"sebastian/comparator": ">=1.2.0",
 		"sebastian/diff": ">=1.4.1",
@@ -1885,9 +1886,7 @@
 		"zendframework/zendsearch": "~2.0||dev-tiki",
 		"zendframework/zendservice-akismet": ">=2.0",
 		"zendframework/zendservice-recaptcha": ">=2.0",
-		"zendframework/zendservice-twitter": ">=2.0",
-		"zetacomponents/base": ">=1.8",
-		"zetacomponents/webdav": ">=1.1.3"
+		"zendframework/zendservice-twitter": ">=2.0"
 	},
 	"require-dependencies": true,
 	"require-dev-dependencies": true,
