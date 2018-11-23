@@ -460,7 +460,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit_Framework_TestCase
 					'must_not' => [
 						[
 							"match" => [
-								"contents" => ["query" => "bar", "boost" => 1.0, 'operator' => 'and'],
+								"contents" => ["query" => "bar", "boost" => 1.0, 'operator' => 'and', 'type' => 'phrase'],
 							],
 						],
 					],
