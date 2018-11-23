@@ -59,7 +59,7 @@ class File extends DAV\File {
 	function put($data) {
 		Utilities::checkUploadPermission($this->file->galleryDefinition());
 
-		$info = Utilities::parseContents($this->file->name, $data);
+		$info = Utilities::parseContents($this->file->filename, $data);
 
 		TikiLib::lib('filegal')->replace_file(
 			$this->file->fileId,
@@ -86,7 +86,7 @@ class File extends DAV\File {
 			$this->file->fileId,
 			$name,
 			$this->file->description,
-			$this->file->filename,
+			$name,
 			$this->file->data,
 			$this->file->filesize,
 			$this->file->filetype,

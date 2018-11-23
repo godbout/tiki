@@ -8,6 +8,12 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+// TESTING STEPS:
+// 1. Use browser with the base uri
+// 2. Use davfs or other webdav client
+// 3. Use litmus testing tool http://www.webdav.org/neon/litmus/ - currently only
+// prop-related tests fail because we don't support custom properties (yet)
+
 use Sabre\DAV;
 use Tiki\SabreDav\Directory;
 use Tiki\SabreDav\BasicAuth;
