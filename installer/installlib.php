@@ -601,7 +601,10 @@ class Installer extends TikiDb_Bridge
 			</script>
 HTML;
 		echo $page_content;
-		ob_flush();
+		$working_env = php_sapi_name();
+		if($working_env != 'cli') {
+			ob_flush();
+		}
 	}
 
 	function pushStateToBrowser($targetElement, $content) 
@@ -615,7 +618,10 @@ HTML;
 		</script>
 JS;
 		echo $scripts;
-		ob_flush();
+		$working_env = php_sapi_name();
+		if($working_env != 'cli') {
+			ob_flush();
+		}
 	}
 
 	function updateProgressBarState($progress_name, $level)
@@ -631,6 +637,9 @@ JS;
 		</script>
 JS;
 		echo $scripts;
-		ob_flush();
+		$working_env = php_sapi_name();
+		if($working_env != 'cli') {
+			ob_flush();
+		}
 	}
 }
