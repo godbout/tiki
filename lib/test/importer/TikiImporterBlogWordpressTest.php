@@ -84,9 +84,11 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$output = $this->obj->replaceParagraphWithLineBreak($input);
 		$this->assertEquals($expectedOutput, $output, "html paragraphs should be replaced with br");
 
-		$input = "<p>Hello world</p><br />";
+		$expectedOutput = "<div>Hello world</div>";
+
+		$input = "<div>Hello world</div>";
 		$output = $this->obj->replaceParagraphWithLineBreak($input);
-		$this->assertEquals($expectedOutput, $output, "No extra br should be added if there was one after the paragraph already");
+		$this->assertEquals($expectedOutput, $output, "No extra br should be added if there was no paragraph");
 	}
 
 	public function testParseData()
