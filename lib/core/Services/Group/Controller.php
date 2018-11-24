@@ -29,7 +29,7 @@ class Services_Group_Controller
 		'usersfield'				=> 'int',
 		'groupfield'				=> 'int',
 		'expireAfter'				=> 'int',
-		'anniversary'				=> 'digits',
+		'anniversary'				=> 'digits',	// format MMDD or DD - NB: this is not an integer
 		'prorateInterval'			=> 'word',
 		'user'						=> 'username'
 	];
