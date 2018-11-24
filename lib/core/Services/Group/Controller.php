@@ -29,7 +29,7 @@ class Services_Group_Controller
 		'usersfield'				=> 'int',
 		'groupfield'				=> 'int',
 		'expireAfter'				=> 'int',
-		'anniversary'				=> 'int',
+		'anniversary'				=> 'digits',
 		'prorateInterval'			=> 'word',
 		'user'						=> 'username'
 	];
