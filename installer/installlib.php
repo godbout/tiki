@@ -600,9 +600,9 @@ class Installer extends TikiDb_Bridge
 				parent.document.body.fontFamily = "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\", \"Noto Color Emoji\";";
 			</script>
 HTML;
-		echo $page_content;
 		$working_env = php_sapi_name();
 		if($working_env != 'cli') {
+			echo $page_content;
 			ob_flush();
 		}
 	}
@@ -617,9 +617,9 @@ HTML;
 			}
 		</script>
 JS;
-		echo $scripts;
 		$working_env = php_sapi_name();
 		if($working_env != 'cli') {
+			echo $scripts;
 			ob_flush();
 		}
 	}
@@ -636,9 +636,9 @@ JS;
 			progress_status_element.innerHTML = "{$percent}";
 		</script>
 JS;
-		echo $scripts;
 		$working_env = php_sapi_name();
 		if($working_env != 'cli') {
+			echo $scripts;
 			ob_flush();
 		}
 	}
