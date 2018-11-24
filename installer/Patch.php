@@ -83,7 +83,10 @@ class Patch
 			element.innerHTML = "{$content}";
 		</script>
 JS;
-		echo $scripts;
-		ob_flush();
+		echo $scripts;		
+		$working_env = php_sapi_name();
+		if($working_env != 'cli') {
+			ob_flush();
+		}
 	}
 }
