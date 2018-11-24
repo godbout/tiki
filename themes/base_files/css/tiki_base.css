@@ -496,8 +496,8 @@ body.wikitext {
 .admintoclevel .actions input {
   border: solid 1px #adb5bd; }
 
-.TextArea-fullscreen {
-  background-color: #adb5bd; }
+.TextArea-fullscreen, .CodeMirror-fullscreen, .TextArea-fullscreen .edit-zone-footer, .CodeMirror-fullscreen .edit-zone-footer {
+  background-color: #fff; }
 
 .TextArea-fullscreen .actions, .CodeMirror-fullscreen .actions {
   background-color: #fff;
@@ -1101,16 +1101,19 @@ div.categbar {
 .dropdown-menu > .btn-link {
   padding: 0.25rem 1.5rem; }
 
+.uol {
+  margin-left: 2rem; }
+
 .uol ol:not(.media-list), ol.uol {
   counter-reset: item; }
 
 .uol ol:not(.media-list) > li {
-  display: block;
-  text-indent: -1rem; }
+  display: block; }
 
 .uol ol:not(.media-list) > li:before {
   content: counters(item, ".") ".\0000a0";
-  counter-increment: item; }
+  counter-increment: item;
+  margin-left: -3rem; }
 
 .uol ol:not(.media-list) > li ol > li:before {
   content: counters(item, ".") "\0000a0";
@@ -3865,8 +3868,18 @@ li .url-group {
   position: absolute !important;
   width: 100% !important; }
 
-.TextArea-fullscreen .edit-zone-footer {
-  background: #fff; }
+.TextArea-fullscreen .edit-zone-footer, .CodeMirror-fullscreen .edit-zone-footer {
+  position: absolute;
+  margin: 0 !important;
+  padding: 4px 12px 12px;
+  width: 100%;
+  bottom: 49px;
+  z-index: 2; }
+  .TextArea-fullscreen .edit-zone-footer .form-check, .CodeMirror-fullscreen .edit-zone-footer .form-check {
+    position: absolute;
+    padding: 4px 12px 12px;
+    bottom: 49px;
+    right: 0; }
 
 .TextArea-fullscreen .actions, .CodeMirror-fullscreen .actions {
   bottom: 0 !important;

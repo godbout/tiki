@@ -797,8 +797,11 @@ body.wikitext {
 }
 
 // /* Fullscreen textareas */
-.TextArea-fullscreen {
-	background-color: $gray-500;
+.TextArea-fullscreen,
+.CodeMirror-fullscreen {
+	&, & .edit-zone-footer {
+		background-color: $body-bg;
+	}
 }
 
 .TextArea-fullscreen .actions,

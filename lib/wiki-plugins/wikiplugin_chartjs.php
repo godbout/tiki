@@ -18,9 +18,9 @@ function wikiplugin_chartjs_info()
 		'params' => [
 			'id' => [
 				'name' => tra('Chart Id'),
-				'description' => tr('The ID of the chart - useful and required if multiple charts are used.'),
+				'description' => tr('A custom ID for the chart.'),
 				'filter' => 'text',
-				'default' => 'tikiChart',
+				'default' => 'tikiChart1, tikiChart2 etc',
 				'since' => '16.0',
 			],
 			'type' => [
@@ -59,7 +59,7 @@ function wikiplugin_chartjs_info()
 				'since' => '16.0',
 			],
 			'data_colors' => [
-				'name' => tra('Chart values'),
+				'name' => tra('Chart colors'),
 				'description' => tr('Colon-separated colors for the datasets in the chart. Max 10, if left empty'),
 				'filter' => 'text',
 				'default' => 'red:blue:green:purple:grey:orange:yellow:black:brown:cyan',
@@ -79,6 +79,12 @@ function wikiplugin_chartjs_info()
 
 function wikiplugin_chartjs($data, $params)
 {
+	static $instance = 0;
+	$instance++;
+
+	if (! isset($params['id'])) {
+		$params['id'] = "tikiChart$instance";
+	}
 
 	//set defaults
 	$plugininfo = wikiplugin_chartjs_info();
@@ -121,6 +127,7 @@ setTimeout(function () {
 },
 500);');
 
-	return '<div class="tiki-chartjs"><canvas id="' . $params['id'] . '" width="' . $params['width'] .
-					'" height="' . $params['height'] . '"></canvas></div>';
+	return '<div class="tiki-chartjs" style="width:' . $params['width'] . 'px;height:' . $params['height'] . 'px">' .
+				'<canvas id="' . $params['id'] . '" width="' . $params['width'] . '" height="' . $params['height'] . '">' .
+			'</canvas></div>';
 }

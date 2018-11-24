@@ -1,22 +1,24 @@
 {* $Id$ *}
 
 <div class="media">
+	<div class="mr-4">
 	<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
 		<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
 		<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
-	{tr}Main new and improved features and settings in Tiki 17{/tr}.
-	<a href="http://doc.tiki.org/Tiki17" target="tikihelp" class="tikihelp" title="{tr}Tiki17:{/tr}
+	</div>
+	<br/><br/><br/>
+	<div class="media-body">
+		{tr}Main new and improved features and settings in Tiki 17{/tr}.
+		<a href="http://doc.tiki.org/Tiki17" target="tikihelp" class="tikihelp" title="{tr}Tiki17:{/tr}
 			{tr}Tiki17 is a standard non-LTS version{/tr}.
 			{tr}It will be supported until 18.1 is released{/tr}.
 			{tr}Many libraries have been upgraded{/tr}.
 			<br/><br/>
 			{tr}Click to read more{/tr}
 		">
-		{icon name="help" size=1}
-	</a>
-	<br/><br/><br/>
-	<div class="media-body">
+			{icon name="help" size=1}
+		</a>
 		<fieldset>
 			<legend>{tr}H5P{/tr}</legend>
 			{preference name='h5p_enabled'}

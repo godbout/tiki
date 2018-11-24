@@ -1,13 +1,15 @@
 {* $Id$ *}
 <div class="media">
+	<div class="mr-4">
 	<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
 		<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
 		<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
 	</span>
-	{icon name="user-plus" size=3 iclass="float-sm-right"}
-	{tr}Improvements that can help novice admins to set up their tiki sites more easily and improve their usability{/tr}.
+	</div>
 	<br/><br/>
 	<div class="media-body">
+		{icon name="user-plus" size=3 iclass="float-sm-right"}
+		{tr}Improvements that can help novice admins to set up their tiki sites more easily and improve their usability{/tr}.
 		<fieldset>
 			<legend>{tr}Basic Information about Wizards{/tr}</legend>
 			<p>
