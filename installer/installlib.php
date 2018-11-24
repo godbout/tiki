@@ -617,6 +617,7 @@ HTML;
 			}
 		</script>
 JS;
+		
 		$working_env = php_sapi_name();
 		if($working_env != 'cli') {
 			echo $scripts;
@@ -636,6 +637,7 @@ JS;
 			progress_status_element.innerHTML = "{$percent}";
 		</script>
 JS;
+		echo $scripts;
 		$working_env = php_sapi_name();
 		if($working_env != 'cli') {
 			echo $scripts;

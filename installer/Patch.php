@@ -84,8 +84,8 @@ class Patch
 		</script>
 JS;
 		$working_env = php_sapi_name();
-		echo $scripts;		
 		if($working_env != 'cli') {
+			echo $scripts;		
 			ob_flush();
 		}
 	}
