@@ -1,5 +1,5 @@
 {* $Id$ *}
-<ul class="list-unstyled medialist">
+<ul class="list-unstyled media-list">
 	{foreach from=$results item=row}
 		<li class="media">
 			{if $icon and $icon.field}
