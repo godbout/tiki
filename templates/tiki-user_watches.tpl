@@ -288,6 +288,12 @@
 				</label>
 			</div>
 		{/if}
+		<div class="form-check">
+			<label class="form-check-label">
+				<input class="form-check-input" type="checkbox" name="user_plugin_approval_watch_editor" value="true" {if $user_plugin_approval_watch_editor eq 'y'}checked{/if}>
+				{tr}Plugin approval{/tr}
+			</label>
+		</div>
 
 		<div class="form-check">
 			<label class="form-check-label">

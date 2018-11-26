@@ -60,5 +60,11 @@ if (isset($_REQUEST['user_category_watch_editor']) && $_REQUEST['user_category_w
 	$tikilib->set_user_preference($user, 'user_category_watch_editor', 'n');
 }
 
+if (isset($_REQUEST['user_plugin_approval_watch_editor']) && $_REQUEST['user_plugin_approval_watch_editor'] == true) {
+    $tikilib->set_user_preference($user, 'user_plugin_approval_watch_editor', 'y');
+} else {
+    $tikilib->set_user_preference($user, 'user_plugin_approval_watch_editor', 'n');
+}
+
 header('Location: tiki-user_watches.php');
 die;

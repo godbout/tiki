@@ -32,6 +32,7 @@
 						<p><input type="checkbox" class="form-check-input" name="user_tracker_watch_editor" {if $user_tracker_watch_editor eq 'y'}checked{/if}> {tr}Tracker{/tr}</p>
 						<p><input type="checkbox" class="form-check-input" name="user_calendar_watch_editor" {if $user_calendar_watch_editor eq 'y'}checked{/if}> {tr}Calendar{/tr}</p>
 						<p><input type="checkbox" class="form-check-input" name="user_comment_watch_editor" {if $user_comment_watch_editor eq 'y'}checked{/if}> {tr}Comment{/tr}</p>
+						<p><input type="checkbox" class="form-check-input" name="user_plugin_approval_watch_editor" {if $user_plugin_approval_watch_editor eq 'y'}checked{/if}> {tr}Plugin approval{/tr}</p>
 					</td>
 				</tr>
 			</table>

@@ -205,6 +205,7 @@ $smarty->assign('user_blog_watch_editor', $tikilib->get_user_preference($user, '
 $smarty->assign('user_tracker_watch_editor', $tikilib->get_user_preference($user, 'user_tracker_watch_editor'));
 $smarty->assign('user_comment_watch_editor', $tikilib->get_user_preference($user, 'user_comment_watch_editor'));
 $smarty->assign('user_category_watch_editor', $tikilib->get_user_preference($user, 'user_category_watch_editor'));
+$smarty->assign('user_plugin_approval_watch_editor', $tikilib->get_user_preference($user, 'user_plugin_approval_watch_editor'));
 
 $smarty->assign('mid', 'tiki-user_watches.tpl');
 $smarty->display("tiki.tpl");

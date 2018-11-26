@@ -5043,8 +5043,8 @@ class TikiLib extends TikiDb_Bridge
 		$mail->setBcc($recipients);
 
 		if (! empty($prefs['sender_email'])) {
-			$mail->send([$prefs['sender_email']]);
-		} elseif ($admin_email = TikiLib::lib('user')->get_user_email('admin')) {
+            $mail->send([$prefs['sender_email']]);
+        } elseif ($admin_email = TikiLib::lib('user')->get_user_email('admin')) {
 			$recipients = array_diff($recipients, [$admin_email]);
 			$mail->setBcc($recipients);
 			$mail->send([$admin_email]);
@@ -5059,7 +5059,8 @@ class TikiLib extends TikiDb_Bridge
 	 */
 	private function plugin_get_email_users_with_perm()
 	{
-		$userlib = TikiLib::lib('user');
+        global $user;
+	    $userlib = TikiLib::lib('user');
 
 		$allGroups = $userlib->get_groups();
 		$accessor = Perms::get();
@@ -5082,6 +5083,13 @@ class TikiLib extends TikiDb_Bridge
 
 		$recipients = array_filter($recipients);
 		$recipients = array_unique($recipients);
+        $selfspam = $this->get_user_preference($user, 'user_plugin_approval_watch_editor');
+
+		if ($selfspam != 'y') {
+		    # Do not self-spam, therefore, remove user's email from the list of recipients
+            $useremail = TikiLib::lib('user')->get_user_email($user);
+            $recipients = array_diff($recipients, array($useremail));
+        }
 
 		return $recipients;
 	}
