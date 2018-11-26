@@ -304,7 +304,7 @@
 								if (itemId) {
 									$.get($.service("tracker", "view", {id: itemId}), function (data) {
 										data = data.replace(/<h[\s\S]*?<\/h.*?>/mgi, "");	// remove headings
-										$(".popover-content", ".popover.in").empty().append(data);
+										$(".popover-body", ".popover.show").empty().append(data);
 									});
 								}
 							});

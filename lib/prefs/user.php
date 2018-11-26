@@ -224,7 +224,6 @@ function prefs_user_list($partial = false)
 				'user_trackersync_trackers',
 			],
 			'default' => '',
-			'profile_reference' => 'tracker_field',
 		],
 		'user_trackersync_groups' => [
 			'name' => tra('Tracker field IDs to sync user groups'),

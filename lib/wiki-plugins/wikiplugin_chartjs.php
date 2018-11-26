@@ -82,7 +82,7 @@ function wikiplugin_chartjs($data, $params)
 	static $instance = 0;
 	$instance++;
 
-	if (! isset($params['id'])) {
+	if (empty($params['id'])) {
 		$params['id'] = "tikiChart$instance";
 	}
 
