@@ -31,40 +31,41 @@ function smarty_function_scheduler_params($params, $smarty)
 	$taskName = strtolower($class->getTaskName());
 	$html = '';
 
-	foreach ($inputParams as $key => $param) {
-		$escapedParam = (isset($schedulerParams[$key])) ? smarty_modifier_escape($schedulerParams[$key]) : '';
-		$inputKey = $taskName . '_' . $key;
+	if (is_array($inputParams)) {
+		foreach ($inputParams as $key => $param) {
+			$escapedParam = (isset($schedulerParams[$key])) ? smarty_modifier_escape($schedulerParams[$key]) : '';
+			$inputKey = $taskName . '_' . $key;
 
-		switch ($param['type']) {
-			case 'text':
-				$input = '<input type="text" id="' . $inputKey . '" class="form-control" name="' . $inputKey . '" value="' . $escapedParam . '">';
-				break;
-			case 'password':
-				$input = '<input type="password" id="' . $inputKey . '" class="form-control" name="' . $inputKey . '" value="' . $escapedParam . '">';
-				break;
-			case 'textarea':
-				$input = '<textarea id="' . $inputKey . '" class="form-control" name="' . $inputKey . '"">' . $escapedParam . '</textarea>';
-				break;
-			case 'select':
-				//@todo implement
-				break;
-		}
+			switch ($param['type']) {
+				case 'text':
+					$input = '<input type="text" id="' . $inputKey . '" class="form-control" name="' . $inputKey . '" value="' . $escapedParam . '">';
+					break;
+				case 'password':
+					$input = '<input type="password" id="' . $inputKey . '" class="form-control" name="' . $inputKey . '" value="' . $escapedParam . '">';
+					break;
+				case 'textarea':
+					$input = '<textarea id="' . $inputKey . '" class="form-control" name="' . $inputKey . '"">' . $escapedParam . '</textarea>';
+					break;
+				case 'select':
+					//@todo implement
+					break;
+			}
 
-		$required = ! empty($param['required']) ? ' *' : '';
+			$required = ! empty($param['required']) ? ' *' : '';
 
-		$infoHtml = '';
-		if (! empty($param['description'])) {
-			$description = smarty_modifier_escape($param['description']);
-			$icon = smarty_function_icon(['name' => 'information'], $smarty);
+			$infoHtml = '';
+			if (! empty($param['description'])) {
+				$description = smarty_modifier_escape($param['description']);
+				$icon = smarty_function_icon(['name' => 'information'], $smarty);
 
-			$infoHtml = <<<HTML
+				$infoHtml = <<<HTML
 <a class="tikihelp text-info" title="{$param['name']}: {$description}">
 	{$icon}
 </a>
 HTML;
-		}
+			}
 
-		$html .= <<<HTML
+			$html .= <<<HTML
 <div class="form-group row" data-task-name="{$params['name']}" style="display:none">
 	<label class="col-sm-3 col-md-2 col-form-label" for="{$inputKey}">{$param['name']}{$required}</label>
 	<div class="col-sm-7 col-md-6">
@@ -73,6 +74,7 @@ HTML;
 	</div>
 </div>
 HTML;
+		}
 	}
 
 	echo $html;
