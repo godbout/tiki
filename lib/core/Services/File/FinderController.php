@@ -221,6 +221,7 @@ class Services_File_FinderController
 			$_POST = $input->asArray();
 		} else {
 			$_GET = $input->asArray();
+			TikiLib::lib('access')->setTicket();
 		}
 
 		$connector->run();
@@ -351,7 +352,7 @@ class Services_File_FinderController
 	public function csrfCheck($cmd, &$args, $elfinder, $volume)
 	{
 		$access = TikiLib::lib('access');
-		if ($access->checkCsrf('none') && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest') {
+		if ($access->checkCsrf('none')) {
 			$access->setTicket();
 			$elfinder->setCustomData('ticket', $access->getTicket());
 		} else {
