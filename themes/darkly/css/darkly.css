@@ -6225,18 +6225,18 @@ body.fullscreen {
   color: #e74c3c; }
 
 #debugconsole {
-  background: rgba(255, 255, 255, 0.5);
-  color: rgba(255, 255, 255, 0.5);
-  border: 2px solid rgba(255, 255, 255, 0.5); }
+  background: rgba(111, 111, 111, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(255, 255, 255, 0.9); }
 
 #debugconsole form {
-  color: rgba(255, 255, 255, 0.5); }
+  color: rgba(255, 255, 255, 0.9); }
 
 #debugconsole a {
-  color: rgba(255, 255, 255, 0.5); }
+  color: rgba(255, 255, 255, 0.9); }
 
 #debugconsole a.btn {
-  color: rgba(255, 255, 255, 0.5); }
+  color: rgba(255, 255, 255, 0.9); }
 
 a.icon, img.icon {
   background: transparent; }

@@ -6162,18 +6162,18 @@ body.fullscreen {
   color: #d9534f; }
 
 #debugconsole {
-  background: #eff1f3;
-  color: #212529;
-  border: 2px solid #212529; }
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(33, 37, 41, 0.9);
+  border: 2px solid rgba(33, 37, 41, 0.9); }
 
 #debugconsole form {
-  color: #212529; }
+  color: rgba(33, 37, 41, 0.9); }
 
 #debugconsole a {
-  color: #212529; }
+  color: rgba(33, 37, 41, 0.9); }
 
 #debugconsole a.btn {
-  color: #212529; }
+  color: rgba(33, 37, 41, 0.9); }
 
 a.icon, img.icon {
   background: transparent; }

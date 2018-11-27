@@ -333,21 +333,21 @@ body.fullscreen {
 }
 
 #debugconsole {
-	background: lighten($navbar-light-color, 80%); // Todo - what's the way to specify backgrounds?
-	color: $navbar-light-color;
-	border: 2px solid $navbar-light-color;
+	background: rgba(lighten($body-bg, 30%), 0.9); // Todo - what's the way to specify backgrounds?
+	color: rgba($navbar-light-color, 0.9);
+	border: 2px solid rgba($navbar-light-color, 0.9);
 }
 
 #debugconsole form {
-	color: $navbar-light-color;
+	color: rgba($navbar-light-color, 0.9);
 }
 
 #debugconsole a {
-	color: $navbar-light-color;
+	color: rgba($navbar-light-color, 0.9);
 }
 
 #debugconsole a.btn {
-	color: $navbar-light-color;
+	color: rgba($navbar-light-color, 0.9);
 }
 
 // /* Icons */
