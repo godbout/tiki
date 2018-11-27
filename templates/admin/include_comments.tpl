@@ -29,6 +29,7 @@
 		<legend>{tr}Display options{/tr}</legend>
 		<div class="admin featurelist">
 			{preference name=comments_notitle}
+			{preference name=comments_heading_links}
 			{preference name=section_comments_parse}
 			{preference name=comments_field_email}
 			{preference name=comments_field_website}

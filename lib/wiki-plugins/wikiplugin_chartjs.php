@@ -8,11 +8,11 @@
 function wikiplugin_chartjs_info()
 {
 	return [
-		'name' => tra('Chart JS'),
+		'name' => tr('Chart JS'),
 		'documentation' => 'PluginChartJS',
 		'description' => tra('Create a JS Chart'),
 		'prefs' => ['wikiplugin_chartjs'],
-		'body' => tra('A chart using ChartJS'),
+		'body' => tr('JSON encoded array for data and options.'),
 		'tags' => ['advanced'],
 		'introduced' => 16,
 		'params' => [
@@ -72,6 +72,14 @@ function wikiplugin_chartjs_info()
 				'default' => '',
 				'since' => '16.0',
 			],
+			'debug' => [
+				'name' => tra('Debug Mode'),
+				'description' => tr('Uses the non-minified version of the chart.js library for easier debugging.'),
+				'filter' => 'digits',
+				'default' => 0,
+				'advanced' => true,
+				'since' => '18.3',
+			],
 		],
 		'iconname' => 'pie-chart',
 	];
@@ -106,23 +114,35 @@ function wikiplugin_chartjs($data, $params)
 	if (empty($values)) {
 		return tr('Values must be set for chart');
 	}
-	$data = [
-		'labels' => array_slice($data_labels, 0, count($values)),
-		'datasets' => [
-			[
-				'data' => $values,
-				'backgroundColor' => array_slice($data_colors, 0, count($values)),
-				'hoverBackgroundColor' => array_slice($data_highlights, 0, count($values)),
+	if (empty(trim($data))) {
+		$data = [
+			'labels'   => array_slice($data_labels, 0, count($values)),
+			'datasets' => [
+				[
+					'data'                 => $values,
+					'backgroundColor'      => array_slice($data_colors, 0, count($values)),
+					'hoverBackgroundColor' => array_slice($data_highlights, 0, count($values)),
+				],
 			],
-		],
-	];
+		];
+		$options = [];
+	} else {
+		$data = json_decode($data, true);
+		if (isset($data['options']) && isset($data['data'])) {
+			$options = $data['options'];
+			$data = $data['data'];
+		}
+	}
 
-	TikiLib::lib('header')->add_jsfile("vendor_bundled/vendor/chartjs/Chart.js/Chart.min.js")
+	$min = $params['debug'] ? '': 'min.';
+
+	TikiLib::lib('header')->add_jsfile("vendor_bundled/vendor/chartjs/Chart.js/Chart.{$min}js")
 		->add_jq_onready('
 setTimeout(function () {
 	var chartjs_' . $params['id'] . ' = new Chart("' . $params['id'] . '", {
 		type: "' . $params['type'] . '",
-		data: ' . json_encode($data) . '
+		data: ' . json_encode($data) . ',
+		options: ' . json_encode($options) . '
 	})
 },
 500);');

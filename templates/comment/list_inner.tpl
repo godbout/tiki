@@ -6,22 +6,23 @@
 			</div>
 			<div class="media-body">
 				<div class="comment-item">
-					{if $prefs.comments_notitle eq 'y'}
-						<h4 class="{*media-heading*}mt-0">
-							<div class="comment-info">
+					<h4 class="mt-0">
+						{if $prefs.comments_notitle eq 'y'}
+							<span class="comment-info">
 								{tr _0=$comment.userName|userlink}%0{/tr} <small class="date">{tr _0=$comment.commentDate|tiki_short_datetime}%0{/tr}</small>
-							</div>
-						</h4>
-					{else}
-						<h4 class="{*media-heading*}mt-0">
-							<div class="comment-title">
+							</span>
+						{else}
+							<span class="comment-title">
 								{$comment.title}
-							</div>
-							<div class="comment-info">
+							</span>
+							<span class="comment-info">
 								{tr _0=$comment.userName|userlink}%0{/tr} <small class="date">{tr _0=$comment.commentDate|tiki_short_datetime}%0{/tr}</small>
-							</div>
-						</h4>
-					{/if}
+							</span>
+						{/if}
+						{if $prefs.comments_heading_links eq 'y'}
+							<a class="heading-link" href="{if ($comment.threadId neq $comments_parentId)}#threadId{$comment.threadId}{/if}">{icon name="link"}</a>
+						{/if}
+					</h4>
 					<div class="comment-body">
 						{$comment.parsed}
 					</div>
