@@ -12,7 +12,7 @@ $section_class = "tiki_wiki_page print";
 require_once('tiki-setup.php');
 $wikilib = TikiLib::lib('wiki');
 
-$auto_query_args = ['page'];
+$auto_query_args = ['page','filename'];
 
 $access->check_feature(['feature_wiki', 'feature_wiki_print']);
 
@@ -114,6 +114,10 @@ if (isset($_REQUEST['display']) && $_REQUEST['display'] == 'pdf') {
 		Feedback::error($generator->error);
 		$access->redirect($page);
 	} else {
+		// One can override the default file name and title with the filename URL parameter
+		if (isset($_REQUEST['filename'])) {
+			$page = $_REQUEST['filename'];
+		} 
 		$pdf = $generator->getPdf('tiki-print.php', ['page' => $page], $pdata);
 		$length = strlen($pdf);
 		header('Cache-Control: private, must-revalidate');
