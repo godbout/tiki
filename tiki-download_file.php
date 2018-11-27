@@ -8,6 +8,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use \Tiki\File\PDFHelper;
 use Tiki\Lib\Image\Image;
 
 $force_no_compression = true;
@@ -15,6 +16,8 @@ $skip = false;
 $thumbnail_format = 'jpeg';
 
 require_once('tiki-setup.php');
+
+global $user;
 
 if (isset($_GET['fileId']) && isset($_GET['thumbnail']) && isset($_COOKIE[ session_name() ]) && count($_GET) == 2 && isset($_SESSION['allowed'][$_GET['fileId']])) {
 	$query = "select * from `tiki_files` where `fileId`=?";
@@ -232,18 +235,30 @@ if ($use_client_cache) {
 	}
 }
 
+// Indicates if a 'office' document should be converted to pdf for download or display in browser.
+$convertToPdf = (isset($_GET['display']) || isset($_GET['pdf'])) && PDFHelper::canConvertToPDF($info['filetype']);
+
 // Handle images display, files thumbnails and icons
-if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display']) || isset($_GET['icon'])) {
+if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display']) || isset($_GET['icon']) || $convertToPdf) {
 	$use_cache = false;
 
 	// Cache only thumbnails to avoid DOS attacks
 	$cacheName = '';
 	$cacheType = '';
-	if (( isset($_GET['thumbnail']) || isset($_GET['preview']) ) && ! isset($_GET['display']) && ! isset($_GET['icon']) && ! $scale && ! isset($_GET['x']) && ! isset($_GET['y']) && ! isset($_GET['format']) && ! isset($_GET['max'])) {
-		$cachelib = TikiLib::lib('cache');
-		$cacheName = $md5;
-		$cacheType = ( isset($_GET['thumbnail']) ? 'thumbnail_' : 'preview_' ) . ((int)$_REQUEST['fileId']) . '_';
+	$cachelib = TikiLib::lib('cache');
+
+	if (( isset($_GET['thumbnail']) || isset($_GET['preview']) || $convertToPdf) && ! isset($_GET['display']) && ! isset($_GET['icon']) && ! $scale && ! isset($_GET['x']) && ! isset($_GET['y']) && ! isset($_GET['format']) && ! isset($_GET['max'])) {
 		$use_cache = true;
+		$cacheName = $md5;
+
+		if ($convertToPdf) {
+			$cacheTypePrefix = 'pdf_';
+		} elseif (isset($_GET['thumbnail'])) {
+			$cacheTypePrefix = 'thumbnail_';
+		} else {
+			$cacheTypePrefix = 'preview_';
+		}
+		$cacheType = $cacheTypePrefix . ((int)$_REQUEST['fileId']) . '_';
 	}
 
 	$build_content = true;
@@ -258,8 +273,10 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 	unset($content_temp);
 
 	if ($build_content) {
-		// Modify the original image if needed
-		if (! isset($_GET['display']) || isset($_GET['x']) || isset($_GET['y']) || $scale || isset($_GET['max']) || isset($_GET['format']) || isset($_GET['thumbnail'])) {
+		if ($convertToPdf) {
+			$content = PDFHelper::convertToPDF($info);
+		} elseif (! isset($_GET['display']) || isset($_GET['x']) || isset($_GET['y']) || $scale || isset($_GET['max']) || isset($_GET['format']) || isset($_GET['thumbnail'])) {
+			// Modify the original image if needed
 			if (! Image::isAvailable()) {
 				die();
 			}
@@ -388,6 +405,12 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 	}
 }
 
+if ($convertToPdf) {
+	// Replace file metadata to output in response headers
+	$info['filetype'] = 'application/pdf';
+	$info['filename'] = pathinfo($info['filename'], PATHINFO_FILENAME) . '.pdf';
+}
+
 $mimelib = TikiLib::lib('mime');
 if (empty($info['filetype']) || $info['filetype'] == 'application/x-octetstream'
 			|| $info['filetype'] == 'application/octet-stream' || $info['filetype'] == 'unknown') {
@@ -401,7 +424,7 @@ header('Content-type: ' . $info['filetype']);
 $file = basename($info['filename']);
 
 // If the content has not changed, ask the browser to download it (instead of displaying it)
-if (! $content_changed and ! isset($_GET['display'])) {
+if ((! $content_changed and ! isset($_GET['display'])) || isset($_GET['pdf'])) {
 	header("Content-Disposition: attachment; filename=\"$file\"");
 } else {
 	header("Content-Disposition: filename=\"$file\"");
