@@ -11,7 +11,7 @@
  * Letter key: ~u~
  *
  */
-class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable, Tracker_Field_Exportable, Tracker_Field_Filterable
+class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable, Tracker_Field_Exportable, Tracker_Field_Filterable, Search_FacetProvider_Interface
 {
 	public static function getTypes()
 	{
@@ -401,6 +401,36 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 		}
 
 		return $data;
+	}
+
+	/***
+	 * Generate facets for search results
+	 *
+	 * @return array
+	 */
+	function getFacets()
+	{
+		$baseKey = $this->getBaseKey();
+
+		return [
+			Search_Query_Facet_Term::fromField($baseKey)
+				->setLabel($this->getConfiguration('name'))
+				->setRenderCallback([$this, 'getLabel']),
+		];
+	}
+
+	/**
+	 * Return the user's name for the facet (obeying real name options and prefs)
+	 *
+	 * @param string $username
+	 *
+	 * @return string
+	 */
+	function getLabel($username)
+	{
+		$realName = TikiLib::lib('user')->clean_user($username, $this->getOption('showRealname'));
+
+		return $realName;
 	}
 
 	/**
