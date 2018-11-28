@@ -2025,6 +2025,7 @@ installer/schema/20180918_remove_poweredby_module_tiki.sql -text
 installer/schema/20180921_sql_upgrade_fix_from_older_tiki.php -text
 installer/schema/20180925_feature_jquery_superfish_pref_default_tiki.php -text
 installer/schema/20181114_ocr_uff8mb4_tiki.sql -text
+installer/schema/20181127_convert_db_local_to_utf8mb4_tiki.php -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
