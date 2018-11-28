@@ -534,6 +534,8 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 	{
 		$newcontent = preg_replace("/<p[^>]*?>/", "", $content);
 		$newcontent = str_replace("</p>", "<br />", $newcontent);
+		//if there is two "<br />" tags we just keep one
+		$newcontent = str_replace("<br /><br />","<br />",$newcontent);
 		return $newcontent;
 	}
 
