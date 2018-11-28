@@ -5,6 +5,10 @@
 {/block}
 
 {block name="content"}
+	{remarksbox type="warning" title="{tr}Deprecated{/tr}"}
+		{tr}To export tracker or tracker items please <a href="tiki-admin.php?page=trackers&highlight=tracker_tabular_enabled" target="_blank" title="{tr}enable{/tr}">enable</a> and use the <a href="tiki-tabular-manage" target="_blank" title="{tr}Tracker Tabular{/tr}">{tr}Tracker Tabular{/tr}</a> feature. It is easy to use, optimised and far more powerful.{/tr}
+		{tr}For complete documentation, please visit{/tr} <a href="https://doc.tiki.org/Tracker-Tabular" target="_blank" title="{tr}Tracker Tabular{/tr}"> {tr}Tracker Tabular{/tr} {icon name="documentation"}</a>
+	{/remarksbox}
 {accordion}
 	{accordion_group title="{tr}Export Tracker Items{/tr}"}
 	<form class="simple no-ajax" action="{service controller=tracker action=export_items trackerId=$trackerId filterfield=$filterfield filtervalue=$filtervalue}" method="post">
