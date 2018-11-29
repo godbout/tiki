@@ -3,12 +3,9 @@
 $imagePath: "../../../img/";
 $imagePathToIcons: "../../../img/icons/";
 
-// form.simple label.error {
-//  background: url('#{$imagePath}error.png') no-repeat 0 4px;
-//  color: @state-danger-text;
-//  padding: 4px 0 0 20px;
-//  margin-left: 0.5em;
-// }
+.wiki-authors {
+	font-style: italic;
+}
 
 .split {
 	clear: both;
@@ -201,71 +198,6 @@ ol.bbb-recordings {
     overflow: auto;
     max-height: 40em;
 }
-
-// /* page contribution by author / wikiplugin_author */
-// .author0 {
-//   color: @panel-success-text;
-// }
-//
-// .author1 {
-//   color: @panel-info-text;
-// }
-//
-// .author2 {
-//   color: @panel-warning-text;
-// }
-//
-// .author3 {
-//   color: @panel-danger-text;
-// }
-//
-// .author4 {
-//   color: adjust-hue(@panel-success-text, 50);
-// }
-//
-// .author5 {
-//   color: adjust-hue(@panel-info-text, 70);
-// }
-//
-// .author6 {
-//   color: adjust-hue(@panel-warning-text, 50);
-// }
-//
-// .author7 {
-//   color: adjust-hue(@panel-danger-text, 50);
-// }
-//
-// .author8 {
-//   color: adjust-hue(@panel-success-text, 100);
-// }
-//
-// .author9 {
-//   color: adjust-hue(@panel-info-text, 100);
-// }
-//
-// .author10 {
-//   color: adjust-hue(@panel-warning-text, 100);
-// }
-//
-// .author11 {
-//   color: adjust-hue(@panel-danger-text, 100);
-// }
-//
-// .author12 {
-//   color: adjust-hue(@panel-success-text, 170);
-// }
-//
-// .author13 {
-//   color: adjust-hue(@panel-info-text, 140);
-// }
-//
-// .author14 {
-//   color: adjust-hue(@panel-warning-text, 160);
-// }
-//
-// .author15 {
-//   color: adjust-hue(@panel-danger-text, 160);
-// }
 
 .structuremenu .menuSection {
 	margin-left: 6px;
@@ -971,57 +903,10 @@ body.tiki_wiki #comments {
 	white-space: normal;
 }
 
-// .diff div {
-//   border-top: 1px solid @gray-light;
-// }
-//
-// .diffadded {
-//   background: @state-success-bg;
-//   color: @state-success-text;
-// }
-
 .diffinldel {
 	//  background: @state-warning-bg;
 	text-decoration: line-through;
 }
-
-// .diffbody {
-//   background: @gray-lighter;
-//  color: @gray-darker;
-// }
-//
-// .diffchar {
-//  color: lighten(@state-danger-text, 10%);
-// }
-//
-// .diffadded .diffchar {
-//   color: lighten(@state-success-text, 10%);
-// }
-//
-// .highlight_word_0 {
-//  color: @panel-success-text;
-//  background: @panel-success-heading-bg;
-// }
-//
-// .highlight_word_1 {
-//  color: @panel-info-text;
-//  background: @panel-info-heading-bg;
-// }
-//
-// .highlight_word_2 {
-//  color: @panel-warning-text;
-//  background: @panel-warning-heading-bg;
-// }
-
-// .highlight_word_3 {
-//  color: @panel-danger-text;
-//  background: @panel-danger-heading-bg;
-// }
-
-// .highlight_word_4 {
-//  color: adjust-hue(@panel-danger-text, 20);
-//  background: adjust-hue(@panel-danger-heading-bg, 20);
-// }
 
 .ui-tabs .ui-tabs-nav li a {
 	padding: 0.3em 0.8em 0.1em;
