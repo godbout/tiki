@@ -6475,12 +6475,6 @@ body.wikitext {
   background-color: #dee2e6;
   background-image: url("../../../img/icons/shading.png"); }
 
-h1:hover a.tiki_anchor, h2:hover a.tiki_anchor, h3:hover a.tiki_anchor, h4:hover a.tiki_anchor, h5:hover a.tiki_anchor, h6:hover a.tiki_anchor {
-  color: #dee2e6; }
-
-h1 a.tiki_anchor:hover, h2 a.tiki_anchor:hover, h3 a.tiki_anchor:hover, h4 a.tiki_anchor:hover, h5 a.tiki_anchor:hover, h6 a.tiki_anchor:hover {
-  color: #aea79f; }
-
 .wiki .namespace {
   background: #dee2e6; }
 

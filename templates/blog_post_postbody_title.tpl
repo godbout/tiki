@@ -11,8 +11,9 @@
 		{else}
 			<h2 class="card-title">
 				{object_link type="blog post" id=$post_info.postId title=$post_info.title}{if $post_info.priv eq 'y'} <span class="label label-warning">{tr}private{/tr}</span>{/if}
+				<a aria-hidden="true" class="tiki_anchor" href="{$post_info.postId|sefurl:blogpost}" title="{tr}permanent link{/tr}">{icon name="link"}</a>
 			</h2>
-			<a aria-hidden="true" class="tiki_anchor" href="{$post_info.postId|sefurl:blogpost}" title="{tr}permanent link{/tr}">{icon name="link"}</a>
+
 			{include file='blog_post_actions.tpl'}
 		{/if}
 		{include file='blog_post_author_info.tpl'}
