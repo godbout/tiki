@@ -400,7 +400,8 @@
 			{/if}
 			{if $groupname neq 'Anonymous' and $groupname neq 'Registered' and $groupname neq 'Admins'}
 				<div class="form-group row">
-					<div class="col-md-9 col-md-offset-3">
+					<label class="col-form-label col-md-3">{tr}User Choice{/tr}</label>
+					<div class="col-md-9">
 						<div class="form-check">
 							<label class="form-check-label">
 								<input class="form-check-input" type="checkbox" name="userChoice"{if $userChoice eq 'y'} checked="checked"{/if}>
