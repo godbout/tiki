@@ -277,6 +277,21 @@ a .icon:not(.icon-help,.icon-reset) {
 	font-size: 0.8em;
 }
 
+// Anchor icon
+a.tiki_anchor {
+	font-size: 60%;
+	opacity: 0;
+}
+
+h1:hover a.tiki_anchor,
+h2:hover a.tiki_anchor,
+h3:hover a.tiki_anchor,
+h4:hover a.tiki_anchor,
+h5:hover a.tiki_anchor,
+h6:hover a.tiki_anchor {
+	opacity: 1;
+}
+
 // So a span can act like a link and avoid the width of a button (e.g., for action icons)
 span.btn-link {
 	cursor: pointer;
