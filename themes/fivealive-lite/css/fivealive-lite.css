@@ -6811,9 +6811,6 @@ header.header .sitetitle, header.header .sitesubtitle {
 .layout_classic #top_modules.bg-dark, .layout_classic #top_modules.bg-light, .layout_classic #topbar_modules, .layout_classic #topbar.bg-dark, .layout_classic #topbar.bg-light {
   background: transparent !important; }
 
-.card-title {
-  font-size: 1.1rem; }
-
 #col2 .card, #col3 .card {
   border: none; }
 
