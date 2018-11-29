@@ -656,19 +656,24 @@ class WebMailLib extends TikiLib
 			$message = $message->toString();
 		}
 
-		$folders = $storage->getFolders();
-		foreach ($folders as $folder) {
-			if (strpos($folder->getGlobalName(), 'Sent') !== false ||
-					strpos($folder->getGlobalName(), tr('Sent')) !== false) {
+		$folders = new RecursiveIteratorIterator($storage->getFolders(), RecursiveIteratorIterator::SELF_FIRST);
+		foreach ($folders as $localName => $folder) {
 
-				try {
-					$storage->appendMessage($message, $folder->getGlobalName());
-				} catch (Exception $e) {
-					Feedback::error($e->getMessage());
+			if ($folder->isSelectable()) {
+				$globalName = $folder->getGlobalName();
+
+				if (strpos($globalName, 'Sent') !== false || strpos($globalName, tr('Sent')) !== false) {
+					try {
+						$storage->appendMessage($message, $globalName);
+						return;
+
+					} catch (Exception $e) {
+						Feedback::error($e->getMessage());
+					}
 				}
-				break;
 			}
 		}
+
 
 	}
 
