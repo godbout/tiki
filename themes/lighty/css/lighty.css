@@ -6135,18 +6135,18 @@ body.fullscreen {
   color: #dc3545; }
 
 #debugconsole {
-  background: #fff;
-  color: #adb5bd;
-  border: 2px solid #adb5bd; }
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(173, 181, 189, 0.9);
+  border: 2px solid rgba(173, 181, 189, 0.9); }
 
 #debugconsole form {
-  color: #adb5bd; }
+  color: rgba(173, 181, 189, 0.9); }
 
 #debugconsole a {
-  color: #adb5bd; }
+  color: rgba(173, 181, 189, 0.9); }
 
 #debugconsole a.btn {
-  color: #adb5bd; }
+  color: rgba(173, 181, 189, 0.9); }
 
 a.icon, img.icon {
   background: transparent; }

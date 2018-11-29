@@ -427,6 +427,7 @@
 				<input type="hidden" name="quickFlagMsg" value="">
 				<input type="hidden" name="locSection" value="mailbox">
 				<input type="hidden" name="start" value="{$start|escape}">
+				<input type="hidden" name="refresh_mail" value="">
 			</div>
 			<div class="col-sm-4">
 				<select name="action" class="form-control">
@@ -443,7 +444,7 @@
 				{tr}Folder{/tr}
 			</label>
 			<div class="col-sm-4">
-				<select name="folder" id="folder" class="form-control" onchange="$(this).form().find('input[name=start]').val('').form().submit();return false;">
+				<select name="folder" id="folder" class="form-control" onchange="$(this).form().find('input[name=start]').val('').nextAll('input[name=refresh_mail]').val('1').form().submit();return false;">
 					{foreach $folders as $globalName => $folder}
 						<option value="{$globalName|escape}"{if $folder.disabled} disabled="disabled"{/if}{if $globalName eq $currentFolder} selected="selected"{/if}>
 							{$folder.label|escape}
