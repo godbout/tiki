@@ -3480,6 +3480,9 @@ table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:n
   .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
     padding: 4px; } }
 
+.wiki-authors {
+  font-style: italic; }
+
 .split {
   clear: both; }
 
