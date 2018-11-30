@@ -167,7 +167,7 @@ if ($isUpload && $access->checkCsrf()) {
 		'imagesize',
 		'image_max_size_x',
 		'image_max_size_y',
-        'ocrFiles'
+    'ocrFiles'
 	];
 
 	$uploadParams = [

@@ -9,7 +9,7 @@ flush privileges;
 \q
 ln -s lib/test/local.php.dist lib/test/local.php
 
-Note that acceptance tests do not use this filet, it's still hardcoded in TikiAcceptanceTestDBRestorer
+Note that acceptance tests do not use this file, it's still hardcoded in TikiAcceptanceTestDBRestorer
 However, acceptance tests are currently skipped since they haven't been updated since 2010
 
 But they would require:
@@ -17,7 +17,7 @@ create database tiki_db_for_acceptance_tests;
 grant all privileges on tiki_db_for_acceptance_tests.* TO 'tiki_automated_test_user'@'localhost' identified by 'tiki_automated_test_user';
 */
 $db_tiki='mysqli';
-$dbversion_tiki='19.0';
+$dbversion_tiki='20.0';
 $host_tiki='localhost';
 $user_tiki='tiki_automated_test_user';
 $pass_tiki='tiki_automated_test_user';

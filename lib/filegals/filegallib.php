@@ -434,7 +434,7 @@ class FileGalLib extends TikiLib
 		$metadata = null,
 		$image_x = null,
 		$image_y = null,
-        $ocr_state = null
+    $ocrFile = null
 	) {
 
 		global $prefs, $user;
@@ -501,7 +501,7 @@ class FileGalLib extends TikiLib
 
 		$ocrLib = Tikilib::lib('ocr');
 		$ocr_state = $ocrLib::OCR_STATUS_SKIP;
-		if ($params['ocrFiles'][$key] || $prefs['fgal_ocr_every_file'] === 'y'){
+		if ($prefs['fgal_ocr_enable'] === 'y' && ($ocrFile || $prefs['fgal_ocr_every_file'] === 'y')){
 			if (in_array($type,$ocrLib::OCR_MIME_NATIVE)){
 				$ocr_state = $ocrLib::OCR_STATUS_PENDING;
 			}
@@ -528,7 +528,7 @@ class FileGalLib extends TikiLib
 			'author' => $author,
 			'lockedby' => $lockedby,
 			'deleteAfter' => $deleteAfter,
-            'ocr_state' => $ocr_state,
+      'ocr_state' => $ocr_state,
 		];
 
 		$fileData['filetype'] = $this->fixMime($fileData);
@@ -3873,14 +3873,6 @@ class FileGalLib extends TikiLib
 						$type = "image/jpeg";
 					}
 
-					$ocrLib = Tikilib::lib('ocr');
-                    $ocr_state = $ocrLib::OCR_STATUS_SKIP;
-                    if ($params['ocrFiles'][$key] || $prefs['fgal_ocr_every_file'] === 'y'){
-					    if (in_array($type,$ocrLib::OCR_MIME_NATIVE)){
-					        $ocr_state = $ocrLib::OCR_STATUS_PENDING;
-                        }
-                    }
-
 					// No resizing
 					if (! move_uploaded_file($file_tmp_name, $tmp_dest)) {
 						if ($tiki_p_admin == 'y') {
@@ -3989,7 +3981,7 @@ class FileGalLib extends TikiLib
 								$fileInfo['lastModif'],
 								$fileInfo['lockedby'],
 								$deleteAfter,
-                                $ocr_state
+                $ocr_state
 							);
 							if ($prefs['fgal_limit_hits_per_file'] == 'y') {
 								$this->set_download_limit($editFileId, $params['hit_limit'][$key]);
@@ -4022,7 +4014,7 @@ class FileGalLib extends TikiLib
 								$filemeta,
 								$image_x,
 								$image_y,
-                                $ocr_state
+                $ocr_state
 							);
 						}
 						if (! $fileId) {
@@ -4264,7 +4256,7 @@ class FileGalLib extends TikiLib
 		}
 	}
 
-	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '', $ocrFiles = null)
+	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '', $ocrFile = null)
 	{
 		global $user;
 		if (empty($asuser) || ! Perms::get()->admin) {
@@ -4276,7 +4268,7 @@ class FileGalLib extends TikiLib
 		}
 
 		$tx = $this->begin();
-		$ret = $this->insert_file($gal_info['galleryId'], $name, $description, $name, $data, $size, $type, $asuser, $fhash, '', null, $created, null, null, 0, null, $image_x, $image_y, $ocrFiles);
+		$ret = $this->insert_file($gal_info['galleryId'], $name, $description, $name, $data, $size, $type, $asuser, $fhash, '', null, $created, null, null, 0, null, $image_x, $image_y, $ocrFile);
 		$tx->commit();
 
 		return $ret;
