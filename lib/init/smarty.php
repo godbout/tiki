@@ -32,17 +32,7 @@ class Tiki_Security_Policy extends Smarty_Security
 
 	public $trusted_uri = [];
 
-	public $secure_dir = [
-		'',
-		'img/',
-		'img/icons',
-		'img/flags',
-		'img/smiles',
-		'img/trackers',
-		'img/icons/mime',
-		'img/icons/large',
-		'img/ckeditor',
-	];
+	public $secure_dir = [];
 
 	/**
 	 * needs a proper description
