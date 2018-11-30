@@ -32,17 +32,7 @@ class Tiki_Security_Policy extends Smarty_Security
 
 	public $trusted_uri = [];
 
-	public $secure_dir = [
-		'',
-		'img/',
-		'img/icons',
-		'img/flags',
-		'img/smiles',
-		'img/trackers',
-		'img/icons/mime',
-		'img/icons/large',
-		'img/ckeditor',
-	];
+	public $secure_dir = [];
 
 	/**
 	 * needs a proper description
@@ -550,7 +540,10 @@ class Smarty_Tiki extends Smarty
 		}
 
 		//get the list of template directories
-		$dirs = $this->getTemplateDir();
+		$dirs = array_merge(
+			$this->getTemplateDir(),
+			array_map('realpath', $this->security_policy->secure_dir)
+		);
 
 		// sanity check
 		if (file_exists($template)) {
@@ -558,6 +551,7 @@ class Smarty_Tiki extends Smarty
 			foreach ($dirs as $dir) {
 				if (strpos(realpath($template), realpath($dir)) === 0) {
 					$valid_path = true;
+					break;
 				}
 			}
 			if (! $valid_path) {

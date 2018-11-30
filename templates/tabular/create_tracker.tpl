@@ -18,13 +18,13 @@
 		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Name{/tr}</label>
 			<div class="col-sm-9">
-				<input class="form-control" type="text" name="name" required>
+				<input class="form-control" type="text" name="name" maxlength="255" required>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Tracker Name{/tr}</label>
 			<div class="col-sm-9">
-				<input class="form-control" type="text" name="tracker_name" required>
+				<input class="form-control" type="text" name="tracker_name" maxlength="255" required>
 			</div>
 		</div>
 		<div class="form-group row">
@@ -61,7 +61,7 @@
 					</tr>
 					</thead>
 					<tbody>
-					<tr id="row-template" class="hidden" style="display: none;">
+					<tr id="row-template" class="d-none" style="display: none;">
 						<td>
 							<div class="input-group input-group-sm">
 								<input type="text" class="field-label form-control" readonly/>
@@ -100,7 +100,7 @@
 					<tfoot>
 					<tr>
 						<td colspan="5">
-							<textarea name="fields" class="hidden"></textarea>
+							<textarea name="fields" class="d-none"></textarea>
 						</td>
 					</tr>
 					</tfoot>
@@ -185,7 +185,7 @@
 			var fileUpload = fileSelect[0];
 
 			// remove existing elements
-			$('#tracker-columns').find('tr[id^="row"]:not(".hidden")').each(function(){
+			$('#tracker-columns').find('tr[id^="row"]:not(".d-none")').each(function(){
 				$(this).remove();
 			});
 
@@ -208,7 +208,7 @@
 					for(i = 0; i < columns.length; i++) {
 						var $elem = $('#row-template').clone();
 						$elem.attr('id', 'row'+i);
-						$elem.removeClass('hidden');
+						$elem.removeClass('d-none');
 						$elem.find('input[type="text"]').val(columns[i]);
 						$elem.show();
 						$('#tracker-columns table tbody').append($elem);
