@@ -18,13 +18,13 @@
 		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Name{/tr}</label>
 			<div class="col-sm-9">
-				<input class="form-control" type="text" name="name" required>
+				<input class="form-control" type="text" name="name" maxlength="255" required>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Tracker Name{/tr}</label>
 			<div class="col-sm-9">
-				<input class="form-control" type="text" name="tracker_name" required>
+				<input class="form-control" type="text" name="tracker_name" maxlength="255" required>
 			</div>
 		</div>
 		<div class="form-group row">
