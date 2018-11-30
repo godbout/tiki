@@ -550,7 +550,10 @@ class Smarty_Tiki extends Smarty
 		}
 
 		//get the list of template directories
-		$dirs = $this->getTemplateDir();
+		$dirs = array_merge(
+			$this->getTemplateDir(),
+			array_map('realpath', $this->security_policy->secure_dir)
+		);
 
 		// sanity check
 		if (file_exists($template)) {
@@ -558,6 +561,7 @@ class Smarty_Tiki extends Smarty
 			foreach ($dirs as $dir) {
 				if (strpos(realpath($template), realpath($dir)) === 0) {
 					$valid_path = true;
+					break;
 				}
 			}
 			if (! $valid_path) {
