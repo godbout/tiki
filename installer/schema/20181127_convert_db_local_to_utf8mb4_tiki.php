@@ -26,7 +26,7 @@ function upgrade_20181127_convert_db_local_to_utf8mb4_tiki($installer)
 	$backuplocalfile = "db/obsolete_${date}-${time}_local.php";
 
 	// Parse local.php file and look for obsolete 'utf8' client_charset value
-	$contents = file($localfile);
+	$contents = @file($localfile);
 
 	if ( $contents !== false ) {
 		$last_matched_line = "";
@@ -35,7 +35,7 @@ function upgrade_20181127_convert_db_local_to_utf8mb4_tiki($installer)
 			// Detect last value and line for client_charset
 			$extract = preg_match("/^[ 	]*[$]client_charset[ ]*=[ ]*'(.*)';/", $line, $match );
 			if (isset($match[1])) {
-				// echo "Match: " . $match[1] . PHP_EOL; 
+				// echo "Match: " . $match[1] . PHP_EOL;
 				$last_matched_line = $key;
 				$last_matched_charset = $match[1];
 			}
