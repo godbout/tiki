@@ -4042,7 +4042,7 @@ DROP TABLE IF EXISTS `tiki_tabular_formats`;
 CREATE TABLE `tiki_tabular_formats` (
 	`tabularId` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	`trackerId` INT NOT NULL,
-	`name` VARCHAR(30) NOT NULL,
+	`name` VARCHAR(255) NOT NULL,
 	`format_descriptor` TEXT,
 	`filter_descriptor` TEXT,
 	`config` TEXT,
