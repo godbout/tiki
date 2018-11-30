@@ -22,4 +22,4 @@ $host_tiki='localhost';
 $user_tiki='tiki_automated_test_user';
 $pass_tiki='tiki_automated_test_user';
 $dbs_tiki='tiki_db_for_unit_tests';
-$client_charset='utf8';
+$client_charset='utf8mb4';

@@ -19,7 +19,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 function upgrade_20181127_convert_db_local_to_utf8mb4_tiki($installer)
 {
 
-	$localfile = "db/local.php";
+	$localfile = TikiInit::getCredentialsFile();
 	$date = date("Ymd");
 	$time = date("His");
 	// Unique name so as to avoid losing the backup in case something goes wrong
@@ -43,7 +43,7 @@ function upgrade_20181127_convert_db_local_to_utf8mb4_tiki($installer)
 	} else {
 		echo "Failed to read 'db/local.php'" . PHP_EOL;
 		echo "Please edit db/local.php manually and change the \$client_charset value from 'utf8' to 'utf8mb4'" . PHP_EOL;
-		return FALSE;
+		return TRUE;
 	}
 
 	// If obsolete 'utf8' client_charset value was found, backup and edit
