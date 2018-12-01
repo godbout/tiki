@@ -60,7 +60,7 @@ if ($prefs['feature_sefurl'] == 'y' && ! strstr($orig_url, '.php')) {
 	}
 } elseif (! strstr($orig_url, '.php')) {
 	$orig_url = preg_replace('#\/([^\/\?]+)(\?.*)?$#', '/tiki-index.php?page=$1', $orig_url);
-		$params = parse_url($orig_url);
+	$params = parse_url($orig_url);
 	if (empty($params['query'])) {
 			$orig_url = $prefs['tikiIndex'];
 	}
@@ -115,9 +115,7 @@ if (strstr($orig_url, 'tiki-index.php') || strstr($orig_url, 'tiki-read_article.
 	}
 
 	if ($item_query) {
-		if ($prefs['feature_sefurl'] == 'y') {
-			$orig_url = $orig_url . "?" . $item_query;
-		} elseif (! strstr($_SERVER['HTTP_REFERER'], 'tiki-index.php') && ! strstr($_SERVER['HTTP_REFERER'], 'tiki-read_article.php')) {
+		if ($prefs['feature_sefurl'] != 'y' && ! strstr($_SERVER['HTTP_REFERER'], 'tiki-index.php') && ! strstr($_SERVER['HTTP_REFERER'], 'tiki-read_article.php')) {
 			$orig_url = $orig_url . "&" . $item_query;
 		}
 	}
