@@ -58,9 +58,19 @@
 					{preference name=feature_stats}
 					{preference name=feature_actionlog}
 					{preference name=feature_scheduler}
+					{preference name=feature_banners}
+					{preference name=feature_contribution}
+					{preference name=feature_copyright}
+					{preference name=feature_comm}
+					{preference name=feature_dynamic_content}
+					{preference name=feature_perspective}
+					{preference name=feature_sefurl}
+					{preference name=feature_html_pages}
+					{preference name=feature_htmlfeed}
+					{preference name=feature_areas}
+					<legend>{tr}Watches{/tr}</legend>
 					<div class="adminoptionboxchild">
 						<fieldset>
-							<legend>{tr}Watches{/tr}</legend>
 							{preference name=feature_user_watches}
 							{preference name=feature_group_watches}
 							{preference name=feature_daily_report_watches}
@@ -72,16 +82,6 @@
 							{preference name=feature_groupalert}
 						</fieldset>
 					</div>
-					{preference name=feature_banners}
-					{preference name=feature_contribution}
-					{preference name=feature_copyright}
-					{preference name=feature_comm}
-					{preference name=feature_dynamic_content}
-					{preference name=feature_perspective}
-					{preference name=feature_sefurl}
-					{preference name=feature_html_pages}
-					{preference name=feature_htmlfeed}
-					{preference name=feature_areas}
 				</div>
 			</fieldset>
 
