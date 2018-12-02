@@ -447,46 +447,74 @@ class WebMailLib extends TikiLib
 			}
 
 			$webmail_list = [];
+			$numMessages = $mail->countMessages();
 
-			foreach ($mail as $messageNum => $message) {
-				$headers = $message->getHeaders()->toArray();		// quicker than the Zend accessors?
-				$wmail = [];	// Tiki Webmail row
+			for ($messageNum = 1; $messageNum < $numMessages; $messageNum++) {
 
-				$wmail['from'] = $headers['From'];
-				$wmail['to'] = $headers['To'];
-				$wmail['subject'] = $headers['Subject'];
-				$wmail['date'] = $headers['Date'];
-				$wmail["timestamp"] = strtotime($headers['Date']);
+				try {
+					$message = $mail->getMessage($messageNum);
 
-				$from = preg_split('/[<>]/', $wmail['from'], -1, PREG_SPLIT_NO_EMPTY);
-				$wmail['sender']['name'] = $from[0];
-				$wmail['sender']['email'] = $from[1];
-				if (empty($wmail['sender']['email'])) {
-					$wmail['sender']['email'] = $wmail['sender']['name'];
-				} elseif (! strstr($wmail['sender']['email'], '@')) {
-					$e = $wmail['sender']['name'];
-					$wmail['sender']['name'] = $wmail['sender']['email'];
-					$wmail['sender']['email'] = $e;
+					$headers = $message->getHeaders()->toArray();		// quicker than the Zend accessors?
+
+					$wmail = [];	// Tiki Webmail row
+
+					$wmail['from'] = $headers['From'];
+					$wmail['to'] = $headers['To'];
+					$wmail['subject'] = $headers['Subject'];
+					$wmail['date'] = $headers['Date'];
+					$wmail["timestamp"] = strtotime($headers['Date']);
+
+					$from = preg_split('/[<>]/', $wmail['from'], -1, PREG_SPLIT_NO_EMPTY);
+					$wmail['sender']['name'] = $from[0];
+					$wmail['sender']['email'] = $from[1];
+					if (empty($wmail['sender']['email'])) {
+						$wmail['sender']['email'] = $wmail['sender']['name'];
+					} elseif (! strstr($wmail['sender']['email'], '@')) {
+						$e = $wmail['sender']['name'];
+						$wmail['sender']['name'] = $wmail['sender']['email'];
+						$wmail['sender']['email'] = $e;
+					}
+					$wmail['sender']['name'] = htmlspecialchars($wmail['sender']['name']);
+
+					if (! empty($headers['Message-ID'])) {
+						$wmail['realmsgid'] = preg_replace('/[<>]/', '', $headers['Message-ID']);
+					} else {
+						$wmail['realmsgid'] = $wmail['timestamp'] . '.' . $wmail['sender']['email'];	// TODO better?
+					}
+
+					if (empty($wmail['subject'])) {
+						$wmail['subject'] = '[' . tra('No subject') . ']';
+					}
+					$wmail['subject'] = htmlspecialchars($wmail['subject']);
+
+					$wmail['msgid'] = $messageNum;
+
+					// TODO
+					$wmail['has_attachment'] = false;
+					//				$l = $pop3->_cmdList($i);
+					$wmail['size'] = 0;
+				} catch (Exception $e) {
+					$excpetionMessage = $e->getMessage();
+
+					$wmail = [
+						'subject'   => tr('Error was: "%0"', $excpetionMessage),
+						'sender'      => [
+							'name'  => tr('Message could not be retrieved'),
+							'email' => ''
+						],
+						'to'        => '',
+						'realmsgid' => '',
+						'msgid'     => $messageNum,
+
+					];
+
+					trigger_error(
+						tr('Message id %0 corrupted. Header contains: "%1"',
+								$messageNum, $mail->getRawHeader($messageNum)
+						)
+					);
 				}
-				$wmail['sender']['name'] = htmlspecialchars($wmail['sender']['name']);
 
-				if (! empty($headers['Message-ID'])) {
-					$wmail['realmsgid'] = preg_replace('/[<>]/', '', $headers['Message-ID']);
-				} else {
-					$wmail['realmsgid'] = $wmail['timestamp'] . '.' . $wmail['sender']['email'];	// TODO better?
-				}
-
-				if (empty($wmail['subject'])) {
-					$wmail['subject'] = '[' . tra('No subject') . ']';
-				}
-				$wmail['subject'] = htmlspecialchars($wmail['subject']);
-
-				$wmail['msgid'] = $messageNum;
-
-				// TODO
-				$wmail['has_attachment'] = false;
-				//				$l = $pop3->_cmdList($i);
-				$wmail['size'] = 0;
 
 				// Add to output
 				$webmail_list[] = $wmail;
