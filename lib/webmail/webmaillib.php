@@ -502,7 +502,7 @@ class WebMailLib extends TikiLib
 							'name'  => tr('Message could not be retrieved'),
 							'email' => ''
 						],
-						'to'        => '',
+						'to'        => tr('Message could not be retrieved'),
 						'realmsgid' => '',
 						'msgid'     => $messageNum,
 
