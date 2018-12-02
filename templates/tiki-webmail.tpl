@@ -460,7 +460,13 @@
 						<tr>
 							<th>{select_all checkbox_names='msg[]'}</th>
 							<th>&nbsp;</th>
-							<th>{tr}Sender{/tr}</th>
+							<th>
+								{if strpos($currentFolder|lower, 'sent') === false}
+									{tr}Sender{/tr}
+								{else}
+									{tr}To{/tr}
+								{/if}
+							</th>
 							<th>{tr}Subject{/tr}</th>
 							<th>{tr}Date{/tr}</th>
 							<th>{tr}Size{/tr}</th>
@@ -492,7 +498,13 @@
 										{icon class="" name="reply" title="{tr}Replied{/tr}"}
 									{/if}
 								</td>
-								<td class="email">{$list[ix].sender.name}</td>
+								<td class="email">
+									{if strpos($currentFolder|lower, 'sent') === false}
+										{$list[ix].sender.name}
+									{else}
+										{$list[ix].to}
+									{/if}
+								</td>
 								<td class="text">
 									{if $list[ix].isRead neq 'y'}<strong>{/if}{self_link msgid=$list[ix].msgid locSection='read'}{$list[ix].subject}{/self_link}{if $list[ix].isRead neq 'y'}</strong>{/if}
 									{if $list[ix].has_attachment}<img src="img/webmail/clip.gif" alt="{tr}Clip{/tr}">{/if}
