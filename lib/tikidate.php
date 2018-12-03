@@ -259,14 +259,10 @@ class TikiDate
 	 */
 	function setDate($date, $tz_id = null)
 	{
-		$timezone = $tz_id ? $this->getTZByID($tz_id) : null;
 		if (is_numeric($date)) {
-			$this->date = new DateTime('@'.$date, $timezone);
-			if ($timezone) {
-				$this->date->setTimezone($timezone);
-			}
+			$this->date = new DateTime('@'.$date);
 		} else {
-			$this->date = new DateTime($date, $timezone);
+			$this->date = new DateTime($date, $tz_id ? $this->getTZByID($tz_id) : null);
 		}
 	}
 
