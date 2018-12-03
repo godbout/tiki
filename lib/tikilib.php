@@ -5250,17 +5250,19 @@ class TikiLib extends TikiDb_Bridge
 		}
 
 		$tikidate = TikiLib::lib('tikidate');
-		try {
-			$tikidate->setDate($timestamp, 'UTC');
-		} catch (Exception $e) {
-			return $e->getMessage();
-		}
 
 		$tz = $tikilib->get_display_timezone($_user);
 
-		// If user timezone is not also in UTC, convert the date
-		if ($tz != 'UTC') {
-			$tikidate->setTZbyID($tz);
+		try {
+			// If user timezone is not also in UTC, convert the date
+			if ($tz != 'UTC') {
+				$tikidate->setDate($timestamp, $tz);
+			} else {
+				$tikidate->setDate($timestamp);
+			}
+
+		} catch (Exception $e) {
+			return $e->getMessage();
 		}
 
 		$return = $tikidate->format($format, $is_strftime_format);
