@@ -64,8 +64,7 @@
 			allDayText: "{tr}all-day{/tr}",
 			firstDay: data.firstDayofWeek,
 			weekends: data.weekends,
-			slotMinutes: {{$prefs.calendar_timespan}},
-			slotDuration: '24:00:00',
+			slotDuration: data.slotDuration,
 			defaultView: data.dView,
 			defaultDate: data.dDate,
 			eventAfterRender : function( event, element, view ) {
