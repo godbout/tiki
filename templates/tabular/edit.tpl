@@ -93,6 +93,7 @@
 												columnIndex=$column@index mode=$column->getMode()}"
 										   		class="btn btn-sm btn-secondary add-field tips"
 												title="{tr}Field{/tr} {$column->getField()|escape}|{tr}Mode:{/tr} {$column->getMode()|escape}">
+											<span class="field d-none">{$column->getField()|escape}</span>:
 											<span class="mode">{$column->getMode()|escape}</span>
 										</a>
 									</td>
