@@ -64,8 +64,7 @@
 			allDayText: "{tr}all-day{/tr}",
 			firstDay: data.firstDayofWeek,
 			weekends: data.weekends,
-			slotMinutes: {{$prefs.calendar_timespan}},
-			slotDuration: '24:00:00',
+			slotDuration: data.slotDuration,
 			defaultView: data.dView,
 			defaultDate: data.dDate,
 			eventAfterRender : function( event, element, view ) {
@@ -120,16 +119,23 @@
 
 					location.href=actualURL;
 					return false;
-				}
-				else if (event.editable && event.trackerId) {
+
+				} else if (event.editable && event.trackerId) {
 					var info = {
 						trackerId: event.trackerId,
 						itemId: event.id
 					};
-					$('<a href="#"/>').attr('href', $.service('tracker', 'update_item', info)).serviceDialog({
+					$.openModal({
+						remote: $.service('tracker', 'update_item', info),
+						size: "modal-lg",
 						title: event.title,
-						success: function () {
-							$(cal).fullCalendar('refetchEvents');
+						open: function () {
+							$('form:not(.no-ajax)', this)
+								.addClass('no-ajax') // Remove default ajax handling, we replace it
+								.submit(ajaxSubmitEventHandler(function (data) {
+									$(this).parents(".modal").modal("hide")
+									$(cal).fullCalendar('refetchEvents');
+								}));
 						}
 					});
 					return false;
@@ -147,12 +153,18 @@
 					info[data.endFieldName] = date.add(1, 'h').unix();
 					if (data.url) {
 						$('<a href="#"/>').attr('href', data.url);
-					}
-					else {
-						$('<a href="#"/>').attr('href', $.service('tracker', 'insert_item', info)).serviceDialog({
+					} else {
+						$.openModal({
+							remote: $.service('tracker', 'insert_item', info),
+							size: "modal-lg",
 							title: data.addTitle,
-							success: function () {
-								$(cal).fullCalendar('refetchEvents');
+							open: function () {
+								$('form:not(.no-ajax)', this)
+									.addClass('no-ajax') // Remove default ajax handling, we replace it
+									.submit(ajaxSubmitEventHandler(function (data) {
+										$(this).parents(".modal").modal("hide")
+										$(cal).fullCalendar('refetchEvents');
+									}));
 							}
 						});
 					}

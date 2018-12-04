@@ -7,6 +7,8 @@
 
 function wikiplugin_trackercalendar_info()
 {
+	global $prefs;
+
 	return [
 		'name' => tr('Tracker Calendar'),
 		'description' => tr('Create and display a calendar using tracker data'),
@@ -271,12 +273,38 @@ function wikiplugin_trackercalendar_info()
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
+			'minHourOfDay' => [
+				'required' => false,
+				'name' => tra('Day Start'),
+				'description' => tr('First time slot that will be displayed for each day, e.g. %0', '07:00:00'),
+				'since' => '19.1',
+				'filter' => 'text',
+				'default' => '07:00:00',
+			],
+			'maxHourOfDay' => [
+				'required' => false,
+				'name' => tra('Day End'),
+				'description' => tr('Last time slot that will be displayed for each day, e.g. %0', '24:00:00'),
+				'since' => '19.1',
+				'filter' => 'text',
+				'default' => '24:00:00',
+			],
+			'slotDuration' => [
+				'required' => false,
+				'name' => tra('Slot Duration'),
+				'description' => tr('Frequency for displayting time slots, e.g. %0 (defaults to the calendar_timespan preference)', "00:{$prefs['calendar_timespan']}:00"),
+				'since' => '19.1',
+				'filter' => 'text',
+				'default' => "00:{$prefs['calendar_timespan']}:00",
+			],
 		],
 	];
 }
 
 function wikiplugin_trackercalendar($data, $params)
 {
+	global $prefs;
+
 	static $id = 0;
 	$headerlib = TikiLib::lib('header');
 
@@ -376,11 +404,25 @@ function wikiplugin_trackercalendar($data, $params)
 	} else {
 		$dDay = (int) date('j');
 	}
+	// day duration
+	if (! empty($params['minHourOfDay'])) {
+		$minHourOfDay = $params['minHourOfDay'];
+	} else {
+		$minHourOfDay = '07:00:00';
+	}
+	if (! empty($params['maxHourOfDay'])) {
+		$maxHourOfDay = $params['maxHourOfDay'];
+	} else {
+		$maxHourOfDay = '24:00:00';
+	}
+	if (! empty($params['slotDuration'])) {
+		$slotDuration = $params['slotDuration'];
+	} else {
+		$slotDuration = "00:{$prefs['calendar_timespan']}:00";
+	}
 
 	// Format the default date as Y-m-d instead of Y-n-d, required by MomentJs
 	$dDate = (new DateTime($dYear . '-' . $dMonth . '-' . $dDay))->format('Y-m-d');
-
-		global $prefs;
 
 	if (! empty($params['fDayofWeek']) and $params['fDayofWeek'] > -1 and $params['fDayofWeek'] < 7) {
 		$firstDayofWeek = $params['fDayofWeek'];
@@ -421,8 +463,9 @@ function wikiplugin_trackercalendar($data, $params)
 			'viewmonth' => $dMonth,
 			'viewday' => $dDay,
 			'dDate' => $dDate,
-			'minHourOfDay' => '07:00:00',
-			'maxHourOfDay' => '24:00:00',
+			'minHourOfDay' => $minHourOfDay,
+			'maxHourOfDay' => $maxHourOfDay,
+			'slotDuration' => $slotDuration,
 			'addTitle' => tr('Insert'),
 			'canInsert' => $itemObject->canModify(),
 			'dView' => $dView,

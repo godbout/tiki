@@ -4734,6 +4734,7 @@ class TikiLib extends TikiDb_Bridge
 		$data = $info["data"];
 		$willDoHistory = ($prefs['feature_wiki_history_full'] == 'y' || $data != $edit_data || $info['description'] != $edit_description || $info["comment"] != $edit_comment );
 		$version = $histlib->get_page_next_version($pageName, $willDoHistory);
+		$old_version = $version - 1;	// this doesn't really make sense but is needed to make diff links work properly - regression from r65651
 
 		if ($is_html === null) {
 			$html = $info['is_html'];
