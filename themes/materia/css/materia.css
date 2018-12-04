@@ -6923,6 +6923,22 @@ table.treetable.objectperms td.removed {
 .btn-primary.highlight:hover {
   background: #a21318; }
 
+.btn.selected.btn-primary {
+  background-color: #0d8aee;
+  border-color: #0c83e2; }
+  .btn.selected.btn-primary:hover {
+    background-color: #0c7cd5;
+    border-color: #0b75c9; }
+  .btn.selected.btn-link {
+    color: #0d8aee;
+    text-decoration: underline;
+    background-color: transparent;
+    border-color: transparent; }
+  .btn.selected.btn-link:hover {
+    color: #0a6ebd;
+    background-color: transparent;
+    border-color: transparent; }
+
 .btn-primary.btn-link, .btn-primary.btn-link:hover {
   background: transparent;
   border: none; }

@@ -179,6 +179,17 @@ function smarty_function_button($params, $smarty)
 			$params['_text'],
 			$smarty
 		);
+
+		$url = str_replace('+', ' ', str_replace('&amp;', '&', urldecode($_SERVER['REQUEST_URI'])));
+		$dom = new DOMDocument;
+		$dom->loadHTML($html);
+		foreach($dom->getElementsByTagName('a') as $link) {
+			if ($url == $link->getAttribute('href')) {
+				$selected = true;
+				$class = 'selected';
+			}
+		}
+
 	} else {
 		$params['_disabled'] = 'y';
 		$html = smarty_block_self_link(
