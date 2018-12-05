@@ -42,9 +42,11 @@ function wikiplugin_diagram($data, $params)
 
 	$headerlib = $tikilib::lib('header');
 	$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
-
-	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/mxClient.js', true);
+	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/deflate/pako.min.js', true);
+	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/deflate/base64.js', true);
+	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/jscolor/jscolor.js');
 	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/sanitizer/sanitizer.min.js', true);
+	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/mxClient.js', true);
 	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Graph.js', true);
 	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Format.js', true);
 	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Shapes.js', true);
@@ -66,7 +68,7 @@ function wikiplugin_diagram($data, $params)
 
 	if (function_exists('simplexml_load_string')) {
 		$doc = simplexml_load_string($data);
-		if (empty($data) || $doc === false || $doc->getName() != 'mxGraphModel') {
+		if (empty($data) || $doc === false || ($doc->getName() != 'mxGraphModel' && $doc->getName() != 'mxfile')) {
 			Feedback::error(tr("Tiki wasn't able to parse the Diagram. Please check the diagram XML data and structure."));
 			return;
 		}
