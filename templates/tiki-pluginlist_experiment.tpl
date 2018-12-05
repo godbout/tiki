@@ -1,6 +1,6 @@
 {* $Id$ *}
 {extends 'layout_edit.tpl'}
-{title admpage="wiki" help="Using Wiki Pages#List_Pages"}{tr}Pages{/tr}{/title}
+{title admpage="wiki" help="Using Wiki Pages#Listing_Pages"}{tr}Pages{/tr}{/title}
 
 {block name=content}
 	{if $tiki_p_edit == 'y'}

@@ -81,7 +81,7 @@ function smarty_block_title($params, $content, $template, &$repeat)
 		if ($prefs['feature_help'] == 'y' && $prefs['helpurl'] != '' && $params['help'] != '') {
 			$html .= '<a href="' ;
 
-			$html .= $prefs['helpurl'] . rawurlencode($params['help']) . '" class="tips btn btn-link" title="' . smarty_modifier_escape($content) . '|' . tra('Help page') . '" target="tikihelp">'
+			$html .= $prefs['helpurl'] . str_replace("%23", "#", rawurlencode($params['help'])) . '" class="tips btn btn-link" title="' . smarty_modifier_escape($content) . '|' . tra('Help page') . '" target="tikihelp">'
 			. smarty_function_icon(['name' => 'help'], $template)
 			. "</a>\n";
 		}
