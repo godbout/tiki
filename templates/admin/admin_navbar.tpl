@@ -130,9 +130,13 @@
 				<form method="post" action="" class="form-inline my-2 my-md-0 ml-auto" role="form">
 					<div class="form-group row mx-0">
 						<input type="hidden" name="filters">
-						<input type="text" name="lm_criteria" style="width: 163px;"value="{$lm_criteria|escape}" class="form-control form-control-sm" placeholder="{tr}Search preferences{/tr}...">
+						<div class="input-group">
+							<input type="text" name="lm_criteria" style="width: 163px;"value="{$lm_criteria|escape}" class="form-control form-control-sm" placeholder="{tr}Search preferences{/tr}...">
+							<div class="input-group-append">
+								<button type="submit" class="btn btn-info btn-sm" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
+							</div>
+						</div>
 					</div>
-					<button type="submit" class="btn btn-info btn-sm" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
 				</form>
 			</li>
 		</ul>
