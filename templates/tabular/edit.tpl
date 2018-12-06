@@ -17,14 +17,14 @@
 	<div class="table-responsive">
 		<form class="edit-tabular" method="post" action="{service controller=tabular action=edit tabularId=$tabularId}">
 			<div class="form-group row">
-				<label class="col-form-label col-sm-3">{tr}Name{/tr}</label>
-				<div class="col-sm-9">
+				<label class="col-form-label col-sm-2">{tr}Name{/tr}</label>
+				<div class="col-sm-10">
 					<input class="form-control" type="text" name="name" value="{$name|escape}" required>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-form-label col-sm-3">{tr}Fields{/tr}</label>
-				<div class="col-sm-9">
+				<label class="col-form-label col-sm-2">{tr}Fields{/tr}</label>
+				<div class="col-sm-10">
 					<table class="table fields">
 						<thead>
 							<tr>
@@ -64,7 +64,7 @@
 								<td><input class="unique-key" type="checkbox"></td>
 								<td><input class="read-only" type="checkbox"></td>
 								<td><input class="export-only" type="checkbox"></td>
-								<td class="text-right"><button class="remove">{icon name=remove}</button></td>
+								<td class="text-right"><button class="remove btn-sm btn-outline-warning">{icon name=remove}</button></td>
 							</tr>
 							{foreach $schema->getColumns() as $column}
 								<tr>
@@ -75,7 +75,7 @@
 											</div>
 											<input type="text" class="field-label form-control" value="{$column->getLabel()|escape}">
 											<div class="input-group-append">
-												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+												<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 													<span class="align">{$column->getDisplayAlign()|ucfirst|tra}</span>
 													<input class="display-align" type="hidden" value="{$column->getDisplayAlign()|escape}">
 												</button>
@@ -89,8 +89,11 @@
 										</div>
 									</td>
 									<td>
-										<a href="{service controller=tabular action=select trackerId=$trackerId permName=$column->getField() columnIndex=$column@index mode=$column->getMode()}" class="btn btn-link add-field">
-											<span class="field">{$column->getField()|escape}</span>:
+										<a href="{service controller=tabular action=select trackerId=$trackerId permName=$column->getField()
+												columnIndex=$column@index mode=$column->getMode()}"
+										   		class="btn btn-sm btn-secondary add-field tips"
+												title="{tr}Field{/tr} {$column->getField()|escape}|{tr}Mode:{/tr} {$column->getMode()|escape}">
+											<span class="field d-none">{$column->getField()|escape}</span>:
 											<span class="mode">{$column->getMode()|escape}</span>
 										</a>
 									</td>
@@ -98,7 +101,7 @@
 									<td><input class="unique-key" type="checkbox" {if $column->isUniqueKey()} checked {/if}></td>
 									<td><input class="read-only" type="checkbox" {if $column->isReadOnly()} checked {/if}></td>
 									<td><input class="export-only" type="checkbox" {if $column->isExportOnly()} checked {/if}></td>
-									<td class="text-right"><button class="remove">{icon name=remove}</button></td>
+									<td class="text-right"><button class="remove btn-sm btn-outline-warning">{icon name=remove}</button></td>
 								</tr>
 							{/foreach}
 						</tbody>
@@ -113,7 +116,7 @@
 									</select>
 								</td>
 								<td>
-									<a href="{service controller=tabular action=select trackerId=$trackerId}" class="btn btn-primary add-field">{tr}Select Mode{/tr}</a>
+									<a href="{service controller=tabular action=select trackerId=$trackerId}" class="btn btn-secondary add-field">{tr}Select Mode{/tr}</a>
 									<textarea name="fields" class="d-none">{$schema->getFormatDescriptor()|json_encode}</textarea>
 								</td>
 								<td colspan="3">
@@ -155,7 +158,7 @@
 										</div>
 										<input type="text" class="filter-label form-control" value="Label">
 										<div class="input-group-append">
-											<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+											<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 												<span class="position-label">{tr}Default{/tr}</span>
 												<input class="position" type="hidden" value="default">
 											</button>
@@ -168,7 +171,7 @@
 									</div>
 								</td>
 								<td><span class="field">Field Name</span>:<span class="mode">Mode</span></td>
-								<td class="text-right"><button class="remove">{icon name=remove}</button></td>
+								<td class="text-right"><button class="remove btn-sm btn-outline-warning">{icon name=remove}</button></td>
 							</tr>
 							{foreach $filterCollection->getFilters() as $filter}
 								<tr>
@@ -179,7 +182,7 @@
 											</div>
 											<input type="text" class="field-label form-control" value="{$filter->getLabel()|escape}">
 											<div class="input-group-append">
-												<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+												<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 													<span class="position-label">{$filter->getPosition()|ucfirst|tra}</span>
 													<input class="position" type="hidden" value="{$filter->getPosition()|escape}">
 												</button>
@@ -192,7 +195,7 @@
 										</div>
 									</td>
 									<td><span class="field">{$filter->getField()|escape}</span>:<span class="mode">{$filter->getMode()|escape}</td>
-									<td class="text-right"><button class="remove">{icon name=remove}</button></td>
+									<td class="text-right"><button class="remove btn-sm btn-outline-warning">{icon name=remove}</button></td>
 								</tr>
 							{/foreach}
 						</tbody>
@@ -207,7 +210,7 @@
 									</select>
 								</td>
 								<td>
-									<a href="{service controller=tabular action=select_filter trackerId=$trackerId}" class="btn btn-primary add-filter">{tr}Select Mode{/tr}</a>
+									<a href="{service controller=tabular action=select_filter trackerId=$trackerId}" class="btn btn-secondary add-filter">{tr}Select Mode{/tr}</a>
 									<textarea name="filters" class="d-none">{$filterCollection->getFilterDescriptor()|json_encode}</textarea>
 								</td>
 							</tr>
@@ -218,54 +221,51 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label class="col-form-label col-sm-3">{tr}Simple headers{/tr}</label>
-				<div class="col-sm-9 form-check">
-					<input type="checkbox" class="form-check-input" name="config[simple_headers]" value="1" {if $config['simple_headers']} checked {/if}>
-					<a class="tikihelp text-info" title="{tr}Simple headers{/tr}: {tr}Allow using field labels only as a header row when importing rather than the full &quot;Field [permName:type]&quot; format.{/tr}">
-						{icon name=information}
-					</a>
+			<div class="form-group row mb-4">
+				<label class="col-form-label col-sm-2">{tr}Options{/tr}</label>
+				<div class="col-sm-5">
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" name="config[simple_headers]" value="1" {if $config['simple_headers']} checked {/if}>
+						<label class="form-check-label">{tr}Simple headers{/tr}</label>
+						<a class="tikihelp text-info" title="{tr}Simple headers{/tr}: {tr}Allow using field labels only as a header row when importing rather than the full &quot;Field [permName:type]&quot; format.{/tr}">
+							{icon name=information}
+						</a>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" name="config[import_update]" value="1" {if $config['import_update']} checked {/if}>
+						<label class="form-check-label">{tr}Import updates{/tr}</label>
+						<a class="tikihelp text-info" title="{tr}Import update{/tr}: {tr}Allow updating existing entries matched by PK when importing. If this is disabled, only new items will be imported.{/tr}">
+							{icon name=information}
+						</a>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" name="config[ignore_blanks]" value="1" {if $config['ignore_blanks']} checked {/if}>
+						<label class="form-check-label">{tr}Ignore blanks{/tr}</label>
+						<a class="tikihelp text-info" title="{tr}Ignore blanks{/tr}: {tr}Ignore blank values when import is updating existing items. Only non-blank values will be updated this way.{/tr}">
+							{icon name=information}
+						</a>
+					</div>
+				</div>
+				<div class="col-sm-5">
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" name="config[import_transaction]" value="1" {if $config['import_transaction']} checked {/if}>
+						<label class="form-check-label">{tr}Transactional import{/tr}</label>
+						<a class="tikihelp text-info" title="{tr}Import transaction{/tr}: {tr}Import in a single transaction. If any of the items fails validation, the whole import is rejected and nothing is saved.{/tr}">
+							{icon name=information}
+						</a>
+					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" name="config[bulk_import]" value="1" {if $config['bulk_import']} checked {/if}>
+						<label class="form-check-label">{tr}Bulk import{/tr}</label>
+						<a class="tikihelp text-info" title="{tr}Bulk Import{/tr}: {tr}Import in 'bulk' mode so the search index is not updated for each item and no notifications should be sent.{/tr}">
+							{icon name=information}
+						</a>
+					</div>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label class="col-form-label col-sm-3">{tr}Import updates{/tr}</label>
-				<div class="col-sm-9 form-check">
-					<input type="checkbox" class="form-check-input" name="config[import_update]" value="1" {if $config['import_update']} checked {/if}>
-					<a class="tikihelp text-info" title="{tr}Import update{/tr}: {tr}Allow updating existing entries matched by PK when importing. If this is disabled, only new items will be imported.{/tr}">
-						{icon name=information}
-					</a>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-form-label col-sm-3">{tr}Ignore blanks{/tr}</label>
-				<div class="col-sm-9 form-check">
-					<input type="checkbox" class="form-check-input" name="config[ignore_blanks]" value="1" {if $config['ignore_blanks']} checked {/if}>
-					<a class="tikihelp text-info" title="{tr}Ignore blanks{/tr}: {tr}Ignore blank values when import is updating existing items. Only non-blank values will be updated this way.{/tr}">
-						{icon name=information}
-					</a>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-form-label col-sm-3">{tr}Transactional import{/tr}</label>
-				<div class="col-sm-9 form-check">
-					<input type="checkbox" class="form-check-input" name="config[import_transaction]" value="1" {if $config['import_transaction']} checked {/if}>
-					<a class="tikihelp text-info" title="{tr}Import transaction{/tr}: {tr}Import in a single transaction. If any of the items fails validation, the whole import is rejected and nothing is saved.{/tr}">
-						{icon name=information}
-					</a>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-form-label col-sm-3">{tr}Bulk import{/tr}</label>
-				<div class="col-sm-9 form-check">
-					<input type="checkbox" class="form-check-input" name="config[bulk_import]" value="1" {if $config['bulk_import']} checked {/if}>
-					<a class="tikihelp text-info" title="{tr}Bulk Import{/tr}: {tr}Import in 'bulk' mode so the search index is not updated for each item and no notifications should be sent.{/tr}">
-						{icon name=information}
-					</a>
-				</div>
-			</div>
-			<div class="form-group submit">
-				<div class="col-sm-9 col-sm-push-3">
-					<input type="submit" class="btn btn-secondary" value="{tr}Update{/tr}">
+			<div class="form-row submit">
+				<div class="col-sm-10 offset-sm-2">
+					<input type="submit" class="btn btn-primary" value="{tr}Update{/tr}">
 				</div>
 			</div>
 		</form>

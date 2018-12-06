@@ -1132,6 +1132,11 @@ pre.codelisting {
 	}
 }
 
+// Make links in highlighted adminoptions visible with nice contrast
+div.highlight.adminoptionbox a {
+	color: color-yiq($danger) !important; // returns color contrast to danger color
+}
+
 // Admin navbar switch
 
 input[type="checkbox"].preffilter-toggle-round + label {

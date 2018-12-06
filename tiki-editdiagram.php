@@ -145,11 +145,7 @@ $js = "(function()
 			// Main
 			var ui = new EditorUi(new Editor(urlParams['chrome'] == '0', themes));
 			var xml = `{$xmlDiagram}`;
-			var doc = mxUtils.parseXml(xml);
-
-			// Executes the layout
-			var codec = new mxCodec(doc);
-			codec.decode(doc.documentElement, ui.editor.graph.getModel());
+			handleXmlData(ui.editor.graph, `{$xmlDiagram}`);
 
 		}, function()
 		{
