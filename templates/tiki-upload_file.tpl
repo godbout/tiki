@@ -330,7 +330,7 @@
 			{if $editFileId}
 				{include file='categorize.tpl'}<br>
 				<div id="page_bar" class="form-group row">
-					<div class="col-md-8 col-md-push-4">
+					<div class="col-md-8 offset-md-4">
 						<input
 							name="upload"
 							type="submit"

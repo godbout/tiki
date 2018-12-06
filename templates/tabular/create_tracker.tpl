@@ -160,7 +160,7 @@
 			</div>
 		</div>
 		<div class="form-group submit">
-			<div class="col-sm-9 col-sm-push-3">
+			<div class="col-sm-9 offset-sm-3">
 				<input type="submit" class="btn btn-primary" value="{tr}Import{/tr}">
 			</div>
 		</div>

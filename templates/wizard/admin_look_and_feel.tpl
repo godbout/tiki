@@ -12,7 +12,7 @@
 		<fieldset>
 			<legend>{tr}Look & Feel options{/tr}</legend>
 				<div class="row">
-					<div class="col-md-3 col-md-push-9">
+					<div class="col-md-3 offset-md-9">
 {*
 						<div class="thumbnail">
 							{if $thumbfile}

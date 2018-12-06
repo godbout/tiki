@@ -6,7 +6,7 @@
 	{assign var='new_user_validation' value='n'}
 {/if}
 <div class="row">
-<div class="col-md-10 col-md-push-1 clearfix">
+<div class="col-md-10 offset-md-1">
 	<form role="form" method="post" action="tiki-change_password.php">
 		<div class="card">
 			{if !empty($oldpass) and $new_user_validation eq 'y'}

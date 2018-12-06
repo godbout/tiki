@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		<div class="form-group submit">
-			<div class="col-sm-9 col-sm-push-3">
+			<div class="col-sm-9 offset-sm-3">
 				<input type="submit" class="btn btn-secondary" value="{tr}Create{/tr}">
 			</div>
 		</div>

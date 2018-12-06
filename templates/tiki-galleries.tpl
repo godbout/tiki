@@ -45,7 +45,7 @@
 				</div>
 				{if $tiki_p_admin_galleries eq 'y'}
 					<div class="form-group row">
-						<div class="form-check col-sm-push-4">
+						<div class="form-check offset-sm-4">
 							<input type="checkbox" class="form-check-input" name="visible" {if $visible eq 'y'}checked="checked"{/if}>
 							{tr}Gallery is visible to non-admin users?{/tr}
 						</div>
@@ -238,7 +238,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<div class="form-check col-sm-push-4">
+					<div class="form-check offset-sm-4">
 						<label>
 							<input type="checkbox" class="form-check-input" name="public" {if $public eq 'y'}checked="checked"{/if}>
 							{tr}Other users can upload images to this gallery{/tr}

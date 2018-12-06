@@ -53,7 +53,7 @@
 				{modulelist zone=right}
 			</div>
 		{elseif zone_is_empty('right')}
-			<div class="col-md-9 col-md-push-3 col1" id="col1" style="padding-top: 15px;">
+			<div class="col-md-9 offset-md-3 col1 pt-2" id="col1">
 				<div class="card bg-danger text-white">
 					<div class="card-header">
 						{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle"} {$errortitle|default:"{tr}Error{/tr}"}
@@ -74,7 +74,7 @@
 				{modulelist zone=left}
 			</div>
 		{else}
-			<div class="col-md-8 col-md-push-2 col1" id="col1" style="padding-top: 15px;">
+			<div class="col-md-8 offset-md-2 col1 pt-2" id="col1">
 				<div class="card bg-danger text-white">
 					<div class="card-header">
 						{icon name='error' alt="{tr}Error{/tr}" style="vertical-align:middle"} {$errortitle|default:"{tr}Error{/tr}"}

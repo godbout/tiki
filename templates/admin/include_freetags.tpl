@@ -46,7 +46,7 @@
 		{preference name=freetags_browse_amount_tags_suggestion}
 		{preference name=freetags_normalized_valid_chars}
 		<div class="clearfix">
-			<span class="adminoptionbox form-text col-md-8 col-md-push-4">
+			<span class="adminoptionbox form-text col-md-8 offset-md-4">
 				<a class="button" href='#Browsing' onclick="$('input[name=freetags_normalized_valid_chars]').val('a-zA-Z0-9');return false;">
 					{tr}Alphanumeric ASCII characters only{/tr}
 				</a>
@@ -66,7 +66,7 @@
 		<legend>{tr}Tag search page{/tr}</legend>
 		{preference name=freetags_sort_mode}
 		{preference name=freetags_preload_random_search}
-		<span class="form-text col-md-8 col-md-push-4">{tr}When arriving on <a href="tiki-browse_freetags.php">tag search page</a>{/tr}.</span>
+		<span class="form-text col-md-8 offset-md-4">{tr}When arriving on <a href="tiki-browse_freetags.php">tag search page</a>{/tr}.</span>
 	</fieldset>
 	{include file='admin/include_apply_bottom.tpl'}
 </form>

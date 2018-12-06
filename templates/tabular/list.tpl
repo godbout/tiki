@@ -42,7 +42,7 @@
 					{$filter.control}
 				{/foreach}
 			</div>
-			<div class="col-sm-9 col-sm-push-3">
+			<div class="col-sm-9 offset-sm-3">
 				<input class="btn btn-secondary" type="submit" value="{tr}Search{/tr}">
 			</div>
 		</div>

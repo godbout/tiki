@@ -404,7 +404,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-10 col-sm-push-2">
+							<div class="col-sm-10 offset-sm-2">
 								<input type="submit" class="btn btn-secondary" name="send" value="{tr}Send{/tr}">
 								<input type="checkbox" class="form-check-input" name="replytome" id="replytome">
 								<label for="replytome">

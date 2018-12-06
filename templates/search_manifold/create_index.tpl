@@ -28,7 +28,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-sm-push-3 col-sm-9">
+			<div class="col-sm-9 offset-sm-3">
 				<input class="btn btn-secondary" type="submit" value="{tr}Create Index{/tr}"/>
 			</div>
 		</div>

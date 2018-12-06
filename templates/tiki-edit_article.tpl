@@ -49,7 +49,7 @@
 			</div>
 			{if $tiki_p_use_HTML eq 'y'}
 				{if $smarty.session.wysiwyg neq 'y'}
-					<div class="col-md-8 col-md-push-4">
+					<div class="col-md-8 offset-md-4">
 						<div class="form-check">
 							<label class="form-class=label">
 								<input class="form-class=input" type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
@@ -132,7 +132,7 @@
 				{/if}
 			</div>
 			<div class="clearfix">
-				<div class="col-md-8 col-md-push-4">
+				<div class="col-md-8 offset-md-4">
 					{remarksbox type="info" title="{tr}Hint{/tr}"}
 						{tr}Click "Preview" after selecting article type to have appropriate edit form fields.{/tr}
 					{/remarksbox}
@@ -148,7 +148,7 @@
 		{tab name="{tr}Publication{/tr}"}
 			<h2>{tr}Publication{/tr}</h2>
 			<div class="form-group row clearfix">
-				<div class="col-md-4 col-md-push-4">
+				<div class="col-md-4 offset-md-4">
 					<div class="form-check well well-sm">
 						<label class="form-check-label">
 							<input type="checkbox" class="form-check-input" name="ispublished" {if $ispublished eq 'y' || !$articleId}checked="checked"{/if}>

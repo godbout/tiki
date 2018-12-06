@@ -66,7 +66,7 @@
 				<!--<tr><td>{tr}Class Name:{/tr}</td><td><input type="text" name="className" value="{$className|escape}"></td></tr>
 				<tr><td>{tr}Header Rows:{/tr}</td><td><input type="text" name="headerRow" value="{$headerRow|escape}"></td></tr>
 				<tr><td>{tr}Footer Rows:{/tr}</td><td><input type="text" name="footerRow" value="{$footerRow|escape}"></td></tr>-->
-				<div class="checkbox col-sm-push-3">
+				<div class="checkbox offset-sm-3">
 					<label for="parseValues">
 						<input type="checkbox" name="parseValues"{if $parseValues eq 'y'} checked="checked"{/if}>
 						{tr}Wiki Parse Values{/tr}
@@ -108,7 +108,7 @@
 				</div>
 			</form>
 			{if $sheetId > 0}
-				<div class="wikitext col-sm-push-3 col-sm-9">
+				<div class="wikitext col-sm-9 offset-sm-3">
 					{remarksbox type="tip" title="{tr}Tip{/tr}" close="n"}
 						{tr}You can access the sheet using the following URL:{/tr} <a class="alert-link" href="{$url}?sheetId={$sheetId}">{$url}?sheetId={$sheetId}</a>
 					{/remarksbox}

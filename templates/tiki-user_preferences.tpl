@@ -277,7 +277,7 @@
 						<div id="read-lang-div" class="form-group row clearfix">
 					{else}
 						<div class="form-group row clearfix">
-							<div class="col-md-8 col-md-push-4">
+							<div class="col-md-8 offset-md-4">
 								<a href="javascript:void(0)" onclick="document.getElementById('read-lang-div').style.display='block';this.style.display='none';">
 									{tr}Can you read more languages?{/tr}
 								</a>
@@ -297,7 +297,7 @@
 						</select>
 						<div class="form-text">{tr}Select from the dropdown to add automatically to the list below{/tr}</div>
 					</div>
-					<label for="read-language-input" class="col-md-8 col-md-push-4">
+					<label for="read-language-input" class="col-md-8 offset-md-4">
 						<input class="form-control" id="read-language-input" type="text" name="read_language" value="{$user_prefs.read_language}">
 					</label>
 					</div>
