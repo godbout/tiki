@@ -19,7 +19,7 @@
 				<div class="col-xs-12">
 					<div class="form-group row">
 						<div class="row">
-							<div class="col-sm-6 col-sm-push-6">
+							<div class="col-sm-6 offset-sm-6">
 								<input class="btn btn-secondary btn-sm" type="submit" name="quickedit" value="{tr}Test Plugin LIST{/tr}">
 							</div>
 							<div class="col-sm-6 col-sm-pull-6">

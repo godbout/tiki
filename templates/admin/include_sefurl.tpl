@@ -50,7 +50,7 @@
 		<div id="feature_canonical_url_childcontainer" class="clearfix">
 			{preference name=https_external_links_for_users}
 			{preference name=feature_canonical_domain}
-			<span class="form-text col-md-8 col-md-push-4">
+			<span class="form-text col-md-8 offset-md-4">
 				{tr}For example, if the field is left blank, the canonical URL domain is:{/tr} {$base_url_canonical_default}
 			</span>
 		</div>

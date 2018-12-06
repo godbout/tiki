@@ -121,7 +121,7 @@
 						<input type="hidden" name="mail_send{$ipluginmail}" value="{tr}Send Mail{/tr}">
 					{/if}
 				</div>
-				<div class="col-sm-8 col-sm-push-2">
+				<div class="col-sm-8 offset-sm-2">
 						{remarksbox type='info'}{tr}You will receive a copy of the email yourself. Please give it a few minutes.{/tr}{/remarksbox}
 				</div>
 			</form>

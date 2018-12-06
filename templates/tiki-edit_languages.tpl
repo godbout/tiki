@@ -190,7 +190,7 @@
 							{if isset($item.originalTranslation)}
 								<tr>
 									<td colspan="4">
-										<div class="col-md-6 col-md-push-3">
+										<div class="col-md-6 offset-md-3">
 											<table class="table" id="diff_{$smarty.foreach.translations.index}" style="display: none;">
 												{$item.diff}
 											</table>

@@ -244,7 +244,7 @@
 					{include file='categorize.tpl'}
 				{/if}
 				<div class="form-group row">
-					<div class="submit col-md-9 col-md-push-3">
+					<div class="submit col-md-9 offset-md-3">
 						<input type="submit" class="btn btn-secondary" value="{tr}Create New Structure{/tr}" name="create">
 					</div>
 				</div>

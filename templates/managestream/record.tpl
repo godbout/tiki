@@ -29,7 +29,7 @@
 				</div>
 			</div>
 			<div class="priority-div hidden clearfix">
-				<div class="form-group row col-md-push-4 col-md-8">
+				<div class="form-group row offset-md-4 col-md-8">
 					<label for="priorityinput" class="col-form-label">{tr}Priority{/tr}</label>
 					<select id="priorityinput" name="priority" class="form-control">
 						<option value="low">Low</option>
@@ -37,7 +37,7 @@
 						<option value="critical">Critical</option>
 					</select>
 				</div>
-				<div class="form-group row col-md-push-4 col-md-8">
+				<div class="form-group row offset-md-4 col-md-8">
 					<label for="userInput" class="col-form-label">{tr}Recipient{/tr}</label>
 					<input id="userInput" name="user" class="form-control" value="user">
 				</div>
