@@ -34,9 +34,20 @@ class Search_Elastic_FacetBuilder
 
 	private function buildFacet(Search_Query_Facet_Interface $facet)
 	{
-		return ['terms' => [
+		$type = $facet->getType();
+
+		$out = [
 			'field' => $facet->getField(),
-			'size' => $facet->getCount() ?: $this->count,
-		]];
+		];
+
+		if ($type === 'date_histogram') {
+			$out['interval'] = $facet->getInterval();
+		} else if ($type === 'date_range') {
+			$out['ranges'] = $facet->getRanges();
+		} else {
+			$out['size'] = $facet->getCount() ?: $this->count;
+		}
+
+		return [$type => $out];
 	}
 }

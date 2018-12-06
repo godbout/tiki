@@ -33,7 +33,11 @@ class Search_ResultSet_FacetFilter
 
 	function getOperator()
 	{
-		return $this->facet->getOperator();
+		if (is_a($this->facet, 'Search_Query_Facet_Term')) {
+			return $this->facet->getOperator();
+		} else {
+			return null;
+		}
 	}
 
 	function getOptions()

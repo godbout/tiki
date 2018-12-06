@@ -64,12 +64,12 @@ class Search_Formatter_Plugin_SmartyTemplate implements Search_Formatter_Plugin_
 			'facets',
 			array_map(
 				function ($facet) {
-					return [
+					return array_filter([
 						'name' => $facet->getName(),
 						'label' => $facet->getLabel(),
 						'options' => $facet->getOptions(),
 						'operator' => $facet->getOperator(),
-					];
+					]);
 				},
 				$entries->getFacets()
 			)

@@ -5,32 +5,14 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Search_Query_Facet_Term implements Search_Query_Facet_Interface
+class Search_Query_Facet_Term extends Search_Query_Facet_Abstract implements Search_Query_Facet_Interface
 {
-	private $field;
-	private $renderCallback;
 	private $operator = 'or';
 	private $count;
 
 	static function fromField($field)
 	{
 		return new self($field);
-	}
-
-	function __construct($field)
-	{
-		$this->field = $field;
-		$this->label = ucfirst($field);
-	}
-
-	function getName()
-	{
-		return $this->field;
-	}
-
-	function getField()
-	{
-		return $this->field;
 	}
 
 	function getCount()
@@ -41,23 +23,6 @@ class Search_Query_Facet_Term implements Search_Query_Facet_Interface
 	function setCount($count)
 	{
 		$this->count = $count;
-		return $this;
-	}
-
-	function getLabel()
-	{
-		return $this->label;
-	}
-
-	function setLabel($label)
-	{
-		$this->label = $label;
-		return $this;
-	}
-
-	function setRenderCallback($callback)
-	{
-		$this->renderCallback = $callback;
 		return $this;
 	}
 
@@ -74,13 +39,9 @@ class Search_Query_Facet_Term implements Search_Query_Facet_Interface
 		);
 	}
 
-	function render($value)
+	function getType()
 	{
-		if ($cb = $this->renderCallback) {
-			return call_user_func($cb, $value);
-		}
-
-		return $value;
+		return 'terms';
 	}
 
 	function setOperator($operator)

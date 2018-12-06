@@ -1084,6 +1084,39 @@ class UnifiedSearchLib
 				->setRenderMap(TikiLib::lib('language')->get_language_map());
 		}
 
+		if ($prefs['search_date_facets'] == 'y') {
+			$facets[] = Search_Query_Facet_DateHistogram::fromField('date')
+				->setName(tr('date_histogram'))
+				->setLabel(tr('Date Histogram'))
+				->setInterval($prefs['search_date_facets_interval'])
+				->setRenderCallback(function ($date) {
+					$out = TikiLib::lib('tiki')->get_short_date($date / 1000);
+					return $out;
+				});
+
+			if ($prefs['search_date_facets_ranges']) {
+				$facet = Search_Query_Facet_DateRange::fromField('date')
+					->setName(tr('date_range'))
+					->setLabel(tr('Date Range'))
+					->setRenderCallback(function ($label) {
+						return $label;
+					});
+
+				$ranges = explode("\n", $prefs['search_date_facets_ranges']);
+				foreach (array_filter($ranges) as & $range) {
+					$range = explode(',', $range);
+					if (count($range) > 2) {
+						$facet->addRange($range[1], $range[0], $range[2]);
+					} else if (count($range) > 1) {
+						$facet->addRange($range[1], $range[0]);
+					}
+				}
+
+
+				$facets[] = $facet;
+			}
+		}
+
 		if ($prefs['federated_enabled'] === 'y') {
 			$tiki_extwiki = TikiDb::get()->table('tiki_extwiki');
 

@@ -8,12 +8,11 @@
 interface Search_Query_Facet_Interface
 {
 	function getLabel();
+	function setLabel($label);
 	function getName();
+	function setName($name);
 	function getField();
+	function setRenderCallback($callback);
 	function render($value);
-	function setOperator($operator);
-	function getOperator();
-
-	function getCount();
-	function setCount($count);
+	function getType();
 }

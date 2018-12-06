@@ -114,5 +114,41 @@ function prefs_search_list()
 			'packages_required' => ['media-alchemyst/media-alchemyst' => 'MediaAlchemyst\Alchemyst'],
 			'default' => 'n',
 		],
+		'search_date_facets' => [
+			'name' => tra('Use date histogram aggregations'),
+			'description' => tr('Use date histogram aggregations (facets) when indexing, requires Elasticsearch'),
+			'type' => 'flag',
+			'default' => 'n',
+		],
+		'search_date_facets_interval' => [
+			'name' => tra('Date histogram aggregations interval'),
+			'description' => tr('Default interval for date histogram aggregations.') . '<br>' .
+				tr('Use "year, quarter, month, week, day, hour, minute, second" or Elasticsearch Time units as descibed here %0',
+					'https://www.elastic.co/guide/en/elasticsearch/reference/5.6/common-options.html#time-units'),
+			'type' => 'text',
+			'default' => 'year',
+			'dependencies' => [
+				'search_date_facets',
+			],
+		],
+		'search_date_facets_ranges' => [
+			'name' => tra('Date range aggregations ranges'),
+			'description' => tr('Default ranges for date range aggregations.') . '<br>' .
+				tr('Comma separated ranges, one per line using Elasticsearch Time date math as descibed here %0',
+					'https://www.elastic.co/guide/en/elasticsearch/reference/5.6/common-options.html#date-math'),
+			'type' => 'textarea',
+			'default' => "
+now-2y/y,now-1y/y,Last Year
+now-1y/y,now,This Year
+now-1m/m,now/m,Last Month
+now/d,now+1d/d,Today
+now+1d/d,now+2d/d,Tomorrow
+now/w,now+1w/w,Next Week
+now/m,now+1m/m,Next Month
+",
+			'dependencies' => [
+				'search_date_facets',
+			],
+		],
 	];
 }

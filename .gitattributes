@@ -2647,6 +2647,9 @@ lib/core/Search/MySql/QueryException.php -text
 lib/core/Search/MySql/Table.php -text
 lib/core/Search/MySql/TypeFactory.php -text
 lib/core/Search/Query.php -text
+lib/core/Search/Query/Facet/Abstract.php -text
+lib/core/Search/Query/Facet/DateHistogram.php -text
+lib/core/Search/Query/Facet/DateRange.php -text
 lib/core/Search/Query/Facet/Interface.php -text
 lib/core/Search/Query/Facet/Term.php -text
 lib/core/Search/Query/Facet/index.php -text
