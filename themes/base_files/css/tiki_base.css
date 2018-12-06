@@ -790,7 +790,10 @@ div.highlight {
   display: inline-block; }
 
 div.highlight.adminoptionbox {
-  display: block; }
+  display: flex;
+  padding: 1rem;
+  margin-left: -1rem;
+  margin-right: -1rem; }
 
 .rating .highlight {
   padding: inherit; }
