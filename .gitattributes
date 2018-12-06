@@ -5482,6 +5482,8 @@ templates/error_raw.tpl -text
 templates/error_simple.tpl -text
 templates/error_ticket.tpl -text
 templates/examples/index.php -text
+templates/examples/search/facet_charts.tpl -text
+templates/examples/search/facet_checkboxes.tpl -text
 templates/examples/shop/add_to_cart.tpl -text
 templates/examples/shop/custom_search_form.tpl -text
 templates/examples/shop/index.php -text
