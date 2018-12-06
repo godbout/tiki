@@ -46,9 +46,9 @@ function wikiplugin_chartjs_info()
 			],
 			'values' => [
 				'name' => tra('Chart data values'),
-				'required' => true,
-				'description' => tr('Colon-separated values for the chart'),
+				'description' => tr('Colon-separated values for the chart (required if not using JSON encoded data in the plugin body)'),
 				'filter' => 'text',
+				'default' => '',
 				'since' => '16.0',
 			],
 			'data_labels' => [
@@ -106,15 +106,16 @@ function wikiplugin_chartjs($data, $params)
 		$params['data_highlights'] = $params['data_colors'];
 	}
 
-	$values = explode(':', $params['values']);
-	$data_labels = explode(':', $params['data_labels']);
-	$data_colors = explode(':', $params['data_colors']);
-	$data_highlights = explode(':', $params['data_highlights']);
-
-	if (empty($values)) {
-		return tr('Values must be set for chart');
-	}
 	if (empty(trim($data))) {
+		$values = array_filter(explode(':', $params['values']));
+		$data_labels = array_filter(explode(':', $params['data_labels']));
+		$data_colors = array_filter(explode(':', $params['data_colors']));
+		$data_highlights = array_filter(explode(':', $params['data_highlights']));
+
+		if (empty($values)) {
+			return tr('Values must be set for chart');
+		}
+
 		$data = [
 			'labels'   => array_slice($data_labels, 0, count($values)),
 			'datasets' => [
