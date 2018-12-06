@@ -19,10 +19,12 @@
 		{/if}
 		{if !empty($p.fgal_picker)}
 			{$fileId = {ldelim}|cat:'fileId'|cat:{rdelim}}
-				<a class="input-group-append btn btn-primary" title="{tr}Upload image{/tr}" href="#"
+				<div class="input-group-append">
+					<a class="btn btn-primary" title="{tr}Upload image{/tr}" href="#"
 						onclick="$('#{$p.id|escape}').select(); openFgalsWindow('tiki-upload_file.php?filegals_manager={$p.id|escape}&insertion_syntax={$fileId|sefurl:display}', true);return false;">
 					{icon name='image'}&nbsp;{tr}Upload image{/tr}
-				</a>
+					</a>
+				</div>
 			</div>
 		{/if}
 
