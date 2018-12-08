@@ -254,13 +254,17 @@ class Search_Elastic_QueryBuilder
 				$this->getNodeField($node) => $value,
 			]];
 		} else {
+			$out = [
+				"query"    => mb_strtolower($value),
+				"boost"    => $node->getWeight(),
+				"operator" => "and",
+			];
+			if ($this->index->getVersion() < 6.0) {
+				$out["type"] = "phrase";
+			}
+
 			return ["match" => [
-				$this->getNodeField($node) => [
-					"query" => mb_strtolower($value),
-					"boost" => $node->getWeight(),
-					"operator" => "and",
-					"type" => "phrase",
-				],
+				$this->getNodeField($node) => $out,
 			]];
 		}
 	}

@@ -49,11 +49,6 @@ if (! $https_mode && $prefs['https_login'] == 'required') {
 	header('Location: ' . $base_url_https . $prefs['login_url'] . $login_url_params);
 	exit;
 }
-// Redirect to HTTP if we are in HTTPS but we doesn't allow HTTPS login
-if ($https_mode && $prefs['https_login'] == 'disabled') {
-	header('Location: ' . $base_url_http . $prefs['login_url'] . $login_url_params);
-	exit;
-}
 
 if ($prefs['session_silent'] == 'y') {
 	session_start();

@@ -6026,6 +6026,7 @@ templates/tablesorter/index.php -text
 templates/tablesorter/totals.tpl -text
 templates/tabular/create.tpl -text
 templates/tabular/delete.tpl -text
+templates/tabular/duplicate.tpl -text
 templates/tabular/edit.tpl -text
 templates/tabular/export_search_csv.tpl -text
 templates/tabular/filter.tpl -text

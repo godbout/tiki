@@ -20,9 +20,15 @@
 		{/remarksbox}
 	{else}
 		<form class="no-ajax" method="post" action="{service controller=tabular action=import_csv tabularId=$tabularId}" enctype="multipart/form-data">
-			<div class="form-group row">
-				<label class="col-form-label">{tr}File{/tr}</label>
-				<input type="file" name="file" accept="text/csv">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroupText">{tr}CSV File{/tr}</span>
+				</div>
+				<div class="custom-file">
+					<input type="file" name="file" accept="text/csv" class="custom-file-input" id="inputFile" aria-describedby="inputGroupText"
+						onchange="$(this).next('.custom-file-label').text($(this).val().replace('C:\\fakepath\\', ''));">
+					<label class="custom-file-label" for="inputFile">Choose file</label>
+				</div>
 			</div>
 			<div class="submit">
 				<input class="btn btn-primary" type="submit" value="{tr}Import{/tr}">

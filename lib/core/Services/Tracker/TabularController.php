@@ -103,6 +103,44 @@ class Services_Tracker_TabularController
 		];
 	}
 
+	/**
+	 * Copy one format to another new one
+	 *
+	 * @param JitFilter $input
+	 *
+	 * @return array
+	 * @throws Services_Exception_Denied
+	 * @throws Services_Exception_NotFound
+	 */
+	function action_duplicate($input)
+	{
+		$lib = TikiLib::lib('tabular');
+		$info = $lib->getInfo($input->tabularId->int());
+
+		if (! $info) {
+			throw new Services_Exception_NotFound(tr('Format %0 not found', $input->tabularId->int()));
+		}
+
+		Services_Exception_Denied::checkObject('tiki_p_tabular_admin', 'tabular', $info['tabularId']);
+
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$schema = $this->getSchema($info);
+
+			$tabularId = $lib->create($input->name->text(), $info['trackerId']);
+
+			$lib->update($tabularId, $input->name->text(), $schema->getFormatDescriptor(), $schema->getFilterDescriptor(), $info['config']);
+
+			$referer = Services_Utilities::noJsPath();
+			return Services_Utilities::refresh($referer);
+		}
+
+		return [
+			'title' => tr('Duplicate Format: %0', $info['name']),
+			'tabularId' => $info['tabularId'],
+			'name' => tr('%0 copy', $info['name']),
+		];
+	}
+
 	function action_select($input)
 	{
 		$permName = $input->permName->word();
