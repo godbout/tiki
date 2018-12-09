@@ -79,7 +79,8 @@ $needed_prefs = [
 	'cookie_consent_feature' => 'n',
 	'cookie_consent_disable' => 'n',
 	'cookie_consent_name' => 'tiki_cookies_accepted',
-
+	'allocate_memory_php_execution' => '',
+	'allocate_time_php_execution' => '',
 ];
 
 /// check that tiki_preferences is there
@@ -116,6 +117,14 @@ $noSSLActive = ! isset($_SERVER['HTTPS']) || (isset($_SERVER['HTTPS']) && $_SERV
 if (isset($prefs['session_protected']) && $prefs['session_protected'] == 'y' && $noSSLActive && php_sapi_name() != 'cli') {
 	header("Location: https://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}");
 	exit;
+}
+
+// set PHP Limits
+if (!empty($prefs['allocate_memory_php_execution'])) {
+	ini_set('memory_limit', $prefs['allocate_memory_php_execution']);
+}
+if (!empty($prefs['allocate_time_php_execution'])) {
+	ini_set('max_execution_time', $prefs['allocate_time_php_execution']);
 }
 
 $cachelib = TikiLib::lib('cache');

@@ -192,6 +192,8 @@
 
 		{tab name="{tr}Time and Memory Limits{/tr}"}
 			<br>
+			{preference name=allocate_memory_php_execution}
+			{preference name=allocate_time_php_execution}
 			{preference name=allocate_memory_tracker_export_items}
 			{preference name=allocate_time_tracker_export_items}
 			{preference name=allocate_time_tracker_clear_items}

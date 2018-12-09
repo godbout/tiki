@@ -7,11 +7,40 @@
 
 function prefs_allocate_list()
 {
+	$formatMemoryLimits = function ($value) {
+		$ret = $value;
+		if (strlen($value) > 0) {
+			$units = 'BKMGTP';
+			$last_char = substr($value, -1);
+			if (strpos($units, $last_char) === false && $value > 0) {
+				$index = 0;
+				$prefix = $value;
+				while ($prefix > 1023) {
+					$prefix = floor($prefix / 1024);
+					$index++;
+				}
+				$ret = $prefix . $units[$index];
+			}
+		}
+		return $ret;
+	};
+
 	$prefs = [
 		'unified_rebuild' => ['label' => tr('Search index rebuild'), 'memory' => true, 'time' => true],
 		'tracker_export_items' => ['label' => tr('Tracker item export'), 'memory' => true, 'time' => true],
 		'tracker_clear_items' => ['label' => tr('Tracker clear'), 'memory' => false, 'time' => true],
 		'print_pdf' => ['label' => tr('Printing to PDF'), 'memory' => true, 'time' => true],
+		'php_execution' => [
+			'label' => tr('PHP execution'),
+			'memory' => true,
+			'time' => true,
+			'extras_memory' => [
+				'shorthint' => tr('for example 256M, currently is %0', $formatMemoryLimits(ini_get('memory_limit'))),
+			],
+			'extras_time' => [
+				'shorthint' => tr('for example 30 seconds, currently is %0 seconds', ini_get('max_execution_time')),
+			],
+		],
 	];
 
 	$out = [];
@@ -26,6 +55,12 @@ function prefs_allocate_list()
 				'shorthint' => tr('for example: 256M'),
 				'size' => 8,
 			];
+
+			if (isset($info['extras_memory'])) {
+				foreach ($info['extras_memory'] as $key => $value) {
+					$out['allocate_memory_' . $name][$key] = $value;
+				}
+			}
 		}
 
 		if ($info['time']) {
@@ -38,6 +73,12 @@ function prefs_allocate_list()
 				'units' => tr('seconds'),
 				'size' => 8,
 			];
+
+			if (isset($info['extras_time'])) {
+				foreach ($info['extras_time'] as $key => $value) {
+					$out['allocate_time_' . $name][$key] = $value;
+				}
+			}
 		}
 	}
 
