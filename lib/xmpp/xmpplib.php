@@ -162,6 +162,10 @@ class XMPPLib extends TikiLib
 		}
 
 		$headerlib = TikiLib::lib('header');
+		$xmpplib = TikiLib::lib('xmpp');
+
+		$jid = $xmpplib->get_user_jid($user);
+		$js = '';
 
 		$params = array_merge([
 			'view_mode' => 'overlayed',
@@ -173,6 +177,7 @@ class XMPPLib extends TikiLib
 				$css_files = ['inverse.css'];
 				break;
 			case 'embedded':
+				$js .= 'delete sessionStorage["converse.chatboxes-' . $jid . '-controlbox"];';
 				$css_files = ['converse.css', 'converse-muc-embedded.css'];
 				break;
 			case 'mobile':
@@ -192,11 +197,9 @@ class XMPPLib extends TikiLib
 			}
 		}
 
-		$xmpplib = TikiLib::lib('xmpp');
-
 		$options = [
 			'bosh_service_url' => $xmpplib->getServerHttpBind(),
-			'jid' => $xmpplib->get_user_jid($user),
+			'jid' => $jid,
 			'authentication' => 'prebind',
 			'prebind_url' => TikiLib::lib('service')->getUrl([
 				'controller' => 'xmpp',
@@ -227,7 +230,7 @@ class XMPPLib extends TikiLib
 
 		$optionString = json_encode($options, JSON_UNESCAPED_SLASHES);
 
-		$js = '
+		$js .= '
 (function () {
 	var error = console && console.error
 		? console.error.bind(console)
