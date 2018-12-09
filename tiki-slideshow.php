@@ -166,12 +166,12 @@ if (isset($_REQUEST['pdf'])) {
 				'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme
 				. '.css'
 			);
-			$customCSS .= '.reveal section{width:90%;text-align:center;padding-top:30px;margin:auto;} section{text-align:center;margin: auto;width:100%;} .ss-heading{text-align:left;line-height:2.5em,padding-bottom:20px}';
+			$customCSS .= '.reveal section{width:90%;text-align:center;padding-top:30px;margin:auto;} section{text-align:center;margin: auto;width:100%;} .ss-heading{line-height:2.5em,padding-bottom:20px;}';
 			$pdata = '<pdfsettings header="off" footer="off" margin_top="0" margin_bottom="0" margin_left="0" margin_right="0" printfriendly="n"></pdfsettings><div class="reveal" style="padding:2%">' . $pdata . '</div>';
 
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
-				$pdata.'<style>' .str_replace(array(".reveal {","vertical-align: baseline;","body"),array(".reveal,.reveal table{ ","vertical-align:top;","body,div.reveal"),$customCSS) . ' .reveal table, .reveal li{font-size:1.3em;font-weight:normal;line-height:1.5;height:auto;!important; } .reveal table td{text-align:left !important;} img{max-height:400px;}</style>'
+				$pdata.'<style>' .str_replace(array(".reveal {","vertical-align: baseline;"),array(".reveal,.reveal table{ ","vertical-align:top;"),$customCSS) . ' div.reveal, .reveal li{font-size:1.3em;font-weight:normal;line-height:1.5;height:auto !important; } img{max-height:400px;}  .reveal h1 {font-size: 2.8em;}</style>'
 			).$pdfStyles;
 		}
 
@@ -434,20 +434,29 @@ function formatContent($content, $tagArr)
 
 	$headingsTags = preg_split('/<h[123]/', $content);
 	$firstSlide = 0;
-	$colSpan=isset($_REQUEST['pdf'])?"1":"2";
+	if(isset($_REQUEST['pdf'])){
+		$headingStart='<div style="border-bottom:0px;" class="ss-heading">';
+		$slideStart='</div><div>';
+		$slideEnd="</div>";
+	}
+	else{
+		$headingStart='<table width="100%" cellpadding="0" cellspace="0"><tr><td colspan="2" style="border-bottom:0px;" class="ss-heading">';
+		$slideStart='</td></tr><tr><td>';
+		$slideEnd="</td></tr></table>";
+	}
 	foreach ($headingsTags as $slide) {
 		if ($firstSlide == 0) {
 			//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
 			$sectionCheck = strpos($slide, '</section><section');
 			if ($sectionCheck == true) {
 				$slidePlugin = explode("</section>", $slide);
-				$slideContent .= $slidePlugin[1] . '</td></tr></table></section>';
+				$slideContent .= $slidePlugin[1] . $slideEnd.'</section>';
 			}
 			$firstSlide = 1;
 		} else {
-			$slideContent .= '<section><table width="100%" cellpadding="0" cellspace="0"><tr><td colspan="'.$colSpan.'" style="border-bottom:0px;" class="ss-heading"><h1' . str_replace(
-					array('</h1>','</h2>', '</h3>'), '</h1></td></tr><tr><td>', $slide
-				) . '</td></tr></table></section>';
+			$slideContent .= '<section>'.$headingStart.'<h1' . str_replace(
+					array('</h1>','</h2>', '</h3>'), '</h1>'.$slideStart, $slide
+				) . $slideEnd.'</section>';
 		}
 
 	}
@@ -456,7 +465,7 @@ function formatContent($content, $tagArr)
 	//replacment for slideshowslide
 
 	return html_entity_decode(str_replace(
-		array('<sslide', '<sheading','</sheading>'), array('</td></tr></table></section><section', '<table><tr><td colspan="'.$colSpan.'" style="border-bottom:0px"><h1','</sheading></tr></td><tr><td>'),
+		array('<sslide', '<sheading','</sheading>'), array($slideEnd.'</section><section', $headingStart.'<h1','</sheading>'.$slideStart),
 		$slideContent
 	));
 }

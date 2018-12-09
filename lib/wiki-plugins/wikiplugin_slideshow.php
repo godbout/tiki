@@ -269,8 +269,8 @@ function wikiplugin_slideshow($data, $params)
 	if($_REQUEST['pdf']==1){
 		global $pdfStyles;
 		if(isset($params['parallaxBackgroundImage'])) {
-			$pdfStyles='<style>@page,body{background-image-resize:0;
-			background-image:url("'.$params['parallaxBackgroundImage'].'");}</style>';
+			$pdfStyles='<style>@page,body,div.reveal{background-image-resize:0 !important;
+			background-image:url("'.$params['parallaxBackgroundImage'].'") !important;}</style>';
 		}
 	}
     $defaults = [];

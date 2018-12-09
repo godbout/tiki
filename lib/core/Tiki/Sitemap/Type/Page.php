@@ -21,7 +21,7 @@ class Page extends AbstractType
 	{
 		global $tikilib;
 
-		if (! $this->checkFeatureAndPermissions('feature_wiki', 'tiki_p_view')) {
+		if (! $this->checkFeatureAndPermissions('feature_wiki')) {
 			return;
 		}
 

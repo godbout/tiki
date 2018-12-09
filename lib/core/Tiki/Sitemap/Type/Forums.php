@@ -21,7 +21,7 @@ class Forums extends AbstractType
 	 */
 	public function generate()
 	{
-		if (! $this->checkFeatureAndPermissions('feature_forums', 'tiki_p_forum_read')) {
+		if (! $this->checkFeatureAndPermissions('feature_forums')) {
 			return;
 		}
 

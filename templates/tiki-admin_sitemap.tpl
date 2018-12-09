@@ -22,6 +22,6 @@
 		{/tr}
 	</p>
 	<p>
-		{tr}Or you can use directly the command line:{/tr} <code>php console.php sitemap:generate {$base_host}</code>
+		{tr}Or you can use directly the command line:{/tr} <code>php console.php sitemap:generate {$base_url}</code>
 	</p>
 {/remarksbox}

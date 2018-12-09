@@ -39,7 +39,7 @@ abstract class AbstractType
 	 * Check if the feature is available and if a given permission is granted
 	 *
 	 * @param string $feature
-	 * @param string $permission
+	 * @param string $permission The global permission to be check
 	 * @return bool
 	 */
 	protected function checkFeatureAndPermissions($feature, $permission = '')
@@ -98,7 +98,12 @@ abstract class AbstractType
 				$url = filter_out_sefurl($url, $entryType, (empty($titleField) || empty($entryType[$titleField])) ? '' : $entry[$titleField]);
 			}
 
-			$this->sitemap->addItem($url, $priority, $changeFrequency, $entry[$updateField]);
+			$this->sitemap->addItem(
+				$url,
+				$priority,
+				$changeFrequency,
+				isset($entry[$updateField]) ? $entry[$updateField] : null
+			);
 		}
 	}
 }

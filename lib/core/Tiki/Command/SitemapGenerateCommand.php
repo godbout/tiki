@@ -31,6 +31,13 @@ class SitemapGenerateCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
+		global $prefs;
+
+		if (! isset($prefs['sitemap_enable']) || $prefs['sitemap_enable'] != 'y') {
+			$output->writeln('<error>' . tra('Preference "sitemap_enable" is not enabled.') . '</error>');
+			return 1;
+		}
+
 		$url = $input->getArgument('url');
 
 		$sitemap = new SiteMapGenerator();
@@ -38,5 +45,6 @@ class SitemapGenerateCommand extends Command
 		$sitemap->generate($url);
 
 		$output->writeln('<info>' . tra('New sitemap created.') . '</info>');
+		$output->writeln('<info>' . $sitemap->getSitemapPath() . '</info>');
 	}
 }

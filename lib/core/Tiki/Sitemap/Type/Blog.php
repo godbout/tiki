@@ -20,7 +20,7 @@ class Blog extends AbstractType
 	 */
 	public function generate()
 	{
-		if (! $this->checkFeatureAndPermissions('feature_blogs', 'tiki_p_read_blog')) {
+		if (! $this->checkFeatureAndPermissions('feature_blogs')) {
 			return;
 		}
 

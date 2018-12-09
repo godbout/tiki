@@ -20,7 +20,7 @@ class Articles extends AbstractType
 	 */
 	public function generate()
 	{
-		if (! $this->checkFeatureAndPermissions('feature_articles', 'tiki_p_read_article')) {
+		if (! $this->checkFeatureAndPermissions('feature_articles')) {
 			return;
 		}
 

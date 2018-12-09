@@ -205,5 +205,12 @@ function wikiplugin_slideshowslide($data, $params)
 	if($params['textColor']) {
 		$textColorStyle='style="color:'.$params['textColor'].'"';
 	}
-	return "<sslide id= data-plugin-slide ".$slideSettings." ".$textColorStyle.">".html_entity_decode(TikiLib::lib('parser')->parse_data(trim($data), ['is_html' => true, 'parse_wiki' => true])).'</td></tr></table></sslide>';
+	if(isset($_REQUEST['pdf'])){
+		$slideEnd="</div>";
+	}
+	else{
+		$slideEnd="</td></tr></table>";
+	}
+
+	return "<sslide id= data-plugin-slide ".$slideSettings." ".$textColorStyle.">".html_entity_decode(TikiLib::lib('parser')->parse_data(trim($data), ['is_html' => true, 'parse_wiki' => true])).$slideEnd.'</sslide>';
 }
