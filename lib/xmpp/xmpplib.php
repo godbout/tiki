@@ -158,7 +158,6 @@ class XMPPLib extends TikiLib
 		$instance++;
 
 		if ($instance > 1) {
-			Feedback::error(tr('Only one instance of XMPP chat per page'));
 			return '';
 		}
 
