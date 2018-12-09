@@ -165,7 +165,14 @@ class XMPPLib extends TikiLib
 		$xmpplib = TikiLib::lib('xmpp');
 
 		$jid = $xmpplib->get_user_jid($user);
+
 		$js = '';
+		$cssjs = '';
+
+		// TODO: remove this block after fixing conversejs
+		$cssjs .= '$(\'<style type="text/css">\')';
+		$cssjs .= '.html("#conversejs + .modal-backdrop, .modal-backdrop + .modal-backdrop { display: none; }")';
+		$cssjs .= '.appendTo("head");';
 
 		$params = array_merge([
 			'view_mode' => 'overlayed',
@@ -188,7 +195,6 @@ class XMPPLib extends TikiLib
 				$css_files = ['converse.css'];
 		}
 
-		$cssjs = '';
 		foreach ($css_files as $css_file) {
 			if (! empty($params['late_css'])) {
 				$cssjs .= '$("<link rel=\"stylesheet\">").attr("href", "vendor_bundled/vendor/jcbrand/converse.js/css/' . $css_file . '").appendTo("head");';
@@ -228,7 +234,7 @@ class XMPPLib extends TikiLib
 			}
 		}
 
-		$optionString = json_encode($options, JSON_UNESCAPED_SLASHES);
+		$optionString = json_encode($options, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
 		$js .= '
 (function () {
