@@ -184,6 +184,8 @@ class XMPPLib extends TikiLib
 				$css_files = ['inverse.css'];
 				break;
 			case 'embedded':
+				// TODO: remove this a line after fixing conversejs
+				$js .= 'delete sessionStorage["converse.chatboxes-' . $jid . '"];';
 				$js .= 'delete sessionStorage["converse.chatboxes-' . $jid . '-controlbox"];';
 				$css_files = ['converse.css', 'converse-muc-embedded.css'];
 				break;
