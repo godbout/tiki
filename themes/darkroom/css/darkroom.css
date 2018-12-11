@@ -6657,6 +6657,9 @@ code, pre.codelisting {
   .adminoptionboxchild legend {
     font-size: 1.35rem; }
 
+div.highlight.adminoptionbox a {
+  color: #000 !important; }
+
 input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #495057; }
 
@@ -6779,7 +6782,7 @@ h3.card-title {
 .card .card-header {
   background: #292929; }
 
-.navbar-fixed-top .container, .navbar-dark, .navbar-light, .topbar, .btn, .nav-tabs > li > a, .input-group-addon, .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active, .tiki .ui-state-active, .tiki .ui-widget-content .ui-state-active, .tiki .ui-widget-header .ui-state-active, .tiki a.ui-button:active, .tiki .ui-button:active, .tiki .ui-button.ui-state-active:hover {
+.navbar-fixed-top .container, .topbar, .btn, .nav-tabs > li > a, .input-group-addon, .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active, .tiki .ui-state-active, .tiki .ui-widget-content .ui-state-active, .tiki .ui-widget-header .ui-state-active, .tiki a.ui-button:active, .tiki .ui-button:active, .tiki .ui-button.ui-state-active:hover {
   background: #818181;
   /* Old browsers */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #818181), color-stop(100%, #393939));
@@ -6790,6 +6793,15 @@ h3.card-title {
   /* Opera 11.10+ */
   background: linear-gradient(to bottom, #818181 0%, #393939 100%) !important;
   /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#818181', endColorstr='#393939', GradientType=0);
+  border-color: transparent !important; }
+
+.bg-dark, .bg-light {
+  background: #818181 !important;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #818181), color-stop(100%, #393939)) !important;
+  background: -webkit-linear-gradient(top, #818181 0%, #393939 100%) !important;
+  background: -o-linear-gradient(top, #818181 0%, #393939 100%) !important;
+  background: linear-gradient(to bottom, #818181 0%, #393939 100%) !important;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#818181', endColorstr='#393939', GradientType=0);
   border-color: transparent !important; }
 
