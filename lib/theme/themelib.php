@@ -101,6 +101,7 @@ class ThemeLib extends TikiLib
 	*/
 	function list_themes_and_options()
 	{
+		$theme_options = [];
 		$themes = $this->list_themes();
 		unset($themes['custom_url']); //make sure Custom URL is removed from the list as it can not have options
 		foreach ($themes as $theme) {
@@ -269,7 +270,7 @@ class ThemeLib extends TikiLib
 		global $prefs;
 		$available_themesandoptions = [];
 		if (count($prefs['available_themes'] != 0) and ! empty($prefs['available_themes'][0])) { //if pref['available_themes'] is set, than use it
-			$available_themesandoptions = array_combine($prefs['available_themes'], $prefs['available_themes']);
+			$available_themesandoptions = array_combine($prefs['available_themes'], $prefs['available_themes']); // TODO: does it make any sense to combine the same pref array with itself? -- luci
 		} else {
 			$available_themesandoptions = $this->list_themes_and_options(); //else load all themes and options
 			unset($available_themesandoptions['custom_url']); //make sure Custom URL is removed from the list
