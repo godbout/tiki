@@ -5,10 +5,10 @@
 {/block}
 
 {block name="navigation"}
-	<div class="navbar">
+	<div class="navbar d-inline-flex">
 		{permission name=admin_trackers}
-			<a class="btn btn-primary" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
-			<a class="btn btn-primary" href="{service controller=tabular action=create}">{icon name=create} {tr}New{/tr}</a>
+			<a class="btn btn-link" href="{service controller=tabular action=create}">{icon name=create} {tr}New{/tr}</a>
+			<a class="btn btn-link" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
 		{/permission}
 	</div>
 {/block}

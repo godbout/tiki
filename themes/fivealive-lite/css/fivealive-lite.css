@@ -6609,6 +6609,18 @@ div.drillshow {
   background: #fff;
   color: #343a40; }
 
+.tiki.tiki-listpages .ui-widget.ui-widget-content {
+  border: 1px solid #dee2e6;
+  background: #fff;
+  color: #495057; }
+  .tiki.tiki-listpages .ui-widget.ui-widget-content .ui-menu-item-wrapper {
+    padding: 0.25rem 0.25rem 0.25rem 1.5rem; }
+  .tiki.tiki-listpages .ui-widget.ui-widget-content .ui-state-active {
+    margin: 0;
+    background: #1174a5;
+    color: white;
+    border: none; }
+
 .tiki .modal-content .ui-state-default {
   color: #1174a5; }
 
@@ -6656,6 +6668,9 @@ code, pre.codelisting {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
   .adminoptionboxchild legend {
     font-size: 1.35rem; }
+
+div.highlight.adminoptionbox a {
+  color: #fff !important; }
 
 input[type="checkbox"].preffilter-toggle-round + label {
   background-color: #dee2e6; }

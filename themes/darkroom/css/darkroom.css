@@ -6609,6 +6609,18 @@ div.drillshow {
   background: #474747;
   color: #d8d8d8; }
 
+.tiki.tiki-listpages .ui-widget.ui-widget-content {
+  border: 1px solid #495057;
+  background: #242424;
+  color: #cfcfcf; }
+  .tiki.tiki-listpages .ui-widget.ui-widget-content .ui-menu-item-wrapper {
+    padding: 0.25rem 0.25rem 0.25rem 1.5rem; }
+  .tiki.tiki-listpages .ui-widget.ui-widget-content .ui-state-active {
+    margin: 0;
+    background: #ababab;
+    color: white;
+    border: none; }
+
 .tiki .modal-content .ui-state-default {
   color: #ababab; }
 

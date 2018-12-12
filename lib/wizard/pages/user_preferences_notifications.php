@@ -53,7 +53,7 @@ class UserWizardPreferencesNotifications extends Wizard
 		$smarty->assign('user_tracker_watch_editor', $tikilib->get_user_preference($user, 'user_tracker_watch_editor'));
 		$smarty->assign('user_comment_watch_editor', $tikilib->get_user_preference($user, 'user_comment_watch_editor'));
 		$smarty->assign('user_category_watch_editor', $tikilib->get_user_preference($user, 'user_category_watch_editor'));
-        $smarty->assign('user_plugin_approval_watch_editor', $tikilib->get_user_preference($user, 'user_plugin_approval_watch_editor'));
+		$smarty->assign('user_plugin_approval_watch_editor', $tikilib->get_user_preference($user, 'user_plugin_approval_watch_editor'));
 
 		return $showPage;
 	}
@@ -115,10 +115,10 @@ class UserWizardPreferencesNotifications extends Wizard
 			$tikilib->set_user_preference($user, 'user_category_watch_editor', 'n');
 		}
 
-        if (isset($_REQUEST['user_plugin_approval_watch_editor']) && $_REQUEST['user_plugin_approval_watch_editor'] == 'on') {
-            $tikilib->set_user_preference($user, 'user_plugin_approval_watch_editor', 'y');
-        } else {
-            $tikilib->set_user_preference($user, 'user_plugin_approval_watch_editor', 'n');
-        }
+		if (isset($_REQUEST['user_plugin_approval_watch_editor']) && $_REQUEST['user_plugin_approval_watch_editor'] == 'on') {
+			$tikilib->set_user_preference($user, 'user_plugin_approval_watch_editor', 'y');
+		} else {
+			$tikilib->set_user_preference($user, 'user_plugin_approval_watch_editor', 'n');
+		}
 	}
 }

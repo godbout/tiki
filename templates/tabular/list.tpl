@@ -5,21 +5,24 @@
 {/block}
 
 {block name="navigation"}
-<div class="navbar">
-	<a class="btn btn-primary" href="{bootstrap_modal controller=tabular action=filter tabularId=$tabularId target=list _params=$baseArguments}">{icon name=filter}{tr}Filter{/tr}</a>
-	{permission name=tabular_edit type=tabular object=$tabularId}
-		<a class="btn btn-primary" href="{service controller=tabular action=edit tabularId=$tabularId}">{icon name=edit}{tr}Edit{/tr}</a>
-	{/permission}
-	{permission name=tabular_export type=tabular object=$tabularId}
-		<a class="btn btn-primary" href="{bootstrap_modal controller=tabular action=filter tabularId=$tabularId target=export _params=$baseArguments}">{icon name=export}{tr}Export{/tr}</a>
-	{/permission}
-	{permission name=tabular_import type=tabular object=$tabularId}
-		<a class="btn btn-primary" href="{bootstrap_modal controller=tabular action=import_csv tabularId=$tabularId target=list _params=$baseArguments}">{icon name=import}{tr}Import{/tr}</a>
-	{/permission}
-	{permission name=admin_trackers}
-		<a class="btn btn-primary" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
-	{/permission}
-</div>
+	<div class="navbar d-inline-flex">
+		<div class="btn-group">
+			<a class="btn btn-primary" href="{bootstrap_modal controller=tabular action=filter tabularId=$tabularId target=list _params=$baseArguments}">{icon name=filter}{tr}Filter{/tr}</a>
+			{permission name=tabular_export type=tabular object=$tabularId}
+				<a class="btn btn-primary" href="{bootstrap_modal controller=tabular action=filter tabularId=$tabularId target=export _params=$baseArguments}">{icon name=export}{tr}Export{/tr}</a>
+			{/permission}
+			{permission name=tabular_import type=tabular object=$tabularId}
+				<a class="btn btn-primary" href="{bootstrap_modal controller=tabular action=import_csv tabularId=$tabularId target=list _params=$baseArguments}">{icon name=import}{tr}Import{/tr}</a>
+			{/permission}
+
+		</div>
+		{permission name=tabular_edit type=tabular object=$tabularId}
+			<a class="btn btn-link" href="{service controller=tabular action=edit tabularId=$tabularId}">{icon name=edit}{tr}Edit{/tr}</a>
+		{/permission}
+		{permission name=admin_trackers}
+			<a class="btn btn-link" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
+		{/permission}
+	</div>
 {/block}
 
 {block name="content"}

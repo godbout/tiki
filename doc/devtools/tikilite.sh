@@ -1,6 +1,5 @@
 #!/bin/sh
 # originally written by mose
-# modified for Tiki 9.x by luci
 #
 # ############################################################
 #
@@ -16,13 +15,13 @@
 #
 #   1. Check out a new installation of Tiki into a directory of your choice.
 #   2. Move to the top of your Tiki installation.
-#   3. Modify doc/devtools/tikilite.sh to point to set your defaults.
-#   4. Execute doc/devtools/tikilite.sh - this will remove all non-core files and directories. 
+#   3. Modify doc/devtools/tikilite.sh to set your defaults.
+#   4. Execute sh doc/devtools/tikilite.sh - this will remove all non-core files and directories. 
 #
 #To Update
 #
 #   1. Do a svn up in your TikiLite directory
-#   2. Execute doc/devtools/tikilite.sh script again 
+#   2. Execute sh doc/devtools/tikilite.sh script again 
 #
 # ############################################################
 #
@@ -42,10 +41,10 @@
 # TODO: make the script interactive !
 
 LANG_DEF="en"
-THEME_DEF="jqui"
+THEME_DEF="yeti"
 
-echo "Removing languages except default..."
-find lang/* -type d | grep -v "/$LANG_DEF" | grep -v \.svn | xargs -- rm -rf
+echo "Removing languages except defined..."
+find lang/* -type d | grep -v $LANG_DEF | grep -v \.svn | xargs -- rm -rf
 
 #echo "Removing iCal..."
 #rm -rf lib/calendar/iCal
@@ -56,10 +55,9 @@ find lang/* -type d | grep -v "/$LANG_DEF" | grep -v \.svn | xargs -- rm -rf
 #echo "Removing PDF fonts..."
 #find lib/pdflib/fonts -type f -name "*.afm" | grep -v php_Helvetica | grep -v php_Courier | xargs -- rm -f
 
-echo "Removing Styles except default..."
-find styles/* -type d | grep -v $THEME_DEF | grep -v layout | grep -v lite | grep -v \.svn | xargs -- rm -rf
-find styles/ -type f -name "*.css" | grep -v $THEME_DEF | grep -v design | grep -v layout | grep -v lite | xargs -- rm -f
-find templates/styles/* -type d | grep -v $THEME_DEF | xargs -- rm -rf
+echo "Removing themes except defined..."
+find themes/* -type d | grep -v $THEME_DEF | grep -v default | grep -v base_files | grep -v css | grep -v js | grep -v \.svn | grep -v templates | xargs -- rm -rf
+#find styles/ -type f -name "*.css" | grep -v $THEME_DEF | grep -v design | grep -v layout | grep -v lite | xargs -- rm -f
 
 #echo "Removing SQL..."
 # Dependencies on PEAR::DB
@@ -84,7 +82,7 @@ find templates/styles/* -type d | grep -v $THEME_DEF | xargs -- rm -rf
 #rm -rf tiki-ws_client.php
 #rm -rf tiki-ws_server.php
 
-echo "Removing Tests..."
+echo "Removing tests..."
 #rm -rf tiki-tests.php
 rm -rf tests
 

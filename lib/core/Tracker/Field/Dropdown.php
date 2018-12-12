@@ -294,6 +294,7 @@ class Tracker_Field_Dropdown extends Tracker_Field_Abstract implements Tracker_F
 
 		$possibilities = $this->getPossibilities();
 		$invert = array_flip($possibilities);
+		$withOther = ($this->getConfiguration('type') === 'D');
 
 		$schema->addNew($permName, 'code')
 			->setLabel($name)
@@ -309,14 +310,20 @@ class Tracker_Field_Dropdown extends Tracker_Field_Abstract implements Tracker_F
 			->setLabel($name)
 			->addIncompatibility($permName, 'code')
 			->addQuerySource('text', "tracker_field_{$permName}_text")
-			->setRenderTransform(function ($value, $extra) use ($possibilities) {
+			->setRenderTransform(function ($value, $extra) use ($possibilities, $withOther) {
 				if (isset($possibilities[$value])) {
 					return $possibilities[$value];
+				} else if ($withOther) {
+					return $value;
+				} else {
+					return '';	// TODO something better?
 				}
 			})
-			->setParseIntoTransform(function (& $info, $value) use ($permName, $invert) {
+			->setParseIntoTransform(function (& $info, $value) use ($permName, $invert, $withOther) {
 				if (isset($invert[$value])) {
 					$info['fields'][$permName] = $invert[$value];
+				} else if ($withOther) {
+					$info['fields'][$permName] = $value;
 				}
 			})
 			;

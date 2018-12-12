@@ -1060,12 +1060,16 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 			if ($fieldId = $this->getOption('fieldId')) {
 				$simpleField = Tracker\Tabular\Schema\CachedLookupHelper::fieldLookup($fieldId);
 				$invertField = Tracker\Tabular\Schema\CachedLookupHelper::fieldInvert($fieldId);
+
+				// if using displayFieldsList then only export the 'value' of the field, i.e. the title of the linked item
+				$useTextLabel = empty(array_filter($this->getOption('displayFieldsList')));
+
 				$schema->addNew($permName, 'lookup-simple')
 					->setLabel($name)
 					->addIncompatibility($permName, 'id')
 					->addQuerySource('text', "tracker_field_{$permName}_text")
-					->setRenderTransform(function ($value, $extra) use ($simpleField) {
-						if (isset($extra['text'])) {
+					->setRenderTransform(function ($value, $extra) use ($simpleField, $useTextLabel) {
+						if (isset($extra['text']) && $useTextLabel) {
 							return $extra['text'];
 						} else {
 							return $simpleField->get($value);

@@ -1071,6 +1071,23 @@ span.plugin-mouseover  {
 	color: $btn-primary-color;
 }
 
+.tiki.tiki-listpages {
+	.ui-widget.ui-widget-content {
+		border: 1px solid $border-color;
+		background: $input-bg;
+		color: $input-color;
+		.ui-menu-item-wrapper {
+			padding: 0.25rem 0.25rem 0.25rem 1.5rem;
+		}
+		.ui-state-active {
+			margin: 0;
+			background: $link-color;
+			color: white;
+			border: none;
+		}
+	}
+}
+
 // Example: tracker field type "icon". Bootstrap modal with jquery-ui contents
 .tiki .modal-content .ui-state-default { color: $modal-link-color; }
 .tiki .modal-content .ui-state-hover:hover

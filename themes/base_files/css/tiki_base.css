@@ -658,6 +658,18 @@ div.drillshow {
   background: #fff;
   color: #212529; }
 
+.tiki.tiki-listpages .ui-widget.ui-widget-content {
+  border: 1px solid #dee2e6;
+  background: #fff;
+  color: #495057; }
+  .tiki.tiki-listpages .ui-widget.ui-widget-content .ui-menu-item-wrapper {
+    padding: 0.25rem 0.25rem 0.25rem 1.5rem; }
+  .tiki.tiki-listpages .ui-widget.ui-widget-content .ui-state-active {
+    margin: 0;
+    background: #007bff;
+    color: white;
+    border: none; }
+
 .tiki .modal-content .ui-state-default {
   color: #007bff; }
 
@@ -3312,6 +3324,11 @@ body.fullscreen.tiki.navbar-padding {
 
 .carousel.fade .carousel-control {
   z-index: 2; }
+
+.tooltip-inner ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0; }
 
 div.tablesorter-resizable-container {
   clear: both;

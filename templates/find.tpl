@@ -212,12 +212,12 @@
 			</div>
 		{/if}
 		{if !empty($filters)}
-			<div class="form-group findfilter">
+			<div class="form-group row mx-0 findfilter">
 				{foreach key=key item=item from=$filters}
-					<label class="col-form-label col-sm-4">
+					<label class="col-form-label col-sm-5 mr-2">
 						{$filter_names.$key}
 					</label>
-					<div class="col-sm-8">
+					<div class="col-sm-5">
 						<select name="findfilter_{$key}" class="form-control form-control-sm">
 							<option value='' {if $filter_values.$key eq ''}selected="selected"{/if}>--</option>
 							{foreach key=key2 item=value from=$item}

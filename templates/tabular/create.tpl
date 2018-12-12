@@ -7,7 +7,7 @@
 {block name="navigation"}
 	<div class="form-group row">
 		{permission name=admin_trackers}
-			<a class="btn btn-primary" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
+			<a class="btn btn-link" href="{service controller=tabular action=manage}">{icon name=list} {tr}Manage{/tr}</a>
 		{/permission}
 	</div>
 {/block}

@@ -34,8 +34,8 @@
 					{/if}
 				</div>
 			</div>
-			{if $prefs.tracker_tabular_enabled eq 'y'}
-				<a class="btn btn-primary" href="{service controller=tabular action=manage}">
+			{if $prefs.tracker_tabular_enabled eq 'y' && $tiki_p_admin_trackers eq 'y'}
+				<a class="btn btn-link" href="{service controller=tabular action=manage}">
 					{icon name="list"} {tr}Manage Tabular Formats{/tr}
 				</a>
 			{/if}
