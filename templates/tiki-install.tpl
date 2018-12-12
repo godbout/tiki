@@ -78,7 +78,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9" style="position: fixed; margin-left: 25%; overflow-y: scroll; height: 100vh">
             <div class="text-center" style="margin-top: 10%">
                 <h1>{tr}Tiki Installer{/tr} <small>{$tiki_version_name} <a class="text-info" title="{tr}Help{/tr}" href="https://doc.tiki.org/Installation" target="help">{icon name="help"}</a></small></h1>
             </div>
