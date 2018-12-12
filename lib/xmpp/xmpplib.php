@@ -102,6 +102,7 @@ class XMPPLib extends TikiLib
 		}
 
 		$xmpp_username = $user;
+		$xmpp_prebind_class = XmppPrebind;
 
 		if (! empty($prefs['xmpp_openfire_use_token']) && $prefs['xmpp_openfire_use_token'] === 'y') {
 			$token = $tokenlib->createToken(
@@ -114,6 +115,7 @@ class XMPPLib extends TikiLib
 				]
 			);
 			$xmpp_password = "$token";
+			$xmpp_prebind_class = TikiXmppPrebind;
 		} else {
 			$xmpp_password = $this->get_user_password($user);
 			if (empty($xmpp_password)) {
@@ -121,7 +123,7 @@ class XMPPLib extends TikiLib
 			}
 		}
 
-		$xmppPrebind = new TikiXmppPrebind(
+		$xmppPrebind = new $xmpp_prebind_class(
 			$this->server_host,
 			$this->server_http_bind,
 			$resource_name,
