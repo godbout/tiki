@@ -163,6 +163,7 @@ class XMPPLib extends TikiLib
 			return '';
 		}
 
+		$tikilib = TikiLib::lib('tiki');
 		$headerlib = TikiLib::lib('header');
 		$xmpplib = TikiLib::lib('xmpp');
 
@@ -220,6 +221,9 @@ class XMPPLib extends TikiLib
 			'debug' => $prefs['xmpp_conversejs_debug'] === 'y',
 			'use_emojione' => false
 		];
+
+		$options['nickname'] = trim($tikilib->get_user_preference($user, 'realName', ''));
+		$options['nickname'] = $options['nickname'] ?: $user;
 
 		if ($params['room']) {
 			$options['auto_login'] = true;
