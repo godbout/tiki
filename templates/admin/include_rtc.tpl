@@ -27,6 +27,8 @@
 				{preference name=xmpp_server_http_bind}
 				{preference name=xmpp_muc_component_domain}
 				{preference name=xmpp_openfire_use_token}
+				{preference name=xmpp_openfire_rest_api}
+				{preference name=xmpp_openfire_rest_api_secret}
 				{preference name=xmpp_conversejs_debug}
 				{preference name=xmpp_conversejs_init_json}
 			</div>

@@ -128,7 +128,8 @@
 		"zendframework/zendsearch": "dev-tiki",
 		"zendframework/zendservice-akismet": "~2.0",
 		"zendframework/zendservice-recaptcha": "~3.0",
-		"zendframework/zendservice-twitter": "~2.1"
+		"zendframework/zendservice-twitter": "~2.1",
+		"gnello/php-openfire-restapi": "^2.0"
 	},
 	"require-dev": {
 		"bafs/testify": "dev-master",

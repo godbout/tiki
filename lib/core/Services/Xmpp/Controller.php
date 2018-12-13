@@ -137,16 +137,42 @@ class Services_Xmpp_Controller
 			throw new Services_Exception(tr("You don't have enough privileges"), 403);
 		}
 
+		$xmpplib = TikiLib::lib('xmpp');
 		$userlib = TikiLib::lib('user');
-		$items = array();
+		$return = array();
 
-		foreach( $userlib->list_all_users() as $id => $name ) {
-			$items[] = array(
-				'id' => "$id",
-				'name' => $name
-			);
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$room = $input->room->text();
+			$next = rawurldecode($input->next->text());
+
+			$items = $input->item->text();
+			$exist = array_map(array($userlib, 'user_exists'), $items);
+
+			foreach($items as $index => $username) {
+				$result = array(
+					'name' => $username,
+					'success' => false
+				);
+
+				if(!$exist[ $index ]) {
+					$result['output'] = 'User does not exist';
+				} else {
+					$response = $xmpplib->addUserToRoom($username, $room);
+					$result['success'] = $response['response'] === true;
+					$result['output'] = $response['output'];
+				}
+
+				$return[] = $result;
+				if ( $next ) header("Location: $next");
+			}
+		} else {
+			foreach( $userlib->list_all_users() as $id => $name ) {
+				$return[] = array(
+					'id' => "$id",
+					'name' => $name
+				);
+			}
 		}
-
-		return $items;
+		return $return;
 	}
 }

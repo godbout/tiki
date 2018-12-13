@@ -11,6 +11,7 @@ class XMPPLib extends TikiLib
 {
 	private $server_host = '';
 	private $server_http_bind = '';
+	private $restapi = null;
 
 	/**
 	 * @return string
@@ -267,5 +268,61 @@ class XMPPLib extends TikiLib
 
 		$headerlib->add_jsfile('vendor_bundled/vendor/jcbrand/converse.js/dist/converse.js')
 			->add_jq_onready($js);
+	}
+
+	public function initializeRestApi()
+	{
+		global $prefs;
+		$endpoint = $prefs['xmpp_openfire_rest_api'];
+		$secret = $prefs['xmpp_openfire_rest_api_secret'];
+		$domain = $this->server_host;
+
+		$url = parse_url($endpoint);
+
+		$ssl = $url['scheme'] === 'https';
+		$host = $url['host'];
+		$port = $url['port'] ?: ($ssl ? 9091 : 9090);
+		$user = $url['user'] ?: null;
+		$pass = $url['pass'] ?: null;
+		$path = rtrim($url['path'], '/');
+
+
+		if(!empty($secret)) {
+			$authenticationToken = new \Gnello\OpenFireRestAPI\AuthenticationToken($secret);
+		} else if($user && $pass) {
+			$authenticationToken = new \Gnello\OpenFireRestAPI\AuthenticationToken($url['user'],$url['pass']);
+		} else {
+			return;
+		}
+		
+		$api = new \Gnello\OpenFireRestAPI\API(
+			$url['host'],
+			$url['port'] ?: ($ssl ? 9091 : 9090),
+			$authenticationToken
+		);
+
+		$api->Settings()->setServerName($domain);
+		$api->Settings()->setSSL($ssl);
+		$api->Settings()->setPlugin($path);
+
+		$this->restapi = $api;
+		return $api;
+	}
+
+	public function getRestApi() {
+		if($this->restapi == null) {
+			return $this->initializeRestApi();
+		}
+		return $this->restapi;
+	}
+
+	public function addUserToRoom($user, $room)
+	{
+		$xmpplib = TikiLib::lib('xmpp');
+		$restapi = $this->getRestApi();
+		$role = 'members';
+
+		return $restapi->ChatRooms()
+			->addUserWithRoleToChatRoom($room, $role, $user);
 	}
 }

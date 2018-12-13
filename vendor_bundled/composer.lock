@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86d84790716021fda8979b3e184b665a",
+    "content-hash": "a32ef54356dfd76a2f4f0cda373519b6",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -1025,6 +1025,51 @@
                 "jquery-plugin"
             ],
             "time": "2018-03-05T03:08:31+00:00"
+        },
+        {
+            "name": "gnello/php-openfire-restapi",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gnello/php-openfire-restapi.git",
+                "reference": "833a9d305e752a61b47533c0c6eb1b4188288129"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gnello/php-openfire-restapi/zipball/833a9d305e752a61b47533c0c6eb1b4188288129",
+                "reference": "833a9d305e752a61b47533c0c6eb1b4188288129",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gnello\\OpenFireRestAPI\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Luca Agnello",
+                    "email": "luca@gnello.com"
+                }
+            ],
+            "description": "Manage OpenFire Server using Rest API",
+            "homepage": "https://github.com/gnello/php-openfire-restapi",
+            "keywords": [
+                "chat",
+                "openfire"
+            ],
+            "time": "2017-04-22T11:41:59+00:00"
         },
         {
             "name": "h5p/h5p-core",
@@ -2295,7 +2340,7 @@
             "version": "v1.0.10",
             "source": {
                 "type": "git",
-                "url": "git@github.com:LeaVerou/prefixfree.git",
+                "url": "https://github.com/LeaVerou/prefixfree.git",
                 "reference": "846904c874a2bf436ff8a9623585f935d7ef4009"
             },
             "dist": {
@@ -6808,6 +6853,7 @@
                 "testing",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2016-12-02T14:39:14+00:00"
         },
         {
