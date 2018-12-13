@@ -83,14 +83,19 @@ class Services_Xmpp_Controller
 		die(tr('Invalid token'));
 	}
 
+	private function block_anonymous() {
+		global $user;
+		if ($user) {
+			return false;
+		}
+		throw new Services_Exception(tr('Must be authenticated'), 403);
+	}
+
 	function action_prebind($input)
 	{
 		global $user;
+		$this->block_anonymous();
 		$xmpplib = TikiLib::lib('xmpp');
-
-		if (! $user) {
-			throw new Services_Exception(tr('Must be authenticated'), 403);
-		}
 
 		try {
 			$result = $xmpplib->prebind($user);
@@ -101,5 +106,35 @@ class Services_Xmpp_Controller
 		}
 
 		return $result;
+	}
+
+	function action_groups_in_room($input)
+	{
+		$userlib = TikiLib::lib('user');
+		$items = array();
+
+		foreach( $userlib->list_all_groupIds() as $item) {
+			$items[] = array(
+				'id' => $item['id'],
+				'name' => $item['groupName']
+			);
+		}
+
+		return $items;
+	}
+
+	function action_users_in_room($input)
+	{
+		$userlib = TikiLib::lib('user');
+		$items = array();
+
+		foreach( $userlib->list_all_users() as $id => $name ) {
+			$items[] = array(
+				'id' => $id,
+				'name' => $name
+			);
+		}
+
+		return $items;
 	}
 }

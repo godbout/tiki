@@ -60,8 +60,13 @@ function wikiplugin_xmpp_info()
 
 function wikiplugin_xmpp($data, $params)
 {
+	$headerlib = TikiLib::lib('header');
+	$servicelib = TikiLib::lib('service');
+	$smarty = TikiLib::lib('smarty');
+
 	$defaults = [];
 	$plugininfo = wikiplugin_xmpp_info();
+
 	foreach ($plugininfo['params'] as $key => $param) {
 		$defaults["$key"] = $param['default'];
 	}
@@ -74,6 +79,21 @@ function wikiplugin_xmpp($data, $params)
 	$result = '<div id="conversejs" style="width:' . $params['width'] . ';height:' . $params['height'] . '"></div>';
 	unset($params['width'], $params['height']);
 
+	$url = $servicelib->getUrl(array('controller' => 'xmpp', 'action' => 'groups_in_room'));
+	$item = '<a class="dropdown-item btn btn-link"'
+		. 'data-xmpp="'.$params['room'].'"'
+		. 'data-xmpp-action="'.$url.'"'
+		.'>' . tra('Add a groups to room') . '</a>';
+	$smarty->append('tiki_page_bar_more_items', $item);
+
+	$url = $servicelib->getUrl(array('controller' => 'xmpp', 'action' => 'users_in_room'));
+	$item = '<a class="dropdown-item btn btn-link"'
+		. 'data-xmpp="'.$params['room'].'"'
+		. 'data-xmpp-action="'.$url.'"'
+		.'>' . tra('Add users to room') . '</a>';
+	$smarty->append('tiki_page_bar_more_items', $item);
+
+	$headerlib->add_jsfile_late('lib/jquery_tiki/wikiplugin-xmpp.js?_='.uniqid(), false);
 	TikiLib::lib('xmpp')->addConverseJSToPage($params);
 
 	return $result;

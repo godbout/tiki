@@ -57,6 +57,9 @@
 			{assign var=urlurl value="{$page|sefurl}{$smarty.server.REQUEST_URI|regex_replace:'/^[^\?\&]*/':''|regex_replace:'/(\?page=[^\&]+)/':''}"}{button _script="tiki-user_bookmarks.php" urlname=$page urlurl=$urlurl addurl="Add" _type="link" _class="dropdown-item" _text="{tr}Bookmark{/tr}" _auto_args="urlname,urlurl,addurl"}
 		{/if}
 
+		{foreach from=$tiki_page_bar_more_items item=item }
+			{$item}
+		{/foreach}
 	{/capture}
 	{capture assign=page_bar}
 		{if $edit_page neq 'y'}

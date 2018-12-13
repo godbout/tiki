@@ -200,7 +200,6 @@ Note: The show content block must be defined at root level to use the include. A
 	{if $prefs.wiki_topline_position eq 'bottom' or $prefs.wiki_topline_position eq 'both'}
 		{include file='tiki-wiki_topline.tpl'}
 	{/if}
-
 	{if $print_page ne 'y'}
 		{if (!$prefs.page_bar_position or $prefs.page_bar_position eq 'bottom' or $prefs.page_bar_position eq 'both') and $machine_translate_to_lang == ''}
 			{include file='tiki-page_bar.tpl'}
