@@ -59,19 +59,39 @@ function wikiplugin_now($data, $params)
 {
 	global $prefs;
 	$when = ! empty($params['when']) ? $params['when'] : false;
-	$default = TikiLib::date_format($prefs['long_date_format'] . ' ' . $prefs['long_time_format'], $when);
+
+	$tz = TikiLib::lib('tiki')->get_display_timezone();
+	$tikidate = TikiLib::lib('tikidate');
+	$timezone = $tikidate->getTZByID($tz);
+
+	try {
+		if (is_numeric($when)) {
+			$date = new DateTime('@' . $when, $timezone);
+		} else {
+			$date = new DateTime($when, $timezone);
+		}
+	} catch (Exception $e) {
+		Feedback::error(tr('Plugin now when parameter not valid. %0', $e->getMessage()));
+		return '';
+	}
+
+	$default = strftime($prefs['long_date_format'] . ' ' . $prefs['long_time_format'], $date->getTimestamp());
+
 	if (! empty($params['format'])) {
-		$ret = TikiLib::date_format($params['format'], $when);
+
+		$ret = strftime($params['format'], $date->getTimestamp());
+
 		if (empty($params['allowinvalid']) || $params['allowinvalid'] === 'n') {
 			//see if the user format setting results in a valid date, return default format if not
 			try {
-				$dateObj = new DateTime($ret);
+				new DateTime($ret);
 			} catch (Exception $e) {
-				return $default;
+				$ret = $default;
 			}
 		}
-		return $ret;
 	} else {
-		return $default;
+		$ret = $default;
 	}
+
+	return $ret;
 }
