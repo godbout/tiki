@@ -119,10 +119,12 @@ class Services_Xmpp_Controller
 		$items = array();
 
 		foreach( $userlib->list_all_groupIds() as $item) {
-			$items[] = array(
-				'id' => $item['id'],
-				'name' => $item['groupName']
-			);
+			if ($item['groupName'] !== 'Anonymous'){
+				$items[] = array(
+					'id' => $item['id'],
+					'name' => $item['groupName']
+				);
+			}
 		}
 
 		return $items;
