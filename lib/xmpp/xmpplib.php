@@ -275,35 +275,20 @@ class XMPPLib extends TikiLib
 		global $prefs;
 		$endpoint = $prefs['xmpp_openfire_rest_api'];
 		$secret = $prefs['xmpp_openfire_rest_api_secret'];
-		$domain = $this->server_host;
 
 		$url = parse_url($endpoint);
 
 		$ssl = $url['scheme'] === 'https';
 		$host = $url['host'];
 		$port = $url['port'] ?: ($ssl ? 9091 : 9090);
-		$user = $url['user'] ?: null;
-		$pass = $url['pass'] ?: null;
 		$path = rtrim($url['path'], '/');
 
-
-		if(!empty($secret)) {
-			$authenticationToken = new \Gnello\OpenFireRestAPI\AuthenticationToken($secret);
-		} else if($user && $pass) {
-			$authenticationToken = new \Gnello\OpenFireRestAPI\AuthenticationToken($url['user'],$url['pass']);
-		} else {
-			return;
-		}
-		
-		$api = new \Gnello\OpenFireRestAPI\API(
-			$url['host'],
-			$url['port'] ?: ($ssl ? 9091 : 9090),
-			$authenticationToken
-		);
-
-		$api->Settings()->setServerName($domain);
-		$api->Settings()->setSSL($ssl);
-		$api->Settings()->setPlugin($path);
+		$api = new Gidkom\OpenFireRestApi\OpenFireRestApi();
+		$api->secret = $secret;
+		$api->host = $host;
+		$api->port = $port;
+		$api->useSSL = $ssl;
+		$api->plugin = $path; 
 
 		$this->restapi = $api;
 		return $api;
@@ -322,7 +307,6 @@ class XMPPLib extends TikiLib
 		$restapi = $this->getRestApi();
 		$role = 'members';
 
-		return $restapi->ChatRooms()
-			->addUserWithRoleToChatRoom($room, $role, $user);
+		return $restapi->addUserRoleToChatRoom($room, $user, $role);
 	}
 }
