@@ -110,6 +110,11 @@ class Services_Xmpp_Controller
 
 	function action_groups_in_room($input)
 	{
+		global $tiki_p_admin;
+		if ($tiki_p_admin != 'y') {
+			throw new Services_Exception(tr("You don't have enough privileges"), 403);
+		}
+
 		$userlib = TikiLib::lib('user');
 		$items = array();
 
@@ -125,12 +130,17 @@ class Services_Xmpp_Controller
 
 	function action_users_in_room($input)
 	{
+		global $tiki_p_list_users, $tiki_p_admin;
+		if ($tiki_p_list_users !== 'y' && $tiki_p_admin != 'y') {
+			throw new Services_Exception(tr("You don't have enough privileges"), 403);
+		}
+
 		$userlib = TikiLib::lib('user');
 		$items = array();
 
 		foreach( $userlib->list_all_users() as $id => $name ) {
 			$items[] = array(
-				'id' => $id,
+				'id' => "$id",
 				'name' => $name
 			);
 		}

@@ -76,7 +76,8 @@ function wikiplugin_xmpp($data, $params)
 		Feedback::error(tr('PluginXMPP Error: No room specified'));
 		return '';
 	}
-	$result = '<div id="conversejs" style="width:' . $params['width'] . ';height:' . $params['height'] . '"></div>';
+	$result = '<style type="text/css">#page-bar .dropdown-menu { z-index: 1031; }</style>'
+		.'<div id="conversejs" style="width:' . $params['width'] . ';height:' . $params['height'] . '"></div>';
 	unset($params['width'], $params['height']);
 
 	$url = $servicelib->getUrl(array('controller' => 'xmpp', 'action' => 'groups_in_room'));
@@ -92,6 +93,7 @@ function wikiplugin_xmpp($data, $params)
 		. 'data-xmpp-action="'.$url.'"'
 		.'>' . tra('Add users to room') . '</a>';
 	$smarty->append('tiki_page_bar_more_items', $item);
+
 
 	$headerlib->add_jsfile_late('lib/jquery_tiki/wikiplugin-xmpp.js?_='.uniqid(), false);
 	TikiLib::lib('xmpp')->addConverseJSToPage($params);
