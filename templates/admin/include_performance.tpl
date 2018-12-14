@@ -1,4 +1,4 @@
-{* $Id$ *}
+{* $Id: include_performance.tpl 68518 2018-12-09 22:19:41Z rjsmelo $ *}
 
 {remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Please see the <a class='alert-link' target='tikihelp' href='http://dev.tiki.org/Performance'>Performance page</a> on Tiki's developer site.{/tr}{/remarksbox}
 
@@ -70,8 +70,16 @@
 				<p>
 					<table style="width:520px;border: 0;text-align:center">
 						<tr>
-							<td><img src="{$memory_graph|escape}" width="250" height="100"></td>
-							<td><img src="{$hits_graph|escape}" width="250" height="100"></td>
+							<td>
+								{wikiplugin _name='chartjs' type=pie id=MemoryGraph width=250 height=100  data_labels=$memory_graph.datadebug=1}
+									{$memory_graph.data|json_encode}
+								{/wikiplugin}
+							</td>
+							<td>
+								{wikiplugin _name='chartjs' type=pie id=CacheGraph width=250 height=100 data_labels=$hits_graph.data debug=1}
+									{$hits_graph.data|json_encode}
+								{/wikiplugin}
+							</td>
 						</tr>
 						<tr>
 							<td style="width:260px">

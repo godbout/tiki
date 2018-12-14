@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id$
+// $Id: include_performance.php 66769 2018-06-19 22:30:06Z drsassafras $
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
@@ -25,16 +25,8 @@ $txtUsed = tr('Used');
 $txtAvailable = tr('Available');
 $smarty->assign(
 	'memory_graph',
-	$tikilib->httpScheme() . '://chart.googleapis.com/chart?' . http_build_query(
-		[
-			'cht' => 'p3',
-			'chs' => '250x100',
-			'chd' => "t:{$opcode_stats['memory_used']},{$opcode_stats['memory_avail']}",
-			'chl' => $txtUsed . '|' . $txtAvailable,
-			'chtt' => tr('Memory'),
-		],
-		'',
-		'&'
+			'data' => "t:{$opcode_stats['memory_used']},{$opcode_stats['memory_avail']}",
+			'data_labels' => $txtUsed . '|' . $txtAvailable,
 	)
 );
 
@@ -42,16 +34,8 @@ $txtHit = tr('Hit');
 $txtMiss = tr('Miss');
 $smarty->assign(
 	'hits_graph',
-	$tikilib->httpScheme() . '://chart.googleapis.com/chart?' . http_build_query(
-		[
-			'cht' => 'p3',
-			'chs' => '250x100',
-			'chd' => "t:{$opcode_stats['hit_hit']},{$opcode_stats['hit_miss']}",
-			'chl' => $txtHit . '|' . $txtMiss,
-			'chtt' => tr('Cache'),
-		],
-		'',
-		'&'
+			'data' => "t:{$opcode_stats['hit_hit']},{$opcode_stats['hit_miss']}",
+			'data_labels' => $txtHit . ':' . $txtMiss,
 	)
 );
 
