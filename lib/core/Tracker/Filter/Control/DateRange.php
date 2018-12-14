@@ -20,8 +20,8 @@ class DateRange implements Control
 
 	function applyInput(\JitFilter $input)
 	{
-		$this->from = $input->{$this->fieldName . '_from'}->int();
-		$this->to = $input->{$this->fieldName . '_to'}->int();
+		$this->from = $input->{$this->fieldName . '_from'}->int() ?: '';
+		$this->to = $input->{$this->fieldName . '_to'}->int() ?: '';
 	}
 
 	function getQueryArguments()

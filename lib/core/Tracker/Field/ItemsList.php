@@ -277,6 +277,7 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 
 		$schema->addNew($permName, 'multi-name')
 			->setLabel($name)
+			->addQuerySource('itemId', 'object_id')
 			->setReadOnly(true)
 			->setRenderTransform(function ($value, $extra) {
 
@@ -299,6 +300,172 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 				$info['fields'][$permName] = $value;
 			});
 
+		// json format for export and import (which will recreate missing linked items)
+
+		$fieldIdHere = $this->getOption('fieldIdHere');
+		$definition = $this->getTrackerDefinition();
+		$fieldHere = $definition->getField($fieldIdHere);
+		$extraFieldName = "tracker_field_{$fieldHere['permName']}";
+
+		$fieldIdThere = $this->getOption('fieldIdThere');
+		$trackerIdThere = $this->getOption('trackerId');
+		$trackerThere = Tracker_Definition::get($trackerIdThere);
+		$fieldThere = $trackerThere->getField($fieldIdThere);
+		$queryFieldName = "tracker_field_{$fieldThere['permName']}";
+
+		if ($fieldHere['type'] === 'r' && $fieldThere['type'] !== 'r') {
+			$extraFieldName .= '_text';
+		}
+
+		// cache the other tracker's items to test when importing
+		$itemsThereLookup = new Tracker\Tabular\Schema\CachedLookupHelper();
+		$tiki_tracker_items = TikiDb::get()->table('tiki_tracker_items');
+		$itemsThereLookup->setInit(
+			function ($count) use ($tiki_tracker_items, $trackerIdThere) {
+				return $tiki_tracker_items->fetchMap(
+					'itemId', 'status',
+					[
+						'trackerId' => $trackerIdThere,
+					],
+					$count, 0
+				);
+			}
+		);
+		$itemsThereLookup->setLookup(
+			function ($value) use ($tiki_tracker_items, $trackerIdThere) {
+				return $tiki_tracker_items->fetchOne(
+					'itemId', [
+						'trackerId' => $trackerIdThere,
+						'itemId'    => $value,
+					]
+				);
+			}
+		);
+
+		$attributelib = TikiLib::lib('attribute');
+		$unifiedsearchlib = TikiLib::lib('unifiedsearch');
+		$trackerUtilities = new Services_Tracker_Utilities;
+
+		$schema->addNew($permName, 'multi-json')
+			->setLabel($name)
+			// these query sources appear in the $extra array in the render transform fn
+			->addQuerySource('itemId', 'object_id')
+			->addQuerySource('fieldIdHere', $extraFieldName)
+			->setRenderTransform(
+				function ($value, $extra) use ($trackerIdThere, $queryFieldName, $unifiedsearchlib) {
+
+					if (! empty($extra['fieldIdHere'])) {
+						$content = $extra['fieldIdHere'];
+					} else {
+						$content = (string)$extra['itemId'];
+					}
+
+					$query = $unifiedsearchlib->buildQuery(
+						[
+							'type'          => 'trackeritem',
+							'tracker_id'    => (string)$trackerIdThere,
+							$queryFieldName => $content,
+						]
+					);
+
+					$result = $query->search($unifiedsearchlib->getIndex());
+					$out = [];
+
+					if ($result->count()) {
+						foreach ($result as $entry) {
+							$item = Tracker_Item::fromId($entry['object_id']);
+							$data = $item->getData();
+							$data['fields'] = array_filter($data['fields']);
+							$out[] = $data;
+						}
+					}
+
+					if ($out) {
+						$out = json_encode($out);
+					}
+
+					return $out;
+				}
+			)
+			->setParseIntoTransform(
+				function (& $info, $value) use ($permName, $trackerUtilities, $trackerThere, $itemsThereLookup, $attributelib, $fieldThere, $schema) {
+					static $newItemsThereCreated = [];
+
+					$data = json_decode($value, true);
+
+					if ($data && is_array($data)) {
+
+						foreach ($data as $row) {
+							if (! empty($row['itemId'])) {
+
+								// check the old itemId as an attribute to avoid repeat imports
+								$attr = $attributelib->find_objects_with('tiki.trackeritem.olditemid', $row['itemId']);
+
+								// no item with this itemId and we didn't create it before? so let's make one!
+								if (! isset($newItemsThereCreated[$row['itemId']]) && ! $itemsThereLookup->get($row['itemId']) && empty($attr)) {
+
+									$item = Tracker_Item::fromInfo($row);
+
+									if ($schema->isImportTransaction()) {
+										$trackerThereId = $trackerThere->getConfiguration('trackerId');
+										if (! $item->canModify()) {
+											throw new \Tracker\Tabular\Exception\Exception(tr(
+												'Permission denied importing into linked tracker %0',
+												$trackerThereId
+											));
+										}
+										$errors = $trackerUtilities->validateItem($trackerThere, $item->getData());
+										if ($errors) {
+											throw new \Tracker\Tabular\Exception\Exception(tr(
+												'Errors occurred importing into linked tracker %0',
+												$trackerThereId
+											));
+										}
+									}
+
+									$itemData = $item->getData();
+
+									// needs to be done after the new main item has been created
+									if (! isset($info['postprocess'])) {
+										$info['postprocess'] = [];
+									}
+									$info['postprocess'][] = function ($newMainItemId) use ($trackerUtilities, $trackerThere, $itemData, $fieldThere, $attributelib) {
+
+										// fix the ItemLink there to point at our new item
+										if ($fieldThere['type'] === 'r') {
+											$itemData['fields'][$fieldThere['permName']] = $newMainItemId;
+										}
+
+										$newItemId = $trackerUtilities->insertItem($trackerThere, $itemData);
+
+										if ($newItemId) {
+											$newItemsThereCreated[$itemData['itemId']] = $newItemId;
+											// store the old itemId as an attribute of this item so we don't import it again
+											$attributelib->set_attribute(
+												'trackeritem',
+												$newItemId,
+												'tiki.trackeritem.olditemid',
+												$itemData['itemId']
+											);
+
+										} else {
+											Feedback::error(
+												tr(
+													'Creating replacement linked item for itemId %0 for ItemsList field "%1" import failed on item #%2',
+													$itemData['itemId'], $this->getConfiguration('permName'), $this->getItemId()
+												)
+											);
+										}
+									};
+
+								}
+
+							}
+						}
+					}
+					$info['fields'][$permName] = '';
+				}
+			);
 
 		return $schema;
 	}

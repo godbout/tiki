@@ -121,6 +121,13 @@ class TrackerWriter
 			} else {
 				$success = $utilities->insertItem($definition, $info);
 			}
+			if (! empty($info['postprocess'])) {
+				foreach ((array) $info['postprocess'] as $postprocess) {
+					if (is_callable($postprocess)) {
+						$postprocess($success);
+					}
+				}
+			}
 			return [$success];
 		});
 

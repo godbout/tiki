@@ -46,7 +46,7 @@
 										</div>
 										<input type="text" class="field-label form-control">
 										<div class="input-group-append">
-											<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+											<button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 												<span class="align">{tr}Left{/tr}</span>
 												<input class="display-align" type="hidden" value="left">
 											</button>

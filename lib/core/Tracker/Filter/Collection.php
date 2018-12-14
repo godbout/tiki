@@ -226,6 +226,33 @@ class Collection
 				}
 
 				return $collection;
+
+			case 'modification_date':
+				$collection = new self($this->definition);
+				$collection->addNew($name, 'range')
+					->setLabel(tr('Modification Date'))
+					->setControl(new Control\DateRange("tfdd_modification_date_range"))
+					->setApplyCondition(function ($control, Search_Query $query) {
+						if ($control->hasValue()) {
+							$query->filterRange($control->getFrom(), $control->getTo(), 'modification_date');
+						}
+					});
+
+				return $collection;
+
+			case 'creation_date':
+				$collection = new self($this->definition);
+				$collection->addNew($name, 'range')
+					->setLabel(tr('Creation Date'))
+					->setControl(new Control\DateRange("tfdd_creation_date_range"))
+					->setApplyCondition(function ($control, Search_Query $query) {
+						if ($control->hasValue()) {
+							$query->filterRange($control->getFrom(), $control->getTo(), 'creation_date');
+						}
+					});
+
+				return $collection;
+
 			case 'facet':
 				$collection = new self($this->definition);
 
@@ -304,6 +331,8 @@ class Collection
 		$fields = [
 			'itemId' => tr('Item ID'),
 			'status' => tr('Status'),
+			'modification_date' => tr('Modified Date'),
+			'creation_date' => tr('Creation Date'),
 			'search' => tr('Search'),
 			'actions' => tr('Actions'),
 			'facet' => tr('Dynamic Filters'),

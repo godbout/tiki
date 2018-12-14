@@ -275,7 +275,7 @@ class RSSLib extends TikiDb_Bridge
 			$item->setTitle($data[$titleId]);
 
 			if (isset($data['sefurl'])) {
-				$item->setLink($URLPrefix . $data['sefurl']);
+				$item->setLink($URLPrefix . urlencode($data['sefurl']));
 			} elseif ($urlparam != '') {			// 2 parameters to replace
 				$item->setlink(sprintf($read, urlencode($data["$id"]), urlencode($data["$urlparam"])));
 			} else {
