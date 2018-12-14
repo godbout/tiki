@@ -60,6 +60,8 @@ function wikiplugin_xmpp_info()
 
 function wikiplugin_xmpp($data, $params)
 {
+	global $tiki_p_list_users, $tiki_p_admin;
+
 	$headerlib = TikiLib::lib('header');
 	$servicelib = TikiLib::lib('service');
 	$smarty = TikiLib::lib('smarty');
@@ -76,24 +78,26 @@ function wikiplugin_xmpp($data, $params)
 		Feedback::error(tr('PluginXMPP Error: No room specified'));
 		return '';
 	}
-	$result = '<style type="text/css">#page-bar .dropdown-menu { z-index: 1031; }</style>'
-		.'<div id="conversejs" style="width:' . $params['width'] . ';height:' . $params['height'] . '"></div>';
-	unset($params['width'], $params['height']);
 
-	$url = $servicelib->getUrl(array('controller' => 'xmpp', 'action' => 'groups_in_room'));
-	$item = '<a class="dropdown-item btn btn-link"'
-		. 'data-xmpp="'.$params['room'].'"'
-		. 'data-xmpp-action="'.$url.'"'
-		.'>' . tra('Add a groups to room') . '</a>';
-	$smarty->append('tiki_page_bar_more_items', $item);
+	if ($tiki_p_list_users === 'y' && $tiki_p_admin === 'y') {
+		$result = '<style type="text/css">#page-bar .dropdown-menu { z-index: 1031; }</style>'
+			.'<div id="conversejs" style="width:' . $params['width'] . ';height:' . $params['height'] . '"></div>';
+		unset($params['width'], $params['height']);
 
-	$url = $servicelib->getUrl(array('controller' => 'xmpp', 'action' => 'users_in_room'));
-	$item = '<a class="dropdown-item btn btn-link"'
-		. 'data-xmpp="'.$params['room'].'"'
-		. 'data-xmpp-action="'.$url.'"'
-		.'>' . tra('Add users to room') . '</a>';
-	$smarty->append('tiki_page_bar_more_items', $item);
+		$url = $servicelib->getUrl(array('controller' => 'xmpp', 'action' => 'groups_in_room'));
+		$item = '<a class="dropdown-item btn btn-link"'
+			. 'data-xmpp="'.$params['room'].'"'
+			. 'data-xmpp-action="'.$url.'"'
+			.'>' . tra('Add a groups to room') . '</a>';
+		$smarty->append('tiki_page_bar_more_items', $item);
 
+		$url = $servicelib->getUrl(array('controller' => 'xmpp', 'action' => 'users_in_room'));
+		$item = '<a class="dropdown-item btn btn-link"'
+			. 'data-xmpp="'.$params['room'].'"'
+			. 'data-xmpp-action="'.$url.'"'
+			.'>' . tra('Add users to room') . '</a>';
+		$smarty->append('tiki_page_bar_more_items', $item);
+	}
 
 	$headerlib->add_jsfile_late('lib/jquery_tiki/wikiplugin-xmpp.js?_='.uniqid(), false);
 	TikiLib::lib('xmpp')->addConverseJSToPage($params);
