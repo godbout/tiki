@@ -14,6 +14,15 @@ class Services_Xmpp_Controller
 		Services_Exception_Disabled::check('auth_token_access');
 	}
 
+	private function block_anonymous()
+	{
+		global $user;
+		if ($user) {
+			return false;
+		}
+		throw new Services_Exception(tr('Must be authenticated'), 403);
+	}
+
 	function action_check_token($input)
 	{
 		$xmpplib = TikiLib::lib('xmpp');
@@ -83,14 +92,6 @@ class Services_Xmpp_Controller
 		die(tr('Invalid token'));
 	}
 
-	private function block_anonymous() {
-		global $user;
-		if ($user) {
-			return false;
-		}
-		throw new Services_Exception(tr('Must be authenticated'), 403);
-	}
-
 	function action_prebind($input)
 	{
 		global $user;
@@ -139,39 +140,16 @@ class Services_Xmpp_Controller
 
 		$xmpplib = TikiLib::lib('xmpp');
 		$userlib = TikiLib::lib('user');
-		$return = array();
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$room = $input->room->text();
 			$next = rawurldecode($input->next->text());
-
 			$items = $input->item->text();
-			$exist = array_map(array($userlib, 'user_exists'), $items);
+			$return = $xmpplib->addUsersToRoom($items, $room);
 
-			foreach($items as $index => $username) {
-				$result = array(
-					'name' => $username,
-					'success' => false
-				);
-
-				if(!$exist[ $index ]) {
-					$result['output'] = 'User does not exist';
-				} else {
-					$response = $xmpplib->addUserToRoom($username, $room);
-					$result['success'] = $response['response'] === true;
-					$result['output'] = $response['output'];
-				}
-
-				$return[] = $result;
-				if ( $next ) header("Location: $next");
-			}
+			// if ( $next ) header("Location: $next");
 		} else {
-			foreach( $userlib->list_all_users() as $id => $name ) {
-				$return[] = array(
-					'id' => "$id",
-					'name' => $name
-				);
-			}
+			$return = $xmpplib->getUsers();
 		}
 		return $return;
 	}

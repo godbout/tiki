@@ -301,12 +301,61 @@ class XMPPLib extends TikiLib
 		return $this->restapi;
 	}
 
-	public function addUserToRoom($user, $room)
+	public function addUserToRoom($room, $name, $role='members')
 	{
-		$xmpplib = TikiLib::lib('xmpp');
 		$restapi = $this->getRestApi();
-		$role = 'members';
+		return $restapi->addUserRoleToChatRoom($room, $name, $role);
+	}
 
-		return $restapi->addUserRoleToChatRoom($room, $user, $role);
+	public function addUsersToRoom($params=array(), $defaultRoom='', $defaultRole='members')
+	{
+		$params = array_map(function($item) use ($defaultRoom, $defaultRole)
+		{
+			$status = is_array($item);
+			$item = $status ? $item : array();
+
+			$status = $status && !empty($item['name']);
+			$status = !(empty($item['room']) && empty($defaultRoom));
+
+			return array_merge(array(
+				'role' => $defaultRole,
+				'room' => $defaultRoom,
+				'name' => '',
+				'status' => $status
+			),  $item);
+		}, $params);
+
+		$self = $this;
+		return array_map(function($item) use ($self)
+		{
+			if (empty($item['status'])) {
+				return $item;
+			}
+	
+			$response = $self->addUserToRoom($item['room'], $item['name'], $item['role']);
+			return array_merge($item, $response);
+		}, $params);
+	}
+
+	public function getUsers()
+	{
+		$restapi = $this->getRestApi();
+		$response = $restapi->getUsers();
+
+		$users = [];
+		if(!empty($response['data']) && !empty($response['data']->users)) {
+			$users = $response['data']->users;
+		}
+
+		// groups has attr `name` and `description`
+		// users  has attr `username` and `name`
+		// let's make a common `name` and `fullname`
+		return array_map(function($user) {
+			return array(
+				'name' => $user->username,
+				'fullname' => $user->name,
+				'email' => $user->email
+			);
+		}, $users);
 	}
 }
