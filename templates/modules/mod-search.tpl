@@ -6,8 +6,8 @@
 				<form id="search-module-form{$search_mod_usage_counter}" method="get" action="{$smod_params.search_action}"{if $smod_params.use_autocomplete eq 'y'} onsubmit="return submitSearch{$search_mod_usage_counter}()"{/if} style="position: relative;">
 					<div class="input-group{*form-row align-items-center*}">
 					{*	<div class="{*col-auto*}{*mr-2"> *}
-							<label class="sr-only" for="search_mod_input_{$search_mod_usage_counter}">Find</label>
 							<input style="min-width: 4rem;{if $smod_params.compact eq "y"}{*width:72%;border-bottom-right-radius:0;border-top-right-radius: 0;*}{/if}" placeholder="{tr}Find{/tr}" class="form-control my-1" id="search_mod_input_{$search_mod_usage_counter}" name="{if $smod_params.search_action eq 'tiki-searchindex.php'}filter~content{else}find{/if}" {if !empty($smod_params.input_size)}size="{$smod_params.input_size}" style="width: auto"{/if} type="text" accesskey="s" value="{$smod_params.input_value|escape}">
+							<label class="sr-only" for="search_mod_input_{$search_mod_usage_counter}">Find</label>
 					{*	</div>*}
 							{if $smod_params.show_object_filter eq 'y'}
 								<label class="col-form-label" for="filterType">
@@ -131,11 +131,11 @@
 					{if $smod_params.compact eq "y"}
 						{jq}
 $(".search_mod_magnifier").mouseover( function () {
-	$(".search_mod_buttons", $(this).parent().parent())
-	.show('fast')
-	.mouseleave( function () {
-		$(this).hide('fast');
-	});
+	$(".search_mod_buttons", $(this).parents(".module"))
+		.show('fast')
+		.mouseleave( function () {
+			$(this).hide('fast');
+		});
 }).click( function () {
 	$(this).parents("form").submit();
 });

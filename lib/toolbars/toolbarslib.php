@@ -1699,6 +1699,8 @@ class ToolbarWikiplugin extends Toolbar
 					$tag->setIcon('img/icons/plugin.png');
 				}
 
+				TikiLib::lib('header')->add_jsfile('lib/jquery_tiki/tiki-toolbars.js');
+
 				return $tag;
 			}
 		}
