@@ -25,7 +25,7 @@ $txtUsed = tr('Used');
 $txtAvailable = tr('Available');
 $smarty->assign(
 	'memory_graph',
-			'data' => "t:{$opcode_stats['memory_used']},{$opcode_stats['memory_avail']}",
+			'data' => $opcode_stats['memory_used'].':'.$opcode_stats['memory_avail'],
 			'data_labels' => $txtUsed . '|' . $txtAvailable,
 	)
 );
@@ -34,7 +34,7 @@ $txtHit = tr('Hit');
 $txtMiss = tr('Miss');
 $smarty->assign(
 	'hits_graph',
-			'data' => "t:{$opcode_stats['hit_hit']},{$opcode_stats['hit_miss']}",
+			'data' => $opcode_stats['hit_hit'].':'.$opcode_stats['hit_miss'],
 			'data_labels' => $txtHit . ':' . $txtMiss,
 	)
 );

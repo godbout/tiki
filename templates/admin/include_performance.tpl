@@ -71,13 +71,11 @@
 					<table style="width:520px;border: 0;text-align:center">
 						<tr>
 							<td>
-								{wikiplugin _name='chartjs' type=pie id=MemoryGraph width=250 height=100  data_labels=$memory_graph.datadebug=1}
-									{$memory_graph.data|json_encode}
+								{wikiplugin _name='chartjs' type=pie id=MemoryGraph width=250 height=100 values=$memory_graph.data data_labels=$memory_graph.datadebug=1}
 								{/wikiplugin}
 							</td>
 							<td>
-								{wikiplugin _name='chartjs' type=pie id=CacheGraph width=250 height=100 data_labels=$hits_graph.data debug=1}
-									{$hits_graph.data|json_encode}
+								{wikiplugin _name='chartjs' type=pie id=CacheGraph width=250 height=100 values=$hits_graph.data data_labels=$hits_graph.data debug=1}
 								{/wikiplugin}
 							</td>
 						</tr>
