@@ -155,7 +155,7 @@ if (isset($_REQUEST['pdf'])) {
 		//checking if to export slideshow
 		if ($_REQUEST['printslides']) {
 			$customCSS
-				= "<style type='text/css'>img{max-height:300px;width:auto;} body{font-size:1em} h1{font-size:1.5em}  section{height:300px;border:1px solid #000;margin-bottom:1%;padding:1%;}</style> ";
+				= "<style type='text/css'>img{max-height:300px;width:auto;} body{font-size:1em} h1{font-size:1.5em;text-transform:capitalize !important;}  section{height:300px;border:1px solid #000;margin-bottom:1%;padding:1%;}</style> ";
 			$pdata = $customCSS .'<pdfsettings printFriendly="y" header="off" footer="off"></pdfsettings>' . $pdata;
 		} else {
 			//getting css
@@ -171,7 +171,7 @@ if (isset($_REQUEST['pdf'])) {
 
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
-				$pdata.'<style>' .str_replace(array(".reveal {","vertical-align: baseline;"),array(".reveal,.reveal table{ ","vertical-align:top;"),$customCSS) . ' div.reveal, .reveal li{font-size:1.3em;font-weight:normal;line-height:1.5;height:auto !important; } img{max-height:400px;}  .reveal h1 {font-size: 2.8em;}</style>'
+				$pdata.'<style>' .str_replace(array(".reveal {","vertical-align: baseline;"),array(".reveal,.reveal table{ ","vertical-align:top;"),$customCSS) . ' div.reveal, .reveal li{font-size:1.3em;font-weight:normal;line-height:1.5;height:auto !important; } img{max-height:400px;}  .reveal h1 {font-size: 2.8em; text-transform:capitalize !important;}</style>'
 			).$pdfStyles;
 		}
 
@@ -218,7 +218,7 @@ $headerlib->add_css(
 
 $headerlib->add_jq_onready(
 	'$("<link/>", {rel: "stylesheet",type: "text/css",href: "", id:"themeCSS"}).appendTo("head");
-	$("body").append("<style type=\"text/css\">.reveal li,.reveal section p { font-size: 1.3em; line-height:1.4em } .reveal li{margin:0.3em 0.5em 0.3em 0.5em} .reveal li ul li{font-size:0.9em !important; margin:0em !important}.reveal section pre code { font-size: 0.7em !important;} .reveal h1 {font-size: 2.8em;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.03);}.reveal table {overflow: hidden;} .reveal section img {border:0px;background:none;box-shadow:none} .reveal table th, .reveal table td{text-align:center;vertical-align:top !important} .reveal ul{vertical-align:top !important}</style>");
+	$("body").append("<style type=\"text/css\">.reveal li,.reveal section p { font-size: 1.3em; line-height:1.4em } .reveal li{margin:0.3em 0.5em 0.3em 0.5em} .reveal li ul li{font-size:0.9em !important; margin:0em !important}.reveal section pre code { font-size: 0.7em !important;} .reveal h1 {font-size: 2.8em; text-transform:capitalize !important;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.03);}.reveal table {overflow: hidden;} .reveal section img {border:0px;background:none;box-shadow:none} .reveal table th, .reveal table td{text-align:center;vertical-align:top !important} .reveal ul{vertical-align:top !important}</style>");
 	var extraElements=["#page-bar",".icon_edit_section",".icon-link-external",".editplugin","#show-errors-button",".wikitext",".icon_edit_section","#toc","footer",".heading-link"];
 	jQuery.each( extraElements, function( i, val ) {
 		$( val ).remove();

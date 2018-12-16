@@ -911,6 +911,7 @@ class EditLib
 					$parserlib->plugins_remove($add, $noparsed);
 					$add = str_replace(["\r","\n"], '', $add);
 					$add = str_replace('&nbsp;', ' ', $add);
+					$add = str_replace('[', '[[', $add);			// escape square brackets to prevent accidental wiki links
 					$parserlib->plugins_replace($add, $noparsed, true);
 					$src .= $add;
 				} else {
