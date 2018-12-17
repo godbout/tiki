@@ -16,6 +16,8 @@ body:not(.fixed_width) .container {
 	word-wrap: break-word;
 }
 
+.col { flex-basis: 130px; } // Prevent column from imploding horizontally if it contains only narrow content.
+
 //legend + p,
 //legend + .form-group,
 //legend + input[type="hidden"] + .form-group,
