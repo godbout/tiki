@@ -401,3 +401,7 @@ body.fullscreen.tiki.navbar-padding {
 	margin: 0;
 	padding: 0;
 }
+
+#conversejs + .modal-backdrop, .modal-backdrop + .modal-backdrop {
+	display: none;
+}

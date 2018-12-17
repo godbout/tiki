@@ -173,11 +173,6 @@ class XMPPLib extends TikiLib
 		$js = '';
 		$cssjs = '';
 
-		// TODO: remove this block after fixing conversejs
-		$cssjs .= '$(\'<style type="text/css">\')';
-		$cssjs .= '.html("#conversejs + .modal-backdrop, .modal-backdrop + .modal-backdrop { display: none; }")';
-		$cssjs .= '.appendTo("head");';
-
 		$params = array_merge([
 			'view_mode' => 'overlayed',
 			'room' => '',
