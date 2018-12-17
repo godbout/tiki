@@ -542,7 +542,8 @@ class Smarty_Tiki extends Smarty
 		//get the list of template directories
 		$dirs = array_merge(
 			$this->getTemplateDir(),
-			array_map('realpath', $this->security_policy->secure_dir)
+			['temp/cache'],
+			$this->security_policy ? array_map('realpath', $this->security_policy->secure_dir) : []
 		);
 
 		// sanity check
