@@ -60,7 +60,7 @@ function wikiplugin_xmpp_info()
 
 function wikiplugin_xmpp($data, $params)
 {
-	global $tiki_p_list_users, $tiki_p_admin;
+	global $prefs, $tiki_p_list_users, $tiki_p_admin;
 
 	$headerlib = TikiLib::lib('header');
 	$servicelib = TikiLib::lib('service');
@@ -79,7 +79,13 @@ function wikiplugin_xmpp($data, $params)
 		return '';
 	}
 
-	if ($tiki_p_list_users === 'y' && $tiki_p_admin === 'y') {
+	$openfire_api_enabled = !empty($prefs['xmpp_openfire_rest_api'])
+		&& !empty($prefs['xmpp_openfire_rest_api_secret'])
+		&& !empty($params['room'])
+		&& $tiki_p_list_users === 'y'
+		&& $tiki_p_admin === 'y';
+
+	if ($openfire_api_enabled) {
 		$result = '<style type="text/css">#page-bar .dropdown-menu { z-index: 1031; }</style>'
 			.'<div id="conversejs" style="width:' . $params['width'] . ';height:' . $params['height'] . '"></div>';
 		unset($params['width'], $params['height']);
