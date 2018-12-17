@@ -401,11 +401,12 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 								// check the old itemId as an attribute to avoid repeat imports
 								$attr = $attributelib->find_objects_with('tiki.trackeritem.olditemid', $row['itemId']);
 
-								// no item with this itemId and we didn't create it before? so let's make one!
-								if (! isset($newItemsThereCreated[$row['itemId']]) && ! $itemsThereLookup->get($row['itemId']) && empty($attr)) {
+								// not done this time?
+								if (! isset($newItemsThereCreated[$row['itemId']])) {
 
 									$item = Tracker_Item::fromInfo($row);
 
+									// FIXME $schema here doesn't know if it's a transaction type so this never executes
 									if ($schema->isImportTransaction()) {
 										$trackerThereId = $trackerThere->getConfiguration('trackerId');
 										if (! $item->canModify()) {
@@ -425,38 +426,55 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 
 									$itemData = $item->getData();
 
-									// needs to be done after the new main item has been created
-									if (! isset($info['postprocess'])) {
-										$info['postprocess'] = [];
-									}
-									$info['postprocess'][] = function ($newMainItemId) use ($trackerUtilities, $trackerThere, $itemData, $fieldThere, $attributelib) {
+									// no item with this itemId and we didn't create it before? so let's make one!
+									if (! $itemsThereLookup->get($row['itemId']) && empty($attr)) {
 
-										// fix the ItemLink there to point at our new item
-										if ($fieldThere['type'] === 'r') {
-											$itemData['fields'][$fieldThere['permName']] = $newMainItemId;
+										// needs to be done after the new main item has been created
+										if (! isset($info['postprocess'])) {
+											$info['postprocess'] = [];
 										}
+										$info['postprocess'][] = function ($newMainItemId) use ($trackerUtilities, $trackerThere, $itemData, $fieldThere, $attributelib) {
 
-										$newItemId = $trackerUtilities->insertItem($trackerThere, $itemData);
+											// fix the ItemLink there to point at our new item
+											if ($fieldThere['type'] === 'r') {
+												$itemData['fields'][$fieldThere['permName']] = $newMainItemId;
+											}
 
-										if ($newItemId) {
-											$newItemsThereCreated[$itemData['itemId']] = $newItemId;
-											// store the old itemId as an attribute of this item so we don't import it again
-											$attributelib->set_attribute(
-												'trackeritem',
-												$newItemId,
-												'tiki.trackeritem.olditemid',
-												$itemData['itemId']
-											);
+											$newItemId = $trackerUtilities->insertItem($trackerThere, $itemData);
 
-										} else {
+											if ($newItemId) {
+												$newItemsThereCreated[$itemData['itemId']] = $newItemId;
+												// store the old itemId as an attribute of this item so we don't import it again
+												$attributelib->set_attribute(
+													'trackeritem',
+													$newItemId,
+													'tiki.trackeritem.olditemid',
+													$itemData['itemId']
+												);
+
+											} else {
+												Feedback::error(
+													tr(
+														'Creating replacement linked item for itemId %0 for ItemsList field "%1" import failed on item #%2',
+														$itemData['itemId'], $this->getConfiguration('permName'), $this->getItemId()
+													)
+												);
+											}
+										};
+
+									} else if ($itemsThereLookup->get($row['itemId'])) {    // linked item exists, so update it
+										$item = Tracker_Item::fromInfo($row);
+										$itemData = $item->getData();
+										$result = $trackerUtilities->updateItem($trackerThere, $itemData);
+										if (! $result) {
 											Feedback::error(
 												tr(
-													'Creating replacement linked item for itemId %0 for ItemsList field "%1" import failed on item #%2',
+													'Updating linked item for itemId %0 for ItemsList field "%1" import failed on item #%2',
 													$itemData['itemId'], $this->getConfiguration('permName'), $this->getItemId()
 												)
 											);
 										}
-									};
+									}
 
 								}
 
