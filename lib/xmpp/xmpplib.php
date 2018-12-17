@@ -336,26 +336,83 @@ class XMPPLib extends TikiLib
 			return array_merge($item, $response);
 		}, $params);
 	}
+	
+	function addGroupToRoom ($room, $name, $role='members')
+	{
+		$restapi = $this->getRestApi();
+		return $restapi->addGroupRoleToChatRoom($room, $name, $role);
+	}
+
+	function addGroupsToRoom ($params=array(), $defaultRoom='', $defaultRole='members')
+	{
+		$params = array_map(function($item) use ($defaultRoom, $defaultRole)
+		{
+			$status = is_array($item);
+			$item = $status ? $item : array();
+
+			$status = $status && !empty($item['name']);
+			$status = !(empty($item['room']) && empty($defaultRoom));
+
+			return array_merge(array(
+				'role' => $defaultRole,
+				'room' => $defaultRoom,
+				'name' => '',
+				'status' => $status
+			),  $item);
+		}, $params);
+
+		$self = $this;
+		return array_map(function($item) use ($self)
+		{
+			if (empty($item['status'])) {
+				return $item;
+			}
+	
+			$response = $self->addGroupToRoom($item['room'], $item['name'], $item['role']);
+			return array_merge($item, $response);
+		}, $params);
+	}
+
+	public function getGroups()
+	{
+		$restapi = $this->getRestApi();
+		$response = $restapi->getGroups();
+
+		$items = [];
+		if(!empty($response['data']) && !empty($response['data']->groups)) {
+			$items = $response['data']->groups;
+		}
+
+		// groups has attr `name` and `description`
+		// users  has attr `username` and `name`
+		// let's make a common `name` and `fullname`
+		return array_map(function($item) {
+			return array(
+				'name' => $item->name,
+				'fullname' => $item->description
+			);
+		}, $items);
+	}
 
 	public function getUsers()
 	{
 		$restapi = $this->getRestApi();
 		$response = $restapi->getUsers();
 
-		$users = [];
+		$items = [];
 		if(!empty($response['data']) && !empty($response['data']->users)) {
-			$users = $response['data']->users;
+			$items = $response['data']->users;
 		}
 
 		// groups has attr `name` and `description`
 		// users  has attr `username` and `name`
 		// let's make a common `name` and `fullname`
-		return array_map(function($user) {
+		return array_map(function($item) {
 			return array(
-				'name' => $user->username,
-				'fullname' => $user->name,
-				'email' => $user->email
+				'name' => $item->username,
+				'fullname' => $item->name,
+				'email' => $item->email
 			);
-		}, $users);
+		}, $items);
 	}
 }

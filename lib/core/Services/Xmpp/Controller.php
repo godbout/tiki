@@ -116,19 +116,19 @@ class Services_Xmpp_Controller
 			throw new Services_Exception(tr("You don't have enough privileges"), 403);
 		}
 
+		$xmpplib = TikiLib::lib('xmpp');
 		$userlib = TikiLib::lib('user');
-		$items = array();
 
-		foreach( $userlib->list_all_groupIds() as $item) {
-			if ($item['groupName'] !== 'Anonymous'){
-				$items[] = array(
-					'id' => $item['id'],
-					'name' => $item['groupName']
-				);
-			}
+		if($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$room = $input->room->text();
+			$next = rawurldecode($input->next->text());
+			$items = $input->item->text();
+			$return = $xmpplib->addGroupsToRoom($items, $room);
+		} else {
+			$return = $xmpplib->getGroups();
 		}
 
-		return $items;
+		return $return;
 	}
 
 	function action_users_in_room($input)
