@@ -3716,7 +3716,7 @@ class FileGalLib extends TikiLib
 		}
 	}
 
-	// TODO: This does not necessarily handle a file upload. Just edits a file. File replacements are handled somewhere else.
+	//Note that file edits are handled here along with uploads
 	private function _actionHandler_uploadFile($params)
 	{
 		global $user, $prefs, $tiki_p_admin, $tiki_p_batch_upload_files;
