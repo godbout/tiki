@@ -46,13 +46,6 @@
 	</div>
 {/if}
 {if isset($uploads) and count($uploads) > 0}
-	<h2>
-	{if count($uploads) eq 1}
-		{tr}The following file was successfully uploaded:{/tr}
-	{else}
-		{tr}The following files have been successfully uploaded:{/tr}
-	{/if}
-	</h2>
 	<table class="table">
 		{section name=ix loop=$uploads}
 			<tr>
@@ -69,13 +62,43 @@
 						{button href="#" _flip_id="uploadinfos"|cat:$uploads[ix].fileId _text="{tr}Additional Info{/tr}"}
 					{/if}
 					<div style="{if $prefs.javascript_enabled eq 'y'}display:none;{/if}" id="uploadinfos{$uploads[ix].fileId}">
-						{tr}You can download this file using:{/tr} <div class="code"><a class="link" href="{$uploads[ix].dllink}">{$uploads[ix].fileId|sefurl:file}</a></div>
-						{tr}You can link to the file from a Wiki page using:{/tr} <div class="code">[{$uploads[ix].fileId|sefurl:file}|{$uploads[ix].name} ({$uploads[ix].size|kbsize})]</div>
-						{tr}You can display an image in a Wiki page using:{/tr} <div class="code">&#x7b;img src="{$uploads[ix].fileId|sefurl:preview}" link="{$uploads[ix].fileId|sefurl:file}" alt="{$uploads[ix].name} ({$uploads[ix].size|kbsize})"}</div>
+						<h5>
+							{tr}Syntax Tips{/tr}
+						</h5>
+						<div>
+							{tr}Download link using Tiki syntax:{/tr}
+						</div>
+						<div class="ml-3">
+							<code>
+								[{$uploads[ix].fileId|sefurl:file}|{$uploads[ix].name}]
+							</code>
+						</div>
+						<div>
+							{tr}Display an image using Tiki syntax:{/tr}
+						</div>
+						<div class="ml-3">
+							<code>
+								&#x7b;img src="{$uploads[ix].fileId|sefurl:preview}" link="{$uploads[ix].fileId|sefurl:file}" alt="{$uploads[ix].name}"}
+							</code>
+						</div>
 						{if $prefs.feature_shadowbox eq 'y'}
-							{tr}Or using as a thumbnail with ShadowBox:{/tr} <div class="code">&#x7b;img src="{$uploads[ix].fileId|sefurl:thumbnail}" link="{$uploads[ix].fileId|sefurl:preview}" rel="shadowbox[gallery];type=img" alt="{$name} ({$uploads[ix].size|kbsize})"}</div>
+							<div>
+								{tr}Use as a thumbnail with ShadowBox:{/tr}
+							</div>
+						<div class="ml-3">
+							<code>
+								&#x7b;img src="{$uploads[ix].fileId|sefurl:thumbnail}" link="{$uploads[ix].fileId|sefurl:preview}" rel="shadowbox[gallery];type=img" alt="{$name}"}
+							</code>
+						</div>
 						{/if}
-						{tr}You can link to the file from an HTML page using:{/tr} <div class="code">&lt;a href="{$uploads[ix].dllink}"&gt;{$uploads[ix].name} ({$uploads[ix].size|kbsize})&lt;/a&gt;</div>
+						<div>
+							{tr}Download link using HTML:{/tr}
+						</div>
+						<div class="ml-3">
+							<code>
+								&lt;a href="{$uploads[ix].dllink}"&gt;{$uploads[ix].name}&lt;/a&gt;
+							</code>
+						</div>
 					</div>
 				</td>
 			</tr>
