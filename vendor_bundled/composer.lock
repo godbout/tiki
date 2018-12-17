@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "549be211a1ce0f5eb40810493111539c",
+    "content-hash": "77d4d00b3d151fe5662643073dbf6f93",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -1028,16 +1028,16 @@
         },
         {
             "name": "gidkom/php-openfire-restapi",
-            "version": "1.0.0",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gidkom/php-openfire-restapi.git",
-                "reference": "1f9abb9525f4a87cec46efc43873320d58b56e2b"
+                "reference": "4424094d9f97ad65145b30f840cb9276af9a3b53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gidkom/php-openfire-restapi/zipball/1f9abb9525f4a87cec46efc43873320d58b56e2b",
-                "reference": "1f9abb9525f4a87cec46efc43873320d58b56e2b",
+                "url": "https://api.github.com/repos/gidkom/php-openfire-restapi/zipball/4424094d9f97ad65145b30f840cb9276af9a3b53",
+                "reference": "4424094d9f97ad65145b30f840cb9276af9a3b53",
                 "shasum": ""
             },
             "require": {
@@ -1068,7 +1068,7 @@
                 "openfire",
                 "xmpp"
             ],
-            "time": "2018-01-31T14:17:26+00:00"
+            "time": "2018-02-08T12:06:02+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -8256,6 +8256,7 @@
                 "phpcs",
                 "standards"
             ],
+            "abandoned": "phpcompatibility/php-compatibility",
             "time": "2018-10-07T17:38:02+00:00"
         }
     ],
@@ -8268,6 +8269,7 @@
         "robicch/jquery-gantt": 20,
         "twbs/bootstrap": 10,
         "zendframework/zendsearch": 20,
+        "gidkom/php-openfire-restapi": 20,
         "bafs/testify": 20
     },
     "prefer-stable": false,
