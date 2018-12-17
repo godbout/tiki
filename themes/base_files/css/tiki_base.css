@@ -3083,7 +3083,7 @@ body:not(.fixed_width) .container {
 .row-middle {
   word-wrap: break-word; }
 
-.tiki .col {
+.col {
   flex-basis: 130px; }
 
 legend + * {
