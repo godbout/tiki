@@ -147,45 +147,65 @@ if (empty($_REQUEST['returnUrl'])) {
 }
 
 // Process an upload here
-if ($isUpload && $access->checkCsrf()) {
-
-	$optionalRequestParams = [
-		'fileId',
-		'name',
-		'user',
-		'description',
-		'author',
-		'comment',
-		'returnUrl',
-		'isbatch',
-		'deleteAfter',
-		'deleteAfter_unit',
-		'hit_limit',
-		'listtoalert',
-		'insertion_syntax',
-		'filetype',
-		'imagesize',
-		'image_max_size_x',
-		'image_max_size_y',
-    'ocrFiles'
-	];
-
-	$uploadParams = [
-		'fileInfo' => $fileInfo,
-		'galleryId' => $_REQUEST['galleryId'],
-	];
-
-	foreach ($optionalRequestParams as $p) {
-		if (isset($_REQUEST[ $p ])) {
-			$uploadParams[ $p ] = $_REQUEST[ $p ];
-		}
+if ($isUpload) {
+	// multiple form submissions are possible but the same ticket is in each form if JS is enabled,
+	// so save ticket info from first submission
+	if ((int) $_POST['submission'] === 1 && ! empty($_POST['totalSubmissions']) && (int) $_POST['totalSubmissions'] > 1)
+	{
+		$_SESSION['tickets']['repeatTicket']['ticket'] = $_POST['ticket'];
+		$_SESSION['tickets']['repeatTicket']['time'] = $_SESSION['tickets'][$_POST['ticket']];
 	}
+	if (((int) $_POST['submission'] === 1 && $access->checkCsrf())
+		// for subsequent submissions check ticket against saved ticket info from first submission
+		|| ((int) $_POST['submission'] > 1
+			&& (int) $_POST['submission'] <= (int) $_POST['totalSubmissions']
+			// check that posted ticket matches saved ticket from first submission
+			&& $_POST['ticket'] === $_SESSION['tickets']['repeatTicket']['ticket']
+			// check that the ticket from the first submission hasn't expired
+			&& ! empty($_SESSION['tickets']['repeatTicket']['time'])
+			&& $_SESSION['tickets']['repeatTicket']['time'] < time()
+			&& $_SESSION['tickets']['repeatTicket']['time'] > time()
+			- $prefs['site_security_timeout']
+		)
+	) {
+		if (! empty($_POST['totalSubmissions']) && (int) $_POST['submission'] === (int) $_POST['totalSubmissions']) {
+			unset($_SESSION['tickets']['repeatTicket']);
+		}
+		$optionalRequestParams = [
+			'fileId',
+			'name',
+			'user',
+			'description',
+			'author',
+			'comment',
+			'returnUrl',
+			'isbatch',
+			'deleteAfter',
+			'deleteAfter_unit',
+			'hit_limit',
+			'listtoalert',
+			'insertion_syntax',
+			'filetype',
+			'imagesize',
+			'image_max_size_x',
+			'image_max_size_y',
+			'ocrFiles'
+		];
 
-	if ($fileInfo = $filegallib->actionHandler('uploadFile', $uploadParams)) {
-		$fileId = $fileInfo['fileId'];
-		Feedback::success(tr('File properties modified'));
-	} else {
-		Feedback::note(tr('No changes resulted from request'));
+		$uploadParams = [
+			'fileInfo' => $fileInfo,
+			'galleryId' => $_REQUEST['galleryId'],
+		];
+
+		foreach ($optionalRequestParams as $p) {
+			if (isset($_REQUEST[ $p ])) {
+				$uploadParams[ $p ] = $_REQUEST[ $p ];
+			}
+		}
+
+		if ($fileInfo = $filegallib->actionHandler('uploadFile', $uploadParams)) {
+			$fileId = $fileInfo['fileId'];
+		}
 	}
 }
 

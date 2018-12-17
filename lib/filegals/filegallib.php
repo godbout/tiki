@@ -4024,6 +4024,18 @@ class FileGalLib extends TikiLib
 							}
 						} else {
 							$_SESSION['allowed'][$fileId] = true;
+							if ($prefs['javascript_enabled'] == 'y') {
+								if (!empty($_POST['totalSubmissions']) && (int) $_POST['totalSubmissions'] > 1) {
+									if ((int) $_POST['submission'] === (int) $_POST['totalSubmissions']) {
+										Feedback::success(tr('Files uploaded'), true);
+									}
+									$feedback_message = tr('File "%0" uploaded', $file_name);
+								} else {
+									Feedback::success(tr('File "%0" uploaded', $file_name), true);
+								}
+							} else {
+								Feedback::success(tr('File "%0" uploaded', $file_name));
+							}
 						}
 						if ($prefs['fgal_limit_hits_per_file'] == 'y' && isset($params['hit_limit'][$key])) {
 							$this->set_download_limit($fileId, $params['hit_limit'][$key]);
@@ -4069,9 +4081,15 @@ class FileGalLib extends TikiLib
 			}
 		}
 
-		if (empty($params['returnUrl']) && count($errors)) {
-			foreach ($errors as $error) {
-				$this->print_msg($error, true);
+		if (empty($params['returnUrl'])) {
+			if (count($errors)) {
+				$errors = implode('. ', $errors);
+				if ($prefs['javascript_enabled'] == 'y') {
+					Feedback::error($errors, true);
+				} else {
+					Feedback::error($errors, false);
+				}
+				$errors = [];
 			}
 		}
 		if ($editFile && ! $didFileReplace) {

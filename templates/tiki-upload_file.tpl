@@ -60,12 +60,14 @@
 					<img src="{$uploads[ix].fileId|sefurl:thumbnail}">
 				</td>
 				<td>
-					{if !empty($filegals_manager)}
+					{if !empty($filegals_manager) && $prefs.javascript_enabled === 'y'}
 						<a href="#" onclick="window.opener.insertAt('{$filegals_manager}','{$files[changes].wiki_syntax|escape}');checkClose();return false;" title="{tr}Click here to use the file{/tr}">{$uploads[ix].name} ({$uploads[ix].size|kbsize})</a>
 					{else}
 						<b>{$uploads[ix].name} ({$uploads[ix].size|kbsize})</b>
 					{/if}
-					{button href="#" _flip_id="uploadinfos"|cat:$uploads[ix].fileId _text="{tr}Additional Info{/tr}"}
+					{if $prefs.javascript_enabled === 'y'}
+						{button href="#" _flip_id="uploadinfos"|cat:$uploads[ix].fileId _text="{tr}Additional Info{/tr}"}
+					{/if}
 					<div style="{if $prefs.javascript_enabled eq 'y'}display:none;{/if}" id="uploadinfos{$uploads[ix].fileId}">
 						{tr}You can download this file using:{/tr} <div class="code"><a class="link" href="{$uploads[ix].dllink}">{$uploads[ix].fileId|sefurl:file}</a></div>
 						{tr}You can link to the file from a Wiki page using:{/tr} <div class="code">[{$uploads[ix].fileId|sefurl:file}|{$uploads[ix].name} ({$uploads[ix].size|kbsize})]</div>
@@ -100,7 +102,7 @@
 	{capture name=upload_file assign=upload_str}
 		<div class="fgal_file">
 			<div class="fgal_file_c1">
-				{if $prefs.file_galleries_use_jquery_upload neq 'y' or $editFileId}
+				{if $prefs.javascript_enabled !== 'y' || $prefs.file_galleries_use_jquery_upload neq 'y' or $editFileId}
 					{if $simpleMode neq 'y'}
 						<div class="form-group row">
 							<label for="name" class="col-md-4 col-form-label">{tr}File title{/tr}</label>
@@ -126,7 +128,7 @@
 							</div>
 						</div>
 					{/if}
-					{if $prefs.file_galleries_use_jquery_upload neq 'y' || $editFileId}
+					{if $prefs.javascript_enabled !== 'y' || $prefs.file_galleries_use_jquery_upload neq 'y' || $editFileId}
 						<div class="form-group row">
 							<label for="userfile" class="col-md-4 col-form-label">{if $editFileId}{tr}Re-upload from disk{/tr}{else}{tr}Upload from disk{/tr}{/if}</label>
 							<div class="col-md-8">
@@ -325,6 +327,7 @@
 		>
 			{ticket}
 			<input type="hidden" name="simpleMode" value="{$simpleMode}">
+			<input type="hidden" name="submission" value="1">
 			{if !empty($filegals_manager)}
 				<input type="hidden" name="filegals_manager" value="{$filegals_manager}">
 			{/if}
@@ -349,28 +352,26 @@
 					</div>
 				</div>
 			{elseif $prefs.javascript_enabled neq 'y'}
-				{if $prefs.file_galleries_use_jquery_upload neq 'y'}
-					{$upload_str}
-					{$upload_str}
-					{include file='categorize.tpl'}<br>
-					<div id="page_bar" class="form-group row">
-						<div class="col-md-8 col-md-offset-4">
-							<input
-								type="submit"
-								class="btn btn-primary btn-sm"
-								name="upload"
-								value="{tr}Upload{/tr}"
-								onclick="checkTimeout()"
-							>
-						</div>
+				{$upload_str}
+				{$upload_str}
+				{include file='categorize.tpl'}<br>
+				<div id="page_bar" class="form-group row">
+					<div class="col-md-8 col-md-offset-4">
+						<input
+							type="submit"
+							class="btn btn-primary"
+							name="upload"
+							value="{tr}Upload{/tr}"
+							onclick="checkTimeout()"
+						>
 					</div>
-				{/if}
+				</div>
 			{/if}
-			{if !$editFileId && $prefs.file_galleries_use_jquery_upload neq 'y'}
+			{if !$editFileId && $prefs.file_galleries_use_jquery_upload neq 'y' && $prefs.javascript_enabled === 'y'}
 				<div id="page_bar" class="form-group row">
 					<div class="col-md-8 col-md-offset-4">
 						<input type="submit" class="btn btn-primary"
-							onClick="upload_files(); return false"
+							onclick="checkTimeout(); upload_files(); return false;"
 							id="btnUpload"
 							name="upload"
 							value="{tr}Upload File(s){/tr}"
@@ -411,11 +412,14 @@
 		var nb_upload = 1;
 		function add_upload_file() {
 			var clone = $('#form form').eq(0).clone().resetForm().attr('id', 'file_' + nb_upload).ajaxForm({target: '#progress_' + nb_upload, forceSync: true});
+			$(clone[0].submission).val(parseInt($(clone[0].submission).val(), 10) + parseInt(nb_upload, 10));
 			clone.insertAfter($('#form form').eq(-1));
 			document.getElementById('progress').innerHTML += "<div id='progress_"+nb_upload+"'></div>";
 			nb_upload += 1;
 		}
 		function upload_files(){
+			var totalSubmissions = $("#form form").length;
+			$("#form form").append($('<input />', {type: 'hidden', name: 'totalSubmissions', value: totalSubmissions}));
 			$("#form form").each(function(n) {
 				if ($(this).find('input[name="userfile\\[\\]"]').val() != '') {
 					var $progress = $('#progress_'+n).html("<img src='img/spinner.gif'>{tr}Uploading file...{/tr}");
