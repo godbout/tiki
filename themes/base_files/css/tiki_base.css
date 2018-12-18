@@ -3083,8 +3083,9 @@ body:not(.fixed_width) .container {
 .row-middle {
   word-wrap: break-word; }
 
-.col {
-  flex-basis: 130px; }
+@media (max-width: 768px) {
+  .col-md-12 {
+    flex-basis: 100%; } }
 
 legend + * {
   margin-top: 20px; }

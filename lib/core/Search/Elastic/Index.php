@@ -50,15 +50,6 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 		}
 	}
 
-	/**
-	 * Get the version of Elasticsearch
-	 *
-	 * @return float
-	 */
-	function getVersion() {
-		return $this->connection->getVersion();
-	}
-
 	function addDocument(array $data)
 	{
 		list($objectType, $objectId, $data) = $this->generateDocument($data);
