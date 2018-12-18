@@ -79,6 +79,10 @@ function wikiplugin_xmpp($data, $params)
 		return '';
 	}
 
+	$result = '<style type="text/css">#page-bar .dropdown-menu { z-index: 1031; }</style>'
+		.'<div id="conversejs" style="width:' . $params['width'] . ';height:' . $params['height'] . '"></div>';
+	unset($params['width'], $params['height']);
+
 	$openfire_api_enabled = !empty($prefs['xmpp_openfire_rest_api'])
 		&& !empty($prefs['xmpp_openfire_rest_api_secret'])
 		&& !empty($params['room'])
@@ -86,10 +90,6 @@ function wikiplugin_xmpp($data, $params)
 		&& $tiki_p_admin === 'y';
 
 	if ($openfire_api_enabled) {
-		$result = '<style type="text/css">#page-bar .dropdown-menu { z-index: 1031; }</style>'
-			.'<div id="conversejs" style="width:' . $params['width'] . ';height:' . $params['height'] . '"></div>';
-		unset($params['width'], $params['height']);
-
 		$url = $servicelib->getUrl(array('controller' => 'xmpp', 'action' => 'groups_in_room'));
 		$item = '<a class="dropdown-item btn btn-link"'
 			. 'data-xmpp="'.$params['room'].'"'
@@ -103,6 +103,7 @@ function wikiplugin_xmpp($data, $params)
 			. 'data-xmpp-action="'.$url.'"'
 			.'>' . tra('Add users to room') . '</a>';
 		$smarty->append('tiki_page_bar_more_items', $item);
+		unset($url, $item);
 	}
 
 	$headerlib->add_jsfile_late('lib/jquery_tiki/wikiplugin-xmpp.js?_='.uniqid(), false);
