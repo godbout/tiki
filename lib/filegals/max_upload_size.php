@@ -17,6 +17,7 @@ $smarty = TikiLib::lib('smarty');
 $tikilib = TikiLib::lib('tiki');
 @$max_upload_size = $tikilib->return_bytes(ini_get('upload_max_filesize'));
 @$post_max_size = $tikilib->return_bytes(ini_get('post_max_size'));
+@$max_file_uploads = ini_get('max_file_uploads');
 $max_upload_size_comment = tra("This is the value of your server's PHP '%s' setting");
 
 if ($post_max_size > 0 && ( $post_max_size < $max_upload_size || $max_upload_size == 0 )) {
@@ -52,3 +53,4 @@ if ($prefs['fgal_use_db'] == 'y' && (empty($podCastGallery) || ! $podCastGallery
 
 $smarty->assign("max_upload_size_comment", $max_upload_size_comment);
 $smarty->assign("max_upload_size", "$max_upload_size");
+$smarty->assign("max_file_uploads", "$max_file_uploads");
