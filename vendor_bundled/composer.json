@@ -129,7 +129,8 @@
 		"zendframework/zendservice-akismet": "~2.0",
 		"zendframework/zendservice-recaptcha": "~3.0",
 		"zendframework/zendservice-twitter": "~2.1",
-		"gidkom/php-openfire-restapi": "dev-master"
+		"gidkom/php-openfire-restapi": "dev-master",
+		"montefuscolo/xmpp": "dev-master"
 	},
 	"require-dev": {
 		"bafs/testify": "dev-master",

@@ -5,13 +5,19 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 require_once 'lib/auth/tokens.php';
+require_once dirname(__FILE__) . '/TikiXmppChat.php';
 require_once dirname(__FILE__) . '/TikiXmppPrebind.php';
+
+use Fabiang\Xmpp\Protocol\Presence;
+use Fabiang\Xmpp\Protocol\Message;
+use Fabiang\Xmpp\Protocol\Invitation;
 
 class XMPPLib extends TikiLib
 {
 	private $server_host = '';
 	private $server_http_bind = '';
 	private $restapi = null;
+	private $xmppapi = null;
 
 	/**
 	 * @return string
@@ -55,6 +61,12 @@ class XMPPLib extends TikiLib
 	function get_user_jid($user)
 	{
 		return sprintf('%s@%s', $user, $this->server_host);
+	}
+
+	function get_room_jid($room)
+	{
+		global $prefs;
+		return sprintf('%s@%s', $room, $prefs['xmpp_muc_component_domain']);
 	}
 
 	function check_token($givenUser, $givenToken)
@@ -269,7 +281,8 @@ class XMPPLib extends TikiLib
 	{
 		global $prefs;
 		$endpoint = $prefs['xmpp_openfire_rest_api'];
-		$secret = $prefs['xmpp_openfire_rest_api_secret'];
+		$username = $prefs['xmpp_openfire_rest_api_username'];
+		$password = $prefs['xmpp_openfire_rest_api_password'];
 
 		$url = parse_url($endpoint);
 
@@ -279,7 +292,9 @@ class XMPPLib extends TikiLib
 		$path = rtrim($url['path'], '/');
 
 		$api = new Gidkom\OpenFireRestApi\OpenFireRestApi();
-		$api->secret = $secret;
+		$api->useBasicAuth = true;
+		$api->basicUser = $username;
+		$api->basicPwd = $password;
 		$api->host = $host;
 		$api->port = $port;
 		$api->useSSL = $ssl;
@@ -296,10 +311,43 @@ class XMPPLib extends TikiLib
 		return $this->restapi;
 	}
 
+	public function getXmppApi()
+	{
+		global $prefs;
+
+		if(empty($this->xmppapi)) {
+			$this->xmppapi = new TikiXmppChat(array(
+				"scheme" => "tcp",
+				"host" => $this->server_host,
+				"port" => 5222,
+				"user" => $prefs['xmpp_openfire_rest_api_user'],
+				"pass" => $prefs['xmpp_openfire_rest_api_password'],
+			));
+			$this->xmppapi->connect();
+		}
+		return $this->xmppapi;
+	}
+
 	public function addUserToRoom($room, $name, $role='members')
 	{
-		$restapi = $this->getRestApi();
-		return $restapi->addUserRoleToChatRoom($room, $name, $role);
+		// first, allow myself to join the room
+		$owner = preg_replace(',/.*$,', '', $this->getXmppApi()->getJid());
+		$this->getRestApi()->addUserRoleToChatRoom($room, $owner, 'owners');
+
+		// the restapi add permission to user join the room
+		$result = $this->getRestApi()->addUserRoleToChatRoom($room, $name, $role);
+
+		// the xmppapi invite the user to the room
+		$nick = $this->getXmppApi()->getUsername();
+		$room = $this->get_room_jid($room);
+		$user = $this->get_user_jid($name);
+
+		$this->getXmppApi()
+			->sendPresence(1, $room, $nick)
+			->sendInvitation($room, $user)
+		;
+
+		return $result;
 	}
 
 	public function addUsersToRoom($params=array(), $defaultRoom='', $defaultRole='members')

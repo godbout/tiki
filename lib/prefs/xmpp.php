@@ -72,11 +72,20 @@ function prefs_xmpp_list()
 			'tags' => ['basic'],
 			'default' => '',
 		],
-		'xmpp_openfire_rest_api_secret' => [
-			'name' => tra('Rest API secret'),
-			'description' => tra('Secret token to allow Openfire API usage'),
+		'xmpp_openfire_rest_api_username' => [
+			'name' => tra('Rest API username'),
+			'description' => tra('Username to allow Openfire API usage'),
 			'keywords' => 'xmpp openfire restapi rest api chat',
 			'type' => 'text',
+			'size' => 40,
+			'tags' => ['basic'],
+			'default' => '',
+		],
+		'xmpp_openfire_rest_api_password' => [
+			'name' => tra('Rest API password'),
+			'description' => tra('Password to allow Openfire API usage'),
+			'keywords' => 'xmpp openfire restapi rest api chat',
+			'type' => 'password',
 			'size' => 40,
 			'tags' => ['basic'],
 			'default' => '',
