@@ -136,16 +136,19 @@ if (((is_array($calendarIds) && (count($calendarIds) > 0)) or isset($_REQUEST["c
 			echo trim($line, ';') . "\n";
 		}
 	} else {
-		// create ical array//
-		$iCal = new File_iCal();
+		// create ical
 
-		$cal = $iCal->getSkeletonCalendar();
+		$userlb = TikiLib::get('Users');
+
+		$vcalendar = new Sabre\VObject\Component\VCalendar();
+
 		foreach ($events as $event) {
-			$ea = [];
-			$ea['Summary'] = $event['name'];
-			$ea['dateStart'] = $event['start'];
-			$ea['dateEnd'] = $event['end'];
-			$ea['Description'] = preg_replace(
+			$vevent = [];
+			$vevent['SUMMARY'] = $event['name'];
+			$vevent['DTSTART'] = (new DateTime())->setTimestamp($event['start']);
+			$vevent['DTEND'] = (new DateTime())->setTimestamp($event['end']);
+
+			$vevent['DESCRIPTION'] = preg_replace(
 				'/\n/',
 				"\\n",
 				strip_tags(
@@ -155,37 +158,44 @@ if (((is_array($calendarIds) && (count($calendarIds) > 0)) or isset($_REQUEST["c
 					)
 				)
 			);
-			if ($event['participants']) {
-				$ea['Attendees'] = $event['participants'];
-			}
-			$ea['LastModified'] = $event['lastModif'];
 
-			// re: Second character of duration value must be a 'P' ??
-			// jb for tiki 11 - feb 2013
-			// spec is at: https://tools.ietf.org/html/rfc5545#section-3.3.6, so i tried:
-			//	$durationSeconds = $event['end'] - $event['start'];
-			//	$duration = $durationSeconds > 0 ? '+' : '-';
-			//	$duration .= 'P' . $durationSeconds . 'S';
-			// however, when formatted seemingly correctly you then get an error saying it's not in integer! :(
-			// so just removing duration for now as it's implied by the start and end anyway - TODO better
-			// $ea['Duration']=($duration);
+			$vevent['DTSTAMP'] = (new DateTime())->setTimestamp($event['created']);
+			$vevent['LAST-MODIFIED'] = (new DateTime())->setTimestamp($event['lastModif']);
 
-			$ea['Contact'] = [$event['user']];
-			if (! empty($event['organizers'])) {
-				$ea['organizer'] = [$event['organizers']];
-			}
+			$vevent['CONTACT'] = $event['user']; // Name
+
 			if (! empty($event['url'])) {
-				$ea['URL'] = $event['url'];
+				$vevent['URL'] = $event['url'];
 			}
-			$ea['DateStamp'] = $event['created'];
-			//$ea['RequestStatus']=$event['status'];
-			$ea['UID'] = 'tiki-' . $event['calendarId'] . '-' . $event['calitemId'];
-			$c = $iCal->factory('Event', $ea);
-			$cal->addEvent($c);
+
+			$vevent['UID'] = 'tiki-' . $event['calendarId'] . '-' . $event['calitemId'];
+
+			$vcalEvent = $vcalendar->add('VEVENT', $vevent);
+
+			foreach ($event['organizers'] as $organizer) {
+				$orgEmail = $userlib->get_user_email($organizer);
+
+				if (! empty($orgEmail)) {
+					$vcalEvent->add('ORGANIZER', $orgEmail, ['CN' => $organizer]);
+				} elseif (filter_var($organizer, FILTER_VALIDATE_EMAIL) !== false) {
+					$vcalEvent->add('ORGANIZER', $organizer);
+				}
+			}
+
+			foreach ($event['participants'] as $attendee) {
+				$attendeeEmail = $userlib->get_user_email($attendee['name']);
+
+				if (! empty($attendeeEmail)) {
+					$vcalEvent->add('ATTENDEE', $attendeeEmail, ['CN' => $attendee['name']]);
+				} else {
+					if (filter_var($attendee['name'], FILTER_VALIDATE_EMAIL) !== false) {
+						$vcalEvent->add('ATTENDEE', $attendee);
+					}
+				}
+			}
 		}
-		$iCal->addCalendar($cal);
-		$iCal->sendHeader("calendar");
-		$calendar_str = $iCal->__toString();
+
+		$calendar_str = $vcalendar->serialize();
 		header("Content-Length: " . strlen($calendar_str));
 		header("Expires: 0");
 		// These two lines fix pb with IE and HTTPS
