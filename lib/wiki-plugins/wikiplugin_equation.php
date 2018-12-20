@@ -15,47 +15,23 @@ function wikiplugin_equation_info()
 		'body' => tra('equation'),
 		'iconname' => 'superscript',
 		'introduced' => 2,
-		'params' => [
-			'size' => [
-				'required' => false,
-				'name' => tra('Size'),
-				'description' => tr('Size expressed as a percentage of the normal size. %0 produces the default size.
-					%1 produces an image twice as large.', '<code>100</code>', '<code>200</code>'),
-				'since' => '2.0',
-				'default' => 100,
-				'filter' => 'digits',
-			],
-		],
+		'packages_required' => ['mathjax/mathjax' => 'vendor/mathjax/mathjax/MathJax.js'],
 	];
 }
 
-function wikiplugin_equation($data, $params)
+function wikiplugin_equation($data)
 {
+	if (! file_exists('vendor/mathjax/mathjax/MathJax.js')) {
+		Feedback::error(tr('To view equations Tiki needs the mathjax/mathjax package. If you do not have permission to install this package, ask the site administrator.'));
+		return;
+	}
+
 	if (empty($data)) {
 		return '';
 	}
-	extract($params, EXTR_SKIP);
-	if (empty($size)) {
-		$size = 100;
-	}
 
-	$latexrender_path = getcwd() . "/lib/equation";
-	include_once($latexrender_path . "/class.latexrender.php");
-	$latexrender_path_http = "lib/equation";
-	$latex = new LatexRender($latexrender_path . "/pictures", $latexrender_path_http . "/pictures", $latexrender_path . "/tmp");
-	$latex->_formula_density = 120 * $size / 100;
+	$headerlib = TikiLib::lib('header');
+	$headerlib->add_jsfile('vendor/mathjax/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML', true);
 
-	extract($params, EXTR_SKIP);
-
-	$data = html_entity_decode(trim($data), ENT_QUOTES);
-
-	$url = $latex->getFormulaURL($data);
-	$alt = "~np~" . $data . "~/np~";
-
-	if ($url != false) {
-		$html = "<img src=\"$url\" alt=\"$alt\" style=\"vertical-align:middle\">";
-	} else {
-		$html = "__~~#FF0000:Unparseable or potentially dangerous latex formula. Error {$latex->_errorcode} {$latex->_errorextra}~~__";
-	}
-	return $html;
+	return '~np~' . $data . '~/np~';
 }

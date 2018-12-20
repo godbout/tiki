@@ -3350,7 +3350,6 @@ lib/dracula/index.php -text
 lib/dracula/raphael-min.js -text
 lib/encoding/index.php -text
 lib/encoding/lib-encoding.php -text
-lib/equation/class.latexrender.php -text
 lib/equation/index.php -text
 lib/equation/pictures/index.php -text
 lib/equation/tmp/index.php -text

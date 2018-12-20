@@ -76,6 +76,13 @@ TesseractOCR:
   requiredBy:
   - fgal_ocr_enable
   requiredVersion: ^2.7.0
+MathJax:
+  licence: Apache-2.0
+  licenceUrl: "https://github.com/mathjax/MathJax/blob/master/LICENSE"
+  name: mathjax/mathjax
+  requiredBy:
+    - "wikiplugin_equation"
+  requiredVersion: ^2.7
 MediaAlchemyst:
   licence: MIT
   licenceUrl: "https://github.com/alchemy-fr/Media-Alchemyst/blob/master/LICENSE"
