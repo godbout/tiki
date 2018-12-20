@@ -320,7 +320,7 @@ class XMPPLib extends TikiLib
 				"scheme" => "tcp",
 				"host" => $this->server_host,
 				"port" => 5222,
-				"user" => $prefs['xmpp_openfire_rest_api_user'],
+				"user" => $prefs['xmpp_openfire_rest_api_username'],
 				"pass" => $prefs['xmpp_openfire_rest_api_password'],
 			));
 			$this->xmppapi->connect();
