@@ -448,19 +448,28 @@
 					</div>
 				{/if}
 				<legend>{tr}My Account{/tr}</legend>
+				{if $prefs.xmpp_feature eq 'y'}
+					<div class="form-group row mb-2">
+						<label class="col-form-label col-md-4" for="xmpp_username">
+							{tr}XMPP account username{/tr}
+						</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" name="xmpp_username" id="xmpp_username" value="{$user_prefs.xmpp_username|escape}">
+							<p><small>{tr}If empty, Tiki username will be used{/tr}</small></p>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-md-4" for="xmpp_password">
+							{tr}XMPP account password{/tr}
+						</label>
+						<div class="col-md-8">
+							<input type="password" class="form-control" name="xmpp_password" id="xmpp_password" value="{$user_prefs.xmpp_password|escape}">
+						</div>
+					</div>
+				{/if}
+
 				<div class="row justify-content-end mb-2">
 					<div class="col-md-8">
-					{if $prefs.xmpp_feature eq 'y'}
-						<div class="form-group row">
-							<label class="col-form-label col-md-4" for="xmpp_password">
-								{tr}XMPP account password{/tr}
-							</label>
-							<div class="col-md-8">
-								<input type="password" name="xmpp_password" id="xmpp_password" value="{$user_prefs.xmpp_password|escape}">
-							</div>
-						</div>
-					{/if}
-
 					{if $prefs.feature_wiki eq 'y'}
 						<div class="form-check">
 							<label class="form-check-label">

@@ -263,6 +263,13 @@ function prefs_users_list()
 			'type' => 'flag',
 			'default' => 'n',
 		],
+		'users_prefs_xmpp_username' => [
+			'name' => tra('XMPP account username'),
+			'description' => tra('XMPP account username'),
+			'keywords' => 'xmpp converse conversejs chat',
+			'type' => 'text',
+			'default' => '',
+		],
 		'users_prefs_xmpp_password' => [
 			'name' => tra('XMPP account password'),
 			'description' => tra('XMPP account password'),

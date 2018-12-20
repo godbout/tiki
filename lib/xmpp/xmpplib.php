@@ -43,19 +43,22 @@ class XMPPLib extends TikiLib
 		}
 	}
 
-	function get_user_password($user)
+	function get_user_login($user)
 	{
-		$query  = "SELECT value FROM `tiki_user_preferences` WHERE `user`=?";
-		$query .= " AND `prefName`='xmpp_password';";
+		$query = 'SELECT'
+		. '     MAX(CASE WHEN `prefName`="xmpp_username" THEN `value` END) AS `username`,'
+		. '     MAX(CASE WHEN `prefName`="xmpp_password" THEN `value` END) AS `password`'
+		. ' FROM `tiki_user_preferences` WHERE `user`=?'
+		. '     AND `prefName` REGEXP "xmpp_(username|password)"';
 
-		$result = $this->query($query, [$user]);
-		$ret = $result->fetchRow();
+		$query = $this->query($query, [$user]);
+		$ret = $query->fetchRow();
 
-		if (count($ret) === 1) {
-			return $ret['value'];
-		} else {
-			return '';
+		if (empty($ret['username'])) {
+			$ret['username'] = $user;
 		}
+
+		return $ret;
 	}
 
 	function get_user_jid($user)
@@ -114,7 +117,9 @@ class XMPPLib extends TikiLib
 			return [];
 		}
 
-		$xmpp_username = $user;
+		$login = $this->get_user_login($user);
+		$xmpp_username = $login['username'];
+		$xmpp_password = $login['password'];
 		$xmpp_prebind_class = XmppPrebind;
 
 		if (! empty($prefs['xmpp_openfire_use_token']) && $prefs['xmpp_openfire_use_token'] === 'y') {
@@ -130,7 +135,6 @@ class XMPPLib extends TikiLib
 			$xmpp_password = "$token";
 			$xmpp_prebind_class = TikiXmppPrebind;
 		} else {
-			$xmpp_password = $this->get_user_password($user);
 			if (empty($xmpp_password)) {
 				return [];
 			}
