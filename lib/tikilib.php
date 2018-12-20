@@ -6187,7 +6187,7 @@ class TikiLib extends TikiDb_Bridge
 				$flashvars = str_replace('\\/', '/', $flashvars);
 			}
 			$js = <<<JS
-swfobject.embedSWF( $movie, $div, $width, $height, $version, 'lib/swfobject/expressInstall.swf', $flashvars, $params, {} );
+swfobject.embedSWF( $movie, $div, $width, $height, $version, 'vendor_bundled/vendor/bower-asset/swfobject/swfobject/expressInstall.swf', $flashvars, $params, {} );
 JS;
 			$headerlib->add_js($js);
 			return "<div id=\"$myId\">" . $alt . "</div>";

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b56cb15f0209fe597e31abe2a7b8f176",
+    "content-hash": "c1a2cadaa21000bb8a4eafa1ac325a89",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -250,6 +250,22 @@
                 "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-4f4cb7c2f55d14d24f10390ebfeab0d25af612f3-zip-d76452.zip",
                 "reference": "4f4cb7c2f55d14d24f10390ebfeab0d25af612f3",
                 "shasum": "3d47992a1438391a6764d367e076d5c73bd4055f"
+            },
+            "type": "bower-asset"
+        },
+        {
+            "name": "bower-asset/swfobject",
+            "version": "2.2",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:swfobject/swfobject.git",
+                "reference": "9e0104326a8913918f2170f15a69d60624c4bf68"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/bower-asset/swfobject/bower-asset-swfobject-9e0104326a8913918f2170f15a69d60624c4bf68-zip-0e58de.zip",
+                "reference": "9e0104326a8913918f2170f15a69d60624c4bf68",
+                "shasum": "ecda9ec89d9253d6919bcf52f24f3e65d7cfe20c"
             },
             "type": "bower-asset"
         },
@@ -654,9 +670,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
+                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": ""
+                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
             },
             "type": "component",
             "extra": {
@@ -903,7 +919,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Ungur",
+                    "name": "Osman Üngür",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -975,9 +991,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fullcalendar/fullcalendar/zipball/3ddb3c8d1461c6b841aed3487ba07d8ba338adb6",
+                "url": "https://composer.tiki.org/dist/fullcalendar/fullcalendar/fullcalendar-fullcalendar-3ddb3c8d1461c6b841aed3487ba07d8ba338adb6-zip-38ef6e.zip",
                 "reference": "3ddb3c8d1461c6b841aed3487ba07d8ba338adb6",
-                "shasum": ""
+                "shasum": "8c2a4de63c685f4f77239e1a1bf0924c0bcfdc48"
             },
             "require": {
                 "components/jquery": "2 - 3",
@@ -1376,9 +1392,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": ""
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1943,9 +1959,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
+                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": ""
+                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
             },
             "require": {
                 "php": ">=5.3.1",
@@ -2583,7 +2599,7 @@
             "version": "v1.0.10",
             "source": {
                 "type": "git",
-                "url": "https://github.com/LeaVerou/prefixfree.git",
+                "url": "git@github.com:LeaVerou/prefixfree.git",
                 "reference": "846904c874a2bf436ff8a9623585f935d7ef4009"
             },
             "dist": {
@@ -2598,10 +2614,10 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz",
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
                 "reference": null,
-                "shasum": null
+                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
             },
             "type": "npm-asset",
             "license": [
@@ -3667,9 +3683,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
+                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": ""
+                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -5660,9 +5676,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-ldap/zipball/b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
+                "url": "https://composer.tiki.org/dist/zendframework/zend-ldap/zendframework-zend-ldap-b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49-zip-8cf400.zip",
                 "reference": "b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
-                "shasum": ""
+                "shasum": "b1212f5466b9a85267f26e9683a66474a23fc770"
             },
             "require": {
                 "ext-ldap": "*",

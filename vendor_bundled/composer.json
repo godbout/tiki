@@ -12,6 +12,7 @@
 		"blueimp/javascript-canvas-to-blob": "^2.2.0",
 		"blueimp/javascript-load-image": "^1.14.0",
 		"blueimp/jquery-file-upload": "^9.12.5",
+		"bower-asset/swfobject": "^2.2",
 		"candy-chat/xmpp-prebind-php": "dev-master",
 		"chartjs/Chart.js": "^2.5.0",
 		"christian-vigh-phpclasses/PdfToText": "^1.6.0",
@@ -248,6 +249,10 @@
 		{
 			"type": "composer",
 			"url": "https://composer.tiki.org"
+		},
+		{
+			"type": "composer",
+			"url": "https://asset-packagist.org"
 		}
 	]
 }

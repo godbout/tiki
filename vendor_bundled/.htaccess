@@ -17,6 +17,7 @@
 	RewriteRule "^(vendor/player/).*/.*\.swf$" "-" [PT,L]
 	RewriteRule "^(vendor/fortawesome/).*/.*\.swf$" "-" [PT,L]
 	RewriteRule "^(vendor/jquery/).*/.*\.swf$" "-" [PT,L]
+	RewriteRule "^(vendor/bower-asset/swfobject/).*/.*\.swf$" "-" [PT,L]
 	RewriteRule "^(vendor/studio-42/).*/.*\.wav$" "-" [PT,L]
 
 	# -- Deny Everything Not Matched Above -- #

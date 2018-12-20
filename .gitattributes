@@ -4253,14 +4253,9 @@ lib/surveys/tiki-admin_survey_questions.js -text
 lib/svg-edit_tiki/draw.js -text
 lib/svg-edit_tiki/index.php -text
 lib/swfobject/expressInstall.swf -text
-lib/swfobject/index.html -text
 lib/swfobject/index.php -text
-lib/swfobject/index_dynamic.html -text
-lib/swfobject/src/expressInstall.as -text
 lib/swfobject/src/expressInstall.fla -text
 lib/swfobject/src/index.php -text
-lib/swfobject/src/swfobject.js -text
-lib/swfobject/swfobject.js -text
 lib/swfobject/test.swf -text
 lib/taglines/index.php -text
 lib/taglines/taglinelib.php -text

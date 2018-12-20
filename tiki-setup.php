@@ -549,7 +549,7 @@ if ($prefs['feature_shadowbox'] == 'y') {
 }
 
 if ($prefs['wikiplugin_flash'] == 'y') {
-	$headerlib->add_jsfile('lib/swfobject/swfobject.js', true);
+	$headerlib->add_jsfile('vendor_bundled/vendor/bower-asset/swfobject/swfobject/swfobject.js', true);
 }
 if ($prefs['jquery_timeago'] === 'y') {
 	$headerlib->add_jsfile('vendor_bundled/vendor/rmm5t/jquery-timeago/jquery.timeago.js');
