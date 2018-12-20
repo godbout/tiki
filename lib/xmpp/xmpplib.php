@@ -122,7 +122,11 @@ class XMPPLib extends TikiLib
 		$xmpp_password = $login['password'];
 		$xmpp_prebind_class = XmppPrebind;
 
-		if (! empty($prefs['xmpp_openfire_use_token']) && $prefs['xmpp_openfire_use_token'] === 'y') {
+		$use_tikitoken = $xmpp_username === $user
+			&& !empty($prefs['xmpp_openfire_use_token'])
+			&& $prefs['xmpp_openfire_use_token'] === 'y';
+
+		if ($use_tikitoken) {
 			$token = $tokenlib->createToken(
 				'openfireauthtoken',
 				['user' => $user],	// parameters
