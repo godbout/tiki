@@ -263,9 +263,9 @@ function prefs_users_list()
 			'type' => 'flag',
 			'default' => 'n',
 		],
-		'users_prefs_xmpp_username' => [
-			'name' => tra('XMPP account username'),
-			'description' => tra('XMPP account username'),
+		'users_prefs_xmpp_jid' => [
+			'name' => tra('XMPP account JID or username'),
+			'description' => tra('XMPP account JID or username'),
 			'keywords' => 'xmpp converse conversejs chat',
 			'type' => 'text',
 			'default' => '',
@@ -275,6 +275,17 @@ function prefs_users_list()
 			'description' => tra('XMPP account password'),
 			'keywords' => 'xmpp converse conversejs chat',
 			'type' => 'text',
+			'default' => '',
+		],
+		'users_prefs_xmpp_custom_server_http_bind' => [
+			'name' => tra('XMPP http-bind URL'),
+			'description' => tra('Full URL to the http-bind.'),
+			'keywords' => 'xmpp converse conversejs chat',
+			'type' => 'text',
+			'size' => 40,
+			'filter' => 'url',
+			'hint' => tra('https://xmpp.example.org/http-bind/'),
+			'tags' => ['basic'],
 			'default' => '',
 		],
 	];

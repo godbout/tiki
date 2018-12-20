@@ -451,11 +451,11 @@
 				{if $prefs.xmpp_feature eq 'y'}
 					<div class="form-group row mb-2">
 						<label class="col-form-label col-md-4" for="xmpp_username">
-							{tr}XMPP account username{/tr}
+							{tr}XMPP account JID{/tr}
 						</label>
 						<div class="col-md-8">
-							<input type="text" class="form-control" name="xmpp_username" id="xmpp_username" value="{$user_prefs.xmpp_username|escape}">
-							<p><small>{tr}If empty, Tiki username will be used{/tr}</small></p>
+							<input type="text" class="form-control" name="xmpp_jid" id="xmpp_jid" value="{$user_prefs.xmpp_jid|escape}">
+							<p><small>{tr}If empty, Tiki will provide default value{/tr}</small></p>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -464,6 +464,16 @@
 						</label>
 						<div class="col-md-8">
 							<input type="password" class="form-control" name="xmpp_password" id="xmpp_password" value="{$user_prefs.xmpp_password|escape}">
+							<p><small>This password will be stored in database</small></p>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-md-4" for="xmpp_server_http_bind">
+							{tr}XMPP http-bind URL{/tr}
+						</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" name="xmpp_custom_server_http_bind" id="xmpp_custom_server_http_bind" value="{$user_prefs.xmpp_custom_server_http_bind|escape}">
+							<p><small>{tr}You have to provide this when using custom XMPP server{/tr}</small></p>
 						</div>
 					</div>
 				{/if}

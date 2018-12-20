@@ -254,11 +254,15 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) &&
 	if ($prefs['feature_intertiki'] == 'y' && ! empty($prefs['feature_intertiki_mymaster']) && $prefs['feature_intertiki_import_preferences'] == 'y') { //send to the master
 		$userlib->interSendUserInfo($prefs['interlist'][$prefs['feature_intertiki_mymaster']], $userwatch);
 	}
-	if (isset($_REQUEST['xmpp_username'])) {
-		$tikilib->set_user_preference($userwatch, 'xmpp_username', $_REQUEST['xmpp_username']);
+
+	if (isset($_REQUEST['xmpp_jid'])) {
+		$tikilib->set_user_preference($userwatch, 'xmpp_jid', $_REQUEST['xmpp_jid']);
 	}
 	if (isset($_REQUEST['xmpp_password'])) {
 		$tikilib->set_user_preference($userwatch, 'xmpp_password', $_REQUEST['xmpp_password']);
+	}
+	if (isset($_REQUEST['xmpp_custom_server_http_bind'])) {
+		$tikilib->set_user_preference($userwatch, 'xmpp_custom_server_http_bind', $_REQUEST['xmpp_custom_server_http_bind']);
 	}
 
 	TikiLib::events()->trigger(

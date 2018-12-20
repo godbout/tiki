@@ -46,19 +46,46 @@ class XMPPLib extends TikiLib
 	function get_user_login($user)
 	{
 		$query = 'SELECT'
-		. '     MAX(CASE WHEN `prefName`="xmpp_username" THEN `value` END) AS `username`,'
+		. '     MAX(CASE WHEN `prefName`="xmpp_jid" THEN `value` END) AS `jid`,'
 		. '     MAX(CASE WHEN `prefName`="xmpp_password" THEN `value` END) AS `password`'
 		. ' FROM `tiki_user_preferences` WHERE `user`=?'
-		. '     AND `prefName` REGEXP "xmpp_(username|password)"';
+		. '     AND `prefName` REGEXP "xmpp_(jid|password)"';
 
 		$query = $this->query($query, [$user]);
 		$ret = $query->fetchRow();
 
-		if (empty($ret['username'])) {
-			$ret['username'] = $user;
+		if (empty($ret['jid'])) {
+			$ret['jid'] = $user;
 		}
 
 		return $ret;
+	}
+
+	function get_user_connection_info($user)
+	{
+		global $prefs;
+		global $tikilib;
+
+		$login = $this->get_user_login($user);
+		$info = array(
+			'domain'    => $this->server_host,
+			'http_bind' => $this->server_http_bind,
+			'jid'       => $this->get_user_jid($user),
+			'password'  => $login['password'] ?: '',
+			'username'  => $user,
+			'nickname'  => $tikilib->get_user_preference($user, 'realName') ?: $user,
+		);
+
+		$jid = $this->parse_jid($login['jid']);
+		if ($jid) {
+			$info['jid']       = $login['jid'];
+			$info['username']  = $jid['node'];
+			$info['domain']    = $jid['domain'];
+			$info['http_bind'] = $tikilib->get_user_preference($user, 'xmpp_custom_server_http_bind')
+				?: $this->server_http_bind;
+		}
+
+		return $info;
 	}
 
 	function get_user_jid($user)
@@ -91,6 +118,43 @@ class XMPPLib extends TikiLib
 			&& $param['user'] === $givenUser;
 	}
 
+	function parse_jid($jid)
+	{
+		$any_char = '[' 
+			. '\x20-\xD7FF'
+			. '\xE000-\xFFFD'
+		. ']';
+
+		$conforming_char = '[' 
+			. '\x21'
+			. '\x23-\x25'
+			. '\x28-\x2E'
+			. '\x30-\x39'
+			. '\x3B'
+			. '\x3D'
+			. '\x3F'
+			. '\x41-\x7E'
+			. '\x80-\xD7FF'
+			. '\xE000-\xFFFD'
+		. ']';
+
+		$hname = '[0-9a-zA-Z](?:[0-9a-zA-Z-])*[0-9a-zA-Z]';
+		$domain = "$hname(?:\.$hname)+";
+		$resource = "{$any_char}{$any_char}*";
+		$node = "{$conforming_char}{$conforming_char}*";
+		$regex = "/^(?:(?<node>{$node})@)?(?<domain>{$domain})(?:\/(?<resource>{$resource}))?\$/";
+		$result = false;
+
+		if (preg_match($regex, $jid, $match)) {
+			$result = array();
+			$result['node'] = empty($match['node']) ? null : $match['node'];
+			$result['domain'] = empty($match['domain']) ? null : $match['domain'];
+			$result['resource'] = empty($match['resource']) ? null : $match['resource'];
+		}
+
+		return $result;
+	}
+
 	function sanitize_name($text)
 	{
 		global $tikilib;
@@ -117,12 +181,11 @@ class XMPPLib extends TikiLib
 			return [];
 		}
 
-		$login = $this->get_user_login($user);
-		$xmpp_username = $login['username'];
-		$xmpp_password = $login['password'];
+		$xmpp = $this->get_user_connection_info($user);
 		$xmpp_prebind_class = XmppPrebind;
 
-		$use_tikitoken = $xmpp_username === $user
+		$use_tikitoken = $xmpp['username'] === $user
+			&& $xmpp['domain'] === $this->server_host
 			&& !empty($prefs['xmpp_openfire_use_token'])
 			&& $prefs['xmpp_openfire_use_token'] === 'y';
 
@@ -136,23 +199,23 @@ class XMPPLib extends TikiLib
 					'createUser' => 'n',
 				]
 			);
-			$xmpp_password = "$token";
+			$xmpp['password'] = "$token";
 			$xmpp_prebind_class = TikiXmppPrebind;
 		} else {
-			if (empty($xmpp_password)) {
+			if (empty($xmpp['password'])) {
 				return [];
 			}
 		}
 
 		$xmppPrebind = new $xmpp_prebind_class(
-			$this->server_host,
-			$this->server_http_bind,
+			$xmpp['domain'],
+			$xmpp['http_bind'],
 			$resource_name,
 			false,
 			false
 		);
 
-		$xmppPrebind->connect($xmpp_username, $xmpp_password);
+		$xmppPrebind->connect($xmpp['username'], $xmpp['password']);
 
 		try {
 			$xmppPrebind->auth();
@@ -188,7 +251,7 @@ class XMPPLib extends TikiLib
 		$headerlib = TikiLib::lib('header');
 		$xmpplib = TikiLib::lib('xmpp');
 
-		$jid = $xmpplib->get_user_jid($user);
+		$xmpp = $xmpplib->get_user_connection_info($user);
 
 		$js = '';
 		$cssjs = '';
@@ -204,8 +267,8 @@ class XMPPLib extends TikiLib
 				break;
 			case 'embedded':
 				// TODO: remove this a line after fixing conversejs
-				$js .= 'delete sessionStorage["converse.chatboxes-' . $jid . '"];';
-				$js .= 'delete sessionStorage["converse.chatboxes-' . $jid . '-controlbox"];';
+				$js .= 'delete sessionStorage["converse.chatboxes-' . $xmpp['jid'] . '"];';
+				$js .= 'delete sessionStorage["converse.chatboxes-' . $xmpp['jid'] . '-controlbox"];';
 				$css_files = ['converse.css', 'converse-muc-embedded.css'];
 				break;
 			case 'mobile':
@@ -225,21 +288,19 @@ class XMPPLib extends TikiLib
 		}
 
 		$options = [
-			'bosh_service_url' => $xmpplib->getServerHttpBind(),
-			'jid' => $jid,
-			'authentication' => 'prebind',
-			'prebind_url' => TikiLib::lib('service')->getUrl([
-				'controller' => 'xmpp',
+			'authentication'   => 'prebind',
+			'bosh_service_url' => $xmpp['http_bind'],
+			'debug'            => $prefs['xmpp_conversejs_debug'] === 'y',
+			'jid'              => $xmpp['jid'],
+			'nickname'         => $xmpp['nickname'],
+			'prebind_url'      => TikiLib::lib('service')->getUrl([
 				'action' => 'prebind',
+				'controller' => 'xmpp',
 			]),
+			'use_emojione'     => false,
+			'view_mode'        => $params['view_mode'],
 			'whitelisted_plugins' => ['tiki'],
-			'view_mode' => $params['view_mode'],
-			'debug' => $prefs['xmpp_conversejs_debug'] === 'y',
-			'use_emojione' => false
 		];
-
-		$options['nickname'] = trim($tikilib->get_user_preference($user, 'realName', ''));
-		$options['nickname'] = $options['nickname'] ?: $user;
 
 		if ($params['room']) {
 			$options['auto_login'] = true;
