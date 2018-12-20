@@ -24,13 +24,22 @@ class System implements HandlerInterface
 		}
 	}
 
-	function getFileWrapper($data, $path)
+	function getFileWrapper($file)
 	{
-		return $this->real->getFileWrapper($data, $path);
+		return $this->real->getFileWrapper($file);
 	}
 
-	function delete($data, $path)
+	function delete($file)
 	{
-		return $this->real->delete($data, $path);
+		return $this->real->delete($file);
+	}
+
+	function uniquePath($file)
+	{
+		return $this->real->uniquePath($file);
+	}
+
+	function isWritable() {
+		return $this->real->isWritable();
 	}
 }

@@ -402,24 +402,17 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 			$mimeType = $response->getHeaders()->get('Content-type');
 
 			if ($response->isSuccess()) {
-				$fileId = $filegallib->insert_file(
-					$galleryId,
-					$attachment['name'],
-					'',
-					$attachment['fileName'],
-					$data,
-					$size->getFieldValue(),
-					$mimeType->getFieldValue(),
-					$attachment['author'],
-					'',
-					'',
-					$attachment['author']
-				);
+				$file = new Tiki\FileGallery\File([
+					'galleryId' => $galleryId,
+					'author' => $attachment['author'],
+					'user' => $attachment['author'],
+				]);
+				$fileId = $file->replace($data, $mimeType->getFieldValue(), $attachment['name'], $attachment['fileName']);
 
 				$this->newFiles[] = [
-								'fileId' => $fileId,
-								'oldUrl' => $attachment['link'],
-								'sizes' => isset($attachment['sizes']) ? $attachment['sizes'] : ''
+					'fileId' => $fileId,
+					'oldUrl' => $attachment['link'],
+					'sizes' => isset($attachment['sizes']) ? $attachment['sizes'] : ''
 				];
 
 				$this->saveAndDisplayLog(tr('Attachment %0 successfully imported!', $attachment['fileName']) . "\n");

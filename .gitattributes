@@ -2974,6 +2974,7 @@ lib/core/Tiki/Event/Manager.php -text
 lib/core/Tiki/Event/index.php -text
 lib/core/Tiki/FileGallery/Definition.php -text
 lib/core/Tiki/FileGallery/File.php -text
+lib/core/Tiki/FileGallery/FileDraft.php -text
 lib/core/Tiki/FileGallery/FileWrapper/PhysicalFile.php -text
 lib/core/Tiki/FileGallery/FileWrapper/PreloadedContent.php -text
 lib/core/Tiki/FileGallery/FileWrapper/WrapperInterface.php -text
@@ -2984,6 +2985,7 @@ lib/core/Tiki/FileGallery/Handler/Podcast.php -text
 lib/core/Tiki/FileGallery/Handler/Preloaded.php -text
 lib/core/Tiki/FileGallery/Handler/System.php -text
 lib/core/Tiki/FileGallery/Handler/index.php -text
+lib/core/Tiki/FileGallery/ImageTransformer.php -text
 lib/core/Tiki/FileGallery/index.php -text
 lib/core/Tiki/Log.php -text
 lib/core/Tiki/MailIn/Account.php -text
@@ -4506,6 +4508,9 @@ lib/test/core/Services/index.php -text
 lib/test/core/Tiki/Command/ProfileExport/Fixtures/test.yml -text
 lib/test/core/Tiki/Command/ProfileExport/Fixtures/testTrackerItemExportResult.yml -text
 lib/test/core/Tiki/Command/ProfileExport/Fixtures/testTrackerItemExportWithoutFieldsResult.yml -text
+lib/test/core/Tiki/FileGallery/DefinitionTest.php -text
+lib/test/core/Tiki/FileGallery/FileDraftTest.php -text
+lib/test/core/Tiki/FileGallery/FileTest.php -text
 lib/test/core/Tiki/Package/ComposerCliTest.php -text
 lib/test/core/Tiki/Package/ComposerManagerTest.php -text
 lib/test/core/Tiki/Package/Fixtures/CasperJsComposer.json -text

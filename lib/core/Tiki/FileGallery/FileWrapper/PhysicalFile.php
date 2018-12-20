@@ -20,14 +20,56 @@ class PhysicalFile implements WrapperInterface
 
 	function getReadableFile()
 	{
-		$savedir = $this->basePath;
-		return $savedir . '/' . $this->path;
+		return $this->fullPath();
 	}
 
 	function getContents()
 	{
-		$tmpfname = $this->basePath . '/' . $this->path;
+		$tmpfname = $this->fullPath();
 
 		return \file_get_contents($tmpfname);
+	}
+
+	function getChecksum()
+	{
+		$tmpfname = $this->fullPath();
+		if (filesize($tmpfname) > 0) {
+			return md5_file($tmpfname);
+		} else {
+			return md5(time());
+		}
+	}
+
+	function getSize() {
+		return filesize($this->fullPath());
+	}
+
+	function isFileLocal() {
+		return true;
+	}
+
+	function replaceContents($data) {
+		$dest = $this->fullPath();
+		if(is_writable($this->basePath) && (! file_exists($dest) || is_writable($dest))) {
+			$result = file_put_contents($dest, $data);
+		} else {
+			$result = false;
+		}
+		if ($result === false) {
+			\Feedback::error(tr("Unable to write to destination path: %s", $dest));
+		}
+	}
+
+	function getStorableContent() {
+		return [
+			'data' => null,
+			'path' => $this->path,
+			'filesize' => $this->getSize(),
+			'hash' => $this->getChecksum(),
+		];
+	}
+
+	private function fullPath() {
+		return $this->basePath . '/' . $this->path;
 	}
 }

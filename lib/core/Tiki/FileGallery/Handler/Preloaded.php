@@ -11,12 +11,20 @@ use Tiki\FileGallery\FileWrapper\PreloadedContent;
 
 class Preloaded implements HandlerInterface
 {
-	function getFileWrapper($data, $path)
+	function getFileWrapper($file)
 	{
-		return new PreloadedContent($data);
+		return new PreloadedContent($file->data);
 	}
 
-	function delete($data, $path)
+	function delete($file)
 	{
 	}
+
+  function uniquePath($file) {
+    return $file->path;
+  }
+
+  function isWritable() {
+    return true;
+  }
 }

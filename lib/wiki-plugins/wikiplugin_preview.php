@@ -83,8 +83,8 @@ function wikiplugin_preview($data, $params)
 
 	$fileGalleryLib = TikiLib::lib('filegal');
 	$userLib = TikiLib::lib('user');
-	$info = $fileGalleryLib->get_file($fileId);
-	if (! $info || ! $userLib->user_has_perm_on_object($user, $info['fileId'], 'file', 'tiki_p_download_files')) {
+	$file = \Tiki\FileGallery\File::id($fileId);
+	if (! $file->exists() || ! $userLib->user_has_perm_on_object($user, $file->fileId, 'file', 'tiki_p_download_files')) {
 		return;
 	}
 
@@ -112,31 +112,8 @@ function wikiplugin_preview($data, $params)
 		return $smartyLib->fetch('wiki-plugins/wikiplugin_preview.tpl');
 	}
 
-	$filePath = '';
-	$fileMd5 = '';
-	if (! empty($info['path'])) {
-		if ($fileGalleryLib->isPodCastGallery($info['galleryId'])) {
-			$filePath = $prefs['fgal_podcast_dir'] . $info['path'];
-		} else {
-			$filePath = $prefs['fgal_use_dir'] . $info['path'];
-		}
-		if (is_readable($filePath)) {
-			$fileStats = stat($filePath);
-			$lastModified = $fileStats['mtime'];
-			$fileMd5 = empty($info['hash']) ?
-				md5($fileStats['mtime'] . '=' . $fileStats['ino'] . '=' . $fileStats['size'])
-				: md5($info['hash'] . $lastModified);
-		} else {
-			// File missing or not readable
-			return;
-		}
-	} elseif (! empty($info['data'])) {
-		$lastModified = $info['lastModif'];
-		$fileMd5 = empty($info['hash']) ? md5($info['data']) : md5($info['hash'] . $lastModified);
-	} else {
-		// Empty content
-		return;
-	}
+	$filePath = $file->getWrapper()->getReadableFile();
+	$fileMd5 = $file->getWrapper()->getChecksum();
 
 	session_write_close(); // close the session in case of large transcode/downloads to enable further browsing
 	while (ob_get_level() > 1) {
@@ -163,17 +140,6 @@ function wikiplugin_preview($data, $params)
 	unset($content_temp);
 
 	if ($buildContent) {
-		$sourceNeedsClean = false;
-		if (empty($filePath)) {
-			$filePath = $tikipath . DIRECTORY_SEPARATOR
-				. 'temp' . DIRECTORY_SEPARATOR
-				. 'cache' . DIRECTORY_SEPARATOR
-				. $tikidomain . DIRECTORY_SEPARATOR
-				. 'source_' . $cacheType . $cacheName;
-			file_put_contents($filePath, $info['data']);
-			$sourceNeedsClean = true;
-		}
-
 		$newFileExtension = $animation ? '.gif' : '.png';
 		$newFilePath = $tikipath . DIRECTORY_SEPARATOR
 			. 'temp' . DIRECTORY_SEPARATOR
@@ -191,7 +157,7 @@ function wikiplugin_preview($data, $params)
 		$_ENV['HOME'] = $tikipath . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $tikidomain;
 
 		$guesser = new Guesser();
-		$guesser->add($filePath, $info['filetype']);
+		$guesser->add($filePath, $file->filetype);
 		MimeTypeGuesser::getInstance()->register($guesser);
 
 		$alchemy = new AlchemyLib();
@@ -208,10 +174,6 @@ function wikiplugin_preview($data, $params)
 			$content = file_get_contents($newFilePath);
 		}
 		unlink($newFilePath);
-
-		if ($sourceNeedsClean) {
-			unlink($filePath);
-		}
 
 		if (empty($content)) {
 			return;

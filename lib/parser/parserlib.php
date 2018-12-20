@@ -3385,47 +3385,24 @@ class ParserLib extends TikiDb_Bridge
 		preg_match_all('/data-type="file" data-object="(\d+)/', $content, $matchFiles);
 		if (! empty($matchFiles[1])) {
 			$fileIds = $matchFiles[1];
-			$fileGalleryLib = TikiLib::lib('filegal');
 			$userLib = TikiLib::lib('user');
 			$guesser = new Guesser();
 			MimeTypeGuesser::getInstance()->register($guesser);
 			foreach ($fileIds as $fileId) {
-				$info = $fileGalleryLib->get_file($fileId);
-				if (empty($info)) {
+				$file = \Tiki\FileGallery\File::id($fileId);
+				if (! $file->exists()) {
 					continue;
 				}
-				if (! $userLib->user_has_perm_on_object($user, $info['galleryId'], 'file gallery', 'tiki_p_download_files')) {
+				if (! $userLib->user_has_perm_on_object($user, $file->fileId, 'file', 'tiki_p_download_files')) {
 					continue;
 				}
 				$search = 'data-type="file" data-object="' . $fileId . '"';
-				if (strpos($info['filetype'], 'image') !== false) {
+				if (strpos($file->filetype, 'image') !== false) {
 					$popup = 'data-type="file" data-object="' . $fileId . '" data-toggle="popover" data-trigger="hover focus" data-content="<img src=\'tiki-download_file.php?fileId=' . $fileId . '&amp;thumbnail\'>" data-html="1"';
 					$content = str_replace($search, $popup, $content);
 				} else {
-					$filePath = '';
-					$fileMd5 = '';
-					if (! empty($info['path'])) {
-						$filePath = $prefs['fgal_use_dir'] . $info['path'];
-						if ($fileGalleryLib->isPodCastGallery($info['galleryId'])) {
-							$filePath = $prefs['fgal_podcast_dir'] . $info['path'];
-						}
-						if (is_readable($filePath)) {
-							$fileStats = stat($filePath);
-							$lastModified = $fileStats['mtime'];
-							$fileMd5 = empty($info['hash']) ?
-								md5($fileStats['mtime'] . '=' . $fileStats['ino'] . '=' . $fileStats['size'])
-								: md5($info['hash'] . $lastModified);
-						} else {
-							// File missing or not readable
-							continue;
-						}
-					} elseif (! empty($info['data'])) {
-						$lastModified = $info['lastModif'];
-						$fileMd5 = empty($info['hash']) ? md5($info['data']) : md5($info['hash'] . $lastModified);
-					} else {
-						// Empty content
-						continue;
-					}
+					$filePath = $file->getWrapper()->getReadableFile();
+					$fileMd5 = $file->getWrapper()->getChecksum();
 
 					$cacheLib = TikiLib::lib('cache');
 					$cacheName = $fileMd5;
@@ -3442,14 +3419,12 @@ class ParserLib extends TikiDb_Bridge
 						// set a proper home folder
 						$_ENV['HOME'] = $tikipath . DIRECTORY_SEPARATOR . 'temp' . DIRECTORY_SEPARATOR . 'cache' . DIRECTORY_SEPARATOR . $tikidomain;
 
-						$sourceFile = 'temp/source_' . $fileId;
 						$targetFile = 'temp/target_' . $fileId . '.png';
-						file_put_contents($sourceFile, $info['data']);
 
-						$guesser->add($sourceFile, $info['filetype']);
+						$guesser->add($filePath, $file->filetype);
 
 						$alchemy = new Tiki\Lib\Alchemy\AlchemyLib();
-						$alchemy->convertToImage($sourceFile, $targetFile, '200px', '400px', false);
+						$alchemy->convertToImage($filePath, $targetFile, '200px', '400px', false);
 
 						// Restore the environment
 						if ($envHomeDefined) {
@@ -3464,7 +3439,6 @@ class ParserLib extends TikiDb_Bridge
 							$cacheLib->cacheItem($cacheName, $cacheContent, $cacheType);
 							unlink($targetFile);
 						}
-						unlink($sourceFile);
 					}
 
 					if ($cacheLib->isCached($cacheName, $cacheType)) {

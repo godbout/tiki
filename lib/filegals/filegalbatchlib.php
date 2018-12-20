@@ -220,104 +220,36 @@ class FilegalBatchLib extends FileGalLib
 				}
 			}
 
-			$result = $this->handle_batch_upload(
-				$destinationGalleryId,
-				[
-							'source' => $file,
-							'size' => $filesize,
-							'type' => $type,
-							'name' => $path_parts['basename'],
-					],
-				$ext
-			);
-
-			if (isset($result['error'])) {
-				$feedback[] = '<span class="text-danger">' . tr('Upload was not successful for "%0"', $path_parts['basename']) . '<br>(' . $result['error'] . ')</span>';
+			// if subToDesc is set, set description:
+			if ($options['subToDesc']) {
+				// get last subdir 'last' from 'some/path/last'
+				$tmpDesc = preg_replace('/.*([^\/]*)\/([^\/]+)$/U', '$1', substr($file, strlen($filesPath)));
 			} else {
-				// if subToDesc is set, set description:
-				if ($options['subToDesc']) {
-					// get last subdir 'last' from 'some/path/last'
-					$tmpDesc = preg_replace('/.*([^\/]*)\/([^\/]+)$/U', '$1', substr($file, strlen($filesPath)));
-				} else {
-					$tmpDesc = '';
-				}
-				// get filename
-				$name = $path_parts['basename'];
+				$tmpDesc = '';
+			}
+			// get filename
+			$name = $path_parts['basename'];
 
-				$fileId = $this->insert_file(
-					$destinationGalleryId,
-					$name,
-					$tmpDesc,
-					$name,
-					$result['data'],
-					$filesize,
-					$type,
-					$creator,
-					$result['fhash'],
-					null,
-					null,
-					null,
-					null,
-					$options['deleteAfter'],
-					null,
-					$metadata
-				);
-				if ($fileId) {
-					$feedback[] = tra('Upload was successful') . ': ' . $name;
-					@unlink($file);    // seems to return false sometimes even if the file was deleted
-					if (! file_exists($file)) {
-						$feedback[] = sprintf(tra('File %s removed from Batch directory.'), $file);
-					} else {
-						$feedback[] = '<span class="text-danger">' . sprintf(tra('Impossible to remove file %s from Batch directory.'), $file) . '</span>';
-					}
+			$tikiFile = new Tiki\FileGallery\File([
+				'galleryId' => $destinationGalleryId,
+				'description' => $tmpDesc,
+				'user' => $creator,
+				'deleteAfter' => $options['deleteAfter'],
+				'metadata' => $metadata,
+			]);
+			$fileId = $tikiFile->replace(file_get_contents($file), $type, $name, $name);
+
+			if ($fileId) {
+				$feedback[] = tra('Upload was successful') . ': ' . $name;
+				@unlink($file);    // seems to return false sometimes even if the file was deleted
+				if (! file_exists($file)) {
+					$feedback[] = sprintf(tra('File %s removed from Batch directory.'), $file);
+				} else {
+					$feedback[] = '<span class="text-danger">' . sprintf(tra('Impossible to remove file %s from Batch directory.'), $file) . '</span>';
 				}
 			}
 		}
 		return $feedback;
-	}
-
-	/**
-	 *	Takes a local file and prepares it for addition to a file gallery
-	 *
-	 * @param int $galleryId
-	 * @param array $info		[source, size, type, name]
-	 * @param string $ext		file extension
-	 *
-	 * @return array			[data,fhash[,error]]
-	 */
-	function handle_batch_upload($galleryId, $info, $ext = '')
-	{
-		$savedir = $this->get_gallery_save_dir($galleryId);
-
-		$fhash = null;
-		$data = null;
-
-		if ($savedir) {
-			$fhash = $this->find_unique_name($savedir, $info['name']);
-
-			if (in_array($ext, ["m4a", "mp3", "mov", "mp4", "m4v", "pdf"])) {
-				$fhash .= "." . $ext;
-			}
-
-			if (! rename($info['source'], $savedir . $fhash)) {
-				if (is_writable(dirname($info['source']))) {
-					return ['error' => tra('Cannot write to this file:') . $savedir . $fhash];
-				} else {
-					return ['error' => tra('Cannot move this file:') . $info['source']];
-				}
-			}
-		} else {
-			$data = file_get_contents($info['source']);
-
-			if (false === $data) {
-				return ['error' => tra('Cannot read file on disk.')];
-			}
-		}
-
-		return [
-			'data' => $data,
-			'fhash' => $fhash,
-		];
 	}
 
 	/**

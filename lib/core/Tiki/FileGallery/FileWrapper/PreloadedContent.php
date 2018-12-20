@@ -47,4 +47,30 @@ class PreloadedContent implements WrapperInterface
 	{
 		return $this->data;
 	}
+
+	function getChecksum()
+	{
+		return md5($this->data);
+	}
+
+	function getSize() {
+		return function_exists('mb_strlen') ? mb_strlen($this->data, '8bit') : strlen($this->data);
+	}
+
+	function isFileLocal() {
+		return false;
+	}
+
+	function replaceContents($data) {
+		$this->data = $data;
+	}
+
+	function getStorableContent() {
+		return [
+			'data' => $this->data,
+			'path' => null,
+			'filesize' => $this->getSize(),
+			'hash' => $this->getChecksum(),
+		];
+	}
 }

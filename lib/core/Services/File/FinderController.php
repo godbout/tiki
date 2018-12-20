@@ -185,7 +185,7 @@ class Services_File_FinderController
 			if ($input->insertion_syntax->text()) {
 				$params['insertion_syntax'] = $input->insertion_syntax->text();
 			}
-			$info['wiki_syntax'] = $filegallib->getWikiSyntax($info['galleryId'], $info, $params);
+			$info['wiki_syntax'] = $filegallib->getWikiSyntax($info['galleryId'], empty($info['fileId']) ? [] : $info, $params);
 			$info['data'] = '';	// binary data makes JSON fall over
 			return $info;
 		} elseif ($input->cmd->text() === 'file') {

@@ -38,7 +38,7 @@ if (! empty($_REQUEST['updateMime'])) {
 	$files = $filegallib->table('tiki_files');
 	$rows = $files->fetchAll(['fileId', 'filename', 'filetype'], ['archiveId' => 0, 'filetype' => 'application/octet-stream']);
 	foreach ($rows as $row) {
-		$t = $filegallib->fixMime($row);
+		$t = $filegallib->fixMime($row['filetype'], $row['filename']);
 		if ($t != 'application/octet-stream') {
 			$files->update(['filetype' => $t], ['fileId' => $row['fileId']]);
 		}

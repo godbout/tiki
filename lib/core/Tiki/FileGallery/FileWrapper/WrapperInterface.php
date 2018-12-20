@@ -19,4 +19,31 @@ interface WrapperInterface
 	 * Returns the content of the file as a string.
 	 */
 	function getContents();
+
+  /**
+   * Returns the file checksum.
+   */
+  function getChecksum();
+
+  /**
+   * Get file size in bytes.
+   */
+  function getSize();
+
+  /**
+   * Is the file available on the local filesystem?
+   */
+  function isFileLocal();
+
+  /**
+   * Replace file contents.
+   */
+  function replaceContents($data);
+
+  /**
+   * Get Tiki database storable content of this file.
+   * Implementations can use data, path, filesize, etc. db columns.
+   * If needed, more columns can be added.
+   */
+  function getStorableContent();
 }

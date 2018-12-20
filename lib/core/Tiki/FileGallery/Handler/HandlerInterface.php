@@ -9,7 +9,24 @@ namespace Tiki\FileGallery\Handler;
 
 interface HandlerInterface
 {
-	function getFileWrapper($data, $path);
+  /**
+   * Returns a FileWrapper\WrapperInterface for accessing and modifying the file contents
+   * and metadata.
+   */
+	function getFileWrapper($file);
 
-	function delete($data, $path);
+  /**
+   * Deletes a file from the underlying storage.
+   */
+	function delete($file);
+
+  /**
+   * Ensures unique filename is available for new files if underlying storage requires it.
+   */
+  function uniquePath($file);
+
+  /**
+   * Is the underlying storage location writable.
+   */
+  function isWritable();
 }

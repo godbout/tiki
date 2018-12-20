@@ -118,7 +118,12 @@ class Search_Action_FileGalleryChangeFilename implements Search_Action_Action
 			$newUser = $user ?: $file['user'];
 			$newName = $this->generateString($value, $file, $galInfo, $info, $fieldDefinition);
 			if ($in_place) {
-				$fileGal->update_file($fileId, $newName, $file['description'], $newUser, null, $newName);
+				$fileGal->update_file($fileId, [
+					'name' => $newName,
+					'description' => $file['description'],
+					'lastModifUser' => $newUser,
+					'filename' => $newName
+				]);
 			} else {
 				$newFileList[] = $fileGal->update_single_file(
 					$galInfo,

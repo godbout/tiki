@@ -12,15 +12,6 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 
 class ScormLib
 {
-	private $unlinkList = [];
-
-	function __destruct()
-	{
-		foreach ($this->unlinkList as $file) {
-			unlink($file);
-		}
-	}
-
 	function handle_file_creation($args)
 	{
 		if ($metadata = $this->getRequestMetadata($args)) {
@@ -61,8 +52,10 @@ class ScormLib
 	{
 		$metadata = null;
 
+		$file = \Tiki\FileGallery\File::id($args['object']);
+
 		if ($this->isZipFile($args)
-			&& $zip = $this->getZipFile($args['object'])) {
+			&& $zip = $this->getZipFile($file)) {
 			if ($manifest = $this->getScormManifest($zip)) {
 				$metadata = $this->getMetadata($manifest);
 			}
@@ -82,7 +75,7 @@ class ScormLib
 		return in_array($args['filetype'], ['application/zip', 'application/x-zip', 'application/x-zip-compressed']);
 	}
 
-	private function getZipFile($fileId)
+	private function getZipFile($file)
 	{
 		global $prefs;
 
@@ -90,21 +83,9 @@ class ScormLib
 			return null;
 		}
 
-		$filegallib = TikiLib::lib('filegal');
-
-		if (! $info = $filegallib->get_file_info($fileId, false, true, false)) {
-			return null;
-		}
-
 		$zip = new ZipArchive;
 
-		if ($info['path'] && $prefs['fgal_use_db'] == 'n') {
-			$filepath = $prefs['fgal_use_dir'] . $info['path'];
-		} else {
-			$filepath = tempnam('temp/', 'scorm');
-			file_put_contents($filepath, $info['data']);
-			$this->unlinkList[] = $filepath;
-		}
+		$filepath = $file->getWrapper()->getReadableFile();
 
 		if ($zip->open($filepath) === true) {
 			return $zip;

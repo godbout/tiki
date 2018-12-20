@@ -61,43 +61,13 @@ class File extends DAV\File {
 
 		$info = Utilities::parseContents($this->file->filename, $data);
 
-		TikiLib::lib('filegal')->replace_file(
-			$this->file->fileId,
-			$this->file->name,
-			$this->file->description,
-			$this->file->filename,
-			$info['content'],
-			$info['filesize'],
-			$info['mime'],
-			$this->file->author,
-			$this->file->path,
-			'',
-			$this->file->galleryDefinition()->getInfo(),
-			true,
-			$this->file->author,
-			$this->file->created
-		);
+		$this->file->replaceFull($info['content'], $info['mime'], $this->file->name, $this->file->filename, true);
 	}
 
 	function setName($name) {
 		Utilities::checkUploadPermission($this->file->galleryDefinition());
 
-		TikiLib::lib('filegal')->replace_file(
-			$this->file->fileId,
-			$name,
-			$this->file->description,
-			$name,
-			$this->file->data,
-			$this->file->filesize,
-			$this->file->filetype,
-			$this->file->author,
-			$this->file->path,
-			'',
-			$this->file->galleryDefinition()->getInfo(),
-			true,
-			$this->file->author,
-			$this->file->created
-		);
+		$this->file->replaceFull($this->file->data, $this->file->filetype, $name, $name, true);
 	}
 
 	function delete() {

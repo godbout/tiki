@@ -63,12 +63,6 @@ class FilesMoveCommand extends Command
 			throw new \Exception(tra('File Move: Destination path required'));
 		}
 
-		$sourcePath = $filegallib->get_gallery_save_dir($galleryId);
-		// in the unlikely case where fgal_use_db was once !== 'y' and then became == 'y'
-		if (empty($sourcePath)) {
-			$sourcePath = $prefs['fgal_use_dir'];
-		}
-
 		$files = $filegallib->get_files_info_from_gallery_id($galleryId);
 		if (! $files) {
 			if ($output->getVerbosity() > OutputInterface::VERBOSITY_NORMAL) {
@@ -90,7 +84,7 @@ class FilesMoveCommand extends Command
 			$output->writeln('<comment>' . tra('File Move starting...') . '</comment>');
 		}
 
-		$feedback = $filegalcopylib->processCopy($files, $destinationPath, $sourcePath, true);
+		$feedback = $filegalcopylib->processCopy($files, $destinationPath, true);
 
 		foreach ($feedback as $message) {
 			$error = strpos($message, '<span class="text-danger">') !== false;

@@ -16,4 +16,22 @@ class Podcast extends FileSystem
 		global $prefs;
 		parent::__construct($prefs['fgal_podcast_dir']);
 	}
+
+  function uniquePath($file) {
+    if (! empty($file->path)) {
+      return $file->path;
+    }
+    // for podcast galleries add the extension so the
+    // file can be called directly if name is known,
+    $extension = '';
+    $path_parts = pathinfo($file->name);
+    if (in_array(strtolower($path_parts['extension']), ['m4a', 'mp3', 'mov', 'mp4', 'm4v', 'pdf', 'flv', 'swf', 'wmv'])) {
+      $extension = '.' . strtolower($path_parts['extension']);
+    }
+    $fhash = md5($file->name);
+    while (file_exists($this->directory . '/' . $fhash . $extension)) {
+      $fhash = md5(uniqid($fhash));
+    }
+    return $fhash . $extension;
+  }
 }

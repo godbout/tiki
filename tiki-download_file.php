@@ -154,36 +154,20 @@ while (ob_get_level() > 1) {
 	ob_end_clean();
 }// Be sure output buffering is turned off
 
-$content_changed = false;
-$content = &$info['data'];
+$file = new \Tiki\FileGallery\File($info);
+$wrapper = $file->getWrapper();
 
-$md5 = '';
-$filepath = '';
-if (! empty($info['path'])) {
-	if (! $skip and $filegallib->isPodCastGallery($info['galleryId'])) {
-		$filepath = $prefs['fgal_podcast_dir'] . $info['path'];
-	} else {
-		$filepath = $prefs['fgal_use_dir'] . $info['path'];
-	}
-	if (is_readable($filepath)) {
-		$file_stats = stat($filepath);
-		$last_modified = $file_stats['mtime'];
-		$md5 = empty($info['hash']) ?
-			md5($file_stats['mtime'] . '=' . $file_stats['ino'] . '=' . $file_stats['size'])
-			: md5($info['hash'] . $last_modified);
-	} else {
-		// File missing or not readable
-		header("HTTP/1.0 404 Not Found");
-		header('Content-Type: text/plain');
-		echo "Unable to access file: " . ($tiki_p_admin == 'y' ? $filepath : $info['path']);
-		die;
-	}
-} elseif (! empty($content)) {
-	$last_modified = $info['lastModif'];
-	$md5 = empty($info['hash']) ? md5($content) : md5($info['hash'] . $last_modified);
+$content_changed = false;
+$md5 = $wrapper->getChecksum();
+$last_modified = $file->lastModif;
+
+// local files can be read and served in chunks
+if ($wrapper->isFileLocal()) {
+	$filepath = $wrapper->getReadableFile();
+	$content = '';
 } else {
-	// Empty content
-	die;
+	$filepath = '';
+	$content = $wrapper->getContents();
 }
 
 $scale = 0;
@@ -300,7 +284,7 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 				$tryIconFallback = false;
 
 				if (isset($_GET['icon'])) {
-					unset($info['path']);
+					unset($filepath);
 					$content = null; // Explicitely free memory before generating icon
 
 					if (isset($_GET['max'])) {
@@ -320,8 +304,8 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 				}
 
 				if (! isset($_GET['icon']) || ( isset($_GET['format']) && $_GET['format'] != $format )) {
-					if (! empty($info['path'])) {
-						$image = Image::create($prefs['fgal_use_dir'] . $info['path'], true, $format);
+					if (! empty($filepath)) {
+						$image = Image::create($filepath, true, $format);
 					} else {
 						$image = Image::create($content, false, $format);
 						$content = null; // Explicitely free memory before getting cache
@@ -349,12 +333,9 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 							if (empty($info_thumb)) {
 								$info_thumb = $filegallib->get_file($_GET['thumbnail']);
 							}
-							if (! empty($info_thumb['path'])) {
-								$image = Image::create($prefs['fgal_use_dir'] . $info_thumb['path'], true);
-							} else {
-								$image = Image::create($info_thumb['data']);
-								$content = null; // Explicitely free memory before getting cache
-							}
+							$file_thumb = new \Tiki\TikiFile\File($info_thumb);
+							$image = Image::create($file_thumb->getContents());
+							$content = null; // Explicitely free memory before getting cache
 							if ($image->isEmpty()) {
 								die;
 							}

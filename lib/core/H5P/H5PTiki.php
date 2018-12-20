@@ -1387,26 +1387,12 @@ GROUP BY l.`name`, l.`major_version`, l.`minor_version`');
 			Feedback::error(tr('Exporting H5P content %0 failed', $content['id']));
 		}
 
-		$filegallib = TikiLib::lib('filegal');
-		$info = $filegallib->get_file($content['file_id']);
 		$this->isSaving = true;
-		$result = $filegallib->insert_file(
-			$prefs['h5p_filegal_id'],
-			$content['title'],
-			tr('Created by H5P'),
-			TikiLib::remove_non_word_characters_and_accents($content['title']) . '.h5p',
-			file_get_contents($exportedFile),
-			filesize($exportedFile),
-			'application/zip',
-			$user,
-			$exportedFile,
-			'',
-			$user,
-			$info['created'],
-			null,
-			null,
-			$content['file_id']
-		);
+		$file = Tiki\FileGallery\File::id($content['file_id']);
+		$file->replace(file_get_contents($exportedFile), 'application/zip', $content['title'], TikiLib::remove_non_word_characters_and_accents($content['title']) . '.h5p');
+		$file->setParam('user', $user);
+		$file->setParam('author', $user);
+		$result = $file->replace(file_get_contents($exportedFile), 'application/zip', $content['title'], TikiLib::remove_non_word_characters_and_accents($content['title']) . '.h5p');
 		$this->isSaving = false;
 
 		if (! $result) {

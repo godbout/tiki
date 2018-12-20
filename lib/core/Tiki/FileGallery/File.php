@@ -9,6 +9,14 @@ namespace Tiki\FileGallery;
 
 use TikiLib;
 
+/**
+ * A basic file representation in Tiki. Includes params needed to store back contents
+ * in database. Includes methods to retrieve and store/replace contents of the file
+ * regardless of underlying storage method.
+ * Two basic ways of using it:
+ * 1. File::id(fileId) - load existing file from database.
+ * 2. new File(fileInfo) - create a new file or load a file out of an info array from db
+ */
 class File
 {
 	public $param = [
@@ -32,6 +40,7 @@ class File
 		"reference_url" => "",
 		"is_reference" 	=> false,
 		"hash" 		=> "",
+		"metadata" => "",
 		"search_data" 	=> "",
 		"lastModif" 	=> 0,
 		"lastModifUser" => "",
@@ -40,10 +49,12 @@ class File
 		"archiveId"	=> 0,
 		"deleteAfter" 	=> 0,
 		"backlinkPerms"	=> "",
+		"ocr_state" => "",
 	];
-	public $exists = false;
+	private $exists = false;
+	private $wrapper = null;
 
-	function __construct()
+	function __construct($params = [])
 	{
 		global $mimetypes;
 		include_once('lib/mime/mimetypes.php');
@@ -52,10 +63,16 @@ class File
 		$this->setParam('name', tr("New File"));
 		$this->setParam('description', tr("New File"));
 		$this->setParam('filename', tr("New File"));
+
+		$this->init($params);
 	}
 
 	function __get($name) {
 		return $this->getParam($name);
+	}
+
+	function __isset($name) {
+		return isset($this->param[$name]);
 	}
 
 	static function filename($filename = "")
@@ -74,17 +91,34 @@ class File
 		return $me;
 	}
 
+	/**
+	 * Facade method to instantiate a File object based on the db fileId
+	 */
 	static function id($id = 0)
 	{
-		$me = new self();
-
-		$me->param = TikiLib::lib("filegal")->get_file((int)$id);
-
-		if ($me->getParam('created') > 0) {
-			$me->exists = true;
-		}
-
+		$me = new self(TikiLib::lib("filegal")->get_file((int)$id));
 		return $me;
+	}
+
+	function clone() {
+		$params = $this->getParams();
+		unset($params['fileId']);
+		return new self($params);
+	}
+
+	function init($params) {
+		foreach ($params as $key => $val) {
+			$this->setParam($key, $val);
+		}
+		if ($this->getParam('created') > 0) {
+			$this->exists = true;
+		}
+	}
+
+	function validateDraft($draft) {
+		foreach ($draft->getParams() as $key => $val) {
+			$this->setParam($key, $val);
+		}
 	}
 
 	function setParam($param = "", $value)
@@ -96,6 +130,19 @@ class File
 	function getParam($param = "")
 	{
 		return $this->param[$param];
+	}
+
+	function getParams() {
+		return $this->param;
+	}
+
+	/**
+	 * Retrieve parameters to be saved in files db table.
+	 */
+	function getParamsForDB() {
+		return array_filter($this->param, function($key){
+			return $key != 'backlinkPerms';
+		}, ARRAY_FILTER_USE_KEY);
 	}
 
 	function archive($archive = 0)
@@ -130,39 +177,49 @@ class File
 		return $archives;
 	}
 
-	function replace($data)
+	// TODO: analyze do we really need 3 differnet ways to replace/update files and merge into one
+	function replace($data, $type = null, $name = null, $filename = null, $resizex = null, $resizey = null, $ocrFile = null)
 	{
 		global $user;
 
 		$user = (! empty($user) ? $user : 'Anonymous');
 
+		if ($type) {
+			$this->setParam('filetype', $type);
+		}
+		if ($name) {
+			$this->setParam('name', $name);
+		}
+		if ($filename) {
+			$this->setParam('filename', $filename);
+		}
+
+		$this->replaceContents($data);
+
 		if ($this->exists() == false) {
-			$id = TikiLib::lib("filegal")->insert_file(
-				($this->getParam('galleryId') || 1), //zero makes it not show by default
-				$this->getParam('filename'),
-				$this->getParam('description'),
-				$this->getParam('filename'),
-				$data,
-				strlen($data),
-				$this->getParam('filetype'),
-				$user
-			);
+			$id = TikiLib::lib("filegal")->insert_file($this, $resizex, $resizey, $ocrFile);
 		} else {
-			$id = TikiLib::lib("filegal")->save_archive(
-				$this->getParam('fileId'),
-				$this->getParam('galleryId'),
-				0,
-				$this->getParam('filename'),
-				$this->getParam('description'),
-				$this->getParam('filename'),
-				$data,
-				strlen($data),
-				$this->getParam('filetype'),
-				$user
-			);
+			$id = TikiLib::lib("filegal")->save_archive($this);
 		}
 
 		return $id;
+	}
+
+	function replaceFull($data, $type, $name, $filename, $replace) {
+		$this->setParam('filetype', $type);
+		$this->setParam('name', $name);
+		$this->setParam('filename', $filename);
+
+		$this->replaceContents($data);
+
+		return TikiLib::lib("filegal")->replace_file($this, $replace);
+	}
+
+	function replaceQuick($data) {
+		global $user;
+		$this->replaceContents($data);
+		$this->setParam('lastModifUser', $user);
+		TikiLib::lib('filegal')->update_file($this->fileId, $this->getParamsForDB());
 	}
 
 	function delete()
@@ -184,12 +241,47 @@ class File
 		return $textDiff->getDiff();
 	}
 
+	/**
+	 * Get gallery definition object for this file.
+	 */
 	function galleryDefinition() {
 		return TikiLib::lib('filegal')->getGalleryDefinition($this->getParam('galleryId'));
 	}
 
+	/**
+	 * Get file wrapper object responsible for accessing the underlying storage.
+	 * Ensures unique filename is available for new files if underlying storage
+	 * requires it. Ensures data/path db parameters are sane.
+	 * @see FileWrapper\WrapperInterface for supported methods.
+	 */
+	function getWrapper() {
+		if ($this->wrapper !== null) {
+			return $this->wrapper;
+		}
+		$definition = $this->galleryDefinition();
+		$this->setParam('path', $definition->uniquePath($this));
+		if ($this->getParam('path')) {
+			$this->setParam('data', '');
+		}
+		$this->wrapper = $definition->getFileWrapper($this);
+		return $this->wrapper;
+	}
+
+	/**
+	 * Retrieve file contents as a string.
+	 */
 	function getContents() {
-		$wrapper = $this->galleryDefinition()->getFileWrapper($this->getParam('data'), $this->getParam('path'));
-		return $wrapper->getContents();
+		return $this->getWrapper()->getContents();
+	}
+
+	/**
+	 * Replace file contents from a string. Prepares the params to be later saved in db.
+	 */
+	function replaceContents($data) {
+		$wrapper = $this->getWrapper();
+		$wrapper->replaceContents($data);
+		foreach ($wrapper->getStorableContent() as $key => $val) {
+			$this->setParam($key, $val);
+		}
 	}
 }

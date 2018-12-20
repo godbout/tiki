@@ -240,7 +240,12 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 					$info['description'] = $newdesc;
 					$this->filegallib->replace_file_gallery($info);
 				} else {
-					$this->filegallib->update_file($id, $info['name'], $newdesc, $user, $info['comment']);
+					$this->filegallib->update_file($id, [
+						'name' => $info['name'],
+						'description' => $newdesc,
+						'lastModifUser' => $user,
+						'comment' => $info['comment']
+					]);
 				}
 			}
 			return array_filter($info);
@@ -583,21 +588,8 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 		if ($isgal) {
 			return '';
 		} else {
-			$res = $this->filegallib->get_file($path);
-			if (! empty($res['path'])) {
-				$filepath = $prefs['fgal_use_dir'] . $res['path'];
-			} else {
-				$filepath = $this->tmpname($path);
-				$fp = $this->tmbPath
-					? @fopen($filepath, 'w+')
-					: @tmpfile();
-
-				if ($fp) {
-					fwrite($fp, $res['data']);
-					fclose($fp);
-				}
-			}
-			$size = getimagesize($filepath);
+			$file = \Tiki\FileGallery\File::id($path);
+			$size = getimagesize($file->getWrapper()->getReadableFile());
 			$str = $size[0] . ' x ' . $size[1];
 			// could add more info here?
 			return $str;
@@ -639,21 +631,18 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 
 		if ($fp) {
 			$fileId = $this->pathToId($path);
-			$res = $this->filegallib->get_file($fileId);
-			if (! empty($res['path'])) {
-				$filepath = $prefs['fgal_use_dir'] . $res['path'];
-				$res['data'] = file_get_contents($filepath);
-			}
+			$file = \Tiki\FileGallery\File::id($fileId);
+			$contents = $file->getContents();
 
-			if ($res['data'] === 'REFERENCE') {
-				$attributes = TikiLib::lib('attribute')->get_attributes('file', $res['fileId']);
+			if ($contents === 'REFERENCE') {
+				$attributes = TikiLib::lib('attribute')->get_attributes('file', $file->fileId);
 				if ($url = $attributes['tiki.content.url']) {
 					$data = $this->filegallib->get_info_from_url($url);
-					$res['data'] = $data['data'];
+					$contents = $data['data'];
 				}
 			}
 
-			if ($r = $res['data']) {
+			if ($contents) {
 				fwrite($fp, $r);
 				rewind($fp);
 				return $fp;
@@ -1085,14 +1074,10 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 			global $user, $prefs;
 			$errors = null;
 			$fp = null;
-			$res = $this->filegallib->get_file($fileId);
+			$file = \Tiki\FileGallery\File::id($fileId);
 			// check max files size
-			if ($this->options['maxArcFilesSize'] > 0 && $this->options['maxArcFilesSize'] < $res['filesize']) {
+			if ($this->options['maxArcFilesSize'] > 0 && $this->options['maxArcFilesSize'] < $file->filesize) {
 				return $this->setError(elFinder::ERROR_ARC_MAXSIZE);
-			}
-			if (! empty($res['path'])) {
-				$filepath = $prefs['fgal_use_dir'] . $res['path'];
-				$res['data'] = file_get_contents($filepath);
 			}
 			// write out to a temp file as process_batch_file_upload deletes the filepath file
 			$filepath = $this->tmpname($path);
@@ -1102,7 +1087,7 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 				: @tmpfile();
 
 			if ($fp) {
-				fwrite($fp, $res['data']);
+				fwrite($fp, $file->getContents());
 				fclose($fp);
 
 				$this->filegallib->process_batch_file_upload($dirId, $filepath, $user, '', $errors);

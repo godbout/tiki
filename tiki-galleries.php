@@ -40,14 +40,12 @@ if (isset($_REQUEST['migrate_images_to_fgal'])) {
 	$access->check_permission('tiki_p_admin');
 
 	$fileGalLib = TikiLib::lib('filegal');
-	$gallerySaveDir = $fileGalLib->get_gallery_save_dir($fileGalLib->default_file_gallery());
-
-	if (! $gallerySaveDir || is_writable($gallerySaveDir)) {
+	if ($fileGalLib->is_default_gallery_writable()) {
 		$fileGalLib->migrateFilesFromImageGalleries();
 		Feedback::success(tra('All files copied'));
 		$access->redirect('tiki-galleries.php');
 	} else {
-		Feedback::error(tr('No files migrated, destination path %0 not writable', $gallerySaveDir));
+		Feedback::error(tr('No files migrated, default file gallery path is not writable.'));
 	}
 }
 

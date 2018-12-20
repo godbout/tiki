@@ -58,8 +58,8 @@ function wikiplugin_diagram($data, $params)
 	if ($fileId) {
 		$fileGalleryLib = TikiLib::lib('filegal');
 		$userLib = TikiLib::lib('user');
-		$info = $fileGalleryLib->get_file($fileId);
-		$data = $fileGalleryLib->getFileData($info);
+		$file = \Tiki\FileGallery\File::id($fileId);
+		$data = $file->getContents();
 
 		if ($data === false) {
 			return;
@@ -104,7 +104,7 @@ function wikiplugin_diagram($data, $params)
 	$smarty->assign('sourcepage', $sourcepage);
 	$smarty->assign('allow_edit', $allowEdit);
 	$smarty->assign('file_id', $fileId);
-	$smarty->assign('file_name', $info['name']);
+	$smarty->assign('file_name', $file->name);
 
 	return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl') . '~/np~';
 }

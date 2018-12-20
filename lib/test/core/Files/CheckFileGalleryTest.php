@@ -160,6 +160,7 @@ class CheckFileGalleryTest extends \PHPUnit_Framework_TestCase
 		$this->insertFile('testFileGalleryMixedLocationDb');
 
 		$this->configToStoreFilesInDisk();
+		TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
 
 		$this->insertFile('testFileGalleryMixedLocationDisk');
 

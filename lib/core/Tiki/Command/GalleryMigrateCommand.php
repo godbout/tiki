@@ -27,15 +27,13 @@ class GalleryMigrateCommand extends Command
 	{
 		$fileGalLib = \TikiLib::lib('filegal');
 
-		$gallerySaveDir = $fileGalLib->get_gallery_save_dir($fileGalLib->default_file_gallery());
-
-		if (! $gallerySaveDir || is_writable($gallerySaveDir)) {
+		if ($fileGalLib->is_default_gallery_writable()) {
 			$fileGalLib->migrateFilesFromImageGalleries();
 
 			$output->writeln('<info>' . tr('All files migrated!') . '</info>');
 
 		} else {
-			$output->writeln('<error>' . tr('No files migrated, destination path %0 not writable', $gallerySaveDir) . '</error>');
+			$output->writeln('<error>' . tr('No files migrated, default file gallery path is not writable.') . '</error>');
 		}
 	}
 }

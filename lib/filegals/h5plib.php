@@ -188,21 +188,11 @@ class H5PLib
 			Feedback::error(tra('PHP Class "ZipArchive" not found'));
 		}
 
-		$filegallib = TikiLib::lib('filegal');
-
-		if (! $info = $filegallib->get_file_info($fileId, false, true, false)) {
-			return null;
-		}
+		$file = Tiki\FileGallery\File::id($fileId);
 
 		// make a copy of the h5p file for the validator to unpack (and eventually delete)
-		$dir = $filegallib->get_gallery_save_dir($info['galleryId']);
-
-		$dest = $tikipath . 'temp/' . $info['filename'];
-		if ($dir) {
-			copy($dir . $info['path'], $dest);
-		} else {
-			file_put_contents($dest, $info['data']);
-		}
+		$dest = $tikipath . 'temp/' . $file->filename;
+		file_put_contents($dest, $file->getContents());
 
 		/** @var ZipArchive $zip */
 		$zip = new ZipArchive;
@@ -656,17 +646,12 @@ class H5PLib
 		if (! $fileId) {
 			// Prevent extracting and inserting the file we're creating
 			$this->H5PTiki->isSaving = true;
-			$fileId = TikiLib::lib('filegal')->insert_file(
-				$prefs['h5p_filegal_id'],
-				$content['title'],
-				tr('Created by H5P'),
-				TikiLib::remove_non_word_characters_and_accents($content['title']) . '.h5p',
-				'',
-				0,
-				'application/zip',
-				$user,
-				''
-			);
+			$file = new Tiki\FileGallery\File([
+				'galleryId' => $prefs['h5p_filegal_id'],
+				'description' => tr('Created by H5P'),
+				'user' => $user,
+			]);
+			$fileId = $file->replace('', 'application/zip', $content['title'], TikiLib::remove_non_word_characters_and_accents($content['title']) . '.h5p');
 			$this->H5PTiki->isSaving = false;
 		}
 

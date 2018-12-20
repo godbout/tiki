@@ -108,26 +108,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_REQUEST['data'])) {
 
 	if (empty($_REQUEST["fileId"]) == false && $_REQUEST["fileId"] > 0 &&
 		($prefs['feature_draw_separate_base_image'] !== 'y' || ! $isConversion)) {
+		
 		//existing file
-		$fileId = $filegallib->save_archive(
-			$_REQUEST["fileId"],
-			$fileInfo['galleryId'],
-			0,
-			$_REQUEST['name'],
-			$fileInfo['description'],
-			$_REQUEST['name'] . ".svg",
-			$_REQUEST['data'],
-			strlen($_REQUEST['data']),
-			$type,
-			$fileInfo['user'],
-			null,
-			null,
-			$user
-		);
+		$file = Tiki\FileGallery\File::id($_REQUEST['fileId']);
+		$fileId = $file->replace($_REQUEST['data'], $type, $_REQUEST['name'], $_REQUEST['name'] . ".svg");
+
 		// this is a conversion from an image other than svg
 		if ($isConversion && $prefs['fgal_keep_fileId'] == 'y') {
-			$newFileInfo = $filegallib->get_file_info($fileId);
-
 			$archiveFileId = $tikilib->getOne(
 				'SELECT fileId
 				FROM tiki_files
@@ -136,26 +123,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_REQUEST['data'])) {
 				[$fileId]
 			);
 
-			$newFileInfo['data'] = str_replace(
+			$data = str_replace(
 				'?fileId=' . $fileInfo['fileId'] . '#',
 				'?fileId=' . $archiveFileId . '#',
-				$newFileInfo['data']
+				$file->data()
 			);
-			$fileId = $filegallib->save_archive(
-				$newFileInfo["fileId"],
-				$newFileInfo['galleryId'],
-				0,
-				$newFileInfo['filename'],
-				$newFileInfo['description'],
-				$newFileInfo['name'] . ".svg",
-				$newFileInfo['data'],
-				strlen($newFileInfo['data']),
-				$type,
-				$newFileInfo['user'],
-				null,
-				null,
-				$user
-			);
+
+			$fileId = $file->replace($data);
 		}
 	} else {
 		//new file
@@ -168,17 +142,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_REQUEST['data'])) {
 		if ($prefs['feature_draw_in_userfiles'] === 'y') {
 			$galleryId = TikiLib::lib('filegal')->get_user_file_gallery();
 		}
-		$fileId = $filegallib->insert_file(
-			$galleryId,
-			$_REQUEST['name'],
-			$_REQUEST['description'],
-			$_REQUEST['name'] . ".svg",
-			$_REQUEST['data'],
-			strlen($_REQUEST['data']),
-			$type,
-			$user,
-			null
-		);
+		$file = new Tiki\FileGallery\File([
+			'galleryId' => $galleryId,
+			'description' => $_REQUEST['description'],
+			'user' => $user,
+		]);
+		$fileId = $file->replace($_REQUEST['data'], $type, $_REQUEST['name'], $_REQUEST['name'] . ".svg");
 	}
 
 	if (! empty($_REQUEST['fromItemId'])) {        // a tracker item, so update the item field

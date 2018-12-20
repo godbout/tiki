@@ -20,14 +20,35 @@ class Definition
 		$this->handler = $this->getHandler($info);
 	}
 
-	function getFileWrapper($data, $path)
+	/**
+	 * Get file wrapper object responsible for accessing the underlying storage.
+	 * @see FileWrapper\WrapperInterface for supported methods.
+	 */
+	function getFileWrapper($file)
 	{
-		return $this->handler->getFileWrapper($data, $path);
+		return $this->handler->getFileWrapper($file);
 	}
 
-	function delete($data, $path)
+	/**
+	 * @see Handler\HandlerInterface
+	 */
+	function delete($file)
 	{
-		$this->handler->delete($data, $path);
+		$this->handler->delete($file);
+	}
+
+	/**
+	 * @see Handler\HandlerInterface
+	 */
+	function uniquePath($file) {
+		return $this->handler->uniquePath($file);
+	}
+
+	/**
+	 * @see Handler\HandlerInterface
+	 */
+	function isWritable() {
+		return $this->handler->isWritable();
 	}
 
 	function getInfo()
@@ -35,12 +56,32 @@ class Definition
 		return $this->info;
 	}
 
+	/**
+	 * Updates file contents based on chosen underlying storage.
+	 * Currently, we have: db storage or filesystem storage.
+	 * This method updates the file contents to be in the right place.
+	 */
+	function fixFileLocation($file) {
+		global $prefs;
+
+		if ($file->path) {
+			$handler = new Handler\FileSystem($prefs['fgal_use_dir']);
+		} else {
+			$handler = new Handler\Preloaded;
+		}
+
+		$data = $handler->getFileWrapper($file)->getContents();
+		$handler->delete($file);
+		
+		$file->replaceContents($data);
+	}
+
 	private function getHandler($info)
 	{
 		switch ($info['type']) {
 			case 'podcast':
 			case 'vidcast':
-				return new Handler\PodCast();
+				return new Handler\Podcast();
 			case 'system':
 			default:
 				return new Handler\System();

@@ -48,12 +48,11 @@ class Services_File_Controller
 					$fileInfo = $filegallib->get_file_info($file);
 
 					if (isset($descriptions[$c])) {
-						$filegallib->update_file(
-							$fileInfo['fileId'],
-							$fileInfo['filename'],
-							$descriptions[$c],
-							$fileInfo['asuser']
-						);
+						$filegallib->update_file($fileInfo['fileId'], [
+							'name' => $fileInfo['filename'],
+							'description' => $descriptions[$c],
+							'lastModifUser' => $fileInfo['asuser'],
+						]);
 					}
 				}
 			}

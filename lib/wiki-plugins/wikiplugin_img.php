@@ -738,7 +738,7 @@ function wikiplugin_img($data, $params)
 		$filegallib = TikiLib::lib('filegal');
 		$dbinfo = $filegallib->get_file(0, $imgdata['randomGalleryId']);
 		$imgdata['fileId'] = $dbinfo['fileId'];
-		$basepath = $prefs['fgal_use_dir'];
+		$imgdata['file'] = \Tiki\FileGallery\File::id($imgdata['fileId']);
 	}
 
 	if (empty($imgdata['src'])) {
@@ -801,13 +801,11 @@ function wikiplugin_img($data, $params)
 				$dbinfot = isset($dbinfot) && isset($dbinfot2) ? array_merge($dbinfot, $dbinfot2) : [];
 				$basepath = $prefs['gal_use_dir'];
 			} elseif (! isset($dbinfo) && ! empty($imgdata['fileId'])) {
-				$filegallib = TikiLib::lib('filegal');
-				$dbinfo = $filegallib->get_file($imgdata['fileId']);
-				$basepath = $prefs['fgal_use_dir'];
+				$imgdata['file'] = \Tiki\FileGallery\File::id($imgdata['fileId']);
+				$dbinfo = $imgdata['file']->getParams();
 			} elseif ($prefs['feature_use_fgal_for_wiki_attachments'] === 'y' && ! isset($dbinfo) && ! empty($imgdata['attId'])) {
-				$filegallib = TikiLib::lib('filegal');
-				$dbinfo = $filegallib->get_file($imgdata['attId']);
-				$basepath = $prefs['fgal_use_dir'];
+				$imgdata['file'] = \Tiki\FileGallery\File::id($imgdata['attId']);
+				$dbinfo = $imgdata['file']->getParams();
 			} else {					//only attachments left
 				global $atts;
 				$wikilib = TikiLib::lib('wiki');
@@ -842,9 +840,12 @@ function wikiplugin_img($data, $params)
 		if (! empty($dbinfo['data'])) {
 			$imageObj = Image::create($dbinfo['data'], false);
 			$filename = $dbinfo['filename'];
-		} elseif (! empty($dbinfo['path'])) {
+		} elseif (! empty($dbinfo['path']) && isset($basepath)) {
 			$imageObj = Image::create($basepath . $dbinfo['path'], true);
 			$filename = $dbinfo['filename'];
+		} elseif (isset($imgdata['file'])) {
+			$imageObj = Image::create($imgdata['file']->getContents(), false);
+			$filename = $imgdata['file']->filename;
 		} elseif (strpos($src, '//') === false) {
 			$imageObj = Image::create($src, true);
 			$filename = $src;

@@ -601,18 +601,9 @@ if (isset($_REQUEST['edit']) && $access->checkCsrf()) {
 		$_REQUEST['fdescription'] = (isset($_REQUEST['fdescription']) ? $_REQUEST['fdescription'] : $infoOverride['description']);
 		$info['data'] = (isset($_REQUEST['data']) ? $_REQUEST['data'] : $info['data']);
 
-		$fid = $filegallib->replace_file(
-			$_REQUEST['fileId'],
-			$_REQUEST['fname'],
-			$_REQUEST['fdescription'],
-			$info['filename'],
-			$info['data'],
-			$info['filesize'],
-			$info['filetype'],
-			$info['user'],
-			$info['path'],
-			$info['galleryId']
-		);
+		$file = Tiki\FileGallery\File::id($_REQUEST['fileId']);
+		$file->setParam('description', $_REQUEST['fdescription']);
+		$fid = $file->replaceFull($info['data'], $info['filetype'], $_REQUEST['fname'], $info['filename'], false);
 		if ($fid) {
 			Feedback::success(tr('File properties for %0 edited'. htmlspecialchars($_REQUEST['fname'])));
 		} else {
@@ -809,14 +800,12 @@ if (isset($_REQUEST['comment']) && $_REQUEST['comment'] != '' && isset($_REQUEST
 	} elseif ((! empty($fileInfo['lockedby']) && $fileInfo['lockedby'] != $user && $tiki_p_admin_file_galleries != 'y') || $tiki_p_edit_gallery_file != 'y') {
 		$msg = tra('You do not have permission to do that');
 	} else {
-		$result = $filegallib->update_file(
-			$fileInfo['fileId'],
-			$fileInfo['name'],
-			$fileInfo['description'],
-			$user,
-			$_REQUEST['comment'],
-			false
-		);
+		$result = $filegallib->update_file($fileInfo['fileId'], [
+			'name' => $fileInfo['name'],
+			'description' => $fileInfo['description'],
+			'lastModifUser' => $user,
+			'comment' => $_REQUEST['comment']
+		]);
 		if ($result && $result->numRows()) {
 			Feedback::success(tr('File %0 updated', $fileInfo['name']));
 		} else {

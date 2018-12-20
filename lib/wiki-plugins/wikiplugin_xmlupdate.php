@@ -58,9 +58,6 @@ function wikiplugin_xmlupdate($data, $params)
 	if ($prefs['feature_file_galleries'] != 'y') {
 		return ("<span class='error'>Error: sorry you need to have File Galleries enabled to use the XMLUPDATE plugin</span>");
 	}
-	if ($prefs['fgal_use_db'] != 'n') {
-		return ("<span class='error'>Error: sorry you need to have set File Galleries to store content in a directory to use the XMLUPDATE plugin</span>");
-	}
 	// check a fileId has been set
 	if (! isset($params['fileId'])) {
 		return ("<span class='error'>Error: fileId# for the XML file is not set</span>");
@@ -76,10 +73,8 @@ function wikiplugin_xmlupdate($data, $params)
 
 	// get the full path address for the fileId from the File Gallery info and the pref for the File Gallery directory folder
 	$fileId = $params['fileId'];
-	$fileinfo = $filegallib->get_file_info($fileId);
-	$fileaddress = $prefs['fgal_use_dir'] . $fileinfo['path'];
-	$filedescription = $fileinfo['description'];
-	$filename = $fileinfo['name'];
+	$file = \Tiki\FileGallery\File::id($fileId);
+	$fileaddress = $file->getWrapper()->getReadableFile();
 
 	// load the xml file from the File Gallery into the $filecontent variable which is a SimpleXML Element Object array of strings of the individual xml elements (nodes)
 	$filecontent = simplexml_load_file($fileaddress);
@@ -140,10 +135,8 @@ function wikiplugin_xmlupdate($data, $params)
 			$xmlresult[0][0] = $new_value;  // don't understand why this works! but it does !
 		}
 
-		$filecontent->asXml($fileaddress); //update file in the File Gallery with revised content
-
-		// and update the tiki_files table with new lastModif etc
-		$filegallib->update_file($fileId, $filename, $filedescription, $user);
+		$contents = $filecontent->asXml();
+		$file->replaceQuick($contents);
 
 		return ("<span>The XML parameters have been updated.<br/><br/>Reload the page to see the current values and to edit again.</span>");
 	}

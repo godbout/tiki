@@ -94,26 +94,14 @@ function upgrade_2017mmdd_migrate_image_galleries_tiki($installer)
 				$image = array_merge($imageData[0], $image);
 				$image['galleryId'] = $fileGalleryId;
 
-				$fileId = $filegallib->insert_file(
-					$image['galleryId'],
-					$image['name'],
-					$image['description'],
-					$image['filename'],
-					$image['data'],
-					$image['filesize'],
-					$image['filetype'],
-					$image['creator'],
-					$image['path'],
-					$image['comment'],
-					$image['author'],
-					$image['created'],
-					$image['lockedby'],
-					$image['deleteAfter'],
-					$image['id'],
-					$image['metadata'],
-					$image['xsize'],
-					$image['ysize']
-				);
+				$file = new Tiki\FileGallery\File([
+					'galleryId' => $image['galleryId'],
+					'description' => $image['description'],
+					'user' => $image['user'],
+					'author' => $image['user'],
+					'created' => $image['created'],
+				]);
+				$fileId = $file->replace($image['data'], $image['filetype'], $image['name'], $image['filename'], $image['xsize'], $image['ysize']);
 
 				TikiLib::lib('geo')->set_coordinates(
 					'file',

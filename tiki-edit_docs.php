@@ -90,39 +90,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_REQUEST['data'])) {
 	$_REQUEST['data'] = base64_decode($_REQUEST['data']);
 
 	$type = $mimetypes['odt'];
-	if (! empty($fileId)) {
-		//existing file
-		$fileId = $filegallib->save_archive(
-			$fileId,
-			$fileInfo['galleryId'],
-			0,
-			$_REQUEST['name'],
-			$fileInfo['description'],
-			$_REQUEST['name'] . '.odt',
-			$_REQUEST['data'],
-			strlen($_REQUEST['data']),
-			$type,
-			$fileInfo['user'],
-			null,
-			null,
-			$user,
-			date()
-		);
-	} else {
-		//new file
-		$fileId = $filegallib->insert_file(
-			$_REQUEST['galleryId'],
-			$_REQUEST['name'],
-			$_REQUEST['description'],
-			$_REQUEST['name'] . '.odt',
-			$_REQUEST['data'],
-			strlen($_REQUEST['data']),
-			$type,
-			$user,
-			date()
-		);
-	}
 
+	$file = Tiki\FileGallery\File::id($fileId);
+	if (! $file->exists()) {
+		$file->init([
+			'galleryId' => $_REQUEST['galleryId'],
+			'description' => $_REQUEST['description'],
+			'user' => $user
+		]);
+	}
+	$file->replace($_REQUEST['data'], $type, $_REQUEST['name'], $_REQUEST['name'] . '.odt');
 	echo $fileId;
 	die;
 }

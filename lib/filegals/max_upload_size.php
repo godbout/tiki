@@ -34,6 +34,7 @@ $memory_limit = $tikilib->return_bytes($memory_limit_ini);
 // Try to detect current memory usage or set it arbitrary to 10MB
 @$current_memory_usage = function_exists('memory_get_usage') ? (int)memory_get_usage(true) : 10 * 1024 * 1024;
 
+// TODO: this is quite deprecated code and possibly quite wrong - we no longer use ADODB and string escaping, so check what is the real limit!
 if ($prefs['fgal_use_db'] == 'y' && (empty($podCastGallery) || ! $podCastGallery)) {
 	if ($memory_limit > 0) {
 		// Estimate available memory for file upload.

@@ -19,17 +19,32 @@ class FileSystem implements HandlerInterface
 		$this->directory = rtrim($directory, '/\\');
 	}
 
-	function getFileWrapper($data, $path)
+	function getFileWrapper($file)
 	{
-		return new PhysicalFile($this->directory, $path);
+		return new PhysicalFile($this->directory, $file->path);
 	}
 
-	function delete($data, $path)
+	function delete($file)
 	{
-		$full = "{$this->directory}/$path";
+		$full = "{$this->directory}/$file->path";
 
-		if ($path && is_writable($full)) {
+		if ($file->path && is_writable($full)) {
 			unlink($full);
 		}
+	}
+
+	function uniquePath($file) {
+		if (! empty($file->path)) {
+			return $file->path;
+		}
+		$fhash = md5($file->name);
+		while (file_exists($this->directory . '/' . $fhash)) {
+			$fhash = md5(uniqid($fhash));
+		}
+		return $fhash;
+	}
+
+	function isWritable() {
+		return is_writable($this->directory);
 	}
 }
