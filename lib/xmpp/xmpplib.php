@@ -43,46 +43,41 @@ class XMPPLib extends TikiLib
 		}
 	}
 
-	function get_user_login($user)
-	{
-		$query = 'SELECT'
-		. '     MAX(CASE WHEN `prefName`="xmpp_jid" THEN `value` END) AS `jid`,'
-		. '     MAX(CASE WHEN `prefName`="xmpp_password" THEN `value` END) AS `password`'
-		. ' FROM `tiki_user_preferences` WHERE `user`=?'
-		. '     AND `prefName` REGEXP "xmpp_(jid|password)"';
-
-		$query = $this->query($query, [$user]);
-		$ret = $query->fetchRow();
-
-		if (empty($ret['jid'])) {
-			$ret['jid'] = $user;
-		}
-
-		return $ret;
-	}
-
 	function get_user_connection_info($user)
 	{
 		global $prefs;
 		global $tikilib;
 
-		$login = $this->get_user_login($user);
+		$query = 'SELECT'
+		. '     MAX(CASE WHEN `prefName`="xmpp_jid" THEN `value` END) AS `jid`,'
+		. '     MAX(CASE WHEN `prefName`="xmpp_password" THEN `value` END) AS `password`,'
+		. '     MAX(CASE WHEN `prefName`="xmpp_custom_server_http_bind" THEN `value` END) AS `http_bind`,'
+		. '     MAX(CASE WHEN `prefName`="realName" THEN `value` END) AS `nickname`'
+		. ' FROM `tiki_user_preferences` WHERE `user`=?'
+		. '     AND `prefName` IN ("xmpp_jid", "xmpp_password", "xmpp_custom_server_http_bind", "realName")';
+
+		$query = $this->query($query, [$user]);
+		$login = $query->fetchRow();
+
+		if (empty($login['jid'])) {
+			$login['jid'] = $user;
+		}
+
 		$info = array(
 			'domain'    => $this->server_host,
 			'http_bind' => $this->server_http_bind,
-			'jid'       => $this->get_user_jid($user),
-			'password'  => $login['password'] ?: '',
-			'username'  => $user,
-			'nickname'  => $tikilib->get_user_preference($user, 'realName') ?: $user,
+			'jid'       => $this->get_user_jid($login['jid']),
+			'password'  => $login['password'] ?: '', 
+			'username'  => $login['jid'],
+			'nickname'  => $login['nickname'] ?: $user,
 		);
 
-		$jid = $this->parse_jid($login['jid']);
-		if ($jid) {
+		$jid_parts = $this->parse_jid($login['jid']);
+		if ($jid_parts) {
 			$info['jid']       = $login['jid'];
-			$info['username']  = $jid['node'];
-			$info['domain']    = $jid['domain'];
-			$info['http_bind'] = $tikilib->get_user_preference($user, 'xmpp_custom_server_http_bind')
-				?: $this->server_http_bind;
+			$info['username']  = $jid_parts['node'];
+			$info['domain']    = $jid_parts['domain'];
+			$info['http_bind'] = $login['http_bind'] ?: $this->server_http_bind;
 		}
 
 		return $info;
