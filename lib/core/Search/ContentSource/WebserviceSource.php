@@ -114,6 +114,10 @@ class Search_ContentSource_WebserviceSource implements Search_ContentSource_Inte
 
 		if (is_array($output['mapping'])) {
 			foreach ($output['mapping'] as $topObject => $topValue) {
+				if (! isset($output['data'][$topObject])) {
+					Feedback::warning(tr('Webservice %0 field "%1" not found', $serviceName, $topObject));
+					continue;
+				}
 				$dataObject = $output['data'][$topObject];
 				if (is_array($dataObject)) {
 					foreach ($dataObject as $key => $val) {
