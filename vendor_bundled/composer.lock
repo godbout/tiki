@@ -2336,12 +2336,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabiomontefuscolo/xmpp.git",
-                "reference": "b3731f40ca60d9a52fe368e1b5fbc2ea68c27710"
+                "reference": "a3b9f9f287e7b84ea7df15a721702434ff2d73c4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabiomontefuscolo/xmpp/zipball/b3731f40ca60d9a52fe368e1b5fbc2ea68c27710",
-                "reference": "b3731f40ca60d9a52fe368e1b5fbc2ea68c27710",
+                "url": "https://api.github.com/repos/fabiomontefuscolo/xmpp/zipball/a3b9f9f287e7b84ea7df15a721702434ff2d73c4",
+                "reference": "a3b9f9f287e7b84ea7df15a721702434ff2d73c4",
                 "shasum": ""
             },
             "require": {

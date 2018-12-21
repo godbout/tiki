@@ -11,6 +11,7 @@ require_once dirname(__FILE__) . '/TikiXmppPrebind.php';
 use Fabiang\Xmpp\Protocol\Presence;
 use Fabiang\Xmpp\Protocol\Message;
 use Fabiang\Xmpp\Protocol\Invitation;
+use Fabiang\Xmpp\Util\JID;
 
 class XMPPLib extends TikiLib
 {
@@ -66,13 +67,13 @@ class XMPPLib extends TikiLib
 		$info = array(
 			'domain'    => $this->server_host,
 			'http_bind' => $this->server_http_bind,
-			'jid'       => $this->get_user_jid($login['jid']),
+			'jid'       => JID::buildJid($login['jid'], $this->server_http_bind),
 			'password'  => $login['password'] ?: '', 
 			'username'  => $login['jid'],
 			'nickname'  => $login['nickname'] ?: $user,
 		);
 
-		$jid_parts = $this->parse_jid($login['jid']);
+		$jid_parts = JID::parseJid($login['jid']);
 		if ($jid_parts) {
 			$info['jid']       = $login['jid'];
 			$info['username']  = $jid_parts['node'];
@@ -81,17 +82,6 @@ class XMPPLib extends TikiLib
 		}
 
 		return $info;
-	}
-
-	function get_user_jid($user)
-	{
-		return sprintf('%s@%s', $user, $this->server_host);
-	}
-
-	function get_room_jid($room)
-	{
-		global $prefs;
-		return sprintf('%s@%s', $room, $prefs['xmpp_muc_component_domain']);
 	}
 
 	function check_token($givenUser, $givenToken)
@@ -113,42 +103,6 @@ class XMPPLib extends TikiLib
 			&& $param['user'] === $givenUser;
 	}
 
-	function parse_jid($jid)
-	{
-		$any_char = '[' 
-			. '\x20-\xD7FF'
-			. '\xE000-\xFFFD'
-		. ']';
-
-		$conforming_char = '[' 
-			. '\x21'
-			. '\x23-\x25'
-			. '\x28-\x2E'
-			. '\x30-\x39'
-			. '\x3B'
-			. '\x3D'
-			. '\x3F'
-			. '\x41-\x7E'
-			. '\x80-\xD7FF'
-			. '\xE000-\xFFFD'
-		. ']';
-
-		$hname = '[0-9a-zA-Z](?:[0-9a-zA-Z-])*[0-9a-zA-Z]';
-		$domain = "$hname(?:\.$hname)+";
-		$resource = "{$any_char}{$any_char}*";
-		$node = "{$conforming_char}{$conforming_char}*";
-		$regex = "/^(?:(?<node>{$node})@)?(?<domain>{$domain})(?:\/(?<resource>{$resource}))?\$/";
-		$result = false;
-
-		if (preg_match($regex, $jid, $match)) {
-			$result = array();
-			$result['node'] = empty($match['node']) ? null : $match['node'];
-			$result['domain'] = empty($match['domain']) ? null : $match['domain'];
-			$result['resource'] = empty($match['resource']) ? null : $match['resource'];
-		}
-
-		return $result;
-	}
 
 	function sanitize_name($text)
 	{
@@ -394,6 +348,7 @@ class XMPPLib extends TikiLib
 
 	public function addUserToRoom($room, $name, $role='members')
 	{
+		global $prefs;
 		// first, allow myself to join the room
 		$owner = preg_replace(',/.*$,', '', $this->getXmppApi()->getJid());
 		$this->getRestApi()->addUserRoleToChatRoom($room, $owner, 'owners');
@@ -403,12 +358,13 @@ class XMPPLib extends TikiLib
 
 		// the xmppapi invite the user to the room
 		$nick = $this->getXmppApi()->getUsername();
-		$room = $this->get_room_jid($room);
-		$user = $this->get_user_jid($name);
+
+		$roomJid = JID::buildJid($room, $this->server_http_bind);
+		$userJid = JID::buildJid($name, $prefs['xmpp_muc_component_domain']);
 
 		$this->getXmppApi()
-			->sendPresence(1, $room, $nick)
-			->sendInvitation($room, $user)
+			->sendPresence(1, $roomJid, $nick)
+			->sendInvitation($roomJid, $userJid)
 		;
 
 		return $result;
