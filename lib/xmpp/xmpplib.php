@@ -67,7 +67,7 @@ class XMPPLib extends TikiLib
 		$info = array(
 			'domain'    => $this->server_host,
 			'http_bind' => $this->server_http_bind,
-			'jid'       => JID::buildJid($login['jid'], $this->server_http_bind),
+			'jid'       => JID::buildJid($login['jid'], $prefs['xmpp_server_host']),
 			'password'  => $login['password'] ?: '', 
 			'username'  => $login['jid'],
 			'nickname'  => $login['nickname'] ?: $user,
@@ -127,16 +127,22 @@ class XMPPLib extends TikiLib
 		$tokenlib = AuthTokens::build($prefs);
 
 		if (empty($this->server_host) ||  empty($this->server_http_bind)) {
-			return [];
+			header("HTTP/1.0 500 Internal Server Error");
+			header('Content-Type: application/json');
+			return ["msg" => "No XMPP server to bind."];
+		}
+
+		if ($user === null && $prefs['xmpp_openfire_allow_anonymous'] === 'y') {
+			$user = $user ?: 'anonymous_' . $session_id;
 		}
 
 		$xmpp = $this->get_user_connection_info($user);
 		$xmpp_prebind_class = XmppPrebind;
 
-		$use_tikitoken = $xmpp['username'] === $user
-			&& $xmpp['domain'] === $this->server_host
-			&& !empty($prefs['xmpp_openfire_use_token'])
-			&& $prefs['xmpp_openfire_use_token'] === 'y';
+		$use_tikitoken = $xmpp['username'] === $user;
+		$use_tikitoken = $use_tikitoken && $xmpp['domain'] === $this->server_host;
+		$use_tikitoken = $use_tikitoken && !empty($prefs['xmpp_openfire_use_token']);
+		$use_tikitoken = $use_tikitoken && $prefs['xmpp_openfire_use_token'] === 'y';
 
 		if ($use_tikitoken) {
 			$token = $tokenlib->createToken(

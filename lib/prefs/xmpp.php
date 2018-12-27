@@ -61,6 +61,17 @@ function prefs_xmpp_list()
 			'type' => 'flag',
 			'tags' => ['basic'],
 		],
+		'xmpp_openfire_allow_anonymous' => [
+			'name' => tra('Allow anonymous'),
+			'description' => tra('Allow anonymous users on Chat'),
+			'type' => 'flag',
+			'keywords' => 'xmpp jabber anonymous conversejs chat',
+			'help' => 'XMPP',
+			'tags' => ['basic'],
+			'default' => 'n',
+			'extensions' => [
+			],
+		],
 		'xmpp_openfire_rest_api' => [
 			'name' => tra('Openfire REST API endpoint'),
 			'description' => tra('Full URL to API endpoint'),

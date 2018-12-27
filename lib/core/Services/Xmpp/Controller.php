@@ -95,7 +95,6 @@ class Services_Xmpp_Controller
 	function action_prebind($input)
 	{
 		global $user;
-		$this->block_anonymous();
 		$xmpplib = TikiLib::lib('xmpp');
 
 		try {
