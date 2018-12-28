@@ -64,7 +64,11 @@ $dropdown-link-hover-bg:           #15b5c1;
 // Navbar
 // Navbarlinks
 // Pagination
+$pagination-bg: lighten($body-bg, 10%);
+
 // Jumbotron
+$jumbotron-bg: darken($body-bg, 5%);
+
 // Cards
 // Tooltips
 // Popovers
@@ -83,6 +87,8 @@ $list-group-bg: $body-bg;
 // Image thumbnails
 // Figures
 // Breadcrumbs
+$breadcrumb-bg: lighten($body-bg, 10%);
+
 // Carousel
 // Close
 // Code
@@ -104,4 +110,6 @@ $link-hover-color: $link-color; // This has to be here because #link-color is de
 $body-bg: #108a93; // These work here, but not in amelia/bootstrap-variables, for some reason.
 $body-color: #ffffff; // "
 body.fullscreen { background-color: $body-bg; } // Moved here because it needs $body-bg
+
+
 

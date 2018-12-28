@@ -16,13 +16,14 @@ legend {
 	color: #ffffff;
 }
 
-.card {
+.card,
+.autotoc > .nav {
   background-color: #13a0aa !important;
   border-color: #0d747c !important;
 }
 
 .card-header,
-.modal-header {
+.modal-header{
   color: #ffffff;
   background-color: #18cbd8 !important;
   border-color: #0d747c !important;

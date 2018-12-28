@@ -1849,13 +1849,13 @@ function wikiplugin_tracker($data, $params)
 
 		$labelclass = 'col-md-3';
 		$inputclass = 'col-md-9';
-		$buttonclass = 'col-md-9 col-md-offset-3';
+		$buttonclass = 'col-md-9 offset-3';
 
 		if ($registration == "y") {
 			$back .= '<input type="hidden" name="register" value="Register">';
 			$labelclass = 'col-sm-4';
 			$inputclass = 'col-sm-8';
-			$buttonclass = 'col-sm-8 col-sm-offset-4';
+			$buttonclass = 'col-sm-8 offset-4';
 		}
 
 		// Loop on tracker fields and display form
@@ -1934,7 +1934,7 @@ function wikiplugin_tracker($data, $params)
 						$smarty->assign('f_' . $f['permName'], $prettyout);
 					}
 				} else {
-					$back .= '<div class="form-group tracker_input_label tracker_field' . $f['fieldId'] . '"'; // <tr><td class="tracker_input_label"
+					$back .= '<div class="form-group row tracker_input_label tracker_field' . $f['fieldId'] . '"'; // <tr><td class="tracker_input_label"
 
 					// If type is has a samerow param and samerow is "No", show text on one line and the input field on the next
 					$isTextOnSameRow = true;
@@ -2003,9 +2003,9 @@ function wikiplugin_tracker($data, $params)
 
 				if ($f['type'] != 'S' && empty($tpl) && empty($wiki)) {
 					if ($showfieldsdesc == 'y' && $f['description']) {
-						$back .= '<div class="form-group tracker-form-text tracker_field' . $f['fieldId'] . ' ">';
+						$back .= '<div class="form-group row tracker-form-text tracker_field' . $f['fieldId'] . ' ">';
 						{
-							$back .= '<div class="col-md-8 col-sm-offset-4 trackerplugindesc form-text">';
+							$back .= '<div class="col-md-8 offset-4 trackerplugindesc form-text">';
 						if ($f['descriptionIsParsed'] == 'y') {
 							$back .= TikiLib::lib('parser')->parse_data($f['description']);
 						} else {
@@ -2036,7 +2036,7 @@ function wikiplugin_tracker($data, $params)
 			}
 		}
 		if (isset($params['fieldsfill']) && ! empty($params['fieldsfill']) && empty($itemId)) {
-			$back .= '<div class="form-group ins_fill"><label class="col-md-3 col-form-label" for="ins_fill">' . tra("Insert one item per line:")
+			$back .= '<div class="form-group row ins_fill"><label class="col-md-3 col-form-label" for="ins_fill">' . tra("Insert one item per line:")
 				. '<br />'
 				. '<br />'
 				. '<br />'

@@ -6839,7 +6839,7 @@ h2.sitesubtitle {
 #footer .container, footer.main-footer .container {
   min-height: 60px;
   background: url("../images/footer.gif") repeat-x; }
-/*.module */
+
 .card-header, .modal-header {
   background: #386dbb;
   /* Old browsers */
@@ -6855,6 +6855,12 @@ h2.sitesubtitle {
   /* IE6-9 */
   text-transform: uppercase;
   color: #fff; }
+  .card-header a:not(.dropdown-item), .modal-header a:not(.dropdown-item) {
+    color: #fff; }
+  .card-header .dropdown-item .tips, .modal-header .dropdown-item .tips {
+    color: #404040; }
+  .card-header .dropdown-item .tips:hover, .modal-header .dropdown-item .tips:hover {
+    text-decoration: none; }
 
 h3.card-title {
   font-weight: 700; }

@@ -29,6 +29,13 @@ function module_last_youtube_playlist_videos_info()
 				'filter' => 'striptags',
 				'default' => '',
 			],
+			'dev_key' => [
+				'required' => true,
+				'name' => tra('Google YouTube API Key'),
+				'description' => tra('The key must be generated from the Google console. Choose to create a server key.'),
+				'filter' => 'striptags',
+				'default' => '',
+			],
 			'width' => [
 				'required' => false,
 				'name' => tra('Width'),

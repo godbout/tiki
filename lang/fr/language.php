@@ -13192,7 +13192,7 @@ $lang = array(
 "Params: specific params to the module and/or general params ('lang', 'flip', 'title', 'decorations', 'section', 'overflow', 'page', 'nobox', 'bgcolor', 'color', 'theme', 'notitle', 'nopage'). Separator between params:'&amp;'. E.g. maxlen=15&amp;nonums=y" => "Paramètres: paramètres spécfiques au module et/ou généraux ('lang', 'flip', 'title', 'decorations', 'section', 'overflow', 'page', 'nobox', 'bgcolor', 'color', 'theme', 'notitle', 'nopage'). Séparateur entre les paramètres : '&amp;'. Ex : maxlen=15&amp;nonums=y",
 "Enter the parameters in URL format, e.g. 'nobox=y&class=rbox-data'" => "Entrer les paramètres en format URL, exemple : 'nobox=y&class=rbox-data'",
 "Edit custom module" => "Modifier un module personnalisé",
-// "Enter the code below" => "Enter the code below",
+"Enter the code below" => "Entrer le code ci-dessous",
 "Anti-Bot verification code image" => "Image du code de vérification Anti-Robot",
 "Try another code" => "Essayer un autre code",
 // "Your article has been added" => "Your article has been added",

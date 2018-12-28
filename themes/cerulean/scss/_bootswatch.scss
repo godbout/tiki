@@ -39,7 +39,15 @@ $text-shadow: 0 1px 0 rgba(0, 0, 0, 0.05) !default;
 
 .btn-secondary {
   @include btn-shadow($secondary);
-  color: $gray-700;
+  color: $gray-100;
+}
+
+.btn-secondary {
+  &:active,
+  &:hover,
+  &.disabled {
+    color: $gray-100;
+  }
 }
 
 .btn-success {

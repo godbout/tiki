@@ -4,45 +4,44 @@ a, .btn-link {
     color: #3c88bc;
 }
 
-.navbar-default .navbar-nav > li > a:hover,
-.navbar-default .navbar-nav > li > a:focus,
+.navbar-light .navbar-nav > li > a:hover,
+.navbar-light .navbar-nav > li > a:focus,
 a:hover, a:active, a:focus {
 	color: #50b3fb;
 }
 
-.btn-default {
+.btn-primary {
     background-color: #3c88bc;
     border-color: #3c88bc;
 }
 
-.btn-default:hover {
+.btn-primary:hover {
     background-color: #2b6288;
     border-color: #2b6288;
 }
 
-.navbar-default,
-.navbar-inverse,
+.bg-dark,
 .topbar,
-.topbar .navbar-default .navbar-nav > li,
+.topbar .navbar-primary .navbar-nav > li,
 .topbar .nav > li {
-    background-color: #2b6288;
+    background-color: #2b6288 !important;
 }
 
 .topbar > a:hover,
-.topbar .navbar-default .navbar-nav > li > a:hover,
+.topbar .navbar-primary .navbar-nav > li > a:hover,
 .topbar .nav > li > a:hover,
 .topbar > a:focus,
-.topbar .navbar-default .navbar-nav > li > a:focus,
+.topbar .navbar-primary .navbar-nav > li > a:focus,
 .topbar .nav > li > a:focus {
   color: #50b3fb;
 }
 
 
 
-.navbar-inverse .navbar-nav > .active > a,
-.navbar-inverse .navbar-nav > .active > a:hover,
-.navbar-inverse .navbar-nav > .active > a:focus {
-    background: #000;
+.navbar-dark .navbar-nav > .active > a,
+.navbar-dark .navbar-nav > .active > a:hover,
+.navbar-dark .navbar-nav > .active > a:focus {
+    background: #000 !important;
 }
 
 .autotoc * {

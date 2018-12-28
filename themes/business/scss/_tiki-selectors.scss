@@ -126,7 +126,7 @@ footer.main-footer .container {
 	background: url('#{$imagePath}footer.gif') repeat-x;
 }
 
-/*.module */.card-header,
+.card-header,
 .modal-header {
 	//  background: #3475c6 url('#{$imagePath}title_bg.png') no-repeat 0 0;
 	background: #386dbb; /* Old browsers */
@@ -135,9 +135,17 @@ footer.main-footer .container {
 	background: -o-linear-gradient(top, #386dbb 0%, #3a6fbb 7%, #457bc3 25%, #4c82ca 54%, #2f6dc0 57%, #3371c4 82%, #3574c4 86%, #3574c4 100%); /* Opera 11.10+ */
 	background: linear-gradient(to bottom, #386dbb 0%, #3a6fbb 7%, #457bc3 25%, #4c82ca 54%, #2f6dc0 57%, #3371c4 82%, #3574c4 86%, #3574c4 100%); /* W3C */
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#386dbb', endColorstr='#3574c4', GradientType=0); /* IE6-9 */
-
 	text-transform: uppercase;
   	color: #fff;
+	& a:not(.dropdown-item) {
+		color: #fff;
+	}
+	.dropdown-item .tips {
+		color: $body-color;
+		&:hover	{
+			text-decoration: none;
+		}
+	}
 }
 
 h3.card-title {

@@ -17,6 +17,15 @@ $font-family-serif:      Georgia, Cambria, "Times New Roman", Times, serif !defa
 
 .bg-dark {
   background-color: $success !important;
+  &.navbar-dark .navbar-nav {
+    .nav-link:focus,
+    .nav-link:hover,
+    .active > .nav-link,
+    & a:not(.dropdown-item),
+    .dropdown-item .tips {
+      color: $light !important;
+    }
+  }
 }
 
 .bg-light {
@@ -29,6 +38,15 @@ $font-family-serif:      Georgia, Cambria, "Times New Roman", Times, serif !defa
 
   &.navbar-fixed-bottom {
     border-width: 1px 0 0 0;
+  }
+  &.navbar-light .navbar-nav {
+    .nav-link:focus,
+    .nav-link:hover,
+    .active > .nav-link,
+    & a:not(.dropdown-item),
+    .dropdown-item .tips {
+      color: $primary !important;
+    }
   }
 }
 

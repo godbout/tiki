@@ -6790,7 +6790,10 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 .btn-secondary {
   background-image: linear-gradient(#8c00ec, #7400c3 60%, #6800af);
   background-repeat: no-repeat;
-  color: #495057; }
+  color: #f8f9fa; }
+
+.btn-secondary:active, .btn-secondary:hover, .btn-secondary.disabled {
+  color: #f8f9fa; }
 
 .btn-success {
   background-image: linear-gradient(#88c149, #73a839 60%, #699934);

@@ -4,7 +4,7 @@
 <div class="t_navbar mb-4">
 	<a href="tiki-admin_polls.php?setlast=1" class="btn btn-link" title="">{icon name="previous"} {tr}Set last poll as current{/tr} </a>
 	<a href="tiki-admin_polls.php?closeall=1" class="btn btn-link" title="">{icon name="disable"} {tr}Close all polls but last{/tr}</a>
-	<a href="tiki-admin_polls.php?activeall=1" class="btn btn-link" title="">{icon name="enable"} {tr}Activate all polls{/tr}</a>
+	<a href="tiki-admin_polls.php?activeall=1" class="btn btn-link" title="">{icon name="broadcast-tower"} {tr}Activate all polls{/tr}</a>
 	{if $pollId neq '0'}{button pollId=0 cookietab=1 class="btn btn-primary" _icon_name="create" _text="{tr}Create poll{/tr}"}{/if}
 </div>
 
