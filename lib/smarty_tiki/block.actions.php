@@ -71,7 +71,7 @@ function smarty_block_actions($params, $content, $smarty, $repeat = false)
 			href="#"';
 
 	if ($js) {
-		$return .= ' ' . smarty_function_popup(['fullhtml' => '1', 'center' => 'true', 'text' => $content, 'trigger' => 'focus'], $smarty);
+		$return .= ' ' . smarty_function_popup(['fullhtml' => '1', 'center' => 'true', 'text' => $content, 'trigger' => 'click'], $smarty);
 	}
 
 	$return .= '>';
