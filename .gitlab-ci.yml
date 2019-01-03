@@ -61,6 +61,19 @@ translation:
   - git log --first-parent --pretty="format:%h" -1 --skip=1 | xargs -I gitHash php -d display_errors=On doc/devtools/translate.php --diff-command="git diff gitHash" --git --audit
   allow_failure: true
 
+translation-standards:
+  stage: tiki-check
+  script:
+    - php doc/devtools/check_template_translation_standards.php --all
+  allow_failure: true
+
+composer-lock:
+  stage: tiki-check
+  script:
+    - cp $(command -v composer) temp/composer.phar
+    - php doc/devtools/update_composer_lock.php
+  allow_failure: true
+
 .template-tiki-schema-upgrade: &template-tiki-schema-upgrade
   stage: tiki-check
   cache:

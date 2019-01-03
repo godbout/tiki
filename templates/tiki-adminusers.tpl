@@ -633,9 +633,17 @@
 					<label for="csvlist" class="col-form-label col-md-3">{tr}CSV File{/tr}</label>
 					<div class="col-md-9">
 						<input type="file" id="csvlist" name="csvlist">
-						<div class="form-text">
-							{tr}CSV file layout{/tr} {tr}login,password,email,groups,default_group,realName<br>user1,pass1,email1,group1,group1<br>user2,pass2,email2,"group1,group2",group1{/tr}<br><br>{tr}Only login, password, email are mandatory.Use an empty password for automatic password generation. Use same login and email if the login use email. Groups are separated by comma. With group name with comma, double the comma.{/tr}
-						</div>
+						<small class="form-text text-muted">
+							{tr}Your file should contain in the first row (first entry) the following fields:{/tr}
+							<span class="font-weight-bold">login</span>, <span class="font-weight-bold">password</span>, <span class="font-weight-bold">email</span>, groups, default_group,realName.<br><br>
+							<span class="font-italic">{tr}Example{/tr}:</span><br>
+							login,password,email,groups,default_group,realName<br>
+							{tr}user1,pass1,email1,group1,group1{/tr}<br>
+							{tr}user2,pass2,email2,"group1,group2",group1{/tr}<br><br>
+							{tr}Only login, password, email are mandatory. Use an empty password for automatic password generation. Use same login and email if the login use email. Groups are separated by comma. With group name with comma, double the comma.{/tr}<br>
+							{tr}On most server with default setting importing 250 users should be fine. If you have a long list you can split it or change the server settings to allow longer execution time.{/tr}
+							{tr}Please also note that the data should match your Tiki setting. IE: if special characters or space are not permit for the username of your Tiki then your data in the CSV file for username should not contain any.{/tr}
+						</small>
 					</div>
 				</div>
 				<div class="form-group row">
