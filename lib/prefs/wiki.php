@@ -693,6 +693,7 @@ function prefs_wiki_list($partial = false)
 			'type' => 'flag',
 			'help' => 'Auto TOC',
 			'default' => 'n',
+			'keywords' => 'autotoc',
 		],
 		'wiki_inline_auto_toc' => [
 			'name' => tr('Inline auto-toc'),
@@ -702,6 +703,7 @@ function prefs_wiki_list($partial = false)
 			'dependencies' => [
 				'wiki_auto_toc',
 			],
+			'keywords' => 'autotoc',
 		],
 		'wiki_toc_pos' => [
 			'name' => tr('Table of contents position'),
