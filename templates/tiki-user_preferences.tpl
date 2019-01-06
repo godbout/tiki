@@ -203,6 +203,21 @@
 						{/if}
 					</div>
 				</div>
+				{if $prefs.feature_perspective eq 'y' and $perspectives|@count gt 0}
+				<div class="form-group row">
+					<label class="col-form-label col-md-4" for="perspective_preferred">
+						{tr}Preferred perspective{/tr}
+					</label>
+					<div class="col-md-8">
+						<select id="perspective_preferred" name="perspective_preferred" class="form-control">
+							<option value="">----</option>
+							{foreach from=$perspectives item=persp}
+								<option value="{$persp.perspectiveId|escape}"{if $persp.perspectiveId eq $user_prefs.perspective_preferred} selected="selected"{/if}>{$persp.name|escape}</option>
+							{/foreach}
+						</select>
+					</div>
+				</div>
+				{/if}
 				<div class="form-group row">
 					<label class="col-form-label col-md-4" for="mailCharset">
 						{tr}Email character set{/tr}
