@@ -144,14 +144,17 @@
 
 		<nav class="navbar navbar-expand-md {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if} fixed-top">
 		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} d-flex justify-content-between in-navbar">
-			<a class="navbar-brand" href="./">{if $prefs.sitelogo_icon}<img
-					src="{$prefs.sitelogo_icon}">{/if} {$prefs.sitetitle|escape}</a>
+			<a class="navbar-brand" href="./">
+				{if $prefs.sitelogo_icon}<img src="{$prefs.sitelogo_icon}" alt="{$prefs.sitetitle|escape}">{/if}
+				{$prefs.sitetitle|escape}
+				<small>{$prefs.sitesubtitle|escape}</small>
+			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
 					aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
-				{modulelist zone="top" id="top_modules" class="d-flex flex-fill justify-content-between"}
+				{modulelist zone="top" id="top_modules" class="d-flex flex-fill justify-content-between top_modules"}
 			</div> {* navbar-collapse-social *}
 		</div> {* container *}
 
