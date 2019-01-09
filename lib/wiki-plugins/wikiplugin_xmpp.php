@@ -83,11 +83,12 @@ function wikiplugin_xmpp($data, $params)
 		.'<div id="conversejs" style="width:' . $params['width'] . ';height:' . $params['height'] . '"></div>';
 	unset($params['width'], $params['height']);
 
-	$openfire_api_enabled = !empty($prefs['xmpp_openfire_rest_api'])
-		&& !empty($prefs['xmpp_openfire_rest_api_secret'])
-		&& !empty($params['room'])
-		&& $tiki_p_list_users === 'y'
-		&& $tiki_p_admin === 'y';
+	$openfire_api_enabled = !empty($prefs['xmpp_openfire_rest_api']);
+	$openfire_api_enabled = $openfire_api_enabled && !empty($prefs['xmpp_openfire_rest_api_username']);
+	$openfire_api_enabled = $openfire_api_enabled && !empty($prefs['xmpp_openfire_rest_api_password']);
+	$openfire_api_enabled = $openfire_api_enabled && !empty($params['room']);
+	$openfire_api_enabled = $openfire_api_enabled && $tiki_p_list_users === 'y';
+	$openfire_api_enabled = $openfire_api_enabled && $tiki_p_admin === 'y';
 
 	if ($openfire_api_enabled) {
 		$url = $servicelib->getUrl(array('controller' => 'xmpp', 'action' => 'groups_in_room'));
