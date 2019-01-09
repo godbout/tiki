@@ -40,6 +40,9 @@ function wikiplugin_pdfbookmark_info()
 }
 function wikiplugin_pdfbookmark($data, $params)
 {
+	if(strstr($_GET['display'],'pdf')=='') {
+		return;
+	}
 	$paramList = '';
 	foreach ($params as $paramName => $param) {
 		$paramList .= $paramName . "='" . $param . "' ";

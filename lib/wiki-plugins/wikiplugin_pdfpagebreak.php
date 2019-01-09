@@ -21,5 +21,8 @@ function wikiplugin_pdfpagebreak_info()
 
 function wikiplugin_pdfpagebreak()
 {
+	if(strstr($_GET['display'],'pdf')=='') {
+		return;
+	}
 	return '<pagebreak></pagebreak>';
 }

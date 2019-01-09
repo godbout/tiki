@@ -129,19 +129,21 @@ function prefs_print_list()
 		],
 		'print_pdf_mpdf_header' => [
 			'name' => tra('PDF header text'),
-			'description' => tra('Possible values, custom text, {PAGENO},{PAGETITLE},{DATE j-m-Y}, Page {PAGENO} of {NB}'),
+			'description' => tra('Possible values, Plain text, HTML, Wiki syntax, {PAGENO},{PAGETITLE},{DATE j-m-Y}, Page {PAGENO} of {NB}, {include page="wiki_page_name"}'),
 			'tags' => ['basic'],
-			'type' => 'text',
+			'type' => 'textarea',
+			'size' => 5,
 			'default' => '',
-			'shorthint' => tr('Left text') . ' |' . tr('Center Text') . '| ' . tr('Right Text')
+			'shorthint' => tr('HTML / Wiki Syntax / ').tr('Left text') . ' | ' . tr('Center Text') . ' | ' . tr('Right Text')
 		],
 		'print_pdf_mpdf_footer' => [
 			'name' => tra('PDF footer text'),
-			'description' => tra('Custom text, {PAGENO}, {DATE j-m-Y}, Page {PAGENO} of {NB}.'),
+			'description' => tra('HTML, Wiki Syntax, plain text, {PAGENO}, {DATE j-m-Y}, Page {PAGENO} of {NB}.'),
 			'tags' => ['basic'],
-			'type' => 'text',
+			'type' => 'textarea',
+			'size' => 5,
 			'default' => '',
-			'shorthint' => tr('Left text') . ' |' . tr('Center Text') . '| ' . tr('Right Text')
+			'shorthint' =>  tr('HTML / Wiki Syntax / ').tr('Left text') . ' | ' . tr('Center Text') . ' | ' . tr('Right Text')
 		],
 		'print_pdf_mpdf_margin_left' => [
 			'name' => tra('Left margin'),

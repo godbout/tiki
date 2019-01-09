@@ -3,7 +3,7 @@
 	{tikimodule error=$module_params.error title=$tpl_module_title name="permissions" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle style=$module_params.style}
 		{if $pagePermissions}
 			{foreach from=$pagePermissions key=permission item=info}
-				{assign var="permissionName" value=$permission|substr:7}
+				{assign var="permissionName" value=$permission|replace:'tiki_p_':''}
 				{$permissionName}
 				<span target="tikihelp" class="tikihelp" title="{$permissionName}<br/>
 					{if !empty($info["global"])}

@@ -87,7 +87,7 @@ function wikiplugin_button_info()
 			'_class' => [
 				'required' => false,
 				'name' => tra('CSS Class'),
-				'description' => tra('CSS class for the button'),
+				'description' => tra('CSS class for the button. Note that the btn class is always applied by default'),
 				'since' => '6.1',
 				'filter' => 'text',
 				'default' => '',

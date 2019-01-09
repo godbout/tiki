@@ -112,15 +112,14 @@ function wikiplugin_pdf_info()
 					],
 					'header' => [
 						'name' => tra('PDF header text'),
-						'description' => tra('Format: <code>Left text| Center Text | Right Text</code>. Possible values,<code>custom text</code>, {PAGENO},{PAGETITLE},{DATE j-m-Y}, Page {PAGENO} of {NB} or "off" to turn off header'),
+						'description' => tra('Enter Wiki Syntax / HTML code / Plain text. <br /> Possible values: <code>Custom HTML / Wiki Syntax / text </code>, <code>{PAGENO}</code>, <code>{DATE j-m-Y}</code>, <code> Page {PAGENO} of {NB}, Left text| Center Text | Right Text</code>. <br />Set header value as <code>off</code>, to turn off header from page'),
 						'tags' => ['basic'],
 						'type' => 'text',
 						'default' => $prefs['print_pdf_mpdf_header'],
-						'shorthint' => 'Left text |Center Text| Right Text'
 					],
 					'footer' => [
 						'name' => tra('PDF footer text'),
-						'description' => tra('Possible values, custom text, {PAGENO}, {DATE j-m-Y},  Page {PAGENO} of {NB}. For example:<code>{PAGETITLE}|{DATE j-m-Y}|{PAGENO}</code> or "off" to turn off footer'),
+						'description' => tra('Possible values: <code>HTML / Wiki Syntax / Plain text</code>,  <code>{include page="wiki_page_name"}</code> <code>{PAGENO}</code>, <code>{DATE j-m-Y}</code>. <br/> For example: <code>{PAGETITLE}|Center Text|{PAGENO}</code>, <code> Page {PAGENO} of {NB}</code>, <code>{include page="wiki_page_name"}</code>. <br /> Set footer value as <code>off</code>, to remove footer from page'),
 						'type' => 'text',
 						'default' => $prefs['print_pdf_mpdf_footer'],
 					],
@@ -255,6 +254,10 @@ function wikiplugin_pdf_info()
 
 function wikiplugin_pdf($data, $params)
 {
+	//return if not printing PDF
+	if(strstr($_GET['display'],'pdf')=='') {
+		return;
+	}
 	//included globals to check mpdf selection as pdf generation engine
 	global $prefs;
 

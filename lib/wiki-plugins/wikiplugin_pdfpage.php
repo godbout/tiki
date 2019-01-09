@@ -15,7 +15,7 @@ function wikiplugin_pdfpage_info()
 				'tags' => [ 'advanced' ],
 				'body' => tra('Page Content'),
 				'prefs' => [ 'wikiplugin_pdf' ],
-				'format' => 'wiki',
+				'format' => 'html',
 				'iconname' => 'pdf',
 				'introduced' => 18,
 				'params' => [
@@ -52,16 +52,15 @@ function wikiplugin_pdfpage_info()
 					],
 
 					'header' => [
-						'name' => tra('PDF header text'),
-						'description' => tra('Format: <code>Left text| Center Text | Right Text</code>. Possible values: <code>Custom text</code>, <code>{PAGENO}</code>, <code>{DATE j-m-Y}</code>, <code> Page {PAGENO} of {NB}</code>. Set header value as <code>off</code>, to turn off header from page'),
+						'name' => tra('PDF page header text'),
+						'description' => tra('Enter Wiki Syntax / HTML code / Plain text. <br /> Possible values: <code>Custom HTML / Wiki Syntax / text </code>, <code>{PAGENO}</code>, <code>{DATE j-m-Y}</code>, <code> Page {PAGENO} of {NB}, Left text| Center Text | Right Text</code>. <br />Set header value as <code>off</code>, to turn off header from page'),
 						'tags' => ['basic'],
 						'type' => 'text',
 						'default' => $prefs['print_pdf_mpdf_header'],
-						'shorthint' => 'Left text |Center Text| Right Text'
 					],
 					'footer' => [
-						'name' => tra('PDF footer text'),
-						'description' => tra('Possible values: <code>Custom text</code>, <code>{PAGENO}</code>, <code>{DATE j-m-Y}</code>. For example: <code>{PAGETITLE}|Center Text|{PAGENO}</code>, <code> Page {PAGENO} of {NB}</code>. Set footer value as <code>off</code>, to remove footer from page'),
+						'name' => tra('PDF page footer text'),
+						'description' => tra('Possible values: <code>HTML / Wiki Syntax / Plain text</code>,  <code>{include page="wiki_page_name"}</code> <code>{PAGENO}</code>, <code>{DATE j-m-Y}</code>. <br/> For example: <code>{PAGETITLE}|Center Text|{PAGENO}</code>, <code> Page {PAGENO} of {NB}</code>, <code>{include page="wiki_page_name"}</code>. <br /> Set footer value as <code>off</code>, to remove footer from page'),
 						'type' => 'text',
 						'default' => $prefs['print_pdf_mpdf_footer'],
 					],
@@ -170,6 +169,10 @@ function wikiplugin_pdfpage_info()
 
 function wikiplugin_pdfpage($data, $params)
 {
+	$data=TikiLib::lib('parser')->parse_data($data, ['is_html' => true, 'parse_wiki' => true]);
+	if(strstr($_GET['display'],'pdf')=='') {
+		return $data;
+	}
 	//included globals to check mpdf selection as pdf generation engine
 	global $prefs;
 

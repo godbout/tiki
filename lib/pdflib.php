@@ -270,6 +270,8 @@ class PdfGenerator
 			'margin_header' => $pdfSettings['margin_header'],
 			'margin_footer' => $pdfSettings['margin_footer'],
 			'orientation' => $pdfSettings['orientation'],
+			'setAutoTopMargin' => 'stretch',
+			'setAutoBottomMargin' => 'stretch',
 			'tempDir'=> TIKI_PATH . '/temp'
 		];
 		$mpdf = new \Mpdf\Mpdf($mpdfConfig);
@@ -324,8 +326,8 @@ class PdfGenerator
 		if ($pdfSettings['coverpage_text_settings'] != '' || ($pdfSettings['coverpage_image_settings'] != '' && $pdfSettings['coverpage_image_settings'] != 'off')) {
 			$coverPage = explode("|", $pdfSettings['coverpage_text_settings']);
 			$coverImage = $pdfSettings['coverpage_image_settings'] != 'off' ? $pdfSettings['coverpage_image_settings'] : '';
-			$mpdf->SetHeader();		//resetting header footer for cover page
-			$mpdf->SetFooter();
+			$mpdf->SetHTMLHeader();		//resetting header footer for cover page
+			$mpdf->SetHTMLFooter();
 			$mpdf->AddPage($pdfSettings['orientation'], '', '', '', '', 0, 0, 0, 0, 0, 0); //adding new page with 0 margins
 			$coverPage[2] = $coverPage[2] == '' ? 'center' : $coverPage[2];
 			//getting border settings
@@ -364,9 +366,9 @@ class PdfGenerator
 				} elseif ($pdfPage['footer']) {
 					$footer = $pdfPage['footer'];
 				}
-				$mpdf->SetHeader(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"), $header));
+				$mpdf->SetHTMLHeader($this->processHeaderFooter($header,$params['page']));
 				$mpdf->AddPage($pdfPage['orientation'], '', $resetPage, '', '', $pdfPage['margin_left'], $pdfPage['margin_right'], $pdfPage['margin_top'], $pdfPage['margin_bottom'], $pdfPage['margin_header'], $pdfPage['margin_footer'], '', '', '', '', '', '', '', '', '', $pdfPage['pagesize']);
-				$mpdf->SetFooter(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"), $footer)); //footer needs to be reset after page content is added
+				$mpdf->SetHTMLFooter($this->processHeaderFooter($footer,$params['page'],'top')); //footer needs to be reset after page content is added
 
 			//checking watermark on page
 				$mpdf->SetWatermarkText($pdfPage['watermark']);
@@ -387,7 +389,10 @@ class PdfGenerator
 					$mpdf->SetColumns(1, 'justify');
 				}
 				$backgroundImage = '';
-				$bgColor = "";
+				if(strstr($_GET['display'],'pdf')!='') {
+					$bgColor = "background: linear-gradient(top, '','');";
+				}
+
 				if ($pdfPage['background'] != '') {
 					$bgColor = "background: linear-gradient(top, ".$pdfPage['background'].", ".$pdfPage['background'].");";
 				}
@@ -405,8 +410,8 @@ class PdfGenerator
 		$mpdf->setWatermarkText($pdfSettings['watermark']);
 		$mpdf->SetWatermarkImage($pdfSettings['watermark_image'], 0.15, '');
 		//resetting header,footer
-		trim(strtolower($pdfSettings['header']))=="off"?$mpdf->SetHeader():$mpdf->SetHeader(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['header']));
-		trim(strtolower($pdfSettings['footer']))=="off"?$mpdf->SetFooter():$mpdf->SetFooter(str_ireplace(array("{PAGETITLE}","{NB}"), array($params['page'],"{nb}"),$pdfSettings['footer']));
+		trim(strtolower($pdfSettings['header']))=="off"?$mpdf->SetHTMLHeader():$mpdf->SetHTMLHeader($this->processHeaderFooter($pdfSettings['header'],$params['page']));
+		trim(strtolower($pdfSettings['footer']))=="off"?$mpdf->SetHTMLFooter():$mpdf->SetHTMLFooter($this->processHeaderFooter($pdfSettings['footer'],$params['page'],'top'));
 		$this->clearTempImg($tempImgArr);
 		$tempFile = fopen("temp/public/pdffile_" . session_id() . ".txt", "w");
 		fwrite($tempFile, ($pagesTotal * 30));
@@ -488,7 +493,7 @@ class PdfGenerator
 		return $pdfSettings;
 	}
 
-	//mpdf read page for plugin PDFPage, introducted for advanced pdf creation
+	//mpdf read page for plugin PDFPage, introduced for advanced pdf creation
 	function getPDFPages($html, $pdfSettings)
 	{
 		//checking if pdf page tag exists
@@ -505,7 +510,9 @@ class PdfGenerator
 			if ($page->hasAttributes()) {
 				foreach ($page->attributes as $attr) {
 					$pages[$attr->nodeName] = $attr->nodeValue;
-						$pageTag .= " " . $attr->nodeName . "=\"" . htmlentities($attr->nodeValue) . "\"";
+					$paramVal=str_replace("&quot;",'"',htmlentities($attr->nodeValue));
+					strchr($paramVal,'"')?$enclosingChar="'":$enclosingChar="\"";
+					$pageTag .= " " . $attr->nodeName . "=".$enclosingChar.$paramVal.$enclosingChar;
 				}
 			}
 			$pageTag .= ">";
@@ -889,6 +896,19 @@ $(".convert-mailto").removeClass("convert-mailto").each(function () {
 	public function getMode()
 	{
 		return $this->mode;
+	}
+
+	function processHeaderFooter($value='',$page='',$border='bottom'){
+		//evaluating type
+		if(strpos($value, '|') !== false){
+			//checking if legacy header/footer is used. Important since not all users are good to add HTML formatted values
+			$valueText=explode("|",$value);
+			//formatting in table
+			$tdStyle="padding-".$border.":5px;width:33%;font-weight:bold;border-".$border.":1px solid;font-size:12px;text-align:";
+			$value="<table width='100%'><tr><td style='".$tdStyle."left;'>".$valueText[0]."</td><td style='".$tdStyle."center'>".$valueText[1]."</td><td style='".$tdStyle."right;'>".$valueText[2]."</td></tr></table>";
+		}
+		//process and return value
+		return str_ireplace(array("{PAGETITLE}","{NB}"), array($page,"{nb}"),TikiLib::lib('parser')->parse_data(html_entity_decode($value), ['is_html' => true, 'parse_wiki' => true]));
 	}
 } //END OF PDF CLASS
 
