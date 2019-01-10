@@ -832,7 +832,12 @@ $(".convert-mailto").removeClass("convert-mailto").each(function () {
 			if(!is_null($anchor)) {
 				$link = $doc->createElement('span', $anchor->nodeValue);
 				$link->setAttribute('class', $anchor->getAttribute('class'));
-
+				if($link->nodeValue==''){
+					$link = $doc->createDocumentFragment();
+					while ($anchor->childNodes->length > 0) {
+						$link->appendChild($anchor->childNodes->item(0));
+					}
+				}
 				//checking if links to be added as footnote
 				if ($hyperlinkSetting != "off") {
 					// Check if there is a url in the text
@@ -851,8 +856,9 @@ $(".convert-mailto").removeClass("convert-mailto").each(function () {
 						$linkSup->appendChild($linkAn);
 						$link->appendChild($linkSup);
 						$hrefData = $doc->createElement(
-							"a", $anchor->getAttribute('href')
+							"a"
 						);
+						$hrefData->textContent=$anchor->getAttribute('href');
 						$hrefData->setAttribute(
 							"name", $pageCounter . "lnk" . $linkCnt
 						);

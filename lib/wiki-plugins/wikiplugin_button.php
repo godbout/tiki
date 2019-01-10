@@ -50,20 +50,21 @@ function wikiplugin_button_info()
 			'_type' => [
 				'required' => false,
 				'name' => tra('Button Type'),
-				'description' => tra('Use a type to style the button'),
+				'description' => tra('Use a type to style the button. By default btn-primary will be applied.'),
 				'since' => '13.0',
 				'filter' => 'text',
 				'default' => '',
 				'safe' => true,
 				'options' => [
 					['text' => '', 'value' => ''],
-					['text' => tra('Danger'), 'value' => 'danger'],
-					['text' => tra('Default'), 'value' => 'default'],
-					['text' => tra('Info'), 'value' => 'info'],
-					['text' => tra('Link'), 'value' => 'link'],
-					['text' => tra('Primary'), 'value' => 'primary'],
-					['text' => tra('Success'), 'value' => 'success'],
-					['text' => tra('Warning'), 'value' => 'warning']
+					['text' => tra('Danger'), 'value' => 'btn-danger'],
+					['text' => tra('Default'), 'value' => 'btn-default'],
+					['text' => tra('Info'), 'value' => 'btn-info'],
+					['text' => tra('Link'), 'value' => 'btn-link'],
+					['text' => tra('Primary'), 'value' => 'btn-primary'],
+					['text' => tra('Success'), 'value' => 'btn-success'],
+					['text' => tra('Warning'), 'value' => 'btn-warning'],
+					['text' => tra('None'), 'value' => ' ']
 				],
 			],
 			'width' => [

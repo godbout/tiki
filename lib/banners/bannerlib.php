@@ -106,7 +106,7 @@ class BannerLib extends TikiLib
 				$raw
 					= "<div class='banner $class'><a target='$target' href='banner_click.php?id="
 					. $res["bannerId"] . "&amp;url=" . urlencode($res["url"])
-					. "'><img alt='banner' src=\"banner_image.php?id="
+					. "'><img class='img-fluid' alt='banner' src=\"banner_image.php?id="
 					. $res["bannerId"] . "\" /></a></div>";
 
 				break;
