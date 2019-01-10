@@ -93,15 +93,15 @@ function wikiplugin_xmpp($data, $params)
 	if ($openfire_api_enabled) {
 		$url = $servicelib->getUrl(array('controller' => 'xmpp', 'action' => 'groups_in_room'));
 		$item = '<a class="dropdown-item btn btn-link"'
-			. 'data-xmpp="'.$params['room'].'"'
-			. 'data-xmpp-action="'.$url.'"'
+			. ' data-xmpp="'.$params['room'].'"'
+			. ' data-xmpp-action="'.$url.'"'
 			.'>' . tra('Add a groups to room') . '</a>';
 		$smarty->append('tiki_page_bar_more_items', $item);
 
 		$url = $servicelib->getUrl(array('controller' => 'xmpp', 'action' => 'users_in_room'));
 		$item = '<a class="dropdown-item btn btn-link"'
-			. 'data-xmpp="'.$params['room'].'"'
-			. 'data-xmpp-action="'.$url.'"'
+			. ' data-xmpp="'.$params['room'].'"'
+			. ' data-xmpp-action="'.$url.'"'
 			.'>' . tra('Add users to room') . '</a>';
 		$smarty->append('tiki_page_bar_more_items', $item);
 		unset($url, $item);
