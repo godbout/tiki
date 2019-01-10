@@ -477,12 +477,10 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 	{
 		ob_start();
 
-		$filegallib = TikiLib::lib('filegal');
-
-		$filegallib = $this->getMockBuilder('FileGalLib')
-			->setMethods(['insert_file',])
+		$file = $this->getMockBuilder('Tiki\FileGallery\File')
+			->setMethods(['replace',])
 			->getMock();
-		$filegallib->expects($this->exactly(0))->method('insert_file')->will($this->returnValue(1));
+		$file->expects($this->exactly(0))->method('replace')->will($this->returnValue(1));
 
 		$this->obj->dom = new DOMDocument;
 		$this->obj->downloadAttachments();
@@ -590,12 +588,10 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 	{
 		ob_start();
 
-		$filegallib = TikiLib::lib('filegal');
-
-		$filegallib = $this->getMockBuilder('FileGalLib')
-			->setMethods(['insert_file'])
+		$file = $this->getMockBuilder('Tiki\FileGallery\File')
+			->setMethods(['replace'])
 			->getMock();
-		$filegallib->expects($this->exactly(0))->method('insert_file');
+		$file->expects($this->exactly(0))->method('replace');
 
 		$adapter = new Zend\Http\Client\Adapter\Test();
 		$adapter->setNextRequestWillFail(true);
@@ -622,12 +618,10 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 	{
 		ob_start();
 
-		$filegallib = TikiLib::lib('filegal');
-
-		$filegallib = $this->getMockBuilder('FileGalLib')
-			->setMethods(['insert_file'])
+		$file = $this->getMockBuilder('Tiki\FileGallery\File')
+			->setMethods(['replace'])
 			->getMock();
-		$filegallib->expects($this->exactly(0))->method('insert_file');
+		$file->expects($this->exactly(0))->method('replace');
 		$adapter = new Zend\Http\Client\Adapter\Test();
 
 		$adapter->setResponse(

@@ -61,13 +61,13 @@ class File extends DAV\File {
 
 		$info = Utilities::parseContents($this->file->filename, $data);
 
-		$this->file->replaceFull($info['content'], $info['mime'], $this->file->name, $this->file->filename, true);
+		$this->file->replace($info['content'], $info['mime'], $this->file->name, $this->file->filename);
 	}
 
 	function setName($name) {
 		Utilities::checkUploadPermission($this->file->galleryDefinition());
 
-		$this->file->replaceFull($this->file->data, $this->file->filetype, $name, $name, true);
+		$this->file->replace($this->file->data, $this->file->filetype, $name, $name);
 	}
 
 	function delete() {

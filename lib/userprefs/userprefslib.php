@@ -139,10 +139,9 @@ class UserPrefsLib extends TikiLib
 			return false;
 		}
 		if ($user_image_id = $tikilib->get_user_preference($u, 'user_fg_image_id')) {
-			$didFileReplace = false;
 			$file = Tiki\FileGallery\File::id($user_image_id);
 			$file->setParam('user', $u);
-			$user_image_id = $file->replaceFull($data, $type, $u, $filename, $didFileReplace);
+			$user_image_id = $file->replace($data, $type, $u, $filename);
 		} else {
 			$file = new Tiki\FileGallery\File([
 				'galleryId' => $prefs["user_picture_gallery_id"],

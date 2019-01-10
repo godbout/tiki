@@ -13,7 +13,6 @@ class FilegalsTest extends TikiTestCase
 		$path = 'lib/test/filegals/testdata.png';
 		$data = file_get_contents($path);
 		$this->assertFalse($fgallib->fileContentIsSVG($data));
-		$this->assertFalse($fgallib->fileIsSVG($path));
 	}
 
 	function testSVGDetect()
@@ -22,7 +21,6 @@ class FilegalsTest extends TikiTestCase
 		$path = 'lib/test/filegals/testdata.svg';
 		$data = file_get_contents($path);
 		$this->assertTrue($fgallib->fileContentIsSVG($data));
-		$this->assertTrue($fgallib->fileIsSVG($path));
 	}
 
 	function testCompressedPNGIsNotSVG()
@@ -31,7 +29,6 @@ class FilegalsTest extends TikiTestCase
 		$path = 'lib/test/filegals/testdata.png.gz';
 		$data = file_get_contents($path);
 		$this->assertFalse($fgallib->fileContentIsSVG($data));
-		$this->assertFalse($fgallib->fileIsSVG($path));
 	}
 
 	function testSVGDetectGzipped()
@@ -40,7 +37,6 @@ class FilegalsTest extends TikiTestCase
 		$path = 'lib/test/filegals/testdata.svgz';
 		$data = file_get_contents($path);
 		$this->assertTrue($fgallib->fileContentIsSVG($data));
-		$this->assertTrue($fgallib->fileIsSVG($path));
 	}
 
 	function testSVGWithPNGExtensionIsNotSafe()

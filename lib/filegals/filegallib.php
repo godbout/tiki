@@ -362,151 +362,6 @@ class FileGalLib extends TikiLib
 		return $result;
 	}
 
-	function insert_file($file, $resizex = null, $resizey = null, $ocrFile = null) {
-
-		global $prefs, $user;
-
-		if (! $this->is_filename_valid($file->filename)) {
-			Feedback::error(tr('`%0` does not match acceptable naming patterns.', $file->filename));
-			return false;
-		}
-
-		if ($file->name === $file->filename) {
-			$name = $this->getTitleFromFilename($file->name);
-		} else {
-			$name = $file->name;
-		}
-		$file->setParam('name', trim(strip_tags($name)));
-		$file->setParam('description', strip_tags($file->description));
-		$file->setParam('filename', $this->truncate_filename($file->filename));
-
-		if (0 === strpos($file->filetype, 'image/')) {
-			(new ImageTransformer($file))->resize($resizex, $resizey);
-			$metadata = $this->extractMetadataJson($file->getWrapper()->getReadableFile());
-		}
-
-		$smarty = TikiLib::lib('smarty');
-		$filesTable = $this->table('tiki_files');
-		$galleriesTable = $this->table('tiki_file_galleries');
-
-		$checksum = $file->getWrapper()->getChecksum();
-
-		// are dupes allowed? if not, then cleanup and stop:
-		if ($prefs['fgal_allow_duplicates'] !== 'y') {
-			$conditions = ['hash' => $checksum];
-
-			if ($prefs['fgal_allow_duplicates'] === 'different_galleries') {
-					$conditions['galleryId'] = $galleryId;
-			}
-			if ($filesTable->fetchCount($conditions)) {
-				// uploaded file was saved to folder already (eg by jquery upload),
-				// so we need to remove it again or we'll have tons of
-				// unreferenced junk files in the folder
-				$file->galleryDefinition()->delete($file);
-				return false;
-			}
-		}
-
-		$search_data = '';
-		if ($prefs['fgal_enable_auto_indexing'] != 'n') {
-			$search_data = $this->get_search_text_for_data($file);
-			if ($search_data === false) {
-				return false;
-			}
-		}
-		if (empty($file->created)) {
-			$created = $this->now;
-			$lastModif = $this->now;
-		} else {
-			$created = $file->created;
-			$lastModif = $this->now;
-		}
-
-		$ocrLib = Tikilib::lib('ocr');
-		$ocr_state = $ocrLib::OCR_STATUS_SKIP;
-		if ($prefs['fgal_ocr_enable'] === 'y' && ($ocrFile || $prefs['fgal_ocr_every_file'] === 'y')) {
-			if (in_array($file->filetype, $ocrLib::OCR_MIME_NATIVE)) {
-				$ocr_state = $ocrLib::OCR_STATUS_PENDING;
-			}
-		}
-
-		$file->setParam('created', $created);
-		$file->setParam('hash', $checksum);
-		$file->setParam('search_data', $search_data);
-		$file->setParam('metadata', $metadata);
-		$file->setParam('lastModif', $lastModif);
-		$file->setParam('lastModifUser', $user);
-		$file->setParam('ocr_state', $ocr_state);
-		$file->setParam('filetype', $this->fixMime($file->filetype, $file->filename));
-
-		if ($file->exists()) {
-			$filesTable->update($file->getParamsForDB(), ['fileId' => $file->fileId]);
-			$fileId = $file->fileId;
-			$final_event = 'tiki.file.update';
-		} else {
-			$fileId = $filesTable->insert($file->getParamsForDB());
-			$final_event = 'tiki.file.create';
-		}
-
-		$galleriesTable->update(['lastModif' => $this->now], ['galleryId' => $file->galleryId]);
-
-		if ($prefs['feature_actionlog'] == 'y') {
-			$logslib = TikiLib::lib('logs');
-			$logslib->add_action('Uploaded', $file->galleryId, 'file gallery', "fileId=$fileId&amp;add=".$file->filesize);
-		}
-
-		if (isset($final_event) && $final_event) {
-			TikiLib::events()->trigger(
-				$final_event,
-				[
-					'type' => 'file',
-					'object' => $fileId,
-					'user' => $user,
-					'galleryId' => $file->galleryId,
-					'filetype' => $file->filetype,
-				]
-			);
-		}
-
-		//Watches
-		$smarty->assign('galleryId', $file->galleryId);
-		$smarty->assign('fname', $file->name);
-		$smarty->assign('filename', $file->filename);
-		$smarty->assign('fdescription', $file->description);
-
-		$this->notify($file->galleryId, $file->name, $file->filename, $file->description, 'upload file', $user, $fileId);
-
-		return $fileId;
-	}
-
-	/**
-	 * Create or update a file draft
-	 *
-	 * @global array $prefs
-	 * @param TikiFile $file
-	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
-	 */
-	function insert_draft($file)
-	{
-		global $prefs;
-		$filesTable = $this->table('tiki_files');
-		$fileDraftsTable = $this->table('tiki_file_drafts');
-
-		$file->setParam('lastModif', $this->now);
-
-		if ($prefs['feature_file_galleries_save_draft'] == 'y') {
-			if ($file->getWrapper()->getSize() == 0) {
-				return $filesTable->update($file->getParamsForDB(), ['fileId' => $file->fileId]);
-			} else {
-				$fileDraft = TikiFileDraft::fromFile($file);
-				$fileDraftsTable->delete(['fileId' => $file->fileId, 'user' => $file->user]);
-				return $fileDraftsTable->insert($fileDraft->getParamsForDB());
-			}
-		}
-
-		return true;
-	}
-
 	/**
 	 * Remove all drafts of a file
 	 *
@@ -550,108 +405,9 @@ class FileGalLib extends TikiLib
 			$file = TikiFile::id($fileId);
 
 			$file->validateDraft($draft);
-			$file->replaceContents($draft->getContents());
-
-			$archives = $file->galleryDefinition()->getInfo()['archives'];
-			
-			//if no archives allowed by user, then replace certain original file information with
-			//information from the validated draft
-			if ($archives == -1) {
-				$filesTable->update($file->getParamsForDB(), ['fileId' => (int) $fileId]);
-
-				TikiLib::events()->trigger(
-					'tiki.file.update',
-					[
-						'type' => 'file',
-						'object' => $fileId,
-						'galleryId' => $file->galleryId,
-						'initialFileId' => $fileId,
-						'filetype' => $file->filetype,
-					]
-				);
-			//if archives are allowed, the validated draft becomes an archive copy with some db info
-			//from the original file carried over
-			} else {
-				$this->save_archive($file);
-			}
 
 			return $this->remove_draft($fileId, $user);
 		}
-	}
-
-	function save_archive($file) {
-
-		global $prefs;
-
-		$filesTable = $this->table('tiki_files');
-		$initialFileId = $file->fileId;
-
-		$definition = $file->galleryDefinition();
-		$count_archives = $definition->getInfo()['archives'];
-
-		// fgal_keep_fileId == n means that the archive will keep the same fileId and the latest version will have a new fileId
-		// fgal_keep_fileId = y the new version will keep the current fileId, the archive will have a new fileId
-		if ($prefs['fgal_keep_fileId'] == 'y') {
-			// create archive by inserting the old file with a new fileId and archivId field set to original fileId
-			$res = $filesTable->fetchFullRow(['fileId' => $file->fileId]);
-			if ($res) {
-				$res['archiveId'] = $file->fileId;
-				$res['user'] = $file->user;
-				$res['lockedby'] = null;
-				unset($res['fileId']);
-
-				$oldFileId = $filesTable->insert($res);
-				$this->updateReference($file->fileId, $oldFileId);
-			}
-		}
-
-		// Insert or update and index (for search) the new file
-		//for validated drafts, this will include the new information from the draft file
-		if ($prefs['fgal_keep_fileId'] != 'y') {
-			$newFile = $file->clone();
-		} else {
-			$newFile = $file;
-		}
-		$idNew = $this->insert_file($newFile);
-
-		if ($count_archives > 0) {
-			$archives = $this->get_archives($file->fileId, 0, -1, 'created_asc');
-
-			if ($archives['cant'] >= $count_archives) {
-				$toRemove = [];
-
-				foreach ($archives['data'] as $i => $values) {
-					$toRemove[] = $values['fileId'];
-					$definition->delete(new TikiFile($values));
-				}
-
-				$filesTable->deleteMultiple(['fileId' => $filesTable->in($toRemove)]);
-			}
-		}
-		if ($prefs['fgal_keep_fileId'] != 'y') {
-			$filesTable->updateMultiple(
-				['archiveId' => $idNew, 'search_data' => '', 'user' => $file->user, 'lockedby' => null],
-				['anyOf' => $filesTable->expr('(`archiveId` = ? OR `fileId` = ?)', [$file->fileId, $file->fileId])]
-			);
-		}
-
-		if ($prefs['feature_categories'] == 'y') {
-			$categlib = TikiLib::lib('categ');
-			$categlib->uncategorize_object('file', $file->fileId);
-		}
-
-		TikiLib::events()->trigger(
-			'tiki.file.update',
-			[
-				'type' => 'file',
-				'object' => $idNew,
-				'galleryId' => $file->galleryId,
-				'initialFileId' => $initialFileId,
-				'filetype' => $file->filetype
-			]
-		);
-
-		return $idNew;
 	}
 
 	/**
@@ -1074,130 +830,6 @@ class FileGalLib extends TikiLib
 		return $id;
 	}
 
-	function replace_file($file, $didFileReplace)
-	{
-		global $prefs, $user;
-
-		if (! $this->is_filename_valid($file->filename)) {
-			return false;
-		}
-
-		$gal_info = $file->galleryDefinition()->getInfo();
-
-		$file->setParam('name', trim(strip_tags($file->name)));
-		$file->setParam('description', strip_tags($file->description));
-		$file->setParam('filename', $this->truncate_filename($file->filename));
-
-		if (0 === strpos($file->filetype, 'image/')) {
-			(new ImageTransformer($file))->resize();
-			$metadata = $this->extractMetadataJson($file->getWrapper()->getReadableFile());
-			$file->setParam('metadata', $metadata);
-		}
-
-		$filesTable = $this->table('tiki_files');
-		$fileDraftsTable = $this->table('tiki_file_drafts');
-		$galleriesTable = $this->table('tiki_file_galleries');
-
-		$initialFileId = $file->fileId;
-
-		$checksum = $file->getWrapper()->getChecksum();
-		$file->setParam('hash', $checksum);
-
-		$search_data = '';
-		if ($prefs['fgal_enable_auto_indexing'] != 'n') {
-			$search_data = $this->get_search_text_for_data($file);
-			if ($search_data === false) {
-				return false;
-			}
-		}
-		$file->setParam('search_data', $search_data);
-
-		if ($prefs['feature_file_galleries_save_draft'] == 'y') {
-			$oldPath = $fileDraftsTable->fetchOne('path', ['fileId' => $file->fileId, 'user' => $user]);
-		} else {
-			$oldPath = $filesTable->fetchOne('path', ['fileId' => $file->fileId]);
-		}
-
-		if ($gal_info['archives'] == -1 || ! $didFileReplace) { // no archive
-			if ($prefs['feature_file_galleries_save_draft'] == 'y') {
-				$result = $filesTable->update(
-					[
-						'name' => $file->name,
-						'description' => $file->description,
-						'metadata' => $file->metadata,
-						'lastModifUser' => $user,
-						'lastModif' => $this->now,
-						'author' => $file->author,
-						'user' => $file->user,
-					],
-					['fileId' => $file->fileId]
-				);
-
-				if (! $result) {
-					return false;
-				}
-
-				if ($didFileReplace) {
-					if (! $this->insert_draft($file)
-					) {
-						return false;
-					}
-				}
-			} else {
-				$result = $filesTable->update($file->getParamsForDB(), ['fileId' => $file->fileId]);
-
-				if (! $result) {
-					return false;
-				}
-			}
-
-			if ($didFileReplace && ! empty($oldPath)) {
-				$definition = $file->galleryDefinition();
-				$definition->delete(new TikiFile(['galleryId' => $file->galleryId, 'data' => null, 'path' => $oldPath]));
-			}
-
-			TikiLib::events()->trigger(
-				'tiki.file.update',
-				[
-					'type' => 'file',
-					'object' => $file->fileId,
-					'galleryId' => $file->galleryId,
-					'initialFileId' => $initialFileId,
-					'filetype' => $file->filetype,
-					'user' => $user,
-				]
-			);
-		} else { //archive the old file : change archive_id, take away from indexation and categorization
-			if ($prefs['feature_file_galleries_save_draft'] == 'y') {
-				$this->insert_draft($file);
-			} else {
-				$id = $this->save_archive($file);
-			}
-		}
-
-		if ($file->galleryId) {
-			$galleriesTable->update(['lastModif' => $this->now], ['galleryId' => $file->galleryId]);
-		}
-
-		return $file->fileId;
-	}
-
-	function updateReference($oldFileId, $newFileId)
-	{
-		global $prefs;
-		$attributelib = TikiLib::lib('attribute');
-
-		if ($prefs['fgal_keep_fileId'] == 'y') {
-			$attributes = $attributelib->get_attributes('file', $oldFileId);
-			$attributelib->set_attribute('file', $oldFileId, 'tiki.content.url', '');
-
-			if (isset($attributes['tiki.content.url'])) {
-				//we don't delete or update the attribute, so that it remains working if the user changes the fgal_keep_fileId
-				$attributelib->set_attribute('file', $newFileId, 'tiki.content.url', $attributes['tiki.content.url']);
-			}
-		}
-	}
-
 	function change_file_handler($mime_type, $cmd)
 	{
 		$handlers = $this->table('tiki_file_handlers');
@@ -1321,7 +953,8 @@ class FileGalLib extends TikiLib
 			}
 
 			foreach ($rows as $row) {
-				$search_text = $this->get_search_text_for_data($row['data'], $row['path'], $row['filetype'], $row['galleryId']);
+				$file = new TikiFile($row);
+				$search_text = $this->get_search_text_for_data($file);
 				if ($search_text !== false) {
 					$files->update(['search_data' => $search_text], ['fileId' => $row['fileId']]);
 				}
@@ -1387,7 +1020,7 @@ class FileGalLib extends TikiLib
 		};
 	}
 
-	private function get_search_text_for_data($file)
+	public function get_search_text_for_data($file)
 	{
 		$parseApp = $this->get_parse_app($file->type);
 
@@ -2612,30 +2245,10 @@ class FileGalLib extends TikiLib
 	{
 		global $user;
 
-		$file = $this->get_file($id);
-
-		if (! $file || empty($file)) {
-			return [];
-		}
-
 		$query = "select tfd.* from `tiki_file_drafts` tfd where `fileId`=? and `user`=?";
 		$result = $this->query($query, [(int)$id, $user]);
 
-		if (! ($draft = $result->fetchRow())) {
-			return $file;
-		}
-
-		$file['filename'] = $draft['filename'];
-		$file['filesize'] = $draft['filesize'];
-		$file['filetype'] = $draft['filetype'];
-		$file['data'] = $draft['data'];
-		$file['user'] = $draft['user'];
-		$file['path'] = $draft['path'];
-		$file['hash'] = $draft['hash'];
-		$file['lastModif'] = $draft['lastModif'];
-		$file['lockedby'] = $draft['lockedby'];
-
-		return $file;
+		return $result ? $result->fetchRow() : [];
 	}
 
 	function get_file_by_name($galleryId, $name, $column = 'name')
@@ -3538,9 +3151,9 @@ class FileGalLib extends TikiLib
 					if (! empty($params['comment'][$key])) {
 						$file->setParam('comment', $params['comment'][$key]);
 					}
+					$didFileReplace = true;
 					if ($editFile) {
-						$didFileReplace = true;
-						$fileId = $file->replaceFull($data, $type, $params["name"][$key], $name, $didFileReplace);
+						$fileId = $file->replace($data, $type, $params["name"][$key], $name, null, null, true);
 					} else {
 						$title = $params["name"][$key];
 						if (! $params['imagesize'][$key]) {
@@ -3643,7 +3256,7 @@ class FileGalLib extends TikiLib
 				'lastModif' => $fileInfo['lastModif'],
 				'lockedby' => $fileInfo['lockedby'],
 			]);
-			$fileInfo['fileId'] = $file->replaceFull($fileInfo['data'], $fileInfo['filetype'], $fileInfo['name'], $fileInfo['filename'], $didFileReplace);
+			$fileInfo['fileId'] = $file->replace($fileInfo['data'], $fileInfo['filetype'], $fileInfo['name'], $fileInfo['filename']);
 			$fileChangedMessage = tra('File update was successful') . ': ' . $params['name'];
 			$smarty->assign('fileChangedMessage', $fileChangedMessage);
 			$cat_type = 'file';
@@ -3681,19 +3294,6 @@ class FileGalLib extends TikiLib
 		return $fileInfo;
 	}
 
-	private function getTitleFromFilename($title)
-	{
-		if (strpos($title, '.zip') !== strlen($title) - 4) {
-			$title = preg_replace('/\.[^\.]*$/', '', $title); // remove extension
-			$title = preg_replace('/[\-_]+/', ' ', $title); // turn _ etc into spaces
-			$title = ucwords($title);
-		}
-		if (strlen($title) > 200) {				// trim to length of name column in database
-			$title = substr($title, 0, 200);
-		}
-		return $title;
-	}
-
 	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '', $ocrFile = null)
 	{
 		global $user;
@@ -3726,13 +3326,11 @@ class FileGalLib extends TikiLib
 		}
 		$this->assertUploadedContentIsSafe($data, $name, $gal_info['galleryId']);
 
-		$didFileReplace = true;
-
 		$tx = $this->begin();
 
 		$file = TikiFile::id($id);
 		$file->setParam('user', $auser);
-		$ret = $file->replaceFull($data, $type, $name, $name, $didFileReplace);
+		$ret = $file->replace($data, $type, $name, $name);
 
 		$tx->commit();
 
@@ -3752,49 +3350,14 @@ class FileGalLib extends TikiLib
 		return substr($type, 0, 9) == 'image/svg';
 	}
 
-	public function fileIsSVG($path)
-	{
-		$type = mime_content_type($path);
-		if (substr($type, 0, 18) == 'application/x-gzip') {
-			$data = file_get_contents($path);
-			return $this->fileContentIsSVG($data);
-		}
-		return substr($type, 0, 9) == 'image/svg';
-	}
-
 	public function assertUploadedFileIsSafe($path, $filename = null, $galleryId = null)
 	{
 		global $prefs;
 		if ($filename === null) {
 			$filename = $path;
 		}
-		$safe = true;
-		$mimelib = TikiLib::lib('mime');
-		if (substr($mimelib->from_filename($filename), 0, 9) == 'image/svg') {
-			$dom = new DOMDocument();
-			$data = file_get_contents($path);
-			if (! $dom->loadXML($data, LIBXML_NOERROR | LIBXML_NOWARNING | LIBXML_NONET)) {
-				throw new FileIsNotSafeException("You are trying to upload a file as SVG, but content can't be parsed as XML. This is a security risk.");
-			}
-			$data = null;
-			$safe = false;
-		}
-		$safe = $safe && ! $this->fileIsSVG($path);
-		$svgErrorMsg = tra("SVG files are not safe and cannot be uploaded");
-		if (! $safe) {
-			if ($prefs['fgal_allow_svg'] !== 'y') {
-				throw new FileIsNotSafeException($svgErrorMsg);
-			}
-			$perms = Perms::get([
-				'file gallery',
-				$galleryId
-			]);
-
-			if (! $perms->upload_svg) {
-				throw new FileIsNotSafeException($svgErrorMsg);
-			}
-		}
-		return true;
+		$data = file_get_contents($path);
+		return $this->assertUploadedContentIsSafe($data, $filename, $galleryId);
 	}
 
 	public function assertUploadedContentIsSafe(&$data, $filename = null, $galleryId = null)
@@ -4092,7 +3655,7 @@ class FileGalLib extends TikiLib
 
 		$file = TikiFile::id($id);
 		$file->setParam('comment', tra('Automatic revision from source'));
-		return $file->replaceFull($data, $remote['type'], $name, $remote['name'], true);
+		return $file->replace($data, $remote['type'], $name, $remote['name']);
 	}
 
 	private function is_filename_valid($filename)
@@ -4110,23 +3673,6 @@ class FileGalLib extends TikiLib
 		}
 
 		return true;
-	}
-
-	/**
-	 * truncate a filename to the max length of filename column in database (varchar 80)
-	 * remove chars in the middle to preserve the start and the extension
-	 *
-	 * @param $filename string
-	 * @return string
-	 */
-
-	private function truncate_filename($filename)
-	{
-		if (strlen($filename) > 80) {
-			$filename = substr($filename, 0, 38) . '...' . substr($filename, strlen($filename) - 38);
-		}
-
-		return $filename;
 	}
 
 	function moveAllWikiUpToFgal($fgalId)

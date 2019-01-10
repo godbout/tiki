@@ -103,6 +103,7 @@ class File
 	function clone() {
 		$params = $this->getParams();
 		unset($params['fileId']);
+		$params['created'] = 0;
 		return new self($params);
 	}
 
@@ -119,6 +120,10 @@ class File
 		foreach ($draft->getParams() as $key => $val) {
 			$this->setParam($key, $val);
 		}
+		$this->replaceContents($draft->getContents());
+
+		$saveHandler = new SaveHandler($this);
+		$saveHandler->validateDraft();
 	}
 
 	function setParam($param = "", $value)
@@ -177,10 +182,8 @@ class File
 		return $archives;
 	}
 
-	// TODO: analyze do we really need 3 differnet ways to replace/update files and merge into one
-	function replace($data, $type = null, $name = null, $filename = null, $resizex = null, $resizey = null, $ocrFile = null)
-	{
-		global $user;
+	function replace($data, $type = null, $name = null, $filename = null, $resizex = null, $resizey = null, $ocrFile = null) {
+		global $user, $prefs;
 
 		$user = (! empty($user) ? $user : 'Anonymous');
 
@@ -196,23 +199,20 @@ class File
 
 		$this->replaceContents($data);
 
-		if ($this->exists() == false) {
-			$id = TikiLib::lib("filegal")->insert_file($this, $resizex, $resizey, $ocrFile);
-		} else {
-			$id = TikiLib::lib("filegal")->save_archive($this);
+		$result = (new Manipulator\Validator($this))->run();
+		if (! $result) {
+			// uploaded file was saved to folder already (eg by jquery upload),
+			// so we need to remove it again or we'll have tons of
+			// unreferenced junk files in the folder
+			$this->galleryDefinition()->delete($this);
+			return false;
 		}
 
-		return $id;
-	}
+		(new Manipulator\ImageTransformer($this))->run(['width' => $resizex, 'height' => $resizey]);
+		(new Manipulator\MetadataExtractor($this))->run(['ocr_file' => $ocrFile]);
 
-	function replaceFull($data, $type, $name, $filename, $replace) {
-		$this->setParam('filetype', $type);
-		$this->setParam('name', $name);
-		$this->setParam('filename', $filename);
-
-		$this->replaceContents($data);
-
-		return TikiLib::lib("filegal")->replace_file($this, $replace);
+		$saveHandler = new SaveHandler($this);
+		return $saveHandler->save();
 	}
 
 	function replaceQuick($data) {

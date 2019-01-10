@@ -54,7 +54,7 @@ $error = '';
 if (! $skip) {
 	if (isset($_REQUEST['fileId']) && ! is_array($_REQUEST['fileId'])) {
 		if (isset($_GET['draft'])) {
-			$info = $filegallib->get_file_draft($_REQUEST['fileId']);
+			$info = \Tiki\FileGallery\FileDraft::id($_REQUEST['fileId'])->getParams();
 		} else {
 			$info = $filegallib->get_file($_REQUEST['fileId']);
 		}

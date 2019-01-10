@@ -603,7 +603,7 @@ if (isset($_REQUEST['edit']) && $access->checkCsrf()) {
 
 		$file = Tiki\FileGallery\File::id($_REQUEST['fileId']);
 		$file->setParam('description', $_REQUEST['fdescription']);
-		$fid = $file->replaceFull($info['data'], $info['filetype'], $_REQUEST['fname'], $info['filename'], false);
+		$fid = $file->replace($info['data'], $info['filetype'], $_REQUEST['fname'], $info['filename']);
 		if ($fid) {
 			Feedback::success(tr('File properties for %0 edited'. htmlspecialchars($_REQUEST['fname'])));
 		} else {

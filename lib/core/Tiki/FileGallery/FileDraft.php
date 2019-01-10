@@ -7,6 +7,8 @@
 
 namespace Tiki\FileGallery;
 
+use TikiLib;
+
 class FileDraft extends File
 {
   public $param = [
@@ -46,6 +48,17 @@ class FileDraft extends File
     return $draft;
   }
 
+  static function id($id = 0)
+  {
+    $file = File::id($id);
+    $params = TikiLib::lib("filegal")->get_file_draft((int)$id);
+    if ($params) {
+      return new self($params);
+    } else {
+      return $file;
+    }
+  }
+
   function setParams($params) {
     $this->param = $params;
   }
@@ -54,5 +67,11 @@ class FileDraft extends File
     foreach ($params as $key => $val) {
       $this->setParam($key, $val);
     }
+  }
+
+  function galleryDefinition() {
+    $filegallib = TikiLib::lib('filegal');
+    $file = $filegallib->get_file($this->fileId);
+    return $filegallib->getGalleryDefinition($file['galleryId']);
   }
 }

@@ -5,23 +5,17 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-namespace Tiki\FileGallery;
+namespace Tiki\FileGallery\Manipulator;
 
-class ImageTransformer
+use Feedback;
+
+class ImageTransformer extends Manipulator
 {
-  private $file;
-  
-  function __construct(File $file)
-  {
-    $this->file = $file;
-  }
-
   /**
    * Resize an image to specific dimensions or use gallery default dimensions.
-   * @param int target width
-   * @param int target height
+   * @param array args with target width and height
    */
-  public function resize($image_size_x = null, $image_size_y = null) {
+  public function run($args = []) {
     global $prefs;
 
     $imageReader = $this->getImageReader($this->file->filetype);
@@ -30,6 +24,9 @@ class ImageTransformer
     if (! $imageReader || ! $imageWriter) {
       return;
     }
+
+    $image_size_x = $args['width'] ?? null;
+    $image_size_y = $args['height'] ?? null;
 
     $gal_info = $this->file->galleryDefinition()->getInfo();
 
