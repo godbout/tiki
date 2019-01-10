@@ -354,25 +354,22 @@ class XMPPLib extends TikiLib
 		return $this->xmppapi;
 	}
 
-	public function addUserToRoom($room, $name, $role='members')
+	public function addUserToRoom($room, $userJid, $role='members')
 	{
 		global $prefs;
 		// first, allow myself to join the room
-		$owner = preg_replace(',/.*$,', '', $this->getXmppApi()->getJid());
-		$this->getRestApi()->addUserRoleToChatRoom($room, $owner, 'owners');
+		$ownerJid = new JID($this->getXmppApi()->getJid());
+		$onwerName = $ownerJid->getNode();
 
-		// the restapi add permission to user join the room
-		$result = $this->getRestApi()->addUserRoleToChatRoom($room, $name, $role);
+		$roomJid = new JID($room);
+		$roomName = $roomJid->getNode();
 
-		// the xmppapi invite the user to the room
-		$nick = $this->getXmppApi()->getUsername();
-
-		$roomJid = JID::buildJid($room, $this->server_http_bind);
-		$userJid = JID::buildJid($name, $prefs['xmpp_muc_component_domain']);
+		$result = $this->getRestApi()->addUserRoleToChatRoom($roomName, $onwerName, 'owners');
+		$result = $this->getRestApi()->addUserRoleToChatRoom($roomName, $userJid, $role);
 
 		$this->getXmppApi()
-			->sendPresence(1, $roomJid, $nick)
-			->sendInvitation($roomJid, $userJid)
+			->sendPresence(1, (string) $roomJid, $onwerName)
+			->sendInvitation((string) $roomJid, $userJid)
 		;
 
 		return $result;
@@ -403,7 +400,7 @@ class XMPPLib extends TikiLib
 				return $item;
 			}
 	
-			$response = $self->addUserToRoom($item['room'], $item['name'], $item['role']);
+			$response = $self->addUserToRoom($item['room'], $item['jid'], $item['role']);
 			return array_merge($item, $response);
 		}, $params);
 	}
