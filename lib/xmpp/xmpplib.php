@@ -340,13 +340,15 @@ class XMPPLib extends TikiLib
 		global $prefs;
 
 		if(empty($this->xmppapi)) {
-			$this->xmppapi = new TikiXmppChat(array(
+			$params = array(
 				"scheme" => "tcp",
 				"host" => $this->server_host,
 				"port" => 5222,
 				"user" => $prefs['xmpp_openfire_rest_api_username'],
 				"pass" => $prefs['xmpp_openfire_rest_api_password'],
-			));
+			);
+
+			$this->xmppapi = new TikiXmppChat($params);
 			$this->xmppapi->connect();
 		}
 		return $this->xmppapi;
@@ -465,23 +467,31 @@ class XMPPLib extends TikiLib
 
 	public function getUsers()
 	{
-		$restapi = $this->getRestApi();
-		$response = $restapi->getUsers();
+		$cachelib = TikiLib::lib('cache');		
 
-		$items = [];
-		if(!empty($response['data']) && !empty($response['data']->users)) {
-			$items = $response['data']->users;
+		$cache_key = 'xmppJidList';
+		if ($items = $cachelib->getSerialized($cache_key)) {
+			return $items;
 		}
 
-		// groups has attr `name` and `description`
-		// users  has attr `username` and `name`
-		// let's make a common `name` and `fullname`
-		return array_map(function($item) {
+		$query = 'SELECT'
+		.     ' user as username,'
+		.     ' MAX(CASE WHEN `prefName`="xmpp_jid" THEN `value` END) AS `jid`,'
+		.     ' MAX(CASE WHEN `prefName`="realName" THEN `value` END) AS `name`'
+		. ' FROM `tiki_user_preferences` WHERE'
+		.     ' `prefName` IN ("xmpp_jid", "realName")'
+		. ' GROUP BY user;';
+
+		$items = $this->query($query);
+		$items = array_map(function($item) {
 			return array(
-				'name' => $item->username,
-				'fullname' => $item->name,
-				'email' => $item->email
+				'name' => $item['username'],
+				'fullname' => $item['name'],
+				'jid' => $item['jid'] ?: "{$item['username']}@{$this->server_host}"
 			);
-		}, $items);
+		}, $items->result);
+
+		$cachelib->cacheItem($cache_key, serialize($items));
+		return $items;
 	}
 }
