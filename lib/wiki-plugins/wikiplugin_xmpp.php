@@ -107,7 +107,8 @@ function wikiplugin_xmpp($data, $params)
 		unset($url, $item);
 	}
 
-	$headerlib->add_jsfile_late('lib/jquery_tiki/wikiplugin-xmpp.js?_='.uniqid(), false);
+	$javascript = 'lib/jquery_tiki/wikiplugin-xmpp.js';
+	$headerlib->add_jsfile_late($javascript . '?_=' . filemtime(TIKI_PATH . "/$javascript"), false);
 	TikiLib::lib('xmpp')->addConverseJSToPage($params);
 
 	return $result;
