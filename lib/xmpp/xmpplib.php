@@ -218,7 +218,7 @@ class XMPPLib extends TikiLib
 
 		switch ($params['view_mode']) {
 			case 'fullscreen':
-				$css_files = ['inverse.css'];
+				$css_files = ['converse.css', 'fullpage.css'];
 				break;
 			case 'embedded':
 				// TODO: remove this a line after fixing conversejs

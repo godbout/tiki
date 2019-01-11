@@ -80,7 +80,11 @@ function wikiplugin_xmpp($data, $params)
 	}
 
 	$result = '<style type="text/css">#page-bar .dropdown-menu { z-index: 1031; }</style>'
-		.'<div id="conversejs" style="width:' . $params['width'] . ';height:' . $params['height'] . '"></div>';
+		.'<div id="conversejs"'
+		. ' data-view-mode="'.$params['view_mode'].'"'
+		. ' style="'."width:{$params['width']}; height:{$params['height']}".'"'
+		. '></div>';
+	
 	unset($params['width'], $params['height']);
 
 	$openfire_api_enabled = !empty($prefs['xmpp_openfire_rest_api']);
