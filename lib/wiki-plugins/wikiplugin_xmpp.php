@@ -111,6 +111,12 @@ function wikiplugin_xmpp($data, $params)
 		unset($url, $item);
 	}
 
+	if ($params['view_mode'] === 'fullscreen') {
+		// supress to avoid conflict
+		$headerlib->cssfiles = [];
+		$headerlib->css = [];		
+	}
+
 	$javascript = 'lib/jquery_tiki/wikiplugin-xmpp.js';
 	$headerlib->add_jsfile_late($javascript . '?_=' . filemtime(TIKI_PATH . "/$javascript"), false);
 	TikiLib::lib('xmpp')->addConverseJSToPage($params);
