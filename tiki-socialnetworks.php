@@ -24,7 +24,7 @@ if (isset($_REQUEST['request_twitter'])) {
 	} else {
 		if (isset($_SESSION['TWITTER_REQUEST_TOKEN'])) {
 			// this is the callback from twitter
-			check_ticket('socialnetworks');
+			// no anti-CSRF check here since token provided by Twitter in this request is verified
 			$socialnetworkslib->getTwitterAccessToken($user);
 		} // otherwise it is just a reload of this page
 	}
@@ -49,10 +49,11 @@ if (isset($_REQUEST['request_facebook'])) {
 	}
 	if (! isset($_REQUEST['code'])) {
 		// user asked to give us access to Facebook
+		// no anti-CSRF here since this redirects to facebook site
 		$socialnetworkslib->getFacebookRequestToken();
 	} else {
-		// this is the callback from facebook
-		check_ticket('socialnetworks');
+		// this is the callback from Facebook
+		// no anti-CSRF check here since token provided by Facebook in this request is verified with Facebook
 		$socialnetworkslib->facebookLoginPre();
 	}
 }
@@ -82,6 +83,5 @@ $smarty->assign('twitterRegistered', $socialnetworkslib->twitterRegistered());
 $smarty->assign('facebookRegistered', $socialnetworkslib->facebookRegistered());
 $smarty->assign('linkedInRegistered', $socialnetworkslib->linkedInRegistered());
 
-ask_ticket('socialnetworks');
 $smarty->assign('mid', 'tiki-socialnetworks.tpl');
 $smarty->display("tiki.tpl");

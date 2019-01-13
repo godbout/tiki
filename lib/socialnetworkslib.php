@@ -20,6 +20,14 @@ $logslib = TikiLib::lib('logs');
  */
 class SocialNetworksLib extends LogsLib
 {
+	/**
+	 * Latest Facebook API version for accessing graph.facebook.com
+	 * Documentation says it's best to specify the version, otherwise the oldest version is used
+	 * Will need to be updated whenever the API version is updated
+	 *
+	 * @var string
+	 */
+	private $graphVersion = 'v3.2';
 
 	/**
 	 * @var	array	options for Twitter Zend functions
@@ -168,8 +176,8 @@ class SocialNetworksLib extends LogsLib
 			$url = preg_replace('/\?.*/', '', $url);
 		}
 		$url = urlencode($url . '?request_facebook');
-		$url = 'https://www.facebook.com/v2.12/dialog/oauth?client_id=' . $prefs['socialnetworks_facebook_application_id'] .
-			'&scope=' . $scope . '&redirect_uri=' . $url;
+		$url = 'https://www.facebook.com/' . $this->graphVersion . '/dialog/oauth?client_id='
+			. $prefs['socialnetworks_facebook_application_id'] . '&scope=' . $scope . '&redirect_uri=' . $url;
 		header("Location: $url");
 		die();
 	}
@@ -184,9 +192,11 @@ class SocialNetworksLib extends LogsLib
 		global $prefs, $user;
 		$userlib = TikiLib::lib('user');
 
-		$url = '/v2.12/oauth/access_token?client_id=' . $prefs['socialnetworks_facebook_application_id'] .
-			'&redirect_uri=' . $this->getURL() . '&client_secret=' . $prefs['socialnetworks_facebook_application_secr']; // code is already in the url
-
+		// code parameter provided by Facebook is already in the url
+		$url = '/' . $this->graphVersion . '/oauth/access_token?client_id='
+			. $prefs['socialnetworks_facebook_application_id']
+			. '&redirect_uri=' . $this->getURL() . '&client_secret='
+			. $prefs['socialnetworks_facebook_application_secr'];
 
 		$request = "GET $url HTTP/1.1\r\n" .
 			"Host: graph.facebook.com\r\n" .
@@ -208,7 +218,6 @@ class SocialNetworksLib extends LogsLib
 		}
 		$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
 		$ret = $ret[1];
-		$ret = substr($ret, 3, strlen($ret) - 10);
 		$json_decoded_ret = json_decode($ret, true);
 
 		if (isset($json_decoded_ret['access_token']) || substr($ret, 0, 13) == 'access_token=') {
@@ -239,7 +248,6 @@ class SocialNetworksLib extends LogsLib
 		}
 
 		$resp = $this->facebookGraph('', 'me', ['fields' => implode(',', $fields),'access_token' => $access_token], false, 'GET');
-		$resp = substr($resp, 3, strlen($resp) - 10);
 		$fb_profile = json_decode($resp);
 
 		return $fb_profile;
@@ -247,20 +255,32 @@ class SocialNetworksLib extends LogsLib
 
 
 	/**
-	*
-	* Facebook pre-login
-	*/
+	 * Facebook pre-login
+	 *
+	 * @return bool
+	 * @throws Exception
+	 */
 	function facebookLoginPre()
 	{
 		global $prefs, $user;
 
-		if ($prefs['socialnetworks_facebook_application_id'] == '' or $prefs['socialnetworks_facebook_application_secr'] == '') {
+		if ($prefs['socialnetworks_facebook_application_id'] == ''
+			or $prefs['socialnetworks_facebook_application_secr'] == '')
+		{
 			return false;
 		}
 
 		$access_token = $this->getFacebookAccessToken();
 		$fb_profile = $this->getFacebookUserProfile($access_token);
-		$this->facebookLogin($access_token, $fb_profile);
+		if (is_object($fb_profile) && ! empty($fb_profile->id)) {
+			$this->facebookLogin($access_token, $fb_profile);
+		} elseif (is_object($fb_profile) && is_object($fb_profile->error)) {
+			Feedback::error($fb_profile->error);
+			return false;
+		} else {
+			Feedback::error(tr('Facebook profile information not retrieved'));
+			return false;
+		}
 
 		return true;
 	}
@@ -710,7 +730,7 @@ class SocialNetworksLib extends LogsLib
 			$action .= "?$data";
 		}
 
-		$request = "$method /v2.0/$action HTTP/1.1\r\n" .
+		$request = "$method /$this->graphVersion/$action HTTP/1.1\r\n" .
 			"Host: graph.facebook.com\r\n" .
 			"Accept: */*\r\n" .
 			"Expect: 100-continue\r\n" .
@@ -954,7 +974,7 @@ class SocialNetworksLib extends LogsLib
 			}
 		}
 
-			$request = "GET /v2.0/me/feed" . $getdata . " HTTP/1.1\r\n" .
+			$request = "GET /$this->graphVersion/me/feed" . $getdata . " HTTP/1.1\r\n" .
 			 "Host: graph.facebook.com\r\n" .
 			 "Accept:*/*\r\n" .
 			 "Accept-Charset:ISO-8859-1,utf-8;q=0.7,*;q=0.3\r\n" .
