@@ -184,9 +184,12 @@ class SocialNetworksLib extends LogsLib
 
 
 	/**
-	* Old tiki way of getting access_token using socket. Some say it faster than curl. Maybe we
-	* need to move it to hybridauth as an alternative to curl, like guzzle?
-	*/
+	 * Old tiki way of getting access_token using socket. Some say it faster than curl. Maybe we
+	 * need to move it to hybridauth as an alternative to curl, like guzzle?
+	 *
+	 * @return bool|string|null
+	 * @throws Exception
+	 */
 	function getFacebookAccessToken()
 	{
 		global $prefs, $user;
@@ -204,9 +207,12 @@ class SocialNetworksLib extends LogsLib
 			"Expect: 100-continue\r\n" .
 			"Connection: close\r\n\r\n";
 
-		$fp = fsockopen('ssl://graph.facebook.com', 443);
+		$fp = fsockopen('ssx://graph.facebook.com', 443, $errno, $errstr);
 		if ($fp === false) {
-			$this->add_log('getFacebookAccessToken', "can't connect");
+			$msg = tr('Error attempting to connect to graph.facebook.com:') . ' ' . $errstr . ' '
+				. tr('(error number %0)', $errno);
+			Feedback::error($msg);
+			$this->add_log('getFacebookAccessToken', $msg);
 			return false;
 		} else {
 			fputs($fp, $request);
@@ -275,7 +281,7 @@ class SocialNetworksLib extends LogsLib
 		if (is_object($fb_profile) && ! empty($fb_profile->id)) {
 			$this->facebookLogin($access_token, $fb_profile);
 		} elseif (is_object($fb_profile) && is_object($fb_profile->error)) {
-			Feedback::error($fb_profile->error);
+			Feedback::error($fb_profile->error->type . ': ' . $fb_profile->error->message);
 			return false;
 		} else {
 			Feedback::error(tr('Facebook profile information not retrieved'));
