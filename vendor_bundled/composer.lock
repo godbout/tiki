@@ -1587,17 +1587,17 @@
         },
         {
             "name": "jcbrand/converse.js",
-            "version": "v4.0.6",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/conversejs/converse.js.git",
-                "reference": "384f1d79779d8e71b7bf0cd8736599f01f96a5a3"
+                "reference": "a2f42d27a274471318da7724781c65fdfd9c71b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-384f1d79779d8e71b7bf0cd8736599f01f96a5a3-zip-3f9f47.zip",
-                "reference": "384f1d79779d8e71b7bf0cd8736599f01f96a5a3",
-                "shasum": "a6e0e13835c598c4fae95d3fdb0a32920a4bbcfd"
+                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-a2f42d27a274471318da7724781c65fdfd9c71b7-zip-fee717.zip",
+                "reference": "a2f42d27a274471318da7724781c65fdfd9c71b7",
+                "shasum": "ee8d9d575bf0e46d786f2425569d56a1c18aa077"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1612,7 +1612,7 @@
                 "presence",
                 "xmpp"
             ],
-            "time": "2018-12-07T11:40:02+00:00"
+            "time": "2019-01-11T17:49:37+00:00"
         },
         {
             "name": "jquery-form/form",
