@@ -207,7 +207,7 @@ class SocialNetworksLib extends LogsLib
 			"Expect: 100-continue\r\n" .
 			"Connection: close\r\n\r\n";
 
-		$fp = fsockopen('ssx://graph.facebook.com', 443, $errno, $errstr);
+		$fp = fsockopen('ssl://graph.facebook.com', 443, $errno, $errstr);
 		if ($fp === false) {
 			$msg = tr('Error attempting to connect to graph.facebook.com:') . ' ' . $errstr . ' '
 				. tr('(error number %0)', $errno);
