@@ -112,7 +112,8 @@ function prefs_unified_list()
 		],
 		'unified_field_weight' => [
 			'name' => tra('Field weights'),
-			'description' => tra('Allow the field weights to be set that apply when ranking pages in the search results. The weight is applied only when the field is in the query. To nullify the value of a field, use an insignificant amount, but not 0, which may lead to unexpected behaviors such as stripping of results.'),
+			'description' => tra('Allow the field weights to be set that apply when ranking pages in the search results. The weight is applied only when the field is in the query. To nullify the value of a field, use an insignificant amount, but not 0, which may lead to unexpected behaviors such as stripping of results.') .
+				'<br>(' . tr('Add these fields to the "Default content fields" preference below for it to have an effect in a global "content" search') . ')',
 			'hint' => tra('One field per line, field_name__:__5.3'),
 			'type' => 'textarea',
 			'size' => 5,
