@@ -11,16 +11,27 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
+/**
+ * Returns a string with the href and data attributes to make a bootstrap modal appear on a link
+ * Note: Expects to be inside a "double quoted" href attribute in an html anchor
+ *
+ * @param array $params [size => 'modal-sm|modal-lg|modal-xl' (default: 'modal-md')]
+ * @param Smarty_Internal_Template $smarty
+ *
+ * @return string href attribute contents
+ * @throws SmartyException
+ */
+
 function smarty_function_bootstrap_modal($params, $smarty)
 {
 	$smarty->loadPlugin('smarty_function_service');
 	if (! empty($params['size'])) {
-		$size = ' data-size="' . $params['size'] . '"';
+		$size = '" data-size="' . $params['size'];
 		unset($params['size']);
 	} else {
 		$size = '';
 	}
 	$params['modal'] = 1;
 	$href = smarty_function_service($params, $smarty);
-	return "$href\" data-toggle=\"modal\" data-backdrop=\"static\" data-target=\".modal.fade:not(.show)\"$size";
+	return "$href\" data-toggle=\"modal\" data-backdrop=\"static\" data-target=\".modal.fade:not(.show)$size";
 }
