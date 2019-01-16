@@ -110,8 +110,7 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		$file = new File(['data' => '', 'path' => 'abcdtest']);
 		file_put_contents($prefs['fgal_use_dir'].'/'.$file->path, 'test contents');
 		
-		$file->galleryDefinition()
-		->fixFileLocation($file);
+		$file->galleryDefinition()->fixFileLocation($file);
 
 		$this->assertEquals('', $file->data);
 		$this->assertNotEmpty($file->path);

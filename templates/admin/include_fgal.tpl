@@ -31,19 +31,21 @@
 			{preference name=home_file_gallery}
 			{preference name='fgal_use_db'}
 			<div class="adminoptionboxchild fgal_use_db_childcontainer n">
-				{preference name='fgal_use_dir'}
+				<div class="mb-sm-3">
+					{preference name='fgal_use_dir'}
+					<button
+						role="button"
+						type="submit"
+						class="btn btn-primary"
+						name="move"
+						value="to_fs"
+						onclick="checkTimeout()"
+					>
+						{tr}Move files from database to directory{/tr}
+					</button>
+				</div>
 			</div>
-			<div class="col-sm-8 col-sm-offset-4 margin-bottom-md">
-				<button
-					role="button"
-					type="submit"
-					class="btn btn-primary"
-					name="move"
-					value="to_fs"
-					onclick="checkTimeout()"
-				>
-					{tr}Move files from database to directory{/tr}
-				</button>
+			<div class="col-sm-8 col-sm-offset-4 mb-sm-3 adminoptionchild fgal_use_db_childcontainer y">
 				<button
 					role="button"
 					type="submit"

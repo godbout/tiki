@@ -8,6 +8,7 @@
 namespace Tiki\FileGallery;
 
 use TikiLib;
+use Feedback;
 
 /**
  * A basic file representation in Tiki. Includes params needed to store back contents
@@ -120,10 +121,10 @@ class File
 		foreach ($draft->getParams() as $key => $val) {
 			$this->setParam($key, $val);
 		}
-		$this->replaceContents($draft->getContents());
-
-		$saveHandler = new SaveHandler($this);
-		$saveHandler->validateDraft();
+		if ($this->replaceContents($draft->getContents())) {
+			$saveHandler = new SaveHandler($this);
+			$saveHandler->validateDraft();
+		}
 	}
 
 	function setParam($param = "", $value)
@@ -197,7 +198,9 @@ class File
 			$this->setParam('filename', $filename);
 		}
 
-		$this->replaceContents($data);
+		if (!$this->replaceContents($data)) {
+			return false;
+		}
 
 		$result = (new Manipulator\Validator($this))->run();
 		if (! $result) {
@@ -217,7 +220,9 @@ class File
 
 	function replaceQuick($data) {
 		global $user;
-		$this->replaceContents($data);
+		if (!$this->replaceContents($data)) {
+			return false;
+		}
 		$this->setParam('lastModifUser', $user);
 		TikiLib::lib('filegal')->update_file($this->fileId, $this->getParamsForDB());
 	}
@@ -279,9 +284,15 @@ class File
 	 */
 	function replaceContents($data) {
 		$wrapper = $this->getWrapper();
-		$wrapper->replaceContents($data);
+		try {
+			$wrapper->replaceContents($data);
+		} catch (FileWrapper\WriteException $e) {
+			Feedback::error($e->getMessage());
+			return false;
+		}
 		foreach ($wrapper->getStorableContent() as $key => $val) {
 			$this->setParam($key, $val);
 		}
+		return true;
 	}
 }

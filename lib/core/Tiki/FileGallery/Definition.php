@@ -71,9 +71,13 @@ class Definition
 		}
 
 		$data = $handler->getFileWrapper($file)->getContents();
-		$handler->delete($file);
+		$orig = $file->clone();
 		
-		$file->replaceContents($data);
+		if ($file->replaceContents($data)) {
+			if ($handler->getFileWrapper($file) != $file->getWrapper()) {
+				$handler->delete($orig);
+			}
+		}
 	}
 
 	private function getHandler($info)

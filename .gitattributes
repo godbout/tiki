@@ -2978,6 +2978,7 @@ lib/core/Tiki/FileGallery/FileDraft.php -text
 lib/core/Tiki/FileGallery/FileWrapper/PhysicalFile.php -text
 lib/core/Tiki/FileGallery/FileWrapper/PreloadedContent.php -text
 lib/core/Tiki/FileGallery/FileWrapper/WrapperInterface.php -text
+lib/core/Tiki/FileGallery/FileWrapper/WriteException.php -text
 lib/core/Tiki/FileGallery/FileWrapper/index.php -text
 lib/core/Tiki/FileGallery/Handler/FileSystem.php -text
 lib/core/Tiki/FileGallery/Handler/HandlerInterface.php -text

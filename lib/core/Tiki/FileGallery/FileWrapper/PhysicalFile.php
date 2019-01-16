@@ -56,7 +56,7 @@ class PhysicalFile implements WrapperInterface
 			$result = false;
 		}
 		if ($result === false) {
-			\Feedback::error(tr("Unable to write to destination path: %s", $dest));
+			throw new WriteException(tr("Unable to write to destination path: %0", $dest));
 		}
 	}
 

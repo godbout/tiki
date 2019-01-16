@@ -820,7 +820,7 @@ class FileGalLib extends TikiLib
 		}
 		
 		$newName = ($newName ? $newName : $origFile->name . tra(' copy'));
-		$id = $file->replace($origFile->getContents(), $origFile->type, $newName, $file->filename);
+		$id = $file->replace($origFile->getContents(), $origFile->filetype, $newName, $file->filename);
 
 		$attributes = TikiLib::lib('attribute')->get_attributes('file', $origFile->fileId);
 		if ($url = $attributes['tiki.content.url']) {
@@ -1022,7 +1022,7 @@ class FileGalLib extends TikiLib
 
 	public function get_search_text_for_data($file)
 	{
-		$parseApp = $this->get_parse_app($file->type);
+		$parseApp = $this->get_parse_app($file->filetype);
 
 		if (empty($parseApp)) {
 			return '';
@@ -1032,7 +1032,7 @@ class FileGalLib extends TikiLib
 		try {
 			$content = $parseApp($wrapper);
 		} catch (Exception $e) {
-			Feedback::error(tr('Processing search text from a "%0" file in gallery #%1', $file->type, $file->galleryId) . '<br>'
+			Feedback::error(tr('Processing search text from a "%0" file in gallery #%1', $file->filetype, $file->galleryId) . '<br>'
 				. $e->getMessage());
 			$content = '';
 		}
