@@ -131,7 +131,8 @@
 		"zendframework/zendservice-recaptcha": "~3.0",
 		"zendframework/zendservice-twitter": "~2.1",
 		"gidkom/php-openfire-restapi": "dev-master",
-		"montefuscolo/xmpp": "dev-master"
+		"montefuscolo/xmpp": "dev-master",
+		"league/oauth2-server": "^7.3"
 	},
 	"require-dev": {
 		"bafs/testify": "dev-master",

@@ -202,6 +202,9 @@
 		<service id="tiki.lib.oauth" class="OAuthLib">
 			<file>%kernel.root_dir%/lib/oauthlib.php</file>
 		</service>
+		<service id="tiki.lib.oauthserver" class="OAuthServerLib">
+			<file>%kernel.root_dir%/lib/oauthserver/oauthserverlib.php</file>
+		</service>
 		<service id="tiki.lib.object" class="ObjectLib">
 			<file>%kernel.root_dir%/lib/objectlib.php</file>
 		</service>
