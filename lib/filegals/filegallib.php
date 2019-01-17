@@ -2321,6 +2321,7 @@ class FileGalLib extends TikiLib
 		$f_jail_bind = [];
 		$g_jail_bind = [];
 		$f_where = '';
+		$bindvars = [];
 
 		if (( ! $with_files && ! $with_subgals ) || ( $parent_is_file && $galleryId <= 0 )) {
 			return [];
@@ -2415,6 +2416,7 @@ class FileGalLib extends TikiLib
 			$f2g_corresp['count(tfd.`fileId`) as `nbDraft`'] = '0 as `nbDraft`';
 			$f_table .= ' LEFT JOIN `tiki_file_drafts` tfd ON (tf.`fileId` = tfd.`fileId` and tfd.`user`=?)';
 			$f_group_by = ' GROUP BY tf.`fileId`';
+			$bindvars[] = $user;
 		}
 		if ($with_backlink) {
 			$f2g_corresp['count(tfb.`fileId`) as `nbBacklinks`'] = '0 as `nbBacklinks`';
@@ -2451,7 +2453,6 @@ class FileGalLib extends TikiLib
 		}
 
 		$f_query = 'SELECT ' . implode(', ', array_keys($f2g_corresp)) . ' FROM ' . $f_table . $f_jail_join . ' WHERE tf.`archiveId`=' . ( $parent_is_file ? $fileId : '0' ) . $f_jail_where . $f_where;
-		$bindvars = [];
 
 		$mid = '';
 		$midvars = [];
@@ -2480,9 +2481,6 @@ class FileGalLib extends TikiLib
 		if (! empty($filter['created'])) {
 			$f_query .= ' AND tf.`created` > ? ';
 			$bindvars[] = $filter['created'];
-		}
-		if ($with_files && $prefs['feature_file_galleries_save_draft'] == 'y') {
-			$bindvars[] = $user;
 		}
 		if (! empty($filter['fileId'])) {
 			$f_query .= ' AND tf.`fileId` in (' . implode(',', array_fill(0, count($filter['fileId']), '?')) . ')';
