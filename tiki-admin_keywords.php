@@ -30,6 +30,10 @@ function set_keywords($page, $keywords = "")
 		return false;
 	}
 
+	$searchlib = TikiLib::lib('unifiedsearch');
+	$searchlib->invalidateObject('wiki page', $page);
+	$searchlib->processUpdateQueue();
+
 	return true;
 }
 

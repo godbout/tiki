@@ -14,12 +14,15 @@ class Services_Search_CustomSearchController
 	private $textranges = [];
 	private $dateranges = [];
 	private $distances = [];
+	private $contentFields;
 
 	function setUp()
 	{
 		Services_Exception_Disabled::check('wikiplugin_list');
 		Services_Exception_Disabled::check('wikiplugin_customsearch');
 		Services_Exception_Disabled::check('feature_search');
+
+		$this->contentFields = TikiLib::lib('tiki')->get_preference('unified_default_content', ['contents'], true);
 	}
 
 	function action_customsearch($input)
@@ -256,7 +259,7 @@ class Services_Search_CustomSearchController
 				}
 				// covers everything else including radio that have no _value set (use sent value)
 				if (empty($config['_field'])) {
-					$query->filterContent($value);
+					$query->filterContent($value, $this->contentFields);
 				} else {
 					$query->filterContent($value, $config['_field']);
 				}

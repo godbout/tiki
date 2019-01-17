@@ -235,11 +235,31 @@ function iconset_default()
 			'admin_rtc' => [
 				'id' => 'bullhorn',
 			],
+			'adn' => [
+				'id' => 'adn',
+				'prepend' => 'fab fa-'
+			],
 			//align-center in defaults
 			//align-justify in defaults
 			//align-left in defaults
 			//align-right in defaults
+			'amazon' => [
+				'id' => 'amazon',
+				'prepend' => 'fab fa-'
+			],
 			//anchor in defaults
+			'android' => [
+				'id' => 'android',
+				'prepend' => 'fab fa-'
+			],
+			'angellist' => [
+				'id' => 'angellist',
+				'prepend' => 'fab fa-'
+			],
+			'apple' => [
+				'id' => 'apple',
+				'prepend' => 'fab fa-'
+			],
 			'articles' => [
 				'id' => 'newspaper',
 				'prepend' => 'far fa-'
@@ -266,10 +286,42 @@ function iconset_default()
 				'id' => 'step-backward',
 			],
 			//ban in defaults
+			'behance' => [
+				'id' => 'behance',
+				'prepend' => 'fab fa-'
+			],
+			'behance-square' => [
+				'id' => 'behance-square',
+				'prepend' => 'fab fa-'
+			],
+			'bitbucket' => [
+				'id' => 'bitbucket',
+				'prepend' => 'fab fa-'
+			],
+			'black-tie' => [
+				'id' => 'black-tie',
+				'prepend' => 'fab fa-'
+			],
+			'bluetooth' => [
+				'id' => 'bluetooth',
+				'prepend' => 'fab fa-'
+			],
+			'bluetooth-b' => [
+				'id' => 'bluetooth-b',
+				'prepend' => 'fab fa-'
+			],
 			//book in defaults
 			'box' => [
 				'id' => 'list-alt',
 				'prepend' => 'far fa-'
+			],
+			'btc' => [
+				'id' => 'btc',
+				'prepend' => 'fab fa-'
+			],
+			'buysellads' => [
+				'id' => 'buysellads',
+				'prepend' => 'fab fa-'
 			],
 			//caret-left & caret-right in defaults
 			'cart' => [
@@ -278,12 +330,51 @@ function iconset_default()
 			'chart' => [
 				'id' => 'chart-area',
 			],
+			'cc-amex' => [
+				'id' => 'cc-amex',
+				'prepend' => 'fab fa-'
+			],
+			'cc-diners-club' => [
+				'id' => 'cc-diners-club',
+				'prepend' => 'fab fa-'
+			],
+			'cc-discover' => [
+				'id' => 'cc-discover',
+				'prepend' => 'fab fa-'
+			],
+			'cc-jcb' => [
+				'id' => 'cc-jcb',
+				'prepend' => 'fab fa-'
+			],
+			'cc-mastercard' => [
+				'id' => 'cc-mastercard',
+				'prepend' => 'fab fa-'
+			],
+			'cc-paypal' => [
+				'id' => 'cc-paypal',
+				'prepend' => 'fab fa-'
+			],
+			'cc-stripe' => [
+				'id' => 'cc-stripe',
+				'prepend' => 'fab fa-'
+			],
+			'cc-visa' => [
+				'id' => 'cc-visa',
+				'prepend' => 'fab fa-'
+			],
+			'chrome' => [
+				'id' => 'chrome',
+				'prepend' => 'fab fa-'
+			],
 			'close' => [
 				'id' => 'times',
 			],
+            'cloud-download' => [
+                'id' => 'cloud-download-alt',
+            ],
             'cloud-upload' => [
                 'id' => 'cloud-upload-alt',
-             ],
+            ],
 			//code in defaults
 			'code_file' => [
 				'id' => 'file-code',
@@ -291,6 +382,14 @@ function iconset_default()
 			],
 			'code-fork' => [
 				'id' => 'code-branch',
+			],
+			'codepen' => [
+				'id' => 'codepen',
+				'prepend' => 'fab fa-'
+			],
+			'codiepie' => [
+				'id' => 'codiepie',
+				'prepend' => 'fab fa-'
 			],
 			'collapsed' => [
 				'id' => 'plus-square',
@@ -318,13 +417,33 @@ function iconset_default()
 			'create' => [
 				'id' => 'plus',
 			],
+			'creative-commons' => [
+				'id' => 'creative-commons',
+				'prepend' => 'fab fa-'
+			],
+			'css3' => [
+				'id' => 'css3',
+				'prepend' => 'fab fa-'
+			],
             'dashboard' => [
                 'id' => 'tachometer-alt',
+            ],
+            'dashcube' => [
+				'id' => 'dashcube',
+				'prepend' => 'fab fa-'
             ],
 			//database in defaults
 			'delete' => [
 				'id' => 'times',
 			],
+            'delicious' => [
+				'id' => 'delicious',
+				'prepend' => 'fab fa-'
+            ],
+            'deviantart' => [
+				'id' => 'deviantart',
+				'prepend' => 'fab fa-'
+            ],
 			'difference' => [
 				'id' => 'strikethrough',
 			],
@@ -337,14 +456,38 @@ function iconset_default()
 			'down' => [
 				'id' => 'sort-down',
 			],
+            'dribbble' => [
+				'id' => 'dribbble',
+				'prepend' => 'fab fa-'
+            ],
+            'dropbox' => [
+				'id' => 'dropbox',
+				'prepend' => 'fab fa-'
+            ],
+            'drupal' => [
+				'id' => 'drupal',
+				'prepend' => 'fab fa-'
+            ],
+            'edge' => [
+				'id' => 'edge',
+				'prepend' => 'fab fa-'
+            ],
 			//edit in defaults
 			'education' => [
 				'id' => 'graduation-cap',
 			],
+            'empire' => [
+				'id' => 'empire',
+				'prepend' => 'fab fa-'
+            ],
 			'envelope' => [
 				'id' => 'envelope',
 				'prepend' => 'far fa-'
 			],
+            'envira' => [
+				'id' => 'envira',
+				'prepend' => 'fab fa-'
+            ],
 			'erase' => [
 				'id' => 'eraser',
 			],
@@ -359,11 +502,19 @@ function iconset_default()
 				'id' => 'minus-square',
 				'prepend' => 'far fa-'
 			],
+            'expeditedssl' => [
+				'id' => 'expeditedssl',
+				'prepend' => 'fab fa-'
+            ],
 			'export' => [
 				'id' => 'download',
 			],
 			'facebook' => [
 				'id' => 'facebook',
+				'prepend' => 'fab fa-'
+			],
+			'facebook-f' => [
+				'id' => 'facebook-f',
 				'prepend' => 'fab fa-'
 			],
 			'file' => [
@@ -377,24 +528,112 @@ function iconset_default()
 				'id' => 'folder-open',
 			],
 			//filter in defaults
+			'firefox' => [
+				'id' => 'firefox',
+				'prepend' => 'fab fa-'
+			],
+			'first-order' => [
+				'id' => 'first-order',
+				'prepend' => 'fab fa-'
+			],
 			//flag in defaults
+			'flickr' => [
+				'id' => 'flickr',
+				'prepend' => 'fab fa-'
+			],
 			'floppy' => [
 				'id' => 'save',
 				'prepend' => 'far fa-'
+			],
+			'font-awesome' => [
+				'id' => 'font-awesome',
+				'prepend' => 'fab fa-'
 			],
 			'font-color' => [
 				'id' => 'font',
 				'class' => 'text-danger'
 			],
+			'fonticons' => [
+				'id' => 'fonticons',
+				'prepend' => 'fab fa-'
+			],
+			'fort-awesome' => [
+				'id' => 'fort-awesome',
+				'prepend' => 'fab fa-'
+			],
+			'forumbee' => [
+				'id' => 'forumbee',
+				'prepend' => 'fab fa-'
+			],
 			//forward in defaults
 			'forward_step' => [
 				'id' => 'step-forward',
 			],
+			'foursquare' => [
+				'id' => 'foursquare',
+				'prepend' => 'fab fa-'
+			],
 			'fullscreen' => [
 				'id' => 'expand-arrows-alt',
 			],
+            'get-pocket' => [
+                'id' => 'get-pocket',
+                'prepend' => 'fab fa-'
+            ],
+            'gg' => [
+                'id' => 'gg',
+                'prepend' => 'fab fa-'
+            ],
+            'gg-circle' => [
+                'id' => 'gg-circle',
+                'prepend' => 'fab fa-'
+            ],
+            'git' => [
+                'id' => 'git',
+                'prepend' => 'fab fa-'
+            ],
+            'git-square' => [
+                'id' => 'git-square',
+                'prepend' => 'fab fa-'
+            ],
+            'github' => [
+                'id' => 'github',
+                'prepend' => 'fab fa-'
+            ],
+            'github-alt' => [
+                'id' => 'github-alt',
+                'prepend' => 'fab fa-'
+            ],
+            'github-square' => [
+                'id' => 'github-square',
+                'prepend' => 'fab fa-'
+            ],
+            'gitlab' => [
+                'id' => 'gitlab',
+                'prepend' => 'fab fa-'
+            ],
+            'glide' => [
+                'id' => 'glide',
+                'prepend' => 'fab fa-'
+            ],
+            'glide-g' => [
+                'id' => 'glide-g',
+                'prepend' => 'fab fa-'
+            ],
             'google' => [
                 'id' => 'google',
+                'prepend' => 'fab fa-'
+            ],
+            'google-plus' => [
+                'id' => 'google-plus',
+                'prepend' => 'fab fa-'
+            ],
+            'google-plus-g' => [
+                'id' => 'google-plus-g',
+                'prepend' => 'fab fa-'
+            ],
+            'google-plus-square' => [
+                'id' => 'google-plus-square',
                 'prepend' => 'fab fa-'
             ],
 			'group' => [
@@ -411,6 +650,10 @@ function iconset_default()
 				'id' => 'heading',
 				'size' => '.8'
 			],
+			'hacker-news' => [
+				'id' => 'hacker-news',
+				'prepend' => 'fab fa-'
+			],
 			'help' => [
 				'id' => 'question-circle',
 			],
@@ -421,6 +664,10 @@ function iconset_default()
 			//history in defaults
 			'horizontal-rule' => [
 				'id' => 'minus',
+			],
+			'houzz' => [
+				'id' => 'houzz',
+				'prepend' => 'fab fa-'
 			],
 			'html' => [
 				'id' => 'html5',
@@ -440,10 +687,54 @@ function iconset_default()
 			'information' => [
 				'id' => 'info-circle',
 			],
+			'instagram' => [
+				'id' => 'instagram',
+				'prepend' => 'fab fa-'
+			],
+			'internet-explorer' => [
+				'id' => 'internet-explorer',
+				'prepend' => 'fab fa-'
+			],
+			'ioxhost' => [
+				'id' => 'ioxhost',
+				'prepend' => 'fab fa-'
+			],
 			//italic in defaults
+			'java' => [
+				'id' => 'java',
+				'prepend' => 'fab fa-'
+			],
+			'joomla' => [
+				'id' => 'joomla',
+				'prepend' => 'fab fa-'
+			],
+			'js' => [
+				'id' => 'js',
+				'prepend' => 'fab fa-'
+			],
+			'jsfiddle' => [
+				'id' => 'jsfiddle',
+				'prepend' => 'fab fa-'
+			],
 			'keyboard' => [
 				'id' => 'keyboard',
 				'prepend' => 'far fa-'
+			],
+			'lastfm' => [
+				'id' => 'lastfm',
+				'prepend' => 'fab fa-'
+			],
+			'lastfm-square' => [
+				'id' => 'lastfm-square',
+				'prepend' => 'fab fa-'
+			],
+			'less' => [
+				'id' => 'less',
+				'prepend' => 'fab fa-'
+			],
+			'leanpub' => [
+				'id' => 'leanpub',
+				'prepend' => 'fab fa-'
 			],
 			'like' => [
 				'id' => 'thumbs-up',
@@ -454,6 +745,18 @@ function iconset_default()
 			],
 			'link-external-alt' => [
 				'id' => 'external-link-square-alt',
+			],
+			'linkedin' => [
+				'id' => 'linkedin',
+				'prepend' => 'fab fa-'
+			],
+			'linkedin-in' => [
+				'id' => 'linkedin-in',
+				'prepend' => 'fab fa-'
+			],
+			'linux' => [
+				'id' => 'linux',
+				'prepend' => 'fab fa-'
 			],
 			//list in defaults
 			'list-numbered' => [
@@ -517,6 +820,14 @@ function iconset_default()
 				'id' => 'inbox',
 			],
 			//map in defaults
+			'maxcdn' => [
+				'id' => 'maxcdn',
+				'prepend' => 'fab fa-'
+			],
+			'medium' => [
+				'id' => 'medium',
+				'prepend' => 'fab fa-'
+			],
 			'menu' => [
 				'id' => 'bars',
 			],
@@ -529,12 +840,24 @@ function iconset_default()
 			'merge' => [
 				'id' => 'random',
 			],
+			'microsoft' => [
+				'id' => 'microsoft',
+				'prepend' => 'fab fa-'
+			],
 			'minimize' => [
 				'id' => 'compress',
 			],
 			//minus in defaults
+			'mixcloud' => [
+				'id' => 'mixcloud',
+				'prepend' => 'fab fa-'
+			],
 			'module' => [
 				'id' => 'cogs',
+			],
+			'modx' => [
+				'id' => 'modx',
+				'prepend' => 'fab fa-'
 			],
 			'money' => [
 				'id' => 'money-bill',
@@ -561,6 +884,22 @@ function iconset_default()
 			],
 			'ok' => [
 				'id' => 'check-circle',
+			],
+			'opencart' => [
+				'id' => 'opencart',
+				'prepend' => 'fab fa-'
+			],
+			'openid' => [
+				'id' => 'openid',
+				'prepend' => 'fab fa-'
+			],
+			'opera' => [
+				'id' => 'opera',
+				'prepend' => 'fab fa-'
+			],
+			'optin-monster' => [
+				'id' => 'optin-monster',
+				'prepend' => 'fab fa-'
 			],
 			//outdent in defaults
 			'page-break' => [
@@ -845,7 +1184,7 @@ function iconset_default()
 			'android',
 			'angellist',
 			'angle-double-down',
-			'ANGLE-double-left',
+			'angle-double-left',
 			'angle-double-right',
 			'angle-double-up',
 			'angle-down',
@@ -1270,7 +1609,9 @@ function iconset_default()
 			'get-pocket',
 			'gg',
 			'gg-circle',
+			'ghost',
 			'gift',
+			'gifts',
 			'git',
 			'git-square',
 			'github',
@@ -1279,8 +1620,10 @@ function iconset_default()
 			'gitkraken',
 			'gitlab',
 			'gitter',
+			'glass-cheers',
 			'glass-martini',
 			'glass-martini-alt',
+			'glass-whiskey',
 			'glasses',
 			'glide',
 			'glide-g',
@@ -1288,6 +1631,7 @@ function iconset_default()
 			'globe-africa',
 			'globe-americas',
 			'globe-asia',
+			'globe-europe',
 			'gofore',
 			'golf-ball',
 			'goodreads',
@@ -1320,14 +1664,18 @@ function iconset_default()
 			'grin-tongue-wink',
 			'grin-wink',
 			'grip-horizontal',
+			'grip-lines',
+			'grip-lines-vertical',
 			'grip-vertical',
 			'gripfire',
 			'grunt',
+			'guitar',
 			'gulp',
 			'h-square',
 			'hacker-news',
 			'hacker-news-square',
 			'hackerrank',
+			'hammer',
 			'hamsa',
 			'hand-holding',
 			'hand-holding-heart',
@@ -1346,7 +1694,9 @@ function iconset_default()
 			'hands',
 			'hands-helping',
 			'handshake',
+			'hanukiah',
 			'hashtag',
+			'hat-wizard',
 			'haykal',
 			'hdd',
 			'heading',
@@ -1354,16 +1704,22 @@ function iconset_default()
 			'headphones-alt',
 			'headset',
 			'heart',
+			'heart-broken',
 			'heartbeat',
 			'helicopter',
 			'highlighter',
+			'hiking',
+			'hippo',
 			'hips',
 			'hire-a-helper',
 			'history',
 			'hockey-puck',
+			'holly-berry',
 			'home',
 			'hooli',
 			'hornbill',
+			'horse',
+			'horse-head',
 			'hospital',
 			'hospital-alt',
 			'hospital-symbol',
@@ -1374,7 +1730,9 @@ function iconset_default()
 			'hourglass-end',
 			'hourglass-half',
 			'hourglass-start',
+			'house-damage',
 			'houzz',
+			'hryvnia',
 			'html5',
 			'hubspot',
 			'i-cursor',
