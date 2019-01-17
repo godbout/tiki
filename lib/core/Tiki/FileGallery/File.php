@@ -34,7 +34,7 @@ class File
 		"author" 	=> "",
 		"hits" 		=> 0,
 		"maxhits"	=> 0,
-		"lastDownload" 	=> "",
+		"lastDownload" 	=> 0,
 		"votes" 	=> 0,
 		"points" 	=> 0,
 		"path" 		=> "",
@@ -50,7 +50,7 @@ class File
 		"archiveId"	=> 0,
 		"deleteAfter" 	=> 0,
 		"backlinkPerms"	=> "",
-		"ocr_state" => "",
+		"ocr_state" => null,
 	];
 	private $exists = false;
 	private $wrapper = null;
