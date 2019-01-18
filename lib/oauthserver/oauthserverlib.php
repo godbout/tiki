@@ -16,6 +16,12 @@ class OAuthServerLib extends TikiLib
 {
 	private $server;
 
+	public function getClientRepository()
+	{
+		$database = TikiLib::lib('db');
+		return new ClientRepository($database);
+	}
+
 	public function getEncryptionKey()
 	{
 		return file_get_contents(TIKI_PATH . '/db/cert/oauthserver-encryption.key');
@@ -30,7 +36,7 @@ class OAuthServerLib extends TikiLib
 	{
 		if(empty($this->server)) {
 			$this->server = new AuthorizationServer(
-				new ClientRepository(),
+				$this->getClientRepository(),
 				new AccessTokenRepository(),
 				new ScopeRepository(),
 				$this->getPrivateKey(),
@@ -53,16 +59,16 @@ class OAuthServerLib extends TikiLib
 		global $user;
 		$server = $this->getServer();
 
-		if (empty($user)) {
-			$server->enableGrantType(
-				new ClientCredentialsGrant(),
-				new \DateInterval('PT1H')
-			);
-		} else {
+		if (!empty($user)) {
 			$server->enableGrantType(
 				new ImplicitGrant(new \DateInterval('PT1H'))
 			);
 		}
+
+		$server->enableGrantType(
+			new ClientCredentialsGrant(),
+			new \DateInterval('PT1H')
+		);
 
 		return $this;
 	}

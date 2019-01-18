@@ -4,38 +4,88 @@ use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 
 class ClientRepository implements ClientRepositoryInterface
 {
-	public function getClientEntity($clientIdentifier, $grantType = null, $clientSecret = null, $mustValidateSecret = true)
+	const TABLE = 'tiki_oauthserver_clients';
+	private $database;
+ 
+	public function __construct($database)
 	{
-		$prefslib = TikiLib::lib('prefs');
+		$this->database = $database;
+	}
 
-		// Data schema
-		// -----------
-		$clients = [
-		    'myawesomeapp' => [
-		        'secret'          => 'donaldduck',
-		        'name'            => 'My Awesome App',
-		        'redirect_uri'    => 'http://foo/bar',
-		        'is_confidential' => true,
-		    ],
-		];
+	public function list()
+	{
+		$result = array();
+		$sql = $this->database->query('SELECT * FROM ' . self::TABLE);
 
-		// Check if client is registered
-		if (empty($clients) || array_key_exists($clientIdentifier, $clients) === false) {
+		if($sql && $sql->result) {
+			$result = array_map([ClientEntity, 'build'], $sql->result);
+		}
+
+		return $result;
+	}
+
+	public function get($value, $key='client_id')
+	{
+		$result = null;
+		$sql = 'SELECT * FROM `%s` WHERE %s=?';
+		$sql = sprintf($sql, self::TABLE, $key);
+
+		$query = $this->database->query($sql, [$value]);
+		if($query && $query->result) {
+			$result = new ClientEntity($query->result[0]);
+		}
+
+		return $result;
+	}
+	
+	public function update($entity)
+	{
+		$sql = 'UPDATE `%s` SET name=?, client_id=?, client_secret=?, redirect_uri=? WHERE identifier=?';
+		$sql = sprintf($sql, self::TABLE);
+
+		$query = $this->database->query($sql, [
+			$entity->getName(),
+			$entity->getClientId(),
+			$entity->getClientSecret(),
+			$entity->getRedirectUri(),
+			$entity->getIdentifier()
+		]);
+
+		return $query;
+	}
+
+	public function create($entity)
+	{
+		$sql = 'INSERT INTO `%s`(name, client_id, client_secret, redirect_uri) VALUES(?, ?, ?, ?)';
+		$sql = sprintf($sql, self::TABLE);
+
+		$query = $this->database->query($sql, [
+			$entity->getName(),
+			$entity->getClientId(),
+			$entity->getClientSecret(),
+			$entity->getRedirectUri()
+		]);
+
+		return $query;
+	}
+
+	public function save($entity)
+	{
+		if($entity->getIdentifier()) {
+			return $entity->update();
+		}
+		return $entity->create();
+	}
+
+	public function getClientEntity($clientId, $grantType = null, $clientSecret = null, $mustValidateSecret = true)
+	{
+		$client = $this->get($clientId);
+		if (is_null($client)) {
 			return false;
 		}
-
-		if (
-			$mustValidateSecret === true
-			&& $clients[$clientIdentifier]['is_confidential'] === true
-			&& $clients[$clientIdentifier]['secret'] !== $clientSecret
-		) {
-			return;
+		if ($mustValidateSecret === true && $client->getClientSecret() !== $clientSecret) {
+			return false;
 		}
-
-		$client = new ClientEntity();
-		$client->setIdentifier($clientIdentifier);
-		$client->setName($clients[$clientIdentifier]['name']);
-		$client->setRedirectUri($clients[$clientIdentifier]['redirect_uri']);
 		return $client;
 	}
 }

@@ -10,7 +10,7 @@
 #js						- need browser access    - belong here
 #css gif svg png swf	- need browser access    - should be moved
 #remaining files		- unknown browser access
-<FilesMatch "\.(js|swf|css|gif|png|svg|as|fla|ttf|xml)$">
+<FilesMatch "\.(js|swf|css|gif|png|svg|as|fla|ttf|xml|html)$">
 	<IfModule mod_authz_core.c>
 		Require all granted
 	</IfModule>
