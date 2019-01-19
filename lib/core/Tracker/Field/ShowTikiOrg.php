@@ -12,55 +12,59 @@ class Tracker_Field_ShowTikiOrg extends Tracker_Field_Abstract
 {
 	public static function getTypes()
 	{
-		global $prefs;
-
 		return [
 			'STO' => [
-				'name' => tr('show.tiki.org'),
+				'name'        => tr('show.tiki.org'),
 				'description' => tr('Create, display or manage show.tiki.org instances.'),
-				'prefs' => ['trackerfield_showtikiorg'],
-				'tags' => ['experimental'],
-				'help' => 'show.tiki.org',
-				'default' => 'n',
-				'params' => [
-					'domain' => [
-						'name' => tr('Domain name of show server'),
-						'description' => tr('For example, show.tiki.org'),
-						'filter' => 'text',
+				'prefs'       => ['trackerfield_showtikiorg'],
+				'tags'        => ['experimental'],
+				'help'        => 'show.tiki.org',
+				'default'     => 'n',
+				'params'      => [
+					'domain'          => [
+						'name'         => tr('Domain name of show server'),
+						'description'  => tr('For example, show.tikiwiki.org'),
+						'filter'       => 'text',
 						'legacy_index' => 0,
 					],
+					'versions'        => [
+						'name'        => tr('Supported Versions'),
+						'description' => tr('List of Tiki versions for new instances, For example: "18.x,15.x,12.x" or "trunk,19.x"'),
+						'filter'      => 'text',
+						'separator'   => ',',
+					],
 					'remoteShellUser' => [
-						'name' => tr('Shell username on remote server'),
-						'description' => tr('The shell username on the show server'),
-						'filter' => 'text',
+						'name'         => tr('Shell username on remote server'),
+						'description'  => tr('The shell username on the show server'),
+						'filter'       => 'text',
 						'legacy_index' => 1,
 					],
-					'publicKey' => [
-						'name' => tr('Public key file path'),
-						'description' => tr('System path to public key on local server. Only RSA keys are supported.'),
-						'filter' => 'text',
+					'publicKey'       => [
+						'name'         => tr('Public key file path'),
+						'description'  => tr('System path to public key on local server. Only RSA keys are supported.'),
+						'filter'       => 'text',
 						'legacy_index' => 2,
 					],
-					'privateKey' => [
-						'name' => tr('Private key file path'),
-						'description' => tr('System path to private key on local server. Only RSA keys are supported.'),
-						'filter' => 'text',
+					'privateKey'      => [
+						'name'         => tr('Private key file path'),
+						'description'  => tr('System path to private key on local server. Only RSA keys are supported.'),
+						'filter'       => 'text',
 						'legacy_index' => 3,
 					],
-					'debugMode' => [
-						'name' => tr('Show debugging information'),
-						'description' => tr('Show debugging info during testing'),
-						'filter' => 'int',
-												'options' => [
-														0 => tr('No'),
-														1 => tr('Yes'),
-												],
+					'debugMode'       => [
+						'name'         => tr('Show debugging information'),
+						'description'  => tr('Show debugging info during testing'),
+						'filter'       => 'int',
+						'options'      => [
+							0 => tr('No'),
+							1 => tr('Yes'),
+						],
 						'legacy_index' => 4,
 					],
-					'fixedUserId' => [
-						'name' => tr('Fixed user ID'),
-						'description' => tr('Set fixed user ID instead of using the user ID of the creator of the tracker item'),
-						'filter' => 'int',
+					'fixedUserId'     => [
+						'name'         => tr('Fixed user ID'),
+						'description'  => tr('Set fixed user ID instead of using the user ID of the creator of the tracker item'),
+						'filter'       => 'int',
 						'legacy_index' => 5,
 					],
 				],
@@ -84,6 +88,7 @@ class Tracker_Field_ShowTikiOrg extends Tracker_Field_Abstract
 			'showlogurl' => '',
 			'snapshoturl' => '',
 			'value' => 'none', // this is required to show the field, otherwise it gets hidden if tracker is set to doNotShowEmptyField
+			'versions' => $this->getOption('versions', ['18.x', '15.x', '12.x']),
 		];
 
 		$id = $this->getItemId();

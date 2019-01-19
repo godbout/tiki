@@ -1,6 +1,10 @@
 <div id="testingstatus" style="display:none">{$field.status|escape}</div>
-<h5 id="showtikiorg{$field.fieldId}_{$item.itemId}{if isset($context.list_mode)}_view{/if}" class="showactive{$field.fieldId}_{$item.itemId}" {if $field.status neq 'ACTIV'}style="display: none;"{/if}>{tr}This bug has been demonstrated on show.tiki.org{/tr}</h5>
-<h5 class="shownone{$field.fieldId}_{$item.itemId}" {if $field.status neq 'NONE'}style="display: none;"{/if}>{tr}Please demonstrate your bug on show.tiki.org{/tr}</h5>
+<h5 id="showtikiorg{$field.fieldId}_{$item.itemId}{if isset($context.list_mode)}_view{/if}" class="showactive{$field.fieldId}_{$item.itemId}" {if $field.status neq 'ACTIV'}style="display: none;"{/if}>
+	{tr}This bug has been demonstrated on show.tiki.org{/tr}
+</h5>
+<h5 class="shownone{$field.fieldId}_{$item.itemId}" {if $field.status neq 'NONE'}style="display: none;"{/if}>
+	{tr}Please demonstrate your bug on show.tiki.org{/tr}
+</h5>
 {if !$field.id}
 	{remarksbox type="info" title="{tr}Bug needs to be created first{/tr}" close="n"}
 		<p>{tr}You will be able to demonstrate your bug on a show.tiki.org instance once it has been created.{/tr}</p>
@@ -8,7 +12,9 @@
 {else}
 	<div class="showsnapshot{$field.fieldId}_{$item.itemId}" style="display: none;">
 		{remarksbox type="error" title="{tr}Show.tiki.org snapshot creation is in progress{/tr}" close="n"}
-			<p>{tr _0="<a class=\"snapshoturl{$field.fieldId}_{$item.itemId}\" href=\"http://{$field.snapshoturl|escape}\" target=\"_blank\">http://{$field.snapshoturl|escape}</a>"}Show.tiki.org snapshot creation is in progress... Please monitor %0 for progress.{/tr} <strong>{tr}Note that if you get a popup asking for a username/password, please just enter "show" and "show".{/tr}</strong></p>
+			<p>{tr _0="<a class=\"snapshoturl{$field.fieldId}_{$item.itemId}\" href=\"http://{$field.snapshoturl|escape}\" target=\"_blank\">http://{$field.snapshoturl|escape}</a>"}Show.tiki.org snapshot creation is in progress... Please monitor %0 for progress.{/tr}
+				<strong>{tr}Note that if you get a popup asking for a username/password, please just enter "show" and "show".{/tr}</strong>
+			</p>
 		{/remarksbox}
 	</div>
 	<div class="showresetok{$field.fieldId}_{$item.itemId}" style="display: none;">
@@ -55,39 +61,44 @@
 		{remarksbox type="info" title="{tr}About show.tiki.org{/tr}" close="n"}
 			<p>{tr}To help developers solve the bug, we kindly request that you demonstrate your bug on a show.tiki.org instance. To start, simply select a version and click on "Create show.tiki.org instance". Once the instance is ready (in a minute or two), as indicated in the status window below, you can then access that instance, login (the initial admin username/password is "admin") and configure the Tiki to demonstrate your bug. Priority will be given to bugs that have been demonstrated on show.tiki.org.{/tr}</p>
 		{/remarksbox}
-		{tr}Version:{/tr} 
+		{tr}Version:{/tr}
 		<select name="svntag" class="form-control">
-			<option selected="selected">18.x</option>
-			<option>17.x</option>
-			<option>15.x</option>
-			<option>12.x</option>
+			{foreach $field.versions as $version}
+				<option{if $field.version eq $version} selected="selected"{/if}>{$version}</option>
+			{/foreach}
 		</select>
 		{button href="#showtikiorg{$field.fieldId}_{$item.itemId}{if isset($context.list_mode)}_view{/if}" _onclick="showtikiorg_process{$field.fieldId}_{$item.itemId}('create');" _text="{tr}Create show.tiki.org instance{/tr}"}
 	</div>
 	<div class="showactive{$field.fieldId}_{$item.itemId}" {if $field.status neq 'ACTIV'}style="display: none;"{/if}>
 		{remarksbox type="info" title="{tr}Accessing the Tiki instance that demonstrates this bug{/tr}" close="n"}
-			<p>{tr _0="<a class=\"showurl{$field.fieldId}_{$item.itemId}\" href=\"http://{$field.showurl|escape}\" target=\"_blank\">http://{$field.showurl|escape}</a>"}The URL for the show.tiki.org instance that demonstrates this bug is at: %0.{/tr} <strong>{tr}Note that if you get a popup asking for a username/password, please just enter "show" and "show". This is different from the initial login and password for a new Tiki which is "admin" and "admin".{/tr}</strong></p>
+			<p>{tr _0="<a class=\"showurl{$field.fieldId}_{$item.itemId}\" href=\"http://{$field.showurl|escape}\" target=\"_blank\">http://{$field.showurl|escape}</a>"}The URL for the show.tiki.org instance that demonstrates this bug is at: %0.{/tr}
+				<strong>{tr}Note that if you get a popup asking for a username/password, please just enter "show" and "show". This is different from the initial login and password for a new Tiki which is "admin" and "admin".{/tr}</strong>
+			</p>
 			<p>{tr _0="<a class=\"showlogurl{$field.fieldId}_{$item.itemId}\" href=\"http://{$field.showlogurl|escape}\" target=\"_blank\">http://{$field.showlogurl|escape}</a>"}The install log is at %0{/tr}</p>
-			<p><strong>{tr}Note that if you see PHP errors or a Tiki claiming to be missing third party software, the instance creation is probably not finished. Please wait 1 minute and reload.{/tr}</strong></p>
+			<p>
+				<strong>{tr}Note that if you see PHP errors or a Tiki claiming to be missing third party software, the instance creation is probably not finished. Please wait 1 minute and reload.{/tr}</strong>
+			</p>
 		{/remarksbox}
 		{remarksbox type="info" title="{tr}Snapshots{/tr}" close="n"}
 			<p>{tr}Snapshots are database dumps of the configuration that developers can download for debugging. Once you have reproduced your bug on the show.tiki.org instance, create a snapshot that can then be downloaded by developers for further investigation.{/tr}</p>
-			<p>{tr _0="<a class=\"snapshoturl{$field.fieldId}_{$item.itemId}\" href=\"http://{$field.snapshoturl|escape}\" target=\"_blank\">http://{$field.snapshoturl|escape}</a>"}Snapshots can be accessed at: %0.{/tr} <strong>{tr}Note that if you get a popup asking for a username/password, please just enter "show" and "show".{/tr}</strong></p>
-			{button href="#showtikiorg{$field.fieldId}_{$item.itemId}{if isset($context.list_mode)}_view{/if}" _onclick="showtikiorg_process{$field.fieldId}_{$item.itemId}('snapshot');" _text="{tr}Create new snapshot{/tr}"}
+			<p>{tr _0="<a class=\"snapshoturl{$field.fieldId}_{$item.itemId}\" href=\"http://{$field.snapshoturl|escape}\" target=\"_blank\">http://{$field.snapshoturl|escape}</a>"}Snapshots can be accessed at: %0.{/tr}
+				<strong>{tr}Note that if you get a popup asking for a username/password, please just enter "show" and "show".{/tr}</strong>
+			</p>
+		{button href="#showtikiorg{$field.fieldId}_{$item.itemId}{if isset($context.list_mode)}_view{/if}" _onclick="showtikiorg_process{$field.fieldId}_{$item.itemId}('snapshot');" _text="{tr}Create new snapshot{/tr}"}
 		{/remarksbox}
 		{if $field.canDestroy}
 			{button href="#showtikiorg{$field.fieldId}_{$item.itemId}{if isset($context.list_mode)}_view{/if}" _onclick="showtikiorg_process{$field.fieldId}_{$item.itemId}('destroy');" _text="{tr}Destroy this show.tiki.org instance{/tr}"}
 			{button href="#showtikiorg{$field.fieldId}_{$item.itemId}{if isset($context.list_mode)}_view{/if}" _onclick="showtikiorg_process{$field.fieldId}_{$item.itemId}('reset');" _text="{tr}Reset password to 12345{/tr}"}
 		{/if}
-		<span class="buttonupdate{$field.fieldId}_{$item.itemId}" {if $field.version != 'trunk' && $field.version != '18.x' && $field.version != '17.x' && $field.version != '16.x' && $field.version != '15.x' && $field.version != '12.x'}style="display: none;"{/if}>
+		<span class="buttonupdate{$field.fieldId}_{$item.itemId}"{if not in_array($field.version, $field.versions)} style="display: none;"{/if}>
 			{button href="#showtikiorg{$field.fieldId}_{$item.itemId}{if isset($context.list_mode)}_view{/if}" _onclick="showtikiorg_process{$field.fieldId}_{$item.itemId}('update');" _text="{tr}SVN update{/tr}"}
 		</span>
 	</div>
-
 	{if $field.debugmode}
 		{remarksbox type="info" title="{tr}Debug Mode Information{/tr}" close="n"}
-			<div class="showdebugoutput{$field.fieldId}_{$item.itemId}">-{$field.status|escape}- {$field.debugoutput|escape}</div>
-			{button href="#showtikiorg{$field.fieldId}_{$item.itemId}{if isset($context.list_mode)}_view{/if}" _onclick="showtikiorg_process{$field.fieldId}_{$item.itemId}('info');" _text="{tr}Get instance information and refresh cache{/tr}"}
+			<div class="showdebugoutput{$field.fieldId}_{$item.itemId}">-{$field.status|escape}
+				- {$field.debugoutput|escape}</div>
+		{button href="#showtikiorg{$field.fieldId}_{$item.itemId}{if isset($context.list_mode)}_view{/if}" _onclick="showtikiorg_process{$field.fieldId}_{$item.itemId}('info');" _text="{tr}Get instance information and refresh cache{/tr}"}
 		{/remarksbox}
 	{/if}
 	{jq notonready=true}
