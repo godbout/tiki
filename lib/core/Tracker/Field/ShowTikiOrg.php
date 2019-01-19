@@ -81,14 +81,12 @@ class Tracker_Field_ShowTikiOrg extends Tracker_Field_Abstract
 			'userid' => 0,
 			'status' => 'DISCO',
 			'username' => '',
-			'debugmode' => $this->getOption('debugMode'),
 			'canDestroy' => false,
 			'debugoutput' => '',
 			'showurl' => '',
 			'showlogurl' => '',
 			'snapshoturl' => '',
 			'value' => 'none', // this is required to show the field, otherwise it gets hidden if tracker is set to doNotShowEmptyField
-			'versions' => $this->getOption('versions', ['18.x', '15.x', '12.x']),
 		];
 
 		$id = $this->getItemId();
