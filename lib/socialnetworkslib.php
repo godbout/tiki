@@ -200,30 +200,35 @@ class SocialNetworksLib extends LogsLib
 			. $prefs['socialnetworks_facebook_application_id']
 			. '&redirect_uri=' . $this->getURL() . '&client_secret='
 			. $prefs['socialnetworks_facebook_application_secr'];
-
-		$request = "GET $url HTTP/1.1\r\n" .
-			"Host: graph.facebook.com\r\n" .
-			"Accept: */*\r\n" .
-			"Expect: 100-continue\r\n" .
-			"Connection: close\r\n\r\n";
-
+		//try socket first
 		$fp = fsockopen('ssl://graph.facebook.com', 443, $errno, $errstr);
-		if ($fp === false) {
-			$msg = tr('Error attempting to connect to graph.facebook.com:') . ' ' . $errstr . ' '
-				. tr('(error number %0)', $errno);
-			Feedback::error($msg);
-			$this->add_log('getFacebookAccessToken', $msg);
-			return false;
-		} else {
+		if ($fp) {
+			$request = "GET $url HTTP/1.1\r\n" .
+				"Host: graph.facebook.com\r\n" .
+				"Accept: */*\r\n" .
+				"Expect: 100-continue\r\n" .
+				"Connection: close\r\n\r\n";
+
 			fputs($fp, $request);
 			$ret = '';
 			while (! feof($fp)) {
 				$ret .= fgets($fp, 128);
 			}
 			fclose($fp);
+			$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
+			$ret = $ret[1];
+		} else {
+			// try cURL
+			$url = 'https://graph.facebook.com' . $url;
+			$ch = curl_init();
+
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			$ret = curl_exec($ch);
+			curl_close($ch);
 		}
-		$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
-		$ret = $ret[1];
 		$json_decoded_ret = json_decode($ret, true);
 
 		if (isset($json_decoded_ret['access_token']) || substr($ret, 0, 13) == 'access_token=') {
@@ -239,6 +244,9 @@ class SocialNetworksLib extends LogsLib
 
 			return $access_token;
 		} else {
+			if (! empty($json_decoded_ret['error'])) {
+				Feedback::error($json_decoded_ret['error']['type'] . ': ' . $json_decoded_ret['error']['message']);
+			}
 			return null;
 		}
 	}
