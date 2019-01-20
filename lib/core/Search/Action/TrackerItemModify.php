@@ -96,7 +96,14 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 
 	function requiresInput(JitFilter $data)
 	{
-		return empty($data->value->text()) && empty($data->calc->text()) && empty($data->add->text()) && empty($data->remove->text());
+		if (empty($data->value->text()) && empty($data->calc->text())) {
+			// return data for the call to fetch_item_field
+
+			$permName = $data->field->text();
+			$field = TikiLib::lib('trk')->get_field_by_perm_name($permName);
+
+			return ['fieldId' => $field['fieldId'], 'trackerId' => $field['trackerId']];
+		}
 	}
 
 	private function executeOnItem($object_id, $data)
@@ -134,16 +141,20 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 			}
 		}
 
+		$fieldInfo = $definition->getField($field);
+		$handler = $definition->getFieldFactory()->getHandler($fieldInfo, $info);
+
 		if (! empty($add)) {
-			$fieldInfo = $definition->getField($field);
-			$handler = $definition->getFieldFactory()->getHandler($fieldInfo, $info);
 			$value = $handler->addValue($add);
 		}
 
 		if (! empty($remove)) {
-			$fieldInfo = $definition->getField($field);
-			$handler = $definition->getFieldFactory()->getHandler($fieldInfo, $info);
 			$value = $handler->removeValue($remove);
+		}
+
+		if (empty($add) && empty($remove)) {
+			$data = $handler->getFieldData($value);
+			$value = $data['value'];
 		}
 
 		$utilities = new Services_Tracker_Utilities;

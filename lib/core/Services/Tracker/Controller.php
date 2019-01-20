@@ -1277,18 +1277,19 @@ class Services_Tracker_Controller
 			throw new Services_Exception_NotFound;
 		}
 
-		if (! $itemId = $input->itemId->int()) {
-			throw new Services_Exception_MissingValue('itemId');
-		}
+		if ($itemId = $input->itemId->int()) {
+			$itemInfo = TikiLib::lib('trk')->get_tracker_item($itemId);
+			if (! $itemInfo || $itemInfo['trackerId'] != $trackerId) {
+				throw new Services_Exception_NotFound;
+			}
 
-		$itemInfo = TikiLib::lib('trk')->get_tracker_item($itemId);
-		if (! $itemInfo || $itemInfo['trackerId'] != $trackerId) {
-			throw new Services_Exception_NotFound;
-		}
-
-		$itemObject = Tracker_Item::fromInfo($itemInfo);
-		if (! $processed = $itemObject->prepareFieldInput($field, $input->none())) {
-			throw new Services_Exception_Denied;
+			$itemObject = Tracker_Item::fromInfo($itemInfo);
+			if (! $processed = $itemObject->prepareFieldInput($field, $input->none())) {
+				throw new Services_Exception_Denied;
+			}
+		} else {
+			$itemObject = Tracker_Item::newItem($trackerId);
+			$processed = $itemObject->prepareFieldInput($field, $input->none());
 		}
 
 		return [

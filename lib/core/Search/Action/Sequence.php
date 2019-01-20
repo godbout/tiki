@@ -61,12 +61,16 @@ class Search_Action_Sequence
 
 	function requiresInput()
 	{
+		$params = [];
+
 		foreach ($this->steps as $step) {
-			if ($step->requiresInput()) {
-				return true;
-			}
+			$params[] = $step->requiresInput();
 		}
-		return false;
+		if (empty(array_filter($params))) {
+			return false;
+		} else {
+			return json_encode($params);
+		}
 	}
 
 	function getSteps()

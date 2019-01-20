@@ -22,7 +22,7 @@
 				{if $actions}
 					{$fieldcount = 1}
 					<th>
-						<input type="checkbox" class="form-check-input" name="selectall" value="" class="listexecute-select-all">
+						<input type="checkbox" class="form-check-input listexecute-select-all" name="selectall" value="">
 						<input type="hidden" name="objects[]" value="" class="listexecute-all">
 					</th>
 				{/if}
@@ -97,14 +97,25 @@
 	</table>
 </div>
 {if $actions}
-	<select name="list_action" class="form-control" id="check_submit_select_{$id}">
-		<option></option>
-		{foreach from=$actions item=action}
-			<option value="{$action->getName()|escape}" data-input="{$action->requiresInput()}">{$action->getName()|escape}</option>
-		{/foreach}
-	</select>
-	<input type="text" name="list_input" value="" class="form-control" style="display:none">
-	<input type="submit" class="btn btn-primary btn-sm" title="{tr}Apply Changes{/tr}" id="submit_form_{$id}" disabled value="{tr}Apply{/tr}">
+	<div class="row w-100">
+		<div class="col-sm-1">
+			<input type="submit" class="btn btn-primary btn-sm" title="{tr}Apply Changes{/tr}" id="submit_form_{$id}" disabled value="{tr}Apply{/tr}">
+		</div>
+		<div class="col-sm-4">
+			<select name="list_action" class="form-control" id="check_submit_select_{$id}">
+				<option></option>
+				{foreach from=$actions item=action}
+					<option value="{$action->getName()|escape}" data-input='{$action->requiresInput()}'>
+						{$action->getName()|escape}
+					</option>
+				{/foreach}
+			</select>
+		</div>
+		<div class="col-sm-4" id="list_input_container">
+		</div>
+		<input type="text" name="list_input" value="" class="form-control" style="display:none">
+	</div>
+
 </form>
 {jq}
 (function(){
@@ -135,10 +146,20 @@
 					$('input#submit_form_{{$id}}').prop('disabled', false);
 				}
 			}
-			if( $(this).find('option:selected').data('input') ) {
+			var params = $(this).find('option:selected').data('input');
+			if( typeof params === "object" && typeof params[0] === "object") {
+				$("#list_input_container").load(
+					$.service('tracker', 'fetch_item_field', params[0]),
+					function () {
+						$(this).tiki_popover().applyChosen();
+					}
+				).show();
+			} else if( params ) {
 				$(this).siblings('input[name=list_input]').show();
+				$("#list_input_container").hide();
 			} else {
 				$(this).siblings('input[name=list_input]').hide();
+				$("#list_input_container").hide();
 			}
 		});
 	$( "#{{$id}}-div .checkbox_objects" ).on( "click", countChecked );
@@ -146,12 +167,23 @@
 	$('#listexecute-{{$iListExecute}}').submit(function(){
 		feedback(tr('Action is being executed, please wait.'));
 		$(this).tikiModal(" ");
-		var filters = $('#list_filter{{$iListExecute|replace:'wplistexecute-':''}} form').serializeArray();
-		for(var i = 0, l = filters.length; i < l; i++) {
-			var inp = $('<input type="hidden">');
+		var filters = $('#list_filter{{$iListExecute|replace:'wplistexecute-':''}} form').serializeArray(),
+			inp, i;
+		for(i = 0, l = filters.length; i < l; i++) {
+			inp = $('<input type="hidden">');
 			inp.attr('name', filters[i].name);
 			inp.val(filters[i].value);
 			$('#listexecute-{{$iListExecute}}').append(inp);
+		}
+		var trackerInputs = $("input,select,textarea", "#list_input_container").serializeArray();
+		if (trackerInputs) {
+			for (i = 0; i < trackerInputs.length; i++) {
+				inp = $('<input type="hidden">');
+				inp.attr("name", "list_input~" + trackerInputs[i].name);	// add tracker inputs as an array "inside" list_input
+				inp.val(trackerInputs[i].value);
+				$('#listexecute-{{$iListExecute}}').append(inp);
+			}
+			$("#listexecute-{{$iListExecute}}").remove("input[list_input]");
 		}
 	});
 })();
