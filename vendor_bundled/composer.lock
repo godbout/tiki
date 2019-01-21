@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "367e80a0831786db8c6f74dc1cb2ac5f",
+    "content-hash": "bad0e5e7f9a62606ffb1ffd453676be8",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -200,9 +200,7 @@
             },
             "type": "library",
             "autoload": {
-                "classmap": [
-                    "server/php/UploadHandler.php"
-                ]
+                "classmap": []
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -241,17 +239,17 @@
         },
         {
             "name": "bower-asset/fontawesome",
-            "version": "5.5.0",
+            "version": "5.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "4f4cb7c2f55d14d24f10390ebfeab0d25af612f3"
+                "reference": "34dff97269eb4d4142218af6a9dbc44024524ba2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-4f4cb7c2f55d14d24f10390ebfeab0d25af612f3-zip-d76452.zip",
-                "reference": "4f4cb7c2f55d14d24f10390ebfeab0d25af612f3",
-                "shasum": "3d47992a1438391a6764d367e076d5c73bd4055f"
+                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-34dff97269eb4d4142218af6a9dbc44024524ba2-zip-050ddc.zip",
+                "reference": "34dff97269eb4d4142218af6a9dbc44024524ba2",
+                "shasum": "32ef0163d5f08a87db43f78eaa9e6da050e9c98f"
             },
             "type": "bower-asset"
         },
@@ -672,9 +670,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
+                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": ""
+                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
             },
             "type": "component",
             "extra": {
@@ -984,7 +982,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Ungur",
+                    "name": "Osman Üngür",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1457,9 +1455,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": ""
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2024,9 +2022,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
+                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": ""
+                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
             },
             "require": {
                 "php": ">=5.3.1",
@@ -2139,7 +2137,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "Developer"
+                    "role": "developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -2639,7 +2637,7 @@
                 "jabber",
                 "xmpp"
             ],
-            "time": "2018-12-21T02:02:04+00:00"
+            "time": "2018-12-18T20:06:49+00:00"
         },
         {
             "name": "mottie/tablesorter",
@@ -2864,10 +2862,10 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz",
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
                 "reference": null,
-                "shasum": null
+                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
             },
             "type": "npm-asset",
             "license": [
@@ -3933,9 +3931,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
+                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": ""
+                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -4946,7 +4944,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -7456,6 +7454,7 @@
                 "testing",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2016-12-02T14:39:14+00:00"
         },
         {
