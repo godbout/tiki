@@ -31,7 +31,7 @@
 		"drmonty/smartmenus": ">=1.1.0",
 		"evert/sitemap-php": "^1.2",
 		"ezyang/htmlpurifier": "^4.8.0",
-		"bower-asset/fontawesome": "^5.3.1",
+		"bower-asset/fontawesome": "~5.5.0",
 		"fullcalendar/fullcalendar": "^3.9",
 		"haubek/bootstrap4c-chosen": "^1.0",
 		"harvesthq/chosen": "^1.8",

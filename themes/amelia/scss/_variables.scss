@@ -10,6 +10,8 @@ $gray-700: #444444;
 $gray-500: lighten(#000000, 33.5%); //
 $gray-300: #bbbbbb;
 $gray-100: #dddddd;
+$white: #fff;
+$black: #000;
 
 $primary: #ad1d28; //These aren't overriding the defaults in this position, so were added to amelia.scss at the top.
 $secondary: #82241b;
@@ -25,8 +27,8 @@ $theme-colors: (
 	"info":           	#4d3a7d,
 	"warning":         	#debb27,
 	"danger":          	#df6e1e,
-	"light":			#ad1d28,
-	"dark":				#4d3a7d
+	"light":			#18cbd8,
+	"dark":				#ad1d28
 );
 
 // Options
@@ -62,6 +64,16 @@ $dropdown-link-hover-bg:           #15b5c1;
 
 // Navs
 // Navbar
+$navbar-dark-color:                 $white;
+$navbar-dark-hover-color:           darken($white, 25%);
+$navbar-dark-active-color:          $white;
+$navbar-dark-disabled-color:        darken($white, 50%);
+
+$navbar-light-color:                rgba($black, .5) !default;
+$navbar-light-hover-color:          rgba($black, .7) !default;
+$navbar-light-active-color:         rgba($black, .9) !default;
+$navbar-light-disabled-color:       rgba($black, .3) !default;
+
 // Navbarlinks
 // Pagination
 $pagination-bg: lighten($body-bg, 10%);
@@ -93,16 +105,14 @@ $breadcrumb-bg: lighten($body-bg, 10%);
 // Close
 // Code
 
-//$bg-dark: #ad1d28 !important;
-//$navbar-dark-bg: #ad1d28 !important;
-//body.fullscreen { background: $body-bg; }
-//.bg-dark { background: #ad1d28 !important; }
+$bg-dark: #ad1d28 !important;
+$navbar-dark-bg: #ad1d28 !important;
+body.fullscreen { background: $body-bg; }
+.bg-dark { background: #ad1d28 !important; }
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
 
 body.fullscreen { background: $body-bg; }
-
-.bg-dark { background: #ad1d28 !important; }
 
 $link-color: lighten($warning, 15%);
 $gray-500: lighten(#000000, 33.5%); //

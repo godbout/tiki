@@ -3,7 +3,7 @@
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 
 //Colors
-$black: #fff;
+$black: #000;
 $gray-900: #f8f9fa;
 $gray-800: #e9ecef;
 $gray-700: #dee2e6;
@@ -13,7 +13,7 @@ $gray-400: #868e96;
 $gray-300: #495057;
 $gray-200: #343a40;
 $gray-100: #212529;
-$white: #000;
+$white: #fff;
 
 $primary: #ababab;//#193c5a
 $secondary: #dddddd;
@@ -29,8 +29,8 @@ $theme-colors: (
 		"info": #5bc0de,
 		"warning": #f0ad4e,
 		"danger": #d9534f,
-		"light": #000000,
-		"dark": #ffffff
+		"light": #fff,
+		"dark": #000
 );
 
 //Options
@@ -123,30 +123,28 @@ $dropdown-header-color: $gray-600;
 
 //Navs
 //Navbar
-$navbar-light-color: #fff;
-$navbar-light-bg: #030511;
-$navbar-light-border: lighten($navbar-light-bg,6.5%);
+//$navbar-light-border: lighten($navbar-light-bg,6.5%);
 
 //Navbarlinks??
 //Navbarlinks
-$navbar-light-link-color: #fff;
-$navbar-light-link-hover-color: #f4f4f4;
-$navbar-light-link-hover-bg: transparent;
-$navbar-light-link-active-color: #f4f4f4;
+$navbar-light-color: #fff;
+$navbar-light-hover-color: #f4f4f4;
+$navbar-light-hover-bg: transparent;
+$navbar-light-active-color: #f4f4f4;
 //$navbar-default-link-active-bg//Deprecated?: transparent;
 //darken($navbar-default-bg,6.5%);
-$navbar-light-link-disabled-color: #cccccc;
-$navbar-light-link-disabled-bg: transparent;
+$navbar-light-disabled-color: #cccccc;
+$navbar-light-disabled-bg: transparent;
 
 //Navbarbrandlabel
 $navbar-light-brand-color: $navbar-light-color;
 $navbar-light-brand-hover-color: darken($navbar-light-color,10%);
 $navbar-light-brand-hover-bg: transparent;
 
-//Navbartoggle
-$navbar-default-toggle-hover-bg: transparent;
-$navbar-default-toggle-icon-bar-bg: #888888;
-$navbar-default-toggle-border-color: #dddddd;
+$navbar-dark-color:                 $navbar-light-color;
+$navbar-dark-hover-color:           $navbar-light-hover-color;
+$navbar-dark-active-color:          $navbar-light-active-color;
+$navbar-dark-disabled-color:        $navbar-light-disabled-color;
 
 //==Tabs
 $nav-tabs-border-color: #dddddd;

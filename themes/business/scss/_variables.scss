@@ -68,10 +68,15 @@ $navbar-dark-border:			 darken($navbar-dark-bg, 6.5%);
 // Navbar links
 $navbar-dark-color: 				 #ffffff;
 $navbar-dark-hover-color: 		 darken(#fff, 10%);
-$navbar-dark-hover-bg: 			 #3270bd;
+$navbar-dark-hover-bg: 			 transparent;
 $navbar-dark-active-color: 		 #ffffff;
 $navbar-dark-active-bg: 			 #3270bd;
 $navbar-dark-disabled-color:		 #cccccc;
+
+$navbar-light-color:                $navbar-dark-color;
+$navbar-light-hover-color:          $navbar-dark-hover-color;
+$navbar-light-active-color:         $navbar-dark-active-color;
+$navbar-light-disabled-color:       $navbar-dark-disabled-color;
 
 
 // Pagination

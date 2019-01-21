@@ -161,8 +161,8 @@ h3.card-title {
 
 #topbar_modules,
 #top_modules {
-	.navbar-dark,
-	.navbar-light {
+	.bg-dark,
+	.bg-light {
 		background: transparent !important;
 		border: none;
 		margin-bottom: 0;
@@ -224,6 +224,7 @@ input {
 	background-color: $body-bg;
 }
 
+a.toolbar,
 .cssmenu_horiz a,
 .cssmenu_vert a {
 	color: $link-color;

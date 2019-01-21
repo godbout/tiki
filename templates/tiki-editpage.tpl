@@ -369,7 +369,7 @@
 								<input type="hidden" name="MAX_FILE_SIZE" value="1000000000">
 								<input type="hidden" name="hasAlreadyInserted2" value="">
 								<input type="hidden" id="page2" name="page2" value="{$page}">
-								<div class="form-row align-items-left">
+								<div class="form-group row align-items-left">
 									<label for="attach-upload" class="col-sm-4 col-form-label">{tr}Attach file{/tr}</label>
 									<input name="userfile2" type="file" id="attach-upload" class="col-sm-3 mx-2 mb-3 form-control">
 									<input type="text" name="attach_comment" class="col-sm-3 mr-3 mb-3 form-control" maxlength="250" id="attach-comment" placeholder="{tr}Comment{/tr}">

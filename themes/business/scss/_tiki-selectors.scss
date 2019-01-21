@@ -57,7 +57,8 @@ h2.sitesubtitle {
 	font-style: italic;
 }
 
-.navbar-dark,
+.bg-dark,
+.bg-light,
 .topbar,
 	// .topbar .cssmenu_horiz ul,
 .topbar .navbar-default .navbar-nav > li,
@@ -88,7 +89,10 @@ h2.sitesubtitle {
 .topbar .cssmenu_horiz > li.selected > a,
 .navbar-dark .navbar-nav > li > a:hover,
 .navbar-dark .navbar-nav > li > a:focus,
-.navbar-dark .navbar-nav > .active > a {
+.navbar-dark .navbar-nav > .active > a,
+.navbar-light .navbar-nav > li > a:hover,
+.navbar-light .navbar-nav > li > a:focus,
+.navbar-light .navbar-nav > .active > a {
 	background: #3270bd; /* Old browsers */
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3270bd), color-stop(2%, #1855a5), color-stop(3%, #1553a8), color-stop(5%, #1855ae), color-stop(7%, #1353ad), color-stop(14%, #1858af), color-stop(26%, #1a5ab1), color-stop(29%, #1d5eb2), color-stop(53%, #2866bb), color-stop(55%, #2c6abf), color-stop(95%, #3a79c9), color-stop(97%, #3a7ac4), color-stop(98%, #3777c1), color-stop(100%, #205ea9)); /* Chrome,Safari4+ */
 	background: -webkit-linear-gradient(top, #3270bd 0%, #1855a5 2%, #1553a8 3%, #1855ae 5%, #1353ad 7%, #1858af 14%, #1a5ab1 26%, #1d5eb2 29%, #2866bb 53%, #2c6abf 55%, #3a79c9 95%, #3a7ac4 97%, #3777c1 98%, #205ea9 100%); /* Chrome10+,Safari5.1+ */
