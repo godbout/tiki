@@ -32,7 +32,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers Item::toArray()
+	 * @covers Tiki\CustomRoute\Item::toArray()
 	 */
 	public function testToArray()
 	{
@@ -51,7 +51,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers Item::getRedirectPath()
+	 * @covers Tiki\CustomRoute\Item::getRedirectPath()
 	 */
 	public function testGetRedirectPath()
 	{

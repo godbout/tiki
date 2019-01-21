@@ -38,7 +38,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers Email::getEmailThreadHeaders()
+	 * @covers Tiki\Notifications\Email::getEmailThreadHeaders()
 	 */
 	public function testGetEmailThreadHeadersForForums()
 	{
@@ -140,7 +140,7 @@ class EmailTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @covers Email::getEmailThreadHeaders()
+	 * @covers Tiki\Notifications\Email::getEmailThreadHeaders()
 	 */
 	public function testGetEmailThreadHeadersForBlogPosts()
 	{

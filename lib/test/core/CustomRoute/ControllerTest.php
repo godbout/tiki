@@ -16,7 +16,7 @@ class ControllerTest extends \PHPUnit_Framework_TestCase
 {
 
 	/**
-	 * @covers Controller::populateFromRequest()
+	 * @covers Tiki\CustomRoute\Controller::populateFromRequest()
 	 */
 	public function testPopulateFromRequest()
 	{

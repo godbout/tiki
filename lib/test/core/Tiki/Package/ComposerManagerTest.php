@@ -476,7 +476,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	}
 
 	/**
-	 * @covers ComposerManager::getPackageInfo()
+	 * @covers Tiki\Package\ComposerManager::getPackageInfo()
 	 */
 	public function testGetPackagesInfo()
 	{
