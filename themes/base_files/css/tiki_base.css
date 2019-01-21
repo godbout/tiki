@@ -1630,6 +1630,13 @@ td.url {
   .articletrailer .wikitopline {
     float: left; }
 
+.article-image {
+  margin-right: 1rem; }
+
+[dir="rtl"] .article-image {
+  margin-right: 0;
+  margin-left: 1rem; }
+
 .blogheading {
   display: block;
   width: 100%;

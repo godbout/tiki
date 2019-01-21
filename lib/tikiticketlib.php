@@ -40,7 +40,9 @@ function ask_ticket($area)
 
 /**
  * @param $area
+ *
  * @return bool
+ * @throws Exception
  * @deprecated. See above comment
  */
 function check_ticket($area)
@@ -51,14 +53,15 @@ function check_ticket($area)
 	if ($_SESSION['antisurf'] != $area) {
 		global $prefs;
 		$_SESSION['antisurf'] = $area;
-		$smarty = TikiLib::lib('smarty');
-		$smarty->assign('post', $_POST);
-		$smarty->assign('query', $_SERVER['QUERY_STRING']);
-		$smarty->assign('self', $_SERVER['PHP_SELF']);
-		$smarty->assign('msg', tra('Possible cross-site request forgery (CSRF, or "sea surfing") detected. Operation blocked.'));
-		$smarty->display('error_ticket.tpl');
-		die;
+		if ($prefs['feature_ticketlib'] == 'y') {
+			$smarty = TikiLib::lib('smarty');
+			$smarty->assign('post', $_POST);
+			$smarty->assign('query', $_SERVER['QUERY_STRING']);
+			$smarty->assign('self', $_SERVER['PHP_SELF']);
+			$smarty->assign('msg', tra('Possible cross-site request forgery (CSRF, or "sea surfing") detected. Operation blocked.'));
+			$smarty->display('error_ticket.tpl');
+			die;
+		}
 	}
-
 	return true;
 }

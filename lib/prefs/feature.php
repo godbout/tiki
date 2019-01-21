@@ -1025,6 +1025,14 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 			'tags' => ['basic'],
 		],
+		'feature_ticketlib' => [
+			'name' => tra('Require confirmation of an action if a possible CSRF is detected'),
+			'type' => 'flag',
+			'perspective' => false,
+			'default' => 'n',
+			'warning' => tr('Deprecated. Using may cause false errors.'),
+			'tags' => ['deprecated'],
+		],
 		'feature_detect_language' => [
 			'name' => tra('Detect browser language'),
 			'description' => tra('Look up the user\'s preferred language through browser preferences.'),
