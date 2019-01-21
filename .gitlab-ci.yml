@@ -92,7 +92,7 @@ composer-lock:
     - echo "GRANT ALL ON tikiold.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
     - echo "GRANT ALL ON tikinew.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
     - '[ ! -d doc/devtools/dbdiff/cache ] && mkdir doc/devtools/dbdiff/cache'
-    - '[ ! -f doc/devtools/dbdiff/cache/$DBFILE ] && curl -sS https://gitlab.com/tikiwiki-ci/tikiwiki-ci-databases/raw/master/$DBFILE.gz -o doc/devtools/dbdiff/cache/$DBFILE.gz && gzip -d doc/devtools/dbdiff/cache/$DBFILE.gz'
+    - '[ ! -f doc/devtools/dbdiff/cache/$DBFILE ] && curl -sS https://gitlab.com/tikiwiki/tikiwiki-ci-databases/raw/master/$DBFILE.gz -o doc/devtools/dbdiff/cache/$DBFILE.gz && gzip -d doc/devtools/dbdiff/cache/$DBFILE.gz'
     - php -d display_errors=On doc/devtools/check_schema_upgrade.php -m $DBVER -e $ENGINE --db1=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikiold --db2=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikinew
   allow_failure: false
 
