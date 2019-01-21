@@ -6,6 +6,36 @@
 {if not empty($column.field)}
 	{$column = [$column]}{* if there is only one column then it will not be in an array *}
 {/if}
+{if $tableparams.allowtableexpansion eq 'y'}
+	<button title="{tr}Expand table{/tr}" class="btn btn-primary btn-sm table-expand-toggle" type="button" ><span class="icon far fa-caret-square-right fa-fw "></span></button>
+	{jq}
+		$(".table-expand-toggle").click(function(){
+			var $this = $(this);
+			if ( $this.data('expandStatus') != 'expanded' ) {
+				$this.data('expandStatus','expanded');
+				var $parentdiv = $(this).parent('div');
+				$parentdiv.find('div.table-responsive').each(function () {
+					$(this).removeClass('table-responsive').addClass('table');
+				}); // end each
+				$this.attr('title','{tr}Restore layout{/tr}');
+				$this.children('span').removeClass('fa-caret-square-right').addClass('fa-caret-square-left');
+			}else{
+				$this.data('expandStatus','responsive');
+				var $parentdiv = $(this).parent('div');
+				$parentdiv.find('div.table').each(function () {
+					$(this).addClass('table-responsive').removeClass('table');
+				}); // end each
+				$this.attr('title','{tr}Expand table{/tr}');
+				$this.children('span').removeClass('fa-caret-square-left').addClass('fa-caret-square-right');
+			}
+		});
+	{/jq}
+{/if}
+{if $tableparams.shownbitems eq 'y'}
+	<div class="nbitems">
+		{tr}Items found:{/tr} <span class='badge badge-secondary'>{$count}</span>
+	</div>
+{/if}
 <div {if $id}id="{$id}-div" {/if}class="table-responsive ts-wrapperdiv" {if $tsOn}style="visibility:hidden;"{/if}>
 	<table {if $id}id="{$id}" {/if}class="table normal table-hover table-striped" data-count="{$count}">
 		<thead>
