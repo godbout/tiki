@@ -56,14 +56,13 @@ div.form-group label.error {
 .tiki .anythingSlider,
 .tiki .anythingWindow,
 .tiki .anythingBase,
-.tiki .anythingBase > .panel {
+.tiki .anythingBase > .card {
 		-webkit-box-sizing: content-box;
 		-moz-box-sizing: content-box;
 		box-sizing: content-box;
-
 }
 
-.tiki .anythingBase > .panel {
+.tiki .anythingBase > .card {
 	margin-bottom: 0;
 	background-color: inherit;
 	border: none;

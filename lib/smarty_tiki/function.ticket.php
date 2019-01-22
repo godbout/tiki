@@ -21,8 +21,6 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * 						- Set mode=get to return token only with no HTML. Used with links that lead to state-changing
  * 							actions where the confirmSimple() onclick method is used to generate a confirmation form
  * 							with the token
- * 						- Set force=new to force the generation of a new token (useful when you have multiple actions
- * 							that can be executed, example in AJAX interfaces)
  * @param $smarty		Smarty_Tiki
  * @return string
  * @throws Exception
@@ -32,7 +30,7 @@ function smarty_function_ticket($params, $smarty)
 	// Redefining the $smarty variable seems to be necessary in some cases (e.g., with ajax services) in order for a
 	// ticket that has been set in $access->setTicket() to be retrievable using the $smarty->getTemplateVars() method
 	$smarty = TikiLib::lib('smarty');
-	if (isset($params['force']) && $params['force'] === 'new' || empty($smarty->getTemplateVars('ticket'))) {
+	if (empty($smarty->getTemplateVars('ticket'))) {
 		TikiLib::lib('access')->setTicket();
 	}
 	if (isset($params['mode']) && $params['mode'] === 'get') {

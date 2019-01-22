@@ -486,4 +486,21 @@ LEFT JOIN `users_users` AS u ON u.`userId` = r.`user_id`');
 
 		return '';
 	}
+
+	/**
+	 * Called as content-type-cache from H5PEditorEndpoints::CONTENT_TYPE_CACHE ("-"s replaced for "_"s in editor.js)
+	 *
+	 * @param JitFilter $input
+	 *
+	 * @return null
+	 */
+	function action_content_type_cache($input)
+	{
+		$token = $input->token->text();
+
+		$editor = \H5P_EditorTikiStorage::get_h5peditor_instance();
+		$editor->ajax->action(H5PEditorEndpoints::CONTENT_TYPE_CACHE, $token);
+
+		return null;
+	}
 }

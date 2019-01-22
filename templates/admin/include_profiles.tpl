@@ -30,7 +30,6 @@
 				{/remarksbox}
 			{/if}
 			<form method="get" action="tiki-admin.php?page=profiles">
-				{ticket}
 				<h4>{tr}Find profiles{/tr} <small>{tr}Search by name, types and repository{/tr}</small></h4>
 				<div class="row">
 					<div class="col-sm-6">
@@ -65,8 +64,7 @@
 					</div>
 					<div class="col-sm-6">
 							{remarksbox type="info" title="{tr}Suggested Profiles{/tr}" close="n"}
-								{capture assign=ticket}{ticket mode=get}{/capture}
-								{assign var=profilesFilterUrlStart value="tiki-admin.php?ticket=$ticket&categories%5B%5D="}
+								{assign var=profilesFilterUrlStart value="tiki-admin.php?categories%5B%5D="}
 								{assign var=profilesFilterUrlMid value='.x&categories%5B%5D='}
 								{assign var=profilesFilterUrlEnd value='&repository=http%3A%2F%2Fprofiles.tiki.org%2Fprofiles&page=profiles&preloadlist=y&list=List#step2'}
 
@@ -116,7 +114,12 @@
 									{assign var="show_details_for_domain" value=$profile.domain|escape}
 									<td>{$profile.name|escape}: {tr}See profile info below (may take a few seconds to load){/tr}.</td>
 								{else}
-									<td><a href="javascript:$.profilesShowDetails( '{$baseURI}', 'profile-{$k}', '{$profile.domain|escape}', '{$profile.name|escape}', '{ticket mode=get}', '{{ticket mode=get force=new}}' )">{$profile.name|escape}</a>{if $profile.installed} <em>{tr}applied{/tr}</em>{/if}</td>
+									<td><a href="#" onclick="$.profilesShowDetails( '{$baseURI}', 'profile-{$k}', '{$profile.domain|escape}', '{$profile.name|escape}', event); return false"
+										   data-ticket="{ticket mode=get}"
+										>
+											{$profile.name|escape}
+										</a>{if $profile.installed} <em>{tr}applied{/tr}</em>{/if}
+									</td>
 								{/if}
 
 								<td>{$profile.domain}</td>
@@ -128,7 +131,7 @@
 						{/if}
 					</table>
 					{if isset($show_details_for_profile_num) && $show_details_for_profile_num != ""}
-						{jq}$.profilesShowDetails('{{$baseURI}}', 'profile-{{$show_details_for_profile_num}}', '{{$show_details_for_domain}}', '{{$show_details_for_fullname}}', '{{ticket mode=get}}', '{{ticket mode=get force=new}}');{/jq}
+						{jq}$.profilesShowDetails('{{$baseURI}}', 'profile-{{$show_details_for_profile_num}}', '{{$show_details_for_domain}}', '{{$show_details_for_fullname}}');{/jq}
 					{/if}
 				</div>
 			{/if}
@@ -141,7 +144,6 @@
 
 	{tab name="{tr}Export{/tr}"}
 		<form action="tiki-admin.php?page=profiles" method="post" role="form">
-			{ticket}
 			<input type="hidden" name="redirect" value=0>
 			<fieldset id="export_to_yaml">
 				<legend>{tr}Export YAML{/tr}</legend>

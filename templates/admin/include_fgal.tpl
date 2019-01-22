@@ -366,6 +366,14 @@
 						{preference name='h5p_save_content_frequency'}
 					</div>
 					{preference name='h5p_export'}
+					{preference name='h5p_hub_is_enabled'}
+					{preference name='h5p_site_key'}
+					{preference name='h5p_h5p_site_uuid'}
+					{preference name='h5p_content_type_cache_updated_at'}
+					{preference name='h5p_check_h5p_requirements'}
+					{preference name='h5p_send_usage_statistics'}
+					{preference name='h5p_has_request_user_consent'}
+					{preference name='h5p_enable_lrs_content_types'}
 
 					{remarksbox type="info" title="{tr}H5P Info{/tr}"}
 						{tr}Service URL to purge unused libraries can be found here. Can be used in a cron task{/tr}<br>

@@ -104,13 +104,91 @@ function prefs_h5p_list($partial = false)
 		],
 		'h5p_hub_is_enabled' => [
 			'name' => tra('Hub Is Enabled'),
-			'description' => tra('Unused so far'),
+			'description' => tra('Updates libraries from h5p.org'),
 			'dependencies' => [
 				'h5p_enabled',
 			],
 			'type' => 'flag',
 			'filter' => 'alpha',
 			'default' => 'n',
+			'warning' => tra('Experimental'),
+		],
+		'h5p_site_key' => [
+			'name' => tr('Site Key'),
+			'description' => tr('H5P Site Key.'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
+			'type' => 'text',
+			'filter' => 'text',
+			'default' => '',
+			'warning' => tra('Experimental'),
+		],
+		'h5p_h5p_site_uuid' => [
+			'name' => tr('H5P UUID'),
+			'description' => tr('H5P Unique ID.'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
+			'type' => 'text',
+			'filter' => 'text',
+			'default' => '',
+			'warning' => tra('Experimental'),
+		],
+		'h5p_content_type_cache_updated_at' => [
+			'name' => tr('Content Type Updated'),
+			'description' => tr('Laast update.'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
+			'type' => 'text',
+			'filter' => 'int',
+			'units' => tr('seconds'),
+			'default' => 0,
+			'warning' => tra('Experimental'),
+		],
+		'h5p_check_h5p_requirements' => [
+			'name' => tr('Check Requirements'),
+			'description' => tr('Unused so far'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
+			'type' => 'flag',
+			'filter' => 'alpha',
+			'default' => 'y',
+		],
+		'h5p_send_usage_statistics' => [
+			'name' => tr('Send Usage Statistics'),
+			'description' => tr('Unused so far'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
+			'type' => 'flag',
+			'filter' => 'alpha',
+			'default' => 'n',
+			'warning' => tra('Experimental'),
+		],
+		'h5p_has_request_user_consent' => [
+			'name' => tr('Request User Consent'),
+			'description' => tr('Unused so far'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
+			'type' => 'flag',
+			'filter' => 'alpha',
+			'default' => 'n',
+			'warning' => tra('Experimental'),
+		],
+		'h5p_enable_lrs_content_types' => [
+			'name' => tr('LRS Content Types'),
+			'description' => tr('Reporting (?)'),
+			'dependencies' => [
+				'h5p_enabled',
+			],
+			'type' => 'flag',
+			'filter' => 'alpha',
+			'default' => 'n',
+			'warning' => tra('Experimental'),
 		],
 	];
 }

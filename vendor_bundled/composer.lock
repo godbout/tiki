@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bad0e5e7f9a62606ffb1ffd453676be8",
+    "content-hash": "69e03cb1e3fc9d8da704a2fcc463b764",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -670,9 +670,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
+                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
+                "shasum": ""
             },
             "type": "component",
             "extra": {
@@ -982,7 +982,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Üngür",
+                    "name": "Osman Ungur",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1334,17 +1334,17 @@
         },
         {
             "name": "h5p/h5p-core",
-            "version": "1.17.0",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-php-library.git",
-                "reference": "95901159d0e6e4649a6c6696f0a8e5d1c71035d4"
+                "reference": "85b278bd52bba4d6cc9d5a1a7dd8ba061742a5f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/h5p/h5p-core/h5p-h5p-core-95901159d0e6e4649a6c6696f0a8e5d1c71035d4-zip-c17407.zip",
-                "reference": "95901159d0e6e4649a6c6696f0a8e5d1c71035d4",
-                "shasum": "eb034e2bdaf1b5f0dec02ec82d8b2360e6b548f1"
+                "url": "https://composer.tiki.org/dist/h5p/h5p-core/h5p-h5p-core-85b278bd52bba4d6cc9d5a1a7dd8ba061742a5f2-zip-1ed031.zip",
+                "reference": "85b278bd52bba4d6cc9d5a1a7dd8ba061742a5f2",
+                "shasum": "1919a5fae845688690faa8f3a371637fac7787d1"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -1356,7 +1356,8 @@
                     "h5p-development.class.php",
                     "h5p-file-storage.interface.php",
                     "h5p-default-storage.class.php",
-                    "h5p-event-base.class.php"
+                    "h5p-event-base.class.php",
+                    "h5p-metadata.class.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1386,21 +1387,21 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2017-11-23T14:15:03+00:00"
+            "time": "2018-11-02T09:25:35+00:00"
         },
         {
             "name": "h5p/h5p-editor",
-            "version": "1.17.1",
+            "version": "1.18.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/h5p/h5p-editor-php-library.git",
-                "reference": "06e52c65be4323a721172ee7eb8b80908c4ce6be"
+                "reference": "86baa08f790481cd139bf37639b898dcaa35a157"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/h5p/h5p-editor/h5p-h5p-editor-06e52c65be4323a721172ee7eb8b80908c4ce6be-zip-18f35b.zip",
-                "reference": "06e52c65be4323a721172ee7eb8b80908c4ce6be",
-                "shasum": "86c8e87cfdd6ddc2cf171942eb8a698978b9f23b"
+                "url": "https://composer.tiki.org/dist/h5p/h5p-editor/h5p-h5p-editor-86baa08f790481cd139bf37639b898dcaa35a157-zip-943427.zip",
+                "reference": "86baa08f790481cd139bf37639b898dcaa35a157",
+                "shasum": "02e8cdd22d5369f1431c7dbf0ec00ceca351886a"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -1443,7 +1444,7 @@
                 "interactive",
                 "quiz"
             ],
-            "time": "2018-01-22T12:39:38+00:00"
+            "time": "2018-11-22T09:12:19+00:00"
         },
         {
             "name": "harvesthq/chosen",
@@ -1455,9 +1456,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
+                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
+                "shasum": ""
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2022,9 +2023,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.1",
@@ -2137,7 +2138,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "developer"
+                    "role": "Developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -2526,17 +2527,17 @@
         },
         {
             "name": "moment/moment",
-            "version": "2.23.0",
+            "version": "2.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment.git",
-                "reference": "b8f4fe2bf5bb9022655505d59b62aef12bc540d6"
+                "reference": "96d0d6791ab495859d09a868803d31a55c917de1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/moment/moment/moment-moment-b8f4fe2bf5bb9022655505d59b62aef12bc540d6-zip-e46d15.zip",
-                "reference": "b8f4fe2bf5bb9022655505d59b62aef12bc540d6",
-                "shasum": "c4f8d3ba1e5a00286902a08630c02daef01e40fa"
+                "url": "https://composer.tiki.org/dist/moment/moment/moment-moment-96d0d6791ab495859d09a868803d31a55c917de1-zip-f3ebc9.zip",
+                "reference": "96d0d6791ab495859d09a868803d31a55c917de1",
+                "shasum": "eb87664a3582e724de156a54ac5123323b3d2d96"
             },
             "require": {
                 "robloach/component-installer": "*"
@@ -2576,7 +2577,7 @@
                 "time",
                 "validate"
             ],
-            "time": "2018-12-13T06:39:15+00:00"
+            "time": "2019-01-21T20:59:53+00:00"
         },
         {
             "name": "montefuscolo/xmpp",
@@ -2637,7 +2638,7 @@
                 "jabber",
                 "xmpp"
             ],
-            "time": "2018-12-18T20:06:49+00:00"
+            "time": "2018-12-21T02:02:04+00:00"
         },
         {
             "name": "mottie/tablesorter",
@@ -2862,10 +2863,10 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
+                "type": "tar",
+                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz",
                 "reference": null,
-                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -3931,9 +3932,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
+                "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -4944,7 +4945,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "BackEndTea@gmail.com"
+                    "email": "backendtea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -5219,17 +5220,17 @@
         },
         {
             "name": "twbs/bootstrap",
-            "version": "v4.2.1",
+            "version": "v4.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "9e4e94747bd698f4f61d48ed54c9c6d4d199bd32"
+                "reference": "3b558734382ce58b51e5fc676453bfd53bba9201"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-9e4e94747bd698f4f61d48ed54c9c6d4d199bd32-zip-7f52df.zip",
-                "reference": "9e4e94747bd698f4f61d48ed54c9c6d4d199bd32",
-                "shasum": "23108f7d993e9f1e35445ac3f3ddd25037d0a4bb"
+                "url": "https://composer.tiki.org/dist/twbs/bootstrap/twbs-bootstrap-3b558734382ce58b51e5fc676453bfd53bba9201-zip-ae9408.zip",
+                "reference": "3b558734382ce58b51e5fc676453bfd53bba9201",
+                "shasum": "9a2e2536adcb04d8b20da9ac0f37f932302421ff"
             },
             "replace": {
                 "twitter/bootstrap": "self.version"
@@ -5266,7 +5267,7 @@
                 "sass",
                 "web"
             ],
-            "time": "2018-12-21T18:55:28+00:00"
+            "time": "2018-07-24T15:54:34+00:00"
         },
         {
             "name": "undojs/undojs",
@@ -8597,7 +8598,6 @@
         "candy-chat/xmpp-prebind-php": 20,
         "hesammousavi/bootstrap-v4-rtl": 20,
         "robicch/jquery-gantt": 20,
-        "twbs/bootstrap": 10,
         "zendframework/zendsearch": 20,
         "gidkom/php-openfire-restapi": 20,
         "montefuscolo/xmpp": 20,

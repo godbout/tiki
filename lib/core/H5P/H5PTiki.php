@@ -22,6 +22,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	private $tiki_h5p_libraries_libraries = null;
 	private $tiki_h5p_libraries_languages = null;
 	private $tiki_h5p_results = null;
+	private $tiki_h5p_libraries_hub_cache = null;
 
 	public $isSaving = false;
 
@@ -41,6 +42,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		$this->tiki_h5p_libraries_libraries = $tikiDb->table('tiki_h5p_libraries_libraries');
 		$this->tiki_h5p_libraries_languages = $tikiDb->table('tiki_h5p_libraries_languages');
 		$this->tiki_h5p_results = $tikiDb->table('tiki_h5p_results');
+		$this->tiki_h5p_libraries_hub_cache = $tikiDb->table('tiki_h5p_libraries_hub_cache');
 		// possibly others needed?
 
 		self::$h5p_path = 'storage/public';
@@ -50,7 +52,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 
 			// Determine full URL
 			$cronUrl = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . "://{$_SERVER['HTTP_HOST']}/" .
-					TikiLib::lib('service')->getUrl(['controller' => 'h5p', 'action' => 'cron']);
+				TikiLib::lib('service')->getUrl(['controller' => 'h5p', 'action' => 'cron']);
 
 			// Use token to prevent unauthorized use
 			$token = $this->getOption('cron_token');
@@ -62,12 +64,16 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 
 			$this->fetchExternalData($cronUrl, ['token' => $token], false);
 		}
+
+		// try to update if enabled
+		//$this->getLibraryUpdates();
 	}
 
 	/**
 	 * Get the different instances of the core components.
 	 *
 	 * @param string $component
+	 *
 	 * @return \H5PCore|\H5PContentValidator|\H5PExport|\H5PStorage|\H5PValidator|\H5P_H5PTiki
 	 */
 	public static function get_h5p_instance($component)
@@ -126,8 +132,8 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		$TWV = new TWVersion();
 
 		return [
-			'name' => 'Tiki',
-			'version' => $TWV->version,
+			'name'       => 'Tiki',
+			'version'    => $TWV->version,
 			'h5pVersion' => '1.0.0', // TODO: Use variable? (\H5PLib not loaded)
 		];
 	}
@@ -135,16 +141,19 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	/**
 	 * Fetches a file from a remote server using HTTP GET
 	 *
-	 * @param $url
-	 * @param $data
+	 * @param      $url
+	 * @param      $data
+	 * @param bool $blocking
+	 * @param null $stream
+	 *
 	 * @return string The content (response body). null if something went wrong
 	 */
 	public function fetchExternalData($url, $data = null, $blocking = true, $stream = null)
 	{
 		$handle = curl_init($url);
-		curl_setopt($handle, CURLOPT_POST, true);
+		curl_setopt($handle, CURLOPT_POST, ! empty($data));
 		curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
-		 curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
 
 		if (! $blocking) {
 			curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 0.01);
@@ -173,7 +182,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	{
 		$this->tiki_h5p_libraries->update(
 			[
-			'tutorial_url' => $tutorialUrl,
+				'tutorial_url' => $tutorialUrl,
 			],
 			['name' => $machineName]
 		);
@@ -189,7 +198,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	{
 		if (Perms::get()->h5p_edit) {
 			// needs 'session' as the method param if the error happens asychronously
-			Feedback::error(tra($message));
+			Feedback::error(tra($message) . tr(' (code=%0)', $code));
 		}
 	}
 
@@ -210,15 +219,16 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 * Translation function
 	 *
 	 * @param string $message
-	 *  The english string to be translated.
-	 * @param array $replacements
-	 *   An associative array of replacements to make after translation. Incidences
-	 *   of any key in this array are replaced with the corresponding value. Based
-	 *   on the first character of the key, the value is escaped and/or themed:
-	 *    - !variable: inserted as is
-	 *    - @variable: escape plain text to HTML
-	 *    - %variable: escape text and theme as a placeholder for user-submitted
+	 *      The english string to be translated.
+	 * @param array  $replacements
+	 *      An associative array of replacements to make after translation. Incidences
+	 *      of any key in this array are replaced with the corresponding value. Based
+	 *      on the first character of the key, the value is escaped and/or themed:
+	 *      - !variable: inserted as is
+	 *      - @variable: escape plain text to HTML
+	 *      - %variable: escape text and theme as a placeholder for user-submitted
 	 *      content
+	 *
 	 * @return string Translated string
 	 * Translated string
 	 */
@@ -240,6 +250,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 *
 	 * @param string $setDir
 	 *   Set the dir insted of using an auto generated one.
+	 *
 	 * @return string
 	 *   Path to the folder where the last uploaded h5p for this session is located.
 	 */
@@ -263,6 +274,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 *
 	 * @param string $setPath
 	 *   Set the path insted of using an auto generated one.
+	 *
 	 * @return string
 	 *   Path to the last uploaded h5p
 	 */
@@ -324,17 +336,18 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 *
 	 * @param string $machineName
 	 *   The librarys machine name
-	 * @param int $majorVersion
+	 * @param int    $majorVersion
 	 *   Optional major version number for library
-	 * @param int $minorVersion
+	 * @param int    $minorVersion
 	 *   Optional minor version number for library
+	 *
 	 * @return int
 	 *   The id of the specified library or FALSE
 	 */
 	public function getLibraryId($machineName, $majorVersion = null, $minorVersion = null)
 	{
 		$conditions = [
-			'name' => $machineName,
+			'name'          => $machineName,
 			'major_version' => $majorVersion,
 			'minor_version' => $minorVersion,
 		];
@@ -365,9 +378,9 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 * @param boolean $isLibrary
 	 *   TRUE if this is the whitelist for a library. FALSE if it is the whitelist
 	 *   for the content folder we are getting
-	 * @param string $defaultContentWhitelist
+	 * @param string  $defaultContentWhitelist
 	 *   A string of file extensions separated by whitespace
-	 * @param string $defaultLibraryWhitelist
+	 * @param string  $defaultLibraryWhitelist
 	 *   A string of file extensions separated by whitespace
 	 *
 	 * @return string
@@ -388,6 +401,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 *   - majorVersion: The librarys majorVersion
 	 *   - minorVersion: The librarys minorVersion
 	 *   - patchVersion: The librarys patchVersion
+	 *
 	 * @return boolean
 	 *   TRUE if the library is a patched version of an existing library
 	 *   FALSE otherwise
@@ -396,12 +410,14 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	{
 		$operator = $this->isInDevMode() ? '<=' : '<';
 
-		$result = $this->tiki_h5p_libraries->fetchCount([
-			'name' => $library['machineName'],
-			'major_version' => $library['majorVersion'],
-			'minor_version' => $library['minorVersion'],
-			'patch_version' => $this->tiki_h5p_libraries->expr("$$ $operator ?", [$library['patchVersion']]),
-		]);
+		$result = $this->tiki_h5p_libraries->fetchCount(
+			[
+				'name'          => $library['machineName'],
+				'major_version' => $library['majorVersion'],
+				'minor_version' => $library['minorVersion'],
+				'patch_version' => $this->tiki_h5p_libraries->expr("$$ $operator ?", [$library['patchVersion']]),
+			]
+		);
 
 		return ! empty($result);
 	}
@@ -438,26 +454,26 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 * Also fills in the libraryId in the libraryData object if the object is new
 	 *
 	 * @param array $libraryData
-	 *   Associative array containing:
-	 *   - libraryId: The id of the library if it is an existing library.
-	 *   - title: The library's name
-	 *   - machineName: The library machineName
-	 *   - majorVersion: The library's majorVersion
-	 *   - minorVersion: The library's minorVersion
-	 *   - patchVersion: The library's patchVersion
-	 *   - runnable: 1 if the library is a content type, 0 otherwise
-	 *   - fullscreen(optional): 1 if the library supports fullscreen, 0 otherwise
-	 *   - embedTypes(optional): list of supported embed types
-	 *   - preloadedJs(optional): list of associative arrays containing:
+	 *     Associative array containing:
+	 *     - libraryId: The id of the library if it is an existing library.
+	 *     - title: The library's name
+	 *     - machineName: The library machineName
+	 *     - majorVersion: The library's majorVersion
+	 *     - minorVersion: The library's minorVersion
+	 *     - patchVersion: The library's patchVersion
+	 *     - runnable: 1 if the library is a content type, 0 otherwise
+	 *     - fullscreen(optional): 1 if the library supports fullscreen, 0 otherwise
+	 *     - embedTypes(optional): list of supported embed types
+	 *     - preloadedJs(optional): list of associative arrays containing:
 	 *     - path: path to a js file relative to the library root folder
-	 *   - preloadedCss(optional): list of associative arrays containing:
+	 *     - preloadedCss(optional): list of associative arrays containing:
 	 *     - path: path to css file relative to the library root folder
-	 *   - dropLibraryCss(optional): list of associative arrays containing:
+	 *     - dropLibraryCss(optional): list of associative arrays containing:
 	 *     - machineName: machine name for the librarys that are to drop their css
-	 *   - semantics(optional): Json describing the content structure for the library
-	 *   - language(optional): associative array containing:
+	 *     - semantics(optional): Json describing the content structure for the library
+	 *     - language(optional): associative array containing:
 	 *     - languageCode: Translation in json format
-	 * @param bool $new
+	 * @param bool  $new
 	 */
 	public function saveLibraryData(&$libraryData, $new = true)
 	{
@@ -484,36 +500,48 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		if (! isset($libraryData['fullscreen'])) {
 			$libraryData['fullscreen'] = 0;
 		}
+		if (! isset($library['hasIcon'])) {
+			$library['hasIcon'] = 0;
+		}
+
 		if ($new) {
-			$libraryId = $this->tiki_h5p_libraries->insert([
-				'name' => $libraryData['machineName'],
-				'title' => $libraryData['title'],
-				'major_version' => $libraryData['majorVersion'],
-				'minor_version' => $libraryData['minorVersion'],
-				'patch_version' => $libraryData['patchVersion'],
-				'runnable' => $libraryData['runnable'],
-				'fullscreen' => $libraryData['fullscreen'],
-				'embed_types' => $embedTypes,
-				'preloaded_js' => $preloadedJs,
-				'preloaded_css' => $preloadedCss,
-				'drop_library_css' => $dropLibraryCss,
-				'semantics' => $libraryData['semantics'],
-				'tutorial_url' => ''
-			]);
+			$libraryId = $this->tiki_h5p_libraries->insert(
+				[
+					'name'              => $libraryData['machineName'],
+					'title'             => $libraryData['title'],
+					'major_version'     => $libraryData['majorVersion'],
+					'minor_version'     => $libraryData['minorVersion'],
+					'patch_version'     => $libraryData['patchVersion'],
+					'runnable'          => $libraryData['runnable'],
+					'fullscreen'        => $libraryData['fullscreen'],
+					'embed_types'       => $embedTypes,
+					'preloaded_js'      => $preloadedJs,
+					'preloaded_css'     => $preloadedCss,
+					'drop_library_css'  => $dropLibraryCss,
+					'semantics'         => $libraryData['semantics'],
+					'tutorial_url'      => '',
+					'has_icon'          => $libraryData['hasIcon'] ? 1 : 0,
+					'metadata_settings' => $libraryData['metadataSettings'],
+					'add_to'            => isset($libraryData['addTo']) ? json_encode($libraryData['addTo']) : null,
+				]
+			);
 
 			$libraryData['libraryId'] = $libraryId;
 		} else {
 			$this->tiki_h5p_libraries->update(
 				[
-				'title' => $libraryData['title'],
-				'patch_version' => $libraryData['patchVersion'],
-				'runnable' => $libraryData['runnable'],
-				'fullscreen' => $libraryData['fullscreen'],
-				'embed_types' => $embedTypes,
-				'preloaded_js' => $preloadedJs,
-				'preloaded_css' => $preloadedCss,
-				'drop_library_css' => $dropLibraryCss,
-				'semantics' => $libraryData['semantics'],
+					'title'             => $libraryData['title'],
+					'patch_version'     => $libraryData['patchVersion'],
+					'runnable'          => $libraryData['runnable'],
+					'fullscreen'        => $libraryData['fullscreen'],
+					'embed_types'       => $embedTypes,
+					'preloaded_js'      => $preloadedJs,
+					'preloaded_css'     => $preloadedCss,
+					'drop_library_css'  => $dropLibraryCss,
+					'semantics'         => $libraryData['semantics'],
+					'has_icon'          => $libraryData['hasIcon'] ? 1 : 0,
+					'metadata_settings' => $libraryData['metadataSettings'],
+					'add_to'            => isset($libraryData['addTo']) ? json_encode($libraryData['addTo']) : null,
 				],
 				['id' => $libraryData['libraryId']]
 			);
@@ -535,11 +563,13 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 
 		if (isset($libraryData['language'])) {
 			foreach ($libraryData['language'] as $languageCode => $languageJson) {
-				$id = $this->tiki_h5p_libraries_languages->insert([
-					'library_id' => $libraryData['libraryId'],
-					'language_code' => $languageCode,
-					'translation' => $languageJson
-				]);
+				$id = $this->tiki_h5p_libraries_languages->insert(
+					[
+						'library_id'    => $libraryData['libraryId'],
+						'language_code' => $languageCode,
+						'translation'   => $languageJson
+					]
+				);
 			}
 		}
 	}
@@ -547,10 +577,11 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	/**
 	 * Convert list of file paths to csv (from the WP implementation)
 	 *
-	 * @param array $libraryData
+	 * @param array  $libraryData
 	 *  Library data as found in library.json files
 	 * @param string $key
 	 *  Key that should be found in $libraryData
+	 *
 	 * @return string
 	 *  file paths separated by ', '
 	 */
@@ -570,13 +601,13 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 * Insert new content.
 	 *
 	 * @param array $content
-	 *   An associative array containing:
-	 *   - id: The content id
-	 *   - params: The content in json format
-	 *   - library: An associative array containing:
+	 *     An associative array containing:
+	 *     - id: The content id
+	 *     - params: The content in json format
+	 *     - library: An associative array containing:
 	 *     - libraryId: The id of the main library for this content
-	 * @param int $contentMainId
-	 *   Main id for the content if this is a system that supports versions
+	 * @param int   $contentMainId
+	 *     Main id for the content if this is a system that supports versions
 	 *
 	 * @return mixed
 	 */
@@ -589,14 +620,15 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 * Update old content.
 	 *
 	 * @param array $content
-	 *   An associative array containing:
-	 *   - id: The content id
-	 *   - params: The content in json format
-	 *   - library: An associative array containing:
+	 *     An associative array containing:
+	 *     - id: The content id
+	 *     - params: The content in json format
+	 *     - library: An associative array containing:
 	 *     - libraryId: The id of the main library for this content
-	 * @param int $contentMainId
-	 *   Main id for the content if this is a system that supports versions
-	 *   ** In Tiki this is the fileId **
+	 * @param int   $contentMainId
+	 *     Main id for the content if this is a system that supports versions
+	 *     ** In Tiki this is the fileId **
+	 *
 	 * @return int the content id
 	 */
 	public function updateContent($content, $contentMainId = null)
@@ -609,18 +641,22 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			$title = $content['title'];
 		}
 
+		$metadata = (array)$content['metadata'];
 
-		$data = [
-			'updated_at' => date("Y-m-d H:i:s", TikiLib::lib('tiki')->now),
-			'title' => $title,
-			'parameters' => isset($content['params']) ? $content['params'] : '',
-			'embed_type' => 'div', // TODO: Determine from library?
-			'library_id' => $content['library']['libraryId'],
-			'filtered' => '',
-			'slug' => '',
-			'disable' => isset($content['disable']) ? $content['disable'] : 0,
-			'file_id' => $contentMainId,
-		];
+		$data = array_merge(
+			\H5PMetadata::toDBArray($metadata, true, true, $format),
+			[
+				'updated_at' => date("Y-m-d H:i:s", TikiLib::lib('tiki')->now),
+				'title'      => $title,
+				'parameters' => isset($content['params']) ? $content['params'] : '',
+				'embed_type' => 'div', // TODO: Determine from library?
+				'library_id' => $content['library']['libraryId'],
+				'filtered'   => '',
+				'slug'       => '',
+				'disable'    => isset($content['disable']) ? $content['disable'] : 0,
+				'file_id'    => $contentMainId,
+			]
+		);
 
 		if (! isset($content['id'])) {
 			// Insert new content
@@ -667,9 +703,9 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	/**
 	 * Save what libraries a library is depending on
 	 *
-	 * @param int $libraryId
+	 * @param int    $libraryId
 	 *   Library Id for the library we're saving dependencies for
-	 * @param array $dependencies
+	 * @param array  $dependencies
 	 *   List of dependencies as associative arrays containing:
 	 *   - machineName: The library machineName
 	 *   - majorVersion: The library's majorVersion
@@ -686,7 +722,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			$lh = $this->tiki_h5p_libraries->fetchOne(
 				'id',
 				[
-					'name' => $dependency['machineName'],
+					'name'          => $dependency['machineName'],
 					'major_version' => $dependency['majorVersion'],
 					'minor_version' => $dependency['minorVersion'],
 				]
@@ -694,9 +730,9 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 
 			$this->tiki_h5p_libraries_libraries->insert(
 				[
-					'library_id' => $libraryId,
+					'library_id'          => $libraryId,
 					'required_library_id' => $lh,
-					'dependency_type' => $dependencyType,
+					'dependency_type'     => $dependencyType,
 				]
 			);
 		}
@@ -728,13 +764,15 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			]
 		);
 
-		$this->tiki_h5p_contents_libraries->insert([
-			'content_id' => $contentId,
-			'library_id' => $hcl['library_id'],
-			'dependency_type' => $hcl['dependency_type'],
-			'weight' => $hcl['weight'],
-			'drop_css' => $hcl['drop_css'],
-		]);
+		$this->tiki_h5p_contents_libraries->insert(
+			[
+				'content_id'      => $contentId,
+				'library_id'      => $hcl['library_id'],
+				'dependency_type' => $hcl['dependency_type'],
+				'weight'          => $hcl['weight'],
+				'drop_css'        => $hcl['drop_css'],
+			]
+		);
 	}
 
 	/**
@@ -762,12 +800,28 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		);
 
 		foreach ($users as $u) {
-			$tikilib->set_user_preference($u, "h5p_content_$contentId", '');	// no delete userpref?
+			$tikilib->set_user_preference($u, "h5p_content_$contentId", '');    // no delete userpref?
 		}
 		// tidy up
 		$tiki_user_preferences->deleteMultiple(
 			['prefName' => "h5p_content_$contentId"]
 		);
+	}
+
+
+	/**
+	 * Try to connect with H5P.org and look for updates to our libraries.
+	 * Can be disabled through settings
+	 *
+	 */
+	public function getLibraryUpdates()
+	{
+		global $prefs;
+
+		if ($prefs['h5p_hub_is_enabled'] === 'y' || $prefs['h5p_send_usage_statistics'] === 'y') {
+			$core = self::get_h5p_instance('core');
+			$core->fetchLibrariesMetadata();
+		}
 	}
 
 	/**
@@ -784,15 +838,15 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	/**
 	 * Saves what libraries the content uses
 	 *
-	 * @param int $contentId
-	 *   Id identifying the content
+	 * @param int   $contentId
+	 *     Id identifying the content
 	 * @param array $librariesInUse
-	 *   List of libraries the content uses. Libraries consist of associative arrays with:
-	 *   - library: Associative array containing:
+	 *     List of libraries the content uses. Libraries consist of associative arrays with:
+	 *     - library: Associative array containing:
 	 *     - dropLibraryCss(optional): comma-separated list of machineNames
 	 *     - machineName: Machine name for the library
 	 *     - libraryId: Id of the library
-	 *   - type: The dependency type. Allowed values:
+	 *     - type: The dependency type. Allowed values:
 	 *     - editor
 	 *     - dynamic
 	 *     - preloaded
@@ -810,11 +864,11 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			$dropCss = in_array($dependency['library']['machineName'], $dropLibraryCssList) ? 1 : 0;
 			$this->tiki_h5p_contents_libraries->insert(
 				[
-					'content_id' => $contentId,
-					'library_id' => $dependency['library']['id'],
+					'content_id'      => $contentId,
+					'library_id'      => $dependency['library']['id'],
 					'dependency_type' => $dependency['type'],
-					'drop_css' => $dropCss,
-					'weight' => $dependency['weight'],
+					'drop_css'        => $dropCss,
+					'weight'          => $dependency['weight'],
 				]
 			);
 		}
@@ -826,6 +880,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	 *
 	 * @param int $libraryId
 	 *   Library identifier
+	 *
 	 * @return array
 	 *   Associative array containing:
 	 *   - content: Number of content using the library
@@ -840,14 +895,16 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		if ($skipContent) {
 			$usage['content'] = -1;
 		} else {
-			$usage['content'] = intval(TikiDb::get()->query(
-				'SELECT COUNT(DISTINCT c.`id`)
+			$usage['content'] = intval(
+				TikiDb::get()->query(
+					'SELECT COUNT(DISTINCT c.`id`)
 FROM `tiki_h5p_libraries` l
 JOIN `tiki_h5p_contents_libraries` cl ON l.`id` = cl.`library_id`
 JOIN `tiki_h5p_contents` c ON cl.content_id = c.id
 WHERE l.id = ?',
-				$libraryId
-			));
+					$libraryId
+				)
+			);
 		}
 
 		return $usage;
@@ -858,10 +915,11 @@ WHERE l.id = ?',
 	 *
 	 * @param string $machineName
 	 *   The library's machine name
-	 * @param int $majorVersion
+	 * @param int    $majorVersion
 	 *   The library's major version
-	 * @param int $minorVersion
+	 * @param int    $minorVersion
 	 *   The library's minor version
+	 *
 	 * @return array|FALSE
 	 *   FALSE if the library does not exist.
 	 *   Otherwise an associative array containing:
@@ -910,9 +968,10 @@ WHERE l.id = ?',
 				'runnable',
 				'semantics',
 				'tutorial_url',
+				'has_icon',
 			],
 			[
-				'name' => $machineName,
+				'name'          => $machineName,
 				'major_version' => $majorVersion,
 				'minor_version' => $minorVersion,
 			]
@@ -935,7 +994,7 @@ WHERE hll.`library_id` = ?',
 
 		foreach ($result->result as $dependency) {
 			$library[$dependency['type'] . 'Dependencies'][] = [
-				'machineName' => $dependency['name'],
+				'machineName'  => $dependency['name'],
 				'majorVersion' => $dependency['major'],
 				'minorVersion' => $dependency['minor'],
 			];
@@ -968,10 +1027,11 @@ WHERE hll.`library_id` = ?',
 	 *
 	 * @param string $machineName
 	 *   Machine name for the library
-	 * @param int $majorVersion
+	 * @param int    $majorVersion
 	 *   The library's major version
-	 * @param int $minorVersion
+	 * @param int    $minorVersion
 	 *   The library's minor version
+	 *
 	 * @return string
 	 *   The library's semantics as json
 	 */
@@ -983,7 +1043,7 @@ WHERE hll.`library_id` = ?',
 			$semantics = $this->tiki_h5p_libraries->fetchOne(
 				'semantics',
 				[
-					'name' => $machineName,
+					'name'          => $machineName,
 					'major_version' => $majorVersion,
 					'minor_version' => $minorVersion,
 				]
@@ -995,13 +1055,13 @@ WHERE hll.`library_id` = ?',
 	/**
 	 * Makes it possible to alter the semantics, adding custom fields, etc.
 	 *
-	 * @param array $semantics
+	 * @param array  $semantics
 	 *   Associative array representing the semantics
 	 * @param string $machineName
 	 *   The library's machine name
-	 * @param int $majorVersion
+	 * @param int    $majorVersion
 	 *   The library's major version
-	 * @param int $minorVersion
+	 * @param int    $minorVersion
 	 *   The library's minor version
 	 */
 	public function alterLibrarySemantics(&$semantics, $machineName, $majorVersion, $minorVersion)
@@ -1055,7 +1115,9 @@ WHERE hll.`library_id` = ?',
 				);*/
 
 		// Delete files
-		H5PCore::deleteFileTree(self::$h5p_path . '/libraries/' . $library->machine_name . '-' . $library->major_version . '.' . $library->minor_version);
+		H5PCore::deleteFileTree(
+			self::$h5p_path . '/libraries/' . $library->machine_name . '-' . $library->major_version . '.' . $library->minor_version
+		);
 
 		// Delete data in database (won't delete content)
 		$this->tiki_h5p_libraries_libraries->deleteMultiple(['library_id', $library->id]);
@@ -1068,6 +1130,7 @@ WHERE hll.`library_id` = ?',
 	 *
 	 * @param int $id
 	 *   Content identifier
+	 *
 	 * @return array
 	 *   Associative array containing:
 	 *   - id: Identifier for the content
@@ -1086,16 +1149,56 @@ WHERE hll.`library_id` = ?',
 	public function loadContent($id)
 	{
 		$content = TikiDb::get()->query(
-			'SELECT hc.`id`, hc.`file_id`, hc.`title`, hc.`parameters` AS params, hc.`filtered` , hc.`slug` AS slug, hc.`user_id`, hc.`embed_type` AS embedType,
-	hc.disable, hl.id AS libraryId , hl.name AS libraryName, hl.major_version AS libraryMajorVersion,
-	hl.minor_version AS libraryMinorVersion, hl.embed_types AS libraryEmbedTypes, hl.fullscreen AS libraryFullscreen
-FROM `tiki_h5p_contents` hc
-JOIN `tiki_h5p_libraries` hl ON hl.id = hc.library_id
-WHERE hc.id =?',
+			'SELECT hc.id,
+					hc.title,
+					hc.parameters AS params,
+					hc.filtered,
+					hc.slug AS slug,
+					hc.user_id,
+					hc.embed_type AS embedType,
+					hc.disable,
+					hl.id AS libraryId,
+					hl.name AS libraryName,
+					hl.major_version AS libraryMajorVersion,
+					hl.minor_version AS libraryMinorVersion,
+					hl.embed_types AS libraryEmbedTypes,
+					hl.fullscreen AS libraryFullscreen,
+					hc.authors AS authors,
+					hc.source AS source,
+					hc.year_from AS yearFrom,
+					hc.year_to AS yearTo,
+					hc.license AS license,
+					hc.license_version AS licenseVersion,
+					hc.license_extras AS licenseExtras,
+					hc.author_comments AS authorComments,
+					hc.changes AS changes
+			FROM `tiki_h5p_contents` hc
+			JOIN `tiki_h5p_libraries` hl ON hl.id = hc.library_id
+			WHERE hc.id =?',
 			$id
 		);
 
 		$row = $content->fetchRow();
+
+		$row['metadata'] = [];
+		$metadata_structure = [
+			'title', 'authors', 'source', 'yearFrom', 'yearTo',
+			'license', 'licenseVersion', 'licenseExtras',
+			'authorComments', 'changes',
+		];
+		foreach ($metadata_structure as $property) {
+			if (! empty($row[$property])) {
+				if ($property === 'authors' || $property === 'changes') {
+					$row['metadata'][$property] = json_decode($row[$property]);
+				} else {
+					$row['metadata'][$property] = $row[$property];
+				}
+				if ($property !== 'title') {
+					unset($row[$property]); // Unset all except title
+				}
+			}
+		}
+
 		return $row;
 	}
 
@@ -1109,6 +1212,7 @@ WHERE hc.id =?',
 	 *   - editor
 	 *   - preloaded
 	 *   - dynamic
+	 *
 	 * @return array
 	 *   List of associative arrays containing:
 	 *   - libraryId: The id of the library if it is an existing library.
@@ -1149,6 +1253,7 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 	 *   Identifier for the setting
 	 * @param string $default
 	 *   Optional default value if settings is not set
+	 *
 	 * @return mixed
 	 *   Whatever has been stored as the setting
 	 */
@@ -1166,9 +1271,9 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 	 * For example when did we last check h5p.org for updates to our libraries.
 	 *
 	 * @param string $name
-	 *   Identifier for the setting
-	 * @param mixed $value Data
-	 *   Whatever we want to store as the setting
+	 *                      Identifier for the setting
+	 * @param mixed  $value Data
+	 *                      Whatever we want to store as the setting
 	 */
 	public function setOption($name, $value)
 	{
@@ -1178,7 +1283,7 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 	/**
 	 * This will update selected fields on the given content.
 	 *
-	 * @param int $id Content identifier
+	 * @param int   $id     Content identifier
 	 * @param array $fields Content fields, e.g. filtered or slug.
 	 */
 	public function updateContentFields($id, $fields)
@@ -1234,6 +1339,7 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 	 * Get number of contents using library as main library.
 	 *
 	 * @param int $libraryId
+	 *
 	 * @return int
 	 */
 	public function getNumContent($libraryId)
@@ -1245,6 +1351,7 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 	 * Determines if content slug is used.
 	 *
 	 * @param string $slug
+	 *
 	 * @return boolean
 	 */
 	public function isContentSlugAvailable($slug)
@@ -1256,6 +1363,7 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 	 * Generates statistics from the event log per library
 	 *
 	 * @param string $type Type of event to generate stats for
+	 *
 	 * @return array Number values indexed by library name and version
 	 */
 	public function getLibraryStats($type)
@@ -1282,6 +1390,7 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 
 	/**
 	 * Aggregate the current number of H5P authors
+	 *
 	 * @return int
 	 */
 	public function getNumAuthors()
@@ -1299,7 +1408,7 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 	 *
 	 * @param string $key
 	 *  Hash key for the given libraries
-	 * @param array $libraries
+	 * @param array  $libraries
 	 *  List of dependencies(libraries) used to create the key
 	 */
 	public function saveCachedAssets($key, $libraries)
@@ -1311,7 +1420,7 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 				$this->tiki_h5p_libraries_cachedassets->insert(
 					[
 						'library_id' => $libraryId,
-						'hash' => $key,
+						'hash'       => $key,
 					]
 				);
 			} else {
@@ -1329,6 +1438,7 @@ hcl.`drop_css` AS dropCss, hcl.`dependency_type` AS dependencyType
 	 *
 	 * @param int $library_id
 	 *  Library identifier
+	 *
 	 * @return array
 	 *  List of hash keys removed
 	 */
@@ -1401,48 +1511,161 @@ GROUP BY l.`name`, l.`major_version`, l.`minor_version`');
 	}
 
 	/**
+	 * Check if current user can edit H5P
+	 *
+	 * @method currentUserCanEdit
+	 * @param  int $contentUserId
+	 *
+	 * @return boolean
+	 */
+	private static function currentUserCanEdit($contentUserId)
+	{
+		global $user;
+
+		return $user === $contentUserId || Perms::get()->h5p_edit;
+	}
+
+	/**
 	 * Check if user has permissions to an action
 	 *
 	 * @method hasPermission
 	 * @param  [H5PPermission] $permission Permission type, ref H5PPermission
 	 * @param  [int]           $id         Id need by platform to determine permission
+	 *
 	 * @return boolean
 	 */
-	public function hasPermission($permission, $id = null)
+	public function hasPermission($permission, $contentUserId = null)
 	{
-		// TODO: Implement hasPermission() method.
+		switch ($permission) {
+			case H5PPermission::DOWNLOAD_H5P:
+			case H5PPermission::EMBED_H5P:
+				return self::currentUserCanEdit($contentUserId);
+
+			case H5PPermission::CREATE_RESTRICTED:
+			case H5PPermission::UPDATE_LIBRARIES:
+				return Perms::get()->h5p_admin;
+
+			case H5PPermission::INSTALL_RECOMMENDED:
+				return Perms::get()->h5p_admin;
+
+		}
+		return false;
 	}
 
 	/**
 	 * Get URL to file in the specific library
+	 *
 	 * @param string $libraryFolderName
 	 * @param string $fileName
+	 *
 	 * @return string URL to file
 	 */
 	public function getLibraryFileUrl($libraryFolderName, $fileName)
 	{
-		// TODO: Implement getLibraryFileUrl() method.
+		return H5P_H5PTiki::$h5p_path . '/libraries/' . $libraryFolderName . '/' . $fileName;
 	}
 
 	/**
 	 * Replaces existing content type cache with the one passed in
 	 *
 	 * @param object $contentTypeCache Json with an array called 'libraries'
-	 *  containing the new content type cache that should replace the old one.
+	 *                                 containing the new content type cache that should replace the old one.
 	 */
 	public function replaceContentTypeCache($contentTypeCache)
 	{
-		// TODO: Implement replaceContentTypeCache() method.
+		TikiDb::get()->query("TRUNCATE TABLE `tiki_h5p_libraries_hub_cache`");
+
+
+		foreach ($contentTypeCache->contentTypes as $ct) {
+			// Insert into db
+			$this->tiki_h5p_libraries_hub_cache->insert(
+				[
+					'machine_name'      => $ct->id,
+					'major_version'     => $ct->version->major,
+					'minor_version'     => $ct->version->minor,
+					'patch_version'     => $ct->version->patch,
+					'h5p_major_version' => $ct->coreApiVersionNeeded->major,
+					'h5p_minor_version' => $ct->coreApiVersionNeeded->minor,
+					'title'             => $ct->title,
+					'summary'           => $ct->summary,
+					'description'       => $ct->description,
+					'icon'              => $ct->icon,
+					'created_at'        => self::dateTimeToTime($ct->createdAt),
+					'updated_at'        => self::dateTimeToTime($ct->updatedAt),
+					'is_recommended'    => $ct->isRecommended === true ? 1 : 0,
+					'popularity'        => $ct->popularity,
+					'screenshots'       => json_encode($ct->screenshots),
+					'license'           => json_encode(isset($ct->license) ? $ct->license : []),
+					'example'           => $ct->example,
+					'tutorial'          => isset($ct->tutorial) ? $ct->tutorial : '',
+					'keywords'          => json_encode(isset($ct->keywords) ? $ct->keywords : []),
+					'categories'        => json_encode(isset($ct->categories) ? $ct->categories : []),
+					'owner'             => $ct->owner,
+				]
+			);
+		}
+	}
+
+	/**
+	 * Convert datetime string to unix timestamp
+	 *
+	 * @param string $datetime
+	 *
+	 * @return int unix timestamp
+	 */
+	public static function dateTimeToTime($datetime)
+	{
+		$dt = new DateTime($datetime);
+		return $dt->getTimestamp();
 	}
 
 	/**
 	 * Return messages
 	 *
 	 * @param string $type 'info' or 'error'
+	 *
 	 * @return string[]
 	 */
 	public function getMessages($type)
 	{
 		// TODO: Implement getMessages() method.
+	}
+
+	/**
+	 * Load addon libraries
+	 *
+	 * @return array
+	 */
+	public function loadAddons()
+	{
+		// Load addons
+		// If there are several versions of the same addon, pick the newest one
+		$result = TikiDb::get()->query(
+			"SELECT l1.id as libraryId, l1.name as machineName,
+             l1.major_version as majorVersion, l1.minor_version as minorVersion,
+             l1.patch_version as patchVersion, l1.add_to as addTo,
+             l1.preloaded_js as preloadedJs, l1.preloaded_css as preloadedCss
+			   FROM tiki_h5p_libraries AS l1
+			   LEFT JOIN tiki_h5p_libraries AS l2
+				 ON l1.name = l2.name AND
+				   (l1.major_version < l2.major_version OR
+					 (l1.major_version = l2.major_version AND
+					  l1.minor_version < l2.minor_version))
+			   WHERE l1.add_to IS NOT NULL AND l2.name IS NULL"
+		);
+
+		return $result->fetchRow();
+	}
+
+	/**
+	 * Load config for libraries
+	 *
+	 * @param array $libraries
+	 *
+	 * @return array
+	 */
+	public function getLibraryConfig($libraries = null)
+	{
+		return defined('H5P_LIBRARY_CONFIG') ? H5P_LIBRARY_CONFIG : NULL;
 	}
 }

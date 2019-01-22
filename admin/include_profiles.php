@@ -69,7 +69,7 @@ if (isset($_POST['forget'], $_POST['pp'], $_POST['pd']) && $access->checkCsrf())
 	}
 }
 
-if (isset($_POST['install'], $_POST['pd'], $_POST['pp']) && $access->checkCsrf()) {
+if (isset($_POST['install'], $_POST['pd'], $_POST['pp'])) {
 	$data = [];
 
 	foreach ($_POST as $key => $value) {
@@ -82,7 +82,9 @@ if (isset($_POST['install'], $_POST['pd'], $_POST['pp']) && $access->checkCsrf()
 	$installer->setUserData($data);
 	$profile = Tiki_Profile::fromNames($_POST['pd'], $_POST['pp']);
 	$dryRun = isset($_POST['dryrun']) ? true : false;
-	$installer->install($profile, 'all', $dryRun);
+	if ($dryRun || $access->checkCsrf() ) {
+		$installer->install($profile, 'all', $dryRun);
+	}
 
 	if ($dryRun && isset($_POST['ajax'])) {
 		$smarty->assign('track_profile_changes', $installer->getTrackProfileChanges());

@@ -3081,6 +3081,81 @@ a.structure-home {
   .topbar .navbar-* {
     border: none; }
 
+.ui-dialog {
+  webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25); }
+
+.ui-dialog label {
+  display: block; }
+
+.ui-datepicker, .ui-dialog {
+  z-index: 1024; }
+
+h4.ui-accordion-header {
+  padding-left: 2.2em; }
+
+div.form-group label.error {
+  font-weight: normal !important; }
+
+.tiki .chosen-container .active-result {
+  width: auto !important; }
+
+.tiki .chosen-container-single, .tiki #assign_order_chosen.chosen-container {
+  min-width: 5em; }
+
+.tiki .chosen-container .chosen-container-single {
+  max-width: 100%; }
+
+.chosen-container-multi .chosen-choices .search-field .default {
+  min-width: 20em; }
+
+.chosen-container + .alert {
+  margin-top: 20px; }
+
+.chosen-container .chosen-results li.active-result.text-muted.bg-info {
+  background: #17a2b8; }
+
+.chosen-container .chosen-results li.active-result.text-muted.bg-info {
+  color: #fff; }
+
+.tiki .anythingSlider, .tiki .anythingWindow, .tiki .anythingBase, .tiki .anythingBase > .card {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box; }
+
+.tiki .anythingBase > .card {
+  margin-bottom: 0;
+  background-color: inherit;
+  border: none;
+  border-radius: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+/* prevents elFinder dialog appearing under the embedded pane */
+.std42-dialog.elfinder-dialog {
+  position: absolute; }
+
+.elFinderDialog.elfinder {
+  visibility: visible; }
+
+.ui-dialog.elfinder-dialog-error .ui-dialog-content, .ui-dialog.elfinder-dialog-confirm .ui-dialog-content {
+  padding-left: 56px;
+  min-height: 35px; }
+
+.elfinder-rtl .ui-dialog.elfinder-dialog-error .ui-dialog-content, .elfinder-rtl .ui-dialog.elfinder-dialog-confirm .ui-dialog-content {
+  padding-left: 0;
+  padding-right: 56px; }
+
+.elfinder-quicklook-titlebar {
+  z-index: 1; }
+
+.tiki .elfinder .elfinder-button-search {
+  padding-top: 2px; }
+
+.tiki .elfinder .elfinder-button-search input {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box; }
+
 body:not(.fixed_width) .container {
   padding-left: 15px;
   padding-right: 15px;
