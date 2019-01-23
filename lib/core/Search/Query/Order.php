@@ -13,6 +13,7 @@ class Search_Query_Order
 	const MODE_NUMERIC = 'numeric';
 	const MODE_TEXT = 'text';
 	const MODE_DISTANCE = 'distance';
+	const MODE_SCRIPT = 'script';
 
 	const ORDER_ASC = 'asc';
 	const ORDER_DESC = 'desc';

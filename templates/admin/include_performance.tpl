@@ -22,8 +22,8 @@
 			{preference name=tiki_cdn}
 			{preference name=tiki_cdn_ssl}
 			{preference name=tiki_cdn_check}
-			{preference name=tiki_minify_css}
 			{preference name=tiki_prefix_css}
+			{preference name=tiki_minify_css}
 			<div class="adminoptionboxchild" id="tiki_minify_css_childcontainer">
 				{preference name=tiki_minify_css_single_file}
 			</div>

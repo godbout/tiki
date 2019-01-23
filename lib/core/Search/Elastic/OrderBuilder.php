@@ -19,7 +19,20 @@ class Search_Elastic_OrderBuilder
 		$component = '_score';
 		$field = $order->getField();
 
-		if ($field !== Search_Query_Order::FIELD_SCORE) {
+		if ($order->getMode() == Search_Query_Order::MODE_SCRIPT) {
+			$arguments = $order->getArguments();
+
+			$component = [
+				"_script" => [
+					'type'   => $arguments['type'],
+					'script' => [
+						'lang'   => $arguments['lang'],
+						'source' => $arguments['source'],
+					],
+					'order'  => $arguments['order'],
+				],
+			];
+		} else if ($field !== Search_Query_Order::FIELD_SCORE) {
 			$this->ensureHasField($field);
 			if ($order->getMode() == Search_Query_Order::MODE_NUMERIC) {
 				$component = [

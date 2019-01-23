@@ -356,6 +356,22 @@ class Search_Query_WikiBuilder
 				Feedback::error(tr('Distance sort: Missing lat or lon arguments'));
 				return;
 			}
+		} elseif ($value === 'script') {
+			if (isset($arguments['source'])) {
+
+				$arguments['order'] = isset($arguments['order']) ? $arguments['order'] : 'asc';
+				$arguments['lang']  = isset($arguments['lang'])  ? $arguments['lang']  : 'painless';
+				$arguments['type']  = isset($arguments['type'])  ? $arguments['type']  : 'number';
+
+				unset($arguments['mode']);
+
+				// using a dummy field for now
+				$value = new Search_Query_Order('_script', 'script', $arguments['order'], $arguments);
+			} else {
+				Feedback::error(tr('Script sort: Missing source argument'));
+				return;
+			}
+
 		}
 		$query->setOrder($value);
 	}
