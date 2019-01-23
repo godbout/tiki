@@ -42,6 +42,7 @@ a:hover, a:active, a:focus {
 .navbar-dark .navbar-nav > .active > a:hover,
 .navbar-dark .navbar-nav > .active > a:focus {
     background: #000 !important;
+    color: #fff !important;
 }
 
 .autotoc * {

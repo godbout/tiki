@@ -30,8 +30,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 
 	function __construct()
 	{
-		// just as an example of how to get a table objects
-		// docs here https://dev.tiki.org/Database+Access
+		// Initialise the main H5P Tiki wrapper
 
 		$tikiDb = TikiDb::get();
 
@@ -43,9 +42,10 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		$this->tiki_h5p_libraries_languages = $tikiDb->table('tiki_h5p_libraries_languages');
 		$this->tiki_h5p_results = $tikiDb->table('tiki_h5p_results');
 		$this->tiki_h5p_libraries_hub_cache = $tikiDb->table('tiki_h5p_libraries_hub_cache');
-		// possibly others needed?
 
-		self::$h5p_path = 'storage/public';
+		global $tikidomainslash;
+
+		self::$h5p_path = $tikidomainslash . 'storage/public/h5p';
 
 		if ($this->getOption('cron_last_run') < time() - 86400 && ! empty($_SERVER['HTTP_HOST'])) {
 			// Cron not run in >24h, trigger it
@@ -641,10 +641,21 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 			$title = $content['title'];
 		}
 
-		$metadata = (array)$content['metadata'];
+		$metadata = (array) $content['metadata'];
+		$params = json_decode($content['params'], true);
+
+		if (isset($params['metadata'])) {				// when editing metadata is inside params
+			$metadata = array_merge($metadata, $params['metadata']);
+		}
+
+		if (isset($params['params'])) {				// when editing params are inside params
+			$content['params'] = json_encode($params['params']);
+		}
+
+		$metadataArray = \H5PMetadata::toDBArray($metadata, true, true, $types);
 
 		$data = array_merge(
-			\H5PMetadata::toDBArray($metadata, true, true, $format),
+			$metadataArray,
 			[
 				'updated_at' => date("Y-m-d H:i:s", TikiLib::lib('tiki')->now),
 				'title'      => $title,
@@ -1150,6 +1161,7 @@ WHERE hll.`library_id` = ?',
 	{
 		$content = TikiDb::get()->query(
 			'SELECT hc.id,
+					hc.file_id,
 					hc.title,
 					hc.parameters AS params,
 					hc.filtered,

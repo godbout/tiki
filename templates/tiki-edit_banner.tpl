@@ -112,7 +112,7 @@
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Use dates:{/tr}</label>
 				<div class="col-sm-7">
-					<label><input type="checkbox" name="useDates" {if $useDates eq 'y'}checked='checked'{/if}>Yes</label>
+					<label><input type="checkbox" name="useDates" {if $useDates eq 'y'}checked='checked'{/if}> {tr}Yes{/tr}</label>
 				</div>
 			</div>
 		</div>
@@ -140,14 +140,14 @@
 		<div class="card-body">
 			<h4>{tr}Show the banner only on:{/tr}</h4>
 			<div class="col-sm-12">
-				<div class="form-group row">
-					<label><input type="checkbox" name="Dmon" {if $Dmon eq 'y'}checked="checked"{/if}>{tr}Mon{/tr}</label>
-					<label><input type="checkbox" name="Dtue" {if $Dtue eq 'y'}checked="checked"{/if}>{tr}Tue{/tr}</label>
-					<label><input type="checkbox" name="Dwed" {if $Dwed eq 'y'}checked="checked"{/if}>{tr}Wed{/tr}</label>
-					<label><input type="checkbox" name="Dthu" {if $Dthu eq 'y'}checked="checked"{/if}>{tr}Thu{/tr}</label>
-					<label><input type="checkbox" name="Dfri" {if $Dfri eq 'y'}checked="checked"{/if}>{tr}Fri{/tr}</label>
-					<label><input type="checkbox" name="Dsat" {if $Dsat eq 'y'}checked="checked"{/if}>{tr}Sat{/tr}</label>
-					<label><input type="checkbox" name="Dsun" {if $Dsun eq 'y'}checked="checked"{/if}>{tr}Sun{/tr}</label>
+				<div class="form-group row flex-column">
+					<label><input type="checkbox" name="Dmon" {if $Dmon eq 'y'}checked="checked"{/if}> {tr}Mon{/tr}</label>
+					<label><input type="checkbox" name="Dtue" {if $Dtue eq 'y'}checked="checked"{/if}> {tr}Tue{/tr}</label>
+					<label><input type="checkbox" name="Dwed" {if $Dwed eq 'y'}checked="checked"{/if}> {tr}Wed{/tr}</label>
+					<label><input type="checkbox" name="Dthu" {if $Dthu eq 'y'}checked="checked"{/if}> {tr}Thu{/tr}</label>
+					<label><input type="checkbox" name="Dfri" {if $Dfri eq 'y'}checked="checked"{/if}> {tr}Fri{/tr}</label>
+					<label><input type="checkbox" name="Dsat" {if $Dsat eq 'y'}checked="checked"{/if}> {tr}Sat{/tr}</label>
+					<label><input type="checkbox" name="Dsun" {if $Dsun eq 'y'}checked="checked"{/if}> {tr}Sun{/tr}</label>
 				</div>
 			</div>
 		</div>
@@ -157,7 +157,7 @@
 		<div class="card-body">
 			<h4>{tr}Select ONE method for the banner:{/tr}</h4>
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useHTML" {if $use eq 'useHTML'}checked="checked"{/if}>{tr}Use HTML{/tr}</label></label>
+				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useHTML" {if $use eq 'useHTML'}checked="checked"{/if}> {tr}Use HTML{/tr}</label></label>
 				<div class="col-sm-7">
 					<textarea class="form-control" rows="5" name="HTMLData">{if $use ne 'useFlash'}{$HTMLData|escape}{/if}</textarea>
 					<div class="form-text">
@@ -166,7 +166,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useImage" {if $use eq 'useImage'}checked="checked"{/if}>{tr}Use Image{/tr}</label></label>
+				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useImage" {if $use eq 'useImage'}checked="checked"{/if}> {tr}Use Image{/tr}</label></label>
 				<div class="col-sm-7">
 					<input type="hidden" name="imageData" value="{$imageData|escape}">
 					<input type="hidden" name="imageName" value="{$imageName|escape}">
@@ -184,7 +184,7 @@
 				{/if}
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useFixedURL" {if $use eq 'useFixedURL'}checked="checked"{/if}>{tr}Use Image from URL{/tr}</label></label>
+				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useFixedURL" {if $use eq 'useFixedURL'}checked="checked"{/if}> {tr}Use Image from URL{/tr}</label></label>
 				<div class="col-sm-7">
 					<input type="text" name="fixedURLData" value="{$fixedURLData|escape}" class="form-control">
 					<div class="form-text">
@@ -193,7 +193,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useFlash" {if $use eq 'useFlash'}checked="checked"{/if}>{tr}Use Flash{/tr}</label></label>
+				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useFlash" {if $use eq 'useFlash'}checked="checked"{/if}> {tr}Use Flash{/tr}</label></label>
 				{if $use eq 'useFlash'}
 					<div class="col-sm-7">
 						{banner id="$bannerId"}
@@ -236,7 +236,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useText" {if $use eq 'useText'}checked="checked"{/if}>{tr}Use Text{/tr}</label></label>
+				<label class="col-sm-3 col-form-label"><label><input type="radio" name="use" value="useText" {if $use eq 'useText'}checked="checked"{/if}> {tr}Use Text{/tr}</label></label>
 				<div class="col-sm-7">
 					<textarea class="form-control" rows="5" name="textData">{$textData|escape}</textarea>
 				</div>

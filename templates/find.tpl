@@ -31,7 +31,7 @@
 *}
 
 <div class="find mb-2">
-	<form method="post" role="form">
+	<form method="post" role="form" class="form">
 		{if !isset($map_only) or $map_only ne 'y'}
 			<div class="form-group row mx-0">
 			{if !empty($filegals_manager)}<input type="hidden" name="filegals_manager"
@@ -56,11 +56,11 @@
 			{/if}
 		</div>
 		{if !empty($types) and ( !isset($types_tag) or $types_tag eq 'select' )}
-			<div class="form-group row">
-				<label class="col-form-label col-sm-4">
+			<div class="form-group row mx-0">
+				<label class="col-form-label col-sm-5">
 					{tr}Article Type{/tr}
 				</label>
-				<div class="col-sm-8">
+				<div class="col-sm-7">
 					<select name="type" class="findtypes form-control form-control-sm">
 						<option value='' {if $find_type eq ''}selected="selected"{/if}>{tr}any type{/tr}</option>
 						{section name=t loop=$types}
@@ -74,11 +74,11 @@
 			</div>
 		{/if}
 		{if !empty($topics)}
-			<div class="form-group row">
-				<label class="col-form-label col-sm-4">
+			<div class="form-group row mx-0">
+				<label class="col-form-label col-sm-5">
 					{tr}Article Topic{/tr}
 				</label>
-				<div class="col-sm-8">
+				<div class="col-sm-7">
 					<select name="topic" class="findtopics form-control form-control-sm">
 						<option value='' {if $find_topic eq ''}selected="selected"{/if}>{tr}any topic{/tr}</option>
 						{foreach $topics as $topic}
@@ -92,11 +92,11 @@
 			</div>
 		{/if}
 		{if (isset($find_show_languages) && $find_show_languages eq 'y') and $prefs.feature_multilingual eq 'y'}
-			<div class="form-group row">
-				<label class="col-form-label col-sm-4">
+			<div class="form-group row mx-0">
+				<label class="col-form-label col-sm-5">
 					{tr}Language{/tr}
 				</label>
-				<div class="col-sm-8">
+				<div class="col-sm-7">
 					<span class="findlang">
 						<select name="lang" class="in form-control form-control-sm">
 							<option value=''
@@ -131,30 +131,30 @@
 			</div>
 		{/if}
 		{if isset($find_show_date_range) && $find_show_date_range eq 'y'}
-			<div class="form-group findDateFrom">
-				<label class="text-right col-sm-4">
+			<div class="form-group row mx-0 findDateFrom">
+				<label class="col-form-label col-sm-5">
 					{tr}Date From{/tr}
 				</label>
-				<div class="col-sm-8">
+				<div class="col-sm-7">
 					{html_select_date time=$find_date_from prefix="find_from_" month_format="%m"}
 				</div>
 			</div>
-			<div class="form-group findDateTo">
-				<label class="text-right col-sm-4">
+			<div class="form-group row mx-0 findDateTo">
+				<label class="col-form-label col-sm-5">
 					{tr}Date To{/tr}
 				</label>
-				<div class="col-sm-8">
+				<div class="col-sm-7">
 					{html_select_date time=$find_date_to prefix="find_to_" month_format="%m"}
 				</div>
 			</div>
 		{/if}
 		{if ((isset($find_show_categories) && $find_show_categories eq 'y') or (isset($find_show_categories_multi) && $find_show_categories_multi eq 'y')) and $prefs.feature_categories eq 'y' and !empty($categories)}
-			<div class="form-group category_find">
+			<div class="form-group row mx-0 category_find">
 				{if $find_show_categories_multi eq 'n' || $findSelectedCategoriesNumber <= 1}
-					<label class="col-sm-4 col-form-label">
+					<label class="col-sm-5 col-form-label">
 						{tr}Category{/tr}
 					</label>
-					<div id="category_singleselect_find" class="col-sm-8">
+					<div id="category_singleselect_find" class="col-sm-7">
 						<select name="categId" class="findcateg form-control form-control-sm">
 							<option value=''
 									{if $find_categId eq ''}selected="selected"{/if}>{tr}any category{/tr}</option>
@@ -173,7 +173,7 @@
 						<input id="category_select_find_type" name="find_show_categories_multi" value="n" type="hidden">
 					</div>
 				{/if}
-				<div id="category_multiselect_find" class="col-sm-8 col-sm-offset-4"
+				<div id="category_multiselect_find" class="col-sm-12"
 					 style="display: {if $find_show_categories_multi eq 'y' && $findSelectedCategoriesNumber > 1}block{else}none{/if};">
 					<div class="multiselect">
 						{if count($categories) gt 0}
@@ -214,10 +214,10 @@
 		{if !empty($filters)}
 			<div class="form-group row mx-0 findfilter">
 				{foreach key=key item=item from=$filters}
-					<label class="col-form-label col-sm-5 mr-2">
+					<label class="col-form-label col-sm-5">
 						{$filter_names.$key}
 					</label>
-					<div class="col-sm-5">
+					<div class="col-sm-7">
 						<select name="findfilter_{$key}" class="form-control form-control-sm">
 							<option value='' {if $filter_values.$key eq ''}selected="selected"{/if}>--</option>
 							{foreach key=key2 item=value from=$item}
@@ -266,10 +266,10 @@
 		{/if}
 		{if isset($find_show_num_rows) && $find_show_num_rows eq 'y'}
 			<div class="form-group row mx-0">
-				<label class="col-sm-5 col-form-label mr-2" for="findnumrows">
+				<label class="col-sm-5 col-form-label" for="findnumrows">
 					{tr}Displayed rows{/tr}
 				</label>
-				<div class="col-sm-5">
+				<div class="col-sm-7">
 					<input type="text" name="maxRecords" id="findnumrows" value="{$maxRecords|escape}"
 						   class="form-control">
 				</div>

@@ -13,7 +13,7 @@
 // $gray-700: #495057 !default;
 // $gray-800: #343a40 !default;
 // $gray-900: #212529 !default;
-// $black:    #000 !default;
+$black:    #000;
 
 //$primary: #ad1d28;
 $success: #bbfa7c;
@@ -80,16 +80,17 @@ $table-border-color:            #aaa;
 // Navs
 // Navbar
  //$navbar-dark-color: #ffffff;
- //$navbar-dark-bg: #1f5daa;
+$navbar-dark-bg: transparent !important;
+$navbar-light-bg: transparent !important;
  //$navbar-dark-border: darken($navbar-dark-bg, 6.5%);
 
 // Navbarlinks ??
- //$navbar-dark-color: #ffffff;
- //$navbar-dark-hover-color: darken(#fff, 10%);
- //$navbar-dark-hover-bg: #3270bd;
- //$navbar-dark-active-color: #ffffff;
- //$navbar-dark-active-bg: #3270bd;
- //$navbar-dark-disabled-color: #cccccc;
+$navbar-dark-color:                 rgba($black, .5) !default;
+$navbar-dark-hover-color:           rgba($black, .75) !default;
+$navbar-dark-active-color:          $black !default;
+$navbar-dark-disabled-color:        rgba($black, .25) !default;
+$navbar-dark-toggler-icon-bg:       str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-dark-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+$navbar-dark-toggler-border-color:  rgba($black, .1) !default;
 
 // Pagination
 // Jumbotron

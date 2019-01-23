@@ -117,6 +117,7 @@ doc/devtools/fixsvnkeyids.php -text
 doc/devtools/generate_release_changelog.py -text
 doc/devtools/get_translation_percentage.php -text
 doc/devtools/ggg-trace.php -text
+doc/devtools/h5p_reset_all_data.sql -text
 doc/devtools/index.php -text
 doc/devtools/invert_relations.php -text
 doc/devtools/ks_prefreport.php -text
@@ -2029,6 +2030,7 @@ installer/schema/20181127_convert_db_local_to_utf8mb4_tiki.php -text
 installer/schema/20181130_update_column_name_size_tracker_table_tiki.sql -text
 installer/schema/20190121_h5p_add_new_library_fields_tiki.sql -text
 installer/schema/20190121_h5p_allow_null_in_filtered_tiki.sql -text
+installer/schema/20190123_h5p_move_storage_assets_to_new_dir_tiki.php -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text

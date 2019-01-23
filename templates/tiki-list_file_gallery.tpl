@@ -252,7 +252,7 @@
 					{/if}
 					{if $prefs.fgal_search eq 'y'}
 						<form id="search-by-id" class="form" role="form" method="get" action="tiki-list_file_gallery.php">
-							<div class="input-group" style="margin-top: 10px; margin-bottom: 10px">
+							<div class="input-group">
 								<input class="form-control tips bottom" type="text" name="fileId" id="fileId" {if isset($fileId)} value="{$fileId}"{/if} placeholder="{tr}Search by identifier{/tr}..." title="|{tr}Search for the file with this number, in all galleries{/tr}">
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-info">{tr}Go{/tr}</button>

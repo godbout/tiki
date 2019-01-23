@@ -6622,6 +6622,9 @@ div.drillshow {
     color: white;
     border: none; }
 
+.tiki-edit_banner #col1 .chosen-container {
+  width: 32% !important; }
+
 .tiki .modal-content .ui-state-default {
   color: #069; }
 
@@ -6795,11 +6798,11 @@ body.fullscreen.tiki.navbar-padding {
   background: transparent;
   border: none; }
 
-.navbar-inverse {
-  background: #214d68; }
-
 .navbar-light .navbar-nav > .active > a, .navbar-light .navbar-nav > .open > a, .navbar-light .navbar-nav > .active > a:hover, .navbar-light .navbar-nav > .open > a:hover, .navbar-light .navbar-nav > .active > a:focus, .navbar-light .navbar-nav > .open > a:focus {
   background: transparent; }
+
+.topbar .bg-dark {
+  background: transparent !important; }
 
 .navbar-fixed-top .container, .navbar-fixed-top .container .navbar-light {
   background: transparent;

@@ -12,6 +12,8 @@ $info: #5bc0de;
 $warning: #d0d024;
 $danger: #d9534f;
 
+$black: $gray-900;
+
 $theme-colors: (
  	"primary":        	#fd7931,
  	"secondary": 		#feb768,
@@ -49,9 +51,11 @@ $component-active-bg: #fd7c32;
 // Dropdowns
 // Navs
 // Navbar
-$navbar-height: 40px;
-$navbar-light-color: #ffffff;
-$navbar-light-bg: #000000;
+
+$navbar-light-color:                rgba($black, .5) !default;
+$navbar-light-hover-color:          rgba($black, .7) !default;
+$navbar-light-active-color:         rgba($black, .9) !default;
+$navbar-light-disabled-color:       rgba($black, .3) !default;
 
 // Tabs
 //$nav-tabs-border-color: lighten( $body-bg, 90% );

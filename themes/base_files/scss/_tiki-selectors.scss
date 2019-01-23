@@ -1088,6 +1088,10 @@ span.plugin-mouseover  {
 	}
 }
 
+.tiki-edit_banner #col1 .chosen-container {
+	width: 32% !important;
+}
+
 // Example: tracker field type "icon". Bootstrap modal with jquery-ui contents
 .tiki .modal-content .ui-state-default { color: $modal-link-color; }
 .tiki .modal-content .ui-state-hover:hover

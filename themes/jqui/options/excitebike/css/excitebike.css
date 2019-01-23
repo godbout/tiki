@@ -102,25 +102,34 @@ fieldset[disabled] .btn-primary.focus {
   color: #2293f7;
   background-color: #ffffff;
 }
-.navbar-dark {
-  background-color: #e69700;
+.bg-dark {
+  background-color: #e69700 !important;
   border-color: #e69700;
 }
-.navbar-dark .navbar-text {
-  color: #ffffff;
+
+.topbar .bg-light,
+.topbar .bg-dark {
+  background: transparent !important;
+  border: none;
 }
-.navbar-dark .navbar-nav > li > a {
+
+.navbar-dark .navbar-nav > li > a,
+.navbar-light .navbar-nav > li > a {
   color: #ffffff;
 }
 .navbar-dark .navbar-nav > li > a:hover,
-.navbar-dark .navbar-nav > li > a:focus {
+.navbar-dark .navbar-nav > li > a:focus,
+.navbar-light .navbar-nav > li > a:hover,
+.navbar-light .navbar-nav > li > a:focus {
   color: #e6e6e6;
   background-color: transparent;
 }
-.navbar-dark .navbar-link {
+.navbar-dark .navbar-link,
+.navbar-light .navbar-link{
   color: #ffffff;
 }
-.navbar-dark .navbar-link:hover {
+.navbar-dark .navbar-link:hover,
+.navbar-light .navbar-link:hover{
   color: #e6e6e6;
 }
 

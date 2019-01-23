@@ -123,6 +123,7 @@ ALTER TABLE `tiki_h5p_contents` ENGINE=InnoDB;
 ALTER TABLE `tiki_h5p_contents_libraries` ENGINE=InnoDB;
 ALTER TABLE `tiki_h5p_libraries` ENGINE=InnoDB;
 ALTER TABLE `tiki_h5p_libraries_cachedassets` ENGINE=InnoDB;
+ALTER TABLE `tiki_h5p_libraries_hub_cache` ENGINE=InnoDB;
 ALTER TABLE `tiki_h5p_libraries_libraries` ENGINE=InnoDB;
 ALTER TABLE `tiki_h5p_libraries_languages` ENGINE=InnoDB;
 ALTER TABLE `tiki_h5p_results` ENGINE=InnoDB;

@@ -52,6 +52,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+.toggle_zone.right {
+  position: absolute;
+  bottom: -30px;
+}
+
 @media (min-width: 768px) {
   .navbar-collapse {
 	padding-left: 4px;
@@ -76,9 +81,13 @@ h1, h2, h3, h4, h5, h6 {
 
 //.tiki_wiki_page #col1 { margin-top: 40px; } }
 
+.navbar-dark.bg-dark,
+.navbar-light.bg-light { background: transparent !important; }
+
 .topbar,
 #topbar_modules {
   min-height: 80px;
+  background: transparent !important;
 }
 
 .topbar .navbar {

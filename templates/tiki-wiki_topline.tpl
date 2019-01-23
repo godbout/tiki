@@ -89,7 +89,7 @@
 							{icon name="structure"}
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" role="menu">
-							<h6 class="dropdown-title">
+							<h6 class="dropdown-header">
 								{tr}Structures{/tr}
 							</h6>
 							<div class="dropdown-divider"></div>
@@ -121,10 +121,14 @@
 				{assign var="hasPageAction" value="0"}
 				{capture name="pageActions"}
 					{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-					<a class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#"  title="{tr}Page actions{/tr}">
+					<a class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#"  title="{tr}Page actions{/tr}">
 						{icon name="cog"}
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
+						<h6 class="dropdown-header">
+							{tr}Page actions{/tr}
+						</h6>
+						<div class="dropdown-divider"></div>
 						{if $pdf_export eq 'y' and $pdf_warning eq 'n'}
 							<a class="dropdown-item" href="tiki-print.php?{query _keepall='y' display="pdf" page=$page}">
 								{icon name="pdf"} {tr} PDF{/tr}
@@ -149,22 +153,26 @@
 								{if $prefs.wiki_edit_icons_toggle eq 'y' and ($prefs.wiki_edit_plugin eq 'y' or $prefs.wiki_edit_section eq 'y')}
 									{jq}
 										$("#wiki_plugin_edit_view").click( function () {
-										var $icon = $("#wiki_plugin_edit_view span");
-										if (! $icon.hasClass("highlight")) {
+										var $icon = $("#wiki_plugin_edit_view");
+										var $toggleOnIcon = '{{icon iclass="toggle-icon" name="toggle-on"}}';
+										var $toggleOffIcon = '{{icon iclass="toggle-icon" name="toggle-off"}}';
+										if (! $icon.hasClass("active highlight")) {
 											$(".editplugin, .icon_edit_section").show();
-											$icon.addClass("highlight");
+											$icon.addClass("active highlight");
 											setCookieBrowser("wiki_plugin_edit_view", true);
+											$(".toggle-icon", this).replaceWith($toggleOnIcon);
 										} else {
 											$(".editplugin, .icon_edit_section").hide();
-											$icon.removeClass("highlight");
+											$icon.removeClass("active highlight");
 											deleteCookie("wiki_plugin_edit_view");
+											$(".toggle-icon", this).replaceWith($toggleOffIcon);
 										}
 										return false;
 										});
 										if (!getCookie("wiki_plugin_edit_view")) {$(".editplugin, .icon_edit_section").hide(); } else { $("#wiki_plugin_edit_view").click(); }
 									{/jq}
-									<a class="dropdown-item" href="#" id="wiki_plugin_edit_view">
-											{icon name='plugin'} {tr}Edit icons{/tr}
+									<a class="dropdown-item" href="#" id="wiki_plugin_edit_view" title="{tr}Click to toggle on/off{/tr}">
+											<span class="d-flex align-items-center text-with-toggle"><span class="text flex-fill mr-3">{icon name='plugin'} {tr}Edit icons{/tr}</span> {icon iclass="toggle-icon" name="toggle-off"}</span>
 											{assign var="hasPageAction" value="1"}
 										</a>
 								{/if}
@@ -173,22 +181,26 @@
 								{if $prefs.wysiwyg_inline_editing eq 'y' and $prefs.feature_wysiwyg eq 'y'}
 									{jq}
 										$("#wysiwyg_inline_edit").click( function () {
-										var $icon = $("#wysiwyg_inline_edit span");
-										if (! $icon.hasClass("highlight")) {
+										var $icon = $("#wysiwyg_inline_edit");
+										var $toggleOnIcon = '{{icon iclass="toggle-icon" name="toggle-on"}}';
+										var $toggleOffIcon = '{{icon iclass="toggle-icon" name="toggle-off"}}';
+										if (! $icon.hasClass("active highlight")) {
 											if (enableWysiwygInlineEditing()) {
-												$icon.addClass("highlight");
+												$icon.addClass("active highlight");
+												$(".toggle-icon", this).replaceWith($toggleOnIcon);
 											}
 										} else {
 											if (disableWYSIWYGInlineEditing()) {
-												$icon.removeClass("highlight");
+												$icon.removeClass("active highlight");
+												$(".toggle-icon", this).replaceWith($toggleOffIcon);
 											}
 										}
 										return false;
 										});
 										if (getCookie("wysiwyg_inline_edit", "preview")) { $("#wysiwyg_inline_edit").click(); }
 									{/jq}
-									<a class="dropdown-item" href="#" id="wysiwyg_inline_edit">
-											{icon name='edit'} {tr}Inline edit{/tr}
+									<a class="dropdown-item" href="#" id="wysiwyg_inline_edit" title="{tr}Click to toggle on/off{/tr}">
+											<span class="d-flex align-items-center text-with-toggle"><span class="text flex-fill mr-3">{icon name='edit'} {tr}Inline edit{/tr} ({tr}Wysiwyg{/tr})</span> {icon iclass="toggle-icon" name="toggle-off"}</span>
 											{assign var="hasPageAction" value="1"}
 									</a>
 								{/if}

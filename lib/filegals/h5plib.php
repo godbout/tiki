@@ -64,7 +64,7 @@ class H5PLib
 				// TODO: What to do if the file isn't a valid H5P? Seems a bit drastic to delete the file – but then again, why would we host broken files?
 				// @unlink($interface->getUploadedH5pPath());
 
-				Feedback::error($validator->get);
+				Feedback::error(Feedback::get());
 			}
 		}
 	}

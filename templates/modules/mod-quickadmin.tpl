@@ -5,11 +5,11 @@
 		<div id="quickadmin" class="btn-group">
 			<div class="btn-group">
 				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-				<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
+				<a class="btn dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#">
 					{icon name="history"}
 				</a>
 				<div class="dropdown-menu" role="menu">
-					<h6 class="dropdown-title">
+					<h6 class="dropdown-header">
 						{tr}Recent Preferences{/tr}
 					</h6>
 					<div class="dropdown-divider"></div>
@@ -23,20 +23,23 @@
 			</div>
 			<div class="btn-group">
 				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-				<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
-					{icon name='menu-extra'}
+				<a class="btn dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#">
+					{icon name='cogs'}
 				</a>
-				<div class="dropdown-menu">
-					<h6 class="dropdown-title">
+				<div class="dropdown-menu dropdown-menu-right">
+					<h6 class="dropdown-header">
 						{tr}Quick Administration{/tr}
 					</h6>
-					<div class="dropdown-item mb-2 mt-4">
+					<div class="dropdown-divider"></div>
+					<div class="dropdown-item mb-2 mt-2">
 						<form method="post" action="tiki-admin.php" class="form-inline my-2 my-md-0 ml-auto" role="form">
 							<div class="input-group">
 								<input type="text" name="lm_criteria" value="{$smarty.request.lm_criteria|escape}" class="form-control form-control-sm" placeholder="Search preferences...">
-								<button type="submit" class="btn btn-primary btn-sm input-group-append">
-									<span class="icon icon-search fas fa-search fa-fw "></span>
-								</button>
+								<div class="input-group-append">
+									<button type="submit" class="btn btn-primary btn-sm">
+										<span class="icon icon-search fas fa-search fa-fw "></span>
+									</button>
+								</div>
 							</div>
 						</form>
 					</div>
@@ -45,7 +48,7 @@
 						{icon name="wizard"} {tr}Wizards{/tr}
 					</a>
 					<a class="dropdown-item" href="tiki-admin.php">
-							{icon name="cog"} {tr}Control panels{/tr}
+							{icon name="cogs"} {tr}Control panels{/tr}
 					</a>
 					<a class="dropdown-item" href="tiki-admin.php?page=look">
 						{icon name="image"} {tr}Themes{/tr}
@@ -91,7 +94,7 @@
 							{icon name="log"} {tr}Logs{/tr}
 						</a>
 						<a class="dropdown-item" href="tiki-admin_modules.php">
-							{icon name="module"} {tr}Modules{/tr}
+							{icon name="admin_module"} {tr}Modules{/tr}
 						</a>
 					{if $prefs.feature_scheduler eq "y"}
 						<a class="dropdown-item" href="tiki-admin_schedulers.php">

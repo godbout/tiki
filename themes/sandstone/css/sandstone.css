@@ -6700,6 +6700,9 @@ div.drillshow {
     color: white;
     border: none; }
 
+.tiki-edit_banner #col1 .chosen-container {
+  width: 32% !important; }
+
 .tiki .modal-content .ui-state-default {
   color: #93c54b; }
 

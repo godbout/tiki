@@ -77,3 +77,6 @@ li.cs_advanced {
 	float: left;
 	padding: 0 1em 0 0;
 }
+
+.topbar .bg-light,
+.topbar .bg-dark { background: transparent !important; }

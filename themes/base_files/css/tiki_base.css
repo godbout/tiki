@@ -670,6 +670,9 @@ div.drillshow {
     color: white;
     border: none; }
 
+.tiki-edit_banner #col1 .chosen-container {
+  width: 32% !important; }
+
 .tiki .modal-content .ui-state-default {
   color: #007bff; }
 
@@ -3197,6 +3200,9 @@ body.fullscreen.tiki.navbar-padding {
 #col2 .card-header, #col3 .card-header {
   padding-left: 1rem;
   padding-right: 1rem; }
+  #col2 img, #col3 img {
+    max-width: 100%;
+    height: auto; }
 
 .panel-body ul.nav {
   overflow: visible; }
