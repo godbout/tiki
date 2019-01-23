@@ -1,5 +1,3 @@
-{* $Id: include_performance.tpl 68518 2018-12-09 22:19:41Z rjsmelo $ *}
-
 {remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Please see the <a class='alert-link' target='tikihelp' href='http://dev.tiki.org/Performance'>Performance page</a> on Tiki's developer site.{/tr}{/remarksbox}
 
 <form class="admin" id="performance" name="performance" action="tiki-admin.php?page=performance" method="post">
