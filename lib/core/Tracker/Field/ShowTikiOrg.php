@@ -87,6 +87,7 @@ class Tracker_Field_ShowTikiOrg extends Tracker_Field_Abstract
 			'showlogurl' => '',
 			'snapshoturl' => '',
 			'value' => 'none', // this is required to show the field, otherwise it gets hidden if tracker is set to doNotShowEmptyField
+			'versions' => $this->getOption('versions', ['18.x', '15.x', '12.x']),
 		];
 
 		$id = $this->getItemId();

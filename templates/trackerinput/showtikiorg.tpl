@@ -64,7 +64,7 @@
 		{/remarksbox}
 		{tr}Version:{/tr}
 		<select name="svntag" class="form-control">
-			{foreach $field.options_map.versions as $version}
+			{foreach $field.versions as $version}
 				<option{if $field.version eq $version} selected="selected"{/if}>{$version|escape}</option>
 			{/foreach}
 		</select>
@@ -91,11 +91,11 @@
 			{button href="#showtikiorg{$myId}{if isset($context.list_mode)}_view{/if}" _onclick="showtikiorg_process{$myId}('destroy');" _text="{tr}Destroy this {$field.options_map.domain|escape} instance{/tr}"}
 			{button href="#showtikiorg{$myId}{if isset($context.list_mode)}_view{/if}" _onclick="showtikiorg_process{$myId}('reset');" _text="{tr}Reset password to 12345{/tr}"}
 		{/if}
-		<span class="buttonupdate{$myId}"{if not in_array($field.version, $field.options_map.versions)} style="display: none;"{/if}>
+		<span class="buttonupdate{$myId}"{if not in_array($field.version, $field.versions)} style="display: none;"{/if}>
 			{button href="#showtikiorg{$myId}{if isset($context.list_mode)}_view{/if}" _onclick="showtikiorg_process{$myId}('update');" _text="{tr}SVN update{/tr}"}
 		</span>
 	</div>
-	{if $field.options_map.debugmode}
+	{if $field.options_map.debugMode}
 		{remarksbox type="info" title="{tr}Debug Mode Information{/tr}" close="n"}
 			<div class="showdebugoutput{$myId}">-{$field.status|escape}
 				- {$field.debugoutput|escape}</div>
@@ -122,7 +122,7 @@
 				var debugoutput = data.debugoutput;
 				//$('#testingstatus').html(data.status);
 				$('.showdebugoutput{{$myId}}').html(data.debugoutput);
-				if ($.inArray(data.version, {{$field.options_map.versions|json_encode}}) > -1) {
+				if ($.inArray(data.version, {{$field.versions|json_encode}}) > -1) {
 					$('.buttonupdate{{$myId}}').show();
 				}
 				if (data.status == 'DISCO') {
