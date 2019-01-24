@@ -31,6 +31,7 @@
 		{remarksbox type="warning" title="{tr}Module errors{/tr}"}
 			{tr}The following modules could not be loaded{/tr}
 			<form method="post" action="tiki-admin.php">
+				{ticket}
 				{foreach from=$module_pref_errors key=index item=pref_error}
 					<p>{$pref_error.mod_name}:</p>
 					{preference name=$pref_error.pref_name}
