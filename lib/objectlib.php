@@ -702,12 +702,19 @@ class ObjectLib extends TikiLib
 		return tra(ucwords($type));
 	}
 
-	// Returns a hash indicating which permission is needed for viewing an object of desired type.
-	static function map_object_type_to_permission()
+	/**
+	 * Returns a hash indicating which permission is needed for viewing an object of desired type.
+	 *
+	 * @param boolean $comment - indicate if returned permission must be comment-related, e.g. 
+	 * am I allowed to see comments on a tracker item if I have or don't have tiki_p_tracker_view_comments.
+	 * This allows search index to properly update comment permissions not basing them on viewing
+	 * parent tracker item or wiki page but the comment itself.
+	 */
+	static function map_object_type_to_permission($comment = false)
 	{
 		return [
-			'wiki page' => 'tiki_p_view',
-			'wiki' => 'tiki_p_view',
+			'wiki page' => $comment ? 'tiki_p_wiki_view_comments' : 'tiki_p_view',
+			'wiki' => $comment ? 'tiki_p_wiki_view_comments' : 'tiki_p_view',
 			'forum' => 'tiki_p_forum_read',
 			'forum post' => 'tiki_p_forum_read',
 			'image gallery' => 'tiki_p_view_image_gallery',
@@ -737,7 +744,7 @@ class ObjectLib extends TikiLib
 			'image' => 'tiki_p_view_image_gallery',
 			'calendar' => 'tiki_p_view_calendar',
 			'file' => 'tiki_p_download_files',
-			'trackeritem' => 'tiki_p_view_trackers',
+			'trackeritem' => $comment ? 'tiki_p_tracker_view_comments' : 'tiki_p_view_trackers',
 
 			// newsletters can't be categorized, although there's some code in tiki-admin_newsletters.php
 			// 'newsletter' => ?,

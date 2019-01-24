@@ -12,7 +12,7 @@
 		{if !isset($gal_info.show_action) or $gal_info.show_action neq 'n'}
 			{if ( $prefs.use_context_menu_icon eq 'y' or $prefs.use_context_menu_text eq 'y' )
 			and $prefs.javascript_enabled eq 'y'}
-				<a class="fgalname tips" title="{tr}Actions{/tr}" href="#" {popup fullhtml="1" text={include file='fgal_context_menu.tpl' menu_icon=$prefs.use_context_menu_icon menu_text=$prefs.use_context_menu_text changes=$smarty.section.changes.index}}>
+				<a class="fgalname tips" title="{tr}Actions{/tr}" href="#" {popup fullhtml="1" text={include file='fgal_context_menu.tpl' menu_icon=$prefs.use_context_menu_icon menu_text=$prefs.use_context_menu_text changes=$smarty.section.changes.index} trigger="click"}>
 					{icon name='wrench' alt="{tr}Actions{/tr}"}
 				</a>
 			{else}

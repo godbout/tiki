@@ -511,7 +511,7 @@ function tiki_error_handling($errno, $errstr, $errfile, $errline)
 			return;
 	}
 
-	$back = "<div class='rbox-data' style='font-size:10px;border:1px solid'>";
+	$back = "<div class='rbox-data p-3 mb-3' style='font-size: 12px; border: 1px solid'>";
 	$back .= $type . " ($err[$errno]): <b>" . $errstr . "</b><br />";
 	$back .= "At line $errline in $errfile"; // $errfile comes after $errline to ease selection for copy-pasting.
 	$back .= "</div>";

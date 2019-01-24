@@ -309,8 +309,7 @@ function wikiplugin_trackercalendar($data, $params)
 	$headerlib = TikiLib::lib('header');
 
 	if (! file_exists('vendor/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js')) {
-		$accesslib = TikiLib::lib('access');
-		$accesslib->display_error('', tr('To view Tracker Calendar Tiki needs the fullcalendar/fullcalendar-scheduler package. If you do not have permission to install this package, ask the site administrator.'));
+		return WikiParser_PluginOutput::userError(tr('To view Tracker Calendar Tiki needs the fullcalendar/fullcalendar-scheduler package. If you do not have permission to install this package, ask the site administrator.'));
 	}
 
 	$headerlib->add_cssfile('vendor/fullcalendar/fullcalendar/dist/fullcalendar.min.css');

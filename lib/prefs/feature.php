@@ -2376,11 +2376,13 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_wiki_use_date' => [
 			'name' => tra('Use date parameter'),
+			'description' => tr('Allow wiki page version to be selected from a parameter "date" on the url.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],
 		'feature_wiki_use_date_links' => [
 			'name' => tra('Report it in wiki links'),
+			'description' => tr('Add the date parameter to wiki links.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],

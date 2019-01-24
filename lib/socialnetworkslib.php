@@ -217,7 +217,7 @@ class SocialNetworksLib extends LogsLib
 			fclose($fp);
 			$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
 			$ret = $ret[1];
-		} else {
+		} elseif (function_exists('curl_init')) {
 			// try cURL
 			$url = 'https://graph.facebook.com' . $url;
 			$ch = curl_init();
@@ -227,6 +227,7 @@ class SocialNetworksLib extends LogsLib
 			curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 			$ret = curl_exec($ch);
+			$curl_error = curl_error($ch);
 			curl_close($ch);
 		}
 		$json_decoded_ret = json_decode($ret, true);
@@ -244,8 +245,12 @@ class SocialNetworksLib extends LogsLib
 
 			return $access_token;
 		} else {
-			if (! empty($json_decoded_ret['error'])) {
-				Feedback::error($json_decoded_ret['error']['type'] . ': ' . $json_decoded_ret['error']['message']);
+			if (! empty($json_decoded_ret['error']) || ! empty($curl_error)) {
+				if (! empty($json_decoded_ret['error'])) {
+					Feedback::error($json_decoded_ret['error']['type'] . ': ' . $json_decoded_ret['error']['message']);
+				} else {
+					Feedback::error($curl_error);
+				}
 			}
 			return null;
 		}
@@ -758,20 +763,37 @@ class SocialNetworksLib extends LogsLib
 			$request .= $data;
 		}
 
+		//try socket first
 		$fp = fsockopen('ssl://graph.facebook.com', 443);
-		if ($fp === false) {
-			$this->add_log('facebookGraph', "can't connect");
-			return false;
-		} else {
+		if ($fp) {
 			fputs($fp, $request);
 			$ret = '';
 			while (! feof($fp)) {
 				$ret .= fgets($fp, 128);
 			}
 			fclose($fp);
+			$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
+			$ret = $ret[1];
+		} elseif (function_exists('curl_init')) {
+			// try cURL
+			$url = 'https://graph.facebook.com/' . $this->graphVersion . '/' .$action;
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			if ($method == 'POST') {
+				curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+			}
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+			$ret = curl_exec($ch);
+			$curl_error = curl_error($ch);
+			curl_close($ch);
 		}
-		$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
-		return $ret[1];
+		if (empty($ret) || ! empty($curl_error)) {
+			$msg = !empty($curl_error) ? ' ' . $curl_error : '';
+			$this->add_log('facebookGraph', tr('Cannot connect') . $msg);
+		}
+		return $ret;
 	}
 
 	/**

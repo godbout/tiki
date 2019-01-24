@@ -5,7 +5,7 @@
 {/block}
 
 {block name="content"}
-	<form class="content-form no-ajax" enctype="multipart/form-data" action="{service controller='h5p' action='edit' fileId=$fileId}" method="post" accept-charset="UTF-8">
+	<form class="content-form no-ajax tiki-h5p-edit" enctype="multipart/form-data" action="{service controller='h5p' action='edit' fileId=$fileId}" method="post" accept-charset="UTF-8">
 		<input type="hidden" name="library" value="{$library|escape}">
 		<input type="hidden" name="parameters" value="{$parameters|escape}">
 		<input type="hidden" name="index" value="{$index|escape}">

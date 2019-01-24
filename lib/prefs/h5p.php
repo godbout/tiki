@@ -137,7 +137,7 @@ function prefs_h5p_list($partial = false)
 		],
 		'h5p_content_type_cache_updated_at' => [
 			'name' => tr('Content Type Updated'),
-			'description' => tr('Laast update.'),
+			'description' => tr('Last update.'),
 			'dependencies' => [
 				'h5p_enabled',
 			],

@@ -76,7 +76,7 @@
 							};
 
 							var filters = [];
-							var prefs = $('.adminoptionbox.preference, .admbox').hide();
+							var prefs = $('#col1 .adminoptionbox.preference, .admbox').hide();
 							prefs.parents('fieldset:not(.tabcontent)').hide();
 							prefs.closest('fieldset.tabcontent').removeClass('filled');
 							$('.preffilter').each(function () {

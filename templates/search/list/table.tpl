@@ -75,9 +75,9 @@
 								{/if}
 								{$click = $sort_jsvar|cat:'=\''|cat:$col.sort|cat:$order|cat:'\';'|cat:$_onclick}
 								{if $col.translatelabel == 'y'}
-									{self_link _onclick=$click _ajax='y'}{$col.label|tra|escape}{/self_link}
+									{self_link _onclick=$click _ajax='y' _sort_arg='sort_mode' _sort_field=$col.sort}{$col.label|tra|escape}{/self_link}
 								{else}
-									{self_link _onclick=$click _ajax='y'}{$col.label|escape}{/self_link}
+									{self_link _onclick=$click _ajax='y' _sort_arg='sort_mode' _sort_field=$col.sort}{$col.label|escape}{/self_link}
 								{/if}
 							{else}
 								{if $col.translatelabel == 'y'}

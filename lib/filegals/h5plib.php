@@ -581,12 +581,37 @@ class H5PLib
 		$oldLibrary = empty($content['library']) ? null : $content['library'];
 		$oldParams = empty($content['params']) ? null : $content['params'];
 
-		// Check title input
+		// Check parameters input
+		$content['params'] = $input->parameters->xss();
+		if (empty($content['params'])) {
+			$core->h5pF->setErrorMessage(tr('Missing content parameters.'));
+			return false;
+		}
+
+		// Decode parameters input
+		$params = json_decode($content['params'], true);
+		if ($params === null) {
+			$core->h5pF->setErrorMessage(tr('Invalid content parameters.'));
+			return false;
+		}
+
+		$content['params'] = json_encode($params['params']);
+		$content['metadata'] = $params['metadata'];
+
+		// Trim title and check length
 		$content['title'] = $input->title->text();
-		if (empty($content['title'])) {
+		$trimmed_title = empty($content['title']) ? '' : trim($content['title']);
+		if ($trimmed_title === '') {
 			$core->h5pF->setErrorMessage(tr('Missing title.'));
 			return false;
 		}
+
+		if (strlen($trimmed_title) > 255) {
+			$core->h5pF->setErrorMessage(tr('Title is too long. Must be 256 letters or shorter.'));
+			return false;
+		}
+
+		$content['title'] = $trimmed_title;
 
 		// Get content type chosen in editor
 		$content['library'] = $core->libraryFromString($input->library->text());
@@ -599,20 +624,6 @@ class H5PLib
 		$content['library']['libraryId'] = $core->h5pF->getLibraryId($content['library']['machineName'], $content['library']['majorVersion'], $content['library']['minorVersion']);
 		if (! $content['library']['libraryId']) {
 			$core->h5pF->setErrorMessage(tr("The chosen content type isn't installed."));
-			return false;
-		}
-
-		// Check parameters input
-		$content['params'] = $input->parameters->xss();
-		if (empty($content['params'])) {
-			$core->h5pF->setErrorMessage(tr('Missing content parameters.'));
-			return false;
-		}
-
-		// Decode parameters input
-		$params = json_decode($content['params']);
-		if ($params === null) {
-			$core->h5pF->setErrorMessage(tr('Invalid content parameters.'));
 			return false;
 		}
 
@@ -640,7 +651,7 @@ class H5PLib
 
 		// Move images to parmanent storage and find all required content dependencies
 		$editor = \H5P_EditorTikiStorage::get_h5peditor_instance();
-		$editor->processParameters($content['id'], $content['library'], $params, $oldLibrary, $oldParams);
+		$editor->processParameters($content['id'], $content['library'], $params['params'], $oldLibrary, $oldParams);
 
 		// export the project into the new file gallery file
 		$content['file_id'] = $fileId;

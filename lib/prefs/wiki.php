@@ -760,5 +760,20 @@ function prefs_wiki_list($partial = false)
 			'default' => 'n',
 			'dependencies' => ['wikiplugin_include'],
 		],
+		'wiki_date_field' => [
+			'name' => tr('Date Field'),
+			'description' => tr('The field indexed as the global "date" field'),
+			'hint' => tr('You will need to rebuild the search index after changing this'),
+			'keywords' => 'search index',
+			'type' => 'list',
+			'options' => [
+				'created' => tr('Created'),
+				'lastModif' => tr('Last Modified'),
+			],
+			'default' => 'created',
+			'dependencies' => [
+				'feature_search',
+			],
+		],
 	];
 }

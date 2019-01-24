@@ -1687,7 +1687,7 @@ class ToolbarWikiplugin extends Toolbar
 			if ($info = $parserlib->plugin_info($name)) {
 				$tag = new self;
 				$tag->setLabel(str_ireplace('wikiplugin_', '', $info['name']))
-					->setWysiwygToken($info['name'] === 'Image' ? 'Image Plugin' : $info['name'])
+					->setWysiwygToken(str_replace(' ', '_', $info['name']))
 					->setPluginName($name)
 					->setType('Wikiplugin');
 

@@ -3159,6 +3159,9 @@ div.form-group label.error {
   -moz-box-sizing: content-box;
   box-sizing: content-box; }
 
+.tiki-h5p-edit .form-item-title {
+  display: none; }
+
 body:not(.fixed_width) .container {
   padding-left: 15px;
   padding-right: 15px;

@@ -48,14 +48,14 @@ function smarty_function_listfilter($params, $smarty)
 		$childPrefix = isset($childPrefix) ? $childPrefix : 'child-of-';
 		$exclude = isset($exclude) ? $exclude : '';
 
-		$input = ' <div class="form-horizontal"><div class="form-group row"><label class="col-sm-2 col-form-label">';
+		$input = ' <div class="form-horizontal my-2"><div class="form-group form-row"><div class="col"><div class="input-group"><div class="input-group-prepend"><label class="col-form-label input-group-text">';
 
 		if (! isset($prefix)) {
 			$input .= tra("Filter:");
 		} else {
 			$input .= tra($prefix);
 		}
-		$input .= '</label><div class="col-sm-5"><input type="text" class="form-control listfilter"';
+		$input .= '</label></div><input type="text" class="form-control listfilter"';
 		if (! isset($id)) {
 			if (isset($listfilter_id)) {
 				$listfilter_id++;
@@ -109,13 +109,13 @@ function smarty_function_listfilter($params, $smarty)
 			);
 		}
 
-		$input .= "></div><div class='col-sm-5'>";
+		$input .= "><div class='input-group-append'>";
 		$smartylib = TikiLib::lib('smarty');
 		$smartylib->loadPlugin('smarty_function_icon');
-		$icon = smarty_function_icon(['name' => 'delete'], $smarty);
-		$input .= "<a href='#' onclick=\"\$('#$id').val('').focus().keyup();return false;\" class='closeicon tips' title=':"
+		$icon = smarty_function_icon(['name' => 'times-circle'], $smarty);
+		$input .= "<a href='#' onclick=\"\$('#$id').val('').focus().keyup();return false;\" class='btn input-group-text closeicon tips' title=':"
 				. tr('Clear filter') . "'>$icon</a>";
-		$input .= '</div></div></div>';
+		$input .= '</div></div></div></div></div>';
 
 		if (! isset($selectors)) {
 			$selectors = ".$id table tr";

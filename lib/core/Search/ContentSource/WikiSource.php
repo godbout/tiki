@@ -35,6 +35,8 @@ class Search_ContentSource_WikiSource implements Search_ContentSource_Interface
 
 	function getDocument($objectId, Search_Type_Factory_Interface $typeFactory)
 	{
+		global $prefs;
+
 		$wikilib = TikiLib::lib('wiki');
 		$tikilib = TikiLib::lib('tiki');
 
@@ -59,7 +61,7 @@ class Search_ContentSource_WikiSource implements Search_ContentSource_Interface
 			'language' => $typeFactory->identifier(empty($info['lang']) ? 'unknown' : $info['lang']),
 			'creation_date' => $typeFactory->timestamp($info['created']),
 			'modification_date' => $typeFactory->timestamp($info['lastModif']),
-			'date' => $typeFactory->timestamp($info['created']),
+			'date' => $typeFactory->timestamp($info[$prefs['wiki_date_field']]),
 			'description' => $typeFactory->plaintext($info['description']),
 			'contributors' => $typeFactory->multivalue($contributors),
 
