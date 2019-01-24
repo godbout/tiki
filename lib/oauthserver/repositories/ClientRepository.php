@@ -66,6 +66,9 @@ class ClientRepository implements ClientRepositoryInterface
 			$entity->getRedirectUri()
 		]);
 
+		$identifier = (int) $this->database->lastInsertId();
+		$entity->setIdentifier($identifier);
+
 		return $query;
 	}
 
@@ -75,6 +78,52 @@ class ClientRepository implements ClientRepositoryInterface
 			return $entity->update();
 		}
 		return $entity->create();
+	}
+
+	public function delete($entity)
+	{
+		$params = [];
+		$sql = sprintf('DELETE FROM `%s` WHERE ', self::TABLE);
+
+		if($entity->getIdentifier()) {
+			$sql .= 'identifier=?';
+			$params[] = $entity->getIdentifier();
+		}
+		elseif ($entity->getClientId()) {
+			$sql .= 'client_id=?';
+			$params[] = $entity->getClientId();
+		}
+		$sql .= ';';
+
+		if (empty($params)) {
+			return false;
+		}
+	
+		return $this->database->query($sql, $params);
+	}
+
+	public function exists($entity)
+	{
+		$params = [];
+		$sql = sprintf('SELECT COUNT(1) AS count FROM `%s` WHERE ', self::TABLE);
+
+		if($entity->getIdentifier()) {
+			$sql .= 'identifier=?';
+			$params[] = $entity->getIdentifier();
+		}
+		elseif ($entity->getClientId()) {
+			$sql .= 'client_id=?';
+			$params[] = $entity->getClientId();
+		}
+
+		$sql .= ';';
+		if (empty($params)) {
+			return false;
+		}
+
+		$result = $this->database->getOne($sql, $params);
+		$result = intval($result, 10);
+		return $result > 0;
 	}
 
 	public function getClientEntity($clientId, $grantType = null, $clientSecret = null, $mustValidateSecret = true)

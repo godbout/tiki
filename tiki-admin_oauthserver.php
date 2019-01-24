@@ -9,13 +9,19 @@
 // $Id$
 
 require_once('tiki-setup.php');
-$oauthserverlib = TikiLib::lib('oauthserver');
+
+$headerlib = TikiLib::lib('header');
+$headerlib->add_jsfile('lib/jquery_tiki/tiki-admin_oauthserver.js');
+
 $oauthserverlib = TikiLib::lib('oauthserver');
 
-$smarty->assign('client_list', $oauthserverlib->getClientRepository()->list());
+$smarty->assign('client_list', array_merge(
+    $oauthserverlib->getClientRepository()->list(),
+    [ new ClientEntity() ]
+));
 
-$smarty->assign('client_update_url', TikiLib::lib('service')->getUrl([
-    'action' => 'client_update',
+$smarty->assign('client_modify_url', TikiLib::lib('service')->getUrl([
+    'action' => 'client_modify',
     'controller' => 'oauthserver',
 ]));
 

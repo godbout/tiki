@@ -146,4 +146,10 @@ class TikiDb_Pdo extends TikiDb
 		}
 		return new TikiDb_Pdo_Result($result, $this->rowCount);
 	} // }}}
+
+	function lastInsertId() // {{{
+	{
+		return $this->db->lastInsertId();
+	} // }}}
+
 }

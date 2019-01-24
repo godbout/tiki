@@ -13,23 +13,21 @@ class ClientEntity implements ClientEntityInterface
 	use EntityTrait, ClientTrait;
 	const TABLE = 'tiki_oauthserver_clients';
 
-	public function __construct($data=null)
+	public function __construct($data=array())
 	{
-		if(is_array($data))
-		{
-			!empty($data['identifier']) && $this->setIdentifier($data['identifier']);
-			!empty($data['name']) && $this->setName($data['name']);
-			!empty($data['client_id']) && $this->setClientId($data['client_id']);
-			!empty($data['client_secret']) && $this->setClientSecret($data['client_secret']);
-			!empty($data['redirect_uri']) && $this->setRedirectUri($data['redirect_uri']);
-		}
-		else {
-			$this->setIdentifier(0);
-			$this->setName('');
-			$this->setClientId('');
-			$this->setClientSecret('');
-			$this->setRedirectUri('');
-		}
+		$data = array_merge([
+			'identifier'    => 0,
+			'name'          => '',
+			'client_id'     => '',
+			'client_secret' => '',
+			'redirect_uri'  => '',
+		], $data);
+
+		$this->setIdentifier($data['identifier']);
+		$this->setName($data['name']);
+		$this->setClientId($data['client_id']);
+		$this->setClientSecret($data['client_secret']);
+		$this->setRedirectUri($data['redirect_uri']);
 	}
 
 	public static function build($data)

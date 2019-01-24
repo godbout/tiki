@@ -3,7 +3,7 @@
 <h2>{tr}List of clients{/tr}</h2>
 
 {foreach $client_list as $key => $entity }
-<form action="{$client_update_url}" method="POST">
+<form action="{$client_modify_url}" method="POST" class="js-oauth-client">
 	<div class="row">
 		<input type="hidden" 
 			id="oauth-identifier"
@@ -49,7 +49,7 @@
 		</div>
 		<div class="col-sm-12">
 			<div class="btn-group float-right">
-				<button type="submit" class="btn btn-success" name="save" value="1">{tr}Save{/tr}</button>
+				<button type="submit" class="btn btn-success" value="1">{tr}Save{/tr}</button>
 				<button type="submit" class="btn btn-danger" name="delete" value="1">{tr}Delete{/tr}</button>
 			</div>
 		</div>
