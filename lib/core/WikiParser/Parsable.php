@@ -212,7 +212,7 @@ if ( \$('#$id') ) {
 	function parse($options)
 	{
 		// Don't bother if there's nothing...
-		if (mb_strlen($this->markup) < 1) {
+		if (gettype($this->markup) <> 'string' || mb_strlen($this->markup) < 1) {
 			return '';
 		}
 
