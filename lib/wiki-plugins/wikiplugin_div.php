@@ -200,6 +200,7 @@ function wikiplugin_div($content, $params)
 {
 	global $prefs;
 
+	$style = '';
 	extract($params, EXTR_SKIP);
 
 	$possibletypes = ['div','span','pre','b','i','tt','p','blockquote', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
