@@ -61,7 +61,7 @@ class OAuthServerLib extends TikiLib
 
 		if (!empty($user)) {
 			$server->enableGrantType(
-				new ImplicitGrant(new \DateInterval('PT1H'))
+				new ImplicitGrant(new \DateInterval('PT1H'), '?')
 			);
 		}
 

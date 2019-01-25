@@ -10,17 +10,16 @@
 
 require_once('tiki-setup.php');
 
-$headerlib = TikiLib::lib('header');
-$headerlib->add_jsfile('lib/jquery_tiki/tiki-admin_oauthserver.js');
-
+TikiLib::lib('header')->add_jsfile('lib/jquery_tiki/tiki-admin_oauthserver.js');
 $oauthserverlib = TikiLib::lib('oauthserver');
 
 $smarty->assign('client_list', array_merge(
     $oauthserverlib->getClientRepository()->list(),
     [ 
-        new ClientEntity(
-            ['client_secret' => $oauthserverlib::generate_secret(64) ]
-        )
+        new ClientEntity([
+            'client_secret' => $oauthserverlib::generate_secret(64),
+            'redirect_uri' => TikiLib::lib('tiki')->tikiUrl('lib/oauthserver/html/redirect.html')
+        ])
     ]
 ));
 

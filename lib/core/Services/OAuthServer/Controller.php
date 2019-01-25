@@ -33,7 +33,7 @@ class Services_OAuthServer_Controller
 		$authRequest->setUser($userEntity);
 		$authRequest->setAuthorizationApproved(true);
 
-		$response = new Response();
+		$response = new JsonResponse();
 		$response = $server->completeAuthorizationRequest($authRequest, $response);
 		Helpers::processPsr7Response($response);
 	}

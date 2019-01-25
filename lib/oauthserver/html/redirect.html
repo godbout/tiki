@@ -5,15 +5,15 @@
 		<title>OAuth Redirection page</title>
 
 		<script type="text/javascript">
-			var token = window.location.hash
+			var token = window.location.search
 				.substring(1)
 				.split('&amp;')
-				.map(function(s){
-					var match = s.match(/^([^=]+)=(.+)$/);
-					if (match) {
-						return match.slice(1,3);
-					}
-					return false;
+				.map(function(piece){
+					var i = piece.indexOf('=');
+					return [
+						piece.substring(0, i),
+						piece.substring(i + 1)
+					]
 				})
 				.filter(function(s){
 					return s && s.length && s.length === 2;
