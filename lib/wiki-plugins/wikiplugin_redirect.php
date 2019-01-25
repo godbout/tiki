@@ -80,9 +80,9 @@ function wikiplugin_redirect($data, $params)
 
 	if ($just_saved) {
 		$areturn = sprintf(tra("REDIRECT plugin: The redirection to '%s' is disabled just after saving the page."), $location);
-	} elseif (TikiLib::lib('parser')->option['indexing']) {
+	} elseif (isset(TikiLib::lib('parser')->option['indexing']) && TikiLib::lib('parser')->option['indexing']) {
 		return;
-	} elseif (TikiLib::lib('parser')->option['preview_mode']) {
+	} elseif (isset(TikiLib::lib('parser')->option['preview_mode']) && TikiLib::lib('parser')->option['preview_mode']) {
 		$areturn = sprintf(tra("REDIRECT plugin: The redirection to '%s' is disabled in preview mode. "), $location);
 	} elseif ((isset($_REQUEST['redirectpage']))) {
 		$areturn = tra("REDIRECT plugin: redirect loop detected!");
