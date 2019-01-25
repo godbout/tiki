@@ -57,27 +57,35 @@ class Services_OAuthServer_Controller
 
 		$response_content = null;
 		$response_code = null;
+		$validation_errors = $repo->validate($client);
 
 		if($client->getIdentifier()) {
 			if ($repo->exists($client)) {
 				if ($params['delete'] === '1') {
 					$repo->delete($client);
-				} else {
+					$response_code = 200;
+					$response_content = true;
+
+				} else if(empty($validation_errors)) {
 					$repo->update($client);
+					$response_code = 200;
+					$response_content = $client->toArray();
+
+				} else {
+					$response_code = 400;
+					$response_content = $validation_errors;
 				}
-				$response_code = 200;
-				$response_content = $client->toArray();
 			} else {
 				$response_code = 404;
 				$response_content = ['error' => 'Client not found'];
 			}
-		} else if($params['delete'] !== '1') {
+		} else if($params['delete'] !== '1' && empty($validation_errors)) {
 			$repo->create($client);
 			$response_content = $client->toArray();
 			$response_code = 201;
 		} else {
 			$response_code = 400;
-			$response_content = ['error' => 'Bad request'];
+			$response_content = $validation_errors;
 		}
 
 		$response = new JsonResponse($response_code, [], $response_content);

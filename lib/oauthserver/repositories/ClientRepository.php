@@ -40,6 +40,10 @@ class ClientRepository implements ClientRepositoryInterface
 	
 	public function update($entity)
 	{
+		if ( !empty($this->validate($entity)) ) {
+			throw new Exception(tra('Cannot save invalid client'));
+		}
+
 		$sql = 'UPDATE `%s` SET name=?, client_id=?, client_secret=?, redirect_uri=? WHERE identifier=?';
 		$sql = sprintf($sql, self::TABLE);
 
@@ -56,6 +60,10 @@ class ClientRepository implements ClientRepositoryInterface
 
 	public function create($entity)
 	{
+		if ( !empty($this->validate($entity)) ) {
+			throw new Exception(tra('Cannot save invalid client'));
+		}
+
 		$sql = 'INSERT INTO `%s`(name, client_id, client_secret, redirect_uri) VALUES(?, ?, ?, ?)';
 		$sql = sprintf($sql, self::TABLE);
 
@@ -124,6 +132,32 @@ class ClientRepository implements ClientRepositoryInterface
 		$result = $this->database->getOne($sql, $params);
 		$result = intval($result, 10);
 		return $result > 0;
+	}
+
+	public function validate($entity)
+	{
+		$errors = [];
+
+		if (empty($entity->getName())) {
+			$errors['name'] = tra('Name cannot be empty');
+		}
+
+		if (empty($entity->getClientId())) {
+			$errors['client_id'] = tra('Client Id cannot be empty');
+		}
+
+		if (empty($entity->getClientSecret())) {
+			$errors['client_secret'] = tra('Client Secret cannot be empty');
+		}
+
+		if (empty($entity->getRedirectUri())) {
+			$errors['redirect_uri'] = tra('Redirect URI cannot be empty');
+
+		} else if (!filter_var($entity->getRedirectUri(),FILTER_VALIDATE_URL)) {
+			$errors['redirect_uri'] = tra('Invalid URL for redirect URI');
+		}
+
+		return $errors;
 	}
 
 	public function getClientEntity($clientId, $grantType = null, $clientSecret = null, $mustValidateSecret = true)

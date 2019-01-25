@@ -17,7 +17,11 @@ $oauthserverlib = TikiLib::lib('oauthserver');
 
 $smarty->assign('client_list', array_merge(
     $oauthserverlib->getClientRepository()->list(),
-    [ new ClientEntity() ]
+    [ 
+        new ClientEntity(
+            ['client_secret' => $oauthserverlib::generate_secret(64) ]
+        )
+    ]
 ));
 
 $smarty->assign('client_modify_url', TikiLib::lib('service')->getUrl([
