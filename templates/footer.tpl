@@ -37,7 +37,7 @@
 					{preference name=$pref_error.pref_name}
 				{/foreach}
 				<div class="submit">
-					<input type="submit" class="btn btn-primary" value="{tr}Change{/tr}"/>
+					<input type="submit" class="btn btn-primary" value="{tr}Change{/tr}" onclick="checkTimeout()"/>
 				</div>
 			</form>
 		{/remarksbox}
