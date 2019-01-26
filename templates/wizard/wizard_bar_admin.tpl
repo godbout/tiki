@@ -1,14 +1,5 @@
 {* $Id$ *}
-<div class="form-group row{if $prefs.feature_bidi eq 'y'} text-left{/if}">
-	<div class="col-sm-12">
-		{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
-			<input type="checkbox" class="form-check-input" id="showOnLogin" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} />
-			<label class="form-check-label" for="showOnLogin">{tr}Show on admin log-in{/tr}</label>
-			{assign var="showOnLoginDisplayed" value="y" scope="root"}
-		{else}
-			&nbsp;
-		{/if}
-	</div>
+<div class="form-group form-row{if $prefs.feature_bidi eq 'y'} text-left{else} text-right{/if}">
 	{if $prefs.connect_feature eq "y"}
 		{if !isset($provideFeedback) or $provideFeedback neq 'y'}
 			{capture name=likeicon}{icon name="thumbs-up"}{/capture}
@@ -33,14 +24,9 @@
 			{$headerlib->add_jsfile("lib/jquery_tiki/tiki-connect.js")}
 
 			{assign var="provideFeedback" value="y" scope="root"}
-		{else}
-
 		{/if}
 	{/if}
-</div>
-
-<div class="form-group row{if $prefs.feature_bidi eq 'y'} text-left{/if}">
-	<div class="col-sm-12">
+	<div class="col">
 		<input type="hidden" name="url" value="{$homepageUrl}">
 		<input type="hidden" name="wizard_step" value="{$wizard_step}">
 		{if isset($useDefaultPrefs)}
@@ -49,12 +35,23 @@
 		{if isset($useUpgradeWizard)}
 			<input type="hidden" name="use-upgrade-wizard" value="{$useUpgradeWizard}">
 		{/if}
-		{if !isset($firstWizardPage)}
-			<input type="submit" class="btn btn-primary btn-sm" name="back" value="{tr}Back{/tr}" />
+		{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
+		<p>
+			<input type="checkbox" class="form-check-input" id="showOnLogin" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} />
+			<label class="form-check-label" for="showOnLogin">{tr}Show on admin log-in{/tr}</label>
+			{assign var="showOnLoginDisplayed" value="y" scope="root"}
+		</p>
 		{/if}
-		<input type="submit" class="btn btn-secondary btn-sm" name="{if isset($firstWizardPage)}use-default-prefs{else}continue{/if}" value="{if isset($lastWizardPage)}{tr}Finish{/tr}{elseif isset($firstWizardPage)}{tr}Start{/tr}{else}{if $isEditable eq true}{tr}Save and Continue{/tr}{else}{tr}Next{/tr}{/if}{/if}"/>
-		<input type="submit" class="btn btn-warning btn-sm" name="close" value="{tr}Close{/tr}"/>
+		<div class="btn-group">
+		{if !isset($firstWizardPage)}
+			<input type="submit" class="btn btn-outline-dark" name="back" value="{tr}Back{/tr}" />
+		{/if}
+			<input type="submit" class="btn btn-dark" name="{if isset($firstWizardPage)}use-default-prefs{else}continue{/if}" value="{if isset($lastWizardPage)}{tr}Finish{/tr}{elseif isset($firstWizardPage)}{tr}Start the Wizardry{/tr}{else}{if $isEditable eq true}{tr}Save and Continue{/tr}{else}{tr}Next{/tr}{/if}{/if}"/>
+		</div>
+			<input type="submit" class="btn btn-outline-danger btn-sm" name="close" value="{tr}Close{/tr}"/>
 	</div>
+</div>
+<div class="row">
 	<div class="col-sm-12 text-center">
 		{if !isset($showWizardPageTitle) or $showWizardPageTitle neq 'y'}
 			<h1 class="adminWizardPageTitle">{$pageTitle}</h1>

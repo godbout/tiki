@@ -64,9 +64,6 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 
 			$this->fetchExternalData($cronUrl, ['token' => $token], false);
 		}
-
-		// try to update if enabled
-		//$this->getLibraryUpdates();
 	}
 
 	/**

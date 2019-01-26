@@ -375,6 +375,21 @@ div.cvsup {
   background-color: #e9ecef;
   border: outset 1px #e9ecef; }
 
+a.toolbar {
+  /* each tool button */
+  border: none;
+  background: transparent;
+  color: #212529;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); }
+
+a.toolbar:hover {
+  color: #5a6570;
+  text-shadow: -1px -1px 4px rgba(0, 0, 0, 0.2); }
+
+a.toolbar:active {
+  color: #dc3545;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
+
 #intertrans-indicator {
   background-color: #28a745;
   color: #28a745; }
@@ -1435,12 +1450,10 @@ div.cvsup {
   padding-left: 8px;
   margin-left: 8px; }
 
-a.toolbar, a.toolbar:hover {
-  padding: 4px 2px;
-  display: inline-block;
-  border: none;
-  background: transparent;
-  color: #212529; }
+a.toolbar {
+  /* each tool button */
+  padding: 6px 4px;
+  display: inline-block; }
 
 .toolbar-list {
   padding: 0 0 0 0.5em;
@@ -2982,9 +2995,12 @@ body > .ui-front {
   bottom: 3px;
   text-align: right; }
 
-div.olMap {
+.olMap {
   position: relative;
   display: block; }
+
+#col2 .olMap img, #col3 .olMap img {
+  max-width: none; }
 /*** ESSENTIAL STYLES ***/
 .cssmenu_horiz, .cssmenu_horiz *, .cssmenu_vert, .cssmenu_vert * {
   margin: 0;

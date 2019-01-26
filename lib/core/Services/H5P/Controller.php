@@ -480,6 +480,9 @@ LEFT JOIN `users_users` AS u ON u.`userId` = r.`user_id`');
 		// Clean up old temporary files
 		TikiLib::lib('h5p')->removeOldTmpFiles();
 
+		// update libs from hub if set
+		$this->H5PTiki->getLibraryUpdates();
+
 		// Check for metadata updates
 		$core = \H5P_H5PTiki::get_h5p_instance('core');
 		$core->fetchLibrariesMetadata();
@@ -500,7 +503,6 @@ LEFT JOIN `users_users` AS u ON u.`userId` = r.`user_id`');
 
 		$editor = \H5P_EditorTikiStorage::get_h5peditor_instance();
 		$editor->ajax->action(H5PEditorEndpoints::CONTENT_TYPE_CACHE, $token);
-
-		return null;
+		exit;
 	}
 }

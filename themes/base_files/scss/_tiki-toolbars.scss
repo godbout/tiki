@@ -12,14 +12,10 @@
 	//  border-left: medium double $gray-light; (This and other color-related rules are moved to _tiki-selectors.scss.)
 }
 
-a.toolbar,
-a.toolbar:hover {
-	//		/* each tool button */
-	padding: 4px 2px;
+a.toolbar {
+	/* each tool button */
+	padding: 6px 4px;
 	display: inline-block;
-	border: none;
-	background: transparent;
-	color: $body-color;
 }
 
 .toolbar-list {

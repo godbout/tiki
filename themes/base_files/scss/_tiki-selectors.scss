@@ -629,6 +629,26 @@ div.cvsup {
 	border: outset 1px $gray-200;
 }
 
+a.toolbar {
+	/* each tool button */
+	border: none;
+	background: transparent;
+	color: $body-color;
+	text-shadow: 1px 1px 4px rgba(0,0,0,.2);
+}
+
+a.toolbar:hover {
+	color:  lighten($body-color, 25%);
+	text-shadow: -1px -1px 4px rgba(0,0,0,.2);
+}
+
+a.toolbar:active {
+	color:  $danger;
+	text-shadow: 2px 2px 4px rgba(0,0,0,.5);
+}
+
+
+
 // tiki-translation.less
 #intertrans-indicator {
 	background-color: theme-color("success");

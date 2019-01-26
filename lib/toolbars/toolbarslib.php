@@ -2113,7 +2113,7 @@ class ToolbarsList
 					}
 
 					if (! empty($groupHtml)) {
-						$param = empty($lineBit) ? '' : ' class="toolbar-list"';
+						$param = ' class="toolbar-list"';
 						$lineBit .= "<span$param>$groupHtml</span>";
 					}
 					if ($bitx == 1) {

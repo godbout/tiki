@@ -1284,7 +1284,7 @@ class ParserLib extends TikiDb_Bridge
 
 			// email address (foo@domain.ext)
 			$patterns[] = "#([\n ])([a-z0-9\-_.]+?)@([\w\-]+\.([\w\-\.]+\.)*[\w]+)#i";
-			if ($this->option['protect_email'] && $prefs['feature_wiki_protect_email'] == 'y') {
+			if ($this->option['protect_email'] && $this->option['print'] !== 'y' && $prefs['feature_wiki_protect_email'] == 'y') {
 				if (! $mail_protect_pattern) {
 					$mail_protect_pattern = "\\1" . TikiLib::protect_email("\\2", "\\3");
 				}
