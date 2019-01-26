@@ -1,13 +1,15 @@
 {* $Id$ *}
-<div class="form-group form-row{if $prefs.feature_bidi eq 'y'} text-left{else} text-right{/if}">
-	{if $prefs.connect_feature eq "y"}
+{if $prefs.connect_feature eq "y"}
+<div class="form-row provide-feedback">
+	<div class="col">
 		{if !isset($provideFeedback) or $provideFeedback neq 'y'}
+		<div class="form-check">
 			{capture name=likeicon}{icon name="thumbs-up"}{/capture}
 			<label>
 				<input type="checkbox" class="form-check-input" id="connect_feedback_cbx" {if !empty($connect_feedback_showing)}checked="checked"{/if}>
 				{tr}Provide Feedback{/tr}
-				<a href="http://doc.tiki.org/Connect" target="tikihelp" class="tikihelp" title="{tr}Provide Feedback:{/tr}
-					{tr}Once selected, some icon/s will be shown next to all features so that you can provide some on-site feedback about them{/tr}.
+				<a href="http://doc.tiki.org/Connect" target="tikihelp" class="tikihelp" title="{tr}Provide Feedback{/tr}:
+					{tr}Once selected, some icon/s will be shown next to all features so that you can provide some on-site feedback about them.{/tr}
 					<br/><br/>
 					<ul>
 						<li>{tr}Icon for 'Like'{/tr} {$smarty.capture.likeicon|escape}</li>
@@ -15,7 +17,7 @@
 <!--					<li>{tr}Icon for 'What is this for?'{/tr} <img src=img/icons/connect_wtf.png></li> -->
 					</ul>
 					<br/>
-					{tr}Your votes will be sent when you connect with mother.tiki.org (currently only by clicking the 'Connect > <strong>Send Info</strong>' button){/tr}
+					{tr}Your votes will be sent when you connect with mother.tiki.org (currently only by clicking the 'Connect > <strong>Send Info</strong>' button).{/tr}
 					<br/><br/>
 					{tr}Click to read more{/tr}
 				">
@@ -24,8 +26,12 @@
 			{$headerlib->add_jsfile("lib/jquery_tiki/tiki-connect.js")}
 
 			{assign var="provideFeedback" value="y" scope="root"}
+		</div>
 		{/if}
-	{/if}
+	</div>
+</div>
+{/if}
+<div class="form-group form-row{if $prefs.feature_bidi eq 'y'} text-left{else} text-right{/if}">
 	<div class="col">
 		<input type="hidden" name="url" value="{$homepageUrl}">
 		<input type="hidden" name="wizard_step" value="{$wizard_step}">
@@ -36,11 +42,11 @@
 			<input type="hidden" name="use-upgrade-wizard" value="{$useUpgradeWizard}">
 		{/if}
 		{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
-		<p>
+		<div class="form-check">
 			<input type="checkbox" class="form-check-input" id="showOnLogin" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} />
 			<label class="form-check-label" for="showOnLogin">{tr}Show on admin log-in{/tr}</label>
 			{assign var="showOnLoginDisplayed" value="y" scope="root"}
-		</p>
+		</div>
 		{/if}
 		<div class="btn-group">
 		{if !isset($firstWizardPage)}
