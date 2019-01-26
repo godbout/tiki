@@ -1,5 +1,5 @@
 {* $Id$ *}
-{if $prefs.feature_bidi eq 'y'}<div class="row form-group row text-left">{else}<div class="row form-group row">{/if}
+<div class="form-group row{if $prefs.feature_bidi eq 'y'} text-left{/if}">
 	<div class="col-sm-12">
 		{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
 			<input type="checkbox" class="form-check-input" id="showOnLogin" name="showOnLogin" {if isset($showOnLogin) AND $showOnLogin eq true}checked="checked"{/if} />
@@ -39,7 +39,7 @@
 	{/if}
 </div>
 
-{if $prefs.feature_bidi eq 'y'}<div class="row form-group row text-left">{else}<div class="row form-group row">{/if}
+<div class="form-group row{if $prefs.feature_bidi eq 'y'} text-left{/if}">
 	<div class="col-sm-12">
 		<input type="hidden" name="url" value="{$homepageUrl}">
 		<input type="hidden" name="wizard_step" value="{$wizard_step}">

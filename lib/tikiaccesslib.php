@@ -481,7 +481,7 @@ class TikiAccessLib extends TikiLib
 				$this->ticketMatch = true;
 			} else {
 				//ticket is expired
-				$this->userMsg = ' ' . tra('Reloading the page may help.');
+				$this->userMsg = ' ' . tra('Ticket has expired. Reload the page.');
 				$this->logMsg = ' ' . tra('Ticket matches but is expired.');
 				$this->ticketMatch = false;
 			}
