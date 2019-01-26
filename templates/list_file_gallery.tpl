@@ -98,7 +98,7 @@
 						or $prefs.fgal_display_zip_option eq 'y'
 						or $tiki_p_assign_perm_file_gallery eq 'y'
 					}
-						<div class="input-group col-sm-10">
+						<div class="input-group col-sm-12">
 							<select name="fgal_actions" class="form-control">
 								<option value="" selected="selected">
 									{tr}Select action to perform with checked...{/tr}

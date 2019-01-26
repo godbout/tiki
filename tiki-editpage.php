@@ -1398,7 +1398,7 @@ if (isset($_REQUEST["save"])
 	}
 
 	if ($prefs['feature_history'] === 'y' && $tiki_p_wiki_view_history === 'y' && $info['version'] > 1) {
-		$linktodiff = '<div class="linktodiff">' . tr('To review the changes you have just made %0compare the versions%1 in history of this page.', "<a href=\"tiki-pagehistory.php?page=" . urlencode($page) . "&newver=0&oldver=" . ($info['version'] - 1) . "\">", '</a>') . '</div>';
+		$linktodiff = '<div class="linktodiff">' . tr('To review the changes you have just made %0compare the versions%1 in history of this page.', "<a class=\"alert-link\" href=\"tiki-pagehistory.php?page=" . urlencode($page) . "&newver=0&oldver=" . ($info['version'] - 1) . "\">", '</a>') . '</div>';
 	} else {
 		$linktodiff = '';
 	}

@@ -13,12 +13,14 @@
 			{include file='tiki-ajax_header.tpl'}
 		{/if}
 
-		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
+		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} middle" id="middle">
+{if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 			<div class="row">
-				<div class="col-md-12">
-					{modulelist zone=top}
-				</div>
+				<header class="page-header w-100" id="page-header">
+					{modulelist zone=top class='top_modules d-flex justify-content-between'}
+				</header>
 			</div>
+{/if}
 			<div class="row">
 				<div class="col-md-12">
 					{modulelist zone=topbar}

@@ -99,13 +99,13 @@
 			<h4>{tr}Show the banner only between these dates:{/tr}</h4>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}From date:{/tr}</label>
-				<div class="col-sm-7">
+				<div class="col-sm-7 short">
 					{html_select_date time=$fromDate prefix="fromDate_" end_year="+2" field_order=$prefs.display_field_order}
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}To date:{/tr}</label>
-				<div class="col-sm-7">
+				<div class="col-sm-7 short">
 					{html_select_date time=$fromDate prefix="fromDate_" end_year="+2" field_order=$prefs.display_field_order}
 				</div>
 			</div>
@@ -123,13 +123,13 @@
 			<h4>{tr}Show the banner only in these hours:{/tr}</h4>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}from{/tr}</label>
-				<div class="col-sm-7">
+				<div class="col-sm-7 short">
 					{html_select_time time=$fromTime display_seconds=false prefix='fromTime' use_24_hours=$use_24hr_clock}
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}to{/tr}</label>
-				<div class="col-sm-7">
+				<div class="col-sm-7 short">
 					{html_select_time time=$toTime display_seconds=false prefix='toTime' use_24_hours=$use_24hr_clock}
 				</div>
 			</div>
@@ -214,7 +214,7 @@
 						{tr}Pixels{/tr}
 					</div>
 				</div>
-				<div class="col-sm-3">
+				<div class="col-sm-3 offset-sm-1">
 					<input type="text" name="movieHeight" value="{$movie.height|escape}" class="form-control" placeholder="{tr}height in pixels{/tr}">
 					<div class="form-text">
 						{tr}Pixels{/tr}

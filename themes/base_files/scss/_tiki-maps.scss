@@ -93,7 +93,14 @@
 	text-align: right;
 }
 
-div.olMap {
+.olMap {
   position: relative;
   display: block;
 }
+
+// for the location module maps
+// overrides _tiki-bootstrap_overrides.scss:64
+#col2 .olMap img, #col3 .olMap img {
+	max-width: none;
+}
+

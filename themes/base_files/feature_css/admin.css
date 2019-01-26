@@ -129,12 +129,9 @@
 
 .toolbars-admin .toolbar {
 	cursor: pointer;
-	height: 1.5em;
-	line-height: 1.2em;
 }
 
 .toolbars-admin .rows .row {
-	width: 95%;
 	min-height: 20px;
 	min-width: 500px;
 	overflow: hidden;
@@ -170,7 +167,7 @@
 
 .toolbars-admin .row li.toolbar > span.icon,
 .toolbars-admin .full li.toolbar > span.icon {
-	margin-right: 2px;
+	margin: 0 5px;
 }
 
 .toolbars-admin .row li.qt-plugin {

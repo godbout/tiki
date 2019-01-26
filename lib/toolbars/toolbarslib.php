@@ -438,7 +438,7 @@ abstract class Toolbar
 		$smarty = TikiLib::lib('smarty');
 		$params = [];
 		$params['_onclick'] = $click . (substr($click, strlen($click) - 1) != ';' ? ';' : '') . 'return false;';
-		$params['_class'] = 'toolbar btn btn-sm btn-link tips' . (! empty($class) ? ' ' . $class : '');
+		$params['_class'] = 'toolbar btn btn-sm px-2 tips' . (! empty($class) ? ' ' . $class : '');
 		$params['_ajax'] = 'n';
 		$content = $title;
 		if ($this->iconname) {
@@ -1429,7 +1429,7 @@ class ToolbarHelptool extends Toolbar
 		$url = $servicelib->getUrl($params);
 		$help = tra('Help');
 
-		return "<a title=\":$help\" class=\"toolbar btn btn-sm btn-link qt-help tips\" href=\"$url\" data-toggle=\"modal\" data-target=\"#bootstrap-modal\">$icon</a>";
+		return "<a title=\":$help\" class=\"toolbar btn btn-sm px-2 qt-help tips\" href=\"$url\" data-toggle=\"modal\" data-target=\"#bootstrap-modal\">$icon</a>";
 	} // }}}
 
 	function getWysiwygToken($areaId) // {{{

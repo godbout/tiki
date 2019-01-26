@@ -411,7 +411,7 @@
 	{/if}
 	<br>
 	{if !$editFileId}
-		<div class="col-md-8 col-md-offset-4">
+		<div class="col-md-12">
 			<input type="hidden" id="max_file_uploads" value="{$max_file_uploads}">
 			{remarksbox type="note" title="{tr}Information{/tr}"}
 				{tr}Maximum file size is around:{/tr}

@@ -125,7 +125,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-9 col-sm-offset-2">
+			<div class="col-sm-10 col-sm-offset-2">
 				{remarksbox type="tip" title="{tr}Tip{/tr}"}
 					<p class="type_option type_c"><strong>{$types.c}:</strong> {tr}Single choice using radio buttons.{/tr}<br>{tr}Example: "one, two, many, lots".{/tr}<br>{tr}(Use "\," to include a comma.{/tr})</p>
 					<p class="type_option type_m"><strong>{$types.m}:</strong> {tr}Multiple choice using checkboxes.{/tr}<br>{tr}Example: "one, two, many, lots".{/tr}<br>{tr}(Use "\," to include a comma.{/tr})</p>
