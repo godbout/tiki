@@ -24,7 +24,7 @@
 
 		<div class="media mb-5">
 			<span class="float-left fa-stack fa-lg mr-1" alt="{tr}Configuration Profiles Wizard{/tr}" title="{tr}Configuration Profiles Wizard{/tr}" >
-				<i class="fas fa-cubes fa-stack-2x text-info"></i>
+				<i class="fas fa-cubes fa-stack-2x text-warning"></i>
 				<i class="fas fa-flip-horizontal fa-magic fa-stack-1x ml-4 mt-4"></i>
 			</span>
 			<div class="media-body mx-4">
@@ -32,7 +32,7 @@
 				<p>{tr}You may start by applying some of our configuration templates through the <b>Configuration Profiles Wizard</b>.{/tr}
 					{tr}They are like the <b>Macros</b> from many computer languages.{/tr}
 					{tr}It is best to apply them from the start and you can always preview and reverse the process.{/tr}
-					<a href="http://doc.tiki.org/Profiles+Wizard" target="tikihelp" class="tikihelp text-info" title="{tr}Configuration Profiles{/tr}:
+					<a href="http://doc.tiki.org/Profiles+Wizard" target="tikihelp" class="tikihelp text-warning" title="{tr}Configuration Profiles{/tr}:
 						<p>{tr}Each of these provides a shrink-wrapped solution that meets most of the needs of a particular kind of community or site (Personal Blog space, Company Intranet, ...) or that extends basic setup with extra features configured for you.{/tr}</p>
 						<p>{tr}If you are new to Tiki administration, we recommend that you start with this approach.{/tr}</p>
 						<p>{tr}If the profile you selected does not quite meet your needs, you will still have the option of customizing it further with one of the approaches below.{/tr}</p>"
@@ -41,12 +41,12 @@
 					</a>
 				</p>
 
-				<input type="submit" class="btn btn-info" name="use-default-prefs" value="{tr}Start Configuration Profiles Wizard (Macros){/tr}" />
+				<input type="submit" class="btn btn-warning" name="use-default-prefs" value="{tr}Start Configuration Profiles Wizard (Macros){/tr}" />
 			</div>
 		</div>
 		<div class="media mb-5">
 			<span class="float-left fa-stack fa-lg mr-1" alt="{tr}Configuration Walkthrough{/tr}" title="Configuration Walkthrough">
-				<i class="fas fa-cog fa-stack-2x text-warning"></i>
+				<i class="fas fa-cog fa-stack-2x text-info"></i>
 				<i class="fas fa-flip-horizontal fa-magic fa-stack-1x ml-4 mt-4"></i>
 			</span>
 			<div class="media-body mx-4">
@@ -55,13 +55,13 @@
 					{tr}Alternatively, you may use the <b>Configuration Wizard</b>.{/tr}
 					{tr}This will guide you through the most common preference settings in order to customize your site.{/tr}
 					{tr}You will easily be able to configure options like: languages, date and time, user login, theme, website title and logo, etc.{/tr}
-					<a href="http://doc.tiki.org/Admin+Wizard" target="tikihelp" class="tikihelp text-warning" title="{tr}Configuration Wizard{/tr}:
+					<a href="http://doc.tiki.org/Admin+Wizard" target="tikihelp" class="tikihelp text-info" title="{tr}Configuration Wizard{/tr}:
 						{tr}Use this wizard if none of the <b>Configuration Profiles</b> look like a good starting point, or if you need to customize your site further{/tr}"
 					>
 						{icon name="help"}
 					</a>
 				</p>
-				<input type="submit" class="btn btn-warning" name="continue" value="{tr}Start Configuration Wizard{/tr}" />
+				<input type="submit" class="btn btn-info" name="continue" value="{tr}Start Configuration Wizard{/tr}" />
 			</div>
 		</div>
 		<div class="media mb-5">

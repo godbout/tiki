@@ -624,12 +624,14 @@ div.cvsup {
 }
 
 // /* New Toolbars */
-.textarea-toolbar > div {
+.textarea-toolbar > div,
+.textarea-toolbar > ul {
 	background-color: $gray-200;
 	border: outset 1px $gray-200;
 }
 
-a.toolbar {
+a.toolbar,
+li.toolbar {
 	/* each tool button */
 	border: none;
 	background: transparent;
@@ -637,12 +639,14 @@ a.toolbar {
 	text-shadow: 1px 1px 4px rgba(0,0,0,.2);
 }
 
-a.toolbar:hover {
+a.toolbar:hover,
+li.toolbar:hover {
 	color:  lighten($body-color, 25%);
 	text-shadow: -1px -1px 4px rgba(0,0,0,.2);
 }
 
-a.toolbar:active {
+a.toolbar:active,
+li.toolbar:active {
 	color:  $danger;
 	text-shadow: 2px 2px 4px rgba(0,0,0,.5);
 }

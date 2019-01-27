@@ -79,7 +79,7 @@
 			<input id="qt-form-field" type="hidden" name="pref" value="">
 		</div>
 	</form>
-	<div class="rows">
+	<div class="rows textarea-toolbar">
 		{foreach from=$current item=line name=line}
 			<label for="row-{$smarty.foreach.line.iteration|escape}">
 				{tr}Row{/tr}&nbsp;{$smarty.foreach.line.iteration}

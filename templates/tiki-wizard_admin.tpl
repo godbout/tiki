@@ -10,14 +10,15 @@
 	<div class="col-sm-12">
 		{include file="wizard/wizard_bar_admin.tpl"}
 	</div>
+	<hr>
 	<div id="wizardBody">
 		<div class="row">
 		{if !empty($wizard_toc)}
 			<div class="col-sm-4">
-				<h3 class="adminWizardTOCTitle">{if $useDefaultPrefs}{tr}Profiles Wizard{/tr}{elseif $useUpgradeWizard}{tr}Upgrade Wizard{/tr}{else}{tr}Configuration Wizard{/tr}{/if} - {tr}steps{/tr}:</h3>
-				<ol>
+				<div class="card">
+					<div class="card-header font-weight-bold adminWizardTOCTitle">{if $useDefaultPrefs}{tr}Profiles Wizard{/tr}{elseif $useUpgradeWizard}{tr}Upgrade Wizard{/tr}{else}{tr}Configuration Wizard{/tr}{/if} - {tr}steps{/tr}:</div>
 					{$wizard_toc}
-				</ol>
+				</div>
 			</div>
 		{/if}
 			<div class="{if !empty($wizard_toc)}col-sm-8{else}col-sm-12{/if}">
@@ -25,6 +26,7 @@
 			</div>
 		</div>
 	</div>
+	<hr>
 	{include file="wizard/wizard_bar_admin.tpl"}
 </form>
 {/block}

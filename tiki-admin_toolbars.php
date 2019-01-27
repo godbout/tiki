@@ -159,11 +159,8 @@ if (! empty($current)) {
 	$current = explode('/', $current);
 	$loadedRows = count($current);
 	foreach ($current as &$line) {
-		$bits = explode('|', $line);
-		$line = [];
-		foreach ($bits as $bit) {
-			$line[] = explode(',', $bit);
-		}
+		$line = str_replace('|', ',|,', $line);
+		$line = [explode(',', $line)];
 	}
 	$rowCount = max($loadedRows, 1) + 1;
 } else {
@@ -207,6 +204,7 @@ foreach ($qtlist as $name) {
 	$cust = Toolbar::isCustomTool($name) ? 'qt-custom' : '';
 	$avail = $tag->isAccessible() ? '' : 'qt-noaccess';
 	$icon = $tag->getIconHtml();
+	$margins = $test_html === '||' ? 'mx-auto' : '';
 
 	if (strpos($name, 'wikiplugin_') !== false) {
 		$plug = 'qt-plugin';
@@ -244,7 +242,7 @@ foreach ($qtlist as $name) {
 
 	$qtelement[$name] = [
 					'name' => $name,
-					'class' => "toolbar qt-$name $wys $wiki $wyswik $plug $cust $avail",
+					'class' => "toolbar qt-$name $wys $wiki $wyswik $plug $cust $avail $margins",
 					'html' => "$icon<span>$label</span>",
 					'visible' => $visible,
 	];

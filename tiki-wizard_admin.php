@@ -211,7 +211,7 @@ $smarty->assign('showOnLogin', $showOnLogin);
 
 
 // Build the TOC
-$toc = '<ul class="wizard_toc">';
+$toc = '<div class="list-group list-group-flush wizard_toc">';
 $stepNr = 0;
 $reqStepNr = $wizardlib->wizard_stepNr;
 $homepageUrl = $_REQUEST['url'];
@@ -229,33 +229,31 @@ foreach ($pages as $page) {
 	}
 	$cnt = $stepNr + 1;
 	if ($stepNr == 1 && $useUpgradeWizard) {
-		$toc .= '<ul><li>' . tra("New in Tiki 12 (LTS)") . '</li>';
+		$toc .= '<div class="list-group-item font-italic">' . tra("New in Tiki 12 (LTS)") . '</div>';
 	}
 	if ($cnt <= 9) {
 		$cnt = '&nbsp;&nbsp;' . $cnt;
 	}
+	$toc .= '<a ';
+	$cssClasses .= 'list-group-item list-group-item-action ';
 	if (preg_match('/ Tiki /', $page->pageTitle()) or $stepNr == 0) {
-		$toc .= '</ul><ul><li><a ';
-	} else {
-		$toc .= '<ul><li><a ';
+		$cssClasses .= 'font-italic ';
 	}
-	$cssClasses .= 'adminWizardTOCItem ';
 	if ($stepNr == $reqStepNr) {
-		$cssClasses .= 'highlight ';
+		$cssClasses .= 'active ';
 	}
 	if (! $page->isVisible()) {
-		$cssClasses .= 'disabledTOCSelection ';
+		$cssClasses .= 'disabled disabledTOCSelection ';
 	}
 	$css = '';
 	if (strlen($cssClasses) > 0) {
 		$css = 'class="' . $cssClasses . '" ';
 	}
 	$toc .= $css;
-	$toc .= 'href="' . $url . '">' . $page->pageTitle() . '</a></li>';
-	$toc .= '</ul>';
+	$toc .= 'href="' . $url . '">' . $page->pageTitle() . '</a>';
 	$stepNr++;
 }
-$toc .= '</ul>';
+$toc .= '</div>';
 
 if ($reqStepNr > 0) {
 	$smarty->assign('wizard_toc', $toc);

@@ -371,22 +371,22 @@ div.cvsup {
   background: #dee2e6;
   color: #212529; }
 
-.textarea-toolbar > div {
+.textarea-toolbar > div, .textarea-toolbar > ul {
   background-color: #e9ecef;
   border: outset 1px #e9ecef; }
 
-a.toolbar {
+a.toolbar, li.toolbar {
   /* each tool button */
   border: none;
   background: transparent;
   color: #212529;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); }
 
-a.toolbar:hover {
+a.toolbar:hover, li.toolbar:hover {
   color: #5a6570;
   text-shadow: -1px -1px 4px rgba(0, 0, 0, 0.2); }
 
-a.toolbar:active {
+a.toolbar:active, li.toolbar:active {
   color: #dc3545;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
 
