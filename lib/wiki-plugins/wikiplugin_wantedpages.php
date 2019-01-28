@@ -301,40 +301,42 @@ class WikiPluginWantedPages extends PluginsLib
 		$out = [];
 		$linkin  = (! $debug) ? '((' : '~np~'; // this is how toPages are handled
 		$linkout = (! $debug) ? '))' : '~/np~';
-		foreach ($tmp as $row) { // row[toPage, fromPage, reason]
-			if ($debug) { // modified rejected toPages with reason
-				$row[0] = '<em>' . tra($row[2]) . '</em>: ' . $row[0];
-			}
-			$row[0] = $linkin . $row[0] . $linkout; // toPages
-			$row[1] = '((' . $row[1] . '))'; // fromPages
+		if (is_array($tmp)) {
+			foreach ($tmp as $row) { // row[toPage, fromPage, reason]
+				if ($debug) { // modified rejected toPages with reason
+					$row[0] = '<em>' . tra($row[2]) . '</em>: ' . $row[0];
+				}
+				$row[0] = $linkin . $row[0] . $linkout; // toPages
+				$row[1] = '((' . $row[1] . '))'; // fromPages
 
-			// two identical keys may exist, they can either be displayed
-			// each in its own table row, or be collected in one cell, separated by
-			// either comma or <br />
-			if ($collect == 'from') {
-				if ($break == 'sep') {
-					// toPages separated in each row, there might be duplicates!!!
-					$out[] = [$row[0], $row[1]];
-				} elseif (! array_key_exists($row[0], $out)) {
-					// multiple fromPages (for one toPage) might be in one row, this is the first
-					$out[$row[0]] = $row[1];
-				} else {
-					// multiple fromPages might be in one row, this is a follow-up
-					$out[$row[0]] = $out[$row[0]] . $break . $row[1];
+				// two identical keys may exist, they can either be displayed
+				// each in its own table row, or be collected in one cell, separated by
+				// either comma or <br />
+				if ($collect == 'from') {
+					if ($break == 'sep') {
+						// toPages separated in each row, there might be duplicates!!!
+						$out[] = [$row[0], $row[1]];
+					} elseif (! array_key_exists($row[0], $out)) {
+						// multiple fromPages (for one toPage) might be in one row, this is the first
+						$out[$row[0]] = $row[1];
+					} else {
+						// multiple fromPages might be in one row, this is a follow-up
+						$out[$row[0]] = $out[$row[0]] . $break . $row[1];
+					}
+				} else { // $collect == to
+					if ($break == 'sep') {
+						// fromPages separated in each row, there might be duplicates!!!
+						$out[] = [$row[1], $row[0]];
+					} elseif (! array_key_exists($row[1], $out)) {
+						// multiple toPages (for one fromPage) might be in one row, this is the first
+						$out[$row[1]] = $row[0];
+					} else { // multiple toPages might be in one row, this is a follow-up
+						$out[$row[1]] = $out[$row[1]] . $break . $row[0];
+					}
 				}
-			} else { // $collect == to
-				if ($break == 'sep') {
-					// fromPages separated in each row, there might be duplicates!!!
-					$out[] = [$row[1], $row[0]];
-				} elseif (! array_key_exists($row[1], $out)) {
-					// multiple toPages (for one fromPage) might be in one row, this is the first
-					$out[$row[1]] = $row[0];
-				} else { // multiple toPages might be in one row, this is a follow-up
-					$out[$row[1]] = $out[$row[1]] . $break . $row[0];
-				}
-			}
-		} // foreach (received row) is handled
-		unset($tmp); // free memory
+			} // foreach (received row) is handled
+			unset($tmp); // free memory
+		}
 
 		// sort the entries
 		if ($break == 'sep') {

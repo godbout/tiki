@@ -1,11 +1,4 @@
 {title help="Toolbars"}{tr}Admin Toolbars{/tr}{/title}
-{jq notonready=true}
-	function toolbars_autoreload() {
-		if (document.forms['toolbars'].elements['autoreload'].checked) {
-			document.forms['toolbars'].submit();
-		}
-	}
-{/jq}
 
 <div class="toolbars-admin clearfix">
 	<form name="toolbars" method="post" action="tiki-admin_toolbars.php" onsubmit="return saveRows()">
@@ -15,7 +8,7 @@
 					{tr}Section{/tr}
 				</label>
 				<div class="col-sm-8">
-					<select id="section" name="section" onchange="toolbars_autoreload()" class="form-control">
+					<select id="section" name="section" onchange="$(this).form().tikiModal(tr('Loading...')).submit();" class="form-control">
 						{foreach from=$sections item=name key=skey}
 							<option value="{$skey}"{if $skey eq $loaded} selected="selected"{/if}>{$name|escape}</option>
 						{/foreach}
@@ -27,7 +20,7 @@
 					{tr}Comments{/tr}
 				</label>
 				<div class="col-sm-8">
-					<input id="comments" name="comments" type="checkbox" onchange="toolbars_autoreload()" {if $comments eq 'on'}checked="checked" {/if}>
+					<input id="comments" name="comments" type="checkbox" onchange="$(this).form().tikiModal(tr('Loading...')).submit();" {if $comments eq 'on'}checked="checked" {/if}>
 				</div>
 			</div>
 			<div class="adminoptionbox form-group row">
@@ -62,18 +55,11 @@
 					</select>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label for="autoreload" class="col-form-label col-sm-4">{tr}Auto Reloading{/tr}</label>
-				<div class="col-sm-8">
-					<input id="autoreload" name="autoreload" type="checkbox" {if $autoreload eq 'on'}checked="checked"{/if}>
-				</div>
-			</div>
 			<div class="adminoptionbox form-group row">
 				<div class="col-sm-offset-4 col-sm-8">
-					<input name="load" type="submit" class="btn btn-primary" value="{tr}Load{/tr}">
-					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
-					{if $loaded neq 'global' and $not_global}<input type="submit" class="btn btn-primary" name="reset" value="{tr}Reset to Global{/tr}">{/if}
-					{if $loaded eq 'global' and $not_default}<input type="submit" class="btn btn-primary" name="reset_global" value="{tr}Reset to defaults{/tr}">{/if}
+					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+					{if $loaded neq 'global' and $not_global}<input type="submit" class="btn btn-secondary" name="reset" value="{tr}Reset to Global{/tr}">{/if}
+					{if $loaded eq 'global' and $not_default}<input type="submit" class="btn btn-secondary" name="reset_global" value="{tr}Reset to defaults{/tr}">{/if}
 				</div>
 			</div>
 			<input id="qt-form-field" type="hidden" name="pref" value="">
@@ -161,7 +147,6 @@
 					<input type="hidden" value="" name="delete_tool" id="delete_tool">
 					<input type="hidden" name="section" value="{$loaded}">
 					<input type="hidden" name="comments" value="{if $comments}on{/if}">
-					<input type="hidden" name="autoreload" value="{if $autoreload}on{/if}">
 				</fieldset>
 			</form>
 			{autocomplete element='#tool_icon' type='icon'}

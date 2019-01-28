@@ -269,12 +269,6 @@ sort($display_w);
 
 $headerlib->add_cssfile('themes/base_files/feature_css/admin.css');
 
-if (count($_REQUEST) == 0) {
-	$smarty->assign('autoreload', 'on');
-} else {
-	$smarty->assign('autoreload', isset($_REQUEST['autoreload']) ? $_REQUEST['autoreload'] : '');
-}
-
 $plugins = [];
 
 $parserlib = TikiLib::lib('parser');
