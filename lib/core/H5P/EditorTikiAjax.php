@@ -50,8 +50,8 @@ class H5P_EditorTikiAjax implements H5PEditorAjaxInterface
 
 		$out = [];
 
-		foreach ($results as $row) {
-			$out[] = $row;
+		foreach ($results->result as $row) {
+			$out[] = json_decode(json_encode($row));	// convert to stdClass objects
 		}
 
 		return $out;
@@ -71,15 +71,21 @@ class H5P_EditorTikiAjax implements H5PEditorAjaxInterface
 
 		// Return info of only the content type with the given machine name
 		if ($machineName) {
-			return $tiki_h5p_libraries_hub_cache->fetchAll(
+			$results = $tiki_h5p_libraries_hub_cache->fetchAll(
 				['id', 'is_recommended'],
 				['tiki_h5p_libraries_hub_cache' => $machineName]
 			);
+		} else {
+			$results = $tiki_h5p_libraries_hub_cache->fetchAll(
+				$tiki_h5p_libraries_hub_cache->all()
+			);
 		}
 
-		return $tiki_h5p_libraries_hub_cache->fetchAll(
-			$tiki_h5p_libraries_hub_cache->all()
-		);
+		foreach ($results as &$result) {
+			$result = json_decode(json_encode($result));	// convert to stdClass objects
+		}
+
+		return $results;
 	}
 
 	/**

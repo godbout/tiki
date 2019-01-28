@@ -481,7 +481,8 @@ LEFT JOIN `users_users` AS u ON u.`userId` = r.`user_id`');
 		TikiLib::lib('h5p')->removeOldTmpFiles();
 
 		// update libs from hub if set
-		$this->H5PTiki->getLibraryUpdates();
+		$H5PTiki = new H5P_H5PTiki();
+		$H5PTiki->getLibraryUpdates();
 
 		// Check for metadata updates
 		$core = \H5P_H5PTiki::get_h5p_instance('core');

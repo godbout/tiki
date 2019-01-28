@@ -373,7 +373,7 @@ function wikiplugin_swiper($data, $params)
 		Feedback::error(tr(' Please update composer to install required files'));
 		return;
 	}
-	if(!$params['fileIds'] && !$params['fgalId'] && !$data) {
+	if((! empty($params['fileIds']) && !$params['fileIds']) && !$params['fgalId'] && !$data) {
 		Feedback::error(tr('Paramaters missing: Please either select file gallery, give file ids or custom slide code in body.'));
 		return;
 	}
@@ -382,9 +382,9 @@ function wikiplugin_swiper($data, $params)
 	$defaults = [];
 	$plugininfo = wikiplugin_swiper_info();
 	foreach ($plugininfo['params'] as $key => $param) {
-		$defaults["$key"] = $param['default'];
+		$defaults["$key"] = (! empty($param['default']) ? $param['default'] : '');
 		//separating digits filter parameters
-		if($param['filter']=="digits") {
+		if(! empty($param['filter']) && $param['filter']=="digits") {
 			$swiperDigitsParams[]=$key;
 		}
 	}
@@ -412,6 +412,8 @@ function wikiplugin_swiper($data, $params)
 	}
 	if($params['effect']=="fade"){
 		$fadeEffectCSS="#swiper-container".$uid." .swiper-slide:not(.swiper-slide-active){opacity: 0 !important;}";
+	} else {
+		$fadeEffectCSS = '';
 	}
 	if($params['navigation'] != 'n') {
 		$navigation='navigation: {
@@ -422,6 +424,7 @@ function wikiplugin_swiper($data, $params)
 	}
 	else {
 		$navigation="";
+		$navigationDiv = '';
 	}
 	$headerlib = TikiLib::lib('header');
 	$headerlib->add_jsfile('vendor_bundled/vendor/nolimits4web/swiper/dist/js/swiper.min.js');
@@ -444,16 +447,18 @@ function wikiplugin_swiper($data, $params)
 			}
 		}
 	}
-	foreach ($files['data'] as $file) {
-		$slidesHtml .= '<div class="swiper-slide"><img src="tiki-download_file.php?fileId=' . $file['fileId'] . '&amp;display';
-		if (! empty($params['displaySize'])) {
-			if ($params['displaySize'] > 10) {
-				$slidesHtml .= '&amp;max=' . $params['displaySize'];
-			} elseif ($params['displaySize'] <= 1) {
-				$slidesHtml .= '&amp;scale=' . $params['displaySize'];
+	if (! empty($files['data'])) {
+		foreach ($files['data'] as $file) {
+			$slidesHtml .= '<div class="swiper-slide"><img src="tiki-download_file.php?fileId=' . $file['fileId'] . '&amp;display';
+			if (! empty($params['displaySize'])) {
+				if ($params['displaySize'] > 10) {
+					$slidesHtml .= '&amp;max=' . $params['displaySize'];
+				} elseif ($params['displaySize'] <= 1) {
+					$slidesHtml .= '&amp;scale=' . $params['displaySize'];
+				}
 			}
+			$slidesHtml .= '" alt="' . htmlentities($file['description']) . '" /></div>';
 		}
-		$slidesHtml .= '" alt="' . htmlentities($file['description']) . '" /></div>';
 	}
 	foreach ($slides as $slide) {
 		if(trim($slide)) {
@@ -468,10 +473,20 @@ function wikiplugin_swiper($data, $params)
 			else {
 				$slideArr['text']=$slideArr[0]; //single attribute slide
 			}
-			($slideArr['text']=='') ? '':$slideArr['text']='<div>'.TikiLib::lib('parser')->parse_data($slideArr['text'], ['is_html' => true, 'parse_wiki' => true]).'</div>';
+			(empty($slideArr['text']) || $slideArr['text']=='') ? $slideArr['text'] = '' : $slideArr['text']='<div>'.TikiLib::lib('parser')->parse_data($slideArr['text'], ['is_html' => true, 'parse_wiki' => true]).'</div>';
+			if (empty($slideArr['color'])) {
+				$slideArr['color'] = '';
+			}
+			if (empty($slideArr['bgcolor'])) {
+				$slideArr['bgcolor'] = '';
+			}
+			if (empty($slideArr['title'])) {
+				$slideArr['title'] = '';
+			}
 			$slidesHtml .= '<div data-swiper-parallax="-300" class="swiper-slide" style="color:'.$slideArr['color'].';background-color:'.$slideArr['bgcolor'].';background-image:url('.$slideArr['image'].')"><div class="slide-content'.$uid.'"><h1>' . $slideArr['title'] . '</h1>'.$slideArr['text'].'</div></div>';
 		}	
 	}
+	$swiperSettings = '';
 	$swiperParams=array('effect','autoHeight','speed','spaceBetween','slidesPerView','slidesPerColumn','slidesPerColumnFill','centeredSlides','slidesOffsetBefore','slidesOffsetAfter','loop','preloadImages','slideToClickedSlide','freeMode','updateOnImagesReady');
 	foreach($swiperParams as $swiperParam) {
 		$swiperSettings.=$swiperParam.":";
@@ -484,6 +499,10 @@ function wikiplugin_swiper($data, $params)
 	}
 	$swiperSettings=str_replace(array("'y'","'n'"),array("'true'","'false'"),$swiperSettings);
 	$headerlib->add_css('#swiper-container'.$uid.' {width: '.$params['width'].';background:'.$params['background'].';margin-bottom:20px;} #swiper-container'.$uid.' .swiper-slide {font-size:'.$params['descriptionSize'].';color:'.$params['descriptionColor'].';min-height:'.$params['height'].';text-align: center;width:100%;overflow:hidden;} .gallery-top {height: 80%;width: 100%;}.gallery-thumbs {height: 20%;box-sizing: border-box;padding: 10px 0;}.gallery-thumbs img {max-height:120px;height:120px;width:auto;  margin-bottom:2%;cursor:pointer}.gallery-thumbs .swiper-slide {width: 25%; height: 100%;opacity: 0.4;}.gallery-thumbs .swiper-slide-active {opacity: 1;} #swiper-container'.$uid.' .swiper-slide h1{font-size:'.$params['titleSize'].';color:'.$params['titleColor'].'} .slide-content'.$uid.'{min-width:60%;position:absolute;'.$params['slideContentPostion'].';background:'.$params['slideContentBg'].';padding:1%;text-align:left}  .parallax-bg { position: absolute;left: 0;top: 0;width: 130%;height: 100%;-webkit-background-size: cover;background-size: cover;background-position: center;} .swiper-slide img{max-width:100%}'.$fadeEffectCSS);
+	$thumbnails = '';
+	$thumbclass = '';
+	$swiperOpts = '';
+	$thumbAfter = '';
 	$thumbsSettings='';
 	if($params['displayThumbnails']=="y") {
 		$thumbnails=' <div id="gallery-thumbs'.$uid.'" class="swiper-container gallery-thumbs"><div class="swiper-wrapper">'.$slidesHtml.'</div></div>'	;
