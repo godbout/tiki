@@ -23,10 +23,10 @@
 			</div>
 			<br>
 			<div class="form-actions form-wrapper submit" id="edit-actions">
-				<input type="submit" id="edit-submit" name="op" value="Save" class="btn btn-secondary">
 				{if $fileId}
-					<input type="submit" id="edit-delete" name="op" value="Delete" class="btn btn-primary confrim">
+					<input type="submit" id="edit-delete" name="op" value="Delete" class="btn btn-outline-danger confirm">
 				{/if}
+				<input type="submit" id="edit-submit" name="op" value="Save" class="btn btn-primary">
 			</div>
 			<br>
 		</div>

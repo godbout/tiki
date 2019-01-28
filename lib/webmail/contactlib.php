@@ -159,7 +159,7 @@ class ContactLib extends TikiLib
 		$dontDeleteExts = false
 	) {
 
-		global $tiki_p_admin;
+		global $tiki_p_admin, $tiki_p_admin_group_webmail;
 
 		$firstName = trim($firstName);
 		$lastName = trim($lastName);
@@ -208,7 +208,7 @@ class ContactLib extends TikiLib
 					);
 				} else {
 					$this->query(
-						'insert into `tiki_webmail_contacts_ext` (`contactId`,`fieldId`,`value`) values (?,?,?)',
+						'insert into `tiki_webmail_contacts_ext` (`contactId`,`fieldId`,`value`, `hidden`) values (?,?,?, 0)',
 						[(int)$contactId, (int)$fieldId, $ext]
 					);
 				}

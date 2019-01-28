@@ -21,7 +21,6 @@ require_once('lib/mail/mimelib.php');
 include_once('lib/webmail/tikimaillib.php');
 require_once('lib/filegals/filegallib.php');
 
-// AJAX_TODO
 /**
  * @param $inUrl
  */
@@ -317,7 +316,7 @@ function submit_form(msgname,flg)
 END;
 
 	if ($autorefresh > 0) {
-		$js .= 'webmailTimeoutId = window.setTimeout("window.location.reload(true);",$autorefresh*1000);';
+		$js .= "\nwebmailTimeoutId = window.setTimeout('window.location.reload(true);',$autorefresh * 1000);";
 	}
 	$headerlib->add_js($js, 0);
 

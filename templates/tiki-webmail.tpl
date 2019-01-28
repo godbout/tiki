@@ -456,10 +456,11 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="table-responsive">
-					<table class="table table-hover webmail_list">
+					<table class="table table-hover table-striped webmail_list">
 						<tr>
 							<th>{select_all checkbox_names='msg[]'}</th>
 							<th>&nbsp;</th>
+							<th>{tr}Subject{/tr}</th>
 							<th>
 								{if strpos($currentFolder|lower, 'sent') === false}
 									{tr}Sender{/tr}
@@ -467,14 +468,13 @@
 									{tr}To{/tr}
 								{/if}
 							</th>
-							<th>{tr}Subject{/tr}</th>
 							<th>{tr}Date{/tr}</th>
 							<th>{tr}Size{/tr}</th>
 						</tr>
-						{section name=ix loop=$list}
-							{if $list[ix].isRead eq 'y'}
-								{assign var=class value="webmail_read"}
-							{elseif $list[ix].isFlagged eq 'y'}
+						{foreach $list as $msg}
+							{if $msg.isRead eq 'y'}
+								{assign var=class value="webmail_read text-muted"}
+							{elseif $msg.isFlagged eq 'y'}
 								{assign var=class value="bg-warning webmail_flagged"}
 							{else}
 								{assign var=class value="webmail_unread"}
@@ -482,37 +482,37 @@
 							<tr class="{$class}">
 								<td class="checkbox-cell">
 									<div class="form-check">
-										<input type="checkbox" name="msg[]" value="{$list[ix].msgid}">
-										<input type="hidden" name="realmsg[{$list[ix].msgid}]" value="{$list[ix].realmsgid|escape}">
+										<input type="checkbox" name="msg[]" value="{$msg.msgid}">
+										<input type="hidden" name="realmsg[{$msg.msgid}]" value="{$msg.realmsgid|escape}">
 									</div>
 								</td>
 								<td class="icon">
-									{if $list[ix].isFlagged eq 'y'}
-										{icon class="" name="flag" title="{tr}Flagged{/tr}" href="javascript: submit_form('{$list[ix].realmsgid|escape}','n')"}
+									{if $msg.isFlagged eq 'y'}
+										{icon class="" name="flag" title="{tr}Flagged{/tr}" href="javascript: submit_form('{$msg.realmsgid|escape}','n')"}
 									{else}
 										{if $prefs.webmail_quick_flags eq 'y'}
-										{icon class="" name="flag-o" title="{tr}Unflagged{/tr}" href="javascript: submit_form('{$list[ix].realmsgid|escape}','y')"}
+										{icon class="" name="flag-o" title="{tr}Unflagged{/tr}" href="javascript: submit_form('{$msg.realmsgid|escape}','y')"}
 										{/if}
 									{/if}
-									{if $list[ix].isReplied eq 'y'}
+									{if $msg.isReplied eq 'y'}
 										{icon class="" name="reply" title="{tr}Replied{/tr}"}
 									{/if}
 								</td>
+								<td class="text">
+									{if $msg.isRead neq 'y'}<strong>{/if}{self_link msgid=$msg.msgid locSection='read'}{$msg.subject}{/self_link}{if $msg.isRead neq 'y'}</strong>{/if}
+									{if $msg.has_attachment}<img src="img/webmail/clip.gif" alt="{tr}Clip{/tr}">{/if}
+								</td>
 								<td class="email">
 									{if strpos($currentFolder|lower, 'sent') === false}
-										{$list[ix].sender.name}
+										{$msg.sender.name}
 									{else}
-										{$list[ix].to}
+										{$msg.to}
 									{/if}
 								</td>
-								<td class="text">
-									{if $list[ix].isRead neq 'y'}<strong>{/if}{self_link msgid=$list[ix].msgid locSection='read'}{$list[ix].subject}{/self_link}{if $list[ix].isRead neq 'y'}</strong>{/if}
-									{if $list[ix].has_attachment}<img src="img/webmail/clip.gif" alt="{tr}Clip{/tr}">{/if}
-								</td>
-								<td class="date">{$list[ix].timestamp|tiki_short_datetime}</td>
-								<td class="integer">{$list[ix].size|kbsize}</td>
+								<td class="date">{$msg.timestamp|tiki_short_datetime}</td>
+								<td class="integer">{$msg.size|kbsize}</td>
 							</tr>
-						{/section}
+						{/foreach}
 					</table>
 				</div>
 			</div>

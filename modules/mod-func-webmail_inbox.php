@@ -103,13 +103,19 @@ function module_webmail_inbox_info()
 	];
 }
 
+
+static $divId;
+
 /**
  * @param $mod_reference
  * @param $module_params
  */
 function module_webmail_inbox($mod_reference, $module_params)
 {
-	global $prefs, $webmaillib, $user, $webmail_reload, $webmail_start, $webmail_list_page;
+	global $prefs, $webmaillib, $user, $webmail_reload, $webmail_start, $webmail_list_page, $divId;
+
+	$divId = 'mod-webmail_inbox' . $module_params['module_position'] . $module_params['module_ord'];
+
 	$headerlib = TikiLib::lib('header');
 	$smarty = TikiLib::lib('smarty');
 	if (! $user) {
@@ -168,10 +174,14 @@ function module_webmail_inbox($mod_reference, $module_params)
 
 function webmail_refresh() 	// called in ajax mode
 {
-	global $webmaillib, $user, $webmail_list_page, $webmail_account, $webmail_reload, $webmail_start, $module_params;
+	global $webmaillib, $user, $webmail_list_page, $webmail_account, $webmail_reload, $webmail_start, $module_params, $divId;
 	$trklib = TikiLib::lib('trk');
 	$contactlib = TikiLib::lib('contact');
 	$smarty = TikiLib::lib('smarty');
+
+	if (empty($module_params)) {
+		$module_params = $_SESSION['webmailinbox'][$divId]['module_params'];
+	}
 
 	$accountid = isset($module_params['accountid']) ? $module_params['accountid'] : 0;
 	$webmail_account = $webmaillib->get_webmail_account($user, $accountid);
@@ -233,6 +243,7 @@ function webmail_refresh() 	// called in ajax mode
 		$webmail_list_page[] = $a_mail;
 	}
 
+	$smarty->assign('webmail_list', $webmail_list_page);
 	$lowerlimit = $i;
 
 	if ($lowerlimit < 0) {

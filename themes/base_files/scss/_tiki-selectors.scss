@@ -536,41 +536,36 @@ div.cvsup {
 
 // /* webmail & groupmail */
 .webmail_item {
-	border: 1px solid $border-color;
+	font-size: 0.8rem;
 }
 
 .webmail_list .odd {
 	background: $table-accent-bg;
 }
 
-.webmail_list .button {
-	background: $body-bg;
-	border: 1px solid $border-color;
+// extra small buttons
+.webmail_list .btn {
+	padding: 0.2rem 0.4rem;
+	font-size: 0.7rem;
+	line-height: 1.3;
 }
 
 .webmail_list .webmail_read {
-	background: theme-color("info");
 }
 
 .webmail_list .webmail_replied {
-	background: theme-color("success")
 }
 
 .webmail_list .webmail_taken {
-	border: theme-color("warning");
-	color: theme-color("warning");
 }
 
 .webmail_message {
-	background: $body-bg;
 }
 
 .webmail_message_headers {
-	background: $body-bg;
 }
 
 .webmail_message_headers th {
-	background: transparent;
 }
 
 // tiki-sheets.less
