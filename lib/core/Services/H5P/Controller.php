@@ -326,6 +326,18 @@ class Services_H5P_Controller
 		];
 	}
 
+	function action_library_install($input) {
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+			//$token = func_get_arg(1);
+			//if (! $this->isValidEditorToken($token)) return;
+
+			$editor = \H5P_EditorTikiStorage::get_h5peditor_instance();
+			$editor->ajax->action(H5PEditorEndpoints::LIBRARY_INSTALL, '', $input->id->text());
+			exit;
+		}
+	}
+
 	function action_files($input)
 	{
 		$files_directory = \H5P_H5PTiki::$h5p_path;

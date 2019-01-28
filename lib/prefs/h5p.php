@@ -111,7 +111,6 @@ function prefs_h5p_list($partial = false)
 			'type' => 'flag',
 			'filter' => 'alpha',
 			'default' => 'n',
-			'warning' => tra('Experimental'),
 		],
 		'h5p_site_key' => [
 			'name' => tr('Site Key'),

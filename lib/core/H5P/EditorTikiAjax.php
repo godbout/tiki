@@ -73,7 +73,7 @@ class H5P_EditorTikiAjax implements H5PEditorAjaxInterface
 		if ($machineName) {
 			$results = $tiki_h5p_libraries_hub_cache->fetchAll(
 				['id', 'is_recommended'],
-				['tiki_h5p_libraries_hub_cache' => $machineName]
+				['machine_name' => $machineName]
 			);
 		} else {
 			$results = $tiki_h5p_libraries_hub_cache->fetchAll(

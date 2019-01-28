@@ -148,12 +148,30 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 	public function fetchExternalData($url, $data = null, $blocking = true, $stream = null)
 	{
 		$handle = curl_init($url);
-		curl_setopt($handle, CURLOPT_POST, ! empty($data));
-		curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
+
+		if (! empty($data)) {
+			curl_setopt($handle, CURLOPT_POST, true);
+			curl_setopt($handle, CURLOPT_POSTFIELDS, $data);
+		}
+
 		curl_setopt($handle, CURLOPT_RETURNTRANSFER, 1);
 
 		if (! $blocking) {
 			curl_setopt($handle, CURLOPT_CONNECTTIMEOUT, 0.01);
+		}
+
+		if (is_string($stream)) {
+			$filePointer = fopen($stream, "wb");
+			if ($filePointer == false) {
+				H5PCore::ajaxError(
+					tr('Failed to write to temp file %0.', $stream),
+					'DOWNLOAD_FAILED',
+					null,
+					null
+				);
+				return false;
+			}
+			curl_setopt($handle, CURLOPT_FILE, $filePointer);
 		}
 
 		$response = curl_exec($handle);
