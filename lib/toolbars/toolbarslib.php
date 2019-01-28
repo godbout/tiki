@@ -223,7 +223,13 @@ abstract class Toolbar
 		}
 
 		$prefName = "toolbar_tool_$name";
-		$data = ['name' => $name, 'label' => $label, 'icon' => $icon, 'token' => $token, 'syntax' => $syntax, 'type' => $type, 'plugin' => $plugin];
+		$data = ['name' => $name, 'label' => $label, 'token' => $token, 'syntax' => $syntax, 'type' => $type, 'plugin' => $plugin];
+
+		if (strpos($icon, 'img/icons/') !== false) {
+			$data['icon'] = $icon;
+		} else {
+			$data['iconname'] = $icon;
+		}
 
 		$tikilib->set_preference($prefName, serialize($data));
 
@@ -428,14 +434,14 @@ abstract class Toolbar
 			$headerlib = TikiLib::lib('header');
 			return '<img src="' . htmlentities($headerlib->convert_cdn($this->icon), ENT_QUOTES, 'UTF-8') . '" alt="'
 			. htmlentities($this->getLabel(), ENT_QUOTES, 'UTF-8') . '" title=":'
-			. htmlentities($this->getLabel(), ENT_QUOTES, 'UTF-8') . '" class="tips icon">';
+			. htmlentities($this->getLabel(), ENT_QUOTES, 'UTF-8') . '" class="tips bottom icon">';
 		} else {
 			$iname = 'help';
 		}
 		$smarty = TikiLib::lib('smarty');
 		$smarty->loadPlugin('smarty_function_icon');
 		return smarty_function_icon(['name' => $iname, 'ititle' => ':'
-				. htmlentities($this->getLabel(), ENT_QUOTES, 'UTF-8'), 'iclass' => 'tips'], $smarty->getEmptyInternalTemplate());
+				. htmlentities($this->getLabel(), ENT_QUOTES, 'UTF-8'), 'iclass' => 'tips bottom'], $smarty->getEmptyInternalTemplate());
 	} // }}}
 
 	function getSelfLink($click, $title, $class)
@@ -445,7 +451,7 @@ abstract class Toolbar
 		$smarty = TikiLib::lib('smarty');
 		$params = [];
 		$params['_onclick'] = $click . (substr($click, strlen($click) - 1) != ';' ? ';' : '') . 'return false;';
-		$params['_class'] = 'toolbar btn btn-sm px-2 tips' . (! empty($class) ? ' ' . $class : '');
+		$params['_class'] = 'toolbar btn btn-sm px-2 tips bottom' . (! empty($class) ? ' ' . $class : '');
 		$params['_ajax'] = 'n';
 		$content = $title;
 		if ($this->iconname) {
@@ -688,7 +694,7 @@ class ToolbarCkOnly extends Toolbar
 			$smarty = TikiLib::lib('smarty');
 			$smarty->loadPlugin('smarty_function_icon');
 			return smarty_function_icon(['name' => $this->iconname, 'ititle' => ':'
-					. htmlentities($this->getLabel(), ENT_QUOTES, 'UTF-8'), 'iclass' => 'tips'], $smarty->getEmptyInternalTemplate());
+					. htmlentities($this->getLabel(), ENT_QUOTES, 'UTF-8'), 'iclass' => 'tips bottom'], $smarty->getEmptyInternalTemplate());
 		}
 		if ((! empty($this->icon) && $this->icon !== 'img/icons/shading.png') || in_array($this->label, ['Autosave'])) {
 			return parent::getIconHtml();
@@ -1458,7 +1464,7 @@ class ToolbarHelptool extends Toolbar
 		$url = $servicelib->getUrl($params);
 		$help = tra('Help');
 
-		return "<a title=\":$help\" class=\"toolbar btn btn-sm px-2 qt-help tips\" href=\"$url\" data-toggle=\"modal\" data-target=\"#bootstrap-modal\">$icon</a>";
+		return "<a title=\":$help\" class=\"toolbar btn btn-sm px-2 qt-help tips bottom\" href=\"$url\" data-toggle=\"modal\" data-target=\"#bootstrap-modal\">$icon</a>";
 	} // }}}
 
 	function getWysiwygToken($areaId) // {{{

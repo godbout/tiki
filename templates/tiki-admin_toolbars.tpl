@@ -67,9 +67,6 @@
 	</form>
 	<div class="rows textarea-toolbar">
 		{foreach from=$current item=line name=line}
-			<label for="row-{$smarty.foreach.line.iteration|escape}">
-				{tr}Row{/tr}&nbsp;{$smarty.foreach.line.iteration}
-			</label>
 			<ul id="row-{$smarty.foreach.line.iteration|escape}" class="row navbar card d-flex flex-row justify-content-start">
 			{foreach from=$line item=bit name=bit}
 				{foreach from=$bit item=tool name=tool}
@@ -151,7 +148,8 @@
 			</form>
 			{autocomplete element='#tool_icon' type='icon'}
 		</div>
-		<label for="full-list-c">{tr}Custom Tools{/tr}</label><a href="#" id="toolbar_add_custom">{icon name="add" ititle=":{tr}Add a new custom tool{/tr}" iclass="tips"}
+		<label for="full-list-c">{tr}Custom Tools{/tr}</label>
+		<a href="#" id="toolbar_add_custom">{icon name="add" ititle=":{tr}Add a new custom tool{/tr}" iclass="tips"}</a>
 		<ul id="full-list-c" class="full">
 		{foreach from=$display_c item=tool}
 			<li class="{$qtelement[$tool].class}">{$qtelement[$tool].html}</li>
