@@ -203,7 +203,11 @@ class Tracker_Field_TextArea extends Tracker_Field_Text
 		if ($this->getConfiguration('isMultilingual') == 'y') {
 			if (! empty($value)) {
 				$decoded = json_decode($value, true);
-				$value = implode("\n", $decoded);
+				if (is_array($decoded)) {
+					$value = implode("\n", $decoded);
+				} else {
+					$decoded = [];
+				}
 			} else {
 				$decoded = [];
 			}
