@@ -256,7 +256,6 @@ function wikiplugin_mediaplayer($data, $params)
 				$headerlib = TikiLib::lib('header');
 				$headerlib->add_jsfile('vendor/npm-asset/pdfjs-dist/build/pdf.js');
 
-				$fileSrc = $_REQUEST['fileSrc'];
 				$url = TikiLib::lib('access')->absoluteUrl($params['src']);
 				$smarty->assign('url', $url);
 				return $smarty->fetch('wiki-plugins/wikiplugin_mediaplayer_pdfjs.tpl');
