@@ -312,7 +312,7 @@ if (found) {
 	// check if native native HTML5 video object is requested
 
 	if ($params['style'] == 'native') {
-		if ($params['mediatype'] == 'audio') {
+		if (! empty($params['mediatype']) && $params['mediatype'] == 'audio') {
 			$mediatype = 'audio';
 		} else {
 			$mediatype = 'video';
