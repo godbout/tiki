@@ -59,7 +59,7 @@ class Services_OAuthServer_Controller
 		$response_code = null;
 		$validation_errors = $repo->validate($client);
 
-		if($client->getIdentifier()) {
+		if($client->getId()) {
 			if ($repo->exists($client)) {
 				if ($params['delete'] === '1') {
 					$repo->delete($client);

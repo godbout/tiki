@@ -7,8 +7,8 @@
 	<form action="{$client_modify_url}" method="POST" class="js-oauth-client">
 		<div class="row">
 			<input type="hidden" 
-				name="identifier"
-				value="{$entity->getIdentifier()}"
+				name="id"
+				value="{$entity->getId()}"
 				/>
 
 			<div class="col-sm-12">

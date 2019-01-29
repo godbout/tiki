@@ -16,14 +16,14 @@ class ClientEntity implements ClientEntityInterface
 	public function __construct($data=array())
 	{
 		$data = array_merge([
-			'identifier'    => 0,
+			'id'    => 0,
 			'name'          => '',
 			'client_id'     => '',
 			'client_secret' => '',
 			'redirect_uri'  => '',
 		], $data);
 
-		$this->setIdentifier($data['identifier']);
+		$this->setId($data['id']);
 		$this->setName($data['name']);
 		$this->setClientId($data['client_id']);
 		$this->setClientSecret($data['client_secret']);
@@ -35,14 +35,23 @@ class ClientEntity implements ClientEntityInterface
 		return new self($data);
 	}
 
-	public function setIdentifier($identifier)
+	public function setId($id)
 	{
-		$this->identifier = (int) $identifier;
+		$this->id = (int) $id;
 		return $this;
+	}
+	
+	public function getId(){
+		return $this->id;
+	}
+
+	public function setIdentifier($client_id)
+	{
+		return $this->setClientId($client_id);
 	}
 
 	public function getIdentifier(){
-		return $this->identifier;
+		return $this->getClientId();
 	}
 
 	public function setName($name)
@@ -89,7 +98,7 @@ class ClientEntity implements ClientEntityInterface
 	public function toArray()
 	{
 		return array(
-			'identifier'    => $this->getIdentifier(),
+			'id'            => $this->getId(),
 			'name'          => $this->getName(),
 			'client_id'     => $this->getClientId(),
 			'client_secret' => $this->getClientSecret(),

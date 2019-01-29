@@ -4078,12 +4078,12 @@ CREATE TABLE `tiki_scheduler_run` (
 
 DROP TABLE IF EXISTS `tiki_oauthserver_clients`;
 CREATE TABLE `tiki_oauthserver_clients` (
-    `identifier` INT(14) NOT NULL AUTO_INCREMENT,
+    `id` INT(14) NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(128) NOT NULL DEFAULT '',
     `client_id` VARCHAR(128) UNIQUE NOT NULL DEFAULT '',
     `client_secret` VARCHAR(255) NOT NULL DEFAULT '',
     `redirect_uri` VARCHAR(255) NOT NULL DEFAULT '',
-    PRIMARY KEY (`identifier`)
+    PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1;
 
 SET FOREIGN_KEY_CHECKS = 1;

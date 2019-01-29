@@ -44,7 +44,7 @@ class ClientRepository implements ClientRepositoryInterface
 			throw new Exception(tra('Cannot save invalid client'));
 		}
 
-		$sql = 'UPDATE `%s` SET name=?, client_id=?, client_secret=?, redirect_uri=? WHERE identifier=?';
+		$sql = 'UPDATE `%s` SET name=?, client_id=?, client_secret=?, redirect_uri=? WHERE id=?';
 		$sql = sprintf($sql, self::TABLE);
 
 		$query = $this->database->query($sql, [
@@ -52,7 +52,7 @@ class ClientRepository implements ClientRepositoryInterface
 			$entity->getClientId(),
 			$entity->getClientSecret(),
 			$entity->getRedirectUri(),
-			$entity->getIdentifier()
+			$entity->getId()
 		]);
 
 		return $query;
@@ -74,15 +74,15 @@ class ClientRepository implements ClientRepositoryInterface
 			$entity->getRedirectUri()
 		]);
 
-		$identifier = (int) $this->database->lastInsertId();
-		$entity->setIdentifier($identifier);
+		$id = (int) $this->database->lastInsertId();
+		$entity->setId($id);
 
 		return $query;
 	}
 
 	public function save($entity)
 	{
-		if($entity->getIdentifier()) {
+		if($entity->getId()) {
 			return $entity->update();
 		}
 		return $entity->create();
@@ -93,9 +93,9 @@ class ClientRepository implements ClientRepositoryInterface
 		$params = [];
 		$sql = sprintf('DELETE FROM `%s` WHERE ', self::TABLE);
 
-		if($entity->getIdentifier()) {
-			$sql .= 'identifier=?';
-			$params[] = $entity->getIdentifier();
+		if($entity->getId()) {
+			$sql .= 'id=?';
+			$params[] = $entity->getId();
 		}
 		elseif ($entity->getClientId()) {
 			$sql .= 'client_id=?';
@@ -115,9 +115,9 @@ class ClientRepository implements ClientRepositoryInterface
 		$params = [];
 		$sql = sprintf('SELECT COUNT(1) AS count FROM `%s` WHERE ', self::TABLE);
 
-		if($entity->getIdentifier()) {
-			$sql .= 'identifier=?';
-			$params[] = $entity->getIdentifier();
+		if($entity->getId()) {
+			$sql .= 'id=?';
+			$params[] = $entity->getId();
 		}
 		elseif ($entity->getClientId()) {
 			$sql .= 'client_id=?';
