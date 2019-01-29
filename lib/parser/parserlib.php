@@ -1934,7 +1934,7 @@ class ParserLib extends TikiDb_Bridge
 								}
 							}
 
-							if ($approval['user'] != null) {
+							if (! empty($approval['user'])) {
 								if ($prefs['user_show_realnames'] == 'y') {
 									$value = TikiLib::lib('user')->clean_user($approval['user']);
 									break;
@@ -2044,7 +2044,7 @@ class ParserLib extends TikiDb_Bridge
 								}
 							}
 
-							if ($approval['user'] != null) {
+							if (! empty($approval['user'])) {
 								if ($prefs['user_show_realnames'] == 'y') {
 									$value = TikiLib::lib('user')->clean_user($approval['user']);
 									break;
