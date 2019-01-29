@@ -208,7 +208,7 @@ class Permissions
 			$permissions = $userlib->get_group_permissions($group);
 			foreach ($allPermissionGroup['data'] as $permission) {
 				if (in_array($permission['permName'], $permissions)) {
-					if (! in_array($group, $globalPermissions[$permission['permName']]['global'])) {
+					if (! empty($globalPermissions[$permission['permName']]['global']) && ! in_array($group, $globalPermissions[$permission['permName']]['global'])) {
 						$globalPermissions[$permission['permName']]['global'][] = $group;
 					}
 				}
