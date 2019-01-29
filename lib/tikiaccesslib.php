@@ -200,7 +200,7 @@ class TikiAccessLib extends TikiLib
 				$permission = $permission_name;
 			}
 			$this->display_error('', tra("You do not have the permission that is needed to use this feature:") . " " . $permission, '403', false);
-			if (empty($GLOBALS['user'])) {
+			if (empty($GLOBALS['user']) && empty($_SESSION['loginfrom'])) {
 				$_SESSION['loginfrom'] = $_SERVER['REQUEST_URI'];
 			}
 		}
@@ -757,7 +757,9 @@ class TikiAccessLib extends TikiLib
 						empty($user) &&
 						($prefs['permission_denied_login_box'] == 'y' || ! empty($prefs['permission_denied_url']))
 			) {
-				$_SESSION['loginfrom'] = $_SERVER['REQUEST_URI'];
+				if (empty($_SESSION['loginfrom'])) {
+					$_SESSION['loginfrom'] = $_SERVER['REQUEST_URI'];
+				}
 				if ($prefs['login_autologin'] == 'y' && $prefs['login_autologin_redirectlogin'] == 'y' && ! empty($prefs['login_autologin_redirectlogin_url'])) {
 					$this->redirect($prefs['login_autologin_redirectlogin_url']);
 				}

@@ -22,7 +22,7 @@
 		{if $propname eq 'created' or $propname eq 'lastModif' or $propname eq 'lastDownload'}
 			{assign var=propval value=$propval|tiki_long_date}
 		{elseif $propname eq 'last_user' or $propname eq 'author' or $propname eq 'creator'}
-			{assign var=propval value=$propval|username}
+			{assign var=propval value=$propval|username|replace:'&amp;':'&'}
 		{elseif $propname eq 'size'}
 			{assign var=propval value=$propval|kbsize:true}
 		{elseif $propname eq 'description'}

@@ -118,7 +118,7 @@ if (jqueryTiki.no_cookie) {
 				{if empty($module_params.menu_id)}
 					<div class="dropdown-menu dropdown-menu-right">
 						<a class="dropdown-item" href="tiki-user_information.php" title="{tr}My Account{/tr}">
-							{if isset($module_params.show_user_name) && $module_params.show_user_name eq 'y'}{tr}My Account{/tr}{else}{tr}{$user|username|escape:"html"}{/tr}{/if}
+							{if isset($module_params.show_user_name) && $module_params.show_user_name eq 'y'}{tr}My Account{/tr}{else}{tr}{$user|username|escape|replace:'&amp;':'&'}{/tr}{/if}
 						</a>
 						<a class="dropdown-item" href="tiki-logout.php" title="{tr}Log out{/tr}">
 							{tr}Log out{/tr}

@@ -78,17 +78,15 @@ function wikiplugin_sign($data, $params, $offset)
 	$tip = $smarty->fetch('wiki-plugins/wikiplugin_sign.tpl');
 
 	$smarty->loadPlugin('smarty_function_icon');
-	$icon = smarty_function_icon(['name' => 'pencil', 'title' => '', 'iclass' => 'wp-sign-icon'], $smarty->getEmptyInternalTemplate());
+	$icon = smarty_function_icon(['name' => 'pencil', 'title' => '', 'iclass' => 'sign-icon'], $smarty->getEmptyInternalTemplate());
 
 	TikiLib::lib('header')-> add_jq_onready(
-		'
-	$(".wp-sign-icon").mouseenter(function () {
-		$(this).next(".wp-sign").fadeIn("fast");
-	}).mouseleave(function () {
-		var $this = $(this);
-		setTimeout(function () {$this.next(".wp-sign").fadeOut();}, 1000);
-	});'
+		'$(function () {
+			$("[data-toggle=tooltip]").tooltip({
+				delay: { "show": 0, "hide": 1000 }
+			})
+		});'
 	);
 
-	return $icon . $tip;
+	return "<span class='sign' data-animation='true' data-toggle='tooltip' data-html='true' data-placement='auto' title='$tip'>$icon</span>";
 }

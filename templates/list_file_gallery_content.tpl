@@ -471,7 +471,7 @@
 							{if $over_infos eq ''}
 								{icon name='minus' class='tips' title=":{tr}No information{/tr}"}
 							{else}
-								<a class="fgalname tips left" href="#" onclick="return false;" title="{tr}Information{/tr}" {popup fullhtml="1" text=$over_infos left=true} style="cursor:help">
+								<a class="fgalname tips left" href="#" onclick="return false;" title="{tr}Information{/tr}" {popup fullhtml="1" text=$over_infos|replace:'&amp;':'&' left=true} style="cursor:help">
 									{icon name='information' class='' title=''}
 								</a>
 							{/if}

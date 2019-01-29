@@ -6361,33 +6361,15 @@ div.cvsup {
   color: #212529; }
 
 .webmail_item {
-  border: 1px solid #ccc; }
+  font-size: 0.8rem; }
 
 .webmail_list .odd {
   background: rgba(0, 0, 0, 0.05); }
 
-.webmail_list .button {
-  background: #fcfcfc;
-  border: 1px solid #ccc; }
-
-.webmail_list .webmail_read {
-  background: #029acf; }
-
-.webmail_list .webmail_replied {
-  background: #469408; }
-
-.webmail_list .webmail_taken {
-  border: #9b479f;
-  color: #9b479f; }
-
-.webmail_message {
-  background: #fcfcfc; }
-
-.webmail_message_headers {
-  background: #fcfcfc; }
-
-.webmail_message_headers th {
-  background: transparent; }
+.webmail_list .btn {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.7rem;
+  line-height: 1.3; }
 
 .tiki_sheet table td {
   border: 1px solid #ccc; }
@@ -6423,9 +6405,24 @@ div.cvsup {
   background: #ccc;
   color: #212529; }
 
-.textarea-toolbar > div {
+.textarea-toolbar > div, .textarea-toolbar > ul {
   background-color: #ddd;
   border: outset 1px #ddd; }
+
+a.toolbar, li.toolbar {
+  /* each tool button */
+  border: none;
+  background: transparent;
+  color: #212529;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); }
+
+a.toolbar:hover, li.toolbar:hover {
+  color: #5a6570;
+  text-shadow: -1px -1px 4px rgba(0, 0, 0, 0.2); }
+
+a.toolbar:active, li.toolbar:active {
+  color: #d9831f;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
 
 #intertrans-indicator {
   background-color: #469408;
