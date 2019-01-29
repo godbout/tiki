@@ -255,7 +255,7 @@ function wikiplugin_pdf_info()
 function wikiplugin_pdf($data, $params)
 {
 	//return if not printing PDF
-	if(strstr($_GET['display'],'pdf')=='') {
+	if(! empty($_GET['display']) && strstr($_GET['display'],'pdf')=='') {
 		return;
 	}
 	//included globals to check mpdf selection as pdf generation engine
