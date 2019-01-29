@@ -271,6 +271,9 @@ function wikiplugin_trackeritemfield($data, $params)
 				return $dataelse;
 			} else {
 				$field['value'] = $val;
+				if (empty($info)) {
+					$info = [];
+				}
 				$handler = $trklib->get_field_handler($field, $info);	// gets the handler to blend back the value into the definitions array
 				$out = $handler->renderOutput(['showlinks' => 'n']);
 
