@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'InterstateMono';
+  src: url('../fonts/InterstateMono.eot?#iefix') format('embedded-opentype'),  url('../fonts/InterstateMono.woff') format('woff'), url('../fonts/InterstateMono.ttf')  format('truetype'), url('../fonts/InterstateMono.svg#InterstateMono') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'InterstatePlus-BlackCondensed';
+  src: url('../fonts/InterstatePlus-BlackCondensed.eot?#iefix') format('embedded-opentype'),  url('../fonts/InterstatePlus-BlackCondensed.otf')  format('opentype'),
+	     url('../fonts/InterstatePlus-BlackCondensed.woff') format('woff'), url('../fonts/InterstatePlus-BlackCondensed.ttf')  format('truetype'), url('../fonts/InterstatePlus-BlackCondensed.svg#InterstatePlus-BlackCondensed') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Interstate-BoldCondensed';
+  src: url('../fonts/Interstate-BoldCondensed.eot?#iefix') format('embedded-opentype'),  url('../fonts/Interstate-BoldCondensed.otf')  format('opentype'),
+	     url('../fonts/Interstate-BoldCondensed.woff') format('woff'), url('../fonts/Interstate-BoldCondensed.ttf')  format('truetype'), url('../fonts/Interstate-BoldCondensed.svg#Interstate-BoldCondensed') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700);
+
+$font_0: 'InterstateMono';
+$font_1: 'InterstatePlus-BlackCondensed';
+$font_2: 'Interstate-BoldCondensed';
+$font_3:  sans-serif;
+$font_4: 'Open Sans Condensed';
