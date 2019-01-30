@@ -341,7 +341,7 @@ foreach ($categories as $category) {
 		$data = '<a href="tiki-admin_categories.php?parentId='
 			. $category['parentId']
 			. '&amp;categId='
-			. $category['categId'] . '">'
+			. $category['categId'] . '&cookietab=1">'
 			. smarty_function_icon(
 				[
 					'name' => 'edit',

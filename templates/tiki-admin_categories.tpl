@@ -22,7 +22,8 @@
 {$tree}
 
 {tabset}
-	{tab name="{tr}Create/Edit category{/tr}"}
+	{if empty($categId)}{$editLabel = "{tr}Create category{/tr}"}{else}{$editLabel = "{tr}Edit category{/tr}"}{/if}
+	{tab name=$editLabel}
 		{if $categId > 0}
 			<h2>{tr}Edit this category:{/tr} <b>{$categoryName|escape}</b> </h2>
 			{button href="tiki-admin_categories.php?parentId=$parentId#editcreate" _text="{tr}Create New{/tr}" _title="{tr}Create New{/tr}"}
@@ -193,9 +194,10 @@ potato,,vegetable
 						</label>
 						<div class="col-sm-6 input-group">
 							<select name="toId" id="toId" class="form-control">
+								<option>{tr}Choose destination category{/tr}</option>
 								{foreach $categories as $category}
-									{if $category.name !== $categ_name}
-										<option value="{$category.categId}" {if $category.categId eq $parentId}selected="selected"{/if}>
+									{if $category.categId neq $parentId}
+										<option value="{$category.categId}">
 											{$category.categpath|escape}
 										</option>
 									{/if}
@@ -218,9 +220,10 @@ potato,,vegetable
 						</label>
 						<div class="col-sm-6 input-group">
 							<select name="to" class="form-control">
+								<option>{tr}Choose destination category{/tr}</option>
 								{foreach $categories as $category}
-									{if $category.name !== $categ_name}
-										<option value="{$category.categId}" {if $category.categId eq $parentId}selected="selected"{/if}>
+									{if $category.categId neq $parentId}
+										<option value="{$category.categId}">
 											{$category.categpath|escape}
 										</option>
 									{/if}
