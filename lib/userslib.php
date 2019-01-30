@@ -3148,11 +3148,11 @@ class UsersLib extends TikiLib
 		$zoom = $this->get_user_preference($auser, 'zoom');
 
 		if (! ($lat == 0 && $lon == 0)) {
-			$class .= " geolocated";
-			$extra .= " data-geo-lat='$lat' data-geo-lon='$lon'";
+			$class .= ' geolocated';
+			$extra .= ' data-geo-lat="' . $lat . '" data-geo-lon="' . $lon . '"';
 
 			if ($zoom) {
-				$extra .= " data-geo-zoom='$zoom'";
+				$extra .= ' data-geo-zoom="' . $zoom . '"';
 			}
 		}
 

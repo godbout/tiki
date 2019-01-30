@@ -8,10 +8,11 @@
 			{button href="tiki-list_posts.php" _type="link" class="btn btn-link" _icon_name="list" _text="{tr}List Posts{/tr}"}
 		{/if}
 	{/if}
-	{if $listpages or ($find ne '')}
-		{include file='find.tpl'}
-	{/if}
 </div>
+
+{if $listpages or ($find ne '')}
+	{include file='find.tpl'}
+{/if}
 
 <div class="{if $js}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
 	<table class="table table-striped normal">

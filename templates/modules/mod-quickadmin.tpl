@@ -2,13 +2,13 @@
 
 {tikimodule error=$module_params.error title=$tpl_module_title name="quickadmin" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
 	{if $tiki_p_admin == "y"}
-		<div id="quickadmin" class="btn-group">
-			<div class="btn-group">
+		<div id="quickadmin" class="nav">
+			<div class="nav-item prefs-history-dropdown">
 				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-				<a class="btn dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-display="dynamic" data-flip="true" href="#" role="button">
 					{icon name="history"}
 				</a>
-				<div class="dropdown-menu" role="menu">
+				<div class="dropdown-menu dropdown-menu-right" role="menu">
 					<h6 class="dropdown-header">
 						{tr}Recent Preferences{/tr}
 					</h6>
@@ -21,12 +21,12 @@
 				</div>
 				{if ! $js}</li></ul>{/if}
 			</div>
-			<div class="btn-group">
+			<div class="nav-item quickadmin-dropdown">
 				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-				<a class="btn dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#">
+				<a class="nav-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-display="dynamic" href="#" role="button">
 					{icon name='cogs'}
 				</a>
-				<div class="dropdown-menu dropdown-menu-right">
+				<div class="dropdown-menu dropdown-menu-right" role="menu">
 					<h6 class="dropdown-header">
 						{tr}Quick Administration{/tr}
 					</h6>

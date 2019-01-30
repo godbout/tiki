@@ -6,7 +6,7 @@
 		{if $prefs.lang_available_translations_dropdown neq 'y' }
 			{* For all object types: First show the translate icon and on hover the language of the current object *}
 			{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-			<a href="#" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" title="{tr}Translation{/tr}">
+			<a href="#" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" title="{tr}Translations{/tr}">
 				{icon name="translate"}
 			</a>
 		{else}
@@ -27,8 +27,12 @@
 	{if empty($trads[0].lang)}
 		<div class="dropdown-menu dropdown-menu-right" role="menu">
 			<h6 class="dropdown-header">
-				{tr}No language assigned{/tr}
+				{tr}Translations{/tr}
 			</h6>
+			<div role="separator" class="dropdown-divider"></div>
+			<div class="dropdown-item">
+				<em>{tr}No language assigned{/tr}</em>
+			</div>
 			<div role="separator" class="dropdown-divider"></div>
 			{if $object_type eq 'wiki page' and ($tiki_p_edit eq 'y' or (!$user and $prefs.wiki_encourage_contribution eq 'y')) and !$lock}
 				<a class="dropdown-item" href="tiki-edit_translation.php?page={$page|escape}">
@@ -43,6 +47,10 @@
 		</div>
 	{else}
 		<div class="dropdown-menu dropdown-menu-right" role="menu">
+			<h6 class="dropdown-header">
+				{tr}Translations{/tr}
+			</h6>
+			<div role="separator" class="dropdown-divider"></div>
 			{* First the language of the object *}
 			{if $object_type eq 'wiki page'}
 				<a href="tiki-index.php?page={$trads[0].objName|escape:url}&amp;no_bl=y" class="dropdown-item tips selected" title="{tr}Current language{/tr}: {$trads[0].objName}">

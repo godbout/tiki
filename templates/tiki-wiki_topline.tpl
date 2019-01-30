@@ -62,7 +62,7 @@
 				{if $prefs.feature_backlinks eq 'y' and $backlinks|default:null and $tiki_p_view_backlink eq 'y'}
 					<div class="btn-group backlinks">
 						{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-						<a href="#" role="button" data-toggle="dropdown" data-hover="dropdown" class="btn btn-info btn-sm dropdown-toggle">
+						<a href="#" role="button" data-toggle="dropdown" data-hover="dropdown" class="btn btn-info btn-sm dropdown-toggle" title="{tr}Backlinks{/tr}">
 							{icon name="backlink"}
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" role="menu">
@@ -85,7 +85,7 @@
 				{if $structure eq 'y' or ( $structure eq 'n' and count($showstructs) neq 0 )}
 					<div class="btn-group structures">
 						{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-						<a href="#" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+						<a href="#" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" title="{tr}Structures{/tr}">
 							{icon name="structure"}
 						</a>
 						<div class="dropdown-menu dropdown-menu-right" role="menu">

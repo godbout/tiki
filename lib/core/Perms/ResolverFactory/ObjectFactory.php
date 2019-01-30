@@ -145,8 +145,10 @@ class Perms_ResolverFactory_ObjectFactory implements Perms_ResolverFactory
 			$object = $row['objectId'];
 			$group = $row['groupName'];
 			$perm = $this->sanitize($row['permName']);
-			$hash = $hashes[$object];
-			$found[] = $objects[$object];
+			$hash = (! empty($hashes[$object]) ? $hashes[$object] : ''); // TODO: maybe better: if empty($hashes[$object]) ==> continue;
+			if (! empty($objects[$object])) {
+				$found[] = $objects[$object];
+			}
 
 			if (! isset($this->known[$hash][$group])) {
 				$this->known[$hash][$group] = [];
