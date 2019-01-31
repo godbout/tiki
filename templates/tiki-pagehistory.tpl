@@ -208,7 +208,7 @@
 					{/if}
 					{if $prefs.javascript_enabled eq "y"}
 						<span class="input-group-append">
-							{button _text="{tr}Advanced{/tr}" _id="toggle_diffs" _ajax="n" _class="btn btn-secondary ml-3"}
+							{button _text="{tr}Advanced{/tr}" _id="toggle_diffs" _ajax="n" _class="btn btn-secondary"}
 						</span>
 						{jq}
 	$("form#pagehistory")
