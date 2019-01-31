@@ -6656,7 +6656,7 @@ div.drillshow {
 .chosen-container .chosen-results li.active-result {
   color: #55595c;
   background-color: #f7f7f9; }
-  .chosen-container .chosen-results li.active-result.highlighted {
+  .chosen-container .chosen-results li.active-result.result-selected, .chosen-container .chosen-results li.active-result.highlighted {
     background-color: #1a1a1a;
     color: white; }
 

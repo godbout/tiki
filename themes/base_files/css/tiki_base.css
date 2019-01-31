@@ -625,7 +625,7 @@ div.drillshow {
 .chosen-container .chosen-results li.active-result {
   color: #495057;
   background-color: #fff; }
-  .chosen-container .chosen-results li.active-result.highlighted {
+  .chosen-container .chosen-results li.active-result.result-selected, .chosen-container .chosen-results li.active-result.highlighted {
     background-color: #007bff;
     color: white; }
 
@@ -2126,7 +2126,7 @@ table.treetable tr.expanded span.indenter a {
   [class*="tracker-status"].highlighted:before {
     color: inherit !important; }
 
-.chosen-container .chosen-results li.result-selected.tracker-status-open:before, .chosen-container .chosen-results li.result-selected.tracker-status-o:before, .chosen-container .chosen-results li.result-selected.tracker-status-pending:before, .chosen-container .chosen-results li.result-selected.tracker-status-p:before, .chosen-container .chosen-results li.result-selected.tracker-status-closed:before, .chosen-container .chosen-results li.result-selected.tracker-status-c:before {
+.tiki .chosen-container .chosen-results li.result-selected:before {
   top: 0;
   width: auto;
   height: auto;
@@ -3117,7 +3117,7 @@ div.form-group label.error {
   background: #17a2b8; }
 
 .chosen-container .chosen-results li.active-result.text-muted.bg-info {
-  color: #fff; }
+  color: #fff !important; }
 
 .tiki .anythingSlider, .tiki .anythingWindow, .tiki .anythingBase, .tiki .anythingBase > .card {
   -webkit-box-sizing: content-box;

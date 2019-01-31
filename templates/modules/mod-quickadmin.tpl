@@ -2,7 +2,7 @@
 
 {tikimodule error=$module_params.error title=$tpl_module_title name="quickadmin" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
 	{if $tiki_p_admin == "y"}
-		<div id="quickadmin" class="nav">
+		<div id="quickadmin" class="nav justify-content-end flex-nowrap">
 			<div class="nav-item prefs-history-dropdown">
 				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-display="dynamic" data-flip="true" href="#" role="button">

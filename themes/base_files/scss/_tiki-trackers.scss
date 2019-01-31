@@ -86,19 +86,12 @@
 	}
 }
 
-.chosen-container .chosen-results li.result-selected {
-	&.tracker-status-open,
-	&.tracker-status-o,
-	&.tracker-status-pending,
-	&.tracker-status-p,
-	&.tracker-status-closed,
-	&.tracker-status-c {
-		&:before {
-			top: 0;
-			width: auto;
-			height: auto;
-			margin-left: 0;
-		}
+.tiki .chosen-container .chosen-results li.result-selected {
+	&:before {
+		top: 0;
+		width: auto;
+		height: auto;
+		margin-left: 0;
 	}
 }
 

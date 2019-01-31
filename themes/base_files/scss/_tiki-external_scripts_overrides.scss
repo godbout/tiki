@@ -48,7 +48,7 @@ div.form-group label.error {
 }
 
 .chosen-container .chosen-results li.active-result.text-muted.bg-info {
-  color: $chosen-text-muted-bg-info;
+  color: $chosen-text-muted-bg-info !important;
 }
 
 // AnythingSlider (wikiplugin_slider) compatibility

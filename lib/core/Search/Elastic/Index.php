@@ -340,7 +340,11 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 						$queryPart['query']['dis_max']['queries'] = [
 							$queryPart['query']
 						];
-						unset($queryPart['query']['match']);
+						foreach ($queryPart['query'] as $key => $_) {
+							if ($key != 'dis_max') {
+								unset($queryPart['query'][$key]);
+							}
+						}
 					}
 					$queryPart['query']['dis_max']['queries'][] = [
 						'bool' => [

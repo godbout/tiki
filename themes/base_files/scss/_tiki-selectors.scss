@@ -1046,7 +1046,7 @@ div.drillshow {
 	color: $chosen-active-result;
 	background-color: $input-bg;
 
-	&.highlighted {
+	&.result-selected, &.highlighted {
 		background-color: $link-color;
 		color: white;
 	}
