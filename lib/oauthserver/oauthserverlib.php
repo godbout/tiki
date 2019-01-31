@@ -22,6 +22,12 @@ class OAuthServerLib extends TikiLib
 		return new ClientRepository($database);
 	}
 
+	public function getAccessTokenRepository()
+	{
+		$database = TikiLib::lib('db');
+		return new AccessTokenRepository($database);
+	}
+
 	public function getEncryptionKey()
 	{
 		return file_get_contents(TIKI_PATH . '/db/cert/oauthserver-encryption.key');

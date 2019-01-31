@@ -1,5 +1,6 @@
 <?php
-require_once 'lib/auth/tokens.php';
+require_once TIKI_PATH . '/lib/auth/tokens.php';
+include dirname(__FILE__) . '/entities/AccessTokenEntity.php';
 include dirname(dirname(__FILE__)) . '/entities/AccessTokenEntity.php';
 
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
@@ -8,9 +9,6 @@ use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 
 class AccessTokenRepository implements AccessTokenRepositoryInterface
 {
-	/**
-	 * {@inheritdoc}
-	 */
 	public function persistNewAccessToken(AccessTokenEntityInterface $accessTokenEntity)
 	{
 		$lib = new AuthTokens(TikiDb::get(), array());
@@ -30,26 +28,47 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
 		$accessTokenEntity->setIdentifier($tokenIdentifier);
 		return $accessTokenEntity;
 	}
-	/**
-	 * {@inheritdoc}
-	 */
+
 	public function revokeAccessToken($tokenId)
 	{
-		$lib = new AuthTokens();
+		$lib = new AuthTokens(TikiDb::get(), array());
 		$lib->deleteToken($tokenId);
 		return $this;
 	}
-	/**
-	 * {@inheritdoc}
-	 */
+
 	public function isAccessTokenRevoked($tokenId)
 	{
 		return false; // Access token hasn't been revoked
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
+	public function get($token)
+	{
+		$lib = new AuthTokens(TikiDb::get(), array());
+		$client_repo = new ClientRepository(TikiDb::get());
+	
+		$token = $lib->getToken($token);
+		if(empty($token)) {
+			return null;
+		}
+
+		$parameters = json_decode($token['parameters'], true);
+		$client = $client_repo->get($parameters['client']);
+
+		if(empty($client)) {
+			return null;
+		}
+
+		$entity = new AccessTokenEntity();
+		$entity->setIdentifier($token['token']);
+		$entity->setExpiryDateTime(new \DateTime(
+			strtotime($token['token']) + intval($token['timeout'])
+		));
+		$entity->setUserIdentifier($token['userPrefix']);
+		$entity->setClient($client);
+
+		return $entity;
+	}
+
 	public function getNewToken(ClientEntityInterface $clientEntity, array $scopes, $userIdentifier = null)
 	{
 		$accessToken = new AccessTokenEntity();

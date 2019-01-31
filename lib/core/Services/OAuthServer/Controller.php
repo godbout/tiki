@@ -1,4 +1,5 @@
 <?php
+include TIKI_PATH . '/lib/auth/tokens.php';
 include TIKI_PATH . '/lib/oauthserver/helpers.php';
 include TIKI_PATH . '/lib/core/Services/OAuthServer/JsonResponse.php';
 
@@ -89,6 +90,57 @@ class Services_OAuthServer_Controller
 		}
 
 		$response = new JsonResponse($response_code, [], $response_content);
+		return Helpers::processPsr7Response($response);
+	}
+
+	public function action_check($request)
+	{
+		global $prefs;
+		$request = Helpers::tiki2Psr7Request($request);
+		$params = $request->getQueryParams();
+		$oauthserverlib = TikiLib::lib('oauthserver');
+
+		if ($request->getMethod() !== 'GET') {
+			$response = new JsonResponse(405, [], '');
+			return Helpers::processPsr7Response($response);
+		}
+
+		$tokenlib = AuthTokens::build($prefs);
+		$authorization = $request->getHeaderLine('Authorization') ?: '';
+		$authorization = preg_split('/  */', $authorization);
+
+		$valid = !empty($params['auth_token'])
+			&& count($authorization) === 2
+			&& strcasecmp($authorization[0], 'Basic') === 0
+			&& !empty($authorization = base64_decode($authorization[1]));
+
+		if(!$valid) {
+			$response = new JsonResponse(400, [], 'Missing content');
+			return Helpers::processPsr7Response($response);
+		}
+
+		list($client_id, $client_secret) = explode(':', $authorization);
+		$repo = $oauthserverlib->getClientRepository();
+		$client = $repo->get($client_id);
+
+		if(!$client || $client->getClientSecret() !== trim($client_secret)) {
+			$response = new JsonResponse(403, [], 'Invalid client');
+			return Helpers::processPsr7Response($response);
+		}
+
+		$repo = $oauthserverlib->getAccessTokenRepository();
+		$token = $repo->get($params['auth_token']);
+
+		$valid = !empty($token);
+		$valid = $valid
+			&& $token->getClient()->getIdentifier() == $client->getIdentifier();
+
+		if (!$valid) {
+			$response = new JsonResponse(403, [], 'Invalid token');
+			return Helpers::processPsr7Response($response);
+		}
+
+		$response = new JsonResponse(200, [], 'ok');
 		return Helpers::processPsr7Response($response);
 	}
 }
