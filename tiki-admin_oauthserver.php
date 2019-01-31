@@ -14,18 +14,18 @@ TikiLib::lib('header')->add_jsfile('lib/jquery_tiki/tiki-admin_oauthserver.js');
 $oauthserverlib = TikiLib::lib('oauthserver');
 
 $smarty->assign('client_list', array_merge(
-    $oauthserverlib->getClientRepository()->list(),
-    [ 
-        new ClientEntity([
-            'client_secret' => $oauthserverlib::generate_secret(64),
-            'redirect_uri' => TikiLib::lib('tiki')->tikiUrl('lib/oauthserver/html/redirect.html')
-        ])
-    ]
+	$oauthserverlib->getClientRepository()->list(),
+	[ 
+		new ClientEntity([
+			'client_secret' => $oauthserverlib::generate_secret(64),
+			'redirect_uri' => TikiLib::lib('tiki')->tikiUrl('lib/oauthserver/html/redirect.html')
+		])
+	]
 ));
 
 $smarty->assign('client_modify_url', TikiLib::lib('service')->getUrl([
-    'action' => 'client_modify',
-    'controller' => 'oauthserver',
+	'action' => 'client_modify',
+	'controller' => 'oauthserver',
 ]));
 
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');

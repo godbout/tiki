@@ -81,9 +81,9 @@ class OAuthServerLib extends TikiLib
 
 	public function generate_secret($length)
 	{
-        $random = \phpseclib\Crypt\Random::string(ceil($length / 2));
-        $random = bin2hex($random);
-        $random = substr($random, 0, $length);
-        return $random;
+		$random = \phpseclib\Crypt\Random::string(ceil($length / 2));
+		$random = bin2hex($random);
+		$random = substr($random, 0, $length);
+		return $random;
 	}
 }
