@@ -8332,3 +8332,8 @@ input[type="text"].chosen-focus-input {
     position: relative;
     flex: 1 1 auto;
     width: 1% !important; }
+
+.chosen-container .chosen-drop {
+  background-color: #fff; }
+  .chosen-container .chosen-drop div {
+    background-color: #fff; }

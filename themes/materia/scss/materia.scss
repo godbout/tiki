@@ -17,3 +17,9 @@
 @import "../../base_files/scss/_tiki-selectors.scss";
 @import "../../base_files/scss/_bs3-bs4-transition.scss";
 @import "../../base_files/scss/_external-scripts.scss";
+
+// overriding the default transparent color for jquery-ui chosen dropdowns
+.chosen-container .chosen-drop {
+    background-color: #fff;
+    div { background-color: #fff; }
+}

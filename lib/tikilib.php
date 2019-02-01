@@ -3935,26 +3935,22 @@ class TikiLib extends TikiDb_Bridge
 			return false;
 		}
 
-		$cond_query = '';
-		if (empty($query_cond) && empty($needed)) {
-			$query_cond = 'TRUE';
+		$where = $query_cond;
+		if (empty($where)) {
+			$where = '1';
 		}
-		$result = null;
 		if (is_null($bindvars)) {
 			$bindvars = [];
 		}
 		if (count($needed) > 0) {
+			$where .= ' AND (0';
 			foreach ($needed as $var => $def) {
-				if ($cond_query != '') {
-					$cond_query .= ' or ';
-				} elseif ($query_cond != '') {
-					$cond_query = ' and ';
-				}
-				$cond_query .= "`$field_name`=?";
+				$where .= " or `$field_name`=?";
 				$bindvars[] = $var;
 			}
+			$where .= ')';
 		}
-		$query = "select `$field_name`, `value` from `$table` where $query_cond $cond_query";
+		$query = "select `$field_name`, `value` from `$table` where $where";
 		$result = $this->fetchAll($query, $bindvars);
 
 		foreach ($result as $res) {

@@ -31,3 +31,9 @@ body {
 	background-image: linear-gradient(to bottom, #484e55, #3a3f44 60%, #313539);
 }
 body.fullscreen { background: $body-bg; }
+
+.chosen-container .chosen-results li.active-result {
+	&.result-selected, &.highlighted {
+		background-color: $primary;
+	}
+}
