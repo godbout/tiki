@@ -18,6 +18,7 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 			'add' => false,
 			'remove' => false,
 			'aggregate_fields' => false,
+			'method' => false,
 		];
 	}
 
@@ -30,6 +31,7 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 		$calc = $data->calc->text();
 		$add = $data->add->text();
 		$remove = $data->remove->text();
+		$method= $data->method->text();
 		$aggregateFields = $data->aggregate_fields->none();
 
 		if ($aggregateFields && $object_type != 'aggregate') {
@@ -62,7 +64,7 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 			}
 		}
 
-		if (empty($value) && empty($calc) && empty($add) && empty($remove)) {
+		if (empty($value) && empty($calc) && empty($add) && empty($remove) && empty($method)) {
 			throw new Search_Action_Exception(tr('tracker_item_modify action missing value, calc, add or remove parameter.'));
 		}
 
@@ -96,13 +98,18 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 
 	function requiresInput(JitFilter $data)
 	{
-		if (empty($data->value->text()) && empty($data->calc->text())) {
-			// return data for the call to fetch_item_field
+		if (empty($data->value->text()) && empty($data->calc->text()) && empty($data->add->text()) && empty($data->remove->text())) {
 
+			// return data for the call to fetch_item_field
 			$permName = $data->field->text();
 			$field = TikiLib::lib('trk')->get_field_by_perm_name($permName);
 
-			return ['fieldId' => $field['fieldId'], 'trackerId' => $field['trackerId']];
+			if (! $field) {
+				Feedback::error(tr('Field %0 not found on Action TrackerItemModify', $permName));
+				return [];
+			} else {
+				return ['fieldId' => $field['fieldId'], 'trackerId' => $field['trackerId']];
+			}
 		}
 	}
 
@@ -113,6 +120,7 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 		$calc = $data->calc->text();
 		$add = $data->add->text();
 		$remove = $data->remove->text();
+		$method = $data->method->text();
 
 		$trklib = TikiLib::lib('trk');
 
@@ -155,6 +163,28 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 		if (empty($add) && empty($remove)) {
 			$data = $handler->getFieldData($value);
 			$value = $data['value'];
+
+			switch ($method) {
+				case 'add':
+					$values = explode(',', $value);
+					$value = '';
+					foreach ($values as $val) {
+						$value .= $handler->addValue($val) . ',';
+					}
+					$values = explode(',', $value);
+					$value = implode(',', array_unique(array_filter($values)));
+					break;
+				case 'remove':
+					$values = explode(',', $value);
+					$value = '';
+					foreach ($values as $val) {
+						// FIXME only the last value gets removed
+						$value = $handler->removeValue($val) . ',';
+					}
+					$values = explode(',', $value);
+					$value = implode(',', array_unique(array_filter($values)));
+					break;
+			}
 		}
 
 		$utilities = new Services_Tracker_Utilities;

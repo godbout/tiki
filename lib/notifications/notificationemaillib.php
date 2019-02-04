@@ -705,7 +705,7 @@ function sendCategoryEmailNotification($values)
 			$nots = $tikilib->get_event_watches($event, $categoryId);
 		}
 
-		if ($prefs['user_category_watch_editor'] != "y") {
+		if (! empty($prefs['user_category_watch_editor']) && $prefs['user_category_watch_editor'] !== "y") {
 			for ($i = count($nots) - 1; $i >= 0; --$i) {
 				if ($nots[$i]['user'] == $user) {
 					unset($nots[$i]);

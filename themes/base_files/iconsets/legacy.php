@@ -517,6 +517,9 @@ function iconset_legacy()
 				'id' => 'delete',
 			],
 			//module in defaults
+			'modules' => [
+				'id' => 'module',
+			],
 			//money in defaults
 			'more' => [
 				'id' => 'resultset_down',

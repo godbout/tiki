@@ -3,7 +3,7 @@
 	<div class="mr-4">
 		<span class="fa-stack fa-lg" style="width: 100px;" title="Configuration Wizard">
 			<i class="fas fa-cog fa-stack-2x"></i>
-			<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+			<i class="fas fa-flip-horizontal fa-magic fa-stack-1x ml-4 mt-4"></i>
 		</span>
 	</div>
 	<div class="media-body">
@@ -29,18 +29,16 @@
 							{preference name=theme_custom_url}
 						</div>
 						{preference name=theme_option}
-						<div class="adminoptionbox theme_childcontainer legacy">
-							{preference name=style}
-							{preference name=style_option}
-							{preference name=style_admin}
-							{preference name=style_admin_option}
-							{preference name=site_layout_admin}
-						</div>
+
 						{preference name=site_layout}
 						{preference name=site_layout_per_object}
+
+						{preference name=theme_admin}
+						{preference name=theme_option_admin}
+						{preference name=site_layout_admin}
 					</div>
 				</div>
-<!--
+{*
 			<div style="position:relative;">
 				<div class="adminoptionbox">
 					{preference name=feature_fixed_width}
@@ -49,7 +47,7 @@
 					</div>
 				</div>
 			</div>
--->
+*}
 			<br>
 			<em>{tr}See also{/tr} <a href="tiki-admin.php?page=look&amp;alt=Look+%26+Feel" target="_blank">{tr}Look & Feel admin panel{/tr}</a></em>
 			</br></br>

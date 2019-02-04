@@ -404,6 +404,10 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 								// not done this time?
 								if (! isset($newItemsThereCreated[$row['itemId']])) {
 
+									if (! isset($row['created']) && ! empty($row['creation_date'])) {
+										$row['created'] = $row['creation_date'];	// convert from index to database field name
+									}
+
 									$item = Tracker_Item::fromInfo($row);
 
 									// FIXME $schema here doesn't know if it's a transaction type so this never executes

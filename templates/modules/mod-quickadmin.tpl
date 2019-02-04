@@ -94,7 +94,7 @@
 							{icon name="log"} {tr}Logs{/tr}
 						</a>
 						<a class="dropdown-item" href="tiki-admin_modules.php">
-							{icon name="admin_module"} {tr}Modules{/tr}
+							{icon name="modules"} {tr}Modules{/tr}
 						</a>
 					{if $prefs.feature_scheduler eq "y"}
 						<a class="dropdown-item" href="tiki-admin_schedulers.php">

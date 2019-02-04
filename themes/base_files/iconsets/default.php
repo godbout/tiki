@@ -152,7 +152,7 @@ function iconset_default()
 				'id' => 'tag',
 			],
 			'admin_module' => [
-				'id' => 'boxes',
+				'id' => 'shapes',
 			],
 			'admin_payment' => [
 				'id' => 'credit-card',
@@ -883,7 +883,10 @@ function iconset_default()
 				'prepend' => 'fab fa-'
 			],
 			'module' => [
-				'id' => 'cogs',
+				'id' => 'square',
+			],
+			'modules' => [
+				'id' => 'shapes',
 			],
 			'modx' => [
 				'id' => 'modx',

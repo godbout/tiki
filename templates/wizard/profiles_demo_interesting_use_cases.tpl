@@ -4,11 +4,11 @@
 	<div class="mr-4">
 		<span class="fa-stack fa-lg" style="width: 100px;" title="{tr}Configuration Profiles Wizard{/tr}" >
 			<i class="fas fa-cubes fa-stack-2x"></i>
-			<i class="fas fa-rotate-270 fa-magic fa-stack-2x ml-5"></i>
+			<i class="fas fa-flip-horizontal fa-magic fa-stack-1x ml-4 mt-4"></i>
 		</span>
 	</div>
 	<div class="media-box">
-		<h4 class="mt-0 mb-4">{tr}Each of these profiles create a working instance of some features, such as trackers and wiki pages customized for specific purposes, for example{/tr}.</h4>>
+		<h4 class="mt-0 mb-4">{tr}Each of these profiles create a working instance of some features, such as trackers and wiki pages customized for specific purposes, for example{/tr}.</h4>
 		{remarksbox type="warning" title="{tr}Warning{/tr}"}
 			<a target="tikihelp" class="tikihelp" style="float:right" title="{tr}Demo Profiles:{/tr}
 				{tr}They are initially intended for testing environments, so that, after you have played with the feature, you don't have to deal with removing the created objects, nor with restoring the potentially changed settings in your site{/tr}.

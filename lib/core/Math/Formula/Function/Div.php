@@ -18,7 +18,7 @@ class Math_Formula_Function_Div extends Math_Formula_Function
 		$out = array_shift($elements);
 
 		foreach ($elements as $element) {
-			if ($element) {
+			if ($element && is_numeric($out) && is_numeric($element)) {
 				$out /= $element;
 			} else {
 				Feedback::warning(tr('Divide by zero on "%0"', implode(',', $elements)));
