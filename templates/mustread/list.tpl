@@ -48,7 +48,7 @@
 				</td>
 				<td>
 					{if $list|count > 0}
-						<input class="btn btn-secondary" type="submit" value="{tr}Save{/tr}">
+						<input class="btn btn-primary" type="submit" value="{tr}Save{/tr}">
 					{/if}
 				</td>
 			</tr>

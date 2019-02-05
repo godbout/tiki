@@ -26,7 +26,7 @@
 		</div>
 		<div class="submit">
 			{ticket mode=confirm}
-			<button type="submit" class="btn btn-secondary" name="export">{tr}Export{/tr}</button>
+			<button type="submit" class="btn btn-primary" name="export">{tr}Export{/tr}</button>
 		</div>
 	</form>
 {/block}

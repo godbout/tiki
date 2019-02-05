@@ -29,7 +29,7 @@
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-9 offset-sm-3">
-				<input class="btn btn-secondary" type="submit" value="{tr}Create Index{/tr}"/>
+				<input class="btn btn-primary" type="submit" value="{tr}Create Index{/tr}"/>
 			</div>
 		</div>
 	</form>

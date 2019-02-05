@@ -302,7 +302,7 @@ if ($(this).val() != '') {
 			<div class="col-md-8 col-md-offset-4">
 				<input
 					type="submit"
-					class="btn btn-secondary"
+					class="btn btn-primary"
 					value="{tr}Save{/tr}"
 					name="edit"
 					onclick="checkTimeout()"

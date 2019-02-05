@@ -502,7 +502,7 @@
 							type="submit"
 							value="{tr}Create or Replace Word Index{/tr}"
 							name="uploadIndex"
-							class="btn btn-secondary btn-sm"
+							class="btn btn-primary btn-sm"
 							onclick="checkTimeout()"
 						>
 						{help desc="Text files with one word per line accepted.
@@ -512,7 +512,7 @@
 							type="submit"
 							value="{tr}Delete Temporary Index{/tr}"
 							name="deleteIndex"
-							class="btn btn-secondary btn-sm"
+							class="btn btn-danger btn-sm"
 							onclick="confirmSimple(event, '{tr}Delete temporary index?{/tr}')"
 						>
 						{help desc="It is recommended that you delete indexed passwords from your database after your done generating your password lists.
@@ -537,7 +537,7 @@
 								type="submit"
 								value="{tr}Save & Set as Default{/tr}"
 								name="saveblacklist"
-								class="btn btn-secondary btn-sm"
+								class="btn btn-primary btn-sm"
 								onclick="checkTimeout()"
 							>
 							<input

@@ -26,7 +26,7 @@
 			</select>
 		</div>
 		<div class="form-group submit">
-			<input type="submit" class="btn btn-secondary" value="{tr}Process Batch{/tr}">
+			<input type="submit" class="btn btn-primary" value="{tr}Process Batch{/tr}">
 		</div>
 	</form>
 {/block}

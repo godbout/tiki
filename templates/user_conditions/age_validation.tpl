@@ -23,8 +23,8 @@
 				</div>
 			</div>
 			<div class="text-center">
-				<input class="btn btn-primary btn-secondary" type="submit" name="accept" value="{tr}Validate your age and proceed to login{/tr}">
-				<input class="btn btn-primary btn-danger" type="submit" name="decline" value="{tr}Cancel login process{/tr}">
+				<input class="btn btn-secondary" type="submit" name="accept" value="{tr}Validate your age and proceed to login{/tr}">
+				<input class="btn btn-danger" type="submit" name="decline" value="{tr}Cancel login process{/tr}">
 				<input name="origin" value="{$origin|escape}" type="hidden">
 			</div>
 		</form>

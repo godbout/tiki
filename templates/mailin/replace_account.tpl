@@ -237,7 +237,7 @@
 			</div>
 		</div>
 		<div class="submit col-md-offset-3 col-md-9">
-			<input type="submit" name="new_acc" value="{if $accountId eq 0}{tr}Add Account{/tr}{else}{tr}Save{/tr}{/if}" class="btn btn-secondary">
+			<input type="submit" name="new_acc" value="{if $accountId eq 0}{tr}Add Account{/tr}{else}{tr}Save{/tr}{/if}" class="btn btn-primary">
 		</div>
 	</form>
 {/block}

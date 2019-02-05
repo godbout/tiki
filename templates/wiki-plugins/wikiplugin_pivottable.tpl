@@ -106,7 +106,7 @@
 <div id="container_{$pivottable.id}">
 	<div id="output_{$pivottable.id}"></div>
 	<div id="output_{$pivottable.id}_opControls" style="display:none">
-	<input id="save_{$pivottable.id}" type="button" value="{tr}Save Changes{/tr}" class="btn btn-secondary ui-button ui-corner-all ui-widget" /><input class="btn btn-secondary ui-button ui-corner-all ui-widget" id="restore_{$pivottable.id}" type="button" value="{tr}Cancel Edit{/tr}" /></div>
+	<input id="save_{$pivottable.id}" type="button" value="{tr}Save Changes{/tr}" class="btn btn-primary ui-button ui-corner-all ui-widget" /><input class="btn btn-secondary ui-button ui-corner-all ui-widget" id="restore_{$pivottable.id}" type="button" value="{tr}Cancel Edit{/tr}" /></div>
 	{if $pivottable.showControls}<div id="pivotControls_{$pivottable.id}" style="display:none;position:relative;"><input type="button" id="pivotEditBtn_{$pivottable.id}" value="{tr}Edit Pivot Table{/tr}" class="btn btn-secondary ui-button ui-corner-all ui-widget" /></div>{/if}
 	<img id="png_container_{$pivottable.id}" style="display:none"></img>
 </div>

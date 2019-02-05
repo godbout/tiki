@@ -47,7 +47,7 @@
 					{tr}Back{/tr}
 				</a>
 			{/if}
-			<input type="submit" class="btn btn-secondary" name="send" value="{tr}Send{/tr}">
+			<input type="submit" class="btn btn-primary" name="send" value="{tr}Send{/tr}">
 		</div>
 	</form>
 </div>

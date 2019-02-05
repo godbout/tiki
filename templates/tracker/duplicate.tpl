@@ -36,7 +36,7 @@
 		</div>
 		<div class="submit text-center">
 			<input type="hidden" name="confirm" value="1">
-			<input type="submit" class="btn btn-secondary" value="{tr}Duplicate{/tr}">
+			<input type="submit" class="btn btn-primary" value="{tr}Duplicate{/tr}">
 		</div>
 	</form>
 {/block}

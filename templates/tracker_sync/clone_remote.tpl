@@ -33,7 +33,7 @@
 					<a href="tiki-list_trackers.php" class="btn btn-link">{tr}Cancel{/tr}</a>
 				{/if}
 				{if $list}
-					<input type="submit" class="btn btn-secondary" value="{tr}Clone{/tr}">
+					<input type="submit" class="btn btn-primary" value="{tr}Clone{/tr}">
 				{else}
 					<input type="submit" class="btn btn-secondary" value="{tr}Search for trackers to clone{/tr}">
 				{/if}

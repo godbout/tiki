@@ -95,7 +95,7 @@
 		</ul>
 
 		<div class="submit text-center">
-			<input type="submit" class="btn btn-secondary" value="{tr}Save{/tr}"/>
+			<input type="submit" class="btn btn-primary" value="{tr}Save{/tr}"/>
 		</div>
 	</form>
 {/block}

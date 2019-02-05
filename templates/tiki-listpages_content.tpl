@@ -457,7 +457,7 @@
 					type="submit"
 					form="checkboxes_on"
 					formaction="{bootstrap_modal controller=wiki version=all}"
-					class="btn btn-secondary"
+					class="btn btn-primary"
 					onclick="confirmAjax(event)"
 				>
 					{tr}OK{/tr}

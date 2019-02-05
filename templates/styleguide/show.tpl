@@ -29,17 +29,17 @@
 			<div class="footer-ui">
 <!--
 				<button class="btn btn-danger apply-custom-css">Apply Custom CSS</button>
-				<button id="generate-var" class="btn btn-secondary generate-var" download="themecustomizer.less">
+				<button id="generate-var" class="btn btn-primary generate-var" download="themecustomizer.less">
 					Generate LESS
 				</button>
-				<button id="generate-css" class="btn btn-secondary generate-css" download="themecustomizer.css">
+				<button id="generate-css" class="btn btn-primary generate-css" download="themecustomizer.css">
 					Generate CSS
 				</button>
 -->
-				<button id="generate-custom-css" class="btn btn-secondary generate-custom-css">
+				<button id="generate-custom-css" class="btn btn-primary generate-custom-css">
 					Generate Custom CSS
 				</button>
-				<button id="generate-custom-less" class="btn btn-secondary generate-custom-less">
+				<button id="generate-custom-less" class="btn btn-primary generate-custom-less">
 					Generate Custom LESS
 				</button>
 				<label><input class="keep-changes" type="checkbox"><span>Keep changes after refresh</span></label>

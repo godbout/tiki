@@ -19,7 +19,7 @@
 		</ul>
 		<input type="hidden" name="mail_subject" value="{$mail_subject|escape}">
 		<input type="hidden" name="mail_mess" value="{$mail_mess|escape}">
-		<input type="submit" class="btn btn-secondary" name="mail_send{$ipluginmail}" value="{tr}Send Mail{/tr}">
+		<input type="submit" class="btn btn-primary" name="mail_send{$ipluginmail}" value="{tr}Send Mail{/tr}">
 	</form>
 	<form method="post">
 		<input type="submit" class="btn btn-primary" name="mail_cancel{$ipluginmail}" value="{tr}Cancel{/tr}">

@@ -48,7 +48,7 @@
 			<div class="form-group submit">
 				<input type="submit" class="btn btn-primary" value="{tr}Rebuild{/tr}">
 				{if $queue_count > 0}
-					<a class="btn btn-secondary" href="{service controller=search action=process_queue}">{tr}Process Queue{/tr} <span class="badge badge-secondary">{$queue_count|escape}</span></a>
+					<a class="btn btn-primary" href="{service controller=search action=process_queue}">{tr}Process Queue{/tr} <span class="badge badge-secondary">{$queue_count|escape}</span></a>
 				{/if}
 			</div>
 		</form>

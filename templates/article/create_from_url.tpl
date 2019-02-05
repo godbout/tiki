@@ -38,7 +38,7 @@
 		</div>
 
 		<div class="submit">
-			<input class="btn btn-secondary" type="submit" value="{tr}Create Article{/tr}">
+			<input class="btn btn-primary" type="submit" value="{tr}Create Article{/tr}">
 		</div>
 	</form>
 {/block}

@@ -45,7 +45,7 @@
 				{if $langIsWritable}
 					<input type="hidden" name="confirm" value="1">
 					<input type="hidden" name="language" value={$language}>
-					<input type="submit" class="btn btn-secondary" name="exportToLanguage" value="{tr}Write to language.php{/tr}">
+					<input type="submit" class="btn btn-primary" name="exportToLanguage" value="{tr}Write to language.php{/tr}">
 				{/if}
 			</div>
 		{/if}

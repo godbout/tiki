@@ -113,7 +113,7 @@
 					{/foreach}
 				</select>
 			</div>
-			<a id="addEventBtn" href="#" class="btn btn-secondary">Add a Scoring Event</a>
+			<a id="addEventBtn" href="#" class="btn btn-primary">Add a Scoring Event</a>
 		</div>
 	</fieldset>
 

@@ -67,7 +67,7 @@
 	</div>
 	<div class="submit">
 		<input type="submit" class="btn btn-primary" name="submit_and_edit" value="{tr}Add Field &amp; Edit Advanced Options{/tr}">
-		<input type="submit" class="btn btn-secondary" name="submit" value="{tr}Add Field{/tr}">
+		<input type="submit" class="btn btn-primary" name="submit" value="{tr}Add Field{/tr}">
 		<input type="hidden" name="trackerId" value="{$trackerId|escape}">
 		<input type="hidden" name="next" value="close">
 		<input type="hidden" name="modal" value="{$modal|escape}">

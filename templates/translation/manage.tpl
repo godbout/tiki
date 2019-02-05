@@ -37,7 +37,7 @@
 				<div class="submit">
 					<input type="hidden" name="type" value="{$type|escape}">
 					<input type="hidden" name="source" value="{$source|escape}">
-					<input type="submit" class="btn btn-secondary" value="{tr}Add{/tr}">
+					<input type="submit" class="btn btn-primary" value="{tr}Add{/tr}">
 				</div>
 			</form>
 		{else}

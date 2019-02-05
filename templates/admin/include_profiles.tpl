@@ -222,7 +222,7 @@
 						{/foreach}
 					</ul>
 					<div class="text-center submit input_submit_container">
-						<input type="submit" class="btn btn-secondary" name="export" value="{tr}Export{/tr}" />
+						<input type="submit" class="btn btn-primary" name="export" value="{tr}Export{/tr}" />
 					</div>
 				</fieldset>
 			</fieldset>
@@ -267,7 +267,7 @@
 				{preference name=profile_sources}
 				{preference name=profile_channels}
 				<div class="text-center submit">
-					<input type="submit" class="btn btn-secondary" name="config" value="{tr}Save{/tr}" onclick="checkTimeout()"/>
+					<input type="submit" class="btn btn-primary" name="config" value="{tr}Save{/tr}" onclick="checkTimeout()"/>
 				</div>
 			</form>
 		</fieldset>

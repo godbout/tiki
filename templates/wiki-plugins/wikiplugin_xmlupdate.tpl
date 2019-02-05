@@ -21,5 +21,5 @@
 		{/for}
 	</table>
 	<hr>
-	<input type="submit" class="btn btn-secondary btn-sm" name="update" value="{tr}Update{/tr}">
+	<input type="submit" class="btn btn-primary btn-sm" name="update" value="{tr}Update{/tr}">
 </form>

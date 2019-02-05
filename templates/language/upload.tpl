@@ -53,7 +53,7 @@
 		</div>
 		<div class="submit text-center">
 			<input type="hidden" name="confirm" value="1">
-			<input type="submit" class="btn btn-secondary" name="upload_language_file" value="{tr}Upload{/tr}">
+			<input type="submit" class="btn btn-primary" name="upload_language_file" value="{tr}Upload{/tr}">
 		</div>
 	</form>
 {/block}

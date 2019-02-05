@@ -342,7 +342,7 @@
 									type="submit"
 									form="checkform"
 									formaction="{bootstrap_modal controller=user}"
-									class="btn btn-secondary"
+									class="btn btn-primary"
 									onclick="confirmAjax(event)"
 								>
 									{tr}OK{/tr}
@@ -562,7 +562,7 @@
 								<input type="hidden" name="edituser" value="1">
 								<input
 									type="submit"
-									class="btn btn-secondary"
+									class="btn btn-primary"
 									name="save"
 									value="{tr}Save{/tr}"
 									onclick="confirmSimple(event, '{tr}Modify this user\'s data?{/tr}')"
@@ -570,7 +570,7 @@
 							{else}
 								<input
 									type="submit"
-									class="btn btn-secondary"
+									class="btn btn-primary"
 									name="newuser"
 									value="{tr}Add{/tr}"
 									onclick="confirmSimple(event, '{tr}Add this new user?{/tr}')"

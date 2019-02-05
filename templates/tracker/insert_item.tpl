@@ -35,7 +35,7 @@
 				<input type="hidden" name="trackerId" value="{$trackerId|escape}">
 				<input
 					type="submit"
-					class="btn btn-secondary"
+					class="btn btn-primary"
 					value="{tr}Create{/tr}"
 					onclick="checkTimeout()"
 				>

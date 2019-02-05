@@ -16,7 +16,7 @@
 		{foreach $filters as $key => $value}
 			<input type="hidden" name="filter~{$key|escape}" value="{$value|escape}">
 		{/foreach}
-		<input type="submit" class="btn btn-secondary" value="{tr}Export{/tr}">
+		<input type="submit" class="btn btn-primary" value="{tr}Export{/tr}">
 	</div>
 </form>
 {/block}

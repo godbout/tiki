@@ -23,7 +23,7 @@
 			{object_selector _simplename=group type=group _simpleclass="group-field" _placeholder="{tr}Group{/tr}"}
 		</div>
 		<div class="form-group row">
-			<button class="btn btn-secondary">{tr}Add all members{/tr}</button>
+			<button class="btn btn-primary">{tr}Add all members{/tr}</button>
 		</div>
 		<p class="lead">{tr}OR Select individuals...{/tr}</p>
 	</form>
@@ -34,7 +34,7 @@
 		</div>
 		{object_selector_multi _simplename=users type=user _threshold=-1 _class="user-selector" _separator=";" _placeholder="{tr}Name{/tr}"}
 		<div class="form-group row">
-			<button class="btn btn-secondary">{tr}Add selected members{/tr}</button>
+			<button class="btn btn-primary">{tr}Add selected members{/tr}</button>
 			<input id="selection-action" name="required_action" type="hidden" value="required">
 		</div>
 	</form>
