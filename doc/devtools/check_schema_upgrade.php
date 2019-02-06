@@ -232,7 +232,7 @@ class CheckSchemaUpgrade
 		$this->oldDb = $result;
 
 		if ($result === null) {
-			$this->printMessageError('Wrong value for db1, check the the right format bellow');
+			$this->printMessageError('Wrong value for db1, check the the right format below');
 			$this->usage();
 			throw new Exception('Wrong db1');
 		}
@@ -242,7 +242,7 @@ class CheckSchemaUpgrade
 		$this->newDb = $result;
 
 		if ($result === null) {
-			$this->printMessageError('Wrong value for db2, check the right format bellow');
+			$this->printMessageError('Wrong value for db2, check the right format below');
 			$this->usage();
 			throw new Exception('Wrong db2');
 		}
@@ -634,7 +634,7 @@ class CheckSchemaUpgrade
 			return;
 		}
 
-		$this->printMessageError("\n*** Issues found while validating database upgrade, see bellow ***\n");
+		$this->printMessageError("\n*** Issues found while validating database upgrade, see below ***\n");
 		$this->printMessageError('== Result of the db Analysis - missing statements ==');
 		echo $result . "\n";
 		$this->printMessageError('====================================================' . "\n");
