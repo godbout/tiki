@@ -3871,7 +3871,7 @@ div.tiki_plugin {
 
 @media (max-width: 575.98px) {
   .autotoc > .nav {
-    display: none !important; } }
+    position: static; } }
 /* end autotoc */
 .plugin-form-float {
   position: fixed;

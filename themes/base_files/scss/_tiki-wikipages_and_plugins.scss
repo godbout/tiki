@@ -378,7 +378,7 @@ div.tiki_plugin {
 }
 
 @include media-breakpoint-down(xs) {
-	.autotoc > .nav { display:none !important; }
+	.autotoc > .nav { position: static; }
 }
 
 /* end autotoc */

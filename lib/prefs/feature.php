@@ -1488,7 +1488,7 @@ function prefs_feature_list($partial = false)
 			'name' => tra('ShareThis buttons'),
 			'description' => tra('Enable sharing site content via ShareThis'),
 			'type' => 'flag',
-			'hint' => tra('Insert a ShareThis button from www.sharethis.com.'),
+			'hint' => tra('Insert a ShareThis button from [http://www.sharethis.com].'),
 			'default' => 'n',
 		],
 		'feature_categorypath' => [
@@ -2448,7 +2448,7 @@ function prefs_feature_list($partial = false)
 			'name' => tra('ShareThis buttons'),
 			'description' => tra('Enable sharing site content via ShareThis'),
 			'type' => 'flag',
-			'hint' => tra('Insert a ShareThis button from www.sharethis.com.'),
+			'hint' => tra('Insert a ShareThis button from [http://www.sharethis.com].'),
 			'default' => 'n',
 		],
 		'feature_wiki_mandatory_category' => [
