@@ -1,5 +1,5 @@
-{* $Id: $ *}
-{tikimodule error=$module_params.error title=$tpl_module_title name="quickadminbar" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
+{* $Id$ *}
+{tikimodule error=$module_params.error title=$tpl_module_title name="adminbar" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
 
 {if $tiki_p_admin == "y"} {$main_admin_icons = [
 "general" => [
