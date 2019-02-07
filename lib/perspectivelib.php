@@ -24,18 +24,48 @@ class PerspectiveLib
 	}
 
 	/**
+	 * @param $user
+	 * @return int
+	 */
+	function get_preferred_perspective($user)
+	{
+		$perspectiveId = null;
+
+		if(empty($user)) {
+			return $perspectiveId;
+		}
+	
+		$sql = "SELECT value FROM tiki_user_preferences WHERE prefName='perspective_preferred' AND user=?";
+		$perspectiveId = TikiDb::get()->getOne($sql, [$user]);
+
+		if(is_numeric($perspectiveId)) {
+			return (int) $perspectiveId;
+		}
+
+		return $perspectiveId;
+	}
+
+
+	/**
 	 * @param $prefs
 	 * @return int
 	 */
 	function get_current_perspective($prefs)
 	{
+		global $user;
+		$tikilib = TikiLib::lib('tiki');
+		$perspectiveId = $this->get_preferred_perspective($user);
+
 		if (isset($_REQUEST['perspectiveId'])) {
-			return (int) $_REQUEST['perspectiveId'];
+			$perspectiveId = (int) $_REQUEST['perspectiveId'];
 		} elseif (isset($_SESSION['current_perspective'])) {
-			return (int) $_SESSION['current_perspective'];
+			$perspectiveId = (int) $_SESSION['current_perspective'];
 		}
 
-		$tikilib = TikiLib::lib("tiki");
+		if($perspectiveId) {
+			return $perspectiveId;
+		}
+
 		if (method_exists($tikilib, "get_ip_address")) {
 			$ip = $tikilib->get_ip_address();
 		}
@@ -137,6 +167,20 @@ class PerspectiveLib
 		return $out;
 	}
 
+	function load_perspective_preferences()
+	{
+		global $prefs, $section;
+
+		if (! isset($section) || $section != 'admin') {
+			if ($persp = $this->get_current_perspective($prefs)) {
+				$perspectivePreferences = $this->get_preferences($persp);
+				$prefs = $perspectivePreferences + $prefs;
+			}
+		}
+
+		return $prefs;
+	}
+
 	/**
 	 * @param $perspectiveId
 	 * @return mixed
@@ -165,7 +209,9 @@ class PerspectiveLib
 	 */
 	function set_perspective($perspective, $by_area = false)
 	{
-		global $prefs, $url_scheme, $tikiroot;
+		global $prefs, $url_scheme, $user, $tikiroot;
+
+		$preferred_perspective = $this->get_preferred_perspective($user);
 
 		if ($this->get_perspective($perspective) || empty($perspective)) {
 			if ($prefs['multidomain_switchdomain'] == 'y') {
@@ -186,7 +232,7 @@ class PerspectiveLib
 				}
 			}
 		}
-		if (empty($perspective)) {
+		if (empty($perspective) && !$preferred_perspective) {
 			unset($_SESSION['current_perspective']);
 			unset($_SESSION['current_perspective_name']);
 		} else {

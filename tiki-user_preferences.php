@@ -12,6 +12,8 @@ $section = 'mytiki';
 require_once('tiki-setup.php');
 $modlib = TikiLib::lib('mod');
 $userprefslib = TikiLib::lib('userprefs');
+$perspectivelib = TikiLib::lib('perspective');
+
 // User preferences screen
 if ($prefs['feature_userPreferences'] != 'y' && $prefs['change_password'] != 'y' && $tiki_p_admin_users != 'y') {
 	$smarty->assign('msg', tra("This feature is disabled") . ": feature_userPreferences");
@@ -60,6 +62,11 @@ $foo2 = str_replace("tiki-user_preferences", "tiki-index", $foo["path"]);
 $smarty->assign('url_edit', $tikilib->httpPrefix() . $foo1);
 $smarty->assign('url_visit', $tikilib->httpPrefix() . $foo2);
 $smarty->assign('show_mouseover_user_info', isset($prefs['show_mouseover_user_info']) ? $prefs['show_mouseover_user_info'] : $prefs['feature_community_mouseover']);
+
+if ($prefs['feature_perspective'] === 'y') {
+	$smarty->assign('perspectives', $perspectivelib->list_perspectives());
+}
+
 if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) && $access->checkOrigin()) {
 	check_ticket('user-prefs');
 	// setting preferences
@@ -265,6 +272,12 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) &&
 		$tikilib->set_user_preference($userwatch, 'xmpp_custom_server_http_bind', $_REQUEST['xmpp_custom_server_http_bind']);
 	}
 
+	if (isset($_REQUEST['perspective_preferred']) &&  $perspectivelib->perspective_exists($_REQUEST['perspective_preferred'])) {
+		$tikilib->set_user_preference($userwatch, 'perspective_preferred', $_REQUEST['perspective_preferred']);
+	} else {
+		$tikilib->set_user_preference($userwatch, 'perspective_preferred', null);
+	}
+
 	TikiLib::events()->trigger(
 		'tiki.user.update',
 		[
@@ -348,6 +361,17 @@ if (isset($_REQUEST['deleteaccount']) && $tiki_p_delete_account == 'y' && $acces
 	}
 	die();
 }
+
+if(!empty($_POST)) {
+	// This avoids accident form ressubmission
+	header('Location:' . basename(__FILE__));
+}
+
+
+/**
+ * Don't do any write operation from here
+ */
+
 
 $location = [
 	'lat' => (float) $tikilib->get_user_preference($userwatch, 'lat', ''),

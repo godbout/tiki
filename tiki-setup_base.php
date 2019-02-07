@@ -454,6 +454,7 @@ if (($prefs['rememberme'] != 'disabled') and (isset($_COOKIE["$user_cookie_site"
 		}
 	}
 }
+
 // if the auth method is 'web site', look for the username in $_SERVER
 if (($prefs['auth_method'] == 'ws') and (isset($_SERVER['REMOTE_USER']))) {
 	if ($userlib->user_exists($_SERVER['REMOTE_USER'])) {
@@ -537,6 +538,13 @@ if (isset($_SESSION["$user_cookie_site"])) {
 		}
 	}
 }
+
+if ($prefs['feature_perspective'] === 'y') {
+	$perspectivelib = TikiLib::lib('perspective');
+	$perspectivelib->load_perspective_preferences();
+}
+
+
 
 require_once('lib/setup/perms.php');
 // --------------------------------------------------------------

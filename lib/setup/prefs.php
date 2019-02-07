@@ -290,16 +290,6 @@ function initialize_prefs($force = false)
 		$cachelib->cacheItem('global_preferences', serialize($prefs));
 	}
 
-	if ($prefs['feature_perspective'] == 'y') {
-		if (! isset($section) || $section != 'admin') {
-			$perspectivelib = TikiLib::lib('perspective');
-			if ($persp = $perspectivelib->get_current_perspective($prefs)) {
-				$perspectivePreferences = $perspectivelib->get_preferences($persp);
-				$prefs = $perspectivePreferences + $prefs;
-			}
-		}
-	}
-
 	// Override preferences with system-configured preferences.
 	$system = $systemConfiguration->preference->toArray();
 	// Also include the site_ versions
