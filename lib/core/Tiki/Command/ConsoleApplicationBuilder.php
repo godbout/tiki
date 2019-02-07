@@ -198,7 +198,7 @@ class ConsoleApplicationBuilder
 	{
 		$local_php = TikiInit::getCredentialsFile();
 		if (is_readable($local_php)) {
-			// TikiInit::getCredentialsFile will reset all globals bellow, requiring $local_php again to restore the environment.
+			// TikiInit::getCredentialsFile will reset all globals below, requiring $local_php again to restore the environment.
 			global $api_tiki, $db_tiki, $dbversion_tiki, $host_tiki, $user_tiki, $pass_tiki, $dbs_tiki, $tikidomain, $dbfail_url;
 			require $local_php;
 		}

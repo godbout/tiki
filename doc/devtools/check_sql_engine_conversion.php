@@ -194,7 +194,7 @@ class CheckSqlEngineConversion
 		$this->oldDb = $result;
 
 		if ($result === null) {
-			$this->printMessageError('Wrong value for db1, check the the right format bellow');
+			$this->printMessageError('Wrong value for db1, check the the right format below');
 			$this->usage();
 			throw new Exception('Wrong db1');
 		}
@@ -204,7 +204,7 @@ class CheckSqlEngineConversion
 		$this->newDb = $result;
 
 		if ($result === null) {
-			$this->printMessageError('Wrong value for db2, check the right format bellow');
+			$this->printMessageError('Wrong value for db2, check the right format below');
 			$this->usage();
 			throw new Exception('Wrong db2');
 		}
@@ -484,7 +484,7 @@ class CheckSqlEngineConversion
 			return;
 		}
 
-		$this->printMessageError("\n*** Issues found while validating database engine change, see bellow ***\n");
+		$this->printMessageError("\n*** Issues found while validating database engine change, see below ***\n");
 		$this->printMessageError('== Result of the db Analysis =======================' . "\n");
 		echo $result . "\n";
 		$this->printMessageError('====================================================' . "\n");

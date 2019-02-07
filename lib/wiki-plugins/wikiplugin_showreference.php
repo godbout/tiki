@@ -66,7 +66,7 @@ function wikiplugin_showreference_info()
 			'removelines' => [
 				'required' => false,
 				'name' => tra('Remove the lines around the list of references'),
-				'description' => tr('Remove the horizontal lines displayed above and bellow the list of references.'),
+				'description' => tr('Remove the horizontal lines displayed above and below the list of references.'),
 				'since' => '18.0',
 				'options' => [
 					['text' => tra(''), 'value' => ''],
