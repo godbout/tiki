@@ -1,5 +1,7 @@
 <?php
 
+include dirname(__FILE__) . '/server/AuthorizationServer.php';
+include dirname(__FILE__) . '/responsetypes/BearerTokenResponse.php';
 include dirname(__FILE__) . '/repositories/ClientRepository.php';
 include dirname(__FILE__) . '/repositories/AccessTokenRepository.php';
 include dirname(__FILE__) . '/repositories/ScopeRepository.php';
@@ -7,7 +9,6 @@ include dirname(__FILE__) . '/repositories/RefreshTokenRepository.php';
 include dirname(__FILE__) . '/repositories/AuthCodeRepository.php';
 include dirname(__FILE__) . '/entities/UserEntity.php';
 
-use \League\OAuth2\Server\AuthorizationServer;
 use \League\OAuth2\Server\Grant\AuthCodeGrant;
 use \League\OAuth2\Server\Grant\ClientCredentialsGrant;
 use \League\OAuth2\Server\Grant\ImplicitGrant;
@@ -28,16 +29,6 @@ class OAuthServerLib extends TikiLib
 		return new AccessTokenRepository($database);
 	}
 
-	public function getEncryptionKey()
-	{
-		return file_get_contents(TIKI_PATH . '/db/cert/oauthserver-encryption.key');
-	}
-
-	public function getPrivateKey()
-	{
-		return TIKI_PATH . '/db/cert/oauthserver-private.key';
-	}
-
 	public function getServer()
 	{
 		if(empty($this->server)) {
@@ -45,8 +36,7 @@ class OAuthServerLib extends TikiLib
 				$this->getClientRepository(),
 				new AccessTokenRepository(),
 				new ScopeRepository(),
-				$this->getPrivateKey(),
-				$this->getEncryptionKey()
+				new BearerTokenResponse()
 			);
 		}
 		return $this->server;
