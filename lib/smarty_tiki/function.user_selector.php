@@ -141,6 +141,25 @@ function smarty_function_user_selector($params, $smarty)
 			}
 		}
 
+		if ($params['realnames'] === 'y') {
+			$dupes = [];
+			foreach (array_count_values($users) as $usr => $c) {
+				if ($c > 1) {
+					$dupes[] = $usr;
+				}
+			}
+			foreach ($users as $usr => & $uname) {
+				if (in_array($uname, $dupes)) {
+					if ($prefs['login_is_email'] === 'y' && $prefs['login_is_email_obscure'] === 'y') {
+						$added = ' (' . substr($usr, strpos($usr, '@')) . ')';
+					} else {
+						$added = " ($usr)";
+					}
+					$uname .= $added;
+				}
+			}
+		}
+
 		asort($users, SORT_NATURAL | SORT_FLAG_CASE);
 
 		if ($params['multiple'] === 'true' && $params['allowNone'] === 'y') {

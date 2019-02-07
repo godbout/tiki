@@ -21,7 +21,7 @@
 	<div id="header-shadow">{eval var=$prefs.header_shadow_start}{/if}
 		<div class="header_outer" id="header_outer">
 			<div class="header_container">
-				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
+				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std">
 					<header class="header page-header row" id="page-header">
 						{modulelist zone=top class="top_modules d-flex justify-content-between w-100 {if $prefs.theme_navbar_color_variant eq 'dark'}bg-dark{else}bg-light{/if}"}
 					</header>
@@ -32,7 +32,7 @@
 {/if}
 
 	<div class="middle_outer" id="middle_outer" >
-		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} middle" id="middle">
+		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std middle" id="middle">
 			<div class="topbar {if $prefs.theme_navbar_color_variant eq 'dark'}bg-dark{else}bg-light{/if} row" id="topbar">
 				{modulelist zone=topbar class="topbar_modules d-flex justify-content-between w-100 {if $prefs.theme_navbar_color_variant eq 'dark'}bg-dark{else}bg-light{/if}"}
 			</div>
@@ -163,7 +163,7 @@
 	<div id="footer-shadow">{eval var=$prefs.footer_shadow_start}{/if}
 		<footer class="footer main-footer" id="footer">
 			<div class="footer_liner">
-				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
+				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std">
 					{modulelist zone=bottom class='bottom_modules p-3 mx--15px'}
 				</div>
 			</div>

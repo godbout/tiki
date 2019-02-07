@@ -344,7 +344,7 @@ function wikiplugin_layout($data, $params)
 	}
 	if ($params['fullwidth'] == 'y') {
 		$headerlib->add_js(
-			'$(".container").addClass("container-fluid").removeClass("container");'
+			'$(".container.container-std").addClass("container-fluid").removeClass("container");'
 		);
 	}
 	if (isset($params['contentwidth'])

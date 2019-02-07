@@ -13,7 +13,7 @@
 	{include file='tiki-ajax_header.tpl'}
 {/if}
 
-<div class="container{if isset($smarty.session.fullscreen) && $smarty.session.fullscreen eq 'y'}-fluid{/if} middle" id="middle">
+<div class="container{if isset($smarty.session.fullscreen) && $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std middle" id="middle">
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 	<div class="row">
 	<header class="page-header w-100" id="page-header">

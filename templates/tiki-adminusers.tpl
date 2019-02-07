@@ -398,14 +398,18 @@
 			{else}
 				<h2>{tr}Add a New User{/tr}</h2>
 			{/if}
-			{if $userinfo.editable}
+			{if $prefs.feature_intertiki eq 'y' and not empty($prefs.feature_intertiki_mymaster)}
+				{remarksbox type="info" title="{tr}Intertiki Enabled{/tr}"}
+				{tr _0=$prefs.feature_intertiki_mymaster|escape}This Tiki is an Intertiki Client so user information must be edited on the Intertiki Master "%0"{/tr}</a>.
+				{/remarksbox}
+			{elseif $userinfo.editable}
 				<form action="tiki-adminusers.php" method="post" enctype="multipart/form-data" name="RegForm" autocomplete="off">
 					{ticket}
 					<div class="form-group row">
 						<label class="col-sm-3 col-md-2 col-form-label" for="login">{if $prefs.login_is_email eq 'y'}{tr}Email{/tr}{else}{tr}User{/tr}{/if}</label>
 						<div class="col-sm-7 col-md-6">
 							{if $userinfo.login neq 'admin'}
-								<input type="text" id='login' class="form-control" name='login' value="{$userinfo.login|escape}"{if $prefs.feature_intertiki_server eq 'y'} disabled="disabled"{/if}>
+								<input type="text" id='login' class="form-control" name='login' value="{$userinfo.login|escape}">
 								{if $prefs.login_is_email eq 'y'}
 									<br>
 									<em>{tr}Use the email as username{/tr}.</em>

@@ -23,7 +23,7 @@
 
 {if $listpages or ($find ne '') or ($types ne '') or ($topics ne '') or ($lang ne '') or ($categId ne '')}
 	<div class="row mx-0">
-		<div class="col-md-6">
+		<div class="col-md-12">
 			{include file='find.tpl' find_show_languages='y' find_show_categories_multi='y' find_show_num_rows='y' find_show_date_range='y'}
 		</div>
 	</div>

@@ -47,6 +47,21 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 
 		self::$h5p_path = $tikidomainslash . 'storage/public/h5p';
 
+		if (! is_writable(self::$h5p_path)) {
+			\Feedback::error(tr("H5P directory is not writable: %0", self::$h5p_path));
+
+			return;
+		}
+
+		foreach (['cachedassets','content','exports','libraries','temp'] as $dir) {
+			$path = self::$h5p_path . "/" . $dir;
+			if (! is_dir($path)) {
+				mkdir($path);
+			} elseif(! is_writable($path)) {
+				\Feedback::error(tr("H5P directory is not writable: %0", $path));
+			}
+		}
+
 		if ($this->getOption('cron_last_run') < time() - 86400 && ! empty($_SERVER['HTTP_HOST'])) {
 			// Cron not run in >24h, trigger it
 

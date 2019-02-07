@@ -16,13 +16,13 @@
 	{if $smarty.session.fullscreen ne 'y'}
 		<div class="fixed-topbar"></div>
 	{/if}
-	<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} middle" id="middle">
+	<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std middle" id="middle">
 		{if $smarty.session.fullscreen ne 'y'}
 		<div class="row topbar mx-0 {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if}" id="topbar">
 			{modulelist zone=topbar class='topbar_modules d-flex justify-content-between'}
 		</div>
 		{/if}
-		{*<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">*}
+		{*<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std">*}
 
 		<div class="row row-middle" id="row-middle">
 			{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
@@ -135,7 +135,7 @@
 	{if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 		<footer class="footer main-footer" id="footer">
 			<div class="footer_liner">
-				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if}">
+				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std">
 
 					{modulelist zone=bottom class='bottom_modules p-3 mx--15px'} <!-- div.modules -->
 				</div>
@@ -143,7 +143,7 @@
 		</footer>
 
 		<nav class="navbar navbar-expand-md {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if} fixed-top">
-		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} d-flex justify-content-between in-navbar">
+		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std d-flex justify-content-between in-navbar">
 			<a class="navbar-brand" href="./">
 				{if $prefs.sitelogo_icon}<img src="{$prefs.sitelogo_icon}" alt="{$prefs.sitetitle|escape}">{/if}
 				{$prefs.sitetitle|escape}
