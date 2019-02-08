@@ -365,3 +365,21 @@ function get_logs($localPath, $minRevision, $maxRevision = 'HEAD')
 	$logs = `LANG=C svn log -r$maxRevision:$minRevision $localPath`;
 	return $logs;
 }
+
+/**
+ * Find the revision number for a particular tag
+ *
+ * @param $releaseNumber
+ * @return int
+ */
+function get_tag_revision($releaseNumber) {
+	$revision = 0;
+
+	// --stop-on-copy makes it only return the tag commit, not the whole history since time began
+	$log = `LANG=C svn log --stop-on-copy ^/tags/$releaseNumber/`;
+	if (preg_match('/^r(\d+)/ms',$log, $matches)) {
+		$revision = (int) $matches[1];
+	}
+
+	return $revision;
+}

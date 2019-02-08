@@ -47,6 +47,11 @@ if (! ($options = get_options()) || $options['help']) {
 	display_usage();
 }
 
+if ($options['devmode']) {
+	$options['no-commit'] = true;
+	$options['no-check-svn'] = true;
+	$options['no-first-update'] = true;
+}
 if ($options['howto']) {
 	display_howto();
 }
@@ -86,7 +91,7 @@ $splitedversion = explode('.', $version);
 $mainversion = $splitedversion[0];
 
 $check_version = $version . $subrelease;
-if ($TWV->version != $check_version) {
+if ($TWV->version !== $check_version && ! $options['devmode']) {
 	error("The version in the code " . strtolower($TWV->version) . " differs from the version provided to the script $check_version.\nThe version should be modified in lib/setup/twversion.class.php to match the released version.");
 }
 
@@ -956,6 +961,7 @@ function get_options()
 		'force-yes' => false,
 		'debug-packaging' => false,
 		'only-secdb' => false,
+		'devmode' => false,
 	];
 
 	// Environment variables provide default values for parameter options. e.g. export TIKI_NO_SECDB=true
@@ -1109,15 +1115,19 @@ function update_changelog_file($newVersion)
 			}
 
 			if (preg_match('/^Version (\d+)\.(\d+)/', $buffer, $versionMatches)) {
-				$lastReleaseNumber = $versionMatches[1] . '.' . $versionMatches[2];
-				if ($lastReleaseNumber == $newVersion) {
-					// The changelog file already contains log for the same final version
-					$sameFinalVersion = true;
-					$skipBuffer = true;
+				$versionString = $versionMatches[1] . '.' . $versionMatches[2];
+				if ((float) $lastReleaseNumber < (float) $versionString) {
+					$lastReleaseNumber = $versionString;
+					if ($lastReleaseNumber === $newVersion) {
+						// The changelog file already contains log for the same final version
+						$sameFinalVersion = true;
+						$skipBuffer = true;
+					}
+					$parseLogs = true;
+					$lastReleaseMajorNumber = $versionMatches[1];
 				}
-				$parseLogs = true;
-				$lastReleaseMajorNumber = $versionMatches[1];
-			} elseif ($parseLogs) {
+			}
+			if ($parseLogs) {
 				$matches = [];
 				if (preg_match('/^r(\d+) \|/', $buffer, $matches)) {
 					$skipBuffer = false;
@@ -1154,6 +1164,11 @@ function update_changelog_file($newVersion)
 
 	$return = ['nbCommits' => 0, 'sameFinalVersion' => $sameFinalVersion];
 	$matches = [];
+
+	if ($minRevision === 0) { // failed to get the last rev from the old file contents
+		$minRevision = get_tag_revision($lastReleaseNumber);
+	}
+
 	if ($minRevision > 0) {
 		if (preg_match_all('/^r(\d+) \|.*\n\n(.*)\-{46}/Ums', get_logs('.', $minRevision), $matches, PREG_SET_ORDER)) {
 			foreach ($matches as $logEntry) {
@@ -1165,7 +1180,7 @@ function update_changelog_file($newVersion)
 
 				// Add log entries only if they were not already listed (same revision number or same log message) in the previous version
 				if (! isset($lastReleaseLogs[$logEntry[1]]) && ! in_array("\n" . $logEntry[2], $lastReleaseLogs)) {
-					$newChangelog .= $logEntry[0] . "\n";
+					$newChangelog .= str_replace("\n\n", "\n", $logEntry[0]) . "\n";
 
 					$lastReleaseLogs[] = "\n" . $logEntry[2];
 					if ($return['nbCommits'] == 0) {
@@ -1490,27 +1505,28 @@ Examples:
 	php doc/devtools/release.php 2.0
 
 Options:
-	--howto			: display the Tiki release HOWTO
-	--help			: display this help
+	--howto			    : display the Tiki release HOWTO
+	--help			    : display this help
 	--http-proxy=HOST:PORT	: use an http proxy to get copyright data on sourceforge
 	--svn-mirror-uri=URI	: use another repository URI to update the copyrights file (to avoid retrieving data from sourceforge, which is usually slow)
-	--no-commit		: do not commit any changes back to SVN
-	--no-check-svn		: do not check if there is uncommited changes on the checkout used for the release
-	--no-check-db		: do not check database scripts and database upgrades
-	--no-check-php		: do not check syntax of all PHP files
+	--no-commit		        : do not commit any changes back to SVN
+	--no-check-svn		    : do not check if there is uncommited changes on the checkout used for the release
+	--no-check-db		    : do not check database scripts and database upgrades
+	--no-check-php		    : do not check syntax of all PHP files
 	--no-check-php-warnings	: do not display PHP warnings and notices during the PHP syntax check
-	--no-check-smarty	: do not check syntax of all Smarty templates
-	--no-first-update	: do not svn update the checkout used for the release as the first step
-	--no-readme-update	: do not update the '" . README_FILENAME . "' file
-	--no-lang-update	: do not update lang/*/language.php files
+	--no-check-smarty	    : do not check syntax of all Smarty templates
+	--no-first-update	    : do not svn update the checkout used for the release as the first step
+	--no-readme-update	    : do not update the '" . README_FILENAME . "' file
+	--no-lang-update	    : do not update lang/*/language.php files
 	--no-changelog-update	: do not update the '" . CHANGELOG_FILENAME . "' file
 	--no-copyright-update	: do not update the '" . COPYRIGHTS_FILENAME . "' file
-	--no-secdb		: do not update SecDB footprints
-	--only-secdb		: only generate a secdb database
-	--no-packaging		: do not build packages files
-	--no-tagging		: do not tag the release on the remote svn repository
-	--force-yes		: disable the interactive mode (same as replying 'y' to all steps)
-	--debug-packaging	: display debug output while in packaging step
+	--no-secdb		        : do not update SecDB footprints
+	--only-secdb		    : only generate a secdb database
+	--no-packaging		    : do not build packages files
+	--no-tagging		    : do not tag the release on the remote svn repository
+	--force-yes		        : disable the interactive mode (same as replying 'y' to all steps)
+	--debug-packaging	    : display debug output while in packaging step
+	--devmode               : equivalent to no-commit + no-check-svn + no-first-update
 Notes:
 	Subreleases begining with 'pre' will not be tagged.
 ";
