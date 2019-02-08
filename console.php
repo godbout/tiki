@@ -51,9 +51,10 @@ if (is_file($local_php) || TikiInit::getEnvironmentCredentials()) {
 
 $installer = $installer = new Installer;
 $isInstalled = $installer->isInstalled();
+$requiresUpdate = $installer->requiresUpdate();
 
 $exceptionToRender = null;
-if ($isInstalled) {
+if ($isInstalled && ! $requiresUpdate) {
 	$bypass_siteclose_check = true;
 	try {
 		require_once 'tiki-setup.php';

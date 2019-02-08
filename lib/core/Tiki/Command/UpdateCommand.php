@@ -8,7 +8,6 @@
 namespace Tiki\Command;
 
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -65,7 +64,10 @@ class UpdateCommand extends Command
 				$output->writeln("<error>Error in $patch\n\t$query\n\t$message</error>");
 			}
 
-			$cachelib = \TikiLib::lib('cache');
+			// tiki-setup.php may not have been run yet, so load the minimum required libs to be able to clear the caches
+			require_once('lib/cache/cachelib.php');
+			require_once('lib/tikilib.php');
+			$cachelib = new \Cachelib();
 			$cachelib->empty_cache();
 		} else {
 			$output->writeln('<error>Database not found.</error>');
