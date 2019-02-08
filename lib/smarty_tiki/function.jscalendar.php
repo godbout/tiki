@@ -39,8 +39,19 @@ function smarty_function_jscalendar($params, $smarty)
 		'}';
 	if (! empty($params['goto'])) {
 		$datepicker_options .= ', onSelect: function(dateText, inst) { window.location="' .
-														$params['goto'] . '".replace("%s",$("#' . $params['id'] . '").val()/1000); }';
+			$params['goto'] . '".replace("%s",$("#' . $params['id'] . '").val()/1000); }';
 	}
+
+	if ($params['notAfter']) {
+		$datepicker_options .= ', onSelect: function (selectedDateTime) {
+		$("' . $params['notAfter'] . '").find(".isDatepicker").datetimepicker("option", "minDate", selectedDateTime); }';
+	}
+
+	if ($params['notBefore']) {
+		$datepicker_options .= ', onSelect: function (selectedDateTime) {
+		$("' . $params['notBefore'] . '").find(".isDatepicker").datetimepicker("option", "maxDate", selectedDateTime); }';
+	}
+
 	static $datepicker_options_common;
 
 	if (! $datepicker_options_common) {

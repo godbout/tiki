@@ -128,6 +128,9 @@ class Tracker_Field_JsCalendar extends Tracker_Field_DateTime
 			$params['isutc'] = true;
 		}
 
+		$params['notBefore'] = $this->getOption('notBefore') ? '#trackerinput_' . $this->getOption('notBefore') : '';
+		$params['notAfter']  = $this->getOption('notAfter')  ? '#trackerinput_' . $this->getOption('notAfter')  : '';
+
 		return smarty_function_jscalendar($params, $smarty->getEmptyInternalTemplate());
 	}
 

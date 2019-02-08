@@ -121,7 +121,7 @@
 				{assign var="hasPageAction" value="0"}
 				{capture name="pageActions"}
 					{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-					<a class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#"  title="{tr}Page actions{/tr}">
+					<a class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#"  title="{tr}Page actions{/tr}">
 						{icon name="cog"}
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
