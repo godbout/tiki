@@ -17,8 +17,8 @@ $smarty->assign('client_list', array_merge(
 	$oauthserverlib->getClientRepository()->list(),
 	[ 
 		new ClientEntity([
-			'client_secret' => $oauthserverlib::generate_secret(64),
-			'redirect_uri' => TikiLib::lib('tiki')->tikiUrl('lib/oauthserver/html/redirect.html')
+			'client_secret' => '',
+			'redirect_uri' => ''
 		])
 	]
 ));
