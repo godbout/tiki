@@ -954,6 +954,9 @@ span.btn-link {
 .t_navbar.mb-3 > .btn {
   margin-bottom: 6px; }
 
+.t_navbar.btn-group {
+  flex-wrap: wrap; }
+
 .magnify {
   float: right;
   padding-top: 2px; }

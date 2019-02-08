@@ -10,7 +10,6 @@ namespace Tiki\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class IndexCatchUpCommand extends Command
@@ -47,11 +46,6 @@ class IndexCatchUpCommand extends Command
 			\Feedback::error($msg);
 		}
 
-		$errors = \Feedback::get();
-		if (is_array($errors)) {
-			foreach ($errors as $message) {
-				$output->writeln("<error>$message</error>");
-			}
-		}
+		\Feedback::printToConsole($output);
 	}
 }

@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: 20180925_feature_jquery_superfish_pref_default_tiki.php 67647 2018-09-25 17:23:02Z jonnybradley $
+// $Id$
 
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	header("location: index.php");
@@ -30,6 +30,6 @@ function upgrade_20190123_h5p_move_storage_assets_to_new_dir_tiki($installer)
 
 		}
 	} else {
-		trigger_error(tr('H5P assets move script: Directory storage/public not wirtable'));
+		trigger_error(tr('H5P assets move script: Directory storage/public not writable'));
 	}
 }

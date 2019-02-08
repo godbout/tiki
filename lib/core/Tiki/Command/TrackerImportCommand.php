@@ -10,7 +10,6 @@ namespace Tiki\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class TrackerImportCommand extends Command
@@ -72,6 +71,8 @@ class TrackerImportCommand extends Command
 		$source = new \Tracker\Tabular\Source\CsvSource($schema, $fileName);
 		$writer = new \Tracker\Tabular\Writer\TrackerWriter;
 		$writer->write($source);
+
+		\Feedback::printToConsole($output);
 
 		$output->writeln('Import done');
 

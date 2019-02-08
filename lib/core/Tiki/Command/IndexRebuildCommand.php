@@ -9,7 +9,6 @@ namespace Tiki\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\FormatterHelper;
-use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -104,29 +103,7 @@ class IndexRebuildCommand extends Command
 			unset($memory_limiter);
 		}
 
-		$errors = \Feedback::get();
-		if (is_array($errors)) {
-			foreach ($errors as $type => $message) {
-				if (is_array($message)) {
-					if (is_array($message[0]) && ! empty($message[0]['mes'])) {
-						$type = $message[0]['type'];
-						$message = $type . ': ' . str_replace('<br />', "\n", $message[0]['mes'][0]);
-					} elseif (! empty($message['mes'])) {
-						$message = $type . ': ' . str_replace('<br />', "\n", $message['mes']);
-					}
-					if ($type === 'success' || $type === 'note') {
-						$type = 'info';
-					} else if ($type === 'warning') {
-						$type = 'comment';
-					}
-					if (! $cron || $type === 'error') {
-						$output->writeln("<$type>$message</$type>");
-					}
-				} else {
-					$output->writeln("<error>$message</error>");
-				}
-			}
-		}
+		\Feedback::printToConsole($output, $cron);
 
 		$queries_after = $num_queries;
 
