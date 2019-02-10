@@ -10,7 +10,7 @@
 	{modules_list list=$timeline nonums=$nonums}
 		{section name=ix loop=$timeline }
 			<li>
-				{if $module_params.showuser eq 'y' && ! empty($timeline[ix].fromName)}<span class="fb-name">{$timeline[ix].fromName}</span>{/if}
+				{if ! empty($module_params.showuser) && $module_params.showuser eq 'y' && ! empty($timeline[ix].fromName)}<span class="fb-name">{$timeline[ix].fromName}</span>{/if}
 				<span class="fb-text fb-{$timeline[ix].type}">{$timeline[ix].message}</span>
 				<span class="fb-date"><a href="{$timeline[ix].link}">{$timeline[ix].created_time|tiki_short_datetime}</a></span>
 			</li>
