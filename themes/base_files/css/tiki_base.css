@@ -3122,6 +3122,12 @@ div.form-group label.error {
 .chosen-container .chosen-results li.active-result.text-muted.bg-info {
   color: #fff !important; }
 
+.tiki .chosen-container .chosen-choices .search-choice + .search-field input[type="text"] {
+  display: none; }
+
+.tiki .chosen-container.chosen-container-active .chosen-choices .search-choice + .search-field input[type="text"] {
+  display: inherit; }
+
 .tiki .anythingSlider, .tiki .anythingWindow, .tiki .anythingBase, .tiki .anythingBase > .card {
   -webkit-box-sizing: content-box;
   -moz-box-sizing: content-box;

@@ -3,6 +3,22 @@
 <head>
 	{include file='header.tpl'}
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	{* The following style block makes sense to be used only with this fixed top bar layout so lets put it here only *}
+	{if $prefs.theme_navbar_fixed_topbar_offset ne ''}<style type="text/css">
+	{literal}
+	/* Prevent target anchors from being covered by fixed top navbar */
+	h1:target:before,
+	h2:target:before,
+	h3:target:before,
+	h4:target:before,
+	h5:target:before,
+	h6:target:before {
+		content: "";
+		display: block;
+		height: {/literal}{$prefs.theme_navbar_fixed_topbar_offset}{literal}px; /* fixed header height*/
+		margin: -{/literal}{$prefs.theme_navbar_fixed_topbar_offset}{literal}px 0 0; /* negative fixed header height */
+	}{/literal}
+	</style>{/if}
 </head>
 <body{html_body_attributes class="navbar-padding"}{if $prefs.theme_navbar_fixed_topbar_offset ne ''} style="padding-top: {$prefs.theme_navbar_fixed_topbar_offset}px"{/if}>
 {$cookie_consent_html}

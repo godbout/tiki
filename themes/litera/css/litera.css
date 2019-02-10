@@ -7130,28 +7130,28 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .tiki select {
     font-size: 1.063rem; }
 
-.tiki .ui-widget.ui-widget-content {
-  border: none; }
-  .tiki .ui-widget-header {
-    background: #fff;
-    border-color: #ddd; }
+.tiki .ui-widget-header {
+  background: #fff;
+  border-color: #ddd; }
   .tiki .ui-state-default a, .tiki .ui-state-default a:link, .tiki .ui-state-default a:visited, .tiki a.ui-button, .tiki a:link.ui-button, .tiki a:visited.ui-button, .tiki .ui-button {
     color: #4582ec; }
   .tiki .ui-state-active a, .tiki .ui-state-active a:link, .tiki .ui-state-active a:visited {
     color: #495057; }
   .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-    border: 1px solid #ddd;
+    border: 1px solid;
+    border-color: #ddd;
     background: #fff;
     font-weight: 400;
     color: #4582ec; }
   .tiki .ui-state-active, .tiki .ui-widget-content .ui-state-active, .tiki .ui-widget-header .ui-state-active, .tiki a.ui-button:active, .tiki .ui-button:active, .tiki .ui-button.ui-state-active:hover {
-    border: 1px solid #e9ecef #e9ecef #ddd;
-    border-bottom-width: 0;
+    border: 1px solid;
+    border-color: #e9ecef #e9ecef #ddd;
     background: #fff;
     font-weight: 400;
     color: #495057; }
   .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
-    border: 1px solid #343a40;
+    border: 1px solid;
+    border-color: #343a40;
     background: #fff;
     font-weight: normal;
     color: #343a40;

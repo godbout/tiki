@@ -51,6 +51,14 @@ div.form-group label.error {
   color: $chosen-text-muted-bg-info !important;
 }
 
+.tiki .chosen-container .chosen-choices .search-choice + .search-field input[type="text"] {
+	display: none;
+}
+
+.tiki .chosen-container.chosen-container-active .chosen-choices .search-choice + .search-field input[type="text"] {
+	display: inherit;
+}
+
 // AnythingSlider (wikiplugin_slider) compatibility
 
 .tiki .anythingSlider,

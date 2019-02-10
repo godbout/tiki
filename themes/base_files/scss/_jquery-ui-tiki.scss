@@ -2,9 +2,6 @@
 // For theme overrides of jQuery-UI styles
 
 .tiki {
-	.ui-widget.ui-widget-content {
-		border: none;
-	}
 	.ui-widget-header {
 		background: $ui-default-bg;
 //		color: #fff;
@@ -23,7 +20,8 @@
 	.ui-button,
 	html .ui-button.ui-state-disabled:hover,
 	html .ui-button.ui-state-disabled:active {
-		border: 1px solid $ui-default-border; //$btn-primary-border;
+		border: 1px solid;
+		border-color: $ui-default-border; //$btn-primary-border;
 		background: $ui-default-bg; //$btn-primary-bg;
 		font-weight: $ui-font-weight;
 		color: $ui-default-color; //$btn-primary-color;
@@ -34,8 +32,8 @@
 	a.ui-button:active,
 	.ui-button:active,
 	.ui-button.ui-state-active:hover {
-		border: 1px solid $ui-active-border-color;
-		border-bottom-width: 0;
+		border: 1px solid;
+		border-color: $ui-active-border-color;
 		background: $ui-active-bg;
 		font-weight: $ui-font-weight;
 		color: $ui-active-color;
@@ -46,7 +44,8 @@
 	.ui-button,
 	html .ui-button.ui-state-disabled:hover,
 	html .ui-button.ui-state-disabled:active {
-		border: 1px solid $btn-primary-border;
+		border: 1px solid;
+		border-color: $btn-primary-border;
 		background: $btn-primary-bg;
 		font-weight: $jq-ui-btn-font-weight;
 		color: $btn-primary-color;

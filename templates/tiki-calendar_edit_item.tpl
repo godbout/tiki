@@ -72,7 +72,7 @@
 					{if $edit}
 						{if $prefs.javascript_enabled eq 'n'}
 							{$calendar.name|escape}<br>{tr}or{/tr}&nbsp;
-							<input type="submit" class="btn btn-primary btn-sm" name="changeCal" value="{tr}Go to{/tr}">
+							<input type="submit" class="btn btn-secondary btn-sm" name="changeCal" value="{tr}Go to{/tr}">
 						{/if}
 						<select name="save[calendarId]" id="calid" onchange="needToConfirm=false;document.getElementById('editcalitem').submit();" class="form-control">
 							{foreach item=it key=itid from=$listcals}
@@ -413,7 +413,7 @@
 				{if $edit}
 					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}5{else}4{/if} start">
 						{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-							{jscalendar id="start" date=$calitem.start fieldname="save[date_start]" showtime='y' isutc=($prefs.users_prefs_display_timezone eq 'Site')}
+							{jscalendar id="start" date=$calitem.start fieldname="save[date_start]" showtime='y' isutc=($prefs.users_prefs_display_timezone eq 'Site') notAfter='.date .end .datetime'}
 						{else}
 							{html_select_date prefix="start_date_" time=$calitem.start field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
 						{/if}
@@ -449,7 +449,7 @@
 					<input type="hidden" name="save[end_or_duration]" value="end" id="end_or_duration">
 					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}5{else}4{/if} end ">
 							{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-							{jscalendar id="end" date=$calitem.end fieldname="save[date_end]" showtime='y' isutc=($prefs.users_prefs_display_timezone eq 'Site')}
+							{jscalendar id="end" date=$calitem.end fieldname="save[date_end]" showtime='y' isutc=($prefs.users_prefs_display_timezone eq 'Site') notBefore='.date .start .datetime'}
 							{else}
 								{html_select_date prefix="end_date_" time=$calitem.end field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
 							{/if}
@@ -459,11 +459,11 @@
 							{html_select_time prefix="end_" display_seconds=false time=$calitem.end minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
 						</div>
 					{/if}
-					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}7{else}4{/if} duration time" style="display:none;">
+					<div class="col-sm-{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}5{else}4{/if} duration time" style="display:none;">
 						{html_select_time prefix="duration_" display_seconds=false time=$calitem.duration|default:'01:00' minute_interval=$prefs.calendar_minute_interval class='form-control date nochosen'}
 					</div>
 					<div class="col-sm-2 time">
-						<a href="#" id="durationBtn" class="btn btn-sm btn-primary">
+						<a href="#" id="durationBtn" class="btn btn-sm btn-secondary">
 							{tr}Show duration{/tr}
 						</a>
 					</div>
@@ -807,8 +807,8 @@
 	{if $edit}
 		<div class="modal-footer">
 			<div class="col-sm-9 offset-sm-3">
-				<input type="submit" class="btn btn-primary" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
-				<input type="submit" class="btn btn-secondary" name="act" value="{tr}Save{/tr}" onclick="needToConfirm=false;">
+				<input type="submit" class="btn btn-secondary" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
+				<input type="submit" class="btn btn-primary" name="act" value="{tr}Save{/tr}" onclick="needToConfirm=false;">
 				{if $id}
 					<input type="submit" class="btn btn-danger" onclick="needToConfirm=false;document.location='tiki-calendar_edit_item.php?calitemId={$id}&amp;delete=y';return false;" value="{tr}Delete event{/tr}">
 				{/if}
@@ -820,7 +820,7 @@
 						{button href='tiki-calendar_export_ical.php? export=y&calendarItem='|cat:$id _text="{tr}Export Event as iCal{/tr}"}
 					{/if}
 				{/if}
-				<input type="submit" class="btn btn-primary" onclick="needToConfirm=false;document.location='{$referer|escape:'html'}';return false;" value="{tr}Cancel{/tr}">
+				<input type="submit" class="btn btn-link" onclick="needToConfirm=false;document.location='{$referer|escape:'html'}';return false;" value="{tr}Cancel{/tr}">
 			</div>
 		</div>
 	{/if}
