@@ -6,7 +6,7 @@
 {if not empty($column.field)}
 	{$column = [$column]}{* if there is only one column then it will not be in an array *}
 {/if}
-{if $tableparams.allowtableexpansion eq 'y'}
+{if isset($tableparams.allowtableexpansion) && $tableparams.allowtableexpansion eq 'y'}
 	<button title="{tr}Expand table{/tr}" class="btn btn-primary btn-sm table-expand-toggle" type="button" ><span class="icon far fa-caret-square-right fa-fw "></span></button>
 	{jq}
 		$(".table-expand-toggle").click(function(){
@@ -31,7 +31,7 @@
 		});
 	{/jq}
 {/if}
-{if $tableparams.shownbitems eq 'y'}
+{if isset($tableparams.shownbitems) && $tableparams.shownbitems eq 'y'}
 	<div class="nbitems">
 		{tr}Items found:{/tr} <span class='badge badge-secondary'>{$count}</span>
 	</div>
@@ -74,20 +74,20 @@
 									{/if}
 								{/if}
 								{$click = $sort_jsvar|cat:'=\''|cat:$col.sort|cat:$order|cat:'\';'|cat:$_onclick}
-								{if $col.translatelabel == 'y'}
+								{if isset($col.translatelabel) && $col.translatelabel == 'y'}
 									{self_link _onclick=$click _ajax='y' _sort_arg='sort_mode' _sort_field=$col.sort}{$col.label|tra|escape}{/self_link}
 								{else}
 									{self_link _onclick=$click _ajax='y' _sort_arg='sort_mode' _sort_field=$col.sort}{$col.label|escape}{/self_link}
 								{/if}
 							{else}
-								{if $col.translatelabel == 'y'}
+								{if isset($col.translatelabel) && $col.translatelabel == 'y'}
 									{self_link _sort_arg=$sort_arg _sort_field=$col.sort}{$col.label|tra|escape}{/self_link}
 								{else}
 									{self_link _sort_arg=$sort_arg _sort_field=$col.sort}{$col.label|escape}{/self_link}
 								{/if}
 							{/if}
 						{else}
-							{if $col.translatelabel == 'y'}
+							{if isset($col.translatelabel) && $col.translatelabel == 'y'}
 								{$col.label|tra|escape}
 							{else}
 								{$col.label|escape}
@@ -219,7 +219,7 @@
 })();
 {/jq}
 {/if}
-{if $downloadable}
+{if ! empty($downloadable)}
 	{if $actions}
 	<br>
 	{/if}

@@ -508,7 +508,7 @@ class Table_Plugin
 					$tsf = Table_Check::parseParam($tsfilters);
 					if (is_array($tsf)) {
 						foreach ($tsf as $col => $filterinfo) {
-							if (isset($filterinfo) && $filterinfo['type'] === 'dropdown'
+							if (isset($filterinfo['type']) && $filterinfo['type'] === 'dropdown'
 								&& ! empty($filterinfo['options'])) {
 								foreach ($filterinfo['options'] as $key => $value) {
 									$filterinfo['options'][$key] = str_replace('=', '|', $value);

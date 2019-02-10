@@ -356,6 +356,8 @@ abstract class Table_Settings_Abstract
 	 *
 	 * @param $default
 	 * @param $settings
+	 *
+	 * @return array
 	 */
 	protected function overrideSettings($default, $settings)
 	{
@@ -378,9 +380,11 @@ abstract class Table_Settings_Abstract
 		if (isset($this->s['columns'])) {
 			foreach ($this->s['columns'] as $col => $colinfo) {
 				if (isset($colinfo['filter'])) {
-					$ft = $colinfo['filter']['type'];
+					if (isset($colinfo['filter']['type'])) {
+						$ft = $colinfo['filter']['type'];
+					}
 					//add default placeholder text
-					if (isset($this->defaultFilters[$ft])) {
+					if (isset($ft) && isset($this->defaultFilters[$ft])) {
 						$this->s['columns'][$col]['filter'] =
 							array_replace_recursive($this->defaultFilters[$ft], $colinfo['filter']);
 					}
