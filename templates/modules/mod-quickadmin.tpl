@@ -34,7 +34,7 @@
 					<div class="dropdown-item mb-2 mt-2">
 						<form method="post" action="tiki-admin.php" class="form-inline my-2 my-md-0 ml-auto" role="form">
 							<div class="input-group">
-								<input type="text" name="lm_criteria" value="{$smarty.request.lm_criteria|escape}" class="form-control form-control-sm" placeholder="Search preferences...">
+								<input type="text" name="lm_criteria" value="{if ! empty($smarty.request.lm_criteria)}{$smarty.request.lm_criteria|escape}{/if}" class="form-control form-control-sm" placeholder="Search preferences...">
 								<div class="input-group-append">
 									<button type="submit" class="btn btn-primary btn-sm">
 										<span class="icon icon-search fas fa-search fa-fw "></span>
