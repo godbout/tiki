@@ -62,7 +62,7 @@ function module_facebook($mod_reference, $module_params)
 		$timeline[$i]['fromName'] = '';
 	}
 
-	$timeline = array_splice($timeline, 0, $module_params['max'] ? $module_params['max'] : 10);
+	$timeline = array_splice($timeline, 0, ! empty($module_params['max']) ? $module_params['max'] : 10);
 	$smarty = TikiLib::lib('smarty');
 	$smarty->assign('timeline', $timeline);
 }

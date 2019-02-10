@@ -1025,12 +1025,16 @@ class SocialNetworksLib extends LogsLib
 				if (isset($result->data[$key]->message)) {
 					$feed[$key]["message"] = $result->data[$key]->message;
 					$feed[$key]["type"] = "message";
-				} else {
+				} elseif (isset($result->data[$key]->story)) {
 					$feed[$key]["message"] = $result->data[$key]->story;
 					$feed[$key]["type"] = "story";
 				}
-				$feed[$key]["fromName"] = $result->data[$key]->from->name;
-				$feed[$key]["fromId"] = $result->data[$key]->from->id;
+				if (isset($result->data[$key]->from->name)) {
+					$feed[$key]["fromName"] = $result->data[$key]->from->name;
+				}
+				if (isset($result->data[$key]->from->id)) {
+					$feed[$key]["fromId"] = $result->data[$key]->from->id;
+				}
 				$feed[$key]["created_time"]
 					= $result->data[$key]->created_time;
 				$id = $result->data[$key]->id;
