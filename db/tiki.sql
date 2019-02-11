@@ -1069,18 +1069,24 @@ CREATE TABLE tiki_h5p_contents (
 	title        VARCHAR(255) NOT NULL,
 	library_id   INT UNSIGNED NOT NULL,
 	parameters   LONGTEXT     NOT NULL,
-	filtered     LONGTEXT     NOT NULL,
+	filtered     LONGTEXT     NULL,
 	slug         VARCHAR(127) NOT NULL,
 	embed_type   VARCHAR(127) NOT NULL,
 	disable      INT UNSIGNED NOT NULL DEFAULT 0,
 	content_type VARCHAR(127) NULL,
-	author       VARCHAR(127) NULL,
-	license      VARCHAR(7)   NULL,
+	authors      MEDIUMTEXT   NULL,
+	license      VARCHAR(32)  NULL DEFAULT NULL,
 	keywords     TEXT         NULL,
 	description  TEXT         NULL,
+	source       VARCHAR(2083) NULL,
+	year_from    INT UNSIGNED NULL,
+	year_to      INT UNSIGNED NULL,
+	license_version VARCHAR(10) NULL,
+	license_extras  LONGTEXT NULL,
+	author_comments LONGTEXT NULL,
+	changes      MEDIUMTEXT NULL,
 	PRIMARY KEY (id),
 	UNIQUE KEY `fileId` (`file_id`)
-
 )	ENGINE = MyISAM;
 
 # Keep track of content dependencies
@@ -1114,6 +1120,9 @@ CREATE TABLE tiki_h5p_libraries (
 	drop_library_css TEXT          NULL,
 	semantics        TEXT          NOT NULL,
 	tutorial_url     VARCHAR(1023) NOT NULL,
+	has_icon         INT  UNSIGNED  NOT NULL  DEFAULT '0',
+	metadata_settings TEXT NULL,
+	add_to           TEXT DEFAULT NULL,
 	PRIMARY KEY (id),
 	KEY name_version (name, major_version, minor_version, patch_version),
 	KEY runnable (runnable)

@@ -54,7 +54,7 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 		$link = $baseUrl . 'tiki-index.php';
 		$data = str_replace('#####', $link, self::DEMO_TEXT);
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
-		$expectedLink = '((tiki-index.php))';
+		$expectedLink = '[tiki-index.php|tiki-index.php]';
 		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
 		$this->assertEquals($dataResult, $dataConverted);
 	}
@@ -331,7 +331,8 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
 
-		$expectedLink1 = '((tiki-index.php))';
+		$expectedLink1 = '[tiki-index.php|tiki-index.php]';
+
 		$dataResult = str_replace('#1', $expectedLink1, $text);
 
 		$this->assertEquals($dataResult, $dataConverted);

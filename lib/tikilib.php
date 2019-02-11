@@ -2502,6 +2502,7 @@ class TikiLib extends TikiDb_Bridge
 			return $data;
 		}
 
+		$notification = false;
 		$from = 0;
 		$to = strlen($data);
 		$replace = [];
@@ -2550,6 +2551,7 @@ class TikiLib extends TikiDb_Bridge
 				}
 				$newLink = '((' . $newPath . $matches[3][$i] . '))';
 				$data = str_replace($matches[0][$i], $newLink, $data);
+				$notification = true;
 			}
 		}
 
@@ -2566,8 +2568,11 @@ class TikiLib extends TikiDb_Bridge
 			// Check if url matches tiki instance links
 			if ($url = $this->getMatchBaseUrlSchema($matches[2][$i])) {
 				$newPath = str_replace($url, '', $matches[2][$i]);
-				$newLink = '[' . $newPath . $matches[3][$i] . ']';
-				$data = str_replace($matches[0][$i], $newLink, $data);
+				if (! empty($newPath)) {
+					$newLink = '[' . $newPath . $matches[3][$i] . ']';
+					$data = str_replace($matches[0][$i], $newLink, $data);
+					$notification = true;
+				}
 			}
 		}
 
@@ -2584,13 +2589,22 @@ class TikiLib extends TikiDb_Bridge
 			// Check if url matches tiki instance links
 			if ($url = $this->getMatchBaseUrlSchema($matches[0][$i])) {
 				$newPath = str_replace($url, '', $matches[0][$i]);
-				$newLink = '((' . $newPath . '))';
-				$data = str_replace($matches[0][$i], $newLink, $data);
+				$objectLink = $this->getObjectRelativeLink($newPath);
+				if (! empty($newPath) && ! empty($objectLink)) {
+					$objStartPos = strpos($data, $matches[0][$i]);
+					$objLength = strlen($matches[0][$i]);
+					$data = substr_replace($data, $objectLink, $objStartPos, $objLength);
+					$notification = true;
+				}
 			}
 		}
 
 		foreach ($replace as $key => $body) {
 			$data = str_replace($key, $body, $data);
+		}
+
+		if ($notification) {
+			Feedback::note(tr('Tiki links converted to relative links'));
 		}
 
 		return $data;
@@ -2618,6 +2632,380 @@ class TikiLib extends TikiDb_Bridge
 		} else {
 			return null;
 		}
+	}
+
+	/**
+	 * Returns the object internal link
+	 *
+	 * @param string $uri
+	 * @return string
+	 */
+	public function getObjectRelativeLink($uri)
+	{
+		global $prefs;
+		$objectLink = '';
+
+		if ($prefs['feature_sefurl'] === 'y') {
+			$slug = explode('-', $uri);
+			$slug = $slug[0];
+
+			switch ($slug) {
+				case (substr($slug, 0, 7) === 'article' || substr($slug, 0, 3) === 'art'):
+					$articleId = substr($slug, 0, 7) === 'article' ? substr($slug, 7) : substr($slug, 3);
+					$artlib = TikiLib::lib('art');
+					$article = $artlib->get_article($articleId);
+					$objectLink = ! empty($article['title']) ? '[' . $uri . '|' . $article['title'] . ']' : '';
+					break;
+				case substr($slug, 0, 8) === 'blogpost':
+					$blogPostId = substr($slug, 8);
+					$bloglib = TikiLib::lib('blog');
+					$blogPost = $bloglib->get_post($blogPostId);
+					$objectLink = ! empty($blogPost['title']) ? '[' . $uri . '|' . $blogPost['title'] . ']' : '';
+					break;
+				case substr($slug, 0, 4) === 'blog':
+					$blogId = substr($slug, 4);
+					$bloglib = TikiLib::lib('blog');
+					$blog = $bloglib->get_blog($blogId);
+					$objectLink = ! empty($blog['title']) ? '[' . $uri . '|' . $blog['title'] . ']' : '';
+					break;
+				case (substr($slug, 0, 11) === 'browseimage' || substr($slug, 0, 5) === 'image' || substr($slug, 0, 3) === 'img'):
+					if (substr($slug, 0, 11) === 'browseimage') {
+						$imageId = substr($slug, 11);
+					} elseif (substr($slug, 0, 5) === 'image') {
+						$imageId = substr($slug, 5);
+					} else {
+						$imageId = substr($slug, 3);
+					}
+					$imagegallib = TikiLib::lib('imagegal');
+					$image = $imagegallib->get_image_info($imageId);
+					$objectLink = ! empty($image['name']) ? '[' . $uri . '|' . $image['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 8) === 'calevent':
+					$eventId = substr($slug, 8);
+					$calendarlib = TikiLib::lib('calendar');
+					$event = $calendarlib->get_item($eventId);
+					$objectLink = ! empty($event['name']) ? '[' . $uri . '|' . $event['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 3) === 'cal':
+					$calendarId = substr($slug, 3);
+					$calendarlib = TikiLib::lib('calendar');
+					$calendar = $calendarlib->get_calendar($calendarId);
+					$objectLink = ! empty($calendar['name']) ? '[' . $uri . '|' . $calendar['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 3) === 'cat':
+					$catId = substr($slug, 3);
+					$categlib = TikiLib::lib('categ');
+					$cat = $categlib->get_category($catId);
+					$objectLink = ! empty($cat['name']) ? '[' . $uri . '|' . $cat['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 9) === 'directory':
+					$directoryCatId = substr($slug, 9);
+					if ($directoryCatId == 0) {
+						$objectLink = '[' . $uri . '|Top]';
+					} else {
+						global $dirlib;
+						include_once('lib/directory/dirlib.php');
+						$directoryCat = $dirlib->dir_get_category($directoryCatId);
+						$objectLink = ! empty($directoryCat['name']) ? '[' . $uri . '|' . $directoryCat['name'] . ']' : '';
+					}
+					break;
+				case substr($slug, 0, 7) === 'dirlink':
+					$siteId = substr($slug, 7);
+					global $dirlib;
+					include_once('lib/directory/dirlib.php');
+					$site = $dirlib->dir_get_site($siteId);
+					$objectLink = ! empty($site['name']) ? '[' . $uri . '|' . $site['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 5) === 'event':
+					$eventId = substr($slug, 5);
+					$calendarlib = TikiLib::lib('calendar');
+					$event = $calendarlib->get_item($eventId);
+					$objectLink = ! empty($event['name']) ? '[' . $uri . '|' . $event['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 3) === 'faq':
+					$faqId = substr($slug, 3);
+					$faqlib = TikiLib::lib('faq');
+					$faq = $faqlib->get_faq($faqId);
+					$objectLink = ! empty($faq['title']) ? '[' . $uri . '|' . $faq['title'] . ']' : '';
+					break;
+				case substr($slug, 0, 4) === 'file':
+					$fileGalleryId = substr($slug, 4);
+					$filegallib = TikiLib::lib('filegal');
+					$gallery = $filegallib->get_file_gallery($fileGalleryId);
+					$objectLink = ! empty($gallery['name']) ? '[' . $uri . '|' . $gallery['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 7) === 'gallery':
+					$galleryId = substr($slug, 7);
+					$filegallib = TikiLib::lib('filegal');
+					$gallery = $filegallib->get_file_gallery($galleryId);
+					$objectLink = ! empty($gallery['name']) ? '[' . $uri . '|' . $gallery['name'] . ']' : '';
+					break;
+				case (substr($slug, 0, 2) === 'dl' || substr($slug, 0, 9) === 'thumbnail' || substr($slug, 0, 7) === 'display' || substr($slug, 0, 7) === 'preview'):
+					if (substr($slug, 0, 2) === 'dl') {
+						$fileId = substr($slug, 2);
+					} elseif (substr($slug, 0, 9) === 'thumbnail') {
+						$fileId = substr($slug, 9);
+					} else {
+						$fileId = substr($slug, 7);
+					}
+					$filegallib = TikiLib::lib('filegal');
+					$file = $filegallib->get_file($fileId);
+					$objectLink = ! empty($file['name']) ? '[' . $uri . '|' . $file['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 11) === 'forumthread':
+					$forumCommentId = substr($slug, 11);
+					$commentslib = TikiLib::lib('comments');
+					$forumComment = $commentslib->get_comment($forumCommentId);
+					$objectLink = ! empty($forumComment['title']) ? '[' . $uri . '|' . $forumComment['title'] . ']' : '';
+					break;
+				case substr($slug, 0, 5) === 'forum':
+					$forumId = substr($slug, 5);
+					$commentslib = TikiLib::lib('comments');
+					$forum = $commentslib->get_forum($forumId);
+					$objectLink = ! empty($forum['name']) ? '[' . $uri . '|' . $forum['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 4) === 'item':
+					$itemId = substr($slug, 4);
+					$trklib = TikiLib::lib('trk');
+					$trackerItem = $trklib->get_tracker_item($itemId);
+					$objectLink = ! empty($trackerItem) ? '[' . $uri . '|' . $slug . ']' : '';
+					break;
+				case substr($slug, 0, 3) === 'int':
+					$repID = substr($slug, 3);
+					$integrator = new TikiIntegrator($dbTiki);
+					$rep = $integrator->get_repository($repID);
+					$objectLink = ! empty($rep['name']) ? '[' . $uri . '|' . $rep['name'] . ']' : '';
+					break;
+				case (substr($slug, 0, 10) === 'newsletter' || substr($slug, 0, 2) === 'nl'):
+					$newsletterId = substr($slug, 0, 10) === 'newsletter' ? substr($slug, 10) : substr($slug, 2);
+					global $nllib;
+					include_once('lib/newsletters/nllib.php');
+					$newsletter = $nllib->get_newsletter($newsletterId);
+					$objectLink = ! empty($newsletter['name']) ? '[' . $uri . '|' . $newsletter['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 4) === 'poll':
+					$pollId = substr($slug, 4);
+					$polllib = TikiLib::lib('poll');
+					$poll = $polllib->get_poll($pollId);
+					$objectLink = ! empty($poll['title']) ? '[' . $uri . '|' . $poll['title'] . ']' : '';
+					break;
+				case substr($slug, 0, 4) === 'quiz':
+					$quizId = substr($slug, 4);
+					$quizlib = TikiLib::lib('quiz');
+					$quiz = $quizlib->get_quiz($quizId);
+					$objectLink = ! empty($quiz['name']) ? '[' . $uri . '|' . $quiz['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 7) === 'tracker':
+					$trackerId = substr($slug, 7);
+					$trklib = TikiLib::lib('trk');
+					$tracker = $trklib->get_tracker($trackerId);
+					$objectLink = ! empty($tracker['name']) ? '[' . $uri . '|' . $tracker['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 5) === 'sheet':
+					$sheetId = substr($slug, 5);
+					$sheetlib = TikiLib::lib("sheet");
+					$sheet = $sheetlib->get_sheet_info($sheetId);
+					$objectLink = ! empty($sheet['title']) ? '[' . $uri . '|' . $sheet['title'] . ']' : '';
+					break;
+				case substr($slug, 0, 6) === 'survey':
+					include_once('lib/surveys/surveylib.php');
+					$surveyId = substr($slug, 6);
+					$survey = $srvlib->get_survey($surveyId);
+					$objectLink = ! empty($survey['name']) ? '[' . $uri . '|' . $survey['name'] . ']' : '';
+					break;
+				case substr($slug, 0, 4) === 'user':
+					$userId = substr($slug, 4);
+					$user = $this->get_user_login($userId);
+					$objectLink = ! empty($user) ? '[' . $uri . '|' . $user . ']' : '';
+					break;
+				default:
+					$pageName = $this->getPageBySlug($uri);
+					$objectLink = ! empty($pageName) ? '((' . $pageName . '))' : '';
+			}
+		}
+
+		$uriParams = explode('?', $uri);
+		$param = ! empty($uriParams[1]) ? $uriParams[1] : '';
+		$clearParam = ! empty($param) ? explode('&', $param) : '';
+		$param = ! empty($clearParam[0]) ? $clearParam[0] : '';
+		if (! empty($param)) {
+			switch ($param) {
+				case substr($param, 0, 9) === 'articleId':
+					$articleId = substr($param, 10);
+					$artlib = TikiLib::lib('art');
+					$article = $artlib->get_article($articleId);
+					$objectLink = ! empty($article['title']) ? '[' . $uri . '|' . $article['title'] . ']' : '';
+					break;
+				case substr($param, 0, 6) === 'blogId':
+					$blogId = substr($param, 7);
+					$bloglib = TikiLib::lib('blog');
+					$blog = $bloglib->get_blog($blogId);
+					$objectLink = ! empty($blog['title']) ? '[' . $uri . '|' . $blog['title'] . ']' : '';
+					break;
+				case substr($param, 0, 6) === 'postId':
+					$blogPostId = substr($param, 7);
+					$bloglib = TikiLib::lib('blog');
+					$blogPost = $bloglib->get_post($blogPostId);
+					$objectLink = ! empty($blogPost['title']) ? '[' . $uri . '|' . $blogPost['title'] . ']' : '';
+					break;
+				case substr($param, 0, 10) === 'calendarId':
+					$calendarId = substr($param, 11);
+					$calendarlib = TikiLib::lib('calendar');
+					$calendar = $calendarlib->get_calendar($calendarId);
+					$objectLink = ! empty($calendar['name']) ? '[' . $uri . '|' . $calendar['name'] . ']' : '';
+					break;
+				case substr($param, 0, 17) === 'comments_parentId':
+					$forumCommentId = substr($param, 18);
+					$commentslib = TikiLib::lib('comments');
+					$forumComment = $commentslib->get_comment($forumCommentId);
+					$objectLink = ! empty($forumComment['title']) ? '[' . $uri . '|' . $forumComment['title'] . ']' : '';
+					break;
+				case substr($param, 0, 6) === 'parent':
+					$directoryCatId = substr($param, 7);
+					if ($directoryCatId == 0) {
+						$objectLink = '[' . $uri . '|Top]';
+					} else {
+						global $dirlib;
+						include_once('lib/directory/dirlib.php');
+						$directoryCat = $dirlib->dir_get_category($directoryCatId);
+						$objectLink = ! empty($directoryCat['name']) ? '[' . $uri . '|' . $directoryCat['name'] . ']' : '';
+					}
+					break;
+				case substr($param, 0, 9) === 'galleryId':
+					$fileGalleryId = substr($param, 10);
+					$filegallib = TikiLib::lib('filegal');
+					$gallery = $filegallib->get_file_gallery($fileGalleryId);
+					$objectLink = ! empty($gallery['name']) ? '[' . $uri . '|' . $gallery['name'] . ']' : '';
+					break;
+				case substr($param, 0, 5) === 'faqId':
+					$faqId = substr($param, 6);
+					$faqlib = TikiLib::lib('faq');
+					$faq = $faqlib->get_faq($faqId);
+					$objectLink = ! empty($faq['title']) ? '[' . $uri . '|' . $faq['title'] . ']' : '';
+					break;
+				case substr($param, 0, 6) === 'fileId':
+					$fileId = substr($param, 7);
+					$filegallib = TikiLib::lib('filegal');
+					$file = $filegallib->get_file($fileId);
+					$objectLink = ! empty($file['name']) ? '[' . $uri . '|' . $file['name'] . ']' : '';
+					break;
+				case substr($param, 0, 7) === 'forumId':
+					$forumId = substr($param, 8);
+					$commentslib = TikiLib::lib('comments');
+					$forum = $commentslib->get_forum($forumId);
+					$objectLink = ! empty($forum['name']) ? '[' . $uri . '|' . $forum['name'] . ']' : '';
+					break;
+				case (substr($param, 0, 7) === 'imageId' || substr($param, 0, 2) === 'id'):
+					$imageId = (substr($param, 0, 7) === 'imageId') ? substr($param, 8) : substr($param, 3);
+					$imagegallib = TikiLib::lib('imagegal');
+					$image = $imagegallib->get_image_info($imageId);
+					$objectLink = ! empty($image['name']) ? '[' . $uri . '|' . $image['name'] . ']' : '';
+					break;
+				case substr($param, 0, 4) === 'nlId':
+					$newsletterId = substr($param, 5);
+					global $nllib;
+					include_once('lib/newsletters/nllib.php');
+					$newsletter = $nllib->get_newsletter($newsletterId);
+					$objectLink = ! empty($newsletter['name']) ? '[' . $uri . '|' . $newsletter['name'] . ']' : '';
+					break;
+				case substr($param, 0, 4) === 'page':
+					$pageSlug = substr($param, 5);
+					if ($uriParams[0] == 'tiki-index.php') {
+						$pageName = $this->getPageBySlug($pageSlug);
+						$objectLink = ! empty($pageName) ? '((' . $pageName . '))' : '';
+					} else {
+						$objectLink = '[' . $uri . '|' . $uri . ']';
+					}
+					break;
+				case substr($param, 0, 8) === 'parentId':
+					$catId = substr($param, 9);
+					$categlib = TikiLib::lib('categ');
+					$cat = $categlib->get_category($catId);
+					$objectLink = ! empty($cat['name']) ? '[' . $uri . '|' . $cat['name'] . ']' : '';
+					break;
+				case substr($param, 0, 6) === 'pollId':
+					$pollId = substr($param, 7);
+					$polllib = TikiLib::lib('poll');
+					$poll = $polllib->get_poll($pollId);
+					$objectLink = ! empty($poll['title']) ? '[' . $uri . '|' . $poll['title'] . ']' : '';
+					break;
+				case substr($param, 0, 6) === 'quizId':
+					$quizId = substr($param, 7);
+					$quizlib = TikiLib::lib('quiz');
+					$quiz = $quizlib->get_quiz($quizId);
+					$objectLink = ! empty($quiz['name']) ? '[' . $uri . '|' . $quiz['name'] . ']' : '';
+					break;
+				case substr($param, 0, 5) === 'repID':
+					$repID = substr($param, 6);
+					$integrator = new TikiIntegrator($dbTiki);
+					$rep = $integrator->get_repository($repID);
+					$objectLink = ! empty($rep['name']) ? '[' . $uri . '|' . $rep['name'] . ']' : '';
+					break;
+				case substr($param, 0, 6) === 'siteId':
+					$siteId = substr($param, 7);
+					global $dirlib;
+					include_once('lib/directory/dirlib.php');
+					$site = $dirlib->dir_get_site($siteId);
+					$objectLink = ! empty($site['name']) ? '[' . $uri . '|' . $site['name'] . ']' : '';
+					break;
+				case substr($param, 0, 7) === 'sheetId':
+					$sheetId = substr($param, 8);
+					$sheetlib = TikiLib::lib("sheet");
+					$sheet = $sheetlib->get_sheet_info($sheetId);
+					$objectLink = ! empty($sheet['title']) ? '[' . $uri . '|' . $sheet['title'] . ']' : '';
+					break;
+				case substr($param, 0, 8) === 'surveyId':
+					include_once('lib/surveys/surveylib.php');
+					$surveyId = substr($param, 9);
+					$survey = $srvlib->get_survey($surveyId);
+					$objectLink = ! empty($survey['name']) ? '[' . $uri . '|' . $survey['name'] . ']' : '';
+					break;
+				case substr($param, 0, 9) === 'trackerId':
+					$trackerId = substr($param, 10);
+					$trklib = TikiLib::lib('trk');
+					$tracker = $trklib->get_tracker($trackerId);
+					$objectLink = ! empty($tracker['name']) ? '[' . $uri . '|' . $tracker['name'] . ']' : '';
+					break;
+				case substr($param, 0, 6) === 'userId':
+					$userId = substr($param, 7);
+					$user = $this->get_user_login($userId);
+					$objectLink = ! empty($user) ? '[' . $uri . '|' . $user . ']' : '';
+					break;
+				case substr($param, 0, 13) === 'viewcalitemId':
+					$eventId = substr($param, 14);
+					$calendarlib = TikiLib::lib('calendar');
+					$event = $calendarlib->get_item($eventId);
+					$objectLink = ! empty($event['name']) ? '[' . $uri . '|' . $event['name'] . ']' : '';
+					break;
+			}
+		}
+
+		if (empty($objectLink)) {
+			$pageName = $this->getPageBySlug($uri);
+			if (in_array($uri, ['index.php', 'tiki-index.php'])) {
+				$objectLink = '[' . $uri . '|' . $uri . ']';
+			} else {
+				$objectLink = ! empty($pageName) ? '((' . $pageName . '))' : '[' . $uri . '|' . $uri . ']';
+			}
+		}
+
+		return $objectLink;
+	}
+
+	/**
+	 * Return wiki pages
+	 *
+	 * @param $slug
+	 * @return string
+	 */
+	public function getPageBySlug($slug)
+	{
+		global $prefs;
+
+		$pages = TikiDb::get()->table('tiki_pages');
+		$found = $pages->fetchOne('pageName', ['pageSlug' => $slug]);
+
+		return ! empty($found) ? $found : '';
 	}
 
 	/**
