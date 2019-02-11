@@ -1336,7 +1336,7 @@ if (isset($_REQUEST["save"])
 		TikiLib::lib('geo')->set_coordinates('wiki page', $page, $_REQUEST['geolocation']);
 	}
 
-	if ($prefs['wiki_auto_toc'] == 'y' && isset($_REQUEST['pageAutoToc'])) {
+	if (isset($_REQUEST['pageAutoToc'])) {
 		$isAutoTocActive = intval($_REQUEST['pageAutoToc']);
 		$isAutoTocActive = $isAutoTocActive == 0 ? null : $isAutoTocActive;
 		$wikilib->set_page_auto_toc($page, $isAutoTocActive);

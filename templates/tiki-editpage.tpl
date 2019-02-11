@@ -596,8 +596,8 @@
 								<label for="pageAutoToc" class="col-md-4 col-form-label">{tr}Automatic table of contents{/tr}</label>
 								<div class="col-md-8">
 									<select name="pageAutoToc" class="form-control">
-										<option value="0" {if $pageAutoToc == 0}selected{/if}>{tr}Default{/tr}</option>
-										{*<option value="1" {if $pageAutoToc == 1}selected{/if}>{tr}On{/tr}</option>*}
+										<option value="0" {if $pageAutoToc == 0}selected{/if}>{tr}Default{/tr} ({if $prefs.wiki_toc_default eq 'off'}{tr}Off{/tr}{else}{tr}On{/tr}{/if})</option>
+										<option value="1" {if $pageAutoToc == 1}selected{/if}>{tr}On{/tr}</option>
 										<option value="-1" {if $pageAutoToc == -1}selected{/if}>{tr}Off{/tr}</option>
 									</select>
 								</div>
