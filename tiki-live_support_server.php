@@ -11,7 +11,7 @@
 // This PHP script handles all the messaging between the clients
 // and the server (this script). Messaging is done using a REST
 // model based on HTTP GET requests.
-// Clients use Javascript to send messages to this server.
+// Clients use JavaScript to send messages to this server.
 //   clients of this server are:
 //   * The operator console
 //   * The operator chat window

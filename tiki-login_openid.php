@@ -264,7 +264,7 @@ function runAuth()
 	// Redirect the user to the OpenID server for authentication.
 	// Store the token for this authentication so we can verify the
 	// response.
-	// For OpenID 1, send a redirect.  For OpenID 2, use a Javascript
+	// For OpenID 1, send a redirect.  For OpenID 2, use a JavaScript
 	// form to send a POST request to the server.
 	if ($auth_request->shouldSendRedirect()) {
 		$redirect_url = $auth_request->redirectURL(getTrustRoot(), getReturnTo());

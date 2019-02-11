@@ -15,7 +15,7 @@ function wikiplugin_together_info()
 		'introduced' => 12,
 		'prefs' => [ 'wikiplugin_together' ],
 		'additional' => tra('A service for collaborating on your website in real-time. TogetherJS lets users communicate,
-			co-author, co-browse and guide each other. TogetherJS is implemented in Javascript; no software or plugins
+			co-author, co-browse and guide each other. TogetherJS is implemented in JavaScript; no software or plugins
 			to install, and it is friendly with existing web pages, while still letting developers customize the
 			experience.') . " " . tra("Note: TogetherJS is alpha-quality software. We do not recommend using it in
 			production at this time."),

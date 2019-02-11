@@ -195,7 +195,7 @@ if ($cdn_pref) {
 	$host = parse_url($cdn_pref, PHP_URL_HOST);
 	if (isset($_SERVER['HTTP_HOST']) && $host == $_SERVER['HTTP_HOST']) {
 		header("HTTP/1.0 410 Gone");
-		echo "This is a Content Delivery Network (CDN) to speed up delivery of images, CSS, and javascript files. However, PHP code is not executed.";
+		echo "This is a Content Delivery Network (CDN) to speed up delivery of images, CSS, and JavaScript files. However, PHP code is not executed.";
 		exit;
 	}
 }

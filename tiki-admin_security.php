@@ -71,14 +71,14 @@ if ($prefs['wikiplugin_js'] == 'y') {
 	$tikisettings['wikiplugin_js'] = [
 		'risk' => tra('unsafe') ,
 		'setting' => tra('Enabled') ,
-		'message' => tra('The "js Wikiplugin" is activated. It can be used by wiki editors to use Javascript, which can be used to do all kind of nasty things like cross site scripting attacks, etc.')
+		'message' => tra('The "js Wikiplugin" is activated. It can be used by wiki editors to use JavaScript, which can be used to do all kind of nasty things like cross site scripting attacks, etc.')
 	];
 }
 if ($prefs['wikiplugin_jq'] == 'y') {
 	$tikisettings['wikiplugin_jq'] = [
 		'risk' => tra('unsafe') ,
 		'setting' => tra('Enabled') ,
-		'message' => tra('The "JQ Wikiplugin" is activated. It can be used by wiki editors to use Javascript, which can be used to do all kind of nasty things like cross site scripting attacks, etc.')
+		'message' => tra('The "JQ Wikiplugin" is activated. It can be used by wiki editors to use JavaScript, which can be used to do all kind of nasty things like cross site scripting attacks, etc.')
 	];
 }
 if ($prefs['wikiplugin_redirect'] == 'y') {
