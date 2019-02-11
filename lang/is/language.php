@@ -141,9 +141,9 @@ $lang = array(
 // "Cocos_Islands" => "Cocos_Islands",
 // "Colombia" => "Colombia",
 // "Comoros" => "Comoros",
-// "Congo Democratic" => "Congo Democratic",
+// "Democratic Republic of the Congo" => "Democratic Republic of the Congo",
 "Congo" => "Kongó",
-// "Congo_Democratic" => "Congo_Democratic",
+
 // "Cook Islands" => "Cook Islands",
 // "Cook_Islands" => "Cook_Islands",
 // "Costa Rica" => "Costa Rica",
