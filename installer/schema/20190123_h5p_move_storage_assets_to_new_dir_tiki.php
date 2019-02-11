@@ -19,7 +19,7 @@ function upgrade_20190123_h5p_move_storage_assets_to_new_dir_tiki($installer)
 {
 	$newH5Pdir = 'storage/public/h5p';
 
-	if (! is_dir($newH5Pdir) && is_writable('storage/public')) {
+	if (! is_dir($newH5Pdir)) {
 		if (mkdir($newH5Pdir)) {
 			foreach (['cachedassets', 'content', 'exports','libraries','temp'] as $dir) {
 
@@ -29,7 +29,5 @@ function upgrade_20190123_h5p_move_storage_assets_to_new_dir_tiki($installer)
 			}
 
 		}
-	} else {
-		trigger_error(tr('H5P assets move script: Directory storage/public not writable'));
 	}
 }
