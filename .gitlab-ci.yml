@@ -131,16 +131,16 @@ db-upgrade-15-lts:
 db-upgrade-15-lts-5.5-mariadb:
   <<: *template-tiki-schema-upgrade
   variables:
-    DBFILE: ci_18.sql
-    DBVER: 18
+    DBFILE: ci_15.sql
+    DBVER: 15
     IMAGE: mariadb:5.5
     ENGINE: MyISAM
 
 db-upgrade-15-lts-10.2-mariadb:
   <<: *template-tiki-schema-upgrade
   variables:
-    DBFILE: ci_18.sql
-    DBVER: 18
+    DBFILE: ci_15.sql
+    DBVER: 15
     IMAGE: mariadb:10.2
     ENGINE: InnoDB
 
