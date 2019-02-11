@@ -259,7 +259,7 @@ class ConsoleApplicationBuilder
 	 */
 	protected function checkIsOCRAvailable () : bool
 	{
-		if (!$this->checkIsInstalled()){
+		if (! $this->checkIsInstalledAndDoNotRequireUpdate()){
 			return false;
 		}
 
