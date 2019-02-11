@@ -2645,7 +2645,7 @@ class TikiLib extends TikiDb_Bridge
 		global $prefs;
 		$objectLink = '';
 
-		if ($prefs['feature_sefurl'] === 'y') {
+		if (! empty($prefs['feature_sefurl']) && $prefs['feature_sefurl'] === 'y') {
 			$slug = explode('-', $uri);
 			$slug = $slug[0];
 
