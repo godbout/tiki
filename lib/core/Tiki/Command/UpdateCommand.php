@@ -34,6 +34,9 @@ class UpdateCommand extends Command
 		$installed = $installer->tableExists('users_users');
 
 		if ($installed) {
+			// tiki-setup.php may not have been run yet, so load the minimum required libs to be able process the schema updates
+			require_once('lib/tikilib.php');
+
 			$installer->update();
 			$output->writeln('Update completed.');
 			foreach (array_keys(\Patch::getPatches([\Patch::NEWLY_APPLIED])) as $patch) {
@@ -66,7 +69,6 @@ class UpdateCommand extends Command
 
 			// tiki-setup.php may not have been run yet, so load the minimum required libs to be able to clear the caches
 			require_once('lib/cache/cachelib.php');
-			require_once('lib/tikilib.php');
 			$cachelib = new \Cachelib();
 			$cachelib->empty_cache();
 		} else {
