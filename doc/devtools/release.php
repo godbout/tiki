@@ -339,7 +339,7 @@ function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 				}
 
 				// Escape filename. Since this requires a connection to MySQL (due to the charset), do so conditionally to reduce the risk of connection failure.
-				if (! preg_match('/^[a-zA-Z!-9\/ _+.-]+$/', $file)) {
+				if (! preg_match('/^[a-zA-Z!-9\/ _+.-@]+$/', $file)) {
 					if (! $link) {
 						$link = mysqli_connect();
 
