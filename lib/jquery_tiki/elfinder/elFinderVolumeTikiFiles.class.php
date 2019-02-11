@@ -643,7 +643,7 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 			}
 
 			if ($contents) {
-				fwrite($fp, $r);
+				fwrite($fp, $contents);
 				rewind($fp);
 				return $fp;
 			} else {
