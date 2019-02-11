@@ -65,7 +65,7 @@ db/index.php -text
 db/install.ini.dist -text
 db/preconfiguration.php -text
 db/tiki-db.php -text
-db/tiki-secdb_19.0_mysql.sql -text
+db/tiki-secdb_19.1_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text

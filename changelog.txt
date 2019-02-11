@@ -32,6 +32,1069 @@ The tags info is also online: https://dev.tiki.org/Commit+Tags
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 19.1
+<http://doc.tiki.org/Tiki19>
+------------------
+
+----------------------------------------------
+r69044 | jonnybradley | 2019-02-11 14:48:17 +0000 (Mon, 11 Feb 2019) | 1 line
+[UPD] bs4: Switch bootstrap-tour to dev-master as the fixes for bs4 haven't been tagged yet sadly (should address wish 6677, thanks chibaguy)
+----------------------------------------------
+r69042 | jonnybradley | 2019-02-11 14:45:09 +0000 (Mon, 11 Feb 2019) | 1 line
+[UPD] Automatic minor updates (php71 temp/composer.phar update -d vendor_bundled --prefer-dist)
+----------------------------------------------
+r69041 | jonnybradley | 2019-02-11 12:17:51 +0000 (Mon, 11 Feb 2019) | 1 line
+[FIX] h5p: Also remove the test for writable so we expose the raw errors to the installer or console
+----------------------------------------------
+r69040 | jonnybradley | 2019-02-11 12:15:44 +0000 (Mon, 11 Feb 2019) | 1 line
+[FIX] h5p: Remove "fancy" translated error message from h5p storage update script (thanks Jyhem and robertokir)
+----------------------------------------------
+r69038 | rjsmelo | 2019-02-11 00:50:13 +0000 (Mon, 11 Feb 2019) | 2 lines
+[REF] Avoid warning if the key feature_sefurl is not defined
+----------------------------------------------
+r69035 | rjsmelo | 2019-02-11 00:42:20 +0000 (Mon, 11 Feb 2019) | 2 lines
+[FIX] Add missing changes to tiki.sql regarding H5P introduced in r68754 and r68737
+----------------------------------------------
+r69034 | rjsmelo | 2019-02-10 21:50:41 +0000 (Sun, 10 Feb 2019) | 2 lines
+[FIX] Convert from absolute to relative link not working as expected with SEF links. Also fix other edge cases detected.
+----------------------------------------------
+r69032 | lindonb | 2019-02-10 20:56:38 +0000 (Sun, 10 Feb 2019) | 1 line
+facebook notice
+----------------------------------------------
+r69030 | lindonb | 2019-02-10 20:50:23 +0000 (Sun, 10 Feb 2019) | 1 line
+quickadmin notice
+----------------------------------------------
+r69028 | lindonb | 2019-02-10 20:46:48 +0000 (Sun, 10 Feb 2019) | 1 line
+table notices
+----------------------------------------------
+r69026 | lindonb | 2019-02-10 20:20:55 +0000 (Sun, 10 Feb 2019) | 1 line
+Facebook notices
+----------------------------------------------
+r69020 | lindonb | 2019-02-10 19:30:11 +0000 (Sun, 10 Feb 2019) | 1 line
+[FIX] Facebook feed: use Tikilib/Zend functions so that parsing of feed is not garbled and so that curl can be used as an alternative in environments where sockets aren't available or not allowed
+----------------------------------------------
+r69019 | lindonb | 2019-02-10 19:15:27 +0000 (Sun, 10 Feb 2019) | 1 line
+[FIX] http client: connections were failing in environments where sockets aren't available or allowed, so add curl as an alternative
+----------------------------------------------
+r69016 | jonnybradley | 2019-02-09 18:09:52 +0000 (Sat, 09 Feb 2019) | 2 lines
+[FIX] jquery-ui: Fix for ui-state-active using $ui-active-border-color which in many themes is defined as more than one colour, so needs to be set separately using border-colour (thanks luciash for the tips and support ;)
+Also remove "border-bottom-width: 0" which doesn't seem appropriate
+----------------------------------------------
+r69015 | jonnybradley | 2019-02-09 17:18:29 +0000 (Sat, 09 Feb 2019) | 1 line
+[FIX] chosen: Hide the search input box when the chosen dropdown is not active (was making an extra blank line under the selected items)
+----------------------------------------------
+r69014 | jonnybradley | 2019-02-09 15:35:54 +0000 (Sat, 09 Feb 2019) | 1 line
+[FIX] jquery-ui: Remove the blanket suppression or borders on all ui-widget-content which makes many things hard to use (and/or see). Maybe this needs to be re-defined more narrowly? (although i'm not sure what the aim was here...)
+----------------------------------------------
+r69013 | jonnybradley | 2019-02-09 15:28:03 +0000 (Sat, 09 Feb 2019) | 1 line
+[FIX] calendar: Fix button classes, make the textarea properly hidden when using wysiwyg, and show notBefore and notAfter ranges on the datetime pickers if in use
+----------------------------------------------
+r69012 | luciash | 2019-02-09 12:46:34 +0000 (Sat, 09 Feb 2019) | 2 lines
+[FIX] Prevent target anchors from being covered by fixed top navbar (thanks marclaporte)
+----------------------------------------------
+r69010 | jonnybradley | 2019-02-08 18:58:54 +0000 (Fri, 08 Feb 2019) | 1 line
+[FIX] bs4: Better class for page actions dropdown button, so it matches the other ones, or should they all be primary?
+----------------------------------------------
+r69009 | jonnybradley | 2019-02-08 18:56:23 +0000 (Fri, 08 Feb 2019) | 1 line
+[ENH] trackers: Expose the notBefore and notAfter params to the datetime pickers (only as max and min dates for now)
+----------------------------------------------
+r69007 | jonnybradley | 2019-02-08 17:48:14 +0000 (Fri, 08 Feb 2019) | 2 lines
+[FIX] installer: Make it possible to update the database if the database needs updating ;)
+If tiki-setup.php won't run due to missing tables or fields then you cannot use the console to update it sometimes, thanks to Jyhem for the report
+----------------------------------------------
+r68998 | pom2ter | 2019-02-07 23:43:52 +0000 (Thu, 07 Feb 2019) | 1 line
+[FIX] text-muted class made the text unreadable with certain themes
+----------------------------------------------
+r68997 | pom2ter | 2019-02-07 23:01:01 +0000 (Thu, 07 Feb 2019) | 1 line
+[FIX] t_navbar class sometime overflows to other columns because of missing flex wrap
+----------------------------------------------
+r68995 | jonnybradley | 2019-02-07 19:59:02 +0000 (Thu, 07 Feb 2019) | 1 line
+[FIX] h5p: Add missing Id keyword and correct a typo
+----------------------------------------------
+r68994 | jonnybradley | 2019-02-07 19:53:13 +0000 (Thu, 07 Feb 2019) | 2 lines
+[FIX][REF] console: Move error processing from IndexRebuildCommand and deploy in TrackerImportCommand as there was no feedback as to why the import failed.
+Also use in IndexCatchUpCommand - this needs to be in every command so maybe there's a better way to do this? (like attached Feedback to stderr or something?)
+----------------------------------------------
+r68981 | pom2ter | 2019-02-07 00:24:47 +0000 (Thu, 07 Feb 2019) | 1 line
+[FIX] change the form in tiki-list_articles to match it with other pages
+----------------------------------------------
+r68976 | jonnybradley | 2019-02-06 18:19:39 +0000 (Wed, 06 Feb 2019) | 1 line
+[FIX] user_selector: Disambiguate users with the same real names in user selector lists
+----------------------------------------------
+r68974 | jonnybradley | 2019-02-06 16:56:20 +0000 (Wed, 06 Feb 2019) | 1 line
+[FIX] intertiki: Correct bad logic from (my) r61293 in that you cannot edit users if you are an intertiki client, but can do so if you're a server/master (right?)
+----------------------------------------------
+r68971 | robertokir | 2019-02-06 11:09:57 +0000 (Wed, 06 Feb 2019) | 1 line
+[FIX] Checks if H5P directory is writable and, if needed, creates some directories under it
+----------------------------------------------
+r68970 | chibaguy | 2019-02-06 06:53:43 +0000 (Wed, 06 Feb 2019) | 1 line
+[FIX][UI] Plugin Layout implements a full-width page by renaming div.container to div.container-fluid. But some page layouts have sections of the page with full-width backgrounds that hold content that is the standard container width, not full-width, do the div.containers that hold this content shouldn't be renamed. This commit adds a class ("container-std") to the standard container divs to limit Plugin Layout's renaming/widening to those divs and not affect the in-page container divs.
+----------------------------------------------
+r68968 | amnabilal | 2019-02-06 05:33:04 +0000 (Wed, 06 Feb 2019) | 1 line
+[FIX]Typo fixed in module name, thanks Philippe
+----------------------------------------------
+r68966 | pom2ter | 2019-02-05 23:24:10 +0000 (Tue, 05 Feb 2019) | 1 line
+[FIX] autotoc now appears on mobile
+----------------------------------------------
+r68965 | pom2ter | 2019-02-05 21:55:05 +0000 (Tue, 05 Feb 2019) | 1 line
+[FIX] fix sharethis broken links in the admin panel
+----------------------------------------------
+r68962 | chibaguy | 2019-02-05 11:55:03 +0000 (Tue, 05 Feb 2019) | 1 line
+[FIX][UI] Change btn-secondary to btn-primary for instances of "save", "submit", etc. (in line with https://themes.tiki.org/Organization-of-button-colors-in-Tiki).
+----------------------------------------------
+r68958 | luciash | 2019-02-04 21:00:01 +0000 (Mon, 04 Feb 2019) | 2 lines
+[FIX] replace some legacy pref names causing errors in the Configuration Wizard
+----------------------------------------------
+r68957 | luciash | 2019-02-04 20:42:55 +0000 (Mon, 04 Feb 2019) | 2 lines
+typo
+----------------------------------------------
+r68956 | luciash | 2019-02-04 20:37:53 +0000 (Mon, 04 Feb 2019) | 2 lines
+[FIX][ENH] Add some margin space above and below the PHP errors area
+----------------------------------------------
+r68955 | luciash | 2019-02-04 20:27:05 +0000 (Mon, 04 Feb 2019) | 2 lines
+[FIX][ENH] Icons: more suitable icon to represent modules and module in both bundled iconsets (thanks Chealer, Bernard and Jonny for hints and ideas)
+----------------------------------------------
+r68954 | jonnybradley | 2019-02-04 19:45:44 +0000 (Mon, 04 Feb 2019) | 1 line
+[FIX] maths: Also, don't try and divide a non-numeric value (usually an empty string)
+----------------------------------------------
+r68953 | jonnybradley | 2019-02-04 19:34:35 +0000 (Mon, 04 Feb 2019) | 1 line
+[FIX] maths: Don't try and divide by a non-numeric value (usually an empty string)
+----------------------------------------------
+r68952 | luciash | 2019-02-04 19:24:07 +0000 (Mon, 04 Feb 2019) | 1 line
+[FIX][ENH][UX] Wizards: improve the look and feel of the stacked icons in the wizard steps
+----------------------------------------------
+r68951 | jonnybradley | 2019-02-04 18:40:16 +0000 (Mon, 04 Feb 2019) | 1 line
+[FIX] trackers: Notices when importing via the command line
+----------------------------------------------
+r68950 | jonnybradley | 2019-02-04 18:39:35 +0000 (Mon, 04 Feb 2019) | 1 line
+[FIX] trackers: Linked items need created not creation_date
+----------------------------------------------
+r68949 | jonnybradley | 2019-02-02 19:02:10 +0000 (Sat, 02 Feb 2019) | 6 lines
+[ENH] listexecute: Add a way of selecting values to add or remove when executing the action (note: remove currently only removes one value at a time)
+Usage:
+    {step action="tracker_item_modify" field="userFieldPermName" method="add"}
+ or
+    {step action="tracker_item_modify" field="userFieldPermName" method="remove"}
+----------------------------------------------
+r68948 | jonnybradley | 2019-02-02 17:01:53 +0000 (Sat, 02 Feb 2019) | 1 line
+Better fix for the annoying disappearing popover issue (and revert r68912, hope this is ok luciash and all?)
+----------------------------------------------
+r68945 | kroky6 | 2019-02-01 09:12:49 +0000 (Fri, 01 Feb 2019) | 1 line
+[FIX] tracker notification user preferences sql query mixup - when user with chosen language of TW modifies a tracker item, the notifications sent out are not based on recipient language preference but the user making the notification which is wrong; fixed the sql query and/or precedence issue
+----------------------------------------------
+r68944 | pom2ter | 2019-02-01 01:13:52 +0000 (Fri, 01 Feb 2019) | 1 line
+[FIX] fix some theme specific issues
+----------------------------------------------
+r68942 | jonnybradley | 2019-01-31 20:12:58 +0000 (Thu, 31 Jan 2019) | 1 line
+[FIX] listexecute: No need to set the full url of the page for the filter form, especially as it wasn't observing sefurls
+----------------------------------------------
+r68941 | jonnybradley | 2019-01-31 19:44:07 +0000 (Thu, 31 Jan 2019) | 2 lines
+[bp/r68720][ENH] listexecute: Make the TrackerItemModify action use the correct input per field type instead of a plain text input. Tracker fetch_item_field action needed to be adapted to run without an existing Item - this possibly needs replicating in templates/wiki-plugins/wikiplugin_listexecute.tpl also.
+Seems to work ok with most field types but more testing required before backporting (seems ok?)
+----------------------------------------------
+r68940 | luciash | 2019-01-31 17:00:12 +0000 (Thu, 31 Jan 2019) | 2 lines
+[FIX][UI] Page history: there should be no padding on the left of the button when it is input-group-append
+----------------------------------------------
+r68938 | kroky6 | 2019-01-31 16:30:48 +0000 (Thu, 31 Jan 2019) | 1 line
+[FIX] ES6 federated search query building exception
+----------------------------------------------
+r68935 | luciash | 2019-01-31 02:24:03 +0000 (Thu, 31 Jan 2019) | 2 lines
+little tweak to prevent the icons wrapping and aligning left
+----------------------------------------------
+r68934 | pom2ter | 2019-01-31 01:36:29 +0000 (Thu, 31 Jan 2019) | 1 line
+[FIX] fix some issues with colors in dropdowns when jquery-ui chosen is enabled
+----------------------------------------------
+r68933 | pom2ter | 2019-01-31 00:18:33 +0000 (Thu, 31 Jan 2019) | 1 line
+[FIX] uses the correct theme color for the text-muted class
+----------------------------------------------
+r68928 | jonnybradley | 2019-01-30 19:29:47 +0000 (Wed, 30 Jan 2019) | 1 line
+[FIX] Re-run get_strings.php without custom theme files (oops)
+----------------------------------------------
+r68927 | jonnybradley | 2019-01-30 19:01:15 +0000 (Wed, 30 Jan 2019) | 1 line
+[FIX] Ran get_strings.php
+----------------------------------------------
+r68923 | jonnybradley | 2019-01-30 18:32:28 +0000 (Wed, 30 Jan 2019) | 1 line
+[FIX] categories: Some usability fixes for category admin - always show the edit form when editing, and it either edit or create as relevant, and allow copying and moving of objects to a category with the same name but different parent
+----------------------------------------------
+r68920 | robertokir | 2019-01-30 10:02:28 +0000 (Wed, 30 Jan 2019) | 1 line
+[FIX] Avoid PHP Notice: Undefined index
+----------------------------------------------
+r68919 | pom2ter | 2019-01-30 00:31:43 +0000 (Wed, 30 Jan 2019) | 1 line
+[FIX] fix small issue with the find form on the blogs page
+----------------------------------------------
+r68916 | luciash | 2019-01-29 22:40:28 +0000 (Tue, 29 Jan 2019) | 2 lines
+[UI][ENH] Quickadmin module: use navs instead of buttons to prevent significant button outline on focus and make both of the dropdowns align nicely now
+----------------------------------------------
+r68914 | luciash | 2019-01-29 21:49:41 +0000 (Tue, 29 Jan 2019) | 1 line
+[UI] Backlinks and Structures dropdown: consistency with other action dropdowns
+----------------------------------------------
+r68913 | luciash | 2019-01-29 21:45:35 +0000 (Tue, 29 Jan 2019) | 1 line
+[UI] Translations dropdown: consistency with other action dropdowns
+----------------------------------------------
+r68912 | luciash | 2019-01-29 21:27:12 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX] Add some delay to hide the popovers so user can actually click on a link in the popover when necessary before it disappears
+----------------------------------------------
+r68911 | luciash | 2019-01-29 20:13:10 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX] Use the same quotes for all attributes of the tag (fix following the r68890 change, sorry about that)
+----------------------------------------------
+r68908 | robertokir | 2019-01-29 17:43:04 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX] Avoid NOTICE (E_NOTICE): Undefined index, and ERROR (E_WARNING): in_array() expects parameter 2 to be array, null given
+----------------------------------------------
+r68901 | robertokir | 2019-01-29 17:08:26 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX] Avoid PHP Notice: Undefined variable
+----------------------------------------------
+r68900 | jyhem | 2019-01-29 15:43:55 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX][bp/r68881] Prevent from returning itemIds from partially deleted items which don't exist in tiki_tracker_items any more
+----------------------------------------------
+r68898 | robertokir | 2019-01-29 15:23:43 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX] Avoid NOTICE (E_NOTICE): Undefined index
+----------------------------------------------
+r68894 | luciash | 2019-01-29 13:12:31 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX] prevent double encoding of html escaped vars at some places in Tiki
+----------------------------------------------
+r68893 | jonnybradley | 2019-01-29 12:50:12 +0000 (Tue, 29 Jan 2019) | 2 lines
+[FIX] login: If the user had tried to view a file (like the logo) set to be not visible for anonymous, the loginfrom session variable was getting set to the image url, not the referrer. Also don't overwrite $_SESSION['loginfrom']) in the error handler if it has already been set.
+Will need backporting to 18.x when tested
+----------------------------------------------
+r68892 | jonnybradley | 2019-01-29 12:31:56 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX] groupmail: Cosmetic fixes to most themes for groupmail from yesterday's commit (also some toolbar fixes from before)
+----------------------------------------------
+r68891 | luciash | 2019-01-29 12:03:07 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX] Smarty userlink modifier: take care of fullname (realName) user input
+----------------------------------------------
+r68890 | luciash | 2019-01-29 11:55:43 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX][ENH] PluginSign: simplify and use auto-positioned BS4 tooltips instead (see https://getbootstrap.com/docs/4.2/components/tooltips/) + treat username input
+----------------------------------------------
+r68888 | robertokir | 2019-01-29 11:26:43 +0000 (Tue, 29 Jan 2019) | 1 line
+[FIX] Avoid PHP NOTICE (E_NOTICE): Undefined index
+----------------------------------------------
+r68882 | jonnybradley | 2019-01-28 21:29:05 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] groupmail: Mainly cosmetic, remove custom css and use bootstrap classes, and some tooltips (other themes to come)
+----------------------------------------------
+r68880 | jonnybradley | 2019-01-28 20:25:06 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] groupmail: Long overdue refresh of the groupmail code, part 1 (thanks BSfez for the profile improvements, testing and feedback & marclaporte for the inspiration and incentive ;)
+----------------------------------------------
+r68879 | luciash | 2019-01-28 19:38:57 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] H5P editor modal: slightly better look and order of the submit buttons + one typo fix (confrim > confirm), thanks jonnyb for pointing me to the right file
+----------------------------------------------
+r68872 | jonnybradley | 2019-01-28 16:53:41 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] h5p: Hub now working, woo! Removed the experimental warning but still defaults to off
+----------------------------------------------
+r68870 | robertokir | 2019-01-28 16:30:50 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] Avoid several PHP messages and warnings
+----------------------------------------------
+r68869 | jonnybradley | 2019-01-28 15:43:29 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] h5p: getLatestLibraryVersions needs also to return an array of stdClass objects
+----------------------------------------------
+r68868 | jonnybradley | 2019-01-28 15:05:25 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] h5p: getContentTypeCache needs to return an array of stdClass objects, and correct wrong object reference in action_cron
+----------------------------------------------
+r68866 | jonnybradley | 2019-01-28 13:28:32 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] toolbars: Numerous fixes for custom tools, load and save iconname in the form, make existing custom plugins clickable again (missing </a>) etc
+----------------------------------------------
+r68864 | robertokir | 2019-01-28 13:07:00 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] Avoid message: WARNING: Invalid argument supplied for foreach()
+----------------------------------------------
+r68863 | jonnybradley | 2019-01-28 13:04:53 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] iconsets: Fix $.fn.tiki autocomplete for icons to use the (not so) new iconsets
+----------------------------------------------
+r68862 | jonnybradley | 2019-01-28 11:41:16 +0000 (Mon, 28 Jan 2019) | 2 lines
+[FIX] toolbars: Switch the classes of the submit buttons around, surely saving is the primary one?
+And while there, remove the ancient "autoload" option because javascript is required for this feature
+----------------------------------------------
+r68860 | robertokir | 2019-01-28 10:56:41 +0000 (Mon, 28 Jan 2019) | 1 line
+[FIX] Avoid messages: PHP Warning: implode(): Invalid arguments passed, and PHP Warning: Invalid argument supplied for foreach()
+----------------------------------------------
+r68857 | robertokir | 2019-01-28 09:50:30 +0000 (Mon, 28 Jan 2019) | 1 line
+[bp/r68823][FIX] Avoid message NOTICE: Undefined variable: style
+----------------------------------------------
+r68856 | robertokir | 2019-01-28 09:49:01 +0000 (Mon, 28 Jan 2019) | 1 line
+[bp/r68818][FIX] Avoid message NOTICE: Undefined index
+----------------------------------------------
+r68855 | robertokir | 2019-01-28 09:46:12 +0000 (Mon, 28 Jan 2019) | 1 line
+[bp/r68816][FIX] Avoid message ERROR (E_WARNING): mb_strlen() expects parameter 1 to be string, array given
+----------------------------------------------
+r68854 | robertokir | 2019-01-28 09:44:11 +0000 (Mon, 28 Jan 2019) | 1 line
+[bp/r68790][FIX] Avoid message ERROR (E_WARNING): Illegal string offset
+----------------------------------------------
+r68852 | jonnybradley | 2019-01-27 19:49:30 +0000 (Sun, 27 Jan 2019) | 1 line
+[FIX] toolbars: Fix view modes (not sure this is progress... ;)
+----------------------------------------------
+r68851 | jonnybradley | 2019-01-27 19:40:24 +0000 (Sun, 27 Jan 2019) | 1 line
+[FIX][MOD] toolbars: restore the "right aligned group" of tools, actually now done by dragging a "spacer" tool from the list
+----------------------------------------------
+r68850 | jonnybradley | 2019-01-27 18:37:41 +0000 (Sun, 27 Jan 2019) | 2 lines
+[FIX] toolbars: Make toolbar admin look a bit more like the editor toolbars (has to be different so they are editable)
+Thanks luciash
+----------------------------------------------
+r68849 | jonnybradley | 2019-01-27 18:21:42 +0000 (Sun, 27 Jan 2019) | 1 line
+[ENH] toolbars: Add inline -+code+- tool
+----------------------------------------------
+r68847 | luciash | 2019-01-26 19:14:36 +0000 (Sat, 26 Jan 2019) | 1 line
+switch the colors for the two Wizards
+----------------------------------------------
+r68846 | luciash | 2019-01-26 19:04:27 +0000 (Sat, 26 Jan 2019) | 1 line
+[ENH][UI][UX] Wizards: enhance the look and feel of the steps TOC (BS3 to BS4 transition)
+----------------------------------------------
+r68844 | luciash | 2019-01-26 17:27:04 +0000 (Sat, 26 Jan 2019) | 1 line
+code indentation only
+----------------------------------------------
+r68843 | luciash | 2019-01-26 17:14:41 +0000 (Sat, 26 Jan 2019) | 1 line
+[ENH][UI][UX] Improve layout: when the Connect feedback to mother.tiki.org is enabled on the wizard bar
+----------------------------------------------
+r68840 | jonnybradley | 2019-01-26 17:05:56 +0000 (Sat, 26 Jan 2019) | 1 line
+[FIX] Don't "protect" emails in print or PDF
+----------------------------------------------
+r68838 | jonnybradley | 2019-01-26 17:00:25 +0000 (Sat, 26 Jan 2019) | 1 line
+[FIX] h5p: Move update libraries call to the cron task and just exit instead of returning null from action_content_type_cache in the hope of getting h5p hub working, but it still doesn't :(
+----------------------------------------------
+r68837 | luciash | 2019-01-26 16:50:57 +0000 (Sat, 26 Jan 2019) | 1 line
+removed useless else
+----------------------------------------------
+r68836 | luciash | 2019-01-26 16:38:51 +0000 (Sat, 26 Jan 2019) | 1 line
+[ENH][UI][UX] Improve the Wizardry buttons in the wizard bar
+----------------------------------------------
+r68835 | jonnybradley | 2019-01-26 16:23:54 +0000 (Sat, 26 Jan 2019) | 1 line
+[FIX] toolbars: Add a little more padding and a slight drop shadow on toolbar buttons - also move the color rules from _tiki-toolbars.scss to _tiki-selectors.scss
+----------------------------------------------
+r68834 | jonnybradley | 2019-01-26 16:19:23 +0000 (Sat, 26 Jan 2019) | 1 line
+[FIX] modals: Sometimes the modal backdrop doesn't clear, so remove the top most one on hidden.bs.modal
+----------------------------------------------
+r68832 | lindonb | 2019-01-26 15:54:18 +0000 (Sat, 26 Jan 2019) | 1 line
+[DOC] ticket system: If a valid ticket has expired note that in the error message. Although not technically a fix, worthwhile to commit here to ensure users know the error is not a false positive.
+----------------------------------------------
+r68831 | luciash | 2019-01-26 15:44:18 +0000 (Sat, 26 Jan 2019) | 1 line
+optimize code
+----------------------------------------------
+r68830 | luciash | 2019-01-26 15:40:13 +0000 (Sat, 26 Jan 2019) | 1 line
+no need to repeat the same class twice
+----------------------------------------------
+r68829 | luciash | 2019-01-26 15:37:43 +0000 (Sat, 26 Jan 2019) | 1 line
+[ENH][UX] Admin Wizard: make the first impression slightly better
+----------------------------------------------
+r68827 | lindonb | 2019-01-26 14:57:16 +0000 (Sat, 26 Jan 2019) | 1 line
+[FIX] ticket system: When ticket is added to a form (as in r688805), one of the following should be added as an onclick call in the submit element: checkTimeout() if no confirm is needed (which is the case here); confirmSimple() if a confirm is needed; or confirmAajax() if a confirm is needed and ajax is involved.
+----------------------------------------------
+r68825 | luciash | 2019-01-26 13:48:05 +0000 (Sat, 26 Jan 2019) | 1 line
+[FIX][UI] Added some missing classes and stuff to the wizard plain layout for consistency
+----------------------------------------------
+r68822 | jonnybradley | 2019-01-25 18:00:31 +0000 (Fri, 25 Jan 2019) | 1 line
+[FIX] maps: Map tiles were all squished up when in the locator module
+----------------------------------------------
+r68821 | luciash | 2019-01-25 15:43:51 +0000 (Fri, 25 Jan 2019) | 1 line
+[FIX][UI] Toolbars and Admin Toolbars: make the toolbars look a bit nicer in BS4
+----------------------------------------------
+r68819 | luciash | 2019-01-25 14:00:29 +0000 (Fri, 25 Jan 2019) | 1 line
+[FIX][UX] Success edit message: use alert-link to prevent contrast issues
+----------------------------------------------
+r68815 | pom2ter | 2019-01-25 01:41:36 +0000 (Fri, 25 Jan 2019) | 1 line
+[FIX] fix alignment of fields on some forms
+----------------------------------------------
+r68814 | luciash | 2019-01-24 22:12:42 +0000 (Thu, 24 Jan 2019) | 1 line
+[TRA] Ran php71 get_strings.php
+----------------------------------------------
+r68813 | luciash | 2019-01-24 21:52:33 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] Smarty: fix for https://dev.tiki.org/item6589 -- query function was replacing tiki-ajax_services.php call with the last referer script name, causing failure to load the correct content in the modals (tested but fingers crossed it does not affect anything else)
+----------------------------------------------
+r68811 | jonnybradley | 2019-01-24 19:59:08 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] h5p: Correct saving new h5p's with thier params, and update the tiki title from the silly "extra" one when saving
+----------------------------------------------
+r68810 | jonnybradley | 2019-01-24 19:47:38 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] h5p: Deal with the mysterious "extra" title - hide the old tiki title and copy the value from that into the extra one once it arrives (TODO better one day, maybe)
+----------------------------------------------
+r68809 | montefuscolo | 2019-01-24 18:08:46 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] When filtering preferences, hide only options inside #col1, not from dialog box
+----------------------------------------------
+r68808 | luciash | 2019-01-24 17:08:31 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX][UI] File Galleries: make the file "Actions" popover usable again (in the Page context view -- same as it is in the List view)
+----------------------------------------------
+r68807 | luciash | 2019-01-24 17:04:14 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX][UI] File Galleries: make the file "Actions" popover usable again (in the Browse context view -- same as it is in the List view)
+----------------------------------------------
+r68805 | montefuscolo | 2019-01-24 16:40:39 +0000 (Thu, 24 Jan 2019) | 3 lines
+[FIX] Add ticket for csrf check in remarks box when adding module, thanks jyhem
+https://dev.tiki.org/item6941-CSRF-on-using-module-error-messages
+----------------------------------------------
+r68804 | jonnybradley | 2019-01-24 15:51:01 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] search: Check default values of arrays (multiple selects) and ignore chosen inputs in the url hash
+----------------------------------------------
+r68803 | jonnybradley | 2019-01-24 15:42:08 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] search: Add icons indicating the current search mode in table.tpl and store the setting in the url so it survives a page reload
+----------------------------------------------
+r68802 | luciash | 2019-01-24 15:42:05 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] make the PHP errors more readable
+----------------------------------------------
+r68801 | luciash | 2019-01-24 15:27:13 +0000 (Thu, 24 Jan 2019) | 1 line
+php -> PHP
+----------------------------------------------
+r68800 | luciash | 2019-01-24 15:24:06 +0000 (Thu, 24 Jan 2019) | 1 line
+Use form-row and col classes for the form layout (Bootstrap 3 to 4 transition)
+----------------------------------------------
+r68799 | kroky6 | 2019-01-24 15:21:38 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] bug report 6886 - Forbidden content in comments shows up in search results - when you have tiki_p_read_comments but don't have tiki_p_tracker_view_comments permission you see trackeritme comment titles in search results but should not
+----------------------------------------------
+r68798 | luciash | 2019-01-24 15:13:55 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX][ENH][UI] Show PHP Error messages (and few other places): Make the listfilter form look nicer (Bootstrap 3 to 4 transition)
+----------------------------------------------
+r68797 | jonnybradley | 2019-01-24 15:05:07 +0000 (Thu, 24 Jan 2019) | 2 lines
+[FIX] wysiwyg: Fix for plugins with spaces in the name breaking ckeditor (not sure how this works but it seems to)
+Should address wish6994 "Adding wikiplugin in Admin Toolbars makes wysiwyg editing impossible" (thanks Jyhem)
+----------------------------------------------
+r68796 | kroky6 | 2019-01-24 15:03:11 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] replace contents of erraneous PluginTrackerCalander with the error message instead of halting the whole response cycle (was stopping index rebuild this way)
+----------------------------------------------
+r68794 | jonnybradley | 2019-01-24 13:42:03 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] admin: Fix a child container box id and add descriptions to the prefs
+----------------------------------------------
+r68792 | jonnybradley | 2019-01-24 13:05:37 +0000 (Thu, 24 Jan 2019) | 1 line
+[ENH] search: Add a pref to change which date field gets indexed as the global "date" - created or last modified
+----------------------------------------------
+r68791 | luciash | 2019-01-24 11:52:51 +0000 (Thu, 24 Jan 2019) | 1 line
+little typo
+----------------------------------------------
+r68788 | lindonb | 2019-01-24 01:41:25 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] facebook login: Part 2 of r68715 - provide alternative to use cURL if fsocketopen fails in the facebook connection method too.
+----------------------------------------------
+r68787 | pom2ter | 2019-01-24 00:19:46 +0000 (Thu, 24 Jan 2019) | 1 line
+[FIX] find button in tiki-listpages shouldnt appear if the form has no fields
+----------------------------------------------
+r68786 | luciash | 2019-01-23 19:14:47 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX][UI] Layouts: align the column toggle icons nicely for 3-col layouts too (removed classes no more necesary)
+----------------------------------------------
+r68783 | jonnybradley | 2019-01-23 17:43:55 +0000 (Wed, 23 Jan 2019) | 2 lines
+[ENH] search: Add support for scripted sort modes on elasticsearch (only)
+Example usage: {sort mode="script" source="Math.abs(new Date().getTime() - doc['date'].date.getMillis())"} finds documents dated nearest to "now"
+----------------------------------------------
+r68781 | jonnybradley | 2019-01-23 15:56:06 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX] admin: Move prefix css pref from in between the two minify prefs
+----------------------------------------------
+r68780 | luciash | 2019-01-23 15:52:48 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX][UI][ENH] Structure bar: add some margin around the "Child" checkbox
+----------------------------------------------
+r68779 | luciash | 2019-01-23 15:46:15 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX][UX][ENH] Quickadmin module: make the "Quick administration" icon display cogs, as the hammer was not warmly accepted ;)
+----------------------------------------------
+r68778 | luciash | 2019-01-23 14:23:54 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX][UX][ENH] Quickadmin module: consistency -- add missing dropdown arrows indicating there is a dropdown actually, not just a link, on the icon
+----------------------------------------------
+r68777 | jonnybradley | 2019-01-23 13:54:31 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX] h5p: Fix new handling of metadata and params to prevent corrupting files, make the storage dir obey multitiki and put everything inside storage/public/h5p (update script provided), add missing table to innodb script and add a commented out script to simplify resetting all h5p data
+----------------------------------------------
+r68776 | chibaguy | 2019-01-23 12:38:01 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX][UI] Make light/dark navbar backgrounds transparent since Tikipedia doesn't use the background colors.
+----------------------------------------------
+r68775 | chibaguy | 2019-01-23 11:25:48 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX][UI] Improve light/dark navbar colors and backgrounds for better contrast.
+----------------------------------------------
+r68768 | chibaguy | 2019-01-23 08:11:03 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX][UI] Fix navbar dark active link color contrast problem (Flatly/Blue theme/option).
+----------------------------------------------
+r68767 | chibaguy | 2019-01-23 08:07:34 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX][UI] Improve light/dark navbar colors and backgrounds for better contrast; Todo: other improvements to regain original look (Darkshine theme).
+----------------------------------------------
+r68766 | luciash | 2019-01-23 00:47:36 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX][UX][ENH] Quickadmin module: consistency -- use the same icon for modules admin as in the control panels, so the cogs can be used for control panels
+----------------------------------------------
+r68765 | luciash | 2019-01-23 00:31:24 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX][UX][ENH] Quickadmin module: avoid the "floating" dropdown arrow issue by replacing the icon with the quickest admin solution -- use a hammer
+----------------------------------------------
+r68764 | pom2ter | 2019-01-23 00:06:51 +0000 (Wed, 23 Jan 2019) | 1 line
+[FIX] align labels and fields of the 'find' page form
+----------------------------------------------
+r68763 | luciash | 2019-01-22 23:59:37 +0000 (Tue, 22 Jan 2019) | 1 line
+[ENH][UX] Page actions: make the page actions button primary
+----------------------------------------------
+r68762 | luciash | 2019-01-22 23:43:30 +0000 (Tue, 22 Jan 2019) | 1 line
+[FIX] Quickadmin module: Consistency fixes and prevent popping up of the dropdown menu out of the right edge of the browser viewport
+----------------------------------------------
+r68761 | luciash | 2019-01-22 23:24:14 +0000 (Tue, 22 Jan 2019) | 1 line
+[FIX] Page actions: bring back the dropdown title lost in r67424 and use the same new BS4 classes for consistency
+----------------------------------------------
+r68760 | luciash | 2019-01-22 22:40:42 +0000 (Tue, 22 Jan 2019) | 1 line
+[FIX] Page actions: fix the ugly icon highlight blob around with a nice dropdown menu active item highlight and a toggle switch icon on the right
+----------------------------------------------
+r68759 | pom2ter | 2019-01-22 21:49:45 +0000 (Tue, 22 Jan 2019) | 1 line
+[FIX] fixed bad formatting with the banner form and images spilling over the main column
+----------------------------------------------
+r68758 | luciash | 2019-01-22 19:14:20 +0000 (Tue, 22 Jan 2019) | 1 line
+[FIX] Basic layout (Single container): add missing "middle" class and id for consistency
+----------------------------------------------
+r68757 | luciash | 2019-01-22 18:52:58 +0000 (Tue, 22 Jan 2019) | 1 line
+[FIX] Bootstrap classic (formerly social) layout: align the column toggle icons nicely
+----------------------------------------------
+r68756 | luciash | 2019-01-22 18:49:25 +0000 (Tue, 22 Jan 2019) | 1 line
+[FIX] Classic layout: align the column toggle icons nicely
+----------------------------------------------
+r68754 | jonnybradley | 2019-01-22 17:42:53 +0000 (Tue, 22 Jan 2019) | 1 line
+[FIX] h5p: Numerous updates based on changes to the WP plugin - more to do but mostly working (apart from the hub)
+----------------------------------------------
+r68753 | jonnybradley | 2019-01-22 14:41:28 +0000 (Tue, 22 Jan 2019) | 1 line
+[FIX] h5p: Add missing code for metadataSemantics for the editor
+----------------------------------------------
+r68752 | luciash | 2019-01-22 14:02:05 +0000 (Tue, 22 Jan 2019) | 1 line
+[FIX] Profile preview: correct order of the modal title and the close button
+----------------------------------------------
+r68751 | jonnybradley | 2019-01-22 12:07:37 +0000 (Tue, 22 Jan 2019) | 1 line
+[UPD] Pin bootstrap to 4.1.x as 4.2.x no longer seems to compile in scssphp
+----------------------------------------------
+r68750 | jonnybradley | 2019-01-22 11:50:16 +0000 (Tue, 22 Jan 2019) | 1 line
+[UPD] Update H5P libraries to the latest versions
+----------------------------------------------
+r68749 | chibaguy | 2019-01-22 08:17:14 +0000 (Tue, 22 Jan 2019) | 1 line
+[FIX][UI] Re-add tiki-external_scripts_overrides.scss for compiling into tiki_base.css. (Reason for being commented out isn't clear - maybe a transitional step.)
+----------------------------------------------
+r68748 | robertokir | 2019-01-22 08:07:49 +0000 (Tue, 22 Jan 2019) | 1 line
+[bp/r68739][ENH] plugin list: table template now accepts two new parameters: allowtableexpansion and shownbitems (as trackerlist did before)
+----------------------------------------------
+r68746 | lindonb | 2019-01-21 23:42:11 +0000 (Mon, 21 Jan 2019) | 1 line
+[REF] ticket function: Revert part of r68090 as force parameter no longer needed. Removing to discourage use in other cases.
+----------------------------------------------
+r68745 | lindonb | 2019-01-21 23:34:33 +0000 (Mon, 21 Jan 2019) | 1 line
+[FIX] profiles: Removed use of anti-CSRF tickets for preview, export, find or links to suggested profiles since they do not change the database. Changed method of providing ticket when applying a profile to avoid using the GET method (which should not be used for tickets). Also conformed confirmation popup.
+----------------------------------------------
+r68743 | rjsmelo | 2019-01-21 22:59:19 +0000 (Mon, 21 Jan 2019) | 2 lines
+[REF] Update the location of the tiki dbs for CI
+----------------------------------------------
+r68741 | luciash | 2019-01-21 21:49:41 +0000 (Mon, 21 Jan 2019) | 1 line
+[FIX] Basic layout: align the column toggle icons nicely
+----------------------------------------------
+r68737 | jonnybradley | 2019-01-21 17:57:53 +0000 (Mon, 21 Jan 2019) | 1 line
+[FIX] h5p: New H5P files seem to not have the `filtered` field so this needs to be able to be NULL, and elFinder seems to detect h5p files as application/octet-stream now
+----------------------------------------------
+r68734 | jonnybradley | 2019-01-21 17:02:22 +0000 (Mon, 21 Jan 2019) | 1 line
+[UPD] Minor automatic updates to numerous packages - fontawesome update from 5.5.0 to 5.6.3 seems to break badly, so have pinned that to 5.5.x (to fix in trunk)
+----------------------------------------------
+r68733 | chibaguy | 2019-01-21 15:34:45 +0000 (Mon, 21 Jan 2019) | 1 line
+[FIX][UI] Update form row classes for consistency.
+----------------------------------------------
+r68732 | chibaguy | 2019-01-21 15:29:26 +0000 (Mon, 21 Jan 2019) | 1 line
+[FIX][UI] Use the same colors/bgs for both light and dark navbars because no light variant has been worked out; fix edit toolbar icon color (Darkroom theme).
+----------------------------------------------
+r68730 | chibaguy | 2019-01-21 13:17:08 +0000 (Mon, 21 Jan 2019) | 1 line
+[FIX][UI] Use the same colors/bgs for both light and dark navbars because no light variant has been worked out (Business theme).
+----------------------------------------------
+r68727 | jonnybradley | 2019-01-21 12:08:38 +0000 (Mon, 21 Jan 2019) | 1 line
+[FIX] trackers: Fix select all checkbox on list (used in listexecute)
+----------------------------------------------
+r68726 | jonnybradley | 2019-01-21 12:07:06 +0000 (Mon, 21 Jan 2019) | 3 lines
+[bp/r68197][ENH] add/remove parameters for tracker_item_modify ListExecute action - ability to add to a tracker item field value or remove from it - only useful for multivalue fields like UserSelector, Category, Relation, Freetags, etc.
+[bp/r68208][FIX][ENH] Action tracker field did not inherit abstract class that all fields should inherit, so it needed a couple more methods implemented
+(thanks Victor)
+----------------------------------------------
+r68725 | luciash | 2019-01-21 10:23:16 +0000 (Mon, 21 Jan 2019) | 1 line
+[FIX] Base CSS: to not have the article images "glued" to the article body text (Bootstrap 3 to 4 transition)
+----------------------------------------------
+r68724 | lindonb | 2019-01-21 02:22:49 +0000 (Mon, 21 Jan 2019) | 1 line
+[FIX] Revert a portion of r66798 to make feature_ticketlib optional and default to being off as before, since it appears to cause false errors in a number of places. You can tell when a CSRF error message is from this old system when it uses the term "sea-surfing". The new sustem doesn't use that term in the error message.
+----------------------------------------------
+r68721 | jonnybradley | 2019-01-20 17:57:34 +0000 (Sun, 20 Jan 2019) | 1 line
+[FIX] trackers: Check pre-field visibility in popup
+----------------------------------------------
+r68715 | lindonb | 2019-01-19 03:01:58 +0000 (Sat, 19 Jan 2019) | 1 line
+[FIX] Provide alternative to use cURL if socket is not working; also add additional error feedback.
+----------------------------------------------
+r68714 | jonnybradley | 2019-01-18 18:16:04 +0000 (Fri, 18 Jan 2019) | 1 line
+[MOD] modals: Extend the href argument to $.fn.clickModal so you can override the href on the link it's being applied to in javascript.
+----------------------------------------------
+r68712 | pom2ter | 2019-01-17 22:18:36 +0000 (Thu, 17 Jan 2019) | 1 line
+[FIX] fixed more missing FA5 icons when use with pluginicon
+----------------------------------------------
+r68711 | jonnybradley | 2019-01-17 20:04:50 +0000 (Thu, 17 Jan 2019) | 1 line
+[FIX][ENH] search: Accumulated fixes and improvements on custom search plugin js
+----------------------------------------------
+r68707 | jonnybradley | 2019-01-17 18:00:41 +0000 (Thu, 17 Jan 2019) | 1 line
+[FIX] search: Use the unified_default_content fields (set in prefs) in custom search when searching "content"
+----------------------------------------------
+r68705 | jonnybradley | 2019-01-17 17:29:06 +0000 (Thu, 17 Jan 2019) | 1 line
+[FIX] wiki: Reindex the page after modifying the keywords
+----------------------------------------------
+r68699 | pom2ter | 2019-01-16 03:38:58 +0000 (Wed, 16 Jan 2019) | 1 line
+[FIX] fixed some font-awesome 5 icons not showing with pluginicon
+----------------------------------------------
+r68697 | jonnybradley | 2019-01-15 15:52:32 +0000 (Tue, 15 Jan 2019) | 1 line
+[FIX] modals: Remove incorrect trailing quote mark introduced in r68330 and add a little documentation (thanks Chealer)
+----------------------------------------------
+r68695 | xavidp | 2019-01-15 15:45:34 +0000 (Tue, 15 Jan 2019) | 1 line
+[FIX]Allow to display the field to select groups in a new tracker item (group of users to assign this item to, for instance) in cases in which that group has granted the permission to get the group's name viewed (and not only to users in groups with granted permission to add members to this group in the dropdown field).
+----------------------------------------------
+r68693 | jonnybradley | 2019-01-15 13:09:48 +0000 (Tue, 15 Jan 2019) | 1 line
+[DOC] search: Add an extra note on the field weighting pref description to help general search usage
+----------------------------------------------
+r68691 | jonnybradley | 2019-01-15 11:02:10 +0000 (Tue, 15 Jan 2019) | 1 line
+[FIX] plugins: Prevent JS error when feature_jquery_validation is disabled (however, this means no validation is performed)
+----------------------------------------------
+r68688 | lindonb | 2019-01-14 01:45:00 +0000 (Mon, 14 Jan 2019) | 1 line
+[FIX] Change back debug to avoid fatal error.
+----------------------------------------------
+r68686 | lindonb | 2019-01-14 01:39:27 +0000 (Mon, 14 Jan 2019) | 1 line
+[FIX] Use the error text rather than the class to avoid a fatal error when the Facebook profile cannot be retrieved. Also provide system error message when connection to graph.facebook.com cannot be made.
+----------------------------------------------
+r68685 | lindonb | 2019-01-13 14:34:01 +0000 (Sun, 13 Jan 2019) | 1 line
+[UI] Formatting a little broken on the confirm popup
+----------------------------------------------
+r68683 | lindonb | 2019-01-13 13:11:00 +0000 (Sun, 13 Jan 2019) | 1 line
+[FIX] Remove string manipulation which was mangling auto user name generation since Facebook response is in JSON format since v2.23 rather than string; update graph version and centralize into a variable; check that a facebook was actually returned before creating user; conform code line length for some parts that were changed. (thanks Kaya!)
+----------------------------------------------
+r68682 | lindonb | 2019-01-13 13:03:22 +0000 (Sun, 13 Jan 2019) | 1 line
+[FIX] Remove unnecessary check_ticket() calls causing false error messages (thanks Kaya!)
+----------------------------------------------
+r68671 | amnabilal | 2019-01-10 05:13:24 +0000 (Thu, 10 Jan 2019) | 2 lines
+[FIX] Fixed issue, complicated links values were printing blank in PDF if hyperlinks option is set to "Off" or "as footnote" in PDF settings. 
+Fixed issue found while adding link value as footnote. 
+----------------------------------------------
+r68670 | yonixxx | 2019-01-09 15:03:44 +0000 (Wed, 09 Jan 2019) | 1 line
+[FIX]Adding the bootstrap4 class img-fluid in case the image banner display is used.
+----------------------------------------------
+r68669 | yonixxx | 2019-01-09 14:47:06 +0000 (Wed, 09 Jan 2019) | 1 line
+[FIX]Another correction so hardcoded button with _type values are also working as previously.
+----------------------------------------------
+r68668 | yonixxx | 2019-01-09 14:03:13 +0000 (Wed, 09 Jan 2019) | 1 line
+[FIX]Many buttons on Tiki have been made without assigning the type parameter assuming btn-primary should be the default. To avoid massive reformatting I modified the previously committed code so empty/null=btn-primary (has it was). I added a new option "none" (no btn-xxx style applied) so it is possible to have an un-styled button. Doc clarified.
+----------------------------------------------
+r68666 | jonnybradley | 2019-01-09 13:03:27 +0000 (Wed, 09 Jan 2019) | 1 line
+[FIX] math(s): Replace ugly php warnings with feedback when dividing by zero (better for indexing output)
+----------------------------------------------
+r68665 | jonnybradley | 2019-01-09 13:01:36 +0000 (Wed, 09 Jan 2019) | 1 line
+[FIX] layout: Add sitesubtitle on social layout and add missing alt on brand logo
+----------------------------------------------
+r68664 | jonnybradley | 2019-01-09 13:00:24 +0000 (Wed, 09 Jan 2019) | 1 line
+[FIX] trackers: Show sort direction icons on last mod and created column headings (thanks luciash)
+----------------------------------------------
+r68662 | amnabilal | 2019-01-09 03:47:30 +0000 (Wed, 09 Jan 2019) | 7 lines
+FIX: Multiple fixes:
+- Added condition, not to print PDF tags if not generating PDF. 
+- Replaced depreciated setHeader/setFooter function in mPDF with setHTMLHeader/setHTMLFooter, added support for HTML and Wiki Syntax in header/ footer.
+- Top / Bottom margins changed to auto stretch, to avoid overlapping content. 
+- Fixes in pluginPDFPage, to support HTML / Wiki Syntax header/footer. 
+- Background was not resetting once set in pluginPDFPage for remaining document, added check.
+----------------------------------------------
+r68661 | yonixxx | 2019-01-08 19:05:35 +0000 (Tue, 08 Jan 2019) | 1 line
+[FIX]Even if no bootstrap class for "Button Type" was selected btn-primary class was forced. None is an option of the selector and it should be possible to select it. It make possible to create its own custom button class for the button plugins without changing the btn-primary class website wide. Doc clarified.
+----------------------------------------------
+r68660 | xorti | 2019-01-08 15:16:38 +0000 (Tue, 08 Jan 2019) | 1 line
+[REF] Refactor removal of tiki_p from permissions module introduced in r68587
+----------------------------------------------
+r68659 | montefuscolo | 2019-01-08 14:45:46 +0000 (Tue, 08 Jan 2019) | 1 line
+[BP/r68650][FIX] jQuery helper 'confirmationDialog' was not accepting click on confirm button
+----------------------------------------------
+r68656 | jonnybradley | 2019-01-05 12:45:24 +0000 (Sat, 05 Jan 2019) | 2 lines
+[FIX] wysiwyg: Seems the exec method of CKEditor commands has changed - not sure when but this probably is needed in 18.x now too.
+Should address wish6988 - thanks nickTidmarsh
+----------------------------------------------
+r68655 | jonnybradley | 2019-01-04 11:25:07 +0000 (Fri, 04 Jan 2019) | 1 line
+[FIX] autotoc: Allow the prefs to be found by the term autotoc
+----------------------------------------------
+r68653 | jonnybradley | 2019-01-03 19:45:51 +0000 (Thu, 03 Jan 2019) | 1 line
+[FIX] revert r68536 which stopped drop-down menus working (apologies, thanks luciash)
+----------------------------------------------
+r68651 | rjsmelo | 2019-01-03 00:07:42 +0000 (Thu, 03 Jan 2019) | 2 lines
+[REF] Check translation standards and status of composer lock file as part of the CI pipeline
+----------------------------------------------
+r68648 | yonixxx | 2018-12-29 14:37:17 +0000 (Sat, 29 Dec 2018) | 1 line
+[TRA]Missing translation in fr and he
+----------------------------------------------
+r68647 | yonixxx | 2018-12-28 20:16:47 +0000 (Fri, 28 Dec 2018) | 1 line
+[DOC][UX] Help text to import users from CSV file wasn't clear enough and couldn't prevent confusion. Some strings shouldn't be translatable and tr tags were removed. The text was improved and formatted using form help text bootstrap 4 guideline.
+----------------------------------------------
+r68645 | luciash | 2018-12-28 15:11:04 +0000 (Fri, 28 Dec 2018) | 1 line
+[FIX] PluginTracker: add missing row classes where needed (i.e. to fix the appearance of registration fields on tiki.org) and change the col-sm/md-offset-* to offset-* (Bootstrap 3 to 4 transition)
+----------------------------------------------
+r68644 | xavidp | 2018-12-28 12:19:39 +0000 (Fri, 28 Dec 2018) | 1 line
+[FIX]Expose Google Youtube API Key in the module params for yourtube playlist, as well as in the documentation at doc.t.o automagically for the module page
+----------------------------------------------
+r68642 | yonixxx | 2018-12-27 15:16:54 +0000 (Thu, 27 Dec 2018) | 1 line
+[FIX] Missing icon due to fontawesome upgrade replaced.
+----------------------------------------------
+r68641 | chibaguy | 2018-12-27 06:17:18 +0000 (Thu, 27 Dec 2018) | 1 line
+[FIX][UI] Add nav-link class to admin icons (on tiki-admin.php?page= pages) to get theme's coloring by default.
+----------------------------------------------
+r68640 | chibaguy | 2018-12-26 13:41:13 +0000 (Wed, 26 Dec 2018) | 1 line
+[FIX][UI] Fix contrast problems in navbar light and dark options (Litera theme).
+----------------------------------------------
+r68639 | chibaguy | 2018-12-26 13:01:16 +0000 (Wed, 26 Dec 2018) | 1 line
+[FIX][UI] Fix contrast problems in navbar light and dark options (Flatly theme and Blue theme option).
+----------------------------------------------
+r68638 | chibaguy | 2018-12-26 12:25:54 +0000 (Wed, 26 Dec 2018) | 1 line
+[FIX][UI] Fix contrast problems in navbar light and dark options (Darkly theme).
+----------------------------------------------
+r68636 | yonixxx | 2018-12-26 09:50:56 +0000 (Wed, 26 Dec 2018) | 1 line
+[TRA] French translation
+----------------------------------------------
+r68635 | chibaguy | 2018-12-26 08:35:06 +0000 (Wed, 26 Dec 2018) | 1 line
+[FIX][UI] Fix colors - pagination, jumbotron, autotoc, breadcrumbs backgrounds (Amelia theme).
+----------------------------------------------
+r68634 | chibaguy | 2018-12-26 08:09:01 +0000 (Wed, 26 Dec 2018) | 1 line
+[FIX][UI] Fix bad color contrast in forum post heading (Business theme).
+----------------------------------------------
+r68633 | chibaguy | 2018-12-25 13:46:14 +0000 (Tue, 25 Dec 2018) | 1 line
+[FIX][UI] 1) Uncomment-out postbody class name in template, to fix background color of forum post titles in fivealive-lite theme. Other themes aren't changed. 2) Fix btn-secondary text/background color contrast in Cerulean theme.
+----------------------------------------------
+r68628 | jonnybradley | 2018-12-20 19:51:45 +0000 (Thu, 20 Dec 2018) | 1 line
+[FIX] search: Expose all feedback even if the rebuild command completes (for instance when elastic runs out of fields)
+----------------------------------------------
+r68627 | jonnybradley | 2018-12-20 19:07:59 +0000 (Thu, 20 Dec 2018) | 1 line
+[FIX] webservices: Convert notices into feedback
+----------------------------------------------
+r68599 | jonnybradley | 2018-12-18 11:08:17 +0000 (Tue, 18 Dec 2018) | 2 lines
+[FIX] Revert r68378 (Add exact Phrase Search to ElasticSearch based queries The phrase is defined between "")
+Also r68395 r68393 fixes to the tests
+----------------------------------------------
+r68598 | jonnybradley | 2018-12-18 10:40:31 +0000 (Tue, 18 Dec 2018) | 2 lines
+[FIX] Revert r68505 which fixed search for Elasticsearch v6+ but broke a lot of tests (sorry everyone)
+Will look for a better fix, thanks Chealer and Zayneb
+----------------------------------------------
+r68593 | chibaguy | 2018-12-18 09:57:23 +0000 (Tue, 18 Dec 2018) | 1 line
+[FIX][UI] Prevent main column from shrinking horizontally if it contains only narrow content, in a particular mobile display size. (Previous commit affecting too many columns and display sizes, sorry.)
+----------------------------------------------
+r68590 | jonnybradley | 2018-12-17 19:56:19 +0000 (Mon, 17 Dec 2018) | 1 line
+[FIX] tabular: Linked ItemsList items may have been modified, not only created so update if so, also make a note re isImportTransaction not being available (easily) here
+----------------------------------------------
+r68587 | xorti | 2018-12-17 15:57:01 +0000 (Mon, 17 Dec 2018) | 1 line
+[ENH] Remove tiki_p from permissions module which is redundant
+----------------------------------------------
+r68585 | chibaguy | 2018-12-17 15:23:20 +0000 (Mon, 17 Dec 2018) | 1 line
+[FIX][UI] Strengthen base_files rule so it's not overridden by Bootstrap default in theme stylesheets.
+----------------------------------------------
+r68583 | chibaguy | 2018-12-17 13:57:20 +0000 (Mon, 17 Dec 2018) | 1 line
+[FIX][UI] Prevent a column from shrinking horizontally if it contains only narrow content (example: a .col-md-12 center column containing only a short page title and a media player plugin won't go the full 100% width in some mobile view sizes despite having the right grid classes, etc.). Thanks, Marc.
+----------------------------------------------
+r68580 | jonnybradley | 2018-12-17 11:27:45 +0000 (Mon, 17 Dec 2018) | 1 line
+[FIX] smarty: Web services need templates in temp/cache
+----------------------------------------------
+r68578 | amnabilal | 2018-12-17 04:55:28 +0000 (Mon, 17 Dec 2018) | 1 line
+[FIX] Admin permission check before executing main function to include JS code, thanks Philippe.
+----------------------------------------------
+r68573 | lindonb | 2018-12-17 00:45:46 +0000 (Mon, 17 Dec 2018) | 1 line
+[FIX] file gallery up[load: syntax tips were quite broken if javascript not enabled
+----------------------------------------------
+r68571 | lindonb | 2018-12-17 00:30:43 +0000 (Mon, 17 Dec 2018) | 1 line
+[FIX] file gallery uploads: anti-CSRF errors were preventing multiple files from being uploaded when JS was enabled but jQuery upload was not. Also fix forms when javascript is not enabled and provide more accurate feedback (thanks chealer!).
+----------------------------------------------
+r68569 | amnabilal | 2018-12-16 08:39:15 +0000 (Sun, 16 Dec 2018) | 1 line
+[FIX][UI] Added CSS rules to capitalize headings, all caps were too aggressive. 
+----------------------------------------------
+r68568 | jonnybradley | 2018-12-15 14:51:27 +0000 (Sat, 15 Dec 2018) | 1 line
+[FIX] wiki: Escape square brackets when importing html
+----------------------------------------------
+r68561 | jonnybradley | 2018-12-14 18:41:17 +0000 (Fri, 14 Dec 2018) | 1 line
+[FIX] search: The input needs to be the first-child in the input-group to get the right styling
+----------------------------------------------
+r68560 | jonnybradley | 2018-12-14 18:38:47 +0000 (Fri, 14 Dec 2018) | 1 line
+[FIX] search: My last html fix here broke the buttons on mouseover, apologies
+----------------------------------------------
+r68557 | jonnybradley | 2018-12-14 18:17:27 +0000 (Fri, 14 Dec 2018) | 1 line
+[FIX] toolbars: Include js file when adding a wikiplugin button, required for pluginedit.js now
+----------------------------------------------
+r68555 | jonnybradley | 2018-12-14 11:31:30 +0000 (Fri, 14 Dec 2018) | 1 line
+[ENH] tabular: New mode for ItemsList fields to export linked items as json, and then recreate them (and re-link them) if missing on import
+----------------------------------------------
+r68552 | jonnybradley | 2018-12-13 20:00:54 +0000 (Thu, 13 Dec 2018) | 1 line
+[FIX] filters: Don't pre-fill all date range pickers with "now"
+----------------------------------------------
+r68550 | jonnybradley | 2018-12-13 19:41:44 +0000 (Thu, 13 Dec 2018) | 1 line
+[FIX] tabular: New fields alignment button class fix
+----------------------------------------------
+r68547 | jonnybradley | 2018-12-13 18:26:19 +0000 (Thu, 13 Dec 2018) | 1 line
+[ENH] filters: Add created and modified date range filters for tabular formats and other filterable features
+----------------------------------------------
+r68543 | olinuxx | 2018-12-13 14:08:44 +0000 (Thu, 13 Dec 2018) | 1 line
+[FIX] add urlencode to the RSS parser
+----------------------------------------------
+r68541 | jonnybradley | 2018-12-13 11:45:15 +0000 (Thu, 13 Dec 2018) | 1 line
+[FIX] now: Make relative "when" strings in non-UTC timezones work properly by creating the DateTime object with the required timezone (unlike TikiDate)
+----------------------------------------------
+r68536 | jonnybradley | 2018-12-12 15:56:50 +0000 (Wed, 12 Dec 2018) | 1 line
+[FIX][UI] actions: Make action dropdowns (which are actually popovers) dismiss when you click something
+----------------------------------------------
+r68535 | jonnybradley | 2018-12-12 15:49:18 +0000 (Wed, 12 Dec 2018) | 1 line
+[FIX][UI] tabular: Move action links on tabular manage page into a dropdown as they were getting too crowded inline
+----------------------------------------------
+r68534 | jonnybradley | 2018-12-12 15:47:27 +0000 (Wed, 12 Dec 2018) | 1 line
+[FIX][UI] tabular: Fix class of buttons (links) and prevent them being spaced out across the whole width of the page
+----------------------------------------------
+r68532 | jonnybradley | 2018-12-12 15:19:24 +0000 (Wed, 12 Dec 2018) | 1 line
+[FIX][UI] trackers: Fix class of extra link to Manage Tabular Formats (and make perm test the same as the item on the import menu, not sure why we need this twice though...)
+----------------------------------------------
+r68531 | xavidp | 2018-12-12 11:59:47 +0000 (Wed, 12 Dec 2018) | 1 line
+[REF]Replaces spaces with tabs (sorry for that, I was not aware of the default prefs using spaces of a new instance of PHPStorm where I had no imported our preferences xml file for the editor). Thanks for the pointer in the devel list to the prefs .xml file and jonny for the hints to improve the code.
+----------------------------------------------
+r68530 | luciash | 2018-12-12 08:24:53 +0000 (Wed, 12 Dec 2018) | 1 line
+[FIX] devtools: make the tikilite.sh script work with the latest Tiki version
+----------------------------------------------
+r68529 | pom2ter | 2018-12-12 01:57:26 +0000 (Wed, 12 Dec 2018) | 1 line
+[FIX] align labels and fields of the find page form in tiki-listpages
+----------------------------------------------
+r68528 | jonnybradley | 2018-12-11 18:31:23 +0000 (Tue, 11 Dec 2018) | 1 line
+[FIX] trackers: Fix "lookup-simple" tabular format for ItemLink field when using displayFieldsList as it can't then find the item to import back in unless it uses the basic "value"
+----------------------------------------------
+r68527 | jonnybradley | 2018-12-11 18:27:16 +0000 (Tue, 11 Dec 2018) | 1 line
+[FIX] trackers: Fix tabular format for DropDown fields when "with other"
+----------------------------------------------
+r68525 | jonnybradley | 2018-12-11 17:14:17 +0000 (Tue, 11 Dec 2018) | 1 line
+[FIX] trackers: Fix sort order on tiki-view_tracker.php for date fields (and itemId) - can't see how `lastModif` and `created` are handled but they probably need this too
+----------------------------------------------
+r68523 | luciash | 2018-12-11 14:08:47 +0000 (Tue, 11 Dec 2018) | 1 line
+[FIX] Themes lib: avoid fatal array merge error with null when only themes without theme options are available (+ added a comment TODO about suspicious code)
+----------------------------------------------
+r68521 | chibaguy | 2018-12-11 09:36:31 +0000 (Tue, 11 Dec 2018) | 1 line
+[FIX][UI] Corrected light and dark navbar backgrounds (set both to gray gradient previously used).
+----------------------------------------------
+r68519 | chibaguy | 2018-12-11 08:42:21 +0000 (Tue, 11 Dec 2018) | 1 line
+[FIX][UI] Add missing div.form-check around input.form-check-input; remove .col-form-label from label-containing div because that class is for labels of .form-control inputs (https://getbootstrap.com/docs/4.1/components/forms/#horizontal-form).
+----------------------------------------------
+r68516 | amnabilal | 2018-12-09 15:48:40 +0000 (Sun, 09 Dec 2018) | 1 line
+[FIX] Fixed Slideshow PDF formatting issues (reason mDPF do not inherit CSS attributes well in tables), added extra check for PDF in formatContent function, readjusted custom CSS and fixed parallax background. 
+----------------------------------------------
+r68515 | rjsmelo | 2018-12-09 14:14:06 +0000 (Sun, 09 Dec 2018) | 2 lines
+[FIX] Sitemap was only checking global permissions, so was not displaying items that had category or object permissions. Also some small improvements.
+----------------------------------------------
+r68509 | rjsmelo | 2018-12-08 23:34:46 +0000 (Sat, 08 Dec 2018) | 2 lines
+[FIX] When admin sets both "Protect all sessions with HTTPS" and "Use HTTPS login" as disabled, the users are unabled to login.
+----------------------------------------------
+r68508 | jonnybradley | 2018-12-08 19:23:01 +0000 (Sat, 08 Dec 2018) | 2 lines
+[FIX] search: Try dividing suspect timestamps by 1000 and avoid causing mysql 0000-00-00 invalid date errors when using that engine.
+Also negative integer timestamps are valid as being seconds before the epoch (or after 2038, hmm)
+----------------------------------------------
+r68507 | jonnybradley | 2018-12-08 16:37:50 +0000 (Sat, 08 Dec 2018) | 1 line
+[ENH] tabular: Add duplicate action for tabular formats
+----------------------------------------------
+r68506 | jonnybradley | 2018-12-08 14:25:13 +0000 (Sat, 08 Dec 2018) | 1 line
+[FIX] bs4: Rebuild button is the primary one, optimise is seldom seen or used so should be secondary
+----------------------------------------------
+r68505 | jonnybradley | 2018-12-08 13:06:11 +0000 (Sat, 08 Dec 2018) | 2 lines
+[FIX] search: Don't add a type field to the search queries for Elasticsearch v6+ because "[match] query does not support [type]" any more (at least on current v6.5)
+Required exposing the ES version as a public method on Search_Elastic_Index, also fixed a comment in Connection.php
+----------------------------------------------
+r68504 | jonnybradley | 2018-12-07 11:56:06 +0000 (Fri, 07 Dec 2018) | 1 line
+[FIX] bs4: Bootstrappify the file input for tabular import
+----------------------------------------------
+r68501 | jonnybradley | 2018-12-06 20:10:11 +0000 (Thu, 06 Dec 2018) | 1 line
+[FIX] chartjs: Check for values properly but then ignore them being absent if using JSON encoded data in the body
+----------------------------------------------
+r68496 | robertokir | 2018-12-06 16:16:57 +0000 (Thu, 06 Dec 2018) | 1 line
+[FIX]Complements r68458
+----------------------------------------------
+r68494 | chibaguy | 2018-12-06 12:37:02 +0000 (Thu, 06 Dec 2018) | 1 line
+[FIX][UI] Update grid offset classes (Bootstrap 3 to 4 transition); thanks, Jonny.
+----------------------------------------------
+r68493 | luciash | 2018-12-06 11:08:16 +0000 (Thu, 06 Dec 2018) | 1 line
+[FIX][UI][ENH] Base CSS: Make links in highlighted adminoptions visible with nice contrast
+----------------------------------------------
+r68492 | luciash | 2018-12-06 10:28:22 +0000 (Thu, 06 Dec 2018) | 1 line
+[FIX][UI][ENH] Base CSS: do not change the display type of the adminoptionbox when highlighted + added some padding for nicer appearance of the highlighted div
+----------------------------------------------
+r68491 | luciash | 2018-12-06 10:14:50 +0000 (Thu, 06 Dec 2018) | 1 line
+[FIX][UI] Preferences fgal picker type input: the .input-group-append must be a wrapper element to make the appended button align correctly
+----------------------------------------------
+r68490 | luciash | 2018-12-06 09:15:02 +0000 (Thu, 06 Dec 2018) | 1 line
+[ENH][UI] Admin navbar: append the search button in the input group
+----------------------------------------------
+r68489 | pom2ter | 2018-12-05 23:58:59 +0000 (Wed, 05 Dec 2018) | 1 line
+[FIX] fixed broken links use in the wiki page titles help icon
+----------------------------------------------
+r68488 | xorti | 2018-12-05 18:16:08 +0000 (Wed, 05 Dec 2018) | 1 line
+[FIX] Fix issue with wikiplugin_diagram reading compressed draw.io data
+----------------------------------------------
+r68486 | jonnybradley | 2018-12-04 17:26:21 +0000 (Tue, 04 Dec 2018) | 1 line
+[FIX] tabular: Replace the "field" field, lost in last commit (but now hidden) - no sign of the "type" field though in the tpl, new in 19 (did i lose it?)
+----------------------------------------------
+r68485 | jonnybradley | 2018-12-04 17:00:46 +0000 (Tue, 04 Dec 2018) | 2 lines
+[FIX] tabular: Formats with long mode/fieldnames were breaking the edit form layout making the field column collapse in a mess.
+Also make the primary button have class btn-primary and secondary ones btn-secondary, fix up the option checkboxes at the bottom and various other elements to use proper bs4 classes
+----------------------------------------------
+r68483 | jonnybradley | 2018-12-04 15:13:40 +0000 (Tue, 04 Dec 2018) | 1 line
+[FIX] wiki: Fix links on wiki page change notifications following regression in r65651 (hopefully fixes wish6904, thanks BSfez)
+----------------------------------------------
+r68480 | jonnybradley | 2018-12-03 15:00:55 +0000 (Mon, 03 Dec 2018) | 1 line
+[ENH] trackercalendar: Expose day start and end time params to the plugin, and fix the slotDuration param (and expose that too).
+----------------------------------------------
+r68479 | jonnybradley | 2018-12-03 12:53:08 +0000 (Mon, 03 Dec 2018) | 1 line
+[FIX] bootstrap: Convert plugin trackercalendar dialogs to use bootstrap ones (also means things like chosen menus etc now work properly)
+----------------------------------------------
+r68478 | jonnybradley | 2018-12-03 12:36:34 +0000 (Mon, 03 Dec 2018) | 1 line
+Revert "Scary date timezone thing" - committed in r68477 by mistake, apologies
+----------------------------------------------
+r68477 | jonnybradley | 2018-12-03 12:27:16 +0000 (Mon, 03 Dec 2018) | 1 line
+Scary date timezone thing
+----------------------------------------------
+r68475 | jonnybradley | 2018-12-02 14:35:47 +0000 (Sun, 02 Dec 2018) | 1 line
+[FIX] webmail: Show the to address instead of sender in sent folder
+----------------------------------------------
+r68474 | jonnybradley | 2018-12-02 14:18:42 +0000 (Sun, 02 Dec 2018) | 2 lines
+[FIX] webmail: Wrap getMessage call in a try/catch in case Zend cannot parse the mail.
+Display an error instead of the mail and show the full headers in the php notices if enabled.
+----------------------------------------------
+r68470 | yonixxx | 2018-12-01 17:27:31 +0000 (Sat, 01 Dec 2018) | 1 line
+[UX] The watch feature with child options in the middle of the Administrative list look misplaced (in the air) due to legend changes from Tiki18 to Tiki19. I put it at the bottom of the list (which is also Alphabetical) so it look like the expected design.
+----------------------------------------------
+r68468 | amnabilal | 2018-12-01 12:30:20 +0000 (Sat, 01 Dec 2018) | 1 line
+[FIX] line-height CSS attribute with unit was causing distorted text on large custom fonts. 
+----------------------------------------------
+r68465 | jyhem | 2018-12-01 01:06:24 +0000 (Sat, 01 Dec 2018) | 1 line
+[FIX] Make language changes work with SEFURL
+----------------------------------------------
+r68459 | jonnybradley | 2018-11-30 11:48:42 +0000 (Fri, 30 Nov 2018) | 1 line
+[FIX] smarty: Remove unnecessary dirs from $secure_dir (only needed for smarty templates, not images)
+----------------------------------------------
+r68458 | jonnybradley | 2018-11-30 11:45:55 +0000 (Fri, 30 Nov 2018) | 1 line
+[FIX] smarty: Include pref.smarty_security_dirs in template existence check (required after r67906)
+----------------------------------------------
+r68457 | xorti | 2018-11-30 03:01:03 +0000 (Fri, 30 Nov 2018) | 1 line
+[FIX] Fix issue in tabular formats with CSV files columns introduced in r68328
+----------------------------------------------
+r68456 | xorti | 2018-11-30 02:53:51 +0000 (Fri, 30 Nov 2018) | 1 line
+[FIX] Update tiki.sql to include database schema change introduced in r68455 and update query patch
+----------------------------------------------
+r68455 | xorti | 2018-11-30 02:32:10 +0000 (Fri, 30 Nov 2018) | 3 lines
+[FIX] Set tabular format column name size as the same as tracker name
+- Update form to include the maxlenght of the field to prevent database issues with data length
+----------------------------------------------
+r68452 | jonnybradley | 2018-11-29 18:34:49 +0000 (Thu, 29 Nov 2018) | 1 line
+[FIX][UX] groups: Add a label in the left hand column for the user choice checkbox to make it stand out a bit more
+----------------------------------------------
+r68451 | jonnybradley | 2018-11-29 18:30:56 +0000 (Thu, 29 Nov 2018) | 1 line
+[FIX] webmail: Cope with nested folders on the IMAP server when trying to save sent messages, and refresh the folder when you fist display it (same for all folders - thanks marclaporte - also TODO, save drafts, and probably do some refactoring ;)
+----------------------------------------------
+r68449 | chibaguy | 2018-11-29 16:02:24 +0000 (Thu, 29 Nov 2018) | 1 line
+[FIX][UI] Reinstate horizontal rule above wiki authors section; replace hardcoded em style of that section with CSS rule for design flexibility.
+----------------------------------------------
+r68447 | chibaguy | 2018-11-29 14:00:37 +0000 (Thu, 29 Nov 2018) | 1 line
+[FIX][UI] Increase font size of .card-title (was affecting blog post title, etc.).
+----------------------------------------------
+r68445 | chibaguy | 2018-11-29 13:45:43 +0000 (Thu, 29 Nov 2018) | 1 line
+[FIX][UI] Add white space above and below comment container, removing side padding (themes can add it if wanted).
+----------------------------------------------
+r68443 | chibaguy | 2018-11-29 11:37:26 +0000 (Thu, 29 Nov 2018) | 1 line
+[FIX] Blog post title anchor icon should only display on hover.
+----------------------------------------------
+r68442 | chibaguy | 2018-11-29 10:54:18 +0000 (Thu, 29 Nov 2018) | 1 line
+[FIX] Blog post title anchor icon should only display on hover; let icon color be theme-specific.
+----------------------------------------------
+r68434 | yonixxx | 2018-11-28 10:59:37 +0000 (Wed, 28 Nov 2018) | 1 line
+[DOC][UX] Fixing omitted tr tags; This legacy method is deprecated. Added information about Tracker Tabular to avoid disappointment and improve the UX.
+----------------------------------------------
+r68433 | yonixxx | 2018-11-28 10:05:59 +0000 (Wed, 28 Nov 2018) | 1 line
+[DOC][UX] This legacy method is deprecated. Added information about Tracker Tabular to avoid disappointment and improve the UX.
+----------------------------------------------
+r68430 | pom2ter | 2018-11-27 22:46:14 +0000 (Tue, 27 Nov 2018) | 1 line
+[FIX] reduce transparency of the debug console to make it more readable
+----------------------------------------------
+r68426 | amnabilal | 2018-11-27 19:31:35 +0000 (Tue, 27 Nov 2018) | 1 line
+[FIX] Multiple fixes for slideshow PDF including distorted alignment issue of headings, gradient background of themes was not being picked up by PDF, left-aligned headings and content for safe formatting. 
+----------------------------------------------
+r68424 | jonnybradley | 2018-11-27 17:18:19 +0000 (Tue, 27 Nov 2018) | 1 line
+[FIX] elFinder: Fix uploads and other operations that require a ticket
+----------------------------------------------
+r68423 | jonnybradley | 2018-11-27 17:03:19 +0000 (Tue, 27 Nov 2018) | 1 line
+[ENH] comments: Add a link icon to comment headings, similar to wiki headings ones
+----------------------------------------------
+r68419 | jonnybradley | 2018-11-27 13:26:19 +0000 (Tue, 27 Nov 2018) | 1 line
+[ENH] search: Add facet provider to UserSelector fields
+----------------------------------------------
+r68418 | jonnybradley | 2018-11-27 13:24:15 +0000 (Tue, 27 Nov 2018) | 1 line
+[ENH] chartjs: Allow more flexible data and options to be supplied via the plugin body as a json encoded array, giving access to all chart types and settings as described at chartjs.org/docs (also add a debug mode to use the non-minified js file for troubleshooting)
+----------------------------------------------
+r68411 | xavidp | 2018-11-26 18:44:12 +0000 (Mon, 26 Nov 2018) | 1 line
+[ENH]Add option to prevent a power user to get self-spammed by email notifications of the plugin call (requiring admin validation) just changed by that user (which has perms to approve those calls). Thanks jonnyb for guidance to get the php debugger back up & running (yay!)
+----------------------------------------------
+r68407 | jonnybradley | 2018-11-25 17:09:22 +0000 (Sun, 25 Nov 2018) | 1 line
+[FIX] chartjs: Ignore empty id's
+----------------------------------------------
+r68406 | chibaguy | 2018-11-25 12:25:23 +0000 (Sun, 25 Nov 2018) | 1 line
+[FIX] Correct media-list class name spelling (actually the class is gone in Bootstrap 4 but maybe it should be kept on as an identifier.
+----------------------------------------------
+r68405 | chibaguy | 2018-11-25 11:30:52 +0000 (Sun, 25 Nov 2018) | 1 line
+[UPD][UI] Update media list classes (Bootstrap 3 to 4 transition). Thanks, Jonny.
+----------------------------------------------
+r68404 | jonnybradley | 2018-11-24 18:15:18 +0000 (Sat, 24 Nov 2018) | 1 line
+[FIX] user tracker: Fix targeting for user tracker info popover on users admin page
+----------------------------------------------
+r68403 | jonnybradley | 2018-11-24 17:57:11 +0000 (Sat, 24 Nov 2018) | 1 line
+[FIX] groups: Restore comment from previous fix and add some more
+----------------------------------------------
+r68402 | jonnybradley | 2018-11-24 17:55:21 +0000 (Sat, 24 Nov 2018) | 2 lines
+[FIX] groups: Fix the filter on users_groups.anniversary again, this needs to default to an empty string, although the chars have to be numbers.
+Was causing all members of an edited group to be removed from that group
+----------------------------------------------
+r68401 | jonnybradley | 2018-11-24 16:29:35 +0000 (Sat, 24 Nov 2018) | 1 line
+[FIX] user tracker: Remove the profile_reference from the user_trackersync_realname pref as it allows only a single field to be set, and as it uses two types of separator (both + and ,) we cannot use the separator property for the pref, which triggers the object selector multi to be used.
+----------------------------------------------
+r68399 | lindonb | 2018-11-24 04:46:14 +0000 (Sat, 24 Nov 2018) | 1 line
+[FIX] Make close modal X show on the right of the title for thr feedback popup generated by js (seems to be a Bootstrap 3 to 4 transition item)
+----------------------------------------------
+r68395 | kerzay | 2018-11-23 16:57:28 +0000 (Fri, 23 Nov 2018) | 2 lines
+[FIX]
+Oups, I forgot a test case
+----------------------------------------------
+r68393 | kerzay | 2018-11-23 15:43:10 +0000 (Fri, 23 Nov 2018) | 3 lines
+[FIX] 
+Update  test set (QueryBuilderTest.php) to avoid test failure.
+Thank you Victor
+----------------------------------------------
+r68391 | xavidp | 2018-11-23 14:34:36 +0000 (Fri, 23 Nov 2018) | 1 line
+[FIX]Fix bad display of pages from the third wizard. Thanks luciash
+----------------------------------------------
+r68390 | luciash | 2018-11-23 12:04:14 +0000 (Fri, 23 Nov 2018) | 1 line
+[FIX] Base CSS: tweaks to prevent unwanted negative text indent applied on all text in the unique-numbered ordered lists
+----------------------------------------------
+r68383 | pom2ter | 2018-11-23 03:42:32 +0000 (Fri, 23 Nov 2018) | 1 line
+[FIX] fix alignment of 'monitor this page' checkbox when editing a wiki page in fullscreen
+----------------------------------------------
+r68381 | jonnybradley | 2018-11-22 19:16:08 +0000 (Thu, 22 Nov 2018) | 1 line
+[FIX] chartjs: Use unique id's for each instance, and apply size to container div, plus a typo correction
+----------------------------------------------
+r68380 | jonnybradley | 2018-11-22 17:13:35 +0000 (Thu, 22 Nov 2018) | 1 line
+[UPD] No changes, just automatic updates
+----------------------------------------------
+r68378 | kerzay | 2018-11-22 16:30:32 +0000 (Thu, 22 Nov 2018) | 3 lines
+[Bp/r68377][ENH] 
+Add exact Phrase Search to ElasticSearch based queries
+The phrase is defined between ""
+----------------------------------------------
+r68374 | jonnybradley | 2018-11-22 15:33:09 +0000 (Thu, 22 Nov 2018) | 1 line
+[FIX] htaccess: add README
+----------------------------------------------
+r68373 | luciash | 2018-11-22 14:26:32 +0000 (Thu, 22 Nov 2018) | 1 line
+[FIX] Base CSS: replaced occurences of .col1, .col2, .col3 selectors with more specific #col1, #col2, #col3 to avoid conflicts with Pivot tables classes (thanks Victor)
+----------------------------------------------
+r68370 | kerzay | 2018-11-21 21:06:49 +0000 (Wed, 21 Nov 2018) | 3 lines
+[Bp/r68368] [ENH] Improvements to the button plugin
+Add body parameter : wiki syntax support on button text
+Add height/width parameter 
+----------------------------------------------
+r68367 | jonnybradley | 2018-11-21 17:36:10 +0000 (Wed, 21 Nov 2018) | 1 line
+[FIX] modals: Sometimes (e.g. tracker field edit) the tiki.modal.redraw event fires on the container of the modal, not the content, so check
+----------------------------------------------
+r68365 | jonnybradley | 2018-11-21 17:19:25 +0000 (Wed, 21 Nov 2018) | 2 lines
+[FIX] bs4: .input-group-btn was changed to .input-group-append in beta 3 (or .input-group-prepend, watch out for any i missed)
+See https://getbootstrap.com/docs/4.1/migration/#input-groups
+----------------------------------------------
+r68363 | jonnybradley | 2018-11-21 16:24:05 +0000 (Wed, 21 Nov 2018) | 1 line
+[FIX] filegals: Straighten out the file gallery find form (a bit) finally
+----------------------------------------------
+r68361 | kerzay | 2018-11-21 14:52:32 +0000 (Wed, 21 Nov 2018) | 4 lines
+[BP/r68360] 
+Correction for the bug #6601
+FOOTNOTEAREA: Some footnote numbers displayed on their own line 
+----------------------------------------------
+r68357 | chibaguy | 2018-11-21 07:37:34 +0000 (Wed, 21 Nov 2018) | 1 line
+[FIX][UI] Reduce left and right padding on module titles in side columns to allow more characters per line.
+----------------------------------------------
+r68355 | chibaguy | 2018-11-21 07:06:53 +0000 (Wed, 21 Nov 2018) | 1 line
+[FIX][UI] Improve layout of form items on tiki-pagehistory.
+----------------------------------------------
+r68352 | pom2ter | 2018-11-20 23:38:30 +0000 (Tue, 20 Nov 2018) | 1 line
+[ENH] alphabetize the list of similar pages
+----------------------------------------------
+r68351 | pom2ter | 2018-11-20 22:04:28 +0000 (Tue, 20 Nov 2018) | 1 line
+[FIX] replace status images with FA icons in legacy mode
+----------------------------------------------
+r68349 | jonnybradley | 2018-11-20 18:15:32 +0000 (Tue, 20 Nov 2018) | 1 line
+[ENH] modals: Make modal dialogs optionally draggable and/or resizable (thanks luciash)
+----------------------------------------------
+r68348 | luciash | 2018-11-20 16:38:54 +0000 (Tue, 20 Nov 2018) | 1 line
+[FIX][UI] Page history: missing class on the input field for rows per page
+----------------------------------------------
 Version 19.0
 <http://doc.tiki.org/Tiki19>
 ------------------
