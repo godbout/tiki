@@ -39,7 +39,10 @@ class CacheClearCommand extends Command
 		$all = $input->getOption('all');
 		$type = $input->getArgument('cache');
 
-		$cachelib = \TikiLib::lib('cache');
+		require_once('lib/cache/cachelib.php');
+		require_once('lib/tikilib.php');
+		$cachelib = new \Cachelib();
+		$cachelib->empty_cache();
 
 		if ($all) {
 			$output->writeln('Clearing all caches');
