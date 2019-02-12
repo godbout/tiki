@@ -309,3 +309,4 @@ ALTER TABLE `tiki_scheduler` ENGINE=InnoDB;
 ALTER TABLE `tiki_scheduler_run` ENGINE=InnoDB;
 ALTER TABLE `tiki_custom_route` ENGINE=InnoDB;
 ALTER TABLE `tiki_h5p_libraries_hub_cache` ENGINE=InnoDB;
+ALTER TABLE `tiki_oauthserver_clients` ENGINE=InnoDB;
