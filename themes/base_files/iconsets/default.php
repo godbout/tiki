@@ -260,6 +260,9 @@ function iconset_default()
 				'id' => 'apple',
 				'prepend' => 'fab fa-'
 			],
+			'area-chart' => [
+				'id' => 'chart-area'
+			],
 			'arrows' => [
 				'id' => 'arrows-alt'
 			],
@@ -293,6 +296,9 @@ function iconset_default()
 			//backward in defaults
 			'backward_step' => [
 				'id' => 'step-backward',
+			],
+			'bar-chart' => [
+				'id' => 'chart-bar'
 			],
 			//ban in defaults
 			'behance' => [
@@ -539,6 +545,13 @@ function iconset_default()
 			'file-archive-open' => [
 				'id' => 'folder-open',
 			],
+			'file-text' => [
+				'id' => 'file-alt'
+			],
+			'file-text-o' => [
+				'id' => 'file-alt'
+				'prepend' => 'far fa-'
+			],
 			//filter in defaults
 			'firefox' => [
 				'id' => 'firefox',
@@ -756,6 +769,9 @@ function iconset_default()
 			],
 			'like' => [
 				'id' => 'thumbs-up',
+			],
+			'line-chart' => [
+				'id' => 'chart-line'
 			],
 			//link in defaults
 			'link-external' => [
