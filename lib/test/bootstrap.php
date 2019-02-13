@@ -86,7 +86,7 @@ if (! $installer->tableExists('tiki_preferences')) {
 			echo "Error $key in $patch\n\t$query\n\t$message\n\n";
 		}
 		echo 'Exiting, fix database issues and try again.';
-		die;
+		exit(1);
 	}
 }
 
