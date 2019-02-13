@@ -3,7 +3,7 @@
 {title help="Integrator"}{tr}Integrator{/tr}{/title}
 
 {remarksbox type="tip" title="{tr}Tip{/tr}"}
-	{tr}An easier way to integrate content from another site into Tiki is via iframed links using Tiki's <a class="rbox-link" href="tiki-admin_links.php">featured links</a> feature.{/tr}
+	{tr}An easier way to integrate content from another site into Tiki is via iframed links using Tiki's <a class="alert-link" href="tiki-admin_links.php">featured links</a> feature.{/tr}
 {/remarksbox}
 
 {if $repID > 0}

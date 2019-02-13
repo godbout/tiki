@@ -1,7 +1,7 @@
 {title help="Cookie"}{tr}Admin cookies{/tr}{/title}
 
 {remarksbox type="tip" title="{tr}Tip{/tr}"}
-	{tr}To use cookie in a text area (Wiki page, etc), a <a class="rbox-link" href="tiki-admin_modules.php">module</a> or a template, use {literal}{cookie}{/literal}.{/tr}
+	{tr}To use cookie in a text area (Wiki page, etc), a <a class="alert-link" href="tiki-admin_modules.php">module</a> or a template, use {literal}{cookie}{/literal}.{/tr}
 {/remarksbox}
 
 <h2>{tr}Create/edit cookies{/tr}</h2>

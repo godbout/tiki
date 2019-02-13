@@ -1,6 +1,6 @@
 {* $Id$ *}
 {remarksbox type="tip" title="{tr}Tip{/tr}"}
-	{tr}To create or remove file galleries, select{/tr} <a class="rbox-link" href="tiki-list_file_gallery.php">{tr}File Galleries{/tr}</a> {tr}from the application menu{/tr}.
+	{tr}To create or remove file galleries, select{/tr} <a class="alert-link" href="tiki-list_file_gallery.php">{tr}File Galleries{/tr}</a> {tr}from the application menu{/tr}.
 	<hr>
 	{tr}If you decide to store files in a directory you must ensure that the user cannot access directly to the directory.{/tr}
 	{tr}You have two options to accomplish this:<br><ul><li>Use a directory outside your document root, make sure your php script can read and write to that directory</li><li>Use a directory inside the document root and use .htaccess to prevent the user from listing the directory contents</li></ul>{/tr}

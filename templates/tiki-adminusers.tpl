@@ -712,7 +712,7 @@
 				</div>
 			</form>
 			{if $tiki_p_admin eq 'y'} {* only full admins can manage groups, not tiki_p_admin_users *}
-				{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}You can export users of a group by clicking on that group at <a href="tiki-admingroups.php">admin->groups</a>{/tr}{/remarksbox}
+				{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}You can export users of a group by clicking on that group at <a href="tiki-admingroups.php" class="alert-link">admin->groups</a>{/tr}{/remarksbox}
 			{/if}
 		{/tab}
 
@@ -722,21 +722,21 @@
 			{if $prefs['auth_token_access'] != 'y'}
 				{remarksbox type="warning" title="{tr}Token Access Feature Dependency{/tr}"}
 					{tr}The token access feature is needed for Temporary Users to login.{/tr}
-					<a href="tiki-admin.php?lm_criteria=auth_token_access&exact">{tr}Turn it on here.{/tr}</a>
+					<a href="tiki-admin.php?lm_criteria=auth_token_access&exact" class="alert-link">{tr}Turn it on here.{/tr}</a>
 				{/remarksbox}
 				{$temp_users_enabled = false}
 			{/if}
 			{if $prefs['login_is_email'] === 'y'}
 				{remarksbox type="warning" title="{tr}Feature Conflict{/tr}"}
 					{tr}This feature currently is incompatible with the "Use email as username" feature{/tr}
-					<a href="tiki-admin.php?lm_criteria=login_is_email&exact">{tr}Turn it off here.{/tr}</a>
+					<a href="tiki-admin.php?lm_criteria=login_is_email&exact" class="alert-link">{tr}Turn it off here.{/tr}</a>
 				{/remarksbox}
 				{$temp_users_enabled = false}
 			{/if}
 			{if $prefs['user_unique_email'] === 'y'}
 				{remarksbox type="warning" title="{tr}Feature Conflict{/tr}"}
 					{tr}This feature currently is incompatible with the "The email address of each user must be unique." feature{/tr}
-					<a href="tiki-admin.php?lm_criteria=user_unique_email&exact">{tr}Turn it off here.{/tr}</a>
+					<a href="tiki-admin.php?lm_criteria=user_unique_email&exact" class="alert-link">{tr}Turn it off here.{/tr}</a>
 				{/remarksbox}
 				{$temp_users_enabled = false}
 			{/if}
@@ -747,7 +747,7 @@
 					<p>{tr}Please do not assign temporary users to Groups that can access any security sensitive information, since access to these accounts is relatively easy to obtain, for example by intercepting or otherwise getting access to these emails.{/tr}</p>
 				{/remarksbox}
 				{remarksbox type="info" title="Revoking Access"}
-					{tr}To revoke access before validity expires or to review who has access, please see:{/tr} <a href="tiki-admin_tokens.php">{tr}Admin Tokens{/tr}</a>
+					{tr}To revoke access before validity expires or to review who has access, please see:{/tr} <a href="tiki-admin_tokens.php" class="alert-link">{tr}Admin Tokens{/tr}</a>
 				{/remarksbox}
 				<form name="tempuser" id="tempuser" method="post" action="{service controller=user action=invite_tempuser}">
 					<div class="form-group row">
