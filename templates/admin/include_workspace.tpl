@@ -93,7 +93,7 @@
 					</table>
 				</div>
 			</fieldset>
-			{remarksbox type="info" title="{tr}Hint{/tr}"}{tr}This tab shows you an overview of categories affected by the areas feature. <br> More help here: <a href="http://doc.tiki.org/Areas" target="tikihelp">doc.tiki.org/Areas</a> {/tr}{/remarksbox}
+			{remarksbox type="info" title="{tr}Hint{/tr}"}{tr}This tab shows you an overview of categories affected by the areas feature. <br> More help here: <a href="http://doc.tiki.org/Areas" target="tikihelp" class="alert-link">doc.tiki.org/Areas</a> {/tr}{/remarksbox}
 			<div class="form-group heading input_submit_container" style="text-align: center">
 				<input
 					type="submit"

@@ -37,10 +37,10 @@
 			<div class="col-md-6 float-sm-right">
 				{if $custom_file}
 					{remarksbox type="info" title="{tr}Download{/tr}" close="n"}
-						<a class="btn btn-link tips" href="{service controller=language action=download language={$language} file_type="custom_php"}" title="{tr}custom.php{/tr}:{tr}Download custom.php file for the selected language.{/tr}">
+						<a class="btn btn-link tips alert-link" href="{service controller=language action=download language={$language} file_type="custom_php"}" title="{tr}custom.php{/tr}:{tr}Download custom.php file for the selected language.{/tr}">
 							{icon name="download"} {tr}custom.php{/tr}
 						</a>
-						<a class="btn btn-link tips" href="{service controller=language action=download language={$language} file_type="custom_json"}" title="{tr}custom.json{/tr}:{tr}Download custom.json file for the selected language.{/tr}">
+						<a class="btn btn-link tips alert-link" href="{service controller=language action=download language={$language} file_type="custom_json"}" title="{tr}custom.json{/tr}:{tr}Download custom.json file for the selected language.{/tr}">
 							{icon name="download"} {tr}custom.json{/tr}
 						</a>
 					{/remarksbox}

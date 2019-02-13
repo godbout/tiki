@@ -35,8 +35,8 @@
 		<li>{tr}New modules can be dragged from the "All Modules" tab{/tr}</li>
 	</ul>
 	<p>
-		<strong>{tr}Note:{/tr}</strong> {tr}Links and buttons in modules, apart from the Application Menu, have been deliberately disabled on this page to make drag and drop more reliable. Click here to return <a href="./">HOME</a>{/tr}<br>
-		<strong><em>{tr}More info here{/tr}</em></strong> {icon name="help" href="http://dev.tiki.org/Modules+Revamp" class=""}
+		<strong>{tr}Note:{/tr}</strong> {tr}Links and buttons in modules, apart from the Application Menu, have been deliberately disabled on this page to make drag and drop more reliable. Click here to return <a href="./" class="alert-link">HOME</a>{/tr}<br>
+		<strong><em>{tr}More info here{/tr}</em></strong> {icon name="help" href="http://dev.tiki.org/Modules+Revamp" class="alert-link"}
 	</p>
 
 {/remarksbox}
@@ -215,7 +215,7 @@
 		{/if}
 		<div class="col-sm-10 col-sm-offset-1">
 			{remarksbox type="tip" title="{tr}Tip{/tr}"}
-				{tr}Create your new custom module below. Make sure to preview first and make sure all is OK before <a href="#assign">assigning it</a>. Using HTML, you will be fine. However, if you improperly use wiki syntax or Smarty code, you could lock yourself out of the site.{/tr}
+				{tr}Create your new custom module below. Make sure to preview first and make sure all is OK before <a href="#assign" class="alert-link">assigning it</a>. Using HTML, you will be fine. However, if you improperly use wiki syntax or Smarty code, you could lock yourself out of the site.{/tr}
 			{/remarksbox}
 		</div>
 
@@ -346,7 +346,7 @@
 			<div class="col-sm-10 col-sm-offset-1">
 				{remarksbox type="tip" title="{tr}Tip{/tr}"}
 				{if $prefs.feature_cssmenus eq 'y'}
-					{tr}To use a <a target="tikihelp" href="http://users.tpg.com.au/j_birch/plugins/superfish/">CSS (Superfish) menu</a>, use one of these syntaxes:{/tr}
+					{tr}To use a <a target="tikihelp" href="http://users.tpg.com.au/j_birch/plugins/superfish/" class="alert-link">CSS (Superfish) menu</a>, use one of these syntaxes:{/tr}
 					<ul>
 						<li>{literal}{menu id=X type=vert}{/literal}</li>
 						<li>{literal}{menu id=X type=horiz}{/literal}</li>

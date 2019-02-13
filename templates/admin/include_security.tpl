@@ -33,21 +33,21 @@
 					{if $haveMySQLSSL}
 						{if $mysqlSSL}
 							<p class="mysqlsslstatus">{icon name="lock" iclass="text-success"} {tr}MySQL SSL connection is active{/tr}
-							<a class="tikihelp" title="|MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
+							<a class="tikihelp alert-link" title="|MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
 								{icon name="help"}
 							</a>
 							</p>
 						{else}
 							<p class="mysqlsslstatus">{icon name="unlock"} {tr}MySQL connection is not encrypted{/tr}<br>
 							{tr}To activate SSL, copy the keyfiles (.pem) til db/cert folder. The filenames must end with "-key.pem", "-cert.pem", "-ca.pem"{/tr}
-							<a class="tikihelp" title="|MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
+							<a class="tikihelp alert-link" title="|MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
 								{icon name="help"}
 							</a>
 							</p>
 						{/if}
 					{else}
 						<p>{icon name="lock" iclass="text-warning"} {tr}MySQL Server does not have SSL activated{/tr}
-						<a class="tikihelp" title="|MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
+						<a class="tikihelp alert-link" title="|MySQL SSL" target="tikihelp" href="http://doc.tiki.org/MySQL SSL">
 							{icon name="help"}
 						</a>
 						</p>
@@ -155,7 +155,7 @@
 
 		{tab name="{tr}Spam Protection{/tr}"}
 			{remarksbox type="tip" title="{tr}Tip{/tr}"}
-				{tr}You can additionally protect from spam enabling the "<a href="http://doc.tiki.org/Forum+Admin#Forum_moderation" target="_blank">moderation queue on forums</a>", or through <strong>banning</strong> multiple ip's from the "<a href="tiki-admin_actionlog.php" target="_blank">Action log</a>", from "<a href="tiki-adminusers.php" target="_blank">Users registration</a>", or from the "<a href="tiki-list_comments.php" target="_blank">Comments moderation queue</a>" itself{/tr}.
+				{tr}You can additionally protect from spam enabling the "<a href="http://doc.tiki.org/Forum+Admin#Forum_moderation" target="_blank" class="alert-link">moderation queue on forums</a>", or through <strong>banning</strong> multiple ip's from the "<a href="tiki-admin_actionlog.php" target="_blank" class="alert-link">Action log</a>", from "<a href="tiki-adminusers.php" target="_blank" class="alert-link">Users registration</a>", or from the "<a href="tiki-list_comments.php" target="_blank" class="alert-link">Comments moderation queue</a>" itself{/tr}.
 			{/remarksbox}
 			<fieldset>
 				<legend>{tr}CAPTCHA{/tr}</legend>
@@ -235,7 +235,7 @@
 
 		{tab name="{tr}Tokens{/tr}"}
 			{remarksbox type="tip" title="{tr}Tip{/tr}"}
-				{tr}To manage tokens go to <a href="tiki-admin_tokens.php">Admin Tokens</a> page. Tokens are also used for the Temporary Users feature (see <a href="tiki-adminusers.php">Admin Users</a>).{/tr}
+				{tr}To manage tokens go to <a href="tiki-admin_tokens.php" class="alert-link">Admin Tokens</a> page. Tokens are also used for the Temporary Users feature (see <a href="tiki-adminusers.php" class="alert-link">Admin Users</a>).{/tr}
 			{/remarksbox}
 			{preference name=auth_token_access}
 			{preference name=auth_token_access_maxtimeout}
@@ -266,7 +266,7 @@
 						<br><em>{tr}If you use file for the signer passphrase, clear the preferences option just for security{/tr}</em>
 					</div>
 					{remarksbox type="tip" title="{tr}Note{/tr}"}
-						{tr}The email of preference <a href="tiki-admin.php?page=general&alt=General">'sender_email'</a> is used as signer key ID, and it must have both private and public key in the gnupg keyring.{/tr}
+						{tr}The email of preference <a href="tiki-admin.php?page=general&alt=General" class="alert-link">'sender_email'</a> is used as signer key ID, and it must have both private and public key in the gnupg keyring.{/tr}
 					{/remarksbox}
 				</div>
 			</fieldset>

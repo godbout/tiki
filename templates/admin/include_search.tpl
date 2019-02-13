@@ -36,7 +36,7 @@
 				{remarksbox type=tip title="{tr}About the Unified Index{/tr}"}
 				{tr}The Unified Index provides many underlying features for Tiki, including object selectors for translations amongst other things.{/tr}
 				{tr}Disabling this will cause some parts of Tiki to be unavailable.{/tr}<br>
-					<a href="http://doc.tiki.org/Unified+Index">{tr}Find out more about it here.{/tr}</a>
+					<a href="http://doc.tiki.org/Unified+Index" class="alert-link">{tr}Find out more about it here.{/tr}</a>
 				{/remarksbox}
 
 				{preference name=feature_search visible="always"}
@@ -133,7 +133,7 @@
 
 					<div class="adminoptionbox preference advanced">{* pretend this remarks box is an advanced pref so it only shows when advanced irefs are enabled *}
 						{remarksbox type=tip title="{tr}Experiment with LIST plugin syntax{/tr}"}
-							<a href="tiki-pluginlist_experiment.php">{tr}After you have found the correct contents, you may copy-paste them in a LIST plugin.{/tr}</a>
+							<a href="tiki-pluginlist_experiment.php" class="alert-link">{tr}After you have found the correct contents, you may copy-paste them in a LIST plugin.{/tr}</a>
 						{/remarksbox}
 					</div>
 				</div>

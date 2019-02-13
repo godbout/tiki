@@ -6,7 +6,7 @@
 		{tab name="{tr}Kaltura{/tr}"}
 			<br>
 			{remarksbox type="info" title="{tr}Kaltura Registration{/tr}"}
-				{tr}To get a Kaltura Partner ID:{/tr} {tr}Setup your own instance of Kaltura Community Edition (CE){/tr} or <a href="http://corp.kaltura.com/about/signup">{tr}get an account via Kaltura.com{/tr}</a>
+				{tr}To get a Kaltura Partner ID:{/tr} {tr}Setup your own instance of Kaltura Community Edition (CE){/tr} or <a href="http://corp.kaltura.com/about/signup" class="alert-link">{tr}get an account via Kaltura.com{/tr}</a>
 			{/remarksbox}
 
 			{button _text="{tr}List Media{/tr}" href="tiki-list_kaltura_entries.php"}

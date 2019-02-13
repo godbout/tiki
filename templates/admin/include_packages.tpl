@@ -4,7 +4,7 @@
     {remarksbox type="warning" title="{tr}Composer not found{/tr}"}
     {tr}Composer could not be executed, so the automated check on the packages cannot be performed.{/tr}
     <br/>
-    {tr}In <a href="javascript:void(0)" class="install-composer">Diagnose</a> tab you can install composer.{/tr}
+    {tr}In <a href="javascript:void(0)" class="install-composer" class="alert-link">Diagnose</a> tab you can install composer.{/tr}
     {/remarksbox}
 {/if}
 
@@ -33,7 +33,7 @@
                 <li>{$entry}</li>
             {/foreach}
         </ul>
-        <p>{tr _0='<code>sh setup.sh fix</code>' _1='<a href="https://doc.tiki.org/Packages">doc.tiki.org/Packages</a>'}Run %0 from a shell to try to fix this, see %1 for more info.{/tr}</p>
+        <p>{tr _0='<code>sh setup.sh fix</code>' _1='<a href="https://doc.tiki.org/Packages" class="alert-link">doc.tiki.org/Packages</a>'}Run %0 from a shell to try to fix this, see %1 for more info.{/tr}</p>
 	{/remarksbox}
 {/if}
 

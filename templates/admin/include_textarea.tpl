@@ -140,7 +140,7 @@
 		{tab name="{tr}Plugins{/tr}"}
 			<br>
 			{remarksbox type="note" title="{tr}About plugins{/tr}"}{tr}Tiki plugins add functionality to wiki pages, articles, blogs, and so on. You can enable and disable them below.{/tr}
-			{tr}You can approve plugin use at <a href="tiki-plugins.php">tiki-plugins.php</a>.{/tr}
+			{tr}You can approve plugin use at <a href="tiki-plugins.php" class="alert-link">tiki-plugins.php</a>.{/tr}
 			{tr}The edit-plugin icon is an easy way for users to edit the parameters of each plugin in wiki pages. It can be disabled for individual plugins below.{/tr}
 			{/remarksbox}
 			{if !isset($disabled)}
@@ -194,7 +194,7 @@
 				{if $prefs.unified_search_textarea_admin eq 'y'}
 					{remarksbox type='tip' title='{tr}Plugin List{/tr}'}
 						{tr}Use the filter input above to find plugins, or enter return to see the whole list{/tr}
-						<a href="{bootstrap_modal controller=search action=help}">{tr}Search Help{/tr} {icon name='help'}</a>
+						<a href="{bootstrap_modal controller=search action=help}" class="alert-link">{tr}Search Help{/tr} {icon name='help'}</a>
 					{/remarksbox}
 				{/if}
 				</div>
@@ -229,7 +229,7 @@
 			{/remarksbox}
 			{if $prefs.feature_jquery neq 'y'}
 				{remarksbox type="tip" title="{tr}Tip{/tr}"}
-					{tr}This page is designed to work with JQuery{/tr} <a href="tiki-admin.php?page=features">{icon name="next"}</a>
+					{tr}This page is designed to work with JQuery{/tr} <a href="tiki-admin.php?page=features" class="alert-link">{icon name="next"}</a>
 				{/remarksbox}
 			{/if}
 

@@ -37,14 +37,14 @@
 				{preference name=forum_reply_notitle}
 				<div class="adminoptionboxchild" id="forum_reply_notitle_childcontainer">
 					{remarksbox type="information" title="{tr}Note{/tr}"}
-					{tr _0="<a href=\"tiki-admin.php?page=comments\" title=\"{tr}Disable comment titles{/tr}\" alt=\"{tr}Disable comment titles{/tr}\">{tr}Disable comment titles{/tr}</a>"}Depending of your configuration it may be also necessary to %0 on the Comments control panel to avoid having a "Please enter a Title..." error.{/tr}
+					{tr _0="<a href=\"tiki-admin.php?page=comments\" title=\"{tr}Disable comment titles{/tr}\" class=\"alert-link\" alt=\"{tr}Disable comment titles{/tr}\">{tr}Disable comment titles{/tr}</a>"}Depending of your configuration it may be also necessary to %0 on the Comments control panel to avoid having a "Please enter a Title..." error.{/tr}
 					{/remarksbox}
 				</div>
 				{preference name=forum_comments_no_title_prefix}
 				{preference name=forum_reply_forcetitle}
 				<div class="adminoptionboxchild" id="forum_reply_forcetitle_childcontainer">
 					{remarksbox type="information" title="{tr}Note{/tr}"}
-					{tr _0="<a href=\"tiki-admin.php?page=comments\" title=\"{tr}Disable comment titles{/tr}\" alt=\"{tr}Disable comment titles{/tr}\">{tr}Disable comment titles{/tr}</a>"}Depending of your configuration it may be also necessary to %0 on the Comments control panel to avoid having a "Please enter a Title..." error.{/tr}
+					{tr _0="<a href=\"tiki-admin.php?page=comments\" title=\"{tr}Disable comment titles{/tr}\" class=\"alert-link\" alt=\"{tr}Disable comment titles{/tr}\">{tr}Disable comment titles{/tr}</a>"}Depending of your configuration it may be also necessary to %0 on the Comments control panel to avoid having a "Please enter a Title..." error.{/tr}
 					{/remarksbox}
 				</div>
 				{preference name=feature_forums_allow_thread_titles}
