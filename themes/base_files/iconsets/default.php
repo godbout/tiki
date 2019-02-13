@@ -549,7 +549,7 @@ function iconset_default()
 				'id' => 'file-alt'
 			],
 			'file-text-o' => [
-				'id' => 'file-alt'
+				'id' => 'file-alt',
 				'prepend' => 'far fa-'
 			],
 			//filter in defaults
