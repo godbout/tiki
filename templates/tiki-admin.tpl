@@ -45,6 +45,8 @@
 		{remarksbox type="error" title="{tr}Installer not locked{/tr}"}
 			{tr} The installer allows a user to change or destroy the site's database through the browser so it is very important to keep it locked. {/tr}
 			{tr}<br />You can re-run the installer (tiki-install.php), skip to the last step and select <strong>LOCK THE INSTALLER</strong>. Alternatively, you can simply <strong>add a lock file</strong> (file without any extension) in your db/ folder.{/tr}
+			{tr}You can also use the following, on the command line, from the root of your Tiki installation:{/tr}
+			<kbd>php console.php installer:lock</kbd>
 		{/remarksbox}
 	{/if}
 
