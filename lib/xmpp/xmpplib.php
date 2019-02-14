@@ -216,22 +216,18 @@ class XMPPLib extends TikiLib
 			'room' => '',
 		], $params);
 
+		$css_files = ['converse.css'];
+
 		switch ($params['view_mode']) {
 			case 'fullscreen':
-				$css_files = ['converse.css', 'fullpage.css'];
+				$css_files[] = 'fullpage.css';
 				break;
+
 			case 'embedded':
 				// TODO: remove this a line after fixing conversejs
 				$js .= 'delete sessionStorage["converse.chatboxes-' . $xmpp['jid'] . '"];';
 				$js .= 'delete sessionStorage["converse.chatboxes-' . $xmpp['jid'] . '-controlbox"];';
-				$css_files = ['converse.css', 'converse-muc-embedded.css'];
 				break;
-			case 'mobile':
-				$css_files = ['converse.css', 'mobile.css'];
-				break;
-			case 'overlayed':
-			default:
-				$css_files = ['converse.css'];
 		}
 
 		foreach ($css_files as $css_file) {
