@@ -29,9 +29,11 @@ class Installer extends TikiDb_Bridge
 
 	public $useInnoDB = true;
 
-	public static $createdTables = 0;
+	public static $executedQueries = 0;
 
 	public static $numberOfTablesToCreate = 0;
+
+	public static $numberOfQueries = 0;
 
 	/**
 	 * TODO: make private to enforce Singleton
@@ -296,20 +298,15 @@ class Installer extends TikiDb_Bridge
 		$statements = preg_split("#(;\s*\n)|(;\s*\r\n)#", $command);
 
 		foreach($statements as $statement) {
-			if(basename($file, 'tiki.sql')) {
-				if(preg_match('/CREATE\sTABLE\s`([a-zA-Z_]+)`.*/', $statement, $create_query_matches_parts)) {
-					self::$numberOfTablesToCreate++;
-				}
-			}
+			self::$numberOfQueries++;
 		}
 
 		$status = true;
 		foreach ($statements as $statement) {
+			$this->updateProgressBarState('progress_database_status', ++self::$executedQueries);
 			if(basename($file, 'tiki.sql')) {
 				if(preg_match('/CREATE\sTABLE\s`([a-zA-Z_]+)`.*/', $statement, $create_query_matches_parts)) {
 					$this->pushStateToBrowser('table_name', $create_query_matches_parts[1]);
-					++self::$createdTables;
-					$this->updateProgressBarState('progress_database_status', self::$createdTables);
 				}
 			}
 			if(basename($file, 'tiki_fulltext_indexes.sql')) {
@@ -329,6 +326,7 @@ class Installer extends TikiDb_Bridge
 					}
 				}
 			}
+			// self::$executedQueries;
 		}
 
 		return $status;
@@ -622,12 +620,13 @@ JS;
 		if($working_env != 'cli') {
 			echo $scripts;
 			ob_flush();
+			flush();
 		}
 	}
 
 	function updateProgressBarState($progress_name, $level)
 	{
-		$percent = intval($level/self::$numberOfTablesToCreate * 100)."%";
+		$percent = intval($level/self::$numberOfQueries * 100)."%";
 		
 		$scripts = <<<JS
 		<script class="progress_bar_script">
@@ -641,6 +640,7 @@ JS;
 		if($working_env != 'cli') {
 			echo $scripts;
 			ob_flush();
+			flush();
 		}
 	}
 }
