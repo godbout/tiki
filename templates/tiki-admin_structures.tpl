@@ -29,7 +29,7 @@
 	{remarksbox type='warning' title="{tr}Warning{/tr}"}
 		{tr}Note that the following pages are also part of another structure. Make sure that access permissions (if any) do not conflict:{/tr}
 		{foreach from=$alert_in_st item=thest}
-			&nbsp;&nbsp;<a class='tablename' href='tiki-index.php?page={$thest|escape:"url"}' target="_blank">{$thest}</a>
+			&nbsp;&nbsp;<a class='tablename alert-link' href='tiki-index.php?page={$thest|escape:"url"}' target="_blank">{$thest}</a>
 		{/foreach}
 	{/remarksbox}
 {/if}
@@ -38,7 +38,7 @@
 	{remarksbox type='feedback' title="{tr}Feedback{/tr}"}
 		{tr}The following pages have automatically been categorized with the same categories as the structure:{/tr}
 		{foreach from=$alert_categorized item=thecat}
-			&nbsp;&nbsp;<a class='tablename' href='tiki-index.php?page={$thecat|escape:"url"}' target="_blank">{$thecat}</a>
+			&nbsp;&nbsp;<a class='tablename alert-link' href='tiki-index.php?page={$thecat|escape:"url"}' target="_blank">{$thecat}</a>
 		{/foreach}
 	{/remarksbox}
 {/if}
@@ -47,7 +47,7 @@
 	{remarksbox type='warning' title="{tr}Warning{/tr}"}
 		{tr}The following pages have categories but the structure has none. You may wish to uncategorize them to be consistent:{/tr}
 		{foreach from=$alert_to_remove_cats item=thecat}
-			&nbsp;&nbsp;<a class='tablename' href='tiki-index.php?page={$thecat|escape:"url"}' target="_blank">{$thecat}</a>
+			&nbsp;&nbsp;<a class='tablename alert-link' href='tiki-index.php?page={$thecat|escape:"url"}' target="_blank">{$thecat}</a>
 		{/foreach}
 	{/remarksbox}
 {/if}
@@ -56,7 +56,7 @@
 	{remarksbox type='warning' title="{tr}Warning{/tr}"}
 		{tr}The following pages are in categories that the structure is not in. You may wish to recategorize them in order to be consistent:{/tr}
 		{foreach from=$alert_to_remove_extra_cats item=theextracat}
-			&nbsp;&nbsp;<a class='tablename' href='tiki-index.php?page={$theextracat|escape:"url"}' target="_blank">{$theextracat}</a>
+			&nbsp;&nbsp;<a class='tablename alert-link' href='tiki-index.php?page={$theextracat|escape:"url"}' target="_blank">{$theextracat}</a>
 		{/foreach}
 	{/remarksbox}
 {/if}

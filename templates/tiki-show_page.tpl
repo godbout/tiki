@@ -121,7 +121,7 @@ Note: The show content block must be defined at root level to use the include. A
 
 		{if $machine_translate_to_lang != ''}
 			{remarksbox type="warning" title="{tr}Warning{/tr}" highlight="y"}
-				{tr}This text was automatically translated by Google Translate from the following page: {/tr}<a href="tiki-index.php?page={$page}">{$page}</a>
+				{tr}This text was automatically translated by Google Translate from the following page: {/tr}<a href="tiki-index.php?page={$page}" class="alert-link">{$page}</a>
 			{/remarksbox}
 		{/if}
 

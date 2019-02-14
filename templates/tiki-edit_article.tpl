@@ -82,7 +82,7 @@
 										<li>
 											{section loop=$translations name=t}
 												{if $articleId != $translations[t].objId}
-													{$translations[t].lang|escape}: <a href="tiki-edit_article.php?articleId={$translations[t].objId|escape}">{$translations[t].objName|escape}</a><br>
+													{$translations[t].lang|escape}: <a href="tiki-edit_article.php?articleId={$translations[t].objId|escape}" class="alert-link">{$translations[t].objName|escape}</a><br>
 												{/if}
 											{/section}
 										</li>

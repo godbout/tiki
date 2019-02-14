@@ -244,13 +244,13 @@
 			{tr}{$php_sapi_info.message}{/tr}
 		{/if}
 		{if $php_sapi_info.link}
-			{tr}<a href="{$php_sapi_info.link}">{$php_sapi_info.link}</a>{/tr}
+			{tr}<a href="{$php_sapi_info.link}" class="alert-link">{$php_sapi_info.link}</a>{/tr}
 		{/if}
 		</p>
 	{/if}
 
 	<p>
-		{tr}You can check the full documentation on how to change the configurations values in <a href="http://www.php.net/manual/en/configuration.php">http://www.php.net/manual/en/configuration.php</a>{/tr}
+		{tr}You can check the full documentation on how to change the configurations values in <a href="http://www.php.net/manual/en/configuration.php" class="alert-link">http://www.php.net/manual/en/configuration.php</a>{/tr}
 	</p>
 {/remarksbox}
 
@@ -344,7 +344,7 @@
 	</div>
 {else}
 	{remarksbox type='info' title='{tr}Feature disabled{/tr}' close='n'}
-		<p>{tr _0='<a href="tiki-admin.php?page=fgal">' _1='</a>'}Go to the %0 File Gallery Control Panel %1 (with advanced preferences showing) to enable{/tr}</p>
+		<p>{tr _0='<a href="tiki-admin.php?page=fgal" class="alert-link">' _1='</a>'}Go to the %0 File Gallery Control Panel %1 (with advanced preferences showing) to enable{/tr}</p>
 	{/remarksbox}
 {/if}
 

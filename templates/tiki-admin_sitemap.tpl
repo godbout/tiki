@@ -18,7 +18,7 @@
 {remarksbox type="info" title="{tr}Automate Sitemap generation{/tr}" close="n"}
 	<p>
 		{tr}You can automate the sitemap generation by using the scheduler functionality:
-			<a href="https://doc.tiki.org/Scheduler">https://doc.tiki.org/Scheduler</a>
+			<a href="https://doc.tiki.org/Scheduler" class="alert-link">https://doc.tiki.org/Scheduler</a>
 		{/tr}
 	</p>
 	<p>

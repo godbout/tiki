@@ -15,7 +15,7 @@
 				{if $tiki_p_wiki_approve eq 'y'}
 					<form method="post" action="{$page|sefurl}">
 						{if $revision_approved}
-							<p><a href="tiki-pagehistory.php?page={$page|escape:'url'}&compare&oldver={$revision_approved|escape:'url'}&diff_style={$prefs.default_wiki_diff_style|escape:'url'}">{tr}Show changes since last approved revision{/tr}</a></p>
+							<p><a href="tiki-pagehistory.php?page={$page|escape:'url'}&compare&oldver={$revision_approved|escape:'url'}&diff_style={$prefs.default_wiki_diff_style|escape:'url'}" class="alert-link">{tr}Show changes since last approved revision{/tr}</a></p>
 						{else}
 							<p>{tr}This page has no prior approved revision. <strong>All of the content must be reviewed.</strong>{/tr}</p>
 						{/if}

@@ -206,7 +206,7 @@
 							{tr}No{/tr}
 						{else}
 							{remarksbox type="note" title="{tr}Note{/tr}"}
-								<p><a href="tiki-socialnetworks.php">{tr}Authorize with Twitter first{/tr}</a></p>
+								<p><a href="tiki-socialnetworks.php" class="alert-link">{tr}Authorize with Twitter first{/tr}</a></p>
 							{/remarksbox}
 						{/if}
 					</td>
@@ -245,7 +245,7 @@
 							{tr}No{/tr}
 						{else}
 							{remarksbox type="note" title="{tr}Note{/tr}"}
-								<p><a href="tiki-socialnetworks.php">{tr}Authorize with Facebook first{/tr}</a></p>
+								<p><a href="tiki-socialnetworks.php" class="alert-link">{tr}Authorize with Facebook first{/tr}</a></p>
 							{/remarksbox}
 						{/if}
 					</td>
