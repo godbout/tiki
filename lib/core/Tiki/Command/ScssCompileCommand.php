@@ -104,7 +104,6 @@ class ScssCompileCommand extends Command
 				$scss_file = "$location/$themename/scss/$themename.scss";
 				$css_file = "$location/$themename/css/$themename.css";
 			}
-			$logger->debug(sprintf('Compiling "%s" to "%s"', $scss_file, $css_file));
 
 			if (file_exists($scss_file) && (! file_exists($css_file) || ! $checkTimestamps || filemtime($css_file) < filemtime($scss_file))) {
 				$files[] = ['scss' => $scss_file, 'css' => $css_file];
@@ -132,6 +131,7 @@ class ScssCompileCommand extends Command
 
 			foreach ($files as $file) {
 				try {
+					$logger->debug(sprintf('Compiling "%s" to "%s"', $file['scss'], $file['css']));
 					$this->compile($file['scss'], $file['css'], $output);
 				} catch (ParserException $e) {
 					$output->writeln('<error>' . tr('SCSS Parse Error') . ' compiling: ' . $file['scss'] . '</error>');
