@@ -12,11 +12,13 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Logger\ConsoleLogger;
 use Leafo\ScssPhp\Compiler;
 use Leafo\ScssPhp\Exception\ParserException;
 use Leafo\ScssPhp\Exception\CompilerException;
 use Leafo\ScssPhp\Exception\RangeException;
 use Leafo\ScssPhp\Exception\ServerException;
+use Psr\Log\LogLevel;
 
 class ScssCompileCommand extends Command
 {
@@ -63,6 +65,12 @@ class ScssCompileCommand extends Command
 	 */
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
+		$logger = new ConsoleLogger($output, [
+			LogLevel::NOTICE => OutputInterface::VERBOSITY_NORMAL,
+			LogLevel::INFO   => OutputInterface::VERBOSITY_NORMAL,
+			LogLevel::DEBUG   => OutputInterface::VERBOSITY_VERBOSE,
+		]);
+
 		$only = array_filter(explode(',', $input->getArgument('themes')));
 		$all = empty($only);
 
@@ -70,10 +78,12 @@ class ScssCompileCommand extends Command
 		if (empty($location)) {
 			$location = 'themes';
 		}
-
+		$logger->debug(sprintf('Using location "%s" ', $location));
+		
 		$continueOnError = $input->getOption('continue-on-error');
 		$checkTimestamps = $input->getOption('check-timestamps');
 
+		require_once('lib/tikilib.php');
 		$cachelib = \TikiLib::lib('cache');
 
 		$output->writeln('Compiling scss files from themes');
@@ -94,6 +104,8 @@ class ScssCompileCommand extends Command
 				$scss_file = "$location/$themename/scss/$themename.scss";
 				$css_file = "$location/$themename/css/$themename.css";
 			}
+			$logger->debug(sprintf('Compiling "%s" to "%s"', $scss_file, $css_file));
+
 			if (file_exists($scss_file) && (! file_exists($css_file) || ! $checkTimestamps || filemtime($css_file) < filemtime($scss_file))) {
 				$files[] = ['scss' => $scss_file, 'css' => $css_file];
 			}
