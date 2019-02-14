@@ -16,15 +16,13 @@
 				<div class="form-group row">
 					<label for="name" class="col-sm-4 col-form-label">{tr}Name{/tr}</label>
 					<div class="col-sm-8">
-						<p class="form-control-plaintext">
-							{if $galleryId eq $treeRootId or $gal_info.type eq 'user'}
-								<b>{tr}{$gal_info.name}{/tr}</b>
-								<input type="hidden" name="name" value="{$gal_info.name|escape}" class="form-control">
-							{else}
-								<input type="text" id="name" name="name" value="{$gal_info.name|escape}" class="form-control">
-								<span class="form-text">{tr}Required for podcasts{/tr}.</span>
-							{/if}
-						</p>
+						{if $galleryId eq $treeRootId or $gal_info.type eq 'user'}
+							<b>{tr}{$gal_info.name}{/tr}</b>
+							<input type="hidden" name="name" value="{$gal_info.name|escape}" class="form-control">
+						{else}
+							<input type="text" id="name" name="name" value="{$gal_info.name|escape}" class="form-control">
+							<span class="form-text">{tr}Required for podcasts{/tr}.</span>
+						{/if}
 					</div>
 				</div>
 				{if $prefs.feature_file_galleries_templates eq 'y'}
@@ -59,24 +57,22 @@ if ($(this).val() != '') {
 				<div class="form-group row">
 					<label for="fgal_type" class="col-sm-4 col-form-label">{tr}Type{/tr}</label>
 					<div class="col-sm-8">
-						<p class="form-control-plaintext">
-							{if $galleryId eq $treeRootId or $gal_info.type eq 'user'}
-								{if $gal_info.type eq 'system'}
-									{tr}System{/tr}
-								{elseif $gal_info.type eq 'user'}
-									{tr}User{/tr}
-								{else}
-									{tr _0=$gal_info.type}Other (%0){/tr}
-								{/if}
-								<input type="hidden" name="fgal_type" value="{$gal_info.type}">
+						{if $galleryId eq $treeRootId or $gal_info.type eq 'user'}
+							{if $gal_info.type eq 'system'}
+								{tr}System{/tr}
+							{elseif $gal_info.type eq 'user'}
+								{tr}User{/tr}
 							{else}
-								<select name="fgal_type" id="fgal_type" class="form-control">
-									<option value="default" {if $gal_info.type eq 'default'}selected="selected"{/if}>{tr}Any file{/tr}</option>
-									<option value="podcast" {if $gal_info.type eq 'podcast'}selected="selected"{/if}>{tr}Podcast (audio){/tr}</option>
-									<option value="vidcast" {if $gal_info.type eq 'vidcast'}selected="selected"{/if}>{tr}Podcast (video){/tr}</option>
-								</select>
+								{tr _0=$gal_info.type}Other (%0){/tr}
 							{/if}
-						</p>
+							<input type="hidden" name="fgal_type" value="{$gal_info.type}">
+						{else}
+							<select name="fgal_type" id="fgal_type" class="form-control">
+								<option value="default" {if $gal_info.type eq 'default'}selected="selected"{/if}>{tr}Any file{/tr}</option>
+								<option value="podcast" {if $gal_info.type eq 'podcast'}selected="selected"{/if}>{tr}Podcast (audio){/tr}</option>
+								<option value="vidcast" {if $gal_info.type eq 'vidcast'}selected="selected"{/if}>{tr}Podcast (video){/tr}</option>
+							</select>
+						{/if}
 					</div>
 				</div>
 				<div class="form-group row">
@@ -89,36 +85,46 @@ if ($(this).val() != '') {
 				<div class="form-group row">
 					<label for="visible" class="col-sm-4 col-form-label">{tr}Gallery is visible to non-admin users{/tr}</label>
 					<div class="col-sm-8">
-						<input type="checkbox" id="visible" name="visible" {if $gal_info.visible eq 'y'}checked="checked"{/if}>
+						<div class="form-control-plaintext">
+							<input type="checkbox" id="visible" name="visible" {if $gal_info.visible eq 'y'}checked="checked"{/if}>
+						</div>
 					</div>
 				</div>
 				<div class="form-group row">
 					<label for="public" class="col-sm-4 col-form-label">{tr}Gallery is unlocked{/tr}</label>
 					<div class="col-sm-8">
-						<input type="checkbox" id="public" name="public" {if isset($gal_info.public) and $gal_info.public eq 'y'}checked="checked"{/if}>
-						<span class="form-text">{tr}Users with upload permission can add files to the gallery (not just the gallery owner){/tr}</span>
+						<div class="form-control-plaintext">
+							<input type="checkbox" id="public" name="public" {if isset($gal_info.public) and $gal_info.public eq 'y'}checked="checked"{/if}>
+							<span class="form-text">{tr}Users with upload permission can add files to the gallery (not just the gallery owner){/tr}</span>
+						</div>
 					</div>
 				</div>
 				{if $tiki_p_admin_file_galleries eq 'y' or $gal_info.type neq 'user'}
 					<div class="form-group row">
 						<label for="backlinkPerms" class="col-sm-4 col-form-label">{tr}Respect permissions for backlinks to view a file{/tr}</label>
 						<div class="col-sm-8">
-							<input type="checkbox" id="backlinkPerms" name="backlinkPerms" {if $gal_info.backlinkPerms eq 'y'}checked="checked"{/if}>
+							<div class="form-control-plaintext">
+								<input type="checkbox" id="backlinkPerms" name="backlinkPerms" {if $gal_info.backlinkPerms eq 'y'}checked="checked"{/if}>
+							</div>
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="lockable" class="col-sm-4 col-form-label">{tr}Files can be locked at download{/tr}.</label>
 						<div class="col-sm-8">
-							<input type="checkbox" id="lockable" name="lockable" {if $gal_info.lockable eq 'y'}checked="checked"{/if}>
+							<div class="form-control-plaintext">
+								<input type="checkbox" id="lockable" name="lockable" {if $gal_info.lockable eq 'y'}checked="checked"{/if}>
+							</div>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="archives" class="col-sm-4 text-right">{tr}Maximum number of archives for each file{/tr}</label>
+						<label for="archives" class="col-sm-4 col-form-label">{tr}Maximum number of archives for each file{/tr}</label>
 						<div class="col-sm-8">
-							<input type="text" id="archives" name="archives" value="{$gal_info.archives|escape}" class="form-control">
-							<span class="form-text">{tr}Use{/tr}: 0={tr}unlimited{/tr}, -1={tr}none{/tr}.</span>
+							<div class="form-control-plaintext">
+								<input type="text" id="archives" name="archives" value="{$gal_info.archives|escape}" class="form-control">
+								<span class="form-text">{tr}Use{/tr}: 0={tr}unlimited{/tr}, -1={tr}none{/tr}.</span>
 
-							{if $galleryId neq $treeRootId}
+								{if $galleryId neq $treeRootId}
+							</div>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -135,13 +141,12 @@ if ($(this).val() != '') {
 							{else}
 								<input type="hidden" name="parentId" value="{$parentId|escape}">
 							{/if}
-
 						</div>
 					</div>
 				{/if}
 				{if $tiki_p_admin eq 'y' or $tiki_p_admin_file_galleries eq 'y'}
 					<div class="form-group row">
-						<label for="user" class="col-sm-4 text-right">{tr}Owner of the gallery{/tr}</label>
+						<label for="user" class="col-sm-4 col-form-label">{tr}Owner of the gallery{/tr}</label>
 						<div class="col-sm-8">
 							{user_selector user=$creator id='user'}
 						</div>
@@ -190,32 +195,38 @@ if ($(this).val() != '') {
 					{/if}
 				{/if}
 				<div class="form-group row">
-					<label for="image_max_size_x" class="col-sm-4 text-right">{tr}Maximum width of images in gallery{/tr}</label>
+					<label for="image_max_size_x" class="col-sm-4 col-form-label">{tr}Maximum width of images in gallery{/tr}</label>
 					<div class="col-sm-8">
-						<div class="input-group col-sm-4">
-							<input type="text" name="image_max_size_x" id="image_max_size_x" value="{$gal_info.image_max_size_x|escape}" class="form-control text-right">
-							<span class="input-group-append"> px</span>
+						<div class="form-control-plaintext">
+							<div class="input-group col-sm-4">
+								<input type="text" name="image_max_size_x" id="image_max_size_x" value="{$gal_info.image_max_size_x|escape}" class="form-control text-right">
+								<span>&nbsp;px</span>
+							</div>
+							<span class="form-text">{tr}If an image is wider than this, it will be resized.{/tr} {tr}Attention: In this case, the original image will be lost.{/tr} (0={tr}unlimited{/tr})</span>
 						</div>
-						<span class="form-text">{tr}If an image is wider than this, it will be resized.{/tr} {tr}Attention: In this case, the original image will be lost.{/tr} (0={tr}unlimited{/tr})</span>
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="image_max_size_y" class="col-sm-4 text-right">{tr}Maximum height of images in gallery{/tr}</label>
+					<label for="image_max_size_y" class="col-sm-4 col-form-label">{tr}Maximum height of images in gallery{/tr}</label>
 					<div class="col-sm-8">
-						<div class="input-group col-sm-4">
-							<input type="text" name="image_max_size_y" id="image_max_size_y" value="{$gal_info.image_max_size_y|escape}" class="form-control text-right">
-							<span class="input-group-append"> px</span>
+						<div class="form-control-plaintext">
+							<div class="input-group col-sm-4">
+								<input type="text" name="image_max_size_y" id="image_max_size_y" value="{$gal_info.image_max_size_y|escape}" class="form-control text-right">
+								<span>&nbsp;px</span>
+							</div>
+							<span class="form-text">{tr}If an image is higher than this, it will be resized.{/tr} {tr}Attention: In this case, the original image will be lost.{/tr} (0={tr}unlimited{/tr})</span>
 						</div>
-						<span class="form-text">{tr}If an image is higher than this, it will be resized.{/tr} {tr}Attention: In this case, the original image will be lost.{/tr} (0={tr}unlimited{/tr})</span>
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="wiki_syntax" class="col-sm-4 text-right">{tr}Wiki markup to enter when image selected from "file gallery manager"{/tr}</label>
+					<label for="wiki_syntax" class="col-sm-4 col-form-label">{tr}Wiki markup to enter when image selected from "file gallery manager"{/tr}</label>
 					<div class="col-sm-8">
-						<input size="80" type="text" name="wiki_syntax" id="wiki_syntax" value="{$gal_info.wiki_syntax|escape}" class="form-control">
-						<span class="form-text">{tr}The default is {/tr}"{literal}{img fileId="%fileId%" thumb="box"}{/literal}")</span>
-						<span class="form-text">{tr}Field names will be replaced when enclosed in % chars. e.g. %fileId%, %name%, %filename%, %description%{/tr}</span>
-						<span class="form-text">{tr}Attributes will be replaced when enclosed in % chars. e.g. %tiki.content.url% for remote file URLs{/tr}</span>
+						<div class="form-control-plaintext">
+							<input size="80" type="text" name="wiki_syntax" id="wiki_syntax" value="{$gal_info.wiki_syntax|escape}" class="form-control">
+							<span class="form-text">{tr}The default is {/tr}"{literal}{img fileId="%fileId%" thumb="box"}{/literal}")</span>
+							<span class="form-text">{tr}Field names will be replaced when enclosed in % chars. e.g. %fileId%, %name%, %filename%, %description%{/tr}</span>
+							<span class="form-text">{tr}Attributes will be replaced when enclosed in % chars. e.g. %tiki.content.url% for remote file URLs{/tr}</span>
+						</div>
 					</div>
 				</div>
 
@@ -250,7 +261,7 @@ if ($(this).val() != '') {
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="sortorder" class="col-sm-4 text-right">{tr}Default sort order{/tr}</label>
+					<label for="sortorder" class="col-sm-4 col-form-label">{tr}Default sort order{/tr}</label>
 					<div class="col-sm-8">
 						<select name="sortorder" id="sortorder" class="form-control">
 							{foreach from=$options_sortorder key=key item=item}
@@ -260,11 +271,11 @@ if ($(this).val() != '') {
 						<span class="form-text">
 							<label  for="fgal_sortdirection1">
 								<input type="radio" id="fgal_sortdirection1" name="sortdirection" value="desc" {if $sortdirection == 'desc'}checked="checked"{/if} />
-								{tr}Descending{/tr}
+								&nbsp;{tr}Descending{/tr}&nbsp;
 							</label>
 							<label for="fgal_sortdirection2">
 								<input type="radio" id="fgal_sortdirection2" name="sortdirection" value="asc" {if $sortdirection == 'asc'}checked="checked"{/if} />
-								{tr}Ascending{/tr}
+								&nbsp;{tr}Ascending{/tr}&nbsp;
 							</label>
 						</span>
 					</div>
@@ -276,13 +287,13 @@ if ($(this).val() != '') {
 				</div>
 				<hr>
 				<div class="form-group row">
-					<label for="max_desc" class="col-sm-4 text-right">{tr}Max description display size{/tr}</label>
+					<label for="max_desc" class="col-sm-4 col-form-label">{tr}Max description display size{/tr}</label>
 					<div class="col-sm-8">
 						<input type="text" id="max_desc" name="max_desc" value="{$max_desc|escape}" class="form-control">
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="maxRows" class="col-sm-4 text-right">{tr}Max rows per page{/tr}</label>
+					<label for="maxRows" class="col-sm-4 col-form-label">{tr}Max rows per page{/tr}</label>
 					<div class="col-sm-8">
 						<input type="text" id="maxRows" name="maxRows" value="{$maxRows|escape}" class="form-control">
 					</div>
@@ -294,7 +305,9 @@ if ($(this).val() != '') {
 				{tr}View inserted gallery after save{/tr}
 			</label>
 			<div class="col-sm-8">
-				<input type="checkbox" name="viewitem" id="viewitem" checked="checked">
+				<div class="form-control-plaintext">
+					<input type="checkbox" name="viewitem" id="viewitem" checked="checked">
+				</div>
 			</div>
 		</div>
 
