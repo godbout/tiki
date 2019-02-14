@@ -211,6 +211,12 @@ class XMPPLib extends TikiLib
 		$js = '';
 		$cssjs = '';
 
+		if (empty($user))
+		{
+			$js .= 'sessionStorage.clear();';
+			$js .= 'localStorage.clear();';
+		}
+
 		$params = array_merge([
 			'view_mode' => 'overlayed',
 			'room' => '',
