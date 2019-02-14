@@ -242,33 +242,19 @@ class XMPPLib extends TikiLib
 			}
 		}
 
-		$oauthendpoint = TikiLib::lib('service')->getUrl([
-			'action' => 'authorize',
-			'controller' => 'oauthserver',
-			'response_type' => 'token'
-		]);
-
 		$options = [
-			// 'authentication'   => 'prebind',
+			'authentication'   => 'prebind',
 			'bosh_service_url' => $xmpp['http_bind'],
 			'debug'            => $prefs['xmpp_conversejs_debug'] === 'y',
 			'jid'              => $xmpp['jid'],
 			'nickname'         => $xmpp['nickname'],
-			'oauth_providers' => [
-				'tiki' => [
-					'client_id' => 'conversejs',
-					'id' => 'github',
-					'name' => 'ConverseJS',
-					'authorize_url' => $oauthendpoint
-				],
-			],
 			'prebind_url'      => TikiLib::lib('service')->getUrl([
 				'action' => 'prebind',
 				'controller' => 'xmpp',
 			]),
 			'use_emojione'     => false,
 			'view_mode'        => $params['view_mode'],
-			'whitelisted_plugins' => ['tiki', 'tiki-oauth'],
+			'whitelisted_plugins' => ['tiki'],
 		];
 
 		if ($params['room']) {
@@ -298,22 +284,20 @@ class XMPPLib extends TikiLib
 
 	converse.plugins.add("tiki", {
 		"initialize": function () {
-			window._converse = this._converse;
+			var _converse = this._converse;
 			_converse.api.listen.on("noResumeableSession", function (xhr) {
 				error(tr("XMPP Module error") + ": " + xhr.statusText);
 				$("#conversejs").fadeOut("fast");
 			});
 		}
 	});
-
+	
 	converse.initialize(' . $optionString . ');
 })();
 ';
 		$js .= $cssjs;
 
-		$headerlib
-			->add_jsfile('vendor_bundled/vendor/jcbrand/converse.js/dist/converse.js')
-			->add_jsfile('lib/xmpp/js/conversejs-tiki-oauth.js')
+		$headerlib->add_jsfile('vendor_bundled/vendor/jcbrand/converse.js/dist/converse.js')
 			->add_jq_onready($js);
 	}
 
