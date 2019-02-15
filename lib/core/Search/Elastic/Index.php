@@ -17,6 +17,8 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 	private $camelCase = false;
 	private $possessiveStemmer = true;
 
+	private $fieldMappings = null;
+
 	function __construct(Search_Elastic_Connection $connection, $index)
 	{
 		$this->connection = $connection;
@@ -563,19 +565,24 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 
 	public function getFieldMapping($field)
 	{
-		$index = $this->index;
-		try {
-			$mapping = $this->connection->rawApi("/$index/_mapping/field/$field");
-		} catch (Search_Elastic_Exception $e) {
-			$mapping = false;
-		}
-		if (is_object($mapping)) {
-			$mapping = reset($mapping);
-			$mapping = isset($mapping->mappings) ? $mapping->mappings : $mapping; // v2 vs v5
-			$mapping = reset($mapping);
-			if (isset($mapping->$field->mapping->$field)) {
-				return $mapping->$field->mapping->$field;
+		if (empty($this->fieldMappings)) {
+
+			$index = $this->index;
+			try {
+				$mappings = $this->connection->rawApi("/$index/_mapping/");
+			} catch (Search_Elastic_Exception $e) {
+				$mappings = false;
 			}
+			if (is_object($mappings)) {
+				$mappings = reset($mappings);
+				$mappings = isset($mappings->mappings) ? $mappings->mappings : $mappings; // v2 vs v5
+				$mappings = reset($mappings);
+				$mappings = isset($mappings->properties) ? $mappings->properties : $mappings; // v2 vs v5
+				$this->fieldMappings = $mappings;
+			}
+		}
+		if (isset($this->fieldMappings->$field)) {
+			return $this->fieldMappings->$field;
 		}
 		return new stdClass;
 	}
