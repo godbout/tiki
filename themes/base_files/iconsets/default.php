@@ -878,7 +878,7 @@ function iconset_default()
 				'id' => 'bars',
 			],
 			'menu-extra' => [
-				'id' => 'chevron-down',
+				'id' => 'ellipsis-h',
 			],
 			'menuitem' => [
 				'id' => 'angle-right',

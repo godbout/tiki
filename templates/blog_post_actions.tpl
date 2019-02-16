@@ -1,7 +1,7 @@
 {* $Id$ *}
 <div class="actions blogpostactions float-sm-right btn-group">
 	{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-	<a class="btn btn-link" data-toggle="dropdown" href="#">
+	<a class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#"title="{tr}Blog post actions{/tr}">
 		{icon name="menu-extra"}
 	</a>
 	<div class="dropdown-menu">

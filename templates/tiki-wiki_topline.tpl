@@ -122,7 +122,7 @@
 				{capture name="pageActions"}
 					{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
 					<a class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#"  title="{tr}Page actions{/tr}">
-						{icon name="cog"}
+						{icon name="menu-extra"}
 					</a>
 					<div class="dropdown-menu dropdown-menu-right">
 						<h6 class="dropdown-header">

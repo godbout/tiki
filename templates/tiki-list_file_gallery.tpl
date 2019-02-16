@@ -12,8 +12,8 @@
 <div class="t_navbar mb-4">
 	<div class="btn-group float-sm-right">
 		{if ! $js}<ul class="cssmenu_horiz"><li class="dropdown-item">{/if}
-		<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
-			{icon name='menu-extra'}
+		<a class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#"  title="{tr}Views{/tr}">
+			{icon name="menu-extra"}
 		</a>
 		<ul class="dropdown-menu dropdown-menu-right">
 			{if $edit_mode neq 'y' and $dup_mode neq 'y'}

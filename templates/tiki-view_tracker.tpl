@@ -22,8 +22,8 @@
 	{include file="tracker_actions.tpl" showitems="n"}
 	<div class="btn-group float-sm-right">
 		{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-		<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
-			{icon name='menu-extra'}
+		<a class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#" title="{tr}Tracker actions{/tr}">
+			{icon name="menu-extra"}
 		</a>
 		<ul class="dropdown-menu dropdown-menu-right">
 			<li class="dropdown-title">
