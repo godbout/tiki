@@ -718,16 +718,18 @@ class SocialNetworksLib extends LogsLib
 	/**
 	 * Talking to Facebook via the graph api at "https://graph.facebook.com/" using fsockopen
 	 *
-	 * @param	string	$user		userId of the user to send the request for
-	 * @param	string	$action		directory/file part of the graph api URL
-	 * @param	array	$params		parameters for the api call, each entry is one element submitted in the request
-	 * @param	bool	$addtoken	should the access token be added to the parameters if the calling function did not pass this parameter
+	 * @param    string $user     userId of the user to send the request for
+	 * @param    string $action   directory/file part of the graph api URL
+	 * @param    array  $params   parameters for the api call, each entry is one element submitted in the request
+	 * @param    bool   $addtoken should the access token be added to the parameters if the calling function did not pass this parameter
 	 *
-	 * @return	string				body of the response page (json encoded object)
+	 * @param string    $method
+	 *
+	 * @return    string                body of the response page (json encoded object)
+	 * @throws Exception
 	 */
 	function facebookGraph($user, $action, $params, $addtoken = true, $method = 'POST')
 	{
-		global $prefs;
 		if (! $this->facebookRegistered()) {
 			$this->add_log('facebookGraph', 'application not set up');
 			return false;
@@ -744,56 +746,20 @@ class SocialNetworksLib extends LogsLib
 			}
 		}
 
-		$data = http_build_query($params, '', '&');
-		if ($method == 'GET') {
-			$action .= "?$data";
+		// set up http client to make request
+		$url = 'https://graph.facebook.com/' . $this->graphVersion . '/' . $action;
+		if (! empty($params) && is_array($params) && $method === 'GET') {
+			// set url this way instead of using setUri and setParameterGet to avoid failure in some environments
+			$url .= '?' . urldecode(http_build_query($params, '', '&'));
 		}
-
-		$request = "$method /$this->graphVersion/$action HTTP/1.1\r\n" .
-			"Host: graph.facebook.com\r\n" .
-			"Accept: */*\r\n" .
-			"Expect: 100-continue\r\n" .
-			"Connection: close\r\n";
-		if ($method == 'POST') {
-			$request .= "Content-type: application/x-www-form-urlencoded\r\n" .
-				"Content-length: " . strlen($data) . "\r\n";
+		$client = TikiLib::lib('tiki')->get_http_client($url);
+		$client->setMethod($method);
+		if (! empty($params) && is_array($params) && $method === 'POST') {
+			$client->setParameterPost($params);
 		}
-		$request .= "\r\n";
-		if ($method == 'POST') {
-			$request .= $data;
-		}
-
-		//try socket first
-		$fp = fsockopen('ssl://graph.facebook.com', 443);
-		if ($fp) {
-			fputs($fp, $request);
-			$ret = '';
-			while (! feof($fp)) {
-				$ret .= fgets($fp, 128);
-			}
-			fclose($fp);
-			$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
-			$ret = $ret[1];
-		} elseif (function_exists('curl_init')) {
-			// try cURL
-			$url = 'https://graph.facebook.com/' . $this->graphVersion . '/' .$action;
-			$ch = curl_init();
-			curl_setopt($ch, CURLOPT_URL, $url);
-			if ($method == 'POST') {
-				curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
-			}
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-			$ret = curl_exec($ch);
-			$curl_error = curl_error($ch);
-			curl_close($ch);
-		}
-		if (empty($ret) || ! empty($curl_error)) {
-			$msg = !empty($curl_error) ? ' ' . $curl_error : '';
-			$this->add_log('facebookGraph', tr('Cannot connect') . $msg);
-		}
-		return $ret;
+		// make request
+		$response = $client->send();
+		return $response->getBody();
 	}
 
 	/**
