@@ -648,6 +648,8 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 	} else {
 		$vendorAutoloadIgnored = true;
 	}
+} else {
+	$vendorAutoloadIgnored = false;
 }
 
 if (file_exists(__DIR__ . '/vendor/autoload-disabled.php')) {
@@ -660,7 +662,6 @@ $smarty->assign('fgal_web_accessible', false);
 if ($prefs['fgal_use_dir'] && $prefs['fgal_use_db'] === 'n') {
 	$smarty->assign('fgal_web_accessible', $access->isFileWebAccessible($prefs['fgal_use_dir']. 'index.php'));
 }
-$smarty->assign('vendor_autoload_ignored', $vendorAutoloadIgnored);
 $smarty->assign('vendor_autoload_ignored', $vendorAutoloadIgnored);
 $smarty->assign('vendor_autoload_disabled', $vendorAutoloadDisabled);
 
