@@ -40,7 +40,7 @@
 			<div class="input-group">
 				<input class="form-control" type="text" name="find" id="find" value="{$find|escape}"
 					   placeholder="{if empty($whatlabel)}{tr}Find{/tr}...{else}{tr}{$whatlabel}{/tr}{/if}"
-					   title="{$find_in|escape}" data-html="true" data-toggle="focus">
+					   title="{if ! empty($find_in)}{$find_in|escape}{/if}" data-html="true" data-toggle="focus">
 				{if isset($autocomplete)}
 					{jq}$("#find").tiki("autocomplete", "{{$autocomplete}}");{/jq}
 				{/if}
