@@ -184,59 +184,34 @@ class SocialNetworksLib extends LogsLib
 
 
 	/**
-	 * Old tiki way of getting access_token using socket. Some say it faster than curl. Maybe we
-	 * need to move it to hybridauth as an alternative to curl, like guzzle?
+	 * Request access token
 	 *
 	 * @return bool|string|null
 	 * @throws Exception
 	 */
 	function getFacebookAccessToken()
 	{
-		global $prefs, $user;
-		$userlib = TikiLib::lib('user');
+		global $prefs;
+		//make request and get response
+		$responseBody = $this->facebookGraph(
+			'',
+			'oauth/access_token',
+			[
+				'client_id' => $prefs['socialnetworks_facebook_application_id'],
+				'client_secret' => $prefs['socialnetworks_facebook_application_secr'],
+				// code parameter is included in $this->getURL()
+				'redirect_uri' => $this->getURL()
+			],
+			false,
+			'GET'
+		);
+		$decodedBody = json_decode($responseBody);
 
-		// code parameter provided by Facebook is already in the url
-		$url = '/' . $this->graphVersion . '/oauth/access_token?client_id='
-			. $prefs['socialnetworks_facebook_application_id']
-			. '&redirect_uri=' . $this->getURL() . '&client_secret='
-			. $prefs['socialnetworks_facebook_application_secr'];
-		//try socket first
-		$fp = fsockopen('ssl://graph.facebook.com', 443, $errno, $errstr);
-		if ($fp) {
-			$request = "GET $url HTTP/1.1\r\n" .
-				"Host: graph.facebook.com\r\n" .
-				"Accept: */*\r\n" .
-				"Expect: 100-continue\r\n" .
-				"Connection: close\r\n\r\n";
-
-			fputs($fp, $request);
-			$ret = '';
-			while (! feof($fp)) {
-				$ret .= fgets($fp, 128);
-			}
-			fclose($fp);
-			$ret = preg_split('/(\r\n\r\n|\r\r|\n\n)/', $ret, 2);
-			$ret = $ret[1];
-		} elseif (function_exists('curl_init')) {
-			// try cURL
-			$url = 'https://graph.facebook.com' . $url;
-			$ch = curl_init();
-
-			curl_setopt($ch, CURLOPT_URL, $url);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-			$ret = curl_exec($ch);
-			$curl_error = curl_error($ch);
-			curl_close($ch);
-		}
-		$json_decoded_ret = json_decode($ret, true);
-
-		if (isset($json_decoded_ret['access_token']) || substr($ret, 0, 13) == 'access_token=') {
-			if (isset($json_decoded_ret['access_token'])) {
-				$access_token = $json_decoded_ret['access_token'];
+		if (isset($decodedBody->access_token) || substr($responseBody, 0, 13) == 'access_token=') {
+			if (isset($decodedBody->access_token)) {
+				$access_token = $decodedBody->access_token;
 			} else {
-				$access_token = substr($ret, 13);
+				$access_token = substr($responseBody, 13);
 				if ($endoftoken = strpos($access_token, '&')) {
 					// Returned string may have other var like expiry
 					$access_token = substr($access_token, 0, $endoftoken);
@@ -245,12 +220,10 @@ class SocialNetworksLib extends LogsLib
 
 			return $access_token;
 		} else {
-			if (! empty($json_decoded_ret['error']) || ! empty($curl_error)) {
-				if (! empty($json_decoded_ret['error'])) {
-					Feedback::error($json_decoded_ret['error']['type'] . ': ' . $json_decoded_ret['error']['message']);
-				} else {
-					Feedback::error($curl_error);
-				}
+			if (! empty($decodedBody->error)) {
+				Feedback::error($decodedBody->error->type . ': ' . $decodedBody->error->message);
+			} else {
+				Feedback::error(tr('Facebook feed data not retrieved'));
 			}
 			return null;
 		}
