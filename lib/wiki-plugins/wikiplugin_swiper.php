@@ -494,7 +494,7 @@ function wikiplugin_swiper($data, $params)
 			$swiperSettings.="'".$params[$swiperParam]."',";
 		}
 		else {
-			$swiperSettings.=$params[$swiperParam].","; 
+			$params[$swiperParam]==''?$swiperSettings.="0,":$swiperSettings.=$params[$swiperParam].",";
 		}
 	}
 	$swiperSettings=str_replace(array("'y'","'n'"),array("'true'","'false'"),$swiperSettings);
