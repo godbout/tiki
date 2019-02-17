@@ -28,15 +28,18 @@
 		{accordion_group title="{tr _0=$info.name}Options for %0{/tr}"}
 			<p>{$info.description|escape}</p>
 
-			{if $field.type eq 't' or $field.type eq 'a'}
-				{* Pretend the field attribute is just an option as it only exists for two field types *}
-				<div class="form-check">
-					<label>
-						<input type="checkbox" class="form-check-input" name="multilingual" value="1"
-							{if $field.isMultilingual eq 'y'}checked="checked"{/if}>
-						{tr}Multilingual{/tr}
-					</label>
-				</div>
+			{if ($prefs['feature_multilingual'] == 'y') && ($prefs['available_languages'])}
+			{* If both conditions are not met the field won't accept input - it should be available only if multilinguale is set*}
+				{if $field.type eq 't' or $field.type eq 'a'}
+					{* Pretend the field attribute is just an option as it only exists for two field types *}
+					<div class="form-check">
+						<label>
+							<input type="checkbox" class="form-check-input" name="multilingual" value="1"
+								{if $field.isMultilingual eq 'y'}checked="checked"{/if}>
+							{tr}Multilingual{/tr}
+						</label>
+					</div>
+				{/if}
 			{/if}
 
 			{foreach from=$info.params key=param item=def}
