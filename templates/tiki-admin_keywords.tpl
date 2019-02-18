@@ -1,4 +1,4 @@
-<h1class="pagetitle><a " href="tiki-admin_keywords.php">{tr}Admin keywords{/tr}</a></h1>
+<h1 class="pagetitle"><a href="tiki-admin_keywords.php">{tr}Admin keywords{/tr}</a></h1>
 
 {if $edit_on}
 	<div id="current_keywords" class="clearfix">
