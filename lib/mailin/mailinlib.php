@@ -188,7 +188,8 @@ class MailinLib extends TikiDb_Bridge
 
 	/**
 	 * @param $accountId
-	 * @return bool
+	 *
+	 * @return array|bool
 	 */
 	function get_mailin_account($accountId)
 	{
