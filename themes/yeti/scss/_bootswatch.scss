@@ -422,3 +422,15 @@ label,
 }
 
 // Containers ==================================================================
+// So form submit buttons with icons and text used in popover actions can look just like links
+.popover button.btn-link.link-list,
+.popover button.btn-link.link-list .icon,
+.dropdown-item button.btn-link.link-list,
+.dropdown-item button.btn-link.link-list .icon{
+	font-size: $popover-font-size;
+}
+
+.dropdown-item button.btn-link.link-list {
+	font-family: $font-family-base;
+	font-weight: lighter;
+}

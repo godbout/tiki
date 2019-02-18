@@ -6032,6 +6032,16 @@ th {
 .card-title, .card-header {
   color: inherit; }
 
+.popover button.btn-link.link-list, .popover button.btn-link.link-list .icon {
+  font-size: 0.765625rem; }
+
+.dropdown-item button.btn-link.link-list, .dropdown-item button.btn-link.link-list .icon {
+  letter-spacing: 1px; }
+
+.cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
+  font-weight: normal;
+  text-transform: initial; }
+
 .topbar {
   margin-bottom: 1.4rem; }
 
@@ -6088,11 +6098,16 @@ a.fc-event:hover {
 .cssmenu_horiz ul, .cssmenu_vert ul {
   border: rgba(0, 0, 0, 0.15); }
 
-.cssmenu_horiz ul li a, .cssmenu_vert ul li a {
+.cssmenu_horiz ul li a, .cssmenu_vert ul li a, .cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
   background: #fff;
   color: #1a1a1a; }
 
-.cssmenu_horiz > ul > li:hover > a, .cssmenu_vert > ul > li:hover > a {
+.cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
+  width: 100%;
+  border-radius: 0px;
+  text-align: left; }
+
+.cssmenu_horiz > ul > li:hover > a, .cssmenu_vert > ul > li:hover > a, .cssmenu_horiz > ul > li:hover > form > button.btn-link.link-list, .cssmenu_vert > ul > li:hover > form > button.btn-link.link-list {
   color: #0d0d0d;
   background: #f8f9fa; }
 
@@ -6280,7 +6295,7 @@ form.simple label .warning {
   background: #fff;
   color: #919aa1; }
 
-.cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover {
+.cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover, .cssmenu_horiz ul li.selected button.btn-link.link-list, .cssmenu_vert ul li.selected button.btn-link.link-list, .cssmenu_horiz ul li button.btn-link.link-list:hover, .cssmenu_vert ul li button.btn-link.link-list:hover {
   text-decoration: none;
   color: #0d0d0d;
   background-color: #f8f9fa; }

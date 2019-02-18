@@ -87,7 +87,7 @@
 .nav-tabs {
 
   .nav-link,
-  .nav-link.active, {
+  .nav-link.active {
     border-width: 0 0 1px 0;
   }
 
@@ -151,4 +151,10 @@
       color: $list-group-disabled-color;
     }
   }
+}
+
+// So form submit buttons with icons and text used in popover actions can look just like links
+.popover button.btn-link.link-list,
+.popover button.btn-link.link-list .icon {
+	font-size: $popover-font-size;
 }

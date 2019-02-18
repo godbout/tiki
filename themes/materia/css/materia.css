@@ -6766,6 +6766,13 @@ input[type="checkbox"], .checkbox input[type="checkbox"], .checkbox-inline input
 .carousel-caption h1, .carousel-caption h2, .carousel-caption h3, .carousel-caption h4, .carousel-caption h5, .carousel-caption h6 {
   color: inherit; }
 
+.popover button.btn-link.link-list, .popover button.btn-link.link-list .icon {
+  font-size: 0.7109375rem; }
+
+.cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
+  text-transform: initial;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }
+
 .topbar {
   margin-bottom: 1.4rem; }
 
@@ -6822,11 +6829,16 @@ a.fc-event:hover {
 .cssmenu_horiz ul, .cssmenu_vert ul {
   border: rgba(0, 0, 0, 0.15); }
 
-.cssmenu_horiz ul li a, .cssmenu_vert ul li a {
+.cssmenu_horiz ul li a, .cssmenu_vert ul li a, .cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
   background: #fff;
   color: #212121; }
 
-.cssmenu_horiz > ul > li:hover > a, .cssmenu_vert > ul > li:hover > a {
+.cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
+  width: 100%;
+  border-radius: 0px;
+  text-align: left; }
+
+.cssmenu_horiz > ul > li:hover > a, .cssmenu_vert > ul > li:hover > a, .cssmenu_horiz > ul > li:hover > form > button.btn-link.link-list, .cssmenu_vert > ul > li:hover > form > button.btn-link.link-list {
   color: #141414;
   background: #f8f9fa; }
 
@@ -7014,7 +7026,7 @@ form.simple label .warning {
   background: #fff;
   color: #444; }
 
-.cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover {
+.cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover, .cssmenu_horiz ul li.selected button.btn-link.link-list, .cssmenu_vert ul li.selected button.btn-link.link-list, .cssmenu_horiz ul li button.btn-link.link-list:hover, .cssmenu_vert ul li button.btn-link.link-list:hover {
   text-decoration: none;
   color: #141414;
   background-color: #f8f9fa; }

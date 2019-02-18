@@ -13,7 +13,11 @@
 
 // the Bootstrap variables.scss file with theme-specific values replacing the defaults
 
-.cssmenu_horiz a { font-size: 12px; }
+.cssmenu_horiz a,
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	font-size: 12px;
+}
 
 .nav.cssmenu_horiz > li > a {
 	padding-top: 11px;

@@ -6013,11 +6013,16 @@ a.fc-event:hover {
 .cssmenu_horiz ul, .cssmenu_vert ul {
   border: rgba(0, 0, 0, 0.15); }
 
-.cssmenu_horiz ul li a, .cssmenu_vert ul li a {
+.cssmenu_horiz ul li a, .cssmenu_vert ul li a, .cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
   background: #fff;
   color: #212529; }
 
-.cssmenu_horiz > ul > li:hover > a, .cssmenu_vert > ul > li:hover > a {
+.cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
+  width: 100%;
+  border-radius: 0px;
+  text-align: left; }
+
+.cssmenu_horiz > ul > li:hover > a, .cssmenu_vert > ul > li:hover > a, .cssmenu_horiz > ul > li:hover > form > button.btn-link.link-list, .cssmenu_vert > ul > li:hover > form > button.btn-link.link-list {
   color: #16181b;
   background: #f8f9fa; }
 
@@ -6205,7 +6210,7 @@ form.simple label .warning {
   background: #eee;
   color: #000; }
 
-.cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover {
+.cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover, .cssmenu_horiz ul li.selected button.btn-link.link-list, .cssmenu_vert ul li.selected button.btn-link.link-list, .cssmenu_horiz ul li button.btn-link.link-list:hover, .cssmenu_vert ul li button.btn-link.link-list:hover {
   text-decoration: none;
   color: #16181b;
   background-color: #f8f9fa; }
@@ -6763,8 +6768,11 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 .container {
   background-color: #fff; }
 
-a, a:visited {
+a, a:visited, .popover button.btn-link.link-list, .popover button.btn-link.link-list .icon, .dropdown-item button.btn-link.link-list, .dropdown-item button.btn-link.link-list .icon, .cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
   font-weight: bold; }
+
+.cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
+  font-size: 1rem; }
 
 h1 {
   color: #000; }
@@ -6801,14 +6809,14 @@ h1 {
   color: #999;
   text-decoration: none; }
 
-.cssmenu_vert li a, .cssmenu_vert li ul a, .cssmenu_horiz li ul a, .box-menu .cssmenu_horiz li a, .box-menu .cssmenu_horiz li ul a, .box-menu .cssmenu_horiz li:hover ul a, #topbar_modules .cssmenu_horiz li ul a, #topbar_modules .cssmenu_horiz li:hover ul a {
+.cssmenu_vert li a, .cssmenu_vert li ul a, .cssmenu_horiz li ul a, .box-menu .cssmenu_horiz li a, .box-menu .cssmenu_horiz li ul a, .box-menu .cssmenu_horiz li:hover ul a, #topbar_modules .cssmenu_horiz li ul a, #topbar_modules .cssmenu_horiz li:hover ul a, .cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
   padding: 0.6em 1em;
   background-color: #fafafa;
   color: #333;
   font-weight: bold;
   font-size: 110%; }
 
-.cssmenu_vert li ul a:hover, .cssmenu_horiz li ul a:hover, .box-menu .cssmenu_horiz li ul a:hover, #topbar_modules .cssmenu_horiz li ul a:hover {
+.cssmenu_vert li ul a:hover, .cssmenu_horiz li ul a:hover, .box-menu .cssmenu_horiz li ul a:hover, #topbar_modules .cssmenu_horiz li ul a:hover, .cssmenu_horiz ul li button.btn-link.link-list:hover, .cssmenu_vert ul li button.btn-link.link-list:hover {
   color: #000;
   text-decoration: none;
   background-color: #fff; }

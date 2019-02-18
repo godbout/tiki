@@ -71,3 +71,10 @@ $web-font-path: "https://fonts.googleapis.com/css?family=News+Cycle:400,700" !de
 // Progress bars ===============================================================
 
 // Containers ==================================================================
+// So form submit buttons with icons and text used in popover actions can look just like links
+.popover button.btn-link.link-list,
+.dropdown-item button.btn-link.link-list,
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	font-family: $font-family-base;
+}

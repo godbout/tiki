@@ -284,6 +284,11 @@ textarea,
   }
 }
 
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	background: $dropdown-bg; //   $dropdown-bg;
+	color: $dropdown-link-color; //  $dropdown-link-color;
+}
 
 .postbody-title {
 	background: $postbody-title-background; //url('#{$imagePath}siteheader.png') no-repeat -480px -200px;

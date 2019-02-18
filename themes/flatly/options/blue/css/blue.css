@@ -6,7 +6,9 @@ a, .btn-link {
 
 .navbar-light .navbar-nav > li > a:hover,
 .navbar-light .navbar-nav > li > a:focus,
-a:hover, a:active, a:focus {
+a:hover, a:active, a:focus,
+.popover button.btn-link.link-list:hover,
+.dropdown-item button.btn-link.link-list:hover {
 	color: #50b3fb;
 }
 

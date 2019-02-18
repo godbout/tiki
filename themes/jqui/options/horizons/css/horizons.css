@@ -13,11 +13,21 @@
 	color: #888;
 }
 
-a, a:visited {
+a,
+a:visited,
+.popover button.btn-link.link-list,
+.popover button.btn-link.link-list:visited,
+.dropdown-item button.btn-link.link-list,
+.dropdown-item button.btn-link.link-list:visited {
 	color: #850934;
 }
  
-a:active, a:hover {
+a:active,
+a:hover,
+.popover button.btn-link.link-list:active,
+.popover button.btn-link.link-list:hover,
+.dropdown-item button.btn-link.link-list:active,
+.dropdown-item button.btn-link.link-list:hover {
 	color: #c1094c;
 }
 
@@ -91,6 +101,12 @@ input[type="submit"]:hover,
     color: #2E4A52;
 /*	background-color: #C8E3EA; */
 	background-image: none;
+}
+
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	font-weight: normal;
+	border: none;
 }
 
 .card-header,

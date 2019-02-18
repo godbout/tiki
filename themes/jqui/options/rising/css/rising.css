@@ -15,11 +15,21 @@
 	color: #888
 }
 
-a, a:visited {
+a,
+a:visited,
+.popover button.btn-link.link-list,
+.popover button.btn-link.link-list:visited,
+.dropdown-item button.btn-link.link-list,
+.dropdown-item button.btn-link.link-list:visited {
 	color: #ba352b
 }
 
-a:active, a:hover {
+a:active,
+a:hover,
+.popover button.btn-link.link-list:active,
+.popover button.btn-link.link-list:hover,
+.dropdown-item button.btn-link.link-list:active,
+.dropdown-item button.btn-link.link-list:hover {
 	color: #c2251f
 }
 
@@ -64,6 +74,12 @@ input[type="submit"]:hover,
 	font-weight: bold;
 	color: #212121;
 	background-color: #f04d4d
+}
+
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	font-weight: normal;
+	border: none;
 }
 
 /* layout */

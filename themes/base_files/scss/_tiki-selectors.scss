@@ -107,15 +107,28 @@ a.fc-event:hover {
 }
 
 .cssmenu_horiz ul li a,
-.cssmenu_vert ul li a {
+.cssmenu_vert ul li a,
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
 	background: $cssmenu_ul_li_a_bg; //   $dropdown-bg;
 	color: $cssmenu_ul_li_a_color; //  $dropdown-link-color;
 	//  padding-top: ; (tiki-cssmenus.less edited to conform to BS dropdown-link top and bottom padding - 3px.)
 	//  padding-bottom: ;
 }
 
+
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	width: 100%;
+	border-radius: 0px;
+	text-align: left;
+}
+
+
 .cssmenu_horiz > ul > li:hover > a,
-.cssmenu_vert > ul > li:hover > a {
+.cssmenu_vert > ul > li:hover > a,
+.cssmenu_horiz > ul > li:hover > form > button.btn-link.link-list,
+.cssmenu_vert > ul > li:hover > form > button.btn-link.link-list {
 	color: $cssmenu_ul_li_hover_a_color; //  $dropdown-link-hover-color;
 	background: $cssmenu_ul_li_hover_a_bg; //  $dropdown-link-hover-bg;
 }
@@ -426,7 +439,11 @@ form.simple label .warning {
 .cssmenu_horiz ul li.selected a,
 .cssmenu_vert ul li.selected a,
 .cssmenu_horiz ul li a:hover,
-.cssmenu_vert ul li a:hover {
+.cssmenu_vert ul li a:hover,
+.cssmenu_horiz ul li.selected button.btn-link.link-list,
+.cssmenu_vert ul li.selected button.btn-link.link-list,
+.cssmenu_horiz ul li button.btn-link.link-list:hover,
+.cssmenu_vert ul li button.btn-link.link-list:hover {
 	text-decoration: none;
 	color: $dropdown-link-hover-color;
 	background-color: $dropdown-link-hover-bg;

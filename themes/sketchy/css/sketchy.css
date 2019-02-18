@@ -6166,6 +6166,15 @@ textarea, textarea.form-control, select, select.form-control {
   .popover.popover-right::before, .popover.bs-tether-element-attached-left::before {
     left: -13px; }
 
+.popover button.btn-link.link-list, .dropdown-item button.btn-link.link-list {
+  text-decoration: underline; }
+
+.cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
+  text-decoration: none; }
+
+.cssmenu_horiz ul li:not(.dropdown-item) button.btn-link.link-list, .cssmenu_vert ul li:not(.dropdown-item) button.btn-link.link-list {
+  font-weight: bold; }
+
 pre {
   border: 2px solid #333;
   border-radius: 15px 5px 5px 25px/5px 25px 25px 5px; }
@@ -6234,11 +6243,16 @@ a.fc-event:hover {
 .cssmenu_horiz ul, .cssmenu_vert ul {
   border: #333; }
 
-.cssmenu_horiz ul li a, .cssmenu_vert ul li a {
+.cssmenu_horiz ul li a, .cssmenu_vert ul li a, .cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
   background: #fff;
   color: #212529; }
 
-.cssmenu_horiz > ul > li:hover > a, .cssmenu_vert > ul > li:hover > a {
+.cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
+  width: 100%;
+  border-radius: 0px;
+  text-align: left; }
+
+.cssmenu_horiz > ul > li:hover > a, .cssmenu_vert > ul > li:hover > a, .cssmenu_horiz > ul > li:hover > form > button.btn-link.link-list, .cssmenu_vert > ul > li:hover > form > button.btn-link.link-list {
   color: #fff;
   background: #333; }
 
@@ -6426,7 +6440,7 @@ form.simple label .warning {
   background: #fff;
   color: #212529; }
 
-.cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover {
+.cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover, .cssmenu_horiz ul li.selected button.btn-link.link-list, .cssmenu_vert ul li.selected button.btn-link.link-list, .cssmenu_horiz ul li button.btn-link.link-list:hover, .cssmenu_vert ul li button.btn-link.link-list:hover {
   text-decoration: none;
   color: #fff;
   background-color: #333; }

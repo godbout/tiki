@@ -300,6 +300,29 @@ span.btn-link {
 	cursor: pointer;
 }
 
+// So form submit buttons with icons and text used in popover actions can look just like links
+.popover button.btn-link,
+.popover button.btn-link .icon {
+	font-size: $popover-font-size;
+}
+
+.popover button.btn-link.link-list,
+.popover button.btn-link.link-list .icon,
+.dropdown-item button.btn-link.link-list,
+.dropdown-item button.btn-link.link-list .icon{
+	text-transform: initial;
+	text-align: start;
+	font-weight: normal;
+	border: none;
+	border-radius: 0;
+	padding: 0;
+}
+
+.popover button.btn-link.link-list,
+.dropdown-item button.btn-link.link-list {
+	vertical-align: top;
+}
+
 // Create whitespace below buttons when the row wraps added by Gary on July 31, 2018.
 .t_navbar.mb-3 > .btn {
   margin-bottom: 6px;

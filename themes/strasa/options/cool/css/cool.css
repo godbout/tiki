@@ -15,12 +15,33 @@ a,
 .pagination > li > a,
 .nav-pills > .active > a > .badge,
 .btn-link,
-.autotoc * {
+.autotoc *,
+.popover button.btn-link.link-list,
+.popover button.btn-link.link-list .icon,
+.dropdown-item button.btn-link.link-list,
+.dropdown-item button.btn-link.link-list .icon
+{
 	color: #006699;
 }
 
+.cssmenu_horiz ul li a,
+.cssmenu_vert ul li a,
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	background: transparent;
+}
+
+.cssmenu_horiz ul li:not(.dropdown-item) button.btn-link.link-list,
+.cssmenu_vert ul li:not(.dropdown-item) button.btn-link.link-list {
+	font-weight: normal;
+}
+
 a:hover,
-.autotoc a:hover {
+.autotoc a:hover,
+.popover button.btn-link.link-list:hover,
+.popover button.btn-link.link-list .icon:hover,
+.dropdown-item button.btn-link.link-list:hover,
+.dropdown-item button.btn-link.link-list .icon:hover {
 	color: #000000;
 }
 
@@ -116,7 +137,7 @@ input#search {
 }
 
 /* Links in buttons */
-.btn,
+.btn:not(.link-list),
 .btn-primary,
 .btn-primary:visited,
 .nav-pills > li.active > a,
@@ -249,7 +270,7 @@ input[type=submit],
 /* .topbar .navbar-light .navbar-nav > li,
 .topbar .navbar-dark .navbar-nav > li,*/
 .topbar .nav > li,
-.btn,
+.btn:not(.link-list),
 .nav-tabs > li > a,
 .input-group-addon,
 .siteloginbar_popup .dropdown-menu,
@@ -303,7 +324,7 @@ input[type=submit],
 	border: none;
 }
 
-.btn-link,
+.btn-link:not(.link-list),
 .btn-primary.btn-link {
 	background: none;
 	border: none;

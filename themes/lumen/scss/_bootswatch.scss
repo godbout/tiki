@@ -394,3 +394,22 @@ a.list-group-item {
   border: 1px solid $gray-200;
   box-shadow: inset 0 2px 0 rgba(0, 0, 0, 0.05);
 }
+
+// So form submit buttons with icons and text used in popover actions can look just like links
+.dropdown-item button.btn-link.link-list,
+.dropdown-item button.btn-link.link-list .icon {
+	font-size: $font-size-base;
+}
+
+.popover button.btn-link.link-list,
+.popover button.btn-link.link-list .icon {
+	font-size: $popover-font-size;
+}
+
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	font-weight: normal;
+	text-transform: initial;
+	font-size: $font-size-base;
+	font-family: $font-family-sans-serif;
+}

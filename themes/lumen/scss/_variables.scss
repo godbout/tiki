@@ -42,7 +42,8 @@ $dark:          $gray-900 !default;
 
 $font-family-sans-serif:      "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
 
-$font-size-base:              0.875rem !default;
+$font-size-base:                0.875rem !default;
+$popover-font-size:				$font-size-base * .875;
 
 // Dropdowns
 

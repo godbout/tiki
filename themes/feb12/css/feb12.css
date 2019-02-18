@@ -6035,11 +6035,16 @@ a.fc-event:hover {
 .cssmenu_horiz ul, .cssmenu_vert ul {
   border: rgba(0, 0, 0, 0.15); }
 
-.cssmenu_horiz ul li a, .cssmenu_vert ul li a {
+.cssmenu_horiz ul li a, .cssmenu_vert ul li a, .cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
   background: #4d90bd;
   color: #212529; }
 
-.cssmenu_horiz > ul > li:hover > a, .cssmenu_vert > ul > li:hover > a {
+.cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
+  width: 100%;
+  border-radius: 0px;
+  text-align: left; }
+
+.cssmenu_horiz > ul > li:hover > a, .cssmenu_vert > ul > li:hover > a, .cssmenu_horiz > ul > li:hover > form > button.btn-link.link-list, .cssmenu_vert > ul > li:hover > form > button.btn-link.link-list {
   color: #16181b;
   background: #3a759d; }
 
@@ -6227,7 +6232,7 @@ form.simple label .warning {
   background: #e6f3f6;
   color: #495057; }
 
-.cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover {
+.cssmenu_horiz ul li.selected a, .cssmenu_vert ul li.selected a, .cssmenu_horiz ul li a:hover, .cssmenu_vert ul li a:hover, .cssmenu_horiz ul li.selected button.btn-link.link-list, .cssmenu_vert ul li.selected button.btn-link.link-list, .cssmenu_horiz ul li button.btn-link.link-list:hover, .cssmenu_vert ul li button.btn-link.link-list:hover {
   text-decoration: none;
   color: #16181b;
   background-color: #3a759d; }
@@ -6803,7 +6808,7 @@ header.container {
 .navbar-fixed-top .container {
   border: none; }
 
-.navbar-dark a, .navbar-dark .navbar-brand, .dropdown-item, .dropdown-item a, .dropdown-menu .tikihelp {
+.navbar-dark a, .navbar-dark .navbar-brand, .dropdown-item, .dropdown-item a, .dropdown-item button.btn-link.link-list, .dropdown-menu .tikihelp {
   color: rgba(255, 255, 255, 0.75); }
 
 .navbar-dark a:hover, .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {

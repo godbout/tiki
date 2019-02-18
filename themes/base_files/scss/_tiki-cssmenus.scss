@@ -38,9 +38,13 @@
 }
 
 .cssmenu_horiz a,
-.cssmenu_vert a {
+.cssmenu_vert a,
+.cssmenu_horiz button.btn-link.link-list,
+.cssmenu_vert button.btn-link.link-list {
 	display: block;
 	position: relative;
+	padding: 3px 20px; // match Bootstrap dropdown-menu li.
+	text-decoration: none;
 }
 
 .cssmenu_horiz ul ul,
@@ -64,21 +68,16 @@
 	//  *width: 12em; /* no auto sub width for IE7, see white-space comment below */
 }
 
-.cssmenu_horiz a,
-.cssmenu_vert a {
-	//  border-left: 1px solid #ffffff;
-	//  border-top: 1px solid #dFeEFF; /* fallback colour must use full shorthand */
-	//  border-top: 1px solid rgba(255,255,255,.5);
-	padding: 3px 20px; // match Bootstrap dropdown-menu li.
-	text-decoration: none;
-}
-
 .cssmenu_horiz a:first-of-type,
-.cssmenu_vert a:first-of-type {
+.cssmenu_vert a:first-of-type,
+.cssmenu_horiz button.btn-link.link-list:first-of-type,
+.cssmenu_vert button.btn-link.link-list:first-of-type {
 	padding-top: 7px;
 }
 .cssmenu_horiz a:last-of-type,
-.cssmenu_vert a:last-of-type {
+.cssmenu_vert a:last-of-type,
+.cssmenu_horiz button.btn-link.link-list:last-of-type,
+.cssmenu_vert button.btn-link.link-list:last-of-type {
 	padding-bottom: 7px;
  }
 

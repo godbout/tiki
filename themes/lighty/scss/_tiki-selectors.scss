@@ -90,6 +90,17 @@
 		}
 	}
 }
+
+.dropdown-item button.btn-link.link-list {
+	text-transform: uppercase;
+	text-align: center;
+	padding: 0px 20px;
+}
+
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	border: none;
+}
 ul.dropdown-menu {
   margin: 0;
   padding:0;

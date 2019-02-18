@@ -24,6 +24,7 @@ $component-active-bg: #aaaaaa;
 // Fonts
 $font-family-sans-serif: "Verdana", "Arial", sans-serif;
 $font-size-base: .9rem;
+$popover-font-size: $font-size-base * .875;
 
 $font-size-large: ceil(($font-size-base * 1.25)); // ~18px
 $font-size-small: ceil(($font-size-base * 0.85)); // ~12px

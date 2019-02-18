@@ -20,11 +20,14 @@ header.page-header::before,
 	background-clip: padding-box;
 
 	// Links within the dropdown menu
-	> li > a {
-		padding: 3px 20px;
-		font-weight: normal;
-		line-height: $line-height-base;
-		color: $dropdown-link-color;
+	> li > {
+		a,
+		form > button.btn-link.link-list {
+			padding: 3px 20px;
+			font-weight: normal;
+			line-height: $line-height-base;
+			color: $dropdown-link-color;
+		}
 	}
 }
 
@@ -37,8 +40,12 @@ header.page-header::before,
 // Hover/Focus state
 .cssmenu_horiz > li > a,
 .cssmenu_vert > li > a,
- .cssmenu_horiz ul > li > a,
- .cssmenu_vert ul > li > a {
+.cssmenu_horiz ul > li > a,
+.cssmenu_vert ul > li > a,
+.cssmenu_horiz > li > button.btn-link.link-list,
+.cssmenu_vert > li > button.btn-link.link-list,
+.cssmenu_horiz ul > li > button.btn-link.link-list,
+.cssmenu_vert ul > li > button.btn-link.link-list{
 	&:hover,
 	&:focus {
 		text-decoration: none;

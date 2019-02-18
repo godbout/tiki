@@ -138,6 +138,11 @@ input[type="submit"].btn-link {
   background: none;
 }
 
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	font-weight: normal;
+}
+
 .btn:hover,
 .btn-primary:hover,
 input[type="reset"]:hover,

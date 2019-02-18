@@ -16,4 +16,8 @@
 }
 
 .cssmenu_vert li ul,
-.cssmenu_horiz li ul { font-size: 15px; }
+.cssmenu_horiz li ul,
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	font-size: 15px;
+}

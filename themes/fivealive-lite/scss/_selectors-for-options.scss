@@ -402,6 +402,19 @@ hr {
 	}
 }
 
+// So form submit buttons with icons and text used in dropdown menus can look just like links
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	background: $dropdown-bg;
+	color: $dropdown-link-color;
+}
+
+.cssmenu_horiz ul li button.btn-link.link-list:hover,
+.cssmenu_vert ul li button.btn-link.link-list:hover {
+	color: $dropdown-link-hover-color;
+	background: $dropdown-link-hover-bg;
+}
+
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
 .nav-pills > li.active > a:focus {

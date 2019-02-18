@@ -1,10 +1,13 @@
 /* Jqui theme (jqui.css) Excitebike theme option (excitebike.css)
 	Visit http://themes.tiki.org for more information.*/
-a {
+a,
+.popover button.btn-link.link-list {
   color: #e69700;
 }
 a:hover,
-a:focus {
+a:focus,
+.popover button.btn-link.link-list:hover,
+.popover button.btn-link.link-list:focus {
   color: #9a6500;
 }
 .btn,
@@ -136,8 +139,14 @@ fieldset[disabled] .btn-primary.focus {
 .dropdown-menu {
 	background: #e8a119;
 }
+.dropdown-item a,
+.dropdown-item button.btn-link.link-list {
+	color: #212529;
+}
 .dropdown-item:hover,
 .dropdown-item:focus,
+.dropdown-item button.btn-link.link-list:hover,
+.dropdown-item button.btn-link.link-list:focus,
 .topbar .cssmenu_horiz li ul li > a:hover {
 	background: #e69700;
 	color: #ffffff;

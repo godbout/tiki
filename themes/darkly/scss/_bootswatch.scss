@@ -181,3 +181,9 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic"
 		color: #fff;
 	}
 }
+
+// So form submit buttons with icons and text used in popover actions can look just like links
+.popover button.btn-link.link-list,
+.popover button.btn-link.link-list .icon {
+	font-size: $popover-font-size;
+}

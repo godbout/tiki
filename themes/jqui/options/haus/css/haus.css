@@ -20,12 +20,21 @@
 	color: #888;
 }
 
-a, a:visited {
+a,
+a:visited,
+.popover button.btn-link.link-list,
+.popover button.btn-link.link-list:visited,
+.dropdown-item button.btn-link.link-list,
+.dropdown-item button.btn-link.link-list:visited {
 	color: #666;
 }
 
 a:active,
-a:hover {
+a:hover,
+.popover button.btn-link.link-list:active,
+.popover button.btn-link.link-list:hover,
+.dropdown-item button.btn-link.link-list:active,
+.dropdown-item button.btn-link.link-list:hover {
 	color: #aaa;
 }
 
@@ -64,6 +73,11 @@ input[type="submit"],
     color: #555555;
 }
 
+.cssmenu_horiz ul li button.btn-link.link-list,
+.cssmenu_vert ul li button.btn-link.link-list {
+	font-weight: normal;
+	border: none;
+}
 
 .btn-primary:hover,
 .button a:hover,
