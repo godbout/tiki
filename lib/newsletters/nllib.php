@@ -180,7 +180,7 @@ class NlLib extends TikiLib
 		$included_users = [];
 		$page_included_emails = [];
 
-		// Get list of the root groups (groups explicitely subscribed to this newsletter)
+		// Get list of the root groups (groups explicitly subscribed to this newsletter)
 		//
 		$groups = [];
 		$query = "select `groupName`,`include_groups` from `tiki_newsletter_groups` where `nlId`=?";
