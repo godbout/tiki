@@ -25,11 +25,11 @@
 <form method="get" action="tiki-admin_keywords.php">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Search by page:{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="input-group col-sm-7 col-sm-offset-1 mb-3">
 			<input type="text" name="q" value="{if $smarty.request.q}{$smarty.request.q|escape}{/if}" class="form-control">
-		</div>
-		<div class="col-sm-1">
-			<input type="submit" class="btn btn-primary btn-sm" name="search" value="{tr}Go{/tr}">
+			<div class="input-group-append">
+				<input type="submit" class="btn btn-primary" name="search" value="{tr}Go{/tr}">
+			</div>
 		</div>
 	</div>
 </form>
