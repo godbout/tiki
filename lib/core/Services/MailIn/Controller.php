@@ -22,7 +22,8 @@ class Services_MailIn_Controller
 		$mailinlib = TikiLib::lib('mailin');
 		$accountId = $input->accountId->int();	// array('html' => $result);
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			$account = [
 				'protocol' => $input->protocol->word(),
 				'host' => $input->host->url(),
@@ -67,39 +68,39 @@ class Services_MailIn_Controller
 			} else {
 				Feedback::error(tr('Account not created or modified'));
 			}
+		} else {
+			$info = $mailinlib->get_mailin_account($accountId);
+			$artlib = TikiLib::lib('art');
+			return [
+				'title' => $info ? tr('Modify Account') : tr('Create Account'),
+				'types' => $artlib->list_types(),
+				'topics' => $artlib->list_topics(),
+				'accountId' => $accountId,
+				'mailinTypes' => $mailinlib->list_available_types(),
+				'info' => $info ?: [
+					'account' => '',
+					'username' => '',
+					'pass' => '',
+					'protocol' => 'pop',
+					'host' => '',
+					'port' => 110,
+					'type' => 'wiki-put',
+					'active' => 'y',
+					'anonymous' => 'n',
+					'admin' => 'y',
+					'attachments' => 'y',
+					'routing' => 'y',
+					'article_topicId' => '',
+					'article_type' => '',
+					'show_inlineImages' => 'y',
+					'save_html' => 'y',
+					'categoryId' => 0,
+					'namespace' => '',
+					'respond_email' => 'y',
+					'leave_email' => 'n',
+				],
+			];
 		}
-
-		$info = $mailinlib->get_mailin_account($accountId);
-		$artlib = TikiLib::lib('art');
-		return [
-			'title' => $info ? tr('Modify Account') : tr('Create Account'),
-			'types' => $artlib->list_types(),
-			'topics' => $artlib->list_topics(),
-			'accountId' => $accountId,
-			'mailinTypes' => $mailinlib->list_available_types(),
-			'info' => $info ?: [
-				'account' => '',
-				'username' => '',
-				'pass' => '',
-				'protocol' => 'pop',
-				'host' => '',
-				'port' => 110,
-				'type' => 'wiki-put',
-				'active' => 'y',
-				'anonymous' => 'n',
-				'admin' => 'y',
-				'attachments' => 'y',
-				'routing' => 'y',
-				'article_topicId' => '',
-				'article_type' => '',
-				'show_inlineImages' => 'y',
-				'save_html' => 'y',
-				'categoryId' => 0,
-				'namespace' => '',
-				'respond_email' => 'y',
-				'leave_email' => 'n',
-			],
-		];
 	}
 
 	function action_remove_account($input)
@@ -112,20 +113,19 @@ class Services_MailIn_Controller
 			throw new Services_Exception_NotFound;
 		}
 
-		$success = false;
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+		$util = new Services_Utilities();
+		if ($util->isConfirmPost()) {
 			$result = $mailinlib->remove_mailin_account($accountId);
 			if ($result && $result->numRows()) {
 				Feedback::success(tr('Account removed'));
 			} else {
 				Feedback::error(tr('Account not removed'));
 			}
+		} else {
+			return [
+				'title' => tr('Remove Account'),
+				'info' => $info,
+			];
 		}
-
-		return [
-			'title' => tr('Remove Account'),
-			'info' => $info,
-			'success' => $success,
-		];
 	}
 }

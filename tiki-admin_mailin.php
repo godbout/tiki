@@ -40,7 +40,6 @@ if (isset($_REQUEST['mailin_autocheck'])) {
 $artlib = TikiLib::lib('art');
 
 $smarty->assign('mailin_types', $mailinlib->list_available_types());
-ask_ticket('admin-mailin');
 
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');

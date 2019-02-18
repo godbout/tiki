@@ -6,6 +6,7 @@
 
 {block name="content"}
 	<form action="{service controller=mailin action=replace_account}" method="post">
+		{ticket mode=confirm}
 		<input type="hidden" name="accountId" value="{$accountId|escape}">
 		<div class="form-group row">
 			<div class="col-md-offset-3 col-md-9">
@@ -237,7 +238,7 @@
 			</div>
 		</div>
 		<div class="submit col-md-offset-3 col-md-9">
-			<input type="submit" name="new_acc" value="{if $accountId eq 0}{tr}Add Account{/tr}{else}{tr}Save{/tr}{/if}" class="btn btn-primary">
+			<input type="submit" name="new_acc" value="{if $accountId eq 0}{tr}Add Account{/tr}{else}{tr}Save{/tr}{/if}" class="btn btn-primary" onclick="checkTimeout()">
 		</div>
 	</form>
 {/block}
