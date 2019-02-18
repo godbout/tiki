@@ -276,9 +276,13 @@
 															{/if}
 															{if $prefs.email_due > 0 and $users[user].waiting ne 'u' and $users[user].waiting ne 'a'}
 																<action>
-																	<a href="tiki-adminusers.php?user={$users[user].user|escape:url}&amp;action=email_due" onclick="confirmSimple(event, '{tr}Invalidate user email?{/tr}', '{ticket mode=get}')">
-																		{icon name="trash" _menu_text='y' _menu_icon='y' alt="{tr}Invalidate email{/tr}"}
-																	</a>
+																	<form action="tiki-adminusers.php" method="post">
+																		{ticket}
+																		<input type="hidden" name="user" value="{$users[user].user|escape:'attr'}">
+																		<button type="submit" name="action" value="email_due" class="btn btn-link link-list" onclick="checkTimeout()">
+																			{icon name="thumbs-down"} {tr}Invalidate user{/tr}
+																		</button>
+																	</form>
 																</action>
 															{/if}
 															<action>
@@ -583,7 +587,7 @@
 									class="btn btn-primary"
 									name="newuser"
 									value="{tr}Add{/tr}"
-									onclick="confirmSimple(event, '{tr}Add this new user?{/tr}')"
+									onclick="checkTimeout()"
 								>
 							{/if}
 						</div>

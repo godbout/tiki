@@ -249,7 +249,7 @@ $auto_query_args = [
 if (isset($_REQUEST['batch']) && is_uploaded_file($_FILES['csvlist']['tmp_name']) && $access->checkCsrf()) {
 	batchImportUsers();
 	// Process the form to add a user here
-} elseif (isset($_REQUEST['newuser']) && $access->checkCsrfForm(tr('Add this new user?'))) {
+} elseif (isset($_REQUEST['newuser']) && $access->checkCsrf()) {
 	$AddUser = true;
 	;
 	// if email validation set check if email addr is set
