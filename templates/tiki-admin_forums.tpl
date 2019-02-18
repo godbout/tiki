@@ -91,15 +91,25 @@
 											{if isset($tiki_p_forum_lock) and $tiki_p_forum_lock eq 'y'}
 												{if $channels[user].is_locked eq 'y'}
 													<action>
-														{self_link _icon_name='unlock' _menu_text='y' _menu_icon='y' lock='n' forumId=$channels[user].forumId _onclick="confirmSimple(event, '{tr}Unlock forum?{/tr}', '{ticket mode=get}')"}
-															{tr}Unlock{/tr}
-														{/self_link}
+														<form action="tiki-admin_forums.php" method="post">
+															{ticket}
+															<input type="hidden" name="lock" value="n">
+															<input type="hidden" name="forumId" value="{$channels[user].forumId|escape:'attr'}">
+															<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+																{icon name='unlock'} {tr}Unlock{/tr}
+															</button>
+														</form>
 													</action>
 												{else}
 													<action>
-														{self_link _icon_name='lock' _menu_text='y' _menu_icon='y' lock='y' forumId=$channels[user].forumId _onclick="confirmSimple(event, '{tr}Lock forum?{/tr}', '{ticket mode=get}')"}
-															{tr}Lock{/tr}
-														{/self_link}
+														<form action="tiki-admin_forums.php" method="post">
+															{ticket}
+															<input type="hidden" name="lock" value="y">
+															<input type="hidden" name="forumId" value="{$channels[user].forumId|escape:'attr'}">
+															<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+																{icon name='lock'} {tr}Lock{/tr}
+															</button>
+														</form>
 													</action>
 												{/if}
 											{/if}

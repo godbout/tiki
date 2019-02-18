@@ -30,9 +30,9 @@ $auto_query_args = [
 
 $commentslib = TikiLib::lib('comments');
 if (isset($_REQUEST['lock']) && isset($_REQUEST['forumId'])) {
-	if ($_REQUEST['lock'] == 'y' && $access->checkCsrfForm(tr('Lock forum?'))) {
+	if ($_REQUEST['lock'] == 'y' && $access->checkCsrf()) {
 		$commentslib->lock_object_thread('forum:' . ((int)$_REQUEST['forumId']));
-	} elseif ($_REQUEST['lock'] == 'n' && $access->checkCsrfForm(tr('Unlock forum?'))) {
+	} elseif ($_REQUEST['lock'] == 'n' && $access->checkCsrf()) {
 		$commentslib->unlock_object_thread('forum:' . ((int)$_REQUEST['forumId']));
 	}
 }
