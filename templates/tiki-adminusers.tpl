@@ -254,11 +254,6 @@
 															</action>
 														{/if}
 														{if $users[user].user ne 'admin'}
-															<action>
-																<a href="{bootstrap_modal controller=user action=remove_users checked=$username offset=$offset sort_mode=$sort_mode numrows=$numrows}">
-																	{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-																</a>
-															</action>
 															{if $users[user].waiting eq 'a'}
 																<action>
 																	<a href="tiki-login_validate.php?user={$users[user].user|escape:url}&amp;pass={$users[user].valid|escape:url}">
@@ -280,6 +275,11 @@
 																	</a>
 																</action>
 															{/if}
+															<action>
+																<a href="{bootstrap_modal controller=user action=remove_users checked=$username offset=$offset sort_mode=$sort_mode numrows=$numrows}">
+																	{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+																</a>
+															</action>
 														{/if}
 														{* Use a confirm here since action cannot easily be undone *}
 														{if !empty($users[user].openid_url)}
