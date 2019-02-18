@@ -136,13 +136,11 @@ if (! empty($_REQUEST['action'])) {
 			if ($account['accountLocked']) {
 				$successMsg = tr('Account %0 in book %1 unlocked', $account['accountName'], $bookId);
 				$errorMsg = tr('Account %0 in book %1 not unlocked', $account['accountName'], $bookId);
-				$confirmMsg = tra('Unlock account?');
 			} else {
 				$successMsg = tr('Account %0 in book %1 locked', $account['accountName'], $bookId);
 				$errorMsg = tr('Account %0 in book %1 not locked', $account['accountName'], $bookId);
-				$confirmMsg = tra('Lock account?');
 			}
-			if ($access->checkCsrfForm($confirmMsg)) {
+			if ($access->checkCsrf()) {
 				$result = $accountinglib->changeAccountLock($bookId, $accountId);
 				if ($result) {
 					Feedback::success($successMsg);

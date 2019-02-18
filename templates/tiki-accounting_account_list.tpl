@@ -44,22 +44,30 @@
 									{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 								</a>
 							</action>
+							{if $a.accountLocked==1}
+								{$iconName = 'unlock'}
+								{$iconLabel = "{tr}Unlock{/tr}"}
+								{$confirmMsg = "{tr}Unlock account?{/tr}"}
+							{else}
+								{$iconName = 'lock'}
+								{$iconLabel = "{tr}Lock{/tr}"}
+								{$confirmMsg = "{tr}Lock account?{/tr}"}
+							{/if}
 							<action>
-								{if $a.accountLocked==1}
-									{$iconName = 'unlock'}
-									{$iconLabel = "{tr}Unlock account{/tr}"}
-									{$confirmMsg = "{tr}Unlock account?{/tr}"}
-								{else}
-									{$iconName = 'lock'}
-									{$iconLabel = "{tr}Lock account{/tr}"}
-									{$confirmMsg = "{tr}Lock account?{/tr}"}
-								{/if}
-								<a href="tiki-accounting_account.php?bookId={$bookId|escape:'attr'}&accountId={$a.accountId|escape:'attr'}&action=lock"
-									class="iconmenu"
-									onclick="confirmSimple(event, '{$confirmMsg}', '{ticket mode=get}')"
-								>
-									{icon name="$iconName"  _menu_text='y' _menu_icon='y' alt="$iconLabel"}
-								</a>
+								<form action="tiki-accounting_account.php" method="post">
+									{ticket}
+									<input type="hidden" name="bookId" value="{$bookId|escape:'attr'}">
+									<input type="hidden" name="accountId" value="{$a.accountId|escape:'attr'}">
+									<button
+										type="submit"
+										name="action"
+										value="lock"
+										class="btn btn-link link-list"
+										onclick="checkTimeout()"
+									>
+										{icon name="$iconName"} {$iconLabel}
+									</button>
+								</form>
 							</action>
 							<action>
 								<a href="tiki-accounting_account.php?bookId={$bookId|escape:'attr'}&accountId={$a.accountId|escape:'attr'}&action=delete"
