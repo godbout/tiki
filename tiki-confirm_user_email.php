@@ -14,7 +14,7 @@ if ((isset($prefs['email_due']) && $prefs['email_due'] < 0 ) && $prefs['validate
 	Feedback::errorPage(tr('This feature is disabled') . ': validateUsers');
 }
 
-if (isset($_REQUEST['user']) && isset($_REQUEST['pass'])) {
+if (isset($_REQUEST['user']) && isset($_REQUEST['pass']) && $access->checkCsrf()) {
 	if ($userlib->confirm_email($_REQUEST['user'], $_REQUEST['pass'])) {
 		if (empty($user)) {
 			$_SESSION["$user_cookie_site"] = $user = $_REQUEST['user'];

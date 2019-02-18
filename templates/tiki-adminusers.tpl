@@ -264,9 +264,15 @@
 															{* Use a form for the next two actions since they change the database but can easily be undone so no confirm needed*}
 															{if $users[user].waiting eq 'u'}
 																<action>
-																	<a href="tiki-confirm_user_email.php?user={$users[user].user|escape:url}&amp;pass={$users[user].provpass|md5|escape:url}" onclick="confirmSimple(event, '{tr}Confirm user email?{/tr}', '{ticket mode=get}')">
-																		{icon name="envelope" _menu_text='y' _menu_icon='y' alt="{tr}Confirm user email{/tr}"}
-																	</a>
+																	<form action="tiki-confirm_user_email.php" method="post">
+																		{ticket}
+																		<input type="hidden" name="user" value="{$users[user].user|escape:'attr'}">
+																		<input type="hidden" name="pass" value="{$users[user].provpass|md5|escape:'attr'}">
+																		<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+																			{icon name="thumbs-up"} {tr}Validate user{/tr}
+																		</button>
+																	</form>
+																</action>
 															{/if}
 															{if $prefs.email_due > 0 and $users[user].waiting ne 'u' and $users[user].waiting ne 'a'}
 																<action>
