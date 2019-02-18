@@ -4,17 +4,21 @@
 	<div id="current_keywords" class="clearfix">
 		<h2>{tr}Edit page keywords{/tr} ({$edit_keywords_page|escape})</h2>
 		<form action="tiki-admin_keywords.php" method="post">
+			{ticket}
 			<input name="page" value="{$edit_keywords_page|escape}" type="hidden">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Keywords{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1 mb-3">
+				<div class="input-group col-sm-7 col-sm-offset-1 mb-3">
 					<input name="new_keywords" size="65" value="{$edit_keywords|escape}" class="form-control">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-3 col-form-label"></label>
-				<div class="col-sm-7 col-sm-offset-1 mb-3">
-					<input type="submit" class="btn btn-primary btn-sm" name="save_keywords" value="{tr}Save{/tr}">
+					<div class="input-group-append">
+						<input
+							type="submit"
+							class="btn btn-primary"
+							name="save_keywords"
+							value="{tr}Save{/tr}"
+							onclick="checkTimeout()"
+						>
+					</div>
 				</div>
 			</div>
 		</form>
@@ -60,9 +64,19 @@
 										</a>
 									</action>
 									<action>
-										<a href="tiki-admin_keywords.php?page={$existing_keywords[i].page|escape:"url"}&amp;remove_keywords=1">
-											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-										</a>
+										<form action="tiki-admin_keywords.php" method="post">
+											{ticket}
+											<input type="hidden" name="page" value="{$existing_keywords[i].page|escape:'attr'}">
+											<button
+												type="submit"
+												name="remove_keywords"
+												value="1"
+												class="btn btn-link link-list"
+												onclick="confirmSimple(event, '{tr}Remove keywords for this page?{/tr}')"
+											>
+												{icon name='remove'} {tr}Remove{/tr}
+											</button>
+										</form>
 									</action>
 								{/strip}
 							{/actions}

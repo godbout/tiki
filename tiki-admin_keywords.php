@@ -80,8 +80,9 @@ $offset = 0;
 //This is done to stop arbitrary offsets being entered
 $offset = (int)$_REQUEST['offset'];
 
-if (( isset($_REQUEST['save_keywords']) && isset($_REQUEST['new_keywords']) && isset($_REQUEST['page']) ) || ( isset($_REQUEST['remove_keywords']) && isset($_REQUEST['page']) )) {
-	ask_ticket('admin_keywords');
+if ((isset($_REQUEST['save_keywords']) && isset($_REQUEST['new_keywords']) && isset($_REQUEST['page']) && $access->checkCsrf())
+	|| (isset($_REQUEST['remove_keywords']) && isset($_REQUEST['page']) && $access->checkCsrfForm(tr('Remove keywords?')))
+	) {
 	//Set page and new_keywords var for both remove_keywords and
 	//save_keywords actions at the same time
 	( isset($_REQUEST['page']) ) ? $page = $_REQUEST['page'] : $page = $_REQUEST['page'];
