@@ -73,10 +73,10 @@
 			{if $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
 				<li class="dropdown-item">
 					{* links to a form so no confirm popup needed *}
-					<a href="tiki-object_watches.php?objectId={$galleryId|escape:"url"}&amp;watch_event=file_gallery_changed&amp;objectType=File+Gallery&amp;objectName={$gal_info.name|escape:"url"}&amp;objectHref={'tiki-list_file_gallery.php?galleryId='|cat:$galleryId|escape:"url"}" class="icon">
+					<a href="tiki-object_watches.php?objectId={$galleryId|escape:"url"}&amp;watch_event=file_gallery_changed&amp;objectType=File+Gallery&amp;objectName={$gal_info.name|escape:"url"}&amp;objectHref={'tiki-list_file_gallery.php?galleryId='|cat:$galleryId|escape:"url"}">
 						{icon name='watch-group'} {tr}Group monitor{/tr}
 					</a>
-				</li class="dropdown-item">
+				</li>
 			{/if}
 			{if $user and $prefs.feature_user_watches eq 'y'}
 				<li class="dropdown-item">
