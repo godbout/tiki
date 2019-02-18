@@ -59,18 +59,37 @@
 							</a>
 						</action>
 						{if $tiki_p_admin_comments eq 'y' and $prefs.comments_archive eq 'y'}
-							{* need to confirm these links to avoid allowing GET request to change the database *}
 							{if $comments[ix].archived eq 'y'}
 								<action>
-									<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=unarchive" onclick="confirmSimple(event, '{tr}Unarchive comment?{/tr}', '{ticket mode=get}')">
-										{icon name='file-archive-open' _menu_text='y' _menu_icon='y' alt="{tr}Unarchive{/tr}"}
-									</a>
+									<form action="tiki-list_comments.php" method="post">
+										{ticket}
+										<input type="hidden" name="checked" value="{$id|escape}">
+										<button
+											type="submit"
+											name="action"
+											value="unarchive"
+											class="btn btn-link link-list"
+											onclick="checkTimeout()"
+										>
+											{icon name='file-archive-open'} {tr}Unarchive{/tr}
+										</button>
+									</form>
 								</action>
 							{else}
 								<action>
-									<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=archive" onclick="confirmSimple(event, '{tr}Archive comment?{/tr}', '{ticket mode=get}')">
-										{icon name='file-archive' _menu_text='y' _menu_icon='y' alt="{tr}Archive{/tr}"}
-									</a>
+									<form action="tiki-list_comments.php" method="post">
+										{ticket}
+										<input type="hidden" name="checked" value="{$id|escape}">
+										<button
+											type="submit"
+											name="action"
+											value="archive"
+											class="btn btn-link link-list"
+											onclick="checkTimeout()"
+										>
+											{icon name='file-archive'} {tr}Archive{/tr}
+										</button>
+									</form>
 								</action>
 							{/if}
 						{/if}
@@ -177,10 +196,10 @@
 				</option>
 			{/if}
 			{if $tiki_p_admin_comments eq 'y' and $prefs.comments_archive eq 'y'}
-				<option value="archive" class="confirm-simple" data-confirm-text="{tr}Archive comments?{/tr}">
+				<option value="archive">
 					{tr}Archive{/tr}
 				</option>
-				<option value="unarchive" class="confirm-simple" data-confirm-text="{tr}Unarchive comments?{/tr}">
+				<option value="unarchive">
 					{tr}Unarchive{/tr}
 				</option>
 			{/if}

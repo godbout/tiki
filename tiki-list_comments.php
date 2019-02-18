@@ -178,18 +178,36 @@ if (isset($_REQUEST['checked'])) {
 		// Archive comment(s)
 		// Use $_REQUEST and confirmation form because a link can generate this request if js is not enabled
 		if ($_REQUEST['action'] === 'archive' && $prefs['comments_archive'] == 'y'
-			&& $access->checkCsrfForm(tra('Archive selected comments?')))
+			&& $access->checkCsrf())
 		{
+			$i = 0;
 			foreach ($checked as $id) {
-				$commentslib->archive_thread($id);
+				$result = $commentslib->archive_thread($id);
+				if ($result && $result->numRows()) {
+					$i++;
+				}
+			}
+			if ($i) {
+				Feedback::success($i === 1 ? tr('Comment archived') : tr('%0 comments archived', $i));
+			} else {
+				Feedback::error(tr('No comments archived'));
 			}
 		}
 		// Unarchive comment(s)
 		if ($_REQUEST['action'] === 'unarchive' && $prefs['comments_archive'] == 'y'
-			&& $access->checkCsrfForm(tra('Unarchive selected comments?')))
+			&& $access->checkCsrf())
 		{
+			$i2 = 0;
 			foreach ($checked as $id) {
-				$commentslib->unarchive_thread($id);
+				$result = $commentslib->unarchive_thread($id);
+				if ($result && $result->numRows()) {
+					$i2++;
+				}
+			}
+			if ($i2) {
+				Feedback::success($i2 === 1 ? tr('Comment unarchived') : tr('%0 comments unarchived', $i2));
+			} else {
+				Feedback::error(tr('No comments unarchived'));
 			}
 		}
 	}
