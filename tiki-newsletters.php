@@ -17,14 +17,16 @@ if (! isset($_REQUEST["unsubscribe"])) {
 }
 
 $auto_query_args = ['nlId', 'offset', 'sort_mode', 'find'];
-$smarty->assign('confirm', 'n');
 //TODO: memorize the charset for each subscription
 if (isset($_REQUEST["confirm_subscription"])) {
 	$conf = $nllib->confirm_subscription($_REQUEST["confirm_subscription"]);
 	if ($conf) {
-		Feedback::success(tr('Subscription confirmed for newsletter %0 (%1)',
-			htmlspecialchars($conf['name']),
-			htmlspecialchars($conf['description'])));
+		Feedback::success(
+			tr('Subscription confirmed for newsletter %0 (%1)',
+				htmlspecialchars($conf['name']),
+				htmlspecialchars($conf['description'])
+			)
+		);
 		$smarty->assign('nl_info', $conf);
 	} else {
 		Feedback::error(tr('Subscription request failed'));
@@ -43,10 +45,10 @@ if (isset($_REQUEST["unsubscribe"])) {
 		Feedback::error(tr('Your request to unsubscribe failed'));
 	}
 }
-if (! $user && $tiki_p_subscribe_newsletters != 'y' && ! isset($_REQUEST["confirm_subscription"]) && ! isset($_REQUEST["unsubscribe"])) {
-	$smarty->assign('msg', tra("You must be logged in to subscribe to newsletters"));
-	$smarty->display("error.tpl");
-	die;
+if (! $user && $tiki_p_subscribe_newsletters != 'y' && ! isset($_REQUEST["confirm_subscription"])
+	&& ! isset($_REQUEST["unsubscribe"]))
+{
+	Feedback::errorPage(tr('You must be logged in to subscribe to newsletters'));
 }
 if (! isset($_REQUEST["nlId"])) {
 	$_REQUEST["nlId"] = 0;
