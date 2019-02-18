@@ -38,7 +38,7 @@ class Services_MailIn_Controller
 				throw new Services_Exception_FieldError('username', $e->getMessage());
 			}
 
-			$mailinlib->replace_mailin_account(
+			$result = $mailinlib->replace_mailin_account(
 				$accountId,
 				$input->account->text(),
 				$input->protocol->word(),
@@ -62,6 +62,11 @@ class Services_MailIn_Controller
 				$input->respond_email->int() ? 'y' : 'n',
 				$input->leave_email->int() ? 'y' : 'n'
 			);
+			if ($result) {
+				Feedback::success(tr('Account created or modified'));
+			} else {
+				Feedback::error(tr('Account not created or modified'));
+			}
 		}
 
 		$info = $mailinlib->get_mailin_account($accountId);
@@ -109,8 +114,12 @@ class Services_MailIn_Controller
 
 		$success = false;
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$mailinlib->remove_mailin_account($accountId);
-			$success = true;
+			$result = $mailinlib->remove_mailin_account($accountId);
+			if ($result && $result->numRows()) {
+				Feedback::success(tr('Account removed'));
+			} else {
+				Feedback::error(tr('Account not removed'));
+			}
 		}
 
 		return [
