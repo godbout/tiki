@@ -865,6 +865,9 @@ function iconset_default()
 			'mailbox' => [
 				'id' => 'inbox',
 			],
+			'magnifier' => [
+				'id' => 'search',
+			],
 			//map in defaults
 			'maxcdn' => [
 				'id' => 'maxcdn',
