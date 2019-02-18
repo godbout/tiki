@@ -1712,7 +1712,8 @@ class NlLib extends TikiLib
 
 		$msg = '<h4>' . sprintf(tra('Newsletter successfully sent to %s users.'), $nb_sent) . '</h4>';
 		if ($nb_errors > 0) {
-			$msg .= "\n" . '<font color="red">' . '(' . sprintf(tra('Number of errors: %s.'), $nb_errors) . ')' . '</font><br />';
+			$msg .= "\n" . '<span class="text-danger">' . '(' . sprintf(tra('Number of errors: %s'), $nb_errors) . ')'
+				. '</span><br />';
 		}
 
 		// If logfile exists and if it is reachable from the web browser, add a download link
