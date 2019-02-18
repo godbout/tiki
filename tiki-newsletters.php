@@ -22,20 +22,25 @@ $smarty->assign('confirm', 'n');
 if (isset($_REQUEST["confirm_subscription"])) {
 	$conf = $nllib->confirm_subscription($_REQUEST["confirm_subscription"]);
 	if ($conf) {
-		$smarty->assign('confirm', 'y');
+		Feedback::success(tr('Subscription confirmed for newsletter %0 (%1)',
+			htmlspecialchars($conf['name']),
+			htmlspecialchars($conf['description'])));
 		$smarty->assign('nl_info', $conf);
 	} else {
-		$smarty->assign('confirm', 'f'); // Signal failure
+		Feedback::error(tr('Subscription request failed'));
 	}
 }
-$smarty->assign('unsub', 'n');
 if (isset($_REQUEST["unsubscribe"])) {
 	$conf = $nllib->unsubscribe($_REQUEST["unsubscribe"]);
 	if ($conf) {
-		$smarty->assign('unsub', 'y');
+		Feedback::success(
+			tr('You have been unsubscribed from newsletter %0',
+				htmlspecialchars($conf['name'])
+			)
+		);
 		$smarty->assign('nl_info', $conf);
 	} else {
-		$smarty->assign('unsub', 'f'); // Signal failure
+		Feedback::error(tr('Your request to unsubscribe failed'));
 	}
 }
 if (! $user && $tiki_p_subscribe_newsletters != 'y' && ! isset($_REQUEST["confirm_subscription"]) && ! isset($_REQUEST["unsubscribe"])) {
@@ -63,10 +68,7 @@ $smarty->assign('email', $user_email);
 if ($tiki_p_subscribe_newsletters == 'y') {
 	if (isset($_REQUEST["subscribe"])) {
 		if (empty($user) && $prefs['feature_antibot'] == 'y' && ! $captchalib->validate()) {
-			$smarty->assign('msg', $captchalib->getErrors());
-			$smarty->assign('errortype', 'no_redirect_login');
-			$smarty->display("error.tpl");
-			die;
+			Feedback::errorPage(['mes' => $captchalib->getErrors(), 'errortype' => 'no_redirect_login']);
 		}
 		check_ticket('newsletters');
 		if ($tiki_p_subscribe_email != 'y') {
@@ -79,12 +81,19 @@ if ($tiki_p_subscribe_newsletters == 'y') {
 		}
 		// Now subscribe the email address to the newsletter
 		$nl_info = $nllib->get_newsletter($_REQUEST["nlId"]);
+		$successMsg = tr('You will receive an email soon to confirm your subscription. Click on the confirmation link in that email to begin receiving the newsletter.');
 		if ($nl_info['allowAnySub'] != 'y' && $user) {
 			if ($nllib->newsletter_subscribe($_REQUEST["nlId"], $user, "y")) {
+				Feedback::success($successMsg);
 				$smarty->assign('subscribed', 'y');
+			} else {
+				Feedback::error(tr('Newsletter not subscribed'));
 			}
 		} elseif ($nllib->newsletter_subscribe($_REQUEST["nlId"], $_REQUEST["email"])) {
+			Feedback::success($successMsg);
 			$smarty->assign('subscribed', 'y'); // will receive en email
+		} else {
+			Feedback::error(tr('Newsletter not subscribed'));
 		}
 	}
 }

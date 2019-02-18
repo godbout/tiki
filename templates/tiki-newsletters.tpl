@@ -9,40 +9,6 @@
 	</div>
 {/if}
 <br>
-{if $subscribed eq 'y'}
-	<div class="alert alert-warning">
-		{tr}Thanks for your subscription. You will receive an email soon to confirm your subscription. No newsletters will be sent to you until the subscription is confirmed.{/tr}
-	</div>
-{/if}
-
-{if $unsub eq 'y'}
-	<div class="alert alert-warning">
-		{tr}Your email address was removed from the list of subscriptors.{/tr}
-	</div>
-{elseif $unsub eq 'f'}
-	<div class="alert alert-danger">{tr}Removal of your email address failed.{/tr}</div>
-{/if}
-
-{if $confirm eq 'y'}
-	<table class="formcolor">
-		<tr>
-			<th colspan="2" class="highlight">{tr}Subscription confirmed!{/tr}</th>
-		</tr>
-		<tr>
-			<td>{tr}Name:{/tr}</td>
-			<td>{$nl_info.name|escape}</td>
-		</tr>
-		<tr>
-			<td>{tr}Description:{/tr}</td>
-			<td>{$nl_info.description|escape|nl2br}</td>
-		</tr>
-	</table>
-	<br>
-{elseif $confirm eq 'f'}
-	<div class="simplebox error">{tr}Subscription failed.{/tr}</div>
-	<br>
-{/if}
-
 {if $subscribe eq 'y'}
 	<h2>
 		{tr}Subscribe to Newsletter{/tr}
