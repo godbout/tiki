@@ -19,7 +19,19 @@ if (isset($_REQUEST['user']) && isset($_REQUEST['pass'])) {
 		if (empty($user)) {
 			$_SESSION["$user_cookie_site"] = $user = $_REQUEST['user'];
 		}
-		header('Location: tiki-information.php?msg=' . urlencode(tra('Account validated successfully.')));
+		$msg = tr('User %0 validated by the admin', htmlspecialchars($_REQUEST['user']));
+		Feedback::success($msg);
+		$redirect = '';
+		if (!empty($_SERVER['HTTP_REFERER'])) {
+			$referer = parse_url($_SERVER['HTTP_REFERER']);
+			if (!empty($referer['path'])) {
+				$redirect = isset($referer['query']) ? $referer['path'] . '?' . $referer['query'] : $referer['path'];
+			}
+		}
+		if (empty($redirect)) {
+			$redirect = 'tiki-information.php?msg=' . urlencode($msg);
+		}
+		$access->redirect($redirect);
 		die;
 	}
 }
