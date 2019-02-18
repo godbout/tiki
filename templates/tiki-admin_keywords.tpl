@@ -1,12 +1,5 @@
 <h1class="pagetitle><a " href="tiki-admin_keywords.php">{tr}Admin keywords{/tr}</a></h1>
 
-{if $keywords_updated}
-	<div class="alert alert-warning">
-		{if $keywords_updated == 'y'}{tr}Keywords have been updated{/tr}
-		{else}{tr}Updating keywords has failed. Page probably doesn't exist.{/tr}{/if}
-		{if $keywords_updated_on} ({$keywords_updated_on|escape}){/if}
-	</div>
-{/if}
 {if $edit_on}
 	<div id="current_keywords" class="clearfix">
 		<h2>{tr}Edit page keywords{/tr} ({$edit_keywords_page|escape})</h2>

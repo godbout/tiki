@@ -14,9 +14,11 @@ $access->check_feature('wiki_keywords');
 $access->check_permission('tiki_p_admin_wiki');
 
 /**
- * @param $page
+ * @param        $page
  * @param string $keywords
- * @return bool
+ *
+ * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+ * @throws Exception
  */
 function set_keywords($page, $keywords = "")
 {
@@ -26,15 +28,13 @@ function set_keywords($page, $keywords = "")
 	$bindvars = [ $keywords, $page ];
 	$result = $tikilib->query($query, $bindvars);
 
-	if (! $result) {
-		return false;
+	if ($result && $result->numRows()) {
+		$searchlib = TikiLib::lib('unifiedsearch');
+		$searchlib->invalidateObject('wiki page', $page);
+		$searchlib->processUpdateQueue();
 	}
 
-	$searchlib = TikiLib::lib('unifiedsearch');
-	$searchlib->invalidateObject('wiki page', $page);
-	$searchlib->processUpdateQueue();
-
-	return true;
+	return $result;
 }
 
 /**
@@ -87,10 +87,16 @@ if (( isset($_REQUEST['save_keywords']) && isset($_REQUEST['new_keywords']) && i
 	( isset($_REQUEST['page']) ) ? $page = $_REQUEST['page'] : $page = $_REQUEST['page'];
 	( isset($_REQUEST['new_keywords']) ) ? $new_keywords = $_REQUEST['new_keywords'] : $new_keywords = "";
 
-	$update = set_keywords($page, $new_keywords);
+	$result = set_keywords($page, $new_keywords);
 
-	( $update ) ? $smarty->assign('keywords_updated', 'y') : $smarty->assign('keywords_updated', 'n');
-	$smarty->assign('keywords_updated_on', $_REQUEST['page']);
+	if ($result && $result->numRows()) {
+		$msg = isset($_REQUEST['save_keywords'])
+			? tr('Keywords for page "%0" saved', htmlspecialchars($_REQUEST['page']))
+			: tr('Keywords for page "%0" removed', htmlspecialchars($_REQUEST['page']));
+		Feedback::success($msg);
+	} else {
+		Feedback::error(tr('Keywords were not updated'));
+	}
 }
 
 if (isset($_REQUEST['page']) && ! $_REQUEST['remove_keywords']) {
