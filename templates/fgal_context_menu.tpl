@@ -197,9 +197,15 @@
 								{tr}Unlock{/tr}
 							{/self_link}
 						{else}
-							{self_link _icon_name='unlock' _menu_text=$menu_text _menu_icon=$menu_icon lock='n' fileId=$file.fileId galleryId=$file.galleryId _onclick="confirmSimple(event, '{tr}Unlock file?{/tr}', '{ticket mode=get}')"}
-								{tr}Unlock{/tr}
-							{/self_link}
+							<form action="{$smarty.server.PHP_SELF}" method="post">
+								{ticket}
+								<input type="hidden" name="lock" value="n">
+								<input type="hidden" name="fileId" value="{$file.fileId|escape:'attr'}">
+								<input type="hidden" name="galleryId" value="{$file.galleryId|escape:'attr'}">
+								<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+									{icon name='unlock'} {tr}Unlock{/tr}
+								</button>
+							</form>
 						{/if}
 					{else}
 						{if (isset($file.p_download_files) and $file.p_download_files eq 'y')
@@ -216,9 +222,15 @@
 								</a>
 							{/if}
 						{/if}
-						{self_link _icon_name='lock' _menu_text=$menu_text _menu_icon=$menu_icon lock='y' fileId=$file.fileId galleryId=$file.galleryId _onclick="confirmSimple(event, '{tr}Lock file?{/tr}', '{ticket mode=get}')"}
-							{tr}Lock{/tr}
-						{/self_link}
+						<form action="{$smarty.server.PHP_SELF}" method="post">
+							{ticket}
+							<input type="hidden" name="lock" value="y">
+							<input type="hidden" name="fileId" value="{$file.fileId|escape:'attr'}">
+							<input type="hidden" name="galleryId" value="{$file.galleryId|escape:'attr'}">
+							<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+								{icon name='lock'} {tr}Lock{/tr}
+							</button>
+						</form>
 					{/if}
 				{/if}
 			{/if}

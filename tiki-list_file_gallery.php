@@ -390,7 +390,7 @@ if (isset($_REQUEST['lock']) && isset($_REQUEST['fileId']) && $_REQUEST['fileId'
 					&& $access->checkCsrfForm(printf(tr('The file is already locked by %s'), $fileInfo['lockedby'])))
 				{
 					$filegallib->unlock_file($_REQUEST['fileId']);
-				} elseif ($access->checkCsrfForm(tr('Unlock file?'))) {
+				} elseif ($access->checkCsrf()) {
 					$result = $filegallib->unlock_file($_REQUEST['fileId']);
 					if ($result && $result->numRows()) {
 						Feedback::success(tr('File unlocked'));
@@ -405,7 +405,7 @@ if (isset($_REQUEST['lock']) && isset($_REQUEST['fileId']) && $_REQUEST['fileId'
 			} elseif ($gal_info['lockable'] != 'y') {
 				$smarty->assign('errortype', 401);
 				$error_msg = tr('Files in this gallery are not lockable');
-			} elseif ($access->checkCsrfForm(tr('Lock file?'))) {
+			} elseif ($access->checkCsrf()) {
 				$result = $filegallib->lock_file($_REQUEST['fileId'], $user);
 				if ($result && $result->numRows()) {
 					Feedback::success(tr('File locked'));
