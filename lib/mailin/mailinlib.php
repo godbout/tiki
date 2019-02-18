@@ -177,13 +177,13 @@ class MailinLib extends TikiDb_Bridge
 
 	/**
 	 * @param $accountId
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_mailin_account($accountId)
 	{
 		$query = "delete from `tiki_mailin_accounts` where `accountId`=?";
-		$result = $this->query($query, [(int)$accountId]);
-		return true;
+		return $this->query($query, [(int)$accountId]);
 	}
 
 	/**
