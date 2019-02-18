@@ -3585,7 +3585,7 @@ class Comments extends TikiLib
 	 *
 	 * @param int $threadId the comment or thread id
 	 * @param int $parentId
-	 * @return bool
+	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
 	 */
 	function archive_thread($threadId, $parentId = 0)
 	{
@@ -3604,7 +3604,7 @@ class Comments extends TikiLib
 	 *
 	 * @param int $threadId the comment or thread id
 	 * @param int $parentId
-	 * @return bool
+	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
 	 */
 	function unarchive_thread($threadId, $parentId = 0)
 	{
