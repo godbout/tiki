@@ -402,6 +402,16 @@ class NlLib extends TikiLib
 		return $this->query($query, [(int) $nlId,$includedId], -1, -1, false);
 	}
 
+	/**
+	 * @param        $nlId
+	 * @param        $add
+	 * @param string $isUser
+	 * @param string $validateAddr
+	 * @param string $addEmail
+	 *
+	 * @return bool
+	 * @throws Exception
+	 */
 	public function newsletter_subscribe($nlId, $add, $isUser = 'n', $validateAddr = '', $addEmail = '')
 	{
 		global $user, $prefs;
@@ -512,12 +522,12 @@ class NlLib extends TikiLib
 		} else {
 			if (! empty($res) && $res["valid"] == 'n') {
 				$query = "update `tiki_newsletter_subscriptions` set `valid` = 'y' where `nlId` = ? and `email` = ? and `isUser` = ?";
-				$this->query($query, [(int) $nlId, $add, $isUser]);
-				return true;
+				$result = $this->query($query, [(int) $nlId, $add, $isUser]);
+				return $result && $result->numRows();
 			}
 			$query = "insert into `tiki_newsletter_subscriptions`(`nlId`,`email`,`code`,`valid`,`subscribed`,`isUser`,`included`) values(?,?,?,?,?,?,?)";
 			$result = $this->query($query, [(int) $nlId, $add, $code, 'y', (int) $this->now, $isUser, 'n']);
-			return true;
+			return $result && $result->numRows();
 		}
 		/*$this->update_users($nlId);*/
 		return false;
