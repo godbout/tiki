@@ -58,9 +58,11 @@
 		{/if}
 
 		{* Use `$smarty->append('tiki_page_bar_more_items', $item);` to put your item here *}
-		{foreach from=$tiki_page_bar_more_items item=item }
-			{$item}
-		{/foreach}
+		{if ! empty($tiki_page_bar_more_items)}
+			{foreach from=$tiki_page_bar_more_items item=item }
+				{$item}
+			{/foreach}
+		{/if}
 	{/capture}
 	{capture assign=page_bar}
 		{if $edit_page neq 'y'}
