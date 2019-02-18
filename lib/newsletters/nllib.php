@@ -449,7 +449,7 @@ class NlLib extends TikiLib
 			$smarty->assign('mail_user', $user);
 			$smarty->assign('code', $code);
 			$foo = parse_url($_SERVER["REQUEST_URI"]);
-			$smarty->assign('mail_machine', $tikilib->httpPrefix(true) . dirname($foo["path"]));
+			$smarty->assign('mail_machine', $tikilib->httpPrefix(true) . dirname($foo["path"]) . '/');
 			$smarty->assign('server_name', $_SERVER["SERVER_NAME"]);
 			$mail_data = $smarty->fetch('mail/confirm_newsletter_subscription.tpl');
 			if (! isset($_SERVER["SERVER_NAME"])) {
