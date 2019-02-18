@@ -19,8 +19,8 @@
 {/if}
 <a class="no-ajax" action="{service controller=tracker action=import_items trackerId=$trackerId}" method="post" enctype="multipart/form-data">
 	{remarksbox type="warning" title="{tr}Deprecated{/tr}"}
-		{tr}To import items into a tracker please{/tr} <a href="tiki-admin.php?page=trackers&highlight=tracker_tabular_enabled" target="_blank" title="{tr}enable{/tr}">{tr}enable{/tr}</a> {tr}and use{/tr} <a href="tiki-tabular-manage" target="_blank" title="{tr}Tracker Tabular{/tr}">{tr}Tracker Tabular{/tr}</a>. {tr}It is easy to use, optimised and far more powerful.{/tr}
-		{tr}For complete documentation, please visit{/tr} <a href="https://doc.tiki.org/Tracker-Tabular" target="_blank" title="{tr}Tracker Tabular{/tr}"> {tr}Tracker Tabular{/tr} {icon name="documentation"}</a>
+		{tr}To import items into a tracker please{/tr} <a href="tiki-admin.php?page=trackers&highlight=tracker_tabular_enabled" class="alert-link" target="_blank" title="{tr}enable{/tr}">{tr}enable{/tr}</a> {tr}and use{/tr} <a href="tiki-tabular-manage" class="alert-link" target="_blank" title="{tr}Tracker Tabular{/tr}">{tr}Tracker Tabular{/tr}</a>. {tr}It is easy to use, optimised and far more powerful.{/tr}
+		{tr}For complete documentation, please visit{/tr} <a href="https://doc.tiki.org/Tracker-Tabular" class="alert-link" target="_blank" title="{tr}Tracker Tabular{/tr}"> {tr}Tracker Tabular{/tr} {icon name="documentation"}</a>
 	{/remarksbox}
 	{remarksbox type="note" title="{tr}Note{/tr}"}
 		<ul>

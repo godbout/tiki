@@ -10,7 +10,7 @@
 	<div class="media-body">
 		<h4 class="mt-0 mb-4">{tr}Some profiles are highly customized for very specialized use cases, and they are listed in this special category.{/tr}</h4>
 		{remarksbox type="warning" title="{tr}Warning{/tr}"}
-			<a target="tikihelp" class="tikihelp" style="float:right" title="{tr}Demo Profiles:{/tr}
+			<a target="tikihelp" class="alert-link tikihelp" style="float:right" title="{tr}Demo Profiles:{/tr}
 				{tr}They are initially intended for testing environments, so that, after you have played with the feature, you don't have to deal with removing the created objects, nor with restoring the potentially changed settings in your site{/tr}.
 				<br/><br/>
 				{tr}Once you know what they do, you can also apply them in your production site, in order to have working templates of the underlying features, that you can further adapt to your site later on{/tr}."

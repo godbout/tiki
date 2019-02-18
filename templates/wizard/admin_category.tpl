@@ -19,7 +19,7 @@
 			{if $prefs['flaggedrev_approval'] eq 'y' && empty($prefs['flaggedrev_approval_categories'])}
 				{remarksbox type="info" title="{tr}Info{/tr}"}
 					{tr}You have the feature '<strong>Revision Approval</strong>' enabled, but you haven't defined yet which content categories require revision approval for their wiki pages{/tr}.
-					{tr}Once you have <a href="tiki-admin_categories.php" target="_blank">some categories defined</a>, go back to the Configuration Wizard step '<strong>Set up Wiki environment</strong>' and define them there{/tr}.
+					{tr}Once you have <a href="tiki-admin_categories.php" class="alert-link" target="_blank">some categories defined</a>, go back to the Configuration Wizard step '<strong>Set up Wiki environment</strong>' and define them there{/tr}.
 				{/remarksbox}
 			{/if}
 			<br>

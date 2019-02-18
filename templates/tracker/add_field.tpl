@@ -39,9 +39,9 @@
 	</div>
 	{remarksbox type=info title="{tr}More types available{/tr}"}
 		{if $tiki_p_admin eq 'y'}
-			<p>{tr _0="tiki-admin.php?page=trackers&cookietab=3"}More field types may be enabled from the <a href="%0">administration panel</a>.{/tr}</p>
+			<p>{tr _0="tiki-admin.php?page=trackers&cookietab=3"}More field types may be enabled from the <a href="%0" class="alert-link">administration panel</a>.{/tr}</p>
 		{else}
-			<p>{tr _0="https://doc.tiki.org/Tracker+Field+Type"}Contact your administrator to see if they can be enabled. The complete field type list is available in the <a rel="external" class="external" href="%0">documentation</a>.{/tr}</p>
+			<p>{tr _0="https://doc.tiki.org/Tracker+Field+Type"}Contact your administrator to see if they can be enabled. The complete field type list is available in the <a rel="external" class="alert-link external" href="%0">documentation</a>.{/tr}</p>
 		{/if}
 	{/remarksbox}
 	<div class="form-group row mx-0">

@@ -12,7 +12,7 @@
 			<h2><img src="img/icons/twitter_t_logo_32.png" alt="Twitter" width="32" height="32"> Twitter</h2>
 			{if $twitterRegistered==0}
 				{remarksbox type="note" title="{tr}Note{/tr}"}
-					{tr}To use Twitter integration, the site admin must register this site as an application at <a href="http://twitter.com/oauth_clients/" target="_blank">http://twitter.com/oauth_clients/</a> and allow write access for the application.{/tr}
+					{tr}To use Twitter integration, the site admin must register this site as an application at <a href="http://twitter.com/oauth_clients/" class="alert-link" target="_blank">http://twitter.com/oauth_clients/</a> and allow write access for the application.{/tr}
 				{/remarksbox}
 			{else}
 				{if $twitter}
@@ -31,7 +31,7 @@
 			<h2><img src="img/icons/facebook-logo_32.png" alt="Facebook" width="32" height="32"> Facebook</h2>
 			{if $facebookRegistered==0}
 				{remarksbox type="note" title="{tr}Note{/tr}"}
-					{tr}To use Facebook integration, the site admin must register this site as an application at <a href="http://developers.facebook.com/setup/" target="_blank">http://developers.facebook.com/setup/</a> first.{/tr}
+					{tr}To use Facebook integration, the site admin must register this site as an application at <a href="http://developers.facebook.com/setup/" class="alert-link" target="_blank">http://developers.facebook.com/setup/</a> first.{/tr}
 				{/remarksbox}
 			{else}
 				{if $facebook}
@@ -50,7 +50,7 @@
 			<h2>LinkedIn</h2>
 			{if $linkedInRegistered==0}
 				{remarksbox type="note" title="{tr}Note{/tr}"}
-				{tr}To use LinkedIn integration, the site admin must register this site as an application at <a href="https://www.linkedin.com/secure/developer" target="_blank">https://www.linkedin.com/secure/developer</a> first.{/tr}
+				{tr}To use LinkedIn integration, the site admin must register this site as an application at <a href="https://www.linkedin.com/secure/developer" class="alert-link" target="_blank">https://www.linkedin.com/secure/developer</a> first.{/tr}
 				{/remarksbox}
 			{else}
 				{if $linkedIn}
