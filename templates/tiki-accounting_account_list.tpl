@@ -41,7 +41,7 @@
 						{strip}
 							<action>
 								<a href="tiki-accounting_account.php?bookId={$bookId|escape:'attr'}&accountId={$a.accountId|escape:'attr'}&action=edit" class="iconmenu">
-									{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit account{/tr}"}
+									{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 								</a>
 							</action>
 							<action>
@@ -66,7 +66,7 @@
 									class="iconmenu"
 									onclick="confirmSimple(event, '{tr}Remove account?{/tr}', '{ticket mode=get}')"
 								>
-									{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove account{/tr}"}
+									{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>
 						{/strip}
