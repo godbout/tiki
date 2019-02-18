@@ -467,10 +467,13 @@ class NlLib extends TikiLib
 			// must be added in all functions in the file!					//
 			//										//
 			$mail_data_html = "";
+			$noDuplicateTextPart = false;
 			try {
 				$mail_data_html = $smarty->fetch('mail/confirm_newsletter_subscription_html.tpl');
 			} catch (Exception $e) {
 				// html-template missing; ignore and use text-template below
+				// which means $textPart and $htmlPart will be the same, so ensure only one is used
+				$noDuplicateTextPart = true;
 			}
 			if ($mail_data_html != '') {
 				//ensure body tags in html part
@@ -489,7 +492,11 @@ class NlLib extends TikiLib
 			$htmlPart->setType(Zend\Mime\Mime::TYPE_HTML);
 
 			$emailBody = new \Zend\Mime\Message();
-			$emailBody->setParts([$htmlPart, $textPart]);
+			if ($noDuplicateTextPart) {
+				$emailBody->setParts([$htmlPart]);
+			} else {
+				$emailBody->setParts([$htmlPart, $textPart]);
+			}
 
 			$zmail->setBody($emailBody);
 			//										//
