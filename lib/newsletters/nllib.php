@@ -1541,16 +1541,17 @@ class NlLib extends TikiLib
 	public function send($nl_info, $info, $browser = true, &$sent, &$errors, &$logFileName)
 	{
 		global $prefs, $section;
-		$headerlib = TikiLib::lib('header');
 		$tikilib = TikiLib::lib('tiki');
 		$userlib = TikiLib::lib('user');
 		$smarty = TikiLib::lib('smarty');
 		$users = $this->get_all_subscribers($nl_info['nlId'], $nl_info['unsubMsg'] == 'y');
 
 		if (empty($info['editionId'])) {
-			$info['editionId'] = $this->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, 0, true, $info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html']);
+			$info['editionId'] = $this->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, 0, true,
+				$info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html']);
 		} else {
-			$this->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, $info['editionId'], true, $info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html']);
+			$this->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, $info['editionId'], true,
+				$info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html']);
 		}
 
 		if (isset($info['begin'])) {
@@ -1573,7 +1574,8 @@ class NlLib extends TikiLib
 			if ($userEmail == '') {
 				$userEmail = $userlib->get_user_by_email($email);
 			}
-			$language = ! $userEmail ? $prefs['site_language'] : $tikilib->get_user_preference($userEmail, "language", $prefs['site_language']);
+			$language = ! $userEmail ? $prefs['site_language'] : $tikilib->get_user_preference($userEmail, "language",
+				$prefs['site_language']);
 
 			if (preg_match('/([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+/', $email)) {
 				if (in_array($email, $remaining)) {
@@ -1586,7 +1588,7 @@ class NlLib extends TikiLib
 					$sent[] = $email;
 				}
 			} else {
-				$errors[] = ["user" => $userEmail, "email" => $email, "msg" => tra("invalid email")];
+				$errors[] = ["user" => $userEmail, "email" => $email, "msg" => tr("invalid email")];
 			}
 		}
 
@@ -1622,7 +1624,8 @@ class NlLib extends TikiLib
 			}
 
 			try {
-				$zmail = $this->get_edition_mail($info['editionId'], $us, $info['is_html'], $info['replyto'], $info['sendfrom']);
+				$zmail = $this->get_edition_mail($info['editionId'], $us, $info['is_html'], $info['replyto'],
+					$info['sendfrom']);
 				if (! $zmail) {
 					continue;
 				}
@@ -1666,7 +1669,10 @@ class NlLib extends TikiLib
 				if (! empty($info['sendfrom'])) {
 					$sendfromData = ' data-sendfrom="' . $info['sendfrom'] . '"';
 				}
-				print '<div class="throttle" data-edition="' . $info['editionId'] . '"' . $replytoData . $sendfromData . ' data-rate="' . $rate . '">' . tr('Limiting the email send rate. Resuming in %0 seconds.', $rate) . '</div>';
+
+				print '<div class="throttle" data-edition="' . $info['editionId'] . '"' . $replytoData . $sendfromData
+					. ' data-rate="' . $rate . '">' . tr('Limiting the email send rate. Resuming in %0 seconds.', $rate)
+					. '</div>';
 				exit;
 			}
 		}
