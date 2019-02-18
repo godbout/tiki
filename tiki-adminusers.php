@@ -357,9 +357,9 @@ if (isset($_REQUEST['batch']) && is_uploaded_file($_FILES['csvlist']['tmp_name']
 	{
 		$result = $userlib->reset_email_due($_REQUEST['user']);
 		if ($result->numRows()) {
-			Feedback::success(tr('Email for user %0 has been unconfirmed', $_REQUEST['user']));
+			Feedback::success(tr('User account %0 has been invalidated by the admin', $_REQUEST['user']));
 		} else {
-			Feedback::error(tr('An error occurred - the email for user %0 has not been unconfirmed', $_REQUEST['user']));
+			Feedback::error(tr('An error occurred - the user account %0 has not been invalidated by the admin', $_REQUEST['user']));
 		}
 	}
 
