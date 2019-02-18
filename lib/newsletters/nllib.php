@@ -779,11 +779,19 @@ class NlLib extends TikiLib
 	 */
 	public function add_included($nlId, $includedId)
 	{
-		$query = "delete from `tiki_newsletter_included` where `nlId`=? and `includedId`=?";
-		$this->query($query, [(int) $nlId, (int) $includedId], -1, -1, false);
-		$query = "insert into `tiki_newsletter_included` (`nlId`,`includedId`) values(?,?)";
-		$result = $this->query($query, [(int) $nlId, (int) $includedId]);
-		return $result && $result->numRows() > 0;
+		// do not include $includedId subscribers if $includedId newsletter includes $nlId subscribers
+		// to avoid fatal recursive errors in get_all_subscribers() method
+		$includedIdIncludes = $this->list_newsletter_included($includedId);
+		if (array_key_exists($nlId, $includedIdIncludes)) {
+			Feedback::warning(tr('Cannot add subscribers from a newsletter that includes this newsletter\'s subscribers'));
+			return false;
+		} else {
+			$query = "delete from `tiki_newsletter_included` where `nlId`=? and `includedId`=?";
+			$this->query($query, [(int) $nlId, (int) $includedId], -1, -1, false);
+			$query = "insert into `tiki_newsletter_included` (`nlId`,`includedId`) values(?,?)";
+			$result = $this->query($query, [(int) $nlId, (int) $includedId]);
+			return $result && $result->numRows() > 0;
+		}
 	}
 
 	/**
