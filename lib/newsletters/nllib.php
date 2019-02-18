@@ -352,40 +352,54 @@ class NlLib extends TikiLib
 	 * Removes newsletters subscriptions
 	 *
 	 * @param integer $nlId
-	 * @param string $email
+	 * @param string  $email
 	 * @param boolean $isUser
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 * @access public
-	 * @return void
 	 */
 	public function remove_newsletter_subscription($nlId, $email, $isUser)
 	{
 		$query = "delete from `tiki_newsletter_subscriptions` where `nlId`=? and `email`=? and `isUser`=?";
-		$result = $this->query($query, [(int) $nlId, $email, $isUser], -1, -1, false);
+		return $this->query($query, [(int) $nlId, $email, $isUser], -1, -1, false);
 	}
 
 	/**
 	 * Removes newsletters subscriptions with only the code as parameter
 	 *
 	 * @param string $code
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 * @access public
-	 * @return void
 	 */
 	public function remove_newsletter_subscription_code($code)
 	{
 		$query = 'delete from `tiki_newsletter_subscriptions` where `code`=?';
-		$result = $this->query($query, [$code], -1, -1, false);
+		return $this->query($query, [$code], -1, -1, false);
 	}
 
+	/**
+	 * @param $nlId
+	 * @param $group
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	public function remove_newsletter_group($nlId, $group)
 	{
 		$query = "delete from `tiki_newsletter_groups` where `nlId`=? and `groupName`=?";
-		$result = $this->query($query, [(int) $nlId,$group], -1, -1, false);
+		return $this->query($query, [(int) $nlId,$group], -1, -1, false);
 	}
 
+	/**
+	 * @param $nlId
+	 * @param $includedId
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	public function remove_newsletter_included($nlId, $includedId)
 	{
 		$query = "delete from `tiki_newsletter_included` where `nlId`=? and `includedId`=?";
-		$this->query($query, [(int) $nlId,$includedId], -1, -1, false);
+		return $this->query($query, [(int) $nlId,$includedId], -1, -1, false);
 	}
 
 	public function newsletter_subscribe($nlId, $add, $isUser = 'n', $validateAddr = '', $addEmail = '')
