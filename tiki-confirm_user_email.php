@@ -11,9 +11,7 @@
 require_once('tiki-setup.php');
 
 if ((isset($prefs['email_due']) && $prefs['email_due'] < 0 ) && $prefs['validateUsers'] != 'y') {
-	$smarty->assign('msg', tra('This feature is disabled') . ': validateUsers');
-	$smarty->display('error.tpl');
-	die;
+	Feedback::errorPage(tr('This feature is disabled') . ': validateUsers');
 }
 
 if (isset($_REQUEST['user']) && isset($_REQUEST['pass'])) {
@@ -26,5 +24,4 @@ if (isset($_REQUEST['user']) && isset($_REQUEST['pass'])) {
 	}
 }
 
-$smarty->assign('msg', tra('Problem. Try to log in again to receive new confirmation instructions.'));
-$smarty->display('error.tpl');
+Feedback::errorPage(tr('Problem. Try to log in again to receive new confirmation instructions.'));
