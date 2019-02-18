@@ -1072,7 +1072,7 @@ if ($prefs['feature_theme_control'] == 'y') {
 if ($prefs['feature_user_watches'] == 'y') {
 	if (! isset($_REQUEST['fileId'])) {
 		if ($user && isset($_REQUEST['watch_event'])) {
-			if ($_REQUEST['watch_action'] == 'add' && $access->checkCsrfForm(tr('Monitor gallery?'))) {
+			if ($_REQUEST['watch_action'] == 'add' && $access->checkCsrf()) {
 				$result = $tikilib->add_user_watch(
 					$user,
 					$_REQUEST['watch_event'],
@@ -1086,7 +1086,7 @@ if ($prefs['feature_user_watches'] == 'y') {
 				} else {
 					Feedback::error(tr('User watch not added'));
 				}
-			} else if ($_REQUEST['watch_action'] == 'remove' && $access->checkCsrfForm(tr('Stop monitoring gallery?'))) {
+			} else if ($_REQUEST['watch_action'] == 'remove' && $access->checkCsrf()) {
 				$result = $tikilib->remove_user_watch($user, $_REQUEST['watch_event'], $_REQUEST['watch_object'], 'File Gallery');
 				if ($result && $result->numRows()) {
 					Feedback::success(tr('User watch removed'));

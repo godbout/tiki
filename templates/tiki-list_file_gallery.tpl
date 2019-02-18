@@ -81,13 +81,27 @@
 			{if $user and $prefs.feature_user_watches eq 'y'}
 				<li class="dropdown-item">
 					{if !isset($user_watching_file_gallery) or $user_watching_file_gallery eq 'n'}
-						<a href="{query _type='relative' galleryName=$name watch_event='file_gallery_changed' watch_object=$galleryId watch_action='add'}" title="{tr}Monitor this gallery{/tr}" onclick="confirmSimple(event, '{tr}Monitor gallery?{/tr}', '{ticket mode=get}')">
-							{icon name='watch'} {tr}Monitor{/tr}
-						</a>
+						<form action="tiki-list_file_gallery.php" method="post">
+							{ticket}
+							<input type="hidden" name="galleryName" value="{$name|escape:'attr'}">
+							<input type="hidden" name="watch_event" value="file_gallery_changed">
+							<input type="hidden" name="watch_object" value="{$galleryId|escape:'attr'}">
+							<input type="hidden" name="watch_action" value="add">
+							<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+								{icon name='watch'} {tr}Monitor{/tr}
+							</button>
+						</form>
 					{else}
-						<a href="{query _type='relative' galleryName=$name watch_event='file_gallery_changed' watch_object=$galleryId watch_action='remove'}" title="{tr}Stop monitoring this gallery{/tr}" onclick="confirmSimple(event, '{tr}Stop monitoring gallery?{/tr}', '{ticket mode=get}')">
-							{icon name='stop-watching'} {tr}Stop monitoring{/tr}
-						</a>
+						<form action="tiki-list_file_gallery.php" method="post">
+							{ticket}
+							<input type="hidden" name="galleryName" value="{$name|escape:'attr'}">
+							<input type="hidden" name="watch_event" value="file_gallery_changed">
+							<input type="hidden" name="watch_object" value="{$galleryId|escape:'attr'}">
+							<input type="hidden" name="watch_action" value="remove">
+							<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+								{icon name='stop-watching'} {tr}Stop monitoring{/tr}
+							</button>
+						</form>
 					{/if}
 				</li>
 			{/if}
