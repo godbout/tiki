@@ -58,7 +58,7 @@
 				{/if}
 				{foreach from=$column item=col}
 					{$fieldcount = $fieldcount + 1}
-					<th>
+					<th{if not empty($col.class)} class="{$col.class}"{/if}>
 						{if isset($col.sort) && $col.sort}
 							{if !empty($sort_jsvar) and !empty($_onclick)}
 								{$order = '_asc'}
@@ -112,11 +112,13 @@
 					</td>
 				{/if}
 				{foreach from=$column item=col}
-					{if isset($col.mode) && $col.mode eq 'raw'}
-						<td>{if !empty($row[$col.field])}{$row[$col.field]}{/if}</td>
-					{else}
-						<td>{if !empty($row[$col.field])}{$row[$col.field]|escape}{/if}</td>
-					{/if}
+					<td{if not empty($col.class)} class="{$col.class}"{/if}>
+						{if isset($col.mode) && $col.mode eq 'raw'}
+							{if !empty($row[$col.field])}{$row[$col.field]}{/if}
+						{else}
+							{if !empty($row[$col.field])}{$row[$col.field]|escape}{/if}
+						{/if}
+					</td>
 				{/foreach}
 			</tr>
 		{/foreach}

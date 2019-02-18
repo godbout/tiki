@@ -190,17 +190,20 @@ class Services_Edit_ListPluginHelper
 											'field' => [
 												'type' => 'field',
 												'params' => [
-													'sort' => [
+													'sort'  => [
 														'type' => 'field',
 													],
 													'label' => [
 														'type' => 'text',
 													],
-													'mode' => [
+													'mode'  => [
 														'options' => [
 															'' => [],
 															'raw' => [],
 														],
+													],
+													'class' => [
+														'type' => 'text',
 													],
 												],
 											],
