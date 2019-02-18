@@ -721,10 +721,19 @@ class NlLib extends TikiLib
 		return $this->get_newsletter($res["nlId"]);
 	}
 
+	/**
+	 * @param        $nlId
+	 * @param string $validateAddr
+	 * @param string $addEmail
+	 *
+	 * @return bool
+	 * @throws Exception
+	 */
 	public function add_all_users($nlId, $validateAddr = '', $addEmail = '')
 	{
 		$query = "select `email`, `login`from `users_users`";
 		$result = $this->query($query, []);
+		$success = true;
 		while ($res = $result->fetchRow()) {
 			if ($addEmail == "y") {
 				$add = $res["email"];
@@ -734,28 +743,58 @@ class NlLib extends TikiLib
 				$isUser = "y";
 			}
 			if (! empty($add)) {
-				$this->newsletter_subscribe($nlId, $add, $isUser, $validateAddr, $addEmail);
+				$eachResult = $this->newsletter_subscribe($nlId, $add, $isUser, $validateAddr, $addEmail);
+				if (! $eachResult) {
+					$success = false;
+				}
+			} else {
+				$success = false;
 			}
 		}
+		return $success;
 	}
 
+	/**
+	 * @param        $nlId
+	 * @param        $group
+	 * @param string $include_groups
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	public function add_group($nlId, $group, $include_groups = 'n')
 	{
 		$query = "delete from `tiki_newsletter_groups` where `nlId`=? and `groupName`=?";
-		$result = $this->query($query, [(int) $nlId, $group], -1, -1, false);
+		$this->query($query, [(int) $nlId, $group], -1, -1, false);
 		$code = $this->genRandomString($group);
 		$query = "insert into `tiki_newsletter_groups`(`nlId`,`groupName`,`code`,`include_groups`) values(?,?,?,?)";
-		$result = $this->query($query, [(int) $nlId, $group, $code, $include_groups]);
+		return $this->query($query, [(int) $nlId, $group, $code, $include_groups]);
 	}
 
+	/**
+	 * @param $nlId
+	 * @param $includedId
+	 *
+	 * @return bool
+	 * @throws Exception
+	 */
 	public function add_included($nlId, $includedId)
 	{
 		$query = "delete from `tiki_newsletter_included` where `nlId`=? and `includedId`=?";
 		$this->query($query, [(int) $nlId, (int) $includedId], -1, -1, false);
 		$query = "insert into `tiki_newsletter_included` (`nlId`,`includedId`) values(?,?)";
-		$this->query($query, [(int) $nlId, (int) $includedId]);
+		$result = $this->query($query, [(int) $nlId, (int) $includedId]);
+		return $result && $result->numRows() > 0;
 	}
 
+	/**
+	 * @param        $nlId
+	 * @param        $group
+	 * @param string $validateAddr
+	 * @param string $addEmail
+	 *
+	 * @return bool
+	 * @throws Exception
+	 */
 	public function add_group_users($nlId, $group, $validateAddr = '', $addEmail = '')
 	{
 		$groups = array_merge([$group], $this->get_groups_all($group));
@@ -772,9 +811,14 @@ class NlLib extends TikiLib
 		}
 		$ret = array_unique($ret);
 		$isUser = $addEmail == "y" ? "n" : "y";
+		$success = true;
 		foreach ($ret as $o) {
-			$this->newsletter_subscribe($nlId, $o, $isUser, $validateAddr, $addEmail);
+			$eachResult = $this->newsletter_subscribe($nlId, $o, $isUser, $validateAddr, $addEmail);
+			if (! $eachResult) {
+				$success = false;
+			}
 		}
+		return $success;
 	}
 
 	public function get_newsletter($nlId)
@@ -1062,16 +1106,21 @@ class NlLib extends TikiLib
 		return $msg;
 	}
 
+	/**
+	 * @param $nlId
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	public function remove_newsletter($nlId)
 	{
 		$query = "delete from `tiki_newsletters` where `nlId`=?";
 		$result = $this->query($query, [(int) $nlId], -1, -1, false);
 		$query = "delete from `tiki_newsletter_subscriptions` where `nlId`=?";
-		$result = $this->query($query, [(int) $nlId], -1, -1, false);
+		$this->query($query, [(int) $nlId], -1, -1, false);
 		$query = "delete from `tiki_newsletter_groups` where `nlId`=?";
-		$result = $this->query($query, [(int) $nlId], -1, -1, false);
+		$this->query($query, [(int) $nlId], -1, -1, false);
 		$this->remove_object('newsletter', $nlId);
-		return true;
+		return $result;
 	}
 
 	public function remove_edition($nlId, $editionId)
@@ -1082,10 +1131,17 @@ class NlLib extends TikiLib
 		$result = $this->query($query, [(int) $nlId]);
 	}
 
+	/**
+	 * @param $nlId
+	 * @param $email
+	 * @param $isUser
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	public function valid_subscription($nlId, $email, $isUser)
 	{
 		$query = "update `tiki_newsletter_subscriptions` set `valid`= ? where `nlId`=? and `email`=? and `isUser`=?";
-		$result = $this->query($query, ['y', (int) $nlId, $email, $isUser]);
+		return $this->query($query, ['y', (int) $nlId, $email, $isUser]);
 	}
 
 	public function list_tpls()
@@ -1124,10 +1180,16 @@ class NlLib extends TikiLib
 		$this->query($query, [(int) $editionId, $user['email']]);
 	}
 
+	/**
+	 * @param $editionId
+	 * @param $user
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	public function mark_edition_subscriber($editionId, $user)
 	{
-		$query = 'update `tiki_sent_newsletters_errors` set `error`= ? where `editionId`=? and `email`=? and `login`=?';
-		$this->query($query, ['y', (int) $editionId, $user['email'], $user['login']]);
+		$query = 'update `tiki_sent_newsletters_errors` set `error`= ? where `editionId`=? and `email`=?';
+		return $this->query($query, ['y', (int) $editionId, $user['email']]);
 	}
 
 	public function get_edition_errors($editionId)
@@ -1232,18 +1294,32 @@ class NlLib extends TikiLib
 		return $emails;
 	}
 
+	/**
+	 * @param        $nlId
+	 * @param        $wikiPageName
+	 * @param string $validate
+	 * @param string $addToList
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	public function add_page($nlId, $wikiPageName, $validate = 'n', $addToList = 'n')
 	{
 		$query = "delete from `tiki_newsletter_pages` where `nlId`=? and `wikiPageName`=?";
 		$this->query($query, [ (int) $nlId, $wikiPageName], -1, -1, false);
 		$query = "insert into `tiki_newsletter_pages` (`nlId`,`wikiPageName`,`validateAddrs`,`addToList`) values(?,?,?,?)";
-		$this->query($query, [ (int) $nlId, $wikiPageName, $validate, $addToList]);
+		return $this->query($query, [ (int) $nlId, $wikiPageName, $validate, $addToList]);
 	}
 
+	/**
+	 * @param $nlId
+	 * @param $wikiPageName
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	public function remove_newsletter_page($nlId, $wikiPageName)
 	{
 		$query = "delete from `tiki_newsletter_pages` where `nlId`=? and `wikiPageName`=?";
-		$this->query($query, [ (int) $nlId, $wikiPageName], -1, -1, false);
+		return $this->query($query, [ (int) $nlId, $wikiPageName], -1, -1, false);
 	}
 
 	public function list_newsletter_pages($nlId, $offset = -1, $maxRecords = -1, $sort_mode = 'wikiPageName_asc', $find = '')
