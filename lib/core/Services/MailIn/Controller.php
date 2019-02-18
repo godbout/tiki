@@ -32,10 +32,10 @@ class Services_MailIn_Controller
 			];
 			try {
 				if (! Tiki\MailIn\Account::test($account)) {
-					throw new Services_Exception_FieldError('username', tr('Failed to connect or authenticate with remote host.'));
+					throw new Services_Exception(tr('Failed to connect or authenticate with remote host.'));
 				}
 			} catch (Exception $e) {
-				throw new Services_Exception_FieldError('username', tr('Failed to connect or authenticate with remote host. Error "%0"', $e->getMessage()));
+				throw new Services_Exception_FieldError('username', $e->getMessage());
 			}
 
 			$mailinlib->replace_mailin_account(
