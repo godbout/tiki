@@ -229,10 +229,10 @@
 					<input type="radio" name="addemail" value="n" checked="checked">
 				</div>
 			</div>
-			<div class="form-check">
-				<label class="col-sm-3 form-check-label">{tr}All users{/tr}</label>
+			<div class="form-group row mx-0">
+				<label class="col-sm-3 col-form-label">{tr}All users{/tr}</label>
 				<div class="col-sm-7 col-sm-offset-1 mb-3">
-					<input type="checkbox" class="form-check-input" name="addall">
+					<input type="checkbox" name="addall">
 				</div>
 			</div>
 			<div class="form-group row mx-0">
