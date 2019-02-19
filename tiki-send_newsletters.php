@@ -385,25 +385,27 @@ if (empty($txt) && ! empty($_REQUEST["data"])) {
 		$info['datatxt'] = str_replace("~~~articleclip~~~", $txtArticleClip, $info['datatxt']);
 	}
 }
+// TODO - can't see where resendEditionId is used
 if (! empty($_REQUEST['resendEditionId'])) {
-	if (($info = $nllib->get_edition($_REQUEST['resendEditionId'])) !== false && $info['nlId'] == $_REQUEST['nlId'] && ($_REQUEST['editionId'] = $nllib->replace_edition($info['nlId'], $info['subject'], $info['data'], 0, 0, false, $info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html']))) {
+	if (($info = $nllib->get_edition($_REQUEST['resendEditionId'])) !== false && $info['nlId'] == $_REQUEST['nlId']
+		&& ($_REQUEST['editionId'] = $nllib->replace_edition($info['nlId'], $info['subject'], $info['data'], 0, 0,
+			false, $info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html'])))
+	{
 		$_REQUEST['data'] = $info['data'];
 		$_REQUEST['subject'] = $info['subject'];
 		$_REQUEST['datatxt'] = $info['datatxt'];
 		$_REQUEST['wysiwyg'] = $info['wysiwyg'];
 		$_REQUEST['is_html'] = $info['is_html'];
 		$_REQUEST['dataparsed'] = $info['data'];
-		$_REQUEST['editionId'] = $nllib->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, 0, false, $info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html']);
+		$_REQUEST['editionId'] = $nllib->replace_edition($nl_info['nlId'], $info['subject'], $info['data'], 0, 0, false,
+			$info['datatxt'], $info['files'], $info['wysiwyg'], $info['is_html']);
 		$resend = 'y';
 	} else {
-		$smarty->assign('msg', tra('Incorrect param'));
-		$smarty->display('error.tpl');
-		die;
+		Feedback::errorPage(tr('Incorrect parameter'));
 	}
 } else {
 	$resend = 'n';
 }
-
 if (isset($_REQUEST["send"]) && ! empty($_REQUEST["sendingUniqId"]) || $resend == 'y') {
 	check_ticket('send-newsletter');
 	@set_time_limit(0);
@@ -414,7 +416,7 @@ if (isset($_REQUEST["send"]) && ! empty($_REQUEST["sendingUniqId"]) || $resend =
 		}
 
 		if (isset($_SESSION["sendingUniqIds"][ $_REQUEST["sendingUniqId"] ])) {
-		// Avoid sending the same newsletter again if the user reload the page
+			// Avoid sending the same newsletter again if the user reloads the page
 			print tra('Error: You can\'t send the same newsletter by refreshing this frame content.');
 			die;
 		} else {
@@ -431,8 +433,10 @@ if (isset($_REQUEST["send"]) && ! empty($_REQUEST["sendingUniqId"]) || $resend =
 	exit; // Stop here since we are in an iframe and don't want to use smarty display
 }
 
+// these are subsequent send iterations resulting from recipients exceeding the throttle limit
 if (isset($_REQUEST['resume'])) {
-	// for this throttle resume case the editionId, sendfrom and replyto addresses (if used) are added to the tiki-send_newsletter.php URL in the .tpl
+	// for this throttle resume case the editionId, sendfrom and replyto addresses (if used) are added to the
+	// tiki-send_newsletter.php URL in the .tpl
 	$edition_info = $nllib->get_edition($_REQUEST['resume']);
 	// if they are set the replyto and sendfrom parameter contents are added to edition_info
 	if (! empty($_REQUEST['replyto']) &&  $_REQUEST['replyto'] != "undefined") {
