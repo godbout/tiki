@@ -372,7 +372,7 @@ if (! empty($_REQUEST['datatxt'])) {
 	$txt = $_REQUEST['datatxt'];
 }
 if (empty($txt) && ! empty($_REQUEST["data"])) {
-	//No txt message is explicitely provided -> Create one with the html Version & remove Wiki tags
+	//No txt message is explicitly provided -> Create one with the html Version & remove Wiki tags
 	$txt = $_REQUEST["data"];
 	$txt = $nllib->generateTxtVersion($txt, $parsed);
 	$info["datatxt"] = $txt;
