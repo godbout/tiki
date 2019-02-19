@@ -30,7 +30,7 @@
 			</div>
 		</form>
 	{else}
-		<form method="post" action="{service controller=tracker action=update_item format=$format editItemPretty=$editItemPretty}" id="updateItemForm{$trackerId|escape}">
+		<form method="post" action="{service controller=tracker action=update_item format=$format editItemPretty=$editItemPretty suppressFeedback=$suppressFeedback}" id="updateItemForm{$trackerId|escape}">
 			{trackerfields trackerId=$trackerId fields=$fields status=$status itemId=$itemId format=$format editItemPretty=$editItemPretty}
 			<div class="submit">
 				{if not empty($saveAndComment) and $saveAndComment neq 'n'}

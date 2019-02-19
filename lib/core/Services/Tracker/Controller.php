@@ -780,6 +780,7 @@ class Services_Tracker_Controller
 		$fields = $input->fields->none();
 		$forced = $input->forced->none();
 		$processedFields = $itemObject->prepareInput($input);
+		$suppressFeedback = $input->suppressFeedback->bool();
 		$toRemove = [];
 
 		if (empty($fields)) {
@@ -884,7 +885,9 @@ class Services_Tracker_Controller
 				$processedItem = $this->utilities->processValues($definition, $item);
 				$item['processedFields'] = $processedItem['fields'];
 
-				Feedback::success(tr('New tracker item %0 successfully created.', $itemId));
+				if ($suppressFeedback !== true) {
+					Feedback::success(tr('New tracker item %0 successfully created.', $itemId));
+				}
 
 				return $item;
 			} else {
@@ -944,6 +947,7 @@ class Services_Tracker_Controller
 			'format' => $format,
 			'editItemPretty' => $editItemPretty,
 			'next' => $input->next->url(),
+			'suppressFeedback' => $suppressFeedback,
 		];
 	}
 
@@ -977,6 +981,7 @@ class Services_Tracker_Controller
 	{
 		$trackerId = $input->trackerId->int();
 		$definition = Tracker_Definition::get($trackerId);
+		$suppressFeedback = $input->suppressFeedback->bool();
 
 		if (! $definition) {
 			throw new Services_Exception_NotFound;
@@ -1050,9 +1055,13 @@ class Services_Tracker_Controller
 				//only need feedback if success - feedback already set if there was an update error
 			}
 			if (isset($input['edit']) && $input['edit'] === 'inline') {
-				Feedback::success(tr('Tracker item %0 has been updated', $itemId), true);
+				if ($suppressFeedback !== true) {
+					Feedback::success(tr('Tracker item %0 has been updated', $itemId), true);
+				}
 			} else {
-				Feedback::success(tr('Tracker item %0 has been updated', $itemId));
+				if ($suppressFeedback !== true) {
+					Feedback::success(tr('Tracker item %0 has been updated', $itemId));
+				}
 				$redirect = $input->redirect->url();
 
 				if ($input->saveAndComment->int()) {
@@ -1171,6 +1180,7 @@ class Services_Tracker_Controller
 			'button_label' => $button_label,
 			'redirect' => $input->redirect->none(),
 			'saveAndComment' => $saveAndComment,
+			'suppressFeedback' => $suppressFeedback,
 		];
 	}
 
