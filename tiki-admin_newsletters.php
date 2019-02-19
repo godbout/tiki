@@ -27,18 +27,14 @@ $smarty->assign('nlId', $_REQUEST["nlId"]);
 $perms = Perms::get(['type' => 'newsletter', 'object' => $_REQUEST['nlId']]);
 
 if ($perms->admin_newsletters != 'y') {
-	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
-	$smarty->display("error.tpl");
-	die;
+	Feedback::errorPage(['mes' => tr('You do not have the permission that is needed to use this feature'),
+						 'errortype' => 401]);
 }
 $defaultArticleClipRange = 3600 * 24; // one day
 if ($_REQUEST["nlId"]) {
 	$info = $nllib->get_newsletter($_REQUEST["nlId"]);
 	if (empty($info)) {
-		$smarty->assign('msg', tra('Newsletter does not exist'));
-		$smarty->display('error.tpl');
-		die;
+		Feedback::errorPage(tr('Newsletter does not exist'));
 	}
 	$update = "";
 	$info["articleClipTypes"] = unserialize($info["articleClipTypes"]);
@@ -65,7 +61,12 @@ if ($_REQUEST["nlId"]) {
 $smarty->assign('info', $info);
 if (isset($_REQUEST["remove"])) {
 	$access->check_authenticity();
-	$nllib->remove_newsletter($_REQUEST["remove"]);
+	$result = $nllib->remove_newsletter($_REQUEST["remove"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Newsletter removed'));
+	} else {
+		Feedback::error(tr('Newsletter not removed'));
+	}
 }
 if (isset($_REQUEST["save"])) {
 	check_ticket('admin-nl');
@@ -139,6 +140,12 @@ if (isset($_REQUEST["save"])) {
 		$articleClipTypes,
 		$_REQUEST["emptyClipBlocksSend"]
 	);
+
+	if ($sid) {
+		Feedback::success(tr('Newsletter created or modified'));
+	} else {
+		Feedback::error(tr('Newsletter not created or modified'));
+	}
 
 	$info = [
 		'nlId' => 0,
