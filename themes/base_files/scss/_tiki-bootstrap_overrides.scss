@@ -213,6 +213,10 @@ body.fullscreen.tiki.navbar-padding {
 	}
 }
 
+.navbar-nav {
+	-ms-flex-negative: 0;
+}
+
 #topbar_modules_social { float: left; }
 
 // Commented this out for BS4 because it conflicts with img-fluid.

@@ -3308,6 +3308,9 @@ body.fullscreen.tiki.navbar-padding {
   margin-bottom: 0;
   min-height: 32px; }
 
+.navbar-nav {
+  -ms-flex-negative: 0; }
+
 #topbar_modules_social {
   float: left; }
 
