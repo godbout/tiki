@@ -301,6 +301,7 @@ class TikiAccessLib extends TikiLib
 	 *
 	 * Called by the smarty function {ticket}, which should be placed in all forms with actions that change the
 	 * database
+	 * @throws Exception
 	 */
 	public function setTicket()
 	{
@@ -319,25 +320,33 @@ class TikiAccessLib extends TikiLib
 	 * Typically called at the point of determining whether to perform a state-changing action that does not require
 	 * confirmation, for example:
 	 * if ($_POST['create'] && $access->checkCsrf()) {
-	 * 		//create item here
+	 *        //create item here
 	 * }
 	 *
 	 * Call after checking the $_POST variable otherwise other $_GET requests will throw errors.
 	 * The related submit element (usually in a smarty template) should use the checkTimeout() onclick function
 	 *
-	 * @param string $error 	Used in csrfError() method
-	 * @return bool				Returns true if both checks match, false if either fails
-	 * @throws Exception
+	 * @param string $error
+	 * @param bool   $unsetTicket   Whether to unset $_SESSION ticket after checking. Normally, should unset,
+	 *                              however infrequently it is easier to use a ticket more than once.
+	 *                              Other code should unset the ticket after the multiple uses are complete and ensure
+	 *                              repeated use does not create a vulnerability
+	 *
+	 * @param string $ticket		Ticket may be provided, e.g., in cases where it is used more than once and is
+	 *                        		stored in a session variable rather than being part of the $_POST. Only tickets
+	 *                        		that originated in a $_POST should be used.
+	 *
+	 * @return bool
 	 * @throws Services_Exception
 	 */
-	public function checkCsrf($error = 'session')
+	public function checkCsrf($error = 'session', $unsetTicket = true, $ticket = '')
 	{
 		if ($this->isActionPost()) {
 			if ($this->csrfResult()) {
 				return true;
 			}
 			$this->originCheck();
-			$this->ticketCheck();
+			$this->ticketCheck($unsetTicket, $ticket);
 			if ($this->csrfResult()) {
 				return true;
 			} else {
@@ -463,10 +472,25 @@ class TikiAccessLib extends TikiLib
 	 * server and that the ticket has not expired.
 	 *
 	 * Sets the ticketMatch property to true or false depending on the result of the check
+	 *
+	 * @param bool   $unsetTicket   Whether to unset $_SESSION ticket after checking. Normally, should unset,
+	 *                              however infrequently it is easier to use a ticket more than once.
+	 *                              Other code should unset the ticket after the multiple uses are complete and ensure
+	 *                              repeated use does not create a vulnerability
+	 *
+	 * @param string $ticket		Ticket may be provided, e.g., in cases where it is used more than once and is
+	 *                        		stored in a session variable rather than being part of the $_POST. Only tickets
+	 *                        		that originated in a $_POST should be used.
 	 */
-	private function ticketCheck()
+	private function ticketCheck($unsetTicket, $ticket)
 	{
-		$this->ticket = !empty($_POST['ticket']) ? $_POST['ticket'] : false;
+		if (! empty($ticket)) {
+			$this->ticket = $ticket;
+		} elseif (! empty($_POST['ticket'])) {
+			$this->ticket = $_POST['ticket'];
+		} else {
+			$this->ticket = false;
+		}
 		//just in case url decoding is needed
 		if (strpos($this->ticket, '%') !== false) {
 			$this->ticket = urldecode($this->ticket);
@@ -485,7 +509,9 @@ class TikiAccessLib extends TikiLib
 				$this->logMsg = ' ' . tra('Ticket matches but is expired.');
 				$this->ticketMatch = false;
 			}
-			unset($_SESSION['tickets'][$this->ticket]);
+			if ($unsetTicket) {
+				unset($_SESSION['tickets'][$this->ticket]);
+			}
 		} else {
 			//ticket doesn't match or is missing
 			$this->userMsg = ' ' . tra('Reloading the page may help.');
@@ -507,6 +533,34 @@ class TikiAccessLib extends TikiLib
 	{
 		$this->originCheck();
 		if ($this->originMatch()) {
+			return true;
+		} else {
+			$this->csrfError($error);
+			return false;
+		}
+	}
+
+	/**
+	 * Check CSRF ticket and provide error feedback if it doesn't match the site domain
+	 * Differs from checkCsrf() in that only the ticket is checked, not the origin/referer
+	 *
+	 * @param string $error 		Used in csrfError() method
+	 * @param bool   $unsetTicket   Whether to unset $_SESSION ticket after checking. Normally, should unset,
+	 *                              however infrequently it is easier to use a ticket more than once.
+	 *                              Other code should unset the ticket after the multiple uses are complete and ensure
+	 *                              repeated use does not create a vulnerability
+	 *
+	 * @param string $ticket		Ticket may be provided, e.g., in cases where it is used more than once and is
+	 *                        		stored in a session variable rather than being part of the $_POST. Only tickets
+	 *                        		that originated in a $_POST should be used.
+	 *
+	 * @return bool                Returns true if origin check matches, false if not
+	 * @throws Services_Exception
+	 */
+	public function checkTicket($error = 'session', $unsetTicket = true, $ticket = '')
+	{
+		$this->ticketCheck($unsetTicket, $ticket);
+		if ($this->ticketMatch()) {
 			return true;
 		} else {
 			$this->csrfError($error);
