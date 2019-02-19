@@ -1,9 +1,9 @@
-{* $Id$ *}{tr}Somebody or you tried to subscribe this email address at our {$prefs.mail_template_custom_text}site:{/tr} {$server_name}
+{* $Id$ *}{tr}Someone tried to subscribe this email address at our {$prefs.mail_template_custom_text}site:{/tr} {$server_name}
 {tr}To the newsletter:{/tr} {$info.name}
 
 {tr}Description:{/tr}
 {$info.description}
 
-{tr}In order to confirm your subscription you must access the following URL:{/tr}
+{tr}Please access the following URL to confirm your subscription:{/tr}
 
 {$mail_machine}tiki-newsletters.php?confirm_subscription={$code}
