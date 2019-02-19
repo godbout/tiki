@@ -142,7 +142,7 @@ $lang = array(
 "Colombia" => "Colòmbia",
 "Comoros" => "Comores",
 "Democratic Republic of the Congo" => "Congo,_Repúlica_Democràtica",
-"Congo" => "Congo","Congo_Democratic" => "Congo_Democratic",
+"Congo" => "Congo","Democratic_Republic_of_the_Congo" => "Democratic_Republic_of_the_Congo",
 "Cook Islands" => "Illes_Cook",
 "Cook_Islands" => "Cook_Islands",
 "Costa Rica" => "Costa_Rica",
