@@ -1562,6 +1562,7 @@ class NlLib extends TikiLib
 			'email',
 			[
 				'editionId' => $info['editionId'],
+				'error' => ''
 			]
 		);
 
@@ -1585,7 +1586,19 @@ class NlLib extends TikiLib
 
 					$toSend[$email] = $uInfo;
 				} else {
-					$sent[] = $email;
+					$remainingErrors = $this->table('tiki_sent_newsletters_errors')->fetchColumn(
+						'email',
+						[
+							'editionId' => $info['editionId'],
+							'email' => $uInfo['email'],
+							'error' => 'y'
+						]
+					);
+					if (count($remainingErrors) === 0) {
+						$sent[] = $email;
+					} else {
+						$errors[] = ["user" => $userEmail, "email" => $email, "msg" => tr("potential CSRF")];
+					}
 				}
 			} else {
 				$errors[] = ["user" => $userEmail, "email" => $email, "msg" => tr("invalid email")];
@@ -1617,41 +1630,40 @@ class NlLib extends TikiLib
 				if (@ob_get_level() == 0) {
 					@ob_start();
 				}
-				$emailsent = count($sent) + 1;
-				// Browsers needs a certain amount of data, for each flush, to display something
 				print str_repeat(' ', 4096) . "\n";
-				print '<div class="confirmation">' . " Total emails sent: " . $emailsent . tra(" after sending to") . " '<b>$email</b>': <font color=";
 			}
 
-			try {
-				$zmail = $this->get_edition_mail($info['editionId'], $us, $info['is_html'], $info['replyto'],
-					$info['sendfrom']);
-				if (! $zmail) {
-					continue;
+				try {
+					$zmail = $this->get_edition_mail($info['editionId'], $us, $info['is_html'], $info['replyto'],
+						$info['sendfrom']);
+					if (! $zmail) {
+						continue;
+					}
+					tiki_send_email($zmail);
+					$sent[] = $email;
+					if ($browser) {
+						print '<div class="confirmation">' . ' Total emails sent: ' . count($sent)
+							. tr(' after sending to') . ' <b>' . $email . '</b>: <span class="text-success">' . tr('OK')
+							. '</span></div>' . "\n";
+					}
+					$this->delete_edition_subscriber($info['editionId'], $us);
+					$logStatus = 'OK';
+				} catch (Zend\Mail\Exception\ExceptionInterface $e) {
+					if ($browser) {
+					print '<div class="confirmation">' . ' Total emails sent: ' . count($sent)
+						. tr(' after failure to send to') . ' <b>' . $email . '</b>: <span class="text-danger">'
+						. tr('Error - potential cross site request forgery detected') . '</span></div>' . "\n";
+					}
+					$errors[] = ["user" => $us['user'], "email" => $email, "msg" => $e->getMessage()];
+					$this->mark_edition_subscriber($info['editionId'], $us);
+					$logStatus = 'Error';
 				}
-				tiki_send_email($zmail);
-				$sent[] = $email;
-				if ($browser) {
-					print "'green'>" . tra('OK');
-				}
-				$this->delete_edition_subscriber($info['editionId'], $us);
-				$logStatus = 'OK';
-			} catch (Zend\Mail\Exception\ExceptionInterface $e) {
-				if ($browser) {
-					print "'red'>" . tra('Error') . " - {$e->getMessage()}";
-				}
-				$errors[] = ["user" => $us['user'], "email" => $email, "msg" => $e->getMessage()];
-				$this->mark_edition_subscriber($info['editionId'], $us);
-				$logStatus = 'Error';
-			}
 
 			if ($logFileHandle) {
 				@fwrite($logFileHandle, "$email : $logStatus\n");
 			}
 
 			if ($browser) {
-				print "</font></div>\n";
-
 				// Flush output to force the browser to display email addresses as soon as emails are sent
 				// This should avoid CGI and/or proxy and/or browser timeouts when sending to a lot of emails
 				@ob_flush();
