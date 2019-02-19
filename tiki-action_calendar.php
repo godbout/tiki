@@ -8,6 +8,15 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+/***
+ * @var \TikiAccessLib  $access
+ * @var \HeaderLib  $headerlib
+ * @var \Smarty_Tiki    $smarty
+ * @var \TikiCalendarLib    $tikicalendarlib
+ * @var \TikiLib    $tikilib
+ * @var array   $tc_infos
+ */
+
 include 'tiki-setup.php';
 $tikicalendarlib = TikiLib::lib('tikicalendar');
 $access->check_feature('feature_action_calendar');

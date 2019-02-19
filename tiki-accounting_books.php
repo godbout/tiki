@@ -8,6 +8,19 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+/***
+ * 
+ * @var \TikiAccessLib  $access
+ * 
+ * @var \AccountingLib  $accountinglib
+ * 
+ * 
+ * @var \Smarty_Tiki    $smarty
+ * 
+ * Define the current section
+ * @var string $section
+ */ 
+
 $section = 'accounting';
 require_once('tiki-setup.php');
 

@@ -8,6 +8,21 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+/***
+ * 
+ * @var \TikiAccessLib  $access
+ * 
+ * @var \AccountingLib  $accountinglib
+ * 
+ * 
+ * @var \Smarty_Tiki    $smarty
+ * 
+ * Define the current section
+ * @var string $section
+ */ 
+
+
+
 $section = 'accounting';
 require_once('tiki-setup.php');
 
@@ -65,6 +80,10 @@ $journal = $accountinglib->getJournal($bookId, $accountId);
 $smarty->assign('journal', $journal);
 
 if (! empty($_REQUEST['action'])) {
+    /***
+     * Account Notes
+     * @var Ambiguous $notes
+     */
 	$notes = !empty($_POST['accountNotes']) ? $_POST['accountNotes'] : '';
 	switch ($_REQUEST['action']) {
 		case 'edit':

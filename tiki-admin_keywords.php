@@ -10,6 +10,12 @@
 
 require_once('tiki-setup.php');
 
+/***
+ * @var \TikiAccessLib  $access
+ * @var \Smarty_Tiki    $smarty
+ * 
+ */ 
+
 $access->check_feature('wiki_keywords');
 $access->check_permission('tiki_p_admin_wiki');
 
@@ -29,6 +35,10 @@ function set_keywords($page, $keywords = "")
 	$result = $tikilib->query($query, $bindvars);
 
 	if ($result && $result->numRows()) {
+		/***
+		* 
+		* @var \UnifiedSearchLib $searchlib
+		*/
 		$searchlib = TikiLib::lib('unifiedsearch');
 		$searchlib->invalidateObject('wiki page', $page);
 		$searchlib->processUpdateQueue();

@@ -9,6 +9,15 @@
 // $Id$
 
 //this script may only be included - so its better to die if called directly.
+
+/***
+ * @var int $trunc
+ * @var \Smarty_Tiki    $smarty
+ * @var \TikiLib    $tikilib
+ * 
+ * 
+ */
+
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) != false) {
 	header('location: index.php');
 	exit;
