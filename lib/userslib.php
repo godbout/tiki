@@ -2811,7 +2811,7 @@ class UsersLib extends TikiLib
 		if (! isset($user)) {
 			return 'Anonymous';
 		}
-		if ($user == $_SESSION['u_info']['login']) {
+		if (isset($_SESSION['u_info']) && $user == $_SESSION['u_info']['login']) {
 			if (isset($_SESSION['u_info']['group']) && is_string($_SESSION['u_info']['group'])) {
 				return $_SESSION['u_info']['group'];
 			} elseif (isset($_SESSION['u_info']['group']['groupName']) && is_string($_SESSION['u_info']['group']['groupName'])) {
