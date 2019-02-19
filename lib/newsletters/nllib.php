@@ -1538,7 +1538,8 @@ class NlLib extends TikiLib
 
 	// info: subject, data, datatxt, dataparsed, wysiwyg, sendingUniqId, files, errorEditionId, editionId
 	// browser: true if on the browser
-	public function send($nl_info, $info, $browser = true, &$sent, &$errors, &$logFileName)
+	// $csrfCheck: indicated whether modified csrf check passed
+	public function send($nl_info, $info, $browser = true, &$sent, &$errors, &$logFileName, $csrfCheck)
 	{
 		global $prefs, $section;
 		$tikilib = TikiLib::lib('tiki');
@@ -1633,6 +1634,7 @@ class NlLib extends TikiLib
 				print str_repeat(' ', 4096) . "\n";
 			}
 
+			if ($csrfCheck) {
 				try {
 					$zmail = $this->get_edition_mail($info['editionId'], $us, $info['is_html'], $info['replyto'],
 						$info['sendfrom']);
@@ -1650,14 +1652,37 @@ class NlLib extends TikiLib
 					$logStatus = 'OK';
 				} catch (Zend\Mail\Exception\ExceptionInterface $e) {
 					if ($browser) {
-					print '<div class="confirmation">' . ' Total emails sent: ' . count($sent)
-						. tr(' after failure to send to') . ' <b>' . $email . '</b>: <span class="text-danger">'
-						. tr('Error - potential cross site request forgery detected') . '</span></div>' . "\n";
+						print '<div class="confirmation">' . ' Total emails sent: ' . count($sent)
+							. tr(' after error in sending to') . ' <b>' . $email . '</b>: <span class="text-danger">'
+							. tr('Error') . ' - ' . $e->getMessage();
+						print "'red'>" . tr('Error') . " - {$e->getMessage()}" . '</font></div>' . "\n";
 					}
 					$errors[] = ["user" => $us['user'], "email" => $email, "msg" => $e->getMessage()];
 					$this->mark_edition_subscriber($info['editionId'], $us);
 					$logStatus = 'Error';
 				}
+			} else {
+				if ($browser) {
+					print '<div class="confirmation">' . ' Total emails sent: ' . count($sent)
+						. tr(' after failure to send to') . ' <b>' . $email . '</b>: <span class="text-danger">'
+						. tr('Error - potential cross site request forgery detected') . '</span></div>' . "\n";
+				}
+				$errors[] = [
+					"user" => $us['user'],
+					"email" => $email,
+					"msg" => tr('Potential cross site forgery request detected')
+				];
+				$this->mark_edition_subscriber($info['editionId'], $us);
+				$logStatus = 'Error';
+			}
+
+			if (isset($_SESSION['tickets']['newsletter']['iterations'])) {
+				if ($_SESSION['tickets']['newsletter']['iterations'] > 1) {
+					--$_SESSION['tickets']['newsletter']['iterations'];
+				} else {
+					unset($_SESSION['tickets']['newsletter']);
+				}
+			}
 
 			if ($logFileHandle) {
 				@fwrite($logFileHandle, "$email : $logStatus\n");

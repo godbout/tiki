@@ -68,11 +68,10 @@ if ($user) {
 }
 $smarty->assign('email', $user_email);
 if ($tiki_p_subscribe_newsletters == 'y') {
-	if (isset($_REQUEST["subscribe"])) {
+	if (isset($_REQUEST["subscribe"]) && $access->checkCsrf() ) {
 		if (empty($user) && $prefs['feature_antibot'] == 'y' && ! $captchalib->validate()) {
 			Feedback::errorPage(['mes' => $captchalib->getErrors(), 'errortype' => 'no_redirect_login']);
 		}
-		check_ticket('newsletters');
 		if ($tiki_p_subscribe_email != 'y') {
 			$_REQUEST["email"] = $userlib->get_user_email($user);
 		}
@@ -137,7 +136,6 @@ $smarty->assign_by_ref('sort_mode', $sort_mode);
 $channels = $nllib->list_newsletters($offset, $maxRecords, $sort_mode, $find, '', ["tiki_p_subscribe_newsletters", "tiki_p_admin_newsletters", "tiki_p_send_newsletters"]);
 $smarty->assign_by_ref('cant', $channels['cant']);
 $smarty->assign_by_ref('channels', $channels["data"]);
-ask_ticket('newsletters');
 $section = 'newsletters';
 include_once('tiki-section_options.php');
 // Display the template

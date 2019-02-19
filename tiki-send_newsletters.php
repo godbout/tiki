@@ -314,8 +314,8 @@ if (isset($_REQUEST["preview"])) {
 	TikiLib::lib('header')->add_cssfile($news_cssfile)->add_cssfile($news_cssfile_option);
 }
 $smarty->assign('presend', 'n');
+//only brings up another page, so no anti-csrf required
 if (isset($_REQUEST["save"])) {
-	check_ticket('send-newsletter');
 	// Now send the newsletter to all the email addresses and save it in sent_newsletters
 	$info['datatxt'] = $_REQUEST['datatxt'];
 	$smarty->assign('presend', 'y');
@@ -406,8 +406,21 @@ if (! empty($_REQUEST['resendEditionId'])) {
 } else {
 	$resend = 'n';
 }
-if (isset($_REQUEST["send"]) && ! empty($_REQUEST["sendingUniqId"]) || $resend == 'y') {
-	check_ticket('send-newsletter');
+//store anti-csrf ticket in case of throttling so it can be reused for subsequent iterations since they are get requests
+if (isset($_REQUEST["send"]) && $_REQUEST["nlId"] && $prefs['newsletter_throttle'] === 'y' && $_POST['ticket']) {
+	$throttleLimit = (int) $prefs['newsletter_batch_size'];
+	$subscribers = count($nllib->get_all_subscribers((int) $_REQUEST["nlId"], ""));
+	if ($subscribers > $throttleLimit) {
+		$_SESSION['tickets']['newsletter']['ticket'] = $_POST['ticket'];
+		$_SESSION['tickets']['newsletter']['iterations'] = ceil((int) $subscribers / (int) $throttleLimit);
+		$unsetTicket = false;
+	} else {
+		$unsetTicket = true;
+	}
+}
+if ((isset($_REQUEST["send"]) && ! empty($_REQUEST["sendingUniqId"]) || $resend == 'y')
+	&& $csrfCheck = $access->checkCsrf(null, $unsetTicket))
+{
 	@set_time_limit(0);
 
 	if ($resend != 'y') {
@@ -425,7 +438,7 @@ if (isset($_REQUEST["send"]) && ! empty($_REQUEST["sendingUniqId"]) || $resend =
 	}
 
 	$_REQUEST['begin'] = true;
-	$nllib->send($nl_info, $_REQUEST, true, $sent, $errors, $logFileName);
+	$nllib->send($nl_info, $_REQUEST, true, $sent, $errors, $logFileName, $csrfCheck);
 
 	// use lib function to close the frame with the completion info
 	$nllib->closesendframe($sent, $errors, $logFileName);
@@ -439,19 +452,26 @@ if (isset($_REQUEST['resume'])) {
 	// tiki-send_newsletter.php URL in the .tpl
 	$edition_info = $nllib->get_edition($_REQUEST['resume']);
 	// if they are set the replyto and sendfrom parameter contents are added to edition_info
-	if (! empty($_REQUEST['replyto']) &&  $_REQUEST['replyto'] != "undefined") {
+	if (! empty($_REQUEST['replyto']) && $_REQUEST['replyto'] != "undefined") {
 		$edition_info['replyto'] = $_REQUEST['replyto'];
 	}
-	if (! empty($_REQUEST['sendfrom']) &&  $_REQUEST['sendfrom'] != "undefined") {
+	if (! empty($_REQUEST['sendfrom']) && $_REQUEST['sendfrom'] != "undefined") {
 		$edition_info['sendfrom'] = $_REQUEST['sendfrom'];
 	}
 	$nl_info = $nllib->get_newsletter($edition_info['nlId']);
-	$nllib->send($nl_info, $edition_info, true, $sent, $errors, $logFileName);
-
+	// can't check csrf ticket the usual way since throttle iterations are repeat get requests via javascript
+	// instead check origin, ticket and remaining iterations separately
+	$unsetTicket = ! empty($_SESSION['tickets']['newsletter']['iterations'])
+		&& $_SESSION['tickets']['newsletter']['iterations'] == 1;
+	$csrfCheck = ! empty($_SESSION['tickets']['newsletter']['iterations'])
+		&& $_SESSION['tickets']['newsletter']['iterations'] > 0
+		&& $access->checkOrigin()
+		&& $access->checkTicket(null, $unsetTicket, $_SESSION['tickets']['newsletter']['ticket']);
+	$nllib->send($nl_info, $edition_info, true, $sent, $errors, $logFileName, $csrfCheck);
 	// use lib function to close the frame with the completion info
 	$nllib->closesendframe($sent, $errors, $logFileName);
 
-	exit; // Stop here since we are in an iframe and don't want to use smarty display
+	exit;// Stop here since we are in an iframe and don't want to use smarty display
 }
 
 // Article Clipping
@@ -475,7 +495,7 @@ if (isset($nl_info) && $nl_info["allowArticleClip"] == 'y' && empty($articleClip
 }
 $smarty->assign('articleClip', $articleClip);
 
-if (isset($_REQUEST["save_only"])) {
+if (isset($_REQUEST["save_only"]) && $access->checkCsrf()) {
 	if (! isset($txt) || empty($_REQUEST['datatxt'])) {
 		$txt = "";
 	}
@@ -559,7 +579,6 @@ if (count($tpls) > 0) {
 }
 include_once('tiki-section_options.php');
 
-ask_ticket('send-newsletter');
 $wikilib = TikiLib::lib('wiki');
 $plugins = $wikilib->list_plugins(true, 'editwiki');
 $smarty->assign_by_ref('plugins', $plugins);

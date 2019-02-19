@@ -15,6 +15,7 @@
 	</h2>
 	<br>
 	<form method="post" action="tiki-newsletters.php">
+		{ticket}
 		<input type="hidden" name="nlId" value="{$nlId|escape}">
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Name{/tr}</label>
@@ -45,7 +46,13 @@
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7">
-					<input type="submit" class="btn btn-primary" name="subscribe" value="{tr}Subscribe to this Newsletter{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary"
+						name="subscribe"
+						value="{tr}Subscribe to this Newsletter{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 			</div>
 		{/if}

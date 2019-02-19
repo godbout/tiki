@@ -57,7 +57,11 @@
 								{/if}
 							</td>
 							<td class="action">
-								<a class="tips text-danger" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$groups_g[ix].nlId|urlencode}&amp;group={$groups_g[ix].groupName|urlencode}">
+								<a class="tips text-danger"
+								   title=":{tr}Remove{/tr}"
+								   href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$groups_g[ix].nlId|urlencode}&amp;group={$groups_g[ix].groupName|urlencode}"
+								   onclick="confirmSimple(event, '{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
+								>
 									{icon name='remove'}
 								</a>
 							</td>
@@ -85,7 +89,11 @@
 								<a href="tiki-admin_newsletter_subscriptions.php?nlId={$incId|urlencode}">{$incName|escape}</a>
 							</td>
 							<td class="action">
-								<a class="tips text-danger" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$nlId|urlencode}&amp;included={$incId|urlencode}">
+								<a class="tips text-danger"
+								   title=":{tr}Remove{/tr}"
+								   href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$nlId|urlencode}&amp;included={$incId|urlencode}"
+								   onclick="confirmSimple(event, '{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
+								>
 									{icon name='remove'}
 								</a>
 							</td>
@@ -113,7 +121,11 @@
 							<td class="text">{$pages[ix].validateAddrs|escape}</td>
 							<td class="text">{$pages[ix].addToList|escape}</td>
 							<td class="action">
-								<a class="tips text-danger" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;remove={$pages[ix].nlId|urlencode}&amp;page={$pages[ix].wikiPageName|urlencode}">
+								<a class="tips text-danger"
+								   title=":{tr}Remove{/tr}"
+								   href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;remove={$pages[ix].nlId|urlencode}&amp;page={$pages[ix].wikiPageName|urlencode}"
+								   onclick="confirmSimple(event, '{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
+								>
 									{icon name='remove'}
 								</a>
 							</td>
@@ -127,6 +139,7 @@
 		{include file='find.tpl'}
 
 		<form method="post" action="tiki-admin_newsletter_subscriptions.php">
+			{ticket}
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 		<div class="table-responsive">
 			<table class="table table-striped table-hover">
@@ -162,7 +175,14 @@
 						</td>
 						<td class="text">
 							{if $channels[user].valid == "n"}
-								<a class="link" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;valid={$channels[user].nlId|urlencode}&amp;{if $channels[user].isUser eq "y"}user{else}email{/if}={$channels[user].email|escape:"url"}" title="{tr}Valid{/tr}">{tr}No{/tr}</a>
+								<a
+									class="link"
+									href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;valid={$channels[user].nlId|urlencode}&amp;{if $channels[user].isUser eq "y"}user{else}email{/if}={$channels[user].email|escape:"url"}"
+									title="{tr}Valid{/tr}"
+									onclick="confirmSimple(event, '{tr}Mark subscription as valid?{/tr}', '{ticket mode=get}')"
+								>
+									{tr}No{/tr}
+								</a>
 							{elseif $channels[user].valid == "x"}
 								{tr}Unsubscribed{/tr}
 							{else}
@@ -171,7 +191,12 @@
 						</td>
 						<td class="date">{$channels[user].subscribed|tiki_short_datetime}</td>
 						<td class="action">
-							<a class="tips text-danger" title=":{tr}Remove{/tr}" href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$channels[user].nlId|urlencode}&amp;{if $channels[user].isUser eq "y"}subuser{else}email{/if}={$channels[user].email|escape:"url"}">
+							<a
+								class="tips text-danger"
+								title=":{tr}Remove{/tr}"
+								href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$channels[user].nlId|urlencode}&amp;{if $channels[user].isUser eq "y"}subuser{else}email{/if}={$channels[user].email|escape:"url"}"
+								onclick="confirmSimple(event, '{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
+							>
 								{icon name='remove'}
 							</a>
 						</td>
@@ -183,9 +208,28 @@
 		</div>
 
 		{if $channels}
-			<div align="left">
-				{tr}Perform action with checked:{/tr}
-				<input type="image" name="delsel" src='img/icons/cross.png' alt="{tr}Delete{/tr}" title="{tr}Delete{/tr}">
+			<div class="input-group col-sm-8">
+				<select class="form-control" name="action">
+					<option value="no_action" selected="selected">
+						{tr}Select action to perform with checked{/tr}...
+					</option>
+					<option
+						value="delsel_x"
+						class="confirm-simple"
+						data-confirm-text="{tr}Remove selected subscriptions?{/tr}"
+					>
+						{tr}Remove subscription{/tr}
+					</option>
+				</select>
+				<span class="input-group-append">
+					<button
+						type="submit"
+						class="btn btn-secondary"
+						onclick="confirmSimple(event)"
+					>
+						{tr}OK{/tr}
+					</button>
+				</span>
 			</div>
 		{/if}
 
@@ -198,6 +242,7 @@
 
 		<h2>{tr}Add subscribers{/tr}</h2>
 		<form action="tiki-admin_newsletter_subscriptions.php" method="post">
+			{ticket}
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label">{tr}Email{/tr}</label>
@@ -263,7 +308,13 @@
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 mb-3">
-					<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary"
+						name="add"
+						value="{tr}Add{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 			</div>
 		</form>
@@ -271,6 +322,7 @@
 		{if $tiki_p_batch_subscribe_email eq "y" && $tiki_p_subscribe_email eq "y"}
 			<h2>{tr}Import emails from file{/tr}</h2>
 			<form action="tiki-admin_newsletter_subscriptions.php" method="post" enctype="multipart/form-data">
+				{ticket}
 				<input type="hidden" name="nlId" value="{$nlId|escape}">
 				<div class="form-group row mx-0">
 					<label class="col-sm-3 col-form-label">{tr}File:{/tr}</label>
@@ -292,12 +344,19 @@
 				<div class="form-group row mx-0">
 					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7 col-sm-offset-1 mb-3">
-						<input type="submit" class="btn btn-primary" name="addbatch" value="{tr}Add{/tr}">
+						<input
+							type="submit"
+							class="btn btn-primary"
+							name="addbatch"
+							value="{tr}Add{/tr}"
+							onclick="checkTimeout()"
+						>
 					</div>
 				</div>
 			</form>
 			<h2>{tr}Import emails from wiki page{/tr}</h2>
 			<form action="tiki-admin_newsletter_subscriptions.php" method="post">
+				{ticket}
 				<input type="hidden" name="nlId" value="{$nlId|escape}">
 				<div class="form-group row mx-0">
 					<label class="col-sm-3 col-form-label">Wiki page</label>
@@ -319,12 +378,19 @@
 				<div class="form-group row mx-0">
 					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7 col-sm-offset-1 mb-3">
-						<input type="submit" class="btn btn-primary" name="importPage" value="{tr}Add{/tr}">
+						<input
+							type="submit"
+							class="btn btn-primary"
+							name="importPage"
+							value="{tr}Add{/tr}"
+							onclick="checkTimeout()"
+						>
 					</div>
 				</div>
 			</form>
 			<h2>{tr}Import emails from tracker{/tr}</h2>
 			<form action="tiki-admin_newsletter_subscriptions.php" method="post">
+				{ticket}
 				<input type="hidden" name="nlId" value="{$nlId|escape}">
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label">{tr}Tracker:{/tr}</label>
@@ -346,7 +412,13 @@
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7 col-sm-offset-1 mb-3">
-						<input type="submit" class="btn btn-primary" name="addTracker" value="{tr}Add{/tr}">
+						<input
+							type="submit"
+							class="btn btn-primary"
+							name="addTracker"
+							value="{tr}Add{/tr}"
+							onclick="checkTimeout()"
+						>
 					</div>
 				</div>
 			</form>
@@ -354,6 +426,7 @@
 
 		<h2>{tr}Subscribe group{/tr}</h2>
 		<form action="tiki-admin_newsletter_subscriptions.php" method="post">
+			{ticket}
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label">{tr}Group{/tr}</label>
@@ -378,13 +451,20 @@
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 mb-3">
-					<input type="submit" class="btn btn-primary" name="addgroup" value="{tr}Add{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary"
+						name="addgroup"
+						value="{tr}Add{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 			</div>
 		</form>
 
 		<h2>{tr}Use subscribers of another newsletter{/tr}</h2>
 		<form action="tiki-admin_newsletter_subscriptions.php" method="post">
+			{ticket}
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label">{tr}Newsletter:{/tr}</label>
@@ -402,13 +482,20 @@
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 mb-3">
-					<input type="submit" class="btn btn-primary" name="addincluded" value="{tr}Add{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary"
+						name="addincluded"
+						onclick="checkTimeout()"
+						value="{tr}Add{/tr}"
+					>
 				</div>
 			</div>
 		</form>
 
 		<h2>{tr}Use emails from wiki page{/tr}</h2>
 		<form action="tiki-admin_newsletter_subscriptions.php" method="post">
+			{ticket}
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label">{tr}Wiki page{/tr}</label>
@@ -435,7 +522,13 @@
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 mb-3">
-					<input type="submit" class="btn btn-primary" name="addPage" value="{tr}Add{/tr}">
+					<input
+						type="submit"
+						class="btn btn-primary"
+						name="addPage"
+						value="{tr}Add{/tr}"
+						onclick="checkTimeout()"
+					>
 				</div>
 			</div>
 		</form>

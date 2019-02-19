@@ -65,6 +65,7 @@
 	{/remarksbox}
 	<p>
 		<form method="post" action="tiki-send_newsletters.php" target="resultIframe" id='confirmForm'>
+			{ticket}
 			<input type="hidden" name="nlId" value="{$nlId|escape}">
 			<input type="hidden" name="sendingUniqId" value="{$sendingUniqId|escape}">
 			<input type="hidden" name="editionId" value="{$info.editionId}">
@@ -78,7 +79,7 @@
 			<input type="hidden" name="wysiwyg" value="{$info.wysiwyg|escape}">
 			<input type="hidden" name="is_html" value="{$info.is_html|escape}">
 			<input type="submit" class="btn btn-primary" name="send" value="{tr}Send{/tr}" onclick="document.getElementById('confirmArea').style.display = 'none'; document.getElementById('sendingArea').style.display = 'block';">
-			<input type="submit" class="btn btn-primary" name="cancel" value="{tr}Cancel{/tr}">
+			<input type="submit" class="btn btn-primary" name="cancel" value="{tr}Cancel{/tr}" onclick="checkTimeout()">
 			{foreach from=$info.files item=newsletterfile key=fileid}
 				<input type='hidden' name='newsletterfile[{$fileid}]' value='{$newsletterfile.id}'>
 			{/foreach}
@@ -190,6 +191,7 @@
 		{* --- tab with editor --- *}
 			<h2>{tr}Prepare a newsletter to be sent{/tr}</h2>
 			<form class="form-horizontal" action="tiki-send_newsletters.php" method="post" id='editpageform' enctype='multipart/form-data'>
+				{ticket}
 				<input type="hidden" name="editionId" value="{$info.editionId}">
 				<div class="form-group row">
 					<label class="col-form-label col-sm-2">{tr}Subject:{/tr}</label>
@@ -315,11 +317,31 @@
 				<div class="form-group row">
 					<label class="col-form-label col-sm-2"></label>
 					<div class="col-sm-10">
-						<input type="submit" name="preview" value="{tr}Preview{/tr}" class="wikiaction tips btn btn-primary" title="{tr}Send Newsletters{/tr}|{tr}Preview your changes.{/tr}" onclick="needToConfirm=false">
+						<input
+							type="submit"
+							name="preview"
+							value="{tr}Preview{/tr}"
+							class="wikiaction tips btn btn-primary"
+							title="{tr}Send Newsletters{/tr}|{tr}Preview your changes.{/tr}"
+						>
 						&nbsp;
-						<input type="submit" name="save_only" value="{tr}Save as Draft{/tr}" class="wikiaction tips btn btn-primary" title="{tr}Send Newsletters{/tr}|{tr}Save your changes.{/tr}" onclick="needToConfirm=false">
+						<input
+							type="submit"
+							name="save_only"
+							value="{tr}Save as Draft{/tr}"
+							class="wikiaction tips btn btn-primary"
+							title="{tr}Send Newsletters{/tr}|{tr}Save your changes.{/tr}"
+							onclick="needToConfirm=false; checkTimeout()"
+						>
 						&nbsp;
-						<input type="submit" name="save" value="{tr}Send Newsletter{/tr}" class="wikiaction tips btn btn-secondary" title="{tr}Send Newsletters{/tr}|{tr}Save any changes and send to all subscribers.{/tr}" onclick="needToConfirm=false"></td>
+						<input
+							type="submit"
+							name="save"
+							value="{tr}Send Newsletter{/tr}"
+							class="wikiaction tips btn btn-secondary"
+							title="{tr}Send Newsletters{/tr}|{tr}Save any changes and send to all subscribers.{/tr}"
+							onclick="needToConfirm=false"
+						>
 					</div>
 				</div>
 			</form>

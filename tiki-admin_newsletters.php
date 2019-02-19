@@ -59,8 +59,7 @@ if ($_REQUEST["nlId"]) {
 	$update = "y";
 }
 $smarty->assign('info', $info);
-if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
+if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove newsletter?')) ) {
 	$result = $nllib->remove_newsletter($_REQUEST["remove"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Newsletter removed'));
@@ -68,8 +67,7 @@ if (isset($_REQUEST["remove"])) {
 		Feedback::error(tr('Newsletter not removed'));
 	}
 }
-if (isset($_REQUEST["save"])) {
-	check_ticket('admin-nl');
+if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
 	if (isset($_REQUEST["allowUserSub"]) && $_REQUEST["allowUserSub"] == 'on') {
 		$_REQUEST["allowUserSub"] = 'y';
 	} else {
@@ -204,7 +202,6 @@ $smarty->assign('articleTypes', $articleTypes);
 $smarty->assign_by_ref('cant_pages', $channels["cant"]);
 $smarty->assign_by_ref('channels', $channels["data"]);
 include_once('tiki-section_options.php');
-ask_ticket('admin-nl');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template

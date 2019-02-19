@@ -70,7 +70,7 @@
 										{/self_link}
 									</action>
 									<action>
-										{self_link _icon_name='remove' _menu_text='y' _menu_icon='y' remove=$channels[user].nlId}
+										{self_link _icon_name='remove' _menu_text='y' _menu_icon='y' remove=$channels[user].nlId _onclick="confirmSimple(event, '{tr}Remove newsletter?{/tr}', '{ticket mode=get}')"}
 											{tr}Remove{/tr}
 										{/self_link}
 									</action>
@@ -94,6 +94,7 @@
 		{/if}
 
 		<form action="tiki-admin_newsletters.php" method="post">
+			{ticket}
 			<input type="hidden" name="nlId" value="{$info.nlId|escape}">
 			<input type="hidden" name="author" value="{$user|escape}">
 			<div class="form-group row">
@@ -175,7 +176,13 @@
 				</div>
 			</div>
 			<div class="text-center">
-				<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
+				<input
+					type="submit"
+					class="btn btn-primary"
+					name="save"
+					value="{tr}Save{/tr}"
+					onclick="checkTimeout()"
+				>
 			</div>
 		</form>
 	{/tab}
