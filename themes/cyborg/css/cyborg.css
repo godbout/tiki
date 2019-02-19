@@ -6446,7 +6446,7 @@ a.toolbar:active, li.toolbar:active {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); }
 
 #intertrans-indicator {
-  background-color: #77b300;
+  background-color: #03657d;
   color: #77b300; }
 
 #intertrans-form {
@@ -6876,6 +6876,44 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 
 .chosen-container-multi .chosen-choices .search-choice .search-choice-close:hover {
   background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23921925' d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/%3E%3C/svg%3E"); }
+
+.switch {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin: 6px;
+  transform: translateY(50%);
+  position: relative; }
+  .switch input {
+    display: none; }
+
+.slider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 30px;
+  box-shadow: 0 0 0 2px #b1c5d8, 0 0 4px #3e4551;
+  cursor: pointer;
+  border: 4px solid transparent;
+  overflow: hidden;
+  transition: 0.4s; }
+  .slider:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #33b5e5;
+    border-radius: 30px;
+    transform: translateX(-30px);
+    transition: 0.4s; }
+
+input:checked + .slider {
+  box-shadow: 0 0 0 2px #c1c2cd, 0 0 2px #f4f5ff; }
+  input:checked + .slider:before {
+    transform: translateX(0px);
+    background: #f80; }
 
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
