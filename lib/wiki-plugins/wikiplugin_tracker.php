@@ -315,14 +315,14 @@ function wikiplugin_tracker_info()
 					['text' => tra('creationDate - Descending'), 'value' => 'creationDesc']
 				],
 			],
-			'status' => [
+			'status'                   => [
 				'required' => false,
 				'name' => tra('Status'),
 				'description' => tra('Status of the item used in combination with:') . ' <code>view="user"</code>' . tra('or') . '<code>view="user&field"</code>',
 				'since' => '6.0',
 				'default' => '',
 			],
-			'transactionName' => [
+			'transactionName'          => [
 				'required' => false,
 				'name' => tra('Transaction name'),
 				'description' => tra('The transaction identifier. This identifier connects the various trackers into a
@@ -332,7 +332,7 @@ function wikiplugin_tracker_info()
 				'filter' => 'alpha',
 				'default' => '',
 			],
-			'transactionStep' => [
+			'transactionStep'          => [
 				'required' => false,
 				'name' => tra('Transaction Step'),
 				'description' => tr('Transaction step number specifying the order of the transaction steps. The first
@@ -341,20 +341,36 @@ function wikiplugin_tracker_info()
 				'filter' => 'digits',
 				'default' => '0',
 			],
-			'transactionFinalStep' => [
-				'required' => false,
-				'name' => tra('Final Transaction Step'),
+			'transactionFinalStep'     => [
+				'required'    => false,
+				'name'        => tra('Final Transaction Step'),
 				'description' => tra('Indicate whether this is the final transaction step'),
-				'since' => '15.0',
-				'filter' => 'alpha',
-				'default' => 'y',
-				'options' => [
+				'since'       => '15.0',
+				'filter'      => 'alpha',
+				'default'     => '',
+				'options'     => [
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
-			'itemId' => [
+			'transactionPreviousURL'   => [
+				'required'    => false,
+				'name'        => tr('Transaction previous URL'),
+				'description' => tr('The page to go back to when the "previous" button is clicked.'),
+				'since'       => '18.4',
+				'filter'      => 'url',
+				'default'     => '',
+			],
+			'transactionPreviousLabel' => [
+				'required'    => false,
+				'name'        => tr('Transaction previous button label'),
+				'description' => tr('Text for the "previous" button label.'),
+				'since'       => '18.4',
+				'filter'      => 'text',
+				'default'     => tr(''),
+			],
+			'itemId'                   => [
 				'required' => false,
 				'name' => tra('ItemId'),
 				'description' => tra('ItemId identifying the item to be edited.'),
@@ -365,7 +381,7 @@ function wikiplugin_tracker_info()
 				'parent' => 'input[name="params[trackerId]"]',
 				'parentkey' => 'tracker_id',
 			],
-			'ignoreRequestItemId' => [
+			'ignoreRequestItemId'      => [
 				'required' => false,
 				'name' => tra('Ignore ItemId'),
 				'description' => tr(
@@ -382,7 +398,7 @@ function wikiplugin_tracker_info()
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
-			'tpl' => [
+			'tpl'                      => [
 				'required' => false,
 				'name' => tra('Template File'),
 				'description' => tr(
@@ -675,29 +691,64 @@ function wikiplugin_tracker($data, $params)
 		return;
 	}
 	$smarty->assign('trackerEditFormId', $iTRACKER);
-	$default = ['overwrite' => 'n', 'embedded' => 'n', 'showtitle' => 'n', 'showdesc' => 'n', 'showfieldsdesc' => 'y', 'sort' => 'n', 'showmandatory' => 'y', 'status' => '', 'transactionFinalStep' => 'y', 'registration' => 'n', 'chosenGroup' => 'Registered', 'validateusers' => '', 'emailformat' => 'text'];
+	$default = ['overwrite'            => 'n', 'embedded' => 'n', 'showtitle' => 'n', 'showdesc' => 'n',
+				'showfieldsdesc'       => 'y', 'sort' => 'n', 'showmandatory' => 'y', 'status' => '',
+				'transactionFinalStep' => '', 'registration' => 'n', 'chosenGroup' => 'Registered',
+				'validateusers'        => '', 'emailformat' => 'text'];
 	$params = array_merge($default, $params);
 	$item = [];
 
 	extract($params, EXTR_SKIP);
 
+	$thisIsThePlugin = isset($_REQUEST['iTRACKER']) && $_REQUEST['iTRACKER'] == $iTRACKER;
+
+
 	$nameExist = isset($transactionName) && strlen($transactionName) > 0;
 	$stepExist = isset($transactionStep) && strlen($transactionStep) > 0;
 	if ($nameExist xor $stepExist) {
-		return '<b>' . tra("You need to define both transaction name and transaction step, or none of the two.") . '</b>';
-	} elseif (isset($transactionName) && isset($transactionStep)) {
+		return WikiParser_PluginOutput::error(
+			tr('Transactions'), tr('You need to define both transaction name and transaction step, or none of the two.')
+		);
+	} elseif ($nameExist && $stepExist) {
+		if (empty($transactionFinalStep)) {
+			return WikiParser_PluginOutput::error(
+				tr('Transactions'), tr('You need to choose transactionFinalStep (y/n).')
+			);
+		}
+		if ((empty($transactionPreviousURL) && ! empty($transactionPreviousLabel))
+			|| (! empty($transactionPreviousURL)
+				&& empty($transactionPreviousLabel))
+		) {
+			return WikiParser_PluginOutput::error(
+				tr('Transactions'),
+				tr('Both transactionPreviousURL and transactionPreviousLabel are needed for a "previous" button.')
+			);
+		}
 		if (! isset($_SESSION[$transactionName])) {
 			$_SESSION[$transactionName] = [];
 		}
-		if (! isset($_SESSION[$transactionName][$transactionStep])) {
-			$_SESSION[$transactionName][$transactionStep] = [];
+		if (! isset($_SESSION[$transactionName]['values'])) {
+			$_SESSION[$transactionName]['values'] = [];
 		}
 		if (! isset($_SESSION[$transactionName]['transactionStep'])) {
 			$_SESSION[$transactionName]['transactionStep'] = 0;
 		}
-		if ($_SESSION[$transactionName]['transactionStep'] != $transactionStep) {
-			// in the middle of a transaction but on a different (earlier?) page
-			// currently nothing needed here
+		if (! empty($_REQUEST['itemId'])
+			&& ! (isset($_REQUEST['ok'])
+				&& $thisIsThePlugin)
+		) {    // not if item has been saved
+			if (! empty($_SESSION[$transactionName]['itemId'])
+				&& $_SESSION[$transactionName]['itemId'] != $_REQUEST['itemId']
+			) {
+				// changed itemId since last transaction edit - so clear session values
+				$_SESSION[$transactionName]['values'] = [];
+			}
+			$_SESSION[$transactionName]['itemId'] = $_REQUEST['itemId'];
+		} else if (! empty($_SESSION[$transactionName]['itemId'])) {
+			$_REQUEST['itemId'] = $_SESSION[$transactionName]['itemId'];
+			// jquery validation needs the itemId in the $jitRequest
+			global $jitRequest;
+			$jitRequest = new JitFilter($_REQUEST);
 		}
 	}
 
@@ -867,8 +918,6 @@ function wikiplugin_tracker($data, $params)
 		$trklib->replace_item($_REQUEST['trackerId'], $_REQUEST['itemId'], $img_field);
 	}
 	$back = '';
-
-	$thisIsThePlugin = isset($_REQUEST['iTRACKER']) && $_REQUEST['iTRACKER'] == $iTRACKER;
 
 	if (! isset($_REQUEST["ok"]) || $_REQUEST["ok"] == "n" || ! $thisIsThePlugin || isset($_REQUEST['tr_preview'])) {
 		$field_errors = ['err_mandatory' => [], 'err_value' => []];
@@ -1058,6 +1107,7 @@ function wikiplugin_tracker($data, $params)
 						if (preg_match('/\d+/', $matches[2])) {
 							$traStepInsField = "$fields_prefix$traStepInsField";
 						}
+						// FIXME replace $traStep with 'values'
 						$_REQUEST["$fields_prefix$f"] = str_replace($matches[0], $_SESSION[$transactionName][$traStep]['request'][$traStepInsField], $autosavevalues[$i]);
 					} elseif ($ff['type'] == 'e') {
 						$_REQUEST["$fields_prefix$f"][] = $autosavevalues[$i];
@@ -1214,29 +1264,57 @@ function wikiplugin_tracker($data, $params)
 									];
 				//-- check if we are in a transaction
 				if (isset($transactionName)) {
-					$_SESSION[$transactionName][$transactionStep] = $saveThis;
-					if ($transactionFinalStep == 'y') {
+					$transactionValues = [];
+					foreach ($ins_fields['data'] as $insField) {
+						if (isset($insField['value'])) {
+							$transactionValues['ins_' . $insField['fieldId']] = $insField['value'];
+						}
+					}
+					// NB array key needs a string ins_ prepended so array merge preserves the field id's
+					$_SESSION[$transactionName]['values'] = array_merge(
+						$_SESSION[$transactionName]['values'], $transactionValues
+					);
+
+					if ($transactionFinalStep == 'y' && ! isset($_REQUEST['tr_previous'])) {
 						//-- final step: commit the transaction of registrations and tracker changes of all the transaction steps
-						foreach ($_SESSION[$transactionName] as $saveStep) {
-							if (is_array($saveStep)) {
-								$done = false;
-								foreach ($saveStep['ins_fields']['data'] as $txField) {	// sadly these are non-assoc arrays
-									foreach ($saveThis['ins_fields']['data'] as $saveThisField) {
-										if ($saveThisField['fieldId'] == $txField['fieldId']) {
-											$saveThisField['value'] = $txField['value'];
-											$done = true;
-										}
-									}
-									if (! $done) {
-										$saveThis['ins_fields']['data'][] = $txField;
-									}
+						foreach ($_SESSION[$transactionName]['values'] as $key => $val) {
+							$done = false;
+							$key = str_replace('ins_', '', $key);
+							foreach ($saveThis['ins_fields']['data'] as & $saveThisField) {
+								if ($saveThisField['fieldId'] == $key) {
+									$saveThisField['value'] = $val;
+									$done = true;
+									break;
 								}
+							}
+							if (! $done) {
+								$fieldTemp = $definition->getField($key);
+								if ($fieldTemp) {
+									$fieldTemp['value'] = $val;
+									$saveThis['ins_fields']['data'][] = $fieldTemp;
+								} else {
+									Feedback::error(
+										tr(
+											'Tracker Transaction: Field #%0 not found in fields parameter or template',
+											$key
+										)
+									);
+								}
+
 							}
 						}
 						$rid = wikiplugin_tracker_save_item($saveThis);
 						unset($_SESSION[$transactionName]); // the tracker transaction can be closed
 					} else {
-						$_SESSION[$transactionName]['transactionStep'] = $transactionStep + 1; // switch to the next step
+						if (isset($_REQUEST['tr_previous'])) {
+							$_SESSION[$transactionName]['transactionStep'] = $transactionStep
+								- 1; // switch to the previous step
+							TikiLib::lib('access')->redirect($transactionPreviousURL);
+						} else {
+							$_SESSION[$transactionName]['transactionStep'] = $transactionStep
+								+ 1; // switch to the next step
+							TikiLib::lib('access')->redirect($url[0]);
+						}
 					}
 				} else {
 					// no transaction is used
@@ -1583,6 +1661,14 @@ function wikiplugin_tracker($data, $params)
 			}
 		}
 
+		// if we have a transaction going on merge the session values with the stored item field values
+		if (! empty($_SESSION[$transactionName]['itemId'])) {
+			foreach ($flds['data'] as $k => $field) {
+				if (isset($_SESSION[$transactionName]['values']['ins_' . $field['fieldId']])) {
+					$flds['data'][$k]['value'] = $_SESSION[$transactionName]['values']['ins_' . $field['fieldId']];
+				}
+			}
+		}
 		// Check that multiple fill fields are in the tracker
 		if (! empty($fieldsfill)) {
 			foreach ($fill_fields as $l) {
@@ -1826,13 +1912,8 @@ function wikiplugin_tracker($data, $params)
 				}
 
 				// if we are doing a transaction then pick up values "saved" so far
-				if (!empty($transactionName) && isset($_SESSION[$transactionName][$transactionStep]['ins_fields']['data'])) {
-					foreach ($_SESSION[$transactionName][$transactionStep]['ins_fields']['data'] as $txField) {
-						if ($txField['fieldId'] == $f['fieldId']) {
-							$item[$f['fieldId']] = $txField['value'];
-						}
-					}
-
+				if (! empty($transactionName) && isset($_SESSION[$transactionName]['values']['ins_' . $f['fieldId']])) {
+					$item[$f['fieldId']] = $_SESSION[$transactionName]['values']['ins_' . $f['fieldId']];
 				} else {
 					$item[$f['fieldId']] = $f['value'];
 				}
@@ -2090,6 +2171,10 @@ FILL;
 				$back .= '<div class="form-group row"><div class="input_submit_container btn-bar">';
 			}
 
+			if (! empty($transactionPreviousLabel) && ! empty($transactionPreviousURL)) {
+				$back .= '<input class="btn btn-secondary button submit previous" type="submit" name="tr_previous" value="'
+					. tra($transactionPreviousLabel) . '"/> ';
+			}
 			if (! empty($reset)) {
 					$back .= '<input class="button submit preview" type="reset" name="tr_reset" value="' . tra($reset) . '" />';
 			}
