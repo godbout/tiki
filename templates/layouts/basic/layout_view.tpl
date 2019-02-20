@@ -64,6 +64,7 @@
 			<div class="col col3 col-md-12 col-lg-3" id="col3">
 				{modulelist zone=right}
 			</div>
+		</div>
 		{elseif zone_is_empty('right') or $prefs.feature_right_column eq 'n'}
 			{if $prefs.feature_left_column eq 'user'}
 				<div class="col-md-12 side-col-toggle-container justify-content-start">
@@ -132,7 +133,6 @@
 		</div>
 	</footer>
 {/if}
-	</div>
 </div>
 {include file='footer.tpl'}
 </body>

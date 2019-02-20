@@ -53,13 +53,14 @@
 							</div>
 						</div>
 					</div>
-					<div class="form-group ml-2">
+					<div class="form-group">
 						{* Cannot add peers to head of structure *}
 						{if $page_info and !$parent_info}
 							<input type="hidden" name="add_child" value="checked">
 						{else}
-							<input type="checkbox" name="add_child" class="mr-1"> {tr}Child{/tr}
+							<input type="checkbox" name="add_child" class="ml-2 mr-1">{tr}Child{/tr}
 						{/if}
+					</div>
 				</form>
 			</div>
 		{else}

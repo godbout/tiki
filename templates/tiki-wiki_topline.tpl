@@ -103,7 +103,7 @@
 										{/if}
 									</a>
 								{/section}
-							</li>
+							{*</li>*}
 							{if isset($structure_path) && $showstructs[struct].pageName neq $structure_path[0].pageName and $prefs.feature_wiki_open_as_structure neq 'y'}
 								<div role="presentation" class="dropdown-divider"></div>
 								{*<li role="presentation">*}
@@ -149,7 +149,7 @@
 							{if $editable and ($tiki_p_edit eq 'y' or $page|lower eq 'sandbox') and $beingEdited ne 'y' and $machine_translate_to_lang eq ''}
 								<a class="dropdown-item" {ajax_href template="tiki-editpage.tpl"}tiki-editpage.php?page={$page|escape:"url"}{if !empty($page_ref_id) and (empty($needsStaging) or $needsStaging neq 'y')}&amp;page_ref_id={$page_ref_id}{/if}{/ajax_href}>
 										{icon name="edit"} {tr}Edit{/tr}
-										{assign var="hasPageAction" value="1"}</a></li>
+										{assign var="hasPageAction" value="1"}</a>
 								{if $prefs.wiki_edit_icons_toggle eq 'y' and ($prefs.wiki_edit_plugin eq 'y' or $prefs.wiki_edit_section eq 'y')}
 									{jq}
 										$("#wiki_plugin_edit_view").click( function () {
