@@ -2073,8 +2073,14 @@ function wikiplugin_tracker($data, $params)
 						$back .= '<div class="' . $inputclass . ' tracker_input_value tracker_field' . $f['fieldId'] . '">';
 					}
 
+					if ($transactionName) {
+						$back .= wikiplugin_tracker_render_input(
+							$f, $item, $dynamicSave, $_SESSION[$transactionName]['values']
+						);
+					} else {
 						$back .= wikiplugin_tracker_render_input($f, $item, $dynamicSave);
-						$back .= '</div>'; // chibaguy added /divs
+					}
+					$back .= '</div>'; // chibaguy added /divs
 
 					if ($f['type'] === 'j') {
 						$datepicker = true;
@@ -2226,7 +2232,7 @@ FILL;
 	}
 }
 
-function wikiplugin_tracker_render_input($f, $item, $dynamicSave)
+function wikiplugin_tracker_render_input($f, $item, $dynamicSave, $requestData = [])
 {
 	$definition = Tracker_Definition::get($f['trackerId']);
 
@@ -2242,7 +2248,7 @@ function wikiplugin_tracker_render_input($f, $item, $dynamicSave)
 
 	if (! $item['itemId']) {
 		// Non-selected items have not been processed
-		$f = array_merge($f, $handler->getFieldData());
+		$f = array_merge($f, $handler->getFieldData($requestData));
 		$handler = TikiLib::lib("trk")->get_field_handler($f, $item);
 	}
 
