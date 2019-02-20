@@ -1979,9 +1979,16 @@ function wikiplugin_tracker($data, $params)
 		}
 
 		foreach ($flds['data'] as $f) {
+			if ($transactionName) {
+				$renderedField = wikiplugin_tracker_render_input(
+					$f, $item, $dynamicSave, $_SESSION[$transactionName]['values']
+				);
+			} else {
+				$renderedField = wikiplugin_tracker_render_input($f, $item, $dynamicSave);
+			}
 			if (! in_array($f['fieldId'], $auto_fieldId) && in_array($f['fieldId'], $hidden_fieldId)) {
 				// Show in hidden form
-				$back .= '<span style="display:none;">' . wikiplugin_tracker_render_input($f, $item, $dynamicSave) . '</span>';
+				$back .= '<span style="display:none;">' . $renderedField . '</span>';
 			} elseif (! in_array($f['fieldId'], $auto_fieldId) && in_array($f['fieldId'], $outf)) {
 				if ($showmandatory == 'y' and $f['isMandatory'] == 'y') {
 					$onemandatory = true;
@@ -2007,12 +2014,12 @@ function wikiplugin_tracker($data, $params)
 							$smarty->assign("field_id", $f['fieldId']);
 							$smarty->assign("permname", $f['permName']);
 							$smarty->assign("mandatory_sym", $mand);
-							$smarty->assign("field_input", wikiplugin_tracker_render_input($f, $item, $dynamicSave));
+							$smarty->assign("field_input", $renderedField);
 							$smarty->assign("description", $desc);
 							$smarty->assign("field_type", $f['type']);
 							$prettyout = $smarty->fetch($prettyModifier[$f['fieldId']]); //fetch template identified in prettyModifier
 						} else {
-							$prettyout = wikiplugin_tracker_render_input($f, $item, $dynamicSave) . $mand . $desc;
+							$prettyout = $renderedField . $mand . $desc;
 						}
 						$smarty->assign('f_' . $f['fieldId'], $prettyout);
 						$smarty->assign('f_' . $f['permName'], $prettyout);
@@ -2073,13 +2080,7 @@ function wikiplugin_tracker($data, $params)
 						$back .= '<div class="' . $inputclass . ' tracker_input_value tracker_field' . $f['fieldId'] . '">';
 					}
 
-					if ($transactionName) {
-						$back .= wikiplugin_tracker_render_input(
-							$f, $item, $dynamicSave, $_SESSION[$transactionName]['values']
-						);
-					} else {
-						$back .= wikiplugin_tracker_render_input($f, $item, $dynamicSave);
-					}
+					$back .= $renderedField;
 					$back .= '</div>'; // chibaguy added /divs
 
 					if ($f['type'] === 'j') {
