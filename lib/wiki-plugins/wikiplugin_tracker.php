@@ -667,6 +667,8 @@ function wikiplugin_tracker($data, $params)
 	$smarty = TikiLib::lib('smarty');
 	$captchalib = TikiLib::lib('captcha');
 
+	$smarty->loadPlugin('smarty_function_ticket');
+
 	static $iTRACKER = 0;
 	++$iTRACKER;
 	if (isset($params['itemId']) && empty($params['itemId'])) {
@@ -1764,6 +1766,7 @@ function wikiplugin_tracker($data, $params)
 			$back .= '<form class="' . $formClasses . '" name="editItemForm' . $iTRACKER . '" id="editItemForm' . $iTRACKER . '" enctype="multipart/form-data" method="post"' . (isset($target) ? ' target="' . $target . '"' : '') . ' action="' . $_SERVER['REQUEST_URI'] . '"><input type="hidden" name="trackit" value="' . $trackerId . '" />';
 			$back .= '<input type="hidden" name="refresh" value="1" />';
 		}
+		$back .= smarty_function_ticket([], $smarty);
 		$back .= '<input type="hidden" name="iTRACKER" value="' . $iTRACKER . '" />';
 		if (isset($_REQUEST['page'])) {
 			$back .= '<input type="hidden" name="page" value="' . $_REQUEST["page"] . '" />';
