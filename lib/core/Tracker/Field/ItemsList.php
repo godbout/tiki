@@ -564,8 +564,14 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 				$localValue = $trklib->get_item_value($trackerId, $localValue, $filterFieldIdThere);
 			}
 			// u = user selector, might be mulitple users so need to find multiple values
-			if ($filterFieldHere['type'] == 'u' && ! empty($filterFieldHere['options_map']['multiple'])) {
-				$theUsers = explode(',', $localValue);
+			if ($filterFieldHere['type'] == 'u' && ! empty($filterFieldHere['options_map']['multiple'])
+				&& $localValue
+			) {
+				if (! is_array($localValue)) {
+					$theUsers = explode(',', $localValue);
+				} else {
+					$theUsers = $localValue;
+				}
 				$items = [];
 				foreach ($theUsers as $theUser) {
 					$items = array_merge(
