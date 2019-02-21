@@ -6,7 +6,7 @@
 
 	{* </div> *}
 	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
-		<form method="post" action="" class="form form-inline my-2 my-md-0" role="form" style="min-height: 60px; width: 165px;">
+		<form method="post" class="form form-inline my-2 my-md-0" role="form" style="min-height: 60px; width: 165px;">
 			<div class="form=check">
 				{ticket}
 				<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round form-check-input {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
@@ -19,8 +19,10 @@
 						{icon name="filter"}
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li class="dropdown-item"><span class="dropdown-title">{tr}Preference Filters{/tr}</span></li>
-						<input type="hidden" name="pref_filters[]" value="basic">
+						<li class="dropdown-item">
+							<span class="dropdown-title">{tr}Preference Filters{/tr}</span>
+							<input type="hidden" name="pref_filters[]" value="basic">
+						</li>
 						{foreach from=$pref_filters key=name item=info}
 							<li class="dropdown-item">
 								<div class="form-check justify-content-start">
@@ -30,14 +32,16 @@
 								</div>
 							</li>
 						{/foreach}
-						<div class="text-center">
-							<input
-								type="submit"
-								value="{tr}Set as my default{/tr}"
-								class="btn btn-primary btn-sm"
-								onclick="checkTimeout()"
-							>
-						</div>
+						<li class="dropdown-item">
+							<div class="text-center">
+								<input
+									type="submit"
+									value="{tr}Set as my default{/tr}"
+									class="btn btn-primary btn-sm"
+									onclick="checkTimeout()"
+								>
+							</div>
+						</li>
 						{if $prefs.connect_feature eq "y"}
 							{capture name=likeicon}{icon name="thumbs-up"}{/capture}
 							<div class="form=check">
@@ -127,11 +131,11 @@
 		{include file="admin/admin_navbar_menu.tpl"}
 		<ul class="navbar-nav flex-row  d-none d-md-flex mr-2">
 			<li class="nav-item">
-				<form method="post" action="" class="form-inline my-2 my-md-0 ml-auto" role="form">
+				<form method="post" class="form-inline my-2 my-md-0 ml-auto" role="form">
 					<div class="form-group row mx-0">
 						<input type="hidden" name="filters">
 						<div class="input-group">
-							<input type="text" name="lm_criteria" style="width: 163px;"value="{$lm_criteria|escape}" class="form-control form-control-sm" placeholder="{tr}Search preferences{/tr}...">
+							<input type="text" name="lm_criteria" style="width: 163px;" value="{$lm_criteria|escape}" class="form-control form-control-sm" placeholder="{tr}Search preferences{/tr}...">
 							<div class="input-group-append">
 								<button type="submit" class="btn btn-info btn-sm" {if $indexNeedsRebuilding} class="tips" title="{tr}Configuration search{/tr}|{tr}Note: The search index needs rebuilding, this will take a few minutes.{/tr}"{/if}>{icon name="search"}</button>
 							</div>
@@ -151,7 +155,7 @@
 		<div class="card-header">
 			<h3 class="card-title">{tr}Preference Search Results{/tr}<button type="button" id="pref_searchresults-close" class="close" aria-hidden="true">&times;</button></h3>
 		</div>
-		<form method="post" action="" href="tiki-admin.php" class="table" role="form">
+		<form method="post" href="tiki-admin.php" class="table" role="form">
 			<div class="pref_search_results card-body">
 				{foreach from=$lm_searchresults item=prefName}
 					{preference name=$prefName get_pages='y' visible='always'}
