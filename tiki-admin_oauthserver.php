@@ -9,6 +9,7 @@
 // $Id$
 
 require_once('tiki-setup.php');
+$access->check_permission('tiki_p_admin');
 
 TikiLib::lib('header')->add_jsfile('lib/jquery_tiki/tiki-admin_oauthserver.js');
 $oauthserverlib = TikiLib::lib('oauthserver');
