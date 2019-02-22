@@ -213,8 +213,20 @@ class XMPPLib extends TikiLib
 
 		if (empty($user))
 		{
-			$js .= 'sessionStorage.clear();';
-			$js .= 'localStorage.clear();';
+			$session_timeout = 0;
+			if (isset($_SESSION['conversejs-session-timeout']))
+			{
+				$session_timeout = intval($_SESSION['conversejs-session-timeout']);
+			}
+
+			if (time() > $session_timeout)
+			{
+				$js .= 'sessionStorage.clear();';
+				$js .= 'localStorage.clear();';
+			}
+
+			$session_timeout = time() + (60 * 15);
+			$_SESSION['conversejs-session-timeout'] = $session_timeout;
 		}
 
 		$params = array_merge([
