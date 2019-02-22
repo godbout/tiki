@@ -609,7 +609,7 @@
 			"type": "package",
 			"package": {
 				"name": "jquery/jquery-timepicker-addon",
-				"version": "1.6.1",
+				"version": "1.6.3",
 				"dist": {
 					"url": "https://github.com/trentrichardson/jQuery-Timepicker-Addon/archive/v1.6.3.zip",
 					"type": "zip"
