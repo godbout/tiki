@@ -70,4 +70,5 @@ vendor/*
 vendor_bundled/vendor
 /vendor_custom
 vendor_custom/*
+/.vscode
 /whelp
