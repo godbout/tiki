@@ -1,5 +1,8 @@
 {* $Id$ *}
 {if empty($iListExecute)}{assign var=iListExecute value=$id}{/if}
+{if isset($tableparams.title)}
+		<p>{wiki}{$tableparams.title}{/wiki}</p>
+{/if}
 {if $actions}
 <form method="post" action="#{$id}" class="form-inline" id="listexecute-{$iListExecute}">
 {/if}
@@ -7,7 +10,7 @@
 	{$column = [$column]}{* if there is only one column then it will not be in an array *}
 {/if}
 {if isset($tableparams.allowtableexpansion) && $tableparams.allowtableexpansion eq 'y'}
-	<button title="{tr}Expand table{/tr}" class="btn btn-primary btn-sm table-expand-toggle" type="button" ><span class="icon far fa-caret-square-right fa-fw "></span></button>
+	{button href='javascript:void(0)' _type="primary" _class="btn btn-primary btn-sm table-expand-toggle" _icon_name="caret-square-right" _title="{tr}Expand table{/tr}"}
 	{jq}
 		$(".table-expand-toggle").click(function(){
 			var $this = $(this);
@@ -18,7 +21,7 @@
 					$(this).removeClass('table-responsive').addClass('table');
 				}); // end each
 				$this.attr('title','{tr}Restore layout{/tr}');
-				$this.children('span').removeClass('fa-caret-square-right').addClass('fa-caret-square-left');
+				$this.find(".icon").setIcon("caret-square-left");
 			}else{
 				$this.data('expandStatus','responsive');
 				var $parentdiv = $(this).parent('div');
@@ -26,7 +29,7 @@
 					$(this).addClass('table-responsive').removeClass('table');
 				}); // end each
 				$this.attr('title','{tr}Expand table{/tr}');
-				$this.children('span').removeClass('fa-caret-square-left').addClass('fa-caret-square-right');
+				$this.find(".icon").setIcon("caret-square-right");
 			}
 		});
 	{/jq}
