@@ -43,7 +43,7 @@
 		"jcbrand/converse.js": "4.1.0",
 		"jquery-form/form": "^3.51",
 		"jquery/jquery-sheet": "3.1",
-		"jquery/jquery-timepicker-addon": "^1.5.0",
+		"jquery/jquery-timepicker-addon": "^1.6.3",
 		"jquery/jtrack": "1.0",
 		"jquery/md5": "1.1",
 		"jquery/minicart": "2.6.1",

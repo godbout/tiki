@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc430e524c7c35331e112d3ba97eed73",
+    "content-hash": "5c154515de96e77868b522d1c08e2b6f",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -236,17 +236,17 @@
         },
         {
             "name": "bower-asset/fontawesome",
-			"version": "5.7.2",
+            "version": "5.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-				"reference": "1cf1062e0cfda5e9b5b2cac7844721b345e1a9c5"
+                "reference": "1cf1062e0cfda5e9b5b2cac7844721b345e1a9c5"
             },
             "dist": {
                 "type": "zip",
-				"url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-1cf1062e0cfda5e9b5b2cac7844721b345e1a9c5-zip-99a6e0.zip",
-				"reference": "1cf1062e0cfda5e9b5b2cac7844721b345e1a9c5",
-				"shasum": "8ce1bfdd92d426dd95059d8a576c0eda881dab7a"
+                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-1cf1062e0cfda5e9b5b2cac7844721b345e1a9c5-zip-99a6e0.zip",
+                "reference": "1cf1062e0cfda5e9b5b2cac7844721b345e1a9c5",
+                "shasum": "8ce1bfdd92d426dd95059d8a576c0eda881dab7a"
             },
             "type": "bower-asset"
         },
@@ -661,9 +661,9 @@
             },
             "dist": {
                 "type": "zip",
-				"url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
+                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-				"shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
+                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
             },
             "type": "component",
             "extra": {
@@ -972,7 +972,7 @@
             ],
             "authors": [
                 {
-					"name": "Osman Üngür",
+                    "name": "Osman Üngür",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1446,9 +1446,9 @@
             },
             "dist": {
                 "type": "zip",
-				"url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-				"shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1735,11 +1735,11 @@
         },
         {
             "name": "jquery/jquery-timepicker-addon",
-            "version": "1.6.1",
+            "version": "1.6.3",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jquery/jquery-timepicker-addon/jquery-jquery-timepicker-addon-1.6.1.zip",
-                "shasum": "ac3afc85b17e670a67252132ff9a092fe9f1930c"
+                "url": "https://composer.tiki.org/dist/jquery/jquery-timepicker-addon/jquery-jquery-timepicker-addon-1.6.3.zip",
+                "shasum": "9c66e144dec7cd433ee7366070bae73fd230d226"
             },
             "type": "library"
         },
@@ -1992,9 +1992,9 @@
             },
             "dist": {
                 "type": "zip",
-				"url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
+                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-				"shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
+                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
             },
             "require": {
                 "php": ">=5.3.1",
@@ -2107,7 +2107,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-					"role": "developer"
+                    "role": "developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -2607,7 +2607,7 @@
                 "jabber",
                 "xmpp"
             ],
-			"time": "2018-12-18T20:06:49+00:00"
+            "time": "2018-12-18T20:06:49+00:00"
         },
         {
             "name": "mottie/tablesorter",
@@ -2831,9 +2831,9 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-				"type": "zip",
-				"url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
-				"shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
+                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
             },
             "type": "npm-asset",
             "license": [
@@ -3577,17 +3577,17 @@
         },
         {
             "name": "plotly/plotly.js",
-			"version": "v1.44.4",
+            "version": "v1.44.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-				"reference": "884d2fa4cf76529bd6cb819fa2d4fec1f43fadfa"
+                "reference": "884d2fa4cf76529bd6cb819fa2d4fec1f43fadfa"
             },
             "dist": {
                 "type": "zip",
-				"url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-884d2fa4cf76529bd6cb819fa2d4fec1f43fadfa-zip-4af43d.zip",
-				"reference": "884d2fa4cf76529bd6cb819fa2d4fec1f43fadfa",
-				"shasum": "3d4aa34c0f5618ac4584aa54a370bce6673fd240"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-884d2fa4cf76529bd6cb819fa2d4fec1f43fadfa-zip-4af43d.zip",
+                "reference": "884d2fa4cf76529bd6cb819fa2d4fec1f43fadfa",
+                "shasum": "3d4aa34c0f5618ac4584aa54a370bce6673fd240"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -3609,7 +3609,7 @@
                 "plotting",
                 "visualization"
             ],
-			"time": "2019-02-12T15:33:38+00:00"
+            "time": "2019-02-12T15:33:38+00:00"
         },
         {
             "name": "psr/container",
@@ -3890,9 +3890,9 @@
             },
             "dist": {
                 "type": "zip",
-				"url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
+                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-				"shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
+                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -4177,17 +4177,17 @@
         },
         {
             "name": "sabre/vobject",
-			"version": "4.2.0",
+            "version": "4.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sabre-io/vobject.git",
-				"reference": "bd500019764e434ff65872d426f523e7882a0739"
+                "reference": "bd500019764e434ff65872d426f523e7882a0739"
             },
             "dist": {
                 "type": "zip",
-				"url": "https://composer.tiki.org/dist/sabre/vobject/sabre-vobject-bd500019764e434ff65872d426f523e7882a0739-zip-00540f.zip",
-				"reference": "bd500019764e434ff65872d426f523e7882a0739",
-				"shasum": "fda8037c5d7ea80a8b580e40c43cd50cfa5f6430"
+                "url": "https://composer.tiki.org/dist/sabre/vobject/sabre-vobject-bd500019764e434ff65872d426f523e7882a0739-zip-00540f.zip",
+                "reference": "bd500019764e434ff65872d426f523e7882a0739",
+                "shasum": "fda8037c5d7ea80a8b580e40c43cd50cfa5f6430"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -4195,7 +4195,7 @@
                 "sabre/xml": ">=1.5 <3.0"
             },
             "require-dev": {
-				"phpunit/phpunit": "> 4.8.35, <6.0.0"
+                "phpunit/phpunit": "> 4.8.35, <6.0.0"
             },
             "suggest": {
                 "hoa/bench": "If you would like to run the benchmark scripts"
@@ -4269,7 +4269,7 @@
                 "xCal",
                 "xCard"
             ],
-			"time": "2019-02-19T13:05:37+00:00"
+            "time": "2019-02-19T13:05:37+00:00"
         },
         {
             "name": "sabre/xml",
@@ -4903,7 +4903,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-					"email": "BackEndTea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -5699,17 +5699,17 @@
         },
         {
             "name": "zendframework/zend-http",
-			"version": "2.10.0",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-http.git",
-				"reference": "4b4983178693a8fdda53b0bbee58552e2d2b1ac0"
+                "reference": "4b4983178693a8fdda53b0bbee58552e2d2b1ac0"
             },
             "dist": {
                 "type": "zip",
-				"url": "https://composer.tiki.org/dist/zendframework/zend-http/zendframework-zend-http-4b4983178693a8fdda53b0bbee58552e2d2b1ac0-zip-44fe7f.zip",
-				"reference": "4b4983178693a8fdda53b0bbee58552e2d2b1ac0",
-				"shasum": "44948825c97d812bdc69a8e5af664a2e1eec8039"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-http/zendframework-zend-http-4b4983178693a8fdda53b0bbee58552e2d2b1ac0-zip-44fe7f.zip",
+                "reference": "4b4983178693a8fdda53b0bbee58552e2d2b1ac0",
+                "shasum": "44948825c97d812bdc69a8e5af664a2e1eec8039"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
@@ -5729,8 +5729,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-					"dev-master": "2.10.x-dev",
-					"dev-develop": "2.11.x-dev"
+                    "dev-master": "2.10.x-dev",
+                    "dev-develop": "2.11.x-dev"
                 }
             },
             "autoload": {
@@ -5750,7 +5750,7 @@
                 "zend",
                 "zf"
             ],
-			"time": "2019-02-19T18:58:14+00:00"
+            "time": "2019-02-19T18:58:14+00:00"
         },
         {
             "name": "zendframework/zend-i18n",
@@ -7804,6 +7804,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2017-06-30T09:13:00+00:00"
         },
         {
