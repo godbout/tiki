@@ -33,6 +33,9 @@
 					{preference name=auth_token_tellafriend}
 					{preference name=auth_token_share}
 					{preference name=feature_group_transition}
+					<div class="adminoptionboxchild" id="feature_group_transition_childcontainer">
+						{preference name=default_group_transitions}
+					</div>
 					{preference name=user_likes}
 					{preference name=mustread_enabled}
 					<div class="adminoptionboxchild" id="mustread_enabled_childcontainer">

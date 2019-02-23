@@ -70,7 +70,7 @@ function prefs_default_list()
 			'filter' => 'digits',
 			'default' => '6',
 		],
-		'default_rows_textarea_forum' => [
+		'default_rows_textarea_forum'       => [
 			'name' => tra('Forum'),
 			'type' => 'text',
 			'size' => '3',
@@ -86,11 +86,19 @@ function prefs_default_list()
 			'filter' => 'digits',
 			'default' => '10',
 		],
-		'default_calendars' => [
+		'default_calendars'                 => [
 			'name' => tra('Select default calendars to display'),
 			'type' => 'multicheckbox',
 			'options' => $cals,
 			'default' => [],
+		],
+		'default_group_transitions'         => [
+			'name'         => tra('Group transition sets default'),
+			'description'  => tra("Sets the group transitioned to as the user's default group."),
+			'type'         => 'flag',
+			'help'         => 'Group+Transitions',
+			'default'      => 'n',
+			'dependencies' => ['feature_group_transition'],
 		],
 	];
 }

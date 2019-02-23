@@ -275,10 +275,15 @@ class TransitionLib
 	 */
 	private function addState($state, $object, $type)
 	{
+		global $prefs;
+
 		switch ($this->transitionType) {
 			case 'group':
 				$userlib = TikiLib::lib('user');
 				$userlib->assign_user_to_group($object, $state);
+				if ($prefs['default_group_transitions'] === 'y') {
+					$userlib->set_default_group($object, $state);
+				}
 				return;
 			case 'category':
 				$categlib = TikiLib::lib('categ');
