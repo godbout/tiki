@@ -4368,21 +4368,37 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     margin-right: 10px; }
   .multilike .rate div .count {
     font-size: 0.8em; }
-/* re-style buttons to be link links */
-#tiki-installer .btn-link {
-  border: none;
-  display: inline;
-  text-align: left;
-  -webkit-appearance: none; }
+
+#tiki-installer {
+  background-color: #aeaeae;
+  /* re-style buttons to be link links */ }
+  #tiki-installer .btn-link {
+    border: none;
+    display: inline;
+    text-align: left;
+    -webkit-appearance: none; }
   #tiki-installer .btn-link:not([disable]):hover {
     cursor: pointer; }
+  #tiki-installer .sidebar {
+    margin: 1.5em 1.5em 0 0;
+    position: fixed; }
+  #tiki-installer .installer-content {
+    background-color: white;
+    min-height: 100vh;
+    padding-top: 3%; }
+  #tiki-installer .floating-links {
+    position: fixed;
+    bottom: 1%;
+    right: 1%; }
+  #tiki-installer .menus {
+    margin-top: 15%; }
   #tiki-installer .menus .menu {
     color: white;
     margin-top: 1em; }
   #tiki-installer ol.nav {
     list-style-type: decimal;
     list-style-position: outside;
-    margin-left: 0; }
+    margin-left: 2em; }
   #tiki-installer .nav {
     margin-left: 1em; }
   #tiki-installer .nav .nav-item {

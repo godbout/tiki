@@ -1,4 +1,5 @@
 #tiki-installer {
+    background-color: #aeaeae;
 
     /* re-style buttons to be link links */
     .btn-link {
@@ -12,7 +13,26 @@
         }
     }
 
+    .sidebar {
+        margin: 1.5em 1.5em 0 0;
+        position: fixed;
+    }
+
+    .installer-content {
+        background-color: white;
+        min-height: 100vh;
+        padding-top: 3%;
+    }
+
+    .floating-links {
+        position: fixed;
+        bottom: 1%;
+        right: 1%;
+    }
+
     .menus {
+        margin-top: 15%;
+
         .menu {
             color: white;
             margin-top: 1em;
@@ -22,7 +42,7 @@
     ol.nav {
         list-style-type: decimal;
         list-style-position: outside;
-        margin-left: 0;
+        margin-left: 2em;
     }
         
     .nav {

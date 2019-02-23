@@ -1,7 +1,7 @@
-<div id="tiki-installer">
-    <div class="row install-header">
-        <div class="col-md-3" style="background-color: #aeaeae; height:100vh; position: fixed;">
-            <div class="card-body">
+<div id="tiki-installer" class="container-fluid">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sidebar">
                 <img alt="{tr}Tiki Wiki CMS Groupware{/tr}" class="img-fluid" src="img/tiki/Tiki_WCG.png">
                 <div class="menus">
                     <form class="installer-menu menu" action="tiki-install.php" method="post">
@@ -160,8 +160,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9" style="position: fixed; margin-left: 25%; overflow-y: scroll; height: 100vh">
-            <div class="text-center" style="margin-top: 10%">
+        <div class="col-md-9 installer-content">
+            <div class="text-center">
                 <h1>{tr}Tiki Installer{/tr} <small>{$tiki_version_name} <a class="text-info" title="{tr}Help{/tr}" href="https://doc.tiki.org/Installation" target="help">{icon name="help"}</a></small></h1>
             </div>
             <div class="row install-body" style="margin-left: 10%; margin-top: 10%">
@@ -1061,9 +1061,12 @@
             </div>
         </div>
     </div><!-- End of install-header -->
-    <div class="row text-center" style="position: absolute; bottom: 1%; right:1%">
-        <hr>
-        <a href="https://tiki.org" target="_blank" title="{tr}Powered by{/tr} {tr}Tiki Wiki CMS Groupware{/tr} &copy; 2002–{$smarty.now|date_format:"%Y"} " class="btn"><img src="img/tiki/tikibutton.png" alt="{tr}Powered by Tiki Wiki CMS Groupware{/tr}"></a>
+
+    <div class="floating-links">
+        <a href="https://tiki.org" target="_blank"
+            title="{tr}Powered by{/tr} {tr}Tiki Wiki CMS Groupware{/tr} &copy; 2002–{$smarty.now|date_format:"%Y"} "
+            class="btn"><img src="img/tiki/tikibutton.png" alt="{tr}Powered by Tiki Wiki CMS Groupware{/tr}"></a>
     </div><!-- End of install-footer -->
+
     {*</div><!-- End of install-body -->*}
 </div><!-- End of tiki-install container -->
