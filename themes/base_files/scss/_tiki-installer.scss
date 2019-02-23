@@ -10,6 +10,7 @@
 
         &:not([disable]):hover {
             cursor: pointer;
+            text-decoration: underline;
         }
     }
 
