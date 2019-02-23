@@ -4381,19 +4381,21 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     cursor: pointer;
     text-decoration: underline; }
   #tiki-installer .sidebar {
-    margin: 1.5em 1.5em 0 0;
-    position: fixed; }
+    margin: 1.5em 1.5em 0 0; }
+  @media (min-height: 700px) {
+  #tiki-installer .sidebar {
+    position: fixed; } }
   #tiki-installer .installer-content {
     background-color: white;
     min-height: 100vh;
-    padding-top: 3%;
+    padding-top: 5em;
     padding-bottom: 5em; }
   #tiki-installer .floating-links {
     position: fixed;
-    bottom: 1%;
-    right: 1%; }
+    bottom: 1em;
+    right: 1em; }
   #tiki-installer .menus {
-    margin-top: 15%; }
+    margin-top: 5em; }
   #tiki-installer .menus .menu {
     color: white;
     margin-top: 1em; }

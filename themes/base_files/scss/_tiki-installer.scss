@@ -16,24 +16,29 @@
 
     .sidebar {
         margin: 1.5em 1.5em 0 0;
-        position: fixed;
+    }
+
+    @media(min-height: 700px) {
+        .sidebar {
+            position: fixed;
+        }
     }
 
     .installer-content {
         background-color: white;
         min-height: 100vh;
-        padding-top: 3%;
+        padding-top: 5em;
         padding-bottom: 5em;
     }
 
     .floating-links {
         position: fixed;
-        bottom: 1%;
-        right: 1%;
+        bottom: 1em;
+        right: 1em;
     }
 
     .menus {
-        margin-top: 15%;
+        margin-top: 5em;
 
         .menu {
             color: white;
