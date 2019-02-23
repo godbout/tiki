@@ -4368,4 +4368,31 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     margin-right: 10px; }
   .multilike .rate div .count {
     font-size: 0.8em; }
+/* re-style buttons to be link links */
+#tiki-installer .btn-link {
+  border: none;
+  display: inline;
+  text-align: left;
+  -webkit-appearance: none; }
+  #tiki-installer .btn-link:not([disable]):hover {
+    cursor: pointer; }
+  #tiki-installer .menus .menu {
+    color: white;
+    margin-top: 1em; }
+  #tiki-installer ol.nav {
+    list-style-type: decimal;
+    list-style-position: outside;
+    margin-left: 0; }
+  #tiki-installer .nav {
+    margin-left: 1em; }
+  #tiki-installer .nav .nav-item {
+    color: white;
+    line-height: 2em; }
+  #tiki-installer .nav .nav-item .nav-link {
+    color: white;
+    padding: 0; }
+  #tiki-installer .nav .nav-item.active {
+    color: blue; }
+  #tiki-installer .nav .nav-item.active .nav-link {
+    color: blue; }
 /* End of file */

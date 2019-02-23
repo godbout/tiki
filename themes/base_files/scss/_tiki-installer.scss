@@ -1,0 +1,47 @@
+#tiki-installer {
+
+    /* re-style buttons to be link links */
+    .btn-link {
+        border: none;
+        display: inline;
+        text-align: left;
+        -webkit-appearance: none;
+
+        &:not([disable]):hover {
+            cursor: pointer;
+        }
+    }
+
+    .menus {
+        .menu {
+            color: white;
+            margin-top: 1em;
+        }
+    }
+
+    ol.nav {
+        list-style-type: decimal;
+        list-style-position: outside;
+        margin-left: 0;
+    }
+        
+    .nav {
+        margin-left: 1em;
+        .nav-item {
+            color: white;
+            line-height: 2em;
+
+            .nav-link {
+                color: white;
+                padding: 0;
+            }
+
+            &.active {
+                color: blue;
+                .nav-link {
+                    color: blue;
+                }
+            }
+        }
+    }
+}
