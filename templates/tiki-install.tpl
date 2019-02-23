@@ -7,122 +7,104 @@
                     <div class="install-menu" style="margin-top: 35%; color:#fff">
                         <h4>{tr}Installation{/tr}</h4>
                         {if $lang eq 'he' or $lang eq 'ar'}<ol class="px-4">{else}<ol>{/if}
+
+                                {assign var="item_title" value="Welcome"}
+                                {assign var="item_disabled" value=$install_step==0}
                                 <li>
-                                    {if $install_step eq '0'}
-                                        <strong>
-                                    {else}
-                                        <a href="#" onclick="$('#install_step0').submit();return false;" title="{tr}Welcome{/tr} / {tr}Restart the installer.{/tr}">
-                                    {/if}
-                                    {tr}Welcome{/tr}
-                                    {if $install_step eq '0'}
-                                        </strong>
-                                    {else}
-                                        </a>
-                                    {/if}
+                                    <a href="#" onclick="$('#install_step0').submit();return false;"
+                                        title="{tr}{$item_title}{/tr} / {tr}Restart the installer.{/tr}">
+                                        {tr}{$item_title}{/tr}
+                                    </a>
                                 </li>
+
+                                {assign var="item_title" value="License"}
+                                {assign var="item_disabled" value=$install_step==1}
                                 <li>
-                                    {if $install_step eq '1'}
-                                        <strong>
-                                    {else}
-                                        <a href="#" onclick="$('#install_step1').submit();return false;" title="{tr}License{/tr}">
-                                    {/if}
-                                    {tr}License{/tr}
-                                    {if $install_step eq '1'}
-                                        </strong>
-                                    {else}
-                                        </a>
-                                    {/if}
+                                    <a href="#" onclick="$('#install_step1').submit();return false;"
+                                        title="{tr}{$item_title}{/tr}">
+                                        {tr}{$item_title}{/tr}
+                                    </a>
                                 </li>
+
+                                {assign var="item_title" value="Review the System Requirements"}
+                                {assign var="item_disabled" value=$install_step <= 2 && $dbcon != 'y'}
                                 <li>
-                                    {if $install_step eq '2'}
-                                        <strong>
-                                    {elseif $install_step ge '3' or $dbcon eq 'y'}
-                                        <a href="#" onclick="$('#install_step2').submit();return false;" title="{tr}Review the System Requirements{/tr}">
-                                    {/if}
-                                    {tr}Review the System Requirements{/tr}{if $install_step eq '2'}
-                                        </strong>
-                                    {elseif $install_step ge '3' or $dbcon eq 'y'}
-                                        </a>
-                                    {/if}
+                                    <a href="#" onclick="$('#install_step2').submit();return false;"
+                                        title="{tr}{$item_title}{/tr}">
+                                        {tr}{$item_title}{/tr}
+                                    </a>
                                 </li>
+
+                                {if $dbcon eq 'y'}
+                                    {assign var="item_title" value="Reset the Database Connection"}
+                                {else}
+                                    {assign var="item_title" value="Database Connection"}
+                                {/if}
+                                {assign var="item_disabled" value=$install_step <= 3 && $dbcon !='y' }
                                 <li>
-                                    {if $install_step eq '3'}
-                                        <strong>
-                                    {elseif $dbcon eq 'y'}
-                                        <a href="#" onclick="$('#install_step3').submit();return false;" title="{tr}Database Connection{/tr}">
-                                    {/if}{if $dbcon eq 'y'}{tr}Reset the Database Connection{/tr}{else}{tr}Database Connection{/tr}{/if}{if $install_step eq '3'}</strong>{elseif $dbcon eq 'y'}</a>{/if}</li>
-                                <li>
-                                    {if $install_step eq '4'}
-                                        <strong>
-                                    {elseif $dbcon eq 'y' or isset($smarty.post.scratch) or isset($smarty.post.update)}
-                                        <a href="#" onclick="$('#install_step4').submit();return false;" title="{if $tikidb_created}{tr}Install/Upgrade{/tr}{else}{tr}Install{/tr}{/if}">
-                                    {/if}
-                                    {if $tikidb_created}
-                                        <em>{tr}Install/Upgrade{/tr}</em>
-                                    {else}
-                                        {tr}Install{/tr}
-                                    {/if}
-                                    {if $install_step eq '4'}
-                                        </strong>
-                                    {elseif ($dbcon eq 'y') or (isset($smarty.post.scratch)) or (isset($smarty.post.update))}
-                                        </a>{/if}
-                                    </li>
-                                <li>
-                                    {if $install_step eq '5'}
-                                        <strong>
-                                    {elseif $tikidb_is20}
-                                        <a href="#" onclick="$('#install_step5').submit();return false;" title="{if isset($smarty.post.update)}{tr}Review the Upgrade{/tr}{else}{tr}Review the Installation{/tr}{/if}">
-                                    {/if}
-                                    {if isset($smarty.post.update)}
-                                        {tr}Review the Upgrade{/tr}
-                                    {else}
-                                        {tr}Review the Installation{/tr}
-                                    {/if}
-                                    {if $install_step eq '5'}
-                                        </strong>
-                                    {elseif $tikidb_is20}
-                                        </a>
-                                    {/if}
+                                    <a href="#" onclick="$('#install_step3').submit();return false;"
+                                        title="{tr}{$item_title}{/tr}">
+                                        {tr}{$item_title}{/tr}
+                                    </a>
                                 </li>
+
+
+                                {if $tikidb_created}
+                                    {assign var="item_title" value="Install/Upgrade"}
+                                {else}
+                                    {assign var="item_title" value="Install"}
+                                {/if}
+                                {assign var="item_disabled" value=$install_step <= 4 && $dbcon !='y' && !isset($smarty.post.scratch) && isset($smarty.post.update)}
                                 <li>
-                                    {if $install_step eq '6'}
-                                        <strong>
-                                    {elseif $tikidb_is20 and !isset($smarty.post.update)}
-                                        <a href="#" onclick="$('#install_step6').submit();return false;" title="{tr}Configure the General Settings{/tr}">
-                                    {/if}
-                                    {tr}Configure the General Settings{/tr}
-                                    {if $install_step eq '6'}
-                                        </strong>
-                                    {elseif $tikidb_is20 and !isset($smarty.post.update)}
-                                        </a>
-                                    {/if}
+                                    <a href="#" onclick="$('#install_step4').submit();return false;"
+                                        title="{tr}{$item_title}{/tr}">
+                                        {tr}{$item_title}{/tr}
+                                    </a>
                                 </li>
+
+
+                                {if isset($smarty.post.update)}
+                                    {assign var="item_title" value="Review the Upgrade"}
+                                {else}
+                                    {assign var="item_title" value="Review the Installation"}
+                                {/if}
+                                {assign var="item_disabled" value=$install_step <= 5 && !$tikidb_is20}
                                 <li>
-                                    {if $install_step eq '7'}
-                                        <strong>
-                                    {elseif $tikidb_is20}
-                                        <a href="#" onclick="$('#install_step7').submit();return false;" title="{tr}Important Tiki Admin Information{/tr}">
-                                    {/if}
-                                    {tr}Last Notes{/tr}{if $install_step eq '7'}
-                                        </strong>
-                                    {elseif $tikidb_is20}
-                                        </a>
-                                    {/if}
+                                    <a href="#" onclick="$('#install_step5').submit();return false;"
+                                        title="{tr}{$item_title}{/tr}">
+                                        {tr}{$item_title}{/tr}
+                                    </a>
                                 </li>
+
+
+                                {assign var="item_title" value="Configure the General Settings"}
+                                {assign var="item_disabled" value=$install_step <= 6 && !$tikidb_is20 || isset($smarty.post.update)}
                                 <li>
-                                    {if $install_step eq '8'}
-                                        <strong>
-                                    {elseif $tikidb_is20}
-                                        <a href="#" onclick="$('#install_step8').submit();return false;" title="{tr}Enter Your Tiki{/tr}">
-                                    {/if}
-                                    {tr}Enter Your Tiki{/tr}
-                                    {if $install_step eq '8'}
-                                        </strong>
-                                    {elseif $tikidb_is20}
-                                        </a>
-                                    {/if}
+                                    <a href="#" onclick="$('#install_step6').submit();return false;"
+                                        title="{tr}{$item_title}{/tr}">
+                                        {tr}{$item_title}{/tr}
+                                    </a>
+                                </li>
+
+                                {assign var="item_title" value="Last Notes"}
+                                {assign var="item_disabled" value=$install_step <= 7 && !$tikidb_is20}
+                                <li>
+                                    <a href="#" onclick="$('#install_step7').submit();return false;"
+                                        title="{tr}{$item_title}{/tr}">
+                                        {tr}{$item_title}{/tr}
+                                    </a>
+                                </li>
+
+                                {assign var="item_title" value="Enter Your Tiki"}
+                                {assign var="item_disabled" value=$install_step <= 8 && !$tikidb_is20}
+                                <li>
+                                    <a href="#" onclick="$('#install_step7').submit();return false;"
+                                        title="{tr}{$item_title}{/tr}">
+                                        {tr}{$item_title}{/tr}
+                                    </a>
                                 </li>
                             </ol>
+
                             <form method="post" action="tiki-install.php" id="install_step0">
                                 <input type="hidden" name="install_step" value="0">
                                 {if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
