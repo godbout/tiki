@@ -170,7 +170,7 @@ function wikiplugin_memberlist($data, $params)
 		return "^Missing group list^";
 	}
 
-	$groups = $params['groups'];
+	$groups = (array)$params['groups'];
 
 	$defaults = [];
 	$plugininfo = wikiplugin_memberlist_info();
