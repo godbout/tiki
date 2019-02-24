@@ -54,11 +54,13 @@ class ModLib extends TikiLib
 	}
 
 	/**
-	 * @param $name
-	 * @param $title
-	 * @param $data
+	 * @param      $name
+	 * @param      $title
+	 * @param      $data
 	 * @param null $parse
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result
+	 * @throws Exception
 	 */
 	function replace_user_module($name, $title, $data, $parse = null)
 	{
@@ -66,7 +68,7 @@ class ModLib extends TikiLib
 
 		if ((! empty($name)) && (! empty($data))) {
 			$query = "delete from `tiki_user_modules` where `name`=?";
-			$result = $this->query($query, [$name], -1, -1, false);
+			$this->query($query, [$name], -1, -1, false);
 			$query = "insert into `tiki_user_modules`(`name`,`title`,`data`, `parse`) values(?,?,?,?)";
 			$result = $this->query($query, [$name,$title,$data,$parse]);
 
@@ -77,22 +79,24 @@ class ModLib extends TikiLib
 			$converter = new convertToTiki9();
 			$converter->saveObjectStatus($name, 'tiki_user_modules', 'new9.0+');
 
-			return true;
+			return $result;
 		}
 	}
 
 	/**
-	 * @param int $moduleId
-	 * @param $name
-	 * @param $title
-	 * @param $position
-	 * @param $order
-	 * @param int $cache_time
-	 * @param int $rows
+	 * @param int  $moduleId
+	 * @param      $name
+	 * @param      $title
+	 * @param      $position
+	 * @param      $order
+	 * @param int  $cache_time
+	 * @param int  $rows
 	 * @param null $groups
 	 * @param null $params
 	 * @param null $type
+	 *
 	 * @return bool
+	 * @throws Exception
 	 */
 	function assign_module($moduleId = 0, $name, $title, $position, $order, $cache_time = 0, $rows = 10, $groups = null, $params = null, $type = null)
 	{
@@ -107,11 +111,14 @@ class ModLib extends TikiLib
 		if ($moduleId) {
 			$query = "update `tiki_modules` set `name`=?,`title`=?,`position`=?,`ord`=?,`cache_time`=?,`rows`=?,`groups`=?,`params`=?,`type`=? where `moduleId`=?";
 			$result = $this->query($query, [$name,$title,$position,(int) $order,(int) $cache_time,(int) $rows,$groups,$params,$type, $moduleId]);
+			if (! $result || ! $result->numRows()) {
+				$moduleId = false;
+			}
 		} else {
 			$query = "delete from `tiki_modules` where `name`=? and `position`=? and `ord`=? and `params`=?";
 			$this->query($query, [$name, $position, (int)$order, $params]);
 			$query = "insert into `tiki_modules`(`name`,`title`,`position`,`ord`,`cache_time`,`rows`,`groups`,`params`,`type`) values(?,?,?,?,?,?,?,?,?)";
-			$result = $this->query($query, [$name,$title,$position,(int) $order,(int) $cache_time,(int) $rows,$groups,$params,$type]);
+			$this->query($query, [$name,$title,$position,(int) $order,(int) $cache_time,(int) $rows,$groups,$params,$type]);
 			$moduleId = $this->lastInsertId(); //to return the recently created module
 			if ($type == "D" || $type == "P") {
 				$query = 'select `moduleId` from `tiki_modules` where `name`=? and `title`=? and `position`=? and `ord`=? and `cache_time`=? and `rows`=? and `groups`=? and `params`=? and `type`=?';
@@ -155,8 +162,8 @@ class ModLib extends TikiLib
 		$query = "delete from `tiki_modules` where `moduleId`=?";
 		$result = $this->query($query, [$moduleId]);
 		$query = "delete from `tiki_user_assigned_modules` where `moduleId`=?";
-		$result = $this->query($query, [$moduleId]);
-		return true;
+		$this->query($query, [$moduleId]);
+		return $result && $result->numRows();
 	}
 
 	/**
@@ -178,51 +185,58 @@ class ModLib extends TikiLib
 
 	/**
 	 * @param $moduleId
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function module_up($moduleId)
 	{
 		$query = "update `tiki_modules` set `ord`=`ord`-1 where `moduleId`=?";
-		$result = $this->query($query, [$moduleId]);
-		return true;
+		return $this->query($query, [$moduleId]);
 	}
 
 	/**
 	 * @param $moduleId
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function module_down($moduleId)
 	{
 		$query = "update `tiki_modules` set `ord`=`ord`+1 where `moduleId`=?";
-		$result = $this->query($query, [$moduleId]);
-		return true;
+		return $this->query($query, [$moduleId]);
 	}
 
 	/**
+	 * Sets position of module to left - this method does not appear to be used
+	 *
 	 * @param $moduleId
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function module_left($moduleId)
 	{
 		$query = "update `tiki_modules` set `position`='left' where `moduleId`=?";
-		$result = $this->query($query, [$moduleId]);
-		return true;
+		return $this->query($query, [$moduleId]);
 	}
 
 	/**
+	 * Sets position of module as right - this method does not appear to be used
+	 *
 	 * @param $moduleId
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function module_right($moduleId)
 	{
 		$query = "update `tiki_modules` set `position`='right' where `moduleId`=?";
-		$result = $this->query($query, [$moduleId]);
-		return true;
+		return $this->query($query, [$moduleId]);
 	}
 
 	/**
 	 * Reset all module ord's according to supplied array or by displayed order
-	 * @param array $module_order[zone][moduleId] (optional)
+	 *
+	 * @param array $module_order [zone][moduleId] (optional)
+	 *
+	 * @return int
 	 */
 	function reorder_modules($module_order = [])
 	{
@@ -239,21 +253,29 @@ class ModLib extends TikiLib
 		$section_map = array_flip($this->module_zones);
 		$bindvars = [];
 		$query = 'UPDATE `tiki_modules` SET `ord`=?, `position`=? WHERE `moduleId`=?;';
+		$i = 0;
 		foreach ($module_order as $zone => $contents) {
 			$section_initial = $section_map[$zone];
 			foreach ($contents as $index => $moduleId) {
 				if ($moduleId) {
-					if ($all_modules[$zone][$index]['moduleId'] != $moduleId || ($all_modules[$zone][$index]['ord'] != $index + 1 || $all_modules[$zone][$index]['position'] != $section_initial)) {
+					if ($all_modules[$zone][$index]['moduleId'] != $moduleId
+						|| ($all_modules[$zone][$index]['ord'] != $index + 1
+						|| $all_modules[$zone][$index]['position'] != $section_initial))
+					{
 						$bindvars = [
 							$index + 1,
 							$section_initial,
 							$moduleId,
 						];
-						$this->query($query, $bindvars);
+						$result = $this->query($query, $bindvars);
+						if ($result && $result->numRows()) {
+							$i = $i + $result->numRows();
+						}
 					}
 				}
 			}
 		}
+		return $i;
 	}
 
 	/**
@@ -286,7 +308,9 @@ class ModLib extends TikiLib
 
 	/**
 	 * @param $name
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 * @throws Exception
 	 */
 	function remove_user_module($name)
 	{
@@ -295,12 +319,12 @@ class ModLib extends TikiLib
 		$result = $this->query($query, [$name]);
 
 		$query = " delete from `tiki_user_modules` where `name`=?";
-		$result = $this->query($query, [$name]);
+		$this->query($query, [$name]);
 
 		$cachelib = TikiLib::lib('cache');
 		$cachelib->invalidate('user_modules');
 
-		return true;
+		return $result;
 	}
 
 	/**
@@ -326,6 +350,9 @@ class ModLib extends TikiLib
 		return $retval;
 	}
 
+	/**
+	 * @return int
+	 */
 	function clear_cache()
 	{
 		global $tikidomain;
@@ -334,13 +361,18 @@ class ModLib extends TikiLib
 			$dircache .= "/$tikidomain";
 		}
 		$h = opendir($dircache);
+		$i = 0;
 		while (($file = readdir($h)) !== false) {
 			if (substr($file, 0, 3) == 'mod') {
 				$file = "$dircache/$file";
-				unlink($file);
+				$result = unlink($file);
+				if ($result) {
+					$i++;
+				}
 			}
 		}
 		closedir($h);
+		return $i;
 	}
 	/* @param module_info = info of a module
 	 * @param user_groups = list of groups of a user

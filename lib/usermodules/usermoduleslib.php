@@ -27,40 +27,73 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 class UserModulesLib extends TikiLib
 {
+	/**
+	 * @param $moduleId
+	 * @param $user
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function unassign_user_module($moduleId, $user)
 	{
 		$query = "delete from `tiki_user_assigned_modules` where `moduleId`=? and `user`=?";
-		$result = $this->query($query, [$moduleId, $user]);
+		return $this->query($query, [$moduleId, $user]);
 	}
 
+	/**
+	 * @param $moduleId
+	 * @param $user
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function up_user_module($moduleId, $user)
 	{
 		$query = "update `tiki_user_assigned_modules` set `ord`=`ord`-1 where `moduleId`=? and `user`=?";
-		$result = $this->query($query, [$moduleId, $user]);
+		return $this->query($query, [$moduleId, $user]);
 	}
 
+	/**
+	 * @param $moduleId
+	 * @param $user
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function down_user_module($moduleId, $user)
 	{
 		$query = "update `tiki_user_assigned_modules` set `ord`=`ord`+1 where `moduleId`=? and `user`=?";
-		$result = $this->query($query, [$moduleId, $user]);
+		return $this->query($query, [$moduleId, $user]);
 	}
 
+	/**
+	 * @param $moduleId
+	 * @param $user
+	 * @param $position
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function set_column_user_module($moduleId, $user, $position)
 	{
 		$query = "update `tiki_user_assigned_modules` set `position`=? where `moduleId`=? and `user`=?";
-		$result = $this->query($query, [$position, $moduleId, $user]);
+		return $this->query($query, [$position, $moduleId, $user]);
 	}
 
+	/**
+	 * @param $moduleId
+	 * @param $position
+	 * @param $order
+	 * @param $user
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function assign_user_module($moduleId, $position, $order, $user)
 	{
 		$query = "select * from `tiki_modules` where `moduleId`=?";
 		$result = $this->query($query, [$moduleId]);
 		$res = $result->fetchRow();
 		$query = "delete from `tiki_user_assigned_modules` where `moduleId`=? and `user`=?";
-		$result = $this->query($query, [$moduleId,$user]);
+		$this->query($query, [$moduleId,$user]);
 		$query = 'insert into `tiki_user_assigned_modules`(`moduleId`, `user`,`name`,`position`,`ord`,`type`) values(?,?,?,?,?,?)';
 		$bindvars = [$moduleId, $user,$res['name'],$position,(int) $order,$res['type']];
-		$result = $this->query($query, $bindvars);
+		return $this->query($query, $bindvars);
 	}
 
 	function get_user_assigned_modules($user)
@@ -118,15 +151,20 @@ class UserModulesLib extends TikiLib
 	}
 
 	// Creates user assigned modules copying from tiki_modules
+
+	/**
+	 * @param $user
+	 *
+	 * @return bool|TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function create_user_assigned_modules($user)
 	{
 		$query = "delete from `tiki_user_assigned_modules` where `user`=?";
 
-		$result = $this->query($query, [$user]);
+		$this->query($query, [$user]);
 		global $prefs;
 		$query = "select * from `tiki_modules`";
 		$result = $this->query($query, []);
-		$ret = [];
 		$user_groups = $this->get_user_groups($user);
 
 		while ($res = $result->fetchRow()) {
@@ -147,7 +185,7 @@ class UserModulesLib extends TikiLib
 
 			if ($mod_ok) {
 				$query = "delete from `tiki_user_assigned_modules` where `moduleId`=? and `user`=?";
-				$result2 = $this->query($query, [$res['moduleId'],$user]);
+				$this->query($query, [$res['moduleId'],$user]);
 
 				$query = "insert into `tiki_user_assigned_modules`
 				(`moduleId`, `user`,`name`,`position`,`ord`,`type`) values(?,?,?,?,?,?)";
@@ -155,6 +193,7 @@ class UserModulesLib extends TikiLib
 				$result2 = $this->query($query, $bindvars);
 			}
 		}
+		return isset($result2) ? $result2 : false;
 	}
 	// Return the list of modules that can be assigned by the user
 	function get_user_assignable_modules($user)
@@ -194,17 +233,42 @@ class UserModulesLib extends TikiLib
 
 		return $ret;
 	}
-	/// Swap current module and above one
+
+	/**
+	 * Swap current module and above one
+	 *
+	 * @param $moduleId
+	 * @param $user
+	 *
+	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 */
 	function swap_up_user_module($moduleId, $user)
 	{
-		$this->swap_adjacent($moduleId, $user, '<');
+		return $this->swap_adjacent($moduleId, $user, '<');
 	}
-	/// Swap current module and below one
+
+	/**
+	 * Swap current module and below one
+	 *
+	 * @param $moduleId
+	 * @param $user
+	 *
+	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 */
 	function swap_down_user_module($moduleId, $user)
 	{
-		$this->swap_adjacent($moduleId, $user, '>');
+		return $this->swap_adjacent($moduleId, $user, '>');
 	}
-	/// Function to swap (up/down) two adjacent modules
+
+	/**
+	 * Swap (up/down) two adjacent modules
+	 *
+	 * @param $moduleId
+	 * @param $user
+	 * @param $op
+	 *
+	 * @return bool|TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function swap_adjacent($moduleId, $user, $op)
 	{
 		// Get position and order of module to swap
@@ -223,17 +287,27 @@ class UserModulesLib extends TikiLib
 			$query = "update `tiki_user_assigned_modules` set `ord`=? where `moduleId`=? and `user`=?";
 			$this->query($query, [$swap['ord'], $moduleId, $user]);
 			$query = "update `tiki_user_assigned_modules` set `ord`=? where `moduleId`=? and `user`=?";
-			$this->query($query, [$cur['ord'], $swap['moduleId'], $user]);
+			return $this->query($query, [$cur['ord'], $swap['moduleId'], $user]);
+		} else {
+			return false;
 		}
 	}
-	/// Toggle module position
+
+	/**
+	 * Toggle module position
+	 *
+	 * @param $moduleId
+	 * @param $user
+	 *
+	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
+	 */
 	function move_module($moduleId, $user)
 	{
 		// Get current position
 		$query = "select `position` from `tiki_user_assigned_modules` where `moduleId`=? and `user`=?";
 		$r = $this->query($query, [$moduleId, $user]);
 		$res = $r->fetchRow();
-		$this->set_column_user_module($moduleId, $user, ($res['position'] == 'right' ? 'left' : 'right'));
+		return $this->set_column_user_module($moduleId, $user, ($res['position'] == 'right' ? 'left' : 'right'));
 	}
 	/// Add a module to all the user who have assigned module and who don't have already this module
 	function add_module_users($moduleId, $name, $title, $position, $order, $cache_time, $rows, $groups, $params, $type)
