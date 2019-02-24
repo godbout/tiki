@@ -10,128 +10,81 @@
 
                         <h4>{tr}Installation{/tr}</h4>
                         <ol class="nav flex-column {if $lang eq 'he' or $lang eq 'ar'}px-4{/if}">
-                            {assign var="item_title" value="Welcome"}
-                            {assign var="item_disabled" value=$install_step==0}
-                            {assign var="item_active" value=$install_step==0}
-                            <li class="nav-item {if $item_active}active{/if}">
+
+                            <!-- step item base -->
+                            {function name="printStepItem" step=0 active=false disabled=false title=""}
+                            <li class="nav-item {if $active}active{/if}">
                                 <button class="btn-link nav-link"
-                                    name="install_step" value="0"
-                                    {if $item_disabled}disabled="disabled"{/if}
-                                    title="{tr}{$item_title}{/tr} / {tr}Restart the installer.{/tr}">
-                                    {tr}{$item_title}{/tr}
+                                    name="install_step" value="{$step}"
+                                    {if $disabled}disabled="disabled"{/if}
+                                    title="{tr}{$title}{/tr}">
+                                    {tr}{$title}{/tr}
                                 </button>
                             </li>
+                            {/function}
 
-                            {assign var="item_title" value="License"}
-                            {assign var="item_disabled" value=$install_step==1}
-                            {assign var="item_active" value=$install_step==1}
-                            <li class="nav-item {if $item_active}active{/if}">
-                                <button class="btn-link nav-link"
-                                    name="install_step" value="1"
-                                    {if $item_disabled}disabled="disabled"{/if}
-                                    title="{tr}{$item_title}{/tr} / {tr}Restart the installer.{/tr}">
-                                    {tr}{$item_title}{/tr}
-                                </button>
-                            </li>
+                            <!-- step 0 -->
+                            {call name="printStepItem"
+                                step="0"
+                                title="Welcome"
+                                disabled=$install_step==0
+                                active=$install_step==0}
+                                
+                            <!-- step 1 -->
+                            {call name="printStepItem"
+                                step="1"
+                                title="License"
+                                disabled=$install_step==1
+                                active=$install_step==1}
 
-                            {assign var="item_title" value="Review the System Requirements"}
-                            {assign var="item_disabled" value=$install_step <= 2 && $dbcon != 'y'}
-                            {assign var="item_active" value=$install_step==2}
-                            <li class="nav-item {if $item_active}active{/if}">
-                                <button class="btn-link nav-link"
-                                    name="install_step" value="2"
-                                    {if $item_disabled}disabled="disabled"{/if}
-                                    title="{tr}{$item_title}{/tr} / {tr}Restart the installer.{/tr}">
-                                    {tr}{$item_title}{/tr}
-                                </button>
-                            </li>
+                            <!-- step 2 -->
+                            {call name="printStepItem"
+                                step="2"
+                                title="Review the System Requirements"
+                                disabled=$install_step <= 2 && $dbcon !='y'
+                                active=$install_step==2}
 
-                            {if $dbcon eq 'y'}
-                                {assign var="item_title" value="Reset the Database Connection"}
-                            {else}
-                                {assign var="item_title" value="Database Connection"}
-                            {/if}
-                            {assign var="item_disabled" value=$install_step <= 3 && $dbcon !='y' }
-                            {assign var="item_active" value=$install_step==3}
-                            <li class="nav-item {if $item_active}active{/if}">
-                                <button class="btn-link nav-link"
-                                    name="install_step" value="3"
-                                    {if $item_disabled}disabled="disabled"{/if}
-                                    title="{tr}{$item_title}{/tr} / {tr}Restart the installer.{/tr}">
-                                    {tr}{$item_title}{/tr}
-                                </button>
-                            </li>
+                            <!-- step 3 -->
+                            {call name="printStepItem"
+                                step="3"
+                                title={{$dbcon eq 'y'}|ternary:"Reset the Database Connection":"Database Connection"}
+                                disabled=$install_step <= 3 && $dbcon !='y'
+                                active=$install_step==3}
 
+                            <!-- step 4 -->
+                            {call name="printStepItem"
+                                step="4"
+                                title={$tikidb_created|ternary:"Install/Upgrade":"Install"}
+                                disabled=$install_step <= 4 && $dbcon !='y' || !isset($smarty.post.scratch) || isset($smarty.post.update)
+                                active=$install_step==4}
 
-                            {if $tikidb_created}
-                                {assign var="item_title" value="Install/Upgrade"}
-                            {else}
-                                {assign var="item_title" value="Install"}
-                            {/if}
-                            {assign var="item_disabled" value=$install_step <= 4 && $dbcon !='y' || !isset($smarty.post.scratch) || isset($smarty.post.update)}
-                            {assign var="item_active" value=$install_step==4}
-                            <li class="nav-item {if $item_active}active{/if}">
-                                <button class="btn-link nav-link"
-                                    name="install_step" value="4"
-                                    {if $item_disabled}disabled="disabled"{/if}
-                                    title="{tr}{$item_title}{/tr} / {tr}Restart the installer.{/tr}">
-                                    {tr}{$item_title}{/tr}
-                                </button>
-                            </li>
+                            <!-- step 5 -->
+                            {call name="printStepItem"
+                                step="5"
+                                title={isset($smarty.post.update)|ternary:"Review the Upgrade":"Review the Installation"}
+                                disabled=$install_step <= 5 && !$tikidb_is20
+                                active=$install_step==5}
 
+                            <!-- step 6 -->
+                            {call name="printStepItem"
+                                step="6"
+                                title="Configure the General Settings"
+                                disabled=$install_step <= 6 && !$tikidb_is20 || isset($smarty.post.update)
+                                active=$install_step==6}
 
-                            {if isset($smarty.post.update)}
-                                {assign var="item_title" value="Review the Upgrade"}
-                            {else}
-                                {assign var="item_title" value="Review the Installation"}
-                            {/if}
-                            {assign var="item_disabled" value=$install_step <= 5 && !$tikidb_is20}
-                            {assign var="item_active" value=$install_step==5}
-                            <li class="nav-item {if $item_active}active{/if}">
-                                <button class="btn-link nav-link"
-                                    name="install_step" value="5"
-                                    {if $item_disabled}disabled="disabled"{/if}
-                                    title="{tr}{$item_title}{/tr} / {tr}Restart the installer.{/tr}">
-                                    {tr}{$item_title}{/tr}
-                                </button>
-                            </li>
+                            <!-- step 7 -->
+                            {call name="printStepItem"
+                                step="7"
+                                title="Last Notes"
+                                disabled=$install_step <= 7 && !$tikidb_is20
+                                active=$install_step==7}
 
-
-                            {assign var="item_title" value="Configure the General Settings"}
-                            {assign var="item_disabled" value=$install_step <= 6 && !$tikidb_is20 || isset($smarty.post.update)}
-                            {assign var="item_active" value=$install_step==6}
-                            <li class="nav-item {if $item_active}active{/if}">
-                                <button class="btn-link nav-link"
-                                    name="install_step" value="6"
-                                    {if $item_disabled}disabled="disabled"{/if}
-                                    title="{tr}{$item_title}{/tr} / {tr}Restart the installer.{/tr}">
-                                    {tr}{$item_title}{/tr}
-                                </button>
-                            </li>
-
-                            {assign var="item_title" value="Last Notes"}
-                            {assign var="item_disabled" value=$install_step <= 7 && !$tikidb_is20}
-                            {assign var="item_active" value=$install_step==7}
-                            <li class="nav-item {if $item_active}active{/if}">
-                                <button class="btn-link nav-link"
-                                    name="install_step" value="7"
-                                    {if $item_disabled}disabled="disabled"{/if}
-                                    title="{tr}{$item_title}{/tr} / {tr}Restart the installer.{/tr}">
-                                    {tr}{$item_title}{/tr}
-                                </button>
-                            </li>
-
-                            {assign var="item_title" value="Enter Your Tiki"}
-                            {assign var="item_disabled" value=$install_step <= 8 && !$tikidb_is20}
-                            {assign var="item_active" value=$install_step==8}
-                            <li class="nav-item {if $item_active}active{/if}">
-                                <button class="btn-link nav-link"
-                                    name="install_step" value="8"
-                                    {if $item_disabled}disabled="disabled"{/if}
-                                    title="{tr}{$item_title}{/tr} / {tr}Restart the installer.{/tr}">
-                                    {tr}{$item_title}{/tr}
-                                </button>
-                            </li>
+                            <!-- step 8 -->
+                            {call name="printStepItem"
+                                step="8"
+                                title="Enter Your Tiki"
+                                disabled=$install_step <= 8 && !$tikidb_is20
+                                active=$install_step==8}
                         </ol>
                     </form><!-- End of install-menu -->
                     <div class="help-menu menu">
