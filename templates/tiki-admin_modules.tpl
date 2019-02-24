@@ -102,7 +102,7 @@
 																		type="submit"
 																		name="modup"
 																		value="{$module.moduleId}"
-																		class="btn btn-link"
+																		class="btn btn-link link-list"
 																		onclick="checkTimeout()"
 																	>
 																		{icon name="up"} {tr}Move up{/tr}
@@ -118,7 +118,7 @@
 																		type="submit"
 																		name="moddown"
 																		value="{$module.moduleId}"
-																		class="btn btn-link"
+																		class="btn btn-link link-list"
 																		onclick="checkTimeout()"
 																	>
 																		{icon name="down"} {tr}Move down{/tr}
@@ -138,7 +138,7 @@
 																	type="submit"
 																	name="unassign"
 																	value="{$module.moduleId}"
-																	class="btn btn-link"
+																	class="btn btn-link link-list"
 																	onclick="checkTimeout()"
 																>
 																	{icon name="remove"} {tr}Unassign{/tr}
