@@ -208,9 +208,14 @@ if ($prefs['feature_sefurl'] == 'y' && ! defined('TIKI_CONSOLE')) {
 }
 
 if (! empty($varcheck_errors)) {
-	$smarty->assign('msg', $varcheck_errors);
-	$smarty->display('error_raw.tpl');
-	die;
+	if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+		&& $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
+		Feedback::error($varcheck_errors, true);
+		die;
+	} else {
+		$varcheck_errors['tpl'] = 'error_raw.tpl';
+		Feedback::errorPage($varcheck_errors);
+	}
 }
 if ($prefs['feature_usermenu'] == 'y') {
 	require_once('lib/setup/usermenu.php');
