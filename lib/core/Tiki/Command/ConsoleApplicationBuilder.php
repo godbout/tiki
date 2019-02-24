@@ -88,6 +88,7 @@ class ConsoleApplicationBuilder
 					new AddonRemoveCommand,
 					new AddonUpgradeCommand,
 					new DailyReportSendCommand,
+					new FakerCommentsCommand,
 					new FakerTrackerCommand,
 					new GalleryMigrateCommand,
 					new GoalCheckCommand,
