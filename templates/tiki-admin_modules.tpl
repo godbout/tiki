@@ -4,7 +4,12 @@
 {title help="Modules" admpage="module"}{tr}Admin Modules{/tr}{/title}
 
 <div class="t_navbar mb-4">
-	{button href="tiki-admin_modules.php?clear_cache=1" _icon_name="trash" _text="{tr}Clear Cache{/tr}"}&nbsp;
+	<form action="tiki-admin_modules.php" method="post" style="display: inline">
+		{ticket}
+		<button type="submit" name="clear_cache" value="1" class="btn btn-primary">
+			{icon name="trash"} {tr}Clear Cache{/tr}
+		</button>
+	</form>
 	{if empty($smarty.request.show_hidden_modules)}
 		{button show_hidden_modules="y" _icon_name="ok" _text="{tr}Show hidden modules{/tr}"}
 	{else}
@@ -91,16 +96,34 @@
 													{strip}
 														{if !$smarty.section.user.first}
 															<action>
-																<a href="tiki-admin_modules.php?modup={$module.moduleId}">
-																	{icon name="up" _menu_text='y' _menu_icon='y' alt="{tr}Move up{/tr}"}
-																</a>
+																<form href="tiki-admin_modules.php" method="post">
+																	{ticket}
+																	<button
+																		type="submit"
+																		name="modup"
+																		value="{$module.moduleId}"
+																		class="btn btn-link"
+																		onclick="checkTimeout()"
+																	>
+																		{icon name="up"} {tr}Move up{/tr}
+																	</button>
+																</form>
 															</action>
 														{/if}
 														{if !$smarty.section.user.last}
 															<action>
-																<a href="tiki-admin_modules.php?moddown={$module.moduleId}">
-																	{icon name="down" _menu_text='y' _menu_icon='y' alt="{tr}Move down{/tr}"}
-																</a>
+																<form href="tiki-admin_modules.php" method="post">
+																	{ticket}
+																	<button
+																		type="submit"
+																		name="moddown"
+																		value="{$module.moduleId}"
+																		class="btn btn-link"
+																		onclick="checkTimeout()"
+																	>
+																		{icon name="down"} {tr}Move down{/tr}
+																	</button>
+																</form>
 															</action>
 														{/if}
 														<action>
@@ -109,9 +132,18 @@
 															</a>
 														</action>
 														<action>
-															<a href="tiki-admin_modules.php?unassign={$module.moduleId}">
-																{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Unassign{/tr}"}
-															</a>
+															<form href="tiki-admin_modules.php" method="post">
+																{ticket}
+																<button
+																	type="submit"
+																	name="unassign"
+																	value="{$module.moduleId}"
+																	class="btn btn-link"
+																	onclick="checkTimeout()"
+																>
+																	{icon name="remove"} {tr}Unassign{/tr}
+																</button>
+															</form>
 														</action>
 													{/strip}
 												{/actions}
@@ -128,6 +160,7 @@
 			{/tabset}
 		</div>
 		<form method="post" action="#">
+			{ticket}
 			<input id="module-order" type="hidden" name="module-order" value="">
 		</form>
 	{/tab}
@@ -156,7 +189,7 @@
 						{include file='admin_modules_form.tpl'}
 					{if empty($assign_name)}
 						<div class="input_submit_container">
-							<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Module Options{/tr}" onclick="needToConfirm=false;">
+							<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Module Options{/tr}">
 						</div>
 					{else}
 						{jq}$("#module_params").tabs();{/jq}
@@ -199,9 +232,17 @@
 										</a>
 									</action>
 									<action>
-										<a href="tiki-admin_modules.php?um_remove={$user_modules[user].name|escape:'url'}&amp;cookietab=2" title="{$user_modules[user].name|escape}:{tr}Delete{/tr}">
-											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
-										</a>
+										<form action="tiki-admin_modules.php?cookietab=2" method="post">
+											<button
+												type="submit"
+												name="um_remove"
+												value="{$user_modules[user].name|escape}"
+												class="btn btn-link"
+												onclick="confirmSimple(event, '{tr}Delete custom module?{/tr}', '{ticket mode=get}')"
+											>
+												{icon name='remove'} {tr}Delete{/tr}
+											</button>
+										</form>
 									</action>
 								{/strip}
 							{/actions}
@@ -225,6 +266,7 @@
 		</div>
 
 		<form name='editusr' method="post" action="tiki-admin_modules.php">
+			{ticket}
 			<div class="form-group row">
 				<label class="col-sm-4 col-form-label">{tr}Name{/tr}</label>
 				<div class="col-sm-6">
@@ -373,7 +415,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label"></label>
 				<div class="col-sm-9">
-					<input type="submit" class="btn btn-secondary" name="um_update" value="{if empty($um_name)}{tr}Create{/tr}{else}{tr}Save{/tr}{/if}" onclick="needToConfirm=false">
+					<input type="submit" class="btn btn-secondary" name="um_update" value="{if empty($um_name)}{tr}Create{/tr}{else}{tr}Save{/tr}{/if}" onclick="checkTimeout()">
 				</div>
 			</div>
 		</form>

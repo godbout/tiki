@@ -63,8 +63,7 @@ $smarty->assign('assign_order', '');
 $smarty->assign('assign_cache', 0);
 $smarty->assign('assign_rows', 10);
 $smarty->assign('assign_params', '');
-if (isset($_REQUEST['clear_cache'])) {
-	check_ticket('admin-modules');
+if (isset($_REQUEST['clear_cache']) && $access->checkCsrf()) {
 	$result = $modlib->clear_cache();
 	Feedback::note(tr('%0 cache files cleared', $result));
 }
@@ -74,7 +73,6 @@ $smarty->assign('assign_type', '');
 $smarty->assign('assign_title', '');
 
 if (! empty($_REQUEST['edit_assign'])) {
-	check_ticket('admin-modules');
 	$info = $modlib->get_assigned_module($_REQUEST['edit_assign']);
 	$grps = '';
 	if (! empty($info['groups'])) {
@@ -122,8 +120,7 @@ if (isset($_REQUEST['edit_assign']) || isset($_REQUEST['preview'])) {	// will be
 	$cookietab = 2;
 }
 
-if (! empty($_REQUEST['unassign'])) {
-	$access->check_authenticity(tr('Are you sure you want to unassign this module?'));
+if (! empty($_REQUEST['unassign']) && $access->checkCsrf()) {
 	$info = $modlib->get_assigned_module($_REQUEST['unassign']);
 	$result = $modlib->unassign_module($_REQUEST['unassign']);
 	if ($result) {
@@ -138,8 +135,7 @@ $addonMsg .= $userHasAssignedModules ? ' '
 	. tr('Also, displayed order may not change for you since you have assigned a custom order for modules %0here%1',
 		'<a href="tiki-user_assigned_modules.php">', '</a>') : '';
 
-if (! empty($_REQUEST['modup'])) {
-	check_ticket('admin-modules');
+if (! empty($_REQUEST['modup']) && $access->checkCsrf()) {
 	$result = $modlib->module_up($_POST['modup']);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Standard module display order moved up.') . $addonMsg);
@@ -148,8 +144,7 @@ if (! empty($_REQUEST['modup'])) {
 	}
 }
 
-if (! empty($_REQUEST['moddown'])) {
-	check_ticket('admin-modules');
+if (! empty($_REQUEST['moddown']) && $access->checkCsrf()) {
 	$result = $modlib->module_down($_POST['moddown']);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Standard module display order moved down.') . $addonMsg);
@@ -169,8 +164,7 @@ if (! empty($_REQUEST['modright'])) {
 	$modlib->module_right($_REQUEST['modright']);
 }*/
 
-if (! empty($_REQUEST['module-order'])) {
-	check_ticket('admin-modules');
+if (! empty($_REQUEST['module-order']) && $access->checkCsrf()) {
 	$module_order = json_decode($_REQUEST['module-order']);
 	$result = $modlib->reorder_modules($module_order);
 	if ($result) {
@@ -185,7 +179,7 @@ if (! empty($_REQUEST['module-order'])) {
 }
 
 /* Edit or delete a user module */
-if (isset($_REQUEST['um_update'])) {
+if (isset($_REQUEST['um_update']) && $access->checkCsrf()) {
 	if (empty($_REQUEST['um_name'])) {
 		Feedback::errorPage(tr('Cannot create or update module: You need to specify a name for the module'));
 	}
@@ -194,15 +188,6 @@ if (isset($_REQUEST['um_update'])) {
 	}
 	if ($_REQUEST['um_update'] == tra('Create') && in_array(strtolower($_REQUEST['um_name']), $modlib->get_all_modules())) {
 		Feedback::errorPage(tr('A module with that "name" already exists, please choose another'));
-	}
-	if ($_REQUEST['um_update'] === tr('Create')) {
-		$access->check_authenticity(
-			tr('Are you sure you want to create this module?') . ' ("' . $_REQUEST['um_name'] . '")'
-		);
-	} else {
-		$access->check_authenticity(
-			tr('Are you sure you want to modify this module?') . ' ("' . $_REQUEST['um_name'] . '")'
-		);
 	}
 	$_REQUEST['um_update'] = urldecode($_REQUEST['um_update']);
 	$smarty->assign_by_ref('um_name', $_REQUEST['um_name']);
@@ -241,7 +226,6 @@ $smarty->assign('preview', 'n');
 //and using get for just the preview element would result in exposing the ticket
 //non-state-changing-action
 if (isset($_REQUEST['preview'])) {
-	check_ticket('admin-modules');
 	$smarty->assign('preview', 'y');
 	$smarty->assign_by_ref('assign_name', $_REQUEST['assign_name']);
 	if (! is_array($_REQUEST['assign_params'])) {
@@ -343,8 +327,7 @@ if (isset($_REQUEST['preview'])) {
 	$smarty->assign('assign_info', $modinfo);
 }
 
-if (isset($_REQUEST['assign'])) {
-	$access->check_authenticity(tr('Are you sure you want to assign this module?'));
+if (isset($_REQUEST['assign']) && $access->checkCsrf()) {
 	$assign_name = urldecode($_REQUEST['assign_name']);
 	$smarty->assign_by_ref('assign_name', $assign_name);
 	$smarty->assign_by_ref('assign_position', $_REQUEST['assign_position']);
@@ -395,11 +378,7 @@ if (isset($_REQUEST['assign'])) {
 	}
 }
 
-if (isset($_REQUEST['um_remove'])) {
-	$_REQUEST['um_remove'] = urldecode($_REQUEST['um_remove']);
-	$access->check_authenticity(
-		tra('Are you sure you want to delete this Custom Module?') . ' ("' . $_REQUEST['um_remove'] . '")'
-	);
+if (isset($_REQUEST['um_remove']) && $access->checkCsrfForm(tr('Delete custom module?'))) {
 	$result = $modlib->remove_user_module($_REQUEST['um_remove']);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Custom module deleted'));
@@ -411,9 +390,8 @@ if (isset($_REQUEST['um_remove'])) {
 }
 
 if (isset($_REQUEST['um_edit'])) {
-	check_ticket('admin-modules');
-	$_REQUEST['um_edit'] = urldecode($_REQUEST['um_edit']);
-	$um_info = $modlib->get_user_module($_REQUEST['um_edit']);
+	$um_edit = urldecode($_REQUEST['um_edit']);
+	$um_info = $modlib->get_user_module($um_edit);
 	$smarty->assign('um_name', $um_info['name']);
 	$smarty->assign('um_title', $um_info['title']);
 	$smarty->assign('um_data', $um_info['data']);
@@ -540,7 +518,6 @@ $headerlib->add_jsfile('lib/modules/tiki-admin_modules.js');
 
 $sameurl_elements = ['offset', 'sort_mode', 'where', 'find'];
 
-ask_ticket('admin-modules');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 
