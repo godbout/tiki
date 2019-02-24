@@ -20,9 +20,9 @@
 	{if isset($maxRecords)}
 		<input type="hidden" name="maxRecords" value="{$maxRecords}">
 	{/if}
-	<div class="form-group row">
-		<div class="adminoptionbox">
-			<label for="edit_language" class="col-md-4 col-form-label">{tr}Language{/tr}</label>
+	<div class="adminoptionbox">
+		<div class="form-group row">
+			<label for="edit_language" class="col-md-3 col-form-label">{tr}Language{/tr}</label>
 			<div class="col-md-6">
 				<select id="edit_language" class="translation_action form-control" name="edit_language">
 					{section name=ix loop=$languages}
@@ -30,7 +30,7 @@
 					{/section}
 				</select>
 			</div>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<a class="btn btn-link tips" href="{service controller=language action=download language={$edit_language} file_type=language_php}" title="{tr}Download{/tr}:{tr}Download language.php file for the selected language.{/tr}">
 					{icon name="download"}
 				</a>
@@ -43,16 +43,16 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group row">
-		<div class="adminoptionbox">
+	<div class="adminoptionbox">
+		<div class="form-group row">
 			<label for="add_tran_sw" class="col-md-4 col-form-label">{tr}Add a translation{/tr}</label>
 			<div class="col-md-8">
 				<input id="add_tran_sw" class="translation_action" type="radio" name="action" value="add_tran_sw" {if $action eq 'add_tran_sw'}checked="checked"{/if}>
 			</div>
 		</div>
 	</div>
-	<div class="form-group row">
-		<div class="adminoptionbox">
+	<div class="adminoptionbox">
+		<div class="form-group row">
 			<label for="edit_rec_sw" class="col-md-4 col-form-label">{tr}Untranslated strings{/tr}</label>
 			<div class="col-md-8">
 				<input id="edit_rec_sw" class="translation_action" type="radio" name="action" value="edit_rec_sw" {if $action eq 'edit_rec_sw'}checked="checked"{/if}>
@@ -64,8 +64,8 @@
 			</div>
 		</div>
 	</div>
-	<div class="form-group row">
-		<div class="adminoptionbox">
+	<div class="adminoptionbox">
+		<div class="form-group row">
 			<label for="edit_tran_sw" class="col-md-4 col-form-label">{tr}Edit translations{/tr}</label>
 			<div class="col-md-8">
 				<input id="edit_tran_sw" class="translation_action" type="radio" name="action" value="edit_tran_sw" {if $action eq 'edit_tran_sw'}checked="checked"{/if}>
