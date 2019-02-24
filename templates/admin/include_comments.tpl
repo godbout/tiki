@@ -29,6 +29,7 @@
 		<legend>{tr}Display options{/tr}</legend>
 		<div class="admin featurelist">
 			{preference name=comments_per_page}
+			{preference name=comments_sort_mode}
 			{preference name=comments_notitle}
 			{preference name=comments_heading_links}
 			{preference name=section_comments_parse}

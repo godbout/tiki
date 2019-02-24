@@ -48,7 +48,9 @@ class Services_Comment_Controller
 		$offset = $input->offset->int();
 		$maxRecords = $input->maxRecords->int();
 		$maxRecords = $maxRecords ? $maxRecords : $prefs['comments_per_page'];
-		$comments = $commentslib->get_comments("$type:$objectId", null, $offset, $maxRecords);
+		$sortMode = $prefs['comments_sort_mode'];
+
+		$comments = $commentslib->get_comments("$type:$objectId", null, $offset, $maxRecords, $sortMode);
 
 		$this->markEditable($comments['data']);
 
@@ -71,6 +73,7 @@ return false;";
 			'cant'              => $comments['cant'],
 			'offset'            => $offset,
 			'maxRecords'        => $maxRecords,
+			'sortMode'          => $sortMode,
 			'paginationOnClick' => str_replace(["\n", "\t"], '', $paginationOnClick),
 			'allow_post'        => $this->canPost($type, $objectId) && ! $input->hidepost->int(),
 			'allow_remove'      => $this->canRemove($type, $objectId),
