@@ -62,7 +62,8 @@ $smarty->assign('assign_rows', 10);
 $smarty->assign('assign_params', '');
 if (isset($_REQUEST['clear_cache'])) {
 	check_ticket('admin-modules');
-	$modlib->clear_cache();
+	$result = $modlib->clear_cache();
+	Feedback::note(tr('%0 cache files cleared', $result));
 }
 $module_groups = [];
 $smarty->assign('assign_selected', '');
@@ -119,18 +120,33 @@ if (isset($_REQUEST['edit_assign']) || isset($_REQUEST['preview'])) {	// will be
 if (! empty($_REQUEST['unassign'])) {
 	$access->check_authenticity(tr('Are you sure you want to unassign this module?'));
 	$info = $modlib->get_assigned_module($_REQUEST['unassign']);
-	$modlib->unassign_module($_REQUEST['unassign']);
-	$logslib->add_log('adminmodules', 'unassigned module ' . $info['name']);
+	$result = $modlib->unassign_module($_REQUEST['unassign']);
+	if ($result) {
+		Feedback::success(tr('Module unassigned'));
+		$logslib->add_log('adminmodules', 'unassigned module ' . $info['name']);
+	} else {
+		Feedback::error(tr('Module not unassigned'));
+	}
 }
 
 if (! empty($_REQUEST['modup'])) {
 	check_ticket('admin-modules');
-	$modlib->module_up($_REQUEST['modup']);
+	$result = $modlib->module_up($_POST['modup']);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Standard module display order moved up.') . $addonMsg);
+	} else {
+		Feedback::error(tr('Standard module display order not moved up'));
+	}
 }
 
 if (! empty($_REQUEST['moddown'])) {
 	check_ticket('admin-modules');
-	$modlib->module_down($_REQUEST['moddown']);
+	$result = $modlib->module_down($_POST['moddown']);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Standard module display order moved down.') . $addonMsg);
+	} else {
+		Feedback::error(tr('Standard module display order not moved down'));
+	}
 }
 
 if (! empty($_REQUEST['modleft'])) {
@@ -146,7 +162,16 @@ if (! empty($_REQUEST['modright'])) {
 if (! empty($_REQUEST['module-order'])) {
 	check_ticket('admin-modules');
 	$module_order = json_decode($_REQUEST['module-order']);
-	$modlib->reorder_modules($module_order);
+	$result = $modlib->reorder_modules($module_order);
+	if ($result) {
+		Feedback::success(tr('Standard display of modules reordered or moved.') . $addonMsg);
+	} else {
+		$msg = tr('Standard display of modules not reordered or moved.');
+		$msg .= $userHasAssignedModules ? ' '
+			. tr('If you receive this error after attempting more than once to move a module, it may be because the standard display has already been changed but it is not visible to you because you have assigned a custom order for modules %0here%1.',
+				'<a href="tiki-user_assigned_modules.php">', '</a>') : '';
+		Feedback::error($msg);
+	}
 }
 
 /* Edit or delete a user module */
@@ -181,8 +206,14 @@ if (isset($_REQUEST['um_update'])) {
 	$smarty->assign_by_ref('um_data', $_REQUEST['um_data']);
 	$smarty->assign_by_ref('um_parse', $_REQUEST['um_parse']);
 
-	$modlib->replace_user_module($_REQUEST['um_name'], $_REQUEST['um_title'], $_REQUEST['um_data'], $_REQUEST['um_parse']);
-	$logslib->add_log('adminmodules', 'changed custom module ' . $_REQUEST['um_name']);
+	$result = $modlib->replace_user_module($_REQUEST['um_name'], $_REQUEST['um_title'], $_REQUEST['um_data'], $_REQUEST['um_parse']);
+	if ($result && $result->numRows()) {
+		$msg = $_REQUEST['um_update'] == tr('Create') ? tr('Custom module created') : tr('Custom module modified');
+		Feedback::success($msg);
+	} else {
+		$msg = $_REQUEST['um_update'] == tr('Create') ? tr('Custom not module created') : tr('Custom module not modified');
+		Feedback::error($msg);
+	}
 }
 
 if (! isset($_REQUEST['groups'])) {
@@ -329,7 +360,7 @@ if (isset($_REQUEST['assign'])) {
 	}
 	$smarty->assign('module_groups', $grps);
 	if (empty($missing_params)) {
-		$modlib->assign_module(
+		$result = $modlib->assign_module(
 			isset($_REQUEST['moduleId']) ? $_REQUEST['moduleId'] : 0,
 			$assign_name,
 			'',
@@ -343,7 +374,12 @@ if (isset($_REQUEST['assign'])) {
 		);
 		$logslib->add_log('adminmodules', 'assigned module ' . $assign_name);
 		$modlib->reorder_modules();
-		header('location: tiki-admin_modules.php?cookietab=1'); // forcing return to 1st tab
+		if ($result) {
+			Feedback::success(tr('Module assigned'));
+		} else {
+			Feedback::error(tr('Module not assigned'));
+		}
+		$access->redirect('tiki-admin_modules.php?cookietab=1');  // forcing return to 1st tab
 	} else {
 		$modlib->dispatchValues($_REQUEST['assign_params'], $modinfo['params']);
 		$smarty->assign('assign_info', $modinfo);
@@ -355,7 +391,12 @@ if (isset($_REQUEST['um_remove'])) {
 	$access->check_authenticity(
 		tra('Are you sure you want to delete this Custom Module?') . ' ("' . $_REQUEST['um_remove'] . '")'
 	);
-	$modlib->remove_user_module($_REQUEST['um_remove']);
+	$result = $modlib->remove_user_module($_REQUEST['um_remove']);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Custom module deleted'));
+	} else {
+		Feedback::error(tr('Custom module not deleted'));
+	}
 	$logslib->add_log('adminmodules', 'removed custom module ' . $_REQUEST['um_remove']);
 	$cookietab = 1;
 }
