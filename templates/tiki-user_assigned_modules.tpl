@@ -47,8 +47,7 @@
 										type="submit"
 										name="up"
 										value="{$modules_l[ix].moduleId}"
-										class="tips btn btn-link"
-										style="padding: 0;"
+										class="tips btn btn-link p-0"
 										title=":{tr}Move module up{/tr}"
 									>
 										{icon name="up"}
@@ -57,8 +56,7 @@
 										type="submit"
 										name="down"
 										value="{$modules_l[ix].moduleId}"
-										class="tips btn btn-link"
-										style="padding: 0;"
+										class="tips btn btn-link p-0"
 										title=":{tr}Move module down{/tr}"
 									>
 										{icon name="down"}
@@ -68,8 +66,7 @@
 											type="submit"
 											name="right"
 											value="{$modules_l[ix].moduleId}"
-											class="tips btn btn-link"
-											style="padding: 0;"
+											class="tips btn btn-link p-0"
 											title=":{tr}Move to right side{/tr}"
 										>
 											{icon name="next"}
@@ -80,8 +77,7 @@
 											type="submit"
 											name="unassign"
 											value="{$modules_l[ix].moduleId}"
-											class="tips btn btn-link"
-											style="padding: 0;"
+											class="tips btn btn-link p-0"
 											title=":{tr}Unassign{/tr}"
 										>
 											{icon name="remove"}
@@ -115,8 +111,7 @@
 										type="submit"
 										name="up"
 										value="{$modules_r[ix].moduleId}"
-										class="tips btn btn-link"
-										style="padding: 0;"
+										class="tips btn btn-link p-0"
 										title=":{tr}Move module up{/tr}"
 									>
 										{icon name="up"}
@@ -125,8 +120,7 @@
 										type="submit"
 										name="down"
 										value="{$modules_r[ix].moduleId}"
-										class="tips btn btn-link"
-										style="padding: 0;"
+										class="tips btn btn-link p-0"
 										title=":{tr}Move module down{/tr}"
 									>
 										{icon name="down"}
@@ -136,8 +130,7 @@
 											type="submit"
 											name="left"
 											value="{$modules_r[ix].moduleId}"
-											class="tips btn btn-link"
-											style="padding: 0;"
+											class="tips btn btn-link p-0"
 											title=":{tr}Move to left side{/tr}"
 										>
 											{icon name="previous"}
@@ -148,8 +141,7 @@
 											type="submit"
 											name="unassign"
 											value="{$modules_r[ix].moduleId}"
-											class="tips btn btn-link"
-											style="padding: 0;"
+											class="tips btn btn-link p-0"
 											title=":{tr}Unassign{/tr}"
 										>
 											{icon name="remove"}
