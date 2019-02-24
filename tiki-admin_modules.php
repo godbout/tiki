@@ -220,7 +220,9 @@ if (isset($_REQUEST['um_update'])) {
 	}
 	$logslib->add_log('adminmodules', 'changed custom module ' . $_REQUEST['um_name']);
 }
-
+//post is used for preview because there is another submit item on the form requiring it
+//and using get for just the preview element would result in exposing the ticket
+//non-state-changing-action
 if (isset($_REQUEST['assign']) || isset($_REQUEST['preview'])) { // Verify that required parameters are present
 	$missing_params = [];
 	$modinfo = $modlib->get_module_info($_REQUEST['assign_name']);
