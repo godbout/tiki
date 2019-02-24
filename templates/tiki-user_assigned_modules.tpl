@@ -1,6 +1,9 @@
 {title help="UserAssignedModules"}{tr}User assigned modules{/tr}{/title}
 
 {include file='tiki-mytiki_bar.tpl'}
+{remarksbox type="info" title="{tr}Note{/tr}"}
+	{tr}Go{/tr} <a href="tiki-admin_modules.php">{tr}here{/tr}</a> {tr}to assign modules, which will make them available for creating a custom order on this page.{/tr}
+{/remarksbox}
 
 <div class="t_navbar">
 	{button href="tiki-user_assigned_modules.php?recreate=1" class="btn btn-primary" _text="{tr}Restore defaults{/tr}"}
