@@ -57,6 +57,11 @@
 		</div>
 
 		<div id="assigned_modules">
+			{if $userHasAssignedModules}
+				{remarksbox type="warning" title="{tr}Warning{/tr}"}
+					{tr}You will need to go{/tr} <a href="tiki-user_assigned_modules.php">{tr}here{/tr}</a> {tr}to reorder or move modules in the left or right columns since you have created a custom order for these.{/tr} {tr}Use the table below to assign previously unassigned modules, or reorder and move modules where there is no custom order created by the user.{/tr}
+				{/remarksbox}
+			{/if}
 			{tabset}
 				{foreach from=$module_zone_list key=zone_initial item=zone_info}
 					{tab name=$zone_info.name|capitalize}
