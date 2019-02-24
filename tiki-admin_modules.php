@@ -218,6 +218,7 @@ if (isset($_REQUEST['um_update'])) {
 		$msg = $_REQUEST['um_update'] == tr('Create') ? tr('Custom not module created') : tr('Custom module not modified');
 		Feedback::error($msg);
 	}
+	$logslib->add_log('adminmodules', 'changed custom module ' . $_REQUEST['um_name']);
 }
 
 if (isset($_REQUEST['assign']) || isset($_REQUEST['preview'])) { // Verify that required parameters are present
