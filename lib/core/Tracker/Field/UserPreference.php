@@ -78,6 +78,8 @@ class Tracker_Field_UserPreference extends Tracker_Field_Abstract
 	{
 		if ($this->getOption('type') === 'country') {
 			$context['flags'] = TikiLib::lib('tiki')->get_flags('', '', '', true);
+		} else if ($this->getOption('type') === 'display_timezone') {
+			$context['timezones'] = TikiDate::getTimeZoneList();
 		}
 		return $this->renderTemplate('trackerinput/userpreference.tpl', $context);
 	}
