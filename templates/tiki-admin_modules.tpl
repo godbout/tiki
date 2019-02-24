@@ -237,7 +237,7 @@
 												type="submit"
 												name="um_remove"
 												value="{$user_modules[user].name|escape}"
-												class="btn btn-link"
+												class="btn btn-link link-list"
 												onclick="confirmSimple(event, '{tr}Delete custom module?{/tr}', '{ticket mode=get}')"
 											>
 												{icon name='remove'} {tr}Delete{/tr}
