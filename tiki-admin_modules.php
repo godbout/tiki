@@ -115,7 +115,9 @@ if (! empty($_REQUEST['edit_assign'])) {
 	}
 	$smarty->assign('assign_info', $modinfo);
 }
-
+//post is used for preview because there is another submit item on the form requiring it
+//and using get for just the preview element would result in exposing the ticket
+//non-state-changing-action
 if (isset($_REQUEST['edit_assign']) || isset($_REQUEST['preview'])) {	// will be 0 for a new assignment
 	$cookietab = 2;
 }
@@ -241,6 +243,9 @@ if (isset($_REQUEST['assign']) || isset($_REQUEST['preview'])) { // Verify that 
 }
 
 $smarty->assign('preview', 'n');
+//post is used for preview because there is another submit item on the form requiring it
+//and using get for just the preview element would result in exposing the ticket
+//non-state-changing-action
 if (isset($_REQUEST['preview'])) {
 	check_ticket('admin-modules');
 	$smarty->assign('preview', 'y');
