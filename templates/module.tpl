@@ -65,6 +65,7 @@
 				{* Module controls when module in a box *}
 				{if $user and $prefs.user_assigned_modules == 'y' and $prefs.feature_modulecontrols eq 'y' && ($module_position === 'left' || $module_position === 'right')}
 					<form action="{$current_location|escape}" method="post" class="modcontrols">
+						{ticket}
 						<input type="hidden" name="redirect" value="1">
 						<div class="float-right">
 							<button
@@ -73,6 +74,7 @@
 								value="{$moduleId}"
 								class="tips btn btn-link"
 								title=":{tr}Move up{/tr}"
+								onclick="checkTimeout()"
 							>
 								{icon name="up"}
 							</button>
@@ -82,6 +84,7 @@
 								value="{$moduleId}"
 								class="tips btn btn-link"
 								title=":{tr}Move down{/tr}"
+								onclick="checkTimeout()"
 							>
 								{icon name="down"}
 							</button>
@@ -91,6 +94,7 @@
 								value="{$moduleId}"
 								class="tips btn btn-link"
 								title=":{tr}Move to opposite side{/tr}"
+								onclick="checkTimeout()"
 							>
 								{icon name="move"}
 							</button>
@@ -100,6 +104,7 @@
 								value="{$moduleId}"
 								class="tips btn btn-link"
 								title=":{tr}Unassign{/tr}"
+								onclick="checkTimeout()"
 							>
 								{icon name="remove"}
 							</button>

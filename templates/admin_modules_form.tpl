@@ -1,6 +1,8 @@
 {* $Id$ *}
 {* include file for module edit form - to be called by ajax *}
-
+{if ! empty($assign_name)}
+	{ticket}
+{/if}
 <div class="module_selector form-group row">
 	<label for="assign_name">{tr}Module Name{/tr}</label>
 	<select id="assign_name" name="assign_name" class="form-control">
