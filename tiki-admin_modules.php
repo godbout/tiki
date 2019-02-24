@@ -277,7 +277,10 @@ if (isset($_REQUEST['preview'])) {
 			$smarty->assign(
 				'msg',
 				tr(
-					'There is a problem with your custom module "%0": ' . '<br><br><em>' . $e->getMessage() . '</em><br><br>' . '<span class="button"><a href="tiki-admin_modules.php?um_edit=' . $_REQUEST['assign_name'] . '&cookietab=2#editcreate">' . tr('Click here to edit the module') . '</a></span>',
+					'There is a problem with your custom module "%0": ' . '<br><br><em>' . $e->getMessage()
+					. '</em><br><br>' . '<span class="button"><a href="tiki-admin_modules.php?um_edit='
+					. $_REQUEST['assign_name'] . '&cookietab=2#editcreate">' . tr('Click here to edit the module')
+					. '</a></span>',
 					$_REQUEST['assign_name']
 				)
 			);
