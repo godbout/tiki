@@ -6,7 +6,19 @@
 {/remarksbox}
 
 <div class="t_navbar">
-	{button href="tiki-user_assigned_modules.php?recreate=1" class="btn btn-primary" _text="{tr}Restore defaults{/tr}"}
+	<form action="tiki-user_assigned_modules.php" method="post">
+		{ticket}
+		<input type="hidden" name="recreate" value="1">
+		<button
+			type="submit"
+			name="recreate"
+			value="1"
+			class="btn btn-primary"
+			onclick="checkTimeout()"
+		>
+			{tr}Restore defaults{/tr}
+		</button>
+	</form>
 </div>
 
 <h2>{tr}User assigned modules{/tr}</h2>
@@ -42,6 +54,7 @@
 							<td>{$modules_l[ix].name}</td>
 							<td>
 								<form action="tiki-user_assigned_modules.php" method="post">
+									{ticket}
 									<input type="hidden" name="redirect" value="1">
 									<button
 										type="submit"
@@ -106,6 +119,7 @@
 							<td>{$modules_r[ix].name}</td>
 							<td>
 								<form action="tiki-user_assigned_modules.php" method="post">
+									{ticket}
 									<input type="hidden" name="redirect" value="1">
 									<button
 										type="submit"
@@ -160,6 +174,7 @@
 {if $canassign eq 'y'}
 	<h2>{tr}Assign module{/tr}</h2>
 	<form action="tiki-user_assigned_modules.php" method="post" class="form-horizontal">
+		{ticket}
 		<div class="form-group row">
 			<label class="col-form-label col-sm-4" for="module">{tr}Module{/tr}</label>
 			<div class="col-sm-8">
@@ -191,7 +206,13 @@
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-offset-4 col-sm-8">
-				<input type="submit" class="btn btn-primary" name="assign" value="{tr}Assign{/tr}">
+				<input
+					type="submit"
+					class="btn btn-primary"
+					name="assign"
+					value="{tr}Assign{/tr}"
+					onclick="checkTimeout()"
+				>
 			</div>
 		</div>
 	</form>
