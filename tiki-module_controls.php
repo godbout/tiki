@@ -14,20 +14,13 @@ $smarty = TikiLib::lib('smarty');
 global $tiki_p_configure_modules, $prefs, $user;
 $check_req = (isset($_REQUEST["mc_unassign"]) || isset($_REQUEST["mc_up"]) || isset($_REQUEST["mc_down"]) || isset($_REQUEST["mc_move"]));
 if ($tiki_p_configure_modules != 'y' && $check_req) {
-	$smarty->assign('errortype', 401);
-	$smarty->assign('msg', tra("You do not have the permission that is needed to use this feature"));
-	$smarty->display("error.tpl");
-	die;
+	Feedback::errorPage(['mes' => tr('You do not have permission to use this feature'), 'errortype' => 401]);
 }
 if ($prefs['user_assigned_modules'] != 'y' && $check_req) {
-	$smarty->assign('msg', tra("This feature is disabled") . ": user_assigned_modules");
-	$smarty->display("error.tpl");
-	die;
+	Feedback::errorPage(tr('This feature is disabled') . ': user_assigned_modules');
 }
 if (! $user && $check_req) {
-	$smarty->assign('msg', tra("You must log in to use this feature"));
-	$smarty->display("error.tpl");
-	die;
+	Feedback::errorPage(tr('You must log in to use this feature'));
 }
 $request_uri = $url = isset($_SERVER["REQUEST_URI"]) ? $_SERVER['REQUEST_URI'] : '';
 if ($check_req) {
