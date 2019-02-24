@@ -328,7 +328,6 @@ if (isset($_REQUEST['preview'])) {
 	$smarty->assign_by_ref('assign_position', $_REQUEST['assign_position']);
 	$smarty->assign_by_ref('assign_order', $_REQUEST['assign_order']);
 	$smarty->assign_by_ref('assign_cache', $_REQUEST['assign_cache']);
-	$module_groups = $_REQUEST['groups'];
 	$grps = '';
 	$module_groups = ! isset($_REQUEST['groups']) ? [] : $_REQUEST['groups'];
 	foreach ($module_groups as $amodule) {
