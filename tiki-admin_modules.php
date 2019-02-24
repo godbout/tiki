@@ -27,6 +27,9 @@ $structlib = TikiLib::lib('struct');
 $modlib = TikiLib::lib('mod');
 $menulib = TikiLib::lib('menu');
 
+$userHasAssignedModules = $prefs['user_assigned_modules'] === 'y'
+	&& TikiLib::lib('usermodules')->user_has_assigned_modules($user);
+
 $smarty->assign('wysiwyg', 'n');
 if (isset($_REQUEST['wysiwyg']) && $_REQUEST['wysiwyg'] == 'y') {
 	$smarty->assign('wysiwyg', 'y');
@@ -128,6 +131,10 @@ if (! empty($_REQUEST['unassign'])) {
 		Feedback::error(tr('Module not unassigned'));
 	}
 }
+$addonMsg =  ' ' . tr('Displayed order may not change if other modules now have the same order rank.').
+$addonMsg .= $userHasAssignedModules ? ' '
+	. tr('Also, displayed order may not change for you since you have assigned a custom order for modules %0here%1',
+		'<a href="tiki-user_assigned_modules.php">', '</a>') : '';
 
 if (! empty($_REQUEST['modup'])) {
 	check_ticket('admin-modules');
@@ -512,6 +519,7 @@ $assigned_modules = array_map(
 
 $smarty->assign('assigned_modules', $assigned_modules);
 $smarty->assign('module_zone_list', $module_zones);
+$smarty->assign('userHasAssignedModules', $userHasAssignedModules);
 
 $prefs['module_zones_top'] = 'fixed';
 $prefs['module_zones_topbar'] = 'fixed';
