@@ -83,12 +83,19 @@ function prefs_comments_list()
 			],
 			'keywords' => 'annotation annotatorjs',
 		],
-		'comments_heading_links' => [
+		'comments_heading_links'    => [
 			'name' => tr('Anchor links on headings'),
 			'description' => tr('Cause a link icon to appear on hover over each heading, useful for sharing the URL to an exact location on a page.'),
 			'keywords' => 'Display hidden anchor on mouseover of headings',
 			'type' => 'flag',
 			'default' => 'y',
+			'dependencies' => [],
+		],
+		'comments_per_page'         => [
+			'name'         => tr('Number of comments per page'),
+			'type'         => 'text',
+			'filter'       => 'digits',
+			'default'      => 25,
 			'dependencies' => [],
 		],
 	];

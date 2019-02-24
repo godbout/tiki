@@ -12,8 +12,18 @@
 
 class Services_Comment_Controller
 {
+	/**
+	 * Lists comments for an object
+	 *
+	 * @param JitFilter $input
+	 *
+	 * @return array
+	 * @throws Services_Exception
+	 */
 	function action_list($input)
 	{
+		global $prefs;
+
 		$type = $input->type->alphaspace();
 		if ($type === 'wiki page') {
 			$objectId = $input->objectId->pagename();
@@ -34,29 +44,41 @@ class Services_Comment_Controller
 		}
 
 		$commentslib = TikiLib::lib('comments');
-		// TODO : Add pagination, sorting, thread style, moderation, ...
-		$offset = 0;
-		$per_page = 100;
-		$comments = $commentslib->get_comments("$type:$objectId", null, $offset, $per_page);
+		// TODO : Add sorting, thread style, moderation, ...
+		$offset = $input->offset->int();
+		$maxRecords = $input->maxRecords->int();
+		$maxRecords = $maxRecords ? $maxRecords : $prefs['comments_per_page'];
+		$comments = $commentslib->get_comments("$type:$objectId", null, $offset, $maxRecords);
 
 		$this->markEditable($comments['data']);
 
+		$paginationOnClick = "
+\$(this).parents('.comment-container')
+	.tikiModal(tr('Loading...'))
+	.load(
+		\$.service('comment', 'list'),
+		{type:'$type', objectId:'$objectId', offset: comment_offset},
+		function () {\$('#comment-container').tikiModal();}
+	);
+return false;";
+
 		return [
-			'title' => tr('Comments'),
-			'comments' => $comments['data'],
-			'type' => $type,
-			'objectId' => $objectId,
-			'parentId' => 0,
-			'cant' => $comments['cant'],
-			'offset' => $offset,
-			'per_page' => $per_page,
-			'allow_post' => $this->canPost($type, $objectId) && ! $input->hidepost->int(),
-			'allow_remove' => $this->canRemove($type, $objectId),
-			'allow_lock' => $this->canLock($type, $objectId),
-			'allow_unlock' => $this->canUnlock($type, $objectId),
-			'allow_archive' => $this->canArchive($type, $objectId),
-			'allow_moderate' => $this->canModerate($type, $objectId),
-			'allow_vote' => $this->canVote($type, $objectId),
+			'title'             => tr('Comments'),
+			'comments'          => $comments['data'],
+			'type'              => $type,
+			'objectId'          => $objectId,
+			'parentId'          => 0,
+			'cant'              => $comments['cant'],
+			'offset'            => $offset,
+			'maxRecords'        => $maxRecords,
+			'paginationOnClick' => str_replace(["\n", "\t"], '', $paginationOnClick),
+			'allow_post'        => $this->canPost($type, $objectId) && ! $input->hidepost->int(),
+			'allow_remove'      => $this->canRemove($type, $objectId),
+			'allow_lock'        => $this->canLock($type, $objectId),
+			'allow_unlock'      => $this->canUnlock($type, $objectId),
+			'allow_archive'     => $this->canArchive($type, $objectId),
+			'allow_moderate'    => $this->canModerate($type, $objectId),
+			'allow_vote'        => $this->canVote($type, $objectId),
 		];
 	}
 

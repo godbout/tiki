@@ -105,3 +105,4 @@
 		</li>
 	{/foreach}
 </ul>
+{pagination_links cant=$cant step=$maxRecords offset=$offset offset_jsvar='comment_offset' _onclick=$paginationOnClick}{/pagination_links}
