@@ -220,10 +220,6 @@ if (isset($_REQUEST['um_update'])) {
 	}
 }
 
-if (! isset($_REQUEST['groups'])) {
-	$_REQUEST['groups'] = [];
-}
-
 if (isset($_REQUEST['assign']) || isset($_REQUEST['preview'])) { // Verify that required parameters are present
 	$missing_params = [];
 	$modinfo = $modlib->get_module_info($_REQUEST['assign_name']);
@@ -331,6 +327,7 @@ if (isset($_REQUEST['preview'])) {
 	$smarty->assign_by_ref('assign_cache', $_REQUEST['assign_cache']);
 	$module_groups = $_REQUEST['groups'];
 	$grps = '';
+	$module_groups = ! isset($_REQUEST['groups']) ? [] : $_REQUEST['groups'];
 	foreach ($module_groups as $amodule) {
 		$grps = $grps . ' $amodule ';
 	}
@@ -360,8 +357,8 @@ if (isset($_REQUEST['assign'])) {
 		$module_rows = 10;
 	}
 	$smarty->assign_by_ref('assign_type', $_REQUEST['assign_type']);
-	$module_groups = $_REQUEST['groups'];
 	$grps = '';
+	$module_groups = ! isset($_REQUEST['groups']) ? [] : $_REQUEST['groups'];
 	foreach ($module_groups as $amodule) {
 		$grps = $grps . " $amodule ";
 	}
