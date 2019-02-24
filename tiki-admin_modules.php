@@ -186,19 +186,13 @@ if (! empty($_REQUEST['module-order'])) {
 /* Edit or delete a user module */
 if (isset($_REQUEST['um_update'])) {
 	if (empty($_REQUEST['um_name'])) {
-		$smarty->assign('msg', tra('Cannot create or update module: You need to specify a name for the module'));
-		$smarty->display('error.tpl');
-		die;
+		Feedback::errorPage(tr('Cannot create or update module: You need to specify a name for the module'));
 	}
 	if (empty($_REQUEST['um_data'])) {
-		$smarty->assign('msg', tra('Cannot create or update module: You cannot leave the data field empty'));
-		$smarty->display('error.tpl');
-		die;
+		Feedback::errorPage(tr('Cannot create or update module: You cannot leave the data field empty'));
 	}
 	if ($_REQUEST['um_update'] == tra('Create') && in_array(strtolower($_REQUEST['um_name']), $modlib->get_all_modules())) {
-		$smarty->assign('msg', tra('A module with that "name" already exists, please choose another'));
-		$smarty->display('error.tpl');
-		die;
+		Feedback::errorPage(tr('A module with that "name" already exists, please choose another'));
 	}
 	if ($_REQUEST['um_update'] === tr('Create')) {
 		$access->check_authenticity(
