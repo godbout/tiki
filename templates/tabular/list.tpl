@@ -61,6 +61,7 @@
 		{/foreach}
 	</dl>
 {/if}
+<div class="table-responsive">
 {if $filters.side.usable}
 	<div class="row">
 		<div class="col-sm-9">
@@ -123,4 +124,5 @@
 	</table>
 	{pagination_links resultset=$resultset}{service controller=tabular action=list tabularId=$tabularId _params=$baseArguments}{/pagination_links}
 {/if}
+</div><!-- .table-responsive END -->
 {/block}
