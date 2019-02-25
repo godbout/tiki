@@ -67,6 +67,9 @@ class ClientRepository implements ClientRepositoryInterface
 		$sql = 'INSERT INTO `%s`(name, client_id, client_secret, redirect_uri) VALUES(?, ?, ?, ?)';
 		$sql = sprintf($sql, self::TABLE);
 
+		$entity->setClientId(ClientRepository::generateSecret(32));
+		$entity->setClientSecret(ClientRepository::generateSecret(64));
+
 		$query = $this->database->query($sql, [
 			$entity->getName(),
 			$entity->getClientId(),
@@ -142,14 +145,6 @@ class ClientRepository implements ClientRepositoryInterface
 			$errors['name'] = tra('Name cannot be empty');
 		}
 
-		if (empty($entity->getClientId())) {
-			$errors['client_id'] = tra('Client Id cannot be empty');
-		}
-
-		if (empty($entity->getClientSecret())) {
-			$errors['client_secret'] = tra('Client Secret cannot be empty');
-		}
-
 		if (empty($entity->getRedirectUri())) {
 			$errors['redirect_uri'] = tra('Redirect URI cannot be empty');
 
@@ -170,5 +165,13 @@ class ClientRepository implements ClientRepositoryInterface
 			return false;
 		}
 		return $client;
+	}
+
+	public static function generateSecret($length=32)
+	{
+		$random = \phpseclib\Crypt\Random::string(ceil($length / 2));
+		$random = bin2hex($random);
+		$random = substr($random, 0, $length);
+		return $random;
 	}
 }
