@@ -77,6 +77,7 @@
 				{preference name=tiki_allow_trust_input}
 				{preference name=feature_quick_object_perms}
 				{preference name=zend_http_sslverifypeer}
+				{preference name=zend_http_use_curl}
 				{preference name=feature_debug_console}
 				{preference name=feature_view_tpl}
 				{preference name=feature_edit_templates}

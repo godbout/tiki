@@ -183,9 +183,9 @@ class TikiLib extends TikiDb_Bridge
 				$config["proxy_user"] = $prefs['proxy_user'];
 				$config["proxy_pass"] = $prefs['proxy_pass'];
 			}
-		// Zend\Http\Client defaults to sockets, which aren't allowed in all environments so use curl when available
-		} elseif (function_exists('curl_init')) {
-				$config['adapter'] = 'Zend\Http\Client\Adapter\Curl';
+		} elseif (function_exists('curl_init') && $prefs['zend_http_use_curl'] === 'y') {
+			// Zend\Http\Client defaults to sockets, which aren't allowed in all environments so use curl when available if selected
+			$config['adapter'] = 'Zend\Http\Client\Adapter\Curl';
 		}
 
 		if ($prefs['zend_http_sslverifypeer'] == 'y') {

@@ -149,6 +149,7 @@
 				{preference name=feature_loadbalancer}
 				{preference name=feature_port_rewriting}
 				{preference name=access_control_allow_origin}
+				{preference name=zend_http_use_curl}
 			</fieldset>
 			<fieldset>
 				<legend>{tr}Multi-domain{/tr}</legend>

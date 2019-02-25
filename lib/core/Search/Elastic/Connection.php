@@ -61,6 +61,7 @@ class Search_Elastic_Connection
 
 			return $result;
 		} catch (Exception $e) {
+			Feedback::error($e->getMessage());
 			return (object) [
 				'ok' => false,
 				'status' => 0,

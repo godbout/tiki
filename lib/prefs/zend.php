@@ -84,7 +84,7 @@ function prefs_zend_list()
 			'perspective' => false,
 			'default' => 'localhost',
 		],
-		'zend_mail_queue' => [
+		'zend_mail_queue'         => [
 			'name' => tra('Mail delivery'),
 			'description' => tr(
 				'When set to Queue, messages will be stored in the database. Requires using the shell script %0 to be run for actual delivery. Only works with SMTP mail.',
@@ -106,6 +106,15 @@ function prefs_zend_list()
 				'y' => tra('Enforce verification'),
 			],
 			'default' => '',
+		],
+		'zend_http_use_curl'      => [
+			'name'        => tra('Use CURL for HTTP connections'),
+			'description' => tra(
+				'Use CURL instead of sockets for server to server HTTP connections, when sockets are not available.'
+			),
+			'type'        => 'flag',
+			'default'     => 'n',
+			'extensions'  => ['curl'],
 		],
 	];
 }
