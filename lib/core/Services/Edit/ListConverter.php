@@ -31,11 +31,11 @@ class Services_Edit_ListConverter
 		$this->columns = [];
 		$this->missed = [];
 		$this->columnOptions = [
-			'label' => true,            // show labels
-			'sort' => false,            // allow sorting
-			'links' => false,           // show item links
-			'edit' => false,            // all ditable
-			'editable' => [],            // editable field id's
+			'label'    => true,            // show labels
+			'sort'     => false,            // allow sorting
+			'links'    => false,           // show item links
+			'edit'     => false,            // all editable
+			'editable' => [],           // editable field id's
 		];
 
 		$this->titleFound = false;
@@ -85,6 +85,7 @@ class Services_Edit_ListConverter
 
 		$showLastModif = false;
 		$showCreated = false;
+		$showStatus = false;
 
 		unset($params['trackerId']);    // got it before
 
@@ -97,8 +98,7 @@ class Services_Edit_ListConverter
 					$fields = $this->utilities->getFieldsFromIds($definition, explode(':', $value));
 					break;
 				case 'showlinks':
-				case 'showstatus':
-					$this->columnOptions['links'] = $value === 'y';    // compromise on this - we can only do format=objectlink
+					$this->columnOptions['links'] = $value === 'y';
 					break;
 				case 'status':
 					$filters[] = [
@@ -142,6 +142,10 @@ class Services_Edit_ListConverter
 					break;
 				case 'showcreated':
 					$showCreated = $value === 'y';
+					break;
+				// *********************** status display **********************
+				case 'showstatus':
+					$showStatus = $value === 'y';
 					break;
 				// *********************** pagination *************************
 				case 'max':
@@ -261,6 +265,16 @@ class Services_Edit_ListConverter
 			}
 		}
 
+		if ($showStatus) {
+			$this->processFieldAsColumn(
+				[
+					'name'     => 'Status',
+					'permName' => 'tracker_status',
+					'type'     => 't',
+				], true
+			);
+		}
+
 		if ($showLastModif) {
 			$this->processFieldAsColumn([
 				'name' => 'LastModif',
@@ -355,10 +369,14 @@ class Services_Edit_ListConverter
 		if (! empty($field['fieldId'])) {
 			$fullPermName = 'tracker_field_' . $permName;
 		} else {
-			$fullPermName = $permName;    // if not an atual tracker field, e.g. mod or create date
+			$fullPermName = $permName;    // if not an actual tracker field, e.g. mod or create date
 		}
 		$display['name'] = $fullPermName;
 
+		if ($permName === 'tracker_status') {
+			$display['format'] = 'trackerrender';
+			$rawMode = true;
+		}
 		if ($this->columnOptions['links'] && $field['isMain'] === 'y') {
 			$display['format'] = 'objectlink';
 			$this->titleFound = true;
