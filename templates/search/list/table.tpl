@@ -1,7 +1,7 @@
 {* $Id$ *}
 {if empty($iListExecute)}{assign var=iListExecute value=$id}{/if}
 {if isset($tableparams.title)}
-		<p>{wiki}{$tableparams.title}{/wiki}</p>
+	<div class="list-table-heading">{wiki}{$tableparams.title|escape}{/wiki}</div>
 {/if}
 {if $actions}
 <form method="post" action="#{$id}" class="form-inline" id="listexecute-{$iListExecute}">
