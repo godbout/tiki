@@ -4725,6 +4725,14 @@ class TikiLib extends TikiDb_Bridge
 			$logslib->add_action("Created", $name, 'wiki page', 'add=' . strlen($data), $user, '', '', $created, $hash['contributions'], $hash2);
 			//get_strings tra("Created");
 
+			// Need to categorize new pages before sending mail notifications to make sure category permissions are considered
+			if (! empty($_REQUEST['cat_categories']) && ! empty($_REQUEST["page"])) {
+				// these variables are used in categorize.php
+				$cat_type = 'wiki page';
+				$cat_objid = $_REQUEST["page"];
+				include_once("categorize.php");
+			}
+
 			//  Deal with mail notifications.
 			include_once('lib/notifications/notificationemaillib.php');
 
