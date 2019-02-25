@@ -55,12 +55,19 @@ class Services_Comment_Controller
 		$this->markEditable($comments['data']);
 
 		$paginationOnClick = "
-\$(this).parents('.comment-container')
+var \$commentContainer = $(this).parents('.comment-container');
+\$commentContainer
 	.tikiModal(tr('Loading...'))
 	.load(
 		\$.service('comment', 'list'),
 		{type:'$type', objectId:'$objectId', offset: comment_offset},
-		function () {\$('#comment-container').tikiModal();}
+		function () {
+			\$('html, body').animate({
+					scrollTop: \$commentContainer.offset().top
+				}, 2000, function () {
+					\$commentContainer.tikiModal();
+				});
+		}
 	);
 return false;";
 
