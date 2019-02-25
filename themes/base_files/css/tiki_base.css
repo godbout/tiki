@@ -4450,4 +4450,7 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     color: blue; }
   #tiki-installer .nav .nav-item.active .nav-link {
     color: blue; }
+
+#tiki-admin_oauthserver input[name="id"][value=''] ~ .form-group-client_id, #tiki-admin_oauthserver input[name="id"][value=''] ~ .form-group-client_secret {
+  display: none; }
 /* End of file */

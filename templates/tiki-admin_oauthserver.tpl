@@ -24,22 +24,22 @@
 				<h3>{$entityName}</h3>
 			</div>
 
-			<div class="form-group col-md-6 col-sm-12">
+			<div class="form-group col-md-6 col-sm-12 form-group-name">
 				<label for="oauth-name">{tr}Name{/tr}</label>
 				<input type="text" class="form-control" 
 					name="name"
 					value="{$entityName}"
 					/>
 			</div>
-			{if $entityId}
-			<div class="form-group col-md-6 col-sm-12">
+
+			<div class="form-group col-md-6 col-sm-12 form-group-client_id">
 				<label for="oauth-client_id">{tr}Client_id{/tr}</label>
 				<input type="text" class="form-control" 
 					name="client_id"
 					value="{$entityClientId}"
 					/>
 			</div>
-			<div class="form-group col-sm-12">
+			<div class="form-group col-sm-12 form-group-client_secret">
 				<label for="oauth-client_secret">{tr}Client_secret{/tr}</label>
 				<input type="text" class="form-control" 
 					name="client_secret"
@@ -47,8 +47,8 @@
 					value="{$entityClientSecret}"
 					/>
 			</div>
-			{/if}
-			<div class="form-group col-sm-12">
+
+			<div class="form-group col-sm-12 form-group-redirect_uri">
 				<label for="oauth-redirect_uri">{tr}Redirect_uri{/tr}</label>
 				<input type="text" class="form-control" 
 					name="redirect_uri"

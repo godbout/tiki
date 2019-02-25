@@ -1,0 +1,8 @@
+#tiki-admin_oauthserver {
+    input[name="id"][value=''] {
+        & ~ .form-group-client_id,
+        & ~ .form-group-client_secret {
+            display: none;
+        }
+    }
+}
