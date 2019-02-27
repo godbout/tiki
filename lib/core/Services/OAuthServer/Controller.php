@@ -81,6 +81,8 @@ class Services_OAuthServer_Controller
 				$response_content = ['error' => 'Client not found'];
 			}
 		} else if($params['delete'] !== '1' && empty($validation_errors)) {
+			$client->setClientId($repo::generateSecret(32));
+			$client->setClientSecret($repo::generateSecret(64));
 			$repo->create($client);
 			$response_content = $client->toArray();
 			$response_code = 201;
