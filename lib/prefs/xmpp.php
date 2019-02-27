@@ -52,14 +52,18 @@ function prefs_xmpp_list()
 			'tags' => ['basic'],
 			'default' => '',
 		],
-		'xmpp_openfire_use_token' => [
-			'name' => tra('XMPP Openfire Token'),
-			'default' => 'n',
-			'dependencies' => ['auth_token_access'],
-			'description' => tra('Handle user authentication using tokens.  Requires the TikiToken openfire plugin to be installed in openfire '),
-			'keywords' => 'xmpp jabber openfire token TikiToken',
-			'type' => 'flag',
+		'xmpp_auth_method' => [
+			'name' => tra('Authentication method'),
+			'description' => tra('The authentication method to be used by XMPP client'),
+			'keywords' => 'xmpp converse conversejs chat auth',
+			'type' => 'list',
 			'tags' => ['basic'],
+			'default' => '',
+			'options' => [
+				'' => tra('Plain'),
+				'oauth' => tra('OAuth (uses Tiki as provider)'),
+				'tikitoken' => tra('Openfire TikiToken'),
+			],
 		],
 		'xmpp_openfire_allow_anonymous' => [
 			'name' => tra('Allow anonymous'),

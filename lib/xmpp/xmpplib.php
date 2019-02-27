@@ -141,8 +141,8 @@ class XMPPLib extends TikiLib
 
 		$use_tikitoken = $xmpp['username'] === $user;
 		$use_tikitoken = $use_tikitoken && $xmpp['domain'] === $this->server_host;
-		$use_tikitoken = $use_tikitoken && !empty($prefs['xmpp_openfire_use_token']);
-		$use_tikitoken = $use_tikitoken && $prefs['xmpp_openfire_use_token'] === 'y';
+		$use_tikitoken = $use_tikitoken && !empty($prefs['xmpp_auth_method']);
+		$use_tikitoken = $use_tikitoken && $prefs['xmpp_auth_method'] === 'tikitoken';
 
 		if ($use_tikitoken) {
 			$token = $tokenlib->createToken(
@@ -180,6 +180,60 @@ class XMPPLib extends TikiLib
 		}
 
 		return $result;
+	}
+
+	public function getOAuthParameters()
+	{
+		$client_id = 'org.tiki.rtc.internal-conversejs-id';
+		$oauthserverlib = TikiLib::lib('oauthserver');
+		$accesslib = TikiLib::lib('access');
+
+		$client = $oauthserverlib->getClient($client_id)
+			?: $oauthserverlib->createClient([
+				'client_id' => $client_id,
+				'name' => 'ConverseJS OAuth Client',
+				'redirect_uri' => $accesslib->absoluteUrl('lib/xmpp/html/redirect.html')
+			]);
+
+		return array(
+			'client_id' => $client->getClientId(),
+			'name' => $client->getName(),
+			'authorize_url' => TikiLib::lib('service')->getUrl([
+				'action' => 'authorize',
+				'controller' => 'oauthserver',
+				'response_type' => 'token'
+			])
+		);
+	}
+
+
+	public function getConverseAuthOptions()
+	{
+		$tikilib = TikiLib::lib('tiki');
+		$authMethod = $tikilib->get_preference('xmpp_auth_method');
+
+		if ($authMethod === 'tikitoken') {
+			return array(
+				'auto_login' => true,
+				'authentication'   => 'prebind',
+				'prebind_url'      => TikiLib::lib('service')->getUrl([
+					'action' => 'prebind',
+					'controller' => 'xmpp',
+				]),
+			);
+		}
+
+		if ($authMethod === 'oauth') {
+			return array(
+				'authentication'   => 'login',
+				'oauth_providers' => [
+					'tiki' => $this->getOAuthParameters(),
+			]);
+		}
+
+		return array(
+			'authentication' => 'login'
+		);
 	}
 
 	/**
@@ -256,23 +310,19 @@ class XMPPLib extends TikiLib
 			}
 		}
 
-		$options = [
-			'authentication'   => 'prebind',
-			'bosh_service_url' => $xmpp['http_bind'],
-			'debug'            => $prefs['xmpp_conversejs_debug'] === 'y',
-			'jid'              => $xmpp['jid'],
-			'nickname'         => $xmpp['nickname'],
-			'prebind_url'      => TikiLib::lib('service')->getUrl([
-				'action' => 'prebind',
-				'controller' => 'xmpp',
-			]),
-			'use_emojione'     => false,
-			'view_mode'        => $params['view_mode'],
-			'whitelisted_plugins' => ['tiki'],
-		];
+		$options = array_merge([
+				'bosh_service_url' => $xmpp['http_bind'],
+				'debug'            => $prefs['xmpp_conversejs_debug'] === 'y',
+				'jid'              => $xmpp['jid'],
+				'nickname'         => $xmpp['nickname'],
+				'use_emojione'     => false,
+				'view_mode'        => $params['view_mode'],
+				'whitelisted_plugins' => ['tiki', 'tiki-oauth'],
+			],
+			$this->getConverseAuthOptions()
+		);
 
 		if ($params['room']) {
-			$options['auto_login'] = true;
 			if (strpos($params['room'], '@') === false && ! empty($prefs['xmpp_muc_component_domain'])) {
 				$params['room'] .= '@' . $prefs['xmpp_muc_component_domain'];
 			}
@@ -312,6 +362,7 @@ class XMPPLib extends TikiLib
 		$js .= $cssjs;
 
 		$headerlib->add_jsfile('vendor_bundled/vendor/jcbrand/converse.js/dist/converse.js')
+			->add_jsfile('lib/xmpp/js/conversejs-tiki-oauth.js')
 			->add_jq_onready($js);
 	}
 

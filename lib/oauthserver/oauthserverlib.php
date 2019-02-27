@@ -68,4 +68,25 @@ class OAuthServerLib extends TikiLib
 
 		return $this;
 	}
+
+	public function getClient($client_id)
+	{
+		return $this->getClientRepository()->get($client_id);
+	}
+
+	public function createClient($data)
+	{
+		$repo = $this->getClientRepository();
+
+		if(empty($data['client_id'])){
+			$data['client_id'] = $repo::generateSecret(32);
+		}
+
+		if(empty($data['client_secret'])){
+			$data['client_secret'] = $repo::generateSecret(64);
+		}
+
+		$entity = ClientRepository::build($data);
+		return $repo->create($entity);
+	}
 }

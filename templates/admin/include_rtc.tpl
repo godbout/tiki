@@ -26,7 +26,7 @@
 				{preference name=xmpp_server_host}
 				{preference name=xmpp_server_http_bind}
 				{preference name=xmpp_muc_component_domain}
-				{preference name=xmpp_openfire_use_token}
+				{preference name=xmpp_auth_method}
 				{preference name=xmpp_openfire_rest_api}
 				{preference name=xmpp_openfire_rest_api_username}
 				{preference name=xmpp_openfire_rest_api_password}
