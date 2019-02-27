@@ -12,6 +12,11 @@ class ClientRepository implements ClientRepositoryInterface
 		$this->database = $database;
 	}
 
+	public static function build($data)
+	{
+		return new ClientEntity($data);
+	}
+
 	public function list()
 	{
 		$result = array();
@@ -37,7 +42,7 @@ class ClientRepository implements ClientRepositoryInterface
 
 		return $result;
 	}
-	
+
 	public function update($entity)
 	{
 		if ( !empty($this->validate($entity)) ) {
@@ -67,9 +72,6 @@ class ClientRepository implements ClientRepositoryInterface
 		$sql = 'INSERT INTO `%s`(name, client_id, client_secret, redirect_uri) VALUES(?, ?, ?, ?)';
 		$sql = sprintf($sql, self::TABLE);
 
-		$entity->setClientId(ClientRepository::generateSecret(32));
-		$entity->setClientSecret(ClientRepository::generateSecret(64));
-
 		$query = $this->database->query($sql, [
 			$entity->getName(),
 			$entity->getClientId(),
@@ -80,7 +82,7 @@ class ClientRepository implements ClientRepositoryInterface
 		$id = (int) $this->database->lastInsertId();
 		$entity->setId($id);
 
-		return $query;
+		return $entity;
 	}
 
 	public function save($entity)
