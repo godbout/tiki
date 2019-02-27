@@ -7,7 +7,6 @@
  * @link        https://github.com/thephpleague/oauth2-server
  */
 
-use DateInterval;
 use Defuse\Crypto\Key;
 use League\Event\EmitterAwareInterface;
 use League\Event\EmitterAwareTrait;

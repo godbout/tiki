@@ -9,7 +9,6 @@
  * @link        https://github.com/thephpleague/oauth2-server
  */
 
-use DateTime;
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;
 use League\OAuth2\Server\ResponseTypes\AbstractResponseType;
