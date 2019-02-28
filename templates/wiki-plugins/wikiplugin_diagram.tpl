@@ -16,7 +16,7 @@
 </div>
 {/if}
 {jq notonready=true}
-	var xml = `{{$graph_data}}`;
+	var xml = '{{$graph_data}}';
 
 	mxUtils.getAll([STYLE_PATH + '/default.xml'], function(xhr) {
 		var themes = new Object();

@@ -66,6 +66,8 @@ function wikiplugin_diagram($data, $params)
 		}
 	}
 
+	$data = preg_replace('/\s+/', ' ', $data);
+
 	if (function_exists('simplexml_load_string')) {
 		$doc = simplexml_load_string($data);
 		if (empty($data) || $doc === false || ($doc->getName() != 'mxGraphModel' && $doc->getName() != 'mxfile')) {
