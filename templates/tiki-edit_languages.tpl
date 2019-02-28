@@ -140,6 +140,7 @@
 							<label for="tran_{$smarty.foreach.translations.index}" class="d-md-none mt-2">{tr}Translation{/tr}</label>
 							<textarea id="tran_{$smarty.foreach.translations.index}"
 								name="tran_{$smarty.foreach.translations.index}"
+								tabindex="{$smarty.foreach.translations.index + 1}"
 								class="form-control" rows="2">{$item.tran|escape}</textarea>
 						</div>
 
