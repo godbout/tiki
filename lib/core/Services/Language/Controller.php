@@ -169,13 +169,18 @@ class Services_Language_Controller
 			$from = $input->asArray('from');
 			$to = $input->asArray('to');
 
-			if (count($from) > 1) {
+			$isValid = is_array($from)
+				&& is_array($to)
+				&& count($from) > 0
+				&& count($from) === count($to);
+
+			if ($isValid) {
+				$data = array();
+
 				//prepare data
-				foreach ($from as $fromKey => $source) {
-					foreach ($to as $toKey => $translation) {
-						if ($fromKey === $toKey) {
-							$data[$source] = $translation;
-						}
+				foreach ($from as $index => $source) {
+					if (! empty($to[$index]) && ! empty($source)) {
+						$data[ $source ] = $to[ $index ];
 					}
 				}
 
