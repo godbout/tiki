@@ -1,6 +1,6 @@
 {tikimodule error=$module_params.error title=$tpl_module_title name=$module_params.name flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
 <form class="mod_quick_search search-box" method="get" action="tiki-searchindex.php">
-	<label>{tr}Search Terms{/tr} <input type="text" name="filter~content" value="{$qs_prefill.content|escape}"/></label>
+	<label>{tr}Search Terms{/tr} <input type="text" name="filter~content" value="{$qs_prefill.content|escape}" class="form-control"/></label>
 
 	{if $qs_types}
 		<label>{tr}Type{/tr}
