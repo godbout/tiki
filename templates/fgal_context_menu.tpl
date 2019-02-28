@@ -119,7 +119,12 @@
 			</a>
 		{/if}
 
-		<a href="{$file.id|sefurl:file}&display=true">
+		{assign var="browserDisplay" value="{$file.id|sefurl:file}?display=true"}
+		{if strpos({$file.id|sefurl:file}, '?')}
+			{assign var="browserDisplay" value="{$file.id|sefurl:file}&display=true"}
+		{/if}
+
+		<a href="{$browserDisplay}">
 			{icon name='eye' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Browser display{/tr}"}
 		</a>
 
