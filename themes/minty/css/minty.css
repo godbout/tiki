@@ -7318,8 +7318,6 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .tiki #conversejs.converse-overlayed #minimized-chats #toggle-minimized-chats, .tiki #conversejs.converse-embedded.converse-overlayed #minimized-chats #toggle-minimized-chats {
     background-color: #6cc3d5;
     color: #212529; }
-  .tiki #conversejs ~ .modal-backdrop.fade.show, .tiki #conversejs.converse-embedded ~ .modal-backdrop.fade.show {
-    display: none; }
 
 .chosen-select, .chosen-select-deselect {
   width: 100%; }

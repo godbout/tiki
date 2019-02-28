@@ -176,8 +176,4 @@
 		background-color: $info;
 		color: color-yiq($info);
 	}
-
-	& ~ .modal-backdrop.fade.show {
-		display: none;
-	}
 }
