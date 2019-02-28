@@ -118,6 +118,7 @@
 					{tr}Untranslated strings{/tr}
 				{/if}
 			</div>
+
 			<div class="card-body" id="edit_translations">
 				<div class="d-none d-md-block">
 					<div class="row">
@@ -140,7 +141,7 @@
 							<label for="tran_{$smarty.foreach.translations.index}" class="d-md-none mt-2">{tr}Translation{/tr}</label>
 							<textarea id="tran_{$smarty.foreach.translations.index}"
 								name="tran_{$smarty.foreach.translations.index}"
-								tabindex="{$smarty.foreach.translations.index + 1}"
+								tabindex="{counter start=1}"
 								class="form-control autoheight" rows="2">{$item.tran|escape}</textarea>
 						</div>
 
@@ -200,7 +201,7 @@
 				{foreachelse}
 					{norecords _colspan=3}
 				{/foreach}
-			</div>
+				
 				{jq}
 					jQuery('select[name^="scope_"]').tooltip(
 						{title: "{tr}For translations specific to this Tiki instance, select No. If this translation can be contributed to the Tiki community, select Yes.{/tr}"}
@@ -211,24 +212,26 @@
 							jQuery(this).closest('tr').find("label[for^='scope_']").show();
 						});
 				{/jq}
-			<div class="text-center">
+			
+				<div class="text-center">
+					<input type="hidden" name="offset" value="{$offset|escape}">
+					{if !empty($translations)}
+						<input tabindex="{counter}" type="submit" class="btn btn-primary" name="translate_all" value="{tr}Translate all{/tr}">
+						{if $action eq 'edit_rec_sw' && $hasDbTranslations == true && $only_db_untranslated eq 'y'}
+							<input type="submit" class="btn btn-danger btn-sm" name="tran_reset" value="{tr}Delete all{/tr}" onclick="return confirm('{tr}Are you sure you want to delete all untranslated strings from database?{/tr}')">
+						{/if}
+						{if $action eq 'edit_tran_sw' && $only_db_translations eq 'y' && $tiki_p_admin eq 'y'}
+							<input type="submit" class="btn btn-danger btn-sm" name="delete_all" value="{tr}Delete all{/tr}" onclick="return confirm('{tr}Are you sure you want to delete all translations from database?{/tr}')">
+						{/if}
+					{/if}
+				</div>
+			</div>
+
+			<div class="card-footer text-center">
 				{pagination_links cant=$total step=$maxRecords offset=$offset _ajax='n'}{strip}
 				tiki-edit_languages.php?edit_language={$edit_language}&action={$action}&maxRecords={$maxRecords}&only_db_translations={$only_db_translations}&only_db_untranslated={$only_db_untranslated}{if isset($find)}&find={$find}{/if}
 				{/strip}{/pagination_links}
 			</div>
-		</div>
-
-		<div class="card-footer text-center">
-			<input type="hidden" name="offset" value="{$offset|escape}">
-			{if !empty($translations)}
-				<input type="submit" class="btn btn-primary" name="translate_all" value="{tr}Translate all{/tr}">
-				{if $action eq 'edit_rec_sw' && $hasDbTranslations == true && $only_db_untranslated eq 'y'}
-					<input type="submit" class="btn btn-danger btn-sm" name="tran_reset" value="{tr}Delete all{/tr}" onclick="return confirm('{tr}Are you sure you want to delete all untranslated strings from database?{/tr}')">
-				{/if}
-				{if $action eq 'edit_tran_sw' && $only_db_translations eq 'y' && $tiki_p_admin eq 'y'}
-					<input type="submit" class="btn btn-danger btn-sm" name="delete_all" value="{tr}Delete all{/tr}" onclick="return confirm('{tr}Are you sure you want to delete all translations from database?{/tr}')">
-				{/if}
-			{/if}
 		</div>
 	{/if}
 </form>
