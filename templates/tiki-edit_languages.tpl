@@ -141,7 +141,7 @@
 							<textarea id="tran_{$smarty.foreach.translations.index}"
 								name="tran_{$smarty.foreach.translations.index}"
 								tabindex="{$smarty.foreach.translations.index + 1}"
-								class="form-control" rows="2">{$item.tran|escape}</textarea>
+								class="form-control autoheight" rows="2">{$item.tran|escape}</textarea>
 						</div>
 
 						<div class="col-md-12">
@@ -168,7 +168,7 @@
 												<option {if ! isset($item.general)}selected {/if}value="">{tr}Undecided{/tr}</option>
 												<option {if $item.general === true}selected {/if}value="general">{tr}Yes{/tr}</option>
 												<option {if $item.general === false}selected {/if}value="local">{tr}No{/tr}</option>
-											</select>
+											</select>]
 										</div>
 									{/if}
 
