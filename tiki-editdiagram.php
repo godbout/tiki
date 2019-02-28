@@ -19,6 +19,7 @@ $page = isset($_POST['page']) ? $_POST['page'] : null;
 $index = isset($_POST['index']) ? $_POST['index'] : null;
 
 $saveModal = $smarty->fetch('mxgraph/save_modal.tpl');
+$saveModal = preg_replace('/\s+/', ' ', $saveModal);
 
 $headerlib = $tikilib::lib('header');
 
@@ -67,7 +68,7 @@ $js = "(function()
 				var content = mxUtils.getPrettyXml(editor.getGraphXml());
 				var fileId = {$fileId};
 
-				var saveElem = $(`{$saveModal}`)[0];
+				var saveElem = $('{$saveModal}')[0];
 				editorUi.showDialog(saveElem, 400, 200, true, false, null, true);
 
 				if (fileId) {
@@ -149,7 +150,7 @@ $js = "(function()
 
 		}, function()
 		{
-			document.body.innerHTML = '<center style=\"margin-top:10%;\">Error loading resource files. Please check browser console.</center>';
+			document.body.innerHTML = '<div class=\"mt-5 text-center alert alert-danger\">Error loading resource files. Please check browser console.</div>';
 		});
 	})();";
 
