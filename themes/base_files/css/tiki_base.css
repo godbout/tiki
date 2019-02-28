@@ -2171,7 +2171,7 @@ table.treetable tr.expanded span.indenter a {
       display: block;
       padding: 0.75rem 1.25rem; }
 
-.tracker-field-h a {
+.tracker-field-h {
   font-weight: bold; }
 
 [class*="tracker-status"]:before {
