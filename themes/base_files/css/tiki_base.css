@@ -3490,7 +3490,7 @@ body.fullscreen.tiki.navbar-padding {
   margin: 0;
   padding: 0; }
 
-#conversejs + .modal-backdrop, .modal-backdrop + .modal-backdrop {
+.tiki #conversejs ~ .modal-backdrop.fade.show, .tiki #conversejs.converse-embedded ~ .modal-backdrop.fade.show {
   display: none; }
 
 div.tablesorter-resizable-container {

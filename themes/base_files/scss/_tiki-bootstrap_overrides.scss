@@ -410,6 +410,8 @@ body.fullscreen.tiki.navbar-padding {
 	padding: 0;
 }
 
-#conversejs + .modal-backdrop, .modal-backdrop + .modal-backdrop {
-	display: none;
+.tiki #conversejs, .tiki #conversejs.converse-embedded {
+	& ~ .modal-backdrop.fade.show {
+		display: none;
+	}
 }
