@@ -33,7 +33,9 @@ function wikiplugin_diagram_info()
 function wikiplugin_diagram($data, $params)
 {
 
-	global $tikilib, $user, $page, $wikiplugin_included_page;
+	global $tikilib, $user, $page, $wikiplugin_included_page, $tiki_p_upload_files;
+
+	$filegallib = TikiLib::lib('filegal');
 
 	if (! file_exists('vendor/xorti/mxgraph-editor/mxClient.min.js')) {
 		Feedback::error(tr('To view diagrams Tiki needs the xorti/mxgraph-editor package. If you do not have permission to install this package, ask the site administrator.'));
@@ -67,17 +69,52 @@ function wikiplugin_diagram($data, $params)
 	}
 
 	$data = preg_replace('/\s+/', ' ', $data);
+	static $diagramIndex = 0;
+	++$diagramIndex;
 
 	if (function_exists('simplexml_load_string')) {
 		$doc = simplexml_load_string($data);
-		if (empty($data) || $doc === false || ($doc->getName() != 'mxGraphModel' && $doc->getName() != 'mxfile')) {
+		if ($doc !== false && ($doc->getName() != 'mxGraphModel' && $doc->getName() != 'mxfile')) {
 			Feedback::error(tr("Tiki wasn't able to parse the Diagram. Please check the diagram XML data and structure."));
 			return;
+		} elseif (empty($data) || $doc === false) {
+			if ($tiki_p_upload_files != 'y') {
+				return;
+			}
+
+			$label = tra('Create New Diagram');
+			$page = htmlentities($page);
+			$in = tr(" in ");
+
+			$gals = $filegallib->list_file_galleries(0, -1, 'name_desc', $user);
+
+			$galHtml = "<option value='0'>" . tr('Page (inline)') . "</option>";
+			usort($gals['data'], function ($a, $b) {
+				return strcmp(strtolower($a['name']), strtolower($b['name']));
+			});
+			foreach ($gals['data'] as $gal) {
+				if ($gal['name'] != "Wiki Attachments" && $gal['name'] != "Users File Galleries") {
+					$galHtml .= "<option value='" . $gal['id'] . "'>" . $gal['name'] . "</option>";
+				}
+			}
+
+			return <<<EOF
+		~np~
+		<form id="newDiagram$diagramIndex" method="post" action="tiki-editdiagram.php">
+			<p>
+				<input type="submit" class="btn btn-primary btn-sm" name="label" value="$label" class="newSvgButton" />$in
+				<select name="galleryId">
+					$galHtml
+				</select>
+				<input type="hidden" name="newDiagram" value="1"/>
+				<input type="hidden" name="page" value="$page"/>
+				<input type="hidden" name="index" value="$diagramIndex"/>
+			</p>
+		</form>
+		~/np~
+EOF;
 		}
 	}
-
-	static $id = 0;
-	$id++;
 
 	//checking if user can see edit button
 	if (! empty($wikiplugin_included_page)) {
@@ -100,7 +137,7 @@ function wikiplugin_diagram($data, $params)
 	}
 
 	$smarty = TikiLib::lib('smarty');
-	$smarty->assign('index', $id);
+	$smarty->assign('index', $diagramIndex);
 	$smarty->assign('graph_data', $data);
 	$smarty->assign('graph_data_base64', base64_encode($data));
 	$smarty->assign('sourcepage', $sourcepage);

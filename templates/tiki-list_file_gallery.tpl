@@ -155,6 +155,9 @@
 			{if $tiki_p_upload_files eq 'y' and $prefs.feature_draw eq 'y'}
 				{button _keepall='y' _icon_name="post" _type="link" _text="{tr}Draw{/tr}" href="tiki-edit_draw.php" galleryId=$galleryId}
 			{/if}
+            {if $tiki_p_upload_files eq 'y' and $prefs.wikiplugin_diagram eq 'y'}
+                {button _keepall='y' _icon_name="chart" _type="link" _text="{tr}Create Diagram{/tr}" href="tiki-editdiagram.php" galleryId=$galleryId newDiagram='1'}
+            {/if}
 			{if $prefs.feature_file_galleries_batch eq "y" and $tiki_p_batch_upload_file_dir eq 'y'}
 				{button _keepall='y' _icon_name="file-archive" _type="link" _text="{tr}Batch{/tr}" href="tiki-batch_upload_files.php" galleryId=$galleryId}
 			{/if}

@@ -2,26 +2,45 @@
 
 require_once('tiki-setup.php');
 
-if (empty($_POST['xml'])) {
+$xmlContent = isset($_POST['xml']) ? $_POST['xml'] : false;
+$page = isset($_POST['page']) ? $_POST['page'] : false;
+$index = isset($_POST['index']) ? $_POST['index'] : null;
+
+$galleryId = isset($_REQUEST['galleryId']) ? $_REQUEST['galleryId'] : 0;
+$backLocation = '';
+
+$newDiagram = isset($_REQUEST['newDiagram']) ?: false;
+if ($newDiagram) {
+	$xmlContent = '<mxGraphModel dx="1190" dy="789" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/></root></mxGraphModel>';
+
+	$smarty = TikiLib::lib('smarty');
+	$smarty->loadPlugin('smarty_modifier_sefurl');
+	$backLocation = smarty_modifier_sefurl($page ?: $galleryId, $page ? 'wikipage' : 'filegallery');
+}
+
+if (empty($xmlContent)) {
 	Feedback::error(tr('Invalid request'));
 	$smarty->display('tiki.tpl');
 	exit();
 }
 
-$xmlDiagram = base64_decode($_POST['xml']);
+$xmlDiagram = $newDiagram ? $xmlContent : base64_decode($xmlContent);
 $access->setTicket();
 $ticket = $access->getTicket();
+
+$ticket2 = null;
+if ($page && $galleryId) {
+	$access->setTicket();
+	$ticket2 = $access->getTicket();
+}
 
 $fileId = isset($_POST['fileId']) ? $_POST['fileId'] : 0;
 $fileName = isset($_POST['fileName']) ? $_POST['fileName'] : 0;
 
-$page = isset($_POST['page']) ? $_POST['page'] : null;
-$index = isset($_POST['index']) ? $_POST['index'] : null;
-
 $saveModal = $smarty->fetch('mxgraph/save_modal.tpl');
 $saveModal = preg_replace('/\s+/', ' ', $saveModal);
 
-$headerlib = $tikilib::lib('header');
+$headerlib = TikiLib::lib('header');
 
 $headerlib->add_cssfile('vendor/xorti/mxgraph-editor/grapheditor/styles/grapheditor.css');
 $headerlib->add_css("*, *::before, *::after { box-sizing: unset;}");
@@ -62,29 +81,38 @@ $js = "(function()
 
 			var editorUi = this.actions.editorUi;
 			var editor = editorUi.editor;
-			
+
 			this.actions.addAction('save', function() {
 
 				var content = mxUtils.getPrettyXml(editor.getGraphXml());
 				var fileId = {$fileId};
+				var galleryId = {$galleryId};
+				var newDiagram = '{$newDiagram}';
+				var backLocation = '{$backLocation}';
 
 				var saveElem = $('{$saveModal}')[0];
 				editorUi.showDialog(saveElem, 400, 200, true, false, null, true);
 
-				if (fileId) {
+				if (fileId || galleryId) {
 					var blob = new Blob([content]);
 					content = window.btoa(content);
+
+					var name = galleryId ? 'New Diagram' : '{$fileName}';
 
 					var data = {
 						controller: 'file',
 						action: 'upload',
 						ticket: '{$ticket}',
-						name: '{$fileName}',
+						name: name,
 						type: 'text/plain',
 						size: blob.size,
 						data: content,
 						fileId: '{$fileId}',
 					};
+
+					if (galleryId) {
+						data.galleryId = '{$galleryId}';
+					}
 				} else {
 					//calling ajax edit plugin function
 					var data = {
@@ -99,31 +127,75 @@ $js = "(function()
 					};
 				}
 
+				// Show Modal after Save diagram
+				function showModalAfterSave() {
+					editor.modified = false;
+					$('div.diagram-saving').hide();
+					$('div.diagram-saved').show();
+					setTimeout(function(){
+						if (newDiagram) {
+							window.location.href = backLocation;
+						} else {
+							window.close();
+							window.opener.location.reload(false);
+						}
+					}, 3000);
+				}
+
+				// Show Errors
+				function showErrorMessage(message) {
+					$('div.diagram-saving').hide();
+					$('p.diagram-error-message').html(message);
+
+					$('div.diagram-error button').on('click', function() {
+						editorUi.hideDialog();
+					});
+
+					$('div.diagram-error').show();
+				}
+
 				$.ajax({
 					type: 'POST',
 					url: 'tiki-ajax_services.php',
 					dataType: 'json',
 					data: data,
-					success: function(){
-						editor.modified = false;
-						$('div.diagram-saving').hide();
-						$('div.diagram-saved').show();
-						setTimeout(function(){
-							window.close();
-							window.opener.location.reload(false);
-						}, 3000);
+					success: function(result){
+						if ('{$page}' && result.fileId) {
+							// if new file and from page
+							var data = {
+								controller: 'plugin',
+								action: 'replace',
+								ticket: '{$ticket2}',
+								page: '{$page}',
+								message: 'Modified by mxGraph',
+								type: 'diagram',
+								content: '',
+								index: '{$index}',
+								params: {'fileId': result.fileId}
+							};
+
+							$.ajax({
+								type: 'POST',
+								url: 'tiki-ajax_services.php',
+								dataType: 'json',
+								data: data,
+								success: function(){
+									showModalAfterSave();
+								},
+								error: function(xhr, status, message) {
+									showErrorMessage(message);
+								}
+							});
+							
+						} else {
+							showModalAfterSave();
+						}
 					},
 					error: function(xhr, status, message) {
-						$('div.diagram-saving').hide();
-						$('p.diagram-error-message').html(message);
-						
-						$('div.diagram-error button').on('click', function() {
-							editorUi.hideDialog();
-						});
-						
-						$('div.diagram-error').show();
+						showErrorMessage(message);
 					}
 				});
+
 			}, null, null, Editor.ctrlKey + '+S');
 		};
 
@@ -156,5 +228,6 @@ $js = "(function()
 
 $headerlib->add_js($js);
 
-$smarty->assign('title', tr('Edit diagram'));
+$title = $newDiagram ? tr('New diagram') : tr('Edit diagram');
+$smarty->assign('title', $title);
 $smarty->display('mxgraph/editor.tpl');
