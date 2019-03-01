@@ -259,6 +259,7 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 	if ($build_content) {
 		if ($convertToPdf) {
 			$content = PDFHelper::convertToPDF($_REQUEST['fileId']);
+			$content_changed = true;
 		} elseif (! isset($_GET['display']) || isset($_GET['x']) || isset($_GET['y']) || $scale || isset($_GET['max']) || isset($_GET['format']) || isset($_GET['thumbnail'])) {
 			// Modify the original image if needed
 			if (! Image::isAvailable()) {
