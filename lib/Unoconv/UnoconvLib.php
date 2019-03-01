@@ -27,7 +27,14 @@ class UnoconvLib
 			return;
 		}
 
-		$this->unoconv = Unoconv::create();
+		global $prefs;
+
+		$config = [
+			'unoconv.binaries' => $prefs['alchemy_unoconv_path'],
+			'unoconv.timeout' => 60,
+		];
+
+		$this->unoconv = Unoconv::create($config);
 	}
 
 	/**
