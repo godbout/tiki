@@ -239,7 +239,7 @@
             "version": "5.7.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "url": "git@github.com:FortAwesome/Font-Awesome.git",
                 "reference": "1cf1062e0cfda5e9b5b2cac7844721b345e1a9c5"
             },
             "dist": {
@@ -2753,17 +2753,17 @@
         },
         {
             "name": "nolimits4web/swiper",
-            "version": "v4.4.6",
+            "version": "v4.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nolimits4web/swiper.git",
-                "reference": "c6f92692d2643d41cf14638638b991b5cd41d1e2"
+                "reference": "1c4dfa3b08727f7febd9238980d8249d89202702"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/nolimits4web/swiper/nolimits4web-swiper-c6f92692d2643d41cf14638638b991b5cd41d1e2-zip-d93a0a.zip",
-                "reference": "c6f92692d2643d41cf14638638b991b5cd41d1e2",
-                "shasum": "ec490e22c653b7cfd4e495f6fb80c03fbda923c8"
+                "url": "https://composer.tiki.org/dist/nolimits4web/swiper/nolimits4web-swiper-1c4dfa3b08727f7febd9238980d8249d89202702-zip-ac05f7.zip",
+                "reference": "1c4dfa3b08727f7febd9238980d8249d89202702",
+                "shasum": "2ce63591ce916da56db5e6976a28159ecc78b87e"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2796,7 +2796,7 @@
                 "swiper",
                 "touch"
             ],
-            "time": "2018-12-19T13:20:00+00:00"
+            "time": "2019-02-22T19:30:58+00:00"
         },
         {
             "name": "npm-asset/popper.js",
@@ -4426,17 +4426,17 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.46",
+            "version": "2.1.48",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "67799d42e7ee0afd3ed13e95f935694a8b3820d1"
+                "reference": "0740028f6adc6505c5897cc740e51e4638d41d6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-67799d42e7ee0afd3ed13e95f935694a8b3820d1-zip-2a409b.zip",
-                "reference": "67799d42e7ee0afd3ed13e95f935694a8b3820d1",
-                "shasum": "904f3436b7505623810e574fd50951c7e62837e0"
+                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-0740028f6adc6505c5897cc740e51e4638d41d6a-zip-d28a30.zip",
+                "reference": "0740028f6adc6505c5897cc740e51e4638d41d6a",
+                "shasum": "07ebb03e25a150591f6bb28836997a950a94ac6e"
             },
             "require": {
                 "php": ">=5.2"
@@ -4480,7 +4480,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2019-01-14T03:59:31+00:00"
+            "time": "2019-02-26T13:44:09+00:00"
         },
         {
             "name": "svg-edit/svg-edit",
@@ -6542,17 +6542,17 @@
         },
         {
             "name": "zendframework/zend-uri",
-            "version": "2.6.1",
+            "version": "2.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-uri.git",
-                "reference": "3b6463645c6766f78ce537c70cb4fdabee1e725f"
+                "reference": "b2785cd38fe379a784645449db86f21b7739b1ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-uri/zendframework-zend-uri-3b6463645c6766f78ce537c70cb4fdabee1e725f-zip-83f133.zip",
-                "reference": "3b6463645c6766f78ce537c70cb4fdabee1e725f",
-                "shasum": "a17b3a1621dac04d3e6e00dd8ef081ea21046bec"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-uri/zendframework-zend-uri-b2785cd38fe379a784645449db86f21b7739b1ee-zip-46e707.zip",
+                "reference": "b2785cd38fe379a784645449db86f21b7739b1ee",
+                "shasum": "0737d426708f3a892bc75913035d68f26b6c8add"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
@@ -6566,8 +6566,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.6.x-dev",
-                    "dev-develop": "2.7.x-dev"
+                    "dev-master": "2.7.x-dev",
+                    "dev-develop": "2.8.x-dev"
                 }
             },
             "autoload": {
@@ -6585,7 +6585,7 @@
                 "uri",
                 "zf"
             ],
-            "time": "2018-04-30T13:40:08+00:00"
+            "time": "2019-02-27T21:39:04+00:00"
         },
         {
             "name": "zendframework/zend-validator",
