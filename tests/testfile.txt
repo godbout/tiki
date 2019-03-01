@@ -1,1 +1,1 @@
-git test by luci
+svn+ssh test by luci
