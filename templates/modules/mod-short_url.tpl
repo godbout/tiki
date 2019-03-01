@@ -41,7 +41,7 @@
 				$('#short-url-get').removeAttr('disabled');
 			},
 			error: function (data) {
-	// todo implement
+				// todo implement
 			},
 		});
 	}
