@@ -96,13 +96,7 @@
 						<input type="file" name="csvlist" id="csvlist">
 						<span class="form-text">{tr}File format: title,authorName,heading,body,lang,user{/tr}....</span>
 						<div align="center">
-							<input
-								type="submit"
-								class="btn btn-primary btn-sm"
-								name="import"
-								value="{tr}Import{/tr}"
-								onclick="checkTimeout()"
-							>
+							<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}Import{/tr}">
 						</div>
 					</div>
 				</div>

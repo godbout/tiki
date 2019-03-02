@@ -312,14 +312,12 @@
 								class="btn btn-primary btn-sm"
 								name="enable"
 								value="{tr}Enable Plugins{/tr}"
-								onclick="checkTimeout()"
 							>
 							<input
 								type="submit"
 								class="btn btn-primary btn-sm"
 								name="delete"
 								value="{tr}Delete Plugins{/tr}"
-								onclick="checkTimeout()"
 							>
 						</div>
 						{remarksbox type="tip" title="{tr}Tip{/tr}"}

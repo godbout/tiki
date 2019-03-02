@@ -33,27 +33,13 @@
 			<div class="adminoptionboxchild fgal_use_db_childcontainer n">
 				<div class="mb-sm-3">
 					{preference name='fgal_use_dir'}
-					<button
-						role="button"
-						type="submit"
-						class="btn btn-primary"
-						name="move"
-						value="to_fs"
-						onclick="checkTimeout()"
-					>
+					<button role="button" type="submit" class="btn btn-primary" name="move" value="to_fs">
 						{tr}Move files from database to directory{/tr}
 					</button>
 				</div>
 			</div>
 			<div class="col-sm-8 col-sm-offset-4 mb-sm-3 adminoptionchild fgal_use_db_childcontainer y">
-				<button
-					role="button"
-					type="submit"
-					class="btn btn-primary"
-					name="move"
-					value="to_db"
-					onclick="checkTimeout()"
-				>
+				<button role="button" type="submit" class="btn btn-primary" name="move" value="to_db">
 					{tr}Move files from directory to database{/tr}
 				</button>
 			</div>
@@ -100,7 +86,6 @@
 						name="updateMime"
 						id="updateMime"
 						value="{tr}Update mime of all non archived octet-stream files{/tr}"
-						onclick="checkTimeout()"
 					>
 				</div>
 
@@ -279,7 +264,6 @@
 										class="btn btn-primary btn-sm"
 										name="filegalfixvndmsfiles"
 										value="{tr}Fix vnd.ms-* mime type files{/tr}"
-										onclick="checkTimeout()"
 									/>
 								{/remarksbox}
 							</div>
@@ -326,7 +310,6 @@
 								class="btn btn-primary btn-sm"
 								name="filegalredosearch"
 								value="{tr}Reindex all files for search{/tr}"
-								onclick="checkTimeout()"
 							>
 						</div>
 					</div>

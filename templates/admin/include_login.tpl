@@ -503,7 +503,6 @@
 							value="{tr}Create or Replace Word Index{/tr}"
 							name="uploadIndex"
 							class="btn btn-primary btn-sm"
-							onclick="checkTimeout()"
 						>
 						{help desc="Text files with one word per line accepted.
 						The word list will be converted to all lowe case. Duplicate entries will be removed.
@@ -538,7 +537,6 @@
 								value="{tr}Save & Set as Default{/tr}"
 								name="saveblacklist"
 								class="btn btn-primary btn-sm"
-								onclick="checkTimeout()"
 							>
 							<input
 								type="submit"

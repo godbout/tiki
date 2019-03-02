@@ -267,7 +267,7 @@
 				{preference name=profile_sources}
 				{preference name=profile_channels}
 				<div class="text-center submit">
-					<input type="submit" class="btn btn-primary" name="config" value="{tr}Save{/tr}" onclick="checkTimeout()"/>
+					<input type="submit" class="btn btn-primary" name="config" value="{tr}Save{/tr}"/>
 				</div>
 			</form>
 		</fieldset>
@@ -302,13 +302,7 @@
 					</div>
 				</div>
 				<div align="center" style="padding:1em;">
-					<input
-						type="submit"
-						class="btn btn-primary"
-						name="test"
-						value="{tr}Test{/tr}"
-						onclick="checkTimeout()"
-					>
+					<input type="submit" class="btn btn-primary" name="test" value="{tr}Test{/tr}">
 				</div>
 			</form>
 		</fieldset>

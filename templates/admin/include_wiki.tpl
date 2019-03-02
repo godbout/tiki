@@ -380,7 +380,6 @@
 						class="btn btn-primary btn-sm"
 						name="createtag"
 						value="{tr}Create Database Dump{/tr}"
-						onclick="checkTimeout()"
 					><br>
 					<label for="databasetag">{tr}Wiki database{/tr}</label>
 					<select name="tagname" {if $tags|@count eq '0'} disabled="disabled"{/if}>
@@ -395,14 +394,12 @@
 						class="btn btn-primary btn-sm"
 						name="restoretag"
 						value="{tr}Restore{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}
-						onclick="checkTimeout()"
 					>
 					<input
 						type="submit"
 						class="btn btn-default btn-sm"
 						name="removetag"
 						value="{tr}Remove{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}
-						onclick="checkTimeout()"
 					>
 				</fieldset>
 			</div>

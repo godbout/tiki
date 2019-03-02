@@ -21,7 +21,6 @@
 						name="galfeatures"
 						title=":{tr}Apply changes{/tr}"
 						value="{tr}Apply{/tr}"
-						onclick="checkTimeout()"
 					>
 				</div>
 			</div>
@@ -90,7 +89,6 @@
 					name="galfeatures"
 					title=":{tr}Apply Changes{/tr}"
 					value="{tr}Apply{/tr}"
-					onclick="checkTimeout()"
 				>
 			</div>
 		</form>
@@ -153,7 +151,6 @@
 							form="galmove"
 							name="mvimg"
 							value="{$value}"
-							onclick="checkTimeout()"
 						>
 							{tr}Move{/tr}
 						</button>

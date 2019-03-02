@@ -12,6 +12,5 @@
 		class="btn btn-primary tips"
 		title=":{$applyTitle|escape:'attr'}"
 		value="{$applyValue|escape:'attr'}"
-		onclick="checkTimeout()"
 	>
 </div>

@@ -126,7 +126,6 @@
 					name="trkset"
 					title=":{tr}Apply changes{/tr}"
 					value="{tr}Apply{/tr}"
-					onclick="checkTimeout()"
 				>
 			</div>
 		</div>
@@ -215,7 +214,6 @@
 							class="btn btn-primary btn-sm"
 							name="action"
 							value="{tr}Change all to db{/tr}"
-							onclick="checkTimeout()"
 						>
 					</form>
 				</td>
@@ -228,7 +226,6 @@
 							class="btn btn-primary btn-sm"
 							name="action"
 							value="{tr}Change all to file{/tr}"
-							onclick="checkTimeout()"
 						>
 					</form>
 				</td>

@@ -35,19 +35,12 @@
 			</table>
 			<p>
 				<input type="submit" class="btn btn-primary btn-sm" name="list" value="{tr}Show Usage{/tr}">
-				<input
-					type="submit"
-					class="btn btn-danger btn-sm"
-					name="remove"
-					value="{tr}Delete{/tr}"
-					onclick="checkTimeout()"
-				>
+				<input type="submit" class="btn btn-danger btn-sm" name="remove" value="{tr}Delete{/tr}">
 				<input
 					type="submit"
 					class="btn btn-danger btn-sm"
 					name="removeclean"
 					value="{tr}Delete &amp; Unreference{/tr}"
-					onclick="checkTimeout()"
 				>
 			</p>
 		</form>
@@ -75,13 +68,7 @@
 				</div>
 				<div>
 					<input type="hidden" name="token" value="{$selected_token|escape}">
-					<input
-						type="submit"
-						class="btn btn-primary btn-sm"
-						name="save"
-						value="{tr}Save{/tr}"
-						onclick="checkTimeout()"
-					>
+					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}">
 				</div>
 			</form>
 		{/if}
@@ -103,27 +90,9 @@
 								<input type="hidden" name="select[]" value="{$token|escape}">
 								<input type="hidden" name="token" value="{$token|escape}">
 								<input type="submit" name="list" value="{tr}Show Usage{/tr}" class="btn btn-default">
-								<input
-									type="submit"
-									name="create"
-									value="{tr}Create{/tr}"
-									class="btn btn-primary"
-									onclick="checkTimeout()"
-								>
-								<input
-									type="submit"
-									name="rename"
-									value="{tr}Fix{/tr}"
-									class="btn btn-primary"
-									onclick="checkTimeout()"
-								>
-								<input
-									type="submit"
-									name="clean"
-									value="{tr}Remove{/tr}"
-									class="btn btn-primary"
-									onclick="checkTimeout()"
-								>
+								<input type="submit" name="create" value="{tr}Create{/tr}" class="btn btn-primary">
+								<input type="submit" name="rename" value="{tr}Fix{/tr}" class="btn btn-primary">
+								<input type="submit" name="clean" value="{tr}Remove{/tr}" class="btn btn-primary">
 							</div>
 						</form>
 					</td>
@@ -139,13 +108,7 @@
 				</div>
 				<div>
 					<input type="hidden" name="oldName" value="{$rename|escape}">
-					<input
-						type="submit"
-						class="btn btn-primary btn-sm"
-						name="save"
-						value="{tr}Fix{/tr}"
-						onclick="checkTimeout()"
-					>
+					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Fix{/tr}">
 				</div>
 			</form>
 		{/if}

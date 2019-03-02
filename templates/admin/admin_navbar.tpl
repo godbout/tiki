@@ -34,12 +34,7 @@
 						{/foreach}
 						<li class="dropdown-item">
 							<div class="text-center">
-								<input
-									type="submit"
-									value="{tr}Set as my default{/tr}"
-									class="btn btn-primary btn-sm"
-									onclick="checkTimeout()"
-								>
+								<input type="submit" value="{tr}Set as my default{/tr}" class="btn btn-primary btn-sm">
 							</div>
 						</li>
 						{if $prefs.connect_feature eq "y"}
@@ -162,13 +157,7 @@
 				{/foreach}
 			</div>
 			<div class="card-footer text-center">
-				<input
-					class="btn btn-primary"
-					type="submit"
-					title="{tr}Apply Changes{/tr}"
-					value="{tr}Apply{/tr}"
-					onclick="checkTimeout()"
-				>
+				<input class="btn btn-primary" type="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 			</div>
 			<input type="hidden" name="lm_criteria" value="{$lm_criteria|escape}">
 			{ticket}
