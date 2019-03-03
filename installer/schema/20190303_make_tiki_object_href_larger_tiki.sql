@@ -1,0 +1,1 @@
+ALTER TABLE `tiki_objects` CHANGE `href` `href` VARCHAR(256) NULL DEFAULT NULL;

@@ -2031,6 +2031,7 @@ installer/schema/20181130_update_column_name_size_tracker_table_tiki.sql -text
 installer/schema/20190121_h5p_add_new_library_fields_tiki.sql -text
 installer/schema/20190121_h5p_allow_null_in_filtered_tiki.sql -text
 installer/schema/20190123_h5p_move_storage_assets_to_new_dir_tiki.php -text
+installer/schema/20190303_make_tiki_object_href_larger_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
