@@ -90,10 +90,16 @@ class WikiPut implements ActionInterface
 	function execute(Account $account, Message $message)
 	{
 		$tikilib = TikiLib::lib('tiki');
-		$wikilib = TikiLib::lib('wiki');
 
 		$user = $message->getAssociatedUser();
 		$page = $this->getPage($message, true);
+
+		if (strlen($page) > 160) {
+			$smarty = TikiLib::lib('smarty');
+			$smarty->loadPlugin('smarty_modifier_truncate');
+
+			$page = smarty_modifier_truncate($page, 159, '...', false, true);
+		}
 
 		if ($this->canAttach($account, $message) && $account->hasAutoAttach()) {
 			foreach ($message->getAttachments() as $att) {
@@ -102,10 +108,12 @@ class WikiPut implements ActionInterface
 			}
 		}
 
-		if ($this->canAttach($account, $message) && $account->hasInlineAttach() && $body = $message->getHtmlBody(false)) {
+		$body = $message->getHtmlBody( false);
+
+		if ($this->canAttach($account, $message) && $account->hasInlineAttach() && $body) {
 			$body = $this->handleInlineImages($page, $body, $message);
 		} else {
-			$body = $message->getHtmlBody(false);
+			$body = $message->getHtmlBody();
 		}
 
 		$data = $account->parseBody($body);
@@ -138,12 +146,12 @@ class WikiPut implements ActionInterface
 
 				$structlib = TikiLib::lib('struct');
 				$structlib->s_create_page($parent_id, $after_ref_id, $page, $alias, $structure_id, $options);
-				$content .= "Page: $page has been added to structureId: " . $structure_id . "<br />";
+				$comment = "Page: $page has been added to structureId: $structure_id by " . $account->getAddress();
 
 				$tikilib->update_page(
 					$page,
 					$body,
-					"Updated from " . $account->getAddress(),
+					$comment,
 					$user,
 					$options['ip_source'],
 					'', //desc

@@ -53,7 +53,9 @@ class Pop3 implements SourceInterface
 				$toDelete[] = $i;
 			});
 			$from = $source->from ?: $source->{'return-path'};
-			$message->setMessageId(str_replace(['<', '>'], '', $source->{'message-id'}));
+			if (! empty($source->{'message-id'})) {
+				$message->setMessageId(str_replace(['<', '>'], '', $source->{'message-id'}));
+			}
 			$message->setRawFrom($from);
 			$message->setSubject($source->subject);
 			$message->setRecipient($source->to);
@@ -103,7 +105,8 @@ class Pop3 implements SourceInterface
 	 */
 	private function getBody($part, $type)
 	{
-		if (! $part->isMultipart() && 0 === strpos($part->getHeaders()->get('Content-Type'), $type)) {
+		$contentType = $part->getHeaders()->get('Content-Type');
+		if (! $part->isMultipart() && (! $contentType || 0 === strpos($contentType->getFieldValue(), $type))) {
 			return $this->decode($part);
 		}
 
