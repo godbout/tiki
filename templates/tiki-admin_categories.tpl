@@ -70,13 +70,7 @@
 			{/if}
 			<div class="form-group row">
 				<div class="col-sm-9 col-sm-offset-3">
-					<input
-						type="submit"
-						class="btn btn-secondary"
-						name="save"
-						value="{tr}Save{/tr}"
-						onclick="checkTimeout()"
-					>
+					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 				</div>
 			</div>
 		</form>
@@ -103,13 +97,7 @@ potato,,vegetable
 				</div>
 				<div class="form-group row">
 					<div class="col-sm-3 col-sm-offset-3">
-						<input
-							type="submit"
-							class="btn btn-secondary"
-							name="import"
-							value="{tr}Upload{/tr}"
-							onclick="checkTimeout()"
-						>
+						<input type="submit" class="btn btn-secondary" name="import" value="{tr}Upload{/tr}">
 					</div>
 				</div>
 			</form>
@@ -204,13 +192,7 @@ potato,,vegetable
 								{/foreach}
 							</select>
 							<span class="input-group-append">
-								<input
-									type="submit"
-									class="btn btn-primary"
-									name="move_to"
-									value="{tr}OK{/tr}"
-									onclick="checkTimeout()"
-								>
+								<input type="submit" class="btn btn-primary" name="move_to" value="{tr}OK{/tr}">
 							</span>
 						</div>
 					</div>
@@ -230,13 +212,7 @@ potato,,vegetable
 								{/foreach}
 							</select>
 							<span class="input-group-append">
-								<input
-									type="submit"
-									class="btn btn-primary"
-									name="copy_from"
-									value="{tr}OK{/tr}"
-									onclick="checkTimeout()"
-								>
+								<input type="submit" class="btn btn-primary" name="copy_from" value="{tr}OK{/tr}">
 							</span>
 						</div>
 					</div>
@@ -361,7 +337,6 @@ $("#add_object_type").change(function () {
 											class="btn btn-primary"
 											name="addpage"
 											value="{tr}Add{/tr}"
-											onclick="checkTimeout()"
 										>
 									</div>
 								</div>
@@ -387,7 +362,6 @@ $("#add_object_type").change(function () {
 											class="btn btn-primary"
 											name="addarticle"
 											value="{tr}Add{/tr}"
-											onclick="checkTimeout()"
 										>
 									</span>
 								</div>
@@ -413,7 +387,6 @@ $("#add_object_type").change(function () {
 											class="btn btn-primary"
 											name="addblog"
 											value="{tr}Add{/tr}"
-											onclick="checkTimeout()"
 										>
 									</span>
 								</div>
@@ -439,7 +412,6 @@ $("#add_object_type").change(function () {
 											class="btn btn-primary"
 											name="adddirectory"
 											value="{tr}Add{/tr}"
-											onclick="checkTimeout()"
 										>
 									</span>
 								</div>
@@ -465,7 +437,6 @@ $("#add_object_type").change(function () {
 											class="btn btn-primary"
 											name="addgallery"
 											value="{tr}Add{/tr}"
-											onclick="checkTimeout()"
 										>
 									</span>
 								</div>
@@ -491,7 +462,6 @@ $("#add_object_type").change(function () {
 											class="btn btn-primary"
 											name="addfilegallery"
 											value="{tr}Add{/tr}"
-											onclick="checkTimeout()"
 										>
 									</span>
 								</div>
@@ -517,7 +487,6 @@ $("#add_object_type").change(function () {
 											class="btn btn-primary"
 											name="addforum"
 											value="{tr}Add{/tr}"
-											onclick="checkTimeout()"
 										>
 									</span>
 								</div>
@@ -543,7 +512,6 @@ $("#add_object_type").change(function () {
 											class="btn btn-primary"
 											name="addpoll"
 											value="{tr}Add{/tr}"
-											onclick="checkTimeout()"
 										>
 									</span>
 								</div>
@@ -569,7 +537,6 @@ $("#add_object_type").change(function () {
 											class="btn btn-primary"
 											name="addfaq"
 											value="{tr}Add{/tr}"
-											onclick="checkTimeout()"
 										>
 									</span>
 								</div>
@@ -595,7 +562,6 @@ $("#add_object_type").change(function () {
 											class="btn btn-primary"
 											name="addtracker"
 											value="{tr}Add{/tr}"
-											onclick="checkTimeout()"
 										>
 									</span>
 								</div>
@@ -621,7 +587,6 @@ $("#add_object_type").change(function () {
 											class="btn btn-primary"
 											name="addquiz"
 											value="{tr}Add{/tr}"
-											onclick="checkTimeout()"
 										>
 									</span>
 								</div>

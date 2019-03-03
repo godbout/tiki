@@ -34,7 +34,7 @@
 		<div class="form-group row">
 			<div class="col-sm-3"></div>
 			<div class="col-sm-7 col-sm-offset-1 mb-3">
-				<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
+				<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 			</div>
 		</div>
 	</form>
@@ -81,13 +81,7 @@
 	<div class="form-group row">
 		<div class="col-sm-3"></div>
 		<div class="col-sm-7 col-sm-offset-2">
-			<input
-				type="submit"
-				class="btn btn-primary btn-sm"
-				name="editmany"
-				value="{tr}Mass update{/tr}"
-				onclick="checkTimeout()"
-			>
+			<input type="submit" class="btn btn-primary btn-sm" name="editmany" value="{tr}Mass update{/tr}">
 		</div>
 	</div>
 </form>

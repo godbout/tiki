@@ -69,7 +69,7 @@
 		<div class="col-sm-3"></div>
 		<div class="col-sm-7 col-sm-offset-1 mb-3">
 			<input type="submit" class="btn btn-secondary" name="preview" value="{tr}Preview{/tr}">
-			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
+			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
  </form>

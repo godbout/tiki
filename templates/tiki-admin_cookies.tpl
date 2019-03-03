@@ -15,7 +15,7 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
+		<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 	</div>
 </form>
 
@@ -30,13 +30,7 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input
-			type="submit"
-			class="btn btn-primary btn-sm"
-			name="upload"
-			value="{tr}Upload{/tr}"
-			onclick="checkTimeout()"
-		>
+		<input type="submit" class="btn btn-primary btn-sm" name="upload" value="{tr}Upload{/tr}">
 	</div>
 </form>
 

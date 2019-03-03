@@ -103,7 +103,6 @@
 																		name="modup"
 																		value="{$module.moduleId}"
 																		class="btn btn-link link-list"
-																		onclick="checkTimeout()"
 																	>
 																		{icon name="up"} {tr}Move up{/tr}
 																	</button>
@@ -119,7 +118,6 @@
 																		name="moddown"
 																		value="{$module.moduleId}"
 																		class="btn btn-link link-list"
-																		onclick="checkTimeout()"
 																	>
 																		{icon name="down"} {tr}Move down{/tr}
 																	</button>
@@ -139,7 +137,6 @@
 																	name="unassign"
 																	value="{$module.moduleId}"
 																	class="btn btn-link link-list"
-																	onclick="checkTimeout()"
 																>
 																	{icon name="remove"} {tr}Unassign{/tr}
 																</button>
@@ -415,7 +412,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label"></label>
 				<div class="col-sm-9">
-					<input type="submit" class="btn btn-secondary" name="um_update" value="{if empty($um_name)}{tr}Create{/tr}{else}{tr}Save{/tr}{/if}" onclick="checkTimeout()">
+					<input type="submit" class="btn btn-secondary" name="um_update" value="{if empty($um_name)}{tr}Create{/tr}{else}{tr}Save{/tr}{/if}">
 				</div>
 			</div>
 		</form>

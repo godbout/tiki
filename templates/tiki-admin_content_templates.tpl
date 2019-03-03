@@ -228,13 +228,7 @@
 				</div>
 				<div class="form-group text-center">
 					<input type="submit" name="preview" class="btn btn-primary" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
-					<input
-						type="submit"
-						name="save"
-						class="btn btn-secondary"
-						value="{tr}Save{/tr}"
-						onclick="checkTimeout()"
-					>
+					<input type="submit" name="save" class="btn btn-secondary" value="{tr}Save{/tr}">
 				</div>
 
 				{jq}

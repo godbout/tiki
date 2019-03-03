@@ -51,7 +51,6 @@
 						class="btn btn-primary"
 						name="subscribe"
 						value="{tr}Subscribe to this Newsletter{/tr}"
-						onclick="checkTimeout()"
 					>
 				</div>
 			</div>

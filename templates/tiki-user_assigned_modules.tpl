@@ -9,13 +9,7 @@
 	<form action="tiki-user_assigned_modules.php" method="post">
 		{ticket}
 		<input type="hidden" name="recreate" value="1">
-		<button
-			type="submit"
-			name="recreate"
-			value="1"
-			class="btn btn-primary"
-			onclick="checkTimeout()"
-		>
+		<button type="submit" name="recreate" value="1" class="btn btn-primary">
 			{tr}Restore defaults{/tr}
 		</button>
 	</form>
@@ -206,13 +200,7 @@
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-offset-4 col-sm-8">
-				<input
-					type="submit"
-					class="btn btn-primary"
-					name="assign"
-					value="{tr}Assign{/tr}"
-					onclick="checkTimeout()"
-				>
+				<input type="submit" class="btn btn-primary" name="assign" value="{tr}Assign{/tr}">
 			</div>
 		</div>
 	</form>

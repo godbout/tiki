@@ -107,13 +107,12 @@
 	</div>
 	<p>
 		<div style="float: left; margin-right: 10px;">
-			<input 
+			<input
 				type="submit"
 				class="btn btn-primary btn-sm"
 				name="assign"
 				title="{tr}Apply Changes{/tr}"
 				value="{tr}Apply{/tr}"
-				onclick="checkTimeout()"
 			>
 		</div>
 	</p>

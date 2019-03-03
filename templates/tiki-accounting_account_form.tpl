@@ -59,13 +59,7 @@
 					{else}
 						{$label = "{tr}Modify account{/tr}"}
 					{/if}
-					<button
-						type="submit"
-						class="btn btn-secondary"
-						name="action"
-						value="{$action|escape:'attr'}"
-						onclick="checkTimeout()"
-					>
+					<button type="submit" class="btn btn-secondary" name="action" value="{$action|escape:'attr'}">
 						{$label}
 					</button>
 					{if $account.changeable==1 && $action=="edit"}

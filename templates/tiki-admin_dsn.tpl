@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<div class="form-group text-center">
-		<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
+		<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 	</div>
 </form>
 <h2>{tr}DSN{/tr}</h2>

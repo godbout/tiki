@@ -95,7 +95,7 @@
 															{ticket}
 															<input type="hidden" name="lock" value="n">
 															<input type="hidden" name="forumId" value="{$channels[user].forumId|escape:'attr'}">
-															<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+															<button type="submit" class="btn btn-link link-list">
 																{icon name='unlock'} {tr}Unlock{/tr}
 															</button>
 														</form>
@@ -106,7 +106,7 @@
 															{ticket}
 															<input type="hidden" name="lock" value="y">
 															<input type="hidden" name="forumId" value="{$channels[user].forumId|escape:'attr'}">
-															<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+															<button type="submit" class="btn btn-link link-list">
 																{icon name='lock'} {tr}Lock{/tr}
 															</button>
 														</form>
@@ -594,13 +594,7 @@
 					</fieldset>
 
 					<div class="text-center">
-						<input
-							type="submit"
-							class="btn btn-secondary"
-							name="save"
-							value="{tr}Save{/tr}"
-							onclick="checkTimeout()"
-						>
+						<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 					</div>
 				</form>
 
@@ -643,13 +637,7 @@
 						</div>
 					</div>
 					<div class="text-center">
-						<input
-							type="submit"
-							class="btn btn-primary"
-							name="duplicate"
-							value="{tr}Duplicate{/tr}"
-							onclick="checkTimeout()"
-						>
+						<input type="submit" class="btn btn-primary" name="duplicate" value="{tr}Duplicate{/tr}">
 					</div>
 				</form>
 			{/if}

@@ -70,7 +70,7 @@
 	<div class="form-group row">
 		<div class="col-sm-10 offset-sm-2">
 			{* no js confirmation or ticket needed since the preview is sent to another page *}
-			<input type="submit" class="btn btn-secondary" name="preview" value="{tr}Send{/tr}" onclick="checkTimeout()">
+			<input type="submit" class="btn btn-secondary" name="preview" value="{tr}Send{/tr}">
 			<input type="checkbox" name="replytome" id="replytome">
 			<label for="replytome">
 				{tr}Reply-to my email{/tr}

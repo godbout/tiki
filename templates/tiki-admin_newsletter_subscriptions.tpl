@@ -308,13 +308,7 @@
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 mb-3">
-					<input
-						type="submit"
-						class="btn btn-primary"
-						name="add"
-						value="{tr}Add{/tr}"
-						onclick="checkTimeout()"
-					>
+					<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -344,13 +338,7 @@
 				<div class="form-group row mx-0">
 					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7 col-sm-offset-1 mb-3">
-						<input
-							type="submit"
-							class="btn btn-primary"
-							name="addbatch"
-							value="{tr}Add{/tr}"
-							onclick="checkTimeout()"
-						>
+						<input type="submit" class="btn btn-primary" name="addbatch" value="{tr}Add{/tr}">
 					</div>
 				</div>
 			</form>
@@ -378,13 +366,7 @@
 				<div class="form-group row mx-0">
 					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7 col-sm-offset-1 mb-3">
-						<input
-							type="submit"
-							class="btn btn-primary"
-							name="importPage"
-							value="{tr}Add{/tr}"
-							onclick="checkTimeout()"
-						>
+						<input type="submit" class="btn btn-primary" name="importPage" value="{tr}Add{/tr}">
 					</div>
 				</div>
 			</form>
@@ -412,13 +394,7 @@
 				<div class="form-group row">
 					<label class="col-sm-3 col-form-label"></label>
 					<div class="col-sm-7 col-sm-offset-1 mb-3">
-						<input
-							type="submit"
-							class="btn btn-primary"
-							name="addTracker"
-							value="{tr}Add{/tr}"
-							onclick="checkTimeout()"
-						>
+						<input type="submit" class="btn btn-primary" name="addTracker" value="{tr}Add{/tr}">
 					</div>
 				</div>
 			</form>
@@ -451,13 +427,7 @@
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 mb-3">
-					<input
-						type="submit"
-						class="btn btn-primary"
-						name="addgroup"
-						value="{tr}Add{/tr}"
-						onclick="checkTimeout()"
-					>
+					<input type="submit" class="btn btn-primary" name="addgroup" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -482,13 +452,7 @@
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 mb-3">
-					<input
-						type="submit"
-						class="btn btn-primary"
-						name="addincluded"
-						onclick="checkTimeout()"
-						value="{tr}Add{/tr}"
-					>
+					<input type="submit" class="btn btn-primary" name="addincluded" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>
@@ -522,13 +486,7 @@
 			<div class="form-group row mx-0">
 				<label class="col-sm-3 col-form-label"></label>
 				<div class="col-sm-7 col-sm-offset-1 mb-3">
-					<input
-						type="submit"
-						class="btn btn-primary"
-						name="addPage"
-						value="{tr}Add{/tr}"
-						onclick="checkTimeout()"
-					>
+					<input type="submit" class="btn btn-primary" name="addPage" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>

@@ -146,7 +146,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="col-sm-8 col-sm-offset-4">
-			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
+			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
 </form>
@@ -170,7 +170,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="col-sm-8 col-sm-offset-4">
-			<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}Import{/tr}" onclick="checkTimeout()">
+			<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}Import{/tr}">
 		</div>
 	</div>
  </form>

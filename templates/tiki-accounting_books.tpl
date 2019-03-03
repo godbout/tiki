@@ -167,7 +167,7 @@
 							</div>
 						</div>
 					</fieldset>
-					<input type="submit" class="btn btn-primary col-md-offset-4" name="create" value="{tr}Create a new book{/tr}" onclick="checkTimeout()">
+					<input type="submit" class="btn btn-primary col-md-offset-4" name="create" value="{tr}Create a new book{/tr}">
 				</form>
 			</div>
 		{/tab}

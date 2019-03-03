@@ -11,13 +11,7 @@
 				<div class="input-group col-sm-7 col-sm-offset-1 mb-3">
 					<input name="new_keywords" size="65" value="{$edit_keywords|escape}" class="form-control">
 					<div class="input-group-append">
-						<input
-							type="submit"
-							class="btn btn-primary"
-							name="save_keywords"
-							value="{tr}Save{/tr}"
-							onclick="checkTimeout()"
-						>
+						<input type="submit" class="btn btn-primary" name="save_keywords" value="{tr}Save{/tr}">
 					</div>
 				</div>
 			</div>

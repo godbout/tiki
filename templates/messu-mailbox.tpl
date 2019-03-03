@@ -100,13 +100,7 @@
 			value="{tr}Delete{/tr}"{if $js}
 			onclick="confirmSimple(event, '{tr}Delete selected messages?{/tr}')"{/if}
 		>
-		<input
-			type="submit"
-			class="btn btn-primary btn-sm"
-			name="archive"
-			value="{tr}Archive{/tr}"
-			onclick="checkTimeout()"
-		>
+		<input type="submit" class="btn btn-primary btn-sm" name="archive" value="{tr}Archive{/tr}">
 		<input type="submit" class="btn btn-primary btn-sm" name="download" value="{tr}Download{/tr}">
 		<select name="action" class="form-control ml-4 mr-2">
 			<option value="isRead_y">{tr}Mark as read{/tr}</option>
@@ -114,13 +108,7 @@
 			<option value="isFlagged_y">{tr}Mark as flagged{/tr}</option>
 			<option value="isFlagged_n">{tr}Mark as unflagged{/tr}</option>
 		</select>
-		<input
-			type="submit"
-			class="btn btn-primary btn-sm"
-			name="mark"
-			value="{tr}Mark{/tr}"
-			onclick="checkTimeout()"
-		>
+		<input type="submit" class="btn btn-primary btn-sm" name="mark" value="{tr}Mark{/tr}">
 		</div>
 	{/if}
 </form>

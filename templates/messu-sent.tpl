@@ -59,13 +59,7 @@
 		value="{tr}Delete{/tr}"
 		onclick="confirmSimple(event, '{tr}Delete selected messages?{/tr}')"
 	>
-	<input
-		type="submit"
-		class="btn btn-primary btn-sm"
-		name="archive"
-		value="{tr}Move to archive{/tr}"
-		onclick="checkTimeout()"
-	>
+	<input type="submit" class="btn btn-primary btn-sm" name="archive" value="{tr}Move to archive{/tr}">
 	<input type="submit" class="btn btn-primary btn-sm" name="download" value="{tr}Download{/tr}">
 	</div>
 {jq notonready=true}

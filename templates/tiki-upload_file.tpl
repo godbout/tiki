@@ -365,13 +365,7 @@
 				{include file='categorize.tpl'}<br>
 				<div id="page_bar" class="form-group row">
 					<div class="col-md-8 offset-md-4">
-						<input
-							name="upload"
-							type="submit"
-							class="btn btn-primary"
-							value="{tr}Save{/tr}"
-							onclick="checkTimeout()"
-						>
+						<input name="upload" type="submit" class="btn btn-primary" value="{tr}Save{/tr}">
 					</div>
 				</div>
 			{elseif $prefs.javascript_enabled neq 'y'}
@@ -380,13 +374,7 @@
 				{include file='categorize.tpl'}<br>
 				<div id="page_bar" class="form-group row">
 					<div class="col-md-8 col-md-offset-4">
-						<input
-							type="submit"
-							class="btn btn-primary"
-							name="upload"
-							value="{tr}Upload{/tr}"
-							onclick="checkTimeout()"
-						>
+						<input type="submit" class="btn btn-primary" name="upload" value="{tr}Upload{/tr}">
 					</div>
 				</div>
 			{/if}
@@ -394,7 +382,7 @@
 				<div id="page_bar" class="form-group row">
 					<div class="col-md-8 col-md-offset-4">
 						<input type="submit" class="btn btn-primary"
-							onclick="checkTimeout(); upload_files(); return false;"
+							onclick="upload_files(); return false;"
 							id="btnUpload"
 							name="upload"
 							value="{tr}Upload File(s){/tr}"

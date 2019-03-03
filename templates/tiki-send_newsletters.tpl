@@ -79,7 +79,7 @@
 			<input type="hidden" name="wysiwyg" value="{$info.wysiwyg|escape}">
 			<input type="hidden" name="is_html" value="{$info.is_html|escape}">
 			<input type="submit" class="btn btn-primary" name="send" value="{tr}Send{/tr}" onclick="document.getElementById('confirmArea').style.display = 'none'; document.getElementById('sendingArea').style.display = 'block';">
-			<input type="submit" class="btn btn-primary" name="cancel" value="{tr}Cancel{/tr}" onclick="checkTimeout()">
+			<input type="submit" class="btn btn-primary" name="cancel" value="{tr}Cancel{/tr}">
 			{foreach from=$info.files item=newsletterfile key=fileid}
 				<input type='hidden' name='newsletterfile[{$fileid}]' value='{$newsletterfile.id}'>
 			{/foreach}
@@ -331,7 +331,7 @@
 							value="{tr}Save as Draft{/tr}"
 							class="wikiaction tips btn btn-primary"
 							title="{tr}Send Newsletters{/tr}|{tr}Save your changes.{/tr}"
-							onclick="needToConfirm=false; checkTimeout()"
+							onclick="needToConfirm=false;"
 						>
 						&nbsp;
 						<input

@@ -29,13 +29,7 @@
 				<tr>
 					<td colspan="2">
 						<div class="text-center">
-							<input
-								type="submit"
-								class="btn btn-primary"
-								name="save"
-								value="{tr}Save{/tr}"
-								onclick="checkTimeout()"
-							>
+							<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 						</div>
 					</td>
 				</tr>
@@ -55,12 +49,7 @@
 		</div>
 		<div class="input-group">
 			<span class="input-group-append" style="padding-top: 10px;">
-				<input
-					type="submit"
-					class="btn btn-primary"
-					value="{tr}Select{/tr}"
-					onclick="checkTimeout()"
-				>
+				<input type="submit" class="btn btn-primary" value="{tr}Select{/tr}">
 			</span>
 		</div>
 	</div>

@@ -211,11 +211,7 @@
 				</label>
 					<input type="text" name="comment" id="comment" class="form-control">
 			</div>
-				<button
-					type="submit"
-					class="btn btn-primary btn-sm"
-					onclick="checkTimeout()"
-				>
+				<button type="submit" class="btn btn-primary btn-sm">
 					{icon name='ok'} {tr}Save{/tr}
 				</button>
 		</form>
@@ -292,13 +288,7 @@
 				<label for="maxWidth">
 					{tr}Maximum width{/tr}&nbsp;<input id="maxWidth" class="form-control" type="text" name="maxWidth" value="{$maxWidth}">
 				</label>
-				<input
-					type="submit"
-					class="wikiaction btn btn-primary"
-					name="setSize"
-					onclick="checkTimeout()"
-					value="{tr}Submit{/tr}"
-				>
+				<input type="submit" class="wikiaction btn btn-primary" name="setSize" value="{tr}Submit{/tr}">
 			</form>
 		</div><br>
 		{pagination_links cant=$cant step=$maxRecords offset=$offset}

@@ -96,13 +96,7 @@
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
 		<div class="col-sm-7 col-sm-offset-1 mb-3">
-			<input
-				type="submit"
-				class="btn btn-primary btn-sm"
-				name="add"
-				value="{tr}Save{/tr}"
-				onclick="checkTimeout()"
-			>
+			<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Save{/tr}">
 		</div>
 	</div>
 </form>

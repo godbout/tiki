@@ -389,7 +389,7 @@
 							<td>&nbsp;</td>
 							<td>
 								<input type="submit" class="btn btn-primary btn-sm" name="saveAction"
-									value="{tr}Save Action{/tr}" onclick="checkTimeout()">
+									value="{tr}Save Action{/tr}">
 							</td>
 						</tr>
 					</table>
@@ -794,13 +794,7 @@
 
 			<div class="form-group row" style="display:block;">
 				<div class="col-sm-1 col-sm-offset-11">
-					<input
-						type="submit"
-						class="btn btn-primary btn-sm"
-						name="save"
-						value="{tr}Set{/tr}"
-						onclick="checkTimeout()"
-					>
+					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Set{/tr}">
 				</div>
 			</div>
 			<div class="form-group row" style="display:block;">
@@ -845,13 +839,7 @@
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-1 col-sm-offset-11">
-					<input
-						type="submit"
-						class="btn btn-primary btn-sm"
-						name="save"
-						value="{tr}Set{/tr}"
-						onclick="checkTimeout()"
-					>
+					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Set{/tr}"\>
 				</div>
 			</div>
 		</form>

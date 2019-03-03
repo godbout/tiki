@@ -74,7 +74,6 @@
 								value="{$moduleId}"
 								class="tips btn btn-link"
 								title=":{tr}Move up{/tr}"
-								onclick="checkTimeout()"
 							>
 								{icon name="up"}
 							</button>
@@ -84,7 +83,6 @@
 								value="{$moduleId}"
 								class="tips btn btn-link"
 								title=":{tr}Move down{/tr}"
-								onclick="checkTimeout()"
 							>
 								{icon name="down"}
 							</button>
@@ -94,7 +92,6 @@
 								value="{$moduleId}"
 								class="tips btn btn-link"
 								title=":{tr}Move to opposite side{/tr}"
-								onclick="checkTimeout()"
 							>
 								{icon name="move"}
 							</button>
@@ -104,7 +101,6 @@
 								value="{$moduleId}"
 								class="tips btn btn-link"
 								title=":{tr}Unassign{/tr}"
-								onclick="checkTimeout()"
 							>
 								{icon name="remove"}
 							</button>

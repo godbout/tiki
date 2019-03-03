@@ -188,7 +188,6 @@
 									form="fgalform"
 									name='movesel'
 									value="{tr}Move{/tr}"
-									onclick="checkTimeout()"
 								>
 							</div>
 						</div>

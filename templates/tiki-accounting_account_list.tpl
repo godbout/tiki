@@ -63,7 +63,6 @@
 										name="action"
 										value="lock"
 										class="btn btn-link link-list"
-										onclick="checkTimeout()"
 									>
 										{icon name="$iconName"} {$iconLabel}
 									</button>
