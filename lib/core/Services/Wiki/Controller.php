@@ -21,7 +21,7 @@ class Services_Wiki_Controller
 		'last'				=> 'alpha',
 		'all'				=> 'alpha',
 		'create_redirect'	=> 'alpha',
-		'destpage'			=> 'alpha',
+		'destpage'			=> 'pagename',
 	];
 
 	function setUp()
