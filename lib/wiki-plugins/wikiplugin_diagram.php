@@ -20,7 +20,7 @@ function wikiplugin_diagram_info()
 			'fileId' => [
 				'required' => false,
 				'name' => tr('fileId'),
-				'description' => tr('Id of the file in the file gallery. A xml file containing the graph model.'),
+				'description' => tr('Id of the file in the file gallery. A xml file containing the graph model. Leave empty for more options.'),
 				'since' => '19.0',
 				'filter' => 'int',
 			],
