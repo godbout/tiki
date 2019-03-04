@@ -443,7 +443,7 @@ function module_since_last_visit_new($mod_reference, $params = null)
 		$ret['items']['files']['label'] = tra('new files');//get_strings tra('new files');
 		$ret['items']['files']['cname'] = 'slvn_files_menu';
 
-		$files = TikiLib::lib('filegal')->get_files(-1, -1, 'created_desc', null, -2, false, false, true, true, false, false, true, false, '', true, false, false, ['created' => (int) $last]);
+		$files = TikiLib::lib('filegal')->get_files(-1, $resultCount, 'created_desc', null, -2, false, false, true, true, false, false, true, false, '', true, false, false, ['created' => (int) $last]);
 		foreach ($files['data'] as $res) {
 			$ret['items']['files']['list'][] = [
 				'href' => filter_out_sefurl('tiki-list_file_gallery.php?galleryId=' . $res['galleryId'] . '&fileId=' . $res['fileId'] . '&view=page', 'file gallery'),
