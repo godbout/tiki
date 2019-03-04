@@ -9,11 +9,13 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 {
 	private $db;
 	private $trklib;
+	private $mode;
 
-	function __construct()
+	function __construct($mode = '')
 	{
 		$this->db = TikiDb::get();
 		$this->trklib = TikiLib::lib('trk');
+		$this->mode = $mode;
 	}
 
 	function getReferenceMap()
@@ -60,7 +62,7 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 		}
 
 		foreach (self::getIndexableHandlers($definition, $item) as $handler) {
-			$data = array_merge($data, $handler->getDocumentPart($typeFactory));
+			$data = array_merge($data, $handler->getDocumentPart($typeFactory, $this->mode));
 		}
 
 		$ownerGroup = $itemObject->getOwnerGroup();
