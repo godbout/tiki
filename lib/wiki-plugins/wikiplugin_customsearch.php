@@ -208,7 +208,7 @@ function wikiplugin_customsearch($data, $params)
 	}
 
 	if (isset($params['id'])) {
-		$id = $params['id'];
+		$id = TikiLib::remove_non_word_characters_and_accents($params['id']);
 	} else {
 		if ($instance_id === null) {
 			$instance_id = 0;
@@ -345,7 +345,7 @@ function wikiplugin_customsearch($data, $params)
 	 * on field change rather than explicit request. Explicit requests will still work.
 	 */
 	$script = "
-var customsearch = {
+var customsearch$id = {
 	options: " . json_encode($options) . ",
 	id: " . json_encode($id) . ",
 	offset: 0,
@@ -403,21 +403,21 @@ var customsearch = {
 	}
 };
 $('#customsearch_$id').click(function() {
-	customsearch.offset = 0;
+	customsearch$id.offset = 0;
 });
 $('#customsearch_$id').submit(function() {
-	if (customsearch.options.requireinput && (!$(this).find(':text').val() || $(this).find(':text').val().indexOf('...') > 0)) {
+	if (customsearch$id.options.requireinput && (!$(this).find(':text').val() || $(this).find(':text').val().indexOf('...') > 0)) {
 		alert(tr('Please enter a search query'));
 		return false;
 	}
-	if (customsearch.options.origrequireinput != customsearch.options.requireinput) {
-		customsearch.options.requireinput = customsearch.options.origrequireinput;
+	if (customsearch$id.options.origrequireinput != customsearch$id.options.requireinput) {
+		customsearch$id.options.requireinput = customsearch$id.options.origrequireinput;
 	}
-	customsearch.load();
+	customsearch$id.load();
 	return false;
 });
 
-window.customsearch_$id = customsearch;
+window.customsearch_$id = customsearch$id;
 ";
 
 	$parser = new WikiParser_PluginArgumentParser;
@@ -499,23 +499,23 @@ window.customsearch_$id = customsearch;
 
 	global $page;
 	$script .= "$('.icon-pdf').parent().click(function(){storeSortTable('#customsearch_" . $id . "_results',$('#customsearch_" . $id . "_results').html())});
-customsearch._load = function (receive) {
+customsearch$id._load = function (receive) {
 	var datamap = {
 		definition: this.definition,
 		adddata: $.toJSON(this.searchdata),
 		searchid: this.id,
-		offset: customsearch.offset,
+		offset: customsearch$id.offset,
 		maxRecords: this.maxRecords,
 		store_query: this.store_query,
 		page: " . json_encode($page) . ",
 		recalllastsearch: $recalllastsearch
 	};
-	if (!customsearch.options.forcesortmode && $('#customsearch_$id').find(':text').val() && $('#customsearch_$id').find(':text').val().indexOf('...') <= 0) {
-		customsearch.sort_mode = 'score_desc';
+	if (!customsearch$id.options.forcesortmode && $('#customsearch_$id').find(':text').val() && $('#customsearch_$id').find(':text').val().indexOf('...') <= 0) {
+		customsearch$id.sort_mode = 'score_desc';
 	}
-	if (customsearch.sort_mode) {
+	if (customsearch$id.sort_mode) {
 		// blank sort_mode is not allowed by Tiki input filter
-		datamap.sort_mode = customsearch.sort_mode;
+		datamap.sort_mode = customsearch$id.sort_mode;
 	}
 	$.ajax({
 		type: 'POST',
@@ -529,9 +529,9 @@ customsearch._load = function (receive) {
 			$callbackScript;
 		},
 		error: function ( jqXHR, textStatus, errorThrown ) {
-			var selector = '#' + customsearch.options.searchfadediv;
-			if (customsearch.options.searchfadediv.length <= 1 && $(selector).length === 0) {
-				selector = '#customsearch_' + customsearch.id;
+			var selector = '#' + customsearch$id.options.searchfadediv;
+			if (customsearch$id.options.searchfadediv.length <= 1 && $(selector).length === 0) {
+				selector = '#customsearch_$id';
 			}
 			$(selector).tikiModal();
 
@@ -539,11 +539,11 @@ customsearch._load = function (receive) {
 		}
 	});
 };
-customsearch.sort_mode = " . json_encode($sort_mode) . ";
-customsearch.offset = $offset;
-customsearch.maxRecords = $maxRecords;
-customsearch.store_query ='';
-customsearch.init();
+customsearch$id.sort_mode = " . json_encode($sort_mode) . ";
+customsearch$id.offset = $offset;
+customsearch$id.maxRecords = $maxRecords;
+customsearch$id.store_query ='';
+customsearch$id.init();
 $iconinsert;
 $(document).trigger('formSearchReady');
 ";
@@ -610,12 +610,12 @@ function cs_design_input($id, $fieldname, $fieldid, $arguments, $default, &$scri
 					return $(this).attr('name') == fieldname
 				})
 				.each(function() {
-					customsearch.remove($(this).attr('id'));
+					customsearch$id.remove($(this).attr('id'));
 				});
 		}
 
-		customsearch.add($(this).attr('id'), filter);
-		customsearch.offset = 0;
+		customsearch$id.add($(this).attr('id'), filter);
+		customsearch$id.offset = 0;
 	});
 
 	if (config['default'] || $(field).attr('type') === 'hidden') {
@@ -700,7 +700,7 @@ function cs_design_categories($id, $fieldname, $fieldid, $arguments, $default, &
 
 			if ($_style == 'radio') {
 				$radioreset = "$('input[type=radio][name=$fieldname]').each(function() {
-	customsearch.remove($(this).attr('id'));
+	customsearch$id.remove($(this).attr('id'));
 });"
 				;
 			} else {
@@ -716,9 +716,9 @@ $('#$fieldid').change(function() {
 			value : $(this).val()
 		}
 		$radioreset
-		customsearch.add('$fieldid', filter);
+		customsearch$id.add('$fieldid', filter);
 	} else {
-		customsearch.remove('$fieldid', filter);
+		customsearch$id.remove('$fieldid', filter);
 	}
 });
 ";
@@ -747,7 +747,7 @@ $('#$fieldid').trigger('change');
 		}
 		$script .= "
 $('#$fieldid').change(function() {
-	customsearch.add('$fieldid', {
+	customsearch$id.add('$fieldid', {
 		config: " . json_encode($arguments) . ",
 		name: 'categories',
 		value: $(this).val()
@@ -834,7 +834,7 @@ function cs_design_select($id, $fieldname, $fieldid, $arguments, $default, &$scr
 			$html = preg_replace('/id=[\'"].*?[\'"]/', 'id="' . $fieldid . '"', $html);
 			$script .= "
 $('#$fieldid').change(function() {
-	customsearch.add('$fieldid', {
+	customsearch$id.add('$fieldid', {
 		config: " . json_encode($arguments) . ",
 		name: 'select',
 		value: $(this).val()
@@ -863,7 +863,7 @@ $('#$fieldid').change(function() {
 
 	$script .= "
 $('#$fieldid').change(function() {
-	customsearch.add('$fieldid', {
+	customsearch$id.add('$fieldid', {
 		config: " . json_encode($arguments) . ",
 		name: 'select',
 		value: $(this).val()
@@ -979,7 +979,7 @@ function updateDateRange_$fieldid() {
 	var from = $('#$fieldid_from').val();
 	var to = $('#$fieldid_to').val();
 	from = from.substr(0,10);to = to.substr(0,10); // prevent trailing 000 from date picker
-	customsearch.add('$fieldid', {
+	customsearch$id.add('$fieldid', {
 		config: " . json_encode($arguments) . ",
 		name: 'daterange',
 		value: from + ',' + to
@@ -1022,7 +1022,7 @@ function cs_design_distance($id, $fieldname, $fieldid, $arguments, $default, &$s
 			name: 'distance',
 			value: fields.map(function () {return $(this).val();}).get().join()
 		};
-		customsearch.add($(this).attr('name'), filter);
+		customsearch$id.add($(this).attr('name'), filter);
 	}).change();
 	
 })('$fieldid', " . json_encode($arguments) . ", " . json_encode($fieldname) . ");
@@ -1062,8 +1062,8 @@ $('#$fieldid').click(function() {
 		controller: 'search_stored',
 		action: 'select',
 		success: function (data) {
-			customsearch.store_query = data.queryId;
-			customsearch.load();
+			customsearch$id.store_query = data.queryId;
+			customsearch$id.load();
 		}
 	});
 	return false;
