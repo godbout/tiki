@@ -176,6 +176,7 @@
 			<br>
 			{preference name=search_use_facets}
 			{preference name=search_facet_default_amount}
+			{preference name=search_excluded_facets}
 			{preference name=category_custom_facets}
 			{preference name=search_date_facets}
 			{preference name=search_date_facets_interval}

@@ -90,6 +90,9 @@ function prefs_search_list()
 			'filter' => 'digits',
 			'units' => tra('facet results'),
 			'default' => '10',
+			'dependencies' => [
+				'search_use_facets',
+			],
 		],
 		'search_index_outdated' => [
 			'name' => tra('Search index outdated'),
@@ -119,6 +122,9 @@ function prefs_search_list()
 			'description' => tr('Use date histogram aggregations (facets) when indexing, requires Elasticsearch'),
 			'type' => 'flag',
 			'default' => 'n',
+			'dependencies' => [
+				'search_use_facets',
+			],
 		],
 		'search_date_facets_interval' => [
 			'name' => tra('Date histogram aggregations interval'),
@@ -148,6 +154,18 @@ now/m,now+1m/m,Next Month
 ",
 			'dependencies' => [
 				'search_date_facets',
+			],
+		],
+		'search_excluded_facets' => [
+			'name' => tra('Excluded facets'),
+			'description' => tra('List of facets (a.k.a. aggregations) to exclude from the default search results'),
+			'hint' => 'For example: object_type,title_initial,title_firstword,tracker_field_userName',
+			'type' => 'text',
+			'filter' => 'word',
+			'separator' => ',',
+			'default' => [],
+			'dependencies' => [
+				'search_use_facets',
 			],
 		],
 	];

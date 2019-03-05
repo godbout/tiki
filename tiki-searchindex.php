@@ -101,14 +101,20 @@ if (count($filter) || count($postfilter)) {
 				$isCached = true;
 			}
 		}
+		$excludedFacets = $prefs['search_excluded_facets'];
 		if (! $isCached) {
 			$results = tiki_searchindex_get_results($filter, $postfilter, $offset, $maxRecords);
-			$facets = array_map(
-				function ($facet) {
-					return $facet->getName();
+			$facets = array_filter(array_map(
+				function ($facet) use ($excludedFacets) {
+					$name = $facet->getName();
+					if (! in_array($name, $excludedFacets)) {
+						return $name;
+					} else {
+						return '';
+					}
 				},
 				$results->getFacets()
-			);
+			));
 
 			$plugin = new Search_Formatter_Plugin_SmartyTemplate('searchresults-plain.tpl');
 			$plugin->setData(
@@ -205,7 +211,9 @@ function tiki_searchindex_get_results($filter, $postfilter, $offset, $maxRecords
 		$provider = $unifiedsearchlib->getFacetProvider();
 
 		foreach ($provider->getFacets() as $facet) {
-			$query->requestFacet($facet);
+			if (! in_array($facet->getName(), $prefs['search_excluded_facets'])) {
+				$query->requestFacet($facet);
+			}
 		}
 	}
 
