@@ -168,5 +168,15 @@ now/m,now+1m/m,Next Month
 				'search_use_facets',
 			],
 		],
+		'search_avoid_duplicated_facet_labels' => [
+			'name' => tra('Avoid Duplicated Facets'),
+			'description' => tra('Avoid Facets appearing with the same name, usually by appending the Tracker name.'),
+			'type' => 'flag',
+			'filter' => 'alpha',
+			'default' => 'y',
+			'dependencies' => [
+				'search_use_facets',
+			],
+		],
 	];
 }

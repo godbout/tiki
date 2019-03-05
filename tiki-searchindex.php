@@ -166,10 +166,13 @@ if ($prefs['search_use_facets'] == 'y' && $prefs['unified_engine'] === 'elastic'
 }
 
 /**
- * @param $filter
- * @param $offset
- * @param $maxRecords
- * @return mixed
+ * @param array $filter
+ * @param array $postfilter
+ * @param int $offset
+ * @param int $maxRecords
+ *
+ * @return Search_ResultSet
+ * @throws Exception
  */
 function tiki_searchindex_get_results($filter, $postfilter, $offset, $maxRecords)
 {
@@ -209,9 +212,34 @@ function tiki_searchindex_get_results($filter, $postfilter, $offset, $maxRecords
 
 	if ($prefs['search_use_facets'] == 'y') {
 		$provider = $unifiedsearchlib->getFacetProvider();
+		$facetLabels = [];
+
+		if ($prefs['search_avoid_duplicated_facet_labels'] === 'y') {
+			foreach ($provider->getFacets() as $facet) {
+				$facetLabels[] = $facet->getLabel();
+			}
+		}
+		$duplicateLabels = array_filter(
+			array_count_values($facetLabels),
+			function ($value) {
+				return $value > 1;
+			}
+		);
 
 		foreach ($provider->getFacets() as $facet) {
-			if (! in_array($facet->getName(), $prefs['search_excluded_facets'])) {
+			$name = $facet->getName();
+			if (! in_array($name, $prefs['search_excluded_facets'])) {
+				if ($prefs['search_avoid_duplicated_facet_labels'] === 'y') {
+					$label = $facet->getLabel();
+					if (key_exists($label, $duplicateLabels)) {
+						// it's almost always tracker fields that are duplicated, so just them for now
+						if (strpos($name, 'tracker_field_') === 0) {
+							$field =TikiLib::lib('trk')->get_tracker_field(substr($name, 14));
+							$definition = \Tracker_Definition::get($field['trackerId']);
+							$facet->setLabel($label . ' (' . $definition->getConfiguration('name') . ')');
+						}
+					}
+				}
 				$query->requestFacet($facet);
 			}
 		}
