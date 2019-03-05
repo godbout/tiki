@@ -35,11 +35,19 @@ class Search_FacetProvider implements Search_FacetProvider_Interface
 		}
 	}
 
+	/**
+	 * @return \Search_Query_Facet_Term[]
+	 */
 	function getFacets()
 	{
 		return $this->facets;
 	}
 
+	/**
+	 * @param string $name
+	 *
+	 * @return \Search_Query_Facet_Term|void
+	 */
 	function getFacet($name)
 	{
 		if (isset($this->facets[$name])) {
