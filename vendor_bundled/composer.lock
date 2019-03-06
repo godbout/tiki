@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c154515de96e77868b522d1c08e2b6f",
+    "content-hash": "a5e1ea7526e96a5f62339615ed0f18f2",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -315,16 +315,6 @@
                 "xmpp"
             ],
             "time": "2015-02-26T17:32:01+00:00"
-        },
-        {
-            "name": "chartjs/Chart.js",
-            "version": "2.5.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/chartjs/chart-js/chartjs-chart-js-2.5.0.zip",
-                "shasum": "72c113a51917f75646be7ddf4ecae46de8d4c0c9"
-            },
-            "type": "library"
         },
         {
             "name": "christian-vigh-phpclasses/PdfToText",
@@ -2797,6 +2787,87 @@
                 "touch"
             ],
             "time": "2019-02-22T19:30:58+00:00"
+        },
+        {
+            "name": "npm-asset/chart.js",
+            "version": "2.7.3",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/chart.js/-/chart.js-2.7.3.tgz"
+            },
+            "require": {
+                "npm-asset/chartjs-color": ">=2.1.0,<3.0.0",
+                "npm-asset/moment": ">=2.10.2,<3.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/chartjs-color",
+            "version": "2.2.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/chartjs-color/-/chartjs-color-2.2.0.tgz"
+            },
+            "require": {
+                "npm-asset/chartjs-color-string": ">=0.5.0,<0.6.0",
+                "npm-asset/color-convert": ">=0.5.3,<0.6.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/chartjs-color-string",
+            "version": "0.5.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/chartjs-color-string/-/chartjs-color-string-0.5.0.tgz"
+            },
+            "require": {
+                "npm-asset/color-name": ">=1.0.0,<2.0.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/color-convert",
+            "version": "0.5.3",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/color-convert/-/color-convert-0.5.3.tgz"
+            },
+            "type": "npm-asset"
+        },
+        {
+            "name": "npm-asset/color-name",
+            "version": "1.1.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/color-name/npm-asset-color-name-1.1.4.zip",
+                "shasum": "e6f9e3c49eec128341b1c848f1d57301e7c95827"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/moment",
+            "version": "2.24.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/moment/-/moment-2.24.0.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "npm-asset/popper.js",
