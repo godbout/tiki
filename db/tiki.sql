@@ -478,7 +478,7 @@ CREATE TABLE `tiki_objects` (
   `description` text,
   `created` int(14) default NULL,
   `name` varchar(200) default NULL,
-  `href` varchar(200) default NULL,
+  `href` varchar(256) default NULL,
   `hits` int(8) default NULL,
   `comments_locked` char(1) NOT NULL default 'n',
   PRIMARY KEY (`objectId`),
