@@ -58,8 +58,10 @@
 			{foreach from=$row key=column item=val}
 				{$value = $val|truncate:30|escape}
 				{if $tableName=='tiki_pages' && ($column=='pageName' || $column=='pageSlug' || $column=='data' || $column=='description') && $val}
-					<td><a href=tiki-index.php?page={$row['pageName']|escape}  title="{tr}View page{/tr}" target="_blank">{$value}</a></td>
-					<!-- TODO:<td>{object_link type='wiki page' id={$row['pageName']|escape} class="link tips" title="{$val|escape}:{tr}View page{/tr}"}</td> -->
+					<td><a href="{$row['pageName']|sefurl:wiki}"  class="link tips" title="{$row['pageName']}: {tr}View page{/tr}" target="_blank">{$value}</a></td>
+					<!-- TODO: (see note about object_link in templates/tiki-listpages_content.tpl) <td>{object_link type='wiki page' id={$row['pageName']|escape} class="link tips" title="{$val|escape}:{tr}View page{/tr}"}</td> -->
+				{elseif $column=='lastModif' || $column=='created' || $column=='commentDate' || $column=='publishDate' || $column=='expireDate'}
+					<td>{$value|tiki_short_datetime}</td>
 				{elseif $tableName=='tiki_blog_posts' && ($column=='data' || $column=='title')}
 					<td><a href=tiki-view_blog_post.php?postId={$row['postId']} class="link tips" title="{$row['title']|escape}:{tr}View blog post{/tr}" target="_blank">{$value}</a></td>
 				{elseif $tableName=='tiki_files' && ($column=='name' || $column=='description' || $column=='filename')}
@@ -105,7 +107,7 @@
 						{/if}
 					{elseif $row['objectType']=='wiki page'}
 						{if ($column=='objectType' || $column=='data' || $column=='object')}
-							<td><a href="tiki-index.php?page={$row['object']|escape}&threadId={$row['threadId']}&comzone=show#threadId{$row['threadId']}" class="link tips" title="{$row['data']|escape}:{tr}View page{/tr}" target="_blank">{$value}</a></td>
+							<td><a href="{$row['object']|sefUrl:wiki}?threadId={$row['threadId']|escape:"url"}&comzone=show#threadId{$row['threadId']|escape:"url"}" class="link tips" title="{$row['object']|escape}: {tr}View page{/tr}" target="_blank">{$value}</a></td>
 						{else}
 							<td>{$value}</td>
 						{/if}
