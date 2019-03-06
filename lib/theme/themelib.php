@@ -22,10 +22,10 @@ class ThemeLib extends TikiLib
 	/*
 	@return array of folder names in themes directory
 	*/
-	function get_themes($theme_base_path = '')
+	function get_themes($theme_base_path = 'themes')
 	{
 		$themes = [];
-		$list_css = glob("{$theme_base_path}themes/*/css/*.css");
+		$list_css = glob("{$theme_base_path}/*/css/*.css");
 		if ($list_css == false) {
 			return [];
 		}
