@@ -349,7 +349,6 @@ class CleanVendors
 
 		$fs->remove($vendors . 'phpcas/phpcas/CAS-1.3.3/docs');
 		$fs->remove($vendors . 'jquery/plugins/jquery-json/test');
-		$fs->remove($vendors . 'chartjs/Chart.js/samples');
 		//duplicate with mottie/tablesorter
 		$fs->remove($vendors . 'components/tablesorter');
 

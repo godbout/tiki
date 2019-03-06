@@ -137,7 +137,7 @@ function wikiplugin_chartjs($data, $params)
 
 	$min = $params['debug'] ? '': 'min.';
 
-	TikiLib::lib('header')->add_jsfile("vendor_bundled/vendor/chartjs/Chart.js/Chart.{$min}js")
+	TikiLib::lib('header')->add_jsfile("vendor_bundled/vendor/npm-asset/chart.js/dist/Chart.bundle.{$min}js")
 		->add_jq_onready('
 setTimeout(function () {
 	var chartjs_' . $params['id'] . ' = new Chart("' . $params['id'] . '", {
