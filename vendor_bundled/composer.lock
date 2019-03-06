@@ -2792,8 +2792,9 @@
             "name": "npm-asset/chart.js",
             "version": "2.7.3",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/chart.js/-/chart.js-2.7.3.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/chart-js/npm-asset-chart-js-2.7.3.zip",
+                "shasum": "891ad34f03af2c584d140a5a1314099d0e0ac399"
             },
             "require": {
                 "npm-asset/chartjs-color": ">=2.1.0,<3.0.0",
@@ -2808,8 +2809,9 @@
             "name": "npm-asset/chartjs-color",
             "version": "2.2.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/chartjs-color/-/chartjs-color-2.2.0.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/chartjs-color/npm-asset-chartjs-color-2.2.0.zip",
+                "shasum": "8297ddba67c201612544651863329bcab1374bf6"
             },
             "require": {
                 "npm-asset/chartjs-color-string": ">=0.5.0,<0.6.0",
@@ -2824,8 +2826,9 @@
             "name": "npm-asset/chartjs-color-string",
             "version": "0.5.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/chartjs-color-string/-/chartjs-color-string-0.5.0.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/chartjs-color-string/npm-asset-chartjs-color-string-0.5.0.zip",
+                "shasum": "e0a0524e777f3e82f9c0d89804713b1c80a980fb"
             },
             "require": {
                 "npm-asset/color-name": ">=1.0.0,<2.0.0"
@@ -2839,8 +2842,9 @@
             "name": "npm-asset/color-convert",
             "version": "0.5.3",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/color-convert/-/color-convert-0.5.3.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/color-convert/npm-asset-color-convert-0.5.3.zip",
+                "shasum": "dec531b67ce92af53b553d9d4e21dd369865a396"
             },
             "type": "npm-asset"
         },
@@ -2861,8 +2865,9 @@
             "name": "npm-asset/moment",
             "version": "2.24.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/moment/-/moment-2.24.0.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/moment/npm-asset-moment-2.24.0.zip",
+                "shasum": "9d4e5d66d765dec486aabdf16ba3fc806b3dcebe"
             },
             "type": "npm-asset",
             "license": [
