@@ -17,7 +17,7 @@
 		{remarksbox}{tr}Results for {/tr}<b>{$searchString|escape}</b> {tr}in all tables:{/tr}{/remarksbox}
 		<p>
 
-		<input type="hidden" name="query" value="{$searchString}">
+		<input type="hidden" name="query" value="{$searchString|escape}">
 		<input type="hidden" id="table" name="table" value="">
 		<input type="hidden" id="column" name="column" value="">
 
