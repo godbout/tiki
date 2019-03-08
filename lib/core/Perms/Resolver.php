@@ -32,4 +32,10 @@ interface Perms_Resolver
 	 * @return array $ applicableGroups
 	 */
 	function applicableGroups();
+
+	/*
+	 * Dump useful resolve information for debugging purposes.
+	 * @return array of resolved permissions
+	 */
+	function dump();
 }

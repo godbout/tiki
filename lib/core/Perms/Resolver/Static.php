@@ -48,8 +48,6 @@ class Perms_Resolver_Static implements Perms_Resolver
 		return false;
 	}
 
-
-
 	/*
 	 * Get name of the object type the permissons to check belong to : i.e 'object', 'category'
 	 * @return $string name of object type
@@ -59,7 +57,6 @@ class Perms_Resolver_Static implements Perms_Resolver
 		return $this->from;
 	}
 
-
 	/*
 	 * Get array of applicable groups.
 	 * @return array $ applicableGroups
@@ -67,5 +64,19 @@ class Perms_Resolver_Static implements Perms_Resolver
 	function applicableGroups()
 	{
 		return array_keys($this->known);
+	}
+
+	function dump()
+	{
+		$result = [
+			'from' => $this->from() ? $this->from() : 'global',
+			'perms' => [],
+		];
+		foreach ($this->known as $group => $perms) {
+			foreach ($perms as $perm => $_) {
+				$result['perms'][$perm][] = $group;
+			}
+		}
+		return $result;
 	}
 }

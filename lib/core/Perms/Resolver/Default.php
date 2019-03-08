@@ -33,4 +33,16 @@ class Perms_Resolver_Default implements Perms_Resolver
 	{
 		return ['Anonymous', 'Registered'];
 	}
+
+	function dump()
+	{
+		$result = [
+			'from' => $this->from(),
+			'perms' => [],
+		];
+		foreach ($this->applicableGroups as $group) {
+			$result['perms'][$this->value ? 'all' : 'none'][] = $group;
+		}
+		return $result;
+	}
 }
