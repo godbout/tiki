@@ -15,6 +15,9 @@ However, acceptance tests are currently skipped since they haven't been updated 
 But they would require:
 create database tiki_db_for_acceptance_tests;
 grant all privileges on tiki_db_for_acceptance_tests.* TO 'tiki_automated_test_user'@'localhost' identified by 'tiki_automated_test_user';
+
+See https://dev.tiki.org/Tiki-Unit-Testing for more info
+
 */
 $db_tiki='mysqli';
 $dbversion_tiki='20.0';

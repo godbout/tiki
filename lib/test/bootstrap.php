@@ -29,7 +29,8 @@ ini_set('include_path', implode(PATH_SEPARATOR, $paths));
 require_once __DIR__ . '/../../vendor_bundled/vendor/autoload.php';
 
 if (! is_file(dirname(__FILE__) . '/local.php')) {
-	die("\nYou need to setup a new database and create a local.php file for the test suite inside " . dirname(__FILE__) . "\n\n");
+	die("\nYou need to setup a new database and create a local.php file for the test suite inside " . dirname(__FILE__) .
+		"\nSee lib/tests/local.php.dist for further instructions\n\n");
 }
 
 global $local_php, $api_tiki, $style_base;
