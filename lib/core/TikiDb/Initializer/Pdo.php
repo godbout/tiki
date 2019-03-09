@@ -9,7 +9,9 @@ class TikiDb_Initializer_Pdo
 {
 	function isSupported()
 	{
-		return extension_loaded("pdo") && in_array('mysql', PDO::getAvailableDrivers());
+		return extension_loaded("pdo") && (
+			in_array('mysql', PDO::getAvailableDrivers()) || in_array('sqlite', PDO::getAvailableDrivers())
+		);
 	}
 
 	function getConnection(array $credentials)
@@ -45,7 +47,11 @@ class TikiDb_Initializer_Pdo
 		$this->setupSSL($pdo_options);
 
 		try {
-			$dbTiki = new PDO("mysql:$db_hoststring;dbname={$credentials['dbs']}", $credentials['user'], $credentials['pass'], $pdo_options);
+			if (empty($credentials['db'])) {
+				$dbTiki = new PDO("mysql:$db_hoststring;dbname={$credentials['dbs']}", $credentials['user'], $credentials['pass'], $pdo_options);
+			} else {
+				$dbTiki = new PDO($credentials['db']);
+			}
 
 			$dbTiki->setAttribute(PDO::ATTR_CASE, PDO::CASE_NATURAL);
 			$dbTiki->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);

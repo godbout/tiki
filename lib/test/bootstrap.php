@@ -27,25 +27,40 @@ $paths = [
 ini_set('include_path', implode(PATH_SEPARATOR, $paths));
 
 require_once __DIR__ . '/../../vendor_bundled/vendor/autoload.php';
+global $local_php, $api_tiki, $style_base;
 
 if (! is_file(dirname(__FILE__) . '/local.php')) {
-	die("\nYou need to setup a new database and create a local.php file for the test suite inside " . dirname(__FILE__) .
-		"\nSee lib/tests/local.php.dist for further instructions\n\n");
+
+	$api_tiki = 'pdo';
+
+	$db_tiki='sqlite::memory:';
+	$dbversion_tiki='20.0';
+	$host_tiki='';
+	$user_tiki='';
+	$pass_tiki='';
+	$dbs_tiki='tiki_db_for_unit_tests';
+	$client_charset='utf8mb4';
+
+
+
+//	die("\nYou need to setup a new database and create a local.php file for the test suite inside " . dirname(__FILE__) .
+//		"\nSee lib/tests/local.php.dist for further instructions\n\n");
+} else {
+
+	$api_tiki = 'adodb';
+	$local_php = __DIR__ . '/local.php';
+	require_once($local_php);
+	// Force autoloading
+	if (! class_exists('ADOConnection')) {
+		die('AdoDb not found.');
+	}
+
+	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
+
 }
 
-global $local_php, $api_tiki, $style_base;
-$api_tiki = 'adodb';
-$local_php = __DIR__ . '/local.php';
-require_once($local_php);
 
 $style_base = 'skeleton';
-
-// Force autoloading
-if (! class_exists('ADOConnection')) {
-	die('AdoDb not found.');
-}
-
-$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 
 $initializer = new TikiDb_Initializer;
 $initializer->setPreferredConnector($api_tiki);
@@ -56,6 +71,7 @@ $db = $initializer->getConnection(
 		'pass' => $pass_tiki,
 		'dbs' => $dbs_tiki,
 		'charset' => $client_charset,
+		'db' => $db_tiki,
 	]
 );
 
