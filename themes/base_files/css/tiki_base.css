@@ -3159,8 +3159,12 @@ div.form-group label.error {
 .tiki .chosen-container .active-result {
   width: auto !important; }
 
+.tiki .input-group .chosen-container {
+  width: 110% !important; }
+
 .tiki .chosen-container-single, .tiki #assign_order_chosen.chosen-container {
-  min-width: 5em; }
+  min-width: 5em;
+  word-wrap: normal; }
 
 .tiki .chosen-container .chosen-container-single {
   max-width: 100%; }
@@ -3234,7 +3238,10 @@ body:not(.fixed_width) .container {
   word-wrap: break-word; }
 
 @media (max-width: 768px) {
-  .col-md-12 {
+  .tiki .col-md-12 {
+    flex-basis: 100%; }
+
+  .col2 .module, .col3 .module {
     flex-basis: 100%; } }
 
 legend + * {
@@ -3268,16 +3275,6 @@ body.fullscreen.tiki.navbar-padding {
   #col2 img, #col3 img {
     max-width: 100%;
     height: auto; }
-
-.panel-body ul.nav {
-  overflow: visible; }
-
-.panel-body ul.nav.collapsing {
-  overflow: hidden; }
-
-.panel.panel-nocolor, .panel-nocolor, .panel-nocolor > .panel-heading, .panel-nocolor > .panel-body, .panel-nocolor > .panel-footer {
-  border: none;
-  background: transparent; }
 
 .tiki.tiki-list_file_gallery #col1 .popover, .tiki.tiki_file_galleries #col1 .popover, .tiki.tiki_trackers #col1 .popover, .tiki .wikiplugin-trackerlist .popover {
   max-width: 50vw; }

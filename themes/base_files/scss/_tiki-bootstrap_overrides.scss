@@ -16,7 +16,16 @@ body:not(.fixed_width) .container {
 	word-wrap: break-word;
 }
 
-@media(max-width:768px){.col-md-12 {flex-basis: 100%; }} // Prevent column from imploding horizontally if it contains only narrow content.
+@media(max-width:768px) {
+  .tiki .col-md-12 {
+	flex-basis: 100%;
+  }
+  // Prevent column from imploding horizontally if it contains only narrow content.
+  .col2 .module,
+  .col3 .module {
+	flex-basis: 100%;
+  }
+}
 
 //legend + p,
 //legend + .form-group,
@@ -66,21 +75,12 @@ body.fullscreen.tiki.navbar-padding {
 	}
 }
 
-.panel-body ul.nav {
-	overflow: visible;
-}
-.panel-body ul.nav.collapsing {
-	overflow: hidden;
-}
-
-.panel.panel-nocolor,
-.panel-nocolor,
-.panel-nocolor > .panel-heading,
-.panel-nocolor > .panel-body,
-.panel-nocolor > .panel-footer {
-	border: none;
-	background: transparent;
-}
+// .panel-body ul.nav {
+//	overflow: visible;
+///}
+// .panel-body ul.nav.collapsing {
+//	overflow: hidden;
+//}
 
 // Todo: This was causing normal text-containing popovers to be extremely wide, so instances where extremely wide popovers are
 // desired like in tracker item tables need to be dealt with specifically.

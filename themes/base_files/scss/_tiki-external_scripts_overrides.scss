@@ -27,9 +27,11 @@ div.form-group label.error {
 }
 
 // Chosen is calculating the widths wrong (too narrow) so this is a crude workaround.
+.tiki .input-group .chosen-container { width: 110% !important; }
 .tiki .chosen-container-single,
 .tiki #assign_order_chosen.chosen-container {
 	min-width: 5em;
+	word-wrap: normal;
 }
 
 .tiki .chosen-container .chosen-container-single {
