@@ -3,8 +3,8 @@
 If you run the following, you can use this file as-is to run tests:
 
 mysql -u root -p
-create database tiki_db_for_unit_tests;
-grant all privileges on tiki_db_for_unit_tests.* TO 'tiki_automated_test_user'@'localhost' identified by 'tiki_automated_test_user';
+create database tiki_unit_test;
+grant all privileges on tiki_unit_test.* TO 'tiki_tester'@'localhost' identified by 'tiki_tester_pass';
 flush privileges;
 \q
 ln -s lib/test/local.php.dist lib/test/local.php
@@ -13,8 +13,8 @@ Note that acceptance tests do not use this file, it's still hardcoded in TikiAcc
 However, acceptance tests are currently skipped since they haven't been updated since 2010
 
 But they would require:
-create database tiki_db_for_acceptance_tests;
-grant all privileges on tiki_db_for_acceptance_tests.* TO 'tiki_automated_test_user'@'localhost' identified by 'tiki_automated_test_user';
+create database tiki_accep_test;
+grant all privileges on tiki_accep_test.* TO 'tiki_tester'@'localhost' identified by 'tiki_tester_pass';
 
 See https://dev.tiki.org/Tiki-Unit-Testing for more info
 
@@ -22,7 +22,7 @@ See https://dev.tiki.org/Tiki-Unit-Testing for more info
 $db_tiki='mysqli';
 $dbversion_tiki='20.0';
 $host_tiki='localhost';
-$user_tiki='tiki_automated_test_user';
-$pass_tiki='tiki_automated_test_user';
-$dbs_tiki='tiki_db_for_unit_tests';
+$user_tiki='tiki_tester';
+$pass_tiki='tiki_tester_pass';
+$dbs_tiki='tiki_unit_test';
 $client_charset='utf8mb4';
