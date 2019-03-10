@@ -2,72 +2,47 @@
 
 Example wiki page "chart" contents:
 
- {CUSTOMSEARCH(wiki="charts tpl")}
-   {facet name="tracker_status"}
-   {facet name="deep_categories_under_2"}
-   {OUTPUT(template="templates/examples/search/facet_charts.tpl")}
-     {types 0="pie" 1="bar"}
-     {titles 0="" 1="Product Types"}
-     {sizes 0="400:400" 1="400:400"}
-     {colors 0="green:yellow:grey" 1="#444:#666:#888:#aaa:#ccc:#eee"}
-     {classes 0="float-left mr-2"}
-   {OUTPUT}
- {CUSTOMSEARCH}
+{CUSTOMSEARCH(wiki="charts tpl")}
+  {facet name="tracker_field_testUser"}
+  {facet name="deep_categories_under_1"}
+  {OUTPUT(template="templates/examples/search/facet_charts.tpl")}
+    {chart type="pie" title="Users" colors="orange:yellow:red:purple:grey:blue:green:pink:black" class="col-sm-4" size="300:600"}
+    {chart type="bar" title="Countries" colors="#888:#aaa:#ccc:#eee:#888:#aaa:#ccc:#eee:#888:#aaa:#ccc:#eee" class="col-sm-8" size="300:400"}
+  {OUTPUT}
+{CUSTOMSEARCH}
 
 Example wiki page "chart tpl" contents for the form:
 
-{literal}
-  Any text: {input _filter="content" type="text"}
-  {input type="Submit" value="Search"}
-  {input _filter="content" type="hidden" _field="tracker_status" id="tracker_status"}
-  {input _filter="content" type="hidden" _field="tracker_field_eventCategory" id="deep_categories_under_2"}
+{literal}<div  class="row"><div class="col-sm-4 col-sm-offset-4"><div class="input-group">
+      {input _filter="content" type="text" class="form-control" placeholder="Search..."}
+      <div class="input-group-append">
+        {input type="submit" value="Go" class="btn btn-primary"}
+        {input _filter="content" type="hidden" _field="tracker_status" id="tracker_status"}
+        {input _filter="content" type="hidden" _field="tracker_field_eventCategory" id="deep_categories_under_2"}
+      </div></div></div></div>
 {/literal}
 
  *}
 
 {if not empty($facets)}
-	<pre style="display: none;">{$facets|var_dump}</pre>
-	{if empty($types)}
-		{$types = ['pie']}
-	{/if}
-	{if empty($titles)}
-		{$titles = []}
-	{/if}
-	{if empty($colors)}
-		{$colors = ['']}
-	{/if}
-	{if empty($hcolors)}
-		{$hcolors = ['']}
-	{/if}
-	{if empty($classes)}
-		{$classes = ['']}
-	{/if}
-	{if empty($ids)}
-		{$ids = ['']}
-	{/if}
-	{if empty($sizes)}
-		{$sizes = ['','']}
-	{else}
-		{$s = []}
-		{foreach $sizes as $size}
-			{$s[] = ':'|explode:$size}
-		{/foreach}
-		{$sizes = $s}
-	{/if}
-	{$i = 0}
+	{jq}$.getScript("themes/macao.local/sands/js/chartjs-plugin-labels.js");{/jq}
+	<pre style="display: none;" class="facets-data">{$facets|var_dump}</pre>
+	<pre style="display: none;" class="charts-data">{$chart|var_dump}</pre>
+
 	{if empty($container)}
-		{$containerClass = ''}
+		{$containerClass = 'row'}
 	{else}
 		{$containerClass = $container.class}
 	{/if}
+	{$i = 0}
 	<div class="{$containerClass}">
 		{foreach $facets as $facet}
 			{if count($facet.options) gt 0}
-				{if not isset($classes[$i])}{$classes[$i] = $classes[0]}{/if}
-				<div class="{$classes[$i]|escape}">
+				{if not isset($chart[$i].class)}{$chart[$i].class = 'col-sm-12'}{/if}
+				<div class="{$chart[$i].class|escape}">
 					<label class="h3">
-						{if not empty($titles[$i])}
-							{$titles[$i]|escape}
+						{if not empty($chart[$i].title)}
+							{$chart[$i].title|escape}
 						{else}
 							{$facet.label|replace:' (Tree)':''|tr_if|escape}
 						{/if}
@@ -84,20 +59,22 @@ Example wiki page "chart tpl" contents for the form:
 						{/if}
 					{/foreach}
 
-					{if not isset($types[$i])}{$types[$i] = $types[0]}{/if}
-					{if not isset($ids[$i])}{$ids[$i] = $ids[0]}{/if}
-					{if not isset($sizes[$i])}{$sizes[$i] = $sizes[0]}{/if}
-
-					{if not isset($colors[$i])}
-						{$col = ':'|explode:$colors[0]}
+					{if not isset($chart[$i].type)}{$chart[$i].type = 'bar'}{/if}
+					{if not isset($chart[$i].id)}{$chart[$i].id = 'chart_'|cat:$i}{/if}
+					{if not isset($chart[$i].size)}
+						{$chart[$i].size = ['','']}
 					{else}
-						{$col = ':'|explode:$colors[$i]}
+						{$chart[$i].size = ':'|explode:$chart[$i].size}
 					{/if}
 
-					{if empty($hcolors[$i]) and not empty($hcolors[0])}
-						{$hcol = ':'|explode:$hcolors[0]}
-					{elseif not empty($hcolors[$i])}
-						{$hcol = ':'|explode:$hcolors[$i]}
+					{if not isset($chart[$i].colors)}
+						{$col = []}
+					{else}
+						{$col = ':'|explode:$chart[$i].colors}
+					{/if}
+
+					{if not empty($chart[$i].hcolors)}
+						{$hcol = ':'|explode:$chart[$i].hcolors}
 					{else}
 						{$hcol = $col}
 					{/if}
@@ -107,13 +84,19 @@ Example wiki page "chart tpl" contents for the form:
 						'backgroundColor'       => $col
 					]}
 					{if $hcol}{$datasets.hoverBackgroundColor = $hcol}{/if}
-					{if $titles[$i]}{$datasets.label = $titles[$i]|escape}{/if}
+					{if $chart[$i].title}{$datasets.label = $chart[$i].title|escape}{/if}
 
-					{$data = ['labels' => $labels,'datasets' => [$datasets]]}
+					{$data = ['data' => ['labels' => $labels,'datasets' => [$datasets]]]}
 
-					<pre style="display: none;">{$data|var_dump}</pre>
+					{$options = ['responsive' => true, 'maintainAspectRatio' => false]}{* some handy defaults *}
+					{if not empty($chart[$i].render)}
+						{$options.plugins = ['labels' => ['render' => $chart[$i].render]]}
+					{/if}
+					{$data.options = $options}
 
-					{wikiplugin _name='chartjs' type=$types[$i] id=$ids[$i] width=$sizes[$i][0] height=$sizes[$i][1] debug=1}
+					<pre style="display: none;" class="data-options">{$data|var_dump}</pre>
+
+					{wikiplugin _name='chartjs' type=$chart[$i].type id=$chart[$i].id width=$chart[$i].size[0] height=$chart[$i].size[1] debug=1}
 						{$data|json_encode}
 					{/wikiplugin}
 				</div>
