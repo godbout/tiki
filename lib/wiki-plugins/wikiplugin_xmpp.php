@@ -54,6 +54,19 @@ function wikiplugin_xmpp_info()
 				'default' => '400px',
 				'filter' => 'imgsize',
 			],
+			'anonymous' => [
+				'required' => false,
+				'name' => tra('Anonymous'),
+				'description' => tra('Allow anonymous users'),
+				'since' => 20,
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n'],
+				],
+			],
 		],
 	];
 }

@@ -207,10 +207,18 @@ class XMPPLib extends TikiLib
 	}
 
 
-	public function getConverseAuthOptions()
+	public function getConverseAuthOptions($params = [])
 	{
+		global $user;
 		$tikilib = TikiLib::lib('tiki');
 		$authMethod = $tikilib->get_preference('xmpp_auth_method');
+
+		if (empty($user) && isset($params['anonymous']) && $params['anonymous'] === 'y') {
+			return array(
+				'authentication'   => 'anonymous',
+				'auto_login'       => true,
+			);
+		}
 
 		if ($authMethod === 'tikitoken') {
 			return array(
@@ -228,7 +236,7 @@ class XMPPLib extends TikiLib
 				'authentication'   => 'login',
 				'oauth_providers' => [
 					'tiki' => $this->getOAuthParameters(),
-			]);
+				]);
 		}
 
 		return array(
@@ -319,7 +327,7 @@ class XMPPLib extends TikiLib
 				'view_mode'        => $params['view_mode'],
 				'whitelisted_plugins' => ['tiki', 'tiki-oauth'],
 			],
-			$this->getConverseAuthOptions()
+			$this->getConverseAuthOptions($params)
 		);
 
 		if ($params['room']) {
