@@ -348,28 +348,11 @@ class XMPPLib extends TikiLib
 
 		$optionString = json_encode($options, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
 
-		$js .= '
-(function () {
-	var error = console && console.error
-		? console.error.bind(console)
-		: function(msg) { return feedback(msg, "error", false); };
-
-	converse.plugins.add("tiki", {
-		"initialize": function () {
-			var _converse = this._converse;
-			_converse.api.listen.on("noResumeableSession", function (xhr) {
-				error(tr("XMPP Module error") + ": " + xhr.statusText);
-				$("#conversejs").fadeOut("fast");
-			});
-		}
-	});
-	
-	converse.initialize(' . $optionString . ');
-})();
-';
+		$js .= 'converse.initialize(' . $optionString . ');';
 		$js .= $cssjs;
 
 		$headerlib->add_jsfile('vendor_bundled/vendor/jcbrand/converse.js/dist/converse.js')
+			->add_jsfile('lib/xmpp/js/conversejs-tiki.js')
 			->add_jsfile('lib/xmpp/js/conversejs-tiki-oauth.js')
 			->add_jq_onready($js);
 	}

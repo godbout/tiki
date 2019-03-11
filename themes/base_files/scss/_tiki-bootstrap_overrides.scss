@@ -415,3 +415,12 @@ body.fullscreen.tiki.navbar-padding {
 		display: none;
 	}
 }
+
+@media screen and (max-width: 480px) {
+	.tiki #conversejs.converse-embedded {
+		margin: 0;
+		right: 0px;
+		left: 0px;
+		bottom: 0px;
+	}
+}
