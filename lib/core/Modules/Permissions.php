@@ -63,16 +63,16 @@ class Permissions
 				break;
 		}
 
-		$all = TikiLib::lib('user')->get_enabled_permissions();
+		$all = TikiLib::lib('user')->get_permissions(0, -1, 'permName_asc', '', $this->findPermType($objectType), '', true);
 
 		$accessor = \Perms::get(['type' => $objectType, 'object' => $objectId]);
 		$loaded = $accessor->getResolver()->dump();
 
 		$results = [];
 
-		foreach ($all as $permName => $permDef) {
+		foreach ($all['data'] as $permDef) {
 			foreach ($loaded['perms'] as $perm => $groups) {
-				if ($perm != str_replace('tiki_p_', '', $permName)) {
+				if ($perm != str_replace('tiki_p_', '', $permDef['name'])) {
 					continue;
 				}
 				$results[$permDef['type']][$perm] = $groups;
@@ -150,5 +150,29 @@ class Permissions
 		}
 
 		return null;
+	}
+
+	protected function findPermType($objectType) {
+		switch($objectType) {
+			case 'wiki page':
+				return 'wiki';
+			case 'file gallery':
+				return 'file galleries';
+			case 'tracker':
+			case 'trackeritem':
+				return 'trackers';
+			case 'forum':
+				return 'forums';
+			case 'group':
+				return 'group';
+			case 'articles':
+				return 'articles';
+			case 'blog':
+				return 'blogs';
+			case 'calendar':
+				return 'calendar';
+			case 'sheet':
+				return 'sheet';
+		}
 	}
 }
