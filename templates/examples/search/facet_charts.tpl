@@ -14,20 +14,19 @@ Example wiki page "chart" contents:
 Example wiki page "chart tpl" contents for the form:
 
 {literal}<div  class="row"><div class="col-sm-4 col-sm-offset-4"><div class="input-group">
-      {input _filter="content" type="text" class="form-control" placeholder="Search..."}
-      <div class="input-group-append">
-        {input type="submit" value="Go" class="btn btn-primary"}
-        {input _filter="content" type="hidden" _field="tracker_status" id="tracker_status"}
-        {input _filter="content" type="hidden" _field="tracker_field_eventCategory" id="deep_categories_under_2"}
-      </div></div></div></div>
+  {input _filter="content" type="text" class="form-control" placeholder="Search..."}
+  <div class="input-group-append">
+    {input type="submit" value="Go" class="btn btn-primary"}
+    {input _filter="content" type="hidden" _field="tracker_status" id="tracker_status"}
+    {input _filter="content" type="hidden" _field="tracker_field_eventCategory" id="deep_categories_under_2"}
+  </div></div></div></div>
 {/literal}
 
  *}
 
 {if not empty($facets)}
-	{jq}$.getScript("themes/macao.local/sands/js/chartjs-plugin-labels.js");{/jq}
-	<pre style="display: none;" class="facets-data">{$facets|var_dump}</pre>
-	<pre style="display: none;" class="charts-data">{$chart|var_dump}</pre>
+{*	<pre style="display: none;" class="facets-data">{$facets|var_dump}</pre>*}
+{*	<pre style="display: none;" class="charts-data">{$chart|var_dump}</pre>*}
 
 	{if empty($container)}
 		{$containerClass = 'row'}
@@ -88,13 +87,10 @@ Example wiki page "chart tpl" contents for the form:
 
 					{$data = ['data' => ['labels' => $labels,'datasets' => [$datasets]]]}
 
-					{$options = ['responsive' => true, 'maintainAspectRatio' => false]}{* some handy defaults *}
-					{if not empty($chart[$i].render)}
-						{$options.plugins = ['labels' => ['render' => $chart[$i].render]]}
-					{/if}
+					{$options = ['responsive' => true, 'maintainAspectRatio' => false]}{* some handy defaults (not working as expected) *}
 					{$data.options = $options}
 
-					<pre style="display: none;" class="data-options">{$data|var_dump}</pre>
+{*					<pre style="display: none;" class="data-options">{$data|var_dump}</pre>*}
 
 					{wikiplugin _name='chartjs' type=$chart[$i].type id=$chart[$i].id width=$chart[$i].size[0] height=$chart[$i].size[1] debug=1}
 						{$data|json_encode}
