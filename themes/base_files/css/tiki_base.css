@@ -183,6 +183,9 @@ table.treetable.objectperms td.removed {
   background: transparent;
   border: none; }
 
+.btn-primary:focus {
+  color: #fff; }
+
 #ajaxLoadingBG {
   background: transparent url("../../../img/overlay-light.png"); }
 
@@ -3492,6 +3495,13 @@ body.fullscreen.tiki.navbar-padding {
 
 .tiki #conversejs ~ .modal-backdrop.fade.show, .tiki #conversejs.converse-embedded ~ .modal-backdrop.fade.show {
   display: none; }
+
+.bg-danger h4.card-title {
+  margin-bottom: 0;
+  color: #fff; }
+
+.bg-warning h5.card-title {
+  margin-bottom: 0; }
 
 @media screen and (max-width: 480px) {
   .tiki #conversejs.converse-embedded {

@@ -6214,6 +6214,9 @@ table.treetable.objectperms td.removed {
   background: transparent;
   border: none; }
 
+.btn-primary:focus {
+  color: #fff; }
+
 #ajaxLoadingBG {
   background: transparent url("../../../img/overlay-light.png"); }
 

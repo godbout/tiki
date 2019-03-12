@@ -6139,6 +6139,9 @@ table.treetable.objectperms td.removed {
   background: transparent;
   border: none; }
 
+.btn-primary:focus {
+  color: #212529; }
+
 #ajaxLoadingBG {
   background: transparent url("../../../img/overlay-light.png"); }
 
@@ -6882,6 +6885,9 @@ h1 {
 
 .card-title a {
   color: #555; }
+
+.card-body a.btn-primary:hover {
+  color: #212529; }
 
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }

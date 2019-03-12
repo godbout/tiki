@@ -418,6 +418,14 @@ body.fullscreen.tiki.navbar-padding {
 	}
 }
 
+.bg-danger h4.card-title {
+	margin-bottom: 0;
+	color: color-yiq(theme-color("danger"));
+}
+.bg-warning h5.card-title {
+	margin-bottom: 0;
+}
+
 @media screen and (max-width: 480px) {
 	.tiki #conversejs.converse-embedded {
 		margin: 0;

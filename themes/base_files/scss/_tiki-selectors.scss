@@ -324,6 +324,10 @@ table.treetable.objectperms td.removed {
 	border: none;
 }
 
+.btn-primary:focus {
+	color: color-yiq(theme-color("primary"));
+}
+
 // Ajax, jquery. etc.
 // Ajax Loading Overlay
 #ajaxLoadingBG {
