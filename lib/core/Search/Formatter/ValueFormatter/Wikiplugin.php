@@ -24,6 +24,17 @@ class Search_Formatter_ValueFormatter_Wikiplugin extends Search_Formatter_ValueF
 
 		if (isset($this->arguments['content'])) {
 			$content = $this->arguments['content'];
+
+			// replace args in the plugin body with values from the results
+			// look for %field_name% in the content and replace with $entry['field_name']
+			if ($rc = preg_match_all('/%(\w+)%/', $content, $matches)) {
+				for ($i = 0; $i < $rc; $i++) {
+					if (isset($entry[$matches[1][$i]])) {
+						$content = str_replace($matches[0][$i], $entry[$matches[1][$i]], $content);
+					}
+				}
+			}
+
 			unset($this->arguments['content']);
 		} else {
 			$content = '';
