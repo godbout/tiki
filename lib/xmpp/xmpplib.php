@@ -318,11 +318,12 @@ class XMPPLib extends TikiLib
 			}
 		}
 
-		$options = array_merge([
+		$options = array_merge(
+			[
 				'bosh_service_url' => $xmpp['http_bind'],
 				'debug'            => $prefs['xmpp_conversejs_debug'] === 'y',
 				'jid'              => $xmpp['jid'],
-				'nickname'         => $xmpp['nickname'],
+				'nickname'         => $xmpp['nickname'] ?: 'visitor-' . time(),
 				'use_emojione'     => false,
 				'view_mode'        => $params['view_mode'],
 				'show_controlbox_by_default' => isset($params['show_controlbox_by_default']) && $params['show_controlbox_by_default'] === 'y',
