@@ -263,7 +263,7 @@ body.fullscreen.tiki.navbar-padding {
 		display: none;
 	}
 	.col1 .table-responsive > table { // Keep table width inside main column width (no scrolling) in large displays in Chrome/chromium browsers.
-		table-layout: fixed;
+		word-break: break-word;
 	}
 
 // Overrides in case of 3-col layout

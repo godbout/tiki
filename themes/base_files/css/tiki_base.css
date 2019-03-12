@@ -3390,7 +3390,7 @@ body.fullscreen.tiki.navbar-padding {
     display: none; }
 
   .col1 .table-responsive > table {
-    table-layout: fixed; }
+    word-break: break-word; }
 
   .hide_zone_left #col1.col-lg-8 {
     width: 83.3334%;
