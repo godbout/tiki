@@ -67,6 +67,19 @@ function wikiplugin_xmpp_info()
 					['text' => tra('No'), 'value' => 'n'],
 				],
 			],
+			'show_controlbox_by_default' => [
+				'required' => false,
+				'name' => tra('Show controlbox on load'),
+				'description' => tra('If controlbox should be shown after page load'),
+				'since' => 20,
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n'],
+				],
+			],
 		],
 	];
 }

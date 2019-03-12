@@ -325,6 +325,7 @@ class XMPPLib extends TikiLib
 				'nickname'         => $xmpp['nickname'],
 				'use_emojione'     => false,
 				'view_mode'        => $params['view_mode'],
+				'show_controlbox_by_default' => isset($params['show_controlbox_by_default']) && $params['show_controlbox_by_default'] === 'y',
 				'whitelisted_plugins' => ['tiki', 'tiki-oauth'],
 			],
 			$this->getConverseAuthOptions($params)
