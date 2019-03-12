@@ -3389,6 +3389,9 @@ body.fullscreen.tiki.navbar-padding {
   .hide_zone_left #col2, .hide_zone_right #col3 {
     display: none; }
 
+  .col1 .table-responsive > table {
+    table-layout: fixed; }
+
   .hide_zone_left #col1.col-lg-8 {
     width: 83.3334%;
     flex: 0 0 83.3334%;

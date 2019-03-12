@@ -258,11 +258,13 @@ body.fullscreen.tiki.navbar-padding {
 .side-col-toggle-container {width: 100%; height: 1.5rem; margin-top: -.8rem; display:flex;}
 
 @media (min-width: 992px) {
-  // When hidden we simply do not display the columns
-.hide_zone_left #col2,
-.hide_zone_right #col3 {
-	display: none;
-}
+	.hide_zone_left #col2, // When hidden we simply do not display the columns
+	.hide_zone_right #col3 {
+		display: none;
+	}
+	.col1 .table-responsive > table { // Keep table width inside main column width (no scrolling) in large displays in Chrome/chromium browsers.
+		table-layout: fixed;
+	}
 
 // Overrides in case of 3-col layout
 .hide_zone_left #col1.col-lg-8 { // when left col is hidden
