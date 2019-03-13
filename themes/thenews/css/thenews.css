@@ -6875,6 +6875,13 @@ input:checked + .slider {
 body.fullscreen .container, body.fullscreen #col1 {
   border: none; }
 
+.navbar-expand .navbar-nav {
+  flex-wrap: wrap; }
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav {
+    flex-wrap: wrap; } }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {

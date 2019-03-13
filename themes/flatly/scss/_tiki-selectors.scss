@@ -1,0 +1,14 @@
+// $Id: _tiki-selectors.scss 67789 2018-10-02 14:52:34Z chibaguy $
+// This file contains CSS rules for this theme that aren't covered by Bootstrap, such as additional Tiki theme properties.
+// To do: Use variables for global Tiki properties and customize a Tiki variables file per-theme.
+
+// navbars with too many items overflows the container
+.navbar-expand .navbar-nav {
+	flex-wrap: wrap;
+}
+
+@include media-breakpoint-up(lg) {
+	.navbar-expand-lg .navbar-nav {
+		flex-wrap: wrap;
+	}
+}

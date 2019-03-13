@@ -8188,6 +8188,13 @@ body .chosen-container-single .chosen-single, body .chosen-container-active.chos
     top: -2.05rem;
     left: -0.5rem; }
 
+.navbar-expand .navbar-nav {
+  flex-wrap: wrap; }
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav {
+    flex-wrap: wrap; } }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {

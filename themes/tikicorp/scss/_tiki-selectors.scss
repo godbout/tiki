@@ -758,3 +758,14 @@ body {
     left: -0.5rem;
 	}
 }
+
+// navbars with too many items overflows the container
+.navbar-expand .navbar-nav {
+	flex-wrap: wrap;
+}
+
+@include media-breakpoint-up(lg) {
+	.navbar-expand-lg .navbar-nav {
+		flex-wrap: wrap;
+	}
+}

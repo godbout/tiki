@@ -7644,3 +7644,10 @@ input[type="text"].chosen-focus-input {
     position: relative;
     flex: 1 1 auto;
     width: 1% !important; }
+
+.navbar-expand .navbar-nav {
+  flex-wrap: wrap; }
+
+@media (min-width: 992px) {
+  .navbar-expand-lg .navbar-nav {
+    flex-wrap: wrap; } }

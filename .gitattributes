@@ -7347,6 +7347,7 @@ themes/flatly/images/index.php -text
 themes/flatly/index.php -text
 themes/flatly/options/blue/css/blue.css -text
 themes/flatly/scss/_bootswatch.scss -text
+themes/flatly/scss/_tiki-selectors.scss -text
 themes/flatly/scss/_variables.scss -text
 themes/flatly/scss/flatly.scss -text
 themes/flatly/scss/index.php -text
@@ -7525,6 +7526,7 @@ themes/lux/icons/index.php -text
 themes/lux/images/index.php -text
 themes/lux/index.php -text
 themes/lux/scss/_bootswatch.scss -text
+themes/lux/scss/_tiki-selectors.scss -text
 themes/lux/scss/_variables.scss -text
 themes/lux/scss/index.php -text
 themes/lux/scss/lux.scss -text
