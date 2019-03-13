@@ -1664,7 +1664,7 @@
 		"blueimp/jquery-file-upload": ">=9.11.0",
 		"bombayworks/zendframework1": ">=1.12.3",
 		"bower-asset/fontawesome": ">=5.3.1",
-		"bower-asset/bootstrap-rtl": "^3.3.2",
+		"bower-asset/bootstrap-rtol": "^4.3.1",
 		"bower-asset/swfobject": "^2.2",
 		"bower-asset/wodo.texteditor": "^0.5.9",
 		"candy-chat/xmpp-prebind-php": "dev-master",
