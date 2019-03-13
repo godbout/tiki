@@ -5,7 +5,7 @@
 	"homepage": "https://tiki.org",
 	"minimum-stability": "stable",
 	"require": {
-		"Sam152/Javascript-Equal-Height-Responsive-Rows": "1.0.0",
+		"sam152/javascript-equal-height-responsive-rows": "1.0.0",
 		"adodb/adodb-php": "^5.20",
 		"afarkas/html5shiv": "3.7.3",
 		"ahand/mobileesp": "dev-master",
@@ -14,7 +14,7 @@
 		"blueimp/jquery-file-upload": "^9.12.5",
 		"bower-asset/swfobject": "^2.2",
 		"candy-chat/xmpp-prebind-php": "dev-master",
-		"christian-vigh-phpclasses/PdfToText": "^1.6.0",
+		"christian-vigh-phpclasses/pdftotext": "^1.6.0",
 		"ckeditor/ckeditor": "^4.6.2",
 		"ckeditor/ckeditor/skins/bootstrapck": "^1",
 		"ckeditor/ckeditor/skins/minimalist": "^1",
@@ -136,7 +136,7 @@
 	},
 	"require-dev": {
 		"bafs/testify": "dev-master",
-		"mikey179/vfsStream": "^1",
+		"mikey179/vfsstream": "^1",
 		"phpunit/dbunit": "^2",
 		"phpunit/phpunit": "^5",
 		"phpunit/phpunit-selenium": "^3",
