@@ -124,7 +124,7 @@
 			</ul>
 		</form>
 		{include file="admin/admin_navbar_menu.tpl"}
-		<ul class="navbar-nav flex-row  d-none d-md-flex mr-2">
+		<ul class="navbar-nav flex-row d-md-flex mr-2">
 			<li class="nav-item">
 				<form method="post" class="form-inline my-2 my-md-0 ml-auto" role="form">
 					<div class="form-group row mx-0">

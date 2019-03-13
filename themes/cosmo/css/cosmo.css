@@ -6408,6 +6408,12 @@ body.wikitext {
   background: #ff0039;
   color: #fff; }
 
+.diffadded a, .diffadded a:hover {
+  color: #fff; }
+
+.diffdeleted a, .diffdeleted a:hover {
+  color: #fff; }
+
 .diffinldel {
   background: #ff7518; }
 

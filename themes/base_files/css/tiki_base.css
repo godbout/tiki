@@ -2932,6 +2932,16 @@ table.objectperms > tbody .checkBoxCell {
 table.objectperms thead th {
   display: none; }
 
+@media (max-width: 767.98px) {
+  .admin-navbar .filter-menu {
+    text-align: center; }
+    .admin-navbar .navbar-nav {
+      padding: 0 15px; }
+    .admin-navbar .form-inline {
+      min-width: 100%; }
+    .admin-navbar input[type="checkbox"].preffilter-toggle-round + label {
+      margin-left: 10px; } }
+
 form.simple label.error {
   padding: 4px 0 0 20px;
   margin-left: 0.5em; }
