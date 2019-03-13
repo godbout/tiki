@@ -573,7 +573,60 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		return "[-[$name]-]:\n--[Old]--:\n$oldValueLines\n\n*-[New]-*:\n$newValueLines";
 	}
 
-	function filterFile($info)
+	public function renderDiff($context = [])
+	{
+		$smarty = TikiLib::lib('smarty');
+		$smarty->loadPlugin('smarty_modifier_sefurl');
+		$smarty->loadPlugin('smarty_modifier_escape');
+		$smarty->loadPlugin('smarty_modifier_iconify');
+
+		if ($context['oldValue']) {
+			$old = $context['oldValue'];
+		} else {
+			$old = '';
+		}
+		if ($context['value']) {
+			$new = $context['value'];
+		} else {
+			$new = $this->getValue('');
+		}
+		if (empty($context['diff_style'])) {
+			$context['diff_style'] = 'inlinediff';
+		}
+
+		$filegallib = TikiLib::lib('filegal');
+
+		$oldFileIds = explode(',', $old);
+		$newFileIds = explode(',', $new);
+
+		$filesRemoved = array_diff($oldFileIds, $newFileIds);
+		$filesAdded = array_diff($newFileIds, $oldFileIds);
+
+		$addedFileInfos = empty($filesAdded) ? [] : $filegallib->get_files_info(null, $filesAdded);
+		$removedFileInfos = empty($filesRemoved) ? [] : $filegallib->get_files_info(null, $filesRemoved);
+
+		$result = '<table class="table"><tr><td class="diffdeleted">-</td><td class="diffdeleted"><del class="diffchar deleted">';
+
+		foreach ($removedFileInfos as $file) {
+			$url = smarty_modifier_sefurl($file['fileId'], 'file');
+			$result .= smarty_modifier_iconify($url, $file['filetype'], $file['fileId'], 1);
+			$result .= ' <a href="' . $url . '">' . smarty_modifier_escape($file['name']) .'</a><br>';
+		}
+
+		$result .= '</del></td><td class="diffadded">+</td><td class="diffadded"><ins class="diffchar inserted">';
+
+		foreach ($addedFileInfos as $file) {
+			$url = smarty_modifier_sefurl($file['fileId'], 'file');
+			$result .= smarty_modifier_iconify($url, $file['filetype'], $file['fileId'], 1);
+			$result .= ' <a href="' . $url . '">' . smarty_modifier_escape($file['name']) .'</a><br>';
+		}
+
+		$result .= '</ins></td></tr></table>';
+
+		return $result;
+	}
+
+function filterFile($info)
 	{
 		$filter = $this->getOption('filter');
 

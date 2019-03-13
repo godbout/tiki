@@ -974,6 +974,16 @@ body.wikitext {
 	color: lighten(theme-color("danger"),50%);
 }
 
+.diffadded a,
+.diffadded a:hover {
+	color: lighten(theme-color("success"),100%);
+}
+
+.diffdeleted a,
+.diffdeleted a:hover {
+	color: lighten(theme-color("danger"),100%);
+}
+
 .diffinldel {
 	background: theme-color("warning");
 }
