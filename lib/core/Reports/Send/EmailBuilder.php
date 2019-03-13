@@ -27,7 +27,7 @@ class Reports_Send_EmailBuilder
 	public function emailBody($user_data, $report_preferences, $report_cache)
 	{
 		global $prefs;
-		include_once('lib/smarty_tiki/modifier.username.php');
+		include_once(__DIR__ . '/../../../smarty_tiki/modifier.username.php');
 
 		if (isset($report_cache[0])) {
 			$base_url = $report_cache[0]['data']['base_url'];
@@ -133,17 +133,17 @@ class Reports_Send_EmailBuilder
 					$body .= $this->tikilib->get_short_datetime(strtotime($change['time'])) . ": ";
 
 					if (isset($change['data']['user'])) {
-						include_once('lib/smarty_tiki/modifier.username.php');
+						include_once(__DIR__ . '/../../../smarty_tiki/modifier.username.php');
 						$change['data']['user'] = smarty_modifier_username($change['data']['user']);
 					}
 
 					if (isset($change['data']['editUser'])) {
-						include_once('lib/smarty_tiki/modifier.username.php');
+						include_once(__DIR__ . '/../../../smarty_tiki/modifier.username.php');
 						$change['data']['editUser'] = smarty_modifier_username($change['data']['editUser']);
 					}
 
 					if (isset($change['user'])) {
-						include_once('lib/smarty_tiki/modifier.username.php');
+						include_once(__DIR__ . '/../../../smarty_tiki/modifier.username.php');
 						$change['user'] = smarty_modifier_username($change['user']);
 					}
 

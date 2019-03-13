@@ -75,7 +75,7 @@ class BlogLib extends TikiDb_Bridge
 		}
 
 		$result = Perms::filter(['type' => 'blog'], 'object', $result, ['object' => 'blogId'], $perm);
-		
+
 		foreach ($result as $res) {
 			++$cant;
 			if ($maxRecords == - 1 || ($i >= $offset && $nb < $maxRecords)) {
@@ -546,7 +546,7 @@ class BlogLib extends TikiDb_Bridge
 			$tikilib->object_post_save(['type' => 'blog', 'object' => $blogId, 'description' => $description, 'name' => $title, 'href' => "tiki-view_blog.php?blogId=$blogId"], [ 'content' => $heading ]);
 		}
 
-		require_once('lib/search/refresh-functions.php');
+		require_once(__DIR__ . '/../search/refresh-functions.php');
 		refresh_index('blogs', $blogId);
 
 		return $blogId;
@@ -903,7 +903,7 @@ class BlogLib extends TikiDb_Bridge
 			$logslib->add_action('Posted', $blogId, 'blog', "blogId=$blogId&amp;postId=$id&amp;add=" . strlen($data) . "#postId$id", '', '', '', '', $contributions);
 		}
 
-		require_once('lib/search/refresh-functions.php');
+		require_once(__DIR__ . '/../search/refresh-functions.php');
 		refresh_index('blog_posts', $id);
 
 		$tikilib->object_post_save(['type' => 'blog post', 'object' => $id, 'description' => substr($data, 0, 200), 'name' => $title, 'href' => "tiki-view_blog_post.php?postId=$id"], ['content' => $data]);

@@ -27,7 +27,7 @@ class TikiMail
 	{
 		global $user_preferences, $prefs;
 
-		require_once 'lib/mail/maillib.php';
+		require_once __DIR__ . '/../mail/maillib.php';
 
 		$tikilib = TikiLib::lib('tiki');
 		$userlib = TikiLib::lib('user');

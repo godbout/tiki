@@ -1262,7 +1262,7 @@ class ParserLib extends TikiDb_Bridge
 			}
 			if ($prefs['feature_wiki_ext_icon'] == 'y') {
 				$attrib .= 'class="wiki external" ';
-				include_once('lib/smarty_tiki/function.icon.php');
+				include_once(__DIR__ . '/../smarty_tiki/function.icon.php');
 				$ext_icon = smarty_function_icon(['name' => 'link-external'], TikiLib::lib('smarty')->getEmptyInternalTemplate());
 			} else {
 				$attrib .= 'class="wiki" ';

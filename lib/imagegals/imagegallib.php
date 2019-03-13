@@ -1070,7 +1070,7 @@ class ImageGalsLib extends TikiLib
 			$logslib->add_action('Uploaded', $galleryId, 'image gallery', 'imageId=' . $imageId);
 		}
 
-		require_once('lib/search/refresh-functions.php');
+		require_once(__DIR__ . '/../search/refresh-functions.php');
 		refresh_index('images', $imageId);
 
 		$this->notify($imageId, $galleryId, $name, $filename, $description, isset($gal_info['name']) ? $gal_info['name'] : '', 'upload image', $user);
@@ -2266,7 +2266,7 @@ class ImageGalsLib extends TikiLib
 			);
 		}
 
-		require_once('lib/search/refresh-functions.php');
+		require_once(__DIR__ . '/../search/refresh-functions.php');
 		refresh_index('galleries', $galleryId);
 
 		return $galleryId;

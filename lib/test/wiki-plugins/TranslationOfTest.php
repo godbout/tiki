@@ -5,8 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once('lib/wiki-plugins/wikiplugin_translationof.php');
-require_once('lib/test/TestHelpers.php');
+require_once(__DIR__ . '/../../wiki-plugins/wikiplugin_translationof.php');
+require_once(__DIR__ . '/../../test/TestHelpers.php');
 $relationlib = TikiLib::lib('relation');
 
 class WikiPlugin_TranslationOfTest extends TikiTestCase

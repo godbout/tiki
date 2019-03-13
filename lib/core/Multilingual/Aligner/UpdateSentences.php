@@ -5,13 +5,13 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-	include_once 'lib/diff/Diff.php';
-	include_once 'lib/diff/difflib.php';
-  include_once 'lib/diff/Renderer.php';
-  include_once 'lib/diff/renderer_unified.php';
-  include_once 'SentenceAlignments.php';
-  include_once 'SentenceSegmentor.php';
-	include_once 'MockMTWrapper.php';
+include_once __DIR__ . '/../../../diff/Diff.php';
+include_once __DIR__ . '/../../..//diff/difflib.php';
+include_once __DIR__ . '/../../..//diff/Renderer.php';
+include_once __DIR__ . '/../../..//diff/renderer_unified.php';
+include_once __DIR__ . '/SentenceAlignments.php';
+include_once __DIR__ . '/SentenceSegmentor.php';
+include_once __DIR__ . '/MockMTWrapper.php';
 
 
 /*

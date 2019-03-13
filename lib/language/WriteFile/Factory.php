@@ -5,8 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once('lib/language/WriteFile.php');
-require_once('lib/language/File.php');
+require_once(__DIR__ . '/../../language/WriteFile.php');
+require_once(__DIR__ . '/../../language/File.php');
 
 /**
  * Create WriteFile objects

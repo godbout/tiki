@@ -58,7 +58,7 @@ class File
 	function __construct($params = [])
 	{
 		global $mimetypes;
-		include_once('lib/mime/mimetypes.php');
+		include_once(__DIR__ . '/../../../mime/mimetypes.php');
 
 		$this->setParam('filetype', $mimetypes["txt"]);
 		$this->setParam('name', tr("New File"));
@@ -234,7 +234,7 @@ class File
 
 	function diffLatestWithArchive($archive = 0)
 	{
-		include_once("lib/diff/Diff.php");
+		include_once(__DIR__ . "/../../../diff/Diff.php");
 
 		$textDiff = new \Text_Diff(
 			self::id($this->getParam('fileId'))

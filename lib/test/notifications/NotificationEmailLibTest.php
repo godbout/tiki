@@ -28,7 +28,7 @@ class NotificationEmailLibTest extends TikiTestCase
 			'email' => 'test@example.org'
 		]);
 
-		require_once 'lib/notifications/notificationemaillib.php';
+		require_once __DIR__ . '/../../notifications/notificationemaillib.php';
 		$_SERVER["REQUEST_URI"] = '';
 		$res = sendCommentNotification('article', 1, 'Test comment', 'test', $comment2, null);
 		$this->assertEquals(1, $res);

@@ -1506,7 +1506,7 @@ class WikiLib extends TikiLib
 			// escape colon chars so the url doesn't appear to be protocol:address - occurs with user pages and namespaces
 			$href = str_replace(':', '%3A', $href);
 
-			include_once('tiki-sefurl.php');
+			include_once(__DIR__ . '/../../tiki-sefurl.php');
 			return filter_out_sefurl($href, 'wiki');
 		} else {
 			return $href;

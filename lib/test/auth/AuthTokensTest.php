@@ -9,7 +9,7 @@
  * @group integration
  */
 
-require_once 'lib/auth/tokens.php';
+require_once __DIR__ . '/../../auth/tokens.php';
 
 class AuthTokensTest extends TikiDatabaseTestCase
 {

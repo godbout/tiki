@@ -99,7 +99,7 @@ class MimeLib
 	private static function from_file_extension($filename)
 	{
 		global $mimetypes;
-		include_once('lib/mime/mimetypes.php');
+		include_once(__DIR__ . '/../mime/mimetypes.php');
 
 		if (isset($mimetypes)) {
 			$ext = self::get_extension($filename);

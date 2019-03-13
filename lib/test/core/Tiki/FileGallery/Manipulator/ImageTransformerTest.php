@@ -22,7 +22,7 @@ class Tiki_FileGallery_Manipulator_ImageTransformerTest extends TikiTestCase
     $old_pref = $prefs['fgal_use_db'];
     $prefs['fgal_use_db'] = 'y';
 
-    $path = 'lib/test/filegals/testdata.png';
+    $path = __DIR__ . '/../../../../filegals/testdata.png';
     $data = file_get_contents($path);
     $file = new File(['filename' => 'testdata.png', 'filetype' => 'image/png', 'data' => $data]);
 

@@ -20,7 +20,7 @@ class Tiki_FileGallery_Manipulator_MetadataExtractorTest extends TikiTestCase
     $this->oldPrefs = $prefs;
     $prefs['fgal_use_db'] = 'y';
 
-    $path = 'lib/test/filegals/testdata.png';
+    $path = __DIR__ . '/../../../../filegals/testdata.png';
     $data = file_get_contents($path);
     $this->file = new File(['filename' => 'testdata.png', 'filetype' => 'image/png', 'data' => $data]);
 

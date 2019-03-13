@@ -5,8 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once('lib/test/TestRunnerWithBaseline.php');
-require_once('lib/debug/Tracer.php');
+require_once(__DIR__ . '/../test/TestRunnerWithBaseline.php');
+require_once(__DIR__ . '/../debug/Tracer.php');
 
 class TestRunnerWithBaselineTest extends PHPUnit_Framework_TestCase
 {

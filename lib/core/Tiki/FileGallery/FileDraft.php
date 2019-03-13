@@ -28,7 +28,7 @@ class FileDraft extends File
   function __construct($params = [])
   {
     global $mimetypes;
-    include_once('lib/mime/mimetypes.php');
+    include_once(__DIR__ . '/../../../mime/mimetypes.php');
 
     $this->setParam('filetype', $mimetypes["txt"]);
     $this->setParam('filename', tr("New File"));

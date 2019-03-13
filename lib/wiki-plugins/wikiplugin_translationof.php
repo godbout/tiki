@@ -15,7 +15,7 @@
 //    doesn't already exist), and tie it to the source language page.
 //
 
-require_once('lib/debug/Tracer.php');
+require_once(__DIR__ . '/../debug/Tracer.php');
 
 function wikiplugin_translationof_info()
 {

@@ -11,8 +11,8 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
-require_once("lib/diff/Diff.php");
-require_once("lib/diff/Renderer.php");
+require_once(__DIR__ . "/Diff.php");
+require_once(__DIR__ . "/Renderer.php");
 
 /* @brief modif tiki for the renderer lib	*/
 class Tiki_Text_Diff_Renderer extends Text_Diff_Renderer

@@ -12,7 +12,7 @@ class AccountingLibTest extends PHPUnit_Framework_TestCase
 
 	public function setUp()
 	{
-		require_once('lib/test/TestHelpers.php');
+		require_once(__DIR__ . '/../../TestHelpers.php');
 		$this->testHelpers = new TestHelpers();
 
 		$this->testHelpers->simulate_tiki_script_context('tiki-accounting_books.php', 'admin');

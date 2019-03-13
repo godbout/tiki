@@ -1027,7 +1027,7 @@ class Comments extends TikiLib
 				where 1 = 1 $where" . ($forumId ? 'AND a.`object`=?' : '')
 				. (($include_archived) ? '' : ' and (a.`archived` is null or a.`archived`=?)')
 				. " and a.`objectType` = 'forum'
-				and a.`parentId` = ? $time_cond 
+				and a.`parentId` = ? $time_cond
 				group by a.`threadId`, a.`object`, a.`objectType`, a.`parentId`, a.`userName`, a.`commentDate`, a.`hits`, a.`type`, a.`points`, a.`votes`, a.`average`, a.`title`, a.`data`, a.`hash`, a.`user_ip`, a.`summary`, a.`smiley`, a.`message_id`, a.`in_reply_to`, a.`comment_rating`, a.`locked`, a.archived ";
 
 		if ($reply_state == 'none') {
@@ -4092,7 +4092,7 @@ class Comments extends TikiLib
 	 */
 	private function update_index($type, $threadId, $parentId = null)
 	{
-		require_once('lib/search/refresh-functions.php');
+		require_once(__DIR__ . '/../search/refresh-functions.php');
 		global $prefs;
 
 		if ($type == 'forum') {

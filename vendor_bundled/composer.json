@@ -244,7 +244,8 @@
 		],
 		"pre-autoload-dump": [
 			"Tiki\\Composer\\Autoload::change"
-		]
+		],
+		"test": "php ../lib/test/phpunit.php -c ../phpunit.xml.dist --colors=always"
 	},
 	"repositories": [
 		{

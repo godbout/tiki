@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once 'lib/language/LanguageTranslations.php';
+require_once __DIR__ . '/../../language/LanguageTranslations.php';
 
 /**
  * Test class for LanguageTranslations.

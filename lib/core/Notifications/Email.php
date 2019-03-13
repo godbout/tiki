@@ -7,7 +7,7 @@
 
 namespace Tiki\Notifications;
 
-require_once 'lib/notifications/notificationemaillib.php';
+require_once __DIR__ . '/../../notifications/notificationemaillib.php';
 
 class Email
 {

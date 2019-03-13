@@ -818,7 +818,7 @@ class FileGalLib extends TikiLib
 		if (! empty($galleryId)) {
 			$file->setParam('galleryId', $galleryId);
 		}
-		
+
 		$newName = ($newName ? $newName : $origFile->name . tra(' copy'));
 		$id = $file->replace($origFile->getContents(), $origFile->filetype, $newName, $file->filename);
 
@@ -1067,7 +1067,7 @@ class FileGalLib extends TikiLib
 		global $prefs;
 		if ($prefs['feature_user_watches'] == 'y') {
 						//  Deal with mail notifications.
-			include_once('lib/notifications/notificationemaillib.php');
+			include_once(__DIR__ . '/../notifications/notificationemaillib.php');
 			$galleryName = $this->table('tiki_file_galleries')->fetchOne('name', ['galleryId' => $galleryId]);
 
 			sendFileGalleryEmailNotification('file_gallery_changed', $galleryId, $galleryName, $name, $filename, $description, $action, $user, $fileId);
@@ -3830,7 +3830,7 @@ class FileGalLib extends TikiLib
 	 */
 	function extractMetadataJson($file, $ispath = true, $extended = true)
 	{
-		include_once 'lib/metadata/metadatalib.php';
+		include_once __DIR__ . '/../metadata/metadatalib.php';
 		$metadata = new FileMetadata;
 		$filemeta = json_encode($metadata->getMetadata($file, $ispath, $extended)->typemeta['best']);
 		return $filemeta;

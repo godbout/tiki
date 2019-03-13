@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once('lib/smarty_tiki/modifier.duration.php');
+require_once(__DIR__ . '/../../smarty_tiki/modifier.duration.php');
 
 /**
  * Test class for smarty_modifier_duration().

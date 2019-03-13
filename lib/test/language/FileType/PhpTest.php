@@ -5,8 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once('lib/language/FileType.php');
-require_once('lib/language/FileType/Php.php');
+require_once(__DIR__ . '/../../../language/FileType.php');
+require_once(__DIR__ . '/../../../language/FileType/Php.php');
 
 class Language_FileType_PhpTest extends TikiTestCase
 {

@@ -273,7 +273,7 @@ return false;";
 						$emailType = 'trackeritem';
 					}
 					if ($emailType) {
-						require_once('lib/notifications/notificationemaillib.php');
+						require_once(__DIR__ . '/../../../notifications/notificationemaillib.php');
 						sendCommentNotification($emailType, $objectId, $title, $data, $threadId, $anonymous_name);
 					}
 
@@ -845,7 +845,7 @@ return false;";
 		// add some specific js to set up comment post form in a modal dialog
 		// so it can refresh the page after the post
 		TikiLib::lib('header')->add_jq_onready(/** @lang JavaScript */
-			'	
+			'
 $(".comment-post").parents("form").submit(ajaxSubmitEventHandler(function (data) {
 	$.closeModal();
 	location.href = location.href.replace(/#.*$/, "");

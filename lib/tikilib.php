@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once('lib/debug/Tracer.php');
+require_once(__DIR__ . '/../lib/debug/Tracer.php');
 
 // this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
@@ -3304,7 +3304,7 @@ class TikiLib extends TikiDb_Bridge
 			$params = '';
 		}
 		//  Deal with mail notifications.
-		include_once('lib/notifications/notificationemaillib.php');
+		include_once(__DIR__ . '/notifications/notificationemaillib.php');
 		$foo = parse_url($_SERVER["REQUEST_URI"]);
 		$machine = self::httpPrefix(true) . dirname($foo["path"]);
 		sendWikiEmailNotification('wiki_page_deleted', $page, $user, $comment, 1, $page_info['data'], $machine);
@@ -4734,7 +4734,7 @@ class TikiLib extends TikiDb_Bridge
 			}
 
 			//  Deal with mail notifications.
-			include_once('lib/notifications/notificationemaillib.php');
+			include_once(__DIR__ . '/notifications/notificationemaillib.php');
 
 			$foo = parse_url($_SERVER["REQUEST_URI"]);
 			$machine = self::httpPrefix(true) . dirname($foo["path"]);
@@ -5290,7 +5290,7 @@ class TikiLib extends TikiDb_Bridge
 
 			if ($prefs['wiki_watch_minor'] != 'n' || ! $edit_minor) {
 				//  Deal with mail notifications.
-				include_once('lib/notifications/notificationemaillib.php');
+				include_once(__DIR__ . '/notifications/notificationemaillib.php');
 				$histlib = TikiLib::lib('hist');
 				$old = $histlib->get_version($pageName, $old_version);
 				$foo = parse_url($_SERVER["REQUEST_URI"]);
@@ -6777,7 +6777,7 @@ JS;
 	 */
 	function refresh_index($type, $object, $process = true)
 	{
-		require_once 'lib/search/refresh-functions.php';
+		require_once __DIR__ . '/search/refresh-functions.php';
 		return refresh_index($type, $object, $process);
 	}
 

@@ -1279,7 +1279,7 @@ class EditLib
 
 	function parse_html(&$inHtml)
 	{
-		include('lib/htmlparser/htmlparser.inc');
+		include(__DIR__ . '/../htmlparser/htmlparser.inc');
 		// Read compiled (serialized) grammar
 		$grammarfile = TIKI_PATH . '/lib/htmlparser/htmlgrammar.cmp';
 		if (! $fp = @fopen($grammarfile, 'r')) {

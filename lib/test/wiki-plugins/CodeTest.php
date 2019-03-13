@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once('lib/wiki-plugins/wikiplugin_code.php');
+require_once(__DIR__ . '/../../wiki-plugins/wikiplugin_code.php');
 
 class WikiPlugin_CodeTest extends PHPUnit_Framework_TestCase
 {

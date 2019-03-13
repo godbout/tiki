@@ -66,12 +66,12 @@ if (! $db) {
 TikiDb::set($db);
 
 global $tikilib;
-require_once 'lib/tikilib.php';
+require_once __DIR__ . '/../../lib/tikilib.php';
 $tikilib = new TikiLib;
 
 // update db if needed
-require_once 'lib/init/initlib.php';
-include_once('installer/installlib.php');
+require_once __DIR__ . '/../../lib/init/initlib.php';
+include_once(__DIR__ . '/../../installer/installlib.php');
 $installer = new Installer;
 
 if (! $installer->tableExists('tiki_preferences')) {
@@ -125,7 +125,7 @@ $systemConfiguration = new Zend\Config\Config(
 global $user_overrider_prefs, $prefs;
 $user_overrider_prefs = [];
 $prefs['language'] = 'en';
-require_once 'lib/setup/prefs.php';
+require_once __DIR__ . '/../../lib/setup/prefs.php';
 $prefs['site_language'] = 'en';
 $prefs['zend_mail_handler'] = 'file';
 $prefs['feature_typo_quotes'] = 'n';

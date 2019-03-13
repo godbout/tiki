@@ -17,7 +17,7 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 	exit;
 }
 
-require_once 'lib/setup/third_party.php';
+require_once __DIR__ . '/../setup/third_party.php';
 
 /**
  * extends Smarty_Security
@@ -195,10 +195,10 @@ class Smarty_Tiki extends Smarty
 		$this->loadFilter('pre', 'tr');
 		$this->loadFilter('pre', 'jq');
 
-		include_once('lib/smarty_tiki/resource.tplwiki.php');
+		include_once(__DIR__ . '/../smarty_tiki/resource.tplwiki.php');
 		$this->registerResource('tplwiki', ['smarty_resource_tplwiki_source', 'smarty_resource_tplwiki_timestamp', 'smarty_resource_tplwiki_secure', 'smarty_resource_tplwiki_trusted']);
 
-		include_once('lib/smarty_tiki/resource.wiki.php');
+		include_once(__DIR__ . '/../smarty_tiki/resource.wiki.php');
 		$this->registerResource('wiki', ['smarty_resource_wiki_source', 'smarty_resource_wiki_timestamp', 'smarty_resource_wiki_secure', 'smarty_resource_wiki_trusted']);
 
 		global $prefs;

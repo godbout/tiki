@@ -18,7 +18,7 @@
  * previously, or if you have fixed tests that were broken before.
  */
 
-require_once('lib/debug/Tracer.php');
+require_once(__DIR__ . '/../debug/Tracer.php');
 
 class TestRunnerWithBaseline
 {

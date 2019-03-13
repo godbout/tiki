@@ -46,7 +46,7 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 	exit;
 }
 
-require_once('lib/objectlib.php');
+require_once(__DIR__ . '/../objectlib.php');
 
 /**
  *
@@ -248,7 +248,7 @@ class FreetagLib extends ObjectLib
 
 			$bindvals_t[] = $numTags;
 
-			$query_t = 'SELECT o.`objectId` 
+			$query_t = 'SELECT o.`objectId`
 						 FROM `tiki_objects` o, `tiki_freetagged_objects` fto, `tiki_freetags` t'
 									. ' WHERE ' . $tag_sql
 									. ' AND fto.`tagId` = t.`tagId` AND o.`objectId` = fto.`objectId` ' . $mid_t
