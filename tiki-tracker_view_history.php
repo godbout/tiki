@@ -54,7 +54,7 @@ if (! empty($_REQUEST['itemId'])) {
 		}
 	}
 
-	$diff_style = empty($_REQUEST['diff_style']) ? '' : $_REQUEST['diff_style'];
+	$diff_style = empty($_REQUEST['diff_style']) ? $prefs['tracker_history_diff_style'] : $_REQUEST['diff_style'];
 	$smarty->assign('diff_style', $diff_style);
 
 	$smarty->assign_by_ref('item_info', $item_info);

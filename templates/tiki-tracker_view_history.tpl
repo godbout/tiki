@@ -11,37 +11,38 @@
 
 <div class="clearfix">
 	<form method="post" class="form">
-		<div class="form-group col-sm-3">
-			<label class="col-form-label">{tr}Version{/tr}
-				<input type="text" name="version" value="{if !empty($filter.version)}{$filter.version|escape}{/if}" class="form-control">
-			</label>
-		</div>
-		<div class="form-group col-sm-3">
-			<label class="col-form-label">{tr}Field ID{/tr}
-				<input type="text" name="fieldId" value="{if !empty($fieldId)}{$fieldId|escape}{/if}" class="form-control">
-			</label>
-		</div>
-		<div class="form-group col-sm-3">
-			<label class="col-form-label">
-				{tr}Diff Style{/tr}
-			</label>
-			<br>
-			<select name="diff_style" id="tracker_diff_style" class="form-control">
-				<option value="" {if empty($diff_style)}selected="selected"{/if}>{tr}Original{/tr}</option>
-				<option value="sidediff" {if $diff_style == "sidediff"}selected="selected"{/if}>
-					{tr}Side-by-side diff{/tr}
-				</option>
-				<option value="inlinediff" {if $diff_style == "inlinediff"}selected="selected"{/if}>
-					{tr}Inline diff{/tr}
-				</option>
-				<option value="unidiff" {if $diff_style == "unidiff"}selected="selected"{/if}>
-					{tr}Unified diff{/tr}
-				</option>
-			</select>
-		</div>
-		<div class=" col-sm-3">
-			<br>
-			<input type="submit" class="btn btn-primary" name="Filter" value="{tr}Filter{/tr}">
+		<div class="row align-items-end">
+			<div class="form-group col-sm">
+				<label class="col-form-label">{tr}Version{/tr}
+					<input type="text" name="version" value="{if !empty($filter.version)}{$filter.version|escape}{/if}" class="form-control">
+				</label>
+			</div>
+			<div class="form-group col-sm">
+				<label class="col-form-label">{tr}Field ID{/tr}
+					<input type="text" name="fieldId" value="{if !empty($fieldId)}{$fieldId|escape}{/if}" class="form-control">
+				</label>
+			</div>
+			<div class="form-group col-sm">
+				<label class="col-form-label">
+					{tr}Diff Style{/tr}
+				</label>
+				<br>
+				<select name="diff_style" id="tracker_diff_style" class="form-control">
+					<option value="" {if empty($diff_style)}selected="selected"{/if}>{tr}Original{/tr}</option>
+					<option value="sidediff" {if $diff_style == "sidediff"}selected="selected"{/if}>
+						{tr}Side-by-side diff{/tr}
+					</option>
+					<option value="inlinediff" {if $diff_style == "inlinediff"}selected="selected"{/if}>
+						{tr}Inline diff{/tr}
+					</option>
+					<option value="unidiff" {if $diff_style == "unidiff"}selected="selected"{/if}>
+						{tr}Unified diff{/tr}
+					</option>
+				</select>
+			</div>
+			<div class="form-group col-sm">
+				<input type="submit" class="btn btn-primary" name="Filter" value="{tr}Filter{/tr}">
+			</div>
 		</div>
 	</form>
 </div>
@@ -50,16 +51,16 @@
 <div class="table-responsive">
 	<table class="table">
 		<tr>
-			<th>{tr}Version{/tr}</th>
-			<th>{tr}Date{/tr}</th>
-			<th>{tr}User{/tr}</th>
-			<th>{tr}Field ID{/tr}</th>
-			<th>{tr}Field{/tr}</th>
+			<th class="text-nowrap">{tr}Version{/tr}</th>
+			<th class="text-nowrap">{tr}Date{/tr}</th>
+			<th class="text-nowrap">{tr}User{/tr}</th>
+			<th class="text-nowrap">{tr}Field ID{/tr}</th>
+			<th class="text-nowrap">{tr}Field{/tr}</th>
 			{if empty($diff_style)}
-				<th>{tr}Old{/tr}</th>
-				<th>{tr}New{/tr}</th>
+				<th class="text-nowrap">{tr}Old{/tr}</th>
+				<th class="text-nowrap">{tr}New{/tr}</th>
 			{else}
-				<th colspan="2">{tr}Difference{/tr}</th>
+				<th class="text-nowrap" colspan="2">{tr}Difference{/tr}</th>
 			{/if}
 		</tr>
 

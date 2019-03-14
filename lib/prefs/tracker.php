@@ -192,5 +192,18 @@ function prefs_tracker_list()
 			],
 			'default' => 'created_desc',
 		],
+		'tracker_history_diff_style' => [
+			'name' => tr('Tracker History Diff Style'),
+			'description' => tr('Default style for tracker history.'),
+			'type' => 'list',
+			'perspective' => false,
+			'options' => [
+				'' => tr('Original'),
+				'sidediff' => tr('Side-by-side diff'),
+				'inlinediff' => tr('Inline diff'),
+				'unidiff' => tr('Unified diff'),
+			],
+			'default' => 'sidediff',
+		],
 	];
 }
