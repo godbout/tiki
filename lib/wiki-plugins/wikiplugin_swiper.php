@@ -242,6 +242,24 @@ function wikiplugin_swiper_info()
 				'default' => 1,
 				'since' => '19.0'
 			],
+			'slidesPerViewMobile' => [
+				'required' => false,
+				'name' => tr('Slides Per View Mobile Screen'),
+				'description' => tr('Slides visible at the same time on small screens'),
+				'filter' => 'digits',
+				'default' => 0,
+				'advanced' => true,
+				'since' => '19.0'
+			],
+			'slidesPerViewTab' => [
+				'required' => false,
+				'name' => tr('Slides Per View Tablet'),
+				'description' => tr('Slides visible at the same time on low resolution tablets'),
+				'filter' => 'digits',
+				'default' => 0,
+				'advanced' => true,
+				'since' => '19.0'
+			],
 			'slidesPerColumn' => [
 				'required' => false,
 				'name' => tr('Slides Per Column'),
@@ -497,6 +515,13 @@ function wikiplugin_swiper($data, $params)
 			$params[$swiperParam]==''?$swiperSettings.="0,":$swiperSettings.=$params[$swiperParam].",";
 		}
 	}
+	$breakpoints='';
+	if($params['slidesPerViewMobile']>0 || $params['slidesPerViewTab']>0){
+		$slidesPerView=$params['slidesPerView']==''?1:$params['slidesPerView'];
+		$slidesPerViewTab=$params['slidesPerViewTab']==''?$slidesPerView:$params['slidesPerViewTab']; //if not defined use default slides per view
+		$slidesPerViewMobile=$params['slidesPerViewMobile']==''?$slidesPerViewTab:$params['slidesPerViewMobile']; //if not defined use tablets slides per view
+		$breakpoints='breakpointsInverse: true, breakpoints: { 320: { slidesPerView: '.$slidesPerViewMobile.'},768: {slidesPerView: '.$slidesPerViewTab.'},1024: {slidesPerView: '.$slidesPerView.'}},';
+	}
 	$swiperSettings=str_replace(array("'y'","'n'"),array("'true'","'false'"),$swiperSettings);
 	$headerlib->add_css('#swiper-container'.$uid.' {width: '.$params['width'].';background:'.$params['background'].';margin-bottom:20px;} #swiper-container'.$uid.' .swiper-slide {font-size:'.$params['descriptionSize'].';color:'.$params['descriptionColor'].';min-height:'.$params['height'].';text-align: center;width:100%;overflow:hidden;} .gallery-top {height: 80%;width: 100%;}.gallery-thumbs {height: 20%;box-sizing: border-box;padding: 10px 0;}.gallery-thumbs img {max-height:120px;height:120px;width:auto;  margin-bottom:2%;cursor:pointer}.gallery-thumbs .swiper-slide {width: 25%; height: 100%;opacity: 0.4;}.gallery-thumbs .swiper-slide-active {opacity: 1;} #swiper-container'.$uid.' .swiper-slide h1{font-size:'.$params['titleSize'].';color:'.$params['titleColor'].'} .slide-content'.$uid.'{min-width:60%;position:absolute;'.$params['slideContentPostion'].';background:'.$params['slideContentBg'].';padding:1%;text-align:left}  .parallax-bg { position: absolute;left: 0;top: 0;width: 130%;height: 100%;-webkit-background-size: cover;background-size: cover;background-position: center;} .swiper-slide img{max-width:100%}'.$fadeEffectCSS);
 	$thumbnails = '';
@@ -527,7 +552,7 @@ function wikiplugin_swiper($data, $params)
 				enabled: true,
 				onlyInViewport: false,
 			},
-			
+			'.$breakpoints.'
 			'.$autoPlay.'
 			'.$navigation.'
 	 
