@@ -1735,12 +1735,16 @@ class WikiLib extends TikiLib
 			(strstr($_SERVER["SCRIPT_NAME"], "tiki-editpage.php") === false) &&
 			(strstr($_SERVER["SCRIPT_NAME"], 'tiki-pagehistory.php') === false)) {
 			// Determine the auto TOC setting
-			$isAutoTocActive = isset($prefs['wiki_auto_toc']) ? $prefs['wiki_auto_toc'] === 'y' : false;
-			if ($isAutoTocActive) {
+			if ($prefs['wiki_auto_toc'] === 'y') {
+				$isAutoTocActive = $prefs['wiki_toc_default'] === 'on';
 				$isPageAutoToc = $this->get_page_auto_toc($currPage);
-				if ($isPageAutoToc != 0) {
+				if ($isPageAutoToc !== 0) {
 					// Use page specific setting
-					$isAutoTocActive = $isPageAutoToc > 0 ? true : false;
+					if ($isPageAutoToc > 0 && $prefs['wiki_toc_default'] === 'off') {
+						$isAutoTocActive = true;
+					} else if ($prefs['wiki_toc_default'] === 'on') {
+						$isAutoTocActive = false;
+					}
 				}
 				// Add Auto TOC if enabled
 				if ($isAutoTocActive) {
