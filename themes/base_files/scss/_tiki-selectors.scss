@@ -1357,3 +1357,10 @@ input:checked + .slider {
 		background: $color_pizazz_approx;
 	}
 }
+
+@include media-breakpoint-down(sm) {
+	.navbar-nav {
+		padding: 0 15px;
+		margin: 15px 0;
+	}
+}

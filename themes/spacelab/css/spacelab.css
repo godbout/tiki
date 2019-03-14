@@ -6938,6 +6938,11 @@ input:checked + .slider {
     transform: translateX(0px);
     background: #f80; }
 
+@media (max-width: 767.98px) {
+  .navbar-nav {
+    padding: 0 15px;
+    margin: 15px 0; } }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {

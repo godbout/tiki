@@ -6807,6 +6807,11 @@ input:checked + .slider {
     transform: translateX(0px);
     background: #f80; }
 
+@media (max-width: 767.98px) {
+  .navbar-nav {
+    padding: 0 15px;
+    margin: 15px 0; } }
+
 body, body.fullscreen {
   background: #90140c url("../images/stripes.png") repeat-x 50% 0; }
 

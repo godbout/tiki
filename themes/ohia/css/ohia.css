@@ -6807,6 +6807,11 @@ input:checked + .slider {
     transform: translateX(0px);
     background: #f80; }
 
+@media (max-width: 767.98px) {
+  .navbar-nav {
+    padding: 0 15px;
+    margin: 15px 0; } }
+
 .topbar {
   margin-bottom: 20px; }
 
