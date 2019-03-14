@@ -591,7 +591,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 			$new = $this->getValue('');
 		}
 		if (empty($context['diff_style'])) {
-			$context['diff_style'] = 'inlinediff';
+			$context['diff_style'] = 'sidediff';
 		}
 
 		$filegallib = TikiLib::lib('filegal');

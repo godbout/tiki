@@ -40,6 +40,7 @@
 				{preference name=tracker_prefixalias_on_links}
 				{preference name=feature_sefurl_title_trackeritem}
 				{preference name=tracker_list_order}
+				{preference name=tracker_history_diff_style}
 			</fieldset>
 			<fieldset class="table">
 				<legend>{tr}Field settings{/tr}</legend>
