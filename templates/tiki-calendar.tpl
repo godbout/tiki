@@ -266,7 +266,7 @@
 						var $this = $(this).tikiModal(" ");
 						$.ajax({
 							dataType: 'html',
-							url: event.url + '&isModal=1',
+							url: event.url + '&fullcalendar=y&isModal=1',
 							success: function(data){
 								var $dialog = $( "#calendar_dialog" ).remove()
 								$( "#calendar_dialog_content", $dialog ).html(data);
