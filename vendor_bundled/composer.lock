@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5e1ea7526e96a5f62339615ed0f18f2",
+    "content-hash": "e8206193fac1657f810fd5561fc22ba8",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -328,17 +328,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.11.2",
+            "version": "4.11.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor-releases.git",
-                "reference": "b711816ce4e81a0287327fc7be1359e1adc9352b"
+                "reference": "7989de7731885bf36d8b6ac9fb43585963158ae5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-b711816ce4e81a0287327fc7be1359e1adc9352b-zip-574031.zip",
-                "reference": "b711816ce4e81a0287327fc7be1359e1adc9352b",
-                "shasum": "c35cf6337db8e99bf4bc609f75da4652d8562ac3"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-7989de7731885bf36d8b6ac9fb43585963158ae5-zip-bbd0f4.zip",
+                "reference": "7989de7731885bf36d8b6ac9fb43585963158ae5",
+                "shasum": "be86cbf8b0073f79f3b21cc14e7c35c7dd25517b"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -365,7 +365,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2019-01-10T16:43:23+00:00"
+            "time": "2019-02-26T13:01:03+00:00"
         },
         {
             "name": "ckeditor/ckeditor/skins/bootstrapck",
@@ -1477,17 +1477,17 @@
         },
         {
             "name": "haubek/bootstrap4c-chosen",
-            "version": "1.0.13",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/haubek/bootstrap4c-chosen.git",
-                "reference": "1c6512a817b7a7423c9fedbc72aa62262c448213"
+                "reference": "b2afd386e594ecce581ebf263a1f1b5b0d0795d1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/haubek/bootstrap4c-chosen/haubek-bootstrap4c-chosen-1c6512a817b7a7423c9fedbc72aa62262c448213-zip-9ae352.zip",
-                "reference": "1c6512a817b7a7423c9fedbc72aa62262c448213",
-                "shasum": "9ac030e721ea87b35051113092906e3702351ac9"
+                "url": "https://composer.tiki.org/dist/haubek/bootstrap4c-chosen/haubek-bootstrap4c-chosen-b2afd386e594ecce581ebf263a1f1b5b0d0795d1-zip-4a35db.zip",
+                "reference": "b2afd386e594ecce581ebf263a1f1b5b0d0795d1",
+                "shasum": "9ef757113cabb59101d50791a9a1d315e2221165"
             },
             "require": {
                 "harvesthq/chosen": "^1.8.3",
@@ -1509,7 +1509,7 @@
                 "sass",
                 "scss"
             ],
-            "time": "2018-08-22T05:48:15+00:00"
+            "time": "2019-02-26T00:14:14+00:00"
         },
         {
             "name": "hesammousavi/bootstrap-v4-rtl",
@@ -1631,17 +1631,17 @@
         },
         {
             "name": "jcbrand/converse.js",
-            "version": "v4.1.0",
+            "version": "v4.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/conversejs/converse.js.git",
-                "reference": "a2f42d27a274471318da7724781c65fdfd9c71b7"
+                "reference": "5afb3051ccf9a578a82e313f061771541f78ef71"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-a2f42d27a274471318da7724781c65fdfd9c71b7-zip-fee717.zip",
-                "reference": "a2f42d27a274471318da7724781c65fdfd9c71b7",
-                "shasum": "ee8d9d575bf0e46d786f2425569d56a1c18aa077"
+                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-5afb3051ccf9a578a82e313f061771541f78ef71-zip-544fcf.zip",
+                "reference": "5afb3051ccf9a578a82e313f061771541f78ef71",
+                "shasum": "559530abea2bb20d483612f6ef1e45acb5da3354"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1656,7 +1656,7 @@
                 "presence",
                 "xmpp"
             ],
-            "time": "2019-01-11T17:49:37+00:00"
+            "time": "2019-02-22T15:49:45+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -2097,7 +2097,7 @@
                 {
                     "name": "Luís Otávio Cobucci Oblonczyk",
                     "email": "lcobucci@gmail.com",
-                    "role": "developer"
+                    "role": "Developer"
                 }
             ],
             "description": "A simple library to work with JSON Web Token and JSON Web Signature",
@@ -2597,7 +2597,7 @@
                 "jabber",
                 "xmpp"
             ],
-            "time": "2018-12-18T20:06:49+00:00"
+            "time": "2018-12-21T02:02:04+00:00"
         },
         {
             "name": "mottie/tablesorter",
@@ -2807,14 +2807,14 @@
         },
         {
             "name": "npm-asset/chartjs-color",
-            "version": "2.2.0",
+            "version": "2.3.0",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/chartjs-color/npm-asset-chartjs-color-2.2.0.zip",
-                "shasum": "8297ddba67c201612544651863329bcab1374bf6"
+                "url": "https://composer.tiki.org/dist/npm-asset/chartjs-color/npm-asset-chartjs-color-2.3.0.zip",
+                "shasum": "87c107c1f3cb611a55f2aa56ab646846684a9b77"
             },
             "require": {
-                "npm-asset/chartjs-color-string": ">=0.5.0,<0.6.0",
+                "npm-asset/chartjs-color-string": ">=0.6.0,<0.7.0",
                 "npm-asset/color-convert": ">=0.5.3,<0.6.0"
             },
             "type": "npm-asset",
@@ -2824,11 +2824,11 @@
         },
         {
             "name": "npm-asset/chartjs-color-string",
-            "version": "0.5.0",
+            "version": "0.6.0",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/chartjs-color-string/npm-asset-chartjs-color-string-0.5.0.zip",
-                "shasum": "e0a0524e777f3e82f9c0d89804713b1c80a980fb"
+                "url": "https://composer.tiki.org/dist/npm-asset/chartjs-color-string/npm-asset-chartjs-color-string-0.6.0.zip",
+                "shasum": "794120940055c68f9e18527409ef2d1aa928dfa2"
             },
             "require": {
                 "npm-asset/color-name": ">=1.0.0,<2.0.0"
@@ -3210,17 +3210,17 @@
         },
         {
             "name": "pear/pear",
-            "version": "v1.10.8",
+            "version": "v1.10.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/pear-core.git",
-                "reference": "f287dd85d11d7336489d7d742c6452922f39340f"
+                "reference": "82be5c2eed1dde9def0a84cc3420778b8b0ab9b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/pear/pear/pear-pear-f287dd85d11d7336489d7d742c6452922f39340f-zip-764098.zip",
-                "reference": "f287dd85d11d7336489d7d742c6452922f39340f",
-                "shasum": "e1ea593f1197ab615e856b75865ca1dbc26cbc5a"
+                "url": "https://composer.tiki.org/dist/pear/pear/pear-pear-82be5c2eed1dde9def0a84cc3420778b8b0ab9b8-zip-26be5e.zip",
+                "reference": "82be5c2eed1dde9def0a84cc3420778b8b0ab9b8",
+                "shasum": "558a5316a853f611d2147bd7aebf99ec3e896d93"
             },
             "require": {
                 "ext-pcre": "*",
@@ -3301,7 +3301,7 @@
                 }
             ],
             "description": "This is the definitive source of PEAR's core files.",
-            "time": "2019-02-07T18:59:54+00:00"
+            "time": "2019-03-13T17:59:48+00:00"
         },
         {
             "name": "pear/pear_exception",
@@ -3541,17 +3541,17 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.14",
+            "version": "2.0.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "8ebfcadbf30524aeb75b2c446bc2519d5b321478"
+                "reference": "11cf67cf78dc4acb18dc9149a57be4aee5036ce0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-8ebfcadbf30524aeb75b2c446bc2519d5b321478-zip-3d8bcf.zip",
-                "reference": "8ebfcadbf30524aeb75b2c446bc2519d5b321478",
-                "shasum": "0702febaa933e3d56daae5b1aa78f19ca0106410"
+                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-11cf67cf78dc4acb18dc9149a57be4aee5036ce0-zip-2ca10f.zip",
+                "reference": "11cf67cf78dc4acb18dc9149a57be4aee5036ce0",
+                "shasum": "634d6baf794c03167f048fe348e2d3d663a0ad80"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -3629,7 +3629,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2019-01-27T19:37:29+00:00"
+            "time": "2019-03-10T16:53:45+00:00"
         },
         {
             "name": "player/flv",
@@ -3653,17 +3653,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.44.4",
+            "version": "v1.45.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "884d2fa4cf76529bd6cb819fa2d4fec1f43fadfa"
+                "reference": "bcf05db4d975599a3920f8a12065f4d675dc9f25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-884d2fa4cf76529bd6cb819fa2d4fec1f43fadfa-zip-4af43d.zip",
-                "reference": "884d2fa4cf76529bd6cb819fa2d4fec1f43fadfa",
-                "shasum": "3d4aa34c0f5618ac4584aa54a370bce6673fd240"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-bcf05db4d975599a3920f8a12065f4d675dc9f25-zip-18944f.zip",
+                "reference": "bcf05db4d975599a3920f8a12065f4d675dc9f25",
+                "shasum": "0c6b9a2d6446217a529f8c88c3b0fd014524b024"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -3685,7 +3685,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2019-02-12T15:33:38+00:00"
+            "time": "2019-03-05T17:41:42+00:00"
         },
         {
             "name": "psr/container",
@@ -5216,9 +5216,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
+                "url": "https://composer.tiki.org/dist/true/punycode/true-punycode-a4d0c11a36dd7f4e7cd7096076cab6d3378a071e-zip-4ceb35.zip",
                 "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
-                "shasum": ""
+                "shasum": "0153b28196219934ea010de766dea03de32a7d89"
             },
             "require": {
                 "php": ">=5.3.0",
