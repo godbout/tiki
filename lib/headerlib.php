@@ -593,6 +593,12 @@ class HeaderLib
 			$minifyLateActive = isset($prefs['tiki_minify_late_js_files']) && $prefs['tiki_minify_late_js_files'] == 'y' ? true : false;
 			$rank = '60late';
 			if ($minifyLateActive) {
+				foreach ($jsfiles[$rank] as $index => $file) {
+					if ($this->skip_minify[$file] === true) {
+						$output[] .= '<script type="text/javascript" src="' . smarty_modifier_escape($file) . '"></script>';
+						unset($jsfiles[$rank][$index]);
+					}
+				}
 				// handling of user defined cdn servers is done inside minifyJSFiles()
 				$entry = $this->minifyJSFiles($jsfiles, [$rank]);
 				$output[] .= '<script type="text/javascript" src="' . smarty_modifier_escape($entry) . '"></script>';
