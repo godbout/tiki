@@ -254,10 +254,12 @@ function wikiplugin_mediaplayer($data, $params)
 				$smarty->assign('pdfJsAvailable', $pdfJsAvailable);
 
 				$headerlib = TikiLib::lib('header');
-				$headerlib->add_jsfile('vendor/npm-asset/pdfjs-dist/build/pdf.js');
+				$headerlib->add_jsfile('vendor/npm-asset/pdfjs-dist/build/pdf.js', true);
+				$headerlib->add_jsfile('lib/jquery_tiki/wikiplugin-mediaplayer.js');
 
 				$url = TikiLib::lib('access')->absoluteUrl($params['src']);
 				$smarty->assign('url', $url);
+				$smarty->assign('mediaplayerId', $iMEDIAPLAYER);
 				return $smarty->fetch('wiki-plugins/wikiplugin_mediaplayer_pdfjs.tpl');
 			} elseif ($prefs['fgal_viewerjs_feature'] === 'y') {
 				$src = $prefs['fgal_viewerjs_uri'] . '#' . TikiLib::lib('access')->absoluteUrl($params['src']);
