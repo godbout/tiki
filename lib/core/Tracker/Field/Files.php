@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\File\PDFHelper;
+
 class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Field_Exportable
 {
 	public static function getTypes()
@@ -469,11 +471,11 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 					}
 
 					if ($prefs['fgal_pdfjs_feature'] == 'y' &&
-						($file['filetype'] == $mimetypes["pdf"])
+						($file['filetype'] == $mimetypes["pdf"] || PDFHelper::canConvertToPDF($file['filetype']))
 					) {
 						$smarty->loadPlugin('smarty_function_icon');
 						$viewicon = smarty_function_icon(['name' => 'view'], $smarty->getEmptyInternalTemplate());
-						$ret .= " <a href='tiki-display_pdf.php?fileSrc=display" . $file['fileId']
+						$ret .= " <a href='tiki-display_pdf.php?fileId=" . $file['fileId']
 							. "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "'>
 							$viewicon
 						</a>";
