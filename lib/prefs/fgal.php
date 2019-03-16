@@ -677,5 +677,13 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'tags' => ['basic'],
 			'packages_required' => ['media-alchemyst/media-alchemyst' => 'Unoconv\Unoconv'],
 		],
+		'fgal_maximum_image_width_preview' => [
+			'name' => tra('Maximum width of file preview in pixels'),
+			'description' => tra('The maximum value of width in pixels for the files preview in the popover.'),
+			'size' => 4,
+			'type' => 'text',
+			'filter' => 'int',
+			'default' => '250'
+		],
 	];
 }

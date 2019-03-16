@@ -3388,6 +3388,8 @@ class ParserLib extends TikiDb_Bridge
 			$userLib = TikiLib::lib('user');
 			$guesser = new Guesser();
 			MimeTypeGuesser::getInstance()->register($guesser);
+			$maxWidthPreview = $prefs['fgal_maximum_image_width_preview'];
+
 			foreach ($fileIds as $fileId) {
 				$file = \Tiki\FileGallery\File::id($fileId);
 				if (! $file->exists()) {
@@ -3398,7 +3400,13 @@ class ParserLib extends TikiDb_Bridge
 				}
 				$search = 'data-type="file" data-object="' . $fileId . '"';
 				if (strpos($file->filetype, 'image') !== false) {
-					$popup = 'data-type="file" data-object="' . $fileId . '" data-toggle="popover" data-trigger="hover focus" data-content="<img src=\'tiki-download_file.php?fileId=' . $fileId . '&amp;thumbnail\'>" data-html="1"';
+					$appendMaxSize = '';
+
+					if (! empty($maxWidthPreview)) {
+						$appendMaxSize = "&amp;x=" . $maxWidthPreview;
+					}
+
+					$popup = 'data-type="file" data-object="' . $fileId . '" data-toggle="popover" data-trigger="hover focus" data-content="<img src=\'tiki-download_file.php?fileId=' . $fileId . '&amp;thumbnail' . $appendMaxSize . '\'>" data-html="1" data-width="'. $maxWidthPreview . '"';
 					$content = str_replace($search, $popup, $content);
 				} else {
 					$filePath = $file->getWrapper()->getReadableFile();
@@ -3424,7 +3432,17 @@ class ParserLib extends TikiDb_Bridge
 						$guesser->add($filePath, $file->filetype);
 
 						$alchemy = new Tiki\Lib\Alchemy\AlchemyLib();
-						$alchemy->convertToImage($filePath, $targetFile, '200px', '400px', false);
+						$height = 400;
+						$width = 200;
+
+						if (! empty($prefs['fgal_maximum_image_width_preview'])) {
+							$originalHeight = $height;
+							$originalWidth = $width;
+							$width = $prefs['fgal_maximum_image_width_preview'];
+							$height = (int) $originalHeight * $width / $originalWidth;
+						}
+
+						$alchemy->convertToImage($filePath, $targetFile, $height, $width, false);
 
 						// Restore the environment
 						if ($envHomeDefined) {
@@ -3442,7 +3460,7 @@ class ParserLib extends TikiDb_Bridge
 					}
 
 					if ($cacheLib->isCached($cacheName, $cacheType)) {
-						$popup = 'data-type="file" data-object="' . $fileId . '" data-toggle="popover" data-trigger="hover focus" data-content="<img src=\'tiki-download_file.php?fileId=' . $fileId . '&amp;preview\'>" data-html="1"';
+						$popup = 'data-type="file" data-object="' . $fileId . '" data-toggle="popover" data-trigger="hover focus" data-content="<img src=\'tiki-download_file.php?fileId=' . $fileId . '&amp;preview\'>" data-html="1" data-width="' . $maxWidthPreview . '"';
 						$content = str_replace($search, $popup, $content);
 					}
 				}

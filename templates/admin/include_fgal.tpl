@@ -100,6 +100,7 @@
 				{preference name='tiki_check_file_content'}
 				{preference name='file_galleries_redirect_from_image_gallery'}
 				{preference name='fgal_convert_documents_pdf'}
+				{preference name='fgal_maximum_image_width_preview'}
 			</fieldset>
 
 			<fieldset>
