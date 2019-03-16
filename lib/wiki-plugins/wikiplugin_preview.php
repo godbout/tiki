@@ -55,6 +55,13 @@ function wikiplugin_preview_info()
 				'since' => '18.0',
 				'filter' => 'int',
 			],
+			'download' => [
+				'required' => false,
+				'name' => tr('Download'),
+				'description' => tr('Show download link to the original file'),
+				'since' => '19.0',
+				'filter' => 'int',
+			],
 		],
 	];
 }
@@ -108,7 +115,16 @@ function wikiplugin_preview($data, $params)
 		$fileLink = $path . '?' . $pageParamStr;
 
 		$smartyLib->assign('param', $params);
-		$smartyLib->assign('file', $fileLink);
+		$files = [];
+		$files[] = $fileLink;
+
+		$smartyLib->assign('files', $files);
+
+		if ((isset($params['download']) && $params['download'] === 1)) {
+			$tikilib = TikiLib::lib('tiki');
+			$smartyLib->assign('original_file_download_link', $tikilib->tikiUrl() . 'tiki-download_file.php?fileId=' . $fileId, true);
+		}
+
 		return $smartyLib->fetch('wiki-plugins/wikiplugin_preview.tpl');
 	}
 
