@@ -1,8 +1,9 @@
+
 <script type="text/template" id="wikiplugin_xmpp_tplform">
     <!-- the modal form to select users -->
     <div class="modal-content">
         <form class="wikiplugin-xmpp-form" action="{{ action }}" method="POST">
-            <input type="hidden" name="room" value="{{ room }}">
+            <input type="hidden" name="room" value="{{ room }}" />
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel">{{ title }}</h4>
             </div>
@@ -14,9 +15,7 @@
                 <input type="submit" class="btn btn-primary" value="{tr}Add{/tr}"/>
             </div>
         </form>
-    </div>
-</script>
-
+    </div></script>
 <script type="text/template" id="wikiplugin_xmpp_tplitem">
     <!-- the form items -->
     <div class="col-md-6">
@@ -24,5 +23,4 @@
             <input type="checkbox" name="item[][jid]" id="input_{{ name }}" value="{{ jid }}"/>
             <span>{{ fullname }}</span>
         </label>
-    </div>
-</script>
+    </div></script>
