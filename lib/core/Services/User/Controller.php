@@ -304,9 +304,7 @@ class Services_User_Controller
 	/**
 	 * Admin user "perform with checked" but with no action selected
 	 *
-	 * @param $input
 	 * @throws Services_Exception
-	 * @throws Exception
 	 */
 	public function action_no_action()
 	{
