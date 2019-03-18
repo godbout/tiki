@@ -384,82 +384,77 @@
 		</div>
 	{/if}
 {/if}
-{if $tiki_p_admin_forum eq 'y' && ($comments_coms|@count > 0 || $queued > 0 || $reported > 0)}
-	<div class="card card-primary">
-		<div class="card-header">
-			{tr}Moderator actions on selected topics{/tr}
-		</div>
-		<div class="card-body">
-			<div class="float-left">
-				{if $comments_coms|@count > 1}
-					<button
-						type="submit"
-						form="view_forum"
-						formaction="{bootstrap_modal controller=forum action=merge_topic}"
-						title=":{tr}Merge{/tr}"
-						class="btn btn-primary btn-sm tips"
-						onclick="confirmAjax(event)"
-					>
-						{icon name="merge"}
-					</button>
-				{/if}
-				{if $all_forums|@count > 1 && $comments_coms|@count > 0}
-					<button
-						type="submit"
-						form="view_forum"
-						formaction="{bootstrap_modal controller=forum action=move_topic}"
-						title=":{tr}Move{/tr}"
-						class="btn btn-primary btn-sm tips"
-						onclick="confirmAjax(event)"
-					>
-						{icon name="move"}
-					</button>
-				{/if}
-				{if $comments_coms|@count > 0}
-					<button
-						type="submit"
-						form="view_forum"
-						formaction="{bootstrap_modal controller=forum action=lock_topic}"
-						title=":{tr}Lock{/tr}"
-						class="btn btn-primary btn-sm tips"
-						onclick="confirmAjax(event)"
-					>
-						{icon name="lock"}
-					</button>
-					<button
-						type="submit"
-						form="view_forum"
-						formaction="{bootstrap_modal controller=forum action=unlock_topic}"
-						title=":{tr}Unlock{/tr}"
-						class="btn btn-primary btn-sm tips"
-						onclick="confirmAjax(event)"
-					>
-						{icon name="unlock"}
-					</button>
-					<button
-						type="submit"
-						form="view_forum"
-						formaction="{bootstrap_modal controller=forum action=delete_topic}"
-						title=":{tr}Delete{/tr}"
-						class="btn btn-primary btn-sm tips"
-						onclick="confirmAjax(event)"
-					>
-						{icon name="remove"}
-					</button>
-				{/if}
-			</div>
-			<div class="float-sm-right">
-				{if $reported > 0}
-					<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge badge-secondary">{$reported}<span></a>
-				{/if}
-				{if $queued > 0}
-					<a class="btn btn-primary btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge badge-secondary">{$queued}</span></a>
-				{/if}
-			</div>
-		</div>
-	</div>
-{/if}
 <form id="view_forum" method="post">
+	{if $tiki_p_admin_forum eq 'y' && ($comments_coms|@count > 0 || $queued > 0 || $reported > 0)}
+		<div class="card card-primary">
+			<div class="card-header">
+				{tr}Moderator actions on selected topics{/tr}
+			</div>
+			<div class="card-body">
+				<div class="float-left">
+					{if $comments_coms|@count > 1}
+						<button
+							type="submit"
+							formaction="{bootstrap_modal controller=forum action=merge_topic}"
+							title=":{tr}Merge{/tr}"
+							class="btn btn-primary btn-sm tips"
+							onclick="confirmAjax(event)"
+						>
+							{icon name="merge"}
+						</button>
+					{/if}
+					{if $all_forums|@count > 1 && $comments_coms|@count > 0}
+						<button
+							type="submit"
+							formaction="{bootstrap_modal controller=forum action=move_topic}"
+							title=":{tr}Move{/tr}"
+							class="btn btn-primary btn-sm tips"
+							onclick="confirmAjax(event)"
+						>
+							{icon name="move"}
+						</button>
+					{/if}
+					{if $comments_coms|@count > 0}
+						<button
+							type="submit"
+							formaction="{bootstrap_modal controller=forum action=lock_topic}"
+							title=":{tr}Lock{/tr}"
+							class="btn btn-primary btn-sm tips"
+							onclick="confirmAjax(event)"
+						>
+							{icon name="lock"}
+						</button>
+						<button
+							type="submit"
+							formaction="{bootstrap_modal controller=forum action=unlock_topic}"
+							title=":{tr}Unlock{/tr}"
+							class="btn btn-primary btn-sm tips"
+							onclick="confirmAjax(event)"
+						>
+							{icon name="unlock"}
+						</button>
+						<button
+							type="submit"
+							formaction="{bootstrap_modal controller=forum action=delete_topic}"
+							title=":{tr}Delete{/tr}"
+							class="btn btn-primary btn-sm tips"
+							onclick="confirmAjax(event)"
+						>
+							{icon name="remove"}
+						</button>
+					{/if}
+				</div>
+				<div class="float-sm-right">
+					{if $reported > 0}
+						<a class="btn btn-primary btn-sm tips" href="tiki-forums_reported.php?forumId={$forumId}" title=":{tr}Reported messages{/tr}">{tr}Reported{/tr} <span class="badge badge-secondary">{$reported}<span></a>
+					{/if}
+					{if $queued > 0}
+						<a class="btn btn-primary btn-sm tips" href="tiki-forum_queue.php?forumId={$forumId}" title=":{tr}Queued messages{/tr}">{tr}Queued{/tr} <span class="badge badge-secondary">{$queued}</span></a>
+					{/if}
+				</div>
+			</div>
+		</div>
+	{/if}
 	<input type="hidden" name="comments_offset" value="{$comments_offset|escape}">
 	<input type="hidden" name="comments_threadId" value="{$comments_threadId|escape}">
 	<input type="hidden" name="comments_threshold" value="{$comments_threshold|escape}">
