@@ -10,11 +10,11 @@
 	>
 		{include file='access/include_items.tpl'}
 		{include file='access/include_hidden.tpl'}
+		{include file='access/include_submit.tpl'}
 	</form>
 	{if !empty($extra.help)}
 		<span class="form-text">
 			{$extra.help|escape}
 		</span>
 	{/if}
-	{include file='access/include_footer.tpl'}
 {/block}
