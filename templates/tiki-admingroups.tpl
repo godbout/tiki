@@ -117,7 +117,7 @@
 				</table>
 	{if !$ts.ajax}
 			</div>
-				<div class="input-group col-sm-6">
+				<div class="input-group col-sm-8">
 					<label for="submit_mult" class="col-form-label sr-only">{tr}Select action to perform with checked{/tr}</label>
 						<select name="action" class="form-control">
 							<option value="no_action" selected="selected">{tr}Select action to perform with checked{/tr}...</option>
@@ -669,7 +669,7 @@
 						<input type="hidden" name="anchor" value="#contenttabs_admingroups-4">
 				</div>
 			{if !$ts.ajax}
-				<div class="input-group col-sm-6">
+				<div class="input-group col-sm-8">
 					<select class="form-control" name="action">
 						<option value="no_action" selected="selected">
 							{tr}Select action to perform with checked{/tr}...

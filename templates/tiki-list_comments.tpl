@@ -167,7 +167,7 @@
 </div>
 
 {if $comments}
-	<div class="input-group col-sm-6">
+	<div class="input-group col-sm-8">
 		<select class="form-control" name="action">
 			<option value="no_action" selected="selected">
 				{tr}Select action to perform with checked{/tr}...
