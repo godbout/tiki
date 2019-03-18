@@ -23,6 +23,6 @@
 				<div class="form-text">{tr}Enter a valid email to send a blind copy to (optional).{/tr}</div>
 			</div>
 		</div>
+		{include file='access/include_submit.tpl'}
 	</form>
-	{include file='access/include_footer.tpl'}
 {/block}

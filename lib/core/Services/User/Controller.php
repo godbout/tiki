@@ -481,7 +481,6 @@ class Services_User_Controller
 						'items' => $util->items,
 						'extra' => ['referer' => $referer],
 						'modal' => '1',
-						'confirm' => 'y',
 						'userGroups' => str_replace(['\'','&'], ['%39;','%26'], json_encode($userGroups)),
 					];
 				}
@@ -693,7 +692,6 @@ class Services_User_Controller
 					'items' => $util->items,
 					'extra' => ['referer' => Services_Utilities::noJsPath()],
 					'modal' => '1',
-					'confirm' => 'y',
 				];
 			} else {
 				Services_Utilities::modalException(tra('No users were selected. Please select one or more users.'));
