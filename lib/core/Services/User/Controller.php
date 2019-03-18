@@ -450,23 +450,16 @@ class Services_User_Controller
 				//remove from group icon clicked for a specific user
 				if (isset($input['groupremove'])) {
 					$group = $input['groupremove'];
-					return [
-						'FORWARD' => [
-							'controller' => 'access',
-							'action' => 'confirm',
-							'confirmAction' => $input->action->word(),
-							'confirmController' => 'user',
-							'customMsg' => tr('Remove the following user from group %0?', $group),
-							'items' => $util->items,
-							'extra' => [
-								'add_remove'	=> 'remove',
-								'group'			=> $group,
-								'referer'		=> $referer,
-								'anchor'		=> $input->anchor->striptags()
-							],
-							'modal' => '1',
+					return $util->confirm(
+						tr('Remove the following user from group %0?', $group),
+						tr('Remove'),
+						[
+							'add_remove'	=> 'remove',
+							'group'			=> $group,
+							'referer'		=> $referer,
+							'anchor'		=> $input->anchor->striptags()
 						]
-					];
+					);
 				//selected users to be added or removed from selected groups groups
 				} else {
 					$all_groups = $this->lib->list_all_groups();
