@@ -61,7 +61,7 @@ mxGraph:
   name: xorti/mxgraph-editor
   requiredBy:
   - "wikiplugin_diagram"
-  requiredVersion: ^3.9
+  requiredVersion: ^3.9.12.2
 PHPSaml:
   licence: MIT
   licenceUrl: "https://github.com/onelogin/php-saml/blob/master/LICENSE"

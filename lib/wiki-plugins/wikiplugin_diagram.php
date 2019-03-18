@@ -44,14 +44,7 @@ function wikiplugin_diagram($data, $params)
 
 	$headerlib = $tikilib::lib('header');
 	$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
-	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/deflate/pako.min.js', true);
-	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/deflate/base64.js', true);
-	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/jscolor/jscolor.js');
-	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/sanitizer/sanitizer.min.js', true);
-	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/mxClient.js', true);
-	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Graph.js', true);
-	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Format.js', true);
-	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Shapes.js', true);
+	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
 
 	$headerlib->add_css('.diagram hr {margin-top:0.5em;margin-bottom:0.5em}');
 

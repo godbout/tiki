@@ -1,4 +1,6 @@
-<FilesMatch ".*">
+# We need to allow access to img/lib requests to work with drawio
+# <FilesMatch ".*">
+<FilesMatch "[^/img/lib\/].*">
 	<IfModule mod_authz_core.c>
 		Require all denied
 	</IfModule>
