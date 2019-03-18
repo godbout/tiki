@@ -1662,7 +1662,7 @@ function wikiplugin_tracker($data, $params)
 		}
 
 		// if we have a transaction going on merge the session values with the stored item field values
-		if (! empty($_SESSION[$transactionName]['itemId'])) {
+		if (! empty($transactionName) && ! empty($_SESSION[$transactionName]['itemId'])) {
 			foreach ($flds['data'] as $k => $field) {
 				if (isset($_SESSION[$transactionName]['values']['ins_' . $field['fieldId']])) {
 					$flds['data'][$k]['value'] = $_SESSION[$transactionName]['values']['ins_' . $field['fieldId']];
@@ -1979,7 +1979,7 @@ function wikiplugin_tracker($data, $params)
 		}
 
 		foreach ($flds['data'] as $f) {
-			if ($transactionName) {
+			if (! empty($transactionName)) {
 				$renderedField = wikiplugin_tracker_render_input(
 					$f, $item, $dynamicSave, $_SESSION[$transactionName]['values']
 				);
