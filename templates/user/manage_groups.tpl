@@ -10,13 +10,13 @@
 			<label for="add_remove" class="col-form-label">
 				{tr}Add to or remove from:{/tr}
 			</label>
-			<div class="radio">
-				<label style="margin-right:20px">
-					<input type="radio" name="add_remove" id="add" value="add" checked="">
+			<div class="radio col-sm-12">
+				<label class="col-form-label mr-3">
+					<input type="radio" name="add_remove" id="add" value="add" checked="" class="mr-1">
 					{tr}Add to{/tr}
 				</label>
-				<label>
-					<input type="radio" name="add_remove" id="remove" value="remove">
+				<label class="col-form-label">
+					<input type="radio" name="add_remove" id="remove" value="remove" class="mr-1">
 					{tr}Remove from{/tr}
 				</label>
 			</div>
