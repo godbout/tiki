@@ -69,10 +69,7 @@ if (isset($_REQUEST['categwatch'])) {
 
 if (isset($_REQUEST['id'])) {
 	if ($tiki_p_admin_notifications != 'y' && $user != $tikilib->get_user_notification($_REQUEST['id'])) {
-		$smarty->assign('errortype', 401);
-		$smarty->assign('msg', tra("Permission denied"));
-		$smarty->display("error.tpl");
-		die;
+		Feedback::errorPage(['mes' => tr('Permission denied'), 'errortype' => 401]);
 	}
 	$access->check_authenticity(tra('Remove the notification email'));
 	$error = $tikilib->remove_user_watch_by_id($_REQUEST['id']);
