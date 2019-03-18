@@ -90,8 +90,6 @@ class Services_Wiki_Controller
 	/**
 	 * List pages "perform with checked" but with no action selected
 	 *
-	 * @param $input
-	 * @throws Exception
 	 * @throws Services_Exception
 	 */
 	public function action_no_action()
