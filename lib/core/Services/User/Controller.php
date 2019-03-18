@@ -374,12 +374,7 @@ class Services_User_Controller
 					$feedback['toMsg'] = $toMsg;
 					Feedback::success($feedback);
 					$url = 'tiki-admin_banning.php?mass_ban_ip_users=' . implode('|', $util->items);
-					global $prefs;
-					if ($prefs['javascript_enabled'] !== 'y') {
-						TikiLib::lib('access')->redirect($url);
-					} else {
-						return ['url' => $url];
-					}
+					return Services_Utilities::redirect($url);
 				//refresh page
 				} else {
 					Feedback::success($feedback);
