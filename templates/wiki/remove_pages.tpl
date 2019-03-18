@@ -51,6 +51,6 @@
 				</div>
 			</div>
 		{/if}
-	</form><br><br>
-	{include file='access/include_footer.tpl'}
+		{include file='access/include_submit.tpl'}
+	</form>
 {/block}

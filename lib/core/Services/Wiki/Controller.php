@@ -148,7 +148,6 @@ class Services_Wiki_Controller
 					'confirmButton' => tra('Delete'),
 					'items' => $util->items,
 					'extra' => ['referer' => Services_Utilities::noJsPath(), 'version' => $v, 'one' => $one],
-					'confirm' => 'y',
 					'modal' => '1',
 					'included_by' => $included_by,
 				];
