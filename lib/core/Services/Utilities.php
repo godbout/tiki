@@ -142,8 +142,7 @@ class Services_Utilities
 		$referer = self::noJsPath();
 		//no javascript
 		if (! empty($referer)) {
-			Feedback::error($mes);
-			TikiLib::lib('access')->redirect($referer);
+			TikiLib::lib('access')->redirect($referer, $mes, 0, 'error');
 		//javascript
 		} else {
 			//this will show as a modal if exception occurs when first clicking the action
