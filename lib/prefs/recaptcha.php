@@ -49,6 +49,7 @@ function prefs_recaptcha_list()
 			'options' => [
 				'1' => tra('1.0'),
 				'2' => tra('2.0'),
+				'3' => tra('3.0'),
 			],
 			'default' => '2',
 		],

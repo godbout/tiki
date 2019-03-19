@@ -47,7 +47,9 @@ class Captcha
 		if (empty($type)) {
 			if ($prefs['recaptcha_enabled'] == 'y' && ! empty($prefs['recaptcha_privkey']) && ! empty($prefs['recaptcha_pubkey'])) {
 				if ($prefs['recaptcha_version'] == '2') {
-					$type = 'recaptcha20';
+					$type = 'recaptcha20'; 
+				} elseif ( $prefs['recaptcha_version'] == '3') {
+					$type = 'recaptcha30'; 
 				} else {
 					$type = 'recaptcha';
 				}
@@ -77,10 +79,33 @@ class Captcha
 			$this->type = $type;
 
 			$this->recaptchaCustomTranslations();
-		} elseif ($type === 'recaptcha20') {
-			include_once('lib/captcha/Captcha_ReCaptcha20.php');
+		} elseif (in_array($type, ['recaptcha20', 'recaptcha30'])) {
+			$params = [
+				'privkey' => $prefs['recaptcha_privkey'],
+				'pubkey' => $prefs['recaptcha_pubkey'],
+				'theme' => isset($prefs['recaptcha_theme']) ? $prefs['recaptcha_theme'] : 'clean',
+			];
 
-			$this->captcha = new Captcha_ReCaptcha20(
+			if ($type === 'recaptcha20') {
+				include_once('lib/captcha/Captcha_ReCaptcha20.php');
+				$this->captcha = new Captcha_ReCaptcha20($params);
+			} else {
+				include_once('lib/captcha/Captcha_ReCaptcha30.php');
+				$this->captcha = new Captcha_ReCaptcha30($params);
+			}
+
+			$httpClient = TikiLib::lib('tiki')->get_http_client();
+			$this->captcha->getService()->setHttpClient($httpClient);
+
+			$this->captcha->setOption('ssl', true);
+
+			$this->type = $type;
+
+			$this->recaptchaCustomTranslations();
+		} elseif($type === 'recaptcha30') {
+			include_once('lib/captcha/Captcha_ReCaptcha30.php');
+
+			$this->captcha = new Captcha_ReCaptcha30(
 				[
 					'privkey' => $prefs['recaptcha_privkey'],
 					'pubkey' => $prefs['recaptcha_pubkey'],
@@ -174,7 +199,9 @@ class Captcha
 	{
 		$access = TikiLib::lib('access');
 		if ($access->is_xml_http_request()) {
-			if ($this->type == 'recaptcha20') {
+			if (in_array($this->type, ['recaptcha20', 'recaptcha30'])) {
+				return $this->captcha->renderAjax();
+			} elseif($this->type == 'recaptcha30'){
 				return $this->captcha->renderAjax();
 			} elseif ($this->type == 'recaptcha') {
 				$params = json_encode($this->captcha->getService()->getOptions());
@@ -189,7 +216,7 @@ Recaptcha.create("' . $this->captcha->getPubKey() . '",
 				return $this->captcha->render();
 			}
 		} else {
-			if ($this->captcha instanceof Captcha_ReCaptcha20) {
+			if (in_array($this->type, ['recaptcha20', 'recaptcha30'])) {
 				return $this->captcha->render();
 			} elseif ($this->captcha instanceof Zend\Captcha\ReCaptcha) {
 				return $this->captcha->getService()->getHtml();
@@ -213,7 +240,7 @@ Recaptcha.create("' . $this->captcha->getPubKey() . '",
 		if (is_null($input)) {
 			$input = $_REQUEST;
 		}
-		if ($this->type == 'recaptcha' || $this->type == 'recaptcha20') {
+		if (in_array($this->type, ['recaptcha', 'recaptcha20', 'recaptcha30'])) {
 			// Temporary workaround of zend/http client uses arg_separator.output for making POST request body
 			// which fails with Google recaptcha services if used with '&amp;' value
 			// should be fixed in zend/http (pull request submitted)
@@ -255,7 +282,7 @@ Recaptcha.create("' . $this->captcha->getPubKey() . '",
 			'badCaptcha' => tra('You have mistyped the anti-bot verification code. Please try again.')
 		];
 
-		if ($this->type == 'recaptcha' || $this->type == 'recaptcha20') {
+		if (in_array($this->type, ['recaptcha', 'recaptcha20', 'recaptcha30'])) {
 			$errors['errCaptcha'] = tra('Failed to validate CAPTCHA');
 		} else {
 			$errors['missingID'] = tra('CAPTCHA ID field is missing');

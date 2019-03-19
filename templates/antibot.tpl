@@ -14,7 +14,7 @@
 		{$captchaclass = 'col-md-12 mb-3'}
 	{/if}
 	<div class="antibot">
-		{if $captchalib->type eq 'recaptcha' || $captchalib->type eq 'recaptcha20'}
+		{if $captchalib->type eq 'recaptcha' || $captchalib->type eq 'recaptcha20' || $captchalib->type eq 'recaptcha30'}
 			<div class="form-group row clearfix">
 				<div class="{$captchaclass}">
 					{$captchalib->render()}
@@ -81,7 +81,7 @@
 			}, 100); // wait for captcha to load
 
 		{/jq}
-	{elseif $captchalib->type eq 'recaptcha20'}
+	{elseif $captchalib->type eq 'recaptcha20' || $captchalib->type eq 'recaptcha30'}
 		{jq rank=1}
 			var existCondition = setInterval(function() {
 				if ($('#g-recaptcha-response').length) {
