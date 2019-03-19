@@ -35,6 +35,7 @@ function checkProgress(async) {
                 type: "PUT",
                 url: uploadlinksecure,
                 async: async,
+                global: false,
                 headers: {
                         "Content-Range": "bytes */*"
                 }
