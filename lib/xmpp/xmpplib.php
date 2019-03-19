@@ -60,7 +60,7 @@ class XMPPLib extends TikiLib
 		$query = $this->query($query, [$user]);
 		$login = $query->fetchRow();
 
-		if (empty($login['jid'])) {
+		if (empty($login['jid']) && $user) {
 			$login['jid'] = sprintf('%s@%s', $user, $prefs['xmpp_server_host']);
 		}
 
