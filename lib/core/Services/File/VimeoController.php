@@ -69,7 +69,14 @@ class Services_File_VimeoController
 			$availableHD = $quota['quota']['hd'];
 		}
 
+		if (empty($input->title->text())) {
+			$title = tr('Upload Video');
+		} else {
+			$title = $input->title->text();
+		}
+
 		return [
+			'title' => $title,
 			'availableMB' => $availableMB,
 			'availableSD' => $availableSD,
 			'availableHD' => $availableHD,
