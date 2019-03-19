@@ -53,7 +53,7 @@
 					<label for="vimeourl_{$field.ins_id|escape}" class="small">
 						{tr}Link to existing Vimeo URL{/tr}
 					</label>
-					<input class="url vimeourl form-control" name="vimeourl" id=vimeourl_{$field.ins_id|escape}" placeholder="http://vimeo.com/..." data-mode="vimeo">
+					<input class="url vimeourl form-control" name="vimeourl" id="vimeourl_{$field.ins_id|escape}" placeholder="http://vimeo.com/..." data-mode="vimeo">
 					<input type="hidden" class="reference" name="reference" value="1">
 				{else}
 					<label for="url_{$field.ins_id|escape}" class="small">
