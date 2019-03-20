@@ -407,16 +407,30 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 								$scheme = 'http';
 							}
 							$googleurl = $scheme . "://docs.google.com/viewer?url=";
-							$fileurl = urlencode($base_url . "tiki-download_file.php?fileId=" . $fileId);
+							if ($prefs['feature_sefurl'] === 'y') {
+								$fileurl = urlencode($base_url . "dl" . $fileId);
+							} else {
+								$fileurl = urlencode($base_url . "tiki-download_file.php?fileId=" . $fileId);
+							}
 							require_once 'lib/auth/tokens.php';
 							$tokenlib = AuthTokens::build($prefs);
-							$token = $tokenlib->createToken(
-								$tikiroot . "tiki-download_file.php",
-								['fileId' => $fileId],
-								['Registered'],
-								['timeout' => 300, 'hits' => 3]
-							);
-							$fileurl .= urlencode("&TOKEN=" . $token);
+							if ($prefs['feature_sefurl'] === 'y') {
+								$token = $tokenlib->createToken(
+									$tikiroot . "dl" . $fileId,
+									[],
+									['Registered'],
+									['timeout' => 600, 'hits' => 6]
+								);
+								$fileurl .= urlencode("?TOKEN=" . $token);
+							} else {
+								$token = $tokenlib->createToken(
+									$tikiroot . "tiki-download_file.php",
+									['fileId' => $fileId],
+									['Registered'],
+									['timeout' => 600, 'hits' => 6]
+								);
+								$fileurl .= urlencode("&TOKEN=" . $token);
+							}
 							$url = $googleurl . $fileurl . '&embedded=true';
 							$title = $file['name'];
 							$files[] = ['url' => $url, 'title' => $title, 'id' => $fileId];
