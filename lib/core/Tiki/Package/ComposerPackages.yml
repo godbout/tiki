@@ -96,7 +96,8 @@ PdfJs:
   name: npm-asset/pdfjs-dist
   link: 'https://asset-packagist.org/package/npm-asset/pdfjs-dist'
   requiredBy:
-    - NotUsed
+    - fgal_pdfjs_feature
+    - fgal_convert_documents_pdf
   requiredVersion: ~2.0.487
 WebODF:
   licence: AGPL
