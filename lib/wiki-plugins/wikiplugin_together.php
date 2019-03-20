@@ -86,21 +86,22 @@ if(m = window.location.href.match(/tiki-editpage.php\?page=([^&#]+)/)) {
 			object_id: "togetherjs "+decodeURIComponent(m[1].replace(/\+/g, "%20")),
 		},
 		success: function(data) {
-			loadTogetherJS();
 			if(data) {
 				var key = "togetherjs-session.status";
 				var status = sessionStorage.getItem(key);
 				if (status) {
 					status = JSON.parse(status);
 					if( !status.running || status.shareId != data ) {
-						sessionStorage.removeItem(key);
+						status.shareId = data;
+						status.running = true;
+						sessionStorage.setItem(key, JSON.stringify(status));
 					}
 				}
 				if (!sessionStorage.getItem(key)) {
 					window.location.hash = "&togetherjs="+data;
-					startTogetherJS();
 				}
 			}
+			loadTogetherJS();
 		}
 	});
 } else {
