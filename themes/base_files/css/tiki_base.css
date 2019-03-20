@@ -1911,6 +1911,9 @@ body.tiki_forums .normal {
 #comment-container .comment-item:hover .actions {
   display: block; }
 
+#comment-container .comment-body, #comment-container-below .comment-body {
+  word-break: break-word; }
+
 dl.note-list {
   margin: 0.5em; }
 

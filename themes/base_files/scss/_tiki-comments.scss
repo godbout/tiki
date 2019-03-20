@@ -53,6 +53,11 @@
 	display: block;
 }
 
+#comment-container .comment-body,
+#comment-container-below .comment-body {
+	word-break: break-word;
+}
+
 // Comment Annotations
 
 dl.note-list {

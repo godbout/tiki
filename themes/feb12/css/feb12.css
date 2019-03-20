@@ -7510,14 +7510,16 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     display: inline-block;
     position: absolute;
     top: 0.325rem;
-    right: 2.5rem;
-    width: 1.5rem;
+    right: 2rem;
+    width: 2rem;
     height: 1.5rem;
     cursor: pointer;
     background-image: svg-uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#d9534f' d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>");
     background-size: 1.5rem 1.5rem;
     background-position: center center;
-    background-repeat: no-repeat; }
+    background-repeat: no-repeat;
+    background-color: #fff;
+    box-shadow: 4px 0 16px 16px #fff; }
   .chosen-container-single .chosen-single abbr:hover {
     background-image: svg-uri("<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='#a02622' d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z'/></svg>"); }
   .chosen-container-single .chosen-single span {
@@ -7547,6 +7549,9 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background-size: 2rem 2rem;
     background-position: center center;
     background-repeat: no-repeat; }
+  .chosen-container-single .chosen-single:not(.chosen-single-with-deselect) div:after {
+    background-color: #fff;
+    box-shadow: 4px 0 16px 16px #fff; }
   .chosen-container-single .chosen-default {
     color: #adb5bd; }
   .chosen-container-single a:not([href]):not([tabindex]) {
@@ -7603,8 +7608,8 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   cursor: text;
   height: auto !important;
   margin: 0;
+  padding: 0.175rem;
   overflow: hidden;
-  padding: 0;
   position: relative; }
   .chosen-container-multi .chosen-choices li {
     float: left;
@@ -7614,20 +7619,20 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     padding: 0;
     white-space: nowrap; }
   .chosen-container-multi .chosen-choices .search-field input[type="text"] {
-    background: transparent !important;
-    border: 0 !important;
-    color: #6c757d;
-    height: 2.25rem;
+    width: 100% !important;
     margin: 0;
-    padding: 0 0 0 0.75rem;
-    outline: 0;
-    width: 100% !important; }
+    padding: 0.175rem 0.175rem 0.175rem 0.5rem;
+    border: 0 !important;
+    background: transparent !important;
+    color: #6c757d;
+    outline: 0; }
   .chosen-container-multi .chosen-choices .search-field .default {
     color: #ced4da; }
   .chosen-container-multi .chosen-choices .search-choice {
     background-clip: padding-box;
     position: relative;
-    margin: 0.35rem 0 0 0.5rem;
+    max-width: 320px;
+    margin: 0.175rem 0.25rem;
     padding: 0.25rem 1.5rem 0.25rem 0.25rem;
     border: 1px solid #ced4da;
     background-color: #f8f9fa;
@@ -7638,7 +7643,10 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     cursor: default;
     font-size: 0.875rem;
     line-height: 1;
-    color: #6c757d; }
+    color: #6c757d;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; }
   .chosen-container-multi .chosen-choices .search-choice .search-choice-close {
     display: inline-block;
     position: absolute;
@@ -7717,6 +7725,8 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background-color: #2623a9;
     color: white;
     cursor: pointer; }
+  .chosen-container-optgroup-clickable li.group-result:hover em {
+    color: white; }
 
 .chosen-container.is-valid .chosen-single, .chosen-container:valid .chosen-single, .chosen-container.is-valid .chosen-choices, .chosen-container:valid .chosen-choices, .chosen-container.is-valid .chosen-drop, .chosen-container:valid .chosen-drop {
   border-color: #5cb85c; }
@@ -7747,3 +7757,5 @@ input[type="text"].chosen-focus-input {
     position: relative;
     flex: 1 1 auto;
     width: 1% !important; }
+  .input-group .chosen-choices .search-field {
+    min-height: 2.25rem; }
