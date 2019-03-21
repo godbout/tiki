@@ -102,24 +102,6 @@ class Captcha
 			$this->type = $type;
 
 			$this->recaptchaCustomTranslations();
-		} elseif($type === 'recaptcha30') {
-			include_once('lib/captcha/Captcha_ReCaptcha30.php');
-
-			$this->captcha = new Captcha_ReCaptcha30(
-				[
-					'privkey' => $prefs['recaptcha_privkey'],
-					'pubkey' => $prefs['recaptcha_pubkey'],
-					'theme' => isset($prefs['recaptcha_theme']) ? $prefs['recaptcha_theme'] : 'clean',
-				]
-			);
-			$httpClient = TikiLib::lib('tiki')->get_http_client();
-			$this->captcha->getService()->setHttpClient($httpClient);
-
-			$this->captcha->setOption('ssl', true);
-
-			$this->type = $type;
-
-			$this->recaptchaCustomTranslations();
 		} elseif ($type === 'default') {
 			$this->captcha = new Zend\Captcha\Image(
 				[
@@ -200,8 +182,6 @@ class Captcha
 		$access = TikiLib::lib('access');
 		if ($access->is_xml_http_request()) {
 			if (in_array($this->type, ['recaptcha20', 'recaptcha30'])) {
-				return $this->captcha->renderAjax();
-			} elseif($this->type == 'recaptcha30'){
 				return $this->captcha->renderAjax();
 			} elseif ($this->type == 'recaptcha') {
 				$params = json_encode($this->captcha->getService()->getOptions());
