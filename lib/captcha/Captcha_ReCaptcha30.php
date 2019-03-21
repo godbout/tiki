@@ -36,11 +36,6 @@ class Captcha_ReCaptcha30 extends Zend\Captcha\ReCaptcha
 			return false;
 		}
 
-		// Google request was cached
-		if (in_array($value[$this->_RESPONSE], $_SESSION['recaptcha_cache'])) {
-			return true;
-		}
-
 		//set POST variables
 		$url = self::VERIFY_SERVER;
 
