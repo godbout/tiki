@@ -533,6 +533,36 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 	}
 
 	/**
+	 * replace embedded youtube html code with Tiki Plugin Youtube syntax
+	 * @param $content the html text in which to insert parse embeded youtube
+	 * @return string
+	 */
+	function parseYoutubeEmbeded($content)
+	{
+		$newcontent = $content;
+		$dom = new DOMDocument;
+		$dom->loadHTML($content);
+
+		$tags = $dom->getElementsByTagName('iframe');
+		foreach ($tags as $tag) {
+			$width = $tag->getAttribute('width');
+			$height = $tag->getAttribute('height');
+			$src = $tag->getAttribute('src');
+
+			//test if it is a youtube embeded video
+			if (strpos($src, 'youtube.com/embed') > 0) {
+				$youtubeVideoId = substr($src, strripos($src, '/') + 1);
+				$tagWithHtml = $dom->saveHTML($tag);
+				$newTag = '{youtube movie="' . $youtubeVideoId
+					. '" width="' . $width . '" height="' . $height . '" quality="high" allowFullScreen="y"}';
+				$newcontent = str_replace($tagWithHtml, $newTag, $content);
+			}
+		}
+
+		return $newcontent;
+	}
+
+	/**
 	 * Parse an DOM representation of a Wordpress item and return all the values
 	 * that will be imported (title, content, comments etc).
 	 *
@@ -582,6 +612,7 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 							$editlib = new EditLib();
 							$content = $data['content'];
 							$content = $this->replaceParagraphWithLineBreak($content);
+							$content = $this->parseYoutubeEmbeded($content);
 							$data['content'] = $editlib->parse_html($content);
 						}
 						break;
