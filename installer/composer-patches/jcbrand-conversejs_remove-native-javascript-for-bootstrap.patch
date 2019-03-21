@@ -1,6 +1,8 @@
---- dist/converse.js	2019-03-20 23:36:36.599043971 -0300
-+++ dist/converse.js	2019-03-20 23:37:12.849368543 -0300
-@@ -3413,1460 +3413,17 @@
+diff --git dist/converse.js dist/converse.js
+index 93ea998..7246823 100644
+--- dist/converse.js
++++ dist/converse.js
+@@ -3413,1459 +3413,16 @@ backbone.nativeview = __webpack_require__(/*! backbone.nativeview */ "./node_mod
  				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
    } else { var bsn; }
  }(this, function () {
@@ -557,16 +559,7 @@
 -    collapse[isAnimating] = false;  // when true it will prevent click handlers  
 -    accordion = queryElement(options.parent) || accordionData && getClosest(element, accordionData);
 -    element[stringCollapse] = self;
-+   return {
-+    Alert: bootstrap.Alert,
-+    Button: bootstrap.Button,
-+    Collapse: bootstrap.Collapse,
-+    Dropdown: bootstrap.Dropdown,
-+    Modal: bootstrap.Modal,
-+    Popover: bootstrap.Popover,
-+    Tab: bootstrap.Tab,
-+    Tooltip: bootstrap.Tooltip
-   };
+-  };
 -  
 -  // COLLAPSE DATA API
 -  // =================
@@ -1466,12 +1459,20 @@
 -    Tab: Tab,
 -    Tooltip: Tooltip
 -  };
--}));
-+ }));
++    return {
++     Alert: bootstrap.Alert,
++     Button: bootstrap.Button,
++     Collapse: bootstrap.Collapse,
++     Dropdown: bootstrap.Dropdown,
++     Modal: bootstrap.Modal,
++     Popover: bootstrap.Popover,
++     Tab: bootstrap.Tab,
++     Tooltip: bootstrap.Tooltip
++   };
+ }));
  
  /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
- 
-@@ -95938,4 +94495,4 @@
+@@ -95938,4 +94495,4 @@ _headless_utils_core__WEBPACK_IMPORTED_MODULE_16__["default"].xForm2webForm = fu
  /***/ })
  
  /******/ });
