@@ -6708,8 +6708,8 @@ class UsersLib extends TikiLib
 	{
 		$cachelib = TikiLib::lib('cache');
 
-		$query = 'update `users_users` set `provpass`=?, valid=?, `email_confirm`=?, `waiting`=? where `login`=?';
-		$result = $this->query($query, ['', null, $this->now, null, $user]);
+		$query = 'update `users_users` set `provpass`=?, valid=?, `email_confirm`=?, `waiting`=?, `registrationDate`=? where `login`=?';
+		$result = $this->query($query, ['', null, $this->now, null, $this->now, $user]);
 		$cachelib->invalidate('userslist');
 		TikiLib::events()->trigger('tiki.user.update', ['type' => 'user', 'object' => $user]);
 	}
