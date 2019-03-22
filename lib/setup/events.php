@@ -395,6 +395,9 @@ function tiki_save_refresh_index($args)
 		$isBulk = isset($args['bulk_import']) && $args['bulk_import'];
 		refresh_index($args['type'], $args['object'], ! $isBulk);
 	}
+
+	// To invalidate caches if any registered for purging
+	TikiLib::lib('cache')->invalidate_by_cache_purge_rules($args);
 }
 
 function tiki_header_report_event()

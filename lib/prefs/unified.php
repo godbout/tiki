@@ -136,11 +136,11 @@ function prefs_unified_list()
 			'default' => 'n',
 		],
 		'unified_user_cache' => [
-			'name' => tra('Cache per user and query'),
+			'name' => tra('Cache per user and query for Tiki built-in search'),
 			'type' => 'text',
 			'size' => '4',
 			'filter' => 'digits',
-			'description' => tra('Time in minutes a user has a same query cached '),
+			'description' => tra('Time in minutes a user has a same query cached applied to Tiki built-in search interface only.'),
 			'units' => tra('minutes'),
 			'default' => '0',
 			'tags' => ['advanced'],
@@ -162,11 +162,12 @@ function prefs_unified_list()
 			],
 		],
 		'unified_cached_formatters' => [
-			'name' => tra('Search formatters to cache'),
-			'description' => tra('Search formatters whose output will be cached'),
+			'name' => tra('Cache individual search formatters'),
+			'description' => tra('List of search formatters whose output will be cached. This is separate to the result-specific formatted results cache.'),
 			'type' => 'text',
 			'separator' => ',',
-			'default' => ['categorylist'],
+			'default' => [],
+			'tags' => ['advanced'],
 		],
 		'unified_trackerfield_keys' => [
 			'name' => tra('Format to use for tracker field keys'),
@@ -179,11 +180,12 @@ function prefs_unified_list()
 			],
 		],
 		'unified_cache_formatted_result' => [
-			'name' => tra('Cache formatted results'),
-			'description' => tr('Formatted search results such as the ones used in the List plugin will be cached to prevent process-intensive reformatting on each page load.'),
-			'warning' => tr('This could quickly build up a large cache directory. It is recommended to clear Tiki caches often (e.g. once per week) via an automated job if you use this feature.'),
+			'name' => tra('Cache result-specific formatted results'),
+			'description' => tr('Formatted search results such as the ones used in the List plugin will be cached to prevent process-intensive reformatting on each page load. The cache is result-specific.'),
+			'warning' => tr('Every different result will generate a separate cache. This could quickly build up a large cache directory. It is recommended to clear Tiki caches often (e.g. once per week) via an automated job if you use this feature.'),
 			'type' => 'flag',
 			'default' => 'n',
+			'tags' => ['advanced'],
 		],
 		'unified_excluded_categories' => [
 			'name' => tra('Excluded categories'),
@@ -326,6 +328,22 @@ function prefs_unified_list()
 			'description' => tr("The possessive stemmer removes possessives (trailing \"'s\") from words before indexing them."),
 			'type' => 'flag',
 			'default' => 'y',
+		],
+		'unified_list_cache_default_on' => [
+			'name' => tra('LIST plugin cache default on'),
+			'description' => tra('If selected, LIST plugins will be cached by default unless turned off at plugin level.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'tags' => ['advanced'],
+			'help' => 'PluginList',
+		],
+		'unified_list_cache_default_expiry' => [
+			'name' => tra('LIST plugin cache default expiry'),
+			'description' => tra('Default number of minutes for LIST plugin cache expiry.'),
+			'type' => 'text',
+			'default' => '30',
+			'tags' => ['advanced'],
+			'help' => 'PluginList',
 		],
 	];
 }

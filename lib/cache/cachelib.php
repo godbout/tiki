@@ -424,6 +424,58 @@ class Cachelib
 			$logslib->add_log($logSection, 'cached user/group list');
 		}
 	}
+
+	function get_cache_purge_rules($type = 'all')
+	{
+		if ($this->isCached($type, 'cachepurgerules')) {
+			return $this->getSerialized($type, 'cachepurgerules');
+		}
+		if ($type != 'all') {
+			$rules = TikiLib::lib('tiki')->fetchAll("select * from tiki_object_relations where relation = 'tiki.cache.purge' and source_type = ?", array($type));
+		} else {
+			$rules = TikiLib::lib('tiki')->fetchAll("select * from tiki_object_relations where relation = 'tiki.cache.purge'");
+		}
+		$this->cacheItem($type, serialize($rules), 'cachepurgerules');
+		return $rules;
+	}
+
+	function get_purge_rules_for_cache($cacheType, $cacheKey)
+	{
+		return TikiLib::lib('tiki')->fetchAll("select source_type as type, source_itemId as object from tiki_object_relations where relation = 'tiki.cache.purge' and target_type = ? and target_itemId = ?", array($cacheType, $cacheKey));
+	}
+
+	function clear_purge_rules_for_cache($cacheType, $cacheKey)
+	{
+		return TikiLib::lib('tiki')->query("delete from tiki_object_relations where relation = 'tiki.cache.purge' and target_type = ? and target_itemId = ?", array($cacheType, $cacheKey));
+	}
+
+	function set_cache_purge_rule($type, $object, $cacheType, $cacheKey)
+	{
+		$relationId = TikiLib::lib('relation')->add_relation('tiki.cache.purge', $type, $object, $cacheType, $cacheKey, true);
+		if ($relationId) {
+			// Rule is added (if it already existed, nothing would have happened)
+			$this->invalidate($type, 'cachepurgerules');
+		}
+		return $relationId;
+	}
+
+	function invalidate_by_cache_purge_rules($args) {
+		// First get all candidates which match type (source_itemId does not matter for now - see below)
+		$cache_purge_rules = $this->get_cache_purge_rules($args['type']);
+
+		foreach ($cache_purge_rules as $c) {
+			if ($c['source_itemId'] == $args['object']) {
+				TikiLib::lib('cache')->invalidate($c['target_itemId'], $c['target_type']);
+			} elseif ($args['type'] != 'wiki page' && $colonpos = strpos($c['source_itemId'], ':')) {
+				// Examples: trackeritem:20, trackerId:3, galleryId:5, forum_id:7, parent_id:8 etc...
+				$prefix = substr($c['source_itemId'], 0, $colonpos);
+				$itemId = substr($c['source_itemId'], $colonpos + 1);
+				if (isset($args[$prefix]) && $itemId == $args[$prefix]) {
+					TikiLib::lib('cache')->invalidate($c['target_itemId'], $c['target_type']);
+				}
+			}
+		}
+	}
 }
 
 class CacheLibFileSystem

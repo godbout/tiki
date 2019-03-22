@@ -45,6 +45,33 @@ function wikiplugin_list_info()
 					['text' => tra('No'), 'value' => '0'],
 				],
 			],
+			'cache' => [
+				'required' => false,
+				'name' => tra('Cache Output'),
+				'description' => tra('Cache output of this list plugin.'),
+				'filter' => 'word',
+				'since' => '20.0',
+				'options' => [
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n'],
+				]
+			],
+			'cacheexpiry' => [
+				'required' => false,
+				'name' => tra('Cache Expiry Time'),
+				'description' => tra('Time before cache is expired in minutes.'),
+				'filter' => 'word',
+				'since' => '20.0',
+			],
+			'cachepurgerules' => [
+				'required' => false,
+				'name' => tra('Cache Purge Rules'),
+				'description' => tra('Purge the cache when the type:id objects are updated. Set id=0 for any of that type. Examples: trackeritem:20, trackeritem:trackerId:3, file:galleryId:5, forum post:forum_id:7, forum post:parent_id:8. Note that rule changes affect future caching, not past caches.'),
+				'separator' => ',',
+				'default' => '',
+				'filter' => 'text',
+				'since' => '20.0',
+			],
 		],
 	];
 }
@@ -64,6 +91,43 @@ function wikiplugin_list($data, $params)
 		TikiLib::lib('header')
 			->add_jsfile('lib/jquery_tiki/pluginedit_list.js')
 			->add_jsfile('vendor_bundled/vendor/jquery/plugins/nestedsortable/jquery.ui.nestedSortable.js');
+	}
+
+	$now = TikiLib::lib('tiki')->now;
+	$cachelib = TikiLib::lib('cache');
+	$cacheType = 'listplugin';
+	$cacheName = md5($data);
+	if (isset($params['cacheexpiry'])) {
+		$cacheExpiry = $params['cacheexpiry'];
+	} else {
+		$cacheExpiry = $prefs['unified_list_cache_default_expiry'];
+	}
+
+	if ($params['cache'] == 'y' || $prefs['unified_list_cache_default_on'] == 'y' && $params['cache'] != 'n') {
+		// Clean rules setting
+		$rules = array();
+		foreach ($params['cachepurgerules'] as $r) {
+			$parts = explode(':', $r, 2);
+			$cleanrule['type'] = trim($parts[0]);
+			$cleanrule['object'] = trim($parts[1]);
+			$rules[] = $cleanrule;
+		}
+		// Need to check if existing rules have been changed and therefore have to be deleted first
+		$oldrules = $cachelib->get_purge_rules_for_cache($cacheType, $cacheName);
+		if ($oldrules != $rules) {
+			$cachelib->clear_purge_rules_for_cache($cacheType, $cacheName);
+		}
+		// Now set rules
+		foreach ($rules as $rule) {
+			$cachelib->set_cache_purge_rule($rule['type'], $rule['object'], $cacheType, $cacheName);
+		}
+		// Now retrieve cache if any
+		if ($cachelib->isCached($cacheName, $cacheType)) {
+			list($date, $out) = $cachelib->getSerialized($cacheName, $cacheType);
+			if ($date > $now - $cacheExpiry * 60) {
+				return $out;
+			}
+		}
 	}
 
 	$unifiedsearchlib = TikiLib::lib('unifiedsearch');
@@ -117,6 +181,10 @@ function wikiplugin_list($data, $params)
 
 	$result->setTsOn($tsret['tsOn']);
 	$out = $formatter->format($result);
+
+	if ($params['cache'] == 'y' || $prefs['unified_list_cache_default_on'] == 'y' && $params['cache'] != 'n') {
+		$cachelib->cacheItem($cacheName, serialize([$now, $out]), $cacheType);
+	}
 
 	return $out;
 }

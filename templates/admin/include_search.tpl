@@ -118,12 +118,14 @@
 
 					{preference name=unified_field_weight}
 					{preference name=unified_default_content}
-					{preference name=unified_user_cache}
 
+					{preference name=unified_user_cache}
+					{preference name=unified_cache_formatted_result}
 					{preference name=unified_cached_formatters}
+					{preference name=unified_list_cache_default_on}
+					{preference name=unified_list_cache_default_expiry}
 
 					{preference name=unified_trackerfield_keys}
-					{preference name=unified_cache_formatted_result}
 					{preference name=unified_add_to_categ_search}
 					{preference name=unified_trim_sorted_search}
 
