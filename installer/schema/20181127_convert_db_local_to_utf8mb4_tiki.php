@@ -18,7 +18,6 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function upgrade_20181127_convert_db_local_to_utf8mb4_tiki($installer)
 {
-
 	$localfile = TikiInit::getCredentialsFile();
 	$date = date("Ymd");
 	$time = date("His");
@@ -28,12 +27,12 @@ function upgrade_20181127_convert_db_local_to_utf8mb4_tiki($installer)
 	// Parse local.php file and look for obsolete 'utf8' client_charset value
 	$contents = @file($localfile);
 
-	if ( $contents !== false ) {
+	if ($contents !== false) {
 		$last_matched_line = "";
 		$last_matched_charset = "";
-		foreach($contents as $key => $line) {
+		foreach ($contents as $key => $line) {
 			// Detect last value and line for client_charset
-			$extract = preg_match("/^[ 	]*[$]client_charset[ ]*=[ ]*'(.*)';/", $line, $match );
+			$extract = preg_match("/^[ 	]*[$]client_charset[ ]*=[ ]*['\"](.*)['\"];/", $line, $match);
 			if (isset($match[1])) {
 				// echo "Match: " . $match[1] . PHP_EOL;
 				$last_matched_line = $key;
@@ -43,33 +42,35 @@ function upgrade_20181127_convert_db_local_to_utf8mb4_tiki($installer)
 	} else {
 		echo "Failed to read 'db/local.php'" . PHP_EOL;
 		echo "Please edit db/local.php manually and change the \$client_charset value from 'utf8' to 'utf8mb4'" . PHP_EOL;
-		return TRUE;
+		return true;
 	}
 
 	// If obsolete 'utf8' client_charset value was found, backup and edit
 	if ($last_matched_charset == 'utf8') {
 		// Backup db/local.php
-		if (!rename($localfile,$backuplocalfile)) {
+		if (! rename($localfile, $backuplocalfile)) {
 			echo "Failed to backup 'db/local.php'" . PHP_EOL;
 			echo "Please edit db/local.php manually and change the \$client_charset value from 'utf8' to 'utf8mb4'" . PHP_EOL;
-			return FALSE;
+			return false;
 		}
 		// Rewrite the new db/local.php
-		$handle = fopen($localfile,'xb');
+		$handle = fopen($localfile, 'xb');
 		$contents[$last_matched_line] = "// Commented by installer on ${date} // " . $contents[$last_matched_line] . "\$client_charset='utf8mb4';" . PHP_EOL;
 		reset($contents);
-		foreach($contents as $key => $line) {
+		foreach ($contents as $key => $line) {
 			fwrite($handle, $line);
 		}
 		fclose($handle);
-		return TRUE;
-	} else if ($last_matched_charset == 'utf8mb4') {
+		return true;
+	} elseif ($last_matched_charset == 'utf8mb4') {
 		// Nothing to do, leave with success return code
 		// echo "debug nothing to do\n";
-		return TRUE;
+		return true;
+	} else {
+		echo "Please edit db/local.php manually and change the \$client_charset value from '" . $last_matched_charset . "' to 'utf8mb4'" . PHP_EOL;
+		return true;
 	}
 
 	// This place should not be reached
-	return FALSE;
-
+	return false;
 }
