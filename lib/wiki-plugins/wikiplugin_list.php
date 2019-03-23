@@ -66,7 +66,7 @@ function wikiplugin_list_info()
 			'cachepurgerules' => [
 				'required' => false,
 				'name' => tra('Cache Purge Rules'),
-				'description' => tra('Purge the cache when the type:id objects are updated. Set id=0 for any of that type. Examples: trackeritem:20, trackeritem:trackerId:3, file:galleryId:5, forum post:forum_id:7, forum post:parent_id:8. Note that rule changes affect future caching, not past caches.'),
+				'description' => tra('Purge the cache when the type:id objects are updated. Set id=0 for any of that type. Or set type:withparam:x. Examples: trackeritem:20, trackeritem:trackerId:3, file:galleryId:5, forum post:forum_id:7, forum post:parent_id:8. Note that rule changes affect future caching, not past caches.'),
 				'separator' => ',',
 				'default' => '',
 				'filter' => 'text',
