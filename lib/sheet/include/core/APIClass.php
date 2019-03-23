@@ -28,14 +28,14 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 define("APIC_CORE_DIR",  APATH_ROOT."include/core/");
 define("APIC_CACHE_DIR", CACHE_PATH);
 
-require (APIC_CORE_DIR .  'Object.php');
+require (APIC_CORE_DIR .  'APICObject.php');
 require (APIC_CORE_DIR .  'ErrorManager.php');
 require (APIC_CORE_DIR .  'APIClassRegistry.php');
 require (APIC_CORE_DIR .  'APIC.php');
 
 APIClassRegistry::register('core.*');
 APIClassRegistry::register('core.ErrorManager');
-APIClassRegistry::register('core.Object');
+APIClassRegistry::register('core.APICObject');
 APIClassRegistry::register('core.APIClassRegistry');
 APIClassRegistry::register('core.APIClass');
 APIClassRegistry::register('core.APIC');

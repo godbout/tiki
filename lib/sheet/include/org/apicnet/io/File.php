@@ -268,6 +268,6 @@ class File extends ErrorManager {
 	}
 	
 	function validClass($object){
-		return Object::validClass($object, 'file');
+		return APICObject::validClass($object, 'file');
 	}
 }

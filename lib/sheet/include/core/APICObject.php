@@ -35,10 +35,10 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 * @author diogène MOULRON <logiciel@apicnet.net>
 * @see ErrorManager.php
 */ 
-class Object{
+class APICObject {
 
 	/**
-	 * Constructeur : Object::Object()
+	 * Constructeur : APICObject::APICObject()
 	 * 
 	 * @return 
 	 **/
@@ -55,14 +55,14 @@ class Object{
 	}
 	
 	/**
-	 * Object::className()
+	 * APICObject::className()
 	 * 
 	 * @return le nom de la class courante ayant fait appel a cette fonction
 	 **/
 	function className(){return get_class($this);}
 	
 	/**
-	 * Object::getParentClass()
+	 * APICObject::getParentClass()
 	 * 
 	 * @param $object
 	 * @return 
@@ -70,27 +70,27 @@ class Object{
 	function getParentClass($object){return get_parent_class($object);}
 	
 	/**
-	 * Object::equals()
+	 * APICObject::equals()
 	 * 
 	 * @param $object
 	 * @return 
 	 **/
 	function equals(&$object){
-		if (Object::validClass($object)){
+		if (APICObject::validClass($object)){
 			return TRUE;
 		}
 		return FALSE;
 	}
 	
 	/**
-	 * Object::toString()
+	 * APICObject::toString()
 	 * 
 	 * @return 
 	 **/
-	function toString(){return 'Object';}
+	function toString(){return 'APICObject';}
 	
 	/**
-	 * Object::serialize()
+	 * APICObject::serialize()
 	 * 
 	 * @return 
 	 **/
@@ -99,7 +99,7 @@ class Object{
 	}
 	
 	/**
-	 * Object::serialize()
+	 * APICObject::serialize()
 	 * 
 	 * @return 
 	 **/
@@ -115,20 +115,20 @@ class Object{
 	function cloneNode(){	return $this;}
 	
 	/**
-	 * Object::hashValue()
+	 * APICObject::hashValue()
 	 * 
 	 * @return 
 	 **/
 	function hashValue(){return md5(serialize($this));}
 	
 	/**
-	 * Object::validClass()
+	 * APICObject::validClass()
 	 * 
 	 * @param $object
 	 * @param string $classname
 	 * @return 
 	 **/
-	function validClass($object, $classname = 'object'){
+	function validClass($object, $classname = 'APICObject'){
 		return (is_object($object) && ($object->className()==$classname || is_subclass_of($object, $classname)));
 	}
 }

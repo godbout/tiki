@@ -46,7 +46,7 @@ APIClass::import("org.apicnet.xml.Xml");
 * @author diogène MOULRON <logiciel@apicnet.net>
 * @package core
 */ 
-class APIC extends Object {
+class APIC extends APICObject {
 	
 	/**
 	* Méthode static d'importation de class;

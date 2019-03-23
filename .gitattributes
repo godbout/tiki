@@ -3983,10 +3983,10 @@ lib/sheet/excel/writer/worksheet.php -text
 lib/sheet/grid.js -text
 lib/sheet/grid.php -text
 lib/sheet/include/core/APIC.php -text
+lib/sheet/include/core/APICObject.php -text
 lib/sheet/include/core/APIClass.php -text
 lib/sheet/include/core/APIClassRegistry.php -text
 lib/sheet/include/core/ErrorManager.php -text
-lib/sheet/include/core/Object.php -text
 lib/sheet/include/core/index.php -text
 lib/sheet/include/index.php -text
 lib/sheet/include/org/apicnet/index.php -text

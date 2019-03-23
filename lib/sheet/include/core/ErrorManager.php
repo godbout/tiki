@@ -45,7 +45,7 @@ $incErrorManager = true;
  * @version $Id: ErrorManager.php,v 1.5 2007-02-04 20:09:42 mose Exp $
  * @access public
  **/
-class ErrorManager extends Object {
+class ErrorManager extends APICObject {
 
     var $errorCounter = Array(0 => 0, 1 => 0, 2 => 0, 3 => 0, 4 => 0, 5 => 0);
 

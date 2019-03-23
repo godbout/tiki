@@ -18,7 +18,7 @@ if (strpos($_SERVER["SCRIPT_NAME"],basename(__FILE__)) !== false) {
 * http://www.jphplib.org
 */
 
-class StringBuffer extends Object{
+class StringBuffer extends APICObject {
 	var $str;
 	
 	/**
@@ -393,7 +393,7 @@ class StringBuffer extends Object{
 	}
 	
 	function validClass($object){
-		return Object::validClass($object, 'stringbuffer');
+		return APICObject::validClass($object, 'stringbuffer');
 	}
 
 	function jsonValue(){
