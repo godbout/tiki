@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8206193fac1657f810fd5561fc22ba8",
+    "content-hash": "55cd75a5741d1886b84ceee0f9057881",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -160,79 +160,6 @@
                 "useragent"
             ],
             "time": "2017-06-06T22:20:56+00:00"
-        },
-        {
-            "name": "blueimp/javascript-canvas-to-blob",
-            "version": "2.2.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp/javascript-canvas-to-blob/blueimp-javascript-canvas-to-blob-2.2.0.zip",
-                "shasum": "fd7853799c483b6ccc24e8da9e325ac78081372d"
-            },
-            "type": "component"
-        },
-        {
-            "name": "blueimp/javascript-load-image",
-            "version": "1.14.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp/javascript-load-image/blueimp-javascript-load-image-1.14.0.zip",
-                "shasum": "cbb4e90678f4d1616c7b90816ce20a9a5293c9b4"
-            },
-            "type": "library"
-        },
-        {
-            "name": "blueimp/jquery-file-upload",
-            "version": "v9.28.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/vkhramtsov/jQuery-File-Upload.git",
-                "reference": "ff5accfe2e5c4a522777faa980a90cf86a636d1d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/blueimp/jquery-file-upload/blueimp-jquery-file-upload-ff5accfe2e5c4a522777faa980a90cf86a636d1d-zip-cd8368.zip",
-                "reference": "ff5accfe2e5c4a522777faa980a90cf86a636d1d",
-                "shasum": "27d81ed67d36135422541cd620d3992a756f1547"
-            },
-            "type": "library",
-            "autoload": {
-                "classmap": []
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Sebastian Tschan",
-                    "homepage": "https://blueimp.net"
-                }
-            ],
-            "description": "File Upload widget for jQuery.",
-            "homepage": "https://github.com/blueimp/jQuery-File-Upload",
-            "keywords": [
-                "bootstrap",
-                "chunk",
-                "cross-domain",
-                "cross-site",
-                "drag",
-                "drop",
-                "file",
-                "gae",
-                "go",
-                "jquery",
-                "multiple",
-                "php",
-                "preview",
-                "progress",
-                "python",
-                "resume",
-                "selection",
-                "upload",
-                "widget"
-            ],
-            "time": "2018-11-13T05:41:39+00:00"
         },
         {
             "name": "bower-asset/fontawesome",
@@ -1644,6 +1571,9 @@
                 "shasum": "559530abea2bb20d483612f6ef1e45acb5da3354"
             },
             "type": "library",
+            "extra": {
+                "patches_applied": []
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MPL-2.0"
@@ -2787,6 +2717,63 @@
                 "touch"
             ],
             "time": "2019-02-22T19:30:58+00:00"
+        },
+        {
+            "name": "npm-asset/blueimp-canvas-to-blob",
+            "version": "3.5.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/blueimp-canvas-to-blob/npm-asset-blueimp-canvas-to-blob-3.5.0.zip",
+                "shasum": "ad7e063c8d6545c3fe784a2bd17cf23ab458eba1"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/blueimp-file-upload",
+            "version": "9.28.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/blueimp-file-upload/npm-asset-blueimp-file-upload-9.28.0.zip",
+                "shasum": "c658c6814fcdd9c8a7c67e55995258aaebffa5f6"
+            },
+            "require": {
+                "npm-asset/blueimp-canvas-to-blob": "3.5.0",
+                "npm-asset/blueimp-load-image": "2.12.2",
+                "npm-asset/blueimp-tmpl": "3.6.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/blueimp-load-image",
+            "version": "2.12.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/blueimp-load-image/npm-asset-blueimp-load-image-2.12.2.zip",
+                "shasum": "35a1ee29f4fe50d2384c2cb1e058a5262de2c2b6"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/blueimp-tmpl",
+            "version": "3.6.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/blueimp-tmpl/npm-asset-blueimp-tmpl-3.6.0.zip",
+                "shasum": "d4b74464e21673c797c51dcf6746025469e8561a"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "npm-asset/chart.js",
@@ -5216,9 +5203,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/true/punycode/true-punycode-a4d0c11a36dd7f4e7cd7096076cab6d3378a071e-zip-4ceb35.zip",
+                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
                 "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
-                "shasum": "0153b28196219934ea010de766dea03de32a7d89"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",

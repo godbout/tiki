@@ -339,11 +339,6 @@ class CleanVendors
 		$fs->remove($vendors . 'symfony/console/Symfony/Component/Console/Tests');
 		$fs->remove($vendors . 'symfony/config/Symfony/Component/Config/Tests');
 		$fs->remove($vendors . 'symfony/filesystem/Tests');
-		$fs->remove($vendors . 'blueimp/javascript-load-image/js/demo.js');
-		$fs->remove($vendors . 'blueimp/javascript-load-image/css');
-		$fs->remove($vendors . 'blueimp/javascript-load-image/index.html');
-		$fs->remove($vendors . 'blueimp/jquery-file-upload/cors');
-		$fs->remove($vendors . 'blueimp/jquery-file-upload/server');
 		$fs->remove($vendors . 'Sam152/Javascript-Equal-Height-Responsive-Rows/demo.html');
 		$fs->remove($vendors . 'jquery/jtrack/demo.html');
 
@@ -365,17 +360,6 @@ class CleanVendors
 			]
 		);
 
-		self::removeMultiple($vendors . 'blueimp/jquery-file-upload/css', ['demo-ie8.css', 'demo.css']);
-		self::removeMultiple(
-			$vendors . 'blueimp/jquery-file-upload',
-			[
-				'angularjs.html',
-				'basic.html',
-				'basic-plus.html',
-				'index.html',
-				'jquery-ui.html'
-			]
-		);
 		self::removeMultiple(
 			$vendors . 'svg-edit/svg-edit/',
 			[

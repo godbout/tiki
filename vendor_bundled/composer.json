@@ -9,9 +9,6 @@
 		"adodb/adodb-php": "^5.20",
 		"afarkas/html5shiv": "3.7.3",
 		"ahand/mobileesp": "dev-master",
-		"blueimp/javascript-canvas-to-blob": "^2.2.0",
-		"blueimp/javascript-load-image": "^1.14.0",
-		"blueimp/jquery-file-upload": "^9.12.5",
 		"bower-asset/swfobject": "^2.2",
 		"candy-chat/xmpp-prebind-php": "dev-master",
 		"christian-vigh-phpclasses/pdftotext": "^1.6.0",
@@ -71,6 +68,7 @@
 		"nagarajanchinnasamy/subtotal": "~1.9",
 		"nicolaskruchten/pivottable": "^2.20.0",
 		"nolimits4web/swiper": "^4.2",
+		"npm-asset/blueimp-file-upload": "^9.28",
 		"npm-asset/chart.js": "^2.7.0",
 		"npm-asset/popper.js": "^1.13.4",
 		"npm-asset/prefixfree": ">=1.0.10",
@@ -241,9 +239,6 @@
 			"Tiki\\Composer\\BootstrapCompiler::build",
 			"Tiki\\Composer\\CleanVendors::clean",
 			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::clean"
-		],
-		"pre-autoload-dump": [
-			"Tiki\\Composer\\Autoload::change"
 		],
 		"test": "php ../lib/test/phpunit.php -c ../phpunit.xml.dist --colors=always"
 	},
