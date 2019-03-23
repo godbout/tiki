@@ -1770,6 +1770,7 @@
 		"npm-asset/ajv": ">=6.4.0",
 		"npm-asset/ajv-keywords": ">=3.1.0",
 		"npm-asset/big.js": ">=3.2.0",
+		"npm-asset/blueimp-file-upload": "^9.28",
 		"npm-asset/chart.js": "^2.7.0",
 		"npm-asset/chartjs-color-string": ">=0.5.0",
 		"npm-asset/chartjs-color": ">=2.2.0",
