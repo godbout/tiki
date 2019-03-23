@@ -1,1 +1,0 @@
-ALTER TABLE tiki_oauthserver_clients  CHANGE `identifier`  `id` INT(14) NOT NULL AUTO_INCREMENT
