@@ -464,7 +464,7 @@ class Cachelib
 		$cache_purge_rules = $this->get_cache_purge_rules($args['type']);
 
 		foreach ($cache_purge_rules as $c) {
-			if ($c['source_itemId'] == $args['object']) {
+			if ($c['source_itemId'] == $args['object'] || $c['source_itemId'] == 0) {
 				TikiLib::lib('cache')->invalidate($c['target_itemId'], $c['target_type']);
 			} elseif ($args['type'] != 'wiki page' && $colonpos = strpos($c['source_itemId'], ':')) {
 				// Examples: trackeritem:20, trackerId:3, galleryId:5, forum_id:7, parent_id:8 etc...
