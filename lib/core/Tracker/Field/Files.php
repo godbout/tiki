@@ -470,13 +470,19 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 						</a>";
 					}
 
+					$smarty->loadPlugin('smarty_function_icon');
+					$viewicon = smarty_function_icon(['name' => 'view'], $smarty->getEmptyInternalTemplate());
+
 					if ($prefs['fgal_pdfjs_feature'] == 'y' &&
 						($file['filetype'] == $mimetypes["pdf"] || PDFHelper::canConvertToPDF($file['filetype']))
 					) {
-						$smarty->loadPlugin('smarty_function_icon');
-						$viewicon = smarty_function_icon(['name' => 'view'], $smarty->getEmptyInternalTemplate());
 						$ret .= " <a href='tiki-display_pdf.php?fileId=" . $file['fileId']
 							. "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "'>
+							$viewicon
+						</a>";
+					} else {
+						$src = smarty_modifier_sefurl($file['fileId'], 'display');
+						$ret .= " <a href='" . $src . "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "'>
 							$viewicon
 						</a>";
 					}
