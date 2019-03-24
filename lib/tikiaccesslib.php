@@ -385,21 +385,7 @@ class TikiAccessLib extends TikiLib
 	{
 		if (empty($_POST['confirmForm']) || $_POST['confirmForm'] !== 'y') {
 			if ($this->checkOrigin()) {
-				if (empty($confirmText)) {
-					$confirmText = tra('Confirm action');
-				}
-				// Display the confirmation in the main tiki.tpl template
-				$smarty = TikiLib::lib('smarty');
-				if (empty($smarty->getTemplateVars('confirmaction'))) {
-					$smarty->assign('confirmaction', $_SERVER['PHP_SELF']);
-				}
-				$smarty->assign('post', $_REQUEST);
-				$smarty->assign('print_page', 'n');
-				$smarty->assign('title', tra('Please confirm action'));
-				$smarty->assign('confirmation_text', $confirmText);
-				$smarty->assign('mid', 'confirm.tpl');
-				$smarty->display('tiki.tpl');
-				die();
+				$this->confirmRedirect($confirmText, $error);
 			} else {
 				$this->csrfError($error);
 				return false;
@@ -671,6 +657,40 @@ class TikiAccessLib extends TikiLib
 	public function isActionPost()
 	{
 		return ($this->requestIsPost() && !empty($_POST['ticket']));
+	}
+
+	/**
+	 * Utility method for checkCsrfForm and also used in infrequent cases where a database-changing action is initiated
+	 * through an outside link, for example an unsubscribe link, in which case an additional validation method should
+	 * also be applied
+	 *
+	 * @param $confirmText
+	 * @param $error
+	 *
+	 * @return bool
+	 * @throws Services_Exception
+	 */
+	public function confirmRedirect($confirmText, $error = 'session')
+	{
+		if (empty($_POST['confirmForm']) || $_POST['confirmForm'] !== 'y') {
+			if (empty($confirmText)) {
+				$confirmText = tr('Confirm action');
+			}
+			// Display the confirmation in the main tiki.tpl template
+			$smarty = TikiLib::lib('smarty');
+			if (empty($smarty->getTemplateVars('confirmaction'))) {
+				$smarty->assign('confirmaction', $_SERVER['PHP_SELF']);
+			}
+			$smarty->assign('post', $_REQUEST);
+			$smarty->assign('print_page', 'n');
+			$smarty->assign('title', tra('Please confirm action'));
+			$smarty->assign('confirmation_text', $confirmText);
+			$smarty->assign('mid', 'confirm.tpl');
+			$smarty->display('tiki.tpl');
+			die();
+		} else {
+			return $this->checkCsrf($error);
+		}
 	}
 
 
