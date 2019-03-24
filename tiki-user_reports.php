@@ -16,7 +16,7 @@ $access->check_feature('feature_daily_report_watches');
 $reportsManager = Reports_Factory::build('Reports_Manager');
 
 //Enable User Reports
-if (isset($_POST['report_preferences']) && $_POST['use_daily_reports'] == "true") {
+if (isset($_POST['report_preferences']) && $_POST['use_daily_reports'] == "true" && $access->checkCsrf()) {
 	$interval = filter_input(INPUT_POST, 'interval', FILTER_SANITIZE_STRING);
 	$view = filter_input(INPUT_POST, 'view', FILTER_SANITIZE_STRING);
 	$type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_STRING);

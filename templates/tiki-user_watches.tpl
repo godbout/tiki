@@ -17,6 +17,7 @@
 		<h2>{tr}Report Preferences{/tr}</h2>
 		{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Use reports to summarise notifications about objects you are watching.{/tr}{/remarksbox}
 		<form action="tiki-user_reports.php" method="post">
+			{ticket}
 			<input type="hidden" name="report_preferences" value="true">
 
 			<div class="form-group row">
@@ -85,6 +86,7 @@
 {if $add_options|@count > 0}
 	<h3>{tr}Add Watch{/tr}</h3>
 	<form action="tiki-user_watches.php" method="post">
+		{ticket}
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="type_selector">{tr}Event{/tr}</label>
 
@@ -178,6 +180,7 @@
 		</div>
 	</form>
 	<form action="tiki-user_watches.php" method="post">
+		{ticket}
 		<div class="table-responsive">
 			<table class="table table-striped table-hover">
 				<tr>
@@ -235,6 +238,7 @@
 	<h2>{tr}Notification Preferences{/tr}</h2>
 {remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Use this form to control notifications about objects you are watching.{/tr}{/remarksbox}
 	<form action="tiki-user_notifications.php" method="post">
+		{ticket}
 		<input type="hidden" name="notification_preferences" value="true">
 
 		<h4>{tr}Send notification when I am the editor{/tr}</h4>

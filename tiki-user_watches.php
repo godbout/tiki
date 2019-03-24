@@ -57,8 +57,9 @@ if (isset($_REQUEST['id'])) {
 	if ($tiki_p_admin_notifications != 'y' && $user != $tikilib->get_user_notification($_REQUEST['id'])) {
 		Feedback::errorPage(['mes' => tr('Permission denied'), 'errortype' => 401]);
 	}
-	$access->check_authenticity(tra('Remove the notification email'));
-	$result = $tikilib->remove_user_watch_by_id($_REQUEST['id']);
+	if ($access->confirmRedirect(tr('Unsubscribe from user watch email notifications?'))) {
+		$result = $tikilib->remove_user_watch_by_id($_REQUEST['id']);
+	}
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Unsubscribed from user watch email notification'));
 	} else {
@@ -66,7 +67,7 @@ if (isset($_REQUEST['id'])) {
 	}
 }
 
-if (isset($_REQUEST["add"])) {
+if (isset($_REQUEST["add"]) && $access->checkCsrf()) {
 	if (isset($_REQUEST['event'])) {
 		if (! isset($notification_types[$_REQUEST['event']])) {
 			Feedback::errorPage(tr('Unknown watch type'));
@@ -185,7 +186,6 @@ if ($prefs['feature_messages'] == 'y' && $tiki_p_messages == 'y') {
 }
 $eok = $userlib->get_user_email($user);
 $smarty->assign('email_ok', empty($eok) ? 'n' : 'y');
-ask_ticket('user-watches');
 $reportsUsers = Reports_Factory::build('Reports_Users');
 $reportsUsersUser = $reportsUsers->get($user);
 $smarty->assign_by_ref('report_preferences', $reportsUsersUser);
