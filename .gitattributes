@@ -2998,6 +2998,7 @@ lib/core/Tiki/FileGallery/Manipulator/MetadataExtractor.php -text
 lib/core/Tiki/FileGallery/Manipulator/Validator.php -text
 lib/core/Tiki/FileGallery/SaveHandler.php -text
 lib/core/Tiki/FileGallery/index.php -text
+lib/core/Tiki/Files/CheckAttachmentGallery.php -text
 lib/core/Tiki/Log.php -text
 lib/core/Tiki/MailIn/Account.php -text
 lib/core/Tiki/MailIn/Action/ActionInterface.php -text
@@ -4349,6 +4350,7 @@ lib/test/core/DeclFilter/index.php -text
 lib/test/core/Event/CustomizerTest.php -text
 lib/test/core/Event/ManagerTest.php -text
 lib/test/core/Event/index.php -text
+lib/test/core/Files/CheckAttachmentGalleryTest.php -text
 lib/test/core/JitFilter/AccessTest.php -text
 lib/test/core/JitFilter/FilterTest.php -text
 lib/test/core/JitFilter/IteratorTest.php -text

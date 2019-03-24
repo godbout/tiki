@@ -208,7 +208,7 @@ class Comments extends TikiLib
 			$data = '';
 		}
 
-		$this->table('tiki_forum_attachments')->insert(
+		$id = $this->table('tiki_forum_attachments')->insert(
 			[
 				'threadId' => $threadId,
 				'qId' => $qId,
@@ -222,7 +222,7 @@ class Comments extends TikiLib
 				'forumId' => $forumId,
 			]
 		);
-		return true;
+		return $id;
 		// Now the file is attached and we can proceed.
 	}
 
@@ -250,6 +250,25 @@ class Comments extends TikiLib
 
 		$res[0]['forum_info'] = $this->get_forum($res[0]['forumId']);
 		return $res[0];
+	}
+
+	public function list_all_attachements($offset = 0, $maxRecords = -1, $sort_mode = 'attId_asc', $find = '')
+	{
+		$attachments = $this->table('tiki_forum_attachments');
+
+		$order = $attachments->sortMode($sort_mode);
+		$fields = ['attId', 'threadId', 'qId', 'forumId', 'filename', 'filetype', 'filesize', 'data', 'dir', 'created', 'path'];
+		$conditions = [];
+		$data = [];
+
+		if ($find) {
+			$conditions['filename'] = $attachments->like("%$find%");
+		}
+
+		return [
+			'data' => $attachments->fetchAll($fields, $conditions, $maxRecords, $offset, $order),
+			'cant' => $attachments->fetchCount($conditions),
+		];
 	}
 
 	function remove_thread_attachment($attId)

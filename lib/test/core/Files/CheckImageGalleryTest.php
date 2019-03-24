@@ -47,6 +47,7 @@ class CheckImageGalleryTest extends \PHPUnit_Framework_TestCase
 		$prefs['feature_galleries'] = 'y';
 		$prefs['gal_use_db'] = 'y';
 		$prefs['gal_use_dir'] = '';
+		$prefs['feature_user_watches'] = 'n';
 
 		// setup virtual file system
 		$this->fileRoot = vfsStream::setup(uniqid('', true), null);

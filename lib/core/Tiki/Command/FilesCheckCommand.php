@@ -11,6 +11,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Tiki\Files\CheckAttachmentGallery;
 use Tiki\Files\CheckFileGallery;
 use Tiki\Files\CheckImageGallery;
 
@@ -61,6 +62,24 @@ class FilesCheckCommand extends Command
 		$checkFileGallery = new CheckFileGallery();
 		$result = $checkFileGallery->analyse();
 		$this->printResults($output, $result, tr('File Gallery'));
+
+		$output->writeln('');
+
+		$checkAttachmentGallery = new CheckAttachmentGallery('t');
+		$result = $checkAttachmentGallery->analyse();
+		$this->printResults($output, $result, tr('Tracker Attachments'));
+
+		$output->writeln('');
+
+		$checkAttachmentGallery = new CheckAttachmentGallery('w');
+		$result = $checkAttachmentGallery->analyse();
+		$this->printResults($output, $result, tr('Wiki Attachments'));
+
+		$output->writeln('');
+
+		$checkAttachmentGallery = new CheckAttachmentGallery('f');
+		$result = $checkAttachmentGallery->analyse();
+		$this->printResults($output, $result, tr('Forum Attachments'));
 	}
 
 	/**

@@ -35,7 +35,7 @@ abstract class AbstractCheckGallery
 
 		$fileList = [];
 		foreach (new DirectoryIterator($path) as $fileInfo) {
-			if ($fileInfo->isDot()) {
+			if ($fileInfo->isDot() || $fileInfo->isDir()) {
 				continue;
 			}
 			$fileList[] = [
