@@ -61,12 +61,12 @@ class Reports_Manager
 	 * changes cache for this user.
 	 *
 	 * @param string $user user name
-	 * @return null
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	public function delete($user)
 	{
-		$this->reportsUsers->delete($user);
 		$this->reportsCache->delete($user);
+		return $this->reportsUsers->delete($user);
 	}
 
 	/**
@@ -76,11 +76,11 @@ class Reports_Manager
 	 * @param string $view
 	 * @param string $type
 	 * @param int $always_email
-	 * @return null
+	 * @return int|TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	public function save($user, $interval, $view, $type, $always_email)
 	{
-		$this->reportsUsers->save($user, $interval, $view, $type, $always_email);
+		return $this->reportsUsers->save($user, $interval, $view, $type, $always_email);
 	}
 
 	/**

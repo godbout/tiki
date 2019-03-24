@@ -55,11 +55,11 @@ class Reports_Users
 	 * Remove user preferences for reports.
 	 *
 	 * @param string $user
-	 * @return null
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	public function delete($user)
 	{
-		$this->table->deleteMultiple(['user' => $user]);
+		return $this->table->deleteMultiple(['user' => $user]);
 	}
 
 	/**
@@ -67,16 +67,17 @@ class Reports_Users
 	 * reports with changes in Tiki.
 	 *
 	 * @param string $user
-	 * @param string $interval report interval (can be 'daily', 'weekly' and 'monthly')
+	 * @param string $interval     report interval (can be 'daily', 'weekly' and 'monthly')
 	 * @param string $view
-	 * @param string $type whether the report should be send in plain text or html
-	 * @param bool $always_email if true the user will receive an e-mail even if there are no changes
-	 * @return null
+	 * @param string $type         whether the report should be send in plain text or html
+	 * @param int    $always_email if true the user will receive an e-mail even if there are no changes
+	 *
+	 * @return int|TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	public function save($user, $interval, $view, $type, $always_email = 0)
 	{
 		if (! $this->get($user)) {
-			$this->table->insert(
+			$result = $this->table->insert(
 				[
 					'user' => $user,
 					'interval' => $interval,
@@ -87,7 +88,7 @@ class Reports_Users
 				]
 			);
 		} else {
-			$this->table->update(
+			$result = $this->table->update(
 				[
 					'interval' => $interval,
 					'view' => $view,
@@ -97,6 +98,7 @@ class Reports_Users
 				['user' => $user]
 			);
 		}
+		return $result;
 	}
 
 	/**
