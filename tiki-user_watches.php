@@ -23,20 +23,6 @@ if ($prefs['feature_user_watches_translations']) {
 $notificationlib = TikiLib::lib('notification');
 
 $notification_types = $notificationlib->get_global_watch_types(true);
-if ($prefs['feature_user_watches_translations'] == 'y') {
-	$notification_types['wiki_page_in_lang_created'] = [
-		'label' => tra('A new page is created in a language') ,
-		'type' => 'wiki page',
-		'url' => ''
-	];
-}
-if ($prefs['feature_user_watches_languages'] == 'y') {
-	$notification_types['category_changed_in_lang'] = [
-		'label' => tra('Category change in a language') ,
-		'type' => '',
-		'url' => ''
-	];
-}
 
 $smarty->assign('add_options', $notification_types);
 if (isset($_POST['langwatch'])) {
@@ -78,6 +64,14 @@ if (isset($_REQUEST['id'])) {
 
 if (isset($_REQUEST["add"])) {
 	if (isset($_REQUEST['event'])) {
+		if (! isset($notification_types[$_REQUEST['event']])) {
+			Feedback::errorPage(tr('Unknown watch type'));
+		}
+		$watch_object = '*';
+		$watch_type = $notification_types[$_REQUEST['event']]['type'];
+		$watch_label = $notification_types[$_REQUEST['event']]['label'];
+		$watch_url = $notification_types[$_REQUEST['event']]['url'];
+		//special values
 		switch ($_REQUEST['event']) {
 			case 'wiki_page_in_lang_created':
 				$watch_object = $langwatch['value'];
@@ -91,18 +85,6 @@ if (isset($_REQUEST["add"])) {
 					$watch_label = tr('Category watch: %0, Language: %1', $selected_categ['name'], $langwatch['name']);
 					$watch_url = "tiki-browse_categories.php?lang={$lang['value']}&parentId={$selected_categ['categId']}";
 				}
-				break;
-
-			default:
-				if (! isset($notification_types[$_REQUEST['event']])) {
-					$smarty->assign('msg', "Unknown watch type");
-					$smarty->display("error.tpl");
-					die;
-				}
-				$watch_object = '*';
-				$watch_type = $notification_types[$_REQUEST['event']]['type'];
-				$watch_label = $notification_types[$_REQUEST['event']]['label'];
-				$watch_url = $notification_types[$_REQUEST['event']]['url'];
 		}
 		if (isset($watch_object)) {
 			$tikilib->add_user_watch($user, $_REQUEST['event'], $watch_object, $watch_type, $watch_label, $watch_url);
