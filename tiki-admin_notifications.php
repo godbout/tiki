@@ -67,6 +67,8 @@ if (isset($_REQUEST["add"])) {
 		$result = $tikilib->add_user_watch($login, $_REQUEST["event"], $watches[$_REQUEST['event']]['object'], $watches[$_REQUEST['event']]['type'], $watches[$_REQUEST['event']]['label'], $watches[$_REQUEST['event']]['url'], isset($email) ? $email : null);
 		if (! $result) {
 			Feedback::error(tra('The user has no email set. No notifications will be sent.'));
+		} else {
+			Feedback::success(tr('Mail notification event added'));
 		}
 	}
 }
@@ -74,19 +76,38 @@ if (isset($_REQUEST["add"])) {
 if (isset($_REQUEST["removeevent"]) && isset($_REQUEST['removetype'])) {
 	$access->check_authenticity();
 	if ($_REQUEST['removetype'] == 'user') {
-		$tikilib->remove_user_watch_by_id($_REQUEST["removeevent"]);
+		$result = $tikilib->remove_user_watch_by_id($_REQUEST["removeevent"]);
 	} else {
-		$tikilib->remove_group_watch_by_id($_REQUEST["removeevent"]);
+		$result = $tikilib->remove_group_watch_by_id($_REQUEST["removeevent"]);
+	}
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Mail notification event deleted'));
+	} else {
+		Feedback::error('Mail notification event not deleted');
 	}
 }
 if (isset($_REQUEST['delsel_x']) && isset($_REQUEST['checked'])) {
 	check_ticket('admin-notif');
+	$i = 0;
 	foreach ($_REQUEST['checked'] as $id) {
 		if (strpos($id, 'user') === 0) {
-			$tikilib->remove_user_watch_by_id(substr($id, 4));
+			$result = $tikilib->remove_user_watch_by_id(substr($id, 4));
+			if ($result && $result->numRows()) {
+				$i++;
+			}
 		} else {
-			$tikilib->remove_group_watch_by_id(substr($id, 5));
+			$result = $tikilib->remove_group_watch_by_id(substr($id, 5));
+			if ($result && $result->numRows()) {
+				$i++;
+			}
 		}
+	}
+	$checkedCount = count($_REQUEST['checked']);
+	if ($checkedCount == $i) {
+		$msg = $i == 1 ? tr('One mail notification events deleted') : tr('%0 mail notifications events deleted', $i);
+		Feedback::success(tr($msg));
+	} elseif ($i < $checkedCount) {
+		Feedback::error('%0 of %1 selected mail notification events deleted', $i, $checkedCount);
 	}
 }
 if (! isset($_REQUEST["sort_mode"])) {
