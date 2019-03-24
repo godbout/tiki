@@ -181,6 +181,20 @@ class NotificationLib extends TikiLib
 				'object' => '*'
 		];
 
+		$watches['category_changed_in_lang'] = [
+			'label' => tr('Category change in a language') ,
+			'type' => '',
+			'url' => '',
+			'available' => $prefs['feature_user_watches_languages'] == 'y',
+		];
+
+		$watches['wiki_page_in_lang_created'] = [
+			'label' => tr('A new page is created in a language') ,
+			'type' => 'wiki page',
+			'url' => 'tiki-user_watches.php',
+			'available' => $prefs['feature_user_watches_translations'] == 'y',
+		];
+
 		foreach ($watches as $key => $watch) {
 			if (array_key_exists('available', $watch) && ! $watch['available']) {
 				unset($watches[$key]);

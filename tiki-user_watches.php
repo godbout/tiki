@@ -81,9 +81,7 @@ if (isset($_REQUEST["add"])) {
 		switch ($_REQUEST['event']) {
 			case 'wiki_page_in_lang_created':
 				$watch_object = $langwatch['value'];
-				$watch_type = 'wiki page';
 				$watch_label = tra('Language watch') . ": {$lang['name']}";
-				$watch_url = "tiki-user_watches.php";
 				break;
 
 			case 'category_changed_in_lang':
@@ -129,20 +127,6 @@ if (isset($_REQUEST["delete"]) && isset($_REQUEST['watch'])) {
 	}
 }
 $notification_types = $notificationlib->get_global_watch_types();
-if ($prefs['feature_user_watches_translations'] == 'y') {
-	$notification_types['wiki_page_in_lang_created'] = [
-		'label' => tra('A new page is created in a language') ,
-		'type' => 'wiki page',
-		'url' => ''
-	];
-}
-if ($prefs['feature_user_watches_languages'] == 'y') {
-	$notification_types['category_changed_in_lang'] = [
-		'label' => tra('Category change in a language') ,
-		'type' => '',
-		'url' => ''
-	];
-}
 $rawEvents = $tikilib->get_watches_events();
 $events = [];
 foreach ($rawEvents as $event) {
