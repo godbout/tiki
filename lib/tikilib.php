@@ -679,14 +679,16 @@ class TikiLib extends TikiDb_Bridge
 
 	/*shared*/
 	/**
-	 * @param $user
-	 * @param $event
-	 * @param $object
+	 * @param      $user
+	 * @param      $event
+	 * @param      $object
 	 * @param null $type
 	 * @param null $title
 	 * @param null $url
 	 * @param null $email
-	 * @return bool
+	 *
+	 * @return int
+	 * @throws Exception
 	 */
 	function add_user_watch($user, $event, $object, $type = null, $title = null, $url = null, $email = null)
 	{
@@ -705,7 +707,7 @@ class TikiLib extends TikiDb_Bridge
 		}
 
 		$userWatches = $this->table('tiki_user_watches');
-		$userWatches->insert(
+		return $userWatches->insert(
 			[
 				'user' => $user,
 				'event' => $event,
@@ -716,7 +718,6 @@ class TikiLib extends TikiDb_Bridge
 				'url' => $url,
 			]
 		);
-		return true;
 	}
 
 	/**
@@ -765,15 +766,14 @@ class TikiLib extends TikiDb_Bridge
 	/*shared*/
 	/**
 	 * @param $id
-	 * @return bool
+	 *
+	 * @return bool|TikiDb_Adodb_Result|TikiDb_Pdo_Result
 	 */
 	function remove_user_watch_by_id($id)
 	{
 		global $tiki_p_admin_notifications, $user;
 		if ($tiki_p_admin_notifications === 'y' or $user === $this->get_user_notification($id)) {
-			$this->table('tiki_user_watches')->delete(['watchId' => (int) $id]);
-
-			return true;
+			return $this->table('tiki_user_watches')->delete(['watchId' => (int) $id]);
 		}
 
 		return false;
@@ -4448,7 +4448,9 @@ class TikiLib extends TikiDb_Bridge
 	 * @param $my_user
 	 * @param $name
 	 * @param $value
-	 * @return bool
+	 *
+	 * @return bool|TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 * @throws Exception
 	 */
 	function set_user_preference($my_user, $name, $value)
 	{
@@ -4466,7 +4468,7 @@ class TikiLib extends TikiDb_Bridge
 
 			$userPreferences = $this->table('tiki_user_preferences', false);
 			$userPreferences->delete(['user' => $my_user, 'prefName' => $name]);
-			$userPreferences->insert(['user' => $my_user,	'prefName' => $name,	'value' => $value]);
+			$result = $userPreferences->insert(['user' => $my_user,	'prefName' => $name,	'value' => $value]);
 
 			$user_preferences[$my_user][$name] = $value;
 
@@ -4488,6 +4490,7 @@ class TikiLib extends TikiDb_Bridge
 						$userPreferences->delete(['user' => $my_user, 'prefName' => $name]);
 					}
 				}
+				return $result;
 			}
 		} else { // If $my_user is empty, we must be Anonymous updating one of our own preferences
 			if ($name == 'theme' && $prefs['change_theme'] == 'y') {
@@ -4509,9 +4512,8 @@ class TikiLib extends TikiDb_Bridge
 				$prefs[$name] = $value;
 				$_SESSION['preferences'][$name] = $value;
 			}
+			return true;
 		}
-
-		return true;
 	}
 
 	// similar to set_user_preference, but set all at once.
