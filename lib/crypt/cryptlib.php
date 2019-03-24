@@ -559,7 +559,7 @@ class CryptLib extends TikiLib
 				}
 
 				// Delete old Mcrypt coded user data
-				$userPreferences = $this->table('tiki_user_preferences');
+				$userPreferences = $this->table('tiki_user_preferences', false);
 				$userPreferences->delete(['user' => $login, 'prefName' => $orgPrefName]);
 			}
 		}

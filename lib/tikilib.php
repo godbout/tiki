@@ -4464,7 +4464,7 @@ class TikiLib extends TikiDb_Bridge
 				$cachelib->invalidate('userlink.' . $my_user . '0');
 			}
 
-			$userPreferences = $this->table('tiki_user_preferences');
+			$userPreferences = $this->table('tiki_user_preferences', false);
 			$userPreferences->delete(['user' => $my_user, 'prefName' => $name]);
 			$userPreferences->insert(['user' => $my_user,	'prefName' => $name,	'value' => $value]);
 
@@ -4527,7 +4527,7 @@ class TikiLib extends TikiDb_Bridge
 		$cachelib = TikiLib::lib('cache');
 		$cachelib->invalidate('user_details_' . $my_user);
 
-		$userPreferences = $this->table('tiki_user_preferences');
+		$userPreferences = $this->table('tiki_user_preferences', false);
 		$userPreferences->deleteMultiple(['user' => $my_user]);
 
 		foreach ($preferences as $prefName => $value) {

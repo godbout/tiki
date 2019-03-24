@@ -831,7 +831,7 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		// Remove results (really?)
 		$this->tiki_h5p_results->delete(['content_id' => $contentId]);
 
-		$tiki_user_preferences = TikiDb::get()->table('tiki_user_preferences');
+		$tiki_user_preferences = TikiDb::get()->table('tiki_user_preferences', false);
 		$tikilib = TikiLib::lib('tiki');
 
 		// Remove contents user/usage data
