@@ -474,7 +474,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 					$viewicon = smarty_function_icon(['name' => 'view'], $smarty->getEmptyInternalTemplate());
 
 					if ($prefs['fgal_pdfjs_feature'] == 'y' &&
-						($file['filetype'] == $mimetypes["pdf"] || PDFHelper::canConvertToPDF($file['filetype']))
+						($file['filetype'] == $mimetypes["pdf"] || (PDFHelper::canConvertToPDF($file['filetype']) && $prefs['fgal_convert_documents_pdf'] == 'y'))
 					) {
 						$ret .= " <a href='tiki-display_pdf.php?fileId=" . $file['fileId']
 							. "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "'>

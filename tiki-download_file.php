@@ -220,7 +220,7 @@ if ($use_client_cache) {
 }
 
 // Indicates if a 'office' document should be converted to pdf for download or display in browser.
-$convertToPdf = (isset($_GET['display']) || isset($_GET['pdf'])) && PDFHelper::canConvertToPDF($info['filetype']);
+$convertToPdf = (isset($_GET['display']) || isset($_GET['pdf'])) && PDFHelper::canConvertToPDF($info['filetype']) && $prefs['fgal_convert_documents_pdf'] == 'y';
 
 // Handle images display, files thumbnails and icons
 if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display']) || isset($_GET['icon']) || $convertToPdf) {
