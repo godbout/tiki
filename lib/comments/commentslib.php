@@ -118,7 +118,7 @@ class Comments extends TikiLib
 	/* Add an attachment to a post in a forum */
 	function add_thread_attachment($forum_info, $threadId, &$errors, $name, $type, $size, $inbound_mail = 0, $qId = 0, $fp = '', $data = '')
 	{
-		$perms = Perm::get(['type' => 'thread', 'object' => $threadId]);
+		$perms = Perms::get(['type' => 'thread', 'object' => $threadId]);
 		if (! ($forum_info['att'] == 'att_all'
 				|| ($forum_info['att'] == 'att_admin' && $perms->admin_forum == 'y')
 				|| ($forum_info['att'] == 'att_perm' && $perms->forum_attach == 'y'))) {
