@@ -792,8 +792,10 @@ class TikiLib extends TikiDb_Bridge
 	 * @param string $user
 	 * @param string $event
 	 * @param string $object
-	 * @param string $type = 'wiki page'
+	 * @param string $type  = 'wiki page'
 	 * @param string $email = ''
+	 *
+	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
 	 */
 	function remove_user_watch($user, $event, $object, $type = 'wiki page', $email = '')
 	{
