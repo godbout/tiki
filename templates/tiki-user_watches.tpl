@@ -15,11 +15,7 @@
 {if $prefs.feature_daily_report_watches eq 'y'}
 	{tab name="{tr}Report Preferences{/tr}"}
 		<h2>{tr}Report Preferences{/tr}</h2>
-	{if isset($remove_user_watch_error) && $remove_user_watch_error}
-		{remarksbox type="error" title="{tr}Error{/tr}"}{tr}You are not allowed to remove this notification !{/tr}{/remarksbox}
-	{else}
 		{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Use reports to summarise notifications about objects you are watching.{/tr}{/remarksbox}
-	{/if}
 		<form action="tiki-user_reports.php" method="post">
 			<input type="hidden" name="report_preferences" value="true">
 

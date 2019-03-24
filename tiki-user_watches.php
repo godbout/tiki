@@ -52,14 +52,18 @@ if (isset($_REQUEST['categwatch'])) {
 		}
 	}
 }
-
+// request from unsubscribe email link, like in templates/mail/user_watch_map_changed.tpl
 if (isset($_REQUEST['id'])) {
 	if ($tiki_p_admin_notifications != 'y' && $user != $tikilib->get_user_notification($_REQUEST['id'])) {
 		Feedback::errorPage(['mes' => tr('Permission denied'), 'errortype' => 401]);
 	}
 	$access->check_authenticity(tra('Remove the notification email'));
-	$error = $tikilib->remove_user_watch_by_id($_REQUEST['id']);
-	$smarty->assign('remove_user_watch_error', ! $error);
+	$result = $tikilib->remove_user_watch_by_id($_REQUEST['id']);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Unsubscribed from user watch email notification'));
+	} else {
+		Feedback::error(tr('Unsubscribe failed'));
+	}
 }
 
 if (isset($_REQUEST["add"])) {
@@ -86,26 +90,51 @@ if (isset($_REQUEST["add"])) {
 					$watch_url = "tiki-browse_categories.php?lang={$lang['value']}&parentId={$selected_categ['categId']}";
 				}
 		}
-		if (isset($watch_object)) {
-			$tikilib->add_user_watch($user, $_REQUEST['event'], $watch_object, $watch_type, $watch_label, $watch_url);
-			$_REQUEST['event'] = '';
+		$result = $tikilib->add_user_watch(
+			$user,
+			$_REQUEST['event'],
+			$watch_object,
+			$watch_type,
+			$watch_label,
+			$watch_url
+		);
+		if ($result) {
+			Feedback::success(tr('User watch added'));
+		} else {
+			Feedback::error(tr('User watch not added'));
 		}
+		$_REQUEST['event'] = '';
 	} else {
+		// Don't see where this case is used in the code
+		$errors = 0;
 		foreach ($_REQUEST['cat_categories'] as $cat) {
 			if ($cat > 0) {
-				$tikilib->add_user_watch($user, 'new_in_category', $cat, 'category', "tiki-browse_category.php?parentId=$cat");
+				$result = $tikilib->add_user_watch($user, 'new_in_category', $cat, 'category', "tiki-browse_category.php?parentId=$cat");
+				$errors += $result ? 0: 1;
 			} else {
 				$tikilib->remove_user_watch($user, 'new_in_category', '*');
-				$tikilib->add_user_watch($user, 'new_in_category', '*', 'category', "tiki-browse_category.php");
+				/** @var  TikiDb_Pdo_Result|TikiDb_Adodb_Result $result */
+				$result = $tikilib->add_user_watch($user, 'new_in_category', '*', 'category', "tiki-browse_category.php");
+				$errors += $result && $result->numRows() ? 0 : 1;
+			}
+			if ($errors) {
+				Feedback::error('Errors encountered in adding category user watches');
+			} else {
+				Feedback::success('Category user watches added');
 			}
 		}
 	}
 }
-if (isset($_REQUEST["delete"]) && isset($_REQUEST['watch'])) {
-	check_ticket('user-watches');
+// no confirmation needed as it is easy to add back a watch
+if (isset($_REQUEST["delete"]) && isset($_REQUEST['watch']) && $access->checkCsrf()) {
 	/* CSRL doesn't work if param as passed not in the uri */
 	foreach (array_keys($_REQUEST["watch"]) as $item) {
-		$tikilib->remove_user_watch_by_id($item);
+		$result = $tikilib->remove_user_watch_by_id($item);
+		if ($result && $result->numRows()) {
+			Feedback::success(tr('User watch deleted'));
+		} else {
+			Feedback::error(tr('User watch not deleted'));
+		}
 	}
 }
 $notification_types = $notificationlib->get_global_watch_types();

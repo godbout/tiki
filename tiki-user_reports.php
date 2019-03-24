@@ -25,13 +25,23 @@ if (isset($_POST['report_preferences']) && $_POST['use_daily_reports'] == "true"
 		$always_email = 0;
 	}
 
-	$reportsManager->save($user, $interval, $view, $type, $always_email);
+	$result = $reportsManager->save($user, $interval, $view, $type, $always_email);
+	if ((is_numeric($result) && $result > 0) || (is_object($result) && $result->numRows())) {
+		Feedback::success(tr('User report preferences saved'));
+	} else {
+		Feedback::error(tr('User report preferences not saved'));
+	}
 	header('Location: tiki-user_watches.php');
 	die;
 }
 //Disable User Reports
 if (isset($_POST['report_preferences']) && $_POST['use_daily_reports'] != "true") {
-	$reportsManager->delete($user);
+	$result = $reportsManager->delete($user);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('User reports disabled'));
+	} else {
+		Feedback::error(tr('User report not disabled'));
+	}
 	header('Location: tiki-user_watches.php');
 	die;
 }
