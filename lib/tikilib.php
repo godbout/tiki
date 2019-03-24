@@ -781,10 +781,12 @@ class TikiLib extends TikiDb_Bridge
 
 	/**
 	 * @param $id
+	 *
+	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
 	 */
 	function remove_group_watch_by_id($id)
 	{
-		$this->table('tiki_group_watches')->delete(['watchId' => (int) $id,]);
+		return $this->table('tiki_group_watches')->delete(['watchId' => (int) $id,]);
 	}
 
 	/*shared*/
