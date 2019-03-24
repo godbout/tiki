@@ -23,53 +23,61 @@
 		<form action="tiki-user_reports.php" method="post">
 			<input type="hidden" name="report_preferences" value="true">
 
-			<div class="form-check">
-				<label class="form-check-label">{tr}Use reports{/tr}
-					<input type="checkbox" class="form-check-input" name="use_daily_reports" value="true" {if $report_preferences != false}checked{/if}>
-				</label>
-			</div>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">{tr}Use reports{/tr}</label>
 
-			<div>
-				{tr}Interval in which you want to get the reports{/tr}
-				<select name="interval">
-					<option value="minute"
-						{if $report_preferences.interval eq "minute"}selected{/if}>{tr}Every minute{/tr}</option>
-					<option value="hourly"
-						{if $report_preferences.interval eq "hourly"}selected{/if}>{tr}Hourly{/tr}</option>
-					<option value="daily"
-						{if $report_preferences.interval eq "daily" or !isset($report_preferences.interval)}selected{/if}>{tr}Daily{/tr}</option>
-					<option value="weekly"
-						{if $report_preferences.interval eq "weekly"}selected{/if}>{tr}Weekly{/tr}</option>
-					<option value="monthly"
-						{if $report_preferences.interval eq "monthly"}selected{/if}>{tr}Monthly{/tr}</option>
-				</select>
+				<div class="col-sm-9">
+					<input type="checkbox" class="form-control" name="use_daily_reports" value="true" {if $report_preferences != false}checked{/if}>
+				</div>
 			</div>
-
-			<div style="float:left; margin-right: 50px;">
-				<input type="radio" name="view" value="short"{if $report_preferences.view eq "short"} checked="checked"{/if}>
-				{tr}Short report{/tr}
-				<br>
-				<input type="radio" name="view" value="detailed"{if $report_preferences.view eq "detailed" OR $report_preferences eq false} checked="checked"{/if}>
-				{tr}Detailed report{/tr}
-				<br>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">{tr}Reporting interval{/tr}</label>
+				<div class="col-sm-9">
+					<select name="interval" class="form-control" >
+						<option value="minute"
+								{if $report_preferences.interval eq "minute"}selected{/if}>{tr}Every minute{/tr}</option>
+						<option value="hourly"
+								{if $report_preferences.interval eq "hourly"}selected{/if}>{tr}Hourly{/tr}</option>
+						<option value="daily"
+								{if $report_preferences.interval eq "daily" or !isset($report_preferences.interval)}selected{/if}>{tr}Daily{/tr}</option>
+						<option value="weekly"
+								{if $report_preferences.interval eq "weekly"}selected{/if}>{tr}Weekly{/tr}</option>
+						<option value="monthly"
+								{if $report_preferences.interval eq "monthly"}selected{/if}>{tr}Monthly{/tr}</option>
+					</select>
+				</div>
 			</div>
-			<div style="float:left; margin-right: 50px;">
-				<input type="radio" name="type" value="html"{if $report_preferences.type eq "html" OR $report_preferences eq false} checked="checked"{/if}>
-				{tr}HTML-Email{/tr}
-				<br>
-				<input type="radio" name="type" value="plain"{if $report_preferences.type eq "plain"} checked="checked"{/if}>
-				{tr}Plain text{/tr}
-				<br>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label" for="view">{tr}Report length{/tr}</label>
+				<div class="col-sm-9">
+					<input type="radio" name="view" value="short"{if $report_preferences.view eq "short"} checked="checked"{/if}>
+					{tr}Short report{/tr}
+					<br>
+					<input type="radio" name="view" value="detailed"{if $report_preferences.view eq "detailed" OR $report_preferences eq false} checked="checked"{/if}>
+					{tr}Detailed report{/tr}
+					<br>
+				</div>
 			</div>
-			<div class="form-check">
-				<label class="form-check-label">{tr}Send me an email also if nothing happened{/tr}
-					<input type="checkbox" class="form-check-input" name="always_email" value="1"{if $report_preferences.always_email eq 1 OR $report_preferences eq false} checked="checked"{/if}>
-				</label>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">{tr}Report format{/tr}</label>
+				<div class="col-sm-9">
+					<input type="radio" name="type" value="html"{if $report_preferences.type eq "html" OR $report_preferences eq false} checked="checked"{/if}>
+					{tr}HTML{/tr}
+					<br>
+					<input type="radio" name="type" value="plain"{if $report_preferences.type eq "plain"} checked="checked"{/if}>
+					{tr}Plain text{/tr}
+					<br>
+				</div>
 			</div>
-
-			<p>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">{tr}Send report even if no activity{/tr}</label>
+				<div class="col-sm-9">
+					<input type="checkbox" class="form-control" name="always_email" value="1"{if $report_preferences.always_email eq 1 OR $report_preferences eq false} checked="checked"{/if}>
+				</div>
+			</div>
+			<div class="form-group text-center">
 				<input type="submit" name="submit" class="btn btn-primary" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
-			</p>
+			</div>
 		</form>
 	{/tab}
 {/if}
@@ -82,7 +90,7 @@
 	<h3>{tr}Add Watch{/tr}</h3>
 	<form action="tiki-user_watches.php" method="post">
 		<div class="form-group row">
-			<label class="col-sm-3 col-form-label" for="type_selector">{tr}Event:{/tr}</label>
+			<label class="col-sm-3 col-form-label" for="type_selector">{tr}Event{/tr}</label>
 
 			<div class="col-sm-9">
 				<select name="event" id="type_selector" class="form-control">
@@ -95,7 +103,7 @@
 		</div>
 		{if $prefs.feature_categories eq 'y'}
 			<div class="form-group row" id="categ_list">
-				<label class="col-form-label" for="langwatch_categ">{tr}Category{/tr}</label>
+				<label class="col-sm-3 col-form-label" for="langwatch_categ">{tr}Category{/tr}</label>
 
 				<div class="col-sm-9">
 					<select class="categwatch-select form-control" name="categwatch" id="langwatch_categ">
@@ -108,7 +116,7 @@
 		{/if}
 		{if $prefs.feature_multilingual eq 'y'}
 			<div class="form-group row" id="lang_list">
-				<label>{tr}Language{/tr}</label>
+				<label class="col-sm-3 col-form-label">{tr}Language{/tr}</label>
 
 				<div class="col-sm-9">
 					<select name="langwatch" class="form-control">
@@ -142,9 +150,9 @@
 	{/jq}
 {/if}
 	<h3>{tr}Watches{/tr}</h3>
-	<form mb-4" action="tiki-user_watches.php" method="post" id='formi'>
+	<form class="mb-4" action="tiki-user_watches.php" method="post" id='formi'>
 		<div class="form-group row">
-			<label class="col-sm-3 col-form-label" for="event">{tr}Show:{/tr}</label>
+			<label class="col-sm-3 col-form-label" for="event">{tr}Show{/tr}</label>
 
 			<div class="col-sm-9">
 				<select class="form-control" name="event"
@@ -175,7 +183,7 @@
 	</form>
 	<form action="tiki-user_watches.php" method="post">
 		<div class="table-responsive">
-			<table class="table">
+			<table class="table table-striped table-hover">
 				<tr>
 					{if $watches}
 						<th style="text-align:center;"></th>
@@ -233,72 +241,69 @@
 	<form action="tiki-user_notifications.php" method="post">
 		<input type="hidden" name="notification_preferences" value="true">
 
-		<p>{tr}Send notification when I am the editor:{/tr}</p>
+		<h4>{tr}Send notification when I am the editor{/tr}</h4>
 		{if $prefs.feature_wiki eq 'y'}
-			<div class="form-check">
-				<label class="form-check-label">
-					<input class="form-check-input" type="checkbox" name="user_wiki_watch_editor" value="true" {if $user_wiki_watch_editor eq 'y'}checked{/if}>
-					{tr}Wiki{/tr}
-				</label>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">{tr}Wiki{/tr}</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="checkbox" name="user_wiki_watch_editor" value="true" {if $user_wiki_watch_editor eq 'y'}checked{/if}>
+				</div>
 			</div>
 		{/if}
 		{if $prefs.feature_articles eq 'y'}
-			<div class="form-check">
-				<label class="form-check-label"
-					<input class="form-check-input" type="checkbox" name="user_article_watch_editor" value="true" {if $user_article_watch_editor eq 'y'}checked{/if}>
-					{tr}Article{/tr}
-				</label>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">{tr}Article{/tr}</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="checkbox" name="user_article_watch_editor" value="true" {if $user_article_watch_editor eq 'y'}checked{/if}>
+				</div>
 			</div>
 		{/if}
 		{if $prefs.feature_blogs eq 'y'}
-			<div class="form-check">
-				<label class="form-check-label">
-					<input class="form-check-input" type="checkbox" name="user_blog_watch_editor" value="true" {if $user_blog_watch_editor eq 'y'}checked{/if}>
-					{tr}Blog{/tr}
-				</label>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">{tr}Blog{/tr}</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="checkbox" name="user_blog_watch_editor" value="true" {if $user_blog_watch_editor eq 'y'}checked{/if}>
+				</div>
 			</div>
 		{/if}
 		{if $prefs.feature_trackers eq 'y'}
-			<div class="form-check">
-				<label class="form-check-label">
-					<input class="form-check-input" type="checkbox" name="user_tracker_watch_editor" value="true" {if $user_tracker_watch_editor eq 'y'}checked{/if}>
-					{tr}Tracker{/tr}
-				</label>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">{tr}Tracker{/tr}</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="checkbox" name="user_tracker_watch_editor" value="true" {if $user_tracker_watch_editor eq 'y'}checked{/if}>
+				</div>
 			</div>
 		{/if}
 		{if $prefs.feature_calendar eq 'y'}
-			<div class="form-check">
-				<label class="form-check-label">
-					<input class="form-check-input" type="checkbox" name="user_calendar_watch_editor" value="true" {if $user_calendar_watch_editor eq 'y'}checked{/if}>
-					{tr}Calendar{/tr}
-				</label>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">{tr}Calendar{/tr}</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="checkbox" name="user_calendar_watch_editor" value="true" {if $user_calendar_watch_editor eq 'y'}checked{/if}>
+				</div>
 			</div>
 		{/if}
-		<div class="form-check">
-			<label class="form-check-label">
-				<input class="form-check-input" type="checkbox" name="user_comment_watch_editor" value="true" {if $user_comment_watch_editor eq 'y'}checked{/if}>
-				{tr}Comment{/tr}
-			</label>
+		<div class="form-group row">
+			<label class="col-sm-3 col-form-label">{tr}Comment{/tr}</label>
+			<div class="col-sm-9">
+				<input class="form-control" type="checkbox" name="user_comment_watch_editor" value="true" {if $user_comment_watch_editor eq 'y'}checked{/if}>
+			</div>
 		</div>
 		{if $prefs.feature_categories eq 'y'}
-			<div class="form-check">
-				<label class="form-check-label">
-					<input class="form-check-input" type="checkbox" name="user_category_watch_editor" value="true" {if $user_category_watch_editor eq 'y'}checked{/if}>
-					{tr}Category{/tr}
-				</label>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label">{tr}Category{/tr}</label>
+				<div class="col-sm-9">
+					<input class="form-control" type="checkbox" name="user_category_watch_editor" value="true" {if $user_category_watch_editor eq 'y'}checked{/if}>
+				</div>
 			</div>
 		{/if}
-		<div class="form-check">
-			<label class="form-check-label">
-				<input class="form-check-input" type="checkbox" name="user_plugin_approval_watch_editor" value="true" {if $user_plugin_approval_watch_editor eq 'y'}checked{/if}>
-				{tr}Plugin approval{/tr}
-			</label>
+		<div class="form-group row">
+			<label class="col-sm-3 col-form-label">{tr}Plugin approval{/tr}</label>
+			<div class="col-sm-9">
+				<input class="form-control" type="checkbox" name="user_plugin_approval_watch_editor" value="true" {if $user_plugin_approval_watch_editor eq 'y'}checked{/if}>
+			</div>
 		</div>
-
-		<div class="form-check">
-			<label class="form-check-label">
-				<input class="form-check-input" type="submit" class="btn btn-primary" name="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
-			</label>
+		<div class="form-group text-center">
+			<input type="submit" class="btn btn-primary" name="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 		</div>
 	</form>
 {/tab}
