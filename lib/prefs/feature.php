@@ -925,12 +925,14 @@ function prefs_feature_list($partial = false)
 			'name' => tra('User watches translations'),
 			'help' => 'User+Watches',
 			'type' => 'flag',
+			'dependencies' => ['feature_multilingual'],
 			'default' => 'n',
 		],
 		'feature_user_watches_languages' => [
 			'name' => tra('User watches languages'),
 			'description' => tra('Watch language-specific changes within a category.'),
 			'type' => 'flag',
+			'dependencies' => ['feature_multilingual'],
 			'default' => 'n',
 		],
 		'feature_usermenu' => [
@@ -1036,7 +1038,10 @@ function prefs_feature_list($partial = false)
 		'feature_detect_language' => [
 			'name' => tra('Detect browser language'),
 			'description' => tra('Look up the user\'s preferred language through browser preferences.'),
-			'dependencies' => ['change_language'],
+			'dependencies' => [
+				'feature_multilingual',
+				'change_language'
+			],
 			'type' => 'flag',
 			'default' => 'n',
 		],
@@ -1045,6 +1050,7 @@ function prefs_feature_list($partial = false)
 			'description' => tra('When accessing a page which has an equivalent in the user\'s preferred language, favor the translated page. Based on the user’s Tiki preferences.'),
 			'type' => 'flag',
 			'dependencies' => [
+				'feature_multilingual',
 				'feature_userPreferences',
 			],
 			'default' => 'n',
@@ -1053,6 +1059,7 @@ function prefs_feature_list($partial = false)
 			'name' => tra('Synchronize page and site language'),
 			'description' => tra('Changing the page language also changes the site language'),
 			'type' => 'flag',
+			'dependencies' => ['feature_multilingual'],
 			'default' => 'n',
 		],
 		'feature_translation' => [
@@ -1060,18 +1067,21 @@ function prefs_feature_list($partial = false)
 			'description' => tra('Track translation operations between pages.'),
 			'help' => 'Translating+Tiki+content',
 			'type' => 'flag',
+			'dependencies' => ['feature_multilingual'],
 			'default' => 'n',
 		],
 		'feature_urgent_translation' => [
 			'name' => tra('Urgent translation notifications'),
 			'description' => tra('Enable changes to be flagged as urgent, so translations are marked with a notice visible to all users.'),
 			'type' => 'flag',
+			'dependencies' => ['feature_multilingual'],
 			'default' => 'n',
 		],
 		'feature_translation_incomplete_notice' => [
 			'name' => tra('Incomplete translation notice'),
 			'description' => tra('When a page is translated to a new language, a notice will automatically be inserted into the page to indicate that the translation is not yet complete.'),
 			'type' => 'flag',
+			'dependencies' => ['feature_multilingual'],
 			'default' => 'y',
 		],
 		'feature_multilingual_structures' => [
@@ -1089,6 +1099,7 @@ function prefs_feature_list($partial = false)
 			'name' => tra('Display all languages in a single page'),
 			'description' => tra('List all languages as options in the page-language dropdown list, to see them all at once.'),
 			'type' => 'flag',
+			'dependencies' => ['feature_multilingual'],
 			'default' => 'n',
 		],
 		'feature_obzip' => [
@@ -2929,6 +2940,7 @@ function prefs_feature_list($partial = false)
 			'description' => tra('List of names of pages that always redirect to the homepage when the language is switched'),
 			'hint' => tra('Separate page names by commas'),
 			'type' => 'textarea',
+			'dependencies' => ['feature_lang_nonswitchingpages'],
 			'default' => 'n',
 		],
 		'feature_wizard_user' => [

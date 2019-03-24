@@ -41,6 +41,7 @@ function prefs_search_list()
 			'name' => tra('Restrict search language by default'),
 			'description' => tra('Only search content that is in the interface language, otherwise show the language menu.'),
 			'type' => 'flag',
+			'dependencies' => ['feature_multilingual'],
 			'default' => 'n',
 		],
 		'search_autocomplete' => [

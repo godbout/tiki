@@ -50,7 +50,8 @@ function prefs_language_list($partial = false)
 			'units' => tra('languages'),
 			'size' => 2,
 			'dependencies' => [
-				'available_languages',
+				'feature_multilingual',
+				'restrict_language',
 			],
 			'default' => 3,
 		],

@@ -20,6 +20,7 @@ function prefs_lang_list()
 			'name' => tra('Manage contribution of translated strings'),
 			'description' => tra('Offers to set whether each translated string should be contributed to the Tiki community or kept locally'),
 			'type' => 'flag',
+			'dependencies' => ['lang_use_db'],
 			'default' => 'n',
 			'tags' => ['advanced'],
 		],
@@ -27,6 +28,7 @@ function prefs_lang_list()
 			'name' => tr('Machine translation implementation'),
 			'description' => tr('Select between alternate impementations for machine translation. Depending on the implementation, different API keys may be required.'),
 			'type' => 'list',
+			'dependencies' => ['feature_machine_translation'],
 			'options' => [
 				'google' => tr('Google Translate'),
 				'bing' => tr('Bing Translate'),
@@ -37,30 +39,47 @@ function prefs_lang_list()
 			'name' => tr('Enable machine translation of wiki pages'),
 			'description' => tr('Makes additional languages available to the list of languages on the page.'),
 			'type' => 'flag',
+			'dependencies' => ['feature_machine_translation'],
 			'default' => 'n',
 		],
 		'lang_google_api_key' => [
 			'name' => tr('Google Translate API Key'),
 			'description' => tr('The key must be generated from the Google console. Choose to create a server key.'),
 			'type' => 'text',
+			'dependencies' => [
+				'feature_machine_translation',
+				'lang_machine_translate_implementation'
+			],
 			'default' => '',
 		],
 		'lang_bing_api_client_id' => [
 			'name' => tr('Bing Translate Client ID'),
 			'description' => tr('The application must be registered.'),
 			'type' => 'text',
+			'dependencies' => [
+				'feature_machine_translation',
+				'lang_machine_translate_implementation'
+			],
 			'default' => '',
 		],
 		'lang_bing_api_client_secret' => [
 			'name' => tr('Bing Translate Client Secret'),
 			'description' => tr('The application must be registered.'),
 			'type' => 'text',
+			'dependencies' => [
+				'feature_machine_translation',
+				'lang_machine_translate_implementation'
+			],
 			'default' => '',
 		],
 		'lang_available_translations_dropdown' => [
 			'name' => tr('Display available translations as dropdown'),
 			'description' => tr('Instead of a simple icon to list available languages or translation options, show a more visible drop-down list.'),
 			'type' => 'flag',
+			'dependencies' => [
+				'feature_multilingual',
+				'show_available_translations'
+			],
 			'default' => 'n',
 		],
 	];

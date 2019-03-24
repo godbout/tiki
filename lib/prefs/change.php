@@ -13,6 +13,7 @@ function prefs_change_list()
 			'description' => tra('Allow users to change the language of the menus and labels.'),
 			'type' => 'flag',
 			'dependencies' => [
+				'feature_multilingual',
 				'feature_userPreferences',
 			],
 			'default' => 'y',
