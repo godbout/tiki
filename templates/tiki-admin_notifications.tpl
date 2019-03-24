@@ -9,6 +9,7 @@
 
 <h2>{tr}Add notification{/tr}</h2>
 <form action="tiki-admin_notifications.php" method="post" class="form-horizontal" role="form">
+	{ticket}
 	<input type="hidden" name="find" value="{$find|escape}">
 	<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 	{if $offset}<input type="hidden" name="offset" value="{$offset|escape}">{/if}
@@ -81,6 +82,7 @@
 	{include file='find.tpl' find_show_num_rows='y'}
 {/if}
 <form method="get" action="tiki-admin_notifications.php">
+	{ticket}
 	<div class="table-responsive notifications-table">
 		<table class="table table-striped table-hover">
 			<tr>
@@ -127,7 +129,7 @@
 						{$channels[user].user|escape}
 					</td>
 					<td class="action">
-						{icon name="delete" class="tips" href="{$smarty.server.PHP_SELF}?{query removeevent=$channels[user].watchId removetype=$channels[user].watchtype}" title=":{tr}Delete{/tr}"}
+						{icon name="delete" class="tips" href="{$smarty.server.PHP_SELF}?{query removeevent=$channels[user].watchId removetype=$channels[user].watchtype}" title=":{tr}Delete{/tr}" onclick="confirmSimple(event, '{tr}Delete mail notification event?{/tr}', '{ticket mode=get}')"}
 					</td>
 				</tr>
 			{sectionelse}
@@ -137,8 +139,25 @@
 	</div>
 	{if $channels}
 		<br>
-		{tr}Perform action with checked:{/tr}
-		<input type="image" name="delsel" src='img/icons/cross.png' alt="{tr}Delete{/tr}" title="{tr}Delete{/tr}">
+		<div class="input-group col-sm-8">
+			<select class="form-control" name="action">
+				<option value="" selected="selected">
+					{tr}Select action to perform with checked{/tr}...
+				</option>
+				<option
+					value="delete"
+					class="confirm-simple"
+					data-confirm-text="{tr}Delete selected notification events?{/tr}"
+				>
+					{tr}Remove{/tr}
+				</option>
+			</select>
+			<span class="input-group-append">
+				<button type="submit" class="btn btn-primary" onclick="confirmSimple(event)">
+					{tr}OK{/tr}
+				</button>
+			</span>
+		</div>
 	{/if}
 </form>
 

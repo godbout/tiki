@@ -43,8 +43,7 @@ $watches = $notificationlib->get_global_watch_types();
 
 $save = true;
 $login = '';
-if (isset($_REQUEST["add"])) {
-	check_ticket('admin-notif');
+if (isset($_REQUEST["add"]) && $access->checkCsrf() ) {
 	if (! empty($_REQUEST['login'])) {
 		if ($userlib->user_exists($_REQUEST['login'])) {
 			$login = $_REQUEST['login'];
@@ -73,8 +72,7 @@ if (isset($_REQUEST["add"])) {
 	}
 }
 
-if (isset($_REQUEST["removeevent"]) && isset($_REQUEST['removetype'])) {
-	$access->check_authenticity();
+if (isset($_REQUEST["removeevent"]) && isset($_REQUEST['removetype']) && $access->checkCsrfForm(tr('Delete mail notification event?'))) {
 	if ($_REQUEST['removetype'] == 'user') {
 		$result = $tikilib->remove_user_watch_by_id($_REQUEST["removeevent"]);
 	} else {
@@ -86,8 +84,12 @@ if (isset($_REQUEST["removeevent"]) && isset($_REQUEST['removetype'])) {
 		Feedback::error('Mail notification event not deleted');
 	}
 }
-if (isset($_REQUEST['delsel_x']) && isset($_REQUEST['checked'])) {
-	check_ticket('admin-notif');
+if (isset($_REQUEST['action'])
+	&& $_REQUEST['action'] == 'delete'
+	&& isset($_REQUEST['checked'])
+	&& $access->checkCsrfForm(tr('Delete selected notification events?')))
+{
+	$i = 0;
 	$i = 0;
 	foreach ($_REQUEST['checked'] as $id) {
 		if (strpos($id, 'user') === 0) {
@@ -146,7 +148,6 @@ if ($prefs['feature_forums'] == 'y') {
 	$forums = $commentslib->get_outbound_emails();
 	$smarty->assign_by_ref('forums', $forums);
 }
-ask_ticket('admin-notif');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 
