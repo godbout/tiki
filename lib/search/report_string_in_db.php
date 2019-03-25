@@ -41,6 +41,22 @@ if (! empty($_POST['string_in_db_search'])) {
 	$sql = "select * from `" . $table . "` where `" . $column . "` like ?";
 	$rs = $tikilib->fetchAll($sql, $args);
 	foreach ($rs as $row) {
+		if ($table == 'tiki_pages' && $column == 'data') {
+			$stringpos = strpos($row['data'], $_POST['query']);
+			$stringend = $stringpos + strlen($_POST['query']);
+			$startsnip = max($stringpos - 100, 0);
+			$endsnip = $stringend + 100;
+			$length = ($endsnip - $startsnip);
+			$snippet = substr($row['data'], $startsnip, $length);
+			$snippet = str_replace($_POST['query'],"<span class='highlight'>".$_POST['query']."</span>", $snippet);
+			if ($startsnip > 0) {
+				$snippet = '...' . $snippet;
+			}
+			if ($endsnip < strlen($row['data'])) {
+				$snippet = $snippet . '...';
+			}
+			$row['snippet'] = $snippet;
+		}
 		$tableData[] = $row;
 	}
 	$smarty->assign('tableData', $tableData);

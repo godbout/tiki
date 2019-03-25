@@ -58,8 +58,15 @@
 			{foreach from=$row key=column item=val}
 				{$value = $val|truncate:30|escape}
 				{if $tableName=='tiki_pages' && ($column=='pageName' || $column=='pageSlug' || $column=='data' || $column=='description') && $val}
-					<td><a href="{$row['pageName']|sefurl:wiki}"  class="link tips" title="{$row['pageName']}: {tr}View page{/tr}" target="_blank">{$value}</a></td>
-					<!-- TODO: (see note about object_link in templates/tiki-listpages_content.tpl) <td>{object_link type='wiki page' id={$row['pageName']|escape} class="link tips" title="{$val|escape}:{tr}View page{/tr}"}</td> -->
+					{if $column=='data'}
+						<td><a tabindex='0' target='_blank' data-trigger='hover' title='{tr}Page preview{/tr}' class="ajaxtips" data-ajaxtips="{service controller='wiki' action='get_page' page=$row['pageName']}">
+								 {$row['snippet']}
+							</a>
+						</td>
+					{else}
+						<td><a href="{$row['pageName']|sefurl:wiki}"  class="link tips" title="{$row['pageName']}: {tr}View page{/tr}" target="_blank">{$value}</a></td>
+						<!-- TODO: (but see note about object_link in templates/tiki-listpages_content.tpl) <td>{object_link type='wiki page' id={$row['pageName']|escape} class="link tips" title="{$val|escape}:{tr}View page{/tr}"}</td> -->
+					{/if}
 				{elseif $column=='lastModif' || $column=='created' || $column=='commentDate' || $column=='publishDate' || $column=='expireDate'}
 					<td>{$value|tiki_short_datetime}</td>
 				{elseif $tableName=='tiki_blog_posts' && ($column=='data' || $column=='title')}
