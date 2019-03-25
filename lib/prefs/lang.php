@@ -46,40 +46,28 @@ function prefs_lang_list()
 			'name' => tr('Google Translate API Key'),
 			'description' => tr('The key must be generated from the Google console. Choose to create a server key.'),
 			'type' => 'text',
-			'dependencies' => [
-				'feature_machine_translation',
-				'lang_machine_translate_implementation'
-			],
+			'dependencies' => ['lang_machine_translate_implementation'],
 			'default' => '',
 		],
 		'lang_bing_api_client_id' => [
 			'name' => tr('Bing Translate Client ID'),
 			'description' => tr('The application must be registered.'),
 			'type' => 'text',
-			'dependencies' => [
-				'feature_machine_translation',
-				'lang_machine_translate_implementation'
-			],
+			'dependencies' => ['lang_machine_translate_implementation'],
 			'default' => '',
 		],
 		'lang_bing_api_client_secret' => [
 			'name' => tr('Bing Translate Client Secret'),
 			'description' => tr('The application must be registered.'),
 			'type' => 'text',
-			'dependencies' => [
-				'feature_machine_translation',
-				'lang_machine_translate_implementation'
-			],
+			'dependencies' => ['lang_machine_translate_implementation'],
 			'default' => '',
 		],
 		'lang_available_translations_dropdown' => [
 			'name' => tr('Display available translations as dropdown'),
 			'description' => tr('Instead of a simple icon to list available languages or translation options, show a more visible drop-down list.'),
 			'type' => 'flag',
-			'dependencies' => [
-				'feature_multilingual',
-				'show_available_translations'
-			],
+			'dependencies' => ['show_available_translations'],
 			'default' => 'n',
 		],
 	];

@@ -49,10 +49,7 @@ function prefs_language_list($partial = false)
 			'filter' => 'digits',
 			'units' => tra('languages'),
 			'size' => 2,
-			'dependencies' => [
-				'feature_multilingual',
-				'restrict_language',
-			],
+			'dependencies' => ['restrict_language',],
 			'default' => 3,
 		],
 	];

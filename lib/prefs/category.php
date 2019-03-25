@@ -59,10 +59,7 @@ function prefs_category_list()
 			'name' => tra('Synchronized categories'),
 			'description' => tra('List of categories affected by the multilingual synchronization. Depending on the parent feature, this list will be used as a white list (the only categories allowed) or as a black list (all categories allowed except those specified).'),
 			'type' => 'text',
-			'dependencies' => [
-				'feature_multilingual',
-				'category_i18n_sync',
-			],
+			'dependencies' => ['category_i18n_sync'],
 			'filter' => 'digits',
 			'separator' => ',',
 			'default' => [''], //empty string needed to keep preference from setting unexpectedly

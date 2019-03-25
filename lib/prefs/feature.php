@@ -1038,10 +1038,7 @@ function prefs_feature_list($partial = false)
 		'feature_detect_language' => [
 			'name' => tra('Detect browser language'),
 			'description' => tra('Look up the user\'s preferred language through browser preferences.'),
-			'dependencies' => [
-				'feature_multilingual',
-				'change_language'
-			],
+			'dependencies' => ['change_language'],
 			'type' => 'flag',
 			'default' => 'n',
 		],
