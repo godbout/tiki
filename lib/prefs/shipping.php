@@ -7,7 +7,7 @@
 
 function prefs_shipping_list()
 {
-	require_once 'lib/shipping/shippinglib.php';
+	require_once __DIR__ . '/../shipping/shippinglib.php';
 	$all = glob('lib/shipping/custom/*.php');
 
 	$custom_providers = [ '' => tra('None')];

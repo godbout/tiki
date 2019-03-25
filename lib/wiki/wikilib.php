@@ -864,7 +864,7 @@ class WikiLib extends TikiLib
 			]
 		);
 		if ($prefs['feature_user_watches'] = 'y') {
-			include_once('lib/notifications/notificationemaillib.php');
+			include_once(__DIR__ . '/../notifications/notificationemaillib.php');
 			sendWikiEmailNotification('wiki_file_attached', $page, $user, $comment, '', $name, '', '', false, '', 0, $attId);
 		}
 		if ($prefs['feature_actionlog'] == 'y') {
