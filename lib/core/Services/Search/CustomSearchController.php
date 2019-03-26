@@ -337,7 +337,8 @@ class Services_Search_CustomSearchController
 			}
 		} elseif (! isset($config['_style'])) {
 			return;
-		} elseif ($value) {
+		}
+		if ($value) {
 			$deep = (isset($config['_showdeep']) && $config['_showdeep'] != 'n') || (isset($config['_deep']) && $config['_deep'] != 'n');
 			$query->filterCategory($value, $deep);
 		}
