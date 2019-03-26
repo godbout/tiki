@@ -316,10 +316,14 @@ if (isset($_REQUEST['chgadmin']) && $access->checkOrigin()) {
 		}
 	}
 	if (! empty($_REQUEST['email']) && ($prefs['login_is_email'] != 'y' || $user == 'admin') && $_REQUEST['email'] != $userlib->get_user_email($userwatch)) {
-		$userlib->change_user_email($userwatch, $_REQUEST['email'], $pass);
-		Feedback::success(sprintf(tra('Email is set to %s'), $_REQUEST['email']));
-		if ($prefs['feature_intertiki'] == 'y' && ! empty($prefs['feature_intertiki_mymaster']) && $prefs['feature_intertiki_import_preferences'] == 'y') { //send to the master
-			$userlib->interSendUserInfo($prefs['interlist'][$prefs['feature_intertiki_mymaster']], $userwatch);
+		if (validate_email($_REQUEST['email'])) {
+			$userlib->change_user_email($userwatch, $_REQUEST['email'], $pass);
+			Feedback::success(sprintf(tra('Email is set to %s'), $_REQUEST['email']));
+			if ($prefs['feature_intertiki'] == 'y' && ! empty($prefs['feature_intertiki_mymaster']) && $prefs['feature_intertiki_import_preferences'] == 'y') { //send to the master
+				$userlib->interSendUserInfo($prefs['interlist'][$prefs['feature_intertiki_mymaster']], $userwatch);
+			}
+		} else {
+			Feedback::error(tr('Invalid email address "%0"', $_REQUEST['email']));
 		}
 	}
 	// If user has provided new password, let's try to change
