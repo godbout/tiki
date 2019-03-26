@@ -403,7 +403,7 @@ class Services_File_Controller
 		$info = $filegallib->get_info_from_url($url);
 
 		if (! $info) {
-			throw new Services_Exception(tr('Data could not be obtained.'), 412);
+			throw new Services_Exception(tr('Unable to retrieve file from remote site. Please try a different URL.'), 412);
 		}
 
 		if ($input->reference->int()) {
