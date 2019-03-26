@@ -514,15 +514,15 @@
 	{if $groupname}
 		{tab name="{tr _0="<i>{$groupname|escape}</i>"}%0 members{/tr}"}
 		{* ----------------------- tab with memberlist --------------------------------------- *}
-		{if $membersCount > 0}
-		{if !$ts.ajax}
-				<div class="form-group row">
-					<div class="col-sm-7">
+			<div class="form-group row">
+			{if $membersCount > 0}
+				{if !$ts.ajax}
+					<div class="col-lg-8">
 						<h2>{tr}Members{/tr} <span class="badge badge-secondary">{$membersCount}</span></h2>
 						<form id="checkform2" method="post">
-							<input type="hidden" name="group" value="{$group|escape}">
-							<div class="{if $js}table-responsive {/if}ts-wrapperdiv">
-		{/if}
+							<input type="hidden" name="group" value="{$group|escape}" />
+							<div class="ts-wrapperdiv">
+				{/if}
 								<table id="groupsMembers" class="table normal table-striped table-hover" data-count="{$membersCount}">
 									<thead>
 										<tr>
@@ -562,7 +562,7 @@
 										{/foreach}
 									</tbody>
 								</table>
-		{if !$ts.ajax}
+				{if !$ts.ajax}
 							</div>
 
 							{if $groupname neq 'Registered'}
@@ -587,29 +587,27 @@
 							{/if}
 						</form>
 					</div>
-				</div>
-				{if !$ts.enabled}
-					{pagination_links cant=$membersCount step=$prefs.maxRecords offset=$membersOffset offset_arg='membersOffset'}{/pagination_links}
+					{if !$ts.enabled}
+						{pagination_links cant=$membersCount step=$prefs.maxRecords offset=$membersOffset offset_arg='membersOffset'}{/pagination_links}
+					{/if}
 				{/if}
-		{/if}
 			{else}
-				<div class="col-sm-7">
+				<div class="col-lg-8">
 					<h2>{tr}Members{/tr} <span class="badge badge-secondary">{$membersCount}</span></h2>
 					<em>{tr}No members{/tr}</em>
 				</div>
 			{/if}
-			<div class="form-group row">
-				<div class="col-sm-5">
+				<div class="col-lg-4">
 					<form id="addorban" method="post" action="tiki-admingroups.php">
 						<h2>{tr}Add or ban users{/tr}</h2>
-						<div class="col-sm-8" style="display:block">
-							<select name="user[]" multiple="multiple" class="form-control">
+						<div>
+							<select name="user[]" multiple="multiple" size="10" class="custom-select">
 								{foreach from=$userslist item=iuser}
 									<option>{$iuser|escape}</option>
 								{/foreach}
 							</select>
 						</div>
-						<div class="col-sm-8">
+						<div>
 							<button
 								type="submit"
 								class="btn btn-link tips"
