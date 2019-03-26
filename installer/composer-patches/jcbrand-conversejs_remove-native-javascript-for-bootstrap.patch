@@ -1,5 +1,5 @@
 diff --git dist/converse.js dist/converse.js
-index 93ea998..7246823 100644
+index 93ea9982..72468235 100644
 --- dist/converse.js
 +++ dist/converse.js
 @@ -3413,1459 +3413,16 @@ backbone.nativeview = __webpack_require__(/*! backbone.nativeview */ "./node_mod
