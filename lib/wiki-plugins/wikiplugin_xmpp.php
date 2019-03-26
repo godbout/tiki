@@ -34,7 +34,6 @@ function wikiplugin_xmpp_info()
 					['text' => '', 'value' => ''],
 					['text' => tra('Embedded'), 'value' => 'embedded'],
 					['text' => tra('Fullscreen'), 'value' => 'fullscreen'],
-					['text' => tra('Mobile'), 'value' => 'mobile'],
 					['text' => tra('Overlayed'), 'value' => 'overlayed'],
 				],
 			],
