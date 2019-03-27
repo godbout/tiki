@@ -240,9 +240,11 @@ class Installer extends TikiDb_Bridge
 		$tx = $this->begin();
 
 		$installer = new Tiki_Profile_Installer;
-		$installer->install($profile);
+		$ret = $installer->install($profile);
 
 		$tx->commit();
+
+		return $ret;
 	}
 
 	/**
