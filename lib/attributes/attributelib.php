@@ -100,6 +100,13 @@ class AttributeLib extends TikiDb_Bridge
 			);
 		}
 
+		// update the cache
+		$this->cache[$type . $objectId] = $this->attributes->fetchMap(
+			'attribute',
+			'value',
+			['type' => $type,'itemId' => $objectId,]
+		);
+
 		return true;
 	}
 
