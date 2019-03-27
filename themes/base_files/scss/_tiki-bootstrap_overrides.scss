@@ -256,6 +256,9 @@ body.fullscreen.tiki.navbar-padding {
 
 ///// User layout columns (module zones) switching / toggling (resurrected feature)
 .side-col-toggle-container {width: 100%; height: 1.5rem; margin-top: -.8rem; display:flex;}
+@media (max-width: breakpoint-max(sm)) {
+	.side-col-toggle-container { display: none; }
+}
 
 @media (min-width: 992px) {
 	.hide_zone_left #col2, // When hidden we simply do not display the columns
