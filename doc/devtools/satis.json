@@ -1847,6 +1847,7 @@
 		"sebastian/recursion-context": ">=1.0.2",
 		"sebastian/resource-operations": ">=1.0.0",
 		"sebastian/version": ">=1.0.6",
+		"sensiolabs/security-checker": "^5.0",
 		"setasign/fpdi": "1.6.*",
 		"simile_timeline/simile_timeline": ">=2.3.0",
 		"smarty/smarty": ">=3.1.14",
