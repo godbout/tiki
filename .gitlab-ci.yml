@@ -14,6 +14,7 @@ variables:
 
 stages:
   - lint
+  - vendors-security
   - tiki-check
   - unit-tests
 
@@ -207,3 +208,46 @@ unit-tests-72:
     - echo '<?php PHPUnit_Framework_Error_Deprecated::$enabled = false; $db_tiki = "mysqli"; $dbversion_tiki = "19.0"; $host_tiki = "mysql"; $user_tiki = "tikiuser"; $pass_tiki = "tikipass"; $dbs_tiki = "tikitest"; $client_charset = "utf8"; ' > lib/test/local.php
     - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
     - php -d display_errors=On vendor_bundled/vendor/phpunit/phpunit/phpunit --colors=always
+
+#
+# Vendors Security
+#
+
+sensiolabs-vendor-security-check:
+  stage: vendors-security
+  script:
+    - composer --ansi install -d vendor_bundled/ --no-progress --prefer-dist -n
+    - cp composer.json.dist composer.json
+    - composer require jerome-breton/casperjs-installer:dev-master --no-progress
+    - composer require enygma/expose:^3.0 --no-progress
+    - composer require fullcalendar/fullcalendar-scheduler ^1.9 --no-progress
+    - composer require fzaninotto/faker dev-master --no-progress
+    - composer require google/apiclient ^2.2.2 --no-progress
+    - composer require npm-asset/lozad ^1.6.0 --no-progress
+    - composer require mpdf/mpdf ^7.1 --no-progress
+    - composer require xorti/mxgraph-editor ^3.9.12.2 --no-progress
+    - composer require onelogin/php-saml ^2.10 --no-progress
+    - composer require thiagoalessio/tesseract_ocr ^2.7.0 --no-progress
+    - composer require mathjax/mathjax ^2.7 --no-progress
+    - composer require media-alchemyst/media-alchemyst ^0.5.1 --no-progress
+    - composer require npm-asset/pdfjs-dist ~2.0.487 --no-progress
+    - composer require bower-asset/wodo.texteditor ^0.5.9 --no-progress
+    - composer require j0k3r/php-readability ^1.1.10 --no-progress
+    - php bin/security-checker security:check composer.lock
+  allow_failure: false
+  only:
+    refs:
+      - schedules
+    variables:
+      - $SCHEDULER == "vendor_check"
+
+sensiolabs-vendor-bundled-security-check:
+  stage: vendors-security
+  script:
+    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+    - php bin/security-checker security:check vendor_bundled/composer.lock
+  only:
+    refs:
+      - schedules
+    variables:
+      - $SCHEDULER == "vendor_check"
