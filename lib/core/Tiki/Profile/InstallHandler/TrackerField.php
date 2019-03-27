@@ -173,7 +173,7 @@ class Tiki_Profile_InstallHandler_TrackerField extends Tiki_Profile_InstallHandl
 		$fieldId = $trklib->get_field_id($data['tracker'], $data['name']);
 
 		if (! $fieldId && isset($data['permname'])) {
-			$fieldId = $trklib->get_field_id($data['tracker'], $data['name'], 'permName');
+			$fieldId = $trklib->get_field_id($data['tracker'], $data['permname'], 'permName');
 		}
 
 		$factory = new Tracker_Field_Factory;
