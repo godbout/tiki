@@ -241,7 +241,7 @@ body.fullscreen.tiki.navbar-padding {
 }
 
 .affix-top {position: static; }
-.affix { position: fixed; top: 10px; }
+.affix { position: fixed; top: 10px; max-height: calc(100vh - 20px); overflow-y: auto !important; }
 .affix-bottom { position: absolute; left: 0!important; }
 
 // default width "auto" causes the input to overflow outside of narrow divs.

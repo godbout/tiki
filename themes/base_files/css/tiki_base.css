@@ -3393,7 +3393,9 @@ body.fullscreen.tiki.navbar-padding {
 
 .affix {
   position: fixed;
-  top: 10px; }
+  top: 10px;
+  max-height: calc(100vh - 20px);
+  overflow-y: auto !important; }
 
 .affix-bottom {
   position: absolute;
