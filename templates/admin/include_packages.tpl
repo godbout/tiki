@@ -208,6 +208,46 @@
             {/if}
         </table>
     {/tab}
+    {tab name="{tr}Packages Custom{/tr}"}
+        <br>
+        <h4>{tr}Composer Packages Custom <small>Status of the packages registered in the vendor_custom folder</small>{/tr}</h4>
+        {if $composer_custom_packages_installed}
+            {remarksbox type="info" title="{tr}For information only{/tr}"}
+            {tr}These packages are managed manually and displayed here for informational purposes.{/tr}
+            {/remarksbox}
+            {foreach item=packages key=folderName from=$composer_custom_packages_installed}
+                <h5 style="margin-top: 20px">{$folderName}</h5>
+                <table class="table">
+                    <tr>
+                        <th>{tr}Package Name{/tr}</th>
+                        <th>{tr}Version Required{/tr}</th>
+                        <th>{tr}Status{/tr}
+                        <th>{tr}Version Installed{/tr}</th>
+                    </tr>
+                    {foreach item=package from=$packages}
+                        <tr>
+                            <td width="50%">{$package.name}</td>
+                            <td width="20%">{$package.required}</td>
+                            <td width="10%">
+                                {if $package.status == 'installed'}
+                                    {icon name='success' iclass='tips' ititle="{tr}Status{/tr}:{tr}Installed{/tr}"}
+                                {elseif $package.status == 'missing'}
+                                    {icon name='warning' iclass='tips' ititle="{tr}Status{/tr}:{tr}Missing{/tr}"}
+                                {else}
+                                    &nbsp;
+                                {/if}
+                            </td>
+                            <td width="20%">{$package.installed|default:'&nbsp;'}</td>
+                        </tr>
+                    {/foreach}
+                </table>
+            {/foreach}
+        {else}
+            {remarksbox type="info" title="{tr}There are no manual managed packages installed{/tr}"}
+            {tr}Please check <a href="https://packages.tiki.org/">Tiki Packages</a>.{/tr}
+            {/remarksbox}
+        {/if}
+    {/tab}
     {tab name="{tr}Packages Bundled{/tr}"}
         <br>
         <h4>{tr}Composer Packages Bundled{/tr} <small>{tr}status of the packages registered in the vendor_bundled/composer.json file{/tr}</small></h4>
@@ -244,14 +284,14 @@
     {tab name="{tr}Diagnose{/tr}"}
         <br>
         <h4>{tr}Diagnose Composer Installation{/tr} <small>{tr}Use the button below to test your composer installation.{/tr}</small></h4>
-        <form action="tiki-admin.php?page=packages&cookietab=4" method="post">
+        <form action="tiki-admin.php?page=packages&cookietab=5" method="post">
             <input type="hidden" name="redirect" value="0">
             {ticket}
             <button class="btn btn-primary" name="auto-run-diagnostics" value="run">{tr}Diagnose Composer{/tr}</button>
         </form>
         <br />
         <h4>{tr}Composer management{/tr}</h4>
-        <form action="tiki-admin.php?page=packages&cookietab=4" method="post">
+        <form action="tiki-admin.php?page=packages&cookietab=5" method="post">
             <input type="hidden" name="redirect" value="0">
             {ticket}
             {if ! $composer_available}
@@ -294,7 +334,7 @@
 {jq}
     $(document).ready(function(){
         $(".install-composer").click(function(){
-            $('.nav-tabs a[href="#contenttabs_admin_packages-4"]').tab('show');
+            $('.nav-tabs a[href="#contenttabs_admin_packages-5"]').tab('show');
         });
     });
 {/jq}

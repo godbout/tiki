@@ -7,6 +7,7 @@
 
 namespace Tiki\Package;
 
+use DirectoryIterator;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
@@ -126,13 +127,13 @@ class ComposerManager
 
 	/**
 	 * Get list of packages installed
+	 * @param $fromLockFile boolean Should this packages be extracted from the .lock file?
 	 * @return array|boolean
 	 */
-	public function getInstalled()
+	public function getInstalled($fromLockFile = false)
 	{
-		$installedPackages = $this->composerWrapper->getListOfPackagesFromConfig();
+		$installedPackages = $fromLockFile ? $this->composerWrapper->getListOfPackagesFromLock() : $this->composerWrapper->getListOfPackagesFromConfig();
 		$packageDefinitions = $this->getAvailable(false);
-
 		$packageListLookup = [];
 		foreach ($packageDefinitions as $package) {
 			$packageName = $this->normalizePackageName($package['name']);
@@ -153,6 +154,30 @@ class ComposerManager
 		}
 
 		return $installedPackages;
+	}
+
+	/**
+	 * Get packages installed under vendor_custom
+	 * @return array
+	 */
+	public function getCustomPackages()
+	{
+		if (! file_exists($this->composerWrapper->getWorkingPath())) {
+			return [];
+		}
+
+		$packages = [];
+		$directories = new DirectoryIterator($this->composerWrapper->getWorkingPath());
+		foreach ($directories as $directory) {
+			if (! $directory->isDir() || $directory->isDot()) {
+				continue;
+			}
+
+			$this->composerWrapper->setWorkingPath($directory->getPathname() . "/");
+			$packages[$directory->getFilename()] = $this->getInstalled(true);
+		}
+
+		return $packages;
 	}
 
 	/**

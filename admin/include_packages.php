@@ -18,6 +18,7 @@ global $tikipath;
 
 $composerManager = new ComposerManager($tikipath);
 $composerManagerBundled = new ComposerManager($tikipath, $tikipath . DIRECTORY_SEPARATOR . 'vendor_bundled');
+$composerManagerCustom = new ComposerManager($tikipath, $tikipath . DIRECTORY_SEPARATOR . 'vendor_custom');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	if ($_POST['auto-fix-missing-packages'] && $access->checkCsrf()) {
@@ -125,3 +126,4 @@ $smarty->assign('composer_packages_installed', $installableList);
 $smarty->assign('composer_packages_missing', $packagesMissing);
 $smarty->assign('composer_packages_available', $composerManager->getAvailable());
 $smarty->assign('composer_bundled_packages_installed', $composerManagerBundled->getInstalled());
+$smarty->assign('composer_custom_packages_installed', $composerManagerCustom->getCustomPackages());
