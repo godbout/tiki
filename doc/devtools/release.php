@@ -28,6 +28,10 @@ define('README_FILENAME', 'README');
 define('README', ROOT . '/' . README_FILENAME);
 define('LICENSE_FILENAME', 'license.txt');
 
+define('PIPELINE_STATUS_PASSED', 'passed');
+define('PIPELINE_STATUS_FAILED', 'failed');
+define('PIPELINES_FETCH_AMOUNT', 25);
+
 // Display all errors and warnings, including strict level
 define('ERROR_REPORTING_LEVEL', E_ALL | E_STRICT);
 error_reporting(ERROR_REPORTING_LEVEL);
@@ -808,7 +812,7 @@ function check_database_files_and_upgrade($mainversion, &$error_msg)
 
 	$branchToCheck = $mainversion . '.x';
 
-	$pipeline = gitlabGetPipelineIdByBranch($gitlabRepo, $branchToCheck);
+	$pipeline = gitlabGetLastFinishedPipelineByBranch($gitlabRepo, $branchToCheck);
 
 	if (empty($pipeline)) {
 		echo color('Could not retrieve pipeline information for branch ' . $branchToCheck . "\n", 'red');
@@ -849,9 +853,9 @@ function check_database_files_and_upgrade($mainversion, &$error_msg)
 			if (strpos($jobName, $checkPrefix) === 0) {
 				echo color(
 					$checkName . ': ' . $job['status'] . ', job: ' . $jobName . ', url: ' . $gitlabUrl . $job['url'] . "\n",
-					$job['status'] == 'passed' ? 'green' : 'red'
+					$job['status'] == PIPELINE_STATUS_PASSED ? 'green' : 'red'
 				);
-				if ($job['status'] != 'passed') {
+				if ($job['status'] != PIPELINE_STATUS_PASSED) {
 					$error_msg .= 'Issues with job ' . $jobName . ' in the CI Pipeline' . "\n";
 					$allOk = false;
 				}
@@ -863,15 +867,17 @@ function check_database_files_and_upgrade($mainversion, &$error_msg)
 }
 
 /**
- * Returns the ID of the last pipeline run for a given branch
+ * Lookup the ID of the last finished pipeline run for
+ * a given branch with status 'passed' or 'failed'.
  *
  * @param string $repoUrl Url of the repo in gitlab
  * @param string $branch Branch to use for filtering
+ * @param integer $page Page associated with the cycle (recursive lookup)
  * @return array|bool The result or false if error
  */
-function gitlabGetPipelineIdByBranch($repoUrl, $branch)
+function gitlabGetLastFinishedPipelineByBranch($repoUrl, $branch, $page = 1)
 {
-	$lastPipelineByBranch = $repoUrl . '/pipelines/?scope=branches&format=json';
+	$lastPipelineByBranch = $repoUrl . '/pipelines/?scope=finished&format=json&per_page=' . PIPELINES_FETCH_AMOUNT . '&page=' . $page;
 
 	if (getenv('TEST_GITLAB_PIPELINE')) {
 		$lastPipelineByBranch = getenv('TEST_GITLAB_PIPELINE'); // to allow fake the answer while testing
@@ -886,11 +892,17 @@ function gitlabGetPipelineIdByBranch($repoUrl, $branch)
 	$pipeline = array_filter(
 		$jsonContent['pipelines'],
 		function ($pipeline) use ($branch) {
-			return $pipeline['ref']['name'] === $branch;
+			return $pipeline['ref']['name'] === $branch &&
+				($pipeline['details']['status']['text'] === PIPELINE_STATUS_PASSED ||
+					$pipeline['details']['status']['text'] === PIPELINE_STATUS_FAILED);
 		}
 	);
-	$pipeline = reset($pipeline);
 
+	if (empty($pipeline)) {
+		return gitlabGetLastFinishedPipelineByBranch($repoUrl, $branch, ++$page);
+	}
+
+	$pipeline = reset($pipeline);
 	return ['id' => $pipeline['id'], 'url' => $pipeline['path']];
 }
 
