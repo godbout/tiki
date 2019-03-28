@@ -41,7 +41,7 @@ if (! empty($_POST['string_in_db_search'])) {
 	$sql = "select * from `" . $table . "` where `" . $column . "` like ?";
 	$rs = $tikilib->fetchAll($sql, $args);
 	foreach ($rs as $row) {
-		if ($table == 'tiki_pages' && $column == 'data') {
+		if ($table == 'tiki_pages') {
 			$stringpos = strpos($row['data'], $_POST['query']);
 			$stringend = $stringpos + strlen($_POST['query']);
 			$startsnip = max($stringpos - 100, 0);

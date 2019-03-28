@@ -5,7 +5,17 @@
 	<label class="sr-only" for="string_in_db_search">{tr}Occurrences of string in database{/tr}</label>
 	<input type="text" id="string_in_db_search" name="string_in_db_search" class="form-control" value="{$searchStringAgain|escape}" />
 	</div>
-	<input type="submit" class="btn btn-primary btn-sm" value="Search" onClick="document.getElementById('redirect').value='0';"/>
+	<input type="submit" id="string_in_db_search_button" class="btn btn-primary btn-sm" value="{tr}Search{/tr}" onClick="document.getElementById('redirect').value='0';"/>
+	{jq}
+		$('#string_in_db_search').keypress(function (e) {
+			var key = e.which;
+			if(key == 13)  // the enter key code
+			{
+				$('#string_in_db_search_button').click();
+				return false;
+			}
+		});
+	{/jq}
 	<input type="hidden" id="redirect" name="redirect" value="1">
 </div>
 
@@ -46,7 +56,7 @@
 
 	{if isset($tableHeaders)}
 	{remarksbox}{tr}Results for {/tr}<b>{$searchStringAgain|escape}</b> {tr}in table {/tr} <b>{$tableName}</b>, {tr}column{/tr} <b>{$columnName}</b>:{/remarksbox}
-	<table class="table">
+		<table class="table-responsive">
 		<tr>
 		{foreach from=$tableHeaders item=hdr}
 			<th>{if $hdr eq $columnName}<em>{$hdr}</em>{else}{$hdr}{/if}</th>
@@ -128,5 +138,6 @@
 			</tr>
 		{/foreach}
 	</table>
+	<p><a href="javascript:void(0)" class="btn btn-primary btn-sm" title="{tr}Back to first level results{/tr}" onClick="document.getElementById('string_in_db_search').value='{$searchStringAgain|escape}'; document.getElementById('string_in_db_search_button').click();">{tr}Back to first level results{/tr}</a></p>
 	{/if}
 {/if}
