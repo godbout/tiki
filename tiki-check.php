@@ -1844,20 +1844,20 @@ if (! $standalone) {
 	);
 
 	$packagesToDisplay = array();
-	foreach ($installedLibs as $instaledPackage) {
-		$key = array_search($instaledPackage['name'], array_column($packagesToCheck, 'name'));
+	foreach ($installedLibs as $installedPackage) {
+		$key = array_search($installedPackage['name'], array_column($packagesToCheck, 'name'));
 		if ($key !== false) {
 			$warnings = checkPreferences($packagesToCheck[$key]['preferences']);
 			$packageInfo = array(
-				'name' => $instaledPackage['name'],
-				'version' => $instaledPackage['installed'],
+				'name' => $installedPackage['name'],
+				'version' => $installedPackage['installed'],
 				'status' => count($warnings) > 0 ? tr('ugly') : tr('good'),
 				'message' => $warnings
 			);
 		} else {
 			$packageInfo = array(
-				'name' => $instaledPackage['name'],
-				'version' => $instaledPackage['installed'],
+				'name' => $installedPackage['name'],
+				'version' => $installedPackage['installed'],
 				'status' => tr('good'),
 				'message' => array()
 			);
