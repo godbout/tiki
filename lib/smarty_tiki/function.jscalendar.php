@@ -42,12 +42,12 @@ function smarty_function_jscalendar($params, $smarty)
 			$params['goto'] . '".replace("%s",$("#' . $params['id'] . '").val()/1000); }';
 	}
 
-	if ($params['notAfter']) {
+	if (! empty($params['notAfter'])) {
 		$datepicker_options .= ', onSelect: function (selectedDateTime) {
 		$("' . $params['notAfter'] . '").find(".isDatepicker").datetimepicker("option", "minDate", selectedDateTime); }';
 	}
 
-	if ($params['notBefore']) {
+	if (! empty($params['notBefore'])) {
 		$datepicker_options .= ', onSelect: function (selectedDateTime) {
 		$("' . $params['notBefore'] . '").find(".isDatepicker").datetimepicker("option", "maxDate", selectedDateTime); }';
 	}
