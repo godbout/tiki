@@ -18,8 +18,8 @@ Expose:
   requiredBy:
     - ids_enabled
   requiredVersion: ^3.0
-FullCalendar:
-  licence: MIT
+FullCalendar Scheduler:
+  licence: GPLv3
   licenceUrl: "https://fullcalendar.io/scheduler/license/"
   name: fullcalendar/fullcalendar-scheduler
   requiredBy:
@@ -48,7 +48,7 @@ Lozad:
   requiredBy:
     - wikiplugin_img
   requiredVersion: ^1.6.0
-Mpdf:
+mPDF:
   licence: GPL
   licenceUrl: "https://github.com/mpdf/mpdf/blob/master/LICENSE.txt"
   name: mpdf/mpdf
@@ -90,7 +90,7 @@ MediaAlchemyst:
   requiredBy:
     - wikiplugin_preview
   requiredVersion: ^0.5.1
-PdfJs:
+PDF.js:
   licence: Apache-2.0
   licenceUrl: "https://github.com/mozilla/pdfjs-dist/blob/master/LICENSE"
   name: npm-asset/pdfjs-dist
