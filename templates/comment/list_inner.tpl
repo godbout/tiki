@@ -15,13 +15,14 @@
 							<span class="comment-title">
 								{$comment.title}
 							</span>
-							<span class="comment-info">
+							{if $prefs.comments_heading_links eq 'y'}
+								<a class="heading-link" href="{if ($comment.threadId neq $comments_parentId)}#threadId{$comment.threadId}{/if}">{icon name="link"}</a>
+							{/if}
+							<span class="comment-info d-block">
 								{tr _0=$comment.userName|userlink}%0{/tr} <small class="date">{tr _0=$comment.commentDate|tiki_short_datetime}%0{/tr}</small>
 							</span>
 						{/if}
-						{if $prefs.comments_heading_links eq 'y'}
-							<a class="heading-link" href="{if ($comment.threadId neq $comments_parentId)}#threadId{$comment.threadId}{/if}">{icon name="link"}</a>
-						{/if}
+
 					</h4>
 					<div class="comment-body">
 						{$comment.parsed}
