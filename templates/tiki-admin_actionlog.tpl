@@ -757,13 +757,13 @@
 		{remarksbox type="tip" title="{tr}How{/tr}"}
 		{tr}You need to check out the recorded box for each action type we may be interested to have some report later. To see a report of some action types, select the reported checkboxes of these action types, goto the Report tab and select additional filters. The report will only contains the actions that occurred since the action type has been set to recorded.{/tr} {tr}Wiki page actions except viewed will always be recorded but can be not reported.{/tr}
 		{/remarksbox}
-		<form method="post" action="tiki-admin_actionlog.php" class="form-inline">
+		<form method="post" action="tiki-admin_actionlog.php">
 			{ticket}
 			{if !empty($sort_mode)}<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">{/if}
 			<fieldset>
 				<legend>{tr}Filter{/tr}</legend>
-				<div>
-					<div class="form-group row">
+				<div class="form-group row">
+					<div class="col-sm-5">
 						<label for="action_log_type">{tr}Type{/tr}</label>
 						<select id="action_log_type" name="action_log_type" class="form-control">
 							<option value="" {if empty($action_log_type)} selected="selected" {/if}>{tr}All{/tr}</option>
@@ -772,7 +772,8 @@
 							{/foreach}
 						</select>
 					</div>
-					<div class="form-group row">
+
+					<div class="col-sm-5">
 						<label for="action_log_action">{tr}Action{/tr}</label>
 						<select id="action_log_action" name="action_log_action" class="form-control">
 							<option value="" {if empty($action_log_action)} selected="selected" {/if}>{tr}All{/tr}</option>
@@ -784,20 +785,22 @@
 							{/foreach}
 						</select>
 					</div>
+				</div>
+
+				<div class="col-sm-12">
 					<span class="input_submit_container">
 						<input type="submit" class="btn btn-primary btn-sm" name="search" value="{tr}Search{/tr}">
 					</span>
 				</div>
-
 			</fieldset>
 			<br class="clearfix"/>
 
-			<div class="form-group row" style="display:block;">
-				<div class="col-sm-1 col-sm-offset-11">
+			<div class="form-group row">
+				<div class="col-sm-1 offset-sm-11">
 					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Set{/tr}">
 				</div>
 			</div>
-			<div class="form-group row" style="display:block;">
+			<div class="form-group row">
 				{*<div class="col-sm-12">*}
 				<table class="table">
 					<thead>
@@ -838,7 +841,7 @@
 				{*</div>*}
 			</div>
 			<div class="form-group row">
-				<div class="col-sm-1 col-sm-offset-11">
+				<div class="col-sm-1 offset-sm-11">
 					<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Set{/tr}"\>
 				</div>
 			</div>
