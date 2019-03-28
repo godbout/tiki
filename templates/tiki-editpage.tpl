@@ -267,7 +267,9 @@
 								<a href="tiki-admin.php?page=wiki" class="btn btn-link" title="{tr}Leave page and go to....{/tr}">
 									{icon name="cog"} {tr}Wiki Preferences{/tr}
 								</a>
-								{permission_link mode=button_link permType=wiki}
+							{/if}
+							{if $tiki_p_admin_wiki eq 'y' or $tiki_p_assign_perm_wiki_page eq 'y'}
+								{permission_link mode=link type="wiki page" id=$page permType=wiki title=$page}
 							{/if}
 							{if $tiki_p_edit_content_templates eq 'y'}
 								<a href="tiki-admin_content_templates.php" class="btn btn-link"  title="{tr}Leave page and go to....{/tr}" onclick="needToConfirm = true;">
