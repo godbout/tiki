@@ -65,7 +65,7 @@
 								{$schedulers[scheduler].run_time|escape}
 							</td>
 							<td class="scheduler_status">
-								{$schedulers[scheduler].status|escape}
+								{$schedulers[scheduler].status|escape|ucfirst}
 							</td>
 							<td class="scheduler_re_run">
 								<input type="checkbox" {if $schedulers[scheduler].re_run}checked{/if} disabled>
@@ -232,7 +232,18 @@
 						<td>{$schedulerruns[run].id}</td>
 						<td>{$schedulerruns[run].start_time|tiki_short_datetime}</td>
 						<td>{$schedulerruns[run].end_time|tiki_short_datetime}</td>
-						<td>{$schedulerruns[run].status}</td>
+						<td>
+							{if $schedulerruns[run].status eq 'running'}
+								<span class="badge badge-warning">{tr}Running{/tr}</span>
+							{/if}
+							{if $schedulerruns[run].status eq 'failed'}
+								<span class="badge badge-danger">{tr}Failed{/tr}</span>
+
+							{/if}
+							{if $schedulerruns[run].status eq 'done'}
+								<span class="badge badge-success">{tr}Done{/tr}</span>
+							{/if}
+						</td>
 						<td>
 							{if $schedulerruns[run].can_stop}
 								<a class="btn btn-secondary btn-sm" href="{bootstrap_modal controller=scheduler action=reset schedulerId=$schedulerruns[run].scheduler_id startTime=$schedulerruns[run].start_time}">
