@@ -96,6 +96,7 @@ require_once 'lib/tikilib.php';
 set_error_handler("tiki_error_handling", error_reporting());
 require_once('lib/init/smarty.php');
 require_once('installer/installlib.php');
+require_once('installer/ProgressBar.php');
 
 /**
  *
@@ -1029,7 +1030,8 @@ if ($dbcon
 	$smarty->assign('logged', 'y');
 
 	if (isset($_POST['scratch'])) {
-		$installer->generateProgressPage();
+		$installer->attach(new ProgressBar());
+
 		$installer->cleanInstall();
 		if ($has_tiki_db) {
 			$logmsg = 'database "' . $dbs_tiki . '" destroyed and reinstalled';
