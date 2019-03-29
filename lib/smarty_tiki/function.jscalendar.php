@@ -11,6 +11,22 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
+/**
+ * @param $params
+ *           	 - id: id attribute for the input element
+ *               - fieldname: name attribute for the input element
+ *               - date: date to display in the input field; default is now
+ *               - showtime: show timepicker in addition to date
+ *               - goto:
+ *               - notAfter:
+ *               - notBefore:
+ *               - isutc:
+ *
+ * @param $smarty
+ *
+ * @return string
+ * @throws Exception
+ */
 function smarty_function_jscalendar($params, $smarty)
 {
 	global $prefs;
