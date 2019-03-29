@@ -230,8 +230,8 @@
 				{section name=run loop=$schedulerruns}
 					<tr>
 						<td>{$schedulerruns[run].id}</td>
-						<td>{$schedulerruns[run].start_time|date_format:"%b %e, %Y %H:%M:%S"}</td>
-						<td>{$schedulerruns[run].end_time|date_format:"%b %e, %Y %H:%M:%S"}</td>
+						<td>{$schedulerruns[run].start_time|tiki_short_datetime}</td>
+						<td>{$schedulerruns[run].end_time|tiki_short_datetime}</td>
 						<td>{$schedulerruns[run].status}</td>
 						<td>
 							{if $schedulerruns[run].can_stop}
