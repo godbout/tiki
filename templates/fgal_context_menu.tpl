@@ -119,13 +119,8 @@
 			</a>
 		{/if}
 
-		{assign var="browserDisplay" value="{$file.id|sefurl:file}?display=true"}
-		{if strpos({$file.id|sefurl:file}, '?')}
-			{assign var="browserDisplay" value="{$file.id|sefurl:file}&display=true"}
-		{/if}
-
-		<a href="{$browserDisplay}">
-			{icon name='eye' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Browser display{/tr}"}
+		<a href="{$file.id|sefurl:display}">
+			{icon name='eye' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Browser display{/tr} ({tr}Raw{/tr} / {tr}Download{/tr})"}
 		</a>
 
 		{if $gal_info.archives gt -1}
