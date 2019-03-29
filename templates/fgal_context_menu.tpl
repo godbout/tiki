@@ -164,7 +164,7 @@
 					or $gal_info.lockable ne 'y'}
 
 					<a href="tiki-upload_file.php?galleryId={$file.galleryId}&amp;fileId={$file.id}{if !empty($filegals_manager)}&amp;filegals_manager={$filegals_manager|escape}{/if}">
-						{icon _menu_text=$menu_text _menu_icon=$menu_icon name='export' alt="{$replace_action_title}"}
+						{icon _menu_text=$menu_text _menu_icon=$menu_icon name='upload' alt="{$replace_action_title}"}
 					</a>
 
 					{if $prefs.fgal_display_properties eq 'y'}
@@ -212,13 +212,13 @@
 							or (!isset($file.p_download_files) and $file.perms.tiki_p_download_files eq 'y')}
 							{if $prefs.javascript_enabled eq 'y'}
 								{* with javascript, the main page will be reloaded to lock the file and change its lockedby information *}
-								{self_link _icon_name='import' _menu_text=$menu_text _menu_icon=$menu_icon lock='y' fileId=$file.fileId galleryId=$file.galleryId _onclick="window.open('{$file.fileId|sefurl:file:with_next}'); confirmSimple(event, '{tr}Lock file?{/tr}', '{ticket mode=get}')"}
+								{self_link _icon_name='download' _menu_text=$menu_text _menu_icon=$menu_icon lock='y' fileId=$file.fileId galleryId=$file.galleryId _onclick="window.open('{$file.fileId|sefurl:file:with_next}'); confirmSimple(event, '{tr}Lock file?{/tr}', '{ticket mode=get}')"}
 									{tr}Download and lock{/tr}
 								{/self_link}
 							{else}
 								{* without javascript, the lockedby information won't be refreshed until the user do it itself *}
 								<a href="{$file.fileId|sefurl:file:with_next}lock=y">
-									{icon _menu_text=$menu_text _menu_icon=$menu_icon name='import' alt="{tr}Download and lock{/tr}"}
+									{icon _menu_text=$menu_text _menu_icon=$menu_icon name='download' alt="{tr}Download and lock{/tr}"}
 								</a>
 							{/if}
 						{/if}
