@@ -229,22 +229,23 @@ class PollLibShared extends TikiLib
 
 	/**
 	 * @param $pollId
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_poll($pollId)
 	{
 		$query = "delete from `tiki_poll_objects` where `pollId`=?";
-		$result = $this->query($query, [(int) $pollId]);
+		$this->query($query, [(int) $pollId]);
 		$query = "delete from `tiki_polls` where `pollId`=?";
 		$result = $this->query($query, [(int) $pollId]);
 		$query = "delete from `tiki_poll_options` where `pollId`=?";
-		$result = $this->query($query, [(int) $pollId]);
+		$this->query($query, [(int) $pollId]);
 		$this->remove_object('poll', $pollId);
 
 		$query = 'delete from `tiki_user_votings` where `id`=?';
 		$this->query($query, ['poll' . (int)$pollId]);
 
-		return true;
+		return $result;
 	}
 
 	/**
@@ -309,7 +310,8 @@ class PollLibShared extends TikiLib
 	 * @param $optionId
 	 * @param $title
 	 * @param $position
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function replace_poll_option($pollId, $optionId, $title, $position)
 	{
@@ -320,7 +322,7 @@ class PollLibShared extends TikiLib
 			$query = "insert into `tiki_poll_options`(`pollId`,`title`,`position`,`votes`) values(?,?,?,?)";
 			$result = $this->query($query, [(int) $pollId, $title, (int) $position, 0]);
 		}
-		return true;
+		return $result;
 	}
 
 	/**

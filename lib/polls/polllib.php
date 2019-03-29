@@ -129,37 +129,46 @@ class PollLib extends PollLibShared
 		return $retval;
 	}
 
+	/**
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function set_last_poll()
 	{
 		$query = "select max(`publishDate`) from `tiki_polls` where `publishDate`<=?";
 		$last = $this->getOne($query, [(int) $this->now]);
 		$query = "update `tiki_polls` set `active`=? where `publishDate`=?";
-		$result = $this->query($query, ['c', $last]);
+		return $this->query($query, ['c', $last]);
 	}
 
+	/**
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function close_all_polls()
 	{
 		$query = "select max(`publishDate`) from `tiki_polls` where `publishDate`<=?";
 		$last = $this->getOne($query, [(int) $this->now]);
 		$query = "update `tiki_polls` set `active`=? where `publishDate`<=?";
-		$result = $this->query($query, ['x', (int) $this->now]);
+		return $this->query($query, ['x', (int) $this->now]);
 	}
 
+	/**
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	function active_all_polls()
 	{
 		$query = "update `tiki_polls` set `active`=? where `publishDate`<=?";
-		$result = $this->query($query, ['a', (int) $this->now]);
+		return $this->query($query, ['a', (int) $this->now]);
 	}
 
 	/**
 	 * @param $optionId
-	 * @return bool
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function remove_poll_option($optionId)
 	{
 		$query = "delete from `tiki_poll_options` where `optionId`=?";
-		$result = $this->query($query, [$optionId]);
-		return true;
+		return $this->query($query, [$optionId]);
 	}
 
 	/**
