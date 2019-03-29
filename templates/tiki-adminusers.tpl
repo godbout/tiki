@@ -31,16 +31,16 @@
 		{if !$ts.ajax}
 			<h2>{tr}Users{/tr}</h2>
 			{if !$ts.enabled}
-				<form method="get" class="small" action="tiki-adminusers.php">
+				<form method="get" action="tiki-adminusers.php">
 					<div class="form-group row">
-						<label class="col-form-label col-sm-4" for="find">{tr}Find{/tr}</label>
-						<div class="col-sm-8">
+						<label class="col-form-label col-sm-5" for="find">{tr}Find{/tr}</label>
+						<div class="col-sm-7">
 							<input type="text" class="form-control form-control-sm" id="find" name="find" value="{$find|escape}">
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-form-label col-sm-4" for="numrows">{tr}Number of displayed rows{/tr}</label>
-						<div class="col-sm-8">
+						<label class="col-form-label col-sm-5" for="numrows">{tr}Number of displayed rows{/tr}</label>
+						<div class="col-sm-7">
 							<input class="form-control form-control-sm" type="number" id="numrows" name="numrows" value="{$numrows|escape}">
 						</div>
 					</div>
@@ -54,8 +54,8 @@
 					{autocomplete element='#find' type='username'}
 					<div class="col-sm-12" id="search" {if $filterGroup or $filterEmail}style="display:block;"{else}style="display:none;"{/if}>
 						<div class="form-group row">
-							<label class="col-form-label col-sm-4" for="filterGroup">{tr}Group (direct){/tr}</label>
-							<div class="col-sm-8">
+							<label class="col-form-label col-sm-5" for="filterGroup">{tr}Group (direct){/tr}</label>
+							<div class="col-sm-7">
 								<select class="form-control form-control-sm" name="filterGroup" id="filterGroup">
 									<option value=""></option>
 									{section name=ix loop=$all_groups}
