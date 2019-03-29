@@ -406,7 +406,7 @@ class SocialNetworksLib extends LogsLib
 			return false;
 		}
 		$scopes = [];
-		$scopes[] = 'r_basicprofile';
+		$scopes[] = 'r_liteprofile';
 		if ($prefs['socialnetworks_linkedin_email'] == 'y') {
 			$scopes[] = 'r_emailaddress';
 		}
@@ -475,38 +475,62 @@ class SocialNetworksLib extends LogsLib
 		$curl = curl_init();
 
 		$data = [
-			"oauth2_access_token" => $_SESSION['LINKEDIN_ACCESS_TOKEN'],
-			"format" => "json"
-		];
-		$profile_fields = [
-			'id',
-			'first-name',
-			'last-name',
-			'formatted-name',
-			'picture-url',
-			'picture-urls::(original)',
+			"oauth2_access_token" => $_SESSION['LINKEDIN_ACCESS_TOKEN']
 		];
 
-		if ($prefs['socialnetworks_linkedin_email'] == 'y') {
-			$profile_fields[] = 'email-address';
-		}
-
-		$url = "https://api.linkedin.com/v1/people/~:(" . implode(",", $profile_fields) . ")";
-		$url = sprintf("%s?%s", $url, http_build_query($data, '', '&'));
+		$data2 = $data + [
+				"projection" => "(id,firstName,lastName,profilePicture(displayImage~:playableStreams))"
+		];
+		$url = "https://api.linkedin.com/v2/me";
+		$url = sprintf("%s?%s", $url, http_build_query($data2, '', '&'));
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
 		$result = curl_exec($curl);
-		curl_close($curl);
 
 		$linkedin_info = json_decode($result);
-		if (isset($linkedin_info->errorCode)) {
+
+		if (isset($linkedin_info->serviceErrorCode)) {
+			curl_close($curl);
 			$smarty = TikiLib::lib('smarty');
 			$smarty->assign('errortype', 'login');
 			$smarty->assign('msg', tra('We were unable to log you in using your LinkedIn account. Please contact the administrator.'));
 			$smarty->display('error.tpl');
 			die;
 		}
+
+		if ($prefs['socialnetworks_linkedin_email'] == 'y') {
+			$data3 = $data + [
+					"q" => "members",
+					"projection" => "(elements*(handle~))"
+				];
+
+			$url = "https://api.linkedin.com/v2/emailAddress";
+			$url = sprintf("%s?%s", $url, http_build_query($data3, '', '&'));
+			curl_setopt($curl, CURLOPT_URL, $url);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+			$result = curl_exec($curl);
+
+			$linkedin_email = json_decode($result);
+
+			if (isset($linkedin_email->serviceErrorCode)) {
+				curl_close($curl);
+				$smarty = TikiLib::lib('smarty');
+				$smarty->assign('errortype', 'login');
+				$smarty->assign('msg', tra('We were unable to log you in using your LinkedIn account. Please contact the administrator.'));
+				$smarty->display('error.tpl');
+				die;
+			}
+		}
+
+		curl_close($curl);
+
+		$linkedin_locale = $linkedin_info->firstName->preferredLocale->language;
+		if (!empty($linkedin_info->firstName->preferredLocale->country)) {
+			$linkedin_locale .= '_' . $linkedin_info->firstName->preferredLocale->country;
+		}
+
 		if (! $user) {
 			if ($prefs['socialnetworks_linkedin_login'] != 'y') {
 				return false;
@@ -516,7 +540,8 @@ class SocialNetworksLib extends LogsLib
 				$user = $local_user;
 			} elseif ($prefs['socialnetworks_linkedin_autocreateuser'] == 'y') {
 				$randompass = $userlib->genPass();
-				$email = $prefs['socialnetworks_linkedin_email'] === 'y' ? $linkedin_info->emailAddress : '';
+				$ha = 'handle~';
+				$email = $prefs['socialnetworks_linkedin_email'] === 'y' ? $linkedin_email->elements[0]->$ha->emailAddress : '';
 				if ($prefs['login_is_email'] == 'y' && $email) {
 					$user = $email;
 				} elseif ($prefs['login_autogenerate'] == 'y') {
@@ -543,8 +568,8 @@ class SocialNetworksLib extends LogsLib
 					$fields = ['ins_' . $userField => $user];
 					if (! empty($prefs['socialnetworks_linkedin_names'])) {
 						$names = array_map('trim', explode(',', $prefs['socialnetworks_linkedin_names']));
-						$fields['ins_' . $names[0]] = $linkedin_info->firstName;
-						$fields['ins_' . $names[1]] = $linkedin_info->lastName;
+						$fields['ins_' . $names[0]] = $linkedin_info->firstName->localized->$linkedin_locale;
+						$fields['ins_' . $names[1]] = $linkedin_info->lastName->localized->$linkedin_locale;
 					}
 					$utilities->insertItem(
 						$definition,
@@ -556,10 +581,23 @@ class SocialNetworksLib extends LogsLib
 					);
 				}
 
-				$this->set_user_preference($user, 'realName', $linkedin_info->formattedName);
+				$this->set_user_preference($user, 'realName', $linkedin_info->firstName->localized->$linkedin_locale . ' ' . $linkedin_info->lastName->localized->$linkedin_locale);
 				if ($prefs['feature_userPreferences'] == 'y') {
-					$avatarlib = TikiLib::lib('avatar');
-					$avatarlib->set_avatar_from_url($linkedin_info->pictureUrls->values[0], $user);
+					// Get largest profile image up to 480px in width
+					$di = 'displayImage~';
+					$si = 'com.linkedin.digitalmedia.mediaartifact.StillImage';
+					$displayImages = array_reverse($linkedin_info->profilePicture->$di->elements);
+					$displayImage = '';
+					foreach($displayImages as $i) {
+						if ($i->data->$si->storageSize->width <= 480) {
+							$displayImage = $i->identifiers[0]->identifier;
+							break;
+						}
+					}
+					if ($displayImage) {
+						$avatarlib = TikiLib::lib('avatar');
+						$avatarlib->set_avatar_from_url($displayImage, $user);
+					}
 				}
 			} else {
 				$_SESSION['loginfrom'] = str_replace('tiki-socialnetworks_linkedin.php', 'tiki-socialnetworks.php', $_SERVER['REQUEST_URI']);
