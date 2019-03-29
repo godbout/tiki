@@ -158,7 +158,7 @@ class TikiDb_LegacyErrorHandler implements TikiDb_ErrorHandler
 		}
 
 		require_once 'installer/installlib.php';
-		$installer = new Installer;
+		$installer = Installer::getInstance();
 
 		require_once('tiki-setup.php');
 

@@ -215,7 +215,7 @@ class ConsoleApplicationBuilder
 	 */
 	protected function checkIsInstalled()
 	{
-		$installer = new Installer;
+		$installer = Installer::getInstance();
 		$result = $installer->isInstalled() ? true : false;
 
 		return $result;
@@ -227,7 +227,7 @@ class ConsoleApplicationBuilder
 	 */
 	protected function checkIsInstalledAndDoNotRequireUpdate()
 	{
-		$installer = new Installer;
+		$installer = Installer::getInstance();
 		$result = ($installer->isInstalled() && ! $installer->requiresUpdate()) ? true : false;
 
 		return $result;

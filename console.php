@@ -49,7 +49,7 @@ if (is_file($local_php) || TikiInit::getEnvironmentCredentials()) {
 	require_once 'db/tiki-db.php';
 }
 
-$installer = $installer = new Installer;
+$installer = $installer = Installer::getInstance();
 $isInstalled = $installer->isInstalled();
 $requiresUpdate = $installer->requiresUpdate();
 

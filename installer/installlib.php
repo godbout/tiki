@@ -38,15 +38,12 @@ class Installer extends TikiDb_Bridge implements SplSubject
 
 	public $useInnoDB = true;
 
-	/**
-	 * TODO: make private to enforce Singleton
-	 */
-	private function __construct() // {{{
+	private function __construct()
 	{
 		$this->observers = new SplObjectStorage();
 		$this->buildPatchList();
 		$this->buildScriptList();
-	} // }}}
+	}
 
 	/**
 	 * Get the instance (creating one if necessary)

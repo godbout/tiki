@@ -120,6 +120,6 @@ function upgrade_2017mmdd_migrate_image_galleries_tiki($installer)
 }
 
 include_once('tiki-setup.php');
-$installer = new Installer();
+$installer = Installer::getInstance();
 
 upgrade_2017mmdd_migrate_image_galleries_tiki($installer);

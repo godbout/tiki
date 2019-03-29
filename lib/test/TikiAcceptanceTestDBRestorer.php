@@ -232,7 +232,7 @@ class TikiAcceptanceTestDBRestorerSQLDumps extends TikiAcceptanceTestDBRestorer
 			//				$begTime = microtime(true);
 
 			//RESTORE THE ORIGINAL DATABASE
-			$installer = new Installer();
+			$installer = Installer::getInstance();
 			$installer->runFile($this->tiki_restore_db_file_name);
 
 			//              echo (microtime(true) -$begTime)." sec";
@@ -266,7 +266,7 @@ class TikiAcceptanceTestDBRestorerSQLDumps extends TikiAcceptanceTestDBRestorer
 	function restoreDBDumpFromScratch($dump_file)
 	{
 		$dump_file_with_path = $this->mysql_data_dir . $dump_file;
-		$installer = new Installer();
+		$installer = Installer::getInstance();
 		$installer->runFile($dump_file_with_path);
 	}
 }

@@ -72,7 +72,7 @@ $tikilib = new TikiLib;
 // update db if needed
 require_once __DIR__ . '/../../lib/init/initlib.php';
 include_once(__DIR__ . '/../../installer/installlib.php');
-$installer = new Installer;
+$installer = Installer::getInstance();
 
 if (! $installer->tableExists('tiki_preferences')) {
 	echo "Installing Tiki database...\n";

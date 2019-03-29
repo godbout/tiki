@@ -30,7 +30,7 @@ class UpdateCommand extends Command
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$autoRegister = $input->getOption('auto-register');
-		$installer = new \Installer;
+		$installer = \Installer::getInstance();
 		$installed = $installer->tableExists('users_users');
 
 		if ($installed) {

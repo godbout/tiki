@@ -33,7 +33,7 @@ if (! class_exists('ADOConnection')) {
 include $local_php;
 $dbTiki = ADONewConnection($db_tiki);
 $dbTiki->Connect($host_tiki, $user_tiki, $pass_tiki, $dbs_tiki);
-$installer = new Installer;
+$installer = Installer::getInstance();
 $installer->update();
 
 $test_TikiAcceptanceTestDBRestorer->create_dump_file($argv[1]);

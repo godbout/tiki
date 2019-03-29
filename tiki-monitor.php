@@ -43,7 +43,7 @@ $result['OPCodeCache'] = $opcode_stats['opcode_cache'];
 $result['OpCodeStats'] = $opcode_stats;
 
 include_once('installer/installlib.php');
-$installer = new Installer;
+$installer = Installer::getInstance();
 $result['DbRequiresUpdate'] = $installer->requiresUpdate();
 
 $result['SearchIndexRebuildLast'] = $tikilib->get_preference('unified_last_rebuild');

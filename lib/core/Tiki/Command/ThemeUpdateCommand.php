@@ -110,7 +110,7 @@ class ThemeUpdateCommand extends Command
 				if (! empty($profiles)) {
 					$menu = new ThemeMenu();
 					$module = new ThemeModule();
-					$installer = new Installer();
+					$installer = Installer::getInstance();
 					$preferences = $installer->table('tiki_preferences');
 					$profilesPath = $themeZip->getSourceProfilesFolder();
 					foreach ($profiles as $yamlFile) {

@@ -38,7 +38,7 @@ class InstallCommand extends Command
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$force = $input->getOption('force');
-		$installer = new \Installer;
+		$installer = \Installer::getInstance();
 		$installed = $installer->tableExists('users_users');
 
 		$optionUseInnoDB = $input->getOption('useInnoDB');
