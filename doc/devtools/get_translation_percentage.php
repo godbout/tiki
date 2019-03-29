@@ -15,7 +15,6 @@
  * it will be updated.
  */
 
-die("REMOVE THIS LINE TO USE THE SCRIPT.\n");
 
 if (! isset($argv[1])) {
 	echo "\nUsage: php get_translation_percentage.php pathToTikiRootDir wikiPageName\n";
@@ -97,7 +96,7 @@ $output .= "__Global stats:__\n* {$globalStats['70+']} languages with more than 
 $output .= "{FANCYTABLE(head=\"Language code (ISO)|English name|Native Name|Completion|Percentage|Number of strings\" sortable=\"y\")}\n";
 
 foreach ($outputData as $lang => $data) {
-	$output .= "$lang | {$langmapping[$lang][1]} | {$langmapping[$lang][0]} | {gauge value=\"{$data['percentage']}\" size=\"100\" showvalue=\"false\"} | ";
+	$output .= "$lang | {$langmapping[$lang][1]} | {$langmapping[$lang][0]} | {Gauge value=\"{$data['percentage']}\" max=\"100\" size=\"200\" color=\"#00C851\" bgcolor=\"#eceff1\" height=\"20\" perc=\"true\" showvalue=\"false\"} | ";
 	$output .= "{$data['percentage']}% | Total: {$data['total']} %%% Translated: {$data['translated']} %%% Untranslated: {$data['untranslated']} \n";
 }
 
