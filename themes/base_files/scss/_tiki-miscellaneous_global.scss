@@ -307,7 +307,7 @@ span.btn-link {
 }
 
 .popover button.btn-link.link-list,
-.popover button.btn-link.link-list .icon,
+// .popover button.btn-link.link-list .icon, <- this broke the FontAwesome lock and unlock icons in templates/fgal_context_menu.tpl because of the font-weight: normal definition below
 .dropdown-item button.btn-link.link-list,
 .dropdown-item button.btn-link.link-list .icon{
 	text-transform: initial;

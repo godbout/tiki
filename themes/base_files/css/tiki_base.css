@@ -1011,7 +1011,7 @@ span.btn-link {
 .popover button.btn-link, .popover button.btn-link .icon {
   font-size: 0.875rem; }
 
-.popover button.btn-link.link-list, .popover button.btn-link.link-list .icon, .dropdown-item button.btn-link.link-list, .dropdown-item button.btn-link.link-list .icon {
+.popover button.btn-link.link-list, .dropdown-item button.btn-link.link-list, .dropdown-item button.btn-link.link-list .icon {
   text-transform: initial;
   text-align: start;
   font-weight: normal;
