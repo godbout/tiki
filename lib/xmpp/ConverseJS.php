@@ -88,8 +88,8 @@ class ConverseJS
 
 		if ($this->get_option('view_mode') === 'embedded') {
 			// TODO: remove this a line after fixing conversejs
-			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->getOption('jid') . '"];';
-			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->getOption('jid') . '-controlbox"];';
+			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '"];';
+			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '-controlbox"];';
 		}
 
 		$optionString = json_encode($this->get_options(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
