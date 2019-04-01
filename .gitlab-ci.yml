@@ -251,4 +251,3 @@ sensiolabs-vendor-bundled-security-check:
       - schedules
     variables:
       - $SCHEDULER == "vendor_check"
-
