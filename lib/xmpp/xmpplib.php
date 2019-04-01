@@ -5,6 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 require_once 'lib/auth/tokens.php';
+require_once dirname(__FILE__) . '/ConverseJS.php';
 require_once dirname(__FILE__) . '/TikiXmppChat.php';
 require_once dirname(__FILE__) . '/TikiXmppPrebind.php';
 
@@ -245,7 +246,7 @@ class XMPPLib extends TikiLib
 	}
 
 	/**
-	 * Add css and js files and initialising js to the page
+	 * Add css and js files and initializes xmpp client page
 	 *
 	 * @param array $params :
 	 *        view__mode => overlayed | fullscreen | mobile | embedded
@@ -253,7 +254,7 @@ class XMPPLib extends TikiLib
 	 * @return string
 	 * @throws Exception
 	 */
-	function addConverseJSToPage($params = [])
+	function render_xmpp_client($params = [])
 	{
 		global $user, $prefs;
 
@@ -264,81 +265,48 @@ class XMPPLib extends TikiLib
 			return '';
 		}
 
-		$tikilib = TikiLib::lib('tiki');
-		$headerlib = TikiLib::lib('header');
 		$xmpplib = TikiLib::lib('xmpp');
-
 		$xmpp = $xmpplib->get_user_connection_info($user);
-
-		$js = '';
-		$cssjs = '';
 
 		$params = array_merge([
 			'view_mode' => 'overlayed',
 			'room' => '',
+			'show_controlbox_by_default' => 'y',
 		], $params);
 
-		$css_files = ['converse.css'];
-
-		switch ($params['view_mode']) {
-			case 'fullscreen':
-				$css_files[] = 'fullpage.css';
-				break;
-
-			case 'embedded':
-				// TODO: remove this a line after fixing conversejs
-				$js .= 'delete sessionStorage["converse.chatboxes-' . $xmpp['jid'] . '"];';
-				$js .= 'delete sessionStorage["converse.chatboxes-' . $xmpp['jid'] . '-controlbox"];';
-				break;
-		}
-
-		foreach ($css_files as $css_file) {
-			if (! empty($params['late_css'])) {
-				$cssjs .= '$("<link rel=\"stylesheet\">").attr("href", "vendor_bundled/vendor/jcbrand/converse.js/css/' . $css_file . '").appendTo("head");';
-			} else {
-				$headerlib->add_cssfile('vendor_bundled/vendor/jcbrand/converse.js/css/' . $css_file);
-			}
-		}
-
-		$options = array_merge(
+		$xmppclient = new ConverseJS();
+		$xmppclient->set_options($this->getConverseAuthOptions($params));
+		$xmppclient->set_options(
 			[
 				'bosh_service_url' => $xmpp['http_bind'],
 				'debug'            => $prefs['xmpp_conversejs_debug'] === 'y',
 				'jid'              => $xmpp['jid'],
 				'nickname'         => $xmpp['nickname'] ?: 'visitor-' . time(),
-				'use_emojione'     => false,
 				'view_mode'        => $params['view_mode'],
-				'show_controlbox_by_default' => isset($params['show_controlbox_by_default']) && $params['show_controlbox_by_default'] === 'y',
-				'whitelisted_plugins' => ['tiki', 'tiki-oauth'],
-			],
-			$this->getConverseAuthOptions($params)
+				'show_controlbox_by_default' => $params['show_controlbox_by_default'] === 'y',
+			]
 		);
-
-		if ($params['room']) {
-			if (strpos($params['room'], '@') === false && ! empty($prefs['xmpp_muc_component_domain'])) {
-				$params['room'] .= '@' . $prefs['xmpp_muc_component_domain'];
-			}
-			$options['auto_join_rooms'] = [$params['room']];
-		}
 
 		if (! empty($prefs['xmpp_conversejs_init_json'])) {
 			$extraOptions = json_decode($prefs['xmpp_conversejs_init_json'], true);
-			if ($extraOptions) {
-				$options = array_merge($options, $extraOptions);
-			} else {
-				Feedback::warning(tr('Preference "xmpp_conversejs_init_json" does not contain valid JSON'));
-			}
+			$extraOptions === null
+				? Feedback::warning(tr('Preference "xmpp_conversejs_init_json" does not contain valid JSON'))
+				: $xmppclient->set_options($extraOptions);
 		}
 
-		$optionString = json_encode($options, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+		if (! empty($prefs['xmpp_muc_component_domain'])) {
+			$xmppclient->set_option('muc_domain', $prefs['xmpp_muc_component_domain']);
+		}
+		$xmppclient->set_auto_join_rooms($params['room']);
 
-		$js .= 'converse.initialize(' . $optionString . ');';
-		$js .= $cssjs;
+		$print_link = function ($file) {
+			printf('<link rel="stylesheet" href="%s">', $file);
+		};
+		array_map($print_link, $xmppclient->get_css_dependencies());
 
-		$headerlib->add_jsfile('vendor_bundled/vendor/jcbrand/converse.js/dist/converse.js')
-			->add_jsfile('lib/xmpp/js/conversejs-tiki.js')
-			->add_jsfile('lib/xmpp/js/conversejs-tiki-oauth.js')
-			->add_jq_onready($js);
+		$headerlib = TikiLib::lib('header');
+		array_map([$headerlib, 'add_jsfile'], $xmppclient->get_js_dependencies());
+		$headerlib->add_jq_onready($xmppclient->render());
 	}
 
 	public function initializeRestApi()

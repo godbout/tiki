@@ -144,7 +144,7 @@ function wikiplugin_xmpp($data, $params)
 
 	$javascript = 'lib/jquery_tiki/wikiplugin-xmpp.js';
 	$headerlib->add_jsfile_late($javascript . '?_=' . filemtime(TIKI_PATH . "/$javascript"), false);
-	TikiLib::lib('xmpp')->addConverseJSToPage($params);
+	TikiLib::lib('xmpp')->render_xmpp_client($params);
 
 	$result .= $smarty->fetch('wiki-plugins/wikiplugin_xmpp.tpl');
 
