@@ -54,8 +54,8 @@ class ConverseJS
 		$domain = $this->get_option('muc_domain');
 
 		if (! $marker && $domain) {
-		}
 			$room = $room . '@' . $domain;
+		}
 
 		$this->options['auto_join_rooms'] = [ $room ];
 	}
