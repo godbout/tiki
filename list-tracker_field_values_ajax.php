@@ -41,7 +41,7 @@ if (! $err) {	// errors
 	$vals = $trklib->list_tracker_field_values($_REQUEST['trackerId'], $_REQUEST['fieldId'], 'opc', 'y', $_REQUEST['lang']);
 	if (! empty($_REQUEST['q'])) {
 		foreach ($vals as &$val) {
-			if (strpos($val, $_REQUEST['q']) !== false) {
+			if (strpos(strtolower($val), strtolower($_REQUEST['q'])) !== false) {
 				$values[] = $val;
 			}
 		}
