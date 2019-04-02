@@ -225,13 +225,12 @@ done
 shift $(($OPTIND - 1))
 
 # define command to execute for main program
-# default: do nothing
 if [ -z $1 ]; then
-	#COMMAND=fix
-	#COMMAND="nothing"
 	COMMAND="default"
+	EXITONFAIL="n"
 else
 	COMMAND=$1
+	EXITONFAIL="y"
 fi
 
 if [ ${DEBUG} = '1' ] ; then
@@ -542,6 +541,7 @@ composer_core()
 		else
 			echo "Composer self-update failed. Reinstalling composer"
 			NEED_NEW_COMPOSER="1"
+			rm temp/composer.phar
 		fi
 		# remove previous container.php in case of incompatibility
 		rm -f temp/cache/container.php
@@ -568,8 +568,11 @@ composer_core()
 		echo "NB: Maybe you are behing a proxy, just export https_proxy variable and relaunch setup.sh"
 		echo "1) Download it from http://getcomposer.org"
 		echo "2) Store it in temp/"
-		#exit
-		return
+		if [ ${EXITONFAIL} = "y" ]; then
+			exit 1
+		else
+			return
+		fi
 	fi
 
 	N=0
@@ -583,8 +586,11 @@ composer_core()
 			do
 				if [ $N -eq 7 ];
 				then
-					#exit
-					return
+					if [ ${EXITONFAIL} = "y" ]; then
+						exit 1
+					else
+						return
+					fi
 				else
 					echo "Composer failed, retrying in 5 seconds, for a few times. Hit Ctrl-C to cancel."
 					sleep 5
@@ -598,8 +604,11 @@ composer_core()
 			do
 				if [ $N -eq 7 ];
 				then
-					#exit
-					return
+					if [ ${EXITONFAIL} = "y" ]; then
+						exit 1
+					else
+						return
+					fi
 				else
 					echo "Composer failed, retrying in 5 seconds, for a few times. Hit Ctrl-C to cancel."
 					sleep 5
@@ -615,8 +624,11 @@ composer_core()
 			do
 				if [ $N -eq 7 ];
 				then
-					#exit
-					return
+					if [ ${EXITONFAIL} = "y" ]; then
+						exit 1
+					else
+						return
+					fi
 				else
 					echo "Composer failed, retrying in 5 seconds, for a few times. Hit Ctrl-C to cancel."
 					sleep 5
@@ -625,7 +637,6 @@ composer_core()
 			done
 		fi
 	fi
-	#exit
 	return
 }
 
