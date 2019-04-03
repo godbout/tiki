@@ -3549,6 +3549,10 @@ body.fullscreen.tiki.navbar-padding {
     left: 0px;
     bottom: 0px; } }
 
+@media (max-width: 767.98px) {
+  .btn {
+    white-space: normal !important; } }
+
 div.tablesorter-resizable-container {
   clear: both;
   width: 100%; }

@@ -437,3 +437,7 @@ body.fullscreen.tiki.navbar-padding {
 		bottom: 0px;
 	}
 }
+
+@media (max-width: breakpoint-max(sm)) {
+	.btn { white-space: normal !important; }
+}
