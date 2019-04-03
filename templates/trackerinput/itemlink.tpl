@@ -105,12 +105,12 @@
 			{jq}
 				$("select[name={{$field.ins_id}}]").parent().find(".insert-tracker-item").clickModal({
 					success: function (data) {
+						var $select = $("select[name={{$field.ins_id}}]");
 						$('<option>')
 							.attr('value', data.itemId)
-							.text(data.itemTitle)
-							.appendTo($(this).prev());
-						$(this).prev().val(data.itemId);
-						$(this).prev().trigger("change");
+							.text(data.{{if not empty($data.otherFieldPermName)}fields.{$data.otherFieldPermName}{else}itemTitle{/if}})
+							.appendTo($select);
+						$select.val(data.itemId).trigger("chosen:updated").trigger("change");
 						$.closeModal();
 					}
 				});

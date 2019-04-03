@@ -437,6 +437,12 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 			}
 		}
 
+		if ($this->getOption('fieldId') && $this->getOption('addItems')) {
+			$definition = Tracker_Definition::get($this->getOption('trackerId'));
+			$fieldArray = $definition->getField($this->getOption('fieldId'));
+			$data['otherFieldPermName'] = $this->getFieldReference($fieldArray);
+		}
+
 		return $this->renderTemplate('trackerinput/itemlink.tpl', $context, $data);
 	}
 
