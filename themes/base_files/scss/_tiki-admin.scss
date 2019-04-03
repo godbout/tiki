@@ -315,11 +315,23 @@ table.objectperms > tbody .checkBoxCell {
 // Make global permission checkboxes not display
 table.objectperms thead th { display: none; }
 
-@include media-breakpoint-down(sm) {
+@media (max-width: breakpoint-max(sm)) {
 		.admin-navbar {
 				.filter-menu { text-align: center; }
 				.navbar-nav { padding: 0 15px; }
 				.form-inline { min-width: 100%; }
 				input[type="checkbox"].preffilter-toggle-round + label { margin-left: 10px; }
+		}
+
+		.adminanchors {
+				.navbar-nav {
+						margin: 0; padding: 0;
+						.nav-link {
+								min-width: 50px;
+								padding-left: 0.5rem;
+								padding-right: 0.5rem;
+								text-align: center;
+						}
+				}
 		}
 }
