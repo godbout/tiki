@@ -24,6 +24,13 @@ if (empty($_SERVER['REQUEST_URI'])) {
 if (empty($_SERVER['SERVER_NAME'])) {
 	$_SERVER['SERVER_NAME'] = isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '';
 }
+// Handle load balancers or reverse proxy (most reliable to do it early on as much code depends on these 2 server vars)
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || isset($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] == 'https') {
+	$_SERVER['HTTPS'] = 'on';
+}
+if (!empty($_SERVER['HTTP_X_FORWARDED_PORT'])) {
+	$_SERVER['SERVER_PORT'] = $_SERVER['HTTP_X_FORWARDED_PORT'];
+}
 
 // ---------------------------------------------------------------------
 // basic php conf adjustment
