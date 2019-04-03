@@ -42,11 +42,9 @@
 			{/if}
 		{if $context.canBrowse}
 			{if $prefs.fgal_elfinder_feature eq 'y'}
-				{button href='tiki-list_file_gallery.php' _text="{tr}Browse files{/tr}"
-				_onclick=$context.onclick
-					title="{tr}Browse files{/tr}"}
+				{button href='tiki-list_file_gallery.php' _text="{tr}Browse files{/tr}" _onclick=$context.onclick title="{tr}Browse files{/tr}"}
 			{else}
-				<a href="{service controller=file action=browse galleryId=$galleryId limit=$field.limit|default:100 type=$field.filter image_x=$field.image_x image_y=$field.image_y}" class="btn btn-primary browse-files">{tr}Browse Files{/tr}</a>
+				<a href="{service controller=file action=browse galleryId=$context.galleryId limit=$field.limit|default:100 type=$field.filter image_x=$field.image_x image_y=$field.image_y}" class="btn btn-primary browse-files">{tr}Browse Files{/tr}</a>
 			{/if}
 		{/if}
 		{if $prefs.fgal_upload_from_source eq 'y' and $field.canUpload}

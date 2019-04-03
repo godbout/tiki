@@ -286,7 +286,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 
 		$context['canBrowse'] = false;
 
-		if ($prefs['fgal_tracker_existing_search']) {
+		if ($prefs['fgal_tracker_existing_search'] == 'y') {
 			if ($this->getOption('browseGalleryId')) {
 				$defaultGalleryId = $this->getOption('browseGalleryId');
 			} elseif ($this->getOption('galleryId')) {
@@ -294,18 +294,21 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 			} else {
 				$defaultGalleryId = 0;
 			}
-			$deepGallerySearch = $this->getOption('galleryId');
+			$deepGallerySearch = $this->getOption('deepGallerySearch');
 			//in case $deepGallerySearch is false
-			$deepGallerySearch = $deepGallerySearch === 1 ? 1 : 0;
+			$deepGallerySearch = $deepGallerySearch == 1 ? 1 : 0;
 			$image_x = $this->getOption('image_x');
 			$image_y = $this->getOption('image_y');
 
-			$context['onclick'] = 'return openElFinderDialog(this, {
+			if ($prefs['fgal_elfinder_feature'] == 'y') {
+				$context['onclick'] = 'return openElFinderDialog(this, {
 	defaultGalleryId:' . $defaultGalleryId . ',
 	deepGallerySearch: ' . $deepGallerySearch . ',
 	getFileCallback: function(file,elfinder){ window.handleFinderFile(file,elfinder); },
 	eventOrigin:this
 });';
+			}
+			$context['galleryId'] = $defaultGalleryId;
 			$context['canBrowse'] = Perms::get(['type' => 'file gallery', 'object' => $defaultGalleryId])->view_file_gallery;
 		}
 
