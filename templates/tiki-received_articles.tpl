@@ -24,7 +24,7 @@
 			</tr>
 		</table>
 	</div>
-	<div class="articletrailer">
+	<div class="articletrailer py-3">
 		(xx {tr}bytes{/tr})
 	</div>
 

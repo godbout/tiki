@@ -218,7 +218,7 @@
 				<div class="articleheadingtext{if $listpages[ix].isfloat eq 'n'} media-body{/if}">{$listpages[ix].parsed_heading}</div>
 			</div>
 					{if isset($fullbody) and $fullbody eq "y"}
-			<div class="articlebody">{$listpages[ix].parsed_body}</div>
+			<div class="articlebody py-3">{$listpages[ix].parsed_body}</div>
 					{/if}
 
 			<div class="articletrailer">

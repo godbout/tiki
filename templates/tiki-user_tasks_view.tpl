@@ -99,7 +99,7 @@
 	<table style="width:100%;border:0">
 		<tr>
 			<td>
-				<div class="articlebody">
+				<div class="articlebody py-3">
 					{$info.parsed}
 				</div>
 			</td>

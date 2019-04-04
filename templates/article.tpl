@@ -124,7 +124,7 @@
 	</div>
 
 	{if $prefs.art_trailer_pos eq 'between'}{include file='article_trailer.tpl'}{/if}
-	<div class="articlebody clearfix">
+	<div class="articlebody py-3 clearfix">
 		{if $tiki_p_read_article eq 'y'}
 			{$parsed_body}
 		{else}
