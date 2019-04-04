@@ -13,6 +13,7 @@ class UnifiedSearchLib
 	const INCREMENT_QUEUE = 'search-increment';
 	private $batchToken;
 	private $isRebuildingNow = false;
+	private $indices;
 
 	/**
 	 * @return string
@@ -695,6 +696,10 @@ class UnifiedSearchLib
 	{
 		global $prefs, $tiki_p_admin;
 
+		if (isset($this->indices[$indexType])) {
+			return $this->indices[$indexType];
+		}
+
 		$writeMode = false;
 		if ($indexType == 'data-write') {
 			$indexType = 'data';
@@ -721,6 +726,7 @@ class UnifiedSearchLib
 				$index->setCamelCaseEnabled($prefs['unified_elastic_camel_case'] == 'y');
 				$index->setPossessiveStemmerEnabled($prefs['unified_elastic_possessive_stemmer'] == 'y');
 				$index->setFacetCount($prefs['search_facet_default_amount']);
+				$this->indices[$indexType] = $index;
 				return $index;
 			case 'mysql':
 				$index = $this->getIndexLocation($indexType);
