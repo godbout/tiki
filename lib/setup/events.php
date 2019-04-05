@@ -47,6 +47,10 @@ function tiki_setup_events()
 				}
 			);
 		}
+
+		if ($prefs['xmpp_feature'] === 'y') {
+			$events->bind('tiki.wiki.save', $defer('xmpp', 'create_room_from_wikipage'));
+		}
 	}
 
 	if ($prefs['feature_trackers'] == 'y') {

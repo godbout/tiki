@@ -79,6 +79,37 @@ function wikiplugin_xmpp_info()
 					['text' => tra('No'), 'value' => 'n'],
 				],
 			],
+			'groups' => [
+				'name' => tra('Allowed Groups'),
+				'default' => '',
+				'filter' => 'alpha',
+				'required' => false,
+				'separator' => ',',
+			],
+			'secret' => [
+				'name' => tra('Is secret?'),
+				'default' => 'n',
+				'filter' => 'y|n',
+				'required' => false,
+			],
+			'archiving' => [
+				'name' => tra('Archiving'),
+				'default' => 'y',
+				'filter' => 'y|n',
+				'required' => false,
+			],
+			'persistent' => [
+				'name' => tra('Persistent'),
+				'default' => 'y',
+				'filter' => 'y|n',
+				'required' => false,
+			],
+			'moderated' => [
+				'name' => tra('Moderated'),
+				'default' => 'y',
+				'filter' => 'y|n',
+				'required' => false,
+			],
 		],
 	];
 }

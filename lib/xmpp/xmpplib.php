@@ -104,6 +104,57 @@ class XMPPLib extends TikiLib
 			&& $param['user'] === $givenUser;
 	}
 
+	function create_room_from_wikipage($args, $name, $priority)
+	{
+		if (! is_array($args) || empty($args['data'])) {
+			return;
+		}
+
+		preg_match('/\{xmpp\b[^}]*\}/i', $args['data'], $match)
+			&& preg_match_all('/(?:(\w+)=(?:"([^"]*)"|([^\s]+)))/', $match[0], $match);
+
+		if (empty($match)) {
+			return;
+		}
+
+		$params = array();
+		for ($i = 0; $i < count($match[1]); $i += 1) {
+			$key = $match[ 1 ][ $i ];
+			$val = $match[ 2 ][ $i ] ?: $match[ 3 ][ $i ];
+			$params[ $key ] = $val;
+		}
+
+		if (empty($params['room'])) {
+			return;
+		}
+		// this is openfire specific
+
+		$args = ['roomName' => $params['room']];
+		$atpos = strrpos($args['roomName'], '@');
+
+		if ($atpos) {
+			$args['roomName'] = substr($args['roomName'], 0, $atpos);
+		}
+
+		$args['naturalName'] = $args['roomName'];
+		$args['persistent'] = isset($params['persistent']) && $params['persistent'] === 'y';
+		$args['moderated'] = isset($params['moderated']) && $params['moderated'] === 'y';
+		$args['logEnabled'] = isset($params['archiving']) && $params['archiving'] === 'y';
+		$args['publicRoom'] = ! isset($params['secret']) || $params['secret'] !== 'y';
+
+		return $this->create_room($args);
+	}
+
+	function create_room($args)
+	{
+		if (empty($args) || empty($args['roomName'])) {
+			return;
+		}
+
+		$restapi = $this->initializeRestApi();
+		$return = $restapi->createChatRoom($args);
+		return $return;
+	}
 
 	function sanitize_name($text)
 	{
