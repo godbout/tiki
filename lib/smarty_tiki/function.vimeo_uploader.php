@@ -29,9 +29,9 @@ function smarty_function_vimeo_uploader($params, $smarty)
 	}
 
 //	The Iframe Transport is required for browsers without support for XHR file uploads
-	$headerlib->add_jsfile('vendor_bundled/vendor/blueimp/jquery-file-upload/js/jquery.iframe-transport.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/blueimp-file-upload/js/jquery.iframe-transport.js');
 //	The basic File Upload plugin
-	$headerlib->add_jsfile('vendor_bundled/vendor/blueimp/jquery-file-upload/js/jquery.fileupload.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/blueimp-file-upload/js/jquery.fileupload.js');
 
 //	Tiki customised application script
 	$headerlib->add_js("uploadlinksecure = '" . $params['url'] . "';");
