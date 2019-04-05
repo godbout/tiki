@@ -72,6 +72,13 @@ function wikiplugin_list_info()
 				'filter' => 'text',
 				'since' => '20.0',
 			],
+			'multisearchid' => [
+				'required' => false,
+				'name' => 'ID of MULTISEARCH block from which to render results',
+				'description' => tra('This is for much better performance by doing one search for multiple LIST plugins together. Render results from previous {MULTISEARCH(id-x)}...{MULTISEARCH} block by providing the ID used in that block.'),
+				'filter' => 'text',
+				'since' => '20.0',
+			],
 		],
 	];
 }
@@ -80,6 +87,8 @@ function wikiplugin_list($data, $params)
 {
 	global $prefs;
 
+	static $multisearchResults;
+	static $originalQueries;
 	static $i;
 	$i++;
 
@@ -93,6 +102,16 @@ function wikiplugin_list($data, $params)
 			->add_jsfile('vendor_bundled/vendor/jquery/plugins/nestedsortable/jquery.ui.nestedSortable.js');
 	}
 
+	$tosearch = [];
+
+	if (isset($params['multisearchid']) && $params['multisearchid'] > '') {
+		// If 'multisearchid' is provided as a parameter to the LIST plugin, it means the list plugin
+		// is to render the results of that ID specified in the MULTISEARCH block of the "pre-searching" LIST plugin.
+		$renderMultisearch = true;
+	} else {
+		$renderMultisearch = false;
+	}
+
 	$now = TikiLib::lib('tiki')->now;
 	$cachelib = TikiLib::lib('cache');
 	$cacheType = 'listplugin';
@@ -101,6 +120,26 @@ function wikiplugin_list($data, $params)
 		$cacheExpiry = $params['cacheexpiry'];
 	} else {
 		$cacheExpiry = $prefs['unified_list_cache_default_expiry'];
+	}
+
+	// First need to check for {MULTISEARCH()} blocks as then will need to do all queries at the same time
+	$multisearch = false;
+	$matches = WikiParser_PluginMatcher::match($data);
+	foreach ($matches as $match) {
+		if ($match->getName() == 'multisearch') {
+			if ($prefs['unified_engine'] != 'elastic') {
+				return tra("Error: {MULTISEARCH(id=x)} requires use of Elasticsearch as the engine.");
+			}
+			$args = WikiParser_PluginArgumentParser::parse($match->getArguments());
+			if (!isset($args['id'])) {
+				return tra("Error: {MULTISEARCH(id=x)} needs an ID to be specified.");
+			}
+			$tosearch[$args['id']] = $match->getBody();
+			$multisearch = true;
+		}
+	}
+	if (!$multisearch) {
+		$tosearch = [ $data ];
 	}
 
 	if ($params['cache'] == 'y' || $prefs['unified_list_cache_default_on'] == 'y' && $params['cache'] != 'n') {
@@ -125,42 +164,80 @@ function wikiplugin_list($data, $params)
 		if ($cachelib->isCached($cacheName, $cacheType)) {
 			list($date, $out) = $cachelib->getSerialized($cacheName, $cacheType);
 			if ($date > $now - $cacheExpiry * 60) {
-				return $out;
+				if ($multisearch) {
+					$multisearchResults = $out;
+				} else {
+					return $out;
+				}
+			} else {
+				$cachelib->invalidate($cacheName, $cacheType);
 			}
 		}
 	}
 
 	$unifiedsearchlib = TikiLib::lib('unifiedsearch');
 
-	$query = new Search_Query;
-	if (! isset($params['searchable_only']) || $params['searchable_only'] == 1) {
-		$query->filterIdentifier('y', 'searchable');
-	}
-	$unifiedsearchlib->initQuery($query);
-
-	$matches = WikiParser_PluginMatcher::match($data);
-
-	$builder = new Search_Query_WikiBuilder($query);
-	$builder->enableAggregate();
-	$builder->apply($matches);
-	$tsret = $builder->applyTablesorter($matches);
-	if (! empty($tsret['max']) || ! empty($_GET['numrows'])) {
-		$max = ! empty($_GET['numrows']) ? $_GET['numrows'] : $tsret['max'];
-		$builder->wpquery_pagination_max($query, $max);
-	}
-	$paginationArguments = $builder->getPaginationArguments();
-
-	if (! empty($_REQUEST[$paginationArguments['sort_arg']])) {
-		$query->setOrder($_REQUEST[$paginationArguments['sort_arg']]);
-	}
-
 	if (! $index = $unifiedsearchlib->getIndex()) {
 		return '';
 	}
 
-	PluginsLibUtil::handleDownload($query, $index, $matches);
+	if ($renderMultisearch && isset($originalQueries[$params['multisearchid']])) {
+		// Skip searching if rendering already retrieved results.
+		$query = $originalQueries[$params['multisearchid']];
+		$result = $query->search($index, '', $multisearchResults[$params['multisearchid']]);
+	} else {
+		// Perform searching
+		foreach ($tosearch as $id => $body) {
+			if ($renderMultisearch) {
+				// when rendering and if not already in $originalQueries, then just need to get the one that matches.
+				if ($params['multisearchid'] != $id) {
+					continue;
+				}
+			}
+			// Handle each query. If not multisearch will just be one.
+			$query = new Search_Query;
+			if (! isset($params['searchable_only']) || $params['searchable_only'] == 1) {
+				$query->filterIdentifier('y', 'searchable');
+			}
+			$unifiedsearchlib->initQuery($query);
 
-	$result = $query->search($index);
+			$matches = WikiParser_PluginMatcher::match($body);
+
+			$builder = new Search_Query_WikiBuilder($query);
+			$builder->enableAggregate();
+			$builder->apply($matches);
+			$tsret = $builder->applyTablesorter($matches);
+			if (! empty($tsret['max']) || ! empty($_GET['numrows'])) {
+				$max = !empty($_GET['numrows']) ? $_GET['numrows'] : $tsret['max'];
+				$builder->wpquery_pagination_max($query, $max);
+			}
+			$paginationArguments = $builder->getPaginationArguments();
+
+			if (! empty($_REQUEST[$paginationArguments['sort_arg']])) {
+				$query->setOrder($_REQUEST[$paginationArguments['sort_arg']]);
+			}
+
+			PluginsLibUtil::handleDownload($query, $index, $matches);
+
+			if ($multisearch) {
+				$originalQueries[$id] = $query;
+				$query->search($index, (string)$id);
+			} elseif ($renderMultisearch) {
+				$result = $query->search($index, '', $multisearchResults[$params['multisearchid']]);
+			} else {
+				$result = $query->search($index);
+			}
+		} // END: Foreach loop of queries
+		if ($multisearch) {
+			// Now that all the queries are in the stack, the actual search can be performed
+			$multisearchResults = $index->triggerMultisearch();
+			if ($params['cache'] == 'y' || $prefs['unified_list_cache_default_on'] == 'y' && $params['cache'] != 'n') {
+				$cachelib->cacheItem($cacheName, serialize([$now, $multisearchResults]), $cacheType);
+			}
+			// No output is required when saving results of multisearch for later rendering on page by other LIST plugins
+			return '';
+		}
+	} // END: Perform searching
 
 	$result->setId('wplist-' . $i);
 

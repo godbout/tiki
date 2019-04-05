@@ -19,6 +19,9 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 
 	private $fieldMappings = null;
 
+	private $multisearchIndices;
+	private $multisearchStack;
+
 	function __construct(Search_Elastic_Connection $connection, $index)
 	{
 		$this->connection = $connection;
@@ -275,12 +278,41 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 	}
 
 	/**
+	 * @param string $id The ID of each individual query in a multisearch
+	 * @param array Indices to search
+	 * @param Search_Query $fullQuery The fully formatted query that is to be passed to Elasticsearch
+	 * @param Search_Query $originalQuery The original query which would be used later to retrieve final results
+	 */
+	function addToMultisearchStack($id, $indices, $fullQuery, $originalQuery) {
+		$this->multisearchStack[] = ['id' => $id, 'fullQuery' => $fullQuery, 'originalQuery' => $originalQuery];
+		$this->multisearchIndices = $indices;
+	}
+
+	/**
+	 * @return array Raw results retrieved from Elasticsearch. Not to be confused with final transformed results that
+	 * contains perms and are not cacheable because has source info as PDO objects etc.
+	 */
+	function triggerMultisearch() {
+		$results = $this->connection->search($this->multisearchIndices, array_column($this->multisearchStack, 'fullQuery'), [], true);
+		$ret = [];
+		foreach ($results as $k => $result) {
+			$ret[$this->multisearchStack[$k]['id']] = $result;
+		}
+		return $ret;
+	}
+
+	/**
 	 * @param Search_Query $query
 	 * @param int $resultStart
 	 * @param int $resultCount
+	 * @param string $multisearchId : When provided, it means that the provided query is to be added to an
+	 * Elasticsearch Multisearch query, stored in a stack in this object, rather than executed as a single query search.
+	 * @param Search_Elastic_ResultSet $resultFromMultisearch : When provided, it means that the results of
+	 * a Multisearch has come back and this is a single result just being processed as if a single result had come back.
+	 * Called from the Search_Query->search().
 	 * @return Search_Elastic_ResultSet
 	 */
-	function find(Search_Query_Interface $query, $resultStart, $resultCount)
+	function find(Search_Query_Interface $query, $resultStart, $resultCount, $multisearchId = '', $resultFromMultisearch = '')
 	{
 		global $prefs;
 		/**
@@ -303,100 +335,114 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 		}
 		/**End of Sorted Search size adjustment (part 1)*/
 
-		$builder = new Search_Elastic_OrderBuilder($this);
-		$orderPart = $builder->build($query->getSortOrder());
-
-		$builder = new Search_Elastic_FacetBuilder($this->facetCount, $this->connection->getVersion() >= 2.0);
-		$facetPart = $builder->build($query->getFacets());
-
-		if ($this->connection->getVersion() >= 6.0 && $query->getSortOrder()->getField() === Search_Query_Order::FIELD_SCORE) {
-			$builder = new Search_Elastic_RescoreQueryBuilder;
-			$rescorePart = $builder->build($query->getExpr());
+		if (!empty($resultFromMultisearch)) {
+			// Results already gotten from Multisearch so no need to rebuild query
+			$result = $resultFromMultisearch;
 		} else {
-			$rescorePart = [];
-		}
+			// Prepare query for search and actually perform search to get results back
+			$builder = new Search_Elastic_OrderBuilder($this);
+			$orderPart = $builder->build($query->getSortOrder());
 
-		$builder = new Search_Elastic_QueryBuilder($this);
-		$builder->setDocumentReader($this->createDocumentReader());
-		$queryPart = $builder->build($query->getExpr());
+			$builder = new Search_Elastic_FacetBuilder($this->facetCount, $this->connection->getVersion() >= 2.0);
+			$facetPart = $builder->build($query->getFacets());
 
-		$postFilterPart = $builder->build($query->getPostFilter()->getExpr());
-		if (empty($postFilterPart)) {
-			$postFilterPart = [];
-		} else {
-			$postFilterPart = ["post_filter" => [
-				'fquery' => $postFilterPart,
-			]];
-		}
+			if ($this->connection->getVersion() >= 6.0 && $query->getSortOrder()->getField() === Search_Query_Order::FIELD_SCORE) {
+				$builder = new Search_Elastic_RescoreQueryBuilder;
+				$rescorePart = $builder->build($query->getExpr());
+			} else {
+				$rescorePart = [];
+			}
 
-		$indices = [$this->index];
+			$builder = new Search_Elastic_QueryBuilder($this);
+			$builder->setDocumentReader($this->createDocumentReader());
+			$queryPart = $builder->build($query->getExpr());
 
-		$foreign = array_map(function ($query) use ($builder) {
-			return $builder->build($query->getExpr());
-		}, $query->getForeignQueries());
+			$postFilterPart = $builder->build($query->getPostFilter()->getExpr());
+			if (empty($postFilterPart)) {
+				$postFilterPart = [];
+			} else {
+				$postFilterPart = ["post_filter" => [
+					'fquery' => $postFilterPart,
+				]];
+			}
 
-		foreach ($foreign as $indexName => $foreignQuery) {
-			if ($this->connection->getIndexStatus($indexName)) {
-				$indices[] = $indexName;
-				if ($this->connection->getVersion() >= 6) {
-					if (! isset($queryPart['query']['dis_max'])) {
-						$queryPart['query']['dis_max']['queries'] = [
-							$queryPart['query']
-						];
-						foreach ($queryPart['query'] as $key => $_) {
-							if ($key != 'dis_max') {
-								unset($queryPart['query'][$key]);
+			$indices = [$this->index];
+
+			$foreign = array_map(function ($query) use ($builder) {
+				return $builder->build($query->getExpr());
+			}, $query->getForeignQueries());
+
+			foreach ($foreign as $indexName => $foreignQuery) {
+				if ($this->connection->getIndexStatus($indexName)) {
+					$indices[] = $indexName;
+					if ($this->connection->getVersion() >= 6) {
+						if (!isset($queryPart['query']['dis_max'])) {
+							$queryPart['query']['dis_max']['queries'] = [
+								$queryPart['query']
+							];
+							foreach ($queryPart['query'] as $key => $_) {
+								if ($key != 'dis_max') {
+									unset($queryPart['query'][$key]);
+								}
 							}
 						}
-					}
-					$queryPart['query']['dis_max']['queries'][] = [
-						'bool' => [
-							'must' => [
-								$foreignQuery['query'],
-								[
-									'match' => ['_index' => $this->connection->resolveAlias($indexName)]
+						$queryPart['query']['dis_max']['queries'][] = [
+							'bool' => [
+								'must' => [
+									$foreignQuery['query'],
+									[
+										'match' => ['_index' => $this->connection->resolveAlias($indexName)]
+									]
 								]
 							]
-						]
-					];
+						];
+					} else {
+						$queryPart = ['query' => [
+							'indices' => [
+								'index' => $indexName,
+								'query' => $foreignQuery['query'],
+								'no_match_query' => $queryPart['query'],
+							],
+						]];
+					}
 				} else {
-					$queryPart = ['query' => [
-						'indices' => [
-							'index' => $indexName,
-							'query' => $foreignQuery['query'],
-							'no_match_query' => $queryPart['query'],
-						],
-					]];
+					Feedback::error(tr('Federated index %0 not found', $indexName));
 				}
-			} else {
-				Feedback::error(tr('Federated index %0 not found', $indexName));
 			}
-		}
 
-		$fullQuery = array_merge(
-			$queryPart,
-			$orderPart,
-			$facetPart,
-			$rescorePart,
-			$postFilterPart,
-			[
-				"from" => $resultStart,
-				"size" => $resultCount,
-				"highlight" => [
-					"tags_schema" => "styled",
-					"fields" => [
-						'contents' => [
-							"number_of_fragments" => 5,
-						],
-						'file' => [
-							"number_of_fragments" => 5,
+			$fullQuery = array_merge(
+				$queryPart,
+				$orderPart,
+				$facetPart,
+				$rescorePart,
+				$postFilterPart,
+				[
+					"from" => $resultStart,
+					"size" => $resultCount,
+					"highlight" => [
+						"tags_schema" => "styled",
+						"fields" => [
+							'contents' => [
+								"number_of_fragments" => 5,
+							],
+							'file' => [
+								"number_of_fragments" => 5,
+							],
 						],
 					],
-				],
-			]
-		);
+				]
+			);
 
-		$result = $this->connection->search($indices, $fullQuery);
+			if ($multisearchId > '') {
+				// This is a request to add a query to the Multisearch stack.
+				// Results are irrelevant for now as Multisearch hasn't happened yet.
+				$this->addToMultisearchStack($multisearchId, $indices, $fullQuery, $query);
+				return Search_ResultSet::create([]);
+			} else {
+				$result = $this->connection->search($indices, $fullQuery);
+			}
+		} // END: Prepare query for search and actually perform search to get results back
+
 		$hits = $result->hits;
 
 		/**

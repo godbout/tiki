@@ -122,18 +122,38 @@ class Search_Elastic_Connection
 		}
 	}
 
-	function search($index, array $query, array $args = [])
+	function search($index, array $query, array $args = [], $multisearch = false)
 	{
 		$indices = (array) $index;
 		foreach ($indices as $index) {
 			if (! empty($this->dirty[$index])) {
 				$this->refresh($index);
 			}
-			$this->validate($index, $query);
+			if (!$multisearch) {
+				// The purpose of Multisearch is to reduce connections to ES and so skip unless ES have Multivalidate
+				$this->validate($index, $query);
+			}
+		}
+
+		if ($multisearch) {
+			// Process an array of queries for Elasticsearch Multisearch
+			$queries = '';
+			foreach ($query as $q) {
+				$queries .= "{}\n"; // use the search index set in URL
+				$queries .= json_encode($q) . "\n";
+			}
 		}
 
 		$index = implode(',', $indices);
-		return $this->post("/$index/_search?" . http_build_query($args, '', '&'), json_encode($query));
+
+		if ($multisearch) {
+			// We have an array of queries for Elasticsearch Multisearch
+			$ret = $this->post("/$index/_msearch?" . http_build_query($args, '', '&'), $queries);
+			$ret = $ret->responses; // return the array of responses for each query
+		} else {
+			$ret = $this->post("/$index/_search?" . http_build_query($args, '', '&'), json_encode($query));
+		}
+		return $ret;
 	}
 
 	function validate($index, array $query)

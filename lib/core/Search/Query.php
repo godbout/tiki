@@ -310,12 +310,21 @@ class Search_Query implements Search_Query_Interface
 		}
 	}
 
-	function search(Search_Index_Interface $index)
+	/**
+	 * @param Search_Index_Interface $index
+	 * @param string $multisearchId : When provided, it means that the current query is to be added to an
+	 * Elasticsearch Multisearch query, rather than executed as a single query search. Triggering of the Multisearch
+	 * query is done though the Index object.
+	 * @param Search_Elastic_ResultSet $resultFromMultisearch : When provided, it means that this is one of the sub-results from an
+	 * Elasticsearch Multisearch query, and so it just has to be processed as if a result had come back in the case
+	 * of a single query.
+	 * @return Search_ResultSet
+	 */
+	function search(Search_Index_Interface $index, $multisearchId = '', $resultFromMultisearch = '')
 	{
 		$this->finalize();
-
 		try {
-			$resultset = $index->find($this, $this->start, $this->count);
+			$resultset = $index->find($this, $this->start, $this->count, $multisearchId, $resultFromMultisearch);
 		} catch (Search_Elastic_SortException $e) {
 			//on sort exception, try again without the sort field
 			$this->sortOrder = null;
@@ -326,6 +335,12 @@ class Search_Query implements Search_Query_Interface
 				trigger_error($e->getMessage(), E_USER_WARNING);
 			}
 			return Search_ResultSet::create([]);
+		}
+
+		if ($multisearchId > '') {
+			// This individual query would already be added to a Multisearch in the Index object and there would be
+			// no results to deal with until the Multisearch is triggered later
+			return;
 		}
 
 		$resultset->applyTransform(function ($entry) {
