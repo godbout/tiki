@@ -9,6 +9,7 @@ class ConverseJS
 		$this->options = [];
 		$this->set_options(array_merge(
 			[
+				'auto_reconnect' => true,
 				'debug' => false,
 				'show_controlbox_by_default' => true,
 				'use_emojione' => false,
