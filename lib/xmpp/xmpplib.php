@@ -183,31 +183,6 @@ class XMPPLib extends TikiLib
 		return $result;
 	}
 
-	public function getOAuthParameters()
-	{
-		$client_id = 'org.tiki.rtc.internal-conversejs-id';
-		$oauthserverlib = TikiLib::lib('oauthserver');
-		$accesslib = TikiLib::lib('access');
-
-		$client = $oauthserverlib->getClient($client_id)
-			?: $oauthserverlib->createClient([
-				'client_id' => $client_id,
-				'name' => 'ConverseJS OAuth Client',
-				'redirect_uri' => $accesslib->absoluteUrl('lib/xmpp/html/redirect.html')
-			]);
-
-		return array(
-			'client_id' => $client->getClientId(),
-			'name' => $client->getName(),
-			'authorize_url' => TikiLib::lib('service')->getUrl([
-				'action' => 'authorize',
-				'controller' => 'oauthserver',
-				'response_type' => 'token'
-			])
-		);
-	}
-
-
 	/**
 	 * Add css and js files and initializes xmpp client page
 	 *
