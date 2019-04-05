@@ -17,6 +17,85 @@ class ConverseJS
 			],
 			$options
 		));
+
+		$this->load_prefs();
+	}
+
+	public function load_prefs()
+	{
+		global $prefs;
+		$this->set_option('debug', $prefs['xmpp_conversejs_debug'] === 'y');
+
+		if (! empty($prefs['xmpp_conversejs_init_json'])) {
+			$extraOptions = json_decode($prefs['xmpp_conversejs_init_json'], true);
+			if ($extraOptions) {
+				$this->set_options($extraOptions);
+			}
+		}
+
+		if (! empty($prefs['xmpp_muc_component_domain'])) {
+			$this->set_option('muc_domain', $prefs['xmpp_muc_component_domain']);
+		}
+	}
+
+	public function get_oauth_parameters()
+	{
+		$client_id = 'org.tiki.rtc.internal-conversejs-id';
+		$oauthserverlib = TikiLib::lib('oauthserver');
+		$accesslib = TikiLib::lib('access');
+
+		$client = $oauthserverlib->getClient($client_id)
+			?: $oauthserverlib->createClient([
+				'client_id' => $client_id,
+				'name' => 'ConverseJS OAuth Client',
+				'redirect_uri' => $accesslib->absoluteUrl('lib/xmpp/html/redirect.html')
+			]);
+
+		return array(
+			'client_id' => $client->getClientId(),
+			'name' => $client->getName(),
+			'authorize_url' => TikiLib::lib('service')->getUrl([
+				'action' => 'authorize',
+				'controller' => 'oauthserver',
+				'response_type' => 'token'
+			])
+		);
+	}
+
+	public function set_auth($params)
+	{
+		global $user;
+		$authMethod = TikiLib::lib('tiki')->get_preference('xmpp_auth_method');
+
+		if (empty($user) && isset($params['anonymous']) && $params['anonymous'] === 'y') {
+			$this->set_options(array(
+				'authentication'   => 'anonymous',
+				'auto_login'       => true,
+			));
+		}
+
+		if ($authMethod === 'tikitoken') {
+			$this->set_options(array(
+				'auto_login' => true,
+				'authentication'   => 'prebind',
+				'prebind_url'      => TikiLib::lib('service')->getUrl([
+					'action' => 'prebind',
+					'controller' => 'xmpp',
+				]),
+			));
+		}
+
+		if ($authMethod === 'oauth') {
+			$this->set_options(array(
+				'authentication'   => 'login',
+				'oauth_providers' => [
+					'tiki' => $this->get_oauth_parameters(),
+				]));
+		}
+
+		$this->set_options(array(
+			'authentication' => 'login'
+		));
 	}
 
 	public function set_options($options)
@@ -84,8 +163,15 @@ class ConverseJS
 
 	public function render()
 	{
-		$output = '';
+		array_map(
+			function ($file) {
+				printf('<link rel="stylesheet" href="%s">', $file);
+			},
+			$this->get_css_dependencies()
+		);
+		array_map([TikiLib::lib('header'), 'add_jsfile'], $this->get_js_dependencies());
 
+		$output = '';
 		if ($this->get_option('view_mode') === 'embedded') {
 			// TODO: remove this a line after fixing conversejs
 			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '"];';
@@ -93,6 +179,7 @@ class ConverseJS
 		}
 
 		$optionString = json_encode($this->get_options(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-		return 'converse.initialize(' . $optionString . ');';
+		$output .= 'converse.initialize(' . $optionString . ');';
+		return TikiLib::lib('header')->add_jq_onready($output);
 	}
 }

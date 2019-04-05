@@ -208,43 +208,6 @@ class XMPPLib extends TikiLib
 	}
 
 
-	public function getConverseAuthOptions($params = [])
-	{
-		global $user;
-		$tikilib = TikiLib::lib('tiki');
-		$authMethod = $tikilib->get_preference('xmpp_auth_method');
-
-		if (empty($user) && isset($params['anonymous']) && $params['anonymous'] === 'y') {
-			return array(
-				'authentication'   => 'anonymous',
-				'auto_login'       => true,
-			);
-		}
-
-		if ($authMethod === 'tikitoken') {
-			return array(
-				'auto_login' => true,
-				'authentication'   => 'prebind',
-				'prebind_url'      => TikiLib::lib('service')->getUrl([
-					'action' => 'prebind',
-					'controller' => 'xmpp',
-				]),
-			);
-		}
-
-		if ($authMethod === 'oauth') {
-			return array(
-				'authentication'   => 'login',
-				'oauth_providers' => [
-					'tiki' => $this->getOAuthParameters(),
-				]);
-		}
-
-		return array(
-			'authentication' => 'login'
-		);
-	}
-
 	/**
 	 * Add css and js files and initializes xmpp client page
 	 *
@@ -275,38 +238,18 @@ class XMPPLib extends TikiLib
 		], $params);
 
 		$xmppclient = new ConverseJS();
-		$xmppclient->set_options($this->getConverseAuthOptions($params));
+		$xmppclient->set_auth($params);
 		$xmppclient->set_options(
 			[
 				'bosh_service_url' => $xmpp['http_bind'],
-				'debug'            => $prefs['xmpp_conversejs_debug'] === 'y',
 				'jid'              => $xmpp['jid'],
 				'nickname'         => $xmpp['nickname'] ?: 'visitor-' . time(),
 				'view_mode'        => $params['view_mode'],
 				'show_controlbox_by_default' => $params['show_controlbox_by_default'] === 'y',
 			]
 		);
-
-		if (! empty($prefs['xmpp_conversejs_init_json'])) {
-			$extraOptions = json_decode($prefs['xmpp_conversejs_init_json'], true);
-			$extraOptions === null
-				? Feedback::warning(tr('Preference "xmpp_conversejs_init_json" does not contain valid JSON'))
-				: $xmppclient->set_options($extraOptions);
-		}
-
-		if (! empty($prefs['xmpp_muc_component_domain'])) {
-			$xmppclient->set_option('muc_domain', $prefs['xmpp_muc_component_domain']);
-		}
 		$xmppclient->set_auto_join_rooms($params['room']);
-
-		$print_link = function ($file) {
-			printf('<link rel="stylesheet" href="%s">', $file);
-		};
-		array_map($print_link, $xmppclient->get_css_dependencies());
-
-		$headerlib = TikiLib::lib('header');
-		array_map([$headerlib, 'add_jsfile'], $xmppclient->get_js_dependencies());
-		$headerlib->add_jq_onready($xmppclient->render());
+		$xmppclient->render();
 	}
 
 	public function initializeRestApi()
