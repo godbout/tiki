@@ -20,6 +20,10 @@ function smarty_function_preference($params, $smarty)
 	$get_pages = isset($params['get_pages']) && $params['get_pages'] != 'n' ? true : false;
 
 	if ($info = $prefslib->getPreference($params['name'], true, $source, $get_pages)) {
+		if (isset($info['hide']) && $info['hide'] === true) {
+			return '';
+		}
+
 		if (isset($params['label'])) {
 			$info['name'] = $params['label'];
 		}

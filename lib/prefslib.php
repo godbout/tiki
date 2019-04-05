@@ -158,6 +158,10 @@ class PreferencesLib
 		$info['tags'][] = $name;
 		$info['tags'][] = 'all';
 
+		if ($this->checkPreferenceState($info['tags'], 'hide')) {
+			return ['hide' => true];
+		}
+
 		$info['notes'] = [];
 
 		$info['raw'] = isset($source[$name]) ? $source[$name] : null;
@@ -220,7 +224,7 @@ class PreferencesLib
 			$info['notes'][] = tr('Configuration forced by host.');
 		}
 
-		if ($this->preferenceDisabled($info['tags'])) {
+		if ($this->checkPreferenceState($info['tags'], 'deny')) {
 			$info['available'] = false;
 			$info['notes'][] = tr('Disabled by host.');
 		}
@@ -364,7 +368,13 @@ class PreferencesLib
 		];
 	}
 
-	private function preferenceDisabled($tags)
+	/**
+	 * Check preference state
+	 * @param $tags
+	 * @param $state
+	 * @return bool
+	 */
+	private function checkPreferenceState($tags, $state)
 	{
 		static $rules = null;
 
@@ -385,7 +395,7 @@ class PreferencesLib
 			$intersect = array_intersect($rule[1], $tags);
 
 			if (count($intersect)) {
-				return $rule[0] == 'deny';
+				return $rule[0] == $state;
 			}
 		}
 
@@ -416,6 +426,28 @@ class PreferencesLib
 		}
 
 		return true;
+	}
+
+	/**
+	 * Unset hidden preferences based on the configuration file settings
+	 * @param $preferences
+	 * @return array
+	 */
+	function unsetHiddenPreferences($preferences)
+	{
+		if (empty($preferences)) {
+			return [];
+		}
+
+		foreach ($preferences as $key => $preference) {
+			$preferenceInfo = $this->getPreference($preference);
+
+			if (isset($preferenceInfo['hide']) && $preferenceInfo['hide'] === true) {
+				unset($preferences[$key]);
+			}
+		}
+
+		return $preferences;
 	}
 
 	function getMatchingPreferences($criteria, $filters = null, $maxRecords = 50, $sort = '')
