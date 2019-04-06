@@ -75,9 +75,9 @@
 			<p>{tr _0="<a class=\"showurl{$myId}\" href=\"http://{$field.showurl|escape}\" target=\"_blank\">http://{$field.showurl|escape}</a>"}The URL for the {$field.options_map.domain|escape} instance that demonstrates this bug is at: %0.{/tr}
 				<strong>{tr}Note that if you get a popup asking for a username/password, please just enter "show" and "show". This is different from the initial login and password for a new Tiki which is "admin" and "admin".{/tr}</strong>
 			</p>
-			<p>{tr _0="<a class=\"showlogurl{$myId}\" href=\"http://{$field.showlogurl|escape}\" target=\"_blank\">http://{$field.showlogurl|escape}</a>"}The install log is at %0{/tr}</p>
+			<p>{tr _0="<a class=\"showlogurl{$myId}\" href=\"http://{$field.showlogurl|escape}\" target=\"_blank\">http://{$field.showlogurl|escape}</a>"}For the install log, see %0{/tr}</p>
 			<p>
-				<strong>{tr}Note that if you see PHP errors or a Tiki claiming to be missing third party software, the instance creation is probably not finished. Please wait 1 minute and reload.{/tr}</strong>
+				<strong>{tr}Note that if you see PHP errors or a Tiki claiming to be missing third party software, the instance creation is probably not finished. Please wait a couple minutes and reload.{/tr}</strong>
 			</p>
 		{/remarksbox}
 		{remarksbox type="info" title="{tr}Snapshots{/tr}" close="n"}
