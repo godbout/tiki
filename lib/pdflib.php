@@ -533,7 +533,7 @@ class PdfGenerator
 			$lpages = explode("</pdfpage>", $ppages[1], 2);
 
 			//for prepage settings pdfsettings will be used
-			if ($ppages[0] != "") {
+			if (preg_replace('~<(?:!DOCTYPE|/?(?:html|body))[^>]*>\s*~i', '', $ppages[0]) != "") {
 				$prePage = $pdfSettings;
 				$prePage['pageContent'] = $ppages[0];
 				$pageData[] = $prePage;
