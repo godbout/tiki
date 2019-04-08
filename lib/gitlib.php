@@ -18,14 +18,55 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 class GitLib extends TikiLib
 {
 	private $dir;
+	private $bin;
 
-	public function __construct($dir = null)
+	public function __construct($dir = null, $bin = null)
 	{
 		if (! empty($dir)) {
 			$this->dir = $dir;
 		} else {
 			$this->dir = dirname(__DIR__) . DIRECTORY_SEPARATOR . '.git';
 		}
+
+		if (! empty($bin)) {
+			$this->bin = $bin;
+		} else {
+			$this->detect_git_binary();
+		}
+	}
+
+	function detect_git_binary()
+	{
+		$php_os = strtoupper(PHP_OS);
+
+		if ($php_os === 'LINUX') {
+			$bin = system('which git 2>&-', $ret);
+
+			if ($bin && $ret == 0) {
+				$this->bin = $bin;
+				return $bin;
+			}
+		}
+	}
+
+	function run_git($args = [])
+	{
+		$cmd = $this->bin;
+		foreach ($args as $key => $arg) {
+			if ($arg[ 0 ] !== '-') {
+				$arg = escapeshellarg($arg);
+			}
+			$cmd .= " {$arg}";
+		}
+
+		ob_start();
+		$output = system($cmd, $return);
+		$stderr = ob_end_clean();
+
+		if ($return !== 0) {
+			throw new Exception($stderr, $return);
+		}
+		return $output;
 	}
 
 	/**
@@ -59,13 +100,24 @@ class GitLib extends TikiLib
 		$branch = $branch ?: $this->get_branch();
 
 		$filename = $this->dir . DIRECTORY_SEPARATOR . $branch;
-		if (! (file_exists($filename) && is_readable($filename))) {
-			throw new Exception(sprintf(tra('Branch "%s" not found'), $branch));
+		if (file_exists($filename) && is_readable($filename)) {
+			$hash = file_get_contents($filename);
+			$hash = trim($hash);
+			return $hash;
 		}
 
-		$hash = file_get_contents($filename);
-		$hash = trim($hash);
-		return $hash;
+		$filename = $this->dir . DIRECTORY_SEPARATOR . 'packed-refs';
+		if (file_exists($filename) && is_readable($filename)) {
+			$file = fopen($filename, 'r');
+			while (! feof($file)) {
+				$line = fgets($file);
+				if (strpos($line, $branch)) {
+					return substr($line, 0, 40);
+				}
+			}
+		}
+
+		throw new Exception(sprintf(tra('Branch "%s" not found'), $branch));
 	}
 
 	/**
@@ -78,15 +130,22 @@ class GitLib extends TikiLib
 	public function get_object($commit = null)
 	{
 		$commit = $commit ?: $this->get_commit();
-		$commit = substr($commit, 0, 2) . DIRECTORY_SEPARATOR . substr($commit, 2);
-		$filename = $this->dir . DIRECTORY_SEPARATOR . 'objects' . DIRECTORY_SEPARATOR . $commit;
+		$filename = $this->dir . DIRECTORY_SEPARATOR
+			. 'objects' . DIRECTORY_SEPARATOR
+			. substr($commit, 0, 2) . DIRECTORY_SEPARATOR
+			. substr($commit, 2);
 
-		if (! (file_exists($filename) && is_readable($filename))) {
-			throw new Exception(tra("File not found "));
+		if (file_exists($filename) && is_readable($filename)) {
+			$object = file_get_contents($filename);
+			return zlib_decode($object);
+		} elseif ($this->bin) {
+			$object = $this->run_git(['cat-file', '-t', $commit]);
+			$object .= " " . $this->run_git(['cat-file', '-s', $commit]);
+			$object .= "\0" . $this->run_git(['cat-file', '-p', $commit]);
+			return $object;
 		}
 
-		$object = file_get_contents($filename);
-		return zlib_decode($object);
+		throw new Exception(tra("File not found "));
 	}
 
 	/**
