@@ -41,7 +41,11 @@ function module_git_detail($mod_reference, $module_params)
 	try {
 		$content = $gitlib->get_info();
 	} catch (Exception $e) {
-		$error = strval($e);
+		$error = $e->getMessage();
+	} catch (Error $e) {
+		$error = $e->getMessage();
+	} catch (Throwable $e) {
+		$error = $e->getMessage();
 	}
 
 	$smarty->assign('error', $error);
