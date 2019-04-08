@@ -86,6 +86,7 @@ function wikiplugin_list_info()
 function wikiplugin_list($data, $params)
 {
 	global $prefs;
+	global $user;
 
 	static $multisearchResults;
 	static $originalQueries;
@@ -115,7 +116,11 @@ function wikiplugin_list($data, $params)
 	$now = TikiLib::lib('tiki')->now;
 	$cachelib = TikiLib::lib('cache');
 	$cacheType = 'listplugin';
-	$cacheName = md5($data);
+	if ($user) {
+		$cacheName = md5($data);
+	} else {
+		$cacheName = md5($data."loggedout");
+	}
 	if (isset($params['cacheexpiry'])) {
 		$cacheExpiry = $params['cacheexpiry'];
 	} else {
