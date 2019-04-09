@@ -270,13 +270,13 @@ if (jqueryTiki.no_cookie) {
 				{strip}
 					<div {if $mode eq 'header'}style="display: inline-block"{/if}><ul class="{if $mode neq 'header'}list-unstyled"{else}list-inline"{/if}>
 						{if $module_params.show_forgot eq 'y' && $prefs.forgotPass eq 'y'}
-							<li class="pass dropdown-item list-item p-0"><a href="tiki-remind_password.php" title="{tr}Click here if you've forgotten your password{/tr}">{tr}I forgot my password{/tr}</a></li>
+							<li class="pass{if $mode eq 'popup'} dropdown-item{else} p-0{/if} list-item"><a href="tiki-remind_password.php" title="{tr}Click here if you've forgotten your password{/tr}">{tr}I forgot my password{/tr}</a></li>
 						{/if}
 						{if $module_params.show_register eq 'y' && $prefs.allowRegister eq 'y'}
 							{if $mode eq 'header' && $module_params.show_forgot eq 'y' && $prefs.forgotPass eq 'y'}
 								&nbsp;|&nbsp;
 							{/if}
-							<li class="register dropdown-item list-item"><a href="tiki-register.php{if !empty($prefs.registerKey)}?key={$prefs.registerKey|escape:'url'}{/if}" title="{tr}Click here to register{/tr}"{if !empty($prefs.registerKey)} rel="nofollow"{/if}>{tr}Register{/tr}</a></li>
+							<li class="register{if $mode eq 'popup'} dropdown-item{/if} list-item"><a href="tiki-register.php{if !empty($prefs.registerKey)}?key={$prefs.registerKey|escape:'url'}{/if}" title="{tr}Click here to register{/tr}"{if !empty($prefs.registerKey)} rel="nofollow"{/if}>{tr}Register{/tr}</a></li>
 						{/if}
 					</ul></div>
 				{/strip}
