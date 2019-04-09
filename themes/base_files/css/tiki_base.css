@@ -3432,7 +3432,7 @@ body.fullscreen.tiki.navbar-padding {
     display: none; }
 
   .col1 .table-responsive > table {
-    word-break: break-word; }
+    table-layout: fixed; }
 
   .hide_zone_left #col1.col-lg-8 {
     width: 83.3334%;
