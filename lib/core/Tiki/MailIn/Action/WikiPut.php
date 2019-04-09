@@ -247,6 +247,12 @@ class WikiPut implements ActionInterface
 		return $page;
 	}
 
+	/**
+	 * @param Message $message
+	 *
+	 * @return |null
+	 * @throws \Exception
+	 */
 	private function getRoute($message)
 	{
 		if (! $this->routing) {
@@ -255,7 +261,7 @@ class WikiPut implements ActionInterface
 
 		$usermailinlib = TikiLib::lib('usermailin');
 		$body = $message->getHtmlBody();
-		$routes = $usermailinlib->locate_struct($chkUser, $aux['Subject'], $body);
+		$routes = $usermailinlib->locate_struct($message->getAssociatedUser(), $message->getSubject(), $body);
 		if (! empty($routes['data'])) {
 			return $routes['data'][0]; // Only use the first route
 		}
@@ -263,9 +269,10 @@ class WikiPut implements ActionInterface
 
 	private function attachFile($page, $att, $user)
 	{
+		// TODO make it work with feature_use_fgal_for_wiki_attachments
 		if (! $att['link']) {
 			$wikilib = TikiLib::lib('wiki');
-			$attId = $wikilib->wiki_attach_file($page, $att['name'], $att['type'], $att['size'], $att['data'], "attached by mail $user");
+			$attId = $wikilib->wiki_attach_file($page, $att['name'], $att['type'], $att['size'], $att['data'], "attached by mail $user", $user, '');
 			return 'tiki-download_wiki_attachment.php?attId=' . $attId . '&page=' . urlencode($page);
 		} else {
 			return $att['link'];

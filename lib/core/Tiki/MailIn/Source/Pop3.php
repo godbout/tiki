@@ -8,6 +8,8 @@
 namespace Tiki\MailIn\Source;
 
 use Tiki\MailIn\Exception\TransportException;
+use Zend\Mail\Header\ContentType;
+use Zend\Mail\Storage\Part;
 use Zend\Mail\Storage\Pop3 as ZendPop3;
 use Zend\Mail\Exception\ExceptionInterface as ZendMailException;
 
@@ -99,47 +101,63 @@ class Pop3 implements SourceInterface
 	}
 
 	/**
-	 * @param $part \Zend\Mail\Storage\Message
-	 * @param $type string
+	 * @param Part $part
+	 * @param string $type
+	 * @param string $return
+	 *
 	 * @return string
 	 */
-	private function getBody($part, $type)
+	private function getBody($part, $type, $return = '')
 	{
+		/** @var ContentType $contentType */
 		$contentType = $part->getHeaders()->get('Content-Type');
-		if (! $part->isMultipart() && (! $contentType || 0 === strpos($contentType->getFieldValue(), $type))) {
-			return $this->decode($part);
+		if (! $part->isMultipart() && (! $contentType || $contentType->getType() === $type)) {
+			$return .= $this->decode($part);
 		}
 
 		if ($part->isMultipart()) {
 			for ($i = 1; $i <= $part->countParts(); ++$i) {
 				$p = $part->getPart($i);
-				if ($ret = $this->getBody($p, $type)) {
-					return $ret;
+				$ret = $this->getBody($p, $type, $return);
+
+				$pType = $p->getHeaders()->get('Content-Type');
+				if ($contentType->getType() === 'multipart/mixed' && $type === 'text/html' && $pType && $pType->getType() === $type) {
+					// mainly to remove the html, head and body tags
+					$return .= strip_tags($ret, '<b><br><dd><div><dl><dt><em><h1><h2><h3><h4><h5><h6><hr><i><img><li><ol><p><s><span><strong><table><tr><td><u><ul>');
+					// TODO work out how to insert inline file's id when using multipart/alternative
+				} else {
+					if ($ret) {
+						return $ret;
+					}
 				}
 			}
 		}
+		return $return;
 	}
 
 	/**
-	 * @param $message \Tiki\MailIn\Source\Message
-	 * @param $part \Zend\Mail\Storage\Message
+	 * @param $message Message
+	 * @param $part Part
 	 */
 	private function handleAttachments($message, $part)
 	{
-		$type = $part->getHeaders()->get('Content-Type');
-		if (0 === strpos($type, 'multipart/mixed') || 0 === strpos($type, 'multipart/related')) {
-			// Skip initial content
-			for ($i = 2; $i <= $part->countParts(); ++$i) {
+		if ($part->isMultipart()) {
+			// check each part
+			for ($i = 1; $i <= $part->countParts(); ++$i) {
 				$p = $part->getPart($i);
 				if ($p->isMultipart()) {
-					continue;
+					$this->handleAttachments($message, $p);
 				}
 				$headers = $p->getHeaders()->toArray();
 
-				if (isset($headers['content-id'])) {
-					$contentId = $headers['content-id'];
-					$contentId = str_replace("<", "", $contentId);
-					$contentId = str_replace(">", "", $contentId);
+				// filter out any non-binary parts
+				if (! isset($headers['Content-Transfer-Encoding']) || $headers['Content-Transfer-Encoding'] !== 'base64') {
+					continue;
+				}
+
+				if (isset($headers['Content-Id'])) {
+					$contentId = $headers['Content-Id'];
+					$contentId = trim($contentId, '<>');
 				} elseif (isset($headers['x-attachment-id'])) {
 					$contentId = $headers['x-attachment-id'];
 				} else {
@@ -148,10 +166,10 @@ class Pop3 implements SourceInterface
 				$fileName = '';
 				$fileType = '';
 				$fileData = $this->decode($p);
-				$fileSize = function_exists('mb_strlen') ? mb_strlen($fileData, '8bit') : strlen($fileData);
+				$fileSize = mb_strlen($fileData, '8bit');
 
-				if (isset($headers['content-type'])) {
-					$type = $headers['content-type'];
+				if (isset($headers['Content-Type'])) {
+					$type = $headers['Content-Type'];
 					$pos = strpos($type, ';');
 					if ($pos === false) {
 						$fileType = $type;
@@ -164,8 +182,8 @@ class Pop3 implements SourceInterface
 					}
 				}
 
-				if (! $fileName && isset($headers['content-disposition'])) {
-					$dispo = $headers['content-disposition'];
+				if (! $fileName && isset($headers['Content-Disposition'])) {
+					$dispo = $headers['Content-Disposition'];
 					if (preg_match('/name="([^"]+)"/', $dispo, $parts)) {
 						$fileName = $parts[1];
 					}
@@ -177,14 +195,14 @@ class Pop3 implements SourceInterface
 	}
 
 	/**
-	 * @param $part \Zend\Mail\Storage\Message
+	 * @param $part Part
 	 * @return string
 	 */
 	private function decode($part)
 	{
 		$content = $part->getContent();
-		if (isset($part->{'content-transfer-encoding'})) {
-			switch ($part->{'content-transfer-encoding'}) {
+		if ($part->getHeaders()->get('Content-Transfer-Encoding')) {
+			switch ($part->getHeader('Content-Transfer-Encoding')->getFieldValue()) {
 				case 'base64':
 					$content = base64_decode($content);
 					break;
@@ -194,8 +212,8 @@ class Pop3 implements SourceInterface
 			}
 		}
 
-		if (isset($part->{'content-type'})) {
-			if (preg_match('/charset="?iso-8859-1"?/i', $part->{'content-type'})) {
+		if ($part->getHeaders()->get('Content-Type')) {
+			if (preg_match('/charset="?iso-8859-1"?/i', $part->getHeader('Content-Type')->getFieldValue())) {
 				$content = utf8_encode($content); //convert to utf8
 			}
 		}

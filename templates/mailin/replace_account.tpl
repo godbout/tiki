@@ -196,7 +196,7 @@
 			<label for="cartegoryId" class="col-form-label col-md-3">{tr}Auto-assign category{/tr}</label>
 			<div class="col-md-6">
 				{if $prefs.feature_categories eq 'y'}
-					<input type="text" name="categoryId" value="{$info.categoryId|escape}" class="form-control" placeholder="{tr}Category ID{/tr}">
+					{object_selector type='category' _simplename='categoryId' _simpleid='categoryId' _simplevalue=$info.categoryId|escape}
 					<div class="form-text">{tr}Only affects wiki-put, when creating a new wiki page{/tr}</div>
 				{else}
 					<a href="tiki-admin.php?page=features&highlight=feature_categories">Activate categories</a>

@@ -24,6 +24,7 @@ class Account
 	private $defaultCategory;
 	private $saveHtml;
 	private $auto_attachments;
+	private $inline_attachments;
 
 	private static function getSource(array $acc)
 	{
