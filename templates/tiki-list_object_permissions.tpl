@@ -11,19 +11,21 @@
 	{$size = $all_groups|@count +1}
 {/if}
 <form method="post">
-	<div class="clearfix forb-group">
+	<div class="clearfix">
 		<legend>{tr}Group Filter{/tr}</legend>
 		<fieldset>
-			<div class="col-lg-6">
-				<select class='form-control' multiple="multiple" id="filterGroup" name="filterGroup[]" size="{$size}">
-					<option value=""{if empty($filterGroup)}selected="selected"{/if}></option>
-					{foreach from=$all_groups item=gr}
-						<option value="{$gr|escape}" {if in_array($gr, $filterGroup)}selected="selected"{/if}>{$gr|escape}</option>
-					{/foreach}
-				</select>
-			</div>
-			<div>
-				<input type="submit" class="btn btn-primary" name="filter" value="{tr}Filter{/tr}">
+			<div class="form-group row">
+				<div class="col-lg-6">
+					<select class='form-control' multiple="multiple" id="filterGroup" name="filterGroup[]" size="{$size}">
+						<option value=""{if empty($filterGroup)}selected="selected"{/if}></option>
+						{foreach from=$all_groups item=gr}
+							<option value="{$gr|escape}" {if in_array($gr, $filterGroup)}selected="selected"{/if}>{$gr|escape}</option>
+						{/foreach}
+					</select>
+				</div>
+				<div class="col-lg-6">
+					<input type="submit" class="btn btn-primary" name="filter" value="{tr}Filter{/tr}">
+				</div>
 			</div>
 		</fieldset>
 	</div>
@@ -32,8 +34,8 @@
 <legend>{tr}Object Permissions{/tr}</legend>
 <ul class="nav nav-tabs" id="allperms">
 	{foreach $res as $type => $content}
-		<li>
-			<a href="#{$type|strip:'_'}" data-toggle="tab">{$type|ucwords}</a>
+		<li class="nav-item">
+			<a href="#{$type|strip:'_'}" data-toggle="tab" class="nav-link">{$type|ucwords}</a>
 		</li>
 	{/foreach}
 </ul>
@@ -42,9 +44,9 @@
 	{foreach $res as $type => $content}
 		<div id="{$type|strip:'_'}" class="tab-pane">
 			<ul class="nav nav-tabs" id="allperms">
-				<li class="active"><a href="#{$type|strip:'_'}-global" data-toggle="tab">{tr}Global permissions{/tr} ({$content.default|@count})</a></li>
-				<li><a href="#{$type|strip:'_'}-object" data-toggle="tab">{tr}Object permissions{/tr} ({$content.objects|@count})</a></li>
-				<li><a href="#{$type|strip:'_'}-category" data-toggle="tab">{tr}Category permissions{/tr} ({$content.category|@count})</a></li>
+				<li class="nav-item"><a href="#{$type|strip:'_'}-global" data-toggle="tab" class="nav-link active">{tr}Global permissions{/tr} ({$content.default|@count})</a></li>
+				<li class="nav-item"><a href="#{$type|strip:'_'}-object" data-toggle="tab" class="nav-link">{tr}Object permissions{/tr} ({$content.objects|@count})</a></li>
+				<li class="nav-item"><a href="#{$type|strip:'_'}-category" data-toggle="tab" class="nav-link">{tr}Category permissions{/tr} ({$content.category|@count})</a></li>
 			</ul>
 			{* global permissions *}
 			<div class="tab-content">
