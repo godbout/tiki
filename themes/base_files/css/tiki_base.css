@@ -861,6 +861,13 @@ input:checked + .slider {
     padding: 0 15px;
     margin: 15px 0; } }
 
+.permission_table .form-row {
+  margin-left: 0;
+  margin-right: 0; }
+  .permission_table .form-row > .col {
+    padding-left: 15px;
+    padding-right: 15px; }
+
 .tiki .mx--15px {
   margin-left: -15px;
   margin-right: -15px; }
