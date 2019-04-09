@@ -1152,15 +1152,15 @@ class TikiAccessLib extends TikiLib
 		foreach ($accept as $type) {
 			$known = null;
 
-			if (strpos($t = 'application/json', $type) !== false) {
+			if (strpos($type, $t = 'application/json') !== false) {
 				$known = 'json';
-			} elseif (strpos($t = 'text/javascript', $type) !== false) {
+			} elseif (strpos($type, $t = 'text/javascript') !== false) {
 				$known = 'json';
-			} elseif (strpos($t = 'text/x-yaml', $type) !== false) {
+			} elseif (strpos($type, $t = 'text/x-yaml') !== false) {
 				$known = 'yaml';
-			} elseif (strpos($t = 'application/rss+xml', $type) !== false) {
+			} elseif (strpos($type, $t = 'application/rss+xml') !== false) {
 				$known = 'rss';
-			} elseif (strpos($t = 'application/atom+xml', $type) !== false) {
+			} elseif (strpos($type, $t = 'application/atom+xml') !== false) {
 				$known = 'atom';
 			}
 
