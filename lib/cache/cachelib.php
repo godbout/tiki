@@ -265,7 +265,7 @@ class Cachelib
 							$file == "README" or
 							$file == "web.config" or
 							($virtuals && in_array($file, $virtuals)) and
-							!in_array($file, $unoconvFolders)
+							! in_array($file, $unoconvFolders)
 				) {
 					continue;
 				}
@@ -357,7 +357,8 @@ class Cachelib
 	 * Compile all Smarty templates
 	 * @param string $logSection Section to log the request
 	 */
-	protected function generateTemplateCache($logSection = 'system') {
+	protected function generateTemplateCache($logSection = 'system')
+	{
 		global $prefs;
 
 		$logslib = TikiLib::lib('logs');
@@ -377,7 +378,8 @@ class Cachelib
 	 * Compile all module cache
 	 * @param string $logSection Section to log the request
 	 */
-	protected function generateModuleCache($logSection = 'system') {
+	protected function generateModuleCache($logSection = 'system')
+	{
 		$logslib = TikiLib::lib('logs');
 		$modlib = TikiLib::lib('mod');
 
@@ -402,7 +404,8 @@ class Cachelib
 	 *
 	 * @throws Exception
 	 */
-	protected function generateMiscCache($logSection = 'system') {
+	protected function generateMiscCache($logSection = 'system')
+	{
 		$logslib = TikiLib::lib('logs');
 
 		$inInstaller = defined('TIKI_IN_INSTALLER');
@@ -459,7 +462,8 @@ class Cachelib
 		return $relationId;
 	}
 
-	function invalidate_by_cache_purge_rules($args) {
+	function invalidate_by_cache_purge_rules($args)
+	{
 		// First get all candidates which match type (source_itemId does not matter for now - see below)
 		$cache_purge_rules = $this->get_cache_purge_rules($args['type']);
 
