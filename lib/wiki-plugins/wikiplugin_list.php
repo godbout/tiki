@@ -130,6 +130,7 @@ function wikiplugin_list($data, $params)
 	// First need to check for {MULTISEARCH()} blocks as then will need to do all queries at the same time
 	$multisearch = false;
 	$matches = WikiParser_PluginMatcher::match($data);
+	$offset_arg = 'offset';
 	foreach ($matches as $match) {
 		if ($match->getName() == 'multisearch') {
 			if ($prefs['unified_engine'] != 'elastic') {
@@ -142,6 +143,16 @@ function wikiplugin_list($data, $params)
 			$tosearch[$args['id']] = $match->getBody();
 			$multisearch = true;
 		}
+		if ($match->getName() == 'list' || $match->getName() == 'pagination') {
+			$args = WikiParser_PluginArgumentParser::parse($match->getArguments());
+			if (!empty($args['offset_arg'])) {
+				// Update cacheName by offset arg to have different cache for each page of paginated list
+				$offset_arg = $args['offset_arg'];
+			}
+		}
+	}
+	if (!empty($_REQUEST[$offset_arg])) {
+		$cacheName .= '_' . $args['offset_arg'] . '=' . $_REQUEST[$offset_arg];
 	}
 	if (!$multisearch) {
 		$tosearch = [ $data ];
