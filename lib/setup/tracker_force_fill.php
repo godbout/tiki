@@ -14,6 +14,16 @@ if (empty($user) || empty($prefs['tracker_force_tracker_id']) || empty($prefs['t
 }
 $tracker_id = $prefs['tracker_force_tracker_id'];
 $tracker_definition = Tracker_Definition::get($tracker_id);
+
+if (empty($tracker_definition)) {
+	Feedback::warning(
+		tr('A tracker with id "%0" is required to be filled in, but it was deleted', $tracker_id)
+		. "<br/>"
+		. tr('Update the preference "<b>%0</b>" on admin panel', tra('Tracker ID of tracker required to be filled in'))
+	);
+	return;
+}
+
 //user field info
 $user_field_id = $tracker_definition->getUserField();
 $user_field = $tracker_definition->getField($user_field_id);
