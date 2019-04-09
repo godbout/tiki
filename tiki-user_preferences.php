@@ -366,9 +366,10 @@ if (isset($_REQUEST['deleteaccount']) && $tiki_p_delete_account == 'y' && $acces
 	die();
 }
 
-if(!empty($_POST)) {
+if (! empty($_POST)) {
 	// This avoids accident form ressubmission
 	header('Location:' . basename(__FILE__));
+	return;
 }
 
 
