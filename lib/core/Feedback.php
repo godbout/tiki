@@ -252,6 +252,11 @@ class Feedback
 	 * @param bool $cron
 	 */
 	public static function printToConsole($output, $cron = false) {
+
+		if ($output->isQuiet()) {
+			return;
+		}
+
 		$errors = \Feedback::get();
 		if (is_array($errors)) {
 			foreach ($errors as $type => $message) {
@@ -262,9 +267,16 @@ class Feedback
 					} elseif (! empty($message['mes'])) {
 						$message = $type . ': ' . str_replace('<br />', "\n", $message['mes']);
 					}
+
 					if ($type === 'success' || $type === 'note') {
+						if (! $output->isVeryVerbose()) {
+							continue;
+						}
 						$type = 'info';
 					} else if ($type === 'warning') {
+						if (! $output->isVerbose()) {
+							continue;
+						}
 						$type = 'comment';
 					}
 					if (! $cron || $type === 'error') {

@@ -263,6 +263,7 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 
 	function optimize()
 	{
+		Feedback::warning(tr('Elasticsearch does not support optimize.'));
 	}
 
 	function invalidateMultiple(array $objectList)
