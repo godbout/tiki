@@ -98,7 +98,7 @@
 					<th>{tr}Show source{/tr}</th>
 					<th>{tr}Show image caption{/tr}</th>
 					<th>{tr}Creator can edit{/tr}</th>
-					<th colspan="2"></th>
+					<th colspan="3"></th>
 				</tr>
 				<tr>
 					<td class="checkbox-cell">
@@ -141,7 +141,7 @@
 							<input type="checkbox" class="form-check-input" name="creator_edit[{$types[user].type|escape}]" {if $types[user].creator_edit eq 'y'}checked="checked"{/if}>
 						</div>
 					</td>
-					<td class="action" colspan="2">
+					<td class="action" colspan="3">
 						{if $types[user].article_cnt eq 0}
 							<a class="tips" title=":{tr}Remove{/tr}" href="tiki-article_types.php?remove_type={$types[user].type|escape:url}">
 								{icon name='remove'}
@@ -171,7 +171,7 @@
 						</tr>
 					{/foreach}
 					<tr>
-						<td><input type="text" name="new_attribute[{$types[user].type|escape}]" value="" class="form-control col-sm-4"></td>
+						<td><input type="text" name="new_attribute[{$types[user].type|escape}]" value="" class="form-control"></td>
 						<td>&nbsp;</td>
 					</tr>
 				</table>
