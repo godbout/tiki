@@ -534,10 +534,10 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 
 	/**
 	 * replace embedded youtube html code with Tiki Plugin Youtube syntax
-	 * @param $content the html text in which to insert parse embeded youtube
+	 * @param $content the html text in which to insert parse embedded youtube
 	 * @return string
 	 */
-	function parseYoutubeEmbeded($content)
+	function parseYoutubeEmbedded($content)
 	{
 		$newcontent = $content;
 		$dom = new DOMDocument;
@@ -549,7 +549,7 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 			$height = $tag->getAttribute('height');
 			$src = $tag->getAttribute('src');
 
-			//test if it is a youtube embeded video
+			//test if it is a youtube embedded video
 			if (strpos($src, 'youtube.com/embed') > 0) {
 				$youtubeVideoId = substr($src, strripos($src, '/') + 1);
 				$tagWithHtml = $dom->saveHTML($tag);
@@ -612,7 +612,7 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 							$editlib = new EditLib();
 							$content = $data['content'];
 							$content = $this->replaceParagraphWithLineBreak($content);
-							$content = $this->parseYoutubeEmbeded($content);
+							$content = $this->parseYoutubeEmbedded($content);
 							$data['content'] = $editlib->parse_html($content);
 						}
 						break;

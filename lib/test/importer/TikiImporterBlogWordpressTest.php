@@ -89,12 +89,12 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$this->assertEquals($expectedOutput, $output, "No extra br should be added if there was one after the paragraph already");
 	}
 
-	public function testParseYoutubeEmbeded()
+	public function testParseYoutubeEmbedded()
 	{
 		$expectedOutput = "{youtube movie=\"h80QuuYxbhk\" width=\"560\" height=\"315\" quality=\"high\" allowFullScreen=\"y\"}";
 
 		$input = "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/h80QuuYxbhk\"></iframe>";
-		$output = $this->obj->parseYoutubeEmbeded($input);
+		$output = $this->obj->parseYoutubeEmbedded($input);
 		$this->assertEquals($expectedOutput, $output, "iframe tag should be replaced Youtube Plugin Tiki code");
 	}
 
