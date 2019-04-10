@@ -34,7 +34,7 @@ function prefs_tiki_list()
 				'feature_version_checks',
 			],
 			'options' => [
-				'regular' => tr('Regular (6 months)'),
+				'regular' => tr('Regular (8 months)'),
 				'longterm' => tr('Long-Term Support'),
 			],
 			'help' => 'Version+Lifecycle',
