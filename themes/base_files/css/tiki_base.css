@@ -3205,6 +3205,9 @@ div.form-group label.error {
 .tiki .input-group .chosen-container {
   width: 110% !important; }
 
+.tiki-admin_tracker_fields .input-group .chosen-container, .tiki-view_tracker .input-group .chosen-container {
+  width: auto !important; }
+
 .tiki .chosen-container-single, .tiki #assign_order_chosen.chosen-container {
   min-width: 5em;
   word-wrap: normal; }
