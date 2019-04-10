@@ -117,8 +117,14 @@ class FakerCommentsCommand extends Command
 
 		$objectId = $input->getArgument('object');
 		$objectType = $input->getArgument('type');
-		$numberItems = $input->getOption('items');
 
+		// check for object's existence
+		if (! TikiLib::lib('object')->get_object_id($objectType, $objectId)) {
+			$output->writeln('<error>' . tr('Object "%0" of type "%1" not found', $objectId, $objectType) . '</error>');
+			return null;
+		}
+
+		$numberItems = $input->getOption('items');
 		if (! is_numeric($numberItems)) {
 			$output->writeln('<error>' . tra('The value of items is not a number') . '</error>');
 			return null;
