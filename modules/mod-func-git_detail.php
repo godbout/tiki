@@ -36,6 +36,7 @@ function module_git_detail($mod_reference, $module_params)
 {
 	$smarty = TikiLib::lib('smarty');
 	$gitlib = TikiLib::lib('git');
+	$error = '';
 	$content = [];
 
 	try {

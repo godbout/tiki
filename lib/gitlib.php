@@ -40,7 +40,9 @@ class GitLib extends TikiLib
 		$php_os = strtoupper(PHP_OS);
 
 		if ($php_os === 'LINUX') {
-			$bin = system('which git 2>&-', $ret);
+			ob_start();
+			$bin = system('which git', $ret);
+			ob_end_clean();
 
 			if ($bin && $ret == 0) {
 				$this->bin = $bin;
@@ -59,14 +61,26 @@ class GitLib extends TikiLib
 			$cmd .= " {$arg}";
 		}
 
-		ob_start();
-		$output = system($cmd, $return);
-		$stderr = ob_end_clean();
+		$descriptors = [
+			0 => [ 'pipe', 'r' ],
+			1 => [ 'pipe', 'w' ],
+			2 => [ 'pipe', 'w' ],
+		];
 
+		$pipes = [];
+		$process = proc_open($cmd, $descriptors, $pipes);
+
+		$stdout = stream_get_contents($pipes[1]);
+		fclose($pipes[1]);
+
+		$stderr = stream_get_contents($pipes[2]);
+		fclose($pipes[2]);
+
+		$return = proc_close($process);
 		if ($return !== 0) {
 			throw new Exception($stderr, $return);
 		}
-		return $output;
+		return $stdout;
 	}
 
 	/**
@@ -140,12 +154,12 @@ class GitLib extends TikiLib
 			return zlib_decode($object);
 		} elseif ($this->bin) {
 			$object = $this->run_git(['cat-file', '-t', $commit]);
-			$object .= " " . $this->run_git(['cat-file', '-s', $commit]);
-			$object .= "\0" . $this->run_git(['cat-file', '-p', $commit]);
+			$object = rtrim($object) . " " . $this->run_git(['cat-file', '-s', $commit]);
+			$object = rtrim($object) . "\0" . $this->run_git(['cat-file', '-p', $commit]);
 			return $object;
 		}
 
-		throw new Exception(tra("File not found "));
+		throw new Exception(tra("Can't get Git object file"));
 	}
 
 	/**
