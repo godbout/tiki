@@ -149,13 +149,28 @@ if ($tiki_p_admin == 'y') {
 		require_once('lib/search/report_string_in_db.php');
 		$smarty->assign('searchString', $_REQUEST['string_in_db_search']);
 		$smarty->assign('searchStringAgain', $_REQUEST['string_in_db_search']);
+		if (! empty($_REQUEST['string_in_db_search_table'])) {
+			$smarty->assign('tableFilter', $_REQUEST['string_in_db_search_table']);
+		}
 	}
 
 	if (! empty($_POST['query'])) {
 		require_once('lib/search/report_string_in_db.php');
 		$smarty->assign('searchStringAgain', $_REQUEST['query']);
 		$smarty->assign('tableName', $_REQUEST['table']);
+		if (! empty($_REQUEST['string_in_db_search_table'])) {
+			$smarty->assign('tableFilter', $_REQUEST['string_in_db_search_table']);
+		}
 	}
+
+	$tikilib = TikiLib::lib('tiki');
+	$allTables = $tikilib->listTables();
+	foreach ($allTables as $table) {
+		if (substr($table,0, 6) !== 'index_' || substr($table,0, 10) == 'index_pref') {
+			$tables[] = $table;
+		}
+	}
+	$smarty->assign('tables', $tables);
 }
 
 $lastLogItem = $unifiedsearchlib->getLastLogItem();

@@ -79,7 +79,7 @@ function searchAllDB($search)
 	foreach ($rs as $key => $val) {
 		$vals = array_values($val);
 		$table = $vals[0];
-		if (substr($table, 0, 6) == 'index_') {
+		if (substr($table, 0, 6) == 'index_' && substr($table,0, 10) !== 'index_pref') {
 			continue;
 		}
 		$sql2 = "SHOW COLUMNS FROM `$table`";

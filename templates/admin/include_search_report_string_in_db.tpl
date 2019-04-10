@@ -1,11 +1,34 @@
 {* $Id$ *}
 <h2 class="card-title">{tr}Occurrences of string in database{/tr}</h2>
-<div class="form-row align-items-center">
-	<div class="col-sm-10 mr-2">
-	<label class="sr-only" for="string_in_db_search">{tr}Occurrences of string in database{/tr}</label>
-	<input type="text" id="string_in_db_search" name="string_in_db_search" class="form-control" value="{$searchStringAgain|escape}" />
+<div class="adminoptionbox clearfix form-group row">
+	<label for="string_in_db_search_table" class="class="col-form-label col-sm-4">
+		{tr}Set default table:{/tr}
+	</label>
+	<div class="col-sm-8">
+		<div class="input-group">
+			<select name="string_in_db_search_table" class="form-control" id="string_in_db_search_table">
+			<option value="">All tables</option>
+			{foreach $tables as $table}
+				<option value="{$table|escape}" {if isset($tableFilter) && $table eq $tableFilter} selected="selected"{/if}>{$table|escape}</option>
+			{/foreach}
+			</select>
+		</div>
 	</div>
-	<input type="submit" id="string_in_db_search_button" class="btn btn-primary btn-sm" value="{tr}Search{/tr}" onClick="document.getElementById('redirect').value='0';"/>
+</div>
+<div class="adminoptionbox clearfix form-group row">
+	<label for="string_in_db_search" class="class="col-form-label col-sm-4">
+		{tr}Text to search:{/tr}
+	</label>
+	<div class="col-sm-4">
+		<div class="input-group">
+			<input type="text" id="string_in_db_search" name="string_in_db_search" class="form-control" value="{$searchStringAgain|escape}" />
+		</div>
+	</div>
+	<div class="col-sm-4">
+		<div class="input-group">
+			<input type="submit" id="string_in_db_search_button" class="btn btn-primary btn-sm" value="{tr}Search{/tr}" onClick="document.getElementById('redirect').value='0';"/>
+		</div>
+	</div>
 	{jq}
 		$('#string_in_db_search').keypress(function (e) {
 			var key = e.which;
@@ -24,7 +47,7 @@
 	<span id="error">{$errorMsg}</span>
 {else}
 	{if isset($searchString)}
-		{remarksbox}{tr}Results for {/tr}<b>{$searchString|escape}</b> {tr}in all tables:{/tr}{/remarksbox}
+		{remarksbox}{tr}Results for {/tr}<b>{$searchString|escape}</b> {tr}in {if isset($tableFilter)}table <b>{$tableFilter|escape}</b>{else}all tables{/if}:{/tr}{/remarksbox}
 		<p>
 
 		<input type="hidden" name="query" value="{$searchString|escape}">
@@ -40,6 +63,9 @@
 		{$last = ''}
 		{foreach from=$searchResult item=res}
 			{$table = $res['table']}
+			{if isset($tableFilter) && $table neq $tableFilter}
+				{continue}
+			{/if}
 			<tr>
 			{if $last eq '' || $last neq $table}
 				{$span = $tableCount["$table"]}
@@ -55,7 +81,7 @@
 	{/if}
 
 	{if isset($tableHeaders)}
-	{remarksbox}{tr}Results for {/tr}<b>{$searchStringAgain|escape}</b> {tr}in table {/tr} <b>{$tableName}</b>, {tr}column{/tr} <b>{$columnName}</b>:{/remarksbox}
+		{remarksbox}{tr}Results for {/tr}<b>{$searchStringAgain|escape}</b> {tr}in table {/tr} <b>{$tableName}</b>, {tr}column{/tr} <b>{$columnName}</b>:{/remarksbox}
 		<table class="table-responsive">
 		<tr>
 		{foreach from=$tableHeaders item=hdr}
@@ -137,7 +163,7 @@
 			{/foreach}
 			</tr>
 		{/foreach}
-	</table>
-	<p><a href="javascript:void(0)" class="btn btn-primary btn-sm" title="{tr}Back to first level results{/tr}" onClick="document.getElementById('string_in_db_search').value='{$searchStringAgain|escape}'; document.getElementById('string_in_db_search_button').click();">{tr}Back to first level results{/tr}</a></p>
+		</table>
+		<p><a href="javascript:void(0)" class="btn btn-primary btn-sm" title="{tr}Back to first level results{/tr}" onClick="document.getElementById('string_in_db_search').value='{$searchStringAgain|escape}'; document.getElementById('string_in_db_search_button').click();">{tr}Back to first level results{/tr}</a></p>
 	{/if}
 {/if}
