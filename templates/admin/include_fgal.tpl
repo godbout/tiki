@@ -273,32 +273,34 @@
 
 					<div class="adminoptionbox">
 						<div class="adminoptionlabel">
-							<table class="table table-responsive">
-								<thead>
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr>
+											<th>{tr}MIME Type{/tr}</th>
+											<th>{tr}System Command{/tr}</th>
+										</tr>
+									</thead>
+									<tbody>
+									{foreach key=mime item=cmd from=$fgal_handlers}
+										<tr>
+											<td>{$mime}</td>
+											<td>
+												<input name="mimes[{$mime}]" class="form-control" type="text" value="{$cmd|escape:html}" />
+											</td>
+										</tr>
+									{/foreach}
 									<tr>
-										<th>{tr}MIME Type{/tr}</th>
-										<th>{tr}System Command{/tr}</th>
-									</tr>
-								</thead>
-								<tbody>
-								{foreach key=mime item=cmd from=$fgal_handlers}
-									<tr>
-										<td>{$mime}</td>
-										<td>
-											<input name="mimes[{$mime}]" class="form-control" type="text" value="{$cmd|escape:html}" />
+										<td class="odd">
+											<input name="newMime" type="text" class="form-control" />
+										</td>
+										<td class="odd">
+											<input name="newCmd" type="text" class="form-control" />
 										</td>
 									</tr>
-								{/foreach}
-								<tr>
-									<td class="odd">
-										<input name="newMime" type="text" size="30" />
-									</td>
-									<td class="odd">
-										<input name="newCmd" type="text" size="30"/>
-									</td>
-								</tr>
-								</tbody>
-							</table>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</fieldset>
