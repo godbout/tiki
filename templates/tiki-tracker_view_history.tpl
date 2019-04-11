@@ -25,22 +25,21 @@
 			<div class="form-group col-sm">
 				<label class="col-form-label">
 					{tr}Diff Style{/tr}
+					<select name="diff_style" id="tracker_diff_style" class="form-control">
+						<option value="" {if empty($diff_style)}selected="selected"{/if}>{tr}Original{/tr}</option>
+						<option value="sidediff" {if $diff_style == "sidediff"}selected="selected"{/if}>
+							{tr}Side-by-side diff{/tr}
+						</option>
+						<option value="inlinediff" {if $diff_style == "inlinediff"}selected="selected"{/if}>
+							{tr}Inline diff{/tr}
+						</option>
+						<option value="unidiff" {if $diff_style == "unidiff"}selected="selected"{/if}>
+							{tr}Unified diff{/tr}
+						</option>
+					</select>
 				</label>
-				<br>
-				<select name="diff_style" id="tracker_diff_style" class="form-control">
-					<option value="" {if empty($diff_style)}selected="selected"{/if}>{tr}Original{/tr}</option>
-					<option value="sidediff" {if $diff_style == "sidediff"}selected="selected"{/if}>
-						{tr}Side-by-side diff{/tr}
-					</option>
-					<option value="inlinediff" {if $diff_style == "inlinediff"}selected="selected"{/if}>
-						{tr}Inline diff{/tr}
-					</option>
-					<option value="unidiff" {if $diff_style == "unidiff"}selected="selected"{/if}>
-						{tr}Unified diff{/tr}
-					</option>
-				</select>
 			</div>
-			<div class="form-group col-sm">
+			<div class="form-group col-sm mb-4">
 				<input type="submit" class="btn btn-primary" name="Filter" value="{tr}Filter{/tr}">
 			</div>
 		</div>
