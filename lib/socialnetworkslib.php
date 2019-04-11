@@ -256,9 +256,7 @@ class SocialNetworksLib extends LogsLib
 	{
 		global $prefs, $user;
 
-		if ($prefs['socialnetworks_facebook_application_id'] == ''
-			or $prefs['socialnetworks_facebook_application_secr'] == '')
-		{
+		if ($prefs['socialnetworks_facebook_application_id'] == '' || $prefs['socialnetworks_facebook_application_secr'] == '') {
 			return false;
 		}
 
@@ -527,7 +525,7 @@ class SocialNetworksLib extends LogsLib
 		curl_close($curl);
 
 		$linkedin_locale = $linkedin_info->firstName->preferredLocale->language;
-		if (!empty($linkedin_info->firstName->preferredLocale->country)) {
+		if (! empty($linkedin_info->firstName->preferredLocale->country)) {
 			$linkedin_locale .= '_' . $linkedin_info->firstName->preferredLocale->country;
 		}
 
@@ -588,7 +586,7 @@ class SocialNetworksLib extends LogsLib
 					$si = 'com.linkedin.digitalmedia.mediaartifact.StillImage';
 					$displayImages = array_reverse($linkedin_info->profilePicture->$di->elements);
 					$displayImage = '';
-					foreach($displayImages as $i) {
+					foreach ($displayImages as $i) {
 						if ($i->data->$si->storageSize->width <= 480) {
 							$displayImage = $i->identifiers[0]->identifier;
 							break;
