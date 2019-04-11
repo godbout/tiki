@@ -1752,11 +1752,20 @@ class Services_Tracker_Controller
 			$out = null;
 		}
 
+		// Check if can view field otherwise exclude it
+		$fields = $definition->getFields();
+		$item = Tracker_Item::newItem($trackerId);
+		foreach ($fields as $k => $field) {
+			if (!$item->canViewField($field['fieldId'])) {
+				unset($fields[$k]);
+			}
+		}
+
 		return [
 			'title' => tr('Export Items'),
 			'trackerId' => $trackerId,
 			'export' => $out,
-			'fields' => $definition->getFields(),
+			'fields' => $fields,
 			'filterfield' => $filterField,
 			'filtervalue' => $filterValue,
 			'recordsMax' => $definition->getConfiguration('items'),

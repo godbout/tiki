@@ -2516,6 +2516,14 @@ class TrackerLib extends TikiLib
 
 		$trackerId = (int) $trackerId;
 
+		// Check if can view field otherwise exclude it
+		$item = Tracker_Item::newItem($trackerId);
+		foreach ($fields['data'] as $k => $field) {
+			if (!$item->canViewField($field['fieldId'])) {
+				unset($fields['data'][$k]);
+			}
+		}
+
 		// write out file header
 		session_write_close();
 		$this->write_export_header('UTF-8', $trackerId);
