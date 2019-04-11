@@ -18,7 +18,7 @@ Expose:
   requiredBy:
     - ids_enabled
   requiredVersion: ^3.0
-FullCalendar Scheduler:
+FullCalendarScheduler:
   licence: GPLv3
   licenceUrl: "https://fullcalendar.io/scheduler/license/"
   name: fullcalendar/fullcalendar-scheduler
@@ -90,7 +90,7 @@ MediaAlchemyst:
   requiredBy:
     - wikiplugin_preview
   requiredVersion: ^0.5.1
-PDF.js:
+PDFjs:
   licence: Apache-2.0
   licenceUrl: "https://github.com/mozilla/pdfjs-dist/blob/master/LICENSE"
   name: npm-asset/pdfjs-dist
