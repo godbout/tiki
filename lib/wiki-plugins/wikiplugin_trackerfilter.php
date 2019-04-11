@@ -79,11 +79,11 @@ function wikiplugin_trackerfilter_info()
 				'required' => false,
 				'name' => tra('No Toggle'),
 				'description' => tr('The toggle button to show/hide filters will not be shown if set to Yes (%0y%1).
-					Default is to show the toggle.', '<code>', '</code>'),
+					Default is not to show the toggle.', '<code>', '</code>'),
 				'since' => '6.0',
 				'doctype' => 'show',
 				'filter' => 'alpha',
-				'default' => 'n',
+				'default' => 'y',
 				'options' => [
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
@@ -195,7 +195,7 @@ function wikiplugin_trackerfilter($data, $params)
 		return $smarty->fetch("wiki-plugins/error_tracker.tpl");
 	}
 	$iTrackerFilter++;
-	$default = ['noflipflop' => 'n', 'action' => 'Filter', 'line' => 'n', 'displayList' => 'n', 'export_action' => '',
+	$default = ['noflipflop' => 'y', 'action' => 'Filter', 'line' => 'n', 'displayList' => 'n', 'export_action' => '',
 					 'export_itemid' => 'y', 'export_status' => 'n', 'export_created' => 'n', 'export_modif' => 'n', 'export_charset' => 'UTF-8', 'status' => 'opc'];
 
 	if (isset($_REQUEST['reset_filter'])) {
@@ -212,6 +212,9 @@ function wikiplugin_trackerfilter($data, $params)
 		$smarty->assign('mapview', false);
 	}
 	$params = array_merge($default, $params);
+	if ($params['noflipflop'] !== 'n') {
+		$params['noflipflop'] = 'y';
+	}
 	extract($params, EXTR_SKIP);
 	$dataRes = '';
 
@@ -401,7 +404,7 @@ function wikiplugin_trackerfilter($data, $params)
 			$smarty->assign_by_ref('f_fields', $f_fields);
 		}
 	}
-	if ($displayList == 'n' || ! empty($_REQUEST['filter']) || $noflipflop == 'y' || $prefs['javascript_enabled'] != 'y' || (isset($_SESSION['tiki_cookie_jar']["show_trackerFilter$iTrackerFilter"]) && $_SESSION['tiki_cookie_jar']["show_trackerFilter$iTrackerFilter"] == 'y')) {
+	if ($displayList == 'n' || ! empty($_REQUEST['filter']) || $noflipflop !== 'n' || $prefs['javascript_enabled'] != 'y' || (isset($_SESSION['tiki_cookie_jar']["show_trackerFilter$iTrackerFilter"]) && $_SESSION['tiki_cookie_jar']["show_trackerFilter$iTrackerFilter"] == 'y')) {
 		$open = 'y';
 		$_SESSION['tiki_cookie_jar']["show_trackerFilter$iTrackerFilter"] = 'y';
 	} else {
