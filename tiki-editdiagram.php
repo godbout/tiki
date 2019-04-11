@@ -18,13 +18,30 @@ if ($newDiagram) {
 	$backLocation = smarty_modifier_sefurl($page ?: $galleryId, $page ? 'wikipage' : 'filegallery');
 }
 
+$fileId = isset($_POST['fileId']) ? $_POST['fileId'] : 0;
+$fileName = 0;
+
+if (! empty($fileId)) {
+	$userLib = TikiLib::lib('user');
+	$file = \Tiki\FileGallery\File::id($fileId);
+	if (! $file->exists() || ! $userLib->user_has_perm_on_object($user, $file->fileId, 'file', 'tiki_p_download_files')) {
+		Feedback::error(tr('Forbidden'));
+		$smarty->display('tiki.tpl');
+		exit();
+	}
+
+	$xmlContent = $file->getContents();
+	$xmlContent = preg_replace('/\s+/', ' ', $xmlContent);
+	$fileName = $file->getParam('name');
+}
+
 if (empty($xmlContent)) {
 	Feedback::error(tr('Invalid request'));
 	$smarty->display('tiki.tpl');
 	exit();
 }
 
-$xmlDiagram = $newDiagram ? $xmlContent : base64_decode($xmlContent);
+$xmlDiagram = $newDiagram || $fileId ? $xmlContent : base64_decode($xmlContent);
 $access->setTicket();
 $ticket = $access->getTicket();
 
@@ -33,9 +50,6 @@ if ($page && $galleryId) {
 	$access->setTicket();
 	$ticket2 = $access->getTicket();
 }
-
-$fileId = isset($_POST['fileId']) ? $_POST['fileId'] : 0;
-$fileName = isset($_POST['fileName']) ? $_POST['fileName'] : 0;
 
 $saveModal = $smarty->fetch('mxgraph/save_modal.tpl');
 $saveModal = preg_replace('/\s+/', ' ', $saveModal);
