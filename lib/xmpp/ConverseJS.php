@@ -73,9 +73,7 @@ class ConverseJS
 				'authentication'   => 'anonymous',
 				'auto_login'       => true,
 			));
-		}
-
-		if ($authMethod === 'tikitoken') {
+		} elseif ($authMethod === 'tikitoken') {
 			$this->set_options(array(
 				'auto_login' => true,
 				'authentication'   => 'prebind',
@@ -84,19 +82,17 @@ class ConverseJS
 					'controller' => 'xmpp',
 				]),
 			));
-		}
-
-		if ($authMethod === 'oauth') {
+		} elseif ($authMethod === 'oauth') {
 			$this->set_options(array(
 				'authentication'   => 'login',
 				'oauth_providers' => [
 					'tiki' => $this->get_oauth_parameters(),
 				]));
+		} else {
+			$this->set_options(array(
+				'authentication' => 'login'
+			));
 		}
-
-		$this->set_options(array(
-			'authentication' => 'login'
-		));
 	}
 
 	public function set_options($options)
