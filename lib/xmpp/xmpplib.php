@@ -24,7 +24,7 @@ class XMPPLib extends TikiLib
 	/**
 	 * @return string
 	 */
-	public function getServerHttpBind(): string
+	public function getServerHttpBind()
 	{
 		return $this->server_http_bind;
 	}
@@ -69,7 +69,7 @@ class XMPPLib extends TikiLib
 			'domain'    => $this->server_host,
 			'http_bind' => $this->server_http_bind,
 			'jid'       => JID::buildJid($login['jid'], $prefs['xmpp_server_host']),
-			'password'  => $login['password'] ?: '', 
+			'password'  => $login['password'] ?: '',
 			'username'  => $login['jid'],
 			'nickname'  => $login['nickname'] ?: $user,
 		);
@@ -142,7 +142,7 @@ class XMPPLib extends TikiLib
 
 		$use_tikitoken = $xmpp['username'] === $user;
 		$use_tikitoken = $use_tikitoken && $xmpp['domain'] === $this->server_host;
-		$use_tikitoken = $use_tikitoken && !empty($prefs['xmpp_auth_method']);
+		$use_tikitoken = $use_tikitoken && ! empty($prefs['xmpp_auth_method']);
 		$use_tikitoken = $use_tikitoken && $prefs['xmpp_auth_method'] === 'tikitoken';
 
 		if ($use_tikitoken) {
@@ -248,14 +248,15 @@ class XMPPLib extends TikiLib
 		$api->host = $host;
 		$api->port = $port;
 		$api->useSSL = $ssl;
-		$api->plugin = $path; 
+		$api->plugin = $path;
 
 		$this->restapi = $api;
 		return $api;
 	}
 
-	public function getRestApi() {
-		if($this->restapi == null) {
+	public function getRestApi()
+	{
+		if ($this->restapi == null) {
 			return $this->initializeRestApi();
 		}
 		return $this->restapi;
@@ -265,7 +266,7 @@ class XMPPLib extends TikiLib
 	{
 		global $prefs;
 
-		if(empty($this->xmppapi)) {
+		if (empty($this->xmppapi)) {
 			$params = array(
 				"scheme" => "tcp",
 				"host" => $this->server_host,
@@ -280,7 +281,7 @@ class XMPPLib extends TikiLib
 		return $this->xmppapi;
 	}
 
-	public function addUserToRoom($room, $userJid, $role='members')
+	public function addUserToRoom($room, $userJid, $role = 'members')
 	{
 		global $prefs;
 		// first, allow myself to join the room
@@ -301,86 +302,82 @@ class XMPPLib extends TikiLib
 		return $result;
 	}
 
-	public function addUsersToRoom($params=array(), $defaultRoom='', $defaultRole='members')
+	public function addUsersToRoom($params = array(), $defaultRoom = '', $defaultRole = 'members')
 	{
-		$params = array_map(function($item) use ($defaultRoom, $defaultRole)
-		{
+		$params = array_map(function ($item) use ($defaultRoom, $defaultRole) {
 			$status = is_array($item);
 			$item = $status ? $item : array();
 
-			$status = $status && !empty($item['name']);
-			$status = !(empty($item['room']) && empty($defaultRoom));
+			$status = $status && ! empty($item['name']);
+			$status = ! (empty($item['room']) && empty($defaultRoom));
 
 			return array_merge(array(
 				'role' => $defaultRole,
 				'room' => $defaultRoom,
 				'name' => '',
 				'status' => $status
-			),  $item);
+			), $item);
 		}, $params);
 
 		$self = $this;
-		return array_map(function($item) use ($self)
-		{
+		return array_map(function ($item) use ($self) {
 			if (empty($item['status'])) {
 				return $item;
 			}
-	
+
 			$response = $self->addUserToRoom($item['room'], $item['jid'], $item['role']);
 			return array_merge($item, $response);
 		}, $params);
 	}
-	
-	function addGroupToRoom ($room, $name, $role='members')
+
+	function add_group_to_room($room, $name, $role = 'members')
 	{
 		$restapi = $this->getRestApi();
 		return $restapi->addGroupRoleToChatRoom($room, $name, $role);
 	}
 
-	function addGroupsToRoom ($params=array(), $defaultRoom='', $defaultRole='members')
+	function add_groups_to_room($params = array(), $defaultRoom = '', $defaultRole = 'members')
 	{
-		$params = array_map(function($item) use ($defaultRoom, $defaultRole)
-		{
+		$params = array_map(function ($item) use ($defaultRoom, $defaultRole) {
 			$status = is_array($item);
 			$item = $status ? $item : array();
 
-			$status = $status && !empty($item['name']);
-			$status = !(empty($item['room']) && empty($defaultRoom));
+			$status = $status && ! empty($item['name']);
+			$status = ! (empty($item['room']) && empty($defaultRoom));
 
 			return array_merge(array(
 				'role' => $defaultRole,
 				'room' => $defaultRoom,
 				'name' => '',
 				'status' => $status
-			),  $item);
+			), $item);
 		}, $params);
 
 		$self = $this;
-		return array_map(function($item) use ($self)
-		{
+		return array_map(function ($item) use ($self) {
 			if (empty($item['status'])) {
 				return $item;
 			}
-	
-			$response = $self->addGroupToRoom($item['room'], $item['name'], $item['role']);
+
+			$response = $self->add_group_to_room(item['room'], $item['name'], $item['role']);
 			return array_merge($item, $response);
 		}, $params);
 	}
 
-	public function getGroups()
+	public function get_groups()
 	{
 		$restapi = $this->getRestApi();
 		$response = $restapi->getGroups();
 
 		$items = [];
-		if(!empty($response['data']) && !empty($response['data']->groups)) {
+		if (! empty($response['data']) && ! empty($response['data']->groups)) {
 			$items = $response['data']->groups;
 		}
 
 		// groups has attr `name` and `description`
 		// users  has attr `username` and `name`
 		// let's make a common `name` and `fullname`
-		return array_map(function($item) {
+		return array_map(function ($item) {
 			return array(
 				'name' => $item->name,
 				'fullname' => $item->description
@@ -390,7 +387,7 @@ class XMPPLib extends TikiLib
 
 	public function getUsers()
 	{
-		$cachelib = TikiLib::lib('cache');		
+		$cachelib = TikiLib::lib('cache');
 
 		$cache_key = 'xmppJidList';
 		if ($items = $cachelib->getSerialized($cache_key)) {
@@ -398,15 +395,15 @@ class XMPPLib extends TikiLib
 		}
 
 		$query = 'SELECT'
-		.     ' user as username,'
-		.     ' MAX(CASE WHEN `prefName`="xmpp_jid" THEN `value` END) AS `jid`,'
-		.     ' MAX(CASE WHEN `prefName`="realName" THEN `value` END) AS `name`'
+		. ' user as username,'
+		. ' MAX(CASE WHEN `prefName`="xmpp_jid" THEN `value` END) AS `jid`,'
+		. ' MAX(CASE WHEN `prefName`="realName" THEN `value` END) AS `name`'
 		. ' FROM `tiki_user_preferences` WHERE'
-		.     ' `prefName` IN ("xmpp_jid", "realName")'
+		. ' `prefName` IN ("xmpp_jid", "realName")'
 		. ' GROUP BY user;';
 
 		$items = $this->query($query);
-		$items = array_map(function($item) {
+		$items = array_map(function ($item) {
 			return array(
 				'name' => $item['username'],
 				'fullname' => $item['name'],

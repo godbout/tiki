@@ -118,13 +118,13 @@ class Services_Xmpp_Controller
 		$xmpplib = TikiLib::lib('xmpp');
 		$userlib = TikiLib::lib('user');
 
-		if($_SERVER['REQUEST_METHOD'] === 'POST') {
+		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			$room = $input->room->text();
 			$next = rawurldecode($input->next->text());
 			$items = $input->item->text();
-			$return = $xmpplib->addGroupsToRoom($items, $room);
+			$return = $xmpplib->add_groups_to_room($items, $room);
 		} else {
-			$return = $xmpplib->getGroups();
+			$return = $xmpplib->get_groups();
 		}
 
 		return $return;
