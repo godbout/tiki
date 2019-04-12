@@ -10,6 +10,7 @@
 {/block}
 
 {block name="content"}
+	<div class="previewTrackerItem"></div>
 	{if ! $itemId}
 		{if $trackerLogo}
 			<div class="page_header media">
@@ -32,6 +33,7 @@
 				{include file='antibot.tpl'}
 			{/if}
 			<div class="submit">
+				<input type="button" class="btn btn-primary previewItemBtn" title="{tr}Preview your changes.{/tr}" name="preview" value="{tr}Preview{/tr}">
 				<input type="hidden" name="trackerId" value="{$trackerId|escape}">
 				<input
 					type="submit"

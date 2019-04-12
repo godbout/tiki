@@ -11,6 +11,7 @@
 {/block}
 
 {block name="content"}
+	<div class="previewTrackerItem"></div>
 	{if $skip_form eq 'y'}
 		<form method="post" action="{service controller=tracker
 		action=update_item
@@ -25,6 +26,7 @@
 				{foreach from=$forced key=permName item=value}
 					<input type="hidden" name="forced~{$permName|escape}" value="{$value|escape}">
 				{/foreach}
+				<input type="button" class="btn btn-primary previewItemBtn" title="{tr}Preview your changes.{/tr}" name="preview" value="{tr}Preview{/tr}">
 				<input type="hidden" name="redirect" value="{$redirect|escape}">
 				<input type="submit" class="btn btn-secondary" value="{$button_label}" onclick="needToConfirm=false;">
 			</div>
@@ -42,6 +44,7 @@
 				{foreach from=$forced key=permName item=value}
 					<input type="hidden" name="forced~{$permName|escape}" value="{$value|escape}">
 				{/foreach}
+				<input type="button" class="btn btn-primary previewItemBtn" title="{tr}Preview your changes.{/tr}" name="preview" value="{tr}Preview{/tr}">
 				<input type="hidden" name="redirect" value="{$redirect|escape}">
 				<input type="submit" class="btn btn-secondary" value="{$button_label}" onclick="needToConfirm=false;">
 			</div>

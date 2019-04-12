@@ -1185,6 +1185,236 @@ class Services_Tracker_Controller
 	}
 
 	/**
+	 * Preview tracker items
+	 *
+	 * @param JitFilter $input
+	 * @return null
+	 */
+	public function action_preview_item($input)
+	{
+		global $prefs;
+
+		$input = $input->fields;
+		$trackerId = $input->trackerId->int();
+		$definition = Tracker_Definition::get($trackerId);
+
+		if (! $definition) {
+			throw new Services_Exception_NotFound;
+		}
+
+		$itemId = $input->itemId->int();
+
+		if ($itemId) {
+			$itemInfo = TikiLib::lib('trk')->get_tracker_item($itemId);
+			if (! $itemInfo || $itemInfo['trackerId'] != $trackerId) {
+				throw new Services_Exception_NotFound;
+			}
+		} else {
+			$itemInfo = ['trackerId' => $trackerId];
+		}
+
+		$trklib = TikiLib::lib('trk');
+		$smarty = TikiLib::lib('smarty');
+
+		$itemObject = Tracker_Item::fromInfo($itemInfo);
+		$processedFields = $itemObject->prepareInput($input);
+		$fieldsProcessed = [];
+		foreach ($processedFields as $k => $f) {
+			$permName = $f['permName'];
+			$fieldsProcessed[$permName] = isset($f['value']) ? $f['value'] : '';
+			if (isset($f['relations'])) {
+				$fieldsProcessed[$permName] = ['relations' => $f['relations']];
+			}
+			if (isset($f['selected'])) {
+				$fieldsProcessed[$permName] = ['selected' => $f['selected']];
+			}
+			if (isset($f['selected_categories'])) {
+				$fieldsProcessed[$permName] = ['selected_categories' => $f['selected_categories']];
+			}
+			if (isset($f['files'])) {
+				$fieldsProcessed[$permName] = ['files' => $f['files']];
+			}
+		}
+
+		$fieldDefinitions = $definition->getFields();
+		$smarty->assign('tracker_is_multilingual', $prefs['feature_multilingual'] == 'y' && $definition->getLanguageField());
+
+		if ($prefs['feature_groupalert'] == 'y') {
+			$groupalertlib = TikiLib::lib('groupalert');
+			$groupforalert = $groupalertlib->GetGroup('tracker', $trackerId);
+			if ($groupforalert != "") {
+				$showeachuser = $groupalertlib->GetShowEachUser('tracker', $trackerId, $groupforalert);
+				$userlib = TikiLib::lib('user');
+				$listusertoalert = $userlib->get_users(0, -1, 'login_asc', '', '', false, $groupforalert, '');
+				$smarty->assign_by_ref('listusertoalert', $listusertoalert['data']);
+			}
+			$smarty->assign_by_ref('groupforalert', $groupforalert);
+			$smarty->assign_by_ref('showeachuser', $showeachuser);
+		}
+
+		$smarty->assign('itemId', $itemId);
+		$smarty->assign_by_ref('item_info', $itemInfo);
+		$smarty->assign('item', ['itemId' => $itemId, 'trackerId' => $trackerId]);
+
+		$trackerInfo = $definition->getInformation();
+
+		include_once('tiki-sefurl.php');
+
+		$statusTypes = $trklib->status_types();
+		$smarty->assign('status_types', $statusTypes);
+		$fields = [];
+		$ins_fields = [];
+		$itemUsers = $trklib->get_item_creators($trackerId, $itemId);
+		$smarty->assign_by_ref('itemUsers', $itemUsers);
+
+		if (empty($trackerInfo)) {
+			$itemInfo = [];
+		}
+
+		$fieldFactory = $definition->getFieldFactory();
+
+		foreach ($fieldDefinitions as &$fieldDefinition) {
+			$fid = $fieldDefinition["fieldId"];
+			$fieldDefinition["ins_id"] = 'ins_' . $fid;
+			$fieldDefinition["filter_id"] = 'filter_' . $fid;
+		}
+		unset($fieldDefinition);
+
+		$itemObject = Tracker_Item::fromInfo($itemInfo);
+
+		foreach ($fieldDefinitions as $i => $currentField) {
+			$currentFieldIns = null;
+			$fid = $currentField['fieldId'];
+
+			$handler = $fieldFactory->getHandler($currentField, $itemInfo);
+
+			$fieldIsVisible = $itemObject->canViewField($fid);
+			$fieldIsEditable = $itemObject->canModifyField($fid);
+
+			if ($fieldIsVisible || $fieldIsEditable) {
+				$currentFieldIns = $currentField;
+
+				if ($handler) {
+					$insertValues = $handler->getFieldData();
+
+					if ($insertValues) {
+						$currentFieldIns = array_merge($currentFieldIns, $insertValues);
+					}
+				}
+			}
+
+			if (! empty($currentFieldIns)) {
+				if ($fieldIsVisible) {
+					$fields['data'][$i] = $currentFieldIns;
+				}
+				if ($fieldIsEditable) {
+					$ins_fields['data'][$i] = $currentFieldIns;
+				}
+			}
+		}
+
+		if ($trackerInfo['doNotShowEmptyField'] == 'y') {
+			$trackerlib = TikiLib::lib('trk');
+			$fields['data'] = $trackerlib->mark_fields_as_empty($fields['data']);
+		}
+
+		foreach ($fields["data"] as &$field) {
+			$permName = isset($field['permName']) ? $field['permName'] : null;
+			if (isset($fieldsProcessed[$permName])) {
+				$field['value'] = $fieldsProcessed[$permName];
+				$field['pvalue'] = $fieldsProcessed[$permName];
+				if (isset($fieldsProcessed[$permName]['relations'])) {
+					$field['relations'] = $fieldsProcessed[$permName]['relations'];
+				}
+				if (isset($fieldsProcessed[$permName]['selected'])) {
+					$field['selected'] = $fieldsProcessed[$permName]['selected'];
+				}
+				if (isset($fieldsProcessed[$permName]['selected_categories'])) {
+					$field['selected_categories'] = $fieldsProcessed[$permName]['selected_categories'];
+				}
+				if (isset($field['freetags'])) {
+					$freetags = trim($fieldsProcessed[$permName]);
+					$freetags = explode(' ', $freetags);
+					$field['freetags'] = $freetags;
+				}
+				if (isset($fieldsProcessed[$permName]['files'])) {
+					$field['files'] = $fieldsProcessed[$permName]['files'];
+				}
+			}
+		}
+
+		$smarty->assign('trackerId', $trackerId);
+		$smarty->assign('tracker_info', $trackerInfo);
+		$smarty->assign_by_ref('info', $itemInfo);
+		$smarty->assign_by_ref('fields', $fields["data"]);
+		$smarty->assign_by_ref('ins_fields', $ins_fields["data"]);
+
+
+		if ($trackerInfo['useComments'] == 'y') {
+			$comCount = $trklib->get_item_nb_comments($itemId);
+			$smarty->assign("comCount", $comCount);
+			$smarty->assign("canViewCommentsAsItemOwner", $itemObject->canViewComments());
+		}
+
+		if ($trackerInfo["useAttachments"] == 'y') {
+			if (isset($_REQUEST["removeattach"])) {
+				$_REQUEST["show"] = "att";
+			}
+			if (isset($_REQUEST["editattach"])) {
+				$att = $trklib->get_item_attachment($_REQUEST["editattach"]);
+				$smarty->assign("attach_comment", $att['comment']);
+				$smarty->assign("attach_version", $att['version']);
+				$smarty->assign("attach_longdesc", $att['longdesc']);
+				$smarty->assign("attach_file", $att["filename"]);
+				$smarty->assign("attId", $att["attId"]);
+				$_REQUEST["show"] = "att";
+			}
+			// If anything below here is changed, please change lib/wiki-plugins/wikiplugin_attach.php as well.
+			$attextra = 'n';
+			if (strstr($trackerInfo["orderAttachments"], '|')) {
+				$attextra = 'y';
+			}
+			$attfields = explode(',', strtok($trackerInfo["orderAttachments"], '|'));
+			$atts = $trklib->list_item_attachments($itemId, 0, -1, 'comment_asc', '');
+			$smarty->assign('atts', $atts["data"]);
+			$smarty->assign('attCount', $atts["cant"]);
+			$smarty->assign('attfields', $attfields);
+			$smarty->assign('attextra', $attextra);
+		}
+
+		include_once('tiki-section_options.php');
+
+		ask_ticket('view-trackers-items');
+
+		$smarty->assign('canView', $itemObject->canView());
+
+		// View
+		$viewItemPretty = [
+				'override' => false,
+				'value' => $trackerInfo['viewItemPretty'],
+				'type' => 'wiki'
+		];
+		if (! empty($trackerInfo['viewItemPretty'])) {
+			// Need to check wether this is a wiki: or tpl: template, bc the smarty template needs to take care of this
+			if (strpos(strtolower($viewItemPretty['value']), 'wiki:') === false) {
+				$viewItemPretty['type'] = 'tpl';
+			}
+		}
+		$smarty->assign('viewItemPretty', $viewItemPretty);
+
+		try {
+			$smarty->assign('print_page', 'y');
+			$smarty->display('templates/tracker/preview_item.tpl');
+		} catch (SmartyException $e) {
+			$message = tr('The requested element cannot be displayed. One of the view/edit templates is missing or has errors: %0', $e->getMessage());
+			trigger_error($e->getMessage(), E_USER_ERROR);
+			$smarty->loadPlugin('smarty_modifier_sefurl');
+			$access = TikiLib::lib('access');
+			$access->redirect(smarty_modifier_sefurl($trackerId, 'tracker'), $message, 302, 'error');
+		}
+	}
+
+	/**
 	 * Links wildcard ItemLink entries to the base tracker by cloning wildcard items
 	 * and removes unselected ItemLink entries that were already linked before.
 	 * Used by ItemLink update table button to refresh list of associated entries.
