@@ -72,6 +72,9 @@ class UserPrefsLib extends TikiLib
 			} else {
 				$file = $this->generate_avatar_file($user);
 			}
+			if ($lastmod = filemtime($file)) {
+				$file .= '?v=' . $lastmod;
+			}
 		} else {
 			$info = $this->get_user_avatar_img($user);
 			$content = $info["avatarData"];
@@ -79,6 +82,9 @@ class UserPrefsLib extends TikiLib
 				$file = "tiki-show_user_avatar.php?user=" . urlencode($user);
 			} else {
 				$file = 'img/noavatar.png';
+				if ($lastmod = filemtime($file)) {
+					$file .= '?v=' . $lastmod;
+				}
 			}
 		}
 		if (TikiLib::lib('parser')->option['absolute_links']) {
