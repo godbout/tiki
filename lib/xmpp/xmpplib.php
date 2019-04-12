@@ -129,11 +129,29 @@ class XMPPLib extends TikiLib
 		}
 		// this is openfire specific
 
-		$args = ['roomName' => $params['room']];
-		$atpos = strrpos($args['roomName'], '@');
+		// this is openfire specific
+		$args = [
+			'broadcastPresenceRoles' => [
+				'moderator',
+				'participant',
+				'visitor'
+			],
+		];
 
+		$args['roomName'] = $params['room'];
+		$atpos = strpos($params['room'], '@');
 		if ($atpos) {
-			$args['roomName'] = substr($args['roomName'], 0, $atpos);
+			$args['roomName'] = substr($params['room'], 0, $atpos);
+		}
+
+		$args['description'] = $args['roomName'];
+		if (! empty($params['description'])) {
+			$args['description'] = $params['description'];
+		}
+
+		$args['maxUsers'] = 30;
+		if (! empty($params['maxUsers']) && is_numeric($params['maxUsers'])) {
+			$params['maxUsers'] = intval($params['maxUsers'], 10);
 		}
 
 		$args['naturalName'] = $args['roomName'];
@@ -142,7 +160,13 @@ class XMPPLib extends TikiLib
 		$args['logEnabled'] = isset($params['archiving']) && $params['archiving'] === 'y';
 		$args['publicRoom'] = ! isset($params['secret']) || $params['secret'] !== 'y';
 
-		return $this->create_room($args);
+		if ($this->create_room($args) && ! empty($params['groups'])) {
+			$groups = explode(',', $params['groups']);
+
+			foreach ($groups as $group) {
+				$this->addGroupToRoom($args['roomName'], $group, 'members');
+			}
+		}
 	}
 
 	function create_room($args)
