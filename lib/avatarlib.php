@@ -97,6 +97,10 @@ class AvatarLib extends TikiLib
 				}
 				if (chkgd2()) {
 					$t = imagecreatetruecolor($tw, $ty);
+					// trick to have a transparent background for png instead of black
+					imagesavealpha($t, true);
+					$trans_colour = imagecolorallocatealpha($t, 0, 0, 0, 127);
+					imagefill($t, 0, 0, $trans_colour);
 					imagecopyresampled($t, $img, 0, 0, 0, 0, $tw, $ty, $size_x, $size_y);
 				} else {
 					$t = imagecreate($tw, $ty);
@@ -104,13 +108,13 @@ class AvatarLib extends TikiLib
 				}
 				// CHECK IF THIS TEMP IS WRITEABLE OR CHANGE THE PATH TO A WRITEABLE DIRECTORY
 				$tmpfname = tempnam($prefs['tmpDir'], "TMPIMG");
-				imagejpeg($t, $tmpfname);
+				imagepng($t, $tmpfname);
 				// Now read the information
 				$fp = fopen($tmpfname, "rb");
 				$t_data = fread($fp, filesize($tmpfname));
 				fclose($fp);
 				unlink($tmpfname);
-				$t_type = 'image/jpeg';
+				$t_type = 'image/png';
 				$userprefslib->set_user_avatar($userwatch, 'u', '', $name, $size, $t_type, $t_data);
 			} else {
 				$userprefslib->set_user_avatar($userwatch, 'u', '', $name, $size, $type, $data);
