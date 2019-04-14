@@ -172,6 +172,7 @@
 			{preference name=user_selector_threshold}
 			{preference name=maxRecords}
 			{preference name=tiki_object_selector_threshold}
+			{preference name=tiki_object_selector_searchfield}
 		{preference name=comments_per_page}
 			<hr>
 		{/tab}

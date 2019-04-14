@@ -174,6 +174,13 @@ function prefs_tiki_list()
 			'units' => tra('records'),
 			'filter' => 'int',
 		],
+		'tiki_object_selector_searchfield' => [
+			'name' => tr('Object selector search field'),
+			'description' => tr('Field or (comma separated) fields to search when filtering in an object selector. e.g. "%0" (default "%1")', 'title', 'content'),
+			'type' => 'text',
+			'default' => 'content',
+			'filter' => 'text',
+		],
 		'tiki_key' => [
 			'name' => tr('Client key for this site'),
 			'type' => 'text',

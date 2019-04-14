@@ -47,6 +47,7 @@
 				{preference name=user_selector_threshold}
 				{preference name=user_selector_realnames_tracker}
 				{preference name=tiki_object_selector_threshold}
+				{preference name=tiki_object_selector_searchfield}
 				{preference name="tracker_refresh_itemlink_detail"}
 				{preference name=tracker_refresh_itemslist_detail}
 				{preference name=fgal_tracker_existing_search}
