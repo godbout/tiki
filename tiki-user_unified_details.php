@@ -50,8 +50,8 @@ if ($prefs['feature_score'] == 'y' and isset($user) and $user != $userwatch) {
 $lib = TikiLib::lib('unifiedsearch');
 $query = $lib->buildQuery([
 	'type' => 'user',
-	'object_id' => $userwatch,
 ]);
+$query->filterIdentifier($userwatch, "object_id");
 $user_info = $query->search($lib->getIndex());
 
 //pass the first user, since there should only be one result. the index, by default returns a list
