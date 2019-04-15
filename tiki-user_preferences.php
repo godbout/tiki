@@ -463,7 +463,7 @@ $usertrackerId = false;
 $useritemId = false;
 if ($prefs['userTracker'] == 'y') {
 	$re = $userlib->get_usertracker($userinfo["userId"]);
-	if (isset($re['usersTrackerId']) and $re['usersTrackerId']) {
+	if (isset($re['usersTrackerId']) && $re['usersTrackerId'] && Tracker_Definition::get($re['usersTrackerId'])) {
 		$trklib = TikiLib::lib('trk');
 		$info = $trklib->get_item_id($re['usersTrackerId'], $re['usersFieldId'], $userwatch);
 		$usertrackerId = $re['usersTrackerId'];
