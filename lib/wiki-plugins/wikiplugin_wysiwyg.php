@@ -25,10 +25,10 @@ function wikiplugin_wysiwyg_info()
 			'width' => [
 				'required' => false,
 				'name' => tra('Width'),
-				'description' => tra('Minimum width for DIV. Default:') . ' <code>500px</code>',
+				'description' => tra('Minimum width for DIV. Default:') . ' <code>100px</code>',
 				'since' => '9.0',
 				'filter' => 'text',
-				'default' => '500px',
+				'default' => '100px',
 			],
 			'height' => [
 				'required' => false,
