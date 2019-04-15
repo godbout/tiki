@@ -6054,6 +6054,8 @@ th {
 .calhighlight {
   color: #fff;
   background: #1f9bcf; }
+  .calhighlight > a {
+    color: #fff; }
 
 a.fc-event:hover {
   color: #fff; }

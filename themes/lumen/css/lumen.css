@@ -6170,6 +6170,8 @@ a.list-group-item-success.active {
 .calhighlight {
   color: #fff;
   background: #75caeb; }
+  .calhighlight > a {
+    color: #fff; }
 
 a.fc-event:hover {
   color: #fff; }

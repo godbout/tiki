@@ -13,6 +13,8 @@
 .calhighlight {
   color: #fff;
   background: #17a2b8; }
+  .calhighlight > a {
+    color: #fff; }
 
 a.fc-event:hover {
   color: #fff; }
@@ -2349,6 +2351,9 @@ td.journalDeleted {
   width: 100%; }
   .viewmode div {
     display: inline; }
+  .viewmode .btn-toolbar > .btn {
+    margin-left: 3px;
+    margin-right: 3px; }
 
 .box-data .calnavigation {
   font-size: 1.1em;
@@ -2425,6 +2430,12 @@ a.fc-event:hover {
 
 .status2 {
   background: #dc3545; }
+
+@media (min-width: 992px) {
+  .col1 .table-responsive > .caltable {
+    table-layout: auto; }
+    .col1 .table-responsive > .caltable .weeks {
+      padding: 8px; } }
 
 #intertrans-indicator {
   position: fixed;

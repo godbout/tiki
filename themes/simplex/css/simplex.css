@@ -6068,6 +6068,8 @@ legend, label {
 .calhighlight {
   color: #fff;
   background: #029acf; }
+  .calhighlight > a {
+    color: #fff; }
 
 a.fc-event:hover {
   color: #fff; }

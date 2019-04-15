@@ -6175,6 +6175,8 @@ label, .control-label, .form-text, .checkbox, .radio, .form-control-feedback {
 .calhighlight {
   color: #fff;
   background: #5bc0de; }
+  .calhighlight > a {
+    color: #fff; }
 
 a.fc-event:hover {
   color: #fff; }

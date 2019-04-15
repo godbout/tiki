@@ -27,6 +27,7 @@ $imagePathToImgDir: "../../../img/";
 .calhighlight {
 	color: $white; // Todo $state-info-text;
 	background: $cyan; // Todo $state-info-bg;
+	> a { color: $white; }
 }
 
 //fullcalendar.js

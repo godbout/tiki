@@ -6081,6 +6081,8 @@ legend, .input-group-addon {
 .calhighlight {
   color: #fff;
   background: #93c; }
+  .calhighlight > a {
+    color: #fff; }
 
 a.fc-event:hover {
   color: #fff; }

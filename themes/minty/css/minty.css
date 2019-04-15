@@ -6076,6 +6076,8 @@ legend {
 .calhighlight {
   color: #fff;
   background: #6cc3d5; }
+  .calhighlight > a {
+    color: #fff; }
 
 a.fc-event:hover {
   color: #fff; }

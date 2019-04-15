@@ -6016,6 +6016,8 @@ button.close {
 .calhighlight {
   color: #fff;
   background: #268bd2; }
+  .calhighlight > a {
+    color: #fff; }
 
 a.fc-event:hover {
   color: #fff; }

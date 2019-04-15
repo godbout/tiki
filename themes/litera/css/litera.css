@@ -6091,6 +6091,8 @@ table, .table {
 .calhighlight {
   color: #fff;
   background: #17a2b8; }
+  .calhighlight > a {
+    color: #fff; }
 
 a.fc-event:hover {
   color: #fff; }

@@ -8,6 +8,10 @@
 	div {
 		display: inline;
 	}
+	.btn-toolbar > .btn {
+		margin-left: 3px;
+		margin-right: 3px;
+	}
 }
 
 .box-data .calnavigation {
@@ -119,4 +123,11 @@ a.fc-event:hover {
 
 .status2 {
 	background: theme-color("danger");
+}
+
+@media (min-width: breakpoint-min(lg)) {
+	.col1 .table-responsive > .caltable {
+		table-layout: auto;
+		.weeks { padding: 8px; }
+	}
 }

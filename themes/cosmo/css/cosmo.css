@@ -5829,6 +5829,8 @@ body {
 .calhighlight {
   color: #fff;
   background: #9954bb; }
+  .calhighlight > a {
+    color: #fff; }
 
 a.fc-event:hover {
   color: #fff; }

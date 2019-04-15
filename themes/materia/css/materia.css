@@ -6785,6 +6785,8 @@ input[type="checkbox"], .checkbox input[type="checkbox"], .checkbox-inline input
 .calhighlight {
   color: #fff;
   background: #9c27b0; }
+  .calhighlight > a {
+    color: #fff; }
 
 a.fc-event:hover {
   color: #fff; }
