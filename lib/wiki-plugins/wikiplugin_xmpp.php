@@ -69,7 +69,8 @@ function wikiplugin_xmpp_info()
 			'show_controlbox_by_default' => [
 				'required' => false,
 				'name' => tra('Show controlbox on load'),
-				'description' => tra('If controlbox should be shown after page load'),
+				'description' => tra('If controlbox should be shown after page load.')
+					. ' ' . tra('This preference only works when view mode is overlayed'),
 				'since' => 20,
 				'filter' => 'alpha',
 				'default' => 'n',
@@ -82,7 +83,8 @@ function wikiplugin_xmpp_info()
 			'show_occupants_by_default' => [
 				'required' => false,
 				'name' => tra('Show occupants'),
-				'description' => tra('If occupants window should be visible by default'),
+				'description' => tra('If occupants window should be visible by default')
+					. ' ' . tra('This preference only works when view mode is embedded'),
 				'since' => 20,
 				'filter' => 'alpha',
 				'default' => 'y',
@@ -93,7 +95,8 @@ function wikiplugin_xmpp_info()
 				],
 			],
 			'groups' => [
-				'name' => tra('Allowed Groups'),
+				'name' => tra('Groups (comma-separated)'),
+				'description' => tra('Allowed groups to use this resource'),
 				'default' => '',
 				'filter' => 'alpha',
 				'required' => false,
@@ -101,6 +104,7 @@ function wikiplugin_xmpp_info()
 			],
 			'secret' => [
 				'name' => tra('Is secret?'),
+				'description' => tra('If the room will be listed on public chat room list'),
 				'default' => 'n',
 				'filter' => 'y|n',
 				'required' => false,
@@ -112,6 +116,7 @@ function wikiplugin_xmpp_info()
 			],
 			'archiving' => [
 				'name' => tra('Archiving'),
+				'description' => tra('If room messages will be stored'),
 				'default' => 'y',
 				'filter' => 'y|n',
 				'required' => false,
@@ -123,6 +128,7 @@ function wikiplugin_xmpp_info()
 			],
 			'persistent' => [
 				'name' => tra('Persistent'),
+				'description' => tra('If room will continue to exist after last user leaves'),
 				'default' => 'y',
 				'filter' => 'y|n',
 				'required' => false,
@@ -134,6 +140,7 @@ function wikiplugin_xmpp_info()
 			],
 			'moderated' => [
 				'name' => tra('Moderated'),
+				'description' => tra('If room is moderated'),
 				'default' => 'y',
 				'filter' => 'y|n',
 				'required' => false,
