@@ -33,5 +33,13 @@ function prefs_profile_list()
 			'warning' => tra('Make sure you review the profiles you install.'),
 			'default' => 'n',
 		],
+		'profile_autoapprove_wikiplugins' => [
+			'name' => tra('Automatically approve wiki-plugins on pages installed by profiles'),
+			'description' => tra('Some wiki-plugins require admin approval before they are executable. If turned on, then all wiki-plugins that are on wiki pages created via profiles are automatically approved.'),
+			'warning' => tra('Make sure your profiles are not executable or editable by untrusted users.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'tags' => ['advanced'],
+		],
 	];
 }

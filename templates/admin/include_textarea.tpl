@@ -162,6 +162,7 @@
 
 			<fieldset class="mb-5">
 				<legend>{tr}Plugin preferences{/tr}</legend>
+				{preference name=profile_autoapprove_wikiplugins}
 				{preference name=wikipluginprefs_pending_notification}
 				{preference name=image_responsive_class}
 				{preference name=wikiplugin_maximum_passes}

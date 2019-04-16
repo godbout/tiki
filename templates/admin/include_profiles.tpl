@@ -263,6 +263,7 @@
 			</table>
 			<form action="tiki-admin.php?page=profiles" method="post">
 				{ticket}
+				{preference name=profile_autoapprove_wikiplugins}
 				{preference name=profile_unapproved}
 				{preference name=profile_sources}
 				{preference name=profile_channels}

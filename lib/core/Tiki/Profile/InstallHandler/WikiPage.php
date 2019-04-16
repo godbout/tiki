@@ -280,6 +280,24 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 			require_once 'freetag_apply.php';
 		}
 
+		if ($prefs['profile_autoapprove_wikiplugins'] == 'y') {
+			$argumentParser = new \WikiParser_PluginArgumentParser;
+			$matches = \WikiParser_PluginMatcher::match($this->content);
+			$parserlib = \TikiLib::lib('parser');
+			foreach ($matches as $match) {
+				$parserlib->setOptions([ 'page' => $finalName ]);
+				$name = $match->getName();
+				$data = $match->getBody();
+				$args = $argumentParser->parse($match->getArguments());
+				$meta = $parserlib->plugin_info($name, $args);
+				if ($parserlib->plugin_can_execute($name, $data, $args) !== true) {
+					if ($fingerprint = $parserlib->plugin_fingerprint($name, $meta, $data, $args)) {
+						$parserlib->approve_selected_pending_plugings($fingerprint);
+					}
+				}
+			}
+		}
+
 		return $finalName;
 	}
 
