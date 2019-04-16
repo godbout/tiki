@@ -81,7 +81,7 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-7 col-sm-offset-3 text-center">
+		<div class="col-sm-7 offset-sm-3 text-center">
 			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>

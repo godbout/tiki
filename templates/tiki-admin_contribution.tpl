@@ -30,7 +30,7 @@
 	{ticket}
 	<div class="form-group row">
 		<div class="form-check">
-			<label class="col-sm-11 col-sm-offset-1 form-check-label" for=feature_contribution_mandatory">
+			<label class="col-sm-11 offset-sm-1 form-check-label" for=feature_contribution_mandatory">
 				<input type="checkbox" class="form-check-input" name="feature_contribution_mandatory" id="feature_contribution_mandatory" {if $prefs.feature_contribution_mandatory eq 'y'}checked="checked"{/if}>
 				{tr}Contributions are mandatory in wiki pages{/tr}
 			</label>
@@ -38,7 +38,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="form-check">
-			<label class="col-sm-11 col-sm-offset-1 form-check-label" for="feature_contribution_mandatory_forum">
+			<label class="col-sm-11 offset-sm-1 form-check-label" for="feature_contribution_mandatory_forum">
 				<input type="checkbox" class="form-check-input" name="feature_contribution_mandatory_forum" id="feature_contribution_mandatory_forum" {if $prefs.feature_contribution_mandatory_forum eq 'y'}checked="checked"{/if}>
 				{tr}Contributions are mandatory in forums{/tr}
 			</label>
@@ -46,7 +46,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="form-check">
-			<label class="col-sm-11 col-sm-offset-1 form-check-label" for="feature_contribution_mandatory_comment">
+			<label class="col-sm-11 offset-sm-1 form-check-label" for="feature_contribution_mandatory_comment">
 				<input type="checkbox" class="form-check-input" name="feature_contribution_mandatory_comment" id="feature_contribution_mandatory_comment" {if $prefs.feature_contribution_mandatory_comment eq 'y'}checked="checked"{/if}>
 				{tr}Contributions are mandatory in comments{/tr}
 			</label>
@@ -54,7 +54,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="form-check">
-			<label class="col-sm-11 col-sm-offset-1 form-check-label" for="feature_contribution_mandatory_blog">
+			<label class="col-sm-11 offset-sm-1 form-check-label" for="feature_contribution_mandatory_blog">
 				<input type="checkbox" class="form-check-input" name="feature_contribution_mandatory_blog" id="feature_contribution_mandatory_blog" {if $prefs.feature_contribution_mandatory_blog eq 'y'}checked="checked"{/if}>
 				{tr}Contributions are mandatory in blogs{/tr}
 			</label>
@@ -62,7 +62,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="form-check">
-			<label class="col-sm-11 col-sm-offset-1 form-check-label" for="feature_contribution_display_in_comment">
+			<label class="col-sm-11 offset-sm-1 form-check-label" for="feature_contribution_display_in_comment">
 				<input type="checkbox" class="form-check-input" name="feature_contribution_display_in_comment" name="feature_contribution_display_in_comment" {if $prefs.feature_contribution_display_in_comment eq 'y'}checked="checked"{/if}>
 				{tr}Contributions are displayed in the comment/post{/tr}
 			</label>
@@ -70,7 +70,7 @@
 	</div>
 	<div class="form-group row">
 		<div class="form-check">
-			<label class="col-sm-11 col-sm-offset-1 form-check-label" for="feature_contributor_wiki">
+			<label class="col-sm-11 offset-sm-1 form-check-label" for="feature_contributor_wiki">
 			<input type="checkbox" class="form-check-input" name="feature_contributor_wiki" name="feature_contributor_wiki" {if $prefs.feature_contributor_wiki eq 'y'}checked="checked"{/if}>
 			{tr}Contributors{/tr}
 			</label>

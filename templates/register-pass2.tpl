@@ -28,7 +28,7 @@
 		{if $prefs.generate_password eq 'y'}
 			{*if !$reg_in_module}<td>&nbsp;</td>{/if*}
 			<div class="form-group row">
-				<div class="col-sm-3 col-sm-offset-4">
+				<div class="col-sm-3 offset-sm-4">
 					<span id="genPass">{button href="#" _text="{tr}Generate a password{/tr}"}</span>
 				</div>
 				<div class="col-sm-3">

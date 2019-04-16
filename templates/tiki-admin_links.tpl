@@ -58,7 +58,7 @@
 	{ticket}
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">URL</label>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="col-sm-7 offset-sm-1 mb-3">
 			{if $editurl eq 'n'}
 				<input type="text" name="url" class="form-control">
 			{else}
@@ -70,13 +70,13 @@
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Title{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="col-sm-7 offset-sm-1 mb-3">
 			<input type="text" name="title" value="{$title|escape}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Position{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="col-sm-7 offset-sm-1 mb-3">
 			<input type="text" size="3" name="position" value="{$position|escape}" class="form-control">
 			<div class="small-hint">
 				(0 {tr}disables the link{/tr})
@@ -85,7 +85,7 @@
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Link type{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="col-sm-7 offset-sm-1 mb-3">
 			<select name="type" class="form-control">
 				<option value="r" {if $type eq 'r'}selected="selected"{/if}>{tr}replace current page{/tr}</option>
 				<option value="f" {if $type eq 'f'}selected="selected"{/if}>{tr}framed{/tr}</option>
@@ -95,7 +95,7 @@
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="col-sm-7 offset-sm-1 mb-3">
 			<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Save{/tr}">
 		</div>
 	</div>

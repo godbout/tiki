@@ -132,8 +132,8 @@
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-3"></div>
-			<div class="col-sm-9 col-sm-offset-3">
-				<table class="col-sm-9 col-sm-offset-3">
+			<div class="col-sm-9 offset-sm-3">
+				<table class="col-sm-9 offset-sm-3">
 					<thead>
 					<tr><th>{tr}Name{/tr}</th><th>{tr}Value{/tr}</th></tr>
 					</thead>

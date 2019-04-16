@@ -50,9 +50,9 @@ $.getJSON('group_tracker_ajax.php', {chosenGroup:'{{$theChoiceGroup}}'}, functio
 				{/foreach}
 			</div>
 		</div>
-		<div id="registerTracker" class="col-sm-8 col-sm-offset-4">
+		<div id="registerTracker" class="col-sm-8 offset-sm-4">
 			{if $trackerEditFormId}
-				<div class="col-sm-9 col-sm-offset-3">
+				<div class="col-sm-9 offset-sm-3">
 					<div class="text-center alert alert-danger">
 						<em class='mandatory_note'>{tr}Fields marked with an * are mandatory.{/tr}</em>
 					</div>

@@ -135,7 +135,7 @@
 		</div>
 
 		<div class="form-group row">
-			<div class="col-sm-7 col-md-6 col-sm-offset-3 col-md-offset-2">
+			<div class="col-sm-7 col-md-6 offset-sm-3 offset-md-2">
 				{if isset($ruleinfo.id) && $ruleinfo.id && !$ruleinfo.error}
 					<input type="hidden" name="rule" value="{$ruleinfo.id|escape}">
 					<input type="hidden" name="editrule" value="1">

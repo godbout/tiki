@@ -17,13 +17,13 @@
 		<input type="hidden" name="zone" value="{$zone|escape}">
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Zone{/tr}</label>
-			<div class="col-sm-7 col-sm-offset-1">
+			<div class="col-sm-7 offset-sm-1">
 				<p>{$zone} Teste</p>
 			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Content:{/tr}</label>
-			<div class="col-sm-7 col-sm-offset-1">
+			<div class="col-sm-7 offset-sm-1">
 				{if $type eq 'ta'}
 					<textarea rows="5" cols="15" name="content" class="form-control">{$content|escape}</textarea>
 				{else}
@@ -33,7 +33,7 @@
 		</div>
 		<div class="form-group row">
 			<div class="col-sm-3"></div>
-			<div class="col-sm-7 col-sm-offset-1 mb-3">
+			<div class="col-sm-7 offset-sm-1 mb-3">
 				<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 			</div>
 		</div>
@@ -80,7 +80,7 @@
 
 	<div class="form-group row">
 		<div class="col-sm-3"></div>
-		<div class="col-sm-7 col-sm-offset-2">
+		<div class="col-sm-7 offset-sm-2">
 			<input type="submit" class="btn btn-primary btn-sm" name="editmany" value="{tr}Mass update{/tr}">
 		</div>
 	</div>

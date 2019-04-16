@@ -571,7 +571,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-2 col-sm-offset-4 checkbox-inline">
+							<div class="col-sm-2 offset-sm-4 checkbox-inline">
 								<input type="radio" name="att_store" value="dir" {if $att_store eq 'dir'}checked="checked"{/if}> {tr}File system{/tr}</div>
 							<label class="col-form-label col-sm-2" for="att_store_dir">{tr}Path{/tr}</label>
 							<div class="col-sm-4 checkbox-inline">

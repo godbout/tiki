@@ -8,19 +8,19 @@
 	{ticket}
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Word{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="text" name="word" class="form-control">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}URL{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="text" name="url" class="form-control">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}">
 		</div>
 	</div>

@@ -256,7 +256,7 @@
 		{else}
 			<h2>{tr}Edit this custom module{/tr} {$um_name}</h2>
 		{/if}
-		<div class="col-sm-10 col-sm-offset-1">
+		<div class="col-sm-10 offset-sm-1">
 			{remarksbox type="tip" title="{tr}Tip{/tr}"}
 				{tr}Create your new custom module below. Make sure to preview first and make sure all is OK before <a href="#assign" class="alert-link">assigning it</a>. Using HTML, you will be fine. However, if you improperly use wiki syntax or Smarty code, you could lock yourself out of the site.{/tr}
 			{/remarksbox}
@@ -387,7 +387,7 @@
 				</div>
 			{/if}
 			{pagination_links cant=$maximum step=$maxRecords offset=$offset}{/pagination_links}
-			<div class="col-sm-10 col-sm-offset-1">
+			<div class="col-sm-10 offset-sm-1">
 				{remarksbox type="tip" title="{tr}Tip{/tr}"}
 				{if $prefs.feature_cssmenus eq 'y'}
 					{tr}To use a <a target="tikihelp" href="http://users.tpg.com.au/j_birch/plugins/superfish/" class="alert-link">CSS (Superfish) menu</a>, use one of these syntaxes:{/tr}

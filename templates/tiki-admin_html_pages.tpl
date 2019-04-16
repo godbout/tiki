@@ -24,14 +24,14 @@
 	<input type="hidden" name="pageName" value="{$pageName|escape}">
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Page name{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="col-sm-7 offset-sm-1 mb-3">
 			<input type="text" maxlength="255" size="40" name="pageName" value="{$info.pageName|escape}" class="form-control">
 		</div>
 	</div>
 	{if $tiki_p_use_content_templates eq 'y'}
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Apply template{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="col-sm-7 offset-sm-1 mb-3">
 			<select name="templateId"{if !$templates} disabled="disabled"{/if} onchange="javascript:document.getElementById('editpageform').submit();" class="form-control">
 				<option value="0">{tr}none{/tr}</option>
 				{section name=ix loop=$templates}
@@ -43,7 +43,7 @@
 	{/if}
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Type{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="col-sm-7 offset-sm-1 mb-3">
 			<select name="type" class="form-control">
 				<option value='d'{if $info.type eq 'd'} selected="selected"{/if}>{tr}Dynamic{/tr}</option>
 				<option value='s'{if $info.type eq 's'} selected="selected"{/if}>{tr}Static{/tr}</option>
@@ -52,7 +52,7 @@
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Refresh rate (if dynamic){/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="col-sm-7 offset-sm-1 mb-3">
 			<input type="text" name="refresh" value="{$info.refresh|escape}" class="form-control"> 
 			<div class="form-text">
 				{tr}seconds{/tr}
@@ -61,13 +61,13 @@
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Content{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="col-sm-7 offset-sm-1 mb-3">
 			<textarea name="content" id="htmlcode" rows="15" class="form-control">{$info.content|escape}</textarea>
 		</div>
 	</div>
 	<div class="form-group row">
 		<div class="col-sm-3"></div>
-		<div class="col-sm-7 col-sm-offset-1 mb-3">
+		<div class="col-sm-7 offset-sm-1 mb-3">
 			<input type="submit" class="btn btn-secondary" name="preview" value="{tr}Preview{/tr}">
 			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 		</div>

@@ -95,12 +95,12 @@
 				<fieldset>
 					<legend>{tr}Misc.{/tr}</legend>
 
-					<div class="col-sm-11 col-sm-offset-1 form-inline">
+					<div class="col-sm-11 offset-sm-1 form-inline">
 						<div class="form-group col-sm-10">
 							<div class="col-sm-4">
 								<label>{tr}Units{/tr}</label>
 							</div>
-							<div class="form-group col-sm-4 col-sm-offset-1">
+							<div class="form-group col-sm-4 offset-sm-1">
 								<label>{tr}bytes{/tr}</label>
 								<input class="radio" type="radio" name="unit"
 									value="bytes"{if $unit ne 'kb'} checked="checked"{/if}>
@@ -110,12 +110,12 @@
 						</div>
 					</div>
 
-					<div class="col-sm-11 col-sm-offset-1 form-inline">
+					<div class="col-sm-11 offset-sm-1 form-inline">
 						<div class="form-group col-sm-10">
 							<div class="col-sm-4">
 								<label>{tr}Contribution Time{/tr}</label>
 							</div>
-							<div class="form-group col-sm-4 col-sm-offset-1">
+							<div class="form-group col-sm-4 offset-sm-1">
 								<label>{tr}Week{/tr}</label>
 								<input type="radio" name="contribTime" value="w"{if $contribTime ne 'd'} checked="checked"{/if}>
 								<label>{tr}Day{/tr}</label>

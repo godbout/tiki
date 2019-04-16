@@ -58,7 +58,7 @@
 			</div>
 			{if $tiki_p_admin_categories == 'y'}
 				<div class="form-group row">
-					<div class="col-sm-9 col-sm-offset-3">
+					<div class="col-sm-9 offset-sm-3">
 						<div class="form-check">
 							<label>
 								<input type="checkbox" name="parentPerms" {if empty($categId)}checked="checked"{/if}>
@@ -69,7 +69,7 @@
 				</div>
 			{/if}
 			<div class="form-group row">
-				<div class="col-sm-9 col-sm-offset-3">
+				<div class="col-sm-9 offset-sm-3">
 					<input type="submit" class="btn btn-secondary" name="save" value="{tr}Save{/tr}">
 				</div>
 			</div>
@@ -96,7 +96,7 @@ potato,,vegetable
 					</div>
 				</div>
 				<div class="form-group row">
-					<div class="col-sm-3 col-sm-offset-3">
+					<div class="col-sm-3 offset-sm-3">
 						<input type="submit" class="btn btn-secondary" name="import" value="{tr}Upload{/tr}">
 					</div>
 				</div>

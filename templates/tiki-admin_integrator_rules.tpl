@@ -19,7 +19,7 @@
 		<form action="tiki-admin_integrator_rules.php?repID={$repID|escape}" method="post" class="form-horizontal">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Source repository{/tr}</label>
-				<div class="col-sm-6 col-sm-offset-1">
+				<div class="col-sm-6 offset-sm-1">
 					<select name="srcrep" class="form-control">{html_options options=$reps}</select>
 				</div>
 				<div class="col-sm-1">
@@ -38,55 +38,55 @@
 
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}Rules will be applied in this order ('0' or empty = auto){/tr}">{tr}Rule order{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="text" maxlength="2" size="2" class="form-control" name="ord" value="{$ord|escape}" title="{tr}Rules will be applied in this order ('0' or empty = auto){/tr}">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}Text to search for{/tr}">{tr}Search{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="text" name="srch" value="{$srch|escape}" title="{tr}Text to search for{/tr}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}Text to replace{/tr}">{tr}Replace{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="text" name="repl" value="{$repl|escape}" title="{tr}Text to replace{/tr}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}Is this regular expression or simple search/replacer{/tr}">{tr}Regex{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="checkbox" name="type" {if $type eq 'y'}checked="checked"{/if} title="{tr}Is this regular expression or simple search/replacer{/tr}">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}Is case sensitive (for simple replacer){/tr}">{tr}Case sensitive{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="checkbox" name="casesense" {if $casesense eq 'y'}checked="checked"{/if} title="{tr}Is case sensitive (for simple replacer){/tr}">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}subset of chars: imsxeADSXUu, which are regex modifiers{/tr}">{tr}Regex modifiers{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="text" maxlength="20" size="20" class="form-control" name="rxmod" value="{$rxmod|escape}" title="{tr}subset of chars: imsxeADSXUu, which are regex modifiers{/tr}">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}Human-readable text description of rule{/tr}">{tr}Description{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<textarea name="description" class="form-control" rows="4" title="{tr}Human-readable text description of rule{/tr}">{$description|escape}</textarea>
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label">{tr}Enabled{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="checkbox" name="enabled" {if $enabled eq 'y'}checked="checked"{/if} title="{tr}Check to enable this rule{/tr}">&nbsp;
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
@@ -95,37 +95,37 @@
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}Apply all rules or just this to generate preview{/tr}">{tr}Apply all rules{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="checkbox" name="all" {if $all eq 'y'}checked="checked"{/if} title="{tr}Apply all rules or just this to generate preview{/tr}">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}View source code after rules applied{/tr}">{tr}Code preview{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="checkbox" name="code" {if $code eq 'y'}checked="checked"{/if} title="{tr}View source code after rules applied{/tr}">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}Generate HTML preview{/tr}">{tr}HTML preview{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="checkbox" name="html" {if $html eq 'y'}checked="checked"{/if} title="{tr}Generate HTML preview{/tr}">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}Test file from repository to generate preview for (empty = configured start page){/tr}">{tr}File{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="text" name="file" value="{$file|escape}" class="form-control" title="{tr}Test file from repository to generate preview for (empty = configured start page){/tr}">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label" title="{tr}View source code after rules applied{/tr}">{tr}Code preview{/tr}</label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="checkbox" name="code" {if $code eq 'y'}checked="checked"{/if} title="{tr}View source code after rules applied{/tr}">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label class="col-sm-3 col-form-label"></label>
-		<div class="col-sm-7 col-sm-offset-1">
+		<div class="col-sm-7 offset-sm-1">
 			<input type="submit" class="btn btn-primary btn-sm" name="preview" value="{tr}Preview{/tr}">
 		</div>
 	</div>

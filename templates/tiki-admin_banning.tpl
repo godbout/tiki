@@ -145,7 +145,7 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-8 col-sm-offset-4">
+		<div class="col-sm-8 offset-sm-4">
 			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
@@ -169,7 +169,7 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-8 col-sm-offset-4">
+		<div class="col-sm-8 offset-sm-4">
 			<input type="submit" class="btn btn-primary btn-sm" name="import" value="{tr}Import{/tr}">
 		</div>
 	</div>

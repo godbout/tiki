@@ -83,7 +83,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<div class="col-sm-offset-2 col-sm-10">
+				<div class="offset-sm-2 col-sm-10">
 					<a class="wikiaction btn btn-primary" title="{tr}Add{/tr}" id="add_reference_submit">{tr}Add{/tr}</a>
 					<a class="wikiaction btn btn-warning" title="{tr}Cancel{/tr}" onclick="$('#add_reference_block').css('display','none'); return false;">{tr}Cancel{/tr}</a>
 					<span id="a_status" style="margin: 0 0 0 10px;"></span>

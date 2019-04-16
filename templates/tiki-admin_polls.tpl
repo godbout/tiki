@@ -52,12 +52,12 @@
 						<input type="text" name="options[]" value="{$options[opt].title}">
 					</div>
 					{/section}
-					<div class="col-sm-7 col-sm-offset-3 mb-3">
+					<div class="col-sm-7 offset-sm-3 mb-3">
 						<input type="text" name="options[]" class="form-control mb-2">
 						<a href="javascript://Add Option"	onclick="pollsAddOption()" class="btn btn-primary btn-sm">{tr}Add Option{/tr}</a>
 					</div>
 				</div>
-				<div class="col-sm-7 col-sm-offset-3">
+				<div class="col-sm-7 offset-sm-3">
 					{remarksbox type="tip" title="{tr}Tip{/tr}"}
 						{tr}Leave box empty to delete an option.{/tr}
 					{/remarksbox}
@@ -84,7 +84,7 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
-				<div class="col-sm-7 col-sm-offset-1">
+				<div class="col-sm-7 offset-sm-1">
 					<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Add{/tr}">
 				</div>
 			</div>
@@ -219,7 +219,7 @@
 			</div>
 			<div class="form-group form-check">
 				<label class="col-sm-3 col-form-label"></label>
-				<div class="col-sm-7 col-sm-offset-1 mb-3">
+				<div class="col-sm-7 offset-sm-1 mb-3">
 					<input type="submit" class="btn btn-primary btn-sm" name="addPoll" value="{tr}Add{/tr}">
 				</div>
 			</div>
