@@ -32,7 +32,7 @@
 					{preference name=useRegisterPasscode}
 					<div class="adminoptionboxchild" id="useRegisterPasscode_childcontainer">
 						{preference name=registerPasscode}
-						<div class="col-sm-8 col-sm-offset-4">
+						<div class="col-sm-8 offset-sm-4">
 							<span id="genPass">
 								{button href="#" _onclick="" _text="{tr}Generate a passcode{/tr}"}
 							</span>
@@ -191,7 +191,7 @@
 			</fieldset>
 			<fieldset>
 				<div class="form-group row">
-					<div class="col-sm-8 col-sm-offset-4">
+					<div class="col-sm-8 offset-sm-4">
 						{button href="?page=login&amp;refresh_email_group=y" _onclick="confirmSimple(event, '{tr}Assign users to groups based on email patterns?{/tr}', '{ticket mode=get}')" _text="{tr}Assign users to groups by matching email patterns{/tr}"}
 						<div class="form-text">{tr}An email pattern must be defined in the settings for at least one group for this to produce any results.{/tr}</div>
 					</div>

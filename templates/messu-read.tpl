@@ -49,7 +49,7 @@
 		</div>
 	</div>
 	<div class="col-xs-8 col-sm-7" style="padding-top: 4px;">
-		<div class="col-xs-4 col-sm-3 col-sm-offset-3 col-lg-2 col-lg-offset-6">
+		<div class="col-xs-4 col-sm-3 offset-sm-3 col-lg-2 offset-lg-6">
 				<form method="post" action="messu-compose.php">
 					<input type="hidden" name="offset" value="{$offset|escape}">
 					<input type="hidden" name="msgId" value="{$msgId|escape}">

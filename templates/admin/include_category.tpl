@@ -61,7 +61,7 @@
 		{preference name=category_jail}
 		{preference name=category_defaults}
 		<div class="form-group row">
-			<div class="col-sm-8 col-sm-offset-4">
+			<div class="col-sm-8 offset-sm-4">
 				{if !empty($prefs.category_defaults)}
 					<button type="submit" class="btn btn-primary" name="assignWikiCategories" value="y">
 						{tr}Re-apply last saved category defaults to wiki pages{/tr}

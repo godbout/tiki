@@ -111,7 +111,7 @@
 
 					{preference name=unified_tokenize_version_numbers}
 					<div class="adminoptionboxchild unified_engine_childcontainer elastic">
-						<p class="description col-sm-offset-4">{tr}Elastic search only{/tr}</p>
+						<p class="description offset-sm-4">{tr}Elastic search only{/tr}</p>
 						{preference name="unified_elastic_camel_case"}
 						{preference name="unified_elastic_possessive_stemmer"}
 					</div>

@@ -68,7 +68,7 @@
 				{preference name="connect_feature"}
 				<div class="adminoptionboxchild" id="connect_feature_childcontainer">
 					<div class="form-group row">
-						<div class="col-sm-offset-4 col-sm-8">
+						<div class="offset-sm-4 col-sm-8">
 							{button _script="#" class="btn btn-primary" _text="{tr}Send Info{/tr}" _title="{tr}Send the data{/tr}" _id="connect_send_btn"}
 							{button _script="#" class="btn btn-primary" _text="{tr}Preview info{/tr}" _title="{tr}See what is going to be sent{/tr}" _id="connect_list_btn"}
 							{if empty($prefs.connect_site_title)}
@@ -84,7 +84,7 @@
 						{preference name="connect_site_keywords"}
 						{preference name="connect_site_location"}
 						<div class="form-group row">
-							<div class="col-sm-offset-4 col-sm-8">
+							<div class="offset-sm-4 col-sm-8">
 								{$headerlib->add_map()}
 								<div class="map-container" style="height:250px;width:400px;" data-geo-center="{defaultmapcenter}"
 									data-target-field="connect_site_location"{if $prefs.connect_server_mode eq "y"}

@@ -38,7 +38,7 @@
 					</button>
 				</div>
 			</div>
-			<div class="col-sm-8 col-sm-offset-4 mb-sm-3 adminoptionchild fgal_use_db_childcontainer y">
+			<div class="col-sm-8 offset-sm-4 mb-sm-3 adminoptionchild fgal_use_db_childcontainer y">
 				<button role="button" type="submit" class="btn btn-primary" name="move" value="to_db">
 					{tr}Move files from directory to database{/tr}
 				</button>

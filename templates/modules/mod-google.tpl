@@ -16,11 +16,11 @@
 			</div>
 		</div>
 		{if $url_host ne ''}
-			<div class="col-sm-11 col-sm-offset-1 radio">
+			<div class="col-sm-11 offset-sm-1 radio">
 				<input type="hidden" name="domains" value="{$url_host}" />
 				<label><input type="radio" name="sitesearch" value="{$url_host}" checked="checked" />{$url_host}</label>
 			</div>
-			<div class="col-sm-11 col-sm-offset-1 radio">
+			<div class="col-sm-11 offset-sm-1 radio">
 				<label><input type="radio" name="sitesearch" value="" />WWW</label>
 			</div>
 		{/if}

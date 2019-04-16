@@ -209,7 +209,7 @@ FORM;
 						</label>
 					</div>
 					<div class="form-group row">
-						<div class="col-sm-9 col-sm-offset-3">
+						<div class="col-sm-9 offset-sm-3">
 							$ticketHtml
 							<input type="submit" class="btn btn-primary btn-sm" value="$saveStr">
 							<div class="float-right">

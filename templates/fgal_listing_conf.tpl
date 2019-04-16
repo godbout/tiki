@@ -23,7 +23,7 @@
 				</div>
 			</div>
 		{else}
-			<div class="form-check col-sm-8 col-sm-offset-4">
+			<div class="form-check col-sm-8 offset-sm-4">
 				<label class="form-check-label" for="fgal_{$key}{if isset($fgal_ext)}{$fgal_ext}{/if}">
 					{assign var='pref_name' value="fgal_$key"}
 					<input

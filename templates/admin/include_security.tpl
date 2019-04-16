@@ -207,7 +207,7 @@
 			{preference name=site_closed}
 			<div class="adminoptionboxchild" id="site_closed_childcontainer">
 				{preference name=site_closed_msg}
-				<div class="col-sm-8 col-sm-offset-4">
+				<div class="col-sm-8 offset-sm-4">
 					{button _text='{tr}Test site closed message{/tr}' href='tiki-error_simple.php?error='|cat:$prefs.site_closed_msg _class='btn-sm' _type='info'}
 				</div>
 			</div>
@@ -221,7 +221,7 @@
 			{preference name=ids_enabled}
 			<div class="adminoptionboxchild" id="ids_enabled_childcontainer">
 				<div class="form-group adminoptionbox clearfix">
-					<div class="col-sm-offset-4 col-sm-8">
+					<div class="offset-sm-4 col-sm-8">
 						<a href="tiki-admin_ids.php">{tr}Admin IDS custom rules{/tr}</a>
 					</div>
 				</div>

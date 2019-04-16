@@ -31,7 +31,7 @@
 		</div>
 
 		<div class="form-group row">
-			<div class="col-sm-9 col-sm-offset-3">
+			<div class="col-sm-9 offset-sm-3">
 				<input type="submit" class="btn btn-primary btn-sm" name="editcopyright" value="{tr}Edit{/tr}">
 
 				<a class="tips text-danger" title=":{tr}Delete{/tr}" href="copyrights.php?page={$page|escape:"url"}&amp;action=delete&amp;copyrightId={$copyrights[i].copyrightId}" >
@@ -74,7 +74,7 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<div class="col-sm-9 col-sm-offset-3">
+		<div class="col-sm-9 offset-sm-3">
 			<input type="submit" class="btn btn-primary btn-sm" name="addcopyright" value="{tr}Add{/tr}">
 		</div>
 	</div>

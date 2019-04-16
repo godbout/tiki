@@ -140,7 +140,7 @@
 								{preference name=wiki_discuss_visibility}
 							</div>
 						{preference name=feature_wiki_export}
-							<div class="adminoptionboxchild col-md-8 col-sm-offset-4" id="feature_wiki_export_childcontainer">
+							<div class="adminoptionboxchild col-md-8 offset-sm-4" id="feature_wiki_export_childcontainer">
 								{button href="tiki-export_wiki_pages.php" _text="{tr}Export Wiki Pages{/tr}"}
 							</div>
 						{preference name=geo_locate_wiki}
@@ -222,7 +222,7 @@
 					{preference name=feature_wiki_pictures}
 					<div class="adminoptionboxchild" id="feature_wiki_pictures_childcontainer">
 						{preference name=feature_filegals_manager}
-						<div class="col-sm-offset-4 col-sm-8">
+						<div class="offset-sm-4 col-sm-8">
 							{button href="tiki-admin.php?page=wiki&amp;rmvunusedpic=1" _text="{tr}Remove unused pictures{/tr}" _onclick="confirmSimple(event, '{tr}Remove unused pictures?{/tr}', '{ticket mode=get}')"}
 							{button href="tiki-admin.php?page=wiki&amp;moveWikiUp=1" _text="{tr}Move images from wiki_up to the home file gallery{/tr}" _onclick="confirmSimple(event, '{tr}Move images to home gallery?{/tr}', '{ticket mode=get}')"}
 							<span class="form-text">
@@ -279,7 +279,7 @@
 					<legend>{tr}Namespaces{/tr}{help url="Namespaces"}</legend>
 					{preference name=namespace_enabled}
 					<div class="adminoptionboxchild" id="namespace_enabled_childcontainer">
-						<div class="col-sm-offset-4 colsm-8">
+						<div class="offset-sm-4 colsm-8">
 							{tr}The namespace separator should not{/tr}
 							<ul>
 								<li>{tr}contain any of the characters not allowed in wiki page names, typically{/tr} /?#[]@$&amp;+;=&lt;&gt;</li>
@@ -289,13 +289,13 @@
 						{preference name=namespace_separator}
 						{preference name=namespace_indicator_in_structure}
 						{preference name=namespace_indicator_in_page_title}
-						<div class="col-sm-offset-4 colsm-8">
+						<div class="offset-sm-4 colsm-8">
 							<p><strong>{tr}Settings that may be affected by the namespace separator{/tr}</strong></p>
 							{tr}To use :: as a separator, you should also use ::: as the wiki center tag syntax{/tr}.<br/>
 							{tr}Note: a conversion of :: to ::: for existing pages must be done manually.{/tr}<br/>
 						</div>
 						{preference name=feature_use_three_colon_centertag}
-						<div class="col-sm-offset-4 colsm-8">
+						<div class="offset-sm-4 colsm-8">
 							{tr}If the page name display stripper conflicts with the namespace separator, the namespace is used and the page name display is not stripped.{/tr}
 						</div>
 						{preference name=wiki_pagename_strip}

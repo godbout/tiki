@@ -175,7 +175,7 @@
 						{/if}
 						{if isset($movedimgs) and $movedimgs}
 							<div class="form-group row">
-								<div class="col-sm-offset-4 col-am-8">
+								<div class="offset-sm-4 col-am-8">
 									<td colspan="3">{tr}Moved{/tr} {$movedimgs} {tr}Images{/tr}</td>
 								</div>
 							</div>

@@ -13,7 +13,7 @@ Example wiki page "chart" contents:
 
 Example wiki page "chart tpl" contents for the form:
 
-{literal}<div  class="row"><div class="col-sm-4 col-sm-offset-4"><div class="input-group">
+{literal}<div  class="row"><div class="col-sm-4 offset-sm-4"><div class="input-group">
   {input _filter="content" type="text" class="form-control" placeholder="Search..."}
   <div class="input-group-append">
     {input type="submit" value="Go" class="btn btn-primary"}

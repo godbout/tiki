@@ -11,7 +11,7 @@
 			</div>
 		</div>
 		<div class="form-group row mx-0">
-			<div class="col-sm-9 col-sm-offset-3">
+			<div class="col-sm-9 offset-sm-3">
 				<input type="submit" class="btn btn-primary btn-sm" name="trackerhelp" value="{tr}Go{/tr}" />
 			</div>
 		</div>
