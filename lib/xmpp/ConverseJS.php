@@ -171,12 +171,15 @@ class ConverseJS
 		$output = '';
 		if ($this->get_option('view_mode') === 'embedded') {
 			// TODO: remove this a line after fixing conversejs
-			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '"];';
-			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '-controlbox"];';
+			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '"];' . PHP_EOL;
+			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '-controlbox"];' . PHP_EOL;
 		}
 
-		$optionString = json_encode($this->get_options(), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-		$output .= 'converse.initialize(' . $optionString . ');';
-		return TikiLib::lib('header')->add_jq_onready($output);
+		$options = $this->get_options();
+		ksort($options);
+
+		$optionString = json_encode($options, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+		$output .= 'converse.initialize(' . $optionString . ');' . PHP_EOL;
+		return TikiLib::lib('header')->add_jq_onready($output, 10);
 	}
 }
