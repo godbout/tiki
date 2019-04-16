@@ -65,7 +65,7 @@
 			<legend>{tr}Other Extended Features{/tr}</legend>
 			<div class="adminoption form-group row">
 				<label class="col-sm-3 col-form-label"><b>{tr}Scheduler{/tr}</b>:</label>
-				<div class="col-sm-offset-1 col-sm-11">
+				<div class="offset-sm-1 col-sm-11">
 					{tr}New actions can be performed.{/tr}
 					<a href="https://doc.tiki.org/Tiki19#Scheduler">{tr}More Information{/tr}...</a><br/><br/>
 				</div>

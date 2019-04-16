@@ -18,7 +18,7 @@
 						{include file="register-form.tpl"}
 						{if $merged_prefs.feature_antibot eq 'y'}{include file='antibot.tpl' form='register'}{/if}
 						<div class="row mb-4">
-							<div class="col-sm-8 col-sm-offset-4">
+							<div class="col-sm-8 offset-sm-4">
 							  <input type="hidden" name="register" value="1">
 							  <button class="btn btn-secondary registerSubmit submit" name="register" type="submit">{tr}Register{/tr} <!--i class="fa fa-check"></i--></button>
 							</div>
@@ -27,7 +27,7 @@
 				{/if}
 			</div>
 		</div>
-		<div class="col-sm-8 col-sm-offset-4">
+		<div class="col-sm-8 offset-sm-4">
 			{remarksbox type="note" title="{tr}Note{/tr}"}
 				{if $prefs.feature_wiki_protect_email eq 'y'}
 					{assign var=sender_email value=$prefs.sender_email|default:"this domain"|escape:'hexentity'}

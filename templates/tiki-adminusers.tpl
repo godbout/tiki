@@ -45,7 +45,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<div class="col-sm-8 col-sm-offset-4">
+						<div class="col-sm-8 offset-sm-4">
 							<a href="javascript:toggleBlock('search')" class="link">
 								{icon name='add' alt="{tr}more{/tr}"}&nbsp;{tr}More Criteria{/tr}
 							</a>
@@ -67,7 +67,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-offset-4 col-sm-8">
+							<div class="offset-sm-4 col-sm-8">
 								<div class="form-check">
 									<label class="form-check-label">
 										<input id="filterEmailNotConfirmed" class="form-check-input" name="filterEmailNotConfirmed" type="checkbox"{if !empty($smarty.request.filterEmailNotConfirmed)} checked="checked"{/if}>{tr}Email not confirmed{/tr}
@@ -76,7 +76,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-offset-4 col-sm-8">
+							<div class="offset-sm-4 col-sm-8">
 								<div class="form-check">
 									<label class="form-check-label">
 										<input class="form-check-input" id="filterNeverLoggedIn" name="filterNeverLoggedIn" type="checkbox"{if !empty($smarty.request.filterNeverLoggedIn)} checked="checked"{/if}>{tr}Never logged in{/tr}
@@ -85,7 +85,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="col-sm-offset-4 col-sm-8">
+							<div class="offset-sm-4 col-sm-8">
 								<div class="form-check">
 									<label class="form-check-label">
 										<input class="form-check-input" id="filterNotValidated" name="filterNotValidated" type="checkbox"{if !empty($smarty.request.filterNotValidated)} checked="checked"{/if}>{tr}User not validated{/tr}
@@ -95,7 +95,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<div class="col-sm-8 col-sm-offset-4">
+						<div class="col-sm-8 offset-sm-4">
 							<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 							<input type="submit" class="btn btn-primary btn-sm" value="{tr}Find{/tr}" name="search">
 						</div>
@@ -451,7 +451,7 @@
 					*}
 					{if $prefs.auth_method eq 'ldap' and ( $prefs.ldap_create_user_tiki eq 'n' or $prefs.ldap_skip_admin eq 'y' ) and $prefs.ldap_create_user_ldap eq 'n' and $userinfo.login neq 'admin' and $auth_ldap_permit_tiki_users eq 'n'}
 						<div class="form-group row">
-							<div class="col-sm-offset-2">
+							<div class="offset-sm-2">
 								<b>{tr}No password is required{/tr}</b>
 								<br>
 								<i>{tr}Tiki is configured to delegate the password managment to LDAP.{/tr}</i>
@@ -488,7 +488,7 @@
 						</div>
 						{if $prefs.generate_password eq 'y' and not ( $prefs.auth_method eq 'ldap' and ( $prefs.ldap_create_user_tiki eq 'n' or $prefs.ldap_skip_admin eq 'y' ) and $prefs.ldap_create_user_ldap eq 'n')}
 							<div class="form-group row">
-								<div class="col-sm-3 col-sm-offset-3 col-md-3 col-md-offset-2">
+								<div class="col-sm-3 offset-sm-3 col-md-3 offset-md-2">
 									<span id="genPass">{button href="#" _text="{tr}Generate a password{/tr}"}</span>
 								</div>
 								<div class="col-sm-3 col-md-3">
@@ -498,7 +498,7 @@
 						{/if}
 						{if $userinfo.login neq 'admin' && $prefs.change_password neq 'n'}
 							<div class="form-group row">
-								<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+								<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2">
 									<div class="form-check">
 										<label class="form-check-label">
 											<input class="form-check-input" type="checkbox" name="pass_first_login"{if isset($userinfo.pass_confirm) && $userinfo.pass_confirm eq '0'} checked="checked"{/if}>
@@ -519,7 +519,7 @@
 					{/if}
 					{if $userinfo.login neq 'admin' and ($prefs.validateUsers eq 'y' or $prefs.validateRegistration eq 'y')}
 						<div class="form-group row">
-							<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+							<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2">
 								<div class="form-check">
 									<label class="form-check-label">
 										<input class="form-check-input" type="checkbox" name="need_email_validation" {if ($userinfo.login eq '' and ($prefs.validateUsers eq 'y' or $prefs.validateRegistration eq 'y')) or $userinfo.provpass neq '' or $userinfo.valid neq ''}checked="checked"{/if}>
@@ -534,7 +534,7 @@
 					{/if}
 					{if $prefs.userTracker eq 'y' and $userinfo.login eq ''}
 						<div class="form-group row">
-							<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+							<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2">
 								<div class="form-check">
 									<label class="form-check-label">
 										<input class="form-check-input" type="checkbox" name="insert_user_tracker_item">
@@ -569,7 +569,7 @@
 					{/if}
 
 					<div class="form-group row">
-						<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+						<div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2">
 							{if isset($userinfo.userId) && $userinfo.userId}
 								<input type="hidden" name="user" value="{$userinfo.userId|escape}">
 								<input type="hidden" name="edituser" value="1">
@@ -791,7 +791,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<div class="col-sm-10 col-sm-offset-4 col-md-10 col-md-offset-4">
+						<div class="col-sm-10 offset-sm-4 col-md-10 offset-md-4">
 							<input
 								type="submit"
 								class="btn btn-secondary"

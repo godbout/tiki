@@ -199,7 +199,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-sm-offset-4 col-sm-8">
+			<div class="offset-sm-4 col-sm-8">
 				<input type="submit" class="btn btn-primary" name="assign" value="{tr}Assign{/tr}">
 			</div>
 		</div>

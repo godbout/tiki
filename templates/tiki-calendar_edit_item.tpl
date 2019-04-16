@@ -244,7 +244,7 @@
 								{/if}
 								{if $recurrence.id eq 0 or $recurrence.monthly}
 								<div class="form-group row">
-									<div class="col-sm-offset-1 col-sm-4 input-group">
+									<div class="offset-sm-1 col-sm-4 input-group">
 										<span class="input-group-append">{tr}Each{/tr}</span>
 										<select name="dayOfMonth" class="form-control">
 											{section name=k start=1 loop=32}
@@ -275,7 +275,7 @@
 								{/if}
 								{if $recurrence.id eq 0 or $recurrence.yearly}
 								<div class="form-group row">
-									<div class="col-sm-offset-1 col-sm-4 input-group">
+									<div class="offset-sm-1 col-sm-4 input-group">
 										<span class="input-group-append">{tr}Each{/tr}</span>
 										<select name="dateOfYear_day" class="form-control" onChange="checkDateOfYear(this.options[this.selectedIndex].value,document.forms['f'].elements['dateOfYear_month'].options[document.forms['f'].elements['dateOfYear_month'].selectedIndex].value);">
 											{section name=k start=1 loop=32}
@@ -327,7 +327,7 @@
 										</select>
 									</div>
 								</div>
-								<div id="errorDateOfYear" class="text-danger col-sm-offset-1"></div>
+								<div id="errorDateOfYear" class="text-danger offset-sm-1"></div>
 								<hr>
 								{/if}
 								{if $recurrence.id gt 0}
@@ -343,12 +343,12 @@
 								{else}
 									{tr}Start period{/tr}<br>
 									{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-										<div class="col-sm-offset-1 col-sm-6 input-group">
+										<div class="offset-sm-1 col-sm-6 input-group">
 											{if empty($recurrence.startPeriod)}{$startPeriod = $calitem.start}{else}{$startPeriod = $recurrence.startPeriod}{/if}
 											{jscalendar id="startPeriod" date=$startPeriod fieldname="startPeriod" align="Bc" showtime='n'}
 										</div>
 									{else}
-										<div class="col-sm-offset-1">
+										<div class="offset-sm-1">
 											{html_select_date prefix="startPeriod_" time=$recurrence.startPeriod field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
 										</div>
 									{/if}
@@ -358,7 +358,7 @@
 									<label for="id_endTypeNb">
 										&nbsp;{tr}End after{/tr}
 									</label>
-									<div class="col-sm-offset-1 col-sm-6 input-group">
+									<div class="offset-sm-1 col-sm-6 input-group">
 										<input type="text" name="nbRecurrences" size="3" class="form-control" style="z-index: 0"
 											   value="{if $recurrence.nbRecurrences gt 0}{$recurrence.nbRecurrences}{else}1{/if}">
 										<span class="input-group-addon">{if $recurrence.nbRecurrences gt 1}{tr}occurrences{/tr}{else}{tr}occurrence{/tr}{/if}</span>
@@ -369,11 +369,11 @@
 										&nbsp;{tr}End before{/tr}
 									</label><br>
 									{if $prefs.feature_jscalendar eq 'y' and $prefs.javascript_enabled eq 'y'}
-										<div class="col-sm-offset-1 col-sm-6 input-group">
+										<div class="offset-sm-1 col-sm-6 input-group">
 											{jscalendar id="endPeriod" date=$recurrence.endPeriod fieldname="endPeriod" align="Bc" showtime='n'}
 										</div>
 									{else}
-										<div class="col-sm-offset-1">
+										<div class="offset-sm-1">
 											{html_select_date prefix="endPeriod_" time=$recurrence.endPeriod field_order=$prefs.display_field_order start_year=$prefs.calendar_start_year end_year=$prefs.calendar_end_year}
 										</div>
 									{/if}

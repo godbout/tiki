@@ -15,7 +15,7 @@
 	{if $form === 'register'}
 		{$labelclass = 'col-md-4 col-sm-3'}
 		{$inputclass = 'col-md-4 col-sm-6'}
-		{$captchaclass = 'col-md-5 col-sm-6 col-md-offset-4 col-sm-offset-3'}
+		{$captchaclass = 'col-md-5 col-sm-6 offset-md-4 offset-sm-3'}
 	{/if}
 	<div class="antibot row">
 		{if $captchalib->type eq 'recaptcha' || $captchalib->type eq 'recaptcha20'}

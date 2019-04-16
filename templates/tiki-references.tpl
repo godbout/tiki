@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<div class="col-sm-8 col-sm-offset-4">
+				<div class="col-sm-8 offset-sm-4">
 					<input type="submit" class="btn btn-primary btn-sm" value="{tr}Find{/tr}" name="search">
 				</div>
 			</div>
@@ -199,7 +199,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-sm-7 col-md-6 col-sm-offset-3 col-md-offset-2">
+			<div class="col-sm-7 col-md-6 offset-sm-3 offset-md-2">
 				{if isset($referenceinfo.ref_id) && $referenceinfo.ref_id}
 					<input type="hidden" name="referenceId" value="{$referenceinfo.ref_id|escape}">
 					<input type="hidden" name="editreference" value="1">

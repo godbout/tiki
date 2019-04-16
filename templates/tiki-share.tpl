@@ -155,7 +155,7 @@
 				{/if}
 				{if $prefs.share_token_notification eq 'y'}
 					<div class="form-group row">
-						<div class="col-sm-offset-3 col-sm-9">
+						<div class="offset-sm-3 col-sm-9">
 							<div class="form-check">
 								<label class="form-check-label">
 									<input type="checkbox" class="form-check-input" value="y" name="share_token_notification" {if $share_token_notification eq 'y'}checked="checked" {/if}> {tr}Subscribe{/tr}
@@ -183,7 +183,7 @@
 								</select>
 							{/if}
 						</div>
-						<div class="form-text col-sm-9 col-sm-offset-3">
+						<div class="form-text col-sm-9 offset-sm-3">
 							{tr}How many times recipients can access this page{/tr}
 						</div>
 					</div>

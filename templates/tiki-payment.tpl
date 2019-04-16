@@ -92,7 +92,7 @@
 						{include file="categorize.tpl" labelcol=3 labelclass='text-right' inputcol=8 inputgroup=y}
 					{/if}
 					<div class="form-group row">
-						<div class="col-sm-8 col-sm-offset-3 input-group">
+						<div class="col-sm-8 offset-sm-3 input-group">
 							<input type="submit" class="btn btn-secondary" name="request" value="{tr}Request{/tr}">
 						</div>
 					</div>

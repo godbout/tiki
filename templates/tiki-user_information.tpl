@@ -30,7 +30,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-sm-8 col-sm-offset-1">
+				<div class="col-sm-8 offset-sm-1">
 
 					<div class="card">
 						<div class="card-body">

@@ -87,7 +87,7 @@
 			{preference name=ids_enabled}
 			<div class="adminoptionboxchild" id="ids_enabled_childcontainer">
 				<div class="form-group adminoptionbox clearfix">
-					<div class="col-sm-offset-4 col-sm-8">
+					<div class="offset-sm-4 col-sm-8">
 						<a href="tiki-admin_ids.php">{tr}Admin IDS custom rules{/tr}</a>
 					</div>
 				</div>
@@ -135,10 +135,10 @@
 			<div class="col-sm-2">
 				<b>{tr}Search{/tr}</b>:
 			</div>
-			<div class="description col-sm-offset-1">
+			<div class="description offset-sm-1">
 				{tr}Elastic search only{/tr}
 			</div>
-			<div class="col-sm-offset-1 col-sm-11">
+			<div class="offset-sm-1 col-sm-11">
 				{preference name="unified_elastic_possessive_stemmer"}
 			</div>
 		</fieldset>
