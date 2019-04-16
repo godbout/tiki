@@ -78,25 +78,25 @@
 			</br>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Question{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1">
+				<div class="col-sm-7 offset-sm-1">
 					<textarea name="question" class="form-control">{$info.question|escape}</textarea>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Answer is mandatory{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1">
+				<div class="col-sm-7 offset-sm-1">
 					<input type="checkbox" name="mandatory" {if $info.mandatory eq 'y'}checked="checked"{/if}>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Position{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1">
+				<div class="col-sm-7 offset-sm-1">
 					<select name="position" class="form-control">{html_options values=$positions output=$positions selected=$info.position}</select>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Type{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1">
+				<div class="col-sm-7 offset-sm-1">
 					<select name="type" class="form-control">
 						{foreach $types as $initial => $label}
 							<option value="{$initial}"{if $info.type eq $initial} selected=selected{/if}>{$label}</option>
@@ -106,7 +106,7 @@
 			</div>
 			<div class="form-group type_option type_m type_g">
 				<label class="col-sm-3 col-form-label">{tr}Required answers{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1">
+				<div class="col-sm-7 offset-sm-1">
 					<div class="col-sm-6">
 						<div class="col-sm-3">
 							<label class="col-form-label">{tr}Min{/tr}</label>
@@ -125,7 +125,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-10 col-sm-offset-2">
+			<div class="col-sm-10 offset-sm-2">
 				{remarksbox type="tip" title="{tr}Tip{/tr}"}
 					<p class="type_option type_c"><strong>{$types.c}:</strong> {tr}Single choice using radio buttons.{/tr}<br>{tr}Example: "one, two, many, lots".{/tr}<br>{tr}(Use "\," to include a comma.{/tr})</p>
 					<p class="type_option type_m"><strong>{$types.m}:</strong> {tr}Multiple choice using checkboxes.{/tr}<br>{tr}Example: "one, two, many, lots".{/tr}<br>{tr}(Use "\," to include a comma.{/tr})</p>
@@ -144,13 +144,13 @@
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Options (if apply):{/tr}</label>
-				<div class="col-sm-7 col-sm-offset-1">
+				<div class="col-sm-7 offset-sm-1">
 					<input type="text" name="options" value="{$info.options|escape}" maxlength="80" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
-				<div class="col-sm-7 col-sm-offset-1">
+				<div class="col-sm-7 offset-sm-1">
 					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 				</div>
 			</div>

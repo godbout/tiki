@@ -54,7 +54,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<div class="col-sm-9 col-sm-offset-3">
+				<div class="col-sm-9 offset-sm-3">
 					<div class="form-check">
 						<label for="blogs-allow_others" class="form-check-label">
 							<input type="checkbox" class="form-check-input" name="public" id="blogs-allow_others" {if $public eq 'y'}checked='checked'{/if}>
@@ -100,7 +100,7 @@
 				<div class="form-text">{tr}Number of posts to show per page{/tr}</div>
 			</div>
 			<div class="form-group row">
-				<div class="col-sm-offset-3 col-sm-9">
+				<div class="offset-sm-3 col-sm-9">
 					<div class="form-check">
 						<label for="blogs-title" class="form-check-label">
 							<input type="checkbox" class="form-check-input" name="use_title" id="blogs-title" {if $use_title eq 'y'}checked='checked'{/if}>

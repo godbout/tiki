@@ -49,7 +49,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-xs-3 col-xs-offset-4 col-md-2 col-md-offset-5" style="padding-top: 4px;">
+	<div class="col-xs-3 offset-xs-4 col-md-2 offset-md-5" style="padding-top: 4px;">
 			<form method="post" action="messu-read_archive.php">
 				{ticket}
 				<input type="hidden" name="offset" value="{$offset|escape}">

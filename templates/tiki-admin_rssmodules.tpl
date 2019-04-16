@@ -152,7 +152,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<div class="col-sm-9 col-sm-offset-3">
+				<div class="col-sm-9 offset-sm-3">
 					<div class="form-check">
 						<label class="form-check-label">
 							<input type="checkbox" class="form-check-input" name="showTitle" {if $showTitle eq 'y'}checked="checked"{/if}>
@@ -162,7 +162,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<div class="col-sm-9 col-sm-offset-3">
+				<div class="col-sm-9 offset-sm-3">
 					<div class="form-check">
 						<label class="form-check-label">
 							<input type="checkbox" class="form-check-input" name="showPubDate" {if $showPubDate eq 'y'}checked="checked"{/if}>
@@ -172,7 +172,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<div class="col-sm-9 col-sm-offset-3">
+				<div class="col-sm-9 offset-sm-3">
 					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 				</div>
 			</div>

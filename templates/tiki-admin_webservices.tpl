@@ -28,7 +28,7 @@
 					</div>
 				</div>
 			{/if}
-			<div class="col-sm-8 col-sm-offset-4 clearfix">
+			<div class="col-sm-8 offset-sm-4 clearfix">
 				<input type="hidden" name="name" value="{$storedName|escape}">
 				{button _icon_name='edit' _text="{tr}Edit{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&edit" _class='btn btn-primary btn-sm'}
 				{button _icon_name='delete' _text="{tr}Delete{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&delete" _class='btn btn-danger btn-sm'}
@@ -53,7 +53,7 @@
 				<textarea name="postbody" class="form-control">{$postbody|escape}</textarea><br>
 				{tr}Parameters (%name%):{/tr}
 			</div>
-			<div class="col-sm-8 col-sm-offset-4">
+			<div class="col-sm-8 offset-sm-4">
 				<p id="ws_operation" style="display: none;">{tr}Operation:{/tr}
 					<input type="text" name="operation" size="30" value="{$operation|escape}" class="form-control"/>
 				</p>
@@ -78,9 +78,9 @@
 					</div>
 				{/foreach}
 			{else}
-				<div class="col-sm-8 col-sm-offset-4">{tr _0=$storedName|escape}%0 requires no parameter.{/tr}</div>
+				<div class="col-sm-8 offset-sm-4">{tr _0=$storedName|escape}%0 requires no parameter.{/tr}</div>
 			{/if}
-			<div class="col-sm-8 col-sm-offset-4">
+			<div class="col-sm-8 offset-sm-4">
 				<div class="form-group row">
 					<input type="submit" class="btn btn-primary btn-sm col-sm-2" name="test" value="{tr}Test Input{/tr}">
 					<label class="col-sm-10"> <input type="checkbox" checked="checked" name="nocache">

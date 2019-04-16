@@ -93,7 +93,7 @@
 					</div>
 					<input type="hidden" name="id" value="{$perspective_info.perspectiveId|escape}">
 				</div>
-				<div class="col-sm-offset-2">
+				<div class="offset-sm-2">
 					<fieldset id="preferences" class="card dropzone mb-4">
 						<div class="card-header">{tr}Preference List{/tr}</div>
 						<div class="card-body mb-4">
@@ -106,7 +106,7 @@
 					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 				</div>
 			</form>
-			<form method="post" id="searchform" action="tiki-edit_perspective.php" class="form col-sm-offset-2 clearfix" role="form">
+			<form method="post" id="searchform" action="tiki-edit_perspective.php" class="form offset-sm-2 clearfix" role="form">
 				{remarksbox type="info" title="{tr}Hint{/tr}"}
 					{tr}Search preferences below and drag them into the preference list above.{/tr}
 				{/remarksbox}

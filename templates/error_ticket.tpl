@@ -70,7 +70,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-3 col-md-pull-9" id="col2">
+			<div class="col-md-3 pull-md-9" id="col2">
 				{modulelist zone=left}
 			</div>
 		{else}
@@ -91,7 +91,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-md-2 col-md-pull-8" id="col2">
+			<div class="col-md-2 pull-md-8" id="col2">
 				{modulelist zone=left}
 			</div>
 			<div class="col-md-2" id="col3">

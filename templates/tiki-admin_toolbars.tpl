@@ -56,7 +56,7 @@
 				</div>
 			</div>
 			<div class="adminoptionbox form-group row">
-				<div class="col-sm-offset-4 col-sm-8">
+				<div class="offset-sm-4 col-sm-8">
 					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 					{if $loaded neq 'global' and $not_global}<input type="submit" class="btn btn-secondary" name="reset" value="{tr}Reset to Global{/tr}">{/if}
 					{if $loaded eq 'global' and $not_default}<input type="submit" class="btn btn-secondary" name="reset_global" value="{tr}Reset to defaults{/tr}">{/if}

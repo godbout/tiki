@@ -229,7 +229,7 @@
 						({tr}ex:{/tr}9.0.0)
 					</div>
 				</div>
-				<div class="col-sm-7 col-sm-offset-4">
+				<div class="col-sm-7 offset-sm-4">
 					<div class="form-text">
 						Note: To be managed with tiki , your flash banner link should be: <a class="link" href="banner_click.php?id={$bannerId}&amp;url={$url}">banner_click.php?id={$bannerId}&amp;url={$url}</a>
 					</div>
