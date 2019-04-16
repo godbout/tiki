@@ -91,24 +91,44 @@ function wikiplugin_xmpp_info()
 				'default' => 'n',
 				'filter' => 'y|n',
 				'required' => false,
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n'],
+				],
 			],
 			'archiving' => [
 				'name' => tra('Archiving'),
 				'default' => 'y',
 				'filter' => 'y|n',
 				'required' => false,
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n'],
+				],
 			],
 			'persistent' => [
 				'name' => tra('Persistent'),
 				'default' => 'y',
 				'filter' => 'y|n',
 				'required' => false,
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n'],
+				],
 			],
 			'moderated' => [
 				'name' => tra('Moderated'),
 				'default' => 'y',
 				'filter' => 'y|n',
 				'required' => false,
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n'],
+				],
 			],
 		],
 	];
