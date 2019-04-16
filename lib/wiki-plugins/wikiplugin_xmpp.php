@@ -79,6 +79,19 @@ function wikiplugin_xmpp_info()
 					['text' => tra('No'), 'value' => 'n'],
 				],
 			],
+			'show_occupants_by_default' => [
+				'required' => false,
+				'name' => tra('Show occupants'),
+				'description' => tra('If occupants window should be visible by default'),
+				'since' => 20,
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n'],
+				],
+			],
 			'groups' => [
 				'name' => tra('Allowed Groups'),
 				'default' => '',

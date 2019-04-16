@@ -285,17 +285,19 @@ class XMPPLib extends TikiLib
 			'view_mode' => 'overlayed',
 			'room' => '',
 			'show_controlbox_by_default' => 'y',
+			'show_occupants_by_default' => 'y',
 		], $params);
 
 		$xmppclient = new ConverseJS();
 		$xmppclient->set_auth($params);
 		$xmppclient->set_options(
 			[
-				'bosh_service_url' => $xmpp['http_bind'],
-				'jid'              => $xmpp['jid'],
-				'nickname'         => $xmpp['nickname'] ?: 'visitor-' . time(),
-				'view_mode'        => $params['view_mode'],
+				'bosh_service_url'           => $xmpp['http_bind'],
+				'jid'                        => $xmpp['jid'],
+				'nickname'                   => $xmpp['nickname'] ?: 'visitor-' . time(),
+				'view_mode'                  => $params['view_mode'],
 				'show_controlbox_by_default' => $params['show_controlbox_by_default'] === 'y',
+				'show_occupants_by_default'  => $params['show_occupants_by_default'] === 'y',
 			]
 		);
 		$xmppclient->set_auto_join_rooms($params['room']);
