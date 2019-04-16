@@ -51,7 +51,8 @@ modules/cache/*
 /node_modules
 /phpmyadmin
 /project.index
-storage/public/*
+/storage/public/*
+/storage/fgal/*
 /svn-commit.tmp
 temp/*
 temp/cache/*
