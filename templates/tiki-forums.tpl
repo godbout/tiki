@@ -102,7 +102,7 @@
 				{assign var=section value=$channels[user].section}
 				{if $section ne $section_old}
 					{assign var=section_old value=$section}
-					<td class="third info" colspan="{$numbercol}">{$section|escape}</td>
+					<td class="third info" colspan="{$numbercol}">{tr}{$section|escape}{/tr}</td>
 				{/if}
 				{block name=forum-row}
 				<tr>
