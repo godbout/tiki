@@ -2,12 +2,12 @@
 	{if $field_type eq 'c'}
 		<div class="form-check">
 			<label class="form-check-label">
-				{$field_input} {$field_name} {$mandatory_sym}
+				{$field_input} {tr}{$field_name}{/tr} {$mandatory_sym}
 			</label>
 		</div>
 	{else}
-		<label class="col-form-label field_{$permname}" for="ins_{$field_id}">{$field_name} {$mandatory_sym}</label>
+		<label class="col-form-label field_{$permname}" for="ins_{$field_id}">{tr}{$field_name}{/tr} {$mandatory_sym}</label>
 		{$field_input}
 	{/if}
-	{$description}
+	{tr}{$description}{/tr}
 </div>
