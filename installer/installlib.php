@@ -499,6 +499,8 @@ class Installer extends TikiDb_Bridge implements SplSubject
 	} // }}}
 
 	/**
+	 * Use this if the default for a preference changes to preserve the old default behaviour on upgrades
+	 *
 	 * @param string $prefName
 	 * @param string $oldDefault
 	 */
