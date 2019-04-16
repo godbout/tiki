@@ -164,7 +164,7 @@ class XMPPLib extends TikiLib
 			$groups = explode(',', $params['groups']);
 
 			foreach ($groups as $group) {
-				$this->addGroupToRoom($args['roomName'], $group, 'members');
+				$this->add_group_to_room($args['roomName'], $group, 'members');
 			}
 		}
 	}
