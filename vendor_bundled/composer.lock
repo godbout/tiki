@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "58beef29db095fa5ac932c9395c04289",
+    "content-hash": "077327b20568a32d58703647b142b865",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -323,6 +323,55 @@
                 "shasum": "8ad0527570a27111654cffbb189ddc5ab4b37fe4"
             },
             "type": "library"
+        },
+        {
+            "name": "codeitnowin/barcode",
+            "version": "3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codeitnowin/barcode-generator.git",
+                "reference": "6325a15ae904ec401b947e1a3e868de1c2cc80b0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codeitnowin/barcode-generator/zipball/6325a15ae904ec401b947e1a3e868de1c2cc80b0",
+                "reference": "6325a15ae904ec401b947e1a3e868de1c2cc80b0",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "php": ">=5.3.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CodeItNow\\": "CodeItNow/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Akhtar Khan",
+                    "email": "er.akhtarkhan@gmail.com"
+                }
+            ],
+            "description": "Barcode & Qr Code generator library by http://www.codeitnow.in. You can use it with Custom PHP application or any PHP Framework such as Laravel, Cakephp, Yii, Codeigneter etc.",
+            "homepage": "http://www.codeitnow.in",
+            "keywords": [
+                "Symfony2",
+                "barcode",
+                "cakephp",
+                "code",
+                "generator",
+                "laravel",
+                "qr",
+                "qrcode",
+                "symfony"
+            ],
+            "time": "2018-10-25T18:32:10+00:00"
         },
         {
             "name": "codemirror/codemirror",
@@ -859,6 +908,52 @@
                 "ui"
             ],
             "time": "2017-09-18T08:01:28+00:00"
+        },
+        {
+            "name": "erusev/parsedown",
+            "version": "1.8.0-beta-5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/erusev/parsedown.git",
+                "reference": "c26a2ee4bf8ba0270daab7da0353f2525ca6564a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/erusev/parsedown/zipball/c26a2ee4bf8ba0270daab7da0353f2525ca6564a",
+                "reference": "c26a2ee4bf8ba0270daab7da0353f2525ca6564a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Parsedown": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emanuil Rusev",
+                    "email": "hello@erusev.com",
+                    "homepage": "http://erusev.com"
+                }
+            ],
+            "description": "Parser for Markdown.",
+            "homepage": "http://parsedown.org",
+            "keywords": [
+                "markdown",
+                "parser"
+            ],
+            "time": "2018-06-11T18:15:32+00:00"
         },
         {
             "name": "evert/sitemap-php",
@@ -1471,6 +1566,43 @@
             "time": "2018-09-15T10:19:58+00:00"
         },
         {
+            "name": "html2text/html2text",
+            "version": "4.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mtibben/html2text.git",
+                "reference": "f7555eaf271beea4e1098274d3ff37fbb7b21ea7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mtibben/html2text/zipball/f7555eaf271beea4e1098274d3ff37fbb7b21ea7",
+                "reference": "f7555eaf271beea4e1098274d3ff37fbb7b21ea7",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4"
+            },
+            "suggest": {
+                "ext-mbstring": "For best performance",
+                "symfony/polyfill-mbstring": "If you can't install ext-mbstring"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Html2Text\\": [
+                        "src/",
+                        "test/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "description": "Converts HTML to formatted plain text",
+            "time": "2018-08-13T12:05:08+00:00"
+        },
+        {
             "name": "itsjavi/bootstrap-colorpicker",
             "version": "2.5.3",
             "source": {
@@ -1555,6 +1687,71 @@
                 "jasig"
             ],
             "time": "2019-04-22T19:48:16+00:00"
+        },
+        {
+            "name": "jason-munro/cypht",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jasonmunro/cypht.git",
+                "reference": "c71b7684369f594469d1c53fd69c8c4905994c9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jasonmunro/cypht/zipball/c71b7684369f594469d1c53fd69c8c4905994c9e",
+                "reference": "c71b7684369f594469d1c53fd69c8c4905994c9e",
+                "shasum": ""
+            },
+            "require": {
+                "christian-riesen/base32": "1.3.2",
+                "codeitnowin/barcode": "3.0.3",
+                "erusev/parsedown": "1.8.0-beta-5",
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "ext-openssl": "*",
+                "ext-session": "*",
+                "ezyang/htmlpurifier": "4.10.0",
+                "html2text/html2text": "4.2.1",
+                "paragonie/random_compat": "2.0.18",
+                "php": ">=5.4"
+            },
+            "suggest": {
+                "ext-PDO": "To use database features, this needs to be installed",
+                "ext-gd": "To use 2fa, this needs to be installed for the QR code display",
+                "ext-gnupg": "To use the PGP module set, this needs to be installed",
+                "ext-memcached": "To use Memcached for caching, this needs to be installed",
+                "ext-redis": "To use Redis for caching, this needs to be installed"
+            },
+            "type": "project",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Jason Munro",
+                    "email": "jason@cypht.org",
+                    "homepage": "http://jasonmunro.net",
+                    "role": "Project author and admin"
+                }
+            ],
+            "description": "Lightweight Open Source webmail written in PHP and JavaScript",
+            "homepage": "https://cypht.org",
+            "keywords": [
+                "atom",
+                "e-mail",
+                "imap",
+                "jmap",
+                "news-reader",
+                "php",
+                "pop3",
+                "rss",
+                "smtp",
+                "webmail",
+                "webmail-client"
+            ],
+            "time": "2019-04-03T20:08:37+00:00"
         },
         {
             "name": "jcbrand/converse.js",
@@ -8719,7 +8916,9 @@
     "stability-flags": {
         "ahand/mobileesp": 20,
         "candy-chat/xmpp-prebind-php": 20,
+        "erusev/parsedown": 10,
         "hesammousavi/bootstrap-v4-rtl": 20,
+        "jason-munro/cypht": 20,
         "robicch/jquery-gantt": 20,
         "sorich87/bootstrap-tour": 20,
         "zendframework/zendsearch": 20,

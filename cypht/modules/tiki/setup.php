@@ -1,0 +1,43 @@
+<?php
+// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
+//
+// All Rights Reserved. See copyright.txt for details and a complete list of authors.
+// Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
+// $Id$
+
+if (!defined('DEBUG_MODE')) { die(); }
+
+handler_source('tiki');
+output_source('tiki');
+
+/* groupmail page */
+setup_base_page('groupmail', 'core');
+add_handler('groupmail', 'load_data_sources',  true, 'tiki', 'message_list_type', 'after');
+add_output('groupmail', 'groupmail_heading', true, 'tiki', 'content_section_start', 'after');
+add_output('groupmail', 'groupmail_start', true, 'tiki', 'groupmail_heading', 'after');
+add_output('groupmail', 'groupmail_end', true, 'tiki', 'groupmail_start', 'after');
+
+/* folder list update ajax request */
+add_output('ajax_hm_folders', 'groupmail_page_link', true, 'tiki', 'logout_menu_item', 'before');
+
+/* ajax groupmail callback data */
+setup_base_ajax_page('ajax_tiki_groupmail', 'imap');
+add_handler('ajax_tiki_groupmail', 'load_imap_servers_from_config',  true, 'imap');
+add_handler('ajax_tiki_groupmail', 'imap_oauth2_token_check', true, 'imap');
+add_handler('ajax_tiki_groupmail', 'close_session_early',  true, 'core');
+add_handler('ajax_tiki_groupmail', 'groupmail_fetch_messages',  true);
+add_handler('ajax_tiki_groupmail', 'save_imap_cache',  true);
+add_output('ajax_tiki_groupmail', 'filter_groupmail_data', true);
+
+return array(
+	'allowed_pages' => array(
+    'groupmail',
+    'ajax_tiki_groupmail'
+	),
+	'allowed_get' => array(
+	),
+	'allowed_output' => array(
+	),
+	'allowed_post' => array(
+	)
+);
