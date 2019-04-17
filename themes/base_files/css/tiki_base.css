@@ -2970,12 +2970,13 @@ table.objectperms thead th {
 
   .adminanchors .navbar-nav {
     margin: 0;
-    padding: 0; }
-    .adminanchors .navbar-nav .nav-link {
-      min-width: 50px;
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-      text-align: center; } }
+    padding: 0; } }
+
+.adminanchors .navbar-nav .nav-link {
+  min-width: 50px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  text-align: center; }
 
 form.simple label.error {
   padding: 4px 0 0 20px;

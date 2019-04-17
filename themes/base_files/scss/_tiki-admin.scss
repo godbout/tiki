@@ -324,14 +324,15 @@ table.objectperms thead th { display: none; }
 		}
 
 		.adminanchors {
-				.navbar-nav {
-						margin: 0; padding: 0;
-						.nav-link {
-								min-width: 50px;
-								padding-left: 0.5rem;
-								padding-right: 0.5rem;
-								text-align: center;
-						}
-				}
+				.navbar-nav { margin: 0; padding: 0; }
+		}
+}
+
+.adminanchors {
+		.navbar-nav .nav-link {
+				min-width: 50px;
+				padding-left: 0.5rem;
+				padding-right: 0.5rem;
+				text-align: center;
 		}
 }
