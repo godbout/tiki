@@ -151,6 +151,17 @@
 			</div>
 		{/tab}
 
+		{tab name="{tr}Redis{/tr}"}
+			{preference name="redis_enabled"}
+			<div class="adminoptionboxchild" id="redis_enabled_childcontainer">
+				{preference name="redis_host"}
+				{preference name="redis_port"}
+				{preference name="redis_timeout"}
+				{preference name="redis_prefix"}
+				{preference name="redis_expiry"}
+			</div>
+		{/tab}
+
 		{tab name="{tr}Plugins{/tr}"}
 			<br>
 			{preference name=wikiplugin_snarf_cache}

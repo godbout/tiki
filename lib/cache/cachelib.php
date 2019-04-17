@@ -26,6 +26,9 @@ class Cachelib
 
 		if (isset($prefs['memcache_enabled']) && $prefs['memcache_enabled'] == 'y') {
 			$this->implementation = new CacheLibMemcache;
+		} elseif (isset($prefs['redis_enabled']) && $prefs['redis_enabled'] == 'y') {
+			require_once('lib/cache/redislib.php');
+			$this->implementation = new CacheLibRedis;
 		} else {
 			$this->implementation = new CacheLibFileSystem;
 		}
@@ -100,6 +103,7 @@ class Cachelib
 
 			$this->flush_opcode_cache();
 			$this->flush_memcache();
+			$this->flush_redis();
 			$this->invalidate('global_preferences');
 			if (! $inInstaller) {
 				$logslib->add_log($log_section, 'erased all cache content');
@@ -118,6 +122,7 @@ class Cachelib
 			if ((isset($prefs['wikiplugin_rr']) && $prefs['wikiplugin_rr'] == 'y') or (isset($prefs['wikiplugin_r']) && $prefs['wikiplugin_r'] == 'y')) {
 				$this->erase_dir_content("temp/cache/$tikidomain/R_*/");
 			}
+			$this->flush_redis();
 			if (! $inInstaller) {
 				$logslib->add_log($log_section, 'erased temp/cache content');
 			}
@@ -225,6 +230,16 @@ class Cachelib
 			if ($memcachelib->isEnabled()) {
 				$memcachelib->flush();
 			}
+		}
+		return;
+	}
+
+	function flush_redis()
+	{
+		global $prefs;
+
+		if (isset($prefs['redis_enabled']) && $prefs['redis_enabled'] == 'y') {
+			$this->implementation->flush();
 		}
 		return;
 	}
