@@ -79,7 +79,7 @@ function wikiplugin_trackerfilter_info()
 				'required' => false,
 				'name' => tra('No Toggle'),
 				'description' => tr('The toggle button to show/hide filters will not be shown if set to Yes (%0y%1).
-					Default is not to show the toggle.', '<code>', '</code>'),
+					Default is not to show the toggle (default changed from "n" to "y" in Tiki 20.0).', '<code>', '</code>'),
 				'since' => '6.0',
 				'doctype' => 'show',
 				'filter' => 'alpha',
