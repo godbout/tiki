@@ -23,7 +23,11 @@ chdir('vendor_bundled/vendor/jason-munro/cypht/modules');
 if (! file_exists('tiki')) {
   symlink('../../../../../cypht/modules/tiki', 'tiki');
 }
-chdir('../../../../../');
+chdir('../');
+if (! file_exists('vendor')) {
+  symlink('../../../../vendor_bundled/vendor', 'vendor');
+}
+chdir('../../../../');
 
 // generate storage dirs
 if (! is_dir('temp/cypht')) {
@@ -44,6 +48,8 @@ copy('vendor_bundled/vendor/jason-munro/cypht/site/site.css', 'cypht/site.css');
 // js custom pacthes
 $js = file_get_contents('cypht/site.js');
 $js = str_replace("url: ''", "url: 'cypht/ajax.php'", $js);
+$js = str_replace("xhr.open('POST', window.location.href)", "xhr.open('POST', 'cypht/ajax.php')", $js);
+$js = preg_replace("#^.*/\* swipe event handler \*/#s", "", $js);
 file_put_contents('cypht/site.js', $js);
 
 // copy stock assets
