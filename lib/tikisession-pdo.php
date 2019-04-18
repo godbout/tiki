@@ -56,7 +56,7 @@ class Session
 			$qry = 'select data from sessions where sesskey = ?';
 		}
 
-		return TikiDb::get()->getOne($qry, $bindvars);
+		return TikiDb::get()->getOne($qry, $bindvars) ?: '';
 	}
 
 	/**
@@ -105,7 +105,7 @@ class Session
 }
 
 $session = new Session;
-ini_set('session.save_handler', 'user');
+
 session_set_save_handler(
 	[$session, 'open'],
 	[$session, 'close'],
