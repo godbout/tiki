@@ -26,9 +26,8 @@ footer { padding-bottom:50px; }
 .input-group-append, .input-group-addon {
 	display:inline-block;
 	width:auto;
-	margin-left:5px;
-	padding:3px;
-	border:2px solid #aaa !important;
+	padding:2px;
+	border:1px solid #aaa !important;
 	border-radius:3px !important;
 }
 
@@ -79,7 +78,7 @@ Theme Customizer Main Styles
 		}
 
 		input, textarea, select {
-			width:80px;
+			width:78px;
 			padding:4px;
 			border-radius:3px;
 			border:1px solid #aaa;
@@ -130,7 +129,7 @@ Theme Customizer Main Styles
 
 		.input {
 			input { width:150px; }
-			label { width:94px; }
+			label { width:95px; }
 
 			.check {
 				width:auto;
@@ -148,7 +147,7 @@ Theme Customizer Main Styles
 		.h1, .h2, .h3, .h4, .h5, .h6 { text-decoration:underline; }
 
 		.input {
-			label { width:95px; }
+			label { width:92px; }
 
 			.check {
 				width:auto;
@@ -179,7 +178,7 @@ Theme Customizer Main Styles
 		button { margin-right:10px; }
 
 		.input {
-			label { width:95px; }
+			label { width:92px; }
 		}
 	}
 
@@ -198,7 +197,7 @@ Theme Customizer Main Styles
 		}
 
 		.input {
-			label { width:95px; }
+			label { width:92px; }
 			.error:after { text-align:right; padding-right:35px; }
 			p:last-child input { width:200px; }
 		}
@@ -225,7 +224,7 @@ Theme Customizer Main Styles
 		.dropdown-menu { padding:5px 0 !important; }
 
 		.input {
-			label { width:95px; }
+			label { width:92px; }
 		}
 	}
 
@@ -236,7 +235,7 @@ Theme Customizer Main Styles
 		.dropdown-menu { display:block; padding:5px 0 !important; }
 
 		.input {
-			label { width:95px; }
+			label { width:92px; }
 			.error:after { text-align:left; padding-right:0; }
 			.picker.error:after { text-align:right; padding-right:94px; }
 		}
@@ -258,7 +257,7 @@ Theme Customizer Main Styles
 		> div { overflow:hidden; margin-bottom:30px; }
 
 		.input {
-			label { width:95px; }
+			label { width:92px; }
 			.error:after { padding-right:40px; }
 		}
 	}
@@ -285,7 +284,7 @@ Theme Customizer Main Styles
 		}
 
 		.input {
-			label { width:95px; }
+			label { width:92px; }
 		}
 	}
 

@@ -22,9 +22,8 @@ footer {
 .input-group-append, .input-group-addon {
   display: inline-block;
   width: auto;
-  margin-left: 5px;
-  padding: 3px;
-  border: 2px solid #aaa !important;
+  padding: 2px;
+  border: 1px solid #aaa !important;
   border-radius: 3px !important;
 }
 
@@ -80,7 +79,7 @@ Theme Customizer Main Styles
   text-transform: none !important;
 }
 .customizer .input input, .customizer .input textarea, .customizer .input select {
-  width: 80px;
+  width: 78px;
   padding: 4px;
   border-radius: 3px;
   border: 1px solid #aaa;
@@ -129,7 +128,7 @@ Theme Customizer Main Styles
   width: 150px;
 }
 .customizer .fonts .input label {
-  width: 94px;
+  width: 95px;
 }
 .customizer .fonts .input .check {
   width: auto;
@@ -143,7 +142,7 @@ Theme Customizer Main Styles
   text-decoration: underline;
 }
 .customizer .headings .input label {
-  width: 95px;
+  width: 92px;
 }
 .customizer .headings .input .check {
   width: auto;
@@ -174,7 +173,7 @@ Theme Customizer Main Styles
   margin-right: 10px;
 }
 .customizer .buttons .input label {
-  width: 95px;
+  width: 92px;
 }
 .customizer .forms span:not(.input-group-addon) {
   display: inline-block;
@@ -190,7 +189,7 @@ Theme Customizer Main Styles
   display: inline;
 }
 .customizer .forms .input label {
-  width: 95px;
+  width: 92px;
 }
 .customizer .forms .input .error:after {
   text-align: right;
@@ -226,7 +225,7 @@ Theme Customizer Main Styles
   padding: 5px 0 !important;
 }
 .customizer .navbars .input label {
-  width: 95px;
+  width: 92px;
 }
 .customizer .dropdowns {
   margin-bottom: 100px;
@@ -236,7 +235,7 @@ Theme Customizer Main Styles
   padding: 5px 0 !important;
 }
 .customizer .dropdowns .input label {
-  width: 95px;
+  width: 92px;
 }
 .customizer .dropdowns .input .error:after {
   text-align: left;
@@ -261,7 +260,7 @@ Theme Customizer Main Styles
   margin-bottom: 30px;
 }
 .customizer .alerts .input label {
-  width: 95px;
+  width: 92px;
 }
 .customizer .alerts .input .error:after {
   padding-right: 40px;
@@ -283,7 +282,7 @@ Theme Customizer Main Styles
   vertical-align: middle;
 }
 .customizer .icons .input label {
-  width: 95px;
+  width: 92px;
 }
 .customizer .custom-css .input {
   width: 100%;

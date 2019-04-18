@@ -27,15 +27,6 @@
 		<div class="container">
 
 			<div class="footer-ui">
-<!--
-				<button class="btn btn-danger apply-custom-css">Apply Custom CSS</button>
-				<button id="generate-var" class="btn btn-primary generate-var" download="themecustomizer.less">
-					Generate LESS
-				</button>
-				<button id="generate-css" class="btn btn-primary generate-css" download="themecustomizer.css">
-					Generate CSS
-				</button>
--->
 				<button id="generate-custom-css" class="btn btn-primary generate-custom-css">
 					Generate Custom CSS
 				</button>
@@ -45,7 +36,7 @@
 				<label><input class="keep-changes" type="checkbox"><span>Keep changes after refresh</span></label>
 			</div>
 
-			<div class="dropup">
+			<div class="btn-group dropup">
 				<a id="dLabel" data-target="#" href="" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 					Select a section:
 				</a>
