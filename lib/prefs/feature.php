@@ -1799,12 +1799,6 @@ function prefs_feature_list($partial = false)
 			'type' => 'flag',
 			'default' => 'y',
 		],
-		'feature_clear_passwords' => [
-			'name' => tra('Store password as plain text'),
-			'type' => 'flag',
-			'perspective' => false,
-			'default' => 'n',
-		],
 		'feature_editcss' => [
 			'name' => tra('Edit CSS'),
 			'description' => tra('Edit CSS files directly in the browser.'),
