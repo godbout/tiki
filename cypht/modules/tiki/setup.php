@@ -18,10 +18,12 @@ add_output('groupmail', 'groupmail_start', true, 'tiki', 'groupmail_heading', 'a
 add_output('groupmail', 'groupmail_end', true, 'tiki', 'groupmail_start', 'after');
 
 /* folder list update ajax request */
+add_handler('ajax_hm_folders', 'check_groupmail_setting', true, 'tiki', 'load_user_data', 'after');
 add_output('ajax_hm_folders', 'groupmail_page_link', true, 'tiki', 'logout_menu_item', 'before');
 
 /* ajax groupmail callback data */
 setup_base_ajax_page('ajax_tiki_groupmail', 'imap');
+add_handler('ajax_tiki_groupmail', 'prepare_groupmail_settings', true, 'imap', 'load_user_data', 'after');
 add_handler('ajax_tiki_groupmail', 'load_imap_servers_from_config',  true, 'imap');
 add_handler('ajax_tiki_groupmail', 'imap_oauth2_token_check', true, 'imap');
 add_handler('ajax_tiki_groupmail', 'close_session_early',  true, 'core');

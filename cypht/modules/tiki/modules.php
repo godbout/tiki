@@ -56,6 +56,34 @@ class Hm_Handler_groupmail_fetch_messages extends Hm_Handler_Module {
 }
 
 /**
+ * Check whether Groupmail is enabled or not
+ * @subpackage tiki/handler
+ */
+class Hm_Handler_check_groupmail_setting extends Hm_Handler_Module {
+    /**
+     * Sets flag based on session
+     */
+    public function process() {
+        $this->out('groupmail_enabled', $this->session->get('groupmail') == 'y');
+    }
+}
+
+/**
+ * Prepare Groupmail session settings for output modules
+ * @subpackage tiki/handler
+ */
+class Hm_Handler_prepare_groupmail_settings extends Hm_Handler_Module {
+    /**
+     * Sets settings based on session
+     */
+    public function process() {
+        foreach(['group', 'trackerId', 'fromFId', 'subjectFId', 'messageFId', 'contentFId', 'accountFId', 'datetimeFId', 'operatorFId'] as $field) {
+            $this->out($field, $this->session->get($field));
+        }
+    }
+}
+
+/**
  * Output the Tiki Groupmail section of the menu
  * @subpackage tiki/output
  */
@@ -64,6 +92,9 @@ class Hm_Output_groupmail_page_link extends Hm_Output_Module {
      * Displays the menu link
      */
     protected function output() {
+        if (! $this->get('groupmail_enabled')) {
+            return '';
+        }
         $res = '<li class="menu_groupmail"><a class="unread_link" href="?page=groupmail">';
         if (!$this->get('hide_folder_icons')) {
             $res .= '<img class="account_icon" src="'.$this->html_safe(Hm_Image_Sources::$people).'" alt="" width="16" height="16" /> ';
@@ -217,9 +248,9 @@ class Hm_Output_filter_groupmail_data extends Hm_Output_Module {
                     $icon = false;
                 }
                 // handle take/taken operator here
-                $itemid = $trklib->get_item_id($this->session['trackerId'], $this->session['messageFId'], $id);
+                $itemid = $trklib->get_item_id($this->get('trackerId'), $this->get('messageFId'), $id);
                 if ($itemid > 0) {
-                    $operator = $trklib->get_item_value($this->session['trackerId'], $itemid, $this->session['operatorFId']);
+                    $operator = $trklib->get_item_value($this->get('trackerId'), $itemid, $this->get('operatorFId'));
                 } else {
                     $operator = '';
                 }

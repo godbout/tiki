@@ -130,6 +130,77 @@ function wikiplugin_cypht_info()
 					['text' => tra('No'), 'value' => 'n'],
 				],
 			],
+			'group' => [
+				'name' => tra('Group'),
+				'description' => tra('GroupMail: Group (e.g. "Help Team")'),
+				'filter' => 'striptags',
+				'default' => '',
+				'since' => '20.0',
+			],
+			'trackerId' => [
+				'name' => tra('Tracker ID'),
+				'description' => tra('GroupMail: Tracker ID (to store GroupMail activity)'),
+				'filter' => 'int',
+				'profile_reference' => 'tracker',
+				'default' => '',
+				'since' => '20.0',
+			],
+			'fromFId' => [
+				'name' => tra('From Field ID'),
+				'description' => tra('GroupMail: From Field (Id of field in tracker to store email From header)'),
+				'filter' => 'int',
+				'profile_reference' => 'tracker_field',
+				'default' => '',
+				'since' => '20.0',
+			],
+			'subjectFId' => [
+				'name' => tra('Subject Field ID'),
+				'description' => tra('GroupMail: Subject Field (Id of field in tracker to store email Subject header)'),
+				'filter' => 'int',
+				'profile_reference' => 'tracker_field',
+				'default' => '',
+				'since' => '20.0',
+			],
+			'messageFId' => [
+				'name' => tra('Message Field ID'),
+				'description' => tra('GroupMail: Message Field (Id of field in tracker to store email message identifier)'),
+				'filter' => 'int',
+				'profile_reference' => 'tracker_field',
+				'default' => '',
+				'since' => '20.0',
+			],
+			'contentFId' => [
+				'name' => tra('Content Field ID'),
+				'description' => tra('GroupMail: Content Field (Id of field in tracker to store email message body content)'),
+				'filter' => 'int',
+				'profile_reference' => 'tracker_field',
+				'default' => '',
+				'since' => '20.0',
+			],
+			'accountFId' => [
+				'name' => tra('Account Field ID'),
+				'description' => tra('GroupMail: Account Field (Id of field in tracker to store Webmail account name)'),
+				'filter' => 'int',
+				'profile_reference' => 'tracker_field',
+				'default' => '',
+				'since' => '20.0',
+			],
+			'datetimeFId' => [
+				'name' => tra('DateTime Field Id'),
+				'description' => tra('GroupMail: Date Time Field (Id of field in tracker to store email sent timestamp)'),
+				'filter' => 'int',
+				'profile_reference' => 'tracker_field',
+				'default' => '',
+				'since' => '20.0',
+			],
+			'operatorFId' => [
+				'name' => tra('Operator Field ID'),
+				'description' => tra('GroupMail: Operator Field (Id of field in tracker to store operator name (username))'),
+				'filter' => 'int',
+				'profile_reference' => 'tracker_field',
+				'default' => '',
+				'since' => '20.0',
+			],
 		],
 	];
 }
@@ -146,15 +217,16 @@ function wikiplugin_cypht($data, $params)
 
 	$headerlib = TikiLib::lib('header');
 
-	// TODO: move these hardcoded values to plugin params or module params like it was in mod-webmail_inbox module
-	$_SESSION['cypht']['trackerId'] = 48;
-	$_SESSION['cypht']['fromFId'] = 348;
-	$_SESSION['cypht']['subjectFId'] = 350;
-	$_SESSION['cypht']['messageFId'] = 351;
-	$_SESSION['cypht']['contentFId'] = 352;
-	$_SESSION['cypht']['accountFId'] = 353;
-	$_SESSION['cypht']['datetimeFId'] = 354;
-	$_SESSION['cypht']['operatorFId'] = 349;
+	$_SESSION['cypht']['groupmail'] = $params['groupmail'];
+	$_SESSION['cypht']['group'] = $params['group'];
+	$_SESSION['cypht']['trackerId'] = $params['trackerId'];
+	$_SESSION['cypht']['fromFId'] = $params['fromFId'];
+	$_SESSION['cypht']['subjectFId'] = $params['subjectFId'];
+	$_SESSION['cypht']['messageFId'] = $params['messageFId'];
+	$_SESSION['cypht']['contentFId'] = $params['contentFId'];
+	$_SESSION['cypht']['accountFId'] = $params['accountFId'];
+	$_SESSION['cypht']['datetimeFId'] = $params['datetimeFId'];
+	$_SESSION['cypht']['operatorFId'] = $params['operatorFId'];
 
 	define('APP_PATH', $tikipath.'/vendor_bundled/vendor/jason-munro/cypht/');
 	define('DEBUG_MODE', false);
