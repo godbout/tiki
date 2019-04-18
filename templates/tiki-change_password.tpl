@@ -81,7 +81,7 @@
 				</div>
 				{if $prefs.generate_password eq 'y'}
 					<div class="form-group row">
-						<div class="col-md-4 col-md-offset-4">
+						<div class="col-md-4 offset-md-4">
 							<span id="genPass">{button href="#" _text="{tr}Generate a password{/tr}"}</span>
 						</div>
 						<div class="col-md-4">

@@ -18,7 +18,7 @@
 		{tabset}
 			{tab name="{tr}General{/tr}"}
 				<div class="form-group row">
-					<div class="form-check col-md-offset-3">
+					<div class="form-check offset-md-3">
 						<input type="checkbox" name="enabled" class="form-check-input" value="1" {if $goal.enabled}checked{/if}>
 						<label class="form-check-label" for="enabled">
 							{tr}Enabled{/tr}
@@ -212,7 +212,7 @@
 			});
 		{/jq}
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				<input type="submit" class="btn btn-secondary" value="{tr}Save{/tr}">
 				<a href="{service controller=goal action=admin}" class="btn btn-link">{tr}Cancel{/tr}</a>
 			</div>

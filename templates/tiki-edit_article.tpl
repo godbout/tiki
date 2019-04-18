@@ -223,13 +223,13 @@
 					<div class="form-text">{tr}Default will use the topic name{/tr}</div>
 				</div>
 			</div>
-			<div class="form-check {if $types.$type.show_image neq 'y'}hidden{/if} col-md-offset-4">
+			<div class="form-check {if $types.$type.show_image neq 'y'}hidden{/if} offset-md-4">
 				<label class="form-check-label">
 					<input type="checkbox" class="form-check-input" name="useImage" id="useImage" {if $useImage eq 'y'}checked='checked'{/if} >
 					{tr}Use own image{/tr}
 				</label>
 			</div>
-			<div class="form-check {if $types.$type.show_image neq 'y'}hidden{/if} col-md-offset-4">
+			<div class="form-check {if $types.$type.show_image neq 'y'}hidden{/if} offset-md-4">
 				<label class="form-check-label">
 					<input type="checkbox" class="form-check-input" name="isfloat" {if $isfloat eq 'y'}checked='checked'{/if}>
 					{tr}Float text around image{/tr}

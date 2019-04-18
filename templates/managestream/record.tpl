@@ -8,7 +8,7 @@
 			<label for="event" class="col-form-label col-md-3">
 				{tr}Event{/tr}
 			</label>
-			<div class="col-md-9">		
+			<div class="col-md-9">
 				<select name="event" class="form-control">
 					{foreach from=$eventTypes item=eventName}
 						<option value="{$eventName|escape}"{if $rule.eventType eq $eventName} selected{/if}>
@@ -20,7 +20,7 @@
 		</div>
 		{if $prefs.activity_notifications eq 'y'}
 			<div class="form-group row clearfix">
-				<div class="col-md-offset-3 col-md-9">
+				<div class="offset-md-3 col-md-9">
 					<div class="form-check">
 						<label for="notification_checkbox">
 							<input id="notification_checkbox" name="is_notification" type="checkbox"> {tr}Allow Notifications{/tr}

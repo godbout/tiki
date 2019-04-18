@@ -461,7 +461,7 @@
 			{/if}
 
 			<div class="submit form-group row">
-				<div class="col-md-9 col-md-offset-3">
+				<div class="col-md-9 offset-md-3">
 					{if $group ne ''}
 						<input type="hidden" name="olgroup" value="{$group|escape}">
 						<button
@@ -490,7 +490,7 @@
 
 			{if $prefs.groupTracker eq 'y'}
 			<div class="form-group row">
-				<div class="col-md-9 col-md-offset-3">
+				<div class="col-md-9 offset-md-3">
 					{if !empty($grouptrackerid) and $groupitemid}
 						{tr}Group tracker item : {$groupitemid}{/tr}
 						{button href="tiki-view_tracker_item.php?trackerId=$grouptrackerid&amp;itemId=$groupitemid&amp;show=mod" _text="{tr}Edit Item{/tr}"}

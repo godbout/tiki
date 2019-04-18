@@ -58,13 +58,13 @@
 				</div>
 			</div>
 		{/if}
-		<div class="form=check col-md-offset-3">
+		<div class="form=check offset-md-3">
 			<input type="checkbox" name="hidden" id="hidden" class="form-check-input" value="1" {if $condition.hidden}checked{/if}>
 			<label class="form-check-label for="hidden">
 				{tr}Hide condition from users{/tr}
 			</label>
 		</div>
-		<div class="submit col-md-offset-3">
+		<div class="submit offset-md-3">
 			<input type="submit" class="btn btn-primary" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
 		</div>
 	</form>

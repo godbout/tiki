@@ -312,7 +312,7 @@ if ($(this).val() != '') {
 		</div>
 
 		<div class="form-group row">
-			<div class="col-md-8 col-md-offset-4">
+			<div class="col-md-8 offset-md-4">
 				<input type="submit" class="btn btn-primary" value="{tr}Save{/tr}" name="edit">
 			</div>
 		</div>

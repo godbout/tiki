@@ -53,7 +53,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<div class="col-md-offset-4">
+				<div class="offset-md-4">
 					{if $action=='new'}
 						{$label = "{tr}Create account{/tr}"}
 					{else}

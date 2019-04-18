@@ -673,7 +673,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<div class="col-md-9 col-md-offset-3">
+					<div class="col-md-9 offset-md-3">
 						<div class="form-check">
 							<label class="form-check-label">
 								<input class="form-check-input" type="checkbox" name="overwriteGroup">
@@ -683,7 +683,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<div class="col-md-9 col-md-offset-3">
+					<div class="col-md-9 offset-md-3">
 						<div class="form-check">
 							<label class="form-check-label">
 								<input class="form-check-input" type="checkbox" name="createGroup">
@@ -694,7 +694,7 @@
 				</div>
 				{if $prefs.change_password neq 'n'}
 					<div class="form-group row">
-						<div class="col-md-9 col-md-offset-3">
+						<div class="col-md-9 offset-md-3">
 							<div class="form-check">
 								<label class="form-check-label">
 									<input class="form-check-input" type="checkbox" name="forcePasswordChange">
@@ -705,7 +705,7 @@
 					</div>
 				{/if}
 				<div class="form-group row">
-					<div class="col-md-9 col-md-offset-3">
+					<div class="col-md-9 offset-md-3">
 						<div class="form-check">
 							<label class="form-check-label">
 								<input class="form-check-input" type="checkbox" name="notification">
@@ -715,7 +715,7 @@
 					</div>
 				</div>
 				<div class="form-group row">
-					<div class="col-md-9 col-md-offset-3">
+					<div class="col-md-9 offset-md-3">
 						<input type="submit" class="btn btn-secondary" name="batch" value="{tr}Add{/tr}" onclick="checkTimeout()">
 					</div>
 				</div>

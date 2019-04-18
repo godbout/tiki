@@ -27,7 +27,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				<input type="submit" class="btn btn-primary" value="{tr}Create{/tr}">
 				<a class="btn btn-link" href="{service controller=goal action=admin}">{tr}Cancel{/tr}</a>
 			</div>

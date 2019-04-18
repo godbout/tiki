@@ -9,7 +9,7 @@
 		{ticket mode=confirm}
 		<input type="hidden" name="accountId" value="{$accountId|escape}">
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				<div class="form-check">
 					<label>
 						<input type="checkbox" class="form-check-input" name="active" value="1" {if $info.active eq 'y'}checked{/if}>
@@ -100,7 +100,7 @@
 			</div>
 		{/if}
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				<div class="form-check">
 					<label>
 						<input type="checkbox" class="form-check-input" name="anonymous" value="1" {if $info.anonymous eq 'y'}checked{/if}>
@@ -113,7 +113,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				<div class="form-check">
 					<label>
 						<input type="checkbox" class="form-check-input" name="admin" value="1" {if $info.admin eq 'y'}checked{/if}>
@@ -126,7 +126,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				{if $prefs.feature_wiki_attachments eq 'y'}
 					<div class="form-check">
 						<label>
@@ -140,7 +140,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				{if $prefs.feature_wiki eq 'y'}
 					<div class="form-check">
 						<label>
@@ -157,7 +157,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				{if $prefs.feature_wiki_attachments eq 'y'}
 					<div class="form-check">
 						<label>
@@ -174,7 +174,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				<div class="form-check">
 					<label>
 						<input type="checkbox" class="form-check-input" name="save_html" value="1" {if $info.save_html eq 'y'}checked{/if}>
@@ -215,7 +215,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				<div class="form-check">
 					<label>
 						<input type="checkbox" class="form-check-input" name="respond_email" value="1" {if $info.respond_email eq 'y'}checked{/if}>
@@ -225,7 +225,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				<div class="form-check">
 					<label>
 						<input type="checkbox" class="form-check-input" name="leave_email" value="1" {if $info.leave_email eq 'y'}checked{/if}>
@@ -237,7 +237,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="submit col-md-offset-3 col-md-9">
+		<div class="submit offset-md-3 col-md-9">
 			<input type="submit" name="new_acc" value="{if $accountId eq 0}{tr}Add Account{/tr}{else}{tr}Save{/tr}{/if}" class="btn btn-primary" onclick="checkTimeout()">
 		</div>
 	</form>

@@ -131,7 +131,7 @@
 {tab name="{$add_edit_scheduler_tablabel} {$schedulename}"}
 	<br><br>
 	<div class="row">
-		<div class="col-md-offset-2 col-md-6">
+		<div class="offset-md-2 col-md-6">
 			{remarksbox type="note" title="{tr}Information{/tr}"}
 			{tr}Use CRON format to enter the values in "Run Time":
 				<br>

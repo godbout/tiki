@@ -74,7 +74,7 @@
 	<h2>{tr}Check Mail-in accounts{/tr}</h2>
 	<form action="tiki-admin_mailin.php" method="post">
 		<div class="form-group row">
-			<div class="col-md-offset-3 col-md-9">
+			<div class="offset-md-3 col-md-9">
 				<div class="form-check">
 					<label class="form-check-label">
 						<input type="checkbox" class="form-check-input" name="mailin_autocheck" value="y" {if $prefs.mailin_autocheck eq 'y'}checked{/if}>
@@ -92,7 +92,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="submit col-md-offset-3 col-md-9">
+		<div class="submit offset-md-3 col-md-9">
 			<input type="submit" name="set_auto" value="{tr}Set{/tr}" class="btn btn-secondary">
 			<a class="btn btn-link" href="tiki-mailin.php">{tr}Check Manually Now{/tr}</a>
 		</div>

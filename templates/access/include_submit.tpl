@@ -4,7 +4,7 @@
 			{tr}Back{/tr}
 		</a>
 {/if}
-		<div{if $prefs.javascript_enabled === 'y'} class="submit col-md-offset-3 col-md-9"{/if}>
+		<div{if $prefs.javascript_enabled === 'y'} class="submit offset-md-3 col-md-9"{/if}>
 			<input
 				type="submit"
 				class="btn {if !empty($confirmButtonClass)}{$confirmButtonClass}{else}btn-primary{/if}"

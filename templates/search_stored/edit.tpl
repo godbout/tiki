@@ -29,7 +29,7 @@
 		</div>
 	</div>
 	<div class="form-group submit">
-		<div class="col-md-9 col-md-offset-3">
+		<div class="col-md-9 offset-md-3">
 			<input type="submit" class="btn btn-primary" value="{tr}Update{/tr}"/>
 		</div>
 	</div>
