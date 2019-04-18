@@ -31,15 +31,26 @@ add_handler('ajax_tiki_groupmail', 'groupmail_fetch_messages',  true);
 add_handler('ajax_tiki_groupmail', 'save_imap_cache',  true);
 add_output('ajax_tiki_groupmail', 'filter_groupmail_data', true);
 
+/* ajax take webmail */
+setup_base_ajax_page('ajax_take_groupmail', 'tiki');
+add_handler('ajax_take_groupmail', 'prepare_groupmail_settings', true, 'tiki', 'load_user_data', 'after');
+add_handler('ajax_take_groupmail', 'take_groupmail', true, 'tiki', 'load_user_data', 'after');
+add_output('ajax_take_groupmail', 'take_groupmail_response', true);
+
 return array(
 	'allowed_pages' => array(
     'groupmail',
-    'ajax_tiki_groupmail'
+    'ajax_tiki_groupmail',
+    'ajax_take_groupmail',
 	),
 	'allowed_get' => array(
 	),
 	'allowed_output' => array(
 	),
 	'allowed_post' => array(
+		'server_id' => FILTER_VALIDATE_INT,
+		'uid' => FILTER_SANITIZE_STRING,
+		'folder' => FILTER_SANITIZE_STRING,
+		'msgid' => FILTER_SANITIZE_STRING,
 	)
 );

@@ -23,6 +23,28 @@ var tiki_groupmail_content = function(id, folder) {
     return false;
 };
 
+var tiki_groupmail_take = function(btn, id) {
+    var detail = Hm_Utils.parse_folder_path(id);
+    $(btn).text(tr('Taking')+'...');
+    Hm_Ajax.request(
+        [{'name': 'hm_ajax_hook', 'value': 'ajax_take_groupmail'},
+        {'name': 'msgid', 'value': id},
+        {'name': 'uid', 'value': detail.uid},
+        {'name': 'server_id', 'value': detail.server_id},
+        {'name': 'folder', 'value': detail.folder}],
+        function(res) {
+            if (res.error) {
+                feedback(res.error, 'error');
+                $(btn).text(tr('TAKE'));
+            } else {
+                $(btn).text(res.operator);
+            }
+        },
+        [],
+        false
+    );
+}
+
 /* executes on onload, has access to other module code */
 $(function() {
     if (hm_page_name() == 'groupmail') {

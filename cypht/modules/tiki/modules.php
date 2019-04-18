@@ -84,6 +84,161 @@ class Hm_Handler_prepare_groupmail_settings extends Hm_Handler_Module {
 }
 
 /**
+ * Take a groupmail message
+ * @subpackage tiki/handler
+ */
+class Hm_Handler_take_groupmail extends Hm_Handler_Module {
+    /**
+     * Take a message
+     */
+    public function process() {
+        list($success, $form) = $this->process_form(array('msgid', 'uid', 'server_id', 'folder'));
+        if (! $success) {
+            return;
+        }
+
+        $cache = Hm_IMAP_List::get_cache($this->cache, $form['server_id']);
+        $imap = Hm_IMAP_List::connect($form['server_id'], $cache);
+        if (! imap_authed($imap)) {
+            return;
+        }
+
+        $imap->read_only = $prefetch;
+        if (! $imap->select_mailbox(hex2bin($form['folder']))) {
+            return;
+        }
+
+        $msg_struct = $imap->get_message_structure($form['uid']);
+        if (!$this->user_config->get('text_only_setting', false)) {
+            list($part, $msg_text) = $imap->get_first_message_part($form['uid'], 'text', 'html', $msg_struct);
+            if (!$part) {
+                list($part, $msg_text) = $imap->get_first_message_part($form['uid'], 'text', false, $msg_struct);
+            }
+        }
+        else {
+            list($part, $msg_text) = $imap->get_first_message_part($form['uid'], 'text', false, $msg_struct);
+        }
+
+        $struct = $imap->search_bodystructure( $msg_struct, array('imap_part_number' => $part));
+        $msg_struct_current = array_shift($struct);
+        if (!trim($msg_text)) {
+            if (is_array($msg_struct_current) && array_key_exists('subtype', $msg_struct_current)) {
+                if ($msg_struct_current['subtype'] == 'plain') {
+                    $subtype = 'html';
+                }
+                else {
+                    $subtype = 'plain';
+                }
+                list($part, $msg_text) = $imap->get_first_message_part($form['uid'], 'text', $subtype, $msg_struct);
+                $struct = $imap->search_bodystructure($msg_struct, array('imap_part_number' => $part));
+                $msg_struct_current = array_shift($struct);
+            }
+        }
+        if (isset($msg_struct_current['subtype']) && strtolower($msg_struct_current['subtype'] == 'html')) {
+            $msg_text = add_attached_images($msg_text, $form['uid'], $msg_struct, $imap);
+        }
+        $msg_headers = $imap->get_message_headers($form['uid']);
+
+        global $prefs, $user;
+
+        $contactlib = TikiLib::lib('contact');
+        $categlib = TikiLib::lib('categ');
+        $tikilib = TikiLib::lib('tiki');
+        $trklib = TikiLib::lib('trk');
+
+        // $accountid = isset($module_params["accountid"]) ? $module_params['accountid'] : 0;
+        // $ls = $webmaillib->refresh_mailbox($user, $accountid, false);
+        // $cont = $webmaillib->get_mail_content($user, $accountid, $msgId);
+        // $acc = $webmaillib->get_webmail_account($user, $accountid);
+
+        // make tracker item
+        $from       = $msg_headers['From'];
+        $subject    = $msg_headers['Subject'];
+        $realmsgid  = $form['msgid'];
+        $maildate   = $msg_headers['Date'];
+        $maildate   = strtotime($maildate);
+
+        $parsed_from = preg_split('/[<>]/', $from, -1, PREG_SPLIT_NO_EMPTY);
+        $sender = ['name' => $parsed_from[0], 'email' => $parsed_from[1]];
+
+        // check if already taken
+        $itemid = $trklib->get_item_id($this->get('trackerId'), $this->get('messageFId'), $realmsgid);
+        if ($itemid > 0) {
+            $this->out('error', 'Sorry, that mail has been taken by another operator.');
+            return;
+        } else {
+            $charset = $prefs['default_mail_charset'];
+            if (empty($charset)) {
+                $charset = 'UTF-8';
+            }
+
+            $items['data'][0]['fieldId'] = $this->get('fromFId');
+            $items['data'][0]['type'] = 't';
+            $items['data'][0]['value'] = $from;
+            $items['data'][1]['fieldId'] = $this->get('operatorFId');
+            $items['data'][1]['type'] = 'u';
+            $items['data'][1]['value'] = $user;
+            $items['data'][2]['fieldId'] = $this->get('subjectFId');
+            $items['data'][2]['type'] = 't';
+            $items['data'][2]['value'] = $subject;
+            $items['data'][3]['fieldId'] = $this->get('messageFId');
+            $items['data'][3]['type'] = 't';
+            $items['data'][3]['value'] = $realmsgid;
+            $items['data'][4]['fieldId'] = $this->get('contentFId');
+            $items['data'][4]['type'] = 'a';
+            $items['data'][4]['value'] = htmlentities($msg_text, ENT_QUOTES, $charset);
+            $items['data'][5]['fieldId'] = $this->get('accountFId');
+            $items['data'][5]['type'] = 't';
+            $items['data'][5]['value'] = $form['server_id'];
+            $items['data'][6]['fieldId'] = $this->get('datetimeFId');
+            $items['data'][6]['type'] = 'f';    // f?
+            $items['data'][6]['value'] = $maildate;
+            $trklib->replace_item($this->get('trackerId'), 0, $items);
+        }
+
+        // make name for wiki page
+        $pageName = str_replace('@', '_AT_', $sender['email']);
+        $contId = $contactlib->get_contactId_email($sender['email'], $user);
+
+        // add or update (?) contact
+        $ext = $contactlib->get_ext_by_name($user, tra('Wiki Page'), $contId);
+        if (! $ext) {
+            $contactlib->add_ext($user, tra('Wiki Page'), true);    // a public field
+            $ext = $contactlib->get_ext_by_name($user, tra('Wiki Page'), $contId);
+        }
+
+        $arr = explode(" ", trim(html_entity_decode($sender['name']), '"\' '), 2);
+        if (count($arr) < 2) {
+            $arr[] = '';
+        }
+        $contactlib->replace_contact($contId, $arr[0], $arr[1], $sender['email'], '', $user, [$this->get('group')], [$ext['fieldId'] => $pageName], true);
+        if (! $contId) {
+            $contId = $contactlib->get_contactId_email($sender['email'], $user);
+        }
+
+        // make or update wiki page
+        $wikilib = TikiLib::lib('wiki');
+
+        if (! $wikilib->page_exists($pageName)) {
+            $comment = 'Generated by GroupMail on ' . date(DATE_RFC822);
+            $description = "Page $comment for " . $sender['email'];
+            $data = '!GroupMail case with ' . $sender['email'] . "\n";
+            $data .= "''$comment''\n\n";
+            $data .= "!!Info\n";
+            $data .= "Contact info: [tiki-contacts.php?contactId=$contId|" . $sender['name'] . "]\n\n";
+            $data .= "!!Logs\n";
+            $data .= '{trackerlist trackerId="' . $this->get('trackerId') . '" ' . 'fields="' . $this->get('fromFId') . ':' . $this->get('operatorFId') . ':' . $this->get('subjectFId') . ':' . $this->get('datetimeFId') . '" ' . 'popup="' . $this->get('fromFId') . ':' . $this->get('contentFId') . '" stickypopup="n" showlinks="y" shownbitems="n" showinitials="n"' . 'showstatus="n" showcreated="n" showlastmodif="n" filterfield="' . $this->get('fromFId') . '" filtervalue="' . $sender['email'] . '"}';
+            $data .= "\n\n";
+
+            $tikilib->create_page($pageName, 0, $data, $tikilib->now, $comment, $user, $tikilib->get_ip_address(), $description);
+            $categlib->update_object_categories([$categlib->get_category_id('Help Team Pages')], $pageName, 'wiki page');       // TODO remove hard-coded cat name
+        }
+
+        $this->out('operator', $user);
+    }
+}
+
+/**
  * Output the Tiki Groupmail section of the menu
  * @subpackage tiki/output
  */
@@ -275,7 +430,7 @@ class Hm_Output_filter_groupmail_data extends Hm_Output_Module {
                         array('subject_callback', $subject, $url, $flags),
                         array('date_callback', $date, $timestamp),
                         array('icon_callback', $flags),
-                        array('take_callback', $id)
+                        array('take_callback', $id, $operator)
                     ),
                     $id,
                     'email',
@@ -292,6 +447,20 @@ class Hm_Output_filter_groupmail_data extends Hm_Output_Module {
 }
 
 /**
+ * Ajax response for Take operation
+ * @subpackage tiki/output
+ */
+class Hm_Output_take_groupmail_response extends Hm_Output_Module {
+    /**
+     * Send the response
+     */
+    protected function output() {
+        $this->out('error', $this->get('error'));
+        $this->out('operator', $this->get('operator'));
+    }
+}
+
+/**
  * Callback for TAKE button in groupmail list page
  * @subpackage tiki/functions
  * @param array $vals data for the cell
@@ -301,13 +470,30 @@ class Hm_Output_filter_groupmail_data extends Hm_Output_Module {
  */
 if (!hm_exists('take_callback')) {
 function take_callback($vals, $style, $output_mod) {
-    $button = sprintf(
-        '<a class="btn btn-outline-secondary btn-sm tips mod_webmail_action" title="%s" onclick="doTakeWebmail(\'%s\'); return false;" href="#">%s</a>',
-        tr('Take this email'),
-        $vals[0],
-        tr('TAKE')
-    );
-    return sprintf('<td class="action">%s</td>', $button);
+    global $user;
+    list($id, $operator) = $vals;
+    if (! empty($operator)) {
+        if ($operator == $user) {
+            $output = sprintf('<a class="btn btn-outline-secondary btn-sm tips mod_webmail_action webmail_taken" title="%s" onclick="doPutBackWebmail(\'%s\'); return false;" href="#">%s</a>',
+                tr('Put this item back'),
+                $id,
+                $operator
+            );
+        } else {
+            $output = sprintf('<span class="btn btn-outline-secondary btn-sm tips mod_webmail_action webmail_taken" title="%s">%s</span>&nbsp;',
+                tr('Taken by %0', $operator),
+                $operator
+            );
+        }
+    } else {
+        $output = sprintf(
+            '<a class="btn btn-outline-secondary btn-sm tips mod_webmail_action" title="%s" onclick="tiki_groupmail_take(this, \'%s\'); return false;" href="#">%s</a>',
+            tr('Take this email'),
+            $vals[0],
+            tr('TAKE')
+        );
+    }
+    return sprintf('<td class="action">%s</td>', $output);
 }}
 
 /**
