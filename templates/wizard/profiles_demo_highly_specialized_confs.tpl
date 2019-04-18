@@ -42,7 +42,7 @@
 						{icon name="help"}
 					</a>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8 offset-md-2">
 							<a href="http://tiki.org/display545" class="thumbnail internal" data-box="box" title="{tr}Click to expand{/tr}">
 								<img src="img/profiles/profile_thumb_cartograf.png" alt="Click to expand" class="regImage pluginImg" title="{tr}Click to expand{/tr}" />
 							</a>
@@ -78,7 +78,7 @@
 						{icon name="help"}
 					</a>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8 offset-md-2">
 							<a href="http://r.tiki.org/tiki-download_file.php?fileId=23&display&max=800" class="thumbnail internal" data-box="box" title="{tr}Click to expand{/tr}">
 								<img src="img/profiles/profile_thumb_r_demo.png" alt="Click to expand" class="regImage pluginImg" title="{tr}Click to expand{/tr}" />
 							</a>
@@ -90,7 +90,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-6 col-md-offset-3">
+				<div class="col-md-6 offset-md-3">
 					<h4>{tr}R Heatmaps{/tr}</h4>
 					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=R_Heatmaps&show_details_for=R_Heatmaps&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
@@ -116,7 +116,7 @@
 						{icon name="help"}
 					</a>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8 offset-md-2">
 							<a href="http://tiki.org/display546" class="thumbnail internal" data-box="box" title="{tr}Click to expand{/tr}">
 								<img src="img/profiles/profile_thumb_r_heatmaps.png" alt="Click to expand" class="regImage pluginImg" title="{tr}Click to expand{/tr}" />
 							</a>

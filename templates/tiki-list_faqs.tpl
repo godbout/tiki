@@ -103,7 +103,7 @@
 				</div>
 				{include file='categorize.tpl'}
 				<div class="form-check">
-					<label class="col-form-label col-md-offset-3">{tr}Users can suggest questions:{/tr}
+					<label class="col-form-label offset-md-3">{tr}Users can suggest questions:{/tr}
 						<input type="checkbox" class="form-check-input" name="canSuggest" {if $canSuggest eq 'y'}checked="checked"{/if}>
 					</label>
 				</div>

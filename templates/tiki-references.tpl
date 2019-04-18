@@ -115,7 +115,7 @@
 	<br>
 {if isset($referenceinfo.id) && $referenceinfo.ref_id}
 	<div class="row">
-		<div class="col-md-offset-2 col-md-6">
+		<div class="offset-md-2 col-md-6">
 			{remarksbox type="note" title="{tr}Information{/tr}"}
 			{tr}If you change the value of Biblio Code, you might loose the link between references{/tr}
 			{/remarksbox}

@@ -53,7 +53,7 @@
 		</select>
 
 		{if $field.type eq 'D'}
-			<div class="col-md-offset-1">
+			<div class="offset-md-1">
 				<label{if !isset($field.possibilities[$field.value]) && $field.value} style="display:inherit;"{else} style="display:none;"{/if}>
 					{tr}Other:{/tr}
 					<input type="text" class="group_{$field.ins_id|escape} form-control" name="other_{$field.ins_id}" value="{if !isset($field.possibilities[$field.value])}{$field.value|escape}{/if}">

@@ -29,7 +29,7 @@
 						{icon name="help"}
 					</a>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8 offset-md-2">
 							<a href="http://doc.tiki.org/display842" class="thumbnail internal" data-box="box" title="{tr}Click to expand{/tr}">
 								<img src="img/profiles/profile_thumb_write_together.png" alt="Click to expand" class="regImage pluginImg" title="{tr}Click to expand{/tr}" />
 							</a>
@@ -57,7 +57,7 @@
 						{icon name="help"}
 					</a>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8 offset-md-2">
 							<a href="http://tiki.org/display515" class="thumbnail internal" data-box="box" title="{tr}Click to expand{/tr}">
 								<img src="img/profiles/profile_thumb_post_it_sticky_note.png" alt="Click to expand" class="regImage pluginImg" title="{tr}Click to expand{/tr}" />
 							</a>

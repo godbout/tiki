@@ -373,14 +373,14 @@
 				{$upload_str}
 				{include file='categorize.tpl'}<br>
 				<div id="page_bar" class="form-group row">
-					<div class="col-md-8 col-md-offset-4">
+					<div class="col-md-8 offset-md-4">
 						<input type="submit" class="btn btn-primary" name="upload" value="{tr}Upload{/tr}">
 					</div>
 				</div>
 			{/if}
 			{if !$editFileId && $prefs.file_galleries_use_jquery_upload neq 'y' && $prefs.javascript_enabled === 'y'}
 				<div id="page_bar" class="form-group row">
-					<div class="col-md-8 col-md-offset-4">
+					<div class="col-md-8 offset-md-4">
 						<input type="submit" class="btn btn-primary"
 							onclick="upload_files(); return false;"
 							id="btnUpload"
@@ -460,15 +460,15 @@
 				<input type="url" name="url" placeholder="http://" class="form-control">
 			</div>
 			{if $prefs.vimeo_upload eq 'y'}
-				<label class="col-md-8 col-md-offset-4">
+				<label class="col-md-8 offset-md-4">
 					<input type="checkbox" name="reference" value="1" class="tips" title="{tr}Upload from URL{/tr}|{tr}Keeps a reference to the remote file{/tr}">
 					{tr}Reference{/tr}
 				</label>
 			{/if}
-			<div class="col-md-8 col-md-offset-4">
+			<div class="col-md-8 offset-md-4">
 				<input type="submit" class="btn btn-primary btn-sm" value="{tr}Add{/tr}">
 			</div>
-			<div class="result col-md-8 col-md-offset-4"></div>
+			<div class="result col-md-8 offset-md-4"></div>
 		</div>
 	</form>
 	{jq}
@@ -499,7 +499,7 @@
 	{if $prefs.vimeo_upload eq 'y'}
 		<fieldset>
 			<h3>{tr}Upload Video{/tr}</h3>
-			<div class="col-md-8 col-md-offset-4">
+			<div class="col-md-8 offset-md-4">
 				{wikiplugin _name='vimeo'}{/wikiplugin}
 			</div>
 		</fieldset>

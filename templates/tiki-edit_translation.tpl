@@ -29,11 +29,11 @@
 {if $langpage}
 	{if $type == 'wiki page'}
 		<div class="clearfix">
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-8 offset-md-2">
 				<a id="translate_updates"></a>
 				{$content_of_update_translation_section}
 			</div>
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-8 offset-md-2">
 				<a id="new_translation"></a>
 				<form method="post" action="tiki-editpage.php" onsubmit="return validate_translation_request(this)" role="form">
 					<div class="card">
@@ -83,7 +83,7 @@
 					</div>
 				</form>
 			</div>
-			<div class="col-md-8 col-md-offset-2">
+			<div class="col-md-8 offset-md-2">
 				<a id="change_language"></a>
 				<form method="post" action="tiki-edit_translation.php" role="form">
 					<div class="card">

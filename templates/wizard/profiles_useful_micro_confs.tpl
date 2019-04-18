@@ -29,7 +29,7 @@
 						{icon name="help"}
 					</a>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8 offset-md-2">
 							<a href="http://tiki.org/display538" class="thumbnail internal" data-box="box" title="{tr}Click to expand{/tr}">
 								<img src="img/profiles/profile_thumb_menu_on_wiki_page.png" class="image-responsive" alt="Click to expand" class="regImage pluginImg" title="{tr}Click to expand{/tr}" />
 							</a>
@@ -58,7 +58,7 @@
 						{icon name="help"}
 					</a>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8 offset-md-2">
 							<a href="http://tiki.org/display539" class="thumbnail internal" data-box="box" title="{tr}Click to expand{/tr}">
 								<img src="img/profiles/profile_thumb_random_header_images.png" alt="Click to expand" class="regImage pluginImg" title="{tr}Click to expand{/tr}" />
 							</a>
@@ -88,7 +88,7 @@
 						{icon name="help"}
 					</a>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8 offset-md-2">
 							<a href="http://tiki.org/display516" class="thumbnail internal" data-box="box" title="{tr}Click to expand{/tr}">
 								<img src="img/profiles/profile_thumb_multilingual_wiki.png" alt="Click to expand" class="regImage pluginImg" title="{tr}Click to expand{/tr}" />
 							</a>
@@ -120,7 +120,7 @@
 						{icon name="help"}
 					</a>
 					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
+						<div class="col-md-8 offset-md-2">
 							<a href="http://tiki.org/display540" class="thumbnail internal" data-box="box" title="{tr}Click to expand{/tr}">
 								<img src="img/profiles/profile_thumb_countries_by_region.png" alt="Click to expand" class="regImage pluginImg" title="{tr}Click to expand{/tr}" />
 							</a>

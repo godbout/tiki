@@ -17,7 +17,7 @@
 		<div class="form-group row">
 			<label class="div"></label>
 			<input type="hidden" name="datachannel_execution" value="{$datachannel_execution|escape}">
-			<div class="col-md-9 col-md-offset-3">
+			<div class="col-md-9 offset-md-3">
 				<input type="submit" class="btn btn-primary" value="{tr}{$button_label}{/tr}">
 			</div>
 		</div>

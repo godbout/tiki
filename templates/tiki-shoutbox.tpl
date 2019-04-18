@@ -13,7 +13,7 @@
 	<h2>{tr}Change shoutbox general settings{/tr}</h2>
 	<form action="tiki-shoutbox.php" method="post">
 		<div class="form-check">
-			<label class="form-check-label col-md-offset-3">
+			<label class="form-check-label offset-md-3">
 				<input class="form-check-input" type="checkbox" name="shoutbox_autolink" value="on"{if $prefs.shoutbox_autolink eq 'y'} checked="checked"{/if}>
 				{tr}auto-link urls{/tr}
 			</label>
