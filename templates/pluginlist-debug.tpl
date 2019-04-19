@@ -1,5 +1,11 @@
+<ol> <b>List of returned objects</b>
+	{foreach from=$results item=result}
+		<li> <a href="{$result.url}" >{$result.title}</a>
+	{/foreach}
+</ol>
+
 {wiki}
-Various variables (see [https://doc.tiki.org/PluginList-advanced-output-control-block#Accessible_variables:])
+__Various variables__ (see [https://doc.tiki.org/PluginList-advanced-output-control-block#Accessible_variables:])
 ||
 __variable__ | __value__ | __meaning__
 $results | ''see below'' | containing the result set. Each results contain all values provided by the search query along with those requested manually.
@@ -12,12 +18,11 @@ $results->getEstimate() | {$results->getEstimate()} | which is the estimate of t
 ||
 {/wiki}
 
-Loop on contents of <code>$results</code>:
+<b>Loop on contents</b> of <code>$results</code>:
 <br><code>{literal}{foreach from=$results item=result}&lt;pre&gt;{$result|@debug_print_var}&lt;/pre&gt;&lt;hr&gt;{/foreach}{/literal}</code>
 {foreach from=$results item=result}
 <pre>
 {$result|@debug_print_var}
 </pre>
-<hr>
 {/foreach}
 
