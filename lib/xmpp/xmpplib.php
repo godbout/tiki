@@ -127,9 +127,6 @@ class XMPPLib extends TikiLib
 		if (empty($params['room'])) {
 			return;
 		}
-		// this is openfire specific
-
-		// this is openfire specific
 		$args = [
 			'broadcastPresenceRoles' => [
 				'moderator',
@@ -154,19 +151,41 @@ class XMPPLib extends TikiLib
 			$params['maxUsers'] = intval($params['maxUsers'], 10);
 		}
 
+		if (! empty($params['can_anyone_discover_jid'])) {
+			$args['canAnyoneDiscoverJID'] = ($params['can_anyone_discover_jid'] === 'anyone');
+		}
+
 		$args['naturalName'] = $args['roomName'];
 		$args['persistent'] = isset($params['persistent']) && $params['persistent'] === 'y';
 		$args['moderated'] = isset($params['moderated']) && $params['moderated'] === 'y';
 		$args['logEnabled'] = isset($params['archiving']) && $params['archiving'] === 'y';
+		$args['membersOnly'] = ! empty($params['visibility']) && $params['visibility'] === 'members_only';
 		$args['publicRoom'] = ! isset($params['secret']) || $params['secret'] !== 'y';
 
-		if ($this->create_room($args) && ! empty($params['groups'])) {
-			$groups = explode(',', $params['groups']);
+		if ($this->create_room($args) || $this->update_room($args)) {
+			if (! empty($params['groups'])) {
+				$groups = explode(',', $params['groups']);
 
-			foreach ($groups as $group) {
-				$this->add_group_to_room($args['roomName'], $group, 'members');
+				foreach ($groups as $group) {
+					$this->add_group_to_room($args['roomName'], $group, 'members');
+				}
 			}
 		}
+	}
+
+	function update_room($roomName, $args)
+	{
+		if (empty($args) || empty($roomName)) {
+			return;
+		}
+
+		if (isset($args['roomName'])) {
+			unset($args['roomName']);
+		}
+
+		$restapi = $this->initializeRestApi();
+		$return = $restapi->updateChatRoom($roomName, $args);
+		return $return;
 	}
 
 	function create_room($args)

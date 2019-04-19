@@ -53,17 +53,29 @@ function wikiplugin_xmpp_info()
 				'default' => '400px',
 				'filter' => 'imgsize',
 			],
-			'anonymous' => [
+			'visibility' => [
 				'required' => false,
-				'name' => tra('Anonymous'),
-				'description' => tra('Allow anonymous users'),
+				'name' => tra('Visibility'),
+				'description' => tra('This room is visible to anyone or only for members'),
 				'since' => 20,
 				'filter' => 'alpha',
-				'default' => 'n',
+				'default' => 'anonymous',
 				'options' => [
-					['text' => '', 'value' => ''],
-					['text' => tra('Yes'), 'value' => 'y'],
-					['text' => tra('No'), 'value' => 'n'],
+					['text' => tra('Members only'), 'value' => 'members_only'],
+					['text' => tra('Anonymous'), 'value' => 'anonymous'],
+				],
+			],
+			'can_anyone_discover_jid' => [
+				'required' => false,
+				'name' => tra('Show Real JIDs of Occupants to'),
+				'description' => tra('If just moderator or anyone else can fetch information about an occupant.')
+					. tra('If just "moderator", anonymous user will not be able to change their nicknames.'),
+				'since' => 20,
+				'filter' => 'alpha',
+				'default' => 'anyone',
+				'options' => [
+					['text' => tra('Anyone'), 'value' => 'anyone'],
+					['text' => tra('Moderator'), 'value' => 'moderator'],
 				],
 			],
 			'show_controlbox_by_default' => [
@@ -212,9 +224,11 @@ function wikiplugin_xmpp($data, $params)
 		$headerlib->cssfiles = [];
 		$headerlib->css = [];
 	}
+	$params['anonymous'] = $params['visibility'] === 'anonymous' ? 'y' : 'n';
 
 	$javascript = 'lib/jquery_tiki/wikiplugin-xmpp.js';
 	$headerlib->add_jsfile_late($javascript . '?_=' . filemtime(TIKI_PATH . "/$javascript"), false);
+
 	TikiLib::lib('xmpp')->render_xmpp_client($params);
 
 	$result .= $smarty->fetch('wiki-plugins/wikiplugin_xmpp.tpl');
