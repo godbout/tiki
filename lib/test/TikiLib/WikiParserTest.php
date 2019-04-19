@@ -33,6 +33,8 @@ class TikiLib_WikiParserTest extends PHPUnit_Framework_TestCase
 			['foo', "foo<br />"],
 			['---', "<hr />"],
 			['%%%', "<br /><br />"], // Line break (forced)
+			['%%%%%%', "<br /><br /><br />"], // Two line breaks (forced)
+			['%%% %%%', "<br /> <br /><br />"], // Two line breaks (forced) with a space in between
 			['bar: 100%%%%', "bar: 100%<br /><br />"], // Line break after 100% string at the end of the line
 
 			["''foo''", '<em>foo</em>' . "<br />"],
