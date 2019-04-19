@@ -8,7 +8,7 @@
 {/jq}
 <form action="tiki-admin.php?page=login" class="admin" method="post" name="LogForm" enctype="multipart/form-data">
 	{ticket}
-	<div class="t_navbar mb-4">
+	<div class="t_navbar mb-4 clearfix">
 		{button href="tiki-admingroups.php" _type="text" _class="btn btn-link tips" _icon_name="group" _text="{tr}Groups{/tr}" _title=":{tr}Group Administration{/tr}"}
 		{button href="tiki-adminusers.php" _type="text" _class="btn btn-link tips" _icon_name="user" _text="{tr}Users{/tr}" _title=":{tr}User Administration{/tr}"}
 		{permission_link mode=text label="{tr}Permissions{/tr}"}

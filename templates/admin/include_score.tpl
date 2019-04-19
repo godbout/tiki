@@ -2,7 +2,9 @@
 
 <form action="tiki-admin.php?page=score" method="post">
 	{ticket}
-	{include file='admin/include_apply_top.tpl'}
+	<div class="t_navbar mb-4 clearfix">
+		{include file='admin/include_apply_top.tpl'}
+	</div>
 
 	<fieldset class="table">
 		<legend>{tr}Activate the feature{/tr}</legend>

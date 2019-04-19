@@ -1,7 +1,10 @@
 {* $Id$ *}
 <form action="tiki-admin.php?page=intertiki" method="post" name="intertiki">
 	{ticket}
-	{include file='admin/include_apply_top.tpl'}
+	<div class="t_navbar mb-4 clearfix">
+		{include file='admin/include_apply_top.tpl'}
+	</div>
+
 	{tabset name="admin_interwiki"}
 		{tab name="{tr}Intertiki Client{/tr}"}
 			<em>{tr}Set up this Tiki site as the Intertiki client{/tr}</em><br><br>

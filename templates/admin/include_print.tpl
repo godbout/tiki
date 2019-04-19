@@ -1,7 +1,10 @@
 {* $Id$ *}
 <form action="tiki-admin.php?page=print" class="admin" method="post">
 	{ticket}
-	{include file='admin/include_apply_top.tpl'}
+	<div class="t_navbar mb-4 clearfix">
+		{include file='admin/include_apply_top.tpl'}
+	</div>
+
 	<fieldset>
 		<legend>{tr}PDF settings{/tr}</legend>
 		{preference name=print_pdf_from_url}

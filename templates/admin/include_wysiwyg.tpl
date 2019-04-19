@@ -2,7 +2,7 @@
 {remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}WYSIWYG means What You See Is What You Get, and is handled in Tiki by <a class="alert-link" href="http://ckeditor.com/">CKEditor</a>{/tr}.{/remarksbox}
 <form action="tiki-admin.php?page=wysiwyg" method="post" class="admin">
 	{ticket}
-	<div class="t_navbar mb-4">
+	<div class="t_navbar mb-4 clearfix">
 		<a role="button" class="btn btn-link" href="tiki-admin_toolbars.php" title="{tr}Toolbars{/tr}">
 			{icon name="settings"} {tr}Toolbars{/tr}
 		</a>
@@ -23,7 +23,7 @@
 			{preference name=wysiwyg_default}
 			{preference name=wysiwyg_memo}
 		</div>
-		
+
 		{preference name=wysiwyg_htmltowiki}
 		{preference name=wysiwyg_inline_editing}
 		{preference name=wysiwyg_toolbar_skin}

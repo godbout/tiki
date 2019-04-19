@@ -1,7 +1,7 @@
 {* $Id$ *}
 <form action="tiki-admin.php?page=workspace" method="post">
 	{ticket}
-	<div class="clearfix mb-4">
+	<div class="t_navbar mb-4 clearfix">
 		{if $prefs.workspace_ui eq "y"}
 			<a class="btn btn-info btn-sm" href="{service controller=workspace action=list_templates}" title="{tr}List{/tr}">
 				{icon name="list"} {tr}Workspace Templates{/tr}

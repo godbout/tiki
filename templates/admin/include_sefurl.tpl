@@ -4,7 +4,7 @@
 {/remarksbox}
 <form class="admin" method="post" action="tiki-admin.php?page=sefurl" role="form" class="form">
 	{ticket}
-	<div class="t_navbar clearfix">
+	<div class="t_navbar mb-4 clearfix">
 		{include file='admin/include_apply_top.tpl'}
 	</div>
 	<fieldset>
