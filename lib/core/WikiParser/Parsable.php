@@ -375,7 +375,7 @@ if ( \$('#$id') ) {
 		}
 
 		// linebreaks using %%%
-		$data = preg_replace("/\n?%%%/", "<br />", $data);
+		$data = preg_replace("/\n?(?<![^%]\d)%%%/", "<br />", $data);
 
 		// Close BiDi DIVs if any
 		for ($i = 0; $i < $bidiCount; $i++) {
