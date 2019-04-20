@@ -24,12 +24,25 @@ function wikiplugin_diagram_info()
 				'since' => '19.0',
 				'filter' => 'int',
 			],
+			'annotate' => [
+				'required' => false,
+				'name' => tr('annotate'),
+				'description' => tr('Id of the file in the file gallery. A image file to include in the diagram.'),
+				'since' => '20.0',
+				'filter' => 'int',
+			],
 		],
 	];
 
 	return $info;
 }
 
+/**
+ * @param $data
+ * @param $params
+ * @return string
+ * @throws Exception
+ */
 function wikiplugin_diagram($data, $params)
 {
 
@@ -49,14 +62,14 @@ function wikiplugin_diagram($data, $params)
 	$headerlib->add_css('.diagram hr {margin-top:0.5em;margin-bottom:0.5em}');
 
 	$fileId = isset($params['fileId']) ? intval($params['fileId']) : 0;
+	$annotate = isset($params['annotate']) ? intval($params['annotate']) : 0;
 
 	if ($fileId) {
-		$fileGalleryLib = TikiLib::lib('filegal');
-		$userLib = TikiLib::lib('user');
 		$file = \Tiki\FileGallery\File::id($fileId);
 		$data = $file->getContents();
 
 		if ($data === false) {
+			Feedback::error(tr("Tiki wasn't able to find the file with id %0.", $fileId));
 			return;
 		}
 	}
@@ -91,6 +104,22 @@ function wikiplugin_diagram($data, $params)
 				}
 			}
 
+			if ($annotate && $infoImg = loadImageAnnotate($annotate)) {
+				$data = <<<XML
+<mxGraphModel grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff">
+  <root>
+	<mxCell id="0"/>
+	<mxCell id="1" parent="0"/>
+	<mxCell id="2" value="" style="shape=image;imageAspect=0;aspect=fixed;verticalLabelPosition=bottom;verticalAlign=top;image={$infoImg['url']};imageBackground=none;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;connectable=0;" parent="1" vertex="1">
+	  <mxGeometry width="{$infoImg['imageSize'][0]}" height="{$infoImg['imageSize'][1]}" as="geometry"/>
+	</mxCell>
+  </root>
+</mxGraphModel>
+XML;
+				$data = preg_replace('/\s+/', ' ', $data);
+				$data = base64_encode($data);
+			}
+
 			return <<<EOF
 		~np~
 		<form id="newDiagram$diagramIndex" method="post" action="tiki-editdiagram.php">
@@ -101,6 +130,7 @@ function wikiplugin_diagram($data, $params)
 				</select>
 				<input type="hidden" name="newDiagram" value="1"/>
 				<input type="hidden" name="page" value="$page"/>
+				<input type="hidden" name="xml" value="$data"/>
 				<input type="hidden" name="index" value="$diagramIndex"/>
 			</p>
 		</form>
@@ -139,4 +169,50 @@ EOF;
 	$smarty->assign('file_name', $file->name);
 
 	return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl') . '~/np~';
+}
+
+/**
+ * Get info of the image to annotate on
+ *
+ * @param number $annotate
+ * @return array | false
+ * @throws SmartyException
+ */
+function loadImageAnnotate($annotate)
+{
+	global $user;
+
+	$userLib = TikiLib::lib('user');
+	$file = \Tiki\FileGallery\File::id($annotate);
+
+	$smarty = TikiLib::lib('smarty');
+	$smarty->loadPlugin('smarty_modifier_sefurl');
+	$url = smarty_modifier_sefurl($annotate, 'display');
+
+	if (! $file->exists() || ! $userLib->user_has_perm_on_object($user, $file->fileId, 'file', 'tiki_p_download_files')) {
+		Feedback::error(tr("Tiki wasn't able to find the file with id %0.", $annotate));
+		return false;
+	}
+
+	if (! preg_match('/^image\//', $file->filetype)) {
+		Feedback::error(tr("Selected file to annotate must be an image."));
+		return false;
+	}
+
+	if ($file->getWrapper()->isFileLocal()) {
+		$imageSize = getimagesize($file->getWrapper()->getReadableFile());
+	} else {
+		$data = $file->getContents();
+		$imageSize = getimagesize('data://text/plain;base64,' . base64_encode($data));
+	}
+
+	if (empty($imageSize)) {
+		Feedback::error(tr("Can not retrieve size from file %0", $annotate));
+		return false;
+	}
+
+	return [
+		'url' => $url,
+		'imageSize' => $imageSize
+	];
 }

@@ -9,10 +9,16 @@ $index = isset($_POST['index']) ? $_POST['index'] : null;
 $galleryId = isset($_REQUEST['galleryId']) ? $_REQUEST['galleryId'] : 0;
 $backLocation = '';
 
-$newDiagram = isset($_REQUEST['newDiagram']) ?: false;
-if ($newDiagram) {
-	$xmlContent = '<mxGraphModel dx="1190" dy="789" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/></root></mxGraphModel>';
+if ($xmlContent) {
+	$xmlContent = base64_decode($xmlContent);
+}
 
+$newDiagram = isset($_REQUEST['newDiagram']) ?: false;
+if ($newDiagram && ! $xmlContent) {
+	$xmlContent = '<mxGraphModel dx="1190" dy="789" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0"><root><mxCell id="0"/><mxCell id="1" parent="0"/></root></mxGraphModel>';
+}
+
+if ($newDiagram) {
 	$smarty = TikiLib::lib('smarty');
 	$smarty->loadPlugin('smarty_modifier_sefurl');
 	$backLocation = smarty_modifier_sefurl($page ?: $galleryId, $page ? 'wikipage' : 'filegallery');
@@ -41,7 +47,7 @@ if (empty($xmlContent)) {
 	exit();
 }
 
-$xmlDiagram = $newDiagram || $fileId ? $xmlContent : base64_decode($xmlContent);
+$xmlDiagram = $xmlContent;
 $access->setTicket();
 $ticket = $access->getTicket();
 
