@@ -2880,7 +2880,7 @@ class UsersLib extends TikiLib
 		}
 		$home = $this->best_multilingual_page($home);
 
-		if (! TikiLib::lib('tiki')->page_exists($home)) {
+		if (! TikiLib::lib('tiki')->page_exists($home) && $prefs['tikiIndex'] === 'tiki-index.php') {
 			$home = $prefs['wikiHomePage'];
 		}
 
