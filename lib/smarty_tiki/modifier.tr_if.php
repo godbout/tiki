@@ -16,10 +16,19 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 function smarty_modifier_tr_if($source)
 {
 	global $prefs;
+	$args = array_slice(func_get_args(), 1);
+
 	if ($prefs['language'] != 'en') {
 		include_once('lib/init/tra.php');
-		return tra($source);
+		return tra($source, '', false, $args);
 	} else {
-		return $source;
+		$replace = array_values($args);
+		$search = array_map(
+			function ($arg) {
+				return '%' . $arg;
+			},
+			array_keys($args)
+		);
+		return str_replace($search, $replace, $source);
 	}
 }
