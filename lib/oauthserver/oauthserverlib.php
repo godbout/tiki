@@ -1,4 +1,15 @@
 <?php
+// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
+//
+// All Rights Reserved. See copyright.txt for details and a complete list of authors.
+// Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
+// $Id$
+
+//this script may only be included - so its better to die if called directly.
+if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
+	header("location: index.php");
+	exit;
+}
 
 include dirname(__FILE__) . '/server/AuthorizationServer.php';
 include dirname(__FILE__) . '/responsetypes/BearerTokenResponse.php';
@@ -13,7 +24,7 @@ use \League\OAuth2\Server\Grant\AuthCodeGrant;
 use \League\OAuth2\Server\Grant\ClientCredentialsGrant;
 use \League\OAuth2\Server\Grant\ImplicitGrant;
 
-class OAuthServerLib extends TikiLib
+class OAuthServerLib extends \TikiLib
 {
 	private $server;
 
@@ -31,7 +42,7 @@ class OAuthServerLib extends TikiLib
 
 	public function getServer()
 	{
-		if(empty($this->server)) {
+		if (empty($this->server)) {
 			$this->server = new AuthorizationServer(
 				$this->getClientRepository(),
 				new AccessTokenRepository(),
@@ -55,7 +66,7 @@ class OAuthServerLib extends TikiLib
 		global $user;
 		$server = $this->getServer();
 
-		if (!empty($user)) {
+		if (! empty($user)) {
 			$server->enableGrantType(
 				new ImplicitGrant(new \DateInterval('PT1H'), '?')
 			);
@@ -78,11 +89,11 @@ class OAuthServerLib extends TikiLib
 	{
 		$repo = $this->getClientRepository();
 
-		if(empty($data['client_id'])){
+		if (empty($data['client_id'])) {
 			$data['client_id'] = $repo::generateSecret(32);
 		}
 
-		if(empty($data['client_secret'])){
+		if (empty($data['client_secret'])) {
 			$data['client_secret'] = $repo::generateSecret(64);
 		}
 

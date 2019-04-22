@@ -44,16 +44,16 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
 	{
 		$lib = new AuthTokens(TikiDb::get(), array());
 		$client_repo = new ClientRepository(TikiDb::get());
-	
+
 		$token = $lib->getToken($token);
-		if(empty($token)) {
+		if (empty($token)) {
 			return null;
 		}
 
 		$parameters = json_decode($token['parameters'], true);
 		$client = $client_repo->get($parameters['client']);
 
-		if(empty($client)) {
+		if (empty($client)) {
 			return null;
 		}
 
@@ -72,11 +72,11 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
 	{
 		$accessToken = new AccessTokenEntity();
 		$accessToken->setClient($clientEntity);
-	
+
 		foreach ($scopes as $scope) {
 			$accessToken->addScope($scope);
 		}
-	
+
 		$accessToken->setUserIdentifier($userIdentifier);
 		return $this->persistNewAccessToken($accessToken);
 	}

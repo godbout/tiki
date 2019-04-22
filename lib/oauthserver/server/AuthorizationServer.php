@@ -24,177 +24,177 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class AuthorizationServer implements EmitterAwareInterface
 {
-    use EmitterAwareTrait;
+	use EmitterAwareTrait;
 
-    /**
-     * @var GrantTypeInterface[]
-     */
-    protected $enabledGrantTypes = [];
+	/**
+	 * @var GrantTypeInterface[]
+	 */
+	protected $enabledGrantTypes = [];
 
-    /**
-     * @var DateInterval[]
-     */
-    protected $grantTypeAccessTokenTTL = [];
+	/**
+	 * @var DateInterval[]
+	 */
+	protected $grantTypeAccessTokenTTL = [];
 
-    /**
-     * @var ResponseTypeInterface
-     */
-    protected $responseType;
+	/**
+	 * @var ResponseTypeInterface
+	 */
+	protected $responseType;
 
-    /**
-     * @var ClientRepositoryInterface
-     */
-    private $clientRepository;
+	/**
+	 * @var ClientRepositoryInterface
+	 */
+	private $clientRepository;
 
-    /**
-     * @var AccessTokenRepositoryInterface
-     */
-    private $accessTokenRepository;
+	/**
+	 * @var AccessTokenRepositoryInterface
+	 */
+	private $accessTokenRepository;
 
-    /**
-     * @var ScopeRepositoryInterface
-     */
-    private $scopeRepository;
+	/**
+	 * @var ScopeRepositoryInterface
+	 */
+	private $scopeRepository;
 
-    /**
-     * @var string
-     */
-    private $defaultScope = '';
+	/**
+	 * @var string
+	 */
+	private $defaultScope = '';
 
-    /**
-     * New server instance.
-     *
-     * @param ClientRepositoryInterface      $clientRepository
-     * @param AccessTokenRepositoryInterface $accessTokenRepository
-     * @param ScopeRepositoryInterface       $scopeRepository
-     * @param null|ResponseTypeInterface     $responseType
-     */
-    public function __construct(
-        ClientRepositoryInterface $clientRepository,
-        AccessTokenRepositoryInterface $accessTokenRepository,
-        ScopeRepositoryInterface $scopeRepository,
-        ResponseTypeInterface $responseType = null
-    ) {
-        $this->clientRepository = $clientRepository;
-        $this->accessTokenRepository = $accessTokenRepository;
-        $this->scopeRepository = $scopeRepository;
+	/**
+	 * New server instance.
+	 *
+	 * @param ClientRepositoryInterface      $clientRepository
+	 * @param AccessTokenRepositoryInterface $accessTokenRepository
+	 * @param ScopeRepositoryInterface       $scopeRepository
+	 * @param null|ResponseTypeInterface     $responseType
+	 */
+	public function __construct(
+		ClientRepositoryInterface $clientRepository,
+		AccessTokenRepositoryInterface $accessTokenRepository,
+		ScopeRepositoryInterface $scopeRepository,
+		ResponseTypeInterface $responseType = null
+	) {
+		$this->clientRepository = $clientRepository;
+		$this->accessTokenRepository = $accessTokenRepository;
+		$this->scopeRepository = $scopeRepository;
 
-        if ($responseType === null) {
-            $responseType = new BearerTokenResponse();
-        } else {
-            $responseType = clone $responseType;
-        }
+		if ($responseType === null) {
+			$responseType = new BearerTokenResponse();
+		} else {
+			$responseType = clone $responseType;
+		}
 
-        $this->responseType = $responseType;
-    }
+		$this->responseType = $responseType;
+	}
 
-    /**
-     * Enable a grant type on the server.
-     *
-     * @param GrantTypeInterface $grantType
-     * @param null|DateInterval  $accessTokenTTL
-     */
-    public function enableGrantType(GrantTypeInterface $grantType, DateInterval $accessTokenTTL = null)
-    {
-        if ($accessTokenTTL instanceof DateInterval === false) {
-            $accessTokenTTL = new DateInterval('PT1H');
-        }
+	/**
+	 * Enable a grant type on the server.
+	 *
+	 * @param GrantTypeInterface $grantType
+	 * @param null|DateInterval  $accessTokenTTL
+	 */
+	public function enableGrantType(GrantTypeInterface $grantType, DateInterval $accessTokenTTL = null)
+	{
+		if ($accessTokenTTL instanceof DateInterval === false) {
+			$accessTokenTTL = new DateInterval('PT1H');
+		}
 
-        $grantType->setAccessTokenRepository($this->accessTokenRepository);
-        $grantType->setClientRepository($this->clientRepository);
-        $grantType->setScopeRepository($this->scopeRepository);
-        $grantType->setDefaultScope($this->defaultScope);
-        $grantType->setEmitter($this->getEmitter());
+		$grantType->setAccessTokenRepository($this->accessTokenRepository);
+		$grantType->setClientRepository($this->clientRepository);
+		$grantType->setScopeRepository($this->scopeRepository);
+		$grantType->setDefaultScope($this->defaultScope);
+		$grantType->setEmitter($this->getEmitter());
 
-        $this->enabledGrantTypes[$grantType->getIdentifier()] = $grantType;
-        $this->grantTypeAccessTokenTTL[$grantType->getIdentifier()] = $accessTokenTTL;
-    }
+		$this->enabledGrantTypes[$grantType->getIdentifier()] = $grantType;
+		$this->grantTypeAccessTokenTTL[$grantType->getIdentifier()] = $accessTokenTTL;
+	}
 
-    /**
-     * Validate an authorization request
-     *
-     * @param ServerRequestInterface $request
-     *
-     * @throws OAuthServerException
-     *
-     * @return AuthorizationRequest
-     */
-    public function validateAuthorizationRequest(ServerRequestInterface $request)
-    {
-        foreach ($this->enabledGrantTypes as $grantType) {
-            if ($grantType->canRespondToAuthorizationRequest($request)) {
-                return $grantType->validateAuthorizationRequest($request);
-            }
-        }
+	/**
+	 * Validate an authorization request
+	 *
+	 * @param ServerRequestInterface $request
+	 *
+	 * @throws OAuthServerException
+	 *
+	 * @return AuthorizationRequest
+	 */
+	public function validateAuthorizationRequest(ServerRequestInterface $request)
+	{
+		foreach ($this->enabledGrantTypes as $grantType) {
+			if ($grantType->canRespondToAuthorizationRequest($request)) {
+				return $grantType->validateAuthorizationRequest($request);
+			}
+		}
 
-        throw OAuthServerException::unsupportedGrantType();
-    }
+		throw OAuthServerException::unsupportedGrantType();
+	}
 
-    /**
-     * Complete an authorization request
-     *
-     * @param AuthorizationRequest $authRequest
-     * @param ResponseInterface    $response
-     *
-     * @return ResponseInterface
-     */
-    public function completeAuthorizationRequest(AuthorizationRequest $authRequest, ResponseInterface $response)
-    {
-        return $this->enabledGrantTypes[$authRequest->getGrantTypeId()]
-            ->completeAuthorizationRequest($authRequest)
-            ->generateHttpResponse($response);
-    }
+	/**
+	 * Complete an authorization request
+	 *
+	 * @param AuthorizationRequest $authRequest
+	 * @param ResponseInterface    $response
+	 *
+	 * @return ResponseInterface
+	 */
+	public function completeAuthorizationRequest(AuthorizationRequest $authRequest, ResponseInterface $response)
+	{
+		return $this->enabledGrantTypes[$authRequest->getGrantTypeId()]
+			->completeAuthorizationRequest($authRequest)
+			->generateHttpResponse($response);
+	}
 
-    /**
-     * Return an access token response.
-     *
-     * @param ServerRequestInterface $request
-     * @param ResponseInterface      $response
-     *
-     * @throws OAuthServerException
-     *
-     * @return ResponseInterface
-     */
-    public function respondToAccessTokenRequest(ServerRequestInterface $request, ResponseInterface $response)
-    {
-        foreach ($this->enabledGrantTypes as $grantType) {
-            if (!$grantType->canRespondToAccessTokenRequest($request)) {
-                continue;
-            }
-            $tokenResponse = $grantType->respondToAccessTokenRequest(
-                $request,
-                $this->getResponseType(),
-                $this->grantTypeAccessTokenTTL[$grantType->getIdentifier()]
-            );
+	/**
+	 * Return an access token response.
+	 *
+	 * @param ServerRequestInterface $request
+	 * @param ResponseInterface      $response
+	 *
+	 * @throws OAuthServerException
+	 *
+	 * @return ResponseInterface
+	 */
+	public function respondToAccessTokenRequest(ServerRequestInterface $request, ResponseInterface $response)
+	{
+		foreach ($this->enabledGrantTypes as $grantType) {
+			if (! $grantType->canRespondToAccessTokenRequest($request)) {
+				continue;
+			}
+			$tokenResponse = $grantType->respondToAccessTokenRequest(
+				$request,
+				$this->getResponseType(),
+				$this->grantTypeAccessTokenTTL[$grantType->getIdentifier()]
+			);
 
-            if ($tokenResponse instanceof ResponseTypeInterface) {
-                return $tokenResponse->generateHttpResponse($response);
-            }
-        }
+			if ($tokenResponse instanceof ResponseTypeInterface) {
+				return $tokenResponse->generateHttpResponse($response);
+			}
+		}
 
-        throw OAuthServerException::unsupportedGrantType();
-    }
+		throw OAuthServerException::unsupportedGrantType();
+	}
 
-    /**
-     * Get the token type that grants will return in the HTTP response.
-     *
-     * @return ResponseTypeInterface
-     */
-    protected function getResponseType()
-    {
-        $responseType = clone $this->responseType;
-        $responseType->setEncryptionKey($this->encryptionKey);
+	/**
+	 * Get the token type that grants will return in the HTTP response.
+	 *
+	 * @return ResponseTypeInterface
+	 */
+	protected function getResponseType()
+	{
+		$responseType = clone $this->responseType;
+		$responseType->setEncryptionKey($this->encryptionKey);
 
-        return $responseType;
-    }
+		return $responseType;
+	}
 
-    /**
-     * Set the default scope for the authorization server.
-     *
-     * @param string $defaultScope
-     */
-    public function setDefaultScope($defaultScope)
-    {
-        $this->defaultScope = $defaultScope;
-    }
+	/**
+	 * Set the default scope for the authorization server.
+	 *
+	 * @param string $defaultScope
+	 */
+	public function setDefaultScope($defaultScope)
+	{
+		$this->defaultScope = $defaultScope;
+	}
 }

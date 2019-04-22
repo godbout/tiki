@@ -6,7 +6,7 @@ class ClientRepository implements ClientRepositoryInterface
 {
 	const TABLE = 'tiki_oauthserver_clients';
 	private $database;
- 
+
 	public function __construct($database)
 	{
 		$this->database = $database;
@@ -22,21 +22,21 @@ class ClientRepository implements ClientRepositoryInterface
 		$result = array();
 		$sql = $this->database->query('SELECT * FROM ' . self::TABLE);
 
-		if($sql && $sql->result) {
+		if ($sql && $sql->result) {
 			$result = array_map([ClientEntity, 'build'], $sql->result);
 		}
 
 		return $result;
 	}
 
-	public function get($value, $key='client_id')
+	public function get($value, $key = 'client_id')
 	{
 		$result = null;
 		$sql = 'SELECT * FROM `%s` WHERE %s=?';
 		$sql = sprintf($sql, self::TABLE, $key);
 
 		$query = $this->database->query($sql, [$value]);
-		if($query && $query->result) {
+		if ($query && $query->result) {
 			$result = new ClientEntity($query->result[0]);
 		}
 
@@ -45,7 +45,7 @@ class ClientRepository implements ClientRepositoryInterface
 
 	public function update($entity)
 	{
-		if ( !empty($this->validate($entity)) ) {
+		if (! empty($this->validate($entity))) {
 			throw new Exception(tra('Cannot save invalid client'));
 		}
 
@@ -65,7 +65,7 @@ class ClientRepository implements ClientRepositoryInterface
 
 	public function create($entity)
 	{
-		if ( !empty($this->validate($entity)) ) {
+		if (! empty($this->validate($entity))) {
 			throw new Exception(tra('Cannot save invalid client'));
 		}
 
@@ -87,7 +87,7 @@ class ClientRepository implements ClientRepositoryInterface
 
 	public function save($entity)
 	{
-		if($entity->getId()) {
+		if ($entity->getId()) {
 			return $entity->update();
 		}
 		return $entity->create();
@@ -98,11 +98,10 @@ class ClientRepository implements ClientRepositoryInterface
 		$params = [];
 		$sql = sprintf('DELETE FROM `%s` WHERE ', self::TABLE);
 
-		if($entity->getId()) {
+		if ($entity->getId()) {
 			$sql .= 'id=?';
 			$params[] = $entity->getId();
-		}
-		elseif ($entity->getClientId()) {
+		} elseif ($entity->getClientId()) {
 			$sql .= 'client_id=?';
 			$params[] = $entity->getClientId();
 		}
@@ -111,7 +110,7 @@ class ClientRepository implements ClientRepositoryInterface
 		if (empty($params)) {
 			return false;
 		}
-	
+
 		return $this->database->query($sql, $params);
 	}
 
@@ -120,11 +119,10 @@ class ClientRepository implements ClientRepositoryInterface
 		$params = [];
 		$sql = sprintf('SELECT COUNT(1) AS count FROM `%s` WHERE ', self::TABLE);
 
-		if($entity->getId()) {
+		if ($entity->getId()) {
 			$sql .= 'id=?';
 			$params[] = $entity->getId();
-		}
-		elseif ($entity->getClientId()) {
+		} elseif ($entity->getClientId()) {
 			$sql .= 'client_id=?';
 			$params[] = $entity->getClientId();
 		}
@@ -149,8 +147,7 @@ class ClientRepository implements ClientRepositoryInterface
 
 		if (empty($entity->getRedirectUri())) {
 			$errors['redirect_uri'] = tra('Redirect URI cannot be empty');
-
-		} else if (!filter_var($entity->getRedirectUri(),FILTER_VALIDATE_URL)) {
+		} else if (! filter_var($entity->getRedirectUri(), FILTER_VALIDATE_URL)) {
 			$errors['redirect_uri'] = tra('Invalid URL for redirect URI');
 		}
 
@@ -169,7 +166,7 @@ class ClientRepository implements ClientRepositoryInterface
 		return $client;
 	}
 
-	public static function generateSecret($length=32)
+	public static function generateSecret($length = 32)
 	{
 		$random = \phpseclib\Crypt\Random::string(ceil($length / 2));
 		$random = bin2hex($random);

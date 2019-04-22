@@ -11,29 +11,25 @@ use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
 
 class AccessTokenEntity implements AccessTokenEntityInterface
 {
-    use AccessTokenTrait, TokenEntityTrait, EntityTrait;
+	use AccessTokenTrait, TokenEntityTrait, EntityTrait;
 
-    public function convertToJWT(CryptKey $privateKey=null)
-    {
-        $token = (new Builder())
-            ->setAudience($this->getClient()->getIdentifier())
-            ->setId($this->getIdentifier(), true)
-            ->setIssuedAt(time())
-            ->setNotBefore(time())
-            ->setExpiration($this->getExpiryDateTime()->getTimestamp())
-            ->setSubject($this->getUserIdentifier())
-            ->set('scopes', $this->getScopes());
+	public function convertToJWT(CryptKey $privateKey = null)
+	{
+		$token = (new Builder())
+			->setAudience($this->getClient()->getIdentifier())
+			->setId($this->getIdentifier(), true)
+			->setIssuedAt(time())
+			->setNotBefore(time())
+			->setExpiration($this->getExpiryDateTime()->getTimestamp())
+			->setSubject($this->getUserIdentifier())
+			->set('scopes', $this->getScopes());
 
-        if(is_null($privateKey))
-        {
-            $token->sign(new HMACSHA256(), $this->getClient()->getClientSecret());
-        }
-        else
-        {
-            $token->sign(new RSASHA256(), new Key($privateKey->getKeyPath(), $privateKey->getPassPhrase()));
-        }
+		if (is_null($privateKey)) {
+			$token->sign(new HMACSHA256(), $this->getClient()->getClientSecret());
+		} else {
+			$token->sign(new RSASHA256(), new Key($privateKey->getKeyPath(), $privateKey->getPassPhrase()));
+		}
 
-        return $token->getToken();
-    }
-
+		return $token->getToken();
+	}
 }
