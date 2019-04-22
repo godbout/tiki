@@ -40,7 +40,7 @@ class ClientEntity implements ClientEntityInterface
 		$this->id = (int) $id;
 		return $this;
 	}
-	
+
 	public function getId(){
 		return $this->id;
 	}

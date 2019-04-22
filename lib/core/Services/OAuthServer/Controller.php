@@ -27,22 +27,93 @@ class Services_OAuthServer_Controller
 	 */
 	function action_authorize($request)
 	{
+		$accesslib = TikiLib::lib('access');
 		$oauthserverlib = TikiLib::lib('oauthserver');
+		$oauthserverlib->determineServerGrant();
+		$csrfOk = $accesslib->checkTicket();
 
-		$server = $oauthserverlib
-			->determineServerGrant()
-			->getServer();
-
+		$server = $oauthserverlib->getServer();
 		$userEntity = $oauthserverlib->getUserEntity();
+
+		foreach ($request as $key => $value) {
+			if (empty($value)) {
+				unset($request[$key]);
+			}
+		}
+
 		$request = Helpers::tiki2Psr7Request($request);
 
 		$authRequest = $server->validateAuthorizationRequest($request);
 		$authRequest->setUser($userEntity);
+
 		$authRequest->setAuthorizationApproved(true);
 
 		$response = new JsonResponse();
 		$response = $server->completeAuthorizationRequest($authRequest, $response);
 		Helpers::processPsr7Response($response);
+	}
+
+	function action_consent($request)
+	{
+		global $user;
+
+		$params = $request->getQueryParams();
+		$oauthserverlib = TikiLib::lib('oauthserver');
+		$accesslib = TikiLib::lib('access');
+		$servicelib = TikiLib::lib('service');
+		$form = array();
+
+		if (empty($user)) {
+			unset($_SESSION['loginfrom']);
+			$_SESSION['loginfrom'] = $servicelib->getUrl($params);
+			$accesslib->redirect('tiki-login_scr.php');
+			exit;
+		}
+
+		if (empty($params['response_type'])) {
+			header('400 Bad Request');
+			throw new Services_Exception_NotAvailable(tr('Missing %0 parameter', 'response_type'));
+		}
+		$form['response_type'] = $params['response_type'];
+
+		if (empty($params['client_id'])) {
+			header('400 Bad Request');
+			throw new Services_Exception_NotAvailable(tr('Missing %0 parameter', 'client_id'));
+		}
+		$client = $oauthserverlib->getClient($params['client_id']);
+
+		if (empty($client)) {
+			header('400 Bad Request');
+			throw new Services_Exception_NotAvailable(tr('Not Found'));
+		}
+
+		$form['redirect_uri'] = $client->getRedirectUri();
+		if (! empty('redirect_uri')) {
+			$form['redirect_uri'] = $params['redirect_uri'];
+		}
+
+		$form['scope'] = '';
+		if (! empty('scope')) {
+			$form['scope'] = $params['scope'];
+		}
+
+		$form = array_map('htmlspecialchars', $form);
+
+		$smarty = TikiLib::lib('smarty');
+		$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
+		$smarty->assign('authorize_url', $servicelib->getUrl([
+			'action' => 'authorize',
+			'controller' => 'oauthserver',
+			'response_type' => 'code'
+		]));
+		$smarty->assign('response_type', $form['response_type']);
+		$smarty->assign('client', $client);
+		$smarty->assign('redirect_uri', $form['redirect_uri']);
+		$smarty->assign('scope', $form['scope']);
+
+		$smarty->assign('mid', 'oauthserver/consent.tpl');
+		$smarty->display("tiki.tpl");
+		exit;
 	}
 
 	function action_client_modify($request)

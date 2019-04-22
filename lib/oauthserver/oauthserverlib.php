@@ -11,17 +11,16 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
-include dirname(__FILE__) . '/server/AuthorizationServer.php';
-include dirname(__FILE__) . '/responsetypes/BearerTokenResponse.php';
-include dirname(__FILE__) . '/repositories/ClientRepository.php';
-include dirname(__FILE__) . '/repositories/AccessTokenRepository.php';
-include dirname(__FILE__) . '/repositories/ScopeRepository.php';
-include dirname(__FILE__) . '/repositories/RefreshTokenRepository.php';
-include dirname(__FILE__) . '/repositories/AuthCodeRepository.php';
 include dirname(__FILE__) . '/entities/UserEntity.php';
+include dirname(__FILE__) . '/repositories/AccessTokenRepository.php';
+include dirname(__FILE__) . '/repositories/AuthCodeRepository.php';
+include dirname(__FILE__) . '/repositories/ClientRepository.php';
+include dirname(__FILE__) . '/repositories/RefreshTokenRepository.php';
+include dirname(__FILE__) . '/repositories/ScopeRepository.php';
+include dirname(__FILE__) . '/responsetypes/BearerTokenResponse.php';
+include dirname(__FILE__) . '/server/AuthorizationServer.php';
 
 use \League\OAuth2\Server\Grant\AuthCodeGrant;
-use \League\OAuth2\Server\Grant\ClientCredentialsGrant;
 use \League\OAuth2\Server\Grant\ImplicitGrant;
 
 class OAuthServerLib extends \TikiLib
@@ -47,7 +46,8 @@ class OAuthServerLib extends \TikiLib
 				$this->getClientRepository(),
 				new AccessTokenRepository(),
 				new ScopeRepository(),
-				new BearerTokenResponse()
+				new BearerTokenResponse(),
+				md5('fabio')
 			);
 		}
 		return $this->server;
@@ -67,15 +67,17 @@ class OAuthServerLib extends \TikiLib
 		$server = $this->getServer();
 
 		if (! empty($user)) {
-			$server->enableGrantType(
-				new ImplicitGrant(new \DateInterval('PT1H'), '?')
-			);
+			$grant = new ImplicitGrant(new \DateInterval('PT1H'), '?');
+			$server->enableGrantType($grant);
 		}
 
-		$server->enableGrantType(
-			new ClientCredentialsGrant(),
-			new \DateInterval('PT1H')
+		$grant = new AuthCodeGrant(
+			new AuthCodeRepository(),
+			new RefreshTokenRepository(),
+			new \DateInterval('PT10M')
 		);
+		$grant->setRefreshTokenTTL(new \DateInterval('P1M'));
+		$server->enableGrantType($grant);
 
 		return $this;
 	}

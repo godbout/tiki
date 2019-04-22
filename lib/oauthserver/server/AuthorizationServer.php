@@ -73,11 +73,14 @@ class AuthorizationServer implements EmitterAwareInterface
 		ClientRepositoryInterface $clientRepository,
 		AccessTokenRepositoryInterface $accessTokenRepository,
 		ScopeRepositoryInterface $scopeRepository,
-		ResponseTypeInterface $responseType = null
+		ResponseTypeInterface $responseType = null,
+		$encryptionKey = ''
 	) {
 		$this->clientRepository = $clientRepository;
 		$this->accessTokenRepository = $accessTokenRepository;
 		$this->scopeRepository = $scopeRepository;
+
+		$this->encryptionKey = $encryptionKey;
 
 		if ($responseType === null) {
 			$responseType = new BearerTokenResponse();
@@ -105,6 +108,7 @@ class AuthorizationServer implements EmitterAwareInterface
 		$grantType->setScopeRepository($this->scopeRepository);
 		$grantType->setDefaultScope($this->defaultScope);
 		$grantType->setEmitter($this->getEmitter());
+		$grantType->setEncryptionKey($this->encryptionKey);
 
 		$this->enabledGrantTypes[$grantType->getIdentifier()] = $grantType;
 		$this->grantTypeAccessTokenTTL[$grantType->getIdentifier()] = $accessTokenTTL;
