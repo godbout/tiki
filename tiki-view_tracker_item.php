@@ -320,7 +320,7 @@ if (! $itemObject->canView()) {
 	die;
 }
 if (isset($tracker_info['adminOnlyViewEditItem']) && $tracker_info['adminOnlyViewEditItem'] === 'y') {
-	$access->check_permission('tiki_p_admin_trackers', tra('Admin this tracker'), 'tracker', $tracker_info['trackerId']);
+	$access->check_permission('tiki_p_admin_trackers', tra('This tracker restricts access to the built-in tracker interfaces. You need admin tracker permission'), 'tracker', $tracker_info['trackerId']);
 }
 
 include_once('tiki-sefurl.php');
