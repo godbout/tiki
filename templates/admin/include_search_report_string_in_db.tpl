@@ -150,7 +150,7 @@
 						{/if}
 					{elseif $row['objectType']=='wiki page'}
 						{if ($column=='objectType' || $column=='data' || $column=='object')}
-							<td><a href="{$row['object']|sefUrl:wiki}?threadId={$row['threadId']|escape:"url"}&comzone=show#threadId{$row['threadId']|escape:"url"}" class="link tips" title="{$row['object']|escape}: {tr}View page{/tr}" target="_blank">{$value}</a></td>
+							<td><a href="{$row['object']|sefurl}?threadId={$row['threadId']|escape:"url"}&comzone=show#threadId{$row['threadId']|escape:"url"}" class="link tips" title="{$row['object']|escape}: {tr}View page{/tr}" target="_blank">{$value}</a></td>
 						{else}
 							<td>{$value}</td>
 						{/if}
