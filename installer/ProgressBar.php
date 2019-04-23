@@ -9,7 +9,7 @@ class ProgressBar implements SplObserver
 		$this->generateModal();
 	}
 
-	public function update($installer)
+	public function update(SplSubject $installer)
 	{
 		$queries = $installer->queries;
 		$this->updateProgressBar($queries['executed'], $queries['total'] ?: 1);
