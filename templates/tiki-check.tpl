@@ -392,16 +392,24 @@
 	</div>
 {/if}
 
+<a name="bomscanner"></a>
 <h2>{tr}BOM Detected Files{/tr}</h2>
-<p>{tr}Scanned files:{/tr} {$bom_total_files_scanned}</p>
-<p>{tr}BOM files detected:{/tr}</p>
-<ul>
-	{foreach from=$bom_detected_files item=file}
-		<li>
-			{$file}
-		</li>
-	{/foreach}
-</ul>
+<a href="tiki-check.php?bomscanner=run&ts={$smarty.now}#bomscanner" class="btn btn-primary btn-sm" style="margin-bottom: 10px;">{tr}Check{/tr}</a>
+{if $bomscanner}
+	<p>{tr}Scanned files:{/tr} {$bom_total_files_scanned}</p>
+	{if ! empty($bom_detected_files)}
+		<p>{tr}BOM files detected:{/tr}</p>
+		<ul>
+			{foreach from=$bom_detected_files item=file}
+				<li>
+					{$file}
+				</li>
+			{/foreach}
+		</ul>
+	{else}
+		<p><span class="icon icon-information fas fa-info-circle fa-fw"></span>&nbsp;{tr}No BOM files detected{/tr}</p>
+	{/if}
+{/if}
 
 <h2>{tr}TRIM{/tr}</h2>
 {tr}For more detailed information about Tiki Remote Instance Manager please check <a href="https://doc.tiki.org/TRIM">doc.tiki.org</a>{/tr}.
