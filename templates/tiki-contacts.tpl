@@ -148,7 +148,7 @@
 					</td>
 					<td class="email">
 						{if $prefs.feature_webmail eq 'y'}
-							{self_link _script='tiki-webmail.php' locSection='compose' to=$channels[user].email}{$channels[user].email}{/self_link}
+							{self_link _script='tiki-webmail.php' page='compose' compose_to=$channels[user].email}{$channels[user].email}{/self_link}
 						{else}
 							<a class="link" href="mailto:{$channels[user].email}">{$channels[user].email}</a>
 						{/if}
