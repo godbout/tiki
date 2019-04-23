@@ -1162,6 +1162,21 @@ if ($s) {
 	);
 }
 
+$s = extension_loaded('redis');
+if ($s) {
+	$php_properties['redis'] = array(
+		'fitness' => tra('good'),
+		'setting' => 'Loaded',
+		'message' => tra('This extension can be used to speed up Tiki by saving wiki and forum data on a redis server.')
+	);
+} else {
+	$php_properties['redis'] = array(
+		'fitness' => tra('info'),
+		'setting' => 'Not available',
+		'message' => tra('This extension can be used to speed up Tiki by saving wiki and forum data on a redis server.')
+	);
+}
+
 $s = extension_loaded('ssh2');
 if ($s) {
 	$php_properties['SSH2'] = array(
