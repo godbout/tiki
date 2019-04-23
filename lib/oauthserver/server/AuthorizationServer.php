@@ -165,10 +165,12 @@ class AuthorizationServer implements EmitterAwareInterface
 			if (! $grantType->canRespondToAccessTokenRequest($request)) {
 				continue;
 			}
+			$response_type = $this->getResponseType();
+			$grant_identifier = $grantType->getIdentifier();
 			$tokenResponse = $grantType->respondToAccessTokenRequest(
 				$request,
-				$this->getResponseType(),
-				$this->grantTypeAccessTokenTTL[$grantType->getIdentifier()]
+				$response_type,
+				$this->grantTypeAccessTokenTTL[$grant_identifier]
 			);
 
 			if ($tokenResponse instanceof ResponseTypeInterface) {

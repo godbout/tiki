@@ -25,7 +25,7 @@ class Helpers
 		return $serverRequest
 			->withCookieParams($_COOKIE)
 			->withQueryParams($tikireq->getStored())
-			->withParsedBody($_POST)
+			->withParsedBody($tikireq->getStored())
 			->withUploadedFiles(ServerRequest::normalizeFiles($_FILES));
 	}
 

@@ -21,26 +21,55 @@ class Services_OAuthServer_Controller
 	 */
 
 	/**
-	 * Attempt to validate client app request for authorization. On success,
-	 * it redirect client to an URL with access_token or authorization_code
-	 * informed in querystring
+	 * It return an access_token in Implicit Grant flow or an authorization
+	 * code for other grants. The authorizations code should be use to get
+	 * the access token in action_access_token method.
+	 *
+	 * On AuthCode grant method, it may throw an exception in case
+	 * of wrong CSRF token.
+	 *
+	 * Other flows different than ImplicitGrant and AuthCodeGrant are not yet
+	 * supported and will raise an exception.
+	 *
+	 * @param JitFilter $request
+	 * @return void
 	 */
 	function action_authorize($request)
 	{
 		$accesslib = TikiLib::lib('access');
 		$oauthserverlib = TikiLib::lib('oauthserver');
-		$oauthserverlib->determineServerGrant();
+		$servicelib = TikiLib::lib('service');
 		$csrfOk = $accesslib->checkTicket();
+		$params = $request->getStored();
 
+		if ($params['response_type'] === 'code') {
+			if (empty($user)) {
+				$params['action'] = 'consent';
+				$consent_url = $servicelib->getUrl($params);
+				$accesslib->redirect($consent_url);
+				exit;
+			}
+
+			if (! $csrfOk) {
+				throw new Services_Exception_NotAvailable(
+					tr('"Potential cross-site request forgery (CSRF) detected. Operation blocked. Reloading the page may help"')
+				);
+				exit;
+			}
+		}
+
+		$oauthserverlib->determineServerGrant();
 		$server = $oauthserverlib->getServer();
 		$userEntity = $oauthserverlib->getUserEntity();
 
+		// The oauth library give the default for "not set" info
 		foreach ($request as $key => $value) {
 			if (empty($value)) {
 				unset($request[$key]);
 			}
 		}
 
+		$params = $request->getStored();
 		$request = Helpers::tiki2Psr7Request($request);
 
 		$authRequest = $server->validateAuthorizationRequest($request);
@@ -50,6 +79,20 @@ class Services_OAuthServer_Controller
 
 		$response = new JsonResponse();
 		$response = $server->completeAuthorizationRequest($authRequest, $response);
+		Helpers::processPsr7Response($response);
+	}
+
+	function action_access_token($request)
+	{
+		$accesslib = TikiLib::lib('access');
+		$oauthserverlib = TikiLib::lib('oauthserver');
+		$oauthserverlib->determineServerGrant();
+
+		$request = Helpers::tiki2Psr7Request($request);
+		$response = new JsonResponse();
+
+		$server = $oauthserverlib->getServer();
+		$server->respondToAccessTokenRequest($request, $response);
 		Helpers::processPsr7Response($response);
 	}
 
