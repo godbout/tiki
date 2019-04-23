@@ -11,6 +11,7 @@ use Tiki\FileGallery\File;
 
 abstract class Manipulator
 {
+	/** @var File */
 	protected $file;
 
 	function __construct(File $file)

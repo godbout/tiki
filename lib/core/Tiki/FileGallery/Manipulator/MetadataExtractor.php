@@ -22,7 +22,7 @@ class MetadataExtractor extends Manipulator
 		$file->setParam('metadata', $metadata);
 
 		if ($file->name === $file->filename) {
-			$name = $this->getTitleFromFilename($file->name);
+			$name = TikiLib::lib('filegal')::getTitleFromFilename($file->name);
 		} else {
 			$name = $file->name;
 		}
@@ -57,19 +57,6 @@ class MetadataExtractor extends Manipulator
 			}
 		}
 		$file->setParam('ocr_state', $ocr_state);
-	}
-
-	private function getTitleFromFilename($title)
-	{
-		if (strpos($title, '.zip') !== strlen($title) - 4) {
-			$title = preg_replace('/\.[^\.]*$/', '', $title); // remove extension
-			$title = preg_replace('/[\-_]+/', ' ', $title); // turn _ etc into spaces
-			$title = ucwords($title);
-		}
-		if (strlen($title) > 200) {       // trim to length of name column in database
-			$title = substr($title, 0, 200);
-		}
-		return $title;
 	}
 
 	private function truncateFilename($filename)
