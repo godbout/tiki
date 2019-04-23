@@ -575,6 +575,10 @@ div.unseen, .unseen .subject { font-weight: 700; }
 .mobile .shortcut_table th { padding-left: 10px; }
 .mobile .shortcut_table { padding-right: 10px; }
 .dynamic_service_select { margin-top: 10px; margin-bottom: 10px; width: 160px !important; margin-left: 20px; }
-.action_col {
+.groupmail .from_col {
+  width: 20%;
+}
+
+.groupmail .action_col {
   width: 80px;
 }

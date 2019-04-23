@@ -146,11 +146,6 @@ class Hm_Handler_take_groupmail extends Hm_Handler_Module {
         $tikilib = TikiLib::lib('tiki');
         $trklib = TikiLib::lib('trk');
 
-        // $accountid = isset($module_params["accountid"]) ? $module_params['accountid'] : 0;
-        // $ls = $webmaillib->refresh_mailbox($user, $accountid, false);
-        // $cont = $webmaillib->get_mail_content($user, $accountid, $msgId);
-        // $acc = $webmaillib->get_webmail_account($user, $accountid);
-
         // make tracker item
         $from       = $msg_headers['From'];
         $subject    = $msg_headers['Subject'];
@@ -164,7 +159,7 @@ class Hm_Handler_take_groupmail extends Hm_Handler_Module {
         // check if already taken
         $itemid = $trklib->get_item_id($this->get('trackerId'), $this->get('messageFId'), $realmsgid);
         if ($itemid > 0) {
-            $this->out('error', 'Sorry, that mail has been taken by another operator.');
+            Hm_Msgs::add('ERR'.tr('Sorry, that mail has been taken by another operator.'));
             return;
         } else {
             $charset = $prefs['default_mail_charset'];
@@ -239,6 +234,34 @@ class Hm_Handler_take_groupmail extends Hm_Handler_Module {
 }
 
 /**
+ * Put back a groupmail message
+ * @subpackage tiki/handler
+ */
+class Hm_Handler_put_back_groupmail extends Hm_Handler_Module {
+    /**
+     * Put back a message
+     */
+    public function process() {
+        list($success, $form) = $this->process_form(array('msgid', 'uid', 'server_id', 'folder'));
+        if (! $success) {
+            return;
+        }
+
+        global $user;
+
+        $trklib = TikiLib::lib('trk');
+
+        $itemid = $trklib->get_item_id($this->get('trackerId'), $this->get('messageFId'), $form['msgid']);
+        if ($itemid > 0 && $user == $trklib->get_item_value($this->get('trackerId'), $itemid, $this->get('operatorFId'))) { // simple security check
+            $trklib->remove_tracker_item($itemid);
+            $this->out('item_removed', true);
+        } else {
+            Hm_Msgs::add('ERR'.tr('Tracker item not found!'));
+        }
+    }
+}
+
+/**
  * Output the Tiki Groupmail section of the menu
  * @subpackage tiki/output
  */
@@ -293,7 +316,7 @@ class Hm_Output_groupmail_start extends Hm_Output_Module {
      * Uses the message_list_fields input to determine the format.
      */
     protected function output() {
-        $res = '<table class="message_table">';
+        $res = '<table class="message_table groupmail">';
         $res .= '<colgroup>
             <col class="source_col">
             <col class="from_col">
@@ -455,8 +478,20 @@ class Hm_Output_take_groupmail_response extends Hm_Output_Module {
      * Send the response
      */
     protected function output() {
-        $this->out('error', $this->get('error'));
         $this->out('operator', $this->get('operator'));
+    }
+}
+
+/**
+ * Ajax response for Put back operation
+ * @subpackage tiki/output
+ */
+class Hm_Output_put_back_groupmail_response extends Hm_Output_Module {
+    /**
+     * Send the response
+     */
+    protected function output() {
+        $this->out('item_removed', $this->get('item_removed'));
     }
 }
 
@@ -474,7 +509,7 @@ function take_callback($vals, $style, $output_mod) {
     list($id, $operator) = $vals;
     if (! empty($operator)) {
         if ($operator == $user) {
-            $output = sprintf('<a class="btn btn-outline-secondary btn-sm tips mod_webmail_action webmail_taken" title="%s" onclick="doPutBackWebmail(\'%s\'); return false;" href="#">%s</a>',
+            $output = sprintf('<a class="btn btn-outline-secondary btn-sm tips mod_webmail_action webmail_taken" title="%s" onclick="tiki_groupmail_put_back(this, \'%s\'); return false;" href="#">%s</a>',
                 tr('Put this item back'),
                 $id,
                 $operator
@@ -511,27 +546,25 @@ function sender_callback($vals, $style, $output_mod) {
     $smarty->loadPlugin('smarty_modifier_sefurl');
     list($class, $from, $operator, $contactId, $wikiPage) = $vals;
     if ($contactId > 0) {
-        if (! empty($wikiPage)) {
-            $output = smarty_block_self_link([
-                '_script' => $tikiroot.smarty_modifier_sefurl($wikiPage),
-                '_class' => "mod_webmail_from"
-            ], $from, $smarty);
-        } else {
-            $output = smarty_block_self_link([
-                '_script' => $tikiroot.'tiki-contacts.php',
-                'contactId' => $contactId,
-                '_class' => "mod_webmail_from"
-            ], $from, $smarty);
-        }
-        $output .= '<div style="float: right;">'.
-            smarty_block_self_link([
+        $output = smarty_block_self_link([
                 '_script' => $tikiroot.'tiki-contacts.php',
                 'contactId' => $contactId,
                 '_icon_name' => 'user',
                 '_width' => 12,
                 '_height' => 12
-            ], tr('View contact'), $smarty)
-            .'</div>';
+            ], tr('View contact'), $smarty).' ';
+        if (! empty($wikiPage)) {
+            $output .= smarty_block_self_link([
+                '_script' => $tikiroot.smarty_modifier_sefurl($wikiPage),
+                '_class' => "mod_webmail_from"
+            ], $from, $smarty);
+        } else {
+            $output .= smarty_block_self_link([
+                '_script' => $tikiroot.'tiki-contacts.php',
+                'contactId' => $contactId,
+                '_class' => "mod_webmail_from"
+            ], $from, $smarty);
+        }
     } else {
         $output = '<span class="mod_webmail_from">'.$from.'</span>';
     }

@@ -4940,12 +4940,32 @@ var tiki_groupmail_take = function(btn, id) {
         {'name': 'server_id', 'value': detail.server_id},
         {'name': 'folder', 'value': detail.folder}],
         function(res) {
-            if (res.error) {
-                feedback(res.error, 'error');
-                $(btn).text(tr('TAKE'));
-            } else {
+            if (res.operator) {
                 $(btn).text(res.operator);
+            } else {
+                $(btn).text(tr('TAKE'));
             }
+            tiki_groupmail_content(detail.server_id, detail.folder);
+        },
+        [],
+        false
+    );
+}
+
+var tiki_groupmail_put_back = function(btn, id) {
+    var detail = Hm_Utils.parse_folder_path(id);
+    $(btn).text(tr('Putting back')+'...');
+    Hm_Ajax.request(
+        [{'name': 'hm_ajax_hook', 'value': 'ajax_put_back_groupmail'},
+        {'name': 'msgid', 'value': id},
+        {'name': 'uid', 'value': detail.uid},
+        {'name': 'server_id', 'value': detail.server_id},
+        {'name': 'folder', 'value': detail.folder}],
+        function(res) {
+            if (res.item_removed) {
+                $(btn).text(tr('TAKE'));
+            }
+            tiki_groupmail_content(detail.server_id, detail.folder);
         },
         [],
         false

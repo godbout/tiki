@@ -31,21 +31,32 @@ add_handler('ajax_tiki_groupmail', 'groupmail_fetch_messages',  true);
 add_handler('ajax_tiki_groupmail', 'save_imap_cache',  true);
 add_output('ajax_tiki_groupmail', 'filter_groupmail_data', true);
 
-/* ajax take webmail */
-setup_base_ajax_page('ajax_take_groupmail', 'tiki');
+/* ajax take groupmail */
+setup_base_ajax_page('ajax_take_groupmail', 'core');
 add_handler('ajax_take_groupmail', 'prepare_groupmail_settings', true, 'tiki', 'load_user_data', 'after');
-add_handler('ajax_take_groupmail', 'take_groupmail', true, 'tiki', 'load_user_data', 'after');
+add_handler('ajax_take_groupmail', 'load_imap_servers_from_config',  true, 'imap');
+add_handler('ajax_take_groupmail', 'take_groupmail', true, 'tiki');
 add_output('ajax_take_groupmail', 'take_groupmail_response', true);
+
+/* ajax put back groupmail */
+setup_base_ajax_page('ajax_put_back_groupmail', 'core');
+add_handler('ajax_put_back_groupmail', 'prepare_groupmail_settings', true, 'tiki', 'load_user_data', 'after');
+add_handler('ajax_put_back_groupmail', 'load_imap_servers_from_config',  true, 'imap');
+add_handler('ajax_put_back_groupmail', 'put_back_groupmail', true, 'tiki');
+add_output('ajax_put_back_groupmail', 'put_back_groupmail_response', true);
 
 return array(
 	'allowed_pages' => array(
     'groupmail',
     'ajax_tiki_groupmail',
     'ajax_take_groupmail',
+    'ajax_put_back_groupmail',
 	),
 	'allowed_get' => array(
 	),
 	'allowed_output' => array(
+		'operator' => array(FILTER_SANITIZE_STRING, false),
+		'item_removed' => array(FILTER_VALIDATE_BOOLEAN, false)
 	),
 	'allowed_post' => array(
 		'server_id' => FILTER_VALIDATE_INT,

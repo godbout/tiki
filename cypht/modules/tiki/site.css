@@ -1,3 +1,7 @@
-.action_col {
+.groupmail .from_col {
+  width: 20%;
+}
+
+.groupmail .action_col {
   width: 80px;
 }
