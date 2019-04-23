@@ -663,7 +663,7 @@ class PreferencesLib
 				'name' => $key,
 				'label' => $key,
 				'type' => 'composer',
-				'link' => 'https://packagist.org/packages/' . $key,
+				'link' => 'index-admin.php?page=packages',
 				'met' => $met
 			];
 
