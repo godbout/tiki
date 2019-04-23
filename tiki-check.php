@@ -1147,15 +1147,15 @@ if ($s) {
 	);
 }
 
-$s = extension_loaded('memcache');
+$s = extension_loaded('memcached');
 if ($s) {
-	$php_properties['memcache'] = array(
+	$php_properties['memcached'] = array(
 		'fitness' => tra('good'),
 		'setting' => 'Loaded',
 		'message' => tra('This extension can be used to speed up Tiki by saving sessions as well as wiki and forum data on a memcached server.')
 	);
 } else {
-	$php_properties['memcache'] = array(
+	$php_properties['memcached'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Not available',
 		'message' => tra('This extension can be used to speed up Tiki by saving sessions as well as wiki and forum data on a memcached server.')

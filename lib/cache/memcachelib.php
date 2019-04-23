@@ -45,7 +45,6 @@ class Memcachelib
 				'enabled' => true,
 				'expiration' => (int) $prefs['memcache_expiration'],
 				'key_prefix' => $prefs['memcache_prefix'],
-				'compress' => $prefs['memcache_compress'],
 			];
 		}
 
@@ -59,19 +58,14 @@ class Memcachelib
 			require($localphp);
 		}
 
-		if (! $memcached_servers || (! empty($memcached_options) && ! $memcached_options['enabled']) || ! class_exists('Memcache')) {
+		if (! $memcached_servers || (! empty($memcached_options) && ! $memcached_options['enabled']) || ! class_exists('Memcached')) {
 			$this->memcache = false;
 			$this->options  = [ 'enabled' => false ];
 		} else {
-			if ($memcached_options['compress'] == 'y') {
-				$memcached_options['flags'] = MEMCACHE_COMPRESSED;
-				unset($memcached_options['compress']);
-			} else {
-				$memcached_options['flags'] = 0;
-			}
+			$memcached_options['flags'] = 0;
 
 			$this->options  = $memcached_options;
-			$this->memcache = new Memcache();
+			$this->memcache = new Memcached();
 			foreach ($memcached_servers as $server) {
 				if ($server['host'] == 'localhost') {
 					$server['host'] = '127.0.0.1';
@@ -80,7 +74,6 @@ class Memcachelib
 				$this->memcache->addServer(
 					$server['host'],
 					(int) $server['port'],
-					isset($server['persistent']) ? $server['persistent'] : false,
 					isset($server['weight']) ? (int)$server['weight'] : 1
 				);
 			}
@@ -181,13 +174,11 @@ class Memcachelib
 	function set($key, $value, $flags = false, $expiration = false)
 	{
 		$key = $this->buildKey($key);
-		$flags = ($flags) ?
-			$flags : $this->getOption('flags', 0);
 		$expiration = ($expiration) ?
 			$expiration : $this->getOption('expiration', 0);
 
 		if (isset($this->memcache) && method_exists($this->memcache, "set")) {
-			return $this->memcache->set($key, $value, $flags, $expiration);
+			return $this->memcache->set($key, $value, $expiration);
 		}
 	}
 

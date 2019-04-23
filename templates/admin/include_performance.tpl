@@ -142,7 +142,6 @@
 			<br>
 			{preference name=memcache_enabled}
 			<div class="adminoptionboxchild" id="memcache_enabled_childcontainer">
-				{preference name=memcache_compress}
 				{preference name=memcache_prefix}
 				{preference name=memcache_expiration}
 				{preference name=memcache_servers}
