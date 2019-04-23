@@ -36,6 +36,8 @@ class Services_OAuthServer_Controller
 	 */
 	function action_authorize($request)
 	{
+		global $user;
+
 		$accesslib = TikiLib::lib('access');
 		$oauthserverlib = TikiLib::lib('oauthserver');
 		$servicelib = TikiLib::lib('service');
