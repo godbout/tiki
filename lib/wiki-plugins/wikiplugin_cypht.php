@@ -215,8 +215,6 @@ function wikiplugin_cypht($data, $params)
 	}
 	$called = true;
 
-	$headerlib = TikiLib::lib('header');
-
 	$_SESSION['cypht']['groupmail'] = $params['groupmail'];
 	$_SESSION['cypht']['group'] = $params['group'];
 	$_SESSION['cypht']['trackerId'] = $params['trackerId'];
@@ -240,35 +238,7 @@ function wikiplugin_cypht($data, $params)
 	require_once $tikipath.'/cypht/integration/classes.php';
 
 	/* get configuration */
-	$config = new Hm_Site_Config_File(APP_PATH.'hm3.rc');
-
-	// override
-	$config->set('session_type', 'custom');
-	$config->set('session_class', 'Tiki_Hm_Custom_Session');
-	$config->set('auth_type', 'custom');
-	$config->set('output_class', 'Tiki_Hm_Output_HTTP');
-	$config->set('cookie_path', ini_get('session.cookie_path'));
-	$output_modules = $config->get('output_modules');
-	foreach( $output_modules as $page => $_ ) {
-		unset($output_modules[$page]['header_start']);
-		unset($output_modules[$page]['header_content']);
-		unset($output_modules[$page]['header_end']);
-		unset($output_modules[$page]['content_start']);
-		unset($output_modules[$page]['content_end']);
-		if( isset($output_modules[$page]['header_css']) ) {
-			unset($output_modules[$page]['header_css']);
-			$headerlib->add_cssfile('cypht/site.css');
-			if (!empty($_SESSION['cypht']['user_data']['theme_setting']) && $_SESSION['cypht']['user_data']['theme_setting'] != 'default') {
-				$headerlib->add_cssfile('cypht/modules/themes/assets/'.$_SESSION['cypht']['user_data']['theme_setting'].'.css');
-			}
-		}
-		if( isset($output_modules[$page]['page_js']) ) {
-			unset($output_modules[$page]['page_js']);
-			$headerlib->add_jsfile('cypht/jquery.touch.js', true);
-			$headerlib->add_jsfile('cypht/site.js', true);
-		}
-	}
-	$config->set('output_modules', $output_modules);
+	$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc');
 
 	if (empty($_SESSION['cypht']['request_key'])) {
 		$_SESSION['cypht']['request_key'] = Hm_Crypt::unique_id();
@@ -317,7 +287,7 @@ function wikiplugin_cypht($data, $params)
 		}
 	}
 
-	$headerlib->add_css("
+	TikiLib::lib('header')->add_css("
 .inline-cypht * { box-sizing: content-box; }
 .inline-cypht { position: relative; }
 	");
