@@ -44,12 +44,12 @@ fi
 INDEXES=$(mysql --skip-column-names --silent -u "${USER_DETECTED}" --password="${PASS_DETECTED}" "${DB_DETECTED}" -e "SHOW TABLES WHERE Tables_in_${DB_DETECTED} LIKE 'index_%';")
 NB_INDEXES=$(mysql --skip-column-names --silent -u "${USER_DETECTED}" --password="${PASS_DETECTED}" "${DB_DETECTED}" -e "SHOW TABLES WHERE Tables_in_${DB_DETECTED} LIKE 'index_%';"| wc -l)
 SEARCHENGINE=$(mysql --skip-column-names --silent -u "${USER_DETECTED}" --password="${PASS_DETECTED}" "${DB_DETECTED}" -e "SELECT value FROM tiki_preferences WHERE name = 'unified_engine';" )
-if [[ "SEARCHENGINE" = "mysql" ]]
+echo "Search engine: $SEARCHENGINE"
+if [[ "$SEARCHENGINE" = "mysql" ]]
 then
 	CURRENTINDEX=$(mysql --skip-column-names --silent -u "${USER_DETECTED}" --password="${PASS_DETECTED}" "${DB_DETECTED}" -e "SELECT value FROM tiki_preferences WHERE name = 'unified_mysql_index_current';" )
 	echo "Current index: $CURRENTINDEX"
 fi
-echo "Search engine: $SEARCHENGINE"
 echo "---"
 echo "$INDEXES"
 if [[ "$NB_INDEXES" = "0" ]]
