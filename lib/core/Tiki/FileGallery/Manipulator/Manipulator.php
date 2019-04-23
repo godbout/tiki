@@ -11,12 +11,12 @@ use Tiki\FileGallery\File;
 
 abstract class Manipulator
 {
-  protected $file;
+	protected $file;
 
-  function __construct(File $file)
-  {
-    $this->file = $file;
-  }
+	function __construct(File $file)
+	{
+		$this->file = $file;
+	}
 
-  abstract public function run($args);
+	abstract public function run($args);
 }
