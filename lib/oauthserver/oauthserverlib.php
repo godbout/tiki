@@ -27,6 +27,19 @@ class OAuthServerLib extends \TikiLib
 {
 	private $server;
 
+	public function getEncryptionKey()
+	{
+		global $prefs;
+		$tikilib = TikiLib::lib('tiki');
+
+		if (empty($prefs['oauthserver_encryption_key'])) {
+			$encryptionKey = $tikilib->generate_unique_sequence(32, true);
+			$tikilib->set_preference('oauthserver_encryption_key', $encryptionKey);
+		}
+
+		return $prefs['oauthserver_encryption_key'];
+	}
+
 	public function getClientRepository()
 	{
 		$database = TikiLib::lib('db');
@@ -47,7 +60,7 @@ class OAuthServerLib extends \TikiLib
 				new AccessTokenRepository(),
 				new ScopeRepository(),
 				new BearerTokenResponse(),
-				md5('fabio')
+				$this->getEncryptionKey()
 			);
 		}
 		return $this->server;

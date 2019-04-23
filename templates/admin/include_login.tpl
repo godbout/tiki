@@ -549,6 +549,11 @@
 				</div>
 			</fieldset>
 		{/tab}
+		{tab name="{tr}OAuth Server Settings{/tr}"}
+			<fieldset>
+				{preference name=oauthserver_encryption_key}
+			</fieldset>
+		{/tab}
 	{/tabset}
 
 	{include file='admin/include_apply_bottom.tpl'}

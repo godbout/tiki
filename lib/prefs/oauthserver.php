@@ -8,15 +8,9 @@
 function prefs_oauthserver_list()
 {
 	return [
-		'oauthserver_client_id' => [
-			'name' => tra('The client ID'),
-			'description' => tra('The client ID allowed to use this server'),
-			'type' => 'text',
-			'default' => '',
-		],
-		'oauthserver_client_secret' => [
-			'name' => tra('The client secret'),
-			'description' => tra('The client Secret allowed to use this server'),
+		'oauthserver_encryption_key' => [
+			'name' => tra('Encryption key for OAuthServer'),
+			'description' => tra('A key used to encrypt/decrypt authorization codes'),
 			'type' => 'text',
 			'default' => '',
 		],
