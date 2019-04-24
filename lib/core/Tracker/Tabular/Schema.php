@@ -93,6 +93,7 @@ class Schema
 			'ignore_blanks' => 0,
 			'import_transaction' => 0,
 			'bulk_import' => 0,
+			'skip_unmodified' => 0,
 		], $config);
 
 		$this->config = $config;
@@ -116,6 +117,11 @@ class Schema
 	function useBulkImport()
 	{
 		return $this->config['bulk_import'];
+	}
+
+	function isSkipUnmodified()
+	{
+		return $this->config['skip_unmodified'];
 	}
 
 	function loadFormatDescriptor($descriptor)

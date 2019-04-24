@@ -44,6 +44,7 @@ class Manager
 				'ignore_blanks' => 0,
 				'import_transaction' => 0,
 				'bulk_import' => 0,
+				'skip_unmodified' => 0,
 			]),
 		]);
 	}
@@ -60,6 +61,7 @@ class Manager
 				'ignore_blanks' => intval(! empty($config['ignore_blanks'])),
 				'import_transaction' => intval(! empty($config['import_transaction'])),
 				'bulk_import' => intval(! empty($config['bulk_import'])),
+				'skip_unmodified' => intval(! empty($config['skip_unmodified'])),
 			])
 		], ['tabularId' => $tabularId]);
 	}

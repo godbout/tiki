@@ -643,6 +643,7 @@ class Services_Tracker_TabularController
 				'ignore_blanks' => 0,
 				'import_transaction' => 0,
 				'bulk_import' => 0,
+				'skip_unmodified' => 0,
 				'upload_max_filesize' => $uploadMaxFileSize
 			],
 		];

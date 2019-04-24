@@ -261,6 +261,13 @@
 							{icon name=information}
 						</a>
 					</div>
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" name="config[skip_unmodified]" value="1" {if $config['skip_unmodified']} checked {/if}>
+						<label class="form-check-label">{tr}Skip Unmodified{/tr}</label>
+						<a class="tikihelp text-info" title="{tr}Skip Unmodified{/tr}: {tr}Will not re-import items that have not changed.{/tr}">
+							{icon name=information}
+						</a>
+					</div>
 				</div>
 			</div>
 			<div class="form-row submit">

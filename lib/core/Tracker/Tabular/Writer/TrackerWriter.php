@@ -112,11 +112,27 @@ class TrackerWriter
 		$definition = $schema->getDefinition();
 		$defaultStatus = $definition->getConfiguration('newItemStatus');
 
-		$iterate(function ($line, $info, $columns) use ($utilities, $definition, $defaultStatus) {
+		$iterate(function ($line, $info, $columns) use ($utilities, $definition, $defaultStatus, $schema) {
 			if (empty($info['status'])) {
 				$info['status'] = $defaultStatus;
 			}
 			if ($info['itemId']) {
+
+				if ($schema->isSkipUnmodified()) {
+					$currentItem = $utilities->getItem($definition->getConfiguration('trackerId'), $info['itemId']);
+					if (isset($info['bulk_import'])) {
+						$currentItem['bulk_import'] = $info['bulk_import'];
+					}
+
+					$diff = array_diff_assoc($info, $currentItem);
+					if (! $diff) {
+						$diff = array_diff_assoc($info['fields'], $currentItem['fields']);
+						if (! $diff) {
+							return true;
+						}
+					}
+				}
+
 				$success = $utilities->updateItem($definition, $info);
 			} else {
 				$success = $utilities->insertItem($definition, $info);
