@@ -1690,7 +1690,8 @@ td.url {
   padding: 0.2em 0.5em; }
 
 #score-table tbody.event-section tr:first-child {
-  background: #e9ecef; }
+  background: #e9ecef;
+  color: #000; }
 
 #score-table .condition-row, .table .advanced-row {
   padding: 1em; }
@@ -1700,6 +1701,13 @@ td.url {
 
 #score-table .advanced-row td {
   border-top: none; }
+
+#score-table .chosen-container {
+  width: 50% !important; }
+
+@media (min-width: 992px) {
+  .table-responsive > #score-table {
+    table-layout: auto; } }
 
 .article .actions form {
   display: inline; }

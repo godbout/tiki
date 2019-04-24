@@ -99,6 +99,7 @@ td.url{
 // }
 #score-table tbody.event-section tr:first-child{
   background: $gray-200;
+  color: $black;
 }
 #score-table .condition-row, .table .advanced-row {
  padding: 1em;
@@ -108,4 +109,14 @@ td.url{
 }
 #score-table .advanced-row td {
   border-top: none;
+}
+
+#score-table .chosen-container {
+	width: 50% !important;
+}
+
+@media (min-width: breakpoint-min(lg)) {
+	.table-responsive > #score-table {
+		table-layout: auto;
+	}
 }
