@@ -59,6 +59,7 @@
 			{preference name=areas_root}
 		</div>
 		{preference name=category_jail}
+		{preference name=category_jail_root}
 		{preference name=category_defaults}
 		<div class="form-group row">
 			<div class="col-sm-8 offset-sm-4">

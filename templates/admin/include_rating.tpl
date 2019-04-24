@@ -65,6 +65,11 @@
 	</fieldset>
 
 	<fieldset>
+		<legend>{tr}Default Options{/tr}</legend>
+		{preference name=rating_default_options}
+	</fieldset>
+
+	<fieldset>
 		<legend>{tr}User Interface{/tr}</legend>
 		{preference name=rating_results_detailed}
 		<div class="adminoptionboxchild" id="rating_results_detailed_childcontainer">

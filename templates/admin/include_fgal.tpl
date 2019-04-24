@@ -29,6 +29,7 @@
 			</fieldset>
 
 			{preference name=home_file_gallery}
+			{preference name=fgal_list_description}
 			{preference name='fgal_use_db'}
 			<div class="adminoptionboxchild fgal_use_db_childcontainer n">
 				<div class="mb-sm-3">
@@ -205,6 +206,7 @@
 				<fieldset>
 					{preference name='fgal_list_id_admin'}
 					{preference name='fgal_list_type_admin'}
+					{preference name='fgal_list_description_admin'}
 					{preference name='fgal_list_name_admin'}
 					{preference name='fgal_list_size_admin'}
 					{preference name='fgal_list_created_admin'}

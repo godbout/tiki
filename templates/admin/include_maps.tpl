@@ -11,6 +11,7 @@
 		<legend>{tr}Settings{/tr}</legend>
 
 		{preference name=geo_enabled visible="always"}
+		{preference name=mapzone}
 
 		{if $prefs.geo_enabled eq 'y'}
 
@@ -37,6 +38,9 @@
 
 		{/if}
 
+		{preference name=gdaltindex}
+		{preference name=ogr2ogr}
+
 	</fieldset>
 
 	<fieldset class="admin">
@@ -44,6 +48,7 @@
 		{preference name=gmap_defaultx}
 		{preference name=gmap_defaulty}
 		{preference name=gmap_defaultz}
+		{preference name=default_map}
 	</fieldset>
 
 	{include file='admin/include_apply_bottom.tpl'}

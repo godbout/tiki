@@ -92,6 +92,7 @@
 				<fieldset>
 					<legend>{tr}Master server settings{/tr}</legend>
 					{preference name=intertiki_logfile}
+					{preference name=intertiki_errfile}
 				</fieldset>
 				<fieldset>
 					<legend>{tr}Allowed client servers{/tr}</legend>

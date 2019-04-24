@@ -59,6 +59,7 @@
 
 			<fieldset>
 				<legend>{tr}Kaltura contribution wizard{/tr}</legend>
+				{preference name=kaltura_kcwUIConf}
 				{$kcwText}
 				<div class="adminoptionbox">
 					{tr}You can manually edit these values in lib/videogals/standardTikiKcw.xml{/tr}<br>

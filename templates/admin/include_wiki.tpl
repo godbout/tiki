@@ -205,6 +205,14 @@
 			</div>
 			<div class="adminoptionbox clearfix">
 				<fieldset class="table">
+					<legend>{tr}Wikiwords Features{/tr}</legend>
+					{preference name=feature_wikiwords}
+					{preference name=feature_wikiwords_usedash}
+					{preference name=feature_wiki_plurals}
+				</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
 					<legend>{tr}Attachments{/tr}</legend>
 					{preference name=feature_wiki_attachments}
 					<div class="adminoptionboxchild" id="feature_wiki_attachments_childcontainer">
@@ -423,6 +431,20 @@
 						{button href="tiki-search_replace.php" _text="{tr}Mass search and replace{/tr}" _icon_name="exchange-alt" _type="primary"}
 						{button href="tiki-report_direct_object_perms.php" _text="{tr}Report wiki pages with direct object permissions{/tr}" _icon_name="paperclip" _type="primary"}
 					</div>
+				</fieldset>
+			</div>
+			<div class="adminoptionbox clearfix">
+				<fieldset class="table">
+					<legend>{tr}Redirect and Similar{/tr}</legend>
+					{preference name=feature_wiki_1like_redirection}
+					{preference name=wiki_prefixalias_tokens}
+					{preference name=feature_semantic}
+					{preference name=feature_likePages}
+					<div class="adminoptionboxchild" id="wiki_likepages_samelang_only">
+						{preference name=wiki_likepages_samelang_only}
+					</div>
+					{preference name=feature_wiki_pagealias}
+					{preference name=wiki_pagealias_tokens}
 				</fieldset>
 			</div>
 		{/tab}

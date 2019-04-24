@@ -404,6 +404,7 @@
 						{preference name=saml_advanced_sp_x509cert}
 						{preference name=saml_advanced_sp_privatekey}
 						{preference name=saml_advanced_sign_algorithm}
+						{preference name=saml_advanced_idp_lowercase_url_encoding}
 				</fieldset>
 			</fieldset>
 		{/tab}
