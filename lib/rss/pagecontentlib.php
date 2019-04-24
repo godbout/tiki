@@ -117,7 +117,7 @@ class PageContentLib
 		libxml_use_internal_errors(true);
 
 		$dom = new DOMDocument();
-		$dom->loadHTML($html);
+		$dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
 
 		foreach ($dom->getElementsByTagName('img') as $node) {
 			$image = $node->getAttribute('src');
