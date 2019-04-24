@@ -21,7 +21,7 @@
 				{else}
 					{assign var=nbCols value=1}
 				{/if}
-				<th style="width:1%">&nbsp;
+				<th style="width: 1em">&nbsp;
 
 				</th>
 			{/if}
@@ -71,7 +71,7 @@
 							{assign var=propval value=$item.name[0]}
 							{/if}
 						{assign var=link_title value=$item.name}
-						{assign var=td_args value=$td_args|cat:' style="width:1%;text-align:center"'}
+						{assign var=td_args value=$td_args|cat:' style="width: 1em;text-align:center"'}
 					{/if}
 
 					{if $propname eq 'name' and ( $gal_info.show_name eq 'a' or $gal_info.show_name eq 'f' )}
@@ -131,7 +131,7 @@
 
 			{if ( !empty($other_columns) or !empty($other_columns_selected)) and $prefs.javascript_enabled eq 'y'}
 				{assign var=nbCols value=$nbCols+1}
-				<th style="width:1%">
+				<th style="width: 1em">
 					{if !empty($other_columns)}
 						<a href='#' {popup fullhtml="1" text=$smarty.capture.over_other_columns trigger="click"} title="{tr}Other Sorts{/tr}">
 					{/if}
