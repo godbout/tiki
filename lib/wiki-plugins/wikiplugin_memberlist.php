@@ -372,6 +372,10 @@ function wikiplugin_memberlist_get_group_details($groups, $maxRecords = -1, $sor
 	$userlib = TikiLib::lib('user');
 	$validGroups = [];
 	foreach ($groups as $groupName) {
+		if ($groupName === 'Anonymous') {
+			continue;
+		}
+
 		if (! $userlib->group_exists($groupName)) {
 			continue;
 		}
@@ -383,7 +387,7 @@ function wikiplugin_memberlist_get_group_details($groups, $maxRecords = -1, $sor
 
 			$validGroups[$groupName] = [
 				'can_join' => $perms->group_join && ! $isMember && $user && ! $readOnly,
-				'can_leave' => $perms->group_join && $isMember && $user && ! $readOnly,
+				'can_leave' => ($groupName === 'Registered') ? false : ($perms->group_join && $isMember && $user && ! $readOnly),
 				'can_add' => $perms->group_add_member && ! $readOnly,
 				'can_remove' => $perms->group_remove_member && ! $readOnly,
 				'is_member' => $isMember,
