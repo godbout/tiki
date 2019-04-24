@@ -3334,7 +3334,7 @@ body.fullscreen.tiki.navbar-padding {
     max-width: 100%;
     height: auto; }
 
-.tiki.tiki-list_file_gallery #col1 .popover, .tiki.tiki_file_galleries #col1 .popover, .tiki.tiki_trackers #col1 .popover, .tiki .wikiplugin-trackerlist .popover {
+.tiki.tiki-list_file_gallery .popover, .tiki.tiki_file_galleries .popover, .tiki.tiki_trackers .popover, .tiki .wikiplugin-trackerlist .popover {
   max-width: 50vw; }
 
 .tiki .popover p:last-child {

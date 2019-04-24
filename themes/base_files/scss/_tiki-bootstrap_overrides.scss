@@ -96,9 +96,9 @@ body.fullscreen.tiki.navbar-padding {
 // .tiki .popover.tour-tour { max-width: 276px; } Not needed since default is now this width.
 
 // limit width of popups for file galleries
-.tiki.tiki-list_file_gallery #col1 .popover,
-.tiki.tiki_file_galleries #col1 .popover,
-.tiki.tiki_trackers #col1 .popover,
+.tiki.tiki-list_file_gallery .popover,
+.tiki.tiki_file_galleries .popover,
+.tiki.tiki_trackers .popover,
 .tiki .wikiplugin-trackerlist .popover {
 	max-width: 50vw;
 //	word-wrap: normal;
