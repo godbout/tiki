@@ -560,22 +560,25 @@
 						<legend>{tr}Attachments{/tr}</legend>
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="att">{tr}Permission{/tr}</label>
-							<div class="col-sm-8 checkbox-inline">
+							<div class="col-sm-8">
 								{html_options name=att id=att options=$attachment_options selected=$att}
 							</div>
 						</div>
-						<div class="row">
-							<label class="col-sm-4 col-form-label" for="att_store_db">{tr}Store attachments in{/tr}</label>
-							<div class="col-sm-2 checkbox-inline">
-								<input type="radio" name="att_store" id="att_store_db" value="db" {if $att_store eq 'db'}checked="checked"{/if}> {tr}Database{/tr}
-							</div>
-						</div>
 						<div class="form-group row">
-							<div class="col-sm-2 offset-sm-4 checkbox-inline">
-								<input type="radio" name="att_store" value="dir" {if $att_store eq 'dir'}checked="checked"{/if}> {tr}File system{/tr}</div>
-							<label class="col-form-label col-sm-2" for="att_store_dir">{tr}Path{/tr}</label>
-							<div class="col-sm-4 checkbox-inline">
-								<input type="text" name="att_store_dir" id="att_store_dir" value="{$att_store_dir|escape}" class="form-control" />
+							<label class="col-sm-4 col-form-label" for="att_store_db">{tr}Store attachments in{/tr}</label>
+							<div class="col-sm-8 form-check">
+								<div class="form-check">
+									<input type="radio" class="form-check-input" name="att_store" id="att_store_db" value="db" {if $att_store eq 'db'}checked="checked"{/if}> {tr}Database{/tr}
+								</div>
+								<div class="form-check-inline">
+									<div class="col-sm-5 form-check-inline">
+										<input type="radio" class="form-check-input" name="att_store" value="dir" {if $att_store eq 'dir'}checked="checked"{/if}> {tr}File system{/tr}
+									</div>
+									<label class="col-form-label col-sm-2" for="att_store_dir">{tr}Path{/tr}</label>
+									<div class="col-sm-8">
+										<input type="text" name="att_store_dir" id="att_store_dir" value="{$att_store_dir|escape}" class="form-control" />
+									</div>
+								</div>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -586,7 +589,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class=" col-sm-4 form-check-label" for="att_list_nb">{tr}Shows number of attachments of the all thread in forum list{/tr}</label>
+							<label class="col-sm-4 form-check-label" for="att_list_nb">{tr}Shows number of attachments of the all thread in forum list{/tr}</label>
 								<div class="col-sm-8">
 									<input type="checkbox" id="att_list_nb" name="att_list_nb"{if $att_list_nb eq 'y'} checked="checked"{/if} id="att_list_nb">
 								</div>
