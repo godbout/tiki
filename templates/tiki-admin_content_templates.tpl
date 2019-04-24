@@ -127,51 +127,57 @@
 					<div class="col-sm-9">
 						{$toolbar_section='admin'}
 						{if $prefs.feature_cms_templates eq 'y'}
-							<div class="col-sm-3 checkbox-inline">
+							<div class="col-sm-3 form-check">
 								<label for="section_cms">
-									<input type="checkbox" name="section_cms" id="section_cms" {if $info.section_cms eq 'y'}checked="checked"{/if}>
+									<input class="form-check-input" type="checkbox" name="section_cms" id="section_cms" {if $info.section_cms eq 'y'}checked="checked"{/if}>
 									{if $info.section_cms eq 'y'}{$toolbar_section='cms'}{/if}
 									{tr}Articles{/tr}
 								</label>
 							</div>
 						{/if}
 						{if $prefs.feature_wiki_templates eq 'y'}
-							<div class="col-sm-3 checkbox-inline">
+							<div class="col-sm-3 form-check">
 								<label for="section_wiki">
-									<input type="checkbox" name="section_wiki" id="section_wiki" {if $info.section_wiki eq 'y'}checked="checked"{/if}>
+									<input class="form-check-input" type="checkbox" name="section_wiki" id="section_wiki" {if $info.section_wiki eq 'y'}checked="checked"{/if}>
 									{if $info.section_wiki eq 'y'}{$toolbar_section='wiki page'}{/if}
 									{tr}Wiki{/tr}
 								</label>
 							</div>
 						{/if}
 						{if $prefs.feature_file_galleries_templates eq 'y'}
-							<div class="col-sm-3 checkbox-inline">
+							<div class="col-sm-3 form-check">
 								<label for="section_file_galleries">
-									<input type="checkbox" name="section_file_galleries" id="section_file_galleries" {if $info.section_file_galleries eq 'y'}checked="checked"{/if}>
+									<input class="form-check-input" type="checkbox" name="section_file_galleries" id="section_file_galleries" {if $info.section_file_galleries eq 'y'}checked="checked"{/if}>
 									{if $info.section_file_galleries eq 'y'}{$toolbar_section='admin'}{/if}
 									{tr}File Galleries{/tr}
 								</label>
 							</div>
 						{/if}
 						{if $prefs.feature_newsletters eq 'y'}
-							<div class="col-sm-3 checkbox-inline">
-								<label for="section_newsletters" >
-									<input type="checkbox" name="section_newsletters" id="section_newsletters" {if $info.section_newsletters eq 'y'}checked="checked"{/if}>
+							<div class="col-sm-3 form-check">
+								<label for="section_newsletters">
+									<input class="form-check-input" type="checkbox" name="section_newsletters" id="section_newsletters" {if $info.section_newsletters eq 'y'}checked="checked"{/if}>
 									{if $info.section_newsletters eq 'y'}{$toolbar_section='newsletters'}{/if}
 									{tr}Newsletters{/tr}
 								</label>
 							</div>
 						{/if}
 						{if $prefs.feature_events eq 'y'}
-							<div class="col-sm-3 checkbox-inline">
-								<label for="section_events">{tr}Events{/tr}</label><input type="checkbox" name="section_events" id="section_events" {if $info.section_events eq 'y'}checked="checked"{/if}>
-								{if $info.section_events eq 'y'}{$toolbar_section='calendar'}{/if}
+							<div class="col-sm-3 form-check">
+								<label for="section_events">
+									<input class="form-check-input" type="checkbox" name="section_events" id="section_events" {if $info.section_events eq 'y'}checked="checked"{/if}>
+									{if $info.section_events eq 'y'}{$toolbar_section='calendar'}{/if}
+									{tr}Events{/tr}
+								</label>
 							</div>
 						{/if}
 						{if $prefs.feature_html_pages eq 'y'}
-							<div class="col-sm-3 checkbox-inline">
-								<label for="section_html">{tr}HTML Pages{/tr}</label><input type="checkbox" name="section_html" id="section_html" {if $info.section_html eq 'y'}checked="checked"{/if}>
-								{if $info.section_html eq 'y'}{$toolbar_section='wiki page'}{/if}
+							<div class="col-sm-3 form-check">
+								<label for="section_html">
+									<input class="form-check-input" type="checkbox" name="section_html" id="section_html" {if $info.section_html eq 'y'}checked="checked"{/if}>
+									{if $info.section_html eq 'y'}{$toolbar_section='wiki page'}{/if}
+									{tr}HTML Pages{/tr}
+								</label>
 							</div>
 						{/if}
 						{if ($prefs.feature_cms_templates ne 'y') and ($prefs.feature_wiki_templates ne 'y') and ($prefs.feature_file_galleries_templates ne 'y') and ($prefs.feature_newsletters ne 'y') and ($prefs.feature_events ne 'y') and ($prefs.feature_html_pages ne 'y')}

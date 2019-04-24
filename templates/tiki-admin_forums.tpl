@@ -291,7 +291,7 @@
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="floodInterval">{tr}Minimum time between posts{/tr}</label>
-							<div class="col-sm-4 checkbox-inline">
+							<div class="col-sm-4">
 								{html_options name=floodInterval id=floodInterval class="form-control" options=$flood_options selected=$floodInterval}
 							</div>
 						</div>
@@ -324,7 +324,7 @@
 									<label class="form-check-label" for="usePruneOld">{tr}Prune old messages after{/tr}</label>
 								</div>
 							</div>
-							<div class="col-sm-4 checkbox-inline">
+							<div class="col-sm-4">
 								{html_options name=pruneMaxAge options=$pruneMaxAge_options selected=$pruneMaxAge}
 							</div>
 						</div>
@@ -397,7 +397,7 @@
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="forum_last_n">{tr}Display last post titles{/tr}</label>
-							<div class="col-sm-4 checkbox-inline">
+							<div class="col-sm-4">
 								{html_options name=forum_last_n id=forum_last_n options=$forum_last_n_options selected=$forum_last_n}
 							</div>
 						</div>
@@ -407,7 +407,7 @@
 						<legend>{tr}Forum topics (threads) list{/tr}</legend>
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="topicOrdering">{tr}Default order of topics{/tr}</label>
-							<div class="col-sm-8 checkbox-inline">
+							<div class="col-sm-8">
 								{html_options name=topicOrdering id=topicOrdering class=form-control options=$topicOrdering_options selected=$topicOrdering}
 							</div>
 						</div>
@@ -502,7 +502,7 @@
 						<legend>{tr}Posts{/tr}</legend>
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="approval_type">{tr}Approval type{/tr}</label>
-							<div class="col-sm-4 checkbox-inline">
+							<div class="col-sm-4">
 								{html_options name=approval_type for=approval_type id=approval_type class=form-control options=$approval_options selected=$approval_type}
 							</div>
 						</div>
@@ -629,14 +629,14 @@
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="duplicate_categories">{tr}Duplicate categories{/tr}</label>
-						<div class="col-sm-8 checkbox-inline">
-							<input type="checkbox" name="dupCateg" id="duplicate_categories">
+						<div class="col-sm-8 form-check">
+							<input class="form-check-input" type="checkbox" name="dupCateg" id="duplicate_categories">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label class="col-sm-4 col-form-label" for="duplicate_perms">{tr}Duplicate permissions{/tr}</label>
-						<div class="col-sm-8 checkbox-inline">
-							<input type="checkbox" name="dupPerms" id="duplicate_perms">
+						<div class="col-sm-8 form-check">
+							<input class="form-check-input" type="checkbox" name="dupPerms" id="duplicate_perms">
 						</div>
 					</div>
 					<div class="text-center">

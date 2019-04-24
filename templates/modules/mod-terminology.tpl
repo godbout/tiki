@@ -29,7 +29,7 @@
 			<div class="col-sm-2 offset-sm-2">
 				<input type="submit" class="wikiaction btn btn-info btn-sm" name="search" value="{tr}Go{/tr}"/>
 			</div>
-			<div class="col-sm-8 checkbox-inline">
+			<div class="col-sm-8">
 				<div class="form-text">{tr}If not found, you will be given a chance to create it.{/tr}</div>
 			</div>
 		</div>

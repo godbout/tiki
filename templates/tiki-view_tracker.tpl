@@ -383,7 +383,7 @@
 
 							{/if}
 							{section name=idx loop=$listusertoalert}
-								<div class="col-sm-8 checkbox-inline">
+								<div class="col-sm-8 form-check-inline">
 									{if $showeachuser eq 'n'}
 										<input type="hidden" name="listtoalert[]" value="{$listusertoalert[idx].user}">
 									{else}
@@ -397,7 +397,7 @@
 
 					<div class="form-group row">
 						<label class="col-sm-3 col-form-label">&nbsp;</label>
-						<div class="col-sm-8 checkbox-inline">
+						<div class="col-sm-8 form-check-inline">
 						<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm = false;">
 						<input type="radio" name="viewitem" value="view" /> {tr}View inserted item{/tr}
 						{* --------------------------- to continue inserting items after saving --------- *}
