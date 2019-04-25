@@ -6824,7 +6824,7 @@ input:checked + .slider {
 body, body.fullscreen {
   background: #90140c url("../images/stripes.png") repeat-x 50% 0; }
 
-.sitetitle {
+.sitetitle:not(.adminoptionbox) {
   background: url("../images/title_background.jpg") no-repeat transparent;
   color: #fe9b27;
   cursor: default;
@@ -6835,7 +6835,7 @@ body, body.fullscreen {
   margin-top: 66px;
   text-align: center; }
 
-.sitetitle, .sitetitle a, .sitesubtitle {
+.sitetitle:not(.adminoptionbox), .sitetitle a, .sitesubtitle:not(.adminoptionbox) {
   color: #fe9b27; }
 
 h2.sitesubtitle {

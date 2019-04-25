@@ -10,7 +10,7 @@ body.fullscreen {
 	background: #90140c url('#{$imagePath}stripes.png') repeat-x 50% 0;
 }
 
-.sitetitle {
+.sitetitle:not(.adminoptionbox) {
 	background: url('#{$imagePath}title_background.jpg') no-repeat transparent;
 	color: #FE9B27;
 	cursor: default;
@@ -23,9 +23,9 @@ body.fullscreen {
 	//  width: 410px;
 }
 
-.sitetitle,
+.sitetitle:not(.adminoptionbox),
 .sitetitle a,
-.sitesubtitle {
+.sitesubtitle:not(.adminoptionbox) {
 	color: #fe9b27;
 }
 
