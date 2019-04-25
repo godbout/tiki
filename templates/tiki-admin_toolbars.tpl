@@ -166,7 +166,7 @@ To save the current set use the dropdown (and optionally check the comments chec
 {/remarksbox}
 {remarksbox title='Note' type='note'}
 	{tr}If you are experiencing problems with this page after upgrading from Tiki 4 please use this link to delete all your customised tools:{/tr}
-	<strong>{self_link reset_all_custom_tools=y}{tr}Delete all custom tools{/tr}{/self_link}</strong>
+	<strong>{self_link reset_all_custom_tools=y _class='alert-link'}{tr}Delete all custom tools{/tr}{/self_link}</strong>
 	<em>{tr}Warning: There is no undo!{/tr}</em>
 {/remarksbox}
 </div>

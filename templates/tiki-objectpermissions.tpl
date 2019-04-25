@@ -38,22 +38,22 @@
 								{tr}This category's direct permissions override any global permissions affecting objects in it.{/tr}
 							{/if}
 							<br>
-							{tr}To edit global permissions{/tr} {self_link objectType='global' objectId='' objectName='' permType=$permType}{tr}click here{/tr}{/self_link}.
+							{tr}To edit global permissions{/tr} {self_link objectType='global' objectId='' objectName='' permType=$permType _class='alert-link'}{tr}click here{/tr}{/self_link}.
 						{/remarksbox}
 					{elseif $permissions_displayed eq 'category'}
 						{remarksbox type="warning" title="{tr}Warning{/tr}"}
 							{tr}No permissions yet applied to this object but category permissions affect this object and are displayed below.{/tr}<br>
-							{if $tiki_p_admin eq 'y'}{tr}To edit category permissions{/tr} {self_link _script='tiki-admin_categories.php'}{tr}click here{/tr}{/self_link}.{/if}
+							{if $tiki_p_admin eq 'y'}{tr}To edit category permissions{/tr} {self_link _script='tiki-admin_categories.php' _class='alert-link'}{tr}click here{/tr}{/self_link}.{/if}
 						{/remarksbox}
 					{elseif $permissions_displayed eq 'parent'}
 						{remarksbox type="warning" title="{tr}Warning{/tr}"}
 							{tr}No permissions yet applied to this object but parent object's permissions affect this object and are displayed below.{/tr}<br>
-							{if $tiki_p_admin eq 'y'}{tr}To edit parent object's permissions{/tr} {self_link objectType=$permissions_parent_type objectId=$permissions_parent_id objectName=$permissions_parent_name}{tr}click here{/tr}{/self_link}.{/if}
+							{if $tiki_p_admin eq 'y'}{tr}To edit parent object's permissions{/tr} {self_link objectType=$permissions_parent_type objectId=$permissions_parent_id objectName=$permissions_parent_name _class='alert-link'}{tr}click here{/tr}{/self_link}.{/if}
 						{/remarksbox}
 					{elseif $permissions_displayed eq 'global'}
 						{remarksbox type="warning" title="{tr}Warning{/tr}" highlight="y"}
 							{tr}No direct permissions yet applied to this object. Global permissions apply.{/tr}<br>
-							{if $tiki_p_admin eq 'y'}{tr}To edit global permissions{/tr} {self_link objectType='global' permType=$permType}{tr}click here{/tr}{/self_link}.{/if}
+							{if $tiki_p_admin eq 'y'}{tr}To edit global permissions{/tr} {self_link objectType='global' permType=$permType _class='alert-link'}{tr}click here{/tr}{/self_link}.{/if}
 							<br><br>
 							{tr}Currently inherited permissions displayed.{/tr}
 						{/remarksbox}
