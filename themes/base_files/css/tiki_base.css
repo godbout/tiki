@@ -1741,7 +1741,7 @@ td.url {
 .bloginfo {
   display: block; }
 
-.blogactions > .btn-group {
+.blogactions {
   float: right; }
 
 .postinfo {
