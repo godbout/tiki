@@ -663,7 +663,7 @@ class PreferencesLib
 				'name' => $key,
 				'label' => $key,
 				'type' => 'composer',
-				'link' => 'index-admin.php?page=packages',
+				'link' => 'tiki-admin.php?page=packages',
 				'met' => $met
 			];
 
