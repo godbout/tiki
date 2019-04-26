@@ -73,8 +73,9 @@
 			</form>
 		{/if}
 	</div>
+	
 	<div class="col-sm-6">
-		<legend>{tr}New types{/tr}</legend>
+		<h3>{tr}New types{/tr}</h3>
 		<table class="table">
 			<tr>
 				<th>{tr}Token{/tr}</th>
