@@ -12,6 +12,8 @@
 	list-style: none;
 }
 
+.cssmenu_vert { flex-direction: column !important; }
+
 .cssmenu_horiz li,
 .cssmenu_vert li {
 	position: relative;
