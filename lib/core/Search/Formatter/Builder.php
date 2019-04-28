@@ -159,6 +159,8 @@ class Search_Formatter_Builder
 				$arguments['template'] = dirname(__FILE__) . '/../../../../templates/search/list/carousel.tpl';
 			} elseif ($arguments['template'] == 'count') {
 				$arguments['template'] = dirname(__FILE__) . '/../../../../templates/search/list/count.tpl';
+			} elseif ($arguments['template'] == 'debug') {
+				$arguments['template'] = dirname(__FILE__) . '/../../../../templates/search/list/debug.tpl';
 			} elseif (! file_exists($arguments['template'])) {
 				$temp = $smarty->get_filename($arguments['template']);
 				if (empty($temp)) { //if get_filename cannot find template, return error
