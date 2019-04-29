@@ -349,8 +349,8 @@ class Services_Edit_ListPluginHelper
 									],
 								],
 							],
-							'count' => [
-							],
+							'count' => [],
+							'debug' => [],
 						],
 						'params' => [
 							'downloadable' => [
