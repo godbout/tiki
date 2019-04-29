@@ -3476,11 +3476,6 @@ $(function() {
         $('.delete_attachment').on("click", function() { return delete_attachment($(this).data('id'), this); });
     }
 });
-$(function() {
-    $('.delete_user_form').on('submit', function() {
-        return hm_delete_prompt();
-    });
-});
 
 
 $(function() {

@@ -38,11 +38,8 @@ define('SITE_ID', 'Tiki-Integration');
 require_once APP_PATH.'lib/framework.php';
 require_once $tikipath.'/cypht/integration/classes.php';
 
-/* get configuration */
-$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc');
-
 if (empty($_SESSION['cypht']['request_key'])) {
-	$_SESSION['cypht']['request_key'] = Hm_Crypt::unique_id();
+  $_SESSION['cypht']['request_key'] = Hm_Crypt::unique_id();
 }
 $_SESSION['cypht']['username'] = $user;
 
@@ -50,6 +47,9 @@ TikiLib::lib('header')->add_css("
 .inline-cypht * { box-sizing: content-box; }
 .inline-cypht { position: relative; }
 ");
+
+/* get configuration */
+$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc');
 
 /* process the request */
 $dispatcher = new Hm_Dispatch($config);

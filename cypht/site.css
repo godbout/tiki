@@ -418,16 +418,6 @@ div.unseen, .unseen .subject { font-weight: 700; }
 .editor-toolbar { z-index: 0; margin-left: 5px; margin-top: 10px; border: solid 1px #ccc; width: 100%; border-radius: 3px 3px 0px 0px; }
 .editor-statusbar { border-top: none !important; }
 .editor-toolbar:before, .editor-toolbar:after { background: none !important; }
-.create_user { margin-top: 20px; margin-left: 10px; }
-.chg_pass_page { width: 100%; }
-.change_pass { width: 100%; }
-.create_user input { clear: both; float: left; padding: 4px; margin-left: 20px; margin-top: 10px; margin-bottom: 10px; }
-.create_account_link { margin-left: 120px; float: left; clear: left; font-size: 115%; padding: 5px; }
-.change_pass { margin-left: 20px; margin-top: 20px; }
-.change_pass input { margin-bottom: 20px; }
-.user_list { padding-left: 40px; padding-top: 20px; }
-.user_list td {padding-bottom: 10px; }
-.user_list .user_delete { cursor: pointer; margin-right: 10px; }
 .calendar { width: 100%; }
 .event_form { margin-left: 40px; }
 .calendar_week th, .calendar_month th { font-weight: normal; padding-top: 10px; border-bottom: solid 1px #eee; padding-bottom: 10px; border-right: solid 1px #eee; }

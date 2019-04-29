@@ -172,5 +172,80 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 			}
 		}
 		$this->set('output_modules', $output_modules);
+		$this->user_defaults['timezone_setting'] = TikiLib::lib('tiki')->get_display_timezone();
+		if (isset($_SESSION['cypht']['user_data'])) {
+			$_SESSION['cypht']['user_data']['timezone_setting'] = $this->user_defaults['timezone_setting'];
+		}
+	}
+}
+
+/**
+ * Override user config handling in Cypht.
+ * Store settings in Tiki user preferences and load them from there.
+ * Ignore encryption and decryption of the settings due to missing password key when loading.
+ */
+class Tiki_Hm_User_Config extends Hm_Config {
+	/* username */
+	private $username;
+
+	/**
+	 * Load site configuration
+	 * @param object $config site config
+	 */
+	public function __construct($config) {
+		$this->config = array_merge($this->config, $config->user_defaults);
+	}
+
+	/**
+	 * Load the settings for a user
+	 * @param string $username username
+	 * @param string $key key to decrypt the user data (not used)
+	 * @return void
+	 */
+	public function load($username, $key = null) {
+		$this->username = $username;
+		$data = TikiLib::lib('tiki')->get_user_preference($username, 'cypht_user_config');
+		if ($data) {
+			$data = $this->decode($data);
+			$this->config = array_merge($this->config, $data);
+			$this->set_tz();
+		}
+	}
+
+	/**
+	 * Reload from outside input
+	 * @param array $data new user data
+	 * @param string $username
+	 * @return void
+	 */
+	public function reload($data, $username=false) {
+		$this->username = $username;
+		$this->config = $data;
+		$this->set_tz();
+	}
+
+	/**
+	 * Save user settings into Tiki
+	 * @param string $username username
+	 * @param string $key encryption key (not used)
+	 * @return void
+	 */
+	public function save($username, $key = null) {
+		$this->shuffle();
+		$removed = $this->filter_servers();
+		$data = json_encode($this->config);
+		TikiLib::lib('tiki')->set_user_preference($username, 'cypht_user_config', $data);
+		$this->restore_servers($removed);
+	}
+
+	/**
+	 * Set a config value
+	 * @param string $name config value name
+	 * @param string $value config value
+	 * @return void
+	 */
+	public function set($name, $value) {
+		$this->config[$name] = $value;
+		$this->save($this->username);
 	}
 }
