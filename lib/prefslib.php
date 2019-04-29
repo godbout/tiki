@@ -689,6 +689,8 @@ class PreferencesLib
 
 		$typeFactory = $index->getTypeFactory();
 
+		$indexed = [];
+
 		foreach ($this->getAvailableFiles() as $file) {
 			$data = $this->getFileData($file);
 
@@ -699,13 +701,17 @@ class PreferencesLib
 				} else {
 					$info['preference'] = $pref;
 					if (empty($info['tags'])) {
-						$info['tags'] = [];
+						$info['tags'] = ['missing'];
 					}
 				}
 				$doc = $this->indexPreference($typeFactory, $pref, $info);
 				$index->addDocument($doc);
+
+				$indexed[] = $pref;
 			}
 		}
+
+
 
 		return $index;
 	}

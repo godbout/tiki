@@ -34,6 +34,7 @@
 			{preference name=geo_always_load_openlayers}
 
 			{preference name=gmap_key}
+			{preference name=geo_bingmaps_key}
 			{preference name=geo_zoomlevel_to_found_location}
 
 		{/if}

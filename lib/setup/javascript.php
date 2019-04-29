@@ -226,6 +226,7 @@ if (! timezone) {
 	$jqueryTiki['autoToc_inline'] = $prefs['wiki_inline_auto_toc'] === 'y' ? true : false;
 	$jqueryTiki['autoToc_pos'] = $prefs['wiki_toc_pos'];
 	$jqueryTiki['autoToc_offset'] = $prefs['wiki_toc_offset'];
+	$jqueryTiki['bingMapsAPIKey'] = $prefs['geo_bingmaps_key'];
 	//set at 4 hours if empty
 	$jqueryTiki['securityTimeout'] = !empty($prefs['site_security_timeout']) ? $prefs['site_security_timeout']
 		: TikiLib::lib('access')->getDefaultTimeout();
