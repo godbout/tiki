@@ -62,48 +62,26 @@ $saveModal = preg_replace('/\s+/', ' ', $saveModal);
 
 $headerlib = TikiLib::lib('header');
 
+// Clear Tiki CSS files (just use drawio css)
+$headerlib->cssfiles = [];
 $headerlib->add_cssfile('vendor/xorti/mxgraph-editor/grapheditor/styles/grapheditor.css');
-$headerlib->add_css("*, *::before, *::after { box-sizing: unset;}");
+$headerlib->add_css(".geMenubar a.geStatus { display: none;}");
 $headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', false);
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Init.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/deflate/pako.min.js', true);
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/deflate/base64.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/jscolor/jscolor.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/sanitizer/sanitizer.min.js', true);
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/mxClient.min.js', true);
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/EditorUi.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Editor.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Sidebar.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Graph.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Format.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Shapes.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Actions.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Menus.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Toolbar.js');
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/grapheditor/js/Dialogs.js');
-
+$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
 $js = "(function()
 	{
+		// Disable communication to external services
+		urlParams['stealth'] = 1;
+		urlParams['embed'] = 1;
+		
 		var editorUiInit = EditorUi.prototype.init;
-
 		EditorUi.prototype.init = function()
 		{
 			editorUiInit.apply(this, arguments);
-
-			// Remove menu child option on File
-			delete this.actions.actions.new;
-			delete this.actions.actions.open;
-			delete this.actions.actions.import;
-			delete this.actions.actions.export;
-			delete this.actions.actions.saveAs;
-			delete this.actions.actions.print;
-			delete this.actions.actions.pageSetup;
-
 			var editorUi = this.actions.editorUi;
 			var editor = editorUi.editor;
-
-			this.actions.addAction('save', function() {
-
+			
+			this.saveFile = function(forceDialog) {
 				var content = mxUtils.getPrettyXml(editor.getGraphXml());
 				var fileId = {$fileId};
 				var galleryId = {$galleryId};
@@ -215,8 +193,7 @@ $js = "(function()
 						showErrorMessage(message);
 					}
 				});
-
-			}, null, null, Editor.ctrlKey + '+S');
+			}
 		};
 
 		// Adds required resources (disables loading of fallback properties, this can only
@@ -238,7 +215,7 @@ $js = "(function()
 			// Main
 			var ui = new EditorUi(new Editor(urlParams['chrome'] == '0', themes));
 			var xml = '{$xmlDiagram}';
-			handleXmlData(ui.editor.graph, '{$xmlDiagram}');
+			ui.openLocalFile(xml, 'tiki diagram', true);
 
 		}, function()
 		{
