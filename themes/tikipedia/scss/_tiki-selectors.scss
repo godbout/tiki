@@ -1,6 +1,5 @@
 // $Id: _tiki-selectors.scss 61747 2017-03-18 18:28:58Z rjsmelo $
 // This file is for additional SCSS rules beyond what are in _bootstrap-variables.scss.
-// The rules here so far are actually from Business theme, so most need to be replaced (Nov14, 2017).
 // Image path example:
 $imagePath: "../images/";
 // body {
@@ -12,6 +11,8 @@ $imagePath: "../images/";
 .label-warning {
   color: $body-color;
 }
+
+.btn-secondary { border-color: #a2a9b1; }
 
 body {
   background: #f6f6f6 url('#{$imagePath}page-base.png');
@@ -36,25 +37,28 @@ h1, h2, h3, h4, h5, h6 {
 
 #page-bar {
   position: absolute;
-  top: -52px;
+  top: -48px;
   right: 15px;
+
   .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu {
 	top: 100%;
 	bottom: auto;
 	margin-top: 2px;
   }
+
   .dropup .caret //, .navbar-fixed-bottom .dropdown .caret
   {
 	border-top: 4px dashed;
-	border-top: 4px solid \9;
+	border-top: 4px solid \9
+  ;
 	border-bottom: 0;
 	content: "";
   }
 }
 
-.toggle_zone.right {
-  position: absolute;
-  bottom: -30px;
+.text-right.side-col-toggle {
+  margin-top: 28px;
+  margin-bottom: -28px;
 }
 
 @media (min-width: 768px) {
@@ -82,7 +86,9 @@ h1, h2, h3, h4, h5, h6 {
 //.tiki_wiki_page #col1 { margin-top: 40px; } }
 
 .navbar-dark.bg-dark,
-.navbar-light.bg-light { background: transparent !important; }
+.navbar-light.bg-light {
+  background: transparent !important;
+}
 
 .topbar,
 #topbar_modules {
@@ -90,16 +96,9 @@ h1, h2, h3, h4, h5, h6 {
   background: transparent !important;
 }
 
-.topbar .navbar {
-  min-height: inherit;
-}
-
-
-#page-bar .btn.btn-primary,
-#page-bar .btn.btn-info,
-#page-bar .btn.btn-secondary,
-.topbar .navbar-default .navbar-nav > li,
-.topbar .nav > li {
+.row-middle #page-bar .btn.btn-primary,
+.row-middle #page-bar .btn.btn-info,
+.row-middle #page-bar .btn.btn-secondary {
   background-color: #f3f3f3;
   background-position: bottom left;
   background-repeat: repeat-x;
@@ -123,20 +122,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .topbar > a,
-.topbar .navbar-default .navbar-nav > li > a,
+  //.topbar .bg-light .navbar-nav > li > a,
 .topbar .nav > li a {
   color: #0645ad;
   padding-top: 5px;
   padding-bottom: 5px;
+  font-size: .75rem;
 }
 
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+.bg-light.navbar .nav-item.active a,
+.bg-light.navbar .nav-item.active > a:hover,
+.bg-light.navbar .nav-item.active > a:focus {
   color: #0645ad;
   background-color: transparent;
   text-decoration: underline;
 }
 
-.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+.bg-light.navbar .open a,
+.bg-light.navbar .open a:hover,
+.bg-light.navbar .open a:focus {
   background-color: transparent;
   color: #555555;
   text-decoration: underline;
@@ -149,6 +153,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.25em;
   padding: 0;
   color: #000000;
+
   & > a {
 	color: $body-color;
   }
@@ -158,13 +163,16 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: -4px;
 }
 
-#col1 {
+#col1,
+#col3 {
   background: #ffffff url('#{$imagePath}border.png') repeat-y;
   border: solid #a7d7f9;
   border-width: 1px 0;
   padding-top: 1.25em;
   padding-bottom: 1.25em;
 }
+
+#col3 { background: #fff; }
 
 body.fullscreen #col1 {
   background: #ffffff;
@@ -202,19 +210,20 @@ body.fullscreen #col1 {
 @media (min-width: 992px) {
   #topbar_modules,
   #topbar_modules_social, // Fixed top navbar 2
-  #col1.col-lg-9 {
+  #col1.col-lg-9,
+  .hide_zone_right #col1.col-lg-8 {
 	max-width: 88.4210526%; // 83.33333333%; Actually col-md-11 width
 	flex: 0 0 88.4210526%;
-//	left: 11.5789474%; // 16.66666667%;
+	//	left: 11.5789474%; // 16.66666667%;
   }
 
   //#col2 {
   //	background: transparent url('#{$imagePath}border.png') 100% 0 repeat-y;
   //}
-  #col2.col-lg-3 {
+  #col2.col-lg-3,
+  #col2.col-lg-2 {
 	flex: 0 0 11.5789474%;
 	max-width: 11.5789474%;
-
   }
 
   body:not(.layout_social) #left_modules {
@@ -226,43 +235,84 @@ body.fullscreen #col1 {
   .box-logo {
 	text-align: center;
   }
+
   .box-logo:before,
   .box-logo:after {
 	content: " ";
 	display: table;
 	clear: both;
   }
+
   .pull-left.sitelogo {
 	float: none !important;
   }
+
   .sitelogo img {
 	margin: 0;
 	max-width: 135px;
 	max-height: 115px;
   }
+
   .box-logo > div > .sitelogo + .sitetitles {
 	padding-left: 0;
 	margin-left: 0;
   }
+
   h1.sitetitle {
 	border-bottom: none;
 	font-size: 18px;
 	text-transform: uppercase;
   }
+
   h2.sitesubtitle {
 	font-size: 12px;
 	border-bottom: none;
   }
+
+  .module {
+	margin-bottom: .35rem;
+  }
+
+  .card,
   .card-header {
-	padding: 6px 8px 2px 0;
+	background: transparent;
+	border: none;
   }
+
+  .card {
+	font-size: .75rem;
+	line-height: 1.125;
+  }
+
+  .card-header {
+	padding: 6px 8px 0 0;
+  }
+
+  .card-title {
+	font-size: .75rem;
+	color: #4d4d4d;
+	font-weight: 400;
+	padding: 0.25em 0 0 0.25em;
+	border-bottom: none;
+  }
+
   .card-body {
-	padding: 0 8px 8px;
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAAABCAAAAAAphRnkAAAAJ0lEQVQIW7XFsQEAIAyAMPD/b7uLWz8wS5youFW1UREfiIpH1Q2VBz7fGPS1dOGeAAAAAElFTkSuQmCC);
+	background-repeat: no-repeat;
+	border: none;
+	padding: 4px 8px 8px;
   }
+  .cssmenu_vert a,
+  .cssmenu_vert button.btn-link.link-list {
+	padding: 3px 10px;
+  }
+  .sf-arrows .sf-with-ul::after {
+	right: 0;
+  }
+
   .nav > li > a:not(.sf-with-ul) {
 	padding: 4px 6px;
   }
-
 }
 
 /* Head */
@@ -291,27 +341,6 @@ h3.card-title {
   font-family: sans-serif;
 }
 
-#col2 {
-  .card,
-  .card-body,
-  .card-header {
-	background: transparent;
-	border: none;
-  }
-  .card-title {
-	color: #4d4d4d;
-	font-weight: 400;
-	font-size: 1rem;
-	padding: 0.25em 0 0.25em 0.25em;
-	border-bottom: none;
-  }
-  .card {
-	background: url('#{$imagePath}portal-break.png') no-repeat;
-	font-size: .8rem;
-	line-height: 1.125;
-  }
-}
-
 // TOC
 #toc,
 .autotoc > .nav {
@@ -320,6 +349,7 @@ h3.card-title {
   background-color: #f9f9f9;
   border: 1px solid #aaaaaa;
   font-size: 95%;
+
   h3 {
 	font-size: 100%;
 	text-align: center;
@@ -338,6 +368,7 @@ article {
   .card-header {
 	text-align: center;
   }
+
   .card-title {
 	font-weight: bold;
 	font-family: sans-serif;
@@ -358,6 +389,7 @@ article {
   .card-header {
 	text-align: left;
   }
+
   .card-title {
 	font-family: $headings-font-family;
 	font-weight: normal;
@@ -365,6 +397,7 @@ article {
 	padding-top: 0;
 	margin-bottom: 8px;
   }
+
   .card-footer {
 	margin: 0 15px 15px 15px;
 	border: 1px solid #dddddd;
@@ -384,9 +417,11 @@ article {
 
 .articletitle {
   margin-bottom: 15px;
+
   h1, h2 {
 	margin-top: 0;
 	padding-top: 0;
+
 	a {
 	  color: $body-color;
 	}
@@ -394,15 +429,18 @@ article {
 }
 
 .wikiactions_wrapper.clearfix,
-.clearfix.articletrailer { float: right; }
+.clearfix.articletrailer {
+  float: right;
+}
 
 // Forums
-
 .tiki_forums h1.pagetitle {
   margin-top: 0;
 }
 
-a.forumnameread { font-weight: bold; }
+a.forumnameread {
+  font-weight: bold;
+}
 
 .card-header.postbody-title,
 .blogpost .card-header {
@@ -414,6 +452,7 @@ a.forumnameread { font-weight: bold; }
 
 .top_post .card-body.postbody-content {
   padding-top: 0;
+
   .author {
 	padding-bottom: 15px;
   }
@@ -440,9 +479,11 @@ a.forumnameread { font-weight: bold; }
   padding: 0.2em;
   font-size: 88%;
   line-height: 1.5em;
+
   img {
 	margin-top: 6px;
   }
+
   h3, h4 {
 	font-weight: bold;
 	background-color: #c0c0c0;
@@ -451,8 +492,16 @@ a.forumnameread { font-weight: bold; }
 	font-family: $font-family-base;
 	margin: 0;
   }
-  h3 { font-size: 120%; }
-  h4 { font-size: 105%; }
+
+  h3 {
+	font-size: 120%;
+  }
+
+  h4 {
+	font-size: 105%;
+  }
 }
 
-legend.table { background: transparent; }
+legend.table {
+  background: transparent;
+}

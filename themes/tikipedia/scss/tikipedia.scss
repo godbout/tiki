@@ -1,7 +1,6 @@
 //  $Id$
-/* Files for a new theme for Tiki Wiki CMS Groupware, Bootstrap 4+.
-The order of imported files is important, for variables to be found and
-used correctly. This is still being tested. */
+// Files for the Tikipedia theme for Tiki Wiki CMS Groupware, Bootstrap 4+.
+//The order of imported files is important, for variables to be found and used correctly.
 
 @import "variables"; // Needs to come first, to override defaults.
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/bootstrap.scss";

@@ -1,5 +1,5 @@
 //$Id$
-//Custom styles for a new theme.
+//Custom styles for the Tikipedia theme.
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 
 // Colors
@@ -15,15 +15,16 @@
 // $gray-900: #212529 !default;
 $black:    #000;
 
-//$primary: #ad1d28;
+$primary: #3366cc;
+$secondary: #f8f9fa;
 $success: #bbfa7c;
 $info: #abd5f5;
 $warning: #fad67d;
 $danger: #d9534f;
 
 $theme-colors: (
- // 	"primary":        	#ababab,
- // 	"secondary": 		#dddddd,
+  	"primary":        	#3366cc,
+  	"secondary": 		#f8f9fa,
  	"success":         	#bbfa7c,
   	"info":           	#abd5f5,
   	"warning":         	#fad67d,
@@ -48,7 +49,7 @@ $border-radius-lg:       4px;
 $border-radius-sm:       0px;
 
 // Fonts
-$font-size: 14px;
+$font-size-base: .85rem;
 $font-family-sans-serif:  sans-serif;
 $h1-font-size:            1.87rem;
 $h2-font-size:            1.75rem;
@@ -69,7 +70,7 @@ $table-border-color:            #aaa;
 // Buttons
 //$btn-primary-color:              $body-color; These variables don't exist in BS4
 //$btn-primary-bg:                 #e1e1e1;
-//$btn-primary-border:            #adadad;
+//$btn-secondary-border:            #a2a9b1;
 //$btn-success-color:              $body-color;
 //$btn-info-color:                 $body-color;
 //$btn-warning-color:              $body-color;
@@ -116,5 +117,6 @@ $breadcrumb-bg:                 transparent;
 // Close
 // Code
 $label-color:                 $body-color;
+$enable-gradients: yes;
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
