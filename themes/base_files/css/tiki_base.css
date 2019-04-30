@@ -3228,7 +3228,7 @@ div.form-group label.error {
 .tiki .input-group .chosen-container {
   width: 110% !important; }
 
-.tiki-admin_tracker_fields .input-group .chosen-container, .tiki-view_tracker .input-group .chosen-container, .tiki-list_file_gallery #sel .input-group .chosen-container, .adminoptionbox .input-group .chosen-container {
+[class*="tiki-admin"] .input-group .chosen-container, .tiki-view_tracker .input-group .chosen-container, .tiki-list_file_gallery #sel .input-group .chosen-container, .adminoptionbox .input-group .chosen-container {
   width: auto !important; }
 
 .tiki .chosen-container-single, .tiki #assign_order_chosen.chosen-container {

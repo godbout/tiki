@@ -45,7 +45,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<div class="col-sm-8 offset-sm-4">
+						<div class="col-sm-7 offset-sm-5">
 							<a href="javascript:toggleBlock('search')" class="link">
 								{icon name='add' alt="{tr}more{/tr}"}&nbsp;{tr}More Criteria{/tr}
 							</a>
@@ -67,7 +67,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="offset-sm-4 col-sm-8">
+							<div class="offset-sm-5 col-sm-7">
 								<div class="form-check">
 									<label class="form-check-label">
 										<input id="filterEmailNotConfirmed" class="form-check-input" name="filterEmailNotConfirmed" type="checkbox"{if !empty($smarty.request.filterEmailNotConfirmed)} checked="checked"{/if}>{tr}Email not confirmed{/tr}
@@ -76,7 +76,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="offset-sm-4 col-sm-8">
+							<div class="offset-sm-5 col-sm-7">
 								<div class="form-check">
 									<label class="form-check-label">
 										<input class="form-check-input" id="filterNeverLoggedIn" name="filterNeverLoggedIn" type="checkbox"{if !empty($smarty.request.filterNeverLoggedIn)} checked="checked"{/if}>{tr}Never logged in{/tr}
@@ -85,7 +85,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<div class="offset-sm-4 col-sm-8">
+							<div class="offset-sm-5 col-sm-7">
 								<div class="form-check">
 									<label class="form-check-label">
 										<input class="form-check-input" id="filterNotValidated" name="filterNotValidated" type="checkbox"{if !empty($smarty.request.filterNotValidated)} checked="checked"{/if}>{tr}User not validated{/tr}
@@ -95,7 +95,7 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<div class="col-sm-8 offset-sm-4">
+						<div class="col-sm-7 offset-sm-5">
 							<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">
 							<input type="submit" class="btn btn-primary btn-sm" value="{tr}Find{/tr}" name="search">
 						</div>
