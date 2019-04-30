@@ -143,6 +143,7 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 	 * @param string $source source location for site configuration
 	 */
 	public function __construct($source) {
+		global $user;
 		parent::__construct($source);
 		// override
 		$headerlib = TikiLib::lib('header');
@@ -152,6 +153,7 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 		$this->set('output_class', 'Tiki_Hm_Output_HTTP');
 		$this->set('cookie_path', ini_get('session.cookie_path'));
 		$output_modules = $this->get('output_modules');
+		$handler_modules = $this->get('handler_modules');
 		foreach ($output_modules as $page => $_) {
 			unset($output_modules[$page]['header_start']);
 			unset($output_modules[$page]['header_content']);
@@ -171,8 +173,25 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 				$headerlib->add_jsfile('cypht/site.js', true);
 			}
 		}
+		// cleanup side menu
+		unset($output_modules['ajax_hm_folders']['logout_menu_item']);
+		unset($output_modules['ajax_hm_folders']['settings_save_link']);
+		// show links according to permissions
+		if (! Perms::get()->admin_personal_webmail && ! Perms::get()->admin_group_webmail) {
+			unset($output_modules['ajax_hm_folders']['settings_servers_link']);
+			unset($output_modules['ajax_hm_folders']['folders_page_link']);
+			unset($output_modules['home']['welcome_dialog']);
+			unset($handler_modules['ajax_imap_folder_expand']['add_folder_manage_link']);
+		}
 		$this->set('output_modules', $output_modules);
+		$this->set('handler_modules', $handler_modules);
 		$this->user_defaults['timezone_setting'] = TikiLib::lib('tiki')->get_display_timezone();
+		$request = filter_input_array(INPUT_GET, array('page' => FILTER_SANITIZE_STRING), false);
+		if (empty($request['page'])) {
+			$user_config = new Tiki_Hm_User_Config($this);
+			$user_config->load($user);
+			$_SESSION['cypht']['user_data'] = $user_config->dump();
+		}
 		if (isset($_SESSION['cypht']['user_data'])) {
 			$_SESSION['cypht']['user_data']['timezone_setting'] = $this->user_defaults['timezone_setting'];
 		}

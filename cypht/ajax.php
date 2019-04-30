@@ -31,7 +31,7 @@ require APP_PATH.'lib/framework.php';
 require_once $tikipath.'/cypht/integration/classes.php';
 
 /* get configuration */
-$config = new Hm_Site_Config_File(APP_PATH.'hm3.rc');
+$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc');
 
 // override
 $config->set('session_type', 'custom');

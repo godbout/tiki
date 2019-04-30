@@ -215,6 +215,15 @@ function wikiplugin_cypht($data, $params)
 	}
 	$called = true;
 
+	if ($params['groupmail'] == 'y') {
+		$perm = 'tiki_p_use_group_webmail';
+	} else {
+		$perm = 'tiki_p_use_personal_webmail';
+	}
+	if (! Perms::get()->$perm) {
+		return tra("You do not have the permission that is needed to use this feature:") . " " . $perm;
+	}
+
 	$_SESSION['cypht']['groupmail'] = $params['groupmail'];
 	$_SESSION['cypht']['group'] = $params['group'];
 	$_SESSION['cypht']['trackerId'] = $params['trackerId'];
