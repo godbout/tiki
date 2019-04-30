@@ -3161,10 +3161,10 @@ body > .ui-front {
   -moz-transition: background 0.2s;
   -o-transition: background 0.2s;
   transition: background 0.2s; }
-/*** arrows (for all except IE7) **/
+
 .sf-arrows .sf-with-ul {
   padding-right: 2.5em; }
-/* styling for both css and generated arrows */
+
 .sf-arrows .sf-with-ul:after {
   content: '';
   position: absolute;
@@ -3172,9 +3172,8 @@ body > .ui-front {
   right: 1em;
   margin-top: -3px;
   height: 0;
-  width: 0;
-  /* order of following 3 rules important for fallbacks to work */ }
-/* styling for right-facing arrows */
+  width: 0; }
+
 .sf-arrows ul .sf-with-ul:after {
   margin-top: -5px;
   margin-right: -3px; }
@@ -3193,7 +3192,7 @@ body > .ui-front {
 
 .cssmenu_vert > li {
   float: none; }
-/*** alter arrow directions ***/
+
 .cssmenu_vert.sf-arrows > li > .sf-with-ul:after {
   margin-top: -5px;
   margin-right: -3px; }
@@ -3302,9 +3301,6 @@ body:not(.fixed_width) .container {
   padding-right: 15px;
   width: auto;
   max-width: 100%; }
-
-.row-middle {
-  word-wrap: break-word; }
 
 @media (max-width: 768px) {
   .tiki .col-md-12 {
@@ -3463,9 +3459,6 @@ body.fullscreen.tiki.navbar-padding {
 @media (min-width: 992px) {
   .hide_zone_left #col2, .hide_zone_right #col3 {
     display: none; }
-
-  .col1 .table-responsive > table {
-    table-layout: fixed; }
 
   .hide_zone_left #col1.col-lg-8 {
     width: 83.3334%;

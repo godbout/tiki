@@ -12,9 +12,9 @@ body:not(.fixed_width) .container {
 	max-width: 100%;
 }
 
-.row-middle {
-	word-wrap: break-word;
-}
+//.row-middle {
+//	word-wrap: break-word;
+//}
 
 @media(max-width:768px) {
   .tiki .col-md-12 {
@@ -265,9 +265,9 @@ body.fullscreen.tiki.navbar-padding {
 	.hide_zone_right #col3 {
 		display: none;
 	}
-	.col1 .table-responsive > table { // Keep table width inside main column width (no scrolling) in large displays in Chrome/chromium browsers.
-		table-layout: fixed;
-	}
+//	.col1 .table-responsive > table { // Keep table width inside main column width (no scrolling) in large displays in Chrome/chromium browsers.
+//		table-layout: fixed;
+//	}
 
 // Overrides in case of 3-col layout
 .hide_zone_left #col1.col-lg-8 { // when left col is hidden
