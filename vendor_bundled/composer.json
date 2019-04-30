@@ -224,14 +224,15 @@
 	],
 	"scripts": {
 		"pre-install-cmd": [
-		  	"Tiki\\Composer\\RestoreVendors::restore",
+			"Tiki\\Composer\\RestoreVendors::restore",
 			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::cleanLinks"
 		],
 		"post-install-cmd": [
 			"Tiki\\Composer\\ThemeInstaller::setup",
 			"Tiki\\Composer\\BootstrapCompiler::build",
 			"Tiki\\Composer\\CleanVendors::clean",
-			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::clean"
+			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::clean",
+			"Tiki\\Composer\\PatchCypht::setup"
 		],
 		"pre-update-cmd": [
 			"Tiki\\Composer\\RestoreVendors::restore",
@@ -241,7 +242,8 @@
 		"post-update-cmd": [
 			"Tiki\\Composer\\BootstrapCompiler::build",
 			"Tiki\\Composer\\CleanVendors::clean",
-			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::clean"
+			"Tiki\\Composer\\CleanVendorAfterVendorBundledMigration::clean",
+			"Tiki\\Composer\\PatchCypht::setup"
 		],
 		"test": "php ../lib/test/phpunit.php -c ../phpunit.xml.dist --colors=always"
 	},
