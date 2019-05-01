@@ -1,4 +1,5 @@
-<ol> <b>List of returned objects</b>
+<b>List of returned objects</b>
+<ol>
 	{foreach from=$results item=result}
 		<li> <a href="{$result.url}" >{$result.title}</a>
 	{/foreach}
@@ -14,7 +15,7 @@ $maxRecords | {$maxRecords} | the amount of results per page
 $offset | {$offset} | the result offset
 $offsetplusone | {$offsetplusone} | basically $offset + 1 , so that you can say "Showing results 1 to ...."
 $offsetplusmaxRecords | {$offsetplusmaxRecords} | basically $maxRecords + $offset , so you can say "Showing results 1 to 25"
-$results->getEstimate() | {$results->getEstimate()} | which is the estimate of the total number of results possible, which could exceed $count , which is limited by the max Lucene search results to return set in Admin...Search
+$results-&gt;getEstimate() | {$results->getEstimate()} | which is the estimate of the total number of results possible, which could exceed $count , which is limited by the max Lucene search results to return set in Admin...Search
 ||
 {/wiki}
 
