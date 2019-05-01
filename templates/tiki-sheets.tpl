@@ -66,11 +66,13 @@
 				<!--<tr><td>{tr}Class Name:{/tr}</td><td><input type="text" name="className" value="{$className|escape}"></td></tr>
 				<tr><td>{tr}Header Rows:{/tr}</td><td><input type="text" name="headerRow" value="{$headerRow|escape}"></td></tr>
 				<tr><td>{tr}Footer Rows:{/tr}</td><td><input type="text" name="footerRow" value="{$footerRow|escape}"></td></tr>-->
-				<div class="checkbox offset-sm-3">
-					<label for="parseValues">
-						<input type="checkbox" name="parseValues"{if $parseValues eq 'y'} checked="checked"{/if}>
-						{tr}Wiki Parse Values{/tr}
-					</label>
+				<div class="form-group row">
+					<div class="form-check offset-sm-3">
+						<label for="parseValues" class="form-check-label">
+							<input type="checkbox" name="parseValues"{if $parseValues eq 'y'} checked="checked"{/if}>
+							{tr}Wiki Parse Values{/tr}
+						</label>
+					</div>
 				</div>
 				{if $tiki_p_admin_sheet eq "y"}
 					<div class="form-group row">
