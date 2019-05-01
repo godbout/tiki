@@ -5926,7 +5926,6 @@ templates/permission_link.tpl -text
 templates/plugin/edit.tpl -text
 templates/plugin/list.tpl -text
 templates/plugin/quick_add_references.tpl -text
-templates/pluginlist-debug.tpl -text
 templates/plugins/index.php -text
 templates/poll.tpl -text
 templates/prefs/flag.tpl -text
