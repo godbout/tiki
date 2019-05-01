@@ -14,8 +14,6 @@ class Tiki_Profile_InstallHandler_Webmail extends Tiki_Profile_InstallHandler
 		}
 
 		$defaults = [
-			'accountId' => null,	// use current account if null or empty
-			'accountName' => '',	// as above
 			'to' => '',
 			'cc' => '',
 			'bcc' => '',
@@ -33,14 +31,9 @@ class Tiki_Profile_InstallHandler_Webmail extends Tiki_Profile_InstallHandler
 
 	function canInstall()
 	{
-		global $user, $webmaillib;
-		require_once 'lib/webmail/webmaillib.php';
+		global $user;
 
 		$data = $this->getData();
-
-		if (! isset($data['accountId']) && ! isset($data['accountName']) && ! $webmaillib->get_current_webmail_accountId($user)) {
-			return false;	// webmail account not specified
-		}
 
 		if (! isset($data['to']) && ! isset($data['cc']) && ! isset($data['bcc']) && ! isset($data['subject']) && ! isset($data['body'])) {
 			return false;	// nothing specified?
@@ -56,18 +49,6 @@ class Tiki_Profile_InstallHandler_Webmail extends Tiki_Profile_InstallHandler
 
 		$this->replaceReferences($data);
 
-		global $webmaillib;
-		require_once 'lib/webmail/webmaillib.php';
-
-		if (! empty($data['accountId']) && $data['accountId'] != $webmaillib->get_current_webmail_accountId($user)) {
-			$webmaillib->current_webmail_account($user, $data['accountId']);
-		} elseif (! empty($data['accountName'])) {
-			$data['accountId'] = $webmaillib->get_webmail_account_by_name($user, $data['accountName']);
-			if ($data['accountId'] > 0 && $data['accountId'] != $webmaillib->get_current_webmail_accountId($user)) {
-				$webmaillib->current_webmail_account($user, $data['accountId']);
-			}
-		}
-
 		if (strpos($data['body'], 'wikidirect:') === 0) {
 			$pageName = substr($this->content, strlen('wikidirect:'));
 			$data['body'] = $this->obj->getProfile()->getPageContent($pageName);
@@ -81,15 +62,16 @@ class Tiki_Profile_InstallHandler_Webmail extends Tiki_Profile_InstallHandler
 		$data['bcc']     = trim(str_replace(["\n","\r"], "", html_entity_decode(strip_tags($data['bcc']))), ' ,');
 		$data['subject'] = trim(str_replace(["\n","\r"], "", html_entity_decode(strip_tags($data['subject']))));
 
+		// TODO: extend cypht to support fattId and pageaftersend params
 		$webmailUrl = $tikilib->tikiUrl(
 			'tiki-webmail.php',
 			[
-						'locSection' => 'compose',
-						'to' => $data['to'],
-						'cc' => $data['cc'],
-						'bcc' => $data['bcc'],
-						'subject' => $data['subject'],
-						'body' => $data['body'],
+						'page' => 'compose',
+						'compose_to' => $data['to'],
+						'compose_cc' => $data['cc'],
+						'compose_bcc' => $data['bcc'],
+						'compose_subject' => $data['subject'],
+						'compose_body' => $data['body'],
 						'fattId' => $data['fattId'],
 						'pageaftersend' => $data['pageaftersend'],
 						'useHTML' => $data['html'] ? 'y' : 'n'

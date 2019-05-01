@@ -142,7 +142,6 @@ class Tiki_Profile_Installer
 		'transition' => 'Tiki_Profile_InstallHandler_Transition',
 		'calendar' => 'Tiki_Profile_InstallHandler_Calendar',
 		'extwiki' => 'Tiki_Profile_InstallHandler_ExtWiki',
-		'webmail_account' => 'Tiki_Profile_InstallHandler_WebmailAccount',
 		'webmail' => 'Tiki_Profile_InstallHandler_Webmail',
 		'sheet' => 'Tiki_Profile_InstallHandler_Sheet',
 		'scheduler' => 'Tiki_Profile_InstallHandler_Scheduler',
