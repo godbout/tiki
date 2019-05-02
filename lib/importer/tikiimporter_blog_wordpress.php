@@ -525,10 +525,13 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 	 */
 	function replaceParagraphWithLineBreak($content)
 	{
-		$newcontent = preg_replace("/<p[^>]*?>/", "", $content);
-		$newcontent = str_replace("</p>", "<br />", $newcontent);
-		//if there is two "<br />" tags we just keep one
-		$newcontent = str_replace("<br /><br />","<br />",$newcontent);
+		$arr = array(
+			"</p>"      => "\n",
+			"<p>"      => "",
+			"<br>"    => '\n'
+		);
+		$newcontent = nl2br(strtr($content,$arr));
+
 		return $newcontent;
 	}
 
@@ -599,7 +602,7 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 					case 'category':
 						if ($node->hasAttribute('nicename')) {
 							if ($node->getAttribute('domain') == 'tag') {
-							    $data['tags'][] = $node->textContent;
+								$data['tags'][] = $node->textContent;
 							} elseif ($node->getAttribute('domain') == 'category') {
 								$data['categories'][] = $node->textContent;
 							}
