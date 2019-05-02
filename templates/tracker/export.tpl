@@ -39,6 +39,7 @@
 			<label for="CR">{tr}Carriage return inside field value{/tr}</label>
 			<input type="text" name="CR" value="%%%" size="4" class="form-control">
 		</div>
+
 		<div class="form-check">
 			<label>
 				<input type="checkbox" class="form-check-input" name="dateFormatUnixTimestamp" value="1">
@@ -57,15 +58,16 @@
 				{tr}Export country type fields as the system name of the country (to facilitate importing){/tr}
 			</label>
 		</div>
-		<div class="form-check">
+		<div class="form-check mb-4">
 			<label>
 				<input type="checkbox" class="form-check-input" name="parse" value="1">
 				{tr}Parse as wiki text{/tr}
 			</label>
 		</div>
+
 		<fieldset>
 			<legend>{tr}Generic information{/tr}</legend>
-			<div class="form-check">
+			<div class="form-check mt-0">
 				<label>
 					<input type="checkbox" class="form-check-input" name="showItemId" value="1" checked="checked">
 					{tr}Item ID{/tr}
@@ -83,17 +85,18 @@
 					{tr}Creation date{/tr}
 				</label>
 			</div>
-			<div class="form-check">
+			<div class="form-check mb-4">
 				<label>
 					<input type="checkbox" class="form-check-input" name="showLastModif" value="1" checked="checked">
 					{tr}Last modification date{/tr}
 				</label>
 			</div>
 		</fieldset>
+
 		<fieldset>
 			<legend>{tr}Fields{/tr}</legend>
 			{foreach from=$fields item=field}
-				<div class="form-check">
+				<div class="form-check mt-0">
 					<label>
 						<input type="checkbox" class="form-check-input" name="listfields[]" value="{$field.fieldId|escape}" checked="checked">
 						{$field.name|escape}
