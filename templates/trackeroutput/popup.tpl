@@ -1,5 +1,5 @@
+{assign var=hasPopup value='n'}
 {capture name=popup}
-	{assign var=hasPopup value='n'}
 	<div class="card">
 		<table class="table table-bordered item">
 			{foreach from=$popupFields|default:null item=field}
