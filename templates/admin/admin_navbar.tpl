@@ -1,4 +1,4 @@
-<nav class="navbar-expand-md {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if} admin-navbar" role="navigation">
+<nav class="navbar-expand-md {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if} admin-navbar mb-4" role="navigation">
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admin-navbar-collapse-1" aria-controls="admin-navbar-collapse-1" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
 	</button>
@@ -141,7 +141,7 @@
 		</ul>
 	</div>
 	{if $include != "list_sections"}
-		<div class="adminanchors card mb-4"><div class="card-body {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if}"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div></div>
+		<div class="adminanchors card"><div class="card-body {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if}"><ul class="nav navbar-nav">{include file='admin/include_anchors.tpl'}</ul></div></div>
 	{/if}
 </nav>
 
