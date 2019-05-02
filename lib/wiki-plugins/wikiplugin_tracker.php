@@ -654,6 +654,12 @@ function wikiplugin_tracker_info()
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
+			'ajax' => [
+				'required' => false,
+				'name' => tra('Use ajax to create/update tracker items'),
+				'description' => tra('Use ajax to create and update tracker items instead of form submission via request variables.'),
+				'default' => 'n',
+			],
 		],
 	];
 }
@@ -694,7 +700,7 @@ function wikiplugin_tracker($data, $params)
 	$default = ['overwrite'            => 'n', 'embedded' => 'n', 'showtitle' => 'n', 'showdesc' => 'n',
 				'showfieldsdesc'       => 'y', 'sort' => 'n', 'showmandatory' => 'y', 'status' => '',
 				'transactionFinalStep' => '', 'registration' => 'n', 'chosenGroup' => 'Registered',
-				'validateusers'        => '', 'emailformat' => 'text'];
+				'validateusers'        => '', 'emailformat' => 'text', 'ajax' => 'n'];
 	$params = array_merge($default, $params);
 	$item = [];
 
@@ -1847,9 +1853,16 @@ function wikiplugin_tracker($data, $params)
 			}
 		}
 		if ($params['formtag'] == 'y') {
+
+			// if we're using ajax, we need to know whether we're updating or creating
+			$ajax_action = !empty($itemId) ? 'data-ajax_action="update" data-item_id="' . $itemId . '"' : 'data-ajax_action="create"';
+
+			//if using ajax, set data-attributes in the form so that we can retrieve them in javascript later
+			$ajax_datas = $params['ajax'] == 'y' ? 'data-ajax="true" ' . $ajax_action . ' data-tracker_id="' . $params['trackerId'] . '"' : "";
+
 			//check if tracker has custom form classes, else default to form-horizontal
 			$formClasses = $tracker['useFormClasses'] == 'y' ? $tracker['formClasses'] : "form-horizontal";
-			$back .= '<form class="' . $formClasses . '" name="editItemForm' . $iTRACKER . '" id="editItemForm' . $iTRACKER . '" enctype="multipart/form-data" method="post"' . (isset($target) ? ' target="' . $target . '"' : '') . ' action="' . $_SERVER['REQUEST_URI'] . '"><input type="hidden" name="trackit" value="' . $trackerId . '" />';
+			$back .= '<form class="' . $formClasses . '" name="editItemForm' . $iTRACKER . '" id="editItemForm' . $iTRACKER . '" enctype="multipart/form-data" method="post"' . (isset($target) ? ' target="' . $target . '"' : '') . ' action="' . $_SERVER['REQUEST_URI'] . '" ' . $ajax_datas . '><input type="hidden" name="trackit" value="' . $trackerId . '" />';
 			$back .= '<input type="hidden" name="refresh" value="1" />';
 		}
 		$back .= smarty_function_ticket([], $smarty);

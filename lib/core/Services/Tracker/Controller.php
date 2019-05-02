@@ -886,7 +886,15 @@ class Services_Tracker_Controller
 				$item['processedFields'] = $processedItem['fields'];
 
 				if ($suppressFeedback !== true) {
-					Feedback::success(tr('New tracker item %0 successfully created.', $itemId));
+					if ($input['ajax']) {
+						$trackerinfo = $definition->getInformation();
+						$trackername = tr($trackerinfo['name']);
+						$msg = tr('New "%0" item successfully created.', $trackername);
+						Feedback::success($msg);
+						Feedback::send_headers();
+					} else {
+						Feedback::success(tr('New tracker item %0 successfully created.', $itemId));
+					}
 				}
 
 				return $item;
@@ -1060,7 +1068,17 @@ class Services_Tracker_Controller
 				}
 			} else {
 				if ($suppressFeedback !== true) {
-					Feedback::success(tr('Tracker item %0 has been updated', $itemId));
+					if ($input['ajax']) {
+						$trackerinfo = $definition->getInformation();
+						$trackername = tr($trackerinfo['name']);
+						$item = $this->utilities->getItem($trackerId, $itemId);
+						$itemtitle = $this->utilities->getTitle($definition, $item);
+						$msg = tr('%0: Updated "%1"', $trackername, $itemtitle) . " [" . TikiLib::lib('tiki')->get_long_time( TikiLib::lib('tiki')->now ) . "]";
+						Feedback::success($msg);
+						Feedback::send_headers();
+					} else {
+						Feedback::success(tr('Tracker item %0 has been updated', $itemId));
+					}
 				}
 				$redirect = $input->redirect->url();
 
