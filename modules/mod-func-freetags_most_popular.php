@@ -38,8 +38,8 @@ function module_freetags_most_popular_info()
 				'filter' => 'text',
 				'default' => null,
 				'options' => [
+					['text' => tra('All'), 'value' => ''],
 					['text' => tra('Same'), 'value' => 'all'],
-					['text' => tra('All'), 'value' => 'all'],
 					['text' => tra('Wiki Pages'), 'value' => 'wiki page'],
 					['text' => tra('Blog Posts'), 'value' => 'blog post'],
 					['text' => tra('Article'), 'value' => 'article'],
