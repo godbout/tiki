@@ -280,9 +280,10 @@
 				<legend>{tr}Site access{/tr}</legend>
 				{preference name=site_closed}
 				<div class="adminoptionboxchild" id="site_closed_childcontainer">
+					{preference name=site_closed_title}
 					{preference name=site_closed_msg}
 					<div class="col-sm-8 offset-sm-4">
-						{button _text='{tr}Test site closed message{/tr}' href='tiki-error_simple.php?error='|cat:$prefs.site_closed_msg _class='btn-sm' _type='info'}
+						{button _text='{tr}Test site closed message{/tr}' href="tiki-error_simple.php?title={$prefs.site_closed_title}&error="|cat:$prefs.site_closed_msg _class='btn-sm' _type='info'}
 					</div>
 				</div>
 				{preference name=use_load_threshold}

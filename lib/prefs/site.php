@@ -29,6 +29,16 @@ function prefs_site_list()
 			'tags' => ['basic'],
 			'default' => 'n',
 		],
+		'site_closed_title' => [
+			'name' => tra('Title'),
+			'type' => 'text',
+			'perspective' => false,
+			'dependencies' => [
+				'site_closed',
+			],
+			'default' => tra('Coming soon'),
+			'tags' => ['basic'],
+		],
 		'site_closed_msg' => [
 			'name' => tra('Message'),
 			'type' => 'text',
