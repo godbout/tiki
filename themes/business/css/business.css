@@ -6855,7 +6855,7 @@ h2.sitesubtitle {
   color: #91bef5;
   font-style: italic; }
 
-.bg-dark, .bg-light, .topbar, .topbar .navbar-default .navbar-nav > li, .topbar .nav > li {
+.bg-dark, .bg-light, .topbar, .topbar.bg-dark > li, .topbar.bg-light > li .topbar .nav > li {
   background: #1f5daa;
   /* Old browsers */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1f5daa), color-stop(2%, #3977c4), color-stop(3%, #3b7ac7), color-stop(5%, #3877c6), color-stop(7%, #3a7cca), color-stop(9%, #3778c8), color-stop(19%, #3674c7), color-stop(43%, #2c6abf), color-stop(69%, #1c5cb3), color-stop(93%, #1454ac), color-stop(97%, #1455a9), color-stop(98%, #1a57a8), color-stop(100%, #346dba));
@@ -6871,11 +6871,17 @@ h2.sitesubtitle {
   border-left: 1px solid #3676c4;
   border-right: 1px solid #1957aa; }
 
+.topbar.bg-dark > li > a, .topbar.bg-light > li > a, .topbar .cssmenu_horiz > li > a, .layout_social .fixed-top .navbar-brand, .layout_social .fixed-top .nav-link, .layout_social .fixed-top button.dropdown-toggle, .layout_social .fixed-top .cssmenu_horiz > li > a {
+  color: #fff; }
+
 .navbar li.dropdown {
   border-left: 1px solid #3676c4;
   border-right: 1px solid #1957aa; }
+  .navbar li.dropdown > a {
+    color: #fff; }
 
-.topbar .nav > li > a:hover, .topbar .nav > li > a:focus, .topbar .cssmenu_horiz > li > a:hover, .topbar .cssmenu_horiz > li:hover, .topbar .cssmenu_horiz li.sfHover:hover, .topbar .cssmenu_horiz > li.selected > a, .navbar-dark .navbar-nav > li > a:hover, .navbar-dark .navbar-nav > li > a:focus, .navbar-dark .navbar-nav > .active > a, .navbar-light .navbar-nav > li > a:hover, .navbar-light .navbar-nav > li > a:focus, .navbar-light .navbar-nav > .active > a {
+.topbar .nav > li > a:hover, .topbar .nav > li > a:focus, .topbar .cssmenu_horiz > li > a:hover, .topbar .cssmenu_horiz > li:hover, .topbar .cssmenu_horiz li.sfHover:hover, .topbar .cssmenu_horiz > li.selected > a, .bg-dark > li > a:hover, .bg-dark > li > a:focus, .bg-dark > .active > a, .bg-light > li > a:hover, .bg-light > li > a:focus, .bg-light > .active > a {
+  text-decoration: none;
   background: #3270bd;
   /* Old browsers */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3270bd), color-stop(2%, #1855a5), color-stop(3%, #1553a8), color-stop(5%, #1855ae), color-stop(7%, #1353ad), color-stop(14%, #1858af), color-stop(26%, #1a5ab1), color-stop(29%, #1d5eb2), color-stop(53%, #2866bb), color-stop(55%, #2c6abf), color-stop(95%, #3a79c9), color-stop(97%, #3a7ac4), color-stop(98%, #3777c1), color-stop(100%, #205ea9));
@@ -6971,7 +6977,7 @@ h3.card-title {
 .popover {
   color: #404040; }
 
-.bg-dark .bg-dark, .tiki .navbar.navbar-dark.bg-dark .navbar.navbar-dark.bg-dark, .tiki.navbar.bg-light .navbar.bg-light, .page-header {
+.bg-dark .bg-dark, .tiki .navbar.bg-dark .navbar.navbar-dark.bg-dark, .tiki.navbar.bg-light .navbar.bg-light, .page-header {
   background-image: none !important;
   background: transparent !important;
   border-left: none;
