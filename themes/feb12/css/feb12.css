@@ -6856,11 +6856,11 @@ header.container {
   margin-top: 30px;
   border-bottom: none; }
 
-.top_modules {
+.bg-dark .top_modules {
   background: url("../images/header.jpg") repeat-x bottom; }
-  .top_modules a, .top_modules .btn-link {
+  .bg-dark .top_modules a, .bg-dark .top_modules .btn-link {
     color: #f5f5f5; }
-  .top_modules a:hover, .top_modules .btn-link:hover {
+  .bg-dark .top_modules a:hover, .bg-dark .top_modules .btn-link:hover {
     color: #dcdcdc; }
 
 .side-col-toggle-container {
@@ -6868,6 +6868,9 @@ header.container {
 
 .navbar-fixed-top .container {
   border: none; }
+
+.layout_social .navbar-light a, .layout_social_modules .navbar-light a {
+  color: #f5f5f5; }
 
 .navbar-dark a, .navbar-dark .navbar-brand, .dropdown-item, .dropdown-item a, .dropdown-item button.btn-link.link-list, .dropdown-menu .tikihelp {
   color: rgba(255, 255, 255, 0.75); }
@@ -6902,6 +6905,12 @@ header.container {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3e7ca1', endColorstr='#1c5b87',GradientType=0) !important;
   /* IE6-9 */ }
 
+.bg-dark .navbar-brand, .bg-dark .nav-link, .bg-dark button.dropdown-toggle, .bg-dark .cssmenu_horiz > li > a {
+  color: #f5f5f5 !important; }
+
+.fixed-top .top_modules {
+  background: transparent; }
+
 .bg-dark .bg-dark {
   background: transparent !important; }
 
@@ -6922,6 +6931,9 @@ header.container {
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dbdbdb', endColorstr='#ffffff',GradientType=0);
   /* IE6-9 */ }
+
+.bg-light .navbar-brand, .bg-light .nav-link, .bg-light button.dropdown-toggle, .bg-light .cssmenu_horiz > li > a {
+  color: #3e7ca1 !important; }
 
 .navbar {
   margin-bottom: 0;
