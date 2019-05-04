@@ -1,14 +1,61 @@
 // $Id$
-// This file is for additional SASS rules beyond what are in _bootstrap-variables.scss.
-// Todo for Bootstrap 4: The theme files compile, but check if all these rules are still appropriate.
+// This file is for additional SCSS rules beyond what are in _bootstrap-variables.scss.
 // Image path example:
 $imagePath: "../images/";
 
-
 body,
 body.fullscreen {
-	background: #90140c url('#{$imagePath}stripes.png') repeat-x 50% 0;
+  background: #90140c url('#{$imagePath}stripes.png') repeat-x 50% 0;
 }
+
+.layout_classic #middle,
+.layout_basic .row-middle,
+.layout_social .middle.container {
+  background: #f3f3f3;
+  border: solid #600;
+  border-width: 15px;
+}
+
+// Fixed-top colors
+.navbar.bg-light.fixed-top, // layout_default
+.navbar.bg-dark.fixed-top {
+  background: #0c0c0d;
+  background: -moz-linear-gradient(top, #0c0c0d 0%, #000000 3%, #000000 5%, #050505 8%, #070707 13%, #121212 55%, #000000 58%, #000000 100%);
+  background: -webkit-linear-gradient(top, #0c0c0d 0%,#000000 3%,#000000 5%,#050505 8%,#070707 13%,#121212 55%,#000000 58%,#000000 100%);
+  background: linear-gradient(to bottom, #0c0c0d 0%,#000000 3%,#000000 5%,#050505 8%,#070707 13%,#121212 55%,#000000 58%,#000000 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0c0c0d', endColorstr='#000000',GradientType=0 );
+  .navbar-brand,
+  .nav-link,
+  button.dropdown-toggle,
+  .cssmenu_horiz > li > a {
+	color: #fff;
+  }
+}
+
+.navbar.bg-light.fixed-top > li:hover,
+.navbar.bg-dark.fixed-top > li:hover,
+.navbar.bg-light.fixed-top > li:active,
+.navbar.bg-dark.fixed-top > li:active,
+.navbar.bg-dark.fixed-top .nav-link:hover,
+.navbar.bg-light.fixed-top .nav-link:active,
+.fixed-top .navbar-light .navbar-brand,
+.navbar.bg-light.fixed-top .nav-link:hover,
+.navbar.bg-light.fixed-top .nav-link:active,
+.navbar.bg-light.fixed-top button.dropdown-toggle:hover,
+.navbar.bg-light.fixed-top button.dropdown-toggle:active,
+.navbar.bg-light.fixed-top .cssmenu_horiz > li > a:hover,
+.navbar.bg-dark.fixed-top .cssmenu_horiz > li > a:active {
+  color: #fff;
+  text-decoration: none;
+  background: #555;
+  background: -moz-linear-gradient(top, #555555 0%, #4f4f4f 5%, #4c4b4b 13%, #3d3d3d 55%, #2e2e2e 58%, #121212 100%);
+  background: -webkit-linear-gradient(top, #555555 0%,#4f4f4f 5%,#4c4b4b 13%,#3d3d3d 55%,#2e2e2e 58%,#121212 100%);
+  background: linear-gradient(to bottom, #555555 0%,#4f4f4f 5%,#4c4b4b 13%,#3d3d3d 55%,#2e2e2e 58%,#121212 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555555', endColorstr='#121212',GradientType=0 );
+}
+
+.top_modules.bg-light,
+.top_modules.bg-dark { background: transparent !important; }
 
 .sitetitle:not(.adminoptionbox) {
 	background: url('#{$imagePath}title_background.jpg') no-repeat transparent;
@@ -34,49 +81,137 @@ h2.sitesubtitle {
 	margin-top: 0;
 }
 
-//.layout_social {
-//	.sitetitle {
-//		background: none;
-//		height: auto;
-//	}
-//	h2.sitesubtitle {
-//		margin-top: 20px;
-//	}
-//}
-
-.topbar.row {
-	border: solid #600;
-	border-width: 15px 15px 0 15px;
-}
-
-.topbar a {
-	color: $navbar-light-color;
-}
-
-#middle,
-.row-middle,
-.layout_social > .container {
-	background: #f3f3f3;
-	border: solid #600;
-	border-width: 0 15px;
-}
-
 .top_modules div:not(.card) .btn-link,
-#fullscreenbutton a {
+#fullscreenbutton a,
+.layout_basic .top_modules .cssmenu_horiz > li > a,
+.layout_basic .top_modules .navbar-brand,
+.layout_basic .top_modules .nav-link,
+.layout_basic .top_modules button.dropdown-toggle {
 	color: #fe9b27;
 }
 
+.topbar_modules {
+  background: #000 url('#{$imagePath}stripes_small.gif') repeat-x /*0 -8px*/ !important;
+  border-bottom: 1px solid #916047;
+  .cssmenu_horiz > li:nth-child(1n),
+  .navbar-nav .nav-item:nth-child(1n) {
+	background: url('#{$imagePath}blue.png') no-repeat;
+  }
+  .cssmenu_horiz > li:nth-child(2n),
+  .navbar-nav .nav-item:nth-child(2n) {
+	background: url('#{$imagePath}red.png') no-repeat;
+  }
+  .cssmenu_horiz > li:nth-child(3n),
+  .navbar-nav .nav-item:nth-child(3n) {
+	background: url('#{$imagePath}orange.png') no-repeat;
+  }
+  .cssmenu_horiz > li:nth-child(4n),
+  .navbar-nav .nav-item:nth-child(4n) {
+	background: url('#{$imagePath}green.png') no-repeat;
+  }
+  .cssmenu_horiz > li > a {
+	color: #fff;
+	font-size: 0.9rem;
+	font-weight: bold;
+  }
+  .form-control {
+	height: calc(2rem + 2px);
+  }
+  button.search_mod_magnifier {
+	font-size: .8rem;
+  }
+}
 
-//.btn-default {
-//  background: #fea841;
-//  background: -moz-linear-gradient(top,  #fea841 0%, #fd7931 100%);
-//  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fea841), color-stop(100%,#fd7931));
-//  background: -webkit-linear-gradient(top,  #fea841 0%,#fd7931 100%);
-//  background: -o-linear-gradient(top,  #fea841 0%,#fd7931 100%);
-//  background: -ms-linear-gradient(top,  #fea841 0%,#fd7931 100%);
-//  background: linear-gradient(to bottom,  #fea841 0%,#fd7931 100%);
-//  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fea841', endColorstr='#fd7931',GradientType=0 );
-//}
+#top_modules .navbar-default .navbar-collapse,
+#top_modules .navbar-default .navbar-form .card-default > .card-header,
+#topbar_modules .navbar-default .navbar-collapse,
+#topbar_modules .navbar-default .navbar-form .card-default > .card-header {
+  border: none;
+}
+
+#top_modules .navbar-default,
+#topbar_modules .navbar-default {
+  background: none;
+  border: none;
+}
+
+#top_modules .navbar,
+#topbar_modules .navbar {
+  margin-bottom: 0;
+}
+
+.layout_social .middle .topbar {
+  margin-left: -15px !important;
+  margin-right: -15px !important;
+}
+
+.cssmenu_horiz a,
+.cssmenu_vert a {
+  color: $link-color;
+}
+
+.cssmenu_horiz li ul,
+.cssmenu_vert li ul {
+  padding: 5px 0;
+  margin: 2px 0 0; // override default ul
+  background-color: $dropdown-bg;
+  border: 1px solid $dropdown-border-color;
+  border-radius: $border-radius;
+  @include box-shadow(0 6px 12px rgba(0, 0, 0, .175));
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+
+  // Links within the dropdown menu
+  > li > a {
+	padding: 3px 20px;
+	font-weight: normal;
+	line-height: $line-height-base;
+	color: $dropdown-link-color;
+	background: $dropdown-bg;
+  }
+}
+
+// Hover/Focus state
+.cssmenu_horiz > li > a,
+.cssmenu_vert > li > a,
+.cssmenu_horiz ul > li > a,
+.cssmenu_vert ul > li > a {
+  &:hover,
+  &:focus {
+	text-decoration: none;
+	color: $dropdown-link-hover-color;
+	background-color: $dropdown-link-hover-bg;
+  }
+}
+
+.brown_gradient_background {
+  background: #ca807c;
+  background: -moz-linear-gradient(top, #ca807c 0%, #a2241c 1%, #9a241c 24%, #79201b 78%, #71201b 99%, #3e1b19 100%);
+  background: -webkit-linear-gradient(top, #ca807c 0%,#a2241c 1%,#9a241c 24%,#79201b 78%,#71201b 99%,#3e1b19 100%);
+  background: linear-gradient(to bottom, #ca807c 0%,#a2241c 1%,#9a241c 24%,#79201b 78%,#71201b 99%,#3e1b19 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ca807c', endColorstr='#3e1b19',GradientType=0 );
+}
+
+//orange_gradient_background
+#pagetop_modules,
+.orange_gradient_background {
+  background: #fec782;
+  background: -moz-linear-gradient(top, #fec782 0%, #fe9e27 0%, #fe9226 31%, #fe7723 75%, #fe6e22 100%, #783c1c 100%);
+  background: -webkit-linear-gradient(top, #fec782 0%,#fe9e27 0%,#fe9226 31%,#fe7723 75%,#fe6e22 100%,#783c1c 100%);
+  background: linear-gradient(to bottom, #fec782 0%,#fe9e27 0%,#fe9226 31%,#fe7723 75%,#fe6e22 100%,#783c1c 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fec782', endColorstr='#783c1c',GradientType=0 );
+  padding: 15px;
+  .card {
+	border: 3px solid #fff;
+	border-radius: 0px;
+	margin: 15px;
+  }
+}
+
+#pagetop_modules {
+  margin-left: -15px;
+  margin-right: -15px;
+}
 
 .btn-primary {
 	background: #ffd19f;
@@ -114,11 +249,11 @@ h2.sitesubtitle {
 }
 
 .btn-info {
-  background: #97d7ea;
-  background: -moz-linear-gradient(top, #97d7ea 0%, #5cc0de 100%);
-  background: -webkit-linear-gradient(top, #97d7ea 0%,#5cc0de 100%);
-  background: linear-gradient(to bottom, #97d7ea 0%,#5cc0de 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#97d7ea', endColorstr='#5cc0de',GradientType=0 );
+  background: #0089f0;
+  background: -moz-linear-gradient(top, #0089f0 0%, #5cc0de 100%);
+  background: -webkit-linear-gradient(top, #0089f0 0%,#5cc0de 100%);
+  background: linear-gradient(to bottom, #0089f0 0%,#5cc0de 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0089f0', endColorstr='#5cc0de',GradientType=0 );
   border: 1px solid #13ceea;
 
 }
@@ -132,7 +267,9 @@ h2.sitesubtitle {
 }
 
 .btn-secondary,
-.btn-primary.btn-files {
+.btn-primary.btn-files,
+.nav-tabs .nav-link,
+.tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
   background: #fed09e;
   background: -moz-linear-gradient(top, #fed09e 0%, #feb768 100%);
   background: -webkit-linear-gradient(top, #fed09e 0%,#feb768 100%);
@@ -142,7 +279,9 @@ h2.sitesubtitle {
 }
 
 .btn-secondary:hover,
-.btn-primary.btn-files {
+.btn-primary.btn-files,
+.nav-tabs .nav-link:hover,
+.nav-tabs .nav-link.active {
   background: #feb768;
   background: -moz-linear-gradient(top, #feb768 0%, #fed09e 100%);
   background: -webkit-linear-gradient(top, #feb768 0%,#fed09e 100%);
@@ -151,11 +290,11 @@ h2.sitesubtitle {
 }
 
 .btn-success {
-  background: #8dcd8d;
-  background: -moz-linear-gradient(top, #8dcd8d 0%, #5db85d 100%);
-  background: -webkit-linear-gradient(top, #8dcd8d 0%,#5db85d 100%);
-  background: linear-gradient(to bottom, #8dcd8d 0%,#5db85d 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8dcd8d', endColorstr='#5db85d',GradientType=0 );
+  background: #24a238;
+  background: -moz-linear-gradient(top, #24a238 0%, #5db85d 100%);
+  background: -webkit-linear-gradient(top, #24a238 0%,#5db85d 100%);
+  background: linear-gradient(to bottom, #24a238 0%,#5db85d 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#24a238', endColorstr='#5db85d',GradientType=0 );
   border: 1px solid #08b81c;
 }
 
@@ -184,126 +323,38 @@ h2.sitesubtitle {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff2b', endColorstr='#fdfd7e',GradientType=0 );
 }
 
-.tiki .row.topbar {
-	background: #fe6322 url('#{$imagePath}stripes_small.gif') repeat-x 0 -8px;
-	border-bottom: 1px solid #916047;
-	margin-left: -15px;
-	margin-right: -15px;
-	.cssmenu_horiz > li,
-	.navbar-default {
-		background-color: transparent;
-	}
-}
-
-.topbar .navbar-light .navbar-nav > li,
-.topbar .nav > li {
-	background: transparent;
-}
-
-#top_modules .navbar-default .navbar-collapse,
-#top_modules .navbar-default .navbar-form .card-default > .card-header,
-#topbar_modules .navbar-default .navbar-collapse,
-#topbar_modules .navbar-default .navbar-form .card-default > .card-header {
-	border: none;
-}
-
-#top_modules .navbar-default,
-#topbar_modules .navbar-default {
-	background: none;
-	border: none;
-}
-
-#top_modules .navbar,
-#topbar_modules .navbar {
-	margin-bottom: 0;
-}
-
 .card-title {
-	color: #8A0700;
-	font: 1.8rem arial, verdana, helvetica, sans-serif;
+  color: #8A0700;
+  font: 1.8rem arial, verdana, helvetica, sans-serif;
 }
 
 #col2 .card,
 #col3 .card,
-#col2 .card-default > .card,
-#col3 .card-default > .card,
-#col2 .card-default > .card-header,
-#col3 .card-default > .card-header {
-	border: none;
-	background: transparent;
+#col2 .card-header,
+#col3 .card-header {
+  border: none;
+  background: transparent;
 }
 
 .popover-body .table .table,
 .popover-body .table-hover {
-	background: #ffffff;
+  background: #ffffff;
 }
 
 .table .table {
-	background: #f3f3f3;
-}
-
-.cssmenu_horiz a,
-.cssmenu_vert a {
-	color: $link-color;
-}
-
-.topbar .cssmenu_horiz > li > a {
-	color: $navbar-light-color;
-}
-
-//.topbar .cssmenu_horiz > li:hover > a {
-//	color: $navbar-light-link-hover-color;
-//}
-
-.cssmenu_horiz li ul,
-.cssmenu_vert li ul {
-	padding: 5px 0;
-	margin: 2px 0 0; // override default ul
-	//  font-size: $font-size-base;
-	background-color: $dropdown-bg;
-	border: 1px solid $dropdown-border-color;
-	border-radius: $border-radius;
-	@include box-shadow(0 6px 12px rgba(0, 0, 0, .175));
-	-webkit-background-clip: padding-box;
-	background-clip: padding-box;
-
-	// Links within the dropdown menu
-	> li > a {
-		padding: 3px 20px;
-		font-weight: normal;
-		line-height: $line-height-base;
-		color: $dropdown-link-color;
-		background: $dropdown-bg;
-	}
-}
-
-// Hover/Focus state
-.cssmenu_horiz > li > a,
-.cssmenu_vert > li > a,
-.cssmenu_horiz ul > li > a,
-.cssmenu_vert ul > li > a {
-	&:hover,
-	&:focus {
-		text-decoration: none;
-		color: $dropdown-link-hover-color;
-		background-color: $dropdown-link-hover-bg;
-	}
+  background: #f3f3f3;
 }
 
 footer.footer {
-	.card-default {
-		border: none;
-	}
 	.card {
-		background: transparent;
-		border: none;
-		-webkit-box-shadow: none;
-		box-shadow: none;
+	  border: none;
+	  background: transparent;
+	  -webkit-box-shadow: none;
+	  box-shadow: none;
 	}
-	.card-default > .card-header {
-		background-color: transparent;
+	  .card-header {
+		background: transparent;
 		border-color: transparent;
-
 	}
 }
 
@@ -336,11 +387,4 @@ footer.footer {
 
 .tablesorter-header {
 	color: #e5e5e5;
-}
-
-.nav-tabs .nav-link.active,
-.nav-tabs .nav-item.show .nav-link {
-  color: #495057;
-  background-color: $primary;
-  border-color: #dee2e6 #dee2e6 $primary;
 }
