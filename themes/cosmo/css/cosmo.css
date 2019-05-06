@@ -5807,18 +5807,20 @@ button.close {
     color: inherit;
     border-color: #dee2e6; } }
 
-body {
-  -webkit-font-smoothing: antialiased; }
-
-.progress .progress-bar {
-  font-size: 8px;
-  line-height: 8px; }
-
-.popover button.btn-link.link-list, .popover button.btn-link.link-list .icon {
-  font-size: 0.9375rem; }
-
 .topbar {
   margin-bottom: 1.4rem; }
+
+.navbar-dark > a, .navbar-dark .cssmenu_horiz > li > a {
+  color: rgba(255, 255, 255, 0.5); }
+  .navbar-dark > a:hover, .navbar-dark .cssmenu_horiz > li > a:hover {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none; }
+
+.navbar-dark .sitetitle a {
+  color: #ccc; }
+  .navbar-dark .sitetitle a:hover {
+    color: rgba(255, 255, 255, 1);
+    text-decoration: none; }
 
 .warning a, .warning a:link, .warning a:visited {
   color: #ff7518; }
@@ -6685,6 +6687,16 @@ input:checked + .slider {
   .permission_table .form-row > .col {
     padding-left: 15px;
     padding-right: 15px; }
+
+body {
+  -webkit-font-smoothing: antialiased; }
+
+.progress .progress-bar {
+  font-size: 8px;
+  line-height: 8px; }
+
+.popover button.btn-link.link-list, .popover button.btn-link.link-list .icon {
+  font-size: 0.9375rem; }
 
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }

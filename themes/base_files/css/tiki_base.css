@@ -4,6 +4,18 @@
 .topbar {
   margin-bottom: 1.4rem; }
 
+.navbar-dark > a, .navbar-dark .cssmenu_horiz > li > a {
+  color: rgba(255, 255, 255, 0.5); }
+  .navbar-dark > a:hover, .navbar-dark .cssmenu_horiz > li > a:hover {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none; }
+
+.navbar-dark .sitetitle a {
+  color: #ccc; }
+  .navbar-dark .sitetitle a:hover {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none; }
+
 .warning a, .warning a:link, .warning a:visited {
   color: #ffc107; }
 
@@ -3375,16 +3387,6 @@ body.fullscreen.tiki.navbar-padding {
 
 .layout_social a.navbar-brand img, .layout_social_modules a.navbar-brand img {
   display: inline; }
-  .layout_social .navbar-inverse a, .layout_social_modules .navbar-inverse a {
-    color: rgba(255, 255, 255, 0.5); }
-  .layout_social .navbar-inverse a:hover, .layout_social_modules .navbar-inverse a:hover {
-    color: rgba(255, 255, 255, 0.75);
-    text-decoration: none; }
-  .layout_social .navbar-inverse .sitetitle a, .layout_social_modules .navbar-inverse .sitetitle a {
-    color: #ccc; }
-  .layout_social .navbar-inverse .sitetitle a:hover, .layout_social_modules .navbar-inverse .sitetitle a:hover {
-    color: rgba(255, 255, 255, 0.75);
-    text-decoration: none; }
   .layout_social h1.sitetitle, .layout_social_modules h1.sitetitle {
     font-size: 1.8rem;
     margin-top: 10px;

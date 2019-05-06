@@ -14,6 +14,7 @@
 // $gray-800: #343a40 !default;
 // $gray-900: #212529 !default;
 // $black:    #000 !default;
+$dark:				#c7d0d9;
 
 $primary:         #6c839b;
 //$success: #48ca3b;
@@ -22,14 +23,14 @@ $primary:         #6c839b;
 //$danger: #df6e1e;
 
 $theme-colors: (
- 	"primary":        	#6c839b //,
+ 	"primary":        	#6c839b,
 // 	"secondary": 		#dddddd,
 // 	"success":         	#5cb85c,
 // 	"info":           	#5bc0de,
 // 	"warning":         	#f0ad4e,
 // 	"danger":          	#d9534f,
-//		"light":			#ffffff,
-// 	"dark":				#000000
+	"light":			#f4f4f4,
+ 	"dark":				#c7d0d9
 );
 
 // Options
@@ -76,13 +77,20 @@ $btn-primary-border: #999999;
 //$navbar-dark-bg: #1f5daa;
 //$navbar-dark-border: darken($navbar-dark-bg, 6.5%);
 
-// Navbarlinks ??
-//$navbar-dark-color: #ffffff;
-//$navbar-dark-hover-color: darken(#fff, 10%);
-//$navbar-dark-hover-bg: #3270bd;
-//$navbar-dark-active-color: #ffffff;
-//$navbar-dark-active-bg: #3270bd;
-//$navbar-dark-disabled-color: #cccccc;
+//// Navbarlinks ??
+$navbar-dark-color:                 #2d3741;
+$navbar-dark-hover-color:           lighten($navbar-dark-color, 10%);
+//$navbar-dark-active-color:          $white !default;
+//$navbar-dark-disabled-color:        rgba($white, .25) !default;
+//$navbar-dark-toggler-icon-bg:       str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-dark-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+//$navbar-dark-toggler-border-color:  rgba($white, .1) !default;
+
+//$navbar-light-color:                rgba($black, .5) !default;
+//$navbar-light-hover-color:          rgba($black, .7) !default;
+//$navbar-light-active-color:         rgba($black, .9) !default;
+//$navbar-light-disabled-color:       rgba($black, .3) !default;
+//$navbar-light-toggler-icon-bg:      str-replace(url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='#{$navbar-light-color}' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"), "#", "%23") !default;
+//$navbar-light-toggler-border-color: rgba($black, .1) !default;
 
 // Pagination
 // Jumbotron

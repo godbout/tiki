@@ -167,13 +167,18 @@ body.fullscreen {
 	}
 }
 
-// navbars with too many items overflows the container
-.navbar-expand .navbar-nav {
-	flex-wrap: wrap;
-}
+// // navbars with too many items overflows the container - why is this in the theme file?
+//.navbar-expand .navbar-nav {
+//	flex-wrap: wrap;
+//}
 
-@include media-breakpoint-up(lg) {
-	.navbar-expand-lg .navbar-nav {
-		flex-wrap: wrap;
-	}
+//@include media-breakpoint-up(lg) {
+//	.navbar-expand-lg .navbar-nav {
+//		flex-wrap: wrap;
+//	}
+//}
+
+.navbar-expand-md .navbar-nav .nav-link {
+  padding-right: .75rem;
+  padding-left: .75rem;
 }

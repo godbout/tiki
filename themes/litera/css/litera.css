@@ -6082,6 +6082,18 @@ table, .table {
 .topbar {
   margin-bottom: 1.4rem; }
 
+.navbar-dark > a, .navbar-dark .cssmenu_horiz > li > a {
+  color: rgba(255, 255, 255, 0.6); }
+  .navbar-dark > a:hover, .navbar-dark .cssmenu_horiz > li > a:hover {
+    color: #fff;
+    text-decoration: none; }
+
+.navbar-dark .sitetitle a {
+  color: #ccc; }
+  .navbar-dark .sitetitle a:hover {
+    color: #fff;
+    text-decoration: none; }
+
 .warning a, .warning a:link, .warning a:visited {
   color: #f0ad4e; }
 

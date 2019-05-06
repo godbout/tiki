@@ -6161,6 +6161,18 @@ a.list-group-item-success.active {
 .topbar {
   margin-bottom: 1.4rem; }
 
+.navbar-dark > a, .navbar-dark .cssmenu_horiz > li > a {
+  color: rgba(0, 0, 0, 0.5); }
+  .navbar-dark > a:hover, .navbar-dark .cssmenu_horiz > li > a:hover {
+    color: rgba(0, 0, 0, 0.75);
+    text-decoration: none; }
+
+.navbar-dark .sitetitle a {
+  color: #ccc; }
+  .navbar-dark .sitetitle a:hover {
+    color: rgba(0, 0, 0, 0.75);
+    text-decoration: none; }
+
 .warning a, .warning a:link, .warning a:visited {
   color: #ff851b; }
 

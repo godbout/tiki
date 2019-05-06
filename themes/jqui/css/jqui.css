@@ -5982,6 +5982,18 @@ button.close {
 .topbar {
   margin-bottom: 1.4rem; }
 
+.navbar-dark > a, .navbar-dark .cssmenu_horiz > li > a {
+  color: #0001a6; }
+  .navbar-dark > a:hover, .navbar-dark .cssmenu_horiz > li > a:hover {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none; }
+
+.navbar-dark .sitetitle a {
+  color: #ccc; }
+  .navbar-dark .sitetitle a:hover {
+    color: rgba(255, 255, 255, 0.75);
+    text-decoration: none; }
+
 .warning a, .warning a:link, .warning a:visited {
   color: #ffc107; }
 

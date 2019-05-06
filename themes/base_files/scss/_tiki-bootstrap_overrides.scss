@@ -159,20 +159,6 @@ body.fullscreen.tiki.navbar-padding {
 	a.navbar-brand img {
 		display: inline;
 	}
-	.navbar-inverse a {
-		color: $navbar-dark-color;
-		&:hover {
-			color: $navbar-dark-hover-color;
-			text-decoration: none;
-		}
-	}
-	.navbar-inverse .sitetitle a {
-		color: $navbar-dark-brand-color;
-		&:hover {
-			color: $navbar-dark-hover-color;
-			text-decoration: none;
-		}
-	}
 	h1.sitetitle {
 		font-size: 1.8rem;
 		margin-top: 10px;

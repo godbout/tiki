@@ -64,10 +64,10 @@ $dropdown-link-hover-bg:           #15b5c1;
 
 // Navs
 // Navbar
-$navbar-dark-color:                 $white;
-$navbar-dark-hover-color:           darken($white, 25%);
-$navbar-dark-active-color:          $white;
-$navbar-dark-disabled-color:        darken($white, 50%);
+$navbar-dark-color:                 $link-color;
+$navbar-dark-hover-color:           lighten($navbar-dark-color, 25%);
+$navbar-dark-active-color:          $navbar-dark-color;
+$navbar-dark-disabled-color:        lighten($navbar-dark-color, 50%);
 
 $navbar-light-color:                rgba($black, .5) !default;
 $navbar-light-hover-color:          rgba($black, .7) !default;

@@ -13,6 +13,26 @@ $imagePathToImgDir: "../../../img/";
 //	background: $navbar-dark-bg;
 //}
 
+
+//.layout_social,
+//.layout_social_modules {
+  .navbar-dark > a,
+  .navbar-dark .cssmenu_horiz > li > a {
+	color: $navbar-dark-color;
+	&:hover {
+	  color: $navbar-dark-hover-color;
+	  text-decoration: none;
+	}
+  }
+  .navbar-dark .sitetitle a {
+	color: $navbar-dark-brand-color;
+	&:hover {
+	  color: $navbar-dark-hover-color;
+	  text-decoration: none;
+	}
+  }
+//}
+
 // tiki-boxes_and_panels.less
 .warning a,
 .warning a:link,
