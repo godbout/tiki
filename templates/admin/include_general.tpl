@@ -64,6 +64,7 @@
 					</div>
 					{preference name=zend_mail_smtp_port}
 					{preference name=zend_mail_smtp_security}
+					{preference name=zend_http_sslverifypeer}
 					{preference name=zend_mail_smtp_helo}
 					{preference name=zend_mail_queue}
 				</div>
