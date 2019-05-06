@@ -120,6 +120,14 @@ function wikiplugin_include_info()
 					['text' => tr('No'), 'value' => 'n'],
 				],
 			],
+			'max_chars_included' => [
+				'required' => false,
+				'name' => tr('Max characters included'),
+				'description' => tr('Limit the length of the included text'),
+				'since' => '20.0',
+				'filter' => 'int',
+				'default' => '',
+			],
 		],
 	];
 }
@@ -254,6 +262,10 @@ function wikiplugin_include($dataIn, $params)
 			}
 			$text = implode("\n", $lines);
 		}
+	}
+
+	if (isset($params['max_chars_included']) && mb_strlen($text) > $params['max_chars_included']) {
+		$text = substr($text, 0 , $params['max_chars_included']) . '…';
 	}
 
 	$parserlib = TikiLib::lib('parser');
