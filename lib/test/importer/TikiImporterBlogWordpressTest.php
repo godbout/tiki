@@ -78,15 +78,15 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 
 	public function testReplaceParagraphWithLineBreak()
 	{
-		$expectedOutput = "Hello world<br />";
+		$expectedOutput = nl2br("Hello world\n");
 
 		$input = "<p>Hello world</p>";
 		$output = $this->obj->replaceParagraphWithLineBreak($input);
-		$this->assertEquals($expectedOutput, $output, "html paragraphs should be replaced with br");
+		$this->assertEquals($expectedOutput, $output, "html paragraphs should be replaced with line break");
 
-		$input = "<p>Hello world</p><br />";
+		$input = "Hello world<br>";
 		$output = $this->obj->replaceParagraphWithLineBreak($input);
-		$this->assertEquals($expectedOutput, $output, "No extra br should be added if there was one after the paragraph already");
+		$this->assertEquals($expectedOutput, $output, "When there is a tag '<br>' this one is also replaced by '\n'");
 	}
 
 	public function testParseYoutubeEmbedded()
