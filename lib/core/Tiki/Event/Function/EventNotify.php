@@ -24,12 +24,17 @@ class Tiki_Event_Function_EventNotify extends Math_Formula_Function
 		$priority = $this->evaluateChild($element[2]);
 		$userpath = $this->evaluateChild($element[3]);
 
-		$users = $this->getUsers($userpath, $arguments);
-
-		/*goes through all returned users to send a direct notification*/
-		foreach ($users as $user) {
-			$userId = TikiLib::lib('tiki')->get_user_id($user);
-			$monitorlib->directNotification($priority, $userId, $event, $arguments);
+		// set notification to group in one entry instead of one entry per user in the group
+		if ($userpath=="groupmember") {
+			$monitorlib->directNotification($priority, 0, $event, $arguments);
+		}
+		else {
+			$users = $this->getUsers($userpath, $arguments);
+			/*goes through all returned users to send a direct notification*/
+			foreach ($users as $user) {
+				$userId = TikiLib::lib('tiki')->get_user_id($user);
+				$monitorlib->directNotification($priority, $userId, $event, $arguments);
+			}
 		}
 
 		return 1;

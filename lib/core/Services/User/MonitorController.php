@@ -87,6 +87,26 @@ class Services_User_MonitorController
 			throw new Services_Exception_NotFound;
 		}
 
+		global $user;
+		// get the groups this user is in
+		$user_groups=TikiLib::lib('tiki')->get_user_groups($user);
+
+		// get the id's from the users_groups table using the groupName
+		$where = " WHERE groupName IN (" . implode(',', array_fill(0, count($user_groups), '?')) . ')';
+		$query = "select id from users_groups" . $where;
+		$group_ids=TikiLib::lib('tiki')->fetchAll($query, $user_groups);
+		$group_ids = array_column($group_ids, 'id');
+
+		// set up strings to append to our queries (pull group notifications)
+		$critical_groups="";
+		$high_groups="";
+		$low_groups="";
+		foreach($group_ids as $group_id) {
+			$critical_groups .= " OR criticalgrp$group_id ";
+			$high_groups .= " OR highgrp$group_id ";
+			$low_groups .= " OR lowgrp$group_id ";
+		}
+
 		$searchlib = TikiLib::lib('unifiedsearch');
 		$query = $searchlib->buildQuery([
 			'type' => 'activity',
@@ -95,13 +115,13 @@ class Services_User_MonitorController
 
 		$sub = $query->getSubQuery('optional');
 		if ($critical) {
-			$sub->filterMultivalue("critical$userId", "stream");
+			$sub->filterMultivalue("critical$userId $critical_groups", "stream");
 		}
 		if ($high) {
-			$sub->filterMultivalue("high$userId", "stream");
+			$sub->filterMultivalue("high$userId $high_groups", "stream");
 		}
 		if ($low) {
-			$sub->filterMultivalue("low$userId", "stream");
+			$sub->filterMultivalue("low$userId $low_groups", "stream");
 		}
 
 		if ($from && $to) {
@@ -149,11 +169,26 @@ class Services_User_MonitorController
 
 		$userId = $loginlib->getUserId();
 
+		// get the groups this user is in
+		$user_groups=TikiLib::lib('tiki')->get_user_groups($user);
+
+		// get the id's from the users_groups table using the groupName
+		$where = " WHERE groupName IN (" . implode(',', array_fill(0, count($user_groups), '?')) . ')';
+		$query = "select id from users_groups" . $where;
+		$group_ids=TikiLib::lib('tiki')->fetchAll($query, $user_groups);
+		$group_ids = array_column($group_ids, 'id');
+
+		// set up string to append to our query (pull group notifications)
+		$or_groups="";
+		foreach($group_ids as $group_id) {
+			$or_groups .= " OR criticalgrp$group_id OR highgrp$group_id OR lowgrp$group_id ";
+		}
+
 		$searchlib = TikiLib::lib('unifiedsearch');
 		$query = $searchlib->buildQuery([
 			'type' => 'activity',
 		]);
-		$query->filterMultivalue("critical$userId OR high$userId OR low$userId", 'stream');
+		$query->filterMultivalue("critical$userId OR high$userId OR low$userId $or_groups", 'stream');
 		$query->filterRange($lastread, 'now');
 		$query->filterMultivalue("NOT \"$user\"", 'clear_list');
 		$query->setOrder('modification_date_desc');

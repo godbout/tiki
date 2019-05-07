@@ -254,15 +254,28 @@ class MonitorLib
 
 	function directNotification($priority, $userId, $event, $args)
 	{
-		$this->queue[$args['EVENT_ID']] = [
-			'event' => $event,
-			'arguments' => $args,
-			'events' => [],
-			'force' => [
-				'priority' => $priority,
-				'userId' => $userId,
-			],
-		];
+		if ($userId==0 && isset($args['groupname'])) {
+			$this->queue[$args['EVENT_ID']] = [
+				'event' => $event,
+				'arguments' => $args,
+				'events' => [],
+				'force' => [
+					'priority' => $priority."grp",
+					'userId' => TikiDb::get()->table('users_groups')->fetchOne('id', ['groupName' => $args['groupname']]),
+				],
+			];
+		}
+		else {
+			$this->queue[$args['EVENT_ID']] = [
+				'event' => $event,
+				'arguments' => $args,
+				'events' => [],
+				'force' => [
+					'priority' => $priority,
+					'userId' => $userId,
+				],
+			];
+		}
 	}
 
 	private function finalEvent()
@@ -300,7 +313,6 @@ class MonitorLib
 	private function finalHandleEvent($args, $events, $force)
 	{
 		$currentUser = TikiLib::lib('login')->getUserId();
-
 		if ($force) {
 			if ($currentUser != $force['userId']) {
 				// Direct notification, we know user and priority
