@@ -3025,6 +3025,15 @@ class FileGalLib extends TikiLib
 					$params['comment'][$key] = '';
 				}
 
+				// Before feature_use_fgal_for_wiki_attachments, the wiki page attachments had a comment field which was stored and displayed.
+				// With feature_use_fgal_for_wiki_attachments, wiki page attachments are normal file gallery files which allow showing and editing the description field, but not the comment field.
+				// The comment field should probably be deprecated but the upload interface still asks for a comment field, so we put it as a description if there is none as well as as a comment.
+				if (isset($prefs['feature_use_fgal_for_wiki_attachments']) && $prefs['feature_use_fgal_for_wiki_attachments'] ='y') {
+					if (! isset($params['description'][$key])) {
+						$params['description'][$key] = $params['comment'][$key];
+					}
+				}
+
 				// We process here file uploads
 				if (! empty($aFiles["userfile"]["name"][$key])) {
 					// Were there any problems with the upload?  If so, report here.
