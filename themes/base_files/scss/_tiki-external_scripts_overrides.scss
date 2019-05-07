@@ -29,7 +29,7 @@ div.form-group label.error {
 // Chosen is calculating the widths wrong (too narrow) so this is a crude workaround.
 .tiki .input-group .chosen-container { width: 110% !important; }
 // Lets exclude the above to trackers and file galleries because buttons appear on the second line
-[class*="tiki-admin"], .tiki-view_tracker, .tiki-list_file_gallery #sel,
+[class*="tiki-admin"], [class*="tiki-list"], .tiki-view_tracker,
 .adminoptionbox, .manage {
 	.input-group .chosen-container {
 		width: auto !important;
