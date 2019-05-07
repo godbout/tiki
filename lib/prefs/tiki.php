@@ -176,7 +176,7 @@ function prefs_tiki_list()
 		],
 		'tiki_object_selector_searchfield' => [
 			'name' => tr('Object selector search field'),
-			'description' => tr('Field or (comma separated) fields to search when filtering in an object selector. e.g. "%0" (default "%1")', 'title', 'content'),
+			'description' => tr('Field or (comma separated) fields to search when filtering in an object selector. e.g. "%0" (default "%1")', 'content', 'title'),
 			'type' => 'text',
 			'default' => 'title',
 			'filter' => 'text',
