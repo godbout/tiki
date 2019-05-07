@@ -41,17 +41,17 @@ function smarty_function_preference($params, $smarty)
 			$info['tagstring'] .= ' modified';
 		}
 
+		$pages_string = '';
 		if ($get_pages) {
 			if (count($info['pages']) > 0) {
 				foreach ($info['pages'] as $pg) {
 					$ct_string = $pg[1] > 1 ? '&amp;cookietab=' . $pg[1] : '';
-					$pages_string = '<a class="lm_result label label-default" href="tiki-admin.php?page=' . $pg[0] . $ct_string . '&amp;highlight=' . $info['preference'] . '">' . $pg[0] . '</a> ';
+					$pages_string .= ($pages_string ? ', ' : '');
+					$pages_string .= '<a class="lm_result label label-default" href="tiki-admin.php?page=' . $pg[0] . $ct_string . '&amp;highlight=' . $info['preference'] . '">' . $pg[0] . '</a>';
 				}
 			} else {
 				$pages_string = tra('(not found in an admin panel)');
 			}
-		} else {
-			$pages_string = '';
 		}
 		$info['pages'] = $pages_string;
 
