@@ -306,7 +306,7 @@
 						{if $info.simpleEmail eq 'y'} checked="checked"{/if}>
 					{tr}Use simplified email format{/tr}
 				</label>
-				<div class="form-text">
+				<div class="description form-text mb-4">
 					{tr}The tracker will use the text field named Subject if any as subject and will use the user email or for anonymous the email field if any as sender{/tr}
 				</div>
 			</div>
@@ -317,7 +317,7 @@
 						{if $info.publishRSS eq 'y'}checked="checked"{/if}>
 					{tr}Publish RSS feed for this tracker{/tr}
 				</label>
-				<div class="form-text">
+				<div class="description form-text">
 					{tr}Requires "RSS per tracker" to be set in Admin/RSS{/tr}
 					{if $prefs.feed_tracker eq 'y'}
 						{tr}(Currently set){/tr}
@@ -351,7 +351,7 @@
 						{if $info.userCanSeeOwn eq 'y'}checked="checked"{/if}>
 					{tr}User can see his own items{/tr}
 				</label>
-				<div class="description">
+				<div class="description form-text mb-4">
 					{tr}The tracker needs a user field with the item-owner activated{/tr}.
 					{tr}No extra permission is needed at the tracker permissions level to allow a user to see just his own items through Plugin TrackerList with the param view=user{/tr}
 				</div>
@@ -362,7 +362,7 @@
 						{if $info.writerCanModify eq 'y'}checked="checked"{/if}>
 					{tr}Item creator can modify his items{/tr}
 				</label>
-				<div class="description form-text">
+				<div class="description form-text mb-4">
 					{tr}The tracker needs a user field with the auto-assign activated{/tr}
 				</div>
 			</div>
@@ -372,7 +372,7 @@
 						{if $info.writerCanRemove eq 'y'}checked="checked"{/if}>
 					{tr}Item creator can remove his items{/tr}
 				</label>
-				<div class="description form-text">
+				<div class="description form-text mb-4">
 					{tr}The tracker needs a user field with the auto-assign activated{/tr}
 				</div>
 			</div>
@@ -389,7 +389,7 @@
 						{if $info.oneUserItem eq 'y'}checked="checked"{/if}>
 					{tr}Only one item per user or IP{/tr}
 				</label>
-				<div class="description form-text">
+				<div class="description form-text mb-4">
 					{tr}The tracker needs a user or IP address field with the auto-assign set to Creator{/tr}
 				</div>
 			</div>
@@ -399,17 +399,17 @@
 						{if $info.writerGroupCanModify eq 'y'}checked="checked"{/if}>
 					{tr}Members of the creator group can modify items{/tr}
 				</label>
-				<div class="description form-text">
+				<div class="description form-text mb-4">
 					{tr}The tracker needs a group field with the auto-assign activated{/tr}
 				</div>
 			</div>
 			<div class="form-check">
 				<label>
-					<input type="checkbox" name="writerGroupCanRemove" value="1"
+					<input type="checkbox" class="form-check-input" name="writerGroupCanRemove" value="1"
 						{if $info.writerGroupCanRemove eq 'y'}checked="checked"{/if}>
 					{tr}Members of the creator group can remove items{/tr}
 				</label>
-				<div class="description form-text">
+				<div class="description form-text mb-4">
 					{tr}The tracker needs a group field with the auto-assign activated{/tr}
 				</div>
 			</div>
@@ -418,14 +418,14 @@
 					<input type="checkbox" class="form-check-input" name="adminOnlyViewEditItem" value="1"
 						{if $info.adminOnlyViewEditItem eq 'y'} checked="checked"{/if}>
 					{tr}Restrict non admins to wiki page access only{/tr}
-					<div class="description form-text">
-						{tr}Only users with admin tracker permission (tiki_p_admin_trackers) can use the built-in tracker interfaces (tiki-view_tracker.php and tiki-view_tracker_item.php). This is useful if you want the users of these trackers to only access them via wiki pages, where you can use the various tracker plugins to embed forms and reports.{/tr}
-					</div>
 				</label>
+				<div class="description form-text mb-4">
+					{tr}Only users with admin tracker permission (tiki_p_admin_trackers) can use the built-in tracker interfaces (tiki-view_tracker.php and tiki-view_tracker_item.php). This is useful if you want the users of these trackers to only access them via wiki pages, where you can use the various tracker plugins to embed forms and reports.{/tr}
+				</div>
 			</div>
 			<fieldset>
 				<legend>{tr}Creation date constraint{/tr}</legend>
-				<div class="description">
+				<div class="description form-text mb-4">
 					{tr}The tracker will be <strong>open</strong> for non-admin users through wiki pages with PluginTracker <strong>only</strong> during the period 'After' the start date and/or 'Before' the end date set below{/tr}.
 				</div>
 				<div class="form-group row mx-0 depends" data-on="start">
