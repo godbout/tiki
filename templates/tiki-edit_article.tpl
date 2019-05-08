@@ -49,10 +49,10 @@
 			</div>
 			{if $tiki_p_use_HTML eq 'y'}
 				{if $smarty.session.wysiwyg neq 'y'}
-					<div class="col-md-8 offset-md-4">
+					<div class="form-group mx-0">
 						<div class="form-check">
-							<label class="form-class=label">
-								<input class="form-class=input" type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
+							<label class="form-class-label">
+								<input class="form-class-input" type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
 								{tr}Allow full HTML{/tr} <em>({tr}Keep any HTML tag.{/tr})</em>
 							</label>
 							<div class="form-text">{tr}If not enabled, Tiki will retain some HTML tags (a, p, pre, img, hr, b, i){/tr}.</div>
@@ -166,7 +166,7 @@
 					<input type="text" name="authorName" id="authorName" value="{$authorName|escape}" class="form-control">
 				</div>
 			</div>
-			<div class="form-group {if $tiki_p_edit_article_user neq 'y'}hidden{/if} clearfix">
+			<div class="form-group row {if $tiki_p_edit_article_user neq 'y'}hidden{/if} clearfix">
 				<label for="author" class="col-form-label col-md-4">{tr}User (article owner){/tr}</label>
 				<div class="col-md-4">
 					<input id="author" type="text" name="author" value="{$author|escape}" class="form-control">
@@ -404,7 +404,7 @@
 			{/if}
 		{/tab}
 	{/tabset}
-	<div class="form-group row clearfix text-center">
+	<div class="form-group clearfix text-center">
 		<input type="submit" class="wikiaction btn btn-info" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
 		<input type="submit" class="wikiaction btn btn-primary" name="save" value="{tr}Save{/tr}" onclick="this.form.saving=true;needToConfirm=false;">
 		{if $articleId}<input type="submit" class="wikiaction tips btn btn-secondary" title="{tr}Cancel{/tr}|{tr}Cancel the edit (changes will be lost).{/tr}" name="cancel_edit" value="{tr}Cancel Edit{/tr}" onclick="needToConfirm=false;">{/if}
