@@ -157,7 +157,13 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 						}
 					}
 				}
-				$data['value'] = TikiLib::lib('tiki')->str_putcsv($users);
+				if ($this->getOption('multiple')) {
+					$data['value'] = TikiLib::lib('tiki')->str_putcsv($users);
+				} elseif (isset($users[0])) {
+					$data['value'] = $users[0];
+				} else {
+					$data['value'] = '';
+				}
 			} else {
 				if ($autoassign == 2) {
 					if ($this->getOption('multiple')) {
@@ -297,7 +303,11 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 			} else {
 				$out = implode(', ', $value);
 			}
-			return $out . '<input type="hidden" name="' . $this->getInsertId() . '" value="' . htmlspecialchars(TikiLib::lib('tiki')->str_putcsv($value)) . '">';
+			if ($this->getOption('multiple')) {
+				return $out . '<input type="hidden" name="' . $this->getInsertId() . '" value="' . htmlspecialchars(TikiLib::lib('tiki')->str_putcsv($value)) . '">';
+			} else {
+				return $out . '<input type="hidden" name="' . $this->getInsertId() . '" value="' . $value . '">';
+			}
 		}
 	}
 
