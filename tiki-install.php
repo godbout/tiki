@@ -48,8 +48,8 @@ if (file_exists($lockFile)) {
 	$td = empty($tikidomain) ? '' : '/' . $tikidomain;
 	$content = '
 							<p>As a security precaution, the Tiki Installer has been disabled. To re-enable the installer:</p>
-							<div style="border: solid 1px #ccc; margin: 1em auto; width: 40%;">
-								<ol style="text-align: left">
+							<div class="col-md-5" style="border: solid 1px #ccc; margin: 1em auto;">
+								<ol style="text-align: left; padding-left: 25px;">
 									<li>Use your file manager application to find the directory where you have unpacked your Tiki and remove the <strong><code>lock</code></strong> file which was created in the <strong><code>db' . $td . '</code></strong> folder.</li>
 									<li>Re-run <strong><a href="tiki-install.php' . (empty($tikidomain) ? '' : "?multi=$tikidomain") . '" title="Tiki Installer">tiki-install.php' . (empty($tikidomain) ? '' : "?multi=$tikidomain") . '</a></strong>.</li>
 								</ol>
@@ -134,31 +134,35 @@ if (isset($_SESSION['accessible'])) {
 function createPage($title, $content)
 {
 	echo <<<END
-<!DOCTYPE html 
+<!DOCTYPE html
 	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link type="text/css" rel="stylesheet" href="vendor_bundled/vendor/twbs/bootstrap/dist/css/bootstrap.css" />
+		<link type="text/css" rel="stylesheet" href="themes/base_files/css/tiki_base.css" />
+		<link type="text/css" rel="stylesheet" href="themes/default/css/default.css" />
 		<title>$title</title>
 	</head>
-	<body class="container text-center">
-		<div class="row">
-			<img alt="Site Logo" src="img/tiki/Tiki_WCG.png" style="margin: 10px;" />
-		</div>
-		<div class="row">
-			<h1>
-				$title
-			</h1>
-		</div>
-		</div>
-			<div id="middle">
-				$content
+	<body class="tiki fixed_width">
+		<div class="container" id="middle">
+			<div class="row mb-4">
+				<img alt="Site Logo" src="img/tiki/Tiki_WCG.png" style="margin: 10px;" />
 			</div>
-		</div>
-		<div class="row">
-			<a href="http://tiki.org" target="_blank" title="Powered by Tiki Wiki CMS Groupware"><img src="img/tiki/tikibutton.png" alt="Powered by Tiki Wiki CMS Groupware" /></a>
+			<div class="row mb-2">
+				<div class="col" id="col1">
+					<h1>
+						$title
+					</h1>
+					<div class="text-center">
+						$content
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<a href="http://tiki.org" target="_blank" title="Powered by Tiki Wiki CMS Groupware"><img src="img/tiki/tikibutton.png" alt="Powered by Tiki Wiki CMS Groupware" /></a>
+			</div>
 		</div>
 	</body>
 </html>
