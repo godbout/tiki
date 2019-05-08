@@ -426,4 +426,5 @@ body.fullscreen.tiki.navbar-padding {
 
 @media (max-width: breakpoint-max(sm)) {
 	.btn { white-space: normal !important; }
+	.alert .rboxcontent { word-break: break-word; }
 }
