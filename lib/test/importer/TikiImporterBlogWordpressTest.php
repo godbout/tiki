@@ -78,13 +78,13 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 
 	public function testReplaceParagraphWithLineBreak()
 	{
-		$expectedOutput = nl2br("Hello world\n");
+		$expectedOutput = "Hello world<br />Here is Foo<br />Talking from Bar<br />Thanks";
 
-		$input = "<p>Hello world</p>";
+		$input = "<p>Hello world</p><p style='color:black'>Here is Foo<br/>Talking from Bar</p><br>Thanks";
 		$output = $this->obj->replaceParagraphWithLineBreak($input);
 		$this->assertEquals($expectedOutput, $output, "html paragraphs should be replaced with line break");
 
-		$input = "Hello world<br>";
+		$input = "Hello world<br><br/>Here is Foo<br />Talking from Bar<br><br  />Thanks";
 		$output = $this->obj->replaceParagraphWithLineBreak($input);
 		$this->assertEquals($expectedOutput, $output, "When there is a tag '<br>' this one is also replaced by '\n'");
 	}
