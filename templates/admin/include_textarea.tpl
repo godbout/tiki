@@ -416,9 +416,11 @@
 					</div>
 				</div><br>
 				<div class="adminoptionbox form-group row">
-					<label class="col-form-label col-sm-4" for="inline">{tr}Inline (no plugin edit UI){/tr}</label>
+					<label class="col-sm-4" for="inline">{tr}Inline (no plugin edit UI){/tr}</label>
 					<div class="col-sm-8">
-						<input class="form-control" type="checkbox" id="inline" name="inline" value="1" {if !empty($plugin_admin.description.inline)}checked="checked"{/if}>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" id="inline" name="inline" value="1" {if !empty($plugin_admin.description.inline)}checked="checked"{/if}>
+						</div>
 					</div>
 				</div><br>
 			</fieldset><br>
@@ -556,11 +558,13 @@
 
 					<div class="adminoptionbox">
 						<div class="adminoptionlabel form-group row">
-							<label class="col-form-label col-sm-4" for="ignorebody">
+							<label class="col-sm-4" for="ignorebody">
 								{tr}Ignore user input{/tr}
 							</label>
 							<div class="col-sm-8">
-								<input class="form-control" type="checkbox" name="ignorebody" id="ignorebody" value="y" {if !empty($plugin_admin.body.input) and $plugin_admin.body.input eq 'ignore'}checked="checked"{/if}/>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" name="ignorebody" id="ignorebody" value="y" {if !empty($plugin_admin.body.input) and $plugin_admin.body.input eq 'ignore'}checked="checked"{/if}/>
+								</div>
 							</div>
 						</div>
 					</div>
