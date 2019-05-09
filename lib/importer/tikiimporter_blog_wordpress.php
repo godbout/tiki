@@ -525,14 +525,16 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 	 */
 	function replaceParagraphWithLineBreak($content)
 	{
-		$arr = array(
-			"</p>"      => "\n",
-			"<p>"      => "",
-			"<br>"    => '\n'
-		);
-		$newcontent = nl2br(strtr($content,$arr));
+		$new_content = preg_replace("/<p[^>]*?>/", "", $content);
+		$new_content = str_replace("</p>", "<br />", $new_content);
 
-		return $newcontent;
+		// normalize to <br />
+		$new_content = preg_replace(',<br( */)?>,', "<br />", $new_content);
+
+		//if there is two "<br />" tags we just keep one
+		$new_content = preg_replace(',(<br( */)?>)\1,', "<br />", $new_content);
+
+		return $new_content;
 	}
 
 	/**
