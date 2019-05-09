@@ -537,6 +537,17 @@ li .url-group {
 	cursor: move;
 }
 
+@media (max-width: breakpoint-max(sm)) {
+	li .label-group,
+	li .url-group {
+		max-width: 100%;
+	}
+	.options-container #options {
+		padding-left: 0;
+	}
+}
+
+
 // /* Fullscreen textareas */
 .TextArea-fullscreen {
 	display: block;

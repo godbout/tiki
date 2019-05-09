@@ -4291,6 +4291,13 @@ li .url-group {
 .new-option * {
   cursor: move; }
 
+@media (max-width: 767.98px) {
+  li .label-group, li .url-group {
+    max-width: 100%; }
+
+  .options-container #options {
+    padding-left: 0; } }
+
 .TextArea-fullscreen {
   display: block;
   width: 100%;
