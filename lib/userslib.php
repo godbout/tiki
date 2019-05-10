@@ -917,7 +917,7 @@ class UsersLib extends TikiLib
 					$this->disable_tiki_auth($user); //disable that user's password in tiki - since we use ldap
 
 					// if it worked ok, just log in
-					if ($result == USER_VALID) {
+					if ($result == $user) {
 						// before we log in, update the login counter
 						return [$this->_ldap_sync_and_update_lastlogin($user, $pass), $user, $result];
 					} elseif ($result == SERVER_ERROR) {
