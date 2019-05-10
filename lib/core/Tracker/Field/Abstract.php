@@ -292,6 +292,10 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 
 		$factory = $this->trackerDefinition->getFieldFactory();
 
+		// let's honor doNotShowEmptyField
+		$tracker_info = $this->trackerDefinition->getInformation();
+		$doNotShowEmptyField = $tracker_info['doNotShowEmptyField'];
+
 		$popupFields = [];
 		$item = Tracker_Item::fromInfo($this->itemData);
 
@@ -320,7 +324,7 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 			}
 			$handler = $factory->getHandler($field, $this->itemData);
 
-			if ($handler) {
+			if ($handler && ($doNotShowEmptyField !== 'y' || ! empty($this->itemData[$field['fieldId']]))) {
 				$field = array_merge($field, $handler->getFieldData());
 				$popupFields[] = $field;
 			}
