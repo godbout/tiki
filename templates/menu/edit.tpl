@@ -40,7 +40,7 @@
 			</select>
 		</div>
 		<div class="form-group row mx-2">
-			<label for="menus_parse">
+			<label for="menus_parse" class="w-100">
 				<input type="checkbox" name="parse" id="menus_parse"{if $info.parse eq 'y'} checked="checked"{/if} value="1">
 				{tr}Wiki Parse{/tr}
 			</label>

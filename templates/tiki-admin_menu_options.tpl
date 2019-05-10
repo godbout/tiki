@@ -194,27 +194,27 @@
 
 			<form action="{service controller='menu' action='preview'}" class="form-inline preview mb-4">
 				<input type="hidden" name="menuId" value="{$menuId}">
-				<div class="form-group mr-2">
+				<div class="form-group col-sm-3">
 					<label for="preview_type" class="col-form-label mr-2">{tr}Type{/tr}:</label>
 					<select id="preview_type" class="form-control" name="preview_type">
 						<option value="vert"{if $preview_type eq 'vert'} selected{/if}>{tr}Vertical{/tr}</option>
 						<option value="horiz"{if $preview_type eq 'horiz'} selected{/if}>{tr}Horizontal{/tr}</option>
 					</select>
 				</div>
-				<div class="form-check mr-2">
+				<div class="form-check col-sm-2">
 					<label for="preview_bootstrap" class="form-check-label mr-2">
 						Bootstrap
 					</label>
-					<input type="checkbox" id="preview_bootstrap" name="preview_bootstrap" class="form-check-input"{if $preview_bootstrap eq 'y'} checked="checked"{/if}>
+					<input type="checkbox" id="preview_bootstrap" name="preview_bootstrap"{if $preview_bootstrap eq 'y'} checked="checked"{/if}>
 				</div>
-				<div class="form-check mr-4">
+				<div class="form-check col-sm-2">
 					<label for="preview_css" class="form-check-label mr-2">
 						CSS
 					</label>
-					<input type="checkbox" id="preview_css" name="preview_css" class="form-check-input"{if $preview_css eq 'y'} checked="checked"{/if}>
+					<input type="checkbox" id="preview_css" name="preview_css"{if $preview_css eq 'y'} checked="checked"{/if}>
 				</div>
-				<div class="form-group mr-2">
-					<label for="preview_position" class="form-input-label mr-2">
+				<div class="form-group col-sm-3">
+					<label for="preview_position" class="col-form-label mr-2">
 						{tr}Position{/tr}
 					</label>
 					<select id="preview_position" class="form-control">
@@ -223,7 +223,7 @@
 						{/foreach}
 					</select>
 				</div>
-				<div class="">
+				<div class="col-sm-2">
 					{button _text='{tr}Deploy{/tr}' _class='deploy_menu btn btn-primary' _type='default' _ajax='n'}
 				</div>
 			</form>
