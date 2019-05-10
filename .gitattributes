@@ -53,6 +53,10 @@ admin/index.php -text
 /copyright.txt -text
 /copyrights.php -text
 /cron.php -text
+cypht/modules/smtp/assets/kindeditor/themes/common/flash.gif -text
+cypht/modules/smtp/assets/kindeditor/themes/common/loading.gif -text
+cypht/modules/smtp/assets/kindeditor/themes/default/background.png -text
+cypht/modules/smtp/assets/kindeditor/themes/default/default.png -text
 db/.htaccess -text
 db/cert/index.php -text
 db/cert/web.config -text
