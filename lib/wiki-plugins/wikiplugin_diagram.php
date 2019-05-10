@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\File\DiagramHelper;
+
 function wikiplugin_diagram_info()
 {
 	$info = [
@@ -50,7 +52,7 @@ function wikiplugin_diagram($data, $params)
 
 	$filegallib = TikiLib::lib('filegal');
 
-	if (! file_exists('vendor/xorti/mxgraph-editor/mxClient.min.js')) {
+	if (! DiagramHelper::isPackageInstalled()) {
 		Feedback::error(tr('To view diagrams Tiki needs the xorti/mxgraph-editor package. If you do not have permission to install this package, ask the site administrator.'));
 		return;
 	}
@@ -74,7 +76,7 @@ function wikiplugin_diagram($data, $params)
 		}
 	}
 
-	$data = preg_replace('/\s+/', ' ', $data);
+	$data = DiagramHelper::parseData($data);
 	static $diagramIndex = 0;
 	++$diagramIndex;
 
@@ -116,7 +118,7 @@ function wikiplugin_diagram($data, $params)
   </root>
 </mxGraphModel>
 XML;
-				$data = preg_replace('/\s+/', ' ', $data);
+				$data = DiagramHelper::parseData($data);
 				$data = base64_encode($data);
 			}
 
@@ -161,7 +163,7 @@ EOF;
 
 	$smarty = TikiLib::lib('smarty');
 	$smarty->assign('index', $diagramIndex);
-	$smarty->assign('graph_data', $data);
+	$smarty->assign('data', $data);
 	$smarty->assign('graph_data_base64', base64_encode($data));
 	$smarty->assign('sourcepage', $sourcepage);
 	$smarty->assign('allow_edit', $allowEdit);

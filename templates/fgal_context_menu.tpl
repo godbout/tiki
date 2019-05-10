@@ -72,6 +72,9 @@
 			{/if}
 		{elseif $tiki_p_upload_files eq 'y' and $prefs.wikiplugin_diagram eq 'y'
 			and $file.type eq 'text/plain'  and $file.id|file_diagram}
+			<a href="tiki-display.php?fileId={$file.id}">
+				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display{/tr}"}
+			</a>
 			<form id="edit-diagram-1" target="_blank" action="tiki-editdiagram.php" method="post">
 				<input type="hidden" value="{$file.id}" name="fileId">
 				<a href="javascript:void(0)" onclick="$('#edit-diagram-1').submit()">

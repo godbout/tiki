@@ -29,4 +29,23 @@ class DiagramHelper
 
 		return false;
 	}
+
+	/**
+	 * Checks if needed core files exist in order to enable Diagrams
+	 * @return bool
+	 */
+	public static function isPackageInstalled()
+	{
+		return file_exists('vendor/xorti/mxgraph-editor/mxClient.min.js');
+	}
+
+	/**
+	 * Parse diagram raw data
+	 * @param $data
+	 * @return string
+	 */
+	public static function parseData($data)
+	{
+		return preg_replace('/\s+/', ' ', $data);
+	}
 }
