@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: Term.php 66105 2018-04-19 18:11:02Z luciash $
+// $Id$
 
 class Search_Query_Facet_DateHistogram extends Search_Query_Facet_Abstract implements Search_Query_Facet_Interface
 {
