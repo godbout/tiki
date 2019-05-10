@@ -38,7 +38,7 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 					'groupId' => [
 						'name' => tr('Group Filter'),
 						'description' => tr('Limit listed groups to those including the specified group.'),
-						'filter' => 'int',
+						'filter' => 'text',
 						'legacy_index' => 1,
 					],
 					'userGroups' => [
@@ -62,6 +62,16 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 						],
 						'default' => 0,
 						'legacy_index' => 2,
+					],
+					'unassign' => [
+						'name' => tr('Unassign from previous selection'),
+						'description' => tr('When assign to the group is set, the user (user selector if it exists, or user) will be unassigned from the previously selected group (if any). That group must have the user choice setting activated.'),
+						'filter' => 'int',
+						'options' => [
+							0 => tr('None'),
+							1 => tr('Unassign'),
+						],
+						'default' => 0,
 					],
 					'notify' => [
 						'name' => tr('Email Notification'),
@@ -95,8 +105,12 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 				$data['list'] = TikiLib::lib('user')->list_all_groups_with_permission();
 			}
 		} else {
-			$group_info = TikiLib::lib('user')->get_groupId_info($groupId);
-			$data['list'] =	TikiLib::lib('user')->get_including_groups($group_info['groupName']);
+			if (ctype_digit($groupId)) {
+				$group_info = TikiLib::lib('user')->get_groupId_info($groupId);
+				$data['list'] =	TikiLib::lib('user')->get_including_groups($group_info['groupName']);
+			} elseif (TikiLib::lib('user')->group_exists($groupId)) {
+				$data['list'] = TikiLib::lib('user')->get_including_groups($groupId);
+			}
 		}
 
 		if (isset($requestData[$ins_id])) {
@@ -141,10 +155,16 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 				$creators = [$user];
 			}
 			$ginfo = TikiLib::lib('user')->get_group_info($value);
+			if ($this->getOption('unassign') && $oldValue) {
+				$oldginfo = TikiLib::lib('user')->get_group_info($oldValue);
+			}
 			foreach ($creators as $creator) {
 				if ($ginfo['userChoice'] == 'y') {
 					TikiLib::lib('user')->assign_user_to_group($creator, $value);
 					TikiLib::lib('user')->set_default_group($creator, $value);
+				}
+				if ($this->getOption('unassign') && $oldValue && $oldginfo['userChoice'] == 'y') {
+					TikiLib::lib('user')->remove_user_from_group($creator, $oldValue);
 				}
 			}
 		}
