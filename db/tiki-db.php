@@ -96,7 +96,23 @@ if (isset($system_configuration_file)) {
 	}
 	$configReader = new Tiki_Config_Ini();
 	$configReader->setFilterSection($system_configuration_identifier);
-	$configData = $configReader->fromFile($system_configuration_file);
+
+	if (preg_match('/\.ini.php$/', $system_configuration_file)) {
+		$retrieveIniContent = function ($system_configuration_file) {
+			ob_start();
+			include($system_configuration_file);
+			$system_configuration_file_content = ob_get_contents();
+			ob_end_clean();
+
+			return $system_configuration_file_content;
+		};
+
+		$system_configuration_content = $retrieveIniContent($system_configuration_file);
+		$configData = $configReader->fromString($system_configuration_content);
+	} else {
+		$configData = $configReader->fromFile($system_configuration_file);
+	}
+
 	$systemConfiguration = $systemConfiguration->merge(new Zend\Config\Config($configData));
 }
 

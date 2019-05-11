@@ -713,4 +713,32 @@ class AdminLib extends TikiLib
 
 		return $opcode_stats;
 	}
+
+	/**
+	 * Check if System Configuration file has "ini" extension and is under the tiki installation (likely web accessible)
+	 *
+	 * @return bool
+	 */
+	public function checkSystemConfigurationFile()
+	{
+		$show_warning = false;
+
+		$db_file = 'db/local.php';
+		if (file_exists($db_file)) {
+			include($db_file);
+
+			if (isset($system_configuration_file) && file_exists($system_configuration_file)) {
+				$tikiPath = realpath(TIKI_PATH);
+				$configPath = realpath($system_configuration_file);
+				if (strncmp($tikiPath, $configPath, strlen($tikiPath)) == 0) {
+					$file_extension = pathinfo($system_configuration_file, PATHINFO_EXTENSION);
+					if ($file_extension == 'ini') {
+						$show_warning = true;
+					}
+				}
+			}
+		}
+
+		return $show_warning;
+	}
 }

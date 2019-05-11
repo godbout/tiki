@@ -6,6 +6,12 @@
 	{tr}See <strong>more options</strong> after you enable more <a class='alert-link' target='tikihelp' href='https://doc.tiki.org/Preference+Filters'>Preference Filters</a> above ({icon name="filter"}){/tr}.
 {/remarksbox}
 
+{if $show_system_configuration_warning}
+	{remarksbox type="warning" title="{tr}Warning{/tr}"}
+	{tr}Tiki detected system configuration files with <strong>.ini</strong> extension, under the root folder of Tiki. It is recommended to change it to <strong>.ini.php</strong>.<br/>Check <strong><a href="https://doc.tiki.org/System-Configuration">https://doc.tiki.org/System-Configuration</a></strong> for examples.{/tr}
+	{/remarksbox}
+{/if}
+
 <div class="d-flex align-content-start flex-wrap">
 	{foreach from=$admin_icons key=page item=info}
 			{if $info.disabled}
