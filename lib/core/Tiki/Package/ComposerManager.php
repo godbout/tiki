@@ -193,16 +193,23 @@ class ComposerManager
 	 * Get List of available (defined) packages
 	 *
 	 * @param bool $filterInstalled don't return if the package is already installed
+	 * @param bool $filterNonInstalable don't return if the package cannot be installed (actions)
 	 * @return array
 	 */
-	public function getAvailable($filterInstalled = true)
+	public function getAvailable($filterInstalled = true, $filterNonInstalable = false)
 	{
 		$installedPackages = [];
 		if ($filterInstalled) {
 			$installedPackages = $this->getListOfInstalledPackages($filterInstalled);
 		}
 
-		return $this->manageYaml('list', $installedPackages);
+		$availablePackages = $this->manageYaml('list', $installedPackages);
+
+		if ($filterNonInstalable) {
+			$availablePackages = $this->getListOfInstalablePackages($availablePackages);
+		}
+
+		return $availablePackages;
 	}
 
 	/**
@@ -227,6 +234,26 @@ class ComposerManager
 		}
 
 		return $installedPackages;
+	}
+
+	/**
+	 * return the list of packages that can be installed
+	 *
+	 * @param $availablePackages
+	 * @return array
+	 */
+	protected function getListOfInstalablePackages($availablePackages)
+	{
+		$canBeInstalled = [];
+		if ($availablePackages) {
+			foreach ($availablePackages as $pkg) {
+				if (! in_array('remove', $pkg['actions'])) {
+					$canBeInstalled[] = $pkg;
+				}
+			}
+		}
+
+		return $canBeInstalled;
 	}
 
 	/**
@@ -335,6 +362,9 @@ class ComposerManager
 					if (! isset($fileInfo['scripts'])) {
 						$fileInfo['scripts'] = [];
 					}
+					if (! isset($fileInfo['actions'])) {
+						$fileInfo['actions'] = [];
+					}
 					$externalPackage = new ComposerPackage(
 						$key,
 						$fileInfo['name'],
@@ -342,7 +372,8 @@ class ComposerManager
 						$fileInfo['licence'],
 						$fileInfo['licenceUrl'],
 						$fileInfo['requiredBy'],
-						$fileInfo['scripts']
+						$fileInfo['scripts'],
+						$fileInfo['actions']
 					);
 					if ($packageAction == 'search' && $key == $packageKey) {
 						return $externalPackage;

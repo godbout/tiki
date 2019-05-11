@@ -19,6 +19,7 @@ class ComposerPackage
 	protected $licenceUrl;
 	protected $requiredBy;
 	protected $scripts;
+	protected $actions;
 
 	/**
 	 * Sets the information related with this package, intended to be used in the constructor of the child class
@@ -30,8 +31,9 @@ class ComposerPackage
 	 * @param string $licenceUrl
 	 * @param array $requiredBy
 	 * @param array $scripts
+	 * @param array $actions
 	 */
-	public function __construct($key, $name, $requiredVersion, $licence, $licenceUrl, $requiredBy, $scripts = [])
+	public function __construct($key, $name, $requiredVersion, $licence, $licenceUrl, $requiredBy, $scripts = [], $actions = [])
 	{
 		$this->key = $key;
 		$this->name = $name;
@@ -40,6 +42,7 @@ class ComposerPackage
 		$this->licenceUrl = $licenceUrl;
 		$this->requiredBy = $requiredBy;
 		$this->scripts = $scripts;
+		$this->actions = $actions;
 	}
 
 	/**
@@ -57,6 +60,7 @@ class ComposerPackage
 			'licenceUrl' => $this->licenceUrl,
 			'requiredBy' => $this->requiredBy,
 			'scripts' => $this->scripts,
+			'actions' => $this->actions,
 		];
 	}
 
@@ -79,6 +83,16 @@ class ComposerPackage
 	public function getScripts()
 	{
 		return $this->scripts;
+	}
+
+	/**
+	 * Returns the actions property
+	 *
+	 * @return array
+	 */
+	public function getActions()
+	{
+		return $this->actions;
 	}
 
 	/**

@@ -90,7 +90,18 @@ MediaAlchemyst:
   requiredBy:
     - wikiplugin_preview
   requiredVersion: ^0.5.1
+PDFjsViewer:
+  licence: Apache-2.0
+  licenceUrl: "https://github.com/oci-labs/pdfjs-dist-viewer-min/blob/main/LICENSE"
+  name: npm-asset/pdfjs-dist-viewer-min
+  link: 'https://asset-packagist.org/package/npm-asset/pdfjs-dist-viewer-min'
+  requiredBy:
+    - fgal_pdfjs_feature
+    - fgal_convert_documents_pdf
+  requiredVersion: ~2.1.266
 PDFjs:
+  actions:
+    - remove
   licence: Apache-2.0
   licenceUrl: "https://github.com/mozilla/pdfjs-dist/blob/master/LICENSE"
   name: npm-asset/pdfjs-dist

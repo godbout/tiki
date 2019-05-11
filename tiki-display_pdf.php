@@ -18,10 +18,15 @@ if ($tikilib->get_preference('fgal_pdfjs_feature') !== 'y') {
 	$accesslib->display_error('tiki-display_pdf.php', tr('PDF.js feature is disabled. If you do not have permission to enable, ask the site administrator.'));
 }
 
-$pdfJsfile = 'vendor/npm-asset/pdfjs-dist/build/pdf.js';
+$errorMessageToAppend = '';
+$oldPdfJsFile = 'vendor/npm-asset/pdfjs-dist/build/pdf.js';
+if (file_exists($oldPdfJsFile)) {
+	$errorMessageToAppend = 'Previous npm-asset/pdfjs-dist package has been deprecated.<br/>';
+}
 
+$pdfJsfile = 'vendor/npm-asset/pdfjs-dist-viewer-min/build/minified/build/pdf.js';
 if (! file_exists($pdfJsfile)) {
-	$accesslib->display_error('tiki-display_pdf.php', tr('To view PDF files Tiki needs the npm-asset/pdfjs-dist package. If you do not have permission to install this package, ask the site administrator.'));
+	$accesslib->display_error('tiki-display_pdf.php', tr($errorMessageToAppend . 'To view PDF files Tiki needs the npm-asset/pdfjs-dist-viewer-min. If you do not have permission to install this package, ask the site administrator.'));
 }
 
 if (isset($_REQUEST['fileSrc'])) {
@@ -46,22 +51,54 @@ if (! empty($_REQUEST['fileId'])) {
 
 	$smarty->loadPlugin('smarty_modifier_sefurl');
 	$sourceLink = smarty_modifier_sefurl($_REQUEST['fileId'], 'display');
-	$downloadLink = smarty_modifier_sefurl($_REQUEST['fileId'], 'file');
 }
 
 if (empty($sourceLink)) {
 	$accesslib->display_error('', tr('Invalid request'));
+} else {
+	$htmlViewFile = '/vendor/npm-asset/pdfjs-dist-viewer-min/build/minified/web/viewer.html?file=';
+	$sourceLink = $htmlViewFile . urlencode(TikiLib::lib('access')->absoluteUrl($sourceLink));
 };
 
 $smarty->assign('source_link', $sourceLink);
-$smarty->assign('download_link', $downloadLink);
 $smarty->assign('export_pdf_link', $exportLink);
 
 $headerlib = TikiLib::lib('header');
-$headerlib->add_jsfile($pdfJsfile);
-$headerlib->add_jsfile('vendor/npm-asset/pdfjs-dist/web/pdf_viewer.js');
-$headerlib->add_jsfile('lib/jquery_tiki/tiki-pdfjs.js');
-$headerlib->add_cssfile('vendor/npm-asset/pdfjs-dist/web/pdf_viewer.css');
+$headerlib->add_css("
+	.iframe-container {
+		overflow: hidden;
+		padding-top: 56.25%;
+		position: relative;
+		height: 900px;
+	}
+	
+	.iframe-container iframe {
+		border: 0;
+		height: 100%;
+		left: 0;
+		position: absolute;
+		top: 0;
+		width: 100%;
+	}
+	
+	@media (max-width: 767px) {
+		.iframe-container {
+			height: 500px;
+		} 
+	}
+	
+	@media (min-width: 768px) AND (max-width: 991px) {
+		.iframe-container {
+			height: 600px;
+		}
+	}
+	
+	@media (min-width: 992px) AND (max-width: 1209px) {
+		.iframe-container {
+			height: 700px;
+		}
+	}
+");
 
 $smarty->assign('mid', 'tiki-display_pdf.tpl');
 $smarty->display('tiki.tpl');

@@ -57,7 +57,7 @@ class PackageListCommand extends Command
 
 			$io->newLine();
 
-			$availableComposerPackages = $composerManager->getAvailable();
+			$availableComposerPackages = $composerManager->getAvailable(true, true);
 			if (! empty($availableComposerPackages)) {
 				$availablePackagesInfo = PackageCommandHelper::getAvailablePackagesInfo($availableComposerPackages);
 				$output->writeln(tr('Packages Available to Install'));

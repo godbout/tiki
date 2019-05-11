@@ -124,6 +124,6 @@ $smarty->assign('composer_environment_warning', $composerManager->checkThatCanIn
 $smarty->assign('composer_available', $composerManager->composerIsAvailable());
 $smarty->assign('composer_packages_installed', $installableList);
 $smarty->assign('composer_packages_missing', $packagesMissing);
-$smarty->assign('composer_packages_available', $composerManager->getAvailable());
+$smarty->assign('composer_packages_available', $composerManager->getAvailable(true, true));
 $smarty->assign('composer_bundled_packages_installed', $composerManagerBundled->getInstalled());
 $smarty->assign('composer_custom_packages_installed', $composerManagerCustom->getCustomPackages());

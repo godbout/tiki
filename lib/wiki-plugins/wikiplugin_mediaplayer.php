@@ -249,18 +249,79 @@ function wikiplugin_mediaplayer($data, $params)
 		if (in_array($params['type'], ['pdf', 'odt', 'ods', 'odp', 'viewerjs'])) { // If the type parameter indicates a format supported by ViewerJS ( http://viewerjs.org ), or if viewerjs was explicitly requested
 			if ($prefs['fgal_pdfjs_feature'] === 'y') {
 				$smarty = TikiLib::lib('smarty');
-				$pdfJsfile = 'vendor/npm-asset/pdfjs-dist/build/pdf.js';
+
+				$oldPdfJsFile = 'vendor/npm-asset/pdfjs-dist/build/pdf.js';
+				$oldPdfJsFileAvailable = file_exists($oldPdfJsFile);
+				$smarty->assign('oldPdfJsFileAvailable', $oldPdfJsFileAvailable);
+
+				$pdfJsfile = 'vendor/npm-asset/pdfjs-dist-viewer-min/build/minified/build/pdf.js';
 				$pdfJsAvailable = file_exists($pdfJsfile);
 				$smarty->assign('pdfJsAvailable', $pdfJsAvailable);
 
 				$headerlib = TikiLib::lib('header');
-				$headerlib->add_jsfile('vendor/npm-asset/pdfjs-dist/build/pdf.js', true);
-				$headerlib->add_jsfile('lib/jquery_tiki/wikiplugin-mediaplayer.js');
+				$headerlib->add_css("
+					.iframe-container {
+						overflow: hidden;
+						padding-top: 56.25%;
+						position: relative;
+						height: 900px;
+					}
+					
+					.iframe-container iframe {
+						border: 0;
+						height: 100%;
+						left: 0;
+						position: absolute;
+						top: 0;
+						width: 100%;
+					}
+					
+					@media (max-width: 767px) {
+						.iframe-container {
+							height: 500px;
+						} 
+					}
+					
+					@media (min-width: 768px) AND (max-width: 991px) {
+						.iframe-container {
+							height: 600px;
+						}
+					}
+					
+					@media (min-width: 992px) AND (max-width: 1209px){
+						.iframe-container {
+							height: 700px;
+						}
+					}
+				");
 
-				$url = TikiLib::lib('access')->absoluteUrl($params['src']);
-				$smarty->assign('url', $url);
-				$smarty->assign('mediaplayerId', $iMEDIAPLAYER);
-				return $smarty->fetch('wiki-plugins/wikiplugin_mediaplayer_pdfjs.tpl');
+				$fileId = '';
+				$sourceLink = '';
+
+				$parts = parse_url($params['src'], PHP_URL_QUERY);
+				if ($parts) {
+					parse_str($parts, $query);
+					if (! empty($query['fileId'])) {
+						$fileId = $query['fileId'];
+					}
+				} else {
+					preg_match('/(display|dl)(.*)$/', $params['src'], $matches);
+					if (! empty($matches[2])) {
+						$fileId = $matches[2];
+					}
+				}
+
+				if (! empty($fileId)) {
+					$smarty->loadPlugin('smarty_modifier_sefurl');
+					$sourceLink = smarty_modifier_sefurl($fileId, 'display');
+					if (! empty($sourceLink)) {
+						$htmlViewFile = '/vendor/npm-asset/pdfjs-dist-viewer-min/build/minified/web/viewer.html?file=';
+						$sourceLink = $htmlViewFile . urlencode(TikiLib::lib('access')->absoluteUrl($sourceLink));
+					}
+				}
+
+				$smarty->assign('source_link', $sourceLink);
+				return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_mediaplayer_pdfjs.tpl') . '~/np~';
 			} elseif ($prefs['fgal_viewerjs_feature'] === 'y') {
 				$src = $prefs['fgal_viewerjs_uri'] . '#' . TikiLib::lib('access')->absoluteUrl($params['src']);
 				$out = "<iframe width=\"{$params['width']}\" height=\"{$params['height']}\" src=\"{$src}\" allowfullscreen webkitallowfullscreen></iframe>";

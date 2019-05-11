@@ -45,7 +45,7 @@ class PackageInstallCommand extends Command
 		$composerManager = new ComposerManager($tikipath);
 
 		if ($composerManager->composerIsAvailable()) {
-			$availableComposerPackages = $composerManager->getAvailable();
+			$availableComposerPackages = $composerManager->getAvailable(true, true);
 			if (! empty($availableComposerPackages)) {
 				$io = new SymfonyStyle($input, $output);
 				$io->newLine();

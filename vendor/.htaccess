@@ -15,6 +15,7 @@
 	#  type exception will be required.
 	RewriteRule "^(bower-asset/wodo.texteditor/wodotexteditor/).*/.*\.(json|html)$" "-" [PT,L]
 	RewriteRule "^(xorti/mxgraph-editor/).*/.*(xml|txt|html)$" "-" [PT,L]
+	RewriteRule "^(npm-asset/pdfjs-dist-viewer-min/).*/.*(js|properties|html|pdf)$" "-" [PT,L]
 
 	# -- Deny Everything Not Matched Above -- #
 	RewriteRule "/*" "-" [F]
