@@ -402,33 +402,32 @@ FORM;
 				}, this, [user]);
 			},
 			addDate: function(date) {
-				lockPage(function (date) {
-					if (!date) return;
-					date = Date.parseUnix(date);
-					var addedData = '';
-	
-					if (! this.users.length) {	// add current user if it's the first
-						this.users.push(jqueryTiki.username);
+				// should already be locked by the click event
+				if (!date) return;
+				date = Date.parseUnix(date);
+				var addedData = '';
+
+				if (! this.users.length) {	// add current user if it's the first
+					this.users.push(jqueryTiki.username);
+				}
+				for(var user in this.users) {
+					if (this.users.hasOwnProperty(user)) {
+						addedData += 'dates_' + date + '_' + this.users[user] + ' : 0$n';
 					}
-					for(var user in this.users) {
-						if (this.users.hasOwnProperty(user)) {
-							addedData += 'dates_' + date + '_' + this.users[user] + ' : 0$n';
-						}
+				}
+
+				this.data = (this.data + '$n' + addedData).split($regexN).sort();
+
+				//remove empty lines
+				for(var line in this.data) {
+					if (this.data.hasOwnProperty(line)) {
+						if (!this.data[line]) this.data.splice(line, 1);
 					}
-	
-					this.data = (this.data + '$n' + addedData).split($regexN).sort();
-	
-					//remove empty lines
-					for(var line in this.data) {
-						if (this.data.hasOwnProperty(line)) {
-							if (!this.data[line]) this.data.splice(line, 1);
-						}
-					}
-	
-					this.data = this.data.join('$n');
-	
-					this.save();
-				}, this, [date]);
+				}
+
+				this.data = this.data.join('$n');
+
+				this.save();
 			},
 			deleteDate: function(date) {
 				lockPage(function (date) {
@@ -532,7 +531,7 @@ FORM;
 					}
 				);
 			} else {
-				callback.apply(context, theArgs);
+				return callback.apply(context, theArgs);
 			}			
 		};
 		
@@ -556,29 +555,33 @@ FORM;
 
 		var initConvene$i = function () {
 			$('.conveneAddDate$i').click(function() {
-				var dialogOptions = {
-					modal: true,
-					title: tr("Add Date"),
-					buttons: {}
-				};
-
-				dialogOptions.buttons[tr("Add")] = function() {
-					convene$i.addDate(o.find('input:first').val());
-					o.dialog('close');
-				};
-
-				var o = $('<div><input type="text" style="width: 100%;" /></div>')
-					.dialog(dialogOptions);
-
-				o.find('input:first')
-					.datetimepicker()
-					.focus();
-				return false;
+				lockPage(function () {
+					var dialogOptions = {
+						modal: true,
+						title: tr("Add Date"),
+						buttons: {}
+					};
+	
+					dialogOptions.buttons[tr("Add")] = function() {
+						convene$i.addDate(o.find('input:first').val());
+						o.dialog('close');
+					};
+	
+					var o = $('<div><input type="text" style="width: 100%;" /></div>')
+						.dialog(dialogOptions);
+	
+					o.find('input:first')
+						.datetimepicker()
+						.focus();
+					return false;
+				}, this);
 			});
 
 			$('.conveneDeleteDate$i')
 				.click(function() {
-					convene$i.deleteDate($(this).data("date"));
+					if (confirm(tr("Delete this date?"))) {
+						convene$i.deleteDate($(this).data("date"));
+					}
 					return false;
 				});
 
