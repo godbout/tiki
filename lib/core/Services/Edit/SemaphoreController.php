@@ -82,6 +82,8 @@ class Services_Edit_SemaphoreController
 		);
 
 		unset($_SESSION[$this->getSessionId($input)]);
+
+		return [true];
 	}
 
 	/**

@@ -539,11 +539,17 @@ FORM;
 		// unset semaphore
 		var unlockPage = function () {
 			if (window.pageLocked) {
-				$.getJSON($.service("semaphore", "unset"), {
-					object_type: jqueryTiki.current_object.type,
-					object_id: jqueryTiki.current_object.object
-				}, function () {
-					window.pageLocked = false;
+				// needs to be synchronous to prevent page unload while executing
+				$.ajax($.service("semaphore", "unset"), {
+					async: false,
+					dataType: "json",
+					data: {
+						object_type: jqueryTiki.current_object.type,
+						object_id: jqueryTiki.current_object.object
+					},
+					success: function () {
+						window.pageLocked = false;
+					}
 				});
 			}
 		};
