@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "14121d67ab542e0de0a8c9abe8e0bb77",
+    "content-hash": "e25fc87c850cf791d52c0a49998c03dc",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -3176,12 +3176,12 @@
             "type": "library"
         },
         {
-            "name": "openlayers/ol3",
-            "version": "3.6.0",
+            "name": "openlayers/openlayers",
+            "version": "5.3.0",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/openlayers/ol3/openlayers-ol3-3.6.0.zip",
-                "shasum": "c02295dae11723f4bbda0c531e1f75080d2ec88c"
+                "url": "https://composer.tiki.org/dist/openlayers/openlayers/openlayers-openlayers-5.3.0.zip",
+                "shasum": "be15c8166bc041a9d53446926e242356e776e899"
             },
             "type": "library"
         },
@@ -8174,6 +8174,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2017-06-30T09:13:00+00:00"
         },
         {

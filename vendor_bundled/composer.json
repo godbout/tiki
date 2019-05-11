@@ -77,7 +77,7 @@
 		"npm-asset/sass-svg-uri": "^1.0",
 		"openannotation/annotator": ">=1.2.10",
 		"openid/php-openid": "2.2.2",
-		"openlayers/ol3": ">=3.6.0",
+		"openlayers/openlayers": "^5.3",
 		"paragonie/random_compat": "^2.0",
 		"pclzip/pclzip": "^2.8",
 		"pear/db": "1.7.13",

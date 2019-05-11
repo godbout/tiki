@@ -1145,10 +1145,11 @@ window.onload = loadScript;');
 		*/
 
 		if ($prefs['geo_openlayers_version'] === 'ol3') {
-			$this->add_jsfile_external('vendor_bundled/vendor/openlayers/ol3/ol-debug.js', true);
-			$this->add_js(
-				''
-			);
+			$this->add_jsfile_external('vendor_bundled/vendor/openlayers/openlayers/ol.js', true)
+				->add_cssfile('vendor_bundled/vendor/openlayers/openlayers/ol.css')
+				->add_js(
+					''
+				);
 		} else {
 			$this->add_jsfile_external('lib/openlayers/OpenLayers.js', true);
 		}
