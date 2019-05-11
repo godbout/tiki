@@ -730,9 +730,9 @@
 			"type": "package",
 			"package": {
 				"name": "openlayers/openlayers",
-				"version": "5.2.0",
+				"version": "5.3.0",
 				"dist": {
-					"url": "https://github.com/openlayers/openlayers/releases/download/v5.2.0/v5.2.0-dist.zip",
+					"url": "https://github.com/openlayers/openlayers/releases/download/v5.3.0/v5.3.0-dist.zip",
 					"type": "zip"
 				}
 			}
@@ -1809,6 +1809,7 @@
 		"openannotation/annotator": ">=1.2.10",
 		"openid/php-openid": "2.2.2",
 		"openlayers/ol3": ">=3.6.0",
+		"openlayers/openlayers": ">=5.3.0",
 		"oyejorge/less.php": ">=1.7.0.10",
 		"paragonie/random_compat": ">=2.0.2",
 		"pclzip/pclzip": ">=2.8",
