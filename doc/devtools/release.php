@@ -331,7 +331,7 @@ function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 		$entry = $dir . '/' . $e;
 		if (is_dir($entry)) {
 			// do not descend and no CVS/Subversion files
-			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom') {
+			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom' && $entry != ROOT . '/_custom') {
 				build_secdb_queries($entry, $version, $queries, $excludes);
 			}
 		} else {
