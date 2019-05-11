@@ -703,6 +703,8 @@ class Tiki_Profile_Installer
 			$info['registration_fields'] = [];
 		}
 
+		TikiLib::lib('cache')->invalidate('grouplist');
+
 		if (! $userlib->group_exists($groupName)) {
 			$this->setTrackProfileChanges('group', $info, false, $groupName);
 			if (! $dryRun) {
