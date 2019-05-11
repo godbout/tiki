@@ -389,4 +389,20 @@ class Zip
 	{
 		return $this->composePath($this->getCurrentFolder(), self::SCHEMA_FOLDER_NAME);
 	}
+
+	/**
+	 * Remove all temp folders related with this zip
+	 *
+	 * @return void
+	 */
+	public function clean()
+	{
+		$this->removeFolders(
+			[
+				$this->getTemporaryFolder(),
+				$this->getSourceConfigFolder(),
+				$this->getSourceProfilesFolder()
+			]
+		);
+	}
 }

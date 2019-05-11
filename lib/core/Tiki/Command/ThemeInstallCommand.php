@@ -101,7 +101,7 @@ class ThemeInstallCommand extends Command
 				$configApplied = $themeZip->applyConfig();
 				if (! empty($configApplied)) {
 					foreach ($configApplied as $config) {
-						$output->writeln('<info>' . tr('Configuration file added:') . ' ' . $config . '</info>');
+						$output->writeln('<info>' . tr('Configuration file added: %0', $config) . '</info>');
 					}
 				}
 
@@ -116,12 +116,17 @@ class ThemeInstallCommand extends Command
 					foreach ($profiles as $yamlFile) {
 						$yamlFile = $profilesPath . $yamlFile;
 						if (file_exists($yamlFile)) {
-							$yamlParse = Yaml::parse(file_get_contents($yamlFile));
+							try {
+								$yamlParse = Yaml::parse(file_get_contents($yamlFile));
+							} catch (Exception $ex) {
+								$output->writeln('<error>' . tr('Profile: unable to parse %0', basename($yamlFile)) . '</error>');
+								continue;
+							}
 							// Add preferences
 							if (! empty($yamlParse['preferences'])) {
 								foreach ($yamlParse['preferences'] as $preference => $value) {
 									$preferences->insertOrUpdate(['value' => $value], ['name' => $preference]);
-									$output->writeln('<info>' . tr('Preference inserted or updated:') . ' ' . $preference . '=' . $value . '</info>');
+									$output->writeln('<info>' . tr('Preference inserted or updated: %0 = %1', $preference, $value) . '</info>');
 								}
 							}
 							// Check for menus and modules
@@ -131,14 +136,14 @@ class ThemeInstallCommand extends Command
 									if (! empty($ObjectData['type']) && $ObjectData['type'] == 'menu' && ! empty($ObjectData['data'])) {
 										$menuName = $menu->addOrUpdate($ObjectData['data']);
 										if (! empty($menuName)) {
-											$output->writeln('<info>' . tr('Menu inserted or updated:') . ' "' . $menuName . '"</info>');
+											$output->writeln('<info>' . tr('Menu inserted or updated: "%0"', $menuName) . '</info>');
 										}
 									}
 									// Add modules
 									if (! empty($ObjectData['type']) && $ObjectData['type'] == 'module' && ! empty($ObjectData['data'])) {
 										$moduleName = $module->addOrUpdate($ObjectData['data']);
 										if (! empty($moduleName)) {
-											$output->writeln('<info>' . tr('Module inserted or updated:') . ' ' . $moduleName . '</info>');
+											$output->writeln('<info>' . tr('Module inserted or updated: %0', $moduleName) . '</info>');
 										}
 									}
 								}
@@ -147,10 +152,13 @@ class ThemeInstallCommand extends Command
 					}
 				}
 				$themeZip->copyThemeFiles();
-				$output->writeln('<info>' . tr('Theme installed:') . ' ' . $camelCaseThemeName . '</info>');
+				$output->writeln('<info>' . tr('Theme installed: %0', $camelCaseThemeName) . '</info>');
 			}
 		} catch (Exception $ex) {
-			$output->writeln('<error>' . tr('Could not open file') . '</error>');
+			if (isset($themeZip)) {
+				$themeZip->clean();
+			}
+			$output->writeln('<error>' . tr($ex->getMessage()) . '</error>');
 			return;
 		}
 	}
