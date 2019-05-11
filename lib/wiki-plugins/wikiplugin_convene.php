@@ -592,13 +592,21 @@ FORM;
 				});
 
 			$('.conveneUpdateUser$i').click(function() {
-				if ($('.conveneDeleteUser$i:visible').length) {
+				if ($('.conveneDeleteUser$i.btn-danger').length) {
 					var updateButton = $(this);
 					lockPage(function () {
 						
 						updateButton.find(".icon").popover("hide");
 						$('.conveneUpdateUser$i').not(updateButton).hide();
-						$('.conveneDeleteUser$i').hide();
+						// change the delete button into cancel
+						$('.conveneDeleteUser$i')
+							.removeClass("btn-danger").addClass("btn-muted")
+							.attr("title", tr("Cancel"))
+							.off("click").click(function () {
+								history.go(0);
+							})
+							.find('.icon').setIcon("ban");
+						
 						$('.conveneDeleteDate$i').hide();
 						$('.conveneMain$i').hide();
 						updateButton.parent().parent()
