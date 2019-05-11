@@ -10,11 +10,14 @@
 						{if $prefs.comments_notitle neq 'y'}
 							<div class="comment-title">
 								{$comment.title}
+								{if $prefs.comments_heading_links eq 'y'}
+									<a class="heading-link" href="{if ($comment.threadId neq $comments_parentId)}#threadId{$comment.threadId}{/if}">{icon name="link"}</a>
+								{/if}
 							</div>
 						{/if}
 						<div class="comment-info">
 							{tr _0=$comment.userName|userlink}%0{/tr} <small class="date">{tr _0=$comment.commentDate|tiki_short_datetime}%0{/tr}</small>
-							{if $prefs.comments_heading_links eq 'y'}
+							{if $prefs.comments_heading_links eq 'y' and  $prefs.comments_notitle eq 'y'}
 								<a class="heading-link" href="{if ($comment.threadId neq $comments_parentId)}#threadId{$comment.threadId}{/if}">{icon name="link"}</a>
 							{/if}
 						</div>
