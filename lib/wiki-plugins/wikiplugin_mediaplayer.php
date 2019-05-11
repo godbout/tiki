@@ -213,6 +213,33 @@ function wikiplugin_mediaplayer($data, $params)
 	if ($params['type'] == 'video/webm') {
 		$params['style'] = 'native';
 	}
+
+	if (empty($params['type'])) {
+		preg_match('/(?:dl|display|fileId=)(\d*)/', $params['src'], $matches);
+		if (! empty($matches[1])) { // fileId 0 is also invalid
+			$fileId = $matches[1];
+			$filegallib = TikiLib::lib('filegal');
+			$file = $filegallib->get_file_info($fileId);
+			if (! empty($file['filetype']) && $file['fileId'] == $fileId) {
+				$fileExtension = pathinfo($file['filename'], PATHINFO_EXTENSION);
+				$params['type'] = $fileExtension;
+				if (! in_array($fileExtension, ['pdf', 'odt', 'ods', 'odp', 'viewerjs'])) {
+					$params['style'] = ! empty($params['style']) ? $params['style'] : 'native';
+					$params['type'] = $file['filetype'];
+				}
+				if ($fileExtension == 'mp3') {
+					$params['mp3'] = $params['src'];
+				}
+				if ($fileExtension == 'flv') {
+					$params['flv'] = $params['src'];
+					$params['type'] = $fileExtension;
+					unset($params['style']);
+					unset($params['src']);
+				}
+			}
+		}
+	}
+
 	if (! empty($params['flv'])) {
 		$params = array_merge($defaults_flv, $params);
 	} elseif (! empty($params['mp3'])) {
