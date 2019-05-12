@@ -82,6 +82,26 @@
 			</div>
 			{preference name=wikiplugin_list_convert_trackerlist}
 		</fieldset>
+		<fieldset class="table clearfix featurelist">
+			<legend>{icon name="admin_profiles" size=2 iclass="float-left"}{tr}New Profiles{/tr}</legend>
+			<ul>
+				<li>{tr}GanttChart{/tr}
+					<a href="https://profiles.tiki.org/GanttChart" target="tikihelp" class="tikihelp" title="{tr}GanttChart:{/tr}
+						{tr}Click to read more{/tr}">{icon name="help" size=1}
+					</a>
+				</li>
+				<li>{tr}Hide Fixed Top Nav Bar on Scroll 19{/tr}
+					<a href="https://profiles.tiki.org/Hide+Fixed+Top+Nav+Bar+on+Scroll+19" target="tikihelp" class="tikihelp" title="{tr}Hide Fixed Top Nav Bar on Scroll 19:{/tr}
+						{tr}Click to read more{/tr}">{icon name="help" size=1}
+					</a>
+				</li>
+				<li>{tr}Scheduler_Presets{/tr}
+					<a href="https://profiles.tiki.org/Scheduler_Presets" target="tikihelp" class="tikihelp" title="{tr}Scheduler_Presets:{/tr}
+						{tr}Click to read more{/tr}">{icon name="help" size=1}
+					</a>
+				</li>
+			</ul>
+		</fieldset>
 		<i>{tr}And many more improvements{/tr}.
 			{tr}See the full list of changes.{/tr}</i>
 		<a href="https://doc.tiki.org/Tiki19" target="tikihelp" class="tikihelp" title="{tr}Tiki19:{/tr}

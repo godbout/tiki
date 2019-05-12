@@ -152,6 +152,30 @@
 				{/remarksbox}
 			</div>
 		</fieldset>
+		<fieldset class="table clearfix featurelist">
+			<legend>{icon name="admin_profiles" size=2 iclass="float-left"}{tr}New Profiles{/tr}</legend>
+			<ul>
+				<li>{tr}Activity_Stream{/tr}
+					<a href="https://profiles.tiki.org/Activity_Stream" target="tikihelp" class="tikihelp" title="{tr}Activity_Stream:{/tr}
+						{tr}Click to read more{/tr}">{icon name="help" size=1}
+					</a>
+				</li><li>{tr}Simple_Forum{/tr}
+					<a href="https://profiles.tiki.org/Simple_Forum" target="tikihelp" class="tikihelp" title="{tr}Simple_Forum:{/tr}
+						{tr}Click to read more{/tr}">{icon name="help" size=1}
+					</a>
+				</li>
+				<li>{tr}Timesheets_Tracker{/tr}
+					<a href="https://profiles.tiki.org/Timesheets_Tracker" target="tikihelp" class="tikihelp" title="{tr}Timesheets_Tracker:{/tr}
+						{tr}Click to read more{/tr}">{icon name="help" size=1}
+					</a>
+				</li>
+				<li>{tr}User_Profile_Business{/tr}
+					<a href="https://profiles.tiki.org/User_Profile_Business" target="tikihelp" class="tikihelp" title="{tr}User_Profile_Business:{/tr}
+						{tr}Click to read more{/tr}">{icon name="help" size=1}
+					</a>
+				</li>
+			</ul>
+		</fieldset>
 		<i>{tr}See the full list of changes.{/tr}</i>
 		<a href="https://doc.tiki.org/Tiki18" target="tikihelp" class="tikihelp" title="{tr}Tiki18:{/tr}
 			{tr}Click to read more{/tr}
