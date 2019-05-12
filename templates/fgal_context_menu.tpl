@@ -86,7 +86,7 @@
 				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display{/tr}"}
 			</a>
 		{elseif $prefs.fgal_pdfjs_feature eq 'y' and $file.type eq 'application/pdf'}
-			<a href="tiki-display_pdf.php?fileId={$file.id}">
+			<a href="tiki-display.php?fileId={$file.id}">
 				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display{/tr}"}
 			</a>
 		{elseif $prefs.fgal_viewerjs_feature eq 'y' and ($file.type eq 'application/pdf' or $file.type|strpos:'application/vnd.oasis.opendocument.' !== false)}
@@ -109,7 +109,7 @@
 			</a>
 		{/if}
 		{if $prefs.fgal_pdfjs_feature eq 'y' and $prefs.fgal_convert_documents_pdf eq 'y' and ($file.type|file_can_convert_to_pdf)}
-			<a href="tiki-display_pdf.php?fileId={$file.id}">
+			<a href="tiki-display.php?fileId={$file.id}">
 				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display as PDF{/tr}"}
 			</a>
 		{/if}

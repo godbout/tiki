@@ -26,6 +26,10 @@ if (is_null($file)) {
 $data = $file['data'];
 $templatePath = FileHelper::getDisplayTemplate($file, $data, true);
 
+if ($templatePath === false) {
+	$accesslib->display_error('tiki-display.php', tr('Unable to display file.'));
+}
+
 $smarty->assign('data', $data);
-$smarty->assign('mid', $templatePath);
+$smarty->assign('mid', FileHelper::FILE_DISPLAY_TEMPLATE_FOLDER . $templatePath);
 $smarty->display('tiki.tpl');

@@ -282,12 +282,11 @@ function wikiplugin_mediaplayer($data, $params)
 				$url = TikiLib::lib('access')->absoluteUrl($params['src']);
 				$smarty->assign('url', $url);
 				$smarty->assign('mediaplayerId', $iMEDIAPLAYER);
-				return $smarty->fetch('wiki-plugins/wikiplugin_mediaplayer_pdfjs.tpl');
-				$oldPdfJsFile = 'vendor/npm-asset/pdfjs-dist/build/pdf.js';
+				$oldPdfJsFile = VendorHelper::getAvailableVendorPath('pdfjs', '/npm-asset/pdfjs-dist/build/pdf.js');
 				$oldPdfJsFileAvailable = file_exists($oldPdfJsFile);
 				$smarty->assign('oldPdfJsFileAvailable', $oldPdfJsFileAvailable);
 
-				$pdfJsfile = 'vendor/npm-asset/pdfjs-dist-viewer-min/build/minified/build/pdf.js';
+				$pdfJsfile = VendorHelper::getAvailableVendorPath('pdfjsviewer', '/npm-asset/pdfjs-dist-viewer-min/build/minified/build/pdf.js');
 				$pdfJsAvailable = file_exists($pdfJsfile);
 				$smarty->assign('pdfJsAvailable', $pdfJsAvailable);
 
@@ -348,7 +347,7 @@ function wikiplugin_mediaplayer($data, $params)
 					$smarty->loadPlugin('smarty_modifier_sefurl');
 					$sourceLink = smarty_modifier_sefurl($fileId, 'display');
 					if (! empty($sourceLink)) {
-						$htmlViewFile = '/vendor/npm-asset/pdfjs-dist-viewer-min/build/minified/web/viewer.html?file=';
+						$htmlViewFile = VendorHelper::getAvailableVendorPath('pdfjsviewer', '/npm-asset/pdfjs-dist-viewer-min/build/minified/web/viewer.html') . '?file=';
 						$sourceLink = $htmlViewFile . urlencode(TikiLib::lib('access')->absoluteUrl($sourceLink));
 					}
 				}

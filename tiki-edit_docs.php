@@ -7,6 +7,8 @@
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
+use Tiki\Package\VendorHelper;
+
 $section = 'docs';
 
 require_once('tiki-setup.php');
@@ -138,19 +140,19 @@ Wodo.createTextEditor('tiki_doc', {
 			alert(\"There was an error on opening the document: \" + err);
 		}
 	});
-	
+
 	$('.saveButton').on('click', function (e) {
 		function saveByteArrayTiki(err, data) {
 			if (err) {
 				alert(err);
 				return;
 			}
-			
+
 			var base64 = new core.Base64();
 			data = base64.convertUTF8ArrayToBase64(data);
-			
+
 			$.tikiModal($savingText);
-			
+
 			$.post('tiki-edit_docs.php', {
 				fileId: $('#fileId').val(),
 				data: data
@@ -160,7 +162,7 @@ Wodo.createTextEditor('tiki_doc', {
 				editor.setDocumentModified(false);
 			});
 		}
-		
+
 		editor.getDocumentAsByteArray(saveByteArrayTiki);
 	});
 });
