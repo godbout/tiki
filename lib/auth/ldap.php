@@ -194,6 +194,8 @@ class TikiLdapLib
 				}
 				// set referrals to 0 to avoid LDAP_OPERATIONS_ERROR
 				$this->options['options']['LDAP_OPT_REFERRALS'] = 0;
+				// use user@domain for binding
+				$this->options['tryUsernameSplit'] = false;
 				break;
 
 			case 'plain': // plain username
