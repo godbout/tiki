@@ -7,25 +7,25 @@
 
 use \Tiki\File\PDFHelper;
 use Tiki\Lib\Unoconv\UnoconvLib;
+use Tiki\Package\VendorHelper;
 
 require_once('tiki-setup.php');
 
 global $tikilib;
 
 $accesslib = TikiLib::lib('access');
-
 if ($tikilib->get_preference('fgal_pdfjs_feature') !== 'y') {
 	$accesslib->display_error('tiki-display_pdf.php', tr('PDF.js feature is disabled. If you do not have permission to enable, ask the site administrator.'));
 }
 
 $errorMessageToAppend = '';
-$oldPdfJsFile = 'vendor/npm-asset/pdfjs-dist/build/pdf.js';
+$oldPdfJsFile = VendorHelper::getAvailableVendorPath('pdfjs', 'npm-asset/pdfjs-dist/build/pdf.js', false);
 if (file_exists($oldPdfJsFile)) {
 	$errorMessageToAppend = 'Previous npm-asset/pdfjs-dist package has been deprecated.<br/>';
 }
 
-$pdfJsfile = 'vendor/npm-asset/pdfjs-dist-viewer-min/build/minified/build/pdf.js';
-if (! file_exists($pdfJsfile)) {
+$vendorPath = VendorHelper::getAvailableVendorPath('pdfjsviewer', 'vendor/npm-asset/pdfjs-dist-viewer-min/build/minified/build/pdf.js', false);
+if (! file_exists($vendorPath)) {
 	$accesslib->display_error('tiki-display_pdf.php', tr($errorMessageToAppend . 'To view PDF files Tiki needs the npm-asset/pdfjs-dist-viewer-min. If you do not have permission to install this package, ask the site administrator.'));
 }
 
@@ -56,7 +56,7 @@ if (! empty($_REQUEST['fileId'])) {
 if (empty($sourceLink)) {
 	$accesslib->display_error('', tr('Invalid request'));
 } else {
-	$htmlViewFile = '/vendor/npm-asset/pdfjs-dist-viewer-min/build/minified/web/viewer.html?file=';
+	$htmlViewFile = $vendorPath . '/npm-asset/pdfjs-dist-viewer-min/build/minified/web/viewer.html?file=';
 	$sourceLink = $htmlViewFile . urlencode(TikiLib::lib('access')->absoluteUrl($sourceLink));
 };
 

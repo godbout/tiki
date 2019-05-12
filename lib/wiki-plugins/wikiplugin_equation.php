@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Package\VendorHelper;
+
 function wikiplugin_equation_info()
 {
 	return [
@@ -15,13 +17,15 @@ function wikiplugin_equation_info()
 		'body' => tra('equation'),
 		'iconname' => 'superscript',
 		'introduced' => 2,
-		'packages_required' => ['mathjax/mathjax' => 'vendor/mathjax/mathjax/MathJax.js'],
+		'packages_required' => ['mathjax/mathjax' => VendorHelper::getAvailableVendorPath('mathjax', 'mathjax/mathjax/MathJax.js')],
 	];
 }
 
 function wikiplugin_equation($data)
 {
-	if (! file_exists('vendor/mathjax/mathjax/MathJax.js')) {
+	$mathJaxJsFile = VendorHelper::getAvailableVendorPath('mathjax', 'mathjax/mathjax/MathJax.js');
+
+	if (! $mathJaxJsFile) {
 		Feedback::error(tr('To view equations Tiki needs the mathjax/mathjax package. If you do not have permission to install this package, ask the site administrator.'));
 		return;
 	}
@@ -31,7 +35,7 @@ function wikiplugin_equation($data)
 	}
 
 	$headerlib = TikiLib::lib('header');
-	$headerlib->add_jsfile('vendor/mathjax/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML', true);
+	$headerlib->add_jsfile($mathJaxJsFile . '?config=TeX-AMS-MML_HTMLorMML', true);
 
 	return '~np~' . $data . '~/np~';
 }

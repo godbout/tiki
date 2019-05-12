@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Package\VendorHelper;
+
 function prefs_fgal_list()
 {
 	//set fgal_default_view options
@@ -355,7 +357,7 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'type' => 'flag',
 			'default' => 'n',
 			'help' => 'PDF.js-viewer',
-			'packages_required' => ['npm-asset/pdfjs-dist' => 'vendor/npm-asset/pdfjs-dist/build/pdf.js'],
+			'packages_required' => ['npm-asset/pdfjs-dist' => VendorHelper::getAvailableVendorPath('pdfjs', 'npm-asset/pdfjs-dist/build/pdf.js')],
 		],
 		'fgal_default_view' => [
 			'name' => tra('Default view'),

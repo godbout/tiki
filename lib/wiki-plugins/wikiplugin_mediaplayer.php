@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Package\VendorHelper;
+
 function wikiplugin_mediaplayer_info()
 {
 	return [
@@ -277,6 +279,10 @@ function wikiplugin_mediaplayer($data, $params)
 			if ($prefs['fgal_pdfjs_feature'] === 'y') {
 				$smarty = TikiLib::lib('smarty');
 
+				$url = TikiLib::lib('access')->absoluteUrl($params['src']);
+				$smarty->assign('url', $url);
+				$smarty->assign('mediaplayerId', $iMEDIAPLAYER);
+				return $smarty->fetch('wiki-plugins/wikiplugin_mediaplayer_pdfjs.tpl');
 				$oldPdfJsFile = 'vendor/npm-asset/pdfjs-dist/build/pdf.js';
 				$oldPdfJsFileAvailable = file_exists($oldPdfJsFile);
 				$smarty->assign('oldPdfJsFileAvailable', $oldPdfJsFileAvailable);

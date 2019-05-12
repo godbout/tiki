@@ -8,6 +8,7 @@
 
 namespace Tiki\File;
 
+use Tiki\Package\VendorHelper;
 use TikiLib;
 
 /**
@@ -31,18 +32,22 @@ class FileHelper
 	 */
 	public static function getDisplayTemplate($file, &$data, $injectDependencies = false)
 	{
+		$smarty = TikiLib::lib('smarty');
 		$accesslib = TikiLib::lib('access');
 		$headerlib = Tikilib::lib('header');
 		$template = '';
 
 		if (DiagramHelper::isDiagram($file['fileId'])) {
 			if ($injectDependencies) {
-				if (! DiagramHelper::isPackageInstalled()) {
+				$vendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor/drawio/webapp/js/app.min.js', false);
+
+				if (! $vendorPath) {
 					$accesslib->display_error('tiki-display.php', tr('To view diagrams Tiki needs the xorti/mxgraph-editor package. If you do not have permission to install this package, ask the site administrator.'));
 				}
 
+				$headerlib->add_js_config("var mxGraphVendorPath = '{$vendorPath}';");
 				$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
-				$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
+				$headerlib->add_jsfile($vendorPath . '/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
 			}
 
 			$data = DiagramHelper::parseData($data);

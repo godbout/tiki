@@ -8,6 +8,7 @@
 namespace Tiki\File;
 
 use Tiki\FileGallery\File as TikiFile;
+use Tiki\Package\VendorHelper;
 
 class DiagramHelper
 {
@@ -36,7 +37,7 @@ class DiagramHelper
 	 */
 	public static function isPackageInstalled()
 	{
-		return file_exists('vendor/xorti/mxgraph-editor/mxClient.min.js');
+		return VendorHelper::getAvailableVendorPath('mxgraph', '/xorti/mxgraph-editor/mxClient.min.js') !== false;
 	}
 
 	/**

@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Package\VendorHelper;
+
 function wikiplugin_trackercalendar_info()
 {
 	global $prefs;
@@ -13,7 +15,7 @@ function wikiplugin_trackercalendar_info()
 		'name' => tr('Tracker Calendar'),
 		'description' => tr('Create and display a calendar using tracker data'),
 		'prefs' => ['wikiplugin_trackercalendar', 'calendar_fullcalendar'],
-		'packages_required' => ['fullcalendar/fullcalendar-scheduler' => 'vendor/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js'],
+		'packages_required' => ['fullcalendar/fullcalendar-scheduler' => VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js')],
 		'format' => 'html',
 		'iconname' => 'calendar',
 		'introduced' => 10,
@@ -307,18 +309,19 @@ function wikiplugin_trackercalendar($data, $params)
 
 	static $id = 0;
 	$headerlib = TikiLib::lib('header');
+	$vendorPath = VendorHelper::getAvailableVendorPath('fullcalendarscheduler', 'fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js', false);
 
-	if (! file_exists('vendor/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js')) {
+	if (! $vendorPath) {
 		return WikiParser_PluginOutput::userError(tr('To view Tracker Calendar Tiki needs the fullcalendar/fullcalendar-scheduler package. If you do not have permission to install this package, ask the site administrator.'));
 	}
 
-	$headerlib->add_cssfile('vendor/fullcalendar/fullcalendar/dist/fullcalendar.min.css');
+	$headerlib->add_cssfile($vendorPath . '/fullcalendar/fullcalendar/dist/fullcalendar.min.css');
 	// Disable fullcalendar's force events to be one-line tall
 	$headerlib->add_css('.fc-day-grid-event > .fc-content, .fc-timeline-event > .fc-content { white-space: normal; }');
-	$headerlib->add_cssfile('vendor/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.css');
-	$headerlib->add_jsfile('vendor/moment/moment/min/moment.min.js', true);
-	$headerlib->add_jsfile('vendor/fullcalendar/fullcalendar/dist/fullcalendar.min.js', true);
-	$headerlib->add_jsfile('vendor/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js', true);
+	$headerlib->add_cssfile($vendorPath . '/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.css');
+	$headerlib->add_jsfile($vendorPath . '/moment/moment/min/moment.min.js', true);
+	$headerlib->add_jsfile($vendorPath . '/fullcalendar/fullcalendar/dist/fullcalendar.min.js', true);
+	$headerlib->add_jsfile($vendorPath . '/fullcalendar/fullcalendar-scheduler/dist/scheduler.min.js', true);
 
 	$jit = new JitFilter($params);
 	$definition = Tracker_Definition::get($jit->trackerId->int());
@@ -476,7 +479,7 @@ function wikiplugin_trackercalendar($data, $params)
 			'useSessionStorage' => $params['external'] === 'y' ? $params['useSessionStorage'] : '',
 			'timeFormat' => $prefs['display_12hr_clock'] === 'y' ? 'h(:mm)TT' : 'HH:mm',
 			'weekends' => $params['weekends'] === 'y' ? 1 : 0,
-			'utcOffset' => TikiDate::tzServerOffset(TikiLib::lib('tiki')->get_display_timezone())/60, // In minutes
+			'utcOffset' => TikiDate::tzServerOffset(TikiLib::lib('tiki')->get_display_timezone()) / 60, // In minutes
 		]
 	);
 	$smarty->assign('filters', $filters);

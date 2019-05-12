@@ -1,5 +1,7 @@
 <?php
 
+use Tiki\Package\VendorHelper;
+
 require_once('tiki-setup.php');
 
 $xmlContent = isset($_POST['xml']) ? $_POST['xml'] : false;
@@ -62,12 +64,15 @@ $saveModal = preg_replace('/\s+/', ' ', $saveModal);
 
 $headerlib = TikiLib::lib('header');
 
+$vendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor', false);
+
 // Clear Tiki CSS files (just use drawio css)
 $headerlib->cssfiles = [];
-$headerlib->add_cssfile('vendor/xorti/mxgraph-editor/grapheditor/styles/grapheditor.css');
+$headerlib->add_cssfile($vendorPath . '/xorti/mxgraph-editor/grapheditor/styles/grapheditor.css');
 $headerlib->add_css(".geMenubar a.geStatus { display: none;}");
+$headerlib->add_js_config("var mxGraphVendorPath = '{$vendorPath}';");
 $headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', false);
-$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
+$headerlib->add_jsfile($vendorPath . '/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
 $js = "(function()
 	{
 		// Disable communication to external services

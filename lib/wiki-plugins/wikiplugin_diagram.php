@@ -6,6 +6,7 @@
 // $Id$
 
 use Tiki\File\DiagramHelper;
+use Tiki\Package\VendorHelper;
 
 function wikiplugin_diagram_info()
 {
@@ -17,7 +18,7 @@ function wikiplugin_diagram_info()
 		'iconname' => 'sitemap',
 		'tags' => ['basic'],
 		'introduced' => 19,
-		'packages_required' => ['xorti/mxgraph-editor' => 'vendor/xorti/mxgraph-editor/mxClient.js'],
+		'packages_required' => ['xorti/mxgraph-editor' => VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor/mxClient.js')],
 		'params' => [
 			'fileId' => [
 				'required' => false,
@@ -51,15 +52,17 @@ function wikiplugin_diagram($data, $params)
 	global $tikilib, $user, $page, $wikiplugin_included_page, $tiki_p_upload_files;
 
 	$filegallib = TikiLib::lib('filegal');
+	$vendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor/mxClient.min.js', false);
 
-	if (! DiagramHelper::isPackageInstalled()) {
+	if (! $vendorPath) {
 		Feedback::error(tr('To view diagrams Tiki needs the xorti/mxgraph-editor package. If you do not have permission to install this package, ask the site administrator.'));
 		return;
 	}
 
 	$headerlib = $tikilib::lib('header');
-	$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
-	$headerlib->add_jsfile('vendor/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
+	$headerlib->add_js_config("var mxGraphVendorPath = '{$vendorPath}';");
+	$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', false);
+	$headerlib->add_jsfile($vendorPath . '/xorti/mxgraph-editor/drawio/webapp/js/app.min.js');
 
 	$headerlib->add_css('.diagram hr {margin-top:0.5em;margin-bottom:0.5em}');
 
@@ -169,6 +172,7 @@ EOF;
 	$smarty->assign('allow_edit', $allowEdit);
 	$smarty->assign('file_id', $fileId);
 	$smarty->assign('file_name', $file->name);
+	$smarty->assign('mxgraph_prefix', $vendorPath);
 
 	return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl') . '~/np~';
 }

@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Package\VendorHelper;
+
 function prefs_global_list($partial = false)
 {
 	return [
@@ -105,7 +107,7 @@ function prefs_global_list($partial = false)
 			'description' => tr('Allow that images are loaded in a lazy way'),
 			'default' => 'n',
 			'tags' => ['advanced'],
-			'packages_required' => ['npm-asset/lozad' => 'vendor/npm-asset/lozad/dist/lozad.js'],
+			'packages_required' => ['npm-asset/lozad' => VendorHelper::getAvailableVendorPath('lozad', 'npm-asset/lozad/dist/lozad.js')],
 		],
 		'wikiLicensePage' => [
 			'name' => tra('License page'),

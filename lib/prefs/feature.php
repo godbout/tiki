@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Package\VendorHelper;
+
 function prefs_feature_list($partial = false)
 {
 
@@ -1190,7 +1192,7 @@ function prefs_feature_list($partial = false)
 			'dependencies' => [
 				'feature_file_galleries',
 			],
-			'packages_required' => ['bower-asset/wodo.texteditor' => 'vendor/bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js'],
+			'packages_required' => ['bower-asset/wodo.texteditor' => VendorHelper::getAvailableVendorPath('webodf', 'bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js')],
 			'tags' => ['experimental'],
 		],
 		'feature_dynamic_content' => [

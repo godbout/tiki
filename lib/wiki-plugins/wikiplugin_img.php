@@ -6,6 +6,7 @@
 // $Id$
 
 use Tiki\Lib\Image\Image;
+use Tiki\Package\VendorHelper;
 
 function wikiplugin_img_info()
 {
@@ -1149,7 +1150,9 @@ function wikiplugin_img($data, $params)
 
 	$lozardImg = false;
 	if ($prefs['allowImageLazyLoad'] === 'y' && empty(preg_match("/tiki-print.php/", $_SERVER['REQUEST_URI']))) {
-		if (! file_exists('vendor/npm-asset/lozad/dist/lozad.js')) {
+		$lozadJsPath = VendorHelper::getAvailableVendorPath('lozad', 'npm-asset/lozad/dist/lozad.js');
+
+		if (! $lozadJsPath) {
 			Feedback::error(tr('Image lazy loading is enabled but Tiki requires package npm-asset/lozad. If you do not have permission to install this package, ask the site administrator.'));
 		} else {
 			$lozardImg = true;
@@ -1214,7 +1217,7 @@ function wikiplugin_img($data, $params)
 				}
 			}
 		');
-		TikiLib::lib('header')->add_jsfile('vendor/npm-asset/lozad/dist/lozad.js');
+		TikiLib::lib('header')->add_jsfile($lozadJsPath);
 		$lozadScript = "
 			lozad('.lozad', {
 				load: function(el) {

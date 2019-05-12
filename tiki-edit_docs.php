@@ -109,9 +109,9 @@ $smarty->assign('page', $page);
 $smarty->assign('isFromPage', isset($page));
 $smarty->assign('fileId', $fileId);
 
-$odfViewerAvailable = file_exists('vendor/bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js');
+$vendorPath = VendorHelper::getAvailableVendorPath('webodf', 'bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js', false);
 
-if (! $odfViewerAvailable) {
+if (! $vendorPath) {
 	$smarty->assign('missingPackage', true);
 } else {
 	$smarty->assign('missingPackage', false);
@@ -120,7 +120,7 @@ if (! $odfViewerAvailable) {
 		$savingText = json_encode(tr('Saving...'));
 		$smarty->assign('edit', 'true');
 
-		$headerlib->add_jsfile('vendor/bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js');
+		$headerlib->add_jsfile($vendorPath . '/bower-asset/wodo.texteditor/wodotexteditor/wodotexteditor.js');
 		$headerlib->add_jq_onready("
 Wodo.createTextEditor('tiki_doc', {
 	allFeaturesEnabled: true
@@ -168,7 +168,7 @@ Wodo.createTextEditor('tiki_doc', {
 	} else {
 		$smarty->assign('edit', 'false');
 
-		$headerlib->add_jsfile('vendor/bower-asset/wodo.texteditor/wodotexteditor/webodf.js');
+		$headerlib->add_jsfile($vendorPath . '/bower-asset/wodo.texteditor/wodotexteditor/webodf.js');
 		$headerlib->add_jq_onready("
 window.odfcanvas = new odf.OdfCanvas($('#tiki_doc')[0]);
 odfcanvas.load('tiki-download_file.php?fileId=' + $('#fileId').val());
