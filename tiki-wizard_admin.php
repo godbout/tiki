@@ -91,6 +91,7 @@ if ($useDefaultPrefs) {
 	// Store the use Changes Wizard selection in the wizard bar
 	$smarty->assign('useChangesWizard', $useChangesWizard);
 
+/*
 	require_once('lib/wizard/pages/changes_ui.php');
 	$pages[] = new ChangesWizardUI();
 
@@ -120,6 +121,7 @@ if ($useDefaultPrefs) {
 
 	require_once('lib/wizard/pages/changes_new_in_17.php');
 	$pages[] = new ChangesWizardNewIn17();
+*/
 
 	require_once('lib/wizard/pages/changes_new_in_18.php');
 	$pages[] = new ChangesWizardNewIn18();
@@ -228,9 +230,9 @@ foreach ($pages as $page) {
 		$url .= '&amp;use-changes-wizard=1';
 	}
 	$cnt = $stepNr + 1;
-	if ($stepNr == 1 && $useChangesWizard) {
-		$toc .= '<div class="list-group-item font-italic">' . tra("New in Tiki 12 (LTS)") . '</div>';
-	}
+//	if ($stepNr == 1 && $useChangesWizard) {
+//		$toc .= '<div class="list-group-item font-italic">' . tra("New in Tiki 12 (LTS)") . '</div>';
+//	}
 	if ($cnt <= 9) {
 		$cnt = '&nbsp;&nbsp;' . $cnt;
 	}
