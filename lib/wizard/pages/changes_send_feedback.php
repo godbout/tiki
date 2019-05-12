@@ -10,11 +10,11 @@ require_once('lib/wizard/wizard.php');
 /**
  * The Wizard's language handler
  */
-class UpgradeWizardNewIn19 extends Wizard
+class ChangesWizardSendFeedback extends Wizard
 {
 	function pageTitle()
 	{
-		return tra('New in Tiki 19');
+		return tra('Send feedback & Connect');
 	}
 
 	function isEditable()
@@ -26,30 +26,22 @@ class UpgradeWizardNewIn19 extends Wizard
 	{
 		global $prefs;
 		$smarty = TikiLib::lib('smarty');
-		$addonprefs = TikiLib::lib('prefs')->getAddonPrefs();
-		$smarty->assign('addonprefs', $addonprefs);
-
 		// Run the parent first
 		parent::onSetupPage($homepageUrl);
 
 		$showPage = true;
-
-		// Show if any more specification is needed
 
 		return $showPage;
 	}
 
 	function getTemplate()
 	{
-		$wizardTemplate = 'wizard/upgrade_new_in_19.tpl';
-
+		$wizardTemplate = 'wizard/changes_send_feedback.tpl';
 		return $wizardTemplate;
 	}
 
 	function onContinue($homepageUrl)
 	{
-		global $tikilib;
-
 		// Run the parent first
 		parent::onContinue($homepageUrl);
 	}

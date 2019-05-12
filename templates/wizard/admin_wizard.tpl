@@ -65,16 +65,16 @@
 			</div>
 		</div>
 		<div class="media mb-5">
-			<span class="float-left fa-stack fa-lg mr-1" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
+			<span class="float-left fa-stack fa-lg mr-1" alt="{tr}Changes Wizard{/tr}" title="Changes Wizard">
 				<i class="fas fa-arrow-circle-up fa-stack-2x text-success"></i>
 				<i class="fas fa-flip-horizontal fa-magic fa-stack-1x ml-4 mt-4"></i>
 			</span>
 			<div class="media-body mx-4">
-				<legend>{tr}Upgrade Wizard{/tr}</legend>
+				<legend>{tr}Changes Wizard{/tr}</legend>
 				<p>
-					{tr}Or you may use the <b>Upgrade Wizard</b>{/tr}.
+					{tr}Or you may use the <b>Changes Wizard</b>{/tr}.
 					{tr}This will guide you through the most common new settings and informations in order to upgrade your site.{/tr}
-					<a href="http://doc.tiki.org/Upgrade+Wizard" target="tikihelp" class="tikihelp text-success" title="{tr}Upgrade Wizard{/tr}:
+					<a href="http://doc.tiki.org/Upgrade+Wizard" target="tikihelp" class="tikihelp text-success" title="{tr}Changes Wizard{/tr}:
 						{tr}Use this wizard if you are upgrading from previous versions of Tiki, specially if you come from the previous Long-Term Support (LTS) version.{/tr}</p>
 
 						<p>{tr}Some of these settings are also available through the Configuration Wizard, and all of them are available through Control Panels{/tr}.
@@ -84,7 +84,7 @@
 					</a>
 				</p>
 
-					<input type="submit" class="btn btn-success" name="use-upgrade-wizard" value="{tr}Start Upgrade Wizard{/tr}" />
+					<input type="submit" class="btn btn-success" name="use-changes-wizard" value="{tr}Start Changes Wizard{/tr}" />
 			</div>
 		</div>
 		<hr>

@@ -2,14 +2,14 @@
 
 <div class="media">
 	<div class="mr-4">
-	<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Upgrade Wizard{/tr}" title="Upgrade Wizard">
+	<span class="float-left fa-stack fa-lg margin-right-18em" alt="{tr}Changes Wizard{/tr}" title="Changes Wizard">
 		<i class="fas fa-arrow-circle-up fa-stack-2x"></i>
 		<i class="fas fa-flip-horizontal fa-magic fa-stack-1x ml-4 mt-4"></i>
 	</span>
 	</div>
 	<br/><br/>
 	<div class="media-body">
-		{tr}You are reaching the end of the <em>Upgrade Wizard</em>{/tr}.
+		{tr}You are reaching the end of the <em>Changes Wizard</em>{/tr}.
 		{tr}Since you are upgrading, you probably had a previous installation of Tiki for a while, and you may already have some experience using a few Tiki features, at least{/tr}.
 		<br/><br/>
 		{tr}That's why we would like to <strong>ask you to send us some feedback about your usage of Tiki</strong>, while having the chance to connect in the future with other Tiki Admins near you in the Tiki Community{/tr}.

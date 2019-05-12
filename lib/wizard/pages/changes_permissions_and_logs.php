@@ -10,46 +10,36 @@ require_once('lib/wizard/wizard.php');
 /**
  * The Wizard's language handler
  */
-class UpgradeWizardNewIn17 extends Wizard
+class ChangesWizardPermissionsAndLogs extends Wizard
 {
 	function pageTitle()
 	{
-		return tra('New in Tiki 17');
+		return tra('Permissions & Logs');
 	}
 
 	function isEditable()
 	{
-		return true;
+		return false;
 	}
 
 	function onSetupPage($homepageUrl)
 	{
-		global $prefs;
-		$smarty = TikiLib::lib('smarty');
-		$addonprefs = TikiLib::lib('prefs')->getAddonPrefs();
-		$smarty->assign('addonprefs', $addonprefs);
-
 		// Run the parent first
 		parent::onSetupPage($homepageUrl);
 
 		$showPage = true;
-
-		// Show if any more specification is needed
 
 		return $showPage;
 	}
 
 	function getTemplate()
 	{
-		$wizardTemplate = 'wizard/upgrade_new_in_17.tpl';
-
+		$wizardTemplate = 'wizard/changes_permissions_and_logs.tpl';
 		return $wizardTemplate;
 	}
 
 	function onContinue($homepageUrl)
 	{
-		global $tikilib;
-
 		// Run the parent first
 		parent::onContinue($homepageUrl);
 	}

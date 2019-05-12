@@ -3,7 +3,7 @@
 <div class="media">
 	<div class="media-body">
 		<p class="wizardCongrat text-success">
-			{icon name="check" size=1}{tr}Congratulations{/tr}. {tr}You are done with the upgrade wizard{/tr}.
+			{icon name="check" size=1}{tr}Congratulations{/tr}. {tr}You are done with the Changes Wizard{/tr}.
 		</P>
 		<fieldset>
 			<legend>{tr}Next?{/tr}</legend>

@@ -10,11 +10,11 @@ require_once('lib/wizard/wizard.php');
 /**
  * The Wizard's language handler
  */
-class UpgradeWizardNoviceAdminAssistance extends Wizard
+class ChangesWizardNewIn18 extends Wizard
 {
 	function pageTitle()
 	{
-		return tra('Novice Admin Assistance');
+		return tra('New in Tiki 18 (LTS)');
 	}
 
 	function isEditable()
@@ -24,22 +24,32 @@ class UpgradeWizardNoviceAdminAssistance extends Wizard
 
 	function onSetupPage($homepageUrl)
 	{
+		global $prefs;
+		$smarty = TikiLib::lib('smarty');
+		$addonprefs = TikiLib::lib('prefs')->getAddonPrefs();
+		$smarty->assign('addonprefs', $addonprefs);
+
 		// Run the parent first
 		parent::onSetupPage($homepageUrl);
 
 		$showPage = true;
+
+		// Show if any more specification is needed
 
 		return $showPage;
 	}
 
 	function getTemplate()
 	{
-		$wizardTemplate = 'wizard/upgrade_novice_admin_assistance.tpl';
+		$wizardTemplate = 'wizard/changes_new_in_18.tpl';
+
 		return $wizardTemplate;
 	}
 
 	function onContinue($homepageUrl)
 	{
+		global $tikilib;
+
 		// Run the parent first
 		parent::onContinue($homepageUrl);
 	}

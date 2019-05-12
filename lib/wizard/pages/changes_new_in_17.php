@@ -10,36 +10,46 @@ require_once('lib/wizard/wizard.php');
 /**
  * The Wizard's language handler
  */
-class UpgradeWizardDocPageIframe extends Wizard
+class ChangesWizardNewIn17 extends Wizard
 {
 	function pageTitle()
 	{
-		return tra('Related doc.tiki.org pages');
+		return tra('New in Tiki 17');
 	}
 
 	function isEditable()
 	{
-		return false;
+		return true;
 	}
 
 	function onSetupPage($homepageUrl)
 	{
+		global $prefs;
+		$smarty = TikiLib::lib('smarty');
+		$addonprefs = TikiLib::lib('prefs')->getAddonPrefs();
+		$smarty->assign('addonprefs', $addonprefs);
+
 		// Run the parent first
 		parent::onSetupPage($homepageUrl);
 
 		$showPage = true;
+
+		// Show if any more specification is needed
 
 		return $showPage;
 	}
 
 	function getTemplate()
 	{
-		$wizardTemplate = 'wizard/upgrade_doc_page_iframe.tpl';
+		$wizardTemplate = 'wizard/changes_new_in_17.tpl';
+
 		return $wizardTemplate;
 	}
 
 	function onContinue($homepageUrl)
 	{
+		global $tikilib;
+
 		// Run the parent first
 		parent::onContinue($homepageUrl);
 	}

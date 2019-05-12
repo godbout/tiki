@@ -38,8 +38,8 @@
 		{if isset($useDefaultPrefs)}
 			<input type="hidden" name="use-default-prefs" value="{$useDefaultPrefs}">
 		{/if}
-		{if isset($useUpgradeWizard)}
-			<input type="hidden" name="use-upgrade-wizard" value="{$useUpgradeWizard}">
+		{if isset($useChangesWizard)}
+			<input type="hidden" name="use-changes-wizard" value="{$useChangesWizard}">
 		{/if}
 		{if !isset($showOnLoginDisplayed) or $showOnLoginDisplayed neq 'y'}
 		<div class="form-check">

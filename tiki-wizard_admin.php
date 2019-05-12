@@ -12,7 +12,7 @@
 $inputConfiguration = [[
 	'staticKeyFilters'	=> [
 		'use-default-prefs'	=> 'alnum', 		// request
-		'use-upgrade-wizard' => 'alnum', 		// request
+		'use-changes-wizard' => 'alnum', 		// request
 		'url'				=> 'relativeurl',	// request
 		'close'				=> 'alnum',			// post
 		'showOnLogin'		=> 'alnum',			// post
@@ -49,8 +49,8 @@ $pages[] = new AdminWizard();
 
 // If $useDefaultPrefs is set, the "profiles wizard" should be run. Otherwise the "admin wizard".
 $useDefaultPrefs = isset($_REQUEST['use-default-prefs']) ? true : false;
-// If $useUpgradeWizard is set, the "upgrade wizard" should be run. Otherwise the "admin wizard".
-$useUpgradeWizard = isset($_REQUEST['use-upgrade-wizard']) ? true : false;
+// If $useChangesWizard is set, the "Changes Wizard" should be run. Otherwise the "admin wizard".
+$useChangesWizard = isset($_REQUEST['use-changes-wizard']) ? true : false;
 if ($useDefaultPrefs) {
 	// Store the default prefs selection in the wizard bar
 	$smarty->assign('useDefaultPrefs', $useDefaultPrefs);
@@ -87,54 +87,54 @@ if ($useDefaultPrefs) {
 
 	require_once('lib/wizard/pages/profiles_completed.php');
 	$pages[] = new AdminWizardProfilesCompleted();
-} elseif ($useUpgradeWizard) {
-	// Store the use Upgrade Wizard selection in the wizard bar
-	$smarty->assign('useUpgradeWizard', $useUpgradeWizard);
+} elseif ($useChangesWizard) {
+	// Store the use Changes Wizard selection in the wizard bar
+	$smarty->assign('useChangesWizard', $useChangesWizard);
 
-	require_once('lib/wizard/pages/upgrade_ui.php');
-	$pages[] = new UpgradeWizardUI();
+	require_once('lib/wizard/pages/changes_ui.php');
+	$pages[] = new ChangesWizardUI();
 
-	require_once('lib/wizard/pages/upgrade_novice_admin_assistance.php');
-	$pages[] = new UpgradeWizardNoviceAdminAssistance();
+	require_once('lib/wizard/pages/changes_novice_admin_assistance.php');
+	$pages[] = new ChangesWizardNoviceAdminAssistance();
 
-	require_once('lib/wizard/pages/upgrade_trackers.php');
-	$pages[] = new UpgradeWizardTrackers();
+	require_once('lib/wizard/pages/changes_trackers.php');
+	$pages[] = new ChangesWizardTrackers();
 
-	require_once('lib/wizard/pages/upgrade_permissions_and_logs.php');
-	$pages[] = new UpgradeWizardPermissionsAndLogs();
+	require_once('lib/wizard/pages/changes_permissions_and_logs.php');
+	$pages[] = new ChangesWizardPermissionsAndLogs();
 
-	require_once('lib/wizard/pages/upgrade_others.php');
-	$pages[] = new UpgradeWizardOthers();
+	require_once('lib/wizard/pages/changes_others.php');
+	$pages[] = new ChangesWizardOthers();
 
-	require_once('lib/wizard/pages/upgrade_new_in_13.php');
-	$pages[] = new UpgradeWizardNewIn13();
+	require_once('lib/wizard/pages/changes_new_in_13.php');
+	$pages[] = new ChangesWizardNewIn13();
 
-	require_once('lib/wizard/pages/upgrade_new_in_14.php');
-	$pages[] = new UpgradeWizardNewIn14();
+	require_once('lib/wizard/pages/changes_new_in_14.php');
+	$pages[] = new ChangesWizardNewIn14();
 
-	require_once('lib/wizard/pages/upgrade_new_in_15.php');
-	$pages[] = new UpgradeWizardNewIn15();
+	require_once('lib/wizard/pages/changes_new_in_15.php');
+	$pages[] = new ChangesWizardNewIn15();
 
-	require_once('lib/wizard/pages/upgrade_new_in_16.php');
-	$pages[] = new UpgradeWizardNewIn16();
+	require_once('lib/wizard/pages/changes_new_in_16.php');
+	$pages[] = new ChangesWizardNewIn16();
 
-	require_once('lib/wizard/pages/upgrade_new_in_17.php');
-	$pages[] = new UpgradeWizardNewIn17();
+	require_once('lib/wizard/pages/changes_new_in_17.php');
+	$pages[] = new ChangesWizardNewIn17();
 
-	require_once('lib/wizard/pages/upgrade_new_in_18.php');
-	$pages[] = new UpgradeWizardNewIn18();
+	require_once('lib/wizard/pages/changes_new_in_18.php');
+	$pages[] = new ChangesWizardNewIn18();
 
-    require_once('lib/wizard/pages/upgrade_new_in_19.php');
-    $pages[] = new UpgradeWizardNewIn19();
+    require_once('lib/wizard/pages/changes_new_in_19.php');
+    $pages[] = new ChangesWizardNewIn19();
 
-    require_once('lib/wizard/pages/upgrade_doc_page_iframe.php');
-	$pages[] = new UpgradeWizardDocPageIframe();
+    require_once('lib/wizard/pages/changes_doc_page_iframe.php');
+	$pages[] = new ChangesWizardDocPageIframe();
 
-	require_once('lib/wizard/pages/upgrade_send_feedback.php');
-	$pages[] = new UpgradeWizardSendFeedback();
+	require_once('lib/wizard/pages/changes_send_feedback.php');
+	$pages[] = new ChangesWizardSendFeedback();
 
-	require_once('lib/wizard/pages/upgrade_wizard_completed.php');
-	$pages[] = new UpgradeWizardCompleted();
+	require_once('lib/wizard/pages/changes_wizard_completed.php');
+	$pages[] = new ChangesWizardCompleted();
 } else {
 	require_once('lib/wizard/pages/admin_language.php');
 	$pages[] = new AdminWizardLanguage();
@@ -224,11 +224,11 @@ foreach ($pages as $page) {
 	if ($useDefaultPrefs) {
 		$url .= '&amp;use-default-prefs=1';
 	}
-	if ($useUpgradeWizard) {
-		$url .= '&amp;use-upgrade-wizard=1';
+	if ($useChangesWizard) {
+		$url .= '&amp;use-changes-wizard=1';
 	}
 	$cnt = $stepNr + 1;
-	if ($stepNr == 1 && $useUpgradeWizard) {
+	if ($stepNr == 1 && $useChangesWizard) {
 		$toc .= '<div class="list-group-item font-italic">' . tra("New in Tiki 12 (LTS)") . '</div>';
 	}
 	if ($cnt <= 9) {

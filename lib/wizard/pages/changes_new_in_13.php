@@ -10,7 +10,7 @@ require_once('lib/wizard/wizard.php');
 /**
  * The Wizard's language handler
  */
-class UpgradeWizardNewIn13 extends Wizard
+class ChangesWizardNewIn13 extends Wizard
 {
 	function pageTitle()
 	{
@@ -36,7 +36,7 @@ class UpgradeWizardNewIn13 extends Wizard
 
 	function getTemplate()
 	{
-		$wizardTemplate = 'wizard/upgrade_new_in_13.tpl';
+		$wizardTemplate = 'wizard/changes_new_in_13.tpl';
 		return $wizardTemplate;
 	}
 

@@ -8,30 +8,33 @@
 require_once('lib/wizard/wizard.php');
 
 /**
- * The Wizard's last screen
+ * The Wizard's language handler
  */
-class UpgradeWizardCompleted extends Wizard
+class ChangesWizardDocPageIframe extends Wizard
 {
 	function pageTitle()
 	{
-		return tra('Upgrade Wizard Completed!');
+		return tra('Related doc.tiki.org pages');
 	}
+
 	function isEditable()
 	{
 		return false;
 	}
 
-	public function onSetupPage($homepageUrl)
+	function onSetupPage($homepageUrl)
 	{
 		// Run the parent first
 		parent::onSetupPage($homepageUrl);
 
-		return true;
+		$showPage = true;
+
+		return $showPage;
 	}
 
 	function getTemplate()
 	{
-		$wizardTemplate = 'wizard/upgrade_wizard_completed.tpl';
+		$wizardTemplate = 'wizard/changes_doc_page_iframe.tpl';
 		return $wizardTemplate;
 	}
 
