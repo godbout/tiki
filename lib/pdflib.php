@@ -363,11 +363,11 @@ class PdfGenerator
 				if(strpos($pdfPage['pageContent'],"<pdfinclude")){
 					//getting src
 					$breakPageContent=str_replace(array("<pdfpage>.","</pdfpage>","<pdfinclude src=","/>","\""),"",$pdfPage['pageContent']);
-					if (function_exists($mpdf->SetImportUse())) {
+					if (method_exists($mpdf,"SetImportUse")) {
 						$mpdf->SetImportUse();
 					}
 					
-					$tmpExtPDF="temp/pdfimg/tmp_".rand(0,999999999).".pdf";
+					$tmpExtPDF="temp/tmp_".rand(0,999999999).".pdf";
 					file_put_contents($tmpExtPDF, fopen(trim($breakPageContent), 'r'));
 					chmod($tmpExtPDF, 0755);
 					$pagecount = $mpdf->setSourceFile($tmpExtPDF) or die("cant pdf"); //temp file name
