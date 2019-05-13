@@ -321,7 +321,11 @@ class PdfGenerator
 		}
 
 		$pdfPages = $this->getPDFPages($html, $pdfSettings);
-		$cssStyles = str_replace([".tiki","opacity: 0;","page-break-inside: avoid;"], ["","fill: #fff;opacity:0.3;stroke:black","page-break-inside: auto;"], '<style>' . $basecss . $themecss . $printcss . $pageCSS . $extcss . $this->bootstrapReplace() . $prefs["header_custom_css"] . '</style>'); //adding css styles with first page content
+		$cssStyles = str_replace([".tiki","opacity: 0;","page-break-inside: avoid;"], ["","fill: #fff;opacity:0.3;stroke:black","page-break-inside: auto;"], '<style>' . $basecss . $themecss . $printcss. $pageCSS . $extcss . $this->bootstrapReplace() . $prefs["header_custom_css"] . '</style>'); //adding css styles with first page content
+		//PDF import templates will not work if background color is set, need to replace in css
+		if(array_filter( array_column($pdfPages, 'pageContent'), function($var)  { return preg_match("/\bpdfinclude\b/i", $var); })){
+			$cssStyles=str_replace(array("background-color: #fff;","background:#fff;"),"background:none",$cssStyles);
+		}
 		//cover page checking
 		if ($pdfSettings['coverpage_text_settings'] != '' || ($pdfSettings['coverpage_image_settings'] != '' && $pdfSettings['coverpage_image_settings'] != 'off')) {
 			$coverPage = explode("|", $pdfSettings['coverpage_text_settings']);
@@ -354,57 +358,77 @@ class PdfGenerator
 			if($pageNo==1){
 				$resetPage=1;
 			}
-			if (strip_tags(trim($pdfPage['pageContent'])) != '') {
-				//checking header and footer
-				if (trim(strtolower($pdfPage['header'])) == "off") {
-					$header = "";
-				} else {
-					$pdfPage['header'] == '' ? $header = $pdfSettings['header'] : $header = $pdfPage['header'];
-				}
-				if (trim(strtolower($pdfPage['footer'])) == "off") {
-					$footer = "";
-				} elseif ($pdfPage['footer']) {
-					$footer = $pdfPage['footer'];
-				}
-				$mpdf->SetHTMLHeader($this->processHeaderFooter($header,$params['page']));
-				$mpdf->AddPage($pdfPage['orientation'], '', $resetPage, '', '', $pdfPage['margin_left'], $pdfPage['margin_right'], $pdfPage['margin_top'], $pdfPage['margin_bottom'], $pdfPage['margin_header'], $pdfPage['margin_footer'], '', '', '', '', '', '', '', '', '', $pdfPage['pagesize']);
-				$mpdf->SetHTMLFooter($this->processHeaderFooter($footer,$params['page'],'top')); //footer needs to be reset after page content is added
 
-			//checking watermark on page
-				$mpdf->SetWatermarkText($pdfPage['watermark']);
-				$mpdf->showWatermarkText = true;
-				$mpdf->SetWatermarkImage($pdfPage['watermark_image'], 0.15, '');
-				if ($pdfPage['background_image']) {
-					$mpdf->SetWatermarkImage($pdfPage['background_image'], 1);
-					$mpdf->watermarkImgBehind = true;
+			if (strip_tags(trim($pdfPage['pageContent']),"img,pdfinclude") != '') { //including external pdf
+				if(strpos($pdfPage['pageContent'],"<pdfinclude")){
+					//getting src
+					$breakPageContent=str_replace(array("<pdfpage>.","</pdfpage>","<pdfinclude src=","/>","\""),"",$pdfPage['pageContent']);
+					if (function_exists($mpdf->SetImportUse())) {
+						$mpdf->SetImportUse();
+					}
+					
+					$tmpExtPDF="temp/pdfimg/tmp_".rand(0,999999999).".pdf";
+					file_put_contents($tmpExtPDF, fopen(trim($breakPageContent), 'r'));
+					chmod($tmpExtPDF, 0755);
+					$pagecount = $mpdf->setSourceFile($tmpExtPDF) or die("cant pdf"); //temp file name
+					for ($i = 1; $i <= $pagecount; $i++) {
+						$mpdf->AddPage();
+						$tplId = $mpdf->ImportPage($i);
+						$mpdf->UseTemplate($tplId);
+					}
+					unlink($tmpExtPDF);
 				}
-				$mpdf->showWatermarkImage = true;
-			//hyperlink check
-				if ($pdfPage['hyperlinks'] != "") {
-					$pdfPage['pageContent'] = $this->processHyperlinks($pdfPage['pageContent'], $pdfPage['hyperlinks'], $pageCounter++);
+				else{
+					//checking header and footer
+					if (trim(strtolower($pdfPage['header'])) == "off") {
+						$header = "";
+					} else {
+						$pdfPage['header'] == '' ? $header = $pdfSettings['header'] : $header = $pdfPage['header'];
+					}
+					if (trim(strtolower($pdfPage['footer'])) == "off") {
+						$footer = "";
+					} elseif ($pdfPage['footer']) {
+						$footer = $pdfPage['footer'];
+					}
+					$mpdf->SetHTMLHeader($this->processHeaderFooter($header,$params['page']));
+					$mpdf->AddPage($pdfPage['orientation'], '', $resetPage, '', '', $pdfPage['margin_left'], $pdfPage['margin_right'], $pdfPage['margin_top'], $pdfPage['margin_bottom'], $pdfPage['margin_header'], $pdfPage['margin_footer'], '', '', '', '', '', '', '', '', '', $pdfPage['pagesize']);
+					$mpdf->SetHTMLFooter($this->processHeaderFooter($footer,$params['page'],'top')); //footer needs to be reset after page content is added
+					//checking watermark on page
+					$mpdf->SetWatermarkText($pdfPage['watermark']);
+					$mpdf->showWatermarkText = true;
+					$mpdf->SetWatermarkImage($pdfPage['watermark_image'], 0.15, '');
+					if ($pdfPage['background_image']) {
+						$mpdf->SetWatermarkImage($pdfPage['background_image'], 1);
+						$mpdf->watermarkImgBehind = true;
+					}
+					$mpdf->showWatermarkImage = true;
+					//hyperlink check
+					if ($pdfPage['hyperlinks'] != "") {
+						$pdfPage['pageContent'] = $this->processHyperlinks($pdfPage['pageContent'], $pdfPage['hyperlinks'], $pageCounter++);
+					}
+					if ($pdfPage['columns'] > 1) {
+						$mpdf->SetColumns($pdfPage['columns'], 'justify');
+					}
+					else {
+						$mpdf->SetColumns(1, 'justify');
+					}
+					$backgroundImage = '';
+					if(strstr($_GET['display'],'pdf')!='') {
+						$bgColor = "background: linear-gradient(top, '','');";
+					}
+					if ($pdfPage['background'] != '') {
+						$bgColor = "background: linear-gradient(top, ".$pdfPage['background'].", ".$pdfPage['background'].");";
+					}
+					$mpdf->WriteHTML('<html><body class="'.$bodycss.'" style="margin:0px;padding:0px;">' . $cssStyles);
+					$pagesTotal += floor(strlen($pdfPage['pageContent']) / 3000);
+					//checking if page content is less than mPDF character limit, otherwise split it and loop to writeHTML
+					for ($charLimit = 0; $charLimit <= strlen($pdfPage['pageContent']); $charLimit += $pdfLimit) {
+						$mpdf->WriteHTML(substr($pdfPage['pageContent'], $charLimit, $pdfLimit));
+					}
+					$mpdf->WriteHTML('</body></html>');
+					$pageNo++;
+					$cssStyles = ''; //set to blank after added with first page
 				}
-				if ($pdfPage['columns'] > 1) {
-					$mpdf->SetColumns($pdfPage['columns'], 'justify');
-				} else {
-					$mpdf->SetColumns(1, 'justify');
-				}
-				$backgroundImage = '';
-				if(strstr($_GET['display'],'pdf')!='') {
-					$bgColor = "background: linear-gradient(top, '','');";
-				}
-
-				if ($pdfPage['background'] != '') {
-					$bgColor = "background: linear-gradient(top, ".$pdfPage['background'].", ".$pdfPage['background'].");";
-				}
-				$mpdf->WriteHTML('<html><body class="'.$bodycss.'" style="'.$bgColor.'-webkit-print-color-adjust: exact;margin:0px;padding:0px;">' . $cssStyles);
-				$pagesTotal += floor(strlen($pdfPage['pageContent']) / 3000);
-				//checking if page content is less than mPDF character limit, otherwise split it and loop to writeHTML
-				for ($charLimit = 0; $charLimit <= strlen($pdfPage['pageContent']); $charLimit += $pdfLimit) {
-					 $mpdf->WriteHTML(substr($pdfPage['pageContent'], $charLimit, $pdfLimit));
-				}
-				$mpdf->WriteHTML('</body></html>');
-				$pageNo++;
-				$cssStyles = ''; //set to blank after added with first page
 			}
 		}
 		$mpdf->setWatermarkText($pdfSettings['watermark']);

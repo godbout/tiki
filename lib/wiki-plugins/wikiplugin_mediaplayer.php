@@ -189,6 +189,10 @@ function wikiplugin_mediaplayer($data, $params)
 	if (! empty($params['src']) && isset($params['style']) && $params['style'] != 'native') { // FIXME: Too broad - this does not use jQuery Media in all these cases.
 		$access->check_feature('feature_jquery_media');
 	}
+	//checking if pdf generation request
+	if (in_array($params['type'], ['pdf']) && strstr($_GET['display'],'pdf')!='') {
+		return "<pdfpage>.<pdfinclude src='".TikiLib::lib('access')->absoluteUrl($params['src'])."' /></pdfpage>";
+	}
 	$defaults_mp3 = [
 		'width' => 200,
 		'height' => 20,
