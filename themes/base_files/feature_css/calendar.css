@@ -187,6 +187,20 @@ a.next img {
 	#configlinks {
 		padding: 5px 0;
 	}
+	.viewmode div {
+		position: relative;
+	}
+	.viewmode div div:not(.btn-toolbar) {
+		display: block !important;
+		position: absolute !important;
+		text-align: left;
+		bottom: initial !important;
+	}
+	.viewmode div div:nth-child(3) {
+		text-align: right;
+		bottom: 50px !important;
+		right: 0;
+	}
 	.viewmode .btn-toolbar .btn {
 		margin-bottom: 5px;
 	}
