@@ -1053,6 +1053,13 @@ function wikiplugin_tracker($data, $params)
 		foreach ($unfiltered['data'] as $f) {
 			if ($itemObject->canModifyField($f['fieldId']) || $registration == 'y' && empty($item_info)) {
 				$flds['data'][] = $f;
+			} else if ($itemObject->canViewField($f['fieldId']) && ! empty($item_info)) {
+				$flds['data'][] = [
+					'fieldId' =>$f['fieldId'],
+					'permName' =>$f['permName'],
+					'type' =>$f['type'],
+					'readonly' => true,
+				];
 			}
 		}
 
@@ -2013,6 +2020,10 @@ function wikiplugin_tracker($data, $params)
 				if (! empty($tpl) || ! empty($wiki)) {
 					if ($prettyModifier[$f['fieldId']] == "output") { //check if modifier is set to "output" ( set in getPrettyFieldIds() in trackerlib )
 						$prettyout = '<span class="outputPretty" id="track_' . $f['fieldId'] . '" name="track_' . $f['fieldId'] . '">' . wikiplugin_tracker_render_value($f, $item) . '</span>';
+						$smarty->assign('f_' . $f['fieldId'], $prettyout);
+						$smarty->assign('f_' . $f['permName'], $prettyout);
+					} else if (! empty($f['readonly'])) {
+						$prettyout = '<span class="outputPretty text-danger" id="track_' . $f['fieldId'] . '" name="track_' . $f['fieldId'] . '">' . tr('Error: Read only field "%0"', $f['permName']) . '</span>';
 						$smarty->assign('f_' . $f['fieldId'], $prettyout);
 						$smarty->assign('f_' . $f['permName'], $prettyout);
 					} else {
