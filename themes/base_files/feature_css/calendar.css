@@ -182,3 +182,12 @@ a.prev img,
 a.next img {
 	vertical-align: middle;
 }
+
+@media (max-width: 767px) {
+	#configlinks {
+		padding: 5px 0;
+	}
+	.viewmode .btn-toolbar .btn {
+		margin-bottom: 5px;
+	}
+}
