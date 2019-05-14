@@ -1068,7 +1068,7 @@ class Services_Tracker_Controller
 				}
 			} else {
 				if ($suppressFeedback !== true) {
-					if ($input['ajax']) {
+					if ($input->ajax->int()) {
 						$trackerinfo = $definition->getInformation();
 						$trackername = tr($trackerinfo['name']);
 						$item = $this->utilities->getItem($trackerId, $itemId);
