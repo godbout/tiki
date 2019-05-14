@@ -372,7 +372,9 @@ class PdfGenerator
 					chmod($tmpExtPDF, 0755);
 					$pagecount = $mpdf->setSourceFile($tmpExtPDF) or die("cant pdf"); //temp file name
 					for ($i = 1; $i <= $pagecount; $i++) {
+						$mpdf->SetHTMLHeader();
 						$mpdf->AddPage();
+						$mpdf->SetHTMLFooter();
 						$tplId = $mpdf->ImportPage($i);
 						$mpdf->UseTemplate($tplId);
 					}
