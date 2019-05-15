@@ -41,6 +41,7 @@ function tiki_route($path)
 		'galleries' => 'tiki-galleries.php',
 		'login' => 'tiki-login_scr.php',
 		'logout' => 'tiki-logout.php',
+		'me' => 'tiki-user_information.php',
 		'my' => 'tiki-my_tiki.php',
 		'newsletters' => 'tiki-newsletters.php',
 		'quizzes' => 'tiki-list_quizzes.php',
