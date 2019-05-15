@@ -370,13 +370,18 @@ class PdfGenerator
 					$tmpExtPDF="temp/tmp_".rand(0,999999999).".pdf";
 					file_put_contents($tmpExtPDF, fopen(trim($breakPageContent), 'r'));
 					chmod($tmpExtPDF, 0755);
-					$pagecount = $mpdf->setSourceFile($tmpExtPDF) or die("cant pdf"); //temp file name
-					for ($i = 1; $i <= $pagecount; $i++) {
-						$mpdf->SetHTMLHeader();
-						$mpdf->AddPage();
-						$mpdf->SetHTMLFooter();
-						$tplId = $mpdf->ImportPage($i);
-						$mpdf->UseTemplate($tplId);
+					$finfo = finfo_open(FILEINFO_MIME_TYPE); //recheck if its valid pdf file
+					if(finfo_file($finfo, $tmpExtPDF) === 'application/pdf') {
+						$pagecount = $mpdf->setSourceFile(
+							$tmpExtPDF
+						); //temp file name
+						for ($i = 1; $i <= $pagecount; $i++) {
+							$mpdf->SetHTMLHeader();
+							$mpdf->AddPage();
+							$mpdf->SetHTMLFooter();
+							$tplId = $mpdf->ImportPage($i);
+							$mpdf->UseTemplate($tplId);
+						}
 					}
 					unlink($tmpExtPDF);
 				}
