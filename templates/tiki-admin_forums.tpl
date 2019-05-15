@@ -227,7 +227,7 @@
 							<div class="form-group row">
 								<label class="col-sm-4 col-form-label" for="forumLanguage">{tr}Language{/tr}</label>
 								<div class="col-sm-8">
-									<select name="forumLanguage" id="forumLanguage">
+									<select name="forumLanguage" id="forumLanguage" class="form-control">
 										<option value="">{tr}Unknown{/tr}</option>
 										{section name=ix loop=$languages}
 											<option value="{$languages[ix].value|escape}"{if $forumLanguage eq $languages[ix].value or (empty($data.page_id) and $forumLanguage eq '' and $languages[ix].value eq $prefs.language)} selected="selected"{/if}>{$languages[ix].name}</option>
@@ -272,7 +272,7 @@
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="forum_use_password">{tr}Password protected{/tr}</label>
 							<div class="col-sm-4">
-								{html_options name=forum_use_password class=form-control options=$forum_use_password_options selected=$forum_use_password class=form-control}
+								{html_options name=forum_use_password class="form-control" options=$forum_use_password_options selected=$forum_use_password}
 							</div>
 						</div>
 						<div class="form-group row">
@@ -314,7 +314,7 @@
 								</div>
 							</div>
 							<div class="col-sm-4">
-								{html_options name=pruneUnrepliedAge options=$pruneUnrepliedAge_options selected=$pruneUnrepliedAge}
+								{html_options name=pruneUnrepliedAge class="form-control" options=$pruneUnrepliedAge_options selected=$pruneUnrepliedAge}
 							</div>
 						</div>
 						<div class="form-group row">
@@ -325,7 +325,7 @@
 								</div>
 							</div>
 							<div class="col-sm-4">
-								{html_options name=pruneMaxAge options=$pruneMaxAge_options selected=$pruneMaxAge}
+								{html_options name=pruneMaxAge class="form-control" options=$pruneMaxAge_options selected=$pruneMaxAge}
 							</div>
 						</div>
 					</fieldset>
@@ -398,7 +398,7 @@
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="forum_last_n">{tr}Display last post titles{/tr}</label>
 							<div class="col-sm-4">
-								{html_options name=forum_last_n id=forum_last_n options=$forum_last_n_options selected=$forum_last_n}
+								{html_options name=forum_last_n id=forum_last_n class="form-control" options=$forum_last_n_options selected=$forum_last_n}
 							</div>
 						</div>
 					</fieldset>
@@ -408,7 +408,7 @@
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="topicOrdering">{tr}Default order of topics{/tr}</label>
 							<div class="col-sm-8">
-								{html_options name=topicOrdering id=topicOrdering class=form-control options=$topicOrdering_options selected=$topicOrdering}
+								{html_options name=topicOrdering id=topicOrdering class="form-control" options=$topicOrdering_options selected=$topicOrdering}
 							</div>
 						</div>
 						<div class="form-group row">
@@ -481,19 +481,19 @@
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="threadOrdering">{tr}Default ordering of threads{/tr}</label>
 							<div class="col-sm-8">
-								{html_options name=threadOrdering id=threadOrdering class=form-control options=$threadOrdering_options selected=$threadOrdering}
+								{html_options name=threadOrdering id=threadOrdering class="form-control" options=$threadOrdering_options selected=$threadOrdering}
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="threadStyle">{tr}Default style of threads{/tr}</label>
 							<div class="col-sm-8">
-								{html_options name=threadStyle id=threadStyle class=form-control options=$threadStyle_options selected=$threadStyle}
+								{html_options name=threadStyle id=threadStyle class="form-control" options=$threadStyle_options selected=$threadStyle}
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="commentsPerPage">{tr}Default number of comments per page{/tr}</label>
 							<div class="col-sm-8">
-								{html_options name=commentsPerPage id=commentsPerPage class=form-control options=$commentsPerPage_options selected=$commentsPerPage}
+								{html_options name=commentsPerPage id=commentsPerPage class="form-control" options=$commentsPerPage_options selected=$commentsPerPage}
 							</div>
 						</div>
 					</fieldset>
@@ -503,7 +503,7 @@
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="approval_type">{tr}Approval type{/tr}</label>
 							<div class="col-sm-4">
-								{html_options name=approval_type for=approval_type id=approval_type class=form-control options=$approval_options selected=$approval_type}
+								{html_options name=approval_type for=approval_type id=approval_type class="form-control" options=$approval_options selected=$approval_type}
 							</div>
 						</div>
 						<div class="form-group row">
@@ -561,7 +561,7 @@
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="att">{tr}Permission{/tr}</label>
 							<div class="col-sm-8">
-								{html_options name=att id=att options=$attachment_options selected=$att}
+								{html_options name=att id=att class="form-control" options=$attachment_options selected=$att}
 							</div>
 						</div>
 						<div class="form-group row">
