@@ -5,10 +5,12 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Composer\Semver\Semver;
 use Symfony\Component\Yaml\Yaml;
 
 class Tiki_Profile
 {
+	const SHORTER_PATTERN = '/^\$((([\w\.\/-]+):)?(\w+))$/';
 	const SHORT_PATTERN = '/^\$((([\w\.\/-]+):)?((\w+):))?(\w+)$/';
 	const LONG_PATTERN = '/\$profileobject:((([\w\.\/-]+):)?((\w+):))?(\w+)\$/';
 	const INFO_REQUEST = '/\$profilerequest:([^\$\|]+)(\|(\w+))?\$([^\$]*)\$/';
@@ -94,7 +96,10 @@ class Tiki_Profile
 	public static function getProfileKeyfor($domain, $profile) // {{{
 	{
 		if (strpos($domain, '://') === false) {
-			if (is_dir($domain)) {
+			if (\Tiki\Package\ExtensionManager::isExtensionEnabled($domain)) {
+				$path = Tiki\Package\ExtensionManager::get($domain)->getPath();
+				$domain = "file://" . $path . '/profiles';
+			} elseif (is_dir($domain)) {
 				$domain = "file://" . $domain;
 			} else {
 				$domain = "http://" . $domain;
@@ -302,6 +307,8 @@ class Tiki_Profile
 		if (preg_match(self::SHORT_PATTERN, $value, $parts)) {
 			return true;
 		} elseif (preg_match_all(self::LONG_PATTERN, $value, $parts, PREG_SET_ORDER)) {
+			return true;
+		} elseif (preg_match(self::SHORTER_PATTERN, $value, $parts)) {
 			return true;
 		}
 		return false;
@@ -511,6 +518,8 @@ class Tiki_Profile
 			foreach ($parts as $row) {
 				$array[] = $this->convertReference($row);
 			}
+		} elseif (preg_match(self::SHORTER_PATTERN, $value, $parts)) {
+			$array[] = $this->convertReference($parts);
 		}
 
 			$array = array_unique($array, SORT_REGULAR);
@@ -524,9 +533,22 @@ class Tiki_Profile
 		return count($refs) > 0;
 	} // }}}
 
+	/**
+	 * Convert references into an array key => value with domain, profile and object.
+	 *
+	 * It can use 5 parts (when referring to a profile itself) or 6 parts (when referring to an object in the profile)
+	 *
+	 * @param $parts
+	 * @return array
+	 */
 	function convertReference($parts) // {{{
 	{
-		list($full, $null0, $null1, $domain, $null2, $profile, $object) = $parts;
+		if (count($parts) == '5') {
+			list($full, $null0, $null1, $domain, $profile) = $parts;
+			$object = null;
+		} else {
+			list($full, $null0, $null1, $domain, $null2, $profile, $object) = $parts;
+		}
 
 		if (empty($domain)) {
 			$domain = $this->domain;
@@ -711,6 +733,24 @@ class Tiki_Profile
 
 		return $prefs;
 	} // }}}
+
+
+	/**
+	 * Return the list of packages in the profile
+	 *
+	 * @return array|mixed
+	 */
+	public function getPackages()
+	{
+		$packages = [];
+
+		if (array_key_exists('package', $this->data) && is_array($this->data['package'])) {
+			$packages = Tiki_Profile::convertLists($this->data['package'], ['enable' => 'y', 'disable' => 'n']);
+			$packages = Tiki_Profile::convertYesNo($packages);
+		}
+
+		return $packages;
+	}
 
 	function getGroupMap() // {{{
 	{
@@ -974,5 +1014,36 @@ class Tiki_Profile
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Checks if a profile is compatible with given tiki version
+	 *
+	 * @param string $version Tiki Version
+	 * @return bool
+	 */
+	public function isCompatible($version)
+	{
+		$supported = $this->getTikiSupportedVersions();
+
+		if (empty($supported)) {
+			return true; // Unable to determine required tiki version
+		}
+
+		return Semver::satisfies($version, $this->data['profile']['tiki']);
+	}
+
+	/**
+	 * Get tiki version supported constraint
+	 *
+	 * @return string|null
+	 */
+	public function getTikiSupportedVersions()
+	{
+		if (! isset($this->data['profile']['tiki'])) {
+			return null;
+		}
+
+		return $this->data['profile']['tiki'];
 	}
 }

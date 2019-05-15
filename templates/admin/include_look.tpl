@@ -69,6 +69,20 @@
 				{preference name=feature_theme_control_autocategorize}
 			</div>
 			<hr>
+			<legend>{tr}Theme Preferences{/tr}</legend>
+			<div class="adminoptionboxchild">
+				{foreach key=theme item=preferences from=$themePrefs}
+					<fieldset>
+						<legend>{tr}{{$theme|escape|ucfirst}}{/tr}</legend>
+						{foreach $preferences as $pref}
+							{preference name="{$pref|escape}"}
+						{/foreach}
+					</fieldset>
+				{foreachelse}
+					{tr}No theme preferences found.{/tr}
+				{/foreach}
+			</div>
+			<hr>
 		{/tab}
 		{tab name="{tr}Layout{/tr}"}
 			<br>

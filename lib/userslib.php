@@ -2402,7 +2402,7 @@ class UsersLib extends TikiLib
 		$this->query($query, ['Registered', $user, $group]);
 
 		if ($prefs['feature_community_send_mail_leave'] == 'y') {
-			$api = new TikiAddons_Api_Group;
+			$api = new \Tiki\Package\Extension\Api\Group();
 			if ($api->isOrganicGroup($group)) {
 				$groupleaders = $api->getOrganicGroupLeaders($group);
 				$groupleaders = array_combine($groupleaders, $groupleaders);
@@ -2419,7 +2419,7 @@ class UsersLib extends TikiLib
 			}
 		}
 
-		$api = new TikiAddons_Api_Group;
+		$api = new \Tiki\Package\Extension\Api\Group();
 		TikiLib::events()->trigger('tiki.user.groupleave', [
 			'type' => 'user',
 			'object' => $user,
@@ -6602,7 +6602,7 @@ class UsersLib extends TikiLib
 		$this->update_group_expiries();
 
 		if ($prefs['feature_community_send_mail_join'] == 'y') {
-			$api = new TikiAddons_Api_Group;
+			$api = new \Tiki\Package\Extension\Api\Group();
 			if ($api->isOrganicGroup($group)) {
 				$groupleaders = $api->getOrganicGroupLeaders($group);
 				$groupleaders = array_combine($groupleaders, $groupleaders);
@@ -6639,7 +6639,7 @@ class UsersLib extends TikiLib
 				$smarty->assign('mail_group', $group);
 				sendEmailNotification($watches, null, 'user_joins_group_notification_subject.tpl', null, 'user_joins_group_notification.tpl');
 			}
-			$api = new TikiAddons_Api_Group;
+			$api = new \Tiki\Package\Extension\Api\Group();
 			TikiLib::events()->trigger('tiki.user.groupjoin', [
 				'type' => 'user',
 				'object' => $user,

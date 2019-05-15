@@ -26,7 +26,7 @@ class ChangesWizardNewIn20 extends Wizard
 	{
 		global $prefs;
 		$smarty = TikiLib::lib('smarty');
-		$addonprefs = TikiLib::lib('prefs')->getAddonPrefs();
+		$addonprefs = TikiLib::lib('prefs')->getPackagePrefs();
 		$smarty->assign('addonprefs', $addonprefs);
 
 		// Run the parent first

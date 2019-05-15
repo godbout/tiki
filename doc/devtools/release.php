@@ -692,7 +692,6 @@ function check_smarty_syntax(&$error_msg)
 	require_once 'lib/init/smarty.php';
 	// needed in Smarty_Tiki
 	define('TIKI_PATH', getcwd());
-	require_once 'lib/core/TikiAddons.php';
 	require_once 'lib/smarty_tiki/prefilter.tr.php';
 	require_once 'lib/smarty_tiki/prefilter.jq.php';
 	require_once 'lib/smarty_tiki/prefilter.log_tpl.php';

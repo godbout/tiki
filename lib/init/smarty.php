@@ -686,7 +686,7 @@ class Smarty_Tiki extends Smarty
 			$this->addTemplateDir(TIKI_PATH . "/themes/templates/"); //This dir stores templates for all the themes
 
 			//Addon templates
-			foreach (TikiAddons::getPaths() as $path) {
+			foreach (\Tiki\Package\ExtensionManager::getPaths() as $path) {
 				$this->addTemplateDir($path . '/templates/');
 			}
 		}

@@ -239,21 +239,6 @@
 				</fieldset>
 			</div>
 		{/tab}
-
-		{tab name="{tr}Addons{/tr}" key=addons}
-			<br>
-			<fieldset>
-				<legend>{tr}Activate Addons{/tr}</legend>
-				{foreach $addonprefs as $addon}
-					{preference name="{$addon|escape}"}
-				{/foreach}
-			</fieldset>
-			<fieldset>
-				<legend>{tr}Addon Groups API{/tr}</legend>
-				{preference name=feature_community_send_mail_join}
-				{preference name=feature_community_send_mail_leave}
-			</fieldset>
-		{/tab}
 	{/tabset}
 	{include file='admin/include_apply_bottom.tpl'}
 </form>

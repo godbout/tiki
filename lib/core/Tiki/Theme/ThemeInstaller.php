@@ -6,6 +6,11 @@
 // $Id$
 namespace Tiki\Theme;
 
+use Exception;
+use Installer;
+use Symfony\Component\Yaml\Yaml;
+use Tiki\Theme\Menu as ThemeMenu;
+use Tiki\Theme\Module as ThemeModule;
 use Symfony\Component\Process\PhpExecutableFinder;
 use Symfony\Component\Process\Process;
 use Tiki\Theme\Handler as ThemeHandler;
@@ -17,7 +22,7 @@ use ZipArchive;
  *
  * @access public
  */
-class Zip
+class ThemeInstaller
 {
 	const TEMPORARY_FOLDER_NAME = 'temp/';
 	const CONFIG_FOLDER_NAME = 'db/';
@@ -25,44 +30,29 @@ class Zip
 
 	protected $fileName = '';
 
-	protected $currentFolder = '';
+	protected $sourceFolder = '';
 	protected $schemas = [];
 	protected $profiles = [];
 	protected $configFiles = [];
 	protected $existCssFolder = false;
 	protected $themeName = '';
-
-	protected $uniqueHash;
+	/**
+	 * @var string
+	 */
+	private $tikiFolder;
+	private $messages = [];
 
 	/**
-	 * Constructor
+	 * ThemeFolder constructor.
+	 * @param string $sourceFolder
+	 * @param string $tikiFolder
 	 */
-	public function __construct()
+	public function __construct($sourceFolder, $tikiFolder)
 	{
-		$this->uniqueHash = 'ThemeZipTmp_' . uniqid('', true) . rand(0, PHP_INT_MAX);
+		$this->sourceFolder = $sourceFolder;
+		$this->tikiFolder = $tikiFolder;
 	}
 
-	/**
-	 * Check if is a zip file
-	 *
-	 * @param string $file
-	 * @return bool
-	 */
-	public function isZipFile($file)
-	{
-		if (empty($file)) {
-			return false;
-		}
-		$fileNamePieces = explode(".", $file);
-		$fileCountPieces = count($fileNamePieces);
-		$fileName = basename($fileNamePieces[$fileCountPieces - 2]);
-		if (! empty($fileName)) {
-			$this->setFileName($fileName);
-		}
-		$fileExtension = strtolower($fileNamePieces[$fileCountPieces - 1]);
-		$isZipFile = $fileExtension === 'zip' ? true : false;
-		return $isZipFile;
-	}
 
 	/**
 	 * Check zip folder structure and get files names
@@ -70,14 +60,12 @@ class Zip
 	 * @param ZipArchive $zip
 	 * @return false|null
 	 */
-	public function getInfo(ZipArchive $zip)
+	public function getInfo()
 	{
-		if (empty($zip)) {
-			return false;
-		}
-
-		for ($i = 0; $i < $zip->numFiles; $i++) {
-			$fileName = $zip->getNameIndex($i);
+		$directory = new \RecursiveDirectoryIterator($this->sourceFolder);
+		$iterator = new \RecursiveIteratorIterator($directory);
+		foreach ($iterator as $info) {
+			$fileName = $info->getPathname();
 			$fileInfo = pathinfo($fileName);
 			$fileExtension = ! empty($fileInfo['extension']) ? $fileInfo['extension'] : '';
 			if ($fileExtension == 'sql' && strpos($fileInfo['dirname'], 'installer/schema') !== false) {
@@ -124,7 +112,7 @@ class Zip
 			$phpPath = $phpFinder->find();
 
 			$updateProcess = new Process([$phpPath, 'console.php', 'database:update']);
-			$updateProcess->setWorkingDirectory($this->getCurrentFolder());
+			$updateProcess->setWorkingDirectory($this->tikiFolder);
 			$updateProcess->run();
 			$updateProcess->wait();
 
@@ -158,21 +146,6 @@ class Zip
 		return $configApplied;
 	}
 
-	/**
-	 * Remove folders
-	 *
-	 * @param array $folders
-	 * @return null
-	 */
-	protected function removeFolders($folders)
-	{
-		if (! empty($folders)) {
-			$fs = new Filesystem();
-			foreach ($folders as $folder) {
-				$fs->remove($folder);
-			}
-		}
-	}
 
 	/**
 	 * Copy files to theme folder
@@ -181,18 +154,11 @@ class Zip
 	 */
 	public function copyThemeFiles()
 	{
-		$remove = [
-			$this->getSourceConfigFolder(),
-			$this->getSourceProfilesFolder(),
-		];
-		$this->removeFolders($remove);
 
 		$destThemeFolder = $this->getDestinationThemeFolder();
 		$tmpThemeFolder = $this->getSourceThemeFolder();
 		$fs = new Filesystem();
 		$fs->mirror($tmpThemeFolder, $destThemeFolder);
-
-		$this->removeFolders([$this->getTemporaryFolder()]);
 	}
 
 	/**
@@ -223,7 +189,7 @@ class Zip
 	 */
 	public function getFileName()
 	{
-		return $this->fileName;
+		return empty($this->fileName) ? $this->themeName : $this->fileName;
 	}
 
 	/**
@@ -268,26 +234,6 @@ class Zip
 		return $this->profiles;
 	}
 
-	/**
-	 * Get current folder
-	 *
-	 * @return string
-	 */
-	public function getCurrentFolder()
-	{
-		return $this->currentFolder;
-	}
-
-	/**
-	 * Set current folder
-	 *
-	 * @param string $folder
-	 * @return string
-	 */
-	public function setCurrentFolder($folder)
-	{
-		$this->currentFolder = rtrim(trim($folder), '\/');
-	}
 
 	/**
 	 * Glue all the path components with the appropriated directory separator
@@ -303,19 +249,6 @@ class Zip
 		return implode(DIRECTORY_SEPARATOR, $parts);
 	}
 
-	/**
-	 * Return the path for the temporary folder to be used
-	 *
-	 * @return string
-	 */
-	public function getTemporaryFolder()
-	{
-		$temporaryFolder = $this->composePath($this->currentFolder, $this->uniqueHash);
-		if (! file_exists($temporaryFolder)) {
-			mkdir($temporaryFolder);
-		}
-		return $temporaryFolder;
-	}
 
 	/**
 	 * Get temp theme folder
@@ -324,7 +257,7 @@ class Zip
 	 */
 	public function getSourceThemeFolder()
 	{
-		return $this->composePath($this->getTemporaryFolder(), $this->fileName, 'themes', $this->themeName);
+		return $this->composePath($this->sourceFolder, 'themes', $this->themeName);
 	}
 
 	/**
@@ -354,7 +287,7 @@ class Zip
 	 */
 	public function getSourceSchemaFolder()
 	{
-		return $this->composePath($this->getTemporaryFolder(), $this->fileName, 'themes', self::SCHEMA_FOLDER_NAME);
+		return $this->composePath($this->sourceFolder, $this->getFileName(), 'themes', self::SCHEMA_FOLDER_NAME);
 	}
 
 	/**
@@ -366,7 +299,7 @@ class Zip
 	{
 		$themeHandler = new ThemeHandler();
 		$installThemeName = $themeHandler->getNameCamelCase($this->getThemeName());
-		return $this->composePath($this->getCurrentFolder(), 'themes', $installThemeName);
+		return $this->composePath($this->tikiFolder, 'themes', $installThemeName);
 	}
 
 	/**
@@ -376,7 +309,7 @@ class Zip
 	 */
 	public function getDestinationConfigFolder()
 	{
-		return $this->composePath($this->getCurrentFolder(), self::CONFIG_FOLDER_NAME);
+		return $this->composePath($this->tikiFolder, self::CONFIG_FOLDER_NAME);
 	}
 
 	/**
@@ -386,22 +319,100 @@ class Zip
 	 */
 	public function getDestinationSchemaFolder()
 	{
-		return $this->composePath($this->getCurrentFolder(), self::SCHEMA_FOLDER_NAME);
+		return $this->composePath($this->tikiFolder, self::SCHEMA_FOLDER_NAME);
 	}
 
 	/**
-	 * Remove all temp folders related with this zip
-	 *
-	 * @return void
+	 *Install theme
 	 */
-	public function clean()
+	public function install()
 	{
-		$this->removeFolders(
-			[
-				$this->getTemporaryFolder(),
-				$this->getSourceConfigFolder(),
-				$this->getSourceProfilesFolder()
-			]
-		);
+		$themeHandler = new ThemeHandler();
+		$this->getInfo();
+		$themeName = $this->getThemeName();
+		$camelCaseThemeName = $themeHandler->getNameCamelCase($themeName);
+		if ($themeHandler->themeExists($camelCaseThemeName)) {
+			throw new Exception('<error>' . tr('Theme already installed') . '</error>');
+		}
+
+		if (! $this->getExistCssFolder()) {
+			throw new Exception('<error>' . tr('CSS folder not found') . '</error>');
+		}
+
+		// Execute database update
+		$schemasUpdate = $this->databaseUpdate();
+		if (! empty($schemasUpdate)) {
+			$this->messages[] = '<info>' . $schemasUpdate . '</info>';
+		}
+
+		$tmpThemeFolder = $this->getSourceThemeFolder();
+		$tmpThemeFiles = $themeHandler->getAllFolderFiles($tmpThemeFolder . '/*');
+		$themeHandler->convertFilesNames($tmpThemeFiles, $themeName, $camelCaseThemeName);
+
+		// Apply config files
+		$configApplied = $this->applyConfig();
+		if (! empty($configApplied)) {
+			foreach ($configApplied as $config) {
+				$this->messages[] = '<info>' . tr('Configuration file added:') . ' ' . $config . '</info>';
+			}
+		}
+
+		// Insert/Update preferences, menus and modules
+		$profiles = $this->getProfiles();
+		if (! empty($profiles)) {
+			$menu = new ThemeMenu();
+			$module = new ThemeModule();
+			$installer = Installer::getInstance();
+			$preferences = $installer->table('tiki_preferences');
+			$profilesPath = $this->getSourceProfilesFolder();
+			foreach ($profiles as $yamlFile) {
+				$yamlFile = $profilesPath . $yamlFile;
+				if (file_exists($yamlFile)) {
+					$yamlParse = Yaml::parse(file_get_contents($yamlFile));
+					// Add preferences
+					if (! empty($yamlParse['preferences'])) {
+						foreach ($yamlParse['preferences'] as $preference => $value) {
+							$preferences->insertOrUpdate(['value' => $value], ['name' => $preference]);
+							$this->messages[] = '<info>' . tr('Preference inserted or updated:') . ' ' . $preference . '=' . $value . '</info>';
+						}
+					}
+					// Check for menus and modules
+					if (! empty($yamlParse['objects'])) {
+						foreach ($yamlParse['objects'] as $ObjectData) {
+							// Add menus
+							if (! empty($ObjectData['type']) && $ObjectData['type'] == 'menu' && ! empty($ObjectData['data'])) {
+								$menuName = $menu->addOrUpdate($ObjectData['data']);
+								if (! empty($menuName)) {
+									$this->messages[] = '<info>' . tr('Menu inserted or updated:') . ' "' . $menuName . '"</info>';
+								}
+							}
+							// Add modules
+							if (! empty($ObjectData['type']) && $ObjectData['type'] == 'module' && ! empty($ObjectData['data'])) {
+								$moduleName = $module->addOrUpdate($ObjectData['data']);
+								if (! empty($moduleName)) {
+									$this->messages[] = '<info>' . tr('Module inserted or updated:') . ' ' . $moduleName . '</info>';
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		$this->copyThemeFiles();
+		// Rename files to camelcase names
+		$themeHandler = new ThemeHandler;
+		$tmpThemeFolder = $this->getDestinationThemeFolder();
+		$tmpThemeFiles = $themeHandler->getAllFolderFiles($tmpThemeFolder . '/*');
+		$themeHandler->convertFilesNames($tmpThemeFiles, $this->themeName, $camelCaseThemeName);
+
+		return true;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getMessages()
+	{
+		return $this->messages;
 	}
 }

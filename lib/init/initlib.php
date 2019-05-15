@@ -3,6 +3,9 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Dumper\PhpDumper;
+use Symfony\Component\Yaml\Yaml;
+use Tiki\Package\ExtensionManager as PackageExtensionManager;
+use Symfony\Component\Config\Exception\FileLocatorFileNotFoundException;
 
 /**
  * Tiki initialization functions and classes
@@ -137,11 +140,14 @@ class TikiInit
 			// Do nothing, absence of custom.xml file is expected
 		}
 
-		foreach (glob(TIKI_PATH . '/addons/*/lib/libs.xml') as $file) {
+		$extensionPackagesDefinition = PackageExtensionManager::getEnabledPackageExtensions(false);
+		$container->setParameter('tiki.packages.extensions', $extensionPackagesDefinition);
+		foreach ($extensionPackagesDefinition as $packageDefinition) {
 			try {
-				$loader->load($file);
+				$path = sprintf('%s/%s/config/services.xml', TIKI_PATH, $packageDefinition['path']);
+				$loader->load($path);
 			} catch (InvalidArgumentException $e) {
-				// Do nothing, absence of libs.xml file is expected
+				// Do nothing, absence of services.xml file is expected
 			}
 		}
 

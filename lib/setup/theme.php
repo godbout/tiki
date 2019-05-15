@@ -65,9 +65,11 @@ $headerlib->add_cssfile("themes/base_files/css/tiki_base.css");
 $headerlib->add_cssfile('vendor_bundled/vendor/bower-asset/fontawesome/css/all.css');
 
 //4) Add Addon custom css first, so it can be overridden by themes
-foreach (TikiAddons::getPaths() as $path) {
-	foreach (glob('addons/' . basename($path) . '/css/*.css') as $filename) {
-		$headerlib->add_cssfile($filename);
+foreach (\Tiki\Package\ExtensionManager::getEnabledPackageExtensions() as $package) {
+	$finder = new \Symfony\Component\Finder\Finder();
+	foreach ($finder->in($package['path'])->path('/^css/')->name('*.css') as $file) {
+		$cssFile = $package['path'] . '/' . $file->getRelativePathname();
+		$headerlib->add_cssfile($cssFile);
 	}
 }
 
@@ -169,6 +171,11 @@ $headerlib->add_jsfile('lib/jquery_tiki/iconsets.js');
 //9) set global variable and prefs so that they can be accessed elsewhere
 $prefs['theme'] = $theme_active;
 $prefs['theme_option'] = $theme_option_active;
+
+//10) load additional language overrides that might be located in theme folder
+/** @var Language $langLib */
+$langLib = TikiLib::lib('language');
+$langLib->loadThemeOverrides($prefs['language'], $theme_active);
 
 //Note: if Theme Control is active, than tiki-tc.php can modify the active theme
 

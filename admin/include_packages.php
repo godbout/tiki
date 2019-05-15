@@ -7,6 +7,7 @@
 
 use Tiki\Package\ComposerManager;
 use Tiki\Package\ComposerCli;
+use Tiki\Package\ExtensionManager;
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
@@ -32,6 +33,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 	}
 	if ($_POST['auto-remove-package'] && $access->checkCsrf()) {
 		$smarty->assign('composer_output', $composerManager->removePackage($_POST['auto-remove-package']));
+	}
+	if ($_POST['enable-extension-package'] && $access->checkCsrf()) {
+		$packageName = $_POST['enable-extension-package'];
+		$packagePath = ExtensionManager::locatePackage($packageName);
+		$status = ExtensionManager::enableExtension($packageName, $packagePath);
+		$smarty->assign('extensions_status', $status);
+		$smarty->assign('extensions_output', implode(PHP_EOL, ExtensionManager::getMessages()));
+	}
+	if ($_POST['disable-extension-package'] && $access->checkCsrf()) {
+		$status = ExtensionManager::disableExtension($_POST['disable-extension-package']);
+		$smarty->assign('extensions_status', $status);
+		$smarty->assign('extensions_output', implode(PHP_EOL, ExtensionManager::getMessages()));
 	}
 	if ($_POST['auto-run-diagnostics'] && $access->checkCsrf()) {
 		if (! $composerManager->composerIsAvailable()) {
@@ -119,6 +132,10 @@ if ($installableList === false) {
 		false
 	);
 }
+
+$packageprefs = TikiLib::lib('prefs')->getPackagePrefs();
+asort($packageprefs);
+$smarty->assign('packageprefs', $packageprefs);
 
 $smarty->assign('composer_environment_warning', $composerManager->checkThatCanInstallPackages());
 $smarty->assign('composer_available', $composerManager->composerIsAvailable());

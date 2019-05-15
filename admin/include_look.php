@@ -35,6 +35,9 @@ $smarty->assign_by_ref('themes', $themes);
 $theme_options = $themelib->list_theme_options($a_theme);
 $smarty->assign('theme_options', $theme_options);
 
+$themePrefs = TikiLib::lib('prefs')->getThemePrefs();
+$smarty->assign('themePrefs', $themePrefs);
+
 // get thumbnail if there is one
 $thumbfile = $themelib->get_thumbnail_file($prefs['site_theme'], $prefs['site_theme_option']);
 if (empty($thumbfile)) {

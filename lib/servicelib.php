@@ -13,7 +13,7 @@ class ServiceLib
 	function getBroker($addonpackage = '')
 	{
 		if ($addonpackage) {
-			$utilities = new TikiAddons_Utilities;
+			$utilities = new \Tiki\Package\Extension\Utilities();
 			if (! $utilities->isInstalled(str_replace('.', '/', $addonpackage))) {
 				$addonpackage = '';
 			}

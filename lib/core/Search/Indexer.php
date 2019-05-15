@@ -5,12 +5,14 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Package\Extension\Api\Search as PackageApiSearch;
+
 class Search_Indexer
 {
 	private $searchIndex;
 	private $contentSources = [];
 	private $globalSources = [];
-	private $addonSources = [];
+	private $packageSources = [];
 
 	private $cacheGlobals = null;
 	private $cacheTypes = [];
@@ -78,8 +80,8 @@ class Search_Indexer
 
 		$this->searchIndex = $searchIndex;
 
-		$api = new TikiAddons_Api_Search();
-		$this->addonSources = $api->getAddonSources();
+		$api = new PackageApiSearch();
+		$this->packageSources = $api->getSources();
 	}
 
 	public function addContentSource($objectType, Search_ContentSource_Interface $contentSource)
@@ -237,9 +239,9 @@ class Search_Indexer
 				$data = array_merge($data, $local);
 			}
 		}
-		foreach ($this->addonSources as $addonSource) {
-			if ($addonSource->toIndex($objectType, $objectId, $initialData)) {
-				$local = $addonSource->getData($objectType, $objectId, $typeFactory, $initialData);
+		foreach ($this->packageSources as $packageSource) {
+			if ($packageSource->toIndex($objectType, $objectId, $initialData)) {
+				$local = $packageSource->getData($objectType, $objectId, $typeFactory, $initialData);
 
 				if (false !== $local) {
 					$data = array_merge($data, $local);

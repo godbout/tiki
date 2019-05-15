@@ -378,7 +378,7 @@ function tiki_setup_events()
 	}
 
 	//Check the Addons to see if there are any events to bind
-	$api = new TikiAddons_Api_Events();
+	$api = new \Tiki\Package\Extension\Api\Events();
 	$api->bindEvents($events);
 }
 

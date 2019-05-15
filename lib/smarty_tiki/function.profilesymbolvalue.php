@@ -68,6 +68,14 @@ function smarty_function_profilesymbolvalue($params, $smarty)
 		$domain = '';
 	}
 
+	if (empty($domain) &&
+		!empty($params['package']) &&
+		\Tiki\Package\ExtensionManager::isExtensionEnabled($params['package'])) {
+
+		$extension = \Tiki\Package\ExtensionManager::get($params['package']);
+		$domain = 'file://' . $extension->getPath() . '/profiles';
+	}
+
 	if (!isset($params['cache']) || $params['cache'] != 'n') {
 		$cachelib = TikiLib::lib('cache');
 		$cacheType = 'profilesymbolval';

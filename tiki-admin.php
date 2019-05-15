@@ -9,6 +9,8 @@
 // $Id$
 
 
+use Tiki\Package\ExtensionManager;
+
 $section = 'admin';
 
 require_once('tiki-setup.php');
@@ -535,7 +537,7 @@ if (isset($_REQUEST['page'])) {
 	$adminPage = $_REQUEST['page'];
 	// Check if the associated incude_*.php file exists. If not, check to see if it might exist in the Addons.
 	// If it exists, include the associated file
-	$utilities = new TikiAddons_Utilities();
+	$utilities = new \Tiki\Package\Extension\Utilities();
 	if (file_exists("admin/include_$adminPage.php")) {
 		include_once("admin/include_$adminPage.php");
 	} elseif ($filepath = $utilities->getAddonFilePath("admin/include_$adminPage.php")) {
@@ -554,12 +556,12 @@ if (isset($_REQUEST['page'])) {
 
 	$smarty->assign('include', $adminPage);
 	$smarty->assign('template_not_found', 'n');
-	if (substr($adminPage, 0, 3) == 'ta_' && ! file_exists("admin/include_$adminPage.tpl")) {
+	if (substr($adminPage, 0, 3) == 'tp_' && ! file_exists("admin/include_$adminPage.tpl")) {
 		$addonadmintplfile = $utilities->getAddonFilePath("templates/admin/include_$adminPage.tpl");
 		if (! file_exists($addonadmintplfile)) {
 			$smarty->assign('include', 'missing_addon_page');
 		}
-		if (! $utilities->checkAddonActivated(substr($adminPage, 3))) {
+		if (! ExtensionManager::isExtensionEnabled(str_replace("_", "/", substr($adminPage, 3)))) {
 			$smarty->assign('include', 'addon_inactive');
 		}
 	} elseif (! file_exists("templates/admin/include_$adminPage.tpl")) {

@@ -223,7 +223,7 @@ function wikiplugin_memberlist($data, $params)
 	if ($params['addon_groups_approval_buttons'] == 'y') {
 		$pageInfo = $tikilib->get_page_info($page);
 		$pageLang = $pageInfo['lang'];
-		$api = new TikiAddons_Api_Group;
+		$api = new \Tiki\Package\Extension\Api\Group();
 		$group_base = $api->getOrganicGroupBaseName($params['groups'][0]);
 		$smarty->assign('mail_group', $group_base);
 		$itemId = $api->getItemIdFromToken($params['groups'][0]);

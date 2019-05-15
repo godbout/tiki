@@ -296,4 +296,56 @@ class Language extends TikiDb_Bridge
 		usort($formatted, ['language', 'formatted_language_compare']);
 		return $formatted;
 	}
+
+	/**
+	 * @param $lg
+	 * @param bool $useCache
+	 * @return array|bool|false|string
+	 * @throws Exception
+	 */
+	public static function loadExtensions($lg, $useCache = true){
+		$language = [];
+		foreach(\Tiki\Package\ExtensionManager::getEnabledPackageExtensions() as $package) {
+			$lang = null;
+
+			$file = sprintf('%s/lang/%s/addon.php', $package['path'], $lg);
+			if (!file_exists($file)) {
+				continue;
+			}
+
+			include $file;
+
+			if (!isset($lang) || !is_array($lang)) {
+				continue;
+			}
+
+			$language = array_merge($language, $lang);
+		}
+
+		return $language;
+	}
+
+	/**
+	 * Load additional language files that are located in theme folder
+	 *
+	 * @param $lang
+	 * @param $themeName
+	 * @throws Exception
+	 */
+	public function loadThemeOverrides($lang, $themeName)
+	{
+		global ${"lang_$lang"};
+
+		$themeLib = TikiLib::lib('theme');
+		$themePath = rtrim($themeLib->get_theme_path($themeName), '/');
+		$themeLangPath = implode('/', [$themePath, 'lang', $lang, 'language.php']);
+
+		if (file_exists($themeLangPath)) {
+			require $themeLangPath;
+
+			if (isset($language) && is_array($language)) {
+				${"lang_$lang"} = array_merge(${"lang_$lang"}, $language);
+			}
+		}
+	}
 }

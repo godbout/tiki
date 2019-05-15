@@ -33,7 +33,7 @@ function wikiplugin_showpref($data, $params)
 	$tikilib = TikiLib::lib('tiki');
 
 	$name = $params['pref'];
-	if (substr($name, 0, 3) == 'ta_') {
+	if (substr($name, 0, 3) == 'tp_') {
 		$midpos = strpos($name, '_', 3);
 		$pos = strpos($name, '_', $midpos + 1);
 		$file = substr($name, 0, $pos);
@@ -44,8 +44,8 @@ function wikiplugin_showpref($data, $params)
 	}
 
 	$inc_file = "lib/prefs/{$file}.php";
-	if (substr($file, 0, 3) == "ta_") {
-		$paths = TikiAddons::getPaths();
+	if (substr($file, 0, 3) == "tp_") {
+		$paths = \Tiki\Package\ExtensionManager::getPaths();
 		$package = str_replace('_', '/', substr($file, 3));
 		$inc_file = $paths[$package] . "/prefs/{$file}.php";
 	}

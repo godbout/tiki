@@ -12,6 +12,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use TikiLib;
 
 class ProfileInstallCommand extends Command
 {
@@ -77,6 +78,9 @@ class ProfileInstallCommand extends Command
 		if (! $isInstalled) {
 			$transaction = $tikilib->begin();
 			if ($installer->install($profile, 'all', $dryRun) && ! $dryRun) {
+				$logChanges = $installer->getTrackProfileChanges();
+				$logChanges['domain'] = $repository;
+				TikiLib::lib('logs')->add_action('profile apply', $profileName, 'system', tr('profile applied'), '', '', '', '', '', '', $logChanges);
 				$transaction->commit();
 				$output->writeln(tr('Profile applied.'));
 			} else {

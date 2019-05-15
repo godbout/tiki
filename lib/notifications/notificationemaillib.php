@@ -463,7 +463,7 @@ function sendEmailNotification($watches, $dummy, $subjectTpl, $subjectParam, $tx
 	// TODO: mail_machine_site may be required for some sef url with rewrite to sub-directory. To refine. (nkoth)
 	$smarty->assign('mail_machine_site', $tikilib->httpPrefix(true));
 	if ($dummy == 'group_lead_mail' || $dummy == 'add_rem_mail') {
-		$api = new TikiAddons_Api_Group;
+		$api = new \Tiki\Package\Extension\Api\Group();
 		$subjectParam['gname'] = trim($subjectParam['gname']);
 		$smarty->assign('mail_appdata', $subjectParam['app_data']);
 		$smarty->assign('mail_group', $api->getOrganicGroupName($subjectParam['gname']));

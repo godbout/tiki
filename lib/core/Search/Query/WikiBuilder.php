@@ -290,7 +290,7 @@ class Search_Query_WikiBuilder
 		}
 
 		if (in_array('addongroups', $types)) {
-			$api = new TikiAddons_Api_Group;
+			$api = new \Tiki\Package\Extension\Api\Group();
 			$cats = $api->getOrganicGroupCatsForUser($targetUser);
 			if (empty($cats)) {
 				$subquery->filterCategory('impossible');

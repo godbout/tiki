@@ -5,7 +5,6 @@
 _custom/readme.txt -text
 /_htaccess -text
 /about.php -text
-addons/index.php -text
 admin/.htaccess -text
 admin/include_articles.php -text
 admin/include_category.php -text
@@ -2511,7 +2510,6 @@ lib/core/Search/Action/TrackerItemModify.php -text
 lib/core/Search/Action/UnknownStep.php -text
 lib/core/Search/Action/WikiApprovalAction.php -text
 lib/core/Search/Action/index.php -text
-lib/core/Search/AddonSource/Interface.php -text
 lib/core/Search/ContentFilter/VersionNumber.php -text
 lib/core/Search/ContentFilter/index.php -text
 lib/core/Search/ContentSource/ActivityStreamSource.php -text
@@ -2878,9 +2876,6 @@ lib/core/Table/Totals.php -text
 lib/core/Table/index.php -text
 lib/core/Tiki/BigBlueButton/Configuration.php -text
 lib/core/Tiki/BigBlueButton/index.php -text
-lib/core/Tiki/Command/AddonInstallCommand.php -text
-lib/core/Tiki/Command/AddonRemoveCommand.php -text
-lib/core/Tiki/Command/AddonUpgradeCommand.php -text
 lib/core/Tiki/Command/AdminIndexRebuildCommand.php -text
 lib/core/Tiki/Command/Application.php -text
 lib/core/Tiki/Command/BackupDBCommand.php -text
@@ -3154,17 +3149,6 @@ lib/core/Tiki/Wiki/SlugManager/UnderscoreGenerator.php -text
 lib/core/Tiki/Wiki/SlugManager/UrlencodeGenerator.php -text
 lib/core/Tiki/Wiki/SlugManager/index.php -text
 lib/core/Tiki/index.php -text
-lib/core/TikiAddons.php -text
-lib/core/TikiAddons/Addon.php -text
-lib/core/TikiAddons/Api.php -text
-lib/core/TikiAddons/Api/Events.php -text
-lib/core/TikiAddons/Api/FileGallery.php -text
-lib/core/TikiAddons/Api/Group.php -text
-lib/core/TikiAddons/Api/NavBar.php -text
-lib/core/TikiAddons/Api/Search.php -text
-lib/core/TikiAddons/Api/index.php -text
-lib/core/TikiAddons/Utilities.php -text
-lib/core/TikiAddons/index.php -text
 lib/core/TikiDb.php -text
 lib/core/TikiDb/Adodb.php -text
 lib/core/TikiDb/Bridge.php -text
@@ -4050,7 +4034,6 @@ lib/smarty_tiki/block.accordion.php -text
 lib/smarty_tiki/block.accordion_group.php -text
 lib/smarty_tiki/block.actions.php -text
 lib/smarty_tiki/block.activityframe.php -text
-lib/smarty_tiki/block.addonview.php -text
 lib/smarty_tiki/block.ajax_href.php -text
 lib/smarty_tiki/block.compact.php -text
 lib/smarty_tiki/block.display.php -text
@@ -4079,7 +4062,6 @@ lib/smarty_tiki/block.wiki.php -text
 lib/smarty_tiki/block.wikiplugin.php -text
 lib/smarty_tiki/compiler.assign_content.php -text
 lib/smarty_tiki/function.activity.php -text
-lib/smarty_tiki/function.addonobjectid.php -text
 lib/smarty_tiki/function.article.php -text
 lib/smarty_tiki/function.attachments.php -text
 lib/smarty_tiki/function.autocomplete.php -text
@@ -4184,9 +4166,6 @@ lib/smarty_tiki/function.wikidiff.php -text
 lib/smarty_tiki/function.wikistructure.php -text
 lib/smarty_tiki/index.php -text
 lib/smarty_tiki/modifier.a_or_an.php -text
-lib/smarty_tiki/modifier.addongroupname.php -text
-lib/smarty_tiki/modifier.addonitemid.php -text
-lib/smarty_tiki/modifier.addonnavbar.php -text
 lib/smarty_tiki/modifier.adjust.php -text
 lib/smarty_tiki/modifier.avatarize.php -text
 lib/smarty_tiki/modifier.breakline.php -text
@@ -4767,7 +4746,6 @@ lib/webservicelib.php -text
 lib/wiki-plugins/index.php -text
 lib/wiki-plugins/wikiplugin_activitystream.php -text
 lib/wiki-plugins/wikiplugin_addfreetag.php -text
-lib/wiki-plugins/wikiplugin_addon.php -text
 lib/wiki-plugins/wikiplugin_addreference.php -text
 lib/wiki-plugins/wikiplugin_addrelation.php -text
 lib/wiki-plugins/wikiplugin_addtocart.php -text
@@ -5106,7 +5084,6 @@ modules/cache/index.php -text
 modules/index.php -text
 modules/mod-func-action_calendar.php -text
 modules/mod-func-action_similarcontent.php -text
-modules/mod-func-addon.php -text
 modules/mod-func-adminbar.php -text
 modules/mod-func-adsense.php -text
 modules/mod-func-article_archives.php -text
@@ -5739,7 +5716,6 @@ templates/module/index.php -text
 templates/modules/index.php -text
 templates/modules/mod-action_calendar.tpl -text
 templates/modules/mod-action_similarcontent.tpl -text
-templates/modules/mod-addon.tpl -text
 templates/modules/mod-adminbar.tpl -text
 templates/modules/mod-adsense.tpl -text
 templates/modules/mod-article_archives.tpl -text

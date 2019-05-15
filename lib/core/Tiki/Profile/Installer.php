@@ -5,6 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Package\ExtensionManager;
 use Tiki\Yaml\Directives as YamlDirectives;
 use Tiki\Yaml\Filter\ReplaceUserData as YamlReplaceUserData;
 
@@ -199,7 +200,7 @@ class Tiki_Profile_Installer
 	function getFeedback($index = null) // {{{
 	{
 		if (! is_null($index) && $index < count($this->feedback)) {
-			return $this->feedback[ $index ];
+			return $this->feedback[$index];
 		} else {
 			return $this->feedback;
 		}
@@ -342,6 +343,9 @@ class Tiki_Profile_Installer
 				$knownObjects[] = Tiki_Profile_Object::serializeNamedObject($o);
 			}
 			foreach ($prf->getReferences() as $o) {
+				if (empty($o['object'])) {
+					continue;
+				}
 				$referenced[] = Tiki_Profile_Object::serializeNamedObject($o);
 			}
 
@@ -426,6 +430,14 @@ class Tiki_Profile_Installer
 				return false;
 			}
 
+			$tikiVersion = TikiInit::getContainer()->getParameter('tiki.version');
+			foreach ($profiles as $p) {
+				if (! $p->isCompatible($tikiVersion)) {
+					$message = tr('Tiki (%0) is not satisfiable by profile required Tiki version (%1)', $tikiVersion, $p->getTikiSupportedVersions());
+					throw new Exception($message);
+				}
+			}
+
 			foreach ($profiles as $p) {
 				$this->doInstall($p, $dryRun);
 			}
@@ -489,7 +501,10 @@ class Tiki_Profile_Installer
 		$this->installed[$profile->getProfileKey()] = $profile;
 
 		$preferences = $profile->getPreferences();
+		$packages = $profile->getPackages();
+
 		$leftovers = $this->applyPreferences($profile, $preferences, true, $dryRun);
+		$this->applyPackages($packages, $dryRun);
 
 		require_once 'lib/setup/events.php';
 		tiki_setup_events();
@@ -568,10 +583,13 @@ class Tiki_Profile_Installer
 	{
 		$userlib = TikiLib::lib('user');
 		$preferences = [];
+		$packages = [];
 		foreach ($changes as $change) {
 			if (! empty($change['description'])) {
 				if ($change['type'] == 'preference') {
 					$preferences[$change['description']] = $change['old'];
+				} elseif ($change['type'] == 'package') {
+					$packages[$change['description']] = $change['old'];
 				} elseif (in_array($change['type'], ['installer', 'user']) && ! empty($change['description'])) {
 					$description = explode(' ', $change['description']);
 					if (array_key_exists($description[0], $this->handlers)) {
@@ -650,6 +668,7 @@ class Tiki_Profile_Installer
 
 		$leftovers = $this->applyPreferences($profile, $preferences, true);
 		$this->applyPreferences($profile, $leftovers);
+		$this->applyPackages($packages);
 		tiki_setup_events();
 	}
 
@@ -688,6 +707,39 @@ class Tiki_Profile_Installer
 		}
 
 		return $leftovers;
+	}
+
+	/**
+	 * @param array $packages  Packages to apply
+	 * @param bool $dryRun
+	 * @return void
+	 * @throws Exception
+	 */
+	private function applyPackages($packages, $dryRun = false)
+	{
+		foreach ($packages as $packageName => $value) {
+			$basePath = ExtensionManager::locatePackage($packageName);
+
+			if (empty($basePath)) {
+				$this->setFeedback(tr('<error>Package %0:  No folder was found. Did you forgot to install?</error>', $packageName));
+				continue;
+			}
+
+			$oldValue = ExtensionManager::isExtensionEnabled($packageName) ? "y" : "n";
+
+			if ($oldValue != $value) {
+				$this->setFeedback(tra('Package set') . ': ' . $packageName . '=' . $value);
+				$this->setTrackProfileChanges('package', $value, $oldValue, $packageName);
+			}
+
+			if (! $dryRun && $value != $oldValue) {
+				if ($value == "y") {
+					ExtensionManager::enableExtension($packageName, $basePath);
+				} elseif ($value == "n") {
+					ExtensionManager::disableExtension($packageName);
+				}
+			}
+		}
 	}
 
 	private function setupGroup($groupName, $info, $permissions, $objects, $groupMap, $dryRun = false) // {{{

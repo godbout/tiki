@@ -27,7 +27,7 @@ class Search_ContentSource_GroupSource implements Search_ContentSource_Interface
 			return false;
 		}
 
-		$api = new TikiAddons_Api_Group;
+		$api = new \Tiki\Package\Extension\Api\Group();
 		$groupName = $objectId;
 		$addongroup = false;
 		$addonpendinggroup = false;

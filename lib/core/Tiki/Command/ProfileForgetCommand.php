@@ -12,6 +12,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Tiki_Profile;
 
 class ProfileForgetCommand extends Command
 {
@@ -30,6 +31,11 @@ class ProfileForgetCommand extends Command
 				InputArgument::OPTIONAL,
 				'Repository',
 				'profiles.tiki.org'
+			)->addOption(
+				'revert',
+				null,
+				InputOption::VALUE_NONE,
+				'Rollback profile changes'
 			);
 	}
 
@@ -52,6 +58,21 @@ class ProfileForgetCommand extends Command
 
 		if ($isInstalled) {
 			$transaction = $tikilib->begin();
+
+			if ($input->getOption('revert')) {
+				$query = "SELECT * FROM tiki_actionlog where action = 'profile apply' and object=? ORDER BY actionId DESC LIMIT 1";
+				$result = \TikiLib::lib('logs')->query($query, [$profileName]);
+				if ($logResult = $result->fetchRow()) {
+					$revertInfo = unserialize($logResult['log']);
+					if (! isset($revertInfo['reverted'])) {
+						\TikiLib::lib('logs')->revert_action($logResult['actionId'], $logResult['object'], 'profiles', $revertInfo);
+						$installer->revert($profile, $revertInfo);
+					}
+				} else {
+					$output->writeln('No changes were found in logs to revert.');
+				}
+			}
+
 			$installer->forget($profile);
 			$transaction->commit();
 			$output->writeln('Profile forgotten.');

@@ -84,9 +84,8 @@ class ConsoleApplicationBuilder
 			'checkIsInstalledAndDoNotRequireUpdate' => [
 				'action' => self::ACTION_NOT_AVAILABLE,
 				'commands' => [
-					new AddonInstallCommand,
-					new AddonRemoveCommand,
-					new AddonUpgradeCommand,
+					new PackageDisableCommand,
+					new PackageEnableCommand,
 					new DailyReportSendCommand,
 					new FakerCommentsCommand,
 					new FakerTrackerCommand,

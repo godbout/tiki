@@ -80,7 +80,7 @@ class Tiki_Event_Function_EventNotify extends Math_Formula_Function
 				$users = $userlib->get_members($arguments['groupname']);
 				break;
 			case "groupmanagers":
-				$api = new TikiAddons_Api_Group;
+				$api = new \Tiki\Package\Extension\Api\Group();
 				$group = $arguments['groupname'];
 				if ($api->isOrganicGroup($group)) {
 					$users = $api->getOrganicGroupLeaders($group);

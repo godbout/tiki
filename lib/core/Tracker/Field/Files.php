@@ -178,7 +178,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		$deepGallerySearch = (boolean) $this->getOption('deepGallerySearch');
 
 		// Support Addon File Gallery API switching
-		$api = new TikiAddons_Api_FileGallery;
+		$api = new \Tiki\Package\Extension\Api\FileGallery();
 		$itemId = $this->getItemId();
 		$galleryId = $api->mapGalleryId($galleryId, $itemId);
 
@@ -326,7 +326,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 		$galleryId = (int)$this->getOption('galleryId');
 
 		// Support Addon File Gallery API switching
-		$api = new TikiAddons_Api_FileGallery;
+		$api = new \Tiki\Package\Extension\Api\FileGallery();
 		$itemId = $this->getItemId();
 		$galleryId = $api->mapGalleryId($galleryId, $itemId);
 

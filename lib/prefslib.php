@@ -566,9 +566,12 @@ class PreferencesLib
 		if (in_array($name, $this->system_modified)) {
 			return null;
 		}
-		if (substr($name, 0, 3) == 'ta_') {
+		if (substr($name, 0, 3) == 'tp_') {
 			$midpos = strpos($name, '_', 3);
 			$pos = strpos($name, '_', $midpos + 1);
+			$file = substr($name, 0, $pos);
+		} elseif (substr($name, 0, 7) == 'themes_') {
+			$pos = strpos($name, '_', 7 + 1);
 			$file = substr($name, 0, $pos);
 		} elseif (false !== $pos = strpos($name, '_')) {
 			$file = substr($name, 0, $pos);
@@ -602,10 +605,15 @@ class PreferencesLib
 	private function realLoad($file, $partial)
 	{
 		$inc_file = __DIR__ . "/prefs/{$file}.php";
-		if (substr($file, 0, 3) == "ta_") {
-			$paths = TikiAddons::getPaths();
+		if (substr($file, 0, 3) == "tp_") {
+			$paths = \Tiki\Package\ExtensionManager::getPaths();
 			$package = str_replace('_', '/', substr($file, 3));
 			$inc_file = $paths[$package] . "/prefs/{$file}.php";
+		}
+		if (preg_match('/^themes_(.*)$/', $file, $matches)) {
+			$themeName = $matches[1];
+			$themePath = TikiLib::lib('theme')->get_theme_path($themeName);
+			$inc_file = $themePath . "prefs/{$file}.php";
 		}
 		if (file_exists($inc_file)) {
 			require_once $inc_file;
@@ -1068,7 +1076,16 @@ class PreferencesLib
 			}
 			$files[] = substr(basename($file), 0, -4);
 		}
-		foreach (TikiAddons::getPaths() as $path) {
+		foreach (TikiLib::lib('theme')->get_available_themes() as $theme => $label) {
+			$themePath = TikiLib::lib('theme')->get_theme_path($theme);
+			foreach (glob($themePath . 'prefs/*.php') as $file) {
+				if (basename($file) === "index.php") {
+					continue;
+				}
+				$files[] = substr(basename($file), 0, -4);
+			}
+		}
+		foreach (\Tiki\Package\ExtensionManager::getPaths() as $path) {
 			foreach (glob($path . '/prefs/*.php') as $file) {
 				if (basename($file) === "index.php") {
 					continue;
@@ -1237,15 +1254,47 @@ class PreferencesLib
 		return true;
 	}
 
-	public function getAddonPrefs()
+	public function getPackagePrefs()
 	{
 		global $prefs;
 		$ret = [];
 		foreach (array_keys($prefs) as $prefName) {
-			if (substr($prefName, 0, 3) == 'ta_' && substr($prefName, -3) == '_on') {
+			if (substr($prefName, 0, 3) == 'tp_' && substr($prefName, -3) == '_on') {
 				$ret[] = $prefName;
 			}
 		}
 		return $ret;
+	}
+
+	/**
+	 * Get a list of preferences that belong to themes
+	 *
+	 * @return array
+	 * @throws Exception
+	 */
+	public function getThemePrefs()
+	{
+		global $prefs;
+		$ret = [];
+		foreach (array_keys($prefs) as $prefName) {
+			if (substr($prefName, 0, 7) == 'themes_') {
+				$ret[] = $prefName;
+			}
+		}
+
+		$themes = TikiLib::lib('theme')->get_available_themes();
+		$preferences = [];
+		foreach ($themes as $key => $theme) {
+			$themePref = array_filter($ret, function ($pref) use ($key) {
+				$pattern = '/^themes_' . $key . '_.*/';
+				return preg_match($pattern, $pref);
+			});
+
+			if (! empty($themePref)) {
+				$preferences[$theme] = $themePref;
+			}
+		}
+
+		return $preferences;
 	}
 }

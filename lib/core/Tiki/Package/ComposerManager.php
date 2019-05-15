@@ -97,10 +97,16 @@ class ComposerManager
 				$errors[] = tr('Tiki root directory is not writable, so file "%0" can not be created', $composerFile);
 			}
 			if (! file_exists($composerLockFile)) {
-				$errors[] = tr('Tiki root directory is not writable, so file "%0" can not be created', $composerLockFile);
+				$errors[] = tr(
+					'Tiki root directory is not writable, so file "%0" can not be created',
+					$composerLockFile
+				);
 			}
 			if (! is_dir($composerVendorDir)) {
-				$errors[] = tr('Tiki root directory is not writable, so directory "%0" can not be created', $composerVendorDir);
+				$errors[] = tr(
+					'Tiki root directory is not writable, so directory "%0" can not be created',
+					$composerVendorDir
+				);
 			}
 		}
 		if (file_exists($composerFile) && ! is_writable($composerFile)) {
@@ -150,6 +156,16 @@ class ComposerManager
 				} else {
 					$package['key'] = '';
 				}
+
+				if (ExtensionManager::isExtension($packageName)) {
+					$package['extension'] = true;
+					if ($enabled = ExtensionManager::isExtensionEnabled($packageName)) {
+						$package['extensionUpdate'] = ExtensionManager::get($packageName)->hasUpdate();
+					}
+					$package['extensionEnabled'] = $enabled;
+				} else {
+					$package['extension'] = false;
+				}
 			}
 		}
 
@@ -173,8 +189,39 @@ class ComposerManager
 				continue;
 			}
 
+			$currentWorkingPath = $this->composerWrapper->getWorkingPath();
 			$this->composerWrapper->setWorkingPath($directory->getPathname() . "/");
-			$packages[$directory->getFilename()] = $this->getInstalled(true);
+
+			// Both Tiki Packages (packages.tiki.org) or Package Extensions will have a composer.json
+			if (! file_exists($directory->getPathname() . '/composer.json')) {
+				$subFolderPackages = $this->getCustomPackages();
+				if (! empty($subFolderPackages)) {
+					foreach ($subFolderPackages as $subFolderPath => $subFolderPackage) {
+						$packages[$directory->getBasename()][$subFolderPath] = $subFolderPackage;
+					}
+				}
+			}
+
+			// Extension Packages (at this time are not available in packages, so no composer.lock is found in folder)
+			if ($isExtension = ExtensionManager::isExtension($directory->getFilename(), $directory->getPathname())) {
+				$packageDetails = json_decode(file_get_contents($directory->getPathname() . '/composer.json'), true);
+				$packageName = $packageDetails['name'];
+				$packages[$directory->getBasename()] = [
+					'name' => $packageName,
+					'status' => 'installed',
+					'required' => $packageDetails['version'],
+					'installed' => $packageDetails['version'],
+					'key' => '',
+					'extension' => true,
+					'extensionEnabled' => ExtensionManager::isExtensionEnabled($packageName)
+				];
+			}
+
+			if (! $isExtension && $package = $this->getInstalled(true)) {
+				$packages[$directory->getFilename()] = $package;
+			}
+
+			$this->composerWrapper->setWorkingPath($currentWorkingPath);
 		}
 
 		return $packages;

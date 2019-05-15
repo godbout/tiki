@@ -11,6 +11,6 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
-$addonprefs = TikiLib::lib('prefs')->getAddonPrefs();
+$addonprefs = TikiLib::lib('prefs')->getPackagePrefs();
 asort($addonprefs);
 $smarty->assign('addonprefs', $addonprefs);

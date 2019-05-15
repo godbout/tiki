@@ -265,7 +265,7 @@ class ParserLib extends TikiDb_Bridge
 		}
 
 		// Check to make sure there was a match.
-		if (count($plugins) > 0 && count($plugins[0]) > 0) {
+		if (count($plugins) > 0 && strlen($plugins[0]) > 0) {
 			$pos = 0;
 			while (in_array($plugins[0], $pluginskiplist)) {
 				$pos = strpos($data, $plugins[0], $pos) + 1;
@@ -480,7 +480,7 @@ class ParserLib extends TikiDb_Bridge
 	{
 		static $known = [];
 
-		if (isset($known[$name]) && $name != 'addon') {
+		if (isset($known[$name]) && $name != 'package') {
 			return $known[$name];
 		}
 
@@ -498,12 +498,13 @@ class ParserLib extends TikiDb_Bridge
 			}
 		}
 
-		// Support Tiki Addons param overrides for Addon plugin
-		if ($name == 'addon' && ! empty($args['package']) && ! empty($args['view'])) {
+		// Support Tiki Packages param overrides for Package plugin
+		if ($name == 'package' && ! empty($args['package']) && ! empty($args['view'])) {
 			$info = $func_name_info();
 
 			$parts = explode('/', $args['package']);
-			$path = TIKI_PATH . '/addons/' . $parts[0] . '_' . $parts[1] . '/views/' . $args['view'] . '.php';
+			$extensionPackage = \Tiki\Package\ExtensionManager::get($args['package']);
+			$path = $extensionPackage->getPath() . '/Views/' . $args['view'] . '.php';
 
 			if (! file_exists($path)) {
 				return $known[$name] = $info;
@@ -511,7 +512,11 @@ class ParserLib extends TikiDb_Bridge
 
 			require_once($path);
 
-			$functionname = "tikiaddon\\" . $parts[0] . "\\" . $parts[1] . "\\" . $args['view'] . "_info";
+			$namespace = $extensionPackage->getBaseNamespace();
+			if (!empty($namespace)) {
+				$namespace .= '\\Views\\';
+			}
+			$functionname = $namespace . $args['view'] . "_info";
 
 			if (! function_exists($functionname)) {
 				return $known[$name] = $info;
@@ -2121,7 +2126,7 @@ class ParserLib extends TikiDb_Bridge
 							}
 						case 'cat':
 							if (empty($_GET['cat']) && ! empty($_REQUEST['organicgroup']) && ! empty($this->option['page'])) {
-								$utilities = new TikiAddons_Utilities();
+								$utilities = new \Tiki\Package\Extension\Utilities();
 								if ($folder = $utilities->getFolderFromObject('wiki page', $this->option['page'])) {
 									$ogname = $folder . '_' . $_REQUEST['organicgroup'];
 									$cat = TikiLib::lib('categ')->get_category_id($ogname);

@@ -37,6 +37,19 @@
 	{/remarksbox}
 {/if}
 
+{if isset($extensions_output)}
+    {if $extensions_status}
+        {$type = 'success'}
+        {$title = "{tr}Success{/tr}"}
+    {else}
+        {$type = 'error'}
+        {$title = "{tr}Error{/tr}"}
+    {/if}
+    {remarksbox type=$type title=$title close="y"}
+    <pre>{$extensions_output}</pre>
+    {/remarksbox}
+{/if}
+
 {tabset name='tabs_admin-packages'}
     {tab name="{tr}Packages Installed{/tr}"}
         <br />
@@ -64,6 +77,20 @@
                     </td>
                     <td>{$entry.installed|default:'&nbsp;'}</td>
                     <td>
+                        {if $entry.extension}
+                            <form action="tiki-admin.php?page=packages&cookietab=1" method="post">
+                                <input type="hidden" name="redirect" value="0">
+                                <input type="hidden" name="enabled" value="{$entry.enabled}">
+                                {ticket}
+                                {if !$entry.extensionEnabled}
+                                    <button class="btn btn-primary" name="enable-extension-package" value="{$entry.name}">{tr}Enable extension{/tr}</button>
+                                {elseif $entry.extensionUpdate}
+                                    <button class="btn btn-secondary" name="enable-extension-package" value="{$entry.name}">{tr}Update extension{/tr}</button>
+                                {else}
+                                    <button class="btn btn-danger" name="disable-extension-package" value="{$entry.name}">{tr}Disable extension{/tr}</button>
+                                {/if}
+                            </form>
+                        {/if}
                         {if $entry.key}
                             <form action="tiki-admin.php?page=packages&cookietab=1" method="post">
                                 <input type="hidden" name="redirect" value="0">
@@ -215,33 +242,50 @@
             {remarksbox type="info" title="{tr}For information only{/tr}"}
             {tr}These packages are managed manually and displayed here for informational purposes.{/tr}
             {/remarksbox}
+            <table class="table">
+                <tr>
+                    <th>{tr}Package Name{/tr}</th>
+                    <th>{tr}Version Required{/tr}</th>
+                    <th>{tr}Status{/tr}
+                    <th>{tr}Version Installed{/tr}</th>
+                    <th>Actions</th>
+                </tr>
             {foreach item=packages key=folderName from=$composer_custom_packages_installed}
-                <h5 style="margin-top: 20px">{$folderName}</h5>
-                <table class="table">
+                <tr><td colspan="5" style="font-weight: bold;">{$folderName}</td></tr>
+                {foreach item=package from=$packages}
                     <tr>
-                        <th>{tr}Package Name{/tr}</th>
-                        <th>{tr}Version Required{/tr}</th>
-                        <th>{tr}Status{/tr}
-                        <th>{tr}Version Installed{/tr}</th>
+                        <td width="45%">
+                            {$package.name}
+                        </td>
+                        <td width="15%">{$package.required}</td>
+                        <td width="10%">
+                            {if $package.status == 'installed'}
+                                {icon name='success' iclass='tips' ititle="{tr}Status{/tr}:{tr}Installed{/tr}"}
+                            {elseif $package.status == 'missing'}
+                                {icon name='warning' iclass='tips' ititle="{tr}Status{/tr}:{tr}Missing{/tr}"}
+                            {/if}
+                        </td>
+                        <td width="15%">{$package.installed|default:'&nbsp;'}</td>
+                        <td width="15%">
+                            {if $package.extension}
+                                <form action="tiki-admin.php?page=packages&cookietab=3" method="post" style="display:inline">
+                                    <input type="hidden" name="redirect" value="0">
+                                    <input type="hidden" name="enabled" value="{$package.enabled}">
+                                    {ticket}
+                                    {if !$package.extensionEnabled}
+                                        <button class="btn btn-primary btn-sm" name="enable-extension-package" value="{$package.name}">{tr}Enable extension{/tr}</button>
+                                    {elseif $package.extensionUpdate}
+                                        <button class="btn btn-danger btn-sm" name="enable-extension-package" value="{$package.name}">{tr}Update extension{/tr}</button>
+                                    {else}
+                                        <button class="btn btn-danger btn-sm" name="disable-extension-package" value="{$package.name}">{tr}Disable extension{/tr}</button>
+                                    {/if}
+                                </form>
+                            {/if}
+                        </td>
                     </tr>
-                    {foreach item=package from=$packages}
-                        <tr>
-                            <td width="50%">{$package.name}</td>
-                            <td width="20%">{$package.required}</td>
-                            <td width="10%">
-                                {if $package.status == 'installed'}
-                                    {icon name='success' iclass='tips' ititle="{tr}Status{/tr}:{tr}Installed{/tr}"}
-                                {elseif $package.status == 'missing'}
-                                    {icon name='warning' iclass='tips' ititle="{tr}Status{/tr}:{tr}Missing{/tr}"}
-                                {else}
-                                    &nbsp;
-                                {/if}
-                            </td>
-                            <td width="20%">{$package.installed|default:'&nbsp;'}</td>
-                        </tr>
-                    {/foreach}
-                </table>
+                {/foreach}
             {/foreach}
+            </table>
         {else}
             {remarksbox type="info" title="{tr}There are no manual managed packages installed{/tr}"}
             {tr}Please check <a href="https://packages.tiki.org/">Tiki Packages</a>.{/tr}
@@ -329,6 +373,26 @@
             <br>
         {/if}
     {/tab}
+	{tab name="{tr}Extensions Preferences{/tr}"}
+		<form action="tiki-admin.php?page=packages&cookietab=6" method="post">
+			{ticket}
+			<input type="hidden" name="redirect" value="0">
+			<fieldset>
+				<legend>{tr}Activate Extension Package{/tr}</legend>
+				{foreach $packageprefs as $package}
+					{preference name="{$package|escape}"}
+				{/foreach}
+			</fieldset>
+			<fieldset>
+				<legend>{tr}Extension Package Groups API{/tr}</legend>
+				{preference name=feature_community_send_mail_join}
+				{preference name=feature_community_send_mail_leave}
+			</fieldset>
+			<button class="btn btn-primary" name="apply-packages-preferences" value="run">{tr}Apply{/tr}</button>
+		</form>
+		<br>
+
+	{/tab}
 {/tabset}
 
 {jq}
