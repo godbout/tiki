@@ -2655,6 +2655,7 @@ lib/core/Search/MySql/QueryBuilder.php -text
 lib/core/Search/MySql/QueryException.php -text
 lib/core/Search/MySql/Table.php -text
 lib/core/Search/MySql/TypeFactory.php -text
+lib/core/Search/PackageSource/Interface.php -text
 lib/core/Search/Query.php -text
 lib/core/Search/Query/Facet/Abstract.php -text
 lib/core/Search/Query/Facet/DateHistogram.php -text
@@ -3039,6 +3040,13 @@ lib/core/Tiki/Package/ComposerCli.php -text
 lib/core/Tiki/Package/ComposerManager.php -text
 lib/core/Tiki/Package/ComposerPackage.php -text
 lib/core/Tiki/Package/ComposerPackages.yml -text
+lib/core/Tiki/Package/Extension/Api.php -text
+lib/core/Tiki/Package/Extension/Api/Events.php -text
+lib/core/Tiki/Package/Extension/Api/FileGallery.php -text
+lib/core/Tiki/Package/Extension/Api/Group.php -text
+lib/core/Tiki/Package/Extension/Api/NavBar.php -text
+lib/core/Tiki/Package/Extension/Api/index.php -text
+lib/core/Tiki/Package/Extension/index.php -text
 lib/core/Tiki/PageCache.php -text
 lib/core/Tiki/Profile.php -text
 lib/core/Tiki/Profile/ChannelList.php -text
@@ -4043,6 +4051,7 @@ lib/smarty_tiki/block.ifsearchnotexists.php -text
 lib/smarty_tiki/block.itemfield.php -text
 lib/smarty_tiki/block.jq.php -text
 lib/smarty_tiki/block.modules_list.php -text
+lib/smarty_tiki/block.packageview.php -text
 lib/smarty_tiki/block.pagination_links.php -text
 lib/smarty_tiki/block.permission.php -text
 lib/smarty_tiki/block.popup_link.php -text
@@ -4196,6 +4205,9 @@ lib/smarty_tiki/modifier.nonp.php -text
 lib/smarty_tiki/modifier.number_format.php -text
 lib/smarty_tiki/modifier.numstyle.php -text
 lib/smarty_tiki/modifier.output.php -text
+lib/smarty_tiki/modifier.packagegroupname.php -text
+lib/smarty_tiki/modifier.packageitemid.php -text
+lib/smarty_tiki/modifier.packagenavbar.php -text
 lib/smarty_tiki/modifier.pagename.php -text
 lib/smarty_tiki/modifier.parse.php -text
 lib/smarty_tiki/modifier.percent.php -text
@@ -4880,6 +4892,7 @@ lib/wiki-plugins/wikiplugin_networkcondition.php -text
 lib/wiki-plugins/wikiplugin_now.php -text
 lib/wiki-plugins/wikiplugin_objecthits.php -text
 lib/wiki-plugins/wikiplugin_objectlink.php -text
+lib/wiki-plugins/wikiplugin_package.php -text
 lib/wiki-plugins/wikiplugin_pagetabs.php -text
 lib/wiki-plugins/wikiplugin_param.php -text
 lib/wiki-plugins/wikiplugin_payment.php -text
@@ -5163,6 +5176,7 @@ modules/mod-func-mustread.php -text
 modules/mod-func-notificationlink.php -text
 modules/mod-func-num_submissions.php -text
 modules/mod-func-old_articles.php -text
+modules/mod-func-package.php -text
 modules/mod-func-payment_outstanding.php -text
 modules/mod-func-perspective.php -text
 modules/mod-func-poweredby.php -text
@@ -5803,6 +5817,7 @@ templates/modules/mod-notificationlink.tpl -text
 templates/modules/mod-num_submissions.tpl -text
 templates/modules/mod-old_articles.tpl -text
 templates/modules/mod-online_users.tpl.nocache -text
+templates/modules/mod-package.tpl -text
 templates/modules/mod-payment_outstanding.tpl -text
 templates/modules/mod-perspective.tpl -text
 templates/modules/mod-quick_edit.tpl -text
