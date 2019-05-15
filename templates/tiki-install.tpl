@@ -333,7 +333,7 @@
                                     <div class="form-group row">
                                         <label class="col-form-label" for="host">{tr}Host name:{/tr}</label>
                                         <div class="mx-3">
-                                            <input type="text" class=form-control name="host" id="host" value="{if isset($smarty.request.host)}{$smarty.request.host|escape:"html"}{elseif isset($preconfighost)}{$preconfighost|escape:"html"}{else}localhost{/if}" size="40" />
+                                            <input type="text" class="form-control" name="host" id="host" value="{if isset($smarty.request.host)}{$smarty.request.host|escape:"html"}{elseif isset($preconfighost)}{$preconfighost|escape:"html"}{else}localhost{/if}" size="40" />
                                             <a href="javascript:void(0)" onclick="flip('host_help');" title="{tr}Help{/tr}">
                                                 {icon name="help"}
                                             </a>
@@ -347,7 +347,7 @@
                                     <div class="form-group row">
                                         <label class="col-form-label" for="name">{tr}Database name:{/tr}</label>
                                         <div class="mx-3">
-                                            <input type="text" class=form-control id="name" name="name" size="40" value="{if isset($smarty.request.name)}{$smarty.request.name|escape:"html"}{elseif isset($preconfigname)}{$preconfigname|escape:"html"}{/if}" placeholder="{tr}Database name{/tr}"/>
+                                            <input type="text" class="form-control" id="name" name="name" size="40" value="{if isset($smarty.request.name)}{$smarty.request.name|escape:"html"}{elseif isset($preconfigname)}{$preconfigname|escape:"html"}{/if}" placeholder="{tr}Database name{/tr}"/>
                                             <a href="javascript:void(0)" onclick="flip('name_help');" title="{tr}Help{/tr}">
                                                 {icon name="help"}
                                             </a>
@@ -365,14 +365,14 @@
                                     <legend>{tr}Database user{/tr}</legend>
                                     <p>{tr}Enter a database user with administrator permission for the Tiki database.{/tr}</p>
                                     <div style="padding:5px;">
-                                        <label class="col-form-label" for="user">{tr}User name:{/tr}</label> <input type="text" class=form-control id="user" name="user" value="{if (isset($smarty.request.user))}{$smarty.request.user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" maxlength="16" placeholder="{tr}Database username{/tr}">
+                                        <label class="col-form-label" for="user">{tr}User name:{/tr}</label> <input type="text" class="form-control" id="user" name="user" value="{if (isset($smarty.request.user))}{$smarty.request.user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" maxlength="16" placeholder="{tr}Database username{/tr}">
                                     </div>
 
                                     <div style="padding:5px;">
                                         {if isset($preconfigpass)}
-                                            <label class="col-form-label" for="pass">{tr}Password:{/tr}</label> <input type="text" class=form-control id="pass" name="pass" value="{$preconfigpass|escape:"html"}" >
+                                            <label class="col-form-label" for="pass">{tr}Password:{/tr}</label> <input type="text" class="form-control" id="pass" name="pass" value="{$preconfigpass|escape:"html"}" >
                                         {else}
-                                            <label class="col-form-label" for="pass">{tr}Password:{/tr}</label> <input type="password" class=form-control id="pass" name="pass" >
+                                            <label class="col-form-label" for="pass">{tr}Password:{/tr}</label> <input type="password" class="form-control" id="pass" name="pass" >
                                         {/if}
                                     </div>
 
@@ -388,10 +388,10 @@
                                     <p>{tr}Enter database administrator user name and password.{/tr}<br>
                                         <em>{tr}This is a DB admin user which has permission to create new databases and new users.{/tr}</em></p>
                                     <div style="padding:5px;">
-                                        <label class="col-form-label" for="user">{tr}DB admin user name:{/tr}</label> <input type="text" class=form-control id="root_user" name="root_user" value="{if (isset($smarty.request.root_user))}{$smarty.request.root_user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" placeholder="{tr}DB admin user name{/tr}">
+                                        <label class="col-form-label" for="user">{tr}DB admin user name:{/tr}</label> <input type="text" class="form-control" id="root_user" name="root_user" value="{if (isset($smarty.request.root_user))}{$smarty.request.root_user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" placeholder="{tr}DB admin user name{/tr}">
                                     </div>
                                     <div style="padding:5px;">
-                                        <label class="col-form-label" for="pass">{tr}DB admin password:{/tr}</label> <input type="password" class=form-control id="root_pass" name="root_pass" value="{if (isset($smarty.request.root_pass))}{$smarty.request.root_pass|escape:"html"}{/if}">
+                                        <label class="col-form-label" for="pass">{tr}DB admin password:{/tr}</label> <input type="password" class="form-control" id="root_pass" name="root_pass" value="{if (isset($smarty.request.root_pass))}{$smarty.request.root_pass|escape:"html"}{/if}">
                                     </div>
                                 </fieldset>
                                 <script type='text/javascript'><!--//--><![CDATA[//><!--

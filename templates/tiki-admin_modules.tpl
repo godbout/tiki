@@ -406,7 +406,7 @@
 				<label class="col-sm-2 col-form-label">{tr}Data{/tr}</label>
 				<div class="col-sm-9">
 					<a id="editcreate"></a>
-					{textarea name='um_data' id='um_data' _class=form-control _toolbars='y' _previewConfirmExit='n' _wysiwyg="n"}{$um_data}{/textarea}
+					{textarea name='um_data' id='um_data' _class='form-control' _toolbars='y' _previewConfirmExit='n' _wysiwyg="n"}{$um_data}{/textarea}
 				</div>
 			</div>
 			<div class="form-group row">
