@@ -739,13 +739,10 @@ class RSSLib extends TikiDb_Bridge
 		}
 		$data['content'] = trim($data['content']) == '' ? $data['content'] : '~np~' . $data['content'] . '~/np~';
 
-		$hash = md5($data['title'] . $data['description'] . $data['content']);
-
 		if ($configuration['submission'] == true) {
 			$subid = $this->table('tiki_submissions')->fetchOne('subId', [
 				'linkto' => $data['url'],
 				'topicId' => $configuration['topic'],
-				'hash' => $hash,
 			]);
 			if (! $subid) {
 				$subid = 0;
