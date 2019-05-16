@@ -99,7 +99,6 @@ function smarty_function_object_link_default($smarty, $object, $title = null, $t
 
 	$smarty->loadPlugin('smarty_modifier_sefurl');
 	$smarty->loadPlugin('smarty_modifier_escape');
-	$smarty->loadPlugin('smarty_modifier_addongroupname');
 
 	if (empty($title)) {
 		$title = TikiLib::lib('object')->get_title($type, $object, empty($params['format']) ? null : $params['format']);
@@ -113,9 +112,6 @@ function smarty_function_object_link_default($smarty, $object, $title = null, $t
 		// Blank freetag should not be returned with "No title specified"
 		return '';
 	}
-
-	// get add on object title if needed
-	$title = smarty_modifier_addongroupname($title);
 
 	$text = $title;
 	$titleAttribute = '';
@@ -222,14 +218,10 @@ function smarty_function_object_link_trackeritem($smarty, $object, $title = null
 		return $pre . smarty_function_object_link_default($smarty, $object, $title, $type, $url, $params);
 	} else {
 		$smarty->loadPlugin('smarty_modifier_escape');
-		$smarty->loadPlugin('smarty_modifier_addongroupname');
 
 		if (empty($title)) {
 			$title = TikiLib::lib('object')->get_title($type, $object, empty($params['format']) ? null : $params['format']);
 		}
-
-		// get add on object title if needed
-		$title = smarty_modifier_addongroupname($title);
 
 		return $pre . smarty_modifier_escape($title);
 	}
