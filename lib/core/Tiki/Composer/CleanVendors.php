@@ -104,7 +104,7 @@ class CleanVendors
 		self::removeMultiple($vendors . 'jquery/md5', ['css', 'js/demo.js', 'js/md5.min.js', 'test']);
 		$fs->remove($vendors . 'jquery/minicart/src');
 		self::removeMultiple(
-			$vendors . 'jquery/plugins/anythingslider',
+			$vendors . 'jquery-plugins/anythingslider',
 			[
 				'demos.html',
 				'anythingslider.jquery.json',
@@ -113,9 +113,9 @@ class CleanVendors
 				'video.html'
 			]
 		);
-		$fs->remove($vendors . 'jquery/plugins/colorbox/content');
+		$fs->remove($vendors . 'jquery-plugins/colorbox/content');
 		self::removeMultiple(
-			$vendors . 'jquery/plugins/galleriffic',
+			$vendors . 'jquery-plugins/galleriffic',
 			[
 				'js/jquery-1.3.2.js',
 				'js/jquery.history.js',
@@ -127,9 +127,9 @@ class CleanVendors
 				'example-5.html',
 			]
 		);
-		$fs->remove($vendors . 'jquery/plugins/infinitecarousel/jquery.infinitecarousel3.min.js');
+		$fs->remove($vendors . 'jquery-plugins/infinitecarousel/jquery.infinitecarousel3.min.js');
 		self::removeMultiple(
-			$vendors . 'jquery/plugins/jquery-validation',
+			$vendors . 'jquery-plugins/jquery-validation',
 			[
 				'lib',
 				'src',
@@ -139,16 +139,16 @@ class CleanVendors
 			]
 		);
 		self::removeMultiple(
-			$vendors . 'jquery/plugins/jquery-json',
+			$vendors . 'jquery-plugins/jquery-json',
 			[
 				'dist',
 				'libs',
 				'HISTORY.md',
 			]
 		);
-		$fs->remove($vendors . 'jquery/plugins/reflection-jquery/src');
+		$fs->remove($vendors . 'jquery-plugins/reflection-jquery/src');
 		self::removeMultiple(
-			$vendors . 'jquery/plugins/superfish',
+			$vendors . 'jquery-plugins/superfish',
 			[
 				'src',
 				'superfish.jquery.json',
@@ -226,7 +226,7 @@ class CleanVendors
 			]
 		);
 		self::removeMultiple(
-			$vendors . 'jquery/plugins/treetable',
+			$vendors . 'jquery-plugins/treetable',
 			[
 				'javascripts/test',
 				'stylesheets/jquery.treetable.theme.default.css',
@@ -235,7 +235,7 @@ class CleanVendors
 			]
 		);
 		self::removeMultiple(
-			$vendors . 'jquery/plugins/zoom',
+			$vendors . 'jquery-plugins/zoom',
 			[
 				'jquery.zoom.min.js',
 				'zoom.jquery.json',
@@ -343,7 +343,7 @@ class CleanVendors
 		$fs->remove($vendors . 'jquery/jtrack/demo.html');
 
 		$fs->remove($vendors . 'phpcas/phpcas/CAS-1.3.3/docs');
-		$fs->remove($vendors . 'jquery/plugins/jquery-json/test');
+		$fs->remove($vendors . 'jquery-plugins/jquery-json/test');
 		//duplicate with mottie/tablesorter
 		$fs->remove($vendors . 'components/tablesorter');
 

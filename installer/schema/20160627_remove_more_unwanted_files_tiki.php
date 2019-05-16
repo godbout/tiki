@@ -56,7 +56,7 @@ function upgrade_20160627_remove_more_unwanted_files_tiki($installer)
 		'vendor/blueimp/jquery-file-upload/cors',
 		'vendor/blueimp/jquery-file-upload/server',
 		'vendor/phpcas/phpcas/CAS-1.3.3/docs',
-		'vendor/jquery/plugins/jquery-json/test',
+		'vendor/jquery-plugins/jquery-json/test',
 	];
 
 	foreach ($files as $file) {

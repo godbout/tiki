@@ -406,10 +406,10 @@ if ($prefs['geo_enabled'] === 'y') {
 		$headerlib->add_cssfile('lib/openlayers/theme/default/style.css');
 	}
 }
-$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/jquery-json/src/jquery.json.js');
+$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/jquery-json/src/jquery.json.js');
 
 if ($prefs['feature_jquery_zoom'] === 'y') {
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/zoom/jquery.zoom.js')
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/zoom/jquery.zoom.js')
 		->add_css('
 .img_zoom {
 	display:inline-block;
@@ -422,7 +422,7 @@ if ($prefs['feature_jquery_zoom'] === 'y') {
 	position:absolute;
 	top:0;
 	right:0;
-	background:url(vendor_bundled/vendor/jquery/plugins/zoom/icon.png);
+	background:url(vendor_bundled/vendor/jquery-plugins/zoom/icon.png);
 }
 .img_zoom img {
 	display:block;
@@ -446,7 +446,7 @@ if ($prefs['feature_syntax_highlighter'] == 'y') {
 }
 
 if ($prefs['feature_jquery_carousel'] == 'y') {
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/infinitecarousel/jquery.infinitecarousel3.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/infinitecarousel/jquery.infinitecarousel3.js');
 }
 
 if ($prefs['feature_ajax'] === 'y') {
@@ -502,15 +502,15 @@ if (typeof $.fn.button.noConflict === "function") {
 	$headerlib->add_cssfile('vendor_bundled/vendor/jquery/jquery-timepicker-addon/dist/jquery-ui-timepicker-addon.css');
 }
 if ($prefs['jquery_fitvidjs'] == 'y') {
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/fitvidjs/jquery.fitvids.js')
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/fitvidjs/jquery.fitvids.js')
 				->add_jq_onready('$("article").fitVids();');		// apply fitvid to any video in the middle section
 }
 if ($prefs['feature_jquery_superfish'] == 'y') {
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/superfish/dist/js/superfish.js');
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/superfish/dist/js/supersubs.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/superfish/dist/js/superfish.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/superfish/dist/js/supersubs.js');
 }
 if ($prefs['feature_jquery_tooltips'] === 'y' || $prefs['feature_jquery_superfish'] === 'y') {
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/superfish/dist/js/hoverIntent.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/superfish/dist/js/hoverIntent.js');
 }
 if ($prefs['jquery_smartmenus_enable'] == 'y') {
 	$headerlib->add_jsfile('vendor_bundled/vendor/drmonty/smartmenus/js/jquery.smartmenus.js');
@@ -526,10 +526,10 @@ if ($prefs['jquery_smartmenus_enable'] == 'y') {
 });');
 }
 if ($prefs['feature_jquery_reflection'] == 'y') {
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/reflection-jquery/js/reflection.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/reflection-jquery/js/reflection.js');
 }
 if ($prefs['feature_jquery_media'] == 'y') {
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/media/jquery.media.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/media/jquery.media.js');
 }
 if ($prefs['feature_jquery_tablesorter'] == 'y') {
 	$headerlib->add_jsfile('vendor_bundled/vendor/mottie/tablesorter/js/jquery.tablesorter.combined.js');
@@ -545,12 +545,12 @@ if ($prefs['feature_jquery_tablesorter'] == 'y') {
 }
 
 if ($prefs['feature_jquery_tagcanvas'] == 'y') {
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/tagcanvas/jquery.tagcanvas.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/tagcanvas/jquery.tagcanvas.js');
 }
 
 if ($prefs['feature_shadowbox'] == 'y') {
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/colorbox/jquery.colorbox.js');
-	$headerlib->add_cssfile('vendor_bundled/vendor/jquery/plugins/colorbox/' . $prefs['jquery_colorbox_theme'] . '/colorbox.css');
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/colorbox/jquery.colorbox.js');
+	$headerlib->add_cssfile('vendor_bundled/vendor/jquery-plugins/colorbox/' . $prefs['jquery_colorbox_theme'] . '/colorbox.css');
 }
 
 if ($prefs['wikiplugin_flash'] == 'y') {
@@ -567,7 +567,7 @@ if ($prefs['jquery_timeago'] === 'y') {
 }
 
 if ($prefs['feature_jquery_validation'] == 'y') {
-	$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/jquery-validation/dist/jquery.validate.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/jquery-validation/dist/jquery.validate.js');
 	$headerlib->add_jsfile('lib/validators/validator_tiki.js');
 }
 
@@ -577,10 +577,10 @@ if ($prefs['tiki_prefix_css'] == 'y') {
 
 // note: jquery.async.js load a copy of jquery
 // Used by treetable and a few more places
-$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/async/jquery.async.js');
+$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/async/jquery.async.js');
 
-$headerlib->add_jsfile('vendor_bundled/vendor/jquery/plugins/treetable/jquery.treetable.js');
-$headerlib->add_cssfile('vendor_bundled/vendor/jquery/plugins/treetable/css/jquery.treetable.css');
+$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/treetable/jquery.treetable.js');
+$headerlib->add_cssfile('vendor_bundled/vendor/jquery-plugins/treetable/css/jquery.treetable.css');
 
 $headerlib->add_jsfile('vendor_bundled/vendor/cwspear/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js');
 

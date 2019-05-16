@@ -100,7 +100,7 @@ function wikiplugin_list($data, $params)
 	if ($prefs['wikiplugin_list_gui'] === 'y' && $params['gui']) {
 		TikiLib::lib('header')
 			->add_jsfile('lib/jquery_tiki/pluginedit_list.js')
-			->add_jsfile('vendor_bundled/vendor/jquery/plugins/nestedsortable/jquery.ui.nestedSortable.js');
+			->add_jsfile('vendor_bundled/vendor/jquery-plugins/nestedsortable/jquery.ui.nestedSortable.js');
 	}
 
 	$tosearch = [];

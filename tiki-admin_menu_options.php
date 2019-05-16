@@ -68,7 +68,7 @@ $smarty->assign('module_zone_list', $module_zones);
 
 $headerlib->add_jsfile('lib/menubuilder/tiki-admin_menu_options.js')
 	->add_jsfile('lib/modules/tiki-admin_modules.js')
-	->add_jsfile('vendor_bundled/vendor/jquery/plugins/nestedsortable/jquery.ui.nestedSortable.js');
+	->add_jsfile('vendor_bundled/vendor/jquery-plugins/nestedsortable/jquery.ui.nestedSortable.js');
 
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
