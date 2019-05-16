@@ -3242,6 +3242,10 @@ div.form-group label.error {
 [class*="tiki-admin"] .input-group .chosen-container, [class*="tiki-list"] .input-group .chosen-container, .tiki-view_tracker .input-group .chosen-container, .adminoptionbox .input-group .chosen-container, .manage .input-group .chosen-container {
   width: auto !important; }
 
+@media (max-width: 767.98px) {
+  [class*="tiki-admin"] .input-group .chosen-container, [class*="tiki-list"] .input-group .chosen-container, .tiki-view_tracker .input-group .chosen-container, .adminoptionbox .input-group .chosen-container, .manage .input-group .chosen-container {
+    width: 1% !important; } }
+
 .tiki .chosen-container-single, .tiki #assign_order_chosen.chosen-container {
   min-width: 5em;
   word-wrap: normal; }

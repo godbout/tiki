@@ -36,6 +36,15 @@ div.form-group label.error {
 	}
 }
 
+@media (max-width: breakpoint-max(sm)) {
+    [class*="tiki-admin"], [class*="tiki-list"], .tiki-view_tracker,
+    .adminoptionbox, .manage {
+        .input-group .chosen-container {
+            width: 1% !important;
+        }
+    }
+}
+
 .tiki .chosen-container-single,
 .tiki #assign_order_chosen.chosen-container {
 	min-width: 5em;
