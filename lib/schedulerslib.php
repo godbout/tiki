@@ -19,15 +19,14 @@ class SchedulersLib extends TikiLib
 	 *
 	 * @param int 		$schedulerId	The Scheduler Id
 	 * @param string 	$status			The Scheduler current status
+	 * @param array 	$conditions		Extra conditions to query
 	 *
 	 * @return array	An array of schedulers or the scheduler details if $schedulerId is not null
 	 */
-	public function get_scheduler($schedulerId = null, $status = null)
+	public function get_scheduler($schedulerId = null, $status = null, $conditions = [])
 	{
 
 		$schedulersTable = $this->table('tiki_scheduler');
-
-		$conditions = [];
 
 		if ($status) {
 			$conditions['status'] = $status;
@@ -44,18 +43,18 @@ class SchedulersLib extends TikiLib
 	/**
 	 * Save scheduler details
 	 *
-	 * @param string 		$name			The scheduler name
-	 * @param string|null 	$description 	The scheduler description text
-	 * @param string 		$task			The scheduler task (check Scheduler_Item::$availableTasks)
-	 * @param string|null 	$params 		The task parameters
-	 * @param string 		$run_time		The cron run time
-	 * @param string 		$status 		The scheduler status (active, inactive)
-	 * @param int 			$re_run 		0 or 1 to run case failed
-	 * @param int|null 		$scheduler_id 	The scheduler id (optional)
-	 *
-	 * @return int	The scheduler id
+	 * @param string $name The scheduler name
+	 * @param string|null $description The scheduler description text
+	 * @param string $task The scheduler task (check Scheduler_Item::$availableTasks)
+	 * @param string|null $params The task parameters
+	 * @param string $run_time The cron run time
+	 * @param string $status The scheduler status (active, inactive)
+	 * @param int $re_run 0 or 1 to run case failed
+	 * @param int|null $scheduler_id The scheduler id (optional)
+	 * @param int|null $creation_date schedule created date
+	 * @return int    The scheduler id
 	 */
-	public function set_scheduler($name, $description, $task, $params, $run_time, $status, $re_run, $scheduler_id = null)
+	public function set_scheduler($name, $description, $task, $params, $run_time, $status, $re_run, $scheduler_id = null, $creation_date = null)
 	{
 
 		$values = [
@@ -71,6 +70,7 @@ class SchedulersLib extends TikiLib
 		$schedulersTable = $this->table('tiki_scheduler');
 
 		if (! $scheduler_id) {
+			$values["creation_date"] = isset($creation_date) ? $creation_date : time();
 			return $schedulersTable->insert($values);
 		} else {
 			$schedulersTable->update($values, ['id' => $scheduler_id]);

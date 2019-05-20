@@ -21,8 +21,6 @@ class Scheduler_Manager
 	{
 		global $tikilib;
 
-		$start_time = time();
-
 		// Get all active schedulers
 		$schedLib = TikiLib::lib('scheduler');
 		$activeSchedulers = $schedLib->get_scheduler(null, 'active');
@@ -46,8 +44,17 @@ class Scheduler_Manager
 
 		foreach ($activeSchedulers as $scheduler) {
 			try {
-				// Check which tasks should run on time
-				if (Scheduler_Utils::is_time_cron($start_time, $scheduler['run_time'])) {
+				$lastRun = $schedLib->get_scheduler_runs($scheduler["id"], 1);
+				if (count($lastRun) == 1) {
+					$lastRunDate = $lastRun[0]["end_time"];
+				} else {
+					$lastRunDate = (isset($scheduler["creation_date"]) ? $scheduler["creation_date"] : time());
+				}
+
+				$lastRunDate = intval($lastRunDate - ($lastRunDate % 60));
+				$lastShould = Scheduler_Utils::get_previous_run_date($scheduler['run_time']);
+
+				if (isset($lastRunDate) && $lastShould >= $lastRunDate) {
 					$runTasks[] = $scheduler;
 					$this->logger->info(sprintf("Run scheduler %s", $scheduler['name']));
 					continue;

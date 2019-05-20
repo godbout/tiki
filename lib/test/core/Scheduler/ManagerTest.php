@@ -46,6 +46,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
 			0,
 			$logger
 		);
+		$scheduler1->creation_date = time() - 60;
 
 		$scheduler2 = new Scheduler_Item(
 			null,
@@ -58,6 +59,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
 			0,
 			$logger
 		);
+		$scheduler2->creation_date = time() - 60;
 
 		$scheduler1->save();
 		$scheduler2->save();

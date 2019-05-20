@@ -9,6 +9,7 @@
  */
 // $Id$
 
+require_once('lib/tikilib.php');
 require_once('lib/init/typography.php');
 
 global $interactive_collected_strings;

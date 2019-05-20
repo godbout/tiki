@@ -22,6 +22,7 @@
 		"cweagans/composer-patches": "^1.6",
 		"css-tricks/anythingslider-themes": "^1.4.1",
 		"cwspear/bootstrap-hover-dropdown": "^2.2.1",
+		"dragonmantank/cron-expression": "^1.2",
 		"drmonty/smartmenus": ">=1.1.0",
 		"evert/sitemap-php": "^1.2",
 		"erusev/parsedown": ">=1.8.0-beta-5",

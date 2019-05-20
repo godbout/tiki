@@ -18,6 +18,7 @@ class Scheduler_Item
 	public $run_time;
 	public $status;
 	public $re_run;
+	public $creation_date;
 	private $logger;
 
 	const STATUS_ACTIVE = 'active';
@@ -62,7 +63,8 @@ class Scheduler_Item
 			$this->run_time,
 			$this->status,
 			$this->re_run,
-			$this->id
+			$this->id,
+			$this->creation_date
 		);
 
 		if ($id) {
@@ -285,7 +287,7 @@ class Scheduler_Item
 		if ($userTriggered) {
 			$userlib = TikiLib::lib('user');
 			$email = $userlib->get_user_email($user);
-			$outputMessage = sprintf('Run triggered by %s - %s.' . PHP_EOL, $user, $email) . (empty($outputMessage)?'':'<hr>') . $outputMessage;
+			$outputMessage = sprintf('Run triggered by %s - %s.' . PHP_EOL, $user, $email) . (empty($outputMessage) ? '' : '<hr>') . $outputMessage;
 		}
 
 		$endTime = $schedlib->end_scheduler_run($this->id, $runId, $executionStatus, $outputMessage);
