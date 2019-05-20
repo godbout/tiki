@@ -106,6 +106,12 @@ class XMPPLib extends TikiLib
 
 	function create_room_from_wikipage($args, $name, $priority)
 	{
+		global $prefs;
+		global $user;
+
+		$info = $this->get_user_connection_info($user);
+		$userJid = $info['jid'];
+
 		if (! is_array($args) || empty($args['data'])) {
 			return;
 		}
@@ -127,75 +133,69 @@ class XMPPLib extends TikiLib
 		if (empty($params['room'])) {
 			return;
 		}
+		$room = $params['room'];
+
 		$args = [
-			'broadcastPresenceRoles' => [
+			'whois' => [
 				'moderator',
 				'participant',
 				'visitor'
 			],
 		];
 
-		$args['roomName'] = $params['room'];
-		$atpos = strpos($params['room'], '@');
+		$args['roomname'] = $room;
+		$atpos = strpos($room, '@');
+
 		if ($atpos) {
-			$args['roomName'] = substr($params['room'], 0, $atpos);
+			$args['roomname'] = substr($room, 0, $atpos);
+		} else {
+			$room = $room . '@' . $prefs['xmpp_muc_component_domain'];
 		}
 
-		$args['description'] = $args['roomName'];
-		if (! empty($params['description'])) {
-			$args['description'] = $params['description'];
+		$args['roomdesc'] = $args['roomname'];
+		if (! empty($params['roomdesc'])) {
+			$args['roomdesc'] = $params['roomdesc'];
 		}
 
-		$args['maxUsers'] = 30;
+		$args['maxusers'] = 30;
 		if (! empty($params['maxUsers']) && is_numeric($params['maxUsers'])) {
 			$params['maxUsers'] = intval($params['maxUsers'], 10);
 		}
 
 		if (! empty($params['can_anyone_discover_jid'])) {
-			$args['canAnyoneDiscoverJID'] = ($params['can_anyone_discover_jid'] === 'anyone');
+			$args['whois'] = ($params['can_anyone_discover_jid'] === 'anyone');
 		}
 
-		$args['naturalName'] = $args['roomName'];
-		$args['persistent'] = isset($params['persistent']) && $params['persistent'] === 'y';
-		$args['moderated'] = isset($params['moderated']) && $params['moderated'] === 'y';
-		$args['logEnabled'] = isset($params['archiving']) && $params['archiving'] === 'y';
-		$args['membersOnly'] = ! empty($params['visibility']) && $params['visibility'] === 'members_only';
-		$args['publicRoom'] = ! isset($params['secret']) || $params['secret'] !== 'y';
+		$args['persistentroom'] = isset($params['persistent']) && $params['persistent'] === 'y';
+		$args['moderatedroom'] = isset($params['moderated']) && $params['moderated'] === 'y';
+		$args['enablelogging'] = isset($params['archiving']) && $params['archiving'] === 'y';
+		$args['membersonly'] = ! empty($params['visibility']) && $params['visibility'] === 'members_only';
+		$args['publicroom'] = ! isset($params['secret']) || $params['secret'] !== 'y';
+		$args['roomadmins'] = [ $userJid ];
 
-		if ($this->create_room($args) || $this->update_room($args)) {
+		if ($this->create_room($room, $args)) {
 			if (! empty($params['groups'])) {
 				$groups = explode(',', $params['groups']);
 
 				foreach ($groups as $group) {
-					$this->add_group_to_room($args['roomName'], $group, 'members');
+					$this->add_group_to_room($args['roomname'], $group, 'members');
 				}
 			}
 		}
 	}
 
-	function update_room($roomName, $args)
+	function create_room($room, $args)
 	{
-		if (empty($args) || empty($roomName)) {
+		if (empty($args) || empty($args['roomname'])) {
 			return;
 		}
 
-		if (isset($args['roomName'])) {
-			unset($args['roomName']);
-		}
-
-		$restapi = $this->initializeRestApi();
-		$return = $restapi->updateChatRoom($roomName, $args);
-		return $return;
-	}
-
-	function create_room($args)
-	{
-		if (empty($args) || empty($args['roomName'])) {
-			return;
-		}
-
-		$restapi = $this->initializeRestApi();
-		$return = $restapi->createChatRoom($args);
+		$xmppapi = $this->getXmppApi();
+		$return = $xmppapi->createRoom(
+			$xmppapi->getJid(),
+			$room . '/' . $xmppapi->getUsername(),
+			$args
+		);
 		return $return;
 	}
 

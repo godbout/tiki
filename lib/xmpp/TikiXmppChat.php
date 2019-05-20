@@ -11,6 +11,7 @@ use Fabiang\Xmpp\Protocol\Roster;
 use Fabiang\Xmpp\Protocol\Presence;
 use Fabiang\Xmpp\Protocol\Invitation;
 use Fabiang\Xmpp\Protocol\Message;
+use Fabiang\Xmpp\Protocol\GroupChatConfig;
 use Fabiang\Xmpp\Protocol\GroupChatCreate;
 use Fabiang\Xmpp\Protocol\ProtocolImplementationInterface;
 use Fabiang\Xmpp\Util\XML;
@@ -48,8 +49,8 @@ class TikiXmppChat
 	{
 		$conn = $this->getConnection();
 		$conn->connect();
-		$conn->getSocket()->setBlocking(false);
 		return $this;
+		$conn->getSocket()->setBlocking(false);
 	}
 
 	public function disconnect()
@@ -109,10 +110,11 @@ class TikiXmppChat
 		return $this;
 	}
 
-	public function createRoom($owner, $room, $attr = [])
+	public function createRoom($owner, $room, $attrs = [])
 	{
 		$conn = $this->getConnection();
 		$this->getClient()->send(new GroupChatCreate($owner, $room));
+		$this->getClient()->send(new GroupChatConfig($owner, $room, $attrs));
 
 		$attempts = 5;
 		$dom = null;
