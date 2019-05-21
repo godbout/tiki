@@ -64,7 +64,7 @@
 				</form>
 		{else}
 			{if $struct_editable eq 'y'}
-							<span class="float-sm-right">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</span>
+				<span class="float-right">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</span>
 			{/if}
 		{/if}
 </div>

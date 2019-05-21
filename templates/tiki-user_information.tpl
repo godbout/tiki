@@ -16,7 +16,7 @@
 	{tab name="{tr}Basic Data{/tr}"}
 		{if $infoPublic eq 'y'}
 			<h2>{$userinfo.login}</h2>
-			<div class="float-sm-right">
+			<div class="float-right">
 				{if $tiki_p_admin eq 'y' or $userinfo.login eq $user}
 					{if $tiki_p_admin eq 'y'}
 						<a class="link tips" href="tiki-assignuser.php?assign_user={$userinfo.login|escape:"url"}" title=":{tr}Assign group{/tr}">
@@ -30,7 +30,7 @@
 			</div>
 
 			<div class="row">
-				<div class="col-sm-8 offset-sm-1">
+				<div class="col-sm-8">
 
 					<div class="card">
 						<div class="card-body">
