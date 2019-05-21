@@ -251,18 +251,26 @@ function wikiplugin_cypht($data, $params)
 	}
 	$_SESSION['cypht']['username'] = $user;
 	if(!empty($params['imap_server']) && !empty($params['imap_username']) && !empty($params['imap_password'])) {
-		$_SESSION['cypht']['imap_auth_server_settings'] = array(
+		$attributes = array(
 			'name' => empty($params['imap_name']) ? $params['imap_username'] : $params['imap_name'],
 			'server' => $params['imap_server'],
 			'port' => $params['imap_port'],
 			'tls' => $params['imap_tls'] == 'y' ? '1' : '0',
-			'username' => $params['imap_username'],
-			'password' => $params['imap_password'],
-			'no_caps' => false,
-			'blacklisted_extensions' => array('enable')
+			'user' => $params['imap_username'],
+			'pass' => $params['imap_password']
 		);
-	} else {
-		unset($_SESSION['cypht']['imap_auth_server_settings']);
+		if (empty($_SESSION['cypht']['user_data']['imap_servers'])) {
+			$_SESSION['cypht']['user_data']['imap_servers'] = [];
+		}
+		foreach ($_SESSION['cypht']['user_data']['imap_servers'] as $server) {
+			if ($server['server'] == $attributes['server'] && $server['tls'] == $attributes['tls'] && $server['port'] == $attributes['port'] && $server['user'] == $attributes['user']) {
+				$found = true;
+				break;
+			}
+		}
+		if (! $found) {
+			$_SESSION['cypht']['user_data']['imap_servers'][] = $attributes;
+		}
 	}
 
 	if (!empty($params['smtp_server'])) {
@@ -283,7 +291,7 @@ function wikiplugin_cypht($data, $params)
 		}
 		$found = false;
 		foreach ($_SESSION['cypht']['user_data']['smtp_servers'] as $server) {
-			if ($server['server'] == $attributes['server'] && $server['tls'] == $attributes['tls'] && $server['port'] == $attributes['port']) {
+			if ($server['server'] == $attributes['server'] && $server['tls'] == $attributes['tls'] && $server['port'] == $attributes['port'] && $server['user'] == $attributes['user']) {
 				$found = true;
 				break;
 			}
