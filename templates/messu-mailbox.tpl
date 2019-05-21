@@ -13,33 +13,35 @@
 [{$messu_mailbox_number} / {$prefs.messu_mailbox_size}] {tr}messages{/tr}. {if $messu_mailbox_number ge $prefs.messu_mailbox_size}{tr}Mailbox is full! Delete or archive some messages if you want to receive more messages.{/tr}{/if}
 {/if}
 
-<form class="form-inline mb-3" action="messu-mailbox.php" method="get">
-	<div class="form-group">
-	<label for="mess-mailmessages">{tr}Messages:{/tr}</label>
-	<select name="flags" id="mess-mailmessages" class="form-control mx-3">
-		<option value="isRead_y" {if $flag eq 'isRead' and $flagval eq 'y'}selected="selected"{/if}>{tr}Read{/tr}</option>
-		<option value="isRead_n" {if $flag eq 'isRead' and $flagval eq 'n'}selected="selected"{/if}>{tr}Unread{/tr}</option>
-		<option value="isFlagged_y" {if $flag eq 'isFlagged' and $flagval eq 'y'}selected="selected"{/if}>{tr}Flagged{/tr}</option>
-		<option value="isFlagged_n" {if $flag eq 'isflagged' and $flagval eq 'n'}selected="selected"{/if}>{tr}Unflagged{/tr}</option>
-		<option value="" {if $flag eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
-	</select>
+<form class="form-inline mb-4" action="messu-mailbox.php" method="get">
+	<div class="form-group col-sm-3">
+		<label for="mess-mailmessages">{tr}Messages:{/tr}</label>
+		<select name="flags" id="mess-mailmessages" class="form-control mx-3">
+			<option value="isRead_y" {if $flag eq 'isRead' and $flagval eq 'y'}selected="selected"{/if}>{tr}Read{/tr}</option>
+			<option value="isRead_n" {if $flag eq 'isRead' and $flagval eq 'n'}selected="selected"{/if}>{tr}Unread{/tr}</option>
+			<option value="isFlagged_y" {if $flag eq 'isFlagged' and $flagval eq 'y'}selected="selected"{/if}>{tr}Flagged{/tr}</option>
+			<option value="isFlagged_n" {if $flag eq 'isflagged' and $flagval eq 'n'}selected="selected"{/if}>{tr}Unflagged{/tr}</option>
+			<option value="" {if $flag eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
+		</select>
 	</div>
-	<div class="form-group">
-	<label for="mess-mailprio">{tr}Priority:{/tr}</label>
-	<select name="priority" id="mess-mailprio" class="form-control mx-3">
-		<option value="" {if $priority eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
-		<option value="1" {if $priority eq 1}selected="selected"{/if}>{tr}1{/tr}</option>
-		<option value="2" {if $priority eq 2}selected="selected"{/if}>{tr}2{/tr}</option>
-		<option value="3" {if $priority eq 3}selected="selected"{/if}>{tr}3{/tr}</option>
-		<option value="4" {if $priority eq 4}selected="selected"{/if}>{tr}4{/tr}</option>
-		<option value="5" {if $priority eq 5}selected="selected"{/if}>{tr}5{/tr}</option>
-	</select>
-		</div>
-	<div class="form-group">
-	<label for="mess-mailcont">{tr}Containing:{/tr}</label>
-	<input type="text" name="find" id="mess-mailcont" value="{$find|escape}" class="form-control ml-3">
-	<input type="submit" class="btn btn-info btn-sm" name="filter" value="{tr}Filter{/tr}">
-		</div>
+
+	<div class="form-group col-sm-3">
+		<label for="mess-mailprio">{tr}Priority:{/tr}</label>
+		<select name="priority" id="mess-mailprio" class="form-control mx-3">
+			<option value="" {if $priority eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
+			<option value="1" {if $priority eq 1}selected="selected"{/if}>{tr}1{/tr}</option>
+			<option value="2" {if $priority eq 2}selected="selected"{/if}>{tr}2{/tr}</option>
+			<option value="3" {if $priority eq 3}selected="selected"{/if}>{tr}3{/tr}</option>
+			<option value="4" {if $priority eq 4}selected="selected"{/if}>{tr}4{/tr}</option>
+			<option value="5" {if $priority eq 5}selected="selected"{/if}>{tr}5{/tr}</option>
+		</select>
+	</div>
+
+	<div class="form-group col-sm-6">
+		<label for="mess-mailcont">{tr}Containing:{/tr}</label>
+		<input type="text" name="find" id="mess-mailcont" value="{$find|escape}" class="form-control ml-3">
+		<input type="submit" class="btn btn-info btn-sm" name="filter" value="{tr}Filter{/tr}">
+	</div>
 </form>
 
 

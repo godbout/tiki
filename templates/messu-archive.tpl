@@ -15,53 +15,55 @@
 	{/if}
 
 <form action="messu-archive.php" method="get" class="form-inline mb-4">
-	<div class="form-group">
-	<label for="mess-mailmessages">{tr}Messages:{/tr}</label>
-	<select name="flags" id="mess-mailmessages" class="form-control">
-		<option value="isRead_y" {if $flag eq 'isRead' and $flagval eq 'y'}selected="selected"{/if}>{tr}Read{/tr}</option>
-		<option value="isRead_n" {if $flag eq 'isRead' and $flagval eq 'n'}selected="selected"{/if}>{tr}Unread{/tr}</option>
-		<option value="isFlagged_y" {if $flag eq 'isFlagged' and $flagval eq 'y'}selected="selected"{/if}>{tr}Flagged{/tr}</option>
-		<option value="isFlagged_y" {if $flag eq 'isflagged' and $flagval eq 'n'}selected="selected"{/if}>{tr}Unflagged{/tr}</option>
-		<option value="" {if $flag eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
-	</select>
+	<div class="form-group col-sm-3">
+		<label for="mess-mailmessages">{tr}Messages:{/tr}</label>
+		<select name="flags" id="mess-mailmessages" class="form-control">
+			<option value="isRead_y" {if $flag eq 'isRead' and $flagval eq 'y'}selected="selected"{/if}>{tr}Read{/tr}</option>
+			<option value="isRead_n" {if $flag eq 'isRead' and $flagval eq 'n'}selected="selected"{/if}>{tr}Unread{/tr}</option>
+			<option value="isFlagged_y" {if $flag eq 'isFlagged' and $flagval eq 'y'}selected="selected"{/if}>{tr}Flagged{/tr}</option>
+			<option value="isFlagged_y" {if $flag eq 'isflagged' and $flagval eq 'n'}selected="selected"{/if}>{tr}Unflagged{/tr}</option>
+			<option value="" {if $flag eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
+		</select>
 	</div>
-	<div class="form-group">
-	<label for="mess-mailprio">{tr}Priority:{/tr}</label>
-	<select name="priority" id="mess-mailprio" class="form-control">
-		<option value="" {if $priority eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
-		<option value="1" {if $priority eq 1}selected="selected"{/if}>1</option>
-		<option value="2" {if $priority eq 2}selected="selected"{/if}>2</option>
-		<option value="3" {if $priority eq 3}selected="selected"{/if}>3</option>
-		<option value="4" {if $priority eq 4}selected="selected"{/if}>4</option>
-		<option value="5" {if $priority eq 5}selected="selected"{/if}>5</option>
-	</select>
-		</div>
-	<div class="form-group">
-	<label for="mess-mailcont">{tr}Containing:{/tr}</label>
-	<input type="text" name="find" id="mess-mailcont" value="{$find|escape:"attr"}" class="form-control">
-		</div>
-	<input type="submit" class="btn btn-info btn-sm" name="filter" value="{tr}Filter{/tr}">
+
+	<div class="form-group col-sm-3">
+		<label for="mess-mailprio">{tr}Priority:{/tr}</label>
+		<select name="priority" id="mess-mailprio" class="form-control">
+			<option value="" {if $priority eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
+			<option value="1" {if $priority eq 1}selected="selected"{/if}>1</option>
+			<option value="2" {if $priority eq 2}selected="selected"{/if}>2</option>
+			<option value="3" {if $priority eq 3}selected="selected"{/if}>3</option>
+			<option value="4" {if $priority eq 4}selected="selected"{/if}>4</option>
+			<option value="5" {if $priority eq 5}selected="selected"{/if}>5</option>
+		</select>
+	</div>
+
+	<div class="form-group col-sm-6">
+		<label for="mess-mailcont">{tr}Containing:{/tr}</label>
+		<input type="text" name="find" id="mess-mailcont" value="{$find|escape:"attr"}" class="form-control ml-3">
+		<input type="submit" class="btn btn-info btn-sm" name="filter" value="{tr}Filter{/tr}">
+	</div>
 </form>
 
 
 <form action="messu-archive.php" method="post" name="form_messu_archive">
 	{ticket}
 	<div class="form-group">
-	<input type="hidden" name="offset" value="{$offset|escape:"attr"}">
-	<input type="hidden" name="find" value="{$find|escape:"attr"}">
-	<input type="hidden" name="sort_mode" value="{$sort_mode|escape:"attr"}">
-	<input type="hidden" name="flag" value="{$flag|escape:"attr"}">
-	<input type="hidden" name="flagval" value="{$flagval|escape:"attr"}">
-	<input type="hidden" name="priority" value="{$priority|escape:"attr"}">
-	<input
-		type="submit"
-		class="btn btn-danger btn-sm"
-		name="delete"
-		value="{tr}Delete{/tr}"
-		onclick="confirmSimple(event, '{tr}Delete selected messages?{/tr}')"
-	>
-	<input type="submit" class="btn btn-primary btn-sm" name="download" value="{tr}Download{/tr}">
-		</div>
+		<input type="hidden" name="offset" value="{$offset|escape:"attr"}">
+		<input type="hidden" name="find" value="{$find|escape:"attr"}">
+		<input type="hidden" name="sort_mode" value="{$sort_mode|escape:"attr"}">
+		<input type="hidden" name="flag" value="{$flag|escape:"attr"}">
+		<input type="hidden" name="flagval" value="{$flagval|escape:"attr"}">
+		<input type="hidden" name="priority" value="{$priority|escape:"attr"}">
+		<input
+			type="submit"
+			class="btn btn-danger btn-sm"
+			name="delete"
+			value="{tr}Delete{/tr}"
+			onclick="confirmSimple(event, '{tr}Delete selected messages?{/tr}')"
+		>
+		<input type="submit" class="btn btn-primary btn-sm" name="download" value="{tr}Download{/tr}">
+	</div>
 {jq notonready=true}
 var CHECKBOX_LIST = [{{section name=user loop=$items}'msg[{$items[user].msgId}]'{if not $smarty.section.user.last},{/if}{/section}}];
 {/jq}
