@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "461143634d1221298027438deb5665c9",
+    "content-hash": "e42615f59bbd43f8ee2caf95c1f925c2",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -160,6 +160,16 @@
                 "useragent"
             ],
             "time": "2017-06-06T22:20:56+00:00"
+        },
+        {
+            "name": "avianey/jqdoublescroll",
+            "version": "1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/avianey/jqdoublescroll/avianey-jqdoublescroll-1.0.0.zip",
+                "shasum": "99f5bbf2f958bbaeb3802389c02d6944ebe8f48d"
+            },
+            "type": "library"
         },
         {
             "name": "bower-asset/fontawesome",

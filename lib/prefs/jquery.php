@@ -175,5 +175,11 @@ function prefs_jquery_list($partial = false)
 				'feature_jquery_ui',
 			],
 		],
+		'jquery_jqdoublescroll' => [
+			'name' => tra('jQuery Double Scroll'),
+			'description' => tra('jQuery plugin which adds an extra horizontal scroll bar at the top.'),
+			'type' => 'flag',
+			'default' => 'n',
+		],
 	];
 }

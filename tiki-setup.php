@@ -566,6 +566,12 @@ if ($prefs['jquery_timeago'] === 'y') {
 	$headerlib->add_jq_onready('$("time.timeago").timeago(); jQuery.timeago.settings.allowFuture = true;');
 }
 
+if ($prefs['jquery_jqdoublescroll'] == 'y') {
+	$headerlib
+		->add_jsfile('vendor_bundled/vendor/avianey/jqdoublescroll/jquery.doubleScroll.js')
+		->add_jq_onready('$(".table-responsive").doubleScroll({resetOnWindowResize: true});');
+}
+
 if ($prefs['feature_jquery_validation'] == 'y') {
 	$headerlib->add_jsfile('vendor_bundled/vendor/jquery-plugins/jquery-validation/dist/jquery.validate.js');
 	$headerlib->add_jsfile('lib/validators/validator_tiki.js');

@@ -9,6 +9,7 @@
 		"adodb/adodb-php": "^5.20",
 		"afarkas/html5shiv": "3.7.3",
 		"ahand/mobileesp": "dev-master",
+		"avianey/jqdoublescroll": ">=1.0.0",
 		"bower-asset/swfobject": "^2.2",
 		"candy-chat/xmpp-prebind-php": "dev-master",
 		"christian-vigh-phpclasses/pdftotext": "^1.6.0",
