@@ -1845,7 +1845,7 @@
 		"afarkas/html5shiv": ">=3.6.2",
 		"ahand/mobileesp": "dev-master",
 		"alxlit/bootstrap-chosen": ">=1.0.1",
-		"avianey/jqdoublescroll": ">-1.0.0",
+		"avianey/jqdoublescroll": ">=1.0.0",
 		"bafs/testify": "dev-master",
 		"blueimp/javascript-canvas-to-blob": ">=2.2.0",
 		"blueimp/javascript-load-image": ">=1.14.0",
