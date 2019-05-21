@@ -4180,7 +4180,8 @@ div.tiki_plugin {
 
 @media (max-width: 575.98px) {
   .autotoc > .nav {
-    position: static; } }
+    position: static;
+    max-width: calc(100vw - 30px); } }
 /* end autotoc */
 .plugin-form-float {
   position: fixed;

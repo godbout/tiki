@@ -377,8 +377,11 @@ div.tiki_plugin {
   text-decoration: none
 }
 
-@include media-breakpoint-down(xs) {
-	.autotoc > .nav { position: static; }
+@media (max-width: breakpoint-max(xs)) {
+	.autotoc > .nav {
+		position: static;
+		max-width: calc(100vw - 30px);
+	}
 }
 
 /* end autotoc */
