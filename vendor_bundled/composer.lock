@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f1cb1d5302515476a114e735b30191f2",
+    "content-hash": "461143634d1221298027438deb5665c9",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -652,9 +652,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
+                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": ""
+                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
             },
             "type": "component",
             "extra": {
@@ -1115,7 +1115,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Ungur",
+                    "name": "Osman Üngür",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1589,9 +1589,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": ""
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2240,9 +2240,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
+                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": ""
+                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
             },
             "require": {
                 "php": ">=5.3.1",
@@ -2802,12 +2802,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/fabiomontefuscolo/xmpp.git",
-                "reference": "1e0ffe85231d799da4a68eb4acdd44fdf0b7a667"
+                "reference": "9df9c05d14ef54b8cbeb9c1bed51ae668b7c1a9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabiomontefuscolo/xmpp/zipball/1e0ffe85231d799da4a68eb4acdd44fdf0b7a667",
-                "reference": "1e0ffe85231d799da4a68eb4acdd44fdf0b7a667",
+                "url": "https://api.github.com/repos/fabiomontefuscolo/xmpp/zipball/9df9c05d14ef54b8cbeb9c1bed51ae668b7c1a9a",
+                "reference": "9df9c05d14ef54b8cbeb9c1bed51ae668b7c1a9a",
                 "shasum": ""
             },
             "require": {
@@ -2855,7 +2855,7 @@
                 "jabber",
                 "xmpp"
             ],
-            "time": "2019-05-15T04:58:11+00:00"
+            "time": "2019-05-20T19:04:46+00:00"
         },
         {
             "name": "mottie/tablesorter",
@@ -3222,8 +3222,9 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
+                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
             },
             "type": "npm-asset",
             "license": [
@@ -4199,20 +4200,20 @@
         },
         {
             "name": "rmm5t/jquery-timeago",
-            "version": "v1.6.6",
+            "version": "v1.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rmm5t/jquery-timeago.git",
-                "reference": "e13ad6d21cfb8a5c0a04a6273d67e71edf27339c"
+                "reference": "48fdda3ca724dcd655e8e990f6d7fbd203718905"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/rmm5t/jquery-timeago/rmm5t-jquery-timeago-e13ad6d21cfb8a5c0a04a6273d67e71edf27339c-zip-062765.zip",
-                "reference": "e13ad6d21cfb8a5c0a04a6273d67e71edf27339c",
-                "shasum": "1dc1f93c81850f2e3934fc67645600860cbe6f71"
+                "url": "https://composer.tiki.org/dist/rmm5t/jquery-timeago/rmm5t-jquery-timeago-48fdda3ca724dcd655e8e990f6d7fbd203718905-zip-a892aa.zip",
+                "reference": "48fdda3ca724dcd655e8e990f6d7fbd203718905",
+                "shasum": "29a4fac20d4b37849634dd4972ae193883985335"
             },
             "require": {
-                "components/jquery": ">=1.2.3 <3.4"
+                "components/jquery": ">=1.5.0 <4.0"
             },
             "type": "library",
             "extra": {
@@ -4241,7 +4242,7 @@
                 "microformat",
                 "time"
             ],
-            "time": "2019-04-12T15:59:29+00:00"
+            "time": "2019-04-23T15:55:20+00:00"
         },
         {
             "name": "robicch/jquery-gantt",
@@ -4280,9 +4281,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
+                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": ""
+                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -6324,9 +6325,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-ldap/zipball/b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
+                "url": "https://composer.tiki.org/dist/zendframework/zend-ldap/zendframework-zend-ldap-b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49-zip-8cf400.zip",
                 "reference": "b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
-                "shasum": ""
+                "shasum": "b1212f5466b9a85267f26e9683a66474a23fc770"
             },
             "require": {
                 "ext-ldap": "*",
