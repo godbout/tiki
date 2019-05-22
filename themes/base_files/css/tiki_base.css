@@ -2609,6 +2609,8 @@ ul.freetagged li {
 
 .faqanswer {
   padding: 0 12px 4px 12px; }
+  .faqanswer .faq_answer_prefix {
+    font-weight: bold; }
 
 .pollresults {
   width: 100%; }

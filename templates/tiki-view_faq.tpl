@@ -1,10 +1,7 @@
 {title help="FAQs"}{tr}{$faq_info.title}{/tr}{/title}
 <div class="description form-text">{$faq_info.description|escape}</div>
 
-<div class="t_navbar btn-group form-group row">
-	{self_link print='y' _icon_name='print' _menu_text='y' _menu_icon='y'}
-		{tr}Print{/tr}
-	{/self_link}
+<div class="t_navbar mb-4">
 	{button href="tiki-list_faqs.php" class="btn btn-info" _text="{tr}List FAQs{/tr}"}
 
 	{if $tiki_p_admin_faqs eq 'y'}
@@ -13,6 +10,10 @@
 	{if $tiki_p_admin_faqs eq 'y'}
 		{button href="tiki-faq_questions.php?faqId=$faqId" class="btn btn-primary" _text="{tr}New Question{/tr}"}
 	{/if}
+
+	{self_link print='y' _icon_name='print' _menu_text='y' _menu_icon='y' _class='btn btn-link'}
+		{tr}Print{/tr}
+	{/self_link}
 </div>
 
 <h2>{tr}Questions{/tr}</h2>
@@ -47,7 +48,7 @@
 			</div>
 			<div class="faqanswer">
 				{if $prefs.faq_prefix eq 'QA'}
-					<span class="faq_answer_prefix">{tr}Answer{/tr}&nbsp;</span>
+					<span class="faq_answer_prefix">{tr}Answer:{/tr}&nbsp;</span>
 				{/if}
 				{$channels[ix].parsed}
 			</div>

@@ -15,20 +15,20 @@
 
 	<div class="form-group row mx-0">
 		<label class="col-sm-3 col-form-label">{tr}Question{/tr}</label>
-		<div class="col-sm-7">
+		<div class="col-sm-8">
 			<textarea type="text" rows="2" cols="80" name="question" class="form-control" tabindex="1">{$question|escape}</textarea>
 		</div>
 	</div>
 	<div class="form-group row mx-0">
 		<label class="col-sm-3 col-form-label">{tr}Answer{/tr}</label>
-		<div class="col-sm-7">
+		<div class="col-sm-8">
 			{toolbars area_id="faqans"}
 			<textarea id='faqans' type="text" rows="8" cols="80" name="answer" class="form-control" tabindex="2">{$answer|escape}</textarea>
 		</div>
 	</div>
 	<div class="form-group row mx-0">
 		<label class="col-sm-3 col-form-label"></label>
-		<div class="col-sm-7">
+		<div class="col-sm-8">
 			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}" tabindex="3">
 		</div>
 	</div>
@@ -43,7 +43,7 @@
 		<input type="hidden" name="faqId" value="{$faqId|escape}">
 		<div class="form-group row mx-0">
 			<label class="col-sm-3 col-form-label">{tr}Filter{/tr}</label>
-			<div class="col-sm-7">
+			<div class="col-sm-8">
 				<div class="input-group">
 					<input type="text" name="filter" id="filter" value="{$filter|escape}" class="form-control input-sm">
 					<div class="input-group-append">
@@ -54,7 +54,7 @@
 		</div>
 		<div class="form-group row mx-0">
 			<label class="col-sm-3 col-form-label">{tr}Question{/tr}</label>
-			<div class="col-sm-7">
+			<div class="col-sm-8">
 				<select name="usequestionId" class="form-control">
 					{section name=ix loop=$allq}
 						{* Ok, here's where you change the truncation field for this field *}
@@ -65,7 +65,7 @@
 		</div>
 		<div class="form-group row mx-0">
 			<label class="col-sm-3 col-form-label"></label>
-			<div class="col-sm-7">
+			<div class="col-sm-8">
 				<input type="submit" class="btn btn-primary btn-sm" name="useq" value="{tr}Use{/tr}">
 			</div>
 		</div>
