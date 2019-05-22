@@ -17,7 +17,7 @@
 	{/if}
 	{tab name=$title}
 		<h2>{$title}</h2>
-		<form action="tiki-admin_polls.php?save=1" method="post" class="form-horizontal">
+		<form action="tiki-admin_polls.php?save=1" method="post">
 			<input type="hidden" name="pollId" value="{$pollId|escape}">
 
 			<div class="form-group row">
@@ -183,7 +183,7 @@
 		<form action="tiki-admin_polls.php" method="post" class="form-horizontal">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Poll{/tr}</label>
-				<div class="col-sm-7">
+				<div class="col-sm-7 mb-2">
 					<select name="poll_template" class="form-control">
 						{section name=ix loop=$channels}
 							{if $channels[ix].active eq 't'}
@@ -192,6 +192,7 @@
 						{/section}
 					</select></br>
 					{remarksbox type="tip" title="Tip"}{tr}This menu shows only Polls with 'status': "template"{/tr}{/remarksbox}
+
 				</div>
 			</div>
 			<div class="form-group row">
@@ -211,16 +212,17 @@
 					{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Use Ctrl+Click to select multiple options{/tr}{/remarksbox}
 				</div>
 			</div>
-			<div class="form-group form-check">
-				<label class="col-sm-3 col-form-label">{tr}Lock the pages{/tr}</label>
-				<div class="col-sm-7">
-					<input type="checkbox" class="form-check-input" name="locked">
+			<div class="form-group row">
+				<div class="col-sm-7 offset-sm-3">
+					<div class="form-check">
+						<input type="checkbox" class="form-check-input" name="locked">
+						<label class="form-check-label" for="locked">{tr}Lock the pages{/tr}</label>
+					</div>
 				</div>
 			</div>
-			<div class="form-group form-check">
-				<label class="col-sm-3 col-form-label"></label>
-				<div class="col-sm-7 offset-sm-1 mb-3">
-					<input type="submit" class="btn btn-primary btn-sm" name="addPoll" value="{tr}Add{/tr}">
+			<div class="form-group row">
+				<div class="col-sm-7 offset-sm-3 mb-3">
+					<input type="submit" class="btn btn-primary" name="addPoll" value="{tr}Add{/tr}">
 				</div>
 			</div>
 		</form>

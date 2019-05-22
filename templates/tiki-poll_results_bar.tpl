@@ -23,7 +23,7 @@
 	</table>
 	<br>
 	{if $showtotal ne 'n'}
-		{tr}Number of votes:{/tr} {$poll_info.votes} {tr}votes{/tr}<br><br>
+		{tr}Number of votes:{/tr} {$poll_info.votes}<br><br>
 	{/if}
 	{if is_numeric($poll_info.total)}
 		{tr}Total:{/tr} {$poll_info.total}<br>

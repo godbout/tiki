@@ -3,14 +3,14 @@
 {title help="polls" admpage="polls"}{tr}Poll Results{/tr}{/title}
 
 <div class="t_navbar mb-4">
-	{button href="tiki-old_polls.php" class="btn btn-primary" _text="{tr}Polls{/tr}"}
-	{button href="tiki-poll_results.php" class="btn btn-primary" _text="{tr}Top Voted Polls{/tr}"}
+	{button href="tiki-old_polls.php" class="btn btn-primary" _text="{tr}All Polls{/tr}"}
+	{button href="tiki-poll_results.php" class="btn btn-primary" _text="{tr}Top-Voted Polls{/tr}"}
 	{if $tiki_p_admin_polls eq 'y'}
 		{if empty($pollId)}{button href="tiki-admin_polls.php" _text="{tr}Admin Polls{/tr}"}{else}{button href="tiki-admin_polls.php?pollId=$pollId" _text="{tr}Edit Poll{/tr}"}{/if}
 	{/if}
 </div>
 
-<form method="post" class="text-center">
+<form method="post">
 	{if !empty($sort_mode)}<input type="hidden" name="sort_mode" value="{$sort_mode|escape}">{/if}
 	{if !empty($pollId)}<input type="hidden" name="pollId" value="{$pollId|escape}">{/if}
 	{if !empty($list)}<input type="hidden" name="list" value="{$list|escape}">{/if}
@@ -26,9 +26,10 @@
 		</label>
 		<br>
 	{/if}
-	<label>
-		<input type="radio" name="which_date" value="between"{if $which_date eq 'between'} checked="checked"{/if}>{tr}Vote range displayed:{/tr}
-	</label>
+	<div class="form-check">
+		<input class="form-check-input" type="radio" name="which_date" value="between"{if $which_date eq 'between'} checked="checked"{/if}>
+		<label class="form-check-label" for="which_date">{tr}Show results in this range:{/tr}</label>
+	</div>
 	<label>
 		{tr}Start:{/tr} {html_select_date prefix="from_" time="$vote_from_date" start_year="$start_year"}
 	</label>
@@ -37,23 +38,22 @@
 	</label>
 	<br>
 	{if empty($pollId) or $poll_info.voteConsiderationSpan > 0}
-		<label>
-			<input type="radio" name="which_date" value="all"{if $which_date eq 'all'} checked="checked"{/if}>
-			{tr}All votes with no span consideration{/tr}
-		</label>
-		<br>
-		<label>
-			<input type="radio" name="which_date" value="consideration"{if $which_date eq 'consideration' or $which_date eq ''} checked="checked"{/if}>
-			{tr}All votes with span consideration{/tr}
-		</label>
+		<div class="form-check">
+			<input type="radio" name="which_date_all" value="all"{if $which_date eq 'all'} checked="checked"{/if}>
+			<label class="form-check-label" for="which_date_all">{tr}Show all results with no time span consideration{/tr}</label>
+		</div>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="which_date_consideration" value="consideration"{if $which_date eq 'consideration' or $which_date eq ''} checked="checked"{/if}>
+			<label class="form-check-label" for="which_date_consideration">{tr}Show all results with time span consideration{/tr}</label>
+		</div>
 	{else}
-		<label>
-			<input type="radio" name="which_date" value="all"{if $which_date eq 'all' or $which_date eq ''} checked="checked"{/if}>
-			{tr}All votes{/tr}
-		</label>
+		<div class="form-check">
+			<input class="form-check-input" type="radio" name="which_date_all_dates" value="all"{if $which_date eq 'all' or $which_date eq ''} checked="checked"{/if}>
+			<label class="form-check-label" for="which_date_all_dates">{tr}Show all results{/tr}</label>
+		</div>
 	{/if}
 	<br>
-	<input type="submit" class="btn btn-primary btn-sm" name="search" value="{tr}Find{/tr}">
+	<input type="submit" class="btn btn-primary btn-sm" name="search" value="{tr}Find results{/tr}">
 </form>
 
 {section name=x loop=$poll_info_arr}
@@ -72,7 +72,7 @@
 	{if $tiki_p_view_poll_voters eq 'y' && $poll_info_arr[x].votes > 0}
 		<div class="t_navbar">
 			{assign var=thispoll_info_arr value=$poll_info_arr[x].pollId}
-			{button href="?list=y&amp;pollId=$thispoll_info_arr" class="btn btn-info" _text="{tr}List Votes{/tr}" _auto_args="$auto_args"}
+			{button href="?list=y&amp;pollId=$thispoll_info_arr" class="btn btn-info" _text="{tr}Show detailed results of this poll{/tr}" _auto_args="$auto_args"}
 		</div>
 	{/if}
 
