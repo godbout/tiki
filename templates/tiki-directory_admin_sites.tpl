@@ -6,7 +6,7 @@
 <h2>{tr}Parent directory category:{/tr}</h2>
 <form name="path" method="post" action="tiki-directory_admin_categories.php">
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label">
+		<label class="col-sm-4 col-form-label">
 			{tr}Parent directory category{/tr}
 		</label>
 		<div class="col-sm-7">
@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label"></label>
+		<label class="col-sm-4 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Go{/tr}">
 		</div>
@@ -33,25 +33,25 @@
 	<input type="hidden" name="siteId" value="{$siteId|escape}">
 
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label">{tr}Name{/tr}</label>
+		<label class="col-sm-4 col-form-label">{tr}Name{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" name="name" value="{$info.name|escape}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label">{tr}Description{/tr}</label>
+		<label class="col-sm-4 col-form-label">{tr}Description{/tr}</label>
 		<div class="col-sm-7">
 			<textarea rows="5" cols="60" name="description" class="form-control">{$info.description|escape}</textarea>
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label">{tr}URL{/tr}</label>
+		<label class="col-sm-4 col-form-label">{tr}URL{/tr}</label>
 		<div class="col-sm-7">
 			<input type="text" size="60" name="url" value="{if $info.url ne ""}{$info.url|escape}{else}http://{/if}" class="form-control">
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label">{tr}Directory Categories{/tr}</label>
+		<label class="col-sm-4 col-form-label">{tr}Directory Categories{/tr}</label>
 		<div class="col-sm-7">
 			<select name="siteCats[]" multiple="multiple" size="4" class="form-control">
 				{section name=ix loop=$categs}
@@ -68,7 +68,7 @@
 	</div>
 	{if $prefs.directory_country_flag eq 'y'}
 		<div class="form-group row">
-			<label class="col-sm-3 col-form-label">{tr}Country{/tr}</label>
+			<label class="col-sm-4 col-form-label">{tr}Country{/tr}</label>
 			<div class="col-sm-7">
 				<select id="country" name="country" class="form-control">
 					{section name=ux loop=$countries}
@@ -79,13 +79,13 @@
 		</div>
 	{/if}
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label">{tr}Is valid{/tr}	</label>
+		<label class="col-sm-4 col-form-label">{tr}Is valid{/tr}	</label>
 		<div class="col-sm-7">
 			<input name="isValid" type="checkbox" {if $info.isValid eq 'y'}checked="checked"{/if}>
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label"></label>
+		<label class="col-sm-4 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 		</div>

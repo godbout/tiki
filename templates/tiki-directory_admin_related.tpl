@@ -9,7 +9,7 @@
 <form name="path" method="post" action="tiki-directory_admin_related.php">
 	<br>
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label">
+		<label class="col-sm-4 col-form-label">
 			{tr}Parent directory category{/tr}
 		</label>
 		<div class="col-sm-7">
@@ -21,7 +21,7 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label"></label>
+		<label class="col-sm-4 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Go{/tr}">
 		</div>
@@ -32,7 +32,7 @@
 	<br>
 	<input type="hidden" name="parent" value="{$parent|escape}">
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label">{tr}Directory Category:{/tr}</label>
+		<label class="col-sm-4 col-form-label">{tr}Directory Category:{/tr}</label>
 		<div class="col-sm-7">
 			<select name="categId" class="form-control">
 				{section name=ix loop=$categs}
@@ -42,13 +42,13 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label">{tr}Mutual:{/tr}</label>
+		<label class="col-sm-4 col-form-label">{tr}Mutual:{/tr}</label>
 		<div class="col-sm-7">
-			<input type="checkbox" class="form-check-input" name="mutual">
+			<input type="checkbox" name="mutual">
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-3 col-form-label"></label>
+		<label class="col-sm-4 col-form-label"></label>
 		<div class="col-sm-7">
 			<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Save{/tr}">
 		</div>

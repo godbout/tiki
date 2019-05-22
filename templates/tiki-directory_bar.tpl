@@ -1,5 +1,5 @@
 <div class="t_navbar mb-4">
-	<button class='btn btn-primary'>{self_link print='y'}{icon name='print' text="{tr}Print{/tr}"}{/self_link}</button>
+	{self_link print='y' _class='btn btn-link'}{icon name='print' text="{tr}Print{/tr}"}&nbsp;{tr}Print{/tr}{/self_link}
 
 	{if $mid ne "tiki-directory_browse.tpl"}
 		{button href="tiki-directory_browse.php" class="btn btn-link" _type="link" _icon_name="view" _text="{tr}Browse{/tr}"}
