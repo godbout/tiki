@@ -16,7 +16,7 @@
 <form class="form-inline mb-4" action="messu-mailbox.php" method="get">
 	<div class="form-group col-sm-3">
 		<label for="mess-mailmessages">{tr}Messages:{/tr}</label>
-		<select name="flags" id="mess-mailmessages" class="form-control mx-3">
+		<select name="flags" id="mess-mailmessages" class="form-control">
 			<option value="isRead_y" {if $flag eq 'isRead' and $flagval eq 'y'}selected="selected"{/if}>{tr}Read{/tr}</option>
 			<option value="isRead_n" {if $flag eq 'isRead' and $flagval eq 'n'}selected="selected"{/if}>{tr}Unread{/tr}</option>
 			<option value="isFlagged_y" {if $flag eq 'isFlagged' and $flagval eq 'y'}selected="selected"{/if}>{tr}Flagged{/tr}</option>
@@ -27,7 +27,7 @@
 
 	<div class="form-group col-sm-3">
 		<label for="mess-mailprio">{tr}Priority:{/tr}</label>
-		<select name="priority" id="mess-mailprio" class="form-control mx-3">
+		<select name="priority" id="mess-mailprio" class="form-control">
 			<option value="" {if $priority eq ''}selected="selected"{/if}>{tr}All{/tr}</option>
 			<option value="1" {if $priority eq 1}selected="selected"{/if}>{tr}1{/tr}</option>
 			<option value="2" {if $priority eq 2}selected="selected"{/if}>{tr}2{/tr}</option>
@@ -38,8 +38,8 @@
 	</div>
 
 	<div class="form-group col-sm-6">
-		<label for="mess-mailcont">{tr}Containing:{/tr}</label>
-		<input type="text" name="find" id="mess-mailcont" value="{$find|escape}" class="form-control ml-3">
+		<label for="mess-mailcont" class="mr-3">{tr}Containing:{/tr}</label>
+		<input type="text" name="find" id="mess-mailcont" value="{$find|escape}" class="form-control mr-3">
 		<input type="submit" class="btn btn-info btn-sm" name="filter" value="{tr}Filter{/tr}">
 	</div>
 </form>
