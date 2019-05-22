@@ -2369,7 +2369,9 @@ function wikiplugin_tracker_process_email_recipients($emailOrField, $fields, $it
 		}
 	}
 
-	return array_filter($output);
+	$output = array_filter($output);
+
+	return $output;
 }
 
 function wikiplugin_tracker_save_item($trackerSavedState)
