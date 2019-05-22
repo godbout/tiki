@@ -35,7 +35,7 @@
 
 		{preference name=freetags_show_middle}
 
-		<div class="adminoptionbox">
+		<div class="adminoptionbox form-group row">
 			<label for="freetags_cloud_colors" class="col-form-label col-md-4">{tr}Random tag cloud colors:{/tr}</label>
 			<div class="col-md-8">
 				<input type="text" class="form-control" name="freetags_cloud_colors" id="freetags_cloud_colors" value="{foreach from=$prefs.freetags_cloud_colors item=color name=colors}{$color}{if !$smarty.foreach.colors.last},{/if}{/foreach}" />

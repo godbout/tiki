@@ -76,7 +76,7 @@
 		{tab name="{tr}Edit/Create{/tr}"}
 			{if $faqId > 0}
 				<h2>{tr}Edit this FAQ:{/tr} {$title}</h2>
-				<div class="t_navbar">
+				<div class="t_navbar mb-2">
 					{button href="tiki-list_faqs.php" class="btn btn-primary" _text="{tr}Create new FAQ{/tr}"}
 				</div>
 			{else}
@@ -86,35 +86,37 @@
 			<form action="tiki-list_faqs.php" method="post">
 				<input type="hidden" name="faqId" value="{$faqId|escape}">
 				<div class="form-group row">
-					<label class="col-form-label col-md-3">
+					<label class="col-form-label col-md-4">
 						{tr}Title:{/tr}
 					</label>
-					<div class="col-md-9">
-							<input type="text" class="form-control" name="title" value="{$title|escape}">
+					<div class="col-md-8">
+						<input type="text" class="form-control" name="title" value="{$title|escape}">
 					</div>
 				</div>
 				<div class="form-group row">
-					<label class="col-form-label col-md-3">
+					<label class="col-form-label col-md-4">
 						{tr}Description:{/tr}
 					</label>
-					<div class="col-md-9">
+					<div class="col-md-8">
 						<textarea name="description" class="form-control">{$description|escape}</textarea>
 					</div>
 				</div>
-				{include file='categorize.tpl'}
-				<div class="form-check">
-					<label class="col-form-label offset-md-3">{tr}Users can suggest questions:{/tr}
-						<input type="checkbox" class="form-check-input" name="canSuggest" {if $canSuggest eq 'y'}checked="checked"{/if}>
+				<div class="form-group row">
+					<label class="col-form-label col-md-4">
+						{tr}Users can suggest questions:{/tr}
 					</label>
+					<div class="col-md-8">
+						<input type="checkbox" name="canSuggest" {if $canSuggest eq 'y'}checked="checked"{/if}>
+					</div>
 				</div>
-						<td>&nbsp;
-
-						</td>
-						<td>
+				{include file='categorize.tpl'}
+				<div class="row">
+					<div class="form-group col-lg-12 clearfix">
+						<div class="text-center">
 							<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
-						</td>
-					</tr>
-				</table>
+						</div>
+					</div>
+				</div>
 			</form>
 		{/tab}
 	{/if}
