@@ -3425,7 +3425,7 @@ var upload_file = function(file) {
     form.append('hm_ajax_hook', 'ajax_smtp_attach_file');
     form.append('hm_page_key', $('#hm_page_key').val());
     form.append('draft_id', $('.compose_draft_id').val());
-    xhr.open('POST', '', true);
+    xhr.open('POST', 'cypht/ajax.php', true);
     xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4){ 

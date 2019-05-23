@@ -53,6 +53,7 @@ class PatchCypht
 		$js = file_get_contents($cypht.'site.js');
 		$js = str_replace("url: ''", "url: 'cypht/ajax.php'", $js);
 		$js = str_replace("xhr.open('POST', window.location.href)", "xhr.open('POST', 'cypht/ajax.php')", $js);
+		$js = str_replace("xhr.open('POST', '', true);", "xhr.open('POST', 'cypht/ajax.php', true);", $js);
 		$js = preg_replace("#^.*/\* swipe event handler \*/#s", "", $js);
 		file_put_contents($cypht.'site.js', $js);
 
