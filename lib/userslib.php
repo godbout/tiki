@@ -2664,7 +2664,6 @@ class UsersLib extends TikiLib
 		if ($userId) {
 			$this->query('update `users_users` set `login`=? where `userId` = ?', [$to, (int)$userId]);
 			$this->query('update `tiki_wiki_attachments` set `user`=? where `user`=?', [$to, $from]);
-			$this->query('update `tiki_webmail_messages` set `user`=? where `user`=?', [$to, $from]);
 			$this->query('update `tiki_webmail_contacts` set `user`=? where `user`=?', [$to, $from]);
 			$this->query('update `tiki_webmail_contacts_fields` set `user`=? where `user`=?', [$to, $from]);
 			$this->query('update `tiki_userpoints` set `user`=? where `user`=?', [$to, $from]);
@@ -2680,7 +2679,6 @@ class UsersLib extends TikiLib
 			$this->query('update `tiki_user_postings` set `user`=? where `user`=?', [$to, $from]);
 			$this->query('update `tiki_user_notes` set `user`=? where `user`=?', [$to, $from]);
 			$this->query('update `tiki_user_menus` set `user`=? where `user`=?', [$to, $from]);
-			$this->query('update `tiki_user_mail_accounts` set `user`=? where `user`=?', [$to, $from]);
 			$this->query('update `tiki_user_bookmarks_urls` set `user`=? where `user`=?', [$to, $from]);
 			$this->query('update `tiki_user_bookmarks_folders` set `user`=? where `user`=?', [$to, $from]);
 			$this->query('update `tiki_user_assigned_modules` set `user`=? where `user`=?', [$to, $from]);

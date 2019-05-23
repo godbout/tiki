@@ -136,7 +136,7 @@ class RedactDBCommand extends Command
 
 		// Remove user web-mail accounts
 		$output->writeln('<info>Removing user mail accounts.</info>');
-		$query = "TRUNCATE TABLE tiki_user_mail_accounts;";
+		$query = "DELETE FROM tiki_user_preferences WHERE prefName = 'cypht_user_config';";
 		$result = $tikilib->query($query);
 		$output->writeln('<info>Removing mail queue.</info>');
 		$query = "TRUNCATE TABLE tiki_mail_queue;";

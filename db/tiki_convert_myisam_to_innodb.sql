@@ -285,7 +285,6 @@ ALTER TABLE `tiki_webmail_contacts` ENGINE=InnoDB;
 ALTER TABLE `tiki_webmail_contacts_ext` ENGINE=InnoDB;
 ALTER TABLE `tiki_webmail_contacts_fields` ENGINE=InnoDB;
 ALTER TABLE `tiki_webmail_contacts_groups` ENGINE=InnoDB;
-ALTER TABLE `tiki_webmail_messages` ENGINE=InnoDB;
 ALTER TABLE `tiki_webservice` ENGINE=InnoDB;
 ALTER TABLE `tiki_webservice_template` ENGINE=InnoDB;
 ALTER TABLE `tiki_wiki_attachments` ENGINE=InnoDB;
