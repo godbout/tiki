@@ -86,7 +86,7 @@
 					<td class="text-center"><input type="submit" class="btn btn-primary btn-sm" name="update" value="{tr}Update{/tr}"></td>
 				</tr>
 				{sectionelse}
-					{norecords}
+					{norecords _colspan=3}
 				{/section}
 			</tbody>
 		</table>
