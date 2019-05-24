@@ -23,16 +23,11 @@ function wikiplugin_markdown_info() {
 	];
 }
 
+use League\CommonMark\CommonMarkConverter;
+
 function wikiplugin_markdown($data, $params) {
 
 	global $prefs;
-
-	/*$defaults = [
-		'wrap' => '1',
-		'ishtml' => false
-	];
-
-	$params = array_merge($defaults, $params);*/
 
 	extract($params, EXTR_SKIP);
 
@@ -40,7 +35,10 @@ function wikiplugin_markdown($data, $params) {
 
 	$md = str_replace('&lt;x&gt;', '', $md);
 	$md = str_replace('<x>', '', $md);
+	$md = htmlentities($md);
 
-// TODO: add the https://packagist.org/packages/league/commonmark parser to composer and make it actually do something here
+	$converter = new CommonMarkConverter();
+	return $converter->convertToHtml($md);
+
 }
 
