@@ -140,6 +140,14 @@ function tiki_route($path)
 	);
 
 	tiki_route_attempt(
+		'/([^\/]+).xml$/',
+		'tiki-sitemap.php',
+		function ($parts) {
+			return ['file' => $parts[0]];
+		}
+	);
+
+	tiki_route_attempt(
 		'|^tiki\-(\w+)\-(\w+)$|',
 		'tiki-ajax_services.php',
 		function ($parts) {

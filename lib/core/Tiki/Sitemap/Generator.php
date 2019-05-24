@@ -30,11 +30,6 @@ class Generator
 	 */
 	const BASE_FILE_NAME = 'sitemap';
 
-	/**
-	 * The relative path where the sitemap will be stored
-	 */
-	const RELATIVE_PATH = 'storage/public/';
-
 	protected $basePath;
 
 	public function __construct($basePath = null)
@@ -68,9 +63,9 @@ class Generator
 		$user = null;
 
 		$baseUrl = rtrim($baseUrl, '/');
-
 		$sitemap = new Sitemap($baseUrl);
-		$sitemap->setPath($this->basePath . self::RELATIVE_PATH);
+		$relativePath = $this->getRelativePath();
+		$sitemap->setPath($this->basePath . $relativePath);
 		$sitemap->setFilename(self::BASE_FILE_NAME);
 
 		// Add the website root
@@ -98,7 +93,7 @@ class Generator
 			}
 		}
 
-		$sitemap->createSitemapIndex($baseUrl . '/' . self::RELATIVE_PATH, date('Y-m-d'));
+		$sitemap->createSitemapIndex($baseUrl . '/' . $relativePath, date('Y-m-d'));
 
 		$user = $loggedUser; // restore the configuration for permissions
 		$perms->setGroups($oldGroups);
@@ -112,7 +107,7 @@ class Generator
 	 */
 	public function getSitemapPath($relative = true)
 	{
-		$path = self::RELATIVE_PATH . self::BASE_FILE_NAME . '-index.xml';
+		$path = $this->getRelativePath() . self::BASE_FILE_NAME . '-index.xml';
 
 		if (! $relative) {
 			$path = $this->basePath . $path;
@@ -129,5 +124,19 @@ class Generator
 	public function getSitemapFilename()
 	{
 		return self::BASE_FILE_NAME . '-index.xml';
+	}
+
+	/**
+	 * Get relative path based on our current domain
+	 *
+	 * @return mixed|string
+	 */
+	public function getRelativePath()
+	{
+		global $tikidomain;
+
+		$base = 'storage/public/';
+
+		return ! empty($tikidomain) ? $base . $tikidomain . '/' : $base;
 	}
 }

@@ -12,7 +12,7 @@ require_once 'tiki-setup.php';
 if ($prefs['sitemap_enable'] == 'y') {
 	$siteMapFile = ! empty($_REQUEST['file']) ? (string)$_REQUEST['file'] : Generator::BASE_FILE_NAME . '-index.xml';
 
-	$path = Generator::RELATIVE_PATH;
+	$path = Generator::getRelativePath();
 
 	// filter valid file names
 	if (! preg_match('/^' . Generator::BASE_FILE_NAME . '(?:|-index?|-[0-9]+).xml$/', $siteMapFile, $matches)
@@ -30,7 +30,11 @@ if ($prefs['sitemap_enable'] == 'y') {
 		foreach ($siteMap as $item) {
 			$loc = $item->getElementsByTagName('loc');
 			if (strpos($loc->item(0)->nodeValue, $path) !== false) {
-				$loc->item(0)->nodeValue = str_replace($path, 'tiki-sitemap.php?file=', $loc->item(0)->nodeValue);
+				if ($prefs['feature_sefurl'] === 'y') {
+					$loc->item(0)->nodeValue = str_replace($path, '', $loc->item(0)->nodeValue);
+				} else {
+					$loc->item(0)->nodeValue = str_replace($path, 'tiki-sitemap.php?file=', $loc->item(0)->nodeValue);
+				}
 			}
 		}
 		echo $xml->saveXML();
