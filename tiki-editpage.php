@@ -343,7 +343,7 @@ if ($prefs['feature_warn_on_edit'] === 'y') {
 		if (! isset($_REQUEST['save'])) {
 			if ($serviceLib->internal('semaphore', 'is_set', ['object_id' => $page]) &&
 				$serviceLib->internal('semaphore', 'get_user', ['object_id' => $page]) !== $u &&
-				! $serviceLib->internal('semaphore', 'is_set', ['object_id' => 'togetherjs '.$page])
+				! $serviceLib->internal('semaphore', 'is_set', ['object_id' => 'togetherjs ' . $page])
 			) {
 				$editpageconflict = 'y';
 			} elseif ($tiki_p_edit === 'y') {
@@ -353,7 +353,7 @@ if ($prefs['feature_warn_on_edit'] === 'y') {
 			$beingedited = 'y';
 		} else {
 			$serviceLib->internal('semaphore', 'unset', ['object_id' => $page]);
-			$serviceLib->internal('semaphore', 'unset', ['object_id' => 'togetherjs '.$page]);
+			$serviceLib->internal('semaphore', 'unset', ['object_id' => 'togetherjs ' . $page]);
 		}
 	}
 	if ($editpageconflict === 'y' && ! isset($_REQUEST["conflictoverride"])) {
@@ -1143,6 +1143,9 @@ if (isset($_REQUEST["save"])
 		   $cachedlinks = array_diff($links, $notcachedlinks);
 		   $tikilib->cache_links($cachedlinks);
 		 */
+
+		$info_old = null;
+
 		$tikilib->create_page(
 			$_REQUEST["page"],
 			0,
@@ -1218,6 +1221,8 @@ if (isset($_REQUEST["save"])
 			$edit = $editlib->partialParseWysiwygToWiki($edit);
 		}
 
+		$info_old = $tikilib->get_page_info($page);
+
 		$tikilib->update_page(
 			$_REQUEST["page"],
 			$edit,
@@ -1253,6 +1258,70 @@ if (isset($_REQUEST["save"])
 					$flags[] = 'critical';
 				}
 				$multilinguallib->createTranslationBit('wiki page', $info['page_id'], $info['version'], $flags);
+			}
+		}
+	}
+
+	// Notify users/usergroups
+	if ($prefs['feature_notify_users_mention'] === 'y' && $prefs['feature_tag_users'] === 'y') {
+		$tikiLibUser = TikiLib::lib('user');
+		$mentionedBy = $tikiLibUser->get_userid_info($u_info['id'], false);
+
+		$oldData = '';
+		$newData = '';
+
+		if (is_null($info_old) && $info_new['version'] == '1') {
+			$oldData = '';
+			$newData = explode("\n", $info_new['data']);
+		} elseif (isset($info_old) && $info_new['version'] !== $info_old['version']) {
+			$histlib = TikiLib::lib('hist');
+			$history = $histlib->get_page_history($info_new['pageName'], true, 0, 2);
+
+			if (isset($history[0]) && isset($history[1])) {
+				$oldData = explode("\n", $history[1]['data']);
+				$newData = explode("\n", $history[0]['data']);
+			}
+		}
+
+		$sections = [];
+
+		require_once('lib/diff/difflib.php');
+		$textDiff = new Text_Diff($oldData, $newData, true);
+		if (! $textDiff->isEmpty()) {
+			foreach ($textDiff->_edits as $edit) {
+				if (is_a($edit, 'Text_Diff_Op_add')) { // new content
+					$sections[] = findMentions($edit->final, 'new');
+				} elseif (is_a($edit, 'Text_Diff_Op_change')) { // change or new content
+					$sections[] = findMentionsOnChange($edit);
+				} elseif (is_a($edit, 'Text_Diff_Op_copy')) { // no diffs on content
+					$sections[] = findMentions($edit->final, 'old');
+				}
+			}
+		}
+
+		$count = 1;
+		foreach ($sections as $sec) {
+			$notifiedUsers = [];
+			foreach ($sec as $possibleUser) {
+				if (isset($possibleUser) && $possibleUser['state'] == 'new') {
+					$user = substr($possibleUser['mention'], strpos($possibleUser['mention'], "@") + 1);
+					if ($user) {
+						$userInfo = $tikiLibUser->get_user_info($user);
+						if (is_array($userInfo) && $userInfo['userId'] > 0) {
+							if (! in_array($user, $notifiedUsers)) {
+								$emailData = [
+									'siteName' => TikiLib::lib('tiki')->get_preference('browsertitle'),
+									'mentionedBy' => $mentionedBy['login'],
+									'section' => $info_new['pageName'] . '#mentioned-' . $user . '-section-' . $count
+								];
+
+								Tiki\Notifications\Email::sendMentionNotification('mention_notification_subject.tpl', 'mention_notification.tpl', $emailData, [$userInfo]);
+								$notifiedUsers[] = $user;
+							}
+							$count++;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -1466,7 +1535,6 @@ if ($prefs['feature_multilingual'] === 'y') {
 	}
 
 	if ($editlib->isTranslationMode()) {
-		$histlib = TikiLib::lib('hist');
 		histlib_helper_setup_diff(
 			$editlib->sourcePageName,
 			$editlib->oldSourceVersion,

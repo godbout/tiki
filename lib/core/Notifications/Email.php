@@ -83,4 +83,29 @@ class Email
 
 		return sendEmailNotification($usersToNotify, null, $subjectTpl, null, $txtTpl);
 	}
+
+	/**
+	 * Send email notification to tiki users when they are mentioned in tiki pages
+	 *
+	 * @param $subjectTpl
+	 * @param $txtTpl
+	 * @param $info
+	 * @param $userToNotify
+	 * @return int
+	 * @throws \Exception
+	 */
+	public static function sendMentionNotification($subjectTpl, $txtTpl, $info, $userToNotify = [])
+	{
+		$tikilib = \TikiLib::lib('tiki');
+		$smarty = \TikiLib::lib('smarty');
+
+		$machine = parse_url($_SERVER['REQUEST_URI']);
+		$machine = $tikilib->httpPrefix(true);
+
+		$smarty->assign('siteName', $info['siteName']);
+		$smarty->assign('mentionedBy', $info['mentionedBy']);
+		$smarty->assign('section', $machine . '/' . $info['section']);
+
+		return sendEmailNotification($userToNotify, null, $subjectTpl, null, $txtTpl);
+	}
 }

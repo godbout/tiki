@@ -3072,7 +3072,7 @@ class UsersLib extends TikiLib
 	 * @param string $class		add a class to the a tag (default userlink)
 	 * @return string           HTML anchor tag
 	 */
-	function build_userinfo_tag($auser = '', $body = '', $class = 'userlink', $show_popup = 'y')
+	function build_userinfo_tag($auser = '', $body = '', $class = 'userlink', $show_popup = 'y', $elementId = '')
 	{
 		global $user, $prefs;
 
@@ -3088,7 +3088,7 @@ class UsersLib extends TikiLib
 		$isSelf = ($auser == $user) ? true : false;
 		// Only process if feature_friends enabled, user_information public or we query ourselfs
 		if (($this->get_user_preference($auser, 'user_information', 'public') != 'public') && ($prefs['feature_friends'] != 'y') && ! $isSelf) {
-			return $body;
+			return "<span id=\"" . $elementId . "\">" . $body . "</span>";
 		}
 
 
@@ -3154,7 +3154,7 @@ class UsersLib extends TikiLib
 			}
 		}
 
-		$body = "<a title=\"" . htmlspecialchars($title, ENT_QUOTES) . "\" href=\"$url\" class=\"$class\"$extra>" . $body . '</a>';
+		$body = "<a id=\"" . $elementId . "\" title=\"" . htmlspecialchars($title, ENT_QUOTES) . "\" href=\"$url\" class=\"$class\"$extra>" . $body . '</a>';
 
 		return $body;
 	}

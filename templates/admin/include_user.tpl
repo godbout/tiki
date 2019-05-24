@@ -55,6 +55,7 @@
 					{preference name=feature_usermenu}
 					{preference name=feature_userlevels}
 					{preference name=feature_wiki_userpage}
+					{preference name=feature_tag_users}
 					<div class="adminoptionboxchild" id="feature_wiki_userpage_childcontainer">
 						{preference name=feature_wiki_userpage_prefix}
 					</div>
@@ -138,6 +139,7 @@
 				{preference name=feature_user_watches_translations}
 				{preference name=feature_groupalert}
 				{preference name=feature_webmail}
+				{preference name=feature_notify_users_mention}
 			</fieldset>
 		{/tab}
 		{tab name="{tr}User Files{/tr}"}

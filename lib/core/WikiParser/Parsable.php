@@ -333,6 +333,11 @@ if ( \$('#$id') ) {
 		// smileys
 		$data = $this->parse_smileys($data);
 
+		// parse_tagged_users
+		if (isset($prefs['feature_tag_users']) && $prefs['feature_tag_users'] == 'y') {
+			$data = $this->parse_tagged_users($data);
+		}
+
 		$data = $this->parse_data_dynamic_variables($data, $this->option['language']);
 
 		// Replace boxes

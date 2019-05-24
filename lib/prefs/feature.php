@@ -1133,6 +1133,25 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 			'tags' => ['basic'],
 		],
+		'feature_tag_users' => [
+			'name' => tra('Tagging users'),
+			'description' => tra('Add support for @username mentions'),
+			'help' => 'Add support for @username mentions',
+			'type' => 'flag',
+			'default' => 'n',
+			'tags' => ['basic'],
+		],
+		'feature_notify_users_mention' => [
+			'name' => tra('User mention notifications'),
+			'description' => tra('Add support for @username mentions notifications'),
+			'help' => 'Add support for @username mentions notifications by email',
+			'type' => 'flag',
+			'default' => 'n',
+			'tags' => ['basic'],
+			'dependencies' => [
+				'feature_tag_users',
+			],
+		],
 		'feature_draw' => [
 			'name' => tra('Draw (SVG edit)'),
 			'description' => tra('Draw enables creating and editing SVG images in all wiki text areas'),

@@ -24,7 +24,7 @@ class Tiki_Text_Diff_Renderer extends Text_Diff_Renderer
 			echo "$prefix$line$suffix\n";
 		}
 	}
-	public function render($diff)
+	public function render($diff, $singleEdit = false)
 	{
 		$x0 = $y0 = 0;
 		$xi = $yi = 1;
@@ -36,7 +36,11 @@ class Tiki_Text_Diff_Renderer extends Text_Diff_Renderer
 
 		$this->_startDiff();
 
-		foreach ($diff->getDiff() as $edit) {
+		if (! $singleEdit) {
+			$diff = $diff->getDiff();
+		}
+
+		foreach ($diff as $edit) {
 			if (is_a($edit, 'Text_Diff_Op_copy')) {
 				if (is_array($block)) {
 					if (count($edit->orig) <= $nlead + $ntrail) {
@@ -188,4 +192,88 @@ function compileRendererClass($function)
 	if (defined('TIKI_IN_TEST')) {
 		error_reporting($old_error_reporting_level);
 	}
+}
+
+/**
+ * Find mentions
+ *
+ * @param $lines
+ * @param $state
+ * @return array
+ */
+function findMentions($lines, $state)
+{
+	$allMatches = [] ;
+
+	if (isset($lines) && is_array($lines)) {
+		foreach (array_filter($lines) as $line) {
+			preg_match_all("/(?:^|\s)@(\w+)/i", $line, $matches);
+			foreach ($matches[0] as $match) {
+				$allMatches[] = [
+					'state' => $state,
+					'mention' => trim($match)
+				];
+			}
+		}
+	}
+
+	return $allMatches;
+}
+
+/**
+ * Find mentions on change content
+ *
+ * @param $edit
+ * @return array
+ */
+function findMentionsOnChange($edit)
+{
+	$allMatches = [];
+
+	if ((isset($edit->orig) && is_array($edit->orig)) && (isset($edit->final) && is_array($edit->final))) {
+		if (empty($edit->orig[0])) {
+			$mentions = findMentions($edit->final, 'new');
+			foreach ($mentions as $m) {
+				$allMatches[] = $m;
+			}
+		} else {
+			require_once('renderer_inline.php');
+			$renderer = new Text_Diff_Renderer_inline(1);
+			$html = $renderer->render([$edit], true);
+
+			// remove unnecessary content
+			$html = preg_replace("#<tr class=\"diffheader\">(.*?)</tr>#", "", $html);
+			$html = preg_replace("#<span class='diffinldel'>(.*?)</span>#", "", $html);
+			$html = str_replace(["<tr class='diffbody'>", "</tr>", "<td colspan='3'>", "</td>"], "", $html);
+			$html = str_replace(["<span class='diffadded'>", "</span>"], "<ins>", $html);
+			$finalContent = explode('<ins>', $html);
+
+			$index = 0;
+			foreach ($finalContent as $key => $value) {
+				if (($index % 2) == 1) {
+					// new mention
+					$charToAdd = '';
+					$previousMention = $finalContent[$key - 1];
+					if (! empty($previousMention)) {
+						$lastChar = substr($previousMention, -1);
+						if ($lastChar == '@') {
+							$charToAdd = '@';
+						}
+					}
+
+					$mentions = findMentions([$charToAdd . $value], 'new');
+				} else {
+					// old mention
+					$mentions = findMentions([$value], 'old');
+				}
+
+				foreach ($mentions as $m) {
+					$allMatches[] = $m;
+				}
+				$index++;
+			}
+		}
+	}
+
+	return $allMatches;
 }

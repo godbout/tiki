@@ -2571,8 +2571,7 @@ class ParserLib extends TikiDb_Bridge
 						// Close open paragraph (lists already closed above)
 						$this->close_blocks($data, $in_paragraph, $listbeg, $divdepth, 1, 0, 0);
 						// Close lower level divs if opened
-						for (; current($divdepth) >= $hdrlevel;
-						array_shift($divdepth)) {
+						for (; current($divdepth) >= $hdrlevel; array_shift($divdepth)) {
 							$data .= '</div>';
 						}
 
@@ -3138,6 +3137,32 @@ class ParserLib extends TikiDb_Bridge
 			}
 		}
 	}
+	//*
+	function parse_tagged_users($data)
+	{
+		$count = 1;
+		return preg_replace_callback(
+			'/(?:^|\s)@(\w+)/i',
+			function ($matches) use (&$count) {
+				$myUser = substr($matches[0], strpos($matches[0], "@") + 1);
+				if ($myUser) {
+					$u = TikiLib::lib('user')->get_user_info($myUser);
+					if (is_array($u) && $u['userId'] > 0) {
+						$v = TikiLib::lib('user')->build_userinfo_tag($myUser, '', 'userlink', 'y', 'mentioned-' . $myUser . '-section-' . $count);
+						$count++;
+						if ($v) {
+							$prefix = ($matches[0][1] == '@') ? $matches[0][0] : '';
+							return $prefix . $v;
+						}
+					}
+
+					return $matches[0];
+				}
+				return $matches[0];
+			},
+			$data
+		);
+	}
 
 	//*
 	function parse_smileys($data)
@@ -3411,7 +3436,7 @@ class ParserLib extends TikiDb_Bridge
 						$appendMaxSize = "&amp;x=" . $maxWidthPreview;
 					}
 
-					$popup = 'data-type="file" data-object="' . $fileId . '" data-toggle="popover" data-trigger="hover focus" data-content="<img src=\'tiki-download_file.php?fileId=' . $fileId . '&amp;thumbnail' . $appendMaxSize . '\'>" data-html="1" data-width="'. $maxWidthPreview . '"';
+					$popup = 'data-type="file" data-object="' . $fileId . '" data-toggle="popover" data-trigger="hover focus" data-content="<img src=\'tiki-download_file.php?fileId=' . $fileId . '&amp;thumbnail' . $appendMaxSize . '\'>" data-html="1" data-width="' . $maxWidthPreview . '"';
 					$content = str_replace($search, $popup, $content);
 				} else {
 					$filePath = $file->getWrapper()->getReadableFile();

@@ -29,13 +29,14 @@ class Text_Diff
 	 * @param array $from_lines  An array of strings.  Typically these are
 	 *                           lines from a file.
 	 * @param array $to_lines    An array of strings.
+	 * @param boolean $forceNative
 	 */
-	function __construct($from_lines, $to_lines)
+	function __construct($from_lines, $to_lines, $forceNative = false)
 	{
 		array_walk($from_lines, [$this, '_trimNewlines']);
 		array_walk($to_lines, [$this, '_trimNewlines']);
 
-		if (extension_loaded('xdiff')) {
+		if (extension_loaded('xdiff') && ! $forceNative) {
 			$engine = new Text_Diff_Engine_xdiff();
 		} else {
 			$engine = new Text_Diff_Engine_native();
