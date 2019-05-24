@@ -8,9 +8,9 @@
 function wikiplugin_markdown_info() {
 	return [
 		'name' => tra('Markdown'),
-		'documentation' => 'PluginMD',
+		'documentation' => 'PluginMarkdown',
 		'description' => tra('Parse the body of the plugin using a Markdown parser.'),
-		'prefs' => ['wikiplugin_md'],
+		'prefs' => ['wikiplugin_markdown'],
 		'body' => tra('Markdown syntax to be parsed'),
 		'iconname' => 'code',
 		'introduced' => 20,
