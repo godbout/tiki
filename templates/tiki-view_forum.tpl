@@ -1,8 +1,8 @@
 {* $Id$ *}
 {if !$ts.ajax}
-	{$forum_info.name|addonnavbar:'forum'}
+	{$forum_info.name}
 	{block name=title}
-		{title help="forums" admpage="forums" url=$forum_info.forumId|sefurl:'forum'}{$forum_info.name|addongroupname}{/title}
+		{title help="forums" admpage="forums" url=$forum_info.forumId|sefurl:'forum'}{$forum_info.name}{/title}
 	{/block}
 
 	{if $forum_info.show_description eq 'y'}
@@ -104,7 +104,7 @@
 	<div class="breadcrumb">
 		<a class="link" href="{if $prefs.feature_sefurl eq 'y'}forums{else}tiki-forums.php{/if}">{tr}Forums{/tr}</a>
 		{$prefs.site_crumb_seper}
-		<a class="link" href="{$forumId|sefurl:'forum'}">{$forum_info.name|addongroupname|escape}</a>
+		<a class="link" href="{$forumId|sefurl:'forum'}">{$forum_info.name|escape}</a>
 	</div>
 
 	{if $tiki_p_forum_post_topic eq 'y'}

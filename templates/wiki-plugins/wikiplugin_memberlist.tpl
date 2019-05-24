@@ -6,7 +6,7 @@
 	<div class="memberlist">
 		{tabset}
 			{foreach from=$memberlist_groups key=groupName item=groupData}
-				{tab name="{$groupName|addongroupname|escape}"}
+				{tab name="{$groupName|escape}"}
 					<div class="group">
 						{if !empty($user) and $prefs.feature_user_watches eq 'y'}
 							<div class="float-sm-right">
@@ -21,7 +21,7 @@
 								{/if}
 							</div>
 						{/if}
-						<h2>{$groupName|addongroupname|escape}</h2>
+						<h2>{$groupName|escape}</h2>
 						{if isset($groupData.info) and !empty($groupData.info.groupDesc)}
 							<p class="description">{$groupData.info.groupDesc}</p>
 						{/if}

@@ -1,8 +1,8 @@
 {* $Id$ *}
-{$forum_info.name|addonnavbar:'forum'}
+{$forum_info.name}
 {block name=title}
 	{title help="forums" admpage="forums"}
-		{$forum_info.name|addongroupname}
+		{$forum_info.name}
 		{if $prefs.feature_forum_topics_archiving eq 'y' && $thread_info.archived eq 'y'}({tr}Archived{/tr}){/if}
 	{/title}
 {/block}
@@ -29,7 +29,7 @@
 	</a>
 	{$prefs.site_crumb_seper}
 	<a class="link" href="{$forumId|sefurl:'forum'}">
-		{$forum_info.name|addongroupname|escape}
+		{$forum_info.name|escape}
 	</a>{if isset($thread_info.topic.threadId) and $thread_info.topic.threadId}
 		{$prefs.site_crumb_seper}
 		<a class="link" href="{$thread_info.topic.threadId|sefurl:'forumthread'}{if $smarty.request.topics_offset}&amp;topics_offset={$smarty.request.topics_offset}{/if}{$topics_sort_mode_param}{$topics_threshold_param}{$topics_find_param}">
