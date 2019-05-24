@@ -2615,7 +2615,7 @@ CREATE TABLE `tiki_user_notes` (
   `created` int(14) default NULL,
   `name` varchar(255) default NULL,
   `lastModif` int(14) default NULL,
-  `data` text,
+  `data` LONGBLOB,
   `size` int(14) default NULL,
   `parse_mode` varchar(20) default NULL,
   PRIMARY KEY (`noteId`)

@@ -162,7 +162,7 @@ class SchedulersLib extends TikiLib
 	 *
 	 * @return int	The end time in timestamp format
 	 */
-	public function end_scheduler_run($scheduler_id, $run_id, $executionStatus, $errorMessage, $end_time = null, $healed = false)
+	public function end_scheduler_run($scheduler_id, $run_id, $executionStatus, $errorMessage, $end_time = null, $healed = 0)
 	{
 
 		if (empty($end_time)) {
