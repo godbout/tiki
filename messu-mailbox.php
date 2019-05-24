@@ -36,6 +36,11 @@ $find = '';
 $orig_or_reply = "r";
 
 // Mark messages if the mark button was pressed
+if (isset($_POST['flagmsg']) && $access->checkCsrf()) {
+	$parts = explode("_", $_POST['flagmsg']);
+	$messulib->flag_message($user, $parts[1], 'isFlagged', $parts[0]);
+}
+
 if (isset($_POST["mark"])) {
 	if (isset($_POST["msg"]) && $access->checkCsrf()) {
 		$i = 0;
