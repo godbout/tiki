@@ -1958,6 +1958,7 @@
 		"kaltura/api-client-library": ">=12.18",
 		"kriswallsmith/assetic": "^1.4",
 		"leafo/scssphp": ">=0.6.7",
+		"league/commonmark": ">=0.19.2",
 		"legolasbo/photoswipe": ">=4.1.1",
 		"mathjax/mathjax": "^2.7",
 		"matthiasmullie/minify": ">=1.3.42",
