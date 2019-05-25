@@ -27,7 +27,7 @@ class TWVersion
 		$this->branch 	= 'trunk';
 
 		// Set everything else, including defaults.
-		$this->version 	= '20.0svn';	// needs to have no spaces for releases
+		$this->version 	= '21.0svn';	// needs to have no spaces for releases
 		$this->star	= 'TBA';
 		$this->releases	= [];
 
@@ -81,6 +81,7 @@ class TWVersion
 				28 => 'Zeta Boötis',	// 17.x
 				29 => 'Alcyone',	// 18.x
 				30 => 'Denebola',	// 19.x
+				31 => 'Tarazed',	// 20.x
 		];
 	}
 
