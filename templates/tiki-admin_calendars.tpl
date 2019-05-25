@@ -331,7 +331,7 @@
 				<label class="col-sm-4 col-form-label" for="customcategories">
 					{tr}End of day{/tr}
 				</label>
-				<div class="col-sm-8">
+				<div class="col-sm-2">
 					{html_select_time prefix="endday_" time=$info.endday display_minutes=false display_seconds=false use_24_hours=$use_24hr_clock}
 				</div>
 			</div>
@@ -353,7 +353,7 @@
 				<label class="col-sm-4 col-form-label" for="customcategories">
 					{tr}Standard color{/tr}
 				</label>
-				<div class="col-sm-2">
+				<div class="col-sm-3">
 					<select class="form-control" id="customcategories" name="options[customcolors]" onChange="javascript:document.getElementById('fgColorField').disabled=(this.options[this.selectedIndex].value != 0);document.getElementById('bgColorField').disabled=(this.options[this.selectedIndex].value != 0);">
 						<option value="" />
 						<option value="008400-99fa99" style="background-color:#99fa99;color:#008400" {if ($customColors) eq '008400-99fa99'}selected{/if}>{tr}Green{/tr}</option>
@@ -369,16 +369,16 @@
 				<label class="col-sm-4 col-form-label" for="fgColorField">
 					{tr}Custom foreground color{/tr}
 				</label>
-				<div class="col-sm-8">
-					<input id="fgColorField" type="text" name="options[customfgcolor]" value="{$customfgcolor}" size="6"> <i>{tr}Example:{/tr} FFFFFF</i>
+				<div class="col-sm-3">
+					<input id="fgColorField" class="form-control" type="text" name="options[customfgcolor]" value="{$customfgcolor}" size="6"> <i>{tr}Example:{/tr} FFFFFF</i>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-4 col-form-label" for="bgColorField">
 					{tr}Custom background color{/tr}
 				</label>
-				<div class="col-sm-8">
-					<input id="bgColorField" type="text" name="options[custombgcolor]" value="{$custombgcolor}" size="6"> <i>{tr}Example:{/tr} 000000</i>
+				<div class="col-sm-3">
+					<input id="bgColorField" class="form-control" type="text" name="options[custombgcolor]" value="{$custombgcolor}" size="6"> <i>{tr}Example:{/tr} 000000</i>
 				</div>
 			</div>
 			<div class="form-group row">
