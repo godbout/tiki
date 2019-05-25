@@ -110,10 +110,17 @@ class IndexRebuildCommand extends Command
 		if ($result) {
 			if (! $cron) {
 				$output->writeln("Indexed");
-				foreach ($result as $key => $val) {
+				foreach ($result['default'] as $key => $val) {
 					$output->writeln("  $key: $val");
 				}
 				$output->writeln('Rebuilding index done');
+				if (\TikiLib::lib('unifiedsearch')->getFallbackIndexEngine()) {
+					if (! empty($result['fallback'])) {
+						$output->writeln('Fallback index was also rebuilt');
+					} else {
+						$output->writeln('<comment>Fallback index was not rebuilt</comment>');
+					}
+				}
 				$output->writeln('Execution time: ' . FormatterHelper::formatTime($timer->stop()));
 				$output->writeln('Current Memory usage: ' . FormatterHelper::formatMemory(memory_get_usage()));
 				$output->writeln('Memory peak usage before indexing: ' . FormatterHelper::formatMemory($memory_peak_usage_before));

@@ -25,6 +25,17 @@
 				{/foreach}
 			</ul>
 		{/remarksbox}
+		{if $fallback_search_set}
+			{if $fallback_search_indexed}
+				{remarksbox type='feedback' title="{tr}Fallback search engine{/tr}"}
+					<p>{tr}Fallback search index was rebuild.{/tr}</p>
+				{/remarksbox}
+			{else}
+				{remarksbox type='error' title="{tr}Fallback search engine{/tr}"}
+					<p>{tr}Fallback search index was not rebuilt.{/tr}</p>
+				{/remarksbox}
+			{/if}
+		{/if}
 		{remarksbox type='feedback' title="{tr}Execution Statistics{/tr}"}
 			<ul>
 				<li>{tr}Execution time:{/tr} {$execution_time}</li>

@@ -690,9 +690,16 @@ class PreferencesLib
 		return $out;
 	}
 
-	public function rebuildIndex()
+	/**
+	 * @param bool $fallback Rebuild fallback search index
+	 * @return Search_Index_Interface|\ZendSearch\Lucene\SearchIndexInterface|null
+	 * @throws Exception
+	 */
+	public function rebuildIndex($fallback = false)
 	{
-		$index = TikiLib::lib('unifiedsearch')->getIndex('preference');
+		global $prefs;
+
+		$index = TikiLib::lib('unifiedsearch')->getIndex('preference', ! $fallback);
 		$index->destroy();
 
 		$typeFactory = $index->getTypeFactory();
@@ -719,7 +726,13 @@ class PreferencesLib
 			}
 		}
 
-
+		// Rebuild fallback index
+		if (! $fallback && $fallbackEngine = TikiLib::lib('unifiedsearch')->getFallbackIndexEngine()) {
+			$defaultEngine = $prefs['unified_engine'];
+			$prefs['unified_engine'] = $fallbackEngine;
+			$this->rebuildIndex(true);
+			$prefs['unified_engine'] = $defaultEngine;
+		}
 
 		return $index;
 	}

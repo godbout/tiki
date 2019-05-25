@@ -60,9 +60,11 @@ class Services_Search_Controller
 
 		return [
 			'title' => tr('Rebuild Index'),
-			'stat' => $stat,
+			'stat' => $stat['default'],
 			'search_engine' => $engine,
 			'search_version' => $version,
+			'fallback_search_set' => $unifiedsearchlib->getFallbackIndexEngine() != null,
+			'fallback_search_indexed' => ! empty($stat['fallback']),
 			'queue_count' => $unifiedsearchlib->getQueueCount(),
 			'execution_time' => FormatterHelper::formatTime($timer->stop()),
 			'memory_usage' => FormatterHelper::formatMemory(memory_get_usage()),
@@ -151,7 +153,7 @@ class Services_Search_Controller
 				];
 				if ($item['object_type'] == 'trackeritem') {
 					$transformed['status_icon'] = smarty_function_tracker_item_status_icon(['item' => $item['object_id']], $smarty->getEmptyInternalTemplate());
-				} 
+				}
 				return $transformed;
 			});
 

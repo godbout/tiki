@@ -96,6 +96,10 @@
 						{preference name="unified_elastic_index_current"}
 						{preference name="unified_elastic_field_limit"}
 						{preference name="unified_relation_object_indexing"}
+						{remarksbox type=tip title="{tr}About Use MySQL Full-Text Search as fallback{/tr}"}
+							{tr}Elasticsearch is a tiki external service. You should set at least a daily full index rebuild to keep the MySQL index updated in case of Elastic unavailability{/tr}.
+						{/remarksbox}
+						{preference name="unified_elastic_mysql_search_fallback"}
 					</div>
 
 					{preference name="unified_lucene_default_operator"}

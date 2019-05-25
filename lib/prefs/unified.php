@@ -261,6 +261,12 @@ function prefs_unified_list()
 			'description' => tra('The maximum number of fields per search index in Elasticsearch version 5.x and above'),
 			'default' => '1000',
 		],
+		'unified_elastic_mysql_search_fallback' => [
+			'name' => tra('Use MySQL Full-Text Search (fallback)'),
+			'type' => 'flag',
+			'description' => tra('In case of Elasticsearch is active and unavailable, use MySQL Full-Text Search as fallback'),
+			'default' => 'n',
+		],
 		'unified_mysql_index_current' => [
 			'name' => tra('MySQL full-text search current index'),
 			'description' => tra('A new index is created upon rebuilding, and the old one is then destroyed. This setting enables seeing the currently active index.'),

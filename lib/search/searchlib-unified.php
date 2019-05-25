@@ -161,9 +161,11 @@ class UnifiedSearchLib
 
 	/**
 	 * @param int $loggit 0=no logging, 1=log to Search_Indexer.log, 2=log to Search_Indexer_console.log
-	 * @return array
+	 * @param bool $fallback If the fallback index is being rebuild
+	 * @return array|bool
+	 * @throws Exception
 	 */
-	function rebuild($loggit = 0)
+	public function rebuild($loggit = 0, $fallback = false)
 	{
 		global $prefs;
 		switch ($prefs['unified_engine']) {
@@ -224,7 +226,6 @@ class UnifiedSearchLib
 				die('Unsupported');
 		}
 
-
 		// Build in -new
 		TikiLib::lib('queue')->clear(self::INCREMENT_QUEUE);
 		$tikilib = TikiLib::lib('tiki');
@@ -250,6 +251,9 @@ class UnifiedSearchLib
 		} catch (Exception $e) {
 			Feedback::error(tr('The search index could not be rebuilt.') . '<br />' . $e->getMessage());
 		}
+
+		$stats = [];
+		$stats['default'] = $stat;
 
 		// Force destruction to clear locks
 		if ($indexer) {
@@ -279,6 +283,7 @@ class UnifiedSearchLib
 			case 'elastic':
 				$oldIndex = null; // assignAlias will handle the clean-up
 				$tikilib->set_preference('unified_elastic_index_current', $indexName);
+
 				$connection->assignAlias($aliasName, $indexName);
 
 				break;
@@ -297,6 +302,19 @@ class UnifiedSearchLib
 			}
 		}
 
+		if ($fallback) {
+			// Fallback index was rebuilt. Proceed with default index operations
+			return $stats['default'];
+		}
+
+		// Rebuild mysql as fallback for elasticsearch engine
+		if (! $fallback && $fallbackEngine = TikiLib::lib('unifiedsearch')->getFallbackIndexEngine()) {
+			$defaultEngine = $prefs['unified_engine'];
+			$prefs['unified_engine'] = $fallbackEngine;
+			$stats['fallback'] = $this->rebuild($loggit, true);
+			$prefs['unified_engine'] = $defaultEngine;
+		}
+
 		// Process the documents updated while we were processing the update
 		$this->processUpdateQueue(1000);
 
@@ -308,7 +326,7 @@ class UnifiedSearchLib
 
 		$this->isRebuildingNow = false;
 		$access->preventRedirect(false);
-		return $stat;
+		return $stats;
 	}
 
 	/**
@@ -346,9 +364,12 @@ class UnifiedSearchLib
 	/**
 	 * Get the index location depending on $tikidomain for multi-tiki
 	 *
-	 * @return string	path to index directory
+	 * @param string $indexType
+	 * @param string $engine If not set, it uses default unified search engine
+	 * @return string    path to index directory
+	 * @throws Exception
 	 */
-	private function getIndexLocation($indexType = 'data')
+	private function getIndexLocation($indexType = 'data', $engine = null)
 	{
 		global $prefs, $tikidomain;
 		$mapping = [
@@ -368,7 +389,7 @@ class UnifiedSearchLib
 			],
 		];
 
-		$engine = $prefs['unified_engine'];
+		$engine = $engine ?: $prefs['unified_engine'];
 
 		if (isset($mapping[$engine][$indexType])) {
 			$index = $mapping[$engine][$indexType];
@@ -692,11 +713,11 @@ class UnifiedSearchLib
 	/**
 	 * @return Search_Index_Interface
 	 */
-	function getIndex($indexType = 'data')
+	function getIndex($indexType = 'data', $useCache = true)
 	{
 		global $prefs, $tiki_p_admin;
 
-		if (isset($this->indices[$indexType])) {
+		if (isset($this->indices[$indexType]) && $useCache) {
 			return $this->indices[$indexType];
 		}
 
@@ -706,36 +727,41 @@ class UnifiedSearchLib
 			$writeMode = true;
 		}
 
-		switch ($prefs['unified_engine']) {
-			case 'lucene':
-				ZendSearch\Lucene\Lucene::setTermsPerQueryLimit($prefs['unified_lucene_terms_limit']);
-				$index = new Search_Lucene_Index($this->getIndexLocation($indexType), $prefs['language'], $prefs['unified_lucene_highlight'] == 'y');
-				$index->setCache(TikiLib::lib('cache'));
-				$index->setMaxResults($prefs['unified_lucene_max_result']);
-				$index->setResultSetLimit($prefs['unified_lucene_max_resultset_limit']);
+		$engine = $prefs['unified_engine'];
+		$fallbackMySQL = false;
 
-				return $index;
-			case 'elastic':
-				$index = $this->getIndexLocation($indexType);
-				if (empty($index)) {
-					break;
-				}
+		if ($engine == 'lucene') {
+			ZendSearch\Lucene\Lucene::setTermsPerQueryLimit($prefs['unified_lucene_terms_limit']);
+			$index = new Search_Lucene_Index($this->getIndexLocation($indexType), $prefs['language'], $prefs['unified_lucene_highlight'] == 'y');
+			$index->setCache(TikiLib::lib('cache'));
+			$index->setMaxResults($prefs['unified_lucene_max_result']);
+			$index->setResultSetLimit($prefs['unified_lucene_max_resultset_limit']);
 
-				$connection = $this->getElasticConnection($writeMode);
+			return $index;
+		}
+
+		if ($engine == 'elastic' && $index = $this->getIndexLocation($indexType)) {
+			$connection = $this->getElasticConnection($writeMode);
+			if ($connection->getStatus()->status === 200) {
 				$index = new Search_Elastic_Index($connection, $index);
 				$index->setCamelCaseEnabled($prefs['unified_elastic_camel_case'] == 'y');
 				$index->setPossessiveStemmerEnabled($prefs['unified_elastic_possessive_stemmer'] == 'y');
 				$index->setFacetCount($prefs['search_facet_default_amount']);
+
 				$this->indices[$indexType] = $index;
 				return $index;
-			case 'mysql':
-				$index = $this->getIndexLocation($indexType);
-				if (empty($index)) {
-					break;
-				}
+			}
 
-				$index = new Search_MySql_Index(TikiDb::get(), $index);
-				return $index;
+			if ($prefs['unified_elastic_mysql_search_fallback'] === 'y') {
+				$fallbackMySQL = true;
+				Feedback::warning(['mes' => tr('Unable to connect to the main search index, MySQL full-text search used, the search results might not be accurate')]);
+				$prefs['unified_incremental_update'] = 'n';
+			}
+		}
+
+		if (($engine == 'mysql' || $fallbackMySQL) && $index = $this->getIndexLocation($indexType, 'mysql')) {
+			$index = new Search_MySql_Index(TikiDb::get(), $index);
+			return $index;
 		}
 
 		// Do nothing, provide a fake index.
@@ -1113,7 +1139,7 @@ class UnifiedSearchLib
 					$range = explode(',', $range);
 					if (count($range) > 2) {
 						$facet->addRange($range[1], $range[0], $range[2]);
-					} else if (count($range) > 1) {
+					} elseif (count($range) > 1) {
 						$facet->addRange($range[1], $range[0]);
 					}
 				}
@@ -1327,5 +1353,21 @@ class UnifiedSearchLib
 		}
 		$logName = $prefs['tmpDir'] . (substr($prefs['tmpDir'], -1) === '/' ? '' : '/') . $logName . '.log';
 		return $logName;
+	}
+
+	/**
+	 * Return the fallback search engine name
+	 *
+	 * @return string|null
+	 */
+	public function getFallbackIndexEngine()
+	{
+		global $prefs;
+
+		if ($prefs['unified_engine'] == 'elastic' && $prefs['unified_elastic_mysql_search_fallback'] === 'y') {
+			return 'mysql';
+		}
+
+		return null;
 	}
 }
