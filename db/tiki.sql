@@ -2563,30 +2563,6 @@ CREATE TABLE `tiki_user_login_cookies` (
     PRIMARY KEY (`userId`, `secret`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
-DROP TABLE IF EXISTS `tiki_user_mail_accounts`;
-CREATE TABLE `tiki_user_mail_accounts` (
-  `accountId` int(12) NOT NULL auto_increment,
-  `user` varchar(200) NOT NULL default '',
-  `account` varchar(50) NOT NULL default '',
-  `pop` varchar(255) default NULL,
-  `current` char(1) default NULL,
-  `port` int(4) default NULL,
-  `username` varchar(100) default NULL,
-  `pass` varchar(100) default NULL,
-  `msgs` int(4) default NULL,
-  `smtp` varchar(255) default NULL,
-  `useAuth` char(1) default NULL,
-  `smtpPort` int(4) default NULL,
-  `flagsPublic` char(1) default 'n',                -- COMMENT 'MatWho - Shared Group Mail box if y',
-  `autoRefresh` int(4) NOT NULL default 0,        -- COMMENT 'seconds for mail list to refresh, 0 = none',
-  `imap` varchar( 255 ) default NULL,
-  `mbox` varchar( 255 ) default NULL,
-  `maildir` varchar( 255 ) default NULL,
-  `useSSL` char( 1 ) NOT NULL default 'n',
-  `fromEmail` varchar( 255 ) NOT NULL default '',
-  PRIMARY KEY (`accountId`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 ;
-
 DROP TABLE IF EXISTS `tiki_user_menus`;
 CREATE TABLE `tiki_user_menus` (
   `user` varchar(200) NOT NULL default '',
@@ -2762,18 +2738,6 @@ CREATE TABLE `tiki_webmail_contacts_groups` (
   `groupName` varchar(255) NOT NULL,
   PRIMARY KEY (`contactId`,`groupName`(179))
 ) ENGINE=MyISAM ;
-
-DROP TABLE IF EXISTS `tiki_webmail_messages`;
-CREATE TABLE `tiki_webmail_messages` (
-  `accountId` int(12) NOT NULL default '0',
-  `mailId` varchar(255) NOT NULL default '',
-  `user` varchar(200) NOT NULL default '',
-  `isRead` char(1) default NULL,
-  `isReplied` char(1) default NULL,
-  `isFlagged` char(1) default NULL,
-  `flaggedMsg` varchar(50) default '',
-  PRIMARY KEY (`accountId`,`mailId`(179))
-) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_wiki_attachments`;
 CREATE TABLE `tiki_wiki_attachments` (
