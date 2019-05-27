@@ -1392,3 +1392,13 @@ input:checked + .slider {
 		> .col { padding-left: 15px; padding-right: 15px; }
 	}
 }
+
+@include media-breakpoint-down(sm) {
+	.tiki-lastchanges {
+		.btn-group > .btn:not(.dropdown-toggle) {
+			margin-right: 5px;
+			margin-bottom: 5px;
+			border-radius: 0.25rem;
+		}
+	}
+}

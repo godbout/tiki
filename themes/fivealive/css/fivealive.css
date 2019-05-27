@@ -6904,6 +6904,12 @@ input:checked + .slider {
     padding-left: 15px;
     padding-right: 15px; }
 
+@media (max-width: 767.98px) {
+  .tiki-lastchanges .btn-group > .btn:not(.dropdown-toggle) {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 0.25rem; } }
+
 .dropdown-item .text-danger {
   color: #fec0bd !important; }
 
