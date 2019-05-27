@@ -5919,6 +5919,7 @@ templates/object/lock.tpl -text
 templates/object_perms_summary.tpl -text
 templates/object_selector.tpl -text
 templates/object_selector_multi.tpl -text
+templates/object_selector_multi_extra.tpl -text
 templates/pagehistory.tpl -text
 templates/password_help.tpl -text
 templates/password_jq.tpl -text
