@@ -524,8 +524,6 @@ exists()
 
 composer_core()
 {
-	set -o pipefail
-
 	if [ -f temp/composer.phar ];
 	then
 		# todo : if exists php;
