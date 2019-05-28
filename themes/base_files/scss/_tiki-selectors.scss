@@ -1379,13 +1379,6 @@ input:checked + .slider {
 	}
 }
 
-@include media-breakpoint-down(sm) {
-	.navbar-nav {
-		padding: 0 15px;
-		margin: 15px 0;
-	}
-}
-
 .permission_table {
 	.form-row {
 		margin-left: 0; margin-right: 0;
@@ -1393,12 +1386,21 @@ input:checked + .slider {
 	}
 }
 
-@include media-breakpoint-down(sm) {
+@media (max-width: breakpoint-max(sm)) {
+	.navbar-nav {
+		padding: 0 15px;
+		margin: 15px 0;
+	}
+
 	.tiki-lastchanges {
 		.btn-group > .btn:not(.dropdown-toggle) {
 			margin-right: 5px;
 			margin-bottom: 5px;
 			border-radius: 0.25rem;
 		}
+	}
+
+	.tiki-admin_menu_options {
+		#preview_code { white-space: normal; }
 	}
 }
