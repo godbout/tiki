@@ -6,31 +6,27 @@
 
 {block name="content"}
 	<form action="{service controller=menu action=clone}" method="post" role="form">
-		<div class="form-group row">
+		<div class="form-group row mx-2">
 			<label for="name" class="col-form-label">
 				{tr}Name{/tr}
 			</label>
-			<div class="">
-				<input class="form-control" name="name" id="name" value="{tr _0=$info.name|escape}%0 Copy{/tr}">
-				<div class="small">
-					{if $info.menuId}
-						{tr}Clone of Menu Id{/tr}: {$info.menuId|escape}
-					{/if}
-					{if $symbol}
-						<a class="btn btn-link btn-sm tips" title="{tr}Symbol Information{/tr}|{tr}Symbol{/tr}: <strong>{$symbol.object}</strong><br>{tr}Profile Name{/tr}: <strong>{$symbol.profile}</strong><br>{tr}Profile Source{/tr}: <strong>{$symbol.domain}</strong>">
-							{icon name="information"}
-						</a>
-					{/if}
-				</div>
+			<input class="form-control" name="name" id="name" value="{tr _0=$info.name|escape}%0 Copy{/tr}">
+			<div class="small">
+				{if $info.menuId}
+					{tr}Clone of Menu Id{/tr}: {$info.menuId|escape}
+				{/if}
+				{if $symbol}
+					<a class="btn btn-link btn-sm tips" title="{tr}Symbol Information{/tr}|{tr}Symbol{/tr}: <strong>{$symbol.object}</strong><br>{tr}Profile Name{/tr}: <strong>{$symbol.profile}</strong><br>{tr}Profile Source{/tr}: <strong>{$symbol.domain}</strong>">
+						{icon name="information"}
+					</a>
+				{/if}
 			</div>
 		</div>
-		<div class="form-group row">
+		<div class="form-group row mx-2">
 			<label for="description" class="col-form-label">
 				{tr}Description{/tr}
 			</label>
-			<div class="">
-				<textarea name="description" id="description" class="form-control">{$info.description|escape}</textarea>
-			</div>
+			<textarea name="description" id="description" class="form-control">{$info.description|escape}</textarea>
 		</div>
 
 		<div class="submit">
