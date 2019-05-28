@@ -245,6 +245,8 @@ if ((isset($_POST['send']) && $access->checkCsrf()) || isset($_POST['preview']))
 							$logslib->add_action('Posted', '', 'message', 'add=' . strlen($_REQUEST['body']));
 						}
 					}
+					$smarty->clear_assign(array('to', 'cc', 'bcc', 'subject', 'body', 'replytome', 'bccme'));
+					$smarty->assign('priority', 3);
 				} else {
 					Feedback::error(tra('An error occurred, please check your mail settings and try again'));
 				}
