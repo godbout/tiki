@@ -468,6 +468,9 @@ function setPermissions($src)
 				setPermissions($full);
 				chmod($full, 0755);
 			} else {
+				if (is_link($full)) {
+					continue;
+				}
 				chmod($full, 0664);
 			}
 		}
