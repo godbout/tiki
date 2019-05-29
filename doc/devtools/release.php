@@ -690,6 +690,7 @@ function check_smarty_syntax(&$error_msg)
 	$prefs['site_layout'] = 'basic';
 	require_once 'vendor_bundled/vendor/smarty/smarty/libs/Smarty.class.php';
 	require_once 'lib/init/smarty.php';
+	require_once 'lib/init/initlib.php';
 	// needed in Smarty_Tiki
 	define('TIKI_PATH', getcwd());
 	require_once 'lib/smarty_tiki/prefilter.tr.php';
