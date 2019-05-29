@@ -494,7 +494,7 @@ function build_packages($releaseVersion)
 	$fileName = 'tiki-' . $releaseVersion;
 	$relDir = $workDir . '/' . $releaseVersion;	// where the tiki dir and tarballs go
 	$sourceDir = $relDir . '/' . $fileName;		// the svn export
-
+	echo($sourceDir);
 	echo  "Seting up $workDir directory\n";
 	if (! is_dir($workDir)) {
 		if (! mkdir($workDir)) {
