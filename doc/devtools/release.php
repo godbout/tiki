@@ -607,7 +607,7 @@ function build_packages($releaseVersion)
 	}
 
 	echo "Creating $fileName.zip\n";
-	$shellout = shell_exec("cd $relDir; zip -r " . escapeshellarg($fileName . ".zip") . ' ' . escapeshellarg($fileName) . ' -x "*.DS_Store" -9 2>&1');
+	$shellout = shell_exec("cd $relDir; zip -ry " . escapeshellarg($fileName . ".zip") . ' ' . escapeshellarg($fileName) . ' -x "*.DS_Store" -9 2>&1');
 	if ($options['debug-packaging']) {
 		echo $shellout . "\n";
 	}
