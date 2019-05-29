@@ -1386,6 +1386,12 @@ input:checked + .slider {
 	}
 }
 
+.tiki-admin_modules {
+	.t_navbar .btn {
+		margin-right: 5px;
+	}
+}
+
 @media (max-width: breakpoint-max(sm)) {
 	.navbar-nav {
 		padding: 0 15px;

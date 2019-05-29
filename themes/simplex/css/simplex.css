@@ -6932,6 +6932,9 @@ input:checked + .slider {
     padding-left: 15px;
     padding-right: 15px; }
 
+.tiki-admin_modules .t_navbar .btn {
+  margin-right: 5px; }
+
 @media (max-width: 767.98px) {
   .navbar-nav {
     padding: 0 15px;
