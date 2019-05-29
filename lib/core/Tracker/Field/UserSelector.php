@@ -240,7 +240,11 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 
 			if ($prefs['user_selector_realnames_tracker'] === 'y' && $this->getOption('showRealname')) {
 				$smarty->loadPlugin('smarty_modifier_username');
-				$name = implode(', ', array_map('smarty_modifier_username', $value));
+				$aname = [];
+				foreach ($value as $v) {
+					$aname[] = smarty_modifier_username($v) . " (" . $v . ")"; // This is very important otherwise on next save the realName and not the username is saved in the db
+				}
+				$name = implode(', ', $aname);
 				$realnames = 'y';
 			} else {
 				$name = implode(', ', $value);
