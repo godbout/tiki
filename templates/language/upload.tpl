@@ -49,7 +49,7 @@
 			<label class="col-form-label" for="language_file">
 				{tr}File{/tr}
 			</label>
-			<input name="language_file" type="file" required="required">
+			<input name="language_file" type="file" required="required" class="form-control">
 		</div>
 		<div class="submit text-center">
 			<input type="hidden" name="confirm" value="1">
