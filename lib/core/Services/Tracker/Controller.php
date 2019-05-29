@@ -886,7 +886,7 @@ class Services_Tracker_Controller
 				$item['processedFields'] = $processedItem['fields'];
 
 				if ($suppressFeedback !== true) {
-					if ($input['ajax']) {
+					if ($input->ajax->bool()) {
 						$trackerinfo = $definition->getInformation();
 						$trackername = tr($trackerinfo['name']);
 						$msg = tr('New "%0" item successfully created.', $trackername);
@@ -1068,7 +1068,7 @@ class Services_Tracker_Controller
 				}
 			} else {
 				if ($suppressFeedback !== true) {
-					if ($input->ajax->int()) {
+					if ($input->ajax->bool()) {
 						$trackerinfo = $definition->getInformation();
 						$trackername = tr($trackerinfo['name']);
 						$item = $this->utilities->getItem($trackerId, $itemId);
