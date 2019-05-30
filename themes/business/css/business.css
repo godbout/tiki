@@ -6864,6 +6864,9 @@ input:checked + .slider {
   .page-header .top_modules a {
     color: #fff; }
 
+.page-header .top_modules .cssmenu_horiz li ul > li > a, .page-header .top_modules .dropdown-item {
+  color: #212529; }
+
 .sitetitles a {
   color: #fff; }
 
@@ -6959,6 +6962,9 @@ h2.sitesubtitle {
 
 h3.card-title {
   font-weight: 700; }
+
+.adminanchors.card {
+  background: transparent; }
 
 .modal-header {
   color: #8d8d8d; }
