@@ -8,6 +8,7 @@
 namespace Tiki\Composer;
 
 use Composer\Script\Event;
+use Composer\Util\FileSystem;
 
 class PatchCypht
 {
@@ -21,21 +22,20 @@ class PatchCypht
 			$vendors .= DIRECTORY_SEPARATOR;
 		}
 
-		// setup stock version with missing files and symlinks
+		$fs = new FileSystem;
+		umask(0);
+
+		// setup stock version with missing files
 		copy($cypht.'hm3.ini', $vendors.'jason-munro/cypht/hm3.ini');
-		chdir($vendors.'jason-munro/cypht/modules');
-		if (! file_exists('tiki')) {
-			symlink('../../../../../cypht/modules/tiki', 'tiki');
-		}
-		chdir('../');
-		if (! file_exists('vendor')) {
-			symlink('../../../../vendor_bundled/vendor', 'vendor');
+		$tiki_module = $vendors.'jason-munro/cypht/modules/tiki';
+		if (! is_dir($tiki_module)) {
+			mkdir($tiki_module, 0755);
+			$fs->copy($cypht.'modules/tiki', $tiki_module);
 		}
 		chdir($cypht.'../');
 
 		// generate storage dirs
 		if (! is_dir('temp/cypht')) {
-			umask(0);
 			mkdir('temp/cypht', 0777);
 			mkdir('temp/cypht/app_data', 0777);
 			mkdir('temp/cypht/attachments', 0777);
