@@ -153,7 +153,7 @@
 												<a
 													class="link tips"
 													href="tiki-adminusers.php?offset={$offset}&amp;numrows={$numrows}&amp;sort_mode={$sort_mode}&amp;user={$users[user].userId}{if $prefs.feature_tabs ne 'y'}#2{/if}"
-													title="{$username}:{tr}Edit account settings{/tr}" {if $users[user].itemId}data-itemid="{$users[user].itemId}"{/if}">
+													title="{$username}:{tr}Edit account settings{/tr}" {if $users[user].itemId}data-itemid="{$users[user].itemId}"{/if}>
 														{$users[user].user|escape}
 												</a>
 												{if $prefs.user_show_realnames eq 'y' and $smarty.capture.username ne $users[user].user}
@@ -526,7 +526,7 @@
 										{tr}Send an email to the user to enable him or her to validate their account.{/tr}
 									</label>
 									{if empty($prefs.sender_email)}
-										<div class="form-text"><span class="highlight">{tr}You need to set <a href="tiki-admin.php?page=general">Sender Email</a>{/tr}</span></div>
+										<div class="alert alert-warning highlight">{tr}You need to set <a href="tiki-admin.php?page=general" class="alert-link">Sender Email</a>{/tr}</div>
 									{/if}
 								</div>
 							</div>
