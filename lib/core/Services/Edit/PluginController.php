@@ -173,6 +173,10 @@ class Services_Edit_PluginController
 				} else {
 					$param['selector_type'] = null;
 				}
+				if (isset($param['profile_reference_extra_values'])) {
+					$param['selector_type_reference'] = $param['selector_type'];
+					$param['selector_type'] = 'extra';
+				}
 			}
 
 			$extraParams = array_filter(array_diff_key($pluginArgs, $info['params']));

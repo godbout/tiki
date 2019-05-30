@@ -68,7 +68,7 @@ db/index.php -text
 db/install.ini.dist -text
 db/preconfiguration.php -text
 db/tiki-db.php -text
-db/tiki-secdb_19.1_mysql.sql -text
+db/tiki-secdb_20.0alpha_mysql.sql -text
 db/tiki.sql -text
 db/tiki_1.8to1.9.sql -text
 db/tiki_1.9to2.0.sql -text
@@ -5919,6 +5919,7 @@ templates/object/lock.tpl -text
 templates/object_perms_summary.tpl -text
 templates/object_selector.tpl -text
 templates/object_selector_multi.tpl -text
+templates/object_selector_multi_extra.tpl -text
 templates/pagehistory.tpl -text
 templates/password_help.tpl -text
 templates/password_jq.tpl -text

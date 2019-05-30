@@ -28,7 +28,6 @@
 					{assign var='pref_name' value="fgal_$key"}
 					<input
 						type="checkbox"
-						class="form-check-input"
 						id="fgal_{$key}"
 						name="fgal_{$key}"
 						{if $item.value eq 'y'}

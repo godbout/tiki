@@ -25,6 +25,7 @@ function wikiplugin_pivottable_info()
 				'filter' => 'text',
 				'profile_reference' => 'tracker',
 				'separator' => ':',
+				'profile_reference_extra_values' => ['activitystream' => 'Activity Stream'],
 			],
 			'overridePermissions' => [
 				'name' => tra('Override item permissions'),
@@ -432,7 +433,7 @@ function wikiplugin_pivottable($data, $params)
 		$query->filterContent($trackerId, 'tracker_id');
 
 		$unifiedsearchlib = TikiLib::lib('unifiedsearch');
-		if (!empty($params['overridePermissions']) && $params['overridePermissions'] === 'y') {
+		if (! empty($params['overridePermissions']) && $params['overridePermissions'] === 'y') {
 			$unifiedsearchlib->initQueryBase($query);
 			$unifiedsearchlib->initQueryPresentation($query);
 		} else {
@@ -719,7 +720,7 @@ function wikiplugin_pivottable($data, $params)
 			$pivotLinkParams = [
 				'type' => $row['object_type'],
 				'id' => $row['object_id'],
-				'title' => $title,    
+				'title' => $title,
 			];
 			if ($row['object_type'] === 'activity') {
 				$pivotLinkParams = [

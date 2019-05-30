@@ -30,16 +30,16 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="checkbox offset-sm-4 col-sm-8">
-				<label for="dupCateg">
-					<input type="checkbox" id="dupCateg" name="dupCateg">{tr}Duplicate categories{/tr}
+			<div class="form-check offset-sm-4 col-sm-8">
+				<label for="dupCateg" class="form-check-label">
+					<input type="checkbox" id="dupCateg" name="dupCateg" class="mr-2">{tr}Duplicate categories{/tr}
 				</label>
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="checkbox offset-sm-4 col-sm-8">
-				<label for="dupPerms">
-					<input type="checkbox" id="dupPerms" name="dupPerms">{tr}Duplicate permissions{/tr}
+			<div class="form-check offset-sm-4 col-sm-8">
+				<label for="dupPerms" class="form-check-label">
+					<input type="checkbox" id="dupPerms" name="dupPerms" class="mr-2">{tr}Duplicate permissions{/tr}
 				</label>
 			</div>
 		</div>

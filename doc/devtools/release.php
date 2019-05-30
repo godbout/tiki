@@ -329,6 +329,9 @@ function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 
 	while (false !== ($e = $d->read())) {
 		$entry = $dir . '/' . $e;
+		if (is_link($entry)) {
+			continue; // if is a symlink we should not run any hash
+		}
 		if (is_dir($entry)) {
 			// do not descend and no CVS/Subversion files
 			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom' && $entry != ROOT . '/_custom') {
@@ -465,6 +468,9 @@ function setPermissions($src)
 				setPermissions($full);
 				chmod($full, 0755);
 			} else {
+				if (is_link($full)) {
+					continue;
+				}
 				chmod($full, 0664);
 			}
 		}
@@ -488,7 +494,7 @@ function build_packages($releaseVersion)
 	$fileName = 'tiki-' . $releaseVersion;
 	$relDir = $workDir . '/' . $releaseVersion;	// where the tiki dir and tarballs go
 	$sourceDir = $relDir . '/' . $fileName;		// the svn export
-
+	echo($sourceDir);
 	echo  "Seting up $workDir directory\n";
 	if (! is_dir($workDir)) {
 		if (! mkdir($workDir)) {
@@ -601,7 +607,7 @@ function build_packages($releaseVersion)
 	}
 
 	echo "Creating $fileName.zip\n";
-	$shellout = shell_exec("cd $relDir; zip -r " . escapeshellarg($fileName . ".zip") . ' ' . escapeshellarg($fileName) . ' -x "*.DS_Store" -9 2>&1');
+	$shellout = shell_exec("cd $relDir; zip -ry " . escapeshellarg($fileName . ".zip") . ' ' . escapeshellarg($fileName) . ' -x "*.DS_Store" -9 2>&1');
 	if ($options['debug-packaging']) {
 		echo $shellout . "\n";
 	}
@@ -690,6 +696,7 @@ function check_smarty_syntax(&$error_msg)
 	$prefs['site_layout'] = 'basic';
 	require_once 'vendor_bundled/vendor/smarty/smarty/libs/Smarty.class.php';
 	require_once 'lib/init/smarty.php';
+	require_once 'lib/init/initlib.php';
 	// needed in Smarty_Tiki
 	define('TIKI_PATH', getcwd());
 	require_once 'lib/smarty_tiki/prefilter.tr.php';

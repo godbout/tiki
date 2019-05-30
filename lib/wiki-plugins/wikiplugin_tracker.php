@@ -708,7 +708,9 @@ function wikiplugin_tracker($data, $params)
 
 	$thisIsThePlugin = isset($_REQUEST['iTRACKER']) && $_REQUEST['iTRACKER'] == $iTRACKER;
 
-	$fields = isset($fields) ? array_filter((array) $fields) : [];
+	if (isset($fields)) {
+		$fields = array_filter((array) $fields);
+	}
 
 	$nameExist = isset($transactionName) && strlen($transactionName) > 0;
 	$stepExist = isset($transactionStep) && strlen($transactionStep) > 0;

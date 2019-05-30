@@ -29,6 +29,7 @@ function smarty_function_object_selector_multi($params, $smarty)
 {
 	global $prefs;
 	static $uniqid = 0;
+	$template = 'object_selector_multi.tpl';
 
 	$arguments = [
 		'name' => null,
@@ -48,6 +49,8 @@ function smarty_function_object_selector_multi($params, $smarty)
 		'format' => null,
 		'placeholder' => tr('Title'),
 		'sort' => null,
+		'extra_type' => null,
+		'selector_type_reference' => null
 	];
 
 	// Handle reserved parameters
@@ -93,6 +96,11 @@ function smarty_function_object_selector_multi($params, $smarty)
 		$arguments['current_selection'] = $selector->readMultiple($arguments['value'], $arguments['format']);
 	}
 
+	if (isset($arguments['extra_type'])) {
+		unset($arguments['current_selection']);
+		$template = 'object_selector_multi_extra.tpl';
+	}
+
 	if ($arguments['simplename']) {
 		$arguments['class'] .= ' d-none';
 	} else {
@@ -110,5 +118,5 @@ function smarty_function_object_selector_multi($params, $smarty)
 		$arguments
 	);
 
-	return $smarty->fetch('object_selector_multi.tpl');
+	return $smarty->fetch($template);
 }

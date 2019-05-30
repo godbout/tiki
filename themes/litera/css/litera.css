@@ -6948,17 +6948,28 @@ input:checked + .slider {
     transform: translateX(0px);
     background: #f80; }
 
-@media (max-width: 767.98px) {
-  .navbar-nav {
-    padding: 0 15px;
-    margin: 15px 0; } }
-
 .permission_table .form-row {
   margin-left: 0;
   margin-right: 0; }
   .permission_table .form-row > .col {
     padding-left: 15px;
     padding-right: 15px; }
+
+.tiki-admin_modules .t_navbar .btn {
+  margin-right: 5px; }
+
+@media (max-width: 767.98px) {
+  .navbar-nav {
+    padding: 0 15px;
+    margin: 15px 0; }
+
+  .tiki-lastchanges .btn-group > .btn:not(.dropdown-toggle) {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 0.25rem; }
+
+  .tiki-admin_menu_options #preview_code {
+    white-space: normal; } }
 
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
