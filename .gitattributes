@@ -7216,6 +7216,7 @@ themes/fivealive/options/grape/index.php -text
 themes/fivealive/options/grape/scss/_variables.scss -text
 themes/fivealive/options/grape/scss/grape.scss -text
 themes/fivealive/options/grape/scss/index.php -text
+themes/fivealive/options/grape_classic/css/grape_classic.css -text
 themes/fivealive/options/grape_classic/css/index.php -text
 themes/fivealive/options/grape_classic/images/grape_classic.png -text
 themes/fivealive/options/grape_classic/images/index.php -text
@@ -7237,6 +7238,7 @@ themes/fivealive/options/kiwi/scss/_variables.scss -text
 themes/fivealive/options/kiwi/scss/index.php -text
 themes/fivealive/options/kiwi/scss/kiwi.scss -text
 themes/fivealive/options/kiwi_classic/css/index.php -text
+themes/fivealive/options/kiwi_classic/css/kiwi_classic.css -text
 themes/fivealive/options/kiwi_classic/images/index.php -text
 themes/fivealive/options/kiwi_classic/images/kiwi_classic.png -text
 themes/fivealive/options/kiwi_classic/images/siteheader.png -text
@@ -7256,6 +7258,7 @@ themes/fivealive/options/lemon/scss/_variables.scss -text
 themes/fivealive/options/lemon/scss/index.php -text
 themes/fivealive/options/lemon/scss/lemon.scss -text
 themes/fivealive/options/lemon_classic/css/index.php -text
+themes/fivealive/options/lemon_classic/css/lemon_classic.css -text
 themes/fivealive/options/lemon_classic/images/index.php -text
 themes/fivealive/options/lemon_classic/images/lemon_classic.png -text
 themes/fivealive/options/lemon_classic/images/siteheader.png -text
@@ -7275,6 +7278,7 @@ themes/fivealive/options/orange/scss/_variables.scss -text
 themes/fivealive/options/orange/scss/index.php -text
 themes/fivealive/options/orange/scss/orange.scss -text
 themes/fivealive/options/orange_classic/css/index.php -text
+themes/fivealive/options/orange_classic/css/orange_classic.css -text
 themes/fivealive/options/orange_classic/images/index.php -text
 themes/fivealive/options/orange_classic/images/orange_classic.png -text
 themes/fivealive/options/orange_classic/images/siteheader.png -text
@@ -7293,6 +7297,7 @@ themes/fivealive/options/plum/scss/_variables.scss -text
 themes/fivealive/options/plum/scss/index.php -text
 themes/fivealive/options/plum/scss/plum.scss -text
 themes/fivealive/options/plum_classic/css/index.php -text
+themes/fivealive/options/plum_classic/css/plum_classic.css -text
 themes/fivealive/options/plum_classic/images/index.php -text
 themes/fivealive/options/plum_classic/images/plum_classic.png -text
 themes/fivealive/options/plum_classic/images/siteheader.png -text
@@ -7312,6 +7317,7 @@ themes/fivealive/options/raspberry/scss/_variables.scss -text
 themes/fivealive/options/raspberry/scss/index.php -text
 themes/fivealive/options/raspberry/scss/raspberry.scss -text
 themes/fivealive/options/raspberry_classic/css/index.php -text
+themes/fivealive/options/raspberry_classic/css/raspberry_classic.css -text
 themes/fivealive/options/raspberry_classic/images/index.php -text
 themes/fivealive/options/raspberry_classic/images/raspberry_classic.png -text
 themes/fivealive/options/raspberry_classic/images/siteheader.png -text
@@ -7331,6 +7337,7 @@ themes/fivealive/options/watermelon/scss/_variables.scss -text
 themes/fivealive/options/watermelon/scss/index.php -text
 themes/fivealive/options/watermelon/scss/watermelon.scss -text
 themes/fivealive/options/watermelon_classic/css/index.php -text
+themes/fivealive/options/watermelon_classic/css/watermelon_classic.css -text
 themes/fivealive/options/watermelon_classic/images/index.php -text
 themes/fivealive/options/watermelon_classic/images/siteheader.png -text
 themes/fivealive/options/watermelon_classic/images/watermelon_classic.png -text
