@@ -526,7 +526,7 @@
 										{tr}Send an email to the user to enable him or her to validate their account.{/tr}
 									</label>
 									{if empty($prefs.sender_email)}
-										<div class="form-text"><span class="highlight">{tr}You need to set <a href="tiki-admin.php?page=general">Sender Email</a>{/tr}</span></div>
+										<div class="alert alert-warning highlight">{tr}You need to set <a href="tiki-admin.php?page=general" class="alert-link">Sender Email</a>{/tr}</div>
 									{/if}
 								</div>
 							</div>
