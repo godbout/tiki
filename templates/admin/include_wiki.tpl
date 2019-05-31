@@ -380,35 +380,32 @@
 			<div class="adminoptionbox clearfix">
 				<fieldset class="table">
 					<legend>{tr}Database dumps and restores{/tr}</legend>
-					Create database archives of wiki pages for restoring at a later date.<br>
-					<label for="tagname">{tr}Name for dump{/tr}</label>
-					<input maxlength="20" size="20" type="text" name="newtagname" id="newtagname">
-					<input
-						type="submit"
-						class="btn btn-primary btn-sm"
-						name="createtag"
-						value="{tr}Create Database Dump{/tr}"
-					><br>
-					<label for="databasetag">{tr}Wiki database{/tr}</label>
-					<select name="tagname" {if $tags|@count eq '0'} disabled="disabled"{/if}>
-						{section name=sel loop=$tags}
-							<option value="{$tags[sel]|escape}">{$tags[sel]}</option>
-							{sectionelse}
-							<option value=''>{tr}None{/tr}</option>
-						{/section}
-					</select>
-					<input
-						type="submit"
-						class="btn btn-primary btn-sm"
-						name="restoretag"
-						value="{tr}Restore{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}
-					>
-					<input
-						type="submit"
-						class="btn btn-default btn-sm"
-						name="removetag"
-						value="{tr}Remove{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}
-					>
+					Create database archives of wiki pages for restoring at a later date.
+					<div class="form-group row">
+						<label for="tagname" class="col-form-label col-sm-4">{tr}Name for dump{/tr}</label>
+						<div class="col-sm-4">
+							<input maxlength="20" size="20" type="text" name="newtagname" id="newtagname" class="form-control">
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" class="btn btn-primary" name="createtag" value="{tr}Create Database Dump{/tr}">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="databasetag" class="col-form-label col-sm-4">{tr}Wiki database{/tr}</label>
+						<div class="col-sm-4">
+							<select name="tagname" class="form-control" {if $tags|@count eq '0'} disabled="disabled"{/if}>
+								{section name=sel loop=$tags}
+									<option value="{$tags[sel]|escape}">{$tags[sel]}</option>
+									{sectionelse}
+									<option value=''>{tr}None{/tr}</option>
+								{/section}
+							</select>
+						</div>
+						<div class="col-sm-4">
+							<input type="submit" class="btn btn-primary" name="restoretag" value="{tr}Restore{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}>
+							<input type="submit" class="btn btn-danger" name="removetag" value="{tr}Remove{/tr}"{if $tags|@count eq '0'} disabled="disabled"{/if}>
+						</div>
+					</div>
 				</fieldset>
 			</div>
 			<div class="adminoptionbox clearfix">

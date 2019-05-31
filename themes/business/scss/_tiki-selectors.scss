@@ -27,6 +27,11 @@ $topbar-row-sidemargins: -15px;
   }
 }
 
+.page-header .top_modules .cssmenu_horiz li ul > li > a,
+.page-header .top_modules .dropdown-item {
+  color: #212529;
+}
+
 .sitetitles a {
   color: #ffffff;
 }
@@ -118,6 +123,8 @@ h2.sitesubtitle {
   font-size: 12px;
 }
 
+
+
 #col1, #col2, #col3 {
   padding-top: 1em;
 }
@@ -161,6 +168,8 @@ h3.card-title {
   //	font-size: 90%;
   font-weight: 700;
 }
+
+.adminanchors.card { background: transparent; }
 
 .modal-header {
   color: $gray-300;

@@ -20,7 +20,8 @@
 
 require_once("../tiki-setup.php");
 
-define('APP_PATH', $tikipath.'/vendor_bundled/vendor/jason-munro/cypht/');
+define('VENDOR_PATH', $tikipath.'/vendor_bundled/vendor/');
+define('APP_PATH', VENDOR_PATH.'jason-munro/cypht/');
 define('DEBUG_MODE', false);
 
 define('CACHE_ID', 'FoHc85ubt5miHBls6eJpOYAohGhDM61Vs%2Fm0BOxZ0N0%3D');

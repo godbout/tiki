@@ -90,7 +90,7 @@
 							<div>
 								<input type="hidden" name="select[]" value="{$token|escape}">
 								<input type="hidden" name="token" value="{$token|escape}">
-								<input type="submit" name="list" value="{tr}Show Usage{/tr}" class="btn btn-default">
+								<input type="submit" name="list" value="{tr}Show Usage{/tr}" class="btn btn-primary">
 								<input type="submit" name="create" value="{tr}Create{/tr}" class="btn btn-primary">
 								<input type="submit" name="rename" value="{tr}Fix{/tr}" class="btn btn-primary">
 								<input type="submit" name="clean" value="{tr}Remove{/tr}" class="btn btn-primary">

@@ -27,7 +27,8 @@ $access->check_feature('feature_webmail');
 $access->check_permission_either(['tiki_p_use_webmail', 'tiki_p_use_group_webmail']);
 $access->check_user($user);
 
-define('APP_PATH', $tikipath.'/vendor_bundled/vendor/jason-munro/cypht/');
+define('VENDOR_PATH', $tikipath.'/vendor_bundled/vendor/');
+define('APP_PATH', VENDOR_PATH.'jason-munro/cypht/');
 define('DEBUG_MODE', false);
 
 // TODO: make these dynamic

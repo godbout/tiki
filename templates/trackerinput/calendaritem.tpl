@@ -6,7 +6,7 @@
 			{$label = '{tr}Add Event{/tr}'}
 		{/if}
 		<div class="col-sm-3">
-			{button href=$data.editUrl _text=$label _id='calitem_'|cat:$field.fieldId _class='btn btn-default btn-sm'}
+			{button href=$data.editUrl _text=$label _id='calitem_'|cat:$field.fieldId _class='btn btn-primary btn-sm'}
 		</div>
 		{if $field.options_map.showEventIdInput}
 			{$id = 'calitemId_'|cat:$field.fieldId}
