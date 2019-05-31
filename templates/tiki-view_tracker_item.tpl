@@ -259,7 +259,7 @@
 										<input type="submit" class="btn btn-primary btn-sm" name="save_return" value="{tr}Save Returning to Item List{/tr}" onclick="needToConfirm=false">
 
 										{if not empty($saveAndComment) and $saveAndComment neq 'n'}
-											<input type="submit" class="btn btn-default btn-sm" name="save_and_comment" value="{tr}Save and Comment{/tr}">
+											<input type="submit" class="btn btn-primary btn-sm" name="save_and_comment" value="{tr}Save and Comment{/tr}">
 										{/if}
 
 										{if $canRemove}
@@ -339,7 +339,7 @@
 									<input type="submit" class="btn btn-primary btn-sm" name="save_return" value="{tr}Save Returning to Item List{/tr}" onclick="needToConfirm=false">
 								{/if}
 								{if not empty($saveAndComment) and $saveAndComment neq 'n'}
-									<input type="submit" class="btn btn-default btn-sm" name="save_and_comment" value="{tr}Save and Comment{/tr}">
+									<input type="submit" class="btn btn-primary btn-sm" name="save_and_comment" value="{tr}Save and Comment{/tr}">
 								{/if}
 
 								{if $canRemove}

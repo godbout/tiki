@@ -85,7 +85,7 @@ class WikiParser_PluginOutput
 				$content .= smarty_function_preference(['name' => $pref], $smarty->getEmptyInternalTemplate());
 			}
 			$content .= smarty_function_ticket([], $smarty->getEmptyInternalTemplate());
-			$content .= '<input type="submit" class="btn btn-default btn-sm" value="'
+			$content .= '<input type="submit" class="btn btn-primary btn-sm" value="'
 				. smarty_modifier_escape(tra('Set')) . '">';
 			$content .= '</form>';
 		}
