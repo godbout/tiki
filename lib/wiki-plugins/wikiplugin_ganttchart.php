@@ -25,10 +25,31 @@ function wikiplugin_ganttchart_info()
 				'profile_reference' => 'tracker',
 				'since' => 19,
 			],
+			'order' => [
+				'name' => tr('Order Field'),
+				'description' => tr('Permanent name of the field to use for row number order'),
+				'required' => true,
+				'filter' => 'word',
+				'since' => 19,
+			],
+			'level' => [
+				'name' => tr('Level Field'),
+				'description' => tr('Permanent name of the field to use for row level'),
+				'required' => true,
+				'filter' => 'word',
+				'since' => 19,
+			],
 			'status' => [
 				'name' => tr('Status Field'),
 				'description' => tr('Permanent name of the field to use for row status'),
 				'required' => true,
+				'filter' => 'word',
+				'since' => 19,
+			],
+			'depends' => [
+				'name' => tr('Dependency Field'),
+				'description' => tr('Permanent name of the field to use for row dependency'),
+				'required' => false,
 				'filter' => 'word',
 				'since' => 19,
 			],
@@ -135,13 +156,20 @@ function wikiplugin_ganttchart($data, $params)
 {
 	//checking if vendor files are present
 	if (! file_exists('vendor_bundled/vendor/robicch/jquery-gantt')) {
-		return WikiParser_PluginOutput::internalError(tr('Missing required files, please make sure plugin files are installed at vendor_bundled/vendor/robicch/jquery-gantt. <br/><br /> To install, please run composer.'));
+		return WikiParser_PluginOutput::internalError(
+			tr(
+				'Missing required files, please make sure plugin files are installed at vendor_bundled/vendor/robicch/jquery-gantt. <br/><br /> To install, please run composer.'
+			)
+		);
 	}
 
 	$access = TikiLib::lib('access');
 	$access->setTicket();
 	$trackerId = $params['trackerId'];
+	$order = ! empty($params['order']) ? $params['order'] : '';
+	$levelParam = ! empty($params['level']) ? $params['level'] : '';
 	$status = $params['status'];
+	$depends = ! empty($params['depends']) ? $params['depends'] : '';
 	$progress = ! empty($params['progress']) ? $params['progress'] : '';
 	$name = $params['name'];
 	$description = $params['description'];
@@ -153,31 +181,60 @@ function wikiplugin_ganttchart($data, $params)
 	$effort = ! empty($params['effort']) ? $params['effort'] : '';
 	$startIsMilestone = ! empty($params['startIsMilestone']) ? $params['startIsMilestone'] : '';
 	$endIsMilestone = ! empty($params['endIsMilestone']) ? $params['endIsMilestone'] : '';
-	$canWrite = ! empty($params['canWrite']) ? $params['canWrite'] : false;
-	$canDelete = ! empty($params['canDelete']) ? $params['canDelete'] : false;
-	$canWriteOnParent = ! empty($params['canWriteOnParent']) ? $params['canWriteOnParent'] : false;
+	$canWrite = ! empty($params['canWrite']) ? filter_var($params['canWrite'], FILTER_VALIDATE_BOOLEAN) : false;
+	$canDelete = ! empty($params['canDelete']) ? filter_var($params['canDelete'], FILTER_VALIDATE_BOOLEAN) : false;
+	$canWriteOnParent = ! empty($params['canWriteOnParent']) ? filter_var($params['canWriteOnParent'], FILTER_VALIDATE_BOOLEAN) : false;
 
 	$definition = Tracker_Definition::get($trackerId);
 	if (! $definition) {
 		return WikiParser_PluginOutput::userError(tr('Tracker data source not found.'));
 	}
+
+	if (empty($order)) {
+		return WikiParser_PluginOutput::userError(tr('Order tracker field parameter is mandatory.'));
+	}
+
+	if (empty($levelParam)) {
+		return WikiParser_PluginOutput::userError(tr('Level tracker field parameter is mandatory.'));
+	}
+
+	if (empty($depends)) {
+		return WikiParser_PluginOutput::userError(tr('Depends tracker field parameter is mandatory.'));
+	}
+
 	$trklib = TikiLib::lib('trk');
 	$trackerDefinition = Tracker_Definition::get($trackerId);
 	$listfields = $trackerDefinition->getFields();
-	$listItems = $trklib->list_items($trackerId, 0, -1, 'lastModif_asc', $listfields);
+	$orderField = $trklib->get_tracker_field($order);
+	$orderItems = ! empty($orderField['fieldId']) ? 'f_' . $orderField['fieldId'] . '_asc' : 'created_asc';
+	$listItems = $trklib->list_items($trackerId, 0, -1, $orderItems, $listfields);
 	$ganttValues = [];
-	$ganttResources = [];
 	$ganttRoles = [];
 	$allResources = [];
 	$allRoles = [];
 	$allLevel = [];
+	$listHasChildren = [];
 
-	$resourceId = 1;
+	//Get all users
+	$userlib = TikiLib::lib('user');
+	$users = $userlib->list_all_users();
+
+	//fetch user to show in select
+	foreach ($users as $key => $value) {
+		$allResources[] = [
+			'id' => $value,
+			'name' => $value,
+		];
+	}
+
+	$itemIds = [];
 	$roleId = 1;
 	foreach ($listItems['data'] as $item) {
 		$fieldItemValues = $item['field_values'];
 		$itemId = 0;
+		$fieldOrder = 0;
 		$fieldStatus = '';
+		$fieldDepends = '';
 		$fieldName = '';
 		$fieldProgress = 0;
 		$fieldDescription = '';
@@ -195,13 +252,20 @@ function wikiplugin_ganttchart($data, $params)
 			if (! isset($allLevel[$fieldItem['itemId']])) {
 				$allLevel[$fieldItem['itemId']] = 0;
 			}
-			if (in_array($fieldItem['type'], ['r']) && ! empty($fieldItem['value'])) {
+			if ($levelParam == $fieldItem['permName'] && ! empty($fieldItem['value'])) {
 				$level = isset($allLevel[$fieldItem['value']]) ? $allLevel[$fieldItem['value']] : 0;
 				$level++;
 				$allLevel[$fieldItem['itemId']] = $level;
+				$listHasChildren[$fieldItem['value']] = true;
+			}
+			if ($order == $fieldItem['permName'] && is_numeric($fieldItem['value'])) {
+				$fieldOrder = intval($fieldItem['value']);
 			}
 			if ($status == $fieldItem['permName'] && ! empty($fieldItem['value'])) {
 				$fieldStatus = $fieldItem['value'];
+			}
+			if ($depends == $fieldItem['permName'] && ! empty($fieldItem['value'])) {
+				$fieldDepends = $fieldItem['value'];
 			}
 			if ($progress == $fieldItem['permName'] && ! empty($fieldItem['value'])) {
 				$fieldProgress = $fieldItem['value'];
@@ -209,6 +273,7 @@ function wikiplugin_ganttchart($data, $params)
 			if ($name == $fieldItem['permName'] && ! empty($fieldItem['value'])) {
 				$fieldName = $fieldItem['value'];
 				$itemId = $fieldItem['itemId'];
+				$itemIds[] = $itemId;
 			}
 			if ($description == $fieldItem['permName'] && ! empty($fieldItem['value'])) {
 				$fieldDescription = $fieldItem['value'];
@@ -223,15 +288,7 @@ function wikiplugin_ganttchart($data, $params)
 				$fieldEndDate = ($fieldItem['value'] * 1000);
 			}
 			if ($resources == $fieldItem['permName'] && ! empty($fieldItem['value'])) {
-				if (! in_array($fieldItem['value'], $ganttResources)) {
-					$ganttResources[] = $fieldItem['value'];
-					$allResources[] = [
-						'id' => 'resource_' . $resourceId,
-						'name' => $fieldItem['value']
-					];
-				}
 				$selectedResourceValue = $fieldItem['value'];
-				$resourceId++;
 			}
 			if ($roles == $fieldItem['permName'] && ! empty($fieldItem['value'])) {
 				if (! in_array($fieldItem['value'], $ganttRoles)) {
@@ -273,16 +330,17 @@ function wikiplugin_ganttchart($data, $params)
 		$ganttValues[] = [
 			'id' => $itemId,
 			'name' => $fieldName,
+			'order' => $fieldOrder,
 			'progress' => $fieldProgress,
 			'progressByWorklog' => false,
-			'relevance' => $percentageToFinish * 100,
+			'relevance' => 0,
 			'type' => '',
 			'typeId' => '',
 			'description' => $fieldDescription,
 			'code' => $fieldCode,
 			'level' => $allLevel[$itemId],
 			'status' => $fieldStatus,
-			'depends' => '',
+			'depends' => $fieldDepends,
 			'canWrite' => $canWrite,
 			'start' => $fieldStartDate,
 			'duration' => $numDays,
@@ -298,15 +356,20 @@ function wikiplugin_ganttchart($data, $params)
 					'effort' => intval($fieldEffort)
 				]
 			],
-			'hasChild' => $allLevel[$itemId] > 0 ? true : false
+			'hasChild' => $hasChild
 		];
 	}
 
+	$ganttValues = checkChildrens($ganttValues, $listHasChildren);
+	$ganttValues = transformDependenciesIdsToIndex($ganttValues, $itemIds);
+
 	$info = ! empty($_POST) ? $_POST : [];
-	save($info, $params, $allResources, $allRoles);
+
+	updateTasks($info, $params, $allResources, $allRoles);
+	save($info, $params, $allResources, $allRoles, true);
 
 	$headerlib = TikiLib::lib('header');
-	$headerlib->add_cssfile('vendor_bundled/vendor/robicch/jquery-gantt/platform.css');
+	$headerlib->add_cssfile('themes/base_files/feature_css/wikiplugin-ganttchart.css');
 	$headerlib->add_cssfile('vendor_bundled/vendor/robicch/jquery-gantt/libs/jquery/dateField/jquery.dateField.css');
 	$headerlib->add_cssfile('vendor_bundled/vendor/robicch/jquery-gantt/gantt.css');
 	$headerlib->add_jsfile('vendor_bundled/vendor/robicch/jquery-gantt/libs/jquery/jquery.livequery.1.1.1.min.js');
@@ -340,7 +403,7 @@ function wikiplugin_ganttchart($data, $params)
 		'canWrite' => $canWrite,
 		'canDelete' => $canDelete,
 		'canWriteOnParent' => $canWriteOnParent,
-		'zoom' => "w3"
+		'zoom' => "1M"
 	];
 	$smarty->assign('ganttProject', json_encode($ganttProject));
 
@@ -413,15 +476,36 @@ function getTimeToMilliseconds($time)
 }
 
 /**
+ * Update gantt children values
+ *
+ * @param array $ganttValues
+ * @param array $listHasChildren
+ * @return array
+ */
+function checkChildrens($ganttValues, $listHasChildren)
+{
+	if (! empty($ganttValues) && ! empty($listHasChildren)) {
+		foreach ($ganttValues as $key => $ganttItem) {
+			if (isset($listHasChildren[$ganttItem['id']])) {
+				$ganttValues[$key]['hasChild'] = true;
+			}
+		}
+	}
+
+	return $ganttValues;
+}
+
+/**
  * Update tracker item information
  *
  * @param array $info
  * @param array $params
  * @param array $allResources
  * @param array $allRoles
+ * @param boolean $notifications
  * @return null
  */
-function save($info, $params, $allResources, $allRoles)
+function save($info, $params, $allResources, $allRoles, $notifications = false)
 {
 	$access = TikiLib::lib('access');
 	if (! empty($info) && $access->checkCsrf()) {
@@ -438,7 +522,14 @@ function save($info, $params, $allResources, $allRoles)
 			foreach ($info as $key => $field) {
 				$fieldPermanentName = ! empty($params[$key]) ? $params[$key] : null;
 				if (is_string($fieldPermanentName)) {
-					$value = in_array($key, ['begin', 'end']) ? strtotime($field) : $field;
+					$value = $field;
+					if (in_array($key, ['begin', 'end'])) {
+						if (strlen($field) > 10) {
+							$value = substr($field, 0, -3);
+						} else {
+							$value = strtotime($field);
+						}
+					}
 					if (in_array($key, ['resourceId', 'roleId'])) {
 						foreach ($allResources as $resource) {
 							if ($resource['id'] == $field) {
@@ -467,10 +558,153 @@ function save($info, $params, $allResources, $allRoles)
 			$trackerUtilities = new Services_Tracker_Utilities();
 			$result = $trackerUtilities->updateItem($definition, $item);
 
-			if ($result) {
+			if ($result && $notifications) {
 				Feedback::success(tr('Gantt chart updated'));
 				$access->redirect($_SERVER['HTTP_REFERER']);
 			}
 		}
 	}
+}
+
+/**
+ * Transform all tasks dependencies ids in to indexes. This is needed to ganttChart.
+ *
+ * @param array $ganttValues
+ * @param array $itemIds
+ * @return array
+ */
+function transformDependenciesIdsToIndex($ganttValues, $itemIds)
+{
+	foreach ($ganttValues as $key => $value) {
+		if (! isset($value['depends']) || strlen($value['depends']) == 0) {
+			continue;
+		}
+		$depends = explode(',', $value['depends']);
+		if (is_array($depends)) {
+			$indexIds = [];
+			foreach ($depends as $itemId) {
+				$itemData = explode(':', $itemId);
+				$itemId = $itemData[0];
+				$itemDays = isset($itemData[1]) ? $itemData[1] : false;
+				$index = array_search($itemId, $itemIds);
+				if ($index) {
+					$index = $index + 1;
+					$index = ! empty($itemDays) ? $index . ':' . $itemDays : $index;
+					$indexIds[] = $index;
+				}
+			}
+			$depends = ! empty($indexIds) ? implode(',', $indexIds) : '';
+		}
+		$ganttValues[$key]['depends'] = $depends;
+	}
+
+	return $ganttValues;
+}
+
+/**
+ * Transform all tasks dependencies indexes to ids.
+ *
+ * @param string $depends
+ * @param array $tasks
+ * @return string
+ */
+function transformDependenciesIndexToIds($depends, $tasks)
+{
+	$dependsIds = '';
+	if (! empty($depends) && ! empty($tasks)) {
+		$indexes = explode(',', $depends);
+		foreach ($indexes as $value) {
+			$itemData = explode(':', $value);
+			$index = $itemData[0];
+			$index = isset($tasks[$index - 1]['id']) ? $tasks[$index - 1]['id'] : false;
+			$itemDays = isset($itemData[1]) ? $itemData[1] : false;
+			if ($index && $itemDays) {
+				$index = $index . ':' . $itemDays;
+			}
+			$dependsIds .= $index;
+		}
+	}
+
+	return $dependsIds;
+}
+
+/**
+ * Update/delete gantt tasks in tracker items
+ *
+ * @param array $info
+ * @return null
+ * @throws Services_Exception
+ */
+function updateTasks($info, $params, $allResources, $allRoles)
+{
+	$access = TikiLib::lib('access');
+	if (! empty($info)
+		&& $access->checkCsrf()
+		&& ! empty($info['trackerId'])
+		&& (! empty($info['deletedIds']) || ! empty($info['tasks']))
+	) {
+		$tikilib = TikiLib::lib('tiki');
+		$trklib = TikiLib::lib('trk');
+
+		$transaction = $tikilib->begin();
+		foreach ($info['deletedIds'] as $deletedId) {
+			$itemInfo = $trklib->get_item_info($deletedId);
+			$actionObject = Tracker_Item::fromInfo($itemInfo);
+			if ($actionObject->canRemove()) {
+				$trklib->remove_tracker_item($deletedId);
+			}
+		}
+		$transaction->commit();
+
+		$order = 1;
+		foreach ($info['tasks'] as $key => $task) {
+			// mapping gantt task to tracker items
+			$task['trackerId'] = $info['trackerId'];
+			$task['trackerItemId'] = $task['id'];
+			$task['begin'] = $task['start'];
+			$task['order'] = $order;
+			$task['resourceId'] = ! empty($task['assigs'][0]['resourceId']) ? $task['assigs'][0]['resourceId'] : '';
+			$task['roleId'] = ! empty($task['assigs'][0]['roleId']) ? $task['assigs'][0]['roleId'] : '';
+			$task['effort'] = ! empty($task['assigs'][0]['effort']) ? $task['assigs'][0]['effort'] : '';
+			$level = ! empty($task['level']) ? $task['level'] : 0;
+			$task['level'] = getTaskLevel($level, $info['tasks']);
+
+			if (! empty($task['depends'])) {
+				$task['depends'] = transformDependenciesIndexToIds($task['depends'], $info['tasks']);
+			}
+
+			unset($task['id']);
+			unset($task['start']);
+			unset($task['assigs']);
+
+			save($task, $params, $allResources, $allRoles);
+			$order++;
+		}
+
+		Feedback::success(tr('Gantt chart updated'));
+		exit;
+	}
+}
+
+/**
+ * Get tasks level based in gantt identation
+ *
+ * @param array $taskLevel
+ * @param array $allTasks
+ * @return int
+ */
+function getTaskLevel($taskLevel, $allTasks)
+{
+	$level = 0;
+	if (! empty($taskLevel) && $taskLevel > 0 && ! empty($allTasks)) {
+		foreach ($allTasks as $key => $task) {
+			$matchKey = intval($taskLevel) - 1;
+			if ($matchKey == $key && isset($task['id'])) {
+				$level = $task['id'];
+				break;
+			}
+		}
+	}
+
+	return $level;
 }
