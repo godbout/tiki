@@ -10,6 +10,7 @@
 	{/remarksbox}
 {/if}
 
+
 {tabset name="user_watches"}
 
 {if $prefs.feature_daily_report_watches eq 'y'}
@@ -21,14 +22,15 @@
 			<input type="hidden" name="report_preferences" value="true">
 
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">{tr}Use reports{/tr}</label>
-
+				<label class="col-sm-3" for="use_daily_reports">{tr}Use reports{/tr}</label>
 				<div class="col-sm-9">
-					<input type="checkbox" class="form-control" name="use_daily_reports" value="true" {if $report_preferences != false}checked{/if}>
-				</div>
+                    <div class="form-check">
+					    <input type="checkbox" class="form-check-input" name="use_daily_reports" value="true" {if $report_preferences != false}checked{/if}>
+				    </div>
+                </div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">{tr}Reporting interval{/tr}</label>
+				<label class="col-sm-3" for="interval">{tr}Reporting interval{/tr}</label>
 				<div class="col-sm-9">
 					<select name="interval" class="form-control" >
 						<option value="minute"
@@ -45,7 +47,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label" for="view">{tr}Report length{/tr}</label>
+				<label class="col-sm-3" for="view">{tr}Report length{/tr}</label>
 				<div class="col-sm-9">
 					<input type="radio" name="view" value="short"{if $report_preferences.view eq "short"} checked="checked"{/if}>
 					{tr}Short report{/tr}
@@ -56,7 +58,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">{tr}Report format{/tr}</label>
+				<label class="col-sm-3" for="type">{tr}Report format{/tr}</label>
 				<div class="col-sm-9">
 					<input type="radio" name="type" value="html"{if $report_preferences.type eq "html" OR $report_preferences eq false} checked="checked"{/if}>
 					{tr}HTML{/tr}
@@ -67,10 +69,12 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">{tr}Send report even if no activity{/tr}</label>
+				<label class="col-sm-3" for="always_email">{tr}Send report even if no activity{/tr}</label>
 				<div class="col-sm-9">
-					<input type="checkbox" class="form-control" name="always_email" value="1"{if $report_preferences.always_email eq 1 OR $report_preferences eq false} checked="checked"{/if}>
-				</div>
+                    <div class="form-check">
+    					<input type="checkbox" class="form-check-input" name="always_email" value="1"{if $report_preferences.always_email eq 1 OR $report_preferences eq false} checked="checked"{/if}>
+	    			</div>
+                </div>
 			</div>
 			<div class="form-group text-center">
 				<input type="submit" name="submit" class="btn btn-primary" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
@@ -244,63 +248,79 @@
 		<h4>{tr}Send notification when I am the editor{/tr}</h4>
 		{if $prefs.feature_wiki eq 'y'}
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">{tr}Wiki{/tr}</label>
+				<label class="col-sm-3" for="user_wiki_watch_editor">{tr}Wiki{/tr}</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="checkbox" name="user_wiki_watch_editor" value="true" {if $user_wiki_watch_editor eq 'y'}checked{/if}>
-				</div>
+                    <div class="form-check">
+    					<input class="form-check-input" type="checkbox" name="user_wiki_watch_editor" value="true" {if $user_wiki_watch_editor eq 'y'}checked{/if}>
+				    </div>
+                </div>
 			</div>
 		{/if}
 		{if $prefs.feature_articles eq 'y'}
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">{tr}Article{/tr}</label>
+				<label class="col-sm-3" for="user_article_watch_editor">{tr}Article{/tr}</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="checkbox" name="user_article_watch_editor" value="true" {if $user_article_watch_editor eq 'y'}checked{/if}>
-				</div>
+                  <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="user_article_watch_editor" value="true" {if $user_article_watch_editor eq 'y'}checked{/if}>
+                  </div>
+                </div>
 			</div>
 		{/if}
 		{if $prefs.feature_blogs eq 'y'}
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">{tr}Blog{/tr}</label>
+				<label class="col-sm-3" for="user_blog_watch_editor">{tr}Blog{/tr}</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="checkbox" name="user_blog_watch_editor" value="true" {if $user_blog_watch_editor eq 'y'}checked{/if}>
-				</div>
+                    <div class="form-check">
+    					<input class="form-check-input" type="checkbox" name="user_blog_watch_editor" value="true" {if $user_blog_watch_editor eq 'y'}checked{/if}>
+				    </div>
+                </div>
 			</div>
 		{/if}
 		{if $prefs.feature_trackers eq 'y'}
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">{tr}Tracker{/tr}</label>
+				<label class="col-sm-3" for="user_tracker_watch_editor">{tr}Tracker{/tr}</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="checkbox" name="user_tracker_watch_editor" value="true" {if $user_tracker_watch_editor eq 'y'}checked{/if}>
-				</div>
+                    <div class="form-check">
+					    <input class="form-check-input" type="checkbox" name="user_tracker_watch_editor" value="true" {if $user_tracker_watch_editor eq 'y'}checked{/if}>
+				    </div>
+                </div>
 			</div>
 		{/if}
 		{if $prefs.feature_calendar eq 'y'}
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">{tr}Calendar{/tr}</label>
+				<label class="col-sm-3" for="user_calendar_watch_editor">{tr}Calendar{/tr}</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="checkbox" name="user_calendar_watch_editor" value="true" {if $user_calendar_watch_editor eq 'y'}checked{/if}>
-				</div>
+                    <div class="form-check">
+					    <input class="form-check-input" type="checkbox" name="user_calendar_watch_editor" value="true" {if $user_calendar_watch_editor eq 'y'}checked{/if}>
+				    </div>
+                </div>
 			</div>
 		{/if}
 		<div class="form-group row">
-			<label class="col-sm-3 col-form-label">{tr}Comment{/tr}</label>
+			<label class="col-sm-3" for="user_comment_watch_editor">{tr}Comment{/tr}</label>
 			<div class="col-sm-9">
-				<input class="form-control" type="checkbox" name="user_comment_watch_editor" value="true" {if $user_comment_watch_editor eq 'y'}checked{/if}>
-			</div>
+                <div class="form-check">
+				    <input class="form-check-input" type="checkbox" name="user_comment_watch_editor" value="true" {if $user_comment_watch_editor eq 'y'}checked{/if}>
+			    </div>
+            </div>
 		</div>
 		{if $prefs.feature_categories eq 'y'}
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label">{tr}Category{/tr}</label>
+				<label class="col-sm-3" for="user_category_watch_editor">{tr}Category{/tr}</label>
 				<div class="col-sm-9">
-					<input class="form-control" type="checkbox" name="user_category_watch_editor" value="true" {if $user_category_watch_editor eq 'y'}checked{/if}>
-				</div>
+                    <div class="form-check">
+    					<input class="form-check-input" type="checkbox" name="user_category_watch_editor" value="true" {if $user_category_watch_editor eq 'y'}checked{/if}>
+	    			</div>
+                </div>
 			</div>
 		{/if}
 		<div class="form-group row">
-			<label class="col-sm-3 col-form-label">{tr}Plugin approval{/tr}</label>
+			<label class="col-sm-3" for="user_plugin_approval_watch_editor">{tr}Plugin approval{/tr}</label>
 			<div class="col-sm-9">
-				<input class="form-control" type="checkbox" name="user_plugin_approval_watch_editor" value="true" {if $user_plugin_approval_watch_editor eq 'y'}checked{/if}>
-			</div>
+                <div class="form-check">
+    				<input class="form-check-input" type="checkbox" name="user_plugin_approval_watch_editor" value="true" {if $user_plugin_approval_watch_editor eq 'y'}checked{/if}>
+	    		</div>
+            </div>
 		</div>
 		<div class="form-group text-center">
 			<input type="submit" class="btn btn-primary" name="submit" title="{tr}Apply Changes{/tr}" value="{tr}Apply{/tr}">
