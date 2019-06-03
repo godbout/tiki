@@ -2582,7 +2582,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
     background-color: transparent;
     border-color: transparent; }
   .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-    color: #495057;
+    color: #fff;
     background-color: #214d68;
     border-color: #dee2e6 #dee2e6 #214d68; }
   .nav-tabs .dropdown-menu {
@@ -6872,7 +6872,7 @@ body.fullscreen.tiki.navbar-padding {
 .topbar {
   margin-bottom: 20px; }
 
-.navbar-light, .topbar, .topbar .navbar-light .navbar-nav > li, .topbar .nav > li, .siteloginbar_popup .dropdown-menu {
+.navbar.bg-light, .navbar.bg-dark, .topbar, .siteloginbar_popup .dropdown-menu {
   background: #2498c7;
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2498c7), color-stop(4%, #047aa8), color-stop(39%, #1b98c6), color-stop(65%, #32b5e1), color-stop(70%, #32bbe9), color-stop(100%, #44d1fe));
   background: -webkit-linear-gradient(top, #2498c7 0%, #047aa8 4%, #1b98c6 39%, #32b5e1 65%, #32bbe9 70%, #44d1fe 100%);
@@ -6880,19 +6880,15 @@ body.fullscreen.tiki.navbar-padding {
   background: linear-gradient(to bottom, #2498c7 0%, #047aa8 4%, #1b98c6 39%, #32b5e1 65%, #32bbe9 70%, #44d1fe 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2498c7', endColorstr='#44d1fe', GradientType=0); }
 
-.top_modules .navbar-light {
-  background: transparent;
-  border: none; }
-
 .navbar-light .navbar-nav > .active > a, .navbar-light .navbar-nav > .open > a, .navbar-light .navbar-nav > .active > a:hover, .navbar-light .navbar-nav > .open > a:hover, .navbar-light .navbar-nav > .active > a:focus, .navbar-light .navbar-nav > .open > a:focus {
   background: transparent; }
-
-.topbar .bg-dark {
-  background: transparent !important; }
 
 .navbar-fixed-top .container, .navbar-fixed-top .container .navbar-light {
   background: transparent;
   border: none; }
+
+.navbar-dark a, .navbar-light a {
+  color: #fff; }
 
 input, .jumbotron {
   border: 1px solid;
@@ -7238,7 +7234,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .tiki .ui-state-default a, .tiki .ui-state-default a:link, .tiki .ui-state-default a:visited, .tiki a.ui-button, .tiki a:link.ui-button, .tiki a:visited.ui-button, .tiki .ui-button {
     color: #069; }
   .tiki .ui-state-active a, .tiki .ui-state-active a:link, .tiki .ui-state-active a:visited {
-    color: #495057; }
+    color: #fff; }
   .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
     border: 1px solid;
     border-color: #dee2e6;
@@ -7250,7 +7246,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     border-color: #e9ecef #e9ecef #dee2e6;
     background: #214d68;
     font-weight: 400;
-    color: #495057; }
+    color: #fff; }
   .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active {
     border: 1px solid;
     border-color: #343a40;
