@@ -2353,6 +2353,12 @@ ul.tree {
 .searchresults li {
   margin: 10px 0 0; }
 
+@media (max-width: 767.98px) {
+  .searchresults li {
+    margin: 25px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dee2e6; } }
+
 .jSBarTopParent .jSBarController {
   height: 0 !important; }
 
