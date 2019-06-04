@@ -677,6 +677,10 @@ if ($prefs['mustread_enabled'] == 'y') {
 	$headerlib->add_jsfile('lib/jquery_tiki/mustread.js');
 }
 
+if ($prefs['feature_tasks'] == 'y') {
+	$headerlib->add_jsfile('lib/jquery_tiki/tiki-tasks.js');
+}
+
 if ($prefs['feature_inline_comments'] === 'y' && $prefs['comments_inline_annotator'] === 'y') {
 	if (empty($object)) {
 		$object = current_object();
