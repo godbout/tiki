@@ -265,7 +265,7 @@ class MonitorLib
 				],
 			];
 		}
-		else {
+		elseif ($userId > 0) {
 			$this->queue[$args['EVENT_ID']] = [
 				'event' => $event,
 				'arguments' => $args,
