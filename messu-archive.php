@@ -8,9 +8,12 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+
+
 $section = 'user_messages';
 $inputConfiguration = [[
 	'staticKeyFilters' => [
+		'unarchive'	=> 'alpha',
 		'delete'	=> 'digits',
 		'download'	=> 'alpha',
 		'filter'	=> 'alpha',
@@ -77,6 +80,32 @@ if (isset($_REQUEST["download"])) {
 	header("Content-Disposition: attachment; filename=tiki-msg-archive-" . time() . ".txt ");
 	$smarty->display('messu-download.tpl', null, null, null, 'application/download');
 	die;
+}
+
+
+// Archive messages if the archive button was pressed
+if (isset($_POST["unarchive"])) {
+	if (isset($_POST["msg"]) && $access->checkCsrf()) {
+		$tmp = $messulib->count_messages($user, 'archive');
+		$i = 0;
+		foreach (array_keys($_POST["msg"]) as $msg) {
+			/*if (($prefs['messu_archive_size'] > 0) && ($tmp + $i >= $prefs['messu_archive_size'])) {
+				$smarty->assign('msg', tra("Archive is full. Delete some messages from archive first."));
+				$smarty->display("error.tpl");
+				die;
+			}*/
+			$result = $messulib->unarchive_message($user, $msg);
+			$i = $i + $result->numRows();
+		}
+		if ($i) {
+			$msg = $i === 1 ? tr('%0 message was unarchived', $i) : tr('%0 messages were unarchived', $i);
+			Feedback::success($msg);
+		} else {
+			Feedback::error(tra('No messages were unarchived'));
+		}
+	} elseif (!isset($_POST["msg"])) {
+		Feedback::error(tra('No messages were selected to unarchive'));
+	}
 }
 
 if (isset($_REQUEST['filter'])) {
