@@ -190,10 +190,12 @@
 		</div>
 
 		<div class="form-group row">
-			<label class="col-sm-3 col-form-label form-check-label" for="scheduler_catch">{tr}Run if missed{/tr}</label>
-			<div class="col-sm-7 form-check">
-				<input type="checkbox" id="scheduler_rerun" name="scheduler_rerun"
-					{if $schedulerinfo.re_run}checked{/if}>
+			<label class="col-sm-3 form-check-label" for="scheduler_catch">{tr}Run if missed{/tr}</label>
+			<div class="col-sm-7">
+				<div class="form-check">
+					<input type="checkbox" id="scheduler_rerun" class="form-check-input" name="scheduler_rerun"
+						{if $schedulerinfo.re_run}checked{/if}>
+				</div>
 			</div>
 		</div>
 		<div class="form-group row">
