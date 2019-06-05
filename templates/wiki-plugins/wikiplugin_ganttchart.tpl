@@ -3,11 +3,38 @@
 
 	<script type="text/javascript">
 		function loadFromLocalStorage() {
+			// Set a new resourceUrl
+			ge.resourceUrl = 'vendor_bundled/vendor/robicch/jquery-gantt/res/';
 			var ret;
 			if (!ret || !ret.tasks || ret.tasks.length == 0) {
 				ret= {/literal}{$ganttProject}{literal};
 			}
 			return ret;
+		}
+
+		function saveGanttOnServer() {
+			var prj = ge.saveProject();
+			var deletedTask = prj.deletedTaskIds;
+			var task = prj.tasks;
+			var pageUrl = window.location.href;
+
+			if (task != '' || deletedTask != '') {
+				$('#ganttSaveProject').attr("disabled", true);
+				$('#ganttLoading').show();
+
+				$.ajax({
+					type: "POST",
+					url: pageUrl,
+					data: {
+						'trackerId':'{/literal}{$trackerId}{literal}',
+						'tasks':task,
+						'deletedIds':deletedTask,
+						'ticket':'{/literal}{$ticket}{literal}'
+					}
+				}).done(function() {
+					window.location.href = pageUrl;
+				});
+			}
 		}
 {/literal}
 		function loadI18n() {
@@ -32,7 +59,13 @@
 				"CANNOT_MOVE_TASK" : "{tr}Cannot move task{/tr}",
 				"PLEASE_SAVE_PROJECT" : "{tr}Please save your project{/tr}",
 				"ERROR_SETTING_DATES": "{tr}Error: date settings{/tr}",
-				"CANNOT_DEPENDS_ON_DESCENDANTS": "{tr}Cannot depend on descendants{/tr}"
+				"CANNOT_DEPENDS_ON_DESCENDANTS": "{tr}Cannot depend on descendants{/tr}",
+				"GANTT_SEMESTER":"Semester",
+				"GANTT_SEMESTER_SHORT":"s.",
+				"GANTT_QUARTER":"Quarter",
+				"GANTT_QUARTER_SHORT":"q.",
+				"GANTT_WEEK":"Week",
+				"GANTT_WEEK_SHORT":"w."
 			};
 		}
 	</script>
@@ -70,8 +103,12 @@
 				<button onclick="ge.splitter.resize(50);return false;" class="button textual icon" ><span class="teamworkIcon">O</span></button>
 				<button onclick="ge.splitter.resize(100);return false;" class="button textual icon"><span class="teamworkIcon">R</span></button>
 				<span class="ganttButtonSeparator"></span>
+				<button onclick="$('#workSpace').trigger('fullScreen.gantt');return false;" class="button textual icon" title="fullscreen" id="fullscrbtn"><span class="teamworkIcon">@</span></button>
 				<button onclick="ge.element.toggleClass('colorByStatus' );return false;" class="button textual icon"><span class="teamworkIcon">&sect;</span></button>
 				&nbsp; &nbsp; &nbsp; &nbsp;
+				<button onclick="saveGanttOnServer();" id="ganttSaveProject" class="btn btn-primary requireWrite" title="{tr}Save{/tr}">{tr}Save{/tr}</button>
+				&nbsp;
+				<img id="ganttLoading" src="../../img/spinner.gif" title="{tr}Loading{/tr}" alt="{tr}Loading{/tr}"/>
 				<button class="button login" title="login/enroll" onclick="loginEnroll($(this));" style="display:none;">login/enroll</button>
 				<button class="button opt collab" title="Start with Twproject" onclick="collaborate($(this));" style="display:none;"><em>collaborate</em></button>
 			</div>
@@ -182,7 +219,7 @@
 							</td>
 							<td colspan="3" valign="top">
 								<label for="name" class="required">{/literal}{tr}name{/tr}{literal}</label><br>
-   								<input type="text" name="name" id="name"class="formElements" autocomplete='off' maxlength=255 style='width:100%' value="" required="true" oldvalue="1">
+								<input type="text" name="name" id="name"class="formElements" autocomplete='off' maxlength=255 style='width:100%' value="" required="true" oldvalue="1">
 							</td>
 						</tr>
 						<tr class="dateRow">
@@ -198,7 +235,7 @@
 							<td nowrap="">
 								<label for="end">{/literal}{tr}End{/tr}{literal}</label>&nbsp;&nbsp;&nbsp;&nbsp;
 								<input type="checkbox" id="endIsMilestone" name="endIsMilestone" value="yes">
-   								&nbsp;<label for="endIsMilestone">{/literal}{tr}is milestone{/tr}{literal}</label>&nbsp;
+								&nbsp;<label for="endIsMilestone">{/literal}{tr}is milestone{/tr}{literal}</label>&nbsp;
 								<br><input type="text" name="end" id="end" size="8" class="formElements dateField validated date" autocomplete="off" maxlength="255" value="" oldvalue="1" entrytype="DATE">
 								<span title="calendar" id="ends_inputDate" class="teamworkIcon openCalendar" onclick="$(this).dateField({inputField:$(this).prevAll(':input:first'),isSearchField:false});">m</span>
 							</td>
@@ -265,7 +302,7 @@
 		</div>
 {/literal}
 		<div class="__template__" type="RESOURCE_EDITOR">
- 			<!--
+			<!--
 			<div class="resourceEditor" style="padding: 5px;">
 				<h2></h2>
 				<table  cellspacing="1" cellpadding="0" width="100%" id="resourcesTable">

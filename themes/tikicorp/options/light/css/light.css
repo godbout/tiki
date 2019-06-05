@@ -1,26 +1,62 @@
 /*  The Akebi theme option file for the FiveAlive theme of Tiki Wiki CMS Groupware. */
-/*
- .btn-secondary {
- color: #fff;
- background-color: $btn-secondary-bg;
- border-color: $btn-secondary-border;
- }
- .btn-secondary:hover {
- color: #fff;
- background-color: $btn-secondary-hover-bg;
- border-color: $btn-secondary-hover-border;
- }
- .btn-secondary.disabled, .btn-secondary:disabled {
- color: #fff;
- background-color: $btn-secondary-disabled-bg;
- border-color: $btn-secondary-disabled-border;
- }
- .btn-secondary:not(:disabled):not(.disabled):active, .btn-secondary:not(:disabled):not(.disabled).active,
- .show > .btn-secondary.dropdown-toggle {
- color: #fff;
- background-color: $btn-secondary-active-bg;
- border-color: $btn-secondary-active-border;
- }*/
+body {
+  background-image: url("../images/bg-body.jpg"); }
 
-.blog-postbody-title h2.panel-title {
-  font-size: 20px; }
+a {
+  color: #1784b7; }
+  a:hover {
+    color: #1784b7; }
+
+.bg-dark,
+.topbar.bg-dark {
+  background: rgba(0, 0, 0, 0.77) !important; }
+
+body {
+  color: #000000; }
+
+.tiki header.page-header {
+  background-color: rgba(255, 255, 255, 0.77); }
+
+@media (min-width: 992px) {
+  .topbar .navbar .nav-item {
+    padding-left: 0;
+    padding-right: 0;
+    border-left: 1px solid #0a1218; }
+    .topbar .navbar .nav-item:first-child {
+      border-left: 0; } }
+.topbar .navbar .nav-item.active .nav-link {
+  color: #ffffff; }
+  .topbar .navbar .nav-item.active .nav-link:before {
+    -webkit-transform: scale3d(1, 1, 1);
+    -moz-transform: scale3d(1, 1, 1);
+    -ms-transform: scale3d(1, 1, 1);
+    -o-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+    opacity: 1;
+    filter: alpha(opacity=100); }
+@media (min-width: 992px) {
+  .topbar .navbar-nav .nav-link:before {
+    background-color: rgba(0, 0, 0, 0.77);
+    z-index: -1; } }
+.topbar .navbar-nav .nav-link:hover {
+  color: #ffffff; }
+
+.card {
+  background-color: rgba(255, 255, 255, 0.77); }
+  .card .card-header {
+    background-color: transparent; }
+
+.card-header {
+  background-color: rgba(255, 255, 255, 0.77); }
+
+.col1:before {
+  background-color: rgba(255, 255, 255, 0.77); }
+
+.box-menu .nav .nav-item {
+  border-top: 1px solid; }
+  .box-menu .nav .nav-item:first-child {
+    border-top: 0 solid; }
+.box-menu .nav .nav {
+  background-color: #ffffff; }
+
+/*# sourceMappingURL=light.css.map */

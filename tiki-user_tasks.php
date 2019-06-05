@@ -14,6 +14,7 @@ $inputConfiguration = [[
 require_once('tiki-setup.php');
 include_once('lib/tasks/tasklib.php');
 $messulib = TikiLib::lib('message');
+$accesslib = TikiLib::lib('access');
 
 $access->check_feature('feature_tasks', '', 'community');
 $access->check_user($user);
@@ -271,6 +272,7 @@ $tasks_maxRecords = $tikilib->get_user_preference($user, 'tasks_maxRecords', $ma
 $maxRecords = $tasks_maxRecords;
 $user_for_group_list = $user;
 $show_history = null;
+$errors = [];
 if (isset($_REQUEST['show_history'])) {
 	$show_history = $_REQUEST['show_history'];
 }
@@ -321,6 +323,11 @@ if ((isset($_REQUEST['save'])) || (isset($_REQUEST['preview']))) {
 	$save_head = [];
 	$msg_body = '';
 	$msg_title = '';
+
+	if (empty($_REQUEST['title']) || strlen($_REQUEST['title']) < 3) {
+		$errors[] = tra('The task title must have at least 3 characters');
+	}
+
 	if ($info['taskId'] == 0) {
 		$msg_changes_head = '__' . tra("Task entries:") . "__\n";
 	} else {
@@ -496,18 +503,14 @@ if ((isset($_REQUEST['save'])) || (isset($_REQUEST['preview']))) {
 		$info['parsed'] = (isset($info['description'])) ? TikiLib::lib('parser')->parse_data($info['description']) : '';
 	}
 }
-if (isset($_REQUEST['save'])) {
+if (isset($_REQUEST['save']) && empty($errors)) {
 	if (isset($_REQUEST['task_info_message']) and strlen($_REQUEST['task_info_message']) > 1) {
 		$task_info_message = "\n__" . tra("Info message") . ":__\n";
 		$task_info_message .= '^' . $_REQUEST['task_info_message'] . "^\n\n";
 	} else {
 		$task_info_message = '';
 	}
-	if (isset($save['title']) && strlen($save['title']) < 3) {
-		$smarty->assign('msg', tra("The task title must have at least 3 characters"));
-		$smarty->display("error.tpl");
-		die;
-	}
+
 	if ($info['taskId'] == 0) {
 		//new task
 		if ($_REQUEST['task_user'] != $user) {
@@ -619,6 +622,17 @@ if (isset($_REQUEST['save'])) {
 	$show_view = true;
 	$smarty->assign('show_view', $show_view);
 }
+
+if (! empty($errors)) {
+	Feedback::error(['mes' => $errors]);
+	$smarty->assign('show_form', true);
+	$info = $_REQUEST;
+
+	if (! empty($save)) {
+		$info = array_merge($info, $save);
+	}
+}
+
 $smarty->assign('taskId', $_REQUEST['taskId']);
 $smarty->assign('info', $info);
 $smarty->assign('created_Month', $tikilib->date_format('%m', $info['created']));
@@ -660,6 +674,7 @@ if (! $show_form) {
 	$smarty->assign('cant', $tasklist['cant']);
 	$smarty->assign_by_ref('tasklist', $tasklist["data"]);
 }
+
 $receive_groups = $tikilib->get_groups_to_user_with_permissions($user_for_group_list, 'tiki_p_tasks_receive');
 $smarty->assign('receive_groups', $receive_groups);
 $receive_users = $tasklib->get_user_with_permissions('tiki_p_tasks_receive');
