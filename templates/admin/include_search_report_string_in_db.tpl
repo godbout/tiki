@@ -1,10 +1,10 @@
 {* $Id$ *}
 <h2 class="card-title">{tr}Occurrences of string in database{/tr}</h2>
 <div class="adminoptionbox clearfix form-group row">
-	<label for="string_in_db_search_table" class="class="col-form-label col-sm-4">
+	<label for="string_in_db_search_table" class="col-form-label col-sm-4">
 		{tr}Set default table:{/tr}
 	</label>
-	<div class="col-sm-8">
+	<div class="col-sm-7">
 		<div class="input-group">
 			<select name="string_in_db_search_table" class="form-control" id="string_in_db_search_table">
 			<option value="">All tables</option>
@@ -16,7 +16,7 @@
 	</div>
 </div>
 <div class="adminoptionbox clearfix form-group row">
-	<label for="string_in_db_search" class="class="col-form-label col-sm-4">
+	<label for="string_in_db_search" class="col-form-label col-sm-4">
 		{tr}Text to search:{/tr}
 	</label>
 	<div class="col-sm-4">
@@ -24,9 +24,9 @@
 			<input type="text" id="string_in_db_search" name="string_in_db_search" class="form-control" value="{$searchStringAgain|escape}" />
 		</div>
 	</div>
-	<div class="col-sm-4">
+	<div class="col-sm-3">
 		<div class="input-group">
-			<input type="submit" id="string_in_db_search_button" class="btn btn-primary btn-sm" value="{tr}Search{/tr}" onClick="document.getElementById('redirect').value='0';"/>
+			<input type="submit" id="string_in_db_search_button" class="btn btn-primary" value="{tr}Search{/tr}" onClick="document.getElementById('redirect').value='0';"/>
 		</div>
 	</div>
 	{jq}
