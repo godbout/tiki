@@ -37,6 +37,59 @@ Version 20.0
 ------------------
 
 ----------------------------------------------
+r70136 | pom2ter | 2019-06-05 02:12:37 +0100 (Wed, 05 Jun 2019) | 1 line
+[FIX] mobile: fix layout of the scheduler form
+----------------------------------------------
+r70135 | pom2ter | 2019-06-05 00:58:45 +0100 (Wed, 05 Jun 2019) | 1 line
+[FIX] fix layout of the list blog posts page
+----------------------------------------------
+r70134 | pom2ter | 2019-06-05 00:05:35 +0100 (Wed, 05 Jun 2019) | 1 line
+[FIX] mobile: spaced out search results
+----------------------------------------------
+r70133 | pom2ter | 2019-06-04 22:53:04 +0100 (Tue, 04 Jun 2019) | 1 line
+[FIX] mobile: putting actions buttons back on the right side
+----------------------------------------------
+r70132 | nkoth | 2019-06-04 20:34:58 +0100 (Tue, 04 Jun 2019) | 2 lines
+[FIX] Error when setting up Event Notification to group
+----------------------------------------------
+r70131 | xorti | 2019-06-04 14:45:44 +0100 (Tue, 04 Jun 2019) | 5 lines
+[FIX] Prevent tasks to be saved without title
+- Fix issue that allowed to save tasks without title
+- Fix errors saving tasks without title on a strict database
+----------------------------------------------
+r70130 | chibaguy | 2019-06-03 07:13:37 +0100 (Mon, 03 Jun 2019) | 1 line
+[FIX] [UI] Fix navbar color issues and tab active state color contrast.
+----------------------------------------------
+r70129 | amnabilal | 2019-06-01 19:55:30 +0100 (Sat, 01 Jun 2019) | 1 line
+[FIX]Light option for TikiCorp theme was being messed up, restored from backup.
+----------------------------------------------
+r70128 | xorti | 2019-06-01 19:23:10 +0100 (Sat, 01 Jun 2019) | 1 line
+[FIX] Fix wikiplugin_ganttchart dependencies and order
+----------------------------------------------
+r70127 | chibaguy | 2019-06-01 18:18:41 +0100 (Sat, 01 Jun 2019) | 1 line
+[FIX][UI] Correct and update form classes.
+----------------------------------------------
+r70125 | pom2ter | 2019-05-31 01:25:36 +0100 (Fri, 31 May 2019) | 1 line
+[FIX] there was still some occurences of the old BS3 btn-default class
+----------------------------------------------
+r70124 | pom2ter | 2019-05-31 00:05:42 +0100 (Fri, 31 May 2019) | 1 line
+[FIX] more missing form related classes
+----------------------------------------------
+r70123 | chibaguy | 2019-05-30 17:33:03 +0100 (Thu, 30 May 2019) | 1 line
+[FIX] Fix some color contrast issues in Business theme.
+----------------------------------------------
+r70122 | kroky6 | 2019-05-30 08:14:35 +0100 (Thu, 30 May 2019) | 1 line
+[FIX] remove symbolic link requirements for Cypht to make it work in Windows environments and stop bugging release process (todo: update cypht package to latest after upstream is ready)
+----------------------------------------------
+r70121 | chibaguy | 2019-05-30 07:24:36 +0100 (Thu, 30 May 2019) | 1 line
+[FIX] Fix header background design with new wide image that is centered but has a leftward offset. The CSS rule .header_container { background: url('../images/siteheader.png') calc(50% - 400px) 0 no-repeat; } may have to be modified per site to shift the position where the two background colors meet, by increasing or decreasing "400px". Also, some theme option CSS files hadn't been committed.
+----------------------------------------------
+r70119 | pom2ter | 2019-05-30 01:05:53 +0100 (Thu, 30 May 2019) | 1 line
+[FIX] remove extra quotation mark
+----------------------------------------------
+r70118 | pom2ter | 2019-05-30 01:02:38 +0100 (Thu, 30 May 2019) | 1 line
+[FIX] missing alert box message
+----------------------------------------------
 r70099 | kroky6 | 2019-05-29 13:42:19 +0100 (Wed, 29 May 2019) | 1 line
 [bp/r70082] [FIX] update tiki.sql with webmail removal changes
 ----------------------------------------------
