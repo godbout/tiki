@@ -451,9 +451,7 @@ if ($prefs['feature_jquery_carousel'] == 'y') {
 
 if ($prefs['feature_ajax'] === 'y') {
 	$headerlib->add_jsfile('lib/jquery_tiki/tiki-confirm.js');
-	if ($prefs['ajax_autosave'] === 'y') {
-		$headerlib->add_jsfile('lib/ajax/autosave.js');
-	}
+	$headerlib->add_jsfile('lib/ajax/autosave.js'); // Note that this file is needed even if ajax_autosave is off otherwise wysiwyg won't load.
 }
 
 // $url_scheme is 'http' or 'https' depending on request type condsidering already a reverse proxy
