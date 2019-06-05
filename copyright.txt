@@ -12,7 +12,7 @@ This is how we implement the Tiki Social Contract.
 http://tiki.org/Social+Contract
 
 List of members of the Community
-As of 2019-05-29, the community has:
+As of 2019-06-05, the community has:
   * 648 members on SourceForge.net,
   * 359 of those people who made at least one code commit
 
@@ -142,8 +142,8 @@ SF Role: Developer
 Nickname: amnabilal
 Name: Amna Bilal
 First Commit: 2016-05-19
-Last Commit: 2019-05-15
-Number of Commits: 391
+Last Commit: 2019-06-01
+Number of Commits: 392
 SF Role: Developer
 
 Nickname: amotl
@@ -536,8 +536,8 @@ SF Role: Developer
 Nickname: chibaguy
 Name: Gary Cunningham-Lee
 First Commit: 2006-02-04
-Last Commit: 2019-05-22
-Number of Commits: 3980
+Last Commit: 2019-06-03
+Number of Commits: 3984
 SF Role: Admin
 
 Nickname: chris_holman
@@ -1727,8 +1727,8 @@ SF Role: Developer
 Nickname: kroky6
 Name: Victor Emanouilov
 First Commit: 2016-08-02
-Last Commit: 2019-05-29
-Number of Commits: 891
+Last Commit: 2019-05-30
+Number of Commits: 892
 SF Role: Developer
 
 Nickname: krose
@@ -2418,8 +2418,8 @@ SF Role: Developer
 Nickname: nkoth
 Name: Nelson
 First Commit: 2007-05-17
-Last Commit: 2019-05-27
-Number of Commits: 2183
+Last Commit: 2019-06-04
+Number of Commits: 2186
 SF Role: Developer
 
 Nickname: normandaoust
@@ -2676,8 +2676,8 @@ SF Role: Developer
 Nickname: pom2ter
 Name: Benoit Roy
 First Commit: 2016-01-20
-Last Commit: 2019-05-29
-Number of Commits: 267
+Last Commit: 2019-06-05
+Number of Commits: 280
 SF Role: Developer
 
 Nickname: popovich
@@ -2823,8 +2823,8 @@ SF Role: Developer
 Nickname: rjsmelo
 Name: Ricardo Melo
 First Commit: 2015-10-08
-Last Commit: 2019-05-16
-Number of Commits: 867
+Last Commit: 2019-05-29
+Number of Commits: 870
 SF Role: Developer
 
 Nickname: rleibman
@@ -2855,8 +2855,8 @@ Number of Commits: 1
 Nickname: robertokir
 Name: Roberto Kirschbaum
 First Commit: 2017-06-27
-Last Commit: 2019-05-29
-Number of Commits: 356
+Last Commit: 2019-06-05
+Number of Commits: 368
 SF Role: Admin, Developer, Release Technicians
 
 Nickname: robertplummer
@@ -3449,8 +3449,8 @@ SF Role: Developer
 Nickname: xorti
 Name: Jorge SÃ¡ Pereira
 First Commit: 2018-03-29
-Last Commit: 2019-05-27
-Number of Commits: 275
+Last Commit: 2019-06-04
+Number of Commits: 277
 SF Role: Developer
 
 Nickname: yanturgeon
