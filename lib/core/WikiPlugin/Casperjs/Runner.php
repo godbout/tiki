@@ -36,7 +36,7 @@ class WikiPlugin_Casperjs_Runner
 				$optionsString .= ' --' . $option . '=' . $value;
 			}
 		}
-		$commandLine = $this->casperBin . ' ' . $casperScript . $optionsString;
+		$commandLine = $this->casperBin . ' ' . escapeshellarg($casperScript) . $optionsString;
 
 		exec($commandLine, $output);
 		unlink($casperScript);
