@@ -37,7 +37,7 @@
 								<input type="submit" value="{tr}Set as my default{/tr}" class="btn btn-primary btn-sm">
 							</div>
 						</li>
-						{if $prefs.connect_feature eq "n"}
+						{if $prefs.connect_feature eq "y"}
 							{capture name=likeicon}{icon name="thumbs-up"}{/capture}
 							<div class="form-check">
 								<label class="form-check-label">

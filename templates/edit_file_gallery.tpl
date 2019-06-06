@@ -83,36 +83,36 @@ if ($(this).val() != '') {
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="visible" class="col-sm-4 col-form-label">{tr}Gallery is visible to non-admin users{/tr}</label>
+					<label for="visible" class="col-sm-4">{tr}Gallery is visible to non-admin users{/tr}</label>
 					<div class="col-sm-8">
-						<div class="form-control-plaintext">
-							<input type="checkbox" id="visible" name="visible" {if $gal_info.visible eq 'y'}checked="checked"{/if}>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="visible" name="visible" {if $gal_info.visible eq 'y'}checked="checked"{/if}>
 						</div>
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="public" class="col-sm-4 col-form-label">{tr}Gallery is unlocked{/tr}</label>
+					<label for="public" class="col-sm-4">{tr}Gallery is unlocked{/tr}</label>
 					<div class="col-sm-8">
-						<div class="form-control-plaintext">
-							<input type="checkbox" id="public" name="public" {if isset($gal_info.public) and $gal_info.public eq 'y'}checked="checked"{/if}>
-							<span class="form-text">{tr}Users with upload permission can add files to the gallery (not just the gallery owner){/tr}</span>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input" id="public" name="public" {if isset($gal_info.public) and $gal_info.public eq 'y'}checked="checked"{/if}>
+							<span>{tr}Users with upload permission can add files to the gallery (not just the gallery owner){/tr}</span>
 						</div>
 					</div>
 				</div>
 				{if $tiki_p_admin_file_galleries eq 'y' or $gal_info.type neq 'user'}
 					<div class="form-group row">
-						<label for="backlinkPerms" class="col-sm-4 col-form-label">{tr}Respect permissions for backlinks to view a file{/tr}</label>
+						<label for="backlinkPerms" class="col-sm-4">{tr}Respect permissions for backlinks to view a file{/tr}</label>
 						<div class="col-sm-8">
-							<div class="form-control-plaintext">
-								<input type="checkbox" id="backlinkPerms" name="backlinkPerms" {if $gal_info.backlinkPerms eq 'y'}checked="checked"{/if}>
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input" id="backlinkPerms" name="backlinkPerms" {if $gal_info.backlinkPerms eq 'y'}checked="checked"{/if}>
 							</div>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label for="lockable" class="col-sm-4 col-form-label">{tr}Files can be locked at download{/tr}.</label>
+						<label for="lockable" class="col-sm-4">{tr}Files can be locked at download{/tr}.</label>
 						<div class="col-sm-8">
-							<div class="form-control-plaintext">
-								<input type="checkbox" id="lockable" name="lockable" {if $gal_info.lockable eq 'y'}checked="checked"{/if}>
+							<div class="form-check">
+								<input type="checkbox" class="form-check-input" id="lockable" name="lockable" {if $gal_info.lockable eq 'y'}checked="checked"{/if}>
 							</div>
 						</div>
 					</div>
@@ -187,9 +187,11 @@ if ($(this).val() != '') {
 							</div>
 						</div>
 						<div class="form-group row">
-							<label for="showeachuser" class="col-sm-4 col-form-label">{tr}Allows each user to be selected for small groups{/tr}</label>
+							<label for="showeachuser" class="col-sm-4">{tr}Allows each user to be selected for small groups{/tr}</label>
 							<div class="col-sm-8">
-								<input type="checkbox" name="showeachuser" id="showeachuser" {if $showeachuser eq 'y'}checked="checked"{/if}>
+								<div class="form-check">
+									<input type="checkbox" class="form-check-input" name="showeachuser" id="showeachuser" {if $showeachuser eq 'y'}checked="checked"{/if}>
+								</div>
 							</div>
 						</div>
 					{/if}
@@ -301,12 +303,12 @@ if ($(this).val() != '') {
 			{/tab}
 		{/tabset}
 		<div class="form-group row">
-			<label for="viewitem" class="col-sm-4 col-form-label">
+			<label for="viewitem" class="col-sm-4">
 				{tr}View inserted gallery after save{/tr}
 			</label>
 			<div class="col-sm-8">
-				<div class="form-control-plaintext">
-					<input type="checkbox" name="viewitem" id="viewitem" checked="checked">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" name="viewitem" id="viewitem" checked="checked">
 				</div>
 			</div>
 		</div>
