@@ -11,11 +11,13 @@
 			</div>
 			<div class="row mx-0">
 				{if !empty($prefs.cookie_consent_question)}
-					<div class="form-check col-sm-9">
-						<input class="form-check-input" type="checkbox" name="cookie_consent_checkbox" id="cookie_consent_checkbox">
-						<label class="form-check-label question" for="cookie_consent_checkbox">
-							{wiki}{tr}{$prefs.cookie_consent_question}{/tr}{/wiki}
-						</label>
+					<div class="col-sm-9">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" name="cookie_consent_checkbox" id="cookie_consent_checkbox">
+							<label class="form-check-label question" for="cookie_consent_checkbox">
+								{wiki}{tr}{$prefs.cookie_consent_question}{/tr}{/wiki}
+							</label>
+						</div>
 					</div>
 				{else}
 					<input type="hidden" name="cookie_consent_checkbox" value="1">

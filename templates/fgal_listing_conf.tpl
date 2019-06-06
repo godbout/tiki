@@ -23,38 +23,41 @@
 				</div>
 			</div>
 		{else}
-			<div class="form-check col-sm-8 offset-sm-4">
-				<label class="form-check-label" for="fgal_{$key}{if isset($fgal_ext)}{$fgal_ext}{/if}">
-					{assign var='pref_name' value="fgal_$key"}
-					<input
-						type="checkbox"
-						id="fgal_{$key}"
-						name="fgal_{$key}"
-						{if $item.value eq 'y'}
-							checked="checked"
-						{/if}
+			<div class="col-sm-8 offset-sm-4">
+				<div class="form-check">
+					<label class="form-check-label" for="fgal_{$key}{if isset($fgal_ext)}{$fgal_ext}{/if}">
+						{assign var='pref_name' value="fgal_$key"}
+						<input
+							type="checkbox"
+							id="fgal_{$key}"
+							class="form-check-input"
+							name="fgal_{$key}"
+							{if $item.value eq 'y'}
+								checked="checked"
+							{/if}
+							{if isset($edit_mode) and $edit_mode eq 'y' and $prefs.$pref_name neq 'y'}
+								disabled="disabled"
+							{/if}
+						>
+						{$item.name}
 						{if isset($edit_mode) and $edit_mode eq 'y' and $prefs.$pref_name neq 'y'}
-							disabled="disabled"
-						{/if}
-					>
-					{$item.name}
-					{if isset($edit_mode) and $edit_mode eq 'y' and $prefs.$pref_name neq 'y'}
-						<span class="form-text">
-							{tr}The checkbox is disabled because this preference is disabled globally.{/tr}
-						</span>
-						{if $tiki_p_admin eq 'y' or $tiki_p_admin_file_galleries eq 'y'}
 							<span class="form-text">
-								<a href="tiki-admin.php?page=fgal">
-									{tr}Please enable the preference globally first.{/tr}
-								</a>
+								{tr}The checkbox is disabled because this preference is disabled globally.{/tr}
 							</span>
-						{else}
-							<span class="form-text">
-								{tr}Site administrators can enable the preference.{/tr}
-							</span>
+							{if $tiki_p_admin eq 'y' or $tiki_p_admin_file_galleries eq 'y'}
+								<span class="form-text">
+									<a href="tiki-admin.php?page=fgal">
+										{tr}Please enable the preference globally first.{/tr}
+									</a>
+								</span>
+							{else}
+								<span class="form-text">
+									{tr}Site administrators can enable the preference.{/tr}
+								</span>
+							{/if}
 						{/if}
-					{/if}
-				</label>
+					</label>
+				</div>
 			</div>
 		{/if}
 	{/foreach}

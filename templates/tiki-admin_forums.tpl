@@ -566,7 +566,7 @@
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-4 col-form-label" for="att_store_db">{tr}Store attachments in{/tr}</label>
-							<div class="col-sm-8 form-check">
+							<div class="col-sm-8">
 								<div class="form-check">
 									<input type="radio" class="form-check-input" name="att_store" id="att_store_db" value="db" {if $att_store eq 'db'}checked="checked"{/if}> {tr}Database{/tr}
 								</div>
@@ -591,7 +591,9 @@
 						<div class="form-group row">
 							<label class="col-sm-4 form-check-label" for="att_list_nb">{tr}Shows number of attachments of the all thread in forum list{/tr}</label>
 								<div class="col-sm-8">
-									<input type="checkbox" id="att_list_nb" name="att_list_nb"{if $att_list_nb eq 'y'} checked="checked"{/if} id="att_list_nb">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" id="att_list_nb" name="att_list_nb"{if $att_list_nb eq 'y'} checked="checked"{/if} id="att_list_nb">
+									</div>
 								</div>
 						</div>
 					</fieldset>
@@ -628,15 +630,19 @@
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-4 col-form-label" for="duplicate_categories">{tr}Duplicate categories{/tr}</label>
-						<div class="col-sm-8 form-check">
-							<input class="form-check-input" type="checkbox" name="dupCateg" id="duplicate_categories">
+						<label class="col-sm-4 form-check-label" for="duplicate_categories">{tr}Duplicate categories{/tr}</label>
+						<div class="col-sm-8">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="dupCateg" id="duplicate_categories">
+							</div>
 						</div>
 					</div>
 					<div class="form-group row">
-						<label class="col-sm-4 col-form-label" for="duplicate_perms">{tr}Duplicate permissions{/tr}</label>
-						<div class="col-sm-8 form-check">
-							<input class="form-check-input" type="checkbox" name="dupPerms" id="duplicate_perms">
+						<label class="col-sm-4 form-check-label" for="duplicate_perms">{tr}Duplicate permissions{/tr}</label>
+						<div class="col-sm-8">
+							<div class="form-check">
+								<input class="form-check-input" type="checkbox" name="dupPerms" id="duplicate_perms">
+							</div>
 						</div>
 					</div>
 					<div class="text-center">

@@ -13,8 +13,7 @@ class WikiPlugin_Casperjs_Render
 	 */
 	public static function resultAsHTML($result)
 	{
-		$executionResult = "<h3>CasperJs Execution Details</h3>";
-		$executionResult .= "<strong>CasperJS Script</strong>";
+		$executionResult = "<strong>CasperJS Script</strong>";
 		$executionResult .= "<pre>";
 		$executionResult .= $result->getCasperJsScript();
 		$executionResult .= "</pre>";
@@ -23,7 +22,7 @@ class WikiPlugin_Casperjs_Render
 		$executionResult .= "$ " . $result->getCommandLine() . "\n";
 		if (is_array($result->getScriptOutput()) && count($result->getScriptOutput()) > 0) {
 			foreach ($result->getScriptOutput() as $line) {
-				$executionResult .= $line;
+				$executionResult .= $line . "\n";
 			}
 		}
 		$executionResult .= "</pre>";

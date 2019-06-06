@@ -201,17 +201,21 @@
 						<option value="horiz"{if $preview_type eq 'horiz'} selected{/if}>{tr}Horizontal{/tr}</option>
 					</select>
 				</div>
-				<div class="form-check col-sm-2">
-					<label for="preview_bootstrap" class="form-check-label mr-2">
-						Bootstrap
-					</label>
-					<input type="checkbox" id="preview_bootstrap" name="preview_bootstrap"{if $preview_bootstrap eq 'y'} checked="checked"{/if}>
+				<div class="col-sm-2">
+					<div class="form-check">
+						<label for="preview_bootstrap" class="form-check-label">
+							Bootstrap
+						</label>
+						<input type="checkbox" id="preview_bootstrap" class="form-check-input ml-2" name="preview_bootstrap"{if $preview_bootstrap eq 'y'} checked="checked"{/if}>
+					</div>
 				</div>
-				<div class="form-check col-sm-2">
-					<label for="preview_css" class="form-check-label mr-2">
-						CSS
-					</label>
-					<input type="checkbox" id="preview_css" name="preview_css"{if $preview_css eq 'y'} checked="checked"{/if}>
+				<div class="col-sm-2">
+					<div class="form-check">
+						<label for="preview_css" class="form-check-label">
+							CSS
+						</label>
+						<input type="checkbox" id="preview_css" class="form-check-input ml-2" name="preview_css"{if $preview_css eq 'y'} checked="checked"{/if}>
+					</div>
 				</div>
 				<div class="form-group col-sm-3">
 					<label for="preview_position" class="col-form-label mr-2">

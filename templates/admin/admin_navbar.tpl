@@ -7,7 +7,7 @@
 	{* </div> *}
 	<div class="collapse navbar-collapse" id="admin-navbar-collapse-1">
 		<form method="post" class="form form-inline my-2 my-md-0" role="form" style="min-height: 60px; width: 165px;">
-			<div class="form=check">
+			<div class="form-check">
 				{ticket}
 				<input type="checkbox" id="preffilter-toggle-1" class="preffilter-toggle preffilter-toggle-round form-check-input {$pref_filters.advanced.type|escape}" value="advanced"{if $pref_filters.advanced.selected} checked="checked"{/if}>
 				<label for="preffilter-toggle-1"></label>
@@ -37,10 +37,10 @@
 								<input type="submit" value="{tr}Set as my default{/tr}" class="btn btn-primary btn-sm">
 							</div>
 						</li>
-						{if $prefs.connect_feature eq "y"}
+						{if $prefs.connect_feature eq "n"}
 							{capture name=likeicon}{icon name="thumbs-up"}{/capture}
-							<div class="form=check">
-								<label>
+							<div class="form-check">
+								<label class="form-check-label">
 									<input type="checkbox" id="connect_feedback_cbx" class="form-check-input" {if !empty($connect_feedback_showing)}checked="checked"{/if}>
 									{tr}Provide Feedback{/tr}
 									<a href="https://doc.tiki.org/Connect" target="tikihelp" class="tikihelp" title="{tr}Provide Feedback:{/tr}
