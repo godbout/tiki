@@ -57,7 +57,7 @@
 			<div class="col-md-8">
 				<input id="edit_rec_sw" class="translation_action" type="radio" name="action" value="edit_rec_sw" {if $action eq 'edit_rec_sw'}checked="checked"{/if}>
 				{if $prefs.record_untranslated eq 'y'}
-				<div class="adminoptionboxchild form=check">
+				<div class="adminoptionboxchild form-check">
 					<label class="form-check-label"><input id="only_db_untranslated" class="form-check-input translation_action" type="checkbox" name="only_db_untranslated" {if $only_db_untranslated eq 'y'}checked="checked"{/if}>{tr}Show only database stored untranslated strings{/tr}</label>
 				</div>
 				{/if}
