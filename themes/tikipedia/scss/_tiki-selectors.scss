@@ -258,17 +258,6 @@ body.fullscreen #col1 {
 	margin-left: 0;
   }
 
-  h1.sitetitle {
-	border-bottom: none;
-	font-size: 18px;
-	text-transform: uppercase;
-  }
-
-  h2.sitesubtitle {
-	font-size: 12px;
-	border-bottom: none;
-  }
-
   .module {
 	margin-bottom: .35rem;
   }
@@ -334,7 +323,18 @@ body.fullscreen .page-header {
   //	background-position: bottom left;
 }
 
-// Panels
+h1.sitetitle {
+  border-bottom: none;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+h2.sitesubtitle {
+  font-size: 12px;
+  border-bottom: none;
+}
+
+// Cards
 
 h3.card-title {
   border-bottom: none;

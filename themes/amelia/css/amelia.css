@@ -6257,10 +6257,11 @@ form.simple label .warning {
 div.cvsup {
   color: #bbb; }
 
-.fixed-top h1.sitetitle > a, .layout_social .topbar_modules h1.sitetitle > a, .layout_social_modules .topbar_modules h1.sitetitle > a, .fixed-top h2.sitesubtitle, .layout_social .topbar_modules h2.sitesubtitle, .layout_social_modules .topbar_modules h2.sitesubtitle {
+.navbar-light .dropdown-toggle, .navbar-light a.nav-link.dropdown-toggle, .navbar-light h1.sitetitle a, .navbar-light h2.sitesubtitle, .navbar-light .cssmenu_horiz .menuLevel0 > a {
+  color: rgba(0, 0, 0, 0.5); }
+
+.navbar-dark .dropdown-toggle, .navbar-dark a.nav-link.dropdown-toggle, .navbar-dark h1.sitetitle a, .navbar-dark h2.sitesubtitle, .navbar-dark .cssmenu_horiz .menuLevel0 > a {
   color: #e8d069; }
-  .fixed-top .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .fixed-top .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .fixed-top .navbar-inverse, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse {
-    border-color: transparent; }
 
 .prio5 {
   color: #fff; }
@@ -6880,6 +6881,9 @@ legend {
 
 .card-title a, .card-title small, .card-title .small, .card-title small a, .card-title .small a {
   color: inherit; }
+
+.navbar-light .cssmenu_horiz > li > a {
+  color: rgba(0, 0, 0, 0.5); }
 
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }

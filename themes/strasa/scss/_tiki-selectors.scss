@@ -28,15 +28,18 @@ body.fullscreen.tiki.navbar-padding {
   border-color: #41cbe7 #223845 #223845 #41cbe7
 }
 
-.top_modules {
-  color: #ffffff;
-  background: #214d68 url('#{$imagePath}headerbg.jpg') repeat-x 0 100%;
+.layout_basic .top_modules,
+.layout_classic .top_modules.bg-dark {
+  color: #ffffff !important;
+  background: #214d68 url('#{$imagePath}headerbg.jpg') repeat-x 0 100% !important;
 
   a,
   .btn-link {
-	color: #ffffff;
+	color: #ffffff !important;
   }
 }
+
+
 
 .topbar {
   margin-bottom: 20px;
@@ -54,6 +57,11 @@ body.fullscreen.tiki.navbar-padding {
   background: -o-linear-gradient(top, #2498c7 0%, #047aa8 4%, #1b98c6 39%, #32b5e1 65%, #32bbe9 70%, #44d1fe 100%);
   background: linear-gradient(to bottom, #2498c7 0%, #047aa8 4%, #1b98c6 39%, #32b5e1 65%, #32bbe9 70%, #44d1fe 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2498c7', endColorstr='#44d1fe', GradientType=0);
+}
+
+.bg-light .bg-light,
+.bg-dark .bg-dark {
+  background: transparent !important;
 }
 
 .navbar-light .navbar-nav > .active,
@@ -207,3 +215,5 @@ td.heading a:visited {
   color: #5ae0ff;
   text-decoration: none;
 }
+
+.adminanchors.card { background: transparent; }

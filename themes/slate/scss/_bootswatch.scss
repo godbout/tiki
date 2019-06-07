@@ -421,3 +421,17 @@ legend {
 .popover button.btn-link.link-list .icon {
 	font-size: $popover-font-size;
 }
+
+.topbar {
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.topbar .navbar {
+  border: none;
+  text-shadow: none;
+}
+
+.navbar-light .cssmenu_horiz > li > a {
+  color: $navbar-light-color;
+}

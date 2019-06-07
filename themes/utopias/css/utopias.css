@@ -6244,10 +6244,11 @@ form.simple label .warning {
 div.cvsup {
   color: #dee2e6; }
 
-.fixed-top h1.sitetitle > a, .layout_social .topbar_modules h1.sitetitle > a, .layout_social_modules .topbar_modules h1.sitetitle > a, .fixed-top h2.sitesubtitle, .layout_social .topbar_modules h2.sitesubtitle, .layout_social_modules .topbar_modules h2.sitesubtitle {
+.navbar-light .dropdown-toggle, .navbar-light a.nav-link.dropdown-toggle, .navbar-light h1.sitetitle a, .navbar-light h2.sitesubtitle, .navbar-light .cssmenu_horiz .menuLevel0 > a {
+  color: #888; }
+
+.navbar-dark .dropdown-toggle, .navbar-dark a.nav-link.dropdown-toggle, .navbar-dark h1.sitetitle a, .navbar-dark h2.sitesubtitle, .navbar-dark .cssmenu_horiz .menuLevel0 > a {
   color: rgba(255, 255, 255, 0.5); }
-  .fixed-top .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .fixed-top .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .fixed-top .navbar-inverse, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse {
-    border-color: transparent; }
 
 .prio5 {
   color: #000; }
@@ -6895,19 +6896,20 @@ h1 {
 
 .cssmenu_vert li a, .cssmenu_vert li ul a, .cssmenu_horiz li ul a, .box-menu .cssmenu_horiz li a, .box-menu .cssmenu_horiz li ul a, .box-menu .cssmenu_horiz li:hover ul a, #topbar_modules .cssmenu_horiz li ul a, #topbar_modules .cssmenu_horiz li:hover ul a, .cssmenu_horiz ul li button.btn-link.link-list, .cssmenu_vert ul li button.btn-link.link-list {
   padding: 0.6em 1em;
-  background-color: #fafafa;
-  color: #333;
   font-weight: bold;
   font-size: 110%; }
 
-.cssmenu_vert li ul a:hover, .cssmenu_horiz li ul a:hover, .box-menu .cssmenu_horiz li ul a:hover, #topbar_modules .cssmenu_horiz li ul a:hover, .cssmenu_horiz ul li button.btn-link.link-list:hover, .cssmenu_vert ul li button.btn-link.link-list:hover {
+.navbar-dark {
+  background-color: #fafafa;
+  color: #333; }
+
+.navbar-light .cssmenu_vert li ul a:hover, .navbar-light .cssmenu_horiz li ul a:hover, .navbar-light .box-menu .cssmenu_horiz li ul a:hover, .navbar-light #topbar_modules .cssmenu_horiz li ul a:hover, .navbar-light .cssmenu_horiz ul li button.btn-link.link-list:hover, .navbar-light .cssmenu_vert ul li button.btn-link.link-list:hover {
   color: #000;
   text-decoration: none;
   background-color: #fff; }
-
-.cssmenu_horiz li.selected a, .cssmenu_vert li.selected a, .cssmenu_horiz li ul li.selected a:link, .cssmenu_vert li ul li.selected a:link, .cssmenu_horiz li ul li.selected a:visited, .cssmenu_vert li ul li.selected a:visited, li.menuoption a {
-  text-decoration: none;
-  background-color: #c8c8c8; }
+  .navbar-light .cssmenu_horiz li.selected a, .navbar-light .cssmenu_vert li.selected a, .navbar-light .cssmenu_horiz li ul li.selected a:link, .navbar-light .cssmenu_vert li ul li.selected a:link, .navbar-light .cssmenu_horiz li ul li.selected a:visited, .navbar-light .cssmenu_vert li ul li.selected a:visited, .navbar-light li.menuoption a {
+    text-decoration: none;
+    background-color: #c8c8c8; }
 
 .cssmenu_horiz li a.sf-with-ul {
   padding-right: 2.5em; }
