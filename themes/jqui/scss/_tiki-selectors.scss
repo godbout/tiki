@@ -51,6 +51,11 @@
   padding: 0.7rem 1rem;
 }
 
+.card.postbody,
+.card.postbody .card-header {
+  border: 1px solid #999;
+}
+
 .card-header {
   margin: 3px;
   border-bottom-left-radius: 4px;
@@ -63,6 +68,11 @@
 }
 
 .card-body h4 { font-size: 1rem; }
+
+.card.postbody .card-footer {
+  background-color: rgba(0, 0, 0, .03);
+  border-top: 1px solid #999;
+}
 
 .btn-primary,
 .btn-secondary,

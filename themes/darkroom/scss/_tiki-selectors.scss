@@ -50,10 +50,17 @@ h3.card-title {
 	border: solid #292929;
 	border-width: 0 8px .5rem 8px;
 }
+//.card.postbody,
+//.card.postbody .card-header,
+//.card.postbody .card-footer {
+//  background-color: transparent;
+//  border: none;
+//}
 
 .module.card { border: none; }
 
-.card .card-header { background: #292929; } // Was .card-primary - still ok?
+.card-header,
+.card.postbody .card-header{ background: #292929; } // Was .card-primary - still ok?
 
 .navbar-fixed-top .container,
 //.bg-light,

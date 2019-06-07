@@ -6880,7 +6880,7 @@ h3.card-title {
 .module.card {
   border: none; }
 
-.card .card-header {
+.card-header, .card.postbody .card-header {
   background: #292929; }
 
 .navbar-fixed-top .container, .topbar, .btn, .nav-tabs > li > a, .input-group-addon, .tiki .ui-state-default, .tiki .ui-widget-content .ui-state-default, .tiki .ui-widget-header .ui-state-default, .tiki .ui-button, .tiki html .ui-button.ui-state-disabled:hover, .tiki html .ui-button.ui-state-disabled:active, .tiki .ui-state-active, .tiki .ui-widget-content .ui-state-active, .tiki .ui-widget-header .ui-state-active, .tiki a.ui-button:active, .tiki .ui-button:active, .tiki .ui-button.ui-state-active:hover {

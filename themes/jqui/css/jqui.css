@@ -6903,6 +6903,9 @@ input:checked + .slider {
 .nav-link {
   padding: 0.7rem 1rem; }
 
+.card.postbody, .card.postbody .card-header {
+  border: 1px solid #999; }
+
 .card-header {
   margin: 3px;
   border-bottom-left-radius: 4px;
@@ -6914,6 +6917,10 @@ input:checked + .slider {
 
 .card-body h4 {
   font-size: 1rem; }
+
+.card.postbody .card-footer {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid #999; }
 
 .btn-primary, .btn-secondary, .btn-success, .btn-info, .btn-warning, .btn-danger {
   background: #f2f2f2;
