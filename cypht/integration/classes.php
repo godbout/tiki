@@ -152,6 +152,12 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 		$this->set('auth_type', 'custom');
 		$this->set('output_class', 'Tiki_Hm_Output_HTTP');
 		$this->set('cookie_path', ini_get('session.cookie_path'));
+		$request = filter_input_array(INPUT_GET, array('page' => FILTER_SANITIZE_STRING), false);
+		if (empty($request['page'])) {
+			$user_config = new Tiki_Hm_User_Config($this);
+			$user_config->load($user);
+			$_SESSION['cypht']['user_data'] = $user_config->dump();
+		}
 		$output_modules = $this->get('output_modules');
 		$handler_modules = $this->get('handler_modules');
 		foreach ($output_modules as $page => $_) {
@@ -186,12 +192,6 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 		$this->set('output_modules', $output_modules);
 		$this->set('handler_modules', $handler_modules);
 		$this->user_defaults['timezone_setting'] = TikiLib::lib('tiki')->get_display_timezone();
-		$request = filter_input_array(INPUT_GET, array('page' => FILTER_SANITIZE_STRING), false);
-		if (empty($request['page'])) {
-			$user_config = new Tiki_Hm_User_Config($this);
-			$user_config->load($user);
-			$_SESSION['cypht']['user_data'] = $user_config->dump();
-		}
 		if (isset($_SESSION['cypht']['user_data'])) {
 			$_SESSION['cypht']['user_data']['timezone_setting'] = $this->user_defaults['timezone_setting'];
 		}
@@ -223,7 +223,7 @@ class Tiki_Hm_User_Config extends Hm_Config {
 	 */
 	public function load($username, $key = null) {
 		$this->username = $username;
-		$data = TikiLib::lib('tiki')->get_user_preference($username, 'cypht_user_config');
+		$data = TikiLib::lib('tiki')->get_user_preference($username, $_SESSION['cypht']['preference_name']);
 		if ($data) {
 			$data = $this->decode($data);
 			$this->config = array_merge($this->config, $data);
@@ -253,7 +253,7 @@ class Tiki_Hm_User_Config extends Hm_Config {
 		$this->shuffle();
 		$removed = $this->filter_servers();
 		$data = json_encode($this->config);
-		TikiLib::lib('tiki')->set_user_preference($username, 'cypht_user_config', $data);
+		TikiLib::lib('tiki')->set_user_preference($username, $_SESSION['cypht']['preference_name'], $data);
 		$this->restore_servers($removed);
 	}
 

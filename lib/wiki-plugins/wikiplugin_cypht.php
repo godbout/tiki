@@ -118,6 +118,18 @@ function wikiplugin_cypht_info()
 					['text' => tra('No'), 'value' => 'n'],
 				],
 			],
+			'use_global_settings' => [
+				'name' => tra('Use global settings'),
+				'description' => tr('Use global Cypht settings available at Tiki Webmail page. Choosing "No" will make this instance of Cypht use its own settings. Useful if this is a Groupmail box or you don\'t want to mix mailbox server and/or site settings from other pages.'),
+				'required' => false,
+				'filter' => 'alpha',
+				'default' => 'y',
+				'since' => '20.0',
+				'options' => [
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n'],
+				],
+			],
 			'groupmail' => [
 				'name' => tra('Groupmail use'),
 				'description' => tr('Share this mailbox for Groupmail usage or keep it private.'),
@@ -207,7 +219,7 @@ function wikiplugin_cypht_info()
 
 function wikiplugin_cypht($data, $params)
 {
-	global $tikipath, $user;
+	global $tikipath, $user, $page;
 
 	static $called = false;
 	if( $called ) {
@@ -234,6 +246,12 @@ function wikiplugin_cypht($data, $params)
 	$_SESSION['cypht']['accountFId'] = $params['accountFId'];
 	$_SESSION['cypht']['datetimeFId'] = $params['datetimeFId'];
 	$_SESSION['cypht']['operatorFId'] = $params['operatorFId'];
+
+	if( $params['use_global_settings'] === 'n' ) {
+		$_SESSION['cypht']['preference_name'] = substr('cypht_user_config_'.$page, 0, 40);
+	} else {
+		$_SESSION['cypht']['preference_name'] = 'cypht_user_config';
+	}
 
 	define('VENDOR_PATH', $tikipath.'/vendor_bundled/vendor/');
 	define('APP_PATH', VENDOR_PATH.'jason-munro/cypht/');

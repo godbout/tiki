@@ -34,12 +34,6 @@ require_once $tikipath.'/cypht/integration/classes.php';
 /* get configuration */
 $config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc');
 
-// override
-$config->set('session_type', 'custom');
-$config->set('session_class', 'Tiki_Hm_Custom_Session');
-$config->set('auth_type', 'custom');
-$config->set('output_class', 'Tiki_Hm_Output_HTTP');
-
 /* process the request */
 $dispatcher = new Hm_Dispatch($config);
 echo $dispatcher->output;
