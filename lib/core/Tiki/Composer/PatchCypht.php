@@ -43,7 +43,7 @@ class PatchCypht
 		}
 
 		// generate Cypht config
-		`cd {$vendors}jason-munro/cypht; php scripts/config_gen.php`;
+		`cd {$vendors}jason-munro/cypht && php scripts/config_gen.php`;
 
 		// copy site.js and site.css
 		copy($vendors.'jason-munro/cypht/site/site.js', $cypht.'site.js');
