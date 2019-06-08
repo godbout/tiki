@@ -6266,10 +6266,11 @@ form.simple label .warning {
 div.cvsup {
   color: #dee2e6; }
 
-.fixed-top h1.sitetitle > a, .layout_social .topbar_modules h1.sitetitle > a, .layout_social_modules .topbar_modules h1.sitetitle > a, .fixed-top h2.sitesubtitle, .layout_social .topbar_modules h2.sitesubtitle, .layout_social_modules .topbar_modules h2.sitesubtitle {
+.navbar-light .dropdown-toggle, .navbar-light a.nav-link.dropdown-toggle, .navbar-light h1.sitetitle a, .navbar-light h2.sitesubtitle, .navbar-light .cssmenu_horiz .menuLevel0 > a {
+  color: rgba(0, 0, 0, 0.5); }
+
+.navbar-dark .dropdown-toggle, .navbar-dark a.nav-link.dropdown-toggle, .navbar-dark h1.sitetitle a, .navbar-dark h2.sitesubtitle, .navbar-dark .cssmenu_horiz .menuLevel0 > a {
   color: #0001a6; }
-  .fixed-top .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .fixed-top .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .fixed-top .navbar-inverse, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse {
-    border-color: transparent; }
 
 .prio5 {
   color: #222; }
@@ -6903,6 +6904,9 @@ input:checked + .slider {
 .nav-link {
   padding: 0.7rem 1rem; }
 
+.card.postbody, .card.postbody .card-header {
+  border: 1px solid #999; }
+
 .card-header {
   margin: 3px;
   border-bottom-left-radius: 4px;
@@ -6914,6 +6918,10 @@ input:checked + .slider {
 
 .card-body h4 {
   font-size: 1rem; }
+
+.card.postbody .card-footer {
+  background-color: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid #999; }
 
 .btn-primary, .btn-secondary, .btn-success, .btn-info, .btn-warning, .btn-danger {
   background: #f2f2f2;

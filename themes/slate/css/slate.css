@@ -2793,7 +2793,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
     color: #3a3f44; }
   .navbar-light .navbar-nav .nav-link {
-    color: rgba(0, 0, 0, 0.5); }
+    color: #3a3f44; }
   .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
     color: #3a3f44; }
   .navbar-light .navbar-nav .nav-link.disabled {
@@ -2801,12 +2801,12 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
   .navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .active > .nav-link, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .nav-link.active {
     color: #3a3f44; }
   .navbar-light .navbar-toggler {
-    color: rgba(0, 0, 0, 0.5);
+    color: #3a3f44;
     border-color: rgba(0, 0, 0, 0.1); }
   .navbar-light .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); }
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%233a3f44' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E"); }
   .navbar-light .navbar-text {
-    color: rgba(0, 0, 0, 0.5); }
+    color: #3a3f44; }
   .navbar-light .navbar-text a {
     color: #3a3f44; }
   .navbar-light .navbar-text a:hover, .navbar-light .navbar-text a:focus {
@@ -6206,6 +6206,17 @@ legend {
   font-size: 0.8203125rem; }
 
 .topbar {
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+
+.topbar .navbar {
+  border: none;
+  text-shadow: none; }
+
+.navbar-light .cssmenu_horiz > li > a {
+  color: #3a3f44; }
+
+.topbar {
   margin-bottom: 1.4rem; }
 
 .navbar-dark > a, .navbar-dark .cssmenu_horiz > li > a {
@@ -6427,17 +6438,17 @@ body.fullscreen {
 
 #debugconsole {
   background: rgba(108, 119, 132, 0.9);
-  color: rgba(0, 0, 0, 0.9);
-  border: 2px solid rgba(0, 0, 0, 0.9); }
+  color: rgba(58, 63, 68, 0.9);
+  border: 2px solid rgba(58, 63, 68, 0.9); }
 
 #debugconsole form {
-  color: rgba(0, 0, 0, 0.9); }
+  color: rgba(58, 63, 68, 0.9); }
 
 #debugconsole a {
-  color: rgba(0, 0, 0, 0.9); }
+  color: rgba(58, 63, 68, 0.9); }
 
 #debugconsole a.btn {
-  color: rgba(0, 0, 0, 0.9); }
+  color: rgba(58, 63, 68, 0.9); }
 
 a.icon, img.icon {
   background: transparent; }
@@ -6492,10 +6503,11 @@ form.simple label .warning {
 div.cvsup {
   color: #dee2e6; }
 
-.fixed-top h1.sitetitle > a, .layout_social .topbar_modules h1.sitetitle > a, .layout_social_modules .topbar_modules h1.sitetitle > a, .fixed-top h2.sitesubtitle, .layout_social .topbar_modules h2.sitesubtitle, .layout_social_modules .topbar_modules h2.sitesubtitle {
+.navbar-light .dropdown-toggle, .navbar-light a.nav-link.dropdown-toggle, .navbar-light h1.sitetitle a, .navbar-light h2.sitesubtitle, .navbar-light .cssmenu_horiz .menuLevel0 > a {
+  color: #3a3f44; }
+
+.navbar-dark .dropdown-toggle, .navbar-dark a.nav-link.dropdown-toggle, .navbar-dark h1.sitetitle a, .navbar-dark h2.sitesubtitle, .navbar-dark .cssmenu_horiz .menuLevel0 > a {
   color: rgba(255, 255, 255, 0.5); }
-  .fixed-top .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .fixed-top .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .fixed-top .navbar-inverse, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse {
-    border-color: transparent; }
 
 .prio5 {
   color: #aaa; }
@@ -7882,11 +7894,6 @@ input[type="text"].chosen-focus-input {
 body {
   color: #aaa;
   background: #272b30; }
-
-.navbar-default, .topbar, .topbar .navbar-default .navbar-nav > li, .topbar .nav > li, .panel-heading, .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-  -webkit-background-image: linear-gradient(to bottom, #484e55, #3a3f44 60%, #313539);
-  -o-background-image: linear-gradient(to bottom, #484e55, #3a3f44 60%, #313539);
-  background-image: linear-gradient(to bottom, #484e55, #3a3f44 60%, #313539); }
 
 body.fullscreen {
   background: #272b30; }

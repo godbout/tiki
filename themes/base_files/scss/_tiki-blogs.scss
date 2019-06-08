@@ -1,6 +1,18 @@
 // $Id$
 // Blogs
 
+// Remove borders and background colors from .card-related divs to modernize blog post appearance.
+// Themes can reinstate these totally or partially to match the theme style.
+
+.card.postbody {
+  &,
+  & .card-header,
+  & .card-footer {
+	background-color: transparent;
+	border: none;
+  }
+}
+
 .blogheading {
 	display: block;
 	width: 100%;

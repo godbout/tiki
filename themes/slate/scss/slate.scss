@@ -18,18 +18,18 @@ body {
   background: #272b30;
 }
 
-.navbar-default,
-.topbar,
+//.topbar.bg-dark,
 	// .topbar .cssmenu_horiz ul,
-.topbar .navbar-default .navbar-nav > li,
-.topbar .nav > li,
-.panel-heading,
-.navbar-default .navbar-collapse,
-.navbar-default .navbar-form {
-	-webkit-background-image: linear-gradient(to bottom, #484e55, #3a3f44 60%, #313539);
-	-o-background-image: linear-gradient(to bottom, #484e55, #3a3f44 60%, #313539);
-	background-image: linear-gradient(to bottom, #484e55, #3a3f44 60%, #313539);
-}
+//.topbar .navbar-default .navbar-nav > li,
+//.topbar .nav > li,
+//.card-heading,
+//.navbar-default .navbar-collapse,
+//.navbar-default .navbar-form {
+//	-webkit-background-image: linear-gradient(to bottom, #484e55, #3a3f44 60%, #313539);
+//	-o-background-image: linear-gradient(to bottom, #484e55, #3a3f44 60%, #313539);
+//	background-image: linear-gradient(to bottom, #484e55, #3a3f44 60%, #313539);
+//}
+
 body.fullscreen { background: $body-bg; }
 
 .chosen-container .chosen-results li.active-result {

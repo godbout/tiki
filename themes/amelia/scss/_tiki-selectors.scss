@@ -36,3 +36,7 @@ legend {
 .card-title .small a {
   color: inherit;
 }
+
+.navbar-light .cssmenu_horiz > li > a {
+  color: $navbar-light-color;
+}

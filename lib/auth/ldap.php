@@ -13,11 +13,13 @@
 use Zend\Ldap\Filter;
 use Zend\Ldap\Ldap;
 use Zend\Ldap\Exception\LdapException;
+use Zend\Ldap\Collection\DefaultIterator as LdapCollectionIterator;
 
 class TikiLdapLib
 {
 
 	// var to hold a established connection
+	/** @var Ldap */
 	protected $ldaplink = null;
 
 	// var for ldap configuration parameters
@@ -294,10 +296,12 @@ class TikiLdapLib
 		// todo: only fetch needed attributes
 
 		//A non-existing user may not return ldaplink->getEntry (found bug on windows server), if not found, user input incorrect username/password
-		if (method_exists($this->ldaplink, 'getEntry')) {
-			$entry = $this->ldaplink->getEntry($userdn);
-		} else {
-			return false;
+		try {
+			$searchresult = $this->ldaplink->search("(objectClass=*)", $userdn, Ldap::SEARCH_SCOPE_BASE, [], null);
+			$searchresult->getInnerIterator()->setAttributeNameTreatment(LdapCollectionIterator::ATTRIBUTE_NATIVE);
+			$entry = $searchresult->getFirst();
+		} catch (LdapException $e) {
+			$entry = null;
 		}
 
 		if ($force_reload || is_null($entry)) { // wrong userdn. So we have to search
@@ -307,6 +311,7 @@ class TikiLdapLib
 
 			try {
 				$searchresult = $this->ldaplink->search($filter, $this->userbase_dn(), $this->options['scope']);
+				$searchresult->getInnerIterator()->setAttributeNameTreatment(LdapCollectionIterator::ATTRIBUTE_NATIVE);
 			} catch (LdapException $e) {
 				$this->add_log('ldap', 'Search failed: ' . $e->getMessage() . ' at line ' . __LINE__ . ' in ' . __FILE__);
 				return false;
@@ -345,6 +350,7 @@ class TikiLdapLib
 
 		try {
 			$searchresult = $this->ldaplink->search($filter, $this->userbase_dn(), $this->options['scope']);
+			$searchresult->getInnerIterator()->setAttributeNameTreatment(LdapCollectionIterator::ATTRIBUTE_NATIVE);
 		} catch (LdapException $e) {
 			$this->add_log('ldap', 'Search failed: ' . $e->getMessage() . ' at line ' . __LINE__ . ' in ' . __FILE__);
 			return false;
@@ -449,6 +455,7 @@ class TikiLdapLib
 
 		try {
 			$searchresult = $this->ldaplink->search($filter, $this->groupbase_dn(), $this->options['scope']);
+			$searchresult->getInnerIterator()->setAttributeNameTreatment(LdapCollectionIterator::ATTRIBUTE_NATIVE);
 		} catch (LdapException $e) {
 			$this->add_log('ldap', 'Search failed: ' . $e->getMessage() . ' at line ' . __LINE__ . ' in ' . __FILE__);
 			return false;

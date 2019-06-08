@@ -493,18 +493,38 @@ div.cvsup {
 	color: $gray-300;
 }
 
-.fixed-top,
-.layout_social .topbar_modules,
-.layout_social_modules .topbar_modules {
-	h1.sitetitle > a,
-	h2.sitesubtitle {
-		color: $navbar-dark-color;
-	}
-	.navbar-inverse .navbar-collapse,
-	.navbar-inverse .navbar-form,
-	.navbar-inverse {
-		border-color: transparent;
-	}
+//.fixed-top,
+//.layout_social .topbar_modules,
+//.layout_social_modules .topbar_modules {
+//	h1.sitetitle > a,
+//	h2.sitesubtitle {
+//		color: $navbar-dark-color;
+//	}
+//	.navbar-inverse .navbar-collapse,
+//	.navbar-inverse .navbar-form,
+//	.navbar-inverse {
+//		border-color: transparent;
+//	}
+//}
+
+.navbar-light {
+  .dropdown-toggle,
+  a.nav-link.dropdown-toggle,
+  h1.sitetitle a,
+  h2.sitesubtitle,
+  .cssmenu_horiz .menuLevel0 > a {
+	color: $navbar-light-color
+  }
+}
+
+.navbar-dark {
+  .dropdown-toggle,
+  a.nav-link.dropdown-toggle,
+  h1.sitetitle a,
+  h2.sitesubtitle,
+  .cssmenu_horiz .menuLevel0 > a {
+	color: $navbar-dark-color
+  }
 }
 
 // tiki-mytiki.less

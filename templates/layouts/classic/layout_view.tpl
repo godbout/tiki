@@ -33,8 +33,8 @@
 
 	<div class="middle_outer" id="middle_outer" >
 		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std middle" id="middle">
-			<div class="topbar {if $prefs.theme_navbar_color_variant eq 'dark'}bg-dark{else}bg-light{/if} row" id="topbar">
-				{modulelist zone=topbar class="topbar_modules d-flex justify-content-between w-100 {if $prefs.theme_navbar_color_variant eq 'dark'}bg-dark{else}bg-light{/if}"}
+			<div class="topbar {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark{else}navbar-light bg-light{/if} row" id="topbar">
+				{modulelist zone=topbar class="topbar_modules d-flex justify-content-between w-100 {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark{else}navbar-light bg-light{/if}"}
 			</div>
 			<div class="row row-middle" id="row-middle">
 				{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}

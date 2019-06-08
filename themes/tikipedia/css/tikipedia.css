@@ -6265,10 +6265,11 @@ form.simple label .warning {
 div.cvsup {
   color: #dee2e6; }
 
-.fixed-top h1.sitetitle > a, .layout_social .topbar_modules h1.sitetitle > a, .layout_social_modules .topbar_modules h1.sitetitle > a, .fixed-top h2.sitesubtitle, .layout_social .topbar_modules h2.sitesubtitle, .layout_social_modules .topbar_modules h2.sitesubtitle {
+.navbar-light .dropdown-toggle, .navbar-light a.nav-link.dropdown-toggle, .navbar-light h1.sitetitle a, .navbar-light h2.sitesubtitle, .navbar-light .cssmenu_horiz .menuLevel0 > a {
   color: rgba(0, 0, 0, 0.5); }
-  .fixed-top .navbar-inverse .navbar-collapse, .layout_social .topbar_modules .navbar-inverse .navbar-collapse, .layout_social_modules .topbar_modules .navbar-inverse .navbar-collapse, .fixed-top .navbar-inverse .navbar-form, .layout_social .topbar_modules .navbar-inverse .navbar-form, .layout_social_modules .topbar_modules .navbar-inverse .navbar-form, .fixed-top .navbar-inverse, .layout_social .topbar_modules .navbar-inverse, .layout_social_modules .topbar_modules .navbar-inverse {
-    border-color: transparent; }
+
+.navbar-dark .dropdown-toggle, .navbar-dark a.nav-link.dropdown-toggle, .navbar-dark h1.sitetitle a, .navbar-dark h2.sitesubtitle, .navbar-dark .cssmenu_horiz .menuLevel0 > a {
+  color: rgba(0, 0, 0, 0.5); }
 
 .prio5 {
   color: #252525; }
@@ -7029,13 +7030,6 @@ body.fullscreen #col1 {
   #col2 .box-logo > div > .sitelogo + .sitetitles {
     padding-left: 0;
     margin-left: 0; }
-  #col2 h1.sitetitle {
-    border-bottom: none;
-    font-size: 18px;
-    text-transform: uppercase; }
-  #col2 h2.sitesubtitle {
-    font-size: 12px;
-    border-bottom: none; }
   #col2 .module {
     margin-bottom: 0.35rem; }
   #col2 .card, #col2 .card-header {
@@ -7075,6 +7069,15 @@ body.fullscreen .page-header {
   margin-left: 10em;
   height: 5em;
   background: url("../images/border.png") repeat-x bottom left; }
+
+h1.sitetitle {
+  border-bottom: none;
+  font-size: 18px;
+  text-transform: uppercase; }
+
+h2.sitesubtitle {
+  font-size: 12px;
+  border-bottom: none; }
 
 h3.card-title {
   border-bottom: none;
