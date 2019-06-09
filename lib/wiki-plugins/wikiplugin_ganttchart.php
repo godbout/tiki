@@ -49,7 +49,7 @@ function wikiplugin_ganttchart_info()
 			'depends' => [
 				'name' => tr('Dependency Field'),
 				'description' => tr('Permanent name of the field to use for row dependency'),
-				'required' => false,
+				'required' => true,
 				'filter' => 'word',
 				'since' => 19,
 			],
