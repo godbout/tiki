@@ -16,6 +16,7 @@ function prefs_layout_list()
 			'dependencies' => [
 				'feature_fixed_width',
 			],
+			'tags' => ['basic'],
 			'default' => '1170px',
 		],
 		'layout_tabs_optional' => [
