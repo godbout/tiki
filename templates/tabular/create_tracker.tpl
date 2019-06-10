@@ -40,7 +40,7 @@
 		<div class="form-group row file-container">
 			<label class="col-form-label  col-sm-3">{tr}File{/tr}</label>
 			<div class="col-sm-9">
-				<input type="file" name="file" accept="text/csv" required>
+				<input type="file" name="file" accept="text/csv" class="form-control" required>
 				<div id="file-size-error" class="alert alert-danger mt-3" style="display:none">
 					{tr _0=$config.upload_max_filesize}<strong>Error:</strong> Selected file has <span id="file-size"></span> bytes. The max file size upload is %0 bytes.{/tr}
 				</div>
