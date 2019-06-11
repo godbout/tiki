@@ -1419,11 +1419,17 @@ input:checked + .slider {
 	}
 
 	.tiki-view_tracker, .tiki-admin_tracker_fields, .tiki-lastchanges {
-		.btn-group > .btn:not(.dropdown-toggle) {
-			margin-right: 5px;
-			margin-bottom: 5px;
-			border-radius: 0.25rem;
+		.t_navbar {
+			.btn-group > .btn:not(.dropdown-toggle) {
+				margin-right: 5px;
+				margin-bottom: 5px;
+				border-radius: 0.25rem;
+			}
 		}
+	}
+
+	.t_navbar {
+		.btn-group { display: inline-block; }
 	}
 
 	.tiki-admin_menu_options {
