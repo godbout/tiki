@@ -41,7 +41,6 @@ class Services_OAuthServer_Controller
 		$accesslib = TikiLib::lib('access');
 		$oauthserverlib = TikiLib::lib('oauthserver');
 		$servicelib = TikiLib::lib('service');
-		$csrfOk = $accesslib->checkTicket();
 		$params = $request->getStored();
 
 		if ($params['response_type'] === 'code') {
@@ -52,12 +51,8 @@ class Services_OAuthServer_Controller
 				exit;
 			}
 
-			if (! $csrfOk) {
-				throw new Services_Exception_NotAvailable(
-					tr('"Potential cross-site request forgery (CSRF) detected. Operation blocked. Reloading the page may help"')
-				);
-				exit;
-			}
+			// this should throw exception on failure
+			$accesslib->checkTicket('services');
 		}
 
 		$oauthserverlib->determineServerGrant();

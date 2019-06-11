@@ -181,6 +181,7 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 		}
 		// cleanup side menu
 		unset($output_modules['ajax_hm_folders']['logout_menu_item']);
+		unset($output_modules['ajax_hm_folders']['contacts_page_link']);
 		unset($output_modules['ajax_hm_folders']['settings_save_link']);
 		// show links according to permissions
 		if (! Perms::get()->admin_personal_webmail && ! Perms::get()->admin_group_webmail) {

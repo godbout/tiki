@@ -292,12 +292,6 @@ div.unseen, .unseen .subject { font-weight: 700; }
 .mobile .contact_list_title, .mobile .add_contact { display: none; }
 .mobile .contact_fld { display: none; } .contact_src { display: none; }
 .mobile .add_contact_row { display: none; }
-.feeds_section { display: none; }
-.feed_server_setup .content_title { cursor: pointer; }
-.feeds_setting { display: none; }
-.feeds_section .configured_server, .feeds_section .add_server { height: 140px; }
-.feeds_section .add_server { margin-right: 0px; }
-.feeds .source a { color: #666; }
 .pop3_summary_data table th, .unread_messages table th { cursor: pointer; text-align: left; color: #666; font-weight: normal; border-bottom: solid 1px #eee; }
 .pop3_summary_data table td { padding: 5px; }
 .pop3_summary_data { margin-top: 20px; margin-right: 20px; padding: 10px; border: solid 1px #aaa; border-radius: 5px; }
@@ -418,30 +412,6 @@ div.unseen, .unseen .subject { font-weight: 700; }
 .editor-toolbar { z-index: 0; margin-left: 5px; margin-top: 10px; border: solid 1px #ccc; width: 100%; border-radius: 3px 3px 0px 0px; }
 .editor-statusbar { border-top: none !important; }
 .editor-toolbar:before, .editor-toolbar:after { background: none !important; }
-.calendar { width: 100%; }
-.event_form { margin-left: 40px; }
-.calendar_week th, .calendar_month th { font-weight: normal; padding-top: 10px; border-bottom: solid 1px #eee; padding-bottom: 10px; border-right: solid 1px #eee; }
-.mobile .calendar_month th { max-width: 30px; overflow: hidden; }
-.calendar_month td { width: 14%; height: 120px; text-align: left; padding: 10px; border-bottom: solid 1px #eee; vertical-align: top; border-right: solid 1px #eee; }
-.calendar_week, .calendar_month { padding-bottom: 50px; width: 100%; }
-.calendar_week .today, .calendar_month .today { background-color: #f5f5f5; }
-.calendar_week .offmonth, .calendar_month .offmonth { color: #ccc; }
-.month_label { font-size: 120%; padding: 20px; margin-left: 10px; color: #999; }
-.calendar_week td { width: 14%; height: 600px; text-align: left; padding: 10px; border-bottom: solid 1px #eee; vertical-align: top; border-right: solid 1px #eee; }
-.calendar .event_form { margin-top: 20px; width: 20%; }
-.calendar .event_form td { padding-top: 5px; }
-.cal_label { text-align: left; padding-right: 20px; }
-.event_submit { padding-top: 15px !important; }
-.cal_event { position: relative; margin-top: 5px; color: #666; }
-.event_details { cursor: pointer; z-index: 100; display: none; position: absolute; width: 300px; border: solid 1px #ddd; background-color: #fff; padding: 10px; }
-.event_details td { padding: 5px; border: none;  height: auto; }
-.cal_title { cursor: pointer; }
-.event_title { border-bottom: solid 1px #eee; font-size: 120%; margin-bottom: 10px; }
-.event_detail { padding: 10px; padding-bottom: 15px; }
-.event_repeat { font-size: 90%; font-style: italic; text-align: right; }
-.event_date { float: right; }
-.event_delete { float: left; font-size: 90%; }
-.add_vcal { padding-right: 35px; float: right; margin-top: 10px; }
 .nux_add_account { table-layout: fixed; width: 100%; display: table; background-color: #fff; }
 .nux_subtitle { font-size: 80%; margin-left: 40px; display: inline; }
 .quick_add_section { padding: 20px; padding-bottom: 40px; display: none; padding-left: 40px; }
@@ -469,20 +439,6 @@ div.unseen, .unseen .subject { font-weight: 700; }
 .mobile .nux_dev_news, .mobile .nux_help, .mobile .nux_welcome { max-width: 90%; width: 90%; margin: 10px  auto; padding-left: 10px; padding-right: 5px; float: none; min-height: 200px; }
 .mobile .nux_dev_news { width: 90%; overflow: hidden; }
 .mobile .nux_welcome ul { padding-left: 10px; }
-.long_text { max-width: 600px; margin-left: 30px; margin-top: 20px; max-width: 60%; color: #666; }
-.info_content, .server_summary { width: 100%; background-color: #fff; }
-.info_content table, .server_summary table { table-layout: fixed; width: 100%; padding: 20px; padding-bottom: 40px; padding-left: 30px; }
-.info_content table th, .server_summary table th { font-style: normal; padding: 5px; padding-left: 10px; text-align: left; color: #999; font-size: 75%; font-weight: normal; }
-.info_content table td, .server_summary table td { white-space: nowrap; padding: 5px; overflow: hidden; text-overflow: ellipsis; }
-.config_map, .server_info table { table-layout: initial; width: auto; }
-.server_info table td { white-space: normal; vertical-align: top; }
-.server_info table th { white-space: nowrap; vertical-align: top; }
-.hmod_val, .omod_val, .hmod, .omod { color: #666; display: none; padding: 4px; padding-left: 60px; }
-.config_map_page { color: #666; font-size: 110%; cursor: pointer; padding-top: 20px; padding-left: 40px; }
-.config_map { margin-left: 40px; min-width: 400px; }
-.config_map th {border-bottom: solid 1px #eee; padding-left: 20px;  display: none; padding-top: 10px; color: #666; font-size: 90%; text-align: left; }
-.config_map th { padding-left: 60px; }
-.config_map img { width: 16px; height: 16px; opacity: .6 }
 .history_links { width: 70%; white-space: nowrap; padding: 20px; padding-left: 30px; }
 .history_links td { padding: 5px; }
 .saved_searches_form { margin-left: 30px; }
