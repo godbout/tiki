@@ -445,6 +445,13 @@ $admin_icons = [
 		'description' => tr('Message settings'),
 		'help' => 'Inter-User Messages',
 	],
+	"webmail" => [
+		'title' => tr('Webmail'),
+		'disabled' => $prefs['feature_webmail'] != 'y',
+		'description' => tr('Webmail settings'),
+		'help' => 'Webmail',
+		'url' => 'tiki-webmail.php?page=settings'
+	],
 	"wysiwyg" => [
 		'title' => tr('Wysiwyg'),
 		'disabled' => $prefs['feature_wysiwyg'] != 'y',
