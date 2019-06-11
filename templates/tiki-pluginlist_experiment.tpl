@@ -4,26 +4,14 @@
 
 {block name=content}
 	{if $tiki_p_edit == 'y'}
-		<div class="row">
-			<div class="col-sm-12">
-				<h2>{tr}Experiment with plugin LIST{/tr}</h2>
-				<hr>
-				<div class="preview_contents">
-					{$listparsed}
-				</div>
-				<hr>
-			</div>
-		</div>
+		{title help="Forums" url='./'}{tr}Experiment with plugin LIST{/tr}{/title}
 		<form method="post" class="form-horizontal">
 			<div class="row">
-				<div class="col-xs-12">
+				<div class="col">
 					<div class="form-group row">
 						<div class="row">
-							<div class="col-sm-6 offset-sm-6">
-								<input class="btn btn-secondary btn-sm" type="submit" name="quickedit" value="{tr}Test Plugin LIST{/tr}">
-							</div>
-							<div class="col-sm-6 pull-sm-6">
-								<label for="comment">Plugin LIST content:</label>
+							<div class="col">
+								<label for="editwiki">Plugin LIST content:</label>
 							</div>
 						</div>
 						<textarea class="form-control" rows="5" name="editwiki" id="editwiki">{$listtext}</textarea>
@@ -37,5 +25,14 @@
 				</div>
 			</div>
 		</form>
+		<div class="row">
+			<div class="col-sm-12">
+				<hr>
+				<div class="preview_contents">
+					{$listparsed}
+				</div>
+				<hr>
+			</div>
+		</div>
 	{/if}
 {/block}

@@ -497,26 +497,32 @@
 					<p>Raw password files can be obtained from <a href="https://github.com/danielmiessler/SecLists/tree/master/Passwords" target="_blank">Daniel Miessler's Collection</a>.
 						Tiki's defaut password blacklist files were generated from Missler's top 1 million password file.</p>
 
-						<input type="file" name="passwordlist" accept="text/plain" />
-						Use 'LOAD DATA INFILE': <input type="checkbox" name="loaddata" /> {help desc="Allows much larger files to be uploaded, but requires MySQL on localhost with extra permissions."}<br>
-						<input
-							type="submit"
-							value="{tr}Create or Replace Word Index{/tr}"
-							name="uploadIndex"
-							class="btn btn-primary btn-sm"
-						>
-						{help desc="Text files with one word per line accepted.
-						The word list will be converted to all lowe case. Duplicate entries will be removed.
-						Typically passwords lists should be arranged with the most commonly used passwords first."}<br>
-						<input
-							type="submit"
-							value="{tr}Delete Temporary Index{/tr}"
-							name="deleteIndex"
-							class="btn btn-danger btn-sm"
-							onclick="confirmSimple(event, '{tr}Delete temporary index?{/tr}')"
-						>
-						{help desc="It is recommended that you delete indexed passwords from your database after your done generating your password lists.
-						They can take up quite a lot of space and serve no pourpose after processing is complete."}
+						<input type="file" name="passwordlist" accept="text/plain" class="form-control mb-2" />
+						<div class="col-sm-4">
+							Use 'LOAD DATA INFILE':
+							<input type="checkbox" name="loaddata" />
+							{help desc="Allows much larger files to be uploaded, but requires MySQL on localhost with extra permissions."}
+						</div>
+						<div class="col-sm-8">
+							<input
+								type="submit"
+								value="{tr}Create or Replace Word Index{/tr}"
+								name="uploadIndex"
+								class="btn btn-primary btn-sm"
+							>
+							{help desc="Text files with one word per line accepted.
+							The word list will be converted to all lowe case. Duplicate entries will be removed.
+							Typically passwords lists should be arranged with the most commonly used passwords first."}
+							<input
+								type="submit"
+								value="{tr}Delete Temporary Index{/tr}"
+								name="deleteIndex"
+								class="btn btn-danger btn-sm"
+								onclick="confirmSimple(event, '{tr}Delete temporary index?{/tr}')"
+							>
+							{help desc="It is recommended that you delete indexed passwords from your database after your done generating your password lists.
+							They can take up quite a lot of space and serve no pourpose after processing is complete."}
+						</div>
 
 						<p>Blacklist Currently Using: {$file_using}</p>
 						{if $num_indexed}

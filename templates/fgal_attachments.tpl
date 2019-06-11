@@ -36,7 +36,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label" for="attach-upload">{tr}Upload file{/tr}</label>
 				<div class="col-sm-10">
-					<input size="16" name="userfile[0]" type="file" id="attach-upload">
+					<input size="16" name="userfile[0]" type="file" class="form-control" id="attach-upload">
 				</div>
 			</div>
 			<div class="form-group row">
