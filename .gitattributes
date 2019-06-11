@@ -2039,6 +2039,7 @@ installer/schema/20190123_h5p_move_storage_assets_to_new_dir_tiki.php -text
 installer/schema/20190303_make_tiki_object_href_larger_tiki.sql -text
 installer/schema/20190401_add_support_database_strict_mode_tiki.sql -text
 installer/schema/20190523_migrate_webmail_accounts_tiki.php -text
+installer/schema/20190526_remove_tiki_addon_profiles_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -5341,7 +5342,6 @@ templates/activitystream/render.tpl -text
 templates/addreference.tpl -text
 templates/admin/admin_navbar.tpl -text
 templates/admin/admin_navbar_menu.tpl -text
-templates/admin/include_addon_inactive.tpl -text
 templates/admin/include_ads.tpl -text
 templates/admin/include_anchors.tpl -text
 templates/admin/include_apply_bottom.tpl -text
@@ -5370,7 +5370,6 @@ templates/admin/include_look.tpl -text
 templates/admin/include_maps.tpl -text
 templates/admin/include_messages.tpl -text
 templates/admin/include_metatags.tpl -text
-templates/admin/include_missing_addon_page.tpl -text
 templates/admin/include_module.tpl -text
 templates/admin/include_packages.tpl -text
 templates/admin/include_payment.tpl -text

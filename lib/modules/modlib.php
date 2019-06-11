@@ -479,7 +479,7 @@ class ModLib extends TikiLib
 		$module_params['module_position'] = $module['position'];
 		$module_params['module_ord'] = $module['ord'];
 
-		if ($module['name'] == 'addon' && ! empty($module_params['otherparams'])) {
+		if ($module['name'] == 'package' && ! empty($module_params['otherparams'])) {
 			parse_str($module_params['otherparams'], $other_params);
 			if (is_array($other_params)) {
 				$module_params = $module_params + $other_params;

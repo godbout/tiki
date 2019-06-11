@@ -547,7 +547,7 @@ if (isset($_REQUEST['page'])) {
 	$utilities = new \Tiki\Package\Extension\Utilities();
 	if (file_exists("admin/include_$adminPage.php")) {
 		include_once("admin/include_$adminPage.php");
-	} elseif ($filepath = $utilities->getAddonFilePath("admin/include_$adminPage.php")) {
+	} elseif ($filepath = $utilities->getExtensionFilePath("admin/include_$adminPage.php")) {
 		include_once($filepath);
 	}
 	$url = 'tiki-admin.php' . '?page=' . $adminPage;
@@ -564,12 +564,12 @@ if (isset($_REQUEST['page'])) {
 	$smarty->assign('include', $adminPage);
 	$smarty->assign('template_not_found', 'n');
 	if (substr($adminPage, 0, 3) == 'tp_' && ! file_exists("admin/include_$adminPage.tpl")) {
-		$addonadmintplfile = $utilities->getAddonFilePath("templates/admin/include_$adminPage.tpl");
-		if (! file_exists($addonadmintplfile)) {
-			$smarty->assign('include', 'missing_addon_page');
+		$packageAdminTplFile = $utilities->getExtensionFilePath("templates/admin/include_$adminPage.tpl");
+		if (! file_exists($packageAdminTplFile)) {
+			$smarty->assign('include', 'extension_package_missing_page');
 		}
 		if (! ExtensionManager::isExtensionEnabled(str_replace("_", "/", substr($adminPage, 3)))) {
-			$smarty->assign('include', 'addon_inactive');
+			$smarty->assign('include', 'extension_package_inactive');
 		}
 	} elseif (! file_exists("templates/admin/include_$adminPage.tpl")) {
 		// Graceful error management when URL is wrong for admin panel

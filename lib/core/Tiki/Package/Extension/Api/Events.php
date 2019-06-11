@@ -42,7 +42,7 @@ class Events extends Api
 	{
 		foreach (self::$eventMap as $event) {
 			$events->bind($event->event, \Tiki_Event_Lib::defer($event->lib, $event->function),
-				["addon_args" => (array)$event->params]);
+				["extension_args" => (array)$event->params]);
 		}
 	}
 }

@@ -94,7 +94,7 @@ class Utilities extends TikiDb_Bridge
 		return empty($matches[2]) ? '' : $matches[2];
 	}
 
-	public function getAddonFilePath($filepath)
+	public function getExtensionFilePath($filepath)
 	{
 		foreach (ExtensionManager::getPaths() as $path) {
 			if (file_exists($path . "/" . $filepath)) {
