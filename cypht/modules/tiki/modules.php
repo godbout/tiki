@@ -262,6 +262,28 @@ class Hm_Handler_put_back_groupmail extends Hm_Handler_Module {
 }
 
 /**
+ * Load Tiki contacts into the Cypht contact store
+ * @subpackage tiki/handler
+ */
+class Hm_Handler_load_tiki_contacts extends Hm_Handler_Module {
+    public function process() {
+        global $user;
+        $contactlib = TikiLib::lib('contact');
+        $contacts = $this->get('contact_store');
+        $tiki_contacts = $contactlib->list_contacts($user);
+        foreach ($tiki_contacts as $contact) {
+            $contacts->add_contact(array(
+                'source' => 'tiki',
+                'email_address' => $contact['email'],
+                'display_name' => $contact['firstName'].($contact['lastName'] ? ' '.$contact['lastName'] : '')
+            ));
+        }
+        $this->append('contact_sources', 'tiki');
+        $this->out('contact_store', $contacts, false);
+    }
+}
+
+/**
  * Output the Tiki Groupmail section of the menu
  * @subpackage tiki/output
  */
@@ -278,6 +300,24 @@ class Hm_Output_groupmail_page_link extends Hm_Output_Module {
             $res .= '<img class="account_icon" src="'.$this->html_safe(Hm_Image_Sources::$people).'" alt="" width="16" height="16" /> ';
         }
         $res .= $this->trans('Groupmail').'</a></li>';
+        if ($this->format == 'HTML5') {
+            return $res;
+        }
+        $this->concat('formatted_folder_list', $res);
+    }
+}
+
+/**
+ * Output the Tiki Contacts menu item
+ * @subpackage tiki/output
+ */
+class Hm_Output_tiki_contacts_page_link extends Hm_Output_Module {
+    protected function output() {
+        $res = '<li class="menu_contacts"><a class="unread_link" href="tiki-contacts.php">';
+        if (!$this->get('hide_folder_icons')) {
+            $res .= '<img class="account_icon" src="'.$this->html_safe(Hm_Image_Sources::$people).'" alt="" width="16" height="16" /> ';
+        }
+        $res .= $this->trans('Contacts').'</a></li>';
         if ($this->format == 'HTML5') {
             return $res;
         }

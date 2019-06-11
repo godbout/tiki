@@ -45,6 +45,15 @@ add_handler('ajax_put_back_groupmail', 'load_imap_servers_from_config',  true, '
 add_handler('ajax_put_back_groupmail', 'put_back_groupmail', true, 'tiki');
 add_output('ajax_put_back_groupmail', 'put_back_groupmail_response', true);
 
+/* tiki contacts store */
+add_handler('contacts', 'load_tiki_contacts', true, 'tiki', 'load_contacts', 'after');
+add_handler('ajax_autocomplete_contact', 'load_tiki_contacts', true, 'tiki', 'load_contacts', 'after');
+add_handler('ajax_imap_message_content', 'load_tiki_contacts', true, 'tiki', 'load_contacts', 'after');
+add_handler('compose', 'load_tiki_contacts', true, 'tiki', 'load_contacts', 'after');
+add_handler('ajax_delete_contact', 'load_tiki_contacts', true, 'tiki', 'load_contacts', 'after');
+add_handler('ajax_add_contact', 'load_tiki_contacts', true, 'tiki', 'load_contacts', 'after');
+add_output('ajax_hm_folders', 'tiki_contacts_page_link', true, 'tiki', 'logout_menu_item', 'before');
+
 return array(
 	'allowed_pages' => array(
     'groupmail',

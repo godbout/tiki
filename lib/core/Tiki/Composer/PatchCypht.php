@@ -30,8 +30,8 @@ class PatchCypht
 		$tiki_module = $vendors.'jason-munro/cypht/modules/tiki';
 		if (! is_dir($tiki_module)) {
 			mkdir($tiki_module, 0755);
-			$fs->copy($cypht.'modules/tiki', $tiki_module);
 		}
+		$fs->copy($cypht.'modules/tiki', $tiki_module);
 		chdir($cypht.'../');
 
 		// generate storage dirs
