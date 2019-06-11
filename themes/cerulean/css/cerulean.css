@@ -6847,7 +6847,7 @@ input:checked + .slider {
     padding: 0 15px;
     margin: 15px 0; }
 
-  .tiki-lastchanges .btn-group > .btn:not(.dropdown-toggle) {
+  .tiki-view_tracker .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .btn-group > .btn:not(.dropdown-toggle) {
     margin-right: 5px;
     margin-bottom: 5px;
     border-radius: 0.25rem; }
