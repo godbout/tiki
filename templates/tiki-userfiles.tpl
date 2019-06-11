@@ -57,17 +57,17 @@
 
 <h2>{tr}Upload file{/tr}</h2>
 <form enctype="multipart/form-data" action="tiki-userfiles.php" method="post">
-	<table class="formcolor">
-		<tr>
-			<td>{tr}Upload file:{/tr}</td>
-			<td>
-				<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000" /><input size="60" name="userfile1" type="file"><br>
-				<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000" /><input size="60" name="userfile2" type="file"><br>
-				<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000" /><input size="60" name="userfile3" type="file"><br>
-				<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000" /><input size="60" name="userfile4" type="file"><br>
-				<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000" /><input size="60" name="userfile5" type="file"><br>
-				<input type="submit" class="btn btn-primary btn-sm" name="upload" value="{tr}Upload{/tr}">
-			</td>
-		</tr>
-	</table>
+	<div class="form-group row">
+		<div class="col-sm-4">
+			{tr}Upload file:{/tr}
+		</div>
+		<div class="col-sm-8">
+			<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000" /><input size="60" name="userfile1" type="file" class="form-control mb-2">
+			<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000" /><input size="60" name="userfile2" type="file" class="form-control mb-2">
+			<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000" /><input size="60" name="userfile3" type="file" class="form-control mb-2">
+			<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000" /><input size="60" name="userfile4" type="file" class="form-control mb-2">
+			<input type="hidden" name="MAX_FILE_SIZE" value="10000000000000" /><input size="60" name="userfile5" type="file" class="form-control mb-2">
+			<input type="submit" class="btn btn-primary btn-sm" name="upload" value="{tr}Upload{/tr}">
+		</div>
+	</div>
 </form>
