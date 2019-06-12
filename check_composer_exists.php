@@ -21,7 +21,7 @@ if (! file_exists('vendor_bundled/vendor/autoload.php')) {
 	$title = "Tiki Installer missing third party software files";
 	$content = "<p>Your Tiki is not completely installed because Composer has not been run to fetch package dependencies.</p>";
 	$content .= "<p>You need to run <b>sh setup.sh</b> from the command line.</p>";
-	$content .= "<p>See <a href='https://doc.tiki.org/Composer' target='_blank' >https://doc.tiki.org/Composer</a> for details.</p>";
+	$content .= "<p>See <a href='https://doc.tiki.org/Composer' target='_blank' class='text-yellow-inst'>https://doc.tiki.org/Composer</a> for details.</p>";
 	createPage($title, $content);
 	exit;
 }
@@ -45,43 +45,27 @@ function createPage($title, $content)
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<link type="text/css" rel="stylesheet" href="themes/default/css/default.css" />
+		<link type="text/css" rel="stylesheet" href="themes/css/tiki-install.css" />
 		<title>$title</title>
 	</head>
-	<body class="tiki_wiki fixed_width" style="padding: 3em">
+	<body class="installer-body">
 		<div id="fixedwidth" class="fixedwidth">
-			<div class="header_outer">
-				<div class="header_container">
-					<div class="clearfix fixedwidth header_fixedwidth">
-						<header id="header" class="header">
-							<div class="content clearfix modules" id="top_modules" style="display: table; width: 990px;">
-								<div class="sitelogo">
-									<img alt="Site Logo" src="img/tiki/Tiki_WCG.png" style="margin-bottom: 10px;" />
-								</div>
-							</div>
-						</header>
-					</div>
-				</div>
-			</div>
-			<div class="middle_outer">
-				<div name="middle" class="fixedwidth">
-					<div class="topbar clearfix">
-						<h1 style="font-size: 30px; line-height: 30px; text-shadow: 3px 2px 0 #ccccff; margin-top: 50px">
-							$title
-						</h1>
-					</div>
-				</div>
-				<div id="middle" style="text-align: left; padding: 3em 0">
-					$content
-				</div>
-			</div>
-		</div>
-		<footer id="footer" class="footer" style="margin-top: 50px;">
-			<div class="footer_liner">
-				<div class="footerbgtrap fixedwidth" style="padding: 10px 0;">
-					<a href="https://tiki.org" target="_blank" title="Powered by Tiki Wiki CMS Groupware"><img src="img/tiki/tikibutton.png" alt="Powered by Tiki Wiki CMS Groupware" /></a>
-				</div>
-			</div>
-		</footer>
+
+            <header class="header-main">
+                <img alt="Site Logo" src="img/tiki/Tiki_WCG_light.png" class="logo-box" />
+	                <div class="text-box">
+                        <div class="heading-text">
+                            <h3 class="main-text">$title</h3>
+                        </div>
+                        <div class="text-info">
+                            $content
+                        </div>
+                    </div>
+                     <a href="https://tiki.org" class="btn_powered" target="_blank" title="Powered by Tiki Wiki CMS Groupware">
+                        <img src="img/tiki/tikibutton.png" alt="Powered by Tiki Wiki CMS Groupware">
+                    </a>
+            </header>
+        </div>
 	</body>
 </html>
 END;

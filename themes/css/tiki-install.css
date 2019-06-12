@@ -1,0 +1,90 @@
+.installer-body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    color: #777;
+}
+.header-main {
+    height: 100vh;
+    background-size: cover;
+    background: #48497A;
+    clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    position: relative;
+}
+.logo-box {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+    height: 10%;
+}
+.btn_powered{
+    z-index: 99;
+    position: absolute;
+    top: 90vh;
+    left: 10px;
+}
+
+.text-box {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -20%);
+    text-align: center;
+}
+
+.heading-text {
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    backface-visibility: hidden;
+}
+.main-text {
+    display: block;
+    font-weight: 600;
+    letter-spacing: .6rem;
+    margin-bottom: .5rem; }
+
+.under-text {
+    display: block;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    color: #ff999b;
+}
+.installer-ordered-list-style{
+    list-style: none;
+    counter-reset: my-awesome-counter;
+    margin: 0;
+    padding: 0;
+}
+.installer-ordered-list {
+    counter-increment: my-awesome-counter;
+    display: flex;
+
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+.installer-ordered-list::before {
+    content: "0" counter(my-awesome-counter);
+    font-weight: bold;
+    font-size: 3rem;
+    margin-right: 0.5rem;
+    font-family: 'Abril Fatface', serif;
+    line-height: 1;
+    color: #fdd835;
+}
+.text-yellow-inst{
+    text-decoration: none;
+    color: #fdd835;
+}
+.text-yellow-inst:hover{
+    text-decoration: none;
+    color: #fdd835;
+    cursor: pointer;
+}
+
+.install-input{
+    width: 70%;
+    height: 3rem;
+    border-radius: 5px;
+}
