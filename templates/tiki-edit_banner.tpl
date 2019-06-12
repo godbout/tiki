@@ -172,7 +172,7 @@
 					<input type="hidden" name="imageName" value="{$imageName|escape}">
 					<input type="hidden" name="imageType" value="{$imageType|escape}">
 					<input type="hidden" name="MAX_FILE_SIZE" value="1000000">
-					<input name="userfile1" type="file">
+					<input name="userfile1" type="file" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">

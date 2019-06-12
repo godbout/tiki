@@ -27,7 +27,7 @@
 			<a title="{tr}Help{/tr}" {popup text=$smarty.capture.help|escape}>{icon name='help'}</a>
 		</label>
 		<div class="col-sm-7">
-			<input type="file" name="fileCSV" size="50">
+			<input type="file" name="fileCSV" size="50" class="form-control">
 		</div>
 	</div>
 	<div class="form-group row">
