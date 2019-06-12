@@ -165,7 +165,7 @@ class Extension
 		}
 
 		$container = \TikiInit::getContainer();
-		$service = 'tikiaddon.' . $this->getVendor() . '.' . $this->getShortName() . '.' . $name;
+		$service = 'package.' . $this->getVendor() . '.' . $this->getShortName() . '.' . $name;
 
 		if ($lib = $container->get(
 			$service,

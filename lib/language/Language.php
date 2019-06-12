@@ -308,7 +308,7 @@ class Language extends TikiDb_Bridge
 		foreach(\Tiki\Package\ExtensionManager::getEnabledPackageExtensions() as $package) {
 			$lang = null;
 
-			$file = sprintf('%s/lang/%s/addon.php', $package['path'], $lg);
+			$file = sprintf('%s/lang/%s/language.php', $package['path'], $lg);
 			if (!file_exists($file)) {
 				continue;
 			}

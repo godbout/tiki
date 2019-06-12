@@ -4005,15 +4005,6 @@ CREATE TABLE `tiki_goal_events` (
 	`groups` BLOB NOT NULL
 ) ENGINE=MyISAM;
 
-DROP TABLE IF EXISTS `tiki_addon_profiles`;
-CREATE TABLE `tiki_addon_profiles` (
-  `addon` VARCHAR(100) NOT NULL DEFAULT '',
-  `version` VARCHAR(100) NOT NULL DEFAULT '',
-  `profile` VARCHAR(100) NOT NULL DEFAULT '',
-  `install_date` TIMESTAMP,
-  PRIMARY KEY (`addon`,`version`(10),`profile`(81))
-) ENGINE=MyISAM;
-
 DROP TABLE IF EXISTS `tiki_tabular_formats`;
 CREATE TABLE `tiki_tabular_formats` (
 	`tabularId` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,

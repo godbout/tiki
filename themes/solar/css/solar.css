@@ -6889,10 +6889,13 @@ input:checked + .slider {
     padding: 0 15px;
     margin: 15px 0; }
 
-  .tiki-view_tracker .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .btn-group > .btn:not(.dropdown-toggle) {
+  .tiki-view_tracker .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar .btn-group > .btn:not(.dropdown-toggle) {
     margin-right: 5px;
     margin-bottom: 5px;
     border-radius: 0.25rem; }
+
+  .t_navbar .btn-group {
+    display: inline-block; }
 
   .tiki-admin_menu_options #preview_code {
     white-space: normal; } }

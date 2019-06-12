@@ -1058,6 +1058,7 @@ function wikiplugin_tracker($data, $params)
 			} else if ($itemObject->canViewField($f['fieldId']) && ! empty($item_info)) {
 				$flds['data'][] = [
 					'fieldId' =>$f['fieldId'],
+					'trackerId' =>$f['trackerId'],
 					'permName' =>$f['permName'],
 					'type' =>$f['type'],
 					'readonly' => true,

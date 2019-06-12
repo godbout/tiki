@@ -10,10 +10,12 @@ use Symfony\Component\DependencyInjection\Exception\ServiceNotFoundException;
 class Services_Broker
 {
 	private $container;
+	private $extensionPackage;
 
-	function __construct($container)
+	function __construct($container, $extensionPackage = '')
 	{
 		$this->container = $container;
+		$this->extensionPackage = $extensionPackage;
 	}
 
 	function process($controller, $action, JitFilter $request)
@@ -90,7 +92,11 @@ class Services_Broker
 	private function attemptProcess($controller, $action, $request)
 	{
 		try {
-			$handler = $this->container->get("tiki.controller.$controller");
+			if ($this->extensionPackage) {
+				$handler = $this->container->get("package.controller." . $this->extensionPackage . ".$controller");
+			} else {
+				$handler = $this->container->get("tiki.controller.$controller");
+			}
 
 			$method = 'action_' . $action;
 

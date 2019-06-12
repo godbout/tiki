@@ -860,7 +860,7 @@ try {
 		$smarty->assign('print_page', 'y');
 		$trackerData = $smarty->fetch('tiki-print.tpl');
 		//getting comments associated with tracker item
-		$broker = TikiLib::lib('service')->getBroker($addonpackage);
+		$broker = TikiLib::lib('service')->getBroker();
 		$comments = $broker->internalRender("comment", "list", $jitRequest = new JitFilter(["controller" => "comment","action" => "list","type" => "trackeritem","objectId" => $itemId]));
 		require_once 'lib/pdflib.php';
 		$generator = new PdfGenerator();

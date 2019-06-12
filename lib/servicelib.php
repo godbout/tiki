@@ -5,41 +5,43 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Package\Extension\Utilities as PackageUtilities;
+
 class ServiceLib
 {
 	private $broker;
-	private $addonbrokers = [];
+	private $extensionPackageBrokers = [];
 
-	function getBroker($addonpackage = '')
+	function getBroker($ExtensionPackage = '')
 	{
-		if ($addonpackage) {
-			$utilities = new \Tiki\Package\Extension\Utilities();
-			if (! $utilities->isInstalled(str_replace('.', '/', $addonpackage))) {
-				$addonpackage = '';
+		if ($ExtensionPackage) {
+			$utilities = new PackageUtilities();
+			if (! $utilities->isInstalled(str_replace('.', '/', $ExtensionPackage))) {
+				$ExtensionPackage = '';
 			}
 		}
 
-		if ($addonpackage && ! isset($this->addonbrokers[$addonpackage])) {
-			$this->addonbrokers[$addonpackage] = new Services_Broker(TikiInit::getContainer(), $addonpackage);
+		if ($ExtensionPackage && ! isset($this->extensionPackageBrokers[$ExtensionPackage])) {
+			$this->extensionPackageBrokers[$ExtensionPackage] = new Services_Broker(TikiInit::getContainer(), $ExtensionPackage);
 		} elseif (! $this->broker) {
 			$this->broker = new Services_Broker(TikiInit::getContainer());
 		}
 
-		if ($addonpackage) {
-			return $this->addonbrokers[$addonpackage];
+		if ($ExtensionPackage) {
+			return $this->extensionPackageBrokers[$ExtensionPackage];
 		} else {
 			return $this->broker;
 		}
 	}
 
-	function internal($controller, $action, $request = [], $addonpackage = '')
+	function internal($controller, $action, $request = [], $extensionPackage = '')
 	{
-		return $this->getBroker($addonpackage)->internal($controller, $action, $request);
+		return $this->getBroker($extensionPackage)->internal($controller, $action, $request);
 	}
 
-	function render($controller, $action, $request = [], $addonpackage = '')
+	function render($controller, $action, $request = [], $extensionPackage = '')
 	{
-		return $this->getBroker($addonpackage)->internalRender($controller, $action, $request);
+		return $this->getBroker($extensionPackage)->internalRender($controller, $action, $request);
 	}
 
 	function getUrl($params)
