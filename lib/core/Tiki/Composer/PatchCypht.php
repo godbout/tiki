@@ -17,6 +17,7 @@ class PatchCypht
 
 		$cypht = __DIR__ . '/../../../../cypht/';
 		$vendors = $event->getComposer()->getConfig()->get('vendor-dir');
+		$io = $event->getIO();
 
 		if (substr($vendors, -1, 1) !== DIRECTORY_SEPARATOR) {
 			$vendors .= DIRECTORY_SEPARATOR;
@@ -43,7 +44,11 @@ class PatchCypht
 		}
 
 		// generate Cypht config
-		`cd {$vendors}jason-munro/cypht && php scripts/config_gen.php`;
+		$output = `cd {$vendors}jason-munro/cypht && php scripts/config_gen.php`;
+		if (! strstr($output, 'hm3.rc file written')) {
+			$io->write('Could not build Cypht package configuration. Check the output below and make sure minimum PHP version is available and executable as CLI.');
+			$io->write($output);
+		}
 
 		// copy site.js and site.css
 		copy($vendors.'jason-munro/cypht/site/site.js', $cypht.'site.js');
