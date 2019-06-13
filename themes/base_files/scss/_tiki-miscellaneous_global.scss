@@ -510,3 +510,12 @@ div.categbar {
 
 .nouol ol > li { display: list-item; text-indent: 0 }
 .nouol ol > li:before, .nouol ol > li ol > li:before { content: "" }
+
+// default styling for <blockquote> element (#7093)
+
+blockquote {
+        padding: .5rem 1rem;
+        margin: .8rem 0;
+        color: #7a7a7a;
+        border-left: .25rem solid #e5e5e5;
+}
