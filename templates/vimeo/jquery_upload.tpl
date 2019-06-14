@@ -4,16 +4,18 @@
 <div class="form-group row">
 	<div class="col-md-12">
 		<div class="form-group row">
-		<label>
-		{tr}Title{/tr}
-		</label>
-		<input id="vimeofiletitle" type="text" name="title" class="form-control" required />
+			<label>
+			{tr}Title{/tr}
+			</label>
+			<input id="vimeofiletitle" type="text" name="title" class="form-control" required />
 		</div>
-		<div class="well fileupload mb-0">
-			<p class="text-center">{icon name="cloud-upload"} {tr}Browse for video file to upload{/tr}
-				{* The file input field used as target for the file upload widget *}
-				<br /><br /><input id="fileupload" type="file" name="file_data">
-			</p>
+		<div class="card bg-light fileupload mb-0">
+			<div class="card-body">
+				<p class="text-center">{icon name="cloud-upload"} {tr}Browse for video file to upload{/tr}
+					{* The file input field used as target for the file upload widget *}
+					<br /><br /><input id="fileupload" type="file" name="file_data">
+				</p>
+			</div>
 		</div>
 		<div>
 			<label>{tr}Upload Progress{/tr}</label>

@@ -31,8 +31,10 @@
 		</div>
 	{/if}
 	{if $goal.description}
-		<div class="well">
-			{$goal.description|escape}
+		<div class="card bg-light">
+			<div class="card-body">
+				{$goal.description|escape}
+			</div>
 		</div>
 	{/if}
 	{foreach $goal.conditions as $condition}

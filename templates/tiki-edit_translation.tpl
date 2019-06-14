@@ -29,11 +29,11 @@
 {if $langpage}
 	{if $type == 'wiki page'}
 		<div class="clearfix">
-			<div class="col-md-8 offset-md-2">
+			<div class="col-sm-12 mb-4">
 				<a id="translate_updates"></a>
 				{$content_of_update_translation_section}
 			</div>
-			<div class="col-md-8 offset-md-2">
+			<div class="col-sm-12 mb-4">
 				<a id="new_translation"></a>
 				<form method="post" action="tiki-editpage.php" onsubmit="return validate_translation_request(this)" role="form">
 					<div class="card">
@@ -42,10 +42,10 @@
 						</div>
 						<div class="card-body">
 							<div class="form-group row">
-								<label for="lang" class="col-form-label col-md-4">
+								<label for="lang" class="col-form-label col-sm-5">
 									{tr}Select language to translate to:{/tr}
 								</label>
-								<div class="col-md-8">
+								<div class="col-sm-7">
 									<select name="lang" id="language_list" size="1" class="form-control">
 										<option value="unspecified">{tr}Unspecified{/tr}</option>
 										{section name=ix loop=$languages}
@@ -55,10 +55,10 @@
 								</div>
 							</div>
 							<div class="form-group row">
-								<label for="page" class="col-form-label col-md-4">
+								<label for="page" class="col-form-label col-sm-5">
 									{tr}Enter the page title:{/tr}
 								</label>
-								<div class="col-md-8">
+								<div class="col-sm-7">
 									<input type="text" name="page" id="translation_name" value="{$translation_name|escape}" class="form-control">
 									<input type="hidden" name="source_page" value="{$name|escape}">
 									<input type="hidden" name="oldver" value="-1">
@@ -83,7 +83,7 @@
 					</div>
 				</form>
 			</div>
-			<div class="col-md-8 offset-md-2">
+			<div class="col-sm-12 mb-4">
 				<a id="change_language"></a>
 				<form method="post" action="tiki-edit_translation.php" role="form">
 					<div class="card">
@@ -92,10 +92,10 @@
 						</div>
 						<div class="card-body">
 							<div class="form-group row">
-								<label for="langpage" class="col-form-label col-md-4">
+								<label for="langpage" class="col-form-label col-sm-5">
 									{tr}Language{/tr}
 								</label>
-								<div class="col-md-8">
+								<div class="col-sm-7">
 									<select name="langpage" class="form-control">
 										<option value="">{tr}Unspecified{/tr}</option>
 										{foreach item=lang from=$languages}
@@ -130,7 +130,7 @@
 
 				if (language_of_translation == "unspecified") {
 			{/literal}
-					var message = {tr}You forgot to specify the language of the translation. Please choose a language in the picklist.{/tr};
+					var message = "{tr}You forgot to specify the language of the translation. Please choose a language in the picklist.{/tr}";
 			{literal}
 					alert(message);
 					success = false;
@@ -140,7 +140,7 @@
 					var matching_options = $('#existing-page-src option[value="' + page_name + '"]').attr( 'selected', true );
 
 					if( matching_options.length > 0 ) {
-						var message = {tr}The page already exists. It was selected in the list below.{/tr};
+						var message = "{tr}The page already exists. It was selected in the list below.{/tr}";
 						alert( message );
 
 						success = false;

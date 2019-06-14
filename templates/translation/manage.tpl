@@ -20,19 +20,23 @@
 			{/foreach}
 		</ul>
 	{else}
-		<div class="well well-sm">
-			{tr}No translations available at this time.{/tr}
+		<div class="card bg-light">
+			<div class="card-body">
+				{tr}No translations available at this time.{/tr}
+			</div>
 		</div>
 	{/if}
 
 	{if $canAttach}
 		{if $filters.language}
 			<form class="{*simple*}" method="post" action="{service controller=translation action=attach}">
-				<div class="form-group row mx-0">
-					<label class="col-form-label">
+				<div class="form-group row mt-2">
+					<label class="col-form-label col-sm-12">
 						{tr}Add a new object to the set{/tr}
 					</label>
-					{object_selector _name=target _filter=$filters}
+					<div class="col-sm-12">
+						{object_selector _name=target _filter=$filters}
+					</div>
 				</div>
 				<div class="submit">
 					<input type="hidden" name="type" value="{$type|escape}">
@@ -41,8 +45,10 @@
 				</div>
 			</form>
 		{else}
-			<div class="well well-sm">
-				{tr}All possible translations exist.{/tr}
+			<div class="card bg-light">
+				<div class="card-body">
+					{tr}All possible translations exist.{/tr}
+				</div>
 			</div>
 		{/if}
 	{/if}

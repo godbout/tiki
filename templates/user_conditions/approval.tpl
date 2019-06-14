@@ -5,9 +5,11 @@
 {/block}
 
 {block name="content"}
-	<div class="well">
-		<div style="overflow: auto; max-height: 400px;">
-		{$content}
+	<div class="card bg-light">
+		<div class="card-body">
+			<div style="overflow: auto; max-height: 400px;">
+			{$content}
+			</div>
 		</div>
 	</div>
 	<form method="post" action="{service controller=user_conditions action=approval}">

@@ -19,8 +19,10 @@
 {/block}
 
 {block name="content"}
-	<div class="well">
-		{$goal.description|escape}
+	<div class="card bg-light">
+		<div class="card-body">
+			{$goal.description|escape}
+		</div>
 	</div>
 	<ul>
 		{foreach $goal.eligible as $groupName}
