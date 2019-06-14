@@ -74,11 +74,13 @@
 						</div>
 					{else}
 						{if $diffInfo}
-							<div class="well">
-								{foreach $diffInfo as $info}
-									<label>{$info.fieldName}</label> {*{$info.value} => {$info.new}<br>*}
-									{trackeroutput fieldId=$info.fieldId list_mode='y' history=y process=y oldValue=$info.value value=$info.new diff_style='sidediff'}
-								{/foreach}
+							<div class="card bg-light">
+								<div class="card-body">
+									{foreach $diffInfo as $info}
+										<label>{$info.fieldName}</label> {*{$info.value} => {$info.new}<br>*}
+										{trackeroutput fieldId=$info.fieldId list_mode='y' history=y process=y oldValue=$info.value value=$info.new diff_style='sidediff'}
+									{/foreach}
+								</div>
 							</div>
 						{/if}
 						<div class="submit">
