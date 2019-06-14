@@ -52,13 +52,15 @@
 			</tbody>
 		</table>
 
-		<div class="well">
-			<h4>{tr}Priorities{/tr}</h4>
-			{foreach $priorities as $priority}
-				{if $priority.description}
-					<p><strong>{$priority.label|escape}:</strong> {$priority.description|escape}</p>
-				{/if}
-			{/foreach}
+		<div class="card bg-light">
+			<div class="card-body">
+				<h4>{tr}Priorities{/tr}</h4>
+				{foreach $priorities as $priority}
+					{if $priority.description}
+						<p><strong>{$priority.label|escape}:</strong> {$priority.description|escape}</p>
+					{/if}
+				{/foreach}
+			</div>
 		</div>
 
 		<div class="submit">
