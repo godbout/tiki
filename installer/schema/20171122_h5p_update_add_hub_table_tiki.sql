@@ -1,4 +1,4 @@
-CREATE TABLE tiki_h5p_libraries_hub_cache (
+CREATE TABLE IF NOT EXISTS tiki_h5p_libraries_hub_cache (
   id                INT UNSIGNED NOT NULL AUTO_INCREMENT,
   machine_name      VARCHAR(127) NOT NULL,
   major_version     INT UNSIGNED NOT NULL,

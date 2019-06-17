@@ -1,4 +1,4 @@
-CREATE TABLE `tiki_tracker_item_field_logs` (
+CREATE TABLE IF NOT EXISTS `tiki_tracker_item_field_logs` (
   `version` int(12) NOT NULL,
   `itemId` int(12) NOT NULL default '0',
   `fieldId` int(12) NOT NULL default '0',

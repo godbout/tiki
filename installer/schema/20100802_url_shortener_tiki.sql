@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS `tiki_url_shortener`;
-CREATE TABLE `tiki_url_shortener` (
+CREATE TABLE IF NOT EXISTS `tiki_url_shortener` (
   `urlId` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `user` varchar(200) NOT NULL,
   `longurl` tinytext NOT NULL,

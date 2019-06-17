@@ -1,4 +1,4 @@
-CREATE TABLE `tiki_discount`( 
+CREATE TABLE IF NOT EXISTS `tiki_discount`( 
 	`id` INT NOT NULL AUTO_INCREMENT,
 	`code` VARCHAR(255),
 	`value` VARCHAR(255),

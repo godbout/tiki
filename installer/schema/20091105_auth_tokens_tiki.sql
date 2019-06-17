@@ -1,5 +1,5 @@
 -- 2009-11-05 lphuberdeau
-CREATE TABLE `tiki_auth_tokens` (
+CREATE TABLE IF NOT EXISTS `tiki_auth_tokens` (
 	`tokenId` INT NOT NULL AUTO_INCREMENT,
 	`creation` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	`timeout` INT NOT NULL DEFAULT 0,

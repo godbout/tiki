@@ -1,4 +1,4 @@
-CREATE TABLE `tiki_custom_route` (
+CREATE TABLE IF NOT EXISTS `tiki_custom_route` (
   `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `description` varchar(255) NULL,
   `type` varchar(255) NOT NULL,

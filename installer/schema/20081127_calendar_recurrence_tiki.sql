@@ -1,6 +1,6 @@
 #bbenamran
 # Create recurrence table on calendar items model, adding rules of recurrence
-CREATE TABLE tiki_calendar_recurrence (
+CREATE TABLE IF NOT EXISTS tiki_calendar_recurrence (
   `recurrenceId` int(14) NOT NULL auto_increment,
   `calendarId` int(14) NOT NULL default '0',
   start int(4) NOT NULL default '0',

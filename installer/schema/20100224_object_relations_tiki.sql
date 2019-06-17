@@ -1,4 +1,4 @@
-CREATE TABLE `tiki_object_relations` (
+CREATE TABLE IF NOT EXISTS `tiki_object_relations` (
 	`relationId` INT PRIMARY KEY AUTO_INCREMENT,
 	`relation` varchar(25) NOT NULL,
 	`source_type` varchar(50) NOT NULL,

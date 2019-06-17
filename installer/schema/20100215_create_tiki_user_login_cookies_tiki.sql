@@ -1,4 +1,4 @@
-CREATE TABLE `tiki_user_login_cookies` (
+CREATE TABLE IF NOT EXISTS `tiki_user_login_cookies` (
 	`userId` INT NOT NULL,
 	`secret` CHAR(64) NOT NULL,
 	`expiration` TIMESTAMP NULL,

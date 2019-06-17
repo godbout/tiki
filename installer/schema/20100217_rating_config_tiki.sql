@@ -1,4 +1,4 @@
-CREATE TABLE `tiki_rating_configs` (
+CREATE TABLE IF NOT EXISTS `tiki_rating_configs` (
 	`ratingConfigId` INT PRIMARY KEY AUTO_INCREMENT,
 	`name` VARCHAR(50) NOT NULL,
 	`expiry` INT NOT NULL DEFAULT 3600,
@@ -6,7 +6,7 @@ CREATE TABLE `tiki_rating_configs` (
 	`callbacks` TEXT
 ) ENGINE=MyISAM;
 
-CREATE TABLE `tiki_rating_obtained` (
+CREATE TABLE IF NOT EXISTS `tiki_rating_obtained` (
 	`ratingId` INT PRIMARY KEY AUTO_INCREMENT,
 	`ratingConfigId` INT NOT NULL,
 	`type` VARCHAR(50) NOT NULL,
