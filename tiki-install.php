@@ -108,9 +108,9 @@ if (isset($_SESSION['accessible'])) {
 	// Thus, display a form.
 	$title = 'Tiki Installer Security Precaution';
 	$content = '
-							<p class="text-info mt-lg-3">You are attempting to run the Tiki Installer. For your protection, this installer can be used only by a site administrator.To verify that you are a site administrator, enter your <strong><em>database</em></strong> credentials (database username and password) here.</p>
+							<p class="text-info mt-lg-3 mx-3">You are attempting to run the Tiki Installer. For your protection, this installer can be used only by a site administrator.To verify that you are a site administrator, enter your <strong><em>database</em></strong> credentials (database username and password) here.</p>
 						
-							<p class="text-info">If you have forgotten your database credentials, find the directory where you have unpacked your Tiki and have a look inside the <strong class="text-yellow-inst">db</strong> folder into the <strong class="text-yellow-inst">local.php</strong> file.</p>
+							<p class="text-info mx-3">If you have forgotten your database credentials, find the directory where you have unpacked your Tiki and have a look inside the <strong class="text-yellow-inst">db</strong> folder into the <strong class="text-yellow-inst">local.php</strong> file.</p>
 							<form method="post" action="tiki-install.php" class="text-center">
 								<input type="hidden" name="enterinstall" value="1">
 								<p><label for="dbuser" class="sr-only">Database username</label> <input type="text" id="dbuser" name="dbuser" class="col-6 offset-3 form-control text-center" placeholder="Database username"/></p>

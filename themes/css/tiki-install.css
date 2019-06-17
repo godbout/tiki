@@ -24,11 +24,12 @@
 }
 
 .text-box {
-    position: absolute;
-    top: 25%;
-    left: 50%;
-    transform: translate(-50%, -20%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    height: 95vh;
 }
 
 .heading-text {
@@ -41,25 +42,27 @@
     display: block;
     font-weight: 600;
     letter-spacing: .6rem;
-    margin-bottom: .5rem; }
+    margin-bottom: .5rem;
+}
 
 .under-text {
     display: block;
     font-weight: 400;
     font-size: 1.2rem;
     margin-bottom: 1.5rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
     color: #ff999b;
 }
 .installer-ordered-list-style{
     list-style: none;
     counter-reset: my-awesome-counter;
-    margin: 0;
+    margin: 1rem;
     padding: 0;
 }
 .installer-ordered-list {
     counter-increment: my-awesome-counter;
     display: flex;
-
     font-size: 1rem;
     margin-bottom: 0.5rem;
     color: #fff;
@@ -87,4 +90,18 @@
     width: 70%;
     height: 3rem;
     border-radius: 5px;
+}
+
+@media screen and (max-width: 500px){
+    .main-text{
+        font-size: 1rem;
+        margin-bottom: 0;
+        margin-top: 4rem;
+    }
+    .header-main{
+        clip-path: polygon(0 0, 100% 0, 100% 95vh, 0 100%);
+    }
+    .logo-box{
+        height: 7%;
+    }
 }
