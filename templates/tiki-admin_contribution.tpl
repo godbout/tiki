@@ -22,64 +22,76 @@
 		<div class="form-group text-center">
 			<input type="submit" class="btn btn-primary btn-sm" name="replace" value="{tr}Save{/tr}">
 		</div>
-	</form>
+	</form><br/>
 {/if}
 
 <h2>{tr}Settings{/tr}</h2>
 <form action="tiki-admin_contribution.php?page=features" method="post" role="form">
 	{ticket}
 	<div class="form-group row">
-		<div class="form-check">
-			<label class="col-sm-11 offset-sm-1 form-check-label" for=feature_contribution_mandatory">
+		<label class="col-sm-6 form-check-label" for=feature_contribution_mandatory">
+			{tr}Contributions are mandatory in wiki pages{/tr}
+		</label>
+		<div class="col-sm-6">
+			<div class="form-check">
 				<input type="checkbox" class="form-check-input" name="feature_contribution_mandatory" id="feature_contribution_mandatory" {if $prefs.feature_contribution_mandatory eq 'y'}checked="checked"{/if}>
-				{tr}Contributions are mandatory in wiki pages{/tr}
-			</label>
+			</div>
 		</div>
 	</div>
 	<div class="form-group row">
-		<div class="form-check">
-			<label class="col-sm-11 offset-sm-1 form-check-label" for="feature_contribution_mandatory_forum">
+		<label class="col-sm-6 form-check-label" for="feature_contribution_mandatory_forum">
+			{tr}Contributions are mandatory in forums{/tr}
+		</label>
+		<div class="col-sm-6">
+			<div class="form-check">
 				<input type="checkbox" class="form-check-input" name="feature_contribution_mandatory_forum" id="feature_contribution_mandatory_forum" {if $prefs.feature_contribution_mandatory_forum eq 'y'}checked="checked"{/if}>
-				{tr}Contributions are mandatory in forums{/tr}
-			</label>
+			</div>
 		</div>
 	</div>
 	<div class="form-group row">
-		<div class="form-check">
-			<label class="col-sm-11 offset-sm-1 form-check-label" for="feature_contribution_mandatory_comment">
+		<label class="col-sm-6 form-check-label" for="feature_contribution_mandatory_comment">
+			{tr}Contributions are mandatory in comments{/tr}
+		</label>
+		<div class="col-sm-6">
+			<div class="form-check">
 				<input type="checkbox" class="form-check-input" name="feature_contribution_mandatory_comment" id="feature_contribution_mandatory_comment" {if $prefs.feature_contribution_mandatory_comment eq 'y'}checked="checked"{/if}>
-				{tr}Contributions are mandatory in comments{/tr}
-			</label>
+			</div>
 		</div>
 	</div>
 	<div class="form-group row">
-		<div class="form-check">
-			<label class="col-sm-11 offset-sm-1 form-check-label" for="feature_contribution_mandatory_blog">
+		<label class="col-sm-6 form-check-label" for="feature_contribution_mandatory_blog">
+			{tr}Contributions are mandatory in blogs{/tr}
+		</label>
+		<div class="col-sm-6">
+			<div class="form-check">
 				<input type="checkbox" class="form-check-input" name="feature_contribution_mandatory_blog" id="feature_contribution_mandatory_blog" {if $prefs.feature_contribution_mandatory_blog eq 'y'}checked="checked"{/if}>
-				{tr}Contributions are mandatory in blogs{/tr}
-			</label>
+			</div>
 		</div>
 	</div>
 	<div class="form-group row">
-		<div class="form-check">
-			<label class="col-sm-11 offset-sm-1 form-check-label" for="feature_contribution_display_in_comment">
+		<label class="col-sm-6 form-check-label" for="feature_contribution_display_in_comment">
+			{tr}Contributions are displayed in the comment/post{/tr}
+		</label>
+		<div class="col-sm-6">
+			<div class="form-check">
 				<input type="checkbox" class="form-check-input" name="feature_contribution_display_in_comment" name="feature_contribution_display_in_comment" {if $prefs.feature_contribution_display_in_comment eq 'y'}checked="checked"{/if}>
-				{tr}Contributions are displayed in the comment/post{/tr}
-			</label>
+			</div>
 		</div>
 	</div>
 	<div class="form-group row">
-		<div class="form-check">
-			<label class="col-sm-11 offset-sm-1 form-check-label" for="feature_contributor_wiki">
-			<input type="checkbox" class="form-check-input" name="feature_contributor_wiki" name="feature_contributor_wiki" {if $prefs.feature_contributor_wiki eq 'y'}checked="checked"{/if}>
+		<label class="col-sm-6 form-check-label" for="feature_contributor_wiki">
 			{tr}Contributors{/tr}
-			</label>
+		</label>
+		<div class="col-sm-6">
+			<div class="form-check">
+				<input type="checkbox" class="form-check-input" name="feature_contributor_wiki" name="feature_contributor_wiki" {if $prefs.feature_contributor_wiki eq 'y'}checked="checked"{/if}>
+			</div>
 		</div>
 	</div>
 	<div class="form-group text-center">
 		<input type="submit" class="btn btn-primary" name="setting" value="{tr}Save{/tr}">
 	</div>
-</form>
+</form><br/>
 
 
 <h2>{tr}Create a new contribution{/tr}</h2>
@@ -101,7 +113,7 @@
 	<div class="form-group text-center">
 		<input type="submit" class="btn btn-primary" name="add" value="{tr}Add{/tr}">
 	</div>
-</form>
+</form><br/>
 <h2>{tr}List of contributions{/tr}</h2>
 <div class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 	<table class="table table-striped table-hover">
