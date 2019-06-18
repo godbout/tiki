@@ -139,8 +139,8 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-form-label col-sm-3">{tr}Filters{/tr}</label>
-				<div class="col-sm-9">
+				<label class="col-form-label col-sm-2">{tr}Filters{/tr}</label>
+				<div class="col-sm-10">
 					<table class="table filters">
 						<thead>
 							<tr>
@@ -270,7 +270,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="form-row submit">
+			<div class="form-group row submit">
 				<div class="col-sm-10 offset-sm-2">
 					<input type="submit" class="btn btn-primary" value="{tr}Update{/tr}">
 				</div>
