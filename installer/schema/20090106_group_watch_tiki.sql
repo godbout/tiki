@@ -1,5 +1,5 @@
 #2008-01-06 lphuberdeau
-CREATE TABLE tiki_group_watches (
+CREATE TABLE IF NOT EXISTS tiki_group_watches (
   `watchId` int(12) NOT NULL auto_increment,
   `group` varchar(200) NOT NULL default '',
   event varchar(40) NOT NULL default '',

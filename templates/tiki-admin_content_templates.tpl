@@ -85,7 +85,7 @@
 					</td>
 				</tr>
 			{sectionelse}
-				{norecords _colspan=4}
+				{norecords _colspan=6}
 			{/section}
 		</table>
 		{pagination_links cant=$cant_pages step=$prefs.maxRecords offset=$offset}{/pagination_links}

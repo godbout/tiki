@@ -465,13 +465,17 @@
 						<div class="form-group row">
 							<label class="col-sm-4 form-check-label" for="topic_smileys">{tr}Use topic smileys{/tr}</label>
 							<div class="col-sm-8">
-								<input type="checkbox" name="topic_smileys" id="topic_smileys" {if $topic_smileys eq 'y'}checked="checked"{/if}>
+								<div class="form-check">
+									<input type="checkbox" name="topic_smileys" class="form-check-input" id="topic_smileys" {if $topic_smileys eq 'y'}checked="checked"{/if}>
+								</div>
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="col-sm-4 form-check-label" for="topic_summary">{tr}Show topic summary{/tr}</label>
 							<div class="col-sm-8">
-								<input type="checkbox" name="topic_summary" id="topic_summary" {if $topic_summary eq 'y'}checked="checked"{/if}>
+								<div class="form-check">
+									<input type="checkbox" name="topic_summary" class="form-check-input" id="topic_summary" {if $topic_summary eq 'y'}checked="checked"{/if}>
+								</div>
 							</div>
 						</div>
 					</fieldset>

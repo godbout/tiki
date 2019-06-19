@@ -1,4 +1,4 @@
-CREATE TABLE `tiki_todo` (
+CREATE TABLE IF NOT EXISTS `tiki_todo` (
 	`todoId` INT(12) NOT NULL auto_increment,
 	`after` INT(12) NOT NULL,
 	`event` ENUM('creation', 'modification', 'upload'),
@@ -10,7 +10,7 @@ CREATE TABLE `tiki_todo` (
 	KEY `what` (`objectType`, `objectId`),
 	KEY `after` (`after`)
 ) ENGINE=MyISAM;
-CREATE TABLE `tiki_todo_notif` (
+CREATE TABLE IF NOT EXISTS `tiki_todo_notif` (
 	`todoId` INT(12) NOT NULL,
 	`objectId` VARCHAR(255) default NULL,
 	KEY `todoId` (`todoId`),

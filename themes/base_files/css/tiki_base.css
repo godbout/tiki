@@ -2278,6 +2278,9 @@ table.treetable tr.expanded span.indenter a {
   color: grey;
   font-weight: 400; }
 
+.edit-tabular {
+  padding-top: 15px; }
+
 .catlists .catitems {
   display: inline-block; }
 

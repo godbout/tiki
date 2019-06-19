@@ -3,7 +3,7 @@
  */
 
 # Keep track of h5p content entities > Pending in Tiki: Add FileId
-CREATE TABLE tiki_h5p_contents (
+CREATE TABLE IF NOT EXISTS tiki_h5p_contents (
 	id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	file_id			 INT UNSIGNED NOT NULL,	# reference to the file gallery object in tiki_files table
 	created_at   TIMESTAMP    NULL,
@@ -27,7 +27,7 @@ CREATE TABLE tiki_h5p_contents (
 )	ENGINE = MyISAM;
 
 # Keep track of content dependencies
-CREATE TABLE tiki_h5p_contents_libraries (
+CREATE TABLE IF NOT EXISTS tiki_h5p_contents_libraries (
 	content_id      INT UNSIGNED      NOT NULL,
 	library_id      INT UNSIGNED      NOT NULL,
 	dependency_type VARCHAR(31)       NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE tiki_h5p_contents_libraries (
 
 
 # Keep track of h5p libraries
-CREATE TABLE tiki_h5p_libraries (
+CREATE TABLE IF NOT EXISTS tiki_h5p_libraries (
 	id               INT UNSIGNED  NOT NULL AUTO_INCREMENT,
 	created_at       TIMESTAMP     NULL,
 	updated_at       TIMESTAMP     NULL,
@@ -63,7 +63,7 @@ CREATE TABLE tiki_h5p_libraries (
 )	ENGINE = MyISAM;
 
 # Keep track of h5p library dependencies
-CREATE TABLE tiki_h5p_libraries_libraries (
+CREATE TABLE IF NOT EXISTS tiki_h5p_libraries_libraries (
 	library_id          INT UNSIGNED NOT NULL,
 	required_library_id INT UNSIGNED NOT NULL,
 	dependency_type     VARCHAR(31)  NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE tiki_h5p_libraries_libraries (
 )	ENGINE = MyISAM;
 
 # Keep track of h5p library translations
-CREATE TABLE tiki_h5p_libraries_languages (
+CREATE TABLE IF NOT EXISTS tiki_h5p_libraries_languages (
 	library_id    INT UNSIGNED NOT NULL,
 	language_code VARCHAR(31)  NOT NULL,
 	translation   TEXT         NOT NULL,
@@ -79,7 +79,7 @@ CREATE TABLE tiki_h5p_libraries_languages (
 )	ENGINE = MyISAM;
 
 # Keep track of temporary files uploaded in editor before saving content
-CREATE TABLE tiki_h5p_tmpfiles (
+CREATE TABLE IF NOT EXISTS tiki_h5p_tmpfiles (
 	id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	path       VARCHAR(255) NOT NULL,
 	created_at INT UNSIGNED NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE tiki_h5p_tmpfiles (
 ) ENGINE = MyISAM;
 
 # Keep track of results (contents >-< users)  -> Reusing Action log in Tiki?
-CREATE TABLE tiki_h5p_results (
+CREATE TABLE IF NOT EXISTS tiki_h5p_results (
 	id         INT UNSIGNED NOT NULL AUTO_INCREMENT,
 	content_id INT UNSIGNED NOT NULL,
 	user_id    INT UNSIGNED NOT NULL,
@@ -103,7 +103,7 @@ CREATE TABLE tiki_h5p_results (
 )	ENGINE = MyISAM;
 
 # Cache table for h5p libraries so we can reuse the existing h5p code for caching
-CREATE TABLE tiki_h5p_libraries_cachedassets (
+CREATE TABLE IF NOT EXISTS tiki_h5p_libraries_cachedassets (
 	library_id INT UNSIGNED NOT NULL,
 	hash       VARCHAR(64)  NOT NULL,
 	PRIMARY KEY (library_id, hash)

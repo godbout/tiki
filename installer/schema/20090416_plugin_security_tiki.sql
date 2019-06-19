@@ -1,5 +1,5 @@
 #2009-04-16 lphuberdeau
-CREATE TABLE tiki_plugin_security (
+CREATE TABLE IF NOT EXISTS tiki_plugin_security (
 	fingerprint VARCHAR(200) NOT NULL PRIMARY KEY,
 	status VARCHAR(10) NOT NULL,
 	approval_by VARCHAR(200) NULL,

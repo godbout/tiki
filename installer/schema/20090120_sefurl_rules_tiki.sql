@@ -1,5 +1,5 @@
 #sylvieg
-CREATE TABLE `tiki_sefurl_regex_out` (
+CREATE TABLE IF NOT EXISTS `tiki_sefurl_regex_out` (
   `id` int(11) NOT NULL auto_increment,
   `left` varchar(256) NOT NULL,
   `right` varchar(256) NULL default NULL,

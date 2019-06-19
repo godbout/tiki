@@ -1,5 +1,5 @@
 
-CREATE TABLE `tiki_payment_requests` (
+CREATE TABLE IF NOT EXISTS `tiki_payment_requests` (
 	`paymentRequestId` INT NOT NULL AUTO_INCREMENT,
 	`amount` DECIMAL(7,2) NOT NULL,
 	`amount_paid` DECIMAL(7,2) NOT NULL DEFAULT 0.0,
@@ -12,7 +12,7 @@ CREATE TABLE `tiki_payment_requests` (
 	PRIMARY KEY( `paymentRequestId` )
 ) ENGINE=MyISAM;
 
-CREATE TABLE `tiki_payment_received` (
+CREATE TABLE IF NOT EXISTS `tiki_payment_received` (
 	`paymentReceivedId` INT NOT NULL AUTO_INCREMENT,
 	`paymentRequestId` INT NOT NULL,
 	`payment_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

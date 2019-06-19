@@ -1,5 +1,5 @@
 
-CREATE TABLE `tiki_rss_items` (
+CREATE TABLE IF NOT EXISTS `tiki_rss_items` (
 	`rssItemId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	`rssId` INT NOT NULL,
 	`guid` VARCHAR(255) NOT NULL,
