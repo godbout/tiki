@@ -12,9 +12,9 @@ This is how we implement the Tiki Social Contract.
 http://tiki.org/Social+Contract
 
 List of members of the Community
-As of 2019-06-05, the community has:
-  * 648 members on SourceForge.net,
-  * 359 of those people who made at least one code commit
+As of 2019-06-19, the community has:
+  * 649 members on SourceForge.net,
+  * 360 of those people who made at least one code commit
 
 This list is automatically generated and alphabetically sorted
 from subversion repository by the following script:
@@ -536,8 +536,8 @@ SF Role: Developer
 Nickname: chibaguy
 Name: Gary Cunningham-Lee
 First Commit: 2006-02-04
-Last Commit: 2019-06-03
-Number of Commits: 3984
+Last Commit: 2019-06-07
+Number of Commits: 3986
 SF Role: Admin
 
 Nickname: chris_holman
@@ -1166,6 +1166,11 @@ Last Commit: 2004-02-04
 Number of Commits: 51
 SF Role: Developer
 
+Nickname: gour
+First Commit: 2019-06-14
+Last Commit: 2019-06-14
+Number of Commits: 1
+
 Nickname: gravesweeper
 Name: spider
 First Commit: 2004-01-06
@@ -1544,8 +1549,8 @@ SF Role: Developer
 Nickname: jonnybradley
 Name: jonny Bradley
 First Commit: 2007-08-15
-Last Commit: 2019-05-24
-Number of Commits: 11975
+Last Commit: 2019-06-16
+Number of Commits: 11985
 SF Role: Admin
 
 Nickname: jorgercosta
@@ -1631,8 +1636,8 @@ SF Role: Developer
 Nickname: jyhem
 Name: Jean-Marc Libs
 First Commit: 2006-12-11
-Last Commit: 2019-05-29
-Number of Commits: 1441
+Last Commit: 2019-06-18
+Number of Commits: 1448
 SF Role: Admin
 
 Nickname: jyhemsvnbot
@@ -1727,8 +1732,8 @@ SF Role: Developer
 Nickname: kroky6
 Name: Victor Emanouilov
 First Commit: 2016-08-02
-Last Commit: 2019-05-30
-Number of Commits: 892
+Last Commit: 2019-06-13
+Number of Commits: 902
 SF Role: Developer
 
 Nickname: krose
@@ -1922,8 +1927,8 @@ Number of Commits: 5
 Nickname: luciash
 Name: luciash d&#39; being
 First Commit: 2003-08-05
-Last Commit: 2019-05-24
-Number of Commits: 1921
+Last Commit: 2019-06-14
+Number of Commits: 1923
 SF Role: Admin
 
 Nickname: lueders
@@ -2274,8 +2279,8 @@ SF Role: Developer
 Nickname: montefuscolo
 Name: Fabio Montefuscolo
 First Commit: 2016-10-16
-Last Commit: 2019-05-28
-Number of Commits: 497
+Last Commit: 2019-06-11
+Number of Commits: 499
 SF Role: Developer
 
 Nickname: monthorin
@@ -2373,8 +2378,8 @@ SF Role: Developer
 
 Nickname: nelsonko
 First Commit: 2019-02-20
-Last Commit: 2019-05-21
-Number of Commits: 71
+Last Commit: 2019-06-06
+Number of Commits: 76
 
 Nickname: nhuffschmid
 Name: Norbert Huffschmid
@@ -2418,8 +2423,8 @@ SF Role: Developer
 Nickname: nkoth
 Name: Nelson
 First Commit: 2007-05-17
-Last Commit: 2019-06-04
-Number of Commits: 2186
+Last Commit: 2019-06-07
+Number of Commits: 2189
 SF Role: Developer
 
 Nickname: normandaoust
@@ -2676,8 +2681,8 @@ SF Role: Developer
 Nickname: pom2ter
 Name: Benoit Roy
 First Commit: 2016-01-20
-Last Commit: 2019-06-05
-Number of Commits: 280
+Last Commit: 2019-06-19
+Number of Commits: 304
 SF Role: Developer
 
 Nickname: popovich
@@ -2823,8 +2828,8 @@ SF Role: Developer
 Nickname: rjsmelo
 Name: Ricardo Melo
 First Commit: 2015-10-08
-Last Commit: 2019-05-29
-Number of Commits: 870
+Last Commit: 2019-06-11
+Number of Commits: 876
 SF Role: Developer
 
 Nickname: rleibman
@@ -2855,8 +2860,8 @@ Number of Commits: 1
 Nickname: robertokir
 Name: Roberto Kirschbaum
 First Commit: 2017-06-27
-Last Commit: 2019-06-05
-Number of Commits: 368
+Last Commit: 2019-06-19
+Number of Commits: 377
 SF Role: Admin, Developer, Release Technicians
 
 Nickname: robertplummer
@@ -3420,8 +3425,8 @@ SF Role: Developer
 Nickname: xavidp
 Name: Xavier de Pedro
 First Commit: 2005-07-08
-Last Commit: 2019-05-12
-Number of Commits: 2033
+Last Commit: 2019-06-09
+Number of Commits: 2037
 SF Role: Admin
 
 Nickname: xbtheria
@@ -3449,8 +3454,8 @@ SF Role: Developer
 Nickname: xorti
 Name: Jorge SÃ¡ Pereira
 First Commit: 2018-03-29
-Last Commit: 2019-06-04
-Number of Commits: 277
+Last Commit: 2019-06-06
+Number of Commits: 280
 SF Role: Developer
 
 Nickname: yanturgeon
@@ -3468,8 +3473,8 @@ SF Role: Developer
 Nickname: yonixxx
 Name: Bernard Sfez
 First Commit: 2008-02-25
-Last Commit: 2019-04-04
-Number of Commits: 514
+Last Commit: 2019-06-19
+Number of Commits: 516
 SF Role: Admin, Developer
 
 Nickname: ysoya
