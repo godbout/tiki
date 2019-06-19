@@ -9,7 +9,7 @@
 					{/foreach}
 				{/if}
 			</span>
-			<span>
+			<span id="footnotecontent{$footnote['unique']}" >
 				{$footnote['data']}
 			</span>
 		</div>

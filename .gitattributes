@@ -3471,6 +3471,7 @@ lib/jquery_tiki/tiki-jquery.js -text
 lib/jquery_tiki/tiki-jquery_upload.js -text
 lib/jquery_tiki/tiki-maps-ol3.js -text
 lib/jquery_tiki/tiki-maps.js -text
+lib/jquery_tiki/tiki-popovers_for_footnotes.js -text
 lib/jquery_tiki/tiki-tasks.js -text
 lib/jquery_tiki/tiki-toolbars.js -text
 lib/jquery_tiki/tiki-trackers.js -text
@@ -3757,6 +3758,7 @@ lib/prefs/fgal.php -text
 lib/prefs/file.php -text
 lib/prefs/flaggedrev.php -text
 lib/prefs/footer.php -text
+lib/prefs/footnote.php -text
 lib/prefs/forum.php -text
 lib/prefs/forums.php -text
 lib/prefs/freetags.php -text

@@ -81,9 +81,16 @@ function wikiplugin_footnote($data, $params, $offset, $context)
 {
 	/** @var int $globalId Globally unique number of the next footnote, used for intra-document (anchor) links */
 	static $globalId = 1;
+	global $prefs;
 
 	$footnotes = &$context->footnotes;
 	$smarty = TikiLib::lib('smarty');
+
+	// By default, we allow popovers to display the footnote content on mouseover
+	if ( isset($prefs['footnote_popovers']) && $prefs['footnote_popovers'] != 'n' ) {
+		$headerlib = TikiLib::lib('header');
+		$headerlib->add_jsfile('lib/jquery_tiki/tiki-popovers_for_footnotes.js');
+	}
 
 	if (! isset($footnotes['lists'])) {   // if this is the first time the script has run, initialise
 		$footnotes['count'] = 0;
