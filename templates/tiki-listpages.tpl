@@ -50,10 +50,11 @@
 					</div>
 					{if $prefs.namespace_enabled == 'y' && $prefs.namespace_default}
 					<div class="form-group row">
-						<div class="col-sm-9 form-check">
-							<label class="col-form-label col-sm-3 form-check-label">{tr _0=$prefs.namespace_default}Create page within %0{/tr}
+						<label class="col-sm-3 form-check-label">{tr _0=$prefs.namespace_default}Create page within %0{/tr}</label>
+						<div class="col-sm-9">
+							<div class="form-check">
 								<input type="checkbox" class="form-check-input" name="namespace" value="{$prefs.namespace_default|escape}" checked="checked">
-							</label>
+							</div>
 						</div>
 					</div>
 					{/if}

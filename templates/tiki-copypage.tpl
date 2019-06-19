@@ -42,19 +42,23 @@
 	</div>
 
 	{if $tiki_p_add_object eq 'y' and $prefs.feature_categories == 'y' }
-		<div class="form-group form-check">
-			<label class="col-sm-3 col-form-label" for="duplicate_categories">{tr}Duplicate categories{/tr}</label>
+		<div class="form-group row">
+			<label class="col-sm-3 form-check-label" for="duplicate_categories">{tr}Duplicate categories{/tr}</label>
 			<div class="col-sm-7">
-				<input type="checkbox" name="dupCateg" id="duplicate_categories" value="y" checked="checked">
+				<div class="form-check">
+					<input type="checkbox" name="dupCateg" class="form-check-input" id="duplicate_categories" value="y" checked="checked">
+				</div>
 			</div>
 		</div>
 	{/if}
 
 	{if $tiki_p_freetags_tag eq 'y' and $prefs.feature_freetags == 'y' }
-		<div class="form-group form-check">
-			<label class="col-sm-3 col-form-label" for="duplicate_freetags">{tr}Duplicate tags{/tr}</label>
+		<div class="form-group row">
+			<label class="col-sm-3 form-check-label" for="duplicate_freetags">{tr}Duplicate tags{/tr}</label>
 			<div class="col-sm-7">
-				<input type="checkbox" class="form-check-input" name="dupTags" id="duplicate_freetags" value="y" checked="checked">
+				<div class="form-check">
+					<input type="checkbox" class="form-check-input" name="dupTags" id="duplicate_freetags" value="y" checked="checked">
+				</div>
 			</div>
 		</div>
 	{/if}
