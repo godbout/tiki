@@ -22,99 +22,101 @@
 	{include file="tracker_actions.tpl" showitems="n"}
 	<div class="btn-group float-sm-right">
 		{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-		<a class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#" title="{tr}Tracker actions{/tr}">
-			{icon name="menu-extra"}
-		</a>
-		<ul class="dropdown-menu dropdown-menu-right">
-			<li class="dropdown-title">
-				{tr}Tracker actions{/tr}
-			</li>
-			<li class="dropdown-divider"></li>
-			{if $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
-				<li class="dropdown-item">
-					<a href="tiki-object_watches.php?objectId={$trackerId|escape:"url"}&amp;watch_event=tracker_modified&amp;objectType=tracker&amp;objectName={$tracker_info.name|escape:"url"}&amp;objectHref={'tiki-view_tracker.php?trackerId='|cat:$trackerId|escape:"url"}">
-						{icon name="watch-group"} {tr}Group Monitoring{/tr}
+				{if $prefs.feature_group_watches eq 'y' or $prefs.feature_user_watches eq 'y' or $prefs.feed_tracker eq 'y' or $tiki_p_admin_trackers eq 'y' or $tiki_p_export_tracker eq 'y' or $prefs.sefurl_short_url eq 'y'}
+					<a class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#" title="{tr}Tracker actions{/tr}">
+						{icon name="menu-extra"}
 					</a>
-				</li>
-			{/if}
-			{if $prefs.feature_user_watches eq 'y' and $tiki_p_watch_trackers eq 'y' and $user}
-				<li class="dropdown-item">
-					{if $user_watching_tracker ne 'y'}
-						<a href="tiki-view_tracker.php?trackerId={$trackerId}&amp;watch=add">
-							{icon name="watch"} {tr}Monitor{/tr}
-						</a>
-					{else}
-						<a href="tiki-view_tracker.php?trackerId={$trackerId}&amp;watch=stop">
-							{icon name="stop-watching"} {tr}Stop Watching{/tr}
-						</a>
-					{/if}
-				</li>
-			{/if}
-			{if $prefs.feed_tracker eq "y"}
-				<li class="dropdown-item">
-					<a href="tiki-tracker_rss.php?trackerId={$trackerId}">
-						{icon name="rss"} {tr}RSS{/tr}
-					</a>
-				</li>
-			{/if}
-			{if $tiki_p_admin_trackers eq "y"}
-				<li class="dropdown-item">
-					<a class="import dialog" href="{service controller=tracker action=import_items trackerId=$trackerId}">
-						{icon name="import"} {tr}Import{/tr}
-					</a>
-				</li>
-				{jq}
-					$('.import.dialog').click(function () {
-						var link = this;
-						$(this).serviceDialog({
-							title: '{tr}Import{/tr}',
-							data: {
-								controller: 'tracker',
-								action: 'import_items',
-								trackerId: {{$trackerId}}
-							}
-						});
-						return false;
-					});
-				{/jq}
-			{/if}
-			{if $tiki_p_export_tracker eq "y"}
-				<li class="dropdown-item">
-					<a class="export dialog" href="{service controller=tracker action=export trackerId=$trackerId filterfield=$filterfield filtervalue=$filtervalue}">
-						{icon name="export"} {tr}Export{/tr}
-					</a>
-				</li>
-				{jq}
-					$('.export.dialog').click(function () {
-						var link = this;
-						$(this).serviceDialog({
-							title: '{tr}Export{/tr}',
-							data: {
-								controller: 'tracker',
-								action: 'export',
-								trackerId: {{$trackerId}},
-								filterfield: '{{$filterfield}}',
-								filtervalue: {{$filtervalue|json_encode}}
-							}
-						});
-						return false;
-					});
-				{/jq}
-			{/if}
-			{if $tiki_p_admin_trackers eq "y"}
-				<li class="dropdown-item">
-					{permission_link mode=text type=tracker id=$trackerId permType=trackers}
-				</li>
-			{/if}
-			{if $prefs.sefurl_short_url eq 'y'}
-				<li class="dropdown-item">
-					<a id="short_url_link" href="#" onclick="(function() { $(document.activeElement).attr('href', 'tiki-short_url.php?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title)); })();">
-						{icon name="link"} {tr}Get a short URL{/tr}
-						{assign var="hasPageAction" value="1"}
-					</a>
-				</li>
-			{/if}
-		</ul>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li class="dropdown-title">
+							{tr}Tracker actions{/tr}
+						</li>
+						<li class="dropdown-divider"></li>
+						{if $prefs.feature_group_watches eq 'y' and ( $tiki_p_admin_users eq 'y' or $tiki_p_admin eq 'y' )}
+							<li class="dropdown-item">
+								<a href="tiki-object_watches.php?objectId={$trackerId|escape:"url"}&amp;watch_event=tracker_modified&amp;objectType=tracker&amp;objectName={$tracker_info.name|escape:"url"}&amp;objectHref={'tiki-view_tracker.php?trackerId='|cat:$trackerId|escape:"url"}">
+									{icon name="watch-group"} {tr}Group Monitoring{/tr}
+								</a>
+							</li>
+						{/if}
+						{if $prefs.feature_user_watches eq 'y' and $tiki_p_watch_trackers eq 'y' and $user}
+							<li class="dropdown-item">
+								{if $user_watching_tracker ne 'y'}
+									<a href="tiki-view_tracker.php?trackerId={$trackerId}&amp;watch=add">
+										{icon name="watch"} {tr}Monitor{/tr}
+									</a>
+								{else}
+									<a href="tiki-view_tracker.php?trackerId={$trackerId}&amp;watch=stop">
+										{icon name="stop-watching"} {tr}Stop Watching{/tr}
+									</a>
+								{/if}
+							</li>
+						{/if}
+						{if $prefs.feed_tracker eq "y"}
+							<li class="dropdown-item">
+								<a href="tiki-tracker_rss.php?trackerId={$trackerId}">
+									{icon name="rss"} {tr}RSS{/tr}
+								</a>
+							</li>
+						{/if}
+						{if $tiki_p_admin_trackers eq "y"}
+							<li class="dropdown-item">
+								<a class="import dialog" href="{service controller=tracker action=import_items trackerId=$trackerId}">
+									{icon name="import"} {tr}Import{/tr}
+								</a>
+							</li>
+							{jq}
+								$('.import.dialog').click(function () {
+									var link = this;
+									$(this).serviceDialog({
+										title: '{tr}Import{/tr}',
+										data: {
+											controller: 'tracker',
+											action: 'import_items',
+											trackerId: {{$trackerId}}
+										}
+									});
+									return false;
+								});
+							{/jq}
+						{/if}
+						{if $tiki_p_export_tracker eq "y"}
+							<li class="dropdown-item">
+								<a class="export dialog" href="{service controller=tracker action=export trackerId=$trackerId filterfield=$filterfield filtervalue=$filtervalue}">
+									{icon name="export"} {tr}Export{/tr}
+								</a>
+							</li>
+							{jq}
+								$('.export.dialog').click(function () {
+									var link = this;
+									$(this).serviceDialog({
+										title: '{tr}Export{/tr}',
+										data: {
+											controller: 'tracker',
+											action: 'export',
+											trackerId: {{$trackerId}},
+											filterfield: '{{$filterfield}}',
+											filtervalue: {{$filtervalue|json_encode}}
+										}
+									});
+									return false;
+								});
+							{/jq}
+						{/if}
+						{if $tiki_p_admin_trackers eq "y"}
+							<li class="dropdown-item">
+								{permission_link mode=text type=tracker id=$trackerId permType=trackers}
+							</li>
+						{/if}
+						{if $prefs.sefurl_short_url eq 'y'}
+							<li class="dropdown-item">
+								<a id="short_url_link" href="#" onclick="(function() { $(document.activeElement).attr('href', 'tiki-short_url.php?url=' + encodeURIComponent(window.location.href) + '&title=' + encodeURIComponent(document.title)); })();">
+									{icon name="link"} {tr}Get a short URL{/tr}
+									{assign var="hasPageAction" value="1"}
+								</a>
+							</li>
+						{/if}
+					</ul>
+				{/if}
 		{if ! $js}</li></ul>{/if}
 	</div>
 </div>
