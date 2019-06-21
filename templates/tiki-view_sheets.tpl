@@ -24,13 +24,15 @@
 <div id="feedback" style="height: 1.5em; margin-left: .2em"><span></span></div>
 
 <div class="t_navbar btn-group form-group row">
-	{if $page}
-		{button href="tiki-index.php" page="$page" class="btn btn-primary" _text="{tr}Back to Page{/tr}"}
-	{/if}
+	<div>
+		{if $page}
+			{button href="tiki-index.php" page="$page" _class="btn btn-primary mr-1" _text="{tr}Back to Page{/tr}"}
+		{/if}
 
-	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-sheets.php" _class="btn btn-info" _text="{tr}List Spreadsheets{/tr}"}
-	{/if}
+		{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin eq 'y'}
+			{button href="tiki-sheets.php" _class="btn btn-info mr-1" _text="{tr}List Spreadsheets{/tr}"}
+		{/if}
+	</div>
 
 	{if $objectperms->edit_sheet}
 		{jq notonready=true}var editSheetButtonLabel2="{tr}Cancel{/tr}";{/jq}
