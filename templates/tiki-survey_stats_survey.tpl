@@ -14,16 +14,20 @@
 <br>
 
 <div>
-<form method="post" action="tiki-survey_stats_survey.php" class="form-inline">
-{tr}Select a user to preview its answer (marked as{/tr}{icon name="user" alt="{tr}User voted{/tr}"})
-	<select name="uservoted" class="form-control">
-		<option value="" {if empty($uservoted)}selected="selected"{/if}></option>
-		{foreach from=$usersthatvoted item=usr}
-		<option value="{$usr|escape}" {if $uservoted == $usr}selected="selected"{/if}>{$usr|username}</option>
-		{/foreach}
-	</select>
-	<input type="hidden" name="surveyId" value="{$surveyId|escape}" />
-	<input type="submit" class="btn btn-primary btn-sm" name="selectuservoted" value="{tr}Select User{/tr}" />
+<form method="post" action="tiki-survey_stats_survey.php">
+	<div class="form-group row">
+		<label class="col-form-label col-sm-12">{tr}Select a user to preview its answer (marked as{/tr} {icon name="user" alt="{tr}User voted{/tr}"})</label>
+		<div class="col-sm-5">
+			<select name="uservoted" class="form-control mb-2">
+				<option value="" {if empty($uservoted)}selected="selected"{/if}></option>
+				{foreach from=$usersthatvoted item=usr}
+				<option value="{$usr|escape}" {if $uservoted == $usr}selected="selected"{/if}>{$usr|username}</option>
+				{/foreach}
+			</select>
+			<input type="hidden" name="surveyId" value="{$surveyId|escape}" />
+			<input type="submit" class="btn btn-primary btn-sm" name="selectuservoted" value="{tr}Select User{/tr}" />
+		</div>
+	</div>
 </form>
 </div>
 
