@@ -29,15 +29,11 @@
 	{/if}
 
 	{if $tiki_p_view_sheet eq 'y' || $tiki_p_admin eq 'y'}
-		{button href="tiki-sheets.php" class="btn btn-info" _text="{tr}List Spreadsheets{/tr}"}
+		{button href="tiki-sheets.php" _class="btn btn-info" _text="{tr}List Spreadsheets{/tr}"}
 	{/if}
 
 	{if $objectperms->edit_sheet}
 		{jq notonready=true}var editSheetButtonLabel2="{tr}Cancel{/tr}";{/jq}
-
-		{if $prefs.feature_contribution eq 'y'}
-			{include file='contribution.tpl'}
-		{/if}
 	{/if}
 
 	<span id="saveState">
@@ -77,6 +73,12 @@
 		{/if}
 	</span>
 </div>
+
+{if $objectperms->edit_sheet}
+	{if $prefs.feature_contribution eq 'y'}
+		{include file='contribution.tpl'}
+	{/if}
+{/if}
 
 <div id="sheetTools" style="display: none;">
 	<div style="text-align: left;">{toolbars area_id="jSheetControls_formula_0"}</div>

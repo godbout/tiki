@@ -215,9 +215,7 @@
 						{if $prefs.feature_contribution eq 'y'}
 							<fieldset>
 								<legend>{tr}Contributions{/tr}</legend>
-								<table>
-									{include file='contribution.tpl'}
-								</table>
+								{include file='contribution.tpl'}
 							</fieldset>
 						{/if}
 						{if (!isset($wysiwyg) || $wysiwyg neq 'y') and $prefs.feature_wiki_pictures eq 'y' and $tiki_p_upload_picture eq 'y' and $prefs.feature_filegals_manager neq 'y'}
