@@ -1418,9 +1418,11 @@ input:checked + .slider {
 		margin: 15px 0;
 	}
 
-	.tiki-view_tracker, .tiki-admin_tracker_fields, .tiki-lastchanges {
+	.tiki-view_tracker, .tiki-admin_tracker_fields, .tiki-lastchanges,
+	.tiki-admin_survey_questions {
 		.t_navbar {
-			.btn-group > .btn:not(.dropdown-toggle) {
+			.btn-group > .btn:not(.dropdown-toggle),
+			&.btn-group > .btn:not(.dropdown-toggle) {
 				margin-right: 5px;
 				margin-bottom: 5px;
 				border-radius: 0.25rem;

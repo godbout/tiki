@@ -386,10 +386,10 @@
 							<div class="col-sm-9">
 								<input class="form-control" type="password" name="forum_password">
 							</div>
-							{if $prefs.feature_contribution eq 'y'}
-								{include file='contribution.tpl'}
-							{/if}
 						</div>
+						{if $prefs.feature_contribution eq 'y'}
+							{include file='contribution.tpl'}
+						{/if}
 					{/if}
 				</div>
 			</div>
