@@ -112,14 +112,21 @@ function wikiplugin_map_info()
 				],
 				'advanced' => true,
 			],
+			'cluster' => [
+				'required' => false,
+				'name' => tra('Cluster Distance'),
+				'description' => tra('Distance between features before they are "clustered", 0 (off) to 100. (requires Open Layers v3+, default is 0)'),
+				'since' => '21.0',
+				'default' => 0,
+				'filter' => 'digits',
+				'advanced' => true,
+			],
 		],
 	];
 }
 
 function wikiplugin_map($data, $params)
 {
-	global $tikilib, $prefs;
-
 	$smarty = TikiLib::lib('smarty');
 	$smarty->loadPlugin('smarty_modifier_escape');
 
@@ -145,15 +152,20 @@ function wikiplugin_map($data, $params)
 		$params['popupstyle'] = 'bubble';
 	}
 
+	$popupStyle = smarty_modifier_escape($params['popupstyle']);
+
 	if (! empty($params['tooltips']) && $params['tooltips'] === 'y') {
 		$tooltips = ' data-tooltips="1"';
 	} else {
 		$tooltips = '';
 	}
 
-	$popupStyle = smarty_modifier_escape($params['popupstyle']);
+	if (isset($params['cluster'])) {
+		$cluster = (int) $params['cluster'];
+	} else {
+		$cluster = 0;
+	}
 
-	$controls = array_intersect($params['controls'], wp_map_available_controls());
 	$controls = array_intersect($params['controls'], wp_map_available_controls());
 	$controls = implode(',', $controls);
 
@@ -170,7 +182,8 @@ function wikiplugin_map($data, $params)
 	TikiLib::lib('header')->add_map();
 	$scope = smarty_modifier_escape(wp_map_getscope($params));
 
-	$output = "<div class=\"map-container\" data-marker-filter=\"$scope\" data-map-controls=\"{$controls}\" data-popup-style=\"$popupStyle\" style=\"width: {$width}; height: {$height};\" $center{$tooltips}>";
+	$output = "<div class=\"map-container\" data-marker-filter=\"$scope\" data-map-controls=\"$controls\" data-popup-style=\"$popupStyle\"" .
+		" data-cluster=\"$cluster\" style=\"width: $width; height: $height;\" $center $tooltips>";
 
 	$argumentParser = new WikiParser_PluginArgumentParser;
 	$matches = WikiParser_PluginMatcher::match($data);
