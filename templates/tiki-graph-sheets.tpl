@@ -143,7 +143,7 @@
 	{/literal}
 	{/jq}
 
-	<form name="chartParam" method="get" action="tiki-graph_sheet.php">
+	<form name="chartParam" method="get" action="tiki-graph_sheet.php" class="mb-4">
 		<input type="hidden" name="sheetId" value="{$sheetId}">
 		<input type="hidden" name="graphic" value="{$graph}">
 		<input type="hidden" name="renderer" value="{$renderer}">
@@ -151,54 +151,91 @@
 		<input type="hidden" name="orientation" value="{$orientation}">
 		<input type="hidden" name="width" value="{$im_width}">
 		<input type="hidden" name="height" value="{$im_height}">
-		<table class="formcolor">
-			<tr>
-				<td>{tr}Title:{/tr}</td>
-				<td><input type="text" name="title" value="{$title}" onchange="renderWikiPlugin()"></td>
-			</tr>
-			{if $showgridparam}
-				<tr>
-					<td>{tr}Independant Scale:{/tr}</td>
-					<td>
-						<input type="radio" name="independant" value="horizontal" id="ind_ori_hori" checked="checked" onchange="renderWikiPlugin()">
-						<label for="ind_ori_hori">{tr}Horizontal{/tr}</label>
-						<input type="radio" name="independant" value="vertical" id="ind_ori_verti" onchange="renderWikiPlugin()">
-						<label for="ind_ori_verti">{tr}Vertical{/tr}</label>
-					</td>
-				</tr>
-				<tr>
-					<td>{tr}Horizontal Scale:{/tr}</td>
-					<td>
-						<input type="radio" name="horizontal" value="bottom" id="hori_pos_bottom" checked="checked" onchange="renderWikiPlugin()">
-						<label for="hori_pos_bottom">{tr}Bottom{/tr}</label>
-						<input type="radio" name="horizontal" value="top" id="hori_pos_top" onchange="renderWikiPlugin()">
-						<label for="hori_pos_top">{tr}Top{/tr}</label>
-					</td>
-				</tr>
-				<tr>
-					<td>{tr}Vertical Scale:{/tr}</td>
-					<td>
-						<input type="radio" name="vertical" value="left" id="verti_pos_left" checked="checked" onchange="renderWikiPlugin()">
-						<label for="verti_pos_left">{tr}Left{/tr}</label>
-						<input type="radio" name="vertical" value="right" id="verti_pos_right" onchange="renderWikiPlugin()">
-						<label for="verti_pos_right">{tr}Right{/tr}</label>
-					</td>
-				</tr>
-			{/if}
-			<tr>
-				<td colspan="2">{tr}Series:{/tr}</td>
-			</tr>
-			{section name=i loop=$series}
-				<tr>
-					<td>{$series[i]}</td>
-					<td><input type="text" name="series[{$series[i]}]" onchange="renderWikiPlugin()"></td>
-				</tr>
-			{/section}
-			<tr>
-				<td colspan="2"><input type="submit" class="btn btn-primary btn-sm" value="{tr}Show{/tr}" class="button"></td>
-			</tr>
-		</table>
-		<div class="tiki_sheet">
+
+		<div class="form-group row">
+			<label class="col-form-label col-sm-4">{tr}Title:{/tr}</label>
+			<div class="col-sm-4">
+				<input type="text" name="title" value="{$title}" class="form-control" onchange="renderWikiPlugin()">
+			</div>
+		</div>
+
+		{if $showgridparam}
+			<div class="form-group row mb-0">
+				<label class="col-form-label col-sm-4">{tr}Independant Scale:{/tr}</label>
+				<div class="col-sm-2">
+					<div class="form-check">
+						<label for="ind_ori_hori" class="form-check-label">
+							<input type="radio" name="independant" value="horizontal" class="form-check-input" id="ind_ori_hori" checked="checked" onchange="renderWikiPlugin()">
+							{tr}Horizontal{/tr}
+						</label>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-check">
+						<label for="ind_ori_verti" class="form-check-label">
+							<input type="radio" name="independant" value="vertical" class="form-check-input" id="ind_ori_verti" onchange="renderWikiPlugin()">
+							{tr}Vertical{/tr}
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row mb-0">
+				<label class="col-form-label col-sm-4">{tr}Horizontal Scale:{/tr}</label>
+				<div class="col-sm-2">
+					<div class="form-check">
+						<label for="hori_pos_bottom" class="form-check-label">
+							<input type="radio" name="horizontal" value="bottom" class="form-check-input" id="hori_pos_bottom" checked="checked" onchange="renderWikiPlugin()">
+							{tr}Bottom{/tr}
+						</label>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-check">
+						<label for="hori_pos_top" class="form-check-label">
+							<input type="radio" name="horizontal" value="top" class="form-check-input" id="hori_pos_top" onchange="renderWikiPlugin()">
+							{tr}Top{/tr}
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-form-label col-sm-4">{tr}Vertical Scale:{/tr}</label>
+				<div class="col-sm-2">
+					<div class="form-check">
+						<label for="verti_pos_left" class="form-check-label">
+							<input type="radio" name="vertical" value="left" class="form-check-input" id="verti_pos_left" checked="checked" onchange="renderWikiPlugin()">
+							{tr}Left{/tr}
+						</label>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-check">
+						<label for="verti_pos_right" class="form-check-label">
+							<input type="radio" name="vertical" value="right" class="form-check-input" id="verti_pos_right" onchange="renderWikiPlugin()">
+							{tr}Right{/tr}
+						</label>
+					</div>
+				</div>
+			</div>
+		{/if}
+
+		<div class="form-group row">
+			{tr}Series:{/tr}
+		</div>
+		{section name=i loop=$series}
+			<div class="form-group row">
+				<label class="col-form-label col-sm-4">{$series[i]}</label>
+				<div class="col-sm-4">
+					<input type="text" name="series[{$series[i]}]" class="form-control" onchange="renderWikiPlugin()"></td>
+				</div>
+			</div>
+		{/section}
+
+		<div class="form-group row">
+			<input type="submit" class="btn btn-primary btn-sm" value="{tr}Show{/tr}" class="button">
+		</div>
+
+		<div class="tiki_sheet mb-4">
 			{$dataGrid}
 		</div>
 		{button _id="edit_button" _text="{tr}Edit Spreadsheet{/tr}" _htmlelement="role_main" _template="tiki-view_sheets.tpl" parse="edit" _auto_args="*" _class="" _onclick="document.location = 'tiki-view_sheets.php?sheetId=$sheetId&parse=edit'; return false;"}
