@@ -8,46 +8,86 @@
 	<h2>{tr}Select Graphic Type{/tr}</h2>
 	<form method="get" action="tiki-graph_sheet.php">
 		<input type="hidden" name="sheetId" value="{$sheetId}">
-		<table>
-			<tr>
-				<td><input type="radio" name="graphic" id="g_pie" value="PieChartGraphic"> <label for='g_pie'>{tr}Pie Chart{/tr}</label></td>
-				<td><input type="radio" name="graphic" id="g_mline" value="MultilineGraphic"> <label for='g_mline'>{tr}Multiline{/tr}</label></td>
-				<td><input type="radio" name="graphic" id="g_mbar" value="MultibarGraphic"> <label for='g_mbar'>{tr}Multibar{/tr}</label></td>
-				<td><input type="radio" name="graphic" id="g_stack" value="BarStackGraphic"> <label for='g_stack'>{tr}Bar Stack{/tr}</label></td>
-			</tr>
-			<tr>
-				<td><label for="g_pie"><img src="img/graph.pie.png" alt="Pie Chart"></label></td>
-				<td><label for="g_mline"><img src="img/graph.multiline.png" alt="Multiline">
-				<td><label for="g_mbar"><img src="img/graph.multibar.png" alt="Multibar">
-				<td><label for="g_stack"><img src="img/graph.barstack.png" alt="Bar Stack">
-			</tr>
-		</table>
+		<div class="form-group row mt-4">
+			<div class="col-sm-3 mb-3">
+				<div class="form-check">
+					<label for='g_pie' class="form-check-label">
+						<input type="radio" name="graphic" class="form-check-input" id="g_pie" value="PieChartGraphic">
+						{tr}Pie Chart{/tr}
+					</label>
+				</div>
+				<img src="img/graph.pie.png" alt="Pie Chart">
+			</div>
+
+			<div class="col-sm-3 mb-3">
+				<div class="form-check">
+					<label for='g_mline' class="form-check-label">
+						<input type="radio" name="graphic" class="form-check-input" id="g_mline" value="MultilineGraphic">
+						{tr}Multiline{/tr}
+					</label>
+				</div>
+				<img src="img/graph.multiline.png" alt="Multiline">
+			</div>
+
+			<div class="col-sm-3 mb-3">
+				<div class="form-check">
+					<label for='g_mbar' class="form-check-label">
+						<input type="radio" name="graphic" class="form-check-input" id="g_mbar" value="MultibarGraphic">
+						{tr}Multibar{/tr}
+					</label>
+				</div>
+				<img src="img/graph.multibar.png" alt="Multibar">
+			</div>
+
+			<div class="col-sm-3 mb-3">
+				<div class="form-check">
+					<label for='g_stack' class="form-check-label">
+						<input type="radio" name="graphic" class="form-check-input" id="g_stack" value="BarStackGraphic">
+						{tr}Bar Stack{/tr}
+					</label>
+				</div>
+				<img src="img/graph.barstack.png" alt="Bar Stack">
+			</div>
+		</div>
+
 		{if $haspdflib or $hasps}
-			<div>
-				<select name="format">
-					<option>Letter</option>
-					<option>Legal</option>
-					<option>A4</option>
-					<option>A3</option>
-				</select>
-				<select name="orientation">
-					<option value="landscape">{tr}Landscape{/tr}</option>
-					<option value="portrait">{tr}Portrait{/tr}</option>
-				</select>
+			<div class="form-group row">
+				<div class="col-sm-4">
+					<select name="format" class="form-control">
+						<option>Letter</option>
+						<option>Legal</option>
+						<option>A4</option>
+						<option>A3</option>
+					</select>
+				</div>
+				<div class="col-sm-4">
+					<select name="orientation" class="form-control">
+						<option value="landscape">{tr}Landscape{/tr}</option>
+						<option value="portrait">{tr}Portrait{/tr}</option>
+					</select>
+				</div>
+				<div class="col-sm-4">
 				{if $haspdflib}
-					<input type="submit" class="btn btn-primary btn-sm" name="renderer" value="PDF">
+					<input type="submit" class="btn btn-primary" name="renderer" value="PDF">
 				{/if}
 				{if $hasps}
-					<input type="submit" class="btn btn-primary btn-sm" name="renderer" value="PS">
+					<input type="submit" class="btn btn-primary" name="renderer" value="PS">
 				{/if}
+				</div>
 			</div>
 		{/if}
 		{if $hasgd}
-			<div>
-				<input type="text" name="width" value="500" size="4">
-				<input type="text" name="height" value="400" size="4">
-				<input type="submit" class="btn btn-primary btn-sm" name="renderer" value="PNG">
-				<input type="submit" class="btn btn-primary btn-sm" name="renderer" value="JPEG">
+			<div class="form-group row">
+				<div class="col-sm-2 mb-2">
+					<input type="text" name="width" value="500" size="4" class="form-control">
+				</div>
+				<div class="col-sm-2 mb-2">
+					<input type="text" name="height" value="400" size="4" class="form-control">
+				</div>
+				<div class="col-sm-8">
+					<input type="submit" class="btn btn-primary" name="renderer" value="PNG">
+					<input type="submit" class="btn btn-primary" name="renderer" value="JPEG">
+				</div>
 			</div>
 		{/if}
 	</form>
