@@ -226,13 +226,13 @@
 			<div class="form-group row">
 				<label class="col-form-label col-sm-4">{$series[i]}</label>
 				<div class="col-sm-4">
-					<input type="text" name="series[{$series[i]}]" class="form-control" onchange="renderWikiPlugin()"></td>
+					<input type="text" name="series[{$series[i]}]" class="form-control" onchange="renderWikiPlugin()">
 				</div>
 			</div>
 		{/section}
 
 		<div class="form-group row">
-			<input type="submit" class="btn btn-primary btn-sm" value="{tr}Show{/tr}" class="button">
+			<input type="submit" class="btn btn-primary btn-sm" value="{tr}Show{/tr}">
 		</div>
 
 		<div class="tiki_sheet mb-4">
