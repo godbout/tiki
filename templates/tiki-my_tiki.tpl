@@ -7,7 +7,7 @@
 
 {capture name=my}
 	{if $prefs.feature_wiki eq 'y' and $mytiki_pages eq 'y'}
-		<div id="content1" class="content clearfix">
+		<div id="content1" class="content clearfix mb-4">
 			<h4>{if $userwatch eq $user}{tr}My pages{/tr}{else}{tr}User Pages{/tr}{/if}</h4>
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
@@ -46,14 +46,14 @@
 					{/section}
 				</table>
 			</div>
-				<ul class="nav nav-pills float-sm-right">
+				<ul class="nav nav-pills float-right">
 					<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_pages|@count}</span></a></li>
 				</ul>
 		</div>
 	{/if}
 
 	{if $prefs.feature_galleries eq 'y' and $mytiki_gals eq 'y'}
-		<div id="content2" class="content clearfix">
+		<div id="content2" class="content clearfix mb-4">
 			<h4>{if $userwatch eq $user}{tr}My galleries{/tr}{else}{tr}User Galleries{/tr}{/if}</h4>
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
@@ -78,14 +78,14 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills float-sm-right">
+			<ul class="nav nav-pills float-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_galleries|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
 
 	{if $prefs.feature_articles eq 'y' and $mytiki_articles eq 'y'}
-		<div id="content3" class="content clearfix">
+		<div id="content3" class="content clearfix mb-4">
 			<h4>{if $userwatch eq $user}{tr}My Articles{/tr}{else}{tr}User Articles{/tr}{/if}</h4>
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
@@ -110,14 +110,14 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills float-sm-right">
+			<ul class="nav nav-pills float-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_articles|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
 
 	{if $prefs.feature_trackers eq 'y' and $mytiki_user_items eq 'y'}
-		<div id="content4" class="content clearfix">
+		<div id="content4" class="content clearfix mb-4">
 			<h4>{if $userwatch eq $user}{tr}My User Items{/tr}{else}{tr}User Items{/tr}{/if}</h4>
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
@@ -142,15 +142,15 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills float-sm-right">
-				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_items|@count}</span></a></li>
+			<ul class="nav nav-pills float-right">
+				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_items|@count}</span></a>&nbsp;</li>
 				<li><a href="#">{tr}Comments{/tr} <span class="badge badge-secondary">{$nb_item_comments}</span></a></li>
 			</ul>
 		</div>
 	{/if}
 
 	{if $prefs.feature_messages eq 'y' and $mytiki_msgs eq 'y'}
-		<div id="content5" class="content clearfix">
+		<div id="content5" class="content clearfix mb-4">
 			<h4>{tr}Unread Messages{/tr}</h4>
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
@@ -177,14 +177,14 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills float-sm-right">
+			<ul class="nav nav-pills float-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$msgs|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
 
 	{if $prefs.feature_tasks eq 'y' and $mytiki_tasks eq 'y'}
-		<div id="content6" class="content clearfix">
+		<div id="content6" class="content clearfix mb-4">
 			<h4>{if $userwatch eq $user}{tr}My tasks{/tr}{else}{tr}My Tasks{/tr}{/if}</h4>
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
@@ -203,14 +203,14 @@
 				{/section}
 			</table>
 			</div>
-			<ul class="nav nav-pills float-sm-right">
+			<ul class="nav nav-pills float-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$tasks|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
 
 	{if $prefs.feature_forums eq 'y' && $mytiki_forum_topics eq 'y'}
-		<div id="content7" class="content clearfix">
+		<div id="content7" class="content clearfix mb-4">
 			<h4>{if $userwatch eq $user}{tr}My forum topics{/tr}{else}{tr}User forum topics{/tr}{/if}</h4>
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
@@ -233,14 +233,14 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills float-sm-right">
+			<ul class="nav nav-pills float-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_forum_topics|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
 
 		{if $prefs.feature_forums eq 'y' && $mytiki_forum_replies eq 'y'}
-		<div id="content8" class="content clearfix">
+		<div id="content8" class="content clearfix mb-4">
 			<h4>{if $userwatch eq $user}{tr}My forum replies{/tr}{else}{tr}User forum replies{/tr}{/if}</h4>
 			<div class="table-responsive">
 				<table class="table table-striped table-hover">
@@ -263,39 +263,41 @@
 					{/section}
 				</table>
 			</div>
-			<ul class="nav nav-pills float-sm-right">
+			<ul class="nav nav-pills float-right">
 				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_forum_replies|@count}</span></a></li>
 			</ul>
 		</div>
 	{/if}
 
 	{if $prefs.feature_blogs eq 'y' && $mytiki_blogs eq 'y'}
-		<div id="content9" class="content clearfix">
+		<div id="content9" class="content clearfix mb-4">
 			<h4>{if $userwatch eq $user}{tr}My blogs{/tr}{else}{tr}User Blogs{/tr}{/if}</h4>
-			<div class="table-responsive">
-				<table class="table table-striped table-hover">
-					<tr>
-						<th>{tr}Blog{/tr}</th>
-						<th style="width:50px"></th>
-					</tr>
-
-					{section name=ix loop=$user_blogs}
+			<div class="clearfix mb-4">
+				<div class="table-responsive">
+					<table class="table table-striped table-hover">
 						<tr>
-							<td class="text">
-								<a class="tips" title=":{tr}View{/tr}" href="{$user_blogs[ix].blogId|sefurl:blog}">{$user_blogs[ix].title}</a>
-							</td>
-							<td class="action">
-								<a class="tips" href="tiki-edit_blog.php?blogId={$user_blogs[ix].blogId}" title=":{tr}Edit{/tr}">
-									{icon name='edit'}
-								</a>
-							</td>
+							<th>{tr}Blog{/tr}</th>
+							<th style="width:50px"></th>
 						</tr>
-					{/section}
-				</table>
+
+						{section name=ix loop=$user_blogs}
+							<tr>
+								<td class="text">
+									<a class="tips" title=":{tr}View{/tr}" href="{$user_blogs[ix].blogId|sefurl:blog}">{$user_blogs[ix].title}</a>
+								</td>
+								<td class="action">
+									<a class="tips" href="tiki-edit_blog.php?blogId={$user_blogs[ix].blogId}" title=":{tr}Edit{/tr}">
+										{icon name='edit'}
+									</a>
+								</td>
+							</tr>
+						{/section}
+					</table>
+				</div>
+				<ul class="nav nav-pills float-right">
+					<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_blogs|@count}</span></a></li>
+				</ul>
 			</div>
-			<ul class="nav nav-pills float-sm-right">
-				<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_blogs|@count}</span></a></li>
-			</ul>
 			<div class="clearfix">
 				<h4>{if $userwatch eq $user}{tr}My blog Posts{/tr}{else}{tr}User Blog Posts{/tr}{/if}</h4>
 				<div class="table-responsive">
@@ -319,7 +321,7 @@
 						{/section}
 					</table>
 				</div>
-				<ul class="nav nav-pills float-sm-right">
+				<ul class="nav nav-pills float-right">
 					<li><a href="#">{tr}Records{/tr} <span class="badge badge-secondary">{$user_blog_posts|@count}</span></a></li>
 				</ul>
 			</div>
