@@ -37,6 +37,59 @@ Version 20.0
 ------------------
 
 ----------------------------------------------
+r70264 | jonnybradley | 2019-06-26 12:45:43 +0100 (Wed, 26 Jun 2019) | 1 line
+[FIX] bs4: WYSIWYG help tool was broken due to modal remote deprecation - better now
+----------------------------------------------
+r70263 | jonnybradley | 2019-06-26 11:51:17 +0100 (Wed, 26 Jun 2019) | 2 lines
+[FIX] confirm: Explicitly trigger tiki.modal.redraw when confirm dialogs open to correctly process submit buttons (also codemirror, tabs, chosen, popovers etc)
+[Should re-address https://dev.tiki.org/item7098-Submit-button-is-missing-from-modal thanks BSfez and chibaguy]
+----------------------------------------------
+r70262 | jonnybradley | 2019-06-26 11:47:17 +0100 (Wed, 26 Jun 2019) | 2 lines
+Revert: r70261 (was [FIX][UI] Old rule was preventing display of submit button in modal...)
+Reintroduced button flicker and submit buttons were in the wrong place (but thanks for trying chibaguy ;)
+----------------------------------------------
+r70261 | chibaguy | 2019-06-26 10:51:17 +0100 (Wed, 26 Jun 2019) | 1 line
+[FIX][UI] Old rule was preventing display of submit button in modal. Fixes https://dev.tiki.org/item7098-Submit-button-is-missing-from-modal . Thanks, Bernard.
+----------------------------------------------
+r70259 | pom2ter | 2019-06-26 02:25:53 +0100 (Wed, 26 Jun 2019) | 1 line
+[FIX] mobile: fix some text bunch up together
+----------------------------------------------
+r70258 | pom2ter | 2019-06-26 00:45:44 +0100 (Wed, 26 Jun 2019) | 1 line
+[FIX] remove stray tag and duplicate attribute class
+----------------------------------------------
+r70257 | pom2ter | 2019-06-26 00:38:33 +0100 (Wed, 26 Jun 2019) | 1 line
+[FIX] mobile: fix layout of the second spreadsheet graph selection form
+----------------------------------------------
+r70256 | pom2ter | 2019-06-25 23:48:32 +0100 (Tue, 25 Jun 2019) | 1 line
+[FIX] mobile: fix layout of the spreadsheet graph selection form
+----------------------------------------------
+r70255 | pom2ter | 2019-06-25 22:16:37 +0100 (Tue, 25 Jun 2019) | 1 line
+[FIX] fix popup layout of the activity rules
+----------------------------------------------
+r70254 | jonnybradley | 2019-06-23 15:02:27 +0100 (Sun, 23 Jun 2019) | 1 line
+[FIX] maps: Fix tooltips and popups when features are clusters
+----------------------------------------------
+r70252 | jonnybradley | 2019-06-22 15:45:43 +0100 (Sat, 22 Jun 2019) | 1 line
+[ENH] maps: Add basic clustering for marker features for ol3+
+----------------------------------------------
+r70250 | pom2ter | 2019-06-22 00:07:32 +0100 (Sat, 22 Jun 2019) | 1 line
+[FIX] missing round borders and spacing on some buttons
+----------------------------------------------
+r70249 | pom2ter | 2019-06-21 22:53:39 +0100 (Fri, 21 Jun 2019) | 1 line
+[FIX] fix 'type of contribution' layout on some templates
+----------------------------------------------
+r70248 | pom2ter | 2019-06-21 03:07:54 +0100 (Fri, 21 Jun 2019) | 1 line
+[FIX] improve layout of the poll forms
+----------------------------------------------
+r70247 | pom2ter | 2019-06-21 01:56:58 +0100 (Fri, 21 Jun 2019) | 1 line
+[FIX] mobile: surveys navbar was too long on mobile
+----------------------------------------------
+r70246 | pom2ter | 2019-06-21 00:21:11 +0100 (Fri, 21 Jun 2019) | 1 line
+[FIX] template: using smarty icon function instead of hardcoding an image (tiki-edit_quiz)
+----------------------------------------------
+r70245 | yonixxx | 2019-06-20 15:20:52 +0100 (Thu, 20 Jun 2019) | 1 line
+[FIX] Tracker actions menu button was displayed even if no actions were available.
+----------------------------------------------
 r70228 | yonixxx | 2019-06-19 11:20:27 +0100 (Wed, 19 Jun 2019) | 1 line
 Removed a float-left that is causing the group label and the multi-select field to be one over the other with some browsers (like IOS) while  others (like Chrome and Firefox) work fine without.
 ----------------------------------------------
