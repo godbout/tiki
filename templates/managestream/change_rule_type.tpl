@@ -14,13 +14,13 @@
 			<label class="col-form-label">
 				{tr}Rule{/tr}
 			</label>
-			<pre>{$rule.rule|escape}</pre>
+			<pre class="col-sm-12">{$rule.rule|escape}</pre>
 		</div>
 		<div class="form-group row">
 			<label class="col-form-label">
 				{tr}Current Type{/tr}
 			</label>
-			<pre>{$currentRuleType|escape}</pre>
+			<pre class="col-sm-12">{$currentRuleType|escape}</pre>
 		</div>
 		<div class="form-group row">
 			<label class="col-form-label">
