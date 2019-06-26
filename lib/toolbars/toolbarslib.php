@@ -1488,7 +1488,7 @@ class ToolbarHelptool extends Toolbar
 		$this->setIconName('help');
 		$name = 'tikihelp';
 
-		$js = '$("#bootstrap-modal").modal({show: true, remote: "' . $servicelib->getUrl($params) . '" + editor.name});';
+		$js = '$.openModal({show: true, remote: "' . $servicelib->getUrl($params) . '" + editor.name});';
 
 		$this->setupCKEditorTool($js, $name, $this->label, $this->icon);
 
