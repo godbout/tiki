@@ -341,10 +341,10 @@ span.btn-link {
 	padding-top: 2px;
 }
 
-// Modal submit buttons need to be hidden to avoid blink
-.modal-body div.submit {
-	display: none;
-}
+// Rule removed because it actually prevents display of submit button in branch 20.
+// .modal-body div.submit {
+// 	display: none;
+//}
 
 // ColorBox
 // #cboxTitle {
