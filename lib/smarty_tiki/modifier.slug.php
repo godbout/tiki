@@ -22,19 +22,30 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * Example: href="Page-Name-{$row.object_id}-{$row.title|slug}"
  *
  * @param string to be slugified
- * @param int $length defaults to 70
+ * @param int  $length    defaults to 70
+ * @param bool $mixedCase set true to preserve capitalisation
+ * @param bool $breakWords set true to break words
  *
  * @return string
  *
- * @throws /Exception
+ * @throws SmartyException
  */
 
-function smarty_modifier_slug($string, $length = 70)
+function smarty_modifier_slug($string, $length = 70, $mixedCase = false, $breakWords = false)
 {
 	global $prefs;
 	TikiLib::lib('smarty')->loadPlugin('smarty_modifier_nonp');
 
+	if (! $breakWords) {
+		$offset = strrpos($string, ' ', $length - strlen($string));
+		if ($offset) {
+			$length = $offset;
+		}
+	}
 	$string = substr(smarty_modifier_nonp($string), 0, $length);
+	if (! $mixedCase) {
+		$string = mb_strtolower($string);
+	}
 
 	return TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $string, $prefs['url_only_ascii'] === 'y');
 }
