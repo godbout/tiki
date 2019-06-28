@@ -50,9 +50,17 @@
 		{/if}
 			<div class="mb-3" style="margin-top: 1em;">
 			{button href="#" _onclick="javascript:flip('uploadinfos$fileId');flip('close_uploadinfos$fileId','inline');return false;" _text="{tr}Syntax Tips{/tr}"}
-			<span id="close_uploadinfos{$fileId}" style="display:none">
-				{button href="#" _onclick="javascript:flip('uploadinfos$fileId');flip('close_uploadinfos$fileId','inline');return false;" _text="({tr}Hide{/tr})"}
-			</span>
+				{if $ocrdata}
+					{button href="#" _onclick="javascript:flip('ocrdata$fileId');flip('close_ocrdata$fileId','inline');return false;" _text="{tr}OCR Data{/tr}"}
+				{/if}
+					<span id="close_uploadinfos{$fileId}" style="display:none">
+						{button href="#" _onclick="javascript:flip('uploadinfos$fileId');flip('close_uploadinfos$fileId','inline');return false;" _text="({tr}Hide{/tr})"}
+					</span>
+				{if $ocrdata}
+					<span id="close_ocrdata{$fileId}" style="display:none">
+						{button href="#" _onclick="javascript:flip('ocrdata$fileId');flip('close_ocrdata$fileId','inline');return false;" _text="({tr}Hide{/tr})"}
+					</span>
+                {/if}
 		</div>
 		<div style="{if $prefs.javascript_enabled eq 'y'}display:none;{/if}" id="uploadinfos{$fileId}">
 			<div class="row">
@@ -87,6 +95,16 @@
 				</div>
 			{/if}
 		</div>
+
+		{if $ocrdata}
+			<div style="{if $prefs.javascript_enabled eq 'y'}display:none;{/if}" id="ocrdata{$fileId}">
+
+				{remarksbox type="tip" title="{tr}Extracted OCR Data{/tr}"}
+				{$ocrdata}
+				{/remarksbox}
+			</div>
+		{/if}
+
 	</div>
 </div>
 <hr>

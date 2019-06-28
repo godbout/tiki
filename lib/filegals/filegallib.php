@@ -558,6 +558,7 @@ class FileGalLib extends TikiLib
 			'show_slideshow' => $prefs['fgal_show_slideshow'],
 			'show_source' => 'o',
 			'wiki_syntax' => '',
+			'show_ocr_state' => $prefs['fgal_show_ocr_state'],
 			'default_view' => $prefs['fgal_default_view'],
 			'template' => null,
 			'icon_fileId' => ! empty($prefs['fgal_icon_fileId']) ? $prefs['fgal_icon_fileId'] : null,
@@ -753,7 +754,7 @@ class FileGalLib extends TikiLib
 		if ($include_search_data && $include_data) {
 			$fields = $files->all();
 		} else {
-			$fields = ['fileId', 'galleryId', 'name', 'description', 'created', 'filename', 'filesize', 'filetype', 'user', 'author', 'hits', 'votes', 'points', 'path', 'reference_url', 'is_reference', 'hash', 'lastModif', 'lastModifUser', 'lockedby', 'comment', 'archiveId'];
+			$fields = ['fileId', 'galleryId', 'name', 'description', 'created', 'filename', 'filesize', 'filetype', 'user', 'author', 'hits', 'votes', 'points', 'path', 'reference_url', 'is_reference', 'hash', 'lastModif', 'lastModifUser', 'lockedby', 'comment', 'archiveId','ocr_state'];
 			if ($include_search_data) {
 				$fields[] = 'search_data';
 				$fields[] = 'ocr_data';
@@ -2069,6 +2070,7 @@ class FileGalLib extends TikiLib
 			'show_explorer' => $prefs['fgal_show_explorer'],
 			'show_path' => $prefs['fgal_show_path'],
 			'show_slideshow' => $prefs['fgal_show_slideshow'],
+			'show_ocr_state' => $prefs['fgal_show_ocr_state'],
 			'default_view' => $prefs['fgal_default_view'],
 			'icon_fileId' => ! empty($prefs['fgal_icon_fileId']) ? $prefs['fgal_icon_fileId'] : null,
 			'show_source' => $prefs['fgal_list_source'],
@@ -2389,6 +2391,7 @@ class FileGalLib extends TikiLib
 				'tf.`deleteAfter`' => "'' as `deleteAfter`",
 				'tf.`maxhits`' => "'' as `maxhits`",
 				'tf.`archiveId`' => '0 as `archiveId`',
+				'tf.`ocr_state`' => "'' as `ocr_state`",
 				"'' as `visible`" => 'tfg.`visible`',
 				"'' as `public`" => 'tfg.`public`',
 

@@ -410,6 +410,12 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'type' => 'flag',
 			'default' => 'n',
 		],
+		'fgal_show_ocr_state' => [
+			'name' => tra('Show OCR Status'),
+			'type' => 'list',
+			'options' => $showOptions,
+			'default' => 'o',
+		],
 		'fgal_list_id' => [
 			'name' => tra('ID'),
 			'type' => 'list',

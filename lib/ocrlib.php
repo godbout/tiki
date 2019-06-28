@@ -190,9 +190,8 @@ class ocrLib extends TikiLib
 		}
 		try {
 			$OCRText = (new TesseractOCR($fileName))->run();
-			$query = 'UPDATE `tiki_files` SET `ocr_data` = ' . $this->qstr($OCRText)
-				. ' WHERE `tiki_files`.`fileId` = ' . $this->ocrIngNow . ';';
-			$this->query($query);
+			$OCRText = TikiFilter::get('striptags')->filter($OCRText);
+			$this->table('tiki_files')->update(['ocr_data' => $OCRText], ['fileId' => $this->ocrIngNow]);
 			$unifiedsearchlib = \TikiLib::lib('unifiedsearch');
 			$unifiedsearchlib->invalidateObject('file', $this->ocrIngNow);
 			$unifiedsearchlib->processUpdateQueue();

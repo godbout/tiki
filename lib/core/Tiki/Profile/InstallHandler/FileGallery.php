@@ -47,6 +47,7 @@ class Tiki_Profile_InstallHandler_FileGallery extends Tiki_Profile_InstallHandle
 			'checked',
 			'share',
 			'source',
+			'ocr_state',
 			'explorer',		// not really a column, but follows the same pattern
 			'path',			// also
 			'slideshow',	// also

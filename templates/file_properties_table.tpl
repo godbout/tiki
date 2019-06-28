@@ -27,6 +27,16 @@
 			{assign var=propval value=$propval|kbsize:true}
 		{elseif $propname eq 'description'}
 			{assign var=propval value=$propval|nl2br}
+		{elseif $propname eq 'ocr_state'}
+			{if $propval === '1'}
+				{assign var=propval value='{tr}Finished processing{/tr}'}
+			{elseif $propval === '2'}
+				{assign var=propval value='{tr}Currently processing{/tr}'}
+			{elseif $propval === '3'}
+				{assign var=propval value='{tr}Queued for processing{/tr}'}
+			{else}
+				{assign var=propval value='{tr}Will not process{/tr}'}
+			{/if}
 		{/if}
 
 		{if isset($gal_info.$propkey)

@@ -384,6 +384,16 @@
 							{assign var=propval value=$propval|truncate:$gal_info.max_desc:"...":false|nl2br}
 						{elseif $propname eq 'description'}
 							{assign var=propval value=$propval|nl2br}
+						{elseif $propname eq 'ocr_state'}
+							{if $propval === '1'}
+								{capture assign=propval}{icon style='outline' name='check-circle' title='{tr}Finished processing{/tr}'}{/capture}
+							{elseif $propval === '2'}
+								{capture assign=propval}{icon style='outline' name='sync' title='{tr}Currently processing{/tr}'}{/capture}
+							{elseif $propval === '3'}
+								{capture assign=propval}{icon style='outline' name='circle' title='{tr}Queued for processing{/tr}'}{/capture}
+							{else}
+								{capture assign=propval}{icon style='outline' name='times-circle' title='{tr}Will not process{/tr}'}{/capture}
+							{/if}
 						{elseif $propname eq 'lockedby' and $propval neq ''}
 							{if $gal_info.show_lockedby eq 'i' or $gal_info.show_lockedby eq 'a'}
 								{assign var=propval value=$propval|username}

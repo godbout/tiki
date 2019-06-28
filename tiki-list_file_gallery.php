@@ -655,6 +655,7 @@ if (isset($_REQUEST['edit']) && $access->checkCsrf()) {
 			'show_explorer' => (isset($_REQUEST['fgal_show_explorer']) ? 'y' : 'n'),
 			'show_path' => (isset($_REQUEST['fgal_show_path']) ? 'y' : 'n'),
 			'show_slideshow' => (isset($_REQUEST['fgal_show_slideshow']) ? 'y' : 'n'),
+			'show_ocr_state' => $_REQUEST['fgal_list_ocr_state'],
 			'default_view' => $_REQUEST['fgal_default_view'],
 			'quota' => $_REQUEST['quota'],
 			'image_max_size_x' => $_REQUEST['image_max_size_x'],
@@ -974,6 +975,10 @@ if (isset($_GET['slideshow'])) {
 				Feedback::errorPage(['mes' => tr('File %0 not found', $fileId), 'errortype' => 404]);
 			}
 			$smarty->assign('cant', 1);
+			if ($prefs['fgal_ocr_enable'] === 'y'){
+				$info = $filegallib->get_file_info($fileId);
+				$smarty->assign('ocrdata',$info['ocr_state'] === '1' ? $info['ocr_data']: null);
+			}
 		} else {
 			// Get list of files in the gallery
 			$files = $filegallib->get_files(

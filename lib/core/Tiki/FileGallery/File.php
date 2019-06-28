@@ -50,7 +50,7 @@ class File
 		"archiveId"	=> 0,
 		"deleteAfter" 	=> 0,
 		"backlinkPerms"	=> "",
-		"ocr_state" => null,
+		"ocr_state" => "",
 	];
 	private $exists = false;
 	private $wrapper = null;

@@ -179,6 +179,7 @@
 			{preference name='fgal_show_explorer'}
 			{preference name='fgal_show_path'}
 			{preference name='fgal_show_slideshow'}
+			{preference name='fgal_list_ocr_state'}
 			{preference name='fgal_list_id'}
 			{preference name='fgal_list_type'}
 			{preference name='fgal_list_name'}
