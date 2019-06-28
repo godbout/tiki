@@ -35,7 +35,7 @@
 			{elseif $propval === '3'}
 				{assign var=propval value='{tr}Queued for processing{/tr}'}
 			{else}
-				{assign var=propval value='{tr}Will not process{/tr}'}
+				{assign var=propval value='{tr}No scheduled processing{/tr}'}
 			{/if}
 		{/if}
 
