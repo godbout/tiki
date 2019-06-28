@@ -15,7 +15,6 @@ use thiagoalessio\TesseractOCR\FriendlyErrors;
  *
  * Class ocr
  */
-
 class ocrLib extends TikiLib
 {
 
@@ -49,11 +48,13 @@ class ocrLib extends TikiLib
 	 *
 	 * @throws Exception If the file is not suitable to be OCR'd, throw an exception
 	 */
-	public function checkFileGalID(){
+	public function checkFileGalID()
+	{
 
-		$query = 'SELECT 1 FROM `tiki_files` WHERE `fileId` = ' . $this->nextOCRFile . ' LIMIT 1';
+		$query = 'SELECT 1 FROM `tiki_files` WHERE `fileId` = '
+			. $this->nextOCRFile . ' LIMIT 1';
 		$result = $this->query($query, []);
-		if (!$result->numRows()){
+		if (! $result->numRows()) {
 			throw new Exception('The File ID specified does not exist.');
 		}
 
@@ -65,20 +66,17 @@ class ocrLib extends TikiLib
 	 * @return bool True if all dependencies have been satisfied, false otherwise.
 	 */
 
-	public function checkOCRDependencies() : bool
+	public function checkOCRDependencies(): bool
 	{
 		global $prefs;
 
-		if ($prefs['fgal_ocr_enable'] !== 'y')
-		{
+		if ($prefs['fgal_ocr_enable'] !== 'y') {
 			return false;
 		}
-		if (!class_exists ('thiagoalessio\TesseractOCR\TesseractOCR'))
-		{
+		if (! class_exists('thiagoalessio\TesseractOCR\TesseractOCR')) {
 			return false;
 		}
-		if (!$this->checkTesseractVersion())
-		{
+		if (! $this->checkTesseractVersion()) {
 			return false;
 		}
 		return true;
@@ -90,11 +88,10 @@ class ocrLib extends TikiLib
 	 * @return bool false if Tesseract not installed or true otherwise
 	 */
 
-	private function checkTesseractInstalled() : bool
+	private function checkTesseractInstalled(): bool
 	{
 
-		if (!class_exists('thiagoalessio\TesseractOCR\TesseractOCR'))
-		{
+		if (! class_exists('thiagoalessio\TesseractOCR\TesseractOCR')) {
 			return false;
 		}
 
@@ -103,7 +100,7 @@ class ocrLib extends TikiLib
 
 		try {
 			$errors::checkTesseractPresence($tesseract->command->executable);
-		}catch (Exception $e){
+		} catch (Exception $e) {
 			return false;
 		}
 		return true;
@@ -114,10 +111,9 @@ class ocrLib extends TikiLib
 	 *
 	 * @return string version number upon success, or empty string otherwise.
 	 */
-	public function getTesseractVersion() : string
+	public function getTesseractVersion(): string
 	{
-		if (!class_exists('thiagoalessio\TesseractOCR\TesseractOCR'))
-		{
+		if (! class_exists('thiagoalessio\TesseractOCR\TesseractOCR')) {
 			return '';
 		}
 		$tesseract = new TesseractOCR();
@@ -132,9 +128,11 @@ class ocrLib extends TikiLib
 	 *
 	 * @return bool True if version is sufficient, false otherwise
 	 */
-	public function checkTesseractVersion() : bool
+	public function checkTesseractVersion(): bool
 	{
-		return version_compare($this->getTesseractVersion(),self::TESSERACT_BINARY_VERSION, '>=');
+		return version_compare(
+			$this->getTesseractVersion(), self::TESSERACT_BINARY_VERSION, '>='
+		);
 	}
 
 
@@ -142,16 +140,15 @@ class ocrLib extends TikiLib
 	 * @return array 3 character language codes installed with Tesseract Binary
 	 */
 
-	public function getTesseractLangs() : array
+	public function getTesseractLangs(): array
 	{
 
-		if (!class_exists('thiagoalessio\TesseractOCR\TesseractOCR'))
-		{
+		if (! class_exists('thiagoalessio\TesseractOCR\TesseractOCR')) {
 			return [];
 		}
 		$tesseract = new TesseractOCR();
 
-		if (!$this->checkTesseractInstalled()){
+		if (! $this->checkTesseractInstalled()) {
 			return [];
 		}
 
@@ -159,26 +156,49 @@ class ocrLib extends TikiLib
 	}
 
 	/**
+	 * Change processing flags back to pending.
+	 *
+	 * @return int number of files changed from processing to pending.
+	 */
+
+	public function releaseAllProcessing(): int
+	{
+		$changes = $this->table('tiki_files')->updateMultiple(
+			['ocr_state' => self::OCR_STATUS_PENDING],
+			['ocr_state' => self::OCR_STATUS_PROCESSING]
+		);
+
+		return $changes->numrows;
+	}
+
+	/**
 	 *
 	 * OCR's a file set by $ocrIngNow. Intended to be used by a CLI command, as OCRing a large file may cause timeouts.
 	 *
-	 * @return string	Message detailing action performed.
+	 * @return string    Message detailing action performed.
 	 * @throws Exception
 	 */
 
-	public function OCRfile() : string
+	public function OCRfile(): string
 	{
 
-		if (!$this->nextOCRFile) {
+		if (! $this->nextOCRFile) {
 			return ('No files to OCR');
 		}
 
 		// Set the database state to reflect that the next file in the queue has begun
-		$this->table('tiki_files')->update(['ocr_state' => self::OCR_STATUS_PROCESSING], ['fileId' => $this->nextOCRFile]);
+		$this->table('tiki_files')->update(
+			['ocr_state' => self::OCR_STATUS_PROCESSING],
+			['fileId' => $this->nextOCRFile]
+		);
 		// Set $nextOCRFile with the fileid of the next file scheduled to be processed by the OCR engine.
-		$this->nextOCRFile = $this->table('tiki_files')->fetchOne('fileId', ['ocr_state' => self::OCR_STATUS_PENDING]);
+		$this->nextOCRFile = $this->table('tiki_files')->fetchOne(
+			'fileId', ['ocr_state' => self::OCR_STATUS_PENDING]
+		);
 		// Sets $ocrIngNow with the current file flagged as currently being processed.
-		$this->ocrIngNow = $this->table('tiki_files')->fetchOne('fileId', ['ocr_state' => self::OCR_STATUS_PROCESSING]);
+		$this->ocrIngNow = $this->table('tiki_files')->fetchOne(
+			'fileId', ['ocr_state' => self::OCR_STATUS_PROCESSING]
+		);
 
 		$file = TikiLib::lib('filegal')->get_file($this->ocrIngNow);
 
@@ -191,19 +211,26 @@ class ocrLib extends TikiLib
 		try {
 			$OCRText = (new TesseractOCR($fileName))->run();
 			$OCRText = TikiFilter::get('striptags')->filter($OCRText);
-			$this->table('tiki_files')->update(['ocr_data' => $OCRText], ['fileId' => $this->ocrIngNow]);
-			$unifiedsearchlib = \TikiLib::lib('unifiedsearch');
+			$this->table('tiki_files')->update(
+				['ocr_data' => $OCRText], ['fileId' => $this->ocrIngNow]
+			);
+			$unifiedsearchlib = TikiLib::lib('unifiedsearch');
 			$unifiedsearchlib->invalidateObject('file', $this->ocrIngNow);
 			$unifiedsearchlib->processUpdateQueue();
 			$finished = $this->ocrIngNow;
 			// change the ocr state from processing to finished OCR'ing
-			$this->ocrIngNow = $this->table('tiki_files')->update(['ocr_state' => self::OCR_STATUS_FINISHED], ['fileId' => $this->ocrIngNow]);
+			$this->ocrIngNow = $this->table('tiki_files')->update(
+				['ocr_state' => self::OCR_STATUS_FINISHED],
+				['fileId' => $this->ocrIngNow]
+			);
 
-		} catch (Exception $e) {
+		} catch (Throwable $e) {
 			// Set the database flag to reflect that it is no longer processing but, still needs to be ORR'd
-			$this->table('tiki_files')->update(['ocr_state' => self::OCR_STATUS_PENDING], ['fieldId' => $this->ocrIngNow]);
-			if ($file['data'])
-			{
+			$this->table('tiki_files')->update(
+				['ocr_state' => self::OCR_STATUS_PENDING],
+				['fieldId' => $this->ocrIngNow]
+			);
+			if ($file['data']) {
 				unlink($fileName);
 			}
 			throw new Exception($e);
