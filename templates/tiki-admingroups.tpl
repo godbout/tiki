@@ -723,12 +723,12 @@
 						</div>
 						<div class="form-check">
 							<label class="form-check-label">
-								<input class="form-class-input" type="checkbox" name="email"> {tr}Email{/tr}
+								<input class="form-check-input" type="checkbox" name="email"> {tr}Email{/tr}
 							</label>
 						</div>
 						<div class="form-check">
 							<label class="form-check-label">
-								<input class="form-class-input" type="checkbox" name="lastLogin"> {tr}Last login{/tr}
+								<input class="form-check-input" type="checkbox" name="lastLogin"> {tr}Last login{/tr}
 							</label>
 						</div>
 					</div>

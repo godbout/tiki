@@ -51,8 +51,8 @@
 				{if $smarty.session.wysiwyg neq 'y'}
 					<div class="form-group mx-0">
 						<div class="form-check">
-							<label class="form-class-label">
-								<input class="form-class-input" type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" name="allowhtml" {if $allowhtml eq 'y'}checked="checked"{/if}>
 								{tr}Allow full HTML{/tr} <em>({tr}Keep any HTML tag.{/tr})</em>
 							</label>
 							<div class="form-text">{tr}If not enabled, Tiki will retain some HTML tags (a, p, pre, img, hr, b, i){/tr}.</div>

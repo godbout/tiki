@@ -302,6 +302,20 @@ class HeaderLib
 		return $this;
 	}
 
+	function drop_jsfile($file)
+	{
+		$out = [];
+		foreach ($this->jsfiles as $rank => $data) {
+			foreach ($data as $f) {
+				if ($f != $file) {
+					$out[$rank][] = $f;
+				}
+			}
+		}
+		$this->jsfiles = $out;
+		return $this;
+	}
+
 
 	/**
 	 * Add js that works as config. Usally created dynamically.
