@@ -135,6 +135,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 			{if $type eq 'module'}
 				{jq}
 					$("#param_module_input").change(function () {
+						var selectedMod = $(this).val();
 						$(this).parents(".modal-content").load(
 							$.service("plugin", "edit", {
 								area_id: "{{$area_id}}",
@@ -143,8 +144,8 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 								page: "{{$pageName|escape:javascript}}",
 								pluginArgs: {{$pluginArgsJSON}},
 								bodyContent: "{{$bodyContent|escape:javascript}}",
-								edit_icon: "{{$edit_icon}}",
-								selectedMod: $(this).val(),
+								edit_icon: {{$edit_icon}},
+								selectedMod: selectedMod,
 								modal: 1
 							}),
 							function () {
@@ -152,6 +153,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 								if (jqueryTiki.chosen) {
 									$(this).applyChosen();
 								}
+								popupPluginForm("{{$area_id}}","{{$type}}",{{$index}},"{{$pageName|escape:javascript}}",{{$pluginArgsJSON}},"{{$bodyContent|escape:javascript}}",{{$edit_icon}}, selectedMod);
 							}
 						).tikiModal(tr("Loading..."));
 					});
