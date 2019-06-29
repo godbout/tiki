@@ -195,11 +195,11 @@ function wikiplugin_map($data, $params)
 
 	TikiLib::lib('header')->add_map();
 
-	if (! isset($params['library'])) {
-		$params['library'] = 'ol2';
-	}
-
 	global $prefs;
+
+	if (! isset($params['library'])) {
+		$params['library'] = $prefs['geo_openlayers_version'];
+	}
 
 	if ($params['library'] === 'ol3' && $prefs['geo_openlayers_version'] === 'ol2') {
 		TikiLib::lib('header')
