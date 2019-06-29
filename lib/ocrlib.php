@@ -158,7 +158,7 @@ class ocrLib extends TikiLib
 	/**
 	 * Change processing flags back to pending.
 	 *
-	 * @return int number of files changed from processing to pending.
+	 * @return int Number of files changed from processing to pending.
 	 */
 
 	public function releaseAllProcessing(): int
@@ -225,10 +225,10 @@ class ocrLib extends TikiLib
 			);
 
 		} catch (Throwable $e) {
-			// Set the database flag to reflect that it is no longer processing but, still needs to be ORR'd
+			// Set the database flag to reflect that it is no longer processing but, still needs to be OCR'd
 			$this->table('tiki_files')->update(
 				['ocr_state' => self::OCR_STATUS_PENDING],
-				['fieldId' => $this->ocrIngNow]
+				['fileId' => $this->ocrIngNow]
 			);
 			if ($file['data']) {
 				unlink($fileName);

@@ -76,6 +76,7 @@ TesseractOCR:
   requiredBy:
   - fgal_ocr_enable
   requiredVersion: ^2.7.3
+  # Be sure to update TESSERACT_BINARY_VERSION in ocrlib.php if the requirements have changed.
 MathJax:
   licence: Apache-2.0
   licenceUrl: "https://github.com/mathjax/MathJax/blob/master/LICENSE"
