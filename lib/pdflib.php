@@ -363,9 +363,6 @@ class PdfGenerator
 				if(strpos($pdfPage['pageContent'],"<pdfinclude")){
 					//getting src
 					$breakPageContent=str_replace(array("<pdfpage>.","</pdfpage>","<pdfinclude src=","/>","\""),"",$pdfPage['pageContent']);
-					if (method_exists($mpdf,"SetImportUse")) {
-						$mpdf->SetImportUse();
-					}
 					
 					$tmpExtPDF="temp/tmp_".rand(0,999999999).".pdf";
 					file_put_contents($tmpExtPDF, fopen(trim($breakPageContent), 'r'));
@@ -379,7 +376,7 @@ class PdfGenerator
 							$mpdf->SetHTMLHeader();
 							$mpdf->AddPage();
 							$mpdf->SetHTMLFooter();
-							$tplId = $mpdf->ImportPage($i);
+							$tplId = $mpdf->importPage($i, $box = PageBoundaries::CROP_BOX, $groupXObject = true);
 							$mpdf->UseTemplate($tplId);
 						}
 					}

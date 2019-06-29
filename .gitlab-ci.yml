@@ -224,7 +224,7 @@ sensiolabs-vendor-security-check:
     - composer require fzaninotto/faker dev-master --no-progress
     - composer require google/apiclient ^2.2.2 --no-progress
     - composer require npm-asset/lozad ^1.6.0 --no-progress
-    - composer require mpdf/mpdf ^7.1 --no-progress
+    - composer require mpdf/mpdf ^8.0.0 --no-progress
     - composer require xorti/mxgraph-editor ^3.9.12.2 --no-progress
     - composer require tikiwiki/diagram ^10 --no-progress
     - composer require onelogin/php-saml ^2.10 --no-progress
