@@ -112,11 +112,25 @@ function wikiplugin_map_info()
 				],
 				'advanced' => true,
 			],
+			'library' => [
+				'required' => false,
+				'name' => tra('Open Layers Version'),
+				'description' => tra('OL2 or OL3+ so far (default ol2)'),
+				'since' => '20.1',
+				'default' => 'ol2',
+				'filter' => 'text',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('OpenLayers 2.x'), 'value' => 'ol2'],
+					['text' => tra('OpenLayers 3+ (experimental)'), 'value' => 'ol3']
+				],
+				'advanced' => true,
+			],
 			'cluster' => [
 				'required' => false,
 				'name' => tra('Cluster Distance'),
 				'description' => tra('Distance between features before they are "clustered", 0 (off) to 100. (requires Open Layers v3+, default is 0)'),
-				'since' => '21.0',
+				'since' => '20.0',
 				'default' => 0,
 				'filter' => 'digits',
 				'advanced' => true,
@@ -180,6 +194,31 @@ function wikiplugin_map($data, $params)
 	}
 
 	TikiLib::lib('header')->add_map();
+
+	if (! isset($params['library'])) {
+		$params['library'] = 'ol2';
+	}
+
+	global $prefs;
+
+	if ($params['library'] === 'ol3' && $prefs['geo_openlayers_version'] === 'ol2') {
+		TikiLib::lib('header')
+			->drop_cssfile('lib/openlayers/theme/default/style.css')
+			->drop_jsfile('lib/openlayers/OpenLayers.js')
+			->drop_jsfile('lib/jquery_tiki/tiki-maps.js')
+			->add_cssfile('vendor_bundled/vendor/openlayers/openlayers/ol.css')
+			->add_jsfile('lib/jquery_tiki/tiki-maps-ol3.js')
+			->add_jsfile('vendor_bundled/vendor/openlayers/openlayers/ol.js');
+	} else if ($params['library'] === 'ol2' && $prefs['geo_openlayers_version'] === 'ol3') {
+		TikiLib::lib('header')
+			->drop_cssfile('vendor_bundled/vendor/openlayers/openlayers/ol.css')
+			->drop_jsfile('lib/jquery_tiki/tiki-maps-ol3.js')
+			->drop_jsfile('vendor_bundled/vendor/openlayers/openlayers/ol.js')
+			->add_cssfile('lib/openlayers/theme/default/style.css')
+			->add_jsfile('lib/openlayers/OpenLayers.js')
+			->add_jsfile('lib/jquery_tiki/tiki-maps.js');
+	}
+
 	$scope = smarty_modifier_escape(wp_map_getscope($params));
 
 	$output = "<div class=\"map-container\" data-marker-filter=\"$scope\" data-map-controls=\"$controls\" data-popup-style=\"$popupStyle\"" .
