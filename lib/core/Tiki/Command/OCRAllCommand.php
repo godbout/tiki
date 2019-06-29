@@ -30,6 +30,14 @@ class OCRAllCommand extends Command
 		$outputStyle = new OutputFormatterStyle('red');
 		$output->getFormatter()->setStyle('error', $outputStyle);
 
+		if (! $ocrLib->checkOCRDependencies()) {
+			$output->writeln(
+				'<error>' . tr('Dependencies not satisfied. Exiting.')
+				. '</error>'
+			);
+			return;
+		}
+
 		//Retrieve the number of files marked as waiting to be processed.
 		$queueCount = $ocrLib->table('tiki_files')->fetchCount(
 			['ocr_state' => $ocrLib::OCR_STATUS_PENDING]
@@ -57,7 +65,7 @@ class OCRAllCommand extends Command
 				"<comment>Reset processing files, run again to perform OCR.</comment>\n"
 			);
 			$progress->finish();
-			exit;
+			return;
 		}
 
 		// Set $nextOCRFile with the fileid of the next file scheduled to be processed by the OCR engine.
@@ -68,14 +76,7 @@ class OCRAllCommand extends Command
 		if (! $ocrLib->nextOCRFile) {
 			$progress->setMessage("<comment>No files to OCR</comment>\n");
 			$progress->finish();
-			exit;
-		}
-
-		if (! $ocrLib->checkOCRDependencies()) {
-			$output->writeln(
-				'<error>' . tr('Dependencies not satisfied. Exiting.')
-				. '</error>'
-			);
+			return;
 		}
 
 		while ($ocrLib->nextOCRFile) {
