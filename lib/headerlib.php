@@ -14,26 +14,26 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 /**
  * Add Javascript and CSS to output
  * Javascript and CSS can be added:
- * - as files (filename including relative path to tikiroot)
+ * - as files (filename including relative path to tiki root)
  * - as scripts (string)
  * - as a url to load from a cdn (Note: use $tikilib->httpScheme() to build the url. It considers reverse proxies and returns correctly 'http' or 'https')
  * Note: there are 2 prefs to add additional cdns. one for http and one for https.
  *
  * To maintain the order of loading Javascript and to allow minifying, the following "ranks" are supported:
- * '10dynamic': loaded first to allow minification of the other ranks. Usally module and plugin descriptions.
+ * '10dynamic': loaded first to allow minification of the other ranks. Usually module and plugin descriptions.
  * '20cdn' : loaded after 'dynamic', no minification possible // main libs like jquery from jquery/google cdn (no user cdns)
  * '30dependancy': loaded after 'cdn', minification possible  // main libs like jquery, codemirror
  * '40external': loaded after 'dependancy', minification possible // custom libs that require main libs
  * '50standard': loaded after 'external', minification possible // standard js that might require main / custom libs
  * '60late': loaded after 'standard', minification possible // page specific js
- *   Note: this rank is activated in tiki-setup.php to seperate page specific JS from common JS
+ *   Note: this rank is activated in tiki-setup.php to separate page specific JS from common JS
  *   So any JS loaded after tiki-setup.php that has no rank 'external' is put into 'late'.
- *   If minification is activated for late, any new combination of late files will be created automaically if needed.
- *   When using user specific CDNs AND minification for late is enabled, any possible minified file must be avaliable via that CDN!
+ *   If minification is activated for late, any new combination of late files will be created automatically if needed.
+ *   When using user specific CDNs AND minification for late is enabled, any possible minified file must be available via that CDN!
  *
  * The order of files within each section will be maintained. What adds first will be processed first.
  *
- * Note: cdns (google/jquery, not user cdns), files and scripts (strings) willl be handled seperatetly.
+ * Note: cdns (google/jquery, not user cdns), files and scripts (strings) will be handled separately.
  *
  * To add JS, the following methods are available.
  *
@@ -53,7 +53,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * These functions allow to add JS as scripts/strings. No minification on them:
  * add_js($script, $rank) - add JS as string
  * add_jq_onready($script, $rank) - add JS as string and add to the onready event
- * add_js_config($script, $rank) - add JS that usally represents a config object
+ * add_js_config($script, $rank) - add JS that usually represents a config object
  *
  * @TODO CSS handling
  *
@@ -91,7 +91,7 @@ class HeaderLib
 
 	/**
 	 * Array of JS Scripts arrays as string that act as config
-	 * Usally created dynamically
+	 * Usually created dynamically
 	 * js_config[$rank][] = $script;
 	 * @var array
 	 */
@@ -219,7 +219,7 @@ class HeaderLib
 
 	/**
 	 * Add a js file to top priority load order, right after cdns and dynamics. That file must not be loaded from an external source.
-	 * Theses are usally libraries like jquery or codemirror, so files where other js file depend on.
+	 * Theses are usually libraries like jquery or codemirror, so files where other js file depend on.
 	 * Depending on prefs, it could be minified and put into a single js file.
 	 * @param string $file with path relative to tiki dir
 	 * @param bool $skip_minify true if the file must not be minified, false if it can
@@ -234,7 +234,7 @@ class HeaderLib
 
 	/**
 	 * Add a js file to load after dependancy . That file must not be loaded from an external source.
-	 * Theses are usally custom libraries like raphael, gaffle etc.
+	 * Theses are usually custom libraries like raphael, gaffle etc.
 	 * Depending on prefs, it could be minified and put into a single js file.
 	 * @param string $filename with path relative to tiki dir
 	 * @param bool $skip_minify true if the file must not be minified, false if it can
@@ -263,7 +263,7 @@ class HeaderLib
 
 	/**
 	 * Add a js file to load after standard . That file must not be loaded from an external source.
-	 * Use this method to add page specific js files. They will be minified separatly.
+	 * Use this method to add page specific js files. They will be minified separately.
 	 * @see $this->forceJsRankLate()
 	 * Depending on prefs, it could be minified and put into a single js file.
 	 * @param string $filename with path relative to tiki dir
@@ -288,7 +288,7 @@ class HeaderLib
 	function add_jsfile_by_rank($file, $rank, $skip_minify = false)
 	{
 		// if js is added after tiki-setup.php is run, add those js files to 'late'
-		// need to check wether this is really needed
+		// need to check whether this is really needed
 		if ($this->forceJsRankLate == true && $rank !== '40external') {
 			$rank = '60late';
 		}
@@ -318,7 +318,7 @@ class HeaderLib
 
 
 	/**
-	 * Add js that works as config. Usally created dynamically.
+	 * Add js that works as config. Usually created dynamically.
 	 * @param string $script
 	 * @param integer $rank - loadorder optional, default 0
 	 * @return HeaderLib Current object
@@ -510,7 +510,7 @@ class HeaderLib
 
 	/**
 	 * Force JS Files being added after tiki-setup.php is done to the rank/loadorder 'late' if rank is not 'external'.
-	 * Used to seperate page specific JS Files from the rest.
+	 * Used to separate page specific JS Files from the rest.
 	 * @return HeaderLib Current object
 	 */
 	public function forceJsRankLate()
@@ -580,7 +580,7 @@ class HeaderLib
 
 		// all other ranks could be minified - minification only happens if activated and if the file was not blocked by $skip_minify
 
-		//  check wether we need to minify. minify also includes to put the minified files into one single file
+		// check whether we need to minify. minify also includes to put the minified files into one single file
 		$minifyActive = isset($prefs['tiki_minify_javascript']) && $prefs['tiki_minify_javascript'] == 'y' ? true : false;
 
 		if (! $minifyActive) {
@@ -597,7 +597,7 @@ class HeaderLib
 			// minify (each set of ranks will be compressed into one file).
 
 			// late stuff can vary by page. if we would include it in main, then we get multiple big js files.
-			// better to accept 2 js request: a big one wich rarely changes and small ones that include (page specific) late stuff.
+			// better to accept 2 js request: a big one which rarely changes and small ones that include (page specific) late stuff.
 			// at the end we could get rid of this pref though
 
 			$ranks = ['30dependancy', '40external', '50standard'];
@@ -681,7 +681,7 @@ class HeaderLib
 		 // show all relevant messages about the JS files on top - will be prepended to the output
 		 $topMsg = "/**** start overview of included js files *****/\n";
 		foreach ($ranks as $rank) {
-		// add list of minfied js files to output
+		// add list of minified js files to output
 			$topMsg .= "\n/* list of files for rank:$rank */\n";
 			$topMsg .= '/* ' . print_r($jsfiles[$rank], true) . ' */' . "\n";
 			foreach ($jsfiles[$rank] as $f) {
@@ -745,7 +745,7 @@ class HeaderLib
 	/**
 	 * Calculate a hash based on the contents of files recursively
 	 *
-	 * @param array $files   multidimensional array of filepaths to minify/hash
+	 * @param array $files   multidimensional array of file paths to minify/hash
 	 * @param string $hash
 	 * @return string        hash based on contents of the files
 	 */
@@ -764,7 +764,7 @@ class HeaderLib
 
 	/**
 	 * Output script tags for all javascript files being used.
-	 * If minification is activated, file based JS (so not from a CDN) will bi minified und put into one single file
+	 * If minification is activated, file based JS (so not from a CDN) will be minified und put into one single file
 	 * @return string $jsScriptTags
 	 */
 	function output_js_files()
@@ -947,7 +947,7 @@ class HeaderLib
 		}
 		// this is very probably possible as a single regexp, maybe a preg_replace_callback
 		// but it was stopping the CDATA group being returned (and life's too short ;)
-		// the one below should work afaics but just doesn't! :(
+		// the one below should work afaik but just doesn't! :(
 		// preg_match_all('/<script.*type=[\'"]?text\/javascript[\'"]?.*>(\s*<\!--\/\/--><\!\[CDATA\[\/\/><\!--)?\s*?(.*)(\s*\/\/--><\!\]\]>\s*)?<\/script>/imsU', $html, $js);
 
 		return array_filter($js_script);
