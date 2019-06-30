@@ -82,13 +82,14 @@ class OCRAllCommand extends Command
 		while ($ocrLib->nextOCRFile) {
 			try {
 				$progress->setMessage(
-					'OCR processing file gallery id ' . $ocrLib->nextOCRFile
+					'OCR processing file gallery id ' . $ocrLib->nextOCRFile . ': '
 				);
 				$progress->advance();
 				$ocrLib->OCRfile();
+				$output->write('done');
 				$OCRCount++;
 			} catch (Exception $e) {
-				$output->writeln("<error>$e</error>");
+				$output->writeln('<error>' . $e->getMessage(). '</error>');
 			}
 		}
 		$progress->setMessage(
