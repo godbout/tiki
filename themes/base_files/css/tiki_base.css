@@ -660,8 +660,7 @@ div.drillshow {
 
 .breadcrumb {
   font-style: normal;
-  font-size: 90%;
-  display: block; }
+  font-size: 90%; }
 
 .tiki .ui-widget-content, span.plugin-mouseover {
   background: #fff;
@@ -894,6 +893,10 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 
   .tiki-admin_menu_options #preview_code {
     white-space: normal; } }
+
+blockquote {
+  color: #7a7a7a;
+  border-left: 0.25rem solid #e5e5e5; }
 
 .tiki .mx--15px {
   margin-left: -15px;
@@ -1271,9 +1274,13 @@ div.categbar {
 
 blockquote {
   padding: 0.5rem 1rem;
-  margin: 0.8rem 0;
-  color: #7a7a7a;
-  border-left: 0.25rem solid #e5e5e5; }
+  margin: 0.8rem 0; }
+
+.breadcrumb-item {
+  padding-right: 0.5rem; }
+
+.breadcrumb .tips {
+  padding-right: 0.5rem; }
 
 header.container, .middle_outer > .container {
   margin-bottom: 0; }
@@ -1797,8 +1804,7 @@ span.posthead {
 
 .breadcrumb {
   font-size: 90%;
-  font-style: normal;
-  display: block; }
+  font-style: normal; }
 
 small.description {
   display: block; }
@@ -3767,6 +3773,9 @@ body.fullscreen.tiki.navbar-padding {
 
   .alert .rboxcontent {
     word-break: break-word; } }
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: none !important; }
 
 div.tablesorter-resizable-container {
   clear: both;

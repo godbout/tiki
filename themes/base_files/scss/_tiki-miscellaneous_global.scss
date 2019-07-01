@@ -514,8 +514,10 @@ div.categbar {
 // default styling for <blockquote> element (#7093)
 
 blockquote {
-        padding: .5rem 1rem;
-        margin: .8rem 0;
-        color: #7a7a7a;
-        border-left: .25rem solid #e5e5e5;
+	padding: .5rem 1rem;
+    margin: .8rem 0;
 }
+
+// Improve horizontal spacing of breadcrumb icons and separators
+.breadcrumb-item { padding-right: 0.5rem;}
+.breadcrumb .tips { padding-right: 0.5rem;}
