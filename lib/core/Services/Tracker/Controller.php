@@ -453,7 +453,7 @@ class Services_Tracker_Controller
 		});
 
 		return [
-			'title' => tr('Edit %0', $field['name']),
+			'title' => tr('Edit') . " " . tr('%0', $field['name']),
 			'field' => $field,
 			'info' => $typeInfo,
 			'options' => $this->utilities->parseOptions($field['options'], $typeInfo),
@@ -1919,7 +1919,7 @@ class Services_Tracker_Controller
 		$groupalertlib = TikiLib::lib('groupalert');
 		$groupforAlert = $groupalertlib->GetGroup('tracker', 'trackerId');
 		return [
-			'title' => $trackerId ? tr('Edit %0', $definition->getConfiguration('name')) : tr('Create Tracker'),
+			'title' => $trackerId ? tr('Edit') . " " . tr('%0', $definition->getConfiguration('name')) : tr('Create Tracker'),
 			'trackerId' => $trackerId,
 			'info' => $definition->getInformation(),
 			'statusTypes' => TikiLib::lib('trk')->status_types(),
