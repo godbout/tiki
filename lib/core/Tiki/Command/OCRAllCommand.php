@@ -59,9 +59,6 @@ class OCRAllCommand extends Command
 		$processingNum = $ocrLib->releaseAllProcessing();
 		if ($processingNum) {
 			$progress->setMessage(
-				"WARNING: there was $processingNum files that had not previously finished."
-			);
-			$progress->setMessage(
 				"<comment>Reset processing files, run again to perform OCR.</comment>\n"
 			);
 			$progress->finish();

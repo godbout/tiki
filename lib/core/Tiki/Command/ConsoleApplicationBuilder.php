@@ -79,6 +79,7 @@ class ConsoleApplicationBuilder
 				'commands' => [
 					new OCRFileCommand,
 					new OCRAllCommand,
+					new OCRStatusCommand,
 				],
 			],
 			'checkIsInstalledAndDoNotRequireUpdate' => [

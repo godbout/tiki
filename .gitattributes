@@ -2908,6 +2908,7 @@ lib/core/Tiki/Command/MultiTikiMoveCommand.php -text
 lib/core/Tiki/Command/NotificationDigestCommand.php -text
 lib/core/Tiki/Command/OCRAllCommand.php -text
 lib/core/Tiki/Command/OCRFileCommand.php -text
+lib/core/Tiki/Command/OCRStatusCommand.php -text
 lib/core/Tiki/Command/PatchCommand.php -text
 lib/core/Tiki/Command/PreferencesDeleteCommand.php -text
 lib/core/Tiki/Command/PreferencesGetCommand.php -text
