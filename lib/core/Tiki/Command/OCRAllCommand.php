@@ -68,10 +68,7 @@ class OCRAllCommand extends Command
 			return;
 		}
 
-		// Set $nextOCRFile with the fileid of the next file scheduled to be processed by the OCR engine.
-		$ocrLib->nextOCRFile = $ocrLib->table('tiki_files')->fetchOne(
-			'fileId', ['ocr_state' => $ocrLib::OCR_STATUS_PENDING]
-		);
+		$ocrLib->setNextOCRFile();
 
 		if (! $ocrLib->nextOCRFile) {
 			$progress->setMessage("<comment>No files to OCR</comment>\n");

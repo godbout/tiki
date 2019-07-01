@@ -193,6 +193,22 @@ class ocrLib extends TikiLib
 	}
 
 	/**
+	 * Set $nextOCRFile with the fileId of the next file scheduled to be processed by the OCR engine.
+	 */
+
+	public function setNextOCRFile(){
+
+		$db = $this->table('tiki_files');
+		$conditions = ['ocr_state' => self::OCR_STATUS_PENDING];
+		if ($this->nextOCRFile){											// we always take a greater file id to avoid infinite loops
+			$conditions['fileId'] = $db->GreaterThan($this->nextOCRFile);
+		}
+
+		$this->nextOCRFile = $db->fetchOne('fileId', $conditions, ['fileId' => 'ASC']);
+	}
+
+
+	/**
 	 *
 	 * OCR's a file set by $ocrIngNow. Intended to be used by a CLI command, as OCRing a large file may cause timeouts.
 	 *
@@ -212,10 +228,7 @@ class ocrLib extends TikiLib
 			['ocr_state' => self::OCR_STATUS_PROCESSING],
 			['fileId' => $this->nextOCRFile]
 		);
-		// Set $nextOCRFile with the fileid of the next file scheduled to be processed by the OCR engine.
-		$this->nextOCRFile = $this->table('tiki_files')->fetchOne(
-			'fileId', ['ocr_state' => self::OCR_STATUS_PENDING]
-		);
+		$this->setNextOCRFile();
 		// Sets $ocrIngNow with the current file flagged as currently being processed.
 		$this->ocrIngNow = $this->table('tiki_files')->fetchOne(
 			'fileId', ['ocr_state' => self::OCR_STATUS_PROCESSING]
@@ -226,9 +239,25 @@ class ocrLib extends TikiLib
 		if ($file['data']) {
 			/** @var tempFile string The file path of a temp file for processing */
 			$tempFile = writeTempFile($file['data']);;
-		}else {
-			$tempFile = writeTempFile(file_get_contents($file['path']));
+		} else {
+			global $prefs;
+			$directory = $prefs['fgal_use_dir'];                // lets make sure there is a slash following the directory name
+			if (substr($directory, -1) !== '/') {
+				$directory = $directory . '/';
+			}
+			$fileContent = @file_get_contents($directory . $file['path']);
+			if ($fileContent === false){
+				$this->table('tiki_files')->update(
+					['ocr_state' => self::OCR_STATUS_SKIP],
+					['fileId' => $this->ocrIngNow]
+				);
+				throw new Exception('Reading ' . $file['path'] . ' failed');
+			}
+			$tempFile = writeTempFile($fileContent);
+			unset($fileContent);
 		}
+
+		// now that we have a temp file written to file, lets start processing it
 
 		if (in_array($file['filetype'], self::OCR_MIME_CONVERT)) {
 			/** @var fileName string The path that the file can be read on the server in a format readable to Tesseract. */
