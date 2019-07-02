@@ -139,7 +139,7 @@
 		});
 
 		$('.Email_add').on('click', function() {
-		$(this).parent().tikiModal('Loading...');
+		$(this).parent().tikiModal('{tr}Loading...{/tr}');
 		setTimeout("$(this).parent().tikiModal();", 1000);
 		var text_area = $(this).parents().find(".text_add").val();;
 		$('#hid_valid_{{$execution_key|escape}}').after('<input type="hidden" name="text_area" value="' + text_area + '"/>');
@@ -148,7 +148,7 @@
 		});
 
 		$('.Email_remove').on('click', function() {
-		$(this).parent().tikiModal('Loading...');
+		$(this).parent().tikiModal('{tr}Loading...{/tr}');
 		setTimeout("$(this).parent().tikiModal();", 1000);
 		var text_area = $(this).parents().find(".text_remove").val();
 		$('#hid_valid_{{$execution_key|escape}}').after('<input type="hidden" name="text_area" value="' + text_area + '"/>');
@@ -157,14 +157,14 @@
 		});
 
 		$('.silent_add').on('click', function() {
-		$(this).parent().tikiModal('Loading...');
+		$(this).parent().tikiModal('{tr}Loading...{/tr}');
 		setTimeout("$(this).parent().tikiModal();", 1000);
 		$('#{{$execution_key|escape}}_form').submit();
 		return false;
 		});
 
 		$('.silent_remove').on('click', function() {
-		$(this).parent().tikiModal('Loading...');
+		$(this).parent().tikiModal('{tr}Loading...{/tr}');
 		setTimeout("$(this).parent().tikiModal();", 1000);
 		$('#{{$execution_key|escape}}_form').submit();
 		return false;
