@@ -218,7 +218,7 @@
 							</div>
 						</div>
 					{/if}
-					{if $prefs.fgal_ocr_enable eq 'y' && $prefs.fgal_ocr_every_file neq 'y'}
+					{if $prefs.ocr_enable eq 'y' && $prefs.ocr_every_file neq 'y'}
 						<div class="form-check mb-3">
 							<label for="ocrFiles" class="form-check-label">
 								<input type="checkbox" id="ocrFiles" name="ocrFiles[]" class="form-check-input">

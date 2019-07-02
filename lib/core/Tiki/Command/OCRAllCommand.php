@@ -30,11 +30,11 @@ class OCRAllCommand extends Command
 		$outputStyle = new OutputFormatterStyle('red');
 		$output->getFormatter()->setStyle('error', $outputStyle);
 
-		if (! $ocrLib->checkOCRDependencies()) {
+		try {
+			$ocrLib->checkOCRDependencies();
+		}catch (Exception $e) {
 			$output->writeln(
-				'<error>' . tr('Dependencies not satisfied. Exiting.')
-				. '</error>'
-			);
+				'<error>' . $e->getMessage() . '</error>');
 			return;
 		}
 

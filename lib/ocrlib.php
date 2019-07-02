@@ -84,23 +84,22 @@ class ocrLib extends TikiLib
 	/**
 	 * Checks if all the dependencies for OCR have been satisfied.
 	 *
-	 * @return bool True if all dependencies have been satisfied, false otherwise.
+	 * @throws Exception if one of the dependencies are not satisfied;
 	 */
 
-	public function checkOCRDependencies(): bool
+	public function checkOCRDependencies()
 	{
 		global $prefs;
 
-		if ($prefs['fgal_ocr_enable'] !== 'y') {
-			return false;
+		if ($prefs['ocr_enable'] !== 'y') {
+			throw new Exception('Feature Disabled');
 		}
 		if (! class_exists('thiagoalessio\TesseractOCR\TesseractOCR')) {
-			return false;
+			throw new Exception('Tesseract not installed in Packages.');
 		}
 		if (! $this->checkTesseractVersion()) {
-			return false;
+			throw new Exception('Tesseract binary not found.');
 		}
-		return true;
 	}
 
 	/**
@@ -116,7 +115,7 @@ class ocrLib extends TikiLib
 			return false;
 		}
 
-		$tesseract = new TesseractOCR();
+		$tesseract = $this->newTesseract();
 		$errors = new FriendlyErrors();
 
 		try {
@@ -137,7 +136,7 @@ class ocrLib extends TikiLib
 		if (! class_exists('thiagoalessio\TesseractOCR\TesseractOCR')) {
 			return '';
 		}
-		$tesseract = new TesseractOCR();
+		$tesseract = $this->newTesseract();
 		if ($this->checkTesseractInstalled()) {
 			return $tesseract->command->getTesseractVersion();
 		}
@@ -167,7 +166,7 @@ class ocrLib extends TikiLib
 		if (! class_exists('thiagoalessio\TesseractOCR\TesseractOCR')) {
 			return [];
 		}
-		$tesseract = new TesseractOCR();
+		$tesseract = $this->newTesseract();
 
 		if (! $this->checkTesseractInstalled()) {
 			return [];
@@ -207,6 +206,24 @@ class ocrLib extends TikiLib
 		$this->nextOCRFile = $db->fetchOne('fileId', $conditions, ['fileId' => 'ASC']);
 	}
 
+	/**
+	 * Creates a new tesseract instance.
+	 *
+	 * @param null|string $fileName File path of file to OCR. Null if no file.
+	 *
+	 * @return TesseractOCR		A instance with all Tiki preferences applied.
+	 */
+
+	private function newTesseract($fileName = null){
+
+		global $prefs;
+
+		$tesseract = new TesseractOCR($fileName);
+		if (!empty($prefs['ocr_tesseract_path'])){
+			$tesseract->executable($prefs['ocr_tesseract_path']);
+		}
+		return $tesseract;
+	}
 
 	/**
 	 *
@@ -220,7 +237,7 @@ class ocrLib extends TikiLib
 	{
 
 		if (! $this->nextOCRFile) {
-			throw Exception('No files to OCR');
+			throw new Exception('No files to OCR');
 		}
 
 		// Set the database state to reflect that the next file in the queue has begun
@@ -297,7 +314,7 @@ class ocrLib extends TikiLib
 		@unlink($tempFile);									// now that we are done with the temp file, lets delete it.
 
 		try {
-			$OCRText = (new TesseractOCR($fileName))->run();
+			$OCRText = ($this->newTesseract($fileName))->run();
 			$OCRText = TikiFilter::get('striptags')->filter($OCRText);
 			$this->table('tiki_files')->update(
 				['ocr_data' => $OCRText], ['fileId' => $this->ocrIngNow]

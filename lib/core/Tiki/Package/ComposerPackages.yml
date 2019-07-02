@@ -74,7 +74,7 @@ TesseractOCR:
   licenceUrl: "https://github.com/thiagoalessio/tesseract-ocr-for-php/blob/master/MIT-LICENSE"
   name: thiagoalessio/tesseract_ocr
   requiredBy:
-  - fgal_ocr_enable
+  - ocr_enable
   requiredVersion: ^2.7.3
   # Be sure to update TESSERACT_BINARY_VERSION in ocrlib.php if the requirements have changed.
 MathJax:

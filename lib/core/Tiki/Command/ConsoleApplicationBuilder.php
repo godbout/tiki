@@ -71,7 +71,6 @@ class ConsoleApplicationBuilder
 					new PluginRefreshRunCommand,
 					new InstallerLockCommand,
 					new PatchCommand,
-					new OCRFileCommand,
 				],
 			],
 			'checkIsOCRAvailable' => [
@@ -264,13 +263,12 @@ class ConsoleApplicationBuilder
 		if (! $this->checkIsInstalledAndDoNotRequireUpdate()){
 			return false;
 		}
+		global $prefs;
 
-		$ocr = \TikiLib::lib('ocr');
-		if ($ocr->checkOCRDependencies())
-		{
-			return true;
+		if (!empty($prefs['ocr_enable'])  && $prefs['ocr_enable'] !== 'y') {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	/**

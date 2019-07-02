@@ -408,9 +408,10 @@
 
 			<fieldset>
 				<legend>{tr}OCR Indexing{/tr}</legend>
-				{preference name=fgal_ocr_enable}
-				<div class="adminoptionboxchild" id="fgal_ocr_enable_childcontainer">
-					{preference name=fgal_ocr_every_file}
+				{preference name=ocr_enable}
+				<div class="adminoptionboxchild" id="ocr_enable_childcontainer">
+					{preference name=ocr_every_file}
+                    {preference name=ocr_tesseract_path}
 				</div>
 			</fieldset>
 
