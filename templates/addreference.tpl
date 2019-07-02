@@ -109,7 +109,7 @@ jQuery(document).ready(function(){
 			data: dataString,
 			dataType: 'json',
 			beforeSend: function( xhr ) {
-				jQuery('#a_status').html('Saving...');
+				jQuery('#a_status').html('{tr}Saving...{/tr}');
 			},
 			success: function( data ) {
 				if('success'==data['result']){
