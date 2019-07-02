@@ -6728,8 +6728,7 @@ div.drillshow {
 
 .breadcrumb {
   font-style: normal;
-  font-size: 90%;
-  display: block; }
+  font-size: 90%; }
 
 .tiki .ui-widget-content, span.plugin-mouseover {
   background: #222;
@@ -6962,6 +6961,10 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 
   .tiki-admin_menu_options #preview_code {
     white-space: normal; } }
+
+blockquote {
+  color: #7a7a7a;
+  border-left: 0.25rem solid #e5e5e5; }
 
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
