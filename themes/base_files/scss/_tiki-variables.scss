@@ -18,7 +18,7 @@ $form-horizontal-sidemargins: 15px;
 // Add Tiki legacy breadcrumb styles as variables.
 $breadcrumb-font-style: normal;
 $breadcrumb-font-size: 90%;
-$breadcrumb-display: block;
+//$breadcrumb-display: block;
 
 // These rules are to map Bootstrap variables to superfish menus and topbar div styling.
 $cssmenu_horiz_li_hover_bg: transparent;
@@ -151,3 +151,7 @@ $color_pizazz_approx: #ff8800;
 $color_gray_suit_approx: #c1c2cd;
 $color_zircon_approx: #f4f5ff;
 $intertrans_background:#03657d;
+
+// Blockquote
+$blockquote-color: #7a7a7a;
+$blockquote-left-border-color: #e5e5e5;

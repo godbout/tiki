@@ -428,3 +428,6 @@ body.fullscreen.tiki.navbar-padding {
 	.btn { white-space: normal !important; }
 	.alert .rboxcontent { word-break: break-word; }
 }
+
+// Override the default Bootstrap separator.
+.breadcrumb-item + .breadcrumb-item::before { content: none !important; }

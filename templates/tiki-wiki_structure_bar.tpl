@@ -1,9 +1,10 @@
-<div class="tocnav row mx-0 justify-content-between">
-		<div class="breadcrumb">
+{*<div class="tocnav row mx-0 justify-content-between">*}
+<nav aria-label="breadcrumb"  style="display: flex; justify-content: space-between;">
+		<ol class="breadcrumb mt-2 mr-3" style="display: inline-flex;">
 			{if $home_info}{if $home_info.page_alias}{assign var=icon_title value=$home_info.page_alias}{else}{assign var=icon_title value=$home_info.pageName}{/if}
 				{if $prefs.feature_wiki_structure_drilldownmenu eq 'y'}
 					<span class="dropdown">
-						<a class="btn dropdown-toggle structure-home" role="button" id="dropdownStructure" data-toggle="dropdown" data-hover="dropdown">
+						<a class="btn dropdown-toggle structure-home mr-3" role="button" id="dropdownStructure" data-toggle="dropdown" data-hover="dropdown">
 							{icon name="home"}
 						</a>
 						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownStructure">
@@ -31,17 +32,19 @@
 			{/if}
 			{section loop=$structure_path name=ix}
 				{if $structure_path[ix].parent_id}&nbsp;{$prefs.site_crumb_seper}&nbsp;{/if}
-				<a href="{sefurl page=$structure_path[ix].pageName structure=$home_info.pageName page_ref_id=$structure_path[ix].page_ref_id}">
+					<li class="breadcrumb-item">
+						<a href="{sefurl page=$structure_path[ix].pageName structure=$home_info.pageName page_ref_id=$structure_path[ix].page_ref_id}">
 					{if $structure_path[ix].page_alias}
 						{$structure_path[ix].page_alias|escape}
 					{else}
 						{$structure_path[ix].stripped_pageName|pagename}
 					{/if}
-				</a>
+						</a>
+					</li>
 			{/section}
-		</div>
+		</ol>
 		{if $struct_editable eq 'a'}
-				<form action="tiki-editpage.php" method="post" role="form" class="form-inline">
+			<form action="tiki-editpage.php" method="post" role="form" class="form-inline"  style="display: inline-flex;">
 					<div class="form-group">
 						<input type="hidden" name="current_page_id" value="{$page_info.page_ref_id}">
 						<div class="input-group">
@@ -67,4 +70,4 @@
 				<span class="float-right">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</span>
 			{/if}
 		{/if}
-</div>
+</nav>
