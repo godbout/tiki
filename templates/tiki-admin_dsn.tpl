@@ -40,7 +40,7 @@
 		<tr>
 			<td class="text">{tr}Local (Tiki database){/tr}</td>
 			<td class="text">{tr}See db/local.php{/tr}</td>
-			<td class="action float-sm-right">
+			<td class="action" style="width:20px;">
 				{permission_link mode=icon type=dsn id=local title=local}
 			</td>
 		</tr>
@@ -81,7 +81,7 @@
 		<legend>{tr}Identification{/tr}</legend>
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Identifier{/tr}</label>
-			<div class="col-sm-3">
+			<div class="col-sm-4">
 				<select name="existing" class="form-control">
 					<option value="">{tr}New{/tr}</option>
 				</select>
@@ -131,23 +131,20 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-sm-3"></div>
-			<div class="col-sm-9 offset-sm-3">
-				<table class="col-sm-9 offset-sm-3">
-					<thead>
-					<tr><th>{tr}Name{/tr}</th><th>{tr}Value{/tr}</th></tr>
-					</thead>
-					<tfoot>
-					<tr>
-						<td><input type="text" name="post_new_field"></td>
-						<td><input type="text" name="post_new_value"></td>
-						<td><input type="submit" class="btn btn-primary btn-sm" name="post_new_add" value="{tr}Add{/tr}"></td>
-					</tr>
-					</tfoot>
-					<tbody>
-					</tbody>
-				</table>
-
+			<label class="col-form-label offset-sm-3 col-sm-2">{tr}Name{/tr}</label>
+			<div class="col-sm-7">
+				<input type="text" name="post_new_field" class="form-control">
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label offset-sm-3 col-sm-2">{tr}Value{/tr}</label>
+			<div class="col-sm-7">
+				<input type="text" name="post_new_value" class="form-control">
+			</div>
+		</div>
+		<div class="form-group row mb-4">
+			<div class="offset-sm-5 col-sm-7">
+				<input type="submit" class="btn btn-primary btn-sm" name="post_new_add" value="{tr}Add{/tr}">
 			</div>
 		</div>
 	</fieldset>
