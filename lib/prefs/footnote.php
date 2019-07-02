@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: file.php 66655 2018-06-13 16:49:37Z chibaguy $
+// $Id$
 
 // This is about improving wikiplugin_footnote, no relation to the "footnote" feature
 function prefs_footnote_list()
