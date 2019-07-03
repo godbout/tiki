@@ -153,11 +153,15 @@ focusInvalid: false,
 invalidHandler: function(event, validator) {
 	var errors = validator.numberOfInvalids();
 	if (errors) {
-		var $container = $(this).parents(".modal");
+		var $container = $scroller = $(this).parents(".modal"),
+			offset = 0;
+		
 		if (!$container.length) {
-			$container = $("html, body");
+			$container = $("html");
+			$scroller = $("body");
+			offset = $(".fixed-top").outerHeight() || 0;
 		}
-		var containerScrollTop = $container.scrollTop(),
+		var containerScrollTop = $scroller.scrollTop(),
 			$firstError = $(validator.errorList[0].element),
 			$scrollElement = $firstError.parents(".form-group");
 
@@ -171,9 +175,13 @@ invalidHandler: function(event, validator) {
 		}
 
 		$container.animate({
-			scrollTop: containerScrollTop + $scrollElement.offset().top
+			scrollTop: containerScrollTop + $scrollElement.offset().top - offset
 		}, 1000, function () {
-			$firstError.focus();
+			if ($firstError.is("select") && jqueryTiki.chosen) {
+				$firstError.trigger("chosen:activate");
+			} else {
+				$firstError.focus();
+			}
 		});
 	}
 }
