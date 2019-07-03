@@ -126,6 +126,15 @@ function wikiplugin_map_info()
 				],
 				'advanced' => true,
 			],
+			'tilesets' => [
+				'required' => false,
+				'name' => tra('Tileset layers'),
+				'description' => tra('Tilesets to use for background layers, comma separated. (requires Open Layers v3+, default is the geo_tilesets preference)'),
+				'since' => '20.1',
+				'default' => "86, 134, 200",
+				'filter' => 'text',
+				'advanced' => true,
+			],
 			'cluster' => [
 				'required' => false,
 				'name' => tra('Cluster Distance'),
@@ -133,6 +142,24 @@ function wikiplugin_map_info()
 				'since' => '20.0',
 				'default' => 0,
 				'filter' => 'digits',
+				'advanced' => true,
+			],
+			'clusterFillColor' => [
+				'required' => false,
+				'name' => tra('Cluster Fill Color'),
+				'description' => tra('Cluster fill color in RGB. (requires Open Layers v3+, default is 86, 134, 200)'),
+				'since' => '20.1',
+				'default' => "86, 134, 200",
+				'filter' => 'text',
+				'advanced' => true,
+			],
+			'clusterTextColor' => [
+				'required' => false,
+				'name' => tra('Cluster Text Color'),
+				'description' => tra('Cluster text and outline color in RGB. (requires Open Layers v3+, default is 255, 255, 255)'),
+				'since' => '20.1',
+				'default' => "255, 255, 255",
+				'filter' => 'text',
 				'advanced' => true,
 			],
 		],
@@ -179,6 +206,21 @@ function wikiplugin_map($data, $params)
 	} else {
 		$cluster = 0;
 	}
+	if (isset($params['clusterFillColor'])) {
+		$clusterFillColor = ' data-clusterfillcolor="' . $params['clusterFillColor'] . '"';
+	} else {
+		$clusterFillColor = '';
+	}
+	if (isset($params['clusterTextColor'])) {
+		$clusterTextColor = ' data-clustertextcolor="' . $params['clusterTextColor'] . '"';
+	} else {
+		$clusterTextColor = '';
+	}
+	if (isset($params['tilesets'])) {
+		$tilesets = ' data-tilesets="' . $params['tilesets'] . '"';
+	} else {
+		$tilesets = '';
+	}
 
 	$controls = array_intersect($params['controls'], wp_map_available_controls());
 	$controls = implode(',', $controls);
@@ -222,7 +264,7 @@ function wikiplugin_map($data, $params)
 	$scope = smarty_modifier_escape(wp_map_getscope($params));
 
 	$output = "<div class=\"map-container\" data-marker-filter=\"$scope\" data-map-controls=\"$controls\" data-popup-style=\"$popupStyle\"" .
-		" data-cluster=\"$cluster\" style=\"width: $width; height: $height;\" $center $tooltips>";
+		" data-cluster=\"$cluster\" style=\"width: $width; height: $height;\" $center $tooltips $clusterFillColor $clusterTextColor $tilesets>";
 
 	$argumentParser = new WikiParser_PluginArgumentParser;
 	$matches = WikiParser_PluginMatcher::match($data);
