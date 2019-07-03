@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: file.php 66730 2018-06-17 12:36:19Z chibaguy $
+// $Id$
 
 function prefs_ocr_list()
 {
