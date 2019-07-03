@@ -126,6 +126,15 @@ function wikiplugin_map_info()
 				],
 				'advanced' => true,
 			],
+			'tilesets' => [
+				'required' => false,
+				'name' => tra('Tileset layers'),
+				'description' => tra('Tilesets to use for background layers, comma separated. (requires Open Layers v3+, default is the geo_tilesets preference)'),
+				'since' => '20.1',
+				'default' => "86, 134, 200",
+				'filter' => 'text',
+				'advanced' => true,
+			],
 			'cluster' => [
 				'required' => false,
 				'name' => tra('Cluster Distance'),
@@ -207,6 +216,11 @@ function wikiplugin_map($data, $params)
 	} else {
 		$clusterTextColor = '';
 	}
+	if (isset($params['tilesets'])) {
+		$tilesets = ' data-tilesets="' . $params['tilesets'] . '"';
+	} else {
+		$tilesets = '';
+	}
 
 	$controls = array_intersect($params['controls'], wp_map_available_controls());
 	$controls = implode(',', $controls);
@@ -250,7 +264,7 @@ function wikiplugin_map($data, $params)
 	$scope = smarty_modifier_escape(wp_map_getscope($params));
 
 	$output = "<div class=\"map-container\" data-marker-filter=\"$scope\" data-map-controls=\"$controls\" data-popup-style=\"$popupStyle\"" .
-		" data-cluster=\"$cluster\" style=\"width: $width; height: $height;\" $center $tooltips $clusterFillColor $clusterTextColor>";
+		" data-cluster=\"$cluster\" style=\"width: $width; height: $height;\" $center $tooltips $clusterFillColor $clusterTextColor $tilesets>";
 
 	$argumentParser = new WikiParser_PluginArgumentParser;
 	$matches = WikiParser_PluginMatcher::match($data);
