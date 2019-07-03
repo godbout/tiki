@@ -135,6 +135,24 @@ function wikiplugin_map_info()
 				'filter' => 'digits',
 				'advanced' => true,
 			],
+			'clusterFillColor' => [
+				'required' => false,
+				'name' => tra('Cluster Fill Color'),
+				'description' => tra('Cluster fill color in RGB. (requires Open Layers v3+, default is 86, 134, 200)'),
+				'since' => '20.1',
+				'default' => "86, 134, 200",
+				'filter' => 'text',
+				'advanced' => true,
+			],
+			'clusterTextColor' => [
+				'required' => false,
+				'name' => tra('Cluster Text Color'),
+				'description' => tra('Cluster text and outline color in RGB. (requires Open Layers v3+, default is 255, 255, 255)'),
+				'since' => '20.1',
+				'default' => "255, 255, 255",
+				'filter' => 'text',
+				'advanced' => true,
+			],
 		],
 	];
 }
@@ -179,6 +197,16 @@ function wikiplugin_map($data, $params)
 	} else {
 		$cluster = 0;
 	}
+	if (isset($params['clusterFillColor'])) {
+		$clusterFillColor = ' data-clusterfillcolor="' . $params['clusterFillColor'] . '"';
+	} else {
+		$clusterFillColor = '';
+	}
+	if (isset($params['clusterTextColor'])) {
+		$clusterTextColor = ' data-clustertextcolor="' . $params['clusterTextColor'] . '"';
+	} else {
+		$clusterTextColor = '';
+	}
 
 	$controls = array_intersect($params['controls'], wp_map_available_controls());
 	$controls = implode(',', $controls);
@@ -222,7 +250,7 @@ function wikiplugin_map($data, $params)
 	$scope = smarty_modifier_escape(wp_map_getscope($params));
 
 	$output = "<div class=\"map-container\" data-marker-filter=\"$scope\" data-map-controls=\"$controls\" data-popup-style=\"$popupStyle\"" .
-		" data-cluster=\"$cluster\" style=\"width: $width; height: $height;\" $center $tooltips>";
+		" data-cluster=\"$cluster\" style=\"width: $width; height: $height;\" $center $tooltips $clusterFillColor $clusterTextColor>";
 
 	$argumentParser = new WikiParser_PluginArgumentParser;
 	$matches = WikiParser_PluginMatcher::match($data);
