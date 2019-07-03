@@ -71,11 +71,7 @@ class ocrLib extends TikiLib
 	 */
 	public function checkFileGalID()
 	{
-
-		$query = 'SELECT 1 FROM `tiki_files` WHERE `fileId` = '
-			. $this->nextOCRFile . ' LIMIT 1';
-		$result = $this->query($query, []);
-		if (! $result->numRows()) {
+		if (! $this->table('tiki_files')->fetchBool(['fileId' => $this->nextOCRFile])) {
 			throw new Exception('The File ID specified does not exist.');
 		}
 
