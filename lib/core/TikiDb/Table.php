@@ -207,6 +207,24 @@ class TikiDb_Table
 		return $map;
 	}
 
+	/**
+	 * Test if a condition exists in the database.
+	 *
+	 * @param array $conditions List of conditions that will be tested
+	 *
+	 * @return bool True if the condition exists, false otherwise
+	 */
+
+	function fetchBool(array $conditions = []): bool
+	{
+
+		$query = 'SELECT 1 FROM ' . $this->escapeIdentifier($this->tableName);
+		$query .= $this->buildConditions($conditions, $bindvars);
+
+		$result = $this->db->fetchAll($query, $bindvars, 1, -1, $this->errorMode);
+		return !empty($result[0][1]);
+	}
+
 	function fetchAll(array $fields = [], array $conditions = [], $numrows = -1, $offset = -1, $orderClause = null)
 	{
 		$bindvars = [];
@@ -285,6 +303,18 @@ class TikiDb_Table
 	function lesserThan($value)
 	{
 		return $this->expr('$$ < ?', [$value]);
+	}
+
+	/**
+	 * Retrieve values within a range. The vales given will be included.
+	 *
+	 * @param $values array Must be an array containing 2 strings
+	 *
+	 * @return TikiDb_Expr
+	 */
+	function between($values)
+	{
+		return $this->expr('$$ BETWEEN ? AND ?', $values);
 	}
 
 	function not($value)
