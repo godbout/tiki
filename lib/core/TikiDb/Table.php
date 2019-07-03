@@ -157,15 +157,37 @@ class TikiDb_Table
 		return false;
 	}
 
+	/**
+	 * Provides the result count only
+	 * @param array $conditions
+	 *
+	 * @return bool|mixed
+	 */
 	function fetchCount(array $conditions)
 	{
 		return $this->fetchOne($this->count(), $conditions);
 	}
 
+	/**
+	 * Retrieve all fields from a single row
+	 * @param array $conditions
+	 * @param null  $orderClause
+	 *
+	 * @return mixed
+	 */
 	function fetchFullRow(array $conditions, $orderClause = null)
 	{
 		return $this->fetchRow($this->all(), $conditions, $orderClause);
 	}
+
+	/**
+	 * Retrieve the selected fields from a single row
+	 * @param array $fields
+	 * @param array $conditions
+	 * @param null  $orderClause
+	 *
+	 * @return mixed
+	 */
 
 	function fetchRow(array $fields, array $conditions, $orderClause = null)
 	{
@@ -174,6 +196,16 @@ class TikiDb_Table
 		return reset($result);
 	}
 
+	/**
+	 * Provides all the matched values from a single column
+	 * @param       $field
+	 * @param array $conditions
+	 * @param int   $numrows
+	 * @param int   $offset
+	 * @param null  $order
+	 *
+	 * @return array
+	 */
 	function fetchColumn($field, array $conditions, $numrows = -1, $offset = -1, $order = null)
 	{
 		if (is_string($order)) {
@@ -191,6 +223,17 @@ class TikiDb_Table
 		return $output;
 	}
 
+	/**
+	 * Retrieves the two values from the table and generates a map from the key and the value
+	 * @param       $keyField
+	 * @param       $valueField
+	 * @param array $conditions
+	 * @param int   $numrows
+	 * @param int   $offset
+	 * @param null  $order
+	 *
+	 * @return array
+	 */
 	function fetchMap($keyField, $valueField, array $conditions, $numrows = -1, $offset = -1, $order = null)
 	{
 		$result = $this->fetchAll([$keyField, $valueField], $conditions, $numrows, $offset, $order);
@@ -225,6 +268,16 @@ class TikiDb_Table
 		return !empty($result[0][1]);
 	}
 
+	/**
+	 * Fully-customizable fetch providing an array of associative arrays.
+	 * @param array $fields
+	 * @param array $conditions
+	 * @param int   $numrows
+	 * @param int   $offset
+	 * @param null  $orderClause
+	 *
+	 * @return array|bool
+	 */
 	function fetchAll(array $fields = [], array $conditions = [], $numrows = -1, $offset = -1, $orderClause = null)
 	{
 		$bindvars = [];
@@ -255,11 +308,29 @@ class TikiDb_Table
 		return $this->db->fetchAll($query, $bindvars, $numrows, $offset, $this->errorMode);
 	}
 
+	/**
+	 * Most generic usage, allows to insert SQL in many places.
+	 * In update for the data, they are used for the values.
+	 * In conditions, they represent the whole condition.
+	 * In a select query, they represent a single field.
+	 * An expression can be used instead of the sort array to replace the entire order by argument.
+	 * Within the fragment, $$ will be replaced by the field for conditions.
+	 * All other expressions are just shorthands for this one.
+	 * @param       $string
+	 * @param array $arguments
+	 *
+	 * @return TikiDb_Expr
+	 */
+
 	function expr($string, $arguments = [])
 	{
 		return new TikiDb_Expr($string, $arguments);
 	}
 
+	/**
+	 * For all fields, not a specific field, returns an array of expressions
+	 * @return array
+	 */
 	function all()
 	{
 		return [$this->expr('*')];
@@ -336,6 +407,12 @@ class TikiDb_Table
 		return $this->expr('$$ NOT LIKE ?', [$value]);
 	}
 
+	/**
+	 * binary safe compare
+	 * @param $value
+	 *
+	 * @return TikiDb_Expr
+	 */
 	function exactly($value)
 	{
 		return $this->expr('BINARY $$ = ?', [$value]);
