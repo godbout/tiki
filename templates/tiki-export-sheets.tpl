@@ -32,29 +32,44 @@
 {else}
 	<form method="post" action="tiki-export_sheet.php?mode=export&sheetId={$sheetId}" enctype="multipart/form-data">
 		<h2>{tr}Export to file{/tr}</h2>
-		{tr}Version:{/tr}
-		<select name="readdate">
-			{section name=key loop=$history}
-				<option value="{$history[key].stamp}">{$history[key].prettystamp}</option>
-			{/section}
-		</select>
-		<br>
-		{tr}Format:{/tr}
-		<input type="hidden" value="{$sheetId}" name="sheetId">
-		<select name="handler">
-			{section name=key loop=$handlers}
-				<option value="{$handlers[key].class}">{$handlers[key].name} V. {$handlers[key].version}</option>
-			{/section}
-		</select>
-		<br>
-		{tr}Charset encoding:{/tr}
-		<select name="encoding">
-			<!--<option value="">{tr}Autodetect{/tr}</option>-->
-		{section name=key loop=$charsets}
-			<option value="{$charsets[key]}">{$charsets[key]}</option>
-		{/section}
-		</select>
-		<br>
-		<input type="submit" class="btn btn-primary btn-sm" value="{tr}Export{/tr}">
+		<div class="form-group row">
+			<label class="col-form-label col-sm-3">{tr}Version:{/tr}</label>
+			<div class="col-sm-6">
+				<select name="readdate" class="form-control">
+					{section name=key loop=$history}
+						<option value="{$history[key].stamp}">{$history[key].prettystamp}</option>
+					{/section}
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-form-label col-sm-3">{tr}Format:{/tr}</label>
+			<div class="col-sm-6">
+				<input type="hidden" value="{$sheetId}" name="sheetId">
+				<select name="handler" class="form-control">
+					{section name=key loop=$handlers}
+						<option value="{$handlers[key].class}">{$handlers[key].name} V. {$handlers[key].version}</option>
+					{/section}
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group row">
+			<label class="col-form-label col-sm-3">{tr}Charset encoding:{/tr}</label>
+			<div class="col-sm-6">
+				<select name="encoding" class="form-control">
+					<!--<option value="">{tr}Autodetect{/tr}</option>-->
+				{section name=key loop=$charsets}
+					<option value="{$charsets[key]}">{$charsets[key]}</option>
+				{/section}
+				</select>
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="col-sm-6 offset-sm-3">
+				<input type="submit" class="btn btn-primary" value="{tr}Export{/tr}">
+			</div>
+		</div>
 	</form>
 {/if}
