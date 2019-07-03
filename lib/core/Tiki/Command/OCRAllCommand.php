@@ -39,8 +39,9 @@ class OCRAllCommand extends Command
 		}
 
 		//Retrieve the number of files marked as waiting to be processed.
-		$queueCount = $ocrLib->table('tiki_files')->fetchCount(
-			['ocr_state' => $ocrLib::OCR_STATUS_PENDING]
+		$db = $ocrLib->table('tiki_files');
+		$queueCount = $db->fetchCount(
+			['ocr_state' => $db->between([$ocrLib::OCR_STATUS_PENDING,$ocrLib::OCR_STATUS_STALLED])]
 		);
 
 		$progress = new ProgressBar($output, $queueCount + 1);
@@ -75,16 +76,14 @@ class OCRAllCommand extends Command
 
 		while ($ocrLib->nextOCRFile) {
 			try {
-				$progress->setMessage(
-					'OCR processing file gallery id ' . $ocrLib->nextOCRFile . ': '
-				);
+				$progress->setMessage('OCR processing file gallery id ' . $ocrLib->nextOCRFile);
 				$progress->advance();
 				$ocrLib->OCRfile();
-				$output->write('done');
+				$output->write(': done');
 				$OCRCount++;
 			} catch (Exception $e) {
-				$output->write ('<error>failed</error>');
-				$output->writeln('<error>' . $e->getMessage(). '</error>',OutputInterface::VERBOSITY_DEBUG);
+				$output->write(': <error>failed</error>');
+				$output->write(": <error>" . $e->getMessage(). '</error>',OutputInterface::VERBOSITY_DEBUG);
 			}
 		}
 		$progress->setMessage(

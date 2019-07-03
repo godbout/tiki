@@ -34,6 +34,8 @@
 				{assign var=propval value='{tr}Currently processing{/tr}'}
 			{elseif $propval === '3'}
 				{assign var=propval value='{tr}Queued for processing{/tr}'}
+			{elseif $propval === '4'}
+				{assign var=propval value='{tr}Processing stalled{/tr}'}
 			{else}
 				{assign var=propval value='{tr}No scheduled processing{/tr}'}
 			{/if}

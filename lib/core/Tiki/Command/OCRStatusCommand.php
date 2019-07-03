@@ -32,6 +32,11 @@ class OCRStatusCommand extends Command
 		$output->writeln("Queued files:       $count");
 
 		$count = $ocrLib->table('tiki_files')->fetchCount(
+			['ocr_state' => $ocrLib::OCR_STATUS_STALLED]
+		);
+		$output->writeln("Stalled files:      $count");
+
+		$count = $ocrLib->table('tiki_files')->fetchCount(
 			['ocr_state' => $ocrLib::OCR_STATUS_PROCESSING]
 		);
 		$output->writeln("Processing files:   $count");

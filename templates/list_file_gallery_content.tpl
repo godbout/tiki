@@ -209,6 +209,8 @@
 										{assign var=propval value='{tr}Currently processing{/tr}'}
 									{elseif $propval === '3'}
 										{assign var=propval value='{tr}Queued for processing{/tr}'}
+									{elseif $propval === '4'}
+										{assign var=propval value='{tr}Processing stalled{/tr}'}
 									{else}
 										{assign var=propval value='{tr}No scheduled processing{/tr}'}
 									{/if}
@@ -401,6 +403,8 @@
 								{capture assign=propval}{icon style='outline' name='sync' title='{tr}Currently processing{/tr}'}{/capture}
 							{elseif $propval === '3'}
 								{capture assign=propval}{icon style='outline' name='circle' title='{tr}Queued for processing{/tr}'}{/capture}
+							{elseif $propval === '4'}
+								{capture assign=propval}{icon style='outline' name='pause-circle' title='{tr}Processing stalled{/tr}'}{/capture}
 							{else}
 								{capture assign=propval}{icon style='outline' name='times-circle' title='{tr}No scheduled processing{/tr}'}{/capture}
 							{/if}

@@ -28,6 +28,8 @@ class ocrLib extends TikiLib
 	 */
 	public $nextOCRFile;
 
+	/** @var int An attempt to OCR the file has been made, but was not successful */
+	public const OCR_STATUS_STALLED = 4;
 	/** @var int The file has been placed in a queue to be OCR'd */
 	public const OCR_STATUS_PENDING = 3;
 	/** @var int The file is marked as currently being OCR'd */
@@ -194,7 +196,7 @@ class ocrLib extends TikiLib
 	public function setNextOCRFile(){
 
 		$db = $this->table('tiki_files');
-		$conditions = ['ocr_state' => self::OCR_STATUS_PENDING];
+		$conditions = ['ocr_state' => $db->between([self::OCR_STATUS_PENDING,self::OCR_STATUS_STALLED])];
 		if ($this->nextOCRFile){											// we always take a greater file id to avoid infinite loops
 			$conditions['fileId'] = $db->GreaterThan($this->nextOCRFile);
 		}
@@ -294,17 +296,17 @@ class ocrLib extends TikiLib
 				$fileName = writeTempFile('');
 				unlink($fileName);
 				if ($alchemy->convertToImage($tempFile, $fileName) === null) {
-					throw new Exception('\'Media Alchemist unable to convert file.');
+					throw new Exception('Media Alchemist unable to convert file');
 				}
 
 			} catch (Exception $e) {						// if media alchemist is not installed;
 				$this->table('tiki_files')->update(
-					['ocr_state' => self::OCR_STATUS_SKIP],
+					['ocr_state' => self::OCR_STATUS_STALLED],
 					['fileId' => $this->ocrIngNow]
 				);
 				@unlink($fileName);
 				@unlink($tempFile);
-				throw new Exception('failed');
+				throw new Exception($e->getMessage());
 			}
 		}
 		@unlink($tempFile);									// now that we are done with the temp file, lets delete it.
@@ -327,7 +329,7 @@ class ocrLib extends TikiLib
 		} catch (Throwable $e) {
 			// Set the database flag to reflect that it is no longer processing but, still needs to be OCR'd
 			$this->table('tiki_files')->update(
-				['ocr_state' => self::OCR_STATUS_PENDING],
+				['ocr_state' => self::OCR_STATUS_STALLED],
 				['fileId' => $this->ocrIngNow]
 			);
 			if ($file['data']) {
