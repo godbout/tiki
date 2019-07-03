@@ -337,7 +337,7 @@ class ocrLib extends TikiLib
 			if ($file['data']) {
 				@unlink($fileName);
 			}
-			throw new Exception($e);
+			throw new Exception("\n" . $e->getMessage());
 		}
 
 		// if we had to create a temp file to read, delete it.

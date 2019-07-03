@@ -78,7 +78,7 @@ class OCRFileCommand extends Command
 		try {
 			$output->writeln('<comment>' . $ocrLib->OCRfile() . '</comment>');
 		} catch (Exception $e) {
-			$output->writeln("<error>$e</error>");
+			$output->writeln('<error>' . $e->getMessage() . '</error>');
 		}
 	}
 }

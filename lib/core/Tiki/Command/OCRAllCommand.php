@@ -83,7 +83,8 @@ class OCRAllCommand extends Command
 				$output->write('done');
 				$OCRCount++;
 			} catch (Exception $e) {
-				$output->writeln('<error>' . $e->getMessage(). '</error>');
+				$output->write ('<error>failed</error>');
+				$output->writeln('<error>' . $e->getMessage(). '</error>',OutputInterface::VERBOSITY_DEBUG);
 			}
 		}
 		$progress->setMessage(
