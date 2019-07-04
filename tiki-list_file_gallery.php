@@ -975,9 +975,11 @@ if (isset($_GET['slideshow'])) {
 				Feedback::errorPage(['mes' => tr('File %0 not found', $fileId), 'errortype' => 404]);
 			}
 			$smarty->assign('cant', 1);
-			if ($prefs['ocr_enable'] === 'y'){
+			if ($prefs['ocr_enable'] === 'y') {
 				$info = $filegallib->get_file_info($fileId);
-				$smarty->assign('ocrdata',$info['ocr_state'] === '1' ? $info['ocr_data']: null);
+				if ($info['ocr_state'] === '1') {
+					$smarty->assign('ocrdata', $info['ocr_data'] ? $info['ocr_data'] : tr('OCR produced no results.'));
+				}
 			}
 		} else {
 			// Get list of files in the gallery
