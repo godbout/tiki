@@ -662,9 +662,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
+                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": ""
+                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
             },
             "type": "component",
             "extra": {
@@ -1125,7 +1125,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Ungur",
+                    "name": "Osman Üngür",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1603,9 +1603,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": ""
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1914,9 +1914,7 @@
             },
             "type": "library",
             "extra": {
-                "patches_applied": {
-                    "Remove native javascript for bootstrap": "../installer/composer-patches/jcbrand-conversejs_remove-native-javascript-for-bootstrap.patch"
-                }
+                "patches_applied": []
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2256,9 +2254,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
+                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": ""
+                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
             },
             "require": {
                 "php": ">=5.3.1",
@@ -3305,8 +3303,9 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
+                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
             },
             "type": "npm-asset",
             "license": [
@@ -4363,9 +4362,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
+                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": ""
+                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -4411,9 +4410,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabre-io/dav/zipball/a9780ce4f35560ecbd0af524ad32d9d2c8954b80",
+                "url": "https://composer.tiki.org/dist/sabre/dav/sabre-dav-a9780ce4f35560ecbd0af524ad32d9d2c8954b80-zip-24c9cb.zip",
                 "reference": "a9780ce4f35560ecbd0af524ad32d9d2c8954b80",
-                "shasum": ""
+                "shasum": "b8f6ecfb004a1eff30cf9a06a7286c8853cd674b"
             },
             "require": {
                 "ext-ctype": "*",
@@ -4494,9 +4493,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabre-io/event/zipball/831d586f5a442dceacdcf5e9c4c36a4db99a3534",
+                "url": "https://composer.tiki.org/dist/sabre/event/sabre-event-831d586f5a442dceacdcf5e9c4c36a4db99a3534-zip-ba6061.zip",
                 "reference": "831d586f5a442dceacdcf5e9c4c36a4db99a3534",
-                "shasum": ""
+                "shasum": "ba14cdac43925876f2c1e24d1d93a913a568b46b"
             },
             "require": {
                 "php": ">=5.5"
@@ -4551,9 +4550,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabre-io/http/zipball/acccec4ba863959b2d10c1fa0fb902736c5c8956",
+                "url": "https://composer.tiki.org/dist/sabre/http/sabre-http-acccec4ba863959b2d10c1fa0fb902736c5c8956-zip-d96a4c.zip",
                 "reference": "acccec4ba863959b2d10c1fa0fb902736c5c8956",
-                "shasum": ""
+                "shasum": "975b1ade72070840e440677cd8a541af2d858fac"
             },
             "require": {
                 "ext-ctype": "*",
@@ -4607,9 +4606,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabre-io/uri/zipball/ada354d83579565949d80b2e15593c2371225e61",
+                "url": "https://composer.tiki.org/dist/sabre/uri/sabre-uri-ada354d83579565949d80b2e15593c2371225e61-zip-0d0436.zip",
                 "reference": "ada354d83579565949d80b2e15593c2371225e61",
-                "shasum": ""
+                "shasum": "ad279b85dc5be5c8b1ba77dc10ccc03faa2fbd06"
             },
             "require": {
                 "php": ">=5.4.7"
@@ -6407,9 +6406,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-ldap/zipball/b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
+                "url": "https://composer.tiki.org/dist/zendframework/zend-ldap/zendframework-zend-ldap-b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49-zip-8cf400.zip",
                 "reference": "b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
-                "shasum": ""
+                "shasum": "b1212f5466b9a85267f26e9683a66474a23fc770"
             },
             "require": {
                 "ext-ldap": "*",
@@ -7632,7 +7631,7 @@
             "time": "2019-03-17T17:37:11+00:00"
         },
         {
-            "name": "mikey179/vfsstream",
+            "name": "mikey179/vfsStream",
             "version": "v1.6.6",
             "source": {
                 "type": "git",
