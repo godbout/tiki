@@ -69,19 +69,19 @@
 			<option value="modification">{tr}After last modification{/tr}</option>
 		</select>
 	</div>
-	<div class="form-group row mb-4">
+	<div class="form-group row mb-0">
 		<label>{tr}Delay{/tr}</label>
-		<div class="form-control border-0">
-			{html_select_duration prefix='after'}
-		</div>
+	</div>
+	<div class="form-group">
+		{html_select_duration prefix='after'}
 	</div>
 	<fieldset>
 		<legend>{tr}Notification{/tr}</legend>
-		<div class="form-group row mb-4">
+		<div class="form-group row mt-0 mb-0">
 			<label>{tr}Delay prior to status change{/tr}</label>
-			<div class="form-control border-0">
-				{html_select_duration prefix='notif'}
-			</div>
+		</div>
+		<div class="form-group">
+			{html_select_duration prefix='notif'}
 		</div>
 		<div class="form-group row">
 			<label for="subject">{tr}Mail subject text{/tr}</label>
