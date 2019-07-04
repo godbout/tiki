@@ -931,7 +931,7 @@ class TikiSheetCSVHandler extends TikiSheetDataHandler
 	 * Initializes the the serializer on a file.
 	 * @param $file The file path to save or load from.
 	 */
-	function __construct($fileInfo, $inputEncoding = '', $outputEncoding = '', $lineLen = 1024)
+	function __construct($fileInfo = "php://stdout", $inputEncoding = '', $outputEncoding = '', $lineLen = 1024)
 	{
 		$this->lineLen = $lineLen;
 		$this->type = "file";
