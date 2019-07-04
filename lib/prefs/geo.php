@@ -40,7 +40,7 @@ function prefs_geo_list()
 			'description' => tra('Enables replacement of the default OpenStreetMap tiles with tiles from other mapping services, such as Google or Bing.'),
 			'dependencies' => ['geo_enabled'],
 			'hint' => tr(
-				'Valid options are: %0',
+				'Valid options for OpenLayers 2 are: %0 and for OpenLayers 3+ are: %1',
 				implode(
 					', ',
 					[
@@ -52,7 +52,13 @@ function prefs_geo_list()
 						'google_physical',
 						'google_hybrid',
 						'blank',
-						// for ol3+
+					]
+				),
+				// for ol3+
+				implode(
+					', ',
+					[
+						'openstreetmap',
 						'bing_road',
 						'bing_road_on_demand',
 						'bing_aerial',
