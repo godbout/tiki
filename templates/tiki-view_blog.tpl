@@ -6,11 +6,7 @@
 		{include file='blog_heading.tpl'}
 	{/if}
 	{if $use_find eq 'y'}
-		<div class="row mx-0">
-			<div class="col-md-6">
-				{include file='find.tpl' find_show_num_rows='y'}
-			</div>
-		</div>
+		{include file='find.tpl' find_show_num_rows='y'}
 	{/if}
 {/if}
 
