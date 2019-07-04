@@ -26,11 +26,19 @@ function prefs_ocr_list()
 		],
 		'ocr_tesseract_path' => [
 			'name' => tra('tesseract path'),
-			'description' => tra('Path to the location of the tesseract binary. Defaults to the $PATH location of tesseract.'),
-			'hint' => 'If blank, the $PATH of tesseract will be used, but will likely fail with scheduler.',
+			'description' => tra('Path to the location of the binary. Defaults to the $PATH location.'),
+			'hint' => 'If blank, the $PATH will be used, but will likely fail with scheduler.',
 			'type' => 'text',
 			'size' => '256',
-			'default' => shell_exec('type -p tesseract'),
+			'default' => trim(shell_exec('type -p tesseract')),
+		],
+		'ocr_pdfimages_path' => [
+			'name' => tra('pdfimages path'),
+			'description' => tra('Path to the location of the binary. Defaults to the $PATH location.'),
+			'hint' => 'If blank, the $PATH will be used, but will likely fail with scheduler.',
+			'type' => 'text',
+			'size' => '256',
+			'default' => trim(shell_exec('type -p pdfimages')),
 		],
 	];
 }

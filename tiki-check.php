@@ -1956,7 +1956,7 @@ if (! $standalone) {
 	if (! $ocrVersion) {
 		$ocrVersion = tr('Not Found');
 		$ocrMessage = tr(
-			'Tesseract could not be found. Try installing or configuring $PATH'
+			'Tesseract could not be found. '
 		);
 		$ocrStatus = 'ugly';
 	} elseif ($ocr->checkTesseractVersion()) {
@@ -1977,6 +1977,66 @@ if (! $standalone) {
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
 	];
+
+	if(empty($prefs['ocr_tesseract_path']) || $prefs['ocr_tesseract_path'] === 'tesseract'){
+		$ocrStatus = 'ugly';
+		$ocrMessage = tr('You have a default value in the tesseract path preference. Tesseract will likely fail with cron. Specify a absolute path.');
+	}elseif ($prefs['ocr_tesseract_path'] === trim(shell_exec('type -p tesseract'))){
+		$ocrStatus = 'good';
+		$ocrMessage = tr('Tesseract absolute path setup correctly');
+	}else{
+		$ocrStatus = 'info';
+		$ocrMessage = tr('Your tesseract path may not be configured correctly. It appears tesseract is located at ') . trim(shell_exec('type -p tesseract'));
+	}
+
+	$ocrToDisplay[] = [
+		'name'    => tr('Tesseract path'),
+		'status'  => $ocrStatus,
+		'message' => $ocrMessage,
+	];
+
+
+	$pdfimages = Tikilib::lib('pdfimages');
+	$pdfimages->setVersion();
+
+	//lets fall back to configured options for a binary path if its not found with default options.
+	if (!$pdfimages->version){
+		$pdfimages->setBinaryPath();
+		$pdfimages->setVersion();
+	}
+
+	if ($pdfimages->version){
+		$ocrStatus = 'good';
+		$ocrMessage = 'It appears that pdfimages is installed on your system.';
+	}else{
+		$ocrStatus = 'ugly';
+		$ocrMessage = 'Could not find pdfimages';
+	}
+
+	$ocrToDisplay[] = [
+		'name'    => tr('Pdfimages binary'),
+		'version' => $pdfimages->version,
+		'status'  => $ocrStatus,
+		'message' => $ocrMessage,
+	];
+
+	if(empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages'){
+		$ocrStatus = 'ugly';
+		$ocrMessage = 'You have a default value in the pdfimages path preference. Pdfimages will likely fail with cron. Specify a absolute path.';
+	}elseif ($prefs['ocr_pdfimages_path'] === trim(shell_exec('type -p pdfimages'))){
+		$ocrStatus = 'good';
+		$ocrMessage = 'Pdfimages absolute path setup correctly';
+	}else{
+		$ocrStatus = 'info';
+		$ocrMessage = 'Your pdfimages path may not be configured correctly. It appears pdfimages is located at ' . trim(shell_exec('type -p pdfimages'));
+	}
+
+	$ocrToDisplay[] = [
+		'name'    => tr('Pdfimages path'),
+		'status'  => $ocrStatus,
+		'message' => $ocrMessage,
+	];
+
 	$smarty->assign('ocr', $ocrToDisplay);
 }
 

@@ -90,6 +90,7 @@ MediaAlchemyst:
   name: media-alchemyst/media-alchemyst
   requiredBy:
     - wikiplugin_preview
+    - ocr_enable
   requiredVersion: ^0.5.1
 PDFjsViewer:
   licence: Apache-2.0

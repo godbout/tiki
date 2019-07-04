@@ -76,7 +76,7 @@ class OCRAllCommand extends Command
 
 		while ($ocrLib->nextOCRFile) {
 			try {
-				$progress->setMessage('OCR processing file gallery id ' . $ocrLib->nextOCRFile);
+				$progress->setMessage('OCR processing file id ' . $ocrLib->nextOCRFile);
 				$progress->advance();
 				$ocrLib->OCRfile();
 				$output->write(': done');
