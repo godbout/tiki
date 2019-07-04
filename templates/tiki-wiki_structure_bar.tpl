@@ -45,7 +45,7 @@
 		</ol>
 		{if $struct_editable eq 'a'}
 			<form action="tiki-editpage.php" method="post" role="form" class="form-inline"  style="display: inline-flex;">
-					<div class="form-group">
+					<div class="form-group" style="flex-shrink: 1;">
 						<input type="hidden" name="current_page_id" value="{$page_info.page_ref_id}">
 						<div class="input-group">
 							<div class="input-group-prepend"><div class="input-group-text" style="font-size:50% !important">{self_link _script="tiki-edit_structure.php" page_ref_id=$home_info.page_ref_id _class="tips" _title="{tr}Manage Stucture{/tr}:{$home_info.pageName} ($cur_pos)"}{icon name="structure"}{/self_link}</div></div>
