@@ -100,7 +100,7 @@ class OCRSetCommand extends Command
 		}
 		$range = TikiFilter::get('digitscolons')->filter($input->getArgument('File ID'));
 		$range = explode(':',$range);
-		$range = asort($range);											// we need lower values first for search results to match
+		sort($range);											// we need lower values first for search results to match
 
 		if (!empty($range[1])) {
 			$conditions['fileId'] = $update->between($range);
