@@ -2049,9 +2049,8 @@ try {
 			$ocrStatus = 'ugly';
 			$ocrMessage = tr('Your path preference is not configured. It may will now but will likely fail with cron. Specify an absolute path.');
 		}
-			$ocrStatus = 'info';
-			$ocrMessage = tr('Your path is configured, but we were unable to tell if it was configured properly or not.');
-		}
+		$ocrStatus = 'info';
+		$ocrMessage = tr('Your path is configured, but we were unable to tell if it was configured properly or not.');
 	}
 
 	$ocrToDisplay[] = [
@@ -2061,8 +2060,7 @@ try {
 	];
 
 	$smarty->assign('ocr', $ocrToDisplay);
-
-
+}
 // Security Checks
 // get all dangerous php settings and check them
 $security = false;
