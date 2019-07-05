@@ -208,7 +208,7 @@
 						</div>
 					</div>
 				{/if}
-				<div class="form-group type-cond for-page">
+				<div class="form-group row type-cond for-page">
 					<label class="col-sm-3 col-form-label" for="page_name">{tr}Page Name{/tr}</label>
 					<div class="col-sm-9">
 						<input class="form-control" type="text" name="page_name" id="page_name" value="{$info.page_name}" placeholder="{tr}Find{/tr}...">

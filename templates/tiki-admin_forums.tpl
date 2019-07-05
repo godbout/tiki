@@ -282,7 +282,7 @@
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-sm-4 col-form-label" for="controlFlood">{tr}Prevent flooding{/tr}</label>
+							<label class="col-sm-4 form-check-label" for="controlFlood">{tr}Prevent flooding{/tr}</label>
 							<div class="col-sm-8">
 								<div class="form-check">
 									<input type="checkbox" class="form-check-input" name="controlFlood" id="controlFlood" {if $controlFlood eq 'y'}checked="checked"{/if}>
