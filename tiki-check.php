@@ -1977,17 +1977,28 @@ if (! $standalone) {
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
 	];
-
-	if(empty($prefs['ocr_tesseract_path']) || $prefs['ocr_tesseract_path'] === 'tesseract'){
+try {
+	if (empty($prefs['ocr_tesseract_path']) || $prefs['ocr_tesseract_path'] === 'tesseract') {
 		$ocrStatus = 'ugly';
-		$ocrMessage = tr('You have a default value in the tesseract path preference. Tesseract will likely fail with cron. Specify a absolute path.');
-	}elseif ($prefs['ocr_tesseract_path'] === trim(shell_exec('type -p tesseract'))){
+		$ocrMessage = tr('Your path preference is not configured. It may will now but will likely fail with cron. Specify an absolute path.');
+	} elseif ($prefs['ocr_tesseract_path'] === $ocr->whereIsExecutable('tesseract')) {
 		$ocrStatus = 'good';
-		$ocrMessage = tr('Tesseract absolute path setup correctly');
-	}else{
+		$ocrMessage = tr('Path setup correctly');
+	} else {
 		$ocrStatus = 'info';
-		$ocrMessage = tr('Your tesseract path may not be configured correctly. It appears tesseract is located at ') . trim(shell_exec('type -p tesseract'));
+		$ocrMessage = tr('Your path may not be configured correctly. It appears to be located at ') . $ocr->whereIsExecutable(
+				'tesseract'
+			);
 	}
+}catch (Exception $e) {
+	if (empty($prefs['ocr_tesseract_path']) || $prefs['ocr_tesseract_path'] === 'tesseract') {
+		$ocrStatus = 'ugly';
+		$ocrMessage = tr('Your path preference is not configured. It may will now but will likely fail with cron. Specify an absolute path.');
+	} else {
+		$ocrStatus = 'info';
+		$ocrMessage = tr('Your path is configured, but we were unable to tell if it was configured properly or not.');
+	}
+}
 
 	$ocrToDisplay[] = [
 		'name'    => tr('Tesseract path'),
@@ -2007,10 +2018,10 @@ if (! $standalone) {
 
 	if ($pdfimages->version){
 		$ocrStatus = 'good';
-		$ocrMessage = 'It appears that pdfimages is installed on your system.';
+		$ocrMessage = tr('It appears that pdfimages is installed on your system.');
 	}else{
 		$ocrStatus = 'ugly';
-		$ocrMessage = 'Could not find pdfimages';
+		$ocrMessage = tr('Could not find pdfimages');
 	}
 
 	$ocrToDisplay[] = [
@@ -2020,15 +2031,27 @@ if (! $standalone) {
 		'message' => $ocrMessage,
 	];
 
-	if(empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages'){
-		$ocrStatus = 'ugly';
-		$ocrMessage = 'You have a default value in the pdfimages path preference. Pdfimages will likely fail with cron. Specify a absolute path.';
-	}elseif ($prefs['ocr_pdfimages_path'] === trim(shell_exec('type -p pdfimages'))){
-		$ocrStatus = 'good';
-		$ocrMessage = 'Pdfimages absolute path setup correctly';
-	}else{
-		$ocrStatus = 'info';
-		$ocrMessage = 'Your pdfimages path may not be configured correctly. It appears pdfimages is located at ' . trim(shell_exec('type -p pdfimages'));
+	try {
+		if (empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages') {
+			$ocrStatus = 'ugly';
+			$ocrMessage = tr('Your path preference is not configured. It may will now but will likely fail with cron. Specify an absolute path.');
+		} elseif ($prefs['ocr_pdfimages_path'] === $ocr->whereIsExecutable('pdfimages')) {
+			$ocrStatus = 'good';
+			$ocrMessage = tr('Path setup correctly');
+		} else {
+			$ocrStatus = 'info';
+			$ocrMessage = tr('Your path may not be configured correctly. It appears to be located at ') .
+				$ocr->whereIsExecutable('pdfimages');
+		}
+	}catch (Exception $e)
+	{
+		if (empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages') {
+			$ocrStatus = 'ugly';
+			$ocrMessage = tr('Your path preference is not configured. It may will now but will likely fail with cron. Specify an absolute path.');
+		}
+			$ocrStatus = 'info';
+			$ocrMessage = tr('Your path is configured, but we were unable to tell if it was configured properly or not.');
+		}
 	}
 
 	$ocrToDisplay[] = [
@@ -2038,7 +2061,7 @@ if (! $standalone) {
 	];
 
 	$smarty->assign('ocr', $ocrToDisplay);
-}
+
 
 // Security Checks
 // get all dangerous php settings and check them

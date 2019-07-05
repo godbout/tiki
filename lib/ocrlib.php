@@ -68,6 +68,30 @@ class ocrLib extends TikiLib
 	}
 
 	/**
+	 * Produces the absolute file path of any command. Unix and windows safe.
+	 * @param $executable string	The file name you want to find the absolute path of
+	 *
+	 * @return string|null			The absolute file path or null on no command found
+	 * @throws Exception			If no suitable command was found
+	 */
+
+	public function whereIsExecutable($executable) : ?string
+	{
+		$executable = escapeshellarg($executable);
+		exec('type -p ' . $executable,$output,$return);
+		if ($return !== 0){
+			unset ($output);
+			exec('where ' . $executable,$output,$return); // windows command
+		}elseif ($return !== 0){
+			unset ($output);
+			exec('which ' . $executable,$output,$return); // alternative unix command but relies on $PATH
+		}elseif ($return !== 0){
+			throw new Exception('Could not execute command');
+		}
+		return $output[0];
+	}
+
+	/**
 	 * Checks if a file  id can be processed or not.
 	 *
 	 * @throws Exception If the file is not suitable to be OCR'd, throw an exception

@@ -7,6 +7,14 @@
 
 function prefs_ocr_list()
 {
+	$ocr = TikiLib::lib('ocr');
+	try{
+		$tesseractPath = $ocr->whereIsExecutable('tesseract');
+		$pdfimagesPath = $ocr->whereIsExecutable('pdfimages');
+	}catch (Exception $e){
+		$tesseractPath = 'tesseract';
+		$pdfimagesPath = 'pdfimages';
+	}
 
 	return [
 		'ocr_enable' => [
@@ -16,7 +24,8 @@ function prefs_ocr_list()
 			'description' => tra('Extract and index text from supported file types.'),
 			'keywords' => 'ocr optical character recognition',
 			'dependencies' => ['feature_file_galleries'],
-			'packages_required' => ['thiagoalessio/tesseract_ocr' => 'thiagoalessio\TesseractOCR\TesseractOCR'],
+			'packages_required' => ['thiagoalessio/tesseract_ocr' => 'thiagoalessio\TesseractOCR\TesseractOCR',
+									'media-alchemyst/media-alchemyst' => 'MediaAlchemyst\Alchemyst'],
 		],
 		'ocr_every_file' => [
 			'name' => tra('OCR Every File'),
@@ -30,7 +39,7 @@ function prefs_ocr_list()
 			'hint' => 'If blank, the $PATH will be used, but will likely fail with scheduler.',
 			'type' => 'text',
 			'size' => '256',
-			'default' => trim(shell_exec('type -p tesseract')),
+			'default' => $tesseractPath,
 		],
 		'ocr_pdfimages_path' => [
 			'name' => tra('pdfimages path'),
@@ -38,7 +47,7 @@ function prefs_ocr_list()
 			'hint' => 'If blank, the $PATH will be used, but will likely fail with scheduler.',
 			'type' => 'text',
 			'size' => '256',
-			'default' => trim(shell_exec('type -p pdfimages')),
+			'default' => $pdfimagesPath,
 		],
 	];
 }
