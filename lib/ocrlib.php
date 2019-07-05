@@ -50,21 +50,21 @@ class ocrLib extends TikiLib
 	public const PDF_MIME = ['application/pdf'];
 
 	/** @var array All file types that will be available for OCRing */
-	public $ocrMime = self::OCR_MIME_NATIVE;
+	public $ocrMime;
 
 	/** @var string The minimum version requirement of Tesseract that needs to be installed on the OS */
 	private const TESSERACT_BINARY_VERSION = '3.5.1';
 
-
-
-	public function __construct()
-	{
-
-		// if alchemy is available, update ocrMime with new file types.
-		if (class_exists('MediaAlchemyst\Alchemyst')) {
-			$this->ocrMime = array_merge(self::OCR_MIME_NATIVE, self::PDF_MIME,self::OCR_MIME_CONVERT);
+	public function setMimeTypes(){
+		global $prefs;
+		$this->ocrMime = self::OCR_MIME_NATIVE;
+		if (is_callable('imagepng')){
+			$this->ocrMime = array_merge(self::OCR_MIME_CONVERT,$this->ocrMime);
 		}
-
+		exec($prefs['ocr_pdfimages_path'] . ' -v',$output, $return);
+		if ($return === 0){
+			$this->ocrMime = array_merge(self::PDF_MIME,$this->ocrMime);
+		}
 	}
 
 	/**
@@ -309,7 +309,7 @@ class ocrLib extends TikiLib
 				$fileName = $tempFile;
 				$tempFile = null;                                // we zero this out so the file is not deleted later.
 			} elseif (in_array($file['filetype'], self::PDF_MIME)) {
-				$image = Tikilib::lib('pdfimages');
+				Tikilib::lib('pdfimages');
 				$image = new PdfImagesLib();
 				$image->setBinaryPath();
 				$image->setArgument('tiff');
