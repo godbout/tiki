@@ -52,6 +52,7 @@ class MetadataExtractor extends Manipulator
 		$ocrLib = Tikilib::lib('ocr');
 		$ocr_state = $ocrLib::OCR_STATUS_SKIP;
 		if ($prefs['ocr_enable'] === 'y' && ($args['ocr_file'] || $prefs['ocr_every_file'] === 'y')) {
+			$ocrLib->setMimeTypes();
 			if (in_array($file->filetype, $ocrLib->ocrMime) ) {
 				$ocr_state = $ocrLib::OCR_STATUS_PENDING;
 			}
