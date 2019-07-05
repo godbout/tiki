@@ -37,7 +37,7 @@ class DiagramHelper
 	 */
 	public static function isPackageInstalled()
 	{
-		return VendorHelper::getAvailableVendorPath('mxgraph', '/xorti/mxgraph-editor/mxClient.min.js') !== false;
+		return VendorHelper::getAvailableVendorPath('diagram', '/tikiwiki/diagram/js/app.min.js') !== false;
 	}
 
 	/**

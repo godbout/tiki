@@ -64,15 +64,26 @@ $saveModal = preg_replace('/\s+/', ' ', $saveModal);
 
 $headerlib = TikiLib::lib('header');
 
-$vendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor', false);
+$oldVendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor', false);
+if ($oldVendorPath) {
+	$errorMessageToAppend = 'Previous xorti/mxgraph-editor package has been deprecated.<br/>';
+}
+
+$vendorPath = VendorHelper::getAvailableVendorPath('diagram', 'tikiwiki/diagram', false);
+if (! $vendorPath) {
+	$accesslib = TikiLib::lib('access');
+	$accesslib->display_error('tiki-display.php', tr($errorMessageToAppend . 'To edit diagrams Tiki needs the tikiwiki/diagram package. If you do not have permission to install this package, ask the site administrator.'));
+}
+
+$headerlib->add_js_config("var diagramVendorPath = '{$vendorPath}';");
+$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', false);
 
 // Clear Tiki CSS files (just use drawio css)
 $headerlib->cssfiles = [];
-$headerlib->add_cssfile($vendorPath . '/xorti/mxgraph-editor/grapheditor/styles/grapheditor.css');
 $headerlib->add_css(".geMenubar a.geStatus { display: none;}");
-$headerlib->add_js_config("var mxGraphVendorPath = '{$vendorPath}';");
-$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', false);
-$headerlib->add_jsfile($vendorPath . '/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
+$headerlib->add_cssfile($vendorPath . '/tikiwiki/diagram/styles/grapheditor.css');
+$headerlib->add_jsfile($vendorPath . '/tikiwiki/diagram/js/app.min.js', true);
+
 $js = "(function()
 	{
 		// Disable communication to external services
