@@ -249,11 +249,29 @@ class ocrLib extends TikiLib
 	}
 
 	/**
+	 * Finds the languages that a file will/has been processed with.
+	 * todo: finish implementation with gallery and file level controls
+	 *
+	 * @return array List of file specific languages
+	 */
+
+	public function listFileLanguages()
+	{
+	// if no preferences are set, assume the default osd processing
+	if (empty($prefs['ocr_default_languages'])){
+		$langs[] = 'osd';
+	}else{
+		$langs = $prefs['ocr_default_languages'];
+	}
+	return $langs;
+}
+
+	/**
 	 *
 	 * OCR's a file set by $ocrIngNow. Intended to be used by a CLI command, as OCRing a large file may cause timeouts.
 	 *
 	 * @return string    Message detailing action performed.
-	 * @throws Exception
+	 * @throws Exception If a problem occurs while processing a file
 	 */
 
 	public function OCRfile()
@@ -334,10 +352,10 @@ class ocrLib extends TikiLib
 			if (is_dir($fileName)){
 				$OCRText = '';
 				foreach (glob($fileName . '*.tif') as $tiffFile) {
-					$OCRText.= ($this->newTesseract($tiffFile))->run();
+					$OCRText.= ($this->newTesseract($tiffFile))->lang(...$this->listFileLanguages())->run();
 				}
 			}else{
-				$OCRText = ($this->newTesseract($fileName))->run();
+				$OCRText = ($this->newTesseract($fileName))->lang(...$this->listFileLanguages())->run();
 			}
 			$OCRText = TikiFilter::get('striptags')->filter($OCRText);
 			$this->table('tiki_files')->update(

@@ -7,7 +7,13 @@
 
 function prefs_ocr_list()
 {
+	$langLib = TikiLib::lib('language');
 	$ocr = TikiLib::lib('ocr');
+
+	$ocrLangs = $langLib->FindLanguageNames($ocr->getTesseractLangs());
+	// Place the default (OSD) at the top
+	$ocrLangs = ['osd' => tr('Orientation and script detection' . ' - '. tr('auto select'))] + $ocrLangs;
+
 	try{
 		$tesseractPath = $ocr->whereIsExecutable('tesseract');
 		$pdfimagesPath = $ocr->whereIsExecutable('pdfimages');
@@ -33,12 +39,29 @@ function prefs_ocr_list()
 			'description' => tra('Attempt to OCR every supported file.'),
 			'default' => 'n',
 		],
+		'ocr_default_languages' => [
+			'name' => tra('OCR processing languages'),
+			'description' => tra('Select the default languages that the OCR process will use.'),
+			'filter' => 'text',
+			'type' => 'multilist',
+			'options' => $ocrLangs,
+			'default' => ['osd'],
+		],
+		'ocr_limit_languages' => [
+			'name' => tra('OCR limit languages'),
+			'description' => tra('Limit the number of languages one can select from this list.'),
+			'filter' => 'text',
+			'type' => 'multilist',
+			'options' => $ocrLangs,
+			'default' => ['osd'],
+		],
 		'ocr_tesseract_path' => [
 			'name' => tra('tesseract path'),
 			'description' => tra('Path to the location of the binary. Defaults to the $PATH location.'),
 			'hint' => 'If blank, the $PATH will be used, but will likely fail with scheduler.',
 			'type' => 'text',
 			'size' => '256',
+			'filter' => 'text',
 			'default' => $tesseractPath,
 		],
 		'ocr_pdfimages_path' => [
@@ -47,6 +70,7 @@ function prefs_ocr_list()
 			'hint' => 'If blank, the $PATH will be used, but will likely fail with scheduler.',
 			'type' => 'text',
 			'size' => '256',
+			'filter' => 'text',
 			'default' => $pdfimagesPath,
 		],
 	];
