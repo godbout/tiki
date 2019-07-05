@@ -4,11 +4,19 @@
 <div>
 	<input type="text" id="{$field.ins_id|replace:'[':'_'|replace:']':''}" name="{$field.ins_id}" {if $field.options_array[0]}size="{$field.options_array[0]}"{/if} value="{$field.value|escape}" class="form-control">
 	{if $field.options_array[2] neq 'y'}
-		<div class="{$field.ins_id|escape}">
-			{foreach from=$field.tag_suggestion item=t}
-				<a class="suggest" href="{$t|sefurl:'freetag'}" data-freetag="{$t|escape}">{$t|escape}</a>&nbsp; &nbsp;
-			{/foreach}
-		</div>
+		{if $field.options_array[2] eq 'all'}
+			<div class="{$field.ins_id|escape}">
+				{foreach from=$field.all_tags item=t}
+					<a class="suggest" href="{$t['tag']|sefurl:'freetag'}" data-freetag="{$t['raw_tag']|escape}">{$t['raw_tag']|escape}</a>&nbsp; &nbsp;
+				{/foreach}
+			</div>
+		{else}
+			<div class="{$field.ins_id|escape}">
+				{foreach from=$field.tag_suggestion item=t}
+					<a class="suggest" href="{$t|sefurl:'freetag'}" data-freetag="{$t|escape}">{$t|escape}</a>&nbsp; &nbsp;
+				{/foreach}
+			</div>
+		{/if}
 		{jq notonready=true}
 			$('.{{$field.ins_id|escape}} .suggest').click(function () {
 				var tag = $(this).data('freetag');
