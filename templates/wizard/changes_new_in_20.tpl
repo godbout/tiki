@@ -33,6 +33,7 @@
 		<fieldset class="table clearfix featurelist">
 			<legend>{tr}Improved Plugins{/tr}</legend>
 			{preference name=wikiplugin_trackerfilter}
+			{preference name=wikiplugin_map}
 		</fieldset>
 		<fieldset class="table clearfix featurelist">
 			<legend>{tr}Other Extended Features{/tr}</legend>
