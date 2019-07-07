@@ -144,6 +144,20 @@ function wikiplugin_map_info()
 				'filter' => 'digits',
 				'advanced' => true,
 			],
+			'clusterHover' => [
+				'required' => false,
+				'name' => tra('Cluster Hover Behavior'),
+				'description' => tra('Appearance of clusters on mouse over. (requires Open Layers v3+, default is features)'),
+				'since' => '20.1',
+				'default' => 'features',
+				'filter' => 'text',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Show Features'), 'value' => 'features'],
+					['text' => tra('None'), 'value' => 'none'],
+				],
+				'advanced' => true,
+			],
 			'clusterFillColor' => [
 				'required' => false,
 				'name' => tra('Cluster Fill Color'),
@@ -206,6 +220,11 @@ function wikiplugin_map($data, $params)
 	} else {
 		$cluster = 0;
 	}
+	if (isset($params['clusterHover'])) {
+		$clusterHover = ' data-clusterhover="' . $params['clusterHover'] . '"';
+	} else {
+		$clusterHover = ' data-clusterhover="features"';
+	}
 	if (isset($params['clusterFillColor'])) {
 		$clusterFillColor = ' data-clusterfillcolor="' . $params['clusterFillColor'] . '"';
 	} else {
@@ -264,7 +283,7 @@ function wikiplugin_map($data, $params)
 	$scope = smarty_modifier_escape(wp_map_getscope($params));
 
 	$output = "<div class=\"map-container\" data-marker-filter=\"$scope\" data-map-controls=\"$controls\" data-popup-style=\"$popupStyle\"" .
-		" data-cluster=\"$cluster\" style=\"width: $width; height: $height;\" $center $tooltips $clusterFillColor $clusterTextColor $tilesets>";
+		" data-cluster=\"$cluster\" style=\"width: $width; height: $height;\" $center $tooltips $clusterFillColor $clusterTextColor $tilesets $clusterHover>";
 
 	$argumentParser = new WikiParser_PluginArgumentParser;
 	$matches = WikiParser_PluginMatcher::match($data);

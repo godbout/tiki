@@ -131,6 +131,14 @@ function prefs_geo_list()
 			'filter' => 'striptags',
 			'default' => '',
 		],
+		'geo_nextzen_key' => [
+			'name' => tra('Nextzen Maps API Key'),
+			'description' => tra('Needed for Nextzen Map Layers'),
+			'type' => 'text',
+			'help' => 'https://developers.nextzen.org/',
+			'filter' => 'striptags',
+			'default' => '',
+		],
 
 	];
 }
