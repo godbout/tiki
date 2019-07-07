@@ -77,6 +77,9 @@ class ocrLib extends TikiLib
 
 	public function whereIsExecutable($executable) : ?string
 	{
+		if (!is_callable('exec')){
+			throw new Exception ('exec() is not enabled. Could not execute command.');
+		}
 		$executable = escapeshellarg($executable);
 		exec('type -p ' . $executable,$output,$return);
 		if ($return !== 0){
@@ -86,7 +89,7 @@ class ocrLib extends TikiLib
 			unset ($output);
 			exec('which ' . $executable,$output,$return); // alternative unix command but relies on $PATH
 		}elseif ($return !== 0){
-			throw new Exception('Could not execute command');
+			throw new Exception('There was no suitable system command found. Could not execute command');
 		}
 		return $output[0];
 	}
