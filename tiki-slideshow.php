@@ -449,8 +449,7 @@ function formatContent($content, $tagArr)
 			//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
 			$sectionCheck = strpos($slide, '<sslide');
 			if ($sectionCheck == true) {
-				$slidePlugin = explode("</sslide>", $slide);
-				$slideContent .=str_replace("sslide","section",$slidePlugin[0])."</section>";
+				$slideContent .=str_replace("sslide","section",$slide);
 			}
 			$firstSlide = 1;
 		} else {
