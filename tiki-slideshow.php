@@ -447,10 +447,10 @@ function formatContent($content, $tagArr)
 	foreach ($headingsTags as $slide) {
 		if ($firstSlide == 0) {
 			//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore
-			$sectionCheck = strpos($slide, '</section><section');
+			$sectionCheck = strpos($slide, '<sslide');
 			if ($sectionCheck == true) {
-				$slidePlugin = explode("</section>", $slide);
-				$slideContent .= $slidePlugin[1] . $slideEnd.'</section>';
+				$slidePlugin = explode("</sslide>", $slide);
+				$slideContent .=str_replace("sslide","section",$slidePlugin[0])."</section>";
 			}
 			$firstSlide = 1;
 		} else {
