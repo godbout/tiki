@@ -82,6 +82,9 @@ if ($useDefaultPrefs) {
 	require_once('lib/wizard/pages/profiles_demo_more_advanced_confs.php');
 	$pages[] = new ProfilesWizardDemoMoreAdvancedConfs();
 
+	require_once('lib/wizard/pages/profiles_demo_cases_in_project_management.php');
+	$pages[] = new ProfilesWizardDemoProjectManagement();
+
 	require_once('lib/wizard/pages/profiles_demo_highly_specialized_confs.php');
 	$pages[] = new ProfilesWizardHighlySpecializedConfs();
 
