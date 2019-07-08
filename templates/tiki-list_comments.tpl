@@ -150,7 +150,7 @@
 							{if (isset($comments[ix].$headerKey))}
 								{assign var=val value=$comments[ix].$headerKey}
 								<action>
-									<b>{tr}{$headerName}{/tr}</b>: {$val}
+									<b>{tr}{$headerName}{/tr}</b>: {$val}<br />
 								</action>
 							{/if}
 						{/foreach}
