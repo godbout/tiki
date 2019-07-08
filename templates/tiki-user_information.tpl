@@ -15,23 +15,23 @@
 {tabset name="user_information"}
 	{tab name="{tr}Basic Data{/tr}"}
 		{if $infoPublic eq 'y'}
-			<h2>{$userinfo.login}</h2>
-			<div class="float-right">
+			<h2>{$userinfo.login}
+				<span class="float-right">
 				{if $tiki_p_admin eq 'y' or $userinfo.login eq $user}
 					{if $tiki_p_admin eq 'y'}
-						<a class="link tips" href="tiki-assignuser.php?assign_user={$userinfo.login|escape:"url"}" title=":{tr}Assign group{/tr}">
+						<a class="link tips small" href="tiki-assignuser.php?assign_user={$userinfo.login|escape:"url"}" title=":{tr}Assign group{/tr}">
 							{icon name='group' align="right" alt="{tr}Assign Group{/tr}"}
 						</a>
 					{/if}
-					<a class="link tips" href="tiki-user_preferences.php?userId={$userinfo.userId}" title=":{tr}Change user preferences{/tr}">
+					<a class="link tips small" href="tiki-user_preferences.php?userId={$userinfo.userId}" title=":{tr}Change user preferences{/tr}">
 						{icon name='wrench' align="right" alt="{tr}Change user preferences{/tr}"}
 					</a>
 				{/if}
-			</div>
+				</span>
+			</h2>
 
 			<div class="row">
-				<div class="col-sm-8">
-
+				<div class="col-sm-9">
 					<div class="card">
 						<div class="card-body">
 							{if $avatar}
