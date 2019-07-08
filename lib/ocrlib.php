@@ -91,6 +91,9 @@ class ocrLib extends TikiLib
 		}elseif ($return !== 0){
 			throw new Exception('There was no suitable system command found. Could not execute command');
 		}
+		if (empty($output[0])){
+			return null;
+		}
 		return $output[0];
 	}
 

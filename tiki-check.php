@@ -1980,7 +1980,7 @@ if (! $standalone) {
 try {
 	if (empty($prefs['ocr_tesseract_path']) || $prefs['ocr_tesseract_path'] === 'tesseract') {
 		$ocrStatus = 'ugly';
-		$ocrMessage = tr('Your path preference is not configured. It may will now but will likely fail with cron. Specify an absolute path.');
+		$ocrMessage = tr('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
 	} elseif ($prefs['ocr_tesseract_path'] === $ocr->whereIsExecutable('tesseract')) {
 		$ocrStatus = 'good';
 		$ocrMessage = tr('Path setup correctly');
@@ -1993,7 +1993,7 @@ try {
 }catch (Exception $e) {
 	if (empty($prefs['ocr_tesseract_path']) || $prefs['ocr_tesseract_path'] === 'tesseract') {
 		$ocrStatus = 'ugly';
-		$ocrMessage = tr('Your path preference is not configured. It may will now but will likely fail with cron. Specify an absolute path.');
+		$ocrMessage = tr('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
 	} else {
 		$ocrStatus = 'info';
 		$ocrMessage = tr('Your path is configured, but we were unable to tell if it was configured properly or not.');
@@ -2034,7 +2034,7 @@ try {
 	try {
 		if (empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages') {
 			$ocrStatus = 'ugly';
-			$ocrMessage = tr('Your path preference is not configured. It may will now but will likely fail with cron. Specify an absolute path.');
+			$ocrMessage = tr('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
 		} elseif ($prefs['ocr_pdfimages_path'] === $ocr->whereIsExecutable('pdfimages')) {
 			$ocrStatus = 'good';
 			$ocrMessage = tr('Path setup correctly');
@@ -2047,7 +2047,7 @@ try {
 	{
 		if (empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages') {
 			$ocrStatus = 'ugly';
-			$ocrMessage = tr('Your path preference is not configured. It may will now but will likely fail with cron. Specify an absolute path.');
+			$ocrMessage = tr('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
 		}
 		$ocrStatus = 'info';
 		$ocrMessage = tr('Your path is configured, but we were unable to tell if it was configured properly or not.');
