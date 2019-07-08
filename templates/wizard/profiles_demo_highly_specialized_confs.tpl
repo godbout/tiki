@@ -21,7 +21,8 @@
 			{tr}See details in the instructions page shown in your site once each profile is applied{/tr}.
 		{/remarksbox}
 		<h3>{tr}Profiles:{/tr}</h3>
-			<div class="row">
+		<div class="row">
+		<!--
 				<div class="col-md-6">
 					<h4>{tr}CartoGraf{/tr}</h4>
 					(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=CartoGraf_15&show_details_for=CartoGraf_15&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
@@ -52,6 +53,7 @@
 						</div>
 					</div>
 				</div>
+		-->
 				<div class="col-md-6">
 					<h4>{tr}R demo{/tr}</h4> (<a href="tiki-admin.php?ticket={ticket mode=get}&profile=R_demo&show_details_for=R_demo&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 					<br/>
@@ -88,7 +90,24 @@
 						</div>
 					</div>
 				</div>
+	<div class="col-md-6">
+		<h4>{tr}GeoCMS Maps{/tr}</h4> (<a href="tiki-admin.php?ticket={ticket mode=get}&profile=GeoCMS_Maps_18&show_details_for=GeoCMS_Maps_18&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+		<br/>
+		{tr}This profile demonstrates common uses of geolocation of different tiki objects (wiki pages, blog posts, articles and tracker items) to produce separated or combined maps.{/tr}
+		<br/>
+		<div class="row">
+			<div class="col-md-8 offset-md-2">
+				<a href="https://profiles.tiki.org/tiki-download_file.php?fileId=4&display&max=800" class="thumbnail internal" data-box="box" title="{tr}Click to expand{/tr}">
+					<img src="img/profiles/profile_thumb_geocms_maps.png" alt="Click to expand" class="regImage pluginImg" title="{tr}Click to expand{/tr}" />
+				</a>
+				<div class="small text-center">
+					{tr}Click to expand{/tr}
+				</div>
 			</div>
+		</div>
+	</div>
+</div>
+<!--
 			<div class="row">
 				<div class="col-md-6 offset-md-3">
 					<h4>{tr}R Heatmaps{/tr}</h4>
@@ -127,5 +146,6 @@
 					</div>
 				</div>
 			</div>
+			-->
 	</div>
 </div>

@@ -1307,6 +1307,9 @@ img/profiles/profile_thumb_custom_contact_form.png -text
 img/profiles/profile_thumb_dynamic_items_list.png -text
 img/profiles/profile_thumb_easy_geoblog.png -text
 img/profiles/profile_thumb_execute_on_list.png -text
+img/profiles/profile_thumb_ganttchart.png -text
+img/profiles/profile_thumb_geocms_maps.png -text
+img/profiles/profile_thumb_groupmail_20.png -text
 img/profiles/profile_thumb_hidable_top_navbar.png -text
 img/profiles/profile_thumb_menu_on_wiki_page.png -text
 img/profiles/profile_thumb_mobile.png -text
@@ -1326,6 +1329,8 @@ img/profiles/profile_thumb_timesheet.png -text
 img/profiles/profile_thumb_tracker_as_calendar.png -text
 img/profiles/profile_thumb_user_and_registration_tracker.png -text
 img/profiles/profile_thumb_voting_system.png -text
+img/profiles/profile_thumb_wildcard_items.png -text
+img/profiles/profile_thumb_work_custom_pricing.png -text
 img/profiles/profile_thumb_write_together.png -text
 img/rating_smiles/0.png -text
 img/rating_smiles/1.png -text
@@ -5064,6 +5069,7 @@ lib/wizard/pages/changes_ui.php -text
 lib/wizard/pages/changes_wizard_completed.php -text
 lib/wizard/pages/index.php -text
 lib/wizard/pages/profiles_completed.php -text
+lib/wizard/pages/profiles_demo_cases_in_project_management.php -text
 lib/wizard/pages/profiles_demo_common_confs.php -text
 lib/wizard/pages/profiles_demo_highly_specialized_confs.php -text
 lib/wizard/pages/profiles_demo_interesting_use_cases.php -text
@@ -6633,6 +6639,7 @@ templates/wizard/changes_ui.tpl -text
 templates/wizard/changes_wizard_completed.tpl -text
 templates/wizard/index.php -text
 templates/wizard/profiles_completed.tpl -text
+templates/wizard/profiles_demo_cases_in_project_management.tpl -text
 templates/wizard/profiles_demo_common_confs.tpl -text
 templates/wizard/profiles_demo_highly_specialized_confs.tpl -text
 templates/wizard/profiles_demo_interesting_use_cases.tpl -text
