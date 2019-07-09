@@ -673,6 +673,27 @@ if ($php_properties['session.save_handler']['setting'] == 'files') {
 	}
 }
 
+$s = ini_get('session.gc_probability');
+$php_properties['session.gc_probability'] = array(
+	'fitness' => tr('info'),
+	'setting' => $s,
+	'message' => tr('In conjunction with gc_divisor is used to manage probability that the gc (garbage collection) routine is started.')
+);
+
+$s = ini_get('session.gc_divisor');
+$php_properties['session.gc_divisor'] = array(
+	'fitness' => tr('info'),
+	'setting' => $s,
+	'message' => tr('Coupled with session.gc_probability defines the probability that the gc (garbage collection) process is started on every session initialization. The probability is calculated by using gc_probability/gc_divisor, e.g. 1/100 means there is a 1% chance that the GC process starts on each request.')
+);
+
+$s = ini_get('session.gc_maxlifetime');
+$php_properties['session.gc_maxlifetime'] = array(
+	'fitness' => tr('info'),
+	'setting' => $s . 's',
+	'message' => tr('Specifies the number of seconds after which data will be seen as \'garbage\' and potentially cleaned up. Garbage collection may occur during session start.')
+);
+
 // test session work
 @session_start();
 
