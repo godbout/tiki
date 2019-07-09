@@ -121,7 +121,7 @@
 		<input type="hidden" name="page" value="{$page|escape}">
 		<input type="hidden" name="history_offset" value="{$history_offset}">
 
-		<div class="mb-4">
+		<div class="multi mb-4">
 					{if $prefs.feature_multilingual eq 'y' and $tiki_p_edit eq 'y'}
 
 					<div class="input-group">
