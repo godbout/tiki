@@ -5,7 +5,7 @@
 		{if $contribution_needed eq 'y'}
 			<span class="mandatory_note highlight">
 		{/if}
-			<label for="contributions" class="col-sm-4 col-form-label">{tr}Type of contribution:{/tr}</label>
+			<label for="contributions" class="col-sm-3 col-form-label">{tr}Type of contribution:{/tr}</label>
 		{if $prefs.feature_contribution_mandatory eq 'y'}
 			<strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>
 		{/if}
@@ -24,8 +24,8 @@
 		</div>
 		{if $prefs.feature_contributor_wiki eq 'y' and $section eq 'wiki page' and empty($in_comment)}
 			<div class="form-group row">
-				<label for='contributors' class="col-sm-4 col-form-label">{tr}Contributors{/tr}</label>
-				<div class="col-sm-4">
+				<label for='contributors' class="col-sm-3 col-form-label">{tr}Contributors{/tr}</label>
+				<div class="col-sm-6">
 					<select id="contributors" name="contributors[]" multiple="multiple" size="5" class="form-control">
 						{foreach key=userId item=u from=$users}
 							{if $u ne $user}<option value="{$userId}"{if !empty($contributors) and in_array($userId, $contributors)} selected="selected"{/if}>{$u}</option>{/if}
