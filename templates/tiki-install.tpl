@@ -117,8 +117,8 @@
             <div class="text-center">
                 <h1>{tr}Tiki Installer{/tr} <small>{$tiki_version_name} <a class="text-info" title="{tr}Help{/tr}" href="https://doc.tiki.org/Installation" target="help">{icon name="help"}</a></small></h1>
             </div>
-            <div class="row install-body" style="margin-left: 10%; margin-top: 10%">
-                <div class="col-md-9 install-steps">
+            <div class="row install-body" style="margin-left: 5%; margin-top: 10%">
+                <div class="col-md-10 install-steps">
                     {feedback}
                     {if $install_step eq '0' or !$install_step}{* start of installation *}
                     <div class="install-step0">
@@ -885,7 +885,7 @@
                                     <input type="submit" value="{tr}Enter Tiki and Lock Installer{/tr} ({tr}Recommended{/tr})" class="btn btn-primary">
                                 </form>
                             </div>
-                            <div class="form-sm-6">
+                            <div class="col-sm-6">
                                 <form method="post" action="tiki-install.php" class="">
                                     <input type="hidden" name="nolockenter" value="1">
                                     {if $multi}
