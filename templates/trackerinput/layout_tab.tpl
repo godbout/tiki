@@ -2,16 +2,16 @@
 	{foreach $sections as $pos => $sect}
 		{tab name=$sect.heading}
 			{if ! $pos && $status}
-				<div class="form-group row">
-					<label for="trackerinput_status" class="col-form-label">{tr}Status{/tr}</label>
+				<div class="form-group">
+					<label for="trackerinput_status">{tr}Status{/tr}</label>
 					<div id="trackerinput_status">
 						{include 'trackerinput/status.tpl' status_types=$status_types status=$status}
 					</div>
 				</div>
 			{/if}
 			{foreach from=$sect.fields item=field}
-				<div class="form-group row">
-					<label for="trackerinput_{$field.fieldId|escape}" class="col-form-label">
+				<div class="form-group">
+					<label for="trackerinput_{$field.fieldId|escape}">
 						{$field.name|tra|escape}
 						{if $field.isMandatory eq 'y'}
 							<strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>
