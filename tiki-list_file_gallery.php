@@ -984,7 +984,7 @@ if (isset($_GET['slideshow'])) {
 				$ocrlangs = Tikilib::lib('language')->findLanguageNames($ocrlangs, 'translated');
 				$ocrlangs = implode(', ', $ocrlangs);
 
-				$smarty->assign(ocrlangs, $ocrlangs);
+				$smarty->assign('ocrlangs', $ocrlangs);
 			}
 		} else {
 			// Get list of files in the gallery

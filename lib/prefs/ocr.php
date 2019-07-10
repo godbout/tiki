@@ -12,7 +12,8 @@ function prefs_ocr_list()
 
 	$ocrLangs = $langLib->findLanguageNames($ocr->getTesseractLangs());
 	// Place the default (OSD) at the top
-	$ocrLangs = ['osd' => tr('Orientation and script detection' . ' - '. tr('auto select'))] + $ocrLangs;
+	unset($ocrLangs['osd']);
+	$ocrLangs = $langLib->findLanguageNames(['osd']) + $ocrLangs;
 
 	try{
 		$tesseractPath = $ocr->whereIsExecutable('tesseract');

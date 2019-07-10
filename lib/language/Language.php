@@ -616,6 +616,7 @@ class Language extends TikiDb_Bridge
 			'enm' => ['tra' => tr('English, Middle (1100-1500)')],
 			'chr' => ['tra' => tr('Cherokee')],
 			'ceb' => ['tra' => tr('Cebuano')],
+			'osd' => ['tra' => tr('Auto detect languages')]
 		];
 
 		switch ($iso){
