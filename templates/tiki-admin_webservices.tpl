@@ -13,42 +13,47 @@
 
 	{if $storedName and not $edit}
 		<h2>{$storedName|escape}:</h2>
-		<div class="row">
+		<div class="form-group row clearfix">
+			<label class="col-form-label col-sm-4">{tr}URL:{/tr}</label>
+			<div class="col-sm-8">
+				<code>{$url|escape}</code>
+			</div>
+		</div>
+		{if $postbody}
 			<div class="form-group row clearfix">
-				<label class="col-sm-4"> {tr}URL:{/tr}</label>
+				<label class="col-form-label col-sm-4">{tr}Body of POST request:{/tr}</label>
 				<div class="col-sm-8">
-					<code>{$url|escape}</code>
+					<pre style="max-height: 40em; overflow: auto; white-space: pre-wrap">{$postbody|escape}</pre>
 				</div>
 			</div>
-			{if $postbody}
-				<div class="form-group row clearfix">
-					<label class="col-sm-4"> {tr}Body of POST request:{/tr}</label>
-					<div class="col-sm-8">
-						<pre style="max-height: 40em; overflow: auto; white-space: pre-wrap">{$postbody|escape}</pre>
-					</div>
-				</div>
-			{/if}
-			<div class="col-sm-8 offset-sm-4 clearfix">
-				<input type="hidden" name="name" value="{$storedName|escape}">
-				{button _icon_name='edit' _text="{tr}Edit{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&edit" _class='btn btn-primary btn-sm'}
-				{button _icon_name='delete' _text="{tr}Delete{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&delete" _class='btn btn-danger btn-sm'}
-			</div>
+		{/if}
+		<div class="col-sm-8 offset-sm-4 clearfix">
+			<input type="hidden" name="name" value="{$storedName|escape}">
+			{button _icon_name='edit' _text="{tr}Edit{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&edit" _class='btn btn-primary btn-sm'}
+			{button _icon_name='delete' _text="{tr}Delete{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&delete" _class='btn btn-danger btn-sm'}
 		</div>
 	{else}
 		{remarksbox type="tip" title="{tr}Tip{/tr}"}
 		{tr}Enter the URL of a web services returning either JSON or YAML. Parameters can be specified by enclosing a name between percentage signs. For example: %name%. %service% and %template% are reserved keywords and cannot be used.{/tr}
 		{/remarksbox}
-		<p>{tr}URL:{/tr}<input type="text" name="url" size="75" value="{$url|escape}" class="form-control"/></p>
-		<p>
-			{tr}Type:{/tr}
-			<select name="wstype">
-				{foreach from=$webservicesTypes item=_type}
-					<option value="{$_type}"{if $wstype eq $_type} selected="selected"{/if}>{$_type}</option>
-				{/foreach}
-			</select>
-		</p>
-		<div id="ws_postbody" class="row">
-			<label class="col-sm-4"> {tr}Body of POST request{/tr}</label>
+		<div class="form-group row">
+			<label class="col-form-label col-sm-4">{tr}URL:{/tr}</label>
+			<div class="col-sm-8">
+				<input type="text" name="url" size="75" value="{$url|escape}" class="form-control"/>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-sm-4">{tr}Type:{/tr}</label>
+			<div class="col-sm-8">
+				<select name="wstype" class="form-control">
+					{foreach from=$webservicesTypes item=_type}
+						<option value="{$_type}"{if $wstype eq $_type} selected="selected"{/if}>{$_type}</option>
+					{/foreach}
+				</select>
+			</div>
+		</div>
+		<div id="ws_postbody" class="form-group row">
+			<label class="col-form-label col-sm-4"> {tr}Body of POST request{/tr}</label>
 			<div class="col-sm-8">
 				<textarea name="postbody" class="form-control">{$postbody|escape}</textarea><br>
 				{tr}Parameters (%name%):{/tr}
@@ -66,27 +71,25 @@
 		{/if}
 	{/if}
 	{if $url}
-		<div class="row">
-			<h3>{tr}Parameters{/tr}</h3>
-			{if $params|@count}
-				{foreach from=$params key=name item=value}
-					<div class="form-group row">
-						<label class="col-sm-4 col-form-label" for="params[{$name|escape}]">{$name|escape}</label>
-						<div class="col-sm-8">
-							<input type="text" name="params[{$name|escape}]" id="params[{$name|escape}]" value="{$value|escape}" class="form-control">
-						</div>
-					</div>
-				{/foreach}
-			{else}
-				<div class="col-sm-8 offset-sm-4">{tr _0=$storedName|escape}%0 requires no parameter.{/tr}</div>
-			{/if}
-			<div class="col-sm-8 offset-sm-4">
+		<h3>{tr}Parameters{/tr}</h3>
+		{if $params|@count}
+			{foreach from=$params key=name item=value}
 				<div class="form-group row">
-					<input type="submit" class="btn btn-primary btn-sm col-sm-2" name="test" value="{tr}Test Input{/tr}">
-					<label class="col-sm-10"> <input type="checkbox" checked="checked" name="nocache">
-						{tr}Bypass cache{/tr}
-					</label>
+					<label class="col-sm-4 col-form-label" for="params[{$name|escape}]">{$name|escape}</label>
+					<div class="col-sm-8">
+						<input type="text" name="params[{$name|escape}]" id="params[{$name|escape}]" value="{$value|escape}" class="form-control">
+					</div>
 				</div>
+			{/foreach}
+		{else}
+			<div class="col-sm-8 offset-sm-4">{tr _0=$storedName|escape}%0 requires no parameter.{/tr}</div>
+		{/if}
+		<div class="col-sm-8 offset-sm-4">
+			<div class="form-group row">
+				<input type="submit" class="btn btn-primary btn-sm col-sm-2" name="test" value="{tr}Test Input{/tr}">
+				<label class="col-sm-10"> <input type="checkbox" checked="checked" name="nocache">
+					{tr}Bypass cache{/tr}
+				</label>
 			</div>
 		</div>
 	{/if}
