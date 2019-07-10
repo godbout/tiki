@@ -218,14 +218,6 @@
 							</div>
 						</div>
 					{/if}
-					{if $prefs.ocr_enable eq 'y' && $prefs.ocr_every_file neq 'y'}
-						<div class="form-check mb-3">
-							<label for="ocrFiles" class="form-check-label">
-								<input type="checkbox" id="ocrFiles" name="ocrFiles[]" class="form-check-input">
-								{tr}OCR files if supported{/tr}
-							</label>
-						</div>
-					{/if}
 					{if $editFileId}
 						<input type="hidden" name="galleryId" value="{$galleryId}">
 						<input type="hidden" name="fileId" value="{$editFileId}">
@@ -304,7 +296,32 @@
 							</div>
 						</div>
 					{/if}
-				</div>
+
+				{if $prefs.ocr_enable eq 'y'}
+					{if $selectedLanguages || $languages}
+						<div class="form-group row">
+							<label for="ocr_lang" class="col-md-4 col-form-label">{tr}Override Default Languages{/tr}</label>
+							<div class="col-md-8">
+								<select multiple id="ocr_lang" class="form-control" name="ocr_lang[]">
+									{foreach $selectedLanguages as $code => $language}
+										<option value="{$code|escape}" selected="selected">{$language|truncate:60|escape}</option>
+									{/foreach}
+
+									{foreach $languages as $code => $language}
+										<option value="{$code}">{$language|truncate:60}</option>
+									{/foreach}
+								</select>
+							</div>
+						</div>
+					{/if}
+					{if $prefs.ocr_file_level eq 'y'}
+						<div class="form-check">
+							<label for="imagesize" class="form-check-label">
+								<input type="checkbox" value='3' {if $ocr_state}checked="checked"{/if} id="ocr_state" class="form-check-input" name="ocr_state" title="{tr}Attempt to OCR this file.{/tr}"> {tr}OCR this file{/tr}
+							</label>
+						</div>
+					{/if}
+				{/if}
 				<div class="fgal_file_c3">
 					{if $prefs.fgal_limit_hits_per_file eq 'y'}
 						<div class="form-group row">

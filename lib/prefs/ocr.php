@@ -10,7 +10,7 @@ function prefs_ocr_list()
 	$langLib = TikiLib::lib('language');
 	$ocr = TikiLib::lib('ocr');
 
-	$ocrLangs = $langLib->FindLanguageNames($ocr->getTesseractLangs());
+	$ocrLangs = $langLib->findLanguageNames($ocr->getTesseractLangs());
 	// Place the default (OSD) at the top
 	$ocrLangs = ['osd' => tr('Orientation and script detection' . ' - '. tr('auto select'))] + $ocrLangs;
 
@@ -47,13 +47,20 @@ function prefs_ocr_list()
 			'options' => $ocrLangs,
 			'default' => ['osd'],
 		],
+		'ocr_file_level' => [
+			'name' => tra('Allow file level OCR languages'),
+			'type' => 'flag',
+			'description' => tra('Allow users to change the default languages that will be used to OCR a file.'),
+			'default' => 'y',
+		],
 		'ocr_limit_languages' => [
 			'name' => tra('OCR limit languages'),
 			'description' => tra('Limit the number of languages one can select from this list.'),
 			'filter' => 'text',
 			'type' => 'multilist',
 			'options' => $ocrLangs,
-			'default' => ['osd'],
+			'dependencies' => ['ocr_file_level'],
+			'default' => "",
 		],
 		'ocr_tesseract_path' => [
 			'name' => tra('tesseract path'),

@@ -2993,6 +2993,12 @@ class FileGalLib extends TikiLib
 			if (! empty($params['author'][0])) {
 				$fileInfo['author'] = $params['author'][0];
 			}
+			if (! empty($params['ocr_lang'][0])) {
+				$fileInfo['ocr_lang'] = json_encode($params['ocr_lang']);
+			}
+			if (isset($params['ocr_state'])) {
+					$fileInfo['ocr_state'] = $params['ocr_state'][0];
+			}
 			if (! empty($params['filetype'][0])) {
 				if (isset($fileInfo['fileId']) && $fileInfo['filetype'] != $params['filetype'][0] && substr($params['filetype'][0], 0, 9) == 'image/svg') {
 					try {
@@ -3265,6 +3271,8 @@ class FileGalLib extends TikiLib
 				'metadata' => $fileInfo['metadata'],
 				'lastModif' => $fileInfo['lastModif'],
 				'lockedby' => $fileInfo['lockedby'],
+				'ocr_lang' => $fileInfo['ocr_lang'],
+				'ocr_state' => $fileInfo['ocr_state']
 			]);
 			$fileInfo['fileId'] = $file->replace($fileInfo['data'], $fileInfo['filetype'], $fileInfo['name'], $fileInfo['filename']);
 			$fileChangedMessage = tra('File update was successful') . ': ' . $params['name'];
@@ -3304,7 +3312,7 @@ class FileGalLib extends TikiLib
 		return $fileInfo;
 	}
 
-	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '', $ocrFile = null)
+	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '')
 	{
 		global $user;
 		if (empty($asuser) || ! Perms::get()->admin) {
@@ -3318,8 +3326,7 @@ class FileGalLib extends TikiLib
 			'galleryId' => $gal_info['galleryId'],
 			'description' => $description,
 			'user' => $asuser,
-			'created' => $created,
-			'ocr_state' => $ocrFile
+			'created' => $created
 		]);
 		$ret = $file->replace($data, $type, $name, $name, $image_x, $image_y);
 

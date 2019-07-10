@@ -660,19 +660,21 @@ class Language extends TikiDb_Bridge
 	 * Looks up language name(s) from a language code-name list.
 	 *
 	 * @param array  $LangCodes		A list of all language codes you want to match, or an empty array
+	 * @param string $format		Defines how the language name is returned.
+	 *                              Valid options are the same as listISOLangs() $name parameter
 	 * @param string $iso			if one should match 2 or 3 character language codes
 	 *
 	 * @return array				A 2 dimensional associative array of language codes and names
 	 * @throws Exception			Upon invalid arguments
 	 */
 
-	public function findLanguageNames( array $LangCodes, string $iso = 'iso3'): array
+	public function findLanguageNames( array $LangCodes, string $format='string', string $iso = 'iso3'): array
 	{
 		if ($iso !== 'iso2' && $iso !== 'iso3'){
 			throw new Exception('invalid option for iso');
 		}
 
-		$languageNames = $this->listISOLangs($iso, 'string');
+		$languageNames = $this->listISOLangs($iso, $format);
 		$LangCodes = array_flip($LangCodes);
 		// now lets migrate the language data with the returned supported languages
 		foreach ($LangCodes as $languageCode => &$languageName) {

@@ -100,6 +100,8 @@
 			<div style="{if $prefs.javascript_enabled eq 'y'}display:none;{/if}" id="ocrdata{$fileId}">
 
 				{remarksbox type="tip" title="{tr}Extracted OCR Data{/tr}"}
+					<i>Using {$ocrlangs}</i>
+					<hr>
 				{$ocrdata}
 				{/remarksbox}
 			</div>

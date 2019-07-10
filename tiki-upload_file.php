@@ -51,7 +51,7 @@ $fileId = null;
 if (! empty($_REQUEST['fileId'])) {
 	$fileId = $_REQUEST['fileId'];
 
-	if (! ( $fileInfo = $filegallib->get_file_info($fileId) )) {
+	if (! ($fileInfo = $filegallib->get_file_info($fileId))) {
 		$smarty->assign('msg', tra("Incorrect param"));
 		$smarty->display('error.tpl');
 		die;
@@ -67,6 +67,29 @@ if (! empty($_REQUEST['fileId'])) {
 	global $mimetypes;
 	asort($mimetypes);
 	$smarty->assign_by_ref('mimetypes', $mimetypes);
+	if (! empty($prefs['ocr_enable']) && $prefs['ocr_enable'] === 'y') {
+		if (!empty($prefs['ocr_file_level']) && $prefs['ocr_file_level'] === 'y') {
+			if (empty($prefs['ocr_limit_languages'])) {
+				$ocr = TikiLib::lib('ocr');
+				$langs = $ocr->getTesseractLangs();
+			} else {
+				$langs = $prefs['ocr_limit_languages'];
+			}
+			$selectedLangs = json_decode($fileInfo['ocr_lang']);
+			// lets remove the language codes from the unselected list if they are already selected
+			foreach ($selectedLangs as $lang) {
+				unset($langs[array_search($lang, $langs)]);
+			}
+			$langLib = TikiLib::lib('language');
+
+			if (! empty($selectedLangs)) {
+				$smarty->assign(selectedLanguages, $langLib->findLanguageNames($selectedLangs));
+			}
+			$smarty->assign(languages, $langLib->findLanguageNames($langs));
+		}
+		if ($fileInfo['ocr_state'])
+			$smarty->assign(ocr_state, true);
+	}
 }
 
 if (isset($_REQUEST['galleryId'][0])) {
@@ -189,7 +212,8 @@ if ($isUpload) {
 			'imagesize',
 			'image_max_size_x',
 			'image_max_size_y',
-			'ocrFiles'
+			'ocr_state',
+			'ocr_lang'
 		];
 
 		$uploadParams = [
@@ -203,6 +227,9 @@ if ($isUpload) {
 			}
 		}
 
+		if (! empty($prefs['ocr_enable']) && $prefs['ocr_enable'] === 'y' && empty($_POST['ocr_state'][0])){
+			$uploadParams['ocr_state'][0] = null;
+		}
 		if ($fileInfo = $filegallib->actionHandler('uploadFile', $uploadParams)) {
 			$fileId = $fileInfo['fileId'];
 		}

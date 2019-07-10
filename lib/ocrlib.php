@@ -256,21 +256,34 @@ class ocrLib extends TikiLib
 
 	/**
 	 * Finds the languages that a file will/has been processed with.
-	 * todo: finish implementation with gallery and file level controls
+	 * todo: finish implementation with gallery level controls
+	 *
+	 * @param null|int $fileid null defaults to the current file being worked on, otherwise it uses the passed fileid.
 	 *
 	 * @return array List of file specific languages
 	 */
 
-	public function listFileLanguages()
+	public function listFileLanguages(?int $fileid=null): array
 	{
-	// if no preferences are set, assume the default osd processing
-	if (empty($prefs['ocr_default_languages'])){
-		$langs[] = 'osd';
-	}else{
-		$langs = $prefs['ocr_default_languages'];
+		global $prefs;
+		if (!$fileid){
+			$fileid = $this->ocrIngNow;
+		}
+		// first set file level languages if they exist
+		if (! empty($prefs['ocr_file_level']) && $prefs['ocr_file_level'] === 'y') {
+			$langs = json_decode($this->table('tiki_files')->fetchOne('ocr_lang', ['fileId' => $fileid]));
+		}
+
+		// if no file level languages resume the default processing
+		if (empty($langs)) {
+			if (empty($prefs['ocr_default_languages'])) {
+				$langs[] = 'osd';                                            // assume osd (auto detect) language if none set
+			} else {
+				$langs = $prefs['ocr_default_languages'];
+			}
+		}
+		return $langs;
 	}
-	return $langs;
-}
 
 	/**
 	 *

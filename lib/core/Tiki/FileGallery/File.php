@@ -183,8 +183,8 @@ class File
 		return $archives;
 	}
 
-	function replace($data, $type = null, $name = null, $filename = null, $resizex = null, $resizey = null, $ocrFile = null) {
-		global $user, $prefs;
+	function replace($data, $type = null, $name = null, $filename = null, $resizex = null, $resizey = null) {
+		global $user, $prefs, $jitRequest;
 
 		$user = (! empty($user) ? $user : 'Anonymous');
 
@@ -196,6 +196,9 @@ class File
 		}
 		if ($filename) {
 			$this->setParam('filename', $filename);
+		}
+		if ($jitRequest->ocr_state->int()){
+			$this->setParam('ocr_state', $jitRequest->ocr_state->text());
 		}
 
 		if (!$this->replaceContents($data)) {
@@ -212,7 +215,7 @@ class File
 		}
 
 		(new Manipulator\ImageTransformer($this))->run(['width' => $resizex, 'height' => $resizey]);
-		(new Manipulator\MetadataExtractor($this))->run(['ocr_file' => $ocrFile]);
+		(new Manipulator\MetadataExtractor($this))->run();
 
 		$saveHandler = new SaveHandler($this);
 		return $saveHandler->save();
