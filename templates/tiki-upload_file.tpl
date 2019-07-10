@@ -314,7 +314,7 @@
 							</div>
 						</div>
 					{/if}
-					{if $prefs.ocr_file_level eq 'y'}
+					{if $editFileId || $prefs.ocr_every_file !== 'y' && !$editFileId}
 						<div class="form-check">
 							<label for="imagesize" class="form-check-label">
 								<input type="checkbox" value='3' {if $ocr_state}checked="checked"{/if} id="ocr_state" class="form-check-input" name="ocr_state" title="{tr}Attempt to OCR this file.{/tr}"> {tr}OCR this file{/tr}
