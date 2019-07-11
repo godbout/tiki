@@ -27,10 +27,12 @@
 				</div>
 			</div>
 		{/if}
-		<div class="col-sm-8 offset-sm-4 clearfix">
-			<input type="hidden" name="name" value="{$storedName|escape}">
-			{button _icon_name='edit' _text="{tr}Edit{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&edit" _class='btn btn-primary btn-sm'}
-			{button _icon_name='delete' _text="{tr}Delete{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&delete" _class='btn btn-danger btn-sm'}
+		<div class="form-group row clearfix">
+			<div class="col-sm-8 offset-sm-4">
+				<input type="hidden" name="name" value="{$storedName|escape}">
+				{button _icon_name='edit' _text="{tr}Edit{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&edit" _class='btn btn-primary btn-sm'}
+				{button _icon_name='delete' _text="{tr}Delete{/tr}" _script="tiki-admin_webservices.php?name={$storedName|escape}&delete" _class='btn btn-danger btn-sm'}
+			</div>
 		</div>
 	{else}
 		{remarksbox type="tip" title="{tr}Tip{/tr}"}
@@ -94,7 +96,7 @@
 		</div>
 	{/if}
 	{if $data}
-		<div class="row">
+		<div class="form-group row">
 			<div class="col-sm-12">
 				<h3>{tr}Response Information{/tr}</h3>
 				<div class="table-responsive">
@@ -161,7 +163,7 @@
 						{else}
 							<input type="text" name="new_name" class="form-control">
 						{/if}
-						<input type="submit" class="btn btn-primary btn-sm" name="register" value="{tr}Register Service{/tr}"/>
+						<input type="submit" class="btn btn-primary btn-sm mt-2" name="register" value="{tr}Register Service{/tr}"/>
 					</p>
 				{else}
 					<h3>{tr}Registered Templates{/tr}</h3>
