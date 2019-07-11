@@ -123,13 +123,21 @@ class Gd extends ImageAbstract
 			switch (strtolower($this->format)) {
 				case 'jpeg':
 				case 'jpg':
-					imagejpeg($this->data);
+					if ($this->quality !== 75) {
+						imagejpeg($this->data, null, $this->quality);
+					} else {
+						imagejpeg($this->data);
+					}
 					break;
 				case 'gif':
 					imagegif($this->data);
 					break;
 				case 'png':
-					imagepng($this->data);
+					if ($this->quality !== 75) {
+						imagepng($this->data, null, (int)$this->quality / 10);
+					} else {
+						imagepng($this->data);
+					}
 					break;
 				case 'wbmp':
 					imagewbmp($this->data);

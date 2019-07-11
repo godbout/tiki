@@ -350,6 +350,9 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 
 					// We change the image format if needed
 					if (isset($_GET['format']) && $image->isSupported($_GET['format'])) {
+						if (isset($_GET['quality'])) {
+							$image->setQuality($_GET['quality']);
+						}
 						$image->convert($_GET['format']);
 					} elseif (isset($_GET['thumbnail']) && $image->getFormat() != 'svg') {
 						// Or, if no format is explicitely specified and a thumbnail has to be created, we convert the image to the $thumbnail_format

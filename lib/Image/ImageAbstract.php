@@ -14,6 +14,7 @@ class ImageAbstract
 {
 	protected $data = null;
 	protected $format = 'jpeg';
+	protected $quality = 75;	// default quality for jpeg in GD
 	protected $height = null;
 	protected $width = null;
 	protected $classname = 'ImageAbstract';
@@ -178,6 +179,22 @@ class ImageAbstract
 		} else {
 			return $this->format;
 		}
+	}
+
+	/**
+	 * @param int $quality
+	 */
+	public function setQuality($quality)
+	{
+		$this->quality = (int) $quality;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getQuality()
+	{
+		return $this->quality;
 	}
 
 	/**
