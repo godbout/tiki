@@ -250,7 +250,7 @@ function wikiplugin_img_info()
 				'filter' => 'alpha',
 				'description' => tr('Set the image to be used for a thumbnail on referencing social network sites or for other special purpose'),
 				'since' => '18.0',
-				'doctype' => '????',
+				'doctype' => 'show',
 				'advanced' => false,
 				'default' => 'n',
 				'options' => [
@@ -514,6 +514,16 @@ function wikiplugin_img_info()
 					['text' => tra('None'), 'value' => ''],
 					['text' => tra('View'), 'value' => 'view'],
 				],
+			],
+			'quality' => [
+				'required' => false,
+				'name' => tra('Compression Quality'),
+				'description' => tra('0 to 100 (default is 75)'),
+				'default' => 75,
+				'filter' => 'digits',
+				'doctype' => 'text',
+				'since' => '20.1',
+				'advanced' => true,
 			],
 			'default' => [
 				'required' => false,
@@ -1088,6 +1098,9 @@ function wikiplugin_img($data, $params)
 					$imgdata_dim .= ' width="' . $width . '"';
 					$imgdata_dim .= ' height="' . $height . '"';
 				}
+			}
+			if (isset($imgdata['quality'])) {
+				$src .= '&format=' . str_replace('image/', '', $imgdata['file']->filetype) .'&quality=' . $imgdata['quality'];
 			}
 		} else {
 			if (! empty($height)) {

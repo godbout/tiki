@@ -119,6 +119,17 @@ class ImagickNew extends ImageAbstract
 	{
 		$this->loadData();
 		if ($this->data) {
+			if ($this->quality !== 75) {
+				if ($this->format === 'jpeg') {
+					$this->data->setImageCompression(Imagick::COMPRESSION_JPEG);
+					$this->data->setImageCompressionQuality($this->quality);
+				} else {
+					if ($this->format === 'png') {
+						$this->data->setImageCompression(Imagick::COMPRESSION_ZIP);
+						$this->data->setImageCompressionQuality($this->quality / 10);
+					}
+				}
+			}
 			return $this->data->getImageBlob();
 		}
 	}
