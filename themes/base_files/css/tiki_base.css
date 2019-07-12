@@ -1755,6 +1755,34 @@ td.url {
   .table-responsive > #score-table {
     table-layout: auto; } }
 
+@media only screen and (max-width: 767.98px) {
+  .table-responsive.large-table:not(.ts-wrapperdiv) .table, .table-responsive.large-table:not(.ts-wrapperdiv) tbody {
+    display: block; }
+    .table-responsive.large-table:not(.ts-wrapperdiv) tbody tr {
+      border-bottom: 1px solid #dee2e6; }
+      .table-responsive.large-table:not(.ts-wrapperdiv) tbody th {
+        background-color: inherit;
+        width: 100%; }
+      .table-responsive.large-table:not(.ts-wrapperdiv) tbody tr:not(:nth-child(1)) {
+        display: block;
+        padding: 0.5rem 0; }
+      .table-responsive.large-table:not(.ts-wrapperdiv) tbody td {
+        display: block;
+        padding: 0.25rem 0.75rem;
+        border-top: none;
+        text-align: left; }
+        .table-responsive.large-table:not(.ts-wrapperdiv) tbody td:after {
+          display: block;
+          clear: both;
+          content: ""; }
+      .table-responsive.large-table:not(.ts-wrapperdiv) tbody .float-right {
+        float: none !important; }
+      .table-responsive.large-table:not(.ts-wrapperdiv) tbody .checkbox-cell .form-check {
+        padding-left: 0; }
+        .table-responsive.large-table:not(.ts-wrapperdiv) tbody .checkbox-cell .form-check-input {
+          position: static;
+          margin-left: 0; } }
+
 .article .actions form {
   display: inline; }
 

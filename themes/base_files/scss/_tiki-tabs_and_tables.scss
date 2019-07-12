@@ -120,3 +120,43 @@ td.url{
 		table-layout: auto;
 	}
 }
+
+@media only screen and (max-width: breakpoint-max(sm)) {
+	.table-responsive.large-table:not(.ts-wrapperdiv) {
+		.table, tbody { display: block; }
+		tbody {
+			tr { border-bottom: 1px solid $border-color; }
+			th {
+				background-color: inherit;
+				width: 100%;
+			}
+
+			tr:not(:nth-child(1)) {
+				display: block;
+				padding: 0.5rem 0;
+			}
+
+			td {
+				display: block;
+				padding: 0.25rem 0.75rem;
+				border-top: none;
+				text-align: left;
+				&:after {
+					display: block;
+					clear: both;
+					content: "";
+				}
+//				&.action:not(:nth-child(1)) { display: none; }
+			}
+
+			.float-right { float: none !important; }
+			.checkbox-cell {
+				.form-check { padding-left: 0; }
+				.form-check-input {
+					position: static;
+					margin-left: 0;
+				}
+			}
+		}
+	}
+}
