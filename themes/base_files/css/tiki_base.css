@@ -1355,22 +1355,14 @@ li.archivedate {
 #col1 .box-search input[type=submit], #col1 .box-search input[type=submit]:hover, #col2 .box-search input[type=submit], #col2 .box-search input[type=submit]:hover, #col3 .box-search input[type=submit], #col3 .box-search input[type=submit]:hover {
   margin: 0; }
 
-.box-search .form-group {
+.box-search .input-group {
   padding: 0; }
 
 #col2 .box-search .input-group-append, #col3 .box-search .input-group-append {
   display: inline-block; }
 
-.tiki .box-search .panel-body * {
-  margin-bottom: 0.3em; }
-
-#col2 .box-search .input-group-append:last-child > .btn[name="search"], #col3 .box-search .input-group-append:last-child > .btn[name="search"] {
-  border-bottom-left-radius: 0.25rem;
-  border-top-left-radius: 0.25rem; }
-
-#col2 .box-search .input-group .form-control:first-child, #col3 .box-search .input-group .form-control:first-child {
-  border-bottom-right-radius: 0.25rem;
-  border-top-right-radius: 0.25rem; }
+#col2 .box-search .btn-group .btn, #col3 .box-search .btn-group .btn {
+  font-size: 0.6rem; }
 
 #col2 .module, #col3 .module, #pagetop_modules .module {
   margin-bottom: 1.25rem; }
