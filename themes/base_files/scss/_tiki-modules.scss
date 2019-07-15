@@ -125,30 +125,19 @@ li.archivedate {
 	margin: 0;
 }
 
-.box-search .form-group {
+.box-search .input-group {
 	padding: 0;
 }
 
 #col2 .box-search .input-group-append,
 #col3 .box-search .input-group-append { display: inline-block; }
 
-// Add vertical space when now-form-inline items wrap
-.tiki .box-search .panel-body * {
-	margin-bottom: .3em;
+#col2 .box-search .btn-group .btn,
+#col3 .box-search .btn-group .btn {
+	font-size: .6rem;
 }
 
-// Add border radius to search button when the input group wraps in side columns.
-#col2 .box-search .input-group-append:last-child > .btn[name="search"],
-#col3 .box-search .input-group-append:last-child > .btn[name="search"] {
-	border-bottom-left-radius: $btn-border-radius;
-	border-top-left-radius: $btn-border-radius;
-}
 
-#col2 .box-search .input-group .form-control:first-child,
-#col3 .box-search .input-group .form-control:first-child {
-	border-bottom-right-radius: $btn-border-radius;
-	border-top-right-radius: $btn-border-radius;
-}
 
 // Modules with nobox=y should have same whitespace below as cards do.
 #col2 .module,
