@@ -18,7 +18,8 @@
 			{preference name=comments_vote}
 			{preference name=comments_archive}
 			{preference name=comments_allow_correction}
-			{preference name=comments_akismet_filter}
+			{preference name=comments_akismet_filter}<!-- add this -->
+			{preference name=tracker_show_comments_below}
 			<div class="adminoptionboxchild" id="comments_akismet_filter_childcontainer">
 				{preference name=comments_akismet_apikey}
 				{preference name=comments_akismet_check_users}
