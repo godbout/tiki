@@ -397,19 +397,45 @@ class TikiDb_Table
 		}
 	}
 
+	/**
+	 * String comparison using a formula.
+
+	 * @param $value string A pattern where % represents zero, one, or multiple characters and _ represents a single character.
+	 *				eg. ['a%'] matches anything that starts with an 'a'.
+	 *
+	 * @return TikiDb_Expr
+	 */
 	function like($value)
 	{
 		return $this->expr('$$ LIKE ?', [$value]);
 	}
 
+	/**
+	 * Negative string comparision. See like()
+	 * @param $value string
+	 *
+	 * @return TikiDb_Expr
+	 */
 	function unlike($value)
 	{
 		return $this->expr('$$ NOT LIKE ?', [$value]);
 	}
 
 	/**
+	 * Search for a substring. (a common LIKE statement)
+	 * @param $value string Containing a string to search for.
+	 *
+	 * @return TikiDb_Expr
+	 */
+
+	function contains($value)
+	{
+		$value = '%' . $value . '%';
+		return $this->expr('$$ LIKE ?', [$value]);
+	}
+	/**
 	 * binary safe compare
-	 * @param $value
+	 * @param $value string
 	 *
 	 * @return TikiDb_Expr
 	 */
