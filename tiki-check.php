@@ -2080,6 +2080,25 @@ try {
 		'message' => $ocrMessage,
 	];
 
+	// check if scheduler is set up properly.
+	$scheduleDb = $ocr->table('tiki_scheduler');
+	$conditions['status'] = 'active';
+	$conditions['params'] = $scheduleDb->contains('ocr:all');
+	if ($scheduleDb->fetchBool($conditions))
+	{
+		$ocrToDisplay[] = [
+			'name'    => tr('Scheduler'),
+			'status'  => 'good',
+			'message' => tr('Scheduler has been successfully setup.'),
+		];
+	}else{
+		$ocrToDisplay[] = [
+			'name'    => tr('Scheduler'),
+			'status'  => 'ugly',
+			'message' => tr('Scheduler needs to have a console command of "ocr:all" set.'),
+		];
+	}
+
 	$smarty->assign('ocr', $ocrToDisplay);
 }
 // Security Checks
