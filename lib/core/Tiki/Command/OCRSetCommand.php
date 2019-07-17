@@ -14,6 +14,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use TikiFilter;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
+use Symfony\Component\Console\Question\ConfirmationQuestion;
 
 class OCRSetCommand extends Command
 {
@@ -54,7 +55,12 @@ class OCRSetCommand extends Command
 				'refrained',
 				'r',
 				InputOption::VALUE_NONE,
-				'Filter only files not marked for OCR processing to be updated');
+				'Filter only files not marked for OCR processing to be updated')
+			->addOption(
+				'no-confirm',
+				'c',
+				InputOption::VALUE_NONE,
+				'Prompts to confirm updating files will be skipped. Useful for automated tasks.');
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output)
@@ -92,8 +98,12 @@ class OCRSetCommand extends Command
 
 		if ($task[0] === 'q'){
 			$state['ocr_state'] = $ocrLib::OCR_STATUS_PENDING;
+			$stateCount['ocr_state'] = $update->not($ocrLib::OCR_STATUS_PENDING);
+			$task = 'queue';
 		}elseif ($task[0] === 's'){
 			$state['ocr_state'] = $ocrLib::OCR_STATUS_SKIP;
+			$stateCount['ocr_state'] = $update->not($ocrLib::OCR_STATUS_SKIP);
+			$task = 'skip';
 		}else{
 			$output->writeln('<error>Must specify a valid option. Use Q to Queue files or S to Skip Files.</error>');
 			return;
@@ -108,6 +118,15 @@ class OCRSetCommand extends Command
 			$conditions['fileId'] = $range[0];
 		}
 
+		$fileCount = $update->fetchCount($conditions + $stateCount);
+		$helper = $this->getHelper('question');
+		if ($fileCount > 1 && !$input->getOption('no-confirm')) {
+			$question = new ConfirmationQuestion("Set OCR status of $fileCount files to '$task'? (y or n) ", false);
+
+			if (! $helper->ask($input, $output, $question)) {
+				return;
+			}
+		}
 		$updated = $update->updateMultiple($state,$conditions);
 		$numrows = $updated->numrows;
 		if (!$updated->numrows){
