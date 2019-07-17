@@ -119,8 +119,11 @@ $usedTypes = $filegallib->getFiletype();
 $missingHandlers = [];
 $vnd_ms_files_exist = false;
 
+// check if files can be indexed, or if they will be indexed via an OCR process
+$ocr = Tikilib::lib('ocr');
+$ocr->setMimeTypes();
 foreach ($usedTypes as $type) {
-	if (! $filegallib->get_parse_app($type, true)) {
+	if (! $filegallib->get_parse_app($type, true) && !in_array($type, $ocr->ocrMime)) {
 		$missingHandlers[] = $type;
 		if (strpos($type, '/vnd.ms-') !== false) {
 			$vnd_ms_files_exist = true;

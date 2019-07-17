@@ -57,6 +57,10 @@ class ocrLib extends TikiLib
 
 	public function setMimeTypes(){
 		global $prefs;
+		if (empty($prefs['ocr_enable']) || $prefs['ocr_enable'] === 'n')
+		{
+			return [];
+		}
 		$this->ocrMime = self::OCR_MIME_NATIVE;
 		if (is_callable('imagepng')){
 			$this->ocrMime = array_merge(self::OCR_MIME_CONVERT,$this->ocrMime);
