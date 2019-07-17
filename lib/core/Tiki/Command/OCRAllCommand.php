@@ -41,7 +41,7 @@ class OCRAllCommand extends Command
 		//Retrieve the number of files marked as waiting to be processed.
 		$db = $ocrLib->table('tiki_files');
 		$queueCount = $db->fetchCount(
-			['ocr_state' => $db->between([$ocrLib::OCR_STATUS_PENDING,$ocrLib::OCR_STATUS_STALLED])]
+			['ocr_state' => $ocrLib::OCR_STATUS_PENDING]
 		);
 
 		$progress = new ProgressBar($output, $queueCount + 1);

@@ -225,13 +225,29 @@ class ocrLib extends TikiLib
 	}
 
 	/**
+	 * Change stalled flags back to pending.
+	 *
+	 * @return int Number of files changed from stalled to pending.
+	 */
+
+	public function releaseAllStalled(): int
+	{
+		$changes = $this->table('tiki_files')->updateMultiple(
+			['ocr_state' => self::OCR_STATUS_PENDING],
+			['ocr_state' => self::OCR_STATUS_STALLED]
+		);
+
+		return $changes->numrows;
+	}
+
+	/**
 	 * Set $nextOCRFile with the fileId of the next file scheduled to be processed by the OCR engine.
 	 */
 
 	public function setNextOCRFile(){
 
 		$db = $this->table('tiki_files');
-		$conditions = ['ocr_state' => $db->between([self::OCR_STATUS_PENDING,self::OCR_STATUS_STALLED])];
+		$conditions = ['ocr_state' => self::OCR_STATUS_PENDING];
 		if ($this->nextOCRFile){											// we always take a greater file id to avoid infinite loops
 			$conditions['fileId'] = $db->GreaterThan($this->nextOCRFile);
 		}

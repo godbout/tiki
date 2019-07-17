@@ -326,6 +326,15 @@
 								name="filegalredosearch"
 								value="{tr}Reindex all files for search{/tr}"
 							>
+							{if $prefs.ocr_enable === 'y'}
+								<input
+										type="submit"
+										{if !$ocrStalled}disabled{/if}
+										class="btn btn-primary btn-sm"
+										name="ocrstalledreset"
+										value="{tr}Reset {if $ocrStalled}{$ocrStalled} {/if}OCR 'stalled' files{/tr}"
+								>
+							{/if}
 						</div>
 					</div>
 				</div>
