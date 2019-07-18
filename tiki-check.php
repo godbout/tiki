@@ -675,23 +675,23 @@ if ($php_properties['session.save_handler']['setting'] == 'files') {
 
 $s = ini_get('session.gc_probability');
 $php_properties['session.gc_probability'] = array(
-	'fitness' => tr('info'),
+	'fitness' => tra('info'),
 	'setting' => $s,
-	'message' => tr('In conjunction with gc_divisor is used to manage probability that the gc (garbage collection) routine is started.')
+	'message' => tra('In conjunction with gc_divisor is used to manage probability that the gc (garbage collection) routine is started.')
 );
 
 $s = ini_get('session.gc_divisor');
 $php_properties['session.gc_divisor'] = array(
-	'fitness' => tr('info'),
+	'fitness' => tra('info'),
 	'setting' => $s,
-	'message' => tr('Coupled with session.gc_probability defines the probability that the gc (garbage collection) process is started on every session initialization. The probability is calculated by using gc_probability/gc_divisor, e.g. 1/100 means there is a 1% chance that the GC process starts on each request.')
+	'message' => tra('Coupled with session.gc_probability defines the probability that the gc (garbage collection) process is started on every session initialization. The probability is calculated by using gc_probability/gc_divisor, e.g. 1/100 means there is a 1% chance that the GC process starts on each request.')
 );
 
 $s = ini_get('session.gc_maxlifetime');
 $php_properties['session.gc_maxlifetime'] = array(
-	'fitness' => tr('info'),
+	'fitness' => tra('info'),
 	'setting' => $s . 's',
-	'message' => tr('Specifies the number of seconds after which data will be seen as \'garbage\' and potentially cleaned up. Garbage collection may occur during session start.')
+	'message' => tra('Specifies the number of seconds after which data will be seen as \'garbage\' and potentially cleaned up. Garbage collection may occur during session start.')
 );
 
 // test session work
@@ -1454,7 +1454,7 @@ if ($connection || ! $standalone) {
 		$mysql_properties['utf8mb4'] = array(
 			'fitness' => tra('good'),
 			'setting' => 'available',
-			'message' => tr('Your database supports the utf8mb4 character set required in Tiki19 and above.')
+			'message' => tra('Your database supports the utf8mb4 character set required in Tiki19 and above.')
 		);
 	} else {
 		$mysql_properties['utf8mb4'] = array(
@@ -1839,23 +1839,23 @@ if (! $standalone) {
 			'name' => 'media-alchemyst/media-alchemyst',
 			'preferences' => array(
 				'alchemy_ffmpeg_path' => array(
-					'name' => tr('ffmpeg path'),
+					'name' => tra('ffmpeg path'),
 					'type' => 'path'
 				),
 				'alchemy_ffprobe_path' => array(
-					'name' => tr('ffprobe path'),
+					'name' => tra('ffprobe path'),
 					'type' => 'path'
 				),
 				'alchemy_unoconv_path' => array(
-					'name' => tr('unoconv path'),
+					'name' => tra('unoconv path'),
 					'type' => 'path'
 				),
 				'alchemy_gs_path' => array(
-					'name' => tr('ghostscript path'),
+					'name' => tra('ghostscript path'),
 					'type' => 'path'
 				),
 				'alchemy_imagine_driver' => array(
-					'name' => tr('Alchemy Image library'),
+					'name' => tra('Alchemy Image library'),
 					'type' => 'classOptions',
 					'options' => array(
 						'imagick' => array(
@@ -1878,7 +1878,7 @@ if (! $standalone) {
 			'name' => 'php-unoconv/php-unoconv',
 			'preferences' => array(
 				'alchemy_unoconv_path' => array(
-					'name' => tr('unoconv path'),
+					'name' => tra('unoconv path'),
 					'type' => 'path'
 				)
 			)
@@ -1893,14 +1893,14 @@ if (! $standalone) {
 			$packageInfo = array(
 				'name' => $installedPackage['name'],
 				'version' => $installedPackage['installed'],
-				'status' => count($warnings) > 0 ? tr('ugly') : tr('good'),
+				'status' => count($warnings) > 0 ? tra('ugly') : tra('good'),
 				'message' => $warnings
 			);
 		} else {
 			$packageInfo = array(
 				'name' => $installedPackage['name'],
 				'version' => $installedPackage['installed'],
-				'status' => tr('good'),
+				'status' => tra('good'),
 				'message' => array()
 			);
 		}
@@ -1923,23 +1923,23 @@ if (! $standalone) {
 	}
 
 	if (! $ocrVersion) {
-		$ocrVersion = tr('Not Installed');
-		$ocrMessage = tr(
+		$ocrVersion = tra('Not Installed');
+		$ocrMessage = tra(
 			'Tesseract PHP package could not be found. Try installing through Packages.'
 		);
 		$ocrStatus = 'ugly';
 	} elseif (version_compare($ocrVersion, $TesseractVersion, '>=')) {
-		$ocrMessage = tr('Tesseract PHP dependency installed.');
+		$ocrMessage = tra('Tesseract PHP dependency installed.');
 		$ocrStatus = 'good';
 	} else {
-		$ocrMessage = tr(
+		$ocrMessage = tra(
 			'The installed Tesseract version is lower than the required version.'
 		);
 		$ocrStatus = 'ugly';
 	}
 
 	$ocrToDisplay = [[
-						 'name'    => tr('Tesseract package'),
+						 'name'    => tra('Tesseract package'),
 						 'version' => $ocrVersion,
 						 'status'  => $ocrStatus,
 						 'message' => $ocrMessage,
@@ -1953,17 +1953,17 @@ if (! $standalone) {
 	$langCount = count($ocr->getTesseractLangs());
 
 	if ($langCount >= 63) {
-		$ocrMessage = tr('All languages installed');
+		$ocrMessage = tra('All languages installed');
 		$ocrStatus = 'good';
 	} else {
-		$ocrMessage = tr(
+		$ocrMessage = tra(
 			'Not all languages installed. You may need to install additional languages for multilingual support'
 		);
 		$ocrStatus = 'ugly';
 	}
 
 	$ocrToDisplay[] = [
-		'name'    => tr('Tesseract languages'),
+		'name'    => tra('Tesseract languages'),
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
 	];
@@ -1975,25 +1975,25 @@ if (! $standalone) {
 	}
 
 	if (! $ocrVersion) {
-		$ocrVersion = tr('Not Found');
-		$ocrMessage = tr(
+		$ocrVersion = tra('Not Found');
+		$ocrMessage = tra(
 			'Tesseract could not be found. '
 		);
 		$ocrStatus = 'ugly';
 	} elseif ($ocr->checkTesseractVersion()) {
-		$ocrMessage = tr(
+		$ocrMessage = tra(
 			'Tesseract meets or exceeds the version requirements.'
 		);
 		$ocrStatus = 'good';
 	} else {
-		$ocrMessage = tr(
+		$ocrMessage = tra(
 			'The installed Tesseract version is lower than the required version.'
 		);
 		$ocrStatus = 'ugly';
 	}
 
 	$ocrToDisplay[] = [
-		'name'    => tr('Tesseract binary'),
+		'name'    => tra('Tesseract binary'),
 		'version' => $ocrVersion,
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
@@ -2001,28 +2001,28 @@ if (! $standalone) {
 try {
 	if (empty($prefs['ocr_tesseract_path']) || $prefs['ocr_tesseract_path'] === 'tesseract') {
 		$ocrStatus = 'ugly';
-		$ocrMessage = tr('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
+		$ocrMessage = tra('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
 	} elseif ($prefs['ocr_tesseract_path'] === $ocr->whereIsExecutable('tesseract')) {
 		$ocrStatus = 'good';
-		$ocrMessage = tr('Path setup correctly');
+		$ocrMessage = tra('Path setup correctly');
 	} else {
 		$ocrStatus = 'info';
-		$ocrMessage = tr('Your path may not be configured correctly. It appears to be located at ') . $ocr->whereIsExecutable(
+		$ocrMessage = tra('Your path may not be configured correctly. It appears to be located at ') . $ocr->whereIsExecutable(
 				'tesseract'
 			);
 	}
 }catch (Exception $e) {
 	if (empty($prefs['ocr_tesseract_path']) || $prefs['ocr_tesseract_path'] === 'tesseract') {
 		$ocrStatus = 'ugly';
-		$ocrMessage = tr('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
+		$ocrMessage = tra('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
 	} else {
 		$ocrStatus = 'info';
-		$ocrMessage = tr('Your path is configured, but we were unable to tell if it was configured properly or not.');
+		$ocrMessage = tra('Your path is configured, but we were unable to tell if it was configured properly or not.');
 	}
 }
 
 	$ocrToDisplay[] = [
-		'name'    => tr('Tesseract path'),
+		'name'    => tra('Tesseract path'),
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
 	];
@@ -2039,14 +2039,14 @@ try {
 
 	if ($pdfimages->version){
 		$ocrStatus = 'good';
-		$ocrMessage = tr('It appears that pdfimages is installed on your system.');
+		$ocrMessage = tra('It appears that pdfimages is installed on your system.');
 	}else{
 		$ocrStatus = 'ugly';
-		$ocrMessage = tr('Could not find pdfimages');
+		$ocrMessage = tra('Could not find pdfimages');
 	}
 
 	$ocrToDisplay[] = [
-		'name'    => tr('Pdfimages binary'),
+		'name'    => tra('Pdfimages binary'),
 		'version' => $pdfimages->version,
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
@@ -2055,27 +2055,27 @@ try {
 	try {
 		if (empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages') {
 			$ocrStatus = 'ugly';
-			$ocrMessage = tr('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
+			$ocrMessage = tra('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
 		} elseif ($prefs['ocr_pdfimages_path'] === $ocr->whereIsExecutable('pdfimages')) {
 			$ocrStatus = 'good';
-			$ocrMessage = tr('Path setup correctly');
+			$ocrMessage = tra('Path setup correctly');
 		} else {
 			$ocrStatus = 'info';
-			$ocrMessage = tr('Your path may not be configured correctly. It appears to be located at ') .
+			$ocrMessage = tra('Your path may not be configured correctly. It appears to be located at ') .
 				$ocr->whereIsExecutable('pdfimages');
 		}
 	}catch (Exception $e)
 	{
 		if (empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages') {
 			$ocrStatus = 'ugly';
-			$ocrMessage = tr('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
+			$ocrMessage = tra('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
 		}
 		$ocrStatus = 'info';
-		$ocrMessage = tr('Your path is configured, but we were unable to tell if it was configured properly or not.');
+		$ocrMessage = tra('Your path is configured, but we were unable to tell if it was configured properly or not.');
 	}
 
 	$ocrToDisplay[] = [
-		'name'    => tr('Pdfimages path'),
+		'name'    => tra('Pdfimages path'),
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
 	];
@@ -2087,15 +2087,15 @@ try {
 	if ($scheduleDb->fetchBool($conditions))
 	{
 		$ocrToDisplay[] = [
-			'name'    => tr('Scheduler'),
+			'name'    => tra('Scheduler'),
 			'status'  => 'good',
-			'message' => tr('Scheduler has been successfully setup.'),
+			'message' => tra('Scheduler has been successfully setup.'),
 		];
 	}else{
 		$ocrToDisplay[] = [
-			'name'    => tr('Scheduler'),
+			'name'    => tra('Scheduler'),
 			'status'  => 'ugly',
-			'message' => tr('Scheduler needs to have a console command of "ocr:all" set.'),
+			'message' => tra('Scheduler needs to have a console command of "ocr:all" set.'),
 		];
 	}
 
@@ -2881,22 +2881,22 @@ function checkPreferences(array $preferences)
 	foreach ($preferences as $prefKey => $pref) {
 		if ($pref['type'] == 'path') {
 			if (isset($prefs[$prefKey]) && ! file_exists($prefs[$prefKey])) {
-				$warnings[] = tr("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $pref['name']);
+				$warnings[] = tra("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $pref['name']);
 			}
 		} elseif($pref['type'] == 'classOptions') {
 			if (isset($prefs[$prefKey])) {
 				$options = $pref['options'][$prefs[$prefKey]];
 
 				if (! empty($options['classLib']) && ! class_exists($options['classLib'])) {
-					$warnings[] = tr("The lib '%0' on preference '%1', option '%2' does not exist", $options['classLib'], $pref['name'], $options['name']);
+					$warnings[] = tra("The lib '%0' on preference '%1', option '%2' does not exist", $options['classLib'], $pref['name'], $options['name']);
 				}
 
 				if (! empty($options['className']) && ! class_exists($options['className'])) {
-					$warnings[] = tr("The class '%0' needed for preference '%1', with option '%2' selected, does not exist", $options['className'], $pref['name'], $options['name']);
+					$warnings[] = tra("The class '%0' needed for preference '%1', with option '%2' selected, does not exist", $options['className'], $pref['name'], $options['name']);
 				}
 
 				if (! empty($options['extension']) && ! extension_loaded($options['extension'])) {
-					$warnings[] = tr("The extension '%0' on preference '%1', with option '%2' selected, is not loaded", $options['extension'], $pref['name'], $options['name']);
+					$warnings[] = tra("The extension '%0' on preference '%1', with option '%2' selected, is not loaded", $options['extension'], $pref['name'], $options['name']);
 				}
 			}
 		}
