@@ -25,8 +25,8 @@ Example wiki page "chart tpl" contents for the form:
  *}
 
 {if not empty($facets)}
-{*	<pre style="display: none;" class="facets-data">{$facets|var_dump}</pre>*}
-{*	<pre style="display: none;" class="charts-data">{$chart|var_dump}</pre>*}
+	<pre style="display: none;" class="facets-data">{$facets|var_dump}</pre>
+	<pre style="display: none;" class="charts-data">{$chart|var_dump}</pre>
 
 	{if empty($container)}
 		{$containerClass = 'row'}
@@ -90,7 +90,7 @@ Example wiki page "chart tpl" contents for the form:
 					{$options = ['responsive' => true, 'maintainAspectRatio' => false]}{* some handy defaults (not working as expected) *}
 					{$data.options = $options}
 
-{*					<pre style="display: none;" class="data-options">{$data|var_dump}</pre>*}
+					<pre style="display: none;" class="data-options">{$data|var_dump}</pre>
 
 					{wikiplugin _name='chartjs' type=$chart[$i].type id=$chart[$i].id width=$chart[$i].size[0] height=$chart[$i].size[1] debug=1}
 						{$data|json_encode}
