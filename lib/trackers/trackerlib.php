@@ -452,8 +452,8 @@ class TrackerLib extends TikiLib
 
 	function get_all_item_id($trackerId, $fieldId, $value)
 	{
-		$query = "select distinct ttif.`itemId` from `tiki_tracker_items` tti, `tiki_tracker_fields` ttf, `tiki_tracker_item_fields` ttif ";
-		$query .= " where tti.`trackerId`=ttf.`trackerId` and ttif.`fieldId`=ttf.`fieldId` and ttf.`trackerId`=? and ttf.`fieldId`=? ";
+		$query = "select distinct ttif.`itemId` from `tiki_tracker_items` tti, `tiki_tracker_item_fields` ttif ";
+		$query .= " where tti.`itemId`=ttif.`itemId` and tti.`trackerId`=? and ttif.`fieldId`=? ";
 		$value = "%$value%";
 		$query .= " and ttif.`value` LIKE ?";
 
