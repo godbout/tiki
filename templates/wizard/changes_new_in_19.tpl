@@ -62,6 +62,14 @@
 			{preference name=wikiplugin_trackercalendar}
 		</fieldset>
 		<fieldset class="table clearfix featurelist">
+			<legend>{tr}Other New Features{/tr}</legend>
+			{preference name=jquery_smartmenus_enable}
+			{preference name=jquery_smartmenus_mode}
+			{preference name=jquery_ui_modals_draggable}
+			{preference name=jquery_ui_modals_resizable}
+			{preference name=tiki_prefix_css}
+		</fieldset>
+		<fieldset class="table clearfix featurelist">
 			<legend>{tr}Other Extended Features{/tr}</legend>
 			<div class="adminoption form-group row">
 				<label class="col-sm-3 col-form-label"><b>{tr}Scheduler{/tr}</b>:</label>
