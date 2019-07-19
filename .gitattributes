@@ -1294,6 +1294,7 @@ img/overlay-light.png -text
 img/poweredby/php.png -text svneol=unset#image/png
 img/poweredby/smarty.png -text svneol=unset#image/png
 img/profiles/index.php -text
+img/profiles/profile_thumb_activity_stream.png -text
 img/profiles/profile_thumb_barter_market.png -text
 img/profiles/profile_thumb_bug_tracker.png -text
 img/profiles/profile_thumb_cartograf.png -text
@@ -1319,6 +1320,7 @@ img/profiles/profile_thumb_r_demo.png -text
 img/profiles/profile_thumb_r_heatmaps.png -text
 img/profiles/profile_thumb_random_header_images.png -text
 img/profiles/profile_thumb_revision_approval_iso9001.png -text
+img/profiles/profile_thumb_scheduler_presets_20.png -text
 img/profiles/profile_thumb_shopping_cart.png -text
 img/profiles/profile_thumb_slideshow_demo.png -text
 img/profiles/profile_thumb_small_org_web_presence.png -text
