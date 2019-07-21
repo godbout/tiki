@@ -36,6 +36,11 @@
 			{preference name=wikiplugin_map}
 		</fieldset>
 		<fieldset class="table clearfix featurelist">
+			<legend>{tr}Other New Features{/tr}</legend>
+			{preference name=jquery_jqdoublescroll}
+			{preference name=profile_autoapprove_wikiplugins}
+		</fieldset>
+		<fieldset class="table clearfix featurelist">
 			<legend>{tr}Other Extended Features{/tr}</legend>
 			<div class="adminoption form-group row">
 				<label class="col-sm-3 col-form-label"><b>{tr}Console{/tr}</b>:</label>
