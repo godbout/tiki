@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05eab47b1ead9a94f73363d00c6b7578",
+    "content-hash": "2fbbaf7a12692a61b0e140445fbfec50",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -5766,6 +5766,16 @@
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/vimeo/froogaloop/vimeo-froogaloop-1.0.zip",
                 "shasum": "4cf4e5ca02b2a79c58f02b08c50164ecb8164bef"
+            },
+            "type": "library"
+        },
+        {
+            "name": "walkermatt/ol-layerswitcher",
+            "version": "3.3.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/walkermatt/ol-layerswitcher/walkermatt-ol-layerswitcher-3.3.0.zip",
+                "shasum": "48f4b1e1d9075f3babedbd76962efdbb9ad7d2f1"
             },
             "type": "library"
         },
