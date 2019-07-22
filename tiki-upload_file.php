@@ -83,12 +83,12 @@ if (! empty($_REQUEST['fileId'])) {
 			$langLib = TikiLib::lib('language');
 
 			if (! empty($selectedLangs)) {
-				$smarty->assign(selectedLanguages, $langLib->findLanguageNames($selectedLangs));
+				$smarty->assign('selectedLanguages', $langLib->findLanguageNames($selectedLangs));
 			}
-			$smarty->assign(languages, $langLib->findLanguageNames($langs));
+			$smarty->assign('languages', $langLib->findLanguageNames($langs));
 		}
 		if ($fileInfo['ocr_state'])
-			$smarty->assign(ocr_state, true);
+			$smarty->assign('ocr_state', true);
 	}
 }
 
