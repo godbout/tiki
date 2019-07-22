@@ -1533,7 +1533,7 @@ if ($prefs['feature_multilingual'] === 'y') {
 			die;
 		}
 	}
-
+	$histlib = TikiLib::lib('hist');
 	if ($editlib->isTranslationMode()) {
 		histlib_helper_setup_diff(
 			$editlib->sourcePageName,
