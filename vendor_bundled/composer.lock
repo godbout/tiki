@@ -320,17 +320,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.11.4",
+            "version": "4.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor-releases.git",
-                "reference": "b42e90185ed50054d3f4bd1b60446f21256ef1b1"
+                "reference": "b1a25e93ae0b038f45dcba458f4c2c18bd7318e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-b42e90185ed50054d3f4bd1b60446f21256ef1b1-zip-7abc1a.zip",
-                "reference": "b42e90185ed50054d3f4bd1b60446f21256ef1b1",
-                "shasum": "21ad539916aa6b4e91b9dc44120a5424a268e294"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-b1a25e93ae0b038f45dcba458f4c2c18bd7318e5-zip-5a7537.zip",
+                "reference": "b1a25e93ae0b038f45dcba458f4c2c18bd7318e5",
+                "shasum": "e42555bf364ae3192fd003c58ce9216c6d6dc525"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -357,7 +357,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2019-04-09T14:01:57+00:00"
+            "time": "2019-06-28T10:41:23+00:00"
         },
         {
             "name": "codeitnowin/barcode",
@@ -1839,13 +1839,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jasonmunro/cypht.git",
-                "reference": "c39ccc30939409bad5b1ce8c424041ce191c80a7"
+                "reference": "eee77c03c289422f9ee806466ccff0f1199efcaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-c39ccc30939409bad5b1ce8c424041ce191c80a7-zip-896528.zip",
-                "reference": "c39ccc30939409bad5b1ce8c424041ce191c80a7",
-                "shasum": "3548fb8931ccce92c9203d17bbb88052822deeb0"
+                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-eee77c03c289422f9ee806466ccff0f1199efcaf-zip-88730a.zip",
+                "reference": "eee77c03c289422f9ee806466ccff0f1199efcaf",
+                "shasum": "063a3b8a2e03888ecbbe51b39c02797bac0f8897"
             },
             "require": {
                 "christian-riesen/base32": "1.3.2",
@@ -1876,9 +1876,9 @@
             "authors": [
                 {
                     "name": "Jason Munro",
+                    "role": "Project author and admin",
                     "email": "jason@cypht.org",
-                    "homepage": "http://jasonmunro.net",
-                    "role": "Project author and admin"
+                    "homepage": "http://jasonmunro.net"
                 }
             ],
             "description": "Lightweight Open Source webmail written in PHP and JavaScript",
@@ -1896,7 +1896,7 @@
                 "webmail",
                 "webmail-client"
             ],
-            "time": "2019-06-05T20:42:47+00:00"
+            "time": "2019-07-19T20:04:21+00:00"
         },
         {
             "name": "jcbrand/converse.js",
@@ -3938,17 +3938,17 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.20",
+            "version": "2.0.21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "d6819a55b05e123db1e881d8b230d57f912126be"
+                "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-d6819a55b05e123db1e881d8b230d57f912126be-zip-44307e.zip",
-                "reference": "d6819a55b05e123db1e881d8b230d57f912126be",
-                "shasum": "36d97e922c2545ffe99337ab90e6526860473b47"
+                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-9f1287e68b3f283339a9f98f67515dd619e5bf9d-zip-24eba7.zip",
+                "reference": "9f1287e68b3f283339a9f98f67515dd619e5bf9d",
+                "shasum": "9dafa69ec7e42a6956071cd359d6d9c9332be26a"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -4026,7 +4026,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2019-06-23T16:33:11+00:00"
+            "time": "2019-07-12T12:53:49+00:00"
         },
         {
             "name": "player/flv",
@@ -4332,13 +4332,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/robicch/jQueryGantt.git",
-                "reference": "03900eed8eda57a3a8611c912611e3d63b2ba487"
+                "reference": "786f863070e5277541d2cd3b32343d94d803a98b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/robicch/jquery-gantt/robicch-jquery-gantt-03900eed8eda57a3a8611c912611e3d63b2ba487-zip-9a90dc.zip",
-                "reference": "03900eed8eda57a3a8611c912611e3d63b2ba487",
-                "shasum": "7a0696093e2a11dfdd1cf94add39fe954ed24539"
+                "url": "https://composer.tiki.org/dist/robicch/jquery-gantt/robicch-jquery-gantt-786f863070e5277541d2cd3b32343d94d803a98b-zip-285f30.zip",
+                "reference": "786f863070e5277541d2cd3b32343d94d803a98b",
+                "shasum": "544c290bde76ff78e512edfbed53216cb999b856"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -4351,7 +4351,7 @@
                 "gantt",
                 "jquery"
             ],
-            "time": "2018-12-03T10:00:19+00:00"
+            "time": "2019-07-16T05:50:55+00:00"
         },
         {
             "name": "robloach/component-installer",
@@ -7669,8 +7669,8 @@
             "authors": [
                 {
                     "name": "Frank Kleine",
-                    "homepage": "http://frankkleine.de/",
-                    "role": "Developer"
+                    "role": "Developer",
+                    "homepage": "http://frankkleine.de/"
                 }
             ],
             "description": "Virtual file system to mock the real file system in unit tests.",
@@ -8314,8 +8314,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "email": "sebastian@phpunit.de",
-                    "role": "lead"
+                    "role": "lead",
+                    "email": "sebastian@phpunit.de"
                 }
             ],
             "description": "The PHP Unit Testing framework.",
@@ -9156,13 +9156,13 @@
                 },
                 {
                     "name": "Wim Godden",
-                    "homepage": "https://github.com/wimg",
-                    "role": "lead"
+                    "role": "lead",
+                    "homepage": "https://github.com/wimg"
                 },
                 {
                     "name": "Juliette Reinders Folmer",
-                    "homepage": "https://github.com/jrfnl",
-                    "role": "lead"
+                    "role": "lead",
+                    "homepage": "https://github.com/jrfnl"
                 }
             ],
             "description": "A set of sniffs for PHP_CodeSniffer that checks for PHP cross-version compatibility.",
