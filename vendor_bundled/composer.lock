@@ -263,9 +263,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/80ff0e3b2124e61b4b39e2535709452f70bff367",
+                "url": "https://composer.tiki.org/dist/christian-riesen/base32/christian-riesen-base32-80ff0e3b2124e61b4b39e2535709452f70bff367-zip-e5a0fa.zip",
                 "reference": "80ff0e3b2124e61b4b39e2535709452f70bff367",
-                "shasum": ""
+                "shasum": "8de7dd26000d192b69df16d372dff128233a2d2e"
             },
             "require": {
                 "php": ">=5.3"
@@ -369,9 +369,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeitnowin/barcode-generator/zipball/6325a15ae904ec401b947e1a3e868de1c2cc80b0",
+                "url": "https://composer.tiki.org/dist/codeitnowin/barcode/codeitnowin-barcode-6325a15ae904ec401b947e1a3e868de1c2cc80b0-zip-e0db04.zip",
                 "reference": "6325a15ae904ec401b947e1a3e868de1c2cc80b0",
-                "shasum": ""
+                "shasum": "16a1122e60a2f296c6cdb66113fa1ba9e1953095"
             },
             "require": {
                 "ext-gd": "*",
@@ -662,9 +662,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
+                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": ""
+                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
             },
             "type": "component",
             "extra": {
@@ -907,9 +907,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/defuse/php-encryption/zipball/0f407c43b953d571421e0020ba92082ed5fb7620",
+                "url": "https://composer.tiki.org/dist/defuse/php-encryption/defuse-php-encryption-0f407c43b953d571421e0020ba92082ed5fb7620-zip-2377aa.zip",
                 "reference": "0f407c43b953d571421e0020ba92082ed5fb7620",
-                "shasum": ""
+                "shasum": "208c96315d3634e11972dc18fd15451bf3fbf47a"
             },
             "require": {
                 "ext-openssl": "*",
@@ -1060,9 +1060,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/c26a2ee4bf8ba0270daab7da0353f2525ca6564a",
+                "url": "https://composer.tiki.org/dist/erusev/parsedown/erusev-parsedown-c26a2ee4bf8ba0270daab7da0353f2525ca6564a-zip-4cfea3.zip",
                 "reference": "c26a2ee4bf8ba0270daab7da0353f2525ca6564a",
-                "shasum": ""
+                "shasum": "fbe743fad21a4cb720f6909f8815ae8830667b32"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -1125,7 +1125,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Ungur",
+                    "name": "Osman Üngür",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1258,9 +1258,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gidkom/php-openfire-restapi/zipball/8731fac0e18f1d6ec930c8d6c0337a7212a9cf27",
+                "url": "https://composer.tiki.org/dist/gidkom/php-openfire-restapi/gidkom-php-openfire-restapi-8731fac0e18f1d6ec930c8d6c0337a7212a9cf27-zip-f81069.zip",
                 "reference": "8731fac0e18f1d6ec930c8d6c0337a7212a9cf27",
-                "shasum": ""
+                "shasum": "200036231ddc091b73d27a4da5660027c9810a29"
             },
             "require": {
                 "ext-curl": "*",
@@ -1603,9 +1603,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": ""
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1720,9 +1720,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mtibben/html2text/zipball/f7555eaf271beea4e1098274d3ff37fbb7b21ea7",
+                "url": "https://composer.tiki.org/dist/html2text/html2text/html2text-html2text-f7555eaf271beea4e1098274d3ff37fbb7b21ea7-zip-651d37.zip",
                 "reference": "f7555eaf271beea4e1098274d3ff37fbb7b21ea7",
-                "shasum": ""
+                "shasum": "262f753cc0ee27a1ab32c508aa6fc9e234891163"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4"
@@ -2256,9 +2256,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
+                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": ""
+                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
             },
             "require": {
                 "php": ">=5.3.1",
@@ -2333,9 +2333,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lcobucci/jwt/zipball/a11ec5f4b4d75d1fcd04e133dede4c317aac9e18",
+                "url": "https://composer.tiki.org/dist/lcobucci/jwt/lcobucci-jwt-a11ec5f4b4d75d1fcd04e133dede4c317aac9e18-zip-e4293b.zip",
                 "reference": "a11ec5f4b4d75d1fcd04e133dede4c317aac9e18",
-                "shasum": ""
+                "shasum": "97b6f4ea54503406fd76a85a66987e70bef741a8"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -2510,9 +2510,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/event/zipball/d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
+                "url": "https://composer.tiki.org/dist/league/event/league-event-d2cc124cf9a3fab2bb4ff963307f60361ce4d119-zip-f1c2c3.zip",
                 "reference": "d2cc124cf9a3fab2bb4ff963307f60361ce4d119",
-                "shasum": ""
+                "shasum": "29f004e2bd0b2dc7fbe91fc7615a5d11ba360fa8"
             },
             "require": {
                 "php": ">=5.4.0"
@@ -2560,9 +2560,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/oauth2-server/zipball/2eb1cf79e59d807d89c256e7ac5e2bf8bdbd4acf",
+                "url": "https://composer.tiki.org/dist/league/oauth2-server/league-oauth2-server-2eb1cf79e59d807d89c256e7ac5e2bf8bdbd4acf-zip-6ca897.zip",
                 "reference": "2eb1cf79e59d807d89c256e7ac5e2bf8bdbd4acf",
-                "shasum": ""
+                "shasum": "67e7ccdcbc6c9e0b6d0039dff6dc074b53c1420c"
             },
             "require": {
                 "defuse/php-encryption": "^2.1",
@@ -2762,15 +2762,15 @@
             "authors": [
                 {
                     "name": "Robert Plummer",
+                    "role": "Assistant Developer",
                     "email": "rplummer@visop-dev.com",
-                    "homepage": "http://visop-dev.com",
-                    "role": "Assistant Developer"
+                    "homepage": "http://visop-dev.com"
                 },
                 {
                     "name": "Jacob Kelley",
+                    "role": "Lead Developer",
                     "email": "jakie8@gmail.com",
-                    "homepage": "http://jakiestfu.com",
-                    "role": "Lead Developer"
+                    "homepage": "http://jakiestfu.com"
                 }
             ],
             "time": "2014-12-15T16:35:34+00:00"
@@ -2889,9 +2889,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fabiomontefuscolo/xmpp/zipball/9df9c05d14ef54b8cbeb9c1bed51ae668b7c1a9a",
+                "url": "https://composer.tiki.org/dist/montefuscolo/xmpp/montefuscolo-xmpp-9df9c05d14ef54b8cbeb9c1bed51ae668b7c1a9a-zip-a7cf14.zip",
                 "reference": "9df9c05d14ef54b8cbeb9c1bed51ae668b7c1a9a",
-                "shasum": ""
+                "shasum": "b4ef5274421d5155abe1d59acbee611842e36387"
             },
             "require": {
                 "php": "^5.6 || ^7.0",
@@ -2927,9 +2927,9 @@
             "authors": [
                 {
                     "name": "Fabian Grutschus",
+                    "role": "developer",
                     "email": "f.grutschus@lubyte.de",
-                    "homepage": "http://www.lubyte.de/",
-                    "role": "developer"
+                    "homepage": "http://www.lubyte.de/"
                 }
             ],
             "description": "Library for XMPP protocol (Jabber) connections",
@@ -3305,8 +3305,9 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
+                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
             },
             "type": "npm-asset",
             "license": [
@@ -3588,18 +3589,18 @@
             "authors": [
                 {
                     "name": "Chuck Hagenbuch",
-                    "email": "chuck@horde.org",
-                    "role": "Lead"
+                    "role": "Lead",
+                    "email": "chuck@horde.org"
                 },
                 {
                     "name": "Aleksander Machniak",
-                    "email": "alec@php.net",
-                    "role": "Lead"
+                    "role": "Lead",
+                    "email": "alec@php.net"
                 },
                 {
                     "name": "Stig Bakken",
-                    "email": "stig@php.net",
-                    "role": "Lead"
+                    "role": "Lead",
+                    "email": "stig@php.net"
                 }
             ],
             "description": "More info available on: http://pear.php.net/package/Net_Socket",
@@ -4363,9 +4364,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
+                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": ""
+                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -4411,9 +4412,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabre-io/dav/zipball/a9780ce4f35560ecbd0af524ad32d9d2c8954b80",
+                "url": "https://composer.tiki.org/dist/sabre/dav/sabre-dav-a9780ce4f35560ecbd0af524ad32d9d2c8954b80-zip-24c9cb.zip",
                 "reference": "a9780ce4f35560ecbd0af524ad32d9d2c8954b80",
-                "shasum": ""
+                "shasum": "b8f6ecfb004a1eff30cf9a06a7286c8853cd674b"
             },
             "require": {
                 "ext-ctype": "*",
@@ -4494,9 +4495,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabre-io/event/zipball/831d586f5a442dceacdcf5e9c4c36a4db99a3534",
+                "url": "https://composer.tiki.org/dist/sabre/event/sabre-event-831d586f5a442dceacdcf5e9c4c36a4db99a3534-zip-ba6061.zip",
                 "reference": "831d586f5a442dceacdcf5e9c4c36a4db99a3534",
-                "shasum": ""
+                "shasum": "ba14cdac43925876f2c1e24d1d93a913a568b46b"
             },
             "require": {
                 "php": ">=5.5"
@@ -4551,9 +4552,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabre-io/http/zipball/acccec4ba863959b2d10c1fa0fb902736c5c8956",
+                "url": "https://composer.tiki.org/dist/sabre/http/sabre-http-acccec4ba863959b2d10c1fa0fb902736c5c8956-zip-d96a4c.zip",
                 "reference": "acccec4ba863959b2d10c1fa0fb902736c5c8956",
-                "shasum": ""
+                "shasum": "975b1ade72070840e440677cd8a541af2d858fac"
             },
             "require": {
                 "ext-ctype": "*",
@@ -4607,9 +4608,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sabre-io/uri/zipball/ada354d83579565949d80b2e15593c2371225e61",
+                "url": "https://composer.tiki.org/dist/sabre/uri/sabre-uri-ada354d83579565949d80b2e15593c2371225e61-zip-0d0436.zip",
                 "reference": "ada354d83579565949d80b2e15593c2371225e61",
-                "shasum": ""
+                "shasum": "ad279b85dc5be5c8b1ba77dc10ccc03faa2fbd06"
             },
             "require": {
                 "php": ">=5.4.7"
@@ -5425,7 +5426,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -5662,9 +5663,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
+                "url": "https://composer.tiki.org/dist/true/punycode/true-punycode-a4d0c11a36dd7f4e7cd7096076cab6d3378a071e-zip-4ceb35.zip",
                 "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
-                "shasum": ""
+                "shasum": "0153b28196219934ea010de766dea03de32a7d89"
             },
             "require": {
                 "php": ">=5.3.0",
@@ -6417,9 +6418,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/zend-ldap/zipball/b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
+                "url": "https://composer.tiki.org/dist/zendframework/zend-ldap/zendframework-zend-ldap-b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49-zip-8cf400.zip",
                 "reference": "b63c7884a08d3a6bda60ebcf7d6238cf8ad89f49",
-                "shasum": ""
+                "shasum": "b1212f5466b9a85267f26e9683a66474a23fc770"
             },
             "require": {
                 "ext-ldap": "*",
