@@ -81,7 +81,7 @@ class Tracker_Item
 			return true;
 		}
 
-		if ($this->canFromSpecialPermissions('Modify')) {
+		if ($this->canFromSpecialPermissions('Modify') || $this->canFromSpecialPermissions('View')) {
 			return true;
 		}
 
@@ -165,6 +165,10 @@ class Tracker_Item
 	{
 		$users = [];
 
+		if ($operation == 'View' && $this->definition->getConfiguration('userCanSeeOwn') == 'y') {
+			$users = array_unique(array_merge($users, $this->owners));
+		}
+
 		if ($this->definition->getConfiguration('writerCan' . $operation, 'n') == 'y') {
 			$users = array_unique(array_merge($users, $this->owners));
 		}
@@ -181,6 +185,10 @@ class Tracker_Item
 		global $user;
 		if (! $this->definition) {
 			return false;
+		}
+
+		if ($operation == 'View' && $this->canSeeOwn()) {
+			return true;
 		}
 
 		if ($this->definition->getConfiguration('writerCan' . $operation, 'n') == 'y' && $user && $this->owners && in_array($user, $this->owners)) {
