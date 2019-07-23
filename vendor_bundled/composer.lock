@@ -263,9 +263,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ChristianRiesen/base32/zipball/80ff0e3b2124e61b4b39e2535709452f70bff367",
+                "url": "https://composer.tiki.org/dist/christian-riesen/base32/christian-riesen-base32-80ff0e3b2124e61b4b39e2535709452f70bff367-zip-e5a0fa.zip",
                 "reference": "80ff0e3b2124e61b4b39e2535709452f70bff367",
-                "shasum": ""
+                "shasum": "8de7dd26000d192b69df16d372dff128233a2d2e"
             },
             "require": {
                 "php": ">=5.3"
@@ -369,9 +369,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/codeitnowin/barcode-generator/zipball/6325a15ae904ec401b947e1a3e868de1c2cc80b0",
+                "url": "https://composer.tiki.org/dist/codeitnowin/barcode/codeitnowin-barcode-6325a15ae904ec401b947e1a3e868de1c2cc80b0-zip-e0db04.zip",
                 "reference": "6325a15ae904ec401b947e1a3e868de1c2cc80b0",
-                "shasum": ""
+                "shasum": "16a1122e60a2f296c6cdb66113fa1ba9e1953095"
             },
             "require": {
                 "ext-gd": "*",
@@ -662,9 +662,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
+                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
+                "shasum": ""
             },
             "type": "component",
             "extra": {
@@ -1060,9 +1060,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/erusev/parsedown/zipball/c26a2ee4bf8ba0270daab7da0353f2525ca6564a",
+                "url": "https://composer.tiki.org/dist/erusev/parsedown/erusev-parsedown-c26a2ee4bf8ba0270daab7da0353f2525ca6564a-zip-4cfea3.zip",
                 "reference": "c26a2ee4bf8ba0270daab7da0353f2525ca6564a",
-                "shasum": ""
+                "shasum": "fbe743fad21a4cb720f6909f8815ae8830667b32"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -1125,7 +1125,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Üngür",
+                    "name": "Osman Ungur",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1603,9 +1603,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
+                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
+                "shasum": ""
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -1720,9 +1720,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mtibben/html2text/zipball/f7555eaf271beea4e1098274d3ff37fbb7b21ea7",
+                "url": "https://composer.tiki.org/dist/html2text/html2text/html2text-html2text-f7555eaf271beea4e1098274d3ff37fbb7b21ea7-zip-651d37.zip",
                 "reference": "f7555eaf271beea4e1098274d3ff37fbb7b21ea7",
-                "shasum": ""
+                "shasum": "262f753cc0ee27a1ab32c508aa6fc9e234891163"
             },
             "require-dev": {
                 "phpunit/phpunit": "~4"
@@ -2254,9 +2254,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.1",
@@ -2925,9 +2925,9 @@
             "authors": [
                 {
                     "name": "Fabian Grutschus",
+                    "role": "developer",
                     "email": "f.grutschus@lubyte.de",
-                    "homepage": "http://www.lubyte.de/",
-                    "role": "developer"
+                    "homepage": "http://www.lubyte.de/"
                 }
             ],
             "description": "Library for XMPP protocol (Jabber) connections",
@@ -3303,9 +3303,8 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
-                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
+                "type": "tar",
+                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -4362,9 +4361,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
+                "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -5424,7 +5423,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -7641,7 +7640,7 @@
             "time": "2019-03-17T17:37:11+00:00"
         },
         {
-            "name": "mikey179/vfsStream",
+            "name": "mikey179/vfsstream",
             "version": "v1.6.6",
             "source": {
                 "type": "git",
@@ -8323,8 +8322,8 @@
             "authors": [
                 {
                     "name": "Sebastian Bergmann",
-                    "role": "lead",
-                    "email": "sebastian@phpunit.de"
+                    "email": "sebastian@phpunit.de",
+                    "role": "lead"
                 }
             ],
             "description": "The PHP Unit Testing framework.",
