@@ -1426,7 +1426,7 @@ if ($connection || ! $standalone) {
 		);
 	}
 
-	// UTF-8 MB4 test (required for Tiki19+
+	// UTF-8 MB4 test (required for Tiki19+)
 	$query = "SELECT COUNT(*) FROM `information_schema`.`character_sets` WHERE `character_set_name` = 'utf8mb4';";
 	$result = query($query, $connection);
 	if (! empty($result[0]['COUNT(*)'])) {
@@ -1444,6 +1444,7 @@ if ($connection || ! $standalone) {
 	}
 
 	// UTF-8 Charset
+	// Tiki communication is done using UTF-8 MB4 (required for Tiki19+)
 	$charset_types = "client connection database results server system";
 	foreach (explode(' ', $charset_types) as $type) {
 		$query = "SHOW VARIABLES LIKE 'character_set_" . $type . "';";
@@ -1462,6 +1463,25 @@ if ($connection || ! $standalone) {
 					'message' => tra('On a fresh install everything should be set to utf8mb4 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
 				);
 			}
+		}
+	}
+	// UTF-8 is correct for character_set_system
+	// Because mysql does not allow any config to change this value, and character_set_system is overwritten by the other character_set_* variables anyway. They may change this default in later versions.
+	$query = "SHOW VARIABLES LIKE 'character_set_system';";
+	$result = query($query, $connection);
+	foreach ($result as $value) {
+		if (substr($value['Value'], 0, 4) == 'utf8') {
+			$mysql_properties[$value['Variable_name']] = array(
+				'fitness' => tra('good'),
+				'setting' => $value['Value'],
+				'message' => tra('Tiki is fully utf8mb4 but some database underlying variables are set to utf8 by the database engine and cannot be modified.')
+			);
+		} else {
+			$mysql_properties[$value['Variable_name']] = array(
+				'fitness' => tra('unsure'),
+				'setting' => $value['Value'],
+				'message' => tra('On a fresh install everything should be set to utf8mb4 or utf8 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
+			);
 		}
 	}
 	// UTF-8 Collation
