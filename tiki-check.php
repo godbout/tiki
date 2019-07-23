@@ -59,12 +59,17 @@ if (file_exists('./db/local.php') && file_exists('./templates/tiki-check.tpl')) 
 
 	/**
 	  * @param $var
+	  * @param $style
 	  */
-	function renderTable($var)
+	function renderTable($var,$style="")
 	{
 		global $render;
+		$morestyle = "";
+		if ($style == "wrap") {
+			$morestyle = "overflow-wrap: anywhere;";
+		}
 		if (is_array($var)) {
-			$render .= '<table style="border:2px solid grey;">';
+			$render .= '<table style="border:2px solid grey;' . $morestyle . '">';
 			foreach ($var as $key => $value) {
 				$render .= '<tr style="border:1px solid">';
 				$render .= '<td style="border:1px black;padding:5px;white-space:nowrap;">';
@@ -1433,7 +1438,7 @@ if ($connection || ! $standalone) {
 		$mysql_properties['utf8mb4'] = array(
 			'fitness' => tra('good'),
 			'setting' => 'available',
-			'message' => tr('Your database supports the utf8mb4 character set required in Tiki19 and above.')
+			'message' => tra('Your database supports the utf8mb4 character set required in Tiki19 and above.')
 		);
 	} else {
 		$mysql_properties['utf8mb4'] = array(
@@ -2569,7 +2574,7 @@ if ($standalone && ! $nagios) {
 	$render .= '<h2>Tiki Security</h2>';
 	renderTable($tiki_security);
 	$render .= '<h2>MySQL Variables</h2>';
-	renderTable($mysql_variables);
+	renderTable($mysql_variables,'wrap');
 
 	$render .= '<h2>File Gallery Search Indexing</h2>';
 	$render .= '<em>More info <a href="https://doc.tiki.org/Search+within+files">here</a></em>
