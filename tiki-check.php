@@ -44,6 +44,11 @@ if (file_exists('./db/local.php') && file_exists('./templates/tiki-check.tpl')) 
 	require_once('tiki-setup.php');
 	// TODO : Proper authentication
 	$access->check_permission('tiki_p_admin');
+
+	// This page is an admin tool usually used in the early stages of setting up Tiki, before layout considerations.
+	// Restricting the width is contrary to its purpose.
+	$prefs['feature_fixed_width'] = 'n';
+
 } else {
 	$standalone = true;
 	$render = "";
