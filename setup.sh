@@ -1045,6 +1045,27 @@ special_dirs_set_user_plus_write() {
 	special_dirs_set_user_plus_write_files
 }
 
+permission_via_php_check_menu() {
+	echo
+	${CAT}<<EOF
+ predefined Tiki Permission Check models:
+ ----------------------------------------
+
+ 1 paranoia
+ 2 paranoia-suphp                        w suphp workaround
+ 3 sbox                                  W sbox workaround
+ 4 mixed
+ 5 worry                                 6 moreworry
+ 7 pain                                  8 morepain
+ 9 risky                                 a insane
+
+ More documentation about this: https://doc.tiki.org/Permission+Check
+
+ S clear screen
+
+EOF
+}
+
 tiki_setup_default_menu() {
 	echo
 	${CAT}<<EOF
@@ -1063,21 +1084,10 @@ For all Tiki instances (via SVN or via a released package):
  f fix file & directory permissions (classic default)          o open file and directory permissions (classic option)
  S clear screen
 
- predefined Tiki Permission Check models:
- ----------------------------------------
-
- 1 paranoia
- 2 paranoia-suphp                        w suphp workaround
- 3 sbox                                  W sbox workaround
- 4 mixed
- 5 worry                                 6 moreworry
- 7 pain                                  8 morepain
- 9 risky                                 a insane
-
  q quit                                  x exit
 
-There are some other commands recommended for advanced users only.
-More documentation about this: https://doc.tiki.org/Permission+Check
+ m display more directory permissions commands recommended for advanced users only.
+   More documentation about this: https://doc.tiki.org/Permission+Check
 
 EOF
 }
@@ -1088,7 +1098,12 @@ tiki_setup_default() {
 	WHAT=${DEFAULT_WHAT} # composer is recommended in case of an svn checkout
 	while true
 	do
-		tiki_setup_default_menu
+		if [ ${COMMAND} != "more-TPC-options" ] ; then
+			tiki_setup_default_menu
+		else
+			permission_via_php_check_menu
+			COMMAND="nothing"
+		fi
 		echo -n "Your choice [${WHAT}]? "
 		read INPUT
 		if [ -z ${INPUT} ] ; then
@@ -1119,6 +1134,7 @@ tiki_setup_default() {
 			L)	WHAT=$WHAT_NEXT_AFTER_c ; LOGCOMPOSERFLAG="1" ; composer ;;
 			V)	WHAT=$WHAT_NEXT_AFTER_c ; LOGCOMPOSERFLAG="2" ; composer ;;
 			H)	WHAT=${DEFAULT_WHAT} ; http_composer ;;
+			m)	WHAT=${OLDWHAT} ; COMMAND="more-TPC-options" ;;
 			q)	echo ""; exit ;;
 			Q)	echo ""; exit ;;
 			x)	echo ""; exit ;;
