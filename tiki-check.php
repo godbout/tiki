@@ -3170,7 +3170,6 @@ function createPage($title, $content)
 		<title>$title</title>
 		<style type="text/css">
 			table { border-collapse: collapse;}
-			#fixedwidth {   width: 1024px; margin: 1em auto; }
 			#middle {  margin: 0 auto; }
 			.button {
 				border-radius: 3px 3px 3px 3px;
@@ -3188,11 +3187,11 @@ function createPage($title, $content)
 //			h1 { border-bottom: 1px solid #DADADA; color: #7e7363; }
 		</style>
 	</head>
-	<body class="tiki_wiki fixed_width">
-	<div id="fixedwidth" class="fixedwidth">
+	<body class="tiki_wiki ">
+	<div id="fixedwidth" >
 		<div class="header_outer">
 			<div class="header_container">
-				<div class="clearfix fixedwidth header_fixedwidth">
+				<div class="clearfix ">
 					<header id="header" class="header">
 					<div class="content clearfix modules" id="top_modules" style="min-height: 168px;">
 						<div class="sitelogo" style="float: left">
@@ -3209,20 +3208,20 @@ END;
 			</div>
 		</div>
 		<div class="middle_outer">
-			<div id="middle" class="fixedwidth">
+			<div id="middle" >
 				<div class="topbar clearfix">
 					<h1 style="font-size: 30px; line-height: 30px; color: #fff; text-shadow: 3px 2px 0 #781437; margin: 8px 0 0 10px; padding: 0;">
 					</h1>
 				</div>
 			</div>
-			<div id="middle" style="width: 990px;">
+			<div id="middle" >
 				$content
 			</div>
 		</div>
 	</div>
 	<footer id="footer" class="footer" style="margin-top: 50px;">
 	<div class="footer_liner">
-		<div class="footerbgtrap fixedwidth" style="padding: 10px 0;">
+		<div class="footerbgtrap" style="padding: 10px 0;">
 			<a href="http://tiki.org" target="_blank" title="Powered by Tiki Wiki CMS Groupware">
 END;
 	echo tikiButton();
