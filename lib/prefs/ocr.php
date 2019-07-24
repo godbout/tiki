@@ -16,8 +16,8 @@ function prefs_ocr_list()
 	$ocrLangs = $langLib->findLanguageNames(['osd']) + $ocrLangs;
 
 	try{
-		$tesseractPath = $ocr->whereIsExecutable('tesseract');
-		$pdfimagesPath = $ocr->whereIsExecutable('pdfimages');
+		$tesseractPath = $ocr->whereIsExecutable('tesseract') ?: 'tesseract';
+		$pdfimagesPath = $ocr->whereIsExecutable('pdfimages') ?: 'pdfimages';
 	}catch (Exception $e){
 		$tesseractPath = 'tesseract';
 		$pdfimagesPath = 'pdfimages';
