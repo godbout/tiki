@@ -93,6 +93,24 @@ function wikiplugin_list($data, $params)
 	static $i;
 	$i++;
 
+	if (! isset($params['cache'])) {
+		if ($prefs['unified_list_cache_default_on'] == 'y') {
+			$params['cache'] = 'y';
+		} else {
+			$params['cache'] = 'n';
+		}
+	}
+
+	if ($params['cache'] == 'y') {
+		// Exclude any type of admin from caching
+		foreach (TikiLib::lib('user')->get_user_permissions($user) as $permission) {
+			if (substr($permission, 0, 12) == 'tiki_p_admin') {
+				$params['cache'] = 'n';
+				break;
+			}
+		}
+	}
+
 	if (! isset($params['gui'])) {
 		$params['gui'] = 1;
 	}
@@ -158,7 +176,7 @@ function wikiplugin_list($data, $params)
 		$tosearch = [ $data ];
 	}
 
-	if ($params['cache'] == 'y' || $prefs['unified_list_cache_default_on'] == 'y' && $params['cache'] != 'n') {
+	if ($params['cache'] == 'y') {
 		// Clean rules setting
 		$rules = array();
 		foreach ($params['cachepurgerules'] as $r) {
@@ -247,7 +265,7 @@ function wikiplugin_list($data, $params)
 		if ($multisearch) {
 			// Now that all the queries are in the stack, the actual search can be performed
 			$multisearchResults = $index->triggerMultisearch();
-			if ($params['cache'] == 'y' || $prefs['unified_list_cache_default_on'] == 'y' && $params['cache'] != 'n') {
+			if ($params['cache'] == 'y') {
 				$cachelib->cacheItem($cacheName, serialize([$now, $multisearchResults]), $cacheType);
 			}
 			// No output is required when saving results of multisearch for later rendering on page by other LIST plugins
@@ -275,7 +293,7 @@ function wikiplugin_list($data, $params)
 	$result->setTsOn($tsret['tsOn']);
 	$out = $formatter->format($result);
 
-	if ($params['cache'] == 'y' || $prefs['unified_list_cache_default_on'] == 'y' && $params['cache'] != 'n') {
+	if ($params['cache'] == 'y') {
 		$cachelib->cacheItem($cacheName, serialize([$now, $out]), $cacheType);
 	}
 
