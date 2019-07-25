@@ -41,6 +41,41 @@
 			<div class="adminoptionboxchild" id="change_theme_childcontainer">
 				{preference name=available_themes}
 			</div>
+
+			{* Fixed width is the first decision to make, so it needs to be visibly on the first tab. But its logical place is in the "layout" tab.
+					So we we put it twice. But its not possible to "just" put it twice, hence following hack.
+					If this hack is required in more places, we can add an opton to "preference" plugin
+			*}
+			<div class="adminoptionbox preference clearfix basic feature_fixed_width all" style="">
+				<div class="adminoption form-group row">
+					<label class="col-sm-4">
+						Fixed width
+					</label>
+					<div class="col-sm-8">
+						<div class="form-check">
+							<input id="dummy_pref-25" class="form-check-input" type="checkbox" name="dummy_feature_fixed_width" {if $prefs.feature_fixed_width eq 'y'} checked="checked"{/if} >
+							<a class="tikihelp text-info" title="Fixed width:Restrict the width of the site content area, in contrast to a liquid (full-width) layout." >
+								<span class="icon icon-information fas fa-info-circle "></span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{jq}
+				$('input[name=dummy_feature_fixed_width]').click(function(){
+					/* get value of dummy_feature_fixed_width */
+					var dummy = $(this).is(":checked");
+					/* Synchronize with dummy checkbox and trigger display of child option */
+					$('input[name=feature_fixed_width]').prop('checked', dummy).change();
+				});
+
+				$('input[name=feature_fixed_width]').click(function(){
+					/* get value of feature_fixed_width */
+					var real = $(this).is(":checked");
+					/* Synchronize with dummy checkbox display */
+					$('input[name=dummy_feature_fixed_width]').prop('checked', real);
+				});
+			{/jq}
 			{preference name=useGroupTheme}
 			<hr>
 
@@ -87,12 +122,12 @@
 		{tab name="{tr}Layout{/tr}"}
 			<br>
 			<legend>{tr}General layout{/tr}</legend>
-			{preference name=site_layout}
-			{preference name=site_layout_per_object}
 			{preference name=feature_fixed_width}
 			<div class="adminoptionboxchild" id="feature_fixed_width_childcontainer">
 				{preference name=layout_fixed_width}
 			</div>
+			{preference name=site_layout}
+			{preference name=site_layout_per_object}
 
 			<legend>{tr}Admin pages layout{/tr} (<small>{tr}Admin theme must be selected first{/tr}</small>)</legend>
 			{preference name=site_layout_admin}
