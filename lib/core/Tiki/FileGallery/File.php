@@ -50,7 +50,7 @@ class File
 		"archiveId"	=> 0,
 		"deleteAfter" 	=> 0,
 		"backlinkPerms"	=> "",
-		"ocr_state" => 0,
+		"ocr_state" => null,
 	];
 	private $exists = false;
 	private $wrapper = null;
@@ -197,7 +197,7 @@ class File
 		if ($filename) {
 			$this->setParam('filename', $filename);
 		}
-		if (!empty($jitRequest->ocr_state)) {
+		if (!empty($jitRequest->ocr_state->int())) {
 			$this->setParam('ocr_state', $jitRequest->ocr_state->int());
 		}
 
