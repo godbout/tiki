@@ -1927,7 +1927,7 @@ if (! $standalone) {
 		$ocrMessage = tra(
 			'Tesseract PHP package could not be found. Try installing through Packages.'
 		);
-		$ocrStatus = 'unsure';
+		$ocrStatus = 'bad';
 	} elseif (version_compare($ocrVersion, $TesseractVersion, '>=')) {
 		$ocrMessage = tra('Tesseract PHP dependency installed.');
 		$ocrStatus = 'good';
@@ -1935,7 +1935,7 @@ if (! $standalone) {
 		$ocrMessage = tra(
 			'The installed Tesseract version is lower than the required version.'
 		);
-		$ocrStatus = 'unsure';
+		$ocrStatus = 'bad';
 	}
 
 	$ocrToDisplay = [[
@@ -1952,12 +1952,12 @@ if (! $standalone) {
 	$ocr = Tikilib::lib('ocr');
 	$langCount = count($ocr->getTesseractLangs());
 
-	if ($langCount >= 63) {
-		$ocrMessage = tra('All languages installed');
+	if ($langCount >= 5) {
+		$ocrMessage = $langCount . ' ' . tra('languages installed.');
 		$ocrStatus = 'good';
 	} else {
 		$ocrMessage = tra(
-			'Not all languages installed. You may need to install additional languages for multilingual support'
+			'Not all languages installed. You may need to install additional languages for multilingual support.'
 		);
 		$ocrStatus = 'unsure';
 	}
@@ -1977,9 +1977,9 @@ if (! $standalone) {
 	if (! $ocrVersion) {
 		$ocrVersion = tra('Not Found');
 		$ocrMessage = tra(
-			'Tesseract could not be found. '
+			'Tesseract could not be found.'
 		);
-		$ocrStatus = 'unsure';
+		$ocrStatus = 'bad';
 	} elseif ($ocr->checkTesseractVersion()) {
 		$ocrMessage = tra(
 			'Tesseract meets or exceeds the version requirements.'
@@ -1989,7 +1989,7 @@ if (! $standalone) {
 		$ocrMessage = tra(
 			'The installed Tesseract version is lower than the required version.'
 		);
-		$ocrStatus = 'unsure';
+		$ocrStatus = 'bad';
 	}
 
 	$ocrToDisplay[] = [
@@ -1998,28 +1998,38 @@ if (! $standalone) {
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
 	];
-try {
-	if (empty($prefs['ocr_tesseract_path']) || $prefs['ocr_tesseract_path'] === 'tesseract') {
-		$ocrStatus = 'ugly';
-		$ocrMessage = tra('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
-	} elseif ($prefs['ocr_tesseract_path'] === $ocr->whereIsExecutable('tesseract')) {
-		$ocrStatus = 'good';
-		$ocrMessage = tra('Path setup correctly');
-	} else {
-		$ocrStatus = 'info';
-		$ocrMessage = tra('Your path may not be configured correctly. It appears to be located at ') . $ocr->whereIsExecutable(
-				'tesseract'
+	try {
+		if (empty($prefs['ocr_tesseract_path'])	|| $prefs['ocr_tesseract_path'] === 'tesseract') {
+			$ocrStatus = 'bad';
+			$ocrMessage = tra(
+				'Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.'
 			);
+		} elseif ($prefs['ocr_tesseract_path'] === $ocr->whereIsExecutable('tesseract')) {
+			$ocrStatus = 'good';
+			$ocrMessage = tra('Path setup correctly.');
+		} else {
+			$ocrStatus = 'unsure';
+			$ocrMessage = tra(
+				'Your path may not be configured correctly. It appears to be located at '
+			) . $ocr->whereIsExecutable(
+				'tesseract' . '.'
+			);
+		}
+	} catch (Exception $e) {
+		if (empty($prefs['ocr_tesseract_path'])
+			|| $prefs['ocr_tesseract_path'] === 'tesseract'
+		) {
+			$ocrStatus = 'bad';
+			$ocrMessage = tra(
+				'Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.'
+			);
+		} else {
+			$ocrStatus = 'unsure';
+			$ocrMessage = tra(
+				'Your path is configured, but we were unable to tell if it was configured properly or not.'
+			);
+		}
 	}
-}catch (Exception $e) {
-	if (empty($prefs['ocr_tesseract_path']) || $prefs['ocr_tesseract_path'] === 'tesseract') {
-		$ocrStatus = 'ugly';
-		$ocrMessage = tra('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
-	} else {
-		$ocrStatus = 'info';
-		$ocrMessage = tra('Your path is configured, but we were unable to tell if it was configured properly or not.');
-	}
-}
 
 	$ocrToDisplay[] = [
 		'name'    => tra('Tesseract path'),
@@ -2032,17 +2042,17 @@ try {
 	$pdfimages->setVersion();
 
 	//lets fall back to configured options for a binary path if its not found with default options.
-	if (!$pdfimages->version){
+	if (!$pdfimages->version) {
 		$pdfimages->setBinaryPath();
 		$pdfimages->setVersion();
 	}
 
-	if ($pdfimages->version){
+	if ($pdfimages->version) {
 		$ocrStatus = 'good';
 		$ocrMessage = tra('It appears that pdfimages is installed on your system.');
 	}else{
-		$ocrStatus = 'ugly';
-		$ocrMessage = tra('Could not find pdfimages');
+		$ocrStatus = 'bad';
+		$ocrMessage = tra('Could not find pdfimages. PDF files will not be processed.');
 	}
 
 	$ocrToDisplay[] = [
@@ -2054,24 +2064,26 @@ try {
 
 	try {
 		if (empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages') {
-			$ocrStatus = 'ugly';
+			$ocrStatus = 'bad';
 			$ocrMessage = tra('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
 		} elseif ($prefs['ocr_pdfimages_path'] === $ocr->whereIsExecutable('pdfimages')) {
 			$ocrStatus = 'good';
 			$ocrMessage = tra('Path setup correctly');
 		} else {
-			$ocrStatus = 'info';
+			$ocrStatus = 'unsure';
 			$ocrMessage = tra('Your path may not be configured correctly. It appears to be located at ') .
-				$ocr->whereIsExecutable('pdfimages');
+				$ocr->whereIsExecutable('pdfimages' . ' ');
 		}
-	}catch (Exception $e)
-	{
+	} catch (Exception $e) {
 		if (empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages') {
-			$ocrStatus = 'ugly';
+			$ocrStatus = 'bad';
 			$ocrMessage = tra('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
+		} else {
+			$ocrStatus = 'unsure';
+			$ocrMessage = tra(
+				'Your path is configured, but we were unable to tell if it was configured properly or not.'
+			);
 		}
-		$ocrStatus = 'info';
-		$ocrMessage = tra('Your path is configured, but we were unable to tell if it was configured properly or not.');
 	}
 
 	$ocrToDisplay[] = [
@@ -2084,17 +2096,16 @@ try {
 	$scheduleDb = $ocr->table('tiki_scheduler');
 	$conditions['status'] = 'active';
 	$conditions['params'] = $scheduleDb->contains('ocr:all');
-	if ($scheduleDb->fetchBool($conditions))
-	{
+	if ($scheduleDb->fetchBool($conditions)) {
 		$ocrToDisplay[] = [
 			'name'    => tra('Scheduler'),
 			'status'  => 'good',
 			'message' => tra('Scheduler has been successfully setup.'),
 		];
-	}else{
+	} else {
 		$ocrToDisplay[] = [
 			'name'    => tra('Scheduler'),
-			'status'  => 'ugly',
+			'status'  => 'bad',
 			'message' => tra('Scheduler needs to have a console command of "ocr:all" set.'),
 		];
 	}
@@ -2112,7 +2123,7 @@ if ($s != "" && strpos($sn, $s) !== false) {
 	$security['upload_tmp_dir'] = array(
 		'fitness' => tra('unsafe') ,
 		'setting' => $s,
-		'message' => tra('upload_tmp_dir is probably inside the Tiki directory. There is a risk that someone can upload any file to this directory and access it via web browser')
+		'message' => tra('upload_tmp_dir is probably inside the Tiki directory. There is a risk that someone can upload any file to this directory and access it via web browser.')
 	);
 } else {
 	$security['upload_tmp_dir'] = array(
