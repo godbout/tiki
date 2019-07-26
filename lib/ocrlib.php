@@ -55,19 +55,18 @@ class ocrLib extends TikiLib
 	/** @var string The minimum version requirement of Tesseract that needs to be installed on the OS */
 	private const TESSERACT_BINARY_VERSION = '3.5.1';
 
-	public function setMimeTypes(){
+	public function setMimeTypes() {
 		global $prefs;
-		if (empty($prefs['ocr_enable']) || $prefs['ocr_enable'] === 'n')
-		{
+		if (empty($prefs['ocr_enable']) || $prefs['ocr_enable'] === 'n') {
 			return [];
 		}
 		$this->ocrMime = self::OCR_MIME_NATIVE;
-		if (is_callable('imagepng')){
-			$this->ocrMime = array_merge(self::OCR_MIME_CONVERT,$this->ocrMime);
+		if (is_callable('imagepng')) {
+			$this->ocrMime = array_merge(self::OCR_MIME_CONVERT, $this->ocrMime);
 		}
-		exec($prefs['ocr_pdfimages_path'] . ' -v',$output, $return);
-		if ($return === 0){
-			$this->ocrMime = array_merge(self::PDF_MIME,$this->ocrMime);
+		exec($prefs['ocr_pdfimages_path'] . ' -v', $output, $return);
+		if ($return === 0) {
+			$this->ocrMime = array_merge(self::PDF_MIME, $this->ocrMime);
 		}
 	}
 
@@ -80,7 +79,7 @@ class ocrLib extends TikiLib
 	 * todo 						Find the correct exit code on windows if the "where" does not find the command.
 	 */
 
-	public function whereIsExecutable($executable) : ?string
+	public function whereIsExecutable(string $executable) : ?string
 	{
 		if (! is_callable('exec')) {
 			throw new Exception('exec() is not enabled. Could not execute command.');
@@ -266,7 +265,7 @@ class ocrLib extends TikiLib
 	 * @return TesseractOCR		A instance with all Tiki preferences applied.
 	 */
 
-	private function newTesseract($fileName = null)
+	private function newTesseract(?string $fileName = null)
 	{
 		global $prefs;
 
