@@ -562,6 +562,7 @@ class FileGalLib extends TikiLib
 			'default_view' => $prefs['fgal_default_view'],
 			'template' => null,
 			'icon_fileId' => ! empty($prefs['fgal_icon_fileId']) ? $prefs['fgal_icon_fileId'] : null,
+			'ocr_lang' => [''],
 		];
 	}
 	function replace_file_gallery($fgal_info)
@@ -2040,6 +2041,7 @@ class FileGalLib extends TikiLib
 	}
 
 	/**
+	 * Sets default options for file galleries from global preferences
 	 * @param $fgalIds
 	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
 	 */

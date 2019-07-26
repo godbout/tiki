@@ -82,26 +82,26 @@ class ocrLib extends TikiLib
 
 	public function whereIsExecutable($executable) : ?string
 	{
-		if (!is_callable('exec')){
-			throw new Exception ('exec() is not enabled. Could not execute command.');
+		if (! is_callable('exec')) {
+			throw new Exception('exec() is not enabled. Could not execute command.');
 		}
 		$executable = escapeshellarg($executable);
-		exec('type -p ' . $executable . ' 2>&1',$output,$return);
-		if ($return === 1 ){				// if "type" did not find the command on the system
+		exec('type -p ' . $executable . ' 2>&1',$output, $return);
+		if ($return === 1){				// if "type" did not find the command on the system
 			return null;
-		}elseif ($return !== 0){
-			unset ($output);
-			exec('where ' . $executable . ' 2>&1',$output,$return); // windows command
-		}elseif ($return !== 0){
-			unset ($output);
-			exec('which ' . $executable . ' 2>&1',$output,$return); // alternative unix command but relies on $PATH
-			if ($return === 1 ){			// if "which" did not find the command on the system
+		}elseif ($return !== 0) {
+			unset($output);
+			exec('where ' . $executable . ' 2>&1',$output, $return); // windows command
+		}elseif ($return !== 0) {
+			unset($output);
+			exec('which ' . $executable . ' 2>&1',$output, $return); // alternative unix command but relies on $PATH
+			if ($return === 1) {			// if "which" did not find the command on the system
 				return null;
 			}
-		}elseif ($return !== 0){
+		}elseif ($return !== 0) {
 			throw new Exception('There was no suitable system command found. Could not execute command');
 		}
-		if (empty($output[0])){				// if for some reason there was no output, return null
+		if (empty($output[0])) {                // if for some reason there was no output, return null
 			return null;
 		}
 		return $output[0];
@@ -117,7 +117,6 @@ class ocrLib extends TikiLib
 		if (! $this->table('tiki_files')->fetchBool(['fileId' => $this->nextOCRFile])) {
 			throw new Exception('The File ID specified does not exist.');
 		}
-
 	}
 
 	/**
@@ -189,9 +188,7 @@ class ocrLib extends TikiLib
 	 */
 	public function checkTesseractVersion(): bool
 	{
-		return version_compare(
-			$this->getTesseractVersion(), self::TESSERACT_BINARY_VERSION, '>='
-		);
+		return version_compare($this->getTesseractVersion(), self::TESSERACT_BINARY_VERSION, '>=');
 	}
 
 
@@ -250,11 +247,11 @@ class ocrLib extends TikiLib
 	 * Set $nextOCRFile with the fileId of the next file scheduled to be processed by the OCR engine.
 	 */
 
-	public function setNextOCRFile(){
-
+	public function setNextOCRFile()
+	{
 		$db = $this->table('tiki_files');
 		$conditions = ['ocr_state' => self::OCR_STATUS_PENDING];
-		if ($this->nextOCRFile){											// we always take a greater file id to avoid infinite loops
+		if ($this->nextOCRFile) {											// we always take a greater file id to avoid infinite loops
 			$conditions['fileId'] = $db->GreaterThan($this->nextOCRFile);
 		}
 
@@ -269,12 +266,12 @@ class ocrLib extends TikiLib
 	 * @return TesseractOCR		A instance with all Tiki preferences applied.
 	 */
 
-	private function newTesseract($fileName = null){
-
+	private function newTesseract($fileName = null)
+	{
 		global $prefs;
 
 		$tesseract = new TesseractOCR($fileName);
-		if (!empty($prefs['ocr_tesseract_path'])){
+		if (! empty($prefs['ocr_tesseract_path'])) {
 			$tesseract->executable($prefs['ocr_tesseract_path']);
 		}
 		return $tesseract;
@@ -282,31 +279,36 @@ class ocrLib extends TikiLib
 
 	/**
 	 * Finds the languages that a file will/has been processed with.
-	 * todo: finish implementation with gallery level controls
 	 *
-	 * @param null|int $fileid null defaults to the current file being worked on, otherwise it uses the passed fileid.
+	 * @param null|int $fileId null defaults to the current file being worked on, otherwise it uses the passed fileid.
 	 *
 	 * @return array List of file specific languages
 	 */
 
-	public function listFileLanguages(?int $fileid=null): array
+	public function listFileLanguages(?int $fileId = null): array
 	{
 		global $prefs;
-		if (!$fileid){
-			$fileid = $this->ocrIngNow;
+		if (! $fileId) {
+			$fileId = $this->ocrIngNow;
 		}
+		$db = $this->table('tiki_files');
 		// first set file level languages if they exist
 		if (! empty($prefs['ocr_file_level']) && $prefs['ocr_file_level'] === 'y') {
-			$langs = json_decode($this->table('tiki_files')->fetchOne('ocr_lang', ['fileId' => $fileid]));
+			$langs = json_decode($this->table('tiki_files')->fetchOne('ocr_lang', ['fileId' => $fileId]));
 		}
-
-		// if no file level languages resume the default processing
+		// if no file level languages we look for gallery level language prefrences
 		if (empty($langs)) {
-			if (empty($prefs['ocr_default_languages'])) {
-				$langs[] = 'osd';                                            // assume osd (auto detect) language if none set
-			} else {
-				$langs = $prefs['ocr_default_languages'];
+			$galId = $db->fetchOne('galleryId', ['fileId' => $fileId]);
+			$db = $this->table('tiki_file_galleries');
+			$langs = json_decode($db->fetchOne('ocr_lang', ['galleryId' => $galId]));
+			// if gallery does not have prefrences, we take a look at the master gallery for direction.
+			if (empty($langs && $galId !== 1)) {
+				$langs = json_decode($db->fetchOne('ocr_lang', ['galleryId' => 1]));
 			}
+		}
+		// we fall back on Auto Detect if there are no preferences set
+		if (empty($langs)) {
+			$langs[] = 'osd';
 		}
 		return $langs;
 	}
@@ -342,7 +344,7 @@ class ocrLib extends TikiLib
 		try {
 			if ($file['data']) {
 				/** @var tempFile string The file path of a temp file for processing */
-				$tempFile = writeTempFile($file['data']);;
+				$tempFile = writeTempFile($file['data']);
 			} else {
 				global $prefs;
 				$directory = $prefs['fgal_use_dir'];                // lets make sure there is a slash following the directory name
@@ -394,13 +396,15 @@ class ocrLib extends TikiLib
 			}
 			@$filesystem->remove($tempFile);                                    // now that we are done with the temp file, lets delete it.
 
-			if (is_dir($fileName)){
+			$langs = $this->listFileLanguages();
+
+			if (is_dir($fileName)) {
 				$OCRText = '';
 				foreach (glob($fileName . '*.tif') as $tiffFile) {
-					$OCRText.= ($this->newTesseract($tiffFile))->lang(...$this->listFileLanguages())->run();
+					$OCRText.= ($this->newTesseract($tiffFile))->lang(...$langs)->run();
 				}
-			}else{
-				$OCRText = ($this->newTesseract($fileName))->lang(...$this->listFileLanguages())->run();
+			} else {
+				$OCRText = ($this->newTesseract($fileName))->lang(...$langs)->run();
 			}
 			$OCRText = TikiFilter::get('striptags')->filter($OCRText);
 			$this->table('tiki_files')->update(
@@ -414,7 +418,7 @@ class ocrLib extends TikiLib
 				['ocr_state' => self::OCR_STATUS_FINISHED],
 				['fileId' => $this->ocrIngNow]
 			);
-		}catch(Exception $e){
+		}catch(Exception $e) {
 			@$filesystem->remove($fileName);
 			@$filesystem->remove($tempFile);
 			// Set the database flag to reflect that it is no longer processing but, still needs to be OCR'd

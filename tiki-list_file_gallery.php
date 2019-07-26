@@ -491,6 +491,27 @@ if (isset($_REQUEST['edit_mode']) and $_REQUEST['edit_mode']) {
 		$smarty->assign_by_ref('showeachuser', $showeachuser);
 		$smarty->assign_by_ref('groupforAlertList', $groupforAlertList);
 	}
+
+	// ocr controls
+	if (! empty($prefs['ocr_enable']) && $prefs['ocr_enable'] === 'y') {
+		if (empty($prefs['ocr_limit_languages'])) {
+			$ocr = TikiLib::lib('ocr');
+			$langs = $ocr->getTesseractLangs();
+		} else {
+			$langs = $prefs['ocr_limit_languages'];
+		}
+		$selectedLangs = json_decode($gal_info['ocr_lang']);
+		// lets remove the language codes from the unselected list if they are already selected
+		foreach ($selectedLangs as $lang) {
+			unset($langs[array_search($lang, $langs)]);
+		}
+		$langLib = TikiLib::lib('language');
+
+		if (! empty($selectedLangs)) {
+			$smarty->assign('selectedLanguages', $langLib->findLanguageNames($selectedLangs));
+		}
+		$smarty->assign('languages', $langLib->findLanguageNames($langs));
+	}
 	// Edit a file
 	if (isset($_REQUEST['fileId']) && $_REQUEST['fileId'] > 0) {
 		if ($tiki_p_edit_gallery_file != 'y') {
@@ -579,6 +600,7 @@ if (isset($_REQUEST['edit']) && $access->checkCsrf()) {
 		'image_max_size_y',
 		'wiki_syntax',
 		'icon_fileId',
+		'ocr_langs',
 	];
 	foreach ($request_vars as $v) {
 		if (isset($_REQUEST[$v])) {
@@ -665,6 +687,7 @@ if (isset($_REQUEST['edit']) && $access->checkCsrf()) {
 			'wiki_syntax' => $_REQUEST['wiki_syntax'],
 			'show_source' => $_REQUEST['fgal_list_source'],
 			'icon_fileId' => ! empty($_REQUEST['fgal_icon_fileId']) ? $_REQUEST['fgal_icon_fileId'] : null,
+			'ocr_lang' => json_encode($_REQUEST['ocr_lang']),
 		];
 
 		if ($prefs['feature_file_galleries_templates'] == 'y' && isset($_REQUEST['fgal_template']) && ! empty($_REQUEST['fgal_template'])) {

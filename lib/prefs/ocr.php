@@ -40,14 +40,6 @@ function prefs_ocr_list()
 			'description' => tra('Attempt to OCR every supported file.'),
 			'default' => 'n',
 		],
-		'ocr_default_languages' => [
-			'name' => tra('OCR processing languages'),
-			'description' => tra('Select the default languages that the OCR process will use.'),
-			'filter' => 'text',
-			'type' => 'multilist',
-			'options' => $ocrLangs,
-			'default' => ['osd'],
-		],
 		'ocr_file_level' => [
 			'name' => tra('Allow file level OCR languages'),
 			'type' => 'flag',

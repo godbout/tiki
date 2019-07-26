@@ -236,7 +236,6 @@
 			{preference name=ocr_enable}
 				<div class="adminoptionboxchild" id="ocr_enable_childcontainer">
 					{preference name=ocr_every_file}
-					{preference name=ocr_default_languages}
 					{preference name=ocr_file_level}
 					{preference name=ocr_limit_languages}
 					{preference name=ocr_tesseract_path}

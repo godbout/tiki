@@ -799,6 +799,7 @@ CREATE TABLE `tiki_file_galleries` (
   `image_max_size_y` int(8) NOT NULL default '0',
   `show_source` char(1) NOT NULL DEFAULT 'o',
   `icon_fileId` int(14) UNSIGNED NULL DEFAULT NULL,
+  `ocr_lang` VARCHAR(255) default NULL,
   PRIMARY KEY (`galleryId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
@@ -838,7 +839,7 @@ CREATE TABLE `tiki_files` (
   `archiveId` int(14) default 0,
   `deleteAfter` int(14) default NULL,
   `ocr_state` TINYINT(1) default NULL,
-  `ocr_lang` VARCHAR(11) default NULL,
+  `ocr_lang` VARCHAR(255) default NULL,
   `ocr_data` MEDIUMTEXT default NULL,
   PRIMARY KEY (`fileId`),
   KEY `name` (name(191)),

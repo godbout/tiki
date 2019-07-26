@@ -298,7 +298,7 @@
 					{/if}
 
 				{if $prefs.ocr_enable eq 'y'}
-					{if $selectedLanguages || $languages}
+					{if isset($selectedLanguages) || isset($languages)}
 						<div class="form-group row">
 							<label for="ocr_lang" class="col-md-4 col-form-label">{tr}Override Default Languages{/tr}</label>
 							<div class="col-md-8">

@@ -68,7 +68,7 @@ if (! empty($_REQUEST['fileId'])) {
 	asort($mimetypes);
 	$smarty->assign_by_ref('mimetypes', $mimetypes);
 	if (! empty($prefs['ocr_enable']) && $prefs['ocr_enable'] === 'y') {
-		if (!empty($prefs['ocr_file_level']) && $prefs['ocr_file_level'] === 'y') {
+		if (! empty($prefs['ocr_file_level']) && $prefs['ocr_file_level'] === 'y') {
 			if (empty($prefs['ocr_limit_languages'])) {
 				$ocr = TikiLib::lib('ocr');
 				$langs = $ocr->getTesseractLangs();
@@ -87,8 +87,9 @@ if (! empty($_REQUEST['fileId'])) {
 			}
 			$smarty->assign('languages', $langLib->findLanguageNames($langs));
 		}
-		if ($fileInfo['ocr_state'])
+		if ($fileInfo['ocr_state']) {
 			$smarty->assign('ocr_state', true);
+		}
 	}
 }
 
