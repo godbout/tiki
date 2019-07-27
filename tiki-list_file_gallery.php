@@ -12,7 +12,11 @@ $inputConfiguration = [
 	[
 		'staticKeyFilters' => [
 			'wiki_syntax' => 'wikicontent',
+			'fgal_list_ocr_state' => 'alpha',
 		],
+		'staticKeyFiltersForArrays' => [
+			'ocr_lang' => 'text',
+		]
 	],
 ];
 
@@ -641,6 +645,14 @@ if (isset($_REQUEST['edit']) && $access->checkCsrf()) {
 			Feedback::errorPage(($test > 0) ? tr('Quota too big') : tr('Quota too small'));
 		}
 		$old_gal_info = $filegallib->get_file_gallery_info($galleryId);
+
+		// first validate length of OCR languages, then save if they conform.
+		$ocrLangs = json_encode($_POST['ocr_lang']);
+		if (strlen($ocrLangs) > 255) {
+			Feedback::error(tr('You may not use that many OCR languages. Use fewer languages.'));
+			$ocrLangs = $old_gal_info['ocr_lang'];
+		}
+
 		$gal_info = [
 			'galleryId' => $galleryId,
 			'name' => $_REQUEST['name'],
@@ -677,7 +689,7 @@ if (isset($_REQUEST['edit']) && $access->checkCsrf()) {
 			'show_explorer' => (isset($_REQUEST['fgal_show_explorer']) ? 'y' : 'n'),
 			'show_path' => (isset($_REQUEST['fgal_show_path']) ? 'y' : 'n'),
 			'show_slideshow' => (isset($_REQUEST['fgal_show_slideshow']) ? 'y' : 'n'),
-			'show_ocr_state' => $_REQUEST['fgal_list_ocr_state'],
+			'show_ocr_state' => $_POST['fgal_list_ocr_state'],
 			'default_view' => $_REQUEST['fgal_default_view'],
 			'quota' => $_REQUEST['quota'],
 			'image_max_size_x' => $_REQUEST['image_max_size_x'],
@@ -687,7 +699,7 @@ if (isset($_REQUEST['edit']) && $access->checkCsrf()) {
 			'wiki_syntax' => $_REQUEST['wiki_syntax'],
 			'show_source' => $_REQUEST['fgal_list_source'],
 			'icon_fileId' => ! empty($_REQUEST['fgal_icon_fileId']) ? $_REQUEST['fgal_icon_fileId'] : null,
-			'ocr_lang' => json_encode($_REQUEST['ocr_lang']),
+			'ocr_lang' => $ocrLangs,
 		];
 
 		if ($prefs['feature_file_galleries_templates'] == 'y' && isset($_REQUEST['fgal_template']) && ! empty($_REQUEST['fgal_template'])) {
@@ -1003,11 +1015,11 @@ if (isset($_GET['slideshow'])) {
 				if ($info['ocr_state'] === '1') {
 					$smarty->assign('ocrdata', $info['ocr_data'] ? $info['ocr_data'] : tr('OCR produced no results.'));
 				}
-				$ocrlangs = TikiLib::lib('ocr')->listFileLanguages($fileId);
-				$ocrlangs = Tikilib::lib('language')->findLanguageNames($ocrlangs, 'translated');
-				$ocrlangs = implode(', ', $ocrlangs);
+				$ocrLangs = TikiLib::lib('ocr')->listFileLanguages($fileId);
+				$ocrLangs = Tikilib::lib('language')->findLanguageNames($ocrLangs, 'translated');
+				$ocrLangs = implode(', ', $ocrLangs);
 
-				$smarty->assign('ocrlangs', $ocrlangs);
+				$smarty->assign('ocrlangs', $ocrLangs);
 			}
 		} else {
 			// Get list of files in the gallery
