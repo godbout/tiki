@@ -6880,7 +6880,7 @@ blockquote {
   min-height: 24px; }
 
 body.tiki.navbar-padding, .layout_social_modules {
-  padding-top: 3.25rem; }
+  padding-top: 46px; }
   body.tiki.navbar-padding h1.sitetitle, .layout_social_modules h1.sitetitle {
     line-height: normal; }
 
@@ -6890,10 +6890,10 @@ body.fullscreen.tiki.navbar-padding {
 .layout_social .topbar_modules h1.sitetitle, .layout_social_modules .topbar_modules h1.sitetitle {
   float: left;
   font-size: 1.8rem;
-  line-height: 3.25rem; }
+  line-height: 46px; }
 
 .layout_fixed_top_modules .top_modules, .navbar-fixed-top {
-  height: 3.25rem; }
+  height: 46px; }
   .layout_fixed_top_modules .top_modules .sitelogo img, .navbar-fixed-top .sitelogo img {
     width: auto !important;
     margin-right: 1.5em; }
@@ -6909,8 +6909,8 @@ body.fullscreen.tiki.navbar-padding {
     float: left;
     font-size: 1.5em;
     margin: 0 0 0 1.5em;
-    line-height: 3.25rem;
-    height: 3.25rem;
+    line-height: 46px;
+    height: 46px;
     color: #fff; }
 
 .topbar_container, .layout_basic .page-header > .topbar {

@@ -4,154 +4,154 @@
 @import "bs3-bs4-transition.scss";
 @import "../../default/scss/variables";
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/buttons";
-$padding-y: .5rem; // Not sure where this is used besides buttons and pagination; not sure where it's defined in BS4
-$padding-x: .75rem;
+$padding-y: .5rem !default; // Not sure where this is used besides buttons and pagination !default; not sure where it's defined in BS4
+$padding-x: .75rem !default;
 $module-h3-card-title-font-size: $h4-font-size !default;
 // Older
-$topmodules-row-sidemargins: 0;
-$topbar-row-sidemargins: 0;
-$topbar-row-margin-bottom: 1.4rem;
-//$panel-heading-padding: .8rem 15px;
-$navbar-fixed-height: 3.25rem;
-$form-horizontal-sidemargins: 15px;
+$topmodules-row-sidemargins: 0 !default;
+$topbar-row-sidemargins: 0 !default;
+$topbar-row-margin-bottom: 1.4rem !default;
+//$panel-heading-padding: .8rem 15px !default;
+$navbar-fixed-height: 3.25rem !default;
+$form-horizontal-sidemargins: 15px !default;
 
 // Add Tiki legacy breadcrumb styles as variables.
-$breadcrumb-font-style: normal;
-$breadcrumb-font-size: 90%;
-//$breadcrumb-display: block;
+$breadcrumb-font-style: normal !default;
+$breadcrumb-font-size: 90% !default;
+//$breadcrumb-display: block !default;
 
 // These rules are to map Bootstrap variables to superfish menus and topbar div styling.
-$cssmenu_horiz_li_hover_bg: transparent;
-$cssmenu_ul_border: $dropdown-border-color;
-$cssmenu_ul_li_a_bg: $dropdown-bg;
-$cssmenu_ul_li_a_color: $dropdown-link-color;
-$cssmenu_ul_li_hover_a_color: $dropdown-link-hover-color;
-$cssmenu_ul_li_hover_a_bg: $dropdown-link-hover-bg;
-//$topbar_bg: $bg-dark;
-//$navbar-dark-bg: $bg-dark; // Not sure how BS4 specifies this.
-//$topbar_color: $navbar-dark-color;
-//$topbar_link_color: $navbar-dark-color;
-//$topbar_link_padding_top: $navbar-padding-y;
-//$topbar_link_padding_bottom: $navbar-padding-y;
-//$topbar_link_hover_color: $navbar-dark-hover-color;
+$cssmenu_horiz_li_hover_bg: transparent !default;
+$cssmenu_ul_border: $dropdown-border-color !default;
+$cssmenu_ul_li_a_bg: $dropdown-bg !default;
+$cssmenu_ul_li_a_color: $dropdown-link-color !default;
+$cssmenu_ul_li_hover_a_color: $dropdown-link-hover-color !default;
+$cssmenu_ul_li_hover_a_bg: $dropdown-link-hover-bg !default;
+//$topbar_bg: $bg-dark !default;
+//$navbar-dark-bg: $bg-dark !default; // Not sure how BS4 specifies this.
+//$topbar_color: $navbar-dark-color !default;
+//$topbar_link_color: $navbar-dark-color !default;
+//$topbar_link_padding_top: $navbar-padding-y !default;
+//$topbar_link_padding_bottom: $navbar-padding-y !default;
+//$topbar_link_hover_color: $navbar-dark-hover-color !default;
 
-$dropdown-title-color: $dropdown-link-color;
+$dropdown-title-color: $dropdown-link-color !default;
 
 // Enable bringing  center column background back up to topbar when side column toggle icons are used
-$top-margin-compensation-for-side-col-toggle: -$line-height-base;
+$top-margin-compensation-for-side-col-toggle: -$line-height-base !default;
 
 // Map Bootstrap variables to Chosen selectors
-$chosen-background: $input-bg;
-$chosen-border: 1px solid $input-border-color;
-$chosen-border-radius: $input-border-radius;
-$chosen-multi-border-radius: $chosen-border-radius;
-$chosen-box-shadow: "inset 0 1px 1px rgba(0, 0, 0, .075)";
-$chosen-drop-border: $input-border-color;
-$chosen-drop-box-shadow: "0 8px 8px rgba(0, 0, 0, .25)";
-$chosen-drop-zindex: 1060;
-$chosen-focus-border: 1px solid $input-focus-border-color;
-$chosen-focus-box-shadow: "0 1px 1px rgba(0, 0, 0, .075) inset, 0 0 8px rgba(82, 168, 236, .6)";
-$chosen-focus-transition: "border linear .2s, box-shadow linear .2s";
-$chosen-height: $input-height;
-$chosen-multi-height: $input-height;
-$chosen-active-result: $input-color;
-$chosen-single-height: $input-height; // "Make inputs at least the height of their button counterpart (base line-height + padding + border)"
-$chosen-padding-base-vertical: $padding-y;
-$chosen-padding-base-horizontal: $padding-x;
-$chosen-font-size-base: $font-size-base;
-$chosen-line-height: $line-height-base;
-$chosen-text-muted-bg-info: lighten($info,90%);
+$chosen-background: $input-bg !default;
+$chosen-border: 1px solid $input-border-color !default;
+$chosen-border-radius: $input-border-radius !default;
+$chosen-multi-border-radius: $chosen-border-radius !default;
+$chosen-box-shadow: "inset 0 1px 1px rgba(0, 0, 0, .075)" !default;
+$chosen-drop-border: $input-border-color !default;
+$chosen-drop-box-shadow: "0 8px 8px rgba(0, 0, 0, .25)" !default;
+$chosen-drop-zindex: 1060 !default;
+$chosen-focus-border: 1px solid $input-focus-border-color !default;
+$chosen-focus-box-shadow: "0 1px 1px rgba(0, 0, 0, .075) inset, 0 0 8px rgba(82, 168, 236, .6)" !default;
+$chosen-focus-transition: "border linear .2s, box-shadow linear .2s" !default;
+$chosen-height: $input-height !default;
+$chosen-multi-height: $input-height !default;
+$chosen-active-result: $input-color !default;
+$chosen-single-height: $input-height !default; // "Make inputs at least the height of their button counterpart (base line-height + padding + border)"
+$chosen-padding-base-vertical: $padding-y !default;
+$chosen-padding-base-horizontal: $padding-x !default;
+$chosen-font-size-base: $font-size-base !default;
+$chosen-line-height: $line-height-base !default;
+$chosen-text-muted-bg-info: lighten($info,90%) !default;
 
 // Calendars
-$calendarweek-bottom-border-color: $table-border-color;
-$calprio1: #dae0e0;
-$calprio2: #dadcdc;
-$calprio3: #dad0d0;
-$calprio4: #dacaca;
-$calprio5: #cac0d0;
-$calprio6: #dababa;
-$calprio7: #cab0b0;
-$calprio8: #daaaaa;
-$calprio9: #da9a9a;
+$calendarweek-bottom-border-color: $table-border-color !default;
+$calprio1: #dae0e0 !default;
+$calprio2: #dadcdc !default;
+$calprio3: #dad0d0 !default;
+$calprio4: #dacaca !default;
+$calprio5: #cac0d0 !default;
+$calprio6: #dababa !default;
+$calprio7: #cab0b0 !default;
+$calprio8: #daaaaa !default;
+$calprio9: #da9a9a !default;
 
 //  Admin
-// $admbox-border: $btn-primary-border; //#cccccc;
-// $admbox-bg: $btn-primary-bg; // #cccccc;
-// $admbox-color: $btn-primary-color; // #333333;
-// $admbox-hover-border: lighten($btn-primary-border, 5%); // #333333;
-// $admbox-hover-bg: lighten($btn-primary-bg, 5%); // #aaaaaa;
-// $admbox-hover-color: lighten($btn-primary-color, 5%); //#ffffff;
-// $admbox-off-border: darken($btn-primary-border, 40%); //#a9a9a9;
-// $admbox-off-color: darken($btn-primary-color, 40%); //#9f9f9f;
-// $admbox-off-hover-border: darken($btn-primary-border, 40%); //#a9a9a9;
-// $admbox-off-hover-color: darken($btn-primary-color, 40%); //#666666;
+// $admbox-border: $btn-primary-border !default; //#cccccc
+// $admbox-bg: $btn-primary-bg !default; // #cccccc
+// $admbox-color: $btn-primary-color !default; // #333333
+// $admbox-hover-border: lighten($btn-primary-border, 5%) !default; // #333333
+// $admbox-hover-bg: lighten($btn-primary-bg, 5%) !default; // #aaaaaa
+// $admbox-hover-color: lighten($btn-primary-color, 5%) !default; //#ffffff
+// $admbox-off-border: darken($btn-primary-border, 40%) !default; //#a9a9a9
+// $admbox-off-color: darken($btn-primary-color, 40%) !default; //#9f9f9f
+// $admbox-off-hover-border: darken($btn-primary-border, 40%) !default; //#a9a9a9
+// $admbox-off-hover-color: darken($btn-primary-color, 40%) !default; //#666666
 
-$table-column-bg-odd: darken($table-accent-bg, 5%);
+$table-column-bg-odd: darken($table-accent-bg, 5%) !default;
 // Correction for path for sorich87/bootstrap-tour's bootstrap-tour-standalone.less
-$bootstrap-path: "../../../twbs/bootstrap/scss/";
+$bootstrap-path: "../../../twbs/bootstrap/scss/" !default;
 
 // inline code
-$code-color: #444444 !default;
-$code-bg: #f8f8f8 !default;
+$code-color: #444444 !default !default;
+$code-bg: #f8f8f8 !default !default;
 
 // Tracker
-$modal-link-color: $link-color;
-$modal-link-hover-color: $link-hover-color;
+$modal-link-color: $link-color !default;
+$modal-link-hover-color: $link-hover-color !default;
 
 // Make hierarchical arrangement of admin options more clear
-$secondary-legend-font-size: 1.35rem;
+$secondary-legend-font-size: 1.35rem !default;
 
 // Plugin Pivot Table variables
-$pvt-color: $body-color;
-$pvt-bg: $table-bg;
-$pvt-font-size: $font-size-base;
-$pvt-table-bg: $table-bg;
-$pvt-table-th-bg: $table-head-bg;
-$pvt-table-th-color: $table-head-color;
-$pvt-table-border-color: $table-border-color;
-$pvt-modal-content-bg: $modal-content-bg;
-$pvtAttr-color: $btn-primary-color;
-$pvtFilterBox-button-color: $btn-primary-color;
-$pvtFilterBox-button-bg: $btn-primary-bg;
-$pvtFilterBox-button-hover-bg: adjust-hue($btn-primary-bg, 10%);
-$pvtAggregator-color: $input-color;
-$pvtAggregator-bg: $input-bg;
-$pvtAggregator-border: $input-border-color;
-$pvtAggregator-border-radius: $input-border-radius;
-$pvtSelect-font-size: $font-size-base;
-$c3-color: $body-color;
+$pvt-color: $body-color !default;
+$pvt-bg: $table-bg !default;
+$pvt-font-size: $font-size-base !default;
+$pvt-table-bg: $table-bg !default;
+$pvt-table-th-bg: $table-head-bg !default;
+$pvt-table-th-color: $table-head-color !default;
+$pvt-table-border-color: $table-border-color !default;
+$pvt-modal-content-bg: $modal-content-bg !default;
+$pvtAttr-color: $btn-primary-color !default;
+$pvtFilterBox-button-color: $btn-primary-color !default;
+$pvtFilterBox-button-bg: $btn-primary-bg !default;
+$pvtFilterBox-button-hover-bg: adjust-hue($btn-primary-bg, 10%) !default;
+$pvtAggregator-color: $input-color !default;
+$pvtAggregator-bg: $input-bg !default;
+$pvtAggregator-border: $input-border-color !default;
+$pvtAggregator-border-radius: $input-border-radius !default;
+$pvtSelect-font-size: $font-size-base !default;
+$c3-color: $body-color !default;
 
 // Theme overrides of jQuery-UI styles
-$jq-ui-btn-font-weight: normal;
-$tiki-sheet-font-size: $font-size-base;
-$tiki-sheet-border-color: $table-border-color;
+$jq-ui-btn-font-weight: normal !default;
+$tiki-sheet-font-size: $font-size-base !default;
+$tiki-sheet-border-color: $table-border-color !default;
 
 // CKEditor colors
-$editor-bg: $body-bg !default;
-$editor-text-color: $body-color !default;
+$editor-bg: $body-bg !default !default;
+$editor-text-color: $body-color !default !default;
 
 //jQuery-UI
-$ui-default-border: $nav-tabs-border-color;
-$ui-default-bg: $body-bg;
-$ui-font-weight: $font-weight-normal;
-$ui-default-color: $link-color;
-$ui-default-link-color: $link-color;
-$ui-default-link-active-color: $nav-tabs-link-active-color;
-$ui-default-link-active-bg: $nav-tabs-link-active-bg;
-$ui-active-border-color: $nav-tabs-link-hover-border-color;
-$ui-active-bg: $nav-tabs-link-active-bg;
-$ui-font-weight: $font-weight-normal;
-$ui-active-color: $nav-tabs-link-active-color;
+$ui-default-border: $nav-tabs-border-color !default;
+$ui-default-bg: $body-bg !default;
+$ui-font-weight: $font-weight-normal !default;
+$ui-default-color: $link-color !default;
+$ui-default-link-color: $link-color !default;
+$ui-default-link-active-color: $nav-tabs-link-active-color !default;
+$ui-default-link-active-bg: $nav-tabs-link-active-bg !default;
+$ui-active-border-color: $nav-tabs-link-hover-border-color !default;
+$ui-active-bg: $nav-tabs-link-active-bg !default;
+$ui-font-weight: $font-weight-normal !default;
+$ui-active-color: $nav-tabs-link-active-color !default;
 
 // color of the interactive translation checkbox
-$color_pigeon_post_approx: #b1c5d8;
-$color_bright_gray_approx: #3e4551;
-$color_picton_blue_approx: #33b5e5;
-$color_pizazz_approx: #ff8800;
-$color_gray_suit_approx: #c1c2cd;
-$color_zircon_approx: #f4f5ff;
-$intertrans_background:#03657d;
+$color_pigeon_post_approx: #b1c5d8 !default;
+$color_bright_gray_approx: #3e4551 !default;
+$color_picton_blue_approx: #33b5e5 !default;
+$color_pizazz_approx: #ff8800 !default;
+$color_gray_suit_approx: #c1c2cd !default;
+$color_zircon_approx: #f4f5ff !default;
+$intertrans_background:#03657d !default;
 
 // Blockquote
-$blockquote-color: #7a7a7a;
-$blockquote-left-border-color: #e5e5e5;
+$blockquote-color: #7a7a7a !default;
+$blockquote-left-border-color: #e5e5e5 !default;

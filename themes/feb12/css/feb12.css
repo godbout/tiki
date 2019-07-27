@@ -5980,7 +5980,7 @@ button.close {
     border-color: #dee2e6; } }
 
 .topbar {
-  margin-bottom: 1.4rem; }
+  margin-bottom: 0; }
 
 .navbar-dark > a, .navbar-dark .cssmenu_horiz > li > a {
   color: rgba(255, 255, 255, 0.75); }
