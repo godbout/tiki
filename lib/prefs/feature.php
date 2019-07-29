@@ -114,7 +114,7 @@ function prefs_feature_list($partial = false)
 			'default' => 'n',
 			'admin' => 'gal',
 			'view' => 'tiki-galleries.php',
-			'tags' => ['experimental'],
+			'tags' => ['deprecated'],
 		],
 		'feature_image_galleries_comments' => [
 			'name' => tra('Image Gallery Comments'),
