@@ -1750,19 +1750,26 @@ td.url {
 @media only screen and (max-width: 767.98px) {
   .table-responsive.large-table:not(.ts-wrapperdiv) .table, .table-responsive.large-table:not(.ts-wrapperdiv) tbody {
     display: block; }
-    .table-responsive.large-table:not(.ts-wrapperdiv) tbody tr {
-      border-bottom: 1px solid #dee2e6; }
+    .table-responsive.large-table:not(.ts-wrapperdiv) tbody .header {
+      display: block !important;
+      font-weight: bold; }
+      .table-responsive.large-table:not(.ts-wrapperdiv) tbody .hidecell {
+        display: none; }
+      .table-responsive.large-table:not(.ts-wrapperdiv) tbody tr {
+        border-bottom: 1px solid #dee2e6; }
       .table-responsive.large-table:not(.ts-wrapperdiv) tbody th {
-        background-color: inherit;
-        width: 100%; }
+        position: absolute;
+        top: -9999px;
+        left: -9999px; }
       .table-responsive.large-table:not(.ts-wrapperdiv) tbody tr:not(:nth-child(1)) {
         display: block;
         padding: 0.5rem 0; }
       .table-responsive.large-table:not(.ts-wrapperdiv) tbody td {
         display: block;
-        padding: 0.25rem 0.75rem;
+        padding: 0.25rem 0.75rem 0.5rem;
         border-top: none;
-        text-align: left; }
+        text-align: left;
+        position: relative; }
         .table-responsive.large-table:not(.ts-wrapperdiv) tbody td:after {
           display: block;
           clear: both;
