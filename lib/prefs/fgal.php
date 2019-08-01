@@ -357,7 +357,7 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'type' => 'flag',
 			'default' => 'n',
 			'help' => 'PDF.js-viewer',
-			'packages_required' => ['npm-asset/pdfjs-dist' => VendorHelper::getAvailableVendorPath('pdfjs', 'npm-asset/pdfjs-dist/build/pdf.js')],
+			'packages_required' => ['npm-asset/pdfjs-dist-viewer-min' => VendorHelper::getAvailableVendorPath('pdfjsviewer', '/npm-asset/pdfjs-dist-viewer-min/build/minified/build/pdf.js')],
 		],
 		'fgal_default_view' => [
 			'name' => tra('Default view'),
