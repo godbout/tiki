@@ -71,7 +71,7 @@ $headerlib->cssfiles = [];
 $headerlib->add_cssfile($vendorPath . '/xorti/mxgraph-editor/grapheditor/styles/grapheditor.css');
 $headerlib->add_css(".geMenubar a.geStatus { display: none;}");
 $headerlib->add_js_config("var mxGraphVendorPath = '{$vendorPath}';");
-$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', false);
+$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
 $headerlib->add_jsfile($vendorPath . '/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
 $js = "(function()
 	{
