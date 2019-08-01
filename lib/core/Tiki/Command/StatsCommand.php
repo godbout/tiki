@@ -46,7 +46,11 @@ class StatsCommand extends Command
 		if (isset($usersAdmin) && count($usersAdmin) > 0 && isset($usersAdmin[0]['lastLogin'])) {
 			$lastAdminLogin = sprintf('%s (%s)', date($dateFormat, intval($usersAdmin[0]['lastLogin'])), $usersAdmin[0]['login']);
 		}
-		$kpis[] = ['Last login from users in "Admins group"', $lastAdminLogin];
+		$kpis[] = [
+			'kpi' => 'last_admin_user_login',
+			'label' => tr('Last login from users in "Admins group"'),
+			'value' => $lastAdminLogin
+		];
 
 		//Get Last User logged in
 		$groups = $userlib->list_all_groups();
@@ -57,7 +61,11 @@ class StatsCommand extends Command
 		if (isset($users) && count($users['data']) > 0 && isset($users['data'][0]['lastLogin'])) {
 			$lastUserLogin = sprintf('%s (%s)', date($dateFormat, intval($users['data'][0]['lastLogin'])), $users['data'][0]['login']);
 		}
-		$kpis[] = ['Last user login', $lastUserLogin];
+		$kpis[] = [
+			'kpi' => 'last_user_login',
+			'label' => tr('Last user login'),
+			'value' => $lastUserLogin
+		];
 
 		//get last wiki page change
 		$lastPage = TikiDb::get()->table('tiki_pages')->fetchRow([], [], ['lastModif' => 'desc']);
@@ -96,14 +104,18 @@ class StatsCommand extends Command
 			$last = new \DateTime('@' . $dates[0]);
 			$daysAgo = date_diff($now, $last)->format('%a');
 		}
-		$kpis[] = ['Days passed since last object create/change ', $daysAgo];
+		$kpis[] = [
+			'kpi' => 'days_since_last_object_change',
+			'label' => tr('Days passed since last object create/change'),
+			'value' => $daysAgo
+		];
 
 		if ($input->getOption('json')) {
 			$output->write(json_encode($kpis));
 		} else {
 			$table = new Table($output);
 			$table
-				->setHeaders(['KPI', 'Value'])
+				->setHeaders(['KPI', 'Label', 'Value'])
 				->setRows($kpis);
 			$table->render();
 		}
