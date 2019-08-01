@@ -142,12 +142,19 @@ FileETag none
 
     # If directories containing other programs are legitimate (e.g. when Tiki is installed in a subdirectory), then modify and enable the following line.
     #RewriteCond %{REQUEST_URI} !(^/otherokaydirectory/)
+    RewriteCond %{REQUEST_URI} !(^/tikitrunk/)
+    RewriteCond %{REQUEST_URI} !(^/ingesta/)
+    RewriteCond %{REQUEST_URI} !(^/19.x/)
+    RewriteCond %{REQUEST_URI} !(^/20.x/)
+    RewriteCond %{REQUEST_URI} !(^/21.x/)
+    RewriteCond %{REQUEST_URI} !(^/drat/)
 
     # If Tiki is installed in the web root and your home page is named HomePage, then enable this.
     #RewriteRule ^(.+[^/])/$  /HomePage [R=301,L]
 
     # If Tiki is installed in a subdirectory of the web root, then customize and enable it below.
     #RewriteRule ^(.+[^/])/$  /tiki/HomePage [R=301,L]
+    RewriteRule ^(.+[^/])/$  /20.x/HomePage [R=301,L]
 
     # -- Legacy Template Image Locations -- #
     # Since Tiki9, image locations have changed. If your custom template links to these images enabling these
@@ -289,22 +296,22 @@ FileETag none
 
 # Increase memory limit (default is 128M). Use this if you are getting blank pages and/or strange errors.
 # Read more: http://php.net/manual/en/ini.core.php#ini.memory-limit
-#php_value memory_limit 256M
+php_value memory_limit 256M
 
 # Increase execution time.
 # Default value in Apache used to be 30, and in some cases of long wiki pages with many plugins it may take longer.
 # Read more: http://php.net/manual/en/info.configuration.php#ini.max-execution-time
-#php_value max_execution_time 90
+php_value max_execution_time 90
 
 # This sets the maximum time in seconds a script is allowed to parse input data, like POST and GET.
-#php_value max_input_time 90
+php_value max_input_time 90
 
 # Increase the maximum file size for uploads allowed by PHP.
 # Default value in Apache used to be 2M which is usually too low for PDF or documents with some images, screenshots, etc.
 # Read more: http://php.net/manual/en/ini.core.php#ini.upload-max-filesize
 # Read more: http://php.net/manual/en/ini.core.php#ini.post-max-size
-#php_value upload_max_filesize 10M
-#php_value post_max_size 11M
+php_value upload_max_filesize 20M
+php_value post_max_size 22M
 
 # In some cases you may see open_basedir warnings about Smarty accessing PHP files that it shouldn't.
 # The following line (uncommented) will reset the include path to use only Tiki's files which will solve this in most cases.
