@@ -52,24 +52,23 @@ class GeoLib
 	}
 
 	/**
-	 * @param $coords
+	 * @param array $coords
 	 * @return string
 	 */
 	function build_location_string($coords)
 	{
-		if (! empty($coords['lat']) && ! empty($coords['lon'])) {
-			if ($coords['lat'] == 0 && $coords['lon'] == 0) {
-				return;
-			}
+		$string = '';
+
+		if (isset($coords['lat']) && isset($coords['lon'])) {
 
 			$string = "{$coords['lon']},{$coords['lat']}";
 
 			if (isset($coords['zoom'])) {
 				$string .= ",{$coords['zoom']}";
 			}
-
-			return $string;
 		}
+		
+		return $string;
 	}
 
 	/**

@@ -44,6 +44,11 @@ if (file_exists('./db/local.php') && file_exists('./templates/tiki-check.tpl')) 
 	require_once('tiki-setup.php');
 	// TODO : Proper authentication
 	$access->check_permission('tiki_p_admin');
+
+	// This page is an admin tool usually used in the early stages of setting up Tiki, before layout considerations.
+	// Restricting the width is contrary to its purpose.
+	$prefs['feature_fixed_width'] = 'n';
+
 } else {
 	$standalone = true;
 	$render = "";
@@ -59,12 +64,17 @@ if (file_exists('./db/local.php') && file_exists('./templates/tiki-check.tpl')) 
 
 	/**
 	  * @param $var
+	  * @param $style
 	  */
-	function renderTable($var)
+	function renderTable($var,$style="")
 	{
 		global $render;
+		$morestyle = "";
+		if ($style == "wrap") {
+			$morestyle = "overflow-wrap: anywhere;";
+		}
 		if (is_array($var)) {
-			$render .= '<table style="border:2px solid grey;">';
+			$render .= '<table style="border:2px solid grey;' . $morestyle . '">';
 			foreach ($var as $key => $value) {
 				$render .= '<tr style="border:1px solid">';
 				$render .= '<td style="border:1px black;padding:5px;white-space:nowrap;">';
@@ -1447,7 +1457,7 @@ if ($connection || ! $standalone) {
 		);
 	}
 
-	// UTF-8 MB4 test (required for Tiki19+
+	// UTF-8 MB4 test (required for Tiki19+)
 	$query = "SELECT COUNT(*) FROM `information_schema`.`character_sets` WHERE `character_set_name` = 'utf8mb4';";
 	$result = query($query, $connection);
 	if (! empty($result[0]['COUNT(*)'])) {
@@ -1465,6 +1475,7 @@ if ($connection || ! $standalone) {
 	}
 
 	// UTF-8 Charset
+	// Tiki communication is done using UTF-8 MB4 (required for Tiki19+)
 	$charset_types = "client connection database results server system";
 	foreach (explode(' ', $charset_types) as $type) {
 		$query = "SHOW VARIABLES LIKE 'character_set_" . $type . "';";
@@ -1483,6 +1494,25 @@ if ($connection || ! $standalone) {
 					'message' => tra('On a fresh install everything should be set to utf8mb4 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
 				);
 			}
+		}
+	}
+	// UTF-8 is correct for character_set_system
+	// Because mysql does not allow any config to change this value, and character_set_system is overwritten by the other character_set_* variables anyway. They may change this default in later versions.
+	$query = "SHOW VARIABLES LIKE 'character_set_system';";
+	$result = query($query, $connection);
+	foreach ($result as $value) {
+		if (substr($value['Value'], 0, 4) == 'utf8') {
+			$mysql_properties[$value['Variable_name']] = array(
+				'fitness' => tra('good'),
+				'setting' => $value['Value'],
+				'message' => tra('Tiki is fully utf8mb4 but some database underlying variables are set to utf8 by the database engine and cannot be modified.')
+			);
+		} else {
+			$mysql_properties[$value['Variable_name']] = array(
+				'fitness' => tra('unsure'),
+				'setting' => $value['Value'],
+				'message' => tra('On a fresh install everything should be set to utf8mb4 or utf8 to avoid unexpected results. For further information please see <a href="http://doc.tiki.org/Understanding+Encoding">Understanding Encoding</a>.')
+			);
 		}
 	}
 	// UTF-8 Collation
@@ -2681,7 +2711,7 @@ if ($standalone && ! $nagios) {
 	$render .= '<h2>Tiki Security</h2>';
 	renderTable($tiki_security);
 	$render .= '<h2>MySQL Variables</h2>';
-	renderTable($mysql_variables);
+	renderTable($mysql_variables,'wrap');
 
 	$render .= '<h2>File Gallery Search Indexing</h2>';
 	$render .= '<em>More info <a href="https://doc.tiki.org/Search+within+files">here</a></em>
@@ -3272,7 +3302,6 @@ function createPage($title, $content)
 		<title>$title</title>
 		<style type="text/css">
 			table { border-collapse: collapse;}
-			#fixedwidth {   width: 1024px; margin: 1em auto; }
 			#middle {  margin: 0 auto; }
 			.button {
 				border-radius: 3px 3px 3px 3px;
@@ -3290,11 +3319,11 @@ function createPage($title, $content)
 //			h1 { border-bottom: 1px solid #DADADA; color: #7e7363; }
 		</style>
 	</head>
-	<body class="tiki_wiki fixed_width">
-	<div id="fixedwidth" class="fixedwidth">
+	<body class="tiki_wiki ">
+	<div id="fixedwidth" >
 		<div class="header_outer">
 			<div class="header_container">
-				<div class="clearfix fixedwidth header_fixedwidth">
+				<div class="clearfix ">
 					<header id="header" class="header">
 					<div class="content clearfix modules" id="top_modules" style="min-height: 168px;">
 						<div class="sitelogo" style="float: left">
@@ -3311,20 +3340,20 @@ END;
 			</div>
 		</div>
 		<div class="middle_outer">
-			<div id="middle" class="fixedwidth">
+			<div id="middle" >
 				<div class="topbar clearfix">
 					<h1 style="font-size: 30px; line-height: 30px; color: #fff; text-shadow: 3px 2px 0 #781437; margin: 8px 0 0 10px; padding: 0;">
 					</h1>
 				</div>
 			</div>
-			<div id="middle" style="width: 990px;">
+			<div id="middle" >
 				$content
 			</div>
 		</div>
 	</div>
 	<footer id="footer" class="footer" style="margin-top: 50px;">
 	<div class="footer_liner">
-		<div class="footerbgtrap fixedwidth" style="padding: 10px 0;">
+		<div class="footerbgtrap" style="padding: 10px 0;">
 			<a href="http://tiki.org" target="_blank" title="Powered by Tiki Wiki CMS Groupware">
 END;
 	echo tikiButton();

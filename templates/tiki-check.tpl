@@ -3,14 +3,14 @@
 
 <h2>{tr}MySQL or MariaDB Database Properties{/tr}</h2>
 <form method="post" action="tiki-check.php">
-<input class="registerSubmit" type="submit" class="btn btn-primary" name="acknowledge" value="{tr}Acknowledge{/tr}">
+<input class="registerSubmit" type="submit" class="btn btn-primary" name="acknowledge" value="{tr}Acknowledge (OK){/tr}">
 <div class="table-responsive">
 	<table class="table table-striped table-hover">
 		<tr>
 			<th>{tr}Property{/tr}</th>
 			<th>{tr}Value{/tr}</th>
 			<th>{tr}Tiki Fitness{/tr}</th>
-			<th>{tr}Acknowledge{/tr}</th>
+			<th class="tips" title="{tr}Acknowledge{/tr}">{tr}OK{/tr}</th>
 			<th>{tr}Explanation{/tr}</th>
 		</tr>
 
@@ -85,7 +85,7 @@
 			<th>{tr}Property{/tr}</th>
 			<th>{tr}Value{/tr}</th>
 			<th>{tr}Tiki Fitness{/tr}</th>
-			<th>{tr}Acknowledge{/tr}</th>
+			<th class="tips" title="{tr}Acknowledge{/tr}">{tr}OK{/tr}</th>
 			<th>{tr}Explanation{/tr}</th>
 		</tr>
 
@@ -150,7 +150,7 @@
 				<th>{tr}Property{/tr}</th>
 				<th>{tr}Value{/tr}</th>
 				<th>{tr}Tiki Fitness{/tr}</th>
-				<th>{tr}Acknowledge{/tr}</th>
+				<th class="tips" title="{tr}Acknowledge{/tr}">{tr}OK{/tr}</th>
 				<th>{tr}Explanation{/tr}</th>
 			</tr>
 
@@ -183,7 +183,7 @@
 				<th>{tr}Property{/tr}</th>
 				<th>{tr}Value{/tr}</th>
 				<th>{tr}Tiki Fitness{/tr}</th>
-				<th>{tr}Acknowledge{/tr}</th>
+				<th class="tips" title="{tr}Acknowledge{/tr}">{tr}OK{/tr}</th>
 				<th>{tr}Explanation{/tr}</th>
 			</tr>
 
@@ -215,7 +215,7 @@
 			<th>{tr}Property{/tr}</th>
 			<th>{tr}Value{/tr}</th>
 			<th>{tr}Tiki Fitness{/tr}</th>
-			<th>{tr}Acknowledge{/tr}</th>
+			<th class="tips" title="{tr}Acknowledge{/tr}">{tr}OK{/tr}</th>
 			<th>{tr}Explanation{/tr}</th>
 		</tr>
 
@@ -262,7 +262,7 @@
 			<th>{tr}Property{/tr}</th>
 			<th>{tr}Value{/tr}</th>
 			<th>{tr}Tiki Fitness{/tr}</th>
-			<th>{tr}Acknowledge{/tr}</th>
+			<th class="tips" title="{tr}Acknowledge{/tr}">{tr}OK{/tr}</th>
 			<th>{tr}Explanation{/tr}</th>
 		</tr>
 
@@ -359,7 +359,7 @@
 		{foreach from=$mysql_variables key=key item=item}
 			<tr>
 				<td class="text">{$key}</td>
-				<td class="text">{$item.value|escape}</td>
+				<td class="text" style="overflow-wrap: anywhere;" >{$item.value|escape}</td>
 			</tr>
 		{foreachelse}
 			{norecords _colspan=2}
