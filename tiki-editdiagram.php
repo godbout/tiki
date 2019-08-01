@@ -76,7 +76,7 @@ if (! $vendorPath) {
 }
 
 $headerlib->add_js_config("var diagramVendorPath = '{$vendorPath}';");
-$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', false);
+$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
 
 // Clear Tiki CSS files (just use drawio css)
 $headerlib->cssfiles = [];
