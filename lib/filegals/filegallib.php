@@ -562,7 +562,7 @@ class FileGalLib extends TikiLib
 			'default_view' => $prefs['fgal_default_view'],
 			'template' => null,
 			'icon_fileId' => ! empty($prefs['fgal_icon_fileId']) ? $prefs['fgal_icon_fileId'] : null,
-			'ocr_lang' => [''],
+			'ocr_lang' => '',
 		];
 	}
 	function replace_file_gallery($fgal_info)
