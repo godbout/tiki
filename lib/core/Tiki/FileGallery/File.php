@@ -197,7 +197,7 @@ class File
 		if ($filename) {
 			$this->setParam('filename', $filename);
 		}
-		if (!empty($jitRequest->ocr_state->int())) {
+		if (($jitRequest instanceof JitFilter) && ! empty($jitRequest->ocr_state->int())) {
 			$this->setParam('ocr_state', $jitRequest->ocr_state->int());
 		}
 
