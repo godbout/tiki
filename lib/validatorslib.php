@@ -149,6 +149,14 @@ class Validators
 		// Add an invalidHandler to scroll the first error into view
 		// works in both modal and full page modes and leaves the focus on the error input
 		$validationjs .= '
+highlight: function(element) {
+	var $element = $(element).next(".chosen-container").length ? $(element).next(".chosen-container") : $(element);
+	$element.removeClass("is-invalid").addClass("is-invalid");
+},
+unhighlight: function(element) {
+	var $element = $(element).next(".chosen-container").length ? $(element).next(".chosen-container") : $(element);
+	$element.removeClass("is-invalid");
+},
 focusInvalid: false,
 invalidHandler: function(event, validator) {
 	var errors = validator.numberOfInvalids();
@@ -168,6 +176,9 @@ invalidHandler: function(event, validator) {
 		if (! $scrollElement.length) {
 			$scrollElement = $firstError;
 		}
+		if ($scrollElement.next(".chosen-container")) {
+			$scrollElement = $scrollElement.next(".chosen-container");
+		}
 
 		if ($firstError.parents(".tab-content").length > 0) {
 			$tab = $firstError.parents(".tab-pane");
@@ -178,7 +189,7 @@ invalidHandler: function(event, validator) {
 			scrollTop: containerScrollTop + $scrollElement.offset().top - offset
 		}, 1000, function () {
 			if ($firstError.is("select") && jqueryTiki.chosen) {
-				$firstError.trigger("chosen:activate");
+				$firstError.trigger("chosen:open");
 			} else {
 				$firstError.focus();
 			}
