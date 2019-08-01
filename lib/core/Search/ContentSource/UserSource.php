@@ -93,8 +93,11 @@ class Search_ContentSource_UserSource implements Search_ContentSource_Interface
 
 		$data = [
 			'title' => $typeFactory->sortable($name),
-			'creation_date' => $typeFactory->timestamp($detail['info']['created']),
+			'creation_date' => $typeFactory->timestamp($detail['info']['created']),	// same as registration date			
 			'date' => $typeFactory->timestamp($detail['info']['created']),
+			'lastlogin_date' => $typeFactory->timestamp($detail['info']['lastLogin']),
+			'currentlogin_date' => $typeFactory->timestamp($detail['info']['currentLogin']),			
+
 			'wiki_content' => $typeFactory->wikitext($content),
 
 			'user_country' => $typeFactory->sortable($country),
