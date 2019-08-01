@@ -1,5 +1,5 @@
 {* $Id$ *}
-<div id="graph-container{if isset($index)}-{$index}{/if}" class="diagram"></div>
+<div id="graph-container{if isset($index)}-{$index}{/if}" class="diagram" page="{$page_name}"></div>
 {block name="diagram_extra"}{/block}
 
 {jq notonready=true}

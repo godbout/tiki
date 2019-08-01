@@ -98,7 +98,8 @@ $js = "(function()
 			var editor = editorUi.editor;
 			
 			this.saveFile = function(forceDialog) {
-				var content = mxUtils.getPrettyXml(editor.getGraphXml());
+				let node = editorUi.getXmlFileData();
+				var content = mxUtils.getXml(node);
 				var fileId = {$fileId};
 				var galleryId = {$galleryId};
 				var newDiagram = '{$newDiagram}';

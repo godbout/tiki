@@ -29,6 +29,13 @@ function wikiplugin_diagram_info()
 				'since' => '19.0',
 				'filter' => 'int',
 			],
+			'page' => [
+				'required' => false,
+				'name' => tr('page'),
+				'description' => tr('Page of the diagram that should be displayed.'),
+				'since' => '',
+				'filter' => 'text',
+			],
 			'annotate' => [
 				'required' => false,
 				'name' => tr('annotate'),
@@ -77,6 +84,7 @@ function wikiplugin_diagram($data, $params)
 	$headerlib->add_css('.diagram hr {margin-top:0.5em;margin-bottom:0.5em}');
 
 	$fileId = isset($params['fileId']) ? intval($params['fileId']) : 0;
+	$pageName = isset($params['page']) ? $params['page'] : '';
 	$annotate = isset($params['annotate']) ? intval($params['annotate']) : 0;
 
 	if ($fileId) {
@@ -183,6 +191,7 @@ EOF;
 	$smarty->assign('file_id', $fileId);
 	$smarty->assign('file_name', $file->name);
 	$smarty->assign('mxgraph_prefix', $vendorPath);
+	$smarty->assign('page_name', $pageName);
 
 	return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl') . '~/np~';
 }
