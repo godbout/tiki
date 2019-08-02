@@ -31,14 +31,17 @@
 			<div id="graph-canvas" class="graph-canvas" data-graph-nodes="{$event_graph.nodes|@json_encode|escape}" data-graph-edges="{$event_graph.edges|@json_encode|escape}"></div>
 	{jq}
 		$('#graph-draw').click(function(e) {
+			var width = $window.width() - 50;
+			var height = $window.height() - 130;
+			if (screen.width < 768) width = 1400;
 			$('#graph-canvas')
 				.empty()
-				.css('width', $window.width() - 50)
-				.css('height', $window.height() - 130)
+				.css('width', width)
+				.css('height', height)
 				.dialog({
 					title: "Events",
-					width: $window.width() - 20,
-					height: $window.height() - 100
+					width: width + 30,
+					height: height + 30
 				})
 				.drawGraph();
 			return false;
