@@ -393,10 +393,12 @@
 
 /* profiles */
 
+/*
 .profile_export_list {
 	height: 30em;
 	overflow: auto;
 }
+*/
 
 #export_to_yaml .wikitext {
 	height: 30em;
