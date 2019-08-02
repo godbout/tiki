@@ -175,17 +175,17 @@
 					<ul id="prefs_to_export_list" class="profile_export_list"{if not empty($export_type) and $export_type neq "prefs"} style=display:none;"{/if}>
 
 						{foreach from=$modified_list key="name" item="data"}
-							<li class="checkbox">
+							<li class="form-check">
 								{if is_array($data.current.expanded)}
 									{assign var=current value=$data.current.expanded|implode:", "}
 									{assign var=current value="[$current]"}
 								{else}
 									{assign var=current value=$data.current.expanded}
 								{/if}
-								<input type="checkbox" name="prefs_to_export[{$name}]" value="{$current|escape}"
+								<input type="checkbox" class="form-check-input" name="prefs_to_export[{$name}]" value="{$current|escape}"
 									id="checkbox_{$name}"{if isset($prefs_to_export[$name])} checked="checked"{/if}
 								>
-								<label for="checkbox_{$name}">
+								<label for="checkbox_{$name}" class="form-check-label">
 									{$name} = '<strong>{$current|truncate:40:"...":true|escape}</strong>'{* FIXME: This one line per preference display format is ugly and doesn't work for multiline values *}
 									<em>
 										&nbsp;&nbsp;
@@ -207,10 +207,10 @@
 					<ul id="modules_to_export_list" class="profile_export_list"{if $export_type neq "modules"} style=display:none;"{/if}>
 
 						{foreach from=$modules_for_export key="name" item="data"}
-							<li class="checkbox">
-								<input type="checkbox" name="modules_to_export[{$name}]" value="{$data.name|escape}"
+							<li class="form-check">
+								<input type="checkbox" class="form-check-input" name="modules_to_export[{$name}]" value="{$data.name|escape}"
 									id="modcheckbox_{$name}"{if isset($modules_to_export[$name])} checked="checked"{/if} />
-								<label for="modcheckbox_{$name}">
+								<label for="modcheckbox_{$name}" class="form-check-label">
 									{$data.data.name|escape} :
 									<em>
 										&nbsp;&nbsp;
