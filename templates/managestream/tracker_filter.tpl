@@ -9,7 +9,7 @@
 				{tr}Source Event{/tr}
 			</label>
 			<div class="col-md-9">
-				<select name="sourceEvent" class="form-group row">
+				<select name="sourceEvent" class="form-control">
 					{foreach from=$eventTypes item=eventName}
 						<option value="{$eventName|escape}"{if $rule.eventType eq $eventName} selected{/if}>{$eventName|escape}</option>
 					{/foreach}
