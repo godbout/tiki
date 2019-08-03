@@ -179,6 +179,7 @@
 			{preference name='fgal_show_explorer'}
 			{preference name='fgal_show_path'}
 			{preference name='fgal_show_slideshow'}
+			{preference name='fgal_list_ocr_state'}
 			{preference name='fgal_list_id'}
 			{preference name='fgal_list_type'}
 			{preference name='fgal_list_name'}
@@ -232,6 +233,14 @@
 			<br>
 			{preference name=fgal_enable_auto_indexing}
 			{preference name=fgal_asynchronous_indexing}
+			{preference name=ocr_enable}
+				<div class="adminoptionboxchild" id="ocr_enable_childcontainer">
+					{preference name=ocr_every_file}
+					{preference name=ocr_file_level}
+					{preference name=ocr_limit_languages}
+					{preference name=ocr_tesseract_path}
+					{preference name=ocr_pdfimages_path}
+				</div>
 			<div class="adminoptionbox">
 				<fieldset>
 					<legend>{tr}Handlers{/tr}{help url="Search-within-files" desc='If you want the content of the files which are in the File Gallery to be accessible by a search, and if you have a script that extracts the file content into a text, you can associate the script to the Mime type and the files content will be indexed.'}</legend>
@@ -316,6 +325,15 @@
 								name="filegalredosearch"
 								value="{tr}Reindex all files for search{/tr}"
 							>
+							{if $prefs.ocr_enable === 'y'}
+								<input
+										type="submit"
+										{if !$ocrStalled}disabled{/if}
+										class="btn btn-primary btn-sm"
+										name="ocrstalledreset"
+										value="{tr}Reset {if $ocrStalled}{$ocrStalled} {/if}OCR 'stalled' files{/tr}"
+								>
+							{/if}
 						</div>
 					</div>
 				</div>
@@ -404,15 +422,6 @@
 					{preference name=vimeo_access_token_secret}
 				</div>
 			</fieldset>
-
-			<fieldset>
-				<legend>{tr}OCR Indexing{/tr}</legend>
-				{preference name=fgal_ocr_enable}
-				<div class="adminoptionboxchild" id="fgal_ocr_enable_childcontainer">
-					{preference name=fgal_ocr_every_file}
-				</div>
-			</fieldset>
-
 		{/tab}
 	{/tabset}
 	{include file='admin/include_apply_bottom.tpl'}

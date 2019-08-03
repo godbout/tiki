@@ -292,8 +292,8 @@ class Smarty_Tiki extends Smarty
 	}
 
 	/**
-	 * needs a proper description
-	 * @param $var
+	 * Clears the value of an assigned variable
+	 * @param $var mixed
 	 * @return Smarty_Internal_Data
 	 */
 	function clear_assign($var)
@@ -302,9 +302,9 @@ class Smarty_Tiki extends Smarty
 	}
 
 	/**
-	 * needs a proper description
-	 * @param $var
-	 * @param $value
+	 * This is used to assign() values to the templates by reference instead of making a copy.
+	 * @param $var string
+	 * @param $value mixed
 	 * @return Smarty_Internal_Data
 	 */
 	function assign_by_ref($var, &$value)

@@ -1,1 +1,1 @@
-<a {if $uniqueId}id="ref_footnote{$uniqueId}" {/if}href="#footnote{$unique}" class="footlink {$class}">{$listNum|numStyle:$listType}</a>
+<a {if $uniqueId}id="ref_footnote{$uniqueId}" {/if}href="#footnote{$unique}" class="footlink {$class}" data-toggle="popover" data-target="#footnotecontent{$unique}" data-html="true" data-trigger="hover" >{$listNum|numStyle:$listType}</a>

@@ -32,6 +32,7 @@ $fgal_listing_conf = [
 	'hits' => ['name' => tra('Hits')],
 	'lastDownload' => ['name' => tra('Last download')],
 	'lockedby' => ['name' => tra('Locked by'), 'icon' => 'lock'],
+	'ocr_state' => ['name' => tra('OCR Status')],
 	'backlinks' => ['name' => tra('Backlinks')],
 	'deleteAfter' => ['name' => tra('Delete after')],
 	'share' => ['name' => tra('Share')],

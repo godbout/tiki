@@ -34,12 +34,69 @@ require_once $tikiBase . '/vendor_bundled/vendor/autoload.php';
 
 class EnglishUpdateCommand extends Command
 {
+	/**
+	 * Run svn diff command
+	 * @param array $revisions revisions to use in diff
+	 * @param int $lag number of days to search previously
+	 * @return mixed diff result
+	 */
+	private function getSvnDiff($revisions, $lag = 0)
+	{
+		if ($lag > 0) {
+			// current time minus number of days specified through lag
+			$rev = date('{"Y-m-d H:i"}', time() - $lag * 60 * 60 * 24);
+			$rev = '-r ' . $rev;
+		} else {
+			$rev = '-r ' . implode(":", $revisions);
+		}
+
+		$raw = shell_exec("svn diff $rev 2>&1");
+
+		// strip any empty translation strings now to avoid complexities later
+		$raw = preg_replace('/tra?\(["\'](\s*?)[\'"]\)/m', '', $raw);
+
+//		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
+
+		return $this->separatePhpTpl($raw, 'svn');
+	}
+
+	/**
+	 * Run git diff command
+	 * @param array $revisions revisions to use in diff
+	 * @param int $lag number of days to search previously
+	 * @return mixed diff result
+	 */
+	private function getGitDiff($revisions, $lag = 0)
+	{
+		if ($lag > 0) {
+			// current time minus number of days specified through lag
+			$rev = 'HEAD \'HEAD@{' . $lag . ' weeks ago}\'';
+		} else {
+			$rev = implode(" ", $revisions);
+		}
+
+		$raw = shell_exec("git diff $rev 2>&1");
+
+
+		// strip any empty translation strings now to avoid complexities later
+		$raw = preg_replace('/tra?\(["\'](\s*?)[\'"]\)/m', '', $raw);
+
+//		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
+
+		return $this->separatePhpTpl($raw, 'git');
+	}
 
 	protected function configure()
 	{
 		$this
 			->setName('englishupdate')
 			->setDescription("Update translation files with updates made to English strings. Will compare working copy by default.")
+			->addOption(
+				'scm',
+				null,
+				InputOption::VALUE_REQUIRED,
+				'Source code management type: svn or git'
+			)
 			->addOption(
 				'revision',
 				'r',
@@ -294,7 +351,6 @@ class EnglishUpdateCommand extends Command
 		return $filtered;
 	}
 
-
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		$tikiBase = realpath(dirname(__FILE__) . '/../..');
@@ -317,20 +373,45 @@ class EnglishUpdateCommand extends Command
 
 			return $output->writeln(' --email, only available when running in --audit mode.');
 		}
+		// check that scm is being used and validate
+		$scm = $input->getOption('scm');
+		if (!empty($scm) && ! in_array($scm, ['svn', 'git'])) {
+			$help = new HelpCommand();
+			$help->setCommand($this);
+			$help->run($input, $output);
+
+			return $output->writeln('<error> --scm, invalid value. ex: svn or git. </error>');
+		}
+
+		if (empty($scm)) {//detect if is svn or git repo
+			if (file_exists($tikiBase . DIRECTORY_SEPARATOR . '.git')) {
+				$scm = 'git';
+			} elseif (file_exists($tikiBase . DIRECTORY_SEPARATOR . '.svn')) {
+				$scm = 'svn';
+			} else {
+				return $output->writeln('<error>SCM not found in this tiki installation</error>');
+			}
+		}
+
+		$lag = $input->getOption('lag');
+		$revision = $input->getOption('revision');
+		$revisions = [];
 		// check that the --lag option is valid, and complain if its not.
-		if ($input->getOption('lag')) {
-			if ($input->getOption('lag') < 0 || ! is_numeric($input->getOption('lag'))) {
+		if ($lag) {
+			if ($input->getOption('lag') < 0 || ! is_numeric($lag)) {
 				$help = new HelpCommand();
 				$help->setCommand($this);
 				$help->run($input, $output);
 
-				return $output->writeln('Invalid option for --lag, must be a positive integer.');
+				return $output->writeln('<error>Invalid option for --lag, must be a positive integer.</error>');
 			}
-			// current time minus number of days specified through lag
-			$rev = date('{"Y-m-d H:i"}', time() - $input->getOption('lag') * 60 * 60 * 24);
-			$rev = '-r ' . $rev;
-		} elseif ($input->getOption('revision')) {
-			$rev = '-r' . $input->getOption('revision');
+		} elseif ($revision) {
+			$revisions = explode(':', $revision);
+			if (count($revisions) > 2) {
+				return $output->writeln('<error>Invalid amount of revisions</error>');
+			}
+		} else {
+			return $output->writeln('<error>Options lag or revision are required</error>');
 		}
 
 		$this->languages = glob($tikiBase . '/lang/*', GLOB_ONLYDIR);
@@ -345,7 +426,6 @@ class EnglishUpdateCommand extends Command
 		$progress->setMessage('Checking System');
 		$progress->start();
 
-
 		// die gracefully if shell_exec is not enabled;
 		if (! is_callable('shell_exec')) {
 			$progress->setMessage('<error>Translation string update Failed. Could not execute shell_exec()</error>');
@@ -357,21 +437,14 @@ class EnglishUpdateCommand extends Command
 		$progress->setMessage('Getting String Changes');
 		$progress->advance();
 
-		if ($customCommand = $input->getOption('diff-command')) {
-			$raw = shell_exec($customCommand);
+		if ($scm == 'git') {
+			$diffs = $this->getGitDiff($revisions, $lag);
 		} else {
-			$raw = shell_exec("svn diff $rev 2>&1");
+			$diffs = $this->getSvnDiff($revisions, $lag);
 		}
 
 		$progress->setMessage('Finding Updated Strings');
 		$progress->advance();
-
-		// strip any empty translation strings now to avoid complexities later
-		$raw = preg_replace('/tra?\(["\'](\s*?)[\'"]\)/m', '', $raw);
-
-//		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
-
-		$diffs = $this->separatePhpTpl($raw, $input->getOption('git') ? 'git' : 'svn');
 
 //		$output->writeln(var_export($diffs, true), OutputInterface::VERBOSITY_DEBUG);
 

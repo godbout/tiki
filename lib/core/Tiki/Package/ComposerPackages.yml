@@ -56,12 +56,21 @@ mPDF:
     - "Tiki Print"
   requiredVersion: ^7.1
 mxGraph:
+  actions:
+    - remove
   licence: Apache-2.0
   licenceUrl: "https://github.com/jgraph/mxgraph/blob/master/README.md"
   name: xorti/mxgraph-editor
   requiredBy:
   - "wikiplugin_diagram"
   requiredVersion: ^3.9.12.2
+diagram:
+  licence: Apache-2.0
+  licenceUrl: "https://gitlab.com/tikiwiki/diagram/blob/master/README.md"
+  name: tikiwiki/diagram
+  requiredBy:
+    - "wikiplugin_diagram"
+  requiredVersion: ^10
 PHPSaml:
   licence: MIT
   licenceUrl: "https://github.com/onelogin/php-saml/blob/master/LICENSE"
@@ -74,8 +83,9 @@ TesseractOCR:
   licenceUrl: "https://github.com/thiagoalessio/tesseract-ocr-for-php/blob/master/MIT-LICENSE"
   name: thiagoalessio/tesseract_ocr
   requiredBy:
-  - fgal_ocr_enable
-  requiredVersion: ^2.7.0
+  - ocr_enable
+  requiredVersion: ^2.7.3
+  # Be sure to update TESSERACT_BINARY_VERSION in ocrlib.php if the requirements have changed.
 MathJax:
   licence: Apache-2.0
   licenceUrl: "https://github.com/mathjax/MathJax/blob/master/LICENSE"
@@ -89,6 +99,7 @@ MediaAlchemyst:
   name: media-alchemyst/media-alchemyst
   requiredBy:
     - wikiplugin_preview
+    - ocr_enable
   requiredVersion: ^0.5.1
 PDFjsViewer:
   licence: Apache-2.0

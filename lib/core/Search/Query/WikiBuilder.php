@@ -163,6 +163,13 @@ class Search_Query_WikiBuilder
 	function wpquery_filter_content($query, $value, array $arguments)
 	{
 		$fields = $this->get_fields_from_arguments($arguments);
+
+		if (isset($arguments['allterms']) && $arguments['allterms'] == 'y' && strpos($value, 'AND') === false) {
+			$value = preg_replace("/\s+/", " AND ", $value);
+		} elseif (isset($arguments['anyterms']) && $arguments['anyterms'] == 'y' && strpos($value, 'OR') === false) {
+			$value = preg_replace("/\s+/", " OR ", $value);
+		}
+
 		$query->filterContent($value, $fields);
 	}
 

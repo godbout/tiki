@@ -113,6 +113,11 @@
 					{preference name=wikiplugin_titlesearch}
 					{preference name=wikiplugin_transclude}
 					{preference name=wikiplugin_wantedpages}
+					{preference name=wikiplugin_footnote}
+					<div class="adminoptionboxchild" id="wikiplugin_footnote_childcontainer">
+						{preference name=wikiplugin_footnotearea}
+						{preference name=footnote_popovers}
+					</div>
 				</fieldset>
 			</div>
 		{/tab}

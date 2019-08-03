@@ -2200,9 +2200,22 @@ class UsersLib extends TikiLib
 		$neverloggedin = false
 	) {
 
-		$perms = Perms::get(['type' => 'group', 'object' => $group]);
+		$hasPermission = function ($group) {
+			$perms = Perms::get(['type' => 'group', 'object' => $group]);
+			if (! $perms->group_view_members && ! $perms->list_users && ! $perms->admin_users) {
+				return false;
+			}
 
-		if (! $perms->group_view_members && ! $perms->list_users && ! $perms->admin_users) {
+			return true;
+		};
+
+		if (is_array($group)) {
+			$group = array_filter($group, $hasPermission);
+
+			if (empty($group)) {
+				return [];
+			}
+		} elseif (! $hasPermission($group)) {
 			return [];
 		}
 

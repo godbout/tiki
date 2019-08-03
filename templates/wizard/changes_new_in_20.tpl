@@ -21,9 +21,9 @@
 		</a>
 		<fieldset>
 			<legend>{tr}OCR Indexing{/tr}{help url="OCR+Indexing"}</legend>
-			{preference name=fgal_ocr_enable}
-				<div class="adminoptionboxchild" id="fgal_ocr_enable_childcontainer">
-					{preference name=fgal_ocr_every_file}
+			{preference name=ocr_enable}
+				<div class="adminoptionboxchild" id="ocr_enable_childcontainer">
+					{preference name=ocr_every_file}
 				</div>
 		</fieldset>
 		<fieldset class="table clearfix featurelist">

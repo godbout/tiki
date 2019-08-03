@@ -180,6 +180,11 @@ if ((isset($_POST['send']) && $access->checkCsrf()) || isset($_POST['preview']))
 
 	// Insert the message in the inboxes of each user
 	if (! empty($users)) {
+		if ($prefs['user_selector_realnames_messu'] == 'y') {
+			$clean_users = array_map(array($userlib, 'clean_user'), $users);
+		} else {
+			$clean_users = $users;
+		}
 		if (isset($_POST['send'])) {
 			foreach ($users as $a_user) {
 				//////////////////////////////////////////////////////////////////////////////////
@@ -233,11 +238,9 @@ if ((isset($_POST['send']) && $access->checkCsrf()) || isset($_POST['preview']))
 					if ($_REQUEST['replyto_hash'] <> '') {
 						$messulib->mark_replied($a_user, $_REQUEST['replyto_hash']);
 					}
-					$message[] = tra('The message has been sent to:') . ' ' . implode(', ', $users);
 					$smarty->assign('sent', 1);
 					$messulib->save_sent_message($user, $user, $_REQUEST['to'], $_REQUEST['cc'], $_REQUEST['subject'],
 						$_REQUEST['body'], $_REQUEST['priority'], $_REQUEST['replyto_hash']);
-					Feedback::success(['mes' => $message]);
 					if ($prefs['feature_actionlog'] == 'y') {
 						if (isset($_REQUEST['reply']) && $_REQUEST['reply'] == 'y') {
 							$logslib->add_action('Replied', '', 'message', 'add=' . $tikilib->strlen_quoted($_REQUEST['body']));
@@ -245,12 +248,16 @@ if ((isset($_POST['send']) && $access->checkCsrf()) || isset($_POST['preview']))
 							$logslib->add_action('Posted', '', 'message', 'add=' . strlen($_REQUEST['body']));
 						}
 					}
+					$smarty->clear_assign(array('to', 'cc', 'bcc', 'subject', 'body', 'replytome', 'bccme'));
+					$smarty->assign('priority', 3);
 				} else {
 					Feedback::error(tra('An error occurred, please check your mail settings and try again'));
 				}
 			}
+			$message[] = tra('The message has been sent to:') . ' ' . implode(', ', $clean_users);
+			Feedback::success(['mes' => $message]);
 		} elseif (isset($_POST['preview'])) {
-			$message[] = tra('The message will be sent to:') . ' ' . implode(', ', $users);
+			$message[] = tra('The message will be sent to:') . ' ' . implode(', ', $clean_users);
 			$smarty->assign('confirm_detail', $message);
 			$smarty->assign('confirmSubmitName', 'send');
 			$smarty->assign('confirmSubmitValue', 1);

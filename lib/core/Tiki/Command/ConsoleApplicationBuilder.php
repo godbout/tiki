@@ -25,7 +25,7 @@ class ConsoleApplicationBuilder
 
 	protected $site; // the virtual site
 	protected $baseDir;
-	static protected $lastInstance;
+	protected static $lastInstance;
 
 	/**
 	 * List of commands registered on the console
@@ -71,7 +71,6 @@ class ConsoleApplicationBuilder
 					new PluginRefreshRunCommand,
 					new InstallerLockCommand,
 					new PatchCommand,
-					new OCRFileCommand,
 				],
 			],
 			'checkIsOCRAvailable' => [
@@ -79,6 +78,8 @@ class ConsoleApplicationBuilder
 				'commands' => [
 					new OCRFileCommand,
 					new OCRAllCommand,
+					new OCRStatusCommand,
+					new OCRSetCommand,
 				],
 			],
 			'checkIsInstalledAndDoNotRequireUpdate' => [
@@ -130,6 +131,7 @@ class ConsoleApplicationBuilder
 					new AdminIndexRebuildCommand,
 					new UsersListCommand,
 					new UsersPasswordCommand,
+					new StatsCommand
 				],
 			],
 			'checkProfileInfoExists' => [
@@ -258,18 +260,17 @@ class ConsoleApplicationBuilder
 	 * Check if OCR is available
 	 * @return bool
 	 */
-	protected function checkIsOCRAvailable () : bool
+	protected function checkIsOCRAvailable() : bool
 	{
-		if (! $this->checkIsInstalledAndDoNotRequireUpdate()){
+		if (! $this->checkIsInstalledAndDoNotRequireUpdate()) {
 			return false;
 		}
+		global $prefs;
 
-		$ocr = \TikiLib::lib('ocr');
-		if ($ocr->checkOCRDependencies())
-		{
-			return true;
+		if (! empty($prefs['ocr_enable'])  && $prefs['ocr_enable'] !== 'y') {
+			return false;
 		}
-		return false;
+		return true;
 	}
 
 	/**

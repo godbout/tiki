@@ -80,7 +80,7 @@ class AlchemyLib
 	 * @param bool $animated true for animated gif
 	 * @return null|string the media type of the file, null on error
 	 */
-	public function convertToImage($sourcePath, $destinationPath, $width, $height, $animated)
+	public function convertToImage($sourcePath, $destinationPath, $width=null, $height=null, $animated=false)
 	{
 		try {
 			$guess = $this->mediavorus->guess($sourcePath);

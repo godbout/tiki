@@ -226,6 +226,7 @@ sensiolabs-vendor-security-check:
     - composer require npm-asset/lozad ^1.6.0 --no-progress
     - composer require mpdf/mpdf ^7.1 --no-progress
     - composer require xorti/mxgraph-editor ^3.9.12.2 --no-progress
+    - composer require tikiwiki/diagram ^10 --no-progress
     - composer require onelogin/php-saml ^2.10 --no-progress
     - composer require thiagoalessio/tesseract_ocr ^2.7.0 --no-progress
     - composer require mathjax/mathjax ^2.7 --no-progress

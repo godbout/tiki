@@ -8,7 +8,6 @@
 class Search_ContentSource_ActivityStreamSource implements Search_ContentSource_Interface
 {
 	private $lib;
-	private $sociallib;
 	private $relationlib;
 	private $tikilib;
 	private $source;
@@ -18,7 +17,6 @@ class Search_ContentSource_ActivityStreamSource implements Search_ContentSource_
 		global $prefs;
 		$this->lib = TikiLib::lib('activity');
 		$this->source = $source;
-		$this->sociallib = TikiLib::lib('social');
 		$this->relationlib = TikiLib::lib('relation');
 		$this->tikilib = TikiLib::lib('tiki');
 	}
@@ -73,8 +71,27 @@ class Search_ContentSource_ActivityStreamSource implements Search_ContentSource_
 			}
 		}
 
-		$list = $this->sociallib->getLikes('activity', $objectId);
-		$document['like_list'] = $typeFactory->multivalue($list);
+		if (isset($document['type'], $document['object'])) {
+			// Add tracker special perms
+			if ($info['arguments']['type'] == 'trackeritem') {
+				$item = TikiLib::lib('trk')->get_tracker_item($info['arguments']['object']);
+				if (empty($item)) {
+					return false;
+				}
+
+				$itemObject = Tracker_Item::fromInfo($item);
+
+				if (empty($itemObject) || ! $itemObject->getDefinition()) {	// ignore corrupted items, e.g. where trackerId == 0
+					return false;
+				}
+
+				$specialUsers = $itemObject->getSpecialPermissionUsers($info['arguments']['object'], 'View');
+
+				if ($specialUsers) {
+					$document['_extra_users'] = $specialUsers;
+				}
+			}
+		}
 
 		if ($prefs['monitor_individual_clear'] == 'y') {
 			$clearList = $this->getClearList($objectId);
@@ -89,7 +106,7 @@ class Search_ContentSource_ActivityStreamSource implements Search_ContentSource_
 	function getProvidedFields()
 	{
 		$mapping = $this->lib->getMapping();
-		return array_merge(['event_type', 'modification_date', 'like_list', 'clear_list', 'date'], array_keys($mapping));
+		return array_merge(['event_type', 'modification_date', 'clear_list', 'date'], array_keys($mapping));
 	}
 
 	function getGlobalFields()

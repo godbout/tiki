@@ -202,6 +202,18 @@
 									{assign var=propval value=$propval|username}
 								{elseif $propname eq 'size'}
 									{assign var=propval value=$propval|kbsize:true}
+								{elseif $propname eq 'ocr_state'}
+									{if $propval === '1'}
+										{assign var=propval value='{tr}Finished processing{/tr}'}
+									{elseif $propval === '2'}
+										{assign var=propval value='{tr}Currently processing{/tr}'}
+									{elseif $propval === '3'}
+										{assign var=propval value='{tr}Queued for processing{/tr}'}
+									{elseif $propval === '4'}
+										{assign var=propval value='{tr}Processing stalled{/tr}'}
+									{else}
+										{assign var=propval value='{tr}No scheduled processing{/tr}'}
+									{/if}
 								{elseif $propname eq 'backlinks' and ! empty($files[changes].nbBacklinks)}
 									{assign var=propval value=$files[changes].nbBacklinks}
 								{elseif $propname eq 'description'}
@@ -384,6 +396,18 @@
 							{assign var=propval value=$propval|truncate:$gal_info.max_desc:"...":false|nl2br}
 						{elseif $propname eq 'description'}
 							{assign var=propval value=$propval|nl2br}
+						{elseif $propname eq 'ocr_state'}
+							{if $propval === '1'}
+								{capture assign=propval}{icon style='outline' name='check-circle' title='{tr}Finished processing{/tr}'}{/capture}
+							{elseif $propval === '2'}
+								{capture assign=propval}{icon style='outline' name='sync' title='{tr}Currently processing{/tr}'}{/capture}
+							{elseif $propval === '3'}
+								{capture assign=propval}{icon style='outline' name='circle' title='{tr}Queued for processing{/tr}'}{/capture}
+							{elseif $propval === '4'}
+								{capture assign=propval}{icon style='outline' name='pause-circle' title='{tr}Processing stalled{/tr}'}{/capture}
+							{else}
+								{capture assign=propval}{icon style='outline' name='times-circle' title='{tr}No scheduled processing{/tr}'}{/capture}
+							{/if}
 						{elseif $propname eq 'lockedby' and $propval neq ''}
 							{if $gal_info.show_lockedby eq 'i' or $gal_info.show_lockedby eq 'a'}
 								{assign var=propval value=$propval|username}

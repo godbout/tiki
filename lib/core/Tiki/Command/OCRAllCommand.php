@@ -30,23 +30,19 @@ class OCRAllCommand extends Command
 		$outputStyle = new OutputFormatterStyle('red');
 		$output->getFormatter()->setStyle('error', $outputStyle);
 
-		// Set $nextOCRFile with the fileid of the next file scheduled to be processed by the OCR engine.
-		$ocrLib->nextOCRFile = $ocrLib->table('tiki_files')->fetchOne('fileId', ['ocr_state' => $ocrLib::OCR_STATUS_PENDING]);
-
-		if (! $ocrLib->nextOCRFile) {
-			$output->writeln('<comment>No files to OCR</comment>');
-			exit;
-		}
-
-		if (! $ocrLib->checkOCRDependencies()) {
+		try {
+			$ocrLib->checkOCRDependencies();
+		}catch (Exception $e) {
 			$output->writeln(
-				'<error>' . tr('Dependencies not satisfied. Exiting.')
-				. '</error>'
-			);
+				'<error>' . $e->getMessage() . '</error>');
+			return;
 		}
 
 		//Retrieve the number of files marked as waiting to be processed.
-		$queueCount = $ocrLib->table('tiki_files')->fetchCount(['ocr_state' => $ocrLib::OCR_STATUS_PENDING]);
+		$db = $ocrLib->table('tiki_files');
+		$queueCount = $db->fetchCount(
+			['ocr_state' => $ocrLib::OCR_STATUS_PENDING]
+		);
 
 		$progress = new ProgressBar($output, $queueCount + 1);
 		if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
@@ -56,27 +52,43 @@ class OCRAllCommand extends Command
 			'custom', ' %current%/%max% [%bar%] -- %message%'
 		);
 		$progress->setFormat('custom');
-		$progress->setMessage('Starting OCR of queued files');
+		$progress->setMessage('Preparatory checks');
 		$progress->start();
 		$OCRCount = 0;
 
+		// release old files that might have died while processing, and report as error
+		$processingNum = $ocrLib->releaseAllProcessing();
+		if ($processingNum) {
+			$progress->setMessage(
+				"<comment>Reset processing files, run again to perform OCR.</comment>\n"
+			);
+			$progress->finish();
+			return;
+		}
+
+		$ocrLib->setNextOCRFile();
+
+		if (! $ocrLib->nextOCRFile) {
+			$progress->setMessage("<comment>No files to OCR</comment>\n");
+			$progress->finish();
+			return;
+		}
+
 		while ($ocrLib->nextOCRFile) {
 			try {
-				$progress->setMessage(
-					'OCR processing file gallery id ' . $ocrLib->nextOCRFile
-				);
+				$progress->setMessage('OCR processing file id ' . $ocrLib->nextOCRFile);
 				$progress->advance();
 				$ocrLib->OCRfile();
+				$output->write(': done');
 				$OCRCount++;
 			} catch (Exception $e) {
-				$output->writeln("<error>$e</error>");
+				$output->write(': <error>failed</error>');
+				$output->write(": <error>" . $e->getMessage(). '</error>',OutputInterface::VERBOSITY_DEBUG);
 			}
 		}
 		$progress->setMessage(
-			"<comment>Finished the OCR of $OCRCount files.</comment>"
+			"<comment>Finished the OCR of $OCRCount files.</comment>\n"
 		);
 		$progress->finish();
-		echo "\n";
-
 	}
 }

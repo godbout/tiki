@@ -558,9 +558,11 @@ class FileGalLib extends TikiLib
 			'show_slideshow' => $prefs['fgal_show_slideshow'],
 			'show_source' => 'o',
 			'wiki_syntax' => '',
+			'show_ocr_state' => $prefs['fgal_show_ocr_state'],
 			'default_view' => $prefs['fgal_default_view'],
 			'template' => null,
 			'icon_fileId' => ! empty($prefs['fgal_icon_fileId']) ? $prefs['fgal_icon_fileId'] : null,
+			'ocr_lang' => '',
 		];
 	}
 	function replace_file_gallery($fgal_info)
@@ -753,7 +755,7 @@ class FileGalLib extends TikiLib
 		if ($include_search_data && $include_data) {
 			$fields = $files->all();
 		} else {
-			$fields = ['fileId', 'galleryId', 'name', 'description', 'created', 'filename', 'filesize', 'filetype', 'user', 'author', 'hits', 'votes', 'points', 'path', 'reference_url', 'is_reference', 'hash', 'lastModif', 'lastModifUser', 'lockedby', 'comment', 'archiveId'];
+			$fields = ['fileId', 'galleryId', 'name', 'description', 'created', 'filename', 'filesize', 'filetype', 'user', 'author', 'hits', 'votes', 'points', 'path', 'reference_url', 'is_reference', 'hash', 'lastModif', 'lastModifUser', 'lockedby', 'comment', 'archiveId','ocr_state'];
 			if ($include_search_data) {
 				$fields[] = 'search_data';
 				$fields[] = 'ocr_data';
@@ -2039,6 +2041,7 @@ class FileGalLib extends TikiLib
 	}
 
 	/**
+	 * Sets default options for file galleries from global preferences
 	 * @param $fgalIds
 	 * @return TikiDb_Adodb_Result|TikiDb_Pdo_Result
 	 */
@@ -2069,6 +2072,7 @@ class FileGalLib extends TikiLib
 			'show_explorer' => $prefs['fgal_show_explorer'],
 			'show_path' => $prefs['fgal_show_path'],
 			'show_slideshow' => $prefs['fgal_show_slideshow'],
+			'show_ocr_state' => $prefs['fgal_show_ocr_state'],
 			'default_view' => $prefs['fgal_default_view'],
 			'icon_fileId' => ! empty($prefs['fgal_icon_fileId']) ? $prefs['fgal_icon_fileId'] : null,
 			'show_source' => $prefs['fgal_list_source'],
@@ -2389,6 +2393,7 @@ class FileGalLib extends TikiLib
 				'tf.`deleteAfter`' => "'' as `deleteAfter`",
 				'tf.`maxhits`' => "'' as `maxhits`",
 				'tf.`archiveId`' => '0 as `archiveId`',
+				'tf.`ocr_state`' => "'' as `ocr_state`",
 				"'' as `visible`" => 'tfg.`visible`',
 				"'' as `public`" => 'tfg.`public`',
 
@@ -2990,6 +2995,12 @@ class FileGalLib extends TikiLib
 			if (! empty($params['author'][0])) {
 				$fileInfo['author'] = $params['author'][0];
 			}
+			if (! empty($params['ocr_lang'][0])) {
+				$fileInfo['ocr_lang'] = json_encode($params['ocr_lang']);
+			}
+			if (isset($params['ocr_state'])) {
+					$fileInfo['ocr_state'] = $params['ocr_state'][0];
+			}
 			if (! empty($params['filetype'][0])) {
 				if (isset($fileInfo['fileId']) && $fileInfo['filetype'] != $params['filetype'][0] && substr($params['filetype'][0], 0, 9) == 'image/svg') {
 					try {
@@ -3262,6 +3273,8 @@ class FileGalLib extends TikiLib
 				'metadata' => $fileInfo['metadata'],
 				'lastModif' => $fileInfo['lastModif'],
 				'lockedby' => $fileInfo['lockedby'],
+				'ocr_lang' => $fileInfo['ocr_lang'],
+				'ocr_state' => $fileInfo['ocr_state']
 			]);
 			$fileInfo['fileId'] = $file->replace($fileInfo['data'], $fileInfo['filetype'], $fileInfo['name'], $fileInfo['filename']);
 			$fileChangedMessage = tra('File update was successful') . ': ' . $params['name'];
@@ -3301,7 +3314,7 @@ class FileGalLib extends TikiLib
 		return $fileInfo;
 	}
 
-	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '', $ocrFile = null)
+	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '')
 	{
 		global $user;
 		if (empty($asuser) || ! Perms::get()->admin) {
@@ -3315,8 +3328,7 @@ class FileGalLib extends TikiLib
 			'galleryId' => $gal_info['galleryId'],
 			'description' => $description,
 			'user' => $asuser,
-			'created' => $created,
-			'ocr_state' => $ocrFile
+			'created' => $created
 		]);
 		$ret = $file->replace($data, $type, $name, $name, $image_x, $image_y);
 

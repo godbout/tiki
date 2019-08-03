@@ -4,7 +4,7 @@
 @import "bs3-bs4-transition.scss";
 @import "../../default/scss/variables";
 @import "../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/buttons";
-$padding-y: .5rem !default; // Not sure where this is used besides buttons and pagination !default; not sure where it's defined in BS4
+$padding-y: .5rem !default; // Not sure where this is used besides buttons and pagination; not sure where it's defined in BS4
 $padding-x: .75rem !default;
 $module-h3-card-title-font-size: $h4-font-size !default;
 // Older

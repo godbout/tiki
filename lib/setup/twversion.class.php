@@ -24,11 +24,11 @@ class TWVersion
 		//   stable   : Represents stable releases.
 		//   unstable : Represents candidate and test/development releases.
 		//   trunk    : Represents next generation development version.
-		$this->branch 	= 'stable';
+		$this->branch 	= 'trunk';
 
 		// Set everything else, including defaults.
-		$this->version 	= '20.1svn';	// needs to have no spaces for releases
-		$this->star		= 'Tarazed';
+		$this->version 	= '21.0svn';	// needs to have no spaces for releases
+		$this->star		= 'TBA';
 		$this->releases	= [];
 
 		// Check for Subversion or not

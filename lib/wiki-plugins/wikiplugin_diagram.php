@@ -18,7 +18,9 @@ function wikiplugin_diagram_info()
 		'iconname' => 'sitemap',
 		'tags' => ['basic'],
 		'introduced' => 19,
-		'packages_required' => ['xorti/mxgraph-editor' => VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor/mxClient.js')],
+		'packages_required' => [
+			'tikiwiki/diagram' => VendorHelper::getAvailableVendorPath('diagram', 'tikiwiki/diagram/js/app.min.js')
+		],
 		'params' => [
 			'fileId' => [
 				'required' => false,
@@ -26,6 +28,13 @@ function wikiplugin_diagram_info()
 				'description' => tr('Id of the file in the file gallery. A xml file containing the graph model. Leave empty for more options.'),
 				'since' => '19.0',
 				'filter' => 'int',
+			],
+			'page' => [
+				'required' => false,
+				'name' => tr('page'),
+				'description' => tr('Page of the diagram that should be displayed.'),
+				'since' => '',
+				'filter' => 'text',
 			],
 			'annotate' => [
 				'required' => false,
@@ -52,21 +61,30 @@ function wikiplugin_diagram($data, $params)
 	global $tikilib, $user, $page, $wikiplugin_included_page, $tiki_p_upload_files;
 
 	$filegallib = TikiLib::lib('filegal');
-	$vendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor/mxClient.min.js', false);
 
+	$errorMessageToAppend = '';
+	$oldVendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor/drawio/webapp/js/app.min.js', false);
+	if ($oldVendorPath) {
+		$errorMessageToAppend = tr('Previous xorti/mxgraph-editor package has been deprecated.<br/>');
+	}
+
+	$vendorPath = VendorHelper::getAvailableVendorPath('diagram', 'tikiwiki/diagram/js/app.min.js', false);
 	if (! $vendorPath) {
-		Feedback::error(tr('To view diagrams Tiki needs the xorti/mxgraph-editor package. If you do not have permission to install this package, ask the site administrator.'));
+		$message = $errorMessageToAppend;
+		$message .= tr('To view diagrams Tiki needs the tikiwiki/diagram package. If you do not have permission to install this package, ask the site administrator.');
+		Feedback::error($message);
 		return;
 	}
 
 	$headerlib = $tikilib::lib('header');
-	$headerlib->add_js_config("var mxGraphVendorPath = '{$vendorPath}';");
+	$headerlib->add_js_config("var diagramVendorPath = '{$vendorPath}';");
 	$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
-	$headerlib->add_jsfile($vendorPath . '/xorti/mxgraph-editor/drawio/webapp/js/app.min.js');
+	$headerlib->add_jsfile($vendorPath . '/tikiwiki/diagram/js/app.min.js');
 
 	$headerlib->add_css('.diagram hr {margin-top:0.5em;margin-bottom:0.5em}');
 
 	$fileId = isset($params['fileId']) ? intval($params['fileId']) : 0;
+	$pageName = isset($params['page']) ? $params['page'] : '';
 	$annotate = isset($params['annotate']) ? intval($params['annotate']) : 0;
 
 	if ($fileId) {
@@ -173,6 +191,7 @@ EOF;
 	$smarty->assign('file_id', $fileId);
 	$smarty->assign('file_name', $file->name);
 	$smarty->assign('mxgraph_prefix', $vendorPath);
+	$smarty->assign('page_name', $pageName);
 
 	return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl') . '~/np~';
 }

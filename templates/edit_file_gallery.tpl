@@ -231,6 +231,24 @@ if ($(this).val() != '') {
 						</div>
 					</div>
 				</div>
+            {if $prefs.ocr_enable eq 'y'}
+                {if $selectedLanguages || $languages}
+					<div class="form-group row">
+						<label for="ocr_lang" class="col-md-4 col-form-label">{tr}Override Default OCR Languages{/tr}</label>
+						<div class="col-md-8">
+							<select multiple id="ocr_lang" class="form-control" name="ocr_lang[]">
+                                {foreach $selectedLanguages as $code => $language}
+									<option value="{$code|escape}" selected="selected">{$language|truncate:60|escape}</option>
+                                {/foreach}
+
+                                {foreach $languages as $code => $language}
+									<option value="{$code}">{$language|truncate:60}</option>
+                                {/foreach}
+							</select>
+						</div>
+					</div>
+                {/if}
+            {/if}
 
 				{include file='categorize.tpl' labelcol='4' inputcol='8'}
 

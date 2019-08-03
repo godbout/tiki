@@ -47,7 +47,7 @@ class TikiLib extends TikiDb_Bridge
 	/** Gets a library reference
 	 *
 	 * @param $name string        The name of the library as specified in the id attribute in db/config/tiki.xml
-	 * @return object|\AccountingLib|\ActivityLib|\AdminLib|\AreasLib|\ArtLib|\AttributeLib|\AutoSaveLib|\BannerLib|\BigBlueButtonLib|\blacklistLib|\ocrLib|\BlogLib|\CacheLib|\CalendarLib|\Captcha|\CartLib|\CategLib|\Comments|\ContactLib|\ContributionLib|\CreditsLib|\CryptLib|\cssLib|\Tiki\CustomRoute\CustomRouteLib|\DCSLib|\EditLib|\ErrorReportLib|\FaqLib|\FederatedSearchLib|\FileGalBatchLib|\FileGalLib|\FlaggedRevisionLib|\FreetagLib|\GeoLib|\GoalEventLib|\GoalLib|\GoalRewardLib|\GroupAlertLib|\H5PLib|\HeaderLib|\HistLib|\IconsetLib|\ImageGalsLib|\KalturaLib|\KalturaLib|\Language|\LanguageTranslations|\LdapLib|\LoginLib|\LogsLib|\LogsQueryLib|\MailinLib|\Memcachelib|\MenuLib|\Messu|\MimeLib|\ModLib|\MonitorLib|\MonitorMailLib|\MultilingualLib|\NotificationLib|\OAuthLib|\ObjectLib|\PageContentLib|\ParserLib|\PaymentLib|\PerspectiveLib|\PollLib|\PreferencesLib|\QuantifyLib|\QueueLib|\QuizLib|\RatingConfigLib|\RatingLib|\ReferencesLib|\RegistrationLib|\RelationLib|\RSSLib|\SchedulersLib|\ScoreLib|\ScormLib|\SearchStatsLib|\SemanticLib|\ServiceLib|\SheetLib|\Smarty_Tiki|\SocialLib|\StatsLib|\StoredSearchLib|\StructLib|\TemplatesLib|\ThemeControlLib|\ThemeLib|\Tiki_Connect_Client|\Tiki_Connect_Server|\Tiki_Event_Manager|\Tiki_Profile_SymbolLoader|\Tiki\Object\Selector|\Tiki\Recommendation\BatchProcessor|\Tiki\Wiki\SlugManager|\TikiAccessLib|\TikiCalendarLib|\TikiDate|\TodoLib|\Tracker\Tabular\Manager|\TrackerLib|\TWVersion|\UnifiedSearchLib|\UserMailinLib|\UserModulesLib|\UserPrefsLib|\UsersLib|\Validators|\VimeoLib|\WikiLib|\WizardLib|\WYSIWYGLib|\XMPPLib|\ZoteroLib
+	 * @return object|\AccountingLib|\ActivityLib|\AdminLib|\AreasLib|\ArtLib|\AttributeLib|\AutoSaveLib|\BannerLib|\BigBlueButtonLib|\blacklistLib|\ocrLib|\BlogLib|\CacheLib|\CalendarLib|\Captcha|\CartLib|\CategLib|\Comments|\ContactLib|\ContributionLib|\CreditsLib|\CryptLib|\cssLib|\Tiki\CustomRoute\CustomRouteLib|\DCSLib|\EditLib|\ErrorReportLib|\FaqLib|\FederatedSearchLib|\FileGalBatchLib|\FileGalLib|\FlaggedRevisionLib|\FreetagLib|\GeoLib|\GoalEventLib|\GoalLib|\GoalRewardLib|\GroupAlertLib|\H5PLib|\HeaderLib|\HistLib|\IconsetLib|\ImageGalsLib|\KalturaLib|\KalturaLib|\Language|\LanguageTranslations|\LdapLib|\LoginLib|\LogsLib|\LogsQueryLib|\MailinLib|\Memcachelib|\MenuLib|\Messu|\MimeLib|\ModLib|\MonitorLib|\MonitorMailLib|\MultilingualLib|\NotificationLib|\OAuthLib|\ObjectLib|\PageContentLib|\ParserLib|\PaymentLib|\PdfImagesLib\PerspectiveLib|\PollLib|\PreferencesLib|\QuantifyLib|\QueueLib|\QuizLib|\RatingConfigLib|\RatingLib|\ReferencesLib|\RegistrationLib|\RelationLib|\RSSLib|\SchedulersLib|\ScoreLib|\ScormLib|\SearchStatsLib|\SemanticLib|\ServiceLib|\SheetLib|\Smarty_Tiki|\SocialLib|\StatsLib|\StoredSearchLib|\StructLib|\TemplatesLib|\ThemeControlLib|\ThemeLib|\Tiki_Connect_Client|\Tiki_Connect_Server|\Tiki_Event_Manager|\Tiki_Profile_SymbolLoader|\Tiki\Object\Selector|\Tiki\Recommendation\BatchProcessor|\Tiki\Wiki\SlugManager|\TikiAccessLib|\TikiCalendarLib|\TikiDate|\TodoLib|\Tracker\Tabular\Manager|\TrackerLib|\TWVersion|\UnifiedSearchLib|\UserMailinLib|\UserModulesLib|\UserPrefsLib|\UsersLib|\Validators|\VimeoLib|\WikiLib|\WizardLib|\WYSIWYGLib|\XMPPLib|\ZoteroLib
 	 * @throws Exception
 	 */
 	public static function lib($name)
@@ -7362,12 +7362,13 @@ End:
 
 function writeTempFile(?string $data, string $directory = '', bool $system = true, string $prefix = '', string $append = ''): ?string {
 	global $prefs;
+	$fileName = '';
 
 	if ($directory === 'random') {
-		if ($system) {
-			$directory = dechex(rand(0, 2 ** 62)) . dechex(rand(0, 2 ** 62)) . '/';
-		} else {
+		if (is_callable('random_bytes')) {
 			$directory = bin2hex(random_bytes(16)) . '/';
+		} else {
+			$directory = dechex(rand(0, 2 ** 62)) . dechex(rand(0, 2 ** 62)) . '/';
 		}
 	}
 
@@ -7376,17 +7377,25 @@ function writeTempFile(?string $data, string $directory = '', bool $system = tru
 	}
 
 	if ($system) {
-		if (file_exists($prefs['tmpDir'] . $directory)) {
-			$dirName = $prefs['tmpDir'] . $directory;
-		} elseif (mkdir($prefs['tmpDir'] . $directory)) {
-			$dirName = $prefs['tmpDir'] . $directory;
+		$tmpDir = $prefs['tmpDir'];
+		if (substr($tmpDir, -1) !== '/'){
+			$tmpDir = $tmpDir . '/';
+		}
+		if (file_exists($tmpDir . $directory)) {
+			$dirName = $tmpDir . $directory;
+		} elseif (@mkdir($tmpDir . $directory)) {
+			$dirName = $tmpDir . $directory;
+		}
+		// if the system directory is not writable, then fall back to Tiki tmp directory.
+		if (!is_writable($tmpDir . $directory)){
+			unset($dirName);
 		}
 	}
 
 	if (! isset($dirName)) {
 		if (file_exists('temp/' . $directory)) {
 			$dirName = 'temp/' . $directory;
-		} elseif (mkdir('temp/' . $directory)) {
+		} elseif (@mkdir('temp/' . $directory)) {
 			$dirName = 'temp/' . $directory;
 			@file_put_contents('temp/' . $directory . 'index.php', '');
 		} else {
@@ -7397,11 +7406,10 @@ function writeTempFile(?string $data, string $directory = '', bool $system = tru
 	if (! is_null($data)) {
 
 		do {
-			if ($system) {
-				// since md5, and random_bytes are slow, we generate similar data without them.
-				$fileName = $prefix . dechex(rand(0, 2 ** 62)) . dechex(rand(0, 2 ** 62)) . $append;
-			} else {
+			if (is_callable('random_bytes')) {
 				$fileName = $prefix . bin2hex(random_bytes(16)) . $append;
+			} else {
+				$fileName = $prefix . dechex(rand(0, 2 ** 62)) . dechex(rand(0, 2 ** 62)) . $append;
 			}
 		} while (file_exists($dirName . $fileName));
 

@@ -161,7 +161,7 @@ FileETag none
     #RewriteRule ^images/(.*)$ img/icons/$1
 
     # Redirect drawio requests to the correct path
-    RewriteRule ^img/lib/(.*)$ vendor/xorti/mxgraph-editor/drawio/webapp/img/lib/$1 [NC,L]
+    RewriteRule ^img/lib/(.*)$ vendor/tikiwiki/diagram/img/lib/$1 [NC,L]
 
     # -- Apache Authorization Header -- #
     # Rewrite rules for passing authorization with Apache running in CGI or FastCGI mode

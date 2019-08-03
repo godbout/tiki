@@ -1147,7 +1147,7 @@ class FreetagLib extends ObjectLib
 	 */
 	function silly_list($max = 100)
 	{
-		$query = 'SELECT `tag`, COUNT(`objectId`) AS quantity'
+		$query = 'SELECT `tag`, `raw_tag`, COUNT(`objectId`) AS quantity'
 						. ' FROM `tiki_freetags` t, `tiki_freetagged_objects` o'
 						. ' WHERE t.`tagId` = o.`tagId`'
 						. ' GROUP BY `tag`'

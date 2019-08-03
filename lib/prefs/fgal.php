@@ -357,7 +357,7 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'type' => 'flag',
 			'default' => 'n',
 			'help' => 'PDF.js-viewer',
-			'packages_required' => ['npm-asset/pdfjs-dist' => VendorHelper::getAvailableVendorPath('pdfjs', 'npm-asset/pdfjs-dist/build/pdf.js')],
+			'packages_required' => ['npm-asset/pdfjs-dist-viewer-min' => VendorHelper::getAvailableVendorPath('pdfjsviewer', '/npm-asset/pdfjs-dist-viewer-min/build/minified/build/pdf.js')],
 		],
 		'fgal_default_view' => [
 			'name' => tra('Default view'),
@@ -408,6 +408,12 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 		'fgal_show_slideshow' => [
 			'name' => tra('Show slideshow'),
 			'type' => 'flag',
+			'default' => 'n',
+		],
+		'fgal_show_ocr_state' => [
+			'name' => tra('Show OCR Status'),
+			'type' => 'list',
+			'options' => $showOptions,
 			'default' => 'n',
 		],
 		'fgal_list_id' => [
@@ -654,21 +660,6 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'type' => 'list',
 			'options' => $showOptions,
 			'default' => '',
-		],
-		'fgal_ocr_enable' => [
-			'name' => tra('OCR Files'),
-			'type' => 'flag',
-			'default' => 'n',
-			'description' => tra('Extract and index text from supported file types.'),
-			'keywords' => 'ocr optical character recognition',
-			'dependencies' => ['feature_file_galleries'],
-			'packages_required' => ['thiagoalessio/tesseract_ocr' => 'thiagoalessio\TesseractOCR\TesseractOCR'],
-		],
-		'fgal_ocr_every_file' => [
-			'name' => tra('OCR Every File'),
-			'type' => 'flag',
-			'description' => tra('Attempt to OCR every supported file.'),
-			'default' => 'n',
 		],
 		'fgal_convert_documents_pdf' => [
 			'name' => tra('View or export office documents as PDF'),

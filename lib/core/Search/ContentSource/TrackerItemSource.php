@@ -53,7 +53,7 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 		}
 
 		$permNeeded = $itemObject->getViewPermission();
-		$specialUsers = $itemObject->getSpecialPermissionUsers($objectId, 'Modify');
+		$specialUsers = $itemObject->getSpecialPermissionUsers($objectId, 'View');
 
 		$definition = Tracker_Definition::get($item['trackerId']);
 

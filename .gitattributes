@@ -92,6 +92,7 @@ doc/devtools/check_filegal_dir.php -text
 doc/devtools/check_tiki-new.php -text
 doc/devtools/check_tiki.php -text
 doc/devtools/cleanwatch.sh -text
+doc/devtools/clear_actionlog.bash -text
 doc/devtools/clear_mysql_search_indexes.bash -text
 doc/devtools/clear_tracker_fast.sql -text
 doc/devtools/composer_http_mode.php -text
@@ -2047,6 +2048,8 @@ installer/schema/20190303_make_tiki_object_href_larger_tiki.sql -text
 installer/schema/20190401_add_support_database_strict_mode_tiki.sql -text
 installer/schema/20190523_migrate_webmail_accounts_tiki.php -text
 installer/schema/20190526_remove_tiki_addon_profiles_tiki.sql -text
+installer/schema/20190627_add_ocr_fgal_status_tiki.sql -text
+installer/schema/20190722_ocr_fgal_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2913,6 +2916,8 @@ lib/core/Tiki/Command/MultiTikiMoveCommand.php -text
 lib/core/Tiki/Command/NotificationDigestCommand.php -text
 lib/core/Tiki/Command/OCRAllCommand.php -text
 lib/core/Tiki/Command/OCRFileCommand.php -text
+lib/core/Tiki/Command/OCRSetCommand.php -text
+lib/core/Tiki/Command/OCRStatusCommand.php -text
 lib/core/Tiki/Command/PatchCommand.php -text
 lib/core/Tiki/Command/PreferencesDeleteCommand.php -text
 lib/core/Tiki/Command/PreferencesGetCommand.php -text
@@ -2954,6 +2959,7 @@ lib/core/Tiki/Command/RefreshRssCommand.php -text
 lib/core/Tiki/Command/RssClearCacheCommand.php -text
 lib/core/Tiki/Command/SchedulerRunCommand.php -text
 lib/core/Tiki/Command/ScssCompileCommand.php -text
+lib/core/Tiki/Command/StatsCommand.php -text
 lib/core/Tiki/Command/TrackerClearCommand.php -text
 lib/core/Tiki/Command/TrackerExportCommand.php -text
 lib/core/Tiki/Command/TrackerImportCommand.php -text
@@ -3477,6 +3483,7 @@ lib/jquery_tiki/tiki-jquery.js -text
 lib/jquery_tiki/tiki-jquery_upload.js -text
 lib/jquery_tiki/tiki-maps-ol3.js -text
 lib/jquery_tiki/tiki-maps.js -text
+lib/jquery_tiki/tiki-popovers_for_footnotes.js -text
 lib/jquery_tiki/tiki-tasks.js -text
 lib/jquery_tiki/tiki-toolbars.js -text
 lib/jquery_tiki/tiki-trackers.js -text
@@ -3711,6 +3718,7 @@ lib/payment/paymentlib.php -text
 lib/payment/paypallib.php -text
 lib/pdf/fontdata/fa-codes.json -text
 lib/pdf/fontdata/fontttf/fontawesome.ttf -text
+lib/pdfimages.php -text
 lib/pdflib.php -text
 lib/perspective/binderlib.php -text
 lib/perspective/index.php -text
@@ -3763,6 +3771,7 @@ lib/prefs/fgal.php -text
 lib/prefs/file.php -text
 lib/prefs/flaggedrev.php -text
 lib/prefs/footer.php -text
+lib/prefs/footnote.php -text
 lib/prefs/forum.php -text
 lib/prefs/forums.php -text
 lib/prefs/freetags.php -text
@@ -3815,6 +3824,7 @@ lib/prefs/mustread.php -text
 lib/prefs/namespace.php -text
 lib/prefs/newsletter.php -text
 lib/prefs/nextprev.php -text
+lib/prefs/ocr.php -text
 lib/prefs/openpgp.php -text
 lib/prefs/page.php -text
 lib/prefs/pagination.php -text

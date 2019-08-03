@@ -164,6 +164,10 @@ class Tracker_Field_Location extends Tracker_Field_Abstract implements Tracker_F
 			}
 		}
 
+		if (strpos($value, '0,0,') !== false) {
+			$value = '';
+		}
+
 		return [
 			'value' => $value,
 		];

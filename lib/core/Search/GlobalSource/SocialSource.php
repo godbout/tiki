@@ -21,6 +21,7 @@ class Search_GlobalSource_SocialSource implements Search_GlobalSource_Interface
 		return [
 			'user_groups',
 			'user_followers',
+			'like_list',
 		];
 	}
 
@@ -44,9 +45,12 @@ class Search_GlobalSource_SocialSource implements Search_GlobalSource_Interface
 
 		unset($groups['Anonymous'], $groups['Registered']);
 
+		$like_list = $this->sociallib->getLikes($objectType, $objectId);
+
 		return [
 			'user_groups' => $typeFactory->multivalue(array_keys($groups)),
 			'user_followers' => $typeFactory->multivalue(array_unique($followers)),
+			'like_list' => $typeFactory->multivalue($like_list),
 		];
 	}
 

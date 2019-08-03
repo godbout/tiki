@@ -368,6 +368,26 @@ class Messu extends TikiLib
 	}
 
 	/**
+	 * Move message from archive to users mailbox
+	 */
+	function unarchive_message($user, $msgId, $dbsource = 'messages')
+	{
+		if (! $msgId) {
+			return false;
+		}
+
+		if ($dbsource == '') {
+			$dbsource = 'messages';
+		}
+
+		$query = 'insert into `messu_' . $dbsource . '` select * from `messu_archive` where `user`=? and `msgId`=?';
+		$this->query($query, [$user, (int)$msgId]);
+
+		$query = 'delete from `messu_archive` where `user`=? and `msgId`=?';
+		return $this->query($query, [$user, (int)$msgId]);
+	}
+
+	/**
 	 * Move read message older than x days from mailbox to users mail archive
 	 */
 	function archive_messages($user, $days, $dbsource = 'messages')

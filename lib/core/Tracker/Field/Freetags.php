@@ -48,6 +48,7 @@ class Tracker_Field_Freetags extends Tracker_Field_Abstract implements Tracker_F
 						'options' => [
 							'' => tr('Show'),
 							'y' => tr('Hide'),
+							'all' => tr('Show them all, ordered by popularity'),
 						],
 						'legacy_index' => 2,
 					],
@@ -80,11 +81,15 @@ class Tracker_Field_Freetags extends Tracker_Field_Abstract implements Tracker_F
 			}
 			$freetaglib = TikiLib::lib('freetag');
 			$data['freetags'] = $freetaglib->_parse_tag($data['value']);
-			$data['tag_suggestion'] = $freetaglib->get_tag_suggestion(
-				implode(' ', $data['freetags']),
-				$prefs['freetags_browse_amount_tags_suggestion'],
-				$itemLang
-			);
+			if ($this->getOption('hidesuggest') == '') {
+				$data['tag_suggestion'] = $freetaglib->get_tag_suggestion(
+					implode(' ', $data['freetags']),
+					$prefs['freetags_browse_amount_tags_suggestion'],
+					$itemLang
+				);
+			} else {
+				$data['all_tags'] = $freetaglib->silly_list(-1);
+			}
 		}
 
 		return $data;

@@ -42,15 +42,20 @@ class FileHelper
 		if (DiagramHelper::isDiagram($file['fileId'])) {
 			// Diagrams
 			if ($injectDependencies) {
-				$vendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor/drawio/webapp/js/app.min.js', false);
-
-				if (! $vendorPath) {
-					$accesslib->display_error('tiki-display.php', tr('To view diagrams Tiki needs the xorti/mxgraph-editor package. If you do not have permission to install this package, ask the site administrator.'));
+				$errorMessageToAppend = '';
+				$oldVendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor/drawio/webapp/js/app.min.js', false);
+				if ($oldVendorPath) {
+					$errorMessageToAppend = 'Previous xorti/mxgraph-editor package has been deprecated.<br/>';
 				}
 
-				$headerlib->add_js_config("var mxGraphVendorPath = '{$vendorPath}';");
+				$vendorPath = VendorHelper::getAvailableVendorPath('diagram', 'tikiwiki/diagram/js/app.min.js', false);
+				if (! $vendorPath) {
+					$accesslib->display_error('tiki-display.php', tr($errorMessageToAppend . 'To view diagrams Tiki needs the tikiwiki/diagram package. If you do not have permission to install this package, ask the site administrator.'));
+				}
+
+				$headerlib->add_js_config("var diagramVendorPath = '{$vendorPath}';");
 				$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
-				$headerlib->add_jsfile($vendorPath . '/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
+				$headerlib->add_jsfile($vendorPath . '/tikiwiki/diagram/js/app.min.js', true);
 			}
 
 			$data = DiagramHelper::parseData($data);
@@ -100,6 +105,8 @@ class FileHelper
 				$accesslib->display_error('', tr('Invalid request'));
 			} else {
 				$htmlViewFile = $vendorPath . '/npm-asset/pdfjs-dist-viewer-min/build/minified/web/viewer.html?file=';
+				// smarty_modifier_sefurl return &amp; that is already encoded, revert so when url is encoded, it works.
+				$sourceLink = preg_replace('/amp;/', '', $sourceLink);
 				$sourceLink = $htmlViewFile . urlencode(TikiLib::lib('access')->absoluteUrl($sourceLink));
 			};
 
