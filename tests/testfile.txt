@@ -1,1 +1,2 @@
 svn+ssh test by luci
+git test by jonnyb
