@@ -435,7 +435,7 @@ class TikiLdapLib
 						$filtertmp[] = Filter::equals($this->options['groupgroupattr'], $g);
 					}
 
-					$filter3 = call_user_func_array('Filter::orFilter', $filtertmp);
+					$filter3 = new Filter\OrFilter($filtertmp);
 				}
 
 				$filter = Filter::andFilter($filter1, $filter3);
