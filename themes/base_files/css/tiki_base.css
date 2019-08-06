@@ -3061,6 +3061,12 @@ table.objectperms > tbody .checkBoxCell {
 table.objectperms thead th {
   display: none; }
 
+.adminanchors .navbar-nav .nav-link {
+  min-width: 50px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  text-align: center; }
+
 @media (max-width: 767.98px) {
   .admin-navbar .filter-menu {
     text-align: center; }
@@ -3073,13 +3079,11 @@ table.objectperms thead th {
 
   .adminanchors .navbar-nav {
     margin: 0;
-    padding: 0; } }
+    padding: 0; }
 
-.adminanchors .navbar-nav .nav-link {
-  min-width: 50px;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  text-align: center; }
+  .tiki-admin form.admin [class*="col-sm-"], .tiki-admin form .tab-content [class*="col-sm-"], .tiki-admin form.admin [class*="col-md-"], .tiki-admin form .tab-content [class*="col-md-"] {
+    padding-left: 0;
+    padding-right: 0; } }
 
 form.simple label.error {
   padding: 4px 0 0 20px;
