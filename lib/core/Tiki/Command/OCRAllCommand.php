@@ -32,7 +32,7 @@ class OCRAllCommand extends Command
 
 		try {
 			$ocrLib->checkOCRDependencies();
-		}catch (Exception $e) {
+		} catch (Exception $e) {
 			$output->writeln(
 				'<error>' . $e->getMessage() . '</error>');
 			return;
@@ -83,7 +83,7 @@ class OCRAllCommand extends Command
 				$OCRCount++;
 			} catch (Exception $e) {
 				$output->write(': <error>failed</error>');
-				$output->write(": <error>" . $e->getMessage(). '</error>',OutputInterface::VERBOSITY_DEBUG);
+				$output->write(": <error>" . $e->getMessage() . '</error>', OutputInterface::VERBOSITY_DEBUG);
 			}
 		}
 		$progress->setMessage(

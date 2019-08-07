@@ -488,6 +488,12 @@ class FileGalLib extends TikiLib
 		return $result;
 	}
 
+	/**
+	 * Fetch a complete set of file gallery information from the database
+	 * @param $id int Gallery Id to fetch information of.
+	 *
+	 * @return mixed
+	 */
 	function get_file_gallery_info($id)
 	{
 		return $this->table('tiki_file_galleries')->fetchFullRow(['galleryId' => (int) $id]);
