@@ -19,14 +19,16 @@ function prefs_intertiki_list()
 			'size' => 42,
 			'type' => 'text',
 			'filter' => 'text',
-			'default' => '',
+			'description' => tra('location, from your tiki root dir, where you want the error log file stored'),
+			'default' => 'temp/intertiki-error.log',
 		],
 		'intertiki_logfile' => [
 			'name' => tra('Access log file'),
 			'size' => 42,
 			'type' => 'text',
+			'description' => tra('location, from your tiki root dir, where you want the access log file stored.'),
 			'filter' => 'text',
-			'default' => '',
+			'default' => 'temp/intertiki-access.log',
 		],
 	];
 }

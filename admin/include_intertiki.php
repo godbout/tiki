@@ -17,8 +17,6 @@ if (! isset($_REQUEST['known_hosts'])) {
 	$_REQUEST['known_hosts'] = [];
 }
 
-$smarty->assign('serverFields', ['name', 'host', 'port', 'path', 'groups']);
-
 //*** begin state-changing actions
 //TODO Avoid altering $_POST variable directly in this section
 if (isset($_POST['del']) && $access->checkCsrfForm(tra('Remove this server?'))) {
