@@ -58,19 +58,19 @@
 
 		<div class="col-sm-4 col-md-3">
 			<div class="input">
-				<p class="picker" data-selector=".customizer .bg-dark" data-element="background-color">
+				<p class="picker" data-selector=".bg-dark" data-element="background-color">
 					<label for="tc-navbar-bg-color">Background:</label>
-					<input id="tc-navbar-bg-color" data-selector=".customizer .bg-dark" data-element="background-color" data-var="$navbar-dark-bg" type="text">
+					<input id="tc-navbar-bg-color" data-selector=".bg-dark" data-element="background-color" data-var="$navbar-dark-bg" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
-				<p class="picker" data-selector=".customizer .navbar-dark .navbar-nav .nav-link" data-element="color">
+				<p class="picker" data-selector=".navbar-dark .navbar-nav .nav-link" data-element="color">
 					<label for="tc-navbar-link-color">Text color:</label>
-					<input id="tc-navbar-link-color" data-selector=".customizer .navbar-dark .navbar-nav .nav-link" data-element="color" data-var="$navbar-dark-link-color" type="text">
+					<input id="tc-navbar-link-color" data-selector=".navbar-dark .navbar-nav .nav-link" data-element="color" data-var="$navbar-dark-link-color" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
-				<p class="picker" data-selector=".customizer .navbar-dark .navbar-nav .active > .nav-link" data-element="color">
+				<p class="picker" data-selector=".navbar-dark .navbar-nav .active > .nav-link" data-element="color">
 					<label for="tc-navbar-active-link-color">Active menu:</label>
-					<input id="tc-navbar-active-link-color" data-selector=".customizer .navbar-dark .navbar-nav .active > .nav-link" data-element="color" data-var="$navbar-dark-link-active-bg" type="text">
+					<input id="tc-navbar-active-link-color" data-selector=".navbar-dark .navbar-nav .active > .nav-link" data-element="color" data-var="$navbar-dark-link-active-bg" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p>

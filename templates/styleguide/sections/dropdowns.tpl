@@ -18,19 +18,19 @@
 
 		<div class="col-sm-4 col-md-3">
 			<div class="input">
-				<p class="picker" data-selector=".customizer .dropdown-menu" data-element="background-color">
+				<p class="picker" data-selector=".dropdown-menu" data-element="background-color">
 					<label for="tc-dropdown-bg-color">Background:</label>
-					<input id="tc-dropdown-bg-color" data-selector=".customizer .dropdown-menu" data-element="background-color" data-var="@dropdown-bg" type="text">
+					<input id="tc-dropdown-bg-color" data-selector=".dropdown-menu" data-element="background-color" data-var="@dropdown-bg" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
-				<p class="picker" data-selector=".customizer .dropdown-menu .dropdown-item" data-element="color">
+				<p class="picker" data-selector=".dropdown-menu .dropdown-item" data-element="color">
 					<label for="tc-dropdown-text-color">Text color:</label>
-					<input id="tc-dropdown-text-color" data-selector=".customizer .dropdown-menu .dropdown-item" data-element="color" data-var="@dropdown-link-color" type="text">
+					<input id="tc-dropdown-text-color" data-selector=".dropdown-menu .dropdown-item" data-element="color" data-var="@dropdown-link-color" type="text">
 					<span class="input-group-addon"><i></i></span>
 				</p>
 				<p>
 					<label for="tc-dropdown-border-radius">Border radius:</label>
-					<input id="tc-dropdown-border-radius" class="nocolor" data-selector=".customizer .dropdown-menu" data-element="border-radius" type="text">
+					<input id="tc-dropdown-border-radius" class="nocolor" data-selector=".dropdown-menu" data-element="border-radius" type="text">
 				</p>
 			</div>
 		</div>

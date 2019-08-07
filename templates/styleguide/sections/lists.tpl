@@ -30,15 +30,15 @@
 			<div class="input">
 				<p>
 					<label for="tc-ul-list-type">List style type:</label>
-					<input id="tc-ul-list-type" class="nocolor" data-selector=".customizer ul" data-element="list-style-type" type="text">
+					<input id="tc-ul-list-type" class="nocolor" data-selector="ul" data-element="list-style-type" type="text">
 				</p>
 				<p>
 					<label for="tc-ul-padding">Padding (ul):</label>
-					<input id="tc-ul-padding" class="nocolor" data-selector=".customizer ul" data-element="padding" type="text">
+					<input id="tc-ul-padding" class="nocolor" data-selector="ul" data-element="padding" type="text">
 				</p>
 				<p>
 					<label for="tc-li-padding">Padding (li):</label>
-					<input id="tc-li-padding" class="nocolor" data-selector=".customizer li" data-element="padding" type="text">
+					<input id="tc-li-padding" class="nocolor" data-selector="li" data-element="padding" type="text">
 				</p>
 			</div>
 		</div>

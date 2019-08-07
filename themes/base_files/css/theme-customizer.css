@@ -215,6 +215,9 @@ Theme Customizer Main Styles
   margin: 0;
   list-style-type: none !important;
 }
+.customizer .navbars li {
+  padding: 0 !important;
+}
 .customizer .navbars .row {
   overflow: visible;
 }
