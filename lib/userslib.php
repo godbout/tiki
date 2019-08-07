@@ -2414,24 +2414,6 @@ class UsersLib extends TikiLib
 		$query = 'update `users_users` set `default_group`=? where `login`=? and `default_group`=?';
 		$this->query($query, ['Registered', $user, $group]);
 
-		if ($prefs['feature_community_send_mail_leave'] == 'y') {
-			$api = new \Tiki\Package\Extension\Api\Group();
-			if ($api->isOrganicGroup($group)) {
-				$groupleaders = $api->getOrganicGroupLeaders($group);
-				$groupleaders = array_combine($groupleaders, $groupleaders);
-				unset($groupleaders[$user]);
-				if (isset($groupleaders[$_SESSION['u_info']['login']])) {
-					unset($groupleaders[$_SESSION['u_info']['login']]);
-				}
-				if (! empty($groupleaders)) {
-					$par_data['gname'] = $group;
-					$par_data['user'] = $user;
-					require_once("lib/notifications/notificationemaillib.php");
-					sendEmailNotification($groupleaders, 'group_lead_mail', 'user_left_group_notification_to_leads_subject.tpl', $par_data, 'user_left_group_notification_to_leads.tpl');
-				}
-			}
-		}
-
 		$api = new \Tiki\Package\Extension\Api\Group();
 		TikiLib::events()->trigger('tiki.user.groupleave', [
 			'type' => 'user',
@@ -6611,35 +6593,6 @@ class UsersLib extends TikiLib
 			$group_ret = true;
 		}
 		$this->update_group_expiries();
-
-		if ($prefs['feature_community_send_mail_join'] == 'y') {
-			$api = new \Tiki\Package\Extension\Api\Group();
-			if ($api->isOrganicGroup($group)) {
-				$groupleaders = $api->getOrganicGroupLeaders($group);
-				$groupleaders = array_combine($groupleaders, $groupleaders);
-				unset($groupleaders[$user]);
-				if (isset($groupleaders[$_SESSION['u_info']['login']])) {
-					unset($groupleaders[$_SESSION['u_info']['login']]);
-				}
-				if (! empty($groupleaders)) {
-					$par_data['gname'] = $group;
-					$par_data['user'] = $user;
-					if (strpos($group, 'pending')) {
-						$mail_temp = 'user_joins_group_notification_to_leads_need_app.tpl';
-					} else {
-						$mail_temp = 'user_joins_group_notification_to_leads.tpl';
-					}
-					require_once("lib/notifications/notificationemaillib.php");
-					sendEmailNotification(
-						$groupleaders,
-						'group_lead_mail',
-						'user_joins_group_notification_to_leads_subject.tpl',
-						$par_data,
-						$mail_temp
-					);
-				}
-			}
-		}
 
 		if ($group_ret) {
 			$watches = $tikilib->get_event_watches('user_joins_group', $group);

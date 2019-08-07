@@ -2880,18 +2880,6 @@ function prefs_feature_list($partial = false)
 			'tags' => ['deprecated'],
 			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
 		],
-		'feature_community_send_mail_join' => [
-			'name' => tra('Send an email notification to group leaders when a user joins'),
-			'type' => 'flag',
-			'help' => 'User+Preferences',
-			'default' => 'n',
-		],
-		'feature_community_send_mail_leave' => [
-			'name' => tra('Send an email notification to group leaders when a user leaves'),
-			'type' => 'flag',
-			'help' => 'User+Preferences',
-			'default' => 'n',
-		],
 		'feature_inline_comments' => [
 			'name' => tra('Inline comments'),
 			'description' => tra('Contextual comments'),

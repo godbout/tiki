@@ -383,11 +383,6 @@
 					{preference name="{$package|escape}"}
 				{/foreach}
 			</fieldset>
-			<fieldset>
-				<legend>{tr}Extension Package Groups API{/tr}</legend>
-				{preference name=feature_community_send_mail_join}
-				{preference name=feature_community_send_mail_leave}
-			</fieldset>
 			<button class="btn btn-primary" name="apply-packages-preferences" value="run">{tr}Apply{/tr}</button>
 		</form>
 		<br>
