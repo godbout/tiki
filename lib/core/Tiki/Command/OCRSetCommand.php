@@ -15,6 +15,7 @@ use Symfony\Component\Console\Input\InputOption;
 use TikiFilter;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
+use Symfony\Component\Console\Command\HelpCommand;
 
 class OCRSetCommand extends Command
 {
@@ -76,60 +77,66 @@ class OCRSetCommand extends Command
 								  $input->getOptions('refrained')]);
 		$conditions = [];
 		$update = $ocrLib->table('tiki_files');
-		if ($optionCount > 1){
+		if ($optionCount > 1) {
+			$help = new HelpCommand();
+			$help->setCommand($this);
+			$help->run($input, $output);
 			$output->writeln('<error>You may only specify 1 option</error>');
 			return;
-		}elseif ($optionCount === 1) {
-			if ($input->getOption('stalled')) {
-				$conditions['ocr_state'] = $ocrLib::OCR_STATUS_STALLED;
-			} elseif ($input->getOption('finished')) {
-				$conditions['ocr_state'] = $ocrLib::OCR_STATUS_FINISHED;
-			} elseif ($input->getOption('processing')) {
-				$conditions['ocr_state'] = $ocrLib::OCR_STATUS_PROCESSING;
-			} elseif ($input->getOption('queued')) {
-				$conditions['ocr_state'] = $ocrLib::OCR_STATUS_PENDING;
-			} elseif ($input->getOption('refrained')) {
-				$conditions['ocr_state'] = $ocrLib::OCR_STATUS_SKIP;
-			}
 		}
+		if ($input->getOption('stalled')) {
+			$conditions['ocr_state'] = $ocrLib::OCR_STATUS_STALLED;
+		} elseif ($input->getOption('finished')) {
+			$conditions['ocr_state'] = $ocrLib::OCR_STATUS_FINISHED;
+		} elseif ($input->getOption('processing')) {
+			$conditions['ocr_state'] = $ocrLib::OCR_STATUS_PROCESSING;
+		} elseif ($input->getOption('queued')) {
+			$conditions['ocr_state'] = $ocrLib::OCR_STATUS_PENDING;
+		} elseif ($input->getOption('refrained')) {
+			$conditions['ocr_state'] = $ocrLib::OCR_STATUS_SKIP;
+		}
+
 
 		$task = $input->getArgument('Queue or Skip');
 		$task = strtolower($task);
 
-		if ($task[0] === 'q'){
+		if ($task[0] === 'q') {
 			$state['ocr_state'] = $ocrLib::OCR_STATUS_PENDING;
 			$stateCount['ocr_state'] = $update->not($ocrLib::OCR_STATUS_PENDING);
 			$task = 'queue';
-		}elseif ($task[0] === 's'){
+		} elseif ($task[0] === 's') {
 			$state['ocr_state'] = $ocrLib::OCR_STATUS_SKIP;
 			$stateCount['ocr_state'] = $update->not($ocrLib::OCR_STATUS_SKIP);
 			$task = 'skip';
-		}else{
+		} else {
+			$help = new HelpCommand();
+			$help->setCommand($this);
+			$help->run($input, $output);
 			$output->writeln('<error>Must specify a valid option. Use Q to Queue files or S to Skip Files.</error>');
 			return;
 		}
 		$range = TikiFilter::get('digitscolons')->filter($input->getArgument('File ID'));
-		$range = explode(':',$range);
+		$range = explode(':', $range);
 		sort($range);											// we need lower values first for search results to match
 
-		if (!empty($range[1])) {
+		if (! empty($range[1])) {
 			$conditions['fileId'] = $update->between($range);
-		}elseif(!empty($range[0])){
+		} elseif (! empty($range[0])) {
 			$conditions['fileId'] = $range[0];
 		}
 
 		$fileCount = $update->fetchCount($conditions + $stateCount);
 		$helper = $this->getHelper('question');
-		if ($fileCount > 1 && !$input->getOption('no-confirm')) {
+		if ($fileCount > 1 && ! $input->getOption('no-confirm')) {
 			$question = new ConfirmationQuestion("Set OCR status of $fileCount files to '$task'? (y or n) ", false);
 
 			if (! $helper->ask($input, $output, $question)) {
 				return;
 			}
 		}
-		$updated = $update->updateMultiple($state,$conditions);
+		$updated = $update->updateMultiple($state, $conditions);
 		$numrows = $updated->numrows;
-		if (!$updated->numrows){
+		if (! $updated->numrows) {
 			$numrows = '<error>' . $numrows . '</error>';
 		}
 		$output->writeln('<comment>Status of ' . $numrows . ' files updated.</comment>');
