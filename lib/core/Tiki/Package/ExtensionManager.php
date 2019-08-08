@@ -136,6 +136,8 @@ class ExtensionManager
 			file_put_contents(self::ENABLED_PACKAGES_FILE, Yaml::dump($enabledPackages));
 
 			self::$enabled = []; // Force reload from file
+
+			\TikiLib::lib('cache')->invalidate('tiki_default_preferences_cache');
 		}
 
 		if (file_exists($packagePath . '/lang')) {
@@ -174,6 +176,7 @@ class ExtensionManager
 			// Force container refresh
 			@unlink(TIKI_PATH . '/temp/cache/container.php');
 
+			\TikiLib::lib('cache')->invalidate('tiki_default_preferences_cache');
 		}
 
 		return $success;
