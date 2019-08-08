@@ -9,6 +9,7 @@ namespace Tiki\FileGallery;
 
 use TikiLib;
 use Feedback;
+use JitFilter;
 
 /**
  * A basic file representation in Tiki. Includes params needed to store back contents
