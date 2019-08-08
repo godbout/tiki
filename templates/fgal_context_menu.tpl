@@ -71,7 +71,7 @@
 				{/if}
 			{/if}
 		{elseif $tiki_p_upload_files eq 'y' and $prefs.wikiplugin_diagram eq 'y'
-			and $file.type eq 'text/plain'  and $file.id|file_diagram}
+			and $file.id|file_diagram}
 			<a href="tiki-display.php?fileId={$file.id}">
 				{icon name='view' _menu_text=$menu_text _menu_icon=$menu_icon alt="{tr}Display{/tr}"}
 			</a>

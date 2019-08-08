@@ -2742,6 +2742,7 @@ lib/core/Services/Connect/Server.php -text
 lib/core/Services/Connect/index.php -text
 lib/core/Services/ContentTemplate/Controller.php -text
 lib/core/Services/ContentTemplate/index.php -text
+lib/core/Services/Diagram/Controller.php -text
 lib/core/Services/Draw/Controller.php -text
 lib/core/Services/Draw/index.php -text
 lib/core/Services/Edit/Controller.php -text

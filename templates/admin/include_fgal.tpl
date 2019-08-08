@@ -133,6 +133,12 @@
 				{preference name=alchemy_gs_path}
 				{preference name=alchemy_imagine_driver}
 			</fieldset>
+
+			<fieldset>
+				<legend> {tr}Settings for Diagrams{/tr}</legend>
+				{preference name='fgal_export_diagram_on_image_save'}
+				{preference name='fgal_use_drawio_services_to_export_images'}
+			</fieldset>
 		{/tab}
 
 		{tab name="{tr}Plugins{/tr}"}

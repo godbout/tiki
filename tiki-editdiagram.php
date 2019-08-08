@@ -59,6 +59,9 @@ if ($page && $galleryId) {
 	$ticket2 = $access->getTicket();
 }
 
+$access->setTicket();
+$ticket3 = $access->getTicket();
+
 $saveModal = $smarty->fetch('mxgraph/save_modal.tpl');
 $saveModal = preg_replace('/\s+/', ' ', $saveModal);
 
@@ -89,14 +92,15 @@ $js = "(function()
 		// Disable communication to external services
 		urlParams['stealth'] = 1;
 		urlParams['embed'] = 1;
-		
+
 		var editorUiInit = EditorUi.prototype.init;
 		EditorUi.prototype.init = function()
 		{
 			editorUiInit.apply(this, arguments);
 			var editorUi = this.actions.editorUi;
 			var editor = editorUi.editor;
-			
+			var self = this;
+
 			this.saveFile = function(forceDialog) {
 				let node = editorUi.getXmlFileData();
 				var content = mxUtils.getXml(node);
@@ -161,7 +165,7 @@ $js = "(function()
 				function showErrorMessage(message) {
 					$('div.diagram-saving').hide();
 					$('p.diagram-error-message').html(message);
-
+	
 					$('div.diagram-error button').on('click', function() {
 						editorUi.hideDialog();
 					});
@@ -175,36 +179,63 @@ $js = "(function()
 					dataType: 'json',
 					data: data,
 					success: function(result){
-						if ('{$page}' && result.fileId) {
-							// if new file and from page
+						var fileId = result.fileId !== undefined ? result.fileId : undefined;
+
+						self.getEmbeddedPng(function(pngData) {
 							var data = {
-								controller: 'plugin',
-								action: 'replace',
-								ticket: '{$ticket2}',
-								page: '{$page}',
-								message: 'Modified by mxGraph',
-								type: 'diagram',
-								content: '',
-								index: '{$index}',
-								params: {'fileId': result.fileId}
+								controller: 'diagram',
+								action: 'image',
+								ticket: '{$ticket3}',
+								name: 'Preview',
+								type: 'image/png',
+								content: content,
+								fileId: fileId,
+								data: pngData
 							};
+
+							if (blob) {
+								data.size = blob.size;
+							}
 
 							$.ajax({
 								type: 'POST',
 								url: 'tiki-ajax_services.php',
 								dataType: 'json',
 								data: data,
-								success: function(){
-									showModalAfterSave();
-								},
-								error: function(xhr, status, message) {
-									showErrorMessage(message);
+								success: function(result) {
+									if ('{$page}' && fileId) {
+										// if new file and from page
+										var data = {
+											controller: 'plugin',
+											action: 'replace',
+											ticket: '{$ticket2}',
+											page: '{$page}',
+											message: 'Modified by mxGraph',
+											type: 'diagram',
+											content: '',
+											index: '{$index}',
+											params: {'fileId': fileId}
+										};
+
+										$.ajax({
+											type: 'POST',
+											url: 'tiki-ajax_services.php',
+											dataType: 'json',
+											data: data,
+											success: function(){
+												showModalAfterSave();
+											},
+											error: function(xhr, status, message) {
+												showErrorMessage(message);
+											}
+										});
+	
+									} else {
+										showModalAfterSave();
+									}
 								}
 							});
-							
-						} else {
-							showModalAfterSave();
-						}
+						});
 					},
 					error: function(xhr, status, message) {
 						showErrorMessage(message);
@@ -224,7 +255,7 @@ $js = "(function()
 		{
 			// Adds bundle text to resources
 			mxResources.parse(xhr[0].getText());
-
+	
 			// Configures the default graph theme
 			var themes = new Object();
 			themes[Graph.prototype.defaultThemeName] = xhr[1].getDocumentElement();

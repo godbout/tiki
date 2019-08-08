@@ -58,7 +58,13 @@ function wikiplugin_diagram_info()
 function wikiplugin_diagram($data, $params)
 {
 
-	global $tikilib, $user, $page, $wikiplugin_included_page, $tiki_p_upload_files;
+	global $tikilib, $cachelib, $user, $page, $wikiplugin_included_page, $tiki_p_upload_files;
+
+	$diagramIdentifier = ! empty($params['fileId']) ? $params['fileId'] : $data;
+
+	if (! empty($_GET['display']) && $_GET['display'] == 'pdf') {
+		return '<img src="data:image/png;base64,' . DiagramHelper::getDiagramAsImage($diagramIdentifier) . '">';
+	}
 
 	$filegallib = TikiLib::lib('filegal');
 

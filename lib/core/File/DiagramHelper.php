@@ -8,10 +8,67 @@
 namespace Tiki\File;
 
 use Tiki\FileGallery\File as TikiFile;
+use Tiki\FileGallery\File;
 use Tiki\Package\VendorHelper;
 
 class DiagramHelper
 {
+	const DRAW_IO_IMAGE_EXPORT_SERVICE_URL = 'https://exp.draw.io/ImageExport4/export';
+	const DRAW_IO_IMAGE_FORMAT = 'png';
+	const FETCH_IMAGE_CONTENTS_TIMEOUT = 5;
+
+	/**
+	 * Get diagram as image given a file ID or diagram contents.
+	 * If the requested file or contents are cached, they will be immediately returned, otherwise they will be fetched if Tiki is configured for it.
+	 * @param $diagramContent
+	 * @return bool|false|string
+	 */
+	public static function getDiagramAsImage($diagramContent)
+	{
+		global $prefs, $cachelib;
+
+		if (is_int($diagramContent)) {
+			$file = File::id($diagramContent);
+
+			if (empty($file)) {
+				return false;
+			}
+
+			$diagramContent = $file->data();
+		}
+
+		$fileIdentifier = md5($diagramContent);
+		$content = $cachelib->getCached($fileIdentifier, 'diagram');
+
+		if (! $content && $prefs['fgal_use_drawio_services_to_export_images'] === 'y') {
+			$jsonPayload = json_encode([
+				'format'    => self::DRAW_IO_IMAGE_FORMAT,
+				'embedXml'  => '0',
+				'base64'    => '1',
+				'xml'       => $diagramContent,
+			]);
+
+			$curl = curl_init();
+			curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
+			curl_setopt($curl, CURLOPT_URL, self::DRAW_IO_IMAGE_EXPORT_SERVICE_URL);
+			curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+			curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, self::FETCH_IMAGE_CONTENTS_TIMEOUT);
+			curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonPayload);
+			curl_setopt($curl, CURLOPT_HTTPHEADER, [
+				'Content-Type: application/json',
+				'Content-Length: ' . strlen($jsonPayload)
+			]);
+
+			$content = curl_exec($curl);
+
+			if (! empty($content)) {
+				$cachelib->cacheItem($fileIdentifier, $content, 'diagram');
+			}
+		}
+
+		return $content;
+	}
+
 	/**
 	 * Check if file is a diagram
 	 *
@@ -24,7 +81,7 @@ class DiagramHelper
 		$type = $file->getParam('filetype');
 		$data = trim($file->getContents());
 
-		if ($type == 'text/plain' && (strpos($data, '<mx') === 0)) {
+		if (in_array($type, ['text/plain', 'text/xml']) && (strpos($data, '<mx') === 0)) {
 			return true;
 		}
 
