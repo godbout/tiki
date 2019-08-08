@@ -1272,7 +1272,7 @@ class PreferencesLib
 		global $prefs;
 		$ret = [];
 		foreach (array_keys($prefs) as $prefName) {
-			if (substr($prefName, 0, 3) == 'tp_' && substr($prefName, -3) == '_on') {
+			if (substr($prefName, 0, 3) == 'tp_') {
 				$ret[] = $prefName;
 			}
 		}

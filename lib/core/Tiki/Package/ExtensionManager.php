@@ -137,6 +137,7 @@ class ExtensionManager
 
 			self::$enabled = []; // Force reload from file
 
+			\TikiLib::lib('cache')->invalidate('global_preferences');
 			\TikiLib::lib('cache')->invalidate('tiki_default_preferences_cache');
 		}
 
@@ -176,6 +177,7 @@ class ExtensionManager
 			// Force container refresh
 			@unlink(TIKI_PATH . '/temp/cache/container.php');
 
+			\TikiLib::lib('cache')->invalidate('global_preferences');
 			\TikiLib::lib('cache')->invalidate('tiki_default_preferences_cache');
 		}
 
