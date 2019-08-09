@@ -18,7 +18,6 @@ use TikiLib;
 
 class Extension
 {
-	private $libraries = [];
 	private $configuration = null;
 	public $smarty = null;
 	private $utilities;
