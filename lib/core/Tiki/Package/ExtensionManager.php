@@ -14,7 +14,6 @@ use Symfony\Component\Yaml\Yaml;
 use Tiki\Package\Extension\Extension;
 use Tiki\Package\Extension\Api\Events as ApiEvents;
 use Tiki\Package\Extension\Api\FileGallery as ApiFileGallery;
-use Tiki\Package\Extension\Api\NavBar as ApiNavBar;
 use Tiki\Package\Extension\Api\Search as ApiSearch;
 
 class ExtensionManager
@@ -229,21 +228,12 @@ class ExtensionManager
 				$package = $addOn['name'];
 				self::$installed[$package] = json_decode(json_encode($addOn['config']));
 				self::$paths[$package] = $addOn['path'];
-				self::initializeNavbarApi($package);
 				self::initializeFileGalleryApi($package);
 				self::initializeEventsApi($package);
 				self::initializeSearchApi($package);
 			} catch (InvalidArgumentException $e) {
 				// Do nothing, absence of tiki-package.json
 			}
-		}
-	}
-
-	private static function initializeNavbarApi($package)
-	{
-		if (! empty(self::$installed[$package]->navbar)) {
-			$tpl = self::$installed[$package]->navbar->tpl;
-			ApiNavBar::setNavBar($package, $tpl);
 		}
 	}
 
