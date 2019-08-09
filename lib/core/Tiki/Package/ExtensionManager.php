@@ -14,7 +14,6 @@ use Symfony\Component\Yaml\Yaml;
 use Tiki\Package\Extension\Extension;
 use Tiki\Package\Extension\Api\Events as ApiEvents;
 use Tiki\Package\Extension\Api\FileGallery as ApiFileGallery;
-use Tiki\Package\Extension\Api\Group as ApiGroup;
 use Tiki\Package\Extension\Api\NavBar as ApiNavBar;
 use Tiki\Package\Extension\Api\Search as ApiSearch;
 
@@ -230,7 +229,6 @@ class ExtensionManager
 				$package = $addOn['name'];
 				self::$installed[$package] = json_decode(json_encode($addOn['config']));
 				self::$paths[$package] = $addOn['path'];
-				self::initializeGroupApi($package);
 				self::initializeNavbarApi($package);
 				self::initializeFileGalleryApi($package);
 				self::initializeEventsApi($package);
@@ -238,22 +236,6 @@ class ExtensionManager
 			} catch (InvalidArgumentException $e) {
 				// Do nothing, absence of tiki-package.json
 			}
-		}
-	}
-
-	private static function initializeGroupApi($package)
-	{
-		if (! empty(self::$installed[$package]->group)) {
-			$tracker = self::$installed[$package]->group->tracker;
-			$public_catroot = self::$installed[$package]->group->public_catroot;
-			$private_catroot = self::$installed[$package]->group->private_catroot;
-			$managementpage = self::$installed[$package]->group->managementpage;
-			$homepage = self::$installed[$package]->group->homepage;
-			ApiGroup::setTracker($package, $tracker);
-			ApiGroup::setPublicCatroot($package, $public_catroot);
-			ApiGroup::setPrivateCatroot($package, $private_catroot);
-			ApiGroup::setManagementPage($package, $managementpage);
-			ApiGroup::setHomePage($package, $homepage);
 		}
 	}
 

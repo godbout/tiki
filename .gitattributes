@@ -3059,7 +3059,6 @@ lib/core/Tiki/Package/ComposerPackages.yml -text
 lib/core/Tiki/Package/Extension/Api.php -text
 lib/core/Tiki/Package/Extension/Api/Events.php -text
 lib/core/Tiki/Package/Extension/Api/FileGallery.php -text
-lib/core/Tiki/Package/Extension/Api/Group.php -text
 lib/core/Tiki/Package/Extension/Api/NavBar.php -text
 lib/core/Tiki/Package/Extension/Api/index.php -text
 lib/core/Tiki/Package/Extension/index.php -text
@@ -4226,7 +4225,6 @@ lib/smarty_tiki/modifier.nonp.php -text
 lib/smarty_tiki/modifier.number_format.php -text
 lib/smarty_tiki/modifier.numstyle.php -text
 lib/smarty_tiki/modifier.output.php -text
-lib/smarty_tiki/modifier.packagegroupname.php -text
 lib/smarty_tiki/modifier.packageitemid.php -text
 lib/smarty_tiki/modifier.packagenavbar.php -text
 lib/smarty_tiki/modifier.pagename.php -text

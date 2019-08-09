@@ -139,19 +139,6 @@ function wikiplugin_memberlist_info()
 					['text' => tra('No'), 'value' => 'n']
 				],
 			],
-			'addon_groups_approval_buttons' => [
-				'required' => false,
-				'name' => tra('Need Approval'),
-				'description' => tra('Add approve/reject user buttons for private addon groups'),
-				'since' => '14.0',
-				'default' => 'n',
-				'filter' => 'alpha',
-				'options' => [
-					['text' => '', 'value' => ''],
-					['text' => tra('Yes'), 'value' => 'y'],
-					['text' => tra('No'), 'value' => 'n']
-				],
-			],
 		],
 	];
 }
@@ -220,32 +207,6 @@ function wikiplugin_memberlist($data, $params)
 		unset($in_group);
 	}
 
-	if ($params['addon_groups_approval_buttons'] == 'y') {
-		$pageInfo = $tikilib->get_page_info($page);
-		$pageLang = $pageInfo['lang'];
-		$api = new \Tiki\Package\Extension\Api\Group();
-		$group_base = $api->getOrganicGroupBaseName($params['groups'][0]);
-		$smarty->assign('mail_group', $group_base);
-		$itemId = $api->getItemIdFromToken($params['groups'][0]);
-		$smarty->assign('mail_organicgroup_id', $itemId);
-		$userid = "user" . $userlib->get_user_id($user);
-		$smarty->assign('mail_userid', $userid);
-		$smarty->assign('mail_url', $api->getGroupHomePage($params['groups'][0]) . '?itemId=' . $itemId);
-		$foo = parse_url($_SERVER["REQUEST_URI"]);
-		$machine = $tikilib->httpPrefix(true) . dirname($foo["path"]);
-		if (substr($machine, -1) == '/') {
-			$machine = substr($machine, 0, -1);
-		}
-		$smarty->assign('mail_machine', $machine);
-		$file_wel = $smarty->fetchLang($pageLang, "mail/admin_approval_user_joins_group_notification.tpl");
-		$file_rej = $smarty->fetchLang($pageLang, "mail/admin_rejection_user_group_notification.tpl");
-		$smarty->assign('welcome_content', $file_wel);
-		$smarty->assign('reject_content', $file_rej);
-		$smarty->assign('Need_app', $exec_key);
-	} else {
-		$smarty->assign('Need_app', '');
-	}
-
 	Perms::bulk([ 'type' => 'group' ], 'object', $groups);
 
 	if ($params['readOnly'] == 'y') {
@@ -271,23 +232,13 @@ function wikiplugin_memberlist($data, $params)
 		if (isset($_POST['add'])) {
 			$addit = [];
 			foreach ($_POST['add'] as $key => $value) {
-				if ($params['addon_groups_approval_buttons'] == 'y') {
-					$basegroup = $api->getOrganicGroupBaseToken($key);
-					$valgroup[] = $basegroup;
-					$addit['add'][$basegroup] = $value;
-					$removeit['add'][$api->getOrganicGroupPendingToken($key)][] = $value;
-				} else {
-					$valgroup[] = $key;
-					$addit['add'][$key] = $value;
-				}
+				$valgroup[] = $key;
+				$addit['add'][$key] = $value;
 			}
 			if (isset($params['email_to_added_user']) && $params['email_to_added_user'] == 'y' || isset($_POST['text_area'])) {
 				$mail = 'true';
 			}
 			$validrem = wikiplugin_memberlist_get_group_details($valgroup, $params['max'], $params['sort_mode'], $readOnly);
-			if ($params['addon_groups_approval_buttons'] == 'y' && isset($removeit['add'])) {
-				wikiplugin_memberlist_remove($validGroups, $removeit['add'], 'false', $params);
-			}
 			wikiplugin_memberlist_add($validrem, $addit['add'], '', $mail, $params);
 		}
 		if (isset($_POST['defgroup'])) {
@@ -468,17 +419,6 @@ function wikiplugin_memberlist_add($groups, $adds, $asdefault = false, $mail = f
 						}
 					}
 				}
-				if ($params['addon_groups_approval_buttons'] == 'y') {
-					$subject = "admin_approval_user_joins_group_notification_subject.tpl";
-					$body = "admin_approval_user_joins_group_notification.tpl";
-				} else {
-					$subject = "admin_add_user_joins_group_notification_subject.tpl";
-					$body = "admin_add_user_joins_group_notification.tpl";
-				}
-				if (! empty($added_user) && isset($par_data)) {
-					require_once("lib/notifications/notificationemaillib.php");
-					sendEmailNotification($added_user, 'add_rem_mail', $subject, $par_data, $body);
-				}
 			}
 		}
 	}
@@ -498,17 +438,6 @@ function wikiplugin_memberlist_remove($groups, $removes, $mail = false, $params 
 						$par_data['gname'] = $group;
 						$par_data['app_data'] = isset($_POST['text_area']) ? $_POST['text_area'] : '';
 					}
-				}
-				if ($params['addon_groups_approval_buttons'] == 'y') {
-					$subject = "admin_rejection_user_group_notification_subject.tpl";
-					$body = "admin_rejection_user_group_notification.tpl";
-				} else {
-					$subject = "admin_remove_user_group_notification_subject.tpl";
-					$body = "admin_remove_user_group_notification.tpl";
-				}
-				if (! empty($removed_user) && isset($par_data)) {
-					require_once("lib/notifications/notificationemaillib.php");
-					sendEmailNotification($removed_user, 'add_rem_mail', $subject, $par_data, $body);
 				}
 			}
 		}

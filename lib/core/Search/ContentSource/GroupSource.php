@@ -27,23 +27,8 @@ class Search_ContentSource_GroupSource implements Search_ContentSource_Interface
 			return false;
 		}
 
-		$api = new \Tiki\Package\Extension\Api\Group();
 		$groupName = $objectId;
-		$addongroup = false;
-		$addonpendinggroup = false;
-		$addonleadergroup = false;
-
-		if ($ret = $api->getOrganicGroupName($objectId)) {
-			$groupName = $ret;
-			$addongroup = $api->isOrganicGroup($objectId);
-			if ($addongroup == true && $api->getOrganicGroupPendingToken($objectId) == $objectId) {
-				$addonpendinggroup = true;
-			}
-			if ($addongroup == true && $api->getOrganicGroupLeaderToken($objectId) == $objectId) {
-				$addonleadergroup = true;
-			}
-		}
-
+	
 		$data = [
 			'title' => $typeFactory->sortable($groupName),
 			'description' => $typeFactory->plaintext($row['groupDesc']),
@@ -51,10 +36,6 @@ class Search_ContentSource_GroupSource implements Search_ContentSource_Interface
 			'searchable' => $typeFactory->identifier('n'),
 
 			'view_permission' => $typeFactory->identifier('tiki_p_group_view'),
-
-			'addongroup' => $addongroup ? $typeFactory->identifier('y') : $typeFactory->identifier('n'),
-			'addonleadergroup' => $addonleadergroup ? $typeFactory->identifier('y') : $typeFactory->identifier('n'),
-			'addonpendinggroup' => $addonpendinggroup ? $typeFactory->identifier('y') : $typeFactory->identifier('n'),
 		];
 
 		return $data;
@@ -69,10 +50,6 @@ class Search_ContentSource_GroupSource implements Search_ContentSource_Interface
 			'searchable',
 
 			'view_permission',
-
-			'addongroup',
-			'addonleadergroup',
-			'addonpendinggroup',
 		];
 	}
 

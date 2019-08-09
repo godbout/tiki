@@ -2414,15 +2414,10 @@ class UsersLib extends TikiLib
 		$query = 'update `users_users` set `default_group`=? where `login`=? and `default_group`=?';
 		$this->query($query, ['Registered', $user, $group]);
 
-		$api = new \Tiki\Package\Extension\Api\Group();
 		TikiLib::events()->trigger('tiki.user.groupleave', [
 			'type' => 'user',
 			'object' => $user,
 			'group' => $group,
-			'addongroup' => $api->getOrganicGroupName($group),
-			'is_organic' => ($api->isOrganicGroup($group) ? 1 : 0),
-			'is_private' => ($api->organicGroupIsPrivate($group) ? 1 : 0),
-			'addongroupid' => $api->getItemIdFromToken($group),
 			'bulk_import' => $bulk,
 		]);
 
@@ -6603,15 +6598,10 @@ class UsersLib extends TikiLib
 				$smarty->assign('mail_group', $group);
 				sendEmailNotification($watches, null, 'user_joins_group_notification_subject.tpl', null, 'user_joins_group_notification.tpl');
 			}
-			$api = new \Tiki\Package\Extension\Api\Group();
 			TikiLib::events()->trigger('tiki.user.groupjoin', [
 				'type' => 'user',
 				'object' => $user,
 				'group' => $group,
-				'addongroup' => $api->getOrganicGroupName($group),
-				'is_organic' => ($api->isOrganicGroup($group) ? 1 : 0),
-				'is_private' => ($api->organicGroupIsPrivate($group) ? 1 : 0),
-				'addongroupid' => $api->getItemIdFromToken($group),
 				'bulk_import' => $bulk,
 			]);
 		}

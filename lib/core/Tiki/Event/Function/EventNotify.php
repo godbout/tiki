@@ -79,13 +79,6 @@ class Tiki_Event_Function_EventNotify extends Math_Formula_Function
 				$userlib = TikiLib::lib('user');
 				$users = $userlib->get_members($arguments['groupname']);
 				break;
-			case "groupmanagers":
-				$api = new \Tiki\Package\Extension\Api\Group();
-				$group = $arguments['groupname'];
-				if ($api->isOrganicGroup($group)) {
-					$users = $api->getOrganicGroupLeaders($group);
-				}
-				break;
 			default:
 				Feedback::error(tr(
 					'Problem finding the associated user. %0 is not recognized. See EventNotify.php',
