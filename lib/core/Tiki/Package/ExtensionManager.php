@@ -245,8 +245,8 @@ class ExtensionManager
 
 	private static function initializeSearchApi($package)
 	{
-		if (! empty(self::$installed[$package]->search->addonSources)) {
-			$sources = self::$installed[$package]->search->addonSources;
+		if (! empty(self::$installed[$package]->search->searchsources)) {
+			$sources = self::$installed[$package]->search->searchsources;
 			ApiSearch::setSources($package, $sources);
 		}
 	}

@@ -41,8 +41,7 @@ class Events extends Api
 	public static function bindEvents($events)
 	{
 		foreach (self::$eventMap as $event) {
-			$events->bind($event->event, \Tiki_Event_Lib::defer($event->lib, $event->function),
-				["extension_args" => (array)$event->params]);
+			$events->bind($event->event, [$event->lib, $event->function], (array) $event->extra_args);
 		}
 	}
 }
