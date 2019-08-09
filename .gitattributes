@@ -5593,14 +5593,6 @@ templates/list_file_gallery.tpl -text
 templates/list_file_gallery_content.tpl -text
 templates/lists/article-search.tpl -text
 templates/lists/articles.tpl -text
-templates/mail/admin_add_user_joins_group_notification.tpl -text
-templates/mail/admin_add_user_joins_group_notification_subject.tpl -text
-templates/mail/admin_approval_user_joins_group_notification.tpl -text
-templates/mail/admin_approval_user_joins_group_notification_subject.tpl -text
-templates/mail/admin_rejection_user_group_notification.tpl -text
-templates/mail/admin_rejection_user_group_notification_subject.tpl -text
-templates/mail/admin_remove_user_group_notification.tpl -text
-templates/mail/admin_remove_user_group_notification_subject.tpl -text
 templates/mail/blogs_send_link.tpl -text
 templates/mail/cart_gift_cert.tpl -text
 templates/mail/cart_gift_cert_subject.tpl -text
