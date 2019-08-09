@@ -48,7 +48,11 @@ if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
 				|| file_exists(__DIR__ . '/../../vendor/smarty/smarty/distribution/libs/Smarty.class.php')) //Smarty
 			&& file_exists(__DIR__ . '/../../vendor/adodb/adodb/adodb.inc.php') //Adodb
 		)) {
-		require_once __DIR__ . '/../../vendor/autoload.php';
+		$autoloader = require_once __DIR__ . '/../../vendor/autoload.php';
+		// Autoload extension packages libs
+		foreach (\Tiki\Package\ExtensionManager::getEnabledPackageExtensions(false) as $package) {
+			$autoloader->addPsr4(str_replace('/', '\\', $package['name']) . '\\', $package['path'] . '/lib/');
+		}
 	}
 }
 
