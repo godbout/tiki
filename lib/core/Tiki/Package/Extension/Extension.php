@@ -154,34 +154,6 @@ class Extension
 	}
 
 	/**
-	 * @param $name
-	 * @return mixed|object
-	 * @throws \Exception
-	 */
-	public function lib($name)
-	{
-		if (isset($this->libraries[$name])) {
-			return $this->libraries[$name];
-		}
-
-		$container = \TikiInit::getContainer();
-		$service = 'package.' . $this->getVendor() . '.' . $this->getShortName() . '.' . $name;
-
-		if ($lib = $container->get(
-			$service,
-			\Symfony\Component\DependencyInjection\ContainerInterface::NULL_ON_INVALID_REFERENCE
-		)) {
-			return $lib;
-		}
-
-		unlink(TIKI_PATH . '/temp/cache/container.php'); // Remove the container cache to help transition
-		throw new \Exception(tr(
-			"%0 library not found. This may be due to a typo or caused by a recent update.",
-			$name
-		));
-	}
-
-	/**
 	 * @param bool $update
 	 * @return array
 	 */

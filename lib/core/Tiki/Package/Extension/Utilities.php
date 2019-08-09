@@ -27,41 +27,6 @@ class Utilities extends TikiDb_Bridge
 		}
 	}
 
-	public function removeObject($objectId, $type)
-	{
-		if (empty($objectId) || empty($type)) {
-			return;
-		}
-		// TODO add other types
-		if ($type == 'wiki_page' || $type == 'wiki' || $type == 'wiki page' || $type == 'wikipage') {
-			\TikiLib::lib('tiki')->remove_all_versions($objectId);
-		}
-		if ($type == 'tracker' || $type == 'trk') {
-			\TikiLib::lib('trk')->remove_tracker($objectId);
-		}
-		if ($type == 'category' || $type == 'cat') {
-			\TikiLib::lib('categ')->remove_category($objectId);
-		}
-		if ($type == 'file_gallery' || $type == 'file gallery' || $type == 'filegal' || $type == 'fgal' || $type == 'filegallery') {
-			\TikiLib::lib('filegal')->remove_file_gallery($objectId);
-		}
-		if ($type == 'activity' || $type == 'activitystream' || $type == 'activity_stream' || $type == 'activityrule' || $type == 'activity_rule') {
-			\TikiLib::lib('activity')->deleteRule($objectId);
-		}
-		if ($type == 'forum' || $type == 'forums') {
-			\TikiLib::lib('comments')->remove_forum($objectId);
-		}
-		if ($type == 'trackerfield' || $type == 'trackerfields' || $type == 'tracker field') {
-			$trklib = \TikiLib::lib('trk');
-			$res = $trklib->get_tracker_field($objectId);
-			$trklib->remove_tracker_field($objectId, $res['trackerId']);
-		}
-		if ($type == 'module' || $type == 'modules') {
-			$modlib = \TikiLib::lib('mod');
-			$modlib->unassign_module($objectId);
-		}
-	}
-
 	public function getObjectId($folder, $ref, $profile = '', $domain = '')
 	{
 		if (strpos($folder, '/') !== false && strpos($folder, '_') === false) {
