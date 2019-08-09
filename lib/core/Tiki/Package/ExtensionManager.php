@@ -13,7 +13,6 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Yaml;
 use Tiki\Package\Extension\Extension;
 use Tiki\Package\Extension\Api\Events as ApiEvents;
-use Tiki\Package\Extension\Api\FileGallery as ApiFileGallery;
 use Tiki\Package\Extension\Api\Search as ApiSearch;
 
 class ExtensionManager
@@ -228,22 +227,11 @@ class ExtensionManager
 				$package = $addOn['name'];
 				self::$installed[$package] = json_decode(json_encode($addOn['config']));
 				self::$paths[$package] = $addOn['path'];
-				self::initializeFileGalleryApi($package);
 				self::initializeEventsApi($package);
 				self::initializeSearchApi($package);
 			} catch (InvalidArgumentException $e) {
 				// Do nothing, absence of tiki-package.json
 			}
-		}
-	}
-
-	private static function initializeFileGalleryApi($package)
-	{
-		if (! empty(self::$installed[$package]->filegallery)) {
-			$parent = self::$installed[$package]->filegallery->parent;
-			ApiFileGallery::setParents($package, $parent);
-			$tracker = self::$installed[$package]->filegallery->tracker;
-			ApiFileGallery::setTrackers($package, $tracker);
 		}
 	}
 

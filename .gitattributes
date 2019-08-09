@@ -3058,7 +3058,6 @@ lib/core/Tiki/Package/ComposerPackage.php -text
 lib/core/Tiki/Package/ComposerPackages.yml -text
 lib/core/Tiki/Package/Extension/Api.php -text
 lib/core/Tiki/Package/Extension/Api/Events.php -text
-lib/core/Tiki/Package/Extension/Api/FileGallery.php -text
 lib/core/Tiki/Package/Extension/Api/index.php -text
 lib/core/Tiki/Package/Extension/index.php -text
 lib/core/Tiki/PageCache.php -text
