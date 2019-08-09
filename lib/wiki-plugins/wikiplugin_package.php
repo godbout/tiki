@@ -8,9 +8,9 @@
 function wikiplugin_package_info()
 {
 	return [
-		'name' => tra('Tiki Package View'),
+		'name' => tra('Tiki Package Plugin'),
 		'documentation' => 'PluginPackage',
-		'description' => tra('Display the output of a Tiki Package View.'),
+		'description' => tra('Display the output of a wiki plugin within a Tiki Package.'),
 		'prefs' => ['wikiplugin_package'],
 		'body' => '',
 		'introduced' => 14,
@@ -26,10 +26,10 @@ function wikiplugin_package_info()
 				'filter' => 'text',
 				'since' => '14.0',
 			],
-			'view' => [
+			'plugin' => [
 				'required' => true,
-				'name' => tra('Name of the view'),
-				'description' => tr('Name of the view file without the %0.php%1', '<code>', '</code>'),
+				'name' => tra('Name of the plugin'),
+				'description' => tr('Name of the plugin file without the %0.php%1', '<code>', '</code>'),
 				'filter' => 'text',
 				'since' => '14.0',
 			],
@@ -41,7 +41,7 @@ function wikiplugin_package($data, $params)
 {
 	global $smarty;
 
-	TikiLib::lib('smarty')->loadPlugin('smarty_block_packageview');
+	TikiLib::lib('smarty')->loadPlugin('smarty_block_packageplugin');
 
-	return "~np~" . smarty_block_packageview($params, $data, $smarty) . "~/np~";
+	return "~np~" . smarty_block_packageplugin($params, $data, $smarty) . "~/np~";
 }

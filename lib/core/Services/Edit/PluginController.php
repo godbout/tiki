@@ -134,7 +134,7 @@ class Services_Edit_PluginController
 				'redirect' => TikiLib::lib('wiki')->sefurl($page),
 			];
 		} else {        // render the form
-			$info = $parserlib->plugin_info($type);
+			$info = $parserlib->plugin_info($type, $pluginArgs);
 			$info['advancedParams'] = [];
 			$validationRules = [];
 			$objectlib = TikiLib::lib('object');

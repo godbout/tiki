@@ -499,12 +499,15 @@ class ParserLib extends TikiDb_Bridge
 		}
 
 		// Support Tiki Packages param overrides for Package plugin
-		if ($name == 'package' && ! empty($args['package']) && ! empty($args['view'])) {
+		if ($name == 'package' && ! empty($args['package']) && ! empty($args['plugin'])) {
 			$info = $func_name_info();
 
 			$parts = explode('/', $args['package']);
-			$extensionPackage = \Tiki\Package\ExtensionManager::get($args['package']);
-			$path = $extensionPackage->getPath() . '/Views/' . $args['view'] . '.php';
+			if ($extensionPackage = \Tiki\Package\ExtensionManager::get($args['package'])) {
+				$path = $extensionPackage->getPath() . '/lib/wiki-plugins/' . $args['plugin'] . '.php';
+			} else {
+				$path = '';
+			}
 
 			if (! file_exists($path)) {
 				return $known[$name] = $info;
@@ -514,9 +517,9 @@ class ParserLib extends TikiDb_Bridge
 
 			$namespace = $extensionPackage->getBaseNamespace();
 			if (!empty($namespace)) {
-				$namespace .= '\\Views\\';
+				$namespace .= '\\PackagePlugins\\';
 			}
-			$functionname = $namespace . $args['view'] . "_info";
+			$functionname = $namespace . $args['plugin'] . "_info";
 
 			if (! function_exists($functionname)) {
 				return $known[$name] = $info;
