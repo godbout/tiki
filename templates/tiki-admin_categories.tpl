@@ -10,18 +10,19 @@
 	<div class="treetitle">
 		<a href="tiki-admin_categories.php?parentId=0" class="categpath">{tr}Top{/tr}</a>
 		{if $parentId != 0}
-		{foreach $path as $id=>$name}
-			&nbsp;::&nbsp;
-			<a class="categpath" href="tiki-admin_categories.php?parentId={$id}">{$name|escape}</a>
-		{/foreach}
-		({tr}ID:{/tr} {$parentId})
+			{foreach $path as $id=>$name}
+				&nbsp;::&nbsp;
+				<a class="categpath" href="tiki-admin_categories.php?parentId={$id}">{$name|escape}</a>
+			{/foreach}
+			({tr}ID:{/tr} {$parentId})
 		{/if}
 	</div>
 </div>
 
-{$tree}
-
 {tabset}
+	{tab name='{tr}Categories{/tr}'}
+		{$tree}
+	{/tab}
 	{if empty($categId)}{$editLabel = "{tr}Create category{/tr}"}{else}{$editLabel = "{tr}Edit category{/tr}"}{/if}
 	{tab name=$editLabel}
 		{if $categId > 0}
@@ -76,34 +77,7 @@
 		</form>
 	{/tab}
 
-	{if $categId <= 0}
-		{tab name="{tr}Batch upload{/tr}"}
-			<h2>{tr}Batch upload{/tr}</h2>
-			<form action="tiki-admin_categories.php" method="post" enctype="multipart/form-data" role="form">
-				{ticket}
-				<div class="form-group row">
-					<label class="col-form-label col-sm-3">{tr}CSV File{/tr}</label>
-					<div class="col-sm-9">
-						<input type="file" class="form-control" name="csvlist">
-						<div class="form-text">
-							{tr}Sample file content{/tr}
-<pre>{* can't indent <pre> tag contents *}
-category,description,parent
-vegetable,vegetable
-potato,,vegetable
-</pre>
-						</div>
-					</div>
-				</div>
-				<div class="form-group row">
-					<div class="col-sm-3 offset-sm-3">
-						<input type="submit" class="btn btn-secondary" name="import" value="{tr}Upload{/tr}">
-					</div>
-				</div>
-			</form>
-		{/tab}
-	{/if}
-	{if $parentId != 0}
+	{if not empty($parentId) and empty($categId)}
 		{tab name="{tr}Objects in category{/tr}"}
 			<h2>{tr}Objects in category:{/tr} {$categ_name|escape}</h2>
 			{if $objects}
@@ -187,7 +161,7 @@ $("#remove_object_form").unbind("submit").submit(function (e) {
 			{pagination_links cant=$cant_objects step=$prefs.maxRecords offset=$offset}{/pagination_links}
 		{/tab}
 
-		{tab name="{tr}Moving objects between categories{/tr}"}
+		{tab name="{tr}Moving objects{/tr}"}
 			<h2>{tr}Moving objects between categories{/tr}</h2>
 			<h4>{tr}Current category:{/tr} {$categ_name|escape}</h4><br>
 			<form method="post" action="tiki-admin_categories.php" name="move" role="form">
@@ -253,7 +227,7 @@ $("#remove_object_form").unbind("submit").submit(function (e) {
 			</form>
 		{/tab}
 
-		{tab name="{tr}Add objects to category{/tr}"}
+		{tab name="{tr}Add objects{/tr}"}
 			<h2>{tr}Add objects to category:{/tr} <b>{$categ_name|escape}</b></h2>
 			{if $prefs.feature_search eq 'y' and $prefs.unified_add_to_categ_search eq 'y'}
 				<form id="add_object_form" method="post" action="{service controller=category action=categorize}" role="form">
@@ -616,5 +590,31 @@ $("#add_object_type").change(function () {
 				{pagination_links cant=$maximum step=$maxRecords offset=$offset}{/pagination_links}
 			{/if}
 		{/tab}
-	{/if}
+
+		{tab name="{tr}Batch upload{/tr}"}
+			<h2>{tr}Batch upload{/tr}</h2>
+			<form action="tiki-admin_categories.php" method="post" enctype="multipart/form-data" role="form">
+				{ticket}
+				<div class="form-group row">
+					<label class="col-form-label col-sm-3">{tr}CSV File{/tr}</label>
+					<div class="col-sm-9">
+						<input type="file" class="form-control" name="csvlist">
+						<div class="form-text">
+							{tr}Sample file content{/tr}
+<pre>{* can't indent <pre> tag contents *}
+category,description,parent
+vegetable,vegetable
+potato,,vegetable
+</pre>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-3 offset-sm-3">
+						<input type="submit" class="btn btn-secondary" name="import" value="{tr}Upload{/tr}">
+					</div>
+				</div>
+			</form>
+		{/tab}
+	{/if}{* if not empty($parentId) *}
 {/tabset}
