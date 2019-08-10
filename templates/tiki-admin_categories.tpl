@@ -116,39 +116,72 @@ potato,,vegetable
 				</form>
 			{/if}
 			<div class="table-responsive">
-				<table class="table">
-					<tr>
-						<th>&nbsp;</th>
-						<th>
-							<a href="tiki-admin_categories.php?parentId={$parentId}&amp;offset={$offset}&amp;sort_mode={if $sort_mode eq 'name_desc'}name_asc{else}name_desc{/if}#objects">
-								{tr}Name{/tr}
-							</a>
-						</th>
-						<th>
-							<a href="tiki-admin_categories.php?parentId={$parentId}&amp;offset={$offset}&amp;sort_mode={if $sort_mode eq 'type_desc'}type_asc{else}type_desc{/if}#objects">
-								{tr}Type{/tr}
-							</a>
-						</th>
-					</tr>
-
-					{section name=ix loop=$objects}
+				<form id="remove_object_form" method="post" action="{service controller='category' action='uncategorize'}">
+					<table class="table">
 						<tr>
-							<td class="icon">
-								<a href="tiki-admin_categories.php?parentId={$parentId}&amp;removeObject={$objects[ix].catObjectId}&amp;fromCateg={$parentId}" class="tips" title=":{tr}Remove from this category{/tr}" onclick="confirmSimple(event, '{tr}Remove object from category?{/tr}', '{ticket mode=get}')">
-									{icon name='remove'}
+							<th class="checkbox-cell">
+								{select_all checkbox_names='objects[]'}
+							</th>
+							<th>&nbsp;</th>
+							<th>
+								<a href="tiki-admin_categories.php?parentId={$parentId}&amp;offset={$offset}&amp;sort_mode={if $sort_mode eq 'name_desc'}name_asc{else}name_desc{/if}#objects">
+									{tr}Name{/tr}
 								</a>
-							</td>
-							<td class="text">
-								<a href="{$objects[ix].href}" title="{$objects[ix].name}">
-									{$objects[ix].name|truncate:80:"(...)":true|escape}
+							</th>
+							<th>
+								<a href="tiki-admin_categories.php?parentId={$parentId}&amp;offset={$offset}&amp;sort_mode={if $sort_mode eq 'type_desc'}type_asc{else}type_desc{/if}#objects">
+									{tr}Type{/tr}
 								</a>
-							</td>
-							<td class="text">{tr}{$objects[ix].type}{/tr}</td>
+							</th>
 						</tr>
-					{sectionelse}
-						{norecords _colspan=3}
-					{/section}
-				</table>
+
+						{section name=ix loop=$objects}
+							<tr>
+								<td class="checkbox-cell">
+									<div class="form-check">
+										<input type="checkbox" name="objects[]" value="{$objects[ix].type|escape}:{$objects[ix].itemId|escape}" class="form-check-input position-static">
+									</div>
+								</td>
+								<td class="icon">
+									<a href="tiki-admin_categories.php?parentId={$parentId}&amp;removeObject={$objects[ix].catObjectId}&amp;fromCateg={$parentId}" class="tips text-danger" title=":{tr}Remove from this category{/tr}" onclick="confirmSimple(event, '{tr}Remove object from category?{/tr}', '{ticket mode=get}')">
+										{icon name='remove'}
+									</a>
+								</td>
+								<td class="text">
+									<a href="{$objects[ix].href}" title="{$objects[ix].name}">
+										{$objects[ix].name|truncate:80:"(...)":true|escape}
+									</a>
+								</td>
+								<td class="text">{tr}{$objects[ix].type}{/tr}</td>
+							</tr>
+						{sectionelse}
+							{norecords _colspan=4}
+						{/section}
+					</table>
+					{if not empty($objects)}
+						<div class="submit text-center p-1">
+							{ticket}
+							<input type="hidden" name="categId" value="{$parentId|escape}"}>
+							<input type="submit" name="uncategorize" value="{tr}Remove checked{/tr}" class="btn btn-danger" onclick="return confirm('{tr}Remove objects from category?{/tr}');">
+						</div>
+					{/if}
+				</form>
+				{jq}
+$("#remove_object_form").unbind("submit").submit(function (e) {
+	$.ajax($(this).attr('action'), {
+		type: 'POST',
+		dataType: 'json',
+		data: $(e.currentTarget).serialize(),
+		success: function (data) {
+			location.href = location.href.replace(/#.*$/, "");
+		},
+		error: function (jqxhr) {
+			$(form).showError(jqxhr);
+		}
+	});
+	return false;
+});
+				{/jq}
 			</div>
 
 			{pagination_links cant=$cant_objects step=$prefs.maxRecords offset=$offset}{/pagination_links}
