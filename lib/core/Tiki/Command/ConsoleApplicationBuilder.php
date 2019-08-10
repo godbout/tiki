@@ -170,7 +170,7 @@ class ConsoleApplicationBuilder
 				],
 			],
 			'checkIsDevModeandNoUpdate' => [
-				'action' => self::ACTION_NOT_AVAILABLE,
+				'action' => self::ACTION_NOT_PUBLISHED,
 				'commands' => [
 					new VendorSecurityCommand,
 				],
