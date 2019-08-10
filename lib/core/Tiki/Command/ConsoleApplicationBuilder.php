@@ -171,6 +171,12 @@ class ConsoleApplicationBuilder
 					new RedactDBCommand,
 				],
 			],
+			'checkIsDevModeandNoUpdate' => [
+				'action' => self::ACTION_NOT_PUBLISHED,
+				'commands' => [
+					new VendorSecurityCommand,
+				],
+			],
 		];
 	}
 
@@ -272,6 +278,21 @@ class ConsoleApplicationBuilder
 		}
 		return true;
 	}
+
+
+	/**
+	 * Checks if the the composer development vendor files are installed.
+	 * @return bool
+	 */
+	protected function checkIsDevModeandNoUpdate () : bool
+{
+	if (! $this->checkIsInstalledAndDoNotRequireUpdate()){
+		return false;
+	}
+
+	return class_exists('PHPUnit\Framework\TestCase') ? true : false;
+
+}
 
 	/**
 	 * Creates a console application
