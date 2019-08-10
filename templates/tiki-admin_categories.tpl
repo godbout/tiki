@@ -223,59 +223,52 @@ potato,,vegetable
 		{tab name="{tr}Add objects to category{/tr}"}
 			<h2>{tr}Add objects to category:{/tr} <b>{$categ_name|escape}</b></h2>
 			{if $prefs.feature_search eq 'y' and $prefs.unified_add_to_categ_search eq 'y'}
-				{object_selector}
 				<form id="add_object_form" method="post" action="{service controller=category action=categorize}" role="form">
-					<label>Types of object
-						<select id="add_object_type">
-							<option value="">{tr}All{/tr}</option>
-							{foreach $types as $type => $title}
-								<option value="{$type|escape}">
-									{$title|escape}
-								</option>
-							{/foreach}
-						</select>
-					</label>
-					<label>
-						{tr}Objects{/tr}
-						<input type="text" id="add_object_selector" name="objects">
-					</label>
-					<div>
-						{ticket}
-						<input type="hidden" name="categId" value="{$parentId|escape}">
-						<input type="submit" class="btn btn-primary btn-sm" value="{tr}Add{/tr}">
-						<span id="add_object_message" style="display: none;"></span>
+					<div class="row">
+						<label class="col-sm-4">Types of object
+							<select id="add_object_type">
+								<option value="">{tr}All{/tr}</option>
+								{foreach $types as $type => $title}
+									<option value="{$type|escape}">
+										{$title|escape}
+									</option>
+								{/foreach}
+							</select>
+						</label>
+						<label class="col-sm-8">
+							{tr}Objects{/tr}
+							{$filter = []}
+							{$filter.categories = 'not '|cat:$parentId}
+							{$filter.object_type = 'not activity'}
+							{object_selector_multi _id='add_object_selector' _filter=$filter}
+						</label>
+					</div>
+					<div class="row">
+						<div class="col-sm-8 offset-sm-4">
+							{ticket}
+							<input type="hidden" name="categId" value="{$parentId|escape}">
+							<input type="submit" class="btn btn-primary btn-sm" value="{tr}Add{/tr}">
+							<span id="add_object_message" style="display: none;"></span>
+						</div>
 					</div>
 				</form>
 				{jq}
 $("#add_object_form").unbind("submit").submit(function (e) {
 	var form = this,
-		formdata = $(form).serialize();
+		formdata;
+
+	// turn the list of objects into an parameter "array"
+	$.each($("#add_object_selector").val().split("\n"), function (i, v) {
+		$(form).append($("<input name='objects[]' type='hidden'>").val(v));
+	});
+
+	formdata = $(form).serialize();
 	$.ajax($(form).attr('action'), {
 		type: 'POST',
 		dataType: 'json',
 		data: $(form).serialize(),
 		success: function (data) {
-			data = (data ? data : {});
-			form.append($('<input />', {type: 'hidden', name: 'ticket', value: data.ticket}));
-			$("option:selected", "#add_object_selector ~ select").remove();
-			var $table = $("input[name=sort_mode]").parents("form").next("table");
-			oddeven = $("tr:last", $table).hasClass("odd") ? "even" : "odd";
-			var $row = $("<tr />").addClass(oddeven);
-			$row.append("<td class=\"icon\">" +
-						"<a href=\"tiki-admin_categories.php?parentId=" + data.categId +
-							"&amp;removeObject=" + data.objects[0].catObjectId + "&amp;fromCateg=" + data.categId
-							+ "\" onclick=\"confirmSimple(event, \'" + tr('Remove object from category?') + "\', \'"
-							+ data.ticket + "\')\">" + '{{icon name="remove"}}'+
-						"</a></td>" +
-						"<td class=\"text\">"+
-							"<a href=\"#\">" + data.objects[0].id + "</a></td>" +
-						"<td class=\"text\">" + data.objects[0].type + "</a></td>");
-			$table.append($row);
-			$("#add_object_message")
-				.text(tr("Categorized..."))
-				.fadeIn("fast", function () {
-					setTimeout(function() {$("#add_object_message").fadeOut("slow");}, 3000);
-				});
+			location.href = location.href.replace(/#.*$/, "");
 		},
 		error: function (jqxhr) {
 			$(form).showError(jqxhr);
@@ -284,15 +277,8 @@ $("#add_object_form").unbind("submit").submit(function (e) {
 	return false;
 });
 $("#add_object_type").change(function () {
-	$("#add_object_selector")
-		.object_selector(
-			{
-				type: $("#add_object_type").val(),
-				categories: "not " + $("input[name=categId]", "#add_object_form").val()
-			},
-			{{$prefs.maxRecords|escape}}
-		);
-}).change();
+	$("#add_object_selector").object_selector_multi("setfilter", "type", $("#add_object_type").val() || "not activity");
+});
 				{/jq}
 			{else}{* feature_search=n (not unified search) *}
 
