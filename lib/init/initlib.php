@@ -51,7 +51,9 @@ if (file_exists(__DIR__ . '/../../vendor/autoload.php')) {
 		$autoloader = require_once __DIR__ . '/../../vendor/autoload.php';
 		// Autoload extension packages libs
 		foreach (\Tiki\Package\ExtensionManager::getEnabledPackageExtensions(false) as $package) {
-			$autoloader->addPsr4(str_replace('/', '\\', $package['name']) . '\\', $package['path'] . '/lib/');
+			if (is_dir($package['path'] . '/lib/') && strpos($package['path'], 'vendor_custom') === false) {
+				$autoloader->addPsr4(str_replace('/', '\\', $package['name']) . '\\', $package['path'] . '/lib/');
+			}
 		}
 	}
 }
@@ -64,6 +66,14 @@ if (is_dir(__DIR__ . '/../../vendor_custom')) {
 		}
 		if (file_exists($fileInfo->getPathname() . '/autoload.php')) {
 			require_once $fileInfo->getPathname() . '/autoload.php';
+			 // Autoload extension packages libs
+			$packagePath = $fileInfo->getPathname();
+			if (is_dir($packagePath . '/lib/') && $composerJson = json_decode(file_get_contents($packagePath . '/composer.json'), true)) {
+				$packageName = $composerJson['name'] ?? ''; 
+				if ($packageName && \Tiki\Package\ExtensionManager::isExtension($packageName, $packagePath) && \Tiki\Package\ExtensionManager::isEnabled($packageName)) {
+					$autoloader->addPsr4(str_replace('/', '\\', $packageName) . '\\', $packagePath . '/lib/');
+				}
+			}
 		}
 	}
 }
