@@ -255,6 +255,7 @@ if (isset($_REQUEST["save"]) && isset($_REQUEST["name"]) && strlen($_REQUEST["na
 	$info["name"] = '';
 	$info["description"] = '';
 	$_REQUEST["categId"] = 0;
+	$cookietab = 1;
 }
 if (isset($_REQUEST['import']) && isset($_FILES['csvlist']['tmp_name']) && $access->checkCsrf()) {
 	$fhandle = fopen($_FILES['csvlist']['tmp_name'], 'r');
@@ -341,7 +342,7 @@ foreach ($categories as $category) {
 		$data = '<a href="tiki-admin_categories.php?parentId='
 			. $category['parentId']
 			. '&amp;categId='
-			. $category['categId'] . '&cookietab=1">'
+			. $category['categId'] . '&cookietab=2">'
 			. smarty_function_icon(
 				[
 					'name' => 'edit',
@@ -393,11 +394,14 @@ foreach ($categories as $category) {
 			. 'style="padding:0; margin:0; border:0">' . smarty_function_icon(['name' => 'wrench'], $smarty->getEmptyInternalTemplate()) . '</a>';
 
 		$catlink = '<a class="catname" href="tiki-admin_categories.php?parentId=' . $category["categId"] .
-			'" style="margin-left:5px">' . htmlspecialchars($category['name']) . '</a> ';
+			'&cookietab=3" style="margin-left:5px">' . htmlspecialchars($category['name']) . '</a> ';
+
+		$desc = '<small>' . $category['description'] . '</small>';
+
 		$treeNodes[] = [
 			'id' => $category['categId'],
 			'parent' => $category['parentId'],
-			'data' => $newdata . $catlink,
+			'data' => $newdata . $catlink . $desc,
 		];
 	}
 }

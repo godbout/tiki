@@ -172,7 +172,7 @@ foreach ($ctall as $c) {
 			$deep == 'on',
 			(! empty($_REQUEST['and'])) ? true : false
 		);
-		$countString = '<span class="object-count badge">' . $objectcount['cant'] . '</span>';
+		$countString = '<span class="object-count badge badge-pill badge-info">' . $objectcount['cant'] . '</span>';
 	} else {
 		$countString = '';
 	}
