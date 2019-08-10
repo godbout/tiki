@@ -272,7 +272,7 @@ $("#remove_object_form").unbind("submit").submit(function (e) {
 							{tr}Objects{/tr}
 							{$filter = []}
 							{$filter.categories = 'not '|cat:$parentId}
-							{$filter.object_type = 'not activity'}
+							{$filter.object_type = 'not activity and not category'}
 							{object_selector_multi _id='add_object_selector' _filter=$filter}
 						</label>
 					</div>
