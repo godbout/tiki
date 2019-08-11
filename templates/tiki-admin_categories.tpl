@@ -284,7 +284,7 @@ $("#add_object_form").unbind("submit").submit(function (e) {
 	return false;
 });
 $("#add_object_type").change(function () {
-	$("#add_object_selector").object_selector_multi("setfilter", "type", $("#add_object_type").val() || "not activity");
+	$("#add_object_selector").object_selector_multi("setfilter", "type", $("#add_object_type").val());
 });
 				{/jq}
 			{else}{* feature_search=n (not unified search) *}
@@ -591,6 +591,9 @@ $("#add_object_type").change(function () {
 			{/if}
 		{/tab}
 
+	{/if}{* if not empty($parentId) and empty($categId) *}
+
+	{if empty($categId)}
 		{tab name="{tr}Batch upload{/tr}"}
 			<h2>{tr}Batch upload{/tr}</h2>
 			<form action="tiki-admin_categories.php" method="post" enctype="multipart/form-data" role="form">
@@ -616,5 +619,6 @@ potato,,vegetable
 				</div>
 			</form>
 		{/tab}
-	{/if}{* if not empty($parentId) *}
+	{/if} {* if empty($categId) *}
+
 {/tabset}
