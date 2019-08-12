@@ -3081,7 +3081,7 @@ table.objectperms thead th {
     margin: 0;
     padding: 0; }
 
-  .tiki-admin form.admin [class*="col-sm-"], .tiki-admin form .tab-content [class*="col-sm-"], .tiki-admin form.admin [class*="col-md-"], .tiki-admin form .tab-content [class*="col-md-"] {
+  [class*="tiki-admin"] form [class*="col-sm-"], [class*="tiki-admin"] form [class*="col-md-"] {
     padding-left: 0;
     padding-right: 0; } }
 
