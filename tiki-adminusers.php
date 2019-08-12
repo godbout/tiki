@@ -549,15 +549,15 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 		$userinfo['daysSinceEmailConfirm'] = floor(($userlib->now - $userinfo['email_confirm']) / (60 * 60 * 24));
 	}
 } else {
-
 	//For to get informations entered and placed in the fields
-	if (isset($_REQUEST['login'],$_REQUEST['email'])) {
-		$userinfo['login'] = $_REQUEST['login'];
-		$userinfo['email'] = $_REQUEST['email'];
-	} else {
+	if (empty($userinfo['login'])){
 		$userinfo['login'] = '';
+	}
+
+	if (empty($userinfo['email'])){
 		$userinfo['email'] = '';
 	}
+
 	$userinfo['created'] = $tikilib->now;
 	$userinfo['registrationDate'] = '';
 	$userinfo['age'] = '';
