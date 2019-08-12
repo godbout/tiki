@@ -316,7 +316,7 @@
                                         <div class="mx-3">
                                             <select class="form-control" name="db" id="db">
                                                 {foreach key=dsn item=dbname from=$dbservers}
-                                                    {if $dsn|stristr:"mysql"}
+                                                    {if $dsn|stristr:"mysql" || $dsn|stristr:"pdo"}
                                                         <option value="{$dsn}"{if isset($smarty.request.db) and $smarty.request.db eq $dsn} selected="selected"{/if}>{$dbname}</option>
                                                     {/if}
                                                 {/foreach}

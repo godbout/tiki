@@ -1,3 +1,4 @@
+
 <?php
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
@@ -763,6 +764,14 @@ if (function_exists('mysqli_connect')) {
 if (function_exists('mysql_connect')) {
 	$dbservers['mysql'] = tra('MySQL classic (mysql)');
 }
+
+if (function_exists('pdo_drivers')) {
+	$_pdos = pdo_drivers();
+	if (in_array('mysql', $_pdos)) {
+		$dbservers['pdo'] = tra('MySQL PDO');
+	}
+}
+
 $smarty->assignByRef('dbservers', $dbservers);
 
 check_session_save_path();
