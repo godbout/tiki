@@ -1661,14 +1661,8 @@ a.flipmodtitle .icon {
   list-style-type: none;
   padding-left: 1.3em; }
 
-.modcontrols {
-  visibility: hidden;
-  float: right; }
-  .modcontrols > div > button.btn-link {
-    padding: 0; }
-
-.module:hover .modcontrols {
-  visibility: visible; }
+.modcontrols > div > button.btn-link {
+  padding: 0; }
 
 .box-minichat {
   width: 100%; }
@@ -3087,7 +3081,7 @@ table.objectperms thead th {
     margin: 0;
     padding: 0; }
 
-  .tiki-admin form.admin [class*="col-sm-"], .tiki-admin form .tab-content [class*="col-sm-"], .tiki-admin form.admin [class*="col-md-"], .tiki-admin form .tab-content [class*="col-md-"] {
+  [class*="tiki-admin"] form [class*="col-sm-"], [class*="tiki-admin"] form [class*="col-md-"] {
     padding-left: 0;
     padding-right: 0; } }
 
