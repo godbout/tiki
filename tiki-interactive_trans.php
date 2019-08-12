@@ -21,7 +21,7 @@ if (! empty($_REQUEST['interactive_translation_mode'])) {
 		$cachelib->empty_cache('templates_c');
 	}
 
-	header('Location: ' . $_SESSION['last_mid_php']);
+	header('Location: index.php');
 	exit;
 }
 
