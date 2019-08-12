@@ -223,6 +223,18 @@ function wikiplugin_trackerfilter($data, $params)
 	}
 
 	$headerlib = TikiLib::lib('header');
+
+	/**
+	 * adding spinner when clicking on the filter button
+	 *added by Axel.mwenze on  Monday, august 05, 2019
+	 */
+	$headerlib->add_jq_onready(
+		'$("#form-filter").submit(function(r) { 
+				$(".trackerfilter_loader").show();
+				return true;
+		})'
+	);
+
 	$headerlib->add_jq_onready(
 		'/* Maintain state of other trackerfilter plugin forms */
 					$(".trackerfilter form").submit( function () {

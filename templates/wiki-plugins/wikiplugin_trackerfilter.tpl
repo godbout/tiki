@@ -1,4 +1,6 @@
 {*param : $msgTrackerFilter, $line, $open, $iTrackerFilter, $trackerId, $filters(array(name, format, fieldId, selected, opts)), $showFieldId *}
+<div class="trackerfilter_loader"></div>
+
 {strip}
 	{if isset($msgTrackerFilter) && $msgTrackerFilter}
 		<div class="alert alert-danger">{$msgTrackerFilter|escape}</div>
@@ -9,7 +11,7 @@
 	<div id="trackerFilter{$iTrackerFilter}" class="trackerfilter" style="display:{if isset($open) && $open eq 'y'}block{else}none{/if}">
 		{if empty($inForm)}
 			{if empty($export_action)}
-				<form action="{$smarty.server.PHP_SELF}?{query}#trackerFilter{$iTrackerFilter}-result" method="post">
+				<form action="{$smarty.server.PHP_SELF}?{query}#trackerFilter{$iTrackerFilter}-result" method="post" id="form-filter">
 			{else}
 				{jq notonready=true}
 					function tf_export_submit(fm) {
