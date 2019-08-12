@@ -494,7 +494,7 @@ function build_packages($releaseVersion)
 	$fileName = 'tiki-' . $releaseVersion;
 	$relDir = $workDir . '/' . $releaseVersion;	// where the tiki dir and tarballs go
 	$sourceDir = $relDir . '/' . $fileName;		// the svn export
-	echo($sourceDir);
+
 	echo  "Seting up $workDir directory\n";
 	if (! is_dir($workDir)) {
 		if (! mkdir($workDir)) {
@@ -517,7 +517,7 @@ function build_packages($releaseVersion)
 	}
 
 	// create a export in tikipack to work with
-	echo "Creating SVN export from working copy\n";
+	echo "Creating SVN export from working copy into $sourceDir\n";
 	$shellout = shell_exec('svn export ' . escapeshellarg(ROOT) . ' ' . escapeshellarg($sourceDir . '/.') . ' 2>&1');
 	if ($options['debug-packaging']) {
 		echo $shellout . "\n";
