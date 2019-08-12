@@ -287,68 +287,66 @@ if (isset($_REQUEST['batch']) && is_uploaded_file($_FILES['csvlist']['tmp_name']
 		$polerr = $userlib->check_password_policy($newPass);
 		if (strlen($polerr) > 0) {
 			Feedback::error(['mes' => $polerr]);
-			$access->redirect('tiki-adminusers.php');
-			die;
-		}
+		}else{
+			if ($prefs['login_is_email'] == 'y' and empty($_REQUEST['email'])) {
+				$_REQUEST['email'] = $_REQUEST['login'];
+			}
 
-		if ($prefs['login_is_email'] == 'y' and empty($_REQUEST['email'])) {
-			$_REQUEST['email'] = $_REQUEST['login'];
-		}
+				$send_validation_email = false;
 
-			$send_validation_email = false;
+			if (isset($_REQUEST['need_email_validation']) && $_REQUEST['need_email_validation'] == 'on') {
+				$send_validation_email = true;
+				$apass = md5($tikilib->genPass());
+			} else {
+				$apass = '';
+			}
 
-		if (isset($_REQUEST['need_email_validation']) && $_REQUEST['need_email_validation'] == 'on') {
-			$send_validation_email = true;
-			$apass = md5($tikilib->genPass());
-		} else {
-			$apass = '';
-		}
+			if ($_REQUEST['login'] = $userlib->add_user(
+				$_REQUEST['login'],
+				$newPass,
+				$_REQUEST['email'],
+				$pass_first_login ? $newPass : '',
+				$pass_first_login,
+				$apass,
+				null,
+				($send_validation_email ? 'u' : null)
+			)) {
+				$feedback = sprintf(tra('New user created with username %s.'), $_REQUEST['login']);
+				Feedback::success($feedback);
+				$logslib->add_log('adminusers', $feedback, $user);
 
-		if ($_REQUEST['login'] = $userlib->add_user(
-			$_REQUEST['login'],
-			$newPass,
-			$_REQUEST['email'],
-			$pass_first_login ? $newPass : '',
-			$pass_first_login,
-			$apass,
-			null,
-			($send_validation_email ? 'u' : null)
-		)) {
-			$feedback = sprintf(tra('New user created with username %s.'), $_REQUEST['login']);
-			Feedback::success($feedback);
-			$logslib->add_log('adminusers', $feedback, $user);
+				if ($send_validation_email) {
+					// No need to send credentials in mail if the user is forced to choose a new password after validation
+					$realpass = $pass_first_login ? '' : $newPass;
+					$userlib->send_validation_email(
+						$_REQUEST['login'],
+						$apass,
+						$_REQUEST['email'],
+						'',
+						'',
+						'',
+						'user_creation_validation_mail',
+						$realpass
+					);
+				}
 
-			if ($send_validation_email) {
-				// No need to send credentials in mail if the user is forced to choose a new password after validation
-				$realpass = $pass_first_login ? '' : $newPass;
-				$userlib->send_validation_email(
-					$_REQUEST['login'],
-					$apass,
-					$_REQUEST['email'],
-					'',
-					'',
-					'',
-					'user_creation_validation_mail',
-					$realpass
+				if ($prefs['userTracker'] === 'y' && ! empty($_REQUEST['insert_user_tracker_item'])) {
+					TikiLib::lib('header')->add_jq_onready('setTimeout(function () { $(".insert-usertracker").click(); });');
+					$_REQUEST['user'] = $userlib->get_user_id($_REQUEST['login']);
+					$cookietab = '2';
+				} else {
+					$cookietab = '1';
+					$_REQUEST['find'] = $_REQUEST['login'];
+				}
+			} else {
+				$errors[] = sprintf(
+					tra('Impossible to create new %s with %s %s.'),
+					tra('user'),
+					tra('username'),
+					$_REQUEST['login']
 				);
 			}
-
-			if ($prefs['userTracker'] === 'y' && ! empty($_REQUEST['insert_user_tracker_item'])) {
-				TikiLib::lib('header')->add_jq_onready('setTimeout(function () { $(".insert-usertracker").click(); });');
-				$_REQUEST['user'] = $userlib->get_user_id($_REQUEST['login']);
-				$cookietab = '2';
-			} else {
-				$cookietab = '1';
-				$_REQUEST['find'] = $_REQUEST['login'];
-			}
-		} else {
-			$errors[] = sprintf(
-				tra('Impossible to create new %s with %s %s.'),
-				tra('user'),
-				tra('username'),
-				$_REQUEST['login']
-			);
-		}
+		}		
 	}
 
 	$cookietab = 1;
@@ -479,8 +477,6 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 		if ((isset($_POST['pass']) && $_POST["pass"]) || $pass_first_login || (isset($_POST['genepass']) && $_POST['genepass'])) {
 			if ($_POST['pass'] != $_POST['passAgain']) {
 				Feedback::error(tra('The passwords do not match'));
-				$access->redirect('tiki-adminusers.php');
-				die;
 			}
 
 			if ($tiki_p_admin == 'y' || $tiki_p_admin_users == 'y' || $userinfo['login'] == $user) {
@@ -488,15 +484,13 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 				$polerr = $userlib->check_password_policy($newPass);
 				if (strlen($polerr) > 0 && ! $pass_first_login) {
 					Feedback::error($polerr);
-					$access->redirect('tiki-adminusers.php');
-					die;
-				}
-
-				if ($userlib->change_user_password($userinfo['login'], $newPass, $pass_first_login)) {
-					Feedback::success(sprintf(tra('%s modified successfully.'), tra('password')));
-					$logslib->add_log('adminusers', 'changed password for ' . $_POST['login'], $user);
-				} else {
-					$errors[] = sprintf(tra('%s modification failed.'), tra('password'));
+				}else{	
+					if ($userlib->change_user_password($userinfo['login'], $newPass, $pass_first_login)) {
+						Feedback::success(sprintf(tra('%s modified successfully.'), tra('password')));
+						$logslib->add_log('adminusers', 'changed password for ' . $_POST['login'], $user);
+					} else {
+						$errors[] = sprintf(tra('%s modification failed.'), tra('password'));
+					}
 				}
 			}
 		}
@@ -555,8 +549,15 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 		$userinfo['daysSinceEmailConfirm'] = floor(($userlib->now - $userinfo['email_confirm']) / (60 * 60 * 24));
 	}
 } else {
-	$userinfo['login'] = '';
-	$userinfo['email'] = '';
+
+	//For to get informations entered and placed in the fields
+	if (isset($_REQUEST['login'],$_REQUEST['email'])) {
+		$userinfo['login'] = $_REQUEST['login'];
+		$userinfo['email'] = $_REQUEST['email'];
+	} else {
+		$userinfo['login'] = '';
+		$userinfo['email'] = '';
+	}
 	$userinfo['created'] = $tikilib->now;
 	$userinfo['registrationDate'] = '';
 	$userinfo['age'] = '';
