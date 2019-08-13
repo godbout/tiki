@@ -16,6 +16,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Tiki\Package\ComposerManager;
 use Symfony\Component\Console\Question\ConfirmationQuestion;
 use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Command\HelpCommand;
 
 class VendorSecurityCommand extends Command
 {
@@ -66,7 +67,7 @@ class VendorSecurityCommand extends Command
 		$composerManager = new ComposerManager($tikipath);
 		$availableComposerPackages = $composerManager->getAvailable(true, true);
 		$packageCount = count($availableComposerPackages);
-		if (! $packageCount){
+		if (! $packageCount) {
 			$usePackages = 'n';
 		}
 
@@ -88,9 +89,7 @@ class VendorSecurityCommand extends Command
 			if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
 				$progress->setOverwrite(false);
 			}
-			$progress->setFormatDefinition(
-				'custom', ' %current%/%max% [%bar%] -- %message%'
-			);
+			$progress->setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message%');
 			$progress->setFormat('custom');
 			$progress->setMessage('Starting package installation');
 			$progress->start();
@@ -99,20 +98,25 @@ class VendorSecurityCommand extends Command
 			foreach ($availableComposerPackages as $package) {
 				$progress->setmessage('Installing ' . $package['key']);
 				$progress->advance();
-				$output->writeln(shell_exec('php console.php package:install ' . $package['key'] . '  2>&1'),OutputInterface::VERBOSITY_DEBUG);
+				$output->writeln(shell_exec('php console.php package:install ' . $package['key'] . '  2>&1'), OutputInterface::VERBOSITY_DEBUG);
 			}
-			echo "\n";
+			$output->writeln('');
+		}
+
+		$availableComposerPackages = $composerManager->getAvailable(true, true);
+		if ($availableComposerPackages) {
+			$output->writeln(
+				'<info>The following packages are not inspected/installed</info>'
+			);
+			foreach ($availableComposerPackages as $package) {
+				$output->write($package['key'] . ', ');
+			}
+			$output->writeln('');
 		}
 
 		$checker = new SecurityChecker();
 		$result = $checker->check('vendor_bundled/composer.lock', 'text');
 
-		echo $result . "\n";
-
-		$result = $checker->check('composer.lock', 'text');
-
-		echo $result . "\n";
-
-
+		$output->writeln($result);
 	}
 }
