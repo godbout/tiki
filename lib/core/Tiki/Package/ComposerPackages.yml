@@ -77,7 +77,7 @@ PHPSaml:
   name: onelogin/php-saml
   requiredBy:
     - saml_auth_enabled
-  requiredVersion: ^2.10
+  requiredVersion: ^2.15
 TesseractOCR:
   licence: MIT
   licenceUrl: "https://github.com/thiagoalessio/tesseract-ocr-for-php/blob/master/MIT-LICENSE"
