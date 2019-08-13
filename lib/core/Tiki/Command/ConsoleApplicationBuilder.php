@@ -112,6 +112,7 @@ class ConsoleApplicationBuilder
 					new PreferencesGetCommand,
 					new PreferencesSetCommand,
 					new PreferencesDeleteCommand,
+					new PreferencesExportCommand,
 					new ProfileForgetCommand,
 					new ProfileInstallCommand,
 					new ProfileExport\Init,
