@@ -467,13 +467,17 @@ class ComposerCli
 	 */
 	public function installMissingPackages()
 	{
+		global $tikipath;
 		if (! $this->checkConfigExists() || ! $this->canExecuteComposer()) {
 			return false;
 		}
 
-		list($output, $errors) = $this->execComposer(
-			['--no-ansi', '--no-dev', '--prefer-dist', 'update', '-d', $this->workingPath, 'nothing']
-		);
+		$exe = ['--no-ansi', '--no-dev', '--prefer-dist', 'update', '-d', $this->workingPath, 'nothing'];
+		if (is_dir($tikipath . 'vendor_bundled/vendor/phpunit')) {
+			$exe = ['--no-ansi', '--prefer-dist', 'update', '-d', $this->workingPath, 'nothing'];
+		}
+
+		list($output, $errors) = $this->execComposer($exe);
 
 		return $this->glueOutputAndErrors($output, $errors);
 	}
