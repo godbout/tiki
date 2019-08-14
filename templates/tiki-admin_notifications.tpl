@@ -58,7 +58,7 @@
 			{autocomplete element='#flogin' type='username'}
 		</div>
 		<div class="col-sm-3">
-			<a href="#" onclick="document.getElementById('flogin').value='{$user}'; return false;" class="link">{tr}Myself{/tr}</a>
+			<a href="#" onclick="document.getElementById('flogin').value='{$user}'; return false;" class="btn btn-link">{tr}Myself{/tr}</a>
 		</div>
 	</div>
 	<div class="form-group row" id="emailrow" style="display:none">

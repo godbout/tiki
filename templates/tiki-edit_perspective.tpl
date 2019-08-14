@@ -93,7 +93,7 @@
 					</div>
 					<input type="hidden" name="id" value="{$perspective_info.perspectiveId|escape}">
 				</div>
-				<div class="offset-sm-2">
+				<div class="col-sm-10 offset-sm-2">
 					<fieldset id="preferences" class="card dropzone mb-4">
 						<div class="card-header">{tr}Preference List{/tr}</div>
 						<div class="card-body mb-4">
@@ -102,7 +102,7 @@
 							{/foreach}
 					</fieldset>
 				</div>
-				<div class="text-center mb-4">
+				<div class="col-sm-10 offset-sm-2 text-center mb-4">
 					<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 				</div>
 			</form>
@@ -113,13 +113,13 @@
 				<div class="card">
 					<input type="hidden" name="id" value="{$perspective_info.perspectiveId|escape}">
 					<div class="card-body">
-						<div class="input-group mb-4">
+						<div class="input-group">
 							<div class="input-group-append">
 								<span class="input-group-text">
 									{icon name="search"}
 								</span>
 							</div>
-							<input id="criteria" type="text" name="criteria" class="form-control mr-3" placeholder="{tr}Search preferences{/tr}...">
+							<input id="criteria" type="text" name="criteria" class="form-control" placeholder="{tr}Search preferences{/tr}...">
 							<div class="input-group-append">
 								<input type="submit" class="btn btn-info" value="{tr}Search{/tr}">
 							</div>
