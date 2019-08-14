@@ -398,6 +398,31 @@ foreach ($categories as $category) {
 
 		$desc = '<small>' . $category['description'] . '</small>';
 
+		if ($prefs['category_browse_count_objects'] === 'y') {
+			$objectcount = $categlib->list_category_objects(
+				$category['categId'],
+				0,
+				0,
+				''
+			);
+			$desc .= '<span class="object-count badge badge-pill badge-info">' . $objectcount['cant'] . '</span>';
+
+		} else if ($prefs['feature_search'] === 'y') {	// fall back to unified search if not category_browse_count_objects
+
+			$res = TikiLib::lib('service')->internal(
+				'search',
+				'lookup',
+				[
+					'filter' => [
+						'categories' => $category['categId'],
+						'object_type'     => 'not activity and not category',
+						'searchable'      => 'y',
+					],
+				]
+			);
+			$desc .= '<span class="object-count badge badge-pill badge-info">' . count($res['resultset']) . '</span>';;
+		}
+
 		$treeNodes[] = [
 			'id' => $category['categId'],
 			'parent' => $category['parentId'],
