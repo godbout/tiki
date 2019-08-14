@@ -21,13 +21,17 @@
 			{/remarksbox}
 		{/if}
 		<div class="form-group row">
-			<label for="name" class="col-form-label">
+			<label for="name" class="col-sm-2 col-form-label">
 				{tr}Name{/tr}
 			</label>
-			<input type="text" name="name" value="{$name|escape}" class="form-control">
+			<div class="col-sm-10">
+				<input type="text" name="name" value="{$name|escape}" class="form-control">
+			</div>
 		</div>
 		<div class="form-group row">
-			{textarea syntax='tiki' codemirror='true'}{$definition}{/textarea}
+			<div class="col-sm-12">
+				{textarea syntax='tiki' codemirror='true'}{$definition}{/textarea}
+			</div>
 		</div>
 		<div class="submit text-center">
 			<input type="submit" class="btn btn-primary" value="{tr}Save{/tr}">
