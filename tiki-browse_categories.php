@@ -165,7 +165,7 @@ foreach ($ctall as $c) {
 		$objectcount = $categlib->list_category_objects(
 			$c['categId'],
 			0,
-			-1,
+			0,
 			'',
 			$type,
 			$find,
