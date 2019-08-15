@@ -166,10 +166,12 @@
 					{filegal_uploader}
 				{/if}
 			</div>
-			<div class="form-check">
-				<label for="imagesize" class="form-check-label">
-				<input class="form-check-input" type="checkbox" id="imagesize" name="imagesize" checked="checked" value="yes" />{tr}Use Gallery default resize settings for images <span id="imageResizeInfo">{if $gal_info["image_max_size_x"]}({$gal_info["image_max_size_x"]}px X {$gal_info["image_max_size_y"]} px){else}(No resize){/if}</span>{/tr}
-				</label>
+			<div class="col-sm-12">
+				<div class="form-check">
+					<label for="imagesize" class="form-check-label">
+					<input class="form-check-input" type="checkbox" id="imagesize" name="imagesize" checked="checked" value="yes" />{tr}Use Gallery default resize settings for images <span id="imageResizeInfo">{if $gal_info["image_max_size_x"]}({$gal_info["image_max_size_x"]}px X {$gal_info["image_max_size_y"]} px){else}(No resize){/if}</span>{/tr}
+					</label>
+				</div>
 			</div>
 			<div id="customsize" style="display:none"><div class="form-group row">
 					<label for="image_max_size_x" class="col-sm-4 text-right">{tr}Maximum width of images{/tr}</label>
@@ -199,11 +201,13 @@
 			{if $simpleMode neq 'y'}
 				<div class="fgal_file_c2">
 					{if !$editFileId and $tiki_p_batch_upload_files eq 'y'}
-						<div class="form-check mb-3">
-							<label for="isbatch" class="form-check-label">
-								<input type="checkbox" id="isbatch" name="isbatch[]" class="form-check-input">
-								{tr}Unzip zip files{/tr}
-							</label>
+						<div class="col-sm-12">
+							<div class="form-check mb-3">
+								<label for="isbatch" class="form-check-label">
+									<input type="checkbox" id="isbatch" name="isbatch[]" class="form-check-input">
+									{tr}Unzip zip files{/tr}
+								</label>
+							</div>
 						</div>
 					{/if}
 					{if $prefs.fgal_delete_after eq 'y'}
