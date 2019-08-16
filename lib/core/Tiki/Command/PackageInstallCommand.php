@@ -14,6 +14,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Tiki\Package\ComposerManager;
 use Tiki\Package\PackageCommandHelper;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Input\InputOption;
 
 class PackageInstallCommand extends Command
 {
@@ -30,9 +32,49 @@ class PackageInstallCommand extends Command
 				'package',
 				InputArgument::OPTIONAL,
 				'Package ID'
+			)
+			->addOption(
+				'install-all',
+				'a',
+				InputOption::VALUE_NONE,
+				'Install all available packages'
 			);
 	}
 
+	private function installAll(OutputInterface $output): void
+	{
+		global $tikipath;
+		$composerManager = new ComposerManager($tikipath);
+		$availableComposerPackages = $composerManager->getAvailable(true, true);
+		$packageCount = count($availableComposerPackages);
+		$progress = new ProgressBar($output, $packageCount + 1);
+		if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
+			$progress->setOverwrite(false);
+		}
+		$progress->setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message%');
+		$progress->setFormat('custom');
+		$progress->setMessage('Starting package installation');
+		$progress->start();
+
+		// now install each package
+		$finishMessage = 'Successfully installed ' . $packageCount . ' packages' ;
+		foreach ($availableComposerPackages as $package) {
+			$progress->setmessage('Installing ' . $package['key']);
+			$progress->advance();
+			$output->writeln(shell_exec('php console.php package:install ' . $package['key'] . '  2>&1'), OutputInterface::VERBOSITY_DEBUG);
+			if (! $composerManager->isInstalled($package['name'])) {
+				// we remove failed packages so they won't cause issues installing the others.
+				$composerManager->removePackage($package['key']);
+				$output->write(' <error>failed</error>');
+				$finishMessage = '<error>Completed with errors</error>';
+			} else {
+				$output->write(' <comment>done</comment>');
+			}
+		}
+		$progress->setMessage($finishMessage);
+		$progress->finish();
+		$output->writeln('');
+	}
 	/**
 	 * Executes the current command.
 	 *
@@ -51,7 +93,9 @@ class PackageInstallCommand extends Command
 				$io->newLine();
 
 				$packageKey = $input->getArgument('package');
-				if (isset($packageKey) && ! empty($packageKey)) {
+				if ($input->getOption('install-all')) {
+					$this->installAll($output);
+				} elseif (isset($packageKey) && ! empty($packageKey)) {
 					if (in_array($packageKey, array_column($availableComposerPackages, 'key'))) {
 						$output->writeln('<info>' . tr('Installing package: ') . $packageKey . '</info>');
 						$result = $composerManager->installPackage($packageKey);

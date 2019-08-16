@@ -15,9 +15,6 @@ use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use SensioLabs\Security\SecurityChecker;
 use Symfony\Component\Console\Input\InputOption;
 use Tiki\Package\ComposerManager;
-use Symfony\Component\Console\Question\ConfirmationQuestion;
-use Symfony\Component\Console\Helper\ProgressBar;
-use Symfony\Component\Console\Command\HelpCommand;
 
 class VendorSecurityCommand extends Command
 {
@@ -77,76 +74,9 @@ class VendorSecurityCommand extends Command
 		$outputStyle = new OutputFormatterStyle('red');
 		$output->getFormatter()->setStyle('error', $outputStyle);
 
-
-		// check if packages installation has been specified via command option
-		$usePackages = $input->getOption('packages');
-		if (! empty($usePackages)) {
-			$usePackages = strtolower($usePackages);
-
-			// check for valid command option inputs
-			if ($usePackages !== 'y' && $usePackages !== 'n') {
-				$help = new HelpCommand();
-				$help->setCommand($this);
-				$help->run($input, $output);
-				$output->writeln(
-					'<error>Must specify a valid option for package option. (y or n)</error>'
-				);
-				return;
-			}
-		} else {
-			$usePackages = '';
-		}
-
-		// if all packages are installed, don't prompt to install them
+		global $tikipath;
 		$composerManager = new ComposerManager($tikipath);
-		$availableComposerPackages = $composerManager->getAvailable(true, true);
-		$packageCount = count($availableComposerPackages);
-		if (! $packageCount) {
-			$usePackages = 'n';
-		}
 
-		// prompt to install packages
-		if (empty($usePackages)) {
-			$output->writeln('Packages must be installed before they can be checked.', OutputInterface::VERBOSITY_VERBOSE);
-			$helper = $this->getHelper('question');
-			$question = new ConfirmationQuestion('Install and check package dependencies? This may take a while. (<comment>y</comment> or <comment>n</comment>) ', false);
-
-			if ($helper->ask($input, $output, $question)) {
-				$usePackages = 'y';
-			}
-		}
-		// if we are installing packages, then do so.
-		if ($usePackages === 'y') {
-			if (! $composerManager->composerIsAvailable()) {
-				$output->writeln('<error>Composer is not available</error>');
-			}
-
-			$progress = new ProgressBar($output, $packageCount + 1);
-			if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
-				$progress->setOverwrite(false);
-			}
-			$progress->setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message%');
-			$progress->setFormat('custom');
-			$progress->setMessage('Starting package installation');
-			$progress->start();
-
-			// now install each package
-			foreach ($availableComposerPackages as $package) {
-				$progress->setmessage('Installing ' . $package['key']);
-				$progress->advance();
-				$finishMesage = 'Successfully installed ' . $packageCount . ' packages' ;
-				$output->writeln(shell_exec('php console.php package:install ' . $package['key'] . '  2>&1'), OutputInterface::VERBOSITY_DEBUG);
-				if (! $composerManager->isInstalled($package['name'])) {
-					$output->write('<error> failed</error>');
-					$finishMesage = '<error>Completed with errors</error>';
-				} else {
-					$output->write(' done');
-				}
-				$progress->setMessage($finishMesage);
-				$progress->finish();
-				$output->writeln('');
-			}
-		}
 		$checker = new SecurityChecker();
 		$lockFile = 'vendor_bundled/composer.lock';
 		try {
@@ -172,7 +102,8 @@ class VendorSecurityCommand extends Command
 				foreach ($availableComposerPackages as $package) {
 					$output->write($package['key'] . ' ');
 				}
-				$output->writeln('& the dependencies thereof');
+				$output->writeln('& the dependencies thereof. They must be installed to check advisories.');
+				$output->writeln('You may run "php composer.php packages:install --install-all" to install the missing dependencies.', OutputInterface::VERBOSITY_VERBOSE);
 			}
 			try {
 				$alerts = $checker->check($lockFile, 'json');
