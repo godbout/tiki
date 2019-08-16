@@ -7,6 +7,7 @@
 
 namespace Tiki\Command;
 
+use Exception;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -33,7 +34,37 @@ class VendorSecurityCommand extends Command
 			);
 	}
 
-	protected function execute(InputInterface $input, OutputInterface $output)
+
+	/**
+	 * Formats and displays security advisories, also looks up useful information (such as dependents)
+	 * @param OutputInterface $output		Symfony output for displaying text.
+	 * @param array           $vendors		Vendors and security advisories to render
+	 * @param string          $workingDir	If the composer working dir is outside the root dir, specify
+	 */
+	protected function renderAdvisories (OutputInterface &$output, array $vendors, string $workingDir = ''): void
+	{
+		if (empty($vendors)) {
+			$output->writeln('No Advisories');
+			return;
+		}
+
+		foreach ($vendors as $vendorName => $vendor) {
+			if ($workingDir) {
+				$workingDir = ' --working-dir="' . $workingDir . '"';
+			}
+			$command = 'php temp/composer.phar depends ' . $vendorName . ' ' . $vendor['version'] . $workingDir . '  2>&1';
+			$command = trim(shell_exec($command));
+			$command = preg_replace('/(?<=requires.\s).*(?=\s*\()/mU', '<comment>${1}</comment>', $command, 1);
+			$output->writeln($command);
+			foreach ($vendor['advisories'] as $advisory) {
+				$advisory['title'] = preg_replace('/' . $advisory['cve'] . '[:\s]*/m', '', $advisory['title'], 1);
+				$output->writeln($advisory['cve'] . ' - ' . $advisory['title'] . ' - ' . $advisory['link']);
+			}
+			$output->writeln('');
+		}
+	}
+
+	protected function execute(InputInterface $input, OutputInterface $output): void
 	{
 		global $tikipath;
 
@@ -73,7 +104,7 @@ class VendorSecurityCommand extends Command
 
 		if (empty($usePackages)) {
 			$helper = $this->getHelper('question');
-			$question = new ConfirmationQuestion('Install and check package dependencies? (y or n) ', true);
+			$question = new ConfirmationQuestion('Install and check package dependencies? This may take a while. (y or n) ', false);
 
 			if ($helper->ask($input, $output, $question)) {
 				$usePackages = 'y';
@@ -103,20 +134,32 @@ class VendorSecurityCommand extends Command
 			$output->writeln('');
 		}
 
-		$availableComposerPackages = $composerManager->getAvailable(true, true);
-		if ($availableComposerPackages) {
-			$output->writeln(
-				'<info>The following packages are not inspected/installed</info>'
-			);
-			foreach ($availableComposerPackages as $package) {
-				$output->write($package['key'] . ', ');
-			}
-			$output->writeln('');
-		}
-
 		$checker = new SecurityChecker();
-		$result = $checker->check('vendor_bundled/composer.lock', 'text');
+		$lockFile = 'vendor_bundled/composer.lock';
+		putenv('COMPOSER_HOME=' . __DIR__ . '/vendor/bin/composer');
+		try {
+			$alerts = $checker->check($lockFile, 'json');
+		} catch (Exception $e) {
+			echo $e->getMessage();
+		}
+		$alerts = json_decode((string)$alerts, true);
+		$output->writeln('<info>Tiki Vendor Advisories</info>');
+		$this->renderAdvisories($output, $alerts, 'vendor_bundled');
 
-		$output->writeln($result);
+		$lockFile = 'composer.lock';
+		if (is_readable($lockFile)) {
+			$availableComposerPackages = $composerManager->getAvailable(true, true);
+			$output->writeln("<info>Tiki Package Advisories</info>");
+			if ($availableComposerPackages) {
+				$output->write('<comment>Packages not evaluated:</comment> ');
+				foreach ($availableComposerPackages as $package) {
+					$output->write($package['key'] . ' ');
+				}
+				$output->writeln('');
+			}
+			$alerts = $checker->check($lockFile, 'json');
+			$alerts = json_decode((string)$alerts, true);
+			$this->renderAdvisories($output, $alerts);
+		}
 	}
 }
