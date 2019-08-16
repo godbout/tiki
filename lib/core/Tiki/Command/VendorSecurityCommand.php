@@ -30,7 +30,7 @@ class VendorSecurityCommand extends Command
 				'packages',
 				'p',
 				InputOption::VALUE_REQUIRED,
-				'Check package file dependencies? (y or n)'
+				'Install package file dependencies? Useful for automated scripts. Valid option = (y or n)'
 			);
 	}
 
@@ -54,7 +54,7 @@ class VendorSecurityCommand extends Command
 			}
 			$command = 'php temp/composer.phar depends ' . $vendorName . ' ' . $vendor['version'] . $workingDir . '  2>&1';
 			$command = trim(shell_exec($command));
-			$command = preg_replace('/(?<=requires.\s).*(?=\s*\()/mU', '<comment>$0 '. $vendor['version'] . '</comment>', $command, 1);
+			$command = preg_replace('/(?<=requires.\s).*(?=\s*\()/mU', '<comment>$0 ' . $vendor['version'] . '</comment>', $command, 1);
 			$output->writeln($command);
 			foreach ($vendor['advisories'] as $advisory) {
 				$advisory['title'] = preg_replace('/' . $advisory['cve'] . '[:\s]*/m', '', $advisory['title'], 1);
@@ -73,16 +73,18 @@ class VendorSecurityCommand extends Command
 			$output->writeln('<error>shell_exec must be enabled</error>');
 			return;
 		}
+		// remove horrible red backgrounds from errors
 		$outputStyle = new OutputFormatterStyle('red');
 		$output->getFormatter()->setStyle('error', $outputStyle);
 
 
+		// check if packages installation has been specified via command option
 		$usePackages = $input->getOption('packages');
-
 		if (! empty($usePackages)) {
 			$usePackages = strtolower($usePackages);
 
-			if ($usePackages !== 'y' || $usePackages !== 'n') {
+			// check for valid command option inputs
+			if ($usePackages !== 'y' && $usePackages !== 'n') {
 				$help = new HelpCommand();
 				$help->setCommand($this);
 				$help->run($input, $output);
@@ -95,6 +97,7 @@ class VendorSecurityCommand extends Command
 			$usePackages = '';
 		}
 
+		// if all packages are installed, don't prompt to install them
 		$composerManager = new ComposerManager($tikipath);
 		$availableComposerPackages = $composerManager->getAvailable(true, true);
 		$packageCount = count($availableComposerPackages);
@@ -102,15 +105,18 @@ class VendorSecurityCommand extends Command
 			$usePackages = 'n';
 		}
 
+		// prompt to install packages
 		if (empty($usePackages)) {
+			$output->writeln('Packages must be installed before they can be checked.', OutputInterface::VERBOSITY_VERBOSE);
 			$helper = $this->getHelper('question');
-			$question = new ConfirmationQuestion('Install and check package dependencies? This may take a while. (y or n) ', false);
+			$question = new ConfirmationQuestion('Install and check package dependencies? This may take a while. (<comment>y</comment> or <comment>n</comment>) ', false);
 
 			if ($helper->ask($input, $output, $question)) {
 				$usePackages = 'y';
 			}
 		}
 
+		// if wer are installing packages, then do so.
 		if ($usePackages === 'y') {
 			if (! $composerManager->composerIsAvailable()) {
 				$output->writeln('<error>Composer is not available</error>');
@@ -136,28 +142,38 @@ class VendorSecurityCommand extends Command
 
 		$checker = new SecurityChecker();
 		$lockFile = 'vendor_bundled/composer.lock';
-		putenv('COMPOSER_HOME=' . __DIR__ . '/vendor/bin/composer');
 		try {
 			$alerts = $checker->check($lockFile, 'json');
 		} catch (Exception $e) {
-			echo $e->getMessage();
+			$output->writeln('<error>Could not fetch security advisories</error>');
+			$output->writeln('<comment>Error message:</comment> ' . $e->getMessage());
+			return;
 		}
 		$alerts = json_decode((string)$alerts, true);
 		$output->writeln('<info>Tiki Vendor Advisories</info>');
 		$this->renderAdvisories($output, $alerts, 'vendor_bundled');
 
 		$lockFile = 'composer.lock';
+		// check if packages lockfile exists
 		if (is_readable($lockFile)) {
+			$installedCount = count($composerManager->getInstalled());
 			$availableComposerPackages = $composerManager->getAvailable(true, true);
-			$output->writeln("<info>Tiki Package Advisories</info>");
+			$totalCount = $installedCount + count($availableComposerPackages);
+			$output->writeln("<info>Tiki Package Advisories ($installedCount of $totalCount checked)</info>");
 			if ($availableComposerPackages) {
 				$output->write('<comment>Packages not evaluated:</comment> ');
 				foreach ($availableComposerPackages as $package) {
 					$output->write($package['key'] . ' ');
 				}
-				$output->writeln('');
+				$output->writeln('& the dependencies thereof');
 			}
-			$alerts = $checker->check($lockFile, 'json');
+			try {
+				$alerts = $checker->check($lockFile, 'json');
+			} catch (Exception $e) {
+				$output->writeln('<error>Could not fetch security advisories</error>');
+				$output->writeln('<comment>Error message:</comment> ' . $e->getMessage());
+				return;
+			}
 			$alerts = json_decode((string)$alerts, true);
 			$this->renderAdvisories($output, $alerts);
 		}
