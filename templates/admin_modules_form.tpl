@@ -101,7 +101,14 @@
 						{foreach from=$params key=name item=param}
 							<div class="admin2cols adminoptionbox clearfix">
 								<label for="assign_params[{$name|escape}]">{$param.name|escape}{if $param.required} <span class="attention">({tr}required{/tr})</span>{/if}</label>
-								<input type="text" id="assign_params[{$name|escape}]" name="assign_params[{$name|escape}]" value="{$param.value|escape}"{if !empty($param.filter)} class="{$param.filter} form-control"{else} class="{$param.filter} form-control"{/if}>
+								{if isset($name) and $name eq 'type'}
+									<select id="assign_params[{$name|escape}]" name="assign_params[{$name|escape}]" class="form-control">
+										<option value="horiz" {if $param.value eq 'horiz'}selected="selected"{/if}>horiz</option>
+										<option value="vert" {if $param.value eq 'vert'}selected="selected"{/if}>vert</option>
+									</select>
+								{else}
+									<input type="text" id="assign_params[{$name|escape}]" name="assign_params[{$name|escape}]" value="{$param.value|escape}"{if !empty($param.filter)} class="{$param.filter} form-control"{else} class="{$param.filter} form-control"{/if}>
+								{/if}
 								<div class="description mb-3">
 									{$param.description|escape}
 									{if !empty($param.default)} - {tr}Default:{/tr} {$param.default|escape}{/if}
