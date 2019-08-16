@@ -91,6 +91,34 @@
 				<a href="https://doc.tiki.org/Tiki19#Trackers">{tr}More Information{/tr}...</a><br/><br/>
 			</div>
 			{preference name=wikiplugin_list_convert_trackerlist}
+			<label class="col-sm-3 col-form-label"><b>{tr}H5P{/tr}</b>:</label>
+			{preference name='h5p_enabled'}
+			<div class="adminoptionboxchild" id="h5p_enabled_childcontainer">
+				{preference name='h5p_filegal_id'}
+				{preference name='h5p_whitelist'}
+				{preference name='h5p_dev_mode'}
+				{preference name='h5p_track_user'}
+				{preference name='h5p_save_content_state'}
+				<div class="adminoptionboxchild" id="h5p_save_content_state_childcontainer">
+					{preference name='h5p_save_content_frequency'}
+				</div>
+				{preference name='h5p_export'}
+				{preference name='h5p_hub_is_enabled'}
+				{preference name='h5p_site_key'}
+				{preference name='h5p_h5p_site_uuid'}
+				{preference name='h5p_content_type_cache_updated_at'}
+				{preference name='h5p_check_h5p_requirements'}
+				{preference name='h5p_send_usage_statistics'}
+				{preference name='h5p_has_request_user_consent'}
+				{preference name='h5p_enable_lrs_content_types'}
+
+				{remarksbox type="info" title="{tr}H5P Info{/tr}"}
+				{tr}Service URL to purge unused libraries can be found here. Can be used in a cron task{/tr}<br>
+					<a href="{service controller='h5p' action='cron' token=$prefs.h5p_cron_token}" class="btn btn-link">
+						{service controller='h5p' action='cron' token=$prefs.h5p_cron_token}
+					</a>
+				{/remarksbox}
+			</div>
 		</fieldset>
 		<fieldset class="table clearfix featurelist">
 			<legend>{icon name="admin_profiles" size=2 iclass="float-left"}{tr}New Profiles{/tr}</legend>
