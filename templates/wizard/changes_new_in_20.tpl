@@ -29,6 +29,7 @@
 		<fieldset class="table clearfix featurelist">
 			<legend>{tr}New Wiki Plugins{/tr}</legend>
 			{preference name=wikiplugin_cypht}
+			{preference name=wikiplugin_markdown}
 		</fieldset>
 		<fieldset class="table clearfix featurelist">
 			<legend>{tr}Improved Plugins{/tr}</legend>
@@ -39,6 +40,8 @@
 			<legend>{tr}Other New Features{/tr}</legend>
 			{preference name=jquery_jqdoublescroll}
 			{preference name=profile_autoapprove_wikiplugins}
+			{preference name=feature_tag_users}
+			{preference name=feature_notify_users_mention}
 		</fieldset>
 		<fieldset class="table clearfix featurelist">
 			<legend>{tr}Other Extended Features{/tr}</legend>
