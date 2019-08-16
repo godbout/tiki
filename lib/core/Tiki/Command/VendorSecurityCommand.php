@@ -54,7 +54,7 @@ class VendorSecurityCommand extends Command
 			}
 			$command = 'php temp/composer.phar depends ' . $vendorName . ' ' . $vendor['version'] . $workingDir . '  2>&1';
 			$command = trim(shell_exec($command));
-			$command = preg_replace('/(?<=requires.\s).*(?=\s*\()/mU', '<comment>${1}</comment>', $command, 1);
+			$command = preg_replace('/(?<=requires.\s).*(?=\s*\()/mU', '<comment>$0</comment>', $command, 1);
 			$output->writeln($command);
 			foreach ($vendor['advisories'] as $advisory) {
 				$advisory['title'] = preg_replace('/' . $advisory['cve'] . '[:\s]*/m', '', $advisory['title'], 1);
