@@ -115,14 +115,13 @@ class VendorSecurityCommand extends Command
 				$usePackages = 'y';
 			}
 		}
-
-		// if wer are installing packages, then do so.
+		// if we are installing packages, then do so.
 		if ($usePackages === 'y') {
 			if (! $composerManager->composerIsAvailable()) {
 				$output->writeln('<error>Composer is not available</error>');
 			}
 
-			$progress = new ProgressBar($output, $packageCount);
+			$progress = new ProgressBar($output, $packageCount + 1);
 			if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
 				$progress->setOverwrite(false);
 			}
@@ -131,15 +130,23 @@ class VendorSecurityCommand extends Command
 			$progress->setMessage('Starting package installation');
 			$progress->start();
 
-
+			// now install each package
 			foreach ($availableComposerPackages as $package) {
 				$progress->setmessage('Installing ' . $package['key']);
 				$progress->advance();
+				$finishMesage = 'Successfully installed ' . $packageCount . ' packages' ;
 				$output->writeln(shell_exec('php console.php package:install ' . $package['key'] . '  2>&1'), OutputInterface::VERBOSITY_DEBUG);
+				if (! $composerManager->isInstalled($package['name'])) {
+					$output->write('<error> failed</error>');
+					$finishMesage = '<error>Completed with errors</error>';
+				} else {
+					$output->write(' done');
+				}
+				$progress->setMessage($finishMesage);
+				$progress->finish();
+				$output->writeln('');
 			}
-			$output->writeln('');
 		}
-
 		$checker = new SecurityChecker();
 		$lockFile = 'vendor_bundled/composer.lock';
 		try {
@@ -157,7 +164,7 @@ class VendorSecurityCommand extends Command
 		// check if packages lockfile exists
 		if (is_readable($lockFile)) {
 			$installedCount = count($composerManager->getInstalled());
-			$availableComposerPackages = $composerManager->getAvailable(true, true);
+			$availableComposerPackages = $composerManager->getAvailable();
 			$totalCount = $installedCount + count($availableComposerPackages);
 			$output->writeln("<info>Tiki Package Advisories ($installedCount of $totalCount checked)</info>");
 			if ($availableComposerPackages) {

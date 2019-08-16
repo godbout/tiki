@@ -376,11 +376,11 @@ class ComposerManager
 	}
 
 	/**
-	 * Manage YAML configuration file. Read the file and iterate throuth it, with a specific action
+	 * Manage YAML configuration file. Read the file and iterate through it, with a specific action
 	 *  If action is 'list' then it will return the complete list of external packages of configuration
 	 *  If action is 'search' then it will search for a specific package and return the object
 	 *
-	 * @param $packageAction
+	 * @param $packageAction string Valid options include 'list' and 'search'
 	 * @param $installedPackages
 	 * @param $packageKey
 	 * @return ComposerPackage|array
@@ -445,8 +445,8 @@ class ComposerManager
 	/**
 	 * Retrieve Package information from a PackageConfigFile
 	 *
-	 * @param $packageNames
-	 *   A string with the package name, or an array with package names to lookup.
+	 * @param $packageNames string
+	 *   Package name, or an array with package names to lookup.
 	 * @param null $packagesConfigFile
 	 *   The path for a PackagesConfigFile, if empty the default will be used.
 	 * @return array
@@ -481,5 +481,21 @@ class ComposerManager
 		}
 
 		return sizeof($info) == 1 ? array_shift($info) : $info;
+	}
+
+	/**
+	 * Checks if a package appears in the composer lock file
+	 * @param string $packageName		Name of package as specified in composer
+	 * @return bool						True upon installed, false otherwise
+	 */
+	public function isInstalled(string $packageName): bool
+	{
+		$installedPackages = $this->getInstalled(true);
+		foreach ($installedPackages as $name => $info) {
+			if ($packageName === $name) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
