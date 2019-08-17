@@ -35,6 +35,7 @@ define('AUTH_LOGIN_OK', 0);
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Zend\Ldap\Exception\LdapException;
+use OneLogin\Saml2;
 
 class UsersLib extends TikiLib
 {
@@ -1146,7 +1147,7 @@ class UsersLib extends TikiLib
 	{
 		global $prefs, $base_url;
 
-		if ($prefs['auth_method'] != 'saml'||! class_exists('OneLogin_Saml2_Auth')) {
+		if ($prefs['auth_method'] != 'saml'||! class_exists('\OneLogin\Saml2\Auth')) {
 			return;
 		}
 
@@ -1233,12 +1234,12 @@ class UsersLib extends TikiLib
 	{
 		$samlSettingsInfo = $this->get_saml_settings();
 
-		if (! class_exists('OneLogin_Saml2_Auth')) {
+		if (! class_exists('\OneLogin\Saml2\Auth')) {
 			return;
 		}
 
 		try {
-			$auth = new OneLogin_Saml2_Auth($samlSettingsInfo);
+			$auth = new Saml2\Auth($samlSettingsInfo);
 		} catch (Exception $e) {
 			print_r("There is a problem with the SAML settings, review them: " . $e->getMessage());
 			exit();
