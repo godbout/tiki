@@ -149,12 +149,14 @@ function wikiplugin_list($data, $params)
 	$multisearch = false;
 	$matches = WikiParser_PluginMatcher::match($data);
 	$offset_arg = 'offset';
+	$argParser = new WikiParser_PluginArgumentParser();
+
 	foreach ($matches as $match) {
 		if ($match->getName() == 'multisearch') {
 			if ($prefs['unified_engine'] != 'elastic') {
 				return tra("Error: {MULTISEARCH(id=x)} requires use of Elasticsearch as the engine.");
 			}
-			$args = WikiParser_PluginArgumentParser::parse($match->getArguments());
+			$args = $argParser->parse($match->getArguments());
 			if (!isset($args['id'])) {
 				return tra("Error: {MULTISEARCH(id=x)} needs an ID to be specified.");
 			}
@@ -162,7 +164,7 @@ function wikiplugin_list($data, $params)
 			$multisearch = true;
 		}
 		if ($match->getName() == 'list' || $match->getName() == 'pagination') {
-			$args = WikiParser_PluginArgumentParser::parse($match->getArguments());
+			$args = $argParser->parse($match->getArguments());
 			if (!empty($args['offset_arg'])) {
 				// Update cacheName by offset arg to have different cache for each page of paginated list
 				$offset_arg = $args['offset_arg'];
