@@ -62,6 +62,12 @@ if (file_exists('./db/local.php') && file_exists('./templates/tiki-check.tpl')) 
 		return $string;
 	}
 
+	function tr($string)
+	{
+		return tra($string);
+	}
+
+
 	/**
 	  * @param $var
 	  * @param $style
