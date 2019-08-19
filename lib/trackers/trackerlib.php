@@ -6110,10 +6110,10 @@ class TrackerLib extends TikiLib
 
 				// quick way of getting all ItemsList items pointing to the itemId via the field we examine
 				if (empty($fieldIdThere)) {
-					$query = "SELECT value as itemId
+					$query = "SELECT itemId
 					FROM tiki_tracker_item_fields ttif
 					WHERE ttif.fieldId = ?
-					AND ttif.itemId = ?";
+					AND ttif.`value` = ?";
 					$bindvars = [$fieldIdHere, $itemId];
 				} else {
 					$query = "SELECT COALESCE(ttif2.itemId, ttif1.value) as itemId
