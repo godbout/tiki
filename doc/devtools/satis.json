@@ -300,6 +300,17 @@
 		{
 			"type": "package",
 			"package": {
+				"name": "jcbrand/converse.js",
+				"version": "5.0.1",
+				"dist": {
+					"url": "https://github.com/conversejs/converse.js/releases/download/v5.0.1/converse.js-5.0.1.tgz",
+					"type": "tar"
+				}
+			}
+		},
+		{
+			"type": "package",
+			"package": {
 				"name": "jquery/jquery",
 				"version": "2.2.2",
 				"dist": {
