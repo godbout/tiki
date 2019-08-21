@@ -7144,6 +7144,43 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background-color: #9954bb;
     color: #fff; }
 
+.inline-cypht {
+  background: #fff;
+  font-family: "Segoe UI", "Source Sans Pro", Calibri, Candara, Arial, sans-serif;
+  color: #373a3c; }
+  .inline-cypht .folders a, .inline-cypht .unread_link, .inline-cypht .subject a, .inline-cypht .selected_menu, .inline-cypht .selected_menu a, .inline-cypht .manage_folder_link, .inline-cypht a {
+    color: #2780e3 !important; }
+  .inline-cypht .folders a:hover, .inline-cypht .unread_link:hover, .inline-cypht .subject a:hover, .inline-cypht .selected_menu:hover, .inline-cypht .selected_menu a:hover, .inline-cypht .manage_folder_link:hover, .inline-cypht a:hover {
+    color: #165ba8 !important;
+    text-decoration: underline; }
+  .inline-cypht .selected_menu, .inline-cypht .selected_menu a {
+    text-decoration: underline; }
+  .inline-cypht .folder_list, .inline-cypht .content_cell, .inline-cypht .compose_page, .inline-cypht .message_list, .inline-cypht .msg_text, .inline-cypht .selected_part, .inline-cypht .server_content, .inline-cypht .profile_content, .inline-cypht .user_settings, .inline-cypht .nux_add_account, .inline-cypht .imap_server_setup, .inline-cypht .pop3_server_setup {
+    background-color: #fff;
+    color: #373a3c; }
+  .inline-cypht .folder_list, .inline-cypht .content_cell {
+    border: 1px solid #ced4da; }
+  .inline-cypht .content_title .list_controls {
+    border-top: 1px solid #ced4da;
+    border-right: 1px solid #ced4da; }
+  .inline-cypht .src_name, .inline-cypht .content_title, .inline-cypht .list_controls {
+    background: #f7f7f7;
+    color: inherit; }
+  .inline-cypht .message_table > tbody > tr > td, .inline-cypht .msg_headers, .inline-cypht .reply_quote, .inline-cypht .user_settings table td {
+    color: #373a3c; }
+  .inline-cypht .msg_headers th:hover {
+    color: #373a3c !important; }
+  .inline-cypht .settings_subtitle, .inline-cypht .server_section {
+    color: #373a3c !important; }
+  .inline-cypht .total_unread_count, .inline-cypht .unread_count {
+    color: #000; }
+  .inline-cypht .profile_details th {
+    color: #373a3c;
+    font-weight: bold; }
+  .inline-cypht .btn-outline-secondary:hover {
+    color: #fff !important;
+    text-decoration: none; }
+
 .chosen-select, .chosen-select-deselect {
   width: 100%; }
 
