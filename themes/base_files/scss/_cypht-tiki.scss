@@ -1,0 +1,57 @@
+.inline-cypht {
+    background: $body-bg;
+	font-family: $font-family-base;
+    color: $body-color;
+
+    .folders a, .unread_link, .subject a,
+    .selected_menu, .selected_menu a, .manage_folder_link,
+    a {
+        color: $link-color !important;
+        &:hover {
+            color: $link-hover-color !important;
+            text-decoration: $link-hover-decoration;
+        }
+    }
+
+    .selected_menu, .selected_menu a { text-decoration: underline; }
+
+
+
+    .folder_list, .content_cell, .compose_page, .message_list, .msg_text, .selected_part,
+    .server_content, .profile_content, .user_settings,
+    .nux_add_account, .imap_server_setup, .pop3_server_setup {
+        background-color: $popover-bg;
+        color: $popover-body-color;
+    }
+
+    .folder_list, .content_cell { border: 1px solid $input-border-color; }
+    .content_title .list_controls {
+        border-top: 1px solid $input-border-color;
+        border-right: 1px solid $input-border-color;
+    }
+
+    .src_name, .content_title, .list_controls {
+//        font-family: $headings-font-family;
+        background: $popover-header-bg;
+        color: $popover-header-color;
+    }
+
+    .message_table > tbody > tr > td, .msg_headers, .reply_quote,
+    .user_settings table td {
+        color: $popover-body-color;
+    }
+    .msg_headers th:hover { color: $popover-body-color !important; }
+
+    .settings_subtitle, .server_section { color: $popover-body-color !important; }
+    .total_unread_count, .unread_count { color: #000; }
+
+    .profile_details th {
+        color: $popover-body-color;
+        font-weight: bold;
+    }
+
+    .btn-outline-secondary:hover {
+        color: #fff !important;
+        text-decoration: none;
+    }
+}
