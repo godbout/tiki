@@ -32,7 +32,7 @@ return [
 		'data' =>
 			[
 				'',
-				'You can change this page after logging in. Please review the [http://doc.tiki.org/wiki+syntax|wiki syntax] for editing details.',
+				'You can change this page after logging in. Please review the [http://doc.tiki.org/Wiki-syntax|wiki syntax] for editing details.',
 				'',
 			],
 	],

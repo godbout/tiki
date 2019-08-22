@@ -10,7 +10,7 @@
 			{tr}Wiki Page Editor{/tr}
 		</a>
 		{tr}and{/tr}
-		<a href="{$prefs.helpurl}Wiki+Syntax" target="tikihelp" class="tikihelp alert-link" title="{tr}Wiki Syntax:{/tr} {tr}The syntax system used for creating pages in Tiki{/tr}">
+		<a href="{$prefs.helpurl}Wiki-syntax" target="tikihelp" class="tikihelp alert-link" title="{tr}Wiki Syntax:{/tr} {tr}The syntax system used for creating pages in Tiki{/tr}">
 			{tr}Wiki Syntax{/tr}
 		</a>
 	{/remarksbox}

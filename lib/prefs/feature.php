@@ -1745,7 +1745,7 @@ function prefs_feature_list($partial = false)
 		'feature_forum_parse' => [
 			'name' => tra('Accept wiki syntax'),
 			'type' => 'flag',
-			'help' => 'Wiki+Syntax',
+			'help' => 'Wiki-syntax',
 			'default' => 'n',
 		],
 		'feature_forum_topics_archiving' => [
@@ -2129,14 +2129,14 @@ function prefs_feature_list($partial = false)
 			'name' => tra("Redirect to similar wiki page"),
 			'description' => tra("If a requested page doesn't exist, redirect to a similarly named page"),
 			'type' => 'flag',
-			'help' => 'Redirect+to+similar+wiki+page',
+			'help' => 'Redirect-to-similar-wiki-page',
 			'default' => 'n',
 		],
 		'feature_wiki_pagealias' => [
 			'name' => tra("Redirect to page alias, if any"),
 			'description' => tra("If a requested page doesn't exist, redirect to an alias page, if specified using an alias semantic link"),
 			'type' => 'flag',
-			'help' => 'Page+Alias',
+			'help' => 'Page-Alias',
 			'dependencies' => [
 				'feature_wiki_1like_redirection',
 				'feature_semantic', // this is needed at point of creation of semantic link otherwise link will not register
@@ -2495,7 +2495,7 @@ function prefs_feature_list($partial = false)
 			'name' => tra('Wiki argument variables'),
 			'description' => tra('Allow writing request variables in wiki content using {{paramname}} or {{paramname|default}} - special case {{page}} {{user}}'),
 			'type' => 'flag',
-			'help' => 'Advanced+Wiki+Syntax+usage+examples',
+			'help' => 'Advanced+Wiki-syntax+usage+examples',
 			'default' => 'n',
 			'keywords' => 'arg var vars',
 		],

@@ -11,7 +11,7 @@ function prefs_section_list()
 		'section_comments_parse' => [
 			'name' => tra('Parse wiki syntax in comments'),
 			'type' => 'flag',
-			'help' => 'Wiki+Syntax',
+			'help' => 'Wiki-syntax',
 			'description' => tra('Parse wiki syntax in comments in all sections apart from Forums') . '<br>' .
 							 tra('Use "Accept wiki syntax" for forums in admin forums page'),
 			'default' => 'y',		// parse wiki markup on comments in all sections

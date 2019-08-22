@@ -356,7 +356,7 @@
 
 			</form>
 			{remarksbox title="{tr}Editing posts{/tr}"}
-				{tr}Use wiki syntax when editing the content of posts - HTML is not allowed. Please click on the following link for documentation on wiki syntax:{/tr} {wiki}[http://doc.tiki.org/Wiki+Syntax]{/wiki}
+				{tr}Use wiki syntax when editing the content of posts - HTML is not allowed. Please click on the following link for documentation on wiki syntax:{/tr} {wiki}[http://doc.tiki.org/Wiki-syntax]{/wiki}
 			{/remarksbox}
 		</div> <!-- end forumpost -->
 	{/if}
