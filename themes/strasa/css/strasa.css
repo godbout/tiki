@@ -7413,7 +7413,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #fff; }
 
 .tiki-webmail, .inline-cypht {
-  background-color: #214d68;
+  background: #214d68;
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   color: #343a40; }
   .tiki-webmail a:not(.btn), .inline-cypht a:not(.btn) {

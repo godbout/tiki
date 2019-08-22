@@ -7369,7 +7369,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #fff; }
 
 .tiki-webmail, .inline-cypht {
-  background-color: #eee;
+  background: #eee;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: #000; }
   .tiki-webmail a:not(.btn), .inline-cypht a:not(.btn) {

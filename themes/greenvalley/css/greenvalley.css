@@ -7393,7 +7393,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #222; }
 
 .tiki-webmail, .inline-cypht {
-  background-color: #addd63;
+  background: #addd63;
   font-family: Century Gothic, Lucida Grande, Arial, Helvetica, sans-serif;
   color: #222; }
   .tiki-webmail a:not(.btn), .inline-cypht a:not(.btn) {

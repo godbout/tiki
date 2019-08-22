@@ -7397,7 +7397,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #fff; }
 
 .tiki-webmail, .inline-cypht {
-  background-color: #060606;
+  background: #060606;
   font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: #888; }
   .tiki-webmail a:not(.btn), .inline-cypht a:not(.btn) {

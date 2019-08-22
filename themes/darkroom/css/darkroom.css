@@ -7471,7 +7471,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #f8f9fa; }
 
 .tiki-webmail, .inline-cypht {
-  background-color: #474747;
+  background: #474747;
   font-family: "Trebuchet MS", "Bitstream Vera Sans", sans-serif;
   color: #d8d8d8; }
   .tiki-webmail a:not(.btn), .inline-cypht a:not(.btn) {

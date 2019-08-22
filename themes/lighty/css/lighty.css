@@ -8016,7 +8016,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #fff; }
 
 .tiki-webmail, .inline-cypht {
-  background-color: #f0f0f0;
+  background: #f0f0f0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #212529; }
   .tiki-webmail a:not(.btn), .inline-cypht a:not(.btn) {
