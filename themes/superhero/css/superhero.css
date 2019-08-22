@@ -7377,13 +7377,19 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background-color: #5bc0de;
     color: #212529; }
 
-.inline-cypht {
-  background: #2b3e50;
+.tiki-webmail, .inline-cypht {
+  background-color: #2b3e50;
   font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: #ebebeb; }
-  .inline-cypht .folders a, .inline-cypht .unread_link, .inline-cypht .subject a, .inline-cypht .selected_menu, .inline-cypht .selected_menu a, .inline-cypht .manage_folder_link, .inline-cypht a {
+  .tiki-webmail a:not(.btn), .inline-cypht a:not(.btn) {
     color: #df691a !important; }
-  .inline-cypht .folders a:hover, .inline-cypht .unread_link:hover, .inline-cypht .subject a:hover, .inline-cypht .selected_menu:hover, .inline-cypht .selected_menu a:hover, .inline-cypht .manage_folder_link:hover, .inline-cypht a:hover {
+  .tiki-webmail a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
+    color: #9a4912 !important;
+    text-decoration: underline; }
+
+.inline-cypht .folders a:not(.btn), .inline-cypht .subject a:not(.btn), .inline-cypht .selected_menu a:not(.btn), .inline-cypht .unread_link:not(.btn), .inline-cypht .selected_menu:not(.btn), .inline-cypht .manage_folder_link:not(.btn) {
+  color: #df691a !important; }
+  .inline-cypht .folders a:not(.btn):hover, .inline-cypht .subject a:not(.btn):hover, .inline-cypht .selected_menu a:not(.btn):hover, .inline-cypht .unread_link:not(.btn):hover, .inline-cypht .selected_menu:not(.btn):hover, .inline-cypht .manage_folder_link:not(.btn):hover {
     color: #9a4912 !important;
     text-decoration: underline; }
   .inline-cypht .selected_menu, .inline-cypht .selected_menu a {
@@ -7393,13 +7399,17 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #ebebeb; }
   .inline-cypht .folder_list, .inline-cypht .content_cell {
     border: 1px solid #ced4da; }
+  .inline-cypht .content_title .list_meta {
+    color: inherit !important; }
   .inline-cypht .content_title .list_controls {
     border-top: 1px solid #ced4da;
     border-right: 1px solid #ced4da; }
   .inline-cypht .src_name, .inline-cypht .content_title, .inline-cypht .list_controls {
     background: rgba(255, 255, 255, 0.075);
     color: inherit; }
-  .inline-cypht .message_table > tbody > tr > td, .inline-cypht .msg_headers, .inline-cypht .reply_quote, .inline-cypht .user_settings table td {
+  .inline-cypht .src_name {
+    border-left-color: transparent; }
+  .inline-cypht .message_table > tbody > tr > td, .inline-cypht .msg_headers, .inline-cypht .reply_quote, .inline-cypht .user_settings table td, .inline-cypht .nux_empty_combined_view, .inline-cypht .empty_list {
     color: #ebebeb; }
   .inline-cypht .msg_headers th:hover {
     color: #ebebeb !important; }
