@@ -7412,13 +7412,19 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background-color: #4d3a7d;
     color: #fff; }
 
-.inline-cypht {
+.tiki-webmail, .inline-cypht {
   background: #214d68;
   font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
   color: #343a40; }
-  .inline-cypht .folders a, .inline-cypht .unread_link, .inline-cypht .subject a, .inline-cypht .selected_menu, .inline-cypht .selected_menu a, .inline-cypht .manage_folder_link, .inline-cypht a {
+  .tiki-webmail a:not(.btn), .inline-cypht a:not(.btn) {
     color: #069 !important; }
-  .inline-cypht .folders a:hover, .inline-cypht .unread_link:hover, .inline-cypht .subject a:hover, .inline-cypht .selected_menu:hover, .inline-cypht .selected_menu a:hover, .inline-cypht .manage_folder_link:hover, .inline-cypht a:hover {
+  .tiki-webmail a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
+    color: #00334d !important;
+    text-decoration: none; }
+
+.inline-cypht .folders a:not(.btn), .inline-cypht .subject a:not(.btn), .inline-cypht .selected_menu a:not(.btn), .inline-cypht .unread_link:not(.btn), .inline-cypht .selected_menu:not(.btn), .inline-cypht .manage_folder_link:not(.btn) {
+  color: #069 !important; }
+  .inline-cypht .folders a:not(.btn):hover, .inline-cypht .subject a:not(.btn):hover, .inline-cypht .selected_menu a:not(.btn):hover, .inline-cypht .unread_link:not(.btn):hover, .inline-cypht .selected_menu:not(.btn):hover, .inline-cypht .manage_folder_link:not(.btn):hover {
     color: #00334d !important;
     text-decoration: none; }
   .inline-cypht .selected_menu, .inline-cypht .selected_menu a {
@@ -7428,13 +7434,17 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #343a40; }
   .inline-cypht .folder_list, .inline-cypht .content_cell {
     border: 1px solid #ced4da; }
+  .inline-cypht .content_title .list_meta {
+    color: inherit !important; }
   .inline-cypht .content_title .list_controls {
     border-top: 1px solid #ced4da;
     border-right: 1px solid #ced4da; }
   .inline-cypht .src_name, .inline-cypht .content_title, .inline-cypht .list_controls {
     background: #f7f7f7;
     color: inherit; }
-  .inline-cypht .message_table > tbody > tr > td, .inline-cypht .msg_headers, .inline-cypht .reply_quote, .inline-cypht .user_settings table td {
+  .inline-cypht .src_name {
+    border-left-color: transparent; }
+  .inline-cypht .message_table > tbody > tr > td, .inline-cypht .msg_headers, .inline-cypht .reply_quote, .inline-cypht .user_settings table td, .inline-cypht .nux_empty_combined_view, .inline-cypht .empty_list {
     color: #343a40; }
   .inline-cypht .msg_headers th:hover {
     color: #343a40 !important; }

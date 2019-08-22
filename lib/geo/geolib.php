@@ -119,10 +119,13 @@ class GeoLib
 	 */
 	function geocode($where)
 	{
-		$url = 'http://maps.googleapis.com/maps/api/geocode/json?' . http_build_query(
+		global $prefs;
+
+		$url = 'https://maps.googleapis.com/maps/api/geocode/json?' . http_build_query(
 			[
 				'address' => $where,
 				'sensor' => 'false',
+				'key' => $prefs['gmap_key'],
 			],
 			'',
 			'&'
@@ -132,7 +135,10 @@ class GeoLib
 		$data = json_decode($response);
 
 		if ($data->status !== 'OK') {
-			return false;
+			return [
+				'error' => $data->error_message,
+				'status' => $data->status,
+			];
 		}
 
 		$first = reset($data->results);
