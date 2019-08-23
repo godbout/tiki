@@ -8683,8 +8683,10 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #56c4f7 !important;
     text-decoration: underline; }
 
-.inline-cypht .folders a:not(.btn), .inline-cypht .subject a:not(.btn), .inline-cypht .selected_menu a:not(.btn), .inline-cypht .unread_link:not(.btn), .inline-cypht .selected_menu:not(.btn), .inline-cypht .manage_folder_link:not(.btn) {
-  color: #56c4f7 !important; }
+.inline-cypht {
+  background: transparent; }
+  .inline-cypht .folders a:not(.btn), .inline-cypht .subject a:not(.btn), .inline-cypht .selected_menu a:not(.btn), .inline-cypht .unread_link:not(.btn), .inline-cypht .selected_menu:not(.btn), .inline-cypht .manage_folder_link:not(.btn) {
+    color: #56c4f7 !important; }
   .inline-cypht .folders a:not(.btn):hover, .inline-cypht .subject a:not(.btn):hover, .inline-cypht .selected_menu a:not(.btn):hover, .inline-cypht .unread_link:not(.btn):hover, .inline-cypht .selected_menu:not(.btn):hover, .inline-cypht .manage_folder_link:not(.btn):hover {
     color: #56c4f7 !important;
     text-decoration: underline; }
@@ -8705,15 +8707,18 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #fff; }
   .inline-cypht .src_name {
     border-left-color: transparent; }
-  .inline-cypht .message_table > tbody > tr > td, .inline-cypht .msg_headers, .inline-cypht .reply_quote, .inline-cypht .user_settings table td, .inline-cypht .nux_empty_combined_view, .inline-cypht .empty_list {
+  .inline-cypht .message_table > tbody > tr > td, .inline-cypht .msg_headers, .inline-cypht .reply_quote, .inline-cypht .user_settings table td, .inline-cypht .nux_empty_combined_view, .inline-cypht .empty_list, .inline-cypht .profiles_empty {
     color: #212529; }
   .inline-cypht .msg_headers th:hover {
     color: #212529 !important; }
   .inline-cypht .settings_subtitle, .inline-cypht .server_section {
-    color: #212529 !important; }
+    color: #212529 !important;
+    font-weight: bold; }
+  .inline-cypht .server_count {
+    font-weight: normal; }
   .inline-cypht .total_unread_count, .inline-cypht .unread_count {
     color: #000; }
-  .inline-cypht .profile_details th {
+  .inline-cypht .profile_details th, .inline-cypht .msg_date {
     color: #212529;
     font-weight: bold; }
   .inline-cypht .btn-outline-secondary:hover {
@@ -9092,3 +9097,12 @@ input[type="text"].chosen-focus-input {
     width: 1% !important; }
   .input-group .chosen-choices .search-field {
     min-height: 2.25rem; }
+
+body.tiki.tiki-webmail {
+  background-image: url("../images/bg-body.jpg");
+  background-position: 50% 0%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; }
+  body.tiki.tiki-webmail .card h3 {
+    color: #fff; }

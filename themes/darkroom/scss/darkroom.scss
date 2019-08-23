@@ -8,3 +8,9 @@
 @import "../../base_files/scss/_bs3-bs4-transition.scss";
 @import "_tiki-selectors.scss";
 @import "../../base_files/scss/_external-scripts.scss";
+
+
+// override for some cypht background colors
+body.tiki.tiki-webmail {
+    background-image: url('#{$imagePath}474747_5e5e5e_40.png');
+}

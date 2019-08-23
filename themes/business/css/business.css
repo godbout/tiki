@@ -7457,8 +7457,10 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #005694 !important;
     text-decoration: underline; }
 
-.inline-cypht .folders a:not(.btn), .inline-cypht .subject a:not(.btn), .inline-cypht .selected_menu a:not(.btn), .inline-cypht .unread_link:not(.btn), .inline-cypht .selected_menu:not(.btn), .inline-cypht .manage_folder_link:not(.btn) {
-  color: #0082e0 !important; }
+.inline-cypht {
+  background: transparent; }
+  .inline-cypht .folders a:not(.btn), .inline-cypht .subject a:not(.btn), .inline-cypht .selected_menu a:not(.btn), .inline-cypht .unread_link:not(.btn), .inline-cypht .selected_menu:not(.btn), .inline-cypht .manage_folder_link:not(.btn) {
+    color: #0082e0 !important; }
   .inline-cypht .folders a:not(.btn):hover, .inline-cypht .subject a:not(.btn):hover, .inline-cypht .selected_menu a:not(.btn):hover, .inline-cypht .unread_link:not(.btn):hover, .inline-cypht .selected_menu:not(.btn):hover, .inline-cypht .manage_folder_link:not(.btn):hover {
     color: #005694 !important;
     text-decoration: underline; }
@@ -7479,15 +7481,18 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: inherit; }
   .inline-cypht .src_name {
     border-left-color: transparent; }
-  .inline-cypht .message_table > tbody > tr > td, .inline-cypht .msg_headers, .inline-cypht .reply_quote, .inline-cypht .user_settings table td, .inline-cypht .nux_empty_combined_view, .inline-cypht .empty_list {
+  .inline-cypht .message_table > tbody > tr > td, .inline-cypht .msg_headers, .inline-cypht .reply_quote, .inline-cypht .user_settings table td, .inline-cypht .nux_empty_combined_view, .inline-cypht .empty_list, .inline-cypht .profiles_empty {
     color: #404040; }
   .inline-cypht .msg_headers th:hover {
     color: #404040 !important; }
   .inline-cypht .settings_subtitle, .inline-cypht .server_section {
-    color: #404040 !important; }
+    color: #404040 !important;
+    font-weight: bold; }
+  .inline-cypht .server_count {
+    font-weight: normal; }
   .inline-cypht .total_unread_count, .inline-cypht .unread_count {
     color: #000; }
-  .inline-cypht .profile_details th {
+  .inline-cypht .profile_details th, .inline-cypht .msg_date {
     color: #404040;
     font-weight: bold; }
   .inline-cypht .btn-outline-secondary:hover {

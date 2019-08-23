@@ -22,3 +22,8 @@
         }
     }
 }
+
+// override for some cypht background colors
+body.tiki.tiki-webmail {
+	background: #214d68 url('#{$imagePath}body-bg_fw.png') repeat-x;
+}
