@@ -4239,6 +4239,7 @@ div.tiki_plugin {
 
 .autotoc .nav {
   margin: 0;
+  padding: 0;
   overflow: hidden;
   flex-direction: row; }
   .autotoc .nav > li {
