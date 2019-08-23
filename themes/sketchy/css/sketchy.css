@@ -7551,6 +7551,8 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #212529; }
   .inline-cypht .msg_headers th:hover {
     color: #212529 !important; }
+  .inline-cypht .msg_text_inner > table {
+    background-color: #fff; }
   .inline-cypht .settings_subtitle, .inline-cypht .server_section {
     color: #212529 !important;
     font-weight: bold; }

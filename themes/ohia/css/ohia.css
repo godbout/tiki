@@ -7396,6 +7396,8 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #e9ecef; }
   .inline-cypht .msg_headers th:hover {
     color: #e9ecef !important; }
+  .inline-cypht .msg_text_inner > table {
+    background-color: #fff; }
   .inline-cypht .settings_subtitle, .inline-cypht .server_section {
     color: #e9ecef !important;
     font-weight: bold; }

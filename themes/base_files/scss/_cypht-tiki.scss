@@ -58,6 +58,7 @@
         color: $popover-body-color;
     }
     .msg_headers th:hover { color: $popover-body-color !important; }
+    .msg_text_inner > table { background-color: #fff; }
 
     .settings_subtitle, .server_section {
         color: $popover-body-color !important;

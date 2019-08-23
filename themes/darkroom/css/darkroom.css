@@ -7508,6 +7508,8 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #d8d8d8; }
   .inline-cypht .msg_headers th:hover {
     color: #d8d8d8 !important; }
+  .inline-cypht .msg_text_inner > table {
+    background-color: #fff; }
   .inline-cypht .settings_subtitle, .inline-cypht .server_section {
     color: #d8d8d8 !important;
     font-weight: bold; }
