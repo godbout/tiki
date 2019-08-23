@@ -13,6 +13,7 @@
 }
 
 .inline-cypht {
+    background: transparent;
     .folders a, .subject a, .selected_menu a,
     .unread_link, .selected_menu, .manage_folder_link {
         &:not(.btn) {
@@ -52,15 +53,22 @@
     .src_name { border-left-color: transparent; }
 
     .message_table > tbody > tr > td, .msg_headers, .reply_quote,
-    .user_settings table td, .nux_empty_combined_view, .empty_list {
+    .user_settings table td, .nux_empty_combined_view,
+    .empty_list, .profiles_empty {
         color: $popover-body-color;
     }
     .msg_headers th:hover { color: $popover-body-color !important; }
+    .msg_text_inner > table { background-color: #fff; }
 
-    .settings_subtitle, .server_section { color: $popover-body-color !important; }
+    .settings_subtitle, .server_section {
+        color: $popover-body-color !important;
+        font-weight: bold;
+    }
+    .server_count { font-weight: normal; }
+
     .total_unread_count, .unread_count { color: #000; }
 
-    .profile_details th {
+    .profile_details th, .msg_date {
         color: $popover-body-color;
         font-weight: bold;
     }
