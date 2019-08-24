@@ -545,11 +545,18 @@ if (function_exists('apc_sma_info') && ini_get('apc.enabled')) {
 		'setting' => 'xCache',
 		'message' => tra('xCache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.')
 	);
-} elseif (function_exists('opcache_get_configuration') && ( ini_get('opcache.enable') == 1 || ini_get('opcache.enable') == '1')) {
+} elseif (function_exists('opcache_get_configuration') && (ini_get('opcache.enable') == 1 || ini_get('opcache.enable') == '1')) {
+	$message = tra('OPcache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.');
+	$fitness = tra('good');
+	if (! Tiki_Version_Utils::checkOPCacheCompatibility()) {
+		$message = tra('Some PHP versions may exhibit randomly issues with the OpCache leading to the server starting to fail to serve all PHP requests, your PHP version seems to
+		 be affected, despite the performance penalty, we would recommend disabling the OpCache if you experience random crashes');
+		$fitness = tra('unsure');
+	}
 	$php_properties['ByteCode Cache'] = array(
-		'fitness' => tra('good'),
+		'fitness' => $fitness,
 		'setting' => 'OPcache',
-		'message' => tra('OPcache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.')
+		'message' => $message
 	);
 } elseif (function_exists('wincache_fcache_fileinfo')) {
 	// Determine if version 1 or 2 is used. Version 2 does not support ocache

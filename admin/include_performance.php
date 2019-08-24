@@ -19,6 +19,7 @@ if ($stat_flag) {
 $opcode_cache = $opcode_stats['opcode_cache'];
 $smarty->assign('opcode_cache', $opcode_cache);
 $smarty->assign('opcode_stats', $opcode_stats);
+$smarty->assign('opcode_compatible', Tiki_Version_Utils::checkOPCacheCompatibility());
 
 $txtUsed = tr('Used');
 $txtAvailable = tr('Available');

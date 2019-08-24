@@ -46,4 +46,15 @@ class Tiki_Version_Utils
 			$upgrades
 		);
 	}
+
+	/**
+	 * Validates if the php version is fully compatible with OPCache.
+	 * @return bool
+	 */
+	static function checkOPCacheCompatibility()
+	{
+		return ! ((version_compare(PHP_VERSION, '7.1.0', '>=') && version_compare(PHP_VERSION, '7.2.0', '<')) //7.1.x
+			|| (version_compare(PHP_VERSION, '7.2.0', '>=') && version_compare(PHP_VERSION, '7.2.19', '<')) // >= 7.2.0 < 7.2.19
+			|| (version_compare(PHP_VERSION, '7.3.0', '>=') && version_compare(PHP_VERSION, '7.3.6', '<'))); // >= 7.3.0 < 7.3.6
+	}
 }
