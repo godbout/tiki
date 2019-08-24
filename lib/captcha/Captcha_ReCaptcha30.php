@@ -98,12 +98,16 @@ EOF;
 	 */
 	public function renderAjax()
 	{
-		static $id = 1;
-		TikiLib::lib('header')->add_js("
-				grecaptcha.render('g-recaptcha{$id}', {
-				'sitekey': '{$this->getPubkey()}'
-				});
-				", 100);
-		return '<div id="g-recaptcha' . $id . '"></div>';
+        return <<<EOF
+        <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response" value="" />
+        <script>
+	            grecaptcha.ready(function() {
+		        grecaptcha.execute('{$this->getPubkey()}', {action: 'login'})
+		        .then(function(token) {
+			         document.getElementById('g-recaptcha-response').value=token;
+		    });
+	       }); 
+        </script>
+EOF;
 	}
 }
