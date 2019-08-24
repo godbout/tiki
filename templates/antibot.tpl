@@ -90,6 +90,22 @@
 				}
 			}, 100); // wait for captcha to load
 		{/jq}
+		{if $captchalib->type eq 'recaptcha30'}
+		{literal}
+			<script>
+				function genToken() {
+					if($("#g-recaptcha-response").length){
+						grecaptcha.ready(function() {
+							grecaptcha.execute('{/literal}{$prefs.recaptcha_pubkey}{literal}', {action: 'login'})
+									.then(function(token) {
+										document.getElementById('g-recaptcha-response').value=token;
+									});
+						});
+					}
+				}
+			</script>
+		{/literal}
+		{/if}
 	{else}
 		{jq rank=1}
 			antibotVerification($("#antibotcode"), {

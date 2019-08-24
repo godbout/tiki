@@ -279,7 +279,7 @@ if ($prefs['feature_antibot'] == 'y' && empty($user)) {
 				$headerlib->add_jsfile_cdn("$url_scheme://www.google.com/recaptcha/api.js");
 			}
 		} else {
-			$headerlib->add_jsfile_cdn("$url_scheme://www.google.com/recaptcha/api/js/recaptcha_ajax.js");
+            $headerlib->add_jsfile_cdn("$url_scheme://www.google.com/recaptcha/api.js?render=".$prefs['recaptcha_pubkey']);
 		}
 	}
 	$captchalib = TikiLib::lib('captcha');
