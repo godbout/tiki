@@ -63,7 +63,7 @@
 				{if !$opcode_compatible}
 					{remarksbox type="warning" title="{tr}Warning{/tr}"}
 					{tr}Some PHP versions may exhibit randomly issues with the OpCache leading to the server starting to fail to serve all PHP requests, your PHP version seems to
-						be affected, despite the performance penalty, we would recommend disabling the OpCache if you experience random crashes{/tr}
+						be affected, despite the performance penalty, we would recommend disabling the OpCache if you experience random crashes.{/tr}
 					{/remarksbox}
 				{/if}
 
