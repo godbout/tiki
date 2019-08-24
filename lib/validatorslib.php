@@ -155,7 +155,7 @@ invalidHandler: function(event, validator) {
 	if (errors) {
 		var $container = $scroller = $(this).parents(".modal"),
 			offset = 0;
-		
+
 		if (!$container.length) {
 			$container = $("html");
 			$scroller = $("body");
@@ -175,7 +175,7 @@ invalidHandler: function(event, validator) {
 		}
 
 		$container.animate({
-			scrollTop: containerScrollTop + $scrollElement.offset().top - offset
+			scrollTop: containerScrollTop + $scrollElement.offset().top - offset - ($(window).height() / 2)
 		}, 1000, function () {
 			if ($firstError.is("select") && jqueryTiki.chosen) {
 				$firstError.trigger("chosen:activate");
