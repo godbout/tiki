@@ -16,7 +16,7 @@
 }
 	{foreach from=$comment.replies_info.replies item="subcomment"}
 		{if $subcomment.doNotShow != 1 && $thread_style != 'commentStyle_plain'}
-			<div class="sub_comment_area">
+			<div class="sub_comment_area mt-3">
 				<div class="sub_comment">
 		{/if}
 		{include file='comment.tpl' comment=$subcomment}
