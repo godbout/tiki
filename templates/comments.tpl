@@ -1,6 +1,6 @@
 {* $Id$ *}
 
-<div>
+<section>
 
 {if $tiki_p_forum_read eq 'y'}
 
@@ -304,13 +304,13 @@
 					</form>
 					{assign var=tips_title value="{tr}Posting replies{/tr}"}
 
-			</div>
+
 		</div>
 	{/if}
 {/if}
 {/block}
-
-</div>
+	</div>
+</section>
 {if $prefs.forum_reply_forcetitle eq 'y'}
 {jq}
 $('#editpostform').submit( function() {
