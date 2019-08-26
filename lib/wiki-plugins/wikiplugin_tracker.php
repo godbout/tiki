@@ -2124,7 +2124,7 @@ function wikiplugin_tracker($data, $params)
 					if ($showfieldsdesc == 'y' && $f['description']) {
 						$back .= '<div class="form-group row tracker-form-text tracker_field' . $f['fieldId'] . ' ">';
 						{
-							$back .= '<div class="col-md-8 offset-4 trackerplugindesc form-text">';
+							$back .= '<div class="col-md-9 offset-md-3 trackerplugindesc form-text">';
 						if ($f['descriptionIsParsed'] == 'y') {
 							$back .= TikiLib::lib('parser')->parse_data($f['description']);
 						} else {
