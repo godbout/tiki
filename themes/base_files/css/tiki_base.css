@@ -1810,7 +1810,7 @@ td.url {
   margin-right: 0;
   margin-left: 1rem; }
 
-.card.postbody, .card.postbody .card-header, .card.postbody .card-footer {
+.tiki_blogs .card.postbody, .tiki_blogs .card.postbody .card-header, .tiki_blogs .card.postbody .card-footer {
   background-color: transparent;
   border: none; }
 
