@@ -20,10 +20,7 @@
 				{/section}
 			</select>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label class="col-sm-4 col-form-label"></label>
-		<div class="col-sm-7">
+		<div class="col-sm-7 offset-sm-4 mt-2">
 			<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Go{/tr}">
 		</div>
 	</div>
@@ -91,16 +88,15 @@
 		<label class="col-sm-4 col-form-label">{tr}Editor group{/tr}</label>
 		<div class="col-sm-7">
 			<select name="editorGroup" class="form-control">
-					<option value="">{tr}None{/tr}</option>
-					{section name=ux loop=$groups}
-						<option value="{$groups[ux]|escape}" {if $editorGroup eq $groups[ux]}selected="selected"{/if}>{$groups[ux]}</option>
-					{/section}
-				</select>
+				<option value="">{tr}None{/tr}</option>
+				{section name=ux loop=$groups}
+					<option value="{$groups[ux]|escape}" {if $editorGroup eq $groups[ux]}selected="selected"{/if}>{$groups[ux]}</option>
+				{/section}
+			</select>
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-4 col-form-label"></label>
-		<div class="col-sm-7">
+		<div class="col-sm-7 offset-sm-4">
 			<input class="btn btn-primary" type="submit" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>
