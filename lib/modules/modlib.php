@@ -316,10 +316,10 @@ class ModLib extends TikiLib
 	{
 
 		$query = "delete from `tiki_modules` where `name`=?";
-		$result = $this->query($query, [$name]);
+		$this->query($query, [$name]);
 
 		$query = " delete from `tiki_user_modules` where `name`=?";
-		$this->query($query, [$name]);
+		$result = $this->query($query, [$name]);
 
 		$cachelib = TikiLib::lib('cache');
 		$cachelib->invalidate('user_modules');
