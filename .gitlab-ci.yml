@@ -1,6 +1,7 @@
 image: rjsmelo/ubuntu-php:7.1-qa
 
 cache:
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - .composercache/files
 
@@ -13,10 +14,25 @@ variables:
   COMPOSER_CACHE_DIR: "$CI_PROJECT_DIR/.composercache"
 
 stages:
+  - build
   - lint
   - vendors-security
   - tiki-check
   - unit-tests
+  - vendors_update
+
+composer:
+  stage: build
+  variables:
+    COMPOSER_DISCARD_CHANGES: "true"
+    COMPOSER_NO_INTERACTION: "1"
+  script:
+    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+  artifacts:
+    paths:
+      - vendor_bundled/vendor/
+    expire_in: 1 days
+    when: on_success
 
 #
 # Lint
@@ -252,3 +268,36 @@ sensiolabs-vendor-bundled-security-check:
       - schedules
     variables:
       - $SCHEDULER == "vendor_check"
+
+update_vendor_bundled_dependencies:
+  stage: vendors_update
+  dependencies:
+    - composer
+  variables:
+    BRANCH_NAME: "${CI_COMMIT_REF_NAME}_vendor_bundled_update"
+    COMMIT_MESSAGE: "[UPD] Update ${CI_COMMIT_REF_NAME} vendor_bundled dependencies"
+    CI_REPOSITORY_URL: "https://${GITLAB_USER_LOGIN}:${GITLAB_USER_TOKEN}@gitlab.com/${CI_PROJECT_PATH}.git"
+    COMPOSER_DISCARD_CHANGES: "true"
+    COMPOSER_NO_INTERACTION: "1"
+  before_script:
+    - git config --global user.email "${GITLAB_USER_EMAIL}"
+    - git config --global user.name "${GITLAB_USER_NAME}"
+  script:
+    - DATE=`date +%Y%m%d`
+    - BRANCH_NAME="${BRANCH_NAME}_${DATE}"
+    - php doc/devtools/update_vendor_bundled.php
+    - |
+      if ! git diff --exit-code vendor_bundled/composer.lock; then \
+      if git rev-parse --verify ${BRANCH_NAME}; then git branch -D ${BRANCH_NAME}; fi; \
+      git checkout -b ${BRANCH_NAME} \
+      && git add vendor_bundled/composer.lock \
+      && git commit -m "${COMMIT_MESSAGE}" \
+      && git push ${CI_REPOSITORY_URL} HEAD:${BRANCH_NAME} --quiet \
+      && HOST=${CI_PROJECT_URL} CI_PROJECT_ID=${CI_PROJECT_ID} SOURCE_BRANCH=${BRANCH_NAME} TARGET_BRANCH=${CI_COMMIT_REF_NAME} GITLAB_USER_ID=${GITLAB_USER_ID} PRIVATE_TOKEN=${GITLAB_USER_TOKEN} \
+      /bin/bash ./doc/devtools/gitlab/auto_merge_request.sh "${COMMIT_MESSAGE} (${DATE})";\
+      fi;
+  only:
+    refs:
+      - schedules
+    variables:
+      - $SCHEDULER == "update_vendor_bundled"

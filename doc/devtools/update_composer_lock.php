@@ -13,8 +13,8 @@ $dir = __DIR__;
 require dirname(__FILE__) . '/svntools.php';
 
 $vendorBundledDir = $dir . '/../../vendor_bundled';
-$composerLockFile = $dir . '/../../vendor_bundled/composer.lock'; 
-$composerPharFile = $dir . '/../../temp/composer.phar'; 
+$composerLockFile = $dir . '/../../vendor_bundled/composer.lock';
+$composerPharFile = $dir . '/../../temp/composer.phar';
 
 if (! is_dir($vendorBundledDir)) {
 	error('vendor_bundled folder does not exits');
@@ -29,7 +29,7 @@ if (! file_exists($composerPharFile)) {
 }
 
 $composerLockBefore = file_get_contents($composerLockFile);
-exec('cd ' . $vendorBundledDir . ' && ../temp/composer.phar update nothing');
+exec('cd ' . $vendorBundledDir . ' && ../temp/composer.phar update nothing  --no-progress');
 $composerLockAfter = file_get_contents($composerLockFile);
 
 if ($composerLockBefore != $composerLockAfter) {
