@@ -1899,40 +1899,6 @@
             "time": "2019-07-19T20:04:21+00:00"
         },
         {
-            "name": "jcbrand/converse.js",
-            "version": "v4.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/conversejs/converse.js.git",
-                "reference": "acab0339f1951d744a39c76b666690332e710678"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/jcbrand/converse-js/jcbrand-converse-js-acab0339f1951d744a39c76b666690332e710678-zip-981aae.zip",
-                "reference": "acab0339f1951d744a39c76b666690332e710678",
-                "shasum": "5efa4e42f0a017e5970a0cb304e937fbb98b4aad"
-            },
-            "type": "library",
-            "extra": {
-                "patches_applied": {
-                    "Remove native javascript for bootstrap": "../installer/composer-patches/jcbrand-conversejs_remove-native-javascript-for-bootstrap.patch"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MPL-2.0"
-            ],
-            "description": "Browser based XMPP instant messaging client",
-            "homepage": "https://conversejs.org/",
-            "keywords": [
-                "chat",
-                "messaging",
-                "presence",
-                "xmpp"
-            ],
-            "time": "2019-04-04T10:33:08+00:00"
-        },
-        {
             "name": "jquery-form/form",
             "version": "3.51",
             "source": {
@@ -3234,6 +3200,18 @@
             "type": "npm-asset",
             "license": [
                 "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/converse.js",
+            "version": "5.0.1",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/converse.js/-/converse.js-5.0.1.tgz"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MPL-2.0"
             ]
         },
         {
