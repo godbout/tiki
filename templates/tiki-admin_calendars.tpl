@@ -480,7 +480,7 @@
 						class="btn btn-warning offset-sm-4"
 						name="clean"
 						value="{tr}Delete{/tr}"
-						onclick="confirmSimple(event, '{tr}Delete old events?{/tr}', '{ticket mode=get}')"
+						onclick="confirmSimple(event, '{tr}Delete old events?{/tr}')"
 					>
 				</div>
 			</fieldset>

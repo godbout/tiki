@@ -230,12 +230,13 @@
 									</action>
 									<action>
 										<form action="tiki-admin_modules.php?cookietab=2" method="post">
+											{ticket}
 											<button
 												type="submit"
 												name="um_remove"
 												value="{$user_modules[user].name|escape}"
 												class="btn btn-link link-list"
-												onclick="confirmSimple(event, '{tr}Delete custom module?{/tr}', '{ticket mode=get}')"
+												onclick="confirmSimple(event, '{tr}Delete custom module?{/tr}')"
 											>
 												{icon name='remove'} {tr}Delete{/tr}
 											</button>
