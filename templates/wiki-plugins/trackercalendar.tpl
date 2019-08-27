@@ -55,6 +55,7 @@
 			buttonText: {
 				timelineDay: "{tr}resource day{/tr}",
 				timelineMonth: "{tr}resource month{/tr}",
+				timelineYear: "{tr}resource year{/tr}",
 				timelineWeek: "{tr}resource week{/tr}",
 				today: "{tr}today{/tr}",
 				month: "{tr}month{/tr}",

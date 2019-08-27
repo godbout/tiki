@@ -164,6 +164,19 @@ function wikiplugin_trackercalendar_info()
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
+			'ryear' => [
+				'required' => false,
+				'name' => tra('Resources by Years'),
+				'description' => tra('Display the option to change the view to resources by years'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
 			'rmonth' => [
 				'required' => false,
 				'name' => tra('Resources by Months'),
@@ -215,6 +228,7 @@ function wikiplugin_trackercalendar_info()
 					['text' => tra('Agenda by Months'), 'value' => 'month'],
 					['text' => tra('Agenda by Weeks'), 'value' => 'agendaWeek'],
 					['text' => tra('Agenda by Days'), 'value' => 'agendaDay'],
+					['text' => tra('Resources by Years'), 'value' => 'timelineYear'],
 					['text' => tra('Resources by Months'), 'value' => 'timelineMonth'],
 					['text' => tra('Resources by Weeks'), 'value' => 'timelineWeek'],
 					['text' => tra('Resources by Days'), 'value' => 'timelineDay']
@@ -363,6 +377,12 @@ function wikiplugin_trackercalendar($data, $params)
 		$field = $definition->getFieldFromPermName($resourceField);
 		$resources = wikiplugin_trackercalendar_get_resources($field);
 
+		if (! empty($params['ryear']) and $params['ryear'] != 'y') {
+			$ryear = 'n';
+		} else {
+			$ryear = 'y';
+			$views[] = 'timelineYear';
+		}
 		if (! empty($params['rmonth']) and $params['rmonth'] != 'y') {
 			$rmonth = 'n';
 		} else {
