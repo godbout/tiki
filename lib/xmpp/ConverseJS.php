@@ -157,12 +157,15 @@ class ConverseJS
 
 	public function render()
 	{
+		$options = $this->get_options();
+
 		array_map(
 			function ($file) {
 				printf('<link rel="stylesheet" href="%s">', $file);
 			},
 			$this->get_css_dependencies()
 		);
+
 		array_map([TikiLib::lib('header'), 'add_jsfile'], $this->get_js_dependencies());
 
 		$output = '';
@@ -170,9 +173,9 @@ class ConverseJS
 			// TODO: remove this a line after fixing conversejs
 			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '"];' . PHP_EOL;
 			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '-controlbox"];' . PHP_EOL;
+			$options['singleton'] = true;
 		}
 
-		$options = $this->get_options();
 		ksort($options);
 
 		$optionString = json_encode($options, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
