@@ -140,12 +140,8 @@ class ConverseJS
 	public function get_css_dependencies()
 	{
 		$deps = [
-			'vendor_bundled/vendor/jcbrand/converse.js/css/converse.css',
+			'vendor_bundled/vendor/npm-asset/converse.js/dist/converse.min.css',
 		];
-
-		if ($this->get_option('view_mode') === 'fullscreen') {
-			$deps[] = 'vendor_bundled/vendor/jcbrand/converse.js/css/fullpage.css';
-		}
 
 		return $deps;
 	}
@@ -153,7 +149,7 @@ class ConverseJS
 	public function get_js_dependencies()
 	{
 		return [
-			'vendor_bundled/vendor/jcbrand/converse.js/dist/converse.js',
+			'vendor_bundled/vendor/npm-asset/converse.js/dist/converse.js',
 			'lib/xmpp/js/conversejs-tiki.js',
 			'lib/xmpp/js/conversejs-tiki-oauth.js',
 		];
