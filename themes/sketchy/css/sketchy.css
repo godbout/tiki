@@ -220,7 +220,12 @@ button::-moz-focus-inner, [type="button"]::-moz-focus-inner, [type="reset"]::-mo
 
 input[type="radio"], input[type="checkbox"] {
   box-sizing: border-box;
-  padding: 0; }
+  padding: 0;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  -ms-appearance:none;
+  appearance:none;
+}
 
 input[type="date"], input[type="time"], input[type="datetime-local"], input[type="month"] {
   -webkit-appearance: listbox; }
