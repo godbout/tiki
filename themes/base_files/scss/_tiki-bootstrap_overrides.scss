@@ -402,7 +402,7 @@ body.fullscreen.tiki.navbar-padding {
 }
 
 .tiki #conversejs, .tiki #conversejs.converse-embedded {
-	& ~ .modal-backdrop.fade.show {
+	& ~ .modal-backdrop {
 		display: none;
 	}
 }
