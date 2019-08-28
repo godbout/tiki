@@ -3800,7 +3800,7 @@ body.fullscreen.tiki.navbar-padding {
   margin: 0;
   padding: 0; }
 
-.tiki #conversejs ~ .modal-backdrop.fade.show, .tiki #conversejs.converse-embedded ~ .modal-backdrop.fade.show {
+.tiki #conversejs ~ .modal-backdrop, .tiki #conversejs.converse-embedded ~ .modal-backdrop {
   display: none; }
 
 .bg-danger h4.card-title {
