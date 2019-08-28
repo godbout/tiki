@@ -77,4 +77,14 @@
         color: #fff !important;
         text-decoration: none;
     }
+
+    input[type=button] {
+        @extend .btn;
+        @extend .btn-secondary;
+    }
+
+    input[type=submit] {
+    	@extend .btn;
+    	@extend .btn-primary;
+    }
 }

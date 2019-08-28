@@ -536,7 +536,13 @@ body {
 
 .mobile .folder_cell {
 	width: 100%;
-	max-width: 100%;
+  max-width: 100%;
+  margin-bottom: 40px;
+}
+
+.mobile .content_cell {
+  padding-top: 0;
+  border: none;
 }
 
 .mobile .src_name {
@@ -548,36 +554,56 @@ body {
 	background: #fff;
 }
 
-.mobile .user_settings table td {
+.mobile .user_settings table td,
+.mobile .edit_profile table th,
+.mobile .edit_profile table td {
 	display: block;
 	padding: 10px 15px;
 	height: auto;
 	width: 100%;
 }
 
-.mobile .user_settings table td:not(.settings_subtitle) {
+.mobile .user_settings table td:not(.settings_subtitle),
+.mobile .edit_profile table th,
+.mobile .edit_profile table td {
 	box-sizing: border-box;
 }
 
-.mobile .user_settings table td:not(.settings_subtitle):nth-child(1) {
-	max-width: 33%;
-	flex: 0 0 33.33%;
+.mobile .user_settings table td:not(.settings_subtitle):nth-child(1),
+.mobile .edit_profile table th {
+	max-width: 40%;
+	flex: 0 0 40%;
 }
 
-.mobile .user_settings table td:nth-child(2) {
-	max-width: 66%;
-	flex: 0 0 66.66%;
+.mobile .user_settings table td:nth-child(2),
+.mobile .edit_profile table td {
+	max-width: 60%;
+	flex: 0 0 60%;
 }
 
-.mobile .user_settings table tr {
+.mobile .user_settings table tr,
+.mobile .edit_profile table tr {
 	display: flex !important;
 	flex-wrap: wrap;
 }
 
-.mobile .user_settings input:not([type=checkbox]),
-.mobile .user_settings select {
+.mobile .user_settings input[type=text],
+.mobile .user_settings select,
+.mobile .edit_profile input[type=text],
+.mobile .edit_profile input[type=email],
+.mobile .edit_profile select,
+.mobile .edit_profile textarea {
 	width: 100%;
 	text-align: left;
+}
+
+.mobile .edit_profile table {
+  width: 100%;
+}
+
+.mobile .settings_subtitle,
+.mobile .server_section {
+  padding-left: 0 !important;
 }
 
 .mobile .nux_step_one,
@@ -591,5 +617,25 @@ body {
 }
 
 .mobile .server_count {
-	margin-right: 20px;
+	margin-right: 0px;
+}
+
+.mobile .list_settings_link,
+.mobile .refresh_list {
+  width: 20px;
+  height: 20px;
+}
+
+.mobile .sys_messages {
+  padding-bottom: 15px;
+  white-space: normal;
+}
+
+.mobile #imap_server_folder {
+  width: 100%;
+}
+
+.mobile .folder_dialog {
+  margin-left: 30px;
+  width: 85%;
 }
