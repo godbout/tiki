@@ -39,6 +39,14 @@ if (isset($_REQUEST['tiki-check-ping'])) {
 	die('pong:' . (int)$_REQUEST['tiki-check-ping']);
 }
 
+
+function checkOPCacheCompatibility()
+{
+	return ! ((version_compare(PHP_VERSION, '7.1.0', '>=') && version_compare(PHP_VERSION, '7.2.0', '<')) //7.1.x
+		|| (version_compare(PHP_VERSION, '7.2.0', '>=') && version_compare(PHP_VERSION, '7.2.19', '<')) // >= 7.2.0 < 7.2.19
+		|| (version_compare(PHP_VERSION, '7.3.0', '>=') && version_compare(PHP_VERSION, '7.3.6', '<'))); // >= 7.3.0 < 7.3.6
+}
+
 if (file_exists('./db/local.php') && file_exists('./templates/tiki-check.tpl')) {
 	$standalone = false;
 	require_once('tiki-setup.php');
@@ -61,6 +69,12 @@ if (file_exists('./db/local.php') && file_exists('./templates/tiki-check.tpl')) 
 	{
 		return $string;
 	}
+
+	function tr($string)
+	{
+		return tra($string);
+	}
+
 
 	/**
 	  * @param $var
@@ -539,11 +553,18 @@ if (function_exists('apc_sma_info') && ini_get('apc.enabled')) {
 		'setting' => 'xCache',
 		'message' => tra('xCache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.')
 	);
-} elseif (function_exists('opcache_get_configuration') && ( ini_get('opcache.enable') == 1 || ini_get('opcache.enable') == '1')) {
+} elseif (function_exists('opcache_get_configuration') && (ini_get('opcache.enable') == 1 || ini_get('opcache.enable') == '1')) {
+	$message = tra('OPcache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.');
+	$fitness = tra('good');
+	if (! checkOPCacheCompatibility()) {
+		$message = tra('Some PHP versions may exhibit randomly issues with the OpCache leading to the server starting to fail to serve all PHP requests, your PHP version seems to
+		 be affected, despite the performance penalty, we would recommend disabling the OpCache if you experience random crashes.');
+		$fitness = tra('unsure');
+	}
 	$php_properties['ByteCode Cache'] = array(
-		'fitness' => tra('good'),
+		'fitness' => $fitness,
 		'setting' => 'OPcache',
-		'message' => tra('OPcache is being used as the ByteCode Cache, which increases performance if correctly configured. See Admin->Performance in the Tiki for more details.')
+		'message' => $message
 	);
 } elseif (function_exists('wincache_fcache_fileinfo')) {
 	// Determine if version 1 or 2 is used. Version 2 does not support ocache
@@ -682,6 +703,27 @@ if ($php_properties['session.save_handler']['setting'] == 'files') {
 		);
 	}
 }
+
+$s = ini_get('session.gc_probability');
+$php_properties['session.gc_probability'] = array(
+	'fitness' => tra('info'),
+	'setting' => $s,
+	'message' => tra('In conjunction with gc_divisor is used to manage probability that the gc (garbage collection) routine is started.')
+);
+
+$s = ini_get('session.gc_divisor');
+$php_properties['session.gc_divisor'] = array(
+	'fitness' => tra('info'),
+	'setting' => $s,
+	'message' => tra('Coupled with session.gc_probability defines the probability that the gc (garbage collection) process is started on every session initialization. The probability is calculated by using gc_probability/gc_divisor, e.g. 1/100 means there is a 1% chance that the GC process starts on each request.')
+);
+
+$s = ini_get('session.gc_maxlifetime');
+$php_properties['session.gc_maxlifetime'] = array(
+	'fitness' => tra('info'),
+	'setting' => $s . 's',
+	'message' => tra('Specifies the number of seconds after which data will be seen as \'garbage\' and potentially cleaned up. Garbage collection may occur during session start.')
+);
 
 // test session work
 @session_start();
@@ -1848,23 +1890,23 @@ if (! $standalone) {
 			'name' => 'media-alchemyst/media-alchemyst',
 			'preferences' => array(
 				'alchemy_ffmpeg_path' => array(
-					'name' => tr('ffmpeg path'),
+					'name' => tra('ffmpeg path'),
 					'type' => 'path'
 				),
 				'alchemy_ffprobe_path' => array(
-					'name' => tr('ffprobe path'),
+					'name' => tra('ffprobe path'),
 					'type' => 'path'
 				),
 				'alchemy_unoconv_path' => array(
-					'name' => tr('unoconv path'),
+					'name' => tra('unoconv path'),
 					'type' => 'path'
 				),
 				'alchemy_gs_path' => array(
-					'name' => tr('ghostscript path'),
+					'name' => tra('ghostscript path'),
 					'type' => 'path'
 				),
 				'alchemy_imagine_driver' => array(
-					'name' => tr('Alchemy Image library'),
+					'name' => tra('Alchemy Image library'),
 					'type' => 'classOptions',
 					'options' => array(
 						'imagick' => array(
@@ -1887,7 +1929,7 @@ if (! $standalone) {
 			'name' => 'php-unoconv/php-unoconv',
 			'preferences' => array(
 				'alchemy_unoconv_path' => array(
-					'name' => tr('unoconv path'),
+					'name' => tra('unoconv path'),
 					'type' => 'path'
 				)
 			)
@@ -1902,14 +1944,14 @@ if (! $standalone) {
 			$packageInfo = array(
 				'name' => $installedPackage['name'],
 				'version' => $installedPackage['installed'],
-				'status' => count($warnings) > 0 ? tr('unsure') : tr('good'),
+				'status' => count($warnings) > 0 ? tra('unsure') : tra('good'),
 				'message' => $warnings
 			);
 		} else {
 			$packageInfo = array(
 				'name' => $installedPackage['name'],
 				'version' => $installedPackage['installed'],
-				'status' => tr('good'),
+				'status' => tra('good'),
 				'message' => array()
 			);
 		}
@@ -1932,23 +1974,23 @@ if (! $standalone) {
 	}
 
 	if (! $ocrVersion) {
-		$ocrVersion = tr('Not Installed');
-		$ocrMessage = tr(
+		$ocrVersion = tra('Not Installed');
+		$ocrMessage = tra(
 			'Tesseract PHP package could not be found. Try installing through Packages.'
 		);
-		$ocrStatus = 'unsure';
+		$ocrStatus = 'bad';
 	} elseif (version_compare($ocrVersion, $TesseractVersion, '>=')) {
-		$ocrMessage = tr('Tesseract PHP dependency installed.');
+		$ocrMessage = tra('Tesseract PHP dependency installed.');
 		$ocrStatus = 'good';
 	} else {
-		$ocrMessage = tr(
+		$ocrMessage = tra(
 			'The installed Tesseract version is lower than the required version.'
 		);
-		$ocrStatus = 'unsure';
+		$ocrStatus = 'bad';
 	}
 
 	$ocrToDisplay = [[
-						 'name'    => tr('Tesseract package'),
+						 'name'    => tra('Tesseract package'),
 						 'version' => $ocrVersion,
 						 'status'  => $ocrStatus,
 						 'message' => $ocrMessage,
@@ -1961,18 +2003,18 @@ if (! $standalone) {
 	$ocr = Tikilib::lib('ocr');
 	$langCount = count($ocr->getTesseractLangs());
 
-	if ($langCount >= 63) {
-		$ocrMessage = tr('All languages installed');
+	if ($langCount >= 5) {
+		$ocrMessage = $langCount . ' ' . tra('languages installed.');
 		$ocrStatus = 'good';
 	} else {
-		$ocrMessage = tr(
-			'Not all languages installed. You may need to install additional languages for multilingual support'
+		$ocrMessage = tra(
+			'Not all languages installed. You may need to install additional languages for multilingual support.'
 		);
 		$ocrStatus = 'unsure';
 	}
 
 	$ocrToDisplay[] = [
-		'name'    => tr('Tesseract languages'),
+		'name'    => tra('Tesseract languages'),
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
 	];
@@ -1984,32 +2026,120 @@ if (! $standalone) {
 	}
 
 	if (! $ocrVersion) {
-		$ocrVersion = tr('Not Found');
-		$ocrMessage = tr(
-			'Tesseract could not be found. Try installing or configuring $PATH'
+		$ocrVersion = tra('Not Found');
+		$ocrMessage = tra(
+			'Tesseract could not be found.'
 		);
-		$ocrStatus = 'unsure';
+		$ocrStatus = 'bad';
 	} elseif ($ocr->checkTesseractVersion()) {
-		$ocrMessage = tr(
+		$ocrMessage = tra(
 			'Tesseract meets or exceeds the version requirements.'
 		);
 		$ocrStatus = 'good';
 	} else {
-		$ocrMessage = tr(
+		$ocrMessage = tra(
 			'The installed Tesseract version is lower than the required version.'
 		);
-		$ocrStatus = 'unsure';
+		$ocrStatus = 'bad';
 	}
 
 	$ocrToDisplay[] = [
-		'name'    => tr('Tesseract binary'),
+		'name'    => tra('Tesseract binary'),
 		'version' => $ocrVersion,
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
 	];
+	try {
+		if (empty($prefs['ocr_tesseract_path'])	|| $prefs['ocr_tesseract_path'] === 'tesseract') {
+			$ocrStatus = 'bad';
+			$ocrMessage = tra(
+				'Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.'
+			);
+		} elseif ($prefs['ocr_tesseract_path'] === $ocr->whereIsExecutable('tesseract')) {
+			$ocrStatus = 'good';
+			$ocrMessage = tra('Path setup correctly.');
+		} else {
+			$ocrStatus = 'unsure';
+			$ocrMessage = tra(
+				'Your path may not be configured correctly. It appears to be located at '
+			) . $ocr->whereIsExecutable(
+				'tesseract' . '.'
+			);
+		}
+	} catch (Exception $e) {
+		if (empty($prefs['ocr_tesseract_path'])
+			|| $prefs['ocr_tesseract_path'] === 'tesseract'
+		) {
+			$ocrStatus = 'bad';
+			$ocrMessage = tra(
+				'Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.'
+			);
+		} else {
+			$ocrStatus = 'unsure';
+			$ocrMessage = tra(
+				'Your path is configured, but we were unable to tell if it was configured properly or not.'
+			);
+		}
+	}
+
+	$ocrToDisplay[] = [
+		'name'    => tra('Tesseract path'),
+		'status'  => $ocrStatus,
+		'message' => $ocrMessage,
+	];
+
+
+	try {
+		if (empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages') {
+			$ocrStatus = 'bad';
+			$ocrMessage = tra('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
+		} elseif ($prefs['ocr_pdfimages_path'] === $ocr->whereIsExecutable('pdfimages')) {
+			$ocrStatus = 'good';
+			$ocrMessage = tra('Path setup correctly');
+		} else {
+			$ocrStatus = 'unsure';
+			$ocrMessage = tra('Your path may not be configured correctly. It appears to be located at ') .
+				$ocr->whereIsExecutable('pdfimages' . ' ');
+		}
+	} catch (Exception $e) {
+		if (empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages') {
+			$ocrStatus = 'bad';
+			$ocrMessage = tra('Your path preference is not configured. It may work now but will likely fail with cron. Specify an absolute path.');
+		} else {
+			$ocrStatus = 'unsure';
+			$ocrMessage = tra(
+				'Your path is configured, but we were unable to tell if it was configured properly or not.'
+			);
+		}
+	}
+
+	$ocrToDisplay[] = [
+		'name'    => tra('Pdfimages path'),
+		'status'  => $ocrStatus,
+		'message' => $ocrMessage,
+	];
+
+	// check if scheduler is set up properly.
+
+	$query = 'SELECT 1 FROM tiki_scheduler WHERE `status`="active" and params like "%ocr:all%"';
+	$result = $tikilib->fetchAll($query);
+
+	if ( !empty($result[0][1])) {
+		$ocrToDisplay[] = [
+			'name'    => tra('Scheduler'),
+			'status'  => 'good',
+			'message' => tra('Scheduler has been successfully setup.'),
+		];
+	} else {
+		$ocrToDisplay[] = [
+			'name'    => tra('Scheduler'),
+			'status'  => 'bad',
+			'message' => tra('Scheduler needs to have a console command of "ocr:all" set.'),
+		];
+	}
+
 	$smarty->assign('ocr', $ocrToDisplay);
 }
-
 // Security Checks
 // get all dangerous php settings and check them
 $security = false;
@@ -2021,7 +2151,7 @@ if ($s != "" && strpos($sn, $s) !== false) {
 	$security['upload_tmp_dir'] = array(
 		'fitness' => tra('unsafe') ,
 		'setting' => $s,
-		'message' => tra('upload_tmp_dir is probably inside the Tiki directory. There is a risk that someone can upload any file to this directory and access it via web browser')
+		'message' => tra('upload_tmp_dir is probably inside the Tiki directory. There is a risk that someone can upload any file to this directory and access it via web browser.')
 	);
 } else {
 	$security['upload_tmp_dir'] = array(
@@ -2790,22 +2920,22 @@ function checkPreferences(array $preferences)
 	foreach ($preferences as $prefKey => $pref) {
 		if ($pref['type'] == 'path') {
 			if (isset($prefs[$prefKey]) && ! file_exists($prefs[$prefKey])) {
-				$warnings[] = tr("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $pref['name']);
+				$warnings[] = tra("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $pref['name']);
 			}
 		} elseif($pref['type'] == 'classOptions') {
 			if (isset($prefs[$prefKey])) {
 				$options = $pref['options'][$prefs[$prefKey]];
 
 				if (! empty($options['classLib']) && ! class_exists($options['classLib'])) {
-					$warnings[] = tr("The lib '%0' on preference '%1', option '%2' does not exist", $options['classLib'], $pref['name'], $options['name']);
+					$warnings[] = tra("The lib '%0' on preference '%1', option '%2' does not exist", $options['classLib'], $pref['name'], $options['name']);
 				}
 
 				if (! empty($options['className']) && ! class_exists($options['className'])) {
-					$warnings[] = tr("The class '%0' needed for preference '%1', with option '%2' selected, does not exist", $options['className'], $pref['name'], $options['name']);
+					$warnings[] = tra("The class '%0' needed for preference '%1', with option '%2' selected, does not exist", $options['className'], $pref['name'], $options['name']);
 				}
 
 				if (! empty($options['extension']) && ! extension_loaded($options['extension'])) {
-					$warnings[] = tr("The extension '%0' on preference '%1', with option '%2' selected, is not loaded", $options['extension'], $pref['name'], $options['name']);
+					$warnings[] = tra("The extension '%0' on preference '%1', with option '%2' selected, is not loaded", $options['extension'], $pref['name'], $options['name']);
 				}
 			}
 		}
