@@ -46,7 +46,6 @@
     }
 
     .src_name, .content_title, .list_controls {
-//        font-family: $headings-font-family;
         background: $popover-header-bg;
         color: $popover-header-color;
     }
@@ -76,5 +75,24 @@
     .btn-outline-secondary:hover {
         color: #fff !important;
         text-decoration: none;
+    }
+
+    input[type=button] {
+        @extend .btn;
+        @extend .btn-secondary;
+    }
+
+    input[type=submit] {
+    	@extend .btn;
+    	@extend .btn-primary;
+    }
+}
+
+.mobile {
+    .content_cell .content_title {
+        &, .list_controls {
+            background: $popover-header-bg;
+            color: $popover-header-color;
+        }
     }
 }
