@@ -72,6 +72,11 @@
         font-weight: bold;
     }
 
+    .news_cell .source,
+    .news_cell .from {
+        color: $popover-body-color;
+    }
+
     .btn-outline-secondary:hover {
         color: #fff !important;
         text-decoration: none;

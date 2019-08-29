@@ -7456,6 +7456,8 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .profile_details th, .inline-cypht .msg_date {
     color: #343a40;
     font-weight: bold; }
+  .inline-cypht .news_cell .source, .inline-cypht .news_cell .from {
+    color: #343a40; }
   .inline-cypht .btn-outline-secondary:hover {
     color: #fff !important;
     text-decoration: none; }

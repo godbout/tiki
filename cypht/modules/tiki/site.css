@@ -26,9 +26,20 @@ body {
 	margin: 0;
 }
 
+.mobile .content_title {
+	display: flex;
+	align-items: center;
+	padding: 0 10px 0 50px;
+	min-height: 60px;
+}
+
 .mobile .content_title .list_controls {
 	border: none;
 	background: #fff;
+}
+
+.mobile .toggle_link {
+	width: auto !important;
 }
 
 .mobile .user_settings table td,
@@ -106,6 +117,7 @@ body {
 .mobile .sys_messages {
 	padding-bottom: 15px;
 	white-space: normal;
+	min-height: 5px;
 }
 
 .mobile #imap_server_folder {
@@ -125,4 +137,34 @@ body {
 
 .mobile .compose_form {
 	padding: 0 !important;
+}
+
+.mobile .msg_text {
+	max-width: 100% !important;
+	word-break: break-word;
+}
+
+.mobile .msg_parts {
+	table-layout: auto;
+}
+
+.mobile .news_cell {
+	padding-bottom: 15px !important;
+}
+
+.mobile .news_cell .subject,
+.mobile .news_cell .subject div {
+	padding-bottom: 0px !important;
+}
+
+.mobile .news_cell .msg_date {
+	padding-top: 0;
+}
+
+.mobile .checkbox_cell {
+	padding-left: 8px !important;
+}
+
+.mobile .header_links {
+	padding-bottom: 8px;
 }
