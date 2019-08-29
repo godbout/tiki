@@ -164,6 +164,58 @@ function wikiplugin_trackercalendar_info()
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
+			'lyear' => [
+				'required' => false,
+				'name' => tra('List by Years'),
+				'description' => tra('Display the option to change the view to list by years'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
+			'lmonth' => [
+				'required' => false,
+				'name' => tra('List by Months'),
+				'description' => tra('Display the option to change the view to list by months'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
+			'lweek' => [
+				'required' => false,
+				'name' => tra('List by Weeks'),
+				'description' => tra('Display the option to change the view to list by weeks'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
+			'lday' => [
+				'required' => false,
+				'name' => tra('List by Days'),
+				'description' => tra('Display the option to change the view to list by days'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
 			'ryear' => [
 				'required' => false,
 				'name' => tra('Resources by Years'),
@@ -228,6 +280,10 @@ function wikiplugin_trackercalendar_info()
 					['text' => tra('Agenda by Months'), 'value' => 'month'],
 					['text' => tra('Agenda by Weeks'), 'value' => 'agendaWeek'],
 					['text' => tra('Agenda by Days'), 'value' => 'agendaDay'],
+					['text' => tra('List'), 'value' => 'list'],
+					['text' => tra('List by Months'), 'value' => 'listMonth'],
+					['text' => tra('List by Weeks'), 'value' => 'listWeek'],
+					['text' => tra('List by Days'), 'value' => 'listDay'],
 					['text' => tra('Resources by Years'), 'value' => 'timelineYear'],
 					['text' => tra('Resources by Months'), 'value' => 'timelineMonth'],
 					['text' => tra('Resources by Weeks'), 'value' => 'timelineWeek'],
@@ -370,6 +426,30 @@ function wikiplugin_trackercalendar($data, $params)
 	} else {
 		$aday = 'y';
 		$views[] = 'agendaDay';
+	}
+	if (! empty($params['lyear']) and $params['lyear'] != 'y') {
+		$lyear = 'n';
+	} else {
+		$lyear = 'y';
+		$views[] = 'listYear';
+	}
+	if (! empty($params['lmonth']) and $params['lmonth'] != 'y') {
+		$lmonth = 'n';
+	} else {
+		$lmonth = 'y';
+		$views[] = 'listMonth';
+	}
+	if (! empty($params['lweek']) and $params['lweek'] != 'y') {
+		$lweek = 'n';
+	} else {
+		$lweek = 'y';
+		$views[] = 'listWeek';
+	}
+	if (! empty($params['lday']) and $params['lday'] != 'y') {
+		$lday = 'n';
+	} else {
+		$lday = 'y';
+		$views[] = 'listDay';
 	}
 
 	$resources = [];

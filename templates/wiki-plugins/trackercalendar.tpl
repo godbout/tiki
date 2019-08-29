@@ -57,10 +57,15 @@
 				timelineMonth: "{tr}resource month{/tr}",
 				timelineYear: "{tr}resource year{/tr}",
 				timelineWeek: "{tr}resource week{/tr}",
+				listDay: "{tr}list day{/tr}",
+				listMonth: "{tr}list month{/tr}",
+				listYear: "{tr}list year{/tr}",
+				listWeek: "{tr}list week{/tr}",
+				list: "{tr}list{/tr}",
 				today: "{tr}today{/tr}",
-				month: "{tr}month{/tr}",
-				week: "{tr}week{/tr}",
-				day: "{tr}day{/tr}"
+				agendaMonth: "{tr}agenda month{/tr}",
+				agendaWeek: "{tr}agenda week{/tr}",
+				agendaDay: "{tr}agenda day{/tr}"
 			},
 			allDayText: "{tr}all-day{/tr}",
 			firstDay: data.firstDayofWeek,
