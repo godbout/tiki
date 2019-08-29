@@ -369,6 +369,19 @@ function wikiplugin_trackercalendar_info()
 				'filter' => 'text',
 				'default' => "00:{$prefs['calendar_timespan']}:00",
 			],
+			'eventOverlap' => [
+				'required' => false,
+				'name' => tra('Overlapping allowed'),
+				'description' => tra('Allow resources to overlap in time.'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
 		],
 	];
 }
@@ -522,6 +535,11 @@ function wikiplugin_trackercalendar($data, $params)
 	} else {
 		$slotDuration = "00:{$prefs['calendar_timespan']}:00";
 	}
+	if (! empty($params['eventOverlap']) and $params['eventOverlap'] != 'y') {
+		$eventOverlap = false;
+	} else {
+		$eventOverlap = true;
+	}
 
 	// Format the default date as Y-m-d instead of Y-n-d, required by MomentJs
 	$dDate = (new DateTime($dYear . '-' . $dMonth . '-' . $dDay))->format('Y-m-d');
@@ -571,6 +589,7 @@ function wikiplugin_trackercalendar($data, $params)
 			'addTitle' => tr('Insert'),
 			'canInsert' => $itemObject->canModify(),
 			'dView' => $dView,
+			'eventOverlap' => $eventOverlap,
 			'body' => $data,
 			'filterValues' => $_REQUEST,
 			'url' => $params['external'] === 'y' ? $params['url'] : '',

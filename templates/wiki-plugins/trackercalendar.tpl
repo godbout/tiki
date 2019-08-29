@@ -73,6 +73,7 @@
 			slotDuration: data.slotDuration,
 			defaultView: data.dView,
 			defaultDate: data.dDate,
+			eventOverlap: data.eventOverlap,
 			eventAfterRender : function( event, element, view ) {
 				element.popover({trigger: 'hover focus', title: event.title, content: event.description, html: true, container: 'body', placement:'bottom', boundary: 'viewPort'});
 			},
