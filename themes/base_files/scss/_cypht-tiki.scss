@@ -46,7 +46,6 @@
     }
 
     .src_name, .content_title, .list_controls {
-//        font-family: $headings-font-family;
         background: $popover-header-bg;
         color: $popover-header-color;
     }
@@ -86,5 +85,14 @@
     input[type=submit] {
     	@extend .btn;
     	@extend .btn-primary;
+    }
+}
+
+.mobile {
+    .content_cell .content_title {
+        &, .list_controls {
+            background: $popover-header-bg;
+            color: $popover-header-color;
+        }
     }
 }

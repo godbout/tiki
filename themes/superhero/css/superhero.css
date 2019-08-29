@@ -7430,8 +7430,12 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .btn-outline-secondary:hover {
     color: #fff !important;
     text-decoration: none; }
-  .chosen-select, .chosen-select-deselect {
-    width: 100%; }
+  .mobile .content_cell .content_title, .mobile .content_cell .content_title .list_controls {
+    background: rgba(255, 255, 255, 0.075);
+    color: inherit; }
+
+.chosen-select, .chosen-select-deselect {
+  width: 100%; }
 
 .chosen-container {
   display: inline-block;
