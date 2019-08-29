@@ -36,6 +36,7 @@
             {preference name=wikiplugin_list}
 			{preference name=wikiplugin_listexecute}
 			{preference name=wikiplugin_map}
+            {preference name=wikiplugin_trackercalendar}
             {preference name=wikiplugin_trackerfilter}
 		</fieldset>
 		<fieldset class="table clearfix featurelist">
