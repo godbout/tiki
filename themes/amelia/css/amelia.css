@@ -6885,7 +6885,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     min-height: 5.5em; } }
 
 blockquote {
-  color: #7a7a7a;
+  color: #e5e5e5;
   border-left: 0.25rem solid #e5e5e5; }
 
 body.fullscreen {
@@ -7369,6 +7369,8 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .profile_details th, .inline-cypht .msg_date {
     color: #fff;
     font-weight: bold; }
+  .inline-cypht .news_cell .source, .inline-cypht .news_cell .from {
+    color: #fff; }
   .inline-cypht .btn-outline-secondary:hover {
     color: #fff !important;
     text-decoration: none; }

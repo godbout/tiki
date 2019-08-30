@@ -536,22 +536,33 @@ body {
 
 .mobile .folder_cell {
 	width: 100%;
-  max-width: 100%;
-  margin-bottom: 40px;
+	max-width: 100%;
+	margin-bottom: 40px;
 }
 
 .mobile .content_cell {
-  padding-top: 1px;
-  border: none;
+	padding-top: 1px;
+	border: none;
 }
 
 .mobile .src_name {
 	margin: 0;
 }
 
+.mobile .content_title {
+  display: flex;
+  align-items: center;
+  padding: 0 10px 0 50px;
+  min-height: 60px;
+}
+
 .mobile .content_title .list_controls {
 	border: none;
 	background: #fff;
+}
+
+.mobile .toggle_link {
+  width: auto !important;
 }
 
 .mobile .user_settings table td,
@@ -598,12 +609,12 @@ body {
 }
 
 .mobile .edit_profile table {
-  width: 100%;
+	width: 100%;
 }
 
 .mobile .settings_subtitle,
 .mobile .server_section {
-  padding-left: 10px !important;
+	padding-left: 10px !important;
 }
 
 .mobile .nux_step_one,
@@ -622,30 +633,61 @@ body {
 
 .mobile .list_settings_link,
 .mobile .refresh_list {
-  width: 20px;
-  height: 20px;
+	width: 20px;
+	height: 20px;
 }
 
 .mobile .sys_messages {
-  padding-bottom: 15px;
+	padding-bottom: 15px;
   white-space: normal;
+  min-height: 5px;
 }
 
 .mobile #imap_server_folder {
-  width: 100%;
+	width: 100%;
 }
 
 .mobile .folder_dialog {
-  margin-left: 30px;
-  width: 85%;
+	margin-left: 30px;
+	width: 85%;
 }
 
 .mobile .compose_page {
-  padding: 10px;
-  overflow: hidden;
-  box-sizing: border-box;
+	padding: 10px;
+	overflow: hidden;
+	box-sizing: border-box;
 }
 
 .mobile .compose_form {
-  padding: 0 !important;
+	padding: 0 !important;
+}
+
+.mobile .msg_text {
+  max-width:100% !important;
+  word-break: break-word;
+}
+
+.mobile .msg_parts {
+  table-layout: auto;
+}
+
+.mobile .news_cell {
+  padding-bottom: 15px !important;
+}
+
+.mobile .news_cell .subject,
+.mobile .news_cell .subject div {
+  padding-bottom: 0px !important;
+}
+
+.mobile .news_cell .msg_date {
+  padding-top: 0;
+}
+
+.mobile .checkbox_cell {
+  padding-left: 8px !important;
+}
+
+.mobile .header_links {
+  padding-bottom: 8px;
 }
