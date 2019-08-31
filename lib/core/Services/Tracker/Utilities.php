@@ -367,10 +367,11 @@ class Services_Tracker_Utilities
 
 	function importField($trackerId, $field, $preserve)
 	{
-		$fieldId = $field->fieldId->int();
 
 		if (! $preserve) {
 			$fieldId = 0;
+		} else {
+			$fieldId = $field->fieldId->int();
 		}
 
 		$description = $field->descriptionStaticText->text();

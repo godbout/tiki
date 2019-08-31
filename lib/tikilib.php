@@ -5949,15 +5949,22 @@ class TikiLib extends TikiDb_Bridge
 	 * @param $text
 	 * @return string
 	 */
-	function read_raw($text)
+	function read_raw($text, $preserve=false)
 	{
 		$file = explode("\n", $text);
 		$back = [];
+		// When the fieldID is not preserved, ensure uniqueness of the $var key even if the fieldID is duplicated in the input
+		$i = 0;
 		foreach ($file as $line) {
 			$r = $s = '';
 			if (substr($line, 0, 1) != "#") {
 				if (preg_match("/^\[([A-Z0-9]+)\]/", $line, $r)) {
-					$var = strtolower($r[1]);
+					if ($preserve) {
+						$var = strtolower($r[1]);
+					} else {
+						$i++;
+						$var = 'id' . $i . strtolower($r[1]);
+					}
 				}
 				if (isset($var) and (preg_match("/^([-_\/ a-zA-Z0-9]+)[ \t]+[:=][ \t]+(.*)/", $line, $s))) {
 					$back[$var][trim($s[1])] = trim($s[2]);

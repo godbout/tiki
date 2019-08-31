@@ -566,7 +566,7 @@ class Services_Tracker_Controller
 		$raw = $input->raw->none();
 		$preserve = $input->preserve_ids->int();
 
-		$data = TikiLib::lib('tiki')->read_raw($raw);
+		$data = TikiLib::lib('tiki')->read_raw($raw, $preserve);
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if (! $data) {
