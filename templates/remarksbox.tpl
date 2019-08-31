@@ -8,7 +8,7 @@
 	<h4>
 		{icon name="$remarksbox_icon"}
 		&nbsp;
-		<span class="rboxtitle">{$remarksbox_title|escape}</span>
+		<span class="rboxtitle">{tr}{$remarksbox_title|escape}{/tr}</span>
 	</h4>
 	<div class="rboxcontent" style="display: inline">{$remarksbox_content}</div>
 </div>

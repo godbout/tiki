@@ -93,23 +93,27 @@
 				{/if}
 			</div>
 		{/if}
-		<div class="card">
+		<div class="card mb-4">
 			<div class="card-header radio">
-				<label for="do_email" class="col-form-label col-sm-3 float-left">
-					{icon name="admin_webmail"} {tr}Send email{/tr}
-				</label>
-				{if $report !='y'}
-					<label>
-						<input class="share-email-show" type="radio" name="do_email" value="1" checked="checked" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('emailtable')" {/if} class="share-email-toggle">
-						{tr}Yes{/tr}
+				<div class="form-group row mb-0">
+					<label for="do_email" class="col-form-label col-sm-3 float-left">
+						{icon name="admin_webmail"} {tr}Send email{/tr}
 					</label>
-					<label>
-						<input class="share-email-hide" type="radio" name="do_email" value="0" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('emailtable')" {/if}>
-						{tr}No{/tr}
-					</label>
-				{else}
-					<input type="hidden" name="do_email" value="1">
-				{/if}
+					{if $report !='y'}
+						<div class="col-sm-9">
+							<label class="col-form-label">
+								<input class="share-email-show" type="radio" name="do_email" value="1" checked="checked" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('emailtable')" {/if} class="share-email-toggle">
+								{tr}Yes{/tr}
+							</label>
+							<label class="col-form-label">
+								<input class="share-email-hide" type="radio" name="do_email" value="0" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('emailtable')" {/if}>
+								{tr}No{/tr}
+							</label>
+						</div>
+					{else}
+						<input type="hidden" name="do_email" value="1">
+					{/if}
+				</div>
 			</div>
 			<div class="card-body share-email-details">
 				{if $report!='y'}
@@ -191,7 +195,7 @@
 			</div>
 		</div>
 		{if $twitterRegistered}
-			<div class="card">
+			<div class="card mb-4">
 				<tr>
 					<td rowspan="2">
 						{icon name='twitter' size='2'}
@@ -230,7 +234,7 @@
 			</div>
 		{/if}
 		{if $facebookRegistered}
-			<div class="card">
+			<div class="card mb-4">
 				<tr>
 					<td rowspan="2">
 						{icon name='facebook' size='2' alt="Facebook"}
@@ -285,7 +289,7 @@
 			</div>
 		{/if}
 		{if $prefs.feature_messages eq 'y' && $report != 'y'}
-			<div class="card">
+			<div class="card mb-4">
 				<div class="card-header radio">
 					{if $send_msg=='y'}
 						<label for="do_message" class="col-form-label col-sm-3">
@@ -343,20 +347,24 @@
 			</div>
 		{/if}
 		{if $prefs.feature_forums eq 'y' && $report != 'y'}
-			<div class="card">
+			<div class="card mb-4">
 				<div class="card-header radio">
 					{if count($forums)>0}
-						<label for="do_forum" class="col-form-label col-sm-3">
-							{icon name="admin_forums"} {tr}Post on forum{/tr}
-						</label>
-						<label>
-							<input class="share-forum-show" type="radio" name="do_forum" value="1" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('forumtable')" {/if}>
-							{tr}Yes{/tr}
-						</label>
-						<label>
-							<input class="share-forum-hide" type="radio" name="do_forum" value="0" checked="checked" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('forumtable')" {/if}>
-							{tr}No{/tr}
-						</label>
+						<div class="form-group row mb-0">
+							<label for="do_forum" class="col-form-label col-sm-3">
+								{icon name="admin_forums"} {tr}Post on forum{/tr}
+							</label>
+							<div class="col-sm-9">
+								<label class="col-form-label">
+									<input class="share-forum-show" type="radio" name="do_forum" value="1" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('forumtable')" {/if}>
+									{tr}Yes{/tr}
+								</label>
+								<label class="col-form-label">
+									<input class="share-forum-hide" type="radio" name="do_forum" value="0" checked="checked" {if $prefs.disableJavascript!='y'}onclick="toggleBlock('forumtable')" {/if}>
+									{tr}No{/tr}
+								</label>
+							</div>
+						</div>
 					{else}
 						{remarksbox type="note" title="{tr}Post on forum{/tr}" close="n"}
 							{tr}There is no forum where you can post a message.{/tr}

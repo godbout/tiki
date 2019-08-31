@@ -19,11 +19,13 @@
 <div class="form-group row">
 	<div id="files" class="files text-center col-md-12"></div>
 </div>
+<div class="col-sm-12">
 <div class="form-check">
 	<label for="autoupload" class="form-check-label">{* auto-upload user pref *}
 		<input class="form-check-input" type="checkbox" id="autoupload" name="autoupload"{if $prefs.filegals_autoupload eq 'y'} checked="checked"{/if}>
 		{tr}Automatic upload{/tr}
 	</label>{* The container for the uploaded files *}
+</div>
 </div>
 <div class="d-none">
 	{icon name='file' id='file_icon'}

@@ -39,9 +39,9 @@
 
 	<div class="input">
 		<p class="regular">Links</p>
-		<p class="picker" data-selector=".customizer p > a" data-element="color">
+		<p class="picker" data-selector="a" data-element="color">
 			<span class="input-group-addon"><i></i></span>
-			<input id="tc-link-color" data-selector=".customizer p > a" data-element="color" data-var="@link-color" type="text">
+			<input id="tc-link-color" data-selector="a" data-element="color" data-var="@link-color" type="text">
 		</p>
 	</div>
 

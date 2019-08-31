@@ -17,10 +17,7 @@
 				{/section}
 			</select>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label class="col-sm-4 col-form-label"></label>
-		<div class="col-sm-7">
+		<div class="col-sm-7 offset-sm-4 mt-2">
 			<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Go{/tr}">
 		</div>
 	</div>
@@ -78,15 +75,14 @@
 			</div>
 		</div>
 	{/if}
-	<div class="form-group row">
+	<div class="form-group row mb-2">
 		<label class="col-sm-4 col-form-label">{tr}Is valid{/tr}	</label>
 		<div class="col-sm-7">
 			<input name="isValid" type="checkbox" {if $info.isValid eq 'y'}checked="checked"{/if}>
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-4 col-form-label"></label>
-		<div class="col-sm-7">
+		<div class="col-sm-7 offset-sm-4">
 			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 		</div>
 	</div>

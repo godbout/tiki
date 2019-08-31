@@ -23,19 +23,19 @@
 
         <div class="col-sm-4 col-md-3">
             <div class="input">
-                <p class="picker" data-selector=".customizer .icons .sample span" data-element="background-color">
+                <p class="picker" data-selector=".icons .sample span" data-element="background-color">
                     <label for="tc-icon-bg-color">Background:</label>
-                    <input id="tc-icon-bg-color" data-selector=".customizer .icons .sample span" data-element="background-color" type="text">
+                    <input id="tc-icon-bg-color" data-selector=".icons .sample span" data-element="background-color" type="text">
     				<span class="input-group-addon"><i></i></span>
                 </p>
-                <p class="picker" data-selector=".customizer .icons .sample span" data-element="color">
+                <p class="picker" data-selector=".icons .sample span" data-element="color">
                     <label for="tc-icon-color">Foreground:</label>
-                    <input id="tc-icon-color" data-selector=".customizer .icons .sample span" data-element="color" type="text">
+                    <input id="tc-icon-color" data-selector=".icons .sample span" data-element="color" type="text">
                     <span class="input-group-addon"><i></i></span>
                 </p>
                 <p>
                     <label for="tc-icon-size">Font size:</label>
-                    <input id="tc-icon-size" class="nocolor" data-selector=".customizer .icons .sample span" data-element="font-size" type="text">
+                    <input id="tc-icon-size" class="nocolor" data-selector=".icons .sample span" data-element="font-size" type="text">
                 </p>
             </div>
         </div>

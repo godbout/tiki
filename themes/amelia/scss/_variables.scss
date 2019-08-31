@@ -121,5 +121,5 @@ $body-bg: #108a93; // These work here, but not in amelia/bootstrap-variables, fo
 $body-color: #ffffff; // "
 body.fullscreen { background-color: $body-bg; } // Moved here because it needs $body-bg
 
-
-
+$blockquote-color: #e5e5e5;
+$blockquote-left-border-color: #e5e5e5;

@@ -19,19 +19,23 @@
 			<a class="ajax alert-link" href="{service controller=workspace action=advanced_edit id=$id}">{tr}Advanced Mode{/tr}</a>
 		{/remarksbox}
 		<div class="form-group row">
-			<label for="name" class="col-form-label">
-				{tr}Name{/tr}
+			<label for="name" class="col-sm-2 col-form-label">
+					{tr}Name{/tr}
 			</label>
-			<input type="text" name="name" value="{$name|escape}" class="form-control"/>
-			{if $area}
-				<span class="form-text">
-					<label>
-						<input type="checkbox" name="area" value="1" {if $area eq 'y'}checked="checked"{/if} />
-						{tr}Bind area{/tr}
-					</label>
-				</span>
-			{/if}
+			<div class="col-sm-10">
+				<input type="text" name="name" value="{$name|escape}" class="form-control"/>
+			</div>
 		</div>
+		{if $area}
+			<div class="form-group row">
+				<div class="col-sm-12">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" name="area" value="1" {if $area eq 'y'}checked="checked"{/if} />
+						<label class="form-check-label">{tr}Bind area{/tr}</label>
+					</div>
+				</div>
+			</div>
+		{/if}
 
 
 		<h3>{tr}Groups{/tr}</h3>

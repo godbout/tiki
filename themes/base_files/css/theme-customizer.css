@@ -215,6 +215,9 @@ Theme Customizer Main Styles
   margin: 0;
   list-style-type: none !important;
 }
+.customizer .navbars li {
+  padding: 0 !important;
+}
 .customizer .navbars .row {
   overflow: visible;
 }
@@ -458,6 +461,22 @@ Theme Customizer Responsive Design Stuff
     padding-top: 0;
   }
 
+  .tc-footer {
+    font-size: 0.85em;
+  }
+  .tc-footer label {
+    margin-bottom: 0;
+  }
+  .tc-footer .btn {
+    margin: 0 5px 10px 0;
+    padding: 4px 10px;
+  }
+  .tc-footer .icon {
+    display: none;
+  }
+  .tc-footer #generate-css {
+    margin-bottom: 0;
+  }
   .tc-footer .footer-ui > span {
     position: absolute;
     display: table;
@@ -469,24 +488,10 @@ Theme Customizer Responsive Design Stuff
     display: table-cell;
   }
   .tc-footer .dropup {
-    position: absolute;
-    bottom: 0;
-    right: 10px;
+    float: none;
   }
   .tc-footer .dropup > a {
     padding: 10px;
-  }
-  .tc-footer .btn {
-    display: block;
-    width: 170px;
-    margin-bottom: 10px;
-    padding: 4px 10px;
-  }
-  .tc-footer .icon {
-    display: none;
-  }
-  .tc-footer #generate-css {
-    margin-bottom: 0;
   }
 }
 

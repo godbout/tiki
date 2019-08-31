@@ -1,0 +1,103 @@
+.tiki-webmail, .inline-cypht {
+    background: $body-bg;
+	font-family: $font-family-base;
+	color: $body-color;
+
+    a:not(.btn) {
+        color: $link-color !important;
+        &:hover {
+            color: $link-hover-color !important;
+            text-decoration: $link-hover-decoration;
+        }
+    }
+}
+
+.inline-cypht {
+    background: transparent;
+    .folders a, .subject a, .selected_menu a,
+    .unread_link, .selected_menu, .manage_folder_link {
+        &:not(.btn) {
+            color: $link-color !important;
+            &:hover {
+                color: $link-hover-color !important;
+                text-decoration: $link-hover-decoration;
+            }
+        }
+    }
+
+    .selected_menu, .selected_menu a { text-decoration: underline; }
+
+
+
+    .folder_list, .content_cell, .compose_page, .message_list, .msg_text, .selected_part,
+    .server_content, .profile_content, .user_settings,
+    .nux_add_account, .imap_server_setup, .pop3_server_setup {
+        background-color: $popover-bg;
+        color: $popover-body-color;
+    }
+
+    .folder_list, .content_cell { border: 1px solid $input-border-color; }
+    .content_title {
+        .list_meta { color: $popover-header-color !important; }
+        .list_controls {
+            border-top: 1px solid $input-border-color;
+            border-right: 1px solid $input-border-color;
+        }
+    }
+
+    .src_name, .content_title, .list_controls {
+        background: $popover-header-bg;
+        color: $popover-header-color;
+    }
+    .src_name { border-left-color: transparent; }
+
+    .message_table > tbody > tr > td, .msg_headers, .reply_quote,
+    .user_settings table td, .nux_empty_combined_view,
+    .empty_list, .profiles_empty {
+        color: $popover-body-color;
+    }
+    .msg_headers th:hover { color: $popover-body-color !important; }
+    .msg_text_inner > table { background-color: #fff; }
+
+    .settings_subtitle, .server_section {
+        color: $popover-body-color !important;
+        font-weight: bold;
+    }
+    .server_count { font-weight: normal; }
+
+    .total_unread_count, .unread_count { color: #000; }
+
+    .profile_details th, .msg_date {
+        color: $popover-body-color;
+        font-weight: bold;
+    }
+
+    .news_cell .source,
+    .news_cell .from {
+        color: $popover-body-color;
+    }
+
+    .btn-outline-secondary:hover {
+        color: #fff !important;
+        text-decoration: none;
+    }
+
+    input[type=button] {
+        @extend .btn;
+        @extend .btn-secondary;
+    }
+
+    input[type=submit] {
+    	@extend .btn;
+    	@extend .btn-primary;
+    }
+}
+
+.mobile {
+    .content_cell .content_title {
+        &, .list_controls {
+            background: $popover-header-bg;
+            color: $popover-header-color;
+        }
+    }
+}

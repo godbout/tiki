@@ -122,45 +122,55 @@ td.url{
 }
 
 @media only screen and (max-width: breakpoint-max(sm)) {
-	.table-responsive.large-table:not(.ts-wrapperdiv) {
-		.table, tbody { display: block; }
-		tbody {
-			.header { display: block !important; font-weight: bold; }
-			.hidecell { display: none; }
-			tr { border-bottom: 1px solid $border-color; }
-			th {
-//				background-color: inherit;
-//				width: 100%;
-				position: absolute;
-				top: -9999px;
-				left: -9999px;
-			}
-
-			tr:not(:nth-child(1)) {
-				display: block;
-				padding: 0.5rem 0;
-			}
-
-			td {
-				display: block;
-				padding: 0.25rem 0.75rem 0.5rem;
-				border-top: none;
-				text-align: left;
-				position: relative;
-				&:after {
-					display: block;
-					clear: both;
-					content: "";
+	.table-responsive.large-table {
+//		.table, tbody { display: block; }
+		.table:not(.tablesorter) {
+			thead, tbody {
+				th {
+					position: absolute;
+					top: -9999px;
+					left: -9999px;
 				}
-//				&.action:not(:nth-child(1)) { display: none; }
 			}
 
-			.float-right { float: none !important; }
-			.checkbox-cell {
-				.form-check { padding-left: 0; }
-				.form-check-input {
-					position: static;
-					margin-left: 0;
+			thead tr {
+				display: block;
+				padding: 0.5rem 0 0;
+				background-color: $table-accent-bg;
+			}
+
+			tbody {
+				tr { display: block; border-bottom: 1px solid $border-color; }
+				> tr.active { display: none; }
+
+				tr:not(:nth-child(1)) {
+//					display: block;
+					padding: 0.5rem 0;
+				}
+
+				td {
+					display: block;
+					padding: 0.25rem 0.75rem 0.5rem;
+					border-top: none;
+					text-align: left !important;
+					position: relative;
+					&:after {
+						display: block;
+						clear: both;
+						content: "";
+					}
+//					&.action:not(:nth-child(1)) { display: none; }
+				}
+
+				.header { display: block !important; font-weight: bold; }
+				.hidecell { display: none; }
+				.float-right { float: none !important; }
+				.checkbox-cell {
+					.form-check { padding-left: 0; }
+					.form-check-input {
+						position: static;
+						margin-left: 0;
+					}
 				}
 			}
 		}

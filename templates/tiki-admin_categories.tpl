@@ -10,18 +10,19 @@
 	<div class="treetitle">
 		<a href="tiki-admin_categories.php?parentId=0" class="categpath">{tr}Top{/tr}</a>
 		{if $parentId != 0}
-		{foreach $path as $id=>$name}
-			&nbsp;::&nbsp;
-			<a class="categpath" href="tiki-admin_categories.php?parentId={$id}">{$name|escape}</a>
-		{/foreach}
-		({tr}ID:{/tr} {$parentId})
+			{foreach $path as $id=>$name}
+				&nbsp;::&nbsp;
+				<a class="categpath" href="tiki-admin_categories.php?parentId={$id}">{$name|escape}</a>
+			{/foreach}
+			({tr}ID:{/tr} {$parentId})
 		{/if}
 	</div>
 </div>
 
-{$tree}
-
 {tabset}
+	{tab name='{tr}Categories{/tr}'}
+		{$tree}
+	{/tab}
 	{if empty($categId)}{$editLabel = "{tr}Create category{/tr}"}{else}{$editLabel = "{tr}Edit category{/tr}"}{/if}
 	{tab name=$editLabel}
 		{if $categId > 0}
@@ -60,8 +61,8 @@
 				<div class="form-group row">
 					<div class="col-sm-9 offset-sm-3">
 						<div class="form-check">
-							<label>
-								<input type="checkbox" name="parentPerms" {if empty($categId)}checked="checked"{/if}>
+							<label class="form-check-label">
+								<input type="checkbox" name="parentPerms" class="form-check-input" {if empty($categId)}checked="checked"{/if}>
 								{tr}Apply parent category permissions{/tr}
 							</label>
 						</div>
@@ -76,34 +77,7 @@
 		</form>
 	{/tab}
 
-	{if $categId <= 0}
-		{tab name="{tr}Batch upload{/tr}"}
-			<h2>{tr}Batch upload{/tr}</h2>
-			<form action="tiki-admin_categories.php" method="post" enctype="multipart/form-data" role="form">
-				{ticket}
-				<div class="form-group row">
-					<label class="col-form-label col-sm-3">{tr}CSV File{/tr}</label>
-					<div class="col-sm-9">
-						<input type="file" class="form-control" name="csvlist">
-						<div class="form-text">
-							{tr}Sample file content{/tr}
-<pre>{* can't indent <pre> tag contents *}
-category,description,parent
-vegetable,vegetable
-potato,,vegetable
-</pre>
-						</div>
-					</div>
-				</div>
-				<div class="form-group row">
-					<div class="col-sm-3 offset-sm-3">
-						<input type="submit" class="btn btn-secondary" name="import" value="{tr}Upload{/tr}">
-					</div>
-				</div>
-			</form>
-		{/tab}
-	{/if}
-	{if $parentId != 0}
+	{if not empty($parentId) and empty($categId)}
 		{tab name="{tr}Objects in category{/tr}"}
 			<h2>{tr}Objects in category:{/tr} {$categ_name|escape}</h2>
 			{if $objects}
@@ -116,45 +90,78 @@ potato,,vegetable
 				</form>
 			{/if}
 			<div class="table-responsive">
-				<table class="table">
-					<tr>
-						<th>&nbsp;</th>
-						<th>
-							<a href="tiki-admin_categories.php?parentId={$parentId}&amp;offset={$offset}&amp;sort_mode={if $sort_mode eq 'name_desc'}name_asc{else}name_desc{/if}#objects">
-								{tr}Name{/tr}
-							</a>
-						</th>
-						<th>
-							<a href="tiki-admin_categories.php?parentId={$parentId}&amp;offset={$offset}&amp;sort_mode={if $sort_mode eq 'type_desc'}type_asc{else}type_desc{/if}#objects">
-								{tr}Type{/tr}
-							</a>
-						</th>
-					</tr>
-
-					{section name=ix loop=$objects}
+				<form id="remove_object_form" method="post" action="{service controller='category' action='uncategorize'}">
+					<table class="table">
 						<tr>
-							<td class="icon">
-								<a href="tiki-admin_categories.php?parentId={$parentId}&amp;removeObject={$objects[ix].catObjectId}&amp;fromCateg={$parentId}" class="tips" title=":{tr}Remove from this category{/tr}" onclick="confirmSimple(event, '{tr}Remove object from category?{/tr}', '{ticket mode=get}')">
-									{icon name='remove'}
+							<th class="checkbox-cell">
+								{select_all checkbox_names='objects[]'}
+							</th>
+							<th>&nbsp;</th>
+							<th>
+								<a href="tiki-admin_categories.php?parentId={$parentId}&amp;offset={$offset}&amp;sort_mode={if $sort_mode eq 'name_desc'}name_asc{else}name_desc{/if}#objects">
+									{tr}Name{/tr}
 								</a>
-							</td>
-							<td class="text">
-								<a href="{$objects[ix].href}" title="{$objects[ix].name}">
-									{$objects[ix].name|truncate:80:"(...)":true|escape}
+							</th>
+							<th>
+								<a href="tiki-admin_categories.php?parentId={$parentId}&amp;offset={$offset}&amp;sort_mode={if $sort_mode eq 'type_desc'}type_asc{else}type_desc{/if}#objects">
+									{tr}Type{/tr}
 								</a>
-							</td>
-							<td class="text">{tr}{$objects[ix].type}{/tr}</td>
+							</th>
 						</tr>
-					{sectionelse}
-						{norecords _colspan=3}
-					{/section}
-				</table>
+
+						{section name=ix loop=$objects}
+							<tr>
+								<td class="checkbox-cell">
+									<div class="form-check">
+										<input type="checkbox" name="objects[]" value="{$objects[ix].type|escape}:{$objects[ix].itemId|escape}" class="form-check-input position-static">
+									</div>
+								</td>
+								<td class="icon">
+									<a href="tiki-admin_categories.php?parentId={$parentId}&amp;removeObject={$objects[ix].catObjectId}&amp;fromCateg={$parentId}" class="tips text-danger" title=":{tr}Remove from this category{/tr}" onclick="confirmSimple(event, '{tr}Remove object from category?{/tr}', '{ticket mode=get}')">
+										{icon name='remove'}
+									</a>
+								</td>
+								<td class="text">
+									<a href="{$objects[ix].href}" title="{$objects[ix].name}">
+										{$objects[ix].name|truncate:80:"(...)":true|escape}
+									</a>
+								</td>
+								<td class="text">{tr}{$objects[ix].type}{/tr}</td>
+							</tr>
+						{sectionelse}
+							{norecords _colspan=4}
+						{/section}
+					</table>
+					{if not empty($objects)}
+						<div class="submit text-center p-1">
+							{ticket}
+							<input type="hidden" name="categId" value="{$parentId|escape}"}>
+							<input type="submit" name="uncategorize" value="{tr}Remove checked{/tr}" class="btn btn-danger" onclick="return confirm('{tr}Remove objects from category?{/tr}');">
+						</div>
+					{/if}
+				</form>
+				{jq}
+$("#remove_object_form").unbind("submit").submit(function (e) {
+	$.ajax($(this).attr('action'), {
+		type: 'POST',
+		dataType: 'json',
+		data: $(e.currentTarget).serialize(),
+		success: function (data) {
+			location.href = location.href.replace(/#.*$/, "");
+		},
+		error: function (jqxhr) {
+			$(form).showError(jqxhr);
+		}
+	});
+	return false;
+});
+				{/jq}
 			</div>
 
 			{pagination_links cant=$cant_objects step=$prefs.maxRecords offset=$offset}{/pagination_links}
 		{/tab}
 
-		{tab name="{tr}Moving objects between categories{/tr}"}
+		{tab name="{tr}Moving objects{/tr}"}
 			<h2>{tr}Moving objects between categories{/tr}</h2>
 			<h4>{tr}Current category:{/tr} {$categ_name|escape}</h4><br>
 			<form method="post" action="tiki-admin_categories.php" name="move" role="form">
@@ -220,62 +227,55 @@ potato,,vegetable
 			</form>
 		{/tab}
 
-		{tab name="{tr}Add objects to category{/tr}"}
+		{tab name="{tr}Add objects{/tr}"}
 			<h2>{tr}Add objects to category:{/tr} <b>{$categ_name|escape}</b></h2>
 			{if $prefs.feature_search eq 'y' and $prefs.unified_add_to_categ_search eq 'y'}
-				{object_selector}
 				<form id="add_object_form" method="post" action="{service controller=category action=categorize}" role="form">
-					<label>Types of object
-						<select id="add_object_type">
-							<option value="">{tr}All{/tr}</option>
-							{foreach $types as $type => $title}
-								<option value="{$type|escape}">
-									{$title|escape}
-								</option>
-							{/foreach}
-						</select>
-					</label>
-					<label>
-						{tr}Objects{/tr}
-						<input type="text" id="add_object_selector" name="objects">
-					</label>
-					<div>
-						{ticket}
-						<input type="hidden" name="categId" value="{$parentId|escape}">
-						<input type="submit" class="btn btn-primary btn-sm" value="{tr}Add{/tr}">
-						<span id="add_object_message" style="display: none;"></span>
+					<div class="row">
+						<label class="col-sm-4">Types of object
+							<select id="add_object_type">
+								<option value="">{tr}All{/tr}</option>
+								{foreach $types as $type => $title}
+									<option value="{$type|escape}">
+										{$title|escape}
+									</option>
+								{/foreach}
+							</select>
+						</label>
+						<label class="col-sm-8">
+							{tr}Objects{/tr}
+							{$filter = []}
+							{$filter.categories = 'not '|cat:$parentId}
+							{$filter.object_type = 'not activity and not category'}
+							{object_selector_multi _id='add_object_selector' _filter=$filter}
+						</label>
+					</div>
+					<div class="row">
+						<div class="col-sm-8 offset-sm-4">
+							{ticket}
+							<input type="hidden" name="categId" value="{$parentId|escape}">
+							<input type="submit" class="btn btn-primary btn-sm" value="{tr}Add{/tr}">
+							<span id="add_object_message" style="display: none;"></span>
+						</div>
 					</div>
 				</form>
 				{jq}
 $("#add_object_form").unbind("submit").submit(function (e) {
 	var form = this,
-		formdata = $(form).serialize();
+		formdata;
+
+	// turn the list of objects into an parameter "array"
+	$.each($("#add_object_selector").val().split("\n"), function (i, v) {
+		$(form).append($("<input name='objects[]' type='hidden'>").val(v));
+	});
+
+	formdata = $(form).serialize();
 	$.ajax($(form).attr('action'), {
 		type: 'POST',
 		dataType: 'json',
 		data: $(form).serialize(),
 		success: function (data) {
-			data = (data ? data : {});
-			form.append($('<input />', {type: 'hidden', name: 'ticket', value: data.ticket}));
-			$("option:selected", "#add_object_selector ~ select").remove();
-			var $table = $("input[name=sort_mode]").parents("form").next("table");
-			oddeven = $("tr:last", $table).hasClass("odd") ? "even" : "odd";
-			var $row = $("<tr />").addClass(oddeven);
-			$row.append("<td class=\"icon\">" +
-						"<a href=\"tiki-admin_categories.php?parentId=" + data.categId +
-							"&amp;removeObject=" + data.objects[0].catObjectId + "&amp;fromCateg=" + data.categId
-							+ "\" onclick=\"confirmSimple(event, \'" + tr('Remove object from category?') + "\', \'"
-							+ data.ticket + "\')\">" + '{{icon name="remove"}}'+
-						"</a></td>" +
-						"<td class=\"text\">"+
-							"<a href=\"#\">" + data.objects[0].id + "</a></td>" +
-						"<td class=\"text\">" + data.objects[0].type + "</a></td>");
-			$table.append($row);
-			$("#add_object_message")
-				.text(tr("Categorized..."))
-				.fadeIn("fast", function () {
-					setTimeout(function() {$("#add_object_message").fadeOut("slow");}, 3000);
-				});
+			location.href = location.href.replace(/#.*$/, "");
 		},
 		error: function (jqxhr) {
 			$(form).showError(jqxhr);
@@ -284,15 +284,8 @@ $("#add_object_form").unbind("submit").submit(function (e) {
 	return false;
 });
 $("#add_object_type").change(function () {
-	$("#add_object_selector")
-		.object_selector(
-			{
-				type: $("#add_object_type").val(),
-				categories: "not " + $("input[name=categId]", "#add_object_form").val()
-			},
-			{{$prefs.maxRecords|escape}}
-		);
-}).change();
+	$("#add_object_selector").object_selector_multi("setfilter", "type", $("#add_object_type").val());
+});
 				{/jq}
 			{else}{* feature_search=n (not unified search) *}
 
@@ -597,5 +590,35 @@ $("#add_object_type").change(function () {
 				{pagination_links cant=$maximum step=$maxRecords offset=$offset}{/pagination_links}
 			{/if}
 		{/tab}
-	{/if}
+
+	{/if}{* if not empty($parentId) and empty($categId) *}
+
+	{if empty($categId)}
+		{tab name="{tr}Batch upload{/tr}"}
+			<h2>{tr}Batch upload{/tr}</h2>
+			<form action="tiki-admin_categories.php" method="post" enctype="multipart/form-data" role="form">
+				{ticket}
+				<div class="form-group row">
+					<label class="col-form-label col-sm-3">{tr}CSV File{/tr}</label>
+					<div class="col-sm-9">
+						<input type="file" class="form-control" name="csvlist">
+						<div class="form-text">
+							{tr}Sample file content{/tr}
+<pre>{* can't indent <pre> tag contents *}
+category,description,parent
+vegetable,vegetable
+potato,,vegetable
+</pre>
+						</div>
+					</div>
+				</div>
+				<div class="form-group row">
+					<div class="col-sm-3 offset-sm-3">
+						<input type="submit" class="btn btn-secondary" name="import" value="{tr}Upload{/tr}">
+					</div>
+				</div>
+			</form>
+		{/tab}
+	{/if} {* if empty($categId) *}
+
 {/tabset}

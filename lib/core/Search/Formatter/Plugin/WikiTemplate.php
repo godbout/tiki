@@ -55,6 +55,8 @@ class Search_Formatter_Plugin_WikiTemplate implements Search_Formatter_Plugin_In
 
 			if ($name === 'display') {
 				$match->replaceWith((string) $this->processDisplay($valueFormatter, $match->getBody(), $match->getArguments()));
+			} else if ($name === 'calc') {
+				$match->replaceWith((string) $this->processCalc($valueFormatter, $match));
 			}
 		}
 
@@ -86,5 +88,30 @@ class Search_Formatter_Plugin_WikiTemplate implements Search_Formatter_Plugin_In
 		unset($arguments['format']);
 		unset($arguments['name']);
 		return $valueFormatter->$format($name, $arguments);
+	}
+
+	/**
+	 * Process {calc} plugins
+	 *
+	 * @param \Search_Formatter_ValueFormatter $valueFormatter
+	 * @param \WikiParser_PluginMatcher_Match $match
+	 *
+	 * @return mixed
+	 */
+	private function processCalc($valueFormatter, $match) {
+		$runner = new Math_Formula_Runner(
+			[
+				'Math_Formula_Function_' => '',
+				'Tiki_Formula_Function_' => '',
+			]
+		);
+		try {
+			$runner->setFormula($match->getBody());
+			$runner->setVariables($valueFormatter->getPlainValues());
+			$value = $runner->evaluate();
+		} catch (Math_Formula_Exception $e) {
+			$value = tr('Error evaluating formula %0: %1', $match->getBody(), $e->getMessage());
+		}
+		return $value;
 	}
 }

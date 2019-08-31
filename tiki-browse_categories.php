@@ -165,14 +165,14 @@ foreach ($ctall as $c) {
 		$objectcount = $categlib->list_category_objects(
 			$c['categId'],
 			0,
-			-1,
+			0,
 			'',
 			$type,
 			$find,
 			$deep == 'on',
 			(! empty($_REQUEST['and'])) ? true : false
 		);
-		$countString = '<span class="object-count badge">' . $objectcount['cant'] . '</span>';
+		$countString = '<span class="object-count badge badge-pill badge-info">' . $objectcount['cant'] . '</span>';
 	} else {
 		$countString = '';
 	}

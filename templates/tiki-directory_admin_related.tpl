@@ -19,10 +19,7 @@
 				{/section}
 			</select>
 		</div>
-	</div>
-	<div class="form-group row">
-		<label class="col-sm-4 col-form-label"></label>
-		<div class="col-sm-7">
+		<div class="col-sm-7 offset-sm-4 mt-2">
 			<input type="submit" class="btn btn-primary btn-sm" name="go" value="{tr}Go{/tr}">
 		</div>
 	</div>
@@ -48,8 +45,7 @@
 		</div>
 	</div>
 	<div class="form-group row">
-		<label class="col-sm-4 col-form-label"></label>
-		<div class="col-sm-7">
+		<div class="col-sm-7 offset-sm-4">
 			<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Save{/tr}">
 		</div>
 	</div>

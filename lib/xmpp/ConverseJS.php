@@ -140,12 +140,8 @@ class ConverseJS
 	public function get_css_dependencies()
 	{
 		$deps = [
-			'vendor_bundled/vendor/jcbrand/converse.js/css/converse.css',
+			'vendor_bundled/vendor/npm-asset/converse.js/dist/converse.min.css',
 		];
-
-		if ($this->get_option('view_mode') === 'fullscreen') {
-			$deps[] = 'vendor_bundled/vendor/jcbrand/converse.js/css/fullpage.css';
-		}
 
 		return $deps;
 	}
@@ -153,7 +149,7 @@ class ConverseJS
 	public function get_js_dependencies()
 	{
 		return [
-			'vendor_bundled/vendor/jcbrand/converse.js/dist/converse.js',
+			'vendor_bundled/vendor/npm-asset/converse.js/dist/converse.js',
 			'lib/xmpp/js/conversejs-tiki.js',
 			'lib/xmpp/js/conversejs-tiki-oauth.js',
 		];
@@ -161,12 +157,15 @@ class ConverseJS
 
 	public function render()
 	{
+		$options = $this->get_options();
+
 		array_map(
 			function ($file) {
 				printf('<link rel="stylesheet" href="%s">', $file);
 			},
 			$this->get_css_dependencies()
 		);
+
 		array_map([TikiLib::lib('header'), 'add_jsfile'], $this->get_js_dependencies());
 
 		$output = '';
@@ -174,9 +173,9 @@ class ConverseJS
 			// TODO: remove this a line after fixing conversejs
 			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '"];' . PHP_EOL;
 			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '-controlbox"];' . PHP_EOL;
+			$options['singleton'] = true;
 		}
 
-		$options = $this->get_options();
 		ksort($options);
 
 		$optionString = json_encode($options, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);

@@ -1060,6 +1060,7 @@ class Services_Tracker_Controller
 
 			if ($result !== false) {
 				TikiLib::lib('unifiedsearch')->processUpdateQueue();
+				TikiLib::events()->trigger('tiki.process.redirect'); // wait for indexing to complete before loading of next request to ensure updated info shown
 				//only need feedback if success - feedback already set if there was an update error
 			}
 			if (isset($input['edit']) && $input['edit'] === 'inline') {

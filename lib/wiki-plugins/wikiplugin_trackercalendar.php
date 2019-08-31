@@ -164,6 +164,71 @@ function wikiplugin_trackercalendar_info()
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
+			'lyear' => [
+				'required' => false,
+				'name' => tra('List by Years'),
+				'description' => tra('Display the option to change the view to list by years'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
+			'lmonth' => [
+				'required' => false,
+				'name' => tra('List by Months'),
+				'description' => tra('Display the option to change the view to list by months'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
+			'lweek' => [
+				'required' => false,
+				'name' => tra('List by Weeks'),
+				'description' => tra('Display the option to change the view to list by weeks'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
+			'lday' => [
+				'required' => false,
+				'name' => tra('List by Days'),
+				'description' => tra('Display the option to change the view to list by days'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
+			'ryear' => [
+				'required' => false,
+				'name' => tra('Resources by Years'),
+				'description' => tra('Display the option to change the view to resources by years'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
 			'rmonth' => [
 				'required' => false,
 				'name' => tra('Resources by Months'),
@@ -215,6 +280,11 @@ function wikiplugin_trackercalendar_info()
 					['text' => tra('Agenda by Months'), 'value' => 'month'],
 					['text' => tra('Agenda by Weeks'), 'value' => 'agendaWeek'],
 					['text' => tra('Agenda by Days'), 'value' => 'agendaDay'],
+					['text' => tra('List'), 'value' => 'list'],
+					['text' => tra('List by Months'), 'value' => 'listMonth'],
+					['text' => tra('List by Weeks'), 'value' => 'listWeek'],
+					['text' => tra('List by Days'), 'value' => 'listDay'],
+					['text' => tra('Resources by Years'), 'value' => 'timelineYear'],
 					['text' => tra('Resources by Months'), 'value' => 'timelineMonth'],
 					['text' => tra('Resources by Weeks'), 'value' => 'timelineWeek'],
 					['text' => tra('Resources by Days'), 'value' => 'timelineDay']
@@ -299,6 +369,19 @@ function wikiplugin_trackercalendar_info()
 				'filter' => 'text',
 				'default' => "00:{$prefs['calendar_timespan']}:00",
 			],
+			'eventOverlap' => [
+				'required' => false,
+				'name' => tra('Overlapping allowed'),
+				'description' => tra('Allow resources to overlap in time.'),
+				'since' => '20.1',
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				]
+			],
 		],
 	];
 }
@@ -357,12 +440,42 @@ function wikiplugin_trackercalendar($data, $params)
 		$aday = 'y';
 		$views[] = 'agendaDay';
 	}
+	if (! empty($params['lyear']) and $params['lyear'] != 'y') {
+		$lyear = 'n';
+	} else {
+		$lyear = 'y';
+		$views[] = 'listYear';
+	}
+	if (! empty($params['lmonth']) and $params['lmonth'] != 'y') {
+		$lmonth = 'n';
+	} else {
+		$lmonth = 'y';
+		$views[] = 'listMonth';
+	}
+	if (! empty($params['lweek']) and $params['lweek'] != 'y') {
+		$lweek = 'n';
+	} else {
+		$lweek = 'y';
+		$views[] = 'listWeek';
+	}
+	if (! empty($params['lday']) and $params['lday'] != 'y') {
+		$lday = 'n';
+	} else {
+		$lday = 'y';
+		$views[] = 'listDay';
+	}
 
 	$resources = [];
 	if ($resourceField = $jit->resource->word()) {
 		$field = $definition->getFieldFromPermName($resourceField);
 		$resources = wikiplugin_trackercalendar_get_resources($field);
 
+		if (! empty($params['ryear']) and $params['ryear'] != 'y') {
+			$ryear = 'n';
+		} else {
+			$ryear = 'y';
+			$views[] = 'timelineYear';
+		}
 		if (! empty($params['rmonth']) and $params['rmonth'] != 'y') {
 			$rmonth = 'n';
 		} else {
@@ -422,6 +535,11 @@ function wikiplugin_trackercalendar($data, $params)
 	} else {
 		$slotDuration = "00:{$prefs['calendar_timespan']}:00";
 	}
+	if (! empty($params['eventOverlap']) and $params['eventOverlap'] != 'y') {
+		$eventOverlap = false;
+	} else {
+		$eventOverlap = true;
+	}
 
 	// Format the default date as Y-m-d instead of Y-n-d, required by MomentJs
 	$dDate = (new DateTime($dYear . '-' . $dMonth . '-' . $dDay))->format('Y-m-d');
@@ -471,6 +589,7 @@ function wikiplugin_trackercalendar($data, $params)
 			'addTitle' => tr('Insert'),
 			'canInsert' => $itemObject->canModify(),
 			'dView' => $dView,
+			'eventOverlap' => $eventOverlap,
 			'body' => $data,
 			'filterValues' => $_REQUEST,
 			'url' => $params['external'] === 'y' ? $params['url'] : '',

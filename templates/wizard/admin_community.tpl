@@ -39,7 +39,7 @@
 			</em>
 			<br/><br/>
 			<em>{tr}To set up the <strong>User Watches</strong> and their associated settings, visit the page to {/tr} <a href="tiki-wizard_admin.php?&stepNr=15&url={$homepageUrl}">{tr}Set up Main features{/tr}</a></em>
-			</br></br>
+			<br><br>
 		</fieldset>
 		{icon name="users" size=3 iclass="float-sm-right"}
 		<fieldset>

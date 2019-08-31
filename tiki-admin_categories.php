@@ -255,6 +255,7 @@ if (isset($_REQUEST["save"]) && isset($_REQUEST["name"]) && strlen($_REQUEST["na
 	$info["name"] = '';
 	$info["description"] = '';
 	$_REQUEST["categId"] = 0;
+	$cookietab = 1;
 }
 if (isset($_REQUEST['import']) && isset($_FILES['csvlist']['tmp_name']) && $access->checkCsrf()) {
 	$fhandle = fopen($_FILES['csvlist']['tmp_name'], 'r');
@@ -341,7 +342,7 @@ foreach ($categories as $category) {
 		$data = '<a href="tiki-admin_categories.php?parentId='
 			. $category['parentId']
 			. '&amp;categId='
-			. $category['categId'] . '&cookietab=1">'
+			. $category['categId'] . '&cookietab=2">'
 			. smarty_function_icon(
 				[
 					'name' => 'edit',
@@ -393,11 +394,39 @@ foreach ($categories as $category) {
 			. 'style="padding:0; margin:0; border:0">' . smarty_function_icon(['name' => 'wrench'], $smarty->getEmptyInternalTemplate()) . '</a>';
 
 		$catlink = '<a class="catname" href="tiki-admin_categories.php?parentId=' . $category["categId"] .
-			'" style="margin-left:5px">' . htmlspecialchars($category['name']) . '</a> ';
+			'&cookietab=3" style="margin-left:5px">' . htmlspecialchars($category['name']) . '</a> ';
+
+		$desc = '<small>' . $category['description'] . '</small>';
+
+		if ($prefs['category_browse_count_objects'] === 'y') {
+			$objectcount = $categlib->list_category_objects(
+				$category['categId'],
+				0,
+				0,
+				''
+			);
+			$desc .= '<span class="object-count badge badge-pill badge-info">' . $objectcount['cant'] . '</span>';
+
+		} else if ($prefs['feature_search'] === 'y') {	// fall back to unified search if not category_browse_count_objects
+
+			$res = TikiLib::lib('service')->internal(
+				'search',
+				'lookup',
+				[
+					'filter' => [
+						'categories' => $category['categId'],
+						'object_type'     => 'not activity and not category',
+						'searchable'      => 'y',
+					],
+				]
+			);
+			$desc .= '<span class="object-count badge badge-pill badge-info">' . count($res['resultset']) . '</span>';;
+		}
+
 		$treeNodes[] = [
 			'id' => $category['categId'],
 			'parent' => $category['parentId'],
-			'data' => $newdata . $catlink,
+			'data' => $newdata . $catlink . $desc,
 		];
 	}
 }

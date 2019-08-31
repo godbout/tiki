@@ -488,20 +488,20 @@
 				<legend>{tr}Password blacklist tools{/tr}</legend>
 
 				<div class="form-group row">
-					<h3>Upload Word List for Processing</h3>
-					<p>Words currently indexed: {$num_indexed}</p>
+					<h3>{tr}Upload Word List for Processing{/tr}</h3>
+					<p>{tr}Words currently indexed{/tr}: {$num_indexed}</p>
 
-					<p>You may create custom blacklists to better fit your needs. Start by uploading a word list.
-						Then reduce that list to something that applies to your specific configuration and needs with the tools that appear below.</p>
+					<p>{tr}You may create custom blacklists to better fit your needs. Start by uploading a word list.
+						Then reduce that list to something that applies to your specific configuration and needs with the tools that appear below.{/tr}</p>
 
-					<p>Raw password files can be obtained from <a href="https://github.com/danielmiessler/SecLists/tree/master/Passwords" target="_blank">Daniel Miessler's Collection</a>.
-						Tiki's defaut password blacklist files were generated from Missler's top 1 million password file.</p>
+					<p>{tr}Raw password files can be obtained from <a href="https://github.com/danielmiessler/SecLists/tree/master/Passwords" target="_blank">Daniel Miessler's Collection</a>.
+						Tiki's defaut password blacklist files were generated from Missler's top 1 million password file.{/tr}</p>
 
 						<input type="file" name="passwordlist" accept="text/plain" class="form-control mb-2" />
 						<div class="col-sm-4">
-							Use 'LOAD DATA INFILE':
+							{tr}Use 'LOAD DATA INFILE'{/tr}:
 							<input type="checkbox" name="loaddata" />
-							{help desc="Allows much larger files to be uploaded, but requires MySQL on localhost with extra permissions."}
+							{help desc="{tr}Allows much larger files to be uploaded, but requires MySQL on localhost with extra permissions.{/tr}"}
 						</div>
 						<div class="col-sm-8">
 							<input
@@ -510,9 +510,9 @@
 								name="uploadIndex"
 								class="btn btn-primary btn-sm"
 							>
-							{help desc="Text files with one word per line accepted.
+							{help desc="{tr}Text files with one word per line accepted.
 							The word list will be converted to all lowe case. Duplicate entries will be removed.
-							Typically passwords lists should be arranged with the most commonly used passwords first."}
+							Typically passwords lists should be arranged with the most commonly used passwords first.{/tr}"}
 							<input
 								type="submit"
 								value="{tr}Delete Temporary Index{/tr}"
@@ -520,25 +520,25 @@
 								class="btn btn-danger btn-sm"
 								onclick="confirmSimple(event, '{tr}Delete temporary index?{/tr}')"
 							>
-							{help desc="It is recommended that you delete indexed passwords from your database after your done generating your password lists.
-							They can take up quite a lot of space and serve no pourpose after processing is complete."}
+							{help desc="{tr}It is recommended that you delete indexed passwords from your database after your done generating your password lists.
+							They can take up quite a lot of space and serve no pourpose after processing is complete.{/tr}"}
 						</div>
 
-						<p>Blacklist Currently Using: {$file_using}</p>
+						<p>{tr}Blacklist Currently Using{/tr}: {$file_using}</p>
 						{if $num_indexed}
-							<h3>Generate and Save a Password Blacklist{help desc="Saving places a text file with the generated passwords in your storage/pass_blacklists folder and enables it
+							<h3>Generate and Save a Password Blacklist{help desc="{tr}Saving places a text file with the generated passwords in your storage/pass_blacklists folder and enables it
 							as an option for use. Fields default to the password standards set in tiki. You should not have to change these, unless you plan on changing your password
-							requirements in the future."}</h3>
-							Number of passwords (limit): <input type="number" name="limit" value="{$limit}" />
-							{help desc="This sets the number of passwords that your blacklist will use. The words from the begining of of the file will be selected over the lower,
+							requirements in the future.{/tr}"}</h3>
+							{tr}Number of passwords (limit){/tr}: <input type="number" name="limit" value="{$limit}" />
+							{help desc="{tr}This sets the number of passwords that your blacklist will use. The words from the begining of of the file will be selected over the lower,
 										so if you have a list of words arranged with the most common at the top, it will select only the most common works to blacklist.
-										Typical usage ranges between 1,000 & 10,000, although many more could be used. Twitter blacklists 396."}<br>
-							Minimum Password Length: <input type="number" name="length" value="{$length}" />
-							{help desc="The minimum password length for your password. This will filter out any password that has an illegal length."}<br>
-							Require Numbers &amp; Letters: <input type="checkbox" name="charnum" {if $charnum}checked{/if} />
-							{help desc="If checked, will filter out any password that does not have both upper and lower case letters."}<br>
-							Require Special Characters: <input type="checkbox" name="special" {if $special}checked{/if} />
-							{help desc="If checked, will filter out any passwords that do not have special characters."}<br>
+										Typical usage ranges between 1,000 & 10,000, although many more could be used. Twitter blacklists 396.{/tr}"}<br>
+							{tr}Minimum Password Length{/tr}: <input type="number" name="length" value="{$length}" />
+							{help desc="{tr}The minimum password length for your password. This will filter out any password that has an illegal length.{/tr}"}<br>
+							{tr}Require Numbers &amp; Letters{/tr}: <input type="checkbox" name="charnum" {if $charnum}checked{/if} />
+							{help desc="{tr}If checked, will filter out any password that does not have both upper and lower case letters.{/tr}"}<br>
+							{tr}Require Special Characters{/tr}: <input type="checkbox" name="special" {if $special}checked{/if} />
+							{help desc="{tr}If checked, will filter out any passwords that do not have special characters.{/tr}"}<br>
 							<input
 								type="submit"
 								value="{tr}Save & Set as Default{/tr}"

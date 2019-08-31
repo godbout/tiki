@@ -1,7 +1,170 @@
+/* Tiki stuff */
 .groupmail .from_col {
-  width: 20%;
+	width: 20%;
 }
 
 .groupmail .action_col {
-  width: 80px;
+	width: 80px;
+}
+
+body {
+	min-width: 100%;
+}
+
+.mobile .folder_cell {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 40px;
+}
+
+.mobile .content_cell {
+	padding-top: 1px;
+	border: none;
+}
+
+.mobile .src_name {
+	margin: 0;
+}
+
+.mobile .content_title {
+	display: flex;
+	align-items: center;
+	padding: 0 10px 0 50px;
+	min-height: 60px;
+}
+
+.mobile .content_title .list_controls {
+	border: none;
+	background: #fff;
+}
+
+.mobile .toggle_link {
+	width: auto !important;
+}
+
+.mobile .user_settings table td,
+.mobile .edit_profile table th,
+.mobile .edit_profile table td {
+	display: block;
+	padding: 10px 15px;
+	height: auto;
+	width: 100%;
+}
+
+.mobile .user_settings table td:not(.settings_subtitle),
+.mobile .edit_profile table th,
+.mobile .edit_profile table td {
+	box-sizing: border-box;
+}
+
+.mobile .user_settings table td:not(.settings_subtitle):nth-child(1),
+.mobile .edit_profile table th {
+	max-width: 40%;
+	flex: 0 0 40%;
+}
+
+.mobile .user_settings table td:nth-child(2),
+.mobile .edit_profile table td {
+	max-width: 60%;
+	flex: 0 0 60%;
+}
+
+.mobile .user_settings table tr,
+.mobile .edit_profile table tr {
+	display: flex !important;
+	flex-wrap: wrap;
+}
+
+.mobile .user_settings input[type=text],
+.mobile .user_settings select,
+.mobile .edit_profile input[type=text],
+.mobile .edit_profile input[type=email],
+.mobile .edit_profile select,
+.mobile .edit_profile textarea {
+	width: 100%;
+	text-align: left;
+}
+
+.mobile .edit_profile table {
+	width: 100%;
+}
+
+.mobile .settings_subtitle,
+.mobile .server_section {
+	padding-left: 10px !important;
+}
+
+.mobile .nux_step_one,
+.mobile .nux_step_two {
+	padding-left: 30px;
+	max-width: 85%;
+}
+
+.mobile .add_server {
+	margin-left: 20px;
+}
+
+.mobile .server_count {
+	margin-right: 10px;
+}
+
+.mobile .list_settings_link,
+.mobile .refresh_list {
+	width: 20px;
+	height: 20px;
+}
+
+.mobile .sys_messages {
+	padding-bottom: 15px;
+	white-space: normal;
+	min-height: 5px;
+}
+
+.mobile #imap_server_folder {
+	width: 100%;
+}
+
+.mobile .folder_dialog {
+	margin-left: 30px;
+	width: 85%;
+}
+
+.mobile .compose_page {
+	padding: 10px;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+
+.mobile .compose_form {
+	padding: 0 !important;
+}
+
+.mobile .msg_text {
+	max-width: 100% !important;
+	word-break: break-word;
+}
+
+.mobile .msg_parts {
+	table-layout: auto;
+}
+
+.mobile .news_cell {
+	padding-bottom: 15px !important;
+}
+
+.mobile .news_cell .subject,
+.mobile .news_cell .subject div {
+	padding-bottom: 0px !important;
+}
+
+.mobile .news_cell .msg_date {
+	padding-top: 0;
+}
+
+.mobile .checkbox_cell {
+	padding-left: 8px !important;
+}
+
+.mobile .header_links {
+	padding-bottom: 8px;
 }

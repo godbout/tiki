@@ -902,9 +902,18 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   .tiki-admin_menu_options #preview_code {
     white-space: normal; }
 
+  .tiki-wizard_admin #wizardBody {
+    margin-top: 2em; }
+    .tiki-wizard_admin #wizardBody .media {
+      display: block;
+      margin-top: 1.5rem; }
+
   #page-data.col-sm-9 {
     padding-left: 0;
-    padding-right: 0; } }
+    padding-right: 0; }
+
+  .syslog-table textarea {
+    min-height: 5.5em; } }
 
 blockquote {
   color: #7a7a7a;
@@ -1655,14 +1664,8 @@ a.flipmodtitle .icon {
   list-style-type: none;
   padding-left: 1.3em; }
 
-.modcontrols {
-  visibility: hidden;
-  float: right; }
-  .modcontrols > div > button.btn-link {
-    padding: 0; }
-
-.module:hover .modcontrols {
-  visibility: visible; }
+.modcontrols > div > button.btn-link {
+  padding: 0; }
 
 .box-minichat {
   width: 100%; }
@@ -1752,37 +1755,41 @@ td.url {
     table-layout: auto; } }
 
 @media only screen and (max-width: 767.98px) {
-  .table-responsive.large-table:not(.ts-wrapperdiv) .table, .table-responsive.large-table:not(.ts-wrapperdiv) tbody {
-    display: block; }
-    .table-responsive.large-table:not(.ts-wrapperdiv) tbody .header {
-      display: block !important;
-      font-weight: bold; }
-      .table-responsive.large-table:not(.ts-wrapperdiv) tbody .hidecell {
+  .table-responsive.large-table .table:not(.tablesorter) thead th, .table-responsive.large-table .table:not(.tablesorter) tbody th {
+    position: absolute;
+    top: -9999px;
+    left: -9999px; }
+    .table-responsive.large-table .table:not(.tablesorter) thead tr {
+      display: block;
+      padding: 0.5rem 0 0;
+      background-color: rgba(0, 0, 0, 0.05); }
+    .table-responsive.large-table .table:not(.tablesorter) tbody tr {
+      display: block;
+      border-bottom: 1px solid #dee2e6; }
+      .table-responsive.large-table .table:not(.tablesorter) tbody > tr.active {
         display: none; }
-      .table-responsive.large-table:not(.ts-wrapperdiv) tbody tr {
-        border-bottom: 1px solid #dee2e6; }
-      .table-responsive.large-table:not(.ts-wrapperdiv) tbody th {
-        position: absolute;
-        top: -9999px;
-        left: -9999px; }
-      .table-responsive.large-table:not(.ts-wrapperdiv) tbody tr:not(:nth-child(1)) {
-        display: block;
+      .table-responsive.large-table .table:not(.tablesorter) tbody tr:not(:nth-child(1)) {
         padding: 0.5rem 0; }
-      .table-responsive.large-table:not(.ts-wrapperdiv) tbody td {
+      .table-responsive.large-table .table:not(.tablesorter) tbody td {
         display: block;
         padding: 0.25rem 0.75rem 0.5rem;
         border-top: none;
-        text-align: left;
+        text-align: left !important;
         position: relative; }
-        .table-responsive.large-table:not(.ts-wrapperdiv) tbody td:after {
+        .table-responsive.large-table .table:not(.tablesorter) tbody td:after {
           display: block;
           clear: both;
           content: ""; }
-      .table-responsive.large-table:not(.ts-wrapperdiv) tbody .float-right {
+      .table-responsive.large-table .table:not(.tablesorter) tbody .header {
+        display: block !important;
+        font-weight: bold; }
+      .table-responsive.large-table .table:not(.tablesorter) tbody .hidecell {
+        display: none; }
+      .table-responsive.large-table .table:not(.tablesorter) tbody .float-right {
         float: none !important; }
-      .table-responsive.large-table:not(.ts-wrapperdiv) tbody .checkbox-cell .form-check {
+      .table-responsive.large-table .table:not(.tablesorter) tbody .checkbox-cell .form-check {
         padding-left: 0; }
-        .table-responsive.large-table:not(.ts-wrapperdiv) tbody .checkbox-cell .form-check-input {
+        .table-responsive.large-table .table:not(.tablesorter) tbody .checkbox-cell .form-check-input {
           position: static;
           margin-left: 0; } }
 
@@ -1803,7 +1810,7 @@ td.url {
   margin-right: 0;
   margin-left: 1rem; }
 
-.card.postbody, .card.postbody .card-header, .card.postbody .card-footer {
+.tiki_blogs .card.postbody, .tiki_blogs .card.postbody .card-header, .tiki_blogs .card.postbody .card-footer {
   background-color: transparent;
   border: none; }
 
@@ -1938,7 +1945,7 @@ body.tiki_forums .normal {
 
 .sub_comment_area {
   clear: both;
-  background: url("../../img/edge.gif") no-repeat top left; }
+  background: url("../../../img/edge.gif") no-repeat top left; }
 
 .forum_actions .actions {
   clear: both;
@@ -3057,6 +3064,12 @@ table.objectperms > tbody .checkBoxCell {
 table.objectperms thead th {
   display: none; }
 
+.adminanchors .navbar-nav .nav-link {
+  min-width: 50px;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  text-align: center; }
+
 @media (max-width: 767.98px) {
   .admin-navbar .filter-menu {
     text-align: center; }
@@ -3069,13 +3082,11 @@ table.objectperms thead th {
 
   .adminanchors .navbar-nav {
     margin: 0;
-    padding: 0; } }
+    padding: 0; }
 
-.adminanchors .navbar-nav .nav-link {
-  min-width: 50px;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  text-align: center; }
+  [class*="tiki-admin"] form [class*="col-sm-"]:not(.form-check), [class*="tiki-admin"] form [class*="col-md-"] {
+    padding-left: 0;
+    padding-right: 0; } }
 
 form.simple label.error {
   padding: 4px 0 0 20px;
@@ -3789,7 +3800,7 @@ body.fullscreen.tiki.navbar-padding {
   margin: 0;
   padding: 0; }
 
-.tiki #conversejs ~ .modal-backdrop.fade.show, .tiki #conversejs.converse-embedded ~ .modal-backdrop.fade.show {
+.tiki #conversejs ~ .modal-backdrop, .tiki #conversejs.converse-embedded ~ .modal-backdrop {
   display: none; }
 
 .bg-danger h4.card-title {
@@ -4228,6 +4239,7 @@ div.tiki_plugin {
 
 .autotoc .nav {
   margin: 0;
+  padding: 0;
   overflow: hidden;
   flex-direction: row; }
   .autotoc .nav > li {
