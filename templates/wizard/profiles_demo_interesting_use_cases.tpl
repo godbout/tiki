@@ -87,7 +87,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<h4>{tr}Tracker as Calendar{/tr}</h4>
-				(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Tracker_as_Calendar_12&show_details_for=Tracker_as_Calendar_12&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+				(<a href="tiki-admin.php?ticket={ticket mode=get}&profile=Tracker_as_Calendar_19&show_details_for=Tracker_as_Calendar_19&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 				<br>
 				{tr}This profile creates a tracker with some demo data and wiki interface that will be used to display and manage a Calendar of events in a fancy visual way.{/tr}
 				<br/>

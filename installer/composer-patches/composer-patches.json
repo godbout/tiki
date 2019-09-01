@@ -20,7 +20,7 @@
     "pear/xml_rpc": {
       "Add support for PHP7": "../installer/composer-patches/pear_xml_rpc-php7-patch-RELEASE_1_5_5.patch"
     },
-    "jcbrand/converse.js": {
+    "npm-asset/converse.js": {
       "Remove native javascript for bootstrap": "../installer/composer-patches/jcbrand-conversejs_remove-native-javascript-for-bootstrap.patch"
     }
   }

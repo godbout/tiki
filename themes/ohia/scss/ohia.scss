@@ -8,3 +8,16 @@
 @import "../../base_files/scss/_bs3-bs4-transition.scss";
 @import "_tiki-selectors.scss";
 @import "../../base_files/scss/_external-scripts.scss";
+
+
+// override for some cypht background colors
+.tiki .inline-cypht {
+    .folder_list, .content_cell, .compose_page, .message_list, .msg_text, .selected_part,
+    .server_content, .profile_content, .user_settings,
+    .nux_add_account, .imap_server_setup, .pop3_server_setup {
+        background-color: $card-bg;
+    }
+    .src_name, .content_title, .list_controls {
+        background: $card-header-bg;
+    }
+}

@@ -40,8 +40,8 @@
 			<p>{tr}More results are available. Please refine the search criteria.{/tr}</p>
 		{/if}
 		<p>
-			<a class="select-all" href="#selectall">{tr}Select all{/tr}</a>
-			<a class="unselect-all" href="#unselectall">{tr}Unselect all{/tr}</a>
+			<a class="select-all btn btn-link" href="#selectall">{tr}Select all{/tr}</a>
+			<a class="unselect-all btn btn-link" href="#unselectall">{tr}Unselect all{/tr}</a>
 		</p>
 	{else}
 		<span class="font-weight-bold">{tr}No results{/tr}</span>

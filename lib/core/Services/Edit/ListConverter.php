@@ -8,6 +8,9 @@
 /**
  * Class Services_Edit_ListConverter
  *
+ * This service converts legacy plugins in a wiki page to use the list plugin
+ *
+ * Currently only trackerlist is supported
  */
 class Services_Edit_ListConverter
 {
@@ -131,7 +134,7 @@ class Services_Edit_ListConverter
 					if (strpos($value, 'lastModif_') === 0) {
 						$sortMode = ['mode' => 'modification_date_' . str_replace('lastModif_', '', 'n' . $value)];
 					} elseif (strpos($value, 'created_') === 0) {
-						$sortMode = ['mode' => 'creation_date_' . str_replace('lastModif_', '', 'n' . $value)];
+						$sortMode = ['mode' => 'creation_date_' . str_replace('created_', '', 'n' . $value)];
 					} else {
 						$sortMode = ['mode' => $value];    // e.g. f_xxx_desc
 					}

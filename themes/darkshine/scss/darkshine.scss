@@ -22,3 +22,8 @@
         }
     }
 }
+
+// override for some cypht background colors
+body.tiki.tiki-webmail {
+	background: #90140c url('#{$imagePath}stripes.png') repeat-x 50% 0;
+}

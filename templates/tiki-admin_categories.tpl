@@ -61,8 +61,8 @@
 				<div class="form-group row">
 					<div class="col-sm-9 offset-sm-3">
 						<div class="form-check">
-							<label>
-								<input type="checkbox" name="parentPerms" {if empty($categId)}checked="checked"{/if}>
+							<label class="form-check-label">
+								<input type="checkbox" name="parentPerms" class="form-check-input" {if empty($categId)}checked="checked"{/if}>
 								{tr}Apply parent category permissions{/tr}
 							</label>
 						</div>

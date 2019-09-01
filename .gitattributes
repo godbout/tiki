@@ -6724,6 +6724,7 @@ themes/base_files/other/site_closed.html -text
 themes/base_files/scss/_bootswatch_overrides.scss -text
 themes/base_files/scss/_bs3-bs4-transition.scss -text
 themes/base_files/scss/_conversejs-tiki.scss -text
+themes/base_files/scss/_cypht-tiki.scss -text
 themes/base_files/scss/_external-scripts.scss -text
 themes/base_files/scss/_jquery-ui-tiki.scss -text
 themes/base_files/scss/_pivot-tiki.scss -text
