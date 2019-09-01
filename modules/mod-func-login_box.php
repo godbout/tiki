@@ -31,6 +31,10 @@ function module_login_box_info()
 				'name' => tra('Mode'),
 				'description' => tra('Display mode: module, header or popup. Leave empty for module mode'),
 			],
+			'show_two_factor_auth' => [
+				'name' => tra('2FA'),
+				'description' => tra('Display two-factor authentication code input.'),
+			],
 			'register' => [
 				'name' => tra('Show Register'),
 				'description' => tra('Show the register link') . ' (y/n)',

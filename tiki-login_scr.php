@@ -11,6 +11,13 @@
 $section_class = 'tiki_login';	// This will be body class instead of $section
 include_once("tiki-setup.php");
 
+
+//Enable Two-Factor Auth Input
+$twoFactorForm = 'n';
+if(isset($_REQUEST["twoFactorForm"]))
+	$twoFactorForm = 'y';
+$smarty->assign('twoFactorForm', $twoFactorForm);
+
 if ($prefs['login_autologin'] == 'y' && $prefs['login_autologin_redirectlogin'] == 'y' && ! empty($prefs['login_autologin_redirectlogin_url'])) {
 	$access->redirect($prefs['login_autologin_redirectlogin_url']);
 }

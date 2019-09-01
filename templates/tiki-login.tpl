@@ -5,6 +5,7 @@
 			mode="module"
 			show_register="y"
 			show_forgot="y"
+			show_two_factor_auth="{$twoFactorForm}"
 			error=""
 			flip=""
 			decorations=""

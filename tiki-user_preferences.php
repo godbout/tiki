@@ -13,6 +13,11 @@ require_once('tiki-setup.php');
 $modlib = TikiLib::lib('mod');
 $userprefslib = TikiLib::lib('userprefs');
 $perspectivelib = TikiLib::lib('perspective');
+use PragmaRX\Google2FA\Google2FA;
+use BaconQrCode\Renderer\ImageRenderer;
+use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
+use BaconQrCode\Renderer\RendererStyle\RendererStyle;
+use BaconQrCode\Writer;
 
 // User preferences screen
 if ($prefs['feature_userPreferences'] != 'y' && $prefs['change_password'] != 'y' && $tiki_p_admin_users != 'y') {
@@ -66,6 +71,7 @@ $smarty->assign('show_mouseover_user_info', isset($prefs['show_mouseover_user_in
 if ($prefs['feature_perspective'] === 'y') {
 	$smarty->assign('perspectives', $perspectivelib->list_perspectives());
 }
+
 
 if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) && $access->checkOrigin()) {
 	check_ticket('user-prefs');
@@ -291,6 +297,9 @@ if ($prefs['auth_method'] == 'ldap' && $user == 'admin' && $prefs['ldap_skip_adm
 	$change_password = 'y';
 	$smarty->assign('change_password', $change_password);
 }
+
+
+$tfaSecret = $userlib->get_2_factor_secret($userwatch);
 if (isset($_REQUEST['chgadmin']) && $access->checkOrigin()) {
 	check_ticket('user-prefs');
 	if (isset($_REQUEST['pass'])) {
@@ -347,7 +356,36 @@ if (isset($_REQUEST['chgadmin']) && $access->checkOrigin()) {
 		}
 		Feedback::success(sprintf(tra('Password has been changed')));
 	}
+
+	if (! empty($_REQUEST["tfaEnable"]) && empty($tfaSecret)) {
+		$tfaSecret = $userlib->generate_2_factor_secret($userwatch);
+	} elseif (empty($_REQUEST["tfaEnable"])) {
+		$tfaSecret = $userlib->remove_2_factor_secret($userwatch);
+	}
 }
+
+$userinfo = $userlib->get_user_info($userwatch);
+
+if ($prefs['twoFactorAuth'] == 'y' && ! empty($tfaSecret)) {
+	$smarty->assign('twoFactorAuth', 'y');
+	$google2fa = new Google2FA();
+	$smarty->assign('tfaSecretQR', $tfaSecret);
+	$g2faUrl = $google2fa->getQRCodeUrl(
+		$tikilib->get_preference('browsertitle', "Tiki Wiki"),
+		$userinfo['email'],
+		$tfaSecret
+	);
+
+	$writer = new Writer(
+		new ImageRenderer(
+			new RendererStyle(350),
+			new ImagickImageBackEnd()
+		)
+	);
+	$tfaSecretQR = base64_encode($writer->writeString($g2faUrl));
+	$smarty->assign('tfaSecretQR', $tfaSecretQR);
+}
+
 if (isset($_REQUEST['deleteaccount']) && $tiki_p_delete_account == 'y' && $access->checkOrigin()) {
 	check_ticket('user-prefs');
 	if (! isset($_REQUEST['deleteaccountconfirm']) || $_REQUEST['deleteaccountconfirm'] != '1') {
@@ -416,7 +454,6 @@ if (isset($user_preferences[$userwatch]['email is public'])) {
 }
 $tikilib->get_user_preference($userwatch, 'mailCharset', $prefs['default_mail_charset']);
 $tikilib->get_user_preference($userwatch, 'display_12hr_clock', 'n');
-$userinfo = $userlib->get_user_info($userwatch);
 $smarty->assign_by_ref('userinfo', $userinfo);
 //user theme
 $themelib = TikiLib::lib('theme');

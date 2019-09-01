@@ -179,6 +179,7 @@
 			<fieldset>
 				<legend>{tr}Password{/tr}</legend>
 				{preference name=forgotPass}
+				{preference name=twoFactorAuth}
 				{preference name=change_password}
 				{preference name=pass_chr_num}
 				{preference name=pass_chr_case}

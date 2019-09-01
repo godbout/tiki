@@ -2870,6 +2870,7 @@ CREATE TABLE `users_users` (
   `unsuccessful_logins` int(14) default 0,
   `openid_url` varchar(255) default NULL,
   `waiting` char(1) default NULL,
+  `twoFactorSecret` varchar(16) default NULL,
   PRIMARY KEY (`userId`),
   UNIQUE KEY `login` (login (191)),
   KEY `registrationDate` (`registrationDate`),

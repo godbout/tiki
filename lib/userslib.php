@@ -28,10 +28,12 @@ define('USER_NOT_VALIDATED', -8);
 define('USER_PREVIOUSLY_VALIDATED', -10);
 define('USER_ALREADY_LOGGED', -11);
 define('EMAIL_AMBIGUOUS', -12);
+define('TWO_FA_INCORRECT', -13);
 
 //added for Auth v1.3 support
 define('AUTH_LOGIN_OK', 0);
 
+use PragmaRX\Google2FA\Google2FA;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Zend\Ldap\Exception\LdapException;
@@ -388,7 +390,7 @@ class UsersLib extends TikiLib
 
 	// For each auth method, validate user in auth, if valid, verify tiki user exists and create if necessary (as configured)
 	// Once complete, update_lastlogin and return result, username and login message.
-	function validate_user($user, $pass, $validate_phase = false)
+	function validate_user($user, $pass, $validate_phase = false, $twoFactorCode = null)
 	{
 		global $prefs;
 
@@ -7149,6 +7151,37 @@ class UsersLib extends TikiLib
 
 
 		return empty($errors) ? '' : implode(' ', $errors);
+	}
+
+	function remove_2_factor_secret($user)
+	{
+		return $this->update_2_factor_secret($user, '');
+	}
+
+	function generate_2_factor_secret($user)
+	{
+		$google2fa = new Google2FA();
+		$tfaSecret = $google2fa->generateSecretKey();
+		return $this->update_2_factor_secret($user, $tfaSecret);
+	}
+
+	function update_2_factor_secret($user, $twoFASecret)
+	{
+		$query = 'update `users_users` set `twoFactorSecret`=? where binary `login`=?';
+		$this->query($query, [$twoFASecret, $user]);
+		return $twoFASecret;
+	}
+
+	function get_2_factor_secret($user)
+	{
+		$query = 'select `twoFactorSecret` from `users_users` where `login`=?';
+		return $this->getOne($query, [$user]);
+	}
+
+	function validate_two_factor($twoFactorSecret, $pin)
+	{
+		$google2fa = new Google2FA();
+		return $google2fa->verifyKey($twoFactorSecret, $pin, 2);
 	}
 
 	function change_user_password($user, $pass, $pass_first_login = false)

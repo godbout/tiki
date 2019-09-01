@@ -197,6 +197,12 @@ function prefs_global_list($partial = false)
 			'default' => 'y',
 			'tags' => ['basic'],
 		],
+		'twoFactorAuth' => [
+			'name' => tra('Allow users to use 2FA'),
+			'description' => tra('Allow users to enable Two-factor Authentication.'),
+			'type' => 'flag',
+			'default' => 'n',
+		],
 		'useGroupTheme' => [
 			'name' => tra('Group theme'),
 			'description' => tra('Enable groups to each have their own visual theme.'),

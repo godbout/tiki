@@ -648,6 +648,65 @@
 								</div>
 							</div>
 						{/if}
+						{if $prefs.twoFactorAuth eq 'y' and ($tiki_p_admin ne 'y' or $userwatch eq $user)}
+							{jq}
+								var showQRCode = false;
+								function checkIfTwoFactorEnabled(){
+									if($("#twoFactorAuth").is(':checked')){
+										$("#twoFactorAuthShow").show();
+									}else{
+										$("#twoFactorAuthShow").hide();
+									}
+								}
+								$("#twoFactorAuth").click(function(){
+									checkIfTwoFactorEnabled();
+								})
+								$("#twoFactorAuthShow").click(function(){
+									showQRCode = !showQRCode;
+									if(showQRCode){
+										$("#twoFactorAuthShow").text("Hide QRCode");
+									}else{
+										$("#twoFactorAuthShow").text("Show QRCode");
+									}
+									$("#twoFactorAuthCard").slideToggle(400);
+								})
+							{/jq}
+							<div class="form-group row">
+								<label class="col-md-4 col-form-label" for="pass">
+									{tr}Enable two-factor authentication:{/tr}
+								</label>
+								<div class="col-md-4">
+									<input type="checkbox" value="y" {if !empty($tfaSecretQR) } checked {/if} id="twoFactorAuth" class="check" name="tfaEnable">
+									<a href="#" target="_blank" data-toggle="popover" data-trigger="hover" title="{tr}Enable Two-Factor Authentication{/tr}"
+									   data-content="{tr}Two-factor authentication is a security measure that requires an extra code when you log in. When enabled,
+									   Tiki will require a code from your mobile phone during login. This code is created by the Google Authenticator®.{/tr}">
+										<span class="icon icon-help fas fa-question-circle fa-fw "></span>
+									</a>
+								</div>
+								<div class="col-md-4 ">
+									{if !empty($tfaSecretQR) }<p class="text-right align-content-center"> <a id="twoFactorAuthShow" href="#">{tr}Show QRCode{/tr}</a></p>	{/if}
+								</div>
+								<div class="col-md-12 card" id="twoFactorAuthCard" style="display: none">
+									<div class="card-body">
+										<div class="row">
+											<div class="col-md-6"><img src="data:image/png;base64,{$tfaSecretQR}"/></div>
+											<div class="col-md-6 align-content-center">
+												<div class="d-flex align-items-center" style="height: 100%">
+													<ol>
+														<li>{tr}Install Google Authenticator® app on your device and open it{/tr}.</li>
+														<li>{tr}Tap “Scan a barcode”{/tr}.</li>
+														<li>{tr}Scan the QR code that is open in your browser{/tr}.</li>
+														<li>{tr}Done, Google Authenticator® is now generation codes{/tr}.</li>
+													</ol>
+												</div>
+
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						{/if}
 					{/if}
 					<div class="submit text-center">
 						<input type="submit" class="btn btn-secondary btn-sm" name="chgadmin" value="{tr}Save changes{/tr}">

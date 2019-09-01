@@ -113,6 +113,13 @@ if ($prefs['feature_intertiki'] == 'y') {
 	unset($_REQUEST['intertiki']);
 }
 
+//Enable Two-Factor Auth Input
+$twoFactorForm = 'n';
+if (isset($_REQUEST["$twoFactorForm"])) {
+	$twoFactorForm = 'y';
+}
+$smarty->assign('twoFactorForm', $twoFactorForm);
+
 // Go through the intertiki process
 if (isset($_REQUEST['intertiki']) and in_array($_REQUEST['intertiki'], array_keys($prefs['interlist']))
 	&& $access->checkCsrf('page')) {
@@ -235,8 +242,15 @@ if (isset($_REQUEST['intertiki']) and in_array($_REQUEST['intertiki'], array_key
 			}
 		}
 	} elseif ($isvalid) {
-		$isdue = $userlib->is_due($requestedUser, $method);
-		$user = $requestedUser;
+		$twoFactorSecret = $userlib->get_2_factor_secret($requestedUser);
+		if ($prefs['twoFactorAuth'] == 'y' && ! empty($twoFactorSecret) && ! $userlib->validate_two_factor($twoFactorSecret, $_REQUEST["twoFactorAuthCode"])) {
+			$error = TWO_FA_INCORRECT;
+			$isvalid = false;
+			$smarty->assign('twoFactorForm', 'y');
+		} else {
+			$isdue = $userlib->is_due($requestedUser, $method);
+			$user = $requestedUser;
+		}
 	}
 }
 
@@ -407,9 +421,8 @@ if ($isvalid && $access->checkCsrf('page')) {
 	$module_params['show_forgot'] = ($prefs['forgotPass'] == 'y' && $prefs['change_password'] == 'y') ? 'y' : 'n';
 	$module_params['show_register'] = ($prefs['allowRegister'] === 'y') ? 'y' : 'n';
 	$smarty->assign('module_params', $module_params);
-	if ($error == PASSWORD_INCORRECT
-		&& ($prefs['unsuccessful_logins'] >= 0 || $prefs['unsuccessful_logins_invalid'] >= 0))
-	{
+	if (($error == PASSWORD_INCORRECT || $error == TWO_FA_INCORRECT)
+		&& ($prefs['unsuccessful_logins'] >= 0 || $prefs['unsuccessful_logins_invalid'] >= 0)) {
 		$nb_bad_logins = $userlib->unsuccessful_logins($requestedUser);
 		$nb_bad_logins++ ;
 		$userlib->set_unsuccessful_logins($requestedUser, $nb_bad_logins);
@@ -459,7 +472,9 @@ if ($isvalid && $access->checkCsrf('page')) {
 		case PASSWORD_INCORRECT:
 			$error = tra('Invalid username or password');
 			break;
-
+		case TWO_FA_INCORRECT:
+			$error = tra('Invalid two-factor code');
+			break;
 		case USER_NOT_FOUND:
 			$smarty->assign('error_login', $error);
 			$smarty->assign('mid', 'tiki-login.tpl');

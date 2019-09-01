@@ -225,6 +225,13 @@ if (jqueryTiki.no_cookie) {
 				{icon name='error' istyle="vertical-align:middle"} {tr}CapsLock is on.{/tr}
 			</div>
 		</div>
+		{if $module_params.show_two_factor_auth eq 'y' and $prefs.twoFactorAuth eq 'y'}
+		<div class="pass form-group row mx-0 clearfix">
+			<label for="login-pass_{$module_logo_instance}">{tr}Two-factor Authenticator Code:{/tr}</label>
+			<input type="text" name="twoFactorAuthCode" autocomplete="off" class="form-control" id="login-2fa_{$module_logo_instance}">
+
+		</div>
+		{/if}
 		{if $prefs.rememberme ne 'disabled' and (empty($module_params.remember) or $module_params.remember neq 'n')}
 			{if $prefs.rememberme eq 'always'}
 				<input type="hidden" name="rme" id="login-remember-module-input_{$module_logo_instance}" value="on" />
@@ -262,10 +269,11 @@ if (jqueryTiki.no_cookie) {
 				</div>
 			{/if}
 		{/if}
+
 		<div class="form-group text-center">
 			<button class="btn btn-secondary button submit" type="submit" name="login">{tr}Log in{/tr} <!--i class="fa fa-arrow-circle-right"></i--></button>
 		</div>
-		{if $module_params.show_forgot eq 'y' or $module_params.show_register eq 'y'}
+		{if $module_params.show_forgot eq 'y' or $module_params.show_register eq 'y' or $module_params.show_two_factor_auth}
 			<div {if $mode eq 'header'}class="text-right" style="display:inline;"{/if}>
 				{strip}
 					<div {if $mode eq 'header'}style="display: inline-block"{/if}><ul class="{if $mode neq 'header'}list-unstyled"{else}list-inline"{/if}>
@@ -277,6 +285,12 @@ if (jqueryTiki.no_cookie) {
 								&nbsp;|&nbsp;
 							{/if}
 							<li class="register{if $mode eq 'popup'} dropdown-item{/if} list-item"><a href="tiki-register.php{if !empty($prefs.registerKey)}?key={$prefs.registerKey|escape:'url'}{/if}" title="{tr}Click here to register{/tr}"{if !empty($prefs.registerKey)} rel="nofollow"{/if}>{tr}Register{/tr}</a></li>
+						{/if}
+						{if $prefs.twoFactorAuth eq 'y' and $module_params.show_two_factor_auth ne 'y'}
+							{if $mode eq 'header' && $module_params.show_forgot eq 'y' && $prefs.forgotPass eq 'y'}
+								&nbsp;|&nbsp;
+							{/if}
+							<li class="pass{if $mode eq 'popup'} dropdown-item{/if} list-item"><a href="/tiki-login_scr.php?twoFactorForm" title="{tr}Login with two-factor authenticator{/tr}">{if $mode eq 'popup'} {tr}Login with 2FA{/tr}{else}{tr}Login with two-factor authenticator{/tr}{/if}</a></li>
 						{/if}
 					</ul></div>
 				{/strip}
@@ -301,6 +315,7 @@ if (jqueryTiki.no_cookie) {
 		{if $prefs.feature_show_stay_in_ssl_mode neq 'y' || $show_stay_in_ssl_mode neq 'y'}
 			<input type="hidden" name="stay_in_ssl_mode" value="{$stay_in_ssl_mode|escape}" />
 		{/if}
+
 
 		{if isset($use_intertiki_auth) and $use_intertiki_auth eq 'y'}
 			<select name='intertiki'>
