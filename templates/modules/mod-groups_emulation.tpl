@@ -2,8 +2,8 @@
 {tikimodule error=$module_params.error title=$tpl_module_title name="groups_emulation" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
 	{if isset($allGroups) && $showallgroups eq 'y'}
 		<fieldset>
-			<legend>{tr}All Groups{/tr}</legend>
-			<ul >
+			<legend id='mge-all-legend'>{tr}All Groups{/tr}</legend>
+			<ul id='mge-all' >
 			{foreach from=$allGroups key=groupname item=inclusion name=ix}
 				<li>{$groupname|escape}</li>
 			{/foreach}
@@ -12,24 +12,24 @@
 	{/if}
 
 	{if $showyourgroups eq 'y'}
-	<fieldset>
-		<legend>{tr}Your Groups{/tr}</legend>
-		<ul >
-		{foreach from=$userGroups key=groupname item=inclusion name=ix}
-			{if $inclusion eq 'included'}
-				<li><i>{$groupname|escape}</i></li>
-			{else}
-				<li>{$groupname|escape}</li>
-			{/if}
-		{/foreach}
-		</ul >
-	</fieldset>
+		<fieldset>
+			<legend id='mge-mine-legend'>{tr}Your Groups{/tr}</legend>
+			<ul id='mge-mine' >
+			{foreach from=$userGroups key=groupname item=inclusion name=ix}
+				{if $inclusion eq 'included'}
+					<li><i>{$groupname|escape}</i></li>
+				{else}
+					<li>{$groupname|escape}</li>
+				{/if}
+			{/foreach}
+			</ul >
+		</fieldset>
 	{/if}
 
 	{if $groups_are_emulated eq 'y'}
 		<fieldset>
-			<legend>{tr}Emulated Groups{/tr}</legend>
-			<ul>
+			<legend id='mge-emulated-legend' >{tr}Emulated Groups{/tr}</legend>
+			<ul id='mge-emulated' >
 			{section name=ix loop=$groups_emulated}
 				<li>{$groups_emulated[ix]}</li>
 			{/section}

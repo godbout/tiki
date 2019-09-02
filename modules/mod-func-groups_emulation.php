@@ -59,7 +59,11 @@ function module_groups_emulation($mod_reference, $module_params)
 	$userlib = TikiLib::lib('user');
 	$smarty = TikiLib::lib('smarty');
 
-	$smarty->assign('groups_are_emulated', isset($_SESSION['groups_are_emulated']) ? $_SESSION['groups_are_emulated'] : 'n');
+	$showallgroups = isset($module_params['showallgroups']) ? $module_params['showallgroups'] : 'y';
+	$showyourgroups = isset($module_params['showyourgroups']) ? $module_params['showyourgroups'] : 'y';
+
+	$groups_are_emulated = isset($_SESSION['groups_are_emulated']) ? $_SESSION['groups_are_emulated'] : 'n';
+	$smarty->assign('groups_are_emulated', $groups_are_emulated);
 	if (isset($_SESSION['groups_emulated'])) {
 		$smarty->assign('groups_emulated', unserialize($_SESSION['groups_emulated']));
 	}
@@ -85,9 +89,40 @@ function module_groups_emulation($mod_reference, $module_params)
 	if (isset($user)) {
 		$chooseGroups["Registered"] = "included";
 	}
+
+	$headerlib=TikiLib::lib("header");
+	$moduleId = $mod_reference['moduleId'];
+	if (isset($allGroups) && $showallgroups == 'y') {
+		$headerlib->add_js('$(document).ready(function() {
+			$("#module_' . $moduleId . ' #mge-all").hide();
+			$("#module_' . $moduleId . ' #mge-all-legend").click(function(){
+				$("#module_' . $moduleId . ' #mge-all").fadeToggle();
+			});
+		});'
+		);
+	}
+	if ($showyourgroups == 'y') {
+		$headerlib->add_js('$(document).ready(function() {
+			$("#module_' . $moduleId . ' #mge-mine").hide();
+			$("#module_' . $moduleId . ' #mge-mine-legend").click(function(){
+				$("#module_' . $moduleId . ' #mge-mine").fadeToggle();
+			});
+		});'
+		);
+	}
+	if ($groups_are_emulated == 'y') {
+		$headerlib->add_js('$(document).ready(function() {
+			$("#module_' . $moduleId . ' #mge-emulated").hide();
+			$("#module_' . $moduleId . ' #mge-emulated-legend").click(function(){
+				$("#module_' . $moduleId . ' #mge-emulated").fadeToggle();
+			});
+		});'
+		);
+	}
+
 	$smarty->assign_by_ref('userGroups', $userGroups);
 	$smarty->assign_by_ref('chooseGroups', $chooseGroups);
-	$smarty->assign('showallgroups', isset($module_params['showallgroups']) ? $module_params['showallgroups'] : 'y');
-	$smarty->assign('showyourgroups', isset($module_params['showyourgroups']) ? $module_params['showyourgroups'] : 'y');
+	$smarty->assign('showallgroups', $showallgroups);
+	$smarty->assign('showyourgroups', $showyourgroups);
 	$smarty->assign('tpl_module_title', tra("Emulate Groups"));
 }
