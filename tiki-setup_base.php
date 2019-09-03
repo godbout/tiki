@@ -109,14 +109,21 @@ global $systemConfiguration;
 $prefs = $systemConfiguration->preference->toArray() + $prefs;
 
 // Handle load balancers or reverse proxy (most reliable to do it early on as much code depends on these 2 server vars)
-if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https' || isset($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] == 'https') {
-	$_SERVER['HTTPS'] = 'on';
-	if (! isset($_SERVER['SERVER_PORT'])) {
-		$_SERVER['SERVER_PORT'] = $prefs['https_port'];
-	}
+if ((isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] == 'https')
+	|| (isset($_SERVER['REQUEST_SCHEME']) && $_SERVER['REQUEST_SCHEME'] == 'https') ) {
+		$_SERVER['HTTPS'] = 'on';
 }
-if (! empty($_SERVER['HTTP_X_FORWARDED_PORT'])) {
-	$_SERVER['SERVER_PORT'] = $_SERVER['HTTP_X_FORWARDED_PORT'];
+
+if (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+	if (empty($_SERVER['SERVER_PORT']) || $_SERVER['SERVER_PORT'] === '80') {
+		$_SERVER['SERVER_PORT'] = '443';
+	}
+
+	if (! empty($prefs['https_port']) && $prefs['https_port'] !== '443') {
+		$_SERVER['SERVER_PORT'] = $prefs['https_port'];
+	} elseif (! empty($_SERVER['HTTP_X_FORWARDED_PORT'])) {
+		$_SERVER['SERVER_PORT'] = $_SERVER['HTTP_X_FORWARDED_PORT'];
+	}
 }
 
 // mose : simulate strong var type checking for http vars
