@@ -339,8 +339,8 @@
 							<div class="form-group row">
 								<label for="suck_url" class="col-md-4 col-form-label">{tr}Import HTML{/tr}</label>
 								<div class="col-md-8 form-inline">
-									<input class="form-control wikiedit" type="text" id="suck_url" name="suck_url" value="{$suck_url|escape}">
-									<input type="submit" class="wikiaction btn btn-primary" name="do_suck" value="{tr}Import{/tr}" onclick="needToConfirm=false;">
+									<input class="form-control wikiedit mr-2" type="text" id="suck_url" name="suck_url" value="{$suck_url|escape}">
+									<input type="submit" class="wikiaction btn btn-primary mr-2" name="do_suck" value="{tr}Import{/tr}" onclick="needToConfirm=false;">
 									<label><input type="checkbox" name="parsehtml" {if $parsehtml eq 'y'}checked="checked"{/if}>&nbsp;
 									{tr}Try to convert HTML to wiki{/tr}</label>
 								</div>
@@ -351,7 +351,7 @@
 								<label for="userfile1" class="col-md-4 col-form-label">{tr}Import page{/tr}</label>
 								<div class="col-md-8 form-inline">
 									<input type="hidden" name="MAX_FILE_SIZE" value="1000000000">
-									<input class="form-control" id="userfile1" name="userfile1" type="file">
+									<input class="form-control mr-2" id="userfile1" name="userfile1" type="file">
 									<input type="submit" class="wikiaction btn btn-primary" name="attach" value="{tr}Import{/tr}" onclick="javascript:needToConfirm=false;insertImgFile('editwiki','userfile2','hasAlreadyInserted2','file', 'page2', 'attach_comment'); return true;">
 								</div>
 							</div>
