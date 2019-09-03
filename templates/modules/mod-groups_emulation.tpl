@@ -1,5 +1,6 @@
 {strip}
 {tikimodule error=$module_params.error title=$tpl_module_title name="groups_emulation" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
+
 	{if isset($allGroups) && $showallgroups eq 'y'}
 		<fieldset>
 			<legend id='mge-all-legend'>{tr}All Groups{/tr}</legend>
@@ -51,6 +52,6 @@
 			<div class="text-center"><button type="submit" class="btn btn-primary" name="emulategroups" value="setgroups" >{tr}Simulate{/tr}</button></div>
 		</fieldset>
 	</form>
-<br>
+
 {/tikimodule}
 {/strip}
