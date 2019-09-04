@@ -1428,18 +1428,18 @@ if ($connection || ! $standalone) {
 	$query = 'SELECT VERSION();';
 	$result = query($query, $connection);
 	$mysql_version = $result[0]['VERSION()'];
-	$s = version_compare($mysql_version, '5.0.2', '>=');
+	$s = version_compare($mysql_version, '5.7.0', '>=');
 	if ($s == true) {
 		$mysql_properties['Version'] = array(
 			'fitness' => tra('good'),
 			'setting' => $mysql_version,
-			'message' => tra('Tiki requires MySQL >= 5.x.')
+			'message' => tra('Tiki requires MySQL >= 5.7')
 		);
 	} else {
 		$mysql_properties['Version'] = array(
 			'fitness' => tra('bad'),
 			'setting' => $mysql_version,
-			'message' => tra('Tiki requires MySQL >= 5.x.')
+			'message' => tra('Tiki requires MySQL >= 5.7')
 		);
 	}
 
