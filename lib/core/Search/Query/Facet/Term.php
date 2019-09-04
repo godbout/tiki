@@ -9,6 +9,8 @@ class Search_Query_Facet_Term extends Search_Query_Facet_Abstract implements Sea
 {
 	private $operator = 'or';
 	private $count;
+	private $order;
+	private $min_doc_count;
 
 	static function fromField($field)
 	{
@@ -54,4 +56,44 @@ class Search_Query_Facet_Term extends Search_Query_Facet_Abstract implements Sea
 	{
 		return $this->operator;
 	}
+
+	/**
+	 * @return array [field => order]
+	 */
+	public function getOrder()
+	{
+		$searchQueryOrder = \Search_Query_Order::parse($this->order);
+		return [$searchQueryOrder->getField() => $searchQueryOrder->getOrder()];
+	}
+
+	/**
+	 * @param string $order
+	 *
+	 * @return $this
+	 */
+	public function setOrder($order)
+	{
+		$this->order = $order;
+		return $this;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getMinDocCount()
+	{
+		return $this->min_doc_count;
+	}
+
+	/**
+	 * @param int $min_doc_count
+	 *
+	 * @return Search_Query_Facet_Term
+	 */
+	public function setMinDocCount($min)
+	{
+		$this->min_doc_count = $min;
+		return $this;
+	}
+
 }

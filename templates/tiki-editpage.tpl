@@ -339,8 +339,8 @@
 							<div class="form-group row">
 								<label for="suck_url" class="col-md-4 col-form-label">{tr}Import HTML{/tr}</label>
 								<div class="col-md-8 form-inline">
-									<input class="form-control wikiedit" type="text" id="suck_url" name="suck_url" value="{$suck_url|escape}">
-									<input type="submit" class="wikiaction btn btn-primary" name="do_suck" value="{tr}Import{/tr}" onclick="needToConfirm=false;">
+									<input class="form-control wikiedit mr-2" type="text" id="suck_url" name="suck_url" value="{$suck_url|escape}">
+									<input type="submit" class="wikiaction btn btn-primary mr-2" name="do_suck" value="{tr}Import{/tr}" onclick="needToConfirm=false;">
 									<label><input type="checkbox" name="parsehtml" {if $parsehtml eq 'y'}checked="checked"{/if}>&nbsp;
 									{tr}Try to convert HTML to wiki{/tr}</label>
 								</div>
@@ -351,7 +351,7 @@
 								<label for="userfile1" class="col-md-4 col-form-label">{tr}Import page{/tr}</label>
 								<div class="col-md-8 form-inline">
 									<input type="hidden" name="MAX_FILE_SIZE" value="1000000000">
-									<input class="form-control" id="userfile1" name="userfile1" type="file">
+									<input class="form-control mr-2" id="userfile1" name="userfile1" type="file">
 									<input type="submit" class="wikiaction btn btn-primary" name="attach" value="{tr}Import{/tr}" onclick="javascript:needToConfirm=false;insertImgFile('editwiki','userfile2','hasAlreadyInserted2','file', 'page2', 'attach_comment'); return true;">
 								</div>
 							</div>
@@ -371,9 +371,13 @@
 								<input type="hidden" id="page2" name="page2" value="{$page}">
 								<div class="form-group row align-items-left">
 									<label for="attach-upload" class="col-sm-4 col-form-label">{tr}Attach file{/tr}</label>
-									<input name="userfile2" type="file" id="attach-upload" class="col-sm-3 mx-2 mb-3 form-control">
-									<input type="text" name="attach_comment" class="col-sm-3 mr-3 mb-3 form-control" maxlength="250" id="attach-comment" placeholder="{tr}Comment{/tr}">
-									<input type="submit" class="wikiaction btn btn-primary mb-3" name="attach" value="{tr}Attach{/tr}" onclick="javascript:needToConfirm=false;insertImgFile('editwiki','userfile2','hasAlreadyInserted2','file', 'page2', 'attach_comment'); return true;">
+									<div class="col-sm-8 mb-2">
+										<input name="userfile2" type="file" id="attach-upload" class="form-control">
+									</div>
+									<div class="col-sm-8 offset-sm-4 form-inline">
+										<input type="text" name="attach_comment" class="col-sm-10 form-control mr-2" maxlength="250" id="attach-comment" placeholder="{tr}Comment{/tr}">
+										<input type="submit" class="wikiaction btn btn-primary" name="attach" value="{tr}Attach{/tr}" onclick="javascript:needToConfirm=false;insertImgFile('editwiki','userfile2','hasAlreadyInserted2','file', 'page2', 'attach_comment'); return true;">
+									</div>
 								</div>
 							{/if}
 						{/if}
@@ -518,24 +522,30 @@
 										{button href="tiki-admin_polls.php" _text="{tr}Admin Polls{/tr}"}
 									{/if}
 									{if $poll_rated|@count <= 1 or $prefs.poll_multiple_per_object eq 'y'}
-										<div>
+										<div class="form-group row mb-0">
 											{if count($polls_templates)}
-												{tr}Type{/tr}
-												<select name="poll_template">
-													<option value="0">{tr}none{/tr}</option>
-													{foreach item=template from=$polls_templates}
-														<option value="{$template.pollId|escape}"{if $template.pollId eq $poll_template} selected="selected"{/if}>{tr}{$template.title|escape}{/tr}</option>
-													{/foreach}
-												</select>
-												{tr}Title{/tr}
-												<input type="text" name="poll_title" size="22">
+												<label class="col-sm-2 col-form-label">{tr}Type{/tr}</label>
+												<div class="col-sm-10 mb-2">
+													<select name="poll_template" class="form-control">
+														<option value="0">{tr}none{/tr}</option>
+														{foreach item=template from=$polls_templates}
+															<option value="{$template.pollId|escape}"{if $template.pollId eq $poll_template} selected="selected"{/if}>{tr}{$template.title|escape}{/tr}</option>
+														{/foreach}
+													</select>
+												</div>
+												<label class="col-sm-2 col-form-label">{tr}Title{/tr}</label>
+												<div class="col-sm-10 mb-2">
+													<input type="text" name="poll_title" class="form-control">
+												</div>
 											{else}
+												<div class="col-sm-12">
 												{remarksbox type="info" title="{tr}Information{/tr}" close="n"}
 													{tr}There is no available poll template.{/tr}
 													{if $tiki_p_admin_polls ne 'y'}
 														{tr}Please ask an administrator to create one.{/tr}
 													{/if}
 												{/remarksbox}
+												</div>
 											{/if}
 										</div>
 									{/if}
