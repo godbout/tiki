@@ -144,8 +144,23 @@ body {
 	word-break: break-word;
 }
 
+.mobile .msg_text_inner {
+	width: 100%;
+	padding: 15px !important;
+	box-sizing: border-box;
+}
+
 .mobile .msg_parts {
 	table-layout: auto;
+}
+
+.mobile .msg_controls {
+	width: 100%;
+	height: 43px;
+	top: 0;
+	left: 0 !important;
+	right: 0;
+	padding: 17px 0 0 50px;
 }
 
 .mobile .news_cell {

@@ -7428,9 +7428,11 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .btn-outline-secondary:hover {
     color: #fff !important;
     text-decoration: none; }
-  .mobile .content_cell .content_title, .mobile .content_cell .content_title .list_controls {
+  .tiki-webmail .content_cell .content_title, .tiki-webmail.mobile .content_cell .content_title, .tiki-webmail .mobile .content_cell .content_title, .tiki-webmail .content_cell .content_title .list_controls, .tiki-webmail.mobile .content_cell .content_title .list_controls, .tiki-webmail .mobile .content_cell .content_title .list_controls {
     background: #f8f5f0;
     color: inherit; }
+  .tiki-webmail .msg_controls, .tiki-webmail.mobile .msg_controls, .tiki-webmail .mobile .msg_controls {
+    background: #f8f5f0 !important; }
 
 .chosen-select, .chosen-select-deselect {
   width: 100%; }
