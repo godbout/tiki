@@ -413,19 +413,7 @@ if (function_exists('disk_free_space')) {
 }
 
 // PHP Version
-if (version_compare(PHP_VERSION, '5.3.0', '<')) {
-	$php_properties['PHP version'] = array(
-		'fitness' => 'bad',
-		'setting' => phpversion(),
-		'message' => 'No supported versions of Tiki can be run with this very old version of PHP. Please see http://doc.tiki.org/Requirements for details.'
-	);
-} elseif (version_compare(PHP_VERSION, '5.5.0', '<')) {
-	$php_properties['PHP version'] = array(
-		'fitness' => tra('unsure'),
-		'setting' => phpversion(),
-		'message' => 'This PHP version is rather old. 12.x LTS can be run, but not newer versions. Please see http://doc.tiki.org/Requirements for details.'
-	);
-} elseif (version_compare(PHP_VERSION, '5.6.0', '<')) {
+if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 	$php_properties['PHP version'] = array(
 		'fitness' => tra('unsure'),
 		'setting' => phpversion(),
@@ -433,7 +421,7 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
 	);
 } elseif (version_compare(PHP_VERSION, '7.0.0', '<')) {
 	$php_properties['PHP version'] = array(
-		'fitness' => tra('good'),
+		'fitness' => tra('unsure'),
 		'setting' => phpversion(),
 		'message' => 'This version of PHP is good, and Tiki versions between 15.x LTS and 18.x LTS will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
 	);
@@ -441,13 +429,19 @@ if (version_compare(PHP_VERSION, '5.3.0', '<')) {
 	$php_properties['PHP version'] = array(
 		'fitness' => tra('good'),
 		'setting' => phpversion(),
-		'message' => 'This version of PHP is recent, and only Tiki 18.x LTS will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
+		'message' => 'This version of PHP is good, Tiki 18.x - Tiki 20 will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
+	);
+} elseif (version_compare(PHP_VERSION, '7.2.0', '<')) {
+	$php_properties['PHP version'] = array(
+		'fitness' => tra('good'),
+		'setting' => phpversion(),
+		'message' => 'This version of PHP is good, Tiki 19.x - Tiki 21.x will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
 	);
 } else {
 	$php_properties['PHP version'] = array(
 		'fitness' => tra('good'),
 		'setting' => phpversion(),
-		'message' => 'This version of PHP is recent. Tiki 18.x LTS might work with this version of PHP. Versions 19.x and newer will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
+		'message' => 'This version of PHP is recent. Tiki 21.x LTS might work with this version of PHP. Versions 19.x and newer will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
 	);
 }
 
