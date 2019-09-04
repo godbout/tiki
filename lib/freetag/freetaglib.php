@@ -902,11 +902,7 @@ class FreetagLib extends ObjectLib
 	 */
 	function _parse_tag($tag_string)
 	{
-		if (get_magic_quotes_gpc()) {
-			$query = stripslashes(trim($tag_string));
-		} else {
-			$query = trim($tag_string);
-		}
+		$query = trim($tag_string);
 
 		$words = preg_split('/(")/', $query, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 		$delim = 0;
@@ -952,9 +948,7 @@ class FreetagLib extends ObjectLib
 		foreach ($tagArray as $tag) {
 			$tag = trim($tag);
 			if ($tag != '') {
-				if (! get_magic_quotes_gpc()) {
-					$tag = addslashes($tag);
-				}
+				$tag = addslashes($tag);
 				$this->safe_tag($user, $itemId, $type, $tag, $lang);
 			}
 		}

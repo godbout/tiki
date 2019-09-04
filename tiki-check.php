@@ -791,22 +791,6 @@ if ($s) {
 	);
 }
 
-// magic_quotes_gpc
-$s = ini_get('magic_quotes_gpc');
-if ($s) {
-	$php_properties['magic_quotes_gpc'] = array(
-		'fitness' => tra('bad'),
-		'setting' => 'On',
-		'message' => tra('Some features like assigning permissions to a group whose name contains a quote will not work with this turned on. magic_quotes_gpc is also deprecated and should be off by default. See the PHP manual for details. Having this turned on may cause Tiki to show strange behavior.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	);
-} else {
-	$php_properties['magic_quotes_gpc'] = array(
-		'fitness' => tra('good'),
-		'setting' => 'Off',
-		'message' => tra('Correctly set! Some features like assigning permissions to a group whose name contains a quote will not work with this turned on. And this is also future proof as magic_quotes_gpc is deprecated.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	);
-}
-
 // default_charset
 $s = ini_get('default_charset');
 if (strtolower($s) == 'utf-8') {

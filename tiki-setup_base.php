@@ -42,9 +42,6 @@ ini_set('session.use_only_cookies', 1);
 // ini_set('session.save_handler', 'mmcache');
 // ... or if you just cant to store sessions in file
 // ini_set('session.save_handler', 'files');
-// Smarty workaround - if this would be 'On' in php.ini Smarty fails to parse tags
-ini_set('magic_quotes_sybase', 'Off');
-ini_set('magic_quotes_runtime', 0);
 ini_set('allow_call_time_pass_reference', 'On');
 
 $memory_limiter = new Tiki_MemoryLimit('128M'); // Keep in variable to hold scope

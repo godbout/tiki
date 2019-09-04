@@ -115,8 +115,6 @@
 		<!--# In some cases you may see open_basedir warnings about Smarty accessing php files that it shouldn't-->
 		<!--# The following line (uncommented) will reset the include path to use only Tiki's files which will solve this in most cases-->
 		<!--#php_value include_path "." -->
-		<!--# some features like assigning perms to a group with a name containing a quote will not work without this-->
-		<!--#php_flag magic_quotes_gpc off-->
 		<!--# Set a timezone (needed for dates and times to work properly in PHP)-->
 		<!--#php_value date.timezone "America/New_York"-->
 		<!--# Set a character set-->

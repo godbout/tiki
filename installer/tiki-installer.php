@@ -117,7 +117,6 @@ class InstallerDatabaseErrorHandler implements TikiDb_ErrorHandler
 
 $dbTiki = false;
 $commands = [];
-@ini_set('magic_quotes_runtime', 0);
 
 // tra() should not use $tikilib because this lib is not available in every steps of the installer
 //  and because we want to be sure that translations of the installer are the original ones, even for an upgrade
