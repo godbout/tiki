@@ -876,7 +876,7 @@ function wikiplugin_tracker($data, $params)
 
 	if (isset($values)) {
 		if (! is_array($values)) {
-			$values = $parserlib->quotesplit(':', $values);
+			$values = explode(':', $values);
 			foreach ($values as $i => $v) {
 				$values[$i] = preg_replace('/^"(.*)"$/', '$1', $v);
 			}

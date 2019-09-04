@@ -1142,38 +1142,6 @@ class ParserLib extends TikiDb_Bridge
 			&& ! $this->plugin_is_inline($name);
 	}
 
-	//*
-	function quotesplit($splitter = ',', $repl_string = '')
-	{
-		$tikilib = TikiLib::lib('tiki');
-		$matches = preg_match_all('/"[^"]*"/', $repl_string, $quotes);
-
-		$quote_keys = [];
-		if ($matches) {
-			foreach (array_unique($quotes) as $quote) {
-				$key = '§' . md5($tikilib->genPass()) . '§';
-				$aux["key"] = $key;
-				$aux["data"] = $quote;
-				$quote_keys[] = $aux;
-				$repl_string = str_replace($quote[0], $key, $repl_string);
-			}
-		}
-
-		$result = explode($splitter, $repl_string);
-
-		if ($matches) {
-			// Loop through the result sections
-			while (list($rarg, $rval) = each($result)) {
-				// Replace all stored strings
-				foreach ($quote_keys as $qval) {
-					$replacement = $qval["data"][0];
-					$result[$rarg] = str_replace($qval["key"], $replacement, $rval);
-				}
-			}
-		}
-		return $result;
-	}
-
 	/**
 	 * Gets a wiki parseable content and substitutes links for $oldName by
 	 * links for $newName.
