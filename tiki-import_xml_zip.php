@@ -13,7 +13,7 @@ require_once('tiki-setup.php');
 
 $access->check_feature('feature_wiki');
 $access->check_permission('tiki_p_admin');
-@ini_set('max_execution_time', 0); //will not work in safe_mode is on
+@ini_set('max_execution_time', 0);
 
 if (isset($_REQUEST['import'])) {
 	check_ticket('import_xml_zip');

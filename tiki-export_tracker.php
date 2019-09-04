@@ -18,7 +18,7 @@ if (! isset($_REQUEST['trackerId'])) {
 	die;
 }
 $trklib = TikiLib::lib('trk');
-@ini_set('max_execution_time', 0); //will not work in safe_mode is on
+@ini_set('max_execution_time', 0);
 
 $tracker_info = $trklib->get_tracker($_REQUEST['trackerId']);
 if (empty($tracker_info)) {

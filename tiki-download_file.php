@@ -44,9 +44,8 @@ if ($prefs["user_store_file_gallery_picture"] == 'y' && isset($_REQUEST["avatar"
 	}
 }
 
-if (! ini_get('safe_mode')) {
 	@set_time_limit(0);
-}
+
 
 $zip = false;
 $error = '';

@@ -11,11 +11,6 @@
 			{tr}If your pages contain XML code, the HTML purifier will delete it. Deactivate this feature.{/tr}
 		{/remarksbox}
 	{/if}
-	{if $safe_mode ne ''}
-		{remarksbox type="warning" title="{tr}Warning:{/tr}"}
-			{tr}Your PHP is running with safe mode enabled. This might cause problems to the import process as safe mode limits the possibility to change in run time some PHP settings (like max_execution_time). It is recommended to run this script without safe mode.{/tr}
-		{/remarksbox}
-	{/if}
 	{remarksbox type="note" title="{tr}Note:{/tr}"}
 		{tr}Depending on the size of the file from the source software, the import process may take a while to complete. This might be a problem according to your PHP and web server settings. This script tries to change the relevant settings but there are some settings that the script cannot change. So, if you are having problems with the script, please try to increase the value of the following PHP settings: max_input_time, max_execution_time (this setting is limited by the web server setting, if you are running Apache also change its Timeout setting), post_max_size, upload_max_filesize, memory_limit. It is recommended that you run this script on a server where you can change the values of those settings (if needed).{/tr}
 	{/remarksbox}

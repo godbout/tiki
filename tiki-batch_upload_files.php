@@ -43,7 +43,7 @@ if (empty($prefs['fgal_batch_dir']) or ! is_dir($prefs['fgal_batch_dir'])) {
 }
 
 if (isset($_REQUEST['batch_upload']) and isset($_REQUEST['files']) and is_array($_REQUEST['files'])) {
-	@ini_set('max_execution_time', 0); // will not work if safe_mode is on
+	@ini_set('max_execution_time', 0);
 
 	// default is: file names from request
 	$feedback = $filegalbatchlib->processBatchUpload(

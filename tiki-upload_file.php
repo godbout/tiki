@@ -33,7 +33,7 @@ $filegallib = TikiLib::lib('filegal');
 if ($prefs['feature_groupalert'] == 'y') {
 	$groupalertlib = TikiLib::lib('groupalert');
 }
-@ini_set('max_execution_time', 0); //will not work in safe_mode is on
+@ini_set('max_execution_time', 0);
 $auto_query_args = ['galleryId', 'fileId', 'filegals_manager', 'view', 'simpleMode', 'insertion_syntax'];
 
 if ($prefs['auth_token_access'] == 'y' && ! empty($token)) {

@@ -272,7 +272,7 @@ foreach ($categories as $categ) {
 $smarty->assign_by_ref('categNames', $categNames);
 
 if (isset($_REQUEST['list']) || isset($_REQUEST['export']) || isset($_REQUEST['graph'])) {
-	@ini_set('max_execution_time', 0); //will not work in safe_mode is on
+	@ini_set('max_execution_time', 0);
 	$url = '';
 	$selectedUsers = [];
 	if (isset($_REQUEST['selectedUsers'])) {

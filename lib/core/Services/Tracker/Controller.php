@@ -2023,7 +2023,7 @@ class Services_Tracker_Controller
 
 	function action_export_items($input)
 	{
-		@ini_set('max_execution_time', 0); // Will not work if safe_mode is on
+		@ini_set('max_execution_time', 0);
 		TikiLib::lib('tiki')->allocate_extra(
 			'tracker_export_items',
 			function () use ($input) {

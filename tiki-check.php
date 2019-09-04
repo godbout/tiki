@@ -769,22 +769,6 @@ if ($s) {
 	);
 }
 
-// safe mode
-$s = ini_get('safe_mode');
-if ($s) {
-	$php_properties['safe_mode'] = array(
-		'fitness' => tra('bad'),
-		'setting' => 'On',
-		'message' => tra('safe_mode is deprecated and should be off by default. See the <a href="http://www.php.net/manual/de/features.safe-mode.php">PHP manual</a> for details.')
-	);
-} else {
-	$php_properties['safe_mode'] = array(
-		'fitness' => tra('good'),
-		'setting' => 'Off',
-		'message' => tra('Correctly set! And this is also future proof as safe_mode is deprecated.')
-	);
-}
-
 // default_charset
 $s = ini_get('default_charset');
 if (strtolower($s) == 'utf-8') {
