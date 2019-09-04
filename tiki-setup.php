@@ -32,9 +32,6 @@ if (version_compare(PHP_VERSION, '7.1.0', '<')) {
 	echo "Warning: Tiki19 and above expects PHP 7.1.0 and above. You are running " . phpversion() . " at your own risk\n";
 }
 
-// Be sure that the user is not already defined by PHP on hosts that still have the php.ini config "register_globals = On"
-unset($user);
-
 // Ensure that we clean PROXY headers
 if (! empty($_SERVER['HTTP_PROXY'])) {
 	$_SERVER['HTTP_PROXY_RENAMED'] = $_SERVER['HTTP_PROXY'];

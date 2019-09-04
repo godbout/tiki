@@ -569,19 +569,7 @@ if ($prefs['feature_perspective'] === 'y') {
 
 
 require_once('lib/setup/perms.php');
-// --------------------------------------------------------------
-// deal with register_globals
-if (ini_get('register_globals')) {
-	foreach ([$_ENV, $_GET, $_POST, $_COOKIE, $_SERVER] as $superglob) {
-		foreach ($superglob as $key => $val) {
-			if (isset($GLOBALS[$key]) && $GLOBALS[$key] == $val) {
-				// if global has been set some other way
-				// that is OK (prevents munging of $_SERVER with ?_SERVER=rubbish etc.)
-				unset($GLOBALS[$key]);
-			}
-		}
-	}
-}
+
 $serverFilter = new DeclFilter;
 if (( isset($prefs['tiki_allow_trust_input']) && $prefs['tiki_allow_trust_input'] ) !== 'y' || $tiki_p_trust_input != 'y') {
 	$serverFilter->addStaticKeyFilters(['QUERY_STRING' => 'xss', 'REQUEST_URI' => 'url', 'PHP_SELF' => 'url',]);

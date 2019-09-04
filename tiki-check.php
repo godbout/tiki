@@ -753,22 +753,6 @@ if ($s) {
 	);
 }
 
-// register globals
-$s = ini_get('register_globals');
-if ($s) {
-	$php_properties['register_globals'] = array(
-		'fitness' => tra('bad'),
-		'setting' => 'On',
-		'message' => tra('register_globals should be off by default. See the PHP manual for details.')
-	);
-} else {
-	$php_properties['register_globals'] = array(
-		'fitness' => tra('good'),
-		'setting' => 'Off',
-		'message' => tra('Correctly set! And this is also future proof as register_globals is deprecated.')
-	);
-}
-
 // default_charset
 $s = ini_get('default_charset');
 if (strtolower($s) == 'utf-8') {
@@ -2143,22 +2127,6 @@ if ($s != "" && strpos($sn, $s) !== false) {
 		'fitness' => tra('unknown') ,
 		'setting' => $s,
 		'message' => tra('It can\'t be reliably determined if the upload_tmp_dir is accessible via a web browser. To be sure, check the webserver configuration.')
-	);
-}
-
-// register globals
-$s = ini_get('register_globals');
-if ($s) {
-	$security['register_globals'] = array(
-		'setting' => 'On',
-		'fitness' => tra('unsafe'),
-		'message' => tra('register_globals should be off by default. See the PHP manual for details.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
-	);
-} else {
-	$security['register_globals'] = array(
-		'setting' => 'Off',
-		'fitness' => tra('safe'),
-		'message' => tra('register_globals should be off by default. See the PHP manual for details.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
 	);
 }
 
