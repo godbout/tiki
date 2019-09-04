@@ -32,6 +32,501 @@ The tags info is also online: https://dev.tiki.org/Commit+Tags
 Before 2.0, there was only [MOD] for both [ENH] and [MOD]:
 
 ----------------------------------------------------------------------
+Version 20.1
+<http://doc.tiki.org/Tiki20>
+------------------
+
+----------------------------------------------
+r70820 | jonnybradley | 2019-09-04 09:49:04 +0100 (Wed, 04 Sep 2019) | 1 line
+[Revert r70800][ENH] search: Expose 'order' and 'min_doc_count' elastic search parameters on aggregations (facets)...
+----------------------------------------------
+r70817 | adrienmaloba | 2019-09-04 01:43:39 +0100 (Wed, 04 Sep 2019) | 3 lines
+[FIX] Fix reCaptcha for XMLHttpRequest from comments
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/157)
+----------------------------------------------
+r70816 | adrienmaloba | 2019-09-04 01:43:14 +0100 (Wed, 04 Sep 2019) | 3 lines
+[FIX] Saving files before refreshing line endings
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/157)
+----------------------------------------------
+r70814 | pom2ter | 2019-09-04 01:00:00 +0100 (Wed, 04 Sep 2019) | 1 line
+[FIX] cypht: fixes to themes and responsiveness
+----------------------------------------------
+r70813 | pom2ter | 2019-09-03 22:41:58 +0100 (Tue, 03 Sep 2019) | 1 line
+[FIX] mobile: more form layout fix to edit wiki page
+----------------------------------------------
+r70812 | pom2ter | 2019-09-03 21:39:25 +0100 (Tue, 03 Sep 2019) | 1 line
+[FIX] mobile: some form fields overlapping when editing wiki pages
+----------------------------------------------
+r70811 | guill.bout | 2019-09-03 21:28:42 +0100 (Tue, 03 Sep 2019) | 3 lines
+[ENH] Improve scroll to mandatory field when form is submitted with errors
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/158)
+----------------------------------------------
+r70810 | montefuscolo | 2019-09-03 21:08:08 +0100 (Tue, 03 Sep 2019) | 3 lines
+[FIX] HTTPS port behind proxy, but respecting https_port preference
+(cherry picked from commit 17554d05bb2ef9ed680568467fdaa6f94c6f8067)
+----------------------------------------------
+r70809 | medvedvvs | 2019-09-03 21:08:06 +0100 (Tue, 03 Sep 2019) | 4 lines
+[FIX] Update tiki-setup_base.php: changing the SSL port definition scheme. Config is taken from the database and then SSL port is set to the value obtained (or 443, or from _SERVER var).
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/159)
+(cherry picked from commit 9383e1f117fbc3b80807a8ae743d61f57df9ec52)
+----------------------------------------------
+r70808 | Sabiduria | 2019-09-03 21:08:03 +0100 (Tue, 03 Sep 2019) | 4 lines
+[FIX] Realignment of the "I forgot my password" link in mod-login_box
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/160)
+(cherry picked from commit 8ab6c5b35c651afd29ab9f8d501868afac82c225)
+----------------------------------------------
+r70807 | Sabiduria | 2019-09-03 21:07:59 +0100 (Tue, 03 Sep 2019) | 4 lines
+[FIX] Checkbox duplication on theme activation in Sketchy Theme
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/160)
+(cherry picked from commit c3158b600a8fc5c943891ee3caa0ea518f9b902e)
+----------------------------------------------
+r70800 | jonnybradley | 2019-09-03 16:48:41 +0100 (Tue, 03 Sep 2019) | 3 lines
+[ENH] search: Expose 'order' and 'min_doc_count' elastic search parameters on aggregations (facets)
+Note order only seems to work as _count_asc, _count_desc (default), _term_asc or _term_desc (alpha sort)
+[more info here https://www.elastic.co/guide/en/elasticsearch/reference/5.6/search-aggregations-bucket-terms-aggregation.html]
+----------------------------------------------
+r70799 | Bsfez | 2019-09-03 16:08:00 +0100 (Tue, 03 Sep 2019) | 1 line
+[TRA] Missing string for i18n
+----------------------------------------------
+r70798 | Bsfez | 2019-09-03 16:08:00 +0100 (Tue, 03 Sep 2019) | 1 line
+[TRA] Added missing hebrew strings for I18n
+----------------------------------------------
+r70789 | bsfez | 2019-09-01 09:20:33 +0100 (Sun, 01 Sep 2019) | 1 line
+Merge branch '20.x' of https://gitlab.com/tikiwiki/tiki into 20.x
+----------------------------------------------
+r70784 | jonnybradley | 2019-08-31 13:09:08 +0100 (Sat, 31 Aug 2019) | 1 line
+Merge remote-tracking branch 'origin/20.x' into 20.x
+----------------------------------------------
+r70781 | jonnybradley | 2019-08-30 11:56:48 +0100 (Fri, 30 Aug 2019) | 1 line
+[ENH] list: Add {calc} plugin (control block) support to plugin list wiki templates which allows https://doc.tiki.org/Calculations to be combined with {display} for conditional content display etc without using Smarty templates
+----------------------------------------------
+r70779 | pom2ter | 2019-08-30 01:31:06 +0100 (Fri, 30 Aug 2019) | 1 line
+[FIX] contrast issue with blockquote in the amelia theme
+----------------------------------------------
+r70778 | pom2ter | 2019-08-30 00:23:10 +0100 (Fri, 30 Aug 2019) | 1 line
+[FIX] cypht: fix some color issues
+----------------------------------------------
+r70775 | jonnybradley | 2019-08-29 18:39:06 +0100 (Thu, 29 Aug 2019) | 1 line
+[FIX] list: Fix pasto on converting sort_mode param if created_* (and add a description at the top)
+----------------------------------------------
+r70773 | xavidp | 2019-08-29 15:57:19 +0100 (Thu, 29 Aug 2019) | 1 line
+[ENH]PluginTrackerCalendar supports the eventOverlap param in fullcalendar views (resources and agenda), so that events using the same resoruce will not be able to overlap when the moving or extending dates-ranges are edited through the fullcalendar UI (useful for booking management systems to prevent overbooking the same physical resource; set by default to true to be consistent with former behavior of this same plugin). However, Tiki trackers don't have a system yet (afaik) to prevent this type of overlapping, so that users can still cheat if they edit the tracker items through the other tracker item edit interfaces (coding beyond my current knowledge-set). HTH
+----------------------------------------------
+r70772 | xavidp | 2019-08-29 15:07:35 +0100 (Thu, 29 Aug 2019) | 1 line
+[FIX]List PluginTrackerCalendar as updated in 20.x
+----------------------------------------------
+r70770 | xavidp | 2019-08-29 14:38:08 +0100 (Thu, 29 Aug 2019) | 1 line
+[ENH]Expose the list views from fullcalendar lib through PluginTrackerCalendar (how come we hadn't added these nice views yet ;-). Profile Tracker_as_Calendar_19 in profiles.t.o to be updated next to showcase these goodies easily
+----------------------------------------------
+r70769 | Bsfez | 2019-08-29 08:28:39 +0100 (Thu, 29 Aug 2019) | 1 line
+[TRA] Hebrew translation
+----------------------------------------------
+r70768 | pom2ter | 2019-08-29 01:13:50 +0100 (Thu, 29 Aug 2019) | 1 line
+[FIX] cypht: corrected colors for fixed header
+----------------------------------------------
+r70765 | xorti | 2019-08-29 00:41:14 +0100 (Thu, 29 Aug 2019) | 1 line
+[ENH] Update tiki-check.php
+----------------------------------------------
+r70764 | pom2ter | 2019-08-29 00:02:12 +0100 (Thu, 29 Aug 2019) | 1 line
+[FIX] cypht: better responsiveness
+----------------------------------------------
+r70759 | montefuscolo | 2019-08-28 22:17:26 +0100 (Wed, 28 Aug 2019) | 1 line
+[FIX] Make nickname for works again in ConverseJS 5.0
+----------------------------------------------
+r70758 | montefuscolo | 2019-08-28 20:59:51 +0100 (Wed, 28 Aug 2019) | 1 line
+[FIX] Show participant list in embedded ConverseJS chatbox
+----------------------------------------------
+r70757 | montefuscolo | 2019-08-28 18:37:27 +0100 (Wed, 28 Aug 2019) | 3 lines
+[FIX] Add CSS override to hide the extra modal-backdrop added by converse
+(refs e0a880ca6c1aae25e2559fa4739e524ee4393030)
+----------------------------------------------
+r70756 | montefuscolo | 2019-08-28 18:19:29 +0100 (Wed, 28 Aug 2019) | 1 line
+[FIX] Update patch to remove Bootstrap libraries from ConverseJS file
+----------------------------------------------
+r70754 | montefuscolo | 2019-08-28 16:40:19 +0100 (Wed, 28 Aug 2019) | 1 line
+[FIX] Add option to hide the controlbox on embedded mode
+----------------------------------------------
+r70753 | pom2ter | 2019-08-28 03:35:06 +0100 (Wed, 28 Aug 2019) | 1 line
+[ENH] cypht: better responsiveness
+----------------------------------------------
+r70752 | montefuscolo | 2019-08-28 03:11:13 +0100 (Wed, 28 Aug 2019) | 3 lines
+[FIX] Make ConverseJS Oauth Plugin works on version 5.0.1
+(cherry picked from commit 6f4012f4c4ae7a0dc52595cd50de0f9c5ad5bcb5)
+----------------------------------------------
+r70751 | montefuscolo | 2019-08-28 03:09:33 +0100 (Wed, 28 Aug 2019) | 3 lines
+[FIX] Correct entries for ConverseJS in composer
+(refs ec38ad49e68905a6a664a17c4040a359006d58d7)
+----------------------------------------------
+r70746 | xavidp | 2019-08-27 18:58:31 +0100 (Tue, 27 Aug 2019) | 1 line
+[ENH]Expose the updated profile to showcase a more adapted setup for the fullcalendar-scheduler package powering the PluginTrackerCalendar
+----------------------------------------------
+r70744 | xavidp | 2019-08-27 18:32:57 +0100 (Tue, 27 Aug 2019) | 1 line
+[ENH]Expose option to display resources by months along a year (seeing events across month borders). Kept the naming as Resources by Years for consitency with similar params of shorter time-windows. More views can be exposed, apparently (TODO: list-related views of resources)
+----------------------------------------------
+r70740 | lindonb | 2019-08-27 04:51:38 +0100 (Tue, 27 Aug 2019) | 1 line
+[FIX] Remove stray character (added by me in r69340) that was preventing new calendars from being created. Not an issue in prior versions.
+----------------------------------------------
+r70738 | lindonb | 2019-08-27 04:05:25 +0100 (Tue, 27 Aug 2019) | 1 line
+[FIX] Wrong query was being used for feedback for deletion of custom modules, resulting in false error messages that custom modules were not deleted when they were.
+----------------------------------------------
+r70736 | lindonb | 2019-08-27 04:00:23 +0100 (Tue, 27 Aug 2019) | 1 line
+[FIX] Pass js ticket parameter also when forms are used instead of only using a form input for the ticket. Avoids false anti-CSRF errors where the js parameter is used in a form (e.g., deleting a custom module). Issue doesn't exist in prior versions as popup confirms were only added in 20x.
+----------------------------------------------
+r70734 | pom2ter | 2019-08-26 23:35:01 +0100 (Mon, 26 Aug 2019) | 1 line
+[FIX] mobile: fix layout for admin directories
+----------------------------------------------
+r70733 | pom2ter | 2019-08-26 22:19:26 +0100 (Mon, 26 Aug 2019) | 1 line
+[FIX] spacing issue when editing categories
+----------------------------------------------
+r70731 | xavidp | 2019-08-26 16:46:09 +0100 (Mon, 26 Aug 2019) | 1 line
+[ENH]Show (in the searchindex results) the parent tracker name and link where the tracker item belongs to, in a similar manner to what tiki does with wiki pages in structures, forums posts in forums, articles in article types, etc.
+----------------------------------------------
+r70728 | chibaguy | 2019-08-26 14:39:25 +0100 (Mon, 26 Aug 2019) | 1 line
+[FIX] Table#fields overflows right column or offscreen in three-column layout or mobile view, so table-responsive class added.
+----------------------------------------------
+r70726 | chibaguy | 2019-08-26 12:54:46 +0100 (Mon, 26 Aug 2019) | 1 line
+[FIX] Add margin between forum comments also in default view. Limit card.postbody no background and no borders to blogs - forum posts and threads are more readable with the backgrounds and borders.
+----------------------------------------------
+r70725 | luciash | 2019-08-26 08:19:53 +0100 (Mon, 26 Aug 2019) | 1 line
+[FIX][UX] PluginTracker: wrong col-md and offset class names
+----------------------------------------------
+r70723 | chibaguy | 2019-08-25 14:07:01 +0100 (Sun, 25 Aug 2019) | 1 line
+[FIX] Make a little vertical space between forum comments in threaded view. Fix the URL of edge.gif (the little "L"-shaped image in the indent of threaded comments).
+----------------------------------------------
+r70721 | chibaguy | 2019-08-25 13:35:33 +0100 (Sun, 25 Aug 2019) | 1 line
+[FIX] Prior to making forum posts more visually distinct, changed div to section (lines 3 and 313) to contain all comments and moved a div closing tag (from line 307 to 312) to fix mismatched div tags; these changes don't change the visual layout.
+----------------------------------------------
+r70720 | chibaguy | 2019-08-25 11:26:54 +0100 (Sun, 25 Aug 2019) | 1 line
+[FIX] Forum's article.top_post contained article.post, which isn't logical, so .top_post changed to section.
+----------------------------------------------
+r70717 | xorti | 2019-08-24 14:20:43 +0100 (Sat, 24 Aug 2019) | 4 lines
+[bp/r70524][FIX] Fix issue in pdf display
+- Update preference fgal_pdfjs_feature package dependencies
+- Fix &amp encode issue when sef_url is disabled
+----------------------------------------------
+r70715 | pom2ter | 2019-08-23 22:44:43 +0100 (Fri, 23 Aug 2019) | 1 line
+[FIX] mobile: autotoc items had extra padding
+----------------------------------------------
+r70714 | pom2ter | 2019-08-23 21:21:22 +0100 (Fri, 23 Aug 2019) | 1 line
+[FIX] autotoc text color was invisible with the feb12 theme
+----------------------------------------------
+r70711 | pom2ter | 2019-08-23 02:14:35 +0100 (Fri, 23 Aug 2019) | 1 line
+[FIX] cypht: black on black background issue
+----------------------------------------------
+r70710 | pom2ter | 2019-08-23 01:01:20 +0100 (Fri, 23 Aug 2019) | 1 line
+[FIX] cypht: fixed specific theme issues
+----------------------------------------------
+r70703 | jonnybradley | 2019-08-22 10:56:53 +0100 (Thu, 22 Aug 2019) | 1 line
+[FIX] maps: Fix both ajax and direct api address lookup for ol3 maps - viewport setting returned is not correctly used still (FIXME)
+----------------------------------------------
+r70702 | jonnybradley | 2019-08-22 10:51:03 +0100 (Thu, 22 Aug 2019) | 2 lines
+[FIX] maps: Fix ajax address lookup for ol2 maps when not using google map layers as the API key is required now (and use https, also required)
+Also return and display the error message if something fails (e.g. the api key is missing)
+----------------------------------------------
+r70701 | pom2ter | 2019-08-22 03:13:17 +0100 (Thu, 22 Aug 2019) | 1 line
+[FIX] cypht: fixed more build-in themes issues
+----------------------------------------------
+r70700 | pom2ter | 2019-08-22 03:04:48 +0100 (Thu, 22 Aug 2019) | 1 line
+[FIX] cypht: fixed some build-in themes issues
+----------------------------------------------
+r70693 | pom2ter | 2019-08-21 01:46:01 +0100 (Wed, 21 Aug 2019) | 1 line
+[NEW] starting build-in theme integration in cypht
+----------------------------------------------
+r70690 | pom2ter | 2019-08-20 00:13:51 +0100 (Tue, 20 Aug 2019) | 1 line
+[FIX] mobile: spreadsheet history is a little more readable
+----------------------------------------------
+r70689 | pom2ter | 2019-08-19 22:40:29 +0100 (Mon, 19 Aug 2019) | 1 line
+[FIX] mobile: layout fixes for tiki share
+----------------------------------------------
+r70686 | jonnybradley | 2019-08-19 12:16:27 +0100 (Mon, 19 Aug 2019) | 1 line
+[FIX] trackers: Fix  refresh_itemslist_index for ItemsList fields linked to ItemLinks using itemId instead of the value (thanks Victor)
+----------------------------------------------
+r70685 | Bsfez | 2019-08-18 08:33:13 +0100 (Sun, 18 Aug 2019) | 1 line
+[FIX] It wasn't possible to display translation for a remarksbox title in multilingual Tiki. Added {tr} tag around the remarksbox_title.
+----------------------------------------------
+r70683 | jonnybradley | 2019-08-17 19:22:24 +0100 (Sat, 17 Aug 2019) | 1 line
+[FIX] search: Prevent deprecated warnings calling non static function statically
+----------------------------------------------
+r70681 | xavidp | 2019-08-17 11:07:50 +0100 (Sat, 17 Aug 2019) | 1 line
+[FIX]Fix list of improved plugins in 20.x: another one (commit early, commit often ;-)
+----------------------------------------------
+r70680 | xavidp | 2019-08-17 10:55:32 +0100 (Sat, 17 Aug 2019) | 1 line
+[FIX]Fix list of improved plugins in 20.x and keep alphabetical sort order
+----------------------------------------------
+r70678 | nkoth | 2019-08-17 05:30:55 +0100 (Sat, 17 Aug 2019) | 2 lines
+[bp/r70677][FIX] Ajax tracker update: wait for indexing to complete before loading of next request to ensure updated info shown (was already there for new inserts)
+----------------------------------------------
+r70676 | drsassafras | 2019-08-16 23:19:55 +0100 (Fri, 16 Aug 2019) | 1 line
+[UPD] php-saml - Update to version 3.x
+----------------------------------------------
+r70671 | xavidp | 2019-08-16 12:14:50 +0100 (Fri, 16 Aug 2019) | 1 line
+[FIX]Expose missing prefs added in Tiki19 related to H5P (and for consistency, re-show the basic prefs , introduced in Tiki18 already, but also needed for H5P to work, just in case the novel h5p user and tiki site admin just discovers them through the what's new wizard)
+----------------------------------------------
+r70670 | xavidp | 2019-08-16 11:07:27 +0100 (Fri, 16 Aug 2019) | 1 line
+[FIX]Expose missing prefs from features added in Tiki 20
+----------------------------------------------
+r70666 | pom2ter | 2019-08-15 23:07:04 +0100 (Thu, 15 Aug 2019) | 1 line
+[FIX] autotoc: proper positioning when position is fixed
+----------------------------------------------
+r70665 | pom2ter | 2019-08-15 22:12:36 +0100 (Thu, 15 Aug 2019) | 1 line
+[FIX] autotoc: remove left padding added to main content when autotoc is active
+----------------------------------------------
+r70663 | pom2ter | 2019-08-15 02:26:39 +0100 (Thu, 15 Aug 2019) | 1 line
+[FIX] mobile: some checkbox fields were outside of containers
+----------------------------------------------
+r70662 | pom2ter | 2019-08-15 00:04:30 +0100 (Thu, 15 Aug 2019) | 1 line
+[FIX] mobile: layout fix for the contribution page
+----------------------------------------------
+r70661 | pom2ter | 2019-08-14 22:15:47 +0100 (Wed, 14 Aug 2019) | 1 line
+[FIX] mobile: layout fix for admin workspaces
+----------------------------------------------
+r70660 | pom2ter | 2019-08-14 21:20:09 +0100 (Wed, 14 Aug 2019) | 1 line
+[FIX] mobile: moved the admin toolbars in one column
+----------------------------------------------
+r70658 | jonnybradley | 2019-08-14 18:11:42 +0100 (Wed, 14 Aug 2019) | 1 line
+[FIX] tabs: Fix cookietab activation for bootstrap4
+----------------------------------------------
+r70657 | jonnybradley | 2019-08-14 18:00:39 +0100 (Wed, 14 Aug 2019) | 1 line
+[FIX] categories: No need to actually fetch all the category data when getting the object count on browse categories - saves several seconds on page load even on a fairly small data set.
+----------------------------------------------
+r70656 | jonnybradley | 2019-08-14 17:58:46 +0100 (Wed, 14 Aug 2019) | 1 line
+[ENH] categories: Add category count to category admin list (uses the database if category_browse_count_objects or unified search if not)
+----------------------------------------------
+r70653 | pom2ter | 2019-08-14 01:06:08 +0100 (Wed, 14 Aug 2019) | 1 line
+[FIX] mobile: layout fix for the perspectives page
+----------------------------------------------
+r70650 | drsassafras | 2019-08-13 22:54:07 +0100 (Tue, 13 Aug 2019) | 1 line
+[FIX] packages - don't uninstall dev tools while updating packages
+----------------------------------------------
+r70647 | drsassafras | 2019-08-13 22:46:19 +0100 (Tue, 13 Aug 2019) | 1 line
+[UPD] saml - update package requirements
+----------------------------------------------
+r70645 | pom2ter | 2019-08-13 22:27:08 +0100 (Tue, 13 Aug 2019) | 1 line
+[FIX] mobile: height of tiki log messages was too small
+----------------------------------------------
+r70641 | rjsmelo | 2019-08-13 00:03:13 +0100 (Tue, 13 Aug 2019) | 2 lines
+[bp/r70639][REF] Move message to a a place where it can offer some context
+----------------------------------------------
+r70637 | pom2ter | 2019-08-12 22:46:01 +0100 (Mon, 12 Aug 2019) | 1 line
+[FIX] mobile: maximizing width space in the admin control panels
+----------------------------------------------
+r70626 | lindonb | 2019-08-12 20:20:35 +0100 (Mon, 12 Aug 2019) | 3 lines
+[FIX] Module controls were disappearing too quickly to use when the module had no box, so show permanently as that is better for touch screens anyway
+(refs https://gitlab.com/tikiwiki/tiki/merge_requests/131)
+----------------------------------------------
+r70606 | yonixxx | 2019-08-12 08:32:24 +0100 (Mon, 12 Aug 2019) | 1 line
+[TRA] Hebrew Translation
+----------------------------------------------
+r70604 | jonnybradley | 2019-08-11 17:51:57 +0100 (Sun, 11 Aug 2019) | 1 line
+[FIX] categories: Bulk upload needs to be visible without a parent category selected
+----------------------------------------------
+r70603 | jonnybradley | 2019-08-11 15:48:08 +0100 (Sun, 11 Aug 2019) | 1 line
+[FIX] search: Prevent long log entries overflowing the rebuild dialog (no text-break class in bootstrap 4.1 sadly)
+----------------------------------------------
+r70601 | jonnybradley | 2019-08-10 20:16:00 +0100 (Sat, 10 Aug 2019) | 1 line
+[ENH] categories: Move the category list into a tab and improve tabs layout moving more relevant tabs to the left
+----------------------------------------------
+r70600 | jonnybradley | 2019-08-10 20:14:08 +0100 (Sat, 10 Aug 2019) | 1 line
+[FIX] bs4: New badge classes for categories list
+----------------------------------------------
+r70599 | jonnybradley | 2019-08-10 18:53:53 +0100 (Sat, 10 Aug 2019) | 1 line
+[FIX] categories: You can't categorise categories
+----------------------------------------------
+r70598 | jonnybradley | 2019-08-10 18:53:01 +0100 (Sat, 10 Aug 2019) | 1 line
+[ENH] categories: Add checkboxes to objects in category to allow multiple removal
+----------------------------------------------
+r70597 | jonnybradley | 2019-08-10 17:48:39 +0100 (Sat, 10 Aug 2019) | 1 line
+[FIX] categories: Fix adding objects using the search index based object selector (pref: unified_add_to_categ_search)
+----------------------------------------------
+r70593 | drsassafras | 2019-08-10 04:03:52 +0100 (Sat, 10 Aug 2019) | 1 line
+[ENH] Vendor Security Check - remove from console if dev not installed
+----------------------------------------------
+r70592 | drsassafras | 2019-08-10 03:50:42 +0100 (Sat, 10 Aug 2019) | 1 line
+[MOD][ENH] Vendor Security Check - Fix broken api call, include rudimentary check for package files
+----------------------------------------------
+r70582 | pom2ter | 2019-08-09 01:17:49 +0100 (Fri, 09 Aug 2019) | 1 line
+[FIX] wizards: fixed stray tags
+----------------------------------------------
+r70581 | pom2ter | 2019-08-08 23:17:01 +0100 (Thu, 08 Aug 2019) | 1 line
+[FIX] mobile: maximizing width space for the tiki wizards
+----------------------------------------------
+r70578 | pom2ter | 2019-08-08 20:54:09 +0100 (Thu, 08 Aug 2019) | 1 line
+[FIX] theme customizer: fixed footer was taking to much space on mobile
+----------------------------------------------
+r70577 | drsassafras | 2019-08-08 20:54:09 +0100 (Thu, 08 Aug 2019) | 1 line
+[FIX] setup.sh - If in development mode, do not uninstall development files.
+----------------------------------------------
+r70576 | drsassafras | 2019-08-08 20:54:09 +0100 (Thu, 08 Aug 2019) | 1 line
+[DOC] - InterTiki - Provide inline documentation within the control panel.
+----------------------------------------------
+r70575 | drsassafras | 2019-08-08 20:54:09 +0100 (Thu, 08 Aug 2019) | 1 line
+[UX] - PassBlacklist - enable translation of control panel
+----------------------------------------------
+r70563 | pom2ter | 2019-08-07 02:32:59 +0100 (Wed, 07 Aug 2019) | 1 line
+[FIX] theme customizer: remove bad selectors when generating custom css
+----------------------------------------------
+r70561 | pom2ter | 2019-08-06 23:08:35 +0100 (Tue, 06 Aug 2019) | 1 line
+[FIX] mobile: layout fix for the general admin control panel page
+----------------------------------------------
+r70559 | pom2ter | 2019-08-06 01:02:17 +0100 (Tue, 06 Aug 2019) | 1 line
+[FIX] mobile: fix some large tables layout
+----------------------------------------------
+r70557 | rjsmelo | 2019-08-05 17:45:31 +0100 (Mon, 05 Aug 2019) | 2 lines
+[FIX] Filter was not being generated properly and the right account was not being returned
+----------------------------------------------
+r70546 | jonnybradley | 2019-08-03 21:17:10 +0100 (Sat, 03 Aug 2019) | 1 line
+Test commit from git
+----------------------------------------------
+r70545 | pom2ter | 2019-08-02 23:33:20 +0100 (Fri, 02 Aug 2019) | 1 line
+[FIX] mobile: the event chain diagram is a little more readable
+----------------------------------------------
+r70544 | robertokir | 2019-08-02 16:27:08 +0100 (Fri, 02 Aug 2019) | 1 line
+Test Commit
+----------------------------------------------
+r70539 | pom2ter | 2019-08-02 03:26:25 +0100 (Fri, 02 Aug 2019) | 1 line
+[FIX] mobile: fix layout and remove scrolling of the profiles export list
+----------------------------------------------
+r70538 | pom2ter | 2019-08-02 01:13:46 +0100 (Fri, 02 Aug 2019) | 1 line
+[FIX] mobile: maximizing space of wiki pages when autotoc is active
+----------------------------------------------
+r70537 | pom2ter | 2019-08-02 00:10:24 +0100 (Fri, 02 Aug 2019) | 1 line
+[FIX] mobile: making large tables more readable
+----------------------------------------------
+r70536 | jonnybradley | 2019-08-01 19:20:37 +0100 (Thu, 01 Aug 2019) | 1 line
+[revert r70535 committed by mistake] 190801 More on validation highlighting - half working
+----------------------------------------------
+r70535 | jonnybradley | 2019-08-01 18:49:15 +0100 (Thu, 01 Aug 2019) | 1 line
+190801 More on validation highlighting - half working
+----------------------------------------------
+r70533 | xavidp | 2019-08-01 10:10:00 +0100 (Thu, 01 Aug 2019) | 1 line
+[FIX]Oups, committed local changes to this file by mistake. Sorry for that
+----------------------------------------------
+r70532 | xavidp | 2019-08-01 10:04:06 +0100 (Thu, 01 Aug 2019) | 1 line
+[FIX]Allow tiki-export_tracker.php to work also with php 7.1+ avoiding PHP Fatal error:  Uncaught Error: [] operator not supported for strings
+----------------------------------------------
+r70529 | chibaguy | 2019-08-01 08:43:17 +0100 (Thu, 01 Aug 2019) | 1 line
+[FIX][UI] Removed classes on div.container that were apparently added by mistake (div.middle, if specified, should be below header.page-header).
+----------------------------------------------
+r70526 | xorti | 2019-08-01 02:08:17 +0100 (Thu, 01 Aug 2019) | 3 lines
+[FIX] maps: Allow coordinates at 0,0 to be used - returning an empty string makes the map plugin use the default location set in map prefs
+[manually re-applied after revision loss - old r70520]
+----------------------------------------------
+r70525 | xorti | 2019-08-01 02:01:26 +0100 (Thu, 01 Aug 2019) | 3 lines
+[MOD] search: Add last and current login fields to indexed user data
+[manually re-applied after revision loss - old r70519]
+----------------------------------------------
+r70520 | xorti | 2019-08-01 01:41:08 +0100 (Thu, 01 Aug 2019) | 3 lines
+[bp/70519][FIX] Fix issue in js load order due to minification in wikiplugin_diagram
+[manually re-applied after revision loss - old r70514]
+----------------------------------------------
+r70509 | chibaguy | 2019-07-27 16:58:21 +0100 (Sat, 27 Jul 2019) | 1 line
+[FIX][UI] Base_file default values weren't being overwritten by theme values so !default was added to them similar to in vendor/...Bootstrap/...variables.scss.
+----------------------------------------------
+r70502 | jyhem | 2019-07-25 18:59:34 +0100 (Thu, 25 Jul 2019) | 1 line
+[FIX] Put back fixed width pref in first tab because it needs to stay easy to find while still keeping it in the layout tab because of orderliness
+----------------------------------------------
+r70501 | nkoth | 2019-07-25 18:22:14 +0100 (Thu, 25 Jul 2019) | 2 lines
+[FIX] Exclude any kind of admin from list plugin cache as admins will normally see more in their listings than other users. Fix also includes warning suppression.
+----------------------------------------------
+r70497 | jonnybradley | 2019-07-25 17:55:08 +0100 (Thu, 25 Jul 2019) | 1 line
+[FIX] div: Declaring $style before extract with EXTR_SKIP means the style parameter was being ignored (from r68823)
+----------------------------------------------
+r70496 | jonnybradley | 2019-07-25 17:46:53 +0100 (Thu, 25 Jul 2019) | 2 lines
+[ENH] maps: Add a way of optionally setting the name of a layer or layer group using Name=layer_name
+e.g. "Bing=bing_road,Watercolour=stamen_watercolor~stamen_terrain-labels,nextzen~stamen_toner-labels"
+----------------------------------------------
+r70495 | jyhem | 2019-07-25 17:17:14 +0100 (Thu, 25 Jul 2019) | 1 line
+[UX] Improve legibility of large tables contents
+----------------------------------------------
+r70493 | jonnybradley | 2019-07-25 17:06:43 +0100 (Thu, 25 Jul 2019) | 1 line
+[FIX] comments: Only apply AJAX loading js on the "reply", "edit" and "delete" buttons for comments. Version history links created by "save and commenting" were loading the file contents into the comment list and making a mess (thanks Guill)
+----------------------------------------------
+r70487 | jonnybradley | 2019-07-24 16:36:24 +0100 (Wed, 24 Jul 2019) | 1 line
+[FIX] maps: Handle layers problems better (i.e. trying to show ol2 layers on ol3+ maps)
+----------------------------------------------
+r70485 | jyhem | 2019-07-24 01:22:47 +0100 (Wed, 24 Jul 2019) | 1 line
+[UX] In standalone mode, force optimal use of space since this is an admin tool
+----------------------------------------------
+r70484 | jyhem | 2019-07-24 00:23:58 +0100 (Wed, 24 Jul 2019) | 1 line
+[UX] Since this is an admin tool usually used before layout is considered, force optimal use of space
+----------------------------------------------
+r70480 | jonnybradley | 2019-07-23 18:20:11 +0100 (Tue, 23 Jul 2019) | 1 line
+[FIX] maps: jqueryTiki.mapTileSets is already an array so only split string values from the plugin tilesets parameter
+----------------------------------------------
+r70478 | jyhem | 2019-07-23 18:05:13 +0100 (Tue, 23 Jul 2019) | 1 line
+[FIX] No reason to ask for character_set_system to be utf8mb4 (thanks Bernard)
+----------------------------------------------
+r70476 | jonnybradley | 2019-07-23 17:14:01 +0100 (Tue, 23 Jul 2019) | 3 lines
+[ENH] maps: Improve grouping of base and overlay layers in teh layer switcher. And allow tilesets to be grouped within one layer so you can have a map and labels combined in a single switchable map "layer"
+e.g.
+    tilesets="bing_road,stamen_watercolor~stamen_terrain-labels,nextzen~stamen_toner-labels"
+----------------------------------------------
+r70473 | jyhem | 2019-07-23 15:40:36 +0100 (Tue, 23 Jul 2019) | 1 line
+[UX] Replace ambiguous fun word with more expressive one (ugly {U+2192} unsure)
+----------------------------------------------
+r70471 | jonnybradley | 2019-07-23 12:14:54 +0100 (Tue, 23 Jul 2019) | 1 line
+[UPD] Rerun `php71 temp/composer.phar update -d vendor_bundled --prefer-dist` having cleared composer caches and deleted vendor_bundled/vendor (as seen in trunk)
+----------------------------------------------
+r70470 | jonnybradley | 2019-07-23 12:11:49 +0100 (Tue, 23 Jul 2019) | 1 line
+[UPD] Update for cypht css file from composer
+----------------------------------------------
+r70462 | jyhem | 2019-07-23 01:09:39 +0100 (Tue, 23 Jul 2019) | 1 line
+[UX] Hide scary messages for advanced users in 'more' option
+----------------------------------------------
+r70461 | xavidp | 2019-07-22 21:46:08 +0100 (Mon, 22 Jul 2019) | 1 line
+[FIX]Fixes PHP Fatal error:  Uncaught Error: Call to undefined function histlib_helper_setup_diff(). Thanks Sandrine Marquis for the bug report and proopsed fix, which in my tests, I can confirm that it fixes https://dev.tiki.org/item7130 . Feel free anyone with better php skills to improve the fix if appropriate.
+----------------------------------------------
+r70460 | jonnybradley | 2019-07-22 19:45:32 +0100 (Mon, 22 Jul 2019) | 1 line
+[REF] maps: Move some big blocks of stubborn code still needing updating to ol3+ to the end of the file to they don't get forgotten about (completely)
+----------------------------------------------
+r70459 | jonnybradley | 2019-07-22 19:34:55 +0100 (Mon, 22 Jul 2019) | 1 line
+[ENH] maps: Add 3rd party walkermatt/ol-layerswitcher to restore the layer switcher in ol3+ mode
+----------------------------------------------
+r70458 | jonnybradley | 2019-07-22 19:11:07 +0100 (Mon, 22 Jul 2019) | 3 lines
+[UPD] Automatic updates
+  - Updating ckeditor/ckeditor (4.11.4 => 4.12.1)
+  - Updating phpseclib/phpseclib (2.0.20 => 2.0.21)
+----------------------------------------------
+r70452 | jonnybradley | 2019-07-21 17:50:43 +0100 (Sun, 21 Jul 2019) | 2 lines
+[ENH] maps: Add ZoomSlider and make coordinates work properly (although i'm not convinced that's really the right projection for our maps)
+Also define them all before the map constructor instead of adding them afterwards.
+----------------------------------------------
+r70450 | xavidp | 2019-07-19 19:10:34 +0100 (Fri, 19 Jul 2019) | 1 line
+[ENH]Add a couple more configuration profiles from the Profiles Wizard in Tiki. Activity stream can also be used as a administration helper, and therefore, I added it also there that there was some space available. Thanks to the main authors of those profiles that I just extended a little bit (HTH)
+----------------------------------------------
+r70449 | xavidp | 2019-07-19 17:36:20 +0100 (Fri, 19 Jul 2019) | 1 line
+[FIX]Expose some more of the new prefs that were added in Tiki 20
+----------------------------------------------
+r70448 | xavidp | 2019-07-19 17:36:00 +0100 (Fri, 19 Jul 2019) | 1 line
+[FIX]Expose a pref option only when the main pref is checked
+----------------------------------------------
+r70447 | xavidp | 2019-07-19 17:32:25 +0100 (Fri, 19 Jul 2019) | 1 line
+[FIX]Expose some more of the new prefs that were added in Tiki 19
+----------------------------------------------
+r70445 | jonnybradley | 2019-07-19 13:47:51 +0100 (Fri, 19 Jul 2019) | 1 line
+[ENH] maps: Clicking on a cluster zooms to the contents of the cluster (thanks marclaporte) - also refactor displayFeatureInfo and showPopup functions so they can be overridden by custom code if needs be
+----------------------------------------------
+r70444 | jonnybradley | 2019-07-19 11:38:04 +0100 (Fri, 19 Jul 2019) | 1 line
+[FIX] maps: Various fixes, make the search and location buttons look like buttons, fix to my location for ol3 and fix removal of previous instances of a unique marker (like selection).
+----------------------------------------------
+r70440 | kroky6 | 2019-07-18 15:30:07 +0100 (Thu, 18 Jul 2019) | 1 line
+[FIX] remove unnecessary join to tiki_tracker_fields and add an important missing where clause matching itemIds of tiki_tracker_items and tiki_tracker_item_fields - drastically reduces the execution speed of get_all_item_id
+----------------------------------------------
+r70432 | jonnybradley | 2019-07-17 14:46:39 +0100 (Wed, 17 Jul 2019) | 1 line
+[FIX] search: Uncomment the var_dump lines in example facet_charts.tpl to assist debugging
+----------------------------------------------
+r70428 | jonnybradley | 2019-07-16 17:39:32 +0100 (Tue, 16 Jul 2019) | 1 line
+[FIX] maps: When over a cluster make the tooltips appear correctly for the features revealed within.
+----------------------------------------------
+r70427 | jonnybradley | 2019-07-16 16:52:59 +0100 (Tue, 16 Jul 2019) | 1 line
+[FIX] maps: Add colouring for ferries and airports on nextzen vector maps
+----------------------------------------------
+r70426 | jonnybradley | 2019-07-16 16:32:57 +0100 (Tue, 16 Jul 2019) | 1 line
+[FIX] maps: Better positioning of "popover" popups when selected
+----------------------------------------------
+r70419 | jonnybradley | 2019-07-15 14:02:53 +0100 (Mon, 15 Jul 2019) | 1 line
+[FIX] search: Module in non-compact (default) mode was wrapping strangely, Pretty certain it should be the input on one row and the buttons underneath - note, width of the buttons is a bit random as it's set by font-size, works ok in many themes but could be better
+----------------------------------------------
 Version 20.0
 <http://doc.tiki.org/Tiki20>
 ------------------
