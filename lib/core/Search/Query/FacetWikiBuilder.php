@@ -25,8 +25,6 @@ class Search_Query_FacetWikiBuilder
 					if ($facet['type'] === 'terms') {
 						$facet['operator'] = isset($arguments['operator']) ? $arguments['operator'] : 'or';
 						$facet['count'] = isset($arguments['count']) ? $arguments['count'] : null;
-						$facet['order'] = isset($arguments['order']) ? $arguments['order'] : null;
-						$facet['min'] = isset($arguments['min']) ? $arguments['min'] : null;
 					}
 
 					if (isset($arguments['id'])) {
@@ -59,14 +57,6 @@ class Search_Query_FacetWikiBuilder
 
 				if ($facet['count']) {
 					$real->setCount($facet['count']);
-				}
-
-				if ($facet['order']) {
-					$real->setOrder($facet['order']);
-				}
-
-				if ($facet['min'] !== null) {
-					$real->setMinDocCount($facet['min']);
 				}
 
 				$query->requestFacet($real);
