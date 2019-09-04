@@ -31,7 +31,7 @@ class UnoconvLib
 
 		$config = [
 			'unoconv.binaries' => $prefs['alchemy_unoconv_path'],
-			'unoconv.timeout' => 60,
+			'timeout' => $prefs['alchemy_unoconv_timeout'] ?: 60,
 		];
 
 		$this->unoconv = Unoconv::create($config);

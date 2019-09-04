@@ -50,7 +50,7 @@ class AlchemyLib
 			'ffmpeg.ffprobe.binaries' => $prefs['alchemy_ffprobe_path'],
 			'imagine.driver' => $prefs['alchemy_imagine_driver'],
 			'unoconv.binaries' => $prefs['alchemy_unoconv_path'],
-			'unoconv.timeout' => 60,
+			'unoconv.timeout' => $prefs['alchemy_unoconv_timeout'] ?: 60,
 			'gs.binaries' => $prefs['alchemy_gs_path'],
 			'gs.timeout' => 60,
 		];

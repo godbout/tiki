@@ -36,7 +36,6 @@ class PDFHelper
 	 */
 	public static function convertToPDF($fileId)
 	{
-
 		global $user, $tikidomain;
 
 		$userLib = \TikiLib::lib('user');
@@ -63,7 +62,7 @@ class PDFHelper
 			$unoconv->convertFile($sourceFile, $targetFile);
 		} catch (\Exception $e) {
 			$convertFail = true;
-			$message = sprintf("Failed to convert document %s (id: %s) to pdf. Error: %s", $file['filename'], $file['filename'], $e->getMessage());
+			$message = sprintf("Failed to convert document %s (id: %s) to pdf. Error: %s", $file->filename, $fileId, $e->getMessage());
 			$logsLib = \TikiLib::lib('logs');
 			$logsLib->add_log('Unoconv', $message);
 		}
@@ -82,9 +81,6 @@ class PDFHelper
 			$access->display_error('', $message);
 		}
 
-		$content = file_get_contents($targetFile);
-		unlink($targetFile);
-
-		return $content;
+		return $targetFile;
 	}
 }

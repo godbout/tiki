@@ -155,4 +155,18 @@ class FileHelper
 
 		return $template;
 	}
+
+	/**
+	 * Returns if a given mime-type belongs to a office document type
+	 *
+	 * @param $mimeType
+	 * @return bool
+	 */
+	public static function isOfficeDocument($mimeType)
+	{
+		return strpos($mimeType, 'application/vnd.openxmlformats-officedocument') !== false ||
+			strpos($mimeType, 'application/vnd.ms') !== false ||
+			$mimeType == 'application/msword' ||
+			strpos($mimeType, 'application/vnd.oasis.opendocument.') !== false;
+	}
 }

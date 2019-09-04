@@ -48,6 +48,14 @@ function prefs_alchemy_list()
 			'size' => '256',
 			'default' => '/usr/bin/gs',
 		],
+		'alchemy_unoconv_timeout' => [
+			'name' => tra('unoconv timeout'),
+			'description' => tra('The maximum amount of time for unoconv to execute.'),
+			'filter' => 'digits',
+			'type' => 'text',
+			'default' => 60,
+			'units' => tra('seconds'),
+		],
 	];
 
 	if (!class_exists('\Imagick')) {
