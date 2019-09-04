@@ -87,7 +87,7 @@ $needed_prefs = [
 	'cookie_consent_name' => 'tiki_cookies_accepted',
 	'allocate_memory_php_execution' => '',
 	'allocate_time_php_execution' => '',
-	'https_port' => (isset($_SERVER['SERVER_PORT'])) ? strval($_SERVER['SERVER_PORT']) : '443',
+	'https_port' => '443',
 ];
 
 /// check that tiki_preferences is there
