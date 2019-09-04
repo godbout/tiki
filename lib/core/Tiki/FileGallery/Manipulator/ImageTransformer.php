@@ -113,7 +113,7 @@ class ImageTransformer extends Manipulator
         return 'imagepng';
       case "image/bmp":
       case "image/wbmp":
-        return 'image2wbmp';
+        return 'imagewbmp';
       case "image/jpg":
       case "image/jpeg":
       case "image/pjpeg":
