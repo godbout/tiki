@@ -1,4 +1,4 @@
-.cypht, .mobile.cypht, .inline-cypht {
+.tiki-webmail, .cypht, .mobile.cypht, .inline-cypht {
     background: $body-bg;
 	font-family: $font-family-base;
 	color: $body-color;
@@ -93,7 +93,7 @@
     }
 }
 
-.mobile.cypht {
+.mobile.cypht, .mobile.tiki-webmail {
     .content_cell .content_title {
         &, .list_controls {
             background: $popover-header-bg;

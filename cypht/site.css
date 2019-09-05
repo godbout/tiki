@@ -534,19 +534,31 @@ body {
 	min-width: 100%;
 }
 
+.mobile .inline-cypht {
+	padding-top: 40px;
+}
+
 .mobile .folder_cell {
 	width: 100%;
 	max-width: 100%;
+}
+
+.mobile .folder_list {
 	margin-bottom: 40px;
+}
+
+.mobile .folder_toggle {
+	display: block !important;
+}
+
+.mobile .src_name {
+	margin: 0;
 }
 
 .mobile .content_cell {
 	padding-top: 1px;
 	border: none;
-}
-
-.mobile .src_name {
-	margin: 0;
+	display: block !important;
 }
 
 .mobile .content_title {
@@ -559,6 +571,10 @@ body {
 .mobile .content_title .list_controls {
 	border: none;
 	background: #fff;
+}
+
+.mobile .content_title .list_controls a {
+	padding-right: 0;
 }
 
 .mobile .toggle_link {
@@ -621,6 +637,11 @@ body {
 .mobile .nux_step_two {
 	padding-left: 30px;
 	max-width: 85%;
+}
+
+.mobile .nux_dev_news table td {
+	display: block;
+	white-space: normal;
 }
 
 .mobile .add_server {
@@ -705,4 +726,14 @@ body {
 
 .mobile .header_links {
 	padding-bottom: 8px;
+}
+
+.tiki-webmail.mobile .box-logo,
+.tiki-webmail.mobile .pagetitle,
+.tiki-webmail.mobile .pagetitle+.t_navbar {
+	display: none;
+}
+
+.tiki-webmail.mobile .topbar {
+	margin-bottom: 0;
 }
