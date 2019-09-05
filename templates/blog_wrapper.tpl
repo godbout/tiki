@@ -1,5 +1,4 @@
 {* $Id$ *}
-<div class="card postbody clearfix">
 	<a id="postId{$post_info.postId}"></a>
 	{include file='blog_post_postbody_title.tpl'}
 	{include file='blog_post_postbody_content.tpl'}
@@ -36,4 +35,3 @@
 			{/if}
 		{/if}
 	{/if}
-</div>

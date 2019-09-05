@@ -4,7 +4,7 @@
 {else}
 	{include file='blog_post_heading.tpl'}
 {/if}
-<article class="blogpost post post_single">
+<article class="card blogpost post post_single">
 	{include file='blog_wrapper.tpl' blog_post_context='view_blog_post'}
 </article>
 {include file='blog_post_related_content.tpl'}
