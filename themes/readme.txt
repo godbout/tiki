@@ -1,22 +1,23 @@
-To make your own theme (e.g. a theme called "abc"), the layout of the files are:
+DESCRIPTION OF THEME DIRECTORIES
+To make your own theme (for example, a theme called "ABC"), the layout of the files is:
 
-css:
-themes/abc/css/tiki.css   (As soon as this is created, you can pick theme from http://example.com/tiki-admin.php?page=look)
+CSS files:
+themes/ABC/css/ABC.css, etc.   (After this directory and file are created, you can select the theme on http://example.com/tiki-admin.php?page=look)
 
-less:
-themes/abc/less/tiki.less   (Here are the less files to be compiled by the developers IDE or command line)
+SCSS:
+themes/ABC/scss/ABC.scss, etc.   (Best practice is to create the theme stylesheet by compiling SCSS files, which go in this directory. )
 
-fonts:
-themes/abc/fonts/*   (If you want to use custom fonts not being loaded via an API, put them here)
+Fonts:
+themes/ABC/fonts/   (For custom fonts that are stored locally rather than imported via CSS)
 
-icons:
-themes/abc/icons/*   (This is where you deploy your icon-set, if you do prefer not to use glyphs)
+Icons:
+themes/ABC/icons/   (For a custom icon font set, as an option to the Font Awesome icon set that is bundled with Tiki)
 
-templates:
-themes/abc/templates/*.tpl   (This is where you deploy .tpl files which override the ones at templates/*.tpl)
+Smarty template files:
+themes/ABC/templates/   (For .tpl files which override same-name equivalents in templates/)
 
-images:
-themes/abc/images/*    (This is where you store all images related to your theme)
+Images:
+themes/ABC/images/    (For theme background images, etc.)
 
 More details at:
 https://themes.tiki.org/How+To+Add+a+New+Bootstrap+Theme
