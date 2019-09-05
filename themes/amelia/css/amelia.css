@@ -7319,13 +7319,13 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background-color: #4d3a7d;
     color: #fff; }
 
-.cypht, .mobile.cypht, .inline-cypht {
+.tiki-webmail, .cypht, .mobile.cypht, .inline-cypht {
   background: #108a93;
   font-family: "Cabin", Arial, sans-serif;
   color: #fff; }
-  .cypht a:not(.btn), .mobile.cypht a:not(.btn), .inline-cypht a:not(.btn) {
+  .tiki-webmail a:not(.btn), .cypht a:not(.btn), .mobile.cypht a:not(.btn), .inline-cypht a:not(.btn) {
     color: #e8d069 !important; }
-  .cypht a:not(.btn):hover, .mobile.cypht a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
+  .tiki-webmail a:not(.btn):hover, .cypht a:not(.btn):hover, .mobile.cypht a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
     color: #e8d069 !important;
     text-decoration: underline; }
 
@@ -7374,10 +7374,10 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .btn-outline-secondary:hover {
     color: #fff !important;
     text-decoration: none; }
-  .mobile.cypht .content_cell .content_title, .mobile.cypht .content_cell .content_title .list_controls {
+  .mobile.cypht .content_cell .content_title, .mobile.tiki-webmail .content_cell .content_title, .mobile.cypht .content_cell .content_title .list_controls, .mobile.tiki-webmail .content_cell .content_title .list_controls {
     background: #18cbd8;
     color: #fff; }
-  .mobile.cypht .msg_controls {
+  .mobile.cypht .msg_controls, .mobile.tiki-webmail .msg_controls {
     background: #18cbd8 !important; }
 
 .chosen-select, .chosen-select-deselect {
