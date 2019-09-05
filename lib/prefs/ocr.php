@@ -53,7 +53,7 @@ function prefs_ocr_list()
 			'type' => 'multilist',
 			'options' => $ocrLangs,
 			'dependencies' => ['ocr_file_level'],
-			'default' => "",
+			'default' => [''],
 		],
 		'ocr_tesseract_path' => [
 			'name' => tra('tesseract path'),
