@@ -41,6 +41,7 @@
 {/strip}{/capture}
 
 <form enctype="multipart/form-data" name='blogpost' method="post" action="tiki-blog_post.php{$smarty.capture.actionUrlParam}" id ='editpageform' class="form-horizontal">
+	{ticket}
 	<input type="hidden" name="postId" value="{$postId|escape}">
 	<fieldset class="tabcontent">
 		{if $blogs|@count gt 1 and ( !isset($blogId) or $blogId eq 0 )}
@@ -141,9 +142,9 @@
 		{include file='categorize.tpl'}
 	</fieldset>
 	<div class="text-center">
-		<input type="submit" class="wikiaction btn btn-info" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false">
-		<input type="submit" class="wikiaction btn btn-secondary" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
+		<input type="submit" class="wikiaction btn btn-info" name="preview" value="{tr}Preview{/tr}">
+		<input type="submit" class="wikiaction btn btn-secondary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout()">
 		<input type="hidden" name="referer" value="{$referer|escape}">
-		<input type="submit" class="btn btn-link" name="cancel" onclick='document.location="{$referer|escape:'html'}";needToConfirm=false;return false;' value="{tr}Cancel{/tr}">
+		<input type="submit" class="btn btn-link" name="cancel" onclick='document.location="{$referer|escape:'html'}";' value="{tr}Cancel{/tr}">
 	</div>
 </form>

@@ -99,8 +99,7 @@ if (isset($_REQUEST['cancel'])) {
 // Exit edit mode (with javascript)
 $smarty->assign('referer', ! empty($_REQUEST['referer']) ? $_REQUEST['referer'] : (empty($_SERVER['HTTP_REFERER']) ? 'tiki-view_blog.php?blogId=' . $blogId : $_SERVER['HTTP_REFERER']));
 
-if (isset($_REQUEST['remove_image']) && $access->checkOrigin()) {
-	$access->check_authenticity();
+if (isset($_REQUEST['remove_image']) && $access->checkCsrf()) {
 	$bloglib->remove_post_image($_REQUEST['remove_image']);
 }
 
@@ -122,7 +121,6 @@ if ($postId > 0) {
 	$smarty->assign('parsed_data', TikiLib::lib('parser')->parse_data($data['data'], ['is_html' => $is_wysiwyg]));
 	$smarty->assign('blogpriv', $data['priv']);
 
-	check_ticket('blog');
 	$post_images = $bloglib->get_post_images($postId);
 	$smarty->assign_by_ref('post_images', $post_images);
 	$cat_type = 'blog post';
@@ -204,7 +202,7 @@ if (isset($_REQUEST['save']) && $prefs['feature_contribution'] == 'y' && $prefs[
 	$contribution_needed = false;
 }
 
-if (isset($_REQUEST['save']) && ! $contribution_needed && $access->checkOrigin()) {
+if (isset($_REQUEST['save']) && ! $contribution_needed && $access->checkCsrf()) {
 	$imagegallib = TikiLib::lib('imagegal');
 	$smarty->assign('individual', 'n');
 
@@ -268,8 +266,6 @@ include_once('tiki-section_options.php');
 if ($prefs['feature_contribution'] == 'y') {
 	include_once('contribution.php');
 }
-
-ask_ticket('blog');
 
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
