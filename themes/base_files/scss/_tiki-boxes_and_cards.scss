@@ -90,3 +90,6 @@ a.flipmodtitle .icon {
 	overflow-x: hidden;
 }
 
+// Preserve legacy module HTML/appearance (after div.card-footer was added to div.module), but allow overriding by theme CSS for styling purposes, etc.
+.module .card-footer { display: none; }
+

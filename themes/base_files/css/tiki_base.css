@@ -1678,6 +1678,9 @@ a.flipmodtitle .icon {
   overflow-y: auto;
   overflow-x: hidden; }
 
+.module .card-footer {
+  display: none; }
+
 .ui-accordion .normal, .ui-accordion .normalnoborder, .ui-accordion .admin {
   width: auto; }
 

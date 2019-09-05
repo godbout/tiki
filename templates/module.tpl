@@ -107,6 +107,7 @@
 						</div>
 					</form>
 				{/if}
+				<div class="card-footer"></div> {* Added because some themes use this div for styling purposes. *}
 			</div>{* close div id="module_{$moduleId}" *}
 			{else}{* $module_nobox eq 'y' *}
 			{* Module controls when no module box *}
