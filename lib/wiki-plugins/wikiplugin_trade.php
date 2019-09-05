@@ -123,7 +123,7 @@ function wikiplugin_trade($data, $params, $offset)
 	$iPluginTrade++;
 	$smarty->assign('iPluginTrade', $iPluginTrade);
 
-	$params['price'] = floatval(preg_replace('/^\D*([\d\.]*)/', '$1', $params['price']));
+	$params['price'] = (float)preg_replace('/^\D*([\d\.]*)/', '$1', $params['price']);
 	$smarty->assign('wp_trade_other_user_set', empty($params['other_user']) ? 'n' : 'y');
 	$smarty->assign('wp_trade_action', $params['action']);
 

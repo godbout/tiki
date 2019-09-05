@@ -21,15 +21,15 @@ class Math_Formula_Function_NumberFormat extends Math_Formula_Function
 
 		$value = $elements[0];
 
-		if ((string)floatval($value) !== (string)$value) {
+		if ((string)(float)$value !== (string)$value) {
 			return $value;
 		}
 		if (count($elements) > 2) {
-			return number_format(floatval($value), $elements[1], $elements[2], $elements[3]);
+			return number_format((float)$value, $elements[1], $elements[2], $elements[3]);
 		} elseif (count($elements) > 1) {
-			return number_format(floatval($value), $elements[1]);
+			return number_format((float)$value, $elements[1]);
 		} else {
-			return number_format(floatval($value));
+			return number_format((float)$value);
 		}
 	}
 }

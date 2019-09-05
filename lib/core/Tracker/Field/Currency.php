@@ -145,12 +145,12 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 			}
 			// convert amount to default currency before converting to other currencies
 			if ($source_currency != $default_currency && !empty($rates[$source_currency])) {
-				$amount = floatval($amount) / floatval($rates[$source_currency]);
+				$amount = (float)$amount / (float)$rates[$source_currency];
 				$conversions[$default_currency] = $amount;
 			}
 			foreach ($rates as $currency => $rate) {
 				if ($currency != $source_currency) {
-					$conversions[$currency] = floatval($rate) * floatval($amount);
+					$conversions[$currency] = (float)$rate * (float)$amount;
 				}
 			}
 		}

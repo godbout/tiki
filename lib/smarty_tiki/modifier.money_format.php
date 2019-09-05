@@ -56,7 +56,7 @@ function smarty_modifier_money_format($number, $local, $currency, $format = '%(#
 				'(?:#([0-9]+))?(?:\.([0-9]+))?([in%])/';
 	preg_match_all($regex, $format, $matches, PREG_SET_ORDER);
 	foreach ($matches as $fmatch) {
-		$value = floatval($number);
+		$value = (float)$number;
 		$flags = [
 			'fillchar' => preg_match('/\=(.)/', $fmatch[1], $match) ?
 							$match[1] : ' ',

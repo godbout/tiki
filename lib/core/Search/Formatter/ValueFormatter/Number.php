@@ -26,15 +26,15 @@ class Search_Formatter_ValueFormatter_Number extends Search_Formatter_ValueForma
 
 	function render($name, $value, array $entry)
 	{
-		if ((string)floatval($value) !== (string)$value) {
+		if ((string)(float)$value !== (string)$value) {
 			return $value;
 		}
 		if ($this->dec_point && $this->thousands_sep) {
-			return number_format(floatval($value), $this->decimals, $this->dec_point, $this->thousands_sep);
+			return number_format((float)$value, $this->decimals, $this->dec_point, $this->thousands_sep);
 		} elseif ($this->decimals) {
-			return number_format(floatval($value), $this->decimals);
+			return number_format((float)$value, $this->decimals);
 		} else {
-			return number_format(floatval($value));
+			return number_format((float)$value);
 		}
 	}
 }

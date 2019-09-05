@@ -189,7 +189,7 @@ function wikiplugin_memberpayment($data, $params, $offset)
 	$iPluginMemberpayment++;
 	$smarty->assign('iPluginMemberpayment', $iPluginMemberpayment);
 	$smarty->assign('returnurl', ! empty($params['returnurl']) ? $params['returnurl'] : '');
-	$params['price'] = floatval($params['price']);
+	$params['price'] = (float)$params['price'];
 	$default = [ 'currentuser' => 'n', 'inputtitle' => '', 'inputtitleonly' => 'n', 'howtitle' => '',
 					'howtitleonly' => 'n', 'paytitle' => '', 'paytitleonly' => 'n', 'hideperiod' => 'n',
 					'periodslabel' => 'Number of periods:'];

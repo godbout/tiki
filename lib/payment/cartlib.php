@@ -329,7 +329,7 @@ class CartLib
 		foreach ($_SESSION['cart'] as $info) {
 			if ($info[$giftCertificateTypeLink] == $this->gift_certificate_type_reference || $giftCertificateTypeLink == '' && (! isset($info['is_gift_certificate']) || ! $info['is_gift_certificate'])) {
 				$products[] = $info;
-				$productTotal += floatval($info['quantity']) * floatval($info['price']);
+				$productTotal += (float)$info['quantity'] * (float)$info['price'];
 				$giftCertificateApplies = true;
 			}
 		}
@@ -457,20 +457,16 @@ class CartLib
 
 		$this->gift_certificate_id = $this->get_tracker_item_id_custom($prefs['payment_cart_giftcert_tracker_name'], "Redeem Code", $code);
 
-		$this->gift_certificate_amount = floatval(
-			$this->get_tracker_value_custom(
-				$prefs['payment_cart_giftcert_tracker_name'],
-				"Current Balance or Percentage",
-				$this->gift_certificate_id
-			)
+		$this->gift_certificate_amount = (float)$this->get_tracker_value_custom(
+			$prefs['payment_cart_giftcert_tracker_name'],
+			"Current Balance or Percentage",
+			$this->gift_certificate_id
 		);
 
-		$this->gift_certificate_amount_original = floatval(
-			$this->get_tracker_value_custom(
-				$prefs['payment_cart_giftcert_tracker_name'],
-				"Original Balance or Percentage",
-				$this->gift_certificate_id
-			)
+		$this->gift_certificate_amount_original = (float)$this->get_tracker_value_custom(
+			$prefs['payment_cart_giftcert_tracker_name'],
+			"Original Balance or Percentage",
+			$this->gift_certificate_id
 		);
 
 		$this->gift_certificate_type = $this->get_tracker_value_custom($prefs['payment_cart_giftcert_tracker_name'], "Type", $this->gift_certificate_id);
@@ -546,7 +542,7 @@ class CartLib
 		foreach ($_SESSION['cart'] as $info) {
 			if ($info[$reference] == $this->gift_certificate_type_reference) {
 				$products[] = $info;
-				$productTotal += floatval($info['quantity']) * floatval($info['price']);
+				$productTotal += (float)$info['quantity'] * (float)$info['price'];
 				$giftCertificateApplies = true;
 			}
 		}
@@ -608,7 +604,7 @@ class CartLib
 		$total = 0;
 
 		foreach ($_SESSION['cart'] as $info) {
-			$total += floatval($info['quantity']) * floatval($info['price']);
+			$total += (float)$info['quantity'] * (float)$info['price'];
 		}
 		if ($total < 0) {
 			$total = 0;
@@ -725,7 +721,7 @@ class CartLib
 
 		foreach ($_SESSION['cart'] as $info) {
 			if (! empty($info['weight'])) {
-				$total += intval($info['quantity']) * floatval($info['weight']);
+				$total += intval($info['quantity']) * (float)$info['weight'];
 			}
 		}
 

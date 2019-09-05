@@ -1439,7 +1439,7 @@ class AccountingLib extends LogsLib
 		if (! is_numeric($a)) {
 			return '';
 		}
-		return floatval($a);
+		return (float)$a;
 	}//cleanupAmount
 
 	/**

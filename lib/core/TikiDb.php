@@ -417,7 +417,7 @@ abstract class TikiDb
 	{
 		$versionNr = 0.0;
 		$version = $this->getMySQLVersion();
-		$versionNr = floatval($version);
+		$versionNr = (float)$version;
 		return $versionNr;
 	}
 

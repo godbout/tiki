@@ -158,8 +158,8 @@ function wikiplugin_gdgraph($data, $params)
 	$xydata = ['xdata' => [], 'ydata' => []];
 	for ($i = 0; $i < count($xy); $i++) {
 		$xydata['xdata'][] = $xy[$i][0];
-		$xydata['ydata'][] = floatval($xy[$i][1]);
-		if (floatval($xy[$i][1]) !== 0.0) {
+		$xydata['ydata'][] = (float)$xy[$i][1];
+		if ((float)$xy[$i][1] !== 0.0) {
 			$ynonzero = true;
 		}
 	}

@@ -302,7 +302,7 @@ class Search_Action_FileGalleryImageOverlay implements Search_Action_Action
 				$coordinate[$i] = $part[0];
 			} else {
 				if (count($part) == 2) {
-					$coordinate[$i] = floatval($part[0]) / floatval($part[1]);
+					$coordinate[$i] = (float)$part[0] / (float)$part[1];
 				} else {
 					$coordinate[$i] = 0;
 				}

@@ -82,11 +82,11 @@ class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFor
 		$currency = $source_currency;
 		// convert amount to default currency before converting to other currencies
 		if ($source_currency != $default_currency && !empty($rates[$source_currency])) {
-			$amount = floatval($amount) / floatval($rates[$source_currency]);
+			$amount = (float)$amount / (float)$rates[$source_currency];
 			$currency = $default_currency;
 		}
 		if ($target_currency != $default_currency && !empty($rates[$target_currency])) {
-			$amount = floatval($rates[$target_currency]) * floatval($amount);
+			$amount = (float)$rates[$target_currency] * (float)$amount;
 			$currency = $target_currency;
 		}
 

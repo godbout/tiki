@@ -233,7 +233,7 @@ class Search_Elastic_QueryBuilder
 			}
 		}
 		if (isset($mapping->type) && $mapping->type === 'float') {
-			$value = floatval($value);
+			$value = (float)$value;
 		}
 		if ($node->getType() == 'identifier') {
 			return ["match" => [
