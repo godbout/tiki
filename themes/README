@@ -1,7 +1,7 @@
 TIKI THEMES
 
 A number of visual themes (also known as skins or templates) are distributed with Tiki but more are available, and you can
-create an original theme or adapt an existing theme made for plain HTML or for another platform such as WordPress (respecting licence restictions) for your own purpose.
+create an original theme or adapt an existing theme made for plain HTML or for another platform such as WordPress (respecting licence restrictions) for your own purpose.
 The bundled themes can serve as models of how themes work in Tiki.
 
 Tiki's themes (stylesheets and associated files) are in the "themes" directory in the root directory of the Tiki installation.
@@ -14,12 +14,14 @@ Please refer to the "Default" theme (themes/default/) or the "FiveAlive" theme (
 organization and content for themes.
 
 More information about themes can be found at https://themes.tiki.org .
+
 More themes can be found at https://themes.tiki.org/Marketplace Themes . Currently these are available for Tiki 18 and before, but updates are coming.
+
 Help with Tiki is available at: https://tiki.org/Help .
+
 A Tiki consultant (providing paid services) can be found and contacted at: https://tiki.org/Consultants .
 
-Please note that Tiki also has a theme customizer (called the Style Guide Tool before Tiki 19 - note: the feature isn't functional yet in Tiki 19).
-See https://doc.tiki.org/Theme-Customizer .
+Please note that Tiki also has a theme customizer that is currently partially functional. See https://doc.tiki.org/Theme-Customizer .
 
 
 FOR DEVELOPERS
