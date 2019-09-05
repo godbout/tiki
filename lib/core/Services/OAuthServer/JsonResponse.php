@@ -32,7 +32,7 @@ class JsonResponse extends Response
 		}
 
 		if (is_object($input) && method_exists($input, '__toString')) {
-			return json_encode(strval($input), $options);
+			return json_encode((string)$input, $options);
 		}
 	}
 }
