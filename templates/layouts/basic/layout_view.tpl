@@ -17,7 +17,7 @@
 {if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 	<div class="row">
 	<header class="page-header w-100" id="page-header">
-		{modulelist zone=top class='top_modules d-flex justify-content-between'}
+		{modulelist zone=top class="top_modules d-flex justify-content-between {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark{else}navbar-light bg-light{/if}"}
 	</header>
 	</div>
 {/if}
