@@ -7470,13 +7470,13 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background-color: #5bc0de;
     color: #f8f9fa; }
 
-.tiki-webmail, .inline-cypht {
+.cypht, .mobile.cypht, .inline-cypht {
   background: #474747;
   font-family: "Trebuchet MS", "Bitstream Vera Sans", sans-serif;
   color: #d8d8d8; }
-  .tiki-webmail a:not(.btn), .inline-cypht a:not(.btn) {
+  .cypht a:not(.btn), .mobile.cypht a:not(.btn), .inline-cypht a:not(.btn) {
     color: #ababab !important; }
-  .tiki-webmail a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
+  .cypht a:not(.btn):hover, .mobile.cypht a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
     color: #858585 !important;
     text-decoration: none; }
 
@@ -7525,10 +7525,10 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .btn-outline-secondary:hover {
     color: #fff !important;
     text-decoration: none; }
-  .tiki-webmail .content_cell .content_title, .tiki-webmail.mobile .content_cell .content_title, .tiki-webmail .mobile .content_cell .content_title, .tiki-webmail .content_cell .content_title .list_controls, .tiki-webmail.mobile .content_cell .content_title .list_controls, .tiki-webmail .mobile .content_cell .content_title .list_controls {
+  .mobile.cypht .content_cell .content_title, .mobile.cypht .content_cell .content_title .list_controls {
     background: #212121;
     color: inherit; }
-  .tiki-webmail .msg_controls, .tiki-webmail.mobile .msg_controls, .tiki-webmail .mobile .msg_controls {
+  .mobile.cypht .msg_controls {
     background: #212121 !important; }
 
 .chosen-select, .chosen-select-deselect {

@@ -7338,13 +7338,13 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background-color: #033c73;
     color: #fff; }
 
-.tiki-webmail, .inline-cypht {
+.cypht, .mobile.cypht, .inline-cypht {
   background: #fff;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: #868e96; }
-  .tiki-webmail a:not(.btn), .inline-cypht a:not(.btn) {
+  .cypht a:not(.btn), .mobile.cypht a:not(.btn), .inline-cypht a:not(.btn) {
     color: #2fa4e7 !important; }
-  .tiki-webmail a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
+  .cypht a:not(.btn):hover, .mobile.cypht a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
     color: #157ab5 !important;
     text-decoration: underline; }
 
@@ -7393,10 +7393,10 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .btn-outline-secondary:hover {
     color: #fff !important;
     text-decoration: none; }
-  .tiki-webmail .content_cell .content_title, .tiki-webmail.mobile .content_cell .content_title, .tiki-webmail .mobile .content_cell .content_title, .tiki-webmail .content_cell .content_title .list_controls, .tiki-webmail.mobile .content_cell .content_title .list_controls, .tiki-webmail .mobile .content_cell .content_title .list_controls {
+  .mobile.cypht .content_cell .content_title, .mobile.cypht .content_cell .content_title .list_controls {
     background: #f7f7f7;
     color: #2fa4e7; }
-  .tiki-webmail .msg_controls, .tiki-webmail.mobile .msg_controls, .tiki-webmail .mobile .msg_controls {
+  .mobile.cypht .msg_controls {
     background: #f7f7f7 !important; }
 
 .chosen-select, .chosen-select-deselect {

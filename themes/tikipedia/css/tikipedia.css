@@ -7610,13 +7610,13 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background-color: #abd5f5;
     color: #212529; }
 
-.tiki-webmail, .inline-cypht {
+.cypht, .mobile.cypht, .inline-cypht {
   background: #f6f6f6;
   font-family: sans-serif;
   color: #252525; }
-  .tiki-webmail a:not(.btn), .inline-cypht a:not(.btn) {
+  .cypht a:not(.btn), .mobile.cypht a:not(.btn), .inline-cypht a:not(.btn) {
     color: #0645ad !important; }
-  .tiki-webmail a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
+  .cypht a:not(.btn):hover, .mobile.cypht a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
     color: #0645ad !important;
     text-decoration: underline; }
 
@@ -7665,10 +7665,10 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .btn-outline-secondary:hover {
     color: #fff !important;
     text-decoration: none; }
-  .tiki-webmail .content_cell .content_title, .tiki-webmail.mobile .content_cell .content_title, .tiki-webmail .mobile .content_cell .content_title, .tiki-webmail .content_cell .content_title .list_controls, .tiki-webmail.mobile .content_cell .content_title .list_controls, .tiki-webmail .mobile .content_cell .content_title .list_controls {
+  .mobile.cypht .content_cell .content_title, .mobile.cypht .content_cell .content_title .list_controls {
     background: #f7f7f7;
     color: inherit; }
-  .tiki-webmail .msg_controls, .tiki-webmail.mobile .msg_controls, .tiki-webmail .mobile .msg_controls {
+  .mobile.cypht .msg_controls {
     background: #f7f7f7 !important; }
 
 .chosen-select, .chosen-select-deselect {
