@@ -12,11 +12,11 @@
 		{/if}
 		{if !isset($moduleId)}{assign var=moduleId value=' '}{/if}
 		<div id="module_{$moduleId}"
-			 class="clearfix card card-primary box-{$module_name}{if $module_type eq 'cssmenu'} cssmenubox{/if} module"{if !empty($tpl_module_style)} style="{$tpl_module_style}"{/if}>
+			 class="card box-{$module_name}{if $module_type eq 'cssmenu'} cssmenubox{/if} module"{if !empty($tpl_module_style)} style="{$tpl_module_style}"{/if}>
 			{if $module_decorations ne 'n'}
-			<div class="card-header">
+			<div class="card-header" {if !empty($module_params.bgcolor)} style="background-color:{$module_params.bgcolor};"{/if}>
 				{if ($module_notitle ne 'y' && !empty($module_title)) || ($module_flip eq 'y' and $prefs.javascript_enabled ne 'n') || $prefs.menus_items_icons eq 'y'}
-				<h3 class="card-title clearfix" {if !empty($module_params.bgcolor)} style="background-color:{$module_params.bgcolor};"{/if}>
+				<h3 class="card-title clearfix">
 					{if $module_notitle ne 'y' && !empty($module_title)}
 						<span class="moduletitle">{$module_title}</span>
 					{/if}
@@ -54,7 +54,7 @@
 					 class="clearfix card-body{if !empty($module_params.class)} {$module_params.class}{/if}">
 					{else}{* $module_nobox eq 'y' *}
 					<div id="module_{$moduleId}" style="{$module_params.style}{$tpl_module_style}"
-						 class="clearfix module{if !empty($module_params.class)} {$module_params.class}{/if} box-{$module_name}">
+						 class="module{if !empty($module_params.class)} {$module_params.class}{/if} box-{$module_name}">
 						<div id="mod-{$smarty.capture.name}">
 							{/if}{* close $module_nobox *}
 							{$module_content}
@@ -68,8 +68,9 @@
 						{* Module controls when module in a box *}
 						{if $user and $prefs.user_assigned_modules == 'y' and $prefs.feature_modulecontrols eq 'y' && ($module_position === 'left' || $module_position === 'right')}
 							<form action="{$current_location|escape}" method="post" class="modcontrols">
+                                {ticket}
 								<input type="hidden" name="redirect" value="1">
-								<div class="float-right">
+								<div>
 									<button
 										type="submit"
 										name="mc_up"
@@ -109,6 +110,7 @@
 								</div>
 							</form>
 						{/if}
+						<div class="card-footer"></div> {* Added because some themes use this div for styling purposes. *}
 					</div>{* close div id="module_{$moduleId}" *}
 					{if $prefs.feature_layoutshadows eq 'y'}{$prefs.box_shadow_end}</div>{/if}
 				{else}{* $module_nobox eq 'y' *}
@@ -116,7 +118,7 @@
 					{if $user and $prefs.user_assigned_modules == 'y' and $prefs.feature_modulecontrols eq 'y' && ($module_position === 'left' || $module_position === 'right')}
 						<form action="{$current_location|escape}" method="post" class="modcontrols">
 							<input type="hidden" name="redirect" value="1">
-							<div class="float-right">
+							<div>
 								<button
 									type="submit"
 									name="mc_up"
