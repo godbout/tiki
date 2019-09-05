@@ -12,7 +12,7 @@
 * Linux only (it should be simple to add support to other OSs).
 */
 // Linux
-require_once(dirname(__FILE__).'/../../vendor_bundled/vendor/phpunit/phpunit/phpunit');
+require_once(__DIR__.'/../../vendor_bundled/vendor/phpunit/phpunit/phpunit');
 
 // Windows
 // comment out the Linux require line (above) and uncomment the 2 lines below

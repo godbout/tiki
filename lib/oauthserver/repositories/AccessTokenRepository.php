@@ -1,6 +1,6 @@
 <?php
 require_once TIKI_PATH . '/lib/auth/tokens.php';
-include dirname(dirname(__FILE__)) . '/entities/AccessTokenEntity.php';
+include dirname(__DIR__) . '/entities/AccessTokenEntity.php';
 
 use League\OAuth2\Server\Entities\AccessTokenEntityInterface;
 use League\OAuth2\Server\Entities\ClientEntityInterface;

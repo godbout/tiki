@@ -14,7 +14,7 @@ class Search_Lucene_SortTest extends Search_Index_SortTest
 
 	function setUp()
 	{
-		$this->dir = dirname(__FILE__) . '/test_index';
+		$this->dir = __DIR__ . '/test_index';
 		$this->tearDown();
 
 		$this->index = new Search_Lucene_Index($this->dir);

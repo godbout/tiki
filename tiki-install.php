@@ -35,7 +35,7 @@ if (version_compare(PHP_VERSION, '7.1.0', '<')) {
 }
 
 require_once('lib/init/initlib.php');
-$tikipath = dirname(__FILE__) . '/';
+$tikipath = __DIR__ . '/';
 TikiInit::appendIncludePath($tikipath);
 
 require_once('db/tiki-db.php');	// to set up multitiki etc if there

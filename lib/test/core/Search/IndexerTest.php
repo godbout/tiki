@@ -139,7 +139,7 @@ class Search_IndexerTest extends PHPUnit_Framework_TestCase
 			['data' => 'sortable']
 		);
 
-		$dir = dirname(__FILE__) . '/test_index';
+		$dir = __DIR__ . '/test_index';
 		$edir = escapeshellarg($dir);
 		`rm -Rf $edir`;
 		$index = new Search_Lucene_Index($dir);

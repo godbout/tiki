@@ -14,7 +14,7 @@ abstract class Search_Lucene_IncrementalUpdateTest extends Search_Index_Incremen
 
 	function setUp()
 	{
-		$this->dir = dirname(__FILE__) . '/test_index';
+		$this->dir = __DIR__ . '/test_index';
 		$this->tearDown();
 
 		$index = $this->getIndex();

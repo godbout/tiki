@@ -21,7 +21,7 @@ class WikiParser_PluginRepositoryTest extends TikiTestCase
 	function testTestPhysicalPlugin()
 	{
 		$repository = new WikiParser_PluginRepository;
-		$repository->addPluginFolder(dirname(__FILE__));
+		$repository->addPluginFolder(__DIR__);
 
 		$this->assertTrue($repository->pluginExists('foo'));
 		$this->assertFalse($repository->pluginExists('fake'));
@@ -30,7 +30,7 @@ class WikiParser_PluginRepositoryTest extends TikiTestCase
 	function testObtainInfoForNormalPlugin()
 	{
 		$repository = new WikiParser_PluginRepository;
-		$repository->addPluginFolder(dirname(__FILE__));
+		$repository->addPluginFolder(__DIR__);
 
 		$info = $repository->getInfo('foo');
 
@@ -41,7 +41,7 @@ class WikiParser_PluginRepositoryTest extends TikiTestCase
 	function testGetListWithNormalOnly()
 	{
 		$repository = new WikiParser_PluginRepository;
-		$repository->addPluginFolder(dirname(__FILE__));
+		$repository->addPluginFolder(__DIR__);
 
 		$this->assertEquals(['foo'], $repository->getList());
 	}

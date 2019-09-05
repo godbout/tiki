@@ -6,7 +6,7 @@
 // $Id$
 
 require_once TIKI_PATH . '/lib/auth/tokens.php';
-include dirname(dirname(__FILE__)) . '/entities/AuthCodeEntity.php';
+include dirname(__DIR__) . '/entities/AuthCodeEntity.php';
 
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use League\OAuth2\Server\Entities\AuthCodeEntityInterface;

@@ -10,7 +10,7 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 }
 
 $dir = __DIR__;
-require dirname(__FILE__) . '/svntools.php';
+require __DIR__ . '/svntools.php';
 
 $vendorBundledDir = $dir . '/../../vendor_bundled';
 $composerLockFile = $dir . '/../../vendor_bundled/composer.lock';

@@ -11,7 +11,7 @@ if (PHP_SAPI !== 'cli') {
 	die("Please run from a shell");
 }
 
-$tikiBase = realpath(dirname(__FILE__) . '/../..');
+$tikiBase = realpath(__DIR__ . '/../..');
 
 chdir($tikiBase);
 
@@ -31,7 +31,7 @@ $xml = new DOMDocument;
 $xml->loadXML(shell_exec('svn propget -R svn:keywords --xml'));
 
 // find the offset length of the base pathname
-$pathLen = strlen(realpath(dirname(__FILE__) . '/../..')) + 1;
+$pathLen = strlen(realpath(__DIR__ . '/../..')) + 1;
 
 $Ids = [];
 

@@ -14,7 +14,7 @@
 //    php doc/devtools/release.php --help
 //
 
-define('TOOLS', dirname(__FILE__));
+define('TOOLS', __DIR__);
 define('ROOT', realpath(TOOLS . '/../..'));
 define('TEMP_DIR', 'temp');
 
@@ -582,7 +582,7 @@ function build_packages($releaseVersion)
 	echo "Removing language file comments\n";
 	foreach (scandir($sourceDir . '/lang') as $strip) {
 		if (is_file($sourceDir . '/lang/' . $strip . '/language.php')) {
-			$shellout = shell_exec('php ' . escapeshellarg(dirname(__FILE__) . '/stripcomments.php') . ' ' . escapeshellarg($sourceDir . '/lang/' . $strip . '/language.php') . ' 2>&1');
+			$shellout = shell_exec('php ' . escapeshellarg(__DIR__ . '/stripcomments.php') . ' ' . escapeshellarg($sourceDir . '/lang/' . $strip . '/language.php') . ' 2>&1');
 		}
 		if ($shellout) {
 			die($shellout . "\n");

@@ -6,7 +6,7 @@
 // $Id$
 
 define('TIKI_IN_TEST', 1);
-require_once(dirname(__FILE__) . '/../TikiTestCase.php');
+require_once(__DIR__ . '/../TikiTestCase.php');
 
 ini_set('display_errors', 'on');
 error_reporting(E_ALL & ~E_DEPRECATED);
@@ -35,6 +35,6 @@ $db = TikiDb::get();
 $db->setServerType($db_tiki);
 
 $pwd = getcwd();
-chdir(dirname(__FILE__) . '/../../../');
+chdir(__DIR__ . '/../../../');
 $cachelib = TikiLib::lib('cache');
 chdir($pwd);

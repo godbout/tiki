@@ -14,7 +14,7 @@ class Search_Lucene_TypeAnalyzerTest extends Search_Index_TypeAnalyzerTest
 
 	function setUp()
 	{
-		$this->dir = dirname(__FILE__) . '/test_index';
+		$this->dir = __DIR__ . '/test_index';
 		$this->tearDown();
 	}
 

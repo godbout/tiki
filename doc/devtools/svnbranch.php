@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require dirname(__FILE__) . '/svntools.php';
+require __DIR__ . '/svntools.php';
 
 // Perform basic checks
 info("Verifying...");

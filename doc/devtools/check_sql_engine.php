@@ -144,10 +144,10 @@ class CheckSqlEngine
 
 		$error_count = 0;
 		$fixed_count = 0;
-		$result = $this->checkFile(dirname(__FILE__) . '/../../db/tiki.sql', $should_fix, $output_path);
+		$result = $this->checkFile(__DIR__ . '/../../db/tiki.sql', $should_fix, $output_path);
 		$error_count += $result['error_count'];
 		$fixed_count += $result['fixed_count'];
-		$filenameList = scandir(dirname(__FILE__) . '/../../installer/schema');
+		$filenameList = scandir(__DIR__ . '/../../installer/schema');
 		if ($filenameList === false) {
 			$this->printMessageError('Scandir failed on installer/schema');
 		} else {
@@ -155,7 +155,7 @@ class CheckSqlEngine
 				$ext = substr($filename, -4);
 				if ($ext === '.sql') {
 					$result = $this->checkFile(
-						dirname(__FILE__) . '/../../installer/schema/' . $filename,
+						__DIR__ . '/../../installer/schema/' . $filename,
 						$should_fix,
 						$output_path
 					);

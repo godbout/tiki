@@ -169,7 +169,7 @@ class TikiImporter_Wiki_Mediawiki extends TikiImporter_Wiki
 				case '0.8':
 				case '0.9':
 				case '0.10':
-					$xmlDtdFile = dirname(__FILE__) . "/mediawiki_dump_v$xmlVersion.xsd";
+					$xmlDtdFile = __DIR__ . "/mediawiki_dump_v$xmlVersion.xsd";
 					break;
 				default:
 					throw new DOMException(tr("MediaWiki XML file version %0 is not supported.", $xmlVersion));
@@ -195,7 +195,7 @@ class TikiImporter_Wiki_Mediawiki extends TikiImporter_Wiki
 	{
 		global $tikidomain;
 
-		$this->attachmentsDestDir = dirname(__FILE__) . '/../../img/wiki_up/';
+		$this->attachmentsDestDir = __DIR__ . '/../../img/wiki_up/';
 		if ($tikidomain) {
 			$this->attachmentsDestDir .= $tikidomain;
 		}

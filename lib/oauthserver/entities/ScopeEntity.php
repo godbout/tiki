@@ -1,5 +1,5 @@
 <?php
-include dirname(dirname(__FILE__)) . '/entities/ScopeEntity.php';
+include dirname(__DIR__) . '/entities/ScopeEntity.php';
 
 use League\OAuth2\Server\Entities\ScopeEntityInterface;
 use League\OAuth2\Server\Entities\Traits\EntityTrait;

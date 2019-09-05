@@ -213,7 +213,7 @@ class TikiIntegrator
 		} else { // Relative Tiki base path: get tiki root and append repository path
 			// note: little hack here -- assume that __this__ file placed exactly
 			//       at 2nd dir level in Tiki base dir.
-			$p = dirname(dirname(dirname(__FILE__))) . '/' . $rep["path"];
+			$p = dirname(dirname(__DIR__)) . '/' . $rep["path"];
 		}
 
 		return $p . '/' . ((strlen($file) > 0) ? $file : $rep["start_page"]);

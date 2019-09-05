@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-include(dirname(__FILE__) . '/TranslationReader.php');
+include(__DIR__ . '/TranslationReader.php');
 
 class Services_Language_Controller
 {

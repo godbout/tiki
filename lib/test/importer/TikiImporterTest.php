@@ -5,8 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once(dirname(__FILE__) . '/tikiimporter_testcase.php');
-require_once(dirname(__FILE__) . '/../../importer/tikiimporter.php');
+require_once(__DIR__ . '/tikiimporter_testcase.php');
+require_once(__DIR__ . '/../../importer/tikiimporter.php');
 /**
  * @group importer
  */

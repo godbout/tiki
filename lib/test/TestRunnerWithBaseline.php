@@ -167,7 +167,7 @@ See above details about each error or failure.
 	function logpath_current()
 	{
 
-		$path = dirname(__FILE__) . DIRECTORY_SEPARATOR . $this->logname_stem . ".current.json";
+		$path = __DIR__ . DIRECTORY_SEPARATOR . $this->logname_stem . ".current.json";
 		if ($this->current_log_fpath != null) {
 			$path = $this->current_log_fpath;
 		}
@@ -177,7 +177,7 @@ See above details about each error or failure.
 	function logpath_baseline()
 	{
 
-		$path = dirname(__FILE__) . DIRECTORY_SEPARATOR . $this->logname_stem . ".baseline.json";
+		$path = __DIR__ . DIRECTORY_SEPARATOR . $this->logname_stem . ".baseline.json";
 		if ($this->baseline_log_fpath != null) {
 			$path = $this->baseline_log_fpath;
 		}

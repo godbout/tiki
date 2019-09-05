@@ -21,7 +21,7 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 	die('Only available through command-line.');
 }
 
-$tikiBase = realpath(dirname(__FILE__) . '/../..');
+$tikiBase = realpath(__DIR__ . '/../..');
 require_once $tikiBase . '/vendor_bundled/vendor/autoload.php';
 
 
@@ -353,7 +353,7 @@ class EnglishUpdateCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$tikiBase = realpath(dirname(__FILE__) . '/../..');
+		$tikiBase = realpath(__DIR__ . '/../..');
 
 		$output->writeln('*******************************************************');
 		$output->writeln('*                     <info>Limitations</info>                     *');

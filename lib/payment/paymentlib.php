@@ -471,7 +471,7 @@ class PaymentLib extends TikiDb_Bridge
 
 	private function get_behavior($name)
 	{
-		$file = dirname(__FILE__) . "/behavior/$name.php";
+		$file = __DIR__ . "/behavior/$name.php";
 		$function = 'payment_behavior_' . $name;
 		if (is_readable($file)) {
 			require_once $file;

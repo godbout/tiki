@@ -107,7 +107,7 @@ class Captcha
 				[
 					'wordLen' => $prefs['captcha_wordLen'],
 					'timeout' => 600,
-					'font' => dirname(__FILE__) . '/DejaVuSansMono.ttf',
+					'font' => __DIR__ . '/DejaVuSansMono.ttf',
 					'imgdir' => 'temp/public/',
 					'suffix' => '.captcha.png',
 					'width' => $prefs['captcha_width'],

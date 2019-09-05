@@ -1,5 +1,5 @@
 <?php
-include dirname(dirname(__FILE__)) . '/entities/ClientEntity.php';
+include dirname(__DIR__) . '/entities/ClientEntity.php';
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
 
 class ClientRepository implements ClientRepositoryInterface

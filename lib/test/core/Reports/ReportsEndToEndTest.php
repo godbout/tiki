@@ -31,14 +31,14 @@ class Reports_EndToEndTest extends TikiDatabaseTestCase
 
 	public function getDataSet()
 	{
-		return $this->createMySQLXMLDataSet(dirname(__FILE__) . '/fixtures/end_to_end_test_dataset.xml');
+		return $this->createMySQLXMLDataSet(__DIR__ . '/fixtures/end_to_end_test_dataset.xml');
 	}
 
 	public function testReportsEndToEnd_shouldUpdateLastReportFieldInUsersTable()
 	{
 		$this->obj->send();
 
-		$expectedUserReportsTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/end_to_end_test_result_dataset.xml')
+		$expectedUserReportsTable = $this->createMySQLXmlDataSet(__DIR__ . '/fixtures/end_to_end_test_result_dataset.xml')
 			->getTable('tiki_user_reports');
 
 		$queryUserReportsTable = $this->getConnection()->createQueryTable('tiki_user_reports', 'SELECT * FROM tiki_user_reports');
@@ -49,7 +49,7 @@ class Reports_EndToEndTest extends TikiDatabaseTestCase
 	{
 		$this->obj->send();
 
-		$expectedCacheTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/end_to_end_test_result_dataset.xml')
+		$expectedCacheTable = $this->createMySQLXmlDataSet(__DIR__ . '/fixtures/end_to_end_test_result_dataset.xml')
 			->getTable('tiki_user_reports_cache');
 		$queryCacheTable = $this->getConnection()->createQueryTable('tiki_user_reports_cache', 'SELECT * FROM tiki_user_reports_cache');
 		$this->assertEquals(0, $queryCacheTable->getRowCount());
@@ -58,7 +58,7 @@ class Reports_EndToEndTest extends TikiDatabaseTestCase
 	public function testReportsEndToEnd_shouldSendEmail()
 	{
 		$this->mail->expects($this->once())->method('setUser')->with('test');
-		$this->mail->expects($this->once())->method('setHtml')->with(file_get_contents(dirname(__FILE__) . '/fixtures/email_body.txt'));
+		$this->mail->expects($this->once())->method('setHtml')->with(file_get_contents(__DIR__ . '/fixtures/email_body.txt'));
 		$this->mail->expects($this->once())->method('setSubject')->with('Report from 2012-03-27 (20 changes)');
 		$this->mail->expects($this->once())->method('buildMessage');
 		$this->mail->expects($this->once())->method('send')->with(['test@test.com']);

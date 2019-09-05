@@ -24,7 +24,7 @@ class ShippingProvider_Fedex implements ShippingProvider
 			return [];
 		}
 
-		$wsdl = dirname(__FILE__) . '/FedEx_v8.wsdl';
+		$wsdl = __DIR__ . '/FedEx_v8.wsdl';
 		$args = [];
 
 		$request = $this->getRequest($from, $to, $packages);

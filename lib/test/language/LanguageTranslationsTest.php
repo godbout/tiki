@@ -26,7 +26,7 @@ class LanguageTranslationsTest extends TikiTestCase
 
 	protected function setUp()
 	{
-		$this->tikiroot = dirname(__FILE__) . '/../../../';
+		$this->tikiroot = __DIR__ . '/../../../';
 		$this->lang = 'test_language';
 		$this->langDir = $this->tikiroot . 'lang/' . $this->lang;
 
@@ -49,7 +49,7 @@ class LanguageTranslationsTest extends TikiTestCase
 
 		global ${"lang_$this->lang"};
 
-		copy(dirname(__FILE__) . '/fixtures/language_orig.php', $this->langDir . '/language.php');
+		copy(__DIR__ . '/fixtures/language_orig.php', $this->langDir . '/language.php');
 
 		if (! isset(${"lang_$this->lang"})) {
 			require_once('lib/init/tra.php');
@@ -143,22 +143,22 @@ class LanguageTranslationsTest extends TikiTestCase
 
 	public function testWriteLanguageFile()
 	{
-		copy(dirname(__FILE__) . '/fixtures/language_orig.php', $this->langDir . '/language.php');
+		copy(__DIR__ . '/fixtures/language_orig.php', $this->langDir . '/language.php');
 		$this->obj->writeLanguageFile();
-		$this->assertEquals(file_get_contents(dirname(__FILE__) . '/fixtures/language_modif.php'), file_get_contents($this->langDir . '/language.php'));
+		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_modif.php'), file_get_contents($this->langDir . '/language.php'));
 	}
 
 	public function testWriteLanguageFileCallingTwoTimes_shouldNotDuplicateStringsInTheFile()
 	{
-		copy(dirname(__FILE__) . '/fixtures/language_orig.php', $this->langDir . '/language.php');
+		copy(__DIR__ . '/fixtures/language_orig.php', $this->langDir . '/language.php');
 		$this->obj->writeLanguageFile();
 		$this->obj->writeLanguageFile();
-		$this->assertEquals(file_get_contents(dirname(__FILE__) . '/fixtures/language_modif.php'), file_get_contents($this->langDir . '/language.php'));
+		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_modif.php'), file_get_contents($this->langDir . '/language.php'));
 	}
 
 	public function testWriteLanguage_shouldReturnTheNumberOfNewStringsInLanguageFile()
 	{
-		copy(dirname(__FILE__) . '/fixtures/language_orig.php', $this->langDir . '/language.php');
+		copy(__DIR__ . '/fixtures/language_orig.php', $this->langDir . '/language.php');
 		$expectedResult = ['modif' => 2, 'new' => 4];
 		$return = $this->obj->writeLanguageFile();
 		$this->assertEquals($expectedResult, $return);
@@ -167,15 +167,15 @@ class LanguageTranslationsTest extends TikiTestCase
 	public function testWriteLanguage_shouldIgnoreEmptyStrings()
 	{
 		TikiDb::get()->query('INSERT INTO `tiki_language` (`source`, `lang`, `tran`, `changed`) VALUES (?, ?, ?, ?)', ['', $this->lang, '', 1]);
-		copy(dirname(__FILE__) . '/fixtures/language_orig.php', $this->langDir . '/language.php');
+		copy(__DIR__ . '/fixtures/language_orig.php', $this->langDir . '/language.php');
 		$this->obj->writeLanguageFile();
-		$this->assertEquals(file_get_contents(dirname(__FILE__) . '/fixtures/language_modif.php'), file_get_contents($this->langDir . '/language.php'));
+		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_modif.php'), file_get_contents($this->langDir . '/language.php'));
 	}
 
 	public function testWriteLanguage_shouldRaiseExceptionForInvalidLanguagePhp()
 	{
 		$this->setExpectedException('Language_Exception');
-		copy(dirname(__FILE__) . '/fixtures/language_invalid.php', $this->langDir . '/language.php');
+		copy(__DIR__ . '/fixtures/language_invalid.php', $this->langDir . '/language.php');
 		$this->obj->writeLanguageFile();
 	}
 
@@ -234,7 +234,7 @@ class LanguageTranslationsTest extends TikiTestCase
 		$this->assertEquals($expectedResult, $this->obj->getFileUntranslated());
 
 		// change file to check if the cache is ignored when the file changes
-		copy(dirname(__FILE__) . '/fixtures/language_untranslated.php', $this->langDir . '/language.php');
+		copy(__DIR__ . '/fixtures/language_untranslated.php', $this->langDir . '/language.php');
 		$expectedResult = [
 				"Kalture Video" => ['source' => "Kalture Video", 'tran' => null],
 				"Invalid response provided by the Kaltura server. Please retry" => ['source' => "Invalid response provided by the Kaltura server. Please retry", 'tran' => null],
@@ -363,7 +363,7 @@ class LanguageTranslationsTest extends TikiTestCase
 
 	public function testGetFileTranslations()
 	{
-		copy(dirname(__FILE__) . '/fixtures/custom.php', $this->langDir . '/custom.php');
+		copy(__DIR__ . '/fixtures/custom.php', $this->langDir . '/custom.php');
 		$this->assertEquals(27, count($this->obj->getFileTranslations()));
 	}
 

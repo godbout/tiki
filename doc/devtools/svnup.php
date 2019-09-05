@@ -25,7 +25,7 @@ use Symfony\Component\Console\Command\HelpCommand;
 if (isset($_SERVER['REQUEST_METHOD'])) {
 	die('Only available through command-line.');
 }
-$tikiBase = realpath(dirname(__FILE__) . '/../..');
+$tikiBase = realpath(__DIR__ . '/../..');
 
 chdir($tikiBase);
 
@@ -176,7 +176,7 @@ class SvnUpCommand extends Command
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 
-		$tikiBase = realpath(dirname(__FILE__) . '/../..');
+		$tikiBase = realpath(__DIR__ . '/../..');
 
 		$verbosityLevelMap = [
 			LogLevel::CRITICAL   => OutputInterface::VERBOSITY_NORMAL,

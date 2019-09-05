@@ -187,7 +187,7 @@ class TikiImporter
 	 */
 	static function displayPhpUploadError($code)
 	{
-		require_once(dirname(__FILE__) . '/../init/tra.php');
+		require_once(__DIR__ . '/../init/tra.php');
 		$errors = [1 => tra('The uploaded file exceeds the upload_max_filesize directive in php.ini.') . ' ' . ini_get('upload_max_filesize') . 'B',
 				2 => tra('The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form.'),
 				3 => tra('The uploaded file was only partially uploaded. Please try again.'),

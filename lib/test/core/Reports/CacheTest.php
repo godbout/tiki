@@ -22,12 +22,12 @@ class Reports_CacheTest extends TikiDatabaseTestCase
 
 	public function getDataSet()
 	{
-		return $this->createMySQLXMLDataSet(dirname(__FILE__) . '/fixtures/reports_cache_dataset.xml');
+		return $this->createMySQLXMLDataSet(__DIR__ . '/fixtures/reports_cache_dataset.xml');
 	}
 
 	public function testDelete_shouldDeleteAllEntriesForAUser()
 	{
-		$expectedTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/reports_cache_dataset_delete.xml')
+		$expectedTable = $this->createMySQLXmlDataSet(__DIR__ . '/fixtures/reports_cache_dataset_delete.xml')
 			->getTable('tiki_user_reports_cache');
 
 		$this->obj->delete('admin');
@@ -60,7 +60,7 @@ class Reports_CacheTest extends TikiDatabaseTestCase
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");
 
-		$expectedTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/reports_cache_dataset_add.xml')
+		$expectedTable = $this->createMySQLXmlDataSet(__DIR__ . '/fixtures/reports_cache_dataset_add.xml')
 			->getTable('tiki_user_reports_cache');
 
 		$users = ['admin', 'test'];

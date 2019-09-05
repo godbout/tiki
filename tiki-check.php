@@ -1679,7 +1679,7 @@ if (function_exists('apache_get_version')) {
 		$sef_test_folder_created = false;
 		$sef_test_folder_writable = true;
 		if ($standalone) {
-			$sef_test_path_current = dirname(__FILE__);
+			$sef_test_path_current = __DIR__;
 			$sef_test_dir_name = 'tiki-check-' . $sef_test_ping_value;
 			$sef_test_folder = $sef_test_path_current . DIRECTORY_SEPARATOR . $sef_test_dir_name;
 			if (is_writable($sef_test_path_current)&&! file_exists($sef_test_folder)) {

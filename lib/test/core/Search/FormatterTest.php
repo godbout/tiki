@@ -98,7 +98,7 @@ OUT;
 
 	function testBasicSmartyFormatter()
 	{
-		$plugin = new Search_Formatter_Plugin_SmartyTemplate(dirname(__FILE__) . '/basic.tpl');
+		$plugin = new Search_Formatter_Plugin_SmartyTemplate(__DIR__ . '/basic.tpl');
 		$plugin->setData(['foo' => ['bar' => 'baz'],]);
 
 		$formatter = new Search_Formatter($plugin);
@@ -127,7 +127,7 @@ OUT;
 
 	function testForEmbeddedMode()
 	{
-		$plugin = new Search_Formatter_Plugin_SmartyTemplate(dirname(__FILE__) . '/embedded.tpl', true);
+		$plugin = new Search_Formatter_Plugin_SmartyTemplate(__DIR__ . '/embedded.tpl', true);
 
 		$formatter = new Search_Formatter($plugin);
 
@@ -152,7 +152,7 @@ OUT;
 
 	function testAdditionalFieldDefinition()
 	{
-		$plugin = new Search_Formatter_Plugin_SmartyTemplate(dirname(__FILE__) . '/basic.tpl');
+		$plugin = new Search_Formatter_Plugin_SmartyTemplate(__DIR__ . '/basic.tpl');
 
 		$formatter = new Search_Formatter($plugin);
 		$formatter->addSubFormatter('object_id', new Search_Formatter_Plugin_WikiTemplate("{display name=object_id}\n{display name=description default=None}"));
@@ -180,7 +180,7 @@ OUT;
 
 	function testPaginationInformationProvided()
 	{
-		$plugin = new Search_Formatter_Plugin_SmartyTemplate(dirname(__FILE__) . '/paginate.tpl');
+		$plugin = new Search_Formatter_Plugin_SmartyTemplate(__DIR__ . '/paginate.tpl');
 
 		$formatter = new Search_Formatter($plugin);
 		$output = $formatter->format(
@@ -275,7 +275,7 @@ OUT;
 		global $prefs;
 		$prefs['feature_sefurl'] = 'y';
 
-		$plugin = new Search_Formatter_Plugin_SmartyTemplate(dirname(__FILE__) . '/basic.tpl');
+		$plugin = new Search_Formatter_Plugin_SmartyTemplate(__DIR__ . '/basic.tpl');
 
 		$formatter = new Search_Formatter($plugin);
 		$formatter->addSubFormatter('object_id', new Search_Formatter_Plugin_WikiTemplate("{display name=object_id format=objectlink}"));

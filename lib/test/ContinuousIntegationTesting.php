@@ -5,12 +5,12 @@
  * Just invoke it from a cron job.
  */
 
-$this_file_dir = dirname(__FILE__);
+$this_file_dir = __DIR__;
 $tiki_root_dir = $this_file_dir . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . "..";
 
 set_include_path(get_include_path() . PATH_SEPARATOR . $tiki_root_dir);
 
-$this_file_dir = dirname(__FILE__);
+$this_file_dir = __DIR__;
 require_once("lib/test/TestRunnerWithBaseline.php");
 require_once("lib/debug/Tracer.php");
 

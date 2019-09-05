@@ -65,14 +65,14 @@ class Installer extends TikiDb_Bridge implements SplSubject
 			$this->buildScriptList();
 		} else {
 			// No image specified, standard install
-			$this->runFile(dirname(__FILE__) . '/../db/tiki.sql');
+			$this->runFile(__DIR__ . '/../db/tiki.sql');
 			if ($this->isMySQLFulltextSearchSupported()) {
-				$this->runFile(dirname(__FILE__) . '/../db/tiki_fulltext_indexes.sql');
+				$this->runFile(__DIR__ . '/../db/tiki_fulltext_indexes.sql');
 			}
 			if ($this->useInnoDB) {
-				$this->runFile(dirname(__FILE__) . '/../db/tiki_innodb.sql');
+				$this->runFile(__DIR__ . '/../db/tiki_innodb.sql');
 			} else {
-				$this->runFile(dirname(__FILE__) . '/../db/tiki_myisam.sql');
+				$this->runFile(__DIR__ . '/../db/tiki_myisam.sql');
 			}
 			$this->buildPatchList();
 			$this->buildScriptList();
@@ -100,15 +100,15 @@ class Installer extends TikiDb_Bridge implements SplSubject
 		if (! $this->tableExists('tiki_schema')) {
 			// DB too old to handle auto update
 
-			if (file_exists(dirname(__FILE__) . '/../db/custom_upgrade.sql')) {
-				$this->runFile(dirname(__FILE__) . '/../db/custom_upgrade.sql');
+			if (file_exists(__DIR__ . '/../db/custom_upgrade.sql')) {
+				$this->runFile(__DIR__ . '/../db/custom_upgrade.sql');
 			} else {
 				// If 1.9
 				if (! $this->tableExists('tiki_minichat')) {
-					$this->runFile(dirname(__FILE__) . '/../db/tiki_1.9to2.0.sql');
+					$this->runFile(__DIR__ . '/../db/tiki_1.9to2.0.sql');
 				}
 
-				$this->runFile(dirname(__FILE__) . '/../db/tiki_2.0to3.0.sql');
+				$this->runFile(__DIR__ . '/../db/tiki_2.0to3.0.sql');
 			}
 		}
 
@@ -117,8 +117,8 @@ class Installer extends TikiDb_Bridge implements SplSubject
 
 		// If a Mysql data file exists, use that. Very fast
 		//	If data file is missing or the batch loader is not available, use the single insert method
-		$secdb = dirname(__FILE__) . '/../db/tiki-secdb_' . $dbversion_tiki . '_mysql.sql';
-		$secdbData = dirname(__FILE__) . '/../db/tiki-secdb_' . $dbversion_tiki . '_mysql.data';
+		$secdb = __DIR__ . '/../db/tiki-secdb_' . $dbversion_tiki . '_mysql.sql';
+		$secdbData = __DIR__ . '/../db/tiki-secdb_' . $dbversion_tiki . '_mysql.data';
 		if (file_exists($secdbData)) {
 			// A MySQL datafile exists
 			$truncateTable = true;
@@ -160,9 +160,9 @@ class Installer extends TikiDb_Bridge implements SplSubject
 			throw new Exception('Patch already applied', 3);
 		}
 
-		$schema = dirname(__FILE__) . "/schema/$patch.sql";
-		$script = dirname(__FILE__) . "/schema/$patch.php";
-		$profile = dirname(__FILE__) . "/schema/$patch.yml";
+		$schema = __DIR__ . "/schema/$patch.sql";
+		$script = __DIR__ . "/schema/$patch.php";
+		$profile = __DIR__ . "/schema/$patch.yml";
 
 		$pre = "pre_$patch";
 		$post = "post_$patch";
@@ -221,7 +221,7 @@ class Installer extends TikiDb_Bridge implements SplSubject
 	 */
 	function runScript($script) // {{{
 	{
-		$file = dirname(__FILE__) . "/script/$script.php";
+		$file = __DIR__ . "/script/$script.php";
 
 		if (file_exists($file)) {
 			require $file;
@@ -356,7 +356,7 @@ class Installer extends TikiDb_Bridge implements SplSubject
 	{
 		$patches = [];
 		foreach (['sql', 'yml', 'php' /* "php" for standalone PHP scripts */] as $extension) {
-			$files = glob(dirname(__FILE__) . '/schema/*_*.' . $extension); // glob() does not portably support brace expansion, hence the loop
+			$files = glob(__DIR__ . '/schema/*_*.' . $extension); // glob() does not portably support brace expansion, hence the loop
 			if ($files === false) {
 				throw new Exception('Failed to scan patches');
 			}
@@ -394,7 +394,7 @@ class Installer extends TikiDb_Bridge implements SplSubject
 
 	function buildScriptList() // {{{
 	{
-		$files = glob(dirname(__FILE__) . '/script/*.php');
+		$files = glob(__DIR__ . '/script/*.php');
 		if (empty($files)) {
 			return;
 		}

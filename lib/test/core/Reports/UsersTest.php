@@ -30,14 +30,14 @@ class Reports_UsersTest extends TikiDatabaseTestCase
 
 	public function getDataSet()
 	{
-		return $this->createMySQLXMLDataSet(dirname(__FILE__) . '/fixtures/user_reports_dataset.xml');
+		return $this->createMySQLXMLDataSet(__DIR__ . '/fixtures/user_reports_dataset.xml');
 	}
 
 	public function testDelete_shouldDeleteUserReportsPreferences()
 	{
 		$user = 'admin';
 
-		$expectedTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/user_reports_dataset_delete.xml')
+		$expectedTable = $this->createMySQLXmlDataSet(__DIR__ . '/fixtures/user_reports_dataset_delete.xml')
 			->getTable('tiki_user_reports');
 
 		$this->obj->delete($user);
@@ -62,7 +62,7 @@ class Reports_UsersTest extends TikiDatabaseTestCase
 
 	public function testSave_shouldInsertData()
 	{
-		$expectedTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/user_reports_dataset_insert.xml')
+		$expectedTable = $this->createMySQLXmlDataSet(__DIR__ . '/fixtures/user_reports_dataset_insert.xml')
 			->getTable('tiki_user_reports');
 
 		// xml cannot properly represent null values, so set it after
@@ -77,7 +77,7 @@ class Reports_UsersTest extends TikiDatabaseTestCase
 
 	public function testSave_shouldUpdateData()
 	{
-		$expectedTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/user_reports_dataset_update.xml')
+		$expectedTable = $this->createMySQLXmlDataSet(__DIR__ . '/fixtures/user_reports_dataset_update.xml')
 			->getTable('tiki_user_reports');
 
 		$this->obj->save('test', 'weekly', 'detailed', 'html', 1);
@@ -119,7 +119,7 @@ class Reports_UsersTest extends TikiDatabaseTestCase
 
 	public function testUpdateLastReport_shouldUpdateLastReportField()
 	{
-		$expectedTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/user_reports_dataset_update_last_report.xml')
+		$expectedTable = $this->createMySQLXmlDataSet(__DIR__ . '/fixtures/user_reports_dataset_update_last_report.xml')
 			->getTable('tiki_user_reports');
 
 		$this->dt->setTimestamp('1326896528');

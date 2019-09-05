@@ -151,16 +151,16 @@ class Search_Formatter_Builder
 
 		if (isset($arguments['template'])) {
 			if ($arguments['template'] == 'table') {
-				$arguments['template'] = dirname(__FILE__) . '/../../../../templates/search/list/table.tpl';
+				$arguments['template'] = __DIR__ . '/../../../../templates/search/list/table.tpl';
 				$arguments['pagination'] = true;
 			} elseif ($arguments['template'] == 'medialist') {
-				$arguments['template'] = dirname(__FILE__) . '/../../../../templates/search/list/medialist.tpl';
+				$arguments['template'] = __DIR__ . '/../../../../templates/search/list/medialist.tpl';
 			} elseif ($arguments['template'] == 'carousel') {
-				$arguments['template'] = dirname(__FILE__) . '/../../../../templates/search/list/carousel.tpl';
+				$arguments['template'] = __DIR__ . '/../../../../templates/search/list/carousel.tpl';
 			} elseif ($arguments['template'] == 'count') {
-				$arguments['template'] = dirname(__FILE__) . '/../../../../templates/search/list/count.tpl';
+				$arguments['template'] = __DIR__ . '/../../../../templates/search/list/count.tpl';
 			} elseif ($arguments['template'] == 'debug') {
-				$arguments['template'] = dirname(__FILE__) . '/../../../../templates/search/list/debug.tpl';
+				$arguments['template'] = __DIR__ . '/../../../../templates/search/list/debug.tpl';
 			} elseif (! file_exists($arguments['template'])) {
 				$temp = $smarty->get_filename($arguments['template']);
 				if (empty($temp)) { //if get_filename cannot find template, return error

@@ -23,7 +23,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 
 	public function getDataSet()
 	{
-		return $this->createMySQLXMLDataSet(dirname(__FILE__) . '/fixtures/auth_tokens_dataset.xml');
+		return $this->createMySQLXMLDataSet(__DIR__ . '/fixtures/auth_tokens_dataset.xml');
 	}
 
 	function setUp()
@@ -51,7 +51,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 
 	function testCreateToken()
 	{
-		$expectedTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/auth_tokens_dataset_create.xml')
+		$expectedTable = $this->createMySQLXmlDataSet(__DIR__ . '/fixtures/auth_tokens_dataset_create.xml')
 			->getTable('tiki_auth_tokens');
 
 		$token = $this->obj->createToken('tiki-index.php', ['page' => 'HomePage'], ['Registered'], ['timeout' => 5]);
@@ -225,7 +225,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 
 	function testGetGroups_shouldDeleteExpiredTokens()
 	{
-		$expectedTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/auth_tokens_dataset_delete_timeout.xml')
+		$expectedTable = $this->createMySQLXmlDataSet(__DIR__ . '/fixtures/auth_tokens_dataset_delete_timeout.xml')
 			->getTable('tiki_auth_tokens');
 
 		$this->obj->getGroups('91bba2f998b48fce0146016809886127', 'tiki-index.php', []);
@@ -243,7 +243,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 		$this->db->query('UPDATE tiki_auth_tokens set maxHits = -1, hits = -1 WHERE tokenId = 1');
 		$this->db->query('UPDATE tiki_auth_tokens set maxHits = 10, hits = 0 WHERE tokenId = 2');
 
-		$expectedTable = $this->createMySQLXmlDataSet(dirname(__FILE__) . '/fixtures/auth_tokens_dataset_delete_hits.xml')
+		$expectedTable = $this->createMySQLXmlDataSet(__DIR__ . '/fixtures/auth_tokens_dataset_delete_hits.xml')
 			->getTable('tiki_auth_tokens');
 
 		$this->obj->getGroups('91bba2f998b48fce0146016809886127', 'tiki-index.php', []);

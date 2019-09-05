@@ -833,7 +833,7 @@ class CartLib
 			foreach ($this->get_behaviors() as $behavior) {
 				if ($behavior['event'] == 'complete') {
 					$name = $behavior['behavior'];
-					$file = dirname(__FILE__) . "/behavior/$name.php";
+					$file = __DIR__ . "/behavior/$name.php";
 					$function = 'payment_behavior_' . $name;
 					require_once $file;
 					call_user_func_array($function, $behavior['arguments']);

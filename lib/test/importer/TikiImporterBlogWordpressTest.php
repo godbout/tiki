@@ -5,8 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once(dirname(__FILE__) . '/tikiimporter_testcase.php');
-require_once(dirname(__FILE__) . '/../../importer/tikiimporter_blog_wordpress.php');
+require_once(__DIR__ . '/tikiimporter_testcase.php');
+require_once(__DIR__ . '/../../importer/tikiimporter_blog_wordpress.php');
 
 /**
  * @group importer
@@ -43,7 +43,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$obj->expects($this->once())->method('extractPermalinks');
 
 		$_FILES['importFile']['type'] = 'text/xml';
-		$obj->import(dirname(__FILE__) . '/fixtures/wordpress_sample.xml');
+		$obj->import(__DIR__ . '/fixtures/wordpress_sample.xml');
 		unset($_FILES['importFile']);
 
 		$this->assertTrue($obj->dom instanceof DOMDocument);
@@ -69,7 +69,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$obj->expects($this->once())->method('extractPermalinks');
 		$_POST['importAttachments'] = 'on';
 
-		$obj->import(dirname(__FILE__) . '/fixtures/wordpress_sample.xml');
+		$obj->import(__DIR__ . '/fixtures/wordpress_sample.xml');
 
 		unset($_POST['importAttachments']);
 
@@ -116,7 +116,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 	public function testExtractPermalinks()
 	{
 		$this->obj->dom = new DOMDocument;
-		$this->obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_sample.xml');
+		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
 		$this->obj->blogInfo['link'] = 'http://example.com';
 
 		$expectedResult = [
@@ -187,7 +187,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 			->setMethods(['extractInfo'])
 			->getMock();
 		$obj->dom = new DOMDocument;
-		$obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_sample.xml');
+		$obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
 		$obj->expects($this->exactly(4))->method('extractInfo')->will($this->returnValue([]));
 
 		$expectedResult = [
@@ -211,7 +211,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 			'vegetarianismo', 'vídeo', 'vulcão', 'vulcão maipo', 'wiki', 'wordpress', 'youtube'];
 
 		$this->obj->dom = new DOMDocument;
-		$this->obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_sample.xml');
+		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
 
 		$this->assertEquals($expectedResult, $this->obj->extractTags());
 	}
@@ -236,7 +236,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		];
 
 		$this->obj->dom = new DOMDocument;
-		$this->obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_sample.xml');
+		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
 
 		$this->assertEquals($expectedResult, $this->obj->extractCategories());
 	}
@@ -281,7 +281,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		];
 
 		$obj->dom = new DOMDocument;
-		$obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_post.xml');
+		$obj->dom->load(__DIR__ . '/fixtures/wordpress_post.xml');
 		$data = $obj->extractInfo($obj->dom->getElementsByTagName('item')->item(0));
 
 		$this->assertEquals($expectedResult, $data);
@@ -336,7 +336,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		];
 
 		$obj->dom = new DOMDocument;
-		$obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_page.xml');
+		$obj->dom->load(__DIR__ . '/fixtures/wordpress_page.xml');
 		$data = $obj->extractInfo($obj->dom->getElementsByTagName('item')->item(0));
 
 		$this->assertEquals($expectedResult, $data);
@@ -347,7 +347,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 	public function testExtractCommentShouldReturnFalseForSpamOrTrashOrPingback()
 	{
 		$this->obj->dom = new DOMDocument;
-		$this->obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_comment_spam.xml');
+		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_comment_spam.xml');
 
 		// spam
 		$this->assertFalse($this->obj->extractComment($this->obj->dom->getElementsByTagName('comment')->item(0)));
@@ -380,7 +380,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		];
 
 		$this->obj->dom = new DOMDocument;
-		$this->obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_comment.xml');
+		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_comment.xml');
 
 		$comment = $this->obj->extractComment($this->obj->dom->getElementsByTagName('comment')->item(0));
 
@@ -390,7 +390,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 	public function testExtractBlogCreatedDate()
 	{
 		$this->obj->dom = new DOMDocument;
-		$this->obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_sample.xml');
+		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
 
 		$this->assertEquals(1173636811, $this->obj->extractBlogCreatedDate());
 	}
@@ -406,7 +406,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		];
 
 		$this->obj->dom = new DOMDocument;
-		$this->obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_sample.xml');
+		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
 		$this->obj->extractBlogInfo();
 
 		$this->assertEquals($expectedResult, $this->obj->blogInfo);
@@ -415,7 +415,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 	public function testExtractAttachmentsInfo()
 	{
 		$this->obj->dom = new DOMDocument;
-		$this->obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_attachments.xml');
+		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_attachments.xml');
 
 		$expectedResult = [
 			[
@@ -532,7 +532,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$obj->expects($this->once())->method('getHttpClient')->will($this->returnValue($client));
 		$obj->expects($this->once())->method('createFileGallery')->will($this->returnValue(1));
 		$obj->dom = new DOMDocument;
-		$obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_attachments.xml');
+		$obj->dom->load(__DIR__ . '/fixtures/wordpress_attachments.xml');
 
 		$obj->downloadAttachments();
 
@@ -614,7 +614,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$obj->expects($this->once())->method('createFileGallery')->will($this->returnValue(1));
 		$obj->expects($this->once())->method('getHttpClient')->will($this->returnValue($client));
 		$obj->dom = new DOMDocument;
-		$obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_attachments.xml');
+		$obj->dom->load(__DIR__ . '/fixtures/wordpress_attachments.xml');
 
 		$obj->downloadAttachments();
 
@@ -650,7 +650,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$obj->expects($this->once())->method('createFileGallery')->will($this->returnValue(1));
 		$obj->expects($this->once())->method('getHttpClient')->will($this->returnValue($client));
 		$obj->dom = new DOMDocument;
-		$obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_attachments.xml');
+		$obj->dom->load(__DIR__ . '/fixtures/wordpress_attachments.xml');
 
 		$obj->downloadAttachments();
 
@@ -698,9 +698,9 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 			],
 		];
 
-		$content = file_get_contents(dirname(__FILE__) . '/fixtures/wordpress_post_content.txt');
+		$content = file_get_contents(__DIR__ . '/fixtures/wordpress_post_content.txt');
 
-		$expectedResult = file_get_contents(dirname(__FILE__) . '/fixtures/wordpress_post_content_parsed.txt');
+		$expectedResult = file_get_contents(__DIR__ . '/fixtures/wordpress_post_content_parsed.txt');
 
 		$this->assertEquals($expectedResult, $this->obj->parseContentAttachmentsUrl($content));
 	}
@@ -715,7 +715,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 	public function testValidateInput()
 	{
 		$this->obj->dom = new DOMDocument;
-		$this->obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_sample.xml');
+		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
 		$this->assertTrue($this->obj->validateInput());
 	}
 
@@ -724,7 +724,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->setExpectedException('DOMException');
 
 		$this->obj->dom = new DOMDocument;
-		$this->obj->dom->load(dirname(__FILE__) . '/fixtures/wordpress_invalid.xml');
+		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_invalid.xml');
 		$this->obj->validateInput();
 	}
 
@@ -733,7 +733,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->setExpectedException('DOMException');
 
 		$this->obj->dom = new DOMDocument;
-		$this->obj->dom->load(dirname(__FILE__) . '/fixtures/mediawiki_sample.xml');
+		$this->obj->dom->load(__DIR__ . '/fixtures/mediawiki_sample.xml');
 		$this->obj->validateInput();
 	}
 
@@ -759,8 +759,8 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 
 	public function testParseWordpressShortcodes()
 	{
-		$content = file_get_contents(dirname(__FILE__) . '/fixtures/wordpress_post_content_shortcodes.txt');
-		$expectedResult = file_get_contents(dirname(__FILE__) . '/fixtures/wordpress_post_content_shortcodes_parsed.txt');
+		$content = file_get_contents(__DIR__ . '/fixtures/wordpress_post_content_shortcodes.txt');
+		$expectedResult = file_get_contents(__DIR__ . '/fixtures/wordpress_post_content_shortcodes_parsed.txt');
 		$this->assertEquals($expectedResult, $this->obj->parseWordpressShortcodes($content));
 	}
 
@@ -921,7 +921,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 			['type' => 'post', 'name' => 'Any name', 'hasInternalLinks' => false, 'objId' => 11],
 		];
 
-		$content = file_get_contents(dirname(__FILE__) . '/fixtures/wordpress_post_content_internal_links.txt');
+		$content = file_get_contents(__DIR__ . '/fixtures/wordpress_post_content_internal_links.txt');
 
 		TikiDb::get()->query('INSERT INTO tiki_pages (pageName, data) VALUES (?, ?)', ['materia', $content]);
 		TikiDb::get()->query('INSERT INTO tiki_blog_posts (postId, data) VALUES (?, ?)', [10, $content]);
@@ -932,11 +932,11 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$newPostContent = TikiDb::get()->getOne('SELECT data FROM tiki_blog_posts WHERE postId = 10');
 
 		$this->assertEquals(
-			file_get_contents(dirname(__FILE__) . '/fixtures/wordpress_post_content_internal_links_replaced.txt'),
+			file_get_contents(__DIR__ . '/fixtures/wordpress_post_content_internal_links_replaced.txt'),
 			$newPageContent
 		);
 		$this->assertEquals(
-			file_get_contents(dirname(__FILE__) . '/fixtures/wordpress_post_content_internal_links_replaced.txt'),
+			file_get_contents(__DIR__ . '/fixtures/wordpress_post_content_internal_links_replaced.txt'),
 			$newPostContent
 		);
 	}

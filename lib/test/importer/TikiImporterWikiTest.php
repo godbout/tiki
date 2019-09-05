@@ -5,9 +5,9 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-require_once(dirname(__FILE__) . '/tikiimporter_testcase.php');
-require_once(dirname(__FILE__) . '/../../importer/tikiimporter_wiki.php');
-require_once(dirname(__FILE__) . '/../../importer/tikiimporter_wiki_mediawiki.php');
+require_once(__DIR__ . '/tikiimporter_testcase.php');
+require_once(__DIR__ . '/../../importer/tikiimporter_wiki.php');
+require_once(__DIR__ . '/../../importer/tikiimporter_wiki_mediawiki.php');
 
 /**
  * @group importer
@@ -144,7 +144,7 @@ class TikiImporter_Wiki_InsertPage_Test extends TikiImporter_TestCase
 
 	protected function setUp()
 	{
-		require_once(dirname(__FILE__) . '/fixtures/mediawiki_page_as_array.php');
+		require_once(__DIR__ . '/fixtures/mediawiki_page_as_array.php');
 		global $tikilib;
 		$tikilib = $this->getMockBuilder('TikiLib')
 		   ->setMethods(['create_page', 'update_page', 'page_exists', 'remove_all_versions'])

@@ -5,9 +5,9 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 require_once 'lib/auth/tokens.php';
-require_once dirname(__FILE__) . '/ConverseJS.php';
-require_once dirname(__FILE__) . '/TikiXmppChat.php';
-require_once dirname(__FILE__) . '/TikiXmppPrebind.php';
+require_once __DIR__ . '/ConverseJS.php';
+require_once __DIR__ . '/TikiXmppChat.php';
+require_once __DIR__ . '/TikiXmppPrebind.php';
 
 use Fabiang\Xmpp\Protocol\Presence;
 use Fabiang\Xmpp\Protocol\Message;

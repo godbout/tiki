@@ -4,7 +4,7 @@
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
-include dirname(dirname(__FILE__)) . '/entities/RefreshTokenEntity.php';
+include dirname(__DIR__) . '/entities/RefreshTokenEntity.php';
 
 use League\OAuth2\Server\Repositories\RefreshTokenRepositoryInterface;
 use League\OAuth2\Server\Entities\RefreshTokenEntityInterface;

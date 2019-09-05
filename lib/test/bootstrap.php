@@ -28,8 +28,8 @@ ini_set('include_path', implode(PATH_SEPARATOR, $paths));
 
 require_once __DIR__ . '/../../vendor_bundled/vendor/autoload.php';
 
-if (! is_file(dirname(__FILE__) . '/local.php')) {
-	die("\nYou need to setup a new database and create a local.php file for the test suite inside " . dirname(__FILE__) .
+if (! is_file(__DIR__ . '/local.php')) {
+	die("\nYou need to setup a new database and create a local.php file for the test suite inside " . __DIR__ .
 		"\nSee lib/tests/local.php.dist for further instructions\n\n");
 }
 
@@ -92,7 +92,7 @@ if (! $installer->tableExists('tiki_preferences')) {
 }
 
 $pwd = getcwd();
-chdir(dirname(__FILE__) . '/../..');
+chdir(__DIR__ . '/../..');
 $smarty = TikiLib::lib('smarty');
 require_once 'lib/init/smarty.php';
 $smarty->addPluginsDir('../smarty_tiki/');
@@ -110,8 +110,8 @@ $_SESSION = [
 		];
 chdir($pwd);
 
-require_once(dirname(__FILE__) . '/TikiTestCase.php');
-require_once(dirname(__FILE__) . '/TestableTikiLib.php');
+require_once(__DIR__ . '/TikiTestCase.php');
+require_once(__DIR__ . '/TestableTikiLib.php');
 
 global $systemConfiguration;
 $systemConfiguration = new Zend\Config\Config(

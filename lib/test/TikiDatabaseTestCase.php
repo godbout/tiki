@@ -19,7 +19,7 @@ abstract class TikiDatabaseTestCase extends PHPUnit_Extensions_Database_TestCase
 
 	public function getConnection()
 	{
-		require(dirname(__FILE__) . '/local.php');
+		require(__DIR__ . '/local.php');
 
 		$dbType = $db_tiki;
 		if ($dbType == 'mysqli' || $dbType = 'mysqlpo' || $dbType = 'mysqlt') {

@@ -85,7 +85,7 @@ class ShippingLib
 	static function getCustomShippingProvider($name)
 	{
 
-		$file = dirname(__FILE__) . '/custom/' . $name . '.php';
+		$file = __DIR__ . '/custom/' . $name . '.php';
 		$className = 'CustomShippingProvider_' . ucfirst($name);
 		if (is_readable($file)) {
 			require_once $file;

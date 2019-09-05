@@ -58,9 +58,9 @@ function test_callback($buffer)
 
 	$filename = basename(trim($_COOKIE['tikitest_filename']));
 	if (isset($_COOKIE['tikitest_filename'])) {
-		$xml_file = dirname(__FILE__) . "/tests/" . $filename . ".xml";
+		$xml_file = __DIR__ . "/tests/" . $filename . ".xml";
 	} else {
-		$xml_file = dirname(__FILE__) . "/tests/tikitest.xml";
+		$xml_file = __DIR__ . "/tests/tikitest.xml";
 	}
 	$xml = file_get_contents($xml_file);
 	if ($xml == '') {

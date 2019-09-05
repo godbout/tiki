@@ -10,7 +10,7 @@ if (isset($_SERVER['REQUEST_METHOD'])) {
 	die('Only available through command-line.');
 }
 
-$tikiBase = realpath(dirname(__FILE__) . '/../..');
+$tikiBase = realpath(__DIR__ . '/../..');
 
 $composerJsonFile = "$tikiBase/vendor_bundled/composer.json";
 $composerJsonFileBackup = str_replace('/composer.', '/composer_https.', $composerJsonFile);

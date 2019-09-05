@@ -75,7 +75,7 @@ class CheckSchemaNamingConvention
 			$schemaFolderPath = $options['path'];
 		}
 		if ($schemaFolderPath[0] !== '/') {
-			$schemaFolderPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . $schemaFolderPath;
+			$schemaFolderPath = __DIR__ . DIRECTORY_SEPARATOR . $schemaFolderPath;
 		}
 		return $schemaFolderPath;
 	}

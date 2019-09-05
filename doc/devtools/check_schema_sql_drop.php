@@ -89,7 +89,7 @@ class CheckSchemaSqlDrop
 			$sqlPath = $options['path'];
 		}
 		if ($sqlPath[0] !== '/') {
-			$sqlPath = dirname(__FILE__) . DIRECTORY_SEPARATOR . $sqlPath;
+			$sqlPath = __DIR__ . DIRECTORY_SEPARATOR . $sqlPath;
 		}
 		return $sqlPath;
 	}

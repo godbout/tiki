@@ -11,14 +11,14 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
-include dirname(__FILE__) . '/entities/UserEntity.php';
-include dirname(__FILE__) . '/repositories/AccessTokenRepository.php';
-include dirname(__FILE__) . '/repositories/AuthCodeRepository.php';
-include dirname(__FILE__) . '/repositories/ClientRepository.php';
-include dirname(__FILE__) . '/repositories/RefreshTokenRepository.php';
-include dirname(__FILE__) . '/repositories/ScopeRepository.php';
-include dirname(__FILE__) . '/responsetypes/BearerTokenResponse.php';
-include dirname(__FILE__) . '/server/AuthorizationServer.php';
+include __DIR__ . '/entities/UserEntity.php';
+include __DIR__ . '/repositories/AccessTokenRepository.php';
+include __DIR__ . '/repositories/AuthCodeRepository.php';
+include __DIR__ . '/repositories/ClientRepository.php';
+include __DIR__ . '/repositories/RefreshTokenRepository.php';
+include __DIR__ . '/repositories/ScopeRepository.php';
+include __DIR__ . '/responsetypes/BearerTokenResponse.php';
+include __DIR__ . '/server/AuthorizationServer.php';
 
 use \League\OAuth2\Server\Grant\AuthCodeGrant;
 use \League\OAuth2\Server\Grant\ImplicitGrant;
