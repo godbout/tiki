@@ -99,7 +99,7 @@ JS;
 						</div>
 						<div class="progress_body" style="">
 							<div class="database" style="margin-bottom: 1rem">
-								<h3 style="{$progressbar_h_style}{$progressbar_h3_style}">Tables creations status</h3>
+								<h3 style="{$progressbar_h_style}{$progressbar_h3_style}">Table creation status</h3>
 								<div class="progress" style="{$progress_wrapper_style}">
 									<div class="progress-bar progress-bar-striped bg-info" id="progress_database_status" style="{$progress_bar_style_style}{$progress_bar_striped_style}{$progress_bar_bg_info_style}{$progress_bar_animated}"></div>
 								</div>
@@ -110,9 +110,9 @@ JS;
 								</div>
 							</div>
 							<div class="patches" id="patches" style="">
-								<h3 style="{$progressbar_h_style}{$progressbar_h3_style}">Patches creations status</h3>
+								<h3 style="{$progressbar_h_style}{$progressbar_h3_style}">Patch creation status</h3>
 								<div class="tables_indexing">
-								<p style="{$building_patches_style}">Tables indexing <strong><span id="table_index" style="color:#d44950;">...</span></strong></p>
+								<p style="{$building_patches_style}">Indexing tables <strong><span id="table_index" style="color:#d44950;">...</span></strong></p>
 								</div> 
 								<div class="building_patches">
 									<p style="{$building_patches_style}">Building patches <strong><span id="build_patch" style="color:#d44950;">...</span></strong></p>
