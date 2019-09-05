@@ -16,7 +16,7 @@ class Directory extends DAV\Collection {
 	private $definition;
 
 	function __construct($path_or_id = '/') {
-		if (intval($path_or_id) == 0) {
+		if ((int)$path_or_id == 0) {
 			$result = TikiLib::lib('filegal')->get_objectid_from_virtual_path($path_or_id);
 			if (! $result || $result['type'] != 'filegal') {
 				throw new DAV\Exception\NotFound(tr('The directory with path: ' . $path_or_id . ' could not be found'));

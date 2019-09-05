@@ -21,7 +21,7 @@ class Math_Formula_Function_Round extends Math_Formula_Function
 
 
 		$number = array_shift($elements);
-		$decimals = intval(array_shift($elements));
+		$decimals = (int)array_shift($elements);
 
 		return round($number, $decimals);
 	}

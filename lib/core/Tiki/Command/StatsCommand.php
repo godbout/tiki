@@ -44,7 +44,7 @@ class StatsCommand extends Command
 		$usersAdmin = $userlib->get_group_users('Admins', 0, 1, '*', 'lastLogin_desc');
 		$lastAdminLogin = '';
 		if (isset($usersAdmin) && count($usersAdmin) > 0 && isset($usersAdmin[0]['lastLogin'])) {
-			$lastAdminLogin = sprintf('%s (%s)', date($dateFormat, intval($usersAdmin[0]['lastLogin'])), $usersAdmin[0]['login']);
+			$lastAdminLogin = sprintf('%s (%s)', date($dateFormat, (int)$usersAdmin[0]['lastLogin']), $usersAdmin[0]['login']);
 		}
 		$kpis[] = [
 			'kpi' => 'last_admin_user_login',
@@ -59,7 +59,7 @@ class StatsCommand extends Command
 
 		$lastUserLogin = '';
 		if (isset($users) && count($users['data']) > 0 && isset($users['data'][0]['lastLogin'])) {
-			$lastUserLogin = sprintf('%s (%s)', date($dateFormat, intval($users['data'][0]['lastLogin'])), $users['data'][0]['login']);
+			$lastUserLogin = sprintf('%s (%s)', date($dateFormat, (int)$users['data'][0]['lastLogin']), $users['data'][0]['login']);
 		}
 		$kpis[] = [
 			'kpi' => 'last_user_login',
@@ -70,31 +70,31 @@ class StatsCommand extends Command
 		//get last wiki page change
 		$lastPage = TikiDb::get()->table('tiki_pages')->fetchRow([], [], ['lastModif' => 'desc']);
 		if (isset($lastPage) && count($lastPage) > 0 && isset($lastPage['lastModif'])) {
-			$dates[] = intval($lastPage['lastModif']);
+			$dates[] = (int)$lastPage['lastModif'];
 		}
 
 		//get last blog page created
 		$blog = TikiDb::get()->table('tiki_blog_posts')->fetchRow([], [], ['created' => 'desc']);
 		if (! empty($blog) && ! empty($blog['created'])) {
-			$dates[] = intval($blog['created']);
+			$dates[] = (int)$blog['created'];
 		}
 
 		//get last forum page created
 		$lastForumPost = TikiDb::get()->table('tiki_forums')->fetchRow([], [], ['lastPost' => 'desc']);
 		if (! empty($lastForumPost) && ! empty($lastForumPost['lastPost'])) {
-			$dates[] = intval($lastForumPost['lastPost']);
+			$dates[] = (int)$lastForumPost['lastPost'];
 		}
 
 		//get last article page created
 		$lastarticlecreated = TikiDb::get()->table('tiki_articles')->fetchRow([], [], ['created' => 'desc']);
 		if (! empty($lastarticlecreated) && ! empty($lastarticlecreated['created'])) {
-			$dates[] = intval($lastarticlecreated['created']);
+			$dates[] = (int)$lastarticlecreated['created'];
 		}
 
 		//get last tracker modified
 		$lasttrackercreated = TikiDb::get()->table('tiki_tracker_items')->fetchRow([], [], ['lastModif' => 'desc']);
 		if (! empty($lasttrackercreated) && ! empty($lasttrackercreated['lastModif'])) {
-			$dates[] = intval($lasttrackercreated['lastModif']);
+			$dates[] = (int)$lasttrackercreated['lastModif'];
 		}
 
 		$daysAgo = '';

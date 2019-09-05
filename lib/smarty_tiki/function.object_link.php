@@ -168,7 +168,7 @@ function smarty_function_object_link_default($smarty, $object, $title = null, $t
 				[
 					'controller' => 'file',
 					'action' => 'refresh',
-					'fileId' => intval($object),
+					'fileId' => (int)$object,
 				],
 				$smarty
 			) . '">' .

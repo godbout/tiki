@@ -60,7 +60,7 @@ class AccessTokenRepository implements AccessTokenRepositoryInterface
 		$entity = new AccessTokenEntity();
 		$entity->setIdentifier($token['token']);
 		$entity->setExpiryDateTime(new \DateTime(
-			strtotime($token['token']) + intval($token['timeout'])
+			strtotime($token['token']) + (int)$token['timeout']
 		));
 		$entity->setUserIdentifier($token['userPrefix']);
 		$entity->setClient($client);

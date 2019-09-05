@@ -75,8 +75,8 @@ class TikiDb_Pdo extends TikiDb
 		global $num_queries;
 		$num_queries++;
 
-		$numrows = intval($numrows);
-		$offset = intval($offset);
+		$numrows = (int)$numrows;
+		$offset = (int)$offset;
 		if ($query == null) {
 			$query = $this->getQuery();
 		}

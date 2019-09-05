@@ -1406,13 +1406,13 @@ if (isset($_REQUEST["save"])
 	}
 
 	if (isset($_REQUEST['pageAutoToc'])) {
-		$isAutoTocActive = intval($_REQUEST['pageAutoToc']);
+		$isAutoTocActive = (int)$_REQUEST['pageAutoToc'];
 		$isAutoTocActive = $isAutoTocActive == 0 ? null : $isAutoTocActive;
 		$wikilib->set_page_auto_toc($page, $isAutoTocActive);
 	}
 
 	if ($prefs['wiki_page_hide_title'] == 'y' && isset($_REQUEST['page_hide_title'])) {
-		$isHideTitle = intval($_REQUEST['page_hide_title']);
+		$isHideTitle = (int)$_REQUEST['page_hide_title'];
 		$isHideTitle = $isHideTitle == 0 ? null : $isHideTitle;
 		$wikilib->set_page_hide_title($page, $isHideTitle);
 	}

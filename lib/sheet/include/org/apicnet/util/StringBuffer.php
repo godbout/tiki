@@ -60,7 +60,7 @@ class StringBuffer extends APICObject {
 		if (StringBuffer::validClass($string)) {
 			$string = $string->toString();
 		}
-		settype($index, 'integer');
+		$index = (int)$index;
 		if ($index<=0){
 			return new StringBuffer($string . $this->str);
 		} else if ($index>=$this->length()){
@@ -73,8 +73,8 @@ class StringBuffer extends APICObject {
 	}
 	
 	function remove($from, $to){
-		settype($from, 'integer');
-		settype($to, 'integer');
+		$from = (int)$from;
+		$to = (int)$to;
 		if ($from>$to){
 			$a = $from;
 			$from = $to;
@@ -376,7 +376,7 @@ class StringBuffer extends APICObject {
 	
 	function intValue(){
 		$value = $this->toString();
-		settype($value, 'integer');
+		$value = (int)$value;
 		return $value;
 	}
 	

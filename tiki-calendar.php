@@ -53,8 +53,8 @@ $manyEvents = [];
 
 foreach ($rawcals["data"] as $cal_data) {
 	$cal_id = $cal_data['calendarId'];
-	$minHourOfDay = min($minHourOfDay, intval($cal_data['startday'] / 3600));
-	$maxHourOfDay = max($maxHourOfDay, intval(($cal_data['endday'] + 1) / 3600));
+	$minHourOfDay = min($minHourOfDay, (int)($cal_data['startday'] / 3600));
+	$maxHourOfDay = max($maxHourOfDay, (int)(($cal_data['endday'] + 1) / 3600));
 	if ($tiki_p_admin == 'y') {
 		$cal_data["tiki_p_view_calendar"] = 'y';
 		$cal_data["tiki_p_view_events"] = 'y';
@@ -476,7 +476,7 @@ if ($calendarViewMode['casedefault'] == 'day') {
 			$dayitems['end'] = ($dayitems['endTimeStamp'] < ($cell[0]["{$weekdays[0]}"]['day'] + 86399))
 				? $dayitems['end']
 				: str_pad($maxHourOfDay, 2, '0', STR_PAD_LEFT) . "59";
-			$rawhour = intval(substr($dayitems['time'], 0, 2));
+			$rawhour = (int)substr($dayitems['time'], 0, 2);
 			$dayitems['mins'] = substr($dayitems['time'], 2);
 			$dayitems['top'] = (($rawhour - $minHourOfDay) + $dayitems['mins'] / 60) * 24 + 35;
 			$hrows["$rawhour"][] = $dayitems;
@@ -617,7 +617,7 @@ if ($calendarViewMode['casedefault'] == 'day') {
 				$dayitems['end'] = ($dayitems['endTimeStamp'] < ($cell[0][$wd]['day'] + 86400))
 					? $dayitems['end']
 					: str_pad($maxHourOfDay, 2, '0', STR_PAD_LEFT) . "59";
-				$rawhour = intval(substr($dayitems['time'], 0, 2));
+				$rawhour = (int)substr($dayitems['time'], 0, 2);
 				if ($rawhour < $minHourOfDay) {
 					$rawhour = $minHourOfDay;
 				}
@@ -721,7 +721,7 @@ if ($calendarViewMode['casedefault'] == 'day') {
 					if ($tmpBottom > 100 * (1 + $maxHourOfDay)) {
 						$tmpBottom = str_pad(100 * (1 + $maxHourOfDay), 4, '0', STR_PAD_LEFT);
 					}
-					$top = 36 + 24 * ((intval(substr($tmpTop, 0, 2)) + intval(substr($tmpTop, 2)) / 60) - $minHourOfDay);
+					$top = 36 + 24 * (((int)substr($tmpTop, 0, 2) + (int)substr($tmpTop, 2) / 60) - $minHourOfDay);
 					$duree = max(23.9, 23.9 * (($tikilib->make_time(substr($tmpBottom, 0, 2), substr($tmpBottom, 2), 0, 1, 1, 2000) - $tikilib->make_time(substr($tmpTop, 0, 2), substr($tmpTop, 2), 0, 1, 1, 2000)) / 3600));
 					$manyEvents[$aDay]['top'] = $top;
 					$manyEvents[$aDay]['left'] = $zoom * ( 9 + ($aDay * 13) );

@@ -243,8 +243,8 @@ function wikiplugin_countdown($data, $params)
 	//either before the event or if countdown also shown after the event
 		//calculate total time in hours, minutes or seconds
 		$diff['months'] = abs(($diff['y'] * 12) + $diff['o']);
-		$diff['hours'] = abs(intval($difference / 60 / 60));
-		$diff['minutes'] = abs(intval($difference / 60));
+		$diff['hours'] = abs((int)($difference / 60 / 60));
+		$diff['minutes'] = abs((int)($difference / 60));
 		$diff['seconds'] = abs($difference);
 		$comma = ', ';
 		$and = ' ' . tra('and') . ' ';

@@ -49,7 +49,7 @@ if (! empty($_REQUEST['focus'])) {
 }
 
 if (! empty($_REQUEST['day']) && ! empty($_REQUEST['mon']) && ! empty($_REQUEST['year'])) {//can come from the event module
-	$_REQUEST['todate'] = $tikilib->make_time(23, 59, 59, intval($_REQUEST['mon']), intval($_REQUEST['day']), intval($_REQUEST['year']));
+	$_REQUEST['todate'] = $tikilib->make_time(23, 59, 59, (int)$_REQUEST['mon'], (int)$_REQUEST['day'], (int)$_REQUEST['year']);
 } elseif (isset($_REQUEST['todate']) && $_REQUEST['todate']) {
 	$_SESSION['CalendarFocusDate'] = $_REQUEST["todate"];
 } elseif (! isset($_REQUEST['todate']) && isset($_SESSION['CalendarFocusDate']) && $_SESSION['CalendarFocusDate']) {
@@ -63,9 +63,9 @@ $focusDay = TikiLib::date_format("%d", $focusdate);
 $focusMonth = TikiLib::date_format("%m", $focusdate);
 $focusYear = TikiLib::date_format("%Y", $focusdate);
 // Validate input
-if (intval($focusDay) <= 0 || ! is_numeric($focusDay) ||
-	intval($focusMonth) <= 0 || ! is_numeric($focusDay) ||
-	intval($focusYear) <= 0 || ! is_numeric($focusDay)) {
+if ((int)$focusDay <= 0 || ! is_numeric($focusDay) ||
+	(int)$focusMonth <= 0 || ! is_numeric($focusDay) ||
+	(int)$focusYear <= 0 || ! is_numeric($focusDay)) {
 	$_SESSION['CalendarFocusDate'] = $tikilib->now;
 	$smarty->assign('msg', tra('Invalid date format'));
 	$smarty->display('error.tpl');

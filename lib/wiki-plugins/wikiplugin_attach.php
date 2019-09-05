@@ -210,7 +210,7 @@ function wikiplugin_attach($data, $params)
 	$old_atts = $atts;
 	$url = '';
 
-	if (isset($all) && intval($all) > 0) {
+	if (isset($all) && (int)$all > 0) {
 		$atts = $wikilib->list_all_attachements(0, -1, 'page_asc', '');
 	} elseif (! empty($page)) {
 		if (! $tikilib->page_exists($page)) {

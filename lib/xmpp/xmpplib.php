@@ -159,7 +159,7 @@ class XMPPLib extends TikiLib
 
 		$args['maxusers'] = 30;
 		if (! empty($params['maxUsers']) && is_numeric($params['maxUsers'])) {
-			$params['maxUsers'] = intval($params['maxUsers'], 10);
+			$params['maxUsers'] = (int)$params['maxUsers'];
 		}
 
 		if (! empty($params['can_anyone_discover_jid'])) {

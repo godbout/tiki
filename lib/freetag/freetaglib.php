@@ -990,12 +990,12 @@ class FreetagLib extends ObjectLib
 				if (count($objectIds) == 1) {
 					$mid .= ' AND tbp.`blogId` = ?';
 					$mid2 .= ' AND tbp.`blogId` = ?';
-					$bindvals[] = intval($objectId);
+					$bindvals[] = (int)$objectId;
 				} else {	// There is more than one blog Id
 					$multimid = [];
 					foreach ($objectIds as $objId) {
 						$multimid[] = ' tbp.`blogId` = ? ';
-						$bindvals[] = intval($objId);
+						$bindvals[] = (int)$objId;
 					}
 					$mid .= ' AND ( ' . implode(' OR ', $multimid) . ' ) ';
 					$mid2 .= ' AND ( ' . implode(' OR ', $multimid) . ' ) ';

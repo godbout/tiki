@@ -86,7 +86,7 @@ class Tracker_Field_JsCalendar extends Tracker_Field_DateTime
 
 		// if local browser offset is submitted, convert timestamp to server-based timezone
 		if (isset($requestData['tzoffset']) && $value && isset($requestData[$ins_id])) {
-			$browser_offset = 0 - intval($requestData['tzoffset']) * 60;
+			$browser_offset = 0 - (int)$requestData['tzoffset'] * 60;
 
 			$server_offset = TikiDate::tzServerOffset(TikiLib::lib('tiki')->get_display_timezone());
 
@@ -138,7 +138,7 @@ class Tracker_Field_JsCalendar extends Tracker_Field_DateTime
 	{
 		if ($notBefore = $this->getOption('notBefore')) {
 			$notBeforeTimestamp = $ins_fields_data[$notBefore]['value'];
-			if ((string)$notBeforeTimestamp !== (string)intval($notBeforeTimestamp)) {
+			if ((string)$notBeforeTimestamp !== (string)(int)$notBeforeTimestamp) {
 				$notBeforeTimestamp = strtotime($notBeforeTimestamp);
 			}
 			if (! $notBeforeTimestamp || $this->getValue() < $notBeforeTimestamp) {
@@ -148,7 +148,7 @@ class Tracker_Field_JsCalendar extends Tracker_Field_DateTime
 
 		if ($notAfter = $this->getOption('notAfter')) {
 			$notAfterTimestamp = $ins_fields_data[$notAfter]['value'];
-			if ((string)$notAfterTimestamp !== (string)intval($notAfterTimestamp)) {
+			if ((string)$notAfterTimestamp !== (string)(int)$notAfterTimestamp) {
 				$notAfterTimestamp = strtotime($notAfterTimestamp);
 			}
 			if (! $notAfterTimestamp || $this->getValue() > $notAfterTimestamp) {

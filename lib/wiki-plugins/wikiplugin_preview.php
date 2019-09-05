@@ -81,10 +81,10 @@ function wikiplugin_preview($data, $params)
 		return;
 	}
 
-	$fileId = isset($params['fileId']) ? intval($params['fileId']) : 0;
-	$animation = isset($params['animation']) ? intval($params['animation']) : 0;
-	$width = isset($params['width']) ? intval($params['width']) : null;
-	$height = isset($params['height']) ? intval($params['height']) : null;
+	$fileId = isset($params['fileId']) ? (int)$params['fileId'] : 0;
+	$animation = isset($params['animation']) ? (int)$params['animation'] : 0;
+	$width = isset($params['width']) ? (int)$params['width'] : null;
+	$height = isset($params['height']) ? (int)$params['height'] : null;
 
 	$smartyLib = TikiLib::lib('smarty');
 

@@ -1151,8 +1151,8 @@ class CalendarLib extends TikiLib
 	function infoDate($focusDate)
 	{
 		$focus = [
-			'day' => intval(TikiLib::date_format('%d', $focusDate)),
-			'month' => intval(TikiLib::date_format('%m', $focusDate)),
+			'day' => (int)TikiLib::date_format('%d', $focusDate),
+			'month' => (int)TikiLib::date_format('%m', $focusDate),
 			'year' => TikiLib::date_format('%Y', $focusDate),
 			'date' => $focusDate,
 			'weekDay' => TikiLib::date_format('%w', $focusDate) // in (0, 6)

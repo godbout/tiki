@@ -60,7 +60,7 @@ if (isset($_REQUEST['addreference']) && $action = 'a_ref') {
 
 	$errors = [];
 
-	if (intval($page_id)) {
+	if ((int)$page_id) {
 		if ($ref_biblio_code == '') {
 			$errors[] = tra('Please enter Biblio Code.');
 		}

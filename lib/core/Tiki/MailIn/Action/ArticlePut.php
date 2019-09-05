@@ -18,8 +18,8 @@ class ArticlePut implements ActionInterface
 
 	function __construct(array $params)
 	{
-		$this->topicId = isset($params['topic']) ? intval($params['topic']) : 0;
-		$this->type = isset($params['type']) ? intval($params['type']) : null;
+		$this->topicId = isset($params['topic']) ? (int)$params['topic'] : 0;
+		$this->type = isset($params['type']) ? (int)$params['type'] : null;
 	}
 
 	function getName()

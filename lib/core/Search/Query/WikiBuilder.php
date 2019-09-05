@@ -406,7 +406,7 @@ class Search_Query_WikiBuilder
 	function wpquery_group_boost($query, $value)
 	{
 		if ($this->aggregate) {
-			$this->boost *= max(1, intval($value));
+			$this->boost *= max(1, (int)$value);
 		}
 	}
 

@@ -259,7 +259,7 @@ function wikiplugin_ganttchart($data, $params)
 				$listHasChildren[$fieldItem['value']] = true;
 			}
 			if ($order == $fieldItem['permName'] && is_numeric($fieldItem['value'])) {
-				$fieldOrder = intval($fieldItem['value']);
+				$fieldOrder = (int)$fieldItem['value'];
 			}
 			if ($status == $fieldItem['permName'] && ! empty($fieldItem['value'])) {
 				$fieldStatus = $fieldItem['value'];
@@ -353,7 +353,7 @@ function wikiplugin_ganttchart($data, $params)
 					'resourceId' => $resourceIdValue,
 					'id' => uniqid(),
 					'roleId' => $roleIdValue,
-					'effort' => intval($fieldEffort)
+					'effort' => (int)$fieldEffort
 				]
 			],
 			'hasChild' => $hasChild
@@ -453,7 +453,7 @@ function countWorkingDays($startDate, $endDate)
 		$workingDays += $no_remaining_days;
 	}
 
-	return intval($workingDays);
+	return (int)$workingDays;
 }
 
 /**
@@ -467,8 +467,8 @@ function getTimeToMilliseconds($time)
 	$time = ! empty($time) ? explode(":", $time) : '';
 	$milisec = 0;
 	if (isset($time[0]) && isset($time[1])) {
-		$hour = intval($time[0]) * 3600000;
-		$minutes = intval($time[1]) * 60000;
+		$hour = (int)$time[0] * 3600000;
+		$minutes = (int)$time[1] * 60000;
 		$milisec = $hour + $minutes;
 	}
 
@@ -698,7 +698,7 @@ function getTaskLevel($taskLevel, $allTasks)
 	$level = 0;
 	if (! empty($taskLevel) && $taskLevel > 0 && ! empty($allTasks)) {
 		foreach ($allTasks as $key => $task) {
-			$matchKey = intval($taskLevel) - 1;
+			$matchKey = (int)$taskLevel - 1;
 			if ($matchKey == $key && isset($task['id'])) {
 				$level = $task['id'];
 				break;

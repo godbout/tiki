@@ -540,7 +540,7 @@ class FileGalLib extends TikiLib
 			'show_deleteAfter' => $prefs['fgal_list_deleteAfter'],
 			'show_lastDownload' => 'n',
 			'sort_mode' => $prefs['fgal_sortField'] . '_' . $prefs['fgal_sortDirection'],
-			'maxRows' => intval($prefs['maxRowsGalleries']),
+			'maxRows' => (int)$prefs['maxRowsGalleries'],
 			'max_desc' => 0,
 			'subgal_conf' => '',
 			'show_id' => $prefs['fgal_list_id'],

@@ -86,7 +86,7 @@ class Search_MySql_QueryBuilder
 			return 'NOT (' . reset($childNodes) . ')';
 		} elseif ($node instanceof Token) {
 			$raw = $this->getRaw($node);
-			if (is_numeric($raw) && intval($raw) != $raw) {
+			if (is_numeric($raw) && (int)$raw != $raw) {
 				$from = $this->db->qstr($raw - 0.00001);
 				$to = $this->db->qstr($raw + 0.00001);
 				return "`{$node->getField()}` BETWEEN $from AND $to";

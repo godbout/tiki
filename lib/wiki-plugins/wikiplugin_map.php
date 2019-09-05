@@ -187,12 +187,12 @@ function wikiplugin_map($data, $params)
 
 	$width = '100%';
 	if (isset($params['width'])) {
-		$width = intval($params['width']) . 'px';
+		$width = (int)$params['width'] . 'px';
 	}
 
 	$height = '100%';
 	if (isset($params['height'])) {
-		$height = intval($params['height']) . 'px';
+		$height = (int)$params['height'] . 'px';
 	}
 
 	if (! isset($params['controls'])) {
@@ -379,7 +379,7 @@ function wp_map_plugin_searchlayer($body, $args)
 	}
 
 	if ($maxRecords) {
-		$maxRecords = '<input type="hidden" name="maxRecords" value="' . intval($maxRecords) . '"/>';
+		$maxRecords = '<input type="hidden" name="maxRecords" value="' . (int)$maxRecords . '"/>';
 	}
 
 	if ($sort_mode) {

@@ -977,7 +977,7 @@ if ((
 // Mark what db type to use if selected
 if (isset($_POST['useInnoDB'])) {
 	if ($installer != null) {
-		if (intval($_POST['useInnoDB']) > 0) {
+		if ((int)$_POST['useInnoDB'] > 0) {
 			$installer->useInnoDB = true;
 		} else {
 			$installer->useInnoDB = false;
@@ -1220,7 +1220,7 @@ if ($install_step == '2') {
 		case 'k':
 			$memory_limit *= 1024;
 	}
-	$smarty->assign('php_memory_limit', intval($memory_limit));
+	$smarty->assign('php_memory_limit', (int)$memory_limit);
 
 	if ((extension_loaded('gd') && function_exists('gd_info'))) {
 		$gd_test = 'y';

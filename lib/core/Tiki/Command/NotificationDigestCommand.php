@@ -55,7 +55,7 @@ class NotificationDigestCommand extends Command
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		global $prefs, $url_scheme, $url_host, $tikiroot, $url_port;
-		$days = intval($input->getArgument('days')) ?: 7;
+		$days = (int)$input->getArgument('days') ?: 7;
 
 		if ($input->getOption('ssl')) {
 			$url_scheme = 'https';

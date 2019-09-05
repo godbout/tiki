@@ -25,7 +25,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 function smarty_block_repeat($params, $content, $smarty, &$repeat)
 {
 	if ($repeat || ! empty($content)) {
-		$intCount = intval($params['count']);
+		$intCount = (int)$params['count'];
 		if ($intCount < 0) {
 			trigger_error("block: negative 'count' parameter");
 			return;

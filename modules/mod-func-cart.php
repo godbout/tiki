@@ -117,9 +117,9 @@ function module_cart($mod_reference, & $module_params)
 			if ($invoice) {
 				if ($module_params['postPaymentURL']) {
 					$delimiter = (strpos($module_params['postPaymentURL'], '?') === false) ? '?' : '&';
-					$access->redirect($module_params['postPaymentURL'] . $delimiter . 'invoice=' . intval($invoice), tr('The order was recorded and is now awaiting payment. Reference number is %0.', $invoice));
+					$access->redirect($module_params['postPaymentURL'] . $delimiter . 'invoice=' . (int)$invoice, tr('The order was recorded and is now awaiting payment. Reference number is %0.', $invoice));
 				} else {
-					$access->redirect('tiki-payment.php?invoice=' . intval($invoice), tr('The order was recorded and is now awaiting payment. Reference number is %0.', $invoice));
+					$access->redirect('tiki-payment.php?invoice=' . (int)$invoice, tr('The order was recorded and is now awaiting payment. Reference number is %0.', $invoice));
 				}
 			}
 		}

@@ -70,7 +70,7 @@ class Tracker_Field_Header extends Tracker_Field_Abstract implements Tracker_Fie
 		$headerlib = TikiLib::lib('header');
 
 		$class = null;
-		$level = intval($this->getOption('level', 3));
+		$level = (int)$this->getOption('level', 3);
 		if ($level <= 0) {
 			$level = 3;
 		}

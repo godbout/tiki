@@ -249,7 +249,7 @@ class BlogLib extends TikiDb_Bridge
 			foreach ($filterByBlogIds as $blogId) {
 				if ($blogId > 0) {
 					$multimid[] = ' `blogId` = ? ';
-					$bindvars[] = intval($blogId);
+					$bindvars[] = (int)$blogId;
 				}
 			}
 			if (count($multimid) > 1) {
@@ -605,7 +605,7 @@ class BlogLib extends TikiDb_Bridge
 			foreach ($blogIds as $objId) {
 				if ($objId > 0) {
 					$multimid[] = ' tbp.`blogId`=? ';
-					$bindvars[] = intval($objId);
+					$bindvars[] = (int)$objId;
 					// Note: when there is more than one blog Id, own draft posts (private posts) are not shown (FIXME)
 				}
 			}

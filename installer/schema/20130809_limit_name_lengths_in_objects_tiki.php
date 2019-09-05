@@ -50,7 +50,7 @@ function upgrade_20130809_limit_name_lengths_in_objects_tiki($installer)
 			$name = substr($row['name'], 0, $max_pagename_length);
 			// Update the URL
 			$href = "tiki-index.php?page=" . urlencode($itemId);
-			$objectId = intval($row['objectId']);
+			$objectId = (int)$row['objectId'];
 
 			// Build the query parameters
 			$newValues[] = [$itemId, $name, $href, $objectId];

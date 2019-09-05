@@ -463,7 +463,7 @@ function wikiplugin_trackerfilter_build_trackerlist_filter($input, $formats, &$f
 				$val = '';
 			}
 			$fieldId = substr($key, 2);
-			$field = $tracker_definition->getField(intval($fieldId));
+			$field = $tracker_definition->getField((int)$fieldId);
 
 			if ($fieldId == 'status') {
 				continue;
@@ -491,7 +491,7 @@ function wikiplugin_trackerfilter_build_trackerlist_filter($input, $formats, &$f
 				$values[] = "%$val%";
 			} else {
 				if (preg_match("/\d+_(from|to)(Month|Day|Year|Hour|Minute|Second)?/", $fieldId, $m)) { // range filter
-					$fieldId = intval($fieldId);
+					$fieldId = (int)$fieldId;
 					$formats[$fieldId] = ( $m[1] == 'from' ? '>=' : '<=' );
 
 					if (! empty($m[2])) {

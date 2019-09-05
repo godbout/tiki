@@ -104,7 +104,7 @@ class BookmarkLib extends TikiLib
 		// Find the next folderId
 		$query = "select max(`folderId`) from `tiki_user_bookmarks_folders` WHERE `user`=?";
 		$maxId = $this->getOne($query, [$user]);
-		if (intval($maxId) == 0) {
+		if ((int)$maxId == 0) {
 			$maxId = 0;
 		}
 

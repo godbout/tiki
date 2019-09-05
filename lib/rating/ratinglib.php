@@ -36,7 +36,7 @@ class RatingLib extends TikiDb_Bridge
 	{
 		if (preg_match('/^adv_rating_(\d+)_(asc|desc)$/', $sort_mode, $parts)) {
 			$sort_mode = 'adv_rating_' . $parts[2];
-			return ' LEFT JOIN (SELECT `object` as `adv_rating_obj`, `value` as `adv_rating` FROM `tiki_rating_obtained` WHERE `type` = ' . $this->qstr($type) . ' AND `ratingConfigId` = ' . intval($parts[1]) . ') `adv_rating` ON `adv_rating`.`adv_rating_obj` = ' . $objectKey . ' ';
+			return ' LEFT JOIN (SELECT `object` as `adv_rating_obj`, `value` as `adv_rating` FROM `tiki_rating_obtained` WHERE `type` = ' . $this->qstr($type) . ' AND `ratingConfigId` = ' . (int)$parts[1] . ') `adv_rating` ON `adv_rating`.`adv_rating_obj` = ' . $objectKey . ' ';
 		}
 	}
 

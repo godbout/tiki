@@ -187,7 +187,7 @@ class Tracker_Field_Location extends Tracker_Field_Abstract implements Tracker_F
 
 		array_walk($sourceFieldsList, function (& $field) use ($definition, $item, & $address) {
 
-			$fieldArray = $definition->getField(intval($field));
+			$fieldArray = $definition->getField((int)$field);
 
 			if (! $fieldArray) {
 				$message = tr('Location: Field %0 not found for field "%1"', $field, $this->getConfiguration('permName'));

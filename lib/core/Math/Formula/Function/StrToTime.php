@@ -31,7 +31,7 @@ class Math_Formula_Function_StrToTime extends Math_Formula_Function
 		}
 
 		$time = array_shift($elements);
-		$now = intval(array_shift($elements));
+		$now = (int)array_shift($elements);
 		if (empty($now)) {
 			$now = time();	// Seconds since the Unix Epoch (January 1 1970 00:00:00 GMT)
 		}

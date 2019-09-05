@@ -17,7 +17,7 @@ class File extends DAV\File {
 	private $file;
 
 	function __construct($path_or_id) {
-		if (intval($path_or_id) == 0) {
+		if ((int)$path_or_id == 0) {
 			$result = TikiLib::lib('filegal')->get_objectid_from_virtual_path($path);
 			if (! $result || $result['type'] != 'file') {
 				throw new DAV\Exception\NotFound(tr('The file with path: ' . $path_or_id . ' could not be found'));

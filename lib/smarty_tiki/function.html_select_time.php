@@ -188,7 +188,7 @@ function smarty_function_html_select_time($params, $smarty)
 			} elseif (in_array($minute, $minutes)) {
 				$selected = $minute;
 			} else {
-				$selected = intval(floor(strftime('%M', $time) / $minute_interval) * $minute_interval);
+				$selected = (int)(floor(strftime('%M', $time) / $minute_interval) * $minute_interval);
 			}
 		}
 
@@ -240,7 +240,7 @@ function smarty_function_html_select_time($params, $smarty)
 		if ($prefix == 'end_' && ($time_hr24 == '000000' || strftime('%M', $time) == 59)) {
 			$selected = 59;
 		} else {
-			$selected = $time == '--' ? $second_empty : intval(floor(strftime('%S', $time) / $second_interval) * $second_interval);
+			$selected = $time == '--' ? $second_empty : (int)(floor(strftime('%S', $time) / $second_interval) * $second_interval);
 		}
 
 		$html_result .= '<select class="' . $class . '" name=';

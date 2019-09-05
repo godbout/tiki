@@ -936,9 +936,8 @@ class H5P_H5PTiki implements H5PFrameworkInterface
 		if ($skipContent) {
 			$usage['content'] = -1;
 		} else {
-			$usage['content'] = intval(
-				TikiDb::get()->query(
-					'SELECT COUNT(DISTINCT c.`id`)
+			$usage['content'] = (int)TikiDb::get()->query(
+				'SELECT COUNT(DISTINCT c.`id`)
 FROM `tiki_h5p_libraries` l
 JOIN `tiki_h5p_contents_libraries` cl ON l.`id` = cl.`library_id`
 JOIN `tiki_h5p_contents` c ON cl.content_id = c.id

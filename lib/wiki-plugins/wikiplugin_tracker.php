@@ -2066,7 +2066,7 @@ function wikiplugin_tracker($data, $params)
 								//	Pending: Unable to locate the object to check to determine the default (in the tracker field definitions). Hardcode true. Arild
 								$isTextOnSameRow = true;
 							} else {
-								$isTextOnSameRow = (intval($f['options_array']['0']) == 0) ? false : true;
+								$isTextOnSameRow = (int)$f['options_array']['0'] != 0;
 							}
 							break;
 						case 'a':	// Text area
@@ -2077,7 +2077,7 @@ function wikiplugin_tracker($data, $params)
 									//	Pending: Unable to locate the object to check to determine the default (in the tracker field definitions). Hardcode true. Arild
 									$isTextOnSameRow = true;
 								} else {
-									$isTextOnSameRow = (intval($f['options_array']['8']) == 0) ? false : true;
+									$isTextOnSameRow = (int)$f['options_array']['8'] != 0;
 								}
 							}
 							break;

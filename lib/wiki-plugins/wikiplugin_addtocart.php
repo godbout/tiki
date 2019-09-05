@@ -294,7 +294,7 @@ function wikiplugin_addtocart($data, $params)
 			if ($addedOk && $params['autocheckout'] == 'y' && empty($previous_cart_content)) {
 				$invoice = $cartlib->request_payment();
 				if ($invoice) {
-					$paymenturl = 'tiki-payment.php?invoice=' . intval($invoice);
+					$paymenturl = 'tiki-payment.php?invoice=' . (int)$invoice;
 					$paymenturl = $tikilib->httpPrefix(true) . $tikiroot . $paymenturl;
 					$tokenpaymenturl = '';
 					if (! $user || $params['forceanon'] == 'y' && ! Perms::get('payment', $invoice)->manual_payment) {

@@ -715,11 +715,11 @@ class TrackerLib extends TikiLib
 		if (! empty($sortFieldIds)) {
 			foreach ($sortFieldIds as $i => $sortFieldId) {
 				$query .= " left join `tiki_tracker_item_fields` ttif$i on ttif.`itemId` = ttif$i.`itemId` and ttif$i.`fieldId` = ?";
-				$bindvars[] = intval($sortFieldId);
+				$bindvars[] = (int)$sortFieldId;
 			}
 		}
 		$query .= " where tti.`itemId`=ttif.`itemId` and ttif.`fieldId`=?";
-		$bindvars[] = intval($fieldId);
+		$bindvars[] = (int)$fieldId;
 		if ($multiple) {
 			$query .= " and ttif.`value` REGEXP CONCAT('[[:<:]]', ?, '[[:>:]]')";
 		} else {
@@ -1250,8 +1250,8 @@ class TrackerLib extends TikiLib
 						$csort_tables = '';
 						break;
 					case 'r':
-						$link_field = intval($field['fieldId']);
-						$remote_field = intval($field['options_array'][1]);
+						$link_field = (int)$field['fieldId'];
+						$remote_field = (int)$field['options_array'][1];
 						$sort_tables = '
 							LEFT JOIN `tiki_tracker_item_fields` itemlink ON tti.itemId = itemlink.itemId AND itemlink.fieldId = ' . $link_field . '
 							LEFT JOIN `tiki_tracker_item_fields` sttif ON itemlink.value = sttif.itemId AND sttif.fieldId = ' . $remote_field . '
@@ -1315,7 +1315,7 @@ class TrackerLib extends TikiLib
 					$bindvars = array_merge($bindvars, $ff_array['usersearch']);
 				} elseif ($ff) {
 					if ($search_for_blank) {
-						$cat_table .= " AND ttif$i.`fieldId` = " . intval($ff);
+						$cat_table .= " AND ttif$i.`fieldId` = " . (int)$ff;
 					} else {
 						$mid .= " AND ttif$i.`fieldId`=? ";
 						$bindvars[] = $ff;
@@ -1431,7 +1431,7 @@ class TrackerLib extends TikiLib
 				} elseif ($filter['type'] == 'r' && ($fv || $ev)) {
 					$cv = $fv ? $fv : $ev;
 
-					$cat_table .= " LEFT JOIN tiki_tracker_item_fields ttif{$i}_remote ON ttif$i.`value` = ttif{$i}_remote.`itemId` AND ttif{$i}_remote.`fieldId` = " . intval($filter['options_array'][1]) . ' ';
+					$cat_table .= " LEFT JOIN tiki_tracker_item_fields ttif{$i}_remote ON ttif$i.`value` = ttif{$i}_remote.`itemId` AND ttif{$i}_remote.`fieldId` = " . (int)$filter['options_array'][1] . ' ';
 					if (is_numeric($cv)) {
 						$mid .= " AND ( ttif{$i}_remote.`value` LIKE ? OR ttif$i.`value` = ? ) ";
 						$bindvars[] = $ev ? $ev : "%$fv%";
@@ -2566,7 +2566,7 @@ class TrackerLib extends TikiLib
 		$cant = $this->getOne($query_cant, $bindvars);
 
 		$avail_mem = $tikilib->get_memory_avail();
-		$maxrecords_items = intval(($avail_mem - 10 * 1024 * 1025) / 5000);		// depends on size of items table (fixed)
+		$maxrecords_items = (int)(($avail_mem - 10 * 1024 * 1025) / 5000);		// depends on size of items table (fixed)
 		if ($maxrecords_items < 0) {
 			// cope with memory_limit = -1
 			$maxrecords_items = -1;
@@ -3577,8 +3577,8 @@ class TrackerLib extends TikiLib
 		if (isset($cache[$fieldIdOrPermName])) {
 			return $cache[$fieldIdOrPermName];
 		}
-		if (intval($fieldIdOrPermName) > 0) {
-			$res = $this->fields()->fetchFullRow(['fieldId' => intval($fieldIdOrPermName)]);
+		if ((int)$fieldIdOrPermName > 0) {
+			$res = $this->fields()->fetchFullRow(['fieldId' => (int)$fieldIdOrPermName]);
 		} else {
 			$res = $this->fields()->fetchFullRow(['permName' => $fieldIdOrPermName]);
 		}
@@ -5618,7 +5618,7 @@ class TrackerLib extends TikiLib
 
 		$trackersync_groupfields = preg_split('/\s*,\s*/', $prefs["user_trackersync_groups"]);
 		foreach ($trackersync_groupfields as $field) {
-			$field = intval($field);
+			$field = (int)$field;
 			if (! isset($args['values'][$field])) {
 				continue;
 			}

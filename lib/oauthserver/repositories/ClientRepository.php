@@ -133,7 +133,7 @@ class ClientRepository implements ClientRepositoryInterface
 		}
 
 		$result = $this->database->getOne($sql, $params);
-		$result = intval($result, 10);
+		$result = (int)$result;
 		return $result > 0;
 	}
 

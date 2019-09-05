@@ -59,7 +59,7 @@ function svn_last_update()
 					$result = $handle->query($query);
 					if ($result) {
 						$resx = $result->fetchArray(SQLITE3_ASSOC);
-						$lastupTime = intval($resx['lastup']);
+						$lastupTime = (int)$resx['lastup'];
 						$dt = new DateTime();
 						$dt->setTimestamp($lastupTime);
 						$cache['lastup'] = $dt->format(DateTime::ISO8601);

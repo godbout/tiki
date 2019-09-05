@@ -88,8 +88,8 @@ class TikiDb_Adodb extends TikiDb
 			$values = false;
 		}
 
-		$numrows = intval($numrows);
-		$offset = intval($offset);
+		$numrows = (int)$numrows;
+		$offset = (int)$offset;
 		if ($query == null) {
 			$query = $this->getQuery();
 		}

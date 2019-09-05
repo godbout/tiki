@@ -1581,7 +1581,7 @@ class WikiLib extends TikiLib
 		if (! isset($attributes['tiki.wiki.autotoc'])) {
 			return 0;
 		}
-		$value = intval($attributes['tiki.wiki.autotoc']);
+		$value = (int)$attributes['tiki.wiki.autotoc'];
 		if ($value > 0) {
 			return 1;
 		} else {
@@ -1611,7 +1611,7 @@ class WikiLib extends TikiLib
 		if (! isset($attributes['tiki.wiki.page_hide_title'])) {
 			return 0;
 		}
-		$value = intval($attributes['tiki.wiki.page_hide_title']);
+		$value = (int)$attributes['tiki.wiki.page_hide_title'];
 		if ($value > 0) {
 			return 1;
 		} else {

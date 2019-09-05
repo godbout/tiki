@@ -51,9 +51,9 @@ class Tracker_Field_UserSubscription extends Tracker_Field_Abstract
 		if (isset($requestData['user_subscribe']) || $jitPost->user_subscribe->word()) { // check jitPost too which is used for trackerlist etc
 			$found = false;
 			if ($current_field_ins['maxsubscriptions']) {
-				$nb = min($current_field_ins['maxsubscriptions'], intval($requestData['user_friends']));
+				$nb = min($current_field_ins['maxsubscriptions'], (int)$requestData['user_friends']);
 			} else {
-				$nb = isset($requestData['user_friends']) ? intval($requestData['user_friends']) : $jitPost->user_friends->int();
+				$nb = isset($requestData['user_friends']) ? (int)$requestData['user_friends'] : $jitPost->user_friends->int();
 			}
 			foreach ($current_field_ins['users_array'] as $i => $U) {
 				if ($U['login'] == $user) {

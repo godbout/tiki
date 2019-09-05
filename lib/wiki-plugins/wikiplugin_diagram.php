@@ -89,9 +89,9 @@ function wikiplugin_diagram($data, $params)
 
 	$headerlib->add_css('.diagram hr {margin-top:0.5em;margin-bottom:0.5em}');
 
-	$fileId = isset($params['fileId']) ? intval($params['fileId']) : 0;
+	$fileId = isset($params['fileId']) ? (int)$params['fileId'] : 0;
 	$pageName = isset($params['page']) ? $params['page'] : '';
-	$annotate = isset($params['annotate']) ? intval($params['annotate']) : 0;
+	$annotate = isset($params['annotate']) ? (int)$params['annotate'] : 0;
 
 	if ($fileId) {
 		$file = \Tiki\FileGallery\File::id($fileId);

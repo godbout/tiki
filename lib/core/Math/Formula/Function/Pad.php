@@ -26,7 +26,7 @@ class Math_Formula_Function_Pad extends Math_Formula_Function
 		}
 
 		$input = array_shift($elements);
-		$pad_length = intval(array_shift($elements));
+		$pad_length = (int)array_shift($elements);
 		$pad_string = array_shift($elements);
 		if ($pad_string === null) {
 			$pad_string = ' ';

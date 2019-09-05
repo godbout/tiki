@@ -51,7 +51,7 @@ class Scheduler_Manager
 					$lastRunDate = (isset($scheduler["creation_date"]) ? $scheduler["creation_date"] : time());
 				}
 
-				$lastRunDate = intval($lastRunDate - ($lastRunDate % 60));
+				$lastRunDate = (int)($lastRunDate - ($lastRunDate % 60));
 				$lastShould = Scheduler_Utils::get_previous_run_date($scheduler['run_time']);
 
 				if (isset($lastRunDate) && $lastShould >= $lastRunDate) {

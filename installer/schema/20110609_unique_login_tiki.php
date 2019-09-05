@@ -18,7 +18,7 @@ function upgrade_20110609_unique_login_tiki($installer)
 	$result = $installer->query("select count(*) nb from users_users group by login having count(*) > 1");
 	$row = $result->fetchRow();
 
-	if (intval($row['nb']) == 0) {
+	if ((int)$row['nb'] == 0) {
 		$result = $installer->query("drop index login on users_users");
 		$result = $installer->query("alter table users_users add unique login (login)");
 	}

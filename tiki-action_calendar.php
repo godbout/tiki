@@ -55,7 +55,7 @@ $hours = [];
 if ($calendarViewMode['casedefault'] == 'day') {
 	$hours = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
 	foreach ($tc_infos['cell'][0]["{$tc_infos['weekdays'][0]}"]['items'] as $dayitems) {
-		$rawhour = intval(substr($dayitems['time'], 0, 2));
+		$rawhour = (int)substr($dayitems['time'], 0, 2);
 		$dayitems['mins'] = substr($dayitems['time'], 2);
 		$hrows["$rawhour"][] = $dayitems;
 	}

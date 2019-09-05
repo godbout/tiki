@@ -417,8 +417,8 @@ class Services_Goal_Controller
 			return $badge;
 		} elseif ($object = $input->trackerItemBadge->none()) {
 			list($type, $id) = explode(':', $object, 2);
-			if ($type == 'trackeritem' && intval($id)) {
-				return intval($id);
+			if ($type == 'trackeritem' && (int)$id) {
+				return (int)$id;
 			}
 		}
 

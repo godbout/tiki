@@ -195,7 +195,7 @@ $("body").on("change", "input[name=ins_' . $filterFieldIdHere . '], select[name=
 			mandatory: "' . $isMandatory . '",
 			insertId: "' . $insertId . '",  // need to pass $insertId in case we have more than one field bound to the same eventsource
 			originalValue:  "' . $originalValue . '",
-			hideBlank: ' . intval($hideBlank) . ',
+			hideBlank: ' . (int)$hideBlank . ',
 			selectMultipleValues: ' . $selectMultipleValues . ',
 			filterFieldValueHere: $(this).val() // We need the field value for the fieldId filterfield for the item $(this).val
 		},

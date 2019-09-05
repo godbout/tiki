@@ -114,7 +114,7 @@ function wikiplugin_appframe($data, $params)
 		$fullscreen = 1;
 	}
 
-	$absolute = intval(isset($params['absolute']) ? $params['absolute'] == 'y' : false);
+	$absolute = (int)(isset($params['absolute']) ? $params['absolute'] == 'y' : false);
 	$top = isset($params['top']) ? $params['top'] : 0;
 
 	$headerlib = TikiLib::lib('header');

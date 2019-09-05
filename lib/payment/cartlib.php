@@ -721,7 +721,7 @@ class CartLib
 
 		foreach ($_SESSION['cart'] as $info) {
 			if (! empty($info['weight'])) {
-				$total += intval($info['quantity']) * (float)$info['weight'];
+				$total += (int)$info['quantity'] * (float)$info['weight'];
 			}
 		}
 
@@ -736,7 +736,7 @@ class CartLib
 
 		foreach ($_SESSION['cart'] as $info) {
 			if (! empty($info['quantity'])) {
-				$total += intval($info['quantity']);
+				$total += (int)$info['quantity'];
 			}
 		}
 
@@ -933,7 +933,7 @@ class CartLib
 		}
 
 		if (! $user || isset($_SESSION['forceanon']) && $_SESSION['forceanon'] == 'y') {
-			$shopperurl = 'tiki-index.php?page=' . $prefs['payment_cart_anon_reviewpage'] . '&shopper=' . intval($cartuser);
+			$shopperurl = 'tiki-index.php?page=' . $prefs['payment_cart_anon_reviewpage'] . '&shopper=' . (int)$cartuser;
 			global $tikiroot, $prefs;
 			$shopperurl = $tikilib->httpPrefix(true) . $tikiroot . $shopperurl;
 			require_once 'lib/auth/tokens.php';

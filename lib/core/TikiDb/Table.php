@@ -124,7 +124,7 @@ class TikiDb_Table
 		$query = $this->buildUpdate($values, $conditions, $bindvars);
 
 		if (! is_null($limit)) {
-			$query .= ' LIMIT ' . intval($limit);
+			$query .= ' LIMIT ' . (int)$limit;
 		}
 
 		return $this->db->queryException($query, $bindvars);

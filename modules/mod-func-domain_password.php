@@ -55,10 +55,10 @@ function module_domain_password($mod_reference, $module_params)
 	// Allow for multiple modules on one page
 	$moduleNr = $mod_reference['moduleId'];
 	$moduleNr = str_replace('wikiplugin_', '', $moduleNr); // Remove the leading wikiplugin_ when used in a wiki page
-	$cntModule = intval($moduleNr);
+	$cntModule = (int)$moduleNr;
 	$dompwdCount = 0;
 	if (isset($_REQUEST['dompwdCount'])) {
-		$dompwdCount = intval($_REQUEST['dompwdCount']);
+		$dompwdCount = (int)$_REQUEST['dompwdCount'];
 	}
 	$smarty->assign('dompwdCount', $cntModule);
 

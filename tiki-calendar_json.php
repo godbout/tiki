@@ -46,8 +46,8 @@ $manyEvents = [];
 
 foreach ($rawcals["data"] as $cal_data) {
 	$cal_id = $cal_data['calendarId'];
-	$minHourOfDay = min($minHourOfDay, intval($cal_data['startday'] / 3600));
-	$maxHourOfDay = max($maxHourOfDay, intval(($cal_data['endday'] + 1) / 3600));
+	$minHourOfDay = min($minHourOfDay, (int)($cal_data['startday'] / 3600));
+	$maxHourOfDay = max($maxHourOfDay, (int)(($cal_data['endday'] + 1) / 3600));
 	if ($tiki_p_admin == 'y') {
 		$cal_data["tiki_p_view_calendar"] = 'y';
 		$cal_data["tiki_p_view_events"] = 'y';

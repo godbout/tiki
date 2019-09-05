@@ -953,7 +953,7 @@ class NlLib extends TikiLib
 		$mid = "";
 
 		if ($nlId) {
-			$mid .= " and tn.`nlId`=" . intval($nlId);
+			$mid .= " and tn.`nlId`=" . (int)$nlId;
 			$tiki_p_admin_newsletters = $tikilib->user_has_perm_on_object($user, $nlId, 'newsletter', 'tiki_p_admin_newsletters') ? 'y' : 'n';
 			$tiki_p_send_newsletters = $tikilib->user_has_perm_on_object($user, $nlId, 'newsletter', 'tiki_p_send_newsletters') ? 'y' : 'n';
 			$tiki_p_subscribe_newsletters = $tikilib->user_has_perm_on_object($user, $nlId, 'newsletter', 'tiki_p_subscribe_newsletters') ? 'y' : 'n';

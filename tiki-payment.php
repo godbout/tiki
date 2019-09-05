@@ -224,8 +224,8 @@ function fetch_payment_list($type)
 	$paymentlib = TikiLib::lib('payment');
 	$offsetKey = 'offset_' . $type;
 	$method = 'get_' . $type;
-	$offset = isset($_REQUEST[$offsetKey]) ? intval($_REQUEST[$offsetKey]) : 0;
-	$max = ! empty($_REQUEST['numrows']) ? $_REQUEST['numrows'] : intval($prefs['maxRecords']);
+	$offset = isset($_REQUEST[$offsetKey]) ? (int)$_REQUEST[$offsetKey] : 0;
+	$max = ! empty($_REQUEST['numrows']) ? $_REQUEST['numrows'] : (int)$prefs['maxRecords'];
 
 	if (! empty($_REQUEST)) {
 		$fields = array_keys($paymentlib->fieldmap);
@@ -241,15 +241,15 @@ function fetch_payment_list($type)
 		if (! empty($filter[$dfield])) {
 			$datefilter = explode(' - ', $filter[$dfield]);
 			if (count($datefilter) === 2) {
-				$tsfrom = intval(substr($datefilter[0], 0, 10));
+				$tsfrom = (int)substr($datefilter[0], 0, 10);
 				$fromobj = new DateTime("@$tsfrom");
-				$tsto = intval(substr($datefilter[1], 0, 10));
+				$tsto = (int)substr($datefilter[1], 0, 10);
 				$toobj = new DateTime("@$tsto");
 				$filter[$dfield] = '>= \'' . $fromobj->format('Y-m-d H:i:s') . '\' AND '
 					. $paymentlib->fieldmap[$dfield]['table'] . '.`' . $dfield . '` <= \''
 					. $toobj->format('Y-m-d H:i:s') . '\'';
 			} else {
-				$ts = intval(substr($filter[$dfield], 2, 10));
+				$ts = (int)substr($filter[$dfield], 2, 10);
 				$dateobj = new DateTime("@$ts");
 				$op = substr($filter[$dfield], 0, 2);
 				$op = in_array($op, ['<=', '>=']) ? $op : '';

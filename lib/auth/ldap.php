@@ -88,7 +88,7 @@ class TikiLdapLib
 			$port = 389;
 		}
 		if (isset($options['port']) && ! empty($options['port'])) {
-			$port = intval($options['port']);
+			$port = (int)$options['port'];
 		}
 
 		$this->options['port'] = $port; // its save to set port in URI

@@ -35,7 +35,7 @@ class ProgressBar implements SplObserver
 
 	public function updateProgressBar($current, $total)
 	{
-		$percent = intval($current / $total * 100) . "%";
+		$percent = (int)($current / $total * 100) . "%";
 
 		$scripts = <<<JS
 		<script class="progress_bar_script">
