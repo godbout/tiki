@@ -59,8 +59,8 @@ class OOoManifest extends absOOo {
 		
 		$sortFiles = $cdir->sort("'Path'", false, 4, "'File'", true, 0);
 		reset( $sortFiles );
-		
-		while( list( $sKey, $aFile ) = each( $sortFiles ) ){
+
+		foreach ($sortFiles as $aFile) {
 			$sFileName     = $cdir->FileName($aFile);
 			$sFilePath     = $cdir->GetPath($aFile);
 			$mediaType     = "";
@@ -99,7 +99,7 @@ class OOoManifest extends absOOo {
 			$fileEntryNode->setAttribute("manifest:full-path", $filename);
 			$docManifestNode->appendChild($fileEntryNode);
 		}
-		
+
 		$this->xml->setDocumentElement($docManifestNode);
 		
 		$this->xml->setXMLDeclaration("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");

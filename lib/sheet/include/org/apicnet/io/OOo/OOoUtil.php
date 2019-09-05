@@ -75,7 +75,7 @@ class OOoUtil extends absOOo{
 			$allFiles = array();
 
 			reset( $cdir->aFiles );
-			while( list( $sKey, $aFile ) = each( $cdir->aFiles ) ){
+			foreach ($cdir->aFiles as $aFile) {
 				$sFileName = $cdir->FileName($aFile);
 				$sFilePath = $cdir->GetPath($aFile);
 				$allFiles[] = $this->tmpdir."/".$sFilePath.$sFileName;
@@ -125,7 +125,7 @@ class OOoUtil extends absOOo{
 		$allFiles = array();
 
 		reset( $cdir->aFiles );
-		while( list( $sKey, $aFile ) = each( $cdir->aFiles ) ){
+		foreach ($cdir->aFiles as $aFile) {
 			$sFileName = $cdir->FileName($aFile);
 			$sFilePath = $cdir->GetPath($aFile);
 			$allFiles[] = $this->tmpdir."/".$sFilePath.$sFileName;

@@ -130,9 +130,10 @@ Class CDir extends ErrorManager {
      **/
     Function Output(){
         reset( $this->aFiles );
-        while( list( $sKey, $aFile ) = each( $this->aFiles ) )
-            $this->OutputFile( $aFile );
-    }
+		foreach ($this->aFiles as $aFile) {
+			$this->OutputFile($aFile);
+		}
+	}
 
     /**
      * CDir::OutputFile()

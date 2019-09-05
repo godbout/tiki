@@ -28,7 +28,7 @@ if (isset($_REQUEST["emulategroups"])) {
 		if (count($_REQUEST["switchgroups"])) {
 			$groups_emulated = [];
 			$dont_forget_registered = 0;
-			while (list(,$value) = each($_REQUEST["switchgroups"])) {
+			foreach ($_REQUEST["switchgroups"] as $value) {
 				$groups_emulated[] = $value;
 				$included = $tikilib->get_included_groups($value);
 				$groups_emulated = array_merge($groups_emulated, $included);

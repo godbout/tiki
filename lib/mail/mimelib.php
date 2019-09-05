@@ -101,7 +101,7 @@ class mime
 			$headers["$lname"] = $hdr_value;
 		}
 
-		while (list($key, $value) = each($headers)) {
+		foreach ($headers as $key => $value) {
 			$input = $headers[$key];
 			$it = [];
 			if (($pos = strpos($input, ';')) !== false) {
@@ -122,7 +122,7 @@ class mime
 					$content_type = $it;
 					$back['type'] = $content_type['value'];
 					if (isset($content_type['other'])) {
-						while (list($p_name, $p_value) = each($content_type['other'])) {
+						foreach ($content_type['other'] as $p_name => $p_value) {
 							$back['ctype_parameters'][$p_name] = $p_value;
 						}
 					}
@@ -133,7 +133,7 @@ class mime
 					$back['disposition'] = $content_disposition['value'];
 
 					if (isset($content_disposition['other'])) {
-						while (list($p_name, $p_value) = each($content_disposition['other'])) {
+						foreach ($content_disposition['other'] as $p_name => $p_value) {
 							$back['d_parameters'][$p_name] = $p_value;
 						}
 					}

@@ -349,7 +349,7 @@ if (isset($_REQUEST['edit'])
 	$scaleinfo = $imagegallib->get_gallery_scale_info($_REQUEST['galleryId']);
 
 # loop though scales to determine if a scale has to be removed
-	while (list($num, $sci) = each($scaleinfo)) {
+	foreach ($scaleinfo as $sci) {
 		$removestr = 'removescale_' . $sci['scale'];
 
 		if (isset($_REQUEST[$removestr]) && $_REQUEST[$removestr] == 'on') {

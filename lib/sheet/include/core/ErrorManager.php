@@ -203,7 +203,7 @@ class ErrorManager extends APICObject {
 
 				if ($this -> errorAlarme) {
 					$tab = explode(',', $this -> errorAlarme);
-					while (list($key, $val) = each($tab)){
+					foreach ($tab as $val) {
 				        if (! preg_match('/^(.+)@(.+)\.(.+)$/s', $val)) {
 				        	$message .= "<p style='color:red;'>Your ERROR_MANAGER_ALARME mails configurations has got a mistake and was disabled.</p>";
 				        	$this -> errorAlarme = '';

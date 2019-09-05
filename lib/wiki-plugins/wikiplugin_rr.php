@@ -946,7 +946,7 @@ function runR($output, $convert, $sha1, $input, $r_echo, $ws, $params, $user, $r
 				// Parse the user input for more graphs
 				$input_array = explode("\n", $input);
 				reset($input_array);
-				while (list($key,$line) = each($input_array)) {
+				foreach ($input_array as $key => $line) {
 					if (preg_match('/^#\s*newgraph$/', trim($line))) {
 						$image_number++;
 						$input_array[$key] = 'png(filename = "' . $rgo . "_$image_number.png" . '", width = ' . $width . ', height = ' . $height . ', units = "' . $units . '", pointsize = ' . $pointsize . ', bg = "' . $bg . '" , res = ' . $res . ')' ;

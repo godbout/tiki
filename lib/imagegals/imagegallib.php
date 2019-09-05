@@ -798,7 +798,7 @@ class ImageGalsLib extends TikiLib
 				}
 			} else {
 				$scaleinfo = $this->get_gallery_scale_info($galid);
-				while (list($num, $sci) = each($scaleinfo)) {
+				foreach ($scaleinfo as $sci) {
 					if ((($sci['scale'] == $xsize) && ($sci['scale'] >= $ysize)) ||
 							(($sci['scale'] == $ysize) && ($sci['scale'] >= $xsize))) {
 						$hasscale = true;

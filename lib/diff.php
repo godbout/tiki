@@ -229,7 +229,7 @@ class _WikiDiffEngine
 					continue;
 				}
 				reset($matches);
-				while (list ($junk, $y) = each($matches)) {
+				foreach ($matches as $y) {
 					if (empty($this->in_seq[$y])) {
 						$k = $this->_lcs_pos($y);
 						USE_ASSERTS && assert($k > 0);
@@ -238,7 +238,7 @@ class _WikiDiffEngine
 					}
 				}
 
-				while (list ($junk, $y) = each($matches)) {
+				foreach ($matches as $y) {
 					if ($y > $this->seq[$k - 1]) {
 						USE_ASSERTS && assert($y < $this->seq[$k]);
 						// Optimization: this is a common case:
@@ -707,7 +707,7 @@ class WikiDiff
 		for (reset($this->edits); $edit = current($this->edits); next($this->edits)) {
 			if (is_array($edit)) {
 				reset($edit);
-				while (list ($junk, $line) = each($edit)) {
+				foreach ($edit as $line) {
 					$output[] = $line;
 				}
 			} elseif ($edit > 0) {
@@ -960,7 +960,7 @@ class WikiDiffFormatter
 	{
 		$html = '';
 		reset($lines);
-		while (list ($junk, $line) = each($lines)) {
+		foreach ($lines as $line) {
 			$html .= "<tr style=\"background-color: $color\"><td><tt>$prefix</tt>";
 			$html .= "<tt>$line</tt></td></tr>\n";
 		}
