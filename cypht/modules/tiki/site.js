@@ -87,6 +87,7 @@ $(function() {
     if (! $('body').hasClass('tiki-cypth')) $('body').addClass('tiki-cypht');
 
     $('.mobile .folder_toggle').click(function(){
+        $('.mobile .folder_cell').toggleClass('slide-in');
         if ($(this).attr('style') == '') $('.mobile .folder_list').hide();
     });
 });
