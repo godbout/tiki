@@ -7485,13 +7485,13 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background-color: #75caeb;
     color: #222; }
 
-.tiki-webmail, .cypht, .mobile.cypht, .inline-cypht {
+.tiki-webmail, .tiki-cypht, .mobile.tiki-cypht, .inline-cypht {
   background: #fff;
   font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   color: #222; }
-  .tiki-webmail a:not(.btn), .cypht a:not(.btn), .mobile.cypht a:not(.btn), .inline-cypht a:not(.btn) {
+  .tiki-webmail a:not(.btn), .tiki-cypht a:not(.btn), .mobile.tiki-cypht a:not(.btn), .inline-cypht a:not(.btn) {
     color: #158cba !important; }
-  .tiki-webmail a:not(.btn):hover, .cypht a:not(.btn):hover, .mobile.cypht a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
+  .tiki-webmail a:not(.btn):hover, .tiki-cypht a:not(.btn):hover, .mobile.tiki-cypht a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
     color: #0d5875 !important;
     text-decoration: underline; }
 
@@ -7540,10 +7540,10 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .btn-outline-secondary:hover {
     color: #fff !important;
     text-decoration: none; }
-  .mobile.cypht .content_cell .content_title, .mobile.tiki-webmail .content_cell .content_title, .mobile.cypht .content_cell .content_title .list_controls, .mobile.tiki-webmail .content_cell .content_title .list_controls {
+  .mobile.tiki-cypht .content_cell .content_title, .mobile.tiki-webmail .content_cell .content_title, .mobile.tiki-cypht .content_cell .content_title .list_controls, .mobile.tiki-webmail .content_cell .content_title .list_controls {
     background: #f7f7f7;
     color: inherit; }
-  .mobile.cypht .msg_controls, .mobile.tiki-webmail .msg_controls {
+  .mobile.tiki-cypht .msg_controls, .mobile.tiki-webmail .msg_controls {
     background: #f7f7f7 !important; }
 
 .chosen-select, .chosen-select-deselect {

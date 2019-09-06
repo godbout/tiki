@@ -4714,5 +4714,9 @@ $(function() {
         if (! $('body').hasClass('mobile')) $('body').addClass('mobile');
     }
 
-    if (! $('body').hasClass('cypth')) $('body').addClass('cypht');
+    if (! $('body').hasClass('tiki-cypth')) $('body').addClass('tiki-cypht');
+
+    $('.mobile .folder_toggle').click(function(){
+        if ($(this).attr('style') == '') $('.mobile .folder_list').hide();
+    });
 });
