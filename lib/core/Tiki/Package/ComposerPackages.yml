@@ -110,17 +110,6 @@ PDFjsViewer:
     - fgal_pdfjs_feature
     - fgal_convert_documents_pdf
   requiredVersion: ~2.1.266
-PDFjs:
-  actions:
-    - remove
-  licence: Apache-2.0
-  licenceUrl: "https://github.com/mozilla/pdfjs-dist/blob/master/LICENSE"
-  name: npm-asset/pdfjs-dist
-  link: 'https://asset-packagist.org/package/npm-asset/pdfjs-dist'
-  requiredBy:
-    - fgal_pdfjs_feature
-    - fgal_convert_documents_pdf
-  requiredVersion: ~2.0.487
 WebODF:
   licence: AGPL
   licenceUrl: "https://github.com/kogmbh/webodf.js_release/blob/master/AGPL-3.0.txt"
