@@ -57,8 +57,8 @@ if ($postId > 0) {
 			die;
 		}
 	}
-	if (isset($data['wysiwyg']) && ! isset($_REQUEST['wysiwyg'])) {
-		$_REQUEST['wysiwyg'] = $data['wysiwyg'];
+	if (isset($data['wysiwyg']) && ! isset($_POST['wysiwyg'])) {
+		$_POST['wysiwyg'] = $data['wysiwyg'];
 	}
 }
 
@@ -69,12 +69,12 @@ $smarty->assign('postId', $postId);
 $userprefslib = TikiLib::lib('userprefs');
 $smarty->assign('use_24hr_clock', $userprefslib->get_user_clock_pref($user));
 
-if (isset($_REQUEST["publish_Hour"])) {
+if (isset($_POST["publish_Hour"])) {
 	//Convert 12-hour clock hours to 24-hour scale to compute time
-	if (! empty($_REQUEST['publish_Meridian'])) {
-		$_REQUEST['publish_Hour'] = date('H', strtotime($_REQUEST['publish_Hour'] . ':00 ' . $_REQUEST['publish_Meridian']));
+	if (! empty($_POST['publish_Meridian'])) {
+		$_POST['publish_Hour'] = date('H', strtotime($_POST['publish_Hour'] . ':00 ' . $_POST['publish_Meridian']));
 	}
-	$publishDate = $tikilib->make_time($_REQUEST["publish_Hour"], $_REQUEST["publish_Minute"], 0, $_REQUEST["publish_Month"], $_REQUEST["publish_Day"], $_REQUEST["publish_Year"]);
+	$publishDate = $tikilib->make_time($_POST["publish_Hour"], $_POST["publish_Minute"], 0, $_POST["publish_Month"], $_POST["publish_Day"], $_POST["publish_Year"]);
 } else {
 	$publishDate = $tikilib->now;
 }
@@ -92,18 +92,18 @@ if ($prefs['feature_freetags'] == 'y') {
 }
 
 // Exit edit mode (without javascript)
-if (isset($_REQUEST['cancel'])) {
+if (isset($_POST['cancel'])) {
 	header("location: tiki-view_blog.php?blogId=$blogId");
 }
 
 // Exit edit mode (with javascript)
-$smarty->assign('referer', ! empty($_REQUEST['referer']) ? $_REQUEST['referer'] : (empty($_SERVER['HTTP_REFERER']) ? 'tiki-view_blog.php?blogId=' . $blogId : $_SERVER['HTTP_REFERER']));
+$smarty->assign('referer', ! empty($_POST['referer']) ? $_POST['referer'] : (empty($_SERVER['HTTP_REFERER']) ? 'tiki-view_blog.php?blogId=' . $blogId : $_SERVER['HTTP_REFERER']));
 
 if (isset($_REQUEST['remove_image']) && $access->checkCsrf()) {
 	$bloglib->remove_post_image($_REQUEST['remove_image']);
 }
 
-if ($prefs['feature_wysiwyg'] == 'y' && ($prefs['wysiwyg_default'] == 'y' && ! isset($_REQUEST['wysiwyg'])) || (isset($_REQUEST['wysiwyg']) && $_REQUEST['wysiwyg'] == 'y')) {
+if ($prefs['feature_wysiwyg'] == 'y' && ($prefs['wysiwyg_default'] == 'y' && ! isset($_POST['wysiwyg'])) || (isset($_POST['wysiwyg']) && $_POST['wysiwyg'] == 'y')) {
 	$smarty->assign('wysiwyg', 'y');
 	$is_wysiwyg = true;
 } else {
@@ -126,8 +126,8 @@ if ($postId > 0) {
 	$cat_type = 'blog post';
 	$cat_objid = $postId;
 
-	if (isset($_REQUEST['lang'])) {
-		$cat_lang = $_REQUEST['lang'];
+	if (isset($_POST['lang'])) {
+		$cat_lang = $_POST['lang'];
 	}
 }
 include_once('freetag_list.php');
@@ -137,8 +137,8 @@ $smarty->assign('preview', 'n');
 $blogpriv = 'n';
 $smarty->assign('blogpriv', 'n');
 
-if (isset($_REQUEST["data"])) {
-	$edit_data = $_REQUEST["data"];
+if (isset($_POST["data"])) {
+	$edit_data = $_POST["data"];
 } else {
 	if (isset($data["data"])) {
 		$edit_data = $data["data"];
@@ -152,24 +152,24 @@ if (isset($_REQUEST["data"])) {
 }
 
 // Handles switching editor modes
-if (isset($_REQUEST['mode_normal']) && $_REQUEST['mode_normal'] == 'y') {
+if (isset($_POST['mode_normal']) && $_POST['mode_normal'] == 'y') {
 	// Parsing page data as first time seeing html page in normal editor
 	$smarty->assign('msg', "Parsing html to wiki");
 	$parsed = $editlib->parseToWiki($edit_data);
 	$smarty->assign('data', $parsed);
-} elseif (isset($_REQUEST['mode_wysiwyg']) && $_REQUEST['mode_wysiwyg'] == 'y') {
+} elseif (isset($_POST['mode_wysiwyg']) && $_POST['mode_wysiwyg'] == 'y') {
 	// Parsing page data as first time seeing wiki page in wysiwyg editor
 	$smarty->assign('msg', "Parsing wiki to html");
 	$parsed = $editlib->parseToWysiwyg($edit_data);
 	$smarty->assign('data', $parsed);
 }
 
-if (isset($_REQUEST["blogpriv"]) && $_REQUEST["blogpriv"] == 'on') {
+if (isset($_POST["blogpriv"]) && $_POST["blogpriv"] == 'on') {
 	$smarty->assign('blogpriv', 'y');
 	$blogpriv = 'y';
 }
 
-if (isset($_REQUEST["preview"])) {
+if (isset($_POST["preview"])) {
 	$post_info = [];
 	$parserlib = TikiLib::lib('parser');
 	$edit_data = $tikilib->convertAbsoluteLinksToRelative($edit_data);
@@ -177,54 +177,54 @@ if (isset($_REQUEST["preview"])) {
 	$smarty->assign('data', $edit_data);
 	$post_info['parsed_data'] = $parsed_data;
 
-	$post_info['title'] = $_REQUEST['title'];
-	$post_info['excerpt'] = $_REQUEST['excerpt'];
+	$post_info['title'] = $_POST['title'];
+	$post_info['excerpt'] = $_POST['excerpt'];
 	$post_info['user'] = isset($data) ? $data['user'] : $user;
 	$post_info['created'] = $publishDate;
 	$post_info['avatar'] = isset($data) ? $data['avatar'] : '';
 	$post_info['postId'] = $postId;
 
-	if ($prefs['feature_freetags'] == 'y' && isset($_REQUEST['freetag_string'])) {
-		$tags = $freetaglib->dumb_parse_tags($_REQUEST['freetag_string']);
+	if ($prefs['feature_freetags'] == 'y' && isset($_POST['freetag_string'])) {
+		$tags = $freetaglib->dumb_parse_tags($_POST['freetag_string']);
 		$smarty->assign('tags', $tags);
 		$post_info['freetags'] = $tags;
-		$smarty->assign('taglist', $_REQUEST["freetag_string"]);
+		$smarty->assign('taglist', $_POST["freetag_string"]);
 	}
 	$smarty->assign('post_info', $post_info);
 
 	$smarty->assign('preview', 'y');
 }
 
-if (isset($_REQUEST['save']) && $prefs['feature_contribution'] == 'y' && $prefs['feature_contribution_mandatory_blog'] == 'y' && (empty($_REQUEST['contributions']) || count($_REQUEST['contributions']) <= 0)) {
+if (isset($_POST['save']) && $prefs['feature_contribution'] == 'y' && $prefs['feature_contribution_mandatory_blog'] == 'y' && (empty($_POST['contributions']) || count($_POST['contributions']) <= 0)) {
 	$contribution_needed = true;
 	$smarty->assign('contribution_needed', 'y');
 } else {
 	$contribution_needed = false;
 }
 
-if (isset($_REQUEST['save']) && ! $contribution_needed && $access->checkCsrf()) {
+if (isset($_POST['save']) && ! $contribution_needed && $access->checkCsrf()) {
 	$imagegallib = TikiLib::lib('imagegal');
 	$smarty->assign('individual', 'n');
 
 	$edit_data = $imagegallib->capture_images($edit_data);
 	$edit_data = $tikilib->convertAbsoluteLinksToRelative($edit_data);
 
-	$title = isset($_REQUEST['title']) ? $_REQUEST['title'] : '';
+	$title = isset($_POST['title']) ? $_POST['title'] : '';
 
 	if ($postId > 0) {
-		$bloglib->update_post($postId, $_REQUEST["blogId"], $edit_data, $_REQUEST['excerpt'], $data["user"], $title, isset($_REQUEST['contributions']) ? $_REQUEST['contributions'] : '', $blogpriv, $publishDate, $is_wysiwyg);
+		$bloglib->update_post($postId, $_POST["blogId"], $edit_data, $_POST['excerpt'], $data["user"], $title, isset($_POST['contributions']) ? $_POST['contributions'] : '', $blogpriv, $publishDate, $is_wysiwyg);
 	} else {
 		if ($blog_data['always_owner'] == 'y') {
 			$author = $blog_data['user'];
 		} else {
 			$author = $user;
 		}
-		$postId = $bloglib->blog_post($_REQUEST["blogId"], $edit_data, $_REQUEST['excerpt'], $author, $title, isset($_REQUEST['contributions']) ? $_REQUEST['contributions'] : '', $blogpriv, $publishDate, $is_wysiwyg);
+		$postId = $bloglib->blog_post($_POST["blogId"], $edit_data, $_POST['excerpt'], $author, $title, isset($_POST['contributions']) ? $_POST['contributions'] : '', $blogpriv, $publishDate, $is_wysiwyg);
 		$smarty->assign('postId', $postId);
 	}
 
-	if ($prefs['geo_locate_blogpost'] == 'y' && ! empty($_REQUEST['geolocation'])) {
-		TikiLib::lib('geo')->set_coordinates('blog post', $postId, $_REQUEST['geolocation']);
+	if ($prefs['geo_locate_blogpost'] == 'y' && ! empty($_POST['geolocation'])) {
+		TikiLib::lib('geo')->set_coordinates('blog post', $postId, $_POST['geolocation']);
 	}
 
 	// TAG Stuff
@@ -233,7 +233,7 @@ if (isset($_REQUEST['save']) && ! $contribution_needed && $access->checkCsrf()) 
 	$cat_desc = TikiFilter::get('purifier')->filter(substr($edit_data, 0, 200));
 	$cat_name = $title;
 	$cat_href = "tiki-view_blog_post.php?postId=" . urlencode($postId);
-	$cat_lang = $_REQUEST['lang'];
+	$cat_lang = $_POST['lang'];
 	include_once("freetag_apply.php");
 	include_once("categorize.php");
 
@@ -245,11 +245,11 @@ if (isset($_REQUEST['save']) && ! $contribution_needed && $access->checkCsrf()) 
 }
 
 if ($contribution_needed) {
-	$smarty->assign('title', $_REQUEST["title"]);
-	$smarty->assign('parsed_data', TikiLib::lib('parser')->parse_data($_REQUEST['data'], ['is_html' => $is_wysiwyg]));
-	$smarty->assign('data', $_REQUEST['data']);
+	$smarty->assign('title', $_POST["title"]);
+	$smarty->assign('parsed_data', TikiLib::lib('parser')->parse_data($_POST['data'], ['is_html' => $is_wysiwyg]));
+	$smarty->assign('data', $_POST['data']);
 	if ($prefs['feature_freetags'] == 'y') {
-		$smarty->assign('taglist', $_REQUEST["freetag_string"]);
+		$smarty->assign('taglist', $_POST["freetag_string"]);
 	}
 }
 
