@@ -538,21 +538,10 @@ body {
 	padding-top: 40px;
 }
 
-.mobile .folder_cell {
-	width: 100%;
-	max-width: 100%;
-}
-
-.mobile .folder_list {
-	margin-bottom: 40px;
-}
-
-.mobile .folder_toggle {
-	display: block !important;
-}
-
 .mobile .src_name {
 	margin: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 .mobile .content_cell {
@@ -728,6 +717,7 @@ body {
 	padding-bottom: 8px;
 }
 
+/* removing unnecessary stuff */
 .tiki-webmail.mobile .box-logo,
 .tiki-webmail.mobile .pagetitle,
 .tiki-webmail.mobile .pagetitle+.t_navbar {
@@ -736,4 +726,37 @@ body {
 
 .tiki-webmail.mobile .topbar {
 	margin-bottom: 0;
+}
+
+/* menu slide in animation */
+.mobile .folder_list {
+	width: auto;
+	margin-bottom: 50px;
+	font-size: 100%;
+	display: block !important;
+}
+
+.mobile .folder_list .update_message_list,
+.mobile .folder_list .hide_folders {
+	display: none;
+}
+
+.mobile .folder_toggle {
+	display: block !important;
+}
+
+.mobile .folder_cell {
+	position: fixed;
+	width: 300px;
+	top: 60px;
+	left: -310px;
+	overflow: auto;
+	z-index: 1;
+	transition: all 1s ease;
+	transform: translateX(-300px);
+}
+
+.mobile .folder_cell.slide-in {
+	transition: all 0.5s ease;
+	transform: translateX(300px);
 }
