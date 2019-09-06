@@ -99,8 +99,8 @@ if (isset($_POST['cancel'])) {
 // Exit edit mode (with javascript)
 $smarty->assign('referer', ! empty($_POST['referer']) ? $_POST['referer'] : (empty($_SERVER['HTTP_REFERER']) ? 'tiki-view_blog.php?blogId=' . $blogId : $_SERVER['HTTP_REFERER']));
 
-if (isset($_REQUEST['remove_image']) && $access->checkCsrf()) {
-	$bloglib->remove_post_image($_REQUEST['remove_image']);
+if (isset($_REQUEST['remove_image']) && $access->checkCsrfForm(tra('Delete this item?'))) {
+	$bloglib->remove_post_image($_POST['remove_image']);
 }
 
 if ($prefs['feature_wysiwyg'] == 'y' && ($prefs['wysiwyg_default'] == 'y' && ! isset($_POST['wysiwyg'])) || (isset($_POST['wysiwyg']) && $_POST['wysiwyg'] == 'y')) {
