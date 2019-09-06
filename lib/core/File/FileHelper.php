@@ -59,6 +59,7 @@ class FileHelper
 			}
 
 			$data = DiagramHelper::parseData($data);
+			$data = DiagramHelper::getDiagramsFromIdentifier($data);
 			$template = 'diagram.tpl';
 		} elseif ($file['filetype'] == 'application/pdf' || PDFHelper::canConvertToPDF($file['filetype'])) {
 			// PDFs

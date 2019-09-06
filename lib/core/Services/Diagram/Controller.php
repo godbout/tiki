@@ -35,25 +35,30 @@ class Services_Diagram_Controller
 	{
 		global $prefs;
 
-		if ($prefs['fgal_export_diagram_on_image_save'] !== 'y') {
+		if ($prefs['fgal_export_diagram_on_image_save'] !== 'y' || ! function_exists('simplexml_load_string')) {
 			return false;
 		}
 
 		$cacheLib = TikiLib::lib('cache');
 		$fileId = $input->fileId->int();
-		$data = $input->data->value(); // Cache data is stored in base64 avoiding the need to decode/encode for pdf export
-		$key = $input->content->value();
+		$data = $input->data->value();
+		$rawXml = $input->content->value();
 
-		if (! is_null($fileId)) {
+		if (! is_null($fileId) && $fileId !== 0) {
 			$file = File::id($fileId);
 
 			if (empty($file)) {
 				return false;
 			}
 
-			$key = $file->data();
+			$rawXml = $file->data();
 		}
 
-		return $cacheLib->cacheItem(md5($key), $data, 'diagram');
+		$diagramRoot = simplexml_load_string($rawXml);
+
+		foreach ($diagramRoot->diagram as $diagram) {
+			$diagramId = (string) $diagram->attributes()->id;
+			$cacheLib->cacheItem(md5($diagram->asXML()), $data[$diagramId], 'diagram');
+		}
 	}
 }

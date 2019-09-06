@@ -43,6 +43,13 @@ function wikiplugin_diagram_info()
 				'since' => '20.0',
 				'filter' => 'int',
 			],
+			'align' => [
+				'required' => false,
+				'name' => tr('Image alignment when exporting a PDF'),
+				'description' => tr('Alignment of the diagrams during PDF export. Accepted values: "left", "right" and "center"'),
+				'default' => 'left',
+				'since' => '21.0',
+			],
 		],
 	];
 
@@ -61,9 +68,26 @@ function wikiplugin_diagram($data, $params)
 	global $tikilib, $cachelib, $user, $page, $wikiplugin_included_page, $tiki_p_upload_files;
 
 	$diagramIdentifier = ! empty($params['fileId']) ? $params['fileId'] : $data;
+	$info = wikiplugin_diagram_info();
+	$pageName = isset($params['page']) ? $params['page'] : '';
+	$diagrams = DiagramHelper::getDiagramsFromIdentifier($diagramIdentifier, $pageName);
+
+	if (! empty($params['align']) && in_array($params['align'], ['left', 'center', 'right'])) {
+		$alignment = $params['align'];
+	} else {
+		$alignment = $info['params']['align']['default'];
+	}
 
 	if (! empty($_GET['display']) && $_GET['display'] == 'pdf') {
-		return '<img src="data:image/png;base64,' . DiagramHelper::getDiagramAsImage($diagramIdentifier) . '">';
+		$html = '';
+
+		foreach ($diagrams as $diagram) {
+			$html .= ! empty($html) ? '<br/>' : '';
+			$html .= '<div style="text-align:' . $alignment . ';">' .
+				'<img src="data:image/png;base64,' . DiagramHelper::getDiagramAsImage($diagram) . '"></div>';
+		}
+
+		return $html;
 	}
 
 	$filegallib = TikiLib::lib('filegal');
@@ -89,9 +113,8 @@ function wikiplugin_diagram($data, $params)
 
 	$headerlib->add_css('.diagram hr {margin-top:0.5em;margin-bottom:0.5em}');
 
-	$fileId = isset($params['fileId']) ? (int)$params['fileId'] : 0;
-	$pageName = isset($params['page']) ? $params['page'] : '';
-	$annotate = isset($params['annotate']) ? (int)$params['annotate'] : 0;
+	$fileId = isset($params['fileId']) ? intval($params['fileId']) : 0;
+	$annotate = isset($params['annotate']) ? intval($params['annotate']) : 0;
 
 	if ($fileId) {
 		$file = \Tiki\FileGallery\File::id($fileId);
@@ -190,12 +213,13 @@ EOF;
 
 	$smarty = TikiLib::lib('smarty');
 	$smarty->assign('index', $diagramIndex);
-	$smarty->assign('data', $data);
+	$smarty->assign('data', $diagrams);
 	$smarty->assign('graph_data_base64', base64_encode($data));
 	$smarty->assign('sourcepage', $sourcepage);
 	$smarty->assign('allow_edit', $allowEdit);
 	$smarty->assign('file_id', $fileId);
 	$smarty->assign('file_name', $file->name);
+	$smarty->assign('alignment', $alignment);
 	$smarty->assign('mxgraph_prefix', $vendorPath);
 	$smarty->assign('page_name', $pageName);
 
