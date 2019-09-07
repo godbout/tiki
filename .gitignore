@@ -72,5 +72,6 @@ vendor_bundled/vendor
 /vendor_custom
 vendor_custom/*
 /.vscode
+img/trackers/*
 img/wiki_up/*
 /whelp
