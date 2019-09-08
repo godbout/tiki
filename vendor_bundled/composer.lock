@@ -12,6 +12,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/sam152/javascript-equal-height-responsive-rows/sam152-javascript-equal-height-responsive-rows-1.0.0.zip",
+                "reference": null,
                 "shasum": "046c3569d1ec0bc323a5396b8283c87bf83b766c"
             },
             "type": "library"
@@ -167,6 +168,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/avianey/jqdoublescroll/avianey-jqdoublescroll-1.0.0.zip",
+                "reference": null,
                 "shasum": "99f5bbf2f958bbaeb3802389c02d6944ebe8f48d"
             },
             "type": "library"
@@ -363,6 +365,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/christian-vigh-phpclasses/pdftotext/christian-vigh-phpclasses-pdftotext-1.6.7.zip",
+                "reference": null,
                 "shasum": "4fda0cbb9d044b0c4844587177629763c6afb229"
             },
             "type": "library"
@@ -463,6 +466,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/codemirror/codemirror/codemirror-codemirror-5.19.0.zip",
+                "reference": null,
                 "shasum": "c4ce1ef9589a19a46459703661a556f2ca5b9b85"
             },
             "type": "library"
@@ -850,6 +854,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/css-tricks/anythingslider-themes/css-tricks-anythingslider-themes-1.4.1.zip",
+                "reference": null,
                 "shasum": "0a5d45168d648642410cae1362e1be73a5f9ed75"
             },
             "type": "library"
@@ -2045,6 +2050,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/anythingslider/jquery-plugins-anythingslider-1.9.6.zip",
+                "reference": null,
                 "shasum": "1755935eddbf02a94b6fde68781134b71efd2a76"
             },
             "type": "library"
@@ -2055,6 +2061,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/async/jquery-plugins-async-1.0.zip",
+                "reference": null,
                 "shasum": "c52184f6c46894f70d957d26dc3979fde2674eef"
             },
             "type": "library"
@@ -2065,6 +2072,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/colorbox/jquery-plugins-colorbox-1.6.4.zip",
+                "reference": null,
                 "shasum": "a566767e8994fbf4cd9df993a4db18530fb92ed0"
             },
             "type": "library"
@@ -2075,6 +2083,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/fitvidjs/jquery-plugins-fitvidjs-1.1.0.zip",
+                "reference": null,
                 "shasum": "bba789192acace1a0133119d4a2b927f1e68a995"
             },
             "type": "library"
@@ -2085,6 +2094,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/galleriffic/jquery-plugins-galleriffic-2.0.1.zip",
+                "reference": null,
                 "shasum": "b9a0fc853fb4db2e4ed48ebcb76d66d4701e4aa4"
             },
             "type": "library"
@@ -2095,6 +2105,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/infinitecarousel/jquery-plugins-infinitecarousel-3.0.3.zip",
+                "reference": null,
                 "shasum": "16277d4117e0ff6aaadf1b9b7c13b50b09a754bc"
             },
             "type": "library"
@@ -2105,6 +2116,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/jquery-json/jquery-plugins-jquery-json-2.5.1.zip",
+                "reference": null,
                 "shasum": "ce7eea12e0965936b0b8a762e81ca4256bcd532d"
             },
             "type": "library"
@@ -2115,6 +2127,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/jquery-validation/jquery-plugins-jquery-validation-1.13.1.zip",
+                "reference": null,
                 "shasum": "e3c6fde072893b67c25f4079e3c722bc480a07a9"
             },
             "type": "library",
@@ -2130,6 +2143,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/media/jquery-plugins-media-0.98.zip",
+                "reference": null,
                 "shasum": "b9f29feb8e53b1a97f673e92ab6580b24262769d"
             },
             "type": "library"
@@ -2140,6 +2154,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/nestedsortable/jquery-plugins-nestedsortable-1.3.4.zip",
+                "reference": null,
                 "shasum": "f1fb80b0ef70ffbffc26f1f1e94f395a4e7799e2"
             },
             "type": "library"
@@ -2150,6 +2165,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/reflection-jquery/jquery-plugins-reflection-jquery-1.1.zip",
+                "reference": null,
                 "shasum": "083869875217e90ba98960c3a8ef0668122c0918"
             },
             "type": "library"
@@ -2160,6 +2176,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/superfish/jquery-plugins-superfish-1.7.5.zip",
+                "reference": null,
                 "shasum": "8f0ec0a7a6185171c7a98b0b9a4c715b63268d84"
             },
             "type": "library"
@@ -2170,6 +2187,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/tagcanvas/jquery-plugins-tagcanvas-2.8.zip",
+                "reference": null,
                 "shasum": "2054830430c5a6f3970551831dcf3a8ca002c4b0"
             },
             "type": "library"
@@ -2180,6 +2198,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/treetable/jquery-plugins-treetable-3.2.0.zip",
+                "reference": null,
                 "shasum": "80714a0c20bc742519ef70b165c9e6024f680d3b"
             },
             "type": "library"
@@ -2190,6 +2209,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery-plugins/zoom/jquery-plugins-zoom-1.7.18.zip",
+                "reference": null,
                 "shasum": "181531791deb3305d2c031523b16f73ed4894135"
             },
             "type": "library"
@@ -2200,6 +2220,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery/jquery-sheet/jquery-jquery-sheet-3.1.zip",
+                "reference": null,
                 "shasum": "f795b13ceb1e95281cd575e92c7666bd6b15ca90"
             },
             "type": "library",
@@ -2215,6 +2236,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery/jquery-timepicker-addon/jquery-jquery-timepicker-addon-1.6.3.zip",
+                "reference": null,
                 "shasum": "9c66e144dec7cd433ee7366070bae73fd230d226"
             },
             "type": "library"
@@ -2225,6 +2247,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery/jtrack/jquery-jtrack-1.0.zip",
+                "reference": null,
                 "shasum": "e03e9c5536173e82e61df48477ea024f05b3be7e"
             },
             "type": "library"
@@ -2235,6 +2258,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery/md5/jquery-md5-1.1.zip",
+                "reference": null,
                 "shasum": "1b99b9ee99dbb15bd9724f3a60e139d0be928b41"
             },
             "type": "library"
@@ -2245,6 +2269,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery/minicart/jquery-minicart-2.6.1.zip",
+                "reference": null,
                 "shasum": "2203a07c3750efd9371f63c66f2f80dcdef07456"
             },
             "type": "library"
@@ -2255,6 +2280,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery/photoswipe/jquery-photoswipe-3.0.5.zip",
+                "reference": null,
                 "shasum": "75ec4fb5a3b91ecfae40d5d5a50aeda02da9c41c"
             },
             "type": "library"
@@ -3192,6 +3218,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/npm-asset/blueimp-canvas-to-blob/npm-asset-blueimp-canvas-to-blob-3.5.0.zip",
+                "reference": null,
                 "shasum": "ad7e063c8d6545c3fe784a2bd17cf23ab458eba1"
             },
             "type": "npm-asset",
@@ -3205,6 +3232,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/npm-asset/blueimp-file-upload/npm-asset-blueimp-file-upload-9.34.0.zip",
+                "reference": null,
                 "shasum": "d527bb3c676154faa7c4d56baf4d2112029c3b26"
             },
             "require": {
@@ -3223,6 +3251,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/npm-asset/blueimp-load-image/npm-asset-blueimp-load-image-2.12.2.zip",
+                "reference": null,
                 "shasum": "35a1ee29f4fe50d2384c2cb1e058a5262de2c2b6"
             },
             "type": "npm-asset",
@@ -3236,6 +3265,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/npm-asset/blueimp-tmpl/npm-asset-blueimp-tmpl-3.6.0.zip",
+                "reference": null,
                 "shasum": "d4b74464e21673c797c51dcf6746025469e8561a"
             },
             "type": "npm-asset",
@@ -3249,6 +3279,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/npm-asset/chart-js/npm-asset-chart-js-2.8.0.zip",
+                "reference": null,
                 "shasum": "2d7737be5240a5867070b324d82b273dc24e4bdc"
             },
             "require": {
@@ -3262,15 +3293,21 @@
         },
         {
             "name": "npm-asset/chartjs-color",
-            "version": "2.3.0",
+            "version": "2.4.0",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:chartjs/chartjs-color.git",
+                "reference": "c661e338f4bf0137a476d235ae540def0b4bd846"
+            },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/chartjs-color/npm-asset-chartjs-color-2.3.0.zip",
-                "shasum": "87c107c1f3cb611a55f2aa56ab646846684a9b77"
+                "url": "https://composer.tiki.org/dist/npm-asset/chartjs-color/npm-asset-chartjs-color-c661e338f4bf0137a476d235ae540def0b4bd846-zip-d59e11.zip",
+                "reference": "c661e338f4bf0137a476d235ae540def0b4bd846",
+                "shasum": "f81b2371cc63eb006d5526ff4cf1a0f94840e927"
             },
             "require": {
                 "npm-asset/chartjs-color-string": ">=0.6.0,<0.7.0",
-                "npm-asset/color-convert": ">=0.5.3,<0.6.0"
+                "npm-asset/color-convert": ">=1.9.3,<2.0.0"
             },
             "type": "npm-asset",
             "license": [
@@ -3283,6 +3320,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/npm-asset/chartjs-color-string/npm-asset-chartjs-color-string-0.6.0.zip",
+                "reference": null,
                 "shasum": "794120940055c68f9e18527409ef2d1aa928dfa2"
             },
             "require": {
@@ -3295,21 +3333,29 @@
         },
         {
             "name": "npm-asset/color-convert",
-            "version": "0.5.3",
+            "version": "1.9.3",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/color-convert/npm-asset-color-convert-0.5.3.zip",
-                "shasum": "dec531b67ce92af53b553d9d4e21dd369865a396"
+                "url": "https://composer.tiki.org/dist/npm-asset/color-convert/npm-asset-color-convert-1.9.3.zip",
+                "reference": null,
+                "shasum": "6cbc67fe71abfec1fc6c3643effc0f24bf9b6b27"
             },
-            "type": "npm-asset"
+            "require": {
+                "npm-asset/color-name": "1.1.3"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "npm-asset/color-name",
-            "version": "1.1.4",
+            "version": "1.1.3",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/color-name/npm-asset-color-name-1.1.4.zip",
-                "shasum": "e6f9e3c49eec128341b1c848f1d57301e7c95827"
+                "url": "https://composer.tiki.org/dist/npm-asset/color-name/npm-asset-color-name-1.1.3.zip",
+                "reference": null,
+                "shasum": "09201131077d8f5996627faf7863850d37c92ca6"
             },
             "type": "npm-asset",
             "license": [
@@ -3320,14 +3366,14 @@
             "name": "npm-asset/converse.js",
             "version": "5.0.1",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/converse.js/-/converse.js-5.0.1.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/converse-js/npm-asset-converse-js-5.0.1.zip",
+                "reference": null,
+                "shasum": "aae39024562d51d816e66946e8cfc9f096af70ea"
             },
             "type": "npm-asset",
             "extra": {
-                "patches_applied": {
-                    "Remove native javascript for bootstrap": "../installer/composer-patches/jcbrand-conversejs_remove-native-javascript-for-bootstrap.patch"
-                }
+                "patches_applied": []
             },
             "license": [
                 "MPL-2.0"
@@ -3339,6 +3385,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/npm-asset/moment/npm-asset-moment-2.24.0.zip",
+                "reference": null,
                 "shasum": "9d4e5d66d765dec486aabdf16ba3fc806b3dcebe"
             },
             "type": "npm-asset",
@@ -3352,6 +3399,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/npm-asset/popper-js/npm-asset-popper-js-1.15.0.zip",
+                "reference": null,
                 "shasum": "d5c5f5339015bae17bc78287f7cdadc5e61929ba"
             },
             "type": "npm-asset",
@@ -3380,7 +3428,9 @@
             "version": "1.0.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
+                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz",
+                "reference": null,
+                "shasum": null
             },
             "type": "npm-asset",
             "license": [
@@ -3393,6 +3443,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/openannotation/annotator/openannotation-annotator-1.2.10.zip",
+                "reference": null,
                 "shasum": "0e982ad018a75edd758111f9534c03513c7be9bc"
             },
             "type": "library"
@@ -3403,6 +3454,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/openid/php-openid/openid-php-openid-2.2.2.zip",
+                "reference": null,
                 "shasum": "313ad65fae6c2f6270ba564c593eae8c52267376"
             },
             "type": "library"
@@ -3413,6 +3465,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/openlayers/openlayers/openlayers-openlayers-5.3.0.zip",
+                "reference": null,
                 "shasum": "be15c8166bc041a9d53446926e242356e776e899"
             },
             "type": "library"
@@ -3684,6 +3737,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/pear/db/pear-db-1.7.13.zip",
+                "reference": null,
                 "shasum": "5cbb15606739bd77a2e09e8a90c1e302d52b974e"
             },
             "type": "library"
@@ -3934,6 +3988,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/pear/text_wiki_mediawiki/pear-text_wiki_mediawiki-0.2.0.zip",
+                "reference": null,
                 "shasum": "8e7ab56efd4d446887b601bcfa70ecb2cd495c4d"
             },
             "type": "library",
@@ -4008,6 +4063,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/pear/xml_rpc/pear-xml_rpc-1.5.5.zip",
+                "reference": null,
                 "shasum": "964aa71c2d9d6b1757e957137c4794e75fbc4253"
             },
             "type": "library",
@@ -4170,6 +4226,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/player/flv/player-flv-1.0.zip",
+                "reference": null,
                 "shasum": "ee7da0fa6ecfba99ae07e9fa9a1a68f0c02dc24f"
             },
             "type": "library"
@@ -4180,23 +4237,24 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/player/mp3/player-mp3-1.0.zip",
+                "reference": null,
                 "shasum": "b9e69e3cfc554dbabebea7f93995646252788570"
             },
             "type": "library"
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.49.3",
+            "version": "v1.49.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "508b1c9c757c7bde0afc3614dcad22825b890b8d"
+                "reference": "19c0683f24ac26977d7adc51a7ad94c32852f137"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-508b1c9c757c7bde0afc3614dcad22825b890b8d-zip-ba41da.zip",
-                "reference": "508b1c9c757c7bde0afc3614dcad22825b890b8d",
-                "shasum": "2b8b54037979b1f2122e16577c72cef77d6ffcc3"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-19c0683f24ac26977d7adc51a7ad94c32852f137-zip-ddbd8f.zip",
+                "reference": "19c0683f24ac26977d7adc51a7ad94c32852f137",
+                "shasum": "4501cfd8b1bcdda08506d5b9f0730dd37022e16a"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -4218,7 +4276,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2019-08-20T16:20:59+00:00"
+            "time": "2019-08-22T14:16:56+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -4468,6 +4526,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/rangy/rangy/rangy-rangy-1.3.0.zip",
+                "reference": null,
                 "shasum": "089c55e72750445844b862afb0f8e987acfd6775"
             },
             "type": "library"
@@ -5005,6 +5064,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/simile_timeline/simile_timeline/simile_timeline-simile_timeline-2.3.0.zip",
+                "reference": null,
                 "shasum": "fbe94c801e6ddcd3a195b9c3fda6a77f075bd53b"
             },
             "type": "library"
@@ -5153,6 +5213,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/svg-edit/svg-edit/svg-edit-svg-edit-2.8.1.zip",
+                "reference": null,
                 "shasum": "81b348da3ee7af5d1d077a37b3fdcdce9e987cab"
             },
             "type": "library"
@@ -6055,6 +6116,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/undojs/undojs/undojs-undojs-1.zip",
+                "reference": null,
                 "shasum": "9e9593f6000809ce8ad9293a97ad5ab6abdbc55d"
             },
             "type": "library"
@@ -6065,6 +6127,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/vimeo/froogaloop/vimeo-froogaloop-1.0.zip",
+                "reference": null,
                 "shasum": "4cf4e5ca02b2a79c58f02b08c50164ecb8164bef"
             },
             "type": "library"
@@ -6075,6 +6138,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/walkermatt/ol-layerswitcher/walkermatt-ol-layerswitcher-3.3.0.zip",
+                "reference": null,
                 "shasum": "48f4b1e1d9075f3babedbd76962efdbb9ad7d2f1"
             },
             "type": "library"
@@ -6304,17 +6368,17 @@
         },
         {
             "name": "zendframework/zend-escaper",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-escaper.git",
-                "reference": "31d8aafae982f9568287cb4dce987e6aff8fd074"
+                "reference": "3801caa21b0ca6aca57fa1c42b08d35c395ebd5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-escaper/zendframework-zend-escaper-31d8aafae982f9568287cb4dce987e6aff8fd074-zip-c44080.zip",
-                "reference": "31d8aafae982f9568287cb4dce987e6aff8fd074",
-                "shasum": "569c570ba8b9dc515327e6b360f34df6b5105e69"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-escaper/zendframework-zend-escaper-3801caa21b0ca6aca57fa1c42b08d35c395ebd5f-zip-b1b227.zip",
+                "reference": "3801caa21b0ca6aca57fa1c42b08d35c395ebd5f",
+                "shasum": "03e3345504983f76081caf2b9ef936b4907e8223"
             },
             "require": {
                 "php": "^5.6 || ^7.0"
@@ -6345,7 +6409,7 @@
                 "escaper",
                 "zf"
             ],
-            "time": "2018-04-25T15:48:53+00:00"
+            "time": "2019-09-05T20:03:20+00:00"
         },
         {
             "name": "zendframework/zend-eventmanager",
@@ -6762,17 +6826,17 @@
         },
         {
             "name": "zendframework/zend-loader",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-loader.git",
-                "reference": "78f11749ea340f6ca316bca5958eef80b38f9b6c"
+                "reference": "91da574d29b58547385b2298c020b257310898c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-loader/zendframework-zend-loader-78f11749ea340f6ca316bca5958eef80b38f9b6c-zip-4aac51.zip",
-                "reference": "78f11749ea340f6ca316bca5958eef80b38f9b6c",
-                "shasum": "c6e4053e2e4b45fa7bdef5e3ba49916f69487f6b"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-loader/zendframework-zend-loader-91da574d29b58547385b2298c020b257310898c6-zip-f4bb59.zip",
+                "reference": "91da574d29b58547385b2298c020b257310898c6",
+                "shasum": "fdd398f965e6ddd03db4e6da2be3d9166a4762f7"
             },
             "require": {
                 "php": "^5.6 || ^7.0"
@@ -6803,7 +6867,7 @@
                 "loader",
                 "zf"
             ],
-            "time": "2018-04-30T15:20:54+00:00"
+            "time": "2019-09-04T19:38:14+00:00"
         },
         {
             "name": "zendframework/zend-log",
@@ -7641,6 +7705,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/zendframework/zendsearch/zendframework-zendsearch-dev-tiki.zip",
+                "reference": null,
                 "shasum": "8652e57681fd3e00512d47abf49334dd8ca72cda"
             },
             "type": "library"
@@ -9426,17 +9491,17 @@
         },
         {
             "name": "wimg/php-compatibility",
-            "version": "9.3.0",
+            "version": "9.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCompatibility/PHPCompatibility.git",
-                "reference": "06cc8d2c2ed62a70f52963dbdf5eaa1ec0fe34c5"
+                "reference": "9999344e47e7af6b00e1a898eacc4e4368fb7196"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/wimg/php-compatibility/wimg-php-compatibility-06cc8d2c2ed62a70f52963dbdf5eaa1ec0fe34c5-zip-d039b9.zip",
-                "reference": "06cc8d2c2ed62a70f52963dbdf5eaa1ec0fe34c5",
-                "shasum": "96b942bffb4ad041ee4fd3172ae314c506bbdb47"
+                "url": "https://composer.tiki.org/dist/wimg/php-compatibility/wimg-php-compatibility-9999344e47e7af6b00e1a898eacc4e4368fb7196-zip-c7fbce.zip",
+                "reference": "9999344e47e7af6b00e1a898eacc4e4368fb7196",
+                "shasum": "ef8f450a1ff05d070b7af11feed8350d6a7b5884"
             },
             "require": {
                 "php": ">=5.3",
@@ -9481,7 +9546,7 @@
                 "standards"
             ],
             "abandoned": "phpcompatibility/php-compatibility",
-            "time": "2019-08-28T15:29:06+00:00"
+            "time": "2019-09-05T18:36:49+00:00"
         }
     ],
     "aliases": [],
