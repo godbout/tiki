@@ -204,7 +204,7 @@ class Search_ContentSource_WebserviceSource implements Search_ContentSource_Inte
 		$response = $webservice->performRequest($params);
 		$template = $webservice->getTemplate($templateName);
 
-		if ($template) {
+		if ($template && $response) {
 			return $template->render($response, 'index');
 		} else {
 			return false;
