@@ -352,7 +352,8 @@ class Services_File_FinderController
 	public function csrfCheck($cmd, &$args, $elfinder, $volume)
 	{
 		$access = TikiLib::lib('access');
-		if ($access->checkCsrf('none')) {
+		//don't unset ticket since multiple actions may be performed without refreshing the page
+		if ($access->checkCsrf('none', false)) {
 			$access->setTicket();
 			$elfinder->setCustomData('ticket', $access->getTicket());
 		} else {
