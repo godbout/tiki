@@ -1,4 +1,4 @@
-image: rjsmelo/ubuntu-php:7.1-qa
+image: rjsmelo/ubuntu-php:7.2-qa
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -205,10 +205,6 @@ sql-engine-conversion:
     - echo '<?php $db_tiki = "mysqli"; $dbversion_tiki = "19.0"; $host_tiki = "mysql"; $user_tiki = "tikiuser"; $pass_tiki = "tikipass"; $dbs_tiki = "tikitest"; $client_charset = "utf8"; ' > lib/test/local.php
     - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
     - php -d display_errors=On vendor_bundled/vendor/phpunit/phpunit/phpunit --colors=always
-
-unit-tests-71:
-  <<: *template-unit-tests
-  image: rjsmelo/ubuntu-php:7.1-qa
 
 unit-tests-72:
   image: rjsmelo/ubuntu-php:7.2-qa

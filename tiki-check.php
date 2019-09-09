@@ -441,7 +441,7 @@ if (version_compare(PHP_VERSION, '5.6.0', '<')) {
 	$php_properties['PHP version'] = array(
 		'fitness' => tra('good'),
 		'setting' => phpversion(),
-		'message' => 'This version of PHP is recent. Tiki 21.x LTS might work with this version of PHP. Versions 19.x and newer will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
+		'message' => 'This version of PHP is recent. Versions 19.x and newer will work fine on this version of PHP. Please see http://doc.tiki.org/Requirements for details.'
 	);
 }
 

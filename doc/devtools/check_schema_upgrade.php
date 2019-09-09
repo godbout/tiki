@@ -480,7 +480,8 @@ class CheckSchemaUpgrade
 				$phpFinder->find(),
 				'console.php',
 				'database:update',
-			]
+			],
+			null, null, null, 120 // Increase the timeout
 		);
 		$process->setWorkingDirectory($this->tikiRoot);
 

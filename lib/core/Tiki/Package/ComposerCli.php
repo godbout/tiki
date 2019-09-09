@@ -30,7 +30,7 @@ class ComposerCli
 		'php5.6',
 		'php5.6-cli',
 	];
-	const PHP_MIN_VERSION = '7.1.0';
+	const PHP_MIN_VERSION = '7.2.0';
 
 	const FALLBACK_COMPOSER_JSON = '{"minimum-stability": "stable","config": {"process-timeout": 5000,"bin-dir": "bin","component-dir": "vendor/components"}, "repositories": [{"type": "composer","url": "https://composer.tiki.org"}]}';
 
