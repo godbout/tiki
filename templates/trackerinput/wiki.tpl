@@ -11,7 +11,7 @@
 	{if $field.options_map['max']}
 		<div class="charCount">
 			{if $prefs.javascript_enabled eq 'y'}
-				{tr}Character Count:{/tr} <input type="text" id="cpt_{$field.fieldId}" size="4" readOnly="true"{if !empty($field.page_data)} value="{$field.page_data|count_characters}"{/if}>
+				{tr}Character Count:{/tr} <input type="text" id="cpt_{$field.fieldId}" size="4" readOnly="true"{if !empty($field.page_data)} value="{$field.page_data|count_characters:true}"{/if}>
 			{/if}
 			{if $field.options_map['max'] > 0} {tr}Max:{/tr} {$field.options_map['max']}{/if}
 		</div>
