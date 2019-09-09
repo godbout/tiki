@@ -7427,8 +7427,6 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .folders a:not(.btn):hover, .inline-cypht .subject a:not(.btn):hover, .inline-cypht .selected_menu a:not(.btn):hover, .inline-cypht .unread_link:not(.btn):hover, .inline-cypht .selected_menu:not(.btn):hover, .inline-cypht .manage_folder_link:not(.btn):hover {
     color: #0c73cd !important;
     text-decoration: underline; }
-  .inline-cypht .selected_menu, .inline-cypht .selected_menu a {
-    text-decoration: underline; }
   .inline-cypht .folder_list, .inline-cypht .content_cell, .inline-cypht .compose_page, .inline-cypht .message_list, .inline-cypht .msg_text, .inline-cypht .selected_part, .inline-cypht .server_content, .inline-cypht .profile_content, .inline-cypht .user_settings, .inline-cypht .nux_add_account, .inline-cypht .imap_server_setup, .inline-cypht .pop3_server_setup {
     background-color: #fff;
     color: #777; }
@@ -7451,25 +7449,28 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .msg_text_inner > table {
     background-color: #fff; }
   .inline-cypht .settings_subtitle, .inline-cypht .server_section {
-    color: #777 !important;
-    font-weight: bold; }
-  .inline-cypht .server_count {
-    font-weight: normal; }
+    color: #777 !important; }
   .inline-cypht .total_unread_count, .inline-cypht .unread_count {
     color: #000; }
   .inline-cypht .profile_details th, .inline-cypht .msg_date {
-    color: #777;
-    font-weight: bold; }
+    color: #777; }
   .inline-cypht .news_cell .source, .inline-cypht .news_cell .from {
     color: #777; }
   .inline-cypht .btn-outline-secondary:hover {
-    color: #fff !important;
-    text-decoration: none; }
+    color: #fff !important; }
   .mobile.tiki-cypht .content_cell .content_title, .mobile.tiki-webmail .content_cell .content_title, .mobile.tiki-cypht .content_cell .content_title .list_controls, .mobile.tiki-webmail .content_cell .content_title .list_controls {
     background: #f7f7f7;
     color: #2d2d2d; }
   .mobile.tiki-cypht .msg_controls, .mobile.tiki-webmail .msg_controls {
     background: #f7f7f7 !important; }
+  .mobile.tiki-cypht .folder_list, .mobile.tiki-webmail .folder_list {
+    background-color: #fff;
+    color: #777;
+    border: 1px solid #ced4da; }
+  .mobile.tiki-cypht .folder_list .src_name, .mobile.tiki-webmail .folder_list .src_name {
+    background: #f7f7f7;
+    color: #2d2d2d;
+    border-left-color: transparent; }
 
 .chosen-select, .chosen-select-deselect {
   width: 100%; }

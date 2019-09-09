@@ -11,13 +11,24 @@
 
 
 // override for some cypht background colors
-.tiki .inline-cypht {
-    .folder_list, .content_cell, .compose_page, .message_list, .msg_text, .selected_part,
-    .server_content, .profile_content, .user_settings,
-    .nux_add_account, .imap_server_setup, .pop3_server_setup {
-        background-color: $card-bg;
+.tiki {
+    .inline-cypht {
+        .folder_list, .content_cell, .compose_page, .message_list, .msg_text, .selected_part,
+        .server_content, .profile_content, .user_settings,
+        .nux_add_account, .imap_server_setup, .pop3_server_setup {
+            background-color: $card-bg;
+        }
+        .src_name, .content_title, .list_controls {
+            background: $card-header-bg;
+        }
     }
-    .src_name, .content_title, .list_controls {
-        background: $card-header-bg;
+    &.mobile.tiki-cypht {
+        .folder_list {
+            background-color: $card-bg;
+            .src_name { background: $card-header-bg; }
+        }
+        .content_title {
+            background: $card-header-bg;
+        }
     }
 }

@@ -4715,6 +4715,7 @@ $(function() {
     }
 
     if (! $('body').hasClass('tiki-cypth')) $('body').addClass('tiki-cypht');
+    $('.mobile .folder_cell').detach().appendTo('body');
 
     $('.mobile .folder_toggle').click(function(){
         $('.mobile .folder_cell').toggleClass('slide-in');
