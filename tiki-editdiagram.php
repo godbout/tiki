@@ -4,6 +4,8 @@ use Tiki\Package\VendorHelper;
 
 require_once('tiki-setup.php');
 
+$exportImageCache = (int)($prefs['fgal_export_diagram_on_image_save'] == 'y');
+
 $xmlContent = isset($_POST['xml']) ? $_POST['xml'] : false;
 $page = isset($_POST['page']) ? $_POST['page'] : false;
 $index = isset($_POST['index']) ? $_POST['index'] : null;
@@ -51,52 +53,99 @@ if (empty($xmlContent)) {
 
 $xmlDiagram = $xmlContent;
 $access->setTicket();
-$ticket = $access->getTicket();
+$tickets[] = $access->getTicket();
 
-$ticket2 = null;
 if ($page && $galleryId) {
 	$access->setTicket();
-	$ticket2 = $access->getTicket();
+	$tickets[] = $access->getTicket();
 }
+
+if ($exportImageCache) {
+	$access->setTicket();
+	$tickets[] = $access->getTicket();
+}
+
+$tickets = sprintf('"%s"', implode('","', $tickets));
 
 $saveModal = $smarty->fetch('mxgraph/save_modal.tpl');
 $saveModal = preg_replace('/\s+/', ' ', $saveModal);
 
 $headerlib = TikiLib::lib('header');
 
-$vendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor', false);
+$oldVendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor', false);
+if ($oldVendorPath) {
+	$errorMessageToAppend = 'Previous xorti/mxgraph-editor package has been deprecated.<br/>';
+}
+
+$vendorPath = VendorHelper::getAvailableVendorPath('diagram', 'tikiwiki/diagram', false);
+if (! $vendorPath) {
+	$accesslib = TikiLib::lib('access');
+	$accesslib->display_error('tiki-display.php', tr($errorMessageToAppend . 'To edit diagrams Tiki needs the tikiwiki/diagram package. If you do not have permission to install this package, ask the site administrator.'));
+}
+
+$headerlib->add_js_config("var diagramVendorPath = '{$vendorPath}';");
+$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
 
 // Clear Tiki CSS files (just use drawio css)
 $headerlib->cssfiles = [];
-$headerlib->add_cssfile($vendorPath . '/xorti/mxgraph-editor/grapheditor/styles/grapheditor.css');
 $headerlib->add_css(".geMenubar a.geStatus { display: none;}");
-$headerlib->add_js_config("var mxGraphVendorPath = '{$vendorPath}';");
-$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
-$headerlib->add_jsfile($vendorPath . '/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
+$headerlib->add_cssfile($vendorPath . '/tikiwiki/diagram/styles/grapheditor.css');
+$headerlib->add_jsfile($vendorPath . '/tikiwiki/diagram/js/app.min.js', true);
+
 $js = "(function()
 	{
 		// Disable communication to external services
 		urlParams['stealth'] = 1;
 		urlParams['embed'] = 1;
-		
+
 		var editorUiInit = EditorUi.prototype.init;
 		EditorUi.prototype.init = function()
 		{
 			editorUiInit.apply(this, arguments);
 			var editorUi = this.actions.editorUi;
 			var editor = editorUi.editor;
-			
+			var self = this;
+			var tickets = [{$tickets}]
+
 			this.saveFile = function(forceDialog) {
-				var content = mxUtils.getPrettyXml(editor.getGraphXml());
+				let node = editorUi.getXmlFileData();
+				var content = mxUtils.getXml(node);
 				var fileId = {$fileId};
 				var galleryId = {$galleryId};
 				var newDiagram = '{$newDiagram}';
 				var backLocation = '{$backLocation}';
-
+				var pagesAmount = node.children.length;
 				var saveElem = $('{$saveModal}')[0];
 				editorUi.showDialog(saveElem, 400, 200, true, false, null, true);
-
-				if (fileId || galleryId) {
+				
+				function updatePlugin(content, params, callback) {
+					var data = {
+						controller: 'plugin',
+						action: 'replace',
+						ticket: tickets.pop(),
+						page: '{$page}',
+						message: 'Modified by mxGraph',
+						type: 'diagram',
+						content: content,
+						index: '{$index}',
+						params: params
+					};
+					
+					$.ajax({
+						type: 'POST',
+						url: 'tiki-ajax_services.php',
+						dataType: 'json',
+						data: data,
+						success: function() {
+							callback();
+						},
+						error: function(xhr, status, message) {
+							showErrorMessage(message);
+						}
+					});
+				}
+				
+				function uploadFile(content, callback) {
 					var blob = new Blob([content]);
 					content = window.btoa(content);
 
@@ -105,29 +154,101 @@ $js = "(function()
 					var data = {
 						controller: 'file',
 						action: 'upload',
-						ticket: '{$ticket}',
+						ticket: tickets.pop(),
 						name: name,
 						type: 'text/plain',
 						size: blob.size,
 						data: content,
 						fileId: '{$fileId}',
 					};
-
+					
 					if (galleryId) {
 						data.galleryId = '{$galleryId}';
 					}
+					
+					$.ajax({
+						type: 'POST',
+						url: 'tiki-ajax_services.php',
+						dataType: 'json',
+						data: data,
+						success: function(result) {
+							if ('{$page}' && result.fileId) {
+								updatePlugin('', {'fileId': result.fileId}, function() { callback() });
+							} else {
+								callback();
+							}
+						},
+						error: function(xhr, status, message) {
+							showErrorMessage(message);
+						}
+					});
+				}
+				
+				function saveCache(callback) {
+					var diagramPNGs = {};
+					
+					let saveImages = function(diagrams) {
+						var data = {
+							controller: 'diagram',
+							action: 'image',
+							ticket: tickets.pop(),
+							name: 'Preview',
+							type: 'image/png',
+							content: content,
+							fileId: fileId,
+							data: diagrams
+						};
+						
+						$.ajax({
+							type: 'POST',
+							url: 'tiki-ajax_services.php',
+							dataType: 'json',
+							data: data,
+							success: function() {
+								callback();
+							},
+							error: function(xhr, status, message) {
+								showErrorMessage(message);
+							}
+						});
+					}
+
+					for (var i = 0; i < node.children.length; i++) {
+						let id = node.children[i].id;
+					
+						self.getEmbeddedPng(function(pngData) {
+							diagramPNGs[id] = pngData;
+
+							if (Object.keys(diagramPNGs).length === pagesAmount) {
+								saveImages(diagramPNGs);
+							}
+						}, null, '<mxfile>' + node.children[i].outerHTML + '</mxfile>');
+					}
+				}
+				
+				function afterSaveDiagramCallback() {
+					let exportImageCache = {$exportImageCache};	
+					
+					if (exportImageCache){
+						saveCache(function() {
+							showModalAfterSave();
+						});
+					} else {
+						showModalAfterSave();
+					}
+				}
+				
+				if (fileId || galleryId) {
+					uploadFile(content, function() {
+						if ('{$page}' && fileId) {
+						// if new file and from page
+							updatePlugin(content, {}, afterSaveDiagramCallback());
+						} else {
+							afterSaveDiagramCallback();
+						}
+					});
 				} else {
-					//calling ajax edit plugin function
-					var data = {
-						controller: 'plugin',
-						action: 'replace',
-						ticket: '{$ticket}',
-						page: '{$page}',
-						message: 'Modified by mxGraph',
-						type: 'diagram',
-						content: content,
-						index: '{$index}'
-					};
+					updatePlugin(content, {}, afterSaveDiagramCallback);
 				}
 
 				// Show Modal after Save diagram
@@ -156,48 +277,6 @@ $js = "(function()
 
 					$('div.diagram-error').show();
 				}
-
-				$.ajax({
-					type: 'POST',
-					url: 'tiki-ajax_services.php',
-					dataType: 'json',
-					data: data,
-					success: function(result){
-						if ('{$page}' && result.fileId) {
-							// if new file and from page
-							var data = {
-								controller: 'plugin',
-								action: 'replace',
-								ticket: '{$ticket2}',
-								page: '{$page}',
-								message: 'Modified by mxGraph',
-								type: 'diagram',
-								content: '',
-								index: '{$index}',
-								params: {'fileId': result.fileId}
-							};
-
-							$.ajax({
-								type: 'POST',
-								url: 'tiki-ajax_services.php',
-								dataType: 'json',
-								data: data,
-								success: function(){
-									showModalAfterSave();
-								},
-								error: function(xhr, status, message) {
-									showErrorMessage(message);
-								}
-							});
-							
-						} else {
-							showModalAfterSave();
-						}
-					},
-					error: function(xhr, status, message) {
-						showErrorMessage(message);
-					}
-				});
 			}
 		};
 

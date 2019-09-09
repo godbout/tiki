@@ -687,5 +687,17 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'filter' => 'int',
 			'default' => '250'
 		],
+		'fgal_export_diagram_on_image_save' => [
+			'name' => tra('Export diagram image on save'),
+			'description' => tra('If enabled, diagrams will be cached in PNG format when saved or edited.'),
+			'type' => 'flag',
+			'default' => 'y'
+		],
+		'fgal_use_drawio_services_to_export_images' => [
+			'name' => tra('Use draw.io public services to export images'),
+			'description' => tra('When exporting PDFs, if this setting is enabled, diagram images will be fetched using Drawio\'s services if not in cache. This basically works like a fallback.'),
+			'type' => 'flag',
+			'default' => 'n'
+		],
 	];
 }

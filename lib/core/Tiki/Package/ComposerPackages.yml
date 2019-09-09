@@ -56,12 +56,21 @@ mPDF:
     - "Tiki Print"
   requiredVersion: ^7.1
 mxGraph:
+  actions:
+  - remove
   licence: Apache-2.0
   licenceUrl: "https://github.com/jgraph/mxgraph/blob/master/README.md"
   name: xorti/mxgraph-editor
   requiredBy:
   - "wikiplugin_diagram"
   requiredVersion: ^3.9.12.2
+diagram:
+  licence: Apache-2.0
+  licenceUrl: "https://gitlab.com/tikiwiki/diagram/blob/master/README.md"
+  name: tikiwiki/diagram
+  requiredBy:
+  - "wikiplugin_diagram"
+  requiredVersion: ^10
 PHPSaml:
   licence: MIT
   licenceUrl: "https://github.com/onelogin/php-saml/blob/master/LICENSE"

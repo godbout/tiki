@@ -42,18 +42,24 @@ class FileHelper
 		if (DiagramHelper::isDiagram($file['fileId'])) {
 			// Diagrams
 			if ($injectDependencies) {
-				$vendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor/drawio/webapp/js/app.min.js', false);
-
-				if (! $vendorPath) {
-					$accesslib->display_error('tiki-display.php', tr('To view diagrams Tiki needs the xorti/mxgraph-editor package. If you do not have permission to install this package, ask the site administrator.'));
+				$errorMessageToAppend = '';
+				$oldVendorPath = VendorHelper::getAvailableVendorPath('mxgraph', 'xorti/mxgraph-editor/drawio/webapp/js/app.min.js', false);
+				if ($oldVendorPath) {
+					$errorMessageToAppend = 'Previous xorti/mxgraph-editor package has been deprecated.<br/>';
 				}
 
-				$headerlib->add_js_config("var mxGraphVendorPath = '{$vendorPath}';");
+				$vendorPath = VendorHelper::getAvailableVendorPath('diagram', 'tikiwiki/diagram/js/app.min.js', false);
+				if (! $vendorPath) {
+					$accesslib->display_error('tiki-display.php', tr($errorMessageToAppend . 'To view diagrams Tiki needs the tikiwiki/diagram package. If you do not have permission to install this package, ask the site administrator.'));
+				}
+
+				$headerlib->add_js_config("var diagramVendorPath = '{$vendorPath}';");
 				$headerlib->add_jsfile('lib/jquery_tiki/tiki-mxgraph.js', true);
-				$headerlib->add_jsfile($vendorPath . '/xorti/mxgraph-editor/drawio/webapp/js/app.min.js', true);
+				$headerlib->add_jsfile($vendorPath . '/tikiwiki/diagram/js/app.min.js', true);
 			}
 
 			$data = DiagramHelper::parseData($data);
+			$data = DiagramHelper::getDiagramsFromIdentifier($data);
 			$template = 'diagram.tpl';
 		} elseif ($file['filetype'] == 'application/pdf' || PDFHelper::canConvertToPDF($file['filetype'])) {
 			// PDFs
@@ -149,5 +155,19 @@ class FileHelper
 		}
 
 		return $template;
+	}
+
+	/**
+	 * Returns if a given mime-type belongs to a office document type
+	 *
+	 * @param $mimeType
+	 * @return bool
+	 */
+	public static function isOfficeDocument($mimeType)
+	{
+		return strpos($mimeType, 'application/vnd.openxmlformats-officedocument') !== false ||
+			strpos($mimeType, 'application/vnd.ms') !== false ||
+			$mimeType == 'application/msword' ||
+			strpos($mimeType, 'application/vnd.oasis.opendocument.') !== false;
 	}
 }
