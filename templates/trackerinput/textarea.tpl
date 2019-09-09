@@ -19,7 +19,7 @@
 		{if $field.options_array[3]}
 			<div class="charCount">
 				{if $prefs.javascript_enabled eq 'y'}
-					{tr}Character Count:{/tr} <input type="text" id="cpt_{$field.fieldId}" size="4" readOnly="true"{if !empty($field.value)} value="{$field.value|count_characters}"{/if}>
+					{tr}Character Count:{/tr} <input type="text" id="cpt_{$field.fieldId}" size="4" readOnly="true"{if !empty($field.value)} value="{$field.value|count_characters:true}"{/if}>
 				{/if}
 				{if $field.options_array[3] > 0} {tr}Max:{/tr} {$field.options_array[3]}{/if}
 			</div>
