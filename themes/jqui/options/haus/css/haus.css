@@ -63,14 +63,14 @@ h1,h2,h3,h4,h5,h6, #top .pagetitle a {
 	bottom: -6px;
 }
 
-.btn-primary,
+.btn,
 button,
 input[type="reset"],
 input[type="submit"],
 .button input {
     border: 1px solid #777;
     font-weight: bold;
-    color: #555555;
+/*    color: #555555;*/
 }
 
 .cssmenu_horiz ul li button.btn-link.link-list,
@@ -79,7 +79,7 @@ input[type="submit"],
 	border: none;
 }
 
-.btn-primary:hover,
+.btn:hover,
 .button a:hover,
 button:hover,
 input[type="reset"]:hover,
@@ -91,11 +91,11 @@ input[type="submit"]:hover,
 	background-color: #ea6;
 }
 
-.btn-primary {
+/*.btn-primary {
   color: #212121;
   background-color: #eee;
   border-color: #666;
-}
+}*/
 
 .btn-link, .btn-link:hover, .btn-link:focus, .btn-link:active {
 	border-color: transparent;
