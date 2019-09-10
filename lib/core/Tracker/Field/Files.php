@@ -301,9 +301,12 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 			$image_y = $this->getOption('image_y');
 
 			if ($prefs['fgal_elfinder_feature'] == 'y') {
+				$smarty = TikiLib::lib('smarty');
+				$smarty->loadPlugin('smarty_function_ticket');
 				$context['onclick'] = 'return openElFinderDialog(this, {
 	defaultGalleryId:' . $defaultGalleryId . ',
 	deepGallerySearch: ' . $deepGallerySearch . ',
+	ticket: \'' . smarty_function_ticket(['mode' => 'get'], $smarty) . '\',
 	getFileCallback: function(file,elfinder){ window.handleFinderFile(file,elfinder); },
 	eventOrigin:this
 });';
