@@ -25,13 +25,27 @@
 //}
 
 .navbar-light .cssmenu_horiz > li > a {
-  color: $navbar-light-color;
+	color: $navbar-light-color;
 }
 
 body.fullscreen { background: $body-bg; }
 
 //Theme variables aren't overriding default values for these.
 body {
-  color: #EBEBEB;
-  background: #2B3E50;
+	color: #EBEBEB;
+	background: #2B3E50;
+}
+
+// override for some cypht background colors
+.tiki {
+    .inline-cypht {
+        .list_controls {
+            background: transparent;
+        }
+	}
+    &.mobile.tiki-cypht {
+        .content_title {
+            &, .list_controls { background: $card-bg; }
+        }
+    }
 }

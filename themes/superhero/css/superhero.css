@@ -7821,3 +7821,8 @@ body.fullscreen {
 body {
   color: #ebebeb;
   background: #2b3e50; }
+
+.tiki .inline-cypht .list_controls {
+  background: transparent; }
+  .tiki.mobile.tiki-cypht .content_title, .tiki.mobile.tiki-cypht .content_title .list_controls {
+    background: #4e5d6c; }
