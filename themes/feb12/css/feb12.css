@@ -7057,6 +7057,13 @@ body.fullscreen {
 .autotoc .dropdown-item {
   color: #2623a9; }
 
+.dropdown-item.text-danger {
+  background: #fff;
+  border-radius: 0; }
+  .dropdown-item.text-danger:hover {
+    color: #fff !important;
+    background-color: #d9534f; }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {
