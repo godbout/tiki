@@ -1,5 +1,5 @@
 // $Id$
-// This file is for additional LESS rules beyond what are in variables.scss.
+// This file is for additional SCSS rules beyond what are in variables.scss.
 // Image path example:
 $imagePath: "../images/";
 // body {
@@ -239,4 +239,14 @@ body.fullscreen {
 
 .autotoc .dropdown-item {
 	color: $link-color;
+}
+
+// Fix bad contrast
+.dropdown-item.text-danger {
+	background: #fff;
+	border-radius: 0;
+	&:hover {
+		color: #fff !important;
+		background-color: #d9534f;
+	}
 }

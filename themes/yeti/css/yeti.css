@@ -6163,6 +6163,12 @@ label, .control-label, .form-text, .checkbox, .radio, .form-control-feedback {
   font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-weight: lighter; }
 
+.dropdown-item.text-danger {
+  background: #fff;
+  border-radius: 0; }
+  .dropdown-item.text-danger:hover {
+    color: #fff !important; }
+
 .topbar {
   margin-bottom: 1.4rem; }
 

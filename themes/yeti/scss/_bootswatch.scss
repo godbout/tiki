@@ -434,3 +434,13 @@ label,
 	font-family: $font-family-base;
 	font-weight: lighter;
 }
+
+// Additional for Tiki
+// Fix bad contrast
+.dropdown-item.text-danger {
+	background: #fff;
+	border-radius: 0;
+	&:hover {
+		color: #fff !important;
+	}
+}
