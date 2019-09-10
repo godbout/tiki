@@ -130,6 +130,7 @@
 					{preference name=unified_list_cache_default_expiry}
 
 					{preference name=unified_trackerfield_keys}
+					{preference name=unified_trackeritem_category_names}
 					{preference name=unified_add_to_categ_search}
 					{preference name=unified_trim_sorted_search}
 
