@@ -7801,5 +7801,5 @@ input[type="text"].chosen-focus-input {
     background-color: #030511; }
   .tiki.mobile.tiki-cypht .folder_list .src_name {
     background: #5e0000; }
-  .tiki.mobile.tiki-cypht .content_title {
+  .tiki.mobile.tiki-cypht .content_title, .tiki.mobile.tiki-cypht .content_title .list_controls {
     background: #5e0000; }

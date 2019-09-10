@@ -28,7 +28,7 @@
             .src_name { background: $card-header-bg; }
         }
         .content_title {
-            background: $card-header-bg;
+            &, .list_controls { background: $card-header-bg; }
         }
     }
 }
