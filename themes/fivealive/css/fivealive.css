@@ -6941,8 +6941,11 @@ blockquote {
   color: #7a7a7a;
   border-left: 0.25rem solid #e5e5e5; }
 
-.dropdown-item .text-danger {
-  color: #fec0bd !important; }
+.dropdown-item.btn-link.text-danger {
+  background: #f4d2ba !important;
+  border-radius: 0 !important; }
+  .dropdown-item.btn-link.text-danger:hover {
+    background: #edb58e !important; }
 
 html {
   background-color: #414141; }
