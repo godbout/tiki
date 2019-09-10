@@ -574,6 +574,7 @@ body {
 	padding: 20px 0 20px;
 	border: none;
 	display: block !important;
+	min-height: 600px;
 }
 
 .mobile .content_title {
