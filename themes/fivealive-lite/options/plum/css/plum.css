@@ -82,12 +82,12 @@ a:hover, .btn-link:hover, a:focus, .btn-link:focus {
  border-color: $btn-secondary-active-border;
  }*/
 .btn-info {
-  color: #fff;
+  color: #222;
   background-color: #e5d7dc;
   border-color: #e5d0cf; }
 
 .btn-info:hover {
-  color: #fff;
+  color: #222;
   background-color: #f9f6f7;
   border-color: #f7f0f0; }
 
@@ -100,7 +100,7 @@ a:hover, .btn-link:hover, a:focus, .btn-link:focus {
   border-color: #db9fff #db9fff #fff; }
 
 .nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-  color: #fff;
+  color: #222;
   background-color: #dbc8ce; }
 
 hr {
