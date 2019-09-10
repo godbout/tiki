@@ -665,6 +665,7 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 
 	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
 	{
+		global $prefs;
 		$value = array_filter(explode(',', $this->getValue()));
 
 		if ($this->getOption('recategorize') === 'index') {
@@ -687,7 +688,6 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 
 				if ($missingCategories) {
 					// temporarily prevent incremental index update which happens in categlib causing an infinite loop
-					global $prefs;
 					$incPref = $prefs['unified_incremental_update'];
 					$prefs['unified_incremental_update'] = 'n';
 
@@ -703,10 +703,26 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 		// Warning to upgraders: older Tikis had no getDocumentPart so the comma-separated string was indexed
 		// in the past. It now indexes an array. Use {$baseKey}_text instead for a space delimited string.
 		$baseKey = $this->getBaseKey();
-		return [
-			$baseKey => $typeFactory->multivalue($value),
-			"{$baseKey}_text" => $typeFactory->plaintext(implode(' ', $value)),
+		$out = [
+			$baseKey           => $typeFactory->multivalue($value),
+			"{$baseKey}_text"  => $typeFactory->plaintext(implode(' ', $value)),
 		];
+
+		if ($prefs['unified_trackeritem_category_names'] === 'y'){
+			$categories = $this->getApplicableCategories();
+			$names = [];
+			$paths = [];
+			foreach ($value as $val) {
+				if (isset($categories[$val])) {
+					$names[] = $categories[$val]['name'];
+					$paths[] = $categories[$val]['categpath'];
+				}
+			}
+			$out["{$baseKey}_names"] = $typeFactory->plaintext(implode(', ', $names));
+			$out["{$baseKey}_paths"] = $typeFactory->plaintext(implode(', ', $paths));
+
+		}
+		return $out;
 	}
 
 	public static function syncCategoryFields($args)

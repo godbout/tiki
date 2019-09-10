@@ -179,6 +179,18 @@ function prefs_unified_list()
 				'fieldId' => tr('Field ID (backward compatibility mode with Tiki 7 and 8)'),
 			],
 		],
+		'unified_trackeritem_category_names' => [
+			'name' => tra('Index Tracker Category names'),
+			'description' => tra('Index the names and paths of category field values'),
+			'hint' => tra('Requires reindexing'),
+			'type' => 'flag',
+			'default' => 'n',
+			'dependencies' => [
+				'feature_trackers',
+				'feature_categories',
+				'feature_search',
+			],
+		],
 		'unified_cache_formatted_result' => [
 			'name' => tra('Cache result-specific formatted results'),
 			'description' => tr('Formatted search results such as the ones used in the List plugin will be cached to prevent process-intensive reformatting on each page load. The cache is result-specific.'),
