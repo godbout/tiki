@@ -481,7 +481,7 @@ class CheckSchemaUpgrade
 				'console.php',
 				'database:update',
 			],
-			null, null, null, 120 // Increase the timeout
+			null, null, null, 300 // Increase the timeout
 		);
 		$process->setWorkingDirectory($this->tikiRoot);
 
