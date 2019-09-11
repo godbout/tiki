@@ -592,7 +592,7 @@ class Smarty_Tiki extends Smarty
 	 * @param $url_arguments_prefix
 	 * @param $arguments_list
 	 */
-	function remove_request_overriders($url_arguments_prefix, $arguments_list)
+	public function remove_request_overriders($url_arguments_prefix, $arguments_list)
 	{
 		$last_override_prefix = empty($this->url_overriding_prefix_stack) ? false : array_pop($this->url_overriding_prefix_stack);
 		if (! is_array($last_override_prefix) || $url_arguments_prefix . '-' != $last_override_prefix[0]) {

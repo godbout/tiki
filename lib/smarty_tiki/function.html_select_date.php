@@ -344,15 +344,15 @@ function smarty_function_html_select_date($params, $smarty)
 		$c = substr($field_order, $i, 1);
 		switch ($c) {
 			case 'D':
-				$html_result .= $day_result;
+				$html_result .= "<div class='col'>$day_result</div>";
 				break;
 
 			case 'M':
-				$html_result .= $month_result;
+				$html_result .= "<div class='col'>$month_result</div>";
 				break;
 
 			case 'Y':
-				$html_result .= $year_result;
+				$html_result .= "<div class='col'>$year_result</div>";
 				break;
 		}
 		// Add the field seperator
@@ -361,5 +361,5 @@ function smarty_function_html_select_date($params, $smarty)
 		}
 	}
 
-	return $html_result;
+	return "<div class='row html-select-date'>$html_result</div>";
 }

@@ -4,6 +4,7 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
     - .composercache/files
+    - vendor_bundled/vendor/
 
 variables:
   MYSQL_ROOT_PASSWORD: secret
@@ -20,6 +21,19 @@ stages:
   - tiki-check
   - unit-tests
   - vendors_update
+
+composer:
+  stage: build
+  variables:
+    COMPOSER_DISCARD_CHANGES: "true"
+    COMPOSER_NO_INTERACTION: "1"
+  script:
+    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+  artifacts:
+    paths:
+      - vendor_bundled/vendor/
+    expire_in: 1 days
+    when: on_success
 
 composer:
   stage: build
