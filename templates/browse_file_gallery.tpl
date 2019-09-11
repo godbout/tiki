@@ -39,13 +39,13 @@
 		{* thumbnail actions wrench *}
 		{capture name="thumbactions"}
 			{if ($prefs.fgal_show_thumbactions eq 'y' or $show_details eq 'y')}
-					<div class="thumbactions">
+					<div class="thumbactions form-check">
 				{if $prefs.fgal_checked neq 'n' and $tiki_p_admin_file_galleries eq 'y'}
-					<label style="float:left">
-						<input type="checkbox" class="form-check-input" onclick="flip_thumbnail_status('{$checkname}_{$file.id}')" name="{$checkname}[]" value="{$file.id|escape}" {if $is_checked eq 'y'}checked="checked"{/if}>
-						{if isset($checkbox_label)}
-							{$checkbox_label}
-						{/if}
+					<label class="form-check-label">
+                        {if isset($checkbox_label)}
+                            {$checkbox_label}
+                        {/if}
+						<input type="checkbox" class="form-check-input position-static" onclick="flip_thumbnail_status('{$checkname}_{$file.id}')" name="{$checkname}[]" value="{$file.id|escape}" {if $is_checked eq 'y'}checked="checked"{/if}>
 					</label>
 				{/if}
 				{if !isset($gal_info.show_action) or $gal_info.show_action neq 'n'}
