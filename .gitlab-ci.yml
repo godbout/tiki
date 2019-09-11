@@ -1,8 +1,10 @@
 image: rjsmelo/ubuntu-php:7.1-qa
 
 cache:
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
     - .composercache/files
+    - vendor_bundled/vendor/
 
 variables:
   MYSQL_ROOT_PASSWORD: secret
@@ -13,10 +15,24 @@ variables:
   COMPOSER_CACHE_DIR: "$CI_PROJECT_DIR/.composercache"
 
 stages:
+  - build
   - lint
   - vendors-security
   - tiki-check
   - unit-tests
+
+composer:
+  stage: build
+  variables:
+    COMPOSER_DISCARD_CHANGES: "true"
+    COMPOSER_NO_INTERACTION: "1"
+  script:
+    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+  artifacts:
+    paths:
+      - vendor_bundled/vendor/
+    expire_in: 1 days
+    when: on_success
 
 #
 # Lint
@@ -26,7 +42,6 @@ phpcs:
   stage: lint
   script:
     - git log -m --first-parent -1 --name-only --diff-filter=d --pretty="format:" | grep -v "^$" | sort -u | grep '\.php$' - 2>&1 > /dev/null || { git log -m -1 --name-only && echo && echo 'No files to be processed. Skipping...' && echo && exit 0; }
-    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
     - git log -m -1 --name-only
     - git log -m --first-parent -1 --name-only --diff-filter=d --pretty="format:" | grep -v "^$" | sort -u | xargs php vendor_bundled/vendor/squizlabs/php_codesniffer/bin/phpcs -s --runtime-set ignore_warnings_on_exit true
   allow_failure: true
@@ -58,7 +73,6 @@ translation:
   script:
   - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
   - php -v
-  - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
   - git log --first-parent --pretty="format:%h" -1 --skip=1 | xargs -I gitHash php -d display_errors=On doc/devtools/translate.php --diff-command="git diff gitHash" --git --audit
   allow_failure: true
 
@@ -88,7 +102,6 @@ composer-lock:
     - 'mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql --skip-column-names -B -e "SELECT CONCAT(''Version: '', VERSION(), CHAR(13), ''sql_mode: '', @@GLOBAL.sql_mode)"'
     - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
     - php -v
-    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
     - composer --ansi install -d doc/devtools/dbdiff/ --no-progress --prefer-dist -n
     - echo "GRANT ALL ON tikiold.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
     - echo "GRANT ALL ON tikinew.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
@@ -165,7 +178,6 @@ sql-engine-conversion:
   - 'mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql --skip-column-names -B -e "SELECT CONCAT(''Version: '', VERSION(), CHAR(13), ''sql_mode: '', @@GLOBAL.sql_mode)"'
   - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
   - php -v
-  - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
   - composer --ansi install -d doc/devtools/dbdiff/ --no-progress --prefer-dist -n
   - echo "GRANT ALL ON tikiold.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
   - echo "GRANT ALL ON tikinew.* TO '${MYSQL_USER}';" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
@@ -187,7 +199,6 @@ sql-engine-conversion:
     - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
     - php -v
     - echo '<?php $db_tiki = "mysqli"; $dbversion_tiki = "19.0"; $host_tiki = "mysql"; $user_tiki = "tikiuser"; $pass_tiki = "tikipass"; $dbs_tiki = "tikitest"; $client_charset = "utf8"; ' > lib/test/local.php
-    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
     - php -d display_errors=On vendor_bundled/vendor/phpunit/phpunit/phpunit --colors=always
 
 unit-tests-71:
@@ -195,19 +206,13 @@ unit-tests-71:
   image: rjsmelo/ubuntu-php:7.1-qa
 
 unit-tests-72:
+  <<: *template-unit-tests
   image: rjsmelo/ubuntu-php:7.2-qa
-  stage: unit-tests
-  services:
-    - mysql:5.6
-    - elasticsearch:5
-  script:
-    - curl -sS -XGET 'http://elasticsearch:9200'
-    - mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql --skip-column-names -B -e 'SELECT VERSION()'
-    - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
-    - php -v
-    - echo '<?php PHPUnit_Framework_Error_Deprecated::$enabled = false; $db_tiki = "mysqli"; $dbversion_tiki = "19.0"; $host_tiki = "mysql"; $user_tiki = "tikiuser"; $pass_tiki = "tikipass"; $dbs_tiki = "tikitest"; $client_charset = "utf8"; ' > lib/test/local.php
-    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
-    - php -d display_errors=On vendor_bundled/vendor/phpunit/phpunit/phpunit --colors=always
+
+unit-tests-73:
+  <<: *template-unit-tests
+  image: rjsmelo/ubuntu-php:7.2-qa
+  allow_failure: true
 
 #
 # Vendors Security
@@ -216,7 +221,6 @@ unit-tests-72:
 sensiolabs-vendor-security-check:
   stage: vendors-security
   script:
-    - composer --ansi install -d vendor_bundled/ --no-progress --prefer-dist -n
     - cp composer.json.dist composer.json
     - composer require jerome-breton/casperjs-installer:dev-master --no-progress
     - composer require enygma/expose:^3.0 --no-progress
@@ -245,7 +249,6 @@ sensiolabs-vendor-security-check:
 sensiolabs-vendor-bundled-security-check:
   stage: vendors-security
   script:
-    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
     - php bin/security-checker security:check vendor_bundled/composer.lock
   only:
     refs:
