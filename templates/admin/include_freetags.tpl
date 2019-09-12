@@ -9,8 +9,8 @@
 				{icon name="language"} {tr}Translate Tags{/tr}
 			</a>
 		{/if}
-		<button role="button" type="submit" class="btn btn-primary" name="cleanup">
-			{icon name="trash"} {tr}Cleanup unused tags{/tr}
+		<button role="button" type="submit" class="btn btn-primary tips" name="cleanup" title="{tr}Remove tags not applied to any objects{/tr}">
+			{icon name="trash"} {tr}Clean Up Unused Tags{/tr}
 		</button>
 		{include file='admin/include_apply_top.tpl'}
 	</div>
