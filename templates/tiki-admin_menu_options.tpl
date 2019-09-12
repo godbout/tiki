@@ -12,7 +12,7 @@
 		<a class="btn btn-primary" href="{bootstrap_modal controller=menu action=edit menuId=$menuId}">
 			{icon name="edit"} {tr}Edit This Menu{/tr}
 		</a>
-		<a class="btn btn-primary" href="{bootstrap_modal controller=menu action=export_menu_options menuId=$menuId}" title="{tr}Export menu options{/tr}">
+		<a class="btn btn-primary" href="{service controller=menu action=export_menu_options menuId=$menuId}" title="{tr}Export menu options{/tr}">
 			{icon name="export"} {tr}Export{/tr}
 		</a>
 		<a class="btn btn-primary no-ajax" href="{bootstrap_modal controller=menu action=import_menu_options menuId=$menuId}" title="{tr}Import menu options{/tr}">
