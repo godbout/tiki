@@ -221,34 +221,34 @@
 			<div class="articlebody py-3">{$listpages[ix].parsed_body}</div>
 					{/if}
 
-			<div class="articletrailer">
+			<div class="articletrailer clearfix">
 				{if ($listpages[ix].size > 0) or (($prefs.feature_article_comments eq 'y') and ($listpages[ix].perms.tiki_p_read_comments eq 'y'))}
 				<ul class="list-inline float-left">
 					{if ($listpages[ix].perms.tiki_p_read_article eq 'y' and $listpages[ix].heading_only ne 'y' and (!isset($fullbody) or $fullbody ne "y"))}
 						{if ($listpages[ix].size > 0 and !empty($listpages[ix].body))}
 
-							<li class="status"> {* named to be similar to for<um/blog item *}
-								<a href="{$smarty.capture.href}" class="more">{tr}Read More{/tr}</a>
+							<li class="list-inline-item status"> {* named to be similar to for<um/blog item *}
+								<a href="{$smarty.capture.href}" class="more">{icon name="book-reader"} {tr}Read More{/tr}</a>
 							</li>
 							{if ($listpages[ix].show_size eq 'y')}
-								<li>
+								<li class="list-inline-item">
 									({$listpages[ix].size} {tr}bytes{/tr})
 								</li>
 							{/if}
 						{/if}
 					{/if}
 					{if ($prefs.feature_article_comments eq 'y') and ($listpages[ix].perms.tiki_p_read_comments eq 'y') and ($listpages[ix].allow_comments eq 'y')}
-						<li>
-							<a href="{$listpages[ix].articleId|sefurl:article:with_next}{if $prefs.feature_sefurl neq 'y'}&amp;{/if}show_comzone=y{if !empty($urlparam)}&amp;{$urlparam}{/if}#comments"{if $listpages[ix].comments_cant > 0} class="highlight"{/if}>
+						<li class="list-inline-item">
+							<a href="{$listpages[ix].articleId|sefurl:article:with_next}{if $prefs.feature_sefurl neq 'y'}&amp;{/if}show_comzone=y{if !empty($urlparam)}&amp;{$urlparam}{/if}#comments"{if $listpages[ix].comments_cant > 0} class="mark"{/if}>
 								{if $listpages[ix].comments_cant == 0 and $listpages[ix].perms.tiki_p_post_comments == 'y'}
 									{if !isset($actions) or $actions eq "y"}
-										{tr}Add Comment{/tr}
+										{icon name="comment"} {tr}Add Comment{/tr}
 									{/if}
 								{elseif $listpages[ix].perms.tiki_p_read_comments eq 'y'}
 									{if $listpages[ix].comments_cant == 1}
-										{tr}1 comment{/tr}
+                                        {icon name="comment"} {tr}1 comment{/tr}
 									{else}
-										{$listpages[ix].comments_cant}&nbsp;{tr}comments{/tr}
+                                        {icon name="comments"} {$listpages[ix].comments_cant}&nbsp;{tr}comments{/tr}
 									{/if}
 								{/if}
 							</a>
