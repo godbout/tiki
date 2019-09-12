@@ -3,7 +3,7 @@
 	<div class="postbody-content postbody-excerpt card-body">
 		{$post_info.parsed_excerpt}
 	</div>
-	{self_link _script=$post_info.postId|sefurl:blogpost _noauto='y' _class="btn btn-link"}{tr}Read more{/tr}{/self_link}
+	{self_link _script=$post_info.postId|sefurl:blogpost _noauto='y' _class="btn btn-link ml-1"}{icon name="book-reader"} {tr}Read more{/tr}{/self_link}
 {else}
 	<div class="postbody-content card-body">
 		{$post_info.parsed_data}
