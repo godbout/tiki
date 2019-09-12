@@ -544,8 +544,31 @@ body {
 	font-weight: bold;
 }
 
-.server_count {
-	font-weight: normal;
+.server_section {
+	max-height: 100px;
+	overflow: hidden;
+}
+
+.quick_add_section {
+	padding-left: 25px;
+}
+
+.nux_step_one,
+.nux_step_two {
+	padding-left: 0;
+}
+
+.nux_account_name,
+.nux_username,
+#service_select {
+	width: 100%;
+	margin-bottom: 0;
+}
+
+.part_desc,
+.part_size,
+.download_link {
+	margin-left: 25px;
 }
 
 .profile_details th,
