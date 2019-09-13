@@ -27,6 +27,7 @@ $section = 'search';
 require_once('tiki-setup.php');
 $access->check_feature('feature_search');
 $access->check_permission('tiki_p_search');
+$smarty->assign('headtitle', tr('Search'));
 
 //get_strings tra("Searchindex")
 //ini_set('display_errors', true);
