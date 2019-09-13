@@ -369,15 +369,20 @@ class PdfGenerator
 					chmod($tmpExtPDF, 0755);
 					$finfo = finfo_open(FILEINFO_MIME_TYPE); //recheck if its valid pdf file
 					if(finfo_file($finfo, $tmpExtPDF) === 'application/pdf') {
-						$pagecount = $mpdf->setSourceFile(
-							$tmpExtPDF
-						); //temp file name
-						for ($i = 1; $i <= $pagecount; $i++) {
-							$mpdf->SetHTMLHeader();
-							$mpdf->AddPage();
-							$mpdf->SetHTMLFooter();
-							$tplId = $mpdf->importPage($i, $box = PageBoundaries::CROP_BOX, $groupXObject = true);
-							$mpdf->UseTemplate($tplId);
+						try{
+							$pagecount = $mpdf->setSourceFile(
+								$tmpExtPDF
+							); //temp file name
+							for ($i = 1; $i <= $pagecount; $i++) {
+								$mpdf->SetHTMLHeader();
+								$mpdf->AddPage();
+								$mpdf->SetHTMLFooter();
+								$tplId = $mpdf->importPage($i);
+								$mpdf->UseTemplate($tplId);
+							}
+						}
+						catch(Exception $e){
+							$mpdf->WriteHTML("PDF not supported");
 						}
 					}
 					unlink($tmpExtPDF);
