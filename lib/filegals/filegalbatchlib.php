@@ -71,7 +71,8 @@ class FilegalBatchLib extends FileGalLib
 			$galleryId = $prefs['fgal_root_id'];
 		}
 
-		$filesPath = $options['filesPath'] ? $options['filesPath'] . DIRECTORY_SEPARATOR : $prefs['fgal_batch_dir'];
+		$filesPath = $options['filesPath'] ? $options['filesPath'] : $prefs['fgal_batch_dir'];
+		$filesPath = rtrim($filesPath, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
 
 		// for subdirToSubgal we need all existing dir galleries for the current gallery
 		$subgals = [];
