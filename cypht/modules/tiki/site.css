@@ -42,6 +42,10 @@ body {
 	margin-bottom: 0;
 }
 
+.nux_next_button {
+	margin-top: 10px;
+}
+
 .part_desc,
 .part_size,
 .download_link {
@@ -55,6 +59,16 @@ body {
 
 .btn-outline-secondary:hover {
 	text-decoration: none;
+}
+
+.folders a,
+.unread_link {
+	font-weight: normal;
+}
+
+.configured_server,
+.add_server {
+	background: transparent;
 }
 
 
@@ -83,6 +97,9 @@ body {
 	padding: 0 10px 0 50px;
 	min-height: 60px;
 	box-sizing: border-box;
+	line-height: normal;
+	font-size: 115%;
+	font-weight: 500;
 }
 
 .mobile .content_title .list_controls {
@@ -295,6 +312,12 @@ body {
 .mobile .folder_toggle {
 	display: block !important;
 	letter-spacing: normal;
+}
+
+.mobile .folder_toggle img {
+	width: 24px;
+	height: 30px;
+	margin: -5px 0 0 5px;
 }
 
 .mobile .folder_cell {
