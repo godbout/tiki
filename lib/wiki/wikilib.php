@@ -1250,6 +1250,13 @@ class WikiLib extends TikiLib
 		return ($this->is_locked($page, $info) == null || $user == $this->is_locked($page, $info)) ? true : false;
 	}
 
+	/**
+	 * Lock a wiki page
+	 *
+	 * @param $page
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 */
 	public function lock_page($page)
 	{
 		global $user, $tikilib;
@@ -1261,11 +1268,11 @@ class WikiLib extends TikiLib
 			$info = $tikilib->get_page_info($page);
 
 			$query = 'update `tiki_pages` set `user`=?, `comment`=?, `version`=? where `pageName`=?';
-			$result = $this->query($query, [$user, tra('Page locked'), $info['version'] + 1, $page]);
+			$this->query($query, [$user, tra('Page locked'), $info['version'] + 1, $page]);
 
 			$query = 'insert into `tiki_history`(`pageName`, `version`, `lastModif`, `user`, `ip`, `comment`, `data`, `description`)' .
 				' values(?,?,?,?,?,?,?,?)';
-			$result = $this->query(
+			$this->query(
 				$query,
 				[
 					$page,
@@ -1280,7 +1287,7 @@ class WikiLib extends TikiLib
 			);
 		}
 
-		return true;
+		return $result;
 	}
 
 	public function unlock_page($page)

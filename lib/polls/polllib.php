@@ -147,8 +147,8 @@ class PollLib extends PollLibShared
 	{
 		$query = "select max(`publishDate`) from `tiki_polls` where `publishDate`<=?";
 		$last = $this->getOne($query, [(int) $this->now]);
-		$query = "update `tiki_polls` set `active`=? where `publishDate`<=?";
-		return $this->query($query, ['x', (int) $this->now]);
+		$query = "update `tiki_polls` set `active`=? where `publishDate`<?";
+		return $this->query($query, ['x', (int) $last]);
 	}
 
 	/**

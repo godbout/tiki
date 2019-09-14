@@ -150,19 +150,23 @@ class PollLibShared extends TikiLib
 	 * @param $pollId
 	 * @param $optionId
 	 * @param $previous_vote
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result|bool
 	 */
 	function poll_vote($user, $pollId, $optionId, $previous_vote)
 	{
 		if (! $previous_vote || $previous_vote == 0) {
 			$query = "update `tiki_polls` set `votes`=`votes`+1 where `pollId`=?";
-			$result = $this->query($query, [(int) $pollId]);
+			$this->query($query, [(int) $pollId]);
 			$query = "update `tiki_poll_options` set `votes`=`votes`+1 where `optionId`=?";
-			$result = $this->query($query, [(int) $optionId]);
+			return $this->query($query, [(int) $optionId]);
 		} elseif ($previous_vote != $optionId) {
 			$query = "update `tiki_poll_options` set `votes`=`votes`-1 where `optionId`=?";
-			$result = $this->query($query, [(int) $previous_vote]);
+			$this->query($query, [(int) $previous_vote]);
 			$query = "update `tiki_poll_options` set `votes`=`votes`+1 where `optionId`=?";
-			$result = $this->query($query, [(int) $optionId]);
+			return $this->query($query, [(int) $optionId]);
+		} else {
+			return true;
 		}
 	}
 
@@ -351,16 +355,18 @@ class PollLibShared extends TikiLib
 	}
 
 	/**
-	 * @param $catObjectId
-	 * @param $pollId
+	 * @param        $catObjectId
+	 * @param        $pollId
 	 * @param string $title
+	 *
+	 * @return TikiDb_Pdo_Result
 	 */
 	function poll_categorize($catObjectId, $pollId, $title = '')
 	{
 		$query = "delete from `tiki_poll_objects` where `catObjectId`=? and `pollId`=?";
-		$result = $this->query($query, [(int) $catObjectId, (int) $pollId], -1, -1, false);
+		$this->query($query, [(int) $catObjectId, (int) $pollId], -1, -1, false);
 		$query = "insert into `tiki_poll_objects`(`catObjectId`,`pollId`,`title`) values(?,?,?)";
-		$result = $this->query($query, [(int) $catObjectId, (int) $pollId, $title]);
+		return $this->query($query, [(int) $catObjectId, (int) $pollId, $title]);
 	}
 
 	/**
@@ -471,6 +477,8 @@ class PollLibShared extends TikiLib
 	 * @param $user
 	 * @param $ip
 	 * @param $optionId
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
 	 */
 	function delete_vote($pollId, $user, $ip, $optionId)
 	{
@@ -485,12 +493,13 @@ class PollLibShared extends TikiLib
 			$bindvars[] = $ip;
 		}
 
-		$this->query($query, $bindvars);
+		$result = $this->query($query, $bindvars);
 		$query = 'update `tiki_poll_options` set `votes` = `votes`- 1 where `pollId`=? and `optionId`=?';
 		$this->query($query, [$pollId, $optionId]);
 		$query = 'update `tiki_polls` set `votes`=`votes`-1 where `pollId`=?';
 		$this->query($query, [$pollId]);
 		$_SESSION['votes'] = array_diff($_SESSION['votes'], ['poll' . $pollId]);
+		return $result;
 	}
 }
 $polllib = new PollLibShared;
