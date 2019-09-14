@@ -460,7 +460,7 @@
 			</div>
 			</fieldset>
 			<fieldset>
-				<legend>Delete old events</legend>
+				<legend>{tr}Delete old events{/tr}</legend>
 				<div class="form-group row">
 					<label class="col-sm-4 col-form-label" for="days">
 						{tr}Delete events older than:{/tr}
