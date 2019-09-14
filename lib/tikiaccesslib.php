@@ -326,7 +326,7 @@ class TikiAccessLib extends TikiLib
 	 * Call after checking the $_POST variable otherwise other $_GET requests will throw errors.
 	 * The related submit element (usually in a smarty template) should use the checkTimeout() onclick function
 	 *
-	 * @param string $error
+	 * @param string $error         Options include 'session', 'none', 'services' and 'page'. Used in csrfError()
 	 * @param bool   $unsetTicket   Whether to unset $_SESSION ticket after checking. Normally, should unset,
 	 *                              however infrequently it is easier to use a ticket more than once.
 	 *                              Other code should unset the ticket after the multiple uses are complete and ensure
@@ -336,8 +336,9 @@ class TikiAccessLib extends TikiLib
 	 *                        		stored in a session variable rather than being part of the $_POST. Only tickets
 	 *                        		that originated in a $_POST should be used.
 	 *
-	 * @return bool
+	 * @return bool					True if CSRF check passed, false otherwise
 	 * @throws Services_Exception
+	 * @see csrfError() for further details on error types and uses.
 	 */
 	public function checkCsrf($error = 'session', $unsetTicket = true, $ticket = '')
 	{
@@ -353,7 +354,7 @@ class TikiAccessLib extends TikiLib
 				$this->csrfError($error);
 				return false;
 			}
-		} else{
+		} else {
 			$msg = ' ' . tra('CSRF check not performed.');
 			$this->logMsg = $msg;
 			$this->userMsg = $msg;
@@ -376,10 +377,11 @@ class TikiAccessLib extends TikiLib
 	 * function will redirect to a confirmation page.
 	 *
 	 * @param string $confirmText		Optional confirmation text. Default is "Confirm action"
-	 * @param string $error				Used in csrfError
+	 * @param string $error				Options include 'session', 'none', 'services' and 'page'. Used in csrfError()
 	 * @return bool						Returns true if both checks match, false if either fails
 	 * @throws Exception
 	 * @throws Services_Exception
+	 * @see csrfError() for further details on error types and uses.
 	 */
 	public function checkCsrfForm($confirmText = '', $error = 'session')
 	{
@@ -510,10 +512,12 @@ class TikiAccessLib extends TikiLib
 	 * Check http origin/referer and provide error feedback if it doesn't match the site domain
 	 * Differs from checkCsrf() in that only the origin/referer is checked, not a ticket
 	 *
-	 * @param string $error		Used in csrfError() method
+	 * @param string $error		Options include 'session', 'none', 'services' and 'page'. Used in csrfError()
 	 * @return bool				Returns true if origin check matches, false if not
 	 * @throws Exception
 	 * @throws Services_Exception
+	 * @see csrfError() for further details on error types and uses.
+	 * @see crsfCheck() crsfCheck() or crsfCheckForm() should be used under most typial conditions.
 	 */
 	public function checkOrigin($error = 'session')
 	{
@@ -530,7 +534,7 @@ class TikiAccessLib extends TikiLib
 	 * Check CSRF ticket and provide error feedback if it doesn't match the site domain
 	 * Differs from checkCsrf() in that only the ticket is checked, not the origin/referer
 	 *
-	 * @param string $error 		Used in csrfError() method
+	 * @param string $error 		Options include 'session', 'none', 'services' and 'page'. Used in csrfError()
 	 * @param bool   $unsetTicket   Whether to unset $_SESSION ticket after checking. Normally, should unset,
 	 *                              however infrequently it is easier to use a ticket more than once.
 	 *                              Other code should unset the ticket after the multiple uses are complete and ensure
@@ -542,6 +546,7 @@ class TikiAccessLib extends TikiLib
 	 *
 	 * @return bool                Returns true if origin check matches, false if not
 	 * @throws Services_Exception
+	 * @see csrfError() for further details on error types and uses.
 	 */
 	public function checkTicket($error = 'session', $unsetTicket = true, $ticket = '')
 	{
@@ -556,7 +561,10 @@ class TikiAccessLib extends TikiLib
 
 	/**
 	 * Generate tiki log entry and user feedback for CSRF errors
-	 * @param string $error		Used in csrfError() method
+	 * @param string $error		* 'session'		The regular way of providing feedback (the anti-csrf error message) using the standard Feedback class.
+	 *							* 'services'	Used to provide feedback for ajax services.
+	 *							* 'page'		Used when the error needs to be shown on a separate page (redirects to a 400 error page).
+	 *							* 'none'		Any errors are not displayed
 	 * @throws Exception
 	 * @throws Services_Exception
 	 */
@@ -664,11 +672,12 @@ class TikiAccessLib extends TikiLib
 	 * through an outside link, for example an unsubscribe link, in which case an additional validation method should
 	 * also be applied
 	 *
-	 * @param $confirmText
-	 * @param $error
+	 * @param string $confirmText		The confirm question posed to the user.
+	 * @param string $error				Options include 'session', 'none', 'services' and 'page'. Used in csrfError()
 	 *
-	 * @return bool
+	 * @return bool						True if conformation was accepted, false otherwise
 	 * @throws Services_Exception
+	 * @see csrfError() for further details on error types and uses.
 	 */
 	public function confirmRedirect($confirmText, $error = 'session')
 	{
@@ -702,11 +711,13 @@ class TikiAccessLib extends TikiLib
 	 * @param string $confirmation_text Custom text to use if a confirmation page is brought up first
 	 * @param bool $returnHtml Set to false to not use the standard confirmation page and to not use the
 	 * 							standard error page. Suitable for popup confirmations when set to false.
-	 * @param bool $errorMsg Set to true to have the Feedback error message sent automatically
+	 * @param bool $errorMsg		Set to true to have the Feedback error message sent automatically
 	 * @return array|bool
 	 * @throws Exception
 	 * @throws Services_Exception
-	 * @deprecated. See above comment
+	 * @deprecated replaced by checkCsrfForm() and checkCsrf()
+	 * @see checkCsrfForm()			For post/get validation with conformation check
+	 * @see checkCsrf()				For post validation with no conformation check
 	 */
 	function check_authenticity($confirmation_text = '', $returnHtml = true, $errorMsg = false)
 	{
