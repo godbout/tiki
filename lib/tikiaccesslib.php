@@ -580,10 +580,10 @@ class TikiAccessLib extends TikiLib
 			//user feedback
 			switch ($error) {
 				case 'services':
-					throw new Services_Exception($this->userMsg, 400);
+					throw new Services_Exception($this->userMsg, 401);
 					break;
 				case 'page':
-					Feedback::errorPage(['mes' => $this->userMsg, 'errortype' => 400]);
+					Feedback::errorPage(['mes' => $this->userMsg, 'errortype' => 401]);
 					break;
 				case 'session':
 				default:
