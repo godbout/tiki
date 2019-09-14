@@ -18,6 +18,8 @@
 	{if $object_selector.parent}data-parent="{$object_selector.parent|escape}"{/if}
 	{if $object_selector.parentkey}data-parentkey="{$object_selector.parentkey|escape}"{/if}
 	{if $object_selector.format}data-format="{$object_selector.format|escape}"{/if}
+	{if $object_selector.format}data-format="{$object_selector.format|escape}"{/if}
+	{if $object_selector.sort}data-sort="{$object_selector.sort|escape}"{/if}
 	data-filters="{$object_selector.filter|escape}"
 	data-threshold="{$object_selector.threshold|default:$prefs.tiki_object_selector_threshold|escape}"
 	data-searchfield="{$prefs.tiki_object_selector_searchfield|escape}"

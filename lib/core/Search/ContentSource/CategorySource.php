@@ -32,6 +32,7 @@ class Search_ContentSource_CategorySource implements Search_ContentSource_Interf
 		$data = [
 			'title' => $typeFactory->sortable($item['name']),
 			'description' => $typeFactory->plaintext($item['description']),
+			'path' => $typeFactory->sortable($item['categpath']),
 
 			'searchable' => $typeFactory->identifier('n'),
 
@@ -46,6 +47,7 @@ class Search_ContentSource_CategorySource implements Search_ContentSource_Interf
 		return [
 			'title',
 			'description',
+			'path',
 
 			'searchable',
 

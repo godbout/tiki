@@ -447,6 +447,7 @@ class Services_Tracker_Controller
 				}
 				$param['parentkey'] = isset($param['parentkey']) ? $param['parentkey'] : null;
 				$param['sort_order'] = isset($param['sort_order']) ? $param['sort_order'] : null;
+				$param['format'] = isset($param['format']) ? $param['format'] : null;
 			} else {
 				$param['selector_type'] = null;
 			}

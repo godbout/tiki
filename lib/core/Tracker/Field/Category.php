@@ -31,6 +31,8 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 						'filter' => 'int',
 						'legacy_index' => 0,
 						'profile_reference' => 'category',
+						'format' => '{path}',
+						'sort' => 'path_asc',
 					],
 					'inputtype' => [
 						'name' => tr('Input Type'),
