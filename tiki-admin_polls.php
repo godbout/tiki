@@ -89,6 +89,7 @@ if (isset($_REQUEST["save"]) || isset($_REQUEST["add"])) {
 	if (isset($_REQUEST['options']) && is_array($_REQUEST['options'])) {
 		//TODO insert options into poll
 		check_ticket('admin-poll-options');
+		$optionSuccess = 0;
 		foreach ($_REQUEST['options'] as $i => $option) {
 			//continue;
 			if ($option == "") {
