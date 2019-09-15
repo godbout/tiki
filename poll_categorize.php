@@ -28,18 +28,24 @@ if ($prefs['feature_polls'] == 'y') {
 		$catObjectId = $categlib->is_categorized($cat_type, $cat_objid);
 		if (! $catObjectId) {
 			$catObjectId = $categlib->add_categorized_object($cat_type, $cat_objid, $cat_desc, $cat_name, $cat_href);
+			if (! $catObjectId) {
+				Feedback::error(tr('Error categorizing poll object'));
+			}
 		}
-		if ($polllib->has_object_polls($catObjectId) && $prefs['poll_multiple_per_object'] != 'y') {
-			$polllib->remove_object_poll($cat_type, $cat_objid);
+		if (isset($_REQUEST["poll_template"]) and $_REQUEST["poll_template"]) {
+			if ($polllib->has_object_polls($catObjectId) && $prefs['poll_multiple_per_object'] != 'y') {
+				$polllib->remove_object_poll($cat_type, $cat_objid);
+			}
+			$pollid = $polllib->create_poll($_REQUEST["poll_template"], $cat_objid . ': ' . $_REQUEST['poll_title']);
+			$result = $polllib->poll_categorize($catObjectId, $pollid, $_REQUEST['poll_title']);
+		} else {
+			$olpoll = $polllib->get_poll($_REQUEST["olpoll"]);
+			$result = $polllib->poll_categorize($catObjectId, $_REQUEST["olpoll"], $olpoll['title']);
 		}
-		$pollid = $polllib->create_poll($_REQUEST["poll_template"], $cat_objid . ': ' . $_REQUEST['poll_title']);
-		$polllib->poll_categorize($catObjectId, $pollid, $_REQUEST['poll_title']);
-	} elseif (isset($_REQUEST["olpoll"]) and $_REQUEST["olpoll"]) {
-		$catObjectId = $categlib->is_categorized($cat_type, $cat_objid);
-		if (! $catObjectId) {
-			$catObjectId = $categlib->add_categorized_object($cat_type, $cat_objid, $cat_desc, $cat_name, $cat_href);
+		if ($result && $result->numRows()) {
+			Feedback::success(tr('Poll associated with wiki page %0', htmlspecialchars($cat_objid)));
+		} else {
+			Feedback::error(tr('Poll not associated with wiki page %0', htmlspecialchars($cat_objid)));
 		}
-		$olpoll = $polllib->get_poll($_REQUEST["olpoll"]);
-		$polllib->poll_categorize($catObjectId, $_REQUEST["olpoll"], $olpoll['title']);
 	}
 }
