@@ -159,7 +159,7 @@
 										</a>
 									</action>
 									<action>
-										{self_link pollId=$channels[user].pollId _menu_text='y' _menu_icon='y' _icon_name="edit"}
+										{self_link pollId=$channels[user].pollId cookietab=1 _menu_text='y' _menu_icon='y' _icon_name="edit"}
 											{tr}Edit{/tr}
 										{/self_link}
 									</action>
