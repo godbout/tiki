@@ -35,54 +35,37 @@
 		<br>
 	{/if}
 	<div class="form-group row">
-		<div class="col-sm-12">
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="which_date" value="between"{if $which_date eq 'between'} checked="checked"{/if}>
-				<label class="form-check-label" for="which_date">{tr}Show results in this range:{/tr}</label>
+		<label class="col-sm-3 col-form-label">{tr}Votes to show{/tr}</label>
+		<div class="col-sm-9">
+			<input type="radio" name="which_date" value="between"{if $which_date eq 'between'} checked="checked"{/if} class="mr-2"><label class="col-form-label-sm">{tr}Within a date range{/tr}</label>
+			<div class="form-group row mt-2">
+				<label class="col-sm-2 col-form-label-sm">{tr}Start{/tr}</label>
+				<div class="col-sm-7">
+					{html_select_date prefix="from_" time="$vote_from_date" start_year="$start_year"}
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="form-group row">
-		<div class="col-sm-5 offset-sm-1">
-			<label>
-				{tr}Start:{/tr} {html_select_date prefix="from_" time="$vote_from_date" start_year="$start_year"}
-			</label>
-		</div>
-		<div class="col-sm-5">
-			<label>
-				{tr}End:{/tr} {html_select_date prefix="to_" time="$vote_to_date" start_year="$start_year"}
-			</label>
-		</div>
-	</div>
-	{if empty($pollId) or $poll_info.voteConsiderationSpan > 0}
-	<div class="form-group row">
-		<div class="col-sm-12">
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="which_date_all" value="all"{if $which_date eq 'all'} checked="checked"{/if}>
-				<label class="form-check-label" for="which_date_all">{tr}Show all results with no time span consideration{/tr}</label>
+			<div class="form-group row mt-2">
+				<label class="col-sm-2 col-form-label-sm">{tr}End{/tr}</label>
+				<div class="col-sm-7">
+					{html_select_date prefix="to_" time="$vote_to_date" start_year="$start_year"}
+				</div>
 			</div>
+			{if empty($pollId) or $poll_info.voteConsiderationSpan > 0}
+				<label>
+					<input type="radio" name="which_date" value="all"{if $which_date eq 'all'} checked="checked"{/if}>
+					{tr}All votes with no time span consideration{/tr}
+				</label>
+				<br>
+				<label>
+					<input type="radio" name="which_date" value="consideration"{if $which_date eq 'consideration' or $which_date eq ''} checked="checked"{/if}>
+					{tr}All votes with time span consideration{/tr}
+				</label>
+			{else}
+				<input type="radio" name="which_date" value="all"{if $which_date eq 'all' or $which_date eq ''} checked="checked"{/if} class="mr-2"><label class="col-form-label-sm">{tr}All votes{/tr}</label>
+			{/if}
+			<input type="submit" class="btn btn-primary btn-sm" name="search" value="{tr}Find{/tr}">
 		</div>
 	</div>
-	<div class="form-group row">
-		<div class="col-sm-12">
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="which_date_consideration" value="consideration"{if $which_date eq 'consideration' or $which_date eq ''} checked="checked"{/if}>
-				<label class="form-check-label" for="which_date_consideration">{tr}Show all results with time span consideration{/tr}</label>
-			</div>
-		</div>
-	</div>
-	{else}
-	<div class="form-group row">
-		<div class="col-sm-12">
-			<div class="form-check">
-				<input class="form-check-input" type="radio" name="which_date_all_dates" value="all"{if $which_date eq 'all' or $which_date eq ''} checked="checked"{/if}>
-				<label class="form-check-label" for="which_date_all_dates">{tr}Show all results{/tr}</label>
-			</div>
-		</div>
-	</div>
-	{/if}
-	<br>
-	<input type="submit" class="btn btn-primary btn-sm" name="search" value="{tr}Find results{/tr}">
 </form>
 
 {section name=x loop=$poll_info_arr}

@@ -27,7 +27,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-3 col-form-label" for="active">{tr}Active{/tr}</label>
+				<label class="col-sm-3 col-form-label" for="active">{tr}Status{/tr}</label>
 				<div class="col-sm-7">
 					<select name="active" id="active" class="form-control">
 						<option value='a' {if $info.active eq 'a'}selected="selected"{/if}>{tr}active{/tr}</option>
@@ -41,37 +41,37 @@
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Options{/tr}</label>
 				<div class="col-sm-7">
-					<a href="javascript://toggle quick options" onclick="pollsToggleQuickOptions()" class="btn btn-primary btn-sm">{tr}Toggle Quick Options{/tr}</a>
+					<a id="tikiPollsOptionsButton" href="javascript://toggle quick options" onclick="pollsToggleQuickOptions()" class="btn btn-primary btn-sm mb-2">{tr}Show Options{/tr}</a>
 				</div>
 			</div>
 			<div id="tikiPollsQuickOptions" style="display: none">
-				<div id="tikiPollsOptions">
-					<div class="form-group row">
-						{section name=opt loop=$options}
-						<div>
-							<input type="hidden" name="optionsId[]" value="{$options[opt].optionId}">
-							<input type="text" name="options[]" value="{$options[opt].title}">
-						</div>
-						{/section}
-						<div class="col-sm-7 offset-sm-3 mb-3">
-							<input type="text" name="options[]" class="form-control mb-2">
-							<a href="javascript://Add Option"	onclick="pollsAddOption()" class="btn btn-primary btn-sm">{tr}Add Option{/tr}</a>
-						</div>
+				<div>
+					{section name=opt loop=$options}
+					<div>
+						<input type="hidden" name="optionsId[]" value="{$options[opt].optionId}">
+						<input class="form-control mb-2" type="text" name="options[]" value="{$options[opt].title}">
+					</div>
+					{/section}
+					<div id="tikiPollsOptions" class="col-sm-7 col-sm-offset-3 mb-3">
+						<input type="text" name="options[]" class="form-control mb-2" placeholder="{tr}New option{/tr}">
+						<a href="javascript://Add Option"	onclick="pollsAddOption()" class="btn btn-primary btn-sm">{tr}Add Option{/tr}</a>
 					</div>
 				</div>
-				<div class="form-group row">
-					<div class="col-sm-7 offset-sm-3">
-						{remarksbox type="tip" title="{tr}Tip{/tr}"}
-							{tr}Leave box empty to delete an option.{/tr}
-						{/remarksbox}
-					</div>
+				<div class="col-sm-7 col-sm-offset-3">
+					<span class="description form-text text-muted">{tr}Leave box empty to delete an option.{/tr}</span>
 				</div>
 			</div>
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Publish Date{/tr}</label>
 				<div class="col-sm-7">
-					{html_select_date time=$info.publishDate end_year="+1" field_order=$prefs.display_field_order} {tr}at{/tr}
-					{html_select_time time=$info.publishDate display_seconds=false use_24_hours=$use_24hr_clock}
+					{if ($prefs.feature_jscalendar) == 'y'}
+						{jscalendar showtime="y" fieldname="pollPublishDate" date=$info.publishDate}
+					{else}
+						<div class="mb-2">
+							{html_select_date time=$info.publishDate end_year="+1" field_order=$prefs.display_field_order}<br>
+						</div>
+						{html_select_time time=$info.publishDate display_seconds=false use_24_hours=$use_24hr_clock}
+					{/if}
 				</div>
 			</div>
 			<div class="form-group row">
@@ -79,16 +79,14 @@
 				<div class="col-sm-7">
 					<input type="text" id="voteConsiderationSpan" name="voteConsiderationSpan" size="5" value="{$info.voteConsiderationSpan|escape}" class="form-control">
 					<div class="small-hint">
-						{tr}0 for no limit{/tr}
+						<span class="description text-muted">{tr}0 for no limit{/tr}</span>
 					</div>
 				</div>
 			</div>
-			<div class="form-group row">
-				{include file='categorize.tpl'}
-			</div>
+			{include file='categorize.tpl' labelcol="3" inputcol="7"}
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label"></label>
-				<div class="col-sm-7 offset-sm-1">
+				<div class="col-sm-8 offset-sm-1">
 					<input type="submit" class="btn btn-primary btn-sm" name="add" value="{tr}Add{/tr}">
 				</div>
 			</div>
@@ -194,9 +192,8 @@
 								<option value="{$channels[ix].pollId|escape}"{if $smarty.section.ix.first} selected="selected"{/if}>{tr}{$channels[ix].title}{/tr}</option>
 							{/if}
 						{/section}
-					</select></br>
-					{remarksbox type="tip" title="Tip"}{tr}This menu shows only Polls with 'status': "template"{/tr}{/remarksbox}
-
+					</select>
+					<span class="form-text text-muted description">{tr}Only polls with a status of "template" shown{/tr}</span>
 				</div>
 			</div>
 			<div class="form-group row">
@@ -212,21 +209,22 @@
 						{section name=ix loop=$listPages}
 							<option value="{$listPages[ix].pageName|escape}">{tr}{$listPages[ix].pageName|escape}{/tr}</option>
 						{/section}
-					</select></br>
-					{remarksbox type="tip" title="{tr}Tip{/tr}"}{tr}Use Ctrl+Click to select multiple options{/tr}{/remarksbox}
+					</select>
+					<span class="form-text text-muted description">{tr}Use Ctrl+Click to select multiple options{/tr}</span>
 				</div>
 			</div>
-			<div class="form-group row">
-				<div class="col-sm-7 offset-sm-3">
-					<div class="form-check">
-						<input type="checkbox" class="form-check-input" name="locked">
-						<label class="form-check-label" for="locked">{tr}Lock the pages{/tr}</label>
+			{if $prefs.feature_wiki_usrlock eq 'y'}
+				<div class="form-group row">
+					<label class="col-sm-3 col-form-label">{tr}Lock the pages{/tr}</label>
+					<div class="col-sm-7">
+						<input type="checkbox" class="form-control" name="locked">
 					</div>
 				</div>
-			</div>
+			{/if}
 			<div class="form-group row">
-				<div class="col-sm-7 offset-sm-3 mb-3">
-					<input type="submit" class="btn btn-primary" name="addPoll" value="{tr}Add{/tr}">
+				<label class="col-sm-3 col-form-label"></label>
+				<div class="col-sm-7">
+					<input type="submit" class="btn btn-primary" name="addPoll" value="{tr}Save{/tr}">
 				</div>
 			</div>
 		</form>
