@@ -134,7 +134,7 @@ if (isset($_REQUEST["save"]) || isset($_REQUEST["add"])) {
 	$cat_type = 'poll';
 	$cat_objid = $pid;
 	$cat_desc = substr($_REQUEST["title"], 0, 200);
-	$cat_name = $_REQUEST["title"];
+	$cat_name = $_REQUEST["title"] ? $_REQUEST["title"] : '';
 	$cat_href = "tiki-poll_results.php?pollId=" . $cat_objid;
 	include_once("categorize.php");
 }
@@ -147,6 +147,7 @@ if (isset($_REQUEST['addPoll']) && ! empty($_REQUEST['poll_template']) && ! empt
 			$info = $tikilib->get_page_info($cat_objid);
 			$cat_desc = $info['description'];
 			$cat_href = 'tiki-index.php?page=' . urlencode($cat_objid);
+			$cat_name = ! empty($_REQUEST["title"]) ? $_REQUEST["title"] : '';
 		}
 		include('poll_categorize.php');
 		if (isset($_REQUEST['locked']) && $_REQUEST['locked'] == 'on') {
