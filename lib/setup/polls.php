@@ -35,7 +35,16 @@ if (isset($_REQUEST['pollVote']) && ! empty($_REQUEST['polls_pollId'])) {
 			} else {
 				$previous_vote = $polllib->get_user_vote('poll' . $_REQUEST['polls_pollId'], $user);
 				if ($tikilib->register_user_vote($user, 'poll' . $_REQUEST['polls_pollId'], $_REQUEST['polls_optionId'], [], $prefs['feature_poll_revote'] == 'y')) {
-					$polllib->poll_vote($user, $_REQUEST['polls_pollId'], $_REQUEST['polls_optionId'], $previous_vote);
+					$result = $polllib->poll_vote($user, $_REQUEST['polls_pollId'], $_REQUEST['polls_optionId'], $previous_vote);
+					if ($result) {
+						if ($result === true) {
+							Feedback::note(tr('Your vote for this option has already been recorded'));
+						} elseif ($result->numRows()) {
+							Feedback::success(tr('Vote recorded'));
+						}
+					} else {
+						Feedback::error(tr('Vote not recorded'));
+					}
 				}
 			}
 		}
