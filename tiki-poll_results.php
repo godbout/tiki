@@ -16,7 +16,6 @@ $polllib = TikiLib::lib('poll');
 $auto_query_args = ['offset', 'pollId', 'maxRecords', 'scoresort_desc', 'scoresort_asc', 'sort_mode', 'list', 'vote_from_date', 'vote_to_date', 'which_date', 'from_Day', 'from_Month', 'from_Year', 'to_Day', 'to_Month', 'to_Year'];
 $smarty->assign('auto_args', implode(',', $auto_query_args));
 if (! empty($_REQUEST['maxRecords'])) {
-	$_REQUEST['maxRecords'] = $_REQUEST['maxRecords'];
 	$smarty->assign('maxRecords', $_REQUEST['maxRecords']);
 } else {
 	$_REQUEST['maxRecords'] = - 1;
@@ -44,7 +43,11 @@ if (isset($_REQUEST['which_date'])) {
 } else {
 	$which_date = '';
 }
-if ($tiki_p_admin == 'y' && ! empty($_REQUEST['deletevote']) && ! empty($_REQUEST['optionId'])) {
+if ($tiki_p_admin == 'y'
+	&& ! empty($_REQUEST['deletevote'])
+	&& ! empty($_REQUEST['optionId'])
+	&& $access->checkCsrfForm())
+{
 	$result = $polllib->delete_vote($_REQUEST['pollId'], $_REQUEST['user'], $_REQUEST['ip'], $_REQUEST['optionId']);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Vote deleted'));
@@ -159,7 +162,6 @@ $smarty->assign_by_ref('vote_to_date', $vote_to_date);
 $smarty->assign_by_ref('poll_info', $poll_info);
 $smarty->assign('title', $poll_info['title']);
 $smarty->assign_by_ref('options', $options);
-ask_ticket('poll-results');
 // Display the template
 $smarty->assign('mid', 'tiki-poll_results.tpl');
 $smarty->display('tiki.tpl');

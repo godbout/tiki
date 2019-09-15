@@ -24,7 +24,9 @@ if ($prefs['feature_polls'] == 'y') {
 		$_REQUEST['poll_title'] = 'rate it!';
 	}
 
-	if (isset($_REQUEST["poll_template"]) and $_REQUEST["poll_template"]) {
+	if ((isset($_REQUEST["poll_template"]) and $_REQUEST["poll_template"])
+		|| (isset($_REQUEST["olpoll"]) and $_REQUEST["olpoll"])
+	) {
 		$catObjectId = $categlib->is_categorized($cat_type, $cat_objid);
 		if (! $catObjectId) {
 			$catObjectId = $categlib->add_categorized_object($cat_type, $cat_objid, $cat_desc, $cat_name, $cat_href);

@@ -2,10 +2,15 @@
 {title help="Polls" admpage="polls"}{tr}Admin Polls{/tr}{/title}
 
 <div class="t_navbar mb-4">
-	<a href="tiki-admin_polls.php?setlast=1" class="btn btn-link" title="">{icon name="previous"} {tr}Set last poll as current{/tr} </a>
-	<a href="tiki-admin_polls.php?closeall=1" class="btn btn-link" title="">{icon name="disable"} {tr}Close all polls but last{/tr}</a>
-	<a href="tiki-admin_polls.php?activeall=1" class="btn btn-link" title="">{icon name="broadcast-tower"} {tr}Activate all polls{/tr}</a>
-	{if $pollId neq '0'}{button pollId=0 cookietab=1 class="btn btn-primary" _icon_name="create" _text="{tr}Create poll{/tr}"}{/if}
+	<form action="tiki-admin_polls.php" method="post">
+		{ticket}
+		<button type="submit" name="setlast" value="1" class="btn btn-primary">{icon name="previous"} {tr}Set last poll as current{/tr} </button>
+		<button type="submit" name="closeall" value="1" class="btn btn-primary">{icon name="disable"} {tr}Close all polls but last{/tr}</button>
+		<button type="submit" name="activeall" value="1" class="btn btn-primary">{icon name="broadcast-tower"} {tr}Activate all polls{/tr}</button>
+	</form>
+	{if $pollId neq '0'}
+		{button pollId=0 cookietab=1 _class="btn btn-link" _icon_name="create" _text="{tr}Create poll{/tr}"}
+	{/if}
 </div>
 
 {tabset}
@@ -18,6 +23,7 @@
 	{tab name=$title}
 		<h2>{$title}</h2>
 		<form action="tiki-admin_polls.php?save=1" method="post">
+			{ticket}
 			<input type="hidden" name="pollId" value="{$pollId|escape}">
 
 			<div class="form-group row">
@@ -164,7 +170,7 @@
 										{/self_link}
 									</action>
 									<action>
-										<a href="tiki-admin_polls.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].pollId}">
+										<a href="tiki-admin_polls.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].pollId}" onclick="confirmSimple(event, '{tr}Delete poll?{/tr}', '{ticket mode=get}')">
 											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 										</a>
 									</action>
@@ -183,6 +189,7 @@
 	{tab name="{tr}Add poll to pages{/tr}"}
 		<h2>{tr}Add poll to pages{/tr}</h2>
 		<form action="tiki-admin_polls.php" method="post" class="form-horizontal">
+			{ticket}
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label">{tr}Poll{/tr}</label>
 				<div class="col-sm-7 mb-2">

@@ -19,6 +19,7 @@
 
 <h2>{if $optionId eq ''}{tr}Add poll option{/tr}{else}{tr}Edit poll option{/tr}{/if}</h2>
 <form action="tiki-admin_poll_options.php" method="post">
+	{ticket}
 	<input type="hidden" name="optionId" value="{$optionId|escape}">
 	<input type="hidden" name="pollId" value="{$pollId|escape}">
 

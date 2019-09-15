@@ -24,8 +24,7 @@ if (! isset($_REQUEST["pollId"])) {
 	$_REQUEST["pollId"] = 0;
 }
 $smarty->assign('pollId', $_REQUEST["pollId"]);
-if (isset($_REQUEST["setlast"])) {
-	check_ticket('admin-polls');
+if (isset($_REQUEST["setlast"]) && $access->checkCsrf()) {
 	$result = $polllib->set_last_poll();
 	if ($result) {
 		if ($result->numRows()) {
@@ -37,8 +36,7 @@ if (isset($_REQUEST["setlast"])) {
 		Feedback::error(tr('Last poll failed to set as current'));
 	}
 }
-if (isset($_REQUEST["closeall"])) {
-	check_ticket('admin-polls');
+if (isset($_REQUEST["closeall"]) && $access->checkCsrf()) {
 	$result = $polllib->close_all_polls();
 	if ($result) {
 		if ($numRows = $result->numRows()) {
@@ -51,8 +49,7 @@ if (isset($_REQUEST["closeall"])) {
 		Feedback::error(tr('Polls not closed'));
 	}
 }
-if (isset($_REQUEST["activeall"])) {
-	check_ticket('admin-polls');
+if (isset($_REQUEST["activeall"]) && $access->checkCsrf()) {
 	$result = $polllib->active_all_polls();
 	if ($result) {
 		if ($numRows = $result->numRows()) {
@@ -65,8 +62,7 @@ if (isset($_REQUEST["activeall"])) {
 		Feedback::error(tr('Polls not activated'));
 	}
 }
-if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
+if (isset($_REQUEST["remove"]) && $access->checkCsrfForm()) {
 	$result = $polllib->remove_poll($_REQUEST["remove"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Poll deleted'));
@@ -74,8 +70,7 @@ if (isset($_REQUEST["remove"])) {
 		Feedback::error(tr('Poll not deleted'));
 	}
 }
-if (isset($_REQUEST["save"]) || isset($_REQUEST["add"])) {
-	check_ticket('admin-polls');
+if ((isset($_REQUEST["save"]) || isset($_REQUEST["add"])) && $access->checkCsrf()) {
 	if ($prefs['feature_jscalendar'] == 'y' && ! empty($_REQUEST['pollPublishDate'])) {
 		$publishDate = (int) $_REQUEST['pollPublishDate'];
 	} else {
@@ -92,7 +87,6 @@ if (isset($_REQUEST["save"]) || isset($_REQUEST["add"])) {
 	$position = 0;
 	if (isset($_REQUEST['options']) && is_array($_REQUEST['options'])) {
 		//TODO insert options into poll
-		check_ticket('admin-poll-options');
 		$optionSuccess = 0;
 		foreach ($_REQUEST['options'] as $i => $option) {
 			//continue;
@@ -138,7 +132,11 @@ if (isset($_REQUEST["save"]) || isset($_REQUEST["add"])) {
 	$cat_href = "tiki-poll_results.php?pollId=" . $cat_objid;
 	include_once("categorize.php");
 }
-if (isset($_REQUEST['addPoll']) && ! empty($_REQUEST['poll_template']) && ! empty($_REQUEST['pages'])) {
+if (isset($_REQUEST['addPoll'])
+	&& ! empty($_REQUEST['poll_template'])
+	&& ! empty($_REQUEST['pages'])
+	&& $access->checkCsrf())
+{
 	$wikilib = TikiLib::lib('wiki');
 	$categlib = TikiLib::lib('categ');
 	$cat_type = 'wiki page';
@@ -215,7 +213,6 @@ $smarty->assign_by_ref('listPages', $listPages['data']);
 $cat_type = 'poll';
 $cat_objid = $_REQUEST["pollId"];
 include_once("categorize_list.php");
-ask_ticket('admin-polls');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template

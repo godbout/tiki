@@ -134,8 +134,22 @@
 					<td class="date">{$list_votes[ix].time|tiki_short_date}</td>
 					{if $tiki_p_admin eq 'y'}
 						<td class="action">
-							{self_link deletevote=1 user=$list_votes[ix].user ip=$list_votes[ix].ip optionId=$list_votes[ix].optionId _icon_name='remove' _class='tips' _title=":{tr}Remove{/tr}"}
-							{/self_link}
+							<form>
+								{ticket}
+								<input type="hidden" name="user" value="{$list_votes[ix].user}">
+								<input type="hidden" name="ip" value="{$list_votes[ix].ip}">
+								<input type="hidden" name="optionId" value="{$list_votes[ix].optionId}">
+								<button
+									type="submit"
+									name="deletevote"
+									value="1"
+									class="btn btn-link p-0 tips"
+									title=":{tr}Remove{/tr}"
+									onclick="confirmSimple(event, '{tr}Delete vote?{/tr}')"
+								>
+									{icon name="remove"}
+								</button>
+							</form>
 						</td>
 					{/if}
 				</tr>
