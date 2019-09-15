@@ -32,12 +32,12 @@ if (isset($_REQUEST['which_date'])) {
 		if (! empty($_REQUEST['vote_from_date'])) {
 			$vote_from_date = $_REQUEST['vote_from_date'];
 		} else {
-			$vote_from_date = TikiLib::make_time(0, 0, 0, $_REQUEST['from_Month'], $_REQUEST['from_Day'], $_REQUEST['from_Year']);
+			$vote_from_date = $polllib->make_time(0, 0, 0, $_REQUEST['from_Month'], $_REQUEST['from_Day'], $_REQUEST['from_Year']);
 		}
 		if (! empty($_REQUEST['vote_to_date'])) {
 			$vote_to_date = $_REQUEST['vote_to_date'];
 		} else {
-			$vote_to_date = TikiLib::make_time(23, 59, 59, $_REQUEST['to_Month'], $_REQUEST['to_Day'], $_REQUEST['to_Year']);
+			$vote_to_date = $polllib->make_time(23, 59, 59, $_REQUEST['to_Month'], $_REQUEST['to_Day'], $_REQUEST['to_Year']);
 		}
 	}
 	$smarty->assign_by_ref('which_date', $which_date);
