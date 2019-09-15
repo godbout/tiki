@@ -6,7 +6,7 @@
 	{button href="tiki-old_polls.php" class="btn btn-primary" _text="{tr}All Polls{/tr}"}
 	{button href="tiki-poll_results.php" class="btn btn-primary" _text="{tr}Top-Voted Polls{/tr}"}
 	{if $tiki_p_admin_polls eq 'y'}
-		{if empty($pollId)}{button href="tiki-admin_polls.php" _text="{tr}Admin Polls{/tr}"}{else}{button href="tiki-admin_polls.php?pollId=$pollId" _text="{tr}Edit Poll{/tr}"}{/if}
+		{if empty($pollId)}{button href="tiki-admin_polls.php" _text="{tr}Admin Polls{/tr}"}{else}{button href="tiki-admin_polls.php?pollId=$pollId&cookietab=1" _text="{tr}Edit Poll{/tr}"}{/if}
 	{/if}
 </div>
 
