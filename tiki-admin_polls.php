@@ -26,19 +26,53 @@ if (! isset($_REQUEST["pollId"])) {
 $smarty->assign('pollId', $_REQUEST["pollId"]);
 if (isset($_REQUEST["setlast"])) {
 	check_ticket('admin-polls');
-	$polllib->set_last_poll();
+	$result = $polllib->set_last_poll();
+	if ($result) {
+		if ($result->numRows()) {
+			Feedback::success(tr('Last poll set as current'));
+		} else {
+			Feedback::note(tr('No changes made, last poll already set as current'));
+		}
+	} else {
+		Feedback::error(tr('Last poll failed to set as current'));
+	}
 }
 if (isset($_REQUEST["closeall"])) {
 	check_ticket('admin-polls');
-	$polllib->close_all_polls();
+	$result = $polllib->close_all_polls();
+	if ($result) {
+		if ($numRows = $result->numRows()) {
+			$msg = $numRows == 1 ? tr('One poll closed') : tr('%0 polls closed', $numRows);
+			Feedback::success($msg);
+		} else {
+			Feedback::note(tr('No changes made, polls already closed'));
+		}
+	} else {
+		Feedback::error(tr('Polls not closed'));
+	}
 }
 if (isset($_REQUEST["activeall"])) {
 	check_ticket('admin-polls');
-	$polllib->active_all_polls();
+	$result = $polllib->active_all_polls();
+	if ($result) {
+		if ($numRows = $result->numRows()) {
+			$msg = $numRows == 1 ? tr('One poll activated') : tr('%0 polls activated', $numRows);
+			Feedback::success($msg);
+		} else {
+			Feedback::note(tr('No changes made, polls already activated'));
+		}
+	} else {
+		Feedback::error(tr('Polls not activated'));
+	}
 }
 if (isset($_REQUEST["remove"])) {
 	$access->check_authenticity();
-	$polllib->remove_poll($_REQUEST["remove"]);
+	$result = $polllib->remove_poll($_REQUEST["remove"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Poll deleted'));
+	} else {
+		Feedback::error(tr('Poll not deleted'));
+	}
 }
 if (isset($_REQUEST["save"]) || isset($_REQUEST["add"])) {
 	check_ticket('admin-polls');
@@ -59,12 +93,37 @@ if (isset($_REQUEST["save"]) || isset($_REQUEST["add"])) {
 			//continue;
 			if ($option == "") {
 				if (isset($_REQUEST['optionsId']) && isset($_REQUEST['optionsId'][$i])) {
-					$polllib->remove_poll_option($_REQUEST['optionsId'][$i]);
+					$result = $polllib->remove_poll_option($_REQUEST['optionsId'][$i]);
 				}
-				continue;
+				if ($result && $result->numRows()) {
+					$optionSuccess++;
+					// unset $result to avoid false counts
+					unset($result);
+				}
+			} else {
+				$oid = isset($_REQUEST['optionsId']) && isset($_REQUEST['optionsId'][$i]) ? $_REQUEST['optionsId'][$i] : null;
+				$result = $polllib->replace_poll_option($pid, $oid, $option, $position++);
+				if ($result && $result->numRows()) {
+					$optionSuccess++;
+					// unset $result to avoid false counts
+					unset($result);
+				}
 			}
-			$oid = isset($_REQUEST['optionsId']) && isset($_REQUEST['optionsId'][$i]) ? $_REQUEST['optionsId'][$i] : null;
-			$polllib->replace_poll_option($pid, $oid, $option, $position++);
+		}
+		if ($pid) {
+			if ($optionSuccess) {
+				$msg = $optionSuccess === 1
+					? tr('Poll saved with one option added or changed (including only changing the option position)')
+					: tr('Poll saved with %0 options added or changed (including only changing the option position)',
+						$optionSuccess
+					);
+				Feedback::success($msg);
+			} else {
+				$msg = tr('Poll saved with no options added or changed');
+			}
+			Feedback::success($msg);
+		} else {
+			Feedback::error(tr('Poll not saved'));
 		}
 	}
 	$cat_type = 'poll';
@@ -86,7 +145,16 @@ if (isset($_REQUEST['addPoll']) && ! empty($_REQUEST['poll_template']) && ! empt
 		}
 		include('poll_categorize.php');
 		if (isset($_REQUEST['locked']) && $_REQUEST['locked'] == 'on') {
-			$wikilib->lock_page($cat_objid);
+			$result = $wikilib->lock_page($cat_objid);
+			if ($result) {
+				if ($result->numRows()) {
+					Feedback::success(tr('Page %0 locked', $cat_objid));
+				} else {
+					Feedback::note(tr('Page %0 already locked', $cat_objid));
+				}
+			} else {
+				Feedback::error(tr('Page %0 not locked', $cat_objid));
+			}
 		}
 	}
 }
