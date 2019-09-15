@@ -45,7 +45,12 @@ if (isset($_REQUEST['which_date'])) {
 	$which_date = '';
 }
 if ($tiki_p_admin == 'y' && ! empty($_REQUEST['deletevote']) && ! empty($_REQUEST['optionId'])) {
-	$polllib->delete_vote($_REQUEST['pollId'], $_REQUEST['user'], $_REQUEST['ip'], $_REQUEST['optionId']);
+	$result = $polllib->delete_vote($_REQUEST['pollId'], $_REQUEST['user'], $_REQUEST['ip'], $_REQUEST['optionId']);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Vote deleted'));
+	} else {
+		Feedback::error(tr('Vote not deleted'));
+	}
 }
 
 $pollIds = [];
