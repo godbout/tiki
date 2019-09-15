@@ -76,11 +76,15 @@ if (isset($_REQUEST["remove"])) {
 }
 if (isset($_REQUEST["save"]) || isset($_REQUEST["add"])) {
 	check_ticket('admin-polls');
-	//Convert 12-hour clock hours to 24-hour scale to compute time
-	if (! empty($_REQUEST['Time_Meridian'])) {
-		$_REQUEST['Time_Hour'] = date('H', strtotime($_REQUEST['Time_Hour'] . ':00 ' . $_REQUEST['Time_Meridian']));
+	if ($prefs['feature_jscalendar'] == 'y' && ! empty($_REQUEST['pollPublishDate'])) {
+		$publishDate = (int) $_REQUEST['pollPublishDate'];
+	} else {
+		//Convert 12-hour clock hours to 24-hour scale to compute time
+		if (! empty($_REQUEST['Time_Meridian'])) {
+			$_REQUEST['Time_Hour'] = date('H', strtotime($_REQUEST['Time_Hour'] . ':00 ' . $_REQUEST['Time_Meridian']));
+		}
+		$publishDate = $tikilib->make_time($_REQUEST["Time_Hour"], $_REQUEST["Time_Minute"], 0, $_REQUEST["Date_Month"], $_REQUEST["Date_Day"], $_REQUEST["Date_Year"]);
 	}
-	$publishDate = $tikilib->make_time($_REQUEST["Time_Hour"], $_REQUEST["Time_Minute"], 0, $_REQUEST["Date_Month"], $_REQUEST["Date_Day"], $_REQUEST["Date_Year"]);
 	if (! isset($_REQUEST['voteConsiderationSpan'])) {
 		$_REQUEST['voteConsiderationSpan'] = 0;
 	}
