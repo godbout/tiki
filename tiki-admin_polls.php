@@ -150,7 +150,7 @@ if (isset($_REQUEST['addPoll']) && ! empty($_REQUEST['poll_template']) && ! empt
 			$cat_name = ! empty($_REQUEST["title"]) ? $_REQUEST["title"] : '';
 		}
 		include('poll_categorize.php');
-		if (isset($_REQUEST['locked']) && $_REQUEST['locked'] == 'on') {
+		if (isset($_REQUEST['locked']) && $_REQUEST['locked'] == 'on' && $prefs['feature_wiki_usrlock'] == 'y') {
 			$result = $wikilib->lock_page($cat_objid);
 			if ($result) {
 				if ($result->numRows()) {
