@@ -38,7 +38,7 @@ class VendorSecurityCommand extends Command
 	 * @param array           $vendors		Vendors and security advisories to render
 	 * @param string          $workingDir	If the composer working dir is outside the root dir, specify
 	 */
-	protected function renderAdvisories (OutputInterface &$output, array $vendors, string $workingDir = ''): void
+	protected function renderAdvisories(OutputInterface $output, array $vendors, string $workingDir = ''): void
 	{
 		if (empty($vendors)) {
 			$output->writeln('No Advisories');
