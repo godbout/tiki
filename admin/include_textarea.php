@@ -61,18 +61,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			unlink($file);
 		}
 	}
-	if (isset($_POST['delete']) && $access->checkCsrf()) {
-		if (! is_array($_POST['enabled'])) {
-			$_POST['enabled'] = [];
-		}
-		foreach ($_POST['enabled'] as $name) {
-			WikiPlugin_Negotiator_Wiki_Alias::delete($name);
-		}
+	if (! empty($_POST['alias_delete']) && $access->checkCsrf()) {
+		// TODO add confirmation
+		WikiPlugin_Negotiator_Wiki_Alias::delete($_POST['alias_delete']);
 		$pluginsAlias = WikiPlugin_Negotiator_Wiki_Alias::getList();
 	}
 	if (!empty($_REQUEST['plugin_alias'] && $access->checkCsrf())
 		&& !in_array($_POST['plugin_alias'], $pluginsReal)
-		&& (getCookie('admin_textarea', 'tabs') == '#contentadmin_textarea-3')
+		&& (getCookie('admin_textarea', 'tabs') == '#contentadmin_textarea-plugin_alias')
 	) {
 		// tab=3 is plugins alias tab (TODO improve)
 		$info = [
@@ -212,7 +208,32 @@ if (isset($_REQUEST['plugin_alias'])
 	$smarty->assign('plugin_admin', $pluginInfo);
 	$cookietab = 3;
 } else {
-	$smarty->assign('plugin_admin', []);
+	$emptyPluginInfo = [];
+	$emptyPluginInfo['description']['params']['__NEW__'] = [
+		'name' => '',
+		'description' => '',
+		'required' => '',
+		'safe' => '',
+	];
+
+	$emptyPluginInfo['body']['params']['__NEW__'] = [
+		'encoding' => '',
+		'input' => '',
+		'default' => '',
+	];
+
+	$emptyPluginInfo['params']['__NEW__'] = [
+		'pattern' => '',
+		'params'  => [
+			'__NEW__' => [
+				'encoding' => '',
+				'input'    => '',
+				'default'  => '',
+			],
+		],
+	];
+
+	$smarty->assign('plugin_admin', $emptyPluginInfo);
 }
 $smarty->assign('plugins_alias', $pluginsAlias);
 $smarty->assign('plugins_real', $pluginsReal);
