@@ -222,381 +222,322 @@
 			</fieldset>
 		{/tab}
 
-		{tab name="{tr}Plugin Aliases{/tr}"}
+		{tab name='{tr}Plugin Aliases{/tr}' key='plugin_alias'}
 			<br>
 			{remarksbox type="note" title="{tr}About plugin aliases{/tr}"}
 				{tr}Tiki plugin aliases allow you to define your own custom configurations of existing plugins.{/tr}<br>
 				{tr}Find out more here:{/tr}{help url="Plugin+Alias"}
 			{/remarksbox}
-			{if $prefs.feature_jquery neq 'y'}
+			{if $prefs.javascript_enabled neq 'y'}
 				{remarksbox type="tip" title="{tr}Tip{/tr}"}
-					{tr}This page is designed to work with JQuery{/tr} <a href="tiki-admin.php?page=features" class="alert-link">{icon name="next"}</a>
+					{tr}This page is designed to work with JavaScript{/tr}
 				{/remarksbox}
 			{/if}
 
-			{* JQuery JS to set up page *}
-			{jq}
-				$('#contentadmin_textarea-3 legend > .toggle').click(function(event, hidefirst) {
-					var legend = $(this).parent()[0];
-					if ($(this).hasClass('collapsed')) {
-						$(legend).find('.expanded.toggle').show();
-						$(this).hide();
-						if (hidefirst) {
-							$(legend).nextAll(":not(.hidefirst)").show('fast')
-						} else {
-							$(legend).nextAll().show('fast')
-						}
-					} else {
-						$(legend).find('.collapsed.toggle').show();
-						$(this).hide();
-						$(legend).nextAll(":not(.stayopen)").hide('fast')
-					}
-					return false;
-				}).css("cursor", "pointer").nextAll(":not(.stayopen)").hide();
-				{{if $plugin_admin}{* show gen info and simple params if plugin_admin selected *}}
-				$('#pluginalias_general legend').trigger('click');
-				$('#pluginalias_simple_args legend').trigger('click'{{if isset($plugin_admin.params)}, true{/if}});
-				$('#pluginalias_body legend').trigger('click'{{if isset($plugin_admin.body.params)}, true{/if}});
-				$('#pluginalias_add').click(function() {
-					window.location.href = window.location.href.replace(/plugin_alias=[^&]*/, 'plugin_alias_new=true');
-				});
-				{{elseif $plugins_alias}{* or if no plugin_admin and a nice list *}}
-				$('#pluginalias_general').hide();
-				$('#pluginalias_simple_args').hide();
-				$('#pluginalias_doc').hide();
-				$('#pluginalias_body').hide();
-				$('#pluginalias_composed_args').hide();
-				$('#pluginalias_add').click(function() {
-					$('#pluginalias_general legend')[0].showing = false;
-					$('#pluginalias_general legend').trigger('click');
-					$('#pluginalias_simple_args legend')[0].showing = false;
-					$('#pluginalias_simple_args legend').trigger('click');
-					$('#pluginalias_body legend')[0].showing = false;
-					$('#pluginalias_body legend').trigger('click');
-
-					$('#pluginalias_general').show();
-					$('#pluginalias_simple_args').show();
-					$('#pluginalias_doc').show();
-					$('#pluginalias_body').show();
-					$('#pluginalias_composed_args').show();
-
-					$('#pluginalias_available legend')[0].showing = true;
-					$('#pluginalias_available legend').trigger('click');
-
-					return false;
-				});
-				{{else}{* or new view if no plugin_admin and no list *}}
-					$('#pluginalias_general legend').trigger('click');
-					$('#pluginalias_simple_args legend').trigger('click');
-					$('#pluginalias_body legend').trigger('click');
-				{{/if}}
-				if (window.location.href.indexOf('plugin_alias_new=true') > -1) {
-					$('#pluginalias_add').trigger('click');
-				}
-			{/jq}
-
-			{* from tiki-admin-include-plugins.tpl *}
-			{if $plugins_alias|@count}
-				<fieldset id="pluginalias_available">
-					<legend>
-						<strong>{tr}Available alias{/tr}</strong>{icon name='expanded' iclass='expanded toggle'}{icon name='collapsed' iclass='collapsed toggle' istyle='display:none'}{icon name="add" id="pluginalias_add" iclass='stayopen'}
-					</legend>
-					<div class="input_submit_container">
-						{foreach from=$plugins_alias item=name}
-							{assign var=full value='wikiplugin_'|cat:$name}
-							<input type="checkbox" name="enabled[]" value="{$name|escape}" {if $prefs[$full] eq 'y'}checked="checked"{/if}>
-							<a href="tiki-admin.php?page=textarea&amp;plugin_alias={$name|escape}">{$name|escape}</a>
-						{/foreach}
-						<div align="center">
-							<input
-								type="submit"
-								class="btn btn-primary btn-sm"
-								name="enable"
-								value="{tr}Enable Plugins{/tr}"
-							>
-							<input
-								type="submit"
-								class="btn btn-primary btn-sm"
-								name="delete"
-								value="{tr}Delete Plugins{/tr}"
-							>
-						</div>
-						{remarksbox type="tip" title="{tr}Tip{/tr}"}
-							{tr}Click on the plugin name to edit it.{/tr} {tr}Click on the + icon to add a new one.{/tr}
-						{/remarksbox}
-					</div>
-				</fieldset>
-				{jq}$('#pluginalias_available legend').trigger('click');{/jq}
-			{/if}
-
-			<fieldset id="pluginalias_general">
-				<legend>
-					{tr}General information{/tr}{icon name='expanded' iclass='expanded toggle'}{icon name='collapsed' iclass='collapsed toggle' istyle='display:none'}
-				</legend>
-
-				<div class="adminoptionbox form-group row">
-					<label class="col-form-label col-sm-4" for="plugin_alias">
-						{tr}Plugin name{/tr}
-					</label>
-					<div class="col-sm-8">
-						{if $plugin_admin}
-							<input type="hidden" class="form-control" name="plugin_alias" id="plugin_alias" value="{$plugin_admin.plugin_name|escape}">
-							<strong>{$plugin_admin.plugin_name|escape}</strong>
-						{else}
-							<input type="text" class="form-control" name="plugin_alias" id="plugin_alias">
-						{/if}
-					</div>
-				</div><br>
-				<div class="adminoptionbox form-group row">
-					<label class="col-form-label col-sm-4" for="implementation">
-						{tr}Base plugin{/tr}
-					</label>
-					<div class="col-sm-8">
-						<select class="form-control" name="implementation" id="implementation">
-							{foreach from=$plugins_real item=base}
-								<option value="{$base|escape}" {if isset($plugin_admin.implementation) and $plugin_admin.implementation eq $base}selected="selected"{/if}>
-									{$base|escape}
-								</option>
-							{/foreach}
-						</select>
-					</div>
-				</div><br>
-				<div class="adminoptionbox form-group row">
-					<label class="col-form-label col-sm-4" for="plugin_name">
-						{tr}Name{/tr}
-					</label>
-					<div class="col-sm-8">
-						<input class="form-control" type="text" name="name" id="plugin_name" value="{$plugin_admin.description.name|default:''|escape}">
-					</div>
-				</div><br>
-				<div class="adminoptionbox form-group row">
-					<label class="col-form-label col-sm-4" for="plugin_description">
-						{tr}Description{/tr}
-					</label>
-					<div class="col-sm-8">
-						<input class="form-control" type="text" name="description" id="plugin_description" value="{$plugin_admin.description.description|default:''|escape}" class="width_40em">
-					</div>
-				</div><br>
-				<div class="adminoptionbox form-group row">
-					<label class="col-form-label col-sm-4" for="plugin_body">
-						{tr}Body label{/tr}
-					</label>
-					<div class="col-sm-8">
-						<input class="form-control" type="text" name="body" id="plugin_body" value="{$plugin_admin.description.body|default:''|escape}">
-					</div>
-				</div><br>
-				<div class="adminoptionbox form-group row">
-					<label class="col-form-label col-sm-4" for="plugin_deps">
-						{tr}Dependencies{/tr}
-					</label>
-					<div class="col-sm-8">
-						<input class="form-control" type="text" name="prefs" id="plugin_deps" value="{if !empty($plugin_admin.description.prefs)}{','|implode:$plugin_admin.description.prefs}{/if}">
-					</div>
-				</div><br>
-				<div class="adminoptionbox form-group row">
-					<label class="col-form-label col-sm-4" for="filter">
-						{tr}Filter{/tr}
-					</label>
-					<div class="col-sm-8">
-						<input class="form-control" type="text" id="filter" name="filter" value="{$plugin_admin.description.filter|default:'xss'|escape}">
-					</div>
-				</div><br>
-				<div class="adminoptionbox form-group row">
-					<label class="col-form-label col-sm-4" for="validate">
-						{tr}Validation{/tr}
-					</label>
-					<div class="col-sm-8">
-						<select class="form-control" name="validate" id="validate">
-							{foreach from=','|explode:'none,all,body,arguments' item=val}
-								<option value="{$val|escape}" {if !empty($plugin_admin.description.validate) and $plugin_admin.description.validate eq $val}selected="selected"{/if}>
-									{$val|escape}
-								</option>
-							{/foreach}
-						</select>
-					</div>
-				</div><br>
-				<div class="adminoptionbox form-group row">
-					<label class="col-sm-4" for="inline">{tr}Inline (no plugin edit UI){/tr}</label>
-					<div class="col-sm-8">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" id="inline" name="inline" value="1" {if !empty($plugin_admin.description.inline)}checked="checked"{/if}>
-						</div>
-					</div>
-				</div><br>
-			</fieldset><br>
-
-			<fieldset id="pluginalias_simple_args">
-				<legend>
-					{tr}Simple plugin arguments{/tr}{icon name='expanded' iclass='expanded toggle'}{icon name='collapsed' iclass='collapsed toggle' istyle='display:none'}{icon name="add" iclass='stayopen' id="pluginalias_simple_add"}
-				</legend>
-				{jq}
-					$('#pluginalias_simple_add').click(function() {
-							var me = $('#pluginalias_simple_new'), clone = me.clone(), index = me.parent().children().size();
-							clone.removeAttr('id');
-
-							clone.find(':input').each(function () {
-								$(this).attr('name', $(this).attr('name').replace('__NEW__', index));
-								$(this).attr('id', $(this).attr('id').replace('__NEW__', index));
-							}).val('');
-							clone.find('label').each(function () {
-								$(this).attr('for', $(this).attr('for').replace('__NEW__', index));
-							});
-							clone.show();
-							me.parent().append(clone);
-
-						return false;
-					});
-					{{if !empty($plugin_admin.params)}}
-					$('#pluginalias_doc legend').trigger('click'{{if isset($plugin_admin.description.params)}, true{/if}});
-					$('#pluginalias_simple_new').hide();
-					{{/if}}
-				{/jq}
-				<div class="adminoptionbox form-group row">
-					<label class="col-form-label col-sm-4 offset-sm-4 text-left">
-						{tr}Argument{/tr}
-					</label>
-					<label class="col-form-label col-sm-4 text-left">
-						{tr}Default{/tr}
-					</label>
-				</div>
-				{if !empty($plugin_admin.params)}
-					{foreach from=$plugin_admin.params key=token item=value}
-							{if ! $value|is_array}
-								<div class="adminoptionbox form-group row">
-									<div class="col-sm-4 offset-sm-4">
-										<input class="form-control" type="text" name="sparams[{$token|escape}][token]" id="sparams_{$token|escape}_token" value="{$token|escape}">
-									</div>
-									<div class="col-sm-4">
-										<input class="form-control" type="text" name="sparams[{$token|escape}][default]" id="sparams_{$token|escape}_default" value="{$value|escape}">
-									</div>
-								</div>
-							{/if}
-						{/foreach}
-				{/if}
-				<div class="adminoptionbox hidefirst" id="pluginalias_simple_new">
-					<div class="adminoptionlabel form-group row">
-						<div class="col-sm-4 offset-sm-4">
-							<input class="form-control" type="text" name="sparams[__NEW__][token]" id="sparams__NEW__token" value="">
-						</div>
-						<div class="col-sm-4">
-							<input class="form-control" type="text" name="sparams[__NEW__][default]" id="sparams__NEW__default" value="">
-						</div>
-					</div>
-				</div>
-			</fieldset><br>
-
-			<fieldset id="pluginalias_doc">
-				<legend>
-					{tr}Plugin parameter documentation{/tr}{icon name='expanded' iclass='expanded toggle'}{icon name='collapsed' iclass='collapsed toggle' istyle='display:none'}{icon name="add" id="pluginalias_doc_add" iclass='stayopen'}
-				</legend>
-				{jq}$('#pluginalias_doc_add').click(function() { $('#pluginalias_doc_new').toggle(); return false; });{/jq}
-
-				{if !empty($plugin_admin.description.params)}
-					{foreach from=$plugin_admin.description.params key=token item=detail}
-						<div class="clearfix adminoptionbox{if $token eq '__NEW__'} hidefirst" id="pluginalias_doc_new{/if}">
-							<div class="adminnestedbox form-group row">
-								<div class="adminoptionlabel form-group row">
-									<label class="col-form-label col-sm-4" for="input[{$token|escape}][token]">
-										{tr}Parameter{/tr}
-									</label>
-									<div class="col-sm-8">
-										<input class="form-control" type="text" name="input[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
-									</div>
-								</div>
-								<div class="adminoptionlabel form-group row">
-									<label class="col-form-label col-sm-4" for="input[{$token|escape}][name]"
-											>{tr}Name{/tr}
-									</label>
-									<div class="col-sm-8">
-										<input class="form-control" type="text" name="input[{$token|escape}][name]" value="{$detail.name|escape}">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label class="col-form-label col-sm-4" for="input[{$token|escape}][description]">
-										{tr}Description{/tr}
-									</label>
-									<div class="col-sm-8">
-										<input class="form-control" type="text" name="input[{$token|escape}][description]" value="{$detail.description|escape}" class="width_30em">
-									</div>
-								</div>
-								<div class="adminoptionlabel form-group row">
-									<label class="col-form-label col-sm-4" for="input[{$token|escape}][required]">
-										{tr}Required{/tr}
-									</label>
-									<div class="col-sm-8">
-										<input class="form-control" type="checkbox" name="input[{$token|escape}][required]" value="y"{if $detail.required} checked="checked"{/if}>
-									</div>
-								</div>
-								<div class="adminoptionlabel form-group row">
-									<label class="col-form-label col-sm-4" for="input[{$token|escape}][safe]">
-										{tr}Safe{/tr}
-									</label>
-									<div class="col-sm-8">
-										<input class="form-control" type="checkbox" name="input[{$token|escape}][safe]" value="y"{if $detail.safe} checked="checked"{/if}>
-									</div>
-								</div>
-								<div class="adminoptionlabel form-group row">
-									<label class="col-form-label col-sm-4" for="input[{$token|escape}][filter]">
-										{tr}Filter{/tr}
-									</label>
-									<div class="col-sm-8">
-										<input class="form-control" type="text" name="input[{$token|escape}][filter]" value="{$detail.filter|default:xss|escape}">
-									</div>
-								</div>
+			{tabset name='plugin_alias'}
+				{tab name='{tr}Available alias{/tr}'}
+					<fieldset id="pluginalias_available">
+						<legend>
+							<strong>{tr}Available alias{/tr}</strong>
+						</legend>
+						<div class="input_submit_container">
+							<table class="table table-striped">
+								<tr>
+									<th></th>
+									<th>{tr}Plugin Alias{/tr}</th>
+									<th>{tr}Edit{/tr}</th>
+									<th>{tr}Delete{/tr}</th>
+								</tr>
+								{foreach $plugins_alias as $name}
+									<tr>
+										<td>
+											<input type="checkbox" name="enabled[]" value="{$name|escape}" {if $prefs['wikiplugin_'|cat:$name] eq 'y'}checked="checked"{/if}>
+										</td>
+										<td>
+											<a href="tiki-admin.php?page=textarea&amp;plugin_alias={$name|escape}">{$name|escape}</a>
+										</td>
+										<td>
+											{icon name='pencil' href='tiki-admin.php?page=textarea&plugin_alias='|cat:$name|escape}
+										</td>
+										<td>
+											{* TODO add confirmation *}
+											<button type="submit" name="alias_delete" value="{$name|escape}" class="btn btn-link text-danger" style="cursor: pointer">
+												{icon name='delete'}
+											</button>
+										</td>
+									</tr>
+								{foreachelse}
+									{norecords _colspan=3}
+								{/foreach}
+							</table>
+							<div class="submit">
+								{if $plugin_admin}
+									{button name='add' id='pluginalias_add' _text='Create' _class='btn btn-info' _script='tiki-admin.php?page=textarea'}
+								{/if}
+								<input type="submit" class="btn btn-primary" name="enable" value="{tr}Enable Checked Plugins{/tr}">
 							</div>
 						</div>
-						<hr>
-					{/foreach}
+					</fieldset>
+					{jq}$('#pluginalias_available legend').trigger('click');{/jq}
+				{/tab}
+				{if not empty($smarty.request.plugin_alias)}
+					{$tabname='Edit Alias'}
+					{jq}$("a[href=#contentplugin_alias-2]").tab("show");{/jq}
+				{else}
+					{$tabname='Create Alias'}
 				{/if}
-			</fieldset><br>
+				{tab name=$tabname}
+					<fieldset id="pluginalias_general">
+						<legend>
+							{tr}General information{/tr} 
+						</legend>
 
-			<div id="pluginalias_body">
-				<fieldset>
-					<legend>
-						{tr}Plugin body{/tr}{icon name='expanded' iclass='expanded toggle'}{icon name='collapsed' iclass='collapsed toggle' istyle='display:none'}
-					</legend>
-
-					<div class="adminoptionbox">
-						<div class="adminoptionlabel form-group row">
-							<label class="col-sm-4" for="ignorebody">
-								{tr}Ignore user input{/tr}
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="plugin_alias">
+								{tr}Plugin name{/tr}
 							</label>
 							<div class="col-sm-8">
+								{if not empty($smarty.request.plugin_alias)}
+									<input type="hidden" class="form-control" name="plugin_alias" id="plugin_alias" value="{$plugin_admin.plugin_name|escape}">
+									<strong>{$plugin_admin.plugin_name|escape}</strong>
+								{else}
+									<input type="text" class="form-control" name="plugin_alias" id="plugin_alias">
+								{/if}
+							</div>
+						</div><br>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="implementation">
+								{tr}Base plugin{/tr}
+							</label>
+							<div class="col-sm-8">
+								<select class="form-control" name="implementation" id="implementation">
+									<option></option>
+									{foreach $plugins_real as $base}
+										<option value="{$base|escape}" {if isset($plugin_admin.implementation) and $plugin_admin.implementation eq $base}selected="selected"{/if}>
+											{$base|escape}
+										</option>
+									{/foreach}
+								</select>
+							</div>
+						</div><br>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="plugin_name">
+								{tr}Name{/tr}
+							</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" name="name" id="plugin_name" value="{$plugin_admin.description.name|default:''|escape}">
+							</div>
+						</div><br>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="plugin_description">
+								{tr}Description{/tr}
+							</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" name="description" id="plugin_description" value="{$plugin_admin.description.description|default:''|escape}">
+							</div>
+						</div><br>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="plugin_body">
+								{tr}Body label{/tr}
+							</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" name="body" id="plugin_body" value="{$plugin_admin.description.body|default:''|escape}">
+							</div>
+						</div><br>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="plugin_deps">
+								{tr}Dependencies{/tr}
+							</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" name="prefs" id="plugin_deps" value="{if !empty($plugin_admin.description.prefs)}{','|implode:$plugin_admin.description.prefs}{/if}">
+							</div>
+						</div><br>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="filter">
+								{tr}Filter{/tr}
+							</label>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="filter" name="filter" value="{$plugin_admin.description.filter|default:'xss'|escape}">
+							</div>
+						</div><br>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4" for="validate">
+								{tr}Validation{/tr}
+							</label>
+							<div class="col-sm-8">
+								<select class="form-control" name="validate" id="validate">
+									{foreach ['none','all','body','arguments'] as $val}
+										<option value="{$val|escape}" {if !empty($plugin_admin.description.validate) and $plugin_admin.description.validate eq $val}selected="selected"{/if}>
+											{$val|escape}
+										</option>
+									{/foreach}
+								</select>
+							</div>
+						</div><br>
+						<div class="form-group row">
+							<label class="col-sm-4" for="inline">{tr}Inline (no plugin edit UI){/tr}</label>
+							<div class="col-sm-8">
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" name="ignorebody" id="ignorebody" value="y" {if !empty($plugin_admin.body.input) and $plugin_admin.body.input eq 'ignore'}checked="checked"{/if}/>
+									<input class="form-check-input" type="checkbox" id="inline" name="inline" value="1" {if !empty($plugin_admin.description.inline)}checked="checked"{/if}>
 								</div>
 							</div>
-						</div>
-					</div>
-					<div class="adminoptionbox form-group row">
-						<label class="col-form-label col-sm-4" for="defaultbody">{tr}Default content{/tr}</label>
-						<div class="col-sm-8">
-							<textarea class="form-control" cols="60" rows="12" id="defaultbody" name="defaultbody">{$plugin_admin.body.default|default:''|escape}</textarea>
-						</div>
-					</div>
-					<div style="clear:both; margin-left:60px">
-						<fieldset class="stayopen">
-							<legend style="font-size:125%">{tr}Parameters{/tr}{icon name='expanded' iclass='expanded toggle'}{icon name='collapsed' iclass='collapsed toggle' istyle='display:none'}{icon name="add" id="pluginalias_body_add" iclass='stayopen'}</legend>
-							{jq}$('#pluginalias_body_add').click(function() { $('#pluginalias_body_new').toggle("fast"); return false; });{/jq}
+						</div><br>
+					</fieldset><br>
 
-							{if !empty($plugin_admin.body.params)}
-								{foreach from=$plugin_admin.body.params key=token item=detail}
-									<div class="clearfix adminoptionbox{if $token eq '__NEW__'} hidefirst" id="pluginalias_body_new{/if}">
-										<div class="adminoptionlabel form-group row">
+					<fieldset id="pluginalias_simple_args">
+						<legend>
+							{tr}Simple plugin arguments{/tr} {icon name="add" class='add-param text-success tips' title='|{tr}Add parameter{/tr}'}
+						</legend>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-6">
+								{tr}Argument{/tr}
+							</label>
+							<label class="col-form-label col-sm-6">
+								{tr}Default{/tr}
+							</label>
+						</div>
+						{if !empty($plugin_admin.params)}
+							{foreach $plugin_admin.params as $token => $value}
+								{if not $value|is_array}
+									<div class="form-group row param">
+										<div class="col-sm-6">
+											<input class="form-control" type="text" name="sparams[{$token|escape}][token]" value="{$token|escape}">
+										</div>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" name="sparams[{$token|escape}][default]" value="{$value|escape}">
+										</div>
+										<div class="col-sm-1">
+											{icon name='delete' class='text-danger delete-param tips' title='|{tr}Delete this parameter{/tr}'}
+										</div>
+									</div>
+								{elseif $token eq '__NEW__'}
+									<div class="form-group row d-none param">
+										<div class="col-sm-6">
+											<input class="form-control" type="text" name="sparams[__NEW__][token]" value="" placeholder="{tr}Name{/tr}">
+										</div>
+										<div class="col-sm-5">
+											<input class="form-control" type="text" name="sparams[__NEW__][default]" value="" placeholder="{tr}Default Value{/tr}">
+										</div>
+										<div class="col-sm-1">
+											{icon name='delete' class='text-danger delete-param tips' title='|{tr}Delete this parameter{/tr}'}
+										</div>
+									</div>
+								{/if}
+							{/foreach}
+						{/if}
+					</fieldset>
+
+					<fieldset id="pluginalias_doc">
+						<legend>
+							{tr}Plugin parameter documentation{/tr} {icon name="add" class='add-param text-success tips' title='|{tr}Add parameter documentation{/tr}'}
+						</legend>
+
+						{if !empty($plugin_admin.description.params)}
+							{foreach $plugin_admin.description.params as $token => $detail}
+								<div class="clearfix param{if $token eq '__NEW__'} d-none{/if}">
+									<div class="form-group row">
+										<label class="col-form-label col-sm-4" for="input[{$token|escape}][token]">
+											{tr}Parameter{/tr}
+										</label>
+										<div class="col-sm-7">
+											<input class="form-control" type="text" name="input[{$token|escape}][token]" id="input[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
+										</div>
+										<div class="col-sm-1">
+											{icon name='delete' class='text-danger delete-param tips' title="|{tr}Delete this parameter's documentation{/tr}"}
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-form-label col-sm-4" for="input[{$token|escape}][name]">
+											{tr}Name{/tr}
+										</label>
+										<div class="col-sm-8">
+											<input class="form-control" type="text" name="input[{$token|escape}][name]" id="input[{$token|escape}][name]" value="{$detail.name|escape}">
+										</div>
+									</div>
+									<div class="form-group row">
+										<label class="col-form-label col-sm-4" for="input[{$token|escape}][description]">
+											{tr}Description{/tr}
+										</label>
+										<div class="col-sm-8">
+											<input class="form-control" type="text" name="input[{$token|escape}][description]" id="input[{$token|escape}][description]" value="{$detail.description|escape}">
+										</div>
+									</div>
+									<div class="form-group row">
+										<div class=" col-sm-2 offset-sm-4">
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="checkbox" name="input[{$token|escape}][required]" id="input[{$token|escape}][required]" value="y"{if $detail.required} checked="checked"{/if}>
+												<label class="col-form-label" for="input[{$token|escape}][required]">
+													{tr}Required{/tr}
+												</label>
+											</div>
+										</div>
+										<div class=" col-sm-2">
+											<div class="form-check form-check-inline col-sm-2">
+												<input class="form-check-input" type="checkbox" name="input[{$token|escape}][safe]" id="input[{$token|escape}][safe]" value="y"{if $detail.safe} checked="checked"{/if}>
+												<label class="col-form-label" for="input[{$token|escape}][safe]">
+													{tr}Safe{/tr}
+												</label>
+											</div>
+										</div>
+										<label class="col-form-label col-sm-1" for="input[{$token|escape}][filter]">
+											{tr}Filter{/tr}
+										</label>
+										<div class="col-sm-3">
+											<input class="form-control" type="text" name="input[{$token|escape}][filter]" id="input[{$token|escape}][filter]" value="{$detail.filter|default:xss|escape}">
+										</div>
+									</div>
+									<hr>
+								</div>
+							{/foreach}
+						{/if}
+					</fieldset><br>
+
+					<div id="pluginalias_body">
+						<fieldset>
+							<legend>
+								{tr}Plugin body{/tr} 
+							</legend>
+
+							<div class="form-group row">
+								<label class="col-sm-4" for="ignorebody">
+									{tr}Ignore user input{/tr}
+								</label>
+								<div class="col-sm-8">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" name="ignorebody" id="ignorebody" value="y"{if !empty($plugin_admin.body.input) and $plugin_admin.body.input eq 'ignore'} checked="checked"{/if}/>
+									</div>
+								</div>
+							</div>
+							<div class=" form-group row">
+								<label class="col-form-label col-sm-4" for="defaultbody">{tr}Default content{/tr}</label>
+								<div class="col-sm-8">
+									<textarea class="form-control" cols="60" rows="12" id="defaultbody" name="defaultbody">{$plugin_admin.body.default|default:''|escape}</textarea>
+								</div>
+							</div>
+							<fieldset>
+								<legend>
+									{tr}Body Parameters{/tr} {icon name="add" class='add-param text-success tips' title='|{tr}Add body parameter{/tr}'}
+								</legend>
+								{foreach $plugin_admin.body.params as $token => $detail}
+									<div class="clearfix param{if $token eq '__NEW__'} d-none{/if}">
+										<div class="form-group row">
 											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][token]">
 												{tr}Parameter{/tr}
 											</label>
-											<div class="col-sm-6">
-												<input class="form-control" type="text" name="bodyparam[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
+											<div class="col-sm-5">
+												<input class="form-control" type="text" name="bodyparam[{$token|escape}][token]" id="bodyparam[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
+											</div>
+											<div class="col-sm-1">
+												{icon name='delete' class='text-danger delete-param tips' title="|{tr}Delete this body parameter{/tr}"}
 											</div>
 										</div>
-										<div class="adminoptionlabel form-group row">
+										<div class="form-group row">
 											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][encoding]">
 												{tr}Encoding{/tr}
 											</label>
 											<div class="col-sm-6">
-												<select class="form-control" name="bodyparam[{$token|escape}][encoding]">
-													{foreach from=','|explode:'none,html,url' item=val}
+												<select class="form-control" name="bodyparam[{$token|escape}][encoding]" id="bodyparam[{$token|escape}][encoding]">
+													{foreach ['none','html','url'] as $val}
 														<option value="{$val|escape}" {if $detail.encoding eq $val}selected="selected"{/if}>
 															{$val|escape}
 														</option>
@@ -604,113 +545,112 @@
 												</select>
 											</div>
 										</div>
-										<div class="adminoptionlabel form-group row">
+										<div class="form-group row">
 											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][input]">
 												{tr}Argument source (if different){/tr}
 											</label>
 											<div class="col-sm-6">
-												<input class="form-control" type="text" name="bodyparam[{$token|escape}][input]" value="{$detail.input|escape}">
+												<input class="form-control" type="text" name="bodyparam[{$token|escape}][input]" id="bodyparam[{$token|escape}][input]" value="{$detail.input|escape}">
 											</div>
 										</div>
-										<div class="adminoptionlabel form-group row">
+										<div class="form-group row">
 											<label class="col-form-label col-sm-6" for="bodyparam[{$token|escape}][default]">
 												{tr}Default value{/tr}
 											</label>
 											<div class="col-sm-6">
-												<input class="form-control" type="text" name="bodyparam[{$token|escape}][default]" value="{$detail.default|escape}">
+												<input class="form-control" type="text" name="bodyparam[{$token|escape}][default]" id="bodyparam[{$token|escape}][default]" value="{$detail.default|escape}">
 											</div>
 										</div>
+										<hr>
 									</div>
 								{/foreach}
-							{/if}
+							</fieldset>
 						</fieldset>
-					</div>
-				</fieldset>
-			</div><br><br>
+					</div><br><br>
 
-			<fieldset id="pluginalias_composed_args">
-				<legend>
-					{tr}Composed plugin arguments{/tr}{icon name='expanded' iclass='expanded toggle'}{icon name='collapsed' iclass='collapsed toggle' istyle='display:none'}{icon name="add" id="pluginalias_composed_add" iclass='stayopen'}
-				</legend>
-				{jq}$('#pluginalias_composed_add').click(function() { $('#pluginalias_composed_new').toggle("fast"); return false; });{/jq}
+					<fieldset id="pluginalias_composed_args">
+						<legend>
+							{tr}Composed plugin arguments{/tr} {icon name="add" class='add-param text-success tips' title='|{tr}Add composed parameter{/tr}'}
+						</legend>
 
-				{if !empty($plugin_admin.params)}
-					{foreach from=$plugin_admin.params key=token item=detail}
-						{if $detail|is_array}
-							{if !isset($composed_args)}{assign var=composed_args value=true}{/if}
-							<div class="clearfix adminoptionbox{if $token eq '__NEW__'} hidefirst" id="pluginalias_composed_new{/if}">
-								<div class="adminoptionlabel form-group row">
-									<label class="col-form-label col-sm-4" for="cparams[{$token|escape}][token]">
-										{tr}Parameter{/tr}
-									</label>
-									<div class="col-sm-8">
-										<input class="form-control" type="text" name="cparams[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
+						{foreach $plugin_admin.params as $token => $detail}
+							{if $detail|is_array}
+								{if not isset($composed_args)}{$composed_args=true}{/if}
+								<div class="clearfix param{if $token eq '__NEW__'} d-none{/if}">
+									<div class="form-group row">
+										<label class="col-form-label col-sm-4" for="cparams[{$token|escape}][token]">
+											{tr}Parameter{/tr}
+										</label>
+										<div class="col-sm-7">
+											<input class="form-control" type="text" name="cparams[{$token|escape}][token]" id="cparams[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
+										</div>
+										<div class="col-sm-1">
+											{icon name='delete' class='text-danger delete-param tips' title="|{tr}Delete this composed argument{/tr}"}
+										</div>
 									</div>
-								</div>
-								<div class="adminoptionlabel form-group row">
-									<label class="col-form-label col-sm-4" for="cparams[{$token|escape}][pattern]">
-										{tr}Pattern{/tr}
-									</label>
-									<div class="col-sm-8">
-										<input class="form-control" type="text" name="cparams[{$token|escape}][pattern]" value="{$detail.pattern|escape}">
+									<div class="form-group row">
+										<label class="col-form-label col-sm-4" for="cparams[{$token|escape}][pattern]">
+											{tr}Pattern{/tr}
+										</label>
+										<div class="col-sm-8">
+											<input class="form-control" type="text" name="cparams[{$token|escape}][pattern]" id="cparams[{$token|escape}][pattern]" value="{$detail.pattern|escape}">
+										</div>
 									</div>
-								</div><br>
-								<div style="clear:both; margin-left:60px">
-									<fieldset class="stayopen">
-										<legend style="font-size:125%">
-											{tr}Parameters{/tr}{icon name='expanded' iclass='expanded toggle'}{icon name='collapsed' iclass='collapsed toggle'}{icon name="add" id="pluginalias_composed_addparam" iclass='stayopen'}
+									<fieldset class="ml-5">
+										<legend class="h4">
+											{tr}Composed parameters{/tr} {icon name="add" class='add-param text-success tips' title='|{tr}Add composed parameter{/tr}'}
 										</legend>
-										{jq}$('#pluginalias_composed_addparam').click(function() { $('#pluginalias_composed_newparam').toggle("fast"); return false; });{/jq}
-										{if !empty($detail.params)}
-											{foreach from=$detail.params key=t item=d}
-												<div class="clearfix adminoptionbox{if $t eq '__NEW__'} hidefirst" id="pluginalias_composed_newparam{/if}">
-													<div class="adminoptionlabel form-group row">
-														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][token]">
-															{tr}Parameter{/tr}
-														</label>
-														<div class="col-sm-6">
-															<input class="form-control" type="text" name="cparams[{$token|escape}][params][{$t|escape}][token]" value="{if $t neq '__NEW__'}{$t|escape}{/if}">
-														</div>
+										{foreach $detail.params as $t => $d}
+											<div class="clearfix param{if $t eq '__NEW__'} d-none{/if}">
+												<div class="form-group row">
+													<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][token]">
+														{tr}Parameter{/tr}
+													</label>
+													<div class="col-sm-5">
+														<input class="form-control" type="text" name="cparams[{$token|escape}][params][{$t|escape}][token]" id="cparams[{$token|escape}][params][{$t|escape}][token]" value="{if $t neq '__NEW__'}{$t|escape}{/if}">
 													</div>
-													<div class="adminoptionlabel form-group row">
-														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][pattern]">
-															{tr}Encoding{/tr}
-														</label>
-														<div class="col-sm-6">
-															<select class="form-control" name="cparams[{$token|escape}][params][{$t|escape}][encoding]">
-																{foreach from=','|explode:'none,html,url' item=val}
-																	<option value="{$val|escape}" {if $d.encoding eq $val}selected="selected"{/if}>{$val|escape}</option>
-																{/foreach}
-															</select>
-														</div>
-													</div>
-													<div class="adminoptionlabel form-group row">
-														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][input]">
-															{tr}Argument source (if different):{/tr}
-														</label>
-														<div class="col-sm-6">
-															<input class="form-control" type="text" name="cparams[{$token|escape}][params][{$t|escape}][input]" value="{$d.input|escape}"/>
-														</div>
-													</div>
-													<div class="adminoptionlabel form-group row">
-														<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][input]">
-															{tr}Default value{/tr}
-														</label>
-														<div class="col-sm-6">
-															<input class="form-control" type="text" name="cparams[{$token|escape}][params][{$t|escape}][default]" value="{$d.default|escape}"/>
-														</div>
+													<div class="col-sm-1">
+														{icon name='delete' class='text-danger delete-param tips' title="|{tr}Delete this composed parameter{/tr}"}
 													</div>
 												</div>
-											{/foreach}
-										{/if}
+												<div class="form-group row">
+													<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][pattern]">
+														{tr}Encoding{/tr}
+													</label>
+													<div class="col-sm-6">
+														<select class="form-control" name="cparams[{$token|escape}][params][{$t|escape}][encoding]" id="cparams[{$token|escape}][pattern]">
+															{foreach ['none','html','url'] as $val}
+																<option value="{$val|escape}" {if $d.encoding eq $val}selected="selected"{/if}>{$val|escape}</option>
+															{/foreach}
+														</select>
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][input]">
+														{tr}Argument source (if different):{/tr}
+													</label>
+													<div class="col-sm-6">
+														<input class="form-control" type="text" name="cparams[{$token|escape}][params][{$t|escape}][input]" id="cparams[{$token|escape}][params][{$t|escape}][input]" value="{$d.input|escape}"/>
+													</div>
+												</div>
+												<div class="form-group row">
+													<label class="col-form-label col-sm-6" for="cparams[{$token|escape}][params][{$t|escape}][input]">
+														{tr}Default value{/tr}
+													</label>
+													<div class="col-sm-6">
+														<input class="form-control" type="text" name="cparams[{$token|escape}][params][{$t|escape}][default]" id="cparams[{$token|escape}][params][{$t|escape}][input]" value="{$d.default|escape}"/>
+													</div>
+												</div>
+												<hr>
+											</div>
+										{/foreach}
 									</fieldset>
-								</div><hr>
-							</div>
-						{/if}
-					{/foreach}
-				{/if}
-				{if $plugin_admin}{jq}$('#pluginalias_composed_args legend').trigger('click'{{if isset($composed_args)}, true{/if}});{/jq}{/if}
-			</fieldset>
+								</div>
+							{/if}
+						{/foreach}
+					</fieldset>
+				{/tab}
+			{/tabset}
 		{/tab}
 	{/tabset}
 	{include file='admin/include_apply_bottom.tpl'}
