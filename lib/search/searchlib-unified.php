@@ -593,8 +593,10 @@ class UnifiedSearchLib
 		$types = $this->getSupportedTypes();
 
 		// Content Sources
-		if (isset($types['wiki page'])) {
-			$aggregator->addContentSource('wiki page', new Search_ContentSource_WikiSource);
+		if (isset($types['trackeritem'])) {
+			$aggregator->addContentSource('trackeritem', new Search_ContentSource_TrackerItemSource($mode));
+			$aggregator->addContentSource('tracker', new Search_ContentSource_TrackerSource);
+			$aggregator->addContentSource('trackerfield', new Search_ContentSource_TrackerFieldSource);
 		}
 
 		if (isset($types['forum post'])) {
@@ -617,12 +619,6 @@ class UnifiedSearchLib
 			$aggregator->addContentSource('file', $fileSource);
 			$aggregator->addContentSource('file gallery', new Search_ContentSource_FileGallerySource);
 			$aggregator->addGlobalSource(new Search_GlobalSource_FileAttachmentSource($fileSource));
-		}
-
-		if (isset($types['trackeritem'])) {
-			$aggregator->addContentSource('trackeritem', new Search_ContentSource_TrackerItemSource($mode));
-			$aggregator->addContentSource('tracker', new Search_ContentSource_TrackerSource);
-			$aggregator->addContentSource('trackerfield', new Search_ContentSource_TrackerFieldSource);
 		}
 
 		if (isset($types['sheet'])) {
@@ -674,6 +670,10 @@ class UnifiedSearchLib
 
 		if ($prefs['feature_webservices'] === 'y') {
 			$aggregator->addContentSource('webservice', new Search_ContentSource_WebserviceSource());
+		}
+
+		if (isset($types['wiki page'])) {
+			$aggregator->addContentSource('wiki page', new Search_ContentSource_WikiSource);
 		}
 
 		// Global Sources
