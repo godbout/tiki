@@ -44,6 +44,8 @@ class Tracker_Field_UserGroups extends Tracker_Field_Abstract
 					$value = array_merge($value, array_diff($tikilib->get_user_groups($itemUser), ['Registered', 'Anonymous']));
 				}
 			}
+			$value = array_unique(array_filter($value));
+			natsort($value);
 		}
 
 		return ['value' => $value];
