@@ -320,14 +320,14 @@ function commit($msg, $displaySuccess = true, $dieOnRemainingChanges = true)
 
 function commit_lang($msg, $displaySuccess = true, $dieOnRemainingChanges = true)
 {
-    $msg = escapeshellarg($msg);
-    `svn ci -m $msg`;
+	$msg = escapeshellarg($msg);
+	`svn ci ./lang -m $msg`;
 
-    if ($dieOnRemainingChanges && has_uncommited_changes('./lang')) {
-        error("Commit seems to have failed. Uncommited changes exist in the working folder.\n");
-    }
+	if ($dieOnRemainingChanges && has_uncommited_changes('./lang')) {
+		error("Commit seems to have failed. Uncommited changes exist in the working folder.\n");
+	}
 
-    return (int) get_info('./lang')->entry->commit['revision'];
+	return (int) get_info('./lang')->entry->commit['revision'];
 }
 
 /**

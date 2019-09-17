@@ -305,6 +305,47 @@ class LanguageTranslations extends TikiDb_Bridge
 		return $translations;
 	}
 
+	protected function _getAllDbTranslation(
+
+		$originalTranslations = false
+	) {
+
+		if ($originalTranslations) {
+			// load $lang with all translations excluding database translations to compare changes
+			$lang = $this->getFileTranslations();
+		}
+
+		$bindvars = [$this->lang];
+
+		$query = "SELECT * FROM `tiki_language` ";
+		$result = $this->query($query);
+
+		if (isset($result->numrows) && $result->numrows > 0) {
+			$this->hasDbTranslations = true;
+		}
+
+		$translations = [];
+
+		while ($res = $result->fetchRow()) {
+			if ($res['userId']) {
+				$tikilib = TikiLib::lib('tiki');
+				$res['user'] = $tikilib->get_user_login($res['userId']);
+			}
+
+			if ($originalTranslations && isset($lang[$res['source']]) && $lang[$res['source']]['tran'] != $res['tran']) {
+				require_once('lib/diff/difflib.php');
+				$res['originalTranslation'] = $lang[$res['source']]['tran'];
+				$res['diff'] = $this->_diff($res['originalTranslation'], $res['tran']);
+			}
+			if (isset($res['general'])) {
+				$res['general'] = (bool) $res['general'];
+			}
+			$translations[$res['source']] = $res;
+		}
+		return $translations;
+	}
+
+
 	/**
 	 * Return the difference of to strings.
 	 *
@@ -407,6 +448,19 @@ class LanguageTranslations extends TikiDb_Bridge
 		}
 
 		$translations = $this->_getDbTranslations($sort_mode, $maxRecords, $offset, true, $searchQuery);
+
+		$total = count($translations);
+
+		return ['translations' => $translations, 'total' => $total];
+	}
+
+	public function getAllDbTranslations($search = null)
+	{
+		global $tikilib;
+
+		$translations = [];
+
+		$translations = $this->_getAllDbTranslation();
 
 		$total = count($translations);
 
