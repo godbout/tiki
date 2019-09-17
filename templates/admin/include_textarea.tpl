@@ -271,8 +271,11 @@
 								{/foreach}
 							</table>
 							<div class="submit">
-								{if $plugin_admin}
-									{button name='add' id='pluginalias_add' _text='Create' _class='btn btn-info' _script='tiki-admin.php?page=textarea'}
+								{if  not empty($smarty.request.plugin_alias)}
+									{button name='add' id='pluginalias_add' _text='Create' _class='btn btn-info' _script='tiki-admin.php?page=textarea&new_alias'}
+								{/if}
+								{if isset($smarty.request.new_alias)}
+									{jq}$("a[href='#contentplugin_alias-2']").tab("show");{/jq}
 								{/if}
 								<input type="submit" class="btn btn-primary" name="enable" value="{tr}Enable Checked Plugins{/tr}">
 							</div>
@@ -282,9 +285,12 @@
 				{/tab}
 				{if not empty($smarty.request.plugin_alias)}
 					{$tabname='Edit Alias'}
-					{jq}$("a[href=#contentplugin_alias-2]").tab("show");{/jq}
+					{jq}$("a[href='#contentplugin_alias-2']").tab("show");{/jq}
 				{else}
 					{$tabname='Create Alias'}
+					{if not isset($smarty.request.new_alias)}
+						{jq}$("a[href='#contentplugin_alias-1']").tab("show");{/jq}
+					{/if}
 				{/if}
 				{tab name=$tabname}
 					<fieldset id="pluginalias_general">
@@ -401,10 +407,10 @@
 								{if not $value|is_array}
 									<div class="form-group row param">
 										<div class="col-sm-6">
-											<input class="form-control" type="text" name="sparams[{$token|escape}][token]" value="{$token|escape}">
+											<input class="form-control sparam-name" type="text" name="sparams[{$token|escape}][token]" value="{$token|escape}">
 										</div>
 										<div class="col-sm-5">
-											<input class="form-control" type="text" name="sparams[{$token|escape}][default]" value="{$value|escape}">
+											<input class="form-control sparam-default" type="text" name="sparams[{$token|escape}][default]" value="{$value|escape}">
 										</div>
 										<div class="col-sm-1">
 											{icon name='delete' class='text-danger delete-param tips' title='|{tr}Delete this parameter{/tr}'}
@@ -413,10 +419,10 @@
 								{elseif $token eq '__NEW__'}
 									<div class="form-group row d-none param">
 										<div class="col-sm-6">
-											<input class="form-control" type="text" name="sparams[__NEW__][token]" value="" placeholder="{tr}Name{/tr}">
+											<input class="form-control sparam-name" type="text" name="sparams[__NEW__][token]" value="" placeholder="{tr}Name{/tr}">
 										</div>
 										<div class="col-sm-5">
-											<input class="form-control" type="text" name="sparams[__NEW__][default]" value="" placeholder="{tr}Default Value{/tr}">
+											<input class="form-control sparam-default" type="text" name="sparams[__NEW__][default]" value="" placeholder="{tr}Default Value{/tr}">
 										</div>
 										<div class="col-sm-1">
 											{icon name='delete' class='text-danger delete-param tips' title='|{tr}Delete this parameter{/tr}'}
