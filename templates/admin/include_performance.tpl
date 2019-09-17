@@ -65,8 +65,8 @@
 					<p>{tr}Configuration setting <em>xcache.admin.enable_auth</em> prevents from accessing statistics. This will also prevent the cache from being cleared when clearing template cache.{/tr}</p>
 				{/if}
 
-				<p>
-					<table style="width:520px;border: 0;text-align:center">
+				<div class="table-responsive">
+					<table class="table">
 						<tr>
 							<td>
 								{wikiplugin _name='chartjs' type=pie id=MemoryGraph width=250 height=100 values=$memory_graph.data data_labels=$memory_graph.data debug=1}
@@ -78,16 +78,15 @@
 							</td>
 						</tr>
 						<tr>
-							<td style="width:260px">
+							<td>
 								{tr}Memory Used{/tr}: {$opcode_stats.memory_used * 100}% - {tr}Available{/tr}: {$opcode_stats.memory_avail * 100}%
 							</td>
-							<td style="width:260px">
+							<td>
 								{tr}Cache Hits{/tr}: {$opcode_stats.hit_hit * 100}% - {tr}Misses{/tr}: {$opcode_stats.hit_miss * 100}%
 							</td>
 						</tr>
 					</table>
-					<hr>
-				</p>
+				</div>
 
 				{if $opcode_stats.warning_fresh}
 					<p>{tr}Few hits recorded. Statistics may not be representative.{/tr}</p>
