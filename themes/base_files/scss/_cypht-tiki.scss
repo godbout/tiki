@@ -63,6 +63,11 @@
 
     .profile_details th, .msg_date,
     .news_cell .source, .news_cell .from { color: $popover-body-color; }
+
+    .settings_table .save_settings {
+        color: color-yiq($primary);
+        background-color: $primary;
+    }
 }
 
 .mobile.tiki-cypht, .mobile.tiki-webmail {

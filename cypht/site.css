@@ -589,11 +589,56 @@ body {
 	font-weight: normal;
 }
 
+.msg_parts tr:not(:last-child) {
+	border-bottom: 1px solid #444;
+}
+
 .configured_server,
 .add_server {
 	background: transparent;
 }
 
+.configured_server input[type=submit],
+.add_server input[type=submit] {
+	padding: 0.375rem 0.75rem;
+}
+
+.settings_table .save_settings {
+	padding: 0.75rem 1rem !important;
+}
+
+.user_settings table td,
+.edit_profile table th,
+.edit_profile table td {
+	display: block;
+	padding: 10px 15px;
+	height: auto;
+	width: 100%;
+}
+
+.user_settings table td:not(.settings_subtitle),
+.edit_profile table th,
+.edit_profile table td {
+	box-sizing: border-box;
+}
+
+.user_settings table td:not(.settings_subtitle):nth-child(1),
+.edit_profile table th {
+	max-width: 40%;
+	flex: 0 0 40%;
+}
+
+.user_settings table td:nth-child(2),
+.edit_profile table td {
+	max-width: 60%;
+	flex: 0 0 60%;
+}
+
+.user_settings table tr,
+.edit_profile table tr {
+	display: flex !important;
+	flex-wrap: wrap;
+}
 
 /* Mobile specific */
 .mobile .inline-cypht {
@@ -636,39 +681,6 @@ body {
 
 .mobile .toggle_link {
 	width: auto !important;
-}
-
-.mobile .user_settings table td,
-.mobile .edit_profile table th,
-.mobile .edit_profile table td {
-	display: block;
-	padding: 10px 15px;
-	height: auto;
-	width: 100%;
-}
-
-.mobile .user_settings table td:not(.settings_subtitle),
-.mobile .edit_profile table th,
-.mobile .edit_profile table td {
-	box-sizing: border-box;
-}
-
-.mobile .user_settings table td:not(.settings_subtitle):nth-child(1),
-.mobile .edit_profile table th {
-	max-width: 40%;
-	flex: 0 0 40%;
-}
-
-.mobile .user_settings table td:nth-child(2),
-.mobile .edit_profile table td {
-	max-width: 60%;
-	flex: 0 0 60%;
-}
-
-.mobile .user_settings table tr,
-.mobile .edit_profile table tr {
-	display: flex !important;
-	flex-wrap: wrap;
 }
 
 .mobile .user_settings input[type=text],

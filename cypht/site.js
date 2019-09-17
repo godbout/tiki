@@ -4714,11 +4714,11 @@ $(function() {
         if (! $('body').hasClass('mobile')) $('body').addClass('mobile');
     }
 
-    $('.inline-cypht input[type=button]').each(function () {
-        $(this).addClass('btn').addClass('btn-secondary');
+    $('.inline-cypht input[type=button]').each(function() {
+    	$(this).addClass('btn').addClass('btn-secondary');
     })
-    $('.inline-cypht input[type=submit]').each(function () {
-        $(this).addClass('btn').addClass('btn-primary');
+    $('.inline-cypht input[type=submit]').each(function() {
+    	$(this).addClass('btn').addClass('btn-primary');
     })
 
     if (! $('body').hasClass('tiki-cypth')) $('body').addClass('tiki-cypht');

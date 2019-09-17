@@ -7440,6 +7440,9 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #fff !important; }
   .inline-cypht .profile_details th, .inline-cypht .msg_date, .inline-cypht .news_cell .source, .inline-cypht .news_cell .from {
     color: #888; }
+  .inline-cypht .settings_table .save_settings {
+    color: #fff;
+    background-color: #2a9fd6; }
 
 .mobile.tiki-cypht .content_cell .content_title, .mobile.tiki-webmail .content_cell .content_title, .mobile.tiki-cypht .content_cell .content_title .list_controls, .mobile.tiki-webmail .content_cell .content_title .list_controls {
   background: #202020;
