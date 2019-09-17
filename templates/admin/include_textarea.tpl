@@ -267,7 +267,7 @@
 										</td>
 									</tr>
 								{foreachelse}
-									{norecords _colspan=3}
+									{norecords _colspan=4}
 								{/foreach}
 							</table>
 							<div class="submit">
@@ -413,7 +413,7 @@
 											<input class="form-control sparam-default" type="text" name="sparams[{$token|escape}][default]" value="{$value|escape}">
 										</div>
 										<div class="col-sm-1">
-											{icon name='delete' class='text-danger delete-param tips' title='|{tr}Delete this parameter{/tr}'}
+											{icon name='delete' class='text-danger delete-param tips btn btn-link' title='|{tr}Delete this parameter{/tr}'}
 										</div>
 									</div>
 								{elseif $token eq '__NEW__'}
@@ -425,7 +425,7 @@
 											<input class="form-control sparam-default" type="text" name="sparams[__NEW__][default]" value="" placeholder="{tr}Default Value{/tr}">
 										</div>
 										<div class="col-sm-1">
-											{icon name='delete' class='text-danger delete-param tips' title='|{tr}Delete this parameter{/tr}'}
+											{icon name='delete' class='text-danger delete-param tips btn btn-link' title='|{tr}Delete this parameter{/tr}'}
 										</div>
 									</div>
 								{/if}
@@ -449,7 +449,7 @@
 											<input class="form-control" type="text" name="input[{$token|escape}][token]" id="input[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
 										</div>
 										<div class="col-sm-1">
-											{icon name='delete' class='text-danger delete-param tips' title="|{tr}Delete this parameter's documentation{/tr}"}
+											{icon name='delete' class='text-danger delete-param tips btn btn-link' title="|{tr}Delete this parameter's documentation{/tr}"}
 										</div>
 									</div>
 									<div class="form-group row">
@@ -534,7 +534,7 @@
 												<input class="form-control" type="text" name="bodyparam[{$token|escape}][token]" id="bodyparam[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
 											</div>
 											<div class="col-sm-1">
-												{icon name='delete' class='text-danger delete-param tips' title="|{tr}Delete this body parameter{/tr}"}
+												{icon name='delete' class='text-danger delete-param tips btn btn-link' title="|{tr}Delete this body parameter{/tr}"}
 											</div>
 										</div>
 										<div class="form-group row">
@@ -591,7 +591,7 @@
 											<input class="form-control" type="text" name="cparams[{$token|escape}][token]" id="cparams[{$token|escape}][token]" value="{if $token neq '__NEW__'}{$token|escape}{/if}">
 										</div>
 										<div class="col-sm-1">
-											{icon name='delete' class='text-danger delete-param tips' title="|{tr}Delete this composed argument{/tr}"}
+											{icon name='delete' class='text-danger delete-param tips btn btn-link' title="|{tr}Delete this composed argument{/tr}"}
 										</div>
 									</div>
 									<div class="form-group row">
@@ -616,7 +616,7 @@
 														<input class="form-control" type="text" name="cparams[{$token|escape}][params][{$t|escape}][token]" id="cparams[{$token|escape}][params][{$t|escape}][token]" value="{if $t neq '__NEW__'}{$t|escape}{/if}">
 													</div>
 													<div class="col-sm-1">
-														{icon name='delete' class='text-danger delete-param tips' title="|{tr}Delete this composed parameter{/tr}"}
+														{icon name='delete' class='text-danger delete-param tips btn btn-link' title="|{tr}Delete this composed parameter{/tr}"}
 													</div>
 												</div>
 												<div class="form-group row">
