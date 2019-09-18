@@ -12,21 +12,29 @@ use Composer\Util\FileSystem;
 
 class CleanVendors
 {
+/** @var array Files or directories to remove anywhere in vendor files. */
 	private static $standardFiles = [
-		//directories
 		'development',
 		'demo',
 		'demo1',
 		'demo2',
 		'demos',
+		'demo.html',
+		'demos.html',
+		'demo.js',
 		'doc',
 		'docs',
 		'documentation',
+		'sample',
 		'samples',
+		'example',
 		'examples',
+		'example.html',
+		'example.md',
 		'test',
 		'testing',
 		'tests',
+		'test.html',
 		'vendor',
 		'www',
 		'.gitattributes',
@@ -34,10 +42,10 @@ class CleanVendors
 		'.gitmodules',
 		'.jshintrc',
 		'bower.json',
+		'changes.txt',
 		'changelog.txt',
 		'changelog',
 		'changelog.md',
-		'readme.md',
 		'composer.json',
 		'composer.lock',
 		'gruntfile.js',
@@ -54,8 +62,40 @@ class CleanVendors
 		'.eslintignore',
 		'.eslintrc',
 		'.hound.yml',
+		'.coveralls.yml',
+		'.php_cs',
+		'.php_cs.dist',
+		'.empty',
+		'.mailmap',
+		'.styleci.yml',
+		'.eslintrc.json',
 		'contributing.md',
-		'changes.md'
+		'changes.md',
+		'changes.md~',
+		'gemfile',
+		'gemfile.lock',
+		'readme.txt',
+		'readme',
+		'readme.php',
+		'readme.rst',
+		'readme.texttile',
+		'readme.markdown',
+		'readme.mdown',
+		'readme.md',
+		'history.md',
+		'todo',
+		'todo.md',
+		'news',
+		'building.md',
+		'code_of_conduct.md',
+		'conduct.md',
+		'security.md',
+		'support.md',
+		'upgrading.md',
+		'_translationstatus.txt',
+		'info.txt',
+		'robots.txt',
+		'install'
 	];
 
 	public static function clean(Event $event)
@@ -76,19 +116,26 @@ class CleanVendors
 		$fs->remove($vendors . 'adodb/adodb/cute_icons_for_site');
 		$fs->remove($vendors . 'aFarkas/html5shiv/build');
 		$fs->remove($vendors . 'bombayworks/zendframework1/library/Zend/Service/WindowsAzure/CommandLine/Scaffolders');
-		$fs->remove($vendors . 'ckeditor/samples');
 		self::removeMultiple(
 			$vendors . 'codemirror/codemirror',
 			[
-				'doc',
 				'mode/tiki',
 				'index.html',
 				'bin'
 			]
 		);
+		$fs->remove($vendors . 'cwspear/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js');
 
-		self::removeMultiple($vendors . 'cwspear/bootstrap-hover-dropdown', ['bootstrap-hover-dropdown.min.js', 'demo.html']);
-		self::removeMultiple($vendors . 'jquery/jquery-sheet', ['jquery-1.10.2.min.js', 'jquery-ui', 'parser.php', 'parser/formula/formula.php']);
+		self::removeMultiple(
+			$vendors . 'jquery/jquery-sheet',
+			[
+				'jquery-1.10.2.min.js',
+				'jquery-ui',
+				'parser.php',
+				'parser/formula/formula.php'
+			]
+		);
+
 		self::removeMultiple(
 			$vendors . 'jquery/jquery-timepicker-addon',
 			[
@@ -101,19 +148,35 @@ class CleanVendors
 		);
 		self::removeMultiple($vendors . 'jquery/jquery-ui', ['development-bundle', 'external']);
 		self::removeMultiple($vendors . 'jquery/jtrack', ['js/jquery.json-2.2.min.js', 'js/jquery-1.4.2.min.js']);
-		self::removeMultiple($vendors . 'jquery/md5', ['css', 'js/demo.js', 'js/md5.min.js', 'test']);
+		self::removeMultiple(
+			$vendors . 'jquery/md5',
+			['css',
+			 'js/md5.min.js'
+			]
+		);
 		$fs->remove($vendors . 'jquery/minicart/src');
 		self::removeMultiple(
 			$vendors . 'jquery-plugins/anythingslider',
 			[
-				'demos.html',
 				'anythingslider.jquery.json',
 				'expand.html',
 				'simple.html',
 				'video.html'
 			]
 		);
-		$fs->remove($vendors . 'jquery-plugins/colorbox/content');
+
+		self::removeMultiple(
+			$vendors . 'jquery-plugins/colorbox',
+			[
+				'content',
+				'example1',
+				'example2',
+				'example3',
+				'example4',
+				'example5',
+			]
+		);
+
 		self::removeMultiple(
 			$vendors . 'jquery-plugins/galleriffic',
 			[
@@ -143,7 +206,6 @@ class CleanVendors
 			[
 				'dist',
 				'libs',
-				'HISTORY.md',
 			]
 		);
 		$fs->remove($vendors . 'jquery-plugins/reflection-jquery/src');
@@ -163,15 +225,12 @@ class CleanVendors
 				'beta-testing',
 				'css',
 				'dist',
-				'testing',
 				'bower.json',
-				'CONTRIBUTING.md',
 				'example.json',
 				'Gruntfile.js',
 				'index.html',
 				'package.json',
 				'tablesorter.jquery.json',
-				'test.html',
 				'js/extras',
 				'js/jquery.tablesorter.js',
 				'js/jquery.tablesorter.widgets.js',
@@ -228,7 +287,6 @@ class CleanVendors
 		self::removeMultiple(
 			$vendors . 'jquery-plugins/treetable',
 			[
-				'javascripts/test',
 				'stylesheets/jquery.treetable.theme.default.css',
 				'stylesheets/screen.css',
 				'treetable.jquery.json'
@@ -239,14 +297,11 @@ class CleanVendors
 			[
 				'jquery.zoom.min.js',
 				'zoom.jquery.json',
-				'demo.html',
 				'daisy.jpg',
 				'roxy.jpg'
 			]
 		);
 		self::removeMultiple($vendors . 'mediumjs/mediumjs', ['src', 'medium.min.js']);
-		$fs->remove($vendors . 'phpcas/phpcas/CAS-1.3.2/docs');
-		$fs->remove($vendors . 'phpseclib/phpseclib/tests');
 		$fs->remove($vendors . 'onelogin/php-saml/demo-old');
 		self::removeMultiple(
 			$vendors . 'player',
@@ -303,13 +358,11 @@ class CleanVendors
 			$vendors . 'jcbrand/converse.js',
 			[
 				'fonticons/demo-files',
-				'fonticons/demo.html',
 				'mockup',
 				'mockup.html'
 			]
 		);
 
-		$fs->remove($vendors . 'twitter/bootstrap/docs');
 		$fs->remove($vendors . 'nicolaskruchten/pivottable/images/animation.gif');
 
 		// These are removed to avoid composer warnings caused by classes declared in multiple locations
@@ -326,37 +379,24 @@ class CleanVendors
 		$fs->remove($vendors . 'components/bootstrap');
 
 		//Remove extra files to keep the system tidy
-		$fs->remove($vendors . 'phpcas/phpcas/CAS-1.3.3/docs');
-		$fs->remove($vendors . 'zendframework/zend-json/doc');
 		$fs->remove($vendors . 'bower-asset/fontawesome/advanced-options');
 		$fs->remove($vendors . 'bower-asset/fontawesome/svg-with-js');
 		$fs->remove($vendors . 'bower-asset/fontawesome/use-on-desktop');
-		$fs->remove($vendors . 'tijsverkoyen/css-to-inline-styles/TijsVerkoyen/CssToInlineStyles/tests/examples');
-		$fs->remove($vendors . 'phpcas/phpcas/CAS-1.3.3/docs/examples');
-		$fs->remove($vendors . 'tijsverkoyen/css-to-inline-styles/TijsVerkoyen/CssToInlineStyles/tests');
-		$fs->remove($vendors . 'twitter/bootstrap/js/tests');
-		$fs->remove($vendors . 'symfony/dependency-injection/Symfony/Component/DependencyInjection/Tests');
-		$fs->remove($vendors . 'symfony/console/Symfony/Component/Console/Tests');
-		$fs->remove($vendors . 'symfony/config/Symfony/Component/Config/Tests');
-		$fs->remove($vendors . 'symfony/filesystem/Tests');
-		$fs->remove($vendors . 'Sam152/Javascript-Equal-Height-Responsive-Rows/demo.html');
-		$fs->remove($vendors . 'jquery/jtrack/demo.html');
-
-		$fs->remove($vendors . 'phpcas/phpcas/CAS-1.3.3/docs');
-		$fs->remove($vendors . 'jquery-plugins/jquery-json/test');
 		//duplicate with mottie/tablesorter
 		$fs->remove($vendors . 'components/tablesorter');
+		$fs->remove($vendors . 'jason-munro/cypht/hm3.sample.ini');
+		$fs->remove($vendors . 'league/commonmark/CHANGELOG-0.x.md');
+		$fs->remove($vendors . 'pear/pear/README.CONTRIBUTING');
+		$fs->remove($vendors . 'twbs/bootstrap/site/_data/examples.yml');
 
 		self::removeMultiple(
 			$vendors . 'smarty/smarty',
 			[
-				'distribution/demo',
 				'change_log.txt',
 				'INHERITANCE_RELEASE_NOTES.txt',
 				'SMARTY_2_BC_NOTES.txt',
 				'SMARTY_3.0_BC_NOTES.txt',
 				'SMARTY_3.1_NOTES.txt',
-				'readme'
 			]
 		);
 
@@ -366,6 +406,7 @@ class CleanVendors
 				'embedapi.html',
 				'extensions/imagelib/index.html',
 				'browser-not-supported.html',
+				'config-sample.js'
 			]
 		);
 		self::removeMultiple(
@@ -397,14 +438,7 @@ class CleanVendors
 			]
 		);
 
-		self::removeMultiple(
-			$vendors . 'css-tricks/anythingslider-themes',
-			[
-				'demos',
-				'README.markdown',
-				'index.html',
-			]
-		);
+		$fs->remove($vendors . 'css-tricks/anythingslider-themes/index.html');
 
 		self::removeMultiple(
 			$vendors . 'vimeo/froogaloop',
@@ -412,8 +446,6 @@ class CleanVendors
 				'actionscript',
 				'javascript/froogaloop.js',
 				'javascript/playground.html',
-				'javascript/readme.mdown',
-				'readme.mdown',
 			]
 		);
 
@@ -422,10 +454,32 @@ class CleanVendors
 			[
 				'dist',
 				'src/scss/build.scss',
-				'example.html',
 				'gulpfile.js',
-				'HISTORY.md',
 				'yarn.lock',
+			]
+		);
+
+		self::removeMultiple(
+			$vendors . 'ezyang/htmlpurifier',
+			[
+				'INSTALL.fr.utf8',
+				'release1-update.php',
+				'release2-tag.php',
+				'test-settings.sample.php',
+				'test-settings.travis.php',
+				'VERSION',
+				'WHATSNEW',
+				'WYSIWYG'
+
+			]
+		);
+
+		self::removeMultiple(
+			$vendors . 'kriswallsmith/assetic',
+			[
+				'CHANGELOG-1.0.md',
+				'CHANGELOG-1.1.md',
+				'CHANGELOG-1.2.md',
 			]
 		);
 	}
