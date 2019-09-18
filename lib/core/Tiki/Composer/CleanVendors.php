@@ -98,7 +98,11 @@ class CleanVendors
 		'install'
 	];
 
-	public static function clean(Event $event)
+	/**
+	 * Performs post-composer cleanup routines on vendor files.
+	 * @param Event $event
+	 */
+	public static function clean(Event $event): void
 	{
 		$themes = __DIR__ . '/../../../../themes/';
 		$vendors = $event->getComposer()->getConfig()->get('vendor-dir');
@@ -494,7 +498,12 @@ class CleanVendors
 		file_put_contents($path . 'index.php', '<?php header("location: ../index.php"); die;');
 	}
 
-	private static function removeStandard($base)
+	/**
+	 * Removes all files exactly matching $standardFiles entries.
+	 * Case-insensative evaluation. Will search subdirectories.
+	 * @param string $base	The base directory to search from.
+	 */
+	private static function removeStandard(string $base): void
 	{
 		$fs = new FileSystem;
 		$vendorDirs = glob($base . '*/*', GLOB_ONLYDIR);
@@ -514,7 +523,12 @@ class CleanVendors
 		}
 	}
 
-	private static function removeMultiple($base, array $files)
+	/**
+	 * Remove multiple files. Must provide case sensitive params
+	 * @param string	$base	The base directory(path) to use.
+	 * @param array		$files	File/Directory names (omitting the base directory)
+	 */
+	private static function removeMultiple(string $base, array $files) : void
 	{
 		$fs = new FileSystem;
 		foreach ($files as $file) {
