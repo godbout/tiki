@@ -12,7 +12,7 @@ use Composer\Util\FileSystem;
 
 class CleanVendors
 {
-/** @var array Files or directories to remove anywhere in vendor files. */
+/** @var array Files or directories to remove anywhere in vendor files. Case-insensitive.  */
 	private static $standardFiles = [
 		'development',
 		'demo',
@@ -388,6 +388,7 @@ class CleanVendors
 		$fs->remove($vendors . 'league/commonmark/CHANGELOG-0.x.md');
 		$fs->remove($vendors . 'pear/pear/README.CONTRIBUTING');
 		$fs->remove($vendors . 'twbs/bootstrap/site/_data/examples.yml');
+		$fs->remove($vendors . 'Sam152/Javascript-Equal-Height-Responsive-Rows/grids.js');
 
 		self::removeMultiple(
 			$vendors . 'smarty/smarty',
@@ -500,10 +501,12 @@ class CleanVendors
 
 		foreach ($vendorDirs as $dir) {
 			if (is_dir($dir)) {
+				$dirFiles = glob("$dir/*");
 				foreach (self::$standardFiles as $file) {
-					$path = $dir . '/' . $file;
-					if (file_exists($path) || is_dir($path)) {
-						$fs->remove($path);
+					/** @var bool|string The file name as found on the system (so case does not matter), or false if file not found */
+					$caseInsensitiveName = current(preg_grep('/\/' . preg_quote($file, '/') . '$/i', $dirFiles));
+					if ($caseInsensitiveName) {
+						$fs->remove($caseInsensitiveName);
 					}
 				}
 				self::removeStandard($dir);
