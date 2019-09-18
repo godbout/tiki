@@ -26,7 +26,6 @@
 			{$headerlib->add_jsfile('lib/dracula/raphael-min.js', true)}
 			{$headerlib->add_jsfile('lib/dracula/graffle.js', true)}
 			{$headerlib->add_jsfile('lib/dracula/graph.js', true)}
-			{$headerlib->add_jsfile('lib/jquery_tiki/activity.js', true)}
 			<button href="#" id="graph-draw" class="btn btn-primary">{icon name="image"} {tr}Event Chain Diagram{/tr}</button>
 			<div id="graph-canvas" class="graph-canvas" data-graph-nodes="{$event_graph.nodes|@json_encode|escape}" data-graph-edges="{$event_graph.edges|@json_encode|escape}"></div>
 	{jq}
