@@ -873,7 +873,9 @@ class FileGalLib extends TikiLib
 			case 'application/pdf':
 				return function (FileWrapper $wrapper) {
 					include_once "vendor_bundled/vendor/christian-vigh-phpclasses/PdfToText/PdfToText.phpclass";
+					ob_start();
 					$pdf = new PdfToText($wrapper->getReadableFile());
+					ob_end_clean();
 					return $pdf->Text;
 				};
 		}
