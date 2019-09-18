@@ -64,9 +64,38 @@
     .profile_details th, .msg_date,
     .news_cell .source, .news_cell .from { color: $popover-body-color; }
 
-    .settings_table .save_settings {
-        color: color-yiq($primary);
-        background-color: $primary;
+    input[type=button], input[type=submit] {
+    	display: inline-block;
+    	font-weight: $btn-font-weight;
+    	text-align: center;
+    	white-space: nowrap;
+    	vertical-align: middle;
+    	user-select: none;
+    	border: $btn-border-width solid transparent;
+    	@include button-size($btn-padding-y, $btn-padding-x, $font-size-base, $btn-line-height, $btn-border-radius);
+    	@include transition($btn-transition);
+        @include hover-focus { text-decoration: none; }
+        padding: $padding-y $padding-x !important;
+        cursor: pointer;
+
+    	&:focus, &.focus {
+    		outline: 0;
+    		box-shadow: $btn-focus-box-shadow;
+    	}
+
+    	&.disabled, &:disabled {
+            opacity: $btn-disabled-opacity;
+            cursor: default;
+    		@include box-shadow(none);
+    	}
+    }
+
+    input[type=submit] {
+    	@include button-variant($primary, $primary);
+    }
+
+    input[type=button] {
+    	@include button-variant($secondary, $secondary);
     }
 }
 

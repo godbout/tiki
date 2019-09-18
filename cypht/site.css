@@ -569,6 +569,14 @@ body {
 	margin-top: 10px;
 }
 
+.nux_dev_news {
+	margin-right: 20px;
+}
+
+.nux_dev_news table td:last-child {
+	white-space: normal;
+}
+
 .part_desc,
 .part_size,
 .download_link {
@@ -603,14 +611,17 @@ body {
 	padding: 0.375rem 0.75rem;
 }
 
-.settings_table .save_settings {
-	padding: 0.75rem 1rem !important;
+.server_count {
+	margin-right: 30px;
+}
+
+.user_settings table {
+	table-layout: auto;
 }
 
 .user_settings table td,
 .edit_profile table th,
 .edit_profile table td {
-	display: block;
 	padding: 10px 15px;
 	height: auto;
 	width: 100%;
@@ -710,7 +721,6 @@ body {
 
 .mobile .nux_dev_news table td {
 	display: block;
-	white-space: normal;
 }
 
 .mobile .nux_empty_combined_view {
