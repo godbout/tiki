@@ -567,8 +567,8 @@ class PreferencesLib
 			return null;
 		}
 		if (substr($name, 0, 3) == 'tp_') {
-			$midpos = strpos($name, '_', 3);
-			$pos = strpos($name, '_', $midpos + 1);
+			$midpos = strpos($name, '__', 3);
+			$pos = strpos($name, '__', $midpos + 2);
 			$file = substr($name, 0, $pos);
 		} elseif (substr($name, 0, 7) == 'themes_') {
 			$pos = strpos($name, '_', 7 + 1);
@@ -607,7 +607,7 @@ class PreferencesLib
 		$inc_file = __DIR__ . "/prefs/{$file}.php";
 		if (substr($file, 0, 3) == "tp_") {
 			$paths = \Tiki\Package\ExtensionManager::getPaths();
-			$package = str_replace('_', '/', substr($file, 3));
+			$package = str_replace('__', '/', substr($file, 3));
 			$inc_file = $paths[$package] . "/prefs/{$file}.php";
 		}
 		if (preg_match('/^themes_(.*)$/', $file, $matches)) {
