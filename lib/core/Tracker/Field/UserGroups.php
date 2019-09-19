@@ -61,6 +61,12 @@ class Tracker_Field_UserGroups extends Tracker_Field_Abstract
 		return $this->renderTemplate('trackeroutput/usergroups.tpl', $context);
 	}
 
+	public function watchCompare($old, $new)
+	{
+		// TODO properly
+		return '';
+	}
+
 	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
 	{
 		$baseKey = $this->getBaseKey();
