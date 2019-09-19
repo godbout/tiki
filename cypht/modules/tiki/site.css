@@ -128,6 +128,20 @@ body {
 	flex-wrap: wrap;
 }
 
+.search_content .content_title {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	max-height: 100px;
+}
+
+.search_content .search_form form {
+	padding-right: 20px;
+}
+
+.search_content #search_terms {
+	margin: 0 3px 7px;
+}
+
 /* Mobile specific */
 .mobile .inline-cypht {
 	padding-top: 20px;
@@ -356,4 +370,58 @@ body {
 .mobile .folder_cell.slide-in {
 	transition: all 0.5s ease;
 	transform: translateX(300px);
+}
+
+.mobile .search_content {
+	padding-top: 0;
+}
+
+.mobile .search_content .content_title {
+	display: block;
+	padding-top: 20px;
+	padding-bottom: 10px;
+}
+
+.mobile .search_content .search_form {
+	display: block;
+	padding: 0;
+	font-size: 100%;
+}
+
+.mobile .search_content #search_terms {
+	margin: 10px 3px 3px;
+	width: 270px;
+	max-width: 100%;
+}
+
+.mobile .search_content .message_table {
+	margin-top: 100px;
+}
+
+.mobile .search_form select {
+	width: auto;
+	margin: 5px;
+}
+
+.mobile .search_form input[type=submit],
+.mobile .search_form input[type=button] {
+	font-size: 80%;
+}
+
+.mobile .targets_section,
+.mobile .other_section,
+.mobile .submit_section,
+.mobile .time_section,
+.mobile .source_section,
+.mobile .terms_section {
+	padding-left: 40px;
+}
+
+.mobile .advanced_search_form input[type="radio"],
+.mobile .advanced_search_form input[type="checkbox"] {
+	margin-right: 5px;
+}
+
+.mobile .advanced_search_form label {
+	margin-right: 10px;
 }
