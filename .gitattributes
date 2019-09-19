@@ -2048,6 +2048,7 @@ installer/schema/20190523_migrate_webmail_accounts_tiki.php -text
 installer/schema/20190526_remove_tiki_addon_profiles_tiki.sql -text
 installer/schema/20190627_add_ocr_fgal_status_tiki.sql -text
 installer/schema/20190722_ocr_fgal_tiki.sql -text
+installer/schema/20190913_caldav_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -3148,9 +3149,11 @@ lib/core/Tiki/Render/Lazy.php -text
 lib/core/Tiki/Render/index.php -text
 lib/core/Tiki/Request.php -text
 lib/core/Tiki/SabreDav/BasicAuth.php -text
+lib/core/Tiki/SabreDav/CalDAVBackend.php -text
 lib/core/Tiki/SabreDav/Directory.php -text
 lib/core/Tiki/SabreDav/File.php -text
 lib/core/Tiki/SabreDav/LocksBackend.php -text
+lib/core/Tiki/SabreDav/PrincipalBackend.php -text
 lib/core/Tiki/SabreDav/Utilities.php -text
 lib/core/Tiki/SabreDav/WikiDirectory.php -text
 lib/core/Tiki/SabreDav/WikiPage.php -text
@@ -8011,6 +8014,7 @@ themes/yeti/templates/index.php -text
 /tiki-browse_freetags.php -text
 /tiki-browse_gallery.php -text
 /tiki-browse_image.php -text
+/tiki-caldav.php -text
 /tiki-calendar.php -text
 /tiki-calendar_edit_item.php -text
 /tiki-calendar_export_ical.php -text

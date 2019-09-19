@@ -43,26 +43,35 @@ class CalendarLib extends TikiLib
 	 * @param $maxRecords
 	 * @param string $sort_mode
 	 * @param string $find
+	 * @param string $user
 	 * @return mixed
 	 */
-	function list_calendars($offset = 0, $maxRecords = -1, $sort_mode = 'name_asc', $find = '')
+	function list_calendars($offset = 0, $maxRecords = -1, $sort_mode = 'name_asc', $find = '', $user = '')
 	{
 		$mid = '';
 		$res = [];
 		$bindvars = [];
+		$join = '';
+
 		if ($find) {
 			$mid = "and tcal.`name` like ?";
 			$bindvars[] = '%' . $find . '%';
 		}
 
+		if ($user) {
+			$mid = "and ( tcal.`user` = ? or tcali.`calendarInstanceId` IS NOT NULL )";
+			$bindvars[] = $user;
+			$join .= ' left join `tiki_calendar_instances` tcali on tcal.calendarId = tcali.calendarId and tcali.`user` = ?';
+			array_unshift($bindvars, $user);
+		}
+
 		$categlib = TikiLib::lib('categ');
 
-		$join = '';
 		if ($jail = $categlib->get_jail()) {
 			$categlib->getSqlJoin($jail, 'calendar', 'tcal.`calendarId`', $join, $mid, $bindvars);
 		}
 
-		$query = "select * from `tiki_calendars` as tcal $join where 1=1 $mid order by tcal." . $this->convertSortMode($sort_mode);
+		$query = "select tcal.* from `tiki_calendars` as tcal $join where 1=1 $mid order by tcal." . $this->convertSortMode($sort_mode);
 		$result = $this->query($query, $bindvars, $maxRecords, $offset);
 		$query_cant = "select count(*) from `tiki_calendars` as tcal $join where 1=1 $mid";
 		$cant = $this->getOne($query_cant, $bindvars);
@@ -73,6 +82,22 @@ class CalendarLib extends TikiLib
 			$res2 = $this->query("select `optionName`,`value` from `tiki_calendar_options` where `calendarId`=?", [(int)$k]);
 			while ($r2 = $res2->fetchRow()) {
 				$r[$r2['optionName']] = $r2['value'];
+			}
+			if ($user) {
+				// override with per user instance values if those exist
+				$query = "select * from `tiki_calendar_instances` where calendarId = ? and user = ?";
+				$instance_result = $this->query($query, [$r['calendarId'], $user]);
+				$instance = $instance_result->fetchRow();
+				if ($instance) {
+					$r['name'] = $instance['name'];
+					$r['description'] = $instance['description'];
+					$r['order'] = $instance['order'];
+					$r['color'] = $instance['color'];
+					$r['timezone'] = $instance['timezone'];
+					$r['calendarInstanceId'] = $instance['calendarInstanceId'];
+				} else {
+					$r['calendarInstanceId'] = 0;
+				}
 			}
 			$r['name'] = tra($r['name']);
 			$res["$k"] = $r;
@@ -99,15 +124,22 @@ class CalendarLib extends TikiLib
 	 * @param $description
 	 * @param array $customflags
 	 * @param array $options
+	 * @param $instanceId
 	 * @return mixed
 	 */
-	function set_calendar($calendarId, $user, $name, $description, $customflags = [], $options = [])
+	function set_calendar($calendarId, $user, $name, $description, $customflags = [], $options = [], $instanceId = 0)
 	{
 		global $prefs;
 		$name = strip_tags($name);
 		$description = strip_tags($description);
 		$now = time();
-		if ($calendarId > 0) {
+		if ($instanceId > 0) {
+			// modification of a calendar instance
+			$finalEvent = 'tiki.calendar.update';
+			$query = "update `tiki_calendar_instances` set `name`=?, `description`=?, `transparent`=?, `timezone`=?, `order`=?, `color`=? where `calendarInstanceId`=?";
+			$bindvars = [$name,$description, @$options['transparent'], @$options['timezone'], @$options['order'], @$options['custombgcolor'], $instanceId];
+			$result = $this->query($query, $bindvars);
+		}	elseif ($calendarId > 0) {
 			// modification of a calendar
 			$finalEvent = 'tiki.calendar.update';
 			$query = "update `tiki_calendars` set `name`=?, `user`=?, `description`=?, ";
@@ -120,6 +152,13 @@ class CalendarLib extends TikiLib
 			$bindvars[] = $now;
 			$bindvars[] = $calendarId;
 			$result = $this->query($query, $bindvars);
+			// merge existing options in case passed array does not contain the full list (e.g. caldav integration)
+			$res = $this->query("select `optionName`,`value` from `tiki_calendar_options` where `calendarId`=?", [(int)$calendarId]);
+			while ($r = $res->fetchRow()) {
+				if (!isset($options[$r['optionName']])) {
+					$options[$r['optionName']] = $r['optionName'] == 'viewdays' ? unserialize($r['value']) : $r['value'];
+				}
+			}
 		} else {
 			// create a new calendar
 			$finalEvent = 'tiki.calendar.create';
@@ -139,16 +178,18 @@ class CalendarLib extends TikiLib
 			$result = $this->query($query, $bindvars);
 			$calendarId = $this->GetOne("select `calendarId` from `tiki_calendars` where `created`=?", [$now]);
 		}
-		$this->query('delete from `tiki_calendar_options` where `calendarId`=?', [(int)$calendarId]);
-		if (count($options)) {
-			if (isset($options['viewdays'])) {
-				$options['viewdays'] = serialize($options['viewdays']);
-			} else {
-				$options['viewdays'] = serialize($prefs['calendar_view_days']);
-			}
-			foreach ($options as $name => $value) {
-				$name = preg_replace('/[^-_a-zA-Z0-9]/', '', $name);
-				$this->query('insert into `tiki_calendar_options` (`calendarId`,`optionName`,`value`) values (?,?,?)', [(int)$calendarId,$name,$value]);
+		if ($instanceId == 0) {
+			$this->query('delete from `tiki_calendar_options` where `calendarId`=?', [(int)$calendarId]);
+			if (count($options)) {
+				if (isset($options['viewdays'])) {
+					$options['viewdays'] = serialize($options['viewdays']);
+				} else {
+					$options['viewdays'] = serialize($prefs['calendar_view_days']);
+				}
+				foreach ($options as $name => $value) {
+					$name = preg_replace('/[^-_a-zA-Z0-9]/', '', $name);
+					$this->query('insert into `tiki_calendar_options` (`calendarId`,`optionName`,`value`) values (?,?,?)', [(int)$calendarId,$name,$value]);
+				}
 			}
 		}
 
@@ -187,6 +228,16 @@ class CalendarLib extends TikiLib
 		return $cal;
 	}
 
+	function get_calendar_options($calendarId)
+	{
+		$opts = [];
+		$res = $this->query("select `optionName`,`value` from `tiki_calendar_options` where `calendarId`=?", [(int)$calendarId]);
+		while ($r = $res->fetchRow()) {
+			$opts[$r['optionName']] = $r['value'];
+		}
+		return $opts;
+	}
+
 	/**
 	 * @param $calitemId
 	 * @return mixed
@@ -222,6 +273,10 @@ class CalendarLib extends TikiLib
 		$query = "delete from `tiki_calendar_options` where `calendarId`=?";
 		$this->query($query, [$calendarId]);
 		$query = "delete from `tiki_calendar_locations` where `calendarId`=?";
+		$this->query($query, [$calendarId]);
+		$query = "delete from `tiki_calendar_instances` where `calendarId`=?";
+		$this->query($query, [$calendarId]);
+		$query = "delete from `tiki_calendar_changes` where `calendarId`=?";
 		$this->query($query, [$calendarId]);
 		// uncategorize calendar
 		$categlib = TikiLib::lib('categ');
@@ -441,7 +496,7 @@ class CalendarLib extends TikiLib
 		global $user, $prefs;
 
 		$query = "select i.`calitemId` as `calitemId`, i.`calendarId` as `calendarId`, i.`user` as `user`, i.`start` as `start`, i.`end` as `end`, t.`name` as `calname`, ";
-		$query .= "i.`locationId` as `locationId`, l.`name` as `locationName`, i.`categoryId` as `categoryId`, c.`name` as `categoryName`, i.`priority` as `priority`, i.`nlId` as `nlId`, ";
+		$query .= "i.`locationId` as `locationId`, l.`name` as `locationName`, i.`categoryId` as `categoryId`, c.`name` as `categoryName`, i.`priority` as `priority`, i.`nlId` as `nlId`, i.`uid` as `uid`, ";
 		$query .= "i.`status` as `status`, i.`url` as `url`, i.`lang` as `lang`, i.`name` as `name`, i.`description` as `description`, i.`created` as `created`, i.`lastmodif` as `lastModif`, i.`allday` as `allday`, i.`recurrenceId` as `recurrenceId`, ";
 		$query .= "t.`customlocations` as `customlocations`, t.`customcategories` as `customcategories`, t.`customlanguages` as `customlanguages`, t.`custompriorities` as `custompriorities`, ";
 		$query .= "t.`customsubscription` as `customsubscription`, ";
@@ -467,7 +522,7 @@ class CalendarLib extends TikiLib
 					$org[] = $rez["username"];
 				} elseif ($rez["username"]) {
 					$ppl[] = ['name' => $rez["username"],
-							  'role' => $rez["role"]];
+								'role' => $rez["role"]];
 				}
 			}
 			$res["participants"] = $ppl;
@@ -587,7 +642,7 @@ class CalendarLib extends TikiLib
 		$data['user'] = $user;
 
 		$realcolumns = ['calitemId', 'calendarId', 'start', 'end', 'locationId', 'categoryId', 'nlId','priority',
-				   'status', 'url', 'lang', 'name', 'description', 'user', 'created', 'lastmodif', 'allday','recurrenceId','changed'];
+					 'status', 'url', 'lang', 'name', 'description', 'user', 'created', 'lastmodif', 'allday','recurrenceId','changed'];
 		foreach ($customs as $custom) {
 			$realcolumns[] = $custom;
 		}
@@ -863,7 +918,7 @@ class CalendarLib extends TikiLib
 						'name' => '',
 						'description' => '',
 						'locationId' => '',
-					  'organizers' => '',
+						'organizers' => '',
 						'participants' => '',
 						'status' => '1',
 						'priority' => '5',
@@ -990,7 +1045,7 @@ class CalendarLib extends TikiLib
 	 * @param int $start
 	 * @return array
 	 */
-	function all_events($maxrows = -1, $calendarId = null, $maxDaysEnd = -1, $order = 'start_asc', $priorDays = 0, $maxDaysStart = -1, $start = 0)
+	function all_events($maxrows = -1, $calendarId = null, $maxDaysEnd = -1, $order = 'start_asc', $priorDays = 0, $maxDaysStart = -1, $start = 0, $itemIds = [])
 	{
 		global $prefs;
 		$cond = '';
@@ -1008,6 +1063,10 @@ class CalendarLib extends TikiLib
 				$bindvars[] = $calendarId;
 			}
 		}
+		if (count($itemIds) > 0) {
+			$cond .= " and i.calitemId in (".implode(',', array_fill(0, count($itemIds), '?')).")";
+			$bindvars = array_merge($bindvars, $itemIds);
+		}
 		$condition = '';
 		$cond .= " and  $condition (unix_timestamp(now()) - ?*3600*34)";
 		$bindvars[] = $priorDays;
@@ -1024,7 +1083,7 @@ class CalendarLib extends TikiLib
 
 		$query = "select i.`start`, i.`end`, i.`name`, i.`description`, i.`status`," .
 							" i.`calitemId`, i.`calendarId`, i.`user`, i.`lastModif`, i.`url`," .
-							" l.`name` as location, i.`allday`, c.`name` as category" .
+							" l.`name` as location, i.`allday`, c.`name` as category, i.`created`, i.`priority`, i.`uid`" .
 							" from `tiki_calendar_items` i" .
 							" $ljoin" .
 							" where 1=1 " . $cond .
@@ -1043,6 +1102,53 @@ class CalendarLib extends TikiLib
 		$retval['data'] = $ret;
 		$retval['cant'] = $cant;
 		return $retval;
+	}
+
+	public function get_events($calendarId, $itemIds = [], $componenttype = null, $start = null, $end = null)
+	{
+		global $prefs;
+
+		$cond = ' and i.calendarId = ?';
+		$bindvars = [$calendarId];
+
+		if (count($itemIds) > 0) {
+			$cond .= " and i.calitemId in (".implode(',', array_fill(0, count($itemIds), '?')).")";
+			$bindvars = array_merge($bindvars, $itemIds);
+		}
+
+		if ($componenttype) {
+			$cond .= " and i.componenttype = ?";
+			$bindvars[] = $componenttype;
+		}
+
+		if ($start) {
+			$cond .= " and i.end > ?";
+			$bindvars[] = $start;
+		}
+
+		if ($end) {
+			$cond .= " and i.start < ?";
+			$bindvars[] = $end;
+		}
+
+		$join = "left join `tiki_calendar_locations` as l on i.`locationId`=l.`callocId` left join `tiki_calendar_categories` as c on i.`categoryId`=c.`calcatId`";
+
+		$query = "select i.`start`, i.`end`, i.`name`, i.`description`, i.`status`," .
+							" i.`calitemId`, i.`calendarId`, i.`user`, i.`lastmodif` as `lastModif`, i.`url`," .
+							" l.`name` as location, c.`name` as category, i.`created`, i.`priority`, i.`uid`" .
+							" from `tiki_calendar_items` i" .
+							" $join" .
+							" where 1=1 " . $cond .
+							" order by calitemId";
+
+		return $this->fetchAll($query, $bindvars);
+	}
+
+	public function find_by_uid($user, $uid) {
+		$query = "select i.`calendarId`, i.`calitemId` from `tiki_calendar_items` i left join `tiki_calendars` c on i.`calendarId` = c.`calendarId` where c.user = ? and i.`uid` = ?";
+		$bindvars = [$user, $uid];
+		$result = $this->query($query, $bindvars);
+		return $result->fetchRow();
 	}
 
 	/**
@@ -1549,5 +1655,159 @@ class CalendarLib extends TikiLib
 				}
 			}
 		}
+	}
+
+	/**
+	 * Adds a change record to the calendarchanges table.
+	 *
+	 * @param int $calendarId
+	 * @param int $calitemId
+	 * @param int $operation 1 = add, 2 = modify, 3 = delete.
+	 * @return void
+	 */
+	public function add_change($calendarId, $calitemId, $operation)
+	{
+		$options = $this->get_calendar_options($calendarId);
+
+		$this->query('insert into `tiki_calendar_changes`(`calitemId`, `synctoken`, `calendarId`, `operation`) values(?, ?, ?, ?)', [
+			$calitemId,
+			$options['synctoken'] ?? 1,
+			$calendarId,
+			$operation,
+		]);
+
+		$this->query('replace into tiki_calendar_options(calendarId, optionName, value) values(?, ?, ?)', [
+			$calendarId,
+			'synctoken',
+			$options['synctoken']+1,
+		]);
+	}
+
+	/**
+	 * Gets latest change for each item in the calendar.
+	 *
+	 * @param int $calendarId
+	 * @param int $synctoken
+	 * @param int $maxrecords
+	 * @return array
+	 */
+	public function get_changes($calendarId, $synctoken, $maxRecords = -1)
+	{
+		$query = 'select c1.calitemId, c1.operation
+			from `tiki_calendar_changes` c1
+			left join `tiki_calendar_changes` c2 on c1.calitemId = c2.calitemId and c1.synctoken < c2.synctoken
+			where c1.calendarId = ? and c1.synctoken > ? and c2.calitemId is null';
+		$bindvars = [$calendarId, $synctoken];
+		return $this->fetchAll($query, $bindvars, $maxRecords);
+	}
+
+	public function fill_uid($calitemId, $uid) {
+		$this->query("update `tiki_calendar_items` set `uid` = ? where `calitemId` = ?", [$uid, $calitemId]);
+	}
+
+	/**
+	 * Calendar instance methods - deal with invites and shares
+	 */
+	public function get_calendar_instances($calendarId)
+	{
+		$query = "select user, access, share_href, share_name, share_invite_status from `tiki_calendar_instances` where calendarId = ?";
+		$bindvars = [$calendarId];
+		return $this->fetchAll($query, $bindvars);
+	}
+
+	public function get_calendar_instance($instanceId)
+	{
+		$query = "select user, access, share_href, share_name, share_invite_status from `tiki_calendar_instances` where calendarInstanceId = ?";
+		$bindvars = [$instanceId];
+		$result = $this->query($query, $bindvars);
+		return $result->fetchRow();
+	}
+
+	public function create_calendar_instance($data)
+	{
+		$query = 'insert into `tiki_calendar_instances` (`'.implode('`, `', array_keys($data)).'`) values ('.implode(",", array_fill(0, count($data), "?")).')';
+		$bindvars = array_values($data);
+		$this->query($query, $bindvars);
+		return $this->lastInsertId();
+	}
+
+	public function update_calendar_instance($calendarId, $share_href, $data)
+	{
+		$query = 'update `tiki_calendar_instances` set '.implode(' = ?, ', array_keys($data)).' = ? where calendarId = ? and share_href = ?';
+		$bindvars = array_values($data) + [$calendarId, $share_href];
+		return $this->query($query, $bindvars);
+	}
+
+	public function remove_calendar_instance($calendarId, $share_href = null, $instanceId = null)
+	{
+		if ($shared_href) {
+			return $this->query('delete from `tiki_calendar_instances` where calendarId = ? and share_href = ?', [$calendarId, $share_href]);
+		}
+		if ($instanceId) {
+			return $this->query('delete from `tiki_calendar_instances` where calendarId = ? and calendarInstanceId = ?', [$calendarId, $instanceId]);
+		}
+	}
+
+	/**
+	 * Subscription methods
+	 */
+	public function get_subscriptions($user)
+	{
+		$query = "select subscriptionId, calendarId, user, source, name, refresh_rate, `order`, color, strip_todos, strip_alarms, strip_attachments, lastmodif from tiki_calendar_subscriptions where user = ?";
+		$bindvars = [$user];
+		return $this->fetchAll($query, $bindvars);
+	}
+
+	public function create_subscription($data)
+	{
+		$data['lastmodif'] = time();
+		$query = 'insert into `tiki_calendar_subscriptions` (`'.implode('`, `', array_keys($data)).'`) values ('.implode(",", array_fill(0, count($data), "?")).')';
+		$bindvars = array_values($data);
+		$this->query($query, $bindvars);
+		return $this->lastInsertId();
+	}
+
+	public function update_subscription($subscriptionId, $data)
+	{
+		$data['lastmodif'] = time();
+		$query = 'update `tiki_calendar_subscriptions` set '.implode(' = ?, ', array_keys($data)).' = ? where subscriptionId = ?';
+		$bindvars = array_values($data) + [$subscriptionId];
+		return $this->query($query, $bindvars);
+	}
+
+	public function delete_subscription($subscriptionId)
+	{
+		return $this->query('delete from `tiki_calendar_subscriptions` where subscriptionId = ?', [$subscriptionId]);
+	}
+
+	/**
+	 * Scheduling methods
+	 */
+	public function get_scheduling_object($user, $uri)
+	{
+		$query = "SELECT uri, calendardata, lastmodif, etag, size FROM `tiki_calendar_scheduling_objects` WHERE user = ? AND uri = ?";
+		$bindvars = [$user, $uri];
+		$result = $this->query($query, $bindvars);
+		return $result->fetchRow();
+	}
+
+	public function get_scheduling_objects($user)
+	{
+		$query = "SELECT schedulingObjectId, calendardata, uri, lastmodif, etag, size FROM `tiki_calendar_scheduling_objects` WHERE user = ?";
+		$bindvars = [$user];
+		return $this->fetchAll($query, $bindvars);
+	}
+
+	public function delete_scheduling_object($user, $uri)
+	{
+		return $this->query('delete from `tiki_calendar_scheduling_objects` where user = ? and uri = ?', [$user, $uri]);
+	}
+
+	public function create_scheduling_object($user, $uri, $data) 
+	{
+		$query = "insert into `tiki_calendar_scheduling_objects` (user, calendardata, uri, lastmodif, etag, size) values (?, ?, ?, ?, ?, ?)";
+		$bindvars = [$user, $data, $uri, time(), md5($data), strlen($data)];
+		$this->query($query, $bindvars);
+		return $this->lastInsertId();
 	}
 }
