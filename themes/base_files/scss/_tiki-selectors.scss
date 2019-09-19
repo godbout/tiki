@@ -315,16 +315,7 @@ table.treetable.objectperms td.removed {
 	background: darken(theme-color("danger"), 15%);
 }
 
-.btn.selected {
-	&.btn-primary {
-		background-color: darken(theme-color("primary"), 5%);
-		border-color: darken(theme-color("primary"), 7.5%);
-		&:hover {
-			background-color: darken(theme-color("primary"), 10%);
-			border-color: darken(theme-color("primary"), 12.5%);
-		}
-	}
-
+.btn.active {
 	&.btn-link {
 		color: darken($link-color, 5%);
 		text-decoration: underline;
