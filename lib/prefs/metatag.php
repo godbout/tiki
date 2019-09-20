@@ -92,8 +92,9 @@ function prefs_metatag_list()
 		],
 		'metatag_robots' => [
 			'name' => tra('Meta robots'),
-			'description' => tra('Specify how Web robots should index your site. Valid values include: INDEX or NOINDEX, and FOLLOW or NOFOLLOW'),
+			'description' => tra('Specify how search engines robots should index your site. Will override page defaults. Valid values include: noindex, nofollow, none, all, noimageindex, noarchive, nocache, nosnippet, notranslate, unavailable_after and noyaca.'),
 			'type' => 'text',
+			'shorthint' => tra('Should be comma separated eg. noimgaeindex, nocache.'),
 			'help' => 'Robots-Exclusion-Protocol#HTML_META_Directives',
 			'size' => '50',
 			'default' => '',
