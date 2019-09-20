@@ -85,7 +85,7 @@
 							title="{$tracker.name|escape}:{tr}View{/tr}"
 							href="{$tracker.trackerId|sefurl:'tracker'}"
 						>
-							{$tracker.name|escape}
+							{tr}{$tracker.name|escape}{/tr}
 						</a>
 						<div class="description form-text">
 							{if $tracker.descriptionIsParsed eq 'y'}
