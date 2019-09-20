@@ -20,16 +20,16 @@
 			{if $show_filters eq 'y'}
 				{jq}
 					fields = [];
-					{{assign var=c value=0}}
-					{{foreach key=fid item=field from=$listfields}
+					{assign var=c value=0}
+					{foreach key=fid item=field from=$listfields}
 						{if $field.isSearchable eq 'y' and $field.type ne 'f' and $field.type ne 'j' and $field.type ne 'i'}
 							fields[{$c}] = '{$fid}';
 							{assign var=c value=$c+1}
 						{/if}
-					{/foreach}}
+					{/foreach}
 				{/jq}
 				{*FIX flip from tikijs.js this only a paleative<select name="filterfield" onchange="multitoggle(fields,this.options[selectedIndex].value);flip('filterbutton');">*}
-				<select name="filterfield" class="form-control" onchange="multitoggle(fields,this.options[selectedIndex].value); {literal}showit = 'show_filterbutton'; if(this.selectedIndex == 0){document.getElementById('filterbutton').style.display = 'none';setSessionVar(showit,'n');}else{ document.getElementById('filterbutton').style.display = 'block'; setSessionVar(showit,'y');}{/literal}">
+				<select name="filterfield" class="form-control" onchange="multitoggle(fields,this.options[selectedIndex].value); {literal}showit = 'show_filterbutton'; if(this.selectedIndex === 0){document.getElementById('filterbutton').style.display = 'none';setSessionVar(showit,'n');}else{ document.getElementById('filterbutton').style.display = 'block'; setSessionVar(showit,'y');}{/literal}">
 					{*FIX flip from tikijs.js this only a paleative<select name="filterfield" onchange="multitoggle(fields,this.options[selectedIndex].value);flip('filterbutton');">*}
 					<option value="">{tr}Choose a filter{/tr}</option>
 					{foreach key=fid item=field from=$listfields}

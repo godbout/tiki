@@ -1,5 +1,5 @@
 {* $Id$ *}
-{title url=$trackerId|sefurl:'tracker' adm="trackers"}{$tracker_info.name}{/title}
+{title url=$trackerId|sefurl:'tracker' adm="trackers"}{tr}{$tracker_info.name}{/tr}{/title}
 {if !empty($tracker_info.description)}
 	{if $tracker_info.descriptionIsParsed eq 'y'}
 		<div class="description form-text">{wiki}{$tracker_info.description}{/wiki}</div>
