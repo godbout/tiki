@@ -68,12 +68,12 @@
 	</div>
 
 	<div id="extra-fields-placeholder">
-		<div class="form-group hidden">
+		<div class="form-group d-none">
 			<label class="col-sm-3 col-form-label"></label>
 			<div class="col-sm-7">
 				<input value="" name="" size="20" maxlength="80" class="form-control">
 			</div>
-			<div class="col-sm-1 hidden">
+			<div class="col-sm-1 d-none">
 
 			</div>
 		</div>
@@ -253,11 +253,11 @@
 	}
 
 	function ext_add(extid, text, defaultvalue, pub) {
-		var newElement = document.querySelector("#extra-fields-placeholder .form-group.hidden").cloneNode(true); //clones nodes too
+		var newElement = document.querySelector("#extra-fields-placeholder .form-group.d-none").cloneNode(true); //clones nodes too
 		newElement = createElementOrFill(newElement, { id : 'tr_ext_'+extid });
 		var label = newElement.querySelector('.col-form-label').innerHTML = text;
 		var input = createElementOrFill(newElement.querySelector('input'), { maxlength : 80, name : 'ext_'+extid, value : defaultvalue});
-		newElement.classList.remove('hidden');
+		newElement.classList.remove('d-none');
 		document.querySelector('#extra-fields-placeholder').appendChild(newElement);
 
 		if (pub != 'y' || {/literal}{if $tiki_p_admin_group_webmail eq 'y'}1{else}0{/if}{literal}) {	// add button only if not public
@@ -266,7 +266,7 @@
 			var removeButton = createElementOrFill('input', {type:'button', name:'ext_'+extid, value:'-', 'onclick':'ext_remove(\''+extid+'\');' });
 			inputDiv.classList.remove('col-sm-7');
 			inputDiv.classList.add('col-sm-6');
-			buttonDiv.classList.remove('hidden');
+			buttonDiv.classList.remove('d-none');
 			removeButton.classList.add('btn');
 			removeButton.classList.add('btn-primary');
 			buttonDiv.appendChild(removeButton);
