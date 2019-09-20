@@ -94,7 +94,7 @@ function prefs_metatag_list()
 			'name' => tra('Meta robots'),
 			'description' => tra('Specify how search engines robots should index your site. Will override page defaults. Valid values include: noindex, nofollow, none, all, noimageindex, noarchive, nocache, nosnippet, notranslate, unavailable_after and noyaca.'),
 			'type' => 'text',
-			'shorthint' => tra('Should be comma separated eg. noimgaeindex, nocache.'),
+			'shorthint' => tra('Should be comma separated eg. noimageindex, nocache.'),
 			'help' => 'Robots-Exclusion-Protocol#HTML_META_Directives',
 			'size' => '50',
 			'default' => '',
