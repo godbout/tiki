@@ -665,6 +665,52 @@ body {
 	margin: 0 3px 7px;
 }
 
+.save_search img,
+.delete_search img {
+	padding: 5px 0 0 5px;
+}
+
+.advanced_search_form input[type="radio"],
+.advanced_search_form input[type="checkbox"] {
+	margin-right: 5px;
+}
+
+.advanced_search_form label {
+	margin-right: 10px;
+}
+
+.other_section table {
+	width: 100%;
+	white-space: normal;
+}
+
+.other_section table tr {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.other_section table th {
+	width: 40%;
+}
+
+.other_section table td {
+	max-width: 55%;
+}
+
+.other_section table td label {
+	width: 130px;
+}
+
+.other_section .flags {
+	width: 170px;
+}
+
+.content_title {
+	overflow: hidden;
+	min-height: 25px;
+	max-height: 100px;
+}
+
 /* Mobile specific */
 .mobile .inline-cypht {
 	padding-top: 20px;
@@ -757,9 +803,13 @@ body {
 }
 
 .mobile .sys_messages {
+	top: 0;
+	right: 0;
+	width: 100%;
+	min-height: 5px;
 	padding-bottom: 15px;
 	white-space: normal;
-	min-height: 5px;
+	box-sizing: border-box;
 }
 
 .mobile #imap_server_folder {
@@ -895,6 +945,8 @@ body {
 	transform: translateX(300px);
 }
 
+
+/* search and advanced search */
 .mobile .search_content {
 	padding-top: 0;
 }
@@ -937,14 +989,14 @@ body {
 .mobile .time_section,
 .mobile .source_section,
 .mobile .terms_section {
-	padding-left: 40px;
+	padding-left: 30px;
 }
 
-.mobile .advanced_search_form input[type="radio"],
-.mobile .advanced_search_form input[type="checkbox"] {
-	margin-right: 5px;
+.mobile .time_section input[type=date] {
+	display: block;
+	margin-bottom: 10px;
 }
 
-.mobile .advanced_search_form label {
-	margin-right: 10px;
+.mobile .timeandor {
+	text-align: left;
 }
