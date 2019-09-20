@@ -47,7 +47,7 @@ class Scheduler_Task_ShellCommandTask extends Scheduler_Task_CommandTask
 		return [
 			'shell_command' => [
 				'name' => tra('Shell command'),
-				'type' => 'text',
+				'type' => 'textarea',
 				'required' => true,
 			],
 			'timeout' => [
