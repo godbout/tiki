@@ -69,6 +69,7 @@ class CleanVendors
 		'.mailmap',
 		'.styleci.yml',
 		'.eslintrc.json',
+		'.styleci.yml',
 		'contributing.md',
 		'changes.md',
 		'changes.md~',
@@ -83,6 +84,7 @@ class CleanVendors
 		'readme.mdown',
 		'readme.md',
 		'history.md',
+		'history.md',
 		'todo',
 		'todo.md',
 		'news',
@@ -95,7 +97,17 @@ class CleanVendors
 		'_translationstatus.txt',
 		'info.txt',
 		'robots.txt',
-		'install'
+		'install',
+		'appveyor.yml',
+		'phpunit.xml.dist',
+		'makefile',
+		'cname',
+		'devtools',
+		'psalm.xml',
+		'authors.txt',
+		'authors',
+		'credits.md',
+		'notice',
 	];
 
 	/**
