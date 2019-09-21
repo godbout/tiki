@@ -12,7 +12,7 @@ use Composer\Util\FileSystem;
 
 class CleanVendors
 {
-/** @var array Files or directories to remove anywhere in vendor files. Case-insensitive.  */
+/** @var array Files or directories to remove anywhere in vendor files. Case-insensitive. Must specify as lower case.  */
 	private static $standardFiles = [
 		'development',
 		'demo',
@@ -104,7 +104,6 @@ class CleanVendors
 	 */
 	public static function clean(Event $event): void
 	{
-		$themes = __DIR__ . '/../../../../themes/';
 		$vendors = $event->getComposer()->getConfig()->get('vendor-dir');
 
 		if (substr($vendors, -1, 1) !== DIRECTORY_SEPARATOR) {
@@ -112,11 +111,7 @@ class CleanVendors
 		}
 
 		$fs = new FileSystem;
-		$fs->ensureDirectoryExists($themes);
 
-		self::addIndexFile($themes);
-		self::addIndexFile($vendors);
-		self::removeStandard($vendors);
 		$fs->remove($vendors . 'adodb/adodb/cute_icons_for_site');
 		$fs->remove($vendors . 'aFarkas/html5shiv/build');
 		$fs->remove($vendors . 'bombayworks/zendframework1/library/Zend/Service/WindowsAzure/CommandLine/Scaffolders');
@@ -487,6 +482,15 @@ class CleanVendors
 				'CHANGELOG-1.2.md',
 			]
 		);
+
+		// we remove standard files afterward so we have less files to search through
+		self::removeStandard($vendors);
+		self::addIndexFile($vendors);
+
+		// now we process theme files
+		$themes = __DIR__ . '/../../../../themes/';
+		$fs->ensureDirectoryExists($themes);
+		self::addIndexFile($themes);
 	}
 
 	private static function addIndexFile($path)
@@ -506,19 +510,12 @@ class CleanVendors
 	private static function removeStandard(string $base): void
 	{
 		$fs = new FileSystem;
-		$vendorDirs = glob($base . '*/*', GLOB_ONLYDIR);
-
-		foreach ($vendorDirs as $dir) {
-			if (is_dir($dir)) {
-				$dirFiles = glob("$dir/*");
-				foreach (self::$standardFiles as $file) {
-					/** @var bool|string The file name as found on the system (so case does not matter), or false if file not found */
-					$caseInsensitiveName = current(preg_grep('/\/' . preg_quote($file, '/') . '$/i', $dirFiles));
-					if ($caseInsensitiveName) {
-						$fs->remove($caseInsensitiveName);
-					}
-				}
-				self::removeStandard($dir);
+		$files = glob($base . '/{,.}*[!.]', GLOB_MARK | GLOB_BRACE);
+		foreach ($files as $file) {
+			if (in_array(strtolower(basename($file)), self::$standardFiles, true)){
+				$fs->remove($file);
+			} elseif (is_dir($file)){
+				self::removeStandard($file);
 			}
 		}
 	}
@@ -531,11 +528,15 @@ class CleanVendors
 	private static function removeMultiple(string $base, array $files) : void
 	{
 		$fs = new FileSystem;
-		foreach ($files as $file) {
-			$path = $base . '/' . $file;
-			if (file_exists($path) || is_dir($path)) {
-				$fs->remove($path);
+		if (is_dir($base)) {
+			foreach ($files as $file) {
+				$path = $base . '/' . $file;
+				if (file_exists($path) || is_dir($path)) {
+					$fs->remove($path);
+				}
 			}
+		} else {
+			echo "\e[031mError \e[0m $base not found\n";
 		}
 	}
 }
