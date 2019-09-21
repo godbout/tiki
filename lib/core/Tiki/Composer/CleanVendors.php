@@ -124,8 +124,13 @@ class CleanVendors
 
 		$fs = new FileSystem;
 
-		$fs->remove($vendors . 'adodb/adodb/cute_icons_for_site');
-		$fs->remove($vendors . 'aFarkas/html5shiv/build');
+		self::removeMultiple(
+			$vendors . 'afarkas/html5shiv',
+			[
+				'src',
+				'dist/html5shiv-printshiv.js',
+			]
+		);
 		$fs->remove($vendors . 'bombayworks/zendframework1/library/Zend/Service/WindowsAzure/CommandLine/Scaffolders');
 		self::removeMultiple(
 			$vendors . 'codemirror/codemirror',
@@ -157,7 +162,6 @@ class CleanVendors
 				'jquery-ui-timepicker-addon.min.js'
 			]
 		);
-		self::removeMultiple($vendors . 'jquery/jquery-ui', ['development-bundle', 'external']);
 		self::removeMultiple($vendors . 'jquery/jtrack', ['js/jquery.json-2.2.min.js', 'js/jquery-1.4.2.min.js']);
 		self::removeMultiple(
 			$vendors . 'jquery/md5',
@@ -176,17 +180,8 @@ class CleanVendors
 			]
 		);
 
-		self::removeMultiple(
-			$vendors . 'jquery-plugins/colorbox',
-			[
-				'content',
-				'example1',
-				'example2',
-				'example3',
-				'example4',
-				'example5',
-			]
-		);
+		// note, example files are required
+		$fs->remove($vendors . 'jquery-plugins/colorbox/content');
 
 		self::removeMultiple(
 			$vendors . 'jquery-plugins/galleriffic',
@@ -365,41 +360,61 @@ class CleanVendors
 				'elfinder.html',
 			]
 		);
-		self::removeMultiple(
-			$vendors . 'jcbrand/converse.js',
-			[
-				'fonticons/demo-files',
-				'mockup',
-				'mockup.html'
-			]
-		);
 
 		$fs->remove($vendors . 'nicolaskruchten/pivottable/images/animation.gif');
 
-		// These are removed to avoid composer warnings caused by classes declared in multiple locations
-		$fs->remove($vendors . 'adodb/adodb/datadict/datadict');
-		$fs->remove($vendors . 'adodb/adodb/session/session');
-		$fs->remove($vendors . 'adodb/adodb/perf/perf');
-		$fs->remove($vendors . 'adodb/adodb/drivers/drivers');
-		$fs->remove($vendors . 'adodb/adodb/adodb-active-recordx.inc.php');
-		$fs->remove($vendors . 'adodb/adodb/drivers/adodb-informix.inc.php');
-		$fs->remove($vendors . 'adodb/adodb/perf/perf-informix.inc.php');
-		$fs->remove($vendors . 'adodb/adodb/datadict/datadict-informix.inc.php');
+		self::removeMultiple(
+			$vendors . 'adodb/adodb-php',
+			[
+				'cute_icons_for_site',
+				'session/adodb-sess.txt',
+				'scripts',
+				'pear/readme.Auth.txt',
+				// Below are removed to avoid composer warnings caused by classes declared in multiple locations
+				'datadict/datadict',
+				'session/session',
+				'adodb/adodb/perf/perf',
+				'adodb/adodb/drivers/drivers',
+				'adodb-active-recordx.inc.php',
+				'drivers/adodb-informix.inc.php',
+				'perf/perf-informix.inc.php',
+				'datadict/datadict-informix.inc.php',
+			]
+		);
 
-		// and cwspear/bootstrap-hover-dropdown includes bootstrap and jquery without asking
+		$fs->remove($vendors . 'adodb/adodb-php/session/adodb-sess.txt');
+
+		// and cwspear/bootstrap-hover-dropdown includes bootstrap without asking
 		$fs->remove($vendors . 'components/bootstrap');
-
-		//Remove extra files to keep the system tidy
-		$fs->remove($vendors . 'bower-asset/fontawesome/advanced-options');
-		$fs->remove($vendors . 'bower-asset/fontawesome/svg-with-js');
-		$fs->remove($vendors . 'bower-asset/fontawesome/use-on-desktop');
 		//duplicate with mottie/tablesorter
 		$fs->remove($vendors . 'components/tablesorter');
+		// duplicate with rmm5t/jquery-timeago
+		$fs->remove($vendors . 'components/jquery-timeago');
+		// duplicate with afarkas/html5shiv
+		$fs->remove($vendors . 'components/html5shiv');
+		// duplicate with fullcalendar/fullcalendar
+		$fs->remove($vendors . 'components/fullcalendar');
+		// duplicate with cwspear/bootstrap-hover-dropdown
+		$fs->remove($vendors . 'components/bootstrap-hover-dropdown');
+		// duplicate with moment/moment
+		$fs->remove($vendors . 'components/moment');
+		// duplicate with drmonty/smartmenus
+		$fs->remove($vendors . 'components/smartmenus');
+		$fs->remove($vendors . 'rmm5t/jquery-timeago/index.html');
 		$fs->remove($vendors . 'jason-munro/cypht/hm3.sample.ini');
 		$fs->remove($vendors . 'league/commonmark/CHANGELOG-0.x.md');
 		$fs->remove($vendors . 'pear/pear/README.CONTRIBUTING');
 		$fs->remove($vendors . 'twbs/bootstrap/site/_data/examples.yml');
 		$fs->remove($vendors . 'Sam152/Javascript-Equal-Height-Responsive-Rows/grids.js');
+		$fs->remove($vendors . 'npm-asset/prefixfree/index.html');
+
+		self::removeMultiple(
+			$vendors . 'ckeditor/ckeditor',
+			[
+				'.npm',
+				'plugins/codesnippet/lib/highlight/README.ru.md ',
+			]
+		);
 
 		self::removeMultiple(
 			$vendors . 'smarty/smarty',
@@ -413,19 +428,21 @@ class CleanVendors
 		);
 
 		self::removeMultiple(
+			$vendors . 'bower-asset/fontawesome',
+			[
+				'advanced-options',
+				'svg-with-js',
+				'use-on-desktop',
+			]
+		);
+
+		self::removeMultiple(
 			$vendors . 'svg-edit/svg-edit/',
 			[
 				'embedapi.html',
 				'extensions/imagelib/index.html',
 				'browser-not-supported.html',
 				'config-sample.js'
-			]
-		);
-		self::removeMultiple(
-			$vendors . 'etdsolutions',
-			[
-				'jquery',
-				'jquery-ui',
 			]
 		);
 
@@ -482,7 +499,6 @@ class CleanVendors
 				'VERSION',
 				'WHATSNEW',
 				'WYSIWYG'
-
 			]
 		);
 
@@ -492,6 +508,15 @@ class CleanVendors
 				'CHANGELOG-1.0.md',
 				'CHANGELOG-1.1.md',
 				'CHANGELOG-1.2.md',
+			]
+		);
+
+		self::removeMultiple(
+			$vendors . 'openid/php-openid',
+			[
+				'CHANGES-2.1.0',
+				'READEME.Debian',
+				'README.git',
 			]
 		);
 
