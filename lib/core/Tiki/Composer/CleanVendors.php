@@ -117,22 +117,18 @@ class CleanVendors
 	public static function clean(Event $event): void
 	{
 		$vendors = $event->getComposer()->getConfig()->get('vendor-dir');
-
 		if (substr($vendors, -1, 1) !== DIRECTORY_SEPARATOR) {
 			$vendors .= DIRECTORY_SEPARATOR;
 		}
 
-		$fs = new FileSystem;
-
-		self::removeMultiple(
+		self::remove(
 			$vendors . 'afarkas/html5shiv',
 			[
 				'src',
 				'dist/html5shiv-printshiv.js',
 			]
 		);
-		$fs->remove($vendors . 'bombayworks/zendframework1/library/Zend/Service/WindowsAzure/CommandLine/Scaffolders');
-		self::removeMultiple(
+		self::remove(
 			$vendors . 'codemirror/codemirror',
 			[
 				'mode/tiki',
@@ -140,9 +136,8 @@ class CleanVendors
 				'bin'
 			]
 		);
-		$fs->remove($vendors . 'cwspear/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js');
-
-		self::removeMultiple(
+		self::remove($vendors . 'cwspear/bootstrap-hover-dropdown', 'bootstrap-hover-dropdown.min.js');
+		self::remove(
 			$vendors . 'jquery/jquery-sheet',
 			[
 				'jquery-1.10.2.min.js',
@@ -151,8 +146,7 @@ class CleanVendors
 				'parser/formula/formula.php'
 			]
 		);
-
-		self::removeMultiple(
+		self::remove(
 			$vendors . 'jquery/jquery-timepicker-addon',
 			[
 				'lib',
@@ -162,15 +156,21 @@ class CleanVendors
 				'jquery-ui-timepicker-addon.min.js'
 			]
 		);
-		self::removeMultiple($vendors . 'jquery/jtrack', ['js/jquery.json-2.2.min.js', 'js/jquery-1.4.2.min.js']);
-		self::removeMultiple(
+		self::remove(
+			$vendors . 'jquery/jtrack',
+			[
+				'js/jquery.json-2.2.min.js',
+				'js/jquery-1.4.2.min.js'
+			]
+		);
+		self::remove(
 			$vendors . 'jquery/md5',
 			['css',
 			 'js/md5.min.js'
 			]
 		);
-		$fs->remove($vendors . 'jquery/minicart/src');
-		self::removeMultiple(
+		self::remove($vendors . 'jquery/minicart', 'src');
+		self::remove(
 			$vendors . 'jquery-plugins/anythingslider',
 			[
 				'anythingslider.jquery.json',
@@ -179,11 +179,9 @@ class CleanVendors
 				'video.html'
 			]
 		);
-
 		// note, example files are required
-		$fs->remove($vendors . 'jquery-plugins/colorbox/content');
-
-		self::removeMultiple(
+		self::remove($vendors . 'jquery-plugins/colorbox', 'content');
+		self::remove(
 			$vendors . 'jquery-plugins/galleriffic',
 			[
 				'js/jquery-1.3.2.js',
@@ -196,8 +194,8 @@ class CleanVendors
 				'example-5.html',
 			]
 		);
-		$fs->remove($vendors . 'jquery-plugins/infinitecarousel/jquery.infinitecarousel3.min.js');
-		self::removeMultiple(
+		self::remove($vendors . 'jquery-plugins/infinitecarousel', 'jquery.infinitecarousel3.min.js');
+		self::remove(
 			$vendors . 'jquery-plugins/jquery-validation',
 			[
 				'lib',
@@ -207,15 +205,15 @@ class CleanVendors
 				'dist/jquery.validate.min.js'
 			]
 		);
-		self::removeMultiple(
+		self::remove(
 			$vendors . 'jquery-plugins/jquery-json',
 			[
 				'dist',
 				'libs',
 			]
 		);
-		$fs->remove($vendors . 'jquery-plugins/reflection-jquery/src');
-		self::removeMultiple(
+		self::remove($vendors . 'jquery-plugins/reflection-jquery', 'src');
+		self::remove(
 			$vendors . 'jquery-plugins/superfish',
 			[
 				'src',
@@ -224,7 +222,7 @@ class CleanVendors
 				'dist/js/superfish.min.js'
 			]
 		);
-		self::removeMultiple(
+		self::remove(
 			$vendors . 'mottie/tablesorter',
 			[
 				'addons',
@@ -290,7 +288,7 @@ class CleanVendors
 				'js/widgets/widget-view.js'
 			]
 		);
-		self::removeMultiple(
+		self::remove(
 			$vendors . 'jquery-plugins/treetable',
 			[
 				'stylesheets/jquery.treetable.theme.default.css',
@@ -298,7 +296,7 @@ class CleanVendors
 				'treetable.jquery.json'
 			]
 		);
-		self::removeMultiple(
+		self::remove(
 			$vendors . 'jquery-plugins/zoom',
 			[
 				'jquery.zoom.min.js',
@@ -307,9 +305,14 @@ class CleanVendors
 				'roxy.jpg'
 			]
 		);
-		self::removeMultiple($vendors . 'mediumjs/mediumjs', ['src', 'medium.min.js']);
-		$fs->remove($vendors . 'onelogin/php-saml/demo-old');
-		self::removeMultiple(
+		self::remove(
+			$vendors . 'mediumjs/mediumjs',
+			[
+				'src',
+				'medium.min.js'
+			]
+		);
+		self::remove(
 			$vendors . 'player',
 			[
 				'flv/base',
@@ -339,7 +342,7 @@ class CleanVendors
 				'mp3/template_default/test.mp3',
 			]
 		);
-		self::removeMultiple(
+		self::remove(
 			$vendors . 'rangy/rangy',
 			[
 				'uncompressed/rangy-highlighter.js',
@@ -353,17 +356,15 @@ class CleanVendors
 				'rangy-textrange.js',
 			]
 		);
-		self::removeMultiple(
+		self::remove(
 			$vendors . 'studio-42/elfinder',
 			[
 				'files',
 				'elfinder.html',
 			]
 		);
-
-		$fs->remove($vendors . 'nicolaskruchten/pivottable/images/animation.gif');
-
-		self::removeMultiple(
+		self::remove($vendors . 'nicolaskruchten/pivottable', 'images/animation.gif');
+		self::remove(
 			$vendors . 'adodb/adodb-php',
 			[
 				'cute_icons_for_site',
@@ -381,8 +382,117 @@ class CleanVendors
 				'datadict/datadict-informix.inc.php',
 			]
 		);
+		self::remove($vendors . 'adodb/adodb-php', 'session/adodb-sess.txt');
+		self::remove($vendors . 'rmm5t/jquery-timeago', 'index.html');
+		self::remove($vendors . 'jason-munro/cypht', 'hm3.sample.ini');
+		self::remove($vendors . 'league/commonmark', 'CHANGELOG-0.x.md');
+		self::remove($vendors . 'pear/pear', 'README.CONTRIBUTING');
+		self::remove($vendors . 'twbs/bootstrap/site', '_data/examples.yml');
+		self::remove($vendors . 'Sam152/Javascript-Equal-Height-Responsive-Rows', 'grids.js');
+		self::remove($vendors . 'npm-asset/prefixfree', 'index.html');
+		self::remove(
+			$vendors . 'ckeditor/ckeditor',
+			[
+				'.npm',
+				'plugins/codesnippet/lib/highlight/README.ru.md ',
+			]
+		);
+		self::remove(
+			$vendors . 'smarty/smarty',
+			[
+				'change_log.txt',
+				'INHERITANCE_RELEASE_NOTES.txt',
+				'SMARTY_2_BC_NOTES.txt',
+				'SMARTY_3.0_BC_NOTES.txt',
+				'SMARTY_3.1_NOTES.txt',
+			]
+		);
+		self::remove(
+			$vendors . 'bower-asset/fontawesome',
+			[
+				'advanced-options',
+				'svg-with-js',
+				'use-on-desktop',
+			]
+		);
+		self::remove(
+			$vendors . 'svg-edit/svg-edit/',
+			[
+				'embedapi.html',
+				'extensions/imagelib/index.html',
+				'browser-not-supported.html',
+				'config-sample.js'
+			]
+		);
+		self::remove(
+			$vendors . 'ahand/mobileesp',
+			[
+				'ASP_NET',
+				'Cpp',
+				'Java',
+				'JavaScript',
+				'MobileESP_UA-Test-Strings',
+				'Python',
+			]
+		);
+		self::remove(
+			$vendors . 'plotly/plotly.js/',
+			[
+				'src',
+				'dist/extras',
+				'dist/topojson',
+			]
+		);
+		self::remove($vendors . 'css-tricks/anythingslider-themes', 'index.html');
+		self::remove(
+			$vendors . 'vimeo/froogaloop',
+			[
+				'actionscript',
+				'javascript/froogaloop.js',
+				'javascript/playground.html',
+			]
+		);
+		self::remove(
+			$vendors . 'haubek/bootstrap4c-chosen',
+			[
+				'dist',
+				'src/scss/build.scss',
+				'gulpfile.js',
+				'yarn.lock',
+			]
+		);
+		self::remove(
+			$vendors . 'ezyang/htmlpurifier',
+			[
+				'INSTALL.fr.utf8',
+				'release1-update.php',
+				'release2-tag.php',
+				'test-settings.sample.php',
+				'test-settings.travis.php',
+				'VERSION',
+				'WHATSNEW',
+				'WYSIWYG'
+			]
+		);
+		self::remove(
+			$vendors . 'kriswallsmith/assetic',
+			[
+				'CHANGELOG-1.0.md',
+				'CHANGELOG-1.1.md',
+				'CHANGELOG-1.2.md',
+			]
+		);
+		self::remove(
+			$vendors . 'openid/php-openid',
+			[
+				'CHANGES-2.1.0',
+				'READEME.Debian',
+				'README.git',
+			]
+		);
 
-		$fs->remove($vendors . 'adodb/adodb-php/session/adodb-sess.txt');
+		// remove entire packages
+		$fs = new FileSystem;
 
 		// and cwspear/bootstrap-hover-dropdown includes bootstrap without asking
 		$fs->remove($vendors . 'components/bootstrap');
@@ -400,125 +510,6 @@ class CleanVendors
 		$fs->remove($vendors . 'components/moment');
 		// duplicate with drmonty/smartmenus
 		$fs->remove($vendors . 'components/smartmenus');
-		$fs->remove($vendors . 'rmm5t/jquery-timeago/index.html');
-		$fs->remove($vendors . 'jason-munro/cypht/hm3.sample.ini');
-		$fs->remove($vendors . 'league/commonmark/CHANGELOG-0.x.md');
-		$fs->remove($vendors . 'pear/pear/README.CONTRIBUTING');
-		$fs->remove($vendors . 'twbs/bootstrap/site/_data/examples.yml');
-		$fs->remove($vendors . 'Sam152/Javascript-Equal-Height-Responsive-Rows/grids.js');
-		$fs->remove($vendors . 'npm-asset/prefixfree/index.html');
-
-		self::removeMultiple(
-			$vendors . 'ckeditor/ckeditor',
-			[
-				'.npm',
-				'plugins/codesnippet/lib/highlight/README.ru.md ',
-			]
-		);
-
-		self::removeMultiple(
-			$vendors . 'smarty/smarty',
-			[
-				'change_log.txt',
-				'INHERITANCE_RELEASE_NOTES.txt',
-				'SMARTY_2_BC_NOTES.txt',
-				'SMARTY_3.0_BC_NOTES.txt',
-				'SMARTY_3.1_NOTES.txt',
-			]
-		);
-
-		self::removeMultiple(
-			$vendors . 'bower-asset/fontawesome',
-			[
-				'advanced-options',
-				'svg-with-js',
-				'use-on-desktop',
-			]
-		);
-
-		self::removeMultiple(
-			$vendors . 'svg-edit/svg-edit/',
-			[
-				'embedapi.html',
-				'extensions/imagelib/index.html',
-				'browser-not-supported.html',
-				'config-sample.js'
-			]
-		);
-
-		self::removeMultiple(
-			$vendors . 'ahand/mobileesp',
-			[
-				'ASP_NET',
-				'Cpp',
-				'Java',
-				'JavaScript',
-				'MobileESP_UA-Test-Strings',
-				'Python',
-			]
-		);
-
-		self::removeMultiple(
-			$vendors . 'plotly/plotly.js/',
-			[
-				'src',
-				'dist/extras',
-				'dist/topojson',
-			]
-		);
-
-		$fs->remove($vendors . 'css-tricks/anythingslider-themes/index.html');
-
-		self::removeMultiple(
-			$vendors . 'vimeo/froogaloop',
-			[
-				'actionscript',
-				'javascript/froogaloop.js',
-				'javascript/playground.html',
-			]
-		);
-
-		self::removeMultiple(
-			$vendors . 'haubek/bootstrap4c-chosen',
-			[
-				'dist',
-				'src/scss/build.scss',
-				'gulpfile.js',
-				'yarn.lock',
-			]
-		);
-
-		self::removeMultiple(
-			$vendors . 'ezyang/htmlpurifier',
-			[
-				'INSTALL.fr.utf8',
-				'release1-update.php',
-				'release2-tag.php',
-				'test-settings.sample.php',
-				'test-settings.travis.php',
-				'VERSION',
-				'WHATSNEW',
-				'WYSIWYG'
-			]
-		);
-
-		self::removeMultiple(
-			$vendors . 'kriswallsmith/assetic',
-			[
-				'CHANGELOG-1.0.md',
-				'CHANGELOG-1.1.md',
-				'CHANGELOG-1.2.md',
-			]
-		);
-
-		self::removeMultiple(
-			$vendors . 'openid/php-openid',
-			[
-				'CHANGES-2.1.0',
-				'READEME.Debian',
-				'README.git',
-			]
-		);
 
 		// we remove standard files afterward so we have less files to search through
 		self::removeStandard($vendors);
@@ -559,11 +550,12 @@ class CleanVendors
 
 	/**
 	 * Remove multiple files. Must provide case sensitive params
-	 * @param string	$base	The base directory(path) to use.
-	 * @param array		$files	File/Directory names (omitting the base directory)
+	 * @param string		$base	The base directory(path) to use.
+	 * @param array|string	$files	File/Directory names (omitting the base directory)
 	 */
-	private static function removeMultiple(string $base, array $files) : void
+	private static function remove(string $base, $files) : void
 	{
+		$files = (array)$files;
 		$fs = new FileSystem;
 		if (is_dir($base)) {
 			foreach ($files as $file) {
