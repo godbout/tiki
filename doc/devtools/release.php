@@ -595,13 +595,19 @@ function build_packages($releaseVersion)
 	$relDir = escapeshellarg($relDir);
 
 	echo "Creating $fileName.tar.gz\n";
-	$shellout = shell_exec("cd $relDir; tar -pczf " . escapeshellarg($fileName . ".tar.gz") . " --exclude '*.DS_Store' " . escapeshellarg($fileName) . ' 2>&1');
+	$shellout = shell_exec("cd $relDir; tar -pczf " . escapeshellarg($fileName . ".tar.gz") . ' ' . escapeshellarg($fileName) . " --exclude '*.DS_Store' 2>&1");
 	if ($options['debug-packaging']) {
 		echo $shellout . "\n";
 	}
 
-	echo "Creating $fileName.bz2\n";
-	$shellout = shell_exec("cd $relDir; tar -pcjf " . escapeshellarg($fileName . ".tar.bz2") . " --exclude '*.DS_Store' " . escapeshellarg($fileName) . ' 2>&1');
+	echo "Creating $fileName.tar.bz2\n";
+	$shellout = shell_exec("cd $relDir; tar -pcjf " . escapeshellarg($fileName . ".tar.bz2") . ' ' . escapeshellarg($fileName) . " --exclude '*.DS_Store' 2>&1");
+	if ($options['debug-packaging']) {
+		echo $shellout . "\n";
+	}
+
+	echo "Creating $fileName.tar.xz\n";
+	$shellout = shell_exec("cd $relDir; tar -pcJf " . escapeshellarg($fileName . ".tar.xz") . ' ' . escapeshellarg($fileName) . " --exclude '*.DS_Store' 2>&1");
 	if ($options['debug-packaging']) {
 		echo $shellout . "\n";
 	}
@@ -613,7 +619,7 @@ function build_packages($releaseVersion)
 	}
 
 	echo "Creating $fileName.7z\n";
-	$shellout = shell_exec("cd $relDir; 7za a " . escapeshellarg($fileName . ".7z") . ' ' . escapeshellarg($fileName) . ' 2>&1');
+	$shellout = shell_exec("cd $relDir; 7za a " . escapeshellarg($fileName . ".7z") . ' ' . escapeshellarg($fileName) . ' -xr!*.DS_Store -mx=9 2>&1');
 	if (strpos($shellout, 'command not found')) {
 		error("7za not installed. Archive creation failed.\n");
 	}
