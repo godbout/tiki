@@ -550,12 +550,12 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 	}
 } else {
 	//For to get informations entered and placed in the fields
-	if (empty($userinfo['login'])){
-		$userinfo['login'] = '';
+	if (isset($_REQUEST['login'])) {
+		$userinfo['login'] = htmlspecialchars(strip_tags((trim($_REQUEST['login']))));
 	}
 
-	if (empty($userinfo['email'])){
-		$userinfo['email'] = '';
+	if (isset($_REQUEST['email'])) {
+		$userinfo['email'] = htmlspecialchars(strip_tags((trim($_REQUEST['email']))));
 	}
 
 	$userinfo['created'] = $tikilib->now;
