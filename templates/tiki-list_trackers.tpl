@@ -73,7 +73,7 @@
 					<td class="id text-center">
 						<a
 							class="tips"
-							title="{$tracker.name|escape}:{tr}View{/tr}"
+							title="{tr}{$tracker.name|escape}{/tr}:{tr}View{/tr}"
 							href="{$tracker.trackerId|sefurl:'tracker'}"
 						>
 							{$tracker.trackerId|escape}
@@ -82,7 +82,7 @@
 					<td class="text">
 						<a
 							class="tips"
-							title="{$tracker.name|escape}:{tr}View{/tr}"
+							title="{tr}{$tracker.name|escape}{/tr}:{tr}View{/tr}"
 							href="{$tracker.trackerId|sefurl:'tracker'}"
 						>
 							{tr}{$tracker.name|escape}{/tr}
@@ -100,7 +100,7 @@
 					<td class="integer">
 						<a
 							class="tips"
-							title="{$tracker.name|escape}:{tr}View{/tr}"
+							title="{tr}{$tracker.name|escape}{/tr}:{tr}View{/tr}"
 							href="tiki-view_tracker.php?trackerId={$tracker.trackerId}"
 						>
 
