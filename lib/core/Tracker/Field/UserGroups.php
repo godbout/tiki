@@ -45,7 +45,7 @@ class Tracker_Field_UserGroups extends Tracker_Field_Abstract
 				}
 			}
 			$value = array_unique(array_filter($value));
-			natsort($value);
+			natcasesort($value);
 		}
 
 		return ['value' => $value];
@@ -59,6 +59,12 @@ class Tracker_Field_UserGroups extends Tracker_Field_Abstract
 	function renderOutput($context = [])
 	{
 		return $this->renderTemplate('trackeroutput/usergroups.tpl', $context);
+	}
+
+	public function watchCompare($old, $new)
+	{
+		// TODO properly
+		return '';
 	}
 
 	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)

@@ -73,4 +73,13 @@ class Search_Query_FacetWikiBuilder
 			}
 		}
 	}
+
+	/**
+	 * @return array
+	 */
+	public function getFacets(): array
+	{
+		return $this->facets;
+	}
+
 }

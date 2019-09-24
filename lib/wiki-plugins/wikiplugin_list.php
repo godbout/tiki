@@ -255,6 +255,13 @@ function wikiplugin_list($data, $params)
 
 			PluginsLibUtil::handleDownload($query, $index, $matches);
 
+			/* set up facets/aggregations */
+			$facetsBuilder = new Search_Query_FacetWikiBuilder();
+			$facetsBuilder->apply($matches);
+			if ($facetsBuilder->getFacets()) {
+				$facetsBuilder->build($query, $unifiedsearchlib->getFacetProvider());
+			}
+
 			if ($multisearch) {
 				$originalQueries[$id] = $query;
 				$query->search($index, (string)$id);
