@@ -149,7 +149,7 @@ body {
 }
 .inline-cypht .refresh_list, .inline-cypht .list_settings_link {
   padding: 0;
-  margin: 5px 3px 0;
+  margin: 5px 2px 0;
 }
 .inline-cypht .toggle_recipients {
   right: 25px;
@@ -162,6 +162,13 @@ body {
 }
 .inline-cypht .part_desc, .inline-cypht .part_size, .inline-cypht .download_link {
   margin-left: 25px;
+}
+.inline-cypht .msg_part_icon {
+  padding: 0;
+  margin-left: 5px;
+}
+.inline-cypht .imap_keyword {
+  margin-top: 4px;
 }
 
 .mobile .inline-cypht {
@@ -186,9 +193,6 @@ body {
 .mobile .inline-cypht .content_title .list_controls {
   border: none;
   background: #fff;
-}
-.mobile .inline-cypht .content_title .list_controls a {
-  padding-right: 0;
 }
 .mobile .inline-cypht .sys_messages {
   top: 0;
@@ -300,19 +304,23 @@ body {
 .mobile .inline-cypht .toggle_link {
   width: auto !important;
 }
+.mobile .inline-cypht .message_table > tbody > tr > td {
+  padding-right: 7px;
+}
 .mobile .inline-cypht .msg_controls {
   width: 100%;
   height: 43px;
   top: 0;
   left: 0 !important;
   right: 0;
-  padding: 17px 0 0 50px;
+  padding: 20px 0;
+  margin-left: 90px;
 }
 .mobile .inline-cypht .news_cell {
   padding-bottom: 15px !important;
 }
-.mobile .inline-cypht .news_cell .checkbox_cell {
-  padding-left: 8px !important;
+.mobile .inline-cypht .news_cell.checkbox_cell {
+  padding-left: 7px !important;
 }
 .mobile .inline-cypht .news_cell .msg_date {
   padding-top: 0;
