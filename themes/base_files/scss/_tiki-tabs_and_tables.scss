@@ -154,6 +154,7 @@ td.url{
 					border-top: none;
 					text-align: left !important;
 					position: relative;
+					word-break: break-word;
 					&:after {
 						display: block;
 						clear: both;
