@@ -888,14 +888,14 @@ var permsRemoved = ' . json_encode($permissions_removed) . ';
 for (var group in permsAdded) {
 	if (permsAdded.hasOwnProperty(group)) {
 		for (var i = 0; i < permsAdded[group].length; i++) {
-			 $("input[name=\'perm[" + group + "][]\'][value=\'tiki_p_" + permsAdded[group][i] + "\']").parent().addClass("added");
+			 $("input[name=\'perm[" + `group` + "][]\'][value=\'tiki_p_" + permsAdded[group][i] + "\']").parent().addClass("added");
 		}
 	}
 }
 for (var group in permsRemoved) {
 	if (permsRemoved.hasOwnProperty(group)) {
 		for (var i = 0; i < permsRemoved[group].length; i++) {
-			 $("input[name=\'perm[" + group + "][]\'][value=\'tiki_p_" + permsRemoved[group][i] + "\']").parent().addClass("removed");
+			 $("input[name=\'perm[" + `group` + "][]\'][value=\'tiki_p_" + permsRemoved[group][i] + "\']").parent().addClass("removed");
 		}
 	}
 }
