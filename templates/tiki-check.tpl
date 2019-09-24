@@ -3,7 +3,7 @@
 
 <h2>{tr}MySQL or MariaDB Database Properties{/tr}</h2>
 <form method="post" action="tiki-check.php">
-<input class="registerSubmit" type="submit" class="btn btn-primary" name="acknowledge" value="{tr}Acknowledge (OK){/tr}">
+<input class="registerSubmit btn btn-primary" type="submit" name="acknowledge" value="{tr}Acknowledge (OK){/tr}">
 <div class="table-responsive">
 	<table class="table table-striped table-hover">
 		<tr>
