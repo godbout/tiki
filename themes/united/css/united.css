@@ -7343,7 +7343,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     line-height: 1.5;
     border-radius: 0.25rem;
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-    padding: 0.5rem 0.75rem !important;
+    padding: 0.375rem 0.75rem !important;
     cursor: pointer; }
   @media screen and (prefers-reduced-motion: reduce) {
     .inline-cypht input[type=button], .inline-cypht input[type=submit] {

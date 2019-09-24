@@ -46,11 +46,6 @@ if (empty($_SESSION['cypht']['request_key'])) {
 }
 $_SESSION['cypht']['username'] = $user;
 
-TikiLib::lib('header')->add_css("
-.inline-cypht * { box-sizing: content-box; }
-.inline-cypht { position: relative; }
-");
-
 /* get configuration */
 $config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc');
 
