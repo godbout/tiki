@@ -101,11 +101,13 @@ body { min-width: 100%; }
 	}
 
 // message list / text
-	.refresh_list, .list_settings_link { padding:0; margin: 5px 3px 0; }
+	.refresh_list, .list_settings_link { padding:0; margin: 5px 2px 0; }
 	.toggle_recipients { right: 25px; }
 	.msg_date { font-weight: bold; }
 	.msg_parts tr:not(:last-child) { border-bottom: 1px solid #444; }
 	.part_desc, .part_size, .download_link { margin-left: 25px; }
+	.msg_part_icon { padding: 0; margin-left: 5px; }
+	.imap_keyword { margin-top: 4px; }
 }
 
 
@@ -128,10 +130,7 @@ body { min-width: 100%; }
 			min-height: 60px; max-height: 500px;
 			line-height: normal;
 			font-size: 115%; font-weight: 500;
-			.list_controls {
-				border: none; background: #fff;
-				a { padding-right: 0; }
-			}
+			.list_controls { border: none; background: #fff; }
 		}
 
 		.sys_messages {
@@ -197,14 +196,15 @@ body { min-width: 100%; }
 // mobile message list
 		.list_settings_link, .refresh_list { width: 20px; height: 20px; }
 		.toggle_link { width: auto !important; }
+		.message_table > tbody >tr > td { padding-right: 7px; }
 		.msg_controls {
 			width: 100%; height: 43px;
 			top: 0; left: 0 !important; right: 0;
-			padding: 17px 0 0 50px;
+			padding: 20px 0; margin-left: 90px;
 		}
 		.news_cell {
 			padding-bottom: 15px !important;
-			.checkbox_cell { padding-left: 8px !important; }
+			&.checkbox_cell { padding-left: 7px !important; }
 			.msg_date { padding-top: 0; }
 			.subject {
 				&, & div { padding-bottom: 0px !important; }
