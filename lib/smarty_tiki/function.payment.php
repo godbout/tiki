@@ -102,8 +102,8 @@ function smarty_function_payment($params, $smarty)
 		}
 
 		if (! empty($params['returnurl']) && empty($result)) {
-			$info['url'] = TikiLib::tikiUrl($params['returnurl']);
-			$info['url'] .= (strstr($params['returnurl'], '.php?') || ! strstr($params['returnurl'], '.php') ? '&' : '?') . "invoice=$invoice";
+			$info['returnurl'] = TikiLib::tikiUrl($params['returnurl']);
+			$info['returnurl'] .= (strstr($params['returnurl'], '?') ? '&' : '?') . "invoice=$invoice";
 		}
 		$smarty->assign('payment_info', $info);
 		$smarty->assign('payment_detail', TikiLib::lib('parser')->parse_data(htmlspecialchars($info['detail'])));
