@@ -35,7 +35,9 @@
 	{/if}
 	</div>
 	{if $data.conversions}
-		<div class="d-none" style="position:absolute; background:white; z-index: 1000;">
+		<div class="d-none" style="position:absolute; z-index: 1000;">
+			<div class="modal-content">
+				<div class="modal-body">
 		{foreach from=$data.conversions key=currency item=amount}
 			{if (isset($context.reloff) and $context.reloff gt 0) and ($field.options_array[7] ne 1)}
 				{assign var=format value=$part1a|cat:$field.options_array[6]}
@@ -46,6 +48,8 @@
 			{/if}
 			<br>
 		{/foreach}
+				</div>
+			</div>
 		</div>
 	{/if}
 {/if}
