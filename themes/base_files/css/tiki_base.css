@@ -3070,7 +3070,10 @@ table.objectperms thead th {
 
 @media (max-width: 767.98px) {
   .admin-navbar .filter-menu {
+    margin: 0;
     text-align: center; }
+    .admin-navbar .form-inline .form-check {
+      width: auto; }
     .admin-navbar .navbar-nav {
       padding: 0 15px; }
     .admin-navbar .form-inline {
