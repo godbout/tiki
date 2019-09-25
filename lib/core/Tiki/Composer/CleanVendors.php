@@ -486,7 +486,7 @@ class CleanVendors
 			$vendors . 'openid/php-openid',
 			[
 				'CHANGES-2.1.0',
-				'READEME.Debian',
+				'README.Debian',
 				'README.git',
 			]
 		);
@@ -556,10 +556,19 @@ class CleanVendors
 	private static function remove(string $base, $files) : void
 	{
 		$files = (array)$files;
+
+		// make sure all directory separators are OS specific (windows compatibility)
+		if ('/' !== DIRECTORY_SEPARATOR) {
+			$base = str_replace('/', DIRECTORY_SEPARATOR, $base);
+			foreach ($files as &$file) {
+				$file = str_replace('/', DIRECTORY_SEPARATOR, $file);
+			}
+			unset ($file); // we remove $file after passing by reference to avoid unexpected errors.
+		}
 		$fs = new FileSystem;
 		if (is_dir($base)) {
 			foreach ($files as $file) {
-				$path = $base . '/' . $file;
+				$path = $base . DIRECTORY_SEPARATOR . $file;
 				if (file_exists($path) || is_dir($path)) {
 					$fs->remove($path);
 				}
