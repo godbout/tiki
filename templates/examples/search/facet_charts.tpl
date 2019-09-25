@@ -37,6 +37,9 @@ Example wiki page "chart tpl" contents for the form:
 	<div class="{$containerClass}">
 		{foreach $facets as $facet}
 			{if count($facet.options) gt 0}
+				{if not empty($chart.title) and not empty($chart.type) and not empty($chart.colors)}
+					{$chart = [$chart]}{* if there is only one chart then it will not be in an array *}
+				{/if}
 				{if not isset($chart[$i].class)}{$chart[$i].class = 'col-sm-12'}{/if}
 				<div class="{$chart[$i].class|escape}">
 					<label class="h3">
