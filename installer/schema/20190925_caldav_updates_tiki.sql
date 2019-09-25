@@ -1,0 +1,1 @@
+ALTER TABLE tiki_calendar_items ADD uri VARCHAR(200);

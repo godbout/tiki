@@ -94,6 +94,7 @@ class CalendarLib extends TikiLib
 					$r['order'] = $instance['order'];
 					$r['color'] = $instance['color'];
 					$r['timezone'] = $instance['timezone'];
+					$r['access'] = $instance['access'];
 					$r['calendarInstanceId'] = $instance['calendarInstanceId'];
 				} else {
 					$r['calendarInstanceId'] = 0;
@@ -496,7 +497,7 @@ class CalendarLib extends TikiLib
 		global $user, $prefs;
 
 		$query = "select i.`calitemId` as `calitemId`, i.`calendarId` as `calendarId`, i.`user` as `user`, i.`start` as `start`, i.`end` as `end`, t.`name` as `calname`, ";
-		$query .= "i.`locationId` as `locationId`, l.`name` as `locationName`, i.`categoryId` as `categoryId`, c.`name` as `categoryName`, i.`priority` as `priority`, i.`nlId` as `nlId`, i.`uid` as `uid`, ";
+		$query .= "i.`locationId` as `locationId`, l.`name` as `locationName`, i.`categoryId` as `categoryId`, c.`name` as `categoryName`, i.`priority` as `priority`, i.`nlId` as `nlId`, i.`uid` as `uid`, i.`uri` as `uri`, ";
 		$query .= "i.`status` as `status`, i.`url` as `url`, i.`lang` as `lang`, i.`name` as `name`, i.`description` as `description`, i.`created` as `created`, i.`lastmodif` as `lastModif`, i.`allday` as `allday`, i.`recurrenceId` as `recurrenceId`, ";
 		$query .= "t.`customlocations` as `customlocations`, t.`customcategories` as `customcategories`, t.`customlanguages` as `customlanguages`, t.`custompriorities` as `custompriorities`, ";
 		$query .= "t.`customsubscription` as `customsubscription`, ";
@@ -538,6 +539,17 @@ class CalendarLib extends TikiLib
 			$res['parsedName'] = $parserlib->parse_data($res['name']);
 		}
 		return $res;
+	}
+
+	function get_item_by_uri($uri)
+	{
+		$result = $this->query("select calitemId from `tiki_calendar_items` where uri = ?", [$uri]);
+		$row = $result->fetchRow();
+		if ($row) {
+			return $this->get_item($row['calitemId']);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -641,8 +653,8 @@ class CalendarLib extends TikiLib
 
 		$data['user'] = $user;
 
-		$realcolumns = ['calitemId', 'calendarId', 'start', 'end', 'locationId', 'categoryId', 'nlId','priority',
-					 'status', 'url', 'lang', 'name', 'description', 'user', 'created', 'lastmodif', 'allday','recurrenceId','changed'];
+		$realcolumns = ['calitemId', 'calendarId', 'start', 'end', 'locationId', 'categoryId', 'nlId', 'priority', 'uri', 'uid',
+					 'status', 'url', 'lang', 'name', 'description', 'user', 'created', 'lastmodif', 'allday', 'recurrenceId', 'changed'];
 		foreach ($customs as $custom) {
 			$realcolumns[] = $custom;
 		}
@@ -669,6 +681,7 @@ class CalendarLib extends TikiLib
 			$r[] = (int)$calitemId;
 
 			$result = $this->query($query, $r);
+			$this->add_change($data['calendarId'], $calitemId, 2);
 
 			$trackerItemsIds = $this->getAttachedTrackerItems($calitemId);
 
@@ -699,6 +712,7 @@ class CalendarLib extends TikiLib
 			$query = 'INSERT INTO `tiki_calendar_items` (' . implode(',', $l) . ') VALUES (' . implode(',', $z) . ')';
 			$result = $this->query($query, $r);
 			$calitemId = $this->GetOne("SELECT MAX(`calitemId`) FROM `tiki_calendar_items` where `calendarId`=?", [$data["calendarId"]]);
+			$this->add_change($data['calendarId'], $calitemId, 1);
 		}
 
 		if ($calitemId) {
@@ -804,9 +818,11 @@ class CalendarLib extends TikiLib
 	function drop_item($user, $calitemId, $isBulk = false)
 	{
 		if ($calitemId) {
+			$item = $this->get_item($calitemId);
 			$query = "delete from `tiki_calendar_items` where `calitemId`=?";
 			$this->query($query, [$calitemId]);
 			$this->remove_object('calendar event', $calitemId);
+			TikiLib::lib('calendar')->add_change($item['calendarId'], $calitemId, 3);
 
 			TikiLib::events()->trigger('tiki.calendaritem.delete', [
 				'type' => 'calendaritem',
@@ -1104,16 +1120,16 @@ class CalendarLib extends TikiLib
 		return $retval;
 	}
 
-	public function get_events($calendarId, $itemIds = [], $componenttype = null, $start = null, $end = null)
+	public function get_events($calendarId, $itemIdsOrUris = [], $componenttype = null, $start = null, $end = null)
 	{
 		global $prefs;
 
 		$cond = ' and i.calendarId = ?';
 		$bindvars = [$calendarId];
 
-		if (count($itemIds) > 0) {
-			$cond .= " and i.calitemId in (".implode(',', array_fill(0, count($itemIds), '?')).")";
-			$bindvars = array_merge($bindvars, $itemIds);
+		if (count($itemIdsOrUris) > 0) {
+			$cond .= " and (i.calitemId in (".implode(',', array_fill(0, count($itemIdsOrUris), '?')).") or i.uri in (".implode(',', array_fill(0, count($itemIdsOrUris), '?'))."))";
+			$bindvars = array_merge($bindvars, $itemIdsOrUris, $itemIdsOrUris);
 		}
 
 		if ($componenttype) {
@@ -1135,7 +1151,7 @@ class CalendarLib extends TikiLib
 
 		$query = "select i.`start`, i.`end`, i.`name`, i.`description`, i.`status`," .
 							" i.`calitemId`, i.`calendarId`, i.`user`, i.`lastmodif` as `lastModif`, i.`url`," .
-							" l.`name` as location, c.`name` as category, i.`created`, i.`priority`, i.`uid`" .
+							" l.`name` as location, c.`name` as category, i.`created`, i.`priority`, i.`uid`, i.`uri`" .
 							" from `tiki_calendar_items` i" .
 							" $join" .
 							" where 1=1 " . $cond .
@@ -1145,7 +1161,7 @@ class CalendarLib extends TikiLib
 	}
 
 	public function find_by_uid($user, $uid) {
-		$query = "select i.`calendarId`, i.`calitemId` from `tiki_calendar_items` i left join `tiki_calendars` c on i.`calendarId` = c.`calendarId` where c.user = ? and i.`uid` = ?";
+		$query = "select i.`calendarId`, i.`calitemId`, i.`uri` from `tiki_calendar_items` i left join `tiki_calendars` c on i.`calendarId` = c.`calendarId` where c.user = ? and i.`uid` = ?";
 		$bindvars = [$user, $uid];
 		$result = $this->query($query, $bindvars);
 		return $result->fetchRow();
@@ -1693,9 +1709,10 @@ class CalendarLib extends TikiLib
 	 */
 	public function get_changes($calendarId, $synctoken, $maxRecords = -1)
 	{
-		$query = 'select c1.calitemId, c1.operation
+		$query = 'select c1.calitemId, c1.operation, ci.uri
 			from `tiki_calendar_changes` c1
 			left join `tiki_calendar_changes` c2 on c1.calitemId = c2.calitemId and c1.synctoken < c2.synctoken
+			left join `tiki_calendar_items` ci on c1.calitemId = ci.calitemId
 			where c1.calendarId = ? and c1.synctoken > ? and c2.calitemId is null';
 		$bindvars = [$calendarId, $synctoken];
 		return $this->fetchAll($query, $bindvars, $maxRecords);

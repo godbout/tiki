@@ -124,8 +124,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
                 'share-resource-uri'                                                 => '/ns/share/' . $row['id'],
             ];
 
-            $calendar['share-access'] = 1;
-            // TODO: 1 = owner, 2 = readonly, 3 = readwrite
+            $calendar['share-access'] = $row['access'] ?? 1; // if no access is defined, user is the owner
             if ($calendar['share-access'] > 1) {
                 // read-only is for backwards compatbility. Might go away in
                 // the future.
@@ -165,7 +164,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             if ($calendar = TikiLib::lib('calendar')->get_calendar($id)) {
                 return $calendar;
             } else {
-                throw new DAV\Exception('Calendaruri does not exist in Tiki calendar database.');
+                throw new DAV\Exception\NotFound('Calendaruri does not exist in Tiki calendar database.');
             }
         } else {
             throw new DAV\Exception('Calendaruri is in invalid format.');
@@ -173,19 +172,28 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
     }
 
     protected function mapCalendarObjectUriToItem($objectUri) {
+        $calendarlib = TikiLib::lib('calendar');
         if (preg_match('#calendar-object-(.*)$#', $objectUri, $m)) {
-            return $m[1];
+            $item = $calendarlib->get_item($m[1]);
         } else {
-            throw new DAV\Exception('Objecturi is in invalid format.');
+            $item = $calendarlib->get_item_by_uri($objectUri);
         }
+        if (! $item) {
+            throw new DAV\Exception\NotFound('Objecturi not found.');
+        }
+        return $item;
     }
 
     protected function getCalendarUri($calendarId) {
         return 'calendar-'.$calendarId;
     }
 
-    protected function getCalendarObjectUri($objectId) {
-        return 'calendar-object-'.$objectId;
+    protected function getCalendarObjectUri($row) {
+        if (! empty($row['uri'])) {
+            return $row['uri'];
+        } else {
+            return 'calendar-object-'.$row['calitemId'];
+        }
     }
 
     /**
@@ -411,7 +419,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             $calendardata = $this->constructCalendarData($row);
             $result[] = [
                 'id'           => $row['calitemId'],
-                'uri'          => $this->getCalendarObjectUri($row['calitemId']),
+                'uri'          => $this->getCalendarObjectUri($row),
                 'lastmodified' => (int)$row['lastModif'],
                 'etag'         => '"' . md5($calendardata) . '"',
                 'size'         => strlen($calendardata),  // TODO: add to Tiki: calendardata
@@ -445,16 +453,14 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
 
         $this->ensureCalendarAccess($calendarId, $instanceId, 'view_calendar', 'read');
 
-        $itemId = $this->mapCalendarObjectUriToItem($objectUri);
+        $row = $this->mapCalendarObjectUriToItem($objectUri);
 
-        $perms = Perms::get('event', $itemId);
+        $perms = Perms::get('event', $row['calitemId']);
         if (! $perms->view_events) {
             throw new DAV\Exception\Forbidden(tra('Permission denied') . ": " . 'tiki_p_view_events');
         }
 
-        $row = TikiLib::lib('calendar')->get_item($itemId);
-        
-        if (!$row || $row['calendarId'] != $calendarId) {
+        if ($row['calendarId'] != $calendarId) {
             return null;
         }
 
@@ -462,7 +468,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
 
         return [
             'id'           => $row['calitemId'],
-            'uri'          => $this->getCalendarObjectUri($row['calitemId']),
+            'uri'          => $this->getCalendarObjectUri($row),
             'lastmodified' => (int)$row['lastModif'],
             'etag'         => '"' . md5($calendardata) . '"',
             'size'         => strlen($calendardata),
@@ -493,17 +499,16 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
 
         $result = [];
         foreach (array_chunk($uris, 900) as $chunk) {
-            $itemsIds = array_map(function($objectUri) {
-                return $this->mapCalendarObjectUriToItem($objectUri);
+            $itemIdsOrUris = array_map(function($uri){
+                return str_replace("calendar-object-", "", $uri);
             }, $chunk);
-
-            $objects = TikiLib::lib('calendar')->get_events($calendarId, $itemIds);
+            $objects = TikiLib::lib('calendar')->get_events($calendarId, $itemIdsOrUris);
             $filtered = Perms::filter([ 'type' => 'event' ], 'object', $objects, [ 'object' => 'calitemId' ], 'view_events');
             foreach ($filtered as $row) {
                 $calendardata = $this->constructCalendarData($row);
                 $result[] = [
                     'id'           => $row['calitemId'],
-                    'uri'          => $this->getCalendarObjectUri($row['calitemId']),
+                    'uri'          => $this->getCalendarObjectUri($row),
                     'lastmodified' => (int)$row['lastModif'],
                     'etag'         => '"' . md5($calendardata) . '"',
                     'size'         => strlen($calendardata),  // TODO: add to Tiki: calendardata
@@ -546,10 +551,9 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
 
         $data = $this->getDenormalizedData($calendarData);
         $data['calendarId'] = $calendarId;
+        $data['uri'] = $objectUri;
 
-        $itemId = TikiLib::lib('calendar')->set_item($user, 0, $data);
-        TikiLib::lib('calendar')->add_change($calendarId, $itemId, 2);
-
+        TikiLib::lib('calendar')->set_item($user, 0, $data);
         return '"' . $data['etag'] . '"';
     }
 
@@ -579,18 +583,40 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         }
         list($calendarId, $instanceId) = $calendarId;
 
-        $itemId = $this->mapCalendarObjectUriToItem($objectUri);
+        $item = $this->mapCalendarObjectUriToItem($objectUri);
 
-        $this->ensureCalendarAccess(['event', $itemId], $instanceId, 'change_events', 'write');
+        $this->ensureCalendarAccess(['event', $item['calitemId']], $instanceId, 'change_events', 'write');
 
         $data = $this->getDenormalizedData($calendarData);
         $data['calendarId'] = $calendarId;
         
-        TikiLib::lib('calendar')->set_item($user, $itemId, $data);
-        TikiLib::lib('calendar')->add_change($calendarId, $itemId, 2);
-
+        TikiLib::lib('calendar')->set_item($user, $item['calitemId'], $data);
         return '"' . $data['etag'] . '"';
 
+    }
+
+    /**
+     * Deletes an existing calendar object.
+     *
+     * The object uri is only the basename, or filename and not a full path.
+     *
+     * @param mixed $calendarId
+     * @param string $objectUri
+     * @return void
+     */
+    function deleteCalendarObject($calendarId, $objectUri) {
+        global $user;
+
+        if (!is_array($calendarId)) {
+            throw new \InvalidArgumentException('The value passed to $calendarId is expected to be an array with a calendarId and an instanceId');
+        }
+        list($calendarId, $instanceId) = $calendarId;
+
+        $item = $this->mapCalendarObjectUriToItem($objectUri);
+
+        $this->ensureCalendarAccess(['event', $item['calitemId']], $instanceId, 'change_events', 'write');
+
+        TikiLib::lib('calendar')->drop_item($user, $item['calitemId']);
     }
 
     /**
@@ -708,10 +734,11 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             $result['organizers'] = implode(',', $result['organizers']);
         }
         if (isset($component->ATTENDEE)) {
+            // TODO: RSVP handling in Tiki: e.g. PARTSTAT=ACCEPTED;RSVP=TRUE:
             $result['participants'] = [];
-            $attendees = is_array($component->ATTENDEE) ? $component->ATTENDEE : [$component->ATTENDEE];
-            foreach ($attendees as $attendee) {
-                $user = TikiLib::lib('user')->get_user_by_email($attendee);
+            foreach ($component->ATTENDEE as $attendee) {
+                $email = preg_replace("/MAILTO:\s*/", "", (string)$attendee);
+                $user = TikiLib::lib('user')->get_user_by_email($email);
                 if ($user) {
                     $role = $this->reverseMapAttendeeRole($attendee['ROLE']);
                     if ($role) {
@@ -851,31 +878,6 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
     }
 
     /**
-     * Deletes an existing calendar object.
-     *
-     * The object uri is only the basename, or filename and not a full path.
-     *
-     * @param mixed $calendarId
-     * @param string $objectUri
-     * @return void
-     */
-    function deleteCalendarObject($calendarId, $objectUri) {
-        global $user;
-
-        if (!is_array($calendarId)) {
-            throw new \InvalidArgumentException('The value passed to $calendarId is expected to be an array with a calendarId and an instanceId');
-        }
-        list($calendarId, $instanceId) = $calendarId;
-
-        $itemId = $this->mapCalendarObjectUriToItem($objectUri);
-
-        $this->ensureCalendarAccess(['event', $itemId], $instanceId, 'change_events', 'write');
-
-        TikiLib::lib('calendar')->drop_item($user, $itemId);
-        TikiLib::lib('calendar')->add_change($calendarId, $itemId, 3);
-    }
-
-    /**
      * Performs a calendar-query on the contents of this calendar.
      *
      * The calendar-query is defined in RFC4791 : CalDAV. Using the
@@ -987,7 +989,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         if ($requirePostFilter) {
             foreach ($filtered as $key => $row) {
                 $row['calendarid'] = [$calendarId, $instanceId];
-                $row['uri'] = $this->getCalendarObjectUri($row['calitemId']);
+                $row['uri'] = $this->getCalendarObjectUri($row);
                 if (!$this->validateFilterForObject($row, $filters)) {
                     unset($filtered[$key]);
                 }
@@ -995,7 +997,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         }
 
         return array_map(function($row){
-            return $this->getCalendarObjectUri($row['calitemId']);
+            return $this->getCalendarObjectUri($row);
         }, $filtered);
     }
 
@@ -1024,7 +1026,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         if ($row) {
             $perms = Perms::get('event', $row['calitemId']);
             if ($perms->view_events) {
-                return $this->getCalendarUri($row['calendarId']) . '/' . $this->getCalendarObjectUri($row['calitemId']);
+                return $this->getCalendarUri($row['calendarId']) . '/' . $this->getCalendarObjectUri($row);
             }
         }
     }
@@ -1115,13 +1117,13 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
 
                 switch ($row['operation']) {
                     case 1 :
-                        $result['added'][] = $this->getCalendarObjectUri($row['calitemId']);
+                        $result['added'][] = $this->getCalendarObjectUri($row);
                         break;
                     case 2 :
-                        $result['modified'][] = $this->getCalendarObjectUri($row['calitemId']);
+                        $result['modified'][] = $this->getCalendarObjectUri($row);
                         break;
                     case 3 :
-                        $result['deleted'][] = $this->getCalendarObjectUri($row['calitemId']);
+                        $result['deleted'][] = $this->getCalendarObjectUri($row);
                         break;
                 }
 
@@ -1132,7 +1134,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             $filtered = Perms::filter([ 'type' => 'event' ], 'object', $events, [ 'object' => 'calitemId' ], 'view_events');
 
             $result['added'] = array_map(function($row) {
-                return $this->getCalendarObjectUri($row['calitemId']);
+                return $this->getCalendarObjectUri($row);
             }, $filtered);
         }
         return $result;
