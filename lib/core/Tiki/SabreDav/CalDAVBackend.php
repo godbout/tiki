@@ -724,9 +724,9 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         }
         if (isset($component->ORGANIZER)) {
             $result['organizers'] = [];
-            $organizers = is_array($component->ORGANIZER) ? $component->ORGANIZER : [$component->ORGANIZER];
-            foreach ($organizers as $organizer) {
-                $user = TikiLib::lib('user')->get_user_by_email($organizer);
+            foreach ($component->ORGANIZER as $organizer) {
+                $email = preg_replace("/MAILTO:\s*/i", "", (string)$organizer);
+                $user = TikiLib::lib('user')->get_user_by_email($email);
                 if ($user) {
                     $result['organizers'][] = $user;
                 }
@@ -737,7 +737,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             // TODO: RSVP handling in Tiki: e.g. PARTSTAT=ACCEPTED;RSVP=TRUE:
             $result['participants'] = [];
             foreach ($component->ATTENDEE as $attendee) {
-                $email = preg_replace("/MAILTO:\s*/", "", (string)$attendee);
+                $email = preg_replace("/MAILTO:\s*/i", "", (string)$attendee);
                 $user = TikiLib::lib('user')->get_user_by_email($email);
                 if ($user) {
                     $role = $this->reverseMapAttendeeRole($attendee['ROLE']);
@@ -836,7 +836,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         if (! empty($row['category'])) {
             $data['CATEGORIES'] = $row['category'];
         }
-        if (! empty($row['locationName'])) {
+        if (! empty($row['categoryName'])) {
             $data['CATEGORIES'] = $row['categoryName'];
         }
         if (! empty($row['url'])) {
