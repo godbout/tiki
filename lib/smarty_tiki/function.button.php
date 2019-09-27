@@ -186,7 +186,9 @@ function smarty_function_button($params, $smarty)
 		foreach($dom->getElementsByTagName('a') as $link) {
 			if ($url == $link->getAttribute('href')) {
 				$selected = true;
-				$class = 'active';
+				if (is_null($class)) {
+					$class = 'active';
+				}
 			}
 		}
 
