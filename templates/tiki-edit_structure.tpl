@@ -126,7 +126,7 @@
 {button _text="{tr}Save{/tr}" _style="display:none;" _class="save_structure" _type="primary" _ajax="n" _auto_args="save_structure,page_ref_id"}
 
 {if $editable == 'y'}
-	<form action="tiki-edit_structure.php" method="get" class="form-inline" role="form">
+	<form action="tiki-edit_structure.php" method="get" role="form">
 		<div class="card">
 			<div class="card-header">
 				<strong>{tr}Add pages{/tr}</strong> <small>{tr}Use an existing page by dragging it into the structure above{/tr}</small>
