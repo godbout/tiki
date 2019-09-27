@@ -108,6 +108,7 @@ class CleanVendors
 		'authors',
 		'credits.md',
 		'notice',
+		'index.html',
 	];
 
 	/**
@@ -132,7 +133,6 @@ class CleanVendors
 			$vendors . 'codemirror/codemirror',
 			[
 				'mode/tiki',
-				'index.html',
 				'bin'
 			]
 		);
@@ -176,7 +176,8 @@ class CleanVendors
 				'anythingslider.jquery.json',
 				'expand.html',
 				'simple.html',
-				'video.html'
+				'video.html',
+				'css3.html',
 			]
 		);
 		// note, example files are required
@@ -232,7 +233,6 @@ class CleanVendors
 				'bower.json',
 				'example.json',
 				'Gruntfile.js',
-				'index.html',
 				'package.json',
 				'tablesorter.jquery.json',
 				'js/extras',
@@ -383,13 +383,21 @@ class CleanVendors
 			]
 		);
 		self::remove($vendors . 'adodb/adodb-php', 'session/adodb-sess.txt');
-		self::remove($vendors . 'rmm5t/jquery-timeago', 'index.html');
 		self::remove($vendors . 'jason-munro/cypht', 'hm3.sample.ini');
 		self::remove($vendors . 'league/commonmark', 'CHANGELOG-0.x.md');
 		self::remove($vendors . 'pear/pear', 'README.CONTRIBUTING');
 		self::remove($vendors . 'twbs/bootstrap/site', '_data/examples.yml');
 		self::remove($vendors . 'Sam152/Javascript-Equal-Height-Responsive-Rows', 'grids.js');
-		self::remove($vendors . 'npm-asset/prefixfree', 'index.html');
+		self::remove(
+			$vendors . 'npm-asset/prefixfree',
+			[
+			'index.js',
+			'css',
+			'fonts',
+			'img',
+			'minify'
+			]
+		);
 		self::remove(
 			$vendors . 'ckeditor/ckeditor',
 			[
@@ -419,7 +427,6 @@ class CleanVendors
 			$vendors . 'svg-edit/svg-edit/',
 			[
 				'embedapi.html',
-				'extensions/imagelib/index.html',
 				'browser-not-supported.html',
 				'config-sample.js'
 			]
@@ -443,7 +450,6 @@ class CleanVendors
 				'dist/topojson',
 			]
 		);
-		self::remove($vendors . 'css-tricks/anythingslider-themes', 'index.html');
 		self::remove(
 			$vendors . 'vimeo/froogaloop',
 			[
