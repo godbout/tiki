@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `tiki_acct_journal` (
   `journalCancelled` int(1) NOT NULL DEFAULT '0',
   `journalTs` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`journalId`)
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `tiki_acct_stack` (
   `stackBookId` int(10) unsigned NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS `tiki_acct_stack` (
   `stackDescription` varchar(255) NOT NULL,
   `stackTs` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`stackId`)
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `tiki_acct_statement` (
   `statementBookId` int(10) unsigned NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `tiki_acct_statement` (
   `statementJournalId` int(10) unsigned NOT NULL DEFAULT '0',
   `statementStackId` int(11) NOT NULL,
   PRIMARY KEY (`statementId`)
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `tiki_acct_tax` (
   `taxBookId` int(10) unsigned NOT NULL,
@@ -41,4 +41,4 @@ CREATE TABLE IF NOT EXISTS `tiki_acct_tax` (
   `taxAmount` double NOT NULL DEFAULT '0',
   `taxIsFix` enum('y','n') NOT NULL DEFAULT 'n',
   PRIMARY KEY (`taxId`)
-);
+) ENGINE=MyISAM;

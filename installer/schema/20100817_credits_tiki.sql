@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `tiki_credits` (
     `product_id` INT( 8 ) NULL ,
     PRIMARY KEY ( `creditId` ) ,
     INDEX ( `userId` , `credit_type` )
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `tiki_credits_usage` (
     `usageId` INT NOT NULL AUTO_INCREMENT,
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `tiki_credits_usage` (
     `used_amount` FLOAT NOT NULL DEFAULT 0,
     `product_id` INT( 8 ) NULL ,
     PRIMARY KEY ( `usageId` )
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `tiki_credits_types` (
     `credit_type` VARCHAR( 25 ) NOT NULL,
@@ -28,4 +28,4 @@ CREATE TABLE IF NOT EXISTS `tiki_credits_types` (
     `is_static_level` CHAR( 1 ) DEFAULT 'n',
     `scaling_divisor` FLOAT NOT NULL DEFAULT 1,
     PRIMARY KEY ( `credit_type` ) 
-);
+) ENGINE=MyISAM;

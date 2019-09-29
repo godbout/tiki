@@ -4,4 +4,4 @@ CREATE TABLE IF NOT EXISTS `tiki_translations_in_progress` (
    KEY `page_id` (`page_id`),
    KEY `language` (`language`),
    UNIQUE (`page_id`, `language`)
-);
+) ENGINE=MyISAM;
