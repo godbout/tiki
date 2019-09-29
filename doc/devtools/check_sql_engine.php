@@ -35,17 +35,6 @@ class CheckSqlEngine
 		return ($options);
 	}
 
-	protected function fixQueryEngine($query)
-	{
-		$trim_query = preg_replace('/\s*/m', '', $query);
-		$engine_exist = stripos($trim_query, 'ENGINE=');
-		if ($engine_exist === false) {
-			return $query . ' ENGINE=MyISAM';
-		} else {
-			return $query;
-		}
-	}
-
 	protected function printMessage($message, $outputPath = null)
 	{
 		echo "\033[0;32m" . $message . "\033[0m" . PHP_EOL;
@@ -88,21 +77,42 @@ class CheckSqlEngine
 		}
 
 		for ($i = 0; $i < $query_count; $i++) {
-			$query = preg_replace('/\s*/m', '', $queries[$i]);
-			$start_pos = stripos($query, "CREATETABLE`");
-			if ($start_pos !== false) {
-				$end_pos = strpos($query, "`", $start_pos + 12);
-				if ($end_pos !== false) {
-					$table_name = substr($query, $start_pos + 12, $end_pos - $start_pos - 12);
-					$engine_pos = stripos($query, "ENGINE=MyISAM");
-					if ($engine_pos === false) {
-						$message = "\t-- CREATE TABLE `" . $table_name . "`: invalid ENGINE statement";
-						$this->printMessageError($message, $output_path);
-						if ($should_fix) {
-							$queries[$i] = $this->fixQueryEngine($queries[$i]);
-						}
-						$error_count++;
-					}
+			if (! preg_match(
+				'/\s*CREATE\s+(?:TEMPORARY\s+){0,1}TABLE\s*(?:IF\s+NOT\s+EXISTS\s+){0,1}([^\s]+)\s*\(.*\)\s*(.*)[;\s]*/i',
+				str_replace(["\r", "\n"], ['', ' '], $queries[$i]),
+				$matches
+			)) {
+				continue;
+			}
+
+			$tableName = str_replace('`', '', $matches[1]);
+			$tableOptions = $matches[2];
+
+			if (! preg_match('/(ENGINE)\s*=\s*(\w+)\s*/i', $tableOptions, $matches)) {
+				$error_count++;
+				$message = "\t-- CREATE TABLE `" . $tableName . "`: Missing ENGINE=MyISAM Statement";
+				$this->printMessageError($message, $output_path);
+
+				if ($should_fix) {
+					$queries[$i] = $queries[$i] . ' ENGINE=MyISAM';
+				}
+			} elseif (strcasecmp('MyISAM', $matches[2]) != 0) {
+				$error_count++;
+				$message = "\t-- CREATE TABLE `" . $tableName . "`: Wrong ENGINE specified '" . $matches[2] . "'' should be ENGINE=MyISAM";
+				$this->printMessageError($message, $output_path);
+
+				if ($should_fix) {
+					$queries[$i] = rtrim(str_replace($matches[0], 'ENGINE=MyISAM', $queries[$i]));
+				}
+			}
+
+			if (preg_match('/((?:DEFAULT\s+){0,1}(?:CHARSET|CHARACTER\s+SET))\s*=\s*(\w*)\s*/i', $tableOptions, $matches)) {
+				$error_count++;
+				$message = "\t-- CREATE TABLE `" . $tableName . "`: Should not force a charset, currently forcing the usage of '" . $matches[2] . "''";
+				$this->printMessageError($message, $output_path);
+
+				if ($should_fix) {
+					$queries[$i] = rtrim(str_replace($matches[0], '', $queries[$i]));
 				}
 			}
 		}
