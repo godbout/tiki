@@ -3338,7 +3338,7 @@ div.form-group label.error {
     width: 1% !important; } }
 
 .tiki .chosen-container-single, .tiki #assign_order_chosen.chosen-container {
-  min-width: 5em;
+  min-width: 6em;
   word-wrap: normal; }
 
 .tiki .chosen-container .chosen-container-single {
@@ -3361,6 +3361,10 @@ div.form-group label.error {
 
 .tiki .chosen-container.chosen-container-active .chosen-choices .search-choice + .search-field input[type="text"] {
   display: inherit; }
+
+.tiki .chosen-container .chosen-single abbr {
+  background-color: transparent;
+  box-shadow: none; }
 
 .tiki .anythingSlider, .tiki .anythingWindow, .tiki .anythingBase, .tiki .anythingBase > .card {
   -webkit-box-sizing: content-box;

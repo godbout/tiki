@@ -47,7 +47,7 @@ div.form-group label.error {
 
 .tiki .chosen-container-single,
 .tiki #assign_order_chosen.chosen-container {
-	min-width: 5em;
+	min-width: 6em;
 	word-wrap: normal;
 }
 
@@ -76,6 +76,12 @@ div.form-group label.error {
 
 .tiki .chosen-container.chosen-container-active .chosen-choices .search-choice + .search-field input[type="text"] {
 	display: inherit;
+}
+
+// Prevent text of currency selector (one known instance of this problem) from being hidden by the background color and shadow.
+.tiki .chosen-container .chosen-single abbr {
+	background-color: transparent;
+	box-shadow: none;
 }
 
 // AnythingSlider (wikiplugin_slider) compatibility

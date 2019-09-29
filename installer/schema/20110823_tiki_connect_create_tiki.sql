@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS `tiki_connect` (
 	`server` TINYINT(1) NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`),
 	KEY `server` (`server`)
-);
+) ENGINE=MyISAM;

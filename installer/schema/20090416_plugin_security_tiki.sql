@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS tiki_plugin_security (
 	last_objectType VARCHAR(20) NOT NULL,
 	last_objectId VARCHAR(200) NOT NULL,
 	KEY last_object (last_objectType, last_objectId)
-);
+) ENGINE=MyISAM;
 

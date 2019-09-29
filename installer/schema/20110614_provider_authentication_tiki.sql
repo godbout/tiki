@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS `tiki_source_auth` (
 	`method` VARCHAR(20) NOT NULL,
 	`arguments` TEXT NOT NULL,
 	KEY `tiki_source_auth_ix` (`scheme`, `domain`)
-);
+) ENGINE=MyISAM;
 

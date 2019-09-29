@@ -480,10 +480,10 @@ class CheckSchemaUpgrade
 				$phpFinder->find(),
 				'console.php',
 				'database:update',
-			],
-			null, null, null, 300 // Increase the timeout
+			]
 		);
 		$process->setWorkingDirectory($this->tikiRoot);
+		$process->setTimeout($this->getProcessTimeout());
 
 		$process->run();
 
@@ -514,6 +514,7 @@ class CheckSchemaUpgrade
 			]
 		);
 		$process->setWorkingDirectory($this->tikiRoot);
+		$process->setTimeout($this->getProcessTimeout());
 
 		$process->run();
 
@@ -726,6 +727,23 @@ class CheckSchemaUpgrade
 		}
 
 		return null;
+	}
+
+	/**
+	 * Return the Timeout Value for Symfony Process
+	 * Either get the value from a ENV (set as part of the CI process) or assume the default value
+	 *
+	 * @return float
+	 */
+	protected function getProcessTimeout()
+	{
+		$defaultTimeoutForProcess = 300; // 5 minutes
+
+		if (isset($_SERVER['TIKI_CI_PROCESS_TIMEOUT'])) {
+			return (float)$_SERVER['TIKI_CI_PROCESS_TIMEOUT'];
+		}
+
+		return (float)$defaultTimeoutForProcess;
 	}
 }
 

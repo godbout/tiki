@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS `tiki_areas` (
 	`categId` int(11) NOT NULL,
 	`perspectives` text,
 	KEY `categId` (`categId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM;

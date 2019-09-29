@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `tiki_acct_account` (
   `accountUserId` int(8) NOT NULL DEFAULT '0',
   PRIMARY KEY (`accountBookId`,`accountId`),
   KEY `accountTax` (`accountTax`)
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `tiki_acct_bankaccount` (
   `bankBookId` int(10) unsigned NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `tiki_acct_bankaccount` (
   `SignPositive` varchar(7) NOT NULL,
   `SignNegative` varchar(7) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`bankBookId`,`bankAccountId`)
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `tiki_acct_book` (
   `bookId` int(10) unsigned NOT NULL AUTO_INCREMENT,
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS `tiki_acct_book` (
   `exportQuote` varchar(4) NOT NULL DEFAULT '"',
   `bookAutoTax` enum('y','n') NOT NULL DEFAULT 'y',
   PRIMARY KEY (`bookId`)
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `tiki_acct_item` (
   `itemJournalId` int(10) unsigned NOT NULL DEFAULT '0',
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `tiki_acct_item` (
   `itemText` varchar(255) NOT NULL DEFAULT '',
   `itemTs` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`itemJournalId`,`itemAccountId`,`itemType`)
-);
+) ENGINE=MyISAM;
 
 CREATE TABLE IF NOT EXISTS `tiki_acct_stackitem` (
   `stackItemStackId` int(10) unsigned NOT NULL DEFAULT '0',
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `tiki_acct_stackitem` (
   `stackItemAmount` double NOT NULL DEFAULT '0',
   `stackItemText` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`stackItemStackId`,`stackItemAccountId`,`stackItemType`)
-);
+) ENGINE=MyISAM;
 
 INSERT IGNORE INTO `users_permissions` (`permName` , `permDesc` , `level` , `type` , `admin` , `feature_check` ) VALUES 
 ( 'tiki_p_acct_create_book', 'Can create/close a book', 'admin', 'accounting', 'y', 'feature_accounting'),
