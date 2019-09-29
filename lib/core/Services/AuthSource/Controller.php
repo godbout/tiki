@@ -39,6 +39,9 @@ class Services_AuthSource_Controller
 		}
 		$util = new Services_Utilities();
 		if ($util->isActionPost()) {
+			if (empty($info['path'])) {
+				$info['path'] = '/';
+			}
 			$result = $this->sources()->insertOrUpdate(
 				[
 					'scheme'    => $info['scheme'],
