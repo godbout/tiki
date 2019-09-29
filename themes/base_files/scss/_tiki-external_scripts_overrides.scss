@@ -78,6 +78,12 @@ div.form-group label.error {
 	display: inherit;
 }
 
+// Prevent text of currency selector (one known instance of this problem) from being hidden by the background color and shadow.
+.tiki .chosen-container .chosen-single abbr {
+	background-color: transparent;
+	box-shadow: none;
+}
+
 // AnythingSlider (wikiplugin_slider) compatibility
 
 .tiki .anythingSlider,
