@@ -3338,7 +3338,7 @@ div.form-group label.error {
     width: 1% !important; } }
 
 .tiki .chosen-container-single, .tiki #assign_order_chosen.chosen-container {
-  min-width: 5em;
+  min-width: 6em;
   word-wrap: normal; }
 
 .tiki .chosen-container .chosen-container-single {
