@@ -72,10 +72,13 @@ class NotificationDigestCommand extends Command
 			$tikiroot = '/' . ltrim($tikiroot, '/');
 		}
 
-		$url_host = $input->getArgument('domain');
+		if (! empty($input->getArgument('domain'))) {
+			$url_host = $input->getArgument('domain');
+		}
 
-		if (empty($url_host) && isset($prefs['fallbackBaseUrl'])) {
-			$url_host = $prefs['fallbackBaseUrl'];
+		if (empty($url_host)) {
+			$output->writeln('<error>Error: Please define domain name as argument or set "Fallback for tiki base URL" preference.</error>');
+			return;
 		}
 
 		$list = \TikiDb::get()->fetchAll("
