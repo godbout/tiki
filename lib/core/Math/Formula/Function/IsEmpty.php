@@ -9,11 +9,13 @@ class Math_Formula_Function_IsEmpty extends Math_Formula_Function
 {
 	function evaluate($element)
 	{
-		// Multiple components will all need to be equal.
-		$out = [];
-
 		foreach ($element as $child) {
-			$component = $this->evaluateChild($child);
+			try {
+				$component = $this->evaluateChild($child);
+			} catch (Math_Formula_Exception $e) {
+				// if the child value is not in the variables (i.e. index) catch exception and return IsEmpty = true
+				return true;
+			}
 			if (! empty($component)) {
 				return false;
 			}
