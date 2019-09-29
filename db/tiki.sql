@@ -454,7 +454,7 @@ CREATE TABLE `tiki_calendars` (
 ) ENGINE=MyISAM ;
 
 DROP TABLE IF EXISTS `tiki_calendar_changes`;
-CREATE TABLE tiki_calendar_changes (
+CREATE TABLE `tiki_calendar_changes` (
     changeId INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     calitemId INT(11) UNSIGNED NOT NULL,
     synctoken INT(11) UNSIGNED NOT NULL,
@@ -462,10 +462,10 @@ CREATE TABLE tiki_calendar_changes (
     operation TINYINT(1) NOT NULL,
     INDEX (calendarId, synctoken),
     INDEX (calitemId)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_calendar_instances`;
-CREATE TABLE tiki_calendar_instances (
+CREATE TABLE `tiki_calendar_instances` (
     calendarInstanceId INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     calendarId INT UNSIGNED NOT NULL,
     user VARCHAR(200),
@@ -480,10 +480,10 @@ CREATE TABLE tiki_calendar_instances (
     share_href VARBINARY(100),
     share_name VARCHAR(100),
     share_invite_status TINYINT(1) NOT NULL DEFAULT '2' COMMENT '1 = noresponse, 2 = accepted, 3 = declined, 4 = invalid',
-    UNIQUE(user, uri),
-    UNIQUE(calendarid, user),
+    UNIQUE(user(141), uri),
+    UNIQUE(calendarid, user(189)),
     UNIQUE(calendarid, share_href)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_calendar_options`;
 CREATE TABLE `tiki_calendar_options` (
@@ -494,7 +494,7 @@ CREATE TABLE `tiki_calendar_options` (
 ) ENGINE=MyISAM ;
 
 DROP TABLE IF EXISTS `tiki_calendar_scheduling_objects`;
-CREATE TABLE tiki_calendar_scheduling_objects (
+CREATE TABLE `tiki_calendar_scheduling_objects` (
     schedulingObjectId INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     user VARCHAR(200),
     calendardata MEDIUMBLOB,
@@ -502,10 +502,10 @@ CREATE TABLE tiki_calendar_scheduling_objects (
     lastmodif INT(11) UNSIGNED,
     etag VARBINARY(32),
     size INT(11) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_calendar_subscriptions`;
-CREATE TABLE tiki_calendar_subscriptions (
+CREATE TABLE `tiki_calendar_subscriptions` (
     subscriptionId INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     calendarId INT(11) UNSIGNED NOT NULL,
     user VARCHAR(200) NOT NULL,
@@ -518,8 +518,8 @@ CREATE TABLE tiki_calendar_subscriptions (
     strip_alarms TINYINT(1) NULL,
     strip_attachments TINYINT(1) NULL,
     lastmodif INT(11) UNSIGNED,
-    UNIQUE(user, calendarId)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    UNIQUE(user(189), calendarId)
+) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_categories`;
 CREATE TABLE `tiki_categories` (
