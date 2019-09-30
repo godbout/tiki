@@ -308,7 +308,8 @@ class UnifiedSearchLib
 		}
 
 		// Rebuild mysql as fallback for elasticsearch engine
-		if (! $fallback && $fallbackEngine = TikiLib::lib('unifiedsearch')->getFallbackIndexEngine()) {
+		list($fallbackEngine) = TikiLib::lib('unifiedsearch')->getFallbackEngineDetails();
+		if (! $fallback && $fallbackEngine) {
 			$defaultEngine = $prefs['unified_engine'];
 			$prefs['unified_engine'] = $fallbackEngine;
 			$stats['fallback'] = $this->rebuild($loggit, true);
@@ -330,10 +331,10 @@ class UnifiedSearchLib
 	}
 
 	/**
-	 * Return the current engine for unified search and version
+	 * Return the current engine for unified search, version and current index name/table
 	 * @return array
 	 */
-	public function getEngineAndVersion()
+	public function getCurrentEngineDetails()
 	{
 		global $prefs;
 		global $tikilib;
@@ -342,23 +343,27 @@ class UnifiedSearchLib
 			case 'lucene':
 				$engine = 'Lucene';
 				$version = '';
+				$index = $prefs['unified_lucene_location'];
 				break;
 			case 'elastic':
 				$elasticsearch = new \Search_Elastic_Connection($prefs['unified_elastic_url']);
 				$engine = 'Elastic';
 				$version = $elasticsearch->getVersion();
+				$index = $prefs['unified_elastic_index_current'];
 				break;
 			case 'mysql':
 				$engine = 'MySQL';
 				$version = $tikilib->getMySQLVersion();
+				$index = $prefs['unified_mysql_index_current'];
 				break;
 			default:
 				$engine = '';
 				$version = '';
+				$index = '';
 				break;
 		}
 
-		return [$engine, $version];
+		return [$engine, $version, $index];
 	}
 
 	/**
@@ -1358,14 +1363,19 @@ class UnifiedSearchLib
 	/**
 	 * Return the fallback search engine name
 	 *
-	 * @return string|null
+	 * @return array|null
 	 */
-	public function getFallbackIndexEngine()
+	public function getFallbackEngineDetails()
 	{
-		global $prefs;
+		global $prefs, $tikilib;
 
 		if ($prefs['unified_engine'] == 'elastic' && $prefs['unified_elastic_mysql_search_fallback'] === 'y') {
-			return 'mysql';
+			$engine = 'mysql';
+			$engineName = 'MySQL';
+			$version = $tikilib->getMySQLVersion();
+			$index = $prefs['unified_mysql_index_current'];
+
+			return [$engine, $engineName, $version, $index];
 		}
 
 		return null;

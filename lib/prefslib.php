@@ -727,7 +727,8 @@ class PreferencesLib
 		}
 
 		// Rebuild fallback index
-		if (! $fallback && $fallbackEngine = TikiLib::lib('unifiedsearch')->getFallbackIndexEngine()) {
+		list($fallbackEngine) = TikiLib::lib('unifiedsearch')->getFallbackEngineDetails();
+		if (! $fallback && $fallbackEngine) {
 			$defaultEngine = $prefs['unified_engine'];
 			$prefs['unified_engine'] = $fallbackEngine;
 			$this->rebuildIndex(true);

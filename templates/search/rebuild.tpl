@@ -13,7 +13,10 @@
 
 	{if !empty($search_engine)}
 		<div class="alert alert-info">
-			<p>{tr}Unified search engine:{/tr} <b>{$search_engine}</b>{if !empty($search_version)}, {tr}version{/tr} <b>{$search_version}</b>{/if}</p>
+			<p>{tr}Unified search engine:{/tr} <b>{$search_engine}</b>{if !empty($search_version)}, {tr}version{/tr} <b>{$search_version}</b>{/if}{if $search_index}, index <b>{$search_index}</b>{/if}</p>
+			{if $fallback_search_set && !empty($fallback_search_engine)}
+				<p>{tr}Unified search engine fallback:{/tr} <b>{$fallback_search_engine}</b>{if !empty($fallback_search_version)}, {tr}version{/tr} <b>{$fallback_search_version}</b>{/if}{if $fallback_search_index}, index <b>{$fallback_search_index}</b>{/if}</p>
+			{/if}
 		</div>
 	{/if}
 

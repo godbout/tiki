@@ -71,7 +71,7 @@ class IndexRebuildCommand extends Command
 		}
 
 		if (! $cron) {
-			list($engine, $version) = $unifiedsearchlib->getEngineAndVersion();
+			list($engine, $version) = $unifiedsearchlib->getCurrentEngineDetails();
 			if (! empty($engine)) {
 				$engineMessage = 'Unified search engine: ' . $engine;
 				if (! empty($version)) {
@@ -114,12 +114,24 @@ class IndexRebuildCommand extends Command
 					$output->writeln("  $key: $val");
 				}
 				$output->writeln('Rebuilding index done');
-				if (\TikiLib::lib('unifiedsearch')->getFallbackIndexEngine()) {
+
+				list($engine, $version, $index) = $unifiedsearchlib->getCurrentEngineDetails();
+				$output->writeln('Index: ' . $index);
+
+				if ($fallbackEngineDetails = \TikiLib::lib('unifiedsearch')->getFallbackEngineDetails()) {
 					if (! empty($result['fallback'])) {
 						$output->writeln('Fallback index was also rebuilt');
 					} else {
 						$output->writeln('<comment>Fallback index was not rebuilt</comment>');
 					}
+
+					list($engine, $engineName, $version, $index) = $fallbackEngineDetails;
+					$fallbackEngineMessage = 'Fallback unified search engine: ' . $engineName;
+					if (! empty($version)) {
+						$fallbackEngineMessage .= ', version ' . $version;
+					}
+					$output->writeln($fallbackEngineMessage);
+					$output->writeln('Fallback index: ' . $index);
 				}
 				$output->writeln('Execution time: ' . FormatterHelper::formatTime($timer->stop()));
 				$output->writeln('Current Memory usage: ' . FormatterHelper::formatMemory(memory_get_usage()));
