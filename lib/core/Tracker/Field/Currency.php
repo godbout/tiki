@@ -112,7 +112,7 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 		if (isset($requestData[$ins_id])) {
 			$amount = $requestData[$ins_id];
 			$currency = $requestData[$ins_id.'_currency'] ?? '';
-		} elseif (preg_match('/^(\d*)([A-Za-z]*)?$/', $this->getValue(), $m)) {
+		} elseif (preg_match('/^([\d\.]*)([A-Za-z]*)?$/', $this->getValue(), $m)) {
 			$amount = $m[1];
 			$currency = $m[2];
 		} else {
