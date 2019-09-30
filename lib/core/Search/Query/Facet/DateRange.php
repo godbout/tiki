@@ -62,6 +62,10 @@ class Search_Query_Facet_DateRange extends Search_Query_Facet_Abstract implement
 		return $this;
 	}
 
+	public function clearRanges() {
+		$this->ranges = [];
+	}
+
 	/**
 	 * @return mixed
 	 */
