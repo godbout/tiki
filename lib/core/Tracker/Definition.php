@@ -316,7 +316,7 @@ class Tracker_Definition
 	 * exist for this tracker and it has at least one user selected.
 	 *
 	 * @param int $itemId
-	 * @return string item user name
+	 * @return array|mixed item user name
 	 */
 	function getItemUsers($itemId)
 	{

@@ -27,6 +27,10 @@ class Search_Query_FacetWikiBuilder
 						$facet['count'] = isset($arguments['count']) ? $arguments['count'] : null;
 						$facet['order'] = isset($arguments['order']) ? $arguments['order'] : null;
 						$facet['min'] = isset($arguments['min']) ? $arguments['min'] : null;
+					} elseif ($facet['type'] === 'date_range') {
+						$facet['ranges'] = isset($arguments['ranges']) ? $arguments['ranges'] : null;
+					} elseif ($facet['type'] === 'date_histogram') {
+						$facet['interval'] = isset($arguments['interval']) ? $arguments['interval'] : null;
 					}
 
 					if (isset($arguments['id'])) {
@@ -67,6 +71,21 @@ class Search_Query_FacetWikiBuilder
 
 				if ($facet['min'] !== null) {
 					$real->setMinDocCount($facet['min']);
+				}
+
+				if (is_a($real, '\Search_Query_Facet_DateRange') && ! empty($facet['ranges'])) {
+					$ranges = explode('|', $facet['ranges']);
+					$real->clearRanges();
+					foreach (array_filter($ranges) as & $range) {
+						$range = explode(',', $range);
+						if (count($range) > 2) {
+							$real->addRange($range[1], $range[0], $range[2]);
+						} elseif (count($range) > 1) {
+							$real->addRange($range[1], $range[0]);
+						}
+					}
+				} elseif (is_a($real, '\Search_Query_Facet_DateHistogram') && ! empty($facet['interval'])) {
+					$real->setInterval($facet['interval']);
 				}
 
 				$query->requestFacet($real);
