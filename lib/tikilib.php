@@ -1749,10 +1749,12 @@ class TikiLib extends TikiDb_Bridge
 
 	/*shared*/
 	/**
-	 * @param $user
+	 * @param string  $user              username
+	 * @param bool    $included_groups   include inherited/included groups
+	 *
 	 * @return array
 	 */
-	function get_user_groups($user)
+	function get_user_groups($user, $included_groups = true)
 	{
 		global $prefs;
 		$userlib = TikiLib::lib('user');
@@ -1769,12 +1771,15 @@ class TikiLib extends TikiDb_Bridge
 				return explode(',', $groups);
 			}
 		}
-		if (! isset($this->usergroups_cache[$user])) {
+		$cachekey = $user . ($included_groups ? '' : '_direct');
+		if (! isset($this->usergroups_cache[$cachekey])) {
 			$userid = $this->get_user_id($user);
 			$result = $this->table('users_usergroups')->fetchColumn('groupName', ['userId' => $userid]);
 			$ret = $result;
-			foreach ($result as $res) {
-				$ret = array_merge($ret, $userlib->get_included_groups($res));
+			if ($included_groups) {
+				foreach ($result as $res) {
+					$ret = array_merge($ret, $userlib->get_included_groups($res));
+				}
 			}
 			$ret[] = "Registered";
 
@@ -1789,10 +1794,10 @@ class TikiLib extends TikiDb_Bridge
 				}
 			}
 			$ret = array_values(array_unique($ret));
-			$this->usergroups_cache[$user] = $ret;
+			$this->usergroups_cache[$cachekey] = $ret;
 			return $ret;
 		} else {
-			return $this->usergroups_cache[$user];
+			return $this->usergroups_cache[$cachekey];
 		}
 	}
 
@@ -1802,6 +1807,7 @@ class TikiLib extends TikiDb_Bridge
 	function invalidate_usergroups_cache($user)
 	{
 		unset($this->usergroups_cache[$user]);
+		unset($this->usergroups_cache[$user . '_direct']);
 	}
 
 	/**
