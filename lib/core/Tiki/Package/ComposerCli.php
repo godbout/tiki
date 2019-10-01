@@ -262,7 +262,7 @@ class ComposerCli
 
 		$canExecute = false;
 
-		if (file_exists($this->getComposerPharPath())) {
+		if ($this->composerPharExists()) {
 			list($output) = $this->execComposer(['--no-ansi', '--version']);
 			if (strncmp($output, 'Composer', 8) == 0) {
 				$canExecute = true;
@@ -270,6 +270,16 @@ class ComposerCli
 		}
 
 		return $canExecute;
+	}
+
+	/**
+	 * Check if composer.phar exists
+	 *
+	 * @return bool
+	 */
+	public function composerPharExists()
+	{
+		return file_exists($this->getComposerPharPath());
 	}
 
 	/**
@@ -382,7 +392,7 @@ class ComposerCli
 	 */
 	public function getListOfPackagesFromConfig()
 	{
-		if (! $this->checkConfigExists() || ! $this->canExecuteComposer()) {
+		if (! $this->checkConfigExists()) {
 			return false;
 		}
 
@@ -426,7 +436,7 @@ class ComposerCli
 	 */
 	public function getListOfPackagesFromLock()
 	{
-		if (! $this->checkConfigExists() || ! $this->canExecuteComposer()) {
+		if (! $this->checkConfigExists()) {
 			return false;
 		}
 
