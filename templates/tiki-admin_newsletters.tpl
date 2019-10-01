@@ -98,76 +98,92 @@
 			<input type="hidden" name="nlId" value="{$info.nlId|escape}">
 			<input type="hidden" name="author" value="{$user|escape}">
 			<div class="form-group row">
-				<label class="col-md-2 col-form-label"> {tr}Name:{/tr} </label>
-				<div class="col-md-10">
+				<label class="col-sm-3 col-form-label"> {tr}Name:{/tr} </label>
+				<div class="col-sm-9">
 						<input class="form-control" type="text" name="name" value="{$info.name|escape}">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-md-2 col-form-label" for="description">{tr}Description:{/tr}</label>
-				<div class="col-md-10">
+				<label class="col-sm-3 col-form-label" for="description">{tr}Description:{/tr}</label>
+				<div class="col-sm-9">
 					<textarea class="form-control" name="description" id="description">{$info.description|escape}</textarea>
 				</div>
 			</div>
-			<div class="form-check offset-md-2">
-				<label>
-					<input type="checkbox" class="form-check-input" name="allowUserSub" {if $info.allowUserSub eq 'y'}checked="checked"{/if}>
-						{tr}Users can subscribe/unsubscribe to this list{/tr}
-				</label>
+			<div class="col-sm-12 offset-sm-3">
+				<div class="form-check">
+					<label>
+						<input type="checkbox" class="form-check-input" name="allowUserSub" {if $info.allowUserSub eq 'y'}checked="checked"{/if}>
+							{tr}Users can subscribe/unsubscribe to this list{/tr}
+					</label>
+				</div>
 			</div>
-			<div class="form-check offset-md-2">
-				<label>
-					<input type="checkbox" class="form-check-input" name="allowAnySub" {if $info.allowAnySub eq 'y'}checked="checked"{/if}>
-					{tr}Users can subscribe any email address{/tr}
-				</label>
+			<div class="col-sm-12 offset-sm-3">
+				<div class="form-check">
+					<label>
+						<input type="checkbox" class="form-check-input" name="allowAnySub" {if $info.allowAnySub eq 'y'}checked="checked"{/if}>
+						{tr}Users can subscribe any email address{/tr}
+					</label>
+				</div>
 			</div>
-			<div class="form-check offset-md-2">
-				<label>
-					<input type="checkbox" class="form-check-input" name="unsubMsg" {if $info.unsubMsg eq 'y'}checked="checked"{/if}>
-					{tr}Add unsubscribe instructions to each newsletter{/tr}
-				</label>
+			<div class="col-sm-12 offset-sm-3">
+				<div class="form-check">
+					<label>
+						<input type="checkbox" class="form-check-input" name="unsubMsg" {if $info.unsubMsg eq 'y'}checked="checked"{/if}>
+						{tr}Add unsubscribe instructions to each newsletter{/tr}
+					</label>
+				</div>
 			</div>
-			<div class="form-check offset-md-2">
-				<label>
-					<input type="checkbox" class="form-check-input" name="validateAddr" {if $info.validateAddr eq 'y'}checked="checked"{/if}>
-					{tr}Validate email addresses{/tr}
-				</label>
+			<div class="col-sm-12 offset-sm-3">
+				<div class="form-check">
+					<label>
+						<input type="checkbox" class="form-check-input" name="validateAddr" {if $info.validateAddr eq 'y'}checked="checked"{/if}>
+						{tr}Validate email addresses{/tr}
+					</label>
+				</div>
 			</div>
-			<div class="form-check offset-md-2">
-				<label>
-					<input type="checkbox" class="form-check-input" name="allowTxt" {if $info.allowTxt eq 'y'}checked="checked"{/if}>
-					{tr}Allow customized text message to be sent with the HTML version{/tr}
-				</label>
+			<div class="col-sm-12 offset-sm-3">
+				<div class="form-check">
+					<label>
+						<input type="checkbox" class="form-check-input" name="allowTxt" {if $info.allowTxt eq 'y'}checked="checked"{/if}>
+						{tr}Allow customized text message to be sent with the HTML version{/tr}
+					</label>
+				</div>
 			</div>
-			<div class="form-check offset-md-2">
-				<label>
-					<input type="checkbox" class="form-check-input" name="allowArticleClip" {if $info.allowArticleClip eq 'y'}checked="checked"{/if}>
-					{tr}Allow clipping of articles into newsletter{/tr}
-				</label>
+			<div class="col-sm-12 offset-sm-3">
+				<div class="form-check">
+					<label>
+						<input type="checkbox" class="form-check-input" name="allowArticleClip" {if $info.allowArticleClip eq 'y'}checked="checked"{/if}>
+						{tr}Allow clipping of articles into newsletter{/tr}
+					</label>
+				</div>
 			</div>
-			<div class="form-check offset-md-2">
-				<label>
-					<input type="checkbox" class="form-check-input" name="autoArticleClip" {if $info.autoArticleClip eq 'y'}checked="checked"{/if}>
-					{tr}Automatically clip articles into newsletter{/tr}
-				</label>
-			</div>
-			<div class="form-check offset-md-2" style="margin-bottom: 15px;">
-				<label>
-					<input type="checkbox" class="form-check-input" name="emptyClipBlocksSend" {if $info.emptyClipBlocksSend eq 'y'}checked="checked"{/if}>
-					{tr}Do not send newsletter if clip is empty{/tr}
-				</label>
+			<div class="col-sm-12 offset-sm-3">
+				<div class="form-check">
+					<label>
+						<input type="checkbox" class="form-check-input" name="autoArticleClip" {if $info.autoArticleClip eq 'y'}checked="checked"{/if}>
+						{tr}Automatically clip articles into newsletter{/tr}
+					</label>
+				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-md-5 col-form-label" for="articleClipRangeDays">
-					{tr}Clip articles published in the past number of days{/tr}</label>
-				<div class="col-md-4">
+				<div class="col-sm-12 offset-sm-3">
+					<div class="form-check">
+						<label>
+							<input type="checkbox" class="form-check-input" name="emptyClipBlocksSend" {if $info.emptyClipBlocksSend eq 'y'}checked="checked"{/if}>
+							{tr}Do not send newsletter if clip is empty{/tr}
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label" for="articleClipRangeDays">{tr}Clip articles published in the past number of days{/tr}</label>
+				<div class="col-sm-9">
 					<input type="text" class="form-control" name="articleClipRangeDays" id="articleClipRangeDays" value="{$info.articleClipRangeDays|escape}">
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-md-5 col-form-label" for="articleClipTypes">
-					{tr}Article types to clip{/tr}</label>
-				<div class="col-md-4">
+				<label class="col-sm-3 col-form-label" for="articleClipTypes">{tr}Article types to clip{/tr}</label>
+				<div class="col-sm-9">
 					<select id="articleClipTypes" name="articleClipTypes[]" class="form-control" multiple="multiple">
 						{section name=type loop=$articleTypes}
 							<option value="{$articleTypes[type]}" {if in_array($articleTypes[type], $info.articleClipTypes)}selected="selected"{/if}>{$articleTypes[type]|escape}</option>
