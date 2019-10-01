@@ -9,6 +9,7 @@ namespace Tiki\Composer;
 
 use Composer\Script\Event;
 use Composer\Util\FileSystem;
+use Exception;
 
 class CleanVendors
 {
@@ -576,7 +577,12 @@ class CleanVendors
 			foreach ($files as $file) {
 				$path = $base . DIRECTORY_SEPARATOR . $file;
 				if (file_exists($path) || is_dir($path)) {
-					$fs->remove($path);
+					// if windows indexing or antivirus is locking a file, then complain
+					try {
+						$fs->remove($path);
+					} catch (Exception $e) {
+						echo "\e[031mError \e[0m ",  $e->getMessage(), "\n";
+					}
 				}
 			}
 		} else {
