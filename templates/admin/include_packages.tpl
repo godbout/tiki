@@ -4,7 +4,7 @@
     {remarksbox type="warning" title="{tr}Composer not found{/tr}"}
     {tr}Composer could not be executed, so the automated check on the packages cannot be performed.{/tr}
     <br/>
-    {tr}In <a href="javascript:void(0)" class="install-composer" class="alert-link">Diagnose</a> tab you can install composer.{/tr}
+    {tr}In <a href="javascript:void(0)" class="install-composer alert-link">Diagnose</a> tab you can install composer.{/tr}
     {/remarksbox}
 {/if}
 
@@ -51,9 +51,17 @@
 {/if}
 
 {tabset name='tabs_admin-packages'}
-    {tab name="{tr}Packages Installed{/tr}"}
+    {tab name="{tr}Packages{/tr}"}
+        {if ! $composer_phar_exists}
+            <div class="clearfix"></div>
+            {remarksbox type="note" title="{tr}Note{/tr}"}
+            {tr}Packages check could not be performed at the moment due to missing{/tr} <code>temp/composer.phar</code><br />
+            {tr}You can try to install composer from the <a href="javascript:void(0)" class="install-composer alert-link">Diagnose</a> tab or look at the manual instructions bellow.{/tr}
+            {/remarksbox}
+        {/if}
+        {if count($composer_packages_installed)}
         <br />
-        <h4>{tr}Composer Packages{/tr} <small>{tr}Status of the packages registered in the composer.json file{/tr}</small></h4>
+        <h4>{tr}Installed Packages{/tr} <small>{tr}Status of the packages registered in the composer.json file{/tr}</small></h4>
         <table class="table">
             <tr>
                 <th>{tr}Package Name{/tr}</th>
@@ -67,12 +75,14 @@
                     <td>{$entry.name}</td>
                     <td>{$entry.required} {if $entry.upgradeVersion}<span class="label label-warning">{tr}Update:{/tr} {$entry.requiredVersion}</span>{/if}</td>
                     <td>
-                        {if $entry.status == 'installed'}
-                            {icon name='success' iclass='tips' ititle="{tr}Status{/tr}:{tr}Installed{/tr}"}
-                        {elseif $entry.status == 'missing'}
-                            {icon name='warning' iclass='tips' ititle="{tr}Status{/tr}:{tr}Missing{/tr}"}
-                        {else}
-                            &nbsp;
+                        {if $composer_phar_exists}
+                            {if $entry.status == 'installed'}
+                                {icon name='success' iclass='tips' ititle="{tr}Status{/tr}:{tr}Installed{/tr}"}
+                            {elseif $entry.status == 'missing'}
+                                {icon name='warning' iclass='tips' ititle="{tr}Status{/tr}:{tr}Missing{/tr}"}
+                            {else}
+                                &nbsp;
+                            {/if}
                         {/if}
                     </td>
                     <td>{$entry.installed|default:'&nbsp;'}</td>
@@ -92,15 +102,17 @@
                             </form>
                         {/if}
                         {if $entry.key}
-                            <form action="tiki-admin.php?page=packages&cookietab=1" method="post">
-                                <input type="hidden" name="redirect" value="0">
-                                <input type="hidden" name="installed" value="{$entry.installed}">
-                                {ticket}
-                                {if $entry.installed && $entry.upgradeVersion}
-                                    <button class="btn btn-primary" name="auto-update-package" value="{$entry.key}">{tr}Update{/tr}</button>
-                                {/if}
-                                <button class="btn btn-danger" name="auto-remove-package" value="{$entry.key}">{tr}Remove{/tr}</button>
-                            </form>
+                            {if $composer_phar_exists}
+                                <form action="tiki-admin.php?page=packages&cookietab=1" method="post">
+                                    <input type="hidden" name="redirect" value="0">
+                                    <input type="hidden" name="installed" value="{$entry.installed}">
+                                    {ticket}
+                                    {if $entry.installed && $entry.upgradeVersion}
+                                        <button class="btn btn-primary" name="auto-update-package" value="{$entry.key}">{tr}Update{/tr}</button>
+                                    {/if}
+                                    <button class="btn btn-danger" name="auto-remove-package" value="{$entry.key}">{tr}Remove{/tr}</button>
+                                </form>
+                            {/if}
                         {else}
                             {tr}Removal not available{/tr}
                             {icon name='info' iclass='tips' ititle="{tr}Removal not available{/tr}:{tr}This package is not managed by Tiki and likely was installed manually.{/tr}"}
@@ -111,13 +123,16 @@
             {if $composer_packages_missing}
                 <tr>
                     <td colspan="5">
-                        <h4>{tr}One or more packages appear to be missing{/tr}</h4>
-                        {tr}In the list above, some packages could not be found. They are defined in the composer.json file, but do not seem to be installed.{/tr}
-
-                        <br><br>
-
-                        <h4>{tr}Install packages from the administrator interface{/tr}</h4>
                         {if $composer_available}
+                            <h4>{tr}One or more packages appear to be missing{/tr}</h4>
+                            {tr}In the list above, some packages could not be found. They are defined in the composer.json file, but do not seem to be installed.{/tr}
+                        {else}
+                            <h4>{tr}Could not validate the status of one or more packages{/tr}</h4>
+                            {tr}In the list above, some packages status could not be validated, since composer was not found, you can try to install composer and try again or install the packages manually.{/tr}
+                        {/if}
+                        <br><br>
+                        {if $composer_available}
+                            <h4>{tr}Install packages from the administrator interface{/tr}</h4>
                             <p>
                             {tr}The administrator interface can be used to install the packages marked as missing in the list above.{/tr}
                             {tr}Click the "Fix Missing Packages" button below, and Tiki will try to install them{/tr}:
@@ -128,40 +143,36 @@
                                 <button class="btn btn-primary" name="auto-fix-missing-packages" value="auto-fix-missing-packages">{tr}Fix Missing Packages{/tr}</button>
                             </form>
                             <br />
+                            <p>
                             The results of the execution of the commands will be displayed after the process finishes.
-                        {else}
-                            {tr}Composer was not detected. Please follow the manual instructions.{/tr}
+                            </p>
                         {/if}
-
-                        <br><br>
-
-                        <h4>{tr}Install packages manually{/tr}</h4>
-                        <p><strong>{tr}Make sure <code>composer</code> is installed.{/tr}</strong></p>
-                        <p>
-                            {tr}Composer can be installed manually, on the host machine, by following the instructions at the{/tr}
-                            <a href="https://doc.tiki.org/Composer">Composer</a> {tr}website.{/tr}
-                        </p>
-                        <p>
-                            {tr}The script <code>setup.sh</code> that is included in the Tiki distribution can be run to make sure composer is installed. In this case, composer will be installed as <code>temp/composer.phar</code>.{/tr}
-                            {tr}Below is an example of how to do this in a Linux-like operating system:{/tr} <br>
-                            <code>bash ./setup.sh composer</code>
-                        </p>
-
-                        <p><strong>{tr}Install the missing packages.{/tr}</strong></p>
-                        <p>
-                            {tr}After composer is installed, you can install the missing packages by issuing the command{/tr}
-                            <code>composer --no-dev --prefer-dist update nothing</code>.
-                            {tr}Below is an example of how to do this in a Linux-like operating system:{/tr} <br>
-                            <code>php temp/composer.phar --no-dev --prefer-dist update nothing</code>
-                        </p>
+                            <h4>{tr}Install packages manually{/tr}</h4>
+                        {if ! $composer_available}
+                            <p><strong>{tr}Make sure <code>composer</code> is installed.{/tr}</strong></p>
+                            <p>
+                                {tr}Composer can be installed manually, in the host machine, by following the instructions from the{/tr}
+                                <a href="https://doc.tiki.org/Composer">Composer</a> {tr}website.{/tr}
+                            </p>
+                            <p>
+                                {tr}The script <code>setup.sh</code> that is included in the Tiki distribution can be run to make sure composer is installed and the file permissions are correctly applied. In this case, composer will be installed as <code>temp/composer.phar</code>.{/tr}
+                                {tr}Below is an example of how to do this in a Linux-like operating system:{/tr}<br>
+                                <code>bash ./setup.sh composer</code>
+                            </p>
+                            <p><strong>{tr}Install the missing packages.{/tr}</strong></p>
+                        {/if}
+                        <p>{tr}You can install the missing packages by issuing the command{/tr}
+                        <code>composer --no-dev --prefer-dist update nothing</code>.
+                        {tr}Below is an example of how to do this in a Linux-like operating system:{/tr} <br>
+                        <code>php temp/composer.phar --no-dev --prefer-dist update nothing</code></p>
                     </td>
                 </tr>
             {/if}
         </table>
-    {/tab}
-    {tab name="{tr}Install Other Packages{/tr}"}
+        {/if}
+        {if count($composer_packages_available)}
         <br />
-        <h4>{tr}Composer Packages{/tr} <small>{tr}These packages have been identified as required by one or more features.{/tr}</small></h4>
+        <h4>{tr}Available Packages{/tr} <small>{tr}These packages have been identified as required by one or more features.{/tr}</small></h4>
         <table class="table">
             <tr>
                 <th>{tr}Package Name{/tr}</th>
@@ -177,15 +188,16 @@
                     <td><a href="{$entry.licenceUrl}">{if empty($entry.licence)}{tr}Not Available{/tr}{else}{$entry.licence}{/if}</a></td>
                     <td>{', '|implode:$entry.requiredBy}</td>
                     <td>
-                        <form action="tiki-admin.php?page=packages&cookietab=2" method="post">
+                        {if $composer_phar_exists}
+                        <form action="tiki-admin.php?page=packages&cookietab=1" method="post">
                             <input type="hidden" name="redirect" value="0">
                             {ticket}
                             <button class="btn btn-primary" name="auto-install-package" value="{$entry.key}">{tr}Install{/tr}</button>
                         </form>
+                        {/if}
                     </td>
                 </tr>
             {/foreach}
-            {if count($composer_packages_available)}
                 <tr>
                     <td colspan="5">
                         <h4>{tr}There appear to be some optional packages that can be installed{/tr}</h4>
@@ -193,52 +205,62 @@
 
                         <br><br>
 
-                        <h4>{tr}Install packages from the administrator interface{/tr}</h4>
                         {if $composer_available}
-                            {tr}The administrator interface can be used to install the optional packages in the list above.{/tr}
-                            {tr}Click the "Install Package" button, and Tiki will try to install them.{/tr}
-                        {else}
-                            {tr}Composer was not detected. Please follow the manual instructions.{/tr}
+                            <h4>{tr}Install packages from the administrator interface{/tr}</h4>
+                            <p>
+                                {tr}The administrator interface can be used to install the optional packages in the list above.{/tr}
+                                {tr}Click the "Install Package" button, and Tiki will try to install them.{/tr}
+                            </p>
                         {/if}
 
-                        <br><br>
-
                         <h4>{tr}Install packages manually{/tr}</h4>
-                        <p><strong>{tr}Make sure <code>composer</code> is installed.{/tr}</strong></p>
-                        <p>
-                            {tr}Composer can be installed manually, in the host machine, by following the instructions from the{/tr}
-                            <a href="https://doc.tiki.org/Composer">Composer</a> {tr}website.{/tr}
-                        </p>
-                        <p>
-                            {tr}The script <code>setup.sh</code> that is included in the Tiki distribution can be run to make sure composer is installed and the file permissions are correctly applied. In this case, composer will be installed as <code>temp/composer.phar</code>.{/tr}
-                            {tr}Below is an example of how to do this in a Linux-like operating system:{/tr}<br>
-                            <code>bash ./setup.sh composer</code>
-                        </p><br>
-
+                        {if ! $composer_available}
+                            <p><strong>{tr}Make sure <code>composer</code> is installed.{/tr}</strong></p>
+                            <p>
+                                {tr}Composer can be installed manually, in the host machine, by following the instructions from the{/tr}
+                                <a href="https://doc.tiki.org/Composer">Composer</a> {tr}website.{/tr}
+                            </p>
+                            <p>
+                                {tr}The script <code>setup.sh</code> that is included in the Tiki distribution can be run to make sure composer is installed and the file permissions are correctly applied. In this case, composer will be installed as <code>temp/composer.phar</code>.{/tr}
+                                {tr}Below is an example of how to do this in a Linux-like operating system:{/tr}<br>
+                                <code>bash ./setup.sh composer</code>
+                            </p>
+                        {/if}
                         <p><strong>{tr}Make sure there is a <code>composer.json</code> file in the root of the website.{/tr}</strong></p>
                         <p>
                             {tr}If there is not already a <code>composer.json</code> file, then create one.{/tr}
                             {tr}The sample <code>composer.json.dist</code> that comes with Tiki can be used as a starting point.{/tr}
                             {tr}Below is an example of how to do this in a Linux-like operating system:{/tr} <br>
                             <code>cp composer.json.dist composer.json</code>
-                        </p><br>
-
+                        </p>
                         <p><strong>{tr}Install the package.{/tr}</strong></p>
                         <p>
-                            {tr}After all the steps above (that only need to be performed once), packages can be installed by issuing a command{/tr}
+                            {tr}Packages can be installed by issuing a command{/tr}
                             <code>composer require package:version</code> {tr}for each package that is to be installed.{/tr}
                             {tr}Below is an example of how to do this in a Linux-like operating system:{/tr} <br>
                             <code>php temp/composer.phar require --update-no-dev --prefer-dist psr/log:^1.0</code>
                         </p>
                     </td>
                 </tr>
-            {/if}
         </table>
+        {/if}
     {/tab}
     {tab name="{tr}Packages Custom{/tr}"}
-        <br>
-        <h4>{tr}Composer Packages Custom <small>Status of the packages registered in the vendor_custom folder</small>{/tr}</h4>
+        {if ! $composer_custom_packages_installed}
+            {remarksbox type="info" title="{tr}There are no manual managed packages installed in the folder vendor_custom{/tr}"}
+            {tr}Please check <a href="https://packages.tiki.org/">Tiki Packages</a> website for information on how to download and use these manual packages.{/tr} <br/>
+            {tr}Note that this in place for when you can not use composer to manage your packages, example when there is restricted access to internet and composer will not be able to download the packages, for most users the most convenient way is to install directly from the "Packages" tab.{/tr}
+            {/remarksbox}
+        {/if}
         {if $composer_custom_packages_installed}
+            {if ! $composer_phar_exists}
+                {remarksbox type="info" title="{tr}Note{/tr}"}
+                {tr}Packages check could not be performed at the moment due to missing{/tr} <code>temp/composer.phar</code><br />
+                {tr}You can try to install composer from the <a href="javascript:void(0)" class="install-composer alert-link">Diagnose</a> tab or look at the manual instructions bellow.{/tr}
+                {/remarksbox}
+            {/if}
+            <br>
+            <h4>{tr}Composer Packages Custom <small>Status of the packages registered in the vendor_custom folder</small>{/tr}</h4>
             {remarksbox type="info" title="{tr}For information only{/tr}"}
             {tr}These packages are managed manually and displayed here for informational purposes.{/tr}
             {/remarksbox}
@@ -268,7 +290,7 @@
                         <td width="15%">{$package.installed|default:'&nbsp;'}</td>
                         <td width="15%">
                             {if $package.extension}
-                                <form action="tiki-admin.php?page=packages&cookietab=3" method="post" style="display:inline">
+                                <form action="tiki-admin.php?page=packages&cookietab=2" method="post" style="display:inline">
                                     <input type="hidden" name="redirect" value="0">
                                     <input type="hidden" name="enabled" value="{$package.enabled}">
                                     {ticket}
@@ -286,20 +308,22 @@
                 {/foreach}
             {/foreach}
             </table>
-        {else}
-            {remarksbox type="info" title="{tr}There are no manual managed packages installed{/tr}"}
-            {tr}Please check <a href="https://packages.tiki.org/">Tiki Packages</a>.{/tr}
-            {/remarksbox}
         {/if}
     {/tab}
     {tab name="{tr}Packages Bundled{/tr}"}
-        <br>
-        <h4>{tr}Composer Packages Bundled{/tr} <small>{tr}status of the packages registered in the vendor_bundled/composer.json file{/tr}</small></h4>
         {if $composer_available}
             {remarksbox type="info" title="{tr}For information only{/tr}"}
             {tr}These packages are bundled with Tiki, and displayed here for informational purposes.{/tr}
             {/remarksbox}
         {/if}
+        {if ! $composer_phar_exists}
+            {remarksbox type="info" title="{tr}Note{/tr}"}
+            {tr}Packages check could not be performed at the moment due to missing{/tr} <code>temp/composer.phar</code><br />
+            {tr}You can try to install composer from the <a href="javascript:void(0)" class="install-composer alert-link">Diagnose</a> tab or look at the manual instructions bellow.{/tr}
+            {/remarksbox}
+        {/if}
+        <br>
+        <h4>{tr}Composer Packages Bundled{/tr} <small>{tr}status of the packages registered in the vendor_bundled/composer.json file{/tr}</small></h4>
         <table class="table">
             <tr>
                 <th>{tr}Package Name{/tr}</th>
@@ -312,12 +336,14 @@
                     <td>{$entry.name}</td>
                     <td>{$entry.required}</td>
                     <td>
-                        {if $entry.status == 'installed'}
-                            {icon name='success' iclass='tips' ititle="{tr}Status{/tr}:{tr}Installed{/tr}"}
-                        {elseif $entry.status == 'missing'}
-                            {icon name='warning' iclass='tips' ititle="{tr}Status{/tr}:{tr}Missing{/tr}"}
-                        {else}
-                            &nbsp;
+                        {if $composer_phar_exists}
+                            {if $entry.status == 'installed'}
+                                {icon name='success' iclass='tips' ititle="{tr}Status{/tr}:{tr}Installed{/tr}"}
+                            {elseif $entry.status == 'missing'}
+                                {icon name='warning' iclass='tips' ititle="{tr}Status{/tr}:{tr}Missing{/tr}"}
+                            {else}
+                                &nbsp;
+                            {/if}
                         {/if}
                     </td>
                     <td>{$entry.installed|default:'&nbsp;'}</td>
@@ -328,14 +354,14 @@
     {tab name="{tr}Diagnose{/tr}"}
         <br>
         <h4>{tr}Diagnose Composer Installation{/tr} <small>{tr}Use the button below to test your composer installation.{/tr}</small></h4>
-        <form action="tiki-admin.php?page=packages&cookietab=5" method="post">
+        <form action="tiki-admin.php?page=packages&cookietab=4" method="post">
             <input type="hidden" name="redirect" value="0">
             {ticket}
             <button class="btn btn-primary" name="auto-run-diagnostics" value="run">{tr}Diagnose Composer{/tr}</button>
         </form>
         <br />
         <h4>{tr}Composer management{/tr}</h4>
-        <form action="tiki-admin.php?page=packages&cookietab=5" method="post">
+        <form action="tiki-admin.php?page=packages&cookietab=4" method="post">
             <input type="hidden" name="redirect" value="0">
             {ticket}
             {if ! $composer_available}
@@ -398,7 +424,7 @@
 {jq}
     $(document).ready(function(){
         $(".install-composer").click(function(){
-            $('.nav-tabs a[href="#contenttabs_admin_packages-5"]').tab('show');
+            $('.nav-tabs a[href="#contenttabs_admin_packages-4"]').tab('show');
         });
     });
 {/jq}
