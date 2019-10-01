@@ -143,5 +143,6 @@ if (! empty($_REQUEST['report'])) {
 	$smarty->assign_by_ref('report', $_REQUEST['report']);
 }
 ask_ticket('tell-a-friend');
+$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 $smarty->assign('mid', 'tiki-tell_a_friend.tpl');
 $smarty->display('tiki.tpl');

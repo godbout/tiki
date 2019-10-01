@@ -69,6 +69,8 @@ $logging = $tiki_actionlog_conf->fetchCount(
 		'status' => $tiki_actionlog_conf->in(['y','v']),
 	]
 );
+// disallow robots to index page
+$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 $smarty->assign('logging', $logging);
 
 $smarty->assign('mid', 'tiki-tracker_view_history.tpl');

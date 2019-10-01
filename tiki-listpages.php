@@ -92,11 +92,11 @@ if ($ts['ajax']) {
 	}
 }
 
+// disallow robots to index page
+$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 if (! empty($multiprint_pages)) {
 	$smarty->assign('print_page', 'y');
 	$smarty->assign_by_ref('pages', $multiprint_pages);
-	// disallow robots to index page:
-	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 	// Display the template
 	$smarty->display('tiki-print_multi_pages.tpl');
 } else {
@@ -319,8 +319,6 @@ if (! empty($multiprint_pages)) {
 	$smarty->assign_by_ref('cant', $listpages['cant']);
 	ask_ticket('list-pages');
 	include_once('tiki-section_options.php');
-	// disallow robots to index page:
-	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 
 	// Exact match and single result, go to page directly
 	if (count($listpages['data']) == 1 && ! $ts['ajax']) {

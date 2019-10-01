@@ -143,5 +143,7 @@ $pageRenderer->runSetups();
 
 ask_ticket('index-p');
 
+// disallow robots to index page
+$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the Index Template
 $smarty->display("tiki-index_p.tpl");

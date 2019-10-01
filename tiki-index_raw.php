@@ -129,6 +129,7 @@ if (isset($_REQUEST['download']) && $_REQUEST['download'] !== 'n') {
 	header("Content-Disposition: attachment; filename=\"$filename\"");
 }
 
+$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // add &full to URL to output the whole html head and body
 if (isset($_REQUEST['full']) && $_REQUEST['full'] != 'n') {
 	$smarty->assign('mid', 'tiki-show_page_raw.tpl');

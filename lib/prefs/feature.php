@@ -2186,7 +2186,7 @@ function prefs_feature_list($partial = false)
 		],
 		'feature_sandbox' => [
 			'name' => tra('Sandbox'),
-			'description' => tra('A special page to test the wiki feature that can edited, but the content is not saved.'),
+			'description' => tra('A <a href="/tiki-editpage.php?page=SandBox">special page</a> to test the wiki feature that can edited, but the content is not saved.'),
 			'type' => 'flag',
 			'default' => 'n',
 		],

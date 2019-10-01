@@ -712,6 +712,9 @@ if ($prefs['feature_forums'] && $prefs['feature_wiki_discuss'] == 'y' && $prefs[
 	$smarty->assign('discuss_replies_cant', $discuss_replies_cant);
 }
 
+if (strtolower($_REQUEST["page"]) === 'sandbox') {
+	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
+}
 $smarty->assign('info', $info);
 $smarty->assign('mid', 'tiki-show_page.tpl');
 
