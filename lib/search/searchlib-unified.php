@@ -791,7 +791,7 @@ class UnifiedSearchLib
 
 				try {
 					$connection = $this->getElasticConnection(true);
-					$root = $connection->rawApi('');
+					$root = $connection->rawApi('/');
 					$info[tr('Client Node')] = $root->name;
 					$info[tr('Elasticsearch Version')] = $root->version->number;
 					$info[tr('Lucene Version')] = $root->version->lucene_version;
