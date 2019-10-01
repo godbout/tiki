@@ -399,21 +399,22 @@
             <br>
         {/if}
     {/tab}
-	{tab name="{tr}Extensions Preferences{/tr}"}
-		<form action="tiki-admin.php?page=packages&cookietab=6" method="post">
-			{ticket}
-			<input type="hidden" name="redirect" value="0">
-			<fieldset>
-				<legend>{tr}Activate Extension Package{/tr}</legend>
-				{foreach $packageprefs as $package}
-					{preference name="{$package|escape}"}
-				{/foreach}
-			</fieldset>
-			<button class="btn btn-primary" name="apply-packages-preferences" value="run">{tr}Apply{/tr}</button>
-		</form>
-		<br>
-
-	{/tab}
+    {if count($packageprefs)}
+        {tab name="{tr}Extensions Preferences{/tr}"}
+            <form action="tiki-admin.php?page=packages&cookietab=5" method="post">
+                {ticket}
+                <input type="hidden" name="redirect" value="0">
+                <fieldset>
+                    <legend>{tr}Activate Extension Package{/tr}</legend>
+                    {foreach $packageprefs as $package}
+                        {preference name="{$package|escape}"}
+                    {/foreach}
+                </fieldset>
+                <button class="btn btn-primary" name="apply-packages-preferences" value="run">{tr}Apply{/tr}</button>
+            </form>
+            <br>
+        {/tab}
+    {/if}
 {/tabset}
 
 {jq}
