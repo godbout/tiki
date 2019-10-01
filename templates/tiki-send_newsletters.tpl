@@ -10,11 +10,11 @@
 
 {if $tiki_p_admin_newsletters eq "y"}
 	<div class="t_navbar mb-4">
-		{button href="tiki-newsletters.php" class="btn btn-info" _text="{tr}List Newsletters{/tr}"}
+		<a role="link" href="tiki-newsletters.php" class="btn btn-link" title="{tr}List{/tr}">{icon name="list"} {tr}List Newsletters{/tr}</a>
 		{if $nlId}
-			{button href="tiki-admin_newsletters.php?nlId=$nlId" class="btn btn-primary" _text="{tr}Admin Newsletters{/tr}"}
+			<a role="link" href="tiki-admin_newsletters.php?nlId=$nlId" class="btn btn-link" title="{tr}Admin Newsletters{/tr}">{icon name="cog"} {tr}Admin Newsletters{/tr}</a>
 		{else}
-			{button href="tiki-admin_newsletters.php" class="btn btn-primary" _text="{tr}Admin Newsletters{/tr}"}
+			<a role="link" href="tiki-admin_newsletters.php" class="btn btn-link" title="{tr}Admin Newsletters{/tr}">{icon name="cog"} {tr}Admin Newsletters{/tr}</a>
 		{/if}
 	</div>
 {/if}
@@ -214,7 +214,7 @@
 				{if $tiki_p_use_content_templates eq 'y'}
 				<div class="form-group form-inline">
 					<label class="col-form-label col-sm-2">{tr}Apply content template{/tr}</label>
-					<div class="col-sm-10">
+					<div class="col-sm-7">
 						<select name="templateId" onchange="javascript:needToConfirm=false;document.getElementById('editpageform').submit();" class="form-control">
 							<option value="0">{tr}none{/tr}</option>
 							{section name=ix loop=$templates}
@@ -223,6 +223,8 @@
 								</option>
 							{/section}
 						</select>
+					</div>
+					<div class="col-sm-3">
 						{button _text="{tr}Admin templates{/tr}" href='tiki-admin_content_templates.php' _target='blank'}
 					</div>
 				</div>
@@ -250,9 +252,19 @@
 				</div>
 				<div class="form-group form-inline">
 					<label class="col-form-label col-sm-2">{tr}Must be wiki parsed:{/tr}</label>
-					<div class="col-sm-10 form-control-plaintext">
-						<label><input type="checkbox" name="wikiparse" {if empty($info.wikiparse) or $info.wikiparse eq 'y'} checked="checked"{/if}> {tr}Wiki Parsed{/tr}&nbsp;</label>
-						<label><input type="checkbox" name="is_html" {if $info.is_html} checked="checked"{/if}> {tr}Is HTML{/tr}</label>
+					<div class="col-sm-3">
+						<div class="form-check">
+							<label class="form-check-label">
+								<input type="checkbox" name="wikiparse" class="form-check-input" {if empty($info.wikiparse) or $info.wikiparse eq 'y'} checked="checked"{/if}> {tr}Wiki Parsed{/tr}&nbsp;
+							</label>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-check">
+							<label class="form-check-label">
+								<input type="checkbox" name="is_html" class="form-check-input" {if $info.is_html} checked="checked"{/if}> {tr}Is HTML{/tr}
+							</label>
+						</div>
 					</div>
 				</div>
 				<div class="form-group row" id="txtcol1"{if $allowTxt eq 'n'} style="display:none;"{/if}>
