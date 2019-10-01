@@ -327,6 +327,7 @@ if (isset($_REQUEST['send'])) {
 }
 
 ask_ticket('share');
+$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 $smarty->assign('mid', 'tiki-share.tpl');
 $smarty->display('tiki.tpl');
 

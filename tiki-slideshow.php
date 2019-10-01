@@ -374,6 +374,8 @@ foreach($themesArr as $themeOption){
 	$themeOptions.='<option value="'.$themeOption[0].'" '.$selected.'>'.tra($themeOption[1]).'</option>';
 }
 
+// disallow robots to index page
+$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 $smarty->assign('themeOptions', $themeOptions);
 // Display the Index Template
 $smarty->assign('mid', 'tiki-show_page_raw.tpl');
