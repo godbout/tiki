@@ -742,6 +742,8 @@ if (isset($_REQUEST['moveto']) && empty($_REQUEST['moveto'])) {
 if (isset($_REQUEST['show'])) {
 	if ($_REQUEST['show'] == 'view') {
 		$cookietab = 1;
+		// for legacy edit mode after saving
+		setCookieSection('tabs_view_tracker_item', '', 'tabs');
 	} elseif ($tracker_info["useComments"] == 'y' and $_REQUEST['show'] == 'com') {
 		$cookietab = 2;
 	} elseif ($_REQUEST['show'] == "mod") {

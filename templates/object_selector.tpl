@@ -2,6 +2,7 @@
 <input
 	type="text"
 	id="{$object_selector.simpleid|escape}"
+	{if $prefs.javascript_enabled eq 'y'}style="display: none"{/if}
 	{if $object_selector.simpleclass}class="{$object_selector.simpleclass|escape}"{/if}
 	{if $object_selector.simplename}name="{$object_selector.simplename|escape}"{/if}
 	{if $object_selector.simplevalue}value="{$object_selector.current_selection.id|escape}"{/if}
@@ -9,6 +10,7 @@
 <input
 	type="text"
 	id="{$object_selector.id|escape}"
+	{if $prefs.javascript_enabled eq 'y'}style="display: none"{/if}
 	{if $object_selector.name}name="{$object_selector.name|escape}"{/if}
 	{if $object_selector.class}class="{$object_selector.class|escape}"{/if}
 	{if $object_selector.current_selection}
