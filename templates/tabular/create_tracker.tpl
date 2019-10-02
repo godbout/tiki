@@ -212,7 +212,11 @@
 
 
 				reader.onload = function (e) {
-					var rows = Plotly.d3.csv.parse(e.target.result);
+					if (delimiter == ';') {
+						var rows = Plotly.d3.dsv(';').parse(e.target.result);
+					} else {
+						var rows = Plotly.d3.csv.parse(e.target.result);
+					}
 					var columns = Object.keys(rows[0]);
 
 					for(i = 0; i < columns.length; i++) {

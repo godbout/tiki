@@ -67,7 +67,20 @@ class TrackerWriter
 				return $result;
 			}
 
-			return call_user_func_array('array_merge', $result);
+			$resultUpdated = array_column($result, 'update');
+			$resultCreated = array_column($result, 'create');
+			$result = array_merge($resultUpdated, $resultCreated);
+
+			$feedback = [];
+			if (! empty($resultCreated)) {
+				$feedback[] = count($resultCreated) . ' ' . tr('new tracker(s) item(s) created');
+			}
+			if (! empty($resultUpdated)) {
+				$feedback[] = count($resultUpdated) . ' ' . tr('tracker(s) item(s) updated');
+			}
+			\Feedback::success(implode('<br>', $feedback));
+
+			return $result;
 		};
 
 		if ($schema->isImportTransaction()) {
@@ -117,7 +130,6 @@ class TrackerWriter
 				$info['status'] = $defaultStatus;
 			}
 			if ($info['itemId']) {
-
 				if ($schema->isSkipUnmodified()) {
 					$currentItem = $utilities->getItem($definition->getConfiguration('trackerId'), $info['itemId']);
 					if (isset($info['bulk_import'])) {
@@ -134,8 +146,10 @@ class TrackerWriter
 				}
 
 				$success = $utilities->updateItem($definition, $info);
+				$result['update'] = $success;
 			} else {
 				$success = $utilities->insertItem($definition, $info);
+				$result['create'] = $success;
 			}
 			if (! empty($info['postprocess'])) {
 				foreach ((array) $info['postprocess'] as $postprocess) {
@@ -144,7 +158,7 @@ class TrackerWriter
 					}
 				}
 			}
-			return [$success];
+			return $result;
 		});
 
 		return true;

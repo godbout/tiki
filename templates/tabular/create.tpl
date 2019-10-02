@@ -26,6 +26,12 @@
 				{object_selector _class="form-control" type="tracker" _simplename="trackerId"}
 			</div>
 		</div>
+		<div class="form-group row">
+			<label class="col-form-label col-sm-3">{tr}Initializite this format with the current tracker fields{/tr}</label>
+			<div class="col-sm-9">
+				<input class="form-control" type="checkbox" name="prefill">
+			</div>
+		</div>
 		<div class="form-group submit">
 			<div class="col-sm-9 offset-sm-3">
 				<input type="submit" class="btn btn-primary" value="{tr}Create{/tr}">
