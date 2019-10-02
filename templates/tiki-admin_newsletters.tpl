@@ -1,7 +1,7 @@
 {* $Id$ *}
 {title help="Newsletters"}{tr}Admin newsletters{/tr}{/title}
 
-<div class="t_navbar form-group row">
+<div class="t_navbar form-group row mb-4">
 	{button href="tiki-admin_newsletters.php?cookietab=2" _icon_name="create" _text="{tr}Create{/tr}"}
 	<a role="link" href="tiki-newsletters.php" class="btn btn-link" title="{tr}List{/tr}">{icon name="list"} {tr}List Newsletters{/tr}</a>
 	<a role="link" href="tiki-send_newsletters.php" class="btn btn-link" title="{tr}Send{/tr}">{icon name="envelope"} {tr}Send Newsletters{/tr}</a>

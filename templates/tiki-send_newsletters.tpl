@@ -9,10 +9,10 @@
 {title help="Newsletters" url=$titleurl}{tr}Send Newsletters{/tr}{/title}
 
 {if $tiki_p_admin_newsletters eq "y"}
-	<div class="t_navbar mb-4">
+	<div class="t_navbar form-group row mb-4">
 		<a role="link" href="tiki-newsletters.php" class="btn btn-link" title="{tr}List{/tr}">{icon name="list"} {tr}List Newsletters{/tr}</a>
 		{if $nlId}
-			<a role="link" href="tiki-admin_newsletters.php?nlId=$nlId" class="btn btn-link" title="{tr}Admin Newsletters{/tr}">{icon name="cog"} {tr}Admin Newsletters{/tr}</a>
+			<a role="link" href="tiki-admin_newsletters.php?nlId={$nlId}" class="btn btn-link" title="{tr}Admin Newsletters{/tr}">{icon name="cog"} {tr}Admin Newsletters{/tr}</a>
 		{else}
 			<a role="link" href="tiki-admin_newsletters.php" class="btn btn-link" title="{tr}Admin Newsletters{/tr}">{icon name="cog"} {tr}Admin Newsletters{/tr}</a>
 		{/if}
