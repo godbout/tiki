@@ -138,6 +138,11 @@
 					</div>
 				</div>
 			</div>
+			<div class="form-group row submit">
+				<div class="col-sm-10 offset-sm-2">
+					<input type="submit" class="btn btn-primary" value="{tr}Update{/tr}">
+				</div>
+			</div>
 			<div class="form-group row">
 				<label class="col-form-label col-sm-2">{tr}Filters{/tr}</label>
 				<div class="col-sm-10">
@@ -219,6 +224,11 @@
 					<div class="form-text">
 						<p>{tr}Filters will be available in partial export menus.{/tr}</p>
 					</div>
+				</div>
+			</div>
+			<div class="form-group row submit">
+				<div class="col-sm-10 offset-sm-2">
+					<input type="submit" class="btn btn-primary" value="{tr}Update{/tr}">
 				</div>
 			</div>
 			<div class="form-group row mb-4">

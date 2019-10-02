@@ -50,13 +50,17 @@ class Services_Tracker_TabularController
 
 			$tabularId = $lib->create($input->name->text(), $input->trackerId->int());
 
-			return [
-				'FORWARD' => [
-					'controller' => 'tabular',
-					'action' => 'edit',
-					'tabularId' => $tabularId,
-				],
+			$forward = [
+				'controller' => 'tabular',
+				'action' => 'edit',
+				'tabularId' => $tabularId
 			];
+
+			if (! empty($input->prefill->text())) {
+				$forward['prefill'] = true;
+			}
+
+			return ['FORWARD' => $forward];
 		}
 
 		return [
@@ -68,6 +72,7 @@ class Services_Tracker_TabularController
 	{
 		$lib = TikiLib::lib('tabular');
 		$info = $lib->getInfo($input->tabularId->int());
+		$prefill = $input->prefill->bool();
 		$trackerId = $info['trackerId'];
 
 		Services_Exception_Denied::checkObject('tiki_p_tabular_admin', 'tabular', $info['tabularId']);
@@ -80,17 +85,23 @@ class Services_Tracker_TabularController
 			// FIXME : Blocks save and back does not restore changes, ajax validation required
 			// $schema->validate();
 
-			$lib->update($info['tabularId'], $input->name->text(), $schema->getFormatDescriptor(), $schema->getFilterDescriptor(), $input->config->none());
+			$config = ! empty($input->config->none()) ? $input->config->none() : [];
+			$result = $lib->update($info['tabularId'], $input->name->text(), $schema->getFormatDescriptor(), $schema->getFilterDescriptor(), $config);
+
+			if ($result->numRows() > 0) {
+				Feedback::success('Tabular tracker was updated successfully.');
+			}
 
 			return [
 				'FORWARD' => [
 					'controller' => 'tabular',
-					'action' => 'manage',
+					'action' => 'edit',
+					'tabularId' => $info['tabularId']
 				],
 			];
 		}
 
-		$schema = $this->getSchema($info);
+		$schema = $this->getSchema($info, $prefill);
 
 		return [
 			'title' => tr('Edit Format: %0', $info['name']),
@@ -377,6 +388,15 @@ class Services_Tracker_TabularController
 			$done = $writer->write($source);
 
 			unlink($_FILES['file']['tmp_name']);
+
+			Feedback::success(tr('Your import was completed successfully.'));
+			return [
+				'FORWARD' => [
+					'controller' => 'tabular',
+					'action' => 'list',
+					'tabularId' => $info['tabularId'],
+				]
+			];
 		}
 
 		return [
@@ -649,7 +669,7 @@ class Services_Tracker_TabularController
 		];
 	}
 
-	private function getSchema(array $info)
+	private function getSchema(array $info, $prefill = false)
 	{
 		$tracker = \Tracker_Definition::get($info['trackerId']);
 
@@ -658,7 +678,31 @@ class Services_Tracker_TabularController
 		}
 
 		$schema = new \Tracker\Tabular\Schema($tracker);
-		$schema->loadFormatDescriptor($info['format_descriptor']);
+
+		$descriptor = $info['format_descriptor'];
+		if ($prefill) {
+			$fields = $tracker->getFields();
+
+			foreach ($fields as $field) {
+				$fieldName = $field['name'];
+				$permName = $field['permName'];
+				$local = $schema->getFieldSchema($permName);
+				$columns = $local->getColumns();
+
+				$descriptor[] = [
+					'label' => $fieldName,
+					'field' => $permName,
+					'mode' => $columns[0]->getMode(),
+					'displayAlign' => 'left',
+					'isPrimary' => false,
+					'isReadOnly' => false,
+					'isExportOnly' => false,
+					'isUniqueKey' => false
+				];
+			}
+		}
+
+		$schema->loadFormatDescriptor($descriptor);
 		$schema->loadFilterDescriptor($info['filter_descriptor']);
 		$schema->loadConfig($info['config']);
 
