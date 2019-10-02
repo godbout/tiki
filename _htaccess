@@ -16,7 +16,7 @@
 # See http://dev.tiki.org/Operating+System+independence#Keep_web.config_and_.htaccess_synchronized
 
 # -- Prevent Browsing of Certain File Extensions and hidden files-- #
-<FilesMatch "\.(bak|inc|lib|sh|tpl|sql)$|^\.">
+<FilesMatch "\.(bak|inc|lib|sh|tpl|sql|shtml|asp|xml\.dist)$|^\.">
     <IfModule mod_authz_core.c>
        Require all denied
     </IfModule>
@@ -25,7 +25,8 @@
         deny from all
     </IfModule>
 </FilesMatch>
-<FilesMatch "(changelog.txt|_htaccess|README)$">
+# -- Prevent Browsing of Certain File Names -- #
+<FilesMatch "(changelog\.txt|_htaccess|README|INSTALL|web_config|copyright\.txt)$">
     <IfModule mod_authz_core.c>
        Require all denied
     </IfModule>
