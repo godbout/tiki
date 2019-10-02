@@ -3,6 +3,7 @@
 	<input
 		data-separator="{$object_selector_multi.separator|escape}"
 		type="text"
+		{if $prefs.javascript_enabled eq 'y'}style="display: none"{/if}
 		id="{$object_selector_multi.simpleid|escape}"
 		{if $object_selector_multi.simpleclass}class="{$object_selector_multi.simpleclass|escape}"{/if}
 		{if $object_selector_multi.simplename}name="{$object_selector_multi.simplename|escape}"{/if}
@@ -11,6 +12,7 @@
 {/if}
 <textarea
 	id="{$object_selector_multi.id|escape}"
+	{if $prefs.javascript_enabled eq 'y'}style="display: none"{/if}
 	{if $object_selector_multi.name}name="{$object_selector_multi.name|escape}"{/if}
 	{if $object_selector_multi.class}class="{$object_selector_multi.class|escape}"{/if}
 	{if $object_selector_multi.title}data-label="{$object_selector_multi.title|escape}"{/if}
