@@ -36,14 +36,13 @@
     </IfModule>
 </FilesMatch>
 
-# -- Prevents directory browsing by redirecting to root index page -- #
 <IfModule mod_dir.c>
     # -- Home Page Feature -- #
     # Option 1: (recommended) Not using home page feature.
-	DirectoryIndex /index.php
+	DirectoryIndex index.php
 
 	# Option 2: If using home page feature you may avoid the home page name being appended to the url by using this option.
-	#DirectoryIndex /tiki-index.php /index.php
+	#DirectoryIndex tiki-index.php index.php
 </IfModule>
 
 # -- Ensure Caching Proxy Sends Content to Correct Client -- #
@@ -222,8 +221,10 @@ FileETag none
 </IfModule>
 
 # -- Prevent Directory Browsing -- #
-# Recommended if you do not use it (you will know if you do).
-#Options -Indexes
+# Some shared hosting environments block options, so first check if the module is enabled
+<IfModule !mod_dir>
+	Options -Indexes
+</IfModule>
 
 # -- Developer cTag Blocking -- #
 # This prevents reading of tags file for developers who run ctags on their server.
