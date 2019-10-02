@@ -37,6 +37,7 @@ class Services_File_Controller
 		$gal_info = $this->checkTargetGallery($input);
 		$filegallib = TikiLib::lib('filegal');
 
+		$perms = Perms::get('tracker', $input->trackerId->int());
 
 		$util = new Services_Utilities();
 		if ($util->isActionPost()) {
@@ -68,6 +69,7 @@ class Services_File_Controller
 			'image_max_size_x' => $input->image_max_size_x->text(),
 			'image_max_size_y' => $input->image_max_size_y->text(),
 			'addDecriptionOnUpload' => $input->addDecriptionOnUpload->int(),
+			'admin_trackers' => $perms->admin_trackers,
 		];
 	}
 

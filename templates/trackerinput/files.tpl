@@ -25,21 +25,21 @@
 				</li>
 			{/foreach}
 		</ol>
-		<input class="input" type="text" name="{$field.ins_id|escape}" value="{$field.value|escape}">
-			{if $field.options_map.displayMode eq 'vimeo'}
-				{wikiplugin _name='vimeo' fromFieldId=$field.fieldId|escape fromItemId=$item.itemId|escape galleryId=$field.galleryId|escape}{/wikiplugin}
+		<input class="input" type="text" name="{$field.ins_id|escape}" value="{$field.value|escape}" style="display: none">
+		{if $field.options_map.displayMode eq 'vimeo'}
+			{wikiplugin _name='vimeo' fromFieldId=$field.fieldId|escape fromItemId=$item.itemId|escape galleryId=$field.galleryId|escape}{/wikiplugin}
+		{else}
+			{if $field.options_map.uploadInModal neq 'n'}
+				<a href="{service controller=file action=uploader uploadInModal=1 galleryId=$field.galleryId limit=$field.limit|default:100 type=$field.filter image_max_size_x=$field.image_x image_max_size_y=$field.image_y addDecriptionOnUpload=$data.addDecriptionOnUpload trackerId=$field.trackerId}" class="btn btn-primary upload-files">
+					{if $field.limit !== 1}{tr}Upload Files{/tr}{else}{tr}Upload File{/tr}{/if}
+				</a>
 			{else}
-				{if $field.options_map.uploadInModal neq 'n'}
-					<a href="{service controller=file action=uploader uploadInModal=1 galleryId=$field.galleryId limit=$field.limit|default:100 type=$field.filter image_max_size_x=$field.image_x image_max_size_y=$field.image_y addDecriptionOnUpload=$data.addDecriptionOnUpload}" class="btn btn-primary upload-files">
-						{if $field.limit !== 1}{tr}Upload Files{/tr}{else}{tr}Upload File{/tr}{/if}
-					</a>
-				{else}
 					<div class="upload-files-inline-form"></div>
 					<a href="{service controller=file action=uploader uploadInModal=0 galleryId=$field.galleryId limit=$field.limit|default:100 type=$field.filter image_max_size_x=$field.image_x image_max_size_y=$field.image_y addDecriptionOnUpload=$data.addDecriptionOnUpload}" class="btn btn-primary upload-files-inline">
 						{if $field.limit !== 1}{tr}Upload Files{/tr}{else}{tr}Upload File{/tr}{/if}
 					</a>
-				{/if}
 			{/if}
+		{/if}
 		{if $context.canBrowse}
 			{if $prefs.fgal_elfinder_feature eq 'y'}
 				{button href='tiki-list_file_gallery.php' _text="{tr}Browse files{/tr}" _onclick=$context.onclick title="{tr}Browse files{/tr}"}
