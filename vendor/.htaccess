@@ -23,5 +23,3 @@
 
 </IfModule>
 
-# -- Prevent Directory Browsing -- #
-Options -Indexes

@@ -52,6 +52,3 @@
 	  allow from all
 	</IfModule>
 </FilesMatch>
-
-# -- Prevent Directory Browsing -- #
-Options -Indexes

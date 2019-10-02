@@ -3,7 +3,7 @@
 	RewriteEngine On
 
 	# -- Always Allow These File Types -- #
-	RewriteRule "\.(jpe?g|png|ico|gif|svgz?|ttf|eot|woff2?|otf|js|css|html)$" "-" [PT,L]
+	RewriteRule "\.(jpe?g|png|ico|gif|svgz?|ttf|eot|woff2?|otf|js|css)$" "-" [PT,L]
 
 	# -- Allow Access to files used by Developer Dubugging Tools -- #
 	RewriteRule "\.(map|less|scss)$" "-" [PT,L]
@@ -14,16 +14,20 @@
 	# If you are adding a new vendor that needs browser access, adding a file
 	#  type exception will be required.
 
-	RewriteRule "^(vendor/player/).*/.*\.swf$" "-" [PT,L]
 	RewriteRule "^(vendor/fortawesome/).*/.*\.swf$" "-" [PT,L]
-	RewriteRule "^(vendor/jquery/).*/.*\.swf$" "-" [PT,L]
-	RewriteRule "^(vendor/bower-asset/swfobject/).*/.*\.swf$" "-" [PT,L]
-	RewriteRule "^(vendor/studio-42/).*/.*\.wav$" "-" [PT,L]
+	RewriteRule "^(vendor/svg-edit/).*/.*\.html$" "-" [PT,L]
+
+	#unsure if html access is needed for for the following so allowing for now
+    RewriteRule "^(vendor/player/).*/.*\.(swf|html)$" "-" [PT,L]
+	RewriteRule "^(vendor/jquery/).*/.*\.(swf|html)$" "-" [PT,L]
+	RewriteRule "^(vendor/studio-42/).*/.*\.(wav|html)$" "-" [PT,L]
+	RewriteRule "^(vendor/bower-asset/swfobject/).*/.*\.(swf|html)$" "-" [PT,L]
+	RewriteRule "^(vendor/twbs/).*/.*\.html$" "-" [PT,L]
+	RewriteRule "^(vendor/ckeditor).*/.*\.html$" "-" [PT,L]
+	RewriteRule "^(vendor/npm-asset/converse\.js/).*/.*\.html$" "-" [PT,L]
+	RewriteRule "^(vendor/components/revealjs/).*/.*\.html$" "-" [PT,L]
 
 	# -- Deny Everything Not Matched Above -- #
 	RewriteRule "/*" "-" [F]
 
 </IfModule>
-
-# -- Prevent Directory Browsing -- #
-Options -Indexes

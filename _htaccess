@@ -35,13 +35,14 @@
     </IfModule>
 </FilesMatch>
 
+# -- Prevents directory browsing by redirecting to root index page -- #
 <IfModule mod_dir.c>
     # -- Home Page Feature -- #
     # Option 1: (recommended) Not using home page feature.
-	DirectoryIndex index.php
+	DirectoryIndex /index.php
 
 	# Option 2: If using home page feature you may avoid the home page name being appended to the url by using this option.
-	#DirectoryIndex tiki-index.php index.php
+	#DirectoryIndex /tiki-index.php /index.php
 </IfModule>
 
 # -- Ensure Caching Proxy Sends Content to Correct Client -- #
