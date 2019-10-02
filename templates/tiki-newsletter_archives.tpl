@@ -1,21 +1,20 @@
 {title help="Newsletters"}{tr}Sent editions{/tr}{if $nl_info}: {$nl_info.name}{/if}{/title}
 
-<div class="t_navbar mb-4">
-	{if $tiki_p_list_newsletters eq "y"}
-		{button href="tiki-newsletters.php" class="btn btn-info" _text="{tr}List Newsletters{/tr}"}
-	{/if}
+<div class="t_navbar form-group row mb-4">
 	{if $tiki_p_subscribe_newsletters eq "y"}
 		{button href="tiki-newsletters.php?nlId=$nlId&amp;info=1" class="btn btn-primary" _text="{tr}Subscribe{/tr}"}
 	{/if}
+	{if $tiki_p_list_newsletters eq "y"}
+		<a role="link" href="tiki-newsletters.php" class="btn btn-link" title="{tr}List{/tr}">{icon name="list"} {tr}List Newsletters{/tr}</a>
+	{/if}
 	{if $tiki_p_send_newsletters eq "y"}
-		{button href="tiki-send_newsletters.php?nlId=$nlId" class="btn btn-primary" _text="{tr}Send Newsletters{/tr}"}
+		<a role="link" href="tiki-send_newsletters.php?nlId={$nlId}" class="btn btn-link" title="{tr}Send{/tr}">{icon name="envelope"} {tr}Send Newsletters{/tr}</a>
 	{/if}
 	{if $tiki_p_admin_newsletters eq "y"}
-		{button href="tiki-admin_newsletters.php" class="btn btn-primary" _text="{tr}Admin Newsletters{/tr}"}
+		<a role="link" href="tiki-admin_newsletters.php" class="btn btn-link" title="{tr}Admin Newsletters{/tr}">{icon name="cog"} {tr}Admin Newsletters{/tr}</a>
 	{/if}
 </div>
-<br>
-<br>
+
 <div id="newsletter_archives">
 	{if $edition}
 		<h3>{tr}Subject{/tr}</h3>
