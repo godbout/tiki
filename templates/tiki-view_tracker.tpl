@@ -358,7 +358,7 @@
 								!($field_value.type eq 's' and $field_value.name eq 'Rating')
 						}
 							<div class="form-group row">
-								<label class="col-sm-3 col-form-label">
+								<label class="col-sm-3 {if $field_value.type eq 'h'}h{$field_value.options_map.level}{else}col-form-label{/if}">
 										{if $field_value.isMandatory eq 'y'}
 											{$field_value.name|tra} <strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>
 										{else}
