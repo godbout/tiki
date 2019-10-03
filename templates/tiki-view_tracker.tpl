@@ -398,12 +398,13 @@
 					{/if}
 
 					<div class="form-group row">
-						<label class="col-sm-3 col-form-label">&nbsp;</label>
-						<div class="col-sm-8 form-check-inline">
-						<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm = false;">
-						<input type="radio" name="viewitem" value="view" /> {tr}View inserted item{/tr}
-						{* --------------------------- to continue inserting items after saving --------- *}
-						<input type="radio" name="viewitem" value="new" checked="checked"> {tr}Insert new item{/tr}
+						<div class="col-sm-8 offset-sm-3">
+							<div class="form-inline">
+								<div class="col-sm-2"><input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm = false;"></div>
+								<div class="col-sm-5"><input type="radio" name="viewitem" value="view" class="form-check-input" /> {tr}View inserted item{/tr}</div>
+								{* --------------------------- to continue inserting items after saving --------- *}
+								<div class="col-sm-5"><input type="radio" name="viewitem" value="new" class="form-check-input" checked="checked"> {tr}Insert new item{/tr}</div>
+							</div>
 						</div>
 					</div>
 				</div>
