@@ -495,18 +495,20 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		$objectLib = TikiLib::lib('object');
 		$format = $this->getOption('format');
 		$labels = [];
-		static $called = [];
+		static $cache = [];
 		if ($mode !== 'formatting') {
 			foreach ($data['relations'] as $identifier) {
 				list($type, $object) = explode(':', $identifier);
-				if (in_array($type.$object, $called)) {
+				if (isset($cache[$type.$object])) {
 					// prevent circular-reference calls to objectlib->get_title method as getDocumentPart is used to populate the
 					// search results with field values which is called in get_title itself
 					// only happens for bi-directional tracker item relation
+					$labels[] = $cache[$type.$object];
 					continue;
 				}
-				$called[] = $type.$object;
-				$labels[] = $objectLib->get_title($type, $object, $format);
+				$label = $objectLib->get_title($type, $object, $format);
+				$cache[$type.$object] = $label;
+				$labels[] = $label;
 			}
 		}
 
