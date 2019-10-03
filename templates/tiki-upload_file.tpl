@@ -169,11 +169,12 @@
 			<div class="col-sm-12">
 				<div class="form-check">
 					<label for="imagesize" class="form-check-label">
-					<input class="form-check-input" type="checkbox" id="imagesize" name="imagesize" checked="checked" value="yes" />{tr}Use Gallery default resize settings for images <span id="imageResizeInfo">{if $gal_info["image_max_size_x"]}({$gal_info["image_max_size_x"]}px X {$gal_info["image_max_size_y"]} px){else}(No resize){/if}</span>{/tr}
+						<input class="form-check-input" type="checkbox" id="imagesize" name="imagesize" checked="checked" value="yes" />{tr}Use Gallery default resize settings for images <span id="imageResizeInfo">{if $gal_info["image_max_size_x"]}({$gal_info["image_max_size_x"]}px X {$gal_info["image_max_size_y"]} px){else}(No resize){/if}</span>{/tr}
 					</label>
 				</div>
 			</div>
-			<div id="customsize" style="display:none"><div class="form-group row">
+			<div id="customsize" style="display:none">
+				<div class="form-group row">
 					<label for="image_max_size_x" class="col-sm-4 text-right">{tr}Maximum width of images{/tr}</label>
 					<div class="col-sm-8">
 						<div class="input-group col-sm-4">
@@ -326,6 +327,7 @@
 						</div>
 					{/if}
 				{/if}
+				</div>
 				<div class="fgal_file_c3">
 					{if $prefs.fgal_limit_hits_per_file eq 'y'}
 						<div class="form-group row">
