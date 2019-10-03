@@ -9,7 +9,7 @@
 {$jscal = 0}
 {foreach from=$fields item=field}
 	<div class="form-group">
-		<label for="trackerinput_{$field.fieldId|escape}" {if $field.type eq 'h'}class="h"{$field.options_map.level}{/if}>
+		<label for="trackerinput_{$field.fieldId|escape}" {if $field.type eq 'h'}class="h{$field.options_map.level}"{/if}>
 			{$field.name|tra|escape}
 			{if $field.isMandatory eq 'y'}
 				<strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>
