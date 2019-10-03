@@ -283,7 +283,7 @@
 
 							{foreach from=$ins_fields key=ix item=cur_field}
 								<div class="form-group row">
-									<label class="col-form-label col-sm-3">
+									<label class="col-sm-3 {if $cur_field.type eq 'h'}h{$cur_field.options_map.level}{else}col-form-label{/if}">
 										{$cur_field.name|tra|escape}
 										{if $cur_field.isMandatory eq 'y'}
 											<strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>
