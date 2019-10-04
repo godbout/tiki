@@ -55,12 +55,12 @@ class Math_Formula_Function_Subtotal extends Math_Formula_Function
 				$group_value = $values[$group];
 				if (! isset($out[$group_value])) {
 					$out[$group_value] = ['group' => $group_value];
-					foreach ($aggregate as $field) {
-						$out[$group_value][$field] = [];
+					foreach ($aggregate as $position => $field) {
+						$out[$group_value][$position] = [];
 					}
 				}
-				foreach ($aggregate as $field) {
-					$out[$group_value][$field][] = $values[$field] ?? 0;
+				foreach ($aggregate as $position => $field) {
+					$out[$group_value][$position][] = $values[$field] ?? 0;
 				}
 			}
 		}
@@ -72,7 +72,7 @@ class Math_Formula_Function_Subtotal extends Math_Formula_Function
 				$class = 'Math_Formula_Function_'.$function;
 				if (class_exists($class)) {
 					$op = new $class;
-					$out[$group_value][$field] = $op->evaluateTemplate($rows[$field], function($child) { return $child; });
+					$out[$group_value][$position] = $op->evaluateTemplate($rows[$position], function($child) { return $child; });
 				}
 			}
 		}
