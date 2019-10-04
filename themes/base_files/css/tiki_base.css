@@ -2043,6 +2043,14 @@ dl.note-list {
   font-size: smaller;
   text-align: right; }
 
+@media (max-width: 767.98px) {
+  .comment .media.comment {
+    display: block; }
+    .comment .media.comment .align-self-start {
+      float: left; }
+    .comment .media.comment .userlink {
+      display: block; } }
+
 .oddthumb {
   border-collapse: collapse; }
 

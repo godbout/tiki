@@ -114,3 +114,13 @@ dl.note-list {
 	font-size: smaller;
 	text-align: right;
 }
+
+@media (max-width: breakpoint-max(sm)) {
+	.comment {
+		.media.comment {
+			display: block;
+			.align-self-start { float: left; }
+			.userlink { display: block; }
+		}
+	}
+}
