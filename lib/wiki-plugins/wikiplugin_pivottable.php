@@ -461,6 +461,7 @@ function wikiplugin_pivottable($data, $params)
 
 		$columnsListed = false;
 		$derivedAttributes = [];
+		$splittedAttributes = [];
 
 		foreach ($matches as $match) {
 			if ($match->getName() == 'display' || $match->getName() == 'column') {
@@ -481,6 +482,17 @@ function wikiplugin_pivottable($data, $params)
 
 					$derivedAttributes[] = sprintf('"%s": %s(%s)', $derivedattr_name, $function_name, $function_params);
 				}
+			} elseif ($match->getName() == 'split') {
+				$parser = new WikiParser_PluginArgumentParser;
+				$arguments = $parser->parse($match->getArguments());
+				if (! isset($arguments['field'])) {
+					return WikiParser_PluginOutput::userError(tr('Split wiki modifier should specify a field.'));
+				}
+				if (! isset($arguments['separator'])) {
+					$arguments['separator'] = ',';
+				}
+				$arguments['field'] = str_replace('tracker_field_', '', $arguments['field']);
+				$splittedAttributes[] = $arguments;
 			}
 		}
 
@@ -643,6 +655,34 @@ function wikiplugin_pivottable($data, $params)
 			}
 		}
 		$pivotData[] = $row;
+	}
+
+	foreach ($splittedAttributes as $arguments) {
+		$field = $definition->getFieldFromPermName($arguments['field']);
+		if (empty($field)) {
+			continue;
+		} else {
+			$field = $field['name'];
+		}
+		$separator = $arguments['separator'];
+		$key = 0;
+		while($key < count($pivotData)) {
+			$row = $pivotData[$key];
+			if (! isset($row[$field])) {
+				$key++;
+				continue;
+			}
+			$splitted = explode($separator, $row[$field]);
+			if (count($splitted) == 1) {
+				$key++;
+				continue;
+			}
+			$replacement = array_map(function($value) use ($row, $field) {
+				return array_merge($row, [$field => trim($value)]);
+			}, $splitted);
+			array_splice($pivotData, $key, 1, $replacement);
+			$key += count($replacement);
+		}
 	}
 
 	//translating permName to field name for columns and rows
