@@ -21,6 +21,7 @@ use Symfony\Component\Console\Logger\ConsoleLogger;
 use Psr\Log\LogLevel;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Command\HelpCommand;
+use Exception;
 
 if (isset($_SERVER['REQUEST_METHOD'])) {
 	die('Only available through command-line.');
@@ -132,7 +133,7 @@ class SvnUpCommand extends Command
 	 * 													produced, handy as an extra check when output is expected.
 	 * @param bool 	$log				If errors should be logged.
 	 */
-	public function OutputErrors(ConsoleLogger &$logger, $return, $errorMessage = '', $errors = [], $log = true)
+	public function OutputErrors(ConsoleLogger $logger, $return, $errorMessage = '', $errors = [], $log = true)
 	{
 
 		$logger->info($return);
@@ -154,7 +155,7 @@ class SvnUpCommand extends Command
 	 *
 	 * @param OutputInterface $output
 	 *
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 
 	protected function dbUpdate(OutputInterface $output)
@@ -441,6 +442,6 @@ $console->add(new SvnUpCommand);
 $console->setDefaultCommand('svnup');
 try {
 	$console->run();
-}catch (\Exception $e){
+}catch (Exception $e){
 	echo 'Problem running svnup:' . $e->getMessage();
 }
