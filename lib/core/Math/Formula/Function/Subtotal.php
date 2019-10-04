@@ -60,7 +60,12 @@ class Math_Formula_Function_Subtotal extends Math_Formula_Function
 					}
 				}
 				foreach ($aggregate as $position => $field) {
-					$out[$group_value][$position][] = $values[$field] ?? 0;
+					if (is_string($field) && !isset($values[$field])) {
+						$value = 0;
+					} else {
+						$value = $this->evaluateChild($field, $values);
+					}
+					$out[$group_value][$position][] = $value;
 				}
 			}
 		}
