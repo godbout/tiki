@@ -24,10 +24,14 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 }
 
 if (! file_exists(__DIR__ . '/../../vendor_bundled/vendor/autoload.php')) {
-	echo "Your Tiki is not completely installed because Composer has not been run to fetch package dependencies.\n";
-	echo "You need to run 'sh setup.sh' from the command line.\n";
-	echo "See https://doc.tiki.org/Composer for details.\n";
-	exit;
+	$error = "Your Tiki is not completely installed because Composer has not been run to fetch package dependencies.\n" .
+		"You need to run 'sh setup.sh' from the command line.\n" .
+		"See https://doc.tiki.org/Composer for details.\n";
+
+	if (PHP_SAPI === 'cli') {
+		$error = "\033[31m" . $error . "\e[0m\n";
+	}
+	die($error);
 }
 
 require_once __DIR__ . '/../../vendor_bundled/vendor/autoload.php'; // vendor libs bundled into tiki
