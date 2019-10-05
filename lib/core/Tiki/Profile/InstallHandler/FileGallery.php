@@ -107,7 +107,6 @@ class Tiki_Profile_InstallHandler_FileGallery extends Tiki_Profile_InstallHandle
 			}
 		}
 
-		unset($data['galleryId']);
 		$this->replaceReferences($data);
 
 		if (! empty($data['name'])) {
@@ -157,9 +156,13 @@ class Tiki_Profile_InstallHandler_FileGallery extends Tiki_Profile_InstallHandle
 			unset($input['init_files']);
 		}
 
+		if (isset($input['mode'])) {
+			unset($input['mode']);
+		}
+
 		$galleryId = $filegallib->replace_file_gallery($input);
 
-		if (empty($input['galleryId']) && count($files)) {
+		if ($galleryId && count($files)) {
 			$gal_info = $filegallib->get_file_gallery_info($galleryId);
 
 			foreach ($files as $url) {
