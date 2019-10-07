@@ -1477,6 +1477,8 @@ function wikiplugin_tracker($data, $params)
 					}
 					$smarty->assign('status', $mail_status);
 
+					$sentMails = [];
+
 					foreach ($emailOptions[1] as $ieo => $ueos) {
 						$mailDir = strpos($tplSubject[$subjectCounter], 'wiki:') !== 0 ? 'mail/' : '';
 						@$mail_data = $smarty->fetch($mailDir . $tplSubject[$subjectCounter]);
@@ -1488,7 +1490,7 @@ function wikiplugin_tracker($data, $params)
 						$mail->setSubject($mail_data);
 						$mailDir = strpos($emailOptions[2][$templateCounter], 'wiki:') !== 0 ? 'mail/' : '';	// wiki pages dont start with wiki:
 						$mail_data = $smarty->fetch($mailDir . $emailOptions[2][$templateCounter]);
-						if ($emailformat == 'html') {
+						if (isset($emailformat) && $emailformat === 'html') {
 							$mail->setHtml($mail_data, strip_tags($mail_data));
 						} else {
 							if (strpos($emailOptions[2][$templateCounter], 'wiki:') === 0) {
@@ -1496,21 +1498,28 @@ function wikiplugin_tracker($data, $params)
 							}
 							$mail->setText($mail_data);
 						}
+
+						$tplKey = '-' . $tplSubject[$subjectCounter] . '-' . $emailOptions[2][$templateCounter];
+
 						foreach ($ueos as $ueo) {
-							try {
-								$mail->send($ueo);
-								$title = 'mail';
-							} catch (Zend\Mail\Exception\ExceptionInterface $e) {
-								$title = 'mail error';
-							}
-							if ($title == 'mail error') {
-								// Log the email error at the tiki syslog
-								$logslib = TikiLib::lib('logs');
+
+							if (!in_array($ueo . $tplKey, $sentMails)) {
+								try {
+									$mail->send($ueo);
+									$sentMails[] = $ueo . $tplKey;
+									$title = 'mail';
+								} catch (Zend\Mail\Exception\ExceptionInterface $e) {
+									$title = 'mail error';
+								}
+								if ($title == 'mail error') {
+									// Log the email error at the tiki syslog
+									$logslib = TikiLib::lib('logs');
 								$logslib->add_log('mail error', 'plugin tracker email error / ' . $ueo . ' / item' . $rid);
 							} elseif ($title == 'mail' && $prefs['log_mail'] == 'y') {
-								// Log the email at the tiki syslog
-								$logslib = TikiLib::lib('logs');
-								$logslib->add_log('mail', 'plugin tracker email sent / ' . $ueo . ' / item' . $rid);
+									// Log the email at the tiki syslog
+									$logslib = TikiLib::lib('logs');
+									$logslib->add_log('mail', 'plugin tracker email sent / ' . $ueo . ' / item' . $rid);
+								}
 							}
 						}
 						if (isset($emailOptions[2][$templateCounter + 1])) {
