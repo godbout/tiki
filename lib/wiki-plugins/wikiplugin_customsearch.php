@@ -842,6 +842,11 @@ $('#$fieldid').change(function() {
 });
 ";
 			return $html;
+		} elseif ($field['type'] === 'd') {
+			$data = $handler->getFieldData();
+
+			$options = array_keys($data['possibilities']);
+			$labels = array_values($data['possibilities']);
 		}
 	}
 	if (isset($arguments['_mandatory']) && $arguments['_mandatory'] == 'y') {
@@ -1024,7 +1029,7 @@ function cs_design_distance($id, $fieldname, $fieldid, $arguments, $default, &$s
 		};
 		customsearch$id.add($(this).attr('name'), filter);
 	}).change();
-	
+
 })('$fieldid', " . json_encode($arguments) . ", " . json_encode($fieldname) . ");
 ";
 
