@@ -13,7 +13,7 @@
 			<div class="dropdown">
 				{* For all object types: Show everything as a dropdown for visibility *}
 				{if ! $js}<ul class="cssmenu_horiz"><li>{/if}
-				<button class="btn btn-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+				<button class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
 					{icon name="translate"} {$trads[0].langName|escape} ({$trads[0].lang|escape})
 				</button>
 		{/if}
