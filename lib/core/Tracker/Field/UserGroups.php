@@ -11,7 +11,7 @@
  * Letter key: ~usergroups~
  *
  */
-class Tracker_Field_UserGroups extends Tracker_Field_Abstract
+class Tracker_Field_UserGroups extends Tracker_Field_Abstract implements Tracker_Field_Filterable
 {
 	public static function getTypes()
 	{
@@ -126,5 +126,57 @@ class Tracker_Field_UserGroups extends Tracker_Field_Abstract
 	{
 		$baseKey = $this->getBaseKey();
 		return [$baseKey => true];
+	}
+
+	function getFilterCollection()
+	{
+		$userlib = TikiLib::lib('user');
+		$groups = $userlib->list_all_groups_with_permission();
+		$groups = $userlib->get_group_info($groups);
+
+		$possibilities = [];
+		foreach ($groups as $group) {
+			$possibilities[$group['groupName']] = $group['groupName'];
+		}
+		$possibilities['-Blank (no data)-'] = tr('-Blank (no data)-');
+
+		$filters = new Tracker\Filter\Collection($this->getTrackerDefinition());
+		$permName = $this->getConfiguration('permName');
+		$name = $this->getConfiguration('name');
+		$baseKey = $this->getBaseKey();
+
+		$filters->addNew($permName, 'dropdown')
+			->setLabel($name)
+			->setControl(new Tracker\Filter\Control\DropDown("tf_{$permName}_dd", $possibilities))
+			->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+				$value = $control->getValue();
+
+				if ($value === '-Blank (no data)-') {
+					$query->filterIdentifier('', $baseKey . '_text');
+				} elseif ($value) {
+					$query->filterMultivalue((string) $value, $baseKey);
+				}
+			});
+
+		$filters->addNew($permName, 'multiselect')
+			->setLabel($name)
+			->setControl(new Tracker\Filter\Control\MultiSelect("tf_{$permName}_ms", $possibilities))
+			->setApplyCondition(function ($control, Search_Query $query) use ($permName, $baseKey) {
+				$values = $control->getValues();
+
+				if (! empty($values)) {
+					$sub = $query->getSubQuery("ms_$permName");
+
+					foreach ($values as $v) {
+						if ($v === '-Blank (no data)-') {
+							$sub->filterIdentifier('', $baseKey . '_text');
+						} elseif ($v) {
+							$sub->filterMultivalue((string) $v, $baseKey);
+						}
+					}
+				}
+			});
+
+		return $filters;
 	}
 }
