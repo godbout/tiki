@@ -1752,42 +1752,51 @@ td.url {
     table-layout: auto; } }
 
 @media only screen and (max-width: 767.98px) {
-  .table-responsive.large-table .table:not(.tablesorter) thead th, .table-responsive.large-table .table:not(.tablesorter) tbody th {
+  .toggle-table {
+    position: absolute;
+    right: 15px;
+    margin-top: -52px; }
+    .toggle-table .btn-link {
+      font-weight: 600;
+      font-size: 1.8em;
+      text-decoration: none !important; }
+
+  .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th, .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th {
     position: absolute;
     top: -9999px;
     left: -9999px; }
-    .table-responsive.large-table .table:not(.tablesorter) thead tr {
+    .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead tr {
       display: block;
       padding: 0.5rem 0 0;
       background-color: rgba(0, 0, 0, 0.05); }
-    .table-responsive.large-table .table:not(.tablesorter) tbody tr {
+    .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody tr {
       display: block;
       border-bottom: 1px solid #dee2e6; }
-      .table-responsive.large-table .table:not(.tablesorter) tbody > tr.active {
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody > tr.active {
         display: none; }
-      .table-responsive.large-table .table:not(.tablesorter) tbody tr:not(:nth-child(1)) {
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody tr:not(:nth-child(1)) {
         padding: 0.5rem 0; }
-      .table-responsive.large-table .table:not(.tablesorter) tbody td {
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td {
         display: block;
         padding: 0.25rem 0.75rem 0.5rem;
         border-top: none;
         text-align: left !important;
         position: relative;
         word-break: break-word; }
-        .table-responsive.large-table .table:not(.tablesorter) tbody td:after {
+        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td:after {
           display: block;
           clear: both;
           content: ""; }
-      .table-responsive.large-table .table:not(.tablesorter) tbody .header {
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .header {
         display: block !important;
         font-weight: bold; }
-      .table-responsive.large-table .table:not(.tablesorter) tbody .hidecell {
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .hidecell {
         display: none; }
-      .table-responsive.large-table .table:not(.tablesorter) tbody .float-right {
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .float-right {
         float: none !important; }
-      .table-responsive.large-table .table:not(.tablesorter) tbody .checkbox-cell .form-check {
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .checkbox-cell .form-check {
         padding-left: 0; }
-        .table-responsive.large-table .table:not(.tablesorter) tbody .checkbox-cell .form-check-input {
+        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .checkbox-cell .form-check-input {
           position: static;
           margin-left: 0; } }
 

@@ -122,8 +122,12 @@ td.url{
 }
 
 @media only screen and (max-width: breakpoint-max(sm)) {
-	.table-responsive.large-table {
-//		.table, tbody { display: block; }
+	.toggle-table {
+		position: absolute; right: 15px; margin-top: -52px;
+		.btn-link { font-weight: 600; font-size: 1.8em; text-decoration: none !important; }
+	}
+
+	.tiki #col1 .table-responsive.large-table {
 		.table:not(.tablesorter) {
 			thead, tbody {
 				th {
