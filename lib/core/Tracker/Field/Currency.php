@@ -129,36 +129,26 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 
 	function renderInnerOutput($context = [])
 	{
-		$trk = TikiLib::lib('trk');
-		$currencyTracker = $this->getOption('currencyTracker');
-		
-		$conversions = [];
-		if ($currencyTracker) {
-			$rates = $trk->exchange_rates($currencyTracker, date('Y-m-d'));
+		$smarty = TikiLib::lib('smarty');
 
-			$data = $this->getFieldData();
-			$amount = $data['amount'];
-			$source_currency = $data['currency'];
-			$default_currency = $this->getOption('currency');
-			if (empty($default_currency)) {
-				$default_currency = 'USD';
-			}
-			// convert amount to default currency before converting to other currencies
-			if ($source_currency != $default_currency && !empty($rates[$source_currency])) {
-				$amount = (float)$amount / (float)$rates[$source_currency];
-				$conversions[$default_currency] = $amount;
-			}
-			foreach ($rates as $currency => $rate) {
-				if ($currency != $source_currency) {
-					$conversions[$currency] = (float)$rate * (float)$amount;
-				}
-			}
-		}
+		$data = $this->getFieldData();
 
-		static $id = 0;
-		$id++;
-
-		return $this->renderTemplate('trackeroutput/currency.tpl', $context, ['conversions' => $conversions, 'id' => $id]);
+		$smarty->loadPlugin('smarty_function_currency');
+		return smarty_function_currency(
+			[
+				'amount' => $data['amount'],
+				'sourceCurrency' => $data['currency'],
+				'exchangeRatesTrackerId' => $this->getOption('currencyTracker'),
+				'prepend' => $this->getOption('prepend'),
+				'append' => $this->getOption('append'),
+				'locale' => $this->getOption('locale'),
+				'defaultCurrency' => $this->getOption('currency'),
+				'symbol' => $this->getOption('symbol'),
+				'allSymbol' => $this->getOption('all_symbol'),
+				'reloff' => $context['reloff'] ?? null,
+			],
+			$smarty->getEmptyInternalTemplate()
+		);
 	}
 
 	function renderInput($context = [])

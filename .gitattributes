@@ -2375,6 +2375,7 @@ lib/core/Math/Formula/Function/Coalesce.php -text
 lib/core/Math/Formula/Function/Concat.php -text
 lib/core/Math/Formula/Function/Contains.php -text
 lib/core/Math/Formula/Function/Count.php -text
+lib/core/Math/Formula/Function/Currency.php -text
 lib/core/Math/Formula/Function/Date.php -text
 lib/core/Math/Formula/Function/Div.php -text
 lib/core/Math/Formula/Function/Equals.php -text
@@ -4107,6 +4108,7 @@ lib/smarty_tiki/function.content.php -text
 lib/smarty_tiki/function.cookie.php -text
 lib/smarty_tiki/function.cookie_jar.php -text
 lib/smarty_tiki/function.count.php -text
+lib/smarty_tiki/function.currency.php -text
 lib/smarty_tiki/function.custom_template.php -text
 lib/smarty_tiki/function.datetime_range.php -text
 lib/smarty_tiki/function.debugger.php -text
@@ -5474,6 +5476,7 @@ templates/contribution.tpl -text
 templates/cookie_consent.tpl -text
 templates/copyrights.tpl -text
 templates/credits.tpl -text
+templates/currency_output.tpl -text
 templates/database-connection-error.tpl -text
 templates/database_connection_error.html -text
 templates/debug/function.debugger.tpl -text
@@ -6478,7 +6481,6 @@ templates/trackerinput/usersubscription.tpl -text
 templates/trackerinput/wiki.tpl -text
 templates/trackeroutput/articles.tpl -text
 templates/trackeroutput/computed.tpl -text
-templates/trackeroutput/currency.tpl -text
 templates/trackeroutput/files_googleviewer.tpl -text
 templates/trackeroutput/files_table.tpl -text
 templates/trackeroutput/freetags.tpl -text
