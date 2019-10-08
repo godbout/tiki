@@ -1754,8 +1754,8 @@ td.url {
 @media only screen and (max-width: 767.98px) {
   .toggle-table {
     position: absolute;
-    right: 15px;
-    margin-top: -52px; }
+    right: 5px;
+    margin-top: -50px; }
     .toggle-table .btn-link {
       font-weight: 600;
       font-size: 1.8em;
@@ -1787,6 +1787,8 @@ td.url {
           display: block;
           clear: both;
           content: ""; }
+        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkbox-cell {
+          width: auto; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .header {
         display: block !important;
         font-weight: bold; }
