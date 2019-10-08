@@ -802,42 +802,44 @@
 			</div>
 			<div class="form-group row">
 				{*<div class="col-sm-12">*}
-				<table class="table">
-					<thead>
-						<tr>
-							{if $tiki_p_admin eq 'y'}
-								<th class="text-center">{tr}Recorded{/tr}</th>
-							{/if}
-							<th class="text-center">{tr}Reported{/tr}</th>
-							<th class="text-center">{tr}Action{/tr}</th>
-							<th class="text-center">{tr}Type{/tr}</th>
-						</tr>
-					</thead>
-					<tbody>
-						{foreach from=$action_log_conf_selected item=actionlog}
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
 							<tr>
 								{if $tiki_p_admin eq 'y'}
-									<td class="checkbox-cell">
-										<div class="form-check">
-											<input type="checkbox" class="form-check-input" name="{$actionlog.code}"
-											{if $actionlog.status eq 'y' or $actionlog.status eq 'v'}checked="checked"{/if}>
-										</div>
-									</td>
+									<th class="text-center">{tr}Recorded{/tr}</th>
 								{/if}
-								{if $tiki_p_admin eq 'y' or $actionlog.status eq 'y' or $actionlog.status eq 'v'}
-									<td class="checkbox-cell">
-										<div class="form-check">
-											<input type="checkbox" class="form-check-input" name="v_{$actionlog.code}"
-											{if $actionlog.status eq 'v'}checked="checked"{/if}>
-										</div>
-									</td>
-									<td class="text text-center">{tr}{$actionlog.action}{/tr}</td>
-									<td class="text text-center">{tr}{$actionlog.objectType}{/tr}</td>
-								{/if}
+								<th class="text-center">{tr}Reported{/tr}</th>
+								<th class="text-center">{tr}Action{/tr}</th>
+								<th class="text-center">{tr}Type{/tr}</th>
 							</tr>
-						{/foreach}
-					</tbody>
-				</table>
+						</thead>
+						<tbody>
+							{foreach from=$action_log_conf_selected item=actionlog}
+								<tr>
+									{if $tiki_p_admin eq 'y'}
+										<td class="checkbox-cell">
+											<div class="form-check">
+												<input type="checkbox" class="form-check-input" name="{$actionlog.code}"
+												{if $actionlog.status eq 'y' or $actionlog.status eq 'v'}checked="checked"{/if}>
+											</div>
+										</td>
+									{/if}
+									{if $tiki_p_admin eq 'y' or $actionlog.status eq 'y' or $actionlog.status eq 'v'}
+										<td class="checkbox-cell">
+											<div class="form-check">
+												<input type="checkbox" class="form-check-input" name="v_{$actionlog.code}"
+												{if $actionlog.status eq 'v'}checked="checked"{/if}>
+											</div>
+										</td>
+										<td class="text text-center">{tr}{$actionlog.action}{/tr}</td>
+										<td class="text text-center">{tr}{$actionlog.objectType}{/tr}</td>
+									{/if}
+								</tr>
+							{/foreach}
+						</tbody>
+					</table>
+				</div>
 				{*</div>*}
 			</div>
 			<div class="form-group row">
