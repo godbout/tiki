@@ -2260,6 +2260,15 @@ table.treetable tr.expanded span.indenter a {
   width: 100px;
   height: 100px; }
 
+.file-uploader {
+  border: dotted 2px #ced4da; }
+
+.file-uploader * {
+  pointer-events: none; }
+
+.file-uploader.active {
+  border-style: dashed; }
+
 .statuson, .statusoff {
   padding: 3px 2px 0 2px;
   vertical-align: middle;
