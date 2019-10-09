@@ -119,7 +119,7 @@
 					</div>
 				</div>
 			</fieldset>
-			<fieldset>
+			<fieldset id="Scheduler">
 				<legend>{tr}Scheduler Settings{/tr}</legend>
 				{preference name=feature_scheduler}
 				{preference name=scheduler_stalled_timeout}
