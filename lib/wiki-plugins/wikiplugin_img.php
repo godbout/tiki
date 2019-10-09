@@ -133,7 +133,6 @@ function wikiplugin_img_info()
 					['text' => tra('Mouseover (sticky)'), 'value' => 'mousesticky'],
 					['text' => tra('Popup - enlarges in a separate window'), 'value' => 'popup'],
 					['text' => tra('Download'), 'value' => 'download'],
-					['text' => tra('Zoombox - enlarges in a popup with a zoom option'), 'value' => 'zoombox'],
 				],
 			],
 			'link' => [

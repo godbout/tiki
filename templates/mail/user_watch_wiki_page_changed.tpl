@@ -7,8 +7,8 @@
 
 {if $mail_comment}{tr}Comment:{/tr} {$mail_comment}
 {/if}
-{if $mail_contributions}{tr}Contribution:{/tr} {$mail_contributions}{/if}
-
+{if not empty($mail_contributions)}{tr}Contribution:{/tr} {$mail_contributions}
+{/if}
 {if $mail_action eq 'delete'}{tr}The page {$prefs.mail_template_custom_text}"{$mail_page}" was deleted but used to be here:{/tr}
 {else}{tr}You can view the page by following this link:{/tr}
 {/if}
