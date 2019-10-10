@@ -14,7 +14,10 @@ body { min-width: 100%; }
 	.btn-outline-secondary:hover { text-decoration: none; }
 	.src_name { max-height: 100px; }
 	.sys_messages { padding: 15px; }
-	.content_title { overflow: hidden; min-height: 25px; max-height: 100px; }
+	.content_title {
+		overflow: hidden; min-height: 25px; max-height: 100px;
+		padding: 20px 100px 10px 25px;
+	}
 
 // main menu
 	.folders a, .unread_link { font-weight: normal; }
@@ -73,6 +76,13 @@ body { min-width: 100%; }
 		flex: 0 0 60%;
 	}
 
+// compose
+	.compose_server { margin-bottom: 15px; }
+	.compose_attach_button, .compose_sign,
+	.smtp_save, .smtp_reset, .smtp_send {
+		margin-top: 0;
+	}
+
 // search
 	.search_content {
 		.content_title { max-height: 150px; }
@@ -108,6 +118,20 @@ body { min-width: 100%; }
 	.part_desc, .part_size, .download_link { margin-left: 25px; }
 	.msg_part_icon { padding: 0; margin-left: 5px; }
 	.imap_keyword { margin-top: 4px; }
+
+//  jquery-ui-chosen overrides
+	.chosen-container {
+		width: auto !important;
+		.chosen-results li { padding-left: 0.75rem; padding-right: 0.75rem; }
+	}
+	.message_list {
+		&:not([class*="imap"]) .chosen-container { float: right; margin-right: 120px; }
+		&[class*="imap"] {
+			.combined_sort + .chosen-container { display: none; }
+		}
+	}
+	.chosen-container-single .chosen-single { padding-right: 2rem; }
+	.unchosen { display: none !important; }
 }
 
 

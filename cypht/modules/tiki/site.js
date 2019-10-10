@@ -91,4 +91,8 @@ $(function() {
         $('.mobile .folder_cell').toggleClass('slide-in');
         if ($(this).attr('style') == '') $('.mobile .folder_list').hide();
     });
+
+    $('.inline-cypht .chosen-container').each(function () {
+        $(this).prev().addClass('unchosen');
+    });
 });
