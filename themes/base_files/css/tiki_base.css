@@ -279,6 +279,9 @@ form.simple label .warning {
 .box-switch_lang .box-data .highlight {
   border: 0.1em solid #dc3545; }
 
+.box-switch_lang .flags .highlight {
+  border: solid 1px #17a2b8; }
+
 div.cvsup {
   color: #dee2e6; }
 
@@ -1358,6 +1361,12 @@ li.archivedate {
 .box-switch_lang .panel-body img {
   margin: 0.2em;
   vertical-align: middle; }
+
+.box-switch_lang .flags a {
+  margin: 0.1rem; }
+
+.box-switch_lang .flags .unavailable {
+  opacity: 0.7; }
 
 #col1 .box-search input[type=submit], #col1 .box-search input[type=submit]:hover, #col2 .box-search input[type=submit], #col2 .box-search input[type=submit]:hover, #col3 .box-search input[type=submit], #col3 .box-search input[type=submit]:hover {
   margin: 0; }

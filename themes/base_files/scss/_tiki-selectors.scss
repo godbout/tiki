@@ -480,6 +480,10 @@ form.simple label .warning {
 	border: .1em solid theme-color("danger");
 }
 
+.box-switch_lang .flags .highlight {
+	border: solid 1px theme-color("info");
+}
+
 div.cvsup {
 	color: $gray-300;
 }

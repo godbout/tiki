@@ -2,17 +2,19 @@
 {strip}
 	{tikimodule error=$module_params.error title=$tpl_module_title name="switch_lang" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
 		{if $mode eq 'flags'}
-			{section name=ix loop=$languages}
-				{assign var='val' value=$languages[ix].value|escape}
-				{assign var='langname' value=$languages[ix].name|escape}
-				{assign var='flag' value=$languages[ix].flag|escape}
-				{assign var='class' value=$languages[ix].class|escape}
-				{if $flag neq ''}
-					{icon href="tiki-switch_lang.php?language=$val" alt="$langname" title="$langname" _id="img/flags/$flag.png" height=11 class="icon $class"}
-				{else}
-					{button _text="$langname" href="tiki-switch_lang.php?language=$val" _title="$langname" _class="$class"}
-				{/if}
-			{/section}
+			<div class="flags">
+				{foreach $languages as $flagarray}
+					{$val=$flagarray.value|escape}
+					{$langname=$flagarray.name|escape}
+					{$flag=$flagarray.flag|escape}
+					{$class=$flagarray.class|escape}
+					{if $flag neq ''}
+						{icon href="tiki-switch_lang.php?language=$val" alt="$langname" title="$langname" _id="img/flags/$flag.png" height=11 class="icon $class"}
+					{else}
+						{button _text="$langname" href="tiki-switch_lang.php?language=$val" _title="$langname" _class="$class"}
+					{/if}
+				{/foreach}
+			</div>
 		{elseif $mode eq 'words' || $mode eq 'abrv'}
 			<ul>
 				{section name=ix loop=$languages}
