@@ -49,6 +49,7 @@ function smarty_function_object_selector_multi($params, $smarty)
 		'format' => null,
 		'placeholder' => tr('Title'),
 		'sort' => null,
+		'wildcard' => 'n',
 		'extra_type' => null,
 		'selector_type_reference' => null
 	];
