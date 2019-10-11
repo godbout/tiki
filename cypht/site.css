@@ -532,6 +532,16 @@ body {
   min-width: 100%;
 }
 
+.account_icon {
+  margin-right: 6px;
+  padding-right: 0;
+}
+
+.folder_icon {
+  margin-right: 10px;
+  padding-right: 0;
+}
+
 .inline-cypht {
   position: relative;
 }
@@ -548,17 +558,13 @@ body {
   padding: 15px;
 }
 .inline-cypht .content_title {
-  overflow: hidden;
+  overflow: visible;
   min-height: 25px;
   max-height: 100px;
   padding: 20px 100px 10px 25px;
 }
 .inline-cypht .folders a, .inline-cypht .unread_link {
   font-weight: normal;
-}
-.inline-cypht .account_icon {
-  margin-right: 6px;
-  padding-right: 0;
 }
 .inline-cypht .selected_menu, .inline-cypht .selected_menu a {
   text-decoration: underline;
@@ -701,6 +707,9 @@ body {
 .inline-cypht .imap_keyword {
   margin-top: 4px;
 }
+.inline-cypht .msg_headers td {
+  padding-right: 35px;
+}
 .inline-cypht .chosen-container {
   width: auto !important;
 }
@@ -710,13 +719,20 @@ body {
 }
 .inline-cypht .message_list:not([class*=imap]) .chosen-container {
   float: right;
-  margin-right: 120px;
+  margin: -8px 120px 0 0;
 }
 .inline-cypht .message_list[class*=imap] .combined_sort + .chosen-container {
   display: none;
 }
+.inline-cypht .message_list[class*=imap] #imap_filter_form .chosen-container {
+  float: left;
+  margin-right: 10px;
+}
 .inline-cypht .chosen-container-single .chosen-single {
   padding-right: 2rem;
+}
+.inline-cypht #service_select_chosen {
+  margin-bottom: 10px;
 }
 .inline-cypht .unchosen {
   display: none !important;
@@ -794,21 +810,6 @@ body {
 .mobile .inline-cypht #imap_server_folder {
   width: 100%;
 }
-.mobile .inline-cypht .compose_page {
-  padding: 10px;
-  overflow: hidden;
-}
-.mobile .inline-cypht .compose_form {
-  width: 100% !important;
-  padding: 0 !important;
-}
-.mobile .inline-cypht .toggle_recipients {
-  right: 10px !important;
-}
-.mobile .inline-cypht .compose_bcc, .mobile .inline-cypht .compose_cc, .mobile .inline-cypht .compose_subject,
-.mobile .inline-cypht .compose_to, .mobile .inline-cypht .compose_body, .mobile .inline-cypht .compose_server {
-  margin: 5px 0;
-}
 .mobile .inline-cypht .search_content {
   padding-top: 0;
 }
@@ -848,6 +849,25 @@ body {
 .mobile .inline-cypht .time_section, .mobile .inline-cypht .source_section, .mobile .inline-cypht .terms_section {
   padding-left: 30px;
 }
+.mobile .inline-cypht .compose_page {
+  padding: 10px;
+  overflow: hidden;
+}
+.mobile .inline-cypht .compose_form {
+  width: 100% !important;
+  padding: 0 !important;
+}
+.mobile .inline-cypht .toggle_recipients {
+  right: 10px !important;
+}
+.mobile .inline-cypht .compose_bcc, .mobile .inline-cypht .compose_cc, .mobile .inline-cypht .compose_subject,
+.mobile .inline-cypht .compose_to, .mobile .inline-cypht .compose_body, .mobile .inline-cypht .compose_server {
+  margin: 5px 0;
+}
+.mobile .inline-cypht .smtp_send {
+  display: block;
+  margin-bottom: 20px;
+}
 .mobile .inline-cypht .list_settings_link, .mobile .inline-cypht .refresh_list {
   width: 20px;
   height: 20px;
@@ -856,7 +876,14 @@ body {
   width: auto !important;
 }
 .mobile .inline-cypht .message_table > tbody > tr > td {
-  padding-right: 7px;
+  padding-right: 10px;
+}
+.mobile .inline-cypht .msg_headers td {
+  padding-right: 10px;
+}
+.mobile .inline-cypht .long_header th {
+  white-space: normal;
+  word-break: normal;
 }
 .mobile .inline-cypht .msg_controls {
   width: 100%;
@@ -871,13 +898,17 @@ body {
   padding-bottom: 15px !important;
 }
 .mobile .inline-cypht .news_cell.checkbox_cell {
-  padding-left: 7px !important;
+  width: 40px;
+  padding: 14px 10px 10px !important;
 }
 .mobile .inline-cypht .news_cell .msg_date {
   padding-top: 0;
 }
 .mobile .inline-cypht .news_cell .subject, .mobile .inline-cypht .news_cell .subject div {
   padding-bottom: 0px !important;
+}
+.mobile .inline-cypht .history_content .news_cell.checkbox_cell {
+  padding: 10px 15px !important;
 }
 .mobile .inline-cypht .header_links {
   padding-bottom: 8px;
@@ -892,6 +923,37 @@ body {
 }
 .mobile .inline-cypht .msg_parts {
   table-layout: auto;
+}
+.mobile .inline-cypht .groupmail.message_table > tbody > tr > td {
+  padding: 0 75px 0 15px;
+  border: none;
+}
+.mobile .inline-cypht .groupmail.message_table thead {
+  display: none;
+}
+.mobile .inline-cypht .groupmail.message_table td {
+  width: 100%;
+}
+.mobile .inline-cypht .groupmail.message_table tr {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100vw;
+  padding: 0 0 25px;
+}
+.mobile .inline-cypht .groupmail.message_table td.icon, .mobile .inline-cypht .groupmail.message_table td.action {
+  position: absolute;
+  width: auto;
+  text-align: right;
+}
+.mobile .inline-cypht .groupmail.message_table td.icon {
+  right: 5px;
+}
+.mobile .inline-cypht .groupmail.message_table td.action {
+  right: -60px;
+}
+.mobile .inner_list {
+  margin-bottom: 0;
 }
 .mobile .src_name {
   max-height: 100px;
@@ -918,6 +980,9 @@ body {
   width: auto;
   margin-bottom: 50px;
   font-size: 100%;
+}
+.mobile .folder_cell .folder_list li a {
+  padding-top: 0;
 }
 .mobile .folder_cell .folder_list .update_message_list, .mobile .folder_cell .folder_list .hide_folders {
   display: none;
