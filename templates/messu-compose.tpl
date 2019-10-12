@@ -12,9 +12,9 @@
 {/if}
 
 {if $prefs.user_selector_realnames_messu == 'y'}
-	{jq}$(".username").tiki("autocomplete", "userrealname", {multiple: true, multipleSeparator: ";"});{/jq}
+	{jq}$(".username").tiki("autocomplete", "userrealname", {multiple: true, mustMatch: true, multipleSeparator: ";"});{/jq}
 {else}
-	{jq}$(".username").tiki("autocomplete", "username", {multiple: true, multipleSeparator: ";"});{/jq}
+	{jq}$(".username").tiki("autocomplete", "username", {multiple: true, mustMatch: true, multipleSeparator: ";"});{/jq}
 {/if}
 <form action="messu-compose.php" method="post" role="form">
 	<div class="form-group row">
