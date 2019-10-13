@@ -6282,6 +6282,9 @@ form.simple label .warning {
 .box-switch_lang .box-data .highlight {
   border: 0.1em solid #d33682; }
 
+.box-switch_lang .flags .highlight {
+  border: solid 1px #268bd2; }
+
 div.cvsup {
   color: #dee2e6; }
 
