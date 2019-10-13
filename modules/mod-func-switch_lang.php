@@ -36,7 +36,8 @@ function module_switch_lang_info()
  */
 function module_switch_lang($mod_reference, $module_params)
 {
-	global $prefs, $user;
+	global $prefs, $user, $flagmapping;
+
 	$smarty = TikiLib::lib('smarty');
 	$tikilib = TikiLib::lib('tiki');
 

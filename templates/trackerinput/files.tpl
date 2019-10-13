@@ -34,10 +34,9 @@
 					{if $field.limit !== 1}{tr}Upload Files{/tr}{else}{tr}Upload File{/tr}{/if}
 				</a>
 			{else}
-					<div class="upload-files-inline-form"></div>
-					<a href="{service controller=file action=uploader uploadInModal=0 galleryId=$field.galleryId limit=$field.limit|default:100 type=$field.filter image_max_size_x=$field.image_x image_max_size_y=$field.image_y addDecriptionOnUpload=$data.addDecriptionOnUpload}" class="btn btn-primary upload-files-inline">
-						{if $field.limit !== 1}{tr}Upload Files{/tr}{else}{tr}Upload File{/tr}{/if}
-					</a>
+				<div class="upload-files-inline-form">
+					{service_inline controller=file action=uploader uploadInModal=0 galleryId=$field.galleryId limit=$field.limit|default:100 type=$field.filter image_max_size_x=$field.image_x image_max_size_y=$field.image_y addDecriptionOnUpload=$data.addDecriptionOnUpload}
+				</div>
 			{/if}
 		{/if}
 		{if $context.canBrowse}
@@ -131,15 +130,6 @@
 					$.closeModal();
 				}
 			});
-			$self.find('.btn.upload-files-inline').clickInline(
-				$self.find('.btn.upload-files-inline').prev(),
-				{
-					success: function (data) {
-						$.each(data.files, function (k, file) {
-							addFile(file.fileId, file.type, file.name);
-						});
-					}
-				});
 			$self.find('.btn.browse-files').on('click', function () {
 				if (! $(this).data('initial-href')) {
 					$(this).data('initial-href', $(this).attr('href'));

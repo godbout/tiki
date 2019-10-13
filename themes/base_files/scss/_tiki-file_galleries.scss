@@ -230,3 +230,11 @@ table.treetable tr.expanded span.indenter a {
   height: 100px;
 }
 
+.file-uploader {
+	border: dotted 2px $input-border-color;
+}
+
+.file-uploader.active {
+	border-style: dashed;
+}
+

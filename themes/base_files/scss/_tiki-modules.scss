@@ -88,6 +88,8 @@ li.archivedate {
 	font-size: .9em;
 }
 
+// mod-switch_lang
+
 .box-switch_lang .box-data img.highlight {
 	padding: .1em;
 	//  border: .1em solid $alert-danger-border;
@@ -109,11 +111,19 @@ li.archivedate {
 	padding: 0 1em;
 }
 
-// mod-switch_lang
 .box-switch_lang .panel-body img {
 	margin: .2em;
 	vertical-align: middle;
 }
+
+.box-switch_lang .flags a {
+	margin: .1rem;
+}
+
+.box-switch_lang .flags .unavailable {
+	opacity: .7;
+}
+
 
 // This is kludgy but works for now.
 #col1 .box-search input[type=submit],

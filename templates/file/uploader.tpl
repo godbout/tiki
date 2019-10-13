@@ -39,8 +39,7 @@
 			</p>
 		</form>
 		<form class="file-uploader-result" method="post" action="{service controller=file action=uploader galleryId=$galleryId}">
-			<ul class="list-unstyled" data-adddescription="{$addDecriptionOnUpload}">
-			</ul>
+			<ul class="list-unstyled" data-adddescription="{$addDecriptionOnUpload}"></ul>
 
 			<div class="submit">
 				{ticket}
@@ -65,19 +64,25 @@
 					<span class="sr-only"><span class="count">0</span>% Complete</span>
 				</div>
 			</div>
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="inputGroupText">{if $limit !== 1}{tr}Upload Files{/tr}{else}{tr}Upload File{/tr}{/if}</span>
-			</div>
-			<div class="custom-file">
-				<input type="file" name="file[]" {if $limit !== 1}multiple{/if} {if $typeFilter}accept="{$typeFilter|escape}"{/if}
-					   class="custom-file-input" id="inputFile" aria-describedby="inputGroupText"
-						onchange="$(this).next('.custom-file-label').text($(this).val().replace('C:\\fakepath\\', ''));">
-				<label class="custom-file-label" for="inputFile">Choose file</label>
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroupText">{if $limit !== 1}{tr}Upload Files{/tr}{else}{tr}Upload File{/tr}{/if}</span>
+				</div>
+				<div class="custom-file">
+					<input type="file" name="file[]" {if $limit !== 1}multiple{/if} {if $typeFilter}accept="{$typeFilter|escape}"{/if}
+						   class="custom-file-input" id="inputFile" aria-describedby="inputGroupText"
+							onchange="$(this).next('.custom-file-label').text($(this).val().replace('C:\\fakepath\\', ''));">
+					<label class="custom-file-label" for="inputFile">Choose file</label>
+				</div>
 			</div>
 
 			<p class="drop-message text-center">
 				{if $limit !== 1}{tr}Or drop files here from your file manager.{/tr}{else}{tr}Or drop file here from your file manager.{/tr}{/if}
 			</p>
+
+			<div class="file-uploader-result" method="post" action="{service controller=file action=uploader galleryId=$galleryId}">
+				<ul class="list-unstyled" data-adddescription="{$addDecriptionOnUpload}"></ul>
+			</div>
 		</div>
 
 	{/if}
