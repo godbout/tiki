@@ -2272,9 +2272,6 @@ table.treetable tr.expanded span.indenter a {
 .file-uploader {
   border: dotted 2px #ced4da; }
 
-.file-uploader * {
-  pointer-events: none; }
-
 .file-uploader.active {
   border-style: dashed; }
 

@@ -234,11 +234,6 @@ table.treetable tr.expanded span.indenter a {
 	border: dotted 2px $input-border-color;
 }
 
-// prevents dragleave events on elements within the dropzone
-.file-uploader * {
-	pointer-events: none;
-}
-
 .file-uploader.active {
 	border-style: dashed;
 }
