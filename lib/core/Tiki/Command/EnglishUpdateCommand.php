@@ -110,11 +110,12 @@ class EnglishUpdateCommand extends Command
 	 */
 	private function getSvnDiff($revisions, $lag = 0)
 	{
+		$rev = '';
 		if ($lag > 0) {
 			// current time minus number of days specified through lag
 			$rev = date('{"Y-m-d H:i"}', time() - $lag * 60 * 60 * 24);
 			$rev = '-r ' . $rev;
-		} else {
+		} elseif ($revisions) {
 			$rev = '-r ' . implode(":", $revisions);
 		}
 
@@ -125,7 +126,7 @@ class EnglishUpdateCommand extends Command
 
 //		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
 
-		return $this->separatePhpTpl($raw, 'svn');
+		return $this->separatePhpTpl($raw);
 	}
 
 	/**
@@ -140,7 +141,7 @@ class EnglishUpdateCommand extends Command
 			// current time minus number of days specified through lag
 			$rev = 'HEAD \'HEAD@{' . $lag . ' weeks ago}\'';
 		} else {
-			$rev = implode(" ", $revisions);
+			$rev = implode(' ', $revisions);
 		}
 
 		$raw = shell_exec("git diff $rev 2>&1");
@@ -399,8 +400,6 @@ class EnglishUpdateCommand extends Command
 			if (count($revisions) > 2) {
 				return $output->writeln('<error>Invalid amount of revisions</error>');
 			}
-		} else {
-			return $output->writeln('<error>Options lag or revision are required</error>');
 		}
 
 		$this->languages = glob(TIKI_PATH . DIRECTORY_SEPARATOR . 'lang' . DIRECTORY_SEPARATOR . '*', GLOB_ONLYDIR);
