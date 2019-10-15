@@ -7,13 +7,30 @@
 // $Id$
 
 use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
+use Tiki\Command\ConsoleSetupException;
+use Tiki\Command\ConsoleApplicationBuilder;
 
-define('TIKI_CONSOLE', 1);
-declare(ticks = 1); // how often to check for signals
+/**
+ * Sets up the environment that the console will run in.
+ * Initializes Tiki to the greatest capacity available,
+ * and sets constants to define what state Tiki is being run in.
+ */
 
+
+if (http_response_code() !== false) {
+	die('Only available through command-line.');
+}
+	/** Present if we are in the Tiki console. */
+const TIKI_CONSOLE = 1;
+
+
+declare(ticks=1); // how often to check for signals
 if (function_exists('pcntl_signal')) {
 	$exit = function () {
-		error_reporting(0); // Disable error reporting, misleading backtrace on kill
+		error_reporting(
+			0
+		); // Disable error reporting, misleading backtrace on kill
 		exit;
 	};
 
@@ -22,60 +39,67 @@ if (function_exists('pcntl_signal')) {
 	pcntl_signal(SIGINT, $exit);
 }
 
-
-if (isset($_SERVER['REQUEST_METHOD'])) {
-	die('Only available through command-line.');
-}
-
-require_once 'tiki-filter-base.php';
-require_once 'lib/init/initlib.php';
-include_once 'lib/init/tra.php';
-require_once 'lib/setup/tikisetup.class.php';
-require_once 'lib/setup/twversion.class.php';
-
-$input = new ArgvInput;
-
-if (false !== $site = $input->getParameterOption(['--site'])) {
-	$_SERVER['TIKI_VIRTUAL'] = $site;
-}
-
-$local_php = TikiInit::getCredentialsFile();
-
-if (! is_readable($local_php)) {
-	die("\033[31mCredentials file local.php not found. See http://doc.tiki.org/Installation for more information.\033[0m\n");
-}
-
-if (is_file($local_php) || TikiInit::getEnvironmentCredentials()) {
-	require_once 'db/tiki-db.php';
-}
-
-$installer = $installer = Installer::getInstance();
-$isInstalled = $installer->isInstalled();
-$requiresUpdate = $installer->requiresUpdate();
-
-$exceptionToRender = null;
-if ($isInstalled && ! $requiresUpdate) {
+try {
 	$bypass_siteclose_check = true;
-	try {
-		require_once 'tiki-setup.php';
-	} catch (Exception $e) {
-		$exceptionToRender = $e;
-	}
+	require_once 'tiki-setup.php';
 
-	if (! $asUser = $input->getParameterOption(['--as-user'])) {
-		$asUser = 'admin';
+	if (Installer::getInstance()->requiresUpdate()) {
+		throw new ConsoleSetupException('Database Needs updating', 1004);
 	}
+	/**
+	 * @var int The code representing different stages of Tki functioning. Each builds on the next.
+	 * Auto-loading is always present. Most codes show progressive stages of tiki-setup.php being loaded.
+	 *          * 1001 - Tiki is not installed (we are running in auto-load only mode)
+	 *          * 1002 - Database not initialised (but Tiki is installed)
+	 *          * 1003 - Tiki-Setup stopped by Database errors - probably because the database needs updating (and database initialized)
+	 *			* 1004 - Tiki-Setup completed successfully (but the database is not up to date)
+	 *			* 1100 - The database is up to date (and Tiki-setup completed successfully)
+	 */
+	$statusCode = 1100; // this code denotes everything works perfectly :)
+} catch (ConsoleSetupException $e) {
+	$statusCode = $e->getCode();
+} catch (Exception $e) {
+	$statusCode = 1001;
+	$exceptionToRender = $e;
+}
 
+/**
+ * Define our constants, based on what error (if any) was thrown
+ * @see $statusCode For explanations on what these constants these do.
+ */
+define('IS_INSTALLED', $statusCode > 1001);
+define('DB_STATUS', $statusCode > 1002);
+define('DB_TIKI_SETUP', $statusCode > 1003);
+define('DB_SYNCHRONAL', $statusCode > 1004);
+
+$input = new ArgvInput();
+$_SERVER['TIKI_VIRTUAL'] = $input->getParameterOption(['--site']) ?: null;
+
+if (DB_TIKI_SETUP) {
+	$asUser = $input->getParameterOption(['--as-user']) ?: 'admin';
 	if (TikiLib::lib('user')->user_exists($asUser)) {
 		$permissionContext = new Perms_Context($asUser);
 	}
 }
 
-$consoleBuilder = new Tiki\Command\ConsoleApplicationBuilder($site);
-$console = $consoleBuilder->create();
+$output = new ConsoleOutput();
+$console = new ConsoleApplicationBuilder();
+$console = $console->create();
+$console->setAutoExit(false);
+$console->run(null, $output);
+$output->writeln('');
 
-if ($exceptionToRender instanceof Exception) {
-	$console->renderException($exceptionToRender, new \Symfony\Component\Console\Output\ConsoleOutput());
+if ($input->getFirstArgument() === null) {
+	$output->write('Tiki Status: ');
+	$output->write('<options=bold>Autoloading</>->');
+	$output->write((IS_INSTALLED ? '<options=bold>' : '<fg=red>') . 'Installed</>->');
+	$output->write((DB_STATUS ? '<options=bold>' : '<fg=red>') . 'Database-Running</>->');
+	$output->write((DB_TIKI_SETUP ? '<options=bold>' : '<fg=red>') . 'Tiki-Initialized</>->');
+	$output->writeln((DB_SYNCHRONAL ? '<options=bold>' : '<fg=red>') . 'Database-in-Sync</>');
+	$output->writeln('');
+}
+if (isset($exceptionToRender)) {
+	$output->write('<comment>An unexpected error interrupted console initialization</comment>');
+	$console->renderException($exceptionToRender, $output);
 }
 
-$console->run();

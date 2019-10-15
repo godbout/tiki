@@ -384,11 +384,8 @@ function tiki_setup_events()
 
 function tiki_shutdown_cwd()
 {
-	global $tikipath;
-	if ($currentdir = getcwd()) {
-		if ($currentdir != $tikipath) {
-			chdir($tikipath);
-		}
+	if (getcwd() !== TIKI_PATH) {
+			chdir(TIKI_PATH);
 	}
 }
 

@@ -4,6 +4,7 @@ namespace Tiki\Command;
 
 use Symfony\Component\Console\Application as SymfonyApplication;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -13,13 +14,13 @@ class Application extends SymfonyApplication
 	/**
 	 * Gets the default input definition.
 	 *
-	 * @return \Symfony\Component\Console\Input\InputDefinition An InputDefinition instance
+	 * @return InputDefinition An InputDefinition instance
 	 */
 	protected function getDefaultInputDefinition()
 	{
 		$definition = parent::getDefaultInputDefinition();
 		$definition->addOption(new InputOption('--site', '', InputOption::VALUE_REQUIRED, 'Multi-Tiki instance'));
-		$definition->addOption(new InputOption('--as-user', '', InputOption::VALUE_REQUIRED, 'Run the command as a different user'));
+		$definition->addOption(new InputOption('--as-user', '', InputOption::VALUE_REQUIRED, 'Run the command as a different Tiki user'));
 
 		return $definition;
 	}

@@ -11,6 +11,8 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 	exit;
 }
 
+use Tiki\Command\ConsoleSetupException;
+
 require_once('lib/init/initlib.php');
 
 // Define lang and load translation functions
@@ -118,18 +120,23 @@ if (isset($system_configuration_file)) {
 
 if ($re === false) {
 	if (! defined('TIKI_IN_INSTALLER')) {
-		if (! isset($_SERVER['REQUEST_METHOD'])) { // if we are running in cli
-			echo "Cannot initiate database. Tiki is not installed.\n";
+		if (http_response_code() === false) { // if we are running in cli
+			$error = "Cannot initiate database. Tiki is not installed. See http://doc.tiki.org/Installation for more information.\n";
+
+			if (defined('TIKI_CONSOLE')) {
+				throw new ConsoleSetupException($error, 1001);
+			}
+			echo "\e[31m" . $error . "\e[0m";
 		} elseif (! empty($dbfail_url)) {
 			header('location: ' . $dbfail_url);
 		} else {
 			header('location: tiki-install.php');
 		}
 		exit;
-	} else {
-		// we are in the installer don't redirect...
-		return ;
 	}
+	// we are in the installer don't redirect...
+	return;
+
 }
 
 if ($dbversion_tiki == '1.10') {
@@ -227,16 +234,22 @@ $initializer->setInitializeCallback(
 $db = $initializer->getConnection($credentials['primary']);
 
 if (! $db && ! defined('TIKI_IN_INSTALLER')) {
-	if (PHP_SAPI === 'cli') {
-		die("\033[31mDid you forget to start MySQL or is there a problem to connect with your database?\033[0m\n");
-	} elseif (! empty($dbfail_url)) {
-		header('location: ' . $dbfail_url);
-	} else {
-		echo file_get_contents('templates/database_connection_error.html');
+	if (http_response_code() === false) {  // if running in cli
+		$error = 'Did you forget to start your database or is there a problem connecting to it?';
+		if (defined('TIKI_CONSOLE')) {
+			throw new ConsoleSetupException($error, 1002);
+		}
+			die("\e[31m" . $error . "\e[0m\n");
 	}
-	exit;
-} elseif ($db) {
-	TikiDb::set($db);
+	if (! empty($dbfail_url)) {
+		header('location: ' . $dbfail_url);
+		exit;
+	}
+		echo file_get_contents('templates/database_connection_error.html');
+}
+
+if ($db) {
+	 TikiDb::set($db);
 }
 
 if ($credentials['shadow']) {

@@ -2898,8 +2898,10 @@ lib/core/Tiki/Command/Application.php -text
 lib/core/Tiki/Command/BackupDBCommand.php -text
 lib/core/Tiki/Command/BackupFilesCommand.php -text
 lib/core/Tiki/Command/CacheClearCommand.php -text
+lib/core/Tiki/Command/CommandUnavailableException.php -text
 lib/core/Tiki/Command/ConfigureCommand.php -text
 lib/core/Tiki/Command/ConsoleApplicationBuilder.php -text
+lib/core/Tiki/Command/ConsoleSetupException.php -text
 lib/core/Tiki/Command/DailyReportSendCommand.php -text
 lib/core/Tiki/Command/FilesBatchuploadCommand.php -text
 lib/core/Tiki/Command/FilesCopyCommand.php -text
@@ -2966,7 +2968,6 @@ lib/core/Tiki/Command/StatsCommand.php -text
 lib/core/Tiki/Command/TrackerClearCommand.php -text
 lib/core/Tiki/Command/TrackerExportCommand.php -text
 lib/core/Tiki/Command/TrackerImportCommand.php -text
-lib/core/Tiki/Command/UnavailableCommand.php -text
 lib/core/Tiki/Command/UpdateCommand.php -text
 lib/core/Tiki/Command/UsersListCommand.php -text
 lib/core/Tiki/Command/UsersPasswordCommand.php -text

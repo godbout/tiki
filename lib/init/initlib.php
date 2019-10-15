@@ -28,7 +28,7 @@ if (! file_exists(__DIR__ . '/../../vendor_bundled/vendor/autoload.php')) {
 		"You need to run 'sh setup.sh' from the command line.\n" .
 		"See https://doc.tiki.org/Composer for details.\n";
 
-	if (PHP_SAPI === 'cli') {
+	if (http_response_code() === false) { // if running in cli
 		$error = "\033[31m" . $error . "\e[0m\n";
 	}
 	die($error);
