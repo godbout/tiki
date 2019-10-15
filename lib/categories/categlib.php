@@ -178,8 +178,8 @@ class CategLib extends ObjectLib
 		}
 
 		// Make sure the description fits the column width
-		if (strlen($description) > 250) {
-			$description = substr($description, 0, 250);
+		if (strlen($description) > 500) {
+			$description = substr($description, 0, 500);
 		}
 
 		$categs = TikiDb::get()->table('tiki_categories');
@@ -231,8 +231,8 @@ class CategLib extends ObjectLib
 
 		// Make sure the description fits the column width
 		// TODO: remove length constraint then remove this. See "Quiet truncation of data in database" thread on the development list
-		if (strlen($description) > 250) {
-			$description = substr($description, 0, 250);
+		if (strlen($description) > 500) {
+			$description = substr($description, 0, 500);
 		}
 
 		$categs = TikiDb::get()->table('tiki_categories');
