@@ -562,6 +562,42 @@ if (isset($_SESSION["$user_cookie_site"])) {
 }
 
 if ($prefs['feature_perspective'] === 'y') {
+
+	if ($prefs['feature_categories'] == 'y' && $prefs['feature_areas'] == 'y' && $prefs['categories_used_in_tpl'] == 'y' && ! isset($_SESSION['current_perspective'])) {
+		// if the perspective is not set in the session, try to determine the perspective to use, avoiding redirect loops
+		(function () { // self executing function just to keep the variable scope
+			global $section, $user;
+			$fakePageCleanup = false;
+			if (empty($_REQUEST['page']) && ! empty($section) && $section == 'wiki page') {
+				$fakePageCleanup = true;
+				$userlib = TikiLib::lib('user');
+				$_REQUEST['page'] = $userlib->get_user_default_homepage($user);
+			}
+			$currentObject = Tiki\Sections::currentObject();
+			if ($currentObject) {
+				$categlib = TikiLib::lib('categ');
+				$objectCategoryIdsNoJail = $categlib->get_object_categories(
+					$currentObject['type'],
+					$currentObject['object'],
+					-1,
+					false
+				);
+				$areaslib = TikiLib::lib('areas');
+				$perspective = $areaslib->getPerspectiveByObjectAndCategories($currentObject, $objectCategoryIdsNoJail);
+				if ($perspective) {
+					$perspectivelib = TikiLib::lib('perspective');
+					$_SESSION['current_perspective'] = $perspective;
+					$_SESSION['current_perspective_name'] = $perspectivelib->get_perspective_name(
+						$_SESSION['current_perspective']
+					);
+				}
+			}
+			if ($fakePageCleanup) {
+				unset($_REQUEST['page']);
+			}
+		})();
+	}
+
 	$perspectivelib = TikiLib::lib('perspective');
 	$perspectivelib->load_perspective_preferences();
 }

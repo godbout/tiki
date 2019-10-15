@@ -13,6 +13,8 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
+use Tiki\Sections as Sections;
+
 $categlib = TikiLib::lib('categ');
 
 class AreasLib extends CategLib
@@ -28,13 +30,44 @@ class AreasLib extends CategLib
 		parent::__construct();
 	}
 
+	public function getPerspectiveByObjectAndCategories($current_object, $objectCategoryIds)
+	{
+		global $prefs;
+
+		if (! $current_object || empty($objectCategoryIds)) {    // only used on tiki objects
+			return;
+		}
+
+		$perspectivelib = TikiLib::lib('perspective');
+		$accesslib = TikiLib::lib('access');
+
+		$descendants = $this->get_category_descendants($prefs['areas_root']);
+
+		$objectPerspective = 0;
+		if (! empty($objectCategoryIds)) {
+			foreach ($objectCategoryIds as $categId) {
+				// If category is inside $prefs['areas_root']
+				if (in_array($categId, $descendants)) {
+					$area = $this->getAreaByCategId($categId);
+
+					if ($area) {
+						$objectPerspective = $area['perspectives'][0]; // use 1st persp
+						break;
+					}
+				}
+			}
+		}
+
+		return $objectPerspective;
+	}
+
 	function HandleObjectCategories($objectCategoryIds)
 	{
 		global $prefs;
 		$perspectivelib = TikiLib::lib('perspective');
 		$accesslib = TikiLib::lib('access');
 
-		$current_object = current_object();
+		$current_object = Sections::currentObject();
 
 		if (! $current_object) {	// only used on tiki objects
 			return;
