@@ -21,7 +21,7 @@ class VendorSecurityCommand extends Command
 	protected function configure()
 	{
 		$this
-			->setName('dev:vendorcheck')
+			->setName('security:vendorcheck')
 			->setDescription('Check vendor files against known security issues.')
 			->addOption(
 				'packages',
@@ -63,8 +63,6 @@ class VendorSecurityCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output): void
 	{
-		global $tikipath;
-
 		// die gracefully if shell_exec is not enabled;
 		if (! is_callable('shell_exec')) {
 			$output->writeln('<error>shell_exec must be enabled</error>');
@@ -74,8 +72,7 @@ class VendorSecurityCommand extends Command
 		$outputStyle = new OutputFormatterStyle('red');
 		$output->getFormatter()->setStyle('error', $outputStyle);
 
-		global $tikipath;
-		$composerManager = new ComposerManager($tikipath);
+		$composerManager = new ComposerManager(TIKI_PATH);
 
 		$checker = new SecurityChecker();
 		$lockFile = 'vendor_bundled/composer.lock';
