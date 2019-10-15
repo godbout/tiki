@@ -160,6 +160,11 @@ class Search_Formatter
 		return $this->counter;
 	}
 
+	public function setCounter($cnt)
+	{
+		$this->counter = $cnt;
+	}
+
 	private function render($plugin, $resultSet, $target)
 	{
 		$pluginFormat = $plugin->getFormat();

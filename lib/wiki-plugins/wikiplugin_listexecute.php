@@ -130,6 +130,7 @@ function wikiplugin_listexecute($data, $params)
 	$result->setTsOn($tsret['tsOn']);
 
 	$formatter = $builder->getFormatter();
+	$formatter->setCounter($iListExecute);
 
 	if (! $customOutput) {
 		$plugin = new Search_Formatter_Plugin_SmartyTemplate('templates/wiki-plugins/wikiplugin_listexecute.tpl');
@@ -142,6 +143,7 @@ function wikiplugin_listexecute($data, $params)
 		);
 		$builder->setFormatterPlugin($plugin);
 		$formatter = $builder->getFormatter();
+		$formatter->setCounter($iListExecute);
 	}
 
 	if (isset($_POST['list_action'], $_POST['objects'])) {
@@ -216,6 +218,7 @@ function wikiplugin_listexecute($data, $params)
 			$result->setTsSettings($builder->getTsSettings());
 			$result->setTsOn($tsret['tsOn']);
 			$formatter = $builder->getFormatter();
+			$formatter->setCounter($iListExecute);
 
 			$result->applyTransform($reportSource);
 		}
