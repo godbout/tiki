@@ -64,6 +64,7 @@ class ConsoleApplicationBuilder
 					new ConfigureCommand,
 					new InstallerLockCommand,
 					new ScssCompileCommand,
+					new EnglishUpdateCommand,
 				],
 			],
 			'checkIsDatabaseAvailable' => [

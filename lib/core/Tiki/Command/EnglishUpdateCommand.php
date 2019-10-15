@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
@@ -17,14 +16,6 @@ use Symfony\Component\Console\Command\HelpCommand;
 use Language;
 use Language_FileType_Php;
 
-if (isset($_SERVER['REQUEST_METHOD'])) {
-	die('Only available through command-line.');
-}
-
-$tikiBase = realpath(__DIR__ . '/../..');
-require_once $tikiBase . '/vendor_bundled/vendor/autoload.php';
-
-
 /**
  * Add a singleton command "englishupdate" using the Symfony console component for this script
  *
@@ -32,65 +23,13 @@ require_once $tikiBase . '/vendor_bundled/vendor/autoload.php';
  * @package Tiki\Command
  */
 
-class EnglishDevUpdateCommand extends Command
+class EnglishUpdateCommand extends Command
 {
-	/**
-	 * Run svn diff command
-	 * @param array $revisions revisions to use in diff
-	 * @param int $lag number of days to search previously
-	 * @return mixed diff result
-	 */
-	private function getSvnDiff($revisions, $lag = 0)
-	{
-		if ($lag > 0) {
-			// current time minus number of days specified through lag
-			$rev = date('{"Y-m-d H:i"}', time() - $lag * 60 * 60 * 24);
-			$rev = '-r ' . $rev;
-		} else {
-			$rev = '-r ' . implode(":", $revisions);
-		}
-
-		$raw = shell_exec("svn diff $rev 2>&1");
-
-		// strip any empty translation strings now to avoid complexities later
-		$raw = preg_replace('/tra?\(["\'](\s*?)[\'"]\)/m', '', $raw);
-
-//		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
-
-		return $this->separatePhpTpl($raw, 'svn');
-	}
-
-	/**
-	 * Run git diff command
-	 * @param array $revisions revisions to use in diff
-	 * @param int $lag number of days to search previously
-	 * @return mixed diff result
-	 */
-	private function getGitDiff($revisions, $lag = 0)
-	{
-		if ($lag > 0) {
-			// current time minus number of days specified through lag
-			$rev = 'HEAD \'HEAD@{' . $lag . ' weeks ago}\'';
-		} else {
-			$rev = implode(" ", $revisions);
-		}
-
-		$raw = shell_exec("git diff $rev 2>&1");
-
-
-		// strip any empty translation strings now to avoid complexities later
-		$raw = preg_replace('/tra?\(["\'](\s*?)[\'"]\)/m', '', $raw);
-
-//		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
-
-		return $this->separatePhpTpl($raw, 'git');
-	}
-
 	protected function configure()
 	{
 		$this
-			->setName('englishupdate')
-			->setDescription("Update translation files with updates made to English strings. Will compare working copy by default.")
+			->setName('translation:englishupdate')
+			->setDescription('Update translation files with updates made to English strings. Will compare working copy by default.')
 			->addOption(
 				'scm',
 				null,
@@ -163,10 +102,63 @@ class EnglishDevUpdateCommand extends Command
 	 * @return array with [0] containing PHP and [1] containing TPL strings
 	 */
 
+	/**
+	 * Run svn diff command
+	 * @param array $revisions revisions to use in diff
+	 * @param int $lag number of days to search previously
+	 * @return mixed diff result
+	 */
+	private function getSvnDiff($revisions, $lag = 0)
+	{
+		if ($lag > 0) {
+			// current time minus number of days specified through lag
+			$rev = date('{"Y-m-d H:i"}', time() - $lag * 60 * 60 * 24);
+			$rev = '-r ' . $rev;
+		} else {
+			$rev = '-r ' . implode(":", $revisions);
+		}
+
+		$raw = shell_exec("svn diff $rev 2>&1");
+
+		// strip any empty translation strings now to avoid complexities later
+		$raw = preg_replace('/tra?\(["\'](\s*?)[\'"]\)/m', '', $raw);
+
+//		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
+
+		return $this->separatePhpTpl($raw, 'svn');
+	}
+
+	/**
+	 * Run git diff command
+	 * @param array $revisions revisions to use in diff
+	 * @param int $lag number of days to search previously
+	 * @return mixed diff result
+	 */
+	private function getGitDiff($revisions, $lag = 0)
+	{
+		if ($lag > 0) {
+			// current time minus number of days specified through lag
+			$rev = 'HEAD \'HEAD@{' . $lag . ' weeks ago}\'';
+		} else {
+			$rev = implode(" ", $revisions);
+		}
+
+		$raw = shell_exec("git diff $rev 2>&1");
+
+
+		// strip any empty translation strings now to avoid complexities later
+		$raw = preg_replace('/tra?\(["\'](\s*?)[\'"]\)/m', '', $raw);
+
+//		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
+
+		return $this->separatePhpTpl($raw, 'git');
+	}
+
+
 	private function separatePhpTpl($content, $diff = 'svn')
 	{
 
-		if ($diff == 'git') {
+		if ($diff === 'git') {
 			preg_match_all('/^diff --git .+(php|tpl)$\nindex .+\n([\w\W]+?)(?=\n^diff --git.+\n|\n$)/m', $content, $phpTpl);
 		} else {
 			$content .= "\nIndex:  \n=";                            // used as a dummy to match the last entry
@@ -353,10 +345,6 @@ class EnglishDevUpdateCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-		$tikiBase = realpath(__DIR__ . '/../..');
-
-		$output->writeln('Use of this file is deprecated, use php console.php translation:englishupdate instead');
-
 		$output->writeln('*******************************************************');
 		$output->writeln('*                     <info>Limitations</info>                     *');
 		$output->writeln('* Will not find strings if they span multiple lines.  *');
@@ -366,7 +354,6 @@ class EnglishDevUpdateCommand extends Command
 		$output->writeln('*******************************************************');
 		$output->writeln('');
 
-		$rev = '';
 		// check that email is being used in audit mode
 		if ($input->getOption('email') && ! $input->getOption('audit')) {
 			$help = new HelpCommand();
@@ -377,7 +364,7 @@ class EnglishDevUpdateCommand extends Command
 		}
 		// check that scm is being used and validate
 		$scm = $input->getOption('scm');
-		if (!empty($scm) && ! in_array($scm, ['svn', 'git'])) {
+		if (! empty($scm) && ! in_array($scm, ['svn', 'git'])) {
 			$help = new HelpCommand();
 			$help->setCommand($this);
 			$help->run($input, $output);
@@ -386,9 +373,9 @@ class EnglishDevUpdateCommand extends Command
 		}
 
 		if (empty($scm)) {//detect if is svn or git repo
-			if (file_exists($tikiBase . DIRECTORY_SEPARATOR . '.git')) {
+			if (file_exists(TIKI_PATH . DIRECTORY_SEPARATOR . '.git')) {
 				$scm = 'git';
-			} elseif (file_exists($tikiBase . DIRECTORY_SEPARATOR . '.svn')) {
+			} elseif (file_exists(TIKI_PATH . DIRECTORY_SEPARATOR . '.svn')) {
 				$scm = 'svn';
 			} else {
 				return $output->writeln('<error>SCM not found in this tiki installation</error>');
@@ -413,10 +400,10 @@ class EnglishDevUpdateCommand extends Command
 				return $output->writeln('<error>Invalid amount of revisions</error>');
 			}
 		} else {
-		//	return $output->writeln('<error>Options lag or revision are required</error>');
+			return $output->writeln('<error>Options lag or revision are required</error>');
 		}
 
-		$this->languages = glob($tikiBase . '/lang/*', GLOB_ONLYDIR);
+		$this->languages = glob(TIKI_PATH . DIRECTORY_SEPARATOR . 'lang' . DIRECTORY_SEPARATOR . '*', GLOB_ONLYDIR);
 
 		$progress = new ProgressBar($output, count($this->languages) + 7);
 		if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
@@ -439,7 +426,7 @@ class EnglishDevUpdateCommand extends Command
 		$progress->setMessage('Getting String Changes');
 		$progress->advance();
 
-		if ($scm == 'git') {
+		if ($scm === 'git') {
 			$diffs = $this->getGitDiff($revisions, $lag);
 		} else {
 			$diffs = $this->getSvnDiff($revisions, $lag);
@@ -567,12 +554,11 @@ class EnglishDevUpdateCommand extends Command
 				}
 				$output->writeln($syncMessage);
 				if ($input->getOption('email')) {
-					mail($input->getOption('email'), 'Updated Strings not found in Language Files', wordwrap($tikiBase . "\n" . $syncMessage, 70, "\r\n"));
+					mail($input->getOption('email'), 'Updated Strings not found in Language Files', wordwrap(TIKI_PATH . "\n" . $syncMessage, 70, "\r\n"));
 				}
 				exit(1);
-			} else {
-				$output->writeln("\n\n<info>English and Translations are in Sync</info>\n");
 			}
+			$output->writeln("\n\n<info>English and Translations are in Sync</info>\n");
 			// if were not in audit mode
 		} else {
 			if (count($string) < $this->stringCount) {
@@ -589,9 +575,3 @@ class EnglishDevUpdateCommand extends Command
 		exit(0);
 	}
 }
-
-// create the application and new console
-$console = new Application;
-$console->add(new EnglishUpdateCommand);
-$console->setDefaultCommand('englishupdate');
-$console->run();
