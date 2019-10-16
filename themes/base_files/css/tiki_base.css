@@ -2295,6 +2295,8 @@ table.treetable tr.expanded span.indenter a {
   clear: right;
   padding-right: 1em;
   font-size: 0.9em; }
+  .tracker-item-files li img {
+    margin-right: 0.5em; }
 
 .tracker-item-files a.file-delete-icon {
   display: inline-block;
@@ -2362,6 +2364,14 @@ table.treetable tr.expanded span.indenter a {
 
 .edit-tabular {
   padding-top: 15px; }
+
+@media (max-width: 767.98px) {
+  .tracker-item-files {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1; }
+    .tracker-item-files li {
+      padding-bottom: 5px; } }
 
 .catlists .catitems {
   display: inline-block; }

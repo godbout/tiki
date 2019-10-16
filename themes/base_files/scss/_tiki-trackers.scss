@@ -26,6 +26,7 @@
 	clear: right;
 	padding-right: 1em;
 	font-size: 0.9em;
+	img { margin-right: 0.5em; }
 }
 
 .tracker-item-files a.file-delete-icon {
@@ -127,4 +128,14 @@
 
 .edit-tabular {
 	padding-top: 15px;
+}
+
+
+@media (max-width: breakpoint-max(sm)) {
+	.tracker-item-files {
+		-webkit-column-count: 1;
+		-moz-column-count: 1;
+		column-count: 1;
+		li { padding-bottom: 5px; }
+	}
 }
