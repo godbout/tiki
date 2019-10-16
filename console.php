@@ -86,7 +86,12 @@ $output = new ConsoleOutput();
 $console = new ConsoleApplicationBuilder();
 $console = $console->create();
 $console->setAutoExit(false);
-$console->run(null, $output);
+try {
+	$console->run(null, $output);
+} catch (Exception $e) {
+	$output->write('<comment>A error was encountered while running a command</comment>');
+	$console->renderException($e, $output);
+}
 $output->writeln('');
 
 if ($input->getFirstArgument() === null) {
