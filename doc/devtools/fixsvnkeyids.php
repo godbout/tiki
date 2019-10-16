@@ -27,6 +27,8 @@ require_once('doc/devtools/svntools.php');
  *
  */
 
+echo "\nThis file is now deprecated, use php console.php vcs:fixids instead\n\n";
+
 $xml = new DOMDocument;
 $xml->loadXML(shell_exec('svn propget -R svn:keywords --xml'));
 

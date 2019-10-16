@@ -72,6 +72,7 @@ class ConsoleApplicationBuilder
 				'action' => [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE],
 				'commands' => [
 					new VCSUpdateCommand,
+					new FixSVNKeyIdsCommand,
 				],
 			],
 			'checkIsDatabaseAvailable' => [
