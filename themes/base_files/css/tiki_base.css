@@ -2295,8 +2295,8 @@ table.treetable tr.expanded span.indenter a {
   clear: right;
   padding-right: 1em;
   font-size: 0.9em; }
-  .tracker-item-files li img {
-    margin-right: 0.5em; }
+  .tracker-item-files li img, .tracker-item-files li span {
+    margin-right: 8px; }
 
 .tracker-item-files a.file-delete-icon {
   display: inline-block;
