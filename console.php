@@ -24,7 +24,7 @@ if (http_response_code() !== false) {
 	/** Present if we are in the Tiki console. */
 const TIKI_CONSOLE = 1;
 
-
+set_error_handler("custom_error_handler"); // attempt to throw exceptions that we can catch
 declare(ticks=1); // how often to check for signals
 if (function_exists('pcntl_signal')) {
 	$exit = function () {
@@ -58,7 +58,7 @@ try {
 	$statusCode = 1100; // this code denotes everything works perfectly :)
 } catch (ConsoleSetupException $e) {
 	$statusCode = $e->getCode();
-} catch (Exception $e) {
+} catch (Throwable $e) {
 	$statusCode = 1001;
 	$exceptionToRender = $e;
 }
@@ -88,9 +88,13 @@ $console = $console->create();
 $console->setAutoExit(false);
 try {
 	$console->run(null, $output);
-} catch (Exception $e) {
-	$output->write('<comment>A error was encountered while running a command</comment>');
-	$console->renderException($e, $output);
+} catch (Throwable $e) {
+	$output->writeln('<comment>A error was encountered while running a command</comment>');
+	if ($e instanceof Exception) {
+		$console->renderException($e, $output);
+	} else {
+		$output->write('<error>' . $e->getMessage() . '</error> on line ' . $e->getLine() . ' of ' . $e->getFile());
+	}
 }
 $output->writeln('');
 
@@ -104,7 +108,41 @@ if ($input->getFirstArgument() === null) {
 	$output->writeln('');
 }
 if (isset($exceptionToRender)) {
-	$output->write('<comment>An unexpected error interrupted console initialization</comment>');
-	$console->renderException($exceptionToRender, $output);
+	$output->writeln('<comment>An unexpected error interrupted console initialization</comment>');
+	if ($e instanceof Exception) {
+		$console->renderException($e, $output);
+	} else {
+		$output->write('<error>' . $e->getMessage() . '</error> on line ' . $e->getLine() . ' of ' . $e->getFile());
+	}
 }
 
+/**
+ * Errors while using the console can be difficult because they normally end with the command providing no input.
+ * Here we attempt to provide some feedback to the user so failed commands are not as cryptic.
+ *
+ * IF the error is not fatal, then we log it in PHP's error log (like it would have been done without this error handling)
+ *
+ * @param $number int Error number (type of error) provided
+ * @param $message string Error Message provided
+ * @param $file string The file name that the error occurred on
+ * @param $line string The line number that the error occurred on
+ *
+ * @throws ErrorException When a fatal error is encountered
+ */
+function custom_error_handler($number, $message, $file, $line) : void
+{
+	// Determine if this error is one of the enabled ones in php config (php.ini, .htaccess, etc)
+	$error_is_enabled = (bool)($number & ini_get('error_reporting') );
+
+	// Fatal Errors
+	// throw an Error Exception, to be handled by whatever Exception handling logic is available in this context
+	if (in_array($number, [E_USER_ERROR, E_RECOVERABLE_ERROR]) && $error_is_enabled) {
+		throw new ErrorException($message, 0, $number, $file, $line);
+	}
+
+	// Non-Fatal Errors (ERROR/WARNING/NOTICE)
+	// Log the error if it's enabled, otherwise just ignore it
+	if ($error_is_enabled) {
+		error_log($message . ' on line ' . $line . ' of ' . $file, 0);
+	}
+}
