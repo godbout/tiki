@@ -423,7 +423,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
                 'lastmodified' => (int)$row['lastModif'],
                 'etag'         => '"' . md5($calendardata) . '"',
                 'size'         => strlen($calendardata),  // TODO: add to Tiki: calendardata
-                'component'    => strtolower($row['componenttype']), // TODO: add to Tiki: componenttype (VEVENT, VTODO, VJOURNAL)
+                'component'    => strtolower($row['componenttype']),
             ];
         }
         return $result;
@@ -513,7 +513,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
                     'etag'         => '"' . md5($calendardata) . '"',
                     'size'         => strlen($calendardata),  // TODO: add to Tiki: calendardata
                     'calendardata' => $calendardata,
-                    'component'    => strtolower($row['componenttype']), // TODO: add to Tiki: componenttype (VEVENT, VTODO, VJOURNAL)
+                    'component'    => strtolower($row['componenttype']),
                 ];
             }
         }
@@ -808,18 +808,42 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         return '';
     }
 
+    /**
+     * Notes on ics format fields. See https://tools.ietf.org/html/rfc5545 for more information.
+     * CREATED, DTSTAMP, LAST-MODIFIED - must be UTC. They are stored as UTC in Tiki database. No timezone conversion happens.
+     * DTSTART, DTEND - must be in calendar timezone which currently is defined as the timezone of the Tiki user owning the calendar.
+     * VTIMEZONE - we use TZID properties on start and end dates as specified in the RFC. It requires us to use relevant VTIMEZONE
+     * descriptors as well. However, PHP does not have enough information to generate proper rules for DST changes
+     * (see https://github.com/sabre-io/vobject/issues/248 for more information why). We can possibly use DateTimeZone::getTransitions
+     * but we should do this for the whole time-span of the calendar events which could be many years and also recurring events in the
+     * future may recur indefinitely long. Thus, current implementation leaves parsing the timezone identifier to the clients as TZID
+     * is all we really have in Tiki - the timezone name user is acting in.
+     */
     protected function constructCalendarData($row) {
         // TODO: recurring events
+        static $calendar_timezones = [];
+        if (isset($calendar_timezones[$row['calendarId']])) {
+            $timezone = $calendar_timezones[$row['calendarId']];
+        } else {
+            $calendar = TikiLib::lib('calendar')->get_calendar($row['calendarId']);
+            $timezone = TikiLib::lib('tiki')->get_display_timezone($calendar['user']);
+            $calendar_timezones[$row['calendarId']] = $timezone;
+        }
+        $dtzone = new \DateTimeZone($timezone);
+        $dtstart = \DateTime::createFromFormat('U', $row['start']);
+        $dtstart->setTimezone($dtzone);
+        $dtend = \DateTime::createFromFormat('U', $row['end']);
+        $dtend->setTimezone($dtzone);
         $data = [
-            'CREATED' => \DateTime::createFromFormat('U', $row['created'])->format('Ymd\THis\Z'), // TODO: this must be UTC
-            'DTSTAMP' => \DateTime::createFromFormat('U', $row['lastModif'])->format('Ymd\THis\Z'),// TODO: this must be UTC
-            'LAST-MODIFIED' => \DateTime::createFromFormat('U', $row['lastModif'])->format('Ymd\THis\Z'),// TODO: this must be UTC
+            'CREATED' => \DateTime::createFromFormat('U', $row['created'])->format('Ymd\THis\Z'),
+            'DTSTAMP' => \DateTime::createFromFormat('U', $row['lastModif'])->format('Ymd\THis\Z'),
+            'LAST-MODIFIED' => \DateTime::createFromFormat('U', $row['lastModif'])->format('Ymd\THis\Z'),
             'SUMMARY' => $row['name'],
             'PRIORITY' => $row['priority'],
             'STATUS' => $this->mapEventStatus($row['status']),
             'TRANSP' => 'OPAQUE',
-            'DTSTART' => \DateTime::createFromFormat('U', $row['start']), // TODO: check and fix timezones
-            'DTEND'   => \DateTime::createFromFormat('U', $row['end']), // TODO: check and fix timezones
+            'DTSTART' => $dtstart,
+            'DTEND'   => $dtend,
         ];
         if (! empty($row['uid'])) {
             $data['UID'] = $row['uid'];
@@ -967,11 +991,6 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
 
         }
 
-        if ($componentType) {
-            $query .= " AND componenttype = :componenttype";
-            $values['componenttype'] = $componentType;
-        }
-
         if ($timeRange && $timeRange['start']) {
             $start = $timeRange['start']->getTimeStamp();
         } else {
@@ -983,7 +1002,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             $end = null;
         }
 
-        $objects = TikiLib::lib('calendar')->get_events($calendarId, $itemIds, $componenttype, $start, $end);
+        $objects = TikiLib::lib('calendar')->get_events($calendarId, $itemIds, $componentType, $start, $end);
         $filtered = Perms::filter([ 'type' => 'event' ], 'object', $objects, [ 'object' => 'calitemId' ], 'view_events');
 
         if ($requirePostFilter) {
