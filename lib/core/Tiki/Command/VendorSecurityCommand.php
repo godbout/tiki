@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id: OCRAllCommand.php 69958 2019-05-10 18:32:17Z drsassafras $
+// $Id$
 
 namespace Tiki\Command;
 
