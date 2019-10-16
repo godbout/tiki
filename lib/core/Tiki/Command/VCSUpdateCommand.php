@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
@@ -8,10 +7,10 @@
 
 // Warning: this script does not check the required and available PHP versions
 // before doing an update. That might result in a broken Tiki installation.
-// TODO Todo todo: fix this with ideas from svnup.sh
 
 namespace Tiki\Command;
 
+use LogsLib;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
@@ -23,31 +22,6 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Command\HelpCommand;
 use Exception;
 
-if (isset($_SERVER['REQUEST_METHOD'])) {
-	die('Only available through command-line.');
-}
-$tikiBase = realpath(__DIR__ . '/../..');
-
-chdir($tikiBase);
-
-// will output db errors if 'php svnup.php dbcheck' is called
-if (isset($_SERVER['argv'][1]) && $_SERVER['argv'][1] === 'dbcheck') {
-	require($tikiBase . '/db/tiki-db.php');
-	die();
-}
-
-// if database is unavailable, just autoload. Yo cant call tiki-setup* after autoloading without causing errors.
-$error = shell_exec('php ' . escapeshellarg($tikiBase . '/doc/devtools/svnup.php') . ' dbcheck');
-if ($error) {
-	if (strpos($error, 'Tiki is not completely installed')) { // if tiki didn't install properly, there could be issues initializing autoload, so just die.
-		die($error);
-	}
-	echo shell_exec('php ' . escapeshellarg($tikiBase . '/doc/devtools/svnup.php') . ' dbcheck');
-	require_once $tikiBase . '/vendor_bundled/vendor/autoload.php';
-} else {
-	require_once $tikiBase . '/tiki-setup_base.php';
-}
-
 /**
  * Add a singleton command "svnup" using the Symfony console component for this script
  *
@@ -55,14 +29,14 @@ if ($error) {
  * @package Tiki\Command
  */
 
-class SvnUpCommand extends Command
+class VCSUpdateCommand extends Command
 {
-
 	protected function configure()
 	{
 		$this
-			->setName('svnup')
-			->setDescription("Updates SVN repository to latest version and performs necessary tasks in Tiki for a smooth update. Suitable for both development and production.")
+			->setName('vcs:update')
+			->setDescription('Update SVN to latest version & perform tasks for a smooth update.')
+			->setHelp('Updates SVN repository to latest version and performs necessary tasks in Tiki for a smooth update. Suitable for both development and production.')
 			->addOption(
 				'no-secdb',
 				's',
@@ -117,10 +91,8 @@ class SvnUpCommand extends Command
 				'g',
 				InputOption::VALUE_REQUIRED,
 				'User group to run setup.sh with (for file permissions setting).'
-			)
-		;
+			);
 	}
-
 
 	/**
 	 *
@@ -135,7 +107,6 @@ class SvnUpCommand extends Command
 	 */
 	public function OutputErrors(ConsoleLogger $logger, $return, $errorMessage = '', $errors = [], $log = true)
 	{
-
 		$logger->info($return);
 
 		// check for errors.
@@ -143,7 +114,7 @@ class SvnUpCommand extends Command
 			if (($error === '' && ! $return) || ($error && strpos($return, $error))) {
 				$logger->error($errorMessage);
 				if ($log) {
-					$logs = new \LogsLib();
+					$logs = new LogsLib();
 					$logs->add_action('svn update', $errorMessage, 'system');
 				}
 			}
@@ -176,9 +147,6 @@ class SvnUpCommand extends Command
 
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
-
-		$tikiBase = realpath(__DIR__ . '/../..');
-
 		$verbosityLevelMap = [
 			LogLevel::CRITICAL   => OutputInterface::VERBOSITY_NORMAL,
 			LogLevel::ERROR      => OutputInterface::VERBOSITY_NORMAL,
@@ -189,14 +157,13 @@ class SvnUpCommand extends Command
 		$errors = false;
 		$rev = 'HEAD';
 
-		$output->writeln('<comment>This command is now deprecated use php consone.php vcs:upate instead</comment>');
-
 		// check that proper options were given, else die with help options.
 		if (! in_array($input->getOption('conflict'), ['abort', 'postpone', 'mine-conflict', 'theirs-conflict'])) {
 			$help = new HelpCommand();
 			$help->setCommand($this);
 			$help->run($input, $output);
-			return $logger->notice("Invalid option for --conflict, see usage above.");
+			$logger->notice('Invalid option for --conflict, see usage above.');
+			return;
 		}
 
 		// check that the --lag option is valid, and complain if its not.
@@ -205,23 +172,20 @@ class SvnUpCommand extends Command
 				$help = new HelpCommand();
 				$help->setCommand($this);
 				$help->run($input, $output);
-				return $logger->notice('Invalid option for --lag, must be a positive integer.');
+				$logger->notice('Invalid option for --lag, must be a positive integer.');
+				return;
 			}
 			// current time minus number of days specified through lag
 			$rev = date('{"Y-m-d H:i"}', time() - $input->getOption('lag') * 60 * 60 * 24);
 		}
 		// if were using a db, then configure it.
-		if (! $input->getOption('no-db')) {
-			$errors = shell_exec('php ' . escapeshellarg($tikiBase . '/doc/devtools/svnup.php') . ' dbcheck');
-		}
-		if ($errors) {
-			$logger->notice('Running in no-db mode, Database errors: ' . $errors . "\n");
+		if (! DB_STATUS && ! $input->getOption('no-db')) {
 			$input->setOption('no-db', true);
 		}
 
 		// if were using a db, then configure it.
 		if (! $input->getOption('no-db')) {
-			$logslib = new \LogsLib();
+			$logslib = new LogsLib();
 		}
 
 		// die gracefully if shell_exec is not enabled;
@@ -232,7 +196,10 @@ class SvnUpCommand extends Command
 			$logger->critical('Automatic update failed. Could not execute shell_exec()');
 			die();
 		}
-
+		if (! is_dir('.svn')) {
+			$logger->critical('Only SVN supported at the moment.');
+			die();
+		}
 
 		/** @var int The number of steps the progress bar will show */
 		$max = 8;
@@ -327,7 +294,6 @@ class SvnUpCommand extends Command
 			$svnConflict = 'postpone';
 		}
 
-
 		$progress->setMessage('Updating SVN');
 		$progress->advance();
 		$errors = ['','Text conflicts'];
@@ -370,7 +336,7 @@ class SvnUpCommand extends Command
 		if (! $input->getOption('no-db')) {
 			// generate a secdb database so when database:update is run, it also gets updated.
 			if (! $input->getOption('no-secdb')) {
-				require_once($tikiBase . '/doc/devtools/svntools.php');
+				require_once(TIKI_PATH . '/doc/devtools/svntools.php');
 				$progress->setMessage('Updating secdb');
 				$progress->advance();
 
@@ -383,7 +349,7 @@ class SvnUpCommand extends Command
 			$progress->advance();
 			try {
 				$this->dbUpdate($output);
-			}catch (\Exception $e) {
+			} catch (\Exception $e) {
 				$logger->error('Database update error: ' . $e->getMessage());
 				$logslib->add_action('svn update', 'Database update error: ' . $e, 'system');
 			}
@@ -432,18 +398,7 @@ class SvnUpCommand extends Command
 			$progress->setMessage("<comment>Automatic update completed r$startRev -> r$endRev</comment>");
 		}
 
-
 		$progress->finish();
 		echo "\n";
 	}
-}
-
-// create the application and new console
-$console = new Application;
-$console->add(new SvnUpCommand);
-$console->setDefaultCommand('svnup');
-try {
-	$console->run();
-}catch (Exception $e){
-	echo 'Problem running svnup:' . $e->getMessage();
 }

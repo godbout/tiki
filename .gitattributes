@@ -2972,6 +2972,7 @@ lib/core/Tiki/Command/TrackerImportCommand.php -text
 lib/core/Tiki/Command/UpdateCommand.php -text
 lib/core/Tiki/Command/UsersListCommand.php -text
 lib/core/Tiki/Command/UsersPasswordCommand.php -text
+lib/core/Tiki/Command/VCSUpdateCommand.php -text
 lib/core/Tiki/Command/VendorSecurityCommand.php -text
 lib/core/Tiki/Command/index.php -text
 lib/core/Tiki/Composer/BootstrapCompiler.php -text

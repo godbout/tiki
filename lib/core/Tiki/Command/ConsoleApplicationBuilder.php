@@ -59,12 +59,19 @@ class ConsoleApplicationBuilder
 	{
 		return [
 			'checkVendorsLoaded' => [
-				'action' => [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE],
+				'action' => [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_CALLABLE],
 				'commands' => [
 					new ConfigureCommand,
 					new InstallerLockCommand,
 					new ScssCompileCommand,
 					new EnglishUpdateCommand,
+					new VCSUpdateCommand,
+				],
+			],
+			'checkIsVCS' => [
+				'action' => [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE],
+				'commands' => [
+					new VCSUpdateCommand,
 				],
 			],
 			'checkIsDatabaseAvailable' => [
