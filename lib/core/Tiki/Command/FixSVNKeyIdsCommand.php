@@ -51,10 +51,10 @@ class FixSVNKeyIdsCommand extends Command
 			exit(1);
 		}
 
-		require_once('doc/devtools/svntools.php');
-
 		$xml = new DOMDocument;
-		$xml->loadXML(shell_exec('svn propget -R svn:keywords --xml'));
+		$raw = shell_exec('svn propget -R svn:keywords --xml  2>&1');
+		$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
+		$xml->loadXML($raw);
 
 		/** The  offset length of the base pathname */
 		$pathLen = strlen(TIKI_PATH) + 1;
@@ -69,12 +69,13 @@ class FixSVNKeyIdsCommand extends Command
 			}
 		}
 		$matches = 0;
+		$errors = 0;
 		// apply filter only to these file types, excluding any vendor files.
 		foreach ($this->globRecursive(
 			'*{.php,.tpl,.sh,.sql,.js,.less,.css,.yml,htaccess}',
 			GLOB_BRACE,
 			'',
-			'vendor_'
+			['vendor_', 'vendor/','temp/']
 		) as $fileName) {
 			// if there was no keywords defined in SVN or there is no Id defined in those keywords
 			if (! isset($Ids[$fileName]) || ! preg_match('/(^I|\nI)(d$|d\n)/', $Ids[$fileName])) {
@@ -88,8 +89,14 @@ class FixSVNKeyIdsCommand extends Command
 							$keys = $Ids[$fileName] . "\n";
 						}
 						$keys .= "Id";
-						shell_exec("svn propset svn:keywords \"$keys\" " . escapeshellarg($fileName));
-						$matches++;
+						$raw = shell_exec("svn propset svn:keywords \"$keys\" " . escapeshellarg($fileName) . ' 2>&1');
+						if (strpos($raw, "property 'svn:keywords' set") !== false) {
+							$matches++;
+							$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
+						} else {
+							$output->writeln($raw, OutputInterface::VERBOSITY_VERY_VERBOSE);
+							$errors++;
+						}
 						break;
 					}
 					$count++;
@@ -98,10 +105,15 @@ class FixSVNKeyIdsCommand extends Command
 			}
 		}
 
-		if ($matches) {
-			$output->writeln("<comment>$matches keywords updated, you may now review and commit.</comment>");
-		} else {
+		if (! $matches && ! $errors) {
 			$output->writeln('<comment>All keywords were up to date, no changes made.</comment>');
+		} else {
+			if ($matches) {
+				$output->writeln("<comment>$matches keywords updated, you may now review and commit.</comment>");
+			}
+			if ($errors) {
+				$output->writeln("<comment>$errors encountered while updating keywords, run with -vv to see the errors.");
+			}
 		}
 	}
 
@@ -111,17 +123,25 @@ class FixSVNKeyIdsCommand extends Command
 	 * @param string $pattern
 	 * @param int    $flags
 	 * @param string $startdir
-	 * @param        $exclude string|bool if this string is found withn a directory name, it wont be included
+	 * @param array  $excludes  If this string is found within a directory name, it wont be included
 	 *
 	 * @return array
 	 */
 
-	private function globRecursive($pattern, $flags = 0, $startdir = '', $exclude = false)
+	private function globRecursive($pattern, $flags = 0, $startdir = '', $excludes = [])
 	{
 		$files = glob($startdir . $pattern, $flags);
 		foreach (glob($startdir . '*', GLOB_ONLYDIR | GLOB_NOSORT | GLOB_MARK) as $dir) {
-			if (strpos($dir, $exclude) === false) {
-				$files = array_merge($files, $this->globRecursive($pattern, $flags, $dir, $exclude));
+			/** If the directory has not been excluded from processing */
+			$include = true;
+			foreach ($excludes as $exclude) {
+				if (strpos($dir, $exclude) !== false) {
+					$include = false;
+					break;
+				}
+			}
+			if ($include) {
+				$files = array_merge($files, $this->globRecursive($pattern, $flags, $dir, $excludes));
 			}
 		}
 		return $files;
