@@ -2099,7 +2099,12 @@ function wikiplugin_tracker($data, $params)
 					// If on a different row the label should use all available width
 					$back .= '><label class="';
 					if ($isTextOnSameRow) {
-						$back .= $labelclass . ' col-form-label';
+						$back .= $labelclass;
+						if ($f['type'] == 'h') {
+							$back .= ' h' . $f['options_map']['level'];
+						} else {
+							$back .= ' col-form-label';
+						}
 					} else {
 						$back .= 'col-md-12';
 					}
