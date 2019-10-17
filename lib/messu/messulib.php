@@ -360,7 +360,8 @@ class Messu extends TikiLib
 			$dbsource = 'messages';
 		}
 
-		$query = 'insert into `messu_archive` select * from `messu_' . $dbsource . '` where `user`=? and `msgId`=?';
+		$columns = '`user`, `user_from`, `user_to`, `user_cc`, `subject`, `body`, `date`, `isRead`, `isReplied`, `isFlagged`, `priority`, `hash`, `replyto_hash`';
+		$query = 'insert into `messu_archive` (' . $columns . ') select ' . $columns . ' from `messu_' . $dbsource . '` where `user`=? and `msgId`=?';
 		$this->query($query, [$user, (int)$msgId]);
 
 		$query = 'delete from `messu_' . $dbsource . '` where `user`=? and `msgId`=?';
@@ -380,7 +381,8 @@ class Messu extends TikiLib
 			$dbsource = 'messages';
 		}
 
-		$query = 'insert into `messu_' . $dbsource . '` select * from `messu_archive` where `user`=? and `msgId`=?';
+		$columns = '`user`, `user_from`, `user_to`, `user_cc`, `subject`, `body`, `date`, `isRead`, `isReplied`, `isFlagged`, `priority`, `hash`, `replyto_hash`';
+		$query = 'insert into `messu_' . $dbsource . '` (' . $columns . ') select ' . $columns . ' from `messu_archive` where `user`=? and `msgId`=?';
 		$this->query($query, [$user, (int)$msgId]);
 
 		$query = 'delete from `messu_archive` where `user`=? and `msgId`=?';
