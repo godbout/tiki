@@ -29,7 +29,8 @@ class EnglishUpdateCommand extends Command
 	{
 		$this
 			->setName('translation:englishupdate')
-			->setDescription('Update translation files with updates made to English strings. Will compare working copy by default.')
+			->setDescription('Fix English strings after modifying them.')
+			->setHelp('Update translation files with updates made to English strings. Will compare working copy by default.')
 			->addOption(
 				'scm',
 				null,
