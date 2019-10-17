@@ -18,6 +18,7 @@ namespace Tiki\Command;
 
 use DOMDocument;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -71,12 +72,26 @@ class FixSVNKeyIdsCommand extends Command
 		$matches = 0;
 		$errors = 0;
 		// apply filter only to these file types, excluding any vendor files.
-		foreach ($this->globRecursive(
+		$files = $this->globRecursive(
 			'*{.php,.tpl,.sh,.sql,.js,.less,.css,.yml,htaccess}',
 			GLOB_BRACE,
 			'',
-			['vendor_', 'vendor/','temp/']
-		) as $fileName) {
+			['vendor_', 'vendor/', 'temp/']
+		);
+		$progress = new ProgressBar($output, count($files));
+		if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
+			$progress->setOverwrite(false);
+		}
+		$progress::setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message%');
+		$progress->setFormat('custom');
+
+
+		$progress->setMessage('Pre-update checks');
+		$progress->start();
+
+		foreach ($files as $fileName) {
+			$progress->setMessage('Processing ' . $fileName);
+			$progress->advance();
 			// if there was no keywords defined in SVN or there is no Id defined in those keywords
 			if (! isset($Ids[$fileName]) || ! preg_match('/(^I|\nI)(d$|d\n)/', $Ids[$fileName])) {
 				$handle = fopen($fileName, "r");
@@ -92,9 +107,13 @@ class FixSVNKeyIdsCommand extends Command
 						$raw = shell_exec("svn propset svn:keywords \"$keys\" " . escapeshellarg($fileName) . ' 2>&1');
 						if (strpos($raw, "property 'svn:keywords' set") !== false) {
 							$matches++;
-							$output->writeln($raw, OutputInterface::VERBOSITY_DEBUG);
+							if ($output->isDebug()) {
+								$output->write($raw);
+							}
 						} else {
-							$output->writeln($raw, OutputInterface::VERBOSITY_VERY_VERBOSE);
+							if ($output->isVeryVerbose()) {
+								$output->write($raw);
+							}
 							$errors++;
 						}
 						break;
@@ -106,14 +125,14 @@ class FixSVNKeyIdsCommand extends Command
 		}
 
 		if (! $matches && ! $errors) {
-			$output->writeln('<comment>All keywords were up to date, no changes made.</comment>');
+			$progress->setMessage('<comment>All keywords were up to date, no changes made.</comment>');
 		} else {
-			if ($matches) {
-				$output->writeln("<comment>$matches keywords updated, you may now review and commit.</comment>");
-			}
-			if ($errors) {
-				$output->writeln("<comment>$errors encountered while updating keywords, run with -vv to see the errors.");
-			}
+				$progress->setMessage("<comment>$matches keywords updated, " . ($errors ? "with $errors errors, " : '') . "you may now review and commit.</comment>");
+		}
+		$progress->finish();
+		if ($errors) {
+			$output->writeln('');
+			$output->writeln('<comment>You may run the command with -vv to see the errors.');
 		}
 	}
 
