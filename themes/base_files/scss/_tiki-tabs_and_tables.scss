@@ -122,15 +122,20 @@ td.url{
 }
 
 @media only screen and (max-width: breakpoint-max(sm)) {
+	.table-expand-toggle { display: none; }
 	.toggle-table {
-		position: absolute; right: 5px; margin-top: -50px;
-		.btn-link { font-weight: 600; font-size: 1.8em; text-decoration: none !important; }
+//		position: absolute; right: 5px; margin-top: -50px;
+		width: 100%; text-align: right;
+		.btn-link {
+			padding-top: 0; padding-bottom: 0;
+			font-weight: 600; font-size: 1.8em; text-decoration: none !important;
+		}
 	}
 
 	.tiki #col1 .table-responsive.large-table {
 		.table:not(.tablesorter) {
 			thead, tbody {
-				th {
+				th:not(.selectall) {
 					position: absolute;
 					top: -9999px;
 					left: -9999px;
@@ -145,12 +150,8 @@ td.url{
 
 			tbody {
 				tr { display: block; border-bottom: 1px solid $border-color; }
+				tr:not(:nth-child(1)) { padding: 0.5rem 0; }
 				> tr.active { display: none; }
-
-				tr:not(:nth-child(1)) {
-//					display: block;
-					padding: 0.5rem 0;
-				}
 
 				td {
 					display: block;
@@ -168,11 +169,14 @@ td.url{
 //					&.action:not(:nth-child(1)) { display: none; }
 				}
 
+				td.checkall { position: absolute; }
+				td.checkmargin { margin-left: 40px; }
 				.header { display: block !important; font-weight: bold; }
 				.hidecell { display: none; }
 				.float-right { float: none !important; }
+				.form-check-input { margin: 5px 0 0; }
+				.form-check { padding-left: 0; }
 				.checkbox-cell {
-					.form-check { padding-left: 0; }
 					.form-check-input {
 						position: static;
 						margin-left: 0;

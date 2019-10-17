@@ -1761,16 +1761,20 @@ td.url {
     table-layout: auto; } }
 
 @media only screen and (max-width: 767.98px) {
+  .table-expand-toggle {
+    display: none; }
+
   .toggle-table {
-    position: absolute;
-    right: 5px;
-    margin-top: -50px; }
+    width: 100%;
+    text-align: right; }
     .toggle-table .btn-link {
+      padding-top: 0;
+      padding-bottom: 0;
       font-weight: 600;
       font-size: 1.8em;
       text-decoration: none !important; }
 
-  .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th, .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th {
+  .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th:not(.selectall), .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th:not(.selectall) {
     position: absolute;
     top: -9999px;
     left: -9999px; }
@@ -1781,10 +1785,10 @@ td.url {
     .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody tr {
       display: block;
       border-bottom: 1px solid #dee2e6; }
-      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody > tr.active {
-        display: none; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody tr:not(:nth-child(1)) {
         padding: 0.5rem 0; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody > tr.active {
+        display: none; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td {
         display: block;
         padding: 0.25rem 0.75rem 0.5rem;
@@ -1798,6 +1802,10 @@ td.url {
           content: ""; }
         .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkbox-cell {
           width: auto; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkall {
+        position: absolute; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkmargin {
+        margin-left: 40px; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .header {
         display: block !important;
         font-weight: bold; }
@@ -1805,11 +1813,13 @@ td.url {
         display: none; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .float-right {
         float: none !important; }
-      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .checkbox-cell .form-check {
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .form-check-input {
+        margin: 5px 0 0; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .form-check {
         padding-left: 0; }
-        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .checkbox-cell .form-check-input {
-          position: static;
-          margin-left: 0; } }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .checkbox-cell .form-check-input {
+        position: static;
+        margin-left: 0; } }
 
 .article .actions form {
   display: inline; }
