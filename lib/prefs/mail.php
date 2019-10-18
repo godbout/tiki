@@ -24,5 +24,11 @@ function prefs_mail_list()
 			'type' => 'text',
 			'default' => '',
 		],
+		'mail_apply_css' => [
+			'name' => tra('Apply site styles to HTML emails'),
+			'description' => tra('Add site CSS to all HTML formatted emails'),
+			'type' => 'flag',
+			'default' => 'y',
+		],
 	];
 }

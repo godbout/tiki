@@ -51,8 +51,6 @@ class MonitorMailLib
 				'limit' => -1,
 			]);
 
-			$html = $this->applyStyle($html);
-
 			$title = TikiLib::lib('smarty')->fetchLang($prefs['language'], 'monitor/notification_email_digest_subject.tpl');
 
 			$this->send($info['email'], $title, $html);
@@ -97,7 +95,7 @@ class MonitorMailLib
 	}
 
 	/**
-	 * Renders the body of the email and inline any applicable CSS.
+	 * Renders the body of the email
 	 */
 	private function renderContent($language, $mail)
 	{
@@ -108,38 +106,7 @@ class MonitorMailLib
 		TikiLib::setExternalContext(true);
 		$html = $smarty->fetchLang($language, 'monitor/notification_email_body.tpl');
 		TikiLib::setExternalContext(false);
-		return $this->applyStyle($html);
-	}
-
-	private function collectCss()
-	{
-		static $css;
-		if ($css) {
-			return $css;
-		}
-
-		$cachelib = TikiLib::lib('cache');
-		if ($css = $cachelib->getCached('email_css')) {
-			return $css;
-		}
-
-		$headerlib = TikiLib::lib('header');
-		$files = $headerlib->get_css_files();
-		$contents = array_map(function ($file) {
-			if ($file{0} == '/') {
-				return file_get_contents($file);
-			} elseif (substr($file, 0, 4) == 'http') {
-				return TikiLib::lib('tiki')->httprequest($file);
-			} else {
-				if (strpos($file, 'themes/') === 0) {	// only use the tiki base and current theme files
-					return file_get_contents(TIKI_PATH . '/' . $file);
-				}
-			}
-		}, $files);
-
-		$css = implode("\n\n", array_filter($contents));
-		$cachelib->cacheItem('email_css', $css);
-		return $css;
+		return $html;
 	}
 
 	private function sendMail($user, $email, $language, $mail)
@@ -177,15 +144,5 @@ class MonitorMailLib
 		}
 
 		$mail->send($email);
-	}
-
-	private function applyStyle($html)
-	{
-		$css = $this->collectCss();
-
-		$processor = new \TijsVerkoyen\CssToInlineStyles\CssToInlineStyles();
-
-		$html = $processor->convert($html, $css);
-		return $html;
 	}
 }

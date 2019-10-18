@@ -94,6 +94,11 @@ class TikiMail
 
 	function setHtml($html, $text = null, $images_dir = null)
 	{
+		global $prefs;
+		if ($prefs['mail_apply_css'] != 'n') {
+			$html = $this->applyStyle($html);
+		}
+
 		$body = $this->mail->getBody();
 		if (! ($body instanceof \Zend\Mime\Message) && ! empty($body)) {
 			$this->convertBodyToMime($body);
@@ -344,6 +349,46 @@ class TikiMail
 				return $email;
 		}
 	}
+
+	private function collectCss()
+	{
+		static $css;
+		if ($css) {
+			return $css;
+		}
+
+		$cachelib = TikiLib::lib('cache');
+		if ($css = $cachelib->getCached('email_css')) {
+			return $css;
+		}
+
+		$headerlib = TikiLib::lib('header');
+		$files = $headerlib->get_css_files();
+		$contents = array_map(function ($file) {
+			if ($file{0} == '/') {
+				return file_get_contents($file);
+			} elseif (substr($file, 0, 4) == 'http') {
+				return TikiLib::lib('tiki')->httprequest($file);
+			} else {
+				if (strpos($file, 'themes/') === 0) {   // only use the tiki base and current theme files
+					return file_get_contents(TIKI_PATH . '/' . $file);
+				}
+			}
+		}, $files);
+
+		$css = implode("\n\n", array_filter($contents));
+		$cachelib->cacheItem('email_css', $css);
+		return $css;
+	}
+
+	private function applyStyle($html)
+	{
+		$html = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' . $html;
+		$css = $this->collectCss();
+		$processor = new \TijsVerkoyen\CssToInlineStyles\CssToInlineStyles();
+		$html = $processor->convert($html, $css);
+		return $html;
+	}
 }
 
 /**
@@ -404,3 +449,4 @@ function closetags($html)
 	}
 	return $html;
 }
+

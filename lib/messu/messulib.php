@@ -574,39 +574,4 @@ class Messu extends TikiLib
 		}
 		return $ret;
 	}
-
-	function collectCss()
-	{
-		static $css;
-		if ($css) {
-			return $css;
-		}
-		$cachelib = TikiLib::lib('cache');
-		if ($css = $cachelib->getCached('email_css')) {
-			return $css;
-		}
-		$headerlib = TikiLib::lib('header');
-		$files = $headerlib->get_css_files();
-		$contents = array_map(function ($file) {
-			if ($file{0} == '/') {
-				return file_get_contents($file);
-			} elseif (substr($file, 0, 4) == 'http') {
-				return TikiLib::lib('tiki')->httprequest($file);
-			} else {
-				return file_get_contents(TIKI_PATH . '/' . $file);
-			}
-		}, $files);
-		$css = implode("\n\n", $contents);
-		$cachelib->cacheItem('email_css', $css);
-		return $css;
-	}
-
-	function applyStyle($html)
-	{
-		$html = '<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />' . $html;
-		$css = $this->collectCss();
-		$processor = new \TijsVerkoyen\CssToInlineStyles\CssToInlineStyles();
-		$html = $processor->convert($html, $css);
-		return $html;
-	}
 }
