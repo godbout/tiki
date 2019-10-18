@@ -67,6 +67,7 @@ class ConsoleApplicationBuilder
 					new EnglishUpdateCommand,
 					new VCSUpdateCommand,
 					new FixBOMandUnixCommand,
+					new GetStringsCommand,
 				],
 			],
 			'checkIsVCS' => [

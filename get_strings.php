@@ -34,6 +34,8 @@
  *
  */
 
+echo "\nUse of this file is now deprecated. use php console.php translation:getstrings instead.\n";
+
 if (php_sapi_name() != 'cli') {
 	require_once('tiki-setup.php');
 	$access->check_permission('tiki_p_admin');

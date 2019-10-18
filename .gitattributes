@@ -2910,6 +2910,7 @@ lib/core/Tiki/Command/FilesDeleteoldCommand.php -text
 lib/core/Tiki/Command/FilesMoveCommand.php -text
 lib/core/Tiki/Command/FixBOMandUnixCommand.php -text
 lib/core/Tiki/Command/FixSVNKeyIdsCommand.php -text
+lib/core/Tiki/Command/GetStringsCommand.php -text
 lib/core/Tiki/Command/GoalCheckCommand.php -text
 lib/core/Tiki/Command/IndexCatchUpCommand.php -text
 lib/core/Tiki/Command/IndexOptimizeCommand.php -text
