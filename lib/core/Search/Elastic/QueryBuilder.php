@@ -251,7 +251,7 @@ class Search_Elastic_QueryBuilder
 			]];
 		} elseif ($node->getType() == 'plaintext' && strstr($value, '*')) {
 			return ["wildcard" => [
-				$this->getNodeField($node) => $value,
+				$this->getNodeField($node) => strtolower($value),
 			]];
 		} else {
 			return ["match" => [
