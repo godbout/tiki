@@ -66,6 +66,7 @@ class ConsoleApplicationBuilder
 					new ScssCompileCommand,
 					new EnglishUpdateCommand,
 					new VCSUpdateCommand,
+					new FixBOMandUnixCommand,
 				],
 			],
 			'checkIsVCS' => [

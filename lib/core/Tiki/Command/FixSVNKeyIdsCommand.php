@@ -85,8 +85,6 @@ class FixSVNKeyIdsCommand extends Command
 		$progress::setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message%');
 		$progress->setFormat('custom');
 
-
-		$progress->setMessage('Pre-update checks');
 		$progress->start();
 
 		foreach ($files as $fileName) {
@@ -151,6 +149,10 @@ class FixSVNKeyIdsCommand extends Command
 	{
 		$files = glob($startdir . $pattern, $flags);
 		foreach (glob($startdir . '*', GLOB_ONLYDIR | GLOB_NOSORT | GLOB_MARK) as $dir) {
+			// lets ignore hidden directories (and the .. and . files)
+			if (strpos($dir, ".") === 0 && is_dir($dir)) {
+				break;
+			}
 			/** If the directory has not been excluded from processing */
 			$include = true;
 			foreach ($excludes as $exclude) {
