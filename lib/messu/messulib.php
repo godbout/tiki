@@ -377,6 +377,8 @@ class Messu extends TikiLib
 			return false;
 		}
 
+		$dbsource = $this->get_archive_source($user, $msgId);
+
 		if ($dbsource == '') {
 			$dbsource = 'messages';
 		}
@@ -574,4 +576,21 @@ class Messu extends TikiLib
 		}
 		return $ret;
 	}
+
+	/**
+	 * Get mail source info from the  mail archive
+	 */
+	function get_archive_source($user, $msgId)
+	{
+		$dbsource ='';
+
+		$res= $this->get_message($user, $msgId, 'archive');
+
+		if($res['user_from']==$user){
+			$dbsource = 'sent';
+		}
+
+		return $dbsource;
+	}
+
 }
