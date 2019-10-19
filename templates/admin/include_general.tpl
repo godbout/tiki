@@ -50,6 +50,7 @@
 				{preference name=sender_name}
 				{preference name=default_mail_charset}
 				{preference name=mail_crlf}
+				{preference name=mail_apply_css}
 				{preference name=zend_mail_handler}
 				<div class="adminoptionboxchild zend_mail_handler_childcontainer smtp">
 					<input type="password" style="display:none" name="zend_mail_smtp_server_autocomplete_off"> {* This is now required so the browser don't store the user's login here *}
