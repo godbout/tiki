@@ -562,18 +562,17 @@ if (isset($_SESSION["$user_cookie_site"])) {
 }
 
 if ($prefs['feature_perspective'] === 'y') {
-
 	if ($prefs['feature_categories'] == 'y' && $prefs['feature_areas'] == 'y' && $prefs['categories_used_in_tpl'] == 'y' && ! isset($_SESSION['current_perspective'])) {
 		// if the perspective is not set in the session, try to determine the perspective to use, avoiding redirect loops
-		(function () { // self executing function just to keep the variable scope
+		(function () {
+			// self executing function just to keep the variable scope
 			global $section, $user;
-			$fakePageCleanup = false;
-			if (empty($_REQUEST['page']) && ! empty($section) && $section == 'wiki page') {
-				$fakePageCleanup = true;
+			$request = array_merge($_GET, $_POST);
+			if (empty($request['page']) && ! empty($section) && $section == 'wiki page') {
 				$userlib = TikiLib::lib('user');
-				$_REQUEST['page'] = $userlib->get_user_default_homepage($user);
+				$request['page'] = $userlib->get_user_default_homepage($user);
 			}
-			$currentObject = Tiki\Sections::currentObject();
+			$currentObject = Tiki\Sections::currentObject($request);
 			if ($currentObject) {
 				$categlib = TikiLib::lib('categ');
 				$objectCategoryIdsNoJail = $categlib->get_object_categories(
@@ -591,9 +590,6 @@ if ($prefs['feature_perspective'] === 'y') {
 						$_SESSION['current_perspective']
 					);
 				}
-			}
-			if ($fakePageCleanup) {
-				unset($_REQUEST['page']);
 			}
 		})();
 	}

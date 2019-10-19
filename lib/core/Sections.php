@@ -171,9 +171,20 @@ class Sections
 		return self::$sections;
 	}
 
-	public static function currentObject()
+	/**
+	 * Attempts to guess the object being processed based on the request parameters
+	 *
+	 * @param array $request An array with the request parameters (if not provided will default to $_REQUEST)
+	 * @return null|array Array with the type and object being requested, null/empty if not successful
+	 * @throws \Exception
+	 */
+	public static function currentObject($request = null)
 	{
 		global $section, $cat_type, $cat_objid, $postId, $prefs;
+
+		if (! is_array($request)) {
+			$request = $_REQUEST; // use teh global request object
+		}
 
 		if ($section == 'blogs' && ! empty($postId)) { // blog post check the category on the blog - but freetags are on blog post
 			return [
@@ -182,18 +193,18 @@ class Sections
 			];
 		}
 
-		if ($section == 'forums' && ! empty($_REQUEST['comments_parentId'])) {
+		if ($section == 'forums' && ! empty($request['comments_parentId'])) {
 			return [
 				'type' => 'forum post',
-				'object' => $_REQUEST['comments_parentId'],
+				'object' => $request['comments_parentId'],
 			];
 		}
 
 		// Pretty tracker pages
-		if ($section == 'wiki page' && isset($_REQUEST['itemId'])) {
+		if ($section == 'wiki page' && isset($request['itemId'])) {
 			return [
 				'type' => 'trackeritem',
-				'object' => (int)$_REQUEST['itemId'],
+				'object' => (int)$request['itemId'],
 			];
 		}
 
@@ -204,10 +215,10 @@ class Sections
 			];
 		}
 
-		if ($section == 'trackers' && ! empty($_REQUEST['itemId'])) {
+		if ($section == 'trackers' && ! empty($request['itemId'])) {
 			return [
 				'type' => 'trackeritem',
-				'object' => $_REQUEST['itemId'],
+				'object' => $request['itemId'],
 			];
 		}
 
@@ -216,17 +227,17 @@ class Sections
 		if (isset($sections[$section])) {
 			$info = $sections[$section];
 
-			if (isset($info['itemkey'], $info['itemObjectType'], $_REQUEST[$info['itemkey']])) {
-				$type = isset($_REQUEST[$info['key']]) ? $info['key'] : '';
+			if (isset($info['itemkey'], $info['itemObjectType'], $request[$info['itemkey']])) {
+				$type = isset($request[$info['key']]) ? $info['key'] : '';
 				return [
 					'type' => sprintf($info['itemObjectType'], $type),
-					'object' => $_REQUEST[$info['itemkey']],
+					'object' => $request[$info['itemkey']],
 				];
-			} elseif (isset($info['key'], $info['objectType'], $_REQUEST[$info['key']])) {
-				if (is_array($_REQUEST[$info['key']])) {    // galleryId is an array here when in tiki-upload_file.php
-					$k = $_REQUEST[$info['key']][0];
+			} elseif (isset($info['key'], $info['objectType'], $request[$info['key']])) {
+				if (is_array($request[$info['key']])) {    // galleryId is an array here when in tiki-upload_file.php
+					$k = $request[$info['key']][0];
 				} else {
-					$k = $_REQUEST[$info['key']];
+					$k = $request[$info['key']];
 					// when using wiki_url_scheme the page request var is the page slug, not the page/object name
 					if ($prefs['wiki_url_scheme'] !== 'urlencode' && $info['objectType'] === 'wiki page') {
 						$k = TikiLib::lib('wiki')->get_page_by_slug($k);
