@@ -10,17 +10,24 @@ use Tiki\File\FileHelper;
 
 require_once('tiki-setup.php');
 
+global $user;
 $accesslib = TikiLib::lib('access');
 
 if (! isset($_GET['fileId'])) {
 	$accesslib->display_error('tiki-display.php', tr('Invalid fileId. Please provide a valid fileId to preview a specific file.'));
 }
 
+$fileId = (int) $_GET['fileId'];
+
 $filegallib = TikiLib::lib('filegal');
-$file = $filegallib->get_file($_GET['fileId']);
+$file = $filegallib->get_file($fileId);
 
 if (is_null($file)) {
-	$accesslib->display_error('tiki-display.php', tr(sprintf('File ID %s not found.', $_GET['fileId'])));
+	$accesslib->display_error('tiki-display.php', tr(sprintf('File ID %s not found.', $fileId)));
+}
+
+if (! $tikilib->user_has_perm_on_object($user, $fileId, 'file', 'tiki_p_view_file_gallery')) {
+	$accesslib->display_error('tiki-display.php', tr('You do not have permission to view this file'), 403);
 }
 
 $data = $file['data'];

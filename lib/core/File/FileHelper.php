@@ -33,7 +33,7 @@ class FileHelper
 	 */
 	public static function getDisplayTemplate($file, &$data, $injectDependencies = false)
 	{
-		global $tikilib;
+		global $tikilib, $user;
 		$smarty = TikiLib::lib('smarty');
 		$accesslib = TikiLib::lib('access');
 		$headerlib = Tikilib::lib('header');
@@ -112,7 +112,10 @@ class FileHelper
 			};
 
 			$smarty->assign('source_link', $sourceLink);
-			$smarty->assign('export_pdf_link', $exportLink);
+
+			if ($tikilib->user_has_perm_on_object($user, $_REQUEST['fileId'], 'file', 'tiki_p_download_files')) {
+				$smarty->assign('export_pdf_link', $exportLink);
+			}
 
 			$headerlib = TikiLib::lib('header');
 			$headerlib->add_css("
