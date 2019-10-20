@@ -30,6 +30,10 @@ class OcrHelper
 			return false;
 		}
 
+		if (substr(PHP_OS, 0, 3) == 'WIN') {
+			return false;
+		}
+
 		global $mimetypes, $tikidomain;
 		include_once('lib/mime/mimetypes.php');
 
