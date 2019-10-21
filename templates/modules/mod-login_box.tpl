@@ -53,7 +53,7 @@ if (jqueryTiki.no_cookie) {
 						<div class="text-center">
 							<button
 								type="submit"
-								class="btn btn-secondary"
+								class="btn btn-primary"
 								name="actsu"
 								onclick="confirmSimple(event, '{tr}Return to main user?{/tr}')"
 							>
@@ -95,7 +95,7 @@ if (jqueryTiki.no_cookie) {
 						<div class="text-center">
 							<button
 								type="submit"
-								class="btn btn-secondary"
+								class="btn btn-primary"
 								name="actsu"
 								onclick="confirmSimple(event, '{tr}Switch user?{/tr}')"
 							>
@@ -271,7 +271,7 @@ if (jqueryTiki.no_cookie) {
 		{/if}
 
 		<div class="form-group text-center">
-			<button class="btn btn-secondary button submit" type="submit" name="login">{tr}Log in{/tr} <!--i class="fa fa-arrow-circle-right"></i--></button>
+			<button class="btn btn-primary button submit" type="submit" name="login">{tr}Log in{/tr} <!--i class="fa fa-arrow-circle-right"></i--></button>
 		</div>
 		{if $module_params.show_forgot eq 'y' or $module_params.show_register eq 'y' or $module_params.show_two_factor_auth}
 			<div {if $mode eq 'header'}class="text-right" style="display:inline;"{/if}>
