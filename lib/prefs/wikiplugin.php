@@ -170,9 +170,10 @@ function prefs_wikiplugin_list($partial = false)
 	];
 
 	// temporary pref for developpment of the list plugin converter from trackerlist
+	// note: temporary incoherence as we use it for trackerfilter conversion but do not require wikiplugin_trackerfilter
 	$prefs['wikiplugin_list_convert_trackerlist'] = [
 		'name' => tr('Plugin trackerlist converter'),
-		'description' => tr('Button on trackerlist plugin edit form to convert it to use the list plugin instead.'),
+		'description' => tr('Button on trackerlist and trackerfilter plugins edit form to convert them to use the list plugin instead.'),
 		'tags' => ['experimental'],
 		'default' => 'n',
 		'dependencies' => ['wikiplugin_list', 'wikiplugin_trackerlist'],

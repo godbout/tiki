@@ -10,7 +10,7 @@
  *
  * This service converts legacy plugins in a wiki page to use the list plugin
  *
- * Currently only trackerlist is supported
+ * Currently, trackerlist and trackerfilter are supported
  */
 class Services_Edit_ListConverter
 {
@@ -45,11 +45,11 @@ class Services_Edit_ListConverter
 	}
 
 	/**
-	 * Process params from source plugin (trackerlist so far) and return body content of list plugin replacement
+	 * Process params from source plugin (trackerlist and trackerfilter so far) and return body content of list plugin replacement
 	 * Work in progress, not all params converted so far
 	 *
-	 * @param array $params plugin trackerlist parameters to be converted
-	 * @param string $content plugin trackerlist body
+	 * @param array $params plugin trackerlist or trackerfilter parameters to be converted
+	 * @param string $content plugin trackerlist or trackerfilter body
 	 *
 	 * @return string           body content for new list plugin
 	 * @throws Services_Exception
@@ -83,6 +83,7 @@ class Services_Edit_ListConverter
 		$pagination = [];
 		$tableSorter = ['sortable' => 'n'];
 		$filterFields = [];
+		$trackerFilterFields = [];
 		$filterValues = [];
 		$filterExact = [];
 
@@ -118,6 +119,11 @@ class Services_Edit_ListConverter
 					break;
 				case 'exactvalue':
 					$filterExact = explode(':', $value);
+					break;
+				// *********************** filters from plugin TrackerFilter *************************
+				case 'filters';
+					preg_match_all('!\d+!', $value, $matches); // 14/d:15/t turns into array(0=>14,1=>15)
+					$trackerFilterFields = $matches[0];
 					break;
 				// *********************** editable *************************
 				case 'editableall':
@@ -258,6 +264,16 @@ class Services_Edit_ListConverter
 					}
 				}
 			}
+			if ($trackerFilterFields) {
+				for ($i = 0; $i < count($trackerFilterFields); $i++) {
+					if ($trackerFilterFields[$i] == $field['fieldId']) {
+						$trackerFilters[] = [
+							'field' => 'tracker_field_' . $field['permName'],
+							'editable' => 'y'
+						];
+					}
+				}
+			}
 		}
 
 		if ($this->columnOptions['links'] && ! $this->titleFound) {    // object link not listed in fields
@@ -297,6 +313,8 @@ class Services_Edit_ListConverter
 		}
 
 		$result .= $this->arrayToInlinePluginString('filter', $filters);
+
+		$result .= $this->arrayToInlinePluginString('filter', $trackerFilters);
 
 		if ($sortMode) {
 			$result .= $this->arrayToInlinePluginString('sort', [$sortMode]);
