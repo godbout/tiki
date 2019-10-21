@@ -52,8 +52,7 @@ $server->addPlugin(new CalDAV\SharingPlugin());
 //$server->addPlugin($carddavPlugin);
 
 // ACL plugin
-$aclPlugin = new DAVACL\Plugin();
-$server->addPlugin($aclPlugin);
+// No need to use hard-coded ACL rules as Tiki CalDAVBackend enforces Tiki permissions
 
 // Support for html frontend
 $browser = new DAV\Browser\Plugin();
