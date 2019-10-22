@@ -376,3 +376,6 @@ body.fullscreen.tiki.navbar-padding {
 
 // Override the default Bootstrap separator.
 .breadcrumb-item + .breadcrumb-item::before { content: none !important; }
+
+// Make exception for find form wrapper width when the div is already in a col-sm-6 div (tiki-list_file_gallery.php)
+.col-sm-6 .form-wrapper .col-sm-6 { flex: 0 0 100%; max-width: 100%; }

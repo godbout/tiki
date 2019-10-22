@@ -3849,6 +3849,10 @@ body.fullscreen.tiki.navbar-padding {
 .breadcrumb-item + .breadcrumb-item::before {
   content: none !important; }
 
+.col-sm-6 .form-wrapper .col-sm-6 {
+  flex: 0 0 100%;
+  max-width: 100%; }
+
 div.tablesorter-resizable-container {
   clear: both;
   width: 100%; }
