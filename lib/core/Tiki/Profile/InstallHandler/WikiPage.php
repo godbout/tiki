@@ -162,7 +162,7 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 		$hash = [];
 
 		if ($this->mode == 'create') {
-			if ($this->wysiwyg) {
+			if ($this->wysiwyg && $this->wysiwyg != 'n') {
 				$this->wysiwyg = 'y';
 				$is_html = true;
 			} else {
@@ -184,8 +184,8 @@ class Tiki_Profile_InstallHandler_WikiPage extends Tiki_Profile_InstallHandler
 		} else {
 			$info = $tikilib->get_page_info($finalName, true, true);
 
-			if (! $this->wysiwyg) {
-				if (! empty($info['wysiwyg'])) {
+			if (! $this->wysiwyg || $this->wysiwyg == 'n') {
+				if (! empty($info['wysiwyg']) && $this->wysiwyg != 'n') {
 					$this->wysiwyg = $info['wysiwyg'];
 				} else {
 					$this->wysiwyg = 'n';
