@@ -2376,6 +2376,15 @@ table.treetable tr.expanded span.indenter a {
 .edit-tabular {
   padding-top: 15px; }
 
+.tiki .html-select-date, .tiki .html-select-time {
+  padding: 0 15px;
+  margin-bottom: 5px; }
+  .tiki .html-select-date .col, .tiki .html-select-time .col {
+    padding: 0 5px 0 0;
+    flex-grow: 0; }
+  .tiki .html-select-date .chosen-container-single, .tiki .html-select-time .chosen-container-single {
+    min-width: 8em; }
+
 @media (max-width: 767.98px) {
   .tracker-item-files {
     -webkit-column-count: 1;

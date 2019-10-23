@@ -130,6 +130,16 @@
 	padding-top: 15px;
 }
 
+.tiki .html-select-date,
+.tiki .html-select-time {
+	padding: 0 15px;
+	margin-bottom: 5px;
+	.col {
+		padding: 0 5px 0 0;
+		flex-grow: 0;
+	}
+	.chosen-container-single { min-width: 8em; }
+}
 
 @media (max-width: breakpoint-max(sm)) {
 	.tracker-item-files {

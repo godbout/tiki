@@ -20,7 +20,7 @@
 				{if $cur_field.description}
 					<p>{$cur_field.description|tra|escape}</p>
 				{/if}
-				<dl class="row">
+				<dl class="row mx-0">
 			{* Make adjustments for line breaks *}
 			{elseif ($cur_field.type eq 't' and $cur_field.options_array[0] eq '0') or
 				($cur_field.type eq 'a' and $cur_field.options_array[8] eq '0') or
