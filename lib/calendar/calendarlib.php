@@ -1132,10 +1132,11 @@ class CalendarLib extends TikiLib
 			$bindvars = array_merge($bindvars, $itemIdsOrUris, $itemIdsOrUris);
 		}
 
-		if ($componenttype) {
-			$cond .= " and i.componenttype = ?";
-			$bindvars[] = $componenttype;
-		}
+		// TODO: we support only events for now. This is meant for CalDAV access to support TODO items, for example.
+		// if ($componenttype) {
+		// 	$cond .= " and i.componenttype = ?";
+		// 	$bindvars[] = $componenttype;
+		// }
 
 		if ($start) {
 			$cond .= " and i.end > ?";
