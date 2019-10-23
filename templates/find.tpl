@@ -29,8 +29,8 @@
 	* Usage examples : {include file='find.tpl'}
 	*                  {include file='find.tpl' find_show_languages='y' find_show_categories='y' find_show_num_rows='y'}
 *}
-<div class="form-wrapper row mx-0">
-<div class="find mb-2 col-sm-6">
+
+<div class="find mb-2">
 	<form method="post" role="form" class="form">
 		{if !isset($map_only) or $map_only ne 'y'}
 			<div class="form-group row mx-0">
@@ -292,6 +292,5 @@
 		</div>
 		{/if}
 	</form>
-</div>
 </div>
 <!-- End of find -->

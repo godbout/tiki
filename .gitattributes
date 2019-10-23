@@ -6700,9 +6700,13 @@ themes/base_files/favicons/browserconfig.xml -text
 themes/base_files/favicons/favicon-16x16.png -text
 themes/base_files/favicons/favicon-32x32.png -text
 themes/base_files/favicons/favicon.ico -text
-themes/base_files/favicons/manifest.json -text
+themes/base_files/favicons/mstile-144x144.png -text
 themes/base_files/favicons/mstile-150x150.png -text
+themes/base_files/favicons/mstile-310x150.png -text
+themes/base_files/favicons/mstile-310x310.png -text
+themes/base_files/favicons/mstile-70x70.png -text
 themes/base_files/favicons/safari-pinned-tab.svg -text
+themes/base_files/favicons/site.webmanifest -text
 themes/base_files/feature_css/admin.css -text
 themes/base_files/feature_css/calendar-print.css -text
 themes/base_files/feature_css/calendar.css -text
