@@ -112,7 +112,9 @@ class AuthTokens
 			$entry_encoded_no_tikiroot = urlencode($entry_no_tikiroot);
 			$full_entry_encoded = $tikiroot . $entry_encoded_no_tikiroot;
 
-			if ($data['entry'] !== $sefurl && $full_entry_encoded !== $sefurl) {
+			$convertedSefurl = ! empty($GLOBALS['path']) ? $tikiroot . $GLOBALS['path'] : '';
+
+			if ($data['entry'] !== $sefurl && $full_entry_encoded !== $sefurl && $convertedSefurl !== $sefurl) {
 				return null;	// entry doesn't match
 			}
 		} elseif ($data['entry'] != $entry) {
@@ -120,6 +122,11 @@ class AuthTokens
 		}
 
 		$registered = (array) json_decode($data['parameters'], true);
+
+		// If sefurl is in use, do not compare page or fileId params
+		if ($prefs['feature_sefurl'] === 'y' && ! empty($key)) {
+			unset($registered[$key]);
+		}
 
 		if (! $this->allPresent($registered, $parameters) || ! $this->allPresent($parameters, $registered)) {
 			return null;
@@ -135,13 +142,12 @@ class AuthTokens
 			$userlib = TikiLib::lib('user');
 			$tempuser = $data['userPrefix'] . $userlib->autogenerate_login($data['tokenId'], 6);
 			$groups = json_decode($data['groups'], true);
-			$parameters = json_decode($data['parameters'], true);
 			if (! $userlib->user_exists($tempuser)) {
 				$randompass = $userlib->genPass();
 				$userlib->add_user($tempuser, $randompass, $data['email'], '', false, null, null, null, $groups);
 			}
 			$userlib->autologin_user($tempuser);
-			$url = basename($data['entry']);
+			$url = ! empty($convertedSefurl) ? basename($convertedSefurl) : basename($data['entry']);
 			if ($parameters) {
 				$query = '?' . http_build_query($parameters, '', '&');
 				$url .= $query;
