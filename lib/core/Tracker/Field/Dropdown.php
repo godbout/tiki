@@ -339,6 +339,16 @@ class Tracker_Field_Dropdown extends Tracker_Field_Abstract implements Tracker_F
 		$baseKey = $this->getBaseKey();
 
 		$possibilities = $this->getPossibilities();
+		if ($this->getConfiguration('type') == 'D') {
+			// TODO: make these and the ones in wikiplugin_trackerFilter_get_filters actually return accessible items
+			// i.e. if I am not able to see an item, I should not see its value in the filter as well (WYSIWYCA problem)
+			$all = TikiLib::lib('trk')->list_tracker_field_values($this->getTrackerDefinition()->getConfiguration('trackerId'), $this->getFieldId());
+			foreach ($all as $val) {
+				if (! isset($possibilities[$val])) {
+					$possibilities[$val] = $val;
+				}
+			}
+		}
 		$possibilities['-Blank (no data)-'] = tr('-Blank (no data)-');
 
 		$filters->addNew($permName, 'dropdown')
