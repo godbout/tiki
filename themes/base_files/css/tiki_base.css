@@ -1761,7 +1761,7 @@ td.url {
     table-layout: auto; } }
 
 @media only screen and (max-width: 767.98px) {
-  .table-expand-toggle {
+  .table-expand-toggle, .tracker-resize {
     display: none; }
 
   .toggle-table-wrap {
@@ -1783,6 +1783,7 @@ td.url {
       left: -9999px; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead tr {
         display: block;
+        width: calc(100vw - 30px);
         padding: 0.5rem 0 0;
         background-color: rgba(0, 0, 0, 0.05); }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody tr {
