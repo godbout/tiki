@@ -12,7 +12,8 @@ class Math_Formula_Function_Div extends Math_Formula_Function
 		$elements = [];
 
 		foreach ($element as $child) {
-			$elements[] = $this->evaluateChild($child);
+			$evaluatedChild = $this->evaluateChild($child);
+			$elements[] = ! empty($evaluatedChild) ? $evaluatedChild : 0;
 		}
 
 		$out = array_shift($elements);
