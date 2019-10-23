@@ -6,7 +6,7 @@ $imagePath: "../images/";
 // body {
 //	background-image: url('#{$imagePath}bg.jpg');
 // Common values
-$btn-info-active-bg: darken($btn-info-bg, 5%);
+// $btn-info-active-bg: darken($btn-info-bg, 5%);
 
 // This is reduced from the amount in tiki_base.css - maybe that needs to be changed, too.
 body.layout_social.tiki.navbar-padding {
@@ -126,23 +126,23 @@ a:focus,
 }*/
 // Adding from bootstrap default end
 
-.btn-info {
-	color: $btn-info-color;
-	background-color: $btn-info-bg;
-	border-color: $btn-info-border;
-}
+// .btn-info {
+// 	color: $btn-info-color;
+// 	background-color: $btn-info-bg;
+// 	border-color: $btn-info-border;
+// }
 
-.btn-info:hover {
-	color: $btn-info-hover-color;
-	background-color: $btn-info-hover-bg;
-	border-color: $btn-info-hover-border;
-}
+// .btn-info:hover {
+// 	color: $btn-info-hover-color;
+// 	background-color: $btn-info-hover-bg;
+// 	border-color: $btn-info-hover-border;
+// }
 
-.btn-info:not(:disabled):not(.disabled):active,
-.btn-info:not(:disabled):not(.disabled).active,
-.show > .btn-info.dropdown-toggle {
-	background-color: $btn-info-active-bg;
-}
+// .btn-info:not(:disabled):not(.disabled):active,
+// .btn-info:not(:disabled):not(.disabled).active,
+// .show > .btn-info.dropdown-toggle {
+// 	background-color: $btn-info-active-bg;
+// }
 
 //fieldset[disabled] .btn-primary:hover,
 //.btn-primary.disabled:focus,
@@ -216,17 +216,17 @@ a:focus,
 //  background-color: $btn-secondary-bg-color; //#ffffff;
 //}
 
-.nav-tabs .nav-link {
-	color: $input-color;
-	background-color: $input-bg;
-	border-color: $input-border-top-color $input-border-left-color #ffffff;
-}
+// .nav-tabs .nav-link {
+// 	color: $input-color;
+// 	background-color: $input-bg;
+// 	border-color: $input-border-top-color $input-border-left-color #ffffff;
+// }
 
-.nav-tabs .nav-link.active,
-.nav-tabs .nav-item.show .nav-link {
-	color: $btn-info-color;
-	background-color: $btn-info-active-bg;
-}
+// .nav-tabs .nav-link.active,
+// .nav-tabs .nav-item.show .nav-link {
+// 	color: $btn-info-color;
+// 	background-color: $btn-info-active-bg;
+// }
 
 hr {
 	border-top: 1px solid $hr-border-color;

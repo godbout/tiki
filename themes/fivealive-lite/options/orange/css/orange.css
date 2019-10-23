@@ -81,28 +81,6 @@ a:hover, .btn-link:hover, a:focus, .btn-link:focus {
  background-color: $btn-secondary-active-bg;
  border-color: $btn-secondary-active-border;
  }*/
-.btn-info {
-  color: #282828;
-  background-color: #e5d7dc;
-  border-color: #e5d0cf; }
-
-.btn-info:hover {
-  color: #282828;
-  background-color: #f9f6f7;
-  border-color: #f7f0f0; }
-
-.btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active, .show > .btn-info.dropdown-toggle {
-  background-color: #dbc8ce; }
-
-.nav-tabs .nav-link {
-  color: #555;
-  background-color: #f8e4dd;
-  border-color: #fac5b1 #fac5b1 #fff; }
-
-.nav-tabs .nav-link.active, .nav-tabs .nav-item.show .nav-link {
-  color: #282828;
-  background-color: #dbc8ce; }
-
 hr {
   border-top: 1px solid #e77d4f; }
 

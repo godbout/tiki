@@ -17,15 +17,16 @@ $white:    #fff !default;
 
 $primary: #1174a5;
 $success: #56ca75;
-//$info: #4d3a7d;
+$secondary: #8452af;
+$info: #4d3a7d;
 //$warning: #debb27;
 //$danger: #df6e1e;
 
 $theme-colors: (
- 	"primary":        	#1174a5 //,
-// 	"secondary": 		#dddddd,
+ 	"primary":        	#1174a5,
+ 	"secondary": #8452af,
 // 	"success":         	#5cb85c,
-// 	"info":           	#5bc0de,
+ 	"info":           	#5bc0de
 // 	"warning":         	#f0ad4e,
 // 	"danger":          	#d9534f,
 //	"light":			#ffffff,
