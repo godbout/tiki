@@ -11,7 +11,7 @@
  * Letter key: ~n~
  *
  */
-class Tracker_Field_Numeric extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable, Tracker_Field_Exportable
+class Tracker_Field_Numeric extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable, Tracker_Field_Exportable, Tracker_Field_Filterable
 {
 	public static function getTypes()
 	{
@@ -157,5 +157,25 @@ class Tracker_Field_Numeric extends Tracker_Field_Abstract implements Tracker_Fi
 			;
 
 		return $schema;
+	}
+
+	function getFilterCollection()
+	{
+		$filters = new Tracker\Filter\Collection($this->getTrackerDefinition());
+		$permName = $this->getConfiguration('permName');
+		$name = $this->getConfiguration('name');
+		$baseKey = $this->getBaseKey();
+
+		$filters->addNew($permName, 'exact')
+			->setLabel($name)
+			->setControl(new Tracker\Filter\Control\TextField("tf_{$permName}_em"))
+			->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+				$value = $control->getValue();
+				if ($value) {
+					$query->filterIdentifier($value, $baseKey);
+				}
+			});
+
+		return $filters;
 	}
 }
