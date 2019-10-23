@@ -2303,16 +2303,17 @@ table.treetable tr.expanded span.indenter a {
   padding: 0; }
 
 .tracker-item-files li {
+  position: relative;
   clear: right;
-  padding-right: 1em;
+  padding-right: 1.5em;
   font-size: 0.9em; }
   .tracker-item-files li img, .tracker-item-files li span {
-    margin-right: 8px; }
+    margin-right: 6px; }
 
 .tracker-item-files a.file-delete-icon {
-  display: inline-block;
-  clear: right;
-  float: right; }
+  position: absolute;
+  top: 0;
+  right: 0; }
 
 .tracker-item-files {
   -webkit-column-count: 2;
@@ -2320,7 +2321,8 @@ table.treetable tr.expanded span.indenter a {
   column-count: 2;
   -moz-column-gap: 30px;
   -webkit-column-gap: 30px;
-  column-gap: 30px; }
+  column-gap: 30px;
+  padding-left: 20px; }
 
 .file-drop {
   min-height: 100px; }

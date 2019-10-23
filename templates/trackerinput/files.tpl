@@ -19,7 +19,7 @@
 							{$info.name|escape}
 						</a>
 					{/if}
-					<a href="#" class="file-delete-icon">
+					<a href="#" class="file-delete-icon text-danger">
 						{icon name='delete'}
 					</a>
 				</li>
@@ -102,7 +102,7 @@
 				$field.input_csv('add', ',', fileId);
 
 				li.prepend($.fileTypeIcon(fileId, { type: type, name: name }));
-				li.append($('<a class="file-delete-icon">{{icon name='delete'}}</a>'));
+				li.append($('<a class="file-delete-icon text-danger">{{icon name='delete'}}</a>'));
 
 				if (replaceFile && $self.data('firstfile') > 0) {
 					li.prev('li').remove();

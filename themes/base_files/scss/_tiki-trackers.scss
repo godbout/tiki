@@ -23,16 +23,20 @@
 }
 
 .tracker-item-files li {
+	position: relative;
 	clear: right;
-	padding-right: 1em;
+	padding-right: 1.5em;
 	font-size: 0.9em;
-	img, span { margin-right: 8px; }
+	img, span { margin-right: 6px; }
 }
 
 .tracker-item-files a.file-delete-icon {
-	display: inline-block;
-	clear: right;
-	float: right;
+	position: absolute;
+	top: 0;
+	right: 0;
+//	display: inline-block;
+//	clear: right;
+//	float: right;
 }
 
 .tracker-item-files {
@@ -42,6 +46,7 @@
 	-moz-column-gap: 30px;
 	-webkit-column-gap: 30px;
 	column-gap: 30px;
+	padding-left: 20px;
 }
 
 .file-drop {
