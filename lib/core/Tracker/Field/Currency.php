@@ -101,6 +101,16 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 						'legacy_index' => 8,
 						'profile_reference' => 'tracker',
 					],
+					'dateFieldId' => [
+						'name' => tr('Date Field ID'),
+						'description' => tr('Currency conversions will be performed based on a date in another field in this tracker rather than the current date. This is usually the date of the transaction.'),
+						'filter' => 'int',
+						'legacy_index' => 9,
+						'profile_reference' => 'tracker_field',
+						'parent' => 'input[name=trackerId]',
+						'parentkey' => 'tracker_id',
+						'sort_order' => 'position_nasc',
+					],
 				],
 			],
 		];
@@ -133,12 +143,20 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 
 		$data = $this->getFieldData();
 
+		$dateFieldId = $this->getOption('dateFieldId');
+		if ($dateFieldId) {
+			$date = TikiLib::lib('trk')->get_item_value($this->getConfiguration('trackerId'), $this->getItemId(), $dateFieldId);
+		} else {
+			$date = null;
+		}
+
 		$smarty->loadPlugin('smarty_function_currency');
 		return smarty_function_currency(
 			[
 				'amount' => $data['amount'],
 				'sourceCurrency' => $data['currency'],
 				'exchangeRatesTrackerId' => $this->getOption('currencyTracker'),
+				'date' => $date,
 				'prepend' => $this->getOption('prepend'),
 				'append' => $this->getOption('append'),
 				'locale' => $this->getOption('locale'),

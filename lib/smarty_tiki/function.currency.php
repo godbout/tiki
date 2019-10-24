@@ -26,9 +26,17 @@ function smarty_function_currency($params, $smarty)
 	$trk = TikiLib::lib('trk');
 	$smarty = TikiLib::lib('smarty');
 
+	if (is_numeric($params['date'])) {
+		$date = date('Y-m-d', $params['date']);
+	} elseif (! empty($params['date'])) {
+		$date = date('Y-m-d', strtotime($params['date']));
+	} else {
+		$date = date('Y-m-d');
+	}
+
 	$conversions = [];
 	if (! empty($exchangeRatesTrackerId)) {
-		$rates = $trk->exchange_rates($exchangeRatesTrackerId, date('Y-m-d'));
+		$rates = $trk->exchange_rates($exchangeRatesTrackerId, $date);
 
 		if (empty($defaultCurrency)) {
 			$defaultCurrency = 'USD';

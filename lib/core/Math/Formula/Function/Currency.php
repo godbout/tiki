@@ -30,6 +30,12 @@ class Math_Formula_Function_Currency extends Math_Formula_Function
 		$factory = new Tracker_Field_Factory;
 		$options = Tracker_Options::fromSerialized($field['options'], $factory->getFieldInfo($field['type']));
 
+		if (! empty($element[3])) {
+			$date = $this->evaluateChild($element[3]);
+		} else {
+			$date = null;
+		}
+
 		$smarty = TikiLib::lib('smarty');
 		$smarty->loadPlugin('smarty_function_currency');
 		return smarty_function_currency(
@@ -37,6 +43,7 @@ class Math_Formula_Function_Currency extends Math_Formula_Function
 				'amount' => $amount,
 				'sourceCurrency' => $currency,
 				'exchangeRatesTrackerId' => $options->getParam('currencyTracker'),
+				'date' => $date,
 				'prepend' => $options->getParam('prepend'),
 				'append' => $options->getParam('append'),
 				'locale' => $options->getParam('locale'),
