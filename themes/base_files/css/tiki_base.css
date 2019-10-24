@@ -2360,20 +2360,26 @@ table.treetable tr.expanded span.indenter a {
   height: auto;
   margin-left: 0; }
 
+.tiki .chosen-container .chosen-results li.highlighted[class*="tracker-status"]:before {
+  background-image: none; }
+
 .chosen-container .chosen-results li.result-selected.tracker-status-open:before, .chosen-container .chosen-results li.result-selected.tracker-status-o:before, .tracker-status-open:before, .tracker-status-o:before {
   content: "\f111";
   color: green;
-  font-weight: 900; }
+  font-weight: 900;
+  background-image: none; }
 
 .chosen-container .chosen-results li.result-selected.tracker-status-pending:before, .chosen-container .chosen-results li.result-selected.tracker-status-p:before, .tracker-status-pending:before, .tracker-status-p:before {
   content: "\f042";
   color: orange;
-  font-weight: 900; }
+  font-weight: 900;
+  background-image: none; }
 
 .chosen-container .chosen-results li.result-selected.tracker-status-closed:before, .chosen-container .chosen-results li.result-selected.tracker-status-c:before, .tracker-status-closed:before, .tracker-status-c:before {
   content: "\f057";
   color: grey;
-  font-weight: 400; }
+  font-weight: 400;
+  background-image: none; }
 
 .edit-tabular {
   padding-top: 15px; }

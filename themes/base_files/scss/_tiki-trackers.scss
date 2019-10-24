@@ -101,6 +101,12 @@
 	}
 }
 
+.tiki .chosen-container .chosen-results li.highlighted {
+	&[class*="tracker-status"]:before {
+		background-image: none;
+	}
+}
+
 .chosen-container .chosen-results li.result-selected.tracker-status-open,
 .chosen-container .chosen-results li.result-selected.tracker-status-o,
 .tracker-status-open, .tracker-status-o {
@@ -108,6 +114,7 @@
 		content: "\f111";
 		color: green;
 		font-weight: 900;
+		background-image: none;
 	}
 }
 
@@ -118,6 +125,7 @@
 		content: "\f042";
 		color: orange;
 		font-weight: 900;
+		background-image: none;
 	}
 }
 
@@ -128,6 +136,7 @@
 		content: "\f057";
 		color: grey;
 		font-weight: 400;
+		background-image: none;
 	}
 }
 
