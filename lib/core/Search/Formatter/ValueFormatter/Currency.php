@@ -10,6 +10,8 @@ class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFor
 	private $date = null;
 	private $target_currency = null;
 	private $symbol = 'y';
+	private $currency_field = null;
+	private $amount_only = null;
 
 	function __construct($arguments)
 	{
@@ -26,6 +28,14 @@ class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFor
 		if (isset($arguments['symbol'])) {
 			$this->symbol = $arguments['symbol'];
 		}
+
+		if (isset($arguments['currency_field'])) {
+			$this->currency_field = $arguments['currency_field'];
+		}
+
+		if (isset($arguments['amount_only'])) {
+			$this->amount_only = $arguments['amount_only'];
+		}
 	}
 
 	function render($name, $value, array $entry)
@@ -37,7 +47,11 @@ class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFor
 			return $value;
 		}
 		
-		$field = $tracker->getField(substr($name, 14));
+		if ($this->currency_field) {
+			$field = $tracker->getField(preg_replace('/^tracker_field_/', '', $this->currency_field));
+		} else {
+			$field = $tracker->getField(substr($name, 14));
+		}
 		if( !$field || $field['type'] != 'b') {
 			return 'Field is not a Currency tracker field.';
 		}
@@ -100,8 +114,12 @@ class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFor
 			$symbol = 'i';
 		}
 
-		TikiLib::lib('smarty')->loadPlugin('smarty_modifier_money_format');
-		
-		return '~np~' . smarty_modifier_money_format($amount, $locale, $currency, '%(#10'.$symbol, 1) . '~/np~';
+		if ($this->amount_only) {
+			TikiLib::lib('smarty')->loadPlugin('smarty_modifier_number_format');
+			return '~np~' . smarty_modifier_number_format($amount, 2, '.', '') . '~/np~';;
+		} else {
+			TikiLib::lib('smarty')->loadPlugin('smarty_modifier_money_format');
+			return '~np~' . smarty_modifier_money_format($amount, $locale, $currency, '%(#10'.$symbol, 1) . '~/np~';
+		}
 	}
 }
