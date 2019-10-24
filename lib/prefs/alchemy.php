@@ -56,6 +56,14 @@ function prefs_alchemy_list()
 			'default' => 60,
 			'units' => tra('seconds'),
 		],
+		'alchemy_unoconv_port' => [
+			'name' => tra('unoconv port'),
+			'description' => tra('unoconv running port.'),
+			'type' => 'text',
+			'size' => '5',
+			'filter' => 'digits',
+			'default' => 2002,
+		],
 	];
 
 	if (!class_exists('\Imagick')) {

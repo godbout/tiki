@@ -100,7 +100,7 @@ MediaAlchemyst:
   requiredBy:
     - wikiplugin_preview
     - ocr_enable
-  requiredVersion: ^0.5.1
+  requiredVersion: ^0.5.3
 PDFjsViewer:
   licence: Apache-2.0
   licenceUrl: "https://github.com/oci-labs/pdfjs-dist-viewer-min/blob/main/LICENSE"

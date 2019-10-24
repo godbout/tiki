@@ -130,7 +130,8 @@
 				{preference name=alchemy_ffmpeg_path}
 				{preference name=alchemy_ffprobe_path}
 				{preference name=alchemy_unoconv_path}
-                {preference name=alchemy_unoconv_timeout}
+				{preference name=alchemy_unoconv_timeout}
+				{preference name=alchemy_unoconv_port}
 				{preference name=alchemy_gs_path}
 				{preference name=alchemy_imagine_driver}
 			</fieldset>

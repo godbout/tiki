@@ -51,6 +51,7 @@ class AlchemyLib
 			'imagine.driver' => $prefs['alchemy_imagine_driver'],
 			'unoconv.binaries' => $prefs['alchemy_unoconv_path'],
 			'unoconv.timeout' => $prefs['alchemy_unoconv_timeout'] ?: 60,
+			'unoconv.port' => $prefs['alchemy_unoconv_port'],
 			'gs.binaries' => $prefs['alchemy_gs_path'],
 			'gs.timeout' => 60,
 		];
