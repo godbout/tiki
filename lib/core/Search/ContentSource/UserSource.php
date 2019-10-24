@@ -93,6 +93,7 @@ class Search_ContentSource_UserSource implements Search_ContentSource_Interface
 
 		$data = [
 			'title' => $typeFactory->sortable($name),
+			'title_unstemmed' => $typeFactory->simpletext($name), // for wildcard searches as wildcard doesn't play well with stemming (e.g. *leslie* doesn't match leslie)
 			'creation_date' => $typeFactory->timestamp($detail['info']['created']),	// same as registration date			
 			'date' => $typeFactory->timestamp($detail['info']['created']),
 			'lastlogin_date' => $typeFactory->timestamp($detail['info']['lastLogin']),
@@ -145,6 +146,7 @@ class Search_ContentSource_UserSource implements Search_ContentSource_Interface
 
 		$data = [
 			'title',
+			'title_unstemmed',
 			'creation_date',
 			'date',
 			'wiki_content',

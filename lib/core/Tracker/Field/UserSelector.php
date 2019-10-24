@@ -421,7 +421,7 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 
 		return [
 			$baseKey => $baseValue,
-			"{$baseKey}_text" => $typeFactory->sortable($realName),
+			"{$baseKey}_text" => $typeFactory->simpletext($realName),
 		];
 	}
 

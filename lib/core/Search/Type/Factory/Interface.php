@@ -27,6 +27,9 @@ interface Search_Type_Factory_Interface
 	function nested($values);
 	// tokenized - indexed - stored in database
 	function sortable($value);
+	// tokenized - using Elasticsearch simple analyzer without stemming etc.
+	// useful in wildcard searches or when stemming is not desired. e.g. *leslie* doesn't match leslie.
+	function simpletext($value);
 	// tokenized - indexed - unstored in database (?)
 	function geopoint($value);
 	// like object but - not indexed - not mapped

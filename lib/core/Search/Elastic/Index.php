@@ -161,7 +161,7 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 						],
 					];
 				} else {
-					return [
+					$ret = [
 						"type" => $this->connection->getVersion() >= 5 ? "text" : "string",
 						"term_vector" => "with_positions_offsets",
 						"fields" => [
@@ -181,6 +181,10 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 							],
 						],
 					];
+					if ($entry instanceof Search_Type_SimpleText) {
+						$ret["analyzer"] = "simple";
+					}
+					return $ret;
 				}
 			},
 			array_diff_key($data, $this->providedMappings[$type])

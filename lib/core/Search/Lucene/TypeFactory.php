@@ -68,6 +68,12 @@ class Search_Lucene_TypeFactory implements Search_Type_Factory_Interface
 		return new Search_Type_ShortText($value);
 	}
 
+	/* Not supported in Lucene indexes but treating as sortable */
+	function simpletext($value)
+	{
+		return new Search_Type_ShortText($value);
+	}
+
 	/* Not fully supported in Lucene indexes - elasticsearch recommended */
 	function json($value)
 	{

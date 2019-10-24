@@ -79,6 +79,12 @@ class Search_MySql_TypeFactory implements Search_Type_Factory_Interface
 		return new Search_Type_PlainShortText($value);
 	}
 
+	/* Not supported in MySQL indexes but treating as sortable */
+	function simpletext($value)
+	{
+		return new Search_Type_PlainShortText($value);
+	}
+
 	/* Not fully supported in MySQL indexes - elasticsearch recommended */
 	function json($value)
 	{

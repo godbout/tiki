@@ -2711,6 +2711,7 @@ lib/core/Search/Type/PlainMediumText.php -text
 lib/core/Search/Type/PlainShortText.php -text
 lib/core/Search/Type/PlainText.php -text
 lib/core/Search/Type/ShortText.php -text
+lib/core/Search/Type/SimpleText.php -text
 lib/core/Search/Type/Timestamp.php -text
 lib/core/Search/Type/Whole.php -text
 lib/core/Search/Type/WikiText.php -text
