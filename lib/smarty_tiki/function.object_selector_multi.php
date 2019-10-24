@@ -38,6 +38,7 @@ function smarty_function_object_selector_multi($params, $smarty)
 		'value' => null,
 		'filter' => [],
 		'title' => null,
+		'searchfield' => $prefs['tiki_object_selector_searchfield'],
 		'simplename' => null,
 		'simpleid' => null,
 		'simpleclass' => null,

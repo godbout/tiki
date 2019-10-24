@@ -24,7 +24,7 @@
 	{if $object_selector.sort}data-sort="{$object_selector.sort|escape}"{/if}
 	data-filters="{$object_selector.filter|escape}"
 	data-threshold="{$object_selector.threshold|default:$prefs.tiki_object_selector_threshold|escape}"
-	data-searchfield="{$prefs.tiki_object_selector_searchfield|escape}"
+	data-searchfield="{$object_selector.searchfield|escape}"
 >
 	<div class="basic-selector d-none mb-3">
 		<select class="form-control">
