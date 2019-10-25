@@ -398,6 +398,7 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 	 * Search index fields:
 	 * - permName: identifier for exact match if single-user field OR multivalue if multiple-user field
 	 * - permName_text: sortable text search for Real Name (if enabled) or user identifiers
+	 * - permName_unstemmed: lowercase and without stemming for use in wildcard searches
 	 */
 	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
 	{
@@ -421,7 +422,8 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 
 		return [
 			$baseKey => $baseValue,
-			"{$baseKey}_text" => $typeFactory->simpletext($realName),
+			"{$baseKey}_text" => $typeFactory->sortable($realName),
+			"{$baseKey}_unstemmed" => $typeFactory->simpletext($realName),
 		];
 	}
 
