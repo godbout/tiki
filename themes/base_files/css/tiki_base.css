@@ -1761,7 +1761,7 @@ td.url {
     table-layout: auto; } }
 
 @media only screen and (max-width: 767.98px) {
-  .table-expand-toggle, .tracker-resize {
+  .btn.table-expand-toggle, .btn.tracker-resize-expand, .btn.tracker-resize-compress {
     display: none; }
 
   .toggle-table-wrap {
@@ -1781,46 +1781,48 @@ td.url {
       position: absolute;
       top: -9999px;
       left: -9999px; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th.selectall, .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th.selectall {
+        border: none; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead tr {
         display: block;
         width: calc(100vw - 30px);
-        padding: 0.5rem 0 0;
-        background-color: rgba(0, 0, 0, 0.05); }
+        padding: 0;
+        background-color: transparent;
+        border-bottom: 1px solid #dee2e6; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody tr {
         display: block;
+        padding: 0.5rem 0;
         border-bottom: 1px solid #dee2e6; }
-        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody tr:not(:nth-child(1)) {
-          padding: 0.5rem 0; }
-        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody > tr.active {
-          display: none; }
-        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td {
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td {
+        display: block;
+        padding: 0.25rem 0.75rem 0.5rem;
+        border-top: none;
+        text-align: left !important;
+        position: relative;
+        word-break: break-word; }
+        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td:after {
           display: block;
-          padding: 0.25rem 0.75rem 0.5rem;
-          border-top: none;
-          text-align: left !important;
-          position: relative;
-          word-break: break-word; }
-          .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td:after {
-            display: block;
-            clear: both;
-            content: ""; }
-          .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkbox-cell {
-            width: auto; }
-        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkall {
-          position: absolute; }
-        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkmargin {
-          margin-left: 40px; }
-        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .header {
-          display: block !important;
-          font-weight: bold; }
-        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .hidecell {
-          display: none; }
-        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .float-right {
-          float: none !important; }
-        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .form-check-input {
-          margin: 5px 0 0; }
-        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .form-check {
-          padding-left: 0; } }
+          clear: both;
+          content: ""; }
+        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkbox-cell {
+          width: auto; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody > tr.active {
+        display: none; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkall {
+        position: absolute; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkmargin {
+        margin-left: 40px; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .header {
+        display: block !important;
+        font-weight: bold; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .hidecell {
+        display: none; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .float-right {
+        float: none !important; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .form-check-input {
+        margin: 5px 0 0; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .form-check {
+        padding-left: 0; } }
 
 .article .actions form {
   display: inline; }

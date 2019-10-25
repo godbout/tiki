@@ -122,9 +122,10 @@ td.url{
 }
 
 @media only screen and (max-width: breakpoint-max(sm)) {
-	.table-expand-toggle, .tracker-resize { display: none; }
+	.btn.table-expand-toggle,
+	.btn.tracker-resize-expand,
+	.btn.tracker-resize-compress { display: none; }
 	.toggle-table-wrap {
-//		position: absolute; right: 5px; margin-top: -50px;
 		width: 100%; text-align: right;
 		.btn-link {
 			padding: 0; padding-left: 0.75rem;
@@ -142,19 +143,24 @@ td.url{
 						top: -9999px;
 						left: -9999px;
 					}
+					th.selectall { border: none; }
 				}
 
 				thead tr {
 					display: block;
 					width: calc(100vw - 30px);
-					padding: 0.5rem 0 0;
-					background-color: $table-accent-bg;
+					padding: 0;
+					background-color: transparent;
+//					background-color: $table-accent-bg;
+					border-bottom: 1px solid $border-color;
 				}
 
 				tbody {
-					tr { display: block; border-bottom: 1px solid $border-color; }
-					tr:not(:nth-child(1)) { padding: 0.5rem 0; }
-					> tr.active { display: none; }
+					tr {
+						display: block;
+						padding: 0.5rem 0;
+						border-bottom: 1px solid $border-color;
+					}
 
 					td {
 						display: block;
@@ -169,9 +175,10 @@ td.url{
 							content: "";
 						}
 						&.checkbox-cell { width: auto; }
-	//					&.action:not(:nth-child(1)) { display: none; }
+//						&.action:not(:nth-child(1)) { display: none; }
 					}
 
+					> tr.active { display: none; }
 					td.checkall { position: absolute; }
 					td.checkmargin { margin-left: 40px; }
 					.header { display: block !important; font-weight: bold; }
