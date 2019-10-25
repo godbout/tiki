@@ -110,6 +110,37 @@ class Services_Edit_SemaphoreController
 	 * @param JitFilter $input
 	 * @return mixed
 	 */
+	function action_is_set_by_other($input)
+	{
+		global $user;
+
+		$object_id = $input->object_id->pagename();
+		$object_type = $input->object_type->pagename();
+		$object_type = $object_type ? $object_type : 'wiki page';
+
+		$this->removeExpired($input->limit->int());
+
+		$semUser = $this->table->fetchOne(
+			'user',
+			[
+				'semName' => $object_id,
+				'objectType' => $object_type,
+			]
+		);
+
+		if ($user && $semUser == $user) {
+			return false;
+		} elseif ($semUser) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * @param JitFilter $input
+	 * @return mixed
+	 */
 	function action_get_value($input)
 	{
 		$object_id = $input->object_id->pagename();
