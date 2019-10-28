@@ -222,7 +222,7 @@ if (jqueryTiki.no_cookie) {
 			<label for="login-pass_{$module_logo_instance}">{tr}Password:{/tr}</label>
 			<input onkeypress="capLock(event, this)" type="password" name="pass" class="form-control" id="login-pass_{$module_logo_instance}">
 			{if $module_params.show_forgot eq 'y' && $prefs.forgotPass eq 'y'}
-				<a class="mt-1" href="tiki-remind_password.php" title="{tr}Click here if you've forgotten your password{/tr}">{tr}I forgot my password{/tr}</a>
+				<br><a class="mt-1" href="tiki-remind_password.php" title="{tr}Click here if you've forgotten your password{/tr}">{tr}I forgot my password{/tr}</a>
 			{/if}
 			<div class="divCapson" style="display:none;">
 				{icon name='error' istyle="vertical-align:middle"} {tr}CapsLock is on.{/tr}
