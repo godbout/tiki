@@ -221,6 +221,9 @@ if (jqueryTiki.no_cookie) {
 		<div class="pass form-group row mx-0 clearfix">
 			<label for="login-pass_{$module_logo_instance}">{tr}Password:{/tr}</label>
 			<input onkeypress="capLock(event, this)" type="password" name="pass" class="form-control" id="login-pass_{$module_logo_instance}">
+			{if $module_params.show_forgot eq 'y' && $prefs.forgotPass eq 'y'}
+				<a class="mt-1" href="tiki-remind_password.php" title="{tr}Click here if you've forgotten your password{/tr}">{tr}I forgot my password{/tr}</a>
+			{/if}
 			<div class="divCapson" style="display:none;">
 				{icon name='error' istyle="vertical-align:middle"} {tr}CapsLock is on.{/tr}
 			</div>
@@ -273,17 +276,11 @@ if (jqueryTiki.no_cookie) {
 		<div class="form-group text-center">
 			<button class="btn btn-primary button submit" type="submit" name="login">{tr}Log in{/tr} <!--i class="fa fa-arrow-circle-right"></i--></button>
 		</div>
-		{if $module_params.show_forgot eq 'y' or $module_params.show_register eq 'y' or $module_params.show_two_factor_auth}
+		{if $module_params.show_register eq 'y' or $module_params.show_two_factor_auth}
 			<div {if $mode eq 'header'}class="text-right" style="display:inline;"{/if}>
 				{strip}
 					<div {if $mode eq 'header'}style="display: inline-block"{/if}><ul class="{if $mode neq 'header'}list-unstyled"{else}list-inline"{/if}>
-						{if $module_params.show_forgot eq 'y' && $prefs.forgotPass eq 'y'}
-							<li class="pass{if $mode eq 'popup'} dropdown-item{/if} list-item p-0"><a href="tiki-remind_password.php" title="{tr}Click here if you've forgotten your password{/tr}">{tr}I forgot my password{/tr}</a></li>
-						{/if}
 						{if $module_params.show_register eq 'y' && $prefs.allowRegister eq 'y'}
-							{if $mode eq 'header' && $module_params.show_forgot eq 'y' && $prefs.forgotPass eq 'y'}
-								&nbsp;|&nbsp;
-							{/if}
 							<li class="register{if $mode eq 'popup'} dropdown-item{/if} list-item"><a href="tiki-register.php{if !empty($prefs.registerKey)}?key={$prefs.registerKey|escape:'url'}{/if}" title="{tr}Click here to register{/tr}"{if !empty($prefs.registerKey)} rel="nofollow"{/if}>{tr}Register{/tr}</a></li>
 						{/if}
 						{if $prefs.twoFactorAuth eq 'y' and $module_params.show_two_factor_auth ne 'y'}
