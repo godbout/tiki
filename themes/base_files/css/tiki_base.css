@@ -1775,13 +1775,14 @@ td.url {
       text-decoration: none !important; }
 
   .tiki #col1 .table-responsive .form-check-input {
-    position: static;
-    margin-left: 0; }
+    position: static; }
     .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th:not(.selectall), .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th:not(.selectall) {
       position: absolute;
       top: -9999px;
       left: -9999px; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th.selectall, .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th.selectall {
+        padding-top: 0.35rem;
+        padding-bottom: 0.69rem;
         border: none; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead tr {
         display: block;
@@ -1811,7 +1812,7 @@ td.url {
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkall {
         position: absolute; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkmargin {
-        margin-left: 40px; }
+        margin-left: 30px; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .header {
         display: block !important;
         font-weight: bold; }
