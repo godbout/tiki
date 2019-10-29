@@ -678,7 +678,7 @@ function wikiplugin_pivottable($data, $params)
 				continue;
 			}
 			$replacement = array_map(function($value) use ($row, $field) {
-				return array_merge($row, [$field => trim($value)]);
+				return array_merge($row, [$field => ltrim($value)]);
 			}, $splitted);
 			array_splice($pivotData, $key, 1, $replacement);
 			$key += count($replacement);
