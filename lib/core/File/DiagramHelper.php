@@ -10,12 +10,17 @@ namespace Tiki\File;
 use Tiki\FileGallery\File as TikiFile;
 use Tiki\FileGallery\File;
 use Tiki\Package\VendorHelper;
+use TikiLib;
+use WikiParser_PluginArgumentParser;
 
 class DiagramHelper
 {
 	const DRAW_IO_IMAGE_EXPORT_SERVICE_URL = 'https://exp.draw.io/ImageExport4/export';
 	const DRAW_IO_IMAGE_FORMAT = 'png';
 	const FETCH_IMAGE_CONTENTS_TIMEOUT = 5;
+
+	const WIKI_SYNTAX_DEFAULT_DIAGRAM_MXCELL_REPEAT = 'vertical';
+	const WIKI_SYNTAX_DEFAULT_DIAGRAM_MXCELL_OFFSET = '10';
 
 	/**
 	 * Get diagram as image given a file ID or diagram contents.
@@ -112,6 +117,133 @@ class DiagramHelper
 	public static function parseData($data)
 	{
 		return preg_replace('/\s+/', ' ', $data);
+	}
+
+	/**
+	 * Decode drawio's deflated diagram string
+	 * @param $diagramHash
+	 * @return string
+	 */
+	public static function inflate(string $diagramHash) : string
+	{
+		return gzinflate(base64_decode((string) $diagramHash));
+	}
+
+	/**
+	 * Inflate string in order to be drawio readable
+	 * @param \SimpleXMLElement $diagram_xml
+	 * @return string
+	 */
+	public static function deflate(\SimpleXMLElement $diagram_xml) : string
+	{
+		$headlessXML = str_replace("<?xml version=\"1.0\"?>\n", '', $diagram_xml->asXml());
+		return base64_encode(gzdeflate($headlessXML));
+	}
+
+	/**
+	 * Parse Wiki Markup inside a diagram's cells
+	 * @param $diagram_hash
+	 * @return string
+	 * @throws \Exception
+	 */
+	public static function parseDiagramWikiSyntax($rootDiagram) : string
+	{
+		if (is_string($rootDiagram)) {
+			$decoded = self::inflate($rootDiagram);
+			$rootDiagram = simplexml_load_string(urldecode($decoded));
+		}
+
+		foreach ($rootDiagram as $root) {
+			$xpathToUnset = [];
+			$newCells = [];
+
+			foreach ($root as $mxCell) {
+				if (! isset($mxCell['value'])) {
+					continue;
+				}
+
+				$cellValue = (string) $mxCell['value'];
+				$plugins = \WikiParser_PluginMatcher::match($cellValue);
+
+				if ($plugins->count()) {
+					$plugin = $plugins->next();
+
+					if ($plugin->getName() === 'list') {
+						require_once "lib/wiki-plugins/wikiplugin_list.php";
+						$populatedListContent = [];
+
+						$callback = function ($result, $formatter) use (&$populatedListContent) {
+							$populatedListContent = $result;
+						};
+
+						$argumentParser = new WikiParser_PluginArgumentParser;
+						$listPluginArguments = $argumentParser->parse($plugin->getArguments());
+
+						if (! isset($listPluginArguments['diagram-repeat'])) {
+							$listPluginArguments['diagram-repeat'] = self::WIKI_SYNTAX_DEFAULT_DIAGRAM_MXCELL_REPEAT;
+						}
+
+						if (! isset($listPluginArguments['diagram-offset'])) {
+							$listPluginArguments['diagram-offset'] = self::WIKI_SYNTAX_DEFAULT_DIAGRAM_MXCELL_OFFSET;
+						}
+
+						wikiplugin_list($plugin->getBody(), array_merge($listPluginArguments, ['resultCallback' => $callback]));
+						$cellAttributes = current($mxCell->attributes());
+						$geometryAttributes = current($mxCell->mxGeometry->attributes());
+						$offsetAxis = $listPluginArguments['diagram-repeat'] == 'vertical' ? 'y' : 'x';
+
+						foreach ($populatedListContent as $listContent) {
+							$newCell = self::generateMxCell($cellAttributes, $geometryAttributes);
+							$newCell['value'] = htmlspecialchars_decode(TikiLib::lib('parser')->parse_data($listContent));
+							$newCells[] = $newCell;
+							$geometryAttributes[$offsetAxis] += $listPluginArguments['diagram-offset'];
+						}
+
+						$xpathToUnset[] = '//mxCell[@id="'. $cellAttributes['id'] .'"]';
+					} else {
+						$mxCell['value'] = htmlspecialchars_decode(TikiLib::lib('parser')->parse_data($cellValue));
+					}
+				}
+			}
+
+			foreach ($xpathToUnset as $xpath) {
+				$toUnset = current($rootDiagram->xpath($xpath));
+				unset($toUnset[0]);
+			}
+
+			foreach ($newCells as $newCell) {
+				XMLHelper::appendElement($root, $newCell);
+			}
+		}
+
+		return self::deflate($rootDiagram);
+	}
+
+	/**
+	 * Generate an mxCell based on specific attributes
+	 * @param $cellAttributes
+	 * @param $geometryAttributes
+	 * @return \SimpleXMLElement
+	 */
+	private static function generateMxCell(array $cellAttributes, array $geometryAttributes) : \SimpleXMLElement
+	{
+		$mxCell = simplexml_load_string("<mxCell><mxGeometry></mxGeometry></mxCell>");
+
+		if (! empty($cellAttributes)) {
+			foreach ($cellAttributes as $key => $attribute) {
+				$mxCell[$key] = $attribute;
+			}
+
+			$mxCell['id'] = uniqid();
+		}
+
+		if (! empty($geometryAttributes)) {
+			foreach ($geometryAttributes as $key => $geometryAttribute) {
+				$mxCell->mxGeometry[$key] = $geometryAttribute;
+			}
+		}
+
+		return $mxCell;
 	}
 
 	/**

@@ -50,6 +50,12 @@ function wikiplugin_diagram_info()
 				'default' => 'left',
 				'since' => '21.0',
 			],
+			'wikiparse' => [
+				'required' => false,
+				'name' => tr('Parse wiki markup language inside the diagram'),
+				'description' => tr('Parameter that will allow to parse wiki markup language inside the diagram if the value is "1"'),
+				'since' => '21.0',
+			],
 		],
 	];
 
@@ -211,10 +217,33 @@ EOF;
 		$allowEdit = false;
 	}
 
+	$base_64_diagram = base64_encode($data);
+
+	if (isset($params['wikiparse']) && $params['wikiparse'] == 1) {
+		$parsedDiagrams = [];
+		$XMLDiagrams = simplexml_load_string($data);
+
+		if ($XMLDiagrams->getName() == 'mxGraphModel') {
+			$parsedDiagrams = ['<diagram id="' . uniqid() .'">' . DiagramHelper::parseDiagramWikiSyntax($XMLDiagrams) . '</diagram>'];
+		} else {
+			if (! empty($XMLDiagrams)) {
+				foreach ($XMLDiagrams as $diagram) {
+					$parsedDiagram = DiagramHelper::parseDiagramWikiSyntax((string) $diagram);
+					$diagram[0] = $parsedDiagram;
+					$test = $diagram->saveXML();
+					$parsedDiagrams[] = $diagram->saveXML();
+				}
+			}
+		}
+
+		$diagrams = $parsedDiagrams;
+		$data = '<mxfile>' . implode('', $diagrams) . '</mxfile>';
+	}
+
 	$smarty = TikiLib::lib('smarty');
 	$smarty->assign('index', $diagramIndex);
 	$smarty->assign('data', $diagrams);
-	$smarty->assign('graph_data_base64', base64_encode($data));
+	$smarty->assign('graph_data_base64', $base_64_diagram);
 	$smarty->assign('sourcepage', $sourcepage);
 	$smarty->assign('allow_edit', $allowEdit);
 	$smarty->assign('file_id', $fileId);

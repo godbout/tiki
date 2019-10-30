@@ -300,6 +300,11 @@ function wikiplugin_list($data, $params)
 	$formatter = $builder->getFormatter();
 
 	$result->setTsOn($tsret['tsOn']);
+
+	if (!empty($params['resultCallback']) && is_callable($params['resultCallback'])) {
+		return $params['resultCallback']($formatter->getPopulatedList($result), $formatter);
+	}
+
 	$out = $formatter->format($result);
 
 	if ($params['cache'] == 'y') {
