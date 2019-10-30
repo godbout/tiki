@@ -29,7 +29,9 @@
 		<div class="form-group row">
 			<label class="col-form-label col-sm-3">{tr}Initializite this format with the current tracker fields{/tr}</label>
 			<div class="col-sm-9">
-				<input class="form-control" type="checkbox" name="prefill">
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" name="prefill">
+				</div>
 			</div>
 		</div>
 		<div class="form-group submit">

@@ -686,8 +686,13 @@ class Services_Tracker_TabularController
 			foreach ($fields as $field) {
 				$fieldName = $field['name'];
 				$permName = $field['permName'];
-				$local = $schema->getFieldSchema($permName);
-				$columns = $local->getColumns();
+				try {
+					$local = $schema->getFieldSchema($permName);
+					$columns = $local->getColumns();
+				} catch (Exception $e) {
+					Feedback::warning($e->getMessage());
+					continue;
+				}
 
 				$descriptor[] = [
 					'label' => $fieldName,
