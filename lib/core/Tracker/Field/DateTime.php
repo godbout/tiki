@@ -11,7 +11,7 @@
  * Letter key: ~f~
  *
  */
-class Tracker_Field_DateTime extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable, Tracker_Field_Exportable, Tracker_Field_Filterable
+class Tracker_Field_DateTime extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable, Tracker_Field_Exportable, Tracker_Field_Filterable, Search_FacetProvider_Interface
 {
 	public static function getTypes()
 	{
@@ -266,4 +266,19 @@ class Tracker_Field_DateTime extends Tracker_Field_Abstract implements Tracker_F
 
 		return $filters;
 	}
+
+	function getFacets()
+	{
+		$baseKey = $this->getBaseKey();
+		// add this a a generic Term facet/aggregation and the plugin will override it depending on type
+		return [
+			Search_Query_Facet_Term::fromField($baseKey)
+				->setLabel($this->getConfiguration('name'))
+				->setRenderCallback(function ($date) {
+					return TikiLib::lib('tiki')->get_short_date($date / 1000);
+				})
+		];
+	}
+
+
 }

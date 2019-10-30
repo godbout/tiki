@@ -31,6 +31,7 @@ class Search_Query_FacetWikiBuilder
 						$facet['ranges'] = isset($arguments['ranges']) ? $arguments['ranges'] : null;
 					} elseif ($facet['type'] === 'date_histogram') {
 						$facet['interval'] = isset($arguments['interval']) ? $arguments['interval'] : null;
+						$facet['format'] = isset($arguments['format']) ? $arguments['format'] : null;
 					}
 
 					if (isset($arguments['id'])) {
@@ -57,6 +58,16 @@ class Search_Query_FacetWikiBuilder
 				$real = $provider->getFacet($facet['name']);	// name is actually field, id allows multiple aggs per field
 			}
 			if ($real) {
+
+				if ($facet['type'] === 'date_histogram' && ! is_a($real, '\Search_Query_Facet_DateHistogram')) {
+					// tracker date fields return a generic "Term" facet but the plugin should choose range of histogram
+					$real = Search_Query_Facet_DateHistogram::fromField($real->getField())->setLabel($real->getLabel());
+
+				} else if ($facet['type'] === 'date_range' && ! is_a($real, '\Search_Query_Facet_DateRange')) {
+					// same for date range
+					$real = Search_Query_Facet_DateRange::fromField($real->getField())->setLabel($real->getLabel());
+				}
+
 				if ($facet['operator']) {
 					$real->setOperator($facet['operator']);
 				}
@@ -73,19 +84,37 @@ class Search_Query_FacetWikiBuilder
 					$real->setMinDocCount($facet['min']);
 				}
 
-				if (is_a($real, '\Search_Query_Facet_DateRange') && ! empty($facet['ranges'])) {
-					$ranges = explode('|', $facet['ranges']);
-					$real->clearRanges();
-					foreach (array_filter($ranges) as & $range) {
-						$range = explode(',', $range);
-						if (count($range) > 2) {
-							$real->addRange($range[1], $range[0], $range[2]);
-						} elseif (count($range) > 1) {
-							$real->addRange($range[1], $range[0]);
+				if (is_a($real, '\Search_Query_Facet_DateRange')) {
+					if (! empty($facet['ranges'])) {
+						$ranges = explode('|', $facet['ranges']);
+						$real->clearRanges();
+						foreach (array_filter($ranges) as & $range) {
+							$range = explode(',', $range);
+							if (count($range) > 2) {
+								$real->addRange($range[1], $range[0], $range[2]);
+							} else if (count($range) > 1) {
+								$real->addRange($range[1], $range[0]);
+							}
 						}
 					}
-				} elseif (is_a($real, '\Search_Query_Facet_DateHistogram') && ! empty($facet['interval'])) {
-					$real->setInterval($facet['interval']);
+				} elseif (is_a($real, '\Search_Query_Facet_DateHistogram')) {
+
+					if (! empty($facet['interval'])) {
+						$real->setInterval($facet['interval']);
+					}
+
+					if (! empty($facet['format'])) {
+						$format = $facet['format'];
+
+						$real->setRenderCallback(
+							function ($date) use ($format) {
+								if ($date === 0) {
+									$date = 1000;	// tikilib makes zero date now FIXME (it)
+								}
+								return TikiLib::lib('tiki')->date_format($format, $date / 1000);
+							}
+						);
+					}
 				}
 
 				$query->requestFacet($real);

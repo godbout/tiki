@@ -2026,7 +2026,11 @@ class CategLib extends ObjectLib
 
 	function getCustomFacets()
 	{
-		$list = array_filter(array_map('intval', $this->get_preference('category_custom_facets', [], true)));
+		static $list = [];
+
+		if (! $list) {
+			$list = array_filter(array_map('intval', $this->get_preference('category_custom_facets', [], true)));
+		}
 
 		return $list;
 	}

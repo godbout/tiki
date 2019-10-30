@@ -255,7 +255,13 @@ class Tiki_Profile_InstallHandler_FileGallery extends Tiki_Profile_InstallHandle
 			// Get all files from galleries
 			foreach ($files as $file) {
 				$file_data = $filegallib->get_file($file['fileId']);
-				$writer->writeExternal($file['filename'], $file_data['data'], '');
+				if (empty($file['data'])) {
+					// get the file from the filesystem
+					$fileObject = new \Tiki\FileGallery\File($file_data);
+					$wrapper = $fileObject->getWrapper();
+					$file['data'] = $wrapper->getContents();
+				}
+				$writer->writeExternal($file['filename'], $file['data'], '');
 			}
 		}
 

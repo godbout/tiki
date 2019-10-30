@@ -565,7 +565,7 @@ composer_core()
 	if [ ! -f temp/composer.phar ];
 	then
 		echo "We have failed to obtain the composer executable."
-		echo "NB: Maybe you are behing a proxy, just export https_proxy variable and relaunch setup.sh"
+		echo "NB: Maybe you are behind a proxy, just export https_proxy variable and relaunch setup.sh"
 		echo "1) Download it from http://getcomposer.org"
 		echo "2) Store it in temp/"
 		if [ ${EXITONFAIL} = "y" ]; then

@@ -7719,7 +7719,6 @@ themes/strasa/images/index.php -text
 themes/strasa/images/login.jpg -text
 themes/strasa/images/login_section.jpg -text
 themes/strasa/images/strasa.png -text
-themes/strasa/options/cool.css -text
 themes/strasa/options/cool/css/cool.css -text
 themes/strasa/options/cool/css/index.php -text
 themes/strasa/options/cool/images/box_bottom.gif -text
@@ -7733,18 +7732,8 @@ themes/strasa/options/cool/images/login.jpg -text svneol=unset#image/jpeg
 themes/strasa/options/cool/images/loginlong.jpg -text svneol=unset#image/jpeg
 themes/strasa/options/cool/images/register.jpg -text svneol=unset#image/jpeg
 themes/strasa/options/index.php -text
-themes/strasa/options/mono.css -text
-themes/strasa/options/mono/arrows-000000.png -text svneol=unset#image/png
-themes/strasa/options/mono/body-bg_fw.gif -text
-themes/strasa/options/mono/box_bottom.gif -text
-themes/strasa/options/mono/box_bottom_fw.gif -text
-themes/strasa/options/mono/box_top.gif -text
-themes/strasa/options/mono/box_top_fw.gif -text
 themes/strasa/options/mono/css/index.php -text
 themes/strasa/options/mono/css/mono.css -text
-themes/strasa/options/mono/fold-topright.jpg -text
-themes/strasa/options/mono/headerbg.jpg -text
-themes/strasa/options/mono/headermenuitem-hover.png -text
 themes/strasa/options/mono/images/arrows-000000.png -text
 themes/strasa/options/mono/images/body-bg_fw.gif -text
 themes/strasa/options/mono/images/box_bottom.gif -text
@@ -7764,14 +7753,7 @@ themes/strasa/options/mono/images/loginlong.jpg -text
 themes/strasa/options/mono/images/mono.png -text
 themes/strasa/options/mono/images/register.jpg -text
 themes/strasa/options/mono/index.php -text
-themes/strasa/options/mono/info_icon.png -text
-themes/strasa/options/mono/lightbg.jpg -text
-themes/strasa/options/mono/link_icon.png -text
 themes/strasa/options/mono/list_icon.png -text
-themes/strasa/options/mono/login.jpg -text
-themes/strasa/options/mono/loginlong.jpg -text svneol=unset#image/jpeg
-themes/strasa/options/mono/mono.png -text
-themes/strasa/options/mono/register.jpg -text
 themes/strasa/scss/_tiki-selectors.scss -text
 themes/strasa/scss/_variables.scss -text
 themes/strasa/scss/index.php -text

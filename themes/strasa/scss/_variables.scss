@@ -16,7 +16,7 @@ $gray-900: #212529 !default;
 $black:    #000 !default;
 
 $primary: #006699;
-$secondary: #dddddd;
+$secondary: #7400c3;
 $success: #48ca3b;
 $info: #4d3a7d;
 $warning: #debb27;
@@ -24,7 +24,7 @@ $danger: #df6e1e;
 
 $theme-colors: (
 	"primary":        	#006699,
- 	"secondary": 		#dddddd//,
+ 	"secondary": 		#7400c3
 // 	"success":         	#5cb85c,
 // 	"info":           	#5bc0de,
 // 	"warning":         	#f0ad4e,
@@ -59,9 +59,9 @@ $btn-primary-color: #ffffff;
 $btn-primary-bg: #1d9ccf;
 $btn-primary-border: #223845;
 
-$btn-secondary-color: #ffffff;
-$btn-secondary-bg: $secondary;
-$btn-secondary-border: darken($btn-secondary-bg, 5%);
+//$btn-secondary-color: #ffffff;
+//$btn-secondary-bg: $secondary;
+//$btn-secondary-border: darken($btn-secondary-bg, 5%);
 
 // Forms
 $input-bg: #f3fcfe;
@@ -96,6 +96,7 @@ $nav-tabs-link-active-color: #fff;
 // Popovers
 // Badges
 // Modals
+$modal-md: 600px;
 //$modal-header-border-color: #386dbb;
 // Alerts
 // Progress bars
