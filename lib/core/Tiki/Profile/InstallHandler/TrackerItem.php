@@ -149,7 +149,25 @@ class Tiki_Profile_InstallHandler_TrackerItem extends Tiki_Profile_InstallHandle
 
 		foreach ($item['field_values'] as $valueItems) {
 			$fieldReference = $writer->getReference('tracker_field', $valueItems['fieldId']);
-			$data['values'][] = [$fieldReference, $valueItems['value']];
+			if (isset($valueItems['value'])) {
+				$data['values'][] = [$fieldReference, $valueItems['value']];
+			} else {
+				$data['values'][] = null;
+
+				// just a note (--v) for header and prefs field types, but add a warning for others
+				if (in_array($valueItems['type'], ['h', 'p'])) {
+					$feedbackFn = 'note';
+				} else {
+					$feedbackFn = 'warning';
+				}
+
+				call_user_func(['Feedback', $feedbackFn],
+					tr(
+						'Field "%0" in Tracker %1 has no value for itemId %2',
+						$valueItems['permName'], $valueItems['trackerId'], $item['itemId']
+					)
+				);
+			}
 		}
 
 		$writer->addObject('tracker_item', $item['itemId'], $data);

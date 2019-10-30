@@ -262,8 +262,12 @@ class Feedback
 			foreach ($errors as $type => $message) {
 				if (is_array($message)) {
 					if (is_array($message[0]) && ! empty($message[0]['mes'])) {
-						$type = $message[0]['type'];
-						$message = $type . ': ' . str_replace('<br />', "\n", $message[0]['mes'][0]);
+						$out = '';
+						foreach ($message as $msg) {
+							$type = $msg['type'];
+							$out .= $type . ': ' . str_replace('<br />', "\n", $msg['mes'][0]) . "\n";
+						}
+						$message = $out;
 					} elseif (! empty($message['mes'])) {
 						$message = $type . ': ' . str_replace('<br />', "\n", $message['mes']);
 					}
