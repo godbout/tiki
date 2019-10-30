@@ -138,12 +138,13 @@ td.url{
 		&.large-table {
 			.table:not(.tablesorter) {
 				thead, tbody {
-					th:not(.selectall) {
+					th:not(.visible-header) {
 						position: absolute;
 						top: -9999px;
 						left: -9999px;
 					}
-					th.selectall {
+					th.visible-header {
+						display: inline-block;
 						padding-top: 0.35rem;
 						padding-bottom: 0.69rem;
 						border: none;
@@ -161,6 +162,7 @@ td.url{
 
 				tbody {
 					tr {
+						position: relative;
 						display: block;
 						padding: 0.5rem 0;
 						border-bottom: 1px solid $border-color;
@@ -171,7 +173,6 @@ td.url{
 						padding: 0.25rem 0.75rem 0.5rem;
 						border-top: none;
 						text-align: left !important;
-						position: relative;
 						word-break: break-word;
 						&:after {
 							display: block;
@@ -197,16 +198,16 @@ td.url{
 
 	.tiki #pagehistory .table-responsive {
 		&.large-table .table:not(.tablesorter) {
+			tbody th.compare-pages { float: right; }
 			tbody tr td:nth-last-child(-n+2) {
 				display: inline-block;
-				height: 75px;
-				input[type=radio] { position: absolute; bottom: 15px; }
+				input[type=radio] { position: absolute; top: 15px; }
 			}
 			tbody tr td:nth-last-child(2) {
-				input[type=radio] { left: 20px; }
+				input[type=radio] { right: 65px; }
 			}
 			tbody tr td:nth-last-child(1) {
-				input[type=radio] { left: -35px; }
+				input[type=radio] { right: 20px; }
 			}
 		}
 	}

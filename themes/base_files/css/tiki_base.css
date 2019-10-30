@@ -1776,11 +1776,12 @@ td.url {
 
   .tiki #col1 .table-responsive .form-check-input {
     position: static; }
-    .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th:not(.selectall), .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th:not(.selectall) {
+    .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th:not(.visible-header), .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th:not(.visible-header) {
       position: absolute;
       top: -9999px;
       left: -9999px; }
-      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th.selectall, .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th.selectall {
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th.visible-header, .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th.visible-header {
+        display: inline-block;
         padding-top: 0.35rem;
         padding-bottom: 0.69rem;
         border: none; }
@@ -1791,6 +1792,7 @@ td.url {
         background-color: transparent;
         border-bottom: 1px solid #dee2e6; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody tr {
+        position: relative;
         display: block;
         padding: 0.5rem 0;
         border-bottom: 1px solid #dee2e6; }
@@ -1799,7 +1801,6 @@ td.url {
         padding: 0.25rem 0.75rem 0.5rem;
         border-top: none;
         text-align: left !important;
-        position: relative;
         word-break: break-word; }
         .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td:after {
           display: block;
@@ -1825,16 +1826,17 @@ td.url {
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .form-check {
         padding-left: 0; }
 
-  .tiki #pagehistory .table-responsive.large-table .table:not(.tablesorter) tbody tr td:nth-last-child(-n+2) {
-    display: inline-block;
-    height: 75px; }
+  .tiki #pagehistory .table-responsive.large-table .table:not(.tablesorter) tbody th.compare-pages {
+    float: right; }
+    .tiki #pagehistory .table-responsive.large-table .table:not(.tablesorter) tbody tr td:nth-last-child(-n+2) {
+      display: inline-block; }
     .tiki #pagehistory .table-responsive.large-table .table:not(.tablesorter) tbody tr td:nth-last-child(-n+2) input[type=radio] {
       position: absolute;
-      bottom: 15px; }
+      top: 15px; }
     .tiki #pagehistory .table-responsive.large-table .table:not(.tablesorter) tbody tr td:nth-last-child(2) input[type=radio] {
-      left: 20px; }
+      right: 65px; }
     .tiki #pagehistory .table-responsive.large-table .table:not(.tablesorter) tbody tr td:nth-last-child(1) input[type=radio] {
-      left: -35px; } }
+      right: 20px; } }
 
 .article .actions form {
   display: inline; }
