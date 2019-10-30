@@ -194,4 +194,20 @@ td.url{
 			}
 		}
 	}
+
+	.tiki #pagehistory .table-responsive {
+		&.large-table .table:not(.tablesorter) {
+			tbody tr td:nth-last-child(-n+2) {
+				display: inline-block;
+				height: 75px;
+				input[type=radio] { position: absolute; bottom: 15px; }
+			}
+			tbody tr td:nth-last-child(2) {
+				input[type=radio] { left: 20px; }
+			}
+			tbody tr td:nth-last-child(1) {
+				input[type=radio] { left: -35px; }
+			}
+		}
+	}
 }

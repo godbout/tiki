@@ -1823,7 +1823,18 @@ td.url {
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .form-check-input {
         margin: 5px 0 0; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .form-check {
-        padding-left: 0; } }
+        padding-left: 0; }
+
+  .tiki #pagehistory .table-responsive.large-table .table:not(.tablesorter) tbody tr td:nth-last-child(-n+2) {
+    display: inline-block;
+    height: 75px; }
+    .tiki #pagehistory .table-responsive.large-table .table:not(.tablesorter) tbody tr td:nth-last-child(-n+2) input[type=radio] {
+      position: absolute;
+      bottom: 15px; }
+    .tiki #pagehistory .table-responsive.large-table .table:not(.tablesorter) tbody tr td:nth-last-child(2) input[type=radio] {
+      left: 20px; }
+    .tiki #pagehistory .table-responsive.large-table .table:not(.tablesorter) tbody tr td:nth-last-child(1) input[type=radio] {
+      left: -35px; } }
 
 .article .actions form {
   display: inline; }
