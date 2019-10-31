@@ -131,7 +131,6 @@ function wikiplugin_preview($data, $params)
 	$filePath = $file->getWrapper()->getReadableFile();
 	$fileMd5 = $file->getWrapper()->getChecksum();
 
-	session_write_close(); // close the session in case of large transcode/downloads to enable further browsing
 	while (ob_get_level() > 1) {
 		ob_end_clean();
 	} // Be sure output buffering is turned off
@@ -192,11 +191,13 @@ function wikiplugin_preview($data, $params)
 		unlink($newFilePath);
 
 		if (empty($content)) {
-			return;
+			exit;
 		}
 
 		$cacheLib->cacheItem($cacheName, $contentType . ';' . $content, $cacheType);
 	}
+
+	session_write_close(); // close the session in case of large transcode/downloads to enable further browsing
 
 	// Compression of the stream may corrupt files on windows
 	ini_set('zlib.output_compression', 'Off');

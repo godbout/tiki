@@ -81,8 +81,9 @@ class AlchemyLib
 	 * @param bool $animated true for animated gif
 	 * @return null|string the media type of the file, null on error
 	 */
-	public function convertToImage($sourcePath, $destinationPath, $width=null, $height=null, $animated=false)
+	public function convertToImage($sourcePath, $destinationPath, $width = null, $height = null, $animated = false)
 	{
+		global $tiki_p_admin;
 		try {
 			$guess = $this->mediavorus->guess($sourcePath);
 
@@ -106,14 +107,20 @@ class AlchemyLib
 		} catch (\Exception $e) {
 			$logsLib = TikiLib::lib('logs');
 			$logsLib->add_log('Alchemy', $e->getMessage());
+			$previous = $e->getPrevious();
 
-			\Feedback::error(tr('Failed to convert document into image. Please check Tiki Action Log for more information.'));
+			while ($previous) {
+				$logsLib->add_log('Alchemy', $previous->getMessage());
+				$previous = $previous->getPrevious();
+			};
+			$append = '.';
+			if ($tiki_p_admin == 'y') {
+				$append = ': ' . $e->getMessage() . ". ";
+			}
+
+			\Feedback::error(tr('Failed to convert document into image') . $append . tr('Please check Tiki Action Log for more information.'));
 		}
 
 		return null;
 	}
 }
-
-
-
-
