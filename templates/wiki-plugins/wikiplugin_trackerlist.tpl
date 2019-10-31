@@ -139,7 +139,7 @@
 								{/if}
 								{if ($showstatus ne 'n') and ($tracker_info.showStatus eq 'y' or ($tracker_info.showStatusAdminOnly eq 'y' and $perms.tiki_p_admin_trackers eq 'y'))}
 									{$precols = $precols + 1}
-									<th class="auto" style="width:20px;">&nbsp;</th>
+									<th class="auto" style="width:20px;"></th>
 								{/if}
 								{if $showitemrank eq 'y'}
 									{$precols = $precols + 1}
