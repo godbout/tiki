@@ -1829,6 +1829,8 @@ td.url {
         margin: 5px 0 0; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody .form-check {
         padding-left: 0; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tfoot tr {
+        display: block; }
 
   .tiki #pagehistory .table-responsive.large-table .table:not(.tablesorter) tbody th.compare-pages {
     float: right; }
