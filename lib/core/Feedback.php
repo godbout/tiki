@@ -292,4 +292,22 @@ class Feedback
 			}
 		}
 	}
+
+
+	/**
+	 * Remove a specific message from feedback
+	 * @param callable $comparableFunction $item as param and should return a boolean
+	 */
+	public static function removeIf(callable $comparableFunction)
+	{
+		if (!isset($_SESSION['tikifeedback'])) {
+			return;
+		}
+
+		foreach ($_SESSION['tikifeedback'] as $key => $value) {
+			if ($comparableFunction($value)) {
+				unset($_SESSION['tikifeedback'][$key]);
+			}
+		}
+	}
 }

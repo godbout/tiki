@@ -50,6 +50,20 @@ class Services_Search_Controller
 			if (isset($memory_limiter)) {
 				unset($memory_limiter);
 			}
+
+			//clean error messages related with search index
+			$removeIndexErrorsCallback = function ($item) {
+				if ($item['type'] == 'error') {
+					foreach ($item['mes'] as $me) {
+						if (strcmp($me, 'does not exist in the current index') !== false) {
+							return true;
+						}
+					}
+				}
+				return false;
+			};
+
+			Feedback::removeIf($removeIndexErrorsCallback);
 		}
 
 		$num_queries_after = $num_queries;
