@@ -332,7 +332,6 @@
 							{include file='antibot.tpl'}
 						{/if}
 						<div class="form-group mx-0">
-								<input type="button" class="btn btn-primary btn-sm previewItemBtn" title="{tr}Preview your changes.{/tr}" name="preview" value="{tr}Preview{/tr}">
 								<input type="submit" class="btn btn-primary btn-sm" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false">
 								{* --------------------------- to return to tracker list after saving --------- *}
 								{if $canView}
