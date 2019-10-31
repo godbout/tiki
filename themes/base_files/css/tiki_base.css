@@ -1775,16 +1775,20 @@ td.url {
       text-decoration: none !important; }
 
   .tiki #col1 .table-responsive .form-check-input {
-    position: static; }
+    position: static;
+    margin-left: 0; }
+    .tiki #col1 .table-responsive .form-check .form-check-input {
+      margin-left: -1.25rem; }
     .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th:not(.visible-header), .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th:not(.visible-header) {
       position: absolute;
       top: -9999px;
       left: -9999px; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead th.visible-header, .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th.visible-header {
         display: inline-block;
-        padding-top: 0.35rem;
-        padding-bottom: 0.69rem;
         border: none; }
+      .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody th.visible-header {
+        padding-top: 0.35rem;
+        padding-bottom: 0.69rem; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) thead tr {
         display: block;
         width: calc(100vw - 30px);

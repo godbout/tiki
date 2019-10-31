@@ -134,7 +134,8 @@ td.url{
 	}
 
 	.tiki #col1 .table-responsive {
-		.form-check-input { position: static; }
+		.form-check-input { position: static; margin-left: 0; }
+		.form-check .form-check-input { margin-left: -1.25rem; }
 		&.large-table {
 			.table:not(.tablesorter) {
 				thead, tbody {
@@ -145,10 +146,12 @@ td.url{
 					}
 					th.visible-header {
 						display: inline-block;
-						padding-top: 0.35rem;
-						padding-bottom: 0.69rem;
 						border: none;
 					}
+				}
+				tbody th.visible-header {
+					padding-top: 0.35rem;
+					padding-bottom: 0.69rem;
 				}
 
 				thead tr {
