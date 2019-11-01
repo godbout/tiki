@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		<div class="card-body">
-			<p class="too-many">{tr}Search and select what you are looking for from the options that appear..{/tr}</p>
+			<p class="too-many">{tr}Search and select what you are looking for from the options that appear.{/tr}</p>
 			<div class="results">
 				{foreach from=$object_selector_multi.current_selection item=object name=ix}
 					<div class="form-check">
