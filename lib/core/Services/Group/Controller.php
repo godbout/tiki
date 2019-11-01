@@ -61,7 +61,7 @@ class Services_Group_Controller
 		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
 		if ($util->notConfirmPost()) {
-			$util->setVars($input, $this->filters,'checked');
+			$util->setVars($input, $this->filters, 'checked');
 			if ($util->itemsCount > 0) {
 				if (count($util->items) === 1) {
 					$msg = tra('Delete the following group?');
@@ -318,14 +318,35 @@ class Services_Group_Controller
 				} else {
 					$msg = tr('Add the following users to group %0?', $input['group']);
 				}
-				return $util->confirm($msg, tra('Add'));
+				return $util->confirm(
+					$msg,
+					tra('Add'),
+					[
+						'fields' => [
+							[
+								'label' => tr('Please confirm this operation by typing your password'),
+								'field' => 'input',
+								'type' => 'password',
+								'name' => 'confirmpassword',
+								'placeholder' => tr('Password')
+							]
+						]
+					]
+				);
 			} else {
 				Services_Utilities::modalException(tra('One or more users must be selected'));
 			}
 			//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
 			$userlib = TikiLib::lib('user');
+			$pass = $input->offsetGet('confirmpassword');
+			$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
+			$ret = $userlib->validate_user($user, $pass);
+			if (! $ret[0]) {
+				Services_Utilities::modalException(tra('Invalid password'));
+			}
+
+			$util->setDecodedVars($input, $this->filters);
 			$logslib = TikiLib::lib('logs');
 			foreach ($util->items as $user) {
 				$userlib->assign_user_to_group($user, $util->extra['group']);
@@ -373,14 +394,36 @@ class Services_Group_Controller
 				} else {
 					$msg = tr('Ban the following users from group %0?', $input['group']);
 				}
-				return $util->confirm($msg, tra('Ban'));
+				return $util->confirm(
+					$msg,
+					tra('Ban'),
+					[
+						'fields' => [
+							[
+								'label' => tr('Please confirm this operation by typing your password'),
+								'field' => 'input',
+								'type' => 'password',
+								'name' => 'confirmpassword',
+								'placeholder' => tr('Password')
+							]
+						]
+					]
+				);
 			} else {
 				Services_Utilities::modalException(tra('One or more users must be selected'));
 			}
 			//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
-			$util->setDecodedVars($input, $this->filters);
 			$userlib = TikiLib::lib('user');
+			$pass = $input->offsetGet('confirmpassword');
+			$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
+			$ret = $userlib->validate_user($user, $pass);
+			if (! $ret[0]) {
+				Feedback::error(tra('Invalid password.'));
+				return Services_Utilities::closeModal();
+			}
+
+			$util->setDecodedVars($input, $this->filters);
 			$logslib = TikiLib::lib('logs');
 			foreach ($util->items as $user) {
 				$userlib->ban_user_from_group($user, $util->extra['group']);

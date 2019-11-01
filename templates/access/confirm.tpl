@@ -10,6 +10,7 @@
 	>
 		{include file='access/include_items.tpl'}
 		{include file='access/include_hidden.tpl'}
+		{include file='access/include_extra_fields.tpl'}
 		{include file='access/include_submit.tpl'}
 	</form>
 	{if !empty($extra.help)}

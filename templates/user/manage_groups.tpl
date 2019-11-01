@@ -68,6 +68,7 @@ $("input[name=add_remove]").change(function () {
 				{/foreach}
 			</select>
 		</div>
+		{include file='access/include_extra_fields.tpl'}
 		{include file='access/include_submit.tpl'}
 	</form>
 {/block}

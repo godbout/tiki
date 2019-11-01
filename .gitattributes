@@ -5339,6 +5339,7 @@ temp/web.config -text
 templates/.htaccess -text
 templates/access/confirm.tpl -text
 templates/access/confirm_select.tpl -text
+templates/access/include_extra_fields.tpl -text
 templates/access/include_hidden.tpl -text
 templates/access/include_items.tpl -text
 templates/access/include_submit.tpl -text

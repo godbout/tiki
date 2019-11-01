@@ -326,7 +326,7 @@ class Services_User_Controller
 		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
 		if ($util->notConfirmPost()) {
-			$util->setVars($input, [],'checked');
+			$util->setVars($input, [], 'checked');
 			if ($util->itemsCount > 0) {
 				if (count($util->items) === 1) {
 					$msg = tra('Delete the following user?');
@@ -401,7 +401,7 @@ class Services_User_Controller
 		$util = new Services_Utilities();
 		//first pass - show confirm popup
 		if ($util->notConfirmPost()) {
-			$util->setVars($input, $this->filters,'checked');
+			$util->setVars($input, $this->filters, 'checked');
 			if (count($util->items) > 0) {
 				if ($util->itemsCount === 1) {
 					$msg = tra('Ban the following user\'s IP?');
@@ -457,7 +457,16 @@ class Services_User_Controller
 							'add_remove'	=> 'remove',
 							'group'			=> $group,
 							'referer'		=> $referer,
-							'anchor'		=> $input->anchor->striptags()
+							'anchor'		=> $input->anchor->striptags(),
+							'fields' 		=>[
+								[
+									'label' => tr('Please confirm this operation by typing your password'),
+									'field' => 'input',
+									'type' => 'password',
+									'name' => 'confirmpassword',
+									'placeholder' => tr('Password')
+								]
+							]
 						]
 					);
 				//selected users to be added or removed from selected groups groups
@@ -479,7 +488,19 @@ class Services_User_Controller
 						'all_groups' => $all_groups,
 						'countgrps' => $countgrps,
 						'items' => $util->items,
-						'extra' => ['referer' => $referer],
+						'extra' => [
+							'referer' => $referer,
+							'fields' => [
+								[
+									'label' => tr('Please confirm this operation by typing your password'),
+									'field' => 'input',
+									'type' => 'password',
+									'name' => 'confirmpassword',
+									'placeholder' => tr('Password'),
+									'size' => '60'
+								]
+							]
+							],
 						'modal' => '1',
 						'userGroups' => str_replace(['\'','&'], ['%39;','%26'], json_encode($userGroups)),
 					];
@@ -489,6 +510,14 @@ class Services_User_Controller
 			}
 		//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
+			$userlib = TikiLib::lib('user');
+			$pass = $input->offsetGet('confirmpassword');
+			$user = isset($_SESSION['u_info']['login']) ? $_SESSION['u_info']['login'] : '';
+			$ret = $userlib->validate_user($user, $pass);
+			if (! $ret[0]) {
+				Services_Utilities::modalException(tra('Invalid password'));
+			}
+
 			$util->setDecodedVars($input, $this->filters);
 
 			// default group?
