@@ -1810,6 +1810,11 @@ td.url {
           display: block;
           clear: both;
           content: ""; }
+        .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.icon + td.checkbox-cell {
+          position: absolute;
+          top: 40px;
+          left: 2px;
+          margin-left: 0; }
         .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody td.checkbox-cell {
           width: auto; }
       .tiki #col1 .table-responsive.large-table .table:not(.tablesorter) tbody > tr.active {

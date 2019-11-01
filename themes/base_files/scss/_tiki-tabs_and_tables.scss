@@ -182,6 +182,12 @@ td.url{
 							clear: both;
 							content: "";
 						}
+						&.icon + td.checkbox-cell {
+							position: absolute;
+							top: 40px;
+							left: 2px;
+							margin-left: 0;
+						}
 						&.checkbox-cell { width: auto; }
 //						&.action:not(:nth-child(1)) { display: none; }
 					}
