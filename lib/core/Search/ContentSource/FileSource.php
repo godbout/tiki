@@ -52,6 +52,7 @@ class Search_ContentSource_FileSource implements Search_ContentSource_Interface,
 
 		$data = [
 			'title' => $typeFactory->sortable(empty($file['name']) ? $file['filename'] : $file['name']),
+			'title_unstemmed' => $typeFactory->simpletext(empty($file['name']) ? $file['filename'] : $file['name']),
 			'language' => $typeFactory->identifier('unknown'),
 			'creation_date' => $typeFactory->timestamp($file['created']),
 			'modification_date' => $typeFactory->timestamp($file['lastModif']),
@@ -79,6 +80,7 @@ class Search_ContentSource_FileSource implements Search_ContentSource_Interface,
 	{
 		return [
 			'title',
+			'title_unstemmed',
 			'language',
 			'creation_date',
 			'modification_date',
