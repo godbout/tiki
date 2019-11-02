@@ -3322,13 +3322,17 @@ class FileGalLib extends TikiLib
 		return $fileInfo;
 	}
 
-	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '')
+	function upload_single_file($gal_info, $name, $size, $type, $data, $asuser = null, $image_x = null, $image_y = null, $description = '', $created = '', $title = '')
 	{
 		global $user;
 		if (empty($asuser) || ! Perms::get()->admin) {
 			$asuser = $user;
 		}
 		$this->assertUploadedContentIsSafe($data, $name, $gal_info['galleryId']);
+
+		if (!$title) {
+			$title = $name;
+		}
 
 		$tx = $this->begin();
 
@@ -3338,14 +3342,14 @@ class FileGalLib extends TikiLib
 			'user' => $asuser,
 			'created' => $created
 		]);
-		$ret = $file->replace($data, $type, $name, $name, $image_x, $image_y);
+		$ret = $file->replace($data, $type, $title, $name, $image_x, $image_y);
 
 		$tx->commit();
 
 		return $ret;
 	}
 
-	function update_single_file($gal_info, $name, $size, $type, $data, $id, $asuser = null)
+	function update_single_file($gal_info, $name, $size, $type, $data, $id, $asuser = null, $title = '')
 	{
 		global $user;
 		if (empty($asuser)) {
@@ -3353,11 +3357,15 @@ class FileGalLib extends TikiLib
 		}
 		$this->assertUploadedContentIsSafe($data, $name, $gal_info['galleryId']);
 
+		if (!$title) {
+			$title = $name;
+		}
+
 		$tx = $this->begin();
 
 		$file = TikiFile::id($id);
-		$file->setParam('user', $auser);
-		$ret = $file->replace($data, $type, $name, $name);
+		$file->setParam('user', $asuser);
+		$ret = $file->replace($data, $type, $title, $name);
 
 		$tx->commit();
 

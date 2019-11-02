@@ -30,7 +30,7 @@
 			{wikiplugin _name='vimeo' fromFieldId=$field.fieldId|escape fromItemId=$item.itemId|escape galleryId=$field.galleryId|escape}{/wikiplugin}
 		{else}
 			{if $field.options_map.uploadInModal neq 'n'}
-				<a href="{service controller=file action=uploader uploadInModal=1 galleryId=$field.galleryId limit=$field.limit|default:100 type=$field.filter image_max_size_x=$field.image_x image_max_size_y=$field.image_y addDecriptionOnUpload=$data.addDecriptionOnUpload trackerId=$field.trackerId}" class="btn btn-primary upload-files">
+				<a href="{service controller=file action=uploader uploadInModal=1 galleryId=$field.galleryId limit=$field.limit|default:100 type=$field.filter image_max_size_x=$field.image_x image_max_size_y=$field.image_y addDecriptionOnUpload=$data.addDecriptionOnUpload trackerId=$field.trackerId requireTitle=$field.requireTitle}" class="btn btn-primary upload-files">
 					{if $field.limit !== 1}{tr}Upload Files{/tr}{else}{tr}Upload File{/tr}{/if}
 				</a>
 			{else}
@@ -124,7 +124,7 @@
 
 				success: function (data) {
 					$.each(data.files, function (k, file) {
-						addFile(file.fileId, file.type, file.name);
+						addFile(file.fileId, file.type, file.label);
 					});
 
 					$.closeModal();

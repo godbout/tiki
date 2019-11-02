@@ -70,6 +70,7 @@ class Services_File_Controller
 			'image_max_size_y' => $input->image_max_size_y->text(),
 			'addDecriptionOnUpload' => $input->addDecriptionOnUpload->int(),
 			'admin_trackers' => $perms->admin_trackers,
+			'requireTitle' => $input->requireTitle->text(),
 		];
 	}
 
@@ -83,6 +84,7 @@ class Services_File_Controller
 
 		$fileId = $input->fileId->int();
 		$asuser = $input->user->text();
+		$title = $input->title->text();
 
 		if (empty($asuser)) {
 			$asuser = $GLOBALS['user'];
@@ -131,6 +133,9 @@ class Services_File_Controller
 			$data = $input->data->none();
 			$data = base64_decode($data);
 		}
+		if (!$title) {
+			$title = $name;
+		}
 
 
 		/* The above if/else sets $type using finfo_file(). The following uses finfo_buffer(), which gives a type different from that obtained from finfo_file() in the case of Outlook .msg files on PHP 5.6. In this case, finfo_file()'s result is better. It is not impossible that the technique below would give better results in other cases.
@@ -154,9 +159,9 @@ class Services_File_Controller
 		$util = new Services_Utilities();
 		if ($util->isActionPost()) {
 			if ($fileId) {
-				$this->utilities->updateFile($gal_info, $name, $size, $type, $data, $fileId, $asuser);
+				$this->utilities->updateFile($gal_info, $name, $size, $type, $data, $fileId, $asuser, $title);
 			} else {
-				$fileId = $this->utilities->uploadFile($gal_info, $name, $size, $type, $data, $asuser, $image_x, $image_y, '','');
+				$fileId = $this->utilities->uploadFile($gal_info, $name, $size, $type, $data, $asuser, $image_x, $image_y, '','', $title);
 			}
 		} else {
 			$fileId = false;
@@ -177,6 +182,7 @@ class Services_File_Controller
 		return [
 			'size' => $size,
 			'name' => $name,
+			'title' => $title,
 			'type' => $type,
 			'fileId' => $fileId,
 			'galleryId' => $gal_info['galleryId'],

@@ -158,6 +158,16 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 							'y' => tr('Yes'),
 						],
 					],
+					'requireTitle' => [
+						'name' => tr('Require file title'),
+						'description' => tr('Require a file title which will be saved as the name of the file in the file gallery in addition to the filename. Upload In Modal required.'),
+						'filter' => 'alpha',
+						'default' => 'n',
+						'options' => [
+							'n' => tr('No'),
+							'y' => tr('Yes'),
+						],
+					]
 				],
 			],
 		];
@@ -272,6 +282,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 			'image_x' => $image_x,
 			'image_y' => $image_y,
 			'gallerySearch' => $gallery_list,
+			'requireTitle' => $this->getOption('requireTitle'),
 		];
 	}
 
