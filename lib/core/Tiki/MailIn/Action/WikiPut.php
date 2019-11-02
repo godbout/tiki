@@ -84,7 +84,7 @@ class WikiPut implements ActionInterface
 		}
 
 		$perms = $tikilib->get_user_permission_accessor($user, 'wiki page', $page);
-		return $perms->wiki_attach_files;
+		return $perms->wiki_attach_files || $account->isAnyoneAllowed();
 	}
 
 	function execute(Account $account, Message $message)

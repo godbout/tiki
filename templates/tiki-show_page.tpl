@@ -89,22 +89,22 @@ Note: The show content block must be defined at root level to use the include. A
 			{/if}
 
 			{if $pages > 1 and $prefs.wiki_page_navigation_bar neq 'bottom'}
-				<div class="text-center navigation_bar pagination position_top">
-					<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$first_page}" class="tips" title=":{tr}First{/tr}">
+				<div class="text-center navigation_bar pagination pagination-sm position_top">
+					<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$first_page}" class="page-link tips" title=":{tr}First{/tr}">
 						{icon name='backward_step'}
 					</a>
 
-					<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$prev_page}" class="tips" title=":{tr}Previous{/tr}">
+					<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$prev_page}" class="page-link tips" title=":{tr}Previous{/tr}">
 						{icon name='backward'}
 					</a>
 
-					<small>{tr _0=$pagenum _1=$pages}page: %0/%1{/tr}</small>
+					<div class="page-item disabled"><small class="page-link">{tr _0=$pagenum _1=$pages}page: %0/%1{/tr}</small></div>
 
-					<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$next_page}" class="tips" title=":{tr}Next{/tr}">
+					<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$next_page}" class="page-link tips" title=":{tr}Next{/tr}">
 						{icon name='forward'}
 					</a>
 
-					<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$last_page}" class="tips" title=":{tr}Last{/tr}">
+					<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$last_page}" class="page-link tips" title=":{tr}Last{/tr}">
 						{icon name='forward_step'}
 					</a>
 				</div>
@@ -144,22 +144,22 @@ Note: The show content block must be defined at root level to use the include. A
 
 		{if $pages > 1 and $prefs.wiki_page_navigation_bar neq 'top'}
 			<br>
-			<div class="text-center navigation_bar pagination position_bottom">
-				<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$first_page}" class="tips" title=":{tr}First{/tr}">
+			<div class="text-center navigation_bar pagination pagination-sm position_bottom">
+				<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$first_page}" class="page-link tips" title=":{tr}First{/tr}">
 					{icon name='backward_step'}
 				</a>
 
-				<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$prev_page}" class="tips" title=":{tr}Previous{/tr}">
+				<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$prev_page}" class="page-link tips" title=":{tr}Previous{/tr}">
 					{icon name='backward'}
 				</a>
 
-				<small>{tr _0=$pagenum _1=$pages}page: %0/%1{/tr}</small>
+				<div class="page-item disabled"><small class="page-link">{tr _0=$pagenum _1=$pages}page: %0/%1{/tr}</small></div>
 
-				<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$next_page}" class="tips" title=":{tr}Next{/tr}">
+				<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$next_page}" class="page-link tips" title=":{tr}Next{/tr}">
 					{icon name='forward'}
 				</a>
 
-				<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$last_page}" class="tips" title=":{tr}Last{/tr}">
+				<a href="tiki-index.php?{if $page_info}page_ref_id={$page_info.page_ref_id}{else}page={$page|escape:"url"}{/if}&amp;pagenum={$last_page}" class="page-link tips" title=":{tr}Last{/tr}">
 					{icon name='forward_step'}
 				</a>
 			</div>

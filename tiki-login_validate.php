@@ -122,6 +122,12 @@ if ($isvalid) {
 		$error = tra("You must use the right case for your username");
 	} elseif ($error == USER_PREVIOUSLY_VALIDATED) {
 		$error = tra('You have already validated your account. Please log in.');
+		if ($prefs['forgotPass'] === 'y') {
+			$error .= '<br>' . tr(
+				'Or click %0here%1 to reset your password',
+				'<a href="tiki-remind_password.php" class="alert-link">', '</a>'
+			);
+		}
 	} elseif ($error == EMAIL_AMBIGUOUS) {
 		$error = tra("There is more than one user account with this email. Please contact the administrator.");
 	} else {
