@@ -1,0 +1,72 @@
+// Based on https://www.codeply.com/go/f3uTwmsCVZ
+// Primary
+.btn-primary {
+	@include button-variant($child-btn-primary, darken($child-btn-primary, 7.5%), darken($child-btn-primary, 10%), lighten($child-btn-primary,5%), lighten($child-btn-primary, 10%), darken($child-btn-primary,30%));
+}
+
+.btn-outline-primary {
+	@include button-outline-variant($child-btn-primary, #222222, lighten($child-btn-primary,5%), $child-btn-primary);
+}
+
+// Secondary
+.btn-secondary {
+	@include button-variant($child-btn-secondary, darken($child-btn-secondary, 7.5%), darken($child-btn-secondary, 10%), lighten($child-btn-secondary,5%), lighten($child-btn-secondary, 10%), darken($child-btn-secondary,30%));
+}
+
+.btn-outline-secondary {
+	@include button-outline-variant($child-btn-secondary, #222222, lighten($child-btn-secondary,5%), $child-btn-secondary);
+}
+
+// Success
+.btn-success {
+	@include button-variant($child-btn-success, darken($child-btn-success, 7.5%), darken($child-btn-success, 10%), lighten($child-btn-success,5%), lighten($child-btn-success, 10%), darken($child-btn-success,30%));
+}
+
+.btn-outline-success {
+	@include button-outline-variant($child-btn-success, #222222, lighten($child-btn-success,5%), $child-btn-success);
+}
+
+// Info
+.btn-info {
+	@include button-variant($child-btn-info, darken($child-btn-info, 7.5%), darken($child-btn-info, 10%), lighten($child-btn-info,5%), lighten($child-btn-info, 10%), darken($child-btn-info,30%));
+}
+
+.btn-outline-info {
+	@include button-outline-variant($child-btn-info, #222222, lighten($child-btn-info,5%), $child-btn-info);
+}
+
+// Warning
+.btn-warning {
+	@include button-variant($child-btn-warning, darken($child-btn-warning, 7.5%), darken($child-btn-warning, 10%), lighten($child-btn-warning,5%), lighten($child-btn-warning, 10%), darken($child-btn-warning,30%));
+}
+
+.btn-outline-warning {
+	@include button-outline-variant($child-btn-warning, #222222, lighten($child-btn-warning,5%), $child-btn-warning);
+}
+
+// Danger
+.btn-danger {
+	@include button-variant($child-btn-danger, darken($child-btn-danger, 7.5%), darken($child-btn-danger, 10%), lighten($child-btn-danger,5%), lighten($child-btn-danger, 10%), darken($child-btn-danger,30%));
+}
+
+.btn-outline-danger {
+	@include button-outline-variant($child-btn-danger, #222222, lighten($child-btn-danger,5%), $child-btn-danger);
+}
+
+// Light
+.btn-light {
+	@include button-variant($child-btn-light, darken($child-btn-light, 7.5%), darken($child-btn-light, 10%), lighten($child-btn-light,5%), lighten($child-btn-light, 10%), darken($child-btn-light,30%));
+}
+
+.btn-outline-light {
+	@include button-outline-variant($child-btn-light, #222222, lighten($child-btn-light,5%), $child-btn-light);
+}
+
+// Dark
+.btn-dark {
+	@include button-variant($child-btn-dark, darken($child-btn-dark, 7.5%), darken($child-btn-dark, 10%), lighten($child-btn-dark,5%), lighten($child-btn-dark, 10%), darken($child-btn-dark,30%));
+}
+
+.btn-outline-dark {
+	@include button-outline-variant($child-btn-dark, #222222, lighten($child-btn-dark,5%), $child-btn-dark);
+}

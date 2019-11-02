@@ -2,4 +2,14 @@
 /*  The Akebi theme option file for the FiveAlive-lite theme of Tiki Wiki CMS Groupware. */
 
 @import "variables";
+@import "button_color_variables";
 @import "../../../scss/selectors-for-options";
+
+// The following are for theme option custom button colors
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/_functions.scss";
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_gradients.scss";
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_box-shadow.scss";
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_hover.scss";
+@import "../../../../base_files/scss/child_theme_twbs_buttons_mixin_excerpt";
+@import "../../../../base_files/scss/child_theme_twbs_buttons_excerpt_for_colors";
+@import "../../../../base_files/scss/child_theme_button_color_selectors";
