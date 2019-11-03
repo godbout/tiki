@@ -202,7 +202,8 @@ class File
 			$this->setParam('ocr_state', $jitRequest->ocr_state->int());
 		}
 
-		if (!$this->replaceContents($data)) {
+		if ($data && !$this->replaceContents($data)) {
+			// Do not replace with empty file as could be updating properties only
 			return false;
 		}
 
