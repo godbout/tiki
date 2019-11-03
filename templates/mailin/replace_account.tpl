@@ -22,6 +22,7 @@
 			<label for="account" class="col-form-label col-md-3">{tr}Account name{/tr}</label>
 			<div class="col-md-9">
 				<input type="text" name="account" value="{$info.account|escape}" class="form-control">
+				<p class="form-text">Used as the sender email address for any errors</p>
 			</div>
 		</div>
 		<div class="form-group row">

@@ -7,7 +7,7 @@
 		{/if}
 		<ol class="tracker-item-files current-list">
 			{foreach from=$field.files item=info}
-				<li data-file-id="{$info.fileId|escape}">
+				<li data-file-id="{$info.fileId|escape}" class="m-1">
 					{if $prefs.vimeo_upload eq 'y' and $field.options_map.displayMode eq 'vimeo'}
 						{icon name='vimeo'}
 					{elseif $field.options_map.displayMode eq 'img'}
@@ -15,7 +15,7 @@
 						{$info.name|escape}
 					{else}
 						{$info.fileId|sefurl:'file'|iconify:$info.filetype:$info.fileId:2}
-						<a href="{$info.fileId|sefurl:'file'}" >
+						<a href="{$info.fileId|sefurl:'file'}" data-box="box">
 							{$info.name|escape}
 						</a>
 					{/if}

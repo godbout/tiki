@@ -257,8 +257,12 @@ class Account
 			$success = false;
 
 			if (! $this->canReceive($message)) {
-				$this->sendFailureResponse($message, 'cant_use');
-				$this->log($message, tr("Rejected message, user globally denied"));
+				try {
+					$this->sendFailureResponse($message, 'cant_use');
+					$this->log($message, tr("Rejected message, user globally denied"));
+				} catch (\Exception $e) {
+					\Feedback::error($e->getMessage());
+				}
 			} elseif ($action = $this->getAction($message)) {
 				$context = new \Perms_Context($message->getAssociatedUser());
 				if (! $action->isEnabled()) {

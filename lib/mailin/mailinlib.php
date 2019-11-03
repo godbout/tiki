@@ -137,16 +137,12 @@ class MailinLib extends TikiDb_Bridge
 			$attachments = 'n';
 		}
 
-		// Encrypt password
-		$pass = $this->encryptPassword($clearpass);
-
 		$data = [
 			'account' => $account,
 			'protocol' => $protocol,
 			'host' => $host,
 			'port' => (int) $port,
 			'username' => $username,
-			'pass' => $pass,
 			'type' => $type,
 			'active' => $active,
 			'anonymous' => $anonymous,
@@ -163,6 +159,12 @@ class MailinLib extends TikiDb_Bridge
 			'respond_email' => $respond_email,
 			'leave_email' => $leave_email,
 		];
+
+		if ($clearpass) {
+			// Encrypt password
+			$data['pass'] = $this->encryptPassword($clearpass);
+		}
+
 		$table = $this->table('tiki_mailin_accounts');
 		if ($accountId) {
 			$table->update($data, [

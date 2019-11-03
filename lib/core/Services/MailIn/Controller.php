@@ -31,13 +31,6 @@ class Services_MailIn_Controller
 				'username' => $input->username->text(),
 				'pass' => $input->pass->none(),
 			];
-			try {
-				if (! Tiki\MailIn\Account::test($account)) {
-					throw new Services_Exception(tr('Failed to connect or authenticate with remote host.'));
-				}
-			} catch (Exception $e) {
-				throw new Services_Exception_FieldError('username', $e->getMessage());
-			}
 
 			$result = $mailinlib->replace_mailin_account(
 				$accountId,
@@ -63,8 +56,19 @@ class Services_MailIn_Controller
 				$input->respond_email->int() ? 'y' : 'n',
 				$input->leave_email->int() ? 'y' : 'n'
 			);
+
 			if ($result) {
 				Feedback::success(tr('Account created or modified'));
+
+				$account = $mailinlib->get_mailin_account($result);
+
+				try {
+					if (! Tiki\MailIn\Account::test($account)) {
+						throw new Services_Exception(tr('Failed to connect or authenticate with remote host.'));
+					}
+				} catch (Exception $e) {
+					throw new Services_Exception_FieldError('username', $e->getMessage());
+				}
 			} else {
 				Feedback::error(tr('Account not created or modified'));
 			}

@@ -29,5 +29,9 @@ foreach ($accs['data'] as $acc) {
 	}
 
 	$account = MailIn\Account::fromDb($acc);
-	$account->check();
+	try {
+		$account->check();
+	} catch (Exception $e) {
+		Feedback::error($e->getMessage());
+	}
 }

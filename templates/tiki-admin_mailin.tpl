@@ -19,7 +19,9 @@
 		{foreach $accounts as $account}
 			<tr>
 				<td>
-					<strong>{$account.account|escape}</strong>
+					<a href="{bootstrap_modal controller=mailin action=replace_account accountId=$account.accountId}">
+						<strong>{$account.account|escape}</strong>
+					</a>
 					<div>{$mailin_types[$account.type].name|escape}</div>
 					{if $account.active neq 'y'}
 						<span class="label label-warning">{tr}Disabled{/tr}</span>
