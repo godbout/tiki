@@ -5,8 +5,8 @@
 		<div class="card-header">
 			{tr}Information{/tr}
 		</div>
-
-		<div class="alert alert-warning">
+		<div class="card-body">
+		<div class="alert alert-info">
 			{if is_array($msg)}
 				{foreach from=$msg item=line}
 					{$line|escape}<br>
@@ -22,5 +22,6 @@
 			{/if}
 			&nbsp;<a href="{$prefs.tikiIndex}" class="linkmenu">{tr}Return to home page{/tr}</a>
 		</p>
+		</div>
 	</div>
 </div>
