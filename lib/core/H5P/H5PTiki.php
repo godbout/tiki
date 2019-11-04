@@ -942,8 +942,7 @@ FROM `tiki_h5p_libraries` l
 JOIN `tiki_h5p_contents_libraries` cl ON l.`id` = cl.`library_id`
 JOIN `tiki_h5p_contents` c ON cl.content_id = c.id
 WHERE l.id = ?',
-					$libraryId
-				)
+				$libraryId
 			);
 		}
 
