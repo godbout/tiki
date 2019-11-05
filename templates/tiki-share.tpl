@@ -438,7 +438,7 @@
 									var shrsuccess = $($.parseHTML(data)).find("#success").html();
 									var shrerror = $($.parseHTML(data)).find("#shareerror").html();
 									if(shrsuccess) {
-											$('#ajaxmsg').html("<div class='alert alert-warning'>"+shrsuccess+"</div>");
+											$('#ajaxmsg').html("<div class='alert alert-success'>"+shrsuccess+"</div>");
 									} else {
 											$('#ajaxmsg').html("<div class='alert alert-warning'>"+shrerror+"</div>");
 									}
