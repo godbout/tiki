@@ -93,7 +93,7 @@
 			{/if}
 		{/if}
 	</div>
-	<textarea data-codemirror="true" data-syntax='tiki' class="wikiedit readonly" style="width:100%;height:400px" readonly="readonly" id="page_source">{$sourced|escape}</textarea>
+	<textarea data-codemirror="true" data-syntax='tiki' class="wikiedit readonly form-control" style="width:100%;height:400px" readonly="readonly" id="page_source">{$sourced|escape}</textarea>
 	{if $prefs.feature_jquery_ui eq "y" && $prefs.feature_syntax_highlighter neq "y"}{jq}$("#page_source").resizable();{/jq}{/if}
 {/if}
 
