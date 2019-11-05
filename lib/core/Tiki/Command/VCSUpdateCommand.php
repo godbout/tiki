@@ -336,7 +336,7 @@ class VCSUpdateCommand extends Command
 		if (! $input->getOption('no-db')) {
 			// generate a secdb database so when database:update is run, it also gets updated.
 			if (! $input->getOption('no-secdb')) {
-			//	require_once(TIKI_PATH . '/doc/devtools/svntools.php');
+				require_once(TIKI_PATH . '/doc/devtools/svntools.php');
 				$progress->setMessage('Updating secdb');
 				$progress->advance();
 

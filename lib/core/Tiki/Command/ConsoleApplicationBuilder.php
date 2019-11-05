@@ -75,7 +75,6 @@ class ConsoleApplicationBuilder
 				'commands' => [
 					new VCSUpdateCommand,
 					new FixSVNKeyIdsCommand,
-					new SemiAutoMergeCommand,
 				],
 			],
 			'checkIsDatabaseAvailable' => [
