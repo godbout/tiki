@@ -219,7 +219,7 @@ class VCSUpdateCommand extends Command
 		if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
 			$progress->setOverwrite(false);
 		}
-		$progress->setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message%');
+		$progress::setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message%');
 		$progress->setFormat('custom');
 
 
@@ -336,7 +336,6 @@ class VCSUpdateCommand extends Command
 		if (! $input->getOption('no-db')) {
 			// generate a secdb database so when database:update is run, it also gets updated.
 			if (! $input->getOption('no-secdb')) {
-				require_once(TIKI_PATH . '/doc/devtools/svntools.php');
 				$progress->setMessage('Updating secdb');
 				$progress->advance();
 
