@@ -60,6 +60,13 @@ class ProfileInstallCommand extends Command
 			return;
 		}
 
+		$profileData = $profile->getData();
+		if (! empty( $profileData['error'])) {
+			$output->writeln('<error>' . tr('There were some errors while trying to load the profile definition') . '</error>');
+			$output->writeln('<error>' . $profileData['error'] . '</error>');
+			return;
+		}
+
 		if (! $profile->validateNamedObjectsReferences()) { // sanity check on the Named Objects references
 			$output->writeln('<error>' . tr('Some of the named object references in the profile are invalid') . '</error>');
 			return;

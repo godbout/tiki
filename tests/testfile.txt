@@ -1,2 +1,3 @@
 svn+ssh test by luci
 git test by jonnyb
+automerge test by drsassafras
