@@ -1,6 +1,19 @@
 // $Id$ - akebi_classic.scss; compile to make
 /*  The Akebi_classic theme option file for the FiveAlive theme of Tiki Wiki CMS Groupware. */
 
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/_functions.scss"; // For theme option custom button colors
 @import "../../akebi/scss/variables";
+@import "../../../scss/variables";
+@import "../../akebi/scss/button_color_variables"; // For theme option custom button colors
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/variables"; // For theme option custom button colors
 @import "../../../scss/selectors-for-options";
 @import "_classic-siteheader.scss";
+
+// The following are for theme option custom button colors
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins";
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_gradients.scss";
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_box-shadow.scss";
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_hover.scss";
+@import "../../../../base_files/scss/child_theme_twbs_buttons_mixin_excerpt";
+@import "../../../../base_files/scss/child_theme_twbs_buttons_excerpt_for_colors";
+@import "../../../../base_files/scss/child_theme_button_color_selectors";

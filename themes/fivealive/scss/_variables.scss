@@ -39,6 +39,7 @@ $theme-colors: (
 
 // Body
 $body-color: $gray-800;
+$body-bg: #fff;
 
 // Links
 $link-hover-decoration: none;
@@ -119,8 +120,8 @@ $popover-body-color: $body-color;
 
 // - - - - - - - - - -  - - - - - - Other variables, if any - - - - - - - - - - - - - - - - - //
 
-$enable-gradients: true;
-$enable-shadows: true;
+//$enable-gradients: true;
+//$enable-shadows: true;
 
 // - - - - - - - - - - Tiki selector variables ( for _tiki-selectors.scss ) - - - - - - - - - //
 $imagePath: "../images/";

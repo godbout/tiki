@@ -1,7 +1,6 @@
 // $Id$ Custom variables for the Akebi theme option of the FiveAlive and FiveAlive-lite themes
-// $Id$ Custom variables for the Akebi theme option of the FiveAlive and FiveAlive-lite themes
 
-//Custom styles for the FiveAliveHS Akebi option theme.
+//Custom styles for the FiveAlive Akebi option theme.
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 
@@ -13,59 +12,6 @@ $bg-light: #18a3bb !important;
 
 $link-color: #0b8a98;
 $link-hover-color: #18a3bb;
-
-$btn-primary-color: #ffffff;
-$btn-primary-bg: #18a3bb;
-$btn-primary-border: #77d6e5;
-$btn-primary-focus-color: #ffffff;
-$btn-primary-focus-bg: #127c8e;
-$btn-primary-border: #23a5b9;
-$btn-primary-hover-color: #ffffff;
-$btn-primary-hover-bg: #127c8e;
-$btn-primary-hover-border: #44c7db;
-$btn-primary-active-color: #ffffff;
-$btn-primary-active-bg: #127c8e;
-$btn-primary-active-border: #44c7db;
-$btn-primary-active-hover-bg-color: #0e606e;
-$btn-primary-active-hover-border: #23a5b9;
-$btn-primary-disabled-hover: #18a3bb;
-$btn-primary-disabled-border: #77d6e5;
-$btn-primary-badge-color: #18a3bb;
-$btn-primary-badge-bg: #ffffff;
-
-// $btn-secondary-bg: #a02871;
-// $btn-secondary-border: #8e286a;
-// $btn-secondary-focus-bg: #661d4c;
-// $btn-secondary-focus-border: #8e286a;
-// $btn-secondary-hover-bg: #661d4c;
-// $btn-secondary-border: #5e1b46;
-// $btn-secondary-active-bg: #661d4c;
-// $btn-secondary-border: #5e1b46;
-// $btn-secondary-active-hover-bg: #5e1b46;
-// $btn-secondary-active-hover-border: #8e286a;
-// $btn-secondary-disabled-hover-color: #a02871;
-// $btn-secondary-disabled-hover-border: #8e286a;
-// $btn-secondary-badge-color: #a02871;
-// $btn-secondary-bg-color: #ffffff;
-
-$btn-info-color: #fff;
-$btn-info-bg: #e5d7dc;
-$btn-info-border: #e5d0cf;
-// $btn-info-focus-color: ;
-// $btn-info-focus-bg: ;
-// $btn-info-focus-border: ;
-$btn-info-hover-color: $btn-info-color;
-$btn-info-hover-bg: lighten($btn-info-bg, 10%);
-$btn-info-hover-border: lighten($btn-info-border, 10%);
-// $btn-info-active-color: ;
-$btn-info-active-bg: $btn-info-bg;
-// $btn-info-active-border: ;
-// $btn-info-active-hover: ;
-// $btn-info-active-hover-border: ;
-// $btn-info-disabled-hover-color: ;
-// $btn-info-disabled-hover-border: ;
-// $btn-info-badge-color: ;
-// $btn-info-badge-bg: ;
 
 $navbar-dark-color:                 rgba($white, .75);
 $navbar-dark-hover-color:           rgba($white, .85);
