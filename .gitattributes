@@ -2970,6 +2970,7 @@ lib/core/Tiki/Command/RefreshRssCommand.php -text
 lib/core/Tiki/Command/RssClearCacheCommand.php -text
 lib/core/Tiki/Command/SchedulerRunCommand.php -text
 lib/core/Tiki/Command/ScssCompileCommand.php -text
+lib/core/Tiki/Command/SemiAutoMergeCommand.php -text
 lib/core/Tiki/Command/StatsCommand.php -text
 lib/core/Tiki/Command/TrackerClearCommand.php -text
 lib/core/Tiki/Command/TrackerExportCommand.php -text
