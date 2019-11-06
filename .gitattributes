@@ -7220,6 +7220,7 @@ themes/fivealive/options/akebi/icons/orightcol.png -text
 themes/fivealive/options/akebi/images/akebi.png -text
 themes/fivealive/options/akebi/images/siteheader.png -text
 themes/fivealive/options/akebi/index.php -text
+themes/fivealive/options/akebi/scss/_button_color_variables.scss -text
 themes/fivealive/options/akebi/scss/_variables.scss -text
 themes/fivealive/options/akebi/scss/akebi.scss -text
 themes/fivealive/options/akebi/scss/index.php -text
