@@ -12,6 +12,7 @@ class Search_Expr_And implements Search_Expr_Interface
 
 	function __construct(array $parts)
 	{
+		$parts = array_filter($parts);
 		$this->parts = $parts;
 	}
 

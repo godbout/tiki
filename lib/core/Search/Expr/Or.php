@@ -12,6 +12,7 @@ class Search_Expr_Or implements Search_Expr_Interface
 
 	function __construct(array $parts)
 	{
+		$parts = array_filter($parts);
 		$this->parts = $parts;
 	}
 

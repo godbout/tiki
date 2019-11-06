@@ -203,6 +203,6 @@ class Search_Expr_Parser
 
 		$stopwords = $prefs['unified_stopwords'];
 
-		return in_array($word, $stopwords);
+		 return in_array(strtolower($word), array_map('strtolower', $stopwords));
 	}
 }
