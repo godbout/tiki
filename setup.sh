@@ -555,6 +555,7 @@ composer_core()
 		then
 			curl -s https://getcomposer.org/installer | "${PHPCLI}" -- --install-dir=temp
 		else
+			echo "CURL command not found. Trying to obtain the composer executable using PHP."
 			# todo : if exists php;
 			"${PHPCLI}" -r "eval('?>'.file_get_contents('https://getcomposer.org/installer'));" -- --install-dir=temp
 		fi
