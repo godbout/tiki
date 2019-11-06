@@ -33,86 +33,86 @@
 				<a id="translate_updates"></a>
 				{$content_of_update_translation_section}
 			</div>
-			<div class="col-sm-12 mb-4">
-				<a id="new_translation"></a>
-				<form method="post" action="tiki-editpage.php" onsubmit="return validate_translation_request(this)" role="form">
-					<div class="card">
-						<div class="card-header">
-							{tr}Translate this page to a new language{/tr}
-						</div>
-						<div class="card-body">
-							<div class="form-group row">
-								<label for="lang" class="col-form-label col-sm-5">
-									{tr}Select language to translate to:{/tr}
-								</label>
-								<div class="col-sm-7">
-									<select name="lang" id="language_list" size="1" class="form-control">
-										<option value="unspecified">{tr}Unspecified{/tr}</option>
-										{section name=ix loop=$languages}
-											<option value="{$languages[ix].value|escape}"{if $default_target_lang eq $languages[ix].value} selected="selected"{/if}>{$languages[ix].name|escape}</option>
-										{/section}
-									</select>
-								</div>
+
+			<a id="new_translation"></a>
+			<form method="post" action="tiki-editpage.php" onsubmit="return validate_translation_request(this)" role="form">
+				<div class="card mb-4">
+					<div class="card-header">
+						{tr}Translate this page to a new language{/tr}
+					</div>
+					<div class="card-body">
+						<div class="form-group row">
+							<label for="lang" class="col-form-label col-sm-5">
+								{tr}Select language to translate to:{/tr}
+							</label>
+							<div class="col-sm-7">
+								<select name="lang" id="language_list" size="1" class="form-control">
+									<option value="unspecified">{tr}Unspecified{/tr}</option>
+									{section name=ix loop=$languages}
+										<option value="{$languages[ix].value|escape}"{if $default_target_lang eq $languages[ix].value} selected="selected"{/if}>{$languages[ix].name|escape}</option>
+									{/section}
+								</select>
 							</div>
-							<div class="form-group row">
-								<label for="page" class="col-form-label col-sm-5">
-									{tr}Enter the page title:{/tr}
-								</label>
-								<div class="col-sm-7">
-									<input type="text" name="page" id="translation_name" value="{$translation_name|escape}" class="form-control">
-									<input type="hidden" name="source_page" value="{$name|escape}">
-									<input type="hidden" name="oldver" value="-1">
-									<input type="hidden" name="is_new_translation" value="y">
-								</div>
-							</div>
-							{if $prefs.feature_categories eq 'y'}
-								<label for="page" class="col-form-label col-md-4">
-									{tr}Categories{/tr}
-								</label>
-								<div class="col-md-8">
-									{include file="categorize.tpl" notable=y}
-									<span class="form-text">
-										{tr}Assign categories to this new translation (Note: they should probably be the same as the categories of the page being translate){/tr}
-									</span>
-								</div>
-							{/if}
 						</div>
-						<div class="card-footer text-center">
-							<input type="submit" class="btn btn-primary" value="{tr}Create translation{/tr}">
+						<div class="form-group row">
+							<label for="page" class="col-form-label col-sm-5">
+								{tr}Enter the page title:{/tr}
+							</label>
+							<div class="col-sm-7">
+								<input type="text" name="page" id="translation_name" value="{$translation_name|escape}" class="form-control">
+								<input type="hidden" name="source_page" value="{$name|escape}">
+								<input type="hidden" name="oldver" value="-1">
+								<input type="hidden" name="is_new_translation" value="y">
+							</div>
+						</div>
+						{if $prefs.feature_categories eq 'y'}
+						<div class="form-group row">
+							<label for="page" class="col-form-label col-sm-4">
+								{tr}Categories{/tr}
+							</label>
+							<div class="col-sm-12">
+								{include file="categorize.tpl" notable=y}
+								<span class="form-text">
+									{tr}Assign categories to this new translation (Note: they should probably be the same as the categories of the page being translate){/tr}
+								</span>
+							</div>
+						</div>
+						{/if}
+					</div>
+					<div class="card-footer text-center">
+						<input type="submit" class="btn btn-primary" value="{tr}Create translation{/tr}">
+					</div>
+				</div>
+			</form>
+
+			<a id="change_language"></a>
+			<form method="post" action="tiki-edit_translation.php" role="form">
+				<div class="card mb-4">
+					<div class="card-header">
+						{tr}Change language for this page{/tr}
+					</div>
+					<div class="card-body">
+						<div class="form-group row">
+							<label for="langpage" class="col-form-label col-sm-5">
+								{tr}Language{/tr}
+							</label>
+							<div class="col-sm-7">
+								<select name="langpage" class="form-control">
+									<option value="">{tr}Unspecified{/tr}</option>
+									{foreach item=lang from=$languages}
+										<option value="{$lang.value|escape}" {if $lang.value eq $langpage} selected="selected"{/if}>{$lang.name}</option>
+									{/foreach}
+								</select>
+							</div>
 						</div>
 					</div>
-				</form>
-			</div>
-			<div class="col-sm-12 mb-4">
-				<a id="change_language"></a>
-				<form method="post" action="tiki-edit_translation.php" role="form">
-					<div class="card">
-						<div class="card-header">
-							{tr}Change language for this page{/tr}
-						</div>
-						<div class="card-body">
-							<div class="form-group row">
-								<label for="langpage" class="col-form-label col-sm-5">
-									{tr}Language{/tr}
-								</label>
-								<div class="col-sm-7">
-									<select name="langpage" class="form-control">
-										<option value="">{tr}Unspecified{/tr}</option>
-										{foreach item=lang from=$languages}
-											<option value="{$lang.value|escape}" {if $lang.value eq $langpage} selected="selected"{/if}>{$lang.name}</option>
-										{/foreach}
-									</select>
-								</div>
-							</div>
-						</div>
-						<div class="card-footer text-center">
-							<input type="hidden" name="id" value="{$id}">
-							<input type="hidden" name="type" value="{$type}">
-							<input type="submit" class="btn btn-secondary btn-sm" name="switch" value="{tr}Change Language{/tr}">
-						</div>
+					<div class="card-footer text-center">
+						<input type="hidden" name="id" value="{$id}">
+						<input type="hidden" name="type" value="{$type}">
+						<input type="submit" class="btn btn-secondary" name="switch" value="{tr}Change Language{/tr}">
 					</div>
-				</form>
-			</div>
+				</div>
+			</form>
 		</div>
 	{/if}
 	{if !isset($articles)}
