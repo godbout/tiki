@@ -23,9 +23,10 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Command\HelpCommand;
 use Exception;
 
-if (isset($_SERVER['REQUEST_METHOD'])) {
+if (php_sapi_name() !== 'cli') {
 	die('Only available through command-line.');
 }
+
 $tikiBase = realpath(__DIR__ . '/../..');
 
 chdir($tikiBase);
