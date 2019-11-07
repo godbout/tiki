@@ -67,55 +67,52 @@
 	{/section}
 </table>
 </div>
+
 <h2>{tr}Admin folders and bookmarks{/tr}</h2>
-<table class="formcolor">
-	<tr>
-		<td>
-			<h3>{if $editfolder}{tr}Edit{/tr}{else}{tr}Add{/tr}{/if} {tr}a folder{/tr}</h3>
-			{if $editfolder}
-				<a class="link" href="tiki-user_bookmarks.php?parentId={$parentId}&amp;editfolder=0">{tr}New{/tr}</a>
-			{/if}
-			{* form to add a category *}
-			<table class="formcolor">
-				<form action="tiki-user_bookmarks.php" method="post">
-					<input type="hidden" name="editfolder" value="{$editfolder|escape}">
-					<input type="hidden" name="parentId" value="{$parentId|escape}">
-					<tr>
-						<td>{tr}Name:{/tr}</td>
-						<td><input type="text" size = "40" name="foldername" value="{$foldername|escape}"></td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td>
-							<input type="submit" class="btn btn-primary" name="addfolder" value="{tr}Add{/tr}"></td>
-					</tr>
-				</form>
-			</table>
-		</td>
-		<td>
-			{* form to add a url *}
-			<h3>{if $urlname}{tr}Edit{/tr}{else}{tr}Add{/tr}{/if} {tr}a bookmark{/tr}</h3>
-			{if $urlname}
-				<a class="link" href="tiki-user_bookmarks.php?parentId={$parentId}&amp;editurl=0">{tr}New{/tr}</a>
-			{/if}
-			<table class="formcolor">
-				<form action="tiki-user_bookmarks.php" method="post">
-					<input type="hidden" name="editurl" value="{$editurl|escape}">
-					<input type="hidden" name="parentId" value="{$parentId|escape}">
-					<tr>
-						<td>{tr}Name:{/tr}</td>
-						<td><input type="text" size = "40" name="urlname" value="{$urlname|escape}"></td>
-					</tr>
-					<tr>
-						<td>{tr}URL:{/tr}</td>
-						<td><input type="text" size = "40" name="urlurl" value="{$urlurl|escape}"></td>
-					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td><input type="submit" class="btn btn-primary" name="addurl" value="{tr}Add{/tr}"></td>
-					</tr>
-				</form>
-			</table>
-		</td>
-	</tr>
-</table>
+{* form to add a category *}
+<h3>{if $editfolder}{tr}Edit{/tr}{else}{tr}Add{/tr}{/if} {tr}a folder{/tr}</h3>
+{if $editfolder}
+	<a class="btn btn-link" href="tiki-user_bookmarks.php?parentId={$parentId}&amp;editfolder=0">{tr}New{/tr}</a>
+{/if}
+<form action="tiki-user_bookmarks.php" method="post" class="mb-4">
+	<input type="hidden" name="editfolder" value="{$editfolder|escape}">
+	<input type="hidden" name="parentId" value="{$parentId|escape}">
+	<div class="form-group row">
+		<label class="col-form-label col-sm-3">{tr}Name:{/tr}</label>
+		<div class="col-sm-6">
+			<input type="text" name="foldername" class="form-control" value="{$foldername|escape}">
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-12">
+			<input type="submit" class="btn btn-primary btn-sm" name="addfolder" value="{tr}Add{/tr}">
+		</div>
+	</div>
+</form>
+
+{* form to add a url *}
+<h3>{if $urlname}{tr}Edit{/tr}{else}{tr}Add{/tr}{/if} {tr}a bookmark{/tr}</h3>
+{if $urlname}
+	<a class="btn btn-link" href="tiki-user_bookmarks.php?parentId={$parentId}&amp;editurl=0">{tr}New{/tr}</a>
+{/if}
+<form action="tiki-user_bookmarks.php" method="post" class="mb-4">
+	<input type="hidden" name="editurl" value="{$editurl|escape}">
+	<input type="hidden" name="parentId" value="{$parentId|escape}">
+	<div class="form-group row">
+		<label class="col-form-label col-sm-3">{tr}Name:{/tr}</label>
+		<div class="col-sm-6">
+			<input type="text" name="urlname" class="form-control" value="{$urlname|escape}">
+		</div>
+	</div>
+	<div class="form-group row">
+		<label class="col-form-label col-sm-3">{tr}URL:{/tr}</label>
+		<div class="col-sm-6">
+			<input type="text" name="urlurl" class="form-control" value="{$urlurl|escape}">
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-12">
+			<input type="submit" class="btn btn-primary btn-sm" name="addurl" value="{tr}Add{/tr}">
+		</div>
+	</div>
+</form>
