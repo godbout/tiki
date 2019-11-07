@@ -125,7 +125,7 @@ var Hm_Ajax_Request = function() { return {
         if (config.data) {
             data = this.format_xhr_data(config.data);
         }
-        xhr.open('POST', 'cypht/ajax.php')
+        xhr.open('POST', 'cypht/ajax.php'+window.location.search)
         xhr.addEventListener('load', function() {
             config.callback.done(Hm_Utils.json_decode(xhr.response, true), xhr);
             config.callback.always(Hm_Utils.json_decode(xhr.response, true));
@@ -180,7 +180,7 @@ var Hm_Ajax_Request = function() { return {
         }
         var dt = new Date();
         this.start_time = dt.getTime();
-        this.xhr_fetch({url: 'cypht/ajax.php', data: args, callback: this});
+        this.xhr_fetch({url: 'cypht/ajax.php'+window.location.search, data: args, callback: this});
         return false;
     },
 
@@ -3177,7 +3177,7 @@ var upload_file = function(file) {
     form.append('hm_ajax_hook', 'ajax_smtp_attach_file');
     form.append('hm_page_key', $('#hm_page_key').val());
     form.append('draft_id', $('.compose_draft_id').val());
-    xhr.open('POST', 'cypht/ajax.php', true);
+    xhr.open('POST', 'cypht/ajax.php'+window.location.search, true);
     xhr.setRequestHeader('X-Requested-With', 'xmlhttprequest');
     xhr.onreadystatechange = function() {
         if (xhr.readyState == 4){ 
