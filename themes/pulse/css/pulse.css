@@ -6934,6 +6934,9 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
       display: block;
       margin-top: 1.5rem; }
 
+  .tiki-page_contribution .wikitext {
+    word-break: break-word; }
+
   #page-data.col-sm-9 {
     padding-left: 0;
     padding-right: 0; }
