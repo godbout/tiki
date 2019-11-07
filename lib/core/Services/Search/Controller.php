@@ -55,7 +55,7 @@ class Services_Search_Controller
 			$removeIndexErrorsCallback = function ($item) {
 				if ($item['type'] == 'error') {
 					foreach ($item['mes'] as $me) {
-						if (strcmp($me, 'does not exist in the current index') !== false) {
+						if (strpos($me, 'does not exist in the current index') !== false) {
 							return true;
 						}
 					}
