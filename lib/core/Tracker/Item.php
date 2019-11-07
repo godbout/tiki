@@ -7,6 +7,9 @@
 
 class Tracker_Item
 {
+
+	const PERM_NAME_MAX_ALLOWED_SIZE = 50;
+
 	/**
 	 * includes itemId, trackerId and fields using the fieldId as key
 	 * @var array - plain from database.

@@ -176,6 +176,13 @@ class Tiki_Profile_InstallHandler_TrackerField extends Tiki_Profile_InstallHandl
 			$fieldId = $trklib->get_field_id($data['tracker'], $data['permname'], 'permName');
 		}
 
+		$definition = Tracker_Definition::get($data['tracker']);
+		if ($definition && ! empty($data['permname'])) {
+			if (! $fieldId || ($fieldId && strlen($data['permname']) > Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE)) {
+				$data['permname'] = $trklib::generatePermName($definition, $data['permname']);
+			}
+		}
+
 		$factory = new Tracker_Field_Factory;
 		$fieldInfo = $factory->getFieldInfo($data['type']);
 		if (! is_array($data['options'])) {

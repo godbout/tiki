@@ -21,11 +21,24 @@ class Search_ContentSource_TrackerFieldSource implements Search_ContentSource_In
 
 	function getDocument($objectId, Search_Type_Factory_Interface $typeFactory)
 	{
+		global $prefs;
+
 		$lib = TikiLib::lib('trk');
 
 		$field = $lib->get_tracker_field($objectId);
 
 		if (! $field) {
+			return false;
+		}
+
+		if ($prefs['unified_trackerfield_keys'] === 'permName' && isset($field['permName']) && strlen($field['permName']) > Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE) {
+			Feedback::error(tr(
+				'Object "%0" (type %1) was not indexed because its "Permanent name" contains more than %2 characters. It\'s recommended to change its value.',
+				$objectId,
+				'trackerfield',
+				Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE
+			));
+
 			return false;
 		}
 

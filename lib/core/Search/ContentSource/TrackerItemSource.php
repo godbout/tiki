@@ -158,10 +158,15 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 
 	private static function getHandlersMatching($interface, $definition, $item)
 	{
+		global $prefs;
+
 		$factory = $definition->getFieldFactory();
 
 		$handlers = [];
 		foreach ($definition->getFields() as $field) {
+			if ($prefs['unified_trackerfield_keys'] === 'permName' && isset($field['permName']) && strlen($field['permName']) > Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE) {
+				continue;
+			}
 			$handler = $factory->getHandler($field, $item);
 
 			if ($handler instanceof $interface) {

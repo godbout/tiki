@@ -23,7 +23,7 @@ class Services_Tracker_Controller
 	function action_view($input)
 	{
 		$item = Tracker_Item::fromId($input->id->int());
-			
+
 		if (! $item) {
 			throw new Services_Exception_NotFound(tr('Item not found'));
 		}
@@ -68,27 +68,9 @@ class Services_Tracker_Controller
 		}
 
 		$name = $input->name->text();
-		$permName = $input->permName->word();
-		// Ensure that PermName is no longer than 36 characters, since the maximum allowed by MySQL Full
-		// Text Search as Unified Search Index is 50, and trackers will internally prepend "tracker_field_",
-		// which are another 14 characters (36+14=50). We could allow longer permanent names when other search
-		// index engines are the ones being used, but this will probably only delay the problem until the admin
-		// wants to change the search engine for some reason (some constrains in Lucene or Elastic Search,
-		// as experience demonstrated in some production sites in real use cases over long periods of time).
-		// And to increase chances to avoid conflict when long names only differ in the end of the long string,
-		// where some meaningful info resides, we'll get the first 26 chars, 1 underscore and the last 9 chars.
-		$permName = (strlen($permName) > 36) ? substr($permName, 0, 26) . '_' . substr($permName, -9) : $permName;
 
-		// Quick way to solve permName conflict, which is very common in languages that only use characters considered
-		// special for this purpose (ie: hebrew). Ideally we should use fieldId, but it haven't been defined yet.
-		$tries = 0;
-		while ($definition->getFieldFromPermName($permName)) {
-			$permName = substr($permName, 0, 31) . "_" . rand(1000, 9999);
-			// Let's avoid theoretical chance of infinite loop
-			if (++$tries > 100) {
-				throw new Services_Exception_DuplicateValue('permName', $permName);
-			}
-		}
+		$permName = $trklib::generatePermName($definition, $input->permName->word());
+
 		$type = $input->type->text();
 		$description = $input->description->text();
 		$wikiparse = $input->description_parse->int();
@@ -342,6 +324,10 @@ class Services_Tracker_Controller
 			}
 		}
 
+		if (strlen($permName) > Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE) {
+			throw new Services_Exception(tr('Tracker Field permanent name cannot contain more than %0 characters', Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE), 400);
+		}
+
 		if ($_SERVER['REQUEST_METHOD'] === 'POST' && $input->name->text()) {
 			$input->replaceFilters(
 				[
@@ -468,6 +454,7 @@ class Services_Tracker_Controller
 				'username' => tr('Username'),
 			],
 			'types' => $types,
+			'permNameMaxAllowedSize' => Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE
 		];
 	}
 
@@ -574,7 +561,11 @@ class Services_Tracker_Controller
 				throw new Services_Exception(tr('Invalid data provided'), 400);
 			}
 
+			$trklib = TikiLib::lib('trk');
+
 			foreach ($data as $info) {
+				$info['permName'] = $trklib::generatePermName($definition, $info['permName']);
+
 				$this->utilities->importField($trackerId, new JitFilter($info), $preserve);
 			}
 		}
