@@ -261,30 +261,32 @@
 						{if $prefs.feature_multilingual eq 'y' and $listpages[ix].perms.tiki_p_edit_article eq 'y'}
 							{include file='translated-lang.tpl' object_type='article' trads=$listpages[ix].translations articleId=$listpages[ix].articleId}
 						{/if}
-						<a class="btn btn-link" data-toggle="dropdown" data-hover="dropdown" href="#">
-							{icon name="wrench"}
-						</a>
-						<div class="dropdown-menu dropdown-menu-right">
-							<h6 class="dropdown-title">
-								{tr _0="{$listpages[ix].title}"}Actions for %0{/tr}
-							</h6>
-							<div class="dropdown-divider"></div>
-							{if $listpages[ix].perms.tiki_p_edit_article eq 'y' or (!empty($user) and $listpages[ix].author eq $user
-							and $listpages[ix].creator_edit eq 'y')}
-								<a class="dropdown-item" href="tiki-edit_article.php?articleId={$listpages[ix].articleId}">
-									{icon name='edit'} {tr}Edit{/tr}
-								</a>
-							{/if}
-							{if $prefs.feature_cms_print eq 'y'}
-								<a class="dropdown-item" href="tiki-print_article.php?articleId={$listpages[ix].articleId}">
-									{icon name='print'} {tr}Print{/tr}
-								</a>
-							{/if}
-							{if $listpages[ix].perms.tiki_p_remove_article eq 'y'}
-								<a class="dropdown-item" href="tiki-list_articles.php?remove={$listpages[ix].articleId}">
-									{icon name='remove'} {tr}Remove{/tr}
-								</a>
-							{/if}
+						<div class="btn-group">
+							<a class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" href="#">
+								{icon name="wrench"}
+							</a>
+							<div class="dropdown-menu dropdown-menu-right">
+								<h6 class="dropdown-header">
+									{tr _0="{$listpages[ix].title}"}Actions for %0{/tr}
+								</h6>
+								<div class="dropdown-divider"></div>
+								{if $listpages[ix].perms.tiki_p_edit_article eq 'y' or (!empty($user) and $listpages[ix].author eq $user
+								and $listpages[ix].creator_edit eq 'y')}
+									<a class="dropdown-item" href="tiki-edit_article.php?articleId={$listpages[ix].articleId}">
+										{icon name='edit'} {tr}Edit{/tr}
+									</a>
+								{/if}
+								{if $prefs.feature_cms_print eq 'y'}
+									<a class="dropdown-item" href="tiki-print_article.php?articleId={$listpages[ix].articleId}">
+										{icon name='print'} {tr}Print{/tr}
+									</a>
+								{/if}
+								{if $listpages[ix].perms.tiki_p_remove_article eq 'y'}
+									<a class="dropdown-item" href="tiki-list_articles.php?remove={$listpages[ix].articleId}">
+										{icon name='remove'} {tr}Remove{/tr}
+									</a>
+								{/if}
+							</div>
 						</div>
 					</div>
 				{/if}
