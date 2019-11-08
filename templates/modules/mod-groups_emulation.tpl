@@ -3,7 +3,7 @@
 
 	{if isset($allGroups) && $showallgroups eq 'y'}
 		<fieldset>
-			<legend id='mge-all-legend'>{tr}All Groups{/tr}</legend>
+			<div id='mge-all-legend'><strong>{tr}All Groups{/tr}</strong></div>
 			<ul id='mge-all' >
 			{foreach from=$allGroups key=groupname item=inclusion name=ix}
 				<li>{$groupname|escape}</li>
