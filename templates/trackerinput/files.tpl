@@ -123,6 +123,10 @@
 			$self.find('.btn.upload-files').clickModal({
 
 				success: function (data) {
+					var $ff = $(this).parents(".files-field");
+					$field = $(".input", $ff);
+					$files = $(".current-list", $ff);
+
 					$.each(data.files, function (k, file) {
 						addFile(file.fileId, file.type, file.label);
 					});
@@ -141,6 +145,10 @@
 			$self.find('.btn.browse-files').clickModal({
 				size: 'modal-lg',
 				success: function (data) {
+					var $ff = $(this).parents(".files-field");
+					$field = $(".input", $ff);
+					$files = $(".current-list", $ff);
+
 					$files.empty();
 					$field.val('');
 
@@ -181,6 +189,10 @@
 							reference: $this.next('.reference').val()
 						},
 						success: function (data) {
+							var $ff = $this.parents(".files-field");
+							$field = $(".input", $ff);
+							$files = $(".current-list", $ff);
+
 							addFile(data.fileId, data.type, data.name);
 							$this.val('');
 						},
