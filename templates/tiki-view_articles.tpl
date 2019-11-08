@@ -205,7 +205,7 @@
 							{/if}
 						{else}
 							{if isset($topics[$listpages[ix].topicId].image_size) and $topics[$listpages[ix].topicId].image_size > 0}
-								<a href="{$smarty.capture.href}" {if $listpages[ix].isfloat eq 'y'} style="margin-right:20px; float:left;"{/if}
+								<a href="{$smarty.capture.href}" class="thumbnail"{if $listpages[ix].isfloat eq 'y'} style="margin-right:20px; float:left;"{/if}
 										title="{if $listpages[ix].show_image_caption and $listpages[ix].image_caption}{$listpages[ix].image_caption|escape}{else}{tr}{$listpages[ix].topicName}{/tr}{/if}">
 									<img class="media-object img-thumbnail article-image topic-image"
 											alt="{if $listpages[ix].show_image_caption and $listpages[ix].image_caption}{$listpages[ix].image_caption|escape}{else}{tr}{$listpages[ix].topicName}{/tr}{/if}"

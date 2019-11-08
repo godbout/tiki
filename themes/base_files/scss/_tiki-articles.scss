@@ -19,6 +19,7 @@
 
 .article-image {
 	margin-right: 1rem; // to not have the article images "glued" to the article body text
+	max-width: 100%;
 }
 
 [dir="rtl"] .article-image {
@@ -26,3 +27,9 @@
 	margin-left: 1rem;
 }
 
+.articleheading {
+	.thumbnail {
+		margin-right: 1rem;
+		display: block;
+	}
+}

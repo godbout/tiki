@@ -1863,11 +1863,16 @@ td.url {
     float: left; }
 
 .article-image {
-  margin-right: 1rem; }
+  margin-right: 1rem;
+  max-width: 100%; }
 
 [dir="rtl"] .article-image {
   margin-right: 0;
   margin-left: 1rem; }
+
+.articleheading .thumbnail {
+  margin-right: 1rem;
+  display: block; }
 
 .tiki_blogs .card.postbody, .tiki_blogs .card.postbody .card-header, .tiki_blogs .card.postbody .card-footer {
   background-color: transparent;
