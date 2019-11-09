@@ -1880,7 +1880,7 @@ class UsersLib extends TikiLib
 
 		switch ($result->numRows()) {
 			case 0:
-				if ($prefs['login_allow_email']) {								//if no users found, check check if email is being used to login
+				if ($prefs['login_allow_email'] == 'y') {								//if no users found, check check if email is being used to login
 					$query = 'select `userId`,`login`,`waiting`, `hash`, `email`,`valid` from `users_users` where upper(`email`) = ?';
 					$result = $this->query($query, [$userUpper]);
 					if ($result->numRows() > 1) {
