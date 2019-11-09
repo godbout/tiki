@@ -249,7 +249,7 @@ class UsersLib extends TikiLib
 
 	/**
 	 * @param string $user : username
-	 * @param bool $remote : logged out remotely (so do not redirect)
+	 * @param bool $remote_logout : logged out remotely (so do not redirect)
 	 * @param string $redir : url to redirect to. Uses home page according to prefs if empty
 	 * @return void : redirects to suitable homepage or redir param if not remote
 	 */
@@ -268,7 +268,7 @@ class UsersLib extends TikiLib
 			$this->delete_user_cookie($userInfo['userId'], $secret[0]);
 		}
 
-		if ($remote && $prefs['feature_intertiki'] == 'y' and $prefs['feature_intertiki_sharedcookie'] == 'y' and ! empty($prefs['feature_intertiki_mymaster'])) {
+		if ($prefs['feature_intertiki'] == 'y' and $prefs['feature_intertiki_sharedcookie'] == 'y' and ! empty($prefs['feature_intertiki_mymaster'])) {
 			$remote = $prefs['interlist'][$prefs['feature_intertiki_mymaster']];
 			$remote['path'] = preg_replace('/^\/?/', '/', $remote['path']);
 			$client = new XML_RPC_Client($remote['path'], $remote['host'], $remote['port']);
@@ -281,7 +281,6 @@ class UsersLib extends TikiLib
 				]
 			);
 			$client->send($msg);
-			return;
 		}
 
 		// more local cleanup originally from tiki-logout.php
@@ -311,7 +310,8 @@ class UsersLib extends TikiLib
 			}
 		}
 
-		setcookie($user_cookie_site, '', -3600, $prefs['cookie_path'], $prefs['cookie_domain']);
+		setcookie($user_cookie_site, '', -3600, $prefs['feature_intertiki_sharedcookie'] == 'y' ? '/' : $prefs['cookie_path'], $prefs['cookie_domain']);
+
 		/* change group home page or deactivate if no page is set */
 		if (! empty($redir)) {
 			$url = $redir;
@@ -336,6 +336,10 @@ class UsersLib extends TikiLib
 		unset($_SESSION[$user_cookie_site]);
 		session_unset();
 		session_destroy();
+
+		if ($remote_logout) {
+			return;
+		}
 
 		if ($prefs['auth_method'] === 'ws') {
 			header('Location: ' . str_replace('//', '//admin:@', $url)); // simulate a fake login to logout the user
@@ -7969,7 +7973,6 @@ class UsersLib extends TikiLib
 	{
 		global $prefs;
 
-		$prefs['interlist'] = unserialize($prefs['interlist']);
 		$remote = $prefs['interlist'][$prefs['feature_intertiki_mymaster']];
 		$client = new XML_RPC_Client($remote['path'], $remote['host'], $remote['port']);
 		$client->setDebug(0);

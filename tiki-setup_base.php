@@ -471,7 +471,7 @@ if (($prefs['rememberme'] != 'disabled') and (isset($_COOKIE["$user_cookie_site"
 				$userId = $userlib->get_user_id($user);
 			}
 			$secret = $userlib->create_user_cookie($userId);
-			setcookie($user_cookie_site, $secret . '.' . $userId, $tikilib->now + $prefs['remembertime'], $prefs['cookie_path'], $prefs['cookie_domain']);
+			setcookie($user_cookie_site, $secret . '.' . $userId, $tikilib->now + $prefs['remembertime'], $prefs['feature_intertiki_sharedcookie'] == 'y' ? '/' : $prefs['cookie_path'], $prefs['cookie_domain']);
 			$logslib->add_log('login', 'refreshed a cookie for ' . $prefs['remembertime'] . ' seconds');
 		}
 	}

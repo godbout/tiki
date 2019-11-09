@@ -212,8 +212,9 @@ function logout($params)
 	}
 
 	$userlib->user_logout($login, true);
-	$userInfo = $this->get_user_info($login);
+	$userInfo = $userlib->get_user_info($login);
 	$userlib->delete_user_cookie($userInfo['userId']);
+	$userlib->force_logout($login); // Needed as can do eveything else except kill live session
 
 	if ($prefs['intertiki_logfile']) {
 		logit($prefs['intertiki_logfile'], 'logout', $login, INTERTIKI_OK, $prefs['known_hosts'][$key]['name']);
@@ -252,7 +253,8 @@ function cookie_check($params)
 	$result = $userlib->get_user_by_cookie($hash);
 
 	if ($result) {
-		return new XML_RPC_Response(new XML_RPC_Value($result, 'string'));
+		// Need to return login, not userId as userIds may differ across site
+		return new XML_RPC_Response(new XML_RPC_Value($tikilib->get_user_login($result), 'string'));
 	}
 
 	$msg = tra('Cookie not found');
