@@ -22,7 +22,7 @@
 		<div class="dropdown-menu" role="menu">
 			{if $prefs.feature_wiki eq 'y'}
 				<a class="dropdown-item" {if $type eq 'wiki page'} id="highlight"{/if} href="tiki-browse_categories.php?find={$find|escape:"url"}&amp;deep={$deep|escape:"url"}&amp;type=wiki+page&amp;parentId={$parentId|escape:"url"}&amp;sort_mode={$sort_mode|escape:"url"}">
-						{tr}Wiki pages{/tr}
+					{tr}Wiki pages{/tr}
 				</a>
 			{/if}
 			{if $prefs.feature_galleries eq 'y'}
@@ -42,11 +42,9 @@
 				</a>
 			{/if}
 			{if $prefs.feature_blogs eq 'y'}
-				<li class="dropdown-item">
-					<a {if $type eq 'blog'}id="highlight"{/if} href="tiki-browse_categories.php?find={$find|escape:"url"}&amp;deep={$deep|escape:"url"}&amp;type=blog&amp;parentId={$parentId|escape:"url"}&amp;sort_mode={$sort_mode|escape:"url"}">
-						{tr}Blogs{/tr}
-					</a>
-				</li>
+				<a class="dropdown-item" {if $type eq 'blog'}id="highlight"{/if} href="tiki-browse_categories.php?find={$find|escape:"url"}&amp;deep={$deep|escape:"url"}&amp;type=blog&amp;parentId={$parentId|escape:"url"}&amp;sort_mode={$sort_mode|escape:"url"}">
+					{tr}Blogs{/tr}
+				</a>
 			{/if}
 			{if $prefs.feature_trackers eq 'y'}
 				<a class="dropdown-item" {if $type eq 'tracker'}id="highlight"{/if} href="tiki-browse_categories.php?find={$find|escape:"url"}&amp;deep={$deep|escape:"url"}&amp;type=tracker&amp;parentId={$parentId|escape:"url"}&amp;sort_mode={$sort_mode|escape:"url"}">

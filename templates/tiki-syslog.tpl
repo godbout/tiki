@@ -8,14 +8,14 @@
 	{button class="btn btn-primary" _text="{tr}Export through Action Log{/tr}" href="tiki-admin_actionlog.php#Report"}
 *}</div>
 
-<form method="get" action="tiki-syslog.php" class="form-inline mb-4">
-	<div class="form-row align-items-center">
-		<label class="col-auto" for="months">{tr}Clean logs older than{/tr}</label>
-		<div class="col-auto mr-3">
-			<input type="text" name="months" class="form-control"> {tr}months{/tr}
+<form method="get" action="tiki-syslog.php" class="mb-4">
+	<div class="form-group row">
+		<label class="col-sm-3 col-form-label" for="months">{tr}Clean logs older than{/tr}</label>
+		<div class="col-sm-8 form-inline">
+			<input type="text" name="months" class="form-control mr-4"> {tr}months{/tr}
+			<input type="submit" class="btn btn-primary btn-sm ml-4" value="{tr}Clean{/tr}" name="clean">
 		</div>
 	</div>
-	<input type="submit" class="btn btn-primary btn-sm" value="{tr}Clean{/tr}" name="clean">
 </form>
 
 {include file='find.tpl'}
