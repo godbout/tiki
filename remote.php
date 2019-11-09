@@ -118,6 +118,13 @@ function validate($params)
 		}
 	}
 
+	if ($prefs['login_allow_email'] == 'y' && ! $userlib->user_exists($login)) {
+		// User is validated, so if no users found, must have succeeded via email.
+		$userUpper = TikiLib::strtoupper($login);
+		$query = 'select `login` from `users_users` where upper(`email`) = ?';
+		$login = $tikilib->getOne($query, [$userUpper]);
+	}
+
 	if ($prefs['intertiki_logfile']) {
 		logit($prefs['intertiki_logfile'], 'logged', $login, INTERTIKI_OK, $prefs['known_hosts'][$key]['name']);
 	}
