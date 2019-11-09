@@ -7984,7 +7984,10 @@ class UsersLib extends TikiLib
 				new XML_RPC_Value($hash, 'string')
 			]
 		);
+		$er = error_reporting(); // suppress PHP 7.2 warnings from xmlrpc lib
+		error_reporting(E_ALL ^ (E_NOTICE | E_WARNING | E_DEPRECATED));
 		$result = $client->send($msg);
+		error_reporting($er);
 
 		return $result;
 	}
