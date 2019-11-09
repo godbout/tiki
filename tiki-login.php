@@ -102,7 +102,7 @@ if ($requestedUser == 'admin') {
 	$prefs['feature_intertiki'] = 'n';
 }
 // Determine the intertiki domain
-if ($prefs['feature_intertiki'] == 'y') {
+if ($prefs['feature_intertiki'] == 'y' && $prefs['feature_intertiki_server'] != 'y') {
 	if (! empty($prefs['feature_intertiki_mymaster'])) {
 		$_REQUEST['intertiki'] = $prefs['feature_intertiki_mymaster'];
 	} elseif (strstr($requestedUser, '@')) {
