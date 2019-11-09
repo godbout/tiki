@@ -182,7 +182,7 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 						],
 					];
 					if ($entry instanceof Search_Type_SimpleText) {
-						$ret["analyzer"] = "simple";
+						$ret["analyzer"] = "sortable"; // sortable without any extras, best results for wildcard
 					}
 					return $ret;
 				}
