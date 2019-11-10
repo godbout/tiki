@@ -314,7 +314,7 @@ class ActivityLib
 				[
 					'field_name' => $key,
 					'field_type' => $type,
-				]
+				], true
 			);
 			$this->mapping[$key] = $type;
 		}
