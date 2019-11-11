@@ -129,6 +129,16 @@
 									</a>
 								</action>
 								<action>
+									<a href="tiki-caldav.php/calendars/{$cal.user}/calendar-{$id}">
+										{icon name='sync' _menu_text='y' _menu_icon='y' alt="{tr}Sync via CalDAV{/tr}"}
+									</a>
+								</action>
+								<action>
+									<a href="tiki-caldav.php/calendars/{$cal.user}/calendar-{$id}?export">
+										{icon name='export' _menu_text='y' _menu_icon='y' alt="{tr}Export as .ics{/tr}"}
+									</a>
+								</action>
+								<action>
 									{permission_link mode=text type=calendar id=$id title=$cal.name}
 								</action>
 								<action>

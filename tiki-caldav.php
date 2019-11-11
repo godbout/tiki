@@ -46,6 +46,7 @@ $server->addPlugin($caldavPlugin);
 $server->addPlugin(new CalDAV\Schedule\Plugin());
 $server->addPlugin(new DAV\Sharing\Plugin());
 $server->addPlugin(new CalDAV\SharingPlugin());
+$server->addPlugin(new CalDAV\ICSExportPlugin());
 
 // CardDAV plugin: TODO
 //$carddavPlugin = new CardDAV\Plugin();
