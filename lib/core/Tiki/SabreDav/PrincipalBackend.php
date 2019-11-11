@@ -11,7 +11,7 @@ namespace Tiki\SabreDav;
 use Sabre\DAV;
 use Sabre\DAV\MkCol;
 use Sabre\DAVACL;
-use Sabre\HTTP\URLUtil;
+use Sabre\Uri;
 
 use TikiLib;
 
@@ -69,7 +69,7 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
             $uri = $this->getPrincipalUri($user['login']);
 
             // Checking if the principal is in the prefix
-            list($rowPrefix) = URLUtil::splitPath($uri);
+            list($rowPrefix) = Uri\split($uri);
             if ($rowPrefix !== $prefixPath) {
                 continue;
             }
@@ -204,7 +204,7 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
         foreach ($results as $user) {
             $uri = $this->getPrincipalUri($user);
             // Checking if the principal is in the prefix
-            list($rowPrefix) = URLUtil::splitPath($uri);
+            list($rowPrefix) = Uri\split($uri);
             if ($rowPrefix !== $prefixPath) {
                 continue;
             }
@@ -245,7 +245,7 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
                 if ($user) {
                     $uri = $this->getPrincipalUri($user);
                     // Checking if the principal is in the prefix
-                    list($rowPrefix) = URLUtil::splitPath($uri);
+                    list($rowPrefix) = Uri\split($uri);
                     if ($rowPrefix !== $principalPrefix) {
                         $uri = null;
                     }
