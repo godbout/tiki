@@ -381,7 +381,7 @@ function wikiplugin_layout($data, $params)
 	}
 	if (isset($params['nosidemargins'])) {
 		$headerlib->add_css(
-			".container-std.container-fluid .wikitext {margin-left: -15px; margin-right: -15px;} .container-std.container-fluid .wikitext > .row {margin-left: 0; margin-right: 0;} "
+			".container-std.container-fluid #page-data {margin-left: -15px; margin-right: -15px} .container-std.container-fluid #page-data > .row {margin-left: 0; margin-right: 0;} "
 		);
 	}
 	if (isset($params['fgalId']) || $params['fileIds']) {
