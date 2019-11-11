@@ -1,16 +1,17 @@
 {title}{tr}Contacts{/tr}{/title}
 
-<div class="t_navbar btn-group form-group row">
-	<div style="float:right;margin:5px;">
+<div class="t_navbar mb-4">
+	<div style="btn-group">
 		{if $view eq 'list'}
 			{button href="?view=group" _class="btn btn-primary" _text="{tr}Group View{/tr}"}
 		{else}
 			{button href="?view=list" _class="btn btn-info" _text="{tr}List View{/tr}"}
 		{/if}
-	</div>
-	<div style="float:left;margin:5px;">
 		{button href="#" _onclick="flip('editform');return false;" _class="btn btn-primary" _text="{tr}Create/edit contacts{/tr}"}
 		{button href="tiki-user_contacts_prefs.php" _class="btn btn-primary" _text="{tr}Preferences{/tr}"}
+		{if $prefs.feature_webmail eq 'y' and $tiki_p_use_webmail eq 'y'}
+			{button href="tiki-webmail.php" _class="btn btn-primary" _text="{tr}Webmail{/tr}"}
+		{/if}
 	</div>
 </div>
 
