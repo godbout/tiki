@@ -70,7 +70,7 @@
 
 	<div id="extra-fields-placeholder">
 		<div class="form-group d-none">
-			<label class="col-sm-3 col-form-label"></label>
+			<label class="offset-sm-1 col-sm-3 col-form-label"></label>
 			<div class="col-sm-7">
 				<input value="" name="" size="20" maxlength="80" class="form-control">
 			</div>
@@ -259,6 +259,7 @@
 		var label = newElement.querySelector('.col-form-label').innerHTML = text;
 		var input = createElementOrFill(newElement.querySelector('input'), { maxlength : 80, name : 'ext_'+extid, value : defaultvalue});
 		newElement.classList.remove('d-none');
+		newElement.classList.add('row');
 		document.querySelector('#extra-fields-placeholder').appendChild(newElement);
 
 		if (pub != 'y' || {/literal}{if $tiki_p_admin_group_webmail eq 'y'}1{else}0{/if}{literal}) {	// add button only if not public
