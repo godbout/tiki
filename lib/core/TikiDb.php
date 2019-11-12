@@ -478,4 +478,42 @@ abstract class TikiDb
 		}
 		return $haveMySQLSSL;
 	}
+
+
+	/**
+	 * Obtain a lock with a name given by the string $str, using a $timeout of timeout seconds
+	 * @param $str
+	 * @param int $timeout
+	 * @return bool if lock was created
+	 */
+	function getLock($str, $timeout = 1)
+	{
+		if ($this->isLocked($str)) {
+			return false;
+		}
+		$result = $this->getOne("SELECT GET_LOCK(?, ?) as isLocked", [$str, $timeout]);
+		return (bool)((int)$result);
+	}
+
+	/**
+	 * Releases the lock named by the string $str
+	 * @param $str
+	 * @return bool
+	 */
+	function releaseLock($str)
+	{
+		$result = $this->getOne("SELECT RELEASE_LOCK(?) as isReleased", [$str]);
+		return (bool)((int)$result);
+	}
+
+	/**
+	 * Checks whether the lock named $str is in use (that is, locked)
+	 * @param $str
+	 * @return bool
+	 */
+	function isLocked($str)
+	{
+		$result = $this->getOne("SELECT IS_USED_LOCK(?) as isLocked", [$str]);
+		return (bool)((int)$result);
+	}
 }

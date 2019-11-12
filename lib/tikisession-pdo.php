@@ -68,12 +68,13 @@ class Session
 	{
 		global $prefs;
 
-		$expiry = time() + ( $prefs['session_lifetime'] * 60 );
-
-		TikiDb::get()->query('delete from sessions where sesskey = ?', [ $sesskey ]);
-		TikiDb::get()->query('insert into sessions (sesskey, data, expiry) values( ?, ?, ? )', [ $sesskey, $data, $expiry ]);
-
-		return true;
+		if (TikiDb::get()->getLock($sesskey)) {
+			$expiry = time() + ($prefs['session_lifetime'] * 60);
+			TikiDb::get()->query('insert into sessions (sesskey, data, expiry) values( ?, ?, ? ) on duplicate key update data=values(data), expiry=values(expiry)', [$sesskey, $data, $expiry]);
+			TikiDb::get()->releaseLock('sessions');
+			return true;
+		}
+		return false;
 	}
 
 	/**
