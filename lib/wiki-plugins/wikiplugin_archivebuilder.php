@@ -162,14 +162,13 @@ function wikiplugin_archivebuilder_trackerfiles($basepath, $trackerItem)
 	$fields = $definition->getFields();
 	foreach ($fields as $field) {
 		if ($field['type'] == 'FG') {
-			if (isset($data[$field['fieldId']])) {
-				$value = $data[$field['fieldId']];
-				foreach (explode(',', $value) as $fileId) {
-					$file = $fileGal->get_file($fileId);
-					if (count($file)) {
-						$name = $basepath . ($field['permName'] ? : $field['fieldId']) . '/' . $file['filename'];
-						$attachments[$name] = $file['data'];
-					}
+			$fieldHandler = $definition->getFieldFactory()->getHandler($field, $data);
+			$fieldData = $fieldHandler->getFieldData();
+			foreach ($fieldData['files'] as $fileInfo) {
+				$file = \Tiki\FileGallery\File::id($fileInfo['fileId']);
+				if ($file->exists()) {
+					$name = $basepath . ($field['permName'] ? : $field['fieldId']) . '/' . $file->filename;
+					$attachments[$name] = $file->getContents();
 				}
 			}
 		}
