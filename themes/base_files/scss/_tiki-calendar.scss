@@ -131,3 +131,16 @@ a.fc-event:hover {
 		.weeks { padding: 8px; }
 	}
 }
+
+@media (max-width: breakpoint-max(sm)) {
+	.tiki_calendar .col1 #editcalitem {
+		.modal-body {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	#filtercal {
+		left: 0;
+	}
+}

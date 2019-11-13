@@ -2646,6 +2646,14 @@ a.fc-event:hover {
     .col1 .table-responsive > .caltable .weeks {
       padding: 8px; } }
 
+@media (max-width: 767.98px) {
+  .tiki_calendar .col1 #editcalitem .modal-body {
+    padding-left: 0;
+    padding-right: 0; }
+
+  #filtercal {
+    left: 0; } }
+
 #intertrans-indicator {
   position: fixed;
   left: 0;
