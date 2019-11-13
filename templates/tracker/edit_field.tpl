@@ -29,7 +29,7 @@
 			<p>{$info.description|escape}</p>
 
 			{if ($prefs['feature_multilingual'] == 'y') && ($prefs['available_languages'])}
-			{* If both conditions are not met the field won't accept input - it should be available only if multilinguale is set*}
+			{* If both conditions are not met the field won't accept input - it should be available only if multilingual is set*}
 				{if $field.type eq 't' or $field.type eq 'a'}
 					{* Pretend the field attribute is just an option as it only exists for two field types *}
 					<div class="form-check">
