@@ -5,8 +5,8 @@
 			<span class="formunit">{$field.options_map.prepend|escape}&nbsp;</span>
 	</div>
 		{/if}
-	<div class="col-md-7{*col-auto*}"> {* Prevent input from overflowing in narrow screens *}
-		<input type="number" class="numeric form-control" name="{$field.ins_id|escape}"
+	<div class="col-auto"> {* Prevent input from overflowing in narrow screens *}
+		<input type="number" class="currency_number  numeric form-control" name="{$field.ins_id|escape}"
 	{if $field.options_map.size}size="{$field.options_map.size|escape}" maxlength="{$field.options_map.size|escape}"{/if}
 	value="{$field.amount|escape}" id="{$field.ins_id|escape}">
 	</div>

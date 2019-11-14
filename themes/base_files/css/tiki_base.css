@@ -2428,6 +2428,9 @@ table.treetable tr.expanded span.indenter a {
   .tiki .html-select-date .chosen-container-single, .tiki .html-select-time .chosen-container-single {
     min-width: 8em; }
 
+.currency_number {
+  border: 1px solid #ced4da !important; }
+
 @media (max-width: 767.98px) {
   .tracker-item-files {
     -webkit-column-count: 1;
