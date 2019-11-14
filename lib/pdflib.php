@@ -697,7 +697,7 @@ class PdfGenerator
 		$doc->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'));
 		$this->checkLargeTables($doc); //hack function for large data columns
 		$xpath = new DOMXpath($doc);
-		$wrapperDefs = [["class","ts-wrapperdiv","visibility:visible"],["id","png_container_pivottable","display:''"]];
+		$wrapperDefs = [["class","ts-wrapperdiv","visibility:visible"],["id","png_container_pivottable","display:none"]];
 		foreach ($wrapperDefs as $wrapperDef) {
 			$wrapperdivs = $xpath->query('//*[contains(@' . $wrapperDef[0] . ', "' . $wrapperDef[1] . '")]');
 			for ($i = 0; $i < $wrapperdivs->length; $i++) {
