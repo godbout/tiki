@@ -190,7 +190,7 @@ class SvnUpCommand extends Command
 		$errors = false;
 		$rev = 'HEAD';
 
-		$output->writeln('<comment>This command is now deprecated use php consone.php vcs:upate instead</comment>');
+		$output->writeln('<comment>This command is now deprecated use php console.php vcs:update instead</comment>');
 
 		// check that proper options were given, else die with help options.
 		if (! in_array($input->getOption('conflict'), ['abort', 'postpone', 'mine-conflict', 'theirs-conflict'])) {
