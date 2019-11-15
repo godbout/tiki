@@ -2044,6 +2044,7 @@
 		"npm-asset/sass-svg-uri": ">=1.0",
 		"npm-asset/schema-utils": ">=0.4.5",
 		"npm-asset/uri-js": ">=3.0.2",
+		"npm-asset/vue": ">=2.6.10",
 		"npm-asset/worker-loader": ">=1.1.1",
 		"onelogin/php-saml": ">=2.10.0",
 		"openannotation/annotator": ">=1.2.10",
