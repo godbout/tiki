@@ -192,6 +192,10 @@
 						<legend>{tr}Experimental{/tr}</legend>
 						{preference name=feature_jquery_carousel}
 						{preference name=feature_jquery_tablesorter}
+						{preference name=vuejs_enable}
+						<div class="adminoptionboxchild" id="vuejs_enable_childcontainer">
+							{preference name=vuejs_build_mode}
+						</div>
 					</fieldset>
 				</div>
 			</fieldset>

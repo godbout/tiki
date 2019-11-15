@@ -590,6 +590,10 @@ if ($prefs['feature_equal_height_rows_js'] == 'y') {
 	$headerlib->add_jsfile("vendor_bundled/vendor/Sam152/Javascript-Equal-Height-Responsive-Rows/grids.min.js");
 }
 
+if ($prefs['vuejs_enable'] == 'y') {
+	$headerlib->add_jsfile_cdn("vendor_bundled/vendor/npm-asset/vue/dist/{$prefs['vuejs_build_mode']}");
+}
+
 if (empty($user) && $prefs['feature_antibot'] == 'y') {
 	$headerlib->add_jsfile_late('lib/captcha/captchalib.js');
 }
