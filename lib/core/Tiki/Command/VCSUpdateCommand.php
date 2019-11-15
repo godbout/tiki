@@ -236,7 +236,7 @@ class VCSUpdateCommand extends Command
 			$startRev = ' unknown';
 		}
 
-		// Set this before, so if 'abort' is used, it can be chagned to a valid option later
+		// Set this before, so if 'abort' is used, it can be changed to a valid option later
 		$svnConflict = $input->getOption('conflict');
 		// start svn conflict checks
 		if ($input->getOption('conflict') === 'abort') {
