@@ -59,6 +59,10 @@ class InstallCommand extends Command
 				}
 			}
 
+			if (! DB_STATUS) { // see console.php
+				return;
+			}
+
 			include_once 'tiki-setup.php';
 			\TikiLib::lib('cache')->empty_cache();
 			initialize_prefs(true);

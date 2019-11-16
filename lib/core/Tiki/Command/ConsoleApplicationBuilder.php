@@ -165,9 +165,17 @@ class ConsoleApplicationBuilder
 				],
 				'commands' => [
 					new InstallCommand,
-					new UpdateCommand,
 					new MultiTikiListCommand,
 					new MultiTikiMoveCommand,
+				],
+			],
+			'checkConfigurationAndDatabaseIsAvailable' => [
+				'action' => [
+					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
+					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
+				],
+				'commands' => [
+					new UpdateCommand,
 				],
 			],
 			'checkIsOCRAvailable' => [
@@ -378,7 +386,7 @@ class ConsoleApplicationBuilder
 	 */
 	protected function checkConfigurationIsAvailable() : void
 	{
-		$this->checkIsDatabaseAvailable();
+		$this->checkIsInstalled();
 		$local_php = TikiInit::getCredentialsFile();
 		if (is_readable($local_php)) {
 			// TikiInit::getCredentialsFile will reset all globals below, requiring $local_php again to restore the environment.
@@ -388,6 +396,17 @@ class ConsoleApplicationBuilder
 		if (! (is_file($local_php) || TikiInit::getEnvironmentCredentials())) {
 			throw new UnavailableException('Credentials file (local.php) not available. ', 310);
 		}
+	}
+
+	/**
+	 * Check if db configuration is available
+	 *
+	 * @throws CommandUnavailableException
+	 */
+	protected function checkConfigurationAndDatabaseIsAvailable() : void
+	{
+		$this->checkConfigurationIsAvailable();
+		$this->checkIsDatabaseAvailable();
 	}
 
 	/**

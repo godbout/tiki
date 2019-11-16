@@ -13,6 +13,9 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	header("location: index.php");
 	exit;
 }
+
+use Tiki\Command\ConsoleSetupException;
+
 require_once('tiki-filter-base.php');
 
 if (! isset($_SERVER['QUERY_STRING'])) {
@@ -89,6 +92,9 @@ $needed_prefs = [
 
 /// check that tiki_preferences is there
 if ($tikilib->query("SHOW TABLES LIKE 'tiki_preferences'")->numRows() == 0) {
+	if (defined('TIKI_CONSOLE')) {
+		throw new ConsoleSetupException($error, 1002);
+	}
 	// smarty not initialised at this point to do a polite message, sadly
 	header('location: tiki-install.php');
 	exit;
