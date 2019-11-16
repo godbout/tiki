@@ -137,7 +137,7 @@ td.url{
 		.form-check-input { position: static; margin-left: 0; }
 		.form-check .form-check-input { margin-left: -1.25rem; }
 		&.large-table {
-			.table:not(.tablesorter) {
+			.table:not(.tablesorter):not(.caltable) {
 				thead, tbody {
 					th:not(.visible-header) {
 						position: absolute;
@@ -203,6 +203,16 @@ td.url{
 				}
 
 				tfoot tr { display: block; }
+			}
+
+			.table.caltable {
+				tbody tr:first-child {
+					td:not(.visible-header) {
+						position: absolute;
+						top: -9999px;
+						left: -9999px;
+					}
+				}
 			}
 		}
 	}
