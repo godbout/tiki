@@ -410,6 +410,25 @@ class Search_Query_WikiBuilder
 		}
 	}
 
+	function wpquery_index_federated($query, $value = '')
+	{
+		$indices = TikiLib::lib('federatedsearch')->getIndices();
+		$indexFilter = [];
+		if ($value != 'y') {
+			$indexFilter = array_map('trim', array_filter(explode(',', $value)));
+		}
+		foreach ($indices as $indexName => $index) {
+			$foreignQuery = $query;
+			if ($indexFilter && !in_array($indexName, $indexFilter)) {
+				continue;
+			}
+			foreach ($index->getTransformations() as $trans) {
+				$foreignQuery->applyTransform($trans);
+			}
+			$query->includeForeign($indexName, $foreignQuery);
+		}
+	}
+
 	function isNextPossible()
 	{
 		return $this->boost == 1;
