@@ -194,6 +194,7 @@
 						{preference name=feature_jquery_tablesorter}
 						{preference name=vuejs_enable}
 						<div class="adminoptionboxchild" id="vuejs_enable_childcontainer">
+							{preference name=vuejs_always_load}
 							{preference name=vuejs_build_mode}
 						</div>
 					</fieldset>

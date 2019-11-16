@@ -31,5 +31,15 @@ function prefs_vuejs_list()
 				'vuejs_enable',
 			],
 		],
+		'vuejs_always_load' => [
+			'name'        => tra('Always Load Vue.js'),
+			'description' => tra('Loads the vue.js library for every page.'),
+			'type'        => 'flag',
+			'default'     => 'n',
+			'tags'        => [],
+			'dependencies' => [
+				'vuejs_enable',
+			],
+		],
 	];
 }

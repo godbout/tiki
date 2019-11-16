@@ -590,7 +590,7 @@ if ($prefs['feature_equal_height_rows_js'] == 'y') {
 	$headerlib->add_jsfile("vendor_bundled/vendor/Sam152/Javascript-Equal-Height-Responsive-Rows/grids.min.js");
 }
 
-if ($prefs['vuejs_enable'] == 'y') {
+if ($prefs['vuejs_enable'] == 'y' && $prefs['vuejs_always_load'] == 'y') {
 	$headerlib->add_jsfile_cdn("vendor_bundled/vendor/npm-asset/vue/dist/{$prefs['vuejs_build_mode']}");
 }
 
