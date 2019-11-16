@@ -637,4 +637,9 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 		}
 		return new stdClass;
 	}
+
+	public function resolveAlias($indexName)
+	{
+		return $this->connection->resolveAlias($indexName);
+	}
 }

@@ -253,6 +253,13 @@ class Search_Elastic_QueryBuilder
 			return ["wildcard" => [
 				$this->getNodeField($node) => strtolower($value),
 			]];
+		} elseif ($node->getField() == '_index' && $this->index && $resolvedIndex = $this->index->resolveAlias($value)) {
+			return [ "match" => [
+				"_index" => [
+					"query" => $resolvedIndex,
+					"operator" => "and",
+				],
+			]];
 		} else {
 			return ["match" => [
 				$this->getNodeField($node) => [
