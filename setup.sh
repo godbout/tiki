@@ -42,7 +42,7 @@ WHAT_NEXT_AFTER_f='x'
 
 # Composer: If you are installing via a released Tiki package (zip, tar.gz,
 # tar.bz2, 7z), you can and should skip using Composer. If you are installing and
-# upgrading via SVN or Git, you need to run Composer after 'svn checkout' and 'svn
+# upgrading via SVN or git, you need to run Composer after 'svn checkout' and 'svn
 # upgrade'. More info at https://doc.tiki.org/Composer
 if [ -d ".svn" ] || [ -d ".git" ]; then
 	DEFAULT_WHAT='c'

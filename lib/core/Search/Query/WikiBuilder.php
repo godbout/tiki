@@ -418,7 +418,7 @@ class Search_Query_WikiBuilder
 			$indexFilter = array_map('trim', array_filter(explode(',', $value)));
 		}
 		foreach ($indices as $indexName => $index) {
-			$foreignQuery = $query;
+			$foreignQuery = clone $query;
 			if ($indexFilter && !in_array($indexName, $indexFilter)) {
 				continue;
 			}
