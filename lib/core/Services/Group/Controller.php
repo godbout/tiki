@@ -367,7 +367,7 @@ class Services_Group_Controller
 				Feedback::success($feedback);
 			}
 			//return to page
-			return Services_Utilities::redirect($_SERVER['HTTP_REFERER'] . '#contenttabs_admingroups-3');
+			return Services_Utilities::redirect($_SERVER['HTTP_REFERER']);
 		}
 	}
 
