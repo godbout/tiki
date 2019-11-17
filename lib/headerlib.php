@@ -106,6 +106,14 @@ class HeaderLib
 	 */
 	public $jq_onready;
 
+	/**
+	 * Array of JS Scripts arrays as string that should be embedded as modules
+	 * Key = rank (load order), value = array of scripts.
+	 * jq_modules[$rank][] = $script;
+	 * @var array
+	 */
+	public $js_modules;
+
 	public $cssfiles;
 	public $css;
 	public $rssfeeds;
@@ -135,6 +143,7 @@ class HeaderLib
 		$this->js = [];
 		$this->js_config = [];
 		$this->jq_onready = [];
+		$this->js_modules = [];
 		$this->cssfiles = [];
 		$this->css = [];
 		$this->rssfeeds = [];
@@ -356,6 +365,22 @@ class HeaderLib
 	{
 		if (empty($this->jq_onready[$rank]) or ! in_array($script, $this->jq_onready[$rank])) {
 			$this->jq_onready[$rank][] = $script;
+		}
+		return $this;
+	}
+
+	/**
+	 * Adds a javascript module
+	 *
+	 * @param string $script
+	 * @param int    $rank
+	 *
+	 * @return $this
+	 */
+	function add_js_module($script, $rank = 0)
+	{
+		if (empty($this->js_modules[$rank]) or ! in_array($script, $this->js_modules[$rank])) {
+			$this->js_modules[$rank][] = $script;
 		}
 		return $this;
 	}
@@ -816,6 +841,7 @@ class HeaderLib
 	{
 		$this->js = [];
 		$this->jq_onready = [];
+		$this->js_modules = [];
 		if ($clear_js_files) {
 			$this->jsfiles = [];
 		}
@@ -833,8 +859,24 @@ class HeaderLib
 
 		ksort($this->js);
 		ksort($this->jq_onready);
+		ksort($this->js_modules);
 
 		$back = "\n";
+
+		if (count($this->js_modules)) {
+			$b = '';
+			foreach ($this->js_modules as $x => $js) {
+				$b .= "// js $x \n";
+				foreach ($js as $j) {
+					$b .= "$j\n";
+				}
+			}
+			if ($wrap === true) {
+				$back .= $this->wrap_js($b, true);
+			} else {
+				$back .= $b;
+			}
+		}
 
 		if (count($this->js)) {
 			$b = '';
@@ -903,9 +945,14 @@ class HeaderLib
 	}
 
 
-	function wrap_js($inJs)
+	function wrap_js($inJs, $module = false)
 	{
-		return "<script type=\"text/javascript\">\n<!--//--><![CDATA[//><!--\n" . $inJs . "//--><!]]>\n</script>\n";
+		if ($module) {
+			return "<script type=\"module\" name=\"App\">\n" . $inJs . "\n</script>\n";
+		} else {
+			return "<script type=\"text/javascript\">\n<!--//--><![CDATA[//><!--\n" . $inJs . "//--><!]]>\n</script>\n";
+		}
+
 	}
 
 	/**
