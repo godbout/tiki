@@ -630,7 +630,6 @@
 							</button>
 						</div>
 						<input type="hidden" name="group" value="{$groupname|escape}">
-						<input type="hidden" name="anchor" value="#contenttabs_admingroups-3">
 					</form>
 				</div>
 			</div>
@@ -664,7 +663,6 @@
 							</tbody>
 						</table>
 						<input type="hidden" name="group" value="{$groupname}">
-						<input type="hidden" name="anchor" value="#contenttabs_admingroups-4">
 				</div>
 			{if !$ts.ajax}
 				<div class="input-group col-sm-8">

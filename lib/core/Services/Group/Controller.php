@@ -444,7 +444,7 @@ class Services_Group_Controller
 				Feedback::success($feedback);
 			}
 			//return to page
-			return Services_Utilities::redirect($_SERVER['HTTP_REFERER'] . $util->extra['anchor']);
+			return Services_Utilities::redirect($_SERVER['HTTP_REFERER']);
 		}
 	}
 
@@ -498,7 +498,7 @@ class Services_Group_Controller
 				Feedback::success($feedback);
 			}
 			//return to page
-			return Services_Utilities::redirect($_SERVER['HTTP_REFERER'] . $util->extra['anchor']);
+			return Services_Utilities::redirect($_SERVER['HTTP_REFERER']);
 		}
 	}
 
