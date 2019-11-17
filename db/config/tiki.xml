@@ -344,6 +344,9 @@
 		<service id="tiki.lib.validators" class="Validators">
 			<file>%kernel.root_dir%/lib/validatorslib.php</file>
 		</service>
+		<service id="tiki.lib.vuejs" class="VueJsLib">
+			<file>%kernel.root_dir%/lib/vue/vuejslib.php</file>
+		</service>
 		<service id="tiki.lib.vimeo" class="VimeoLib">
 			<file>%kernel.root_dir%/lib/filegals/vimeolib.php</file>
 			<argument type="service" id="tiki.lib.oauth"/>
