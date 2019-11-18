@@ -360,32 +360,49 @@ if (! empty($_REQUEST['group']) && isset($_REQUEST['import']) && $access->checkO
 	$fhandle = fopen($fname, 'r');
 	$fields = fgetcsv($fhandle, 1000);
 	if (! $fields[0]) {
-		$smarty->assign('msg', tra('The file has incorrect syntax or is not a CSV file'));
-		$smarty->display('error.tpl');
-		die;
-	}
-	if ($fields[0] != 'user') {
-		$smarty->assign('msg', tra('The file does not have the required header:') . ' user');
-		$smarty->display('error.tpl');
-		die;
-	}
-	$data = @fgetcsv($fhandle, 1000);
-	while (! feof($fhandle)) {
-		if (function_exists("mb_detect_encoding") && mb_detect_encoding($data[0], "ASCII, UTF-8, ISO-8859-1") == "ISO-8859-1") {
-			$data[0] = utf8_encode($data[0]);
+		Feedback::error(tr('The file has incorrect syntax or is not a CSV file'));
+		$cookietab = 5; // import/export members tab
+	} elseif ($fields[0] != 'user') {
+		Feedback::error(tr('The file does not have the required header:') . ' user');
+		$cookietab = 5; // import/export members tab
+	} else {
+		$successes = [];
+		$errors = [];
+		$data = @fgetcsv($fhandle, 1000);
+		while ($data != false) {
+			if (function_exists("mb_detect_encoding") && mb_detect_encoding($data[0], "ASCII, UTF-8, ISO-8859-1") == "ISO-8859-1") {
+				$data[0] = utf8_encode($data[0]);
+			}
+			$data[0] = trim($data[0]);
+			if (! $userlib->user_exists($data[0])) {
+				$errors[] = $data[0];
+			} else {
+				$res = $userlib->assign_user_to_group($data[0], $_REQUEST['group']);
+				if ($res) {
+					$successes[] = $data[0];
+				}
+			}
+			$data = fgetcsv($fhandle, 1000);
 		}
-		$data[0] = trim($data[0]);
-		if (! $userlib->user_exists($data[0])) {
-			$errors[] = tra("User doesn't exist") . ': ' . $data[0];
+		// feedback
+		if (! empty($successes)) {
+			$mes = count($successes) === 1 ? tr('The following user has been added to group %0:', htmlspecialchars($_REQUEST['group'])) :
+				tr('The following users have been added to group %0:', $_REQUEST['group']);
+			Feedback::success(['mes' => $mes, 'items' => $successes, 'tpl' => 'action']);
 		} else {
-			$userlib->assign_user_to_group($data[0], $_REQUEST['group']);
+			Feedback::note(tr('No users added to group %0', htmlspecialchars($_REQUEST['group'])));
 		}
-		$data = fgetcsv($fhandle, 1000);
+		if (! empty($errors)) {
+			$mes = count($errors) === 1 ? tr('The following user does not exist:') :
+				tr('The following users do not exist:');
+			Feedback::error(['mes' => $mes, 'items' => $errors, 'tpl' => 'action']);
+		}
+		// return to page
+		//$cookietab = 3;
+		// redirect to members list tab. Simply setting the $cookietab variable doesn't show refreshed list of
+		// group members for some reason
+		$access->redirect('tiki-admingroups.php?group=' . $_REQUEST['group'] . '&cookietab=3');
 	}
-	if (! empty($errors)) {
-		Feedback::error($errors);
-	}
-	$cookietab = 3; // members list tab
 }
 if ($prefs['feature_categories'] == 'y') {
 	$categlib = TikiLib::lib('categ');
