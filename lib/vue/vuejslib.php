@@ -49,6 +49,12 @@ class VueJsLib
 
 		$nameLowerCase = strtolower($name);
 
+		if (! $name && $app) {
+			$name = 'App';
+		}
+
+		$nameLowerCase = strtolower($name);
+
 		if ($script->length) {    // required
 			$javascript = $script[0]->nodeValue;
 			preg_match('/export default {(.*)}/ms', $javascript, $match);
