@@ -316,6 +316,9 @@ $smarty->assign('description', $info["description"]);
 if ($_REQUEST["parentId"]) {
 	$p_info = $categlib->get_category($_REQUEST["parentId"]);
 	$father = $p_info["parentId"];
+	if (!$p_info){
+		Feedback::error(tr('Invalid category'));
+	}
 	$smarty->assign('categ_name', $p_info['name']);
 	$smarty->assign('path', $p_info['tepath']);
 } else {
