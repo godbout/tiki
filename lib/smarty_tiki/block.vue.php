@@ -76,7 +76,7 @@ function smarty_block_vue($params, $content, $smarty, &$repeat)
 
 	// all ready? then we shall begin
 
-	$app = ! empty($params['app']) || $params['app'] === 'y';
+	$app = ! (empty($params['app']) || $params['app'] === 'n');
 	$name = ! isset($params['name']) ? '' : $params['name'];
 
 	return TikiLib::lib('vuejs')->processVue($content, $name, $app);

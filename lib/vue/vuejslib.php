@@ -17,12 +17,12 @@ class VueJsLib
 	 * @throws Exception
 	 */
 
-	public function processVue($str, $name = '', $app = false)
+	public function processVue($str, $name = '', $app = false, $minify = false)
 	{
 		$headerlib = TikiLib::lib('header');
 
 		$dom = new DOMDocument('1.0', 'UTF-8');
-		$dom->loadHTML($str);
+		$dom->loadHTML("<html lang=\"en\"><body>$str</body></html>");
 
 		$script   = $dom->getElementsByTagName('script');
 		$template = $dom->getElementsByTagName('template');
@@ -49,12 +49,17 @@ class VueJsLib
 				// embedded modules cannot export apparently, also can't be found by import fns
 
 			}
-			$minifier = new MatthiasMullie\Minify\JS($javascript);
 			global $tikidomainslash;
 			$tempDir = './temp/public/' . $tikidomainslash;
 			$hash =  $nameLowerCase ? $nameLowerCase : md5(serialize($javascript));
-			$file = $tempDir . "min_vue_" . $hash . ".js";
-			$minifier->minify($file);
+
+			$file = $tempDir . "vue_" . $hash . ".js";
+			if ($minify) {
+				$minifier = new MatthiasMullie\Minify\JS($javascript);
+				$minifier->minify($file);
+			} else {
+				file_put_contents($file, $javascript);
+			}
 			chmod($file, 0644);
 
 			if ($app) {
