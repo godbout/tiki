@@ -9,13 +9,17 @@
 <div class="tree breadcrumb" id="top">
 	<div class="treetitle">
 		<a href="tiki-admin_categories.php?parentId=0" class="categpath">{tr}Top{/tr}</a>
-		{if $parentId != 0}
-			{foreach $path as $id=>$name}
-				&nbsp;::&nbsp;
-				<a class="categpath" href="tiki-admin_categories.php?parentId={$id}">{$name|escape}</a>
-			{/foreach}
-			({tr}ID:{/tr} {$parentId})
-		{/if}
+        {if $path}
+            {if $parentId != 0}
+                {foreach $path as $id=>$name}
+					&nbsp;::&nbsp;
+					<a class="categpath" href="tiki-admin_categories.php?parentId={$id}">{$name|escape}</a>
+                {/foreach}
+				({tr}ID:{/tr} {$parentId})
+            {/if}
+        {else}
+			<p class="text-center text-danger h5">{tr}Invalid category{/tr}</p>
+        {/if}
 	</div>
 </div>
 
