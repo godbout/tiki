@@ -9,11 +9,15 @@
 class VueJsLib
 {
 	/**
-	 * @param string  $str body of the vue document
-	 * @param bool    $app whether to create the App
+	 * @param string $str   body of the vue document
+	 * @param string $name  name of the component
+	 * @param bool   $app   whether to create the App
+	 *
+	 * @return string
+	 * @throws Exception
 	 */
 
-	public function processVue($str, $app = false)
+	public function processVue($str, $name = '', $app = false)
 	{
 		$headerlib = TikiLib::lib('header');
 
@@ -24,6 +28,12 @@ class VueJsLib
 		$template = $dom->getElementsByTagName('template');
 		$style    = $dom->getElementsByTagName('style');
 
+		if (! $name && $app) {
+			$name = 'App';
+		}
+
+		$nameLowerCase = strtolower($name);
+
 		if ($script->length) {    // required
 			$javascript = $script[0]->nodeValue;
 			preg_match('/export default {(.*)}/ms', $javascript, $match);
@@ -32,35 +42,38 @@ class VueJsLib
 				$originalExport = $export = $match[1];
 				if ($template->length) {
 					$templateNode = $template[0];
-					$export .= ', template: `' . $this->get_inner_html($templateNode) . '`';
+					$export .= ', template: `' . $this->getInnerHtml($templateNode) . '`';
 					$javascript = str_replace($originalExport, $export, $javascript);
 				}
 				//$headerlib->add_js_module($javascript);
 				// embedded modules cannot export apparently, also can't be found by import fns
 
-				$minifier = new MatthiasMullie\Minify\JS($javascript);
-				global $tikidomainslash;
-				$tempDir = './temp/public/' . $tikidomainslash;
-				$hash =  md5(serialize($javascript));
-				$file = $tempDir . "min_vue_" . $hash . ".js";
-				$temp = $minifier->minify($file);
-				chmod($file, 0644);
-
 			}
-		}
-		if ($app) {
-			$headerlib->add_js_module('
-import App from "'. $file . '";
+			$minifier = new MatthiasMullie\Minify\JS($javascript);
+			global $tikidomainslash;
+			$tempDir = './temp/public/' . $tikidomainslash;
+			$hash =  $nameLowerCase ? $nameLowerCase : md5(serialize($javascript));
+			$file = $tempDir . "min_vue_" . $hash . ".js";
+			$minifier->minify($file);
+			chmod($file, 0644);
+
+			if ($app) {
+				$headerlib->add_js_module("
+import $name from \"$file\";
 
 new Vue({
-	  render: h => h(App),
-	}).$mount(`#app`);
-');
-			return '<div id="app"></div>';
+	  render: h => h($name),
+	}).\$mount(`#$nameLowerCase`);
+");
+				return "<div id=\"$nameLowerCase\"></div>";
+			}
 		}
+
+		return '';
 	}
 
-	function get_inner_html( $node ) {
+	// thanks dpetroff https://www.php.net/manual/en/class.domelement.php#101243
+	function getInnerHtml( $node ) {
 	    $innerHTML= '';
 	    $children = $node->childNodes;
 	    foreach ($children as $child) {

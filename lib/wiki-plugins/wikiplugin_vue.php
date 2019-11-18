@@ -33,7 +33,13 @@ function wikiplugin_vue_info()
 				'default' => '',
 				'advanced' => true,
 			],
-
+			'name' => [
+				'required' => false,
+				'name' => tra('Name'),
+				'description' => tra('Identifier of the component.'),
+				'since' => '21.0',
+				'default' => '',
+			],
 		]
 	];
 }

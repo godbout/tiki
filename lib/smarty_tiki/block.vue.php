@@ -47,7 +47,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 }
 
 /**
- * @param $params     array  [ app = n|y ]
+ * @param $params     array  [ app = n|y, name = string ]
  * @param $content    string body of the Vue componenet
  * @param $smarty     Smarty
  * @param $repeat     boolean
@@ -77,6 +77,7 @@ function smarty_block_vue($params, $content, $smarty, &$repeat)
 	// all ready? then we shall begin
 
 	$app = ! empty($params['app']) || $params['app'] === 'y';
+	$name = ! isset($params['name']) ? '' : $params['name'];
 
-	return TikiLib::lib('vuejs')->processVue($content, $app);
+	return TikiLib::lib('vuejs')->processVue($content, $name, $app);
 }
