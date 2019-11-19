@@ -19,6 +19,7 @@ body:not(.fixed_width) .container {
 @media(max-width:768px) {
   .tiki .col-md-12 {
 	flex-basis: 100%;
+	  width: 100% !important;
   }
   // Prevent column from imploding horizontally if it contains only narrow content.
   .col2 .module,
@@ -322,6 +323,7 @@ body.fullscreen.tiki.navbar-padding {
 @media (max-width: breakpoint-max(sm)) {
 	#col1 {
 		width: 100%;
+		flex-basis: 100%;
 	}
 	.hide_zone_left #col2,
 	.hide_zone_right #col3 {
