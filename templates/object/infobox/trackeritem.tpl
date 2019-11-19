@@ -2,14 +2,14 @@
 	<table>
 		{foreach from=$fields item=field}
 			<tr class="field_{$field.fieldId}">
-				<th>{$field.name|escape}</th>
+				<th>{tr}{$field.name|escape}{/tr}</th>
 				<td>{trackeroutput field=$field item=$item process=y showlinks=n}</td>
 			</tr>
 		{/foreach}
 	</table>
 {else}
 	{foreach from=$fields item=field}
-		<h6 class="field_{$field.fieldId}">{$field.name|escape}</h6>
+		<h6 class="field_{$field.fieldId}">{tr}{$field.name|escape}{/tr}</h6>
 		<div class="field_{$field.fieldId}">{trackeroutput field=$field item=$item process=y showlinks=n}</div>
 	{/foreach}
 {/if}

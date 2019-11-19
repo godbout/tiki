@@ -67,6 +67,10 @@ class Tracker_Field_Icon extends Tracker_Field_Abstract
 			$value = $this->getOption('default');
 		}
 
+		if (! $value) {
+			$value = 'img/icons/plugin.png';
+		}
+
 		return [
 			'value' => $value,
 		];
