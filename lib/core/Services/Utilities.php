@@ -87,15 +87,17 @@ class Services_Utilities
 	}
 
 	/**
-	 * Handle feedback message when the page is being refreshed, e.g., after a succesful action
+	 * Handle feedback message when the page is being refreshed, e.g., after a successful action
 	 * Send feedback using Feedback class (using 'session' for the method parameter) first before using this.
 	 * Allows the same type of detailed feedback to be provided when javascript is not enabled.
 	 *
-	 * @param bool $referer
+	 * @param bool   $referer		Used in case javascript is disabled, otherwise set to false
+	 * @param string $strip			The url query or quary and anchor string can be stripped before reloading the page
+	 *
 	 * @return array
 	 * @throws Exception
 	 */
-	static function refresh($referer = false)
+	static function refresh($referer = false, $strip = '')
 	{
 		//no javascript
 		if (! empty($referer)) {
@@ -104,7 +106,11 @@ class Services_Utilities
 		//javascript
 		} else {
 			//the js confirmAction function in tiki-confirm.js uses this to close the modal and refresh the page
-			return ['extra' => 'refresh'];
+			if (! empty($strip) && in_array($strip, ['anchor', 'queryAndAnchor'])) {
+				return ['extra' => 'refresh', 'strip' => $strip];
+			} else {
+				return ['extra' => 'refresh'];
+			}
 		}
 	}
 
@@ -255,6 +261,10 @@ class Services_Utilities
 			if ($offset === 'items' && isset($tempinput[$offset])) {
 				$this->itemsCount = count($this->items);
 			}
+		}
+		if (! $input->offsetExists('anchor')) {
+			//so we can use anchor later without checking if it's empty
+			$input->offsetSet('anchor', '');
 		}
 	}
 

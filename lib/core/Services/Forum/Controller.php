@@ -288,7 +288,12 @@ class Services_Forum_Controller
 			];
 			Feedback::success($feedback);
 			//return to page
-			return Services_Utilities::refresh($util->extra['referer']);
+			if ($this->lib->count_comments('forum:' . $util->extra['forumId']) > 0) {
+				return Services_Utilities::refresh($util->extra['referer']);
+			} else {
+				global $base_url;
+				return Services_Utilities::redirect($base_url . 'tiki-forums.php' . $util->extra['anchor']);
+			}
 		}
 	}
 
@@ -410,7 +415,7 @@ class Services_Forum_Controller
 			];
 			Feedback::success($feedback);
 			//return to page
-			return Services_Utilities::refresh($util->extra['referer']);
+			return Services_Utilities::refresh($util->extra['referer'], 'queryAndAnchor');
 		}
 	}
 
