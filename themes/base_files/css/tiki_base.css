@@ -3683,7 +3683,8 @@ body:not(.fixed_width) .container {
 
 @media (max-width: 768px) {
   .tiki .col-md-12 {
-    flex-basis: 100%; }
+    flex-basis: 100%;
+    width: 100% !important; }
 
   .col2 .module, .col3 .module {
     flex-basis: 100%; } }
@@ -3874,7 +3875,8 @@ body.fullscreen.tiki.navbar-padding {
 
 @media (max-width: 767.98px) {
   #col1 {
-    width: 100%; }
+    width: 100%;
+    flex-basis: 100%; }
 
   .hide_zone_left #col2, .hide_zone_right #col3 {
     display: block; }
