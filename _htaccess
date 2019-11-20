@@ -169,6 +169,9 @@ FileETag none
     RewriteCond %{HTTP:Authorization} ^(.*)
     RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
 
+    # -- Disallow access to hidden files (apart from Let's Encrypt ones) -- #
+    RewriteRule "(^|/)\.(?!well-known/)" - [F,L]
+
     # -- Prevent HTTP TRACE method -- #
     RewriteCond %{REQUEST_METHOD} ^TRACE
     RewriteRule .* - [F]

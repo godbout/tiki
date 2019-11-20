@@ -842,6 +842,7 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
+            "abandoned": "psr/container",
             "time": "2017-02-14T19:40:03+00:00"
         },
         {
@@ -1931,13 +1932,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jasonmunro/cypht.git",
-                "reference": "c5dc2b96d5cfd1a6a8f15d85dbd0920b16fe325c"
+                "reference": "c3fd36ad7b4e50e84d22f9690b971759ef9314e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-c5dc2b96d5cfd1a6a8f15d85dbd0920b16fe325c-zip-3db9a3.zip",
-                "reference": "c5dc2b96d5cfd1a6a8f15d85dbd0920b16fe325c",
-                "shasum": "18f9cfc1c7f064abee29d14b5590f1f71a17d4bd"
+                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-c3fd36ad7b4e50e84d22f9690b971759ef9314e5-zip-cbffe1.zip",
+                "reference": "c3fd36ad7b4e50e84d22f9690b971759ef9314e5",
+                "shasum": "016613ae2f9b4486cf383c7c25b15fca40332da6"
             },
             "require": {
                 "christian-riesen/base32": "1.3.2",
@@ -1988,7 +1989,7 @@
                 "webmail",
                 "webmail-client"
             ],
-            "time": "2019-11-13T22:19:31+00:00"
+            "time": "2019-11-17T19:18:01+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -2821,15 +2822,15 @@
             "authors": [
                 {
                     "name": "Robert Plummer",
-                    "role": "Assistant Developer",
                     "email": "rplummer@visop-dev.com",
-                    "homepage": "http://visop-dev.com"
+                    "homepage": "http://visop-dev.com",
+                    "role": "Assistant Developer"
                 },
                 {
                     "name": "Jacob Kelley",
-                    "role": "Lead Developer",
                     "email": "jakie8@gmail.com",
-                    "homepage": "http://jakiestfu.com"
+                    "homepage": "http://jakiestfu.com",
+                    "role": "Lead Developer"
                 }
             ],
             "time": "2014-12-15T16:35:34+00:00"
@@ -2986,9 +2987,9 @@
             "authors": [
                 {
                     "name": "Fabian Grutschus",
-                    "role": "developer",
                     "email": "f.grutschus@lubyte.de",
-                    "homepage": "http://www.lubyte.de/"
+                    "homepage": "http://www.lubyte.de/",
+                    "role": "developer"
                 }
             ],
             "description": "Library for XMPP protocol (Jabber) connections",
@@ -3247,11 +3248,11 @@
         },
         {
             "name": "npm-asset/chart.js",
-            "version": "2.9.2",
+            "version": "2.9.3",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/chart-js/npm-asset-chart-js-2.9.2.zip",
-                "shasum": "d184880b5bc196a4137ea21f5ef0475e050056bd"
+                "url": "https://composer.tiki.org/dist/npm-asset/chart-js/npm-asset-chart-js-2.9.3.zip",
+                "shasum": "14210eb23d4daf679c26a59da5b06fb10a8781ce"
             },
             "require": {
                 "npm-asset/chartjs-color": ">=2.1.0,<3.0.0",
@@ -3732,18 +3733,18 @@
             "authors": [
                 {
                     "name": "Chuck Hagenbuch",
-                    "role": "Lead",
-                    "email": "chuck@horde.org"
+                    "email": "chuck@horde.org",
+                    "role": "Lead"
                 },
                 {
                     "name": "Aleksander Machniak",
-                    "role": "Lead",
-                    "email": "alec@php.net"
+                    "email": "alec@php.net",
+                    "role": "Lead"
                 },
                 {
                     "name": "Stig Bakken",
-                    "role": "Lead",
-                    "email": "stig@php.net"
+                    "email": "stig@php.net",
+                    "role": "Lead"
                 }
             ],
             "description": "More info available on: http://pear.php.net/package/Net_Socket",
@@ -3751,17 +3752,17 @@
         },
         {
             "name": "pear/pear",
-            "version": "v1.10.9",
+            "version": "v1.10.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/pear-core.git",
-                "reference": "82be5c2eed1dde9def0a84cc3420778b8b0ab9b8"
+                "reference": "fda04666873ec0fe2b4e5843f8f77cce88f7bb28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/pear/pear/pear-pear-82be5c2eed1dde9def0a84cc3420778b8b0ab9b8-zip-26be5e.zip",
-                "reference": "82be5c2eed1dde9def0a84cc3420778b8b0ab9b8",
-                "shasum": "558a5316a853f611d2147bd7aebf99ec3e896d93"
+                "url": "https://composer.tiki.org/dist/pear/pear/pear-pear-fda04666873ec0fe2b4e5843f8f77cce88f7bb28-zip-a69b8c.zip",
+                "reference": "fda04666873ec0fe2b4e5843f8f77cce88f7bb28",
+                "shasum": "24534ba564cc9299633aeb914d07ac9dfb9ca22f"
             },
             "require": {
                 "ext-pcre": "*",
@@ -3796,14 +3797,14 @@
             ],
             "authors": [
                 {
-                    "name": "Helgi Thormar",
-                    "email": "dufuz@php.net",
+                    "name": "Greg Beaver",
+                    "email": "cellog@php.net",
                     "role": "Lead"
                 },
                 {
-                    "name": "Martin Jansen",
-                    "email": "mj@php.net",
-                    "role": "Helper"
+                    "name": "Pierre-Alain Joye",
+                    "email": "pierre@php.net",
+                    "role": "Lead"
                 },
                 {
                     "name": "Stig Bakken",
@@ -3811,8 +3812,13 @@
                     "role": "Lead"
                 },
                 {
-                    "name": "Pierre-Alain Joye",
-                    "email": "pierre@php.net",
+                    "name": "Tomas V.V.Cox",
+                    "email": "cox@idecnet.com",
+                    "role": "Lead"
+                },
+                {
+                    "name": "Helgi Thormar",
+                    "email": "dufuz@php.net",
                     "role": "Lead"
                 },
                 {
@@ -3831,18 +3837,13 @@
                     "role": "Helper"
                 },
                 {
-                    "name": "Greg Beaver",
-                    "email": "cellog@php.net",
-                    "role": "Lead"
-                },
-                {
-                    "name": "Tomas V.V.Cox",
-                    "email": "cox@idecnet.com",
-                    "role": "Lead"
+                    "name": "Martin Jansen",
+                    "email": "mj@php.net",
+                    "role": "Helper"
                 }
             ],
             "description": "This is the definitive source of PEAR's core files.",
-            "time": "2019-03-13T17:59:48+00:00"
+            "time": "2019-11-19T18:59:16+00:00"
         },
         {
             "name": "pear/pear_exception",
@@ -6593,19 +6594,20 @@
         },
         {
             "name": "zendframework/zend-i18n",
-            "version": "2.9.2",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/zendframework/zend-i18n.git",
-                "reference": "e17a54b3aee333ab156958f570cde630acee8b07"
+                "reference": "561a815ce32c86b0f1de11135477e637926d56b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/zendframework/zend-i18n/zendframework-zend-i18n-e17a54b3aee333ab156958f570cde630acee8b07-zip-3ef751.zip",
-                "reference": "e17a54b3aee333ab156958f570cde630acee8b07",
-                "shasum": "e2e6a37a4553f1d44f4b66af27063d97662794bc"
+                "url": "https://composer.tiki.org/dist/zendframework/zend-i18n/zendframework-zend-i18n-561a815ce32c86b0f1de11135477e637926d56b6-zip-a9c055.zip",
+                "reference": "561a815ce32c86b0f1de11135477e637926d56b6",
+                "shasum": "6a514edc10a9a56f59994acb90c40883ccbeee9f"
             },
             "require": {
+                "ext-intl": "*",
                 "php": "^5.6 || ^7.0",
                 "zendframework/zend-stdlib": "^2.7 || ^3.0"
             },
@@ -6621,7 +6623,6 @@
                 "zendframework/zend-view": "^2.6.3"
             },
             "suggest": {
-                "ext-intl": "Required for most features of Zend\\I18n; included in default builds of PHP",
                 "zendframework/zend-cache": "Zend\\Cache component",
                 "zendframework/zend-config": "Zend\\Config component",
                 "zendframework/zend-eventmanager": "You should install this package to use the events in the translator",
@@ -6634,8 +6635,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.9.x-dev",
-                    "dev-develop": "2.10.x-dev"
+                    "dev-master": "2.10.x-dev",
+                    "dev-develop": "2.11.x-dev"
                 },
                 "zf": {
                     "component": "Zend\\I18n",
@@ -6657,7 +6658,7 @@
                 "i18n",
                 "zf"
             ],
-            "time": "2019-09-30T12:04:37+00:00"
+            "time": "2019-11-18T20:31:29+00:00"
         },
         {
             "name": "zendframework/zend-json",
@@ -9430,17 +9431,17 @@
         },
         {
             "name": "wimg/php-compatibility",
-            "version": "9.3.3",
+            "version": "9.3.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCompatibility/PHPCompatibility.git",
-                "reference": "1af08ca3861048a8bfb39d0405d0ac3e50ba2696"
+                "reference": "1f37659196e4f3113ea506a7efba201c52303bf1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/wimg/php-compatibility/wimg-php-compatibility-1af08ca3861048a8bfb39d0405d0ac3e50ba2696-zip-8bf2e5.zip",
-                "reference": "1af08ca3861048a8bfb39d0405d0ac3e50ba2696",
-                "shasum": "0e0216bad8ee2105a5e7e52a8a1ff0e9ca5d9762"
+                "url": "https://composer.tiki.org/dist/wimg/php-compatibility/wimg-php-compatibility-1f37659196e4f3113ea506a7efba201c52303bf1-zip-b3e728.zip",
+                "reference": "1f37659196e4f3113ea506a7efba201c52303bf1",
+                "shasum": "f65e7ef2eac620defcb4770d522d10492155782a"
             },
             "require": {
                 "php": ">=5.3",
@@ -9485,7 +9486,7 @@
                 "standards"
             ],
             "abandoned": "phpcompatibility/php-compatibility",
-            "time": "2019-11-11T03:25:23+00:00"
+            "time": "2019-11-15T04:12:02+00:00"
         }
     ],
     "aliases": [],
