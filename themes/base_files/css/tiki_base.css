@@ -3205,11 +3205,7 @@ table.objectperms thead th {
 
   .adminanchors .navbar-nav {
     margin: 0;
-    padding: 0; }
-
-  [class*="tiki-admin"] form [class*="col-sm-"]:not(.form-check), [class*="tiki-admin"] form [class*="col-md-"] {
-    padding-left: 0;
-    padding-right: 0; } }
+    padding: 0; } }
 
 form.simple label.error {
   padding: 4px 0 0 20px;

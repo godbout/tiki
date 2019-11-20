@@ -336,8 +336,4 @@ table.objectperms thead th { display: none; }
 	.adminanchors {
 		.navbar-nav { margin: 0; padding: 0; }
 	}
-
-	[class*="tiki-admin"] form {
-		[class*="col-sm-"]:not(.form-check), [class*="col-md-"] { padding-left: 0; padding-right: 0; }
-	}
 }
