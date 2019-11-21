@@ -103,6 +103,7 @@
 					<option value="basic">{tr}HTTP Basic{/tr}</option>
 					<option value="post">{tr}HTTP Session / Login{/tr}</option>
 					<option value="get">{tr}HTTP Session / Visit{/tr}</option>
+					<option value="header">{tr}Authorization Header{/tr}</option>
 				</select>
 			</div>
 		</div>
@@ -157,11 +158,20 @@
 			</div>
 		</div>
 	</fieldset>
+	<fieldset class="method header">
+		<legend>{tr}Authorization Header{/tr}</legend>
+		<div class="form-group row">
+			<label class="col-sm-3 col-form-label" for="header">{tr}Authorization Header Value{/tr}</label>
+			<div class="col-sm-9">
+				<input type="text" name="header" id="header" class="form-control">
+			</div>
+		</div>
+	</fieldset>
 	<fieldset>
 		<div class="form-group text-center">
 			{* checkTimeout() onclick function applied in JQuery code below *}
 			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
-			<input type="submit" class="btn btn-primary" name="delete" value="{tr}Delete{/tr}">
+			<input type="submit" class="btn btn-danger" name="delete" value="{tr}Delete{/tr}">
 		</div>
 	</fieldset>
 </form>
@@ -196,7 +206,8 @@ $('#source-form').each(function () {
 			}, function (data) {
 				var id = data.identifier;
 				$(form.existing).val(id);
-				$(form.method).val(data.method).change();
+				$(form.identifier).val(id);
+				$(form.method).val(data.method).change().trigger("chosen:updated");
 				$(form.url).val(data.url);
 
 				switch (data.method) {
@@ -215,6 +226,9 @@ $('#source-form').each(function () {
 						}
 					});
 					break;
+					case 'header':
+						$(form.header).val(data.arguments.header);
+						break;
 				}
 			});
 		};
@@ -267,9 +281,11 @@ $('#source-form').each(function () {
 				var name = this.childNodes[0], value = this.childNodes[1];
 				data['arguments~' + $(name).text()] = $(value).text();
 			});
+			break;
+		case 'header':
+			data['arguments~header'] = $(form.header).val();
+			break;
 		}
-
-		$(form.existing).val('').change();
 
 		$.post($(form).attr('action'), data, function () {
 			if (isNew) {

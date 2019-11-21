@@ -310,6 +310,27 @@ class TikiLib extends TikiDb_Bridge
 	}
 
 	/**
+	 * Authorization header method
+	 *
+	 * @param $client     \Zend\Http\Client
+	 * @param $arguments  array
+	 * @return \Zend\Http\Client
+	 */
+	private function prepare_http_auth_header($client, $arguments)
+	{
+		$url = $arguments['url'];
+
+		$client->setUri($this->urlencode_accent($url)); // Zend\Http\Client seems to fail with accents in urls
+		$client->setMethod(Zend\Http\Request::METHOD_GET);
+
+		$headers = $client->getRequest()->getHeaders();
+		$headers->addHeader(new Zend\Http\Header\Authorization($arguments['header']));
+		$client->setHeaders($headers);
+
+		return $client;
+	}
+
+	/**
 	 * @param $client
 	 * @return mixed
 	 */
