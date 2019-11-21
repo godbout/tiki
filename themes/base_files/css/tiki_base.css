@@ -1564,6 +1564,16 @@ div.cvsup {
     .box-search .panel-body .form-inline .input-group .input-group-addon, .box-search .panel-body .form-inline .input-group .input-group-append, .box-search .panel-body .form-inline .input-group .form-control {
       width: 100%; } }
 
+@media (max-width: 767.98px) {
+  .tiki-admin_modules .q1 {
+    width: 50%;
+    padding-right: 10px; }
+    .tiki-admin_modules .q23 {
+      width: 50%; }
+    .tiki-admin_modules .tips em {
+      display: block;
+      word-break: break-word; } }
+
 .textarea-toolbar img.icon {
   vertical-align: middle;
   margin: 1px 3px; }
