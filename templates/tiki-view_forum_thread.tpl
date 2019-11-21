@@ -9,13 +9,13 @@
 
 <div class="t_navbar mb-4">
 	{if $tiki_p_admin_forum eq "y"}
-		{button href="tiki-admin_forums.php?forumId=$forumId" _class="btn btn-link" _icon_name="wrench" _text="{tr}Edit Forum{/tr}"}
+		{button href="tiki-admin_forums.php?forumId=$forumId" _type="link" _icon_name="wrench" _text="{tr}Edit Forum{/tr}"}
 	{/if}
 	{if $tiki_p_admin_forum eq 'y' or (!isset($all_forums) and $tiki_p_forum_read eq "y") or $all_forums|@count > 1}
-		{button href="tiki-forums.php" _class="btn btn-link" _icon_name="list" _text="{tr}Forum List{/tr}"}
+		{button href="tiki-forums.php" _type="link" _icon_name="list" _text="{tr}Forum List{/tr}"}
 	{/if}
 	{if $tiki_p_forum_read eq "y"}
-		{button href="tiki-view_forum.php?forumId=$forumId" _class="btn btn-link" _icon_name="list" _text="{tr}Topic List{/tr}"}
+		{button href="tiki-view_forum.php?forumId=$forumId" _type="link" _icon_name="list" _text="{tr}Topic List{/tr}"}
 	{/if}
 </div>
 {if $post_reported eq 'y'}
