@@ -4,9 +4,10 @@
 
 $white:    #fff;
 $black:    #000;
-$light: #18a3bb;
+// $light: #18a3bb;
 
 $bg-light: #18a3bb !important;
+$body-bg: #fff;
 
 $link-color: #0b8a98;
 $link-hover-color: #18a3bb;
@@ -93,12 +94,12 @@ $autotoc-nav-link-hover-bg: #2e1f39;
 
 // - - - - - - - - - -  - - - - - - Other CSS, if any - - - - - - - - - - - - - - - - - //
 
-.header_outer,
-.layout_basic #top_modules,
-.postbody-title,
-.tiki > .navbar.fixed-top.bg-light/*,
-.tiki > .fixed-top.bg-light*/ {
-}
+//.header_outer,
+//.layout_basic #top_modules,
+//.postbody-title,
+//.tiki > .navbar.fixed-top.bg-light/*,
+//.tiki > .fixed-top.bg-light*/ {
+//}
 
 $chosen-container-multi-choices-bg: $input-bg;
 $chosen-container-multi-choices-color: $input-color;
