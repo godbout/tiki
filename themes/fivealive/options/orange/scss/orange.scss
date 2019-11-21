@@ -9,10 +9,12 @@
 @import "../../../scss/selectors-for-options";
 
 // The following are for theme option custom button colors
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_background-variant.scss";
 @import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins";
 @import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_gradients.scss";
 @import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_box-shadow.scss";
 @import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/mixins/_hover.scss";
+@import "../../../../../vendor_bundled/vendor/twbs/bootstrap/scss/utilities/_background.scss";
 @import "../../../../base_files/scss/child_theme_twbs_buttons_mixin_excerpt";
 @import "../../../../base_files/scss/child_theme_twbs_buttons_excerpt_for_colors";
 @import "../../../../base_files/scss/child_theme_button_color_selectors";

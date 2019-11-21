@@ -207,13 +207,14 @@ h1 {
   }
 }
 
-section {
-  color: #ffffff;
-  min-height: 400px;
-  height: auto !important;
-  height: 100%;
-  padding-top: 100px;
-}
+// Commented out because section rules are too specific for an non-qualified selector
+//section {
+//  color: #ffffff;
+//  min-height: 400px;
+//  height: auto !important;
+//  height: 100%;
+//  padding-top: 100px;
+//}
 
 // Page footer
 .main-footer {

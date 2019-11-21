@@ -1,16 +1,17 @@
-// These variables need to be defined for the files to compile. The specifc variables for the child theme's button colors are defined
+// These variables need to be defined for the files to compile. The specific variables for the child theme's button colors are defined
 // at the bottom of the file. There appears to be redundancy in defining colors but each line is necessary.
 // There are unique names for the child theme button colors to avoid any conflict with the general theme colors.
 
 // Variables needed for button color variants (start)
-$theme-colors: ("primary": #18a3bb,
+$theme-colors: (
+	"primary": #18a3bb,
 	"secondary": #005064,
 	"success": #5cb85c,
 	"info": #007378,
 	"warning": #f0ad4e,
 	"danger": #ff5c1a,
 	"light": #ffffff,
-	"dark": #efefef);
+	"dark": #18a3bb);
 
 $primary: #18a3bb;
 $secondary: #005064;
@@ -19,9 +20,10 @@ $info: #007378;
 $warning: #f0ad4e;
 $danger: #ff5c1a;
 $light: #ffffff;
-$dark: #efefef;
+$dark: #18a3bb;
 
-$theme-colors: map-merge(("primary": $primary,
+$theme-colors: map-merge(
+		("primary": $primary,
 		"secondary": $secondary,
 		"success": $success,
 		"info": $info,

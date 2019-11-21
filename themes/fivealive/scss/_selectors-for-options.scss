@@ -346,8 +346,8 @@ input[type="checkbox"].preffilter-toggle-round:checked + label::before {
 	font-size: 20px;
 }
 
-.postbody .card-header {
-	background: $bg-light;
+.postbody-title .card-title {
+	color: $postbody-title-card-title-color;
 }
 
 .siteloginbar_popup .dropdown-menu > li > a {
