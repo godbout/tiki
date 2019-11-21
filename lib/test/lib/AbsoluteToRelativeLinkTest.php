@@ -168,7 +168,6 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($dataResult, $dataConverted);
 	}
 
-
 	/**
 	 * @dataProvider urlBases
 	 */
@@ -177,10 +176,28 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 		global $prefs;
 		$tikilib = TikiLib::lib('tiki');
 		$prefs['feature_absolute_to_relative_links'] = 'n';
-		$link = '[' . $baseUrl . 'tiki-index.php|' . $baseUrl . 'tiki-index.php]';
-		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$text = 'Nullam quis risus eget urna mollis ornare vel eu leo. #1' .
+			' Praesent commodo cursus magna, vel scelerisque nisl consectetur et. #2' .
+			' Aenean lacinia bibendum nulla sed consectetur. #3';
+
+		$link1 = '[' . $baseUrl . 'tiki-index.php|' . $baseUrl . 'tiki-index.php]';
+		$link2 = '[' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink|' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink]';
+		$link3 = '((Homepage|Homepage))';
+
+		$data = str_replace('#1', $link1, $text);
+		$data = str_replace('#2', $link2, $data);
+		$data = str_replace('#3', $link3, $data);
+
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
-		$this->assertEquals($data, $dataConverted);
+
+		$expectedLink1 = '[' . $baseUrl . 'tiki-index.php]';
+		$expectedLink2 = '[' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink]';
+		$expectedLink3 = '((Homepage))';
+		$dataResult = str_replace('#1', $expectedLink1, $text);
+		$dataResult = str_replace('#2', $expectedLink2, $dataResult);
+		$dataResult = str_replace('#3', $expectedLink3, $dataResult);
+
+		$this->assertEquals($dataResult, $dataConverted);
 	}
 
 	/**
@@ -334,6 +351,65 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 		$expectedLink1 = '[tiki-index.php|tiki-index.php]';
 
 		$dataResult = str_replace('#1', $expectedLink1, $text);
+
+		$this->assertEquals($dataResult, $dataConverted);
+	}
+
+	public function testInternalSameTitleAndLink()
+	{
+		$tikilib = TikiLib::lib('tiki');
+		$text = 'Nullam quis risus eget urna mollis ornare vel eu leo. #1';
+
+		$link1 = '((HomePage|HomePage))';
+		$data = str_replace('#1', $link1, $text);
+
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+
+		$expectedLink1 = '((HomePage))';
+		$dataResult = str_replace('#1', $expectedLink1, $text);
+
+		$this->assertEquals($dataResult, $dataConverted);
+	}
+
+	/**
+	 * @dataProvider urlBases
+	 */
+	public function testExternalSameTitleAndLink($baseUrl)
+	{
+		$tikilib = TikiLib::lib('tiki');
+		$text = 'Nullam quis risus eget urna mollis ornare vel eu leo. #1';
+
+		$link1 = '[' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink|' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink]';
+		$data = str_replace('#1', $link1, $text);
+
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+
+		$expectedLink1 = '[tiki-pagehistory.php?page=sametitleandlink]';
+		$dataResult = str_replace('#1', $expectedLink1, $text);
+
+		$this->assertEquals($dataResult, $dataConverted);
+	}
+
+	/**
+	 * @dataProvider urlBases
+	 */
+	public function testMultipleSameTitleAndLinks($baseUrl)
+	{
+		$tikilib = TikiLib::lib('tiki');
+		$text = 'Nullam quis risus eget urna mollis ornare vel eu leo. #1' .
+			' Praesent commodo cursus magna, vel scelerisque #2 nisl consectetur et.';
+
+		$link1 = '[' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink|' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink]';
+		$link2 = '((HomePage|HomePage))';
+		$data = str_replace('#1', $link1, $text);
+		$data = str_replace('#2', $link2, $text);
+
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+
+		$expectedLink1 = '[tiki-pagehistory.php?page=sametitleandlink]';
+		$expectedLink2 = '((HomePage))';
+		$dataResult = str_replace('#1', $expectedLink1, $text);
+		$dataResult = str_replace('#2', $expectedLink2, $text);
 
 		$this->assertEquals($dataResult, $dataConverted);
 	}

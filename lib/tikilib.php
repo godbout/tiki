@@ -2505,11 +2505,41 @@ class TikiLib extends TikiDb_Bridge
 	{
 		global $prefs, $tikilib;
 
-		if ($prefs['feature_absolute_to_relative_links'] != 'y' || $this->getMatchBaseUrlSchema($data) === null) {
+		preg_match_all('/\[(([^|\]]+)(\|([^|\]]+))?)\]/', $data, $matches);
+
+		$counter = count($matches[0]);
+		for ($i = 0; $i < $counter; $i++) {
+			// Check if link part is valid url
+			if (filter_var($matches[2][$i], FILTER_VALIDATE_URL) === false) {
+				continue;
+			}
+
+			// Check if url matches tiki instance links
+			if ($url = $this->getMatchBaseUrlSchema($matches[2][$i]) && $matches[2][$i] == $matches[4][$i]) {
+				$newLink = '[' . $matches[2][$i] . ']';
+				$data = str_replace($matches[0][$i], $newLink, $data);
+			}
+		}
+
+		preg_match_all('/\(\((([^|)]+)(\|([^|)]+))?)\)\)/', $data, $matches);
+
+		$counter = count($matches[0]);
+		for ($i = 0; $i < $counter; $i++) {
+			if ($matches[0][$i]) {
+				$linkArray = explode('|', trim($matches[0][$i], '(())'));
+				if (count($linkArray) == 2 && $linkArray[0] == $linkArray[1]) {
+					$newLink = '((' . $linkArray[0] . '))';
+					$data = str_replace($matches[0][$i], $newLink, $data);
+				}
+			}
+		}
+
+		if ($prefs['feature_absolute_to_relative_links'] != 'y') {
 			return $data;
 		}
 
 		$notification = false;
+
 		$from = 0;
 		$to = strlen($data);
 		$replace = [];
@@ -2544,6 +2574,13 @@ class TikiLib extends TikiDb_Bridge
 
 		$counter = count($matches[0]);
 		for ($i = 0; $i < $counter; $i++) {
+			$linkArray = explode('|', trim($matches[0][$i], '(())'));
+			if (count($linkArray) == 2 && $linkArray[0] == $linkArray[1]) {
+				$newLink = '((' . $linkArray[0] . '))';
+				$data = str_replace($matches[0][$i], $newLink, $data);
+				$notification = true;
+			}
+
 			// Check if link part is valid url
 			if (filter_var($matches[2][$i], FILTER_VALIDATE_URL) === false) {
 				continue;
@@ -2577,6 +2614,12 @@ class TikiLib extends TikiDb_Bridge
 				$newPath = str_replace($url, '', $matches[2][$i]);
 				if (! empty($newPath)) {
 					$newLink = '[' . $newPath . $matches[3][$i] . ']';
+
+					$newLinkArray = explode('|', trim($newLink, '[]'));
+					if (count($newLinkArray) === 2 && $newLinkArray[0] == str_replace($url, '', $newLinkArray[1])) {
+						$newLink = '[' . $newLinkArray[0] . ']';
+					}
+
 					$data = str_replace($matches[0][$i], $newLink, $data);
 					$notification = true;
 				}
