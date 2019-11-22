@@ -15,6 +15,10 @@
 				<input type="checkbox" class="form-check-input" name="preserve_ids" value="1">
 				{tr}Preserve Field IDs{/tr}
 			</label>
+			<label>
+				<input type="checkbox" class="form-check-input" name="last_position" checked="checked" value="1">
+				{tr}Imported fields at the bottom of the list{/tr}
+			</label>
 		</div>
 		<div class="form-group submit">
 			<input type="hidden" name="trackerId" value="{$trackerId|escape}">
