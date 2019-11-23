@@ -72,6 +72,30 @@ class AlchemyLib
 	}
 
 	/**
+	 * Check if we have the required rights related to the AlchemyLib
+	 * @return bool
+	 */
+	public static function hasReadWritePolicies()
+	{
+		$commandOutput = `identify -list policy`;
+		preg_match("/Path: .*ImageMagick.*policy.xml.*rights:(.+)pattern: PDF/s", $commandOutput, $matches);
+
+		if (! isset($matches[1])) {
+			return false;
+		}
+
+		$rights = explode(' ', strtolower($matches[1]));
+
+		foreach (['write', 'read'] as $requiredRight) {
+			if (! in_array($requiredRight, $rights)) {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	/**
 	 * Convert a source file into a image, static or animated gif
 	 *
 	 * @param string $sourcePath the patch to read the file

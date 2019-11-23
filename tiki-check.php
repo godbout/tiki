@@ -15,6 +15,7 @@ tiki-check.php is designed to run in 2 modes
 tiki-check.php should not crash but rather avoid running tests which lead to tiki-check crashes.
 */
 
+use Tiki\Lib\Alchemy\AlchemyLib;
 use Tiki\Package\ComposerManager;
 
 // TODO : Create sane 3rd mode for Monitoring Software like Nagios, Icinga, Shinken
@@ -1887,6 +1888,8 @@ if (! $standalone) {
 		$key = array_search($installedPackage['name'], array_column($packagesToCheck, 'name'));
 		if ($key !== false) {
 			$warnings = checkPreferences($packagesToCheck[$key]['preferences']);
+			checkPackageWarnings($warnings, $installedPackage);
+
 			$packageInfo = array(
 				'name' => $installedPackage['name'],
 				'version' => $installedPackage['installed'],
@@ -2858,6 +2861,27 @@ if ($standalone && ! $nagios) {
 }
 
 /**
+ * Check package warnings based on specific nuances of each package
+ * @param $warnings
+ * @param $package
+ */
+function checkPackageWarnings(&$warnings, $package)
+{
+	switch ($package['name']) {
+		case 'media-alchemyst/media-alchemyst':
+			if (! AlchemyLib::hasReadWritePolicies()) {
+				$warnings[] = tr(
+					'Alchemy requires "Read" and "Write" policy rights. More info: <a href="%0" target="_blank">%1</a>',
+				'https://doc.tiki.org/tiki-index.php?page=Media+Alchemyst#Document_to_Image_issues',
+					'Media Alchemyst - Document to Image issues'
+				);
+			}
+
+			break;
+	}
+}
+
+/**
  * Check if paths set in preferences exist in the system, or if classes exist in project/system
  *
  * @param array $preferences An array with preference key and preference info
@@ -2873,22 +2897,22 @@ function checkPreferences(array $preferences)
 	foreach ($preferences as $prefKey => $pref) {
 		if ($pref['type'] == 'path') {
 			if (isset($prefs[$prefKey]) && ! file_exists($prefs[$prefKey])) {
-				$warnings[] = tra("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $pref['name']);
+				$warnings[] = tr("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $pref['name']);
 			}
 		} elseif($pref['type'] == 'classOptions') {
 			if (isset($prefs[$prefKey])) {
 				$options = $pref['options'][$prefs[$prefKey]];
 
 				if (! empty($options['classLib']) && ! class_exists($options['classLib'])) {
-					$warnings[] = tra("The lib '%0' on preference '%1', option '%2' does not exist", $options['classLib'], $pref['name'], $options['name']);
+					$warnings[] = tr("The lib '%0' on preference '%1', option '%2' does not exist", $options['classLib'], $pref['name'], $options['name']);
 				}
 
 				if (! empty($options['className']) && ! class_exists($options['className'])) {
-					$warnings[] = tra("The class '%0' needed for preference '%1', with option '%2' selected, does not exist", $options['className'], $pref['name'], $options['name']);
+					$warnings[] = tr("The class '%0' needed for preference '%1', with option '%2' selected, does not exist", $options['className'], $pref['name'], $options['name']);
 				}
 
 				if (! empty($options['extension']) && ! extension_loaded($options['extension'])) {
-					$warnings[] = tra("The extension '%0' on preference '%1', with option '%2' selected, is not loaded", $options['extension'], $pref['name'], $options['name']);
+					$warnings[] = tr("The extension '%0' on preference '%1', with option '%2' selected, is not loaded", $options['extension'], $pref['name'], $options['name']);
 				}
 			}
 		}
