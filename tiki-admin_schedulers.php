@@ -18,6 +18,7 @@ function saveScheduler()
 	$runTime = trim($_POST['scheduler_time']);
 	$status = $_POST['scheduler_status'];
 	$reRun = $_POST['scheduler_rerun'] == 'on' ? 1 : 0;
+	$runOnlyOnce = $_POST['scheduler_run_only_once'] == 'on' ? 1 : 0;
 
 	if (empty($name)) {
 		$errors[] = tra('Name is required');
@@ -77,7 +78,7 @@ function saveScheduler()
 	if ($addTask) {
 		$scheduler = ! empty($_POST['scheduler']) ? $_POST['scheduler'] : null;
 
-		$schedLib->set_scheduler($name, $description, $task, $params, $runTime, $status, $reRun, $scheduler);
+		$schedLib->set_scheduler($name, $description, $task, $params, $runTime, $status, $reRun, $runOnlyOnce, $scheduler);
 		if ($scheduler) {
 			$feedback = sprintf(tra('Scheduler %s was updated.'), $name);
 		} else {

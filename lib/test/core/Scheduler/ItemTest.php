@@ -45,6 +45,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 			'*/10 * * * *',
 			'active',
 			0,
+			0,
 			$logger
 		);
 
@@ -98,6 +99,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 			'*/10 * * * *',
 			'active',
 			0,
+			0,
 			$logger
 		);
 
@@ -126,6 +128,44 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
+	 * Tests run_only_once scheduler status
+	 * @throws \Exception
+	 */
+	public function testRunOnlyOnce()
+	{
+		global $prefs, $tikilib;
+		$logger = new Tiki_Log('UnitTests', \Psr\Log\LogLevel::ERROR);
+		$scheduler = new Scheduler_Item(
+			null,
+			'Test Scheduler',
+			'Test Scheduler',
+			'ShellCommandTask',
+			'{"shell_command":"php -v","timeout":""}',
+			'* * * * *',
+			'active',
+			0,
+			1,
+			$logger
+		);
+
+		$scheduler->save();
+		self::$items[] = $scheduler->id;
+
+		$schedlib = TikiLib::lib('scheduler');
+
+		// Run scheduler
+		$scheduler->execute();
+		$lastRun = $scheduler->getLastRun();
+
+		// Assert that run has been finished
+		$this->assertEquals($lastRun['status'], 'done');
+
+		// Get scheduler with updated information. It should be inactive as it should only run once
+		$scheduler = $schedlib->get_scheduler($scheduler->id);
+		$this->assertEquals($scheduler['status'], Scheduler_Item::STATUS_INACTIVE);
+	}
+
+	/**
 	 * @covers Scheduler_Item::heal()
 	 */
 	public function testHeal()
@@ -141,6 +181,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 			'{"console_command":"index:rebuild"}',
 			'*/10 * * * *',
 			'active',
+			0,
 			0,
 			$logger
 		);

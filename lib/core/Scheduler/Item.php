@@ -18,6 +18,7 @@ class Scheduler_Item
 	public $run_time;
 	public $status;
 	public $re_run;
+	public $run_only_once;
 	public $creation_date;
 	private $logger;
 
@@ -31,7 +32,7 @@ class Scheduler_Item
 		'TikiCheckerCommandTask' => 'TikiCheckerCommand',
 	];
 
-	public function __construct($id, $name, $description, $task, $params, $run_time, $status, $re_run, LoggerInterface $logger)
+	public function __construct($id, $name, $description, $task, $params, $run_time, $status, $re_run, $run_only_once, LoggerInterface $logger)
 	{
 		$this->id = $id;
 		$this->name = $name;
@@ -41,6 +42,7 @@ class Scheduler_Item
 		$this->run_time = $run_time;
 		$this->status = $status;
 		$this->re_run = $re_run;
+		$this->run_only_once = $run_only_once;
 		$this->logger = $logger;
 	}
 
@@ -63,6 +65,7 @@ class Scheduler_Item
 			$this->run_time,
 			$this->status,
 			$this->re_run,
+			$this->run_only_once,
 			$this->id,
 			$this->creation_date
 		);
@@ -265,6 +268,10 @@ class Scheduler_Item
 			];
 		}
 
+		if($this->run_only_once) {
+			$schedlib->setInactive($this->id);
+		}
+
 		list('run_id' => $runId, 'start_time' => $startTime) = $schedlib->start_scheduler_run($this->id);
 		$this->logger->debug("Start time: " . $startTime);
 
@@ -290,7 +297,7 @@ class Scheduler_Item
 			$outputMessage = sprintf('Run triggered by %s - %s.' . PHP_EOL, $user, $email) . (empty($outputMessage) ? '' : '<hr>') . $outputMessage;
 		}
 
-		$endTime = $schedlib->end_scheduler_run($this->id, $runId, $executionStatus, $outputMessage);
+		$endTime = $schedlib->end_scheduler_run($this->id, $runId, $executionStatus, $outputMessage, null, 0);
 		$this->logger->debug("End time: " . $endTime);
 
 		$this->reduceLogs();
@@ -337,6 +344,7 @@ class Scheduler_Item
 			$scheduler['run_time'],
 			$scheduler['status'],
 			$scheduler['re_run'],
+			$scheduler['run_only_once'],
 			$logger
 		);
 	}

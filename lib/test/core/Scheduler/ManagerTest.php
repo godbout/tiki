@@ -44,6 +44,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
 			'* * * * *',
 			'active',
 			0,
+			0,
 			$logger
 		);
 		$scheduler1->creation_date = time() - 60;
@@ -56,6 +57,7 @@ class ManagerTest extends \PHPUnit_Framework_TestCase
 			'{"console_command":"list"}',
 			'*/1 * * * *',
 			'active',
+			0,
 			0,
 			$logger
 		);

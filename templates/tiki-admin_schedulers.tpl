@@ -34,6 +34,9 @@
 							{tr}Status{/tr}
 						</th>
 						<th>
+							{tr}Run only once{/tr}
+						</th>
+						<th>
 							{tr}Re-Run{/tr}
 						</th>
 						<th>
@@ -67,6 +70,9 @@
 							<td class="scheduler_status">
 								{$schedulers[scheduler].status|escape|ucfirst}
 							</td>
+							<td class="scheduler_run_only_once">
+								<input type="checkbox" {if $schedulers[scheduler].run_only_once}checked{/if} disabled>
+							</td>
 							<td class="scheduler_re_run">
 								<input type="checkbox" {if $schedulers[scheduler].re_run}checked{/if} disabled>
 							</td>
@@ -92,7 +98,7 @@
 											</action>
 										{/if}
 										<action>
-											<a href="{query _type='relative' scheduler=$schedulers[scheduler].id}">
+											<a href="tiki-admin_schedulers.php?scheduler={$schedulers[scheduler].id}">
 												{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
 											</a>
 										</action>
@@ -188,13 +194,21 @@
 				</select>
 			</div>
 		</div>
-
 		<div class="form-group row">
 			<label class="col-sm-3 form-check-label" for="scheduler_catch">{tr}Run if missed{/tr}</label>
 			<div class="col-sm-7">
 				<div class="form-check">
 					<input type="checkbox" id="scheduler_rerun" class="form-check-input" name="scheduler_rerun"
 						{if $schedulerinfo.re_run}checked{/if}>
+				</div>
+			</div>
+		</div>
+		<div class="form-group row">
+			<label class="col-sm-3 form-check-label" for="scheduler_catch">{tr}Run only once{/tr}</label>
+			<div class="col-sm-7">
+				<div class="form-check">
+					<input type="checkbox" id="scheduler_run_only_once" class="form-check-input" name="scheduler_run_only_once"
+						{if $schedulerinfo.run_only_once}checked{/if}>
 				</div>
 			</div>
 		</div>
