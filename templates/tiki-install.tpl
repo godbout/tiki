@@ -874,9 +874,9 @@
                         <p>{tr}If this is an upgrade, clean the Tiki caches manually (the <strong>temp/templates_c</strong> directory) or by using the <strong>Admin &gt; System</strong> option from the Admin menu.{/tr}</p>
                     {/if}
                     {if $tikidb_is20}
-                        <div class="row mx-0">
+                        <div class="row mx-0 mb-4">
                             <div class="col-sm-6">
-                                <form method="post" action="tiki-install.php" class="">
+                                <form method="post" action="tiki-install.php" class="enter-tiki">
                                     {if $multi}
                                         <input type="hidden" name="multi" value="{$multi|escape}">
                                     {/if}
@@ -886,7 +886,7 @@
                                 </form>
                             </div>
                             <div class="col-sm-6">
-                                <form method="post" action="tiki-install.php" class="">
+                                <form method="post" action="tiki-install.php" class="enter-tiki">
                                     <input type="hidden" name="nolockenter" value="1">
                                     {if $multi}
                                         <input type="hidden" name="multi" value="{$multi|escape}">
