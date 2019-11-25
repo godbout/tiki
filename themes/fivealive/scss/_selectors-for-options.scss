@@ -170,37 +170,6 @@ hr {
 	background: transparent !important;
 }
 
-.dropdown-menu {
-	background-color: $dropdown-bg; //#005064;
-	border: 1px solid $dropdown-border-color; // rgba(0, 0, 0, 0.15);
-}
-
-.tiki .dropdown-item,
-.tiki .dropdown-item a,
-.tiki .dropdown-item .btn.btn-link {
-	color: $dropdown-link-color;
-	&:hover,
-	&:focus {
-		color: $dropdown-link-hover-color;
-		background: $dropdown-link-hover-bg;
-	}
-	&:active,
-	&.active {
-		color: $dropdown-link-hover-color;
-		background: $dropdown-link-active-bg;
-	}
-	&.disabled,
-	&:disabled {
-		color: $dropdown-link-disabled-color;
-	}
-	.dropdown-header {
-		color: $dropdown-header-color;
-	}
-	.dropdown-divider {
-		background: $dropdown-divider-bg;
-	}
-}
-
 // So form submit buttons with icons and text used in dropdown menus can look just like links
 .cssmenu_horiz ul li button.btn-link.link-list,
 .cssmenu_vert ul li button.btn-link.link-list {
@@ -213,6 +182,8 @@ hr {
 	color: $dropdown-link-hover-color;
 	background: $dropdown-link-hover-bg;
 }
+
+.dropdown-item.btn-link { color: #fff; }
 
 .nav-pills > li.active > a,
 .nav-pills > li.active > a:hover,
