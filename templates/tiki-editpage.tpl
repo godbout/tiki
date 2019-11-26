@@ -269,12 +269,12 @@
 							{if $tiki_p_admin_wiki eq 'y' or $tiki_p_assign_perm_wiki_page eq 'y'}
 								{permission_link mode=link type="wiki page" id=$page permType=wiki title=$page}
 							{/if}
-							{if $tiki_p_edit_content_templates eq 'y'}
+							{if isset($tiki_p_edit_content_templates) and tiki_p_edit_content_templates eq 'y'}
 								<a href="tiki-admin_content_templates.php" class="btn btn-link"  title="{tr}Leave page and go to....{/tr}" onclick="needToConfirm = true;">
 									{icon name="content-template"} {tr}Content Templates{/tr}
 								</a>
 							{/if}
-							{if $tiki_p_edit_structures eq 'y'}
+							{if isset($tiki_p_edit_structures) and $tiki_p_edit_structures eq 'y'}
 								<a href="tiki-admin_structures.php" class="btn btn-link" title="{tr}Leave page and go to....{/tr}">
 									{icon name="structure"} {tr}Structures{/tr}
 								</a>
