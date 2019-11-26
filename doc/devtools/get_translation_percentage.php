@@ -86,16 +86,16 @@ foreach ($langmapping as $lang => $null) {
 	}
 }
 
-if (!isset($globalStats['70+'])) {
+if (! isset($globalStats['70+'])) {
 	$globalStats['70+'] = 0;
-}else if(!isset($globalStats['30+'])){
+}else if (! isset($globalStats['30+'])) {
 	$globalStats['30+'] = 0;
-}elseif(!isset($globalStats['0+'])){
+}elseif (! isset($globalStats['0+'])) {
 	$globalStats['0+'] = 0;
 }
 
 // output translation percentage to terminal or to a wiki page
-if (!isset($wikiPage)){
+if (! isset($wikiPage)) {
 	$output = "! Status of Tiki translations\n";
 	$output .= "Page last modified on " . $tikilib->date_format($prefs['long_date_format']) . "\n\n";
 	$output .= "This page is generated automatically. Please do not change it.\n\n";
@@ -103,7 +103,7 @@ if (!isset($wikiPage)){
 	$output .= "__Global stats:__\n* {$globalStats['70+']} languages with more than 70% translated\n* {$globalStats['30+']} languages with more than 30% translated\n* {$globalStats['0+']} languages with less than 30% translated\n\n";
 
 
-}else{
+}else {
 	$output = "{HTML()}  <h1 class='text-center text-info'> {HTML}{TR()}Status of Tiki translations{TR}{HTML()}</h1> {HTML}";
 	$output .= "{HTML()} <p class='text-center text-info'>{HTML}{TR()}Page last modified on " . $tikilib->date_format($prefs['long_date_format']) . " {TR}{HTML()}</p><br/> {HTML}";
 	$output .= "{HTML()} <p class='text-danger'>{HTML}{TR()}This page is generated automatically. Please do not change it. {TR}{HTML()}</p> {HTML}";
