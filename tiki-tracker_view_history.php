@@ -36,29 +36,38 @@ if (! empty($_REQUEST['itemId'])) {
 	$offset = empty($_REQUEST['offset']) ? 0 : $_REQUEST['offset'];
 	$smarty->assign('offset', $offset);
 
-	$history = $trklib->get_item_history($item_info, $fieldId, $filter, $offset, $prefs['maxRecords']);
-	$smarty->assign_by_ref('history', $history['data']);
-	$smarty->assign_by_ref('cant', $history['cant']);
+	if (! empty($item_info)) {
+		$history = $trklib->get_item_history($item_info, $fieldId, $filter, $offset, $prefs['maxRecords']);
+		$smarty->assign_by_ref('history', $history['data']);
+		$smarty->assign_by_ref('cant', $history['cant']);
 
-	foreach ($history['data'] as $i => $hist) {
-		if (empty($field_option[$hist['fieldId']])) {
-			if ($hist['fieldId'] > 0) {
-				$field_option[$hist['fieldId']] = $trklib->get_tracker_field($hist['fieldId']);
-			} else {
-				$field_option[$hist['fieldId']] = [	// fake field to do the diff on
-					'type' => 't',
-					'name' => tr('Status'),
-					'trackerId' => $item_info['trackerId'],
-				];
+		foreach ($history['data'] as $i => $hist) {
+			if (empty($field_option[$hist['fieldId']])) {
+				if ($hist['fieldId'] > 0) {
+					$field_option[$hist['fieldId']] = $trklib->get_tracker_field($hist['fieldId']);
+				}
+				else {
+					$field_option[$hist['fieldId']] = [	// fake field to do the diff on
+						'type' => 't',
+						'name' => tr('Status'),
+						'trackerId' => $item_info['trackerId'],
+					];
+				}
 			}
 		}
+
+		$diff_style = empty($_REQUEST['diff_style']) ? $prefs['tracker_history_diff_style'] : $_REQUEST['diff_style'];
+		$smarty->assign('diff_style', $diff_style);
+
+		$smarty->assign_by_ref('item_info', $item_info);
+		$smarty->assign_by_ref('field_option', $field_option);
 	}
-
-	$diff_style = empty($_REQUEST['diff_style']) ? $prefs['tracker_history_diff_style'] : $_REQUEST['diff_style'];
-	$smarty->assign('diff_style', $diff_style);
-
-	$smarty->assign_by_ref('item_info', $item_info);
-	$smarty->assign_by_ref('field_option', $field_option);
+	else {
+		$smarty->assign('errortype', 401);
+		$smarty->assign('msg', tra('This tracker item either has been deleted or is not found.'));
+		$smarty->display('error.tpl');
+		die;
+	}
 }
 
 $tiki_actionlog_conf = TikiDb::get()->table('tiki_actionlog_conf');

@@ -1564,6 +1564,16 @@ div.cvsup {
     .box-search .panel-body .form-inline .input-group .input-group-addon, .box-search .panel-body .form-inline .input-group .input-group-append, .box-search .panel-body .form-inline .input-group .form-control {
       width: 100%; } }
 
+@media (max-width: 767.98px) {
+  .tiki-admin_modules .q1 {
+    width: 50%;
+    padding-right: 10px; }
+    .tiki-admin_modules .q23 {
+      width: 50%; }
+    .tiki-admin_modules .tips em {
+      display: block;
+      word-break: break-word; } }
+
 .textarea-toolbar img.icon {
   vertical-align: middle;
   margin: 1px 3px; }
@@ -3205,11 +3215,7 @@ table.objectperms thead th {
 
   .adminanchors .navbar-nav {
     margin: 0;
-    padding: 0; }
-
-  [class*="tiki-admin"] form [class*="col-sm-"]:not(.form-check), [class*="tiki-admin"] form [class*="col-md-"] {
-    padding-left: 0;
-    padding-right: 0; } }
+    padding: 0; } }
 
 form.simple label.error {
   padding: 4px 0 0 20px;
@@ -4883,7 +4889,8 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     cursor: pointer;
     text-decoration: underline; }
   #tiki-installer .sidebar {
-    margin: 1.5em 1.5em 0 0; }
+    margin: 1.5em 1.5em 0 0;
+    padding-bottom: 2em; }
   #tiki-installer .installer-content {
     background-color: white;
     min-height: 100vh;
@@ -4914,6 +4921,13 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     color: blue; }
   #tiki-installer .nav .nav-item.active .nav-link {
     color: blue; }
+  #tiki-installer .install-step8 .enter-tiki .btn {
+    white-space: normal; }
+
+@media (max-width: 767.98px) {
+  #tiki-installer .install-body {
+    margin-left: 0 !important;
+    margin-right: 0; } }
 
 #tiki-admin_oauthserver input[name="id"][value=''] ~ .form-group-client_id, #tiki-admin_oauthserver input[name="id"][value=''] ~ .form-group-client_secret {
   display: none; }

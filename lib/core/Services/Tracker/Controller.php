@@ -553,6 +553,7 @@ class Services_Tracker_Controller
 
 		$raw = $input->raw->none();
 		$preserve = $input->preserve_ids->int();
+		$last_position = $input->last_position->int();
 
 		$data = TikiLib::lib('tiki')->read_raw($raw, $preserve);
 
@@ -566,7 +567,7 @@ class Services_Tracker_Controller
 			foreach ($data as $info) {
 				$info['permName'] = $trklib::generatePermName($definition, $info['permName']);
 
-				$this->utilities->importField($trackerId, new JitFilter($info), $preserve);
+				$this->utilities->importField($trackerId, new JitFilter($info), $preserve, $last_position);
 			}
 		}
 

@@ -87,7 +87,7 @@ class Tiki_Profile_InstallHandler_Scheduler extends Tiki_Profile_InstallHandler
 						$data['params'] = json_encode($params, true);
 
 						$schedLib = TikiLib::lib('scheduler');
-						$schedulerId = $schedLib->set_scheduler($data['name'], $data['description'], $data['task'], $data['params'], $data['run_time'], $data['status'], $data['re_run']);
+						$schedulerId = $schedLib->set_scheduler($data['name'], $data['description'], $data['task'], $data['params'], $data['run_time'], $data['status'], $data['re_run'], $data['run_only_once']);
 
 						return $schedulerId;
 					}

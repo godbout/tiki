@@ -434,3 +434,11 @@ div.cvsup {
 		}
 	}
 }
+
+@media (max-width: breakpoint-max(sm)) {
+	.tiki-admin_modules {
+		.q1 { width: 50%; padding-right: 10px; }
+		.q23 { width: 50%; }
+		.tips em { display: block; word-break: break-word; }
+	}
+}

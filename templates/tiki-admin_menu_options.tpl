@@ -42,7 +42,7 @@
 										<input type="checkbox" class="samepos">
 										{$prevpos = $option.position}
 									</span>
-									<a href="#" class="tips input-group-text " title="{tr}New option{/tr}|{tr}Drag this on to the menu area below{/tr}">
+									<a href="javascript:void(0)" class="tips input-group-text " title="{tr}New option{/tr}|{tr}Drag this on to the menu area below{/tr}">
 										{icon name='info'}
 									</a>
 								</div>
@@ -51,16 +51,16 @@
 						<div class="float-left url-group hidden">
 							<div class="input-group input-group-sm">
 								<div class="input-group-prepend">
-									<a href="#" class="input-group-text" onclick='return false;'>
+									<a href="javascript:void(0)" class="input-group-text" onclick='return false;'>
 										{icon name='link'}
 									</a>
 								</div>
 								<input type="text" class="field-url form-control" value="" placeholder="{tr}URL or ((page name)){/tr}">
 								<div class="input-group-append">
-									<a href="#" class="input-group-text  option-edit">
+									<a href="javascript:void(0)" class="input-group-text  option-edit">
 										{icon name='edit' _menu_icon='y' alt="{tr}Details{/tr}"}
 									</a>
-									<a href="#" class="input-group-text text-danger option-remove" disabled="disabled">
+									<a href="javascript:void(0)" class="input-group-text text-danger option-remove" disabled="disabled">
 										{icon name='remove' _menu_icon='y' alt="{tr}Remove{/tr}"}
 									</a>
 								</div>

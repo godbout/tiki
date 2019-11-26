@@ -143,6 +143,11 @@ class OIntegrate
 		if (count($this->acceptTemplates)) {
 			$http_headers['OIntegrate-AcceptTemplate'] = implode(', ', $this->acceptTemplates);
 		}
+
+		// merge with existing headers
+		$headers = $client->getRequest()->getHeaders();
+		$http_headers = array_merge($headers->toArray(), $http_headers);
+
 		$client->setHeaders($http_headers);
 
 		$client->setMethod($method);

@@ -7,6 +7,7 @@
 
 require __DIR__ . '/svntools.php';
 
+important('Warning: this script is deprecated. Please use php console.php vcs:automerge');
 // Perform basic checks
 info("Verifying...");
 
@@ -73,3 +74,4 @@ if ($conflicts->length > 0) {
 
 	error($message);
 }
+important('Warning: this script is deprecated. Please use php console.php vcs:automerge');

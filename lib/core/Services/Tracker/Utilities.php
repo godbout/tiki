@@ -365,8 +365,15 @@ class Services_Tracker_Utilities
 		}
 	}
 
-	function importField($trackerId, $field, $preserve)
+	function importField($trackerId, $field, $preserve, $lastposition=0)
 	{
+		if ($lastposition == 1 || ! $field->position->int() ) {
+			// No position parameter was provided or user requested that new fields are added to the bottom
+			$trklib = TikiLib::lib('trk');
+			$position = $trklib->get_last_position($trackerId) + 10;
+		} else {
+			$position = $field->position->int();
+		}
 
 		if (! $preserve) {
 			$fieldId = 0;
@@ -383,7 +390,7 @@ class Services_Tracker_Utilities
 				'name' => $field->name->text(),
 				'permName' => $field->permName->word(),
 				'type' => $field->type->word(),
-				'position' => $field->position->int(),
+				'position' => $position,
 				'options' => $field->options->none(),
 
 				'isMain' => $field->isMain->alpha(),

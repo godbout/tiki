@@ -82,6 +82,11 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 								$({{$inputId}}).tiki("datepicker");
 								$(".ui-datepicker-trigger").remove();
 							{/jq}
+						{elseif $param.filter eq "datetime"}
+							{jq}
+								$({{$inputId}}).tiki("datetimepicker");
+								$(".ui-datepicker-trigger").remove();
+							{/jq}
 						{/if}
 					{/if}
 				{/if}

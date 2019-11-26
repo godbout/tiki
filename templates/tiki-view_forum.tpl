@@ -587,7 +587,11 @@
 							</a>
 							{if $forum_info.topic_summary eq 'y'}
 								<div class="subcomment">
-									{$comments_coms[ix].summary|truncate:240:"...":true|escape}
+									{if $comments_coms[ix].summary|count_characters > 0}
+										{$comments_coms[ix].summary|truncate:240:"...":true|escape}
+									{else}
+										{$comments_coms[ix].data|truncate:240:"...":true|escape}
+									{/if}
 								</div>
 							{/if}
 						</td>

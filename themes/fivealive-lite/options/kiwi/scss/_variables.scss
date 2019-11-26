@@ -3,7 +3,7 @@
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 $white:    #fff;
 $black:    #000;
-$light: #a59705;
+$light: $white;
 
 $bg-light: #a59705; //#a59705 !important;
 
@@ -27,8 +27,8 @@ $hr-border-color: #a59705;
 
 $navbar-fixed-top-bg: #96a032;
 
-$bg-dark: #cdbe23;
-$bg-light: #a59705;
+//$bg-dark: #cdbe23;
+//$bg-light: #a59705;
 
 $card-border-color: #cdbe23;
 
@@ -44,7 +44,7 @@ $input-border-right-color: #fff;
 $input-border-bottom-color: #fff;
 $input-border-left-color: #f5fb86;
 
-$dropdown-bg: #908205;
+$dropdown-bg: #baba25;
 $dropdown-border-color: rgba(0, 0, 0, 0.15);
 
 $dropdown-link-color: #ffffff;

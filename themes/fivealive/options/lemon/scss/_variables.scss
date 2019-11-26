@@ -1,5 +1,5 @@
 // $Id$
-//Custom styles for the FiveAliveHS Lemon option theme.
+//Custom styles for the FiveAlive Lemon option theme.
 
 // - - - - - - - Bootstrap variables (override values in vendor_bundled/vendor/twbs/bootstrap/scss/_variables.scss - - - - - - //
 $white:    #fff;
@@ -11,24 +11,24 @@ $bg-light: #f9a013 !important;
 $link-color: #c75a28;
 $link-hover-color: #f9a013;
 
-$btn-primary-color: #ffffff;
-$btn-primary-bg: #f9a013;
-$btn-primary-border: #f4bb06;
-$btn-primary-focus-color: #ffffff;
-$btn-primary-focus-bg: #d2a100;
-$btn-primary-border: #ebba00;
-$btn-primary-hover-color: #ffffff;
-$btn-primary-hover-bg: #d2a100;
-$btn-primary-hover-border: #c89900;
-$btn-primary-active-color: #ffffff;
-$btn-primary-active-bg: #d2a100;
-$btn-primary-active-border: #c89900;
-$btn-primary-active-hover-bg-color: #ae8600;
-$btn-primary-active-hover-border: #856600;
-$btn-primary-disabled-hover: #f9a013;
-$btn-primary-disabled-border: #ffc506;
-$btn-primary-badge-color: #f9a013;
-$btn-primary-badge-bg: #ffffff;
+//$btn-primary-color: #ffffff;
+//$btn-primary-bg: #f9a013;
+//$btn-primary-border: #f4bb06;
+//$btn-primary-focus-color: #ffffff;
+//$btn-primary-focus-bg: #d2a100;
+//$btn-primary-border: #ebba00;
+//$btn-primary-hover-color: #ffffff;
+//$btn-primary-hover-bg: #d2a100;
+//$btn-primary-hover-border: #c89900;
+//$btn-primary-active-color: #ffffff;
+//$btn-primary-active-bg: #d2a100;
+//$btn-primary-active-border: #c89900;
+//$btn-primary-active-hover-bg-color: #ae8600;
+//$btn-primary-active-hover-border: #856600;
+//$btn-primary-disabled-hover: #f9a013;
+//$btn-primary-disabled-border: #ffc506;
+//$btn-primary-badge-color: #f9a013;
+//$btn-primary-badge-bg: #ffffff;
 
 // $btn-secondary-bg: #ffc506;
 // $btn-secondary-border: #ffc506;
@@ -45,17 +45,17 @@ $btn-primary-badge-bg: #ffffff;
 // $btn-secondary-badge-color: #ffc506;
 // $btn-secondary-bg-color: #ffffff;
 
-$btn-info-color: #fff;
-$btn-info-bg: #e5d7dc;
-$btn-info-border: #e5d0cf;
+//$btn-info-color: #fff;
+//$btn-info-bg: #e5d7dc;
+//$btn-info-border: #e5d0cf;
 // $btn-info-focus-color: ;
 // $btn-info-focus-bg: ;
 // $btn-info-focus-border: ;
-$btn-info-hover-color: $btn-info-color;
-$btn-info-hover-bg: lighten($btn-info-bg, 10%);
-$btn-info-hover-border: lighten($btn-info-border, 10%);
+//$btn-info-hover-color: $btn-info-color;
+//$btn-info-hover-bg: lighten($btn-info-bg, 10%);
+//$btn-info-hover-border: lighten($btn-info-border, 10%);
 // $btn-info-active-color: ;
-$btn-info-active-bg: $btn-info-bg;
+//$btn-info-active-bg: $btn-info-bg;
 // $btn-info-active-border: ;
 // $btn-info-active-hover: ;
 // $btn-info-active-hover-border: ;
@@ -183,3 +183,4 @@ $autotoc-color: #c75a28;
 $autotoc-nav-li-link-hover-color: #f2f2f2;
 $autotoc-nav-li-link-hover-bg: #b25025;
 $middle_outer-inset-shadow-bg: #2c1c04;
+$postbody-title-card-title-color: #fff;

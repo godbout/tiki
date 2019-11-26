@@ -586,7 +586,7 @@ class Tracker_Field_ItemLink extends Tracker_Field_Abstract implements Tracker_F
 	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
 	{
 		$item = $this->getValue();
-		$label = $this->getItemLabel($item, ['list_mode' => 'csv']);
+		$label = $this->getItemLabel($item);
 		$baseKey = $this->getBaseKey();
 
 		$out = [

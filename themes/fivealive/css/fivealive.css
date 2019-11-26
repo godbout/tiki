@@ -6989,13 +6989,6 @@ h1 {
   #page-header {
     height: auto; } }
 
-section {
-  color: #fff;
-  min-height: 400px;
-  height: auto !important;
-  height: 100%;
-  padding-top: 100px; }
-
 .main-footer {
   min-height: 60px;
   margin-top: 50px;

@@ -50,11 +50,12 @@ class SchedulersLib extends TikiLib
 	 * @param string $run_time The cron run time
 	 * @param string $status The scheduler status (active, inactive)
 	 * @param int $re_run 0 or 1 to run case failed
+	 * @param int $run_only_once 0 or 1 to run a scheduler only once
 	 * @param int|null $scheduler_id The scheduler id (optional)
 	 * @param int|null $creation_date schedule created date
 	 * @return int    The scheduler id
 	 */
-	public function set_scheduler($name, $description, $task, $params, $run_time, $status, $re_run, $scheduler_id = null, $creation_date = null)
+	public function set_scheduler($name, $description, $task, $params, $run_time, $status, $re_run, $run_only_once, $scheduler_id = null, $creation_date = null)
 	{
 
 		$values = [
@@ -65,6 +66,7 @@ class SchedulersLib extends TikiLib
 			'run_time' => $run_time,
 			'status' => $status,
 			're_run' => $re_run,
+			'run_only_once' => $run_only_once,
 		];
 
 		$schedulersTable = $this->table('tiki_scheduler');
@@ -133,7 +135,6 @@ class SchedulersLib extends TikiLib
 	 */
 	public function start_scheduler_run($scheduler_id, $start_time = null)
 	{
-
 		if (empty($start_time)) {
 			$start_time = time();
 		}
@@ -159,12 +160,12 @@ class SchedulersLib extends TikiLib
 	 * @param string	$executionStatus	The execution status (done, failed)
 	 * @param string 	$errorMessage		The output message
 	 * @param int|null	$end_time			The run end time in timestamp format
+	 * @param int		$healed					The run end time in timestamp format
 	 *
 	 * @return int	The end time in timestamp format
 	 */
 	public function end_scheduler_run($scheduler_id, $run_id, $executionStatus, $errorMessage, $end_time = null, $healed = 0)
 	{
-
 		if (empty($end_time)) {
 			$end_time = time();
 		}
@@ -242,5 +243,15 @@ class SchedulersLib extends TikiLib
 
 		$logslib = TikiLib::lib('logs');
 		$logslib->add_action('Removed', $scheduler_id, 'scheduler');
+	}
+
+	/**
+	 * Disable a specific scheduler by setting its status as Disabled
+	 * @param $scheduler_id
+	 */
+	public function setInactive($scheduler_id)
+	{
+		$schedulerTable = $this->table('tiki_scheduler');
+		$schedulerTable->update(['status' => Scheduler_Item::STATUS_INACTIVE], ['id' => $scheduler_id]);
 	}
 }

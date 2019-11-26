@@ -30,7 +30,7 @@ ini_set('display_errors', 1);
 
 if (version_compare(PHP_VERSION, '7.2.0', '<')) {
 	$title = 'PHP 7.2 is required';
-	$content = '<p>Please contact your system administrator ( if you are not the one ;) ). Your version: ' . PHP_VERSION . ' <br /> <br /> ' . 'Please also visit <a href="tiki-check.php">Server Check</a>' . '</p>';
+	$content = '<p>Please contact your system administrator ( if you are not the one ;) ). Your version: ' . PHP_VERSION . ' <br /> <br /> ' . '</p>';
 	createPage($title, $content);
 }
 

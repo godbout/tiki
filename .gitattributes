@@ -2051,6 +2051,7 @@ installer/schema/20190627_add_ocr_fgal_status_tiki.sql -text
 installer/schema/20190722_ocr_fgal_tiki.sql -text
 installer/schema/20190913_caldav_tiki.sql -text
 installer/schema/20190925_caldav_updates_tiki.sql -text
+installer/schema/20191116_scheduler_run_only_once_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -2970,6 +2971,7 @@ lib/core/Tiki/Command/RefreshRssCommand.php -text
 lib/core/Tiki/Command/RssClearCacheCommand.php -text
 lib/core/Tiki/Command/SchedulerRunCommand.php -text
 lib/core/Tiki/Command/ScssCompileCommand.php -text
+lib/core/Tiki/Command/SemiAutoMergeCommand.php -text
 lib/core/Tiki/Command/StatsCommand.php -text
 lib/core/Tiki/Command/TrackerClearCommand.php -text
 lib/core/Tiki/Command/TrackerExportCommand.php -text

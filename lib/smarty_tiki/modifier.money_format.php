@@ -38,9 +38,14 @@ function smarty_modifier_money_format($number, $local, $currency, $format = '%(#
 	if (! empty($local)) {
 		$ret = setlocale(LC_MONETARY, $local);
 		if ($ret === false) {
-			echo "'$local' is not supported by this system.\n";
-			return;
+			Feedback::error(tr('"%0" is not supported by this system.', $local));
+			return $number;
 		}
+	}
+
+	if (! extension_loaded('intl')) {
+		Feedback::error(tr('The PHP "intl" extension is required for "money_format".'));
+		return $number;
 	}
 
 	$locale = localeconv();

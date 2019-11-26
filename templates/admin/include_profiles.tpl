@@ -298,8 +298,10 @@
 						</select>{$empty_cache}
 							</div>
 					</div>
-					<div>
-						<textarea data-codemirror="true" data-syntax="yaml" id="profile_tester" name="profile_tester" class="form-control">{if isset($test_source)}{$test_source}{/if}</textarea>
+					<div class="form-group row">
+						<div class="col-sm-12">
+							<textarea data-codemirror="true" data-syntax="yaml" id="profile_tester" name="profile_tester" class="form-control">{if isset($test_source)}{$test_source}{/if}</textarea>
+						</div>
 					</div>
 				</div>
 				<div align="center" style="padding:1em;">

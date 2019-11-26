@@ -82,6 +82,27 @@ function wikiplugin_convene_info()
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
+			'autolock' => [
+				'required' => false,
+				'name' => tra('Automatic Lock'),
+				'description' => tra('Lock this plugin at a certain time and date (format YYYY-MM-DD hh:mm'),
+				'since' => '20.2',
+				'filter' => 'datetime',
+				'default' => '',
+			],
+			'locked' => [
+				'required' => false,
+				'name' => tra('Locked'),
+				'description' => tra('Prevent further votes or changes from the interface.'),
+				'since' => '20.2',
+				'filter' => 'alpha',
+				'default' => 'n',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('Yes'), 'value' => 'y'],
+					['text' => tra('No'), 'value' => 'n']
+				],
+			],
 		]
 	];
 }
@@ -113,6 +134,8 @@ function wikiplugin_convene($data, $params)
 			"dateformat" => 'short',
 			'adminperms' => 'y',
 			'avatars' => 'y',
+			'locked' => 'n',
+			'autolock' => '',
 		],
 		$params
 	);
@@ -193,6 +216,29 @@ function wikiplugin_convene($data, $params)
 	$tikiDate = new TikiDate();
 	$gmformat = str_replace($tikiDate->search, $tikiDate->replace, $tikilib->get_short_datetime_format());
 
+	$autolockMessage = '';
+
+	if ($params['autolock']) {
+		if (! preg_match('/\d{4}-\d{2}-\d{2} \d{2}:\d/', $params['autolock'])) {
+			$autolock = \TikiLib::date_format('%Y-%m-%d %H:%M', strtotime($params['autolock']));
+			if (! $autolock) {
+				Feedback::error(tr('Plugin convene: autolock date format not recognised'));
+			} else {
+				$params['autolock'] = $autolock;
+			}
+		}
+		$lockDate = new TikiDate();
+		$lockDate->setDate($params['autolock']);
+
+		$smarty->loadPlugin('smarty_modifier_tiki_short_datetime');
+		if ($lockDate < $tikiDate) {
+			$params['locked'] = 'y';
+			$autolockMessage = tr('Voting ended: %0', smarty_modifier_tiki_short_datetime($params['autolock']));
+		} else {
+			$autolockMessage = tr('Voting ends: %0', smarty_modifier_tiki_short_datetime($params['autolock']));
+		}
+	}
+
 	$canEdit = $perms->edit;
 	if ($params['adminperms'] !== 'y') {
 		$canAdmin = $canEdit;
@@ -212,16 +258,33 @@ function wikiplugin_convene($data, $params)
 			$dateHeader .= $tikilib->get_short_datetime($stamp);
 		}
 		$dateHeader .= '</span>';
-		$dateHeader .= ($canAdmin ? " <button class='conveneDeleteDate$i icon btn btn-danger btn-sm' data-date='$stamp'>$deleteicon</button>" : "") . "</td>";
+		if ($canAdmin && $params['locked'] !== 'y') {
+			$dateHeader .= " <button class='conveneDeleteDate$i icon btn btn-danger btn-sm' data-date='$stamp'>$deleteicon</button>";
+		}
+		$dateHeader .= "</td>";
 	}
 	$result .= "<tr class='conveneHeaderRow'>";
 
-	$result .= "<td class='align-middle'>" . (
-		$canEdit
-			?
-				"<input type='button' class='conveneAddDate$i btn btn-primary btn-sm' value='" . tr('Add Date') . "'/>"
-			: ""
-	) . "</td>";
+	if ($canEdit) {
+		if ($params['locked'] !== 'y') {
+			$result .= "<td class='align-middle'>" .
+					"<input type='button' class='conveneAddDate$i btn btn-primary btn-sm' value='" . tr('Add Date') . "'/>"
+				. "<div class='small text-muted'>$autolockMessage</div>"
+				. "</td>";
+		} else {
+			$result .= "<td class='align-left'>"
+				. smarty_function_icon(
+					['name' => 'lock', 'iclass' => 'tips', 'ititle' => ':'
+						. tr("Locked")], $smarty->getEmptyInternalTemplate()
+				)
+				. "<div class='small text-muted'>$autolockMessage</div>"
+				. "</td>";
+		}
+	} else {
+		$result .= "<td class='align-middle'>" . (
+			""
+			) . "</td>";
+	}
 
 	$result .= "$dateHeader
 		</tr>";
@@ -242,13 +305,24 @@ function wikiplugin_convene($data, $params)
 			$rightPadding = '';
 		}
 
-		$userList .= "<td class='align-middle' style='white-space: nowrap'><div class='align-items-center d-flex justify-content-between'>" . ($editThisUser ? "<div class='btn-group'><button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
-				. smarty_function_icon(['name' => 'pencil', 'iclass' => 'tips', 'ititle' => ':'
-					. tr("Edit User/Save changes")], $smarty->getEmptyInternalTemplate())
+		if ($editThisUser && $params['locked'] !== 'y') {
+			$buttons = "<div class='btn-group'><button class='conveneUpdateUser$i icon btn btn-primary btn-sm'>"
+				. smarty_function_icon(
+					['name' => 'pencil', 'iclass' => 'tips', 'ititle' => ':'
+						. tr("Edit User/Save changes")], $smarty->getEmptyInternalTemplate()
+				)
 				. "</button><button data-user='$user' class='conveneDeleteUser$i icon btn btn-danger btn-sm'>"
-				. smarty_function_icon(['name' => 'delete', 'iclass' => 'tips', 'ititle' => ':'
-					. tr("Delete User")], $smarty->getEmptyInternalTemplate())
-				. "</button></div> " : "")
+				. smarty_function_icon(
+					['name' => 'delete', 'iclass' => 'tips', 'ititle' => ':'
+						. tr("Delete User")], $smarty->getEmptyInternalTemplate()
+				)
+				. "</button></div> ";
+		} else {
+			$buttons = "";
+		}
+
+		$userList .= "<td class='align-middle' style='white-space: nowrap'><div class='align-items-center d-flex justify-content-between'>"
+				. $buttons
 				. "<div class='flex-fill'><div class='mx-2' style='$rightPadding'>" . smarty_modifier_userlink($user) . "</div></div>$avatar</div></td>";
 
 		foreach ($row as $stamp => $vote) {
@@ -279,16 +353,21 @@ function wikiplugin_convene($data, $params)
 
 	if (! empty($data['dates'])) {	// need a date before adding users
 		$result .= "<td>";
-		if ($canAdmin) {
-			$result .= "<div class='btn-group'><input class='conveneAddUser$i form-control' value='' placeholder='"
+		if ($params['locked'] !== 'y') {
+			if ($canAdmin) {
+				$result .= "<div class='btn-group'><input class='conveneAddUser$i form-control' value='' placeholder='"
 					. tr("Username...") . "' style='float:left;width:72%;border-bottom-right-radius:0;border-top-right-radius:0;'>
-						<input type='button' value='+' title='" . tr('Add User')
+							<input type='button' value='+' title='" . tr('Add User')
 					. "' class='conveneAddUserButton$i btn btn-primary' /></div>";
-		} else if ($canEdit) {
-			$result .= "<div class='btn-group'><input class='conveneAddUser$i form-control' value='{$GLOBALS['user']}' disabled='disabled'" .
+			} else {
+				if ($canEdit) {
+					$result .= "<div class='btn-group'><input class='conveneAddUser$i form-control' value='{$GLOBALS['user']}' disabled='disabled'"
+						.
 						" style='float:left;width:72%;border-bottom-right-radius:0;border-top-right-radius:0;'>" .
 						"<input type='button' value='+' title='" . tr('Add User') .
 						"' class='conveneAddUserButton$i btn btn-primary' /></div>";
+				}
+			}
 		}
 		$result .= "</td>";
 	}
@@ -469,9 +548,11 @@ FORM;
 					type: "convene",
 					ticket: $('#convene-ticket').val(),
 					params: {
-						title: "$title",
-						calendarid: $calendarid,
-						minvotes: $minvotes
+						title: "{$params['title']}",
+						calendarid: {$params['calendarid']},
+						minvotes: {$params['minvotes']},
+						locked: "{$params['locked']}",
+						autolock: "{$params['autolock']}"
 					}
 				};
 				$.post($.service("plugin", "replace"), params, function() {
@@ -484,6 +565,7 @@ FORM;
 							if (data) {
 								var newForm = $("#pluginConvene$i", data);
 								$("#pluginConvene$i", "#page-data").replaceWith(newForm);
+								if (jQuery.timeago) { $("time.timeago").timeago(); }
 							}
 							initConvene$i();
 							$("#page-data").tikiModal();
