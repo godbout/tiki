@@ -46,7 +46,7 @@ require_once('lib/wiki/renderlib.php');
  */
 function smarty_function_button($params, $smarty)
 {
-	$page = $params['href'];
+	$page = $params['href'] ?? '';
 	if (! is_array($params) || (! isset($params['_text']) && ! isset($params['_icon_name']))) {
 		return '';
 	}
@@ -189,7 +189,7 @@ function smarty_function_button($params, $smarty)
 		foreach($dom->getElementsByTagName('a') as $link) {
 			if ($url == $link->getAttribute('href')) {
 				$selected = true;
-				if (is_null($class)) {
+				if ($class === null) {
 					$class = 'active';
 				}
 			}
@@ -213,8 +213,9 @@ function smarty_function_button($params, $smarty)
 	$info = $tikilib->get_page_info($page);
 	$pageRenderer = new WikiRenderer($info, '');
 	$pageRenderer->applyPermissions();
-	if($pageRenderer->canView)
+	if ($pageRenderer->canView) {
 		return $html;
-	else
-		return '';
+	}
+
+	return '';
 }
