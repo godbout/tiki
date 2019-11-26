@@ -4889,7 +4889,8 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     cursor: pointer;
     text-decoration: underline; }
   #tiki-installer .sidebar {
-    margin: 1.5em 1.5em 0 0; }
+    margin: 1.5em 1.5em 0 0;
+    padding-bottom: 2em; }
   #tiki-installer .installer-content {
     background-color: white;
     min-height: 100vh;
@@ -4922,6 +4923,11 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     color: blue; }
   #tiki-installer .install-step8 .enter-tiki .btn {
     white-space: normal; }
+
+@media (max-width: 767.98px) {
+  #tiki-installer .install-body {
+    margin-left: 0 !important;
+    margin-right: 0; } }
 
 #tiki-admin_oauthserver input[name="id"][value=''] ~ .form-group-client_id, #tiki-admin_oauthserver input[name="id"][value=''] ~ .form-group-client_secret {
   display: none; }
