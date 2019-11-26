@@ -385,6 +385,8 @@ CREATE TABLE `tiki_calendar_recurrence` (
   `user` varchar(200) default '',
   `created` int(14) NOT NULL default '0',
   `lastmodif` int(14) NOT NULL default '0',
+  `uid` varchar(200),
+  `uri` varchar(200),
   PRIMARY KEY (`recurrenceId`),
   KEY `calendarId` (`calendarId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
@@ -406,6 +408,7 @@ CREATE TABLE `tiki_calendar_items` (
   `description` text,
   `recurrenceId` int(14),
   `changed` tinyint(1) DEFAULT '0',
+  `recurrenceStart` int(14) default NULL,
   `user` varchar(200) default '',
   `created` int(14) NOT NULL default '0',
   `lastmodif` int(14) NOT NULL default '0',

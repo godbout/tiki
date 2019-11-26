@@ -18,6 +18,7 @@ use Tiki\SabreDav\PrincipalBackend;
 
 require_once 'tiki-setup.php';
 $access->check_feature('feature_calendar');
+include_once('lib/calendar/calrecurrence.php');
 
 // Backends
 $authBackend = new BasicAuth();

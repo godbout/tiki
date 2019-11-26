@@ -144,6 +144,15 @@ if (isset($_REQUEST['act']) || isset($_REQUEST['preview']) || isset($_REQUEST['c
 			$server_offset = TikiDate::tzServerOffset($displayTimezone);
 			$save['date_start'] = $save['date_start'] - $server_offset + $browser_offset;
 			$save['date_end'] = $save['date_end'] - $server_offset + $browser_offset;
+			if (! empty($_POST['startPeriod'])) {
+				// get timezone date at 12:00am - reason: when this is later displayed, it could be the wrong date if stored at UTC
+				// real solution here is to save the start date as a date object, not a timestamp to avoid timezone conversion issues...
+				$_POST['startPeriod'] = TikiDate::getStartDay($_POST['startPeriod'] - $server_offset + $browser_offset, $displayTimezone);
+			}
+			if (! empty($_POST['endPeriod'])) {
+				// get timezone date at 12:00am
+				$_POST['endPeriod'] = TikiDate::getStartDay($_POST['endPeriod'] - $server_offset + $browser_offset, $displayTimezone);
+			}
 		}
 	}
 
@@ -244,19 +253,18 @@ if (isset($_POST['act'])) {
 						$calRecurrence->setDateOfYear(str_pad($_POST['dateOfYear_month'], 2, '0', STR_PAD_LEFT) . str_pad($_POST['dateOfYear_day'], 2, '0', STR_PAD_LEFT));
 						break;
 				}
-				$calRecurrence->setStartPeriod($_POST['startPeriod']);
+				if ($calRecurrence->getId() > 0 && $save['calitemId'] == $calRecurrence->getFirstItemId()) {
+					// modify start period when the first event is updated
+					$calRecurrence->setStartPeriod(TikiDate::getStartDay($save['start'], $displayTimezone));
+				} else {
+					$calRecurrence->setStartPeriod($_POST['startPeriod']);
+				}
 				if ($_POST['endType'] == "dt") {
 					$calRecurrence->setEndPeriod($_POST['endPeriod']);
 				} else {
 					$calRecurrence->setNbRecurrences(empty($_POST['nbRecurrences']) ? null : $_POST['nbRecurrences']);
 				}
 				$calRecurrence->setUser($save['user']);
-				if (empty($save['calitemId'])) {
-					// create the initial event if it's a new one
-					$save['calitemId'] = $calendarlib->set_item($user, $save['calitemId'], $save, [], true);
-				}
-				$calRecurrence->setInitialItem($save);
-
 				$calRecurrence->save(! empty($_POST['affect']) && $_POST['affect'] === 'all');
 				// Save the ip at the log for the addition of new calendar items
 				if ($prefs['feature_actionlog'] == 'y' && empty($save['calitemId']) && $caladd["$newcalid"]['tiki_p_add_events']) {

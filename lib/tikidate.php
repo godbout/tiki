@@ -164,6 +164,15 @@ class TikiDate
 		return $tz->getOffset($d);
 	}
 
+	static function getStartDay($timestamp, $tz)
+	{
+		$dt = DateTime::createFromFormat('U', $timestamp);
+		$tz = new DateTimeZone($tz);
+		$dt->setTimezone($tz);
+		$dt->setTime(0,0,0);
+		return $dt->getTimestamp();
+	}
+
 	/**
 	 * @param $format
 	 * @param bool $is_strftime_format
