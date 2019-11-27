@@ -116,6 +116,25 @@
 					</div>
 				</div>
 			{/if}
+
+			{if $tiki_p_admin_categories == 'y'}
+				<div class="form-group row">
+					<div class="col-sm-12">
+						<label>
+							{tr}This is a dynamic menu option for a Templated Group in:{/tr}
+						</label>
+						<select name="tplGroupContainer" id="tplGroupContainer" class="form-control">
+							<option>{tr}None{/tr}</option>
+							{foreach $templatedGroups as $group}
+								<option value="{$group['id']}"
+										{if $group['id'] == $tplGroupContainerId}selected{/if} >
+									{$group['groupName']|truncate:80:"(...)":true|escape}
+								</option>
+							{/foreach}
+						</select>
+					</div>
+				</div>
+			{/if}
 			<div class="form-group text-center submit">
 				{ticket mode=confirm}
 				<input type="hidden" name="optionId" value="{$optionId|escape}">

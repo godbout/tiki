@@ -159,7 +159,7 @@ class Services_Menu_Controller
 		} else {
 			$optionInfo = [];
 		}
-
+		$tplGroupContainerId = TikiLib::lib('attribute')->get_attribute('menu', $optionId, 'tiki.menu.templatedgroupid');
 		//get menu information
 		$menuId = $input->menuId->int();
 
@@ -249,11 +249,22 @@ class Services_Menu_Controller
 			$level = $input->level->text();
 			$icon = $input->icon->text();
 			$class = $input->class->text();
+			$class = $input->class->text();
+			$tplGroupContainer = $input->tplGroupContainer->text();
+			$tplGroupContainerId = '';
+			if ($tplGroupContainer && $tplGroupContainer != "None") {
+				$tplGroupContainerInfo = TikiLib::lib('user')->get_groupId_info($tplGroupContainer);
+				$tplGroupContainerId = $tplGroupContainerInfo["id"];
+			}
 
 			//execute insert/update
 			$menuLib = $this->menulib;
-			$menuLib->replace_menu_option($menuId, $optionId, $name, $url, $type, $position, $section, $perm, $groupname, $level, $icon, $class);
+			$optionId = $menuLib->replace_menu_option($menuId, $optionId, $name, $url, $type, $position, $section, $perm, $groupname, $level, $icon, $class);
+			TikiLib::lib('attribute')->set_attribute('menu', $optionId, 'tiki.menu.templatedgroupid', $tplGroupContainerId);
+
 		}
+
+		$tplGroups = TikiLib::lib('user')->get_template_groups_containers();
 
 		//information for the menu option screen
 		return [
@@ -264,6 +275,8 @@ class Services_Menu_Controller
 			'menuSymbol' => $menuDetails["symbol"],
 			'info' => $optionInfo,
 			'option_groups' => $option_groups,
+			'templatedGroups' => $tplGroups["data"],
+			'tplGroupContainerId' => $tplGroupContainerId,
 		];
 	}
 

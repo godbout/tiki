@@ -134,4 +134,18 @@ class AttributeLib extends TikiDb_Bridge
 			['attribute' => $attribute, 'value' => $value,]
 		);
 	}
+
+	/**
+	 * @param $attribute
+	 * @param $value
+	 * @return mixed
+	 */
+	function delete_objects_with($attribute, $value)
+	{
+		$attribute = $this->get_valid($attribute);
+		return $this->attributes->delete(
+			['attribute' => $attribute, 'value' => $value]
+		);
+	}
+
 }

@@ -59,6 +59,11 @@
 						{/remarksbox}
 					{/if}
 				{/if}
+				{if $objectType eq 'category' and $groupRole}
+				{remarksbox type="warning" title="{tr}Warning{/tr}"}
+				{tr}This category's permissions are being managed by a Group Role.{/tr}<br>
+				{/remarksbox}
+				{/if}
 			{/capture}
 			{$smarty.capture.notices}
 			<br/>

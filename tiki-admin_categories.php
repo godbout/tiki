@@ -10,14 +10,24 @@
 
 require_once('tiki-setup.php');
 $categlib = TikiLib::lib('categ');
+$rolesRepo = TikiLib::lib('roles');
+
+$roles = TikiLib::lib('user')->list_role_groups();
+if (isset($_REQUEST["categId"])) {
+	$info = $categlib->get_category($_REQUEST["categId"]);
+} else {
+	$_REQUEST["categId"] = 0;
+	$info["name"] = '';
+	$info["description"] = '';
+}
 
 @ini_set('max_execution_time', 0);    // as pagination is broken and almost every object gets fully loaded on this page
 @ini_set('memory_limit', -1);        // at least try and avoid WSoD on large sites (TODO better still - see r30064)
 
 $access->check_feature('feature_categories');
 // Check for parent category or set to 0 if not present
-if (! empty($_REQUEST['parentId']) && ! ($info = $categlib->get_category($_REQUEST['parentId']))) {
-	Feedback::error(tr('No such category with parentID %0'), (int) $_REQUEST['parentId']);
+if (! empty($_REQUEST['parentId']) && ! ($infoParent = $categlib->get_category($_REQUEST['parentId']))) {
+	Feedback::error(tr('No such category with parentID %0'), (int)$_REQUEST['parentId']);
 }
 
 if (! isset($_REQUEST['parentId'])) {
@@ -169,14 +179,7 @@ if (isset($categorizedObject) && ! isset($_REQUEST["addpage"])) {
 	];
 	$categlib->notify($values);
 }
-if (! empty($_REQUEST["categId"])) {
-	$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['categId']);
-	$info = $categlib->get_category($_REQUEST["categId"]);
-} else {
-	$_REQUEST["categId"] = 0;
-	$info["name"] = '';
-	$info["description"] = '';
-}
+
 if (isset($_REQUEST["removeObject"]) && $access->checkCsrfForm(tr('Remove object from category?'))) {
 	$category = $categlib->get_category($_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object_via_category_object_id($_REQUEST["removeObject"]);
@@ -221,6 +224,9 @@ if (isset($_REQUEST["removeCat"]) && $info = $categlib->get_category($_REQUEST['
 }
 if (isset($_REQUEST["save"]) && isset($_REQUEST["name"]) && strlen($_REQUEST["name"]) > 0 && $access->checkCsrf()) {
 	// Save
+	if (! empty($_REQUEST["tplGroupContainer"]) && strpos($_REQUEST["tplGroupPattern"], '--groupname--') === false) {
+		Feedback::error(tra('A pattern that does not contain "--groupname--" is not allowed'));
+	}
 	if ($_REQUEST["categId"]) {
 		if ($_REQUEST['parentId'] == $_REQUEST['categId']) {
 			Feedback::error(tra('Category cannot be parent of itself - no changes made'));
@@ -230,7 +236,9 @@ if (isset($_REQUEST["save"]) && isset($_REQUEST["name"]) && strlen($_REQUEST["na
 					$_REQUEST["categId"],
 					$_REQUEST["name"],
 					$_REQUEST["description"],
-					$_REQUEST["parentId"]
+					$_REQUEST["parentId"],
+					$_REQUEST["tplGroupContainer"],
+					$_REQUEST["tplGroupPattern"]
 				);
 				if ($tiki_p_admin_categories == 'y' && ! empty($_REQUEST['parentPerms'])) {
 					$userlib->remove_object_permission('', $_REQUEST['categId'], 'category', '');
@@ -243,7 +251,13 @@ if (isset($_REQUEST["save"]) && isset($_REQUEST["name"]) && strlen($_REQUEST["na
 		}
 	} else {
 		try {
-			$newcategId = $categlib->add_category($_REQUEST["parentId"], $_REQUEST["name"], $_REQUEST["description"]);
+			$newcategId = $categlib->add_category(
+				$_REQUEST["parentId"],
+				$_REQUEST["name"],
+				$_REQUEST["description"],
+				$_REQUEST["tplGroupContainer"],
+				$_REQUEST["tplGroupPattern"]
+			);
 			if ($tiki_p_admin_categories != 'y' || ! empty($_REQUEST['parentPerms'])) {
 				$userlib->copy_object_permissions($_REQUEST['parentId'], $newcategId, 'category');
 			}
@@ -251,10 +265,36 @@ if (isset($_REQUEST["save"]) && isset($_REQUEST["name"]) && strlen($_REQUEST["na
 		} catch (Exception $e) {
 			$errors['mes'] = $e->getMessage();
 		}
+		$_REQUEST["categId"] = $newcategId;
 	}
-	$info["name"] = '';
-	$info["description"] = '';
-	$_REQUEST["categId"] = 0;
+
+	$cRolesInput = isset($_REQUEST["categoryRole"]) ? $_REQUEST["categoryRole"] : [];
+	$rolesToSave = [];
+	if (isset($cRolesInput) && ! empty($cRolesInput)) {
+		$rolesRepo->deleteSelectedCategoryRoleNotUsed($_REQUEST["categId"]);
+		$rolesToSave = [];
+		foreach ($cRolesInput as $selects) {
+			$categId = array_keys($selects)[0];
+			$value = array_values($selects)[0];
+			$categRoleId = array_keys($value)[0];
+			$groupRoleId = array_keys($value[$categRoleId])[0];
+			$groupId = empty($value[$categRoleId][$groupRoleId]) ? 0 : $value[$categRoleId][$groupRoleId];
+			$rolesRepo->insertOrUpdateSelectedCategoryRole($categId, $categRoleId, $groupRoleId, $groupId);
+		}
+	}
+
+	if ($_REQUEST['applyRoles'] == "on") {
+		$rolesRepo->applyRoles($_REQUEST["categId"], $_REQUEST['rolesToApply']);
+	} else {
+		$rolesRepo->applyRoles($_REQUEST["categId"], []);
+	}
+
+	$rolesRepo->deleteRolesWithoutParent($_REQUEST["categId"]);
+
+
+	if (isset($_REQUEST["tplGroupContainer"]) && ! empty($_REQUEST["tplGroupContainer"])) {
+		$categlib->manage_sub_categories($_REQUEST["categId"]);
+	}
 	$cookietab = 1;
 }
 if (isset($_REQUEST['import']) && isset($_FILES['csvlist']['tmp_name']) && $access->checkCsrf()) {
@@ -312,6 +352,12 @@ if (isset($_REQUEST['import']) && isset($_FILES['csvlist']['tmp_name']) && $acce
 $smarty->assign('categId', $_REQUEST["categId"]);
 $smarty->assign('categoryName', $info["name"]);
 $smarty->assign('description', $info["description"]);
+if (isset($info["tplGroupContainerId"])) {
+	$smarty->assign('tplGroupContainerId', $info["tplGroupContainerId"]);
+}
+if (isset($info["tplGroupPattern"])) {
+	$smarty->assign('tplGroupPattern', $info["tplGroupPattern"]);
+}
 // If the parent category is not zero get the category path
 if ($_REQUEST["parentId"]) {
 	$p_info = $categlib->get_category($_REQUEST["parentId"]);
@@ -396,8 +442,27 @@ foreach ($categories as $category) {
 			)
 			. 'style="padding:0; margin:0; border:0">' . smarty_function_icon(['name' => 'wrench'], $smarty->getEmptyInternalTemplate()) . '</a>';
 
+
+
+
 		$catlink = '<a class="catname" href="tiki-admin_categories.php?parentId=' . $category["categId"] .
 			'&cookietab=3" style="margin-left:5px">' . htmlspecialchars($category['name']) . '</a> ';
+
+		if ($category['tplGroupContainerId'] > 0) {
+			$catlink .= '
+			 <sup class="tikihelp" data-ori data-original-title="'.tra('Managed by Templated Group').'" data-content="'.tra('Child categories will automatically be generated and managed for children of the selected Templated Groups Container.').'">
+										T
+									</sup>
+			';
+		}
+
+		if($category['num_roles'] > 0){
+			$catlink .= '
+			 <sup class="tikihelp" title="'.tra('Apply Role Permissions').'" data-content="'.tra('Roles permissions will automatically be applied to child categories.').'">
+										R
+									</sup>
+			';
+		}
 
 		$desc = '<small>' . $category['description'] . '</small>';
 
@@ -621,6 +686,53 @@ if ($prefs['feature_search'] !== 'y' || $prefs['unified_add_to_categ_search'] !=
 if (! empty($errors)) {
 	Feedback::warning($errors);
 }
+
+if (isset($_REQUEST["categId"])) {
+	$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['categId']);
+	$availableIds = $rolesRepo->getAvailableCategoriesRolesIds($_REQUEST["categId"]);
+	$smarty->assign('availableIds', $availableIds);
+
+	if ($_REQUEST['parentId']) {
+		$parentCategory = $categlib->get_category(intval($_REQUEST["parentId"]));
+		$tikiDb = TikiDb::get();
+		$groupsWithPerms = $rolesRepo->getAvailableCategoriesRoles($parentCategory['categId']);
+	} else {
+		$groupsWithPerms = [];
+	}
+
+	$catRolesListSelected = $rolesRepo->getSelectedCategoryRoles($_REQUEST["categId"]);
+	$groupList = TikiLib::lib('user')->list_regular_groups();
+	$groupListIndexed = [];
+	foreach ($groupList as $group) {
+		$groupListIndexed[$group['id']] = $group['groupName'];
+	}
+	//fetch selected groups
+	$selectedGroups = [];
+	$catRolesList = [];
+	foreach ($groupsWithPerms as $group) {
+		$selectedGroups[$group['id']] = [];
+		$catRolesList[] = [
+			'categId' => $info['categId'], //category Id
+			'categRoleId' => $info['parentId'], //parent category Id
+			'groupRoleId' => $group['id'], //role group
+			'groupId' => '', //group selected
+			'groupRoleName' => $group['groupName'],
+		];
+	}
+	foreach ($catRolesListSelected as $item) {
+		$selectedGroups[$item["groupRoleId"]] = $item["groupId"];
+	}
+
+	$tplGroups = TikiLib::lib('user')->get_template_groups_containers();
+
+	$smarty->assign('role_groups', $catRolesList);
+	$smarty->assign('selected_groups', $selectedGroups);
+	$smarty->assign('templatedGroups', $tplGroups["data"]);
+}
+
+$smarty->assign('roles', $roles);
+$smarty->assign('group_list', $groupList);
+
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template

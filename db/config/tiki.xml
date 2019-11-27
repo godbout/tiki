@@ -393,6 +393,8 @@
 			<argument type="service" id="tiki.lib.events" />
 		</service>
 
+		<service id="tiki.lib.roles" class="Tiki\Group\Roles\RolesLib" />
+
 		<!--
 			 Below are sample configurations you can include in a custom.xml file with the same structure as this one.
 		-->

@@ -199,8 +199,14 @@ class Perms_ResolverFactory_CategoryFactory implements Perms_ResolverFactory
 
 		$bindvars = [];
 		$result = $db->fetchAll(
-			'SELECT `objectId`, `groupName`, `permName` FROM `users_objectpermissions` WHERE `objectType` = \'category\' AND ' .
-			$db->in('objectId', array_keys($objects), $bindvars),
+			'SELECT `objectId`, `groupName`, `permName` FROM `users_objectpermissions` WHERE `objectType` = \'category\' AND ' .  $db->in('objectId', array_keys($objects), $bindvars)
+			.' UNION ALL '
+			.'SELECT md5(CONCAT(\'category\', r.`categId`)), g.`groupName`, p.`permName` FROM `users_objectpermissions` p
+				JOIN tiki_categories_roles r ON p.objectId = md5(CONCAT(\'category\', r.`categRoleId`))
+				JOIN `users_groups` gr ON r.`groupRoleId` = gr.id AND p.groupName = gr.`groupName`
+				JOIN `users_groups` g ON r.`groupId` = g.id
+				WHERE p.`objectType` = \'category\' AND  ' .  $db->in('r.categId', array_values($objects), $bindvars)
+			,
 			$bindvars
 		);
 

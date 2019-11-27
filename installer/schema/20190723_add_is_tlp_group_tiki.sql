@@ -1,0 +1,1 @@
+ALTER TABLE users_groups ADD column `isTplGroup`char(1) DEFAULT 'n';

@@ -532,8 +532,26 @@ CREATE TABLE `tiki_categories` (
   `parentId` int(12) default NULL,
   `rootId` int NOT NULL DEFAULT 0,
   `hits` int(8) default NULL,
+  `tplGroupContainerId` int(12) default NULL,
+  `tplGroupPattern` varchar(200) default NULL,
   PRIMARY KEY (`categId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
+
+DROP TABLE IF EXISTS `tiki_categories_roles`;
+CREATE TABLE `tiki_categories_roles` (
+    `categId` int(12) NOT NULL,
+    `categRoleId` int(12) NOT NULL,
+    `groupRoleId` int(12) NOT NULL,
+    `groupId` int(12) NOT NULL,
+    PRIMARY KEY (`categId`,`categRoleId`,`groupRoleId`)
+) ENGINE=MyISAM;
+
+DROP TABLE IF EXISTS `tiki_categories_roles_available`;
+CREATE TABLE `tiki_categories_roles_available` (
+    `categId` int(12) NOT NULL,
+    `categRoleId` int(12) NOT NULL,
+    PRIMARY KEY (`categId`,`categRoleId`)
+) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_objects`;
 CREATE TABLE `tiki_objects` (
@@ -2877,6 +2895,8 @@ CREATE TABLE `users_groups` (
   `emailPattern`  varchar(255) default '',
   `anniversary` char(4) default '',
   `prorateInterval` varchar(255) default '',
+  `isRole` char(1) DEFAULT 'n',
+  `isTplGroup` char(1) DEFAULT 'n',
   PRIMARY KEY (`id`),
   UNIQUE KEY `groupName` (`groupName` (191)),
   KEY `expireAfter` (`expireAfter`)

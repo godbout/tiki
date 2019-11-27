@@ -807,11 +807,7 @@ class Tiki_Profile_Installer
 		}
 
 		if (count($info['include'])) {
-			$userlib->remove_all_inclusions($groupName);
-
-			foreach ($info['include'] as $included) {
-				$userlib->group_inclusion($groupName, $included);
-			}
+			$userlib->manage_group($groupName, $info['include']);
 		}
 
 		foreach ($permissions as $perm => $v) {

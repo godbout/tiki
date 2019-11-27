@@ -471,7 +471,11 @@ class Services_User_Controller
 					);
 				//selected users to be added or removed from selected groups groups
 				} else {
-					$all_groups = $this->lib->list_all_groups();
+					$all_groups = $this->lib->list_regular_groups();
+					$groupsNames = [];
+					foreach ($all_groups as $group) {
+						$groupsNames[] = $group["groupName"];
+					}
 					$countgrps = count($all_groups) < 21 ? count($all_groups) : 20;
 					if ($util->itemsCount == 1) {
 						$customMsg = tra('For this user:');
@@ -485,7 +489,7 @@ class Services_User_Controller
 						'confirmAction' => $input['action'],
 						'confirmController' => 'user',
 						'customMsg' => $customMsg,
-						'all_groups' => $all_groups,
+						'all_groups' => $groupsNames,
 						'countgrps' => $countgrps,
 						'items' => $util->items,
 						'extra' => [

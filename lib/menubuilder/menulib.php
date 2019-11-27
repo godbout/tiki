@@ -131,14 +131,21 @@ class MenuLib extends TikiLib
 		}
 
 		$this->empty_menu_cache($menuId);
-		$this->query($query, $bindvars, -1, -1, TikiDb::ERR_EXCEPTION);
-		return true;
+		$result = $this->query($query, $bindvars, -1, -1, TikiDb::ERR_EXCEPTION);
+		if(!$optionId)
+			$optionId = $this->lastInsertId();
+		return $optionId;
 	}
 
 	public function remove_menu($menuId)
 	{
 		$query = "delete from `tiki_menus` where `menuId`=?";
 		$result = $this->query($query, [(int) $menuId]);
+
+		$options = $this->list_menu_options($menuId);
+		foreach ($options["data"] as $option) {
+			TikiLib::lib('attribute')->set_attribute('menu', $option['optionId'], 'tiki.menu.templatedgroupid', null);
+		}
 
 		$query = "delete from `tiki_menu_options` where `menuId`=?";
 		$result = $this->query($query, [(int) $menuId]);
@@ -154,6 +161,7 @@ class MenuLib extends TikiLib
 
 		$query = "delete from `tiki_menu_options` where `optionId`=?";
 		$result = $this->query($query, [(int) $optionId]);
+		TikiLib::lib('attribute')->set_attribute('menu', $optionId, 'tiki.menu.templatedgroupid', null);
 
 		$this->empty_menu_cache($menuId);
 		return true;

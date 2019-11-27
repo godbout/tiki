@@ -63,10 +63,39 @@ function smarty_function_menu($params, $smarty)
 	$smarty->assign('menu_channels', $channels['data']);
 	$smarty->assign('menu_info', $menu_info);
 
+	$objectCategories = TikiLib::lib('categ')->get_current_object_categories();
+
+	list($categGroups) = array_values(array_filter(array_map(function ($categId) {
+		$categ = TikiLib::lib('categ')->get_category($categId);
+		$parent = TikiLib::lib('categ')->get_category($categ["parentId"]);
+		if (! $parent || $parent["id"] != 0 || ! $parent["tplGroupContainerId"]) {
+			return null;
+		}
+		$templatedgroupid = TikiLib::lib('attribute')->get_attribute("category", $categId, "tiki.category.templatedgroupid");
+		$tplGroup = TikiLib::lib('user')->get_groupId_info($templatedgroupid);
+		if (empty($tplGroup['groupName'])) {
+			return null;
+		}
+		return [$parent["tplGroupContainerId"] => $tplGroup['groupName']];
+	}, $objectCategories), function ($group) {
+		return $group != null;
+	}));
+
 	if (isset($params['bootstrap']) && $params['bootstrap'] !== 'n' && $prefs['javascript_enabled'] === 'y') {
 		$structured = [];
 		$activeSection = null;
 		foreach ($channels['data'] as $element) {
+				$attribute = TikiLib::lib('attribute')->get_attribute('menu', $element["optionId"], 'tiki.menu.templatedgroupid');
+				if ($attribute && $catName = $categGroups[$attribute]) {
+					$element["name"] = str_replace("--groupname--", $catName, $element["name"]);
+					$element["url"] = str_replace("--groupname--", $catName, $element["name"]);
+					$element["sefurl"] = str_replace("--groupname--", $catName, $element["sefurl"]);
+					$element["canonic"] = str_replace("--groupname--", $catName, $element["canonic"]);
+				} elseif ($attribute && ! $categGroups[$attribute]) {
+					continue;
+				}
+
+
 			if ($element['type'] == 's') {
 				if ($activeSection) {
 					$structured[] = $activeSection;

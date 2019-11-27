@@ -141,7 +141,7 @@
 										<div class="input-group-append">
 											<span class="input-group-text">{icon name='sort'}</span>
 										</div>
-										<input type="text" class="field-label form-control" value="{$option.name|escape}" placeholder="{tr}Label{/tr}">
+										<input typecontroller=menu&action=edit_option="text" class="field-label form-control" value="{$option.name|escape}" placeholder="{tr}Label{/tr}">
 										<div class="input-group-append">
 											<span class="tips input-group-text option-edit" title="|{tr}Check this if the option is an alternative to the previous one.{/tr}">
 												<input type="checkbox" class="samepos"{if $option.position eq $prevpos} checked="checked"{/if}>
