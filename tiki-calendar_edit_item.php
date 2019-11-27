@@ -133,7 +133,7 @@ if (isset($_REQUEST['act']) || isset($_REQUEST['preview']) || isset($_REQUEST['c
 	$save = $_POST['save'];
 	$save['allday'] = empty($_POST['allday']) ? 0 : 1;
 
-	if(!isset($save['date_start']) && !isset($save['date_end'])) {
+	if (! isset($save['date_start']) && ! isset($save['date_end'])) {
 		$save['date_start'] = strtotime($_POST['start_date_Year'] . '-' . $_POST['start_date_Month'] . '-' . $_POST['start_date_Day'] .
 			' ' . $_POST['start_Hour'] . ':' . $_POST['start_Minute'] . ':00');
 		$save['date_end'] = strtotime($_POST['end_date_Year'] . '-' . $_POST['end_date_Month'] . '-' . $_POST['end_date_Day'] .
