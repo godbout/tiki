@@ -13,25 +13,25 @@ class Services_Group_Controller
 	 * @var array
 	 */
 	private $filters = [
-		'checked'					=> 'groupname',
-		'items'						=> 'groupname',
-		'name'						=> 'groupname',
-		'group'						=> 'groupname',
-		'desc'						=> 'striptags',
-		'home'						=> 'pagename',
-		'groupstracker'				=> 'int',
-		'userstracker'				=> 'int',
-		'registrationUsersFieldIds'	=> 'digitscolons',
-		'userChoice'				=> 'word',
-		'defcat'					=> 'int',
-		'theme'						=> 'themename',
-		'color'						=> 'striptags',
-		'usersfield'				=> 'int',
-		'groupfield'				=> 'int',
-		'expireAfter'				=> 'int',
-		'anniversary'				=> 'digits',	// format MMDD or DD - NB: this is not an integer
-		'prorateInterval'			=> 'word',
-		'user'						=> 'username'
+		'checked' => 'groupname',
+		'items' => 'groupname',
+		'name' => 'groupname',
+		'group' => 'groupname',
+		'desc' => 'striptags',
+		'home' => 'pagename',
+		'groupstracker' => 'int',
+		'userstracker' => 'int',
+		'registrationUsersFieldIds' => 'digitscolons',
+		'userChoice' => 'word',
+		'defcat' => 'int',
+		'theme' => 'themename',
+		'color' => 'striptags',
+		'usersfield' => 'int',
+		'groupfield' => 'int',
+		'expireAfter' => 'int',
+		'anniversary' => 'digits',    // format MMDD or DD - NB: this is not an integer
+		'prorateInterval' => 'word',
+		'user' => 'username'
 	];
 
 	/**
@@ -59,16 +59,28 @@ class Services_Group_Controller
 	{
 		Services_Exception_Denied::checkGlobal('admin');
 		$util = new Services_Utilities();
+		$userlib = TikiLib::lib('user');
 		//first pass - show confirm modal popup
 		if ($util->notConfirmPost()) {
 			$util->setVars($input, $this->filters, 'checked');
+			$extras = [];
 			if ($util->itemsCount > 0) {
+				$warnings = array_filter($util->items, function ($item) use ($userlib) {
+					$groups = array_map(function ($g) {
+						return $g['groupName'];
+					}, $userlib->get_included_container_groups($item, false));
+					return ! empty($groups);
+				});
+				if (! empty($warnings)) {
+					$extras["warning"] = tr('Some categories are managed by this group. Remove it will be irreversible.');
+				}
+
 				if (count($util->items) === 1) {
 					$msg = tra('Delete the following group?');
 				} else {
 					$msg = tra('Delete the following groups?');
 				}
-				return $util->confirm($msg, tra('Delete'));
+				return $util->confirm($msg, tra('Delete'), ["warning" => $extras]);
 			} else {
 				Services_Utilities::modalException(tra('No groups were selected. Please select one or more groups.'));
 			}
@@ -79,7 +91,7 @@ class Services_Group_Controller
 			//in the remove groups function
 			$fitems = array_diff($util->items, ['Admins']);
 			$notDeleted = array_intersect($util->items, ['Admins']);
-			$userlib = TikiLib::lib('user');
+
 			$logslib = TikiLib::lib('logs');
 			$deleted = [];
 			foreach ($fitems as $group) {
@@ -150,8 +162,15 @@ class Services_Group_Controller
 				}
 			} else {
 				Services_Utilities::modalException(tra('Group name cannot be empty'));
+				return;
 			}
-		//after confirm submit - perform action and return feedback
+
+			if (! empty($input['isTplGroup']) && ! empty($input["include_groups"])) {
+				Services_Utilities::modalException(tra('Template Group cannot inherit from other groups'));
+			}
+
+
+			//after confirm submit - perform action and return feedback
 		} elseif ($util->checkCsrf()) {
 			//set parameters
 			$util->setDecodedVars($input, $this->filters);
@@ -175,7 +194,9 @@ class Services_Group_Controller
 				$params['emailPattern'],
 				$params['anniversary'],
 				$params['prorateInterval'],
-				$params['color']
+				$params['color'],
+				$params['isRole'],
+				$params['isTplGroup']
 			);
 			if (isset($util->extra['include_groups'])) {
 				foreach ($util->extra['include_groups'] as $include) {
@@ -183,7 +204,23 @@ class Services_Group_Controller
 						$userlib->group_inclusion($util->extra['name'], $include);
 					}
 				}
+				$groups = $userlib->get_group_info($util->extra['include_groups']);
+
+				$templateGroups = array_filter($groups, function ($item) {
+					return $item["isTplGroup"] == "y";
+				});
+				foreach ($templateGroups as $templateGroup) {
+					$categories = TikiLib::lib('categ')->get_managed_categories($templateGroup["id"]);
+					$managedIds = array_unique(array_map(function ($item) {
+						return $item["categId"];
+					}, $categories));
+
+					foreach ($managedIds as $managedId) {
+						TikiLib::lib('categ')->manage_sub_categories($managedId);
+					}
+				}
 			}
+
 			$logslib = TikiLib::lib('logs');
 			$logslib->add_log('admingroups', 'created group ' . $util->extra['name']);
 			//prepare feedback
@@ -221,28 +258,77 @@ class Services_Group_Controller
 	function action_modify_group($input)
 	{
 		Services_Exception_Denied::checkGlobal('admin');
+		$userlib = TikiLib::lib('user');
 		$util = new Services_Utilities();
 		//first pass - show confirm modal popup
 		if ($util->notConfirmPost()) {
 			$util->setVars($input, $this->filters);
+
+			$children = $userlib->get_group_children_with_permissions($input['olgroup']);
+
+
 			if (! empty($input['name']) && isset($input['olgroup'])) {
 				$newGroupName = trim($input['name']);
 				$userlib = TikiLib::lib('user');
+				$users = $userlib->get_group_users($input['name']);
+				if (! empty($users) && $input["isRole"] == "on") {
+					Services_Utilities::modalException(tra('Role groups can\'t have users.'));
+				}
+				if (! empty($input['isTplGroup']) && ! empty($input["include_groups"]) && ! empty($input["include_groups"][0])) {
+					Services_Utilities::modalException(tra('Template Group cannot inherit from other groups'));
+				}
+				if (! empty($input['include_groups'])) {
+					$permissions = $userlib->get_group_permissions($input['olgroup']);
+					if (! empty($permissions)) {
+						$groups = $userlib->get_group_info($input['include_groups']->asArray());
+						foreach ($groups as $group) {
+							if ($group["isTplGroup"] == "y") {
+								Services_Utilities::modalException(tr('Template Group children cannot have permission: %0', $group["groupName"]));
+							}
+						}
+					}
+				}
+				$extras = [];
+				$oldIncluded = $userlib->get_included_groups($input['olgroup'], false);
+				$oldIncludes = array_diff($oldIncluded, $input['include_groups'] ? $input['include_groups']->toArray() : []);
+				$oldGroups = $userlib->get_group_info(array_values($oldIncludes));
+				$parentGroupsIds = array_map(function ($item) {
+					return $item["id"];
+				}, array_filter($oldGroups, function ($item) {
+					return $item["isTplGroup"] == "y";
+				}));
+
+				if (! empty($parentGroupsIds)) {
+					$extras["warning"] = tr('Some categories are managed by this group. Remove it will be irreversible.');
+				}
+
+
+
+				if ($children["cant"] > 0) {
+					$names = [];
+					foreach ($children["data"] as $child) {
+						$names[] = $child["groupName"];
+					}
+					Services_Utilities::modalException(tr('Template Group children cannot have permission: %0', implode(",", $names)));
+				}
+				if (! empty($input['isTplGroup']) && ! empty($users)) {
+					Services_Utilities::modalException(tra('Template Group cannot have associated users'));
+				}
 				if ($input['olgroup'] !== $newGroupName && $userlib->group_exists($newGroupName)) {
 					Services_Utilities::modalException(tra('Group already exists'));
 				} else {
 					$msg = tr('Modify the group %0?', $newGroupName);
-					return $util->confirm($msg, tra('Modify'));
+					return $util->confirm($msg, tra('Modify'), $extras);
 				}
 			} else {
 				Services_Utilities::modalException(tra('Group name cannot be empty'));
+				return;
 			}
 			//after confirm submit - perform action and return success feedback
 		} elseif ($util->checkCsrf()) {
 			//set parameters
 			$util->setDecodedVars($input, $this->filters);
 			$params = $this->prepareParameters($util->extra);
-			$userlib = TikiLib::lib('user');
 			$success = $userlib->change_group(
 				$params['olgroup'],
 				$params['name'],
@@ -261,16 +347,14 @@ class Services_Group_Controller
 				$params['emailPattern'],
 				$params['anniversary'],
 				$params['prorateInterval'],
-				$params['color']
+				$params['color'],
+				$params['isRole'],
+				$params['isTplGroup'],
+				$params['include_groups']
 			);
-			$userlib->remove_all_inclusions($params['name']);
-			if (isset($params['include_groups']) and is_array($params['include_groups'])) {
-				foreach ($params['include_groups'] as $include) {
-					if ($include && $params["name"] != $include) {
-						$userlib->group_inclusion($params["name"], $include);
-					}
-				}
-			}
+
+
+
 			$logslib = TikiLib::lib('logs');
 			$logslib->add_log('admingroups', 'modified group ' . $params['olgroup'] . ' to ' . $params['name']);
 			//prepare feedback
@@ -312,6 +396,11 @@ class Services_Group_Controller
 		//first pass - show confirm modal popup
 		if ($util->notConfirmPost()) {
 			$util->setVars($input, $this->filters, 'user');
+			$userlib = TikiLib::lib('user');
+			$group = $userlib->get_group_info($input['group']);
+			if ($group["isRole"] == "y") {
+				Services_Utilities::modalException(tra('Role groups can\'t have users.'));
+			}
 			if ($util->itemsCount > 0) {
 				if ($util->itemsCount === 1) {
 					$msg = tr('Add the following user to group %0?', $input['group']);
@@ -520,12 +609,14 @@ class Services_Group_Controller
 		$extra['defcat'] = ! empty($extra['defcat']) ? $extra['defcat'] : 0;
 		$extra['userChoice'] = isset($extra['userChoice']) && $extra['userChoice'] == 'on' ? 'y' : '';
 		$extra['expireAfter'] = empty($extra['expireAfter']) ? 0 : $extra['expireAfter'];
+		$extra['isRole'] = isset($extra['isRole']) && $extra['isRole'] == 'on' ? 'y' : '';
+		$extra['isTplGroup'] = isset($extra['isTplGroup']) && $extra['isTplGroup'] == 'on' ? 'y' : '';
 
 		$defaults = [
-			'groupstracker'             => 0,
-			'groupfield'                => 0,
-			'userstracker'              => 0,
-			'usersfield'                => 0,
+			'groupstracker' => 0,
+			'groupfield' => 0,
+			'userstracker' => 0,
+			'usersfield' => 0,
 			'registrationUsersFieldIds' => ''
 		];
 		global $prefs;

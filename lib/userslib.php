@@ -85,8 +85,8 @@ class UsersLib extends TikiLib
 
 		if (! empty($permName) && ! empty($groupName)) {
 			$query = 'insert into `users_objectpermissions`' .
-						' (`groupName`, `objectId`, `objectType`, `permName`)' .
-						' values(?, ?, ?, ?)';
+				' (`groupName`, `objectId`, `objectType`, `permName`)' .
+				' values(?, ?, ?, ?)';
 
 			$result = $this->query($query, [$groupName, $objectId, $objectType, $permName]);
 		}
@@ -188,9 +188,9 @@ class UsersLib extends TikiLib
 		$bindvars = array_merge($bindvars, $groups);
 
 		$query = 'select `permName` ' .
-						' from `users_objectpermissions`' .
-						' where `objectId` = ? and `objectType` = ?' .
-						' and `groupName` in (' . implode(',', array_fill(0, count($groups), '?')) . ')';
+			' from `users_objectpermissions`' .
+			' where `objectId` = ? and `objectType` = ?' .
+			' and `groupName` in (' . implode(',', array_fill(0, count($groups), '?')) . ')';
 
 		$result = $this->query($query, $bindvars);
 		$ret = [];
@@ -2350,6 +2350,16 @@ class UsersLib extends TikiLib
 		$result = $this->query($query, [$group, $include]);
 	}
 
+	function get_included_container_groups($group, $recur = true)
+	{
+		$includedGroups = $this->get_included_groups($group, $recur);
+		$groups = $this->get_group_info($includedGroups);
+		return array_filter($groups, function ($item) {
+			return $item["isTplGroup"] == "y";
+		});
+	}
+
+
 	function get_included_groups($group, $recur = true)
 	{
 		$engroup = urlencode($group);
@@ -2450,6 +2460,52 @@ class UsersLib extends TikiLib
 		return $ret;
 	}
 
+	function get_groups_for_permissions()
+	{
+		$query = "SELECT * from users_groups 
+					where isTplGroup <> 'y' and groupName not in (select groupName 
+					from  tiki_group_inclusion where includeGroup in (SELECT groupName 
+					from users_groups where isTplGroup = 'y')) order by id asc;";
+		$ret = $this->fetchAll($query);
+		$retval = [];
+		$retval['data'] = $ret;
+		$retval['cant'] = count($ret);
+		return $retval;
+	}
+
+	function get_template_groups_containers()
+	{
+		$query = "SELECT * from users_groups 
+					where isTplGroup = 'y' order by id asc;";
+		$ret = $this->fetchAll($query);
+		$retval = [];
+		$retval['data'] = $ret;
+		$retval['cant'] = count($ret);
+		return $retval;
+	}
+
+	function get_group_children($groupName)
+	{
+		$query = "SELECT DISTINCT *  from users_groups as ug
+					where ug.groupName  in (select groupName from  tiki_group_inclusion where includeGroup = ?) order by id asc;";
+		$ret = $this->fetchAll($query, [$groupName]);
+		$retval = [];
+		$retval['data'] = $ret;
+		$retval['cant'] = count($ret);
+		return $retval;
+	}
+
+	function get_group_children_with_permissions($groupName)
+	{
+		$query = "SELECT DISTINCT ug.*  from users_groups as ug join users_grouppermissions as up on ug.groupName = up.groupName
+					where ug.groupName  in (select groupName from  tiki_group_inclusion where includeGroup = ?) order by id asc;";
+		$ret = $this->fetchAll($query, [$groupName]);
+		$retval = [];
+		$retval['data'] = $ret;
+		$retval['cant'] = count($ret);
+		return $retval;
+	}
+
 	function get_groups($offset = 0, $maxRecords = -1, $sort_mode = 'groupName_asc', $find = '', $initial = '', $details = "y", $inGroups = '', $userChoice = '')
 	{
 		$mid = '';
@@ -2526,6 +2582,28 @@ class UsersLib extends TikiLib
 		return $users;
 	}
 
+	function list_regular_groups()
+	{
+
+		$groups = [];
+		$result = $this->query('select `id`, `groupName` from `users_groups` where isRole <> ?  order by `groupName`', ['y']);
+		while ($res = $result->fetchRow()) {
+			$groups[] = ["groupName" => $res['groupName'], "id" => $res['id']];
+		}
+
+		return $groups;
+	}
+
+	function list_role_groups()
+	{
+		return $this->fetchAll("
+            SELECT ug.id, ug.groupName FROM `users_groups` ug
+			WHERE
+			ug.isRole = 'y'
+			group by ug.id, ug.GroupName");
+	}
+
+
 	function list_all_groups()
 	{
 		$cachelib = TikiLib::lib('cache');
@@ -2547,7 +2625,7 @@ class UsersLib extends TikiLib
 		$cachelib = TikiLib::lib('cache');
 
 		if (! $groups = $cachelib->getSerialized('groupIdlist')) {
-			$groups = $this->fetchAll('select `id`, `groupName` from `users_groups` order by `groupName`', []);
+			$groups = $this->fetchAll('select `id`, `groupName`, isRole from `users_groups` order by `groupName`', []);
 			$cachelib->cacheItem('groupIdlist', serialize($groups));
 		}
 
@@ -2577,10 +2655,10 @@ class UsersLib extends TikiLib
 		}, $this->list_all_groups());
 
 		$filtered = Perms::filter(
-			[ 'type' => 'group' ],
+			['type' => 'group'],
 			'object',
 			$groups,
-			[ 'object' => 'groupName' ],
+			['object' => 'groupName'],
 			'group_view'
 		);
 
@@ -2771,6 +2849,7 @@ class UsersLib extends TikiLib
 		if ($group == 'Anonymous' || $group == 'Registered') {
 			return false;
 		}
+		$info = $this->get_group_info($group);
 
 		$query = 'delete from `tiki_group_inclusion` where `groupName` = ? or `includeGroup` = ?';
 		$result = $this->query($query, [$group, $group]);
@@ -2788,6 +2867,11 @@ class UsersLib extends TikiLib
 		}
 
 		$this->query('update `users_users` set `default_group`=? where `default_group`=?', ['Registered', $group]);
+
+		TikiLib::lib('categ')->detach_managed_category($info["id"]);
+
+		TikiLib::lib('attribute')->delete_objects_with( 'tiki.category.templatedgroupid', $info["id"]);
+		TikiLib::lib('attribute')->delete_objects_with( 'tiki.menu.templatedgroupid', $info["id"]);
 
 		TikiLib::events()->trigger('tiki.group.delete', [
 			'type' => 'group',
@@ -3376,6 +3460,52 @@ class UsersLib extends TikiLib
 			return $ret;
 		}
 		return false;
+	}
+
+	/**
+	 * @param $group
+	 * @param $include_groups
+	 * @throws Exception
+	 */
+	public function manage_group($group, $include_groups): void
+	{
+		$oldIncluded = $this->get_included_groups($group, false);
+		$this->remove_all_inclusions($group);
+		$info = $this->get_group_info($group);
+
+		if (isset($include_groups) and is_array($include_groups)) {
+			$oldIncludes = array_diff($oldIncluded, $include_groups);
+			$oldGroups = $this->get_group_info(array_values($oldIncludes));
+			$parentGroupsIds = array_map(function ($item) {
+				return $item["id"];
+			}, array_filter($oldGroups, function ($item) {
+				return $item["isTplGroup"] == "y";
+			}));
+			if (!empty($parentGroupsIds)) {
+				TikiLib::lib('categ')->detach_managed_category($info["id"], $parentGroupsIds);
+			}
+
+			foreach ($include_groups as $include) {
+				if ($include && $group != $include) {
+					$this->group_inclusion($group, $include);
+				}
+			}
+
+			$groups = $this->get_group_info($include_groups);
+			$templateGroups = array_filter($groups, function ($item) {
+				return $item["isTplGroup"] == "y";
+			});
+			foreach ($templateGroups as $templateGroup) {
+				$categories = TikiLib::lib('categ')->get_managed_categories($templateGroup["id"]);
+				$managedIds = array_unique(array_map(function ($item) {
+					return $item["categId"];
+				}, $categories));
+
+				foreach ($managedIds as $managedId) {
+					TikiLib::lib('categ')->manage_sub_categories($managedId);
+				}
+			}
+		}
 	}
 
 	function get_usertrackerid($group)
@@ -5949,6 +6079,15 @@ class UsersLib extends TikiLib
 				'scope' => 'global',
 			],
 			[
+				'name' => 'tiki_p_edit_grouplimitedinfo',
+				'description' => tra('Can edit the name and description of a group.'),
+				'level' => 'admin',
+				'type' => 'group',
+				'admin' => false,
+				'prefs' => [],
+				'scope' => 'object',
+			],
+			[
 				'name' => 'tiki_p_access_closed_site',
 				'description' => tra('Can access site when closed'),
 				'level' => 'admin',
@@ -6537,8 +6676,8 @@ class UsersLib extends TikiLib
 		if (is_array($group)) {
 			if (count($group) > 0) {
 				$query = 'select * from `users_groups` where `groupName` in (' .
-									implode(',', array_fill(0, count($group), '?')) .
-									') order by ' . $this->convertSortMode($sort_mode);
+					implode(',', array_fill(0, count($group), '?')) .
+					') order by ' . $this->convertSortMode($sort_mode);
 				$ret = $this->fetchAll($query, $group);
 			}
 		} else {
@@ -6571,6 +6710,12 @@ class UsersLib extends TikiLib
 		if (! $this->user_exists($user)) {
 			throw new Exception(tr('Cannot add nonexistent user %0 to group %1', $user, $group));
 		}
+
+		$groupInfo = $this->get_group_info($group);
+		if ($groupInfo["isRole"] == "y") {
+			throw new Exception(tr('Role groups can\'t have users.'));
+		}
+
 		global $prefs, $tiki_p_admin, $page;
 		$cachelib = TikiLib::lib('cache');
 		$tikilib = TikiLib::lib('tiki');
@@ -7236,7 +7381,10 @@ class UsersLib extends TikiLib
 		$emailPattern = '',
 		$anniversary = '',
 		$prorateInterval = '',
-		$color = ''
+		$color = '',
+		$isRole = '',
+		$isTplGroup = '',
+		$include_groups = []
 	) {
 
 		$tikilib = TikiLib::lib('tiki');
@@ -7253,20 +7401,25 @@ class UsersLib extends TikiLib
 			'groupDefCat' => $defcat,
 			'groupTheme' => $theme,
 			'groupColor' => $color,
-			'usersTrackerId' => (int) $utracker,
-			'groupTrackerId' => (int) $gtracker,
+			'usersTrackerId' => (int)$utracker,
+			'groupTrackerId' => (int)$gtracker,
 			'registrationUsersFieldIds' => $rufields,
 			'userChoice' => $userChoice,
-			'usersFieldId' => (int) $ufield,
-			'groupFieldId' => (int) $gfield,
+			'usersFieldId' => (int)$ufield,
+			'groupFieldId' => (int)$gfield,
 			'isExternal' => $isexternal,
 			'expireAfter' => $expireAfter,
 			'emailPattern' => $emailPattern,
 			'anniversary' => $anniversary,
 			'prorateInterval' => $prorateInterval,
+			'isRole' => $isRole,
+			'isTplGroup' => empty($isTplGroup) ? 'n' : $isTplGroup,
 		];
 
 		$id = $this->table('users_groups')->insert($data);
+
+		$this->manage_group($group, $include_groups);
+
 
 		TikiLib::events()->trigger('tiki.group.create', [
 			'type' => 'group',
@@ -7298,9 +7451,16 @@ class UsersLib extends TikiLib
 		$emailPattern = '',
 		$anniversary = '',
 		$prorateInterval = '',
-		$color = ''
+		$color = '',
+		$isRole = '',
+		$isTplGroup = '',
+		$include_groups = []
 	) {
-
+		$isTplGroup = empty($isTplGroup) ? 'n' : $isTplGroup;
+		$users = $this->get_group_users($group);
+		if (! empty($users) && $isRole == "y") {
+			throw new Exception(tr('Role groups can\'t have users.'));
+		}
 
 		if ($olgroup == 'Anonymous' || $olgroup == 'Registered') {
 			// Changing group name of 'Anonymous' and 'Registered' is not allowed.
@@ -7324,14 +7484,16 @@ class UsersLib extends TikiLib
 				$emailPattern,
 				$anniversary,
 				$prorateInterval,
-				$color
+				$color,
+				$isRole,
+				$isTplGroup
 			);
 		}
 
 		$cachelib = TikiLib::lib('cache');
 
 		$tx = TikiDb::get()->begin();
-
+		
 		$data = [
 			'groupName' => $group,
 			'groupDesc' => $desc,
@@ -7339,17 +7501,19 @@ class UsersLib extends TikiLib
 			'groupDefCat' => $defcat,
 			'groupTheme' => $theme,
 			'groupColor' => $color,
-			'usersTrackerId' => (int) $utracker,
-			'groupTrackerId' => (int) $gtracker,
+			'usersTrackerId' => (int)$utracker,
+			'groupTrackerId' => (int)$gtracker,
 			'registrationUsersFieldIds' => $rufields,
 			'userChoice' => $userChoice,
-			'usersFieldId' => (int) $ufield,
-			'groupFieldId' => (int) $gfield,
+			'usersFieldId' => (int)$ufield,
+			'groupFieldId' => (int)$gfield,
 			'isExternal' => $isexternal,
 			'expireAfter' => $expireAfter,
 			'emailPattern' => $emailPattern,
 			'anniversary' => $anniversary,
 			'prorateInterval' => $prorateInterval,
+			'isRole' => $isRole,
+			'isTplGroup' => $isTplGroup,
 		];
 
 		$this->table('users_groups')->update($data, ['groupName' => $olgroup]);
@@ -7417,6 +7581,10 @@ class UsersLib extends TikiLib
 				'object' => $olgroup,
 			]);
 		}
+
+
+		$this->manage_group($group, $include_groups);
+
 		$cachelib->invalidate('group_theme_' . $olgroup);
 
 		TikiLib::events()->trigger('tiki.group.update', [
@@ -7426,6 +7594,24 @@ class UsersLib extends TikiLib
 
 		$tx->commit();
 
+		return true;
+	}
+
+	function edit_group($id, $name, $description)
+	{
+		// Limited editing only, for users with the tiki_p_edit_grouplimitedinfo perm
+		$groupInfo = $this->get_groupId_info($id);
+		if (!$groupInfo)
+			return false;
+		$includeGroups = $this->get_included_groups($groupInfo["groupName"]);
+
+		$this->change_group($groupInfo["groupName"], $name, $description
+			, $groupInfo["groupHome"], $groupInfo["usersTrackerId"], $groupInfo["groupTrackerId"]
+			, $groupInfo["groupTrackerId"], $groupInfo["groupFieldId"], $groupInfo["registrationUsersFieldIds"]
+			, $groupInfo["userChoice"], $groupInfo["groupDefCat"], $groupInfo["groupTheme"]
+			, $groupInfo["isExternal"], $groupInfo["expireAfter"], $groupInfo["emailPattern"]
+			, $groupInfo["anniversary"], $groupInfo["prorateInterval"], $groupInfo["groupColor"]
+			, $groupInfo["isRole"], $groupInfo["isTplGroup"], $includeGroups);
 		return true;
 	}
 

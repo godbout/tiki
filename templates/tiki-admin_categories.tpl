@@ -57,6 +57,24 @@
 					<textarea rows="2" class="form-control" name="description" id="description" maxlength=500>{$description|escape}</textarea>
 				</div>
 			</div>
+			{if isset($role_groups) && count($role_groups) }
+			<div class="form-group row">
+				<label class="col-sm-3 col-form-label" for="description">{tr}Group Roles{/tr}</label>
+				<div class="col-sm-9">
+					{foreach $role_groups as $role}
+					<div>
+						{$role.groupRoleName}:
+						<select name="categoryRole[{$role.iteration}][{$role.categId}][{$role.categRoleId}][{$role.groupRoleId}]" class="form-control">
+							<option value="" >{tr}None{/tr}</option>
+							{foreach $group_list as $group}
+								<option value="{$group.id}" {if $group.id eq $selected_groups[$role.groupRoleId]}selected="selected"{/if}>{$group.groupName|escape}</option>
+							{/foreach}
+						</select>
+					</div>
+					{/foreach}
+				</div>
+			</div>
+			{/if}
 			{if $tiki_p_admin_categories == 'y'}
 				<div class="form-group row">
 					<div class="col-sm-9 offset-sm-3">
@@ -68,6 +86,85 @@
 						</div>
 					</div>
 				</div>
+			{/if}
+			{if $tiki_p_admin_categories == 'y'}
+				{jq}
+					$('input[type=checkbox][name=applyRoles]').change(function(ele){
+						if($('input[type=checkbox][name=applyRoles]:checked').length > 0){
+							$('#rolesToApply').show();
+						}else{
+							$('#rolesToApply').hide();
+						}
+					});
+					$('input[type=checkbox][name=applyRoles]').ready(function(ele){
+						if($('input[type=checkbox][name=applyRoles]:checked').length > 0){
+							$('#rolesToApply').show();
+						}else{
+							$('#rolesToApply').hide();
+						}
+					});
+				{/jq}
+				<div class="form-group row">
+					<div class="col-sm-9 offset-sm-3">
+						<div class="form-check">
+							<label>
+								<input type="checkbox" name="applyRoles" {if !empty($availableIds)}checked="checked"{/if}>
+								{tr}Apply role permissions to sub-categories{/tr}
+							</label>
+							<select name="rolesToApply[]" id="rolesToApply" class="form-control" multiple="multiple"
+									size="5">
+								{foreach $roles as $role}
+									<option value="{$role['id']}"
+											{if isset($availableIds) && in_array($role['id'], $availableIds)}selected{/if} >
+										{$role['groupName']|truncate:80:"(...)":true|escape}
+									</option>
+								{/foreach}
+							</select>
+						</div>
+					</div>
+				</div>
+				{if $parentId == 0}
+					{jq}
+						$('#tplGroupContainer').change(function(ele){
+							var v = $('#tplGroupContainer option:selected').val();
+							if(v > 0){
+								$('#patternGroupContainerDiv').show();
+							}else{
+								$('#patternGroupContainerDiv').hide();
+							}
+						});
+						$('#tplGroupContainer').ready(function(ele){
+							var v = $('#tplGroupContainer option:selected').val();
+							if(v > 0){
+								$('#patternGroupContainerDiv').show();
+							}else{
+								$('#patternGroupContainerDiv').hide();
+							}
+						});
+					{/jq}
+					<div class="form-group row">
+						<div class="col-sm-9 offset-sm-3">
+							<label>
+								{tr}Automatically manage sub-categories for Templated Groups Container{/tr}
+							</label>
+							<select {if $tplGroupContainerId > 0}disabled {/if} name="tplGroupContainer" id="tplGroupContainer" class="form-control">
+								<option>{tr}None{/tr}</option>
+								{foreach $templatedGroups as $group}
+									<option value="{$group['id']}"
+											{if $group['id'] == $tplGroupContainerId}selected{/if} >
+										{$group['groupName']|truncate:80:"(...)":true|escape}
+									</option>
+								{/foreach}
+							</select>
+						</div>
+						<div class="col-sm-9 offset-sm-3" id="patternGroupContainerDiv">
+							<label>
+								{tr}Name Pattern for Templated Groups sub-categories{/tr}
+							</label>
+							<input name="tplGroupPattern" value="{($tplGroupPattern)?$tplGroupPattern:'--groupname--'}" id="patternGroupContainer" type="text" class="form-control">
+						</div>
+					</div>
+				{/if}
 			{/if}
 			<div class="form-group row">
 				<div class="col-sm-9 offset-sm-3">

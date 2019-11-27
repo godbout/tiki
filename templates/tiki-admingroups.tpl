@@ -69,6 +69,16 @@
 									<a class="link tips" href="{$href}"{$onclick} title="{tr}Edit group{/tr}:{$users[user].groupName|escape}">
 										{$users[user].groupName|escape}
 									</a>
+									{if $users[user].isTplGroup eq 'y'}
+									<sup class="tikihelp" title="{tr}Templated Groups Container{/tr}">
+										T
+									</sup>
+									{/if}
+									{if $users[user].isRole eq 'y'}
+										<sup class="tikihelp" title="{tr}Role Group{/tr}">
+											R
+										</sup>
+									{/if}
 									<div class="text">{tr}{$users[user].groupDesc|escape|nl2br}{/tr}</div>
 								</td>
 								<td class="text">
@@ -445,6 +455,29 @@
 					<div class="form-text">
 						<p>{tr}Users are automatically assigned at registration in the group if their emails match the pattern.{/tr}</p>
 						<p>{tr}Example:{/tr} /@(tw.org$)|(tw\.com$)/</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<label class="col-form-label col-md-3">{tr}Role Group{/tr}</label>
+				<div class="col-md-9">
+					<div class="form-check">
+						<label class="form-check-label">
+							<input class="form-check-input" type="checkbox" name="isRole"{if $isRole eq 'y'} checked="checked"{/if}>
+							{tr}This group is used as a role{/tr}
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-form-label col-md-3">{tr}Templated Groups{/tr}</label>
+				<div class="col-md-9">
+					<div class="form-check">
+						<label class="form-check-label">
+							<input class="form-check-input" type="checkbox" name="isTplGroup"{if $isTplGroup eq 'y'} checked="checked"{/if}>
+							{tr}This group is a container for templated groups{/tr}
+						</label>
 					</div>
 				</div>
 			</div>

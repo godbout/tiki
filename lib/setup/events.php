@@ -363,6 +363,11 @@ function tiki_setup_events()
 	$events->bind('tiki.calendaritem.delete', 'tiki.save');
 	$events->bind('tiki.calendaritem.save', 'tiki.save');
 
+
+	$events->bind('tiki.view', function ($data){
+		TikiLib::lib('categ')->set_current_object_categories($data["type"], $data["object"]);
+	});
+
 	// As PHP's register_shutdown_function might change the working directory, change it back to avoid bugs.
 	$events->bindPriority(-20, 'tiki.process.shutdown', 'tiki_shutdown_cwd');
 
