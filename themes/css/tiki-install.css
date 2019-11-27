@@ -92,16 +92,26 @@
     border-radius: 5px;
 }
 
-@media screen and (max-width: 500px){
-    .main-text{
-        font-size: 1rem;
-        margin-bottom: 0;
+@media screen and (max-width: 767.98px) {
+    .main-text {
         margin-top: 4rem;
     }
-    .header-main{
-        clip-path: polygon(0 0, 100% 0, 100% 95vh, 0 100%);
+    .header-main {
+        height: auto;
+/*        clip-path: polygon(0 0, 100% 0, 100% 95vh, 0 100%);*/
+        clip-path: none;
     }
-    .logo-box{
+    .logo-box {
+        top: 1rem;
+        left: 1rem;
         height: 7%;
+    }
+    .text-box {
+        height: auto;
+        padding-bottom: 20px;
+    }
+    .btn_powered {
+        top: initial;
+        bottom: 10px;
     }
 }
