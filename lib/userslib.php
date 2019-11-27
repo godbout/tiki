@@ -2868,10 +2868,12 @@ class UsersLib extends TikiLib
 
 		$this->query('update `users_users` set `default_group`=? where `default_group`=?', ['Registered', $group]);
 
-		TikiLib::lib('categ')->detach_managed_category($info["id"]);
+		if (isset($info['id'])) {
+			TikiLib::lib('categ')->detach_managed_category($info['id']);
 
-		TikiLib::lib('attribute')->delete_objects_with( 'tiki.category.templatedgroupid', $info["id"]);
-		TikiLib::lib('attribute')->delete_objects_with( 'tiki.menu.templatedgroupid', $info["id"]);
+			TikiLib::lib('attribute')->delete_objects_with( 'tiki.category.templatedgroupid', $info['id']);
+			TikiLib::lib('attribute')->delete_objects_with( 'tiki.menu.templatedgroupid', $info['id']);
+		}
 
 		TikiLib::events()->trigger('tiki.group.delete', [
 			'type' => 'group',
