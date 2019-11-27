@@ -6957,6 +6957,12 @@ header.header .sitetitle, header.header .sitesubtitle {
 .layout_classic #top_modules.bg-dark, .layout_classic #top_modules.bg-light, .layout_classic #topbar_modules, .layout_classic #topbar.bg-dark, .layout_classic #topbar.bg-light {
   background: transparent !important; }
 
+.layout_social #top_modules.bg-dark, .layout_social #top_modules.bg-light, .layout_social #topbar_modules, .layout_social #topbar.bg-dark, .layout_social #topbar.bg-light, .layout_social .topbar .bg-dark, .layout_social .topbar .bg-light {
+  background: transparent !important; }
+
+.layout_basic #top_modules.bg-dark, .layout_basic #top_modules.bg-light, .layout_basic #topbar_modules, .layout_basic #topbar.bg-dark, .layout_basic #topbar.bg-light, .layout_basic .topbar .bg-dark, .layout_basic .topbar .bg-light {
+  background: transparent !important; }
+
 #col2 .card, #col3 .card {
   border: none; }
 

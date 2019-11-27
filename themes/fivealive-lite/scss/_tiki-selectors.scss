@@ -150,7 +150,27 @@ header.header {
   #top_modules.bg-light,
   #topbar_modules,
   #topbar.bg-dark,
-  #topbar.bg-light{ background: transparent !important; }
+  #topbar.bg-light { background: transparent !important; }
+}
+
+.layout_social {
+	#top_modules.bg-dark,
+	#top_modules.bg-light,
+	#topbar_modules,
+	#topbar.bg-dark,
+	#topbar.bg-light,
+	.topbar .bg-dark,
+	.topbar .bg-light { background: transparent !important; }
+}
+
+.layout_basic {
+	#top_modules.bg-dark,
+	#top_modules.bg-light,
+	#topbar_modules,
+	#topbar.bg-dark,
+	#topbar.bg-light,
+	.topbar .bg-dark,
+	.topbar .bg-light { background: transparent !important; }
 }
 
 #col2 .card,

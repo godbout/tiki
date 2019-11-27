@@ -34,6 +34,9 @@ nav.fixed-top {
 .bg-dark {
   background-color: #cb9e10 !important; }
 
+.layout_basic #top_modules.bg-dark, .layout_basic #top_modules.bg-light, .layout_basic #topbar_modules, .layout_basic #topbar.bg-dark, .layout_basic #topbar.bg-light, .layout_basic .topbar .bg-light, .layout_basic .topbar .bg-dark {
+  background: #cb9e10 !important; }
+
 a, .btn-link {
   color: #c75a28; }
 
@@ -211,7 +214,10 @@ input[type="checkbox"].preffilter-toggle-round:checked + label::before {
 .topbar .cssmenu_horiz ul {
   background: #c75a29; }
 
-.blog-postbody-title h2.panel-title {
+.postbody-title .title > .card-title a.link, .postbody h2.card-title {
+  color: #fff; }
+
+.blog-postbody-title h2.card-title {
   font-size: 20px; }
 
 .postbody .card-header {
