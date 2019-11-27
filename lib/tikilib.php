@@ -2566,6 +2566,12 @@ class TikiLib extends TikiDb_Bridge
 		$replace = [];
 		foreach ($this->getWikiMarkers() as $marker) {
 			while (false !== $open = $this->findText($data, $marker[0], $from, $to)) {
+				// Wiki marker -+ begin should be proceeded by space or a newline
+				if ($marker[0] == '-+' && $open != 0 && ! preg_match('/\s/', $data[$open - 1])) {
+					$from = $open + 1;
+					continue;
+				}
+
 				if (false !== $close = $this->findText($data, $marker[1], $open, $to)) {
 					$from = $close;
 					$size = ($close - $open) + strlen($marker[1]);

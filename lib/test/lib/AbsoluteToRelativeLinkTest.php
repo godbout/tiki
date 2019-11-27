@@ -414,6 +414,29 @@ class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($dataResult, $dataConverted);
 	}
 
+	/**
+	 * @dataProvider urlBases
+	 */
+	public function testWikiMarkerInUrlShouldBeIgnored($baseUrl)
+	{
+		$tikilib = TikiLib::lib('tiki');
+		$text = 'https://dev.tiki.org/Online+Publishing+House+-+Output+formats ' . PHP_EOL .
+				'[#1]' . PHP_EOL .
+				'-+#2+-';
+
+		$link1 = '[' . $baseUrl . 'HomePage]';
+		$data = str_replace('#1', $link1, $text);
+		$data = str_replace('#2', $link1, $text);
+
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+
+		$expectedLink1 = '[Homepage]';
+		$dataResult = str_replace('#1', $expectedLink1, $text);
+		$dataResult = str_replace('#2', $link1, $text);
+
+		$this->assertEquals($dataResult, $dataConverted);
+	}
+
 	public function urlBases()
 	{
 		return [
