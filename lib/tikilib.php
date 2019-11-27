@@ -2573,6 +2573,8 @@ class TikiLib extends TikiDb_Bridge
 					$key = "§" . md5($tikilib->genPass()) . "§" ;
 					$replace[$key] = $markerBody;
 					$data = str_replace($markerBody, $key, $data);
+				} else {
+					break;
 				}
 			}
 		}
