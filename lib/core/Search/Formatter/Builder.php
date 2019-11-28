@@ -125,12 +125,18 @@ class Search_Formatter_Builder
 	{
 		$arguments = $this->parser->parse($match->getArguments());
 
-		if (isset($arguments['editable'], $arguments['field'])) {
-			$this->customFilters[] = [
-				'field' => $arguments['field'],
-				'mode' => $arguments['editable']
-			];
+		if (! isset($arguments['editable'], $arguments['field'])) {
+			return;
 		}
+
+		if (in_array($arguments['field'], array_map(function($f){ return $f['field']; }, $this->customFilters))) {
+			return;
+		}
+
+		$this->customFilters[] = [
+			'field' => $arguments['field'],
+			'mode' => $arguments['editable']
+		];
 	}
 
 	private function handleAlternate($match)
