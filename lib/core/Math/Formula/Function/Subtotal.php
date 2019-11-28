@@ -52,7 +52,7 @@ class Math_Formula_Function_Subtotal extends Math_Formula_Function
 				if (! isset($values[$group])) {
 					continue;
 				}
-				$group_value = $values[$group];
+				$group_value = trim($values[$group]);
 				if (! isset($out[$group_value])) {
 					$out[$group_value] = ['group' => $group_value];
 					foreach ($aggregate as $position => $field) {
