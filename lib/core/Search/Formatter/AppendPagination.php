@@ -41,7 +41,20 @@ class Search_Formatter_AppendPagination implements Search_Formatter_Plugin_Inter
 		$arguments = $this->arguments;
 		$arguments['resultset'] = $entries;
 		$tmp = false;
-		$pagination = smarty_block_pagination_links($arguments, '', $smarty, $tmp);
+
+		$url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+		$filters = [];
+		foreach ($_GET as $key => $val) {
+			$filters[$key] = $val;
+		}
+		foreach ($_POST as $key => $val) {
+			if (substr($key, 0, 3) == 'tf_') {
+				$filters[$key] = $val;
+			}
+		}
+		$url .= '?'.http_build_query($filters);
+
+		$pagination = smarty_block_pagination_links($arguments, $url, $smarty, $tmp);
 
 		if ($this->getFormat() == Search_Formatter_Plugin_Interface::FORMAT_WIKI) {
 			$pagination = "~np~$pagination~/np~";
