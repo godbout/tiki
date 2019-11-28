@@ -1126,6 +1126,12 @@ div.drillshow {
 //	display: $breadcrumb-display; // block;
 }
 
+.nav-breadcrumb {
+	display: flex;
+	justify-content: space-between;
+}
+
+
 // jQuery-UI
 .tiki .ui-widget-content,
 span.plugin-mouseover  {
@@ -1459,6 +1465,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 
 	#page-data.col-sm-9 { padding-left: 0; padding-right: 0; }
 	.syslog-table textarea { min-height: 5.5em; }
+	.nav-breadcrumb { display: block; }
 }
 
 blockquote {
