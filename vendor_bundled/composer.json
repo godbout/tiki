@@ -142,6 +142,7 @@
 	"require-dev": {
 		"bafs/testify": "dev-master",
 		"mikey179/vfsstream": "^1",
+		"overtrue/phplint": "^1.1",
 		"phpunit/dbunit": "^2",
 		"phpunit/phpunit": "^5",
 		"phpunit/phpunit-selenium": "^3",

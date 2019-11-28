@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a59cf423b38dfb3bee60a7edc6a56fa4",
+    "content-hash": "9bae62b6413fee3c389506a741516dd1",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -8039,6 +8039,59 @@
                 "object graph"
             ],
             "time": "2019-08-09T12:45:53+00:00"
+        },
+        {
+            "name": "overtrue/phplint",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/phplint.git",
+                "reference": "2f822d72db3be32d872d32aa001b2f1d13aeff6a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/overtrue/phplint/overtrue-phplint-2f822d72db3be32d872d32aa001b2f1d13aeff6a-zip-10a76a.zip",
+                "reference": "2f822d72db3be32d872d32aa001b2f1d13aeff6a",
+                "shasum": "c5d4165d92dc90791dfcb77c42b1c866539ee525"
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.5.9",
+                "symfony/console": "^3.2|^4.0|^5.0",
+                "symfony/finder": "^3.0|^4.0|^5.0",
+                "symfony/process": "^3.0|^4.0|^5.0",
+                "symfony/yaml": "^3.0|^4.0|^5.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-console-highlighter": "^0.3.2 || ^0.4"
+            },
+            "bin": [
+                "bin/phplint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\PHPLint\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com"
+                }
+            ],
+            "description": "a php syntax check tool.",
+            "keywords": [
+                "check",
+                "lint",
+                "phplint",
+                "syntax"
+            ],
+            "time": "2019-11-23T15:35:00+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
