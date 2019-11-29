@@ -88,9 +88,9 @@ foreach ($langmapping as $lang => $null) {
 
 if (! isset($globalStats['70+'])) {
 	$globalStats['70+'] = 0;
-}else if (! isset($globalStats['30+'])) {
+} elseif (! isset($globalStats['30+'])) {
 	$globalStats['30+'] = 0;
-}elseif (! isset($globalStats['0+'])) {
+} elseif (! isset($globalStats['0+'])) {
 	$globalStats['0+'] = 0;
 }
 
