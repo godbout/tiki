@@ -18,17 +18,17 @@
         },
         {
             "name": "adodb/adodb-php",
-            "version": "v5.20.14",
+            "version": "v5.20.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ADOdb/ADOdb.git",
-                "reference": "a32113c6b3e4e2cb8ae6b49752527d5668a9d7a6"
+                "reference": "7bb34029f4d6995b6bf1dd3cb58de69a16cfce87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/adodb/adodb-php/adodb-adodb-php-a32113c6b3e4e2cb8ae6b49752527d5668a9d7a6-zip-ebe7b0.zip",
-                "reference": "a32113c6b3e4e2cb8ae6b49752527d5668a9d7a6",
-                "shasum": "f35e5c58a6dfc4c8817eb9dd01e41106b027760d"
+                "url": "https://composer.tiki.org/dist/adodb/adodb-php/adodb-adodb-php-7bb34029f4d6995b6bf1dd3cb58de69a16cfce87-zip-e1580c.zip",
+                "reference": "7bb34029f4d6995b6bf1dd3cb58de69a16cfce87",
+                "shasum": "1aa0973074cb0551d21bcac429a5ea83ecf73c66"
             },
             "require": {
                 "php": ">=5.3.2"
@@ -74,7 +74,7 @@
                 "library",
                 "php"
             ],
-            "time": "2019-01-05T23:16:44+00:00"
+            "time": "2019-11-24T10:59:54+00:00"
         },
         {
             "name": "afarkas/html5shiv",
@@ -181,9 +181,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/eaac909da3ccc32b748a65b127acd8918f58d9b0",
+                "url": "https://composer.tiki.org/dist/bacon/bacon-qr-code/bacon-bacon-qr-code-eaac909da3ccc32b748a65b127acd8918f58d9b0-zip-89eef4.zip",
                 "reference": "eaac909da3ccc32b748a65b127acd8918f58d9b0",
-                "shasum": ""
+                "shasum": "4ac4c301e860247d8a28187cc8d503bebfe6ba56"
             },
             "require": {
                 "dasprid/enum": "^1.0",
@@ -211,9 +211,9 @@
             "authors": [
                 {
                     "name": "Ben Scholzen 'DASPRiD'",
-                    "role": "Developer",
                     "email": "mail@dasprids.de",
-                    "homepage": "http://www.dasprids.de"
+                    "homepage": "http://www.dasprids.de",
+                    "role": "Developer"
                 }
             ],
             "description": "BaconQrCode is a QR code generator for PHP.",
@@ -225,7 +225,7 @@
             "version": "5.11.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "url": "git@github.com:FortAwesome/Font-Awesome.git",
                 "reference": "1c1b102b2ba19518d77e60e97cf1b4ebf133bba0"
             },
             "dist": {
@@ -711,9 +711,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
+                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": ""
+                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
             },
             "type": "component",
             "extra": {
@@ -957,9 +957,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DASPRiD/Enum/zipball/631ef6e638e9494b0310837fa531bedd908fc22b",
+                "url": "https://composer.tiki.org/dist/dasprid/enum/dasprid-enum-631ef6e638e9494b0310837fa531bedd908fc22b-zip-f6ef6d.zip",
                 "reference": "631ef6e638e9494b0310837fa531bedd908fc22b",
-                "shasum": ""
+                "shasum": "384a45962fcf1dcb23d1466ff6e372d33dcd21a8"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.4",
@@ -1217,7 +1217,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Ungur",
+                    "name": "Osman Üngür",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1696,9 +1696,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": ""
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2315,9 +2315,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
+                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": ""
+                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
             },
             "require": {
                 "php": ">=5.3.1",
@@ -2987,9 +2987,9 @@
             "authors": [
                 {
                     "name": "Fabian Grutschus",
-                    "role": "developer",
                     "email": "f.grutschus@lubyte.de",
-                    "homepage": "http://www.lubyte.de/"
+                    "homepage": "http://www.lubyte.de/",
+                    "role": "developer"
                 }
             ],
             "description": "Library for XMPP protocol (Jabber) connections",
@@ -3387,8 +3387,9 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
+                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
             },
             "type": "npm-asset",
             "license": [
@@ -3732,18 +3733,18 @@
             "authors": [
                 {
                     "name": "Chuck Hagenbuch",
-                    "role": "Lead",
-                    "email": "chuck@horde.org"
+                    "email": "chuck@horde.org",
+                    "role": "Lead"
                 },
                 {
                     "name": "Aleksander Machniak",
-                    "role": "Lead",
-                    "email": "alec@php.net"
+                    "email": "alec@php.net",
+                    "role": "Lead"
                 },
                 {
                     "name": "Stig Bakken",
-                    "role": "Lead",
-                    "email": "stig@php.net"
+                    "email": "stig@php.net",
+                    "role": "Lead"
                 }
             ],
             "description": "More info available on: http://pear.php.net/package/Net_Socket",
@@ -4194,17 +4195,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.51.1",
+            "version": "v1.51.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "7665753449188f55438cfb4abda1b3caf227e4ac"
+                "reference": "1b548048a659fe45408841aae8a3a3814ec35302"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-7665753449188f55438cfb4abda1b3caf227e4ac-zip-293685.zip",
-                "reference": "7665753449188f55438cfb4abda1b3caf227e4ac",
-                "shasum": "af935a9b213437a6110b47189e44a75edab17073"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-1b548048a659fe45408841aae8a3a3814ec35302-zip-2a0571.zip",
+                "reference": "1b548048a659fe45408841aae8a3a3814ec35302",
+                "shasum": "440cd335ef25941cd71d3d650a9a8b787687a3c9"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -4226,7 +4227,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2019-11-04T14:48:34+00:00"
+            "time": "2019-11-25T17:34:52+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -4271,8 +4272,8 @@
             "authors": [
                 {
                     "name": "Antonio Carlos Ribeiro",
-                    "role": "Creator & Designer",
-                    "email": "acr@antoniocarlosribeiro.com"
+                    "email": "acr@antoniocarlosribeiro.com",
+                    "role": "Creator & Designer"
                 }
             ],
             "description": "A One Time Password Authentication package, compatible with Google Authenticator.",
@@ -4563,9 +4564,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
+                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": ""
+                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -4742,17 +4743,17 @@
         },
         {
             "name": "sabre/http",
-            "version": "5.0.4",
+            "version": "5.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sabre-io/http.git",
-                "reference": "73e2fa1ef894eddff145b698b6b0e2e2c5bf1d72"
+                "reference": "85962a2ed867e7e5beb9f9d3a15cd53cd521a09b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/sabre/http/sabre-http-73e2fa1ef894eddff145b698b6b0e2e2c5bf1d72-zip-44b8ba.zip",
-                "reference": "73e2fa1ef894eddff145b698b6b0e2e2c5bf1d72",
-                "shasum": "c5b2263fe217622008182d86b630cfcf8716ee78"
+                "url": "https://composer.tiki.org/dist/sabre/http/sabre-http-85962a2ed867e7e5beb9f9d3a15cd53cd521a09b-zip-0c8af3.zip",
+                "reference": "85962a2ed867e7e5beb9f9d3a15cd53cd521a09b",
+                "shasum": "f8cc20db415d3c3218d048be526435fd2810be9b"
             },
             "require": {
                 "ext-ctype": "*",
@@ -4794,7 +4795,7 @@
             "keywords": [
                 "http"
             ],
-            "time": "2019-10-09T20:27:43+00:00"
+            "time": "2019-11-28T19:35:25+00:00"
         },
         {
             "name": "sabre/uri",
@@ -5579,17 +5580,17 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "550ebaac289296ce228a706d0867afc34687e3f4"
+                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-ctype/symfony-polyfill-ctype-550ebaac289296ce228a706d0867afc34687e3f4-zip-ef1bf0.zip",
-                "reference": "550ebaac289296ce228a706d0867afc34687e3f4",
-                "shasum": "faed74d586b428a859a77ce3ca43cc7269c24c27"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-ctype/symfony-polyfill-ctype-f8f0b461be3385e56d6de3dbb5a0df24c0c275e3-zip-08c160.zip",
+                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
+                "shasum": "af6a4740e4e9d058adae34cceaec2a9b3adba294"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5600,7 +5601,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -5633,21 +5634,21 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-b42a2f66e8f1b15ccf25652c3424265923eb4f17-zip-16e6fe.zip",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
-                "shasum": "874905261186cddfa20ef3e25691e7fa32c1e296"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-7b4aab9743c30be783b73de055d24a39cf4b954f-zip-ea1380.zip",
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
+                "shasum": "803ed716eafe20efdfb7a0058fbb00afbd307ff7"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5658,7 +5659,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -5692,21 +5693,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T14:18:11+00:00"
         },
         {
             "name": "symfony/polyfill-php56",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php56.git",
-                "reference": "0e3b212e96a51338639d8ce175c046d7729c3403"
+                "reference": "53dd1cdf3cb986893ccf2b96665b25b3abb384f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-php56/symfony-polyfill-php56-0e3b212e96a51338639d8ce175c046d7729c3403-zip-5d4816.zip",
-                "reference": "0e3b212e96a51338639d8ce175c046d7729c3403",
-                "shasum": "d4b24d085b63deb0dc4f488608aa446a7568e746"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-php56/symfony-polyfill-php56-53dd1cdf3cb986893ccf2b96665b25b3abb384f4-zip-85215c.zip",
+                "reference": "53dd1cdf3cb986893ccf2b96665b25b3abb384f4",
+                "shasum": "5fb1043305050e87adcf32f8167078250028c2bb"
             },
             "require": {
                 "php": ">=5.3.3",
@@ -5715,7 +5716,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -5748,21 +5749,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/polyfill-util",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-util.git",
-                "reference": "4317de1386717b4c22caed7725350a8887ab205c"
+                "reference": "964a67f293b66b95883a5ed918a65354fcd2258f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-util/symfony-polyfill-util-4317de1386717b4c22caed7725350a8887ab205c-zip-89cd13.zip",
-                "reference": "4317de1386717b4c22caed7725350a8887ab205c",
-                "shasum": "6909aa87e4965123d243d3ab26c5f89bc5023401"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-util/symfony-polyfill-util-964a67f293b66b95883a5ed918a65354fcd2258f-zip-683b71.zip",
+                "reference": "964a67f293b66b95883a5ed918a65354fcd2258f",
+                "shasum": "efc4e22faf2c4a2be0624bb12832367cc59ac092"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5770,7 +5771,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -5800,7 +5801,7 @@
                 "polyfill",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/process",
@@ -5969,9 +5970,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
+                "url": "https://composer.tiki.org/dist/true/punycode/true-punycode-a4d0c11a36dd7f4e7cd7096076cab6d3378a071e-zip-4ceb35.zip",
                 "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
-                "shasum": ""
+                "shasum": "0153b28196219934ea010de766dea03de32a7d89"
             },
             "require": {
                 "php": ">=5.3.0",
@@ -9433,31 +9434,29 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "88e6d84706d09a236046d686bbea96f07b3a34f4"
+                "reference": "573381c0a64f155a0d9a23f4b0c797194805b925"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/webmozart/assert/webmozart-assert-88e6d84706d09a236046d686bbea96f07b3a34f4-zip-5fe939.zip",
-                "reference": "88e6d84706d09a236046d686bbea96f07b3a34f4",
-                "shasum": "440de6e4831f0defde87b9e43ccd58066d35db2a"
+                "url": "https://composer.tiki.org/dist/webmozart/assert/webmozart-assert-573381c0a64f155a0d9a23f4b0c797194805b925-zip-cda370.zip",
+                "reference": "573381c0a64f155a0d9a23f4b0c797194805b925",
+                "shasum": "08a897dbb4d92c66a715cca23acac5dfb21d44e4"
             },
             "require": {
                 "php": "^5.3.3 || ^7.0",
                 "symfony/polyfill-ctype": "^1.8"
             },
+            "conflict": {
+                "vimeo/psalm": "<3.6.0"
+            },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.36 || ^7.5.13"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.3-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Webmozart\\Assert\\": "src/"
@@ -9479,7 +9478,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2019-08-24T08:43:50+00:00"
+            "time": "2019-11-24T13:36:37+00:00"
         },
         {
             "name": "wimg/php-compatibility",
