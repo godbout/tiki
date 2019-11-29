@@ -238,3 +238,8 @@ table.treetable tr.expanded span.indenter a {
 	border-style: dashed;
 }
 
+@media (max-width: breakpoint-max(sm)) {
+	#fgalform {
+		.media { display: block; }
+	}
+}

@@ -2346,6 +2346,10 @@ table.treetable tr.expanded span.indenter a {
 .file-uploader.active {
   border-style: dashed; }
 
+@media (max-width: 767.98px) {
+  #fgalform .media {
+    display: block; } }
+
 .statuson, .statusoff {
   padding: 3px 2px 0 2px;
   vertical-align: middle;
@@ -3226,7 +3230,13 @@ table.objectperms thead th {
 
   .adminanchors .navbar-nav {
     margin: 0;
-    padding: 0; } }
+    padding: 0; }
+
+  .meta-tabs-col1 {
+    width: auto; }
+
+  .meta-tabs-col2 {
+    width: auto; } }
 
 form.simple label.error {
   padding: 4px 0 0 20px;
