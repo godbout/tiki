@@ -1,6 +1,6 @@
 {* $Id$ *}
 {strip}
-<table>
+<table class="table">
 	{foreach item=prop key=propname from=$fgal_listing_conf}
 		{if isset($item.key)}
 			{assign var=propkey value=$item.key}
@@ -49,10 +49,10 @@
 				)
 		}
 			<tr>
-				<td class="float-sm-right">
+				<td style="width:20%;">
 					<b>{$fgal_listing_conf.$propname.name}</b>
 				</td>
-				<td style="padding-left:5px">
+				<td>
 					<span class="float-left">{$propval}</span>
 				</td>
 			</tr>
