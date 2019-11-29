@@ -156,9 +156,17 @@ function wikiplugin_diagram($data, $params)
 			usort($gals['data'], function ($a, $b) {
 				return strcmp(strtolower($a['name']), strtolower($b['name']));
 			});
-			foreach ($gals['data'] as $gal) {
+
+			foreach ($gals['data'] as $gal){
 				if ($gal['name'] != "Wiki Attachments" && $gal['name'] != "Users File Galleries") {
-					$galHtml .= "<option value='" . $gal['id'] . "'>" . $gal['name'] . "</option>";
+					if($gal['parentId'] == -1){
+						// If the current user has permission to access the gallery, then add gallery to the hierarchy.
+						if($gal['perms']['tiki_p_view_file_gallery']=='y'){
+							$galHtml .= "<option value='" . $gal['id'] . "'>" . $gal['name'];
+						}
+						$galHtml .= $filegallib->getNodes($gals['data'],$gal['id'],"");
+						$galHtml .= "</option>";
+					}
 				}
 			}
 
@@ -183,7 +191,7 @@ XML;
 		<form id="newDiagram$diagramIndex" method="post" action="tiki-editdiagram.php">
 			<p>
 				<input type="submit" class="btn btn-primary btn-sm" name="label" value="$label" class="newSvgButton" />$in
-				<select name="galleryId">
+				<select name="galleryId" class="form-control-sm">
 					$galHtml
 				</select>
 				<input type="hidden" name="newDiagram" value="1"/>
