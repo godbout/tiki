@@ -6718,15 +6718,19 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
   .tiki-page_contribution .wikitext {
     word-break: break-word; }
 
+  .nav-breadcrumb {
+    display: block; }
+    .nav-breadcrumb .breadcrumb {
+      width: 100%; }
+    .nav-breadcrumb .breadcrumb + form {
+      display: block !important; }
+
   #page-data.col-sm-9 {
     padding-left: 0;
     padding-right: 0; }
 
   .syslog-table textarea {
-    min-height: 5.5em; }
-
-  .nav-breadcrumb {
-    display: block; } }
+    min-height: 5.5em; } }
 
 blockquote {
   color: #7a7a7a;
