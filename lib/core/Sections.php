@@ -166,6 +166,11 @@ class Sections
 		],
 	];
 
+	/**
+	 * Retrieves the list of sections
+	 *
+	 * @return array
+	 */
 	public static function getSections()
 	{
 		return self::$sections;
@@ -174,7 +179,7 @@ class Sections
 	/**
 	 * Attempts to guess the object being processed based on the request parameters
 	 *
-	 * @param array $request An array with the request parameters (if not provided will default to $_REQUEST)
+	 * @param array|null $request An array with the request parameters (if not provided will default to $_REQUEST)
 	 * @return null|array Array with the type and object being requested, null/empty if not successful
 	 * @throws \Exception
 	 */
@@ -183,7 +188,7 @@ class Sections
 		global $section, $cat_type, $cat_objid, $postId, $prefs;
 
 		if (! is_array($request)) {
-			$request = $_REQUEST; // use teh global request object
+			$request = $_REQUEST; // use the global request object
 		}
 
 		if ($section == 'blogs' && ! empty($postId)) { // blog post check the category on the blog - but freetags are on blog post
