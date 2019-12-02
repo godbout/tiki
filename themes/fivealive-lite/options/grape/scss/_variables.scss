@@ -26,7 +26,11 @@ $bg-dark-link-hover-bg: #003c4a;
 
 $hr-border-color: #a02871;
 
-$navbar-fixed-top-bg: #8e286a;
+$top-bg: #a52874;
+$top-color: #fff;
+$top-link-color: #fff;
+$top-link-hover-color: #f9f9f9;
+$topbar-bg: #551e3d;
 $bg-dark: #8e286a;
 $bg-light: #f4dded;
 
@@ -103,14 +107,6 @@ $autotoc-nav-link-hover-bg: #3b284a;
 
 // - - - - - - - - - -  - - - - - - Other CSS, if any - - - - - - - - - - - - - - - - - //
 
-.header_outer,
-.layout_basic #top_modules,
-.postbody-title,
-.tiki > .navbar.fixed-top.bg-light/*,
-.tiki > .fixed-top.bg-light*/ {
-
-}
-
 $chosen-container-multi-choices-bg: $input-bg;
 $chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #e4afd3;
@@ -126,4 +122,3 @@ $autotoc-nav-border: #8e286a;
 $autotoc-color: #8e286a;
 $autotoc-nav-li-link-hover-color: #f2f2f2;
 $autotoc-nav-li-link-hover-bg: #2e1f39;
-$middle_outer-inset-shadow-bg: #8e286a;

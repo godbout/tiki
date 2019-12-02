@@ -9,8 +9,6 @@ $bg-light: #7a04b5 !important;
 
 $link-color: #7a04b5;
 $link-hover-color: #7a04b5;
-$link-color: #7a04b5;
-$link-hover-color: #7a04b5;
 
 $navbar-dark-color:                 rgba($white, .75);
 $navbar-dark-hover-color:           rgba($white, .85);
@@ -27,12 +25,13 @@ $bg-dark-link-hover-color: #f2f2f2;
 
 $hr-border-color: #7a04b5;
 
-$navbar-fixed-top-bg: #49006c;
-//$bg-dark: #15001f;
-//$bg-light: #0a8794;
+$top-bg: #49006c;
+$top-color: #fff;
+$top-link-color: #fff;
+$top-link-hover-color: #f9f9f9;
+$topbar-bg: #15001f;
 
 $card-border-color: #49006c;
-
 $table-border-color: #c564f5;
 $table-accent-bg: #f9f9f9;
 $table-hover-bg: #f5f5f5;
@@ -95,14 +94,6 @@ $autotoc-nav-link-hover-bg: #2e1f39;
 
 // - - - - - - - - - -  - - - - - - Other CSS, if any - - - - - - - - - - - - - - - - - //
 
-.header_outer,
-.layout_basic #top_modules,
-.postbody-title,
-.tiki > .navbar.fixed-top.bg-light/*,
-.tiki > .fixed-top.bg-light*/ {
- }
-
-//.bg-dark {background: #15001f !important; }
 $chosen-container-multi-choices-bg: $input-bg;
 $chosen-container-multi-choices-color: $input-color;
 $chosen-container-multi-choices-border: #f5fb86;
@@ -118,4 +109,3 @@ $autotoc-nav-border: #15001f;
 $autotoc-color: #7a04b5;
 $autotoc-nav-li-link-hover-color: #f2f2f2;
 $autotoc-nav-li-link-hover-bg: #380052;
-$middle_outer-inset-shadow-bg: #15001f;
