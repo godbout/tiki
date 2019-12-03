@@ -464,7 +464,6 @@ if ($prefs['feature_forum_parse'] == 'y') {
 	$plugins = $wikilib->list_plugins(true, 'editpost');
 	$smarty->assign_by_ref('plugins', $plugins);
 }
-$headerlib->add_jsfile('lib/custom_tooltip/tooltip.js');
 //initialize tablesorter
 if ($ts['enabled'] && ! $ts['ajax']) {
 	//set tablesorter code

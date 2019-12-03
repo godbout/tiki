@@ -839,11 +839,6 @@
 											{permission_link mode=text type="thread" permType="forums" id=$comments_coms[ix].threadId title=$comments_coms[ix].title}
 										</action>
 									{/if}
-									<action>
-										<a onclick="hello()" id="tip" title="<h3>You may use headings of me!!</h3> <a href='https://www.jquery-az.com/'>Links</a> images as well <img src='https://www.jquery-az.com/wp-content/uploads/2015/10/logo.jpg' width='175'>" data-html="true" rel="tooltip" href="#">
-											{icon name='eye' _menu_text='y' _menu_icon='y' alt="{tr}Preview{/tr}"}
-										</a>
-									</action>
 								{/strip}
 							{/actions}
 						</td>
