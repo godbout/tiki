@@ -14,7 +14,7 @@ if (! isset($_REQUEST['forumId'])) {
 	$_REQUEST['forumId'] = 0;
 }
 if (! isset($_REQUEST['parentId'])) {
-    $_REQUEST['parentId'] = 0;
+	$_REQUEST['parentId'] = 0;
 }
 $access->check_feature('feature_forums');
 
@@ -105,7 +105,7 @@ if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
 	$tx = TikiDb::get()->begin();
 	$fid = $commentslib->replace_forum(
 		$_REQUEST["forumId"],
-        $_REQUEST["parentId"],
+		$_REQUEST["parentId"],
 		$_REQUEST["name"],
 		$_REQUEST["description"],
 		$controlFlood,

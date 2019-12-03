@@ -1109,7 +1109,7 @@ class Comments extends TikiLib
 
 	/**
 	 * @param int $forumId
-     * @param int $parentId
+	 * @param int $parentId
 	 * @param string $name
 	 * @param string $description
 	 * @param string $controlFlood
@@ -1238,7 +1238,7 @@ class Comments extends TikiLib
 
 		$data = [
 			'name' => $name,
-            'parentId' => $parentId,
+			'parentId' => $parentId,
 			'description' => $description,
 			'controlFlood' => $controlFlood,
 			'floodInterval' => (int) $floodInterval,
@@ -1370,7 +1370,7 @@ class Comments extends TikiLib
 	 * @param $maxRecords
 	 * @param string $sort_mode
 	 * @param string $find
-     * @param int $parentId (0 to get forums without parents, <0 to get all forums, >0 to get forums of specific parent)
+	 * @param int $parentId (0 to get forums without parents, <0 to get all forums, >0 to get forums of specific parent)
 	 * @return array
 	 */
 	function list_forums($offset = 0, $maxRecords = -1, $sort_mode = 'name_asc', $find = '',$parentId = 0)
@@ -1401,11 +1401,13 @@ class Comments extends TikiLib
 		} else {
 			$query_sort_mode = $sort_mode;
 		}
-		if($parentId < 0) // get all forums
-            $where .= ' AND parentID > ? ';
-		else //get forums of specific parents
-		    $where .= ' AND parentID = ? ';
-        $bindvars[] = $parentId;
+		if($parentId < 0) { // get all forums
+			$where .= ' AND parentID > ? ';
+		}
+		else { //get forums of specific parents
+			$where .= ' AND parentID = ? ';
+		}
+		$bindvars[] = $parentId;
 
 		$query = "select * from `tiki_forums` $join WHERE 1=1 $where $mid order by `section` asc," . $this->convertSortMode('`tiki_forums`.' . $query_sort_mode);
 		$result = $this->fetchAll($query, $bindvars);
@@ -1424,7 +1426,7 @@ class Comments extends TikiLib
 			$res['threads'] = (int) $this->count_comments_threads('forum:' . $res['forumId']);
 
 			//Get sub forums
-            $res['sub_forums'] = $this->get_sub_forums($res['forumId']);
+			$res['sub_forums'] = $this->get_sub_forums($res['forumId']);
 
 			// Get number of posts on this forum
 			$res['comments'] = (int) $this->count_comments('forum:' . $res['forumId']);
@@ -1844,23 +1846,23 @@ class Comments extends TikiLib
 		return $res;
 	}
 
-    /**
-     * @param $parentId
-     * @return mixed
-     */
-    function get_sub_forums($parentId = 0)
-    {
-        $bindvars = [];
-        $query_sort_mode = 'name_asc';
-        $where = ' AND parentId = ? ';
-        $mid = '';
-        $join = '';
-        $bindvars[] = $parentId;
+	/**
+	 * @param $parentId
+	 * @return mixed
+	 */
+	function get_sub_forums($parentId = 0)
+	{
+		$bindvars = [];
+		$query_sort_mode = 'name_asc';
+		$where = ' AND parentId = ? ';
+		$mid = '';
+		$join = '';
+		$bindvars[] = $parentId;
 
-        $query = "select * from `tiki_forums` $join WHERE 1=1 $where $mid order by `section` asc," . $this->convertSortMode('`tiki_forums`.' . $query_sort_mode);
-        $result = $this->fetchAll($query, $bindvars);
-        return $result;
-    }
+		$query = "select * from `tiki_forums` $join WHERE 1=1 $where $mid order by `section` asc," . $this->convertSortMode('`tiki_forums`.' . $query_sort_mode);
+		$result = $this->fetchAll($query, $bindvars);
+		return $result;
+	}
 
 	/**
 	* Returns the forum-id for a comment
