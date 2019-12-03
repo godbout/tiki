@@ -56,7 +56,10 @@ $smarty->assign('forumId', $_REQUEST['forumId']);
 $tikilib->get_perm_object($_REQUEST['forumId'], 'forum', $forum_info, true);
 
 //get sub forums list
-$channels = $commentslib->list_forums(0, -1, 'name_asc', '',$_REQUEST['forumId']);
+$channels = $commentslib->list_forums(0, -1, 'name_asc', '', $_REQUEST['forumId']);
+//get parent forum
+$parent = $commentslib->get_forum($forum_info['parentId']);
+$smarty->assign('parent', $parent);
 $smarty->assign_by_ref('channels', $channels["data"]);
 
 // Now if the user is the moderator then give him forum admin privs -. SHOULD BE IN get_perm_object
