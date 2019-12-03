@@ -3,7 +3,7 @@
 		<label class="form-check-label text-white-50" for="intertrans-active">
 			{tr}Toggle interactive translation{/tr}
 			<label class="switch">
-				<input type="checkbox" id="intertrans-active">
+				<input type="checkbox" id="intertrans-active" name="intertrans-active">
 				<span class="slider"></span>
 			</label>
 		</label>
@@ -11,7 +11,7 @@
 			{icon name="help"}
 		</a>
 		{if isset($smarty.session.interactive_translation_mode) && $smarty.session.interactive_translation_mode eq "on"}
-			<a href="tiki-interactive_trans.php?interactive_translation_mode=off" class="btn btn-link tips my-2 text-white-50" title=":{tr}Turn off interactive translation{/tr}">
+			<a href="tiki-interactive_trans.php?interactive_translation_mode=off" class="btn btn-link tips my-2 text-white-50" title=":{tr}Turn off interactive translation{/tr}" id="disableTranslation">
 				{icon name="off"}
 			</a>
 		{/if}
