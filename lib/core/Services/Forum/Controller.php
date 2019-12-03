@@ -389,12 +389,14 @@ class Services_Forum_Controller
 				$util->items = $this->getForumNames($util->items);
 				if (count($util->items) === 1) {
 					$msg = tra('Delete the following forum?');
-					if($forumsNumber)
-						$msg .= 'This forum has sub-forums, you must delete the included forums first.';
+					if ($forumsNumber) {
+						$msg .= tr('This forum has sub-forums, you must delete the included forums first.');
+					}
 				} else {
 					$msg = tra('Delete the following forums?');
-					if($forumsNumber)
-						$msg .= 'Some of these forums have sub-forums, you must delete the included forums first.';
+					if ($forumsNumber) {
+						$msg .= tr('Some of these forums have sub-forums, you must delete the included forums first.');
+					}
 				}
 				return $util->confirm($msg, tra('Delete'));
 			} else {

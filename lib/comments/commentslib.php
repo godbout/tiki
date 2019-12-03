@@ -1401,10 +1401,9 @@ class Comments extends TikiLib
 		} else {
 			$query_sort_mode = $sort_mode;
 		}
-		if($parentId < 0) { // get all forums
+		if ($parentId < 0) { // get all forums
 			$where .= ' AND parentID > ? ';
-		}
-		else { //get forums of specific parents
+		} else { //get forums of specific parents
 			$where .= ' AND parentID = ? ';
 		}
 		$bindvars[] = $parentId;
