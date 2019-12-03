@@ -54,6 +54,10 @@ add_handler('ajax_delete_contact', 'load_tiki_contacts', true, 'tiki', 'load_con
 add_handler('ajax_add_contact', 'load_tiki_contacts', true, 'tiki', 'load_contacts', 'after');
 add_output('ajax_hm_folders', 'tiki_contacts_page_link', true, 'tiki', 'logout_menu_item', 'before');
 
+/* compose page handlers */
+add_handler('compose', 'check_for_tiki_redirect', true, 'smtp', 'process_compose_form_submit', 'after');
+add_handler('compose', 'add_file_attachment', true, 'smtp', 'load_smtp_servers_from_config', 'before');
+
 return array(
 	'allowed_pages' => array(
     'groupmail',

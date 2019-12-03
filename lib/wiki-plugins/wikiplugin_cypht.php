@@ -257,8 +257,7 @@ function wikiplugin_cypht($data, $params)
 	define('APP_PATH', VENDOR_PATH.'jason-munro/cypht/');
 	define('DEBUG_MODE', false);
 
-	// TODO: make these dynamic
-	define('CACHE_ID', 'FoHc85ubt5miHBls6eJpOYAohGhDM61Vs%2Fm0BOxZ0N0%3D');
+	define('CACHE_ID', 'FoHc85ubt5miHBls6eJpOYAohGhDM61Vs%2Fm0BOxZ0N0%3D'); // Cypht uses for asset cache busting but we run the assets through Tiki pipeline, so no need to generate a unique key here
 	define('SITE_ID', 'Tiki-Integration');
 
 	/* get includes */
