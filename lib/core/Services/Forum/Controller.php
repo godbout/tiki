@@ -483,8 +483,9 @@ class Services_Forum_Controller
 		foreach ($forumIds as $id) {
 			$info = $this->lib->get_sub_forums((int) $id);
 			$forumNumbers = count($info);
-			if($forumNumbers > 0)
+			if ($forumNumbers > 0) {
 				break;
+			}
 		}
 		return $forumNumbers;
 	}

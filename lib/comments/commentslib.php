@@ -1373,7 +1373,7 @@ class Comments extends TikiLib
 	 * @param int $parentId (0 to get forums without parents, <0 to get all forums, >0 to get forums of specific parent)
 	 * @return array
 	 */
-	function list_forums($offset = 0, $maxRecords = -1, $sort_mode = 'name_asc', $find = '',$parentId = 0)
+	function list_forums($offset = 0, $maxRecords = -1, $sort_mode = 'name_asc', $find = '', $parentId = 0)
 	{
 		$bindvars = [];
 
