@@ -311,7 +311,7 @@ if (isset($_REQUEST['numrows'])) {
 } else {
 	$maxRecords = $prefs['maxRecords'];
 }
-$channels = $commentslib->list_forums($offset, $maxRecords, $sort_mode, $find);
+$channels = $commentslib->list_forums($offset, $maxRecords, $sort_mode, $find,-1);
 $max = count($channels["data"]);
 for ($i = 0; $i < $max; $i++) {
 	if ($userlib->object_has_one_permission($channels["data"][$i]["forumId"], 'forum')) {
