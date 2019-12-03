@@ -13,12 +13,13 @@
 		{assign var=thisforum_info value=$forum_info.forumId}
 		{if ($tiki_p_forum_post_topic eq 'y' and ($prefs.feature_wiki_discuss ne 'y' or $prefs.$forumId ne $prefs.wiki_forum_id)) or $tiki_p_admin_forum eq 'y'}
 			{if !isset($comments_threadId) or $comments_threadId eq 0}
-				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick='$("#forumpost").show();return false;' _icon_name="create" _type="primary" class="btn btn-primary" _text="{tr}New Topic{/tr}"}
+				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick='$("#forumpost").show();return false;' _icon_name="create" _type="default" class="btn btn-primary" _text="{tr}New Topic{/tr}"}
 			{else}
 				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick='$("#forumpost").show();return false;' _icon_name="create" _type="link" class="btn btn-link" _text="{tr}New Topic{/tr}"}
 			{/if}
 		{/if}
 		{if $tiki_p_admin_forum eq 'y'}
+			{button href="tiki-admin_forums.php?parentId=$thisforum_info&amp;cookietab=2#content_admin_forums1-2" _icon_name="create" _type="link" class="btn btn-link" _text="{tr}Add Sub Forum{/tr}"}
 			{button href="tiki-admin_forums.php?forumId=$thisforum_info&amp;cookietab=2#content_admin_forums1-2" _icon_name="edit" _type="link" class="btn btn-link" _text="{tr}Edit Forum{/tr}"}
 		{/if}
 		{if $tiki_p_admin_forum eq 'y' or !isset($all_forums) or $all_forums|@count > 1}

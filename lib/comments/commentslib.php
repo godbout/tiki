@@ -1109,6 +1109,7 @@ class Comments extends TikiLib
 
 	/**
 	 * @param int $forumId
+     * @param int $parentId
 	 * @param string $name
 	 * @param string $description
 	 * @param string $controlFlood
@@ -1169,6 +1170,7 @@ class Comments extends TikiLib
 	 */
 	function replace_forum(
 		$forumId = 0,
+		$parentId = 0,
 		$name = '',
 		$description = '',
 		$controlFlood = 'n',
@@ -1236,6 +1238,7 @@ class Comments extends TikiLib
 
 		$data = [
 			'name' => $name,
+            'parentId' => $parentId,
 			'description' => $description,
 			'controlFlood' => $controlFlood,
 			'floodInterval' => (int) $floodInterval,

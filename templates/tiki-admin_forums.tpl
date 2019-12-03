@@ -192,6 +192,7 @@
 				<form action="tiki-admin_forums.php" method="post" role="form">
 					{ticket}
 					<input type="hidden" name="forumId" value="{$forumId|escape}">
+					<input type="hidden" name="parentId" value="{$parentId|escape}">
 					<fieldset>
 						<legend>{tr}Main details{/tr}</legend>
 						<div class="form-group row">
