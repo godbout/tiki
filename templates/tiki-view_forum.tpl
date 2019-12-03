@@ -106,7 +106,7 @@
 		<a class="link" href="{if $prefs.feature_sefurl eq 'y'}forums{else}tiki-forums.php{/if}">{tr}Forums{/tr}</a>
 		{$prefs.site_crumb_seper}
 		{if isset($parent.name)}
-			<a class="link" href="{$parent.id|sefurl:'forum'}">{$parent.name|escape}</a>
+			<a class="link" href="{$parent.forumId|sefurl:'forum'}">{$parent.name|escape}</a>
 			{$prefs.site_crumb_seper}
 		{/if}
 		<a class="link" href="{$forumId|sefurl:'forum'}">{$forum_info.name|escape}</a>
