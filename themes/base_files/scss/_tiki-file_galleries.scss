@@ -241,5 +241,9 @@ table.treetable tr.expanded span.indenter a {
 @media (max-width: breakpoint-max(sm)) {
 	#fgalform {
 		.media { display: block; }
+		[id*="uploadinfos"] .text-right {
+			text-align: left !important;
+			margin-top: 0.5rem;
+		}
 	}
 }

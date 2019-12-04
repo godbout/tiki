@@ -2348,7 +2348,10 @@ table.treetable tr.expanded span.indenter a {
 
 @media (max-width: 767.98px) {
   #fgalform .media {
-    display: block; } }
+    display: block; }
+    #fgalform [id*="uploadinfos"] .text-right {
+      text-align: left !important;
+      margin-top: 0.5rem; } }
 
 .statuson, .statusoff {
   padding: 3px 2px 0 2px;
