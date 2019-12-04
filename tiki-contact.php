@@ -15,6 +15,7 @@ $inputConfiguration = [[
 		'subject'		=> 'striptags',	// post
 		'body'			=> 'xss',		// post
 		'to'			=> 'email',		// post
+		'g-recaptcha-response' => 'striptags',
 	],
 	'catchAllUnset'		=> null
 ]];
