@@ -41,7 +41,7 @@ function smarty_function_menu($params, $smarty)
 	if (empty($link_on_section) || $link_on_section == 'y') {
 		$smarty->assign('link_on_section', 'y');
 	} else {
-		 $smarty->assign('link_on_section', 'n');
+		$smarty->assign('link_on_section', 'n');
 	}
 
 	if (empty($translate)) {
@@ -97,14 +97,14 @@ function smarty_function_menu($params, $smarty)
 
 
 			if ($element['type'] == 's') {
-				if ($activeSection) {
-					$structured[] = $activeSection;
-				}
+				$structured[] = $element;
+				$structuredSize = count($structured);
+				$activeSection = &$structured[$structuredSize-1];
 
-				$activeSection = $element;
 				$activeSection['children'] = [];
 			} elseif ($element['type'] == 'o') {
 				if ($activeSection) {
+					$element['parent'] = $activeSection;
 					$activeSection['children'][] = $element;
 				} else {
 					$structured[] = $element;
@@ -114,12 +114,28 @@ function smarty_function_menu($params, $smarty)
 					$structured[] = $activeSection;
 				}
 				$activeSection = null;
+			} else {
+				$level = (int)$element['type'];
+				if ($activeSection) {
+					//If the element is at a higher level than active section
+					if($level < ((int)$activeSection['type']) || $activeSection['type'] == 'o') {
+						$structured[] = $element;
+						$structuredSize = count($structured);
+						$activeSection = &$structured[$structuredSize-1];
+
+						$activeSection['children'] = [];
+					} else {
+						$element['parent'] = $activeSection;
+						$activeSection['children'][] = $element;
+						$activeSectionSize = count($activeSection['children']);
+						$activeSection = &$activeSection['children'][$activeSectionSize-1];
+					}
+				} else {
+					$structured[] = $element;
+				}
 			}
 		}
 
-		if ($activeSection) {
-			$structured[] = $activeSection;
-		}
 		$smarty->assign('list', $structured);
 		switch ($params['bootstrap']) {
 			case 'navbar':
