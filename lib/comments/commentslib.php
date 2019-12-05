@@ -1342,6 +1342,23 @@ class Comments extends TikiLib
 	}
 
 	/**
+	 * Get all parents of specific forum
+	 * @param $forum
+	 * @return mixed
+	 */
+	function get_forum_parents($forum)
+	{
+		$parents = array();
+
+		while (($parent = $this->get_forum($forum['parentId'])) != null){
+			$parents[] = $parent;
+			$forum = $parent;
+		}
+
+		return array_reverse($parents);
+	}
+
+	/**
 	 * @param $forumId
 	 * @return bool
 	 */
