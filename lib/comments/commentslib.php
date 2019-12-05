@@ -1348,9 +1348,9 @@ class Comments extends TikiLib
 	 */
 	function get_forum_parents($forum)
 	{
-		$parents = array();
+		$parents = [];
 
-		while (($parent = $this->get_forum($forum['parentId'])) != null){
+		while (($parent = $this->get_forum($forum['parentId'])) != null) {
 			$parents[] = $parent;
 			$forum = $parent;
 		}
