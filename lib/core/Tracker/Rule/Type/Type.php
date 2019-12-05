@@ -4,7 +4,7 @@
 namespace Tiki\Lib\core\Tracker\Rule\Type;
 
 
-class Type
+abstract class Type
 {
 
 }

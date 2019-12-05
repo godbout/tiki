@@ -8,9 +8,11 @@ use Tiki\Lib\core\Tracker\Rule\Type\DateTime;
 use Tiki\Lib\core\Tracker\Rule\Type\Integer;
 use Tiki\Lib\core\Tracker\Rule\Type\Text;
 
-class Target
+const TARGET_ID = 'field';
+
+abstract class Target
 {
-	protected $targetId = 'field';
+
 	private $trackerlib;
 	private $field;
 
@@ -28,6 +30,10 @@ class Target
 		} else {
 			return new Text();
 		}
+	}
+
+	public static function getTargetId() {
+		return TARGET_ID;
 	}
 
 }

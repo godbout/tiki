@@ -10,6 +10,6 @@ namespace Tiki\Lib\core\Tracker\Rule\Action;
  *
  * @package Tiki\Lib\core\Tracker\Rule\Action
  */
-class Action
+abstract class Action
 {
 }
