@@ -7680,6 +7680,8 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background: #f7f7f7;
     color: #8a0700;
     border-left-color: transparent; }
+  .mobile.tiki-cypht .nux_dev_news table td:last-child, .mobile.tiki-webmail .nux_dev_news table td:last-child {
+    border-bottom: 1px solid #ced4da; }
 
 .chosen-select, .chosen-select-deselect {
   width: 100%; }

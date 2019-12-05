@@ -176,7 +176,14 @@ body { min-width: 100%; }
 		}
 
 // mobile home
+		.nux_welcome ul { padding-left: 20px; }
 		.nux_dev_news table td { display: block; }
+		.nux_dev_news table tr {
+			&:not(:last-child) td:last-child {
+				margin-bottom: 10px; padding-bottom: 10px;
+			}
+			&:last-child td:last-child { border-bottom: none; }
+		}
 
 // mobile servers
 		.nux_empty_combined_view { margin-left: 10px; margin-right: 10px; }
