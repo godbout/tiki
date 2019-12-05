@@ -124,6 +124,10 @@
 			</div>
 		{/accordion_group}
 
+		{accordion_group title="{tr}Rules{/tr}"}
+			{trackerrules}
+		{/accordion_group}
+
 		{accordion_group title="{tr}Permissions{/tr}"}
 			<div class="form-group  mx-0">
 				<label for="visibility" class="col-form-label">{tr}Visibility{/tr}</label>

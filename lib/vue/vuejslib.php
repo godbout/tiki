@@ -9,24 +9,28 @@
 class VueJsLib
 {
 	/**
-	 * @param string $str   body of the vue document
-	 * @param string $name  name of the component
-	 * @param bool   $app   whether to create the App
+	 * @param string $str    body of the vue document
+	 * @param string $name   name of the component
+	 * @param bool   $app    whether to create the App
+	 * @param bool   $minify or not
 	 *
 	 * @return string
-	 * @throws Exception
 	 */
 
 	public function processVue($str, $name = '', $app = false, $minify = false)
 	{
 		$headerlib = TikiLib::lib('header');
 
+		if (is_readable($str)) {
+			$str = file_get_contents($str);
+		}
+
 		$dom = new DOMDocument('1.0', 'UTF-8');
 		$dom->loadHTML("<html lang=\"en\"><body>$str</body></html>");
 
-		$script   = $dom->getElementsByTagName('script');
+		$script = $dom->getElementsByTagName('script');
 		$template = $dom->getElementsByTagName('template');
-		$style    = $dom->getElementsByTagName('style');
+		$style = $dom->getElementsByTagName('style');
 
 		if (! $name && $app) {
 			$name = 'App';
@@ -51,7 +55,7 @@ class VueJsLib
 			}
 			global $tikidomainslash;
 			$tempDir = './temp/public/' . $tikidomainslash;
-			$hash =  $nameLowerCase ? $nameLowerCase : md5(serialize($javascript));
+			$hash = $nameLowerCase ? $nameLowerCase : md5(serialize($javascript));
 
 			$file = $tempDir . "vue_" . $hash . ".js";
 			if ($minify) {
@@ -63,13 +67,15 @@ class VueJsLib
 			chmod($file, 0644);
 
 			if ($app) {
-				$headerlib->add_js_module("
+				$headerlib->add_js_module(
+					"
 import $name from \"$file\";
 
 new Vue({
 	  render: h => h($name),
 	}).\$mount(`#$nameLowerCase`);
-");
+"
+				);
 				return "<div id=\"$nameLowerCase\"></div>";
 			}
 		}
@@ -78,14 +84,31 @@ new Vue({
 	}
 
 	// thanks dpetroff https://www.php.net/manual/en/class.domelement.php#101243
-	function getInnerHtml( $node ) {
-	    $innerHTML= '';
-	    $children = $node->childNodes;
-	    foreach ($children as $child) {
-	        $innerHTML .= $child->ownerDocument->saveXML( $child );
-	    }
+	function getInnerHtml($node)
+	{
+		$innerHTML = '';
+		$children = $node->childNodes;
+		foreach ($children as $child) {
+			$innerHTML .= $child->ownerDocument->saveXML($child);
+		}
 
-	    return str_replace('&#13;', "\r", $innerHTML);
+		return str_replace('&#13;', "\r", $innerHTML);
+	}
+
+	/**
+	 *
+	 */
+	public function getPredicateUI()
+	{
+
+		$appHtml = $this->processVue('lib/vue/rules/TrackerRulesApp.vue', 'TrackerRulesApp', true);
+
+		$appHtml .= $this->processVue('lib/vue/rules/TextArgument.vue', 'TextArgument');
+		$appHtml .= $this->processVue('lib/vue/rules/DateArgument.vue', 'DateArgument');
+		$appHtml .= $this->processVue('lib/vue/rules/NullArgument.vue', 'NullArgument');
+		$appHtml .= $this->processVue('lib/vue/rules/TrackerRules.vue', 'TrackerRules');
+
+		return $appHtml;
 	}
 
 }
