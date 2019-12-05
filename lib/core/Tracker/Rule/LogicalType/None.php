@@ -5,13 +5,9 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-namespace Tracker\Rule\LogicalType;
+namespace Tiki\Lib\core\Tracker\Rule\LogicalType;
 
-class None
+class None extends LogicalType
 {
-
-	function __construct()
-	{
-	}
 
 }

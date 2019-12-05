@@ -4,7 +4,7 @@
 namespace Tiki\Lib\core\Tracker\Rule\Type;
 
 
-class DateTime
+class DateTime extends Type
 {
 
 }

@@ -4,7 +4,10 @@
 namespace Tiki\Lib\core\Tracker\Rule\Operator;
 
 
-class Contains extends Operator
+class Operator
 {
+	function __construct()
+	{
+	}
 
 }

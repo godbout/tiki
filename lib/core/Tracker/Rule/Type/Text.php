@@ -4,7 +4,7 @@
 namespace Tiki\Lib\core\Tracker\Rule\Type;
 
 
-class Integer extends Type
+class Text extends Type
 {
 
 }

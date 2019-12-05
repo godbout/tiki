@@ -4,7 +4,7 @@
 namespace Tiki\Lib\core\Tracker\Rule\Action;
 
 
-class NotRequired
+class NotRequired extends Action
 {
 
 }

@@ -4,7 +4,7 @@
 namespace Tiki\Lib\core\Tracker\Rule\Action;
 
 
-class Hide
+class Hide extends Action
 {
 
 }
