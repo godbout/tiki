@@ -4,7 +4,7 @@
 namespace Tiki\Lib\core\Tracker\Rule\Operator;
 
 
-class IsNotEmpty
+class IsNotEmpty extends Operator
 {
 
 }
