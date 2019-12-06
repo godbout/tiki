@@ -68,17 +68,17 @@
         {/if}
 	{if $category_needed eq 'y'}
 		{remarksbox type='Warning' title="{tr}Warning{/tr}"}
-			<div class="highlight"><em class='mandatory_note'>{tr}A category is mandatory{/tr}</em></div>
+			<div class="alert alert-warning alert-dismissible"><em class=''>{tr}A category is mandatory{/tr}</em></div>
 		{/remarksbox}
 	{/if}
 	{if $contribution_needed eq 'y'}
 		{remarksbox type='Warning' title="{tr}Warning{/tr}"}
-			<div class="highlight"><em class='mandatory_note'>{tr}A contribution is mandatory{/tr}</em></div>
+			<div class="alert alert-warning alert-dismissible"><em class=''>{tr}A contribution is mandatory {/tr}</em></div>
 		{/remarksbox}
 	{/if}
 	{if isset($summary_needed) && $summary_needed eq 'y'}
 		{remarksbox type='Warning' title="{tr}Warning{/tr}"}
-			<div class="highlight"><em class='mandatory_note'>{tr}An edit summary is mandatory{/tr}</em></div>
+			<div class="alert alert-warning alert-dismissible"><em class=''>{tr}An edit summary is mandatory {/tr}</em></div>
 		{/remarksbox}
 	{/if}
 	{if $likepages}
@@ -189,9 +189,9 @@
 							<h2>{tr}Translate to:{/tr} {$target_page|escape}</h2>
 							{tr}Reproduce the changes highlighted on the left using the editor below{/tr}.
 						</div>
-					{/if}
-					{textarea codemirror='true' syntax='tiki'}{$pagedata}{/textarea}
-					{if $prefs.wiki_freetags_edit_position eq 'edit'}
+					{/if}                                                
+					{textarea codemirror='true' syntax='tiki'}{$pagedata}{/textarea} 
+                                        {if $prefs.wiki_freetags_edit_position eq 'edit'}
 							{if $prefs.feature_freetags eq 'y' and $tiki_p_freetags_tag eq 'y'}
 								<fieldset>
 									<legend>{tr}Tags{/tr}</legend>
