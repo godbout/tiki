@@ -148,8 +148,8 @@ if ($ts['enabled'] && ! $ts['ajax']) {
 $inc = [];
 list(	$groupname, $groupdesc, $grouphome, $userstrackerid, $usersfieldid, $grouptrackerid,
 		$groupfieldid, $defcatfieldid, $themefieldid, $groupperms, $trackerinfo, $memberslist,
-		$userChoice, $groupdefcat, $grouptheme, $expireAfter, $emailPattern, $anniversary, $prorateInterval) =
-		['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
+		$userChoice, $groupdefcat, $grouptheme, $expireAfter, $emailPattern, $anniversary, $prorateInterval, $isRole, $isTplGroup) =
+		['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 
 if (! empty($_REQUEST["group"])) {
 	$re = $userlib->get_group_info($_REQUEST["group"]);
@@ -182,6 +182,12 @@ if (! empty($_REQUEST["group"])) {
 	}
 	if (isset($re['prorateInterval'])) {
 		$prorateInterval = $re['prorateInterval'];
+	}
+	if (isset($re['isRole'])) {
+		$isRole = $re['isRole'];
+	}
+	if (isset($re['isTplGroup'])) {
+		$isTplGroup = $re['isTplGroup'];
 	}
 	if ($prefs['userTracker'] == 'y') {
 		if (isset($re["usersTrackerId"]) and $re["usersTrackerId"]) {
@@ -432,6 +438,8 @@ $smarty->assign('groupperms', $groupperms);
 $smarty->assign_by_ref('userChoice', $userChoice);
 $smarty->assign_by_ref('cant_pages', $users["cant"]);
 $smarty->assign('group_info', $re);
+$smarty->assign('isRole', $isRole);
+$smarty->assign('isTplGroup', $isTplGroup);
 
 ask_ticket('admin-groups');
 

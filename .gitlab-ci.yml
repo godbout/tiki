@@ -35,19 +35,6 @@ composer:
     expire_in: 1 days
     when: on_success
 
-composer:
-  stage: build
-  variables:
-    COMPOSER_DISCARD_CHANGES: "true"
-    COMPOSER_NO_INTERACTION: "1"
-  script:
-    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
-  artifacts:
-    paths:
-      - vendor_bundled/vendor/
-    expire_in: 1 days
-    when: on_success
-
 #
 # Lint
 #
@@ -59,6 +46,16 @@ phpcs:
     - git log -m -1 --name-only
     - git log -m --first-parent -1 --name-only --diff-filter=d --pretty="format:" | grep -v "^$" | sort -u | xargs php vendor_bundled/vendor/squizlabs/php_codesniffer/bin/phpcs -s --runtime-set ignore_warnings_on_exit true
   allow_failure: true
+
+phplint:
+  stage: lint
+  script:
+    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+    - git log -m --first-parent -1 --name-only --diff-filter=d --pretty="format:" | grep -v "^$" | sort -u | grep '\.php$' - 2>&1 > /dev/null || { git log -m -1 --name-only && echo && echo 'No files to be processed. Skipping...' && echo && exit 0; }
+    - git log -m -1 --name-only
+    # Because we just lint changed files we need to filter by php extension before call bin/phplint
+    - git log -m --first-parent -1 --name-only --diff-filter=d --pretty="format:" | grep -v "^$" | sort -u | grep '\.php$' | xargs php bin/phplint -n
+  allow_failure: false
 
 #
 # Check Tikiwiki development specific check (related also with release)

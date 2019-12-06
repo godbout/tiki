@@ -385,11 +385,18 @@ class Services_Forum_Controller
 		if ($util->notConfirmPost()) {
 			//check number of topics on first pass
 			if ($util->itemsCount > 0) {
+				$forumsNumber = $this->countSubForums($util->items);
 				$util->items = $this->getForumNames($util->items);
 				if (count($util->items) === 1) {
 					$msg = tra('Delete the following forum?');
+					if ($forumsNumber) {
+						$msg .= tr('This forum has sub-forums, you must delete the included forums first.');
+					}
 				} else {
 					$msg = tra('Delete the following forums?');
+					if ($forumsNumber) {
+						$msg .= tr('Some of these forums have sub-forums, you must delete the included forums first.');
+					}
 				}
 				return $util->confirm($msg, tra('Delete'));
 			} else {
@@ -461,6 +468,26 @@ class Services_Forum_Controller
 			$ret[(int) $id] = $info['name'];
 		}
 		return $ret;
+	}
+
+	/**
+	 * Utility to count sub forums in a specified forum
+	 *
+	 * @param $forumIds
+	 * @return mixed
+	 * @throws Exception
+	 */
+	private function countSubForums(array $forumIds)
+	{
+		$forumNumbers = 0;
+		foreach ($forumIds as $id) {
+			$info = $this->lib->get_sub_forums((int) $id);
+			$forumNumbers = count($info);
+			if ($forumNumbers > 0) {
+				break;
+			}
+		}
+		return $forumNumbers;
 	}
 
 

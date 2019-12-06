@@ -370,21 +370,19 @@ function wikiplugin_datachannel($data, $params)
 			if (empty($params['debug']) || $params['debug'] != 'y') {
 				if (isset($params['quietReturn']) && $params['quietReturn'] == 'y') {
 					return true;
-				} elseif (! empty($installer) && ! empty($profile)) {
-					if ($target = $profile->getInstructionPage()) {
-						$profilefeedback = $installer->getFeedback();
+				} elseif (! empty($installer) && ! empty($profile) && $target = $profile->getInstructionPage()) {
+					$profilefeedback = $installer->getFeedback();
 
-						foreach ($profilefeedback as $feedback) {
-							if (strpos($feedback, tra('An error occurred: ')) === 0) {
-								Feedback::error($feedback);
-							}
+					foreach ($profilefeedback as $feedback) {
+						if (strpos($feedback, tra('An error occurred: ')) === 0) {
+							Feedback::error($feedback);
 						}
-
-						$wikilib = TikiLib::lib('wiki');
-						$target = $wikilib->sefurl($target);
-						header('Location: ' . $target);
-						exit;
 					}
+
+					$wikilib = TikiLib::lib('wiki');
+					$target = $wikilib->sefurl($target);
+					header('Location: ' . $target);
+					exit;
 				} else {
 					$url = $success ? $params['returnURI'] : $params['returnErrorURI'];
 					$url = str_replace(array_keys($arguments), array_values($arguments), $url);

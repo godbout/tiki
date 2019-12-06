@@ -106,6 +106,7 @@ $smarty->assign('print_page', 'y');
 $smarty->assign('urlprefix', $base_url); // Obsolete, use base_url instead. This is for compatibility purposes only.
 $smarty->assign('mid', 'extends:layouts/internal/layout_view.tpl|tiki-show_page.tpl');
 $smarty->assign('display', isset($_REQUEST['display']) ? $_REQUEST['display'] : '');
+
 // Allow PDF export by installing a Mod that define an appropriate function
 if (isset($_REQUEST['display']) && $_REQUEST['display'] == 'pdf') {
 	require_once 'lib/pdflib.php';
@@ -124,6 +125,7 @@ if (isset($_REQUEST['display']) && $_REQUEST['display'] == 'pdf') {
 		header('Pragma: private');
 		header("Content-Description: File Transfer");
 		$page = preg_replace('/\W+/u', '_', $page); // Replace non words with underscores for valid file names
+		$page = \TikiLib::lib('tiki')->remove_non_word_characters_and_accents($page);
 		header('Content-disposition: attachment; filename="' . $page . '.pdf"');
 		header("Content-Type: application/pdf");
 		header("Content-Transfer-Encoding: binary");

@@ -1,6 +1,6 @@
 <a name="list_filter{$filterCounter}"></a>
 <div class="list_filter" id="list_filter{$filterCounter}">
-	<form action="#list_filter{$filterCounter}" method="post">
+	<form action="{$filterUrl}#list_filter{$filterCounter}" method="post">
 		<table class="table">
 		{foreach from=$filterFields item=field}
 		<tr>

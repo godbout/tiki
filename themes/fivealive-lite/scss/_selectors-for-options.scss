@@ -8,6 +8,9 @@ $imagePath: "../images/";
 // Common values
 // $btn-info-active-bg: darken($btn-info-bg, 5%);
 
+$blog-post-title-color: $top-color;
+$post-card-header-bg: $top-bg;
+
 // This is reduced from the amount in tiki_base.css - maybe that needs to be changed, too.
 body.layout_social.tiki.navbar-padding {
 	padding-top: 2.72rem;
@@ -15,9 +18,9 @@ body.layout_social.tiki.navbar-padding {
 }
 
 .middle_outer {
-	-webkit-box-shadow: inset 0 28px 0 0 $middle_outer-inset-shadow-bg;
-	-moz-box-shadow: inset 0 28px 0 0 $middle_outer-inset-shadow-bg;
-	box-shadow: inset 0 28px 0 0 $middle_outer-inset-shadow-bg;
+	-webkit-box-shadow: inset 0 28px 0 0 $topbar-bg;
+	-moz-box-shadow: inset 0 28px 0 0 $topbar-bg;
+	box-shadow: inset 0 28px 0 0 $topbar-bg;
 }
 
 .fullscreen .middle_outer {
@@ -39,27 +42,72 @@ nav.fixed-top {
 	padding: 0;
 }
 
+//.header_outer,
+//.header_outer .navbar-dark.bg-dark//,
+//.navbar.navbar-dark.bg-dark.fixed-top,
+//.navbar.navbar-dark.bg-dark.fixed-top .navbar-dark.bg-dark
+//{
+//	background: $top-bg; //$navbar-fixed-top-bg !important;
+//}
+.navbar.bg-dark.fixed-top,
+.navbar.bg-dark.fixed-top .navbar,
+.navbar.bg-light.fixed-top,
+.navbar.bg-light.fixed-top .navbar,
+.layout_classic #top_modules.bg-dark,
+.layout_classic #top_modules.bg-light,
 .header_outer,
-.header_outer .navbar-dark.bg-dark,
-.navbar.navbar-dark.bg-dark.fixed-top,
-.navbar.navbar-dark.bg-dark.fixed-top .navbar-dark.bg-dark {
-	background: $navbar-fixed-top-bg !important;
+.header_outer .navbar-dark.bg-dark {
+	background: $top-bg !important;
+	color: $top-color;
+	a { color: $top-link-color; }
+	a:hover { color: $top-link-hover-color; }
 }
 
 .navbar.navbar-dark.bg-dark.fixed-top a,
 .navbar.navbar-dark.bg-dark.fixed-top .btn-link {
-	color: $navbar-dark-color;
+	color: $top-color;
 }
 
-.layout_basic .page-header > .top_modules,
+// Topbar background (consistent bg color for inset shadow, topbar modules, navbar)
+//.layout_basic .page-header > .top_modules,
 .topbar .navbar-dark .navbar-nav > li,
-.topbar .nav > li {
-	background: $middle_outer-inset-shadow-bg;
+.topbar .nav > li,
+.layout_social #topbar_modules,
+.layout_social #topbar.bg-dark,
+.layout_social #topbar.bg-light,
+.layout_social .topbar .bg-dark,
+.layout_social .topbar .bg-light,
+.layout_classic #topbar_modules,
+.layout_classic #topbar.bg-dark,
+.layout_classic #topbar.bg-light,
+.layout_classic #topbar_modules .navbar.bg-dark,
+.layout_classic #topbar_modules .navbar.bg-light {
+	background: $topbar-bg !important;
 }
 
 .bg-dark {
-	background-color: $middle_outer-inset-shadow-bg !important;
+	background-color: $topbar-bg !important;
 }
+
+.layout_basic {
+//	#top_modules.bg-dark,
+//	#top_modules.bg-light,
+	#topbar_modules,
+	#topbar.bg-dark,
+	#topbar.bg-light,
+	.topbar .bg-light,
+	.topbar .bg-dark { background: $topbar-bg !important; }
+}
+
+//.layout_basic {
+//	#top_modules.bg-dark,
+//	#top_modules.bg-light,
+//	#topbar_modules,
+//	#topbar.bg-dark,
+//	#topbar.bg-light,
+//	.topbar .bg-dark,
+//	.topbar .bg-light { background: transparent !important; }
+//}
 
 a,
 .btn-link {
@@ -395,19 +443,19 @@ input[type="checkbox"].preffilter-toggle-round:checked + label::before {
 	background: $dropdown-bg;
 }
 
-//.blog-postbody-title,
-//.blog-postbody-title a,
-//.postbody-title .title > .card-title a.link,
-//.post-body .card-header a {
-//	color: #ffffff;
-//}
+.blog-postbody-title,
+.blog-postbody-title a,
+.postbody-title .title > .card-title a.link,
+.postbody h2.card-title {
+	color: $blog-post-title-color;
+}
 
-.blog-postbody-title h2.panel-title {
+.blog-postbody-title h2.card-title {
 	font-size: 20px;
 }
 
 .postbody .card-header {
-	background: $bg-light;
+	background: $post-card-header-bg;
 }
 
 .siteloginbar_popup .dropdown-menu > li > a {
@@ -590,3 +638,4 @@ footer#footer {
 		background-repeat: no-repeat;
 	}
 }
+

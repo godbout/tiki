@@ -55,6 +55,13 @@ if (isset($_REQUEST['openpost'])) {
 $smarty->assign('forumId', $_REQUEST['forumId']);
 $tikilib->get_perm_object($_REQUEST['forumId'], 'forum', $forum_info, true);
 
+//get sub forums list
+$channels = $commentslib->list_forums(0, -1, 'name_asc', '', $_REQUEST['forumId']);
+//get parent forums
+$parents = $commentslib->get_forum_parents($forum_info);
+$smarty->assign('parents', $parents);
+$smarty->assign_by_ref('channels', $channels["data"]);
+
 // Now if the user is the moderator then give him forum admin privs -. SHOULD BE IN get_perm_object
 if ($tiki_p_admin_forum != 'y' && $user) {
 	if ($commentslib->admin_forum($_REQUEST['forumId'])) {
@@ -460,7 +467,6 @@ if ($prefs['feature_forum_parse'] == 'y') {
 	$plugins = $wikilib->list_plugins(true, 'editpost');
 	$smarty->assign_by_ref('plugins', $plugins);
 }
-
 //initialize tablesorter
 if ($ts['enabled'] && ! $ts['ajax']) {
 	//set tablesorter code

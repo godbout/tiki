@@ -3936,16 +3936,33 @@ class FileGalLib extends TikiLib
 	 * @param $directory string The directory path that files will be stored at.
 	 */
 
-	function setupDirectory($directory){
+	function setupDirectory($directory)
+	{
 		// if a directory structure selected is not present
-		if (!file_exists($directory)) {
+		if (! file_exists($directory)) {
 			// attempt to create directory structure
 			mkdir($directory, 0777, true);
 		}
 		// if index.php file is not present in home directory, attempt to create it
-		if (!file_exists($directory . 'index.php')){
+		if (! file_exists($directory . 'index.php')) {
 			file_put_contents($directory . 'index.php', '');
 		}
+	}
+
+	// Return HTML code to display the hierarchy of sub-galleries when the PluginDiagram {diagram} is used in a wiki page
+	function getNodes($nodes, $id, $sub='')
+	{
+		$htmlnodes="";
+		foreach ($nodes as $node) {
+			if ($node['parentId'] == $id) {
+				// If the current user has permission to access the gallery, then add gallery to the hierarchy.
+				if($node['perms']['tiki_p_view_file_gallery'] == 'y'){
+					$htmlnodes .= "<option value='" . $node['id'] . "'>" . $sub . '&nbsp;' . $node['name'];
+					$htmlnodes .= $this->getNodes($nodes,$node['id'],$sub . '&mdash;');
+				}
+			}
+		}
+		return $htmlnodes;
 	}
 }
 

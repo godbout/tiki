@@ -49,7 +49,7 @@
 						{if $prefs.user_use_gravatar eq 'y'}
 							<a class="link" href="http://www.gravatar.com" target="_blank">{tr}Pick user profile picture{/tr}</a>
 						{else}
-							<a class="link" target="_blank" href="tiki-pick_avatar.php{if $userwatch ne $user}?view_user={$userwatch}{/if}">{tr}Pick user profile picture{/tr}</a>
+							<a class="link" href="tiki-pick_avatar.php{if $userwatch ne $user}?view_user={$userwatch}{/if}">{tr}Pick user profile picture{/tr}</a>
 						{/if}
 					</div>
 				</div>
@@ -197,7 +197,7 @@
 									</option>
 								{/section}
 							</select>
-							<span class="form-text">If email is public, select a scrambling method to prevent spam</span>
+							<span class="form-text">{tr}If email is public, select a scrambling method to prevent spam{/tr}</span>
 						{else}
 							<p class="form-control-plaintext">{tr}Unavailable - please set your email below{/tr}</p>
 						{/if}
@@ -230,7 +230,7 @@
 								</option>
 							{/section}
 						</select>
-						<span class="form-text">Special character set for your email application</span>
+						<span class="form-text">{tr}Special character set for your email application{/tr}</span>
 					</div>
 				</div>
 				{if $prefs.change_theme eq 'y' && empty($group_theme)}
@@ -579,7 +579,7 @@
 						<div class="col-md-8">
 							<input type="checkbox" name="remember_closed_rboxes" id="remember_closed_rboxes" {if $user_prefs.remember_closed_rboxes eq 'y'}checked="checked"{/if}>
 							<p class="text-info">
-								{tr}Remember which remarksbox (alert box) you have closed and don't show them again.{/tr}<br>
+								{tr}Remember which remarksbox (alert box) you have closed and don't show them again{/tr}.<br>
 							</p>
 						</div>
 					<label class="col-form-label col-md-4">

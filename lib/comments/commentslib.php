@@ -1109,6 +1109,7 @@ class Comments extends TikiLib
 
 	/**
 	 * @param int $forumId
+	 * @param int $parentId
 	 * @param string $name
 	 * @param string $description
 	 * @param string $controlFlood
@@ -1169,6 +1170,7 @@ class Comments extends TikiLib
 	 */
 	function replace_forum(
 		$forumId = 0,
+		$parentId = 0,
 		$name = '',
 		$description = '',
 		$controlFlood = 'n',
@@ -1236,6 +1238,7 @@ class Comments extends TikiLib
 
 		$data = [
 			'name' => $name,
+			'parentId' => $parentId,
 			'description' => $description,
 			'controlFlood' => $controlFlood,
 			'floodInterval' => (int) $floodInterval,
@@ -1339,6 +1342,23 @@ class Comments extends TikiLib
 	}
 
 	/**
+	 * Get all parents of specific forum
+	 * @param $forum
+	 * @return mixed
+	 */
+	function get_forum_parents($forum)
+	{
+		$parents = [];
+
+		while (($parent = $this->get_forum($forum['parentId'])) != null) {
+			$parents[] = $parent;
+			$forum = $parent;
+		}
+
+		return array_reverse($parents);
+	}
+
+	/**
 	 * @param $forumId
 	 * @return bool
 	 */
@@ -1367,9 +1387,10 @@ class Comments extends TikiLib
 	 * @param $maxRecords
 	 * @param string $sort_mode
 	 * @param string $find
+	 * @param int $parentId (0 to get forums without parents, <0 to get all forums, >0 to get forums of specific parent)
 	 * @return array
 	 */
-	function list_forums($offset = 0, $maxRecords = -1, $sort_mode = 'name_asc', $find = '')
+	function list_forums($offset = 0, $maxRecords = -1, $sort_mode = 'name_asc', $find = '', $parentId = 0)
 	{
 		$bindvars = [];
 
@@ -1397,6 +1418,13 @@ class Comments extends TikiLib
 		} else {
 			$query_sort_mode = $sort_mode;
 		}
+		if ($parentId < 0) { // get all forums
+			$where .= ' AND parentID > ? ';
+		} else { //get forums of specific parents
+			$where .= ' AND parentID = ? ';
+		}
+		$bindvars[] = $parentId;
+
 		$query = "select * from `tiki_forums` $join WHERE 1=1 $where $mid order by `section` asc," . $this->convertSortMode('`tiki_forums`.' . $query_sort_mode);
 		$result = $this->fetchAll($query, $bindvars);
 		$result = Perms::filter(['type' => 'forum'], 'object', $result, ['object' => 'forumId'], 'forum_read');
@@ -1412,6 +1440,9 @@ class Comments extends TikiLib
 
 			// Get number of topics on this forum
 			$res['threads'] = (int) $this->count_comments_threads('forum:' . $res['forumId']);
+
+			//Get sub forums
+			$res['sub_forums'] = $this->get_sub_forums($res['forumId']);
 
 			// Get number of posts on this forum
 			$res['comments'] = (int) $this->count_comments('forum:' . $res['forumId']);
@@ -1829,6 +1860,24 @@ class Comments extends TikiLib
 		}
 
 		return $res;
+	}
+
+	/**
+	 * @param $parentId
+	 * @return mixed
+	 */
+	function get_sub_forums($parentId = 0)
+	{
+		$bindvars = [];
+		$query_sort_mode = 'name_asc';
+		$where = ' AND parentId = ? ';
+		$mid = '';
+		$join = '';
+		$bindvars[] = $parentId;
+
+		$query = "select * from `tiki_forums` $join WHERE 1=1 $where $mid order by `section` asc," . $this->convertSortMode('`tiki_forums`.' . $query_sort_mode);
+		$result = $this->fetchAll($query, $bindvars);
+		return $result;
 	}
 
 	/**

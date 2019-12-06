@@ -139,6 +139,7 @@ $header_outer-background: darken(#28aae1, 10%);
 $header_container_header-background: url('#{$imagePath}siteheader.png') -248px 0 no-repeat;
 $header-color: #ffffff;
 $topbar_container_background: #28aae1;
+$topbar-bg: #28a7de;
 $form-control-background: #ffffff;
 $form-control-border-colors: #9ae8fa #e3f7fb #e3f7fb #9ae8fa;
 $footer-color: #696969;
@@ -154,3 +155,4 @@ $side-column-border: none;
 $topbar_container_background: $navbar-dark-navbar-nav-li-a-background;
 $navbar-fixed-height: 46px;
 // .secondary_site_menu .navbar-nav li.dropdown { border-bottom: none;}
+$middle_outer-inset-shadow-bg: $topbar-bg;

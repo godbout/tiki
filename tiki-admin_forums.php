@@ -13,6 +13,9 @@ require_once('tiki-setup.php');
 if (! isset($_REQUEST['forumId'])) {
 	$_REQUEST['forumId'] = 0;
 }
+if (! isset($_REQUEST['parentId'])) {
+	$_REQUEST['parentId'] = 0;
+}
 $access->check_feature('feature_forums');
 
 $objectperms = Perms::get('forum', $_REQUEST['forumId']);
@@ -102,6 +105,7 @@ if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
 	$tx = TikiDb::get()->begin();
 	$fid = $commentslib->replace_forum(
 		$_REQUEST["forumId"],
+		$_REQUEST["parentId"],
 		$_REQUEST["name"],
 		$_REQUEST["description"],
 		$controlFlood,
@@ -275,6 +279,7 @@ if ($_REQUEST["forumId"]) {
 	$info['image'] = '';
 }
 $smarty->assign('forumId', $_REQUEST["forumId"]);
+$smarty->assign('parentId', $_REQUEST["parentId"]);
 foreach ($info as $key => $value) {
 	if ($key == "section") {
 		// conflict with section management
@@ -306,7 +311,7 @@ if (isset($_REQUEST['numrows'])) {
 } else {
 	$maxRecords = $prefs['maxRecords'];
 }
-$channels = $commentslib->list_forums($offset, $maxRecords, $sort_mode, $find);
+$channels = $commentslib->list_forums($offset, $maxRecords, $sort_mode, $find,0);
 $max = count($channels["data"]);
 for ($i = 0; $i < $max; $i++) {
 	if ($userlib->object_has_one_permission($channels["data"][$i]["forumId"], 'forum')) {

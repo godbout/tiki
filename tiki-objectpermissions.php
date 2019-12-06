@@ -118,14 +118,25 @@ if ($_REQUEST['objectType'] == 'wiki page') {
 	$cachelib->empty_type_cache('structure_');
 }
 
-if ($_REQUEST['objectType'] == 'category' && isset($_REQUEST['propagate_category'])) {
+if ($_REQUEST['objectType'] == 'category' ) {
 	$categlib = TikiLib::lib('categ');
-	$descendants = $categlib->get_category_descendants($_REQUEST['objectId']);
-
-	foreach ($descendants as $child) {
-		$o = $objectFactory->get($_REQUEST['objectType'], $child, $_REQUEST['objectId']);
-		$permissionApplier->addObject($o);
+	$categ = $categlib->get_category($_REQUEST['objectId']);
+	$groupRole = false;
+	if(isset($_REQUEST['propagate_category'])) {
+		$descendants = $categlib->get_category_descendants($_REQUEST['objectId']);
+		foreach ($descendants as $child) {
+			$o = $objectFactory->get($_REQUEST['objectType'], $child, $_REQUEST['objectId']);
+			$permissionApplier->addObject($o);
+		}
 	}
+	$templatedGroupId = TikiLib::lib('attribute')->get_attribute("category", $_REQUEST['objectId'], "tiki.category.templatedgroupid");
+	if($categ["parentId"] > 0 && $templatedGroupId){
+
+		$roles = TikiLib::lib("roles")->getAvailableCategoriesRolesIds($categ["parentId"]);
+		$groupRole = ! empty($roles);
+
+	}
+	$smarty->assign('groupRole', $groupRole);
 }
 
 // apply feature filter change
@@ -151,7 +162,7 @@ if (isset($_REQUEST['group_select'])) {
 $group_filter = unserialize($tikilib->get_user_preference($user, 'objectperm_admin_groups'));
 
 // Get a list of groups
-$groups = $userlib->get_groups(0, -1, 'id_asc', '', '', 'n');
+$groups = $userlib->get_groups_for_permissions();
 $smarty->assign_by_ref('groups', $groups['data']);
 
 $OBJECTPERM_ADMIN_MAX_GROUPS = 4;

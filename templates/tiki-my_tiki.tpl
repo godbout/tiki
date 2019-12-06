@@ -135,7 +135,7 @@
 							</td>
 							<td class="text">
 								<a class="tips" title=":{tr}View{/tr}" href="tiki-view_tracker.php?trackerId={$user_items[ix].trackerId}">
-									{$user_items[ix].name}
+									{tr}{$user_items[ix].name}{/tr}
 								</a>
 							</td>
 						</tr>

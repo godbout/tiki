@@ -121,7 +121,9 @@ class SemiAutoMergeCommand extends Command
 			$output->writeln('<info>No changes to merge</info>');
 			// If there was an svn commit file, we remove it because it is certainly not needed any longer.
             $output->writeln('Now deleting svn-commit.tmp if it exists.', $output::VERBOSITY_DEBUG);
-			@unlink('svn-commit.tmp');
+			if (file_exists('svn-commit.tmp')) {
+				unlink('svn-commit.tmp');
+			}
 			exit(0);
 		}
 

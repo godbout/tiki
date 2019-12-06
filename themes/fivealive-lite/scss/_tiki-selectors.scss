@@ -142,7 +142,7 @@ header.header {
 .page-header,
 .layout_classic #topbar_modules {
   .navbar.bg-dark,
-  .navbar.bg-light { background: transparent !important; }
+  .navbar.bg-light { background: $topbar-bg !important; }
 }
 
 .layout_classic {
@@ -150,7 +150,27 @@ header.header {
   #top_modules.bg-light,
   #topbar_modules,
   #topbar.bg-dark,
-  #topbar.bg-light{ background: transparent !important; }
+  #topbar.bg-light { background: $topbar-bg !important; }
+}
+
+.layout_social {
+	#top_modules.bg-dark,
+	#top_modules.bg-light,
+	#topbar_modules,
+	#topbar.bg-dark,
+	#topbar.bg-light,
+	.topbar .bg-dark,
+	.topbar .bg-light { background: $topbar-bg !important; }
+}
+
+.layout_basic {
+	#top_modules.bg-dark,
+	#top_modules.bg-light,
+	#topbar_modules,
+	#topbar.bg-dark,
+	#topbar.bg-light,
+	.topbar .bg-dark,
+	.topbar .bg-light { background: $topbar-bg !important; }
 }
 
 #col2 .card,

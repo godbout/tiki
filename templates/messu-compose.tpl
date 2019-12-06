@@ -70,7 +70,6 @@
 	<div class="form-group row">
 		<div class="col-sm-10 offset-sm-2">
 			{* no js confirmation or ticket needed since the preview is sent to another page *}
-			<input type="submit" class="btn btn-secondary" name="preview" value="{tr}Send{/tr}">
 			<label for="replytome" class="ml-2">
 				<input type="checkbox" name="replytome" id="replytome">
 				{tr}Reply-to my email{/tr}
@@ -81,6 +80,11 @@
 				{tr}Send me a copy{/tr}
 				{help url="User+Information" desc="{tr}Send me a copy:{/tr}{tr}You will be sent a copy of this email.{/tr}"}
 			</label>
+		</div>
+	</div>
+	<div class="form-group row">
+		<div class="col-sm-10 offset-sm-2">
+			<input type="submit" class="btn btn-secondary" name="preview" value="{tr}Send{/tr}">
 		</div>
 	</div>
 </form>

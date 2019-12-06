@@ -1126,6 +1126,12 @@ div.drillshow {
 //	display: $breadcrumb-display; // block;
 }
 
+.nav-breadcrumb {
+	display: flex;
+	justify-content: space-between;
+}
+
+
 // jQuery-UI
 .tiki .ui-widget-content,
 span.plugin-mouseover  {
@@ -1415,7 +1421,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 	}
 
 	.tiki-view_tracker, .tiki-admin_tracker_fields, .tiki-lastchanges,
-	.tiki-admin_survey_questions, .tiki-assignuser {
+	.tiki-admin_survey_questions, .tiki-assignuser, .tiki_user_messages {
 		.t_navbar {
 			.btn-group > .btn:not(.dropdown-toggle),
 			&.btn-group > .btn:not(.dropdown-toggle) {
@@ -1455,6 +1461,14 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 
 	.tiki-page_contribution {
 		.wikitext { word-break: break-word; }
+	}
+
+	.nav-breadcrumb {
+		display: block;
+		.breadcrumb {
+			width: 100%;
+			& + form { display: block !important; }
+		}
 	}
 
 	#page-data.col-sm-9 { padding-left: 0; padding-right: 0; }

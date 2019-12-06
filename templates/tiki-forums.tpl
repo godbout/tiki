@@ -123,6 +123,14 @@
 								{/if}
 							</div>
 						{/if}
+						<div class="t_navbar mb-4">
+							{if count($channels[user].sub_forums) > 0}
+								<b>Sub Forums</b>:
+								{foreach from=$channels[user].sub_forums item=forum}
+									<i>{button href="tiki-view_forum.php?forumId={$forum.forumId}" _onclick='$("#forumpost").show();return false;' _icon_name="users" _type="link" class="btn btn-link" _text="{tr}{$forum.name}{/tr}"}</i>
+								{/foreach}
+							{/if}
+						</div>
 					</td>
 					{if $prefs.forum_list_topics eq 'y'}
 						<td class="integer">{$channels[user].threads}</td>

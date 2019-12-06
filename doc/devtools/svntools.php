@@ -330,6 +330,19 @@ function commit_lang($msg, $displaySuccess = true, $dieOnRemainingChanges = true
 	return (int) get_info('./lang')->entry->commit['revision'];
 }
 
+function commit_specific_lang($lang, $msg, $displaySuccess = true, $dieOnRemainingChanges = true)
+{
+	$msg = escapeshellarg($msg);
+	exec("svn ci ./lang/$lang -m $msg");
+
+	if ($dieOnRemainingChanges && has_uncommited_changes("./lang/$lang")) {
+		error("Commit seems to have failed. Uncommited changes exist in the working folder.\n");
+	}
+
+	return (int) get_info("./lang/$lang")->entry->commit['revision'];
+}
+
+
 /**
  * @param $working
  * @param $source

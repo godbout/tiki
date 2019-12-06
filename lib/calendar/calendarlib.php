@@ -498,17 +498,15 @@ class CalendarLib extends TikiLib
 
 		$query = "select i.`calitemId` as `calitemId`, i.`calendarId` as `calendarId`, i.`user` as `user`, i.`start` as `start`, i.`end` as `end`, t.`name` as `calname`, ";
 		$query .= "i.`locationId` as `locationId`, l.`name` as `locationName`, i.`categoryId` as `categoryId`, c.`name` as `categoryName`, i.`priority` as `priority`, i.`nlId` as `nlId`, i.`uid` as `uid`, i.`uri` as `uri`, ";
-		$query .= "i.`status` as `status`, i.`url` as `url`, i.`lang` as `lang`, i.`name` as `name`, i.`description` as `description`, i.`created` as `created`, i.`lastmodif` as `lastModif`, i.`allday` as `allday`, i.`recurrenceId` as `recurrenceId`, ";
-		$query .= "t.`customlocations` as `customlocations`, t.`customcategories` as `customcategories`, t.`customlanguages` as `customlanguages`, t.`custompriorities` as `custompriorities`, ";
-		$query .= "t.`customsubscription` as `customsubscription`, ";
-		$query .= "t.`customparticipants` as `customparticipants` ";
+		$query .= "i.`status` as `status`, i.`url` as `url`, i.`lang` as `lang`, i.`name` as `name`, i.`description` as `description`, i.`created` as `created`, i.`lastmodif` as `lastModif`, i.`allday` as `allday`, ";
+		$query .= "t.`customlocations`, t.`customcategories`, t.`customlanguages`, t.`custompriorities`, t.`customsubscription`, t.`customparticipants`, i.`recurrenceId`, i.`recurrenceStart`, r.`uid` as `recurrenceUid`";
 
 		foreach ($customs as $k => $v) {
 			$query .= ", i.`$k` as `$v`";
 		}
 
-		$query .= "from `tiki_calendar_items` as i left join `tiki_calendar_locations` as l on i.`locationId`=l.`callocId` ";
-		$query .= "left join `tiki_calendar_categories` as c on i.`categoryId`=c.`calcatId` left join `tiki_calendars` as t on i.`calendarId`=t.`calendarId` where `calitemId`=?";
+		$query .= " from `tiki_calendar_items` as i left join `tiki_calendar_locations` as l on i.`locationId`=l.`callocId` left join `tiki_calendar_recurrence` as r on i.`recurrenceId` = r.`recurrenceId`";
+		$query .= " left join `tiki_calendar_categories` as c on i.`categoryId`=c.`calcatId` left join `tiki_calendars` as t on i.`calendarId`=t.`calendarId` where `calitemId`=?";
 		$result = $this->query($query, [(int)$calitemId]);
 		$res = $result->fetchRow();
 
@@ -654,7 +652,7 @@ class CalendarLib extends TikiLib
 		$data['user'] = $user;
 
 		$realcolumns = ['calitemId', 'calendarId', 'start', 'end', 'locationId', 'categoryId', 'nlId', 'priority', 'uri', 'uid',
-					 'status', 'url', 'lang', 'name', 'description', 'user', 'created', 'lastmodif', 'allday', 'recurrenceId', 'changed'];
+					 'status', 'url', 'lang', 'name', 'description', 'user', 'created', 'lastmodif', 'allday', 'recurrenceId', 'changed', 'recurrenceStart'];
 		foreach ($customs as $custom) {
 			$realcolumns[] = $custom;
 		}
@@ -675,6 +673,11 @@ class CalendarLib extends TikiLib
 				}
 				$l[] = "`$k`=?";
 				$r[] = $v;
+			}
+
+			if (! empty($data['changed']) && empty($data['recurrenceStart'])) {
+				$l[] = "`recurrenceStart` = ?";
+				$r[] = $oldData['start'];
 			}
 
 			$query = 'UPDATE `tiki_calendar_items` SET ' . implode(',', $l) . ' WHERE `calitemId`=?';
@@ -1120,7 +1123,7 @@ class CalendarLib extends TikiLib
 		return $retval;
 	}
 
-	public function get_events($calendarId, $itemIdsOrUris = [], $componenttype = null, $start = null, $end = null)
+	public function get_events($calendarId, $itemIdsOrUris = [], $componenttype = null, $start = null, $end = null, $recurrenceId = null, $changed = null)
 	{
 		global $prefs;
 
@@ -1128,8 +1131,21 @@ class CalendarLib extends TikiLib
 		$bindvars = [$calendarId];
 
 		if (count($itemIdsOrUris) > 0) {
-			$cond .= " and (i.calitemId in (".implode(',', array_fill(0, count($itemIdsOrUris), '?')).") or i.uri in (".implode(',', array_fill(0, count($itemIdsOrUris), '?'))."))";
-			$bindvars = array_merge($bindvars, $itemIdsOrUris, $itemIdsOrUris);
+			$recurrences = array_filter($itemIdsOrUris, function($uri) {
+				return substr($uri, 0, 1) == 'r';
+			});
+			$itemIdsOrUris = array_diff($itemIdsOrUris, $recurrences);
+			if (! $itemIdsOrUris) {
+				$itemIdsOrUris[] = '';
+			}
+			$recurrences = array_map(function($uri){
+				return substr($uri, 1);
+			}, $recurrences);
+			if (! $recurrences) {
+				$recurrences[] = '';
+			}
+			$cond .= " and (i.calitemId in (".implode(',', array_fill(0, count($itemIdsOrUris), '?')).") or i.uri in (".implode(',', array_fill(0, count($itemIdsOrUris), '?')).") or i.recurrenceId in (".implode(',', array_fill(0, count($recurrences), '?'))."))";
+			$bindvars = array_merge($bindvars, $itemIdsOrUris, $itemIdsOrUris, $recurrences);
 		}
 
 		// TODO: we support only events for now. This is meant for CalDAV access to support TODO items, for example.
@@ -1148,12 +1164,23 @@ class CalendarLib extends TikiLib
 			$bindvars[] = $end;
 		}
 
+		if ($recurrenceId) {
+			$cond .= " and i.recurrenceId = ?";
+			$bindvars[] = $recurrenceId;
+		}
+
+		if (! is_null($changed)) {
+			$cond .= " and i.changed = ?";
+			$bindvars[] = $changed;
+		}
+
 		$join = "left join `tiki_calendar_locations` as l on i.`locationId`=l.`callocId` left join `tiki_calendar_categories` as c on i.`categoryId`=c.`calcatId`";
 
 		$query = "select i.`start`, i.`end`, i.`name`, i.`description`, i.`status`," .
-							" i.`calitemId`, i.`calendarId`, i.`user`, i.`lastmodif` as `lastModif`, i.`url`," .
+							" i.`calitemId`, i.`calendarId`, i.`user`, i.`lastmodif` as `lastModif`, i.`url`, i.`recurrenceId`, i.`recurrenceStart`, r.`uid` as `recurrenceUid`," .
 							" l.`name` as location, c.`name` as category, i.`created`, i.`priority`, i.`uid`, i.`uri`" .
 							" from `tiki_calendar_items` i" .
+							" left join `tiki_calendar_recurrence` r on i.`recurrenceId` = r.`recurrenceId`" .
 							" $join" .
 							" where 1=1 " . $cond .
 							" order by calitemId";
@@ -1162,8 +1189,8 @@ class CalendarLib extends TikiLib
 	}
 
 	public function find_by_uid($user, $uid) {
-		$query = "select i.`calendarId`, i.`calitemId`, i.`uri` from `tiki_calendar_items` i left join `tiki_calendars` c on i.`calendarId` = c.`calendarId` where c.user = ? and i.`uid` = ?";
-		$bindvars = [$user, $uid];
+		$query = "select i.`calendarId`, i.`calitemId`, i.`uri`, i.`recurrenceId` from `tiki_calendar_items` i left join `tiki_calendars` c on i.`calendarId` = c.`calendarId` left join `tiki_calendar_recurrence` r on i.`recurrenceId` = r.`recurrenceId` where c.user = ? and (i.`uid` = ? or r.uid = ?)";
+		$bindvars = [$user, $uid, $uid];
 		$result = $this->query($query, $bindvars);
 		return $result->fetchRow();
 	}

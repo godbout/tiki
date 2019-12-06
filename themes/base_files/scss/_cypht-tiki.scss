@@ -122,4 +122,8 @@
             border-left-color: transparent;
         }
     }
+
+    .nux_dev_news table td:last-child {
+        border-bottom: 1px solid $input-border-color;
+    }
 }

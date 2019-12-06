@@ -659,6 +659,10 @@ div.drillshow {
   font-style: normal;
   font-size: 90%; }
 
+.nav-breadcrumb {
+  display: flex;
+  justify-content: space-between; }
+
 .tiki .ui-widget-content, span.plugin-mouseover {
   background: #fff;
   color: #212529;
@@ -880,7 +884,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     padding: 0 15px;
     margin: 15px 0; }
 
-  .tiki-view_tracker .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-view_tracker .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar.btn-group > .btn:not(.dropdown-toggle) {
+  .tiki-view_tracker .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki_user_messages .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-view_tracker .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki_user_messages .t_navbar.btn-group > .btn:not(.dropdown-toggle) {
     margin-right: 5px;
     margin-bottom: 5px;
     border-radius: 0.25rem; }
@@ -907,6 +911,13 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 
   .tiki-page_contribution .wikitext {
     word-break: break-word; }
+
+  .nav-breadcrumb {
+    display: block; }
+    .nav-breadcrumb .breadcrumb {
+      width: 100%; }
+    .nav-breadcrumb .breadcrumb + form {
+      display: block !important; }
 
   #page-data.col-sm-9 {
     padding-left: 0;
@@ -2335,6 +2346,13 @@ table.treetable tr.expanded span.indenter a {
 .file-uploader.active {
   border-style: dashed; }
 
+@media (max-width: 767.98px) {
+  #fgalform .media {
+    display: block; }
+    #fgalform [id*="uploadinfos"] .text-right {
+      text-align: left !important;
+      margin-top: 0.5rem; } }
+
 .statuson, .statusoff {
   padding: 3px 2px 0 2px;
   vertical-align: middle;
@@ -3215,7 +3233,13 @@ table.objectperms thead th {
 
   .adminanchors .navbar-nav {
     margin: 0;
-    padding: 0; } }
+    padding: 0; }
+
+  .meta-tabs-col1 {
+    width: auto; }
+
+  .meta-tabs-col2 {
+    width: auto; } }
 
 form.simple label.error {
   padding: 4px 0 0 20px;

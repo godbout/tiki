@@ -145,10 +145,20 @@ class Search_Formatter
 			$fields[] = $field;
 		}
 
+		$url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+		$filters = [];
+		foreach ($_GET as $key => $val) {
+			if (substr($key, 0, 3) != 'tf_') {
+				$filters[$key] = $val;
+			}
+		}
+		$url .= '?'.http_build_query($filters);
+
 		if ($fields) {
 			$smarty = TikiLib::lib('smarty');
 			$smarty->assign('filterFields', $fields);
 			$smarty->assign('filterCounter', $this->counter);
+			$smarty->assign('filterUrl', $url);
 			return '~np~' . $smarty->fetch('templates/search/list/filter.tpl') . '~/np~';
 		}
 

@@ -385,6 +385,8 @@ CREATE TABLE `tiki_calendar_recurrence` (
   `user` varchar(200) default '',
   `created` int(14) NOT NULL default '0',
   `lastmodif` int(14) NOT NULL default '0',
+  `uid` varchar(200),
+  `uri` varchar(200),
   PRIMARY KEY (`recurrenceId`),
   KEY `calendarId` (`calendarId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
@@ -406,6 +408,7 @@ CREATE TABLE `tiki_calendar_items` (
   `description` text,
   `recurrenceId` int(14),
   `changed` tinyint(1) DEFAULT '0',
+  `recurrenceStart` int(14) default NULL,
   `user` varchar(200) default '',
   `created` int(14) NOT NULL default '0',
   `lastmodif` int(14) NOT NULL default '0',
@@ -529,8 +532,26 @@ CREATE TABLE `tiki_categories` (
   `parentId` int(12) default NULL,
   `rootId` int NOT NULL DEFAULT 0,
   `hits` int(8) default NULL,
+  `tplGroupContainerId` int(12) default NULL,
+  `tplGroupPattern` varchar(200) default NULL,
   PRIMARY KEY (`categId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
+
+DROP TABLE IF EXISTS `tiki_categories_roles`;
+CREATE TABLE `tiki_categories_roles` (
+    `categId` int(12) NOT NULL,
+    `categRoleId` int(12) NOT NULL,
+    `groupRoleId` int(12) NOT NULL,
+    `groupId` int(12) NOT NULL,
+    PRIMARY KEY (`categId`,`categRoleId`,`groupRoleId`)
+) ENGINE=MyISAM;
+
+DROP TABLE IF EXISTS `tiki_categories_roles_available`;
+CREATE TABLE `tiki_categories_roles_available` (
+    `categId` int(12) NOT NULL,
+    `categRoleId` int(12) NOT NULL,
+    PRIMARY KEY (`categId`,`categRoleId`)
+) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_objects`;
 CREATE TABLE `tiki_objects` (
@@ -957,6 +978,7 @@ CREATE TABLE `tiki_forum_reads` (
 DROP TABLE IF EXISTS `tiki_forums`;
 CREATE TABLE `tiki_forums` (
   `forumId` int(8) NOT NULL auto_increment,
+  `parentId` int(8) NOT NULL default 0,
   `name` varchar(255) default NULL,
   `description` text,
   `created` int(14) default NULL,
@@ -2874,6 +2896,8 @@ CREATE TABLE `users_groups` (
   `emailPattern`  varchar(255) default '',
   `anniversary` char(4) default '',
   `prorateInterval` varchar(255) default '',
+  `isRole` char(1) DEFAULT 'n',
+  `isTplGroup` char(1) DEFAULT 'n',
   PRIMARY KEY (`id`),
   UNIQUE KEY `groupName` (`groupName` (191)),
   KEY `expireAfter` (`expireAfter`)

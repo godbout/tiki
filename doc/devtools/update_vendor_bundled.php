@@ -28,6 +28,17 @@ if (! file_exists($composerLock)) {
 	exit(1);
 }
 
+$jsonContent = json_decode(file_get_contents($composerLock));
+
+if (! empty($jsonContent->packages)) {
+	foreach ($jsonContent->packages as $package) {
+		if (strrpos($package->dist->url, 'https://composer.tiki.org') !== 0) {
+			echo "composer.lock might contain packages from unverified sources. Aborting." . PHP_EOL;
+			exit(1);
+		}
+	}
+}
+
 $initial_md5 = md5_file($composerLock);
 printf('Getting md5 from %s ...' . PHP_EOL . 'result: %s' . PHP_EOL, $composerLock, $initial_md5);
 printf('Running composer update...' . PHP_EOL);

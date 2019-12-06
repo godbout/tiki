@@ -13,12 +13,13 @@
 		{assign var=thisforum_info value=$forum_info.forumId}
 		{if ($tiki_p_forum_post_topic eq 'y' and ($prefs.feature_wiki_discuss ne 'y' or $prefs.$forumId ne $prefs.wiki_forum_id)) or $tiki_p_admin_forum eq 'y'}
 			{if !isset($comments_threadId) or $comments_threadId eq 0}
-				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick='$("#forumpost").show();return false;' _icon_name="create" _type="primary" class="btn btn-primary" _text="{tr}New Topic{/tr}"}
+				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick='$("#forumpost").show();return false;' _icon_name="create" _type="default" class="btn btn-primary" _text="{tr}New Topic{/tr}"}
 			{else}
 				{button href="tiki-view_forum.php?openpost=1&amp;forumId=$thisforum_info&amp;comments_threadId=0&amp;comments_threshold=$comments_threshold&amp;comments_offset=$comments_offset&amp;thread_sort_mode=$thread_sort_mode&amp;comments_per_page=$comments_per_page" _onclick='$("#forumpost").show();return false;' _icon_name="create" _type="link" class="btn btn-link" _text="{tr}New Topic{/tr}"}
 			{/if}
 		{/if}
 		{if $tiki_p_admin_forum eq 'y'}
+			{button href="tiki-admin_forums.php?parentId=$thisforum_info&amp;cookietab=2#content_admin_forums1-2" _icon_name="create" _type="link" class="btn btn-link" _text="{tr}Add Sub Forum{/tr}"}
 			{button href="tiki-admin_forums.php?forumId=$thisforum_info&amp;cookietab=2#content_admin_forums1-2" _icon_name="edit" _type="link" class="btn btn-link" _text="{tr}Edit Forum{/tr}"}
 		{/if}
 		{if $tiki_p_admin_forum eq 'y' or !isset($all_forums) or $all_forums|@count > 1}
@@ -104,6 +105,12 @@
 	<div class="breadcrumb">
 		<a class="link" href="{if $prefs.feature_sefurl eq 'y'}forums{else}tiki-forums.php{/if}">{tr}Forums{/tr}</a>
 		{$prefs.site_crumb_seper}
+		{foreach from=$parents item=parent}
+			{if isset($parent.name)}
+				<a class="link" href="{$parent.forumId|sefurl:'forum'}">{$parent.name|escape}</a>
+				{$prefs.site_crumb_seper}
+			{/if}
+		{/foreach}
 		<a class="link" href="{$forumId|sefurl:'forum'}">{$forum_info.name|escape}</a>
 	</div>
 
@@ -384,6 +391,145 @@
 		</div>
 	{/if}
 {/if}
+{if count($channels) > 0}
+<div id="{$ts.tableid}-div" class="{if $js}table-responsive{/if} ts-wrapperdiv" {if $ts.enabled}style="visibility:hidden;"{/if}> {*the table-responsive class cuts off dropdown menus *}
+	<div class="card card-primary">
+		<div class="card-header">
+			{tr}Sub Forums{/tr}
+		</div>
+	</div>
+	<table id="{$ts.tableid}" class="table table-striped table-hover table-forum normal" data-count="{$cant|escape}">
+		{block name=forum-header}
+			<thead>
+			<tr>
+				{$numbercol = 1}
+				<th id="name">{self_link _sort_arg='sort_mode' _sort_field='name'}{tr}Name{/tr}{/self_link}</th>
+
+				{if $prefs.forum_list_topics eq 'y'}
+					{$numbercol = $numbercol + 1}
+					<th id="threads" class="text-right">{self_link _sort_arg='sort_mode' _sort_field='threads'}{tr}Topics{/tr}{/self_link}</th>
+				{/if}
+
+				{if $prefs.forum_list_posts eq 'y'}
+					{$numbercol = $numbercol + 1}
+					<th id="comments" class="text-right">{self_link _sort_arg='sort_mode' _sort_field='comments'}{tr}Posts{/tr}{/self_link}</th>
+				{/if}
+
+				{if $prefs.forum_list_ppd eq 'y'}
+					{$numbercol = $numbercol + 1}
+					<th id="ppd">{tr}PPD{/tr}</th>
+				{/if}
+
+				{if $prefs.forum_list_lastpost eq 'y'}
+					{$numbercol = $numbercol + 1}
+					<th id="lastPost">{self_link _sort_arg='sort_mode' _sort_field='lastPost'}{tr}Last Post{/tr}{/self_link}</th>
+				{/if}
+
+				{if $prefs.forum_list_visits eq 'y'}
+					{$numbercol = $numbercol + 1}
+					<th id="hits" class="text-right">{self_link _sort_arg='sort_mode' _sort_field='hits'}{tr}Visits{/tr}{/self_link}</th>
+				{/if}
+				{$numbercol = $numbercol + 1}
+				<th id="actions"></th>
+			</tr>
+			</thead>
+		{/block}
+		<tbody>
+		{assign var=section_old value=""}
+		{section name=user loop=$channels}
+			{assign var=section value=$channels[user].section}
+			{if $section ne $section_old}
+				{assign var=section_old value=$section}
+				<td class="third info" colspan="{$numbercol}">{tr}{$section|escape}{/tr}</td>
+			{/if}
+			{block name=forum-row}
+				<tr>
+					<td class="text">
+						{if (isset($channels[user].individual) and $channels[user].individual eq 'n')
+						or ($tiki_p_admin eq 'y') or ($channels[user].individual_tiki_p_forum_read eq 'y')}
+							<a class="forumname" href="{$channels[user].forumId|sefurl:'forum'}">{$channels[user].name|escape}</a>
+						{else}
+							{$channels[user].name|escape}
+						{/if}
+						{if $prefs.forum_list_desc eq 'y'}
+							<div class="form-text">
+								{capture name="parsedDesc"}{wiki}{$channels[user].description}{/wiki}{/capture}
+								{if strlen($smarty.capture.parsedDesc) < $prefs.forum_list_description_len}
+									{$smarty.capture.parsedDesc}
+								{else}
+									{$smarty.capture.parsedDesc|strip_tags|truncate:$prefs.forum_list_description_len:"...":true}
+								{/if}
+							</div>
+						{/if}
+						<div class="t_navbar mb-4">
+							{if count($channels[user].sub_forums) > 0}
+								<b>Sub Forums</b>:
+								{foreach from=$channels[user].sub_forums item=forum}
+									<i>{button href="tiki-view_forum.php?forumId={$forum.forumId}" _onclick='$("#forumpost").show();return false;' _icon_name="users" _type="link" class="btn btn-link" _text="{tr}{$forum.name}{/tr}"}</i>
+								{/foreach}
+							{/if}
+						</div>
+					</td>
+					{if $prefs.forum_list_topics eq 'y'}
+						<td class="integer">{$channels[user].threads}</td>
+					{/if}
+					{if $prefs.forum_list_posts eq 'y'}
+						<td class="integer">{$channels[user].comments}</td>
+					{/if}
+					{if $prefs.forum_list_ppd eq 'y'}
+						<td class="integer">{$channels[user].posts_per_day|string_format:"%.2f"}</td>
+					{/if}
+					{if $prefs.forum_list_lastpost eq 'y'}
+						<td class="text">
+							{if isset($channels[user].lastPost)}
+								{$channels[user].lastPost|tiki_short_datetime}<br>
+								{if $prefs.forum_reply_notitle neq 'y'}<small><i>{$channels[user].lastPostData.title|escape}</i>{/if}
+								{tr}by{/tr} {$channels[user].lastPostData.userName|username}</small>
+							{/if}
+						</td>
+					{/if}
+					{if $prefs.forum_list_visits eq 'y'}
+						<td class="integer">{$channels[user].hits}</td>
+					{/if}
+					<td class="action">
+						{actions}
+						{strip}
+							<action>
+								<a href="{$channels[user].forumId|sefurl:'forum'}">
+									{icon name="view" _menu_text='y' _menu_icon='y' alt="{tr}View{/tr}"}
+								</a>
+							</action>
+							{if ($tiki_p_admin eq 'y') or (($channels[user].individual eq 'n') and ($tiki_p_admin_forum eq 'y')) or ($channels[user].individual_tiki_p_admin_forum eq 'y')}
+								<action>
+									<a href="tiki-admin_forums.php?forumId={$channels[user].forumId}&amp;cookietab=2#content_admin_forums1-2">
+										{icon name="edit" _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}
+									</a>
+								</action>
+								<action>
+									{permission_link mode=text type="forum" permType="forums" id=$channels[user].forumId}
+								</action>
+								<action>
+									<a href="{bootstrap_modal controller=forum action=delete_forum checked={$channels[user].forumId}}">
+										{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
+									</a>
+								</action>
+							{/if}
+						{/strip}
+						{/actions}
+					</td>
+				</tr>
+			{/block}
+			{sectionelse}
+			{if !$ts.enabled || ($ts.enabled && $ts.ajax)}
+				{norecords _colspan=$numbercol _text="{tr}No Sub forums found{/tr}"}
+			{else}
+				{norecords _colspan=$numbercol _text="{tr}Loading{/tr}..."}
+			{/if}
+		{/section}
+		</tbody>
+	</table>
+</div>
+{/if}
 <form id="view_forum" method="post">
 	{if $tiki_p_admin_forum eq 'y' && ($comments_coms|@count > 0 || $queued > 0 || $reported > 0)}
 		<div class="card card-primary">
@@ -590,7 +736,7 @@
 									{if $comments_coms[ix].summary|count_characters > 0}
 										{$comments_coms[ix].summary|truncate:240:"...":true|escape}
 									{else}
-										{$comments_coms[ix].data|truncate:240:"...":true|escape}
+										{$comments_coms[ix].data|truncate:100:"...":true|escape}
 									{/if}
 								</div>
 							{/if}

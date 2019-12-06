@@ -41,7 +41,7 @@ function smarty_function_menu($params, $smarty)
 	if (empty($link_on_section) || $link_on_section == 'y') {
 		$smarty->assign('link_on_section', 'y');
 	} else {
-		 $smarty->assign('link_on_section', 'n');
+		$smarty->assign('link_on_section', 'n');
 	}
 
 	if (empty($translate)) {
@@ -63,19 +63,48 @@ function smarty_function_menu($params, $smarty)
 	$smarty->assign('menu_channels', $channels['data']);
 	$smarty->assign('menu_info', $menu_info);
 
+	$objectCategories = TikiLib::lib('categ')->get_current_object_categories();
+
+	list($categGroups) = array_values(array_filter(array_map(function ($categId) {
+		$categ = TikiLib::lib('categ')->get_category($categId);
+		$parent = TikiLib::lib('categ')->get_category($categ["parentId"]);
+		if (! $parent || $parent["id"] != 0 || ! $parent["tplGroupContainerId"]) {
+			return null;
+		}
+		$templatedgroupid = TikiLib::lib('attribute')->get_attribute("category", $categId, "tiki.category.templatedgroupid");
+		$tplGroup = TikiLib::lib('user')->get_groupId_info($templatedgroupid);
+		if (empty($tplGroup['groupName'])) {
+			return null;
+		}
+		return [$parent["tplGroupContainerId"] => $tplGroup['groupName']];
+	}, $objectCategories), function ($group) {
+		return $group != null;
+	}));
+
 	if (isset($params['bootstrap']) && $params['bootstrap'] !== 'n' && $prefs['javascript_enabled'] === 'y') {
 		$structured = [];
 		$activeSection = null;
 		foreach ($channels['data'] as $element) {
-			if ($element['type'] == 's') {
-				if ($activeSection) {
-					$structured[] = $activeSection;
+				$attribute = TikiLib::lib('attribute')->get_attribute('menu', $element["optionId"], 'tiki.menu.templatedgroupid');
+				if ($attribute && $catName = $categGroups[$attribute]) {
+					$element["name"] = str_replace("--groupname--", $catName, $element["name"]);
+					$element["url"] = str_replace("--groupname--", $catName, $element["name"]);
+					$element["sefurl"] = str_replace("--groupname--", $catName, $element["sefurl"]);
+					$element["canonic"] = str_replace("--groupname--", $catName, $element["canonic"]);
+				} elseif ($attribute && ! $categGroups[$attribute]) {
+					continue;
 				}
 
-				$activeSection = $element;
+
+			if ($element['type'] == 's') {
+				$structured[] = $element;
+				$structuredSize = count($structured);
+				$activeSection = &$structured[$structuredSize-1];
+
 				$activeSection['children'] = [];
 			} elseif ($element['type'] == 'o') {
 				if ($activeSection) {
+					$element['parent'] = $activeSection;
 					$activeSection['children'][] = $element;
 				} else {
 					$structured[] = $element;
@@ -85,12 +114,28 @@ function smarty_function_menu($params, $smarty)
 					$structured[] = $activeSection;
 				}
 				$activeSection = null;
+			} else {
+				$level = (int)$element['type'];
+				if ($activeSection) {
+					//If the element is at a higher level than active section
+					if($level < ((int)$activeSection['type']) || $activeSection['type'] == 'o') {
+						$structured[] = $element;
+						$structuredSize = count($structured);
+						$activeSection = &$structured[$structuredSize-1];
+
+						$activeSection['children'] = [];
+					} else {
+						$element['parent'] = $activeSection;
+						$activeSection['children'][] = $element;
+						$activeSectionSize = count($activeSection['children']);
+						$activeSection = &$activeSection['children'][$activeSectionSize-1];
+					}
+				} else {
+					$structured[] = $element;
+				}
 			}
 		}
 
-		if ($activeSection) {
-			$structured[] = $activeSection;
-		}
 		$smarty->assign('list', $structured);
 		switch ($params['bootstrap']) {
 			case 'navbar':

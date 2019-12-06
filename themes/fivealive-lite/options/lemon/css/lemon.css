@@ -22,17 +22,25 @@ nav.fixed-top {
 .navbar.navbar-dark.bg-dark.fixed-top, .navbar.navbar-dark.bg-dark.fixed-top .navbar {
   padding: 0; }
 
-.header_outer, .header_outer .navbar-dark.bg-dark, .navbar.navbar-dark.bg-dark.fixed-top, .navbar.navbar-dark.bg-dark.fixed-top .navbar-dark.bg-dark {
-  background: #e4af00 !important; }
+.navbar.bg-dark.fixed-top, .navbar.bg-dark.fixed-top .navbar, .navbar.bg-light.fixed-top, .navbar.bg-light.fixed-top .navbar, .layout_classic #top_modules.bg-dark, .layout_classic #top_modules.bg-light, .header_outer, .header_outer .navbar-dark.bg-dark {
+  background: #e4af00 !important;
+  color: #000; }
+  .navbar.bg-dark.fixed-top a, .navbar.bg-dark.fixed-top .navbar a, .navbar.bg-light.fixed-top a, .navbar.bg-light.fixed-top .navbar a, .layout_classic #top_modules.bg-dark a, .layout_classic #top_modules.bg-light a, .header_outer a, .header_outer .navbar-dark.bg-dark a {
+    color: #000; }
+  .navbar.bg-dark.fixed-top a:hover, .navbar.bg-dark.fixed-top .navbar a:hover, .navbar.bg-light.fixed-top a:hover, .navbar.bg-light.fixed-top .navbar a:hover, .layout_classic #top_modules.bg-dark a:hover, .layout_classic #top_modules.bg-light a:hover, .header_outer a:hover, .header_outer .navbar-dark.bg-dark a:hover {
+    color: #5c5c5c; }
 
 .navbar.navbar-dark.bg-dark.fixed-top a, .navbar.navbar-dark.bg-dark.fixed-top .btn-link {
-  color: rgba(255, 255, 255, 0.75); }
+  color: #000; }
 
-.layout_basic .page-header > .top_modules, .topbar .navbar-dark .navbar-nav > li, .topbar .nav > li {
-  background: #cb9e10; }
+.topbar .navbar-dark .navbar-nav > li, .topbar .nav > li, .layout_social #topbar_modules, .layout_social #topbar.bg-dark, .layout_social #topbar.bg-light, .layout_social .topbar .bg-dark, .layout_social .topbar .bg-light, .layout_classic #topbar_modules, .layout_classic #topbar.bg-dark, .layout_classic #topbar.bg-light, .layout_classic #topbar_modules .navbar.bg-dark, .layout_classic #topbar_modules .navbar.bg-light {
+  background: #cb9e10 !important; }
 
 .bg-dark {
   background-color: #cb9e10 !important; }
+
+.layout_basic #topbar_modules, .layout_basic #topbar.bg-dark, .layout_basic #topbar.bg-light, .layout_basic .topbar .bg-light, .layout_basic .topbar .bg-dark {
+  background: #cb9e10 !important; }
 
 a, .btn-link {
   color: #c75a28; }
@@ -211,11 +219,14 @@ input[type="checkbox"].preffilter-toggle-round:checked + label::before {
 .topbar .cssmenu_horiz ul {
   background: #c75a29; }
 
-.blog-postbody-title h2.panel-title {
+.blog-postbody-title, .blog-postbody-title a, .postbody-title .title > .card-title a.link, .postbody h2.card-title {
+  color: #000; }
+
+.blog-postbody-title h2.card-title {
   font-size: 20px; }
 
 .postbody .card-header {
-  background: #f9a013 !important; }
+  background: #e4af00; }
 
 .siteloginbar_popup .dropdown-menu > li > a {
   color: #fff; }

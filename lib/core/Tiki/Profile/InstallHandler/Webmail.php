@@ -62,20 +62,26 @@ class Tiki_Profile_InstallHandler_Webmail extends Tiki_Profile_InstallHandler
 		$data['bcc']     = trim(str_replace(["\n","\r"], "", html_entity_decode(strip_tags($data['bcc']))), ' ,');
 		$data['subject'] = trim(str_replace(["\n","\r"], "", html_entity_decode(strip_tags($data['subject']))));
 
-		// TODO: extend cypht to support fattId and pageaftersend params
+		$drafts = $_SESSION['cypht']['compose_drafts'] ?? [];
+		$drafts[] = [
+			'draft_to' => $data['to'],
+			'draft_cc' => $data['cc'],
+			'draft_bcc' => $data['bcc'],
+			'draft_subject' => $data['subject'],
+			'draft_body' => $data['body'],
+			'draft_fattId' => $data['fattId']
+		];
+		$draft_id = count($drafts)-1;
+		$_SESSION['cypht']['compose_drafts'] = $drafts;
+		$_SESSION['cypht']['pageaftersend'] = $data['pageaftersend'];
+
 		$webmailUrl = $tikilib->tikiUrl(
 			'tiki-webmail.php',
 			[
-						'page' => 'compose',
-						'compose_to' => $data['to'],
-						'compose_cc' => $data['cc'],
-						'compose_bcc' => $data['bcc'],
-						'compose_subject' => $data['subject'],
-						'compose_body' => $data['body'],
-						'fattId' => $data['fattId'],
-						'pageaftersend' => $data['pageaftersend'],
-						'useHTML' => $data['html'] ? 'y' : 'n'
-					]
+				'page' => 'compose',
+				'draft_id' => $draft_id,
+				'useHTML' => $data['html'] ? 'y' : 'n'
+			]
 		);
 
 		header('Location: ' . $webmailUrl);

@@ -56,6 +56,7 @@
 					</h2>
 				{/if}
 				<input type="hidden" name="save[user]" value="{$calitem.user|escape}">
+				<input type="hidden" name="tzoffset" value="">
 				{if $id}
 					<input type="hidden" name="save[calitemId]" value="{$id|escape}">
 				{/if}

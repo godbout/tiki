@@ -153,16 +153,20 @@ function createPage($title, $content)
                 <div class="heading-text">
                     <h2 class="main-text">$title</h2>
                 </div>
-                <div>
+			<div class="row mb-2">
+				<div class="col" id="col1">
+					<h1 class="text-center">
+						$title
+					</h1>
+					<div class="text-center">
                     $content
                 </div>
             </div>
-            
-             <a href="https://tiki.org" class="btn_powered" target="_blank" title="Powered by Tiki Wiki CMS Groupware">
-                <img src="img/tiki/tikibutton.png" alt="Powered by Tiki Wiki CMS Groupware">
-            </a>
-        </header>
-		
+			</div>
+			<div style="position:fixed;bottom:1.5em;right:1.5em;z-index:1;">
+				<a href="http://tiki.org" target="_blank" title="Powered by Tiki Wiki CMS Groupware"><img src="img/tiki/tikibutton.png" alt="Powered by Tiki Wiki CMS Groupware" /></a>
+			</div>
+		</div>
 	</body>
 </html>
 END;

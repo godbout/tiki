@@ -139,6 +139,18 @@ class Search_Query_WikiBuilder
 		$query->filterCategory($value);
 	}
 
+	function wpquery_filter_templatedgroup($query, $value)
+	{
+		$categories = TikiLib::lib('categ')->get_managed_categories($value);
+		if (count($categories) > 0) {
+			$ids = array_map(function ($cat) {
+				return $cat['categId'];
+			}, $categories);
+			$value = implode(' OR ',$ids);
+		}
+		$query->filterCategory($value);
+	}
+
 	function wpquery_filter_contributors($query, $value)
 	{
 		$query->filterContributors($value);

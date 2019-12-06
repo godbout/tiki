@@ -173,8 +173,12 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
 
     protected function mapCalendarObjectUriToItem($objectUri) {
         $calendarlib = TikiLib::lib('calendar');
-        if (preg_match('#calendar-object-(.*)$#', $objectUri, $m)) {
-            $item = $calendarlib->get_item($m[1]);
+        if (preg_match('#calendar-object-(r?)(.*)$#', $objectUri, $m)) {
+            if ($m[1]) {
+                $item = new \CalRecurrence($m[2]);
+            } else {
+                $item = $calendarlib->get_item($m[2]);
+            }
         } else {
             $item = $calendarlib->get_item_by_uri($objectUri);
         }
@@ -188,11 +192,19 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         return 'calendar-'.$calendarId;
     }
 
-    protected function getCalendarObjectUri($row) {
-        if (! empty($row['uri'])) {
-            return $row['uri'];
+    protected function getCalendarObjectUri($row_or_rec) {
+        if (is_array($row_or_rec)) {
+            if (! empty($row_or_rec['uri'])) {
+                return $row_or_rec['uri'];
+            } else {
+                return 'calendar-object-'.$row_or_rec['calitemId'];
+            }
         } else {
-            return 'calendar-object-'.$row['calitemId'];
+            if ($row_or_rec->getUri()) {
+                return $row_or_rec->getUri();
+            } else {
+                return 'calendar-object-r'.$row_or_rec->getId();
+            }
         }
     }
 
@@ -415,7 +427,12 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         $filtered = Perms::filter([ 'type' => 'event' ], 'object', $objects, [ 'object' => 'calitemId' ], 'view_events');
 
         $result = [];
+        $recurrences = [];
         foreach ($filtered as $row) {
+            if ($row['recurrenceId']) {
+                $recurrences[] = $row['recurrenceId'];
+                continue;
+            }
             $calendardata = $this->constructCalendarData($row);
             $result[] = [
                 'id'           => $row['calitemId'],
@@ -423,7 +440,20 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
                 'lastmodified' => (int)$row['lastModif'],
                 'etag'         => '"' . md5($calendardata) . '"',
                 'size'         => strlen($calendardata),  // TODO: add to Tiki: calendardata
-                'component'    => strtolower($row['componenttype']),
+                'component'    => 'VEVENT',
+            ];
+        }
+        $recurrences = array_unique($recurrences);
+        foreach ($recurrences as $recurrenceId) {
+            $rec = new \CalRecurrence($recurrenceId);
+            $calendardata = $this->constructRecurringCalendarData($rec);
+            $result[] = [
+                'id'           => 'r'.$rec->getId(),
+                'uri'          => $this->getCalendarObjectUri($rec),
+                'lastmodified' => (int)$rec->getLastModif(),
+                'etag'         => '"' . md5($calendardata) . '"',
+                'size'         => strlen($calendardata),  // TODO: add to Tiki: calendardata
+                'component'    => 'VEVENT',
             ];
         }
         return $result;
@@ -454,6 +484,12 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         $this->ensureCalendarAccess($calendarId, $instanceId, 'view_calendar', 'read');
 
         $row = $this->mapCalendarObjectUriToItem($objectUri);
+        if (! is_array($row)) {
+            $rec = $row;
+            $row = ['calitemId' => $rec->getFirstItemId(), 'calendarId' => $rec->getCalendarId(), 'lastModif' => $rec->getLastModif()];
+        } else {
+            $rec = null;
+        }
 
         $perms = Perms::get('event', $row['calitemId']);
         if (! $perms->view_events) {
@@ -464,16 +500,20 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             return null;
         }
 
-        $calendardata = $this->constructCalendarData($row);
+        if ($rec) {
+            $calendardata = $this->constructRecurringCalendarData($rec);
+        } else {
+            $calendardata = $this->constructCalendarData($row);
+        }
 
         return [
-            'id'           => $row['calitemId'],
-            'uri'          => $this->getCalendarObjectUri($row),
+            'id'           => $rec ? 'r'.$rec->getId() : $row['calitemId'],
+            'uri'          => $this->getCalendarObjectUri($rec ?? $row),
             'lastmodified' => (int)$row['lastModif'],
             'etag'         => '"' . md5($calendardata) . '"',
             'size'         => strlen($calendardata),
             'calendardata' => $calendardata,
-            'component'    => strtolower($row['componenttype']),
+            'component'    => 'VEVENT',
          ];
     }
 
@@ -504,7 +544,12 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             }, $chunk);
             $objects = TikiLib::lib('calendar')->get_events($calendarId, $itemIdsOrUris);
             $filtered = Perms::filter([ 'type' => 'event' ], 'object', $objects, [ 'object' => 'calitemId' ], 'view_events');
+            $recurrences = [];
             foreach ($filtered as $row) {
+                if ($row['recurrenceId']) {
+                    $recurrences[] = $row['recurrenceId'];
+                    continue;
+                }
                 $calendardata = $this->constructCalendarData($row);
                 $result[] = [
                     'id'           => $row['calitemId'],
@@ -513,7 +558,20 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
                     'etag'         => '"' . md5($calendardata) . '"',
                     'size'         => strlen($calendardata),  // TODO: add to Tiki: calendardata
                     'calendardata' => $calendardata,
-                    'component'    => strtolower($row['componenttype']),
+                    'component'    => 'VEVENT',
+                ];
+            }
+            $recurrences = array_unique($recurrences);
+            foreach ($recurrences as $recurrenceId) {
+                $rec = new \CalRecurrence($recurrenceId);
+                $calendardata = $this->constructRecurringCalendarData($rec);
+                $result[] = [
+                    'id'           => 'r'.$rec->getId(),
+                    'uri'          => $this->getCalendarObjectUri($rec),
+                    'lastmodified' => (int)$rec->getLastModif(),
+                    'etag'         => '"' . md5($calendardata) . '"',
+                    'size'         => strlen($calendardata),  // TODO: add to Tiki: calendardata
+                    'component'    => 'VEVENT',
                 ];
             }
         }
@@ -549,11 +607,31 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
 
         $this->ensureCalendarAccess($calendarId, $instanceId, 'add_events', 'write');
 
-        $data = $this->getDenormalizedData($calendarData);
+        $data = $this->getDenormalizedData($calendarData, $calendarId);
         $data['calendarId'] = $calendarId;
         $data['uri'] = $objectUri;
 
-        TikiLib::lib('calendar')->set_item($user, 0, $data);
+        if ($data['rec']) {
+            if(empty($data['priority'])) {
+                $data['priority'] = 0;
+            }
+            if(is_null($data['status'])) {
+                $data['status'] = 1;
+            }
+            if(empty($data['lang'])) {
+                $data['lang'] = 'en';
+            }
+            if(empty($data['nlId'])) {
+                $data['nlId'] = 0;
+            }
+            $data['user'] = $user;
+            $rec = $data['rec'];
+            $rec->updateDetails($data);
+            $rec->save(true);
+        } else {
+            TikiLib::lib('calendar')->set_item($user, 0, $data);
+        }
+
         return '"' . $data['etag'] . '"';
     }
 
@@ -584,13 +662,31 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         list($calendarId, $instanceId) = $calendarId;
 
         $item = $this->mapCalendarObjectUriToItem($objectUri);
+        if (! is_array($item)) {
+            $rec = $item;
+            $item = ['calitemId' => $rec->getFirstItemId()];
+        } else {
+            $rec = null;
+        }
 
         $this->ensureCalendarAccess(['event', $item['calitemId']], $instanceId, 'change_events', 'write');
 
-        $data = $this->getDenormalizedData($calendarData);
+        $data = $this->getDenormalizedData($calendarData, $calendarId);
         $data['calendarId'] = $calendarId;
-        
-        TikiLib::lib('calendar')->set_item($user, $item['calitemId'], $data);
+
+        if ($rec) {
+            if ($data['rec']) {
+                $data['rec']->setId($rec->getId());
+                $rec = $data['rec'];
+            }
+            $data['calitemId'] = $item['calitemId'];
+            $rec->updateDetails($data);
+            $rec->setUser($user);
+            $rec->save(true);
+        } else {
+            TikiLib::lib('calendar')->set_item($user, $item['calitemId'], $data);
+        }
+
         return '"' . $data['etag'] . '"';
 
     }
@@ -613,26 +709,41 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         list($calendarId, $instanceId) = $calendarId;
 
         $item = $this->mapCalendarObjectUriToItem($objectUri);
+        if (! is_array($item)) {
+            $rec = $item;
+            $item = ['calitemId' => $rec->getFirstItemId()];
+        } else {
+            $rec = null;
+        }
 
         $this->ensureCalendarAccess(['event', $item['calitemId']], $instanceId, 'change_events', 'write');
 
-        TikiLib::lib('calendar')->drop_item($user, $item['calitemId']);
+        if ($rec) {
+            $rec->delete(0);
+        } else {
+            TikiLib::lib('calendar')->drop_item($user, $item['calitemId']);
+        }
     }
 
     /**
      * Parses some information from calendar objects, used for optimized
-     * calendar-queries and field mapping to Tiki.
+     * calendar-queries and field mapping to Tiki. RRULE parsing partially
+     * supports RFC 5545 as Tiki does not handle all of the specification.
      *
      * @param string $calendarData
      * @return array
      */
-    protected function getDenormalizedData($calendarData) {
+    protected function getDenormalizedData($calendarData, $calendarId) {
+        $calendar = TikiLib::lib('calendar')->get_calendar($calendarId);
+        $timezone = TikiLib::lib('tiki')->get_display_timezone($calendar['user']);
+
         $vObject = VObject\Reader::read($calendarData);
         $componentType = null;
         $component = null;
         $firstOccurence = null;
         $lastOccurence = null;
         $uid = null;
+        $rec = null;
         foreach ($vObject->getComponents() as $component) {
             if ($component->name !== 'VTIMEZONE') {
                 $componentType = $component->name;
@@ -643,38 +754,75 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         if (!$componentType) {
             throw new \Sabre\DAV\Exception\BadRequest('Calendar objects must have a VJOURNAL, VEVENT or VTODO component');
         }
+        // TODO: recurrence-id - modify individual events in a recurrence series
         if ($componentType === 'VEVENT') {
             $firstOccurence = $component->DTSTART->getDateTime()->getTimeStamp();
-            // Finding the last occurence is a bit harder
-            if (!isset($component->RRULE)) {
-                if (isset($component->DTEND)) {
-                    $lastOccurence = $component->DTEND->getDateTime()->getTimeStamp();
-                } elseif (isset($component->DURATION)) {
-                    $endDate = clone $component->DTSTART->getDateTime();
-                    $endDate = $endDate->add(VObject\DateTimeParser::parse($component->DURATION->getValue()));
-                    $lastOccurence = $endDate->getTimeStamp();
-                } elseif (!$component->DTSTART->hasTime()) {
-                    $endDate = clone $component->DTSTART->getDateTime();
-                    $endDate = $endDate->modify('+1 day');
-                    $lastOccurence = $endDate->getTimeStamp();
-                } else {
-                    $lastOccurence = $firstOccurence;
-                }
+            if (isset($component->DTEND)) {
+                $lastOccurence = $component->DTEND->getDateTime()->getTimeStamp();
+            } elseif (isset($component->DURATION)) {
+                $endDate = clone $component->DTSTART->getDateTime();
+                $endDate = $endDate->add(VObject\DateTimeParser::parse($component->DURATION->getValue()));
+                $lastOccurence = $endDate->getTimeStamp();
+            } elseif (!$component->DTSTART->hasTime()) {
+                $endDate = clone $component->DTSTART->getDateTime();
+                $endDate = $endDate->modify('+1 day');
+                $lastOccurence = $endDate->getTimeStamp();
             } else {
-                $it = new VObject\Recur\EventIterator($vObject, (string)$component->UID);
-                $maxDate = new \DateTime(self::MAX_DATE);
-                if ($it->isInfinite()) {
-                    $lastOccurence = $maxDate->getTimeStamp();
-                } else {
-                    $end = $it->getDtEnd();
-                    while ($it->valid() && $end < $maxDate) {
-                        $end = $it->getDtEnd();
-                        $it->next();
-
-                    }
-                    $lastOccurence = $end->getTimeStamp();
+                $lastOccurence = $firstOccurence;
+            }
+            if (isset($component->RRULE)) {
+                $rec = new \CalRecurrence;
+                $parts = $component->RRULE->getParts();
+                switch ($parts['FREQ']) {
+                    case "WEEKLY":
+                        if (isset($parts['BYDAY'])) {
+                            $weekdays = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+                            $weekday = array_search($parts['BYDAY'], $weekdays);
+                        } else {
+                            $weekday = $component->DTSTART->getDateTime()->format('w');
+                        }
+                        $rec->setWeekly(true);
+                        $rec->setWeekday($weekday);
+                        $rec->setMonthly(false);
+                        $rec->setYearly(false);
+                        break;
+                    case "MONTHLY":
+                        if (isset($parts['BYMONTHDAY'])) {
+                            $monthday = $parts['BYMONTHDAY'];
+                        } else {
+                            $monthday = $component->DTSTART->getDateTime()->format('j');
+                        }
+                        $rec->setWeekly(false);
+                        $rec->setMonthly(true);
+                        $rec->setDayOfMonth($parts['BYMONTHDAY']);
+                        $rec->setYearly(false);
+                        break;
+                    case "YEARLY":
+                        if (isset($parts['BYMONTH'])) {
+                            $month = $parts['BYMONTH'];
+                        } else {
+                            $month = $component->DTSTART->getDateTime()->format('n');
+                        }
+                        if (isset($parts['BYMONTH'])) {
+                            $monthday = $parts['BYMONTHDAY'];
+                        } else {
+                            $monthday = $component->DTSTART->getDateTime()->format('j');
+                        }
+                        $rec->setWeekly(false);
+                        $rec->setMonthly(false);
+                        $rec->setYearly(true);
+                        $rec->setDateOfYear(str_pad($month, 2, '0', STR_PAD_LEFT) . str_pad($monthday, 2, '0', STR_PAD_LEFT));
+                        break;
                 }
-
+                $rec->setStartPeriod(\TikiDate::getStartDay($firstOccurence, $timezone));
+                if (isset($parts['COUNT'])) {
+                    $rec->setNbRecurrences($parts['COUNT']);
+                } else {
+                    $rec->setEndPeriod(\TikiDate::getStartDay(strtotime($parts['UNTIL']), $timezone));
+                }
+                $rec->setLang('en');
+                $rec->setNlId(0);
+                $rec->setAllday(0);
             }
 
             // Ensure Occurence values are positive
@@ -689,6 +837,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             'start'          => $firstOccurence,
             'end'            => $lastOccurence,
             'uid'            => $uid,
+            'rec'            => $rec,
         ];
 
         if (isset($component->CREATED)) {
@@ -819,8 +968,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
      * future may recur indefinitely long. Thus, current implementation leaves parsing the timezone identifier to the clients as TZID
      * is all we really have in Tiki - the timezone name user is acting in.
      */
-    protected function constructCalendarData($row) {
-        // TODO: recurring events
+    protected function constructCalendarData($row, $serialize = true) {
         static $calendar_timezones = [];
         if (isset($calendar_timezones[$row['calendarId']])) {
             $timezone = $calendar_timezones[$row['calendarId']];
@@ -845,7 +993,9 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             'DTSTART' => $dtstart,
             'DTEND'   => $dtend,
         ];
-        if (! empty($row['uid'])) {
+        if (! empty($row['recurrenceUid'])) {
+            $data['UID'] = $row['recurrenceUid'];
+        } elseif (! empty($row['uid'])) {
             $data['UID'] = $row['uid'];
         }
         if (! empty($row['description'])) {
@@ -865,6 +1015,9 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         }
         if (! empty($row['url'])) {
             $data['URL'] = $row['url'];
+        }
+        if (! empty($row['recurrenceStart'])) {
+            $data['RECURRENCE-ID'] = \DateTime::createFromFormat('U', $row['recurrenceStart'])->setTimezone($dtzone);
         }
 
         $vcalendar = new VObject\Component\VCalendar();
@@ -898,7 +1051,77 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             TikiLib::lib('calendar')->fill_uid($row['calitemId'], (string)$vevent->UID);
         }
 
+        if ($serialize) {
+            return $vcalendar->serialize();
+        } else {
+            return $vcalendar;
+        }
+    }
+
+    protected function constructRecurringCalendarData($rec) {
+        $vcalendar = $rec->constructVCalendar();
+        $vevent = $vcalendar->VEVENT;
+        $vevent->STATUS = $this->mapEventStatus($rec->getStatus());
+
+        if ($firstItemId = $rec->getFirstItemId()) {
+            // TODO: optimize this for N+1 query problem
+            $item = TikiLib::lib('calendar')->get_item($firstItemId);
+            foreach ($item['organizers'] as $user) {
+                $vevent->add(
+                    'ORGANIZER',
+                    TikiLib::lib('user')->get_user_email($user),
+                    [
+                        'CN' => TikiLib::lib('tiki')->get_user_preference($user, 'realName'),
+                    ]
+                );
+            }
+            foreach ($item['participants'] as $par) {
+                $vevent->add(
+                    'ATTENDEE',
+                    TikiLib::lib('user')->get_user_email($par['name']),
+                    [
+                        'CN' => TikiLib::lib('tiki')->get_user_preference($par['name'], 'realName'),
+                        'ROLE' => $this->mapAttendeeRole($par['role'])
+                    ]
+                );
+            }
+        }
+
+        $vevents = [$vevent];
+
+        $changed_events = TikiLib::lib('calendar')->get_events($rec->getCalendarId(), [], null, null, null, $rec->getId(), 1);
+        foreach ($changed_events as $row) {
+            $eventcal = $this->constructCalendarData($row, false);
+            $vcalendar->add($eventcal->VEVENT);
+        }
+
         return $vcalendar->serialize();
+    }
+
+    protected function getRecurringEventWithChanges($rec) {
+        $result = [];
+        $calendardata = $this->constructRecurringCalendarData($rec);
+        $result[] = [
+            'id'           => 'r'.$rec->getId(),
+            'uri'          => $this->getCalendarObjectUri($rec),
+            'lastmodified' => (int)$rec->getLastModif(),
+            'etag'         => '"' . md5($calendardata) . '"',
+            'size'         => strlen($calendardata),  // TODO: add to Tiki: calendardata
+            'component'    => 'VEVENT',
+        ];
+        $changed_events = TikiLib::lib('calendar')->get_events($rec->getCalendarId(), [], null, null, null, $rec->getId(), 1);
+        foreach ($changed_events as $row) {
+            $calendardata = $this->constructCalendarData($row);
+            $result[] = [
+                'id'           => $row['calitemId'],
+                'uri'          => $this->getCalendarObjectUri($row),
+                'lastmodified' => (int)$row['lastModif'],
+                'etag'         => '"' . md5($calendardata) . '"',
+                'size'         => strlen($calendardata),  // TODO: add to Tiki: calendardata
+                'component'    => 'VEVENT',
+            ];
+        }
+        return $result;
     }
 
     /**
@@ -1002,7 +1225,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             $end = null;
         }
 
-        $objects = TikiLib::lib('calendar')->get_events($calendarId, $itemIds, $componentType, $start, $end);
+        $objects = TikiLib::lib('calendar')->get_events($calendarId, [], $componentType, $start, $end);
         $filtered = Perms::filter([ 'type' => 'event' ], 'object', $objects, [ 'object' => 'calitemId' ], 'view_events');
 
         if ($requirePostFilter) {
@@ -1015,9 +1238,22 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             }
         }
 
-        return array_map(function($row){
-            return $this->getCalendarObjectUri($row);
-        }, $filtered);
+        $results = [];
+        $recurrences = [];
+        foreach ($filtered as $row) {
+            if ($row['recurrenceId']) {
+                $recurrences[] = $row['recurrenceId'];
+                continue;
+            }
+            $results[] = $this->getCalendarObjectUri($row);
+        }
+        $recurrences = array_unique($recurrences);
+        foreach ($recurrences as $recurrenceId) {
+            $rec = new \CalRecurrence($recurrenceId);
+            $results[] = $this->getCalendarObjectUri($rec);
+        }
+
+        return $results;
     }
 
     /**
@@ -1045,7 +1281,12 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         if ($row) {
             $perms = Perms::get('event', $row['calitemId']);
             if ($perms->view_events) {
-                return $this->getCalendarUri($row['calendarId']) . '/' . $this->getCalendarObjectUri($row);
+                if ($row['recurrenceId']) {
+                    $rec = new \CalRecurrence($row['recurrenceId']);
+                    return $this->getCalendarUri($row['calendarId']) . '/' . $this->getCalendarObjectUri($rec);
+                } else {
+                    return $this->getCalendarUri($row['calendarId']) . '/' . $this->getCalendarObjectUri($row);
+                }
             }
         }
     }
@@ -1128,11 +1369,16 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         ];
 
         if ($syncToken) {
-
             $changes = TikiLib::lib('calendar')->get_changes($calendarId, $syncToken, $limit ?? -1);
             $filtered = Perms::filter([ 'type' => 'event' ], 'object', $changes, [ 'object' => 'calitemId' ], 'view_events');
 
+            $recurrences = [];
             foreach ($filtered as $row) {
+
+                if ($row['recurrenceId']) {
+                    $recurrences[] = $row['recurrenceId'];
+                    continue;
+                }
 
                 switch ($row['operation']) {
                     case 1 :
@@ -1147,15 +1393,32 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
                 }
 
             }
+
+            foreach ($recurrences as $recurrenceId) {
+                $rec = new \CalRecurrence($recurrenceId);
+                $result['modified'][] = $this->getCalendarObjectUri($rec);
+            }
         } else {
             // No synctoken supplied, this is the initial sync.
             $events = TikiLib::lib('calendar')->get_events($calendarid);
             $filtered = Perms::filter([ 'type' => 'event' ], 'object', $events, [ 'object' => 'calitemId' ], 'view_events');
-
-            $result['added'] = array_map(function($row) {
-                return $this->getCalendarObjectUri($row);
-            }, $filtered);
+            
+            $recurrences = [];
+            foreach ($filtered as $row) {
+                if ($row['recurrenceId']) {
+                    $recurrences[] = $row['recurrenceId'];
+                } else {
+                    $result['added'][] = $this->getCalendarObjectUri($row);
+                }
+            }
+            
+            $recurrences = array_unique($recurrences);
+            foreach ($recurrences as $recurrenceId) {
+                $rec = new \CalRecurrence($recurrenceId);
+                $result['added'][] = $this->getCalendarObjectUri($rec);
+            }
         }
+
         return $result;
     }
 

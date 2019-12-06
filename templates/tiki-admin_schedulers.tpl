@@ -137,7 +137,7 @@
 {tab name="{$add_edit_scheduler_tablabel} {$schedulename}"}
 	<br><br>
 	<div class="row">
-		<div class="offset-sm-3 col-sm-7">
+		<div class="offset-sm-2 col-sm-10">
 			{remarksbox type="note" title="{tr}Information{/tr}"}
 			{tr}Use CRON format to enter the values in "Run Time":
 				<br>
@@ -151,22 +151,22 @@
 			enctype="multipart/form-data" name="RegForm" autocomplete="off">
 		{ticket}
 		<div class="form-group row">
-			<label class="col-sm-3 col-form-label" for="scheduler_name">{tr}Name{/tr} *</label>
-			<div class="col-sm-7">
+			<label class="col-sm-2 col-form-label" for="scheduler_name">{tr}Name{/tr} *</label>
+			<div class="col-sm-10">
 				<input type="text" id='scheduler_name' class="form-control" name='scheduler_name'
 					value="{$schedulerinfo.name|escape}">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-3 col-form-label" for="scheduler_description">{tr}Description{/tr}</label>
-			<div class="col-sm-7">
+			<label class="col-sm-2 col-form-label" for="scheduler_description">{tr}Description{/tr}</label>
+			<div class="col-sm-10">
 				<input type="text" id='scheduler_description' class="form-control" name='scheduler_description'
 					value="{$schedulerinfo.description|escape}">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-3 col-form-label" for="scheduler_task">{tr}Task{/tr} *</label>
-			<div class="col-sm-7">
+			<label class="col-sm-2 col-form-label" for="scheduler_task">{tr}Task{/tr} *</label>
+			<div class="col-sm-10">
 				<select id="scheduler_task" name="scheduler_task" class="form-control">
 					<option value=''></option>
 					{html_options options=$schedulerTasks selected=$schedulerinfo.task}
@@ -179,15 +179,15 @@
 		{/foreach}
 
 		<div class="form-group row">
-			<label class="col-sm-3 col-form-label" for="scheduler_time">{tr}Run Time{/tr} *</label>
-			<div class="col-sm-7">
+			<label class="col-sm-2 col-form-label" for="scheduler_time">{tr}Run Time{/tr} *</label>
+			<div class="col-sm-10">
 				<input type="text" id='scheduler_time' class="form-control" name='scheduler_time'
 					value="{$schedulerinfo.run_time|escape}">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-3 col-form-label" for="scheduler_status">{tr}Status{/tr}</label>
-			<div class="col-sm-7">
+			<label class="col-sm-2 col-form-label" for="scheduler_status">{tr}Status{/tr}</label>
+			<div class="col-sm-10">
 				<select id="scheduler_status" name="scheduler_status" class="form-control">
 					schedulerStatus
 					{html_options options=$schedulerStatus selected=$schedulerinfo.status}
@@ -195,8 +195,8 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-3 form-check-label" for="scheduler_catch">{tr}Run if missed{/tr}</label>
-			<div class="col-sm-7">
+			<label class="col-sm-2 form-check-label" for="scheduler_catch">{tr}Run if missed{/tr}</label>
+			<div class="col-sm-10">
 				<div class="form-check">
 					<input type="checkbox" id="scheduler_rerun" class="form-check-input" name="scheduler_rerun"
 						{if $schedulerinfo.re_run}checked{/if}>
@@ -204,8 +204,8 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-3 form-check-label" for="scheduler_catch">{tr}Run only once{/tr}</label>
-			<div class="col-sm-7">
+			<label class="col-sm-2 form-check-label" for="scheduler_catch">{tr}Run only once{/tr}</label>
+			<div class="col-sm-10">
 				<div class="form-check">
 					<input type="checkbox" id="scheduler_run_only_once" class="form-check-input" name="scheduler_run_only_once"
 						{if $schedulerinfo.run_only_once}checked{/if}>
@@ -213,7 +213,7 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-sm-7 offset-sm-3">
+			<div class="col-sm-10 offset-sm-3">
 				{if isset($schedulerinfo.id) && $schedulerinfo.id}
 					<input type="hidden" name="scheduler" value="{$schedulerinfo.id|escape}">
 					<input type="hidden" name="editscheduler" value="1">

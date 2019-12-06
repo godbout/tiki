@@ -1,5 +1,5 @@
 {*<div class="tocnav row mx-0 justify-content-between">*}
-<nav aria-label="breadcrumb"  style="display: flex; justify-content: space-between;">
+<nav class="nav-breadcrumb" aria-label="breadcrumb">
 		<ol class="breadcrumb mt-2 mr-3" style="display: inline-flex;">
 			{if $home_info}{if $home_info.page_alias}{assign var=icon_title value=$home_info.page_alias}{else}{assign var=icon_title value=$home_info.pageName}{/if}
 				{if $prefs.feature_wiki_structure_drilldownmenu eq 'y'}

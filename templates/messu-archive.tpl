@@ -38,10 +38,14 @@
 		</select>
 	</div>
 
-	<div class="form-group col-sm-6">
-		<label for="mess-mailcont" class="mr-3">{tr}Containing:{/tr}</label>
-		<input type="text" name="find" id="mess-mailcont" value="{$find|escape:"attr"}" class="form-control mr-3">
-		<input type="submit" class="btn btn-info btn-sm" name="filter" value="{tr}Filter{/tr}">
+	<div class="form-group col-sm-4">
+		<label for="mess-mailcont">{tr}Containing:{/tr}</label>
+		<div class="input-group">
+			<input type="text" name="find" id="mess-mailcont" value="{$find|escape:"attr"}" class="form-control">
+			<div class="input-group-append">
+				<input type="submit" class="btn btn-info btn-sm" name="filter" value="{tr}Filter{/tr}">
+			</div>
+		</div>
 	</div>
 </form>
 

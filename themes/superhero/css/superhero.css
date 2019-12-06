@@ -6708,6 +6708,10 @@ div.drillshow {
   font-style: normal;
   font-size: 90%; }
 
+.nav-breadcrumb {
+  display: flex;
+  justify-content: space-between; }
+
 .tiki .ui-widget-content, span.plugin-mouseover {
   background: #4e5d6c;
   color: #ebebeb;
@@ -6929,7 +6933,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     padding: 0 15px;
     margin: 15px 0; }
 
-  .tiki-view_tracker .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-view_tracker .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar.btn-group > .btn:not(.dropdown-toggle) {
+  .tiki-view_tracker .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki_user_messages .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-view_tracker .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki_user_messages .t_navbar.btn-group > .btn:not(.dropdown-toggle) {
     margin-right: 5px;
     margin-bottom: 5px;
     border-radius: 0.25rem; }
@@ -6956,6 +6960,13 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 
   .tiki-page_contribution .wikitext {
     word-break: break-word; }
+
+  .nav-breadcrumb {
+    display: block; }
+    .nav-breadcrumb .breadcrumb {
+      width: 100%; }
+    .nav-breadcrumb .breadcrumb + form {
+      display: block !important; }
 
   #page-data.col-sm-9 {
     padding-left: 0;
@@ -7501,6 +7512,8 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background: rgba(255, 255, 255, 0.075);
     color: inherit;
     border-left-color: transparent; }
+  .mobile.tiki-cypht .nux_dev_news table td:last-child, .mobile.tiki-webmail .nux_dev_news table td:last-child {
+    border-bottom: 1px solid #ced4da; }
 
 .chosen-select, .chosen-select-deselect {
   width: 100%; }
