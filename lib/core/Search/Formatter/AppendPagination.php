@@ -42,7 +42,7 @@ class Search_Formatter_AppendPagination implements Search_Formatter_Plugin_Inter
 		$arguments['resultset'] = $entries;
 		$tmp = false;
 
-		$url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+		$url = parse_url(@$_SERVER["REQUEST_URI"], PHP_URL_PATH);
 		$filters = [];
 		foreach ($_GET as $key => $val) {
 			$filters[$key] = $val;
