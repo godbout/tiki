@@ -10,5 +10,5 @@
 		</ul>
 	</li>
 {else}
-	<li class="nav-item {$item.class|escape}{if $item.selected|default:null} active{/if}"><a class="nav-link" href="{$item.sefurl|escape}">{tr}{$item.name}{/tr}</a></li>
+	<li class="nav-item {$item.class|escape}{if $item.selected|default:null} active{/if}"><a class="{if $sub|default:false}dropdown-item{else}nav-link{/if}" href="{$item.sefurl|escape}">{tr}{$item.name}{/tr}</a></li>
 {/if}
