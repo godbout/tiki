@@ -1,6 +1,6 @@
 <template>
     <div class="container mx-auto p-4">
-      <h3>Field Behaviours</h3>
+      <h3>Field Rules</h3>
       <trackerrules/>
     </div>
 </template>

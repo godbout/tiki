@@ -196,6 +196,7 @@
 						<div class="adminoptionboxchild" id="vuejs_enable_childcontainer">
 							{preference name=vuejs_always_load}
 							{preference name=vuejs_build_mode}
+							{preference name=tracker_field_rules}
 						</div>
 					</fieldset>
 				</div>

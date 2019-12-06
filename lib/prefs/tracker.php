@@ -205,5 +205,16 @@ function prefs_tracker_list()
 			],
 			'default' => 'sidediff',
 		],
+		'tracker_field_rules' => [
+			'name' => tr('Tracker Field Rules'),
+			'description' => tr('Conditional rules for tracker fields.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'dependencies' => [
+				'feature_trackers',
+				'vuejs_enable',
+			],
+			'tags' => [ 'experimental' ],
+		],
 	];
 }

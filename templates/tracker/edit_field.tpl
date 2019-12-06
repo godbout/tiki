@@ -124,9 +124,11 @@
 			</div>
 		{/accordion_group}
 
-		{accordion_group title="{tr}Rules{/tr}"}
-			{trackerrules}
-		{/accordion_group}
+		{if $prefs.tracker_field_rules eq 'y'}
+			{accordion_group title="{tr}Rules{/tr}"}
+				{trackerrules}
+			{/accordion_group}
+		{/if}
 
 		{accordion_group title="{tr}Permissions{/tr}"}
 			<div class="form-group  mx-0">
