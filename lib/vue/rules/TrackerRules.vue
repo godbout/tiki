@@ -2,7 +2,7 @@
 	<div class="tracker-rules">
 		<div class="card mb-2">
 			<div class="card-header">
-				Conditions
+				Condition
 			</div>
 			<div class="card-body conditions">
 				<ui-predicate v-model="conditionsData" :columns="conditionsColumns" @changed="onChangeConditions" @initialized="onChangeConditions"/>
