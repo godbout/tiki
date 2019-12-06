@@ -2825,15 +2825,15 @@
             "authors": [
                 {
                     "name": "Robert Plummer",
+                    "role": "Assistant Developer",
                     "email": "rplummer@visop-dev.com",
-                    "homepage": "http://visop-dev.com",
-                    "role": "Assistant Developer"
+                    "homepage": "http://visop-dev.com"
                 },
                 {
                     "name": "Jacob Kelley",
+                    "role": "Lead Developer",
                     "email": "jakie8@gmail.com",
-                    "homepage": "http://jakiestfu.com",
-                    "role": "Lead Developer"
+                    "homepage": "http://jakiestfu.com"
                 }
             ],
             "time": "2014-12-15T16:35:34+00:00"
@@ -8260,6 +8260,59 @@
                 "syntax"
             ],
             "time": "2019-12-07T13:46:15+00:00"
+        },
+        {
+            "name": "overtrue/phplint",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/phplint.git",
+                "reference": "2f822d72db3be32d872d32aa001b2f1d13aeff6a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/overtrue/phplint/overtrue-phplint-2f822d72db3be32d872d32aa001b2f1d13aeff6a-zip-10a76a.zip",
+                "reference": "2f822d72db3be32d872d32aa001b2f1d13aeff6a",
+                "shasum": "c5d4165d92dc90791dfcb77c42b1c866539ee525"
+            },
+            "require": {
+                "ext-json": "*",
+                "php": ">=5.5.9",
+                "symfony/console": "^3.2|^4.0|^5.0",
+                "symfony/finder": "^3.0|^4.0|^5.0",
+                "symfony/process": "^3.0|^4.0|^5.0",
+                "symfony/yaml": "^3.0|^4.0|^5.0"
+            },
+            "require-dev": {
+                "jakub-onderka/php-console-highlighter": "^0.3.2 || ^0.4"
+            },
+            "bin": [
+                "bin/phplint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\PHPLint\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com"
+                }
+            ],
+            "description": "a php syntax check tool.",
+            "keywords": [
+                "check",
+                "lint",
+                "phplint",
+                "syntax"
+            ],
+            "time": "2019-11-23T15:35:00+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
