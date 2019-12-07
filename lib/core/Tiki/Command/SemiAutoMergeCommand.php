@@ -231,7 +231,7 @@ class SemiAutoMergeCommand extends Command
 					break;
 				}
 				if (preg_match('/^\[MRG\/r(\d+):?(\d*)]/', $line, $parts)) {
-					$rev = (int) ( $parts[2] ?? $parts[1] );
+					$rev = (int)(empty($parts[2]) ? $parts[1] : $parts[2]);
 					break;
 				}
 				$c++;
