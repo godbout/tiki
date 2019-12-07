@@ -17,7 +17,6 @@ use TWVersion;
 
 class SemiAutoMergeCommand extends Command
 {
-	private const TIKISVN = 'https://svn.code.sf.net/p/tikiwiki/code/';
 	private $branch;
 
 	protected function configure()
@@ -84,7 +83,7 @@ class SemiAutoMergeCommand extends Command
 			exit(1);
 		}
 
-		$command = "svn log -r $mergeFrom:HEAD --xml " . self::TIKISVN . $this->branch . ' 2>&1';
+		$command = "svn log -r $mergeFrom:HEAD --xml " . escapeshellarg('^/' . $this->branch) . ' 2>&1';
         $output->writeln($command, $output::VERBOSITY_DEBUG);
 		$logFile = shell_exec($command);
 		$output->writeln($logFile, $output::VERBOSITY_DEBUG);
@@ -143,7 +142,7 @@ class SemiAutoMergeCommand extends Command
 
 		$firstRevision = $logFile[0]['@attributes']['revision'];
 
-		$command = 'svn merge '. escapeshellarg(self::TIKISVN . $this->branch) . " -r $mergeFrom:HEAD";
+		$command = 'svn merge '. escapeshellarg('^/' . $this->branch) . " -r $mergeFrom:HEAD";
 		$output->writeln($command, $output::VERBOSITY_DEBUG);
 		passthru($command);
 
