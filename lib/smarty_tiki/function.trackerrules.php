@@ -48,7 +48,9 @@ function smarty_function_trackerrules($params, $smarty)
 		$headerlib->add_jsfile_cdn("vendor_bundled/vendor/npm-asset/vue/dist/{$prefs['vuejs_build_mode']}");
 	}
 
-	$headerlib->add_jsfile('lib/vue/lib/ui-predicate-vue.js');
+	$headerlib->add_jsfile('lib/vue/lib/ui-predicate-vue.js')
+		// temporary workaround for chosen which seems to lose the event bindings
+		->add_js('jqueryTiki.chosen = false; jqueryTiki.chosen_sortable = false;');
 
 	return '<link rel="stylesheet" href="lib/vue/lib/ui-predicate-vue.css" type="text/css">' .
 		TikiLib::lib('vuejs')->getPredicateUI();
