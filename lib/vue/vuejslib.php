@@ -16,6 +16,7 @@ class VueJsLib
 	 * @param bool   $minify or not
 	 *
 	 * @return string
+	 * @throws Exception
 	 */
 
 	public function processVue($str, $name = '', $app = false, $data = [], $minify = false)
