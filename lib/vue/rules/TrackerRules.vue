@@ -29,12 +29,16 @@
 		</div>
 
 		<div class="card">
-			<header class="card-header">
-				<p class="card-header-title">
-					Output </p>
-			</header>
+			<div class="card-header">
+				Conditions Output
+			</div>
 			<div class="card-content">
-				<pre>{{ ast }}</pre>
+				<pre>{{ conditionsoutput }}</pre>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				Actions Output
 			</div>
 			<div class="card-content">
 				<pre>{{ actionoutput }}</pre>
@@ -57,7 +61,8 @@
 		data()
 		{
 			return {
-				ast: {},
+				conditionsoutput: {},
+				actionoutput: {},
 				conditionsData: {
 					logicalType_id: "all",
 					predicates: [
@@ -252,7 +257,7 @@
 		methods: {
 			onChangeConditions(diff)
 			{
-				this.ast = diff;
+				this.conditionsoutput = diff;
 			},
 			onChangeActions(diff)
 			{
