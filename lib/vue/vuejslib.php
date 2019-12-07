@@ -15,6 +15,7 @@ class VueJsLib
 	 * @param bool   $minify or not
 	 *
 	 * @return string
+	 * @throws Exception
 	 */
 
 	public function processVue($str, $name = '', $app = false, $minify = false)
@@ -24,6 +25,9 @@ class VueJsLib
 		if (is_readable($str)) {
 			$str = file_get_contents($str);
 		}
+
+		// process some shorthand syntax that doesn't work for us
+		$str = preg_replace('/\s(@)(?=' . implode('|', $this->jsEvents()) . ')\b/', ' v-on:', $str);
 
 		$dom = new DOMDocument('1.0', 'UTF-8');
 		$dom->loadHTML("<html lang=\"en\"><body>$str</body></html>");
@@ -109,6 +113,105 @@ new Vue({
 		$appHtml .= $this->processVue('lib/vue/rules/TrackerRules.vue', 'TrackerRules');
 
 		return $appHtml;
+	}
+
+	/**
+	 * @return array
+	 */
+	private function jsEvents(): array
+	{
+		return [
+			'abort',
+			'afterprint',
+			'animationcancel',
+			'animationend',
+			'animationiteration',
+			'animationstart',
+			'audioprocess',
+			'auxclick',
+			'beforeprint',
+			'beforeunload',
+			'blur',
+			'canplay',
+			'canplaythrough',
+			'change',
+			'click',
+			'close',
+			'complete',
+			'compositionend',
+			'compositionstart',
+			'compositionupdate',
+			'contextmenu',
+			'copy',
+			'cut',
+			'dblclick',
+			'drag',
+			'dragend',
+			'dragenter',
+			'dragleave',
+			'dragover',
+			'dragstart',
+			'drop',
+			'durationchange',
+			'emptied',
+			'ended',
+			'error',
+			'focus',
+			'fullscreenchange',
+			'fullscreenerror',
+			'keydown',
+			'keypress',
+			'keyup',
+			'load',
+			'load',
+			'loadeddata',
+			'loadedmetadata',
+			'loadend',
+			'loadstart',
+			'message',
+			'mousedown',
+			'mouseenter',
+			'mouseleave',
+			'mousemove',
+			'mouseout',
+			'mouseover',
+			'mouseup',
+			'offline',
+			'online',
+			'open',
+			'pagehide',
+			'pageshow',
+			'paste',
+			'pause',
+			'play',
+			'playing',
+			'pointerlockchange',
+			'pointerlockerror',
+			'popstate',
+			'progress',
+			'ratechange',
+			'reset',
+			'resize',
+			'scroll',
+			'seeked',
+			'seeking',
+			'select',
+			'stalled',
+			'submit',
+			'suspend',
+			'timeout',
+			'timeupdate',
+			'transitioncancel',
+			'transitionend',
+			'transitionrun',
+			'transitionstart',
+			'unload',
+			'volumechange',
+			'waiting',
+			'wheel',
+			// seems to be a custom vue or ui-predicate event?
+			'initialize',
+		];
 	}
 
 }
