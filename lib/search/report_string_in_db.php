@@ -69,13 +69,18 @@ if (! empty($_POST['string_in_db_search'])) {
 */
 function searchAllDB($search)
 {
-	global $tikilib;
+	global $tikilib, $prefslib;
 
 	$result = [];
 	$out = '';
 
 	$sql = "show tables";
 	$rs = $tikilib->fetchAll($sql);
+	$preferenceTables = [
+		'tiki_preferences'      => 'name',
+		'tiki_user_preferences' => 'prefName',
+	];
+
 	foreach ($rs as $key => $val) {
 		$vals = array_values($val);
 		$table = $vals[0];
@@ -85,16 +90,29 @@ function searchAllDB($search)
 		$sql2 = "SHOW COLUMNS FROM `$table`";
 		$rs2 = $tikilib->fetchAll($sql2);
 		foreach ($rs2 as $key2 => $val2) {
+			$toExclude = [];
 			$vals2 = array_values($val2);
 			$colum = $vals2[0];
 			$type = $vals2[1];
+
+			if (in_array($table, array_keys($preferenceTables)) && $colum == $preferenceTables[$table]) {
+				$preferences = TikiDb::get()->fetchAll("SELECT $preferenceTables[$table] FROM $table");
+				$toExclude = $prefslib->filterHiddenPreferences($preferences);
+			}
+
 			if (isTextType($type)) {
 				$sql_search_fields = [];
 				$qrySearch = '%' . $search . '%';
 				$args = [$qrySearch];
 				$sql_search_fields[] = "`" . $colum . "` like ?"; // '%" . str_replace("'", "''", $search) . "%'";
-				$sql_search = "select * from `$table` where ";
-				$sql_search .= implode(" OR ", $sql_search_fields);
+				$sql_search = "select * from `$table` where (";
+				$sql_search .= implode(" OR ", $sql_search_fields) . ')';
+
+				if (! empty($toExclude)) {
+					$sql_search .= ' AND `' . $colum . '` NOT IN (?)';
+					$args[] = implode(', ', $toExclude);
+				}
+
 				$rs3 = $tikilib->fetchAll($sql_search, $args);
 				if (! empty($rs3)) {
 					$result[] = ['table' => $table, 'column' => $colum, 'occurrences' => count($rs3)];
