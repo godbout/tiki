@@ -2,7 +2,7 @@
 <ul class="nav navbar-nav mr-auto">
 	<li class="nav-item dropdown  mr-1">
 		<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{tr}Access{/tr}</a>
-		<div class="dropdown-menu">
+		<ul class="dropdown-menu">
 			{if $tiki_p_admin eq "y" and $tiki_p_admin_users eq "y"}
 				<a class="dropdown-item" href="tiki-adminusers.php">{tr}Users{/tr}</a>
 			{/if}
@@ -16,11 +16,11 @@
 				<div class="dropdown-divider"></div>
 				<a class="dropdown-item" href="tiki-admin_banning.php">{tr}Banning{/tr}</a>
 			{/if}
-		</div>
+		</ul>
 	</li>
 	<li class="nav-item dropdown mr-1">
 		<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{tr}Content{/tr}</a>
-		<div class="dropdown-menu">
+		<ul class="dropdown-menu">
 			{if $prefs.feature_articles eq "y"}
 				<a class="dropdown-item" href="tiki-list_articles.php">{tr}Articles{/tr}</a>
 			{/if}
@@ -84,11 +84,11 @@
 			{if $prefs.feature_wiki eq "y" and $prefs.feature_wiki_structure eq "y" and $tiki_p_view eq "y"}
 				<a class="dropdown-item" href="tiki-admin_structures.php">{tr}Wiki Structures{/tr}</a>
 			{/if}
-		</div>
+		</ul>
 	</li>
 	<li class="nav-item dropdown mr-1">
 		<a href="#" class="nav-link dropdown-toggle mr-2" data-toggle="dropdown">{tr}System{/tr}</a>
-		<div class="dropdown-menu">
+		<ul class="dropdown-menu">
 			{if $tiki_p_admin eq "y"}
 				<a class="dropdown-item" href="{service controller=managestream action=list}">{tr}Activity Rules{/tr}</a>
 			{/if}
@@ -149,11 +149,11 @@
 			{/if}
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="tiki-mods.php">{tr}Mods{/tr}</a>
-		</div>
+		</ul>
 	</li>
 	<li class="nav-item dropdown mr-1">
 		<a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{tr}Tools{/tr}</a>
-		<div class="dropdown-menu">
+		<ul class="dropdown-menu">
 			{if $prefs.feature_actionlog eq "y" and $tiki_p_view_actionlog}
 				<a class="dropdown-item" href="tiki-admin_actionlog.php">{tr}Action Log{/tr}</a>
 			{/if}
@@ -202,6 +202,6 @@
 			{/if}
 			<div class="dropdown-divider"></div>
 			<a class="dropdown-item" href="tiki-wizard_admin.php">{tr}Wizards{/tr}</a>
-		</div>
+		</ul>
 	</li>
 </ul>
