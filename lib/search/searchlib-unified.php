@@ -168,6 +168,8 @@ class UnifiedSearchLib
 	public function rebuild($loggit = 0, $fallback = false)
 	{
 		global $prefs;
+		$engineResults = null;
+
 		switch ($prefs['unified_engine']) {
 			case 'lucene':
 				$index_location = $this->getIndexLocation('data');
@@ -196,6 +198,7 @@ class UnifiedSearchLib
 				$aliasName = $prefs['unified_elastic_index_prefix'] . 'main';
 				$indexName = $aliasName . '_' . uniqid();
 				$index = new Search_Elastic_Index($connection, $indexName);
+				$engineResults = new Search_EngineResult_Elastic($index);
 				$index->setCamelCaseEnabled($prefs['unified_elastic_camel_case'] == 'y');
 
 				TikiLib::events()->bind(
@@ -211,6 +214,7 @@ class UnifiedSearchLib
 			case 'mysql':
 				$indexName = 'index_' . uniqid();
 				$index = new Search_MySql_Index(TikiDb::get(), $indexName);
+				$engineResults = new Search_EngineResult_MySQL($index);
 
 				TikiLib::events()->bind(
 					'tiki.process.shutdown',
@@ -245,7 +249,17 @@ class UnifiedSearchLib
 					return $indexer->rebuild();
 				}
 			);
-			$stat['total fields in the search index'] = $index->getFieldCount();
+
+			$stat['total tiki fields indexed'] = $index->getFieldCount();
+
+			if(! is_null($engineResults)) {
+				$fieldsCount = $engineResults->getEngineFieldsCount();
+
+				if ($fieldsCount !== $stat['total tiki fields indexed']) {
+					$stat['total fields used in the ' . $prefs['unified_engine'] . ' search index: '] = $engineResults->getEngineFieldsCount();
+				}
+			}
+
 			$tikilib->set_preference('unified_field_count', $index->getFieldCount());
 			$tikilib->set_preference('unified_identifier_fields', $index->getIdentifierFields());
 		} catch (Exception $e) {
