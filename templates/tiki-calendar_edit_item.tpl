@@ -424,11 +424,13 @@
 							{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
 						</div>
 					{/if}
-					<div class="form-check">
-						<label class="col-sm-2 form-check-label">
-							<input type="checkbox" class="form-check-input" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
-							{tr}All day{/tr}
-						</label>
+					<div class="col-sm-2">
+						<div class="form-check">
+							<label class="form-check-label">
+								<input type="checkbox" class="form-check-input" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
+								{tr}All day{/tr}
+							</label>
+						</div>
 					</div>
 				{else}
 					<div class="col-sm-9">
