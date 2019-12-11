@@ -21,7 +21,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  */
 function upgrade_20171121_create_plugin_include_relations_tiki($installer)
 {
-	$maxRecordsPerQuery = 500;
+	$maxRecordsPerQuery = 100;
 
 	global $prefs;
 	$prefs['wikiplugin_maximum_passes'] = 500;

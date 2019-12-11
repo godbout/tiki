@@ -72,6 +72,7 @@ vendor_bundled/vendor
 /vendor_custom
 vendor_custom/*
 /.vscode
+db/*.local
 doc/devtools/etc/update/.htaccess
 img/trackers/*
 img/wiki_up/*
