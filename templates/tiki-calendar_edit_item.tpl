@@ -9,7 +9,7 @@
 <form action="{$myurl|escape}" method="post" name="f" id="editcalitem" class="no-ajax">
 	<div class="modal-body">
 		{if !$smarty.get.isModal}
-			<div class="t_navbar form-group row">
+			<div class="t_navbar mb-4">
 				{if $tiki_p_view_calendar eq 'y'}
 					{button href="tiki-calendar.php" _type="link" _text="{tr}View Calendars{/tr}" _icon_name="view"}
 				{/if}
