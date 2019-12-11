@@ -177,6 +177,9 @@ function smarty_function_button($params, $smarty)
 			unset($params['href']);
 		}
 
+		if (! isset($params['_text'])) { // avoid NOTICE (E_NOTICE): Undefined index
+			$params['_text'] = '';
+		}
 		$html = smarty_block_self_link(
 			$params,
 			$params['_text'],
