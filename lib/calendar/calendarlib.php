@@ -545,9 +545,13 @@ class CalendarLib extends TikiLib
 		$row = $result->fetchRow();
 		if ($row) {
 			return $this->get_item($row['calitemId']);
-		} else {
-			return null;
 		}
+		$result = $this->query("select recurrenceId from `tiki_calendar_recurrence` where uri = ?", [$uri]);
+		$row = $result->fetchRow();
+		if ($row) {
+			return new \CalRecurrence($row['recurrenceId']);
+		}
+		return null;
 	}
 
 	/**
@@ -678,6 +682,10 @@ class CalendarLib extends TikiLib
 			if (! empty($data['changed']) && empty($data['recurrenceStart'])) {
 				$l[] = "`recurrenceStart` = ?";
 				$r[] = $oldData['start'];
+			}
+
+			if (! empty($data['recurrenceStart']) && empty($data['changed'])) {
+				$l[] = "`changed` = 1";
 			}
 
 			$query = 'UPDATE `tiki_calendar_items` SET ' . implode(',', $l) . ' WHERE `calitemId`=?';
@@ -1144,8 +1152,8 @@ class CalendarLib extends TikiLib
 			if (! $recurrences) {
 				$recurrences[] = '';
 			}
-			$cond .= " and (i.calitemId in (".implode(',', array_fill(0, count($itemIdsOrUris), '?')).") or i.uri in (".implode(',', array_fill(0, count($itemIdsOrUris), '?')).") or i.recurrenceId in (".implode(',', array_fill(0, count($recurrences), '?'))."))";
-			$bindvars = array_merge($bindvars, $itemIdsOrUris, $itemIdsOrUris, $recurrences);
+			$cond .= " and (i.calitemId in (".implode(',', array_fill(0, count($itemIdsOrUris), '?')).") or i.uri in (".implode(',', array_fill(0, count($itemIdsOrUris), '?')).") or i.recurrenceId in (".implode(',', array_fill(0, count($recurrences), '?')).") or r.uri in (".implode(',', array_fill(0, count($itemIdsOrUris), '?'))."))";
+			$bindvars = array_merge($bindvars, $itemIdsOrUris, $itemIdsOrUris, $recurrences, $itemIdsOrUris);
 		}
 
 		// TODO: we support only events for now. This is meant for CalDAV access to support TODO items, for example.

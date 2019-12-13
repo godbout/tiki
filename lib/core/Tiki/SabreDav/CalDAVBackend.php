@@ -628,6 +628,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             $rec = $data['rec'];
             $rec->updateDetails($data);
             $rec->save(true);
+            $rec->updateOverrides($data['overrides']);
         } else {
             TikiLib::lib('calendar')->set_item($user, 0, $data);
         }
@@ -677,12 +678,14 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         if ($rec) {
             if ($data['rec']) {
                 $data['rec']->setId($rec->getId());
+                $data['rec']->setUri($rec->getUri());
                 $rec = $data['rec'];
             }
             $data['calitemId'] = $item['calitemId'];
             $rec->updateDetails($data);
             $rec->setUser($user);
             $rec->save(true);
+            $rec->updateOverrides($data['overrides']);
         } else {
             TikiLib::lib('calendar')->set_item($user, $item['calitemId'], $data);
         }
@@ -734,16 +737,10 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
      * @return array
      */
     protected function getDenormalizedData($calendarData, $calendarId) {
-        $calendar = TikiLib::lib('calendar')->get_calendar($calendarId);
-        $timezone = TikiLib::lib('tiki')->get_display_timezone($calendar['user']);
-
         $vObject = VObject\Reader::read($calendarData);
         $componentType = null;
         $component = null;
-        $firstOccurence = null;
-        $lastOccurence = null;
         $uid = null;
-        $rec = null;
         foreach ($vObject->getComponents() as $component) {
             if ($component->name !== 'VTIMEZONE') {
                 $componentType = $component->name;
@@ -754,8 +751,44 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         if (!$componentType) {
             throw new \Sabre\DAV\Exception\BadRequest('Calendar objects must have a VJOURNAL, VEVENT or VTODO component');
         }
-        // TODO: recurrence-id - modify individual events in a recurrence series
-        if ($componentType === 'VEVENT') {
+
+        $result = [
+            'etag'           => md5($calendarData),
+            'size'           => strlen($calendarData),
+            'componenttype'  => $componentType,
+            'uid'            => $uid,
+        ];
+        $result = array_merge(
+            $result,
+            $this->getDenormalizedDataFromComponent($component)
+        );
+
+        // check for individual instances changed in recurring events
+        $result['overrides'] = [];
+        foreach ($vObject->getComponents() as $component) {
+            if ($component->name !== 'VEVENT') {
+                continue;
+            }
+            if ($component->{'RECURRENCE-ID'}) {
+                $result['overrides'][] = $this->getDenormalizedDataFromComponent($component);
+            }
+        }
+
+        // Destroy circular references to PHP will GC the object.
+        $vObject->destroy();
+
+        return $result;
+    }
+
+    protected function getDenormalizedDataFromComponent($component) {
+        $calendar = TikiLib::lib('calendar')->get_calendar($calendarId);
+        $timezone = TikiLib::lib('tiki')->get_display_timezone($calendar['user']);
+
+        $firstOccurence = null;
+        $lastOccurence = null;
+        $rec = null;
+
+        if ($component && $component->name == 'VEVENT') {
             $firstOccurence = $component->DTSTART->getDateTime()->getTimeStamp();
             if (isset($component->DTEND)) {
                 $lastOccurence = $component->DTEND->getDateTime()->getTimeStamp();
@@ -831,14 +864,14 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         }
 
         $result = [
-            'etag'           => md5($calendarData),
-            'size'           => strlen($calendarData),
-            'componenttype'  => $componentType,
             'start'          => $firstOccurence,
             'end'            => $lastOccurence,
-            'uid'            => $uid,
             'rec'            => $rec,
         ];
+
+        if (isset($component->{'RECURRENCE-ID'})) {
+            $result['recurrenceStart'] = $component->{'RECURRENCE-ID'}->getDateTime()->getTimeStamp();
+        }
 
         if (isset($component->CREATED)) {
             $result['created'] = $component->CREATED->getDateTime()->getTimeStamp();
@@ -898,9 +931,6 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             }
             $result['participants'] = implode(',', $result['participants']);
         }
-
-        // Destroy circular references to PHP will GC the object.
-        $vObject->destroy();
 
         return $result;
     }
