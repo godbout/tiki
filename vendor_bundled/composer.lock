@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9bae62b6413fee3c389506a741516dd1",
+    "content-hash": "f1d8e63c1f638867223a0f5148a80e2c",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -3052,6 +3052,16 @@
             "time": "2018-11-20T21:54:28+00:00"
         },
         {
+            "name": "mrrio/jspdf",
+            "version": "1.5.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/mrrio/jspdf/mrrio-jspdf-1.5.3.zip",
+                "shasum": "00d451624085b4857467f67562d39e428722c82d"
+            },
+            "type": "library"
+        },
+        {
             "name": "nagarajanchinnasamy/subtotal",
             "version": "v1.10.0",
             "source": {
@@ -3188,6 +3198,16 @@
                 "touch"
             ],
             "time": "2019-10-16T11:51:47+00:00"
+        },
+        {
+            "name": "npm-asset/base64-arraybuffer",
+            "version": "0.2.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/base64-arraybuffer/npm-asset-base64-arraybuffer-0.2.0.zip",
+                "shasum": "1001acf5c88c362c9ea97ee449be8c1699194e6c"
+            },
+            "type": "npm-asset"
         },
         {
             "name": "npm-asset/blueimp-canvas-to-blob",
@@ -3339,6 +3359,38 @@
             },
             "license": [
                 "MPL-2.0"
+            ]
+        },
+        {
+            "name": "npm-asset/css-line-break",
+            "version": "1.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/css-line-break/npm-asset-css-line-break-1.1.1.zip",
+                "shasum": "40513decd045bd78d28f5649d6d67c9f9d9013b7"
+            },
+            "require": {
+                "npm-asset/base64-arraybuffer": ">=0.2.0,<0.3.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/html2canvas",
+            "version": "1.0.0-RC.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/html2canvas/npm-asset-html2canvas-1.0.0-RC.5.zip",
+                "shasum": "dbcbc215bbf81fbcc689e91d76e557214dc808e5"
+            },
+            "require": {
+                "npm-asset/css-line-break": "1.1.1"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
             ]
         },
         {
@@ -9554,6 +9606,7 @@
         "zendframework/zendsearch": 20,
         "gidkom/php-openfire-restapi": 20,
         "montefuscolo/xmpp": 20,
+        "npm-asset/html2canvas": 5,
         "bafs/testify": 20
     },
     "prefer-stable": false,

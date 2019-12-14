@@ -811,6 +811,9 @@ if ($prefs['openpgp_gpg_pgpmimemail'] == 'y') {
 //adding pdf creation javascript, used to integrate plugins like tablesorter, trackerfilter with mpdf.
 if ($prefs['print_pdf_from_url'] != 'none') {
 	$headerlib->add_jsfile('lib/jquery_tiki/pdf.js');
+	$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/html2canvas/dist/html2canvas.min.js', true);
+	$headerlib->add_jsfile('vendor_bundled/vendor/mrrio/jspdf/jspdf.min.js', true);
+	$headerlib->add_jsfile('lib/jquery_tiki/fullcalendar_to_pdf.js');
 }
 
 if (file_exists('_custom/lib/setup/custom.php')) {

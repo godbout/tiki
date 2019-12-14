@@ -182,7 +182,13 @@
 			eventResize: storeEvent,
 			eventDrop: storeEvent
 		});
-	});
 
+		$( document ).ready(function() {
+			addFullCalendarPrint('#' + data.id, '#calendar-pdf-btn');
+		});
+	});
 	function isEven(x) { return (x%2)==0; }
 {/jq}
+{if $pdf_export eq 'y' and $pdf_warning eq 'n'}
+	<a id="calendar-pdf-btn" data-html2canvas-ignore="true"  href="#" style="float: right; display: none">{icon name="pdf"} {tr}Export as PDF{/tr}</a>
+{/if}
