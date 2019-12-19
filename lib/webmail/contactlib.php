@@ -23,7 +23,8 @@ class ContactLib extends TikiLib
 		$find = null,
 		$include_group_contacts = false,
 		$letter = '',
-		$letter_field = 'email'
+		$letter_field = 'email',
+		$contactIds = []
 	) {
 
 
@@ -40,6 +41,11 @@ class ContactLib extends TikiLib
 			$findesc = '%' . $find . '%';
 			$mid .= " and (`nickname` like ? or `firstName` like ? or `lastName` like ? or `email` like ?)";
 			array_push($bindvars, $findesc, $findesc, $findesc, $findesc);
+		}
+
+		if ($contactIds) {
+			$mid .= " and c.`contactId` in (".implode(',', array_fill(0, count($contactIds), '?')).")";
+			$bindvars = array_merge($bindvars, $contactIds);
 		}
 
 		$query = "select distinct c.* from `tiki_webmail_contacts` as c" .

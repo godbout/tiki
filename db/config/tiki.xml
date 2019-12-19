@@ -15,6 +15,9 @@
 		<!-- Proxy that will be replaced at runtime -->
 		<service id="tiki.lib.db" class="stdclass"/>
 
+		<service id="tiki.lib.addressbook" class="AddressBookLib">
+			<file>%kernel.root_dir%/lib/webmail/addressbooklib.php</file>
+		</service>
 		<service id="tiki.lib.access" class="TikiAccessLib">
 			<file>%kernel.root_dir%/lib/tikiaccesslib.php</file>
 		</service>

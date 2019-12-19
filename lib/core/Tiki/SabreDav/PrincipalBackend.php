@@ -66,7 +66,7 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
 
         $users = TikiLib::lib('tiki')->list_users(0, -1, 'login_asc');
         foreach ($users['data'] as $user) {
-            $uri = $this->getPrincipalUri($user['login']);
+            $uri = self::mapUserToUri($user['login']);
 
             // Checking if the principal is in the prefix
             list($rowPrefix) = Uri\split($uri);
@@ -109,7 +109,7 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
 
         $principal = [
             'id'  => $user['userId'],
-            'uri' => $this->getPrincipalUri($user),
+            'uri' => self::mapUserToUri($user),
             $this->fieldMap['name'] => TikiLib::lib('tiki')->get_user_preference($user, 'realName'),
             $this->fieldMap['email'] => TikiLib::lib('user')->get_user_email($user),
         ];
@@ -202,7 +202,7 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
 
         $principals = [];
         foreach ($results as $user) {
-            $uri = $this->getPrincipalUri($user);
+            $uri = self::mapUserToUri($user);
             // Checking if the principal is in the prefix
             list($rowPrefix) = Uri\split($uri);
             if ($rowPrefix !== $prefixPath) {
@@ -243,7 +243,7 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
             case "mailto":
                 $user = TikiLib::lib('user')->get_user_by_email($value);
                 if ($user) {
-                    $uri = $this->getPrincipalUri($user);
+                    $uri = self::mapUserToUri($user);
                     // Checking if the principal is in the prefix
                     list($rowPrefix) = Uri\split($uri);
                     if ($rowPrefix !== $principalPrefix) {
@@ -307,7 +307,20 @@ class PrincipalBackend extends DAVACL\PrincipalBackend\AbstractBackend implement
     }
 
 
-    protected function getPrincipalUri($user) {
+    public static function mapUriToUser($principalUri) {
+        if (preg_match('#principals/(.*)$#', $principalUri, $m)) {
+            $user = $m[1];
+            if (TikiLib::lib('user')->user_exists($user)) {
+                return $user;
+            } else {
+                throw new DAV\Exception('Principaluri does not exist in Tiki user database.');
+            }
+        } else {
+            throw new DAV\Exception('Principaluri is in invalid format.');
+        }
+    }
+
+    public static function mapUserToUri($user) {
         return 'principals/'.$user;
     }
 }

@@ -9,47 +9,37 @@
 // $Id$
 
 use Sabre\DAV;
-use Sabre\CalDAV;
+use Sabre\CardDAV;
 use Sabre\DAVACL;
 use Tiki\SabreDav\BasicAuth;
-use Tiki\SabreDav\CalDAVBackend;
+use Tiki\SabreDav\CardDAVBackend;
 use Tiki\SabreDav\PrincipalBackend;
 
 require_once 'tiki-setup.php';
-$access->check_feature('feature_calendar');
-include_once('lib/calendar/calrecurrence.php');
+TikiLib::setExternalContext(true);
 
 // Backends
 $authBackend = new BasicAuth();
 $principalBackend = new PrincipalBackend();
-$calendarBackend = new CalDAVBackend();
+$carddavBackend = new CardDAVBackend();
 
 // Directory tree
 $tree = array(
     new DAVACL\PrincipalCollection($principalBackend),
-    new CalDAV\CalendarRoot($principalBackend, $calendarBackend)
+    new CardDAV\AddressBookRoot($principalBackend, $carddavBackend)
 );  
 
 // The object tree needs in turn to be passed to the server class
 $server = new DAV\Server($tree);
-$server->setBaseUri($tikiroot.'tiki-caldav.php');
+$server->setBaseUri($tikiroot.'tiki-carddav.php');
 
 // Authentication plugin
 $authPlugin = new DAV\Auth\Plugin($authBackend);
 $server->addPlugin($authPlugin);
 
-// CalDAV plugin
-$caldavPlugin = new CalDAV\Plugin();
-$server->addPlugin($caldavPlugin);
-
-// CalDAV addons
-$server->addPlugin(new CalDAV\Schedule\Plugin());
-$server->addPlugin(new DAV\Sharing\Plugin());
-$server->addPlugin(new CalDAV\SharingPlugin());
-$server->addPlugin(new CalDAV\ICSExportPlugin());
-
-// ACL plugin
-// No need to use hard-coded ACL rules as Tiki CalDAVBackend enforces Tiki permissions
+// CardDAV plugin
+$carddavPlugin = new CardDAV\Plugin();
+$server->addPlugin($carddavPlugin);
 
 // Support for html frontend
 $browser = new DAV\Browser\Plugin();
