@@ -6889,6 +6889,9 @@ blockquote {
   color: #7a7a7a;
   border-left: 0.25rem solid #e5e5e5; }
 
+.to-translate {
+  color: #dc3545; }
+
 .container {
   background-color: #fff; }
 

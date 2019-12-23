@@ -7015,6 +7015,9 @@ blockquote {
   color: #7a7a7a;
   border-left: 0.25rem solid #e5e5e5; }
 
+.to-translate {
+  color: #cd0200; }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {

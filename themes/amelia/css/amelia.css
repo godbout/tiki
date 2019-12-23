@@ -6902,6 +6902,9 @@ blockquote {
   color: #e5e5e5;
   border-left: 0.25rem solid #e5e5e5; }
 
+.to-translate {
+  color: #df6e1e; }
+
 body.fullscreen {
   background: #108a93; }
 

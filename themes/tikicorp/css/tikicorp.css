@@ -7721,6 +7721,9 @@ blockquote {
   color: #7a7a7a;
   border-left: 0.25rem solid #e5e5e5; }
 
+.to-translate {
+  color: #f00; }
+
 body {
   background-image: url("../images/bg-body.jpg"); }
 

@@ -6884,6 +6884,9 @@ blockquote {
   color: #7a7a7a;
   border-left: 0.25rem solid #e5e5e5; }
 
+.to-translate {
+  color: #d9534f; }
+
 body, body.fullscreen {
   background-image: url("../images/474747_5e5e5e_40.png"); }
 
