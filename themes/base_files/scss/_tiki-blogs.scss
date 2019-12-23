@@ -4,7 +4,7 @@
 // Remove borders and background colors from .card-related divs to modernize blog post appearance.
 // Themes can reinstate these totally or partially to match the theme style.
 
-.tiki_blogs .card.postbody {
+.tiki_blogs .card.blogpost {
   &,
   & .card-header,
   & .card-footer {
@@ -52,7 +52,7 @@ span.posthead {
 	display: block;
 }
 
-.postbody-title .panel-title {
+.postbody-title .panel-title { // Needs to be updated or removed
 	font-size: 1.4em;
 }
 

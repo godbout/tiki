@@ -1902,7 +1902,7 @@ td.url {
   margin-right: 1rem;
   display: block; }
 
-.tiki_blogs .card.postbody, .tiki_blogs .card.postbody .card-header, .tiki_blogs .card.postbody .card-footer {
+.tiki_blogs .card.blogpost, .tiki_blogs .card.blogpost .card-header, .tiki_blogs .card.blogpost .card-footer {
   background-color: transparent;
   border: none; }
 

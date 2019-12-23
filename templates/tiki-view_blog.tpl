@@ -17,7 +17,7 @@
 {/if}
 
 {foreach from=$listpages item=post_info}
-	<article class="card blogpost postbody clearfix d-block mb-5{if !empty($container_class)} {$container_class}{/if}">
+	<article class="card blogpost clearfix d-block mb-5{if !empty($container_class)} {$container_class}{/if}">
 		{include file='blog_wrapper.tpl' blog_post_context=$request_context}
 	</article>
 {/foreach}
