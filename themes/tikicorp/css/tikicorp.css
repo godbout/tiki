@@ -8278,6 +8278,9 @@ body .chosen-container-single .chosen-single, body .chosen-container-active.chos
   .navbar-expand-lg .navbar-nav {
     flex-wrap: wrap; } }
 
+.bg-dark .bg-dark, .middle_outer .row.topbar .bg-dark {
+  background: transparent !important; }
+
 table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerUnSorted:not(.sorter-false) {
   background-image: url(data:image/gif;base64,R0lGODlhFQAJAIAAAP///////yH5BAEAAAEALAAAAAAVAAkAAAIXjI+AywnaYnhUMoqt3gZXPmVg94yJVQAAOw==); }
   table.tablesorter thead tr.tablesorter-headerRow th.tablesorter-headerAsc {
