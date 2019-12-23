@@ -152,7 +152,11 @@ function smarty_function_button($params, $smarty)
 		// Remove params that does not start with a '_', since we don't want them to modify the URL except when in auto_query_args
 		if (! isset($params['_keepall']) || $params['_keepall'] != 'y') {
 			foreach ($params as $k => $v) {
-				if ($k[0] != '_' && $k != 'href' && (empty($auto_query_args) || ! in_array($k, $auto_query_args))) {
+				if ($k[0] != '_'
+					&& $k != 'href'
+					&& $k != 'data'
+					&& (empty($auto_query_args) || ! in_array($k, $auto_query_args))
+				) {
 					unset($params[$k]);
 				}
 			}

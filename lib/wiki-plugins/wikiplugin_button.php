@@ -197,6 +197,16 @@ function wikiplugin_button_info()
 				'advanced' => true,
 				'safe' => true,
 			],
+			'data' => [
+				'required' => false,
+				'name' => tra('Data attributes'),
+				'description' => tra('URL encoded list or attributes and values.'),
+				'filter' => 'text',
+				'safe' => true,
+				'advanced' => true,
+				'since' => '20.2',
+				'default' => '',
+			],
 		],
 	];
 }
