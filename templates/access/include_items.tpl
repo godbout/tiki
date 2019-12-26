@@ -7,7 +7,7 @@
 	{/if}
 	{if isset($items) && $items|count > 0}
 		{if $items|count < 16}
-			<ul>
+			<ul id="list-items">
 				{foreach $items as $name}
 					<li>
 						{$name|escape}

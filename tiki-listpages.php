@@ -440,6 +440,16 @@ if (! empty($multiprint_pages)) {
 					$pages[] = $page['pageName'];
 				}
 			}
+
+			if (isset( $_REQUEST['exclude_page'])){
+				$exclude = $_REQUEST['exclude_page'];
+				$exclude = explode(",", $exclude);
+				foreach ($exclude as $excl){
+					if (($key = array_search($excl, $pages)) !== false) {
+						unset($pages[$key]);
+					}
+				}
+			}
 			$access->output_serialized($pages);
 		} else {
 			$pages = [];
