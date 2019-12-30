@@ -24,6 +24,7 @@ function wikiplugin_markdown_info() {
 }
 
 use League\CommonMark\CommonMarkConverter;
+use Webuni\CommonMark\AttributesExtension\AttributesExtension;
 
 function wikiplugin_markdown($data, $params) {
 
