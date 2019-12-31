@@ -41,18 +41,17 @@ function wikiplugin_markdown($data, $params) {
 	$md = str_replace('&lt;x&gt;', '', $md);
 	$md = str_replace('<x>', '', $md);
 
-    $environment = Environment::createCommonMarkEnvironment();
+	$environment = Environment::createCommonMarkEnvironment();
 	$environment->addExtension(new AttributesExtension());
-    $environment->setConfig(['html_input' => 'escape', 'allow_unsafe_links' => false]);
-	
+	$environment->setConfig(['html_input' => 'escape', 'allow_unsafe_links' => false]);
+
 	$converter = new Converter(new DocParser($environment), new HtmlRenderer($environment));
 
 	$md = $converter->convertToHtml($md);
-	
+
 	// $converter = new CommonMarkConverter(['html_input' => 'escape', 'allow_unsafe_links' => false]);
 	// $md = $converter->convertToHtml($md);
 
 	# TODO: "if param wiki then" $md = TikiLib::lib('parser')->parse_data($md, ['is_html' => true, 'parse_wiki' => true]);
 	return $md;
 }
-
