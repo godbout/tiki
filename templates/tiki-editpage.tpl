@@ -651,6 +651,27 @@
 								</div>
 							</fieldset>
 						{/if}
+						{if $prefs.object_maintainers_enable eq 'y'}
+							<fieldset>
+								<div class="form-group row">
+									<label for="object_layout" class="col-md-4 col-form-label">{tr}Page Maintainers{/tr}</label>
+									<div class="col-sm-8 mb-2">
+										{object_selector_multi _simplename=maintainers _simplevalue=$object_maintainers type=user _threshold=-1 _class="user-selector" _separator=";" _placeholder="{tr}Name{/tr}"}
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="object_layout" class="col-md-4 col-form-label">{tr}Update Frequency{/tr}</label>
+									<div class="col-sm-8 mb-2">
+										<div class="input-group">
+											<input type="text" name="update_frequency" class="col-sm-10 form-control mr-2" maxlength="4" id="update_frequency" value="{$update_frequency}" placeholder="{tr}Days{/tr}">
+											<div class="input-group-append">
+												<span class="input-group-text">{tr}days{/tr}</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</fieldset>
+						{/if}
 					{/tab}{* end properties tab *}
 				{else}
 					{if $wysiwyg eq 'y'}{* include hidden allowhtml for wysiwyg if the properties tab isn't needed *}

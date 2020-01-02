@@ -82,6 +82,15 @@
 							{preference name=feature_groupalert}
 						</fieldset>
 					</div>
+					<legend>{tr}Object Maintainers and Freshness{/tr}</legend>
+					<div class="adminoptionboxchild">
+						<fieldset>
+							{preference name=object_maintainers_enable}
+							<div class="adminoptionboxchild" id="object_maintainers_enable_childcontainer">
+								{preference name=object_maintainers_default_update_frequency}
+							</div>
+						</fieldset>
+					</div>
 				</div>
 			</fieldset>
 

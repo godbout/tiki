@@ -13,6 +13,8 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 
 class ObjectLib extends TikiLib
 {
+	const SecondsPerDay = 86400;
+
 	/**
 	 *	Create an object record for the given Tiki object if one doesn't already exist.
 	 * Returns the object record OID. If the designated object does not exist, may return NULL.
@@ -796,5 +798,36 @@ class ObjectLib extends TikiLib
 
 		//return information
 		return $resultObjectInfo;
+	}
+
+	public function get_maintainers() // get all objects that have maintainers ??? GET_MAINTAINED_OBJECTS
+	{
+		$relationlib = TikiLib::lib('relation');
+		return $relationlib->get_related_objects('tiki.object.maintainer');
+	}
+
+	public function set_maintainers($objectId, array $maintainers, $type = 'wiki page')
+	{
+		$relationlib = TikiLib::lib('relation');
+
+		foreach ($maintainers as $maintainer) {
+			$relationlib->add_relation('tiki.object.maintainer', $type, $objectId, 'user', $maintainer);
+		}
+	}
+
+	public function get_freshness($objectId, $type = 'wiki page')
+	{
+		if ($type === 'wiki page') {
+			$info = TikiLib::lib('tiki')->get_page_info($objectId, false);
+			if (isset($info)) {
+				$lastModif = $info['lastModif'];
+				$freshness = (int) ((time() - $lastModif) / self::SecondsPerDay);
+				return $freshness;
+			}
+		} else {
+			Feedback::error(tr('Object freshness not supported yet for object type %0', $type));
+		}
+
+		return false;
 	}
 }

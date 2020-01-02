@@ -132,6 +132,7 @@ class ConsoleApplicationBuilder
 					new MailInPollCommand,
 					new MailQueueSendCommand,
 					new NotificationDigestCommand,
+					new ObjectsNotifyMaintainersCommand,
 					new PackageClearCacheCommand,
 					new PackageInstallCommand,
 					new PackageListCommand,
