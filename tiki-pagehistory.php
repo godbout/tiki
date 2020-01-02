@@ -79,18 +79,18 @@ $paginate = (isset($_REQUEST['paginate']) && $_REQUEST['paginate'] == 'on') || !
 $smarty->assign('paginate', $paginate);
 
 if (isset($_REQUEST['history_offset']) && $paginate) {
-	$history_offset = $_REQUEST['history_offset'];
+	$history_offset = (int) $_REQUEST['history_offset'];
 } else {
 	$history_offset = 0;
 }
 $smarty->assign('history_offset', $history_offset);
 
 if (isset($_REQUEST['history_pagesize']) && $paginate) {
-	$history_pagesize = $_REQUEST['history_pagesize'];
+	$history_pagesize = (int) $_REQUEST['history_pagesize'];
 } elseif (isset($_SESSION['history_pagesize'])) {
-	$history_pagesize = $_SESSION['history_pagesize'];
+	$history_pagesize = (int) $_SESSION['history_pagesize'];
 } else {
-	$history_pagesize = $prefs['maxRecords'];
+	$history_pagesize = (int) $prefs['maxRecords'];
 }
 $_SESSION['history_pagesize'] = $history_pagesize;
 $smarty->assign('history_pagesize', $history_pagesize);
@@ -135,7 +135,7 @@ if ($prefs['flaggedrev_approval'] == 'y') {
 if (! isset($_REQUEST['show_all_versions'])) {
 	$_SESSION['show_all_versions'] = isset($_SESSION['show_all_versions']) ? $_SESSION['show_all_versions'] : 'y';
 } else {
-	$_SESSION['show_all_versions'] = $_REQUEST['show_all_versions'];
+	$_SESSION['show_all_versions'] = $_REQUEST['show_all_versions'] === 'n' ? 'n' : 'y';
 }
 
 $sessions = [];

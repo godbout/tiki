@@ -12,6 +12,7 @@
 		{if $prefs.feature_webmail eq 'y' and $tiki_p_use_webmail eq 'y'}
 			{button href="tiki-webmail.php" _class="btn btn-primary" _text="{tr}Webmail{/tr}"}
 		{/if}
+		{button href="tiki-carddav.php/addressbooks/{$user}/webmail" _class="btn btn-primary" _text="{tr}CardDAV{/tr}"}
 	</div>
 </div>
 
@@ -178,6 +179,11 @@
 					<td class="action">
 						{actions}
 							{strip}
+								<action>
+									<a href="tiki-carddav.php/addressbooks/{$user}/webmail/{$channels[user].contactId}.vcf">
+										{icon name='download' _menu_text='y' _menu_icon='y' alt="{tr}vCard{/tr}"}
+									</a>
+								</action>
 								{if $channels[user].user eq $user or $tiki_p_admin eq 'y'}
 									{if $channels[user].user eq $user}
 										<action>

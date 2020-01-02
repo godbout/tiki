@@ -350,10 +350,13 @@ function wikiplugin_mediaplayer($data, $params)
 				if (! empty($fileId)) {
 					$smarty->loadPlugin('smarty_modifier_sefurl');
 					$sourceLink = smarty_modifier_sefurl($fileId, 'display');
-					if (! empty($sourceLink)) {
-						$htmlViewFile = VendorHelper::getAvailableVendorPath('pdfjsviewer', '/npm-asset/pdfjs-dist-viewer-min/build/minified/web/viewer.html') . '?file=';
-						$sourceLink = $htmlViewFile . urlencode(TikiLib::lib('access')->absoluteUrl($sourceLink));
-					}
+				} else {
+					$sourceLink = TikiLib::lib('access')->absoluteUrl($params['src']);
+				}
+
+				if (! empty($sourceLink)) {
+					$htmlViewFile = VendorHelper::getAvailableVendorPath('pdfjsviewer', '/npm-asset/pdfjs-dist-viewer-min/build/minified/web/viewer.html') . '?file=';
+					$sourceLink = $htmlViewFile . urlencode(TikiLib::lib('access')->absoluteUrl($sourceLink));
 				}
 
 				$smarty->assign('source_link', $sourceLink);

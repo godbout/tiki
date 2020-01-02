@@ -1421,7 +1421,8 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 	}
 
 	.tiki-view_tracker, .tiki-admin_tracker_fields, .tiki-lastchanges,
-	.tiki-admin_survey_questions, .tiki-assignuser, .tiki_user_messages {
+	.tiki-admin_survey_questions, .tiki-assignuser, .tiki_user_messages,
+	.tiki-view_banner {
 		.t_navbar {
 			.btn-group > .btn:not(.dropdown-toggle),
 			&.btn-group > .btn:not(.dropdown-toggle) {
@@ -1471,6 +1472,10 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 		}
 	}
 
+	.tiki-edit_translation, .tiki-edit_structure {
+		.ui-dialog { width: 100% !important; }
+	}
+
 	#page-data.col-sm-9 { padding-left: 0; padding-right: 0; }
 	.syslog-table textarea { min-height: 5.5em; }
 }
@@ -1478,4 +1483,8 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 blockquote {
 	color: $blockquote-color; // #7a7a7a;
 	border-left: .25rem solid $blockquote-left-border-color; //#e5e5e5;
+}
+
+.to-translate{
+	color : theme-color("danger");
 }

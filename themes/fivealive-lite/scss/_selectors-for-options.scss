@@ -443,18 +443,18 @@ input[type="checkbox"].preffilter-toggle-round:checked + label::before {
 	background: $dropdown-bg;
 }
 
-.blog-postbody-title,
-.blog-postbody-title a,
-.postbody-title .title > .card-title a.link,
-.postbody h2.card-title {
-	color: $blog-post-title-color;
-}
+//.blog-postbody-title,
+//.blog-postbody-title a,
+//.postbody-title .title > .card-title a.link,
+//.postbody h2.card-title {
+//	color: $blog-post-title-color;
+//}
 
 .blog-postbody-title h2.card-title {
 	font-size: 20px;
 }
 
-.postbody .card-header {
+.blogpost .card-header {
 	background: $post-card-header-bg;
 }
 

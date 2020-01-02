@@ -103,9 +103,10 @@ class AlchemyLib
 	 * @param int|null $width image width, use null to keep the source width
 	 * @param int|null $height image height, use null to keep the source height
 	 * @param bool $animated true for animated gif
+	 * @param int $page the page number of the document to convert
 	 * @return null|string the media type of the file, null on error
 	 */
-	public function convertToImage($sourcePath, $destinationPath, $width = null, $height = null, $animated = false)
+	public function convertToImage($sourcePath, $destinationPath, $width = null, $height = null, $animated = false, $page = 1)
 	{
 		global $tiki_p_admin;
 		try {
@@ -123,6 +124,10 @@ class AlchemyLib
 
 			if ($width > 0 && $height > 0) {
 				$targetType->setDimensions($width, $height);
+			}
+
+			if ($targetType instanceof Image && $page != 1) {
+				$targetType->fromPage($page);
 			}
 
 			$this->alchemyst->turnInto($sourcePath, $destinationPath, $targetType);

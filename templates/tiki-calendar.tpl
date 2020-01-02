@@ -309,8 +309,15 @@
 				},
 				height: 'auto'
 			});
-		{/jq}
 
+		{/jq}
+		{jq notonready=true}
+			addFullCalendarPrint('#calendar', '#calendar-pdf-btn');
+		{/jq}
+		{if $pdf_export eq 'y' and $pdf_warning eq 'n'}
+			<a id="calendar-pdf-btn"  href="#" style="float: right; display: none">{icon name='pdf'} {tr}Export as PDF{/tr}</a>
+		{/if}
+		<div id="test"></div>
 		<style type='text/css'>
 			#calendar {
 				width: 90%;

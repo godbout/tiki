@@ -68,17 +68,17 @@
         {/if}
 	{if $category_needed eq 'y'}
 		{remarksbox type='Warning' title="{tr}Warning{/tr}"}
-			<div class="highlight"><em class='mandatory_note'>{tr}A category is mandatory{/tr}</em></div>
+			<div class="alert alert-warning alert-dismissible"><em class=''>{tr}A category is mandatory{/tr}</em></div>
 		{/remarksbox}
 	{/if}
 	{if $contribution_needed eq 'y'}
 		{remarksbox type='Warning' title="{tr}Warning{/tr}"}
-			<div class="highlight"><em class='mandatory_note'>{tr}A contribution is mandatory{/tr}</em></div>
+			<div class="alert alert-warning alert-dismissible"><em class=''>{tr}A contribution is mandatory {/tr}</em></div>
 		{/remarksbox}
 	{/if}
 	{if isset($summary_needed) && $summary_needed eq 'y'}
 		{remarksbox type='Warning' title="{tr}Warning{/tr}"}
-			<div class="highlight"><em class='mandatory_note'>{tr}An edit summary is mandatory{/tr}</em></div>
+			<div class="alert alert-warning alert-dismissible"><em class=''>{tr}An edit summary is mandatory {/tr}</em></div>
 		{/remarksbox}
 	{/if}
 	{if $likepages}
@@ -189,9 +189,9 @@
 							<h2>{tr}Translate to:{/tr} {$target_page|escape}</h2>
 							{tr}Reproduce the changes highlighted on the left using the editor below{/tr}.
 						</div>
-					{/if}
-					{textarea codemirror='true' syntax='tiki'}{$pagedata}{/textarea}
-					{if $prefs.wiki_freetags_edit_position eq 'edit'}
+					{/if}                                                
+					{textarea codemirror='true' syntax='tiki'}{$pagedata}{/textarea} 
+                                        {if $prefs.wiki_freetags_edit_position eq 'edit'}
 							{if $prefs.feature_freetags eq 'y' and $tiki_p_freetags_tag eq 'y'}
 								<fieldset>
 									<legend>{tr}Tags{/tr}</legend>
@@ -647,6 +647,27 @@
 												<option value="{$key|escape}"{if $object_layout.current eq $key} selected{/if}>{$label|escape}</option>
 											{/foreach}
 										</select>
+									</div>
+								</div>
+							</fieldset>
+						{/if}
+						{if $prefs.object_maintainers_enable eq 'y'}
+							<fieldset>
+								<div class="form-group row">
+									<label for="object_layout" class="col-md-4 col-form-label">{tr}Page Maintainers{/tr}</label>
+									<div class="col-sm-8 mb-2">
+										{object_selector_multi _simplename=maintainers _simplevalue=$object_maintainers type=user _threshold=-1 _class="user-selector" _separator=";" _placeholder="{tr}Name{/tr}"}
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="object_layout" class="col-md-4 col-form-label">{tr}Update Frequency{/tr}</label>
+									<div class="col-sm-8 mb-2">
+										<div class="input-group">
+											<input type="text" name="update_frequency" class="col-sm-10 form-control mr-2" maxlength="4" id="update_frequency" value="{$update_frequency}" placeholder="{tr}Days{/tr}">
+											<div class="input-group-append">
+												<span class="input-group-text">{tr}days{/tr}</span>
+											</div>
+										</div>
 									</div>
 								</div>
 							</fieldset>

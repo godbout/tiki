@@ -23,7 +23,7 @@
 			<div class="header_container">
 				<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std">
 					<header class="header page-header row" id="page-header">
-						{modulelist zone=top class="top_modules d-flex justify-content-between w-100 {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark{else}navbar-light bg-light{/if}"}
+						{modulelist zone=top class="top_modules d-flex justify-content-between w-100 {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark-parent bg-dark-parent{else}navbar-light-parent bg-light-parent{/if}"}
 					</header>
 				</div>
 			</div>

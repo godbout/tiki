@@ -1,15 +1,15 @@
 {* $Id$ *}
 {tikimodule error=$module_params.error title=$tpl_module_title name="users_list" flip=$module_params.flip decorations=$module_params.decorations nobox=$module_params.nobox notitle=$module_params.notitle}
-	<table class="normal">
+	<table class="table">
 		{if $module_params_users_list.heading ne 'n'}
 			<tr>
-				{if $module_params_users_list.login ne 'n'}<td class="heading">{tr}Login{/tr}</td>{/if}
-				{if $module_params_users_list.realName eq 'y'}<td class="heading">{tr}Real Name{/tr}</td>{/if}
+				{if $module_params_users_list.login ne 'n'}<td class="heading">{tr}Log-in name{/tr}</td>{/if}
+				{if $module_params_users_list.realName eq 'y'}<td class="heading">{tr}Real name{/tr}</td>{/if}
 				{if $module_params_users_list.email eq 'y'}<td class="heading">{tr}Email{/tr}</td>{/if}
 				{if $module_params_users_list.lastLogin eq 'y'}<td class="heading">{tr}Last login{/tr}</td>{/if}
 				{if $module_params_users_list.groups eq 'y'}<td class="heading">{tr}Groups{/tr}</td>{/if}
 				{if $module_params_users_list.avatar eq 'y'}<td class="heading">{tr}Profile picture{/tr}</td>{/if}
-				{if $module_params_users_list.userPage eq 'y' or $module_params_users_list.log eq 'y'}<td class="heading"></td>{/if}
+				{if $module_params_users_list.userPage eq 'y' or $module_params_users_list.log eq 'y'}<td class="heading">{tr}User page{/tr}</td>{/if}
 			</tr>
 		{/if}
 
@@ -57,7 +57,7 @@
 					</td>
 				{/if}
 				{if $module_params_users_list.avatar eq 'y'}
-					<td>
+					<td class="text-center">
 						{if $users[ix].info_public ne 'n'}
 							<a class="link" href="tiki-user_information.php?view_user={$users[ix].user|escape:'url'}" title="{tr}view{/tr}">{$users[ix].avatar}</a>
 						{else}
@@ -66,12 +66,12 @@
 					</td>
 				{/if}
 				{if $module_params_users_list.userPage eq 'y' or $module_params_users_list.log eq 'y'}
-					<td>
+					<td class="text-center">
 						{if $module_params_users_list.userPage eq 'y' and $users[ix].userPage}
-							<a href="tiki-index.php?page={$users[ix].userPage}" title="{$users[ix].userPage}"><img src="img/icons/magnifier.png" width="16" height="16" alt="{$users[ix].userPage}" /></a>
+							<a href="tiki-index.php?page={$users[ix].userPage}" title="{$users[ix].userPage}"> {icon name="file-alt" size="2"} </a>
 						{/if}
 						{if $module_params_users_list.log eq 'y'}
-							<a href="tiki-admin_actionlog.php?selectedUsers[]={$users[ix].user|escape:"url"}&amp;list=y" title="{tr}Logs{/tr}"><img src="img/icons/table.png" width="16" height="16" alt="{tr}Logs{/tr}" /></a>
+							<a href="tiki-admin_actionlog.php?selectedUsers[]={$users[ix].user|escape:"url"}&amp;list=y" title="{tr}Logs{/tr}"> {icon name="table" size="2"} </a>
 						{/if}
 					</td>
 				{/if}

@@ -203,6 +203,9 @@ class DiagramHelper
 					} else {
 						$mxCell['value'] = htmlspecialchars_decode(TikiLib::lib('parser')->parse_data($cellValue));
 					}
+				} else {
+					$cellValue = str_replace('<br>', "\r\n", $cellValue);
+					$mxCell['value'] = htmlspecialchars_decode(TikiLib::lib('parser')->parse_data($cellValue, ['is_html' => 1]));
 				}
 			}
 

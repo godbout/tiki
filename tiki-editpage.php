@@ -1262,6 +1262,28 @@ if (isset($_REQUEST["save"])
 		}
 	}
 
+	if ($prefs['object_maintainers_enable'] === 'y') {
+
+		$relationlib = TikiLib::lib('relation');
+		$attributelib = TikiLib::lib('attribute');
+
+		// We erase the preexisting relation either because there are no more maintainers,
+		// or because there are maintainers and we want to make sure old maintainers that have been replaced get removed
+		$relationlib -> remove_relations_from('wiki page', $info['pageName'], 'tiki.object.maintainer');
+
+		if (! empty($_REQUEST["maintainers"])) {
+			$maintainers = explode(';', $_REQUEST["maintainers"]);
+			TikiLib::lib('object') -> set_maintainers($info['pageName'], $maintainers, 'wiki page');
+		}
+
+		if (! empty($_REQUEST["update_frequency"]) && $_REQUEST["update_frequency"] > 0) {
+			$attributelib -> set_attribute('wiki page', $info['pageName'], 'tiki.object.update_frequency', $_REQUEST["update_frequency"]);
+		} else { // Erase potentially preexisting update frequency 
+			$attributelib -> set_attribute('wiki page', $info['pageName'], 'tiki.object.update_frequency', ''); // param $value === '' means delete
+		}
+
+	}
+
 	// Notify users/usergroups
 	if ($prefs['feature_notify_users_mention'] === 'y' && $prefs['feature_tag_users'] === 'y') {
 		$tikiLibUser = TikiLib::lib('user');
@@ -1587,6 +1609,24 @@ if ($prefs['feature_categories'] === 'y') {
 				$categories[$i]['incat'] = 'y';
 			}
 		}
+	}
+}
+
+if ($prefs['object_maintainers_enable'] === 'y') {
+	$object_maintainers = TikiLib::lib('relation')->get_relations_from('wiki page', $info['pageName'], 'tiki.object.maintainer');
+	if (! empty($object_maintainers)) {
+		$maintainers = [];
+		foreach ($object_maintainers as $object_maintainer) {
+			$maintainers[] = $object_maintainer['itemId'];
+		}
+		$smarty->assign('object_maintainers', implode(';', $maintainers));
+	}
+
+	$update_frequency = TikiLib::lib('attribute')->get_attribute('wiki page', $info['pageName'], 'tiki.object.update_frequency');
+	if (! empty($update_frequency)) {
+		$smarty->assign('update_frequency', $update_frequency);
+	} else {
+		$smarty->assign('update_frequency', $prefs['object_maintainers_default_update_frequency']);
 	}
 }
 

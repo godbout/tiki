@@ -850,6 +850,14 @@ if (! empty($prefs['calendar_fullcalendar']) && $prefs['calendar_fullcalendar'] 
 if (isset($_REQUEST['editmode']) && ($_REQUEST['editmode'] == 'add' || $_REQUEST['editmode'] == 'edit')) {
 	$smarty->assign('mid', 'tiki-calendar_add_event.tpl');
 } else {
+	// Detect if we have a PDF export mod installed
+	$smarty->assign('pdf_export', ($prefs['print_pdf_from_url'] != 'none') ? 'y' : 'n');
+	$smarty->assign('pdf_warning', 'n');
+	//checking if mPDF package is available
+
+	if ($prefs['print_pdf_from_url'] == "mpdf" && ! class_exists('\\Mpdf\\Mpdf')) {
+		$smarty->assign('pdf_warning', 'y');
+	}
 	$smarty->assign('mid', 'tiki-calendar.tpl');
 }
 

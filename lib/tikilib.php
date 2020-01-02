@@ -1534,6 +1534,54 @@ class TikiLib extends TikiDb_Bridge
 		return $ret;
 	}
 
+	/**
+	 * Return user avatar as Base64 encoded inline image.
+	 */
+	function get_user_avatar_inline($user)
+	{
+		global $prefs;
+
+		if (empty($user)) {
+			return '';
+		}
+
+		if (is_array($user)) {
+			$res = $user;
+			$user = $user['login'];
+		} else {
+			$res = $this->table('users_users')->fetchRow(['login', 'avatarType', 'avatarFileType', 'avatarData', 'avatarLibName', 'email'], ['login' => $user]);
+		}
+
+		if (! $res) {
+			return '';
+		}
+
+		if ($prefs['user_use_gravatar'] == 'y' && $res['email']) {
+			$hash = md5(strtolower(trim($res['email'])));
+			$url = "https://secure.gravatar.com/avatar/$hash.jpg?s=45";
+			$data = file_get_contents($url);
+			$mime = 'image/jpeg';
+		} elseif ($res['avatarType'] == 'l') {
+			$url = $this->tikiUrlOpt($res['avatarLibName']);
+			$data = file_get_contents($url);
+			if (class_exists('finfo')) {
+				$finfo = new finfo(FILEINFO_MIME_TYPE);
+				$mime = $finfo->buffer($data);
+			} else {
+				$mime = 'image/jpeg';
+			}
+		} else {
+			$data = $res['avatarData'];
+			$mime = $res['avatarFileType'];
+		}
+
+		if ($data && $mime) {
+			return "data:$mime;base64,".base64_encode($data);
+		} else {
+			return '';
+		}
+	}
+
 	/*shared*/
 	/**
 	 * @return array

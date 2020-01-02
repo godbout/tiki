@@ -44,6 +44,15 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 		return true;
 	}
 
+	/**
+	 * Get field mappings of Elastic
+	 * @return array
+	 */
+	public function getFieldMappings()
+	{
+		return $this->providedMappings;
+	}
+
 	function exists()
 	{
 		$indexStatus = $this->connection->getIndexStatus($this->index);

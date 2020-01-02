@@ -778,8 +778,18 @@ body {
   height: 30px;
   margin: -5px 0 0 5px;
 }
+.mobile .inline-cypht .nux_welcome ul {
+  padding-left: 20px;
+}
 .mobile .inline-cypht .nux_dev_news table td {
   display: block;
+}
+.mobile .inline-cypht .nux_dev_news table tr:not(:last-child) td:last-child {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+}
+.mobile .inline-cypht .nux_dev_news table tr:last-child td:last-child {
+  border-bottom: none;
 }
 .mobile .inline-cypht .nux_empty_combined_view {
   margin-left: 10px;

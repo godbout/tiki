@@ -138,6 +138,12 @@ class CalRecurrence extends TikiLib
 		if (isset($data['user'])) {
 			$this->setUser($data['user']);
 		}
+		if (isset($data['uri'])) {
+			$this->setUri($data['uri']);
+		}
+		if (isset($data['uid'])) {
+			$this->setUid($data['uid']);
+		}
 	}
 
 	/**
@@ -248,8 +254,8 @@ class CalRecurrence extends TikiLib
 	private function create()
 	{
 		$query = "INSERT INTO tiki_calendar_recurrence (calendarId, start, end, allday, locationId, categoryId, nlId, priority, status, url, lang, name, description, "
-				 . "weekly, weekday, monthly, dayOfMonth,yearly, dateOfYear, nbRecurrences, startPeriod, endPeriod, user, created, lastModif) "
-				 . "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				 . "weekly, weekday, monthly, dayOfMonth,yearly, dateOfYear, nbRecurrences, startPeriod, endPeriod, user, created, lastModif, uri, uid) "
+				 . "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		$now = $this->now;
 		$bindvars = [
 						$this->getCalendarId(),
@@ -276,7 +282,9 @@ class CalRecurrence extends TikiLib
 						$this->getEndPeriod(),
 						$this->getUser(),
 						$now,
-						$now
+						$now,
+						$this->getUri(),
+						$this->getUid(),
 					 ];
 		$result = $this->query($query, $bindvars);
 		if ($result) {
@@ -298,7 +306,7 @@ class CalRecurrence extends TikiLib
 	{
 		$query = "UPDATE tiki_calendar_recurrence SET calendarId = ?, start = ?, end = ?, allday = ?, locationId = ?, categoryId = ?, nlId = ?, priority = ?, status = ?, "
 				 . "url = ?, lang = ?, name = ?, description = ?, weekly = ?, weekday = ?, monthly = ?, dayOfMonth = ?, yearly = ?, dateOfYear = ?, nbRecurrences = ?, "
-				 . "startPeriod = ?, endPeriod = ?, user = ?, lastModif = ? WHERE recurrenceId = ?";
+				 . "startPeriod = ?, endPeriod = ?, user = ?, lastModif = ?, uri = ?, uid = ? WHERE recurrenceId = ?";
 		$now = time();
 		$bindvars = [
 						$this->getCalendarId(),
@@ -325,6 +333,8 @@ class CalRecurrence extends TikiLib
 						$this->getEndPeriod(),
 						$this->getUser(),
 						$now,
+						$this->getUri(),
+						$this->getUid(),
 						$this->getId()
 					 ];
 		$oldRec = new CalRecurrence($this->getId()); // we'll need old version to compare fields.
@@ -380,6 +390,11 @@ class CalRecurrence extends TikiLib
 	}
 
 	/**
+	 * Attempts to update expanded recurring events in db based off changes in the recurring event record.
+	 * Matches events by old schedule (before update) and original start date.
+	 * TODO: this currently does not support EXDATE exclusions (i.e. individual event deletes) from recurring schedule
+	 * because we match by position in the event list. In the future, this can be expanded to support EXDATE exclusions
+	 * in order to sync deleted events here and in Tiki\SabreDav\CalDAVBackend.
 	 * @param bool $updateManuallyChangedEvents
 	 * @param $oldRec
 	 */
@@ -416,12 +431,14 @@ class CalRecurrence extends TikiLib
 
 		$tx = TikiDb::get()->begin();
 		foreach ($new_expanded->VEVENT as $key => $vevent) {
-			$old_start = $old_expanded->VEVENT[$key]->DTSTART->getDateTime()->getTimeStamp();
 			$found = false;
-			foreach ($existing as $row) {
-				if (($row['recurrenceStart'] && $row['recurrenceStart'] == $old_start) || $row['start'] == $old_start) {
-					$found = $row;
-					break;
+			if (! empty($old_expanded->VEVENT[$key]->DTSTART)) {
+				$old_start = $old_expanded->VEVENT[$key]->DTSTART->getDateTime()->getTimeStamp();
+				foreach ($existing as $row) {
+					if (($row['recurrenceStart'] && $row['recurrenceStart'] == $old_start) || $row['start'] == $old_start) {
+						$found = $row;
+						break;
+					}
 				}
 			}
 			if (! $found) {
@@ -470,6 +487,29 @@ class CalRecurrence extends TikiLib
 			}
 		}
 		$tx->commit();
+	}
+
+	/**
+	 * Update individual events in a recurring event series that were manually tweaked in clients.
+	 */
+	public function updateOverrides($events) {
+		global $user;
+
+		$query = "SELECT calitemId,calendarId, start, end, allday, locationId, categoryId, nlId, priority, status, url, lang, name, description, "
+				 . "user, created, lastModif, changed, recurrenceStart "
+				 . "FROM tiki_calendar_items WHERE recurrenceId = ? ORDER BY start";
+		$bindvars = [(int)$this->getId()];
+		$existing = $this->fetchAll($query, $bindvars);
+
+		foreach ($events as $event) {
+			foreach ($existing as $row) {
+				if (($row['recurrenceStart'] && $row['recurrenceStart'] == $event['recurrenceStart']) || $row['start'] == $event['recurrenceStart']) {
+					$event['calendarId'] = $row['calendarId'];
+					TikiLib::lib('calendar')->set_item($user, $row['calitemId'], $event, [], true);
+					break;
+				}
+			}
+		}
 	}
 
 	/**

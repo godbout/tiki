@@ -9,7 +9,7 @@
 <form action="{$myurl|escape}" method="post" name="f" id="editcalitem" class="no-ajax">
 	<div class="modal-body">
 		{if !$smarty.get.isModal}
-			<div class="t_navbar form-group row">
+			<div class="t_navbar mb-4">
 				{if $tiki_p_view_calendar eq 'y'}
 					{button href="tiki-calendar.php" _type="link" _text="{tr}View Calendars{/tr}" _icon_name="view"}
 				{/if}
@@ -424,11 +424,13 @@
 							{html_select_time prefix="start_" display_seconds=false time=$calitem.start minute_interval=$prefs.calendar_minute_interval use_24_hours=$use_24hr_clock class='form-control date nochosen'}
 						</div>
 					{/if}
-					<div class="form-check">
-						<label class="col-sm-2 form-check-label">
-							<input type="checkbox" class="form-check-input" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
-							{tr}All day{/tr}
-						</label>
+					<div class="col-sm-2">
+						<div class="form-check">
+							<label class="form-check-label">
+								<input type="checkbox" class="form-check-input" name="allday" id="allday" value="true" {if $calitem.allday} checked="checked"{/if}>
+								{tr}All day{/tr}
+							</label>
+						</div>
 					</div>
 				{else}
 					<div class="col-sm-9">

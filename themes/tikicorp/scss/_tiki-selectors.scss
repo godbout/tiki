@@ -769,3 +769,9 @@ body {
 		flex-wrap: wrap;
 	}
 }
+
+// Prevent doubling of opacity level - Maybe this should be fixed above instead of overridden, but I didn't want to tinker.
+.bg-dark .bg-dark,
+.middle_outer .row.topbar .bg-dark {
+	background: transparent !important;
+}

@@ -87,10 +87,10 @@ class Gd extends ImageAbstract
 				$this->data = preg_replace('/width="' . $this->width . '" height="' . $this->height . '"/', $svgAttributes, $this->data);
 			} else {
 				$t = imagecreatetruecolor($x, $y);
-				// trick to have a transparent background for png instead of black
+				// trick #2 to have a transparent background for png instead of black
 				imagesavealpha($t, true);
-				$trans_colour = imagecolorallocatealpha($t, 0, 0, 0, 127);
-				imagefill($t, 0, 0, $trans_colour);
+				imagealphablending($t, false);
+				imagecolortransparent($t, imagecolorallocatealpha($t, 0, 0, 0, 127));
 
 				imagecopyresampled($t, $this->data, 0, 0, 0, 0, $x, $y, $this->getWidth(), $this->getHeight());
 				$this->data = $t;

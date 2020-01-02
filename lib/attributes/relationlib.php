@@ -46,6 +46,28 @@ class RelationLib extends TikiDb_Bridge
 		return $this->table->fetchAll($fields, $cond, $max, -1, $orderBy);
 	}
 
+
+	/**
+	 * Obtain a list of objects that have a given relation
+	 *
+	 */
+	function get_related_objects($relation, $orderBy = '', $max = -1)
+	{
+
+		$cond = [
+			'relation' => $relation,
+		];
+
+		$fields = [
+			'source_type',
+			'source_itemId',
+			'target_type',
+			'target_itemId',
+		];
+
+		return $this->table->fetchAll($fields, $cond, $max, -1, $orderBy); /// resultset as an array
+	}
+
 	/**
 	 * This is a convenience function to get all the matching IDs from
 	 * get_relations_from without caring about the object type which might be assumed

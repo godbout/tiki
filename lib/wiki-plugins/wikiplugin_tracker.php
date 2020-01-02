@@ -2240,7 +2240,7 @@ FILL;
 			if (empty($wiki) && empty($tpl)) {
 				$back .= "<div class='" . $buttonclass . "'><div class='text-center alert alert-danger'><em>" . tra("Fields marked with an * are mandatory.") . "</em></div></div>";
 			} else {
-				$back .= "<div class='form-group'><div class='text-center alert alert-danger'><em>" . tra("Fields marked with an * are mandatory.") . "</em></div>";
+				$back .= "<div class='text-center alert alert-danger'><em>" . tra("Fields marked with an * are mandatory.") . "</em></div>";
 			}
 			$back .= "</div>";
 		}

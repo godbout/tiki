@@ -145,7 +145,7 @@ class Search_Formatter
 			$fields[] = $field;
 		}
 
-		$url = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+		$url = parse_url(@$_SERVER["REQUEST_URI"], PHP_URL_PATH);
 		$filters = [];
 		foreach ($_GET as $key => $val) {
 			if (substr($key, 0, 3) != 'tf_') {

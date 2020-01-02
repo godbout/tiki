@@ -27,13 +27,14 @@ class Services_Diagram_Controller
 	 * Function used to cache a diagram.
 	 * If the diagram is represented inline in a page, the cache file name result will be the md5 of the content
 	 * @param $input
-	 * @return bool|void
+	 * @return array
 	 * @throws Exception
-	 * @return bool
 	 */
 	public function action_image($input)
 	{
 		global $prefs;
+
+		$payload = [];
 
 		if ($prefs['fgal_export_diagram_on_image_save'] !== 'y' || ! function_exists('simplexml_load_string')) {
 			return false;
@@ -60,5 +61,17 @@ class Services_Diagram_Controller
 			$diagramId = (string) $diagram->attributes()->id;
 			$cacheLib->cacheItem(md5($diagram->asXML()), $data[$diagramId], 'diagram');
 		}
+
+		if (! empty($input->ticketsAmount->int())) {
+			$payload['new_tickets'] = [];
+			$accesslib = TikiLib::lib('access');
+
+			for ($i = 0; $i < $input->ticketsAmount->int(); $i++) {
+				$accesslib->setTicket();
+				$payload['new_tickets'][] = $accesslib->getTicket();
+			}
+		}
+
+		return $payload;
 	}
 }

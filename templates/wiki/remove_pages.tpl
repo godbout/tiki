@@ -46,11 +46,17 @@
 					<label for="destpage" class="col-sm-2">{tr}Redirect to:{/tr}</label>
 				</div>
 				<div class="col-sm-10">
-					{jq}$("#destpage").tiki("autocomplete", "pagename");{/jq}
+					{jq}
+						let exclude = $('#list-items li').map(function(i,el) {
+							return $.trim($(el).text());
+						}).get();
+						exclude = exclude.join();
+						$("#destpage").tiki("autocomplete", "pagename","",exclude);
+					{/jq}
 					<input type='text' id='destpage' name='destpage' class="form-control" value=''>
 				</div>
 			</div>
 		{/if}
-		{include file='access/include_submit.tpl'}
+        {include file='access/include_submit.tpl'}
 	</form>
 {/block}

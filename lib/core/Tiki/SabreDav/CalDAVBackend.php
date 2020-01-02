@@ -95,9 +95,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
      * @return array
      */
     function getCalendarsForUser($principalUri) {
-        global $base_url;
-
-        $user = $this->mapPrincipalUriToUser($principalUri);
+        $user = PrincipalBackend::mapUriToUser($principalUri);
 
         $calendarlib = TikiLib::lib('calendar');
         $result = $calendarlib->list_calendars(0, -1, 'calendarId_asc', '', $user);
@@ -116,7 +114,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             $calendar = [
                 'id'                                                                 => [(int)$row['calendarId'], (int)$row['calendarInstanceId']],
                 'uri'                                                                => $row['uri'] ?? $this->getCalendarUri($row['calendarId']),
-                'principaluri'                                                       => $this->getPrincipalUri($user),
+                'principaluri'                                                       => PrincipalBackend::mapUserToUri($user),
                 '{' . CalDAV\Plugin::NS_CALENDARSERVER . '}getctag'                  => 'http://sabre.io/ns/sync/' . ($row['synctoken'] ?? '0'),
                 '{http://sabredav.org/ns}sync-token'                                 => $row['synctoken'] ?? '0',
                 '{' . CalDAV\Plugin::NS_CALDAV . '}supported-calendar-component-set' => new CalDAV\Xml\Property\SupportedCalendarComponentSet($components),
@@ -139,23 +137,6 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         }
 
         return $calendars;
-    }
-
-    protected function mapPrincipalUriToUser($principalUri) {
-        if (preg_match('#principals/(.*)$#', $principalUri, $m)) {
-            $user = $m[1];
-            if (TikiLib::lib('user')->user_exists($user)) {
-                return $user;
-            } else {
-                throw new DAV\Exception('Principaluri does not exist in Tiki user database.');
-            }
-        } else {
-            throw new DAV\Exception('Principaluri is in invalid format.');
-        }
-    }
-
-    protected function getPrincipalUri($user) {
-        return 'principals/'.$user;
     }
 
     protected function mapCalendarUriToCalendar($calendarUri) {
@@ -223,7 +204,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         global $access;
         $access->check_permission(['tiki_p_admin_calendar']);
 
-        $user = $this->mapPrincipalUriToUser($principalUri);
+        $user = PrincipalBackend::mapUriToUser($principalUri);
 
         $options = [];
 
@@ -628,6 +609,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             $rec = $data['rec'];
             $rec->updateDetails($data);
             $rec->save(true);
+            $rec->updateOverrides($data['overrides']);
         } else {
             TikiLib::lib('calendar')->set_item($user, 0, $data);
         }
@@ -677,12 +659,14 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         if ($rec) {
             if ($data['rec']) {
                 $data['rec']->setId($rec->getId());
+                $data['rec']->setUri($rec->getUri());
                 $rec = $data['rec'];
             }
             $data['calitemId'] = $item['calitemId'];
             $rec->updateDetails($data);
             $rec->setUser($user);
             $rec->save(true);
+            $rec->updateOverrides($data['overrides']);
         } else {
             TikiLib::lib('calendar')->set_item($user, $item['calitemId'], $data);
         }
@@ -734,16 +718,10 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
      * @return array
      */
     protected function getDenormalizedData($calendarData, $calendarId) {
-        $calendar = TikiLib::lib('calendar')->get_calendar($calendarId);
-        $timezone = TikiLib::lib('tiki')->get_display_timezone($calendar['user']);
-
         $vObject = VObject\Reader::read($calendarData);
         $componentType = null;
         $component = null;
-        $firstOccurence = null;
-        $lastOccurence = null;
         $uid = null;
-        $rec = null;
         foreach ($vObject->getComponents() as $component) {
             if ($component->name !== 'VTIMEZONE') {
                 $componentType = $component->name;
@@ -754,8 +732,44 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         if (!$componentType) {
             throw new \Sabre\DAV\Exception\BadRequest('Calendar objects must have a VJOURNAL, VEVENT or VTODO component');
         }
-        // TODO: recurrence-id - modify individual events in a recurrence series
-        if ($componentType === 'VEVENT') {
+
+        $result = [
+            'etag'           => md5($calendarData),
+            'size'           => strlen($calendarData),
+            'componenttype'  => $componentType,
+            'uid'            => $uid,
+        ];
+        $result = array_merge(
+            $result,
+            $this->getDenormalizedDataFromComponent($component)
+        );
+
+        // check for individual instances changed in recurring events
+        $result['overrides'] = [];
+        foreach ($vObject->getComponents() as $component) {
+            if ($component->name !== 'VEVENT') {
+                continue;
+            }
+            if ($component->{'RECURRENCE-ID'}) {
+                $result['overrides'][] = $this->getDenormalizedDataFromComponent($component);
+            }
+        }
+
+        // Destroy circular references to PHP will GC the object.
+        $vObject->destroy();
+
+        return $result;
+    }
+
+    protected function getDenormalizedDataFromComponent($component) {
+        $calendar = TikiLib::lib('calendar')->get_calendar($calendarId);
+        $timezone = TikiLib::lib('tiki')->get_display_timezone($calendar['user']);
+
+        $firstOccurence = null;
+        $lastOccurence = null;
+        $rec = null;
+
+        if ($component && $component->name == 'VEVENT') {
             $firstOccurence = $component->DTSTART->getDateTime()->getTimeStamp();
             if (isset($component->DTEND)) {
                 $lastOccurence = $component->DTEND->getDateTime()->getTimeStamp();
@@ -831,14 +845,14 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         }
 
         $result = [
-            'etag'           => md5($calendarData),
-            'size'           => strlen($calendarData),
-            'componenttype'  => $componentType,
             'start'          => $firstOccurence,
             'end'            => $lastOccurence,
-            'uid'            => $uid,
             'rec'            => $rec,
         ];
+
+        if (isset($component->{'RECURRENCE-ID'})) {
+            $result['recurrenceStart'] = $component->{'RECURRENCE-ID'}->getDateTime()->getTimeStamp();
+        }
 
         if (isset($component->CREATED)) {
             $result['created'] = $component->CREATED->getDateTime()->getTimeStamp();
@@ -898,9 +912,6 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             }
             $result['participants'] = implode(',', $result['participants']);
         }
-
-        // Destroy circular references to PHP will GC the object.
-        $vObject->destroy();
 
         return $result;
     }
@@ -1276,7 +1287,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
      * @return string|null
      */
     function getCalendarObjectByUID($principalUri, $uid) {
-        $user = $this->mapPrincipalUriToUser($principalUri);
+        $user = PrincipalBackend::mapUriToUser($principalUri);
         $row = TikiLib::lib('calendar')->find_by_uid($user, $uid);
         if ($row) {
             $perms = Perms::get('event', $row['calitemId']);
@@ -1454,14 +1465,14 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
      * @return array
      */
     function getSubscriptionsForUser($principalUri) {
-        $user = $this->mapPrincipalUriToUser($principalUri);
+        $user = PrincipalBackend::mapUriToUser($principalUri);
         $subscriptions = TikiLib::lib('calendar')->get_subscriptions($user);
 
         foreach ($subscriptions as $row) {
             $subscription = [
                 'id'           => $row['subscriptionId'],
                 'uri'          => $this->getCalendarUri($row['calendarId']),
-                'principaluri' => $this->getPrincipalUri($row['user']),
+                'principaluri' => PrincipalBackend::mapUserToUri($row['user']),
                 'source'       => $row['source'],
                 'lastmodified' => $row['lastmodif'],
 
@@ -1492,7 +1503,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
      * @return mixed
      */
     function createSubscription($principalUri, $uri, array $properties) {
-        $user = $this->mapPrincipalUriToUser($principalUri);
+        $user = PrincipalBackend::mapUriToUser($principalUri);
         $calendar = $this->mapCalendarUriToCalendar($uri);
 
         if (!isset($properties['{http://calendarserver.org/ns/}source'])) {
@@ -1583,7 +1594,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
      * @return array
      */
     function getSchedulingObject($principalUri, $objectUri) {
-        $user = $this->mapPrincipalUriToUser($principalUri);
+        $user = PrincipalBackend::mapUriToUser($principalUri);
 
         $row = TikiLib::lib('calendar')->get_scheduling_object($user, $objectUri);
 
@@ -1610,7 +1621,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
      * @return array
      */
     function getSchedulingObjects($principalUri) {
-        $user = $this->mapPrincipalUriToUser($principalUri);
+        $user = PrincipalBackend::mapUriToUser($principalUri);
 
         $rows = TikiLib::lib('calendar')->get_scheduling_objects($user);
 
@@ -1636,7 +1647,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
      * @return void
      */
     function deleteSchedulingObject($principalUri, $objectUri) {
-        $user = $this->mapPrincipalUriToUser($principalUri);
+        $user = PrincipalBackend::mapUriToUser($principalUri);
         TikiLib::lib('calendar')->delete_scheduling_object($user, $objectUri);
     }
 
@@ -1649,7 +1660,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
      * @return void
      */
     function createSchedulingObject($principalUri, $objectUri, $objectData) {
-        $user = $this->mapPrincipalUriToUser($principalUri);
+        $user = PrincipalBackend::mapUriToUser($principalUri);
         TikiLib::lib('calendar')->create_scheduling_object($user, $objectUri, $objectData);
     }
 
@@ -1705,7 +1716,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             $calendar = $calendarlib->get_calendar($calendarId);
             $data = [
                 'calendarId' => $calendarId,
-                'user' => $this->mapPrincipalUriToUser($sharee->principal),
+                'user' => PrincipalBackend::mapUriToUser($sharee->principal),
                 'access' => $sharee->access,
                 'name' => $calendar['name'],
                 'uri' => \Sabre\DAV\UUIDUtil::getUUID(),
@@ -1756,7 +1767,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
                     !empty($row['share_name'])
                     ? ['{DAV:}displayname' => $row['share_name']]
                     : [],
-                'principal' => $this->getPrincipalUri($row['user']),
+                'principal' => PrincipalBackend::mapUserToUri($row['user']),
             ]);
         }
         return $result;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9bae62b6413fee3c389506a741516dd1",
+    "content-hash": "f1d8e63c1f638867223a0f5148a80e2c",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -342,9 +342,9 @@
             "authors": [
                 {
                     "name": "Christian Riesen",
+                    "role": "Developer",
                     "email": "chris.riesen@gmail.com",
-                    "homepage": "http://christianriesen.com",
-                    "role": "Developer"
+                    "homepage": "http://christianriesen.com"
                 }
             ],
             "description": "Base32 encoder/decoder according to RFC 4648",
@@ -933,9 +933,9 @@
             "authors": [
                 {
                     "name": "Cameron Spear",
+                    "role": "Developer",
                     "email": "cam@cameronspear.com",
-                    "homepage": "http://cameronspear.com",
-                    "role": "Developer"
+                    "homepage": "http://cameronspear.com"
                 }
             ],
             "description": "An unofficial Bootstrap plugin to enable Bootstrap dropdowns to activate on hover and provide a nice user experience.",
@@ -2781,9 +2781,9 @@
             "authors": [
                 {
                     "name": "Matthias Mullie",
+                    "role": "Developer",
                     "email": "pathconverter@mullie.eu",
-                    "homepage": "http://www.mullie.eu",
-                    "role": "Developer"
+                    "homepage": "http://www.mullie.eu"
                 }
             ],
             "description": "Relative path converter",
@@ -2865,9 +2865,9 @@
             "authors": [
                 {
                     "name": "Michel Fortin",
+                    "role": "Developer",
                     "email": "michel.fortin@michelf.ca",
-                    "homepage": "https://michelf.ca/",
-                    "role": "Developer"
+                    "homepage": "https://michelf.ca/"
                 },
                 {
                     "name": "John Gruber",
@@ -2987,9 +2987,9 @@
             "authors": [
                 {
                     "name": "Fabian Grutschus",
+                    "role": "developer",
                     "email": "f.grutschus@lubyte.de",
-                    "homepage": "http://www.lubyte.de/",
-                    "role": "developer"
+                    "homepage": "http://www.lubyte.de/"
                 }
             ],
             "description": "Library for XMPP protocol (Jabber) connections",
@@ -3050,6 +3050,16 @@
                 "table"
             ],
             "time": "2018-11-20T21:54:28+00:00"
+        },
+        {
+            "name": "mrrio/jspdf",
+            "version": "1.5.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/mrrio/jspdf/mrrio-jspdf-1.5.3.zip",
+                "shasum": "00d451624085b4857467f67562d39e428722c82d"
+            },
+            "type": "library"
         },
         {
             "name": "nagarajanchinnasamy/subtotal",
@@ -3188,6 +3198,16 @@
                 "touch"
             ],
             "time": "2019-10-16T11:51:47+00:00"
+        },
+        {
+            "name": "npm-asset/base64-arraybuffer",
+            "version": "0.2.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/base64-arraybuffer/npm-asset-base64-arraybuffer-0.2.0.zip",
+                "shasum": "1001acf5c88c362c9ea97ee449be8c1699194e6c"
+            },
+            "type": "npm-asset"
         },
         {
             "name": "npm-asset/blueimp-canvas-to-blob",
@@ -3339,6 +3359,38 @@
             },
             "license": [
                 "MPL-2.0"
+            ]
+        },
+        {
+            "name": "npm-asset/css-line-break",
+            "version": "1.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/css-line-break/npm-asset-css-line-break-1.1.1.zip",
+                "shasum": "40513decd045bd78d28f5649d6d67c9f9d9013b7"
+            },
+            "require": {
+                "npm-asset/base64-arraybuffer": ">=0.2.0,<0.3.0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
+        },
+        {
+            "name": "npm-asset/html2canvas",
+            "version": "1.0.0-RC.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/html2canvas/npm-asset-html2canvas-1.0.0-RC.5.zip",
+                "shasum": "dbcbc215bbf81fbcc689e91d76e557214dc808e5"
+            },
+            "require": {
+                "npm-asset/css-line-break": "1.1.1"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
             ]
         },
         {
@@ -5301,25 +5353,25 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v5.0.1",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
-                "reference": "19d29e7098b7b2c3313cb03902ca30f100dcb837"
+                "reference": "64acec7e0d67125e9f4656c68d4a38a42ab5a0b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/css-selector/symfony-css-selector-19d29e7098b7b2c3313cb03902ca30f100dcb837-zip-f0f80b.zip",
-                "reference": "19d29e7098b7b2c3313cb03902ca30f100dcb837",
-                "shasum": "fd3c08b14d38f05a6456c6b1938cd5b7a7044a3c"
+                "url": "https://composer.tiki.org/dist/symfony/css-selector/symfony-css-selector-64acec7e0d67125e9f4656c68d4a38a42ab5a0b7-zip-740ecb.zip",
+                "reference": "64acec7e0d67125e9f4656c68d4a38a42ab5a0b7",
+                "shasum": "179b3179d008e6395076fa6f642d343c26dd22d8"
             },
             "require": {
-                "php": "^7.2.5"
+                "php": "^7.1.3"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.0-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -5350,7 +5402,7 @@
             ],
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
-            "time": "2019-11-18T17:27:11+00:00"
+            "time": "2019-10-12T00:35:04+00:00"
         },
         {
             "name": "symfony/debug",
@@ -7593,6 +7645,7 @@
                 "gdata",
                 "zf2"
             ],
+            "abandoned": true,
             "time": "2012-09-24T15:17:40+00:00"
         },
         {
@@ -9553,6 +9606,7 @@
         "zendframework/zendsearch": 20,
         "gidkom/php-openfire-restapi": 20,
         "montefuscolo/xmpp": 20,
+        "npm-asset/html2canvas": 5,
         "bafs/testify": 20
     },
     "prefer-stable": false,

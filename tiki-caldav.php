@@ -10,7 +10,6 @@
 
 use Sabre\DAV;
 use Sabre\CalDAV;
-use Sabre\CardDAV;
 use Sabre\DAVACL;
 use Tiki\SabreDav\BasicAuth;
 use Tiki\SabreDav\CalDAVBackend;
@@ -48,10 +47,6 @@ $server->addPlugin(new CalDAV\Schedule\Plugin());
 $server->addPlugin(new DAV\Sharing\Plugin());
 $server->addPlugin(new CalDAV\SharingPlugin());
 $server->addPlugin(new CalDAV\ICSExportPlugin());
-
-// CardDAV plugin: TODO
-//$carddavPlugin = new CardDAV\Plugin();
-//$server->addPlugin($carddavPlugin);
 
 // ACL plugin
 // No need to use hard-coded ACL rules as Tiki CalDAVBackend enforces Tiki permissions

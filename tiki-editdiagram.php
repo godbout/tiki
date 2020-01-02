@@ -100,20 +100,21 @@ $js = "(function()
 
 		var editorUiInit = EditorUi.prototype.init;
 		EditorUi.prototype.init = function()
-		{
+		{	
 			editorUiInit.apply(this, arguments);
 			var editorUi = this.actions.editorUi;
 			var editor = editorUi.editor;
 			var self = this;
-			var tickets = [{$tickets}]
+			var tickets = [{$tickets}];
+			var fileId = {$fileId};
+			var backLocation = '{$backLocation}';
+			var newDiagram = '{$newDiagram}';
 
-			this.saveFile = function(forceDialog) {
+			function saveDiagramFlow(closeWindow)
+			{
 				let node = editorUi.getXmlFileData();
 				var content = mxUtils.getXml(node);
-				var fileId = {$fileId};
 				var galleryId = {$galleryId};
-				var newDiagram = '{$newDiagram}';
-				var backLocation = '{$backLocation}';
 				var pagesAmount = node.children.length;
 				var saveElem = $('{$saveModal}')[0];
 				editorUi.showDialog(saveElem, 400, 200, true, false, null, true);
@@ -159,7 +160,7 @@ $js = "(function()
 						type: 'text/plain',
 						size: blob.size,
 						data: content,
-						fileId: '{$fileId}',
+						fileId: fileId,
 					};
 					
 					if (galleryId) {
@@ -172,6 +173,8 @@ $js = "(function()
 						dataType: 'json',
 						data: data,
 						success: function(result) {
+							fileId = result.fileId;
+							
 							if ('{$page}' && result.fileId) {
 								updatePlugin('', {'fileId': result.fileId}, function() { callback() });
 							} else {
@@ -196,6 +199,7 @@ $js = "(function()
 							type: 'image/png',
 							content: content,
 							fileId: fileId,
+							ticketsAmount: 3,
 							data: diagrams
 						};
 						
@@ -204,7 +208,8 @@ $js = "(function()
 							url: 'tiki-ajax_services.php',
 							dataType: 'json',
 							data: data,
-							success: function() {
+							success: function(result) {
+								tickets = result.new_tickets;
 								callback();
 							},
 							error: function(xhr, status, message) {
@@ -237,7 +242,7 @@ $js = "(function()
 						showModalAfterSave();
 					}
 				}
-				
+
 				if (fileId || galleryId) {
 					uploadFile(content, function() {
 						if ('{$page}' && fileId) {
@@ -254,16 +259,16 @@ $js = "(function()
 				// Show Modal after Save diagram
 				function showModalAfterSave() {
 					editor.modified = false;
-					$('div.diagram-saving').hide();
-					$('div.diagram-saved').show();
-					setTimeout(function(){
-						if (newDiagram) {
+					editorUi.hideDialog(saveElem);
+					
+					setTimeout(function() {
+						if (newDiagram && closeWindow) {
 							window.location.href = backLocation;
-						} else {
+						} else if (closeWindow) {
 							window.close();
-							window.opener.location.reload(false);
-						}
-					}, 3000);
+							window.opener.location.reload(false)
+						} 
+					}, 500);
 				}
 
 				// Show Errors
@@ -278,8 +283,51 @@ $js = "(function()
 					$('div.diagram-error').show();
 				}
 			}
-		};
 
+			editorUi.actions.get('exit').funct = function() {
+				editorUi.confirm(mxResources.get('allChangesLost'), null, function() {
+					editor.modified = false;
+					
+					if (newDiagram) {
+						window.location.href = backLocation;
+					} else {
+						window.close();
+					}
+				}, mxResources.get('cancel'), mxResources.get('discardChanges'));
+			};
+
+			this.saveFile = function(forceDialog) {
+				saveDiagramFlow(false);
+			}
+			
+		    mxResources.parse('saveAndExit=Save and Exit');
+		    editorUi.actions.addAction('saveAndExit', function()
+		    {
+		        saveDiagramFlow(true);
+		    });
+		    
+		    editorUi.keyHandler.bindAction(83, true, 'saveAndExit', true);
+		    editorUi.actions.get('saveAndExit').shortcut = Editor.ctrlKey + '+Shift+S';
+
+		    var menu = editorUi.menus.get('file');
+		    var oldFunct = menu.funct;
+	
+	        menu.funct = function(menu, parent)
+	        {
+	            oldFunct.apply(this, arguments);
+             	editorUi.menus.addMenuItem(menu, 'saveAndExit', parent);
+
+	            let submenuItems = $(menu.table).children().children();
+	            let saveAndExit = submenuItems.last();
+	            
+	            for (var i = 0; i < submenuItems.length; i++) {
+	                if (submenuItems.get(i).innerText.toLowerCase() == ('Save' + Editor.ctrlKey + '+S').toLowerCase()) {
+	                    saveAndExit.insertAfter($(submenuItems.get(i)).before());
+	                    break;
+	                }
+	            }
+	        };
+		};
 		// Adds required resources (disables loading of fallback properties, this can only
 		// be used if we know that all keys are defined in the language specific file)
 		mxResources.loadDefaultBundle = false;

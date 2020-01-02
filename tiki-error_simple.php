@@ -35,7 +35,7 @@ $login = '<form class="form-detail" id="myform" action="tiki-login.php?page=tiki
 			<div class="form-row-last">
 				<input type="hidden" class="ticket" name="ticket" value="' . $ticket . '" />
 				<input type="hidden" name="confirmForm" value="y" />
-				<input type="submit" name="login" value="login" class="register" value="Register">
+				<input type="submit" name="login" value="Log in" class="register" value="Register">
 			</div>
 			</form>';
 			

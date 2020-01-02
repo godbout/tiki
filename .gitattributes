@@ -2053,6 +2053,7 @@ installer/schema/20190913_caldav_tiki.sql -text
 installer/schema/20190925_caldav_updates_tiki.sql -text
 installer/schema/20191114_caldav_recurring_updates_tiki.sql -text
 installer/schema/20191116_scheduler_run_only_once_tiki.sql -text
+installer/schema/20191218_carddav_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -3164,6 +3165,7 @@ lib/core/Tiki/Render/index.php -text
 lib/core/Tiki/Request.php -text
 lib/core/Tiki/SabreDav/BasicAuth.php -text
 lib/core/Tiki/SabreDav/CalDAVBackend.php -text
+lib/core/Tiki/SabreDav/CardDAVBackend.php -text
 lib/core/Tiki/SabreDav/Directory.php -text
 lib/core/Tiki/SabreDav/File.php -text
 lib/core/Tiki/SabreDav/LocksBackend.php -text
@@ -4783,6 +4785,7 @@ lib/videogals/kalturalib.php -text
 lib/videogals/standardTikiKcw.xml -text
 lib/web.config -text
 lib/webmail/API.txt -text
+lib/webmail/addressbooklib.php -text
 lib/webmail/contactlib.php -text
 lib/webmail/index.php -text
 lib/webmail/mimeDecode.php -text
@@ -8044,6 +8047,7 @@ themes/yeti/templates/index.php -text
 /tiki-calendar_params_ical.php -text
 /tiki-calendar_setup.php -text
 /tiki-calendars_rss.php -text
+/tiki-carddav.php -text
 /tiki-change_password.php -text
 /tiki-channel.php -text
 /tiki-check.php -text

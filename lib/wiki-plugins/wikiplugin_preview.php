@@ -62,6 +62,12 @@ function wikiplugin_preview_info()
 				'since' => '19.0',
 				'filter' => 'int',
 			],
+			'range' => [
+				'required' => false,
+				'name' => tr('Range'),
+				'description' => tr('Page range preview in the format <integer>-<integer>. Example for the preview page from 2 to 4: "2-4"'),
+				'since' => '21.0',
+			],
 		],
 	];
 }
@@ -85,6 +91,7 @@ function wikiplugin_preview($data, $params)
 	$animation = isset($params['animation']) ? (int)$params['animation'] : 0;
 	$width = isset($params['width']) ? (int)$params['width'] : null;
 	$height = isset($params['height']) ? (int)$params['height'] : null;
+	$range = isset($params['range']) ? $params['range'] : null;
 
 	$smartyLib = TikiLib::lib('smarty');
 
@@ -116,7 +123,24 @@ function wikiplugin_preview($data, $params)
 
 		$smartyLib->assign('param', $params);
 		$files = [];
-		$files[] = $fileLink;
+
+		if (! empty($range)) {
+			$rangeFormat = preg_match("/^\d+\-\d+$/", $range);
+
+			if ($rangeFormat !== 1) {
+				Feedback::error(tr('File ID %0 preview contains an invalid range parameter.', $fileId));
+			} else {
+				$pageIterator = explode('-', $range)[0];
+				$lastPage = explode('-', $range)[1];
+
+				while ($pageIterator <= $lastPage) {
+					$files[] = $fileLink . "&previewPage=" . $pageIterator;
+					$pageIterator++;
+				}
+			}
+		} else {
+			$files[] = $fileLink;
+		}
 
 		$smartyLib->assign('files', $files);
 
@@ -139,6 +163,12 @@ function wikiplugin_preview($data, $params)
 	$cacheLib = TikiLib::lib('cache');
 
 	$cacheName = $fileMd5 . $requestUniqueIdentifier;
+	$previewPage = isset($_GET['previewPage']) ? $_GET['previewPage'] : null;
+
+	if ($previewPage) {
+		$cacheName .= "_" . $previewPage;
+	}
+
 	$cacheType = 'wp_preview_' . $fileId . '_';
 
 	$buildContent = true;
@@ -176,7 +206,7 @@ function wikiplugin_preview($data, $params)
 		MimeTypeGuesser::getInstance()->register($guesser);
 
 		$alchemy = new AlchemyLib();
-		$contentType = $alchemy->convertToImage($filePath, $newFilePath, $width, $height, $animation);
+		$contentType = $alchemy->convertToImage($filePath, $newFilePath, $width, $height, $animation, $previewPage);
 
 		// Restore the environment
 		if ($envHomeDefined) {

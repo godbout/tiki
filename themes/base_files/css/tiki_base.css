@@ -884,7 +884,7 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     padding: 0 15px;
     margin: 15px 0; }
 
-  .tiki-view_tracker .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki_user_messages .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-view_tracker .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki_user_messages .t_navbar.btn-group > .btn:not(.dropdown-toggle) {
+  .tiki-view_tracker .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki_user_messages .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-view_banner .t_navbar .btn-group > .btn:not(.dropdown-toggle), .tiki-view_tracker .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_tracker_fields .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-lastchanges .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-admin_survey_questions .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-assignuser .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki_user_messages .t_navbar.btn-group > .btn:not(.dropdown-toggle), .tiki-view_banner .t_navbar.btn-group > .btn:not(.dropdown-toggle) {
     margin-right: 5px;
     margin-bottom: 5px;
     border-radius: 0.25rem; }
@@ -919,6 +919,9 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     .nav-breadcrumb .breadcrumb + form {
       display: block !important; }
 
+  .tiki-edit_translation .ui-dialog, .tiki-edit_structure .ui-dialog {
+    width: 100% !important; }
+
   #page-data.col-sm-9 {
     padding-left: 0;
     padding-right: 0; }
@@ -929,6 +932,9 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 blockquote {
   color: #7a7a7a;
   border-left: 0.25rem solid #e5e5e5; }
+
+.to-translate {
+  color: #dc3545; }
 
 .tiki .mx--15px {
   margin-left: -15px;
@@ -1899,7 +1905,7 @@ td.url {
   margin-right: 1rem;
   display: block; }
 
-.tiki_blogs .card.postbody, .tiki_blogs .card.postbody .card-header, .tiki_blogs .card.postbody .card-footer {
+.tiki_blogs .card.blogpost, .tiki_blogs .card.blogpost .card-header, .tiki_blogs .card.blogpost .card-footer {
   background-color: transparent;
   border: none; }
 
@@ -2685,6 +2691,9 @@ a.fc-event:hover {
   .tiki_calendar .col1 #editcalitem .modal-body {
     padding-left: 0;
     padding-right: 0; }
+
+  #editcalitem .wikitext .summary {
+    padding-top: 0 !important; }
 
   #filtercal {
     left: 0; } }
@@ -4468,7 +4477,7 @@ div.tiki_plugin {
   padding-right: 0.3em; }
 
 .admintoclevel .actions a {
-  padding-right: 0.2em; }
+  padding-right: 0.3em; }
 
 .admintoclevel .actions input {
   margin-right: 2em;
