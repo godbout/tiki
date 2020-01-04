@@ -41,7 +41,7 @@ function smarty_function_scheduler_params($params, $smarty)
 					$input = '<input type="text" id="' . $inputKey . '" class="form-control" name="' . $inputKey . '" value="' . $escapedParam . '">';
 					break;
 				case 'password':
-					$input = '<input type="password" id="' . $inputKey . '" class="form-control" name="' . $inputKey . '" value="' . $escapedParam . '">';
+					$input = '<input type="password" id="' . $inputKey . '" class="form-control" name="' . $inputKey . '" value="' . $escapedParam . '" autocomplete="new-password">';
 					break;
 				case 'textarea':
 					$input = '<textarea rows="3" id="' . $inputKey . '" class="form-control" name="' . $inputKey . '"">' . $escapedParam . '</textarea>';

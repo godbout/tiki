@@ -247,6 +247,7 @@ function prefs_print_list()
 			'description' => tra('Password-protect the generated PDF.'),
 			'tags' => ['advanced'],
 			'type' => 'password',
+			'autocomplete' => 'off',
 			'default' => '',
 		],
 		'print_pdf_mpdf_watermark' => [

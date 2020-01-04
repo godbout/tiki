@@ -462,7 +462,7 @@
 						<div class="form-group row">
 							<label class="col-sm-3 col-md-2 col-form-label" for="pass1">{if isset($userinfo.userId)}{tr}New password{/tr}{else}{tr}Password{/tr}{/if}</label>
 							<div class="col-sm-7 col-md-6">
-								<input type="password" class="form-control" placeholder="{tr}Password{/tr}" name="pass" id="pass1">
+								<input type="password" class="form-control" placeholder="{tr}Password{/tr}" name="pass" id="pass1" autocomplete="new-password">
 								<div style="margin-left:5px;">
 									<div id="mypassword_text">{icon name='ok' istyle='display:none'}{icon name='error' istyle='display:none' } <span id="mypassword_text_inner"></span></div>
 									<div id="mypassword_bar" style="font-size: 5px; height: 2px; width: 0px;"></div>
@@ -475,7 +475,7 @@
 						<div class="form-group row">
 							<label class="col-sm-3 col-md-2 col-form-label" for="pass2">{if isset($userinfo.userId)}{tr}Confirm new password{/tr}{else}{tr}Confirm password{/tr}{/if}</label>
 							<div class="col-sm-7 col-md-6">
-								<input type="password" class="form-control" name="passAgain" id="pass2" placeholder="{tr}Password{/tr}">
+								<input type="password" class="form-control" name="passAgain" id="pass2" placeholder="{tr}Password{/tr}" autocomplete="new-password">
 								<div id="mypassword2_text">
 									<div id="match" style="display:none">
 										{icon name='ok' istyle='color:#0ca908'} {tr}Passwords match{/tr}

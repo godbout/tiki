@@ -379,7 +379,7 @@
 								<div class="form-group row">
 									<label class="col-sm-4 col-form-label" for="inbound_pop_password">{tr}Password{/tr}</label>
 									<div class="col-sm-8">
-										<input type="password" name="inbound_pop_password" id="inbound_pop_password" class="form-control" value="{$inbound_pop_password|escape}" autocomplete="off">
+										<input type="password" name="inbound_pop_password" id="inbound_pop_password" class="form-control" value="{$inbound_pop_password|escape}" autocomplete="new-password">
 									</div>
 								</div>
 							</div>

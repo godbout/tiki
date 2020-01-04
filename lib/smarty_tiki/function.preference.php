@@ -32,7 +32,11 @@ function smarty_function_preference($params, $smarty)
 		}
 
 		if (isset($info['autocomplete'])) {
-			$info['params'] .= ' autocomplete="' . $info['autocomplete'] . '" ';
+			// For passwords, autocomplete=off should ne replaced with autocomplete=new-password
+			$autocomplete = ($info['autocomplete'] === 'off' && $info['type'] === 'password') ? 'new-password' : $info['autocomplete'];
+			$info['params'] .= ' autocomplete="' . $autocomplete . '" ';
+		} elseif ($info['type'] === 'password' && ! isset($info['parameters'], $info['parameters']['autocomplete'])) {
+			$info['params'] .= ' autocomplete="new-password" '; // by default preferences of type password should not be autocomplete
 		}
 
 		if (isset($params['visible']) && $params['visible'] == 'always') {

@@ -392,7 +392,7 @@
 								{tr}Password{/tr}
 							</label>
 							<div class="col-sm-9">
-								<input class="form-control" type="password" name="forum_password">
+								<input class="form-control" type="password" name="forum_password" autocomplete="new-password">
 							</div>
 						</div>
 						{if $prefs.feature_contribution eq 'y'}

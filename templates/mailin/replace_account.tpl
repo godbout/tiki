@@ -63,7 +63,7 @@
 		<div class="form-group row">
 			<label for="pass" class="col-form-label col-md-3">{tr}Password{/tr}</label>
 			<div class="col-md-4">
-				<input type="password" name="pass" value="{$info.password|escape}" class="form-control">
+				<input type="password" name="pass" value="{$info.password|escape}" class="form-control" autocomplete="new-password">
 			</div>
 		</div>
 		{if $prefs.feature_articles eq 'y'}
