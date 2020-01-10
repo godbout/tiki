@@ -262,7 +262,7 @@ function wikiplugin_cypht($data, $params)
 
 	/* get includes */
 	require_once APP_PATH.'lib/framework.php';
-	require_once $tikipath.'/cypht/integration/classes.php';
+	require_once $tikipath.'/lib/cypht/integration/classes.php';
 
 	if (empty($_SESSION['cypht']['request_key'])) {
 		$_SESSION['cypht']['request_key'] = Hm_Crypt::unique_id();

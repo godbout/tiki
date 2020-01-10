@@ -15,7 +15,7 @@ class PatchCypht
 	public static function setup(Event $event)
 	{
 
-		$cypht = __DIR__ . '/../../../../cypht/';
+		$cypht = __DIR__ . '/../../../cypht/';
 		$vendors = $event->getComposer()->getConfig()->get('vendor-dir');
 		$io = $event->getIO();
 
@@ -33,7 +33,7 @@ class PatchCypht
 			mkdir($tiki_module, 0755);
 		}
 		$fs->copy($cypht.'modules/tiki', $tiki_module);
-		chdir($cypht.'../');
+		chdir($cypht.'../../');
 
 		// generate storage dirs
 		if (! is_dir('temp/cypht')) {
@@ -56,9 +56,9 @@ class PatchCypht
 
 		// js custom pacthes
 		$js = file_get_contents($cypht.'site.js');
-		$js = str_replace("url: ''", "url: 'cypht/ajax.php'+window.location.search", $js);
-		$js = str_replace("xhr.open('POST', window.location.href)", "xhr.open('POST', 'cypht/ajax.php'+window.location.search)", $js);
-		$js = str_replace("xhr.open('POST', '', true);", "xhr.open('POST', 'cypht/ajax.php'+window.location.search, true);", $js);
+		$js = str_replace("url: ''", "url: 'tiki-ajax_services.php?controller=cypht&action=ajax&'+window.location.search.substr(1)", $js);
+		$js = str_replace("xhr.open('POST', window.location.href)", "xhr.open('POST', 'tiki-ajax_services.php?controller=cypht&action=ajax&'+window.location.search.substr(1))", $js);
+		$js = str_replace("xhr.open('POST', '', true);", "xhr.open('POST', 'tiki-ajax_services.php?controller=cypht&action=ajax&'+window.location.search.substr(1), true);", $js);
 		$js = preg_replace("#^.*/\* swipe event handler \*/#s", "", $js);
 		file_put_contents($cypht.'site.js', $js);
 
