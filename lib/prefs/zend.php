@@ -20,9 +20,7 @@ function prefs_zend_list()
 			'type' => 'text',
 			'size' => '20',
 			'perspective' => false,
-			'parameters' => [
-				'autocomplete' => 'off'
-			],
+			'autocomplete' => 'off',
 			'default' => '',
 		],
 		'zend_mail_smtp_pass' => [
@@ -30,9 +28,7 @@ function prefs_zend_list()
 			'type' => 'password',
 			'size' => '20',
 			'perspective' => false,
-			'parameters' => [
-				'autocomplete' => 'off'
-			],
+			'autocomplete' => 'off',
 			'default' => '',
 		],
 		'zend_mail_smtp_port' => [

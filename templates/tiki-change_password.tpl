@@ -35,10 +35,10 @@
 					<label class="col-md-4 col-form-label" for="user">{tr}Username{/tr}</label>
 					<div class="col-md-8">
 						{if empty($userlogin)}
-							<input type="text" class="form-control" id="user" name="user">
+							<input type="text" class="form-control" id="user" name="user" autocomplete="username">
 						{else}
 							<input type="hidden" id="user" name="user" value="{$userlogin|escape}">
-							<div class="form-control-plaintext"><strong>{$userlogin|escape}</strong></div>
+							<input type="text" class="form-control" id="user-autocomplete" name="user-autocomplete" disabled="disabled" value="{$userlogin|escape}" autocomplete="username">
 						{/if}
 					</div>
 				</div>
@@ -46,16 +46,14 @@
 					<div class="form-group row">
 						<label class="col-md-4 col-form-label" for="oldpass">{tr}Old Password{/tr}</label>
 						<div class="col-md-8">
-							<input style="display:none">{* This seems to be required for the Chromium browser to prevent replacing the admin password in a new install from console.php with some password stored in the user's browser *}
-							<input type="password" style="display:none" name="oldpass_autocomplete_off">{* This seems to be required for the Chromium browser to prevent replacing the admin password in a new install from console.php with some password stored in the user's browser *}
-							<input type="password" class="form-control" name="oldpass" id="oldpass" placeholder="{tr}Old Password{/tr}">
+							<input type="password" class="form-control" name="oldpass" id="oldpass" placeholder="{tr}Old Password{/tr}" autocomplete="current-password">
 						</div>
 					</div>
 				{/if}
 				<div class="form-group row">
 					<label class="col-md-4 col-form-label" for="pass1">{tr}New Password{/tr}</label>
 					<div class="col-md-8">
-						<input type="password" class="form-control" placeholder="{tr}New Password{/tr}" name="pass" id="pass1">
+						<input type="password" class="form-control" placeholder="{tr}New Password{/tr}" name="pass" id="pass1" autocomplete="new-password">
 						<div style="margin-left:5px;">
 							<div id="mypassword_text">{icon name='ok' istyle='display:none'}{icon name='error' istyle='display:none' } <span id="mypassword_text_inner"></span></div>
 							<div id="mypassword_bar" style="font-size: 5px; height: 2px; width: 0px;"></div>
@@ -68,7 +66,7 @@
 				<div class="form-group row">
 					<label class="col-md-4 col-form-label" for="pass2">{tr}Repeat Password{/tr}</label>
 					<div class="col-md-8">
-						<input type="password" class="form-control" name="passAgain" id="pass2" placeholder="{tr}Repeat Password{/tr}">
+						<input type="password" class="form-control" name="passAgain" id="pass2" placeholder="{tr}Repeat Password{/tr}" autocomplete="new-password">
 						<div id="mypassword2_text">
 							<div id="match" style="display:none">
 								{icon name='ok' istyle='color:#0ca908'} {tr}Passwords match{/tr}
@@ -93,7 +91,7 @@
 					<div class="form-group row">
 						<label class="col-md-4 col-form-label" for="email">{tr}Email{/tr}</label>
 						<div class="col-md-8">
-							<input type="email" class="form-control" name="email" id="email" placeholder="{tr}Email{/tr}" value="{if not empty($email)}{$email|escape}{/if}">
+							<input type="email" class="form-control" name="email" id="email" placeholder="{tr}Email{/tr}" value="{if not empty($email)}{$email|escape}{/if}" autocomplete="email">
 						</div>
 					</div>
 				{/if}

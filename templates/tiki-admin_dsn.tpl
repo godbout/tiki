@@ -113,13 +113,13 @@
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="basic_username">{tr}Username{/tr}</label>
 			<div class="col-sm-9">
-				<input type="text" name="basic_username" id="basic_username" class="form-control">
+				<input type="text" name="basic_username" id="basic_username" class="form-control" autocomplete="off">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label" for="basic_password">{tr}Password{/tr}</label>
 			<div class="col-sm-9">
-				<input type="password" name="basic_password" id="basic_password" class="form-control">
+				<input type="password" name="basic_password" id="basic_password" class="form-control" autocomplete="new-password">
 			</div>
 		</div>
 	</fieldset>

@@ -478,7 +478,7 @@
 							{tr}XMPP account password{/tr}
 						</label>
 						<div class="col-md-8">
-							<input type="password" class="form-control" name="xmpp_password" id="xmpp_password" value="{$user_prefs.xmpp_password|escape}">
+							<input type="password" class="form-control" name="xmpp_password" id="xmpp_password" value="{$user_prefs.xmpp_password|escape}" autocomplete="new-password">
 							<p><small>This password will be stored in database</small></p>
 						</div>
 					</div>
@@ -607,6 +607,14 @@
 							{/remarksbox}
 						{/if}
 					{/if}
+					<div class="form-group row">
+						<label class="col-md-4 col-form-label" for="username-autocomplete">
+							{tr}Username:{/tr}
+						</label>
+						<div class="col-md-8">
+							<input type="text" class="form-control" name="username-autocomplete" id="username-autocomplete" disabled="disabled" value="{$userinfo.login|escape}" autocomplete="username">
+						</div>
+					</div>
 					{if $prefs.login_is_email eq 'y' and $userinfo.login neq 'admin'}
 						<input type="hidden" name="email" value="{$userinfo.email|escape}">
 					{else}
@@ -615,7 +623,7 @@
 								{tr}Email address:{/tr}
 							</label>
 							<div class="col-md-8">
-								<input type="text" class="form-control" name="email" id="email" value="{$userinfo.email|escape}">
+								<input type="text" class="form-control" name="email" id="email" value="{$userinfo.email|escape}" autocomplete="email">
 							</div>
 						</div>
 					{/if}
@@ -626,7 +634,7 @@
 									{tr}New password:{/tr}
 								</label>
 								<div class="col-md-8">
-									<input class="form-control" type="password" name="pass1" id="pass1">
+									<input class="form-control" type="password" name="pass1" id="pass1" autocomplete="new-password">
 								</div>
 							</div>
 							<div class="form-group row">
@@ -634,7 +642,7 @@
 									{tr}Confirm new password:{/tr}
 								</label>
 								<div class="col-md-8">
-									<input class="form-control" type="password" name="pass2" id="pass2">
+									<input class="form-control" type="password" name="pass2" id="pass2" autocomplete="new-password">
 								</div>
 							</div>
 						{/if}
@@ -644,7 +652,7 @@
 									{tr}Current password (required):{/tr}
 								</label>
 								<div class="col-md-8">
-									<input class="form-control" type="password" name="pass" id="pass">
+									<input class="form-control" type="password" name="pass" id="pass" autocomplete="current-password">
 								</div>
 							</div>
 						{/if}

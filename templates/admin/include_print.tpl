@@ -37,8 +37,6 @@
 			{preference name=print_pdf_mpdf_hyperlinks}
 			{preference name=print_pdf_mpdf_autobookmarks}
 			{preference name=print_pdf_mpdf_columns}
-			<input style="display:none">{* This seems to be required for the Chromium browser to prevent autofill the password with some password stored in the user's browser *}
-			<input type="password" style="display:none" name="print_pdf_mpdf_password_autocomplete_off">{* This seems to be required for the Chromium browser to prevent autofill password with some password stored in the user's browser *}
 			{preference name=print_pdf_mpdf_password}
 			{preference name=print_pdf_mpdf_watermark}
 			{preference name=print_pdf_mpdf_watermark_image}

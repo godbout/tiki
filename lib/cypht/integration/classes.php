@@ -168,16 +168,16 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 			unset($output_modules[$page]['content_end']);
 			if( isset($output_modules[$page]['header_css']) ) {
 				unset($output_modules[$page]['header_css']);
-				$headerlib->add_cssfile('cypht/site.css');
-				$headerlib->add_cssfile('cypht/modules/tiki/site.css');
+				$headerlib->add_cssfile('lib/cypht/site.css');
+				$headerlib->add_cssfile('lib/cypht/modules/tiki/site.css');
 				if (!empty($_SESSION['cypht']['user_data']['theme_setting']) && $_SESSION['cypht']['user_data']['theme_setting'] != 'default') {
-					$headerlib->add_cssfile('cypht/modules/themes/assets/'.$_SESSION['cypht']['user_data']['theme_setting'].'.css');
+					$headerlib->add_cssfile('lib/cypht/modules/themes/assets/'.$_SESSION['cypht']['user_data']['theme_setting'].'.css');
 				}
 			}
 			if( isset($output_modules[$page]['page_js']) ) {
 				unset($output_modules[$page]['page_js']);
-				$headerlib->add_jsfile('cypht/jquery.touch.js', true);
-				$headerlib->add_jsfile('cypht/site.js', true);
+				$headerlib->add_jsfile('lib/cypht/jquery.touch.js', true);
+				$headerlib->add_jsfile('lib/cypht/site.js', true);
 			}
 		}
 		// cleanup side menu

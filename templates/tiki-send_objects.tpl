@@ -158,7 +158,7 @@
 				<div class="form-group row">
 					<label class="col-form-label col-sm-3">{tr}Password:{/tr}</label>
 					<div class="col-sm-7">
-						<input type="password" name="password" value="{$password|escape}" class="form-control">
+						<input type="password" name="password" value="{$password|escape}" class="form-control" autocomplete="new-password">
 					</div>
 				</div>
 				<div class="form-group row">

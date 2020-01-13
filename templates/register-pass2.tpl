@@ -1,6 +1,6 @@
 {* $Id$ *}
 {if $prefs.user_register_prettytracker eq 'y' and $prefs.user_register_prettytracker_tpl}
-	<input id='pass2' type="password" name="passAgain" onkeypress="regCapsLock(event)" class="form-control" >
+	<input id='pass2' type="password" name="passAgain" autocomplete="new-password" onkeypress="regCapsLock(event)" class="form-control" >
 	{if $prefs.user_register_prettytracker_hide_mandatory neq 'y'}&nbsp;<strong class='mandatory_star text-danger tips' title=":{tr}This field is mandatory{/tr}">*</strong>{/if}
 {else}
 	{if !isset($openid_associate) || $openid_associate neq 'y'}
@@ -12,6 +12,7 @@
 					id='pass2'
 					type="password"
 					name="passAgain"
+					autocomplete="new-password"
 					value="{if !empty($smarty.post.passAgain)}{$smarty.post.passAgain}{/if}"
 				>
 				<div id="mypassword2_text">

@@ -36,7 +36,7 @@
 			{if isset($can_update[{$dompwdCount}]) and $can_update[{$dompwdCount}] eq 'y' and $edit_option[{$dompwdCount}] neq 'y'}
 				<tr>
 					<td>{tr}Pass{/tr}</td>
-					<td><input type="password" id="domPassword" name="domPassword"></td>
+					<td><input type="password" id="domPassword" name="domPassword" autocomplete="new-password"></td>
 				</tr>
 				<tr>
 					<td colspan="2">

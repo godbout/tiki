@@ -13,13 +13,13 @@
 	<div class="form-group row">
 		<label for="user" class="col-sm-3 col-form-label">{tr}Login{/tr}</label>
 		<div class="col-sm-9">
-			<input type="text" maxlength="255" class="form-control" name="user" value="">
+			<input type="text" maxlength="255" class="form-control" name="user" value="" autocomplete="off">
 		</div>
 	</div>
 	<div class="form-group row">
 		<label for="password" class="col-sm-3 col-form-label">{tr}Password{/tr}</label>
 		<div class="col-sm-9">
-			<input type="password" maxlength="255" class="form-control" name="password" value="">
+			<input type="password" maxlength="255" class="form-control" name="password" value="" autocomplete="new-password">
 		</div>
 	</div>
 	<div class="form-group text-center">

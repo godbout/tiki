@@ -370,9 +370,9 @@
 
                                     <div style="padding:5px;">
                                         {if isset($preconfigpass)}
-                                            <label class="col-form-label" for="pass">{tr}Password:{/tr}</label> <input type="text" class="form-control" id="pass" name="pass" value="{$preconfigpass|escape:"html"}" >
+                                            <label class="col-form-label" for="pass">{tr}Password:{/tr}</label> <input type="text" class="form-control" id="pass" name="pass" value="{$preconfigpass|escape:"html"}" autocomplete="new-password">
                                         {else}
-                                            <label class="col-form-label" for="pass">{tr}Password:{/tr}</label> <input type="password" class="form-control" id="pass" name="pass" >
+                                            <label class="col-form-label" for="pass">{tr}Password:{/tr}</label> <input type="password" class="form-control" id="pass" name="pass" autocomplete="new-password">
                                         {/if}
                                     </div>
 
@@ -391,7 +391,7 @@
                                         <label class="col-form-label" for="user">{tr}DB admin user name:{/tr}</label> <input type="text" class="form-control" id="root_user" name="root_user" value="{if (isset($smarty.request.root_user))}{$smarty.request.root_user|escape:"html"}{elseif isset($preconfiguser)}{$preconfiguser|escape:"html"}{/if}" placeholder="{tr}DB admin user name{/tr}">
                                     </div>
                                     <div style="padding:5px;">
-                                        <label class="col-form-label" for="pass">{tr}DB admin password:{/tr}</label> <input type="password" class="form-control" id="root_pass" name="root_pass" value="{if (isset($smarty.request.root_pass))}{$smarty.request.root_pass|escape:"html"}{/if}">
+                                        <label class="col-form-label" for="pass">{tr}DB admin password:{/tr}</label> <input type="password" class="form-control" id="root_pass" name="root_pass" value="{if (isset($smarty.request.root_pass))}{$smarty.request.root_pass|escape:"html"}{/if}" autocomplete="new-password">
                                     </div>
                                 </fieldset>
                                 <script type='text/javascript'><!--//--><![CDATA[//><!--
