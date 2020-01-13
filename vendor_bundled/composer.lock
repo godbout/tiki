@@ -3453,11 +3453,11 @@
         },
         {
             "name": "npm-asset/vue",
-            "version": "2.6.10",
+            "version": "2.6.11",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/vue/npm-asset-vue-2.6.10.zip",
-                "shasum": "40e6be6636a8f125a15600220c508b852942ec77"
+                "url": "https://composer.tiki.org/dist/npm-asset/vue/npm-asset-vue-2.6.11.zip",
+                "shasum": "89ee66d3a0ec6de2704d7c98caa165db45cd7af4"
             },
             "type": "npm-asset",
             "license": [
@@ -8263,17 +8263,17 @@
         },
         {
             "name": "overtrue/phplint",
-            "version": "1.2.0",
+            "version": "1.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/phplint.git",
-                "reference": "2f822d72db3be32d872d32aa001b2f1d13aeff6a"
+                "reference": "deaee8c3459087ea5d17031206b8722a96dd330b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/overtrue/phplint/overtrue-phplint-2f822d72db3be32d872d32aa001b2f1d13aeff6a-zip-10a76a.zip",
-                "reference": "2f822d72db3be32d872d32aa001b2f1d13aeff6a",
-                "shasum": "c5d4165d92dc90791dfcb77c42b1c866539ee525"
+                "url": "https://composer.tiki.org/dist/overtrue/phplint/overtrue-phplint-deaee8c3459087ea5d17031206b8722a96dd330b-zip-b0b281.zip",
+                "reference": "deaee8c3459087ea5d17031206b8722a96dd330b",
+                "shasum": "962ef7c578be59cb5fab43051dd8b8097d90f625"
             },
             "require": {
                 "ext-json": "*",
@@ -8312,7 +8312,7 @@
                 "phplint",
                 "syntax"
             ],
-            "time": "2019-11-23T15:35:00+00:00"
+            "time": "2019-12-07T13:46:15+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
