@@ -53,5 +53,5 @@ function smarty_function_trackerrules($params, $smarty)
 		->add_js('jqueryTiki.chosen = false; jqueryTiki.chosen_sortable = false;');
 
 	return '<link rel="stylesheet" href="lib/vue/lib/ui-predicate-vue.css" type="text/css">' .
-		TikiLib::lib('vuejs')->getPredicateUI();
+		TikiLib::lib('vuejs')->getFieldRules($params);
 }

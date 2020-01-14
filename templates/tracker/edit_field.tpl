@@ -126,7 +126,7 @@
 
 		{if $prefs.tracker_field_rules eq 'y'}
 			{accordion_group title="{tr}Rules{/tr}"}
-				{trackerrules}
+				{trackerrules rules=$field.rules|escape fieldId=$field.fieldId}
 			{/accordion_group}
 		{/if}
 

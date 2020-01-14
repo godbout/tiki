@@ -33,7 +33,7 @@
 				Conditions Output
 			</div>
 			<div class="card-content">
-				<pre>{{ conditionsoutput }}</pre>
+				<textarea name="conditions" class="form-control" readonly="readonly">{{ conditionsoutput }}</textarea>
 			</div>
 		</div>
 		<div class="card">
@@ -41,7 +41,7 @@
 				Actions Output
 			</div>
 			<div class="card-content">
-				<pre>{{ actionoutput }}</pre>
+				<textarea name="actions" class="form-control" readonly="readonly">{{ actionoutput }}</textarea>
 			</div>
 		</div>
 	</div>
@@ -63,16 +63,7 @@
 			return {
 				conditionsoutput: {},
 				actionoutput: {},
-				conditionsData: {
-					logicalType_id: "all",
-					predicates: [
-						{
-							"target_id": "field.value",
-							"operator_id": "is",
-							"argument": 42
-						},
-					],
-				},
+				conditionsData: this.$parent.rules.conditions,
 				conditionsColumns: {
 					targets: [
 						{
@@ -173,16 +164,7 @@
 						},
 					],
 				},
-				actionsData: {
-					logicalType_id: "all",
-					predicates: [
-						{
-							"target_id": "field.name",
-							"operator_id": "show",
-							"argument": null
-						},
-					],
-				},
+				actionsData: this.$parent.rules.actions,
 				actionsColumns: {
 					targets: [
 						{

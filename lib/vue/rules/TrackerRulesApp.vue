@@ -12,6 +12,10 @@
 		name: "TrackerRulesApp",
 		components: {
 			trackerrules: TrackerRules
-		}
+		},
+		data: function () { return {
+			fileId: this.$parent.fieldId,
+			rules: this.$parent.rules
+		}; }
 	};
 </script>

@@ -12,13 +12,14 @@ class VueJsLib
 	 * @param string $str    body of the vue document
 	 * @param string $name   name of the component
 	 * @param bool   $app    whether to create the App
+	 * @param array  $data   values to expose to the Vue App
 	 * @param bool   $minify or not
 	 *
 	 * @return string
 	 * @throws Exception
 	 */
 
-	public function processVue($str, $name = '', $app = false, $minify = false)
+	public function processVue($str, $name = '', $app = false, $data = [], $minify = false)
 	{
 		$headerlib = TikiLib::lib('header');
 
@@ -71,12 +72,15 @@ class VueJsLib
 			chmod($file, 0644);
 
 			if ($app) {
+				$data = json_encode($data);
+
 				$headerlib->add_js_module(
 					"
 import $name from \"$file\";
 
-new Vue({
+var vm = new Vue({
 	  render: h => h($name),
+	  data: function () { return $data; },
 	}).\$mount(`#$nameLowerCase`);
 "
 				);
@@ -100,12 +104,30 @@ new Vue({
 	}
 
 	/**
+	 * generates a predicate ui vue.js based rules gui for a tracker field
 	 *
+	 * @param array $params
+	 *
+	 * @return string
+	 * @throws Exception
 	 */
-	public function getPredicateUI()
+	public function getFieldRules($params)
 	{
+		if (empty($params['fieldId'])) {
+			Feedback::error(tr('No fieldId for Field Rules'));
+		}
+		if (is_string($params['rules'])) {
+			$params['rules'] = json_decode(html_entity_decode($params['rules']));
+		}
 
-		$appHtml = $this->processVue('lib/vue/rules/TrackerRulesApp.vue', 'TrackerRulesApp', true);
+		if (! is_object($params['rules']) || empty($params['rules'])) {
+			$params['rules'] = [
+				'conditions' => null,
+				'actions' => null,
+			];
+		}
+
+		$appHtml = $this->processVue('lib/vue/rules/TrackerRulesApp.vue', 'TrackerRulesApp', true, $params);
 
 		$appHtml .= $this->processVue('lib/vue/rules/TextArgument.vue', 'TextArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/DateArgument.vue', 'DateArgument');
