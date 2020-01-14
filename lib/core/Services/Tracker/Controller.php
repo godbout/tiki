@@ -390,6 +390,11 @@ class Services_Tracker_Controller
 				$type = $field['type'];
 			}
 
+			$rules = [
+				'conditions' => json_decode($input->conditions->text()),
+				'actions'    => json_decode($input->actions->text()),
+			];
+
 			$data = [
 				'name' => $input->name->text(),
 				'description' => $input->description->text(),
@@ -405,6 +410,7 @@ class Services_Tracker_Controller
 				'errorMsg' => $input->error_message->text(),
 				'permName' => $permName,
 				'type' => $type,
+				'rules' => json_encode($rules),
 			];
 
 			$this->utilities->updateField(

@@ -205,7 +205,8 @@ class Services_Tracker_Utilities
 			isset($properties['validation']) ? $properties['validation'] : $field['validation'],
 			isset($properties['validationParam']) ? $properties['validationParam'] : $field['validationParam'],
 			isset($properties['validationMessage']) ? $properties['validationMessage'] : $field['validationMessage'],
-			isset($properties['permName']) ? $properties['permName'] : $field['permName']
+			isset($properties['permName']) ? $properties['permName'] : $field['permName'],
+			isset($properties['rules']) ? $properties['rules'] : $field['rules']
 		);
 	}
 
@@ -413,6 +414,8 @@ class Services_Tracker_Utilities
 				'editableBy' => $field->editableBy->groupname(),
 				'visibleBy' => $field->visibleBy->groupname(),
 				'errorMsg' => $field->errorMsg->text(),
+
+				'rules' => $field->rules->text(),
 				];
 
 		// enable prefs for imported fields if required

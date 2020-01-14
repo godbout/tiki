@@ -134,6 +134,7 @@ class Tiki_Profile_InstallHandler_TrackerField extends Tiki_Profile_InstallHandl
 			'validation' => 'validation',
 			'validation_param' => 'validationParam',
 			'validation_message' => 'validationMessage',
+			'rules' => 'rules',
 		];
 	} // }}}
 
