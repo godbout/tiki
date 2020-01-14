@@ -37,14 +37,6 @@ function  rangeByLang($changes, $lang) {
 	$specific_tring =join(",", $usernames);
 	return $specific_tring;
 }
-foreach ($retour['translations'] as $langToWrite) {
-	try {
-		$language = new LanguageTranslations($langToWrite['lang']);
-		$stats = $language->writeLanguageFile(false, true);
-	} catch (Exception $e) {
-		die("{$e->getMessage()}\n");
-	}
-}
 
 $final_commit_list = array();
 
@@ -54,7 +46,14 @@ foreach ($retour['translations'] as $current_lang) {
 }
 $final_commit_list = array_unique($final_commit_list, SORT_REGULAR);
 
-
+foreach ($final_commit_list as $langToWrite) {
+	try {
+		$language = new LanguageTranslations($langToWrite['lang']);
+		$stats = $language->writeLanguageFile(false, true);
+	} catch (Exception $e) {
+		die("{$e->getMessage()}\n");
+	}
+}
 
 foreach ($final_commit_list as $trans) {
 	$langmap = $langguage::get_language_map();
