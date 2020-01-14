@@ -106,6 +106,9 @@ body.fullscreen.tiki.navbar-padding {
 //	word-break: normal;
 }
 
+.tiki.tiki_wiki_page .popover {
+	max-width: 50vw;
+}
 
 .tiki .popover {
 	p:last-child { margin-bottom: 0; }
@@ -374,6 +377,7 @@ body.fullscreen.tiki.navbar-padding {
 @media (max-width: breakpoint-max(sm)) {
 	.btn { white-space: normal !important; }
 	.alert .rboxcontent { word-break: break-word; }
+	.tiki.tiki_wiki_page .popover { max-width: 75%; }
 }
 
 // Override the default Bootstrap separator.

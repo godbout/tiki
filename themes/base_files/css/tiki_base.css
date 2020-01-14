@@ -3763,6 +3763,9 @@ body.fullscreen.tiki.navbar-padding {
 .tiki.tiki-list_file_gallery .popover, .tiki.tiki_file_galleries .popover, .tiki.tiki_trackers .popover, .tiki .wikiplugin-trackerlist .popover {
   max-width: 50vw; }
 
+.tiki.tiki_wiki_page .popover {
+  max-width: 50vw; }
+
 .tiki .popover p:last-child {
   margin-bottom: 0; }
 
@@ -3953,7 +3956,10 @@ body.fullscreen.tiki.navbar-padding {
     white-space: normal !important; }
 
   .alert .rboxcontent {
-    word-break: break-word; } }
+    word-break: break-word; }
+
+  .tiki.tiki_wiki_page .popover {
+    max-width: 75%; } }
 
 .breadcrumb-item + .breadcrumb-item::before {
   content: none !important; }
