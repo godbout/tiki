@@ -1,11 +1,11 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: Alexandre
- * Date: 2/22/2019
- * Time: 12:28 PM
- */
+# (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
+#
+# All Rights Reserved. See copyright.txt for details and a complete list of authors.
+# Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
+# $Id: commit_translations_by_lang.php  2019-2-22 12:28 PM Axel Mwenze $
+
 //die("REMOVE THIS LINE TO USE THE SCRIPT.\n");
 
 //if (! isset($argv[1])) {
@@ -36,6 +36,14 @@ function  rangeByLang($changes, $lang) {
 	$usernames = array_unique($usernames, SORT_REGULAR);
 	$specific_tring =join(",", $usernames);
 	return $specific_tring;
+}
+foreach ($retour['translations'] as $langToWrite) {
+	try {
+		$language = new LanguageTranslations($langToWrite['lang']);
+		$stats = $language->writeLanguageFile(false, true);
+	} catch (Exception $e) {
+		die("{$e->getMessage()}\n");
+	}
 }
 
 $final_commit_list = array();

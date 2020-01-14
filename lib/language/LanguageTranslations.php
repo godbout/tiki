@@ -3,7 +3,7 @@
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
-// $Id$
+// $Id: LanguageTranslations.php 71042 2019-09-23 14:00:20Z alexandre2908 $
 
 //this script may only be included - so its better to die if called directly.
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
@@ -115,17 +115,17 @@ class LanguageTranslations extends TikiDb_Bridge
 		// If the translation is not in the database and the new translation is the same as the translation defined by the filesystem, ignore it (do not insert in the database)
 		if (isset(${"lang_$this->lang"}[$originalStr]) && ${"lang_$this->lang"}[$originalStr] == $translatedStr) {
 			{
-			static $initialDatabaseTranslations = [];
+				static $initialDatabaseTranslations = [];
 
 				// Build $initialDatabaseTranslations for the given language
-			if (! isset($initialDatabaseTranslations[$this->lang])) {
-				$initialDatabaseTranslationsForThisLanguage = [];
-				$resultSet = $this->query('SELECT `source`, `tran` FROM `tiki_language` WHERE lang=?', [$this->lang]);
-				while ($row = $resultSet->fetchRow()) {
-					$initialDatabaseTranslationsForThisLanguage[$row['source']] = $row['tran'];
+				if (! isset($initialDatabaseTranslations[$this->lang])) {
+					$initialDatabaseTranslationsForThisLanguage = [];
+					$resultSet = $this->query('SELECT `source`, `tran` FROM `tiki_language` WHERE lang=?', [$this->lang]);
+					while ($row = $resultSet->fetchRow()) {
+						$initialDatabaseTranslationsForThisLanguage[$row['source']] = $row['tran'];
+					}
+					$initialDatabaseTranslations[$this->lang] = $initialDatabaseTranslationsForThisLanguage;
 				}
-				$initialDatabaseTranslations[$this->lang] = $initialDatabaseTranslationsForThisLanguage;
-			}
 			}
 
 			if (! isset($initialDatabaseTranslations[$this->lang][$originalStr])) {
@@ -174,7 +174,7 @@ class LanguageTranslations extends TikiDb_Bridge
 	 * @return array number of modified strings (key 'modif') and new
 	 * strings (key 'new') or null if not possible to write to file
 	 */
-	public function writeLanguageFile($generalOnly = false)
+	public function writeLanguageFile($generalOnly = false, $delete_db = true)
 	{
 		set_time_limit(0);
 
@@ -239,9 +239,69 @@ class LanguageTranslations extends TikiDb_Bridge
 			}
 
 			fclose($f);
-			$this->deleteTranslations($generalOnly);
+
+			if ($delete_db){
+				$this->deleteTranslations($generalOnly);
+			}
 
 			return $stats;
+		} else {
+			throw new Exception(sprintf(tra('Error: unable to write to lang/%s/language.php'), $this->lang));
+		}
+	}
+	public function writeOneLanguageToFile($source, $translated, $generalOnly = false, $delete_lang_db=true )
+	{
+		set_time_limit(0);
+
+		if (is_writable($this->filePath)) {
+			$langFile = file($this->filePath);
+			if ($generalOnly) {
+				$translationsFilter = 'AND `general`=TRUE';
+			} else {
+				$translationsFilter = '';
+			}
+			// add new strings to the language.php
+			$lastStr = array_search(");\n", $langFile);
+
+			if ($lastStr === false) {
+				// file has no line with "###end###\"=>\"###end###\") marking the end of the array
+				throw new Language_Exception(
+					tr("The file lang/%0/language.php is not correctly formatted. Run get_strings.php?lang=%0 and then try to export the translations again.", $this->lang)
+				);
+			}
+
+			// foreach translation in the database check each string in the language.php file
+			// if the original string is present and the translation is diferent replace it
+			//TODO: improve the algorithm (it interact over each entry in language.php file for each entry in the database)
+			foreach ($langFile as $key => $line) {
+				// match a translate or untranslated string in a language.php file
+				if (preg_match('|^/?/?\s*?"(.+)"\s*=>\s*"(.+)".*|', $line, $matches) && $matches[1] == $source) {
+					// do something only if the new translation is different from the old translation
+					if ($matches[2] != $translated) {
+						$langFile[$key] = '"' . $matches[1] . '" => "' . $translated . "\",\n";
+					}
+				}
+			}
+
+
+			// convert every entry in the array $dbTrans (translations that are not present in language.php)
+			// to a string in the format '"original string" => "translation"'
+			$newTrans[] = '"' . $source . '" => "' . $translated . "\",\n";
+
+			array_splice($langFile, $lastStr, 0, $newTrans);
+
+			// write the new language.php file
+			$f = fopen($this->filePath, 'w');
+
+			foreach ($langFile as $line) {
+				fwrite($f, $line);
+			}
+
+			fclose($f);
+			if ($delete_lang_db){
+				$this->deleteTranslations($generalOnly);
+			}
+
 		} else {
 			throw new Exception(sprintf(tra('Error: unable to write to lang/%s/language.php'), $this->lang));
 		}
@@ -276,7 +336,7 @@ class LanguageTranslations extends TikiDb_Bridge
 		$bindvars = [$this->lang];
 
 		$query = "SELECT * FROM `tiki_language` WHERE `lang`=? AND `source` != '' AND `changed` = 1 $searchQuery ORDER BY " .
-								$this->convertSortMode($sort_mode);
+			$this->convertSortMode($sort_mode);
 		$result = $this->query($query, $bindvars, $maxRecords, $offset);
 
 		if (isset($result->numrows) && $result->numrows > 0) {
@@ -374,7 +434,7 @@ class LanguageTranslations extends TikiDb_Bridge
 
 	/**
 	 * Delete translations from the current language
-	* @param bool $generalOnly true if only translations to contribute upstream should be deleted, false for all
+	 * @param bool $generalOnly true if only translations to contribute upstream should be deleted, false for all
 	 */
 	public function deleteTranslations($generalOnly = false)
 	{
