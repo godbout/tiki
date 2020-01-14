@@ -2522,6 +2522,7 @@ CREATE TABLE `tiki_tracker_fields` (
   `validation` varchar(255) default '',
   `validationParam` varchar(255) default '',
   `validationMessage` varchar(255) default '',
+  `rules` TEXT,
   PRIMARY KEY (`fieldId`),
   INDEX `trackerId` (`trackerId`),
   UNIQUE `permName` (`permName`, `trackerId`)
