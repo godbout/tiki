@@ -4,6 +4,7 @@
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
+use Zend\Uri\Exception\InvalidUriPartException;
 
 /**
  * Class TikiFilter_RelativeURL
@@ -15,17 +16,22 @@ class TikiFilter_RelativeURL implements Zend\Filter\FilterInterface
 	/**
 	 *
 	 * @param string $input		Absolute or relative URL.
-	 * @return string			Absolute URL components stripped out.
+	 * @return string			Absolute URL components stripped out, or a blank string if errors were encountered parsing.
 	 */
 
 
-	function filter($input)
+	public function filter($input) : string
 	{
 
 		$filter = new Zend\Filter\StripTags();
 		$url = $filter->filter($input);
 
-		$url = Zend\Uri\UriFactory::factory($url);
+		try {
+			$url = Zend\Uri\UriFactory::factory($url);
+		} catch (InvalidUriPartException $e) {
+			// if the url is invalid, return a blank string.
+			return '';
+		}
 		$url->normalize();
 
 		$query = $url->getQuery();
