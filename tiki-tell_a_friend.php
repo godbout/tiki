@@ -5,6 +5,21 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+$inputConfiguration = [[
+	'staticKeyFilters'	=> [
+		'report'		=> 'word',
+		'url'			=> 'relativeurl',
+		'send'			=> 'word',
+		'addresses'		=> 'email',
+		'email'			=> 'email',
+		'share_access'	=> 'digits',
+		'comment'		=> 'striptags',
+		'name'			=> 'wordspace'
+	],
+
+	'catchAllUnset'		=> null
+]];
+
 require_once('tiki-setup.php');
 // To include a link in your tpl do
 //<a href="tiki-tell_a_friend.php?url={$smarty.server.REQUEST_URI|escape:'url'}">{tr}Email this page{/tr}</a>
