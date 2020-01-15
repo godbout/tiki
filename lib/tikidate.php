@@ -398,6 +398,7 @@ class TikiDate
 
 			default:
 				$tz_id = 'UTC';
+				break;
 		}
 		return $tz_id;
 	}
