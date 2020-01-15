@@ -91,17 +91,7 @@
 }
 
 .toolbars-admin .lists {
-	padding: 1em 2em 1em 0;
-	float: left;
-	width: 31%;
 	min-height: 10em;
-}
-
-.toolbars-admin .rows {
-	width: 100%;
-	float: left;
-	clear: both;
-	padding: 1em 2em 1em 0;
 }
 
 .toolbars-admin .selectDiv {
@@ -155,16 +145,16 @@
 	width: 100%;
 }
 
-.toolbars-admin .row li.toolbar {
+.toolbars-admin .textarea-toolbar li.toolbar {
 	list-style-type: none;
 	float: left;
 }
 
-.toolbars-admin .row li.toolbar > span:not(.icon) {
+.toolbars-admin .textarea-toolbar li.toolbar>span:not(.icon) {
 	display: none;
 }
 
-.toolbars-admin .row li.toolbar > span.icon,
+.toolbars-admin .textarea-toolbar li.toolbar>span.icon,
 .toolbars-admin .full li.toolbar > span.icon {
 	margin: 0 5px;
 }
