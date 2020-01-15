@@ -140,7 +140,18 @@
 		"gidkom/php-openfire-restapi": "dev-master",
 		"montefuscolo/xmpp": "dev-master",
 		"league/oauth2-server": "^7.3",
-		"npm-asset/converse.js": "5.0.1"
+		"npm-asset/converse.js": "5.0.1",
+		"ext-json": "*",
+		"ext-libxml": "*",
+		"ext-dom": "*",
+		"ext-gd": "*",
+		"ext-intl": "*",
+		"ext-fileinfo": "*",
+		"ext-calendar": "*",
+		"ext-curl": "*",
+		"ext-openssl": "*",
+		"ext-iconv": "*",
+		"ext-zip": "*"
 	},
 	"require-dev": {
 		"bafs/testify": "dev-master",
