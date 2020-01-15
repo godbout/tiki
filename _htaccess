@@ -15,8 +15,8 @@
 # DEVELOPERS: This configuration must be kept synchronized with the configuration for other Web servers.
 # See http://dev.tiki.org/Operating+System+independence#Keep_web.config_and_.htaccess_synchronized
 
-# -- Prevent Browsing of Certain File Extensions and hidden files (apart from "well-known" ones) -- #
-<FilesMatch "\.(bak|inc|lib|sh|tpl|sql|shtml|asp|xml\.dist)$|^\.(?!well-known/)">
+# -- Prevent Browsing of Certain File Extensions and hidden files-- #
+<FilesMatch "\.(bak|inc|lib|sh|tpl|sql|shtml|asp|xml\.dist)$|^\.">
     <IfModule mod_authz_core.c>
        Require all denied
     </IfModule>
@@ -168,6 +168,9 @@ FileETag none
     # Rewrite rules for passing authorization with Apache running in CGI or FastCGI mode
     RewriteCond %{HTTP:Authorization} ^(.*)
     RewriteRule ^(.*) - [E=HTTP_AUTHORIZATION:%1]
+
+    # -- Disallow access to hidden files (apart from Let's Encrypt ones) -- #
+    RewriteRule "(^|/)\.(?!well-known/)" - [F,L]
 
     # -- Prevent HTTP TRACE method -- #
     RewriteCond %{REQUEST_METHOD} ^TRACE
