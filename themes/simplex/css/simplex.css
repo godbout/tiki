@@ -6982,7 +6982,10 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:before {
     padding-right: 0; }
 
   .syslog-table textarea {
-    min-height: 5.5em; } }
+    min-height: 5.5em; }
+
+  .tiki .ui-dialog {
+    width: 80vw !important; } }
 
 blockquote {
   color: #7a7a7a;
