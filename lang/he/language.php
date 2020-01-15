@@ -12853,7 +12853,7 @@ $lang = array(
 // "Note that storing session data in the database is an advanced systems administration option, and is for admins who have comprehensive access and understanding of the database, in order to deal with any unexpected effects" => "Note that storing session data in the database is an advanced systems administration option, and is for admins who have comprehensive access and understanding of the database, in order to deal with any unexpected effects",
 // "Changing this feature will immediately log you out when you save this preference" => "Changing this feature will immediately log you out when you save this preference",
 // "Enable now" => "Enable now",
-// "Contact" => "Contact",
+"Contact" => "צור קשר",
 // "Terms and conditions" => "Terms and conditions",
 // "Home page" => "Home page",
 // "Redirects" => "Redirects",
@@ -20969,4 +20969,7 @@ $lang = array(
 "Top pages" => "עמודים נצפים ביותר",
 "Last pages" => "עמודים ששונו לאחרונה",
 // "Note, deprecated file tiki-wikiplugin_edit.php, code moved to service plugin->replace" => "Note, deprecated file tiki-wikiplugin_edit.php, code moved to service plugin->replace",
+"Benefits to become a translator" => "יתרונות להפוך למתרגם",
+"How It Works" => "איך זה עובד",
+"Welcome to the Tiki i18n" => "ברוכים הבאים לטיקי i18n",
 );
