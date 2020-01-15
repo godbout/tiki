@@ -171,7 +171,7 @@ if (isset($_REQUEST['pdf'])) {
 
 			$pdata = str_replace(
 				"</section><section", "</section><pagebreak /><section",
-				$pdata.'<style>' .str_replace(array(".reveal {","vertical-align: baseline;"),array(".reveal,.reveal table{ ","vertical-align:top;"),$customCSS) . ' div.reveal, .reveal li{font-size:1.3em;font-weight:normal;line-height:1.5;height:auto !important; } img{max-height:400px;}  .reveal h1 {font-size: 2.8em; text-transform:none !important;}</style>'
+				$pdata.'<style>' .str_replace(array(".reveal {","vertical-align: baseline;"),array(".reveal,.reveal table{ ","vertical-align:top;"),$customCSS) . ' div.reveal, .reveal li{font-size:1.3em;font-weight:normal;line-height:1.5;height:auto !important; } img{max-height:400px;}  .reveal h1 {font-size: 2.8em; text-transform:none !important;} .reveal li ul li {font-size: 0.95em !important;margin: 0em !important;}</style>'
 			).$pdfStyles;
 		}
 
@@ -224,7 +224,7 @@ $headerlib->add_jq_onready(
 		$( val ).remove();
 	});
 
-	
+
 	if(fragments=="y") {
 		$( "li" ).addClass( "fragment "+fragmentClass+" "+fragmentHighlightColor );
 	}
@@ -240,21 +240,21 @@ $headerlib->add_jq_onready(
 			$("#ss-options").animate({left: \'0px\'});}
 		});
 		Reveal.addEventListener( \'slidechanged\', function( event ) {
-		
+
 			var position = $("#ss-options").position();
 			if(position.left==0){
 				$("#ss-settings").switchClass("fa-times","fa-cogs");
 				$("#ss-options").animate({left: \'-2000px\'});
 			}
 		});
-		
+
 		//reveal controls
 		$("body").delegate("#play","click", function () {
 			if($("#play").hasClass("fa-play-circle")) {
 				$("#play").switchClass("fa-play-circle","fa-pause-circle", 1000, "easeInOutQuad");
 				Reveal.configure({ autoSlide:10000 });
 				$(this).attr("style","color:#fff");
-				
+
 			}
 			else {
 				$("#play").switchClass("fa-pause-circle","fa-play-circle", 1000, "easeInOutQuad");
@@ -292,10 +292,10 @@ $headerlib->add_jq_onready(
 				Reveal.configure({loop: false});
 				$(this).attr("style","");
 			}
-			
+
 		});
 		//end of controls
-		
+
 		$( "#showtheme" ).change(function() {
 			var selectedCSS=$("#showtheme" ).val();
 			$("#themeCSS").attr("href","vendor_bundled/vendor/components/revealjs/css/theme/"+selectedCSS+".css");
@@ -325,18 +325,18 @@ $headerlib->add_jq_onready(
 					$( ".present td" ).attr("style","font-size:16px;border-bottom:none");
 					$( ".present td div" ).attr("style","font-size:16px");
 					$( ".present h1" ).attr("style","font-size:2em");
-					
+
 					}
 					$( ".present li" ).attr("style","font-size:"+fontsize+" !important; line-height:1.15em !important;margin:0.2em 0.5em 0.2em 0.5em;");
 					$( ".present p" ).attr("style","font-size:"+fontsize+" !important;margin:10px 0px;line-height:1.2em !important");
 				}
 			}
-			
-			
+
+
 		});
 		Reveal.initialize({ width: "98%",height: "100%",center: false});
 		Reveal.addEventListener( \'ready\', function( event ) {
-		
+
 			var found=0;
 			if(location.hash && found==0){
 		 		var goToSlide = location.hash.replace("#!_","");
