@@ -116,6 +116,26 @@ var vm = new Vue({
 		if (empty($params['fieldId'])) {
 			Feedback::error(tr('No fieldId for Field Rules'));
 		}
+
+		if (! isset($params['fieldType'])) {
+			$params['fieldType'] = '';
+		}
+
+		switch ($params['fieldType']) {
+			case 'f':	// datetime
+			case 'j':	// datepicker
+			case 'CAL':	// calendar item
+				$params['fieldType'] = 'datetime';
+				break;
+			case 'n':	// number
+			case 'b':	// currency
+				$params['fieldType'] = 'int';
+				break;
+			default:
+				$params['fieldType'] = 'string';
+				break;
+		}
+
 		if (is_string($params['rules'])) {
 			$params['rules'] = json_decode(html_entity_decode($params['rules']));
 		}
@@ -132,6 +152,8 @@ var vm = new Vue({
 		$appHtml .= $this->processVue('lib/vue/rules/TextArgument.vue', 'TextArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/DateArgument.vue', 'DateArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/NullArgument.vue', 'NullArgument');
+		$appHtml .= $this->processVue('lib/vue/rules/BoolArgument.vue', 'BoolArgument');
+
 		$appHtml .= $this->processVue('lib/vue/rules/TrackerRules.vue', 'TrackerRules');
 
 		return $appHtml;

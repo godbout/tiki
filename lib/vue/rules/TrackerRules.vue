@@ -2,9 +2,9 @@
 	<div class="tracker-rules">
 		<div class="card mb-2">
 			<div class="card-header">
-				Condition
+				Conditions
 			</div>
-			<div class="card-body">
+			<div class="card-body conditions">
 				<ui-predicate v-model="conditionsData" :columns="conditionsColumns" @changed="onChangeConditions" @initialized="onChangeConditions"/>
 			</div>
 		</div>
@@ -12,7 +12,7 @@
 			<div class="card-header">
 				Actions
 			</div>
-			<div class="card-body">
+			<div class="card-body actions">
 				<ui-predicate v-model="actionsData" :columns="actionsColumns" @changed="onChangeActions" @initialized="onChangeActions"/>
 			</div>
 		</div>
@@ -53,6 +53,7 @@
 	import TextArgument from "./vue_TextArgument.js";
 	import DateArgument from "./vue_DateArgument.js";
 	import NullArgument from "./vue_NullArgument.js";
+	import BoolArgument from "./vue_BoolArgument.js";
 
 
 	export default {
@@ -74,7 +75,7 @@
 						{
 							target_id: "field.showing",
 							label: "Field Showing",
-							type_id: "int",
+							type_id: "bool",
 						},
 					],
 					// besides array list names, everything else follows convention
@@ -83,12 +84,22 @@
 						{
 							operator_id: "is",
 							label: "is",
-							argumentType_id: "smallString",
+							argumentType_id: "string",
 						},
 						{
 							operator_id: "contains",
-							label: "Contains",
-							argumentType_id: "smallString",
+							label: "contains",
+							argumentType_id: "string",
+						},
+						{
+							operator_id: "isEmpty",
+							label: "is empty",
+							argumentType_id: "string",
+						},
+						{
+							operator_id: "isNotEmpty",
+							label: "is not empty",
+							argumentType_id: "string",
 						},
 						{
 							operator_id: "isLowerThan",
@@ -97,7 +108,12 @@
 						},
 						{
 							operator_id: "isEqualTo",
-							label: "=",
+							label: "==",
+							argumentType_id: "number",
+						},
+						{
+							operator_id: "isNotEqualTo",
+							label: "<>",
 							argumentType_id: "number",
 						},
 						{
@@ -106,25 +122,30 @@
 							argumentType_id: "number",
 						},
 						{
-							operator_id: "is_date",
+							operator_id: "on",
+							label: "on",
+							argumentType_id: "datetime",
+						},
+						{
+							operator_id: "before",
+							label: "before",
+							argumentType_id: "datetime",
+						},
+						{
+							operator_id: "after",
+							label: "after",
+							argumentType_id: "datetime",
+						},
+						{
+							operator_id: "truefalse",
 							label: "is",
-							argumentType_id: "datepicker",
-						},
-						{
-							operator_id: "isEmpty",
-							label: "is empty",
-							argumentType_id: "smallString",
-						},
-						{
-							operator_id: "isNotEmpty",
-							label: "is not empty",
-							argumentType_id: "smallString",
+							argumentType_id: "bool",
 						},
 					],
 					types: [
 						{
 							type_id: "int",
-							operator_ids: ["isLowerThan", "isEqualTo", "isHigherThan", "isEmpty", "isNotEmpty"],
+							operator_ids: ["isLowerThan", "isEqualTo", "isHigherThan", "isNotEqualTo"],
 						},
 						{
 							type_id: "string",
@@ -132,8 +153,13 @@
 						},
 						{
 							type_id: "datetime",
-							operator_ids: ["is_date", "isEmpty", "isNotEmpty"],
+							operator_ids: ["on", "before", "after"],
 						},
+						{
+							type_id: "bool",
+							operator_ids: ["truefalse"],
+						},
+						// TODO add array type
 					],
 					logicalTypes: [
 						{
@@ -151,16 +177,20 @@
 					],
 					argumentTypes: [
 						{
-							argumentType_id: "datepicker",
+							argumentType_id: "datetime",
 							component: DateArgument,
 						},
 						{
-							argumentType_id: "smallString",
+							argumentType_id: "string",
 							component: TextArgument,
 						},
 						{
 							argumentType_id: "number",
 							component: TextArgument,
+						},
+						{
+							argumentType_id: "bool",
+							component: BoolArgument,
 						},
 					],
 				},
@@ -213,6 +243,7 @@
 							operator_ids: ["show", "hide", "required", "notRequired"],
 						},
 					],
+					// TODO logicalTypes should be removed for actions
 					logicalTypes: [
 						{
 							logicalType_id: "any",
@@ -245,6 +276,32 @@
 			{
 				this.actionoutput = diff;
 			},
+		},
+		mounted: function () {
+
+			// remove types of conditions this field can not do
+			let fieldType = this.$parent.fieldType;
+
+			this.conditionsColumns.operators.forEach(function (value, index, array) {
+				if (value.argumentType_id !== fieldType) {
+					array.splice(index, 1);
+				}
+			});
+
+			if (this.$parent.targetFields !== undefined) {
+				let fields = this.$parent.targetFields,
+					targets = [];
+
+				fields.forEach(function (value) {
+					targets.push({
+						target_id: "tracker_field_" + value.permName,
+						label: value.name,
+						type_id: "field",
+					});
+				});
+
+				this.actionsColumns.targets = targets;
+			}
 		}
 	};
 </script>

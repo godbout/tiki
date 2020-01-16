@@ -460,7 +460,8 @@ class Services_Tracker_Controller
 				'username' => tr('Username'),
 			],
 			'types' => $types,
-			'permNameMaxAllowedSize' => Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE
+			'permNameMaxAllowedSize' => Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE,
+			'fields' => $definition->getFields(),
 		];
 	}
 

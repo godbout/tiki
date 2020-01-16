@@ -1,6 +1,5 @@
 <template>
     <div class="container mx-auto p-4">
-      <h3>Field Rules</h3>
       <trackerrules/>
     </div>
 </template>
@@ -15,7 +14,9 @@
 		},
 		data: function () { return {
 			fileId: this.$parent.fieldId,
-			rules: this.$parent.rules
+			fieldType: this.$parent.fieldType,
+			rules: this.$parent.rules,
+			targetFields: this.$parent.targetFields
 		}; }
 	};
 </script>
