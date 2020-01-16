@@ -49,8 +49,9 @@ function smarty_function_trackerrules($params, $smarty)
 	}
 
 	$headerlib->add_jsfile('lib/vue/lib/ui-predicate-vue.js')
-		// temporary workaround for chosen which seems to lose the event bindings
+		// FIXME temporary workaround for chosen which seems to lose the event bindings
 		->add_js('jqueryTiki.chosen = false; jqueryTiki.chosen_sortable = false;');
+		// possible route towards a fix is here: https://stackoverflow.com/q/38716371/2459703
 
 	return '<link rel="stylesheet" href="lib/vue/lib/ui-predicate-vue.css" type="text/css">' .
 		TikiLib::lib('vuejs')->getFieldRules($params);
