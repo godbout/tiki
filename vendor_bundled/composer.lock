@@ -225,7 +225,7 @@
             "version": "5.12.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:FortAwesome/Font-Awesome.git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
                 "reference": "d8db3d032d22e7a5e21f3b40905b7867be19bb02"
             },
             "dist": {
@@ -2741,9 +2741,9 @@
             "authors": [
                 {
                     "name": "Matthias Mullie",
+                    "role": "Developer",
                     "email": "pathconverter@mullie.eu",
-                    "homepage": "http://www.mullie.eu",
-                    "role": "Developer"
+                    "homepage": "http://www.mullie.eu"
                 }
             ],
             "description": "Relative path converter",
@@ -2782,15 +2782,15 @@
             "authors": [
                 {
                     "name": "Robert Plummer",
-                    "role": "Assistant Developer",
                     "email": "rplummer@visop-dev.com",
-                    "homepage": "http://visop-dev.com"
+                    "homepage": "http://visop-dev.com",
+                    "role": "Assistant Developer"
                 },
                 {
                     "name": "Jacob Kelley",
-                    "role": "Lead Developer",
                     "email": "jakie8@gmail.com",
-                    "homepage": "http://jakiestfu.com"
+                    "homepage": "http://jakiestfu.com",
+                    "role": "Lead Developer"
                 }
             ],
             "time": "2014-12-15T16:35:34+00:00"
