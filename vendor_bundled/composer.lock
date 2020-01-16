@@ -2825,15 +2825,15 @@
             "authors": [
                 {
                     "name": "Robert Plummer",
-                    "role": "Assistant Developer",
                     "email": "rplummer@visop-dev.com",
-                    "homepage": "http://visop-dev.com"
+                    "homepage": "http://visop-dev.com",
+                    "role": "Assistant Developer"
                 },
                 {
                     "name": "Jacob Kelley",
-                    "role": "Lead Developer",
                     "email": "jakie8@gmail.com",
-                    "homepage": "http://jakiestfu.com"
+                    "homepage": "http://jakiestfu.com",
+                    "role": "Lead Developer"
                 }
             ],
             "time": "2014-12-15T16:35:34+00:00"
