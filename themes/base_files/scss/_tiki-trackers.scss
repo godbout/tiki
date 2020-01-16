@@ -167,3 +167,11 @@
 		li { padding-bottom: 5px; }
 	}
 }
+
+// vue.js field conditions defs
+
+.tracker-rules .actions .ui-predicate__row:first-child {
+	// can't seem to remove the ui-predicate__logic row from the code, so hide it for now
+	display: none;
+}
+
