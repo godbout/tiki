@@ -47,13 +47,14 @@ class SemiAutoMergeCommand extends Command
 		// Proceed to update
 		$output->writeln('Updating Working Copy...');
 
-		$command = 'svn up  2>&1';
-		$raw = shell_exec('svn up  2>&1');
+		$command = 'svn up 2>&1';
+		$raw = shell_exec('svn up 2>&1');
 		$output->writeln($command, $output::VERBOSITY_DEBUG);
 		$output->writeln($raw, $output::VERBOSITY_DEBUG);
 
 		// if there is changes that have not been committed, then ask to commit them.
 		if (is_file('svn-commit.tmp')) {
+            $output->writeln('<info>A previous semi-auto merge existed </info>');
 			$this->commitChanges($input, $output, true);
 		}
 
@@ -162,7 +163,7 @@ class SemiAutoMergeCommand extends Command
 	}
 
 	/**
-	 * Commits the semi-auto merge, performs checks surrounding merging, and asks teh user for confirmation.
+	 * Commits the semi-auto merge, performs checks surrounding merging, and asks the user for confirmation.
 	 *
 	 * @param InputInterface  $input
 	 * @param OutputInterface $output
@@ -183,6 +184,9 @@ class SemiAutoMergeCommand extends Command
 		}
 
 		$options = implode('|', $bundles);
+        if ($ignore) {
+            $output->writeln('<info>This is a previous Semi Merge. (use ignore to discard and check for new changes)</info>');
+        }
 		$question = new Question("<info>Would you like to commit the Semi Auto Merge now?</info> ($options)", end($bundles));
 		$question->setAutocompleterValues($bundles);
 
@@ -198,6 +202,8 @@ class SemiAutoMergeCommand extends Command
 					$command = 'svn ci -F svn-commit.tmp';
 					$output->writeln($command, $output::VERBOSITY_DEBUG);
 					passthru($command);
+                    $output->writeln('Now deleting svn-commit.tmp.', $output::VERBOSITY_DEBUG);
+                    unlink('svn-commit.tmp');
 				}
 		}
 	}
