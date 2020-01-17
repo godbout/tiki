@@ -1,19 +1,41 @@
 .tiki-webmail, .tiki-cypht, .mobile.tiki-cypht, .inline-cypht {
     background: $body-bg;
-	font-family: $font-family-base;
-	color: $body-color;
+    font-family: $font-family-base;
+    color: $body-color;
 
-    a:not(.btn) {
-        color: $link-color !important;
+    a:not(.btn), a.btn-link {
+        color: $link-color;
         &:hover {
             color: $link-hover-color !important;
-            text-decoration: $link-hover-decoration;
+            text-decoration: inherit;
         }
+    }
+
+    .flipmodtitle.close, .close {
+        font-size: $close-font-size;
+        &, &:hover, &:focus { color: $close-color !important; }
+    }
+
+    .navbar-light .navbar-nav .nav-link {
+        color: $navbar-light-color;
+        &:hover, &:focus { color: $navbar-light-hover-color !important; }
+    }
+    .navbar-dark .navbar-nav .nav-link {
+        color: $navbar-dark-color;
+        &:hover, &:focus { color: $navbar-dark-hover-color !important; }
+    }
+    .dropdown-menu .dropdown-item {
+        color: $dropdown-link-color;
+        &:hover, &:focus { color: $dropdown-link-hover-color !important; }
     }
 }
 
 .inline-cypht {
     background: transparent;
+    a:not(.btn):hover {
+    	text-decoration: $link-hover-decoration !important;
+    }
+
     .folders a, .subject a, .selected_menu a,
     .unread_link, .selected_menu, .manage_folder_link {
         &:not(.btn) {
