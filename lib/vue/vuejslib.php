@@ -129,7 +129,7 @@ var vm = new Vue({
 				break;
 			case 'n':	// number
 			case 'b':	// currency
-				$params['fieldType'] = 'int';
+				$params['fieldType'] = 'number';
 				break;
 			default:
 				$params['fieldType'] = 'string';
@@ -150,6 +150,7 @@ var vm = new Vue({
 		$appHtml = $this->processVue('lib/vue/rules/TrackerRulesApp.vue', 'TrackerRulesApp', true, $params);
 
 		$appHtml .= $this->processVue('lib/vue/rules/TextArgument.vue', 'TextArgument');
+		$appHtml .= $this->processVue('lib/vue/rules/NumberArgument.vue', 'NumberArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/DateArgument.vue', 'DateArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/NullArgument.vue', 'NullArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/BoolArgument.vue', 'BoolArgument');

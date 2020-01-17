@@ -51,6 +51,7 @@
 	Vue.use(UIPredicate);
 
 	import TextArgument from "./vue_TextArgument.js";
+	import NumberArgument from "./vue_NumberArgument.js";
 	import DateArgument from "./vue_DateArgument.js";
 	import NullArgument from "./vue_NullArgument.js";
 	import BoolArgument from "./vue_BoolArgument.js";
@@ -137,14 +138,15 @@
 							argumentType_id: "datetime",
 						},
 						{
+							// FIXME throws an error on use
 							operator_id: "truefalse",
-							label: "is",
+							label: "=",
 							argumentType_id: "bool",
 						},
 					],
 					types: [
 						{
-							type_id: "int",
+							type_id: "number",
 							operator_ids: ["isLowerThan", "isEqualTo", "isHigherThan", "isNotEqualTo"],
 						},
 						{
@@ -186,7 +188,7 @@
 						},
 						{
 							argumentType_id: "number",
-							component: TextArgument,
+							component: NumberArgument,
 						},
 						{
 							argumentType_id: "bool",
@@ -280,13 +282,20 @@
 		mounted: function () {
 
 			// remove types of conditions this field can not do
-			let fieldType = this.$parent.fieldType;
+			let fieldType = this.$parent.fieldType,
+				toDelete = [];
+
+			this.conditionsColumns.targets[0].type_id = fieldType;
 
 			this.conditionsColumns.operators.forEach(function (value, index, array) {
 				if (value.argumentType_id !== fieldType) {
-					array.splice(index, 1);
+					toDelete.push(index);
 				}
 			});
+
+			for (let index = toDelete.length - 1; index > -1; index--) {
+				this.conditionsColumns.operators.splice(toDelete[index], 1);
+			}
 
 			if (this.$parent.targetFields !== undefined) {
 				let fields = this.$parent.targetFields,

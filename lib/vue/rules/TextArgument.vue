@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<input type="text" @change="_onChange" :value="value" class="form-control">
+		<input type="text" @change="_onChange" :value="value">
 	</div>
 </template>
 

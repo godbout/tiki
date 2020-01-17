@@ -1,12 +1,12 @@
 <template>
 	<div>
-		<input type="date" @change="_onChange" :value="value">
+		<input type="number" @change="_onChange" :value="value">
 	</div>
 </template>
 
 <script>
 	export default {
-		name: 'date-argument',
+		name: 'number-argument',
 		methods: {
 			_onChange({target: {value: newValue}})
 			{
