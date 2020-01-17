@@ -181,6 +181,10 @@
 
 			//this.conditionsColumns.targets[0].type_id = fieldType;
 
+			for (let index = toDelete.length - 1; index > -1; index--) {
+				this.conditionsColumns.operators.splice(toDelete[index], 1);
+			}
+
 			if (this.$parent.targetFields !== undefined) {
 				let fields = this.$parent.targetFields,
 					conditionsTargets = [],
