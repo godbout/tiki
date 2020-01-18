@@ -2035,7 +2035,7 @@ function wikiplugin_tracker($data, $params)
 						$smarty->assign('f_' . $f['fieldId'], $prettyout);
 						$smarty->assign('f_' . $f['permName'], $prettyout);
 					} else if (! empty($f['readonly'])) {
-						$prettyout = '<span class="outputPretty text-danger" id="track_' . $f['fieldId'] . '" name="track_' . $f['fieldId'] . '">' . tr('Error: Read only field "%0"', $f['permName']) . '</span>';
+						$prettyout = '<span class="outputPretty" id="track_' . $f['fieldId'] . '" name="track_' . $f['fieldId'] . '">' . wikiplugin_tracker_render_value($f, $item) . '</span>';
 						$smarty->assign('f_' . $f['fieldId'], $prettyout);
 						$smarty->assign('f_' . $f['permName'], $prettyout);
 					} else {

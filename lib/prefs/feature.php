@@ -481,9 +481,10 @@ function prefs_feature_list($partial = false)
 			'name' => tra('Tell a friend'),
 			'description' => tra('Add to each page an "Email this page" link'),
 			'help' => 'Tell+a+Friend',
+            'warning' => tra('The Share feature has better spam protection and will replace tell a friend in an upcoming version of Tiki'),
 			'type' => 'flag',
 			'default' => 'n',
-			'tags' => ['experimental'],
+			'tags' => ['deprecated'],
 		],
 		'feature_share' => [
 			'name' => tra('Share'),

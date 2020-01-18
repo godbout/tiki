@@ -27,6 +27,9 @@
 			{assign var=propval value=$propval|kbsize:true}
 		{elseif $propname eq 'description'}
 			{assign var=propval value=$propval|nl2br}
+		{elseif $propname eq 'parentId'}
+			{$propval = $propval|sefurl:'filegallery'}
+			{$propval = "<a href='$propval'>`$gal_info.name`</a>"}
 		{elseif $propname eq 'ocr_state'}
 			{if $propval === '1'}
 				{assign var=propval value='{tr}Finished processing{/tr}'}

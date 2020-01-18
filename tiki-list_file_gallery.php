@@ -1006,6 +1006,8 @@ if (isset($_GET['slideshow'])) {
 		if ($view == 'page' && isset($_REQUEST['fileId'])) {
 			try {
 				$file = $filegallib->get_file_additional($fileId);
+				$gal_info = $filegallib->get_file_gallery($file['parentId']);
+				$gal_info['show_parentId'] = 'y';
 			} catch (Exception $e) {
 				Feedback::errorPage(['mes' => tr('File %0 not found', $fileId), 'errortype' => 404]);
 			}
