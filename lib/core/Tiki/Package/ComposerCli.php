@@ -179,6 +179,7 @@ class ComposerCli
 		$builder = new ProcessBuilder();
 		$builder->setPrefix($php);
 		$builder->setArguments(['--version']);
+		$builder->setEnv('HTTP_ACCEPT_ENCODING', '');
 		$process = $builder->getProcess();
 		$process->run();
 		foreach (explode("\n", $process->getOutput()) as $line) {
@@ -216,6 +217,7 @@ class ComposerCli
 				$builder->setPrefix('command');
 				$builder->setArguments(['-v', $possibleCli]);
 			}
+			$builder->setEnv('HTTP_ACCEPT_ENCODING', '');
 			$process = $builder->getProcess();
 			$process->setTimeout($this->timeout);
 			$process->run();
@@ -737,6 +739,7 @@ class ComposerCli
 		if (! getenv('COMPOSER_HOME')) {
 			$env['COMPOSER_HOME'] = $this->basePath . self::COMPOSER_HOME;
 		}
+		$env['HTTP_ACCEPT_ENCODING'] = '';
 
 		$command = [$this->getPhpPath(), self::COMPOSER_SETUP, '--quiet', '--install-dir=temp'];
 		$process = new Process($command, null, $env);
@@ -769,6 +772,7 @@ class ComposerCli
 		if (! getenv('COMPOSER_HOME')) {
 			$env['COMPOSER_HOME'] = $this->basePath . self::COMPOSER_HOME;
 		}
+		$env['HTTP_ACCEPT_ENCODING'] = '';
 
 		$command = [$this->getComposerPharPath(), 'self-update', '--no-progress'];
 		$process = new Process($command, null, $env);
