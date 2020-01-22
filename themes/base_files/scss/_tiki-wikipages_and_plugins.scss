@@ -1017,6 +1017,11 @@ div.drillshow {
 	font-size: smaller;
 }
 
+// prevent font awesome icon to line break by itself
+.heading-link {
+	.fa, .fas, .far, .fal, .fad, .fab { display: inline; }
+}
+
 h2:hover .heading-link,
 h3:hover .heading-link,
 h4:hover .heading-link,
