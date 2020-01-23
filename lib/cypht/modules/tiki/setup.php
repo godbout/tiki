@@ -58,12 +58,35 @@ add_output('ajax_hm_folders', 'tiki_contacts_page_link', true, 'tiki', 'logout_m
 add_handler('compose', 'check_for_tiki_redirect', true, 'smtp', 'process_compose_form_submit', 'after');
 add_handler('compose', 'add_file_attachment', true, 'smtp', 'load_smtp_servers_from_config', 'before');
 
+/* message page calendar invitation hooks */
+add_handler('ajax_imap_message_content', 'check_calendar_invitations_imap', true, 'imap', 'imap_message_content', 'after');
+add_output('ajax_imap_message_content', 'add_rsvp_actions', true, 'imap', 'filter_message_headers', 'after');
+
+/* message page rsvp actions to an event */
+setup_base_ajax_page('ajax_rsvp_action', 'core');
+add_handler('ajax_rsvp_action', 'check_calendar_invitations_imap', true, 'imap', 'imap_message_content', 'after');
+add_handler('ajax_rsvp_action', 'load_imap_servers_from_config',  true, 'imap');
+add_handler('ajax_rsvp_action', 'load_smtp_servers_from_config', true, 'smtp', 'load_imap_servers_from_config', 'after');
+add_handler('ajax_rsvp_action', 'add_smtp_servers_to_page_data', true, 'smtp', 'load_smtp_servers_from_config', 'after');
+add_handler('ajax_rsvp_action', 'compose_profile_data', true, 'profiles', 'add_smtp_servers_to_page_data', 'after');
+add_handler('ajax_rsvp_action', 'imap_message_content',  true, 'imap', 'compose_profile_data', 'after');
+add_handler('ajax_rsvp_action', 'event_rsvp_action', true, 'tiki', 'imap_message_content', 'after');
+
+/* message page add to calendar function */
+setup_base_ajax_page('ajax_add_to_calendar', 'core');
+add_handler('ajax_add_to_calendar', 'check_calendar_invitations_imap', true, 'imap', 'imap_message_content', 'after');
+add_handler('ajax_add_to_calendar', 'load_imap_servers_from_config',  true, 'imap');
+add_handler('ajax_add_to_calendar', 'imap_message_content',  true, 'imap', 'load_imap_servers_from_config', 'after');
+add_handler('ajax_add_to_calendar', 'add_to_calendar', true, 'tiki', 'imap_message_content', 'after');
+
 return array(
 	'allowed_pages' => array(
     'groupmail',
     'ajax_tiki_groupmail',
     'ajax_take_groupmail',
     'ajax_put_back_groupmail',
+    'ajax_rsvp_action',
+    'ajax_add_to_calendar',
 	),
 	'allowed_get' => array(
 	),
@@ -72,9 +95,11 @@ return array(
 		'item_removed' => array(FILTER_VALIDATE_BOOLEAN, false)
 	),
 	'allowed_post' => array(
-		'server_id' => FILTER_VALIDATE_INT,
-		'uid' => FILTER_SANITIZE_STRING,
+		'imap_server_id' => FILTER_VALIDATE_INT,
+		'imap_msg_uid' => FILTER_SANITIZE_STRING,
 		'folder' => FILTER_SANITIZE_STRING,
 		'msgid' => FILTER_SANITIZE_STRING,
+    'rsvp_action' => FILTER_SANITIZE_STRING,
+    'calendar_id' => FILTER_VALIDATE_INT,
 	)
 );

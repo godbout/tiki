@@ -456,6 +456,7 @@ CREATE TABLE `tiki_calendar_roles` (
   `calitemId` int(14) NOT NULL default '0',
   `username` varchar(200) NOT NULL default '',
   `role` enum('0','1','2','3','6') NOT NULL default '0',
+  `partstat` VARCHAR(30) NULL DEFAULT NULL,
   PRIMARY KEY (`calitemId`,`username`(16),`role`)
 ) ENGINE=MyISAM;
 
