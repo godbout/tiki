@@ -103,6 +103,69 @@ class Tracker_Field_ItemsList extends Tracker_Field_Abstract implements Tracker_
 						],
 						'legacy_index' => 5,
 					],
+					'editable' => [
+						'name' => tr('Add, Edit, Remove Items'),
+						'description' => tr('Master switch for enabling Add, Edit, Remove Items'),
+						'filter' => 'int',
+						'options' => [
+							0 => tr('No'),
+							1 => tr('Yes'),
+						],
+					],
+					'addItemText' => [ // having text switches adding on/off
+						'name' => tr('Add Item text'),
+						'description' => tr('Text to show on a button to add new items. Also enables adding items.'),
+						'filter' => 'text',
+						'depends' => [
+							'field' => 'editable'
+						],
+					],
+					'editItem' => [
+						'name' => tr('Edit Item'),
+						'description' => tr('Enable editing items'),
+						'filter' => 'int',
+						'options' => [
+							0 => tr('No'),
+							1 => tr('Yes'),
+						],
+						'depends' => [
+							'field' => 'editable'
+						],
+					],
+					'deleteItem' => [
+						'name' => tr('Delete Item'),
+						'description' => tr('Allow deleting items'),
+						'filter' => 'int',
+						'options' => [
+							0 => tr('No'),
+							1 => tr('Yes'),
+						],
+						'depends' => [
+							'field' => 'editable'
+						],
+					],
+					'editInViewMode' => [
+						'name' => tr('Edit in View Mode'),
+						'description' => tr('Whether the edit buttons and icons also appear when viewing an item'),
+						'filter' => 'int',
+						'options' => [
+							0 => tr('No'),
+							1 => tr('Yes'),
+						],
+						'depends' => [
+							'field' => 'editable'
+						],
+					],
+					// TODO:
+					/*'addItemWikiTpl' => [
+						'name' => tr('Add Item Template Page'),
+						'description' => tr('Wiki page to use as a Pretty Tracker template'),
+						'filter' => 'pagename',
+						'profile_reference' => 'wiki_page',
+						'depends' => [
+							'field' => 'editable'
+						],
+					],*/
 				],
 			],
 		];
@@ -130,7 +193,7 @@ class Tracker_Field_ItemsList extends Tracker_Field_Abstract implements Tracker_
 	function renderInput($context = [])
 	{
 		if (empty($this->getOption('fieldIdHere'))) {
-			return $this->renderOutput();
+			return $this->renderOutput(['render_input' => 'y']);
 		} else {
 			TikiLib::lib('header')->add_jq_onready(
 				'
@@ -171,32 +234,60 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 	function renderOutput($context = [])
 	{
 		if (isset($context['search_render']) && $context['search_render'] == 'y') {
-			$items = $this->getData($this->getConfiguration('fieldId'));
+			$itemIds = $this->getData($this->getConfiguration('fieldId'));
 		} else {
-			$items = $this->getItemIds();
+			$itemIds = $this->getItemIds();
 		}
 
-		$list = $this->getItemLabels($items, $context);
+		$list = $this->getItemLabels($itemIds, $context);
 
 		// if nothing found check definition for previous list (used for output render)
 		if (empty($list)) {
 			$list = $this->getConfiguration('items', []);
-			$items = array_keys($list);
+			$itemIds = array_keys($list);
 		}
 
 		if (isset($context['list_mode']) && $context['list_mode'] === 'csv') {
 			return implode('%%%', $list);
 		} else {
+			$data = [
+				'links' => (bool)$this->getOption('linkToItems'),
+				'raw' => (bool)$this->getOption('displayFieldIdThere'),
+				'itemIds' => implode(',', $itemIds),
+				'items' => $list,
+				'num' => count($list),
+				'itemPermissions' => [],
+				'addItemText' => '',
+				'otherFieldPermName' => '',
+				'parentItemId' => 0,
+			];
+			// Either it has been called from renderInput (edit mode) or we're rendering it as well in view mode
+			if ((isset($context['render_input']) && $context['render_input'] === 'y') || $this->getOption('editInViewMode')) {
+				$editmode = true;
+			} else {
+				$editmode = false;
+			}
+			if ($this->getOption('editable') && $editmode) {
+				$trackerThere = Tracker_Definition::get($this->getOption('trackerId'));
+				$fieldThere = $trackerThere->getField($this->getOption('fieldIdThere'));
+				// trackerPerms overide field Options
+				$trackerPerms = Perms::get('tracker', $this->getOption('trackerId'));
+				$canCreate = $trackerPerms->create_tracker_items; // tracker/global permission; However canEdit and canRemove are Item permissions, see below
+				$itemPermissions = [];
+				foreach ($itemIds as $itemId) {
+					$item = Tracker_Item::fromId($itemId);
+					$itemPermissions[$itemId]['can_remove'] = $item->canRemove();
+					$itemPermissions[$itemId]['can_modify'] = $item->canModify();
+				}
+				$data['itemPermissions'] = $itemPermissions;
+				$data['addItemText'] = $canCreate ? $this->getOption('addItemText') : '';
+				$data['otherFieldPermName'] = $fieldThere['permName'];
+				$data['parentItemId'] = $this->getItemId();
+			}
 			return $this->renderTemplate(
 				'trackeroutput/itemslist.tpl',
 				$context,
-				[
-					'links' => (bool) $this->getOption('linkToItems'),
-					'raw' => (bool) $this->getOption('displayFieldIdThere'),
-					'itemIds' => implode(',', $items),
-					'items' => $list,
-					'num' => count($list),
-				]
+				$data
 			);
 		}
 	}

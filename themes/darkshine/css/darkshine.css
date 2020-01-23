@@ -7569,14 +7569,32 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   background: #90140c;
   font-family: Arial, sans-serif;
   color: #212529; }
-  .tiki-webmail a:not(.btn), .tiki-cypht a:not(.btn), .mobile.tiki-cypht a:not(.btn), .inline-cypht a:not(.btn) {
-    color: #600000 !important; }
-  .tiki-webmail a:not(.btn):hover, .tiki-cypht a:not(.btn):hover, .mobile.tiki-cypht a:not(.btn):hover, .inline-cypht a:not(.btn):hover {
+  .tiki-webmail a:not(.btn), .tiki-cypht a:not(.btn), .mobile.tiki-cypht a:not(.btn), .inline-cypht a:not(.btn), .tiki-webmail a.btn-link, .tiki-cypht a.btn-link, .mobile.tiki-cypht a.btn-link, .inline-cypht a.btn-link {
+    color: #600000; }
+  .tiki-webmail a:not(.btn):hover, .tiki-cypht a:not(.btn):hover, .mobile.tiki-cypht a:not(.btn):hover, .inline-cypht a:not(.btn):hover, .tiki-webmail a.btn-link:hover, .tiki-cypht a.btn-link:hover, .mobile.tiki-cypht a.btn-link:hover, .inline-cypht a.btn-link:hover {
     color: #140000 !important;
-    text-decoration: underline; }
+    text-decoration: inherit; }
+  .tiki-webmail .flipmodtitle.close, .tiki-cypht .flipmodtitle.close, .mobile.tiki-cypht .flipmodtitle.close, .inline-cypht .flipmodtitle.close, .tiki-webmail .close, .tiki-cypht .close, .mobile.tiki-cypht .close, .inline-cypht .close {
+    font-size: 1.5rem; }
+  .tiki-webmail .flipmodtitle.close, .tiki-cypht .flipmodtitle.close, .mobile.tiki-cypht .flipmodtitle.close, .inline-cypht .flipmodtitle.close, .tiki-webmail .close, .tiki-cypht .close, .mobile.tiki-cypht .close, .inline-cypht .close, .tiki-webmail .flipmodtitle.close:hover, .tiki-cypht .flipmodtitle.close:hover, .mobile.tiki-cypht .flipmodtitle.close:hover, .inline-cypht .flipmodtitle.close:hover, .tiki-webmail .close:hover, .tiki-cypht .close:hover, .mobile.tiki-cypht .close:hover, .inline-cypht .close:hover, .tiki-webmail .flipmodtitle.close:focus, .tiki-cypht .flipmodtitle.close:focus, .mobile.tiki-cypht .flipmodtitle.close:focus, .inline-cypht .flipmodtitle.close:focus, .tiki-webmail .close:focus, .tiki-cypht .close:focus, .mobile.tiki-cypht .close:focus, .inline-cypht .close:focus {
+    color: #000 !important; }
+  .tiki-webmail .navbar-light .navbar-nav .nav-link, .tiki-cypht .navbar-light .navbar-nav .nav-link, .mobile.tiki-cypht .navbar-light .navbar-nav .nav-link, .inline-cypht .navbar-light .navbar-nav .nav-link {
+    color: rgba(33, 37, 41, 0.5); }
+  .tiki-webmail .navbar-light .navbar-nav .nav-link:hover, .tiki-cypht .navbar-light .navbar-nav .nav-link:hover, .mobile.tiki-cypht .navbar-light .navbar-nav .nav-link:hover, .inline-cypht .navbar-light .navbar-nav .nav-link:hover, .tiki-webmail .navbar-light .navbar-nav .nav-link:focus, .tiki-cypht .navbar-light .navbar-nav .nav-link:focus, .mobile.tiki-cypht .navbar-light .navbar-nav .nav-link:focus, .inline-cypht .navbar-light .navbar-nav .nav-link:focus {
+    color: rgba(33, 37, 41, 0.7) !important; }
+  .tiki-webmail .navbar-dark .navbar-nav .nav-link, .tiki-cypht .navbar-dark .navbar-nav .nav-link, .mobile.tiki-cypht .navbar-dark .navbar-nav .nav-link, .inline-cypht .navbar-dark .navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.5); }
+  .tiki-webmail .navbar-dark .navbar-nav .nav-link:hover, .tiki-cypht .navbar-dark .navbar-nav .nav-link:hover, .mobile.tiki-cypht .navbar-dark .navbar-nav .nav-link:hover, .inline-cypht .navbar-dark .navbar-nav .nav-link:hover, .tiki-webmail .navbar-dark .navbar-nav .nav-link:focus, .tiki-cypht .navbar-dark .navbar-nav .nav-link:focus, .mobile.tiki-cypht .navbar-dark .navbar-nav .nav-link:focus, .inline-cypht .navbar-dark .navbar-nav .nav-link:focus {
+    color: rgba(255, 255, 255, 0.75) !important; }
+  .tiki-webmail .dropdown-menu .dropdown-item, .tiki-cypht .dropdown-menu .dropdown-item, .mobile.tiki-cypht .dropdown-menu .dropdown-item, .inline-cypht .dropdown-menu .dropdown-item {
+    color: #212529; }
+  .tiki-webmail .dropdown-menu .dropdown-item:hover, .tiki-cypht .dropdown-menu .dropdown-item:hover, .mobile.tiki-cypht .dropdown-menu .dropdown-item:hover, .inline-cypht .dropdown-menu .dropdown-item:hover, .tiki-webmail .dropdown-menu .dropdown-item:focus, .tiki-cypht .dropdown-menu .dropdown-item:focus, .mobile.tiki-cypht .dropdown-menu .dropdown-item:focus, .inline-cypht .dropdown-menu .dropdown-item:focus {
+    color: #16181b !important; }
 
 .inline-cypht {
   background: transparent; }
+  .inline-cypht a:not(.btn):hover {
+    text-decoration: underline !important; }
   .inline-cypht .folders a:not(.btn), .inline-cypht .subject a:not(.btn), .inline-cypht .selected_menu a:not(.btn), .inline-cypht .unread_link:not(.btn), .inline-cypht .selected_menu:not(.btn), .inline-cypht .manage_folder_link:not(.btn) {
     color: #600000 !important; }
   .inline-cypht .folders a:not(.btn):hover, .inline-cypht .subject a:not(.btn):hover, .inline-cypht .selected_menu a:not(.btn):hover, .inline-cypht .unread_link:not(.btn):hover, .inline-cypht .selected_menu:not(.btn):hover, .inline-cypht .manage_folder_link:not(.btn):hover {

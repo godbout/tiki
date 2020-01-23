@@ -57,6 +57,7 @@ class OcrHelper
 			$mimetypeMatched = true;
 			$tempReadableFilePath = $pdfTempFile ?: $tempReadableFilePath;
 			$process = new Process(['which', 'pdftotext']);
+			$process->setEnv(['HTTP_ACCEPT_ENCODING', '']);
 			$process->run();
 			$pdfToTextPath = preg_replace('/\s+/', ' ', trim($process->getOutput()));
 
@@ -65,6 +66,7 @@ class OcrHelper
 			}
 
 			$process = new Process([$pdfToTextPath, $tempReadableFilePath, $tempFileName]);
+			$process->setEnv(['HTTP_ACCEPT_ENCODING', '']);
 			$process->run();
 		}
 

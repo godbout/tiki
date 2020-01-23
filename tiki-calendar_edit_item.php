@@ -194,6 +194,16 @@ if (isset($_POST['act'])) {
 	if (empty($save['user'])) {
 		$save['user'] = $user;
 	}
+	if (! empty($save['participants'])) {
+		$participants = [];
+		foreach ($save['participants'] as $user) {
+			$participants[] = [
+				'username' => $user,
+				'role' => $save['participant_roles'][$user] ?? 0
+			];
+		}
+		$save['participants'] = $participants;
+	}
 	$newcalid = $save['calendarId'];
 	if ((empty($save['calitemId']) and $caladd["$newcalid"]['tiki_p_add_events'] == 'y') ||
 			(! empty($save['calitemId']) and $caladd["$newcalid"]['tiki_p_change_events'] == 'y')) {

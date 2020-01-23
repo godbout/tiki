@@ -23,7 +23,7 @@ function wikiplugin_gauge_info()
 				'name' => tra('Value'),
 				'description' => tra('Current value to be represented by the gauge'),
 				'since' => '1',
-				'filter' => 'digits',
+				'filter' => 'float',
 				'default' => ''
 			],
 			'max' => [

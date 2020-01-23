@@ -396,6 +396,7 @@ class CheckSqlEngineConversion
 				$useInnoDB ? '1' : '0',
 			]
 		);
+		$process->setEnv(['HTTP_ACCEPT_ENCODING', '']);
 		$process->setWorkingDirectory($this->tikiRoot);
 		$process->setTimeout($this->getProcessTimeout());
 

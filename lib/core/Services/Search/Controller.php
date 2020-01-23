@@ -152,6 +152,7 @@ class Services_Search_Controller
 				$transformed = [
 					'object_type' => $item['object_type'],
 					'object_id' => $item['object_id'],
+					'parent_id' => $item['gallery_id'],
 					'title' => preg_replace_callback('/\{(\w+)\}/', function ($matches) use ($item, $format) {
 						$key = $matches[1];
 						if (isset($item[$key])) {

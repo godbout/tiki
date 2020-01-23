@@ -512,7 +512,7 @@ class CalendarLib extends TikiLib
 
 		if ($res) {
 			$query
-				= "select `username`, `role` from `tiki_calendar_roles` where `calitemId`=? order by `role`";
+				= "select `username`, `role`, `partstat` from `tiki_calendar_roles` where `calitemId`=? order by `role`";
 			$rezult = $this->query($query, [(int)$calitemId]);
 			$ppl = [];
 			$org = [];
@@ -520,11 +520,16 @@ class CalendarLib extends TikiLib
 				if ($rez["role"] == ROLE_ORGANIZER) {
 					$org[] = $rez["username"];
 				} elseif ($rez["username"]) {
-					$ppl[] = ['name' => $rez["username"],
-								'role' => $rez["role"]];
+					$ppl[] = [
+						'name' => $rez["username"],
+						'email' => TikiLib::lib('user')->get_user_email($rez['username']),
+						'role' => $rez["role"],
+						'partstat' => $rez['partstat']
+					];
 				}
 			}
 			$res["participants"] = $ppl;
+			$res["selected_participants"] = array_map(function($role){ return $role['name']; }, $ppl);
 			$res["organizers"] = $org;
 			$res['date_start'] = (int)$res['start'];
 			$res['date_end'] = (int)$res['end'];
@@ -607,23 +612,19 @@ class CalendarLib extends TikiLib
 		if ($caldata['customparticipants'] == 'y') {
 			$roles = [];
 			if ($data["organizers"]) {
-				$orgs = explode(',', $data["organizers"]);
-				foreach ($orgs as $o) {
+				foreach ($data['organizers'] as $o) {
 					if (trim($o)) {
-						$roles[ROLE_ORGANIZER][] = trim($o);
+						$roles[] = [
+							'username' => trim($o),
+							'role' => ROLE_ORGANIZER
+						];
 					}
 				}
 			}
 			if ($data["participants"]) {
-				$parts = explode(',', $data["participants"]);
-				foreach ($parts as $pa) {
-					if (trim($pa)) {
-						if (strstr($pa, ':')) {
-							$p = explode(':', trim($pa));
-							$roles["$p[0]"][] = trim($p[1]);
-						} else {
-							$roles[0][] = trim($pa);
-						}
+				foreach ($data['participants'] as $pa) {
+					if (trim($pa['username'])) {
+						$roles[] = $pa;
 					}
 				}
 			}
@@ -730,15 +731,23 @@ class CalendarLib extends TikiLib
 			$wikilib = TikiLib::lib('wiki');
 			$wikilib->update_wikicontent_relations($data['description'], 'calendar event', $calitemId);
 			$wikilib->update_wikicontent_links($data['description'], 'calendar event', $calitemId);
+			$existing_roles = $this->fetchAll('select * from `tiki_calendar_roles` where `calitemId`=?', [$calitemId]);
 			$query = "delete from `tiki_calendar_roles` where `calitemId`=?";
 			$this->query($query, [(int)$calitemId]);
+		} else {
+			$existing_roles = [];
 		}
 
-		foreach ($roles as $lvl => $ro) {
-			foreach ($ro as $r) {
-				$query = "insert into `tiki_calendar_roles` (`calitemId`,`username`,`role`) values (?,?,?)";
-				$this->query($query, [(int)$calitemId,$r,(string)$lvl]);
+		foreach ($roles as $role) {
+			if (empty($role['partstat'])) {
+				foreach ($existing_roles as $erole) {
+					if ($role['username'] == $erole['username']) {
+						$role['partstat'] = $erole['partstat'];
+					}
+				}
 			}
+			$query = "insert into `tiki_calendar_roles` (`calitemId`,`username`,`role`,`partstat`) values (?,?,?,?)";
+			$this->query($query, [(int)$calitemId, $role['username'], $role['role'] ?? 0, $role['partstat'] ?? null]);
 		}
 
 		if ($prefs['feature_user_watches'] == 'y') {
@@ -978,6 +987,27 @@ class CalendarLib extends TikiLib
 				} else {
 					$d['end'] = strtotime($d['end date']);
 				}
+			}
+
+			if ($d['organizers']) {
+				$d['organizers'] = explode(',', $d['organizers']);
+			}
+
+			if ($d['participants']) {
+				$d['participants'] = array_map(function($part){
+					$part = explode(':', $part);
+					if (count($part) > 1) {
+						$part = [
+							'username' => $part[1],
+							'role' => $part[0]
+						];
+					} else {
+						$part = [
+							'username' => $part[0]
+						];
+					}
+					return $part;
+				}, explode(',', $d['participants']));
 			}
 
 			// TODO do a replace if name, calendarId, start, end exists

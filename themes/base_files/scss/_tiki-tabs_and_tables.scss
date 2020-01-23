@@ -159,7 +159,6 @@ td.url{
 					width: calc(100vw - 30px);
 					padding: 0;
 					background-color: transparent;
-//					background-color: $table-accent-bg;
 					border-bottom: 1px solid $border-color;
 				}
 
@@ -189,7 +188,6 @@ td.url{
 							margin-left: 0;
 						}
 						&.checkbox-cell { width: auto; }
-//						&.action:not(:nth-child(1)) { display: none; }
 					}
 
 					> tr.active { display: none; }
@@ -206,13 +204,20 @@ td.url{
 			}
 
 			.table.caltable {
-				tbody tr:first-child {
-					td:not(.visible-header) {
+				> tbody > tr:first-child {
+					> td:not(.visible-header) {
 						position: absolute;
 						top: -9999px;
 						left: -9999px;
 					}
 				}
+				.heading.weeks {
+					width: 50px;
+					~ td { margin-bottom: 15px; }
+				}
+				.header { display: block !important; font-weight: bold; }
+				.text-muted, .even, .odd { display: block; width: 100%; }
+				.even { background: transparent; }
 			}
 		}
 	}

@@ -5,6 +5,10 @@
   width: 80px;
 }
 
+html {
+  background-color: transparent;
+}
+
 body {
   min-width: 100%;
 }

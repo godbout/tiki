@@ -112,6 +112,7 @@ class ThemeInstaller
 			$phpPath = $phpFinder->find();
 
 			$updateProcess = new Process([$phpPath, 'console.php', 'database:update']);
+			$updateProcess->setEnv(['HTTP_ACCEPT_ENCODING', '']);
 			$updateProcess->setWorkingDirectory($this->tikiFolder);
 			$updateProcess->run();
 			$updateProcess->wait();

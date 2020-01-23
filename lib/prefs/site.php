@@ -165,7 +165,7 @@ function prefs_site_list()
 			'name' => tr('Google Global Site Tag Mode'),
 			'description' => tra('Use the newer Google Global Site Tag (gtag.js) as opposed to the previous ga.js.'),
 			'type' => 'flag',
-			'default' => 'n',
+			'default' => 'y',
 			'dependencies' => [
 				'site_google_analytics_account',
 			],
@@ -264,8 +264,8 @@ function prefs_site_list()
 		],
 		'site_security_timeout' => [
 			'name' => tra('Security timeout'),
-			'description' => tr('Sets the expiration of CSRF tickets and related forms. The %0session_lifetime%1 
-				preference is used for the default, if set, otherwise the %0session.gc_maxlifetime%1 %0php.ini%1 setting 
+			'description' => tr('Sets the expiration of CSRF tickets and related forms. The %0session_lifetime%1
+				preference is used for the default, if set, otherwise the %0session.gc_maxlifetime%1 %0php.ini%1 setting
 				is used, subject to a default maximum of four hours in any case.', '<code>', '</code>'),
 			'type' => 'text',
 			'filter' => 'digits',

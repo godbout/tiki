@@ -685,16 +685,7 @@
 							{if $preview or $changeCal}
 								<input type="text" name="save[organizers]" value="{$calitem.organizers|escape}" style="width:90%;">
 							{else}
-								<input type="text" name="save[organizers]" value="
-								{foreach item=org from=$calitem.organizers name=organizers}
-									{if $org neq ''}
-										{$org|escape}
-										{if !$smarty.foreach.organizers.last}
-											,
-										{/if}
-									{/if}
-								{/foreach}
-								" style="width:90%;">
+								{user_selector name='save[organizers]' select=$calitem.organizers multiple='true' allowNone='y'}
 							{/if}
 						{else}
 							{foreach item=org from=$calitem.organizers}
@@ -710,21 +701,30 @@
 					{if isset($calitem.participants)}
 						{if $edit}
 							{if $preview or $changeCal}
-								<input type="text" name="save[participants]" value="{$calitem.participants}">
+								<input type="text" name="save[participants]" value="{$calitem.participants|escape}">
 							{else}
-								<input type="text" name="save[participants]" value="
-								{foreach item=ppl from=$calitem.participants name=participants}
-									{if $ppl.name neq ''}
-										{if $ppl.role}{$ppl.role}
-											:
-										{/if}
-										{$ppl.name}
-										{if !$smarty.foreach.participants.last}
-											,
-										{/if}
-									{/if}
+								{user_selector name='save[participants]' select=$calitem.selected_participants multiple='true' allowNone='y'}
+								<table cellpadding="0" cellspacing="0" border="0" class="table normal table-bordered" id="participant_roles">
+								<tr>
+									<th>{tr}Invitee{/tr}</th>
+									<th>{tr}Status{/tr}</th>
+									<th>{tr}Role{/tr}</th>
+								</tr>
+								{foreach item=ppl from=$calitem.participants}
+								<tr data-user="{$ppl.name|escape}">
+									<td>{$ppl.name|userlink}</td>
+									<td>{$ppl.partstat}</td>
+									<td>
+										<select name="save[participant_roles][{$ppl.name}]" class="form-control">
+											<option value="0">{tr}chair{/tr}</option>
+											<option value="1" {if $ppl.role eq '1'}selected{/if}>{tr}required participant{/tr}</option>
+											<option value="2" {if $ppl.role eq '2'}selected{/if}>{tr}optional participant{/tr}</option>
+											<option value="3" {if $ppl.role eq '3'}selected{/if}>{tr}non-participant{/tr}</option>
+										</select>
+									</td>
+								</tr>
 								{/foreach}
-								">
+								</table>
 							{/if}
 							{else}
 								{assign var='in_particip' value='n'}
@@ -750,35 +750,14 @@
 									<form action="tiki-calendar_edit_item.php" method="post">
 										<input type ="hidden" name="viewcalitemId" value="{$id}">
 										<input type="text" name="guests">{help desc="{tr}Format:{/tr} {tr}Participant names separated by comma{/tr}" url='calendar'}
-										<input type="submit" class="btn btn-primary btn-sm" name="add_guest" value="Add guests">
+										<input type="button" class="btn btn-primary btn-sm" name="add_guest" value="Add guests">
 									</form>
 								*}
 							{/if}
 						{/if}
 					{/if}
-					{if $edit}
-						<a href="#" onclick="flip('calparthelp');return false;">
-							{icon name='help'}
-						</a>
-					{/if}
 				</div>
 			</div> <!-- / .form-group -->
-			{if $edit}
-				<div style="display: {if $calendar.customparticipants eq 'y' and (isset($cookie.show_calparthelp) and $cookie.show_calparthelp eq 'y')}block{else}none{/if};" id="calparthelp">
-					{tr}Roles{/tr}<br>
-					0: {tr}chair{/tr} ({tr}default role{/tr})<br>
-					1: {tr}required participant{/tr}<br>
-					2: {tr}optional participant{/tr}<br>
-					3: {tr}non-participant{/tr}<br>
-					<br>
-					{tr}Input list of participants, separated by commas. Roles must be indicated by a prefix separated by a colon as in:{/tr}&nbsp;
-					<code>
-						{tr}role:login_or_email,login_or_email{/tr}
-					</code>
-					<br>
-					{tr}If no role is provided, default role will be "Chair participant".{/tr}
-				</div>
-			{/if}
 			{if $edit}
 				{if $recurrence.id gt 0}
 					<div class="row">

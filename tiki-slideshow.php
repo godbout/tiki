@@ -214,11 +214,11 @@ $headerlib->add_cssfile(
 	'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme . '.css'
 );
 $headerlib->add_css(
-	'.reveal span{font-family: "Font Awesome 5 Free";font-style: normal;font-weight:900} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;top:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;top:50px;left:-2000px;width:230px;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;padding: 10px;border-top-right-radius: 25px;border-bottom-right-radius: 25px;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:500em !important}} @media all and (orientation: portrait){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section {font-size:135% !important} .reveal li, .reveal li ul li{font-size:130%; !important}} @media all and (orientation: landscape) and (max-width:1024px){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:125% !important}} #reveal-controls span,#listSlides{cursor:pointer;color:#999;padding:0.15em} #reveal-controls span:hover,#listSlides:hover{color:#fff} footer{visibility:hidden}  @media (max-width: 1024px) and (orientation: portrait) {#ss-options {min-width:50% !important; font-size:2rem;line-height:4rem;top:8% !important} #reveal-controls span{font-size:150% !important} .p-2{width:100%;display:block;text-align:center} .form-control{font-size:45px !important; height:5rem !important}  #ss-settings-holder{padding-top:4% !important} #ss-settings-holder span{font-size:300% !important}}');
+	'.reveal span{font-family: "Font Awesome 5 Free";font-style: normal;font-weight:900} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;top:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;top:50px;left:-2000px;width:230px;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;padding: 10px;border-top-right-radius: 25px;border-bottom-right-radius: 25px;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:500em !important}} @media all and (orientation: portrait){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section {font-size:135% !important} .reveal p {margin 10px 0 !important;}.reveal li, .reveal li ul li{font-size:130%; !important}} @media all and (orientation: landscape) and (max-width:1024px){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:125% !important}} #reveal-controls span,#listSlides{cursor:pointer;color:#999;padding:0.15em} #reveal-controls span:hover,#listSlides:hover{color:#fff} footer{visibility:hidden}  @media (max-width: 1024px) and (orientation: portrait) {#ss-options {min-width:50% !important; font-size:2rem;line-height:4rem;top:8% !important} #reveal-controls span{font-size:150% !important} .p-2{width:100%;display:block;text-align:center} .form-control{font-size:45px !important; height:5rem !important}  #ss-settings-holder{padding-top:4% !important} #ss-settings-holder span{font-size:300% !important}} .scale-1{transform:scale(0.9);transform-origin:top center} .scale-2{transform:scale(0.8);transform-origin:top center} .scale-3{transform:scale(0.7);transform-origin:top center} .scale-4{transform:scale(0.6);transform-origin:top center} .scale-5{transform:scale(0.5);transform-origin:top center} .scale-6{transform:scale(0.45);transform-origin:top center}');
 
 $headerlib->add_jq_onready(
 	'$("<link/>", {rel: "stylesheet",type: "text/css",href: "", id:"themeCSS"}).appendTo("head");
-	$("body").append("<style type=\"text/css\">.reveal li,.reveal section p { font-size: 1.3em; line-height:1.4em } .reveal li{margin:0.3em 0.5em 0.3em 0.5em} .reveal li ul li{font-size:0.9em !important; margin:0em !important}.reveal section pre code { font-size: 0.7em !important;} .reveal h1 {font-size: 2.8em; text-transform:none !important;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.03);}.reveal table {overflow: hidden;} .reveal section img {border:0px;background:none;box-shadow:none} .reveal table th, .reveal table td{text-align:center;vertical-align:top !important} .reveal ul{vertical-align:top !important}</style>");
+	$("body").append("<style type=\"text/css\">.reveal li,.reveal section p { font-size: 1.3em; line-height:1.4em } .reveal li{margin:0.1em 0.5em 0.1em 0.5em} .reveal li ul li{font-size:0.9em !important; margin:0em !important}.reveal section pre code { font-size: 0.7em !important;} .reveal h1 {font-size: 2.8em; text-transform:none !important;margin-bottom:0 !important;} .reveal  {font-size: 1.4em;}.reveal .slides section .fragment.grow.visible {transform: scale(1.03);}.reveal table {overflow: hidden;} .reveal section img {border:0px;background:none;box-shadow:none} .reveal table th, .reveal table td{text-align:center;vertical-align:top !important} .reveal ul{vertical-align:top !important}</style>");
 	var extraElements=["#page-bar",".icon_edit_section",".icon-link-external",".editplugin","#show-errors-button",".wikitext",".icon_edit_section","#toc","footer",".heading-link"];
 	jQuery.each( extraElements, function( i, val ) {
 		$( val ).remove();
@@ -311,30 +311,24 @@ $headerlib->add_jq_onready(
 			}
 		});
 		//Append slide title with URL on slide change
-		Reveal.addEventListener( "slidechanged", function( event ) { location.hash = "!_"+$(".present table tr td").children("h1").attr("id");
-		//fonts adjustment
-			if($( ".present" ).innerHeight() >= $(document).innerHeight()){
-				if($( ".present" ).innerHeight()-$(document).innerHeight()>30){
-					var overflow=$( ".present" ).innerHeight()-$(document).innerHeight();
-					if(overflow<100){fontsize="1.3";}
-					if(overflow<100){fontsize="1.3";}
-					else if(overflow<350){fontsize="1.1em";}
-					else if(overflow<600){fontsize="1.0em";}
-					else if(overflow<800){fontsize="0.9em";}
-					if(window.innerWidth<=1024 && window.innerHeight < window.innerWidth){fontsize="16px";
-					$( ".present td" ).attr("style","font-size:16px;border-bottom:none");
-					$( ".present td div" ).attr("style","font-size:16px");
-					$( ".present h1" ).attr("style","font-size:2em");
-
-					}
-					$( ".present li" ).attr("style","font-size:"+fontsize+" !important; line-height:1.15em !important;margin:0.2em 0.5em 0.2em 0.5em;");
-					$( ".present p" ).attr("style","font-size:"+fontsize+" !important;margin:10px 0px;line-height:1.2em !important");
-				}
-			}
-
-
-		});
+		Reveal.addEventListener( "slidechanged", function( event ) { location.hash = "!_"+$(".present table tr td").children("h1").attr("id");});
 		Reveal.initialize({ width: "98%",height: "100%",center: false});
+		$(window).bind("load", function() {
+			//loop to scale contents
+			$( "section" ).each(function( index ) {
+				var overflow=$(this).innerHeight()-$(document).innerHeight();
+				var scalePercent=Math.round(100-((overflow/$(document).innerHeight())*100));
+				if(overflow>30){
+					if(scalePercent>70){ scalePercent>85?scalePercent=1:scalePercent=2;}
+					else if(scalePercent>30) {scalePercent>45?scalePercent=3:scalePercent=4;}
+					else if(scalePercent>25){scalePercent=5;}
+					else{scalePercent=6;}
+					$(this).addClass("scale-"+scalePercent);
+				}
+			});
+			//end of loop
+		});
+
 		Reveal.addEventListener( \'ready\', function( event ) {
 
 			var found=0;

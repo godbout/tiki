@@ -20,6 +20,7 @@ $fgal_listing_conf = [
 	'id' => ['name' => tra('ID')],
 	'type' => ['name' => tra('Type'), 'key' => 'show_icon'],
 	'name' => ['name' => tra('Name')],
+	'parentId' => ['name' => tra('Parent Gallery'), 'key' => 'parentId'],
 	'description' => ['name' => tra('Description')],
 	'size' => ['name' => tra('Size')],
 	'created' => ['name' => tra('Created') . ' / ' . tra('Uploaded')],

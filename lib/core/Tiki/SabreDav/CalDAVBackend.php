@@ -588,7 +588,10 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
 
         $this->ensureCalendarAccess($calendarId, $instanceId, 'add_events', 'write');
 
-        $data = $this->getDenormalizedData($calendarData, $calendarId);
+        $calendar = TikiLib::lib('calendar')->get_calendar($calendarId);
+        $timezone = TikiLib::lib('tiki')->get_display_timezone($calendar['user']);
+
+        $data = Utilities::getDenormalizedData($calendarData, $timezone);
         $data['calendarId'] = $calendarId;
         $data['uri'] = $objectUri;
 
@@ -653,7 +656,10 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
 
         $this->ensureCalendarAccess(['event', $item['calitemId']], $instanceId, 'change_events', 'write');
 
-        $data = $this->getDenormalizedData($calendarData, $calendarId);
+        $calendar = TikiLib::lib('calendar')->get_calendar($calendarId);
+        $timezone = TikiLib::lib('tiki')->get_display_timezone($calendar['user']);
+
+        $data = Utilities::getDenormalizedData($calendarData, $timezone);
         $data['calendarId'] = $calendarId;
 
         if ($rec) {
@@ -710,265 +716,6 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
     }
 
     /**
-     * Parses some information from calendar objects, used for optimized
-     * calendar-queries and field mapping to Tiki. RRULE parsing partially
-     * supports RFC 5545 as Tiki does not handle all of the specification.
-     *
-     * @param string $calendarData
-     * @return array
-     */
-    protected function getDenormalizedData($calendarData, $calendarId) {
-        $vObject = VObject\Reader::read($calendarData);
-        $componentType = null;
-        $component = null;
-        $uid = null;
-        foreach ($vObject->getComponents() as $component) {
-            if ($component->name !== 'VTIMEZONE') {
-                $componentType = $component->name;
-                $uid = (string)$component->UID;
-                break;
-            }
-        }
-        if (!$componentType) {
-            throw new \Sabre\DAV\Exception\BadRequest('Calendar objects must have a VJOURNAL, VEVENT or VTODO component');
-        }
-
-        $result = [
-            'etag'           => md5($calendarData),
-            'size'           => strlen($calendarData),
-            'componenttype'  => $componentType,
-            'uid'            => $uid,
-        ];
-        $result = array_merge(
-            $result,
-            $this->getDenormalizedDataFromComponent($component)
-        );
-
-        // check for individual instances changed in recurring events
-        $result['overrides'] = [];
-        foreach ($vObject->getComponents() as $component) {
-            if ($component->name !== 'VEVENT') {
-                continue;
-            }
-            if ($component->{'RECURRENCE-ID'}) {
-                $result['overrides'][] = $this->getDenormalizedDataFromComponent($component);
-            }
-        }
-
-        // Destroy circular references to PHP will GC the object.
-        $vObject->destroy();
-
-        return $result;
-    }
-
-    protected function getDenormalizedDataFromComponent($component) {
-        $calendar = TikiLib::lib('calendar')->get_calendar($calendarId);
-        $timezone = TikiLib::lib('tiki')->get_display_timezone($calendar['user']);
-
-        $firstOccurence = null;
-        $lastOccurence = null;
-        $rec = null;
-
-        if ($component && $component->name == 'VEVENT') {
-            $firstOccurence = $component->DTSTART->getDateTime()->getTimeStamp();
-            if (isset($component->DTEND)) {
-                $lastOccurence = $component->DTEND->getDateTime()->getTimeStamp();
-            } elseif (isset($component->DURATION)) {
-                $endDate = clone $component->DTSTART->getDateTime();
-                $endDate = $endDate->add(VObject\DateTimeParser::parse($component->DURATION->getValue()));
-                $lastOccurence = $endDate->getTimeStamp();
-            } elseif (!$component->DTSTART->hasTime()) {
-                $endDate = clone $component->DTSTART->getDateTime();
-                $endDate = $endDate->modify('+1 day');
-                $lastOccurence = $endDate->getTimeStamp();
-            } else {
-                $lastOccurence = $firstOccurence;
-            }
-            if (isset($component->RRULE)) {
-                $rec = new \CalRecurrence;
-                $parts = $component->RRULE->getParts();
-                switch ($parts['FREQ']) {
-                    case "WEEKLY":
-                        if (isset($parts['BYDAY'])) {
-                            $weekdays = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
-                            $weekday = array_search($parts['BYDAY'], $weekdays);
-                        } else {
-                            $weekday = $component->DTSTART->getDateTime()->format('w');
-                        }
-                        $rec->setWeekly(true);
-                        $rec->setWeekday($weekday);
-                        $rec->setMonthly(false);
-                        $rec->setYearly(false);
-                        break;
-                    case "MONTHLY":
-                        if (isset($parts['BYMONTHDAY'])) {
-                            $monthday = $parts['BYMONTHDAY'];
-                        } else {
-                            $monthday = $component->DTSTART->getDateTime()->format('j');
-                        }
-                        $rec->setWeekly(false);
-                        $rec->setMonthly(true);
-                        $rec->setDayOfMonth($parts['BYMONTHDAY']);
-                        $rec->setYearly(false);
-                        break;
-                    case "YEARLY":
-                        if (isset($parts['BYMONTH'])) {
-                            $month = $parts['BYMONTH'];
-                        } else {
-                            $month = $component->DTSTART->getDateTime()->format('n');
-                        }
-                        if (isset($parts['BYMONTH'])) {
-                            $monthday = $parts['BYMONTHDAY'];
-                        } else {
-                            $monthday = $component->DTSTART->getDateTime()->format('j');
-                        }
-                        $rec->setWeekly(false);
-                        $rec->setMonthly(false);
-                        $rec->setYearly(true);
-                        $rec->setDateOfYear(str_pad($month, 2, '0', STR_PAD_LEFT) . str_pad($monthday, 2, '0', STR_PAD_LEFT));
-                        break;
-                }
-                $rec->setStartPeriod(\TikiDate::getStartDay($firstOccurence, $timezone));
-                if (isset($parts['COUNT'])) {
-                    $rec->setNbRecurrences($parts['COUNT']);
-                } else {
-                    $rec->setEndPeriod(\TikiDate::getStartDay(strtotime($parts['UNTIL']), $timezone));
-                }
-                $rec->setLang('en');
-                $rec->setNlId(0);
-                $rec->setAllday(0);
-            }
-
-            // Ensure Occurence values are positive
-            if ($firstOccurence < 0) $firstOccurence = 0;
-            if ($lastOccurence < 0) $lastOccurence = 0;
-        }
-
-        $result = [
-            'start'          => $firstOccurence,
-            'end'            => $lastOccurence,
-            'rec'            => $rec,
-        ];
-
-        if (isset($component->{'RECURRENCE-ID'})) {
-            $result['recurrenceStart'] = $component->{'RECURRENCE-ID'}->getDateTime()->getTimeStamp();
-        }
-
-        if (isset($component->CREATED)) {
-            $result['created'] = $component->CREATED->getDateTime()->getTimeStamp();
-        }
-        if (isset($component->DTSTAMP)) {
-            $result['lastmodif'] = $component->DTSTAMP->getDateTime()->getTimeStamp();
-        }
-        if (isset($component->{'LAST-MODIFIED'})) {
-            $result['lastmodif'] = $component->{'LAST-MODIFIED'}->getDateTime()->getTimeStamp();
-        }
-        if (isset($component->SUMMARY)) {
-            $result['name'] = $component->SUMMARY;
-        }
-        if (isset($component->DESCRIPTION)) {
-            $result['description'] = $component->DESCRIPTION;
-        }
-        if (isset($component->LOCATION)) {
-            $result['newloc'] = $component->LOCATION;
-        }
-        if (isset($component->CATEGORIES)) {
-            $cats = explode(',', $component->CATEGORIES);
-            $result['newcat'] = $cats[0];
-        }
-        if (isset($component->PRIORITY)) {
-            $result['priority'] = $component->PRIORITY;
-        }
-        if (isset($component->STATUS)) {
-            $result['status'] = $this->reverseMapEventStatus($component->STATUS);
-        }
-        if (isset($component->URL)) {
-            $result['url'] = $component->URL;
-        }
-        if (isset($component->ORGANIZER)) {
-            $result['organizers'] = [];
-            foreach ($component->ORGANIZER as $organizer) {
-                $email = preg_replace("/MAILTO:\s*/i", "", (string)$organizer);
-                $user = TikiLib::lib('user')->get_user_by_email($email);
-                if ($user) {
-                    $result['organizers'][] = $user;
-                }
-            }
-            $result['organizers'] = implode(',', $result['organizers']);
-        }
-        if (isset($component->ATTENDEE)) {
-            // TODO: RSVP handling in Tiki: e.g. PARTSTAT=ACCEPTED;RSVP=TRUE:
-            $result['participants'] = [];
-            foreach ($component->ATTENDEE as $attendee) {
-                $email = preg_replace("/MAILTO:\s*/i", "", (string)$attendee);
-                $user = TikiLib::lib('user')->get_user_by_email($email);
-                if ($user) {
-                    $role = $this->reverseMapAttendeeRole($attendee['ROLE']);
-                    if ($role) {
-                        $user = $role.":".$user;
-                    }
-                    $result['participants'][] = $user;
-                }
-            }
-            $result['participants'] = implode(',', $result['participants']);
-        }
-
-        return $result;
-    }
-
-    protected function mapEventStatus($event_status) {
-        switch ($event_status) {
-            case '0':
-                return 'TENTATIVE';
-            case '1':
-                return 'CONFIRMED';
-            case '2':
-                return 'CANCELLED';
-        }
-        return '';
-    }
-
-    protected function reverseMapEventStatus($event_status) {
-        switch ($event_status) {
-            case 'TENTATIVE':
-                return '0';
-            case 'CONFIRMED':
-                return '1';
-            case 'CANCELLED':
-                return '2';
-        }
-        return '';
-    }
-
-    protected function mapAttendeeRole($role) {
-        switch ($role) {
-            case '0':
-                return 'CHAIR';
-            case '1':
-                return 'REQ-PARTICIPANT';
-            case '2':
-                return 'OPT-PARTICIPANT';
-            case '3':
-                return 'NON-PARTICIPANT';
-        }
-        return '';
-    }
-
-    protected function reverseMapAttendeeRole($role) {
-        switch ($role) {
-            case 'CHAIR':
-                return '0';
-            case 'REQ-PARTICIPANT':
-                return '1';
-            case 'OPT-PARTICIPANT':
-                return '2';
-            case 'NON-PARTICIPANT':
-                return '3';
-        }
-        return '';
-    }
-
-    /**
      * Notes on ics format fields. See https://tools.ietf.org/html/rfc5545 for more information.
      * CREATED, DTSTAMP, LAST-MODIFIED - must be UTC. They are stored as UTC in Tiki database. No timezone conversion happens.
      * DTSTART, DTEND - must be in calendar timezone which currently is defined as the timezone of the Tiki user owning the calendar.
@@ -999,7 +746,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             'LAST-MODIFIED' => \DateTime::createFromFormat('U', $row['lastModif'])->format('Ymd\THis\Z'),
             'SUMMARY' => $row['name'],
             'PRIORITY' => $row['priority'],
-            'STATUS' => $this->mapEventStatus($row['status']),
+            'STATUS' => Utilities::mapEventStatus($row['status']),
             'TRANSP' => 'OPAQUE',
             'DTSTART' => $dtstart,
             'DTEND'   => $dtend,
@@ -1051,7 +798,8 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
                 TikiLib::lib('user')->get_user_email($par['name']),
                 [
                     'CN' => TikiLib::lib('tiki')->get_user_preference($par['name'], 'realName'),
-                    'ROLE' => $this->mapAttendeeRole($par['role'])
+                    'ROLE' => Utilities::mapAttendeeRole($par['role']),
+                    'PARTSTAT' => $par['partstat'],
                 ]
             );
         }
@@ -1072,7 +820,7 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
     protected function constructRecurringCalendarData($rec) {
         $vcalendar = $rec->constructVCalendar();
         $vevent = $vcalendar->VEVENT;
-        $vevent->STATUS = $this->mapEventStatus($rec->getStatus());
+        $vevent->STATUS = Utilities::mapEventStatus($rec->getStatus());
 
         if ($firstItemId = $rec->getFirstItemId()) {
             // TODO: optimize this for N+1 query problem
@@ -1092,7 +840,8 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
                     TikiLib::lib('user')->get_user_email($par['name']),
                     [
                         'CN' => TikiLib::lib('tiki')->get_user_preference($par['name'], 'realName'),
-                        'ROLE' => $this->mapAttendeeRole($par['role'])
+                        'ROLE' => Utilities::mapAttendeeRole($par['role']),
+                        'PARTSTAT' => $par['partstat'],
                     ]
                 );
             }

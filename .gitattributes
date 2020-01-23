@@ -2049,6 +2049,7 @@ installer/schema/20190925_caldav_updates_tiki.sql -text
 installer/schema/20191114_caldav_recurring_updates_tiki.sql -text
 installer/schema/20191116_scheduler_run_only_once_tiki.sql -text
 installer/schema/20191218_carddav_tiki.sql -text
+installer/schema/20200123_calendar_rsvp_tiki.sql -text
 installer/schema/999999991_decode_pages_sources_tiki.php -text
 installer/schema/99999999_image_plugins_kill_tiki.php -text
 installer/schema/index.php -text
@@ -3361,6 +3362,9 @@ lib/cypht/modules/smtp/assets/kindeditor/themes/default/default.png -text
 lib/cypht/modules/smtp/assets/markdown/fonts/icomoon.woff -text
 lib/cypht/modules/themes/assets/fonts/roboto-condensed-v14-latin-regular.woff -text
 lib/cypht/modules/themes/assets/fonts/roboto-condensed-v14-latin-regular.woff2 -text
+lib/cypht/modules/tiki/calendar_modules.php -text
+lib/cypht/modules/tiki/general_modules.php -text
+lib/cypht/modules/tiki/groupmail_modules.php -text
 lib/cypht/modules/tiki/site.scss -text
 lib/db/index.php -text
 lib/db/tiki_registration_fields.php -text
