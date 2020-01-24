@@ -182,7 +182,7 @@ FileETag none
 
     # -- CalDAV/CardDAV service auto-discovery -- #
     RewriteRule ^.well-known/caldav$    tiki-caldav.php [R=301,L]
-    #TODO: RewriteRule ^.well-known/carddav$   tiki-carddav.php [R=301,L]
+    RewriteRule ^.well-known/carddav$   tiki-carddav.php [R=301,L]
 
     # -- Profiles Repository -- #
     # Set the parentId (here set as 1) to the Id of the category containing your profile pages.
