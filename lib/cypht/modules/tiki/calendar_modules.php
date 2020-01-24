@@ -198,7 +198,7 @@ Invitees: ".implode(",\n", $event['attendees']);
         // sync partstat for local calendar event
         global $prefs, $user;
         if ($prefs['feature_calendar'] === 'y') {
-            $existing = TikiLib::lib('calendar')->find_by_uid($user, $event['uid']);
+            $existing = TikiLib::lib('calendar')->find_by_uid(null, $event['uid']);
             if ($existing) {
                 $event['calendarId'] = $existing['calendarId'];
                 $event['calitemId'] = $existing['calitemId'];
@@ -303,7 +303,7 @@ class Hm_Output_add_rsvp_actions extends Hm_Output_Module {
             $res .= sprintf('<tr class="header_event_dtend"><th>%s</th><td>%s</td></tr>', tr('Event end'), TikiLib::lib('tiki')->get_long_datetime($event['end']));
             $res .= sprintf('<tr class="header_event_organizer"><th>%s</th><td>%s</td></tr>', tr('Organizer'), implode(", ", $event['real_organizers']));
             if ($prefs['feature_calendar'] == 'y' && $method != 'CANCEL') {
-                $existing = TikiLib::lib('calendar')->find_by_uid($user, $event['uid']);
+                $existing = TikiLib::lib('calendar')->find_by_uid(null, $event['uid']);
                 if (! $existing) {
                     $options = ['<option></option>'];
                     $calendars = TikiLib::lib('calendar')->list_calendars();
@@ -319,7 +319,7 @@ class Hm_Output_add_rsvp_actions extends Hm_Output_Module {
             }
             if ($method == 'REQUEST') {
                 $partstat = null;
-                $existing = TikiLib::lib('calendar')->find_by_uid($user, $event['uid']);
+                $existing = TikiLib::lib('calendar')->find_by_uid(null, $event['uid']);
                 if ($existing) {
                     $existing = TikiLib::lib('calendar')->get_item($existing['calitemId']);
                 }

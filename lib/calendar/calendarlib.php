@@ -1227,8 +1227,12 @@ class CalendarLib extends TikiLib
 	}
 
 	public function find_by_uid($user, $uid) {
-		$query = "select i.`calendarId`, i.`calitemId`, i.`uri`, i.`recurrenceId` from `tiki_calendar_items` i left join `tiki_calendars` c on i.`calendarId` = c.`calendarId` left join `tiki_calendar_recurrence` r on i.`recurrenceId` = r.`recurrenceId` where c.user = ? and (i.`uid` = ? or r.uid = ?)";
-		$bindvars = [$user, $uid, $uid];
+		$query = "select i.`calendarId`, i.`calitemId`, i.`uri`, i.`recurrenceId` from `tiki_calendar_items` i left join `tiki_calendars` c on i.`calendarId` = c.`calendarId` left join `tiki_calendar_recurrence` r on i.`recurrenceId` = r.`recurrenceId` where (i.`uid` = ? or r.uid = ?)";
+		$bindvars = [$uid, $uid];
+		if ($user) {
+			$query .= " and c.user = ?";
+			$bindvars[] = $user;
+		}
 		$result = $this->query($query, $bindvars);
 		return $result->fetchRow();
 	}
