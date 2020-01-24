@@ -159,8 +159,8 @@ create()
 \$dbs_tiki='$DB';
 \$client_charset='utf8';
 // Want configurations managed at the system level or restrict some preferences? http://doc.tiki.org/System+Configuration
-//\$system_configuration_file = 'db/tiki.ini';
-//\$system_configuration_identifier = 'staging';
+// \$system_configuration_file = 'db/tiki.ini.php';
+// \$system_configuration_identifier = 'staging';
 EOF
 
 	chown $TIM_USER.$TIM_GROUP $INSTANCE_DIR/db/local.php
