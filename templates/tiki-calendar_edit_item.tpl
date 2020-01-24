@@ -685,7 +685,7 @@
 							{if $preview or $changeCal}
 								<input type="text" name="save[organizers]" value="{$calitem.organizers|escape}" style="width:90%;">
 							{else}
-								{user_selector name='save[organizers]' select=$calitem.organizers multiple='true' allowNone='y'}
+								{user_selector name='save[organizers]' select=$calitem.organizers multiple='true' allowNone='y' editable='y'}
 							{/if}
 						{else}
 							{foreach item=org from=$calitem.organizers}
@@ -703,7 +703,7 @@
 							{if $preview or $changeCal}
 								<input type="text" name="save[participants]" value="{$calitem.participants|escape}">
 							{else}
-								{user_selector name='save[participants]' select=$calitem.selected_participants multiple='true' allowNone='y'}
+								{user_selector name='save[participants]' select=$calitem.selected_participants multiple='true' allowNone='y' editable='y'}
 								<table cellpadding="0" cellspacing="0" border="0" class="table normal table-bordered" id="participant_roles">
 								<tr>
 									<th>{tr}Invitee{/tr}</th>
