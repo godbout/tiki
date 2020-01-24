@@ -306,8 +306,9 @@ class Hm_Output_add_rsvp_actions extends Hm_Output_Module {
                 $existing = TikiLib::lib('calendar')->find_by_uid($user, $event['uid']);
                 if (! $existing) {
                     $options = ['<option></option>'];
-                    $result = TikiLib::lib('calendar')->list_calendars(0, -1, 'calendarId_asc', '', $user);
-                    foreach ($result['data'] as $row) {
+                    $calendars = TikiLib::lib('calendar')->list_calendars();
+                    $calendars['data'] = Perms::filter([ 'type' => 'calendar' ], 'object', $calendars['data'], [ 'object' => 'calendarId' ], 'add_events');
+                    foreach ($calendars['data'] as $row) {
                         $options[] = "<option value='".$row['calendarId']."'>".$row['name']."</option>";
                     }
                     $res .= sprintf('<tr class="header_event_addtocal"><th>%s</th><td class="header_links"><select name="calendarId" class="event_calendar_select">%s</select></td></tr>',
