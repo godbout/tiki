@@ -16,7 +16,8 @@
 			fileId: this.$parent.fieldId,
 			fieldType: this.$parent.fieldType,
 			rules: this.$parent.rules,
-			targetFields: this.$parent.targetFields
+			targetFields: this.$parent.targetFields,
+			conditionsDefinition: this.$parent.conditionsDefinition,
 		}; }
 	};
 </script>

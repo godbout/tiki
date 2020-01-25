@@ -9,5 +9,4 @@ abstract class LogicalType
 	function __construct()
 	{
 	}
-
 }

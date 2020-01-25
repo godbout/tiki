@@ -71,12 +71,12 @@
 						{
 							target_id: "field.value",
 							label: "Field value",
-							type_id: "string",
+							type_id: "Text",
 						},
 						{
 							target_id: "field.showing",
 							label: "Field Showing",
-							type_id: "bool",
+							type_id: "Boolean",
 						},
 					],
 					// besides array list names, everything else follows convention
@@ -178,19 +178,19 @@
 					],
 					argumentTypes: [
 						{
-							argumentType_id: "datetime",
+							argumentType_id: "DateTime",
 							component: DateArgument,
 						},
 						{
-							argumentType_id: "string",
+							argumentType_id: "Text",
 							component: TextArgument,
 						},
 						{
-							argumentType_id: "number",
+							argumentType_id: "Number",
 							component: NumberArgument,
 						},
 						{
-							argumentType_id: "bool",
+							argumentType_id: "Boolean",
 							component: BoolArgument,
 						},
 					],
@@ -283,6 +283,9 @@
 			// remove types of conditions this field can not do
 			let fieldType = this.$parent.fieldType,
 				toDelete = [], typesToAllow = [];
+
+			this.conditionsColumns.operators = this.$parent.conditionsDefinition.operators;
+			this.conditionsColumns.types     = this.$parent.conditionsDefinition.types;
 
 			this.conditionsColumns.targets[0].type_id = fieldType;
 

@@ -125,14 +125,14 @@ var vm = new Vue({
 			case 'f':	// datetime
 			case 'j':	// datepicker
 			case 'CAL':	// calendar item
-				$params['fieldType'] = 'datetime';
+				$params['fieldType'] = 'DateTime';
 				break;
 			case 'n':	// number
 			case 'b':	// currency
-				$params['fieldType'] = 'number';
+				$params['fieldType'] = 'Number';
 				break;
 			default:
-				$params['fieldType'] = 'string';
+				$params['fieldType'] = 'Text';
 				break;
 		}
 
@@ -146,6 +146,8 @@ var vm = new Vue({
 				'actions' => null,
 			];
 		}
+
+		$params['conditionsDefinition'] = \Tracker\Rule\Definition::get();
 
 		$appHtml = $this->processVue('lib/vue/rules/TrackerRulesApp.vue', 'TrackerRulesApp', true, $params);
 

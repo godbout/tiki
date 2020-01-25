@@ -4,9 +4,7 @@
 namespace Tiki\Lib\core\Tracker\Rule\Target;
 
 
-use Tiki\Lib\core\Tracker\Rule\Type\DateTime;
-use Tiki\Lib\core\Tracker\Rule\Type\Integer;
-use Tiki\Lib\core\Tracker\Rule\Type\Text;
+use Tiki\Lib\core\Tracker\Rule\Type;
 
 const TARGET_ID = 'field';
 
@@ -24,11 +22,11 @@ abstract class Target
 
 	public function getType() {
 		if (in_array($this->field['type'], ['f', 'j', 'CAL'])) {
-			return new DateTime();
+			return new Type\DateTime();
 		} else if (in_array($this->field['type'], ['n', 'q', 'b'])) {
-			return new Integer();
+			return new Type\Number();
 		} else {
-			return new Text();
+			return new Type\Text();
 		}
 	}
 
