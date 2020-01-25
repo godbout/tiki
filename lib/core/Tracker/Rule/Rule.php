@@ -7,8 +7,8 @@
 
 namespace Tracker\Rule;
 
-use Tiki\Lib\core\Tracker\Rule\Target\FieldShowing;
-use Tiki\Lib\core\Tracker\Rule\Target\FieldValue;
+use Tiki\Lib\core\Tracker\Rule\Operator;
+use Tiki\Lib\core\Tracker\Rule\Target;
 
 class Rule
 {
@@ -29,10 +29,10 @@ class Rule
 		$rule = new self;
 
 		if ($data->target_id === 'field.value') {
-			$rule->target = new FieldValue($fieldId);
+			$rule->target = new Target\FieldValue($fieldId);
 		} else {
 			if ($data->target_id === 'field.showing') {
-				$rule->target = new FieldShowing($fieldId);
+				$rule->target = new Target\FieldShowing($fieldId);
 			}
 		}
 
