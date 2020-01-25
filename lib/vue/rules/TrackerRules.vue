@@ -138,9 +138,8 @@
 							argumentType_id: "datetime",
 						},
 						{
-							// FIXME throws an error on use
 							operator_id: "truefalse",
-							label: "=",
+							label: "is",
 							argumentType_id: "bool",
 						},
 					],
@@ -283,12 +282,16 @@
 
 			// remove types of conditions this field can not do
 			let fieldType = this.$parent.fieldType,
-				toDelete = [];
+				toDelete = [], typesToAllow = [];
 
 			this.conditionsColumns.targets[0].type_id = fieldType;
 
+			this.conditionsColumns.targets.forEach(function (value, index, array) {
+				typesToAllow.push(value.type_id);
+			});
+
 			this.conditionsColumns.operators.forEach(function (value, index, array) {
-				if (value.argumentType_id !== fieldType) {
+				if (typesToAllow.indexOf(value.argumentType_id) === -1) {
 					toDelete.push(index);
 				}
 			});
