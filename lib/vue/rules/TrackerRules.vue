@@ -20,7 +20,7 @@
 			<div class="card-header">
 				Else
 			</div>
-			<div class="card-body actions">
+			<div class="card-body else">
 				<ui-predicate v-model="elseData" :columns="actionsColumns" @changed="onChangeElse" @initialized="onChangeElse"/>
 			</div>
 		</div>
@@ -81,6 +81,7 @@
 			return {
 				conditionsoutput: {},
 				actionoutput: {},
+				elseoutput: {},
 				conditionsData: this.$parent.rules.conditions,
 				conditionsColumns: {
 					targets: [
