@@ -144,6 +144,7 @@ var vm = new Vue({
 			$params['rules'] = [
 				'conditions' => null,
 				'actions' => null,
+				'else' => null,
 			];
 		}
 

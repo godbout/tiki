@@ -16,6 +16,14 @@
 				<ui-predicate v-model="actionsData" :columns="actionsColumns" @changed="onChangeActions" @initialized="onChangeActions"/>
 			</div>
 		</div>
+		<div class="card mb-2">
+			<div class="card-header">
+				Else
+			</div>
+			<div class="card-body actions">
+				<ui-predicate v-model="elseData" :columns="actionsColumns" @changed="onChangeElse" @initialized="onChangeElse"/>
+			</div>
+		</div>
 
 		<div class="card">
 			<article class="message is-info">
@@ -42,6 +50,14 @@
 			</div>
 			<div class="card-content">
 				<textarea name="actions" class="form-control" readonly="readonly">{{ actionoutput }}</textarea>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header">
+				Else Output
+			</div>
+			<div class="card-content">
+				<textarea name="else" class="form-control" readonly="readonly">{{ elseoutput }}</textarea>
 			</div>
 		</div>
 	</div>
@@ -266,6 +282,7 @@
 						},
 					],
 				},
+				elseData: this.$parent.rules.else,
 			};
 		},
 		methods: {
@@ -276,6 +293,10 @@
 			onChangeActions(diff)
 			{
 				this.actionoutput = diff;
+			},
+			onChangeElse(diff)
+			{
+				this.elseoutput = diff;
 			},
 		},
 		mounted: function () {
