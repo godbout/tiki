@@ -2492,7 +2492,7 @@ table.treetable tr.expanded span.indenter a {
     .tracker-item-files li {
       padding-bottom: 5px; } }
 
-.tracker-rules .actions .ui-predicate__row:first-child {
+.tracker-rules .actions .ui-predicate__row:first-child, .tracker-rules .else .ui-predicate__row:first-child {
   display: none; }
 
 .catlists .catitems {
