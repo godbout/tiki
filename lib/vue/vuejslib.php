@@ -117,23 +117,21 @@ var vm = new Vue({
 			Feedback::error(tr('No fieldId for Field Rules'));
 		}
 
-		if (! isset($params['fieldType'])) {
-			$params['fieldType'] = '';
-		}
-
-		switch ($params['fieldType']) {
-			case 'f':	// datetime
-			case 'j':	// datepicker
-			case 'CAL':	// calendar item
-				$params['fieldType'] = 'DateTime';
-				break;
-			case 'n':	// number
-			case 'b':	// currency
-				$params['fieldType'] = 'Number';
-				break;
-			default:
-				$params['fieldType'] = 'Text';
-				break;
+		foreach ($params['targetFields'] as & $field) {
+			switch ($field['type']) {
+				case 'f':    // datetime
+				case 'j':    // datepicker
+				case 'CAL':  // calendar item
+					$field['argumentType'] = 'DateTime';
+					break;
+				case 'n':    // number
+				case 'b':    // currency
+					$field['argumentType'] = 'Number';
+					break;
+				default:
+					$field['argumentType'] = 'Text';
+					break;
+			}
 		}
 
 		if (is_string($params['rules'])) {

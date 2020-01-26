@@ -170,6 +170,8 @@
 			};
 		},
 		methods: {
+			// TODO probably near here: set new predicates target to this field as the default
+
 			onChangeConditions(diff)
 			{
 				this.conditionsoutput = diff;
@@ -194,21 +196,28 @@
 			this.actionsColumns.operators    = this.$parent.definitiion.actions;
 			this.actionsColumns.types        = this.$parent.definitiion.types;
 
-			this.conditionsColumns.targets[0].type_id = fieldType;
+			//this.conditionsColumns.targets[0].type_id = fieldType;
 
 			if (this.$parent.targetFields !== undefined) {
 				let fields = this.$parent.targetFields,
-					targets = [];
+					conditionsTargets = [],
+					actionsTargets = [];
 
 				fields.forEach(function (value) {
-					targets.push({
+					conditionsTargets.push({
+						target_id: "tracker_field_" + value.permName,
+						label: value.name,
+						type_id: value.argumentType,
+					});
+					actionsTargets.push({
 						target_id: "tracker_field_" + value.permName,
 						label: value.name,
 						type_id: "Field",
 					});
 				});
 
-				this.actionsColumns.targets = targets;
+				this.conditionsColumns.targets = conditionsTargets;
+				this.actionsColumns.targets    = actionsTargets;
 			}
 		}
 	};
