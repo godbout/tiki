@@ -69,7 +69,7 @@
 	import TextArgument from "./vue_TextArgument.js";
 	import NumberArgument from "./vue_NumberArgument.js";
 	import DateArgument from "./vue_DateArgument.js";
-	import NullArgument from "./vue_NullArgument.js";
+	import NoArgument from "./vue_NoArgument.js";
 	import BoolArgument from "./vue_BoolArgument.js";
 
 
@@ -98,87 +98,8 @@
 					],
 					// besides array list names, everything else follows convention
 					// https://github.com/FGRibreau/sql-convention
-					operators: [
-						{
-							operator_id: "is",
-							label: "is",
-							argumentType_id: "string",
-						},
-						{
-							operator_id: "contains",
-							label: "contains",
-							argumentType_id: "string",
-						},
-						{
-							operator_id: "isEmpty",
-							label: "is empty",
-							argumentType_id: "string",
-						},
-						{
-							operator_id: "isNotEmpty",
-							label: "is not empty",
-							argumentType_id: "string",
-						},
-						{
-							operator_id: "isLowerThan",
-							label: "<",
-							argumentType_id: "number",
-						},
-						{
-							operator_id: "isEqualTo",
-							label: "==",
-							argumentType_id: "number",
-						},
-						{
-							operator_id: "isNotEqualTo",
-							label: "<>",
-							argumentType_id: "number",
-						},
-						{
-							operator_id: "isHigherThan",
-							label: ">",
-							argumentType_id: "number",
-						},
-						{
-							operator_id: "on",
-							label: "on",
-							argumentType_id: "datetime",
-						},
-						{
-							operator_id: "before",
-							label: "before",
-							argumentType_id: "datetime",
-						},
-						{
-							operator_id: "after",
-							label: "after",
-							argumentType_id: "datetime",
-						},
-						{
-							operator_id: "truefalse",
-							label: "is",
-							argumentType_id: "bool",
-						},
-					],
-					types: [
-						{
-							type_id: "number",
-							operator_ids: ["isLowerThan", "isEqualTo", "isHigherThan", "isNotEqualTo"],
-						},
-						{
-							type_id: "string",
-							operator_ids: ["is", "contains", "isEmpty", "isNotEmpty"],
-						},
-						{
-							type_id: "datetime",
-							operator_ids: ["on", "before", "after"],
-						},
-						{
-							type_id: "bool",
-							operator_ids: ["truefalse"],
-						},
-						// TODO add array type
-					],
+					operators: null,
+					types: null,
 					logicalTypes: [
 						{
 							logicalType_id: "any",
@@ -210,57 +131,19 @@
 							argumentType_id: "Boolean",
 							component: BoolArgument,
 						},
+						{
+							argumentType_id: "Nothing",
+							component: NoArgument,
+						},
 					],
 				},
 				actionsData: this.$parent.rules.actions,
 				actionsColumns: {
-					targets: [
-						{
-							target_id: "field.name",
-							label: "Name",
-							type_id: "field",
-						},
-						{
-							target_id: "field.description",
-							label: "Descrition",
-							type_id: "field",
-						},
-						{
-							target_id: "field.date",
-							label: "Date",
-							type_id: "field",
-						},
-					],
+					targets: null,
 					// besides array list names, everything else follows convention
 					// https://github.com/FGRibreau/sql-convention
-					operators: [
-						{
-							operator_id: "show",
-							label: "Show",
-							argumentType_id: "null",
-						},
-						{
-							operator_id: "hide",
-							label: "Hide",
-							argumentType_id: "null",
-						},
-						{
-							operator_id: "required",
-							label: "Required",
-							argumentType_id: "null",
-						},
-						{
-							operator_id: "notRequired",
-							label: "Not Required",
-							argumentType_id: "null",
-						},
-					],
-					types: [
-						{
-							type_id: "field",
-							operator_ids: ["show", "hide", "required", "notRequired"],
-						},
-					],
+					operators: null,
+					types: null,
 					// TODO logicalTypes should be removed for actions
 					logicalTypes: [
 						{
@@ -278,8 +161,8 @@
 					],
 					argumentTypes: [
 						{
-							argumentType_id: "null",
-							component: NullArgument,
+							argumentType_id: "Nothing",
+							component: NoArgument,
 						},
 					],
 				},
@@ -306,24 +189,12 @@
 			let fieldType = this.$parent.fieldType,
 				toDelete = [], typesToAllow = [];
 
-			this.conditionsColumns.operators = this.$parent.conditionsDefinition.operators;
-			this.conditionsColumns.types     = this.$parent.conditionsDefinition.types;
+			this.conditionsColumns.operators = this.$parent.definitiion.operators;
+			this.conditionsColumns.types     = this.$parent.definitiion.types;
+			this.actionsColumns.operators    = this.$parent.definitiion.actions;
+			this.actionsColumns.types        = this.$parent.definitiion.types;
 
 			this.conditionsColumns.targets[0].type_id = fieldType;
-
-			this.conditionsColumns.targets.forEach(function (value, index, array) {
-				typesToAllow.push(value.type_id);
-			});
-
-			this.conditionsColumns.operators.forEach(function (value, index, array) {
-				if (typesToAllow.indexOf(value.argumentType_id) === -1) {
-					toDelete.push(index);
-				}
-			});
-
-			for (let index = toDelete.length - 1; index > -1; index--) {
-				this.conditionsColumns.operators.splice(toDelete[index], 1);
-			}
 
 			if (this.$parent.targetFields !== undefined) {
 				let fields = this.$parent.targetFields,
@@ -333,7 +204,7 @@
 					targets.push({
 						target_id: "tracker_field_" + value.permName,
 						label: value.name,
-						type_id: "field",
+						type_id: "Field",
 					});
 				});
 

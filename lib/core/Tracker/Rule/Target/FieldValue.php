@@ -3,13 +3,12 @@
 
 namespace Tiki\Lib\core\Tracker\Rule\Target;
 
-const TARGET_ID = 'field.value';
+use Tiki\Lib\core\Tracker\Rule\Type\Text;
 
 class FieldValue extends Target
 {
-	public function __construct($fieldId)
+	public function __construct()
 	{
-		parent::__construct($fieldId);
+		parent::__construct(tr('Field value'), Text::class);
 	}
-
 }

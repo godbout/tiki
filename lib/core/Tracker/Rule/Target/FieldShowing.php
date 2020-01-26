@@ -3,14 +3,12 @@
 
 namespace Tiki\Lib\core\Tracker\Rule\Target;
 
-const TARGET_ID = 'field.showing';
+use Tiki\Lib\core\Tracker\Rule\Type\Boolean;
 
 class FieldShowing extends Target
 {
-	public function __construct($fieldId)
+	public function __construct()
 	{
-		$this->targetId = 'field.showing';
-		parent::__construct($fieldId);
+		parent::__construct(tr('Field showing'), Boolean::class);
 	}
-
 }

@@ -17,7 +17,7 @@
 			fieldType: this.$parent.fieldType,
 			rules: this.$parent.rules,
 			targetFields: this.$parent.targetFields,
-			conditionsDefinition: this.$parent.conditionsDefinition,
+			definitiion: this.$parent.definitiion,
 		}; }
 	};
 </script>

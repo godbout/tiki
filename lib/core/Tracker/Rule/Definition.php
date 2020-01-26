@@ -9,6 +9,7 @@ namespace Tracker\Rule;
 
 use Tiki\Lib\core\Tracker\Rule\Operator;
 use Tiki\Lib\core\Tracker\Rule\Type;
+use Tiki\Lib\core\Tracker\Rule\Action;
 
 class Definition
 {
@@ -16,7 +17,7 @@ class Definition
 	public static function get() {
 		$out = [];
 
-		// TODO these operator and types lists should be generated automatically somehow one day
+		// TODO these lists should be generated automatically somehow one day
 		$operators = [
 			new Operator\BooleanTrueFalse(),
 			new Operator\DateTimeAfter(),
@@ -36,8 +37,17 @@ class Definition
 		$types = [
 			new Type\Boolean(),
 			new Type\DateTime(),
+			new Type\Field(),
+			new Type\Nothing(),
 			new Type\Number(),
 			new Type\Text(),
+		];
+
+		$actions = [
+			new Action\Hide(),
+			new Action\NotRequired(),
+			new Action\Required(),
+			new Action\Show(),
 		];
 
 		$out['operators'] = array_map(function (Operator\Operator $operator) {
@@ -47,6 +57,10 @@ class Definition
 		$out['types'] = array_map(function (Type\Type $type) {
 			return $type->get();
 		}, $types);
+
+		$out['actions'] = array_map(function (Action\Action $action) {
+			return $action->get();
+		}, $actions);
 
 		return $out;
 	}

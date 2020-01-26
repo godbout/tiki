@@ -4,30 +4,20 @@
 namespace Tiki\Lib\core\Tracker\Rule\Operator;
 
 
+use Tiki\Lib\core\Tracker\Rule\Column;
 use Tiki\Lib\core\Tracker\Rule\Type\Type;
 
-class Operator
+abstract class Operator extends Column
 {
-	/** @var string */
-	protected $label;
-	/** @var Type */
-	protected $argumentType;
-
-	public function __construct($label, $argumentType)
+	public function __construct($label, $type)
 	{
-		$this->label        = $label;
-		$this->argumentType = $argumentType;
-	}
-
-	public function getId() {
-		$reflection = new \ReflectionClass($this);
-		$name = $reflection->getName();
-		return substr($name, strrpos($name, '\\') + 1);
+		parent::__construct($label, $type);
 	}
 
 	public function get() {
 		/** @var Type $argumentType */
-		$argumentType = new $this->argumentType;
+		$argumentType = new $this->type;
+
 		return [
 			'operator_id' => $this->getId(),
 			'label' => $this->label,
