@@ -7,6 +7,7 @@
 
 namespace Tracker\Rule;
 
+use Tiki\Lib\core\Tracker\Rule\Column;
 use Tiki\Lib\core\Tracker\Rule\Operator;
 use Tiki\Lib\core\Tracker\Rule\Type;
 use Tiki\Lib\core\Tracker\Rule\Action;
@@ -18,49 +19,45 @@ class Definition
 		$out = [];
 
 		// TODO these lists should be generated automatically somehow one day
-		$operators = [
-			new Operator\BooleanTrueFalse(),
-			new Operator\DateTimeAfter(),
-			new Operator\DateTimeBefore(),
-			new Operator\DateTimeOn(),
-			new Operator\NumberEquals(),
-			new Operator\NumberGreaterThan(),
-			new Operator\NumberLessThan(),
-			new Operator\NumberNotEquals(),
-			new Operator\TextContains(),
-			new Operator\TextEquals(),
-			new Operator\TextIsEmpty(),
-			new Operator\TextIsNotEmpty(),
-			new Operator\TextNotContains(),
-		];
+		$definition = [
+			'operators' => [
+				new Operator\BooleanTrueFalse(),
+				new Operator\DateTimeAfter(),
+				new Operator\DateTimeBefore(),
+				new Operator\DateTimeOn(),
+				new Operator\NumberEquals(),
+				new Operator\NumberGreaterThan(),
+				new Operator\NumberLessThan(),
+				new Operator\NumberNotEquals(),
+				new Operator\TextContains(),
+				new Operator\TextEquals(),
+				new Operator\TextIsEmpty(),
+				new Operator\TextIsNotEmpty(),
+				new Operator\TextNotContains(),
+			],
+			'types' => [
+				new Type\Boolean(),
+				new Type\DateTime(),
+				new Type\Field(),
+				new Type\Nothing(),
+				new Type\Number(),
+				new Type\Text(),
+			],
+			'actions' => [
+				new Action\Hide(),
+				new Action\NotRequired(),
+				new Action\Required(),
+				new Action\Show(),
+			]];
 
-		$types = [
-			new Type\Boolean(),
-			new Type\DateTime(),
-			new Type\Field(),
-			new Type\Nothing(),
-			new Type\Number(),
-			new Type\Text(),
-		];
-
-		$actions = [
-			new Action\Hide(),
-			new Action\NotRequired(),
-			new Action\Required(),
-			new Action\Show(),
-		];
-
-		$out['operators'] = array_map(function (Operator\Operator $operator) {
-			return $operator->get();
-		}, $operators);
-
-		$out['types'] = array_map(function (Type\Type $type) {
-			return $type->get();
-		}, $types);
-
-		$out['actions'] = array_map(function (Action\Action $action) {
-			return $action->get();
-		}, $actions);
+		foreach ($definition as $name => $objects) {
+			$out[$name] = array_map(
+				function ($object) {
+					/** @var Column $object */
+					return $object->get();
+				}, $objects
+			);
+		}
 
 		return $out;
 	}
