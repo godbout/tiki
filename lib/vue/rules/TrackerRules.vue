@@ -140,8 +140,6 @@
 				actionsData: this.$parent.rules.actions,
 				actionsColumns: {
 					targets: null,
-					// besides array list names, everything else follows convention
-					// https://github.com/FGRibreau/sql-convention
 					operators: null,
 					types: null,
 					// TODO logicalTypes should be removed for actions
@@ -187,10 +185,6 @@
 		},
 		mounted: function () {
 
-			// remove types of conditions this field can not do
-			let fieldType = this.$parent.fieldType,
-				toDelete = [], typesToAllow = [];
-
 			this.conditionsColumns.operators = this.$parent.definitiion.operators;
 			this.conditionsColumns.types     = this.$parent.definitiion.types;
 			this.actionsColumns.operators    = this.$parent.definitiion.actions;
@@ -205,12 +199,12 @@
 
 				fields.forEach(function (value) {
 					conditionsTargets.push({
-						target_id: "tracker_field_" + value.permName,
+						target_id: "ins_" + value.fieldId,
 						label: value.name,
 						type_id: value.argumentType,
 					});
 					actionsTargets.push({
-						target_id: "tracker_field_" + value.permName,
+						target_id: "ins_" + value.fieldId,
 						label: value.name,
 						type_id: "Field",
 					});
