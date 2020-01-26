@@ -1,3 +1,4 @@
 svn+ssh test by luci
 git test by jonnyb
 automerge test by drsassafras
+subgit (svn to git) test by rjsmelo
