@@ -684,6 +684,13 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'type' => 'flag',
 			'default' => 'y'
 		],
+		'fgal_use_casperjs_to_export_images' => [
+			'name' => tra('Use locally CasperJS to export images'),
+			'description' => tra('If enabled, diagrams can be exported using CasperJS.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'packages_required' => ['jerome-breton/casperjs-installer' => 'CasperJsInstaller\Installer'],
+		],
 		'fgal_use_drawio_services_to_export_images' => [
 			'name' => tra('Use draw.io public services to export images'),
 			'description' => tra('When exporting PDFs, if this setting is enabled, diagram images will be fetched using Drawio\'s services if not in cache. This basically works like a fallback.'),

@@ -7,6 +7,7 @@
 
 namespace Tiki\File;
 
+use Symfony\Component\Process\Process;
 use Tiki\FileGallery\File as TikiFile;
 use Tiki\FileGallery\File;
 use Tiki\Package\VendorHelper;
@@ -34,12 +35,19 @@ class DiagramHelper
 		$fileIdentifier = md5($diagramContent);
 		$content = $cachelib->getCached($fileIdentifier, 'diagram');
 
+		if (! $content
+			&& $prefs['fgal_use_casperjs_to_export_images'] === 'y'
+			&& class_exists('CasperJsInstaller\Installer')
+		) {
+			$content = self::getDigramAsImageUsingCasperJs('<mxfile>' . $diagramContent . '</mxfile>', $fileIdentifier);
+		}
+
 		if (! $content && $prefs['fgal_use_drawio_services_to_export_images'] === 'y') {
 			$content = self::getDiagramAsImageFromExternalService('<mxfile>' . $diagramContent . '</mxfile>');
+		}
 
-			if (! empty($content)) {
-				$cachelib->cacheItem($fileIdentifier, $content, 'diagram');
-			}
+		if (! empty($content)) {
+			$cachelib->cacheItem($fileIdentifier, $content, 'diagram');
 		}
 
 		return $content;
@@ -199,7 +207,7 @@ class DiagramHelper
 							$geometryAttributes[$offsetAxis] += $listPluginArguments['diagram-offset'];
 						}
 
-						$xpathToUnset[] = '//mxCell[@id="'. $cellAttributes['id'] .'"]';
+						$xpathToUnset[] = '//mxCell[@id="' . $cellAttributes['id'] . '"]';
 					} else {
 						$mxCell['value'] = htmlspecialchars_decode(TikiLib::lib('parser')->parse_data($cellValue));
 					}
@@ -247,6 +255,69 @@ class DiagramHelper
 		}
 
 		return $mxCell;
+	}
+
+	/**
+	 * Get diagram as PNG using CasperJs
+	 * @param $rawXml
+	 * @param $fileIdentifier
+	 * @return bool|string
+	 */
+	private static function getDigramAsImageUsingCasperJs($rawXml, $fileIdentifier)
+	{
+		$vendorPath = VendorHelper::getAvailableVendorPath('diagram', 'tikiwiki/diagram', false);
+		$casperBin = TIKI_PATH . DIRECTORY_SEPARATOR . 'bin' . DIRECTORY_SEPARATOR . 'casperjs';
+		$scriptPath = TIKI_PATH . DIRECTORY_SEPARATOR . 'lib/jquery_tiki/tiki-diagram.js';
+		$htmlFile = TIKI_PATH . DIRECTORY_SEPARATOR . 'lib/core/File/DiagramHelperExportCasperJS.html';
+		$jsfile = TIKI_PATH . DIRECTORY_SEPARATOR . 'temp/do_' . $fileIdentifier . '.js';
+		$imgFile = TIKI_PATH . DIRECTORY_SEPARATOR . 'temp/diagram_' . $fileIdentifier . '.png';
+
+		if (! empty($vendorPath) && file_exists($casperBin) && file_exists($scriptPath) && file_exists($htmlFile)) {
+			$jsContent = <<<EOF
+var data = {};
+data.xml = '$rawXml';
+try
+{
+    render(data);
+}
+catch(e)
+{
+    console.log(e);
+}
+EOF;
+			if (file_exists($jsfile)) {
+				unlink($jsfile);
+			}
+
+			if (file_exists($imgFile)) {
+				unlink($imgFile);
+			}
+
+			file_put_contents($jsfile, $jsContent, FILE_APPEND);
+		}
+
+		if (file_exists($jsfile)) {
+			$command = $casperBin . ' ' . $scriptPath . ' --htmlfile=' . $htmlFile . ' --filename=' . $fileIdentifier;
+
+			$process = new Process($command);
+			if (! empty($params['timeout'])) {
+				$process->setTimeout($params['timeout']);
+				$process->setIdleTimeout($params['timeout']);
+			}
+			try {
+				$process->run();
+			} catch (ProcessTimedOutException $e) {
+				$e->getMessage();
+				unlink($jsfile);
+			}
+
+			if ($success = $process->isSuccessful() && file_exists($imgFile)) {
+				$imgData = file_get_contents($imgFile);
+				unlink($jsfile);
+				unlink($imgFile);
+				return base64_encode($imgData);
+			}
+		}
 	}
 
 	/**

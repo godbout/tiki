@@ -2344,6 +2344,7 @@ lib/core/Feed/Html/index.php -text
 lib/core/Feed/Item.php -text
 lib/core/Feed/index.php -text
 lib/core/Feedback.php -text
+lib/core/File/DiagramHelperExportCasperJS.html -text
 lib/core/File/XMLHelper.php -text
 lib/core/H5P/EditorTikiAjax.php -text
 lib/core/H5P/EditorTikiStorage.php -text
