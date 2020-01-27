@@ -15,8 +15,8 @@
 # DEVELOPERS: This configuration must be kept synchronized with the configuration for other Web servers.
 # See http://dev.tiki.org/Operating+System+independence#Keep_web.config_and_.htaccess_synchronized
 
-# -- Prevent Browsing of Certain File Extensions and hidden files (apart from "well-known" ones) -- #
-<FilesMatch "\.(bak|inc|lib|sh|tpl|sql|shtml|asp|xml\.dist)$|^\.(?!well-known/)">
+# -- Prevent Browsing of Certain File Extensions -- #
+<FilesMatch "\.(bak|inc|lib|sh|tpl|sql|shtml|asp|xml\.dist)$">
     <IfModule mod_authz_core.c>
        Require all denied
     </IfModule>
@@ -172,6 +172,9 @@ FileETag none
     # -- Prevent HTTP TRACE method -- #
     RewriteCond %{REQUEST_METHOD} ^TRACE
     RewriteRule .* - [F]
+
+    # -- Disallow access to hidden files (apart from well-known ones) -- #
+    RewriteRule "(^|/)\.(?!well-known/)" - [F,L]
 
     # -- If the URL Points to a File Then do Nothing -- #
     RewriteCond %{REQUEST_FILENAME} -s [OR]
