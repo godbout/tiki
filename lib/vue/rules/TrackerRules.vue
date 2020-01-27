@@ -187,6 +187,10 @@
 					actionsTargets = [];
 
 				fields.forEach(function (value) {
+					if (value.argumentType === "Array") {
+						value.fieldId += "[]";
+						value.argumentType = "Text";
+					}
 					conditionsTargets.push({
 						target_id: "ins_" + value.fieldId,
 						label: value.name,

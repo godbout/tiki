@@ -53,7 +53,7 @@ class Rules
 		}
 
 		foreach ($this->conditions->predicates as $predicate) {
-			$conditions[] = '$("[name=' . $predicate->target_id . ']")' . $this->getPredicateSyntax($predicate, 'Operator');
+			$conditions[] = '$("[name=\'' . $predicate->target_id . '\']")' . $this->getPredicateSyntax($predicate, 'Operator');
 		}
 
 		$js = "\nif (" . implode($operator, $conditions) . ')';
@@ -61,7 +61,15 @@ class Rules
 		$actions = [];
 
 		foreach($this->actions->predicates as $predicate) {
-			$actions[] = '  $("[name=' . $predicate->target_id . ']")' . $this->getPredicateSyntax($predicate, 'Action') . ';';
+			if (strpos($predicate->operator_id, 'Required') === false) {
+				// show/hide etc needs the parent object
+				$actions[] = '  $("[name=\'' . $predicate->target_id . '\']").parents("' . $parentSelector . '")' .
+					$this->getPredicateSyntax($predicate, 'Action') . ';';
+			} else {
+				// validation doesn't need parent
+				$actions[] = '  $("[name=\'' . $predicate->target_id . '\']")' .
+					$this->getPredicateSyntax($predicate, 'Action') . ';';
+			}
 		}
 
 		$js .= " {\n" . implode("\n", $actions) . "\n}";
@@ -69,7 +77,13 @@ class Rules
 		if ($this->else->predicates) {
 			$else = [];
 			foreach ($this->else->predicates as $predicate) {
-				$else[] = '  $("[name=' . $predicate->target_id . ']")' . $this->getPredicateSyntax($predicate, 'Action') . ';';
+				if (strpos($predicate->operator_id, 'Required') === false) {
+					$else[] = '  $("[name=\'' . $predicate->target_id . '\']").parents("' . $parentSelector . '")' .
+						$this->getPredicateSyntax($predicate, 'Action') . ';';
+				} else {
+					$else[] = '  $("[name=\'' . $predicate->target_id . '\']")' .
+						$this->getPredicateSyntax($predicate, 'Action') . ';';
+				}
 			}
 			$js .= " else {\n" . implode("\n", $else) . "\n}\n";
 		} else {

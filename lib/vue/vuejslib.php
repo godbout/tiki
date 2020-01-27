@@ -131,6 +131,13 @@ var vm = new Vue({
 				case 'c':    // checkbox
 					$field['argumentType'] = 'Boolean';
 					break;
+				case 'e':    // Category
+				case 'd':    // DropDown
+				case 'D':    // DropDown with Other
+				case 'M':    // Multiselect
+				case 'w':    // DynamicList
+					$field['argumentType'] = 'Array';
+					break;
 				default:
 					$field['argumentType'] = 'Text';
 					break;
