@@ -10,6 +10,6 @@ class Required extends Action
 {
 	public function __construct()
 	{
-		parent::__construct(tr('Required'), Nothing::class);
+		parent::__construct(tr('Required'), Nothing::class, '.rules("add", {required: true})');
 	}
 }

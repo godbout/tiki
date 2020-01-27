@@ -10,6 +10,6 @@ class NotRequired extends Action
 {
 	public function __construct()
 	{
-		parent::__construct(tr('Not Required'), Nothing::class);
+		parent::__construct(tr('Not Required'), Nothing::class, '.rules("remove", "required")');
 	}
 }

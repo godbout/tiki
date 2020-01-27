@@ -10,6 +10,6 @@ class NumberEquals extends Operator
 {
 	function __construct()
 	{
-		parent::__construct('==', Number::class);
+		parent::__construct('==', Number::class, '.val()===%argument%');
 	}
 }

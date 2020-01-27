@@ -10,6 +10,6 @@ class Hide extends Action
 {
 	public function __construct()
 	{
-		parent::__construct(tr('Hide'), Nothing::class);
+		parent::__construct(tr('Hide'), Nothing::class, '.hide()');
 	}
 }

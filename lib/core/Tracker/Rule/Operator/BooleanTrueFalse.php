@@ -10,6 +10,6 @@ class BooleanTrueFalse extends Operator
 {
 	function __construct()
 	{
-		parent::__construct(tr('is'), Boolean::class);
+		parent::__construct(tr('is checked'), Boolean::class, '.is(":checked")==%argument%');
 	}
 }

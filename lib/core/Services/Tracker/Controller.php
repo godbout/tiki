@@ -838,6 +838,11 @@ class Services_Tracker_Controller
 			TikiLib::lib('header')->add_jq_onready('$("#insertItemForm' . $trackerId . '").validate({' . $validationjs . $this->get_validation_options('#insertItemForm' . $trackerId));
 		}
 
+		if ($prefs['tracker_field_rules'] === 'y') {
+			$js = TikiLib::lib('vuejs')->generateTrackerRulesJS($definition->getFields());
+			TikiLib::lib('header')->add_jq_onready($js);
+		}
+
 		$itemId = 0;
 		$util = new Services_Utilities();
 		if (! empty($fields) && $util->isActionPost()) {
@@ -1021,6 +1026,11 @@ class Services_Tracker_Controller
 				'submitHandler: function(form, event){return process_submit(form, event);}'
 			);
 			TikiLib::lib('header')->add_jq_onready('$("#updateItemForm' . $trackerId . '").validate({' . $validationjs . $this->get_validation_options());
+		}
+
+		if ($prefs['tracker_field_rules'] === 'y') {
+			$js = TikiLib::lib('vuejs')->generateTrackerRulesJS($definition->getFields());
+			TikiLib::lib('header')->add_jq_onready($js);
 		}
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {

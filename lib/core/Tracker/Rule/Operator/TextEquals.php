@@ -10,6 +10,6 @@ class TextEquals extends Operator
 {
 	function __construct()
 	{
-		parent::__construct(tr('is'), Text::class);
+		parent::__construct(tr('is'), Text::class, '.val()==="%argument%"');
 	}
 }

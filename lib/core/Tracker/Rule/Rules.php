@@ -1,0 +1,100 @@
+<?php
+// (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
+//
+// All Rights Reserved. See copyright.txt for details and a complete list of authors.
+// Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
+// $Id$
+
+namespace Tiki\Lib\core\Tracker\Rule;
+
+
+use Tiki\Lib\core\Tracker\Rule\Operator;
+
+class Rules
+{
+	private $conditions;
+	private $actions;
+	private $else;
+
+	function __construct($data)
+	{
+		if (is_string($data)) {
+			$data = json_decode($data);
+		}
+
+		if (! isset($data->conditions) || ! isset($data->actions) || ! isset($data->else)) {
+			throw new Exception(tr('Rule creation from data failed'));
+		}
+
+		$this->conditions = $data->conditions;
+		$this->actions    = $data->actions;
+		$this->else       = $data->else;
+
+	}
+
+	public static function fromData($fieldId, $data)
+	{
+		return new self($data);
+	}
+
+	/**
+	 * @param int    $fieldId
+	 * @param string $parentSelector
+	 *
+	 * @return string
+	 */
+	public function getJavaScript($fieldId, $parentSelector = '.form-group:first') {
+		$js = '';
+		$operator = ' && ';
+		$conditions = [];
+
+		if ($this->conditions->logicalType_id === 'any') {	// TODO deal with 'none'
+			$operator = ' || ';
+		}
+
+		foreach ($this->conditions->predicates as $predicate) {
+			$conditions[] = '$("[name=' . $predicate->target_id . ']")' . $this->getPredicateSyntax($predicate, 'Operator');
+		}
+
+		$js = "\nif (" . implode($operator, $conditions) . ')';
+
+		$actions = [];
+
+		foreach($this->actions->predicates as $predicate) {
+			$actions[] = '  $("[name=' . $predicate->target_id . ']")' . $this->getPredicateSyntax($predicate, 'Action') . ';';
+		}
+
+		$js .= " {\n" . implode("\n", $actions) . "\n}";
+
+		if ($this->else->predicates) {
+			$else = [];
+			foreach ($this->else->predicates as $predicate) {
+				$else[] = '  $("[name=' . $predicate->target_id . ']")' . $this->getPredicateSyntax($predicate, 'Action') . ';';
+			}
+			$js .= " else {\n" . implode("\n", $else) . "\n}\n";
+		} else {
+			$js .= "\n";
+		}
+
+		$js = '$("[name=ins_' . $fieldId . ']").change(function () {' . $js . '}).change();';
+
+		return $js;
+	}
+
+	/**
+	 * @param       $predicate
+	 * @param array $conditions
+	 *
+	 * @return array
+	 */
+	private function getPredicateSyntax($predicate, $parentClass)
+	{
+		$operatorClass = 'Tiki\\Lib\\core\\Tracker\\Rule\\' . $parentClass . '\\' . $predicate->operator_id;
+		/** @var Operator\Operator $operatorObject */
+		$operatorObject = new $operatorClass();
+		$syntax = $operatorObject->getSyntax();
+		$syntax = str_replace('%argument%', $predicate->argument, $syntax);
+
+		return $syntax;
+	}
+}

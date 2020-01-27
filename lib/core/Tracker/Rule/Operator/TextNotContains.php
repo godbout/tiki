@@ -10,6 +10,6 @@ class TextNotContains extends Operator
 {
 	function __construct()
 	{
-		parent::__construct(tr('does not contain'), Text::class);
+		parent::__construct(tr('does not contain'), Text::class, '.val().indexOf("%argument%") === -1');
 	}
 }

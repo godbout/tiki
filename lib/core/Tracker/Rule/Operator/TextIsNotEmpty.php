@@ -10,6 +10,6 @@ class TextIsNotEmpty extends Operator
 {
 	function __construct()
 	{
-		parent::__construct(tr('is not empty'), Text::class);
+		parent::__construct(tr('is not empty'), Text::class, '.val()!==""');
 	}
 }

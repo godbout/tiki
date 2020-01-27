@@ -9,9 +9,22 @@ use Tiki\Lib\core\Tracker\Rule\Type\Type;
 
 abstract class Operator extends Column
 {
-	public function __construct($label, $type)
+	/** @var string syntax in javascript */
+	private $syntax;
+
+	public function __construct($label, $type, $syntax)
 	{
+		$this->syntax = $syntax;
+
 		parent::__construct($label, $type);
+	}
+
+	/**
+	 * @return string JavaScript condition syntax using %argument% as the arg placeholder
+	 */
+	public function getSyntax(): string
+	{
+		return $this->syntax;
 	}
 
 	public function get() {

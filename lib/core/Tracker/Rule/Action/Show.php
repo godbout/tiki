@@ -10,6 +10,6 @@ class Show extends Action
 {
 	public function __construct()
 	{
-		parent::__construct(tr('Show'), Nothing::class);
+		parent::__construct(tr('Show'), Nothing::class, '.show()');
 	}
 }

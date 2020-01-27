@@ -84,18 +84,7 @@
 				elseoutput: {},
 				conditionsData: this.$parent.rules.conditions,
 				conditionsColumns: {
-					targets: [
-						{
-							target_id: "field.value",
-							label: "Field value",
-							type_id: "Text",
-						},
-						{
-							target_id: "field.showing",
-							label: "Field Showing",
-							type_id: "Boolean",
-						},
-					],
+					targets: null,
 					// besides array list names, everything else follows convention
 					// https://github.com/FGRibreau/sql-convention
 					operators: null,

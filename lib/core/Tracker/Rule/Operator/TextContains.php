@@ -10,6 +10,6 @@ class TextContains extends Operator
 {
 	function __construct()
 	{
-		parent::__construct(tr('contains'), Text::class);
+		parent::__construct(tr('contains'), Text::class, '.val().indexOf("%argument%") > -1');
 	}
 }

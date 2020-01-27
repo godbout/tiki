@@ -128,6 +128,9 @@ var vm = new Vue({
 				case 'b':    // currency
 					$field['argumentType'] = 'Number';
 					break;
+				case 'c':    // checkbox
+					$field['argumentType'] = 'Boolean';
+					break;
 				default:
 					$field['argumentType'] = 'Text';
 					break;
@@ -159,6 +162,20 @@ var vm = new Vue({
 		$appHtml .= $this->processVue('lib/vue/rules/TrackerRules.vue', 'TrackerRules');
 
 		return $appHtml;
+	}
+
+	public function generateTrackerRulesJS($fields, $insPrefix = 'ins_', $parentSelector = '.form-group:first') {
+
+		$js = '';
+
+		foreach ($fields as $field) {
+			if (! empty( $field['rules'])) {
+				$rules = Tiki\Lib\core\Tracker\Rule\Rules::fromData($field['fieldId'], $field['rules']);
+				$js .= $rules->getJavaScript($field['fieldId'], $parentSelector);
+			}
+		}
+
+		return $js;
 	}
 
 	/**
