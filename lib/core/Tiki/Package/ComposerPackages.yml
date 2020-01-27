@@ -70,7 +70,7 @@ diagram:
   name: tikiwiki/diagram
   requiredBy:
     - "wikiplugin_diagram"
-  requiredVersion: ^10
+  requiredVersion: ^12.5.1
 PHPSaml:
   licence: MIT
   licenceUrl: "https://github.com/onelogin/php-saml/blob/master/LICENSE"
@@ -109,7 +109,7 @@ PDFjsViewer:
   requiredBy:
     - fgal_pdfjs_feature
     - fgal_convert_documents_pdf
-  requiredVersion: ~2.1.266
+  requiredVersion: ^2.1.266
 WebODF:
   licence: AGPL
   licenceUrl: "https://github.com/kogmbh/webodf.js_release/blob/master/AGPL-3.0.txt"
