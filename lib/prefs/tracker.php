@@ -215,6 +215,7 @@ function prefs_tracker_list()
 				'vuejs_enable',
 			],
 			'tags' => [ 'experimental' ],
+			'warning' => tra('Experimental new feature, expect some issues.'),
 		],
 	];
 }
