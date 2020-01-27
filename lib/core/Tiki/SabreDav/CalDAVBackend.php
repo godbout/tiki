@@ -98,7 +98,8 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         $user = PrincipalBackend::mapUriToUser($principalUri);
 
         $calendarlib = TikiLib::lib('calendar');
-        $result = $calendarlib->list_calendars(0, -1, 'calendarId_asc', '', $user);
+        $result = TikiLib::lib('calendar')->list_calendars();
+        $result['data'] = Perms::filter([ 'type' => 'calendar' ], 'object', $result['data'], [ 'object' => 'calendarId' ], 'view_calendar');
 
         $calendars = [];
         foreach ($result['data'] as $row) {
