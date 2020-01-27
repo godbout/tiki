@@ -314,3 +314,5 @@ ALTER TABLE `tiki_calendar_instances` ENGINE=InnoDB;
 ALTER TABLE `tiki_calendar_changes` ENGINE=InnoDB;
 ALTER TABLE `tiki_calendar_subscriptions` ENGINE=InnoDB;
 ALTER TABLE `tiki_calendar_scheduling_objects` ENGINE=InnoDB;
+ALTER TABLE `tiki_address_books` ENGINE = InnoDB;
+ALTER TABLE `tiki_address_cards` ENGINE = InnoDB;
