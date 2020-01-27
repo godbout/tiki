@@ -6694,6 +6694,7 @@ templates/workspace/select_permissions.tpl -text
 tests/.htaccess -text
 tests/index.php -text
 tests/testfile.txt -text
+tests/testfile2.txt -text
 themes/.htaccess -text
 themes/README -text
 themes/amelia/css/amelia.css -text
