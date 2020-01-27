@@ -14,6 +14,7 @@ use Sabre\DAVACL;
 use Tiki\SabreDav\BasicAuth;
 use Tiki\SabreDav\CalDAVBackend;
 use Tiki\SabreDav\PrincipalBackend;
+use Tiki\SabreDav\AclPlugin;
 
 require_once 'tiki-setup.php';
 $access->check_feature('feature_calendar');
@@ -49,7 +50,8 @@ $server->addPlugin(new CalDAV\SharingPlugin());
 $server->addPlugin(new CalDAV\ICSExportPlugin());
 
 // ACL plugin
-// No need to use hard-coded ACL rules as Tiki CalDAVBackend enforces Tiki permissions
+$aclPlugin = new AclPlugin();
+$server->addPlugin($aclPlugin);
 
 // Support for html frontend
 $browser = new DAV\Browser\Plugin();

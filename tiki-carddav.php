@@ -14,6 +14,7 @@ use Sabre\DAVACL;
 use Tiki\SabreDav\BasicAuth;
 use Tiki\SabreDav\CardDAVBackend;
 use Tiki\SabreDav\PrincipalBackend;
+use Tiki\SabreDav\AclPlugin;
 
 require_once 'tiki-setup.php';
 TikiLib::setExternalContext(true);
@@ -40,6 +41,10 @@ $server->addPlugin($authPlugin);
 // CardDAV plugin
 $carddavPlugin = new CardDAV\Plugin();
 $server->addPlugin($carddavPlugin);
+
+// ACL plugin
+$aclPlugin = new AclPlugin();
+$server->addPlugin($aclPlugin);
 
 // Support for html frontend
 $browser = new DAV\Browser\Plugin();

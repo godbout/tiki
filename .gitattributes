@@ -3161,6 +3161,7 @@ lib/core/Tiki/Render/Editable.php -text
 lib/core/Tiki/Render/Lazy.php -text
 lib/core/Tiki/Render/index.php -text
 lib/core/Tiki/Request.php -text
+lib/core/Tiki/SabreDav/AclPlugin.php -text
 lib/core/Tiki/SabreDav/BasicAuth.php -text
 lib/core/Tiki/SabreDav/CalDAVBackend.php -text
 lib/core/Tiki/SabreDav/CardDAVBackend.php -text
