@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "92fa5b4de68dac781eca18970760eee4",
+    "content-hash": "a5819a2317d112472bd61714f7000221",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -4584,7 +4584,7 @@
         },
         {
             "name": "robicch/jquery-gantt",
-            "version": "dev-master",
+            "version": "6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/robicch/jQueryGantt.git",
@@ -9704,7 +9704,6 @@
         "hesammousavi/bootstrap-v4-rtl": 20,
         "jason-munro/cypht": 20,
         "npm-asset/html2canvas": 5,
-        "robicch/jquery-gantt": 20,
         "sorich87/bootstrap-tour": 20,
         "zendframework/zendsearch": 20,
         "gidkom/php-openfire-restapi": 20,
