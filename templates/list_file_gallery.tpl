@@ -147,7 +147,7 @@
 							</select>
 							<span class="input-group-append">
 								<button
-									class="btn btn-secondary"
+									class="btn btn-primary"
 									form="fgalform"
 									type="submit"
 									onclick="confirmSimple(event)"

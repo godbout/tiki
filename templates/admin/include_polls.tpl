@@ -25,7 +25,7 @@
 					{preference name=feature_polls visible="always"}
 				</fieldset>
 
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Plugins{/tr}</legend>
 					{preference name=wikiplugin_poll}
 				</fieldset>
@@ -50,7 +50,7 @@
 		{if $prefs.feature_surveys eq "y"}
 			{tab name="{tr}Surveys{/tr}"}
 				<br>
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Activate the feature{/tr}</legend>
 					{preference name=feature_surveys visible="always"}
 				</fieldset>

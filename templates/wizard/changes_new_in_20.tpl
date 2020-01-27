@@ -26,12 +26,12 @@
 					{preference name=ocr_every_file}
 				</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}New Wiki Plugins{/tr}</legend>
 			{preference name=wikiplugin_cypht}
 			{preference name=wikiplugin_markdown}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Improved Plugins{/tr}</legend>
             {preference name=wikiplugin_list}
 			{preference name=wikiplugin_listexecute}
@@ -39,14 +39,14 @@
             {preference name=wikiplugin_trackercalendar}
             {preference name=wikiplugin_trackerfilter}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Other New Features{/tr}</legend>
 			{preference name=jquery_jqdoublescroll}
 			{preference name=profile_autoapprove_wikiplugins}
 			{preference name=feature_tag_users}
 			{preference name=feature_notify_users_mention}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Other Extended Features{/tr}</legend>
 			<div class="adminoption form-group row">
 				<label class="col-sm-3 col-form-label"><b>{tr}Console{/tr}</b>:</label>
@@ -57,7 +57,7 @@
 			</div>
 			{preference name=feature_webmail}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{icon name="admin_profiles" size=2 iclass="float-left"}{tr}New Profiles{/tr}</legend>
 			<ul>
 				<li>{tr}Groupmail_20{/tr}

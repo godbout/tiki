@@ -18,7 +18,7 @@
 				<legend>{tr}Activate the feature{/tr}</legend>
 				{preference name=feature_trackers visible="always"}
 			</fieldset>
-			<fieldset class="table">
+			<fieldset class="mb-3 w-100">
 				<legend>{tr}Tracker settings{/tr}</legend>
 				{preference name="tracker_remote_sync"}
 				{preference name="tracker_tabular_enabled"}
@@ -42,7 +42,7 @@
 				{preference name=tracker_list_order}
 				{preference name=tracker_history_diff_style}
 			</fieldset>
-			<fieldset class="table">
+			<fieldset class="mb-3 w-100">
 				<legend>{tr}Field settings{/tr}</legend>
 				{preference name=user_selector_threshold}
 				{preference name=user_selector_realnames_tracker}
@@ -65,7 +65,7 @@
 				{preference name=tracker_wikirelation_redirectpage}
 			</fieldset>
 
-			<fieldset class="table">
+			<fieldset class="mb-3 w-100">
 				<legend>{tr}Tracker attachment preferences{/tr}</legend>
 				{preference name='t_use_db'}
 				<div class="adminoptionboxchild t_use_db_childcontainer n">
@@ -84,7 +84,7 @@
 
 		{tab name="{tr}Plugins{/tr}"}
 			<br>
-			<fieldset class="table">
+			<fieldset class="mb-3 w-100">
 				{preference name=wikiplugin_insert}
 				<div class="adminoptionboxchild" id="wikiplugin_insert_childcontainer">
 					{preference name=tracker_insert_allowed}
@@ -110,7 +110,7 @@
 
 		{tab name="{tr}Field Types{/tr}"}
 			<br>
-			<fieldset class="table">
+			<fieldset class="mb-3 w-100">
 				<legend>{tr}Field types{/tr}</legend>
 				{foreach from=$fieldPreferences item=name}
 					{preference name=$name}

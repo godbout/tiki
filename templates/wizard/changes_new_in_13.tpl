@@ -20,13 +20,13 @@
 		">
 			{icon name="help" size=1}
 		</a>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}New Themes{/tr} & {tr}Site layouts (based on 'Bootstrap'){/tr}</legend>
 			<em>{tr}The changes in this area were refactored in Tiki 14{/tr}.</em>
 			<em>{tr}See{/tr} <a href="tiki-admin.php?page=look&amp;alt=Look+%26+Feel" target="_blank">{tr}Look & Feel admin panel{/tr}</a></em>
 
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Goal, Recognition and Rewards{/tr}</legend>
 			{preference name=goal_enabled}
 			<div class="adminoptionboxchild" id="goal_enabled_childcontainer">
@@ -34,7 +34,7 @@
 				{preference name=goal_group_blacklist}
 			</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Notifications{/tr}</legend>
 			{preference name=monitor_enabled}
 			<div class="adminoptionboxchild" id="monitor_enabled_childcontainer">
@@ -50,7 +50,7 @@
 				</div>
 			</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Jitsi{/tr}</legend>
 			<div class="form-row">
 				<label for="jitsi-url">{tr}Provision URL{/tr}</label>

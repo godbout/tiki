@@ -145,7 +145,7 @@
 
 		{tab name="{tr}Plugins{/tr}"}
 			<br>
-			<fieldset class="table">
+			<fieldset class="mb-3 w-100">
 				<legend>{tr}Plugins{/tr}</legend>
 				{preference name=wikiplugin_files}
 				{preference name=wikiplugin_file}

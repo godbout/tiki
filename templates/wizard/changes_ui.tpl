@@ -18,12 +18,12 @@
 		">
 			{icon name="help" size=1}
 		</a>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend> {tr}Icons and Profile Pictures{/tr} </legend>
 			{preference name=menus_items_icons}
 			{preference name=user_use_gravatar}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend> {tr}File Galleries{/tr} </legend>
 			{preference name=fgal_elfinder_feature}
 			<div class="adminoptionboxchild form-check" id="fgal_elfinder_feature_childcontainer">
@@ -33,7 +33,7 @@
 				</div>
 			</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend> {tr}Text Areas{/tr} </legend>
 			{preference name=wiki_auto_toc}
 			<div class="adminoptionboxchild" id="wiki_auto_toc_childcontainer">
@@ -43,7 +43,7 @@
 			</div>
 			{preference name=wysiwyg_inline_editing}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend> {tr}jQuery plugins and add-ons{/tr} </legend>
 			{preference name=feature_jquery_media}
 			{preference name=feature_jquery_reflection}

@@ -11,7 +11,7 @@
 	</div>
 
 	{if $prefs.payment_feature neq "y"}
-		<fieldset class="table">
+		<fieldset class="mb-3 w-100">
 			<legend>{tr}Activate the feature{/tr}</legend>
 			{preference name=payment_feature visible="always"}
 		</fieldset>
@@ -27,7 +27,7 @@
 			{/remarksbox}
 
 			<div class="adminoptionboxchild" id="payment_feature_childcontainer">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					{preference name=payment_system}
 					{preference name=payment_currency}
 					{preference name=payment_default_delay}
@@ -159,7 +159,7 @@
 		{tab name="{tr}Plugins{/tr}"}
 			<br>
 
-			<fieldset class="table">
+			<fieldset class="mb-3 w-100">
 				<legend>{tr}Plugins{/tr}</legend>
 				{preference name=wikiplugin_addtocart}
 				{preference name=wikiplugin_adjustinventory}

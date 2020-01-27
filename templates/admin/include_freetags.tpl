@@ -19,7 +19,7 @@
 		{preference name=feature_freetags visible="always"}
 	</fieldset>
 
-	<fieldset class="table">
+	<fieldset class="mb-3 w-100">
 		<legend>{tr}Plugins{/tr}</legend>
 		{preference name=wikiplugin_freetagged}
 		{preference name=wikiplugin_addfreetag}

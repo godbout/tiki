@@ -20,7 +20,7 @@
 		">
 			{icon name="help" size=1}
 		</a>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}New modules{/tr}</legend>
 			{tr}A new module called <strong>Module zone</strong> was added{/tr}
 			<a href="http://doc.tiki.org/Module+zone" target="tikihelp" class="tikihelp" title="{tr}Module zone:{/tr}
@@ -31,7 +31,7 @@
 				{icon name="help" size=1}
 			</a>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Tiki Addons{/tr}</legend>
 			{tr}Addons allow a way for developers to add an even broader range of functionality{/tr}
 			<a href="http://doc.tiki.org/Addons" target="tikihelp" class="tikihelp" title="{tr}Addons:{/tr}
@@ -47,12 +47,12 @@
 				{preference name="{$addon|escape}"}
 			{/foreach}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Look & Feel options{/tr}</legend>
 			{preference name=theme_iconset}
 			{preference name=image_responsive_class}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Other new features{/tr}</legend>
 				{preference name=tracker_tabular_enabled}
 				{preference name=mustread_enabled}
@@ -64,7 +64,7 @@
 					{preference name=federated_elastic_url}
 				</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Improved and extended features{/tr}</legend>
 				{preference name=feature_jquery_tablesorter}
 		</fieldset>

@@ -11,7 +11,7 @@
 		<legend>{tr}Activate the feature{/tr}</legend>
 		{preference name=feature_faqs visible="always"}
 	</fieldset>
-	<fieldset class="table">
+	<fieldset class="mb-3 w-100">
 		<legend>{tr}Settings{/tr}</legend>
 		{preference name=faq_prefix}
 		{preference name=feature_faq_comments}

@@ -23,7 +23,7 @@
 				</a>
 			</p>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			{icon name="magic" size=3 iclass="float-sm-right"}
 			<legend> {tr}Wizards settings{/tr} </legend>
 			{preference name=feature_wizard_user}
@@ -36,7 +36,7 @@
 			</div>
 			{preference name=wizard_admin_hide_on_login}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			{icon name="envelope-o" size=3 iclass="float-sm-right"}
 			<legend> {tr}Email{/tr} </legend>
 			{preference name=email_footer}

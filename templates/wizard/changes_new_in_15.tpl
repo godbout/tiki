@@ -19,7 +19,7 @@
 		">
 			{icon name="help" size=1}
 		</a>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Tiki Addons{/tr}</legend>
 			{tr}Addons allow a way for developers to add an even broader range of functionality{/tr}
 			<a href="https://doc.tiki.org/Addons" target="tikihelp" class="tikihelp" title="{tr}Addons:{/tr}
@@ -35,7 +35,7 @@
 				{preference name="{$addon|escape}"}
 			{/foreach}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Remote Tiki Autologin{/tr}</legend>
 			{preference name=login_autologin}
 				<div class="adminoptionboxchild" id="login_autologin_childcontainer">
@@ -49,7 +49,7 @@
 				{preference name=login_autologin_redirectlogin_url}
 				</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}New Wiki Plugins{/tr}</legend>
 			{preference name=wikiplugin_fullwidthtitle}
 			{preference name=wikiplugin_googlechart}
@@ -60,7 +60,7 @@
 			{preference name=wikiplugin_useringroup}
 			{preference name=wikiplugin_xmlupdate}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Social Networks with Linkedin{/tr}</legend>
 				{preference name=socialnetworks_linkedin_login}
 					<div class="adminoptionboxchild" id="socialnetworks_linkedin_login_childcontainer">
@@ -71,7 +71,7 @@
 					{preference name=socialnetworks_linkedin_names}
 					</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Temporary User Accounts{/tr}</legend>
 				<div class="adminoptionbox preference clearfix advanced pref-fake all modified">
 					<div class="adminoption form-group row">
@@ -101,7 +101,7 @@
 				{/remarksbox}
 				</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 		<legend>{tr}Statistics Control Panel{/tr}</legend>
 		{tr}This is a new control panel on Tiki and work is still in progress.{/tr}
 			{tabset}
@@ -128,7 +128,7 @@
 				{/tab}
 			{/tabset}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Other new features{/tr}</legend>
 				{preference name="header_custom_less" syntax="css"}
 				{preference name=user_multilike_config}
@@ -151,7 +151,7 @@
 					{preference name=recaptcha_version}
 				</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Improved and extended features{/tr}</legend>
 				{preference name=wikiplugin_datachannel}
 				{preference name=wikiplugin_list}
@@ -174,7 +174,7 @@
 				{tr}A couple of helper commands to manage multitikis.
 List the sites in a tiki instance and move a site from one tiki to another to help with upgrades etc (using local file access only){/tr}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Removed features{/tr}</legend>
 			{tr}Synchronize categories of user tracker item to user groups{/tr}
 		</fieldset>

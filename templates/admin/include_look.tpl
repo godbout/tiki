@@ -228,7 +228,7 @@
 		{tab name="{tr}UI Effects{/tr}"}
 			<br>
 			<div class="adminoptionbox">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Standard UI effects{/tr}</legend>
 					{preference name=jquery_effect}
 					{preference name=jquery_effect_speed}
@@ -236,7 +236,7 @@
 				</fieldset>
 			</div>
 			<div class="adminoptionbox">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Tab UI effects{/tr}</legend>
 					{preference name=jquery_effect_tabs}
 					{preference name=jquery_effect_tabs_speed}
@@ -320,7 +320,7 @@
 			<hr>
 			
 			<div class="adminoptionbox">
-				<fieldset class="table">
+				<fieldset class="mb-3 w-100">
 					<legend>{tr}Context menus{/tr} (<small>{tr}currently used in file galleries only{/tr}</small>)</legend>
 					{preference name=use_context_menu_icon}
 					{preference name=use_context_menu_text}

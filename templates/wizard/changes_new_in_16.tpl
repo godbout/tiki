@@ -20,7 +20,7 @@
 		">
 			{icon name="help" size=1}
 		</a>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Trackers{/tr}</legend>
 			{preference name=feature_trackers}
 				<div class="adminoptionboxchild" id="feature_trackers_childcontainer">
@@ -43,14 +43,14 @@
 					{preference name=trackerfield_userselector}
 				</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}New Wiki Plugins{/tr}</legend>
 			{preference name=wikiplugin_chartjs}
 			{preference name=wikiplugin_paymentlist}
 			{preference name=wikiplugin_pivottable}
 			{preference name=wikiplugin_wikidiff}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Improved Plugins and extended features{/tr}</legend>
 				{preference name=wikiplugin_archivebuilder}
 				{preference name=wikiplugin_fade}
@@ -67,7 +67,7 @@
 				{tr}Filter UI added in any wiki plugin using unified search index{/tr}.
 				<a href="https://doc.tiki.org/Tiki16#Filter_UI_in_any_plugin_using_unified_search_index">{tr}More Information{/tr}...</a>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}PDF Settings (Control Panel > Print){/tr}</legend>
 			<b>{tr}New method to create PDF: mPDF{/tr}</b>:
 			<a href="https://doc.tiki.org/mPDF">{tr}More Information{/tr}...</a><br/>
@@ -97,7 +97,7 @@
 				{preference name=print_pdf_mpdf_password}
 			</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}New Profiles{/tr}</legend>
 			<ul>
 				<li>{tr}Bug_Tracker_16{/tr}

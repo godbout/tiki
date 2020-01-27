@@ -19,7 +19,7 @@
 		">
 			{icon name="help" size=1}
 		</a>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}New Features{/tr}</legend>
 			<div class="adminoption form-group row">
 				<ul><li>{tr}Federation{/tr}: <a class="adminoption" href="tiki-admin_sync.php">{tr}Synchronize Dev{/tr}</a>
@@ -42,7 +42,7 @@
 			{preference name=alchemy_gs_path}
 			{preference name=alchemy_imagine_driver}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}New Wiki Plugins{/tr}</legend>
 			{preference name=wikiplugin_diagram}
 			{preference name=wikiplugin_ganttchart}
@@ -51,7 +51,7 @@
 			{preference name=wikiplugin_swiper}
 			{preference name=wikiplugin_xmpp}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Improved Plugins{/tr}</legend>
 			{preference name=wikiplugin_button}
 			{preference name=wikiplugin_img}
@@ -61,7 +61,7 @@
 			{preference name=wikiplugin_together}
 			{preference name=wikiplugin_trackercalendar}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Other New Features{/tr}</legend>
 			{preference name=jquery_smartmenus_enable}
 			<div class="adminoptionboxchild" id="jquery_smartmenus_enable_childcontainer">
@@ -71,7 +71,7 @@
 			{preference name=jquery_ui_modals_resizable}
 			{preference name=tiki_prefix_css}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Other Extended Features{/tr}</legend>
 			<div class="adminoption form-group row">
 				<label class="col-sm-3 col-form-label"><b>{tr}Scheduler{/tr}</b>:</label>
@@ -120,7 +120,7 @@
 				{/remarksbox}
 			</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{icon name="admin_profiles" size=2 iclass="float-left"}{tr}New Profiles{/tr}</legend>
 			<ul>
 				<li>{tr}GanttChart{/tr}

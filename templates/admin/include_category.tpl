@@ -21,7 +21,7 @@
 		{preference name=feature_categories visible="always"}
 	</fieldset>
 
-	<fieldset class="table">
+	<fieldset class="mb-3 w-100">
 		<legend>{tr}Plugins{/tr} {help url="Plugins"}</legend>
 		{preference name=wikiplugin_category}
 		{preference name=wikiplugin_catpath}

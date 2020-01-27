@@ -15,7 +15,7 @@
 		{preference name=feature_banners visible="always"}
 	</fieldset>
 
-	<fieldset class="table">
+	<fieldset class="mb-3 w-100">
 		<legend>{tr}Plugins{/tr}</legend>
 		{preference name=wikiplugin_banner}
 	</fieldset>

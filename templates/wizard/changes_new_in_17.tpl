@@ -34,7 +34,7 @@
 				{preference name='h5p_export'}
 			</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}New Wiki Plugins{/tr}</legend>
 			{preference name=wikiplugin_benchmark}
 			{preference name=wikiplugin_casperjs}
@@ -45,14 +45,14 @@
 			{preference name=wikiplugin_pdfpagebreak}
 			{preference name=wikiplugin_shorten}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Improved Plugins{/tr}</legend>
 			{preference name=wikiplugin_html}
 			{preference name=wikiplugin_list}
 			{preference name=wikiplugin_list_gui}
 			{preference name=wikiplugin_listexecute}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}HTTP Header Options{/tr}</legend>
 			{preference name=http_header_frame_options}
 			<div class="adminoptionboxchild" id="http_header_frame_options_childcontainer">
@@ -82,7 +82,7 @@
 			</div>
 
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Intrusion Detection System (IDS) with Expose{/tr}</legend>
 			{preference name=ids_enabled}
 			<div class="adminoptionboxchild" id="ids_enabled_childcontainer">
@@ -106,7 +106,7 @@
 				</div>
 			</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Other new or Extended Features{/tr}</legend>
 			{*preference name=feature_scheduler*}
 			{preference name=xmpp_feature}

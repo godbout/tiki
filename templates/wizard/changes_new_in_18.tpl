@@ -19,7 +19,7 @@
 		">
 			{icon name="help" size=1}
 		</a>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}New Features{/tr}</legend>
 			<div class="adminoption form-group row">
 				<label class="col-sm-3 col-form-label"><b>{tr}Control Panels{/tr}</b>:</label>
@@ -42,12 +42,12 @@
 			{preference name='fallbackBaseUrl'}
 			{preference name='wiki_make_ordered_list_items_display_unique_numbers'}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}New Wiki Plugins{/tr}</legend>
 			{preference name=wikiplugin_pdfpage}
 			{preference name=wikiplugin_preview}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Improved Plugins{/tr}</legend>
 			{preference name=wikiplugin_img}
 			{preference name=wikiplugin_list}
@@ -57,7 +57,7 @@
 			{preference name=wikiplugin_trackercalendar}
 			{preference name=wikiplugin_trackerlist}
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}PDF from URL: mPDF new settings{/tr}</legend>
 			{preference name=print_pdf_from_url}
 			<div class="adminoptionboxchild print_pdf_from_url_childcontainer mpdf">
@@ -72,7 +72,7 @@
 				{preference name=print_pdf_mpdf_coverpage_image_settings}
 			</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{tr}Other Extended Features{/tr}</legend>
 			<div class="adminoption form-group row">
 				<label class="col-sm-3 col-form-label"><b>{tr}Control Panels{/tr}</b>:</label>
@@ -152,7 +152,7 @@
 				{/remarksbox}
 			</div>
 		</fieldset>
-		<fieldset class="table clearfix featurelist">
+		<fieldset class="mb-3 w-100 clearfix featurelist">
 			<legend>{icon name="admin_profiles" size=2 iclass="float-left"}{tr}New Profiles{/tr}</legend>
 			<ul>
 				<li>{tr}Activity_Stream{/tr}

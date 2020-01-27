@@ -1,4 +1,4 @@
-<fieldset class="table">
+<fieldset class="mb-3 w-100">
 	<legend>{tr}Wiki attachments{/tr}</legend>
 	<form action="tiki-admin.php?page=wikiatt" method="post">
 		{ticket}

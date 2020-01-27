@@ -6,17 +6,17 @@
 		{include file='admin/include_apply_top.tpl'}
 	</div>
 
-	<fieldset class="table">
+	<fieldset class="mb-3 w-100">
 		<legend>{tr}Activate the feature{/tr}</legend>
 		{preference name=feature_score visible="always"}
 	</fieldset>
 
-	<fieldset class="table">
+	<fieldset class="mb-3 w-100">
 		<legend>{tr}Cause scores older than a certain number of days to expire{/tr}</legend>
 		{preference name=feature_score_expday visible="always"}
 	</fieldset>
 
-	<fieldset class="table">
+	<fieldset class="mb-3 w-100">
 		<legend>{tr}Scoring rules{/tr}</legend>
 		<div class="table-responsive">
 			<table id="score-table" class="table">
