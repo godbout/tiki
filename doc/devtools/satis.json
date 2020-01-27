@@ -2107,7 +2107,7 @@
 		"rangy/rangy": ">=1.2.3",
 		"rmm5t/jquery-timeago": "^1.5",
 		"robloach/component-installer": "^0.2",
-		"robicch/jquery-gantt": "dev-master",
+		"robicch/jquery-gantt": "^6.3|dev-master",
 		"sabre/dav": ">=3.2.3",
 		"sebastian/code-unit-reverse-lookup": ">=1.0.0",
 		"sebastian/comparator": ">=1.2.0",
