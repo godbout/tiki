@@ -14,3 +14,9 @@
 body.tiki.tiki-webmail {
     background-image: url('#{$imagePath}474747_5e5e5e_40.png');
 }
+
+.tiki_trackers {
+	.icon-status-open, .icon-status-pending, .icon-status-closed {
+		filter: drop-shadow(0px 0px 1px black);
+	}
+}

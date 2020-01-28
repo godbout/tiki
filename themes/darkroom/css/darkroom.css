@@ -8010,3 +8010,6 @@ input[type="text"].chosen-focus-input {
 
 body.tiki.tiki-webmail {
   background-image: url("../images/474747_5e5e5e_40.png"); }
+
+.tiki_trackers .icon-status-open, .tiki_trackers .icon-status-pending, .tiki_trackers .icon-status-closed {
+  filter: drop-shadow(0px 0px 1px black); }
