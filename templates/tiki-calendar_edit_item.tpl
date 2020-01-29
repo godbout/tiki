@@ -682,11 +682,7 @@
 				<div class="col-sm-9">
 					{if isset($calitem.organizers)}
 						{if $edit}
-							{if $preview or $changeCal}
-								<input type="text" name="save[organizers]" value="{$calitem.organizers|escape}" style="width:90%;">
-							{else}
-								{user_selector name='save[organizers]' select=$calitem.organizers multiple='true' allowNone='y' editable='y'}
-							{/if}
+							{user_selector name='save[organizers]' select=$calitem.organizers multiple='true' allowNone='y' editable='y'}
 						{else}
 							{foreach item=org from=$calitem.organizers}
 								{$org|userlink}<br>
@@ -700,48 +696,65 @@
 				<div class="col-sm-9">
 					{if isset($calitem.participants)}
 						{if $edit}
-							{if $preview or $changeCal}
-								<input type="text" name="save[participants]" value="{$calitem.participants|escape}">
-							{else}
-								{user_selector name='save[participants]' select=$calitem.selected_participants multiple='true' allowNone='y' editable='y'}
-								<table cellpadding="0" cellspacing="0" border="0" class="table normal table-bordered" id="participant_roles">
-								<tr>
-									<th>{tr}Invitee{/tr}</th>
-									<th>{tr}Status{/tr}</th>
-									<th>{tr}Role{/tr}</th>
-								</tr>
-								{foreach item=ppl from=$calitem.participants}
-								<tr data-user="{$ppl.name|escape}">
-									<td>{$ppl.name|userlink}</td>
-									<td>{$ppl.partstat}</td>
-									<td>
-										<select name="save[participant_roles][{$ppl.name}]" class="form-control">
-											<option value="0">{tr}chair{/tr}</option>
-											<option value="1" {if $ppl.role eq '1'}selected{/if}>{tr}required participant{/tr}</option>
-											<option value="2" {if $ppl.role eq '2'}selected{/if}>{tr}optional participant{/tr}</option>
-											<option value="3" {if $ppl.role eq '3'}selected{/if}>{tr}non-participant{/tr}</option>
-										</select>
-									</td>
-								</tr>
-								{/foreach}
-								</table>
-							{/if}
-							{else}
-								{assign var='in_particip' value='n'}
-								{foreach item=ppl from=$calitem.participants}
-									{$ppl.name|userlink}
-									{if $listroles[$ppl.role]}
-										({$listroles[$ppl.role]})
-									{/if}
-									<br>
-									{if $ppl.name eq $user}
-										{assign var='in_particip' value='y'}
-									{/if}
-								{/foreach}
-								{if $tiki_p_calendar_add_my_particip eq 'y'}
-									{if $in_particip eq 'y'}
-										{button _text="{tr}Withdraw me from the list of participants{/tr}" href="?del_me=y&viewcalitemId=$id"}
-									{else}
+							{user_selector name='save[participants]' select=$calitem.selected_participants multiple='true' allowNone='y' editable='y'}
+							<br>
+							<div class="row">
+								<div class="col-sm-9">
+									<input type="text" name="add_participant_email" id="add_participant_email" value="" placeholder="or invite email address..." class="form-control">
+								</div>
+								<div class="col-sm-3">
+									<input type="button" class="btn btn-primary" value="Add" id="invite_emails">
+								</div>
+							</div>
+							<br>
+							<table cellpadding="0" cellspacing="0" border="0" class="table normal table-bordered" id="participant_roles">
+							<tr>
+								<th>{tr}Invitee{/tr}</th>
+								<th>{tr}Status{/tr}</th>
+								<th>{tr}Role{/tr}</th>
+								<th></th>
+							</tr>
+							{foreach item=ppl from=$calitem.participants}
+							<tr data-user="{$ppl.username|escape}">
+								<td>{$ppl.username|userlink}</td>
+								<td>
+									<select name="save[participant_partstat][{$ppl.username}]" class="form-control">
+										<option value="NEEDS-ACTION">NEEDS-ACTION</option>
+										<option value="ACCEPTED" {if $ppl.partstat eq 'ACCEPTED'}selected{/if}>ACCEPTED</option>
+										<option value="TENTATIVE" {if $ppl.partstat eq 'TENTATIVE'}selected{/if}>TENTATIVE</option>
+										<option value="DECLINED" {if $ppl.partstat eq 'DECLINED'}selected{/if}>DECLINED</option>
+									</select>
+								</td>
+								<td>
+									<select name="save[participant_roles][{$ppl.username}]" class="form-control">
+										<option value="0">{tr}chair{/tr}</option>
+										<option value="1" {if $ppl.role eq '1'}selected{/if}>{tr}required participant{/tr}</option>
+										<option value="2" {if $ppl.role eq '2'}selected{/if}>{tr}optional participant{/tr}</option>
+										<option value="3" {if $ppl.role eq '3'}selected{/if}>{tr}non-participant{/tr}</option>
+									</select>
+								</td>
+								<td>
+									<a href="#" class="delete-participant"><span class="icon icon-remove fas fa-times"></span></a>
+								</td>
+							</tr>
+							{/foreach}
+							</table>
+						{else}
+							{assign var='in_particip' value='n'}
+							{foreach item=ppl from=$calitem.participants}
+								{$ppl.username|userlink}
+								{if $listroles[$ppl.role]}
+									({$listroles[$ppl.role]})
+								{/if}
+								<br>
+								{if $ppl.username eq $user}
+									{assign var='in_particip' value='y'}
+								{/if}
+							{/foreach}
+							{if $tiki_p_calendar_add_my_particip eq 'y'}
+								{if $in_particip eq 'y'}
+									{button _text="{tr}Withdraw me from the list of participants{/tr}" href="?del_me=y&viewcalitemId=$id"}
+								{else}
 									{button _text="{tr}Add me to the list of participants{/tr}" href="?add_me=y&viewcalitemId=$id"}
 								{/if}
 							{/if}

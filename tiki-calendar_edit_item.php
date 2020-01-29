@@ -174,6 +174,18 @@ if (isset($_REQUEST['act']) || isset($_REQUEST['preview']) || isset($_REQUEST['c
 		$save['end'] = $save['date_end'];
 		$save['duration'] = max(0, $save['end'] - $save['start']);
 	}
+
+	if (! empty($save['participant_roles'])) {
+		$participants = [];
+		foreach ($save['participant_roles'] as $user => $role) {
+			$participants[] = [
+				'username' => $user,
+				'role' => $role,
+				'partstat' => $save['participant_partstat'][$user] ?? null
+			];
+		}
+		$save['participants'] = $participants;
+	}
 }
 
 $impossibleDates = false;
@@ -193,16 +205,6 @@ if (isset($_POST['act'])) {
 	}
 	if (empty($save['user'])) {
 		$save['user'] = $user;
-	}
-	if (! empty($save['participants'])) {
-		$participants = [];
-		foreach ($save['participants'] as $user) {
-			$participants[] = [
-				'username' => $user,
-				'role' => $save['participant_roles'][$user] ?? 0
-			];
-		}
-		$save['participants'] = $participants;
 	}
 	$newcalid = $save['calendarId'];
 	if ((empty($save['calitemId']) and $caladd["$newcalid"]['tiki_p_add_events'] == 'y') ||
@@ -397,6 +399,7 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 	$id = isset($save['calitemId']) ? isset($save['calitemId']) : '';
 	$save['recurrenceId'] =  isset($_POST['recurrenceId']) ? $_POST['recurrenceId'] : '';
 	$calitem = $save;
+	$calitem["selected_participants"] = array_map(function($role){ return $role['username']; }, $calitem['participants']);
 
 	$recurrence = [
 		'id'	=> $calitem['recurrenceId'],
@@ -522,7 +525,10 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 		'end' => $end,
 		'duration' => (60 * 60),
 		'recurrenceId' => 0,
-		'allday' => $calendar['allday'] == 'y' ? 1 : 0
+		'allday' => $calendar['allday'] == 'y' ? 1 : 0,
+		'organizers' => [],
+		'participants' => [],
+		'selected_participants' => []
 		];
 	$hour_minmax = abs(ceil(($calendar['startday'] - 1) / (60 * 60))) . '-' . ceil(($calendar['endday']) / (60 * 60));
 	$id = 0;

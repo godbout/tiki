@@ -521,7 +521,7 @@ class CalendarLib extends TikiLib
 					$org[] = $rez["username"];
 				} elseif ($rez["username"]) {
 					$ppl[] = [
-						'name' => $rez["username"],
+						'username' => $rez["username"],
 						'email' => TikiLib::lib('user')->get_user_email($rez['username']),
 						'role' => $rez["role"],
 						'partstat' => $rez['partstat']
@@ -529,7 +529,7 @@ class CalendarLib extends TikiLib
 				}
 			}
 			$res["participants"] = $ppl;
-			$res["selected_participants"] = array_map(function($role){ return $role['name']; }, $ppl);
+			$res["selected_participants"] = array_map(function($role){ return $role['username']; }, $ppl);
 			$res["organizers"] = $org;
 			$res['date_start'] = (int)$res['start'];
 			$res['date_end'] = (int)$res['end'];
