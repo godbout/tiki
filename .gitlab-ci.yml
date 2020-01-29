@@ -209,7 +209,7 @@ sql-engine-conversion:
     - mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql --skip-column-names -B -e 'SELECT VERSION()'
     - 'composer -Vvvv 2>&1 | grep -E "(Running|Composer)"'
     - php -v
-    - echo '<?php $db_tiki = "mysqli"; $dbversion_tiki = "21.0"; $host_tiki = "mysql"; $user_tiki = "tikiuser"; $pass_tiki = "tikipass"; $dbs_tiki = "tikitest"; $client_charset = "utf8"; ' > lib/test/local.php
+    - echo '<?php $db_tiki = "mysqli"; $dbversion_tiki = "21.0"; $host_tiki = "mysql"; $user_tiki = "tikiuser"; $pass_tiki = "tikipass"; $dbs_tiki = "tikitest"; $client_charset = "utf8mb4"; ' > lib/test/local.php
     - php -d display_errors=On vendor_bundled/vendor/phpunit/phpunit/phpunit --colors=always
 
 unit-tests-72:
