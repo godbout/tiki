@@ -44,7 +44,8 @@ class PatchCypht
 		}
 
 		// generate Cypht config
-		$output = `cd {$vendors}jason-munro/cypht && php scripts/config_gen.php`;
+		$php_binary = PHP_BINARY;
+		$output = `cd {$vendors}jason-munro/cypht && $php_binary scripts/config_gen.php`;
 		if (! strstr($output, 'hm3.rc file written')) {
 			$io->write('Could not build Cypht package configuration. Check the output below and make sure minimum PHP version is available and executable as CLI.');
 			$io->write($output);
