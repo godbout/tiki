@@ -183,7 +183,7 @@ var vm = new Vue({
 		return $appHtml;
 	}
 
-	public function generateTrackerRulesJS($fields, $insPrefix = 'ins_', $parentSelector = '.form-group:first') {
+	public function generateTrackerRulesJS($fields, $parentSelector = '.form-group:first', $insPrefix = 'ins_') {
 
 		$js = '';
 
