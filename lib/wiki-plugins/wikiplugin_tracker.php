@@ -660,6 +660,22 @@ function wikiplugin_tracker_info()
 				'description' => tra('Use ajax to create and update tracker items instead of form submission via request variables.'),
 				'default' => 'n',
 			],
+			'rules' => [
+				'required' => false,
+				'name' => tra('Use field rules'),
+				'description' => tra('Set up rules on field definitions to show and hide fields conditionally.'),
+				'default' => 'n',
+				'advanced' => true,
+				'filter' => 'alpha',
+			],
+			'rulesparent' => [
+				'required' => false,
+				'name' => tra('Field rules parent selector'),
+				'description' => tra('JQuery selector for the parent object to show or hide when executing field rules.'),
+				'default' => '.form-group:first',
+				'advanced' => true,
+				'filter' => 'text',
+			],
 		],
 	];
 }
@@ -1872,6 +1888,11 @@ function wikiplugin_tracker($data, $params)
 				$back .= $smarty->fetch('tracker_validator.tpl');
 			}
 		}
+		if ($params['rules'] === 'y' && $prefs['tracker_field_rules'] === 'y') {
+			$js = TikiLib::lib('vuejs')->generateTrackerRulesJS($definition->getFields(), $params['rulesparent']);
+			TikiLib::lib('header')->add_jq_onready($js);
+		}
+
 		if ($params['formtag'] == 'y') {
 
 			// if we're using ajax, we need to know whether we're updating or creating
