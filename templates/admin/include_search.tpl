@@ -8,7 +8,7 @@
 
 {if $prefs.feature_file_galleries eq 'y'}
 	{remarksbox type="tip" title="{tr}Tip{/tr}"}
-		{tr}Also see the Search Indexing tab:{/tr} <a class='alert-link' target='tikihelp' href='tiki-admin.php?page=fgal'>{tr}File Gallery admin panel{/tr}</a>
+    	{tr}To index content from files within the File Galleries see the Search Indexing tab:{/tr} <a class='alert-link' target='tikihelp' href='tiki-admin.php?page=fgal'>{tr}File Gallery admin panel{/tr}</a>
 	{/remarksbox}
 {/if}
 
@@ -143,9 +143,105 @@
 							<a href="tiki-pluginlist_experiment.php" class="alert-link">{tr}After you have found the correct contents, you may copy-paste them in a LIST plugin.{/tr}</a>
 						{/remarksbox}
 					</div>
+                    {preference name=search_index_outdated}
 				</div>
-				{preference name=search_index_outdated}
 			</fieldset>
+
+        {if $prefs.feature_file_galleries eq 'y'}
+			<fieldset>
+				<legend>{tr}File galleries searches{/tr}{help url="Search-within-files" desc='You will need to rebuild the search index to see these changes'}</legend>
+                {preference name=fgal_enable_auto_indexing}
+                {preference name=fgal_asynchronous_indexing}
+				<div class="adminoptionboxchild">
+					<fieldset>
+						<legend>{tr}Handlers{/tr}{help url="Search-within-files" desc='If you want the content of the files which are in the File Gallery to be accessible by a search, and if you have a script that extracts the file content into a text, you can associate the script to the Mime type and the files content will be indexed.'}</legend>
+						<div class="adminoptionbox">
+							<div class="adminoptionlabel">{tr}Add custom handlers to make your files &quot;searchable&quot; content{/tr}.
+								<ul>
+									<li>
+                                        {tr}Use <strong>%1</strong> as the internal file name. For example, use <strong>strings %1</strong> to convert the document to text, using the Unix <strong>strings</strong> command{/tr}.
+									</li>
+									<li>
+                                        {tr}To delete a handler, leave the <strong>System Command</strong> field blank{/tr}.
+									</li>
+								</ul>
+							</div>
+						</div>
+
+                        {if !empty($missingHandlers)}
+                            {tr}Tiki is pre-configured to handle many common types. If any of those are listed here, it is because the command line tool is unavailable.{/tr}
+                            {remarksbox type=warning title="{tr}Missing Handlers{/tr}"}
+                            {foreach from=$missingHandlers item=mime}
+                                {$mime|escape}
+								<br>
+                            {/foreach}
+                            {/remarksbox}
+                            {if $vnd_ms_files_exist}
+								<div class="adminoptionbox">
+                                    {remarksbox type=info title="{tr}Mime Types{/tr}"}
+										<p>
+                                            {tr}Previous versions of Tiki may have assigned alternative mime-types to Microsoft Office files, such as "application/vnd.ms-word" and these need to be changed to be "application/msword" for the default file indexing to function properly.{/tr}
+										</p>
+										<input
+												type="submit"
+												class="btn btn-primary btn-sm"
+												name="filegalfixvndmsfiles"
+												value="{tr}Fix vnd.ms-* mime type files{/tr}"
+										/>
+                                    {/remarksbox}
+								</div>
+                            {/if}
+                        {/if}
+
+						<div class="adminoptionbox">
+							<div class="adminoptionlabel">
+								<div class="table-responsive">
+									<table class="table">
+										<thead>
+										<tr>
+											<th>{tr}MIME Type{/tr}</th>
+											<th>{tr}System Command{/tr}</th>
+										</tr>
+										</thead>
+										<tbody>
+                                        {foreach key=mime item=cmd from=$fgal_handlers}
+											<tr>
+												<td>{$mime}</td>
+												<td>
+													<input name="mimes[{$mime}]" class="form-control" type="text" value="{$cmd|escape:html}" />
+												</td>
+											</tr>
+                                        {/foreach}
+										<tr>
+											<td class="odd">
+												<input name="newMime" type="text" class="form-control" />
+											</td>
+											<td class="odd">
+												<input name="newCmd" type="text" class="form-control" />
+											</td>
+										</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+
+					<div class="adminoptionbox">
+						<div class="adminoptionlabel">
+							<div align="center">
+								<input
+										type="submit"
+										class="btn btn-primary btn-sm"
+										name="filegalredosearch"
+										value="{tr}Reindex all files for search{/tr}"
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+        {/if}
 
 			<fieldset>
 				<legend>
