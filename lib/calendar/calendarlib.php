@@ -666,6 +666,9 @@ class CalendarLib extends TikiLib
 			$finalEvent = 'tiki.calendaritem.update';
 
 			$oldData = TikiDb::get()->table('tiki_calendar_items')->fetchFullRow(['calitemId' => $calitemId]);
+			if (empty($oldData)) {
+				return false;
+			}
 			$data = array_merge($oldData, $data);
 			$data['lastmodif'] = $this->now;
 

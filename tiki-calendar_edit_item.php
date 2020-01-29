@@ -396,7 +396,7 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 } elseif (isset($_REQUEST['preview']) || $impossibleDates) {
 	$save['parsed'] = TikiLib::lib('parser')->parse_data($save['description'], ['is_html' => $prefs['calendar_description_is_html'] === 'y']);
 	$save['parsedName'] = TikiLib::lib('parser')->parse_data($save['name']);
-	$id = isset($save['calitemId']) ? isset($save['calitemId']) : '';
+	$id = isset($save['calitemId']) ? $save['calitemId'] : '';
 	$save['recurrenceId'] =  isset($_POST['recurrenceId']) ? $_POST['recurrenceId'] : '';
 	$calitem = $save;
 	$calitem["selected_participants"] = array_map(function($role){ return $role['username']; }, $calitem['participants']);
