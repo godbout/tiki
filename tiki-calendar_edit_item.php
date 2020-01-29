@@ -177,11 +177,11 @@ if (isset($_REQUEST['act']) || isset($_REQUEST['preview']) || isset($_REQUEST['c
 
 	if (! empty($save['participant_roles'])) {
 		$participants = [];
-		foreach ($save['participant_roles'] as $user => $role) {
+		foreach ($save['participant_roles'] as $username => $role) {
 			$participants[] = [
-				'username' => $user,
+				'username' => $username,
 				'role' => $role,
-				'partstat' => $save['participant_partstat'][$user] ?? null
+				'partstat' => $save['participant_partstat'][$username] ?? null
 			];
 		}
 		$save['participants'] = $participants;
@@ -526,7 +526,7 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 		'duration' => (60 * 60),
 		'recurrenceId' => 0,
 		'allday' => $calendar['allday'] == 'y' ? 1 : 0,
-		'organizers' => [],
+		'organizers' => [$user],
 		'participants' => [],
 		'selected_participants' => []
 		];

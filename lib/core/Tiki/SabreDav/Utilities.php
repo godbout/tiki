@@ -10,6 +10,7 @@ namespace Tiki\SabreDav;
 use Sabre\DAV;
 use Sabre\VObject;
 use TikiLib;
+use TikiMail;
 
 class Utilities {
   static function checkUploadPermission($galleryDefinition) {
@@ -335,5 +336,187 @@ class Utilities {
         return '3';
     }
     return '';
+  }
+
+  /**
+   * Notes on ics format fields. See https://tools.ietf.org/html/rfc5545 for more information.
+   * CREATED, DTSTAMP, LAST-MODIFIED - must be UTC. They are stored as UTC in Tiki database. No timezone conversion happens.
+   * DTSTART, DTEND - must be in calendar timezone which currently is defined as the timezone of the Tiki user owning the calendar.
+   * VTIMEZONE - we use TZID properties on start and end dates as specified in the RFC. It requires us to use relevant VTIMEZONE
+   * descriptors as well. However, PHP does not have enough information to generate proper rules for DST changes
+   * (see https://github.com/sabre-io/vobject/issues/248 for more information why). We can possibly use DateTimeZone::getTransitions
+   * but we should do this for the whole time-span of the calendar events which could be many years and also recurring events in the
+   * future may recur indefinitely long. Thus, current implementation leaves parsing the timezone identifier to the clients as TZID
+   * is all we really have in Tiki - the timezone name user is acting in.
+   */
+  static function constructCalendarData($row) {
+    static $calendar_timezones = [];
+    if (isset($calendar_timezones[$row['calendarId']])) {
+      $timezone = $calendar_timezones[$row['calendarId']];
+    } else {
+      $calendar = TikiLib::lib('calendar')->get_calendar($row['calendarId']);
+      $timezone = TikiLib::lib('tiki')->get_display_timezone($calendar['user']);
+      $calendar_timezones[$row['calendarId']] = $timezone;
+    }
+    $dtzone = new \DateTimeZone($timezone);
+    $dtstart = \DateTime::createFromFormat('U', $row['start']);
+    $dtstart->setTimezone($dtzone);
+    $dtend = \DateTime::createFromFormat('U', $row['end']);
+    $dtend->setTimezone($dtzone);
+    $data = [
+      'CREATED' => \DateTime::createFromFormat('U', $row['created'])->format('Ymd\THis\Z'),
+      'DTSTAMP' => \DateTime::createFromFormat('U', $row['lastModif'])->format('Ymd\THis\Z'),
+      'LAST-MODIFIED' => \DateTime::createFromFormat('U', $row['lastModif'])->format('Ymd\THis\Z'),
+      'SUMMARY' => $row['name'],
+      'PRIORITY' => $row['priority'],
+      'STATUS' => self::mapEventStatus($row['status']),
+      'TRANSP' => 'OPAQUE',
+      'DTSTART' => $dtstart,
+      'DTEND'   => $dtend,
+    ];
+    if (! empty($row['recurrenceUid'])) {
+      $data['UID'] = $row['recurrenceUid'];
+    } elseif (! empty($row['uid'])) {
+      $data['UID'] = $row['uid'];
+    }
+    if (! empty($row['description'])) {
+      $data['DESCRIPTION'] = $row['description'];
+    }
+    if (! empty($row['location'])) {
+      $data['LOCATION'] = $row['location'];
+    }
+    if (! empty($row['locationName'])) {
+      $data['LOCATION'] = $row['locationName'];
+    }
+    if (! empty($row['category'])) {
+      $data['CATEGORIES'] = $row['category'];
+    }
+    if (! empty($row['categoryName'])) {
+      $data['CATEGORIES'] = $row['categoryName'];
+    }
+    if (! empty($row['url'])) {
+      $data['URL'] = $row['url'];
+    }
+    if (! empty($row['recurrenceStart'])) {
+      $data['RECURRENCE-ID'] = \DateTime::createFromFormat('U', $row['recurrenceStart'])->setTimezone($dtzone);
+    }
+
+    $vcalendar = new VObject\Component\VCalendar();
+    $vevent = $vcalendar->add('VEVENT', $data);
+
+    // TODO: optimize this for N+1 query problem
+    if (! isset($row['organizers'], $row['participants'])) {
+      $item = TikiLib::lib('calendar')->get_item($row['calitemId']);
+      $organizers = $item['organizers'];
+      $participants = $item['participants'];
+    } else {
+      $organizers = $row['organizers'];
+      $participants = $row['participants'];
+    }
+    foreach ($organizers as $user) {
+      $vevent->add(
+        'ORGANIZER',
+        TikiLib::lib('user')->get_user_email($user),
+        [
+          'CN' => TikiLib::lib('tiki')->get_user_preference($user, 'realName'),
+        ]
+      );
+    }
+    foreach ($participants as $par) {
+      $vevent->add(
+        'ATTENDEE',
+        $par['email'],
+        [
+          'CN' => TikiLib::lib('tiki')->get_user_preference($par['username'], 'realName'),
+          'ROLE' => Utilities::mapAttendeeRole($par['role']),
+          'PARTSTAT' => $par['partstat'],
+        ]
+      );
+    }
+
+    if ((string)$vevent->UID != @$row['uid']) {
+      // save UID for Tiki-generated calendar events as this must not change in the future
+      // SabreDav automatically generates UID value if none is present
+      TikiLib::lib('calendar')->fill_uid($row['calitemId'], (string)$vevent->UID);
+    }
+
+    return $vcalendar;
+  }
+
+  static function handleITip($args) {
+    if (empty($args['process_itip'])) {
+      return;
+    }
+    if (! empty($args['old_data'])) {
+      // update or delete operation
+      $old_vcalendar = self::constructCalendarData($args['old_data']);
+    } else {
+      // create operation
+      $old_vcalendar = null;
+    }
+    $calitem = TikiLib::lib('calendar')->get_item($args['object']);
+    if ($calitem) {
+      // create or update operation
+      $vcalendar = self::constructCalendarData($calitem);
+    } else {
+      // delete operation
+      $vcalendar = null;
+    }
+    $broker = new VObject\ITip\Broker();
+    $messages = $broker->parseEvent(
+      $vcalendar,
+      TikiLib::lib('user')->get_user_email($args['user']),
+      $old_vcalendar
+    );
+    foreach ($messages as $message) {
+      if (! $message->significantChange) {
+        continue;
+      }
+      $sender_email = (string)$message->sender;
+      $sender_name = (string)$message->senderName;
+      $sender = $sender_name ? "$sender_name <$sender_email>" : $sender_email;
+      $recipient_email = (string)$message->recipient;
+      $recipient_name = (string)$message->recipientName;
+      $recipient = $recipient_name ? "$recipient_name <$recipient_email>" : $recipient_email;
+      switch ($message->method) {
+        case 'REQUEST':
+          $subject = "Event Invitation: ".$message->message->VEVENT->SUMMARY->getValue();
+          $body = "You have been invited to the following event:";
+          break;
+        case 'CANCEL':
+          $subject = "Event Canceled: ".$message->message->VEVENT->SUMMARY->getValue();
+          $body = "The following event has been canceled:";
+          break;
+        case 'REPLY':
+          $subject = "Re: invitation to ".$message->message->VEVENT->SUMMARY->getValue();
+          $body = "$sender has updated their participation status in the following event:";
+          break;
+        default:
+          throw new Exception("Unsupported ITip method: ".$message->method);
+      }
+      $attendees = [];
+      foreach ($message->message->VEVENT->ATTENDEE as $attendee) {
+        $email = preg_replace("/MAILTO:\s*/i", "", (string)$attendee);
+        $cn = (string)$attendee->CN;
+        if (empty($cn)) {
+          $cn = $email;
+        }
+        $attendees[] = "$cn <$email>";
+      }
+      $body .= "
+
+*{$message->message->VEVENT->SUMMARY->getValue()}*
+
+When: ".TikiLib::lib('tiki')->get_long_datetime($message->message->VEVENT->DTSTART->getDateTime()->getTimeStamp())." - ".TikiLib::lib('tiki')->get_long_datetime($message->message->VEVENT->DTEND->getDateTime()->getTimeStamp())."
+
+Invitees: ".implode(",\n", $attendees);
+      // TODO: IMip messages are using configured Tiki SMTP server for now, but we might want to use cypht SMTP server for the sender user in order to get the replies back in cypht and be able to update participant statuses.
+      // The other way would be via Mail-in to calendars and a reply-to address configured as a mail-in source.
+      $mail = new TikiMail($args['user'], $sender_email, $sender_name);
+      $mail->setSubject($subject);
+      $mail->setText($body);
+      $mail->addPart($message->message->serialize(), 'text/calendar; method='.$message->method.'; name=event.ics');
+      $mail->send([$recipient]);
+    }
   }
 }

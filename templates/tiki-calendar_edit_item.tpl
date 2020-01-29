@@ -739,6 +739,7 @@
 							</tr>
 							{/foreach}
 							</table>
+							<input type="checkbox" name="save[process_itip]" value="1" checked> Send calendar invitations and event updates via email
 						{else}
 							{assign var='in_particip' value='n'}
 							{foreach item=ppl from=$calitem.participants}

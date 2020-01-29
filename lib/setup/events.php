@@ -361,7 +361,9 @@ function tiki_setup_events()
 	$events->bind('tiki.calendaritem.update', 'tiki.calendaritem.save');
 	$events->bind('tiki.calendaritem.create', 'tiki.calendaritem.save');
 	$events->bind('tiki.calendaritem.delete', 'tiki.save');
+	$events->bind('tiki.calendaritem.delete', ['Tiki\SabreDav\Utilities', 'handleITip']);
 	$events->bind('tiki.calendaritem.save', 'tiki.save');
+	$events->bind('tiki.calendaritem.save', ['Tiki\SabreDav\Utilities', 'handleITip']);
 
 
 	$events->bind('tiki.view', function ($data){

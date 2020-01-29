@@ -716,101 +716,8 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
         }
     }
 
-    /**
-     * Notes on ics format fields. See https://tools.ietf.org/html/rfc5545 for more information.
-     * CREATED, DTSTAMP, LAST-MODIFIED - must be UTC. They are stored as UTC in Tiki database. No timezone conversion happens.
-     * DTSTART, DTEND - must be in calendar timezone which currently is defined as the timezone of the Tiki user owning the calendar.
-     * VTIMEZONE - we use TZID properties on start and end dates as specified in the RFC. It requires us to use relevant VTIMEZONE
-     * descriptors as well. However, PHP does not have enough information to generate proper rules for DST changes
-     * (see https://github.com/sabre-io/vobject/issues/248 for more information why). We can possibly use DateTimeZone::getTransitions
-     * but we should do this for the whole time-span of the calendar events which could be many years and also recurring events in the
-     * future may recur indefinitely long. Thus, current implementation leaves parsing the timezone identifier to the clients as TZID
-     * is all we really have in Tiki - the timezone name user is acting in.
-     */
     protected function constructCalendarData($row, $serialize = true) {
-        static $calendar_timezones = [];
-        if (isset($calendar_timezones[$row['calendarId']])) {
-            $timezone = $calendar_timezones[$row['calendarId']];
-        } else {
-            $calendar = TikiLib::lib('calendar')->get_calendar($row['calendarId']);
-            $timezone = TikiLib::lib('tiki')->get_display_timezone($calendar['user']);
-            $calendar_timezones[$row['calendarId']] = $timezone;
-        }
-        $dtzone = new \DateTimeZone($timezone);
-        $dtstart = \DateTime::createFromFormat('U', $row['start']);
-        $dtstart->setTimezone($dtzone);
-        $dtend = \DateTime::createFromFormat('U', $row['end']);
-        $dtend->setTimezone($dtzone);
-        $data = [
-            'CREATED' => \DateTime::createFromFormat('U', $row['created'])->format('Ymd\THis\Z'),
-            'DTSTAMP' => \DateTime::createFromFormat('U', $row['lastModif'])->format('Ymd\THis\Z'),
-            'LAST-MODIFIED' => \DateTime::createFromFormat('U', $row['lastModif'])->format('Ymd\THis\Z'),
-            'SUMMARY' => $row['name'],
-            'PRIORITY' => $row['priority'],
-            'STATUS' => Utilities::mapEventStatus($row['status']),
-            'TRANSP' => 'OPAQUE',
-            'DTSTART' => $dtstart,
-            'DTEND'   => $dtend,
-        ];
-        if (! empty($row['recurrenceUid'])) {
-            $data['UID'] = $row['recurrenceUid'];
-        } elseif (! empty($row['uid'])) {
-            $data['UID'] = $row['uid'];
-        }
-        if (! empty($row['description'])) {
-            $data['DESCRIPTION'] = $row['description'];
-        }
-        if (! empty($row['location'])) {
-            $data['LOCATION'] = $row['location'];
-        }
-        if (! empty($row['locationName'])) {
-            $data['LOCATION'] = $row['locationName'];
-        }
-        if (! empty($row['category'])) {
-            $data['CATEGORIES'] = $row['category'];
-        }
-        if (! empty($row['categoryName'])) {
-            $data['CATEGORIES'] = $row['categoryName'];
-        }
-        if (! empty($row['url'])) {
-            $data['URL'] = $row['url'];
-        }
-        if (! empty($row['recurrenceStart'])) {
-            $data['RECURRENCE-ID'] = \DateTime::createFromFormat('U', $row['recurrenceStart'])->setTimezone($dtzone);
-        }
-
-        $vcalendar = new VObject\Component\VCalendar();
-        $vevent = $vcalendar->add('VEVENT', $data);
-
-        // TODO: optimize this for N+1 query problem
-        $item = TikiLib::lib('calendar')->get_item($row['calitemId']);
-        foreach ($item['organizers'] as $user) {
-            $vevent->add(
-                'ORGANIZER',
-                TikiLib::lib('user')->get_user_email($user),
-                [
-                    'CN' => TikiLib::lib('tiki')->get_user_preference($user, 'realName'),
-                ]
-            );
-        }
-        foreach ($item['participants'] as $par) {
-            $vevent->add(
-                'ATTENDEE',
-                TikiLib::lib('user')->get_user_email($par['name']),
-                [
-                    'CN' => TikiLib::lib('tiki')->get_user_preference($par['name'], 'realName'),
-                    'ROLE' => Utilities::mapAttendeeRole($par['role']),
-                    'PARTSTAT' => $par['partstat'],
-                ]
-            );
-        }
-
-        if ((string)$vevent->UID != @$row['uid']) {
-            // save UID for Tiki-generated calendar events as this must not change in the future
-            // SabreDav automatically generates UID value if none is present
-            TikiLib::lib('calendar')->fill_uid($row['calitemId'], (string)$vevent->UID);
-        }
-
+        $vcalendar = Utilities::constructCalendarData($row);
         if ($serialize) {
             return $vcalendar->serialize();
         } else {
@@ -838,9 +745,9 @@ class CalDAVBackend extends CalDAV\Backend\AbstractBackend
             foreach ($item['participants'] as $par) {
                 $vevent->add(
                     'ATTENDEE',
-                    TikiLib::lib('user')->get_user_email($par['name']),
+                    $par['email'],
                     [
-                        'CN' => TikiLib::lib('tiki')->get_user_preference($par['name'], 'realName'),
+                        'CN' => TikiLib::lib('tiki')->get_user_preference($par['username'], 'realName'),
                         'ROLE' => Utilities::mapAttendeeRole($par['role']),
                         'PARTSTAT' => $par['partstat'],
                     ]

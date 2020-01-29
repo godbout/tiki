@@ -520,9 +520,13 @@ class CalendarLib extends TikiLib
 				if ($rez["role"] == ROLE_ORGANIZER) {
 					$org[] = $rez["username"];
 				} elseif ($rez["username"]) {
+					$email = TikiLib::lib('user')->get_user_email($rez['username']);
+					if (! $email) {
+						$email = $rez["username"];
+					}
 					$ppl[] = [
 						'username' => $rez["username"],
-						'email' => TikiLib::lib('user')->get_user_email($rez['username']),
+						'email' => $email,
 						'role' => $rez["role"],
 						'partstat' => $rez['partstat']
 					];
@@ -665,7 +669,7 @@ class CalendarLib extends TikiLib
 		if ($calitemId) {
 			$finalEvent = 'tiki.calendaritem.update';
 
-			$oldData = TikiDb::get()->table('tiki_calendar_items')->fetchFullRow(['calitemId' => $calitemId]);
+			$oldData = $this->get_item($calitemId);
 			if (empty($oldData)) {
 				return false;
 			}
@@ -708,6 +712,7 @@ class CalendarLib extends TikiLib
 		} else {
 			$finalEvent = 'tiki.calendaritem.create';
 			$new = true;
+			$oldData = null;
 			$data['lastmodif'] = $this->now;
 			$data['created'] = $this->now;
 
@@ -762,6 +767,8 @@ class CalendarLib extends TikiLib
 			'object' => $calitemId,
 			'user' => $GLOBALS['user'],
 			'bulk_import' => $isBulk,
+			'old_data' => $oldData,
+			'process_itip' => !empty($data['process_itip'])
 		]);
 
 		return $calitemId;
@@ -852,6 +859,8 @@ class CalendarLib extends TikiLib
 				'object' => $calitemId,
 				'user' => $user,
 				'bulk_import' => $isBulk,
+				'old_data' => $item,
+				'process_itip' => true
 			]);
 		}
 	}

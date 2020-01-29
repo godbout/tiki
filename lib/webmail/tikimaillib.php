@@ -233,6 +233,23 @@ class TikiMail
 		}
 	}
 
+	function addPart($content, $type) {
+		$body = $this->mail->getBody();
+		if (! ($body instanceof \Zend\Mime\Message)) {
+			$this->convertBodyToMime($body);
+			$body = $this->mail->getBody();
+		}
+		$part = new Zend\Mime\Part($content);
+		$part->setType($type);
+		$part->setCharset($this->charset);
+		$body->addPart($part);
+		$headers = $this->mail->getHeaders();
+		$headers->removeHeader('Content-type');
+		$headers->addHeaderLine(
+			'Content-type: multipart/mixed; boundary="'.$body->getMime()->boundary().'"'
+		);
+	}
+
 	/**
 	 * Get the Zend Message object
 	 *
