@@ -8050,3 +8050,14 @@ input[type="text"].chosen-focus-input {
     width: 1% !important; }
   .input-group .chosen-choices .search-field {
     min-height: 2.25rem; }
+
+[type="checkbox"], [type="radio"] {
+  -webkit-appearance: none;
+  -moz-appearance: none; }
+
+.form-check-inline [type="checkbox"]:before {
+  top: -0.3em;
+  left: 0; }
+  .form-check-inline [type="checkbox"]:after {
+    top: -0.08em;
+    left: 0.15em; }

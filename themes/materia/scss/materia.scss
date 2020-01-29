@@ -23,3 +23,17 @@
     background-color: #fff;
     div { background-color: #fff; }
 }
+
+input[type="checkbox"],
+.checkbox input[type="checkbox"],
+.checkbox-inline input[type="checkbox"],
+input[type="radio"],
+.radio input[type="radio"],
+.radio-inline input[type="radio"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.form-check-input {
+    margin-top: 0;
+}
