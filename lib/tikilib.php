@@ -4596,22 +4596,6 @@ class TikiLib extends TikiDb_Bridge
 				$cachelib->invalidate('userlink.' . $my_user . '0');
 			}
 
-			# TODO: remove debugging code
-			if ($name == 'cypht_user_config') {
-				global $tikipath;
-				$fn = tempnam(rtrim($tikipath, '/').'/temp', 'cyphtdebug');
-				$fp = fopen($fn, "w+");
-				ob_start();
-				echo "Saving cypht user config... ".date('r')."\n";
-				echo $value."\n";
-				debug_print_backtrace();
-				print_r($_SERVER);
-				print_r($_REQUEST);
-				$debug = ob_get_clean();
-				fwrite($fp, $debug);
-				fclose($fp);
-			}
-
 			$userPreferences = $this->table('tiki_user_preferences', false);
 			$userPreferences->delete(['user' => $my_user, 'prefName' => $name]);
 			$result = $userPreferences->insert(['user' => $my_user,	'prefName' => $name,	'value' => $value]);
