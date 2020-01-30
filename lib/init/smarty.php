@@ -320,7 +320,7 @@ class Smarty_Tiki extends Smarty
 	 * @param bool $_smarty_display
 	 * @return mixed
 	 */
-	public function fetchLang($lg, $_smarty_tpl_file, $_smarty_cache_id = null, $_smarty_compile_id = null, $_smarty_display = false)
+	public function fetchLang($lg, $_smarty_tpl_file, $_smarty_cache_id = null, $_smarty_compile_id = null)
 	{
 		global $prefs;
 
@@ -329,7 +329,7 @@ class Smarty_Tiki extends Smarty
 		$lgSave = $prefs['language'];
 		$prefs['language'] = $lg;
 		$this->refreshLanguage();
-		$res = parent::fetch($_smarty_tpl_file, $_smarty_cache_id, $_smarty_compile_id, null, $_smarty_display);
+		$res = parent::fetch($_smarty_tpl_file, $_smarty_cache_id, $_smarty_compile_id);
 		$prefs['language'] = $lgSave; // Restore the language of the user triggering the notification
 		$this->refreshLanguage();
 
