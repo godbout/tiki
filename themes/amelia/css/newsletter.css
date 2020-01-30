@@ -1,5 +1,5 @@
-@import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
 /* Amelia theme newsletter stylesheet  */
+@import url("//fonts.googleapis.com/css?family=Lobster|Cabin:400,700");
 body.fullscreen {
   background: #108a93; }
 
@@ -14,7 +14,7 @@ body.fullscreen {
 
 body {
   background: #108a93;
-  color: #fff;
+  color: #ffffff;
   font-family: "Cabin", Arial, sans-serif;
   padding: 15px; }
 
