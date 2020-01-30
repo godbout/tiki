@@ -8081,3 +8081,11 @@ input[type="text"].chosen-focus-input {
   .table-responsive .table tr td [type="checkbox"].form-check-input:after {
     top: -0.48em;
     left: -0.66em; }
+
+.dropdown-item:hover a {
+  background-color: #333;
+  color: #fff; }
+
+.autotoc .nav > li > a:hover, .autotoc .nav .nav > li > a:hover {
+  background-color: #333;
+  color: #fff; }

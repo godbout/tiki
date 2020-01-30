@@ -50,3 +50,10 @@
         }
     }
 }
+
+.dropdown-item:hover a { background-color: #333; color: #fff; }
+.autotoc .nav {
+    &, & .nav {
+        > li > a:hover { background-color: #333; color: #fff; }
+    }
+}
