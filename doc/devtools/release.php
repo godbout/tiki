@@ -39,7 +39,6 @@ error_reporting(ERROR_REPORTING_LEVEL);
 chdir(ROOT . '/');
 
 require_once ROOT . '/lib/setup/third_party.php';
-require_once TOOLS . '/svntools.php';
 
 if (version_compare(PHP_VERSION, '5.0.0', '<')) {
 	error("You need PHP version 5 or more to run this script\n");
@@ -51,21 +50,30 @@ if (! ($options = get_options()) || $options['help']) {
 	display_usage();
 }
 
+$vcs = 'svn';
+if ($options['use-git']) {
+	$vcs = 'git';
+}
+
+require_once TOOLS . '/' . $vcs . 'tools.php';
+
+
 if ($options['devmode']) {
 	$options['no-commit'] = true;
-	$options['no-check-svn'] = true;
+	$options['no-check-vcs'] = true;
 	$options['no-first-update'] = true;
 }
 if ($options['howto']) {
 	display_howto();
 }
 
-if (! check_svn_version()) {
-	error("You need the subversion 'svn' program at least at version " . SVN_MIN_VERSION . "\n");
+
+if (! check_bin_version()) {
+	error("You need the VCS '" . getBinName() . "' program at least at version " . getMinVersion() . "\n");
 }
 
-if (! $options['no-check-svn'] && has_uncommited_changes('.')) {
-	error("Uncommited changes exist in the working folder.\n");
+if (! $options['no-check-vcs'] && has_uncommited_changes('.')) {
+	error("Uncommitted changes exist in the working folder.\n");
 }
 
 include_once('lib/setup/twversion.class.php');
@@ -101,22 +109,22 @@ if ($TWV->version !== $check_version && ! $options['devmode']) {
 
 echo color("\nTiki release process started for version '$version" . ($subrelease ? " $subrelease" : '') . "'\n", 'cyan');
 if ($isPre) {
-	echo color("The script is running in 'pre-release' mode, which means that no subversion tag will be created.\n", 'yellow');
+	echo color("The script is running in 'pre-release' mode, which means that no tag will be created.\n", 'yellow');
 }
 
 if (! $options['no-first-update'] && important_step('Update working copy to the last revision')) {
 	echo "Update in progress...";
 	update_working_copy('.');
 
-	if (! $options['no-check-svn'] && has_uncommited_changes('.')) {
-		error("\rUncommited changes exist in the working folder.\n");
+	if (! $options['no-check-vcs'] && has_uncommited_changes('.')) {
+		error("\rUncommitted changes exist in the working folder.\n");
 	}
-	$revision = (int) get_info('.')->entry->commit['revision'];
+	$revision = get_revision('.');
 	info("\r>> Checkout updated to revision $revision.");
 }
 
 if (empty($subrelease)) {
-	$branch = "branches/$mainversion.x";
+	$branch = $vcs == 'svn' ? "branches/$mainversion.x" : "$mainversion.x";
 	$tag = "tags/$version";
 	$packageVersion = $version;
 	if (! empty($pre)) {
@@ -124,7 +132,7 @@ if (empty($subrelease)) {
 	}
 	$secdbVersion = $version;
 } else {
-	$branch = "branches/$mainversion.x";
+	$branch = $vcs == 'svn' ? "branches/$mainversion.x" : "$mainversion.x";
 	$tag = "tags/$version$subrelease";
 	$packageVersion = "$version.$pre$subrelease";
 	$secdbVersion = "$version$subrelease";
@@ -215,29 +223,26 @@ if ($isPre) {
 	}
 } else {
 	if (! $options['no-tagging']) {
-		$fb = full($branch);
-		$ft = full($tag);
-
-		$tagAlreadyExists = isset(get_info($ft)->entry);
+		$tagAlreadyExists = tag_exists($tag, true);
 		if ($tagAlreadyExists && important_step("The Tag '$tag' already exists: Delete the existing tag in order to create a new one")) {
 			$commit_msg = "[REL] Deleting tag '$tag' in order to create a new one";
 			if ($options['no-commit']) {
 				print "Skipping actual commit ('$commit_msg') because no-commit = true\n";
 			} else {
-				`svn rm $ft -m "$commit_msg"`;
+				delete_tag($tag, $commit_msg);
 				$tagAlreadyExists = false;
 				info(">> Tag '$tag' deleted.");
 			}
 		}
 		if (! $tagAlreadyExists) {
 			update_working_copy('.');
-			$revision = (int) get_info(ROOT)->entry->commit['revision'];
+			$revision = get_revision(ROOT);
 			if (important_step("Tag release using branch '$branch' at revision $revision")) {
 				$commit_msg = '[REL] Tagging release';
 				if ($options['no-commit']) {
 					print "Skipping actual commit ('$commit_msg') because no-commit = true\n";
 				} else {
-					`svn copy $fb -r$revision $ft -m "$commit_msg"`;
+					create_tag($tag, $commit_msg, $branch, $revision);
 					info(">> Tag '$tag' created.");
 				}
 			}
@@ -265,21 +270,21 @@ if ($isPre) {
 function updateSecdb($version)
 {
 	// first unset any preexisting files.
-	echo (">>");
-	$svn = preg_match('/svn$/', $version);
+	echo(">>");
+	$vcs = preg_match('/' . getBinName() . '$/', $version);
 
 	// if we are not creating a release skip deleting old files.
-	if (! $svn) {
+	if (! $vcs) {
 		$files = glob(ROOT . '/db/tiki-secdb_*_mysql.sql');
 		foreach ($files as $file) {
 			$file = escapeshellarg($file);
-			`svn delete $file --force`;
+			delete_file($file);
 		}
-		echo (' Removed ' . count($files) . ' old secdb files.');
+		echo(' Removed ' . count($files) . ' old secdb files.');
 
 		$excludes = [];
 	} else {
-		$excludes = array_keys(svn_files_differ(ROOT));
+		$excludes = array_keys(files_differ(ROOT));
 	}
 
 	$file = "/db/tiki-secdb_{$version}_mysql.sql";
@@ -306,10 +311,10 @@ function updateSecdb($version)
 	}
 	fclose($fp);
 
-	echo (" $file was generated.\n");
-	if (! $svn) {
+	echo(" $file was generated.\n");
+	if (! $vcs) {
 		$file = escapeshellarg(ROOT . $file); // escape file name for use in command line.
-		`svn add $file`;
+		add($file);
 	}
 	return true;
 }
@@ -320,7 +325,7 @@ function updateSecdb($version)
  * @param string $dir
  * @param string $version
  * @param array $queries queries returned
- * @param array $excludes files to exclude when doing secdb on an svn checkout
+ * @param array $excludes files to exclude when doing secdb on an svn or checkout
  */
 function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 {
@@ -334,7 +339,7 @@ function build_secdb_queries($dir, $version, &$queries, $excludes = [])
 		}
 		if (is_dir($entry)) {
 			// do not descend and no CVS/Subversion files
-			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom' && $entry != ROOT . '/_custom') {
+			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.git' && $e != '.gitignore' && $e != '.svn' && $entry != ROOT . '/temp' && $entry != ROOT . '/vendor_custom' && $entry != ROOT . '/_custom') {
 				build_secdb_queries($entry, $version, $queries, $excludes);
 			}
 		} else {
@@ -395,7 +400,7 @@ function rrmdir($dir)
 						return $error;
 					}
 				} elseif (! @unlink($dir . "/" . $object)) {
-						return 'Could not delete ' . $dir . "/" . $object . "\n";
+					return 'Could not delete ' . $dir . "/" . $object . "\n";
 				}
 			}
 		}
@@ -420,8 +425,8 @@ function rrmdir($dir)
 function removeFiles($src, $files)
 {
 	$dir = opendir($src);
-	while (false !== ( $file = readdir($dir))) {
-		if (( $file != '.' ) && ( $file != '..' )) {
+	while (false !== ($file = readdir($dir))) {
+		if (($file != '.') && ($file != '..')) {
 			$full = $src . '/' . $file;
 			if (is_dir($full)) {
 				$flag = false;
@@ -461,8 +466,8 @@ function removeFiles($src, $files)
 function setPermissions($src)
 {
 	$dir = opendir($src);
-	while (false !== ( $file = readdir($dir))) {
-		if (( $file != '.' ) && ( $file != '..' )) {
+	while (false !== ($file = readdir($dir))) {
+		if (($file != '.') && ($file != '..')) {
 			$full = $src . '/' . $file;
 			if (is_dir($full)) {
 				setPermissions($full);
@@ -483,7 +488,7 @@ function setPermissions($src)
  *
  * Prepares and generates the release packages.
  *
- * @param string $releaseVersion	Version of tiki that is being released.
+ * @param string $releaseVersion Version of tiki that is being released.
  */
 
 function build_packages($releaseVersion)
@@ -492,10 +497,10 @@ function build_packages($releaseVersion)
 
 	$workDir = $_SERVER['HOME'] . "/tikipack";
 	$fileName = 'tiki-' . $releaseVersion;
-	$relDir = $workDir . '/' . $releaseVersion;	// where the tiki dir and tarballs go
-	$sourceDir = $relDir . '/' . $fileName;		// the svn export
+	$relDir = $workDir . '/' . $releaseVersion;    // where the tiki dir and tarballs go
+	$sourceDir = $relDir . '/' . $fileName;        // the svn export
 
-	echo  "Seting up $workDir directory\n";
+	echo "Seting up $workDir directory\n";
 	if (! is_dir($workDir)) {
 		if (! mkdir($workDir)) {
 			error('Cant make ' . $workDir . "\n");
@@ -516,9 +521,9 @@ function build_packages($releaseVersion)
 		die();
 	}
 
-	// create a export in tikipack to work with
-	echo "Creating SVN export from working copy into $sourceDir\n";
-	$shellout = shell_exec('svn export ' . escapeshellarg(ROOT) . ' ' . escapeshellarg($sourceDir . '/.') . ' 2>&1');
+	// create an export in tikipack to work with
+	echo "Exporting working copy into $sourceDir\n";
+	$shellout = export(ROOT, $sourceDir);
 	if ($options['debug-packaging']) {
 		echo $shellout . "\n";
 	}
@@ -646,7 +651,7 @@ function get_files_list($dir, &$entries, $regexp_pattern)
 		$entry = $dir . '/' . $e;
 		if (is_dir($entry)) {
 			// do not descend and no CVS/Subversion files
-			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.svn' && $entry != './temp/templates_c' && $entry != './vendor_bundled/vendor') {
+			if ($e != '..' && $e != '.' && $e != 'CVS' && $e != '.git' && $e != '.gitignore' && $e != '.svn' && $entry != './temp/templates_c' && $entry != './vendor_bundled/vendor') {
 				if (! get_files_list($entry, $entries, $regexp_pattern)) {
 					return false;
 				}
@@ -752,7 +757,7 @@ function check_smarty_syntax(&$error_msg)
  */
 function check_smarty_syntax_error_handler($errno, $errstr, $errfile = '', $errline = 0, $errcontext = [])
 {
-	if (strpos($errstr, 'filemtime(): stat failed for') === false) {	// smarty seems to emit these for every file
+	if (strpos($errstr, 'filemtime(): stat failed for') === false) {    // smarty seems to emit these for every file
 		echo "\n" . color($errstr, 'red') . "\n";
 	}
 	return true;
@@ -767,7 +772,7 @@ function check_smarty_syntax_error_handler($errno, $errstr, $errfile = '', $errl
 function check_php_syntax(&$dir, &$error_msg, $hide_php_warnings)
 {
 	global $phpCommand;
-	$checkPhpCommand = $phpCommand . (ERROR_REPORTING_LEVEL > 0 ? ' -d error_reporting=' . (int) ERROR_REPORTING_LEVEL : '');
+	$checkPhpCommand = $phpCommand . (ERROR_REPORTING_LEVEL > 0 ? ' -d error_reporting=' . (int)ERROR_REPORTING_LEVEL : '');
 
 	$entries = [];
 	get_files_list($dir, $entries, '/\.php$/');
@@ -911,6 +916,9 @@ function gitlabGetLastFinishedPipelineByBranch($repoUrl, $branch, $page = 1)
 	);
 
 	if (empty($pipeline)) {
+		if ($page >= 50) {
+			return false;
+		}
 		return gitlabGetLastFinishedPipelineByBranch($repoUrl, $branch, ++$page);
 	}
 
@@ -967,9 +975,9 @@ function get_options()
 		'howto' => false,
 		'help' => false,
 		'http-proxy' => false,
-		'svn-mirror-uri' => false,
+		'mirror-uri' => false,
 		'no-commit' => false,
-		'no-check-svn' => false,
+		'no-check-vcs' => false,
 		'no-check-db' => false,
 		'no-check-php' => false,
 		'no-check-php-warnings' => false,
@@ -986,6 +994,7 @@ function get_options()
 		'debug-packaging' => false,
 		'only-secdb' => false,
 		'devmode' => false,
+		'use-git' => false,
 	];
 
 	// Environment variables provide default values for parameter options. e.g. export TIKI_NO_SECDB=true
@@ -1016,7 +1025,7 @@ function get_options()
 				} else {
 					$options[substr($arg, 2, 10)] = true;
 				}
-			} elseif (substr($arg, 2, 15) == 'svn-mirror-uri=') {
+			} elseif (substr($arg, 2, 15) == 'mirror-uri=') {
 				if (($uri = substr($arg, 17)) != '') {
 					$options[substr($arg, 2, 14)] = $uri;
 				}
@@ -1140,7 +1149,7 @@ function update_changelog_file($newVersion)
 
 			if (preg_match('/^Version (\d+)\.(\d+)/', $buffer, $versionMatches)) {
 				$versionString = $versionMatches[1] . '.' . $versionMatches[2];
-				if ((float) $lastReleaseNumber < (float) $versionString) {
+				if ((float)$lastReleaseNumber < (float)$versionString) {
 					$lastReleaseNumber = $versionString;
 					if ($lastReleaseNumber === $newVersion) {
 						// The changelog file already contains log for the same final version
@@ -1153,12 +1162,12 @@ function update_changelog_file($newVersion)
 			}
 			if ($parseLogs) {
 				$matches = [];
-				if (preg_match('/^r(\d+) \|/', $buffer, $matches)) {
+				if (preg_match('/^(\d+ | ) \|/', $buffer, $matches)) {
 					$skipBuffer = false;
 					if ($minRevision == 0) {
-						$minRevision = (int) $matches[1];
+						$minRevision = (int)$matches[1];
 					}
-					$currentParsedRevision = (int) $matches[1];
+					$currentParsedRevision = (int)$matches[1];
 				} elseif (! $skipBuffer && $currentParsedRevision > 0 && $buffer[0] != '-') {
 					if (isset($lastReleaseLogs[$currentParsedRevision])) {
 						$lastReleaseLogs[$currentParsedRevision] .= $buffer;
@@ -1192,9 +1201,8 @@ function update_changelog_file($newVersion)
 	if ($minRevision === 0) { // failed to get the last rev from the old file contents
 		$minRevision = get_tag_revision($lastReleaseNumber);
 	}
-
-	if ($minRevision > 0) {
-		if (preg_match_all('/^r(\d+) \|.*\n\n(.*)\-{46}/Ums', get_logs('.', $minRevision), $matches, PREG_SET_ORDER)) {
+	if ($minRevision != 0) {
+		if (preg_match_all('/^([A-Za-z0-9]+).\|.*\n\n(.*)\-{46}/Ums', get_logs('.', $minRevision), $matches, PREG_SET_ORDER)) {
 			foreach ($matches as $logEntry) {
 				// Do not keep merges and release-related logs
 				$commitFlag = substr(trim($logEntry[2]), 0, 5);
@@ -1254,14 +1262,14 @@ function update_copyright_file($newVersion)
 	$nbCommiters = 0;
 	$contributors = [];
 
-	$repositoryUri = empty($options['svn-mirror-uri']) ? TIKISVN : $options['svn-mirror-uri'];
+	$repositoryUri = empty($options['mirror-uri']) ? TIKIVCS : $options['mirror-uri']; //
 	if (strpos($repositoryUri, '/') === 0) {
 		$repositoryUri = 'file://' . $repositoryUri;
 	}
-	$repositoryInfo = get_info($repositoryUri);
+	$repositoryInfo = get_revision($repositoryUri);
 
 	$oldContributors = parse_copyrights();
-	get_contributors_data($repositoryUri, $contributors, 1, (int) $repositoryInfo->entry->commit['revision']);
+	get_contributors_data($repositoryUri, $contributors, 1, $repositoryInfo);
 	ksort($contributors);
 
 	$totalContributors = count($contributors);
@@ -1306,7 +1314,8 @@ EOS;
 				// Quickfix to keep old dates which may be different due to which time zone is used
 				if (isset($oldContributors[$author]['First Commit'])) {
 					$infos['First Commit'] = $oldContributors[$author]['First Commit'];
-					if (isset($oldContributors[$author]['Number of Commits']) && $oldContributors[$author]['Number of Commits'] == $infos['Number of Commits']) {
+					if (isset($oldContributors[$author]['Number of Commits']) && isset($oldContributors[$author]['Number of Commits'])
+						&& isset($infos['Number of Commits'])  && $oldContributors[$author]['Number of Commits'] == $infos['Number of Commits']) {
 						$infos['Last Commit'] = $oldContributors[$author]['Last Commit'];
 					}
 				}
@@ -1371,57 +1380,13 @@ function parse_copyrights()
 function get_contributors_data($path, &$contributors, $minRevision, $maxRevision, $step = 20000)
 {
 	global $nbCommiters;
-
 	if (empty($contributors)) {
 		get_contributors_sf_data($contributors);
 		info(">> Retrieved members list from Sourceforge.");
 	}
 
-	$minByStep = max($maxRevision - $step, $minRevision);
-	$lastLogRevision = $maxRevision;
-	echo "\rRetrieving logs from revision $minByStep to $maxRevision ...\t\t\t";
-	$logs = get_logs($path, $minByStep, $maxRevision);
-	if (preg_match_all('/^r(\d+) \|\s([^\|]+)\s\|\s(\d+-\d+-\d+)\s.*\n\n(.*)\-+\n/Ums', $logs, $matches, PREG_SET_ORDER)) {
-		foreach ($matches as $logEntry) {
-			$mycommits[$logEntry[1]] = [$logEntry[2],$logEntry[3]];
-		}
-		krsort($mycommits);
-
-		foreach ($mycommits as $commitnum => $commitinfo) {
-			if ($lastLogRevision > 0 && $commitnum != $lastLogRevision - 1 && $lastLogRevision != $maxRevision) {
-				print "\nProblem with commit " . ($lastLogRevision - 1) . "\n (trying {$commitnum} after $lastLogRevision)";
-				die;
-			}
-
-			$lastLogRevision = $commitnum;
-			$author = strtolower($commitinfo[0]);
-
-			// Remove empty author or authors like (no author), which may be translated depending on server locales
-			if (empty($author) || $author{0} == '(') {
-				continue;
-			}
-
-			if (! isset($contributors[$author])) {
-				$contributors[$author] = [];
-			}
-
-			$contributors[$author]['Author'] = $commitinfo[0];
-			$contributors[$author]['First Commit'] = $commitinfo[1];
-
-			if (isset($contributors[$author]['Number of Commits'])) {
-				$contributors[$author]['Number of Commits']++;
-			} else {
-				$contributors[$author]['Last Commit'] = $commitinfo[1];
-				$nbCommiters++;
-				$contributors[$author]['Number of Commits'] = 1;
-			}
-		}
-	}
-
-	if ($lastLogRevision > $minRevision) {
-		get_contributors_data($path, $contributors, $minRevision, $lastLogRevision - 1, $step);
-	}
-
+	get_contributors($path, $contributors, $minRevision, $maxRevision, $step);
+	$nbCommiters = count($contributors);
 	return $contributors;
 }
 
@@ -1517,7 +1482,7 @@ Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See $license_file for deta
 Note to Tiki developers: update this text through release.php.
 EOF;
 
-	return (bool) file_put_contents(README, $readme);
+	return (bool)file_put_contents(README, $readme);
 }
 
 function display_usage()
@@ -1531,15 +1496,15 @@ Examples:
 Options:
 	--howto			    : display the Tiki release HOWTO
 	--help			    : display this help
-	--http-proxy=HOST:PORT	: use an http proxy to get copyright data on sourceforge
-	--svn-mirror-uri=URI	: use another repository URI to update the copyrights file (to avoid retrieving data from sourceforge, which is usually slow)
-	--no-commit		        : do not commit any changes back to SVN
-	--no-check-svn		    : do not check if there is uncommited changes on the checkout used for the release
+	--http-proxy=HOST:PORT	: use a http proxy to get copyright data on sourceforge
+	--mirror-uri=URI	: use another repository URI to update the copyrights file (to avoid retrieving data from sourceforge, which is usually slow)
+	--no-commit		        : do not commit any changes back to SVN or GIT
+	--no-check-vcs		    : do not check if there are uncommitted changes on the checkout used for the release
 	--no-check-db		    : do not check database scripts and database upgrades
 	--no-check-php		    : do not check syntax of all PHP files
 	--no-check-php-warnings	: do not display PHP warnings and notices during the PHP syntax check
 	--no-check-smarty	    : do not check syntax of all Smarty templates
-	--no-first-update	    : do not svn update the checkout used for the release as the first step
+	--no-first-update	    : do not vcs update the checkout used for the release as the first step
 	--no-readme-update	    : do not update the '" . README_FILENAME . "' file
 	--no-lang-update	    : do not update lang/*/language.php files
 	--no-changelog-update	: do not update the '" . CHANGELOG_FILENAME . "' file
@@ -1547,10 +1512,11 @@ Options:
 	--no-secdb		        : do not update SecDB footprints
 	--only-secdb		    : only generate a secdb database
 	--no-packaging		    : do not build packages files
-	--no-tagging		    : do not tag the release on the remote svn repository
+	--no-tagging		    : do not tag the release on the remote vcs repository
 	--force-yes		        : disable the interactive mode (same as replying 'y' to all steps)
 	--debug-packaging	    : display debug output while in packaging step
-	--devmode               : equivalent to no-commit + no-check-svn + no-first-update
+	--devmode               : equivalent to no-commit + no-check-vcs + no-first-update
+	--use-git               : use git instead oof snv
 Notes:
 	Subreleases begining with 'pre' will not be tagged.
 ";

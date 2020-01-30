@@ -17,6 +17,7 @@ class TWVersion
 	public $releases;		// Array of all releases from website
 	public $star;			// Star being used for this version tree
 	public $svn;			// Is this a Subversion version or a package?
+	public $git;			// Is this a Git version or a package?
 
 	function __construct()
 	{
@@ -33,6 +34,9 @@ class TWVersion
 
 		// Check for Subversion or not
 		$this->svn	= is_dir('.svn') ? 'y' : 'n';
+
+		// Check for Git or not
+		$this->git	= is_dir('.git') ? 'y' : 'n';
 	}
 
 	// Returns the latest minor release in the same major version release series.

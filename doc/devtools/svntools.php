@@ -5,8 +5,10 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+require_once 'vcscommons.php';
+
 define('SVN_MIN_VERSION', 1.3);
-define('TIKISVN', 'https://svn.code.sf.net/p/tikiwiki/code');
+define('TIKIVCS', 'https://svn.code.sf.net/p/tikiwiki/code');
 
 /**
  * @param $relative
@@ -14,7 +16,7 @@ define('TIKISVN', 'https://svn.code.sf.net/p/tikiwiki/code');
  */
 function full($relative)
 {
-	return TIKISVN . "/$relative";
+	return TIKIVCS . "/$relative";
 }
 
 /**
@@ -23,64 +25,27 @@ function full($relative)
  */
 function short($full)
 {
-	return substr($full, strlen(TIKISVN) + 1);
-};
-
-/**
- * @param $string string			String to output
- * @param $color string				The colour of the string
- * @return string					The formatted string to output to the console
- */
-function color($string, $color)
-{
-	$avail = [
-		'red' => 31,
-		'green' => 32,
-		'yellow' => 33,
-		'blue' => 34,
-		'purple' => 35,
-		'cyan' => 36,
-		'gray' => 37,
-	];
-
-	if (! isset($avail[$color])) {
-		return $string;
-	}
-
-	return "\033[{$avail[$color]}m$string\033[0m";
+	return substr($full, strlen(TIKIVCS) + 1);
 }
 
-/**
- * @param $message
- */
-function error($message)
+function getBinName()
 {
-	die(color($message, 'red') . "\n");
+	return 'svn';
 }
 
-/**
- * @param $message
- */
-function info($message)
+function getMinVersion()
 {
-	echo color($message, 'blue') . "\n";
-}
-
-/**
- * @param $message
- */
-function important($message)
-{
-	echo color($message, 'green') . "\n";
+	return SVN_MIN_VERSION;
 }
 
 /**
  * @return bool
  */
-function check_svn_version()
+function check_bin_version()
 {
 	return version_compare(trim(`svn --version --quiet 2> /dev/null`), SVN_MIN_VERSION, '>');
 }
+
 
 /**
  * @param $path
@@ -93,6 +58,12 @@ function get_info($path)
 
 	return $info;
 }
+
+function get_revision($path)
+{
+	return get_info($path)->entry->commit['revision'];
+}
+
 
 /**
  * @param $url
@@ -193,13 +164,13 @@ function has_uncommited_changes($localPath)
 /**
  * Get the number of changes in the specified checkout
  *
- * @param string $localPath    Path of the checkout
+ * @param string $localPath Path of the checkout
  * @return array               The files that differ (additions, removals and modifications) from the repository
  *
  *
  * @see Similar function has_uncommited_changes()
  */
-function svn_files_differ($localPath)
+function files_differ($localPath)
 {
 	$localPath = escapeshellarg($localPath);
 
@@ -254,7 +225,7 @@ function find_last_merge($path, $source)
 
 	$ePath = escapeshellarg($path);
 
-	$process = proc_open("svn log --stop-on-copy " . TIKISVN, $descriptorspec, $pipes);
+	$process = proc_open("svn log --stop-on-copy " . TIKIVCS, $descriptorspec, $pipes);
 	$rev = 0;
 	$c = 0;
 
@@ -265,7 +236,7 @@ function find_last_merge($path, $source)
 			$line = fgets($fp, 1024);
 
 			if (preg_match($pattern, $line, $parts)) {
-				$rev = (int) $parts[2];
+				$rev = (int)$parts[2];
 				break;
 			}
 			$c++;
@@ -292,12 +263,17 @@ function merge($localPath, $source, $from, $to)
 {
 	$short = short($source);
 	$source = escapeshellarg($source);
-	$from = (int) $from;
-	$to = (int) $to;
+	$from = (int)$from;
+	$to = (int)$to;
 	passthru("svn merge $source -r$from:$to");
 
 	$message = "[MRG] Automatic merge, $short $from to $to";
 	file_put_contents('svn-commit.tmp', $message);
+}
+
+function add($file)
+{
+	`svn add $file`;
 }
 
 /**
@@ -315,9 +291,16 @@ function commit($msg, $displaySuccess = true, $dieOnRemainingChanges = true)
 		error("Commit seems to have failed. Uncommited changes exist in the working folder.\n");
 	}
 
-	return (int) get_info('.')->entry->commit['revision'];
+	return (int)get_info('.')->entry->commit['revision'];
 }
 
+/**
+ * Commit lang files
+ * @param $msg
+ * @param bool $displaySuccess
+ * @param bool $dieOnRemainingChanges
+ * @return int
+ */
 function commit_lang($msg, $displaySuccess = true, $dieOnRemainingChanges = true)
 {
 	$msg = escapeshellarg($msg);
@@ -327,7 +310,7 @@ function commit_lang($msg, $displaySuccess = true, $dieOnRemainingChanges = true
 		error("Commit seems to have failed. Uncommited changes exist in the working folder.\n");
 	}
 
-	return (int) get_info('./lang')->entry->commit['revision'];
+	return (int)get_info('./lang')->entry->commit['revision'];
 }
 
 function commit_specific_lang($lang, $msg, $displaySuccess = true, $dieOnRemainingChanges = true)
@@ -354,6 +337,7 @@ function incorporate($working, $source)
 
 	passthru($command = "svn merge $working $source");
 }
+
 
 /**
  * @param $source
@@ -397,14 +381,125 @@ function get_logs($localPath, $minRevision, $maxRevision = 'HEAD')
  * @param $releaseNumber
  * @return int
  */
-function get_tag_revision($releaseNumber) {
+function get_tag_revision($releaseNumber)
+{
 	$revision = 0;
 
 	// --stop-on-copy makes it only return the tag commit, not the whole history since time began
 	$log = `LANG=C svn log --stop-on-copy ^/tags/$releaseNumber/`;
-	if (preg_match('/^r(\d+)/ms',$log, $matches)) {
-		$revision = (int) $matches[1];
+	if (preg_match('/^r(\d+)/ms', $log, $matches)) {
+		$revision = (int)$matches[1];
 	}
 
 	return $revision;
+}
+
+/**
+ * Get contributors
+ * @param $path
+ * @param $contributors
+ * @param $minRevision
+ * @param $maxRevision
+ * @param int $step
+ */
+function get_contributors($path, &$contributors, $minRevision, $maxRevision, $step = 20000)
+{
+	$minByStep = max($maxRevision - $step, $minRevision);
+	$lastLogRevision = $maxRevision;
+	echo "\rRetrieving logs from revision $minByStep to $maxRevision ...\t\t\t";
+	$logs = get_logs($path, $minByStep, $maxRevision);
+	if (preg_match_all('/^r(\d+) \|\s([^\|]+)\s\|\s(\d+-\d+-\d+)\s.*\n\n(.*)\-+\n/Ums', $logs, $matches, PREG_SET_ORDER)) {
+		foreach ($matches as $logEntry) {
+			$mycommits[$logEntry[1]] = [$logEntry[2], $logEntry[3]];
+		}
+		krsort($mycommits);
+
+		foreach ($mycommits as $commitnum => $commitinfo) {
+			if ($lastLogRevision > 0 && $commitnum != $lastLogRevision - 1 && $lastLogRevision != $maxRevision) {
+				print "\nProblem with commit " . ($lastLogRevision - 1) . "\n (trying {$commitnum} after $lastLogRevision)";
+				die;
+			}
+
+			$lastLogRevision = $commitnum;
+			$author = strtolower($commitinfo[0]);
+
+			// Remove empty author or authors like (no author), which may be translated depending on server locales
+			if (empty($author) || $author[0] == '(') {
+				continue;
+			}
+
+			if (! isset($contributors[$author])) {
+				$contributors[$author] = [];
+			}
+
+			$contributors[$author]['Author'] = $commitinfo[0];
+			$contributors[$author]['First Commit'] = $commitinfo[1];
+
+			if (isset($contributors[$author]['Number of Commits'])) {
+				$contributors[$author]['Number of Commits']++;
+			} else {
+				$contributors[$author]['Last Commit'] = $commitinfo[1];
+				$contributors[$author]['Number of Commits'] = 1;
+			}
+		}
+	}
+
+	if ($lastLogRevision > $minRevision) {
+		get_contributors($path, $contributors, $minRevision, $lastLogRevision - 1, $step);
+	}
+}
+
+/**
+ * Verify if a tag exists
+ * @param $tag
+ * @param bool $remote
+ * @return bool
+ */
+function tag_exists($tag, $remote = false)
+{
+	if ($remote) {
+		$tag = full($tag);
+	}
+	return isset(get_info($tag)->entry);
+}
+
+function delete_file($file, $message = null)
+{
+	`svn delete $file --force`;
+}
+
+/**
+ * Delete a tag
+ * @param $tag
+ * @param $commit_msg
+ */
+function delete_tag($tag, $commit_msg)
+{
+	$tag = full($tag);
+	`svn rm $tag -m "$commit_msg"`;
+}
+
+/**
+ * Create a new tag
+ * @param $tag
+ * @param $commitMsg
+ * @param $branch
+ * @param $revision
+ */
+function create_tag($tag, $commitMsg, $branch, $revision)
+{
+	$tag = full($tag);
+	$branch = full($branch);
+	`svn copy $branch -r$revision $tag -m "$commitMsg"`;
+}
+
+/**
+ * Export a svn project
+ * @param $source
+ * @param $dest
+ * @return string|null
+ */
+function export($source, $dest)
+{
+	return shell_exec('svn export ' . escapeshellarg($source) . ' ' . escapeshellarg($dest . '/.') . ' 2>&1');
 }

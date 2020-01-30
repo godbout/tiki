@@ -235,8 +235,9 @@ $secdb_severity = [
 /**
  * @param $dir
  * @param $result
+ * @param $vcs_diff
  */
-function md5_check_dir($dir, &$result, $svn_diff = [])
+function md5_check_dir($dir, &$result, $vcs_diff = [])
 {
  // save all suspicious files in $result
 	global $tikilib, $tiki_versions, $tikipath;
@@ -247,7 +248,7 @@ function md5_check_dir($dir, &$result, $svn_diff = [])
 		$entry = $dir . '/' . $e;
 		if (is_dir($entry)) {
 			if ($e != '..' && $e != '.' && $entry != './temp/templates_c' && $entry != './temp') { // do not descend and no checking of templates_c since the file based md5 database would grow to big
-				md5_check_dir($entry, $result, $svn_diff);
+				md5_check_dir($entry, $result, $vcs_diff);
 			}
 		} elseif (preg_match('/\.(sql|css|tpl|js|php)$/', $e)) {
 			if (! is_readable($entry)) {
@@ -277,8 +278,8 @@ function md5_check_dir($dir, &$result, $svn_diff = [])
 					}
 				}
 				if ($is_tikifile == false) {
-					if ($svn_diff && isset($svn_diff[substr($entry, 2)]) && $svn_diff[substr($entry, 2)] !== 'unversioned') {
-						$result[$entry] = tra('This Tiki file differs from the SVN repository version. Check if this file was uploaded and if it is dangerous.');
+					if ($vcs_diff && isset($vcs_diff[substr($entry, 2)]) && $vcs_diff[substr($entry, 2)] !== 'unversioned') {
+						$result[$entry] = tra('This Tiki file differs from the VCS repository version. Check if this file was uploaded and if it is dangerous.');
 					} else {
 						$result[$entry] = tra('This is not a Tiki file. Check if this file was uploaded and if it is dangerous.');
 					}
@@ -317,9 +318,12 @@ if (isset($_POST['check_files'])) {
 	$tiki_versions[] = $version->version;
 	$result = [];
 
-	if (preg_match('/svn$/', $version->version) && is_readable('doc/devtools/svntools.php')) {	// svn checkout
+	if ($version->svn == 'y' && is_readable('doc/devtools/svntools.php')) {	// svn checkout
 		require_once('doc/devtools/svntools.php');
-		$svn_diff = svn_files_differ('./');
+		$svn_diff = files_differ('./');
+	} elseif ($version->git == 'y' && is_readable('doc/devtools/gittools.php')) {	// git checkout
+		require_once('doc/devtools/gittools.php');
+		$svn_diff = files_differ('./');
 	} else {
 		$svn_diff = [];
 	}
