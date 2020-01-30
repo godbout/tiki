@@ -18,14 +18,35 @@
 @import "../../base_files/scss/_bs3-bs4-transition.scss";
 @import "../../base_files/scss/_external-scripts.scss";
 
+// fix position and appearance of outline of checkbox/radio buttons
 [type="checkbox"], [type="radio"] {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
 
+[type="checkbox"].form-check-input {
+    &:before { position: static; }
+    &:after { top: 0.1em; left: 0.15em; }
+}
+
 .form-check-inline {
-    [type="checkbox"] {
-        &:before { top: -0.3em; left: 0; }
-        &:after { top: -0.08em; left: 0.15em; }
+    [type="checkbox"].form-check-input {
+        &:before { position: absolute; top: -0.4em; left: 0; }
+        &:after { top: -0.15em; left: 0.15em; }
+    }
+}
+
+.table-responsive .table {
+    tr th {
+        [type="checkbox"].form-check-input {
+            &:before { position: absolute; top: 0; left: -0.6em; }
+            &:after { top: 0.15em; left: -0.24em; }
+        }
+    }
+    tr td {
+        [type="checkbox"].form-check-input {
+            &:before { position: absolute; }
+            &:after { top: -0.48em; left: -0.66em; }
+        }
     }
 }

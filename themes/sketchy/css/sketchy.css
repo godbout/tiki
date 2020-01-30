@@ -8055,9 +8055,29 @@ input[type="text"].chosen-focus-input {
   -webkit-appearance: none;
   -moz-appearance: none; }
 
-.form-check-inline [type="checkbox"]:before {
-  top: -0.3em;
-  left: 0; }
-  .form-check-inline [type="checkbox"]:after {
-    top: -0.08em;
+[type="checkbox"].form-check-input:before {
+  position: static; }
+  [type="checkbox"].form-check-input:after {
+    top: 0.1em;
     left: 0.15em; }
+
+.form-check-inline [type="checkbox"].form-check-input:before {
+  position: absolute;
+  top: -0.4em;
+  left: 0; }
+  .form-check-inline [type="checkbox"].form-check-input:after {
+    top: -0.15em;
+    left: 0.15em; }
+
+.table-responsive .table tr th [type="checkbox"].form-check-input:before {
+  position: absolute;
+  top: 0;
+  left: -0.6em; }
+  .table-responsive .table tr th [type="checkbox"].form-check-input:after {
+    top: 0.15em;
+    left: -0.24em; }
+  .table-responsive .table tr td [type="checkbox"].form-check-input:before {
+    position: absolute; }
+  .table-responsive .table tr td [type="checkbox"].form-check-input:after {
+    top: -0.48em;
+    left: -0.66em; }
