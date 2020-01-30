@@ -751,16 +751,6 @@ function prefs_feature_list($partial = false)
 			'default' => 'n',
 			'tags' => ['experimental'],
 		],
-		'feature_invoice' => [
-			'name' => tra('Invoice'),
-			'description' => tra('Invoice system'),
-			'help' => 'Invoice',
-			'type' => 'flag',
-			'keywords' => 'invoice contractor invoicing',
-			'default' => 'n',
-			'view' => 'tiki-list_invoices.php',
-			'tags' => ['experimental'],
-		],
 
 		// TODO: Replace feature_wysiwyg and wysiwyg_optional with a single tri-state preference (allowing either just normal editor (default), just WYSIWYG or both) to clarify and avoid misinterpretation
 		'feature_wysiwyg' => [

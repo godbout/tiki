@@ -6110,7 +6110,6 @@ templates/tiki-admin_html_pages.tpl -text
 templates/tiki-admin_ids.tpl -text
 templates/tiki-admin_integrator.tpl -text
 templates/tiki-admin_integrator_rules.tpl -text
-templates/tiki-admin_invoices.tpl -text
 templates/tiki-admin_keywords.tpl -text
 templates/tiki-admin_links.tpl -text
 templates/tiki-admin_mailin.tpl -text
@@ -6199,7 +6198,6 @@ templates/tiki-edit_help_plugins.tpl -text
 templates/tiki-edit_help_sheet.tpl -text
 templates/tiki-edit_help_wysiwyg.tpl -text
 templates/tiki-edit_image.tpl -text
-templates/tiki-edit_invoice.tpl -text
 templates/tiki-edit_languages.tpl -text
 templates/tiki-edit_perspective.tpl -text
 templates/tiki-edit_programmed_content.tpl -text
@@ -6243,8 +6241,6 @@ templates/tiki-install.tpl -text
 templates/tiki-integrator.tpl -text
 templates/tiki-invite.tpl -text
 templates/tiki-invited.tpl -text
-templates/tiki-invoice_menu.tpl -text
-templates/tiki-invoice_reports.tpl -text
 templates/tiki-kaltura_upload.tpl -text
 templates/tiki-kaltura_video.tpl -text
 templates/tiki-lastchanges.tpl -text
@@ -6260,8 +6256,6 @@ templates/tiki-list_file_gallery.tpl -text
 templates/tiki-list_gallery.tpl -text
 templates/tiki-list_integrator_repositories.tpl -text
 templates/tiki-list_invite.tpl -text
-templates/tiki-list_invoice_clients.tpl -text
-templates/tiki-list_invoices.tpl -text
 templates/tiki-list_kaltura_browse_entries.tpl -text
 templates/tiki-list_kaltura_entries.tpl -text
 templates/tiki-list_kaltura_entries_actions.tpl -text
@@ -6417,7 +6411,6 @@ templates/tiki-view_cache.tpl -text
 templates/tiki-view_faq.tpl -text
 templates/tiki-view_forum.tpl -text
 templates/tiki-view_forum_thread.tpl -text
-templates/tiki-view_invoice.tpl -text
 templates/tiki-view_sheets.tpl -text
 templates/tiki-view_sheets_menu.tpl -text
 templates/tiki-view_tracker.tpl -text
@@ -8004,7 +7997,6 @@ themes/yeti/templates/index.php -text
 /tiki-admin_ids.php -text
 /tiki-admin_integrator.php -text
 /tiki-admin_integrator_rules.php -text
-/tiki-admin_invoices.php -text
 /tiki-admin_keywords.php -text
 /tiki-admin_links.php -text
 /tiki-admin_mailin.php -text
@@ -8102,7 +8094,6 @@ themes/yeti/templates/index.php -text
 /tiki-edit_docs.php -text
 /tiki-edit_draw.php -text
 /tiki-edit_image.php -text
-/tiki-edit_invoice.php -text
 /tiki-edit_languages.php -text
 /tiki-edit_perspective.php -text
 /tiki-edit_programmed_content.php -text
@@ -8160,7 +8151,6 @@ themes/yeti/templates/index.php -text
 /tiki-interactive_trans.php -text
 /tiki-invite.php -text
 /tiki-invited.php -text
-/tiki-invoice_reports.php -text
 /tiki-kaltura_upload.php -text
 /tiki-kaltura_video.php -text
 /tiki-lastchanges.php -text
@@ -8177,8 +8167,6 @@ themes/yeti/templates/index.php -text
 /tiki-list_gallery.php -text
 /tiki-list_integrator_repositories.php -text
 /tiki-list_invite.php -text
-/tiki-list_invoice_clients.php -text
-/tiki-list_invoices.php -text
 /tiki-list_kaltura_entries.php -text
 /tiki-list_object_permissions.php -text
 /tiki-list_posts.php -text
@@ -8335,7 +8323,6 @@ themes/yeti/templates/index.php -text
 /tiki-view_faq.php -text
 /tiki-view_forum.php -text
 /tiki-view_forum_thread.php -text
-/tiki-view_invoice.php -text
 /tiki-view_minical_topic.php -text
 /tiki-view_sheets.php -text
 /tiki-view_tracker.php -text

@@ -113,7 +113,6 @@
 							{preference name=feature_credits}
 							{preference name=feature_accounting}
 							{preference name=payment_feature}
-							{preference name=feature_invoice}
 						</fieldset>
 					</div>
 					<div class="adminoptionboxchild">
