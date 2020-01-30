@@ -222,7 +222,7 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 			// mark every old value line with standard email reply character
 			$old_value_lines = '';
 			foreach ($lines as $line) {
-				$old_value_lines .= '> ' . $line;
+				$old_value_lines .= '> ' . $line . "\n";
 			}
 			return "[-[$name]-]:\n--[Old]--:\n$old_value_lines\n\n*-[New]-*:\n$new";
 		} else {
