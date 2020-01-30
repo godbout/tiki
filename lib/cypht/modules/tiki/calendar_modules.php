@@ -288,6 +288,63 @@ class Hm_Handler_add_to_calendar extends Hm_Handler_Module {
 }
 
 /**
+ * Update participant status for a Tiki calendar event
+ * @subpackage tiki/handler
+ */
+class Hm_Handler_update_participant_status extends Hm_Handler_Module {
+    public function process() {
+        global $prefs;
+
+        if ($prefs['feature_calendar'] !== 'y') {
+            return;
+        }
+
+        $event = $this->get('calendar_event');
+        $from = null;
+        $headers = $this->get('msg_headers', array());
+        foreach ($headers as $name => $value) {
+            if (strtolower($name) == 'from') {
+                $from = (string)$value;
+            }
+        }
+
+        $existing = TikiLib::lib('calendar')->find_by_uid(null, $event['uid']);
+        if ($existing) {
+            if (! empty($event['participants'])) {
+                foreach ($event['participants'] as &$role) {
+                    if ($role['email'] === $from) {
+                        TikiLib::lib('calendar')->update_partstat($existing['calitemId'], $role['username'], $role['partstat']);
+                    }
+                }
+            }
+        }
+        Hm_Msgs::add("Information updated");
+    }
+}
+
+/**
+ * Remove an event from Tiki calendar when cancelation email is received
+ * @subpackage tiki/handler
+ */
+class Hm_Handler_remove_from_calendar extends Hm_Handler_Module {
+    public function process() {
+        global $prefs, $user;
+
+        if ($prefs['feature_calendar'] !== 'y') {
+            return;
+        }
+
+        $event = $this->get('calendar_event');
+        $existing = TikiLib::lib('calendar')->find_by_uid(null, $event['uid']);
+        if ($existing) {
+            TikiLib::lib('calendar')->drop_item($user, $existing['calitemId'], false, false);
+        }
+
+        Hm_Msgs::add("Event removed");
+    }
+}
+
+/**
  * Show RSVP buttons if message contains a calendar invitation
  * @subpackage tiki/output
  */
@@ -352,6 +409,22 @@ class Hm_Output_add_rsvp_actions extends Hm_Output_Module {
                     tr('No'),
                     $no_tag
                 );
+            }
+            if ($prefs['feature_calendar'] == 'y' && $method == 'REPLY') {
+                $existing = TikiLib::lib('calendar')->find_by_uid(null, $event['uid']);
+                if ($existing) {
+                    $res .= sprintf('<tr><th colspan="2" class="header_links"><a href="#" class="event_update_participant_status">%s</a></th></tr>',
+                        tr('Update participant status')
+                    );
+                }
+            }
+            if ($prefs['feature_calendar'] == 'y' && $method == 'CANCEL') {
+                $existing = TikiLib::lib('calendar')->find_by_uid(null, $event['uid']);
+                if ($existing) {
+                    $res .= sprintf('<tr><th colspan="2" class="header_links"><a href="#" class="event_remove_from_calendar">%s</a></th></tr>',
+                        tr('Remove from calendar')
+                    );
+                }
             }
             $headers = preg_replace("#<tr><td[^>]*header_space[^>]*>.*?</td></tr>#", $res."\\0", $headers);
         }

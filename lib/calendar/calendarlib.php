@@ -845,11 +845,13 @@ class CalendarLib extends TikiLib
 	 * @param $user
 	 * @param $calitemId
 	 */
-	function drop_item($user, $calitemId, $isBulk = false)
+	function drop_item($user, $calitemId, $isBulk = false, $process_itip = true)
 	{
 		if ($calitemId) {
 			$item = $this->get_item($calitemId);
 			$query = "delete from `tiki_calendar_items` where `calitemId`=?";
+			$this->query($query, [$calitemId]);
+			$query = "delete from `tiki_calendar_roles` where `calitemId`=?";
 			$this->query($query, [$calitemId]);
 			$this->remove_object('calendar event', $calitemId);
 			TikiLib::lib('calendar')->add_change($item['calendarId'], $calitemId, 3);
@@ -860,7 +862,7 @@ class CalendarLib extends TikiLib
 				'user' => $user,
 				'bulk_import' => $isBulk,
 				'old_data' => $item,
-				'process_itip' => true
+				'process_itip' => $process_itip
 			]);
 		}
 	}
@@ -1753,6 +1755,16 @@ class CalendarLib extends TikiLib
 				}
 			}
 		}
+	}
+
+	/**
+	 * Update participant status (partstat) for an attendee
+	 * @param $calitemId
+	 * @param $username
+	 * @param $partstat - ACCEPTED, TENTATIVE, DECLINED
+	 */
+	public function update_partstat($calitemId, $username, $partstat) {
+		return $this->query("update `tiki_calendar_roles` SET `partstat` = ? where calitemId = ? and username = ?", [$partstat, $calitemId, $username]);
 	}
 
 	/**

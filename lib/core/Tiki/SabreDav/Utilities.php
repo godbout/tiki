@@ -251,25 +251,23 @@ class Utilities {
       }
     }
     if (isset($component->ATTENDEE)) {
-      // participants is used by calendarlib to store in Tiki - these are mapped attendees to Tiki users
+      // participants is used by calendarlib to store in Tiki - these are mapped attendees to Tiki users or plain email addresses
       $result['participants'] = [];
       foreach ($component->ATTENDEE as $attendee) {
         $email = preg_replace("/MAILTO:\s*/i", "", (string)$attendee);
         $user = TikiLib::lib('user')->get_user_by_email($email);
-        if ($user) {
-          $participant = [
-            'username' => $user,
-            'email' => $email,
-          ];
-          $role = self::reverseMapAttendeeRole($attendee['ROLE']);
-          if ($role) {
-            $participant['role'] = $role;
-          }
-          if (isset($attendee['PARTSTAT'])) {
-            $participant['partstat'] = $attendee['PARTSTAT'];
-          }
-          $result['participants'][] = $participant;
+        $participant = [
+          'username' => !empty($user) ? $user : $email,
+          'email' => $email,
+        ];
+        $role = self::reverseMapAttendeeRole((string)$attendee['ROLE']);
+        if ($role) {
+          $participant['role'] = $role;
         }
+        if (isset($attendee['PARTSTAT'])) {
+          $participant['partstat'] = (string)$attendee['PARTSTAT'];
+        }
+        $result['participants'][] = $participant;
       }
       // fetch attendees as they are for later reference like RSVP actions via Cypht
       $result['attendees'] = [];
