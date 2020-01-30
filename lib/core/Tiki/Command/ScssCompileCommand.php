@@ -13,11 +13,11 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Logger\ConsoleLogger;
-use Leafo\ScssPhp\Compiler;
-use Leafo\ScssPhp\Exception\ParserException;
-use Leafo\ScssPhp\Exception\CompilerException;
-use Leafo\ScssPhp\Exception\RangeException;
-use Leafo\ScssPhp\Exception\ServerException;
+use ScssPhp\ScssPhp\Compiler;
+use ScssPhp\ScssPhp\Exception\ParserException;
+use ScssPhp\ScssPhp\Exception\CompilerException;
+use ScssPhp\ScssPhp\Exception\RangeException;
+use ScssPhp\ScssPhp\Exception\ServerException;
 use Psr\Log\LogLevel;
 
 class ScssCompileCommand extends Command
@@ -79,7 +79,7 @@ class ScssCompileCommand extends Command
 			$location = 'themes';
 		}
 		$logger->debug(sprintf('Using location "%s" ', $location));
-		
+
 		$continueOnError = $input->getOption('continue-on-error');
 		$checkTimestamps = $input->getOption('check-timestamps');
 
