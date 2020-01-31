@@ -104,7 +104,7 @@ class Tiki_Hm_Custom_Session extends Hm_Session {
 	 */
 	public function del($name) {
 		if (array_key_exists('cypht', $_SESSION) && array_key_exists($name, $_SESSION['cypht'])) {
-			unset($_SESSION[$name]);
+			unset($_SESSION['cypht'][$name]);
 		}
 	}
 
@@ -153,10 +153,12 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 		$this->set('output_class', 'Tiki_Hm_Output_HTTP');
 		$this->set('cookie_path', ini_get('session.cookie_path'));
 		$request = filter_input_array(INPUT_GET, array('page' => FILTER_SANITIZE_STRING), false);
-		if (empty($request['page']) || empty($_SESSION['cypht']['user_data'])) {
+		if (empty($_SESSION['cypht']['user_data']) || empty($_SESSION['cypht']['username'])) {
 			$user_config = new Tiki_Hm_User_Config($this);
 			$user_config->load($user);
 			$_SESSION['cypht']['user_data'] = $user_config->dump();
+			$_SESSION['cypht']['preference_name'] = 'cypht_user_config';
+			$_SESSION['cypht']['username'] = $user;
 		}
 		$output_modules = $this->get('output_modules');
 		$handler_modules = $this->get('handler_modules');
