@@ -154,6 +154,9 @@
 				<legend>{tr}Multi-domain{/tr}</legend>
 				{preference name=multidomain_active}
 				{preference name=multidomain_switchdomain}
+				<div class="adminoptionboxchild" id="multidomain_switchdomain_childcontainer">
+					{preference name=multidomain_default_not_categorized}
+				</div>
 				<div class="adminoptionboxchild" id="multidomain_active_childcontainer">
 					{preference name=multidomain_config}
 				</div>

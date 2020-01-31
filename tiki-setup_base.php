@@ -591,10 +591,7 @@ if ($prefs['feature_perspective'] === 'y') {
 				$perspective = $areaslib->getPerspectiveByObjectAndCategories($currentObject, $objectCategoryIdsNoJail);
 				if ($perspective) {
 					$perspectivelib = TikiLib::lib('perspective');
-					$_SESSION['current_perspective'] = $perspective;
-					$_SESSION['current_perspective_name'] = $perspectivelib->get_perspective_name(
-						$_SESSION['current_perspective']
-					);
+					$perspectivelib->set_perspective($perspective, true);
 				}
 			}
 		})();

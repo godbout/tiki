@@ -4334,9 +4334,7 @@ lib/test/AcceptanceTests/MultilinguallibTest.php -text
 lib/test/AcceptanceTests/SearchTest.php -text
 lib/test/AcceptanceTests/TikiLibrariesAccessTest.php -text
 lib/test/AcceptanceTests/index.php -text
-lib/test/AcceptanceTests/utils/create_dump_db_file.php -text
 lib/test/AcceptanceTests/utils/index.php -text
-lib/test/AcceptanceTests/utils/restore_db_dump.php -text
 lib/test/AcceptanceTests/utils/upgrade_test_database_dump_file.php -text
 lib/test/AllTestsAcceptance.php -text
 lib/test/Calendar/DateTest.php -text
@@ -4705,6 +4703,8 @@ lib/test/language/fixtures/language_writestringstofile_second_call.php -text
 lib/test/language/fixtures/test_collecting_strings.php -text
 lib/test/language/fixtures/test_collecting_strings.tpl -text
 lib/test/language/index.php -text
+lib/test/lib/Perspective/fixtures/testAreasMultiDomainBasic.yml -text
+lib/test/lib/Perspective/fixtures/testPerspectivesProfile.yml -text
 lib/test/local.php.dist -text
 lib/test/notifications/NotificationEmailLibTest.php -text
 lib/test/payment/CartTest.php -text

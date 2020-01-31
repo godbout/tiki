@@ -106,6 +106,36 @@ class AreasLib extends CategLib
 			if ($area) {
 				if (! $area['share_common']) {
 					$perspectivelib->set_perspective($objectPerspective, true);
+
+					if ($prefs['multidomain_switchdomain'] == 'y') {
+						// When running as multi-domain, with switch domain active, un categorized content (without one
+						// category inside the jail for the perspective) can only be displayed in the current domain if
+						// the perspective is marked as share_common.
+						// So we need to fall back to the default domain for multi domain or just fail - if we can't
+						// guess the domain, as we would end up in an endless redirect loop
+						foreach ($perspectivelib->get_domain_map() as $domain => $persp) {
+							if (isset($_SERVER['HTTP_HOST']) && $domain == $_SERVER['HTTP_HOST']) {
+								if (! empty($prefs['multidomain_default_not_categorized'])
+									&& ! in_array($prefs['multidomain_default_not_categorized'], array_keys($perspectivelib->get_domain_map()))
+								) {
+									$saveHttpHost = $_SERVER['HTTP_HOST'];
+									// selfUrl uses HTTP_HOST, and redirect will exit after redirect, so no problem on "tampering" with $_SERVER
+									$_SERVER['HTTP_HOST'] = $prefs['multidomain_default_not_categorized'];
+									$accesslib->redirect($accesslib->selfUrl(), '', 301);
+									$_SERVER['HTTP_HOST'] = $saveHttpHost; // this should never be reach
+								} else {
+									$accesslib->display_error(
+										$accesslib->selfUrl(),
+										tra("Perspective misconfiguration"),
+										500,
+										false,
+										tra('The resource you requested is not available in the current perspective, and the system administrator did not define a default domain to redirect to. Please contact your system administrator, or check the documentation in <a href="http://doc.tiki.org/Perspectives">http://doc.tiki.org/Perspectives</a> related with multi-domain configurations.')
+									);
+								}
+							}
+						}
+					}
+
 					$accesslib->redirect($accesslib->selfUrl(), '', 301);
 				}
 			}

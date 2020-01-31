@@ -39,7 +39,14 @@ class Tiki_Profile_InstallHandler_AreaBinding extends Tiki_Profile_InstallHandle
 
 		$this->replaceReferences($data);
 
-		$areaslib->bind_area($data['category'], $data['perspective']);
+		$extraData = [];
+		foreach(['exclusive', 'share_common', 'enabled'] as $key) {
+			if (!empty($data[$key])){
+				$extraData[$key] = $data[$key];
+			}
+		}
+
+		$areaslib->bind_area($data['category'], $data['perspective'], $extraData);
 
 		return "{$data['category']}-{$data['perspective']}";
 	}

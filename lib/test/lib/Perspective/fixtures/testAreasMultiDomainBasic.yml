@@ -1,0 +1,123 @@
+permissions: {  }
+
+preferences:
+  browsertitle: perspective-none
+
+  feature_categories: 'y'
+  categories_add_class_to_body_tag: 'y'
+  categories_used_in_tpl: 'y'
+
+  feature_perspective: 'y'
+
+  feature_areas: 'y'
+  areas_root: '$profileobject:cat_areasroot$'
+
+  multidomain_active: 'y'
+  multidomain_config: '$profilerequest:site$tiki-a.localdomain$,$profileobject:persp_site$'
+  multidomain_default_not_categorized: '$profilerequest:host$tiki.localdomain$'
+  multidomain_switchdomain: 'y'
+
+objects:
+  #
+  # Categories
+  #
+
+  -
+    type: category
+    ref: cat_areasroot
+    data:
+      name: AreasRoot
+
+  -
+    type: category
+    ref: cat_info
+    data:
+      name: info
+      parent: '$profileobject:cat_areasroot$'
+      items:
+        - [ wiki page, $wiki_info_1 ]
+        - [ wiki page, $wiki_info_2 ]
+  -
+    type: category
+    ref: cat_site
+    data:
+      name: site
+      parent: '$profileobject:cat_areasroot$'
+      items:
+        - [ wiki page, $wiki_site_1 ]
+        - [ wiki page, $wiki_site_2 ]
+
+
+  #
+  # Areas
+  #
+  -
+    type: area_binding
+    ref: area_info
+    data:
+      category: '$profileobject:cat_info$'
+      perspective: '$profileobject:persp_info$'
+      exclusive: y
+      share_common: n
+      enabled: y
+  -
+    type: area_binding
+    ref: area_site
+    data:
+      category: '$profileobject:cat_site$'
+      perspective: '$profileobject:persp_site$'
+      exclusive: y
+      share_common: n
+      enabled: y
+
+#
+# Perspectives
+#
+  -
+    type: perspective
+    ref: persp_info
+    data:
+      name: info
+      preferences:
+        browsertitle: perspective-info
+        category_jail: [ $profileobject:cat_info$ ]
+        theme: amelia
+  -
+    type: perspective
+    ref: persp_site
+    data:
+      name: site
+      preferences:
+        browsertitle: perspective-site
+        category_jail: [ $profileobject:cat_site$ ]
+        theme: sketchy
+
+  #
+  # Pages
+  #
+
+  -
+    type: wiki_page
+    ref: wiki_site_1
+    data:
+      name: 'test site 1'
+      content: 'Site 1'
+  -
+    type: wiki_page
+    ref: wiki_site_2
+    data:
+      name: 'test site 2'
+      content: 'Site 2'
+  -
+    type: wiki_page
+    ref: wiki_info_1
+    data:
+      name: 'test info 1'
+      content: 'Info 1'
+  -
+    type: wiki_page
+    ref: wiki_info_2
+    data:
+      name: 'test info 2'
+      content: 'Info 2'
+

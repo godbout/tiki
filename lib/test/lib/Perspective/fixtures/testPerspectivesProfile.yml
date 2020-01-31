@@ -1,0 +1,364 @@
+# copy of the profile from https://profiles.tiki.org/Jailroot_Demonstration
+
+#
+# Global
+#
+
+preferences:
+  feature_categories: y
+  feature_perspective: y
+  feature_jquery_ui: y  #Need to manage perspectives on tiki-edit_perspective.php
+  feature_blogs: y
+  feature_forums: y
+  feature_file_galleries: y
+  feature_trackers: y
+  feature_search: y
+  feature_top_bar: y
+  feature_sheet: y
+
+permissions:
+  Anonymous:
+    allow: [ perspective_view, forum_read ]
+
+
+objects:
+  -
+    type: module
+    ref: persp_switcher
+    data:
+      name: perspective
+      position: right
+      order: 1
+      groups: [ Admins, Registered, Anonymous ]
+  -
+    type: module
+    ref: category_listing
+    data:
+      name: categories
+      position: right
+      order: 2
+      groups: [ Admins, Registered, Anonymous ]
+  -
+    type: category
+    ref: tree_a
+    data:
+      name: A
+      items:
+        - [ wiki page, $aonly ]
+        - [ forum, $foruma ]
+        - [ forum, $foruma_and_b ]
+        - [ file gallery, $fgaonly ]
+        - [ blog, $aonlyblog ]
+        - [ blog, $aandbblog ]
+        - [ tracker, $trackera ]
+  -
+    type: category
+    ref: tree_b
+    data:
+      name: B
+      items:
+        - [ wiki page, $bonly ]
+        - [ forum, $forumb ]
+        - [ forum, $foruma_and_b ]
+        - [ file gallery, $fgbonly ]
+        - [ blog, $bonlyblog ]
+        - [ blog, $aandbblog ]
+  -
+    type: category
+    ref: a1
+    data:
+      name: a1
+      parent: $tree_a
+      items:
+        - [ wiki page, $o1 ]
+        - [ wiki page, $oax ]
+        - [ file gallery, $fg1 ]
+        - [ file gallery, $fgax ]
+  -
+    type: category
+    ref: a2
+    data:
+      name: a2
+      parent: $tree_a
+      items:
+        - [ wiki page, $o2 ]
+        - [ wiki page, $oax ]
+        - [ file gallery, $fg2 ]
+        - [ file gallery, $fgax ]
+  -
+    type: category
+    ref: a3
+    data:
+      name: a3
+      parent: $tree_a
+      items:
+        - [ wiki page, $o3 ]
+        - [ wiki page, $oax ]
+        - [ file gallery, $fg3 ]
+        - [ file gallery, $fgax ]
+  -
+    type: category
+    ref: b1
+    data:
+      name: b1
+      parent: $tree_b
+      items:
+        - [ wiki page, $o1 ]
+        - [ wiki page, $obx ]
+        - [ file gallery, $fg1 ]
+        - [ file gallery, $fgbx ]
+  -
+    type: category
+    ref: b2
+    data:
+      name: b2
+      parent: $tree_b
+      items:
+        - [ wiki page, $o2 ]
+        - [ wiki page, $obx ]
+        - [ file gallery, $fg2 ]
+        - [ file gallery, $fgbx ]
+  -
+    type: category
+    ref: b3
+    data:
+      name: b3
+      parent: $tree_b
+      items:
+        - [ wiki page, $o3 ]
+        - [ wiki page, $obx ]
+        - [ file gallery, $fg3 ]
+        - [ file gallery, $fgbx ]
+
+#
+# Data
+#
+  -
+    type: wiki_page
+    ref: o1
+    data:
+      name: A1 and B1
+      content: ContentA1 ContentB1
+  -
+    type: wiki_page
+    ref: o2
+    data:
+      name: A2 and B2
+      content: ContentA2 ContentB2
+  -
+    type: wiki_page
+    ref: o3
+    data:
+      name: A3 and B3
+      content: ContentA3 ContentB3
+  -
+    type: wiki_page
+    ref: oax
+    data:
+      name: A1 A2 A3
+      content: ContentA1 ContentA2 ContentA3
+  -
+    type: wiki_page
+    ref: obx
+    data:
+      name: B1 B2 B3
+      content: ContentB1 ContentB2 ContentB3
+  -
+    type: wiki_page
+    ref: aonly
+    data:
+      name: A
+      content: ContentA
+  -
+    type: wiki_page
+    ref: bonly
+    data:
+      name: B
+      content: ContentB
+
+# Blog
+  -
+    type: blog
+    ref: aonlyblog
+    data:
+      title: A
+  -
+    type: blog
+    ref: bonlyblog
+    data:
+      title: B
+  -
+    type: blog
+    ref: aandbblog
+    data:
+      title: A and B
+
+# Forum
+  -
+    type: forum
+    ref: foruma
+    data:
+      name: A
+  -
+    type: forum
+    ref: forumb
+    data:
+      name: B
+  -
+    type: forum
+    ref: foruma_and_b
+    data:
+      name: A and B
+
+# File Gallery
+  -
+    type: file_gallery
+    ref: fg1
+    data:
+      name: A1 and B1
+      flags: [ public, visible ]
+  -
+    type: file_gallery
+    ref: fg2
+    data:
+      name: A2 and B2
+      flags: [ public, visible ]
+  -
+    type: file_gallery
+    ref: fg3
+    data:
+      name: A3 and B3
+      flags: [ public, visible ]
+  -
+    type: file_gallery
+    ref: fgax
+    data:
+      name: A1 A2 A3
+      flags: [ public, visible ]
+  -
+    type: file_gallery
+    ref: fgbx
+    data:
+      name: B1 B2 B3
+      flags: [ public, visible ]
+  -
+    type: file_gallery
+    ref: fgaonly
+    data:
+      name: A
+      flags: [ public, visible ]
+  -
+    type: file_gallery
+    ref: fgbonly
+    data:
+      name: B
+      flags: [ public, visible ]
+
+# Tracker
+  -
+    type: tracker
+    ref: trackera
+    data:
+      name: Bugs
+      description: Standard bug tracker
+      default_status: open
+      show: [ status, creation_date, modification_date, list_modification_date ]
+      allow: [ comments, attachments ]
+  -
+    type: tracker_field
+    ref: bug_tracker_summary
+    data:
+      name: Summary
+      tracker: $trackera
+      type: text_field
+      flags: [ searchable, public, list, mandatory, link ]
+      order: 10
+  -
+    type: tracker_field
+    ref: bug_tracker_priority
+    data:
+      name: Priority
+      tracker: $trackera
+      type: dropdown
+      options: 5 (high),4,3,2,1 (low)
+      flags: [ searchable, public, list ]
+      order: 20
+
+# Perspectives
+  -
+    type: perspective
+    data:
+      name: A
+      preferences:
+        category_jail: [ $tree_a ]
+        sitetitle: This is perspective A
+  -
+    type: perspective
+    data:
+      name: B
+      preferences:
+        category_jail: [ $tree_b ]
+        sitetitle: This is perspective B
+        site_style: thenews.css
+  -
+    type: perspective
+    data:
+      name: A1
+      preferences:
+        category_jail: [ $a1 ]
+        site_style: feb12.css
+  -
+    type: perspective
+    data:
+      name: A2
+      preferences:
+        category_jail: [ $a2 ]
+        site_style: darkroom.css
+  -
+    type: perspective
+    data:
+      name: A3
+      preferences:
+        category_jail: [ $a3 ]
+  -
+    type: perspective
+    data:
+      name: B1
+      preferences:
+        category_jail: [ $b1 ]
+  -
+    type: perspective
+    data:
+      name: B2
+      preferences:
+        category_jail: [ $b2 ]
+  -
+    type: perspective
+    data:
+      name: B3
+      preferences:
+        category_jail: [ $b3 ]
+  -
+    type: perspective
+    data:
+      name: 1
+      preferences:
+        category_jail: [ $profileobject:a1$, $profileobject:b1$ ]
+  -
+    type: perspective
+    data:
+      name: 2
+      preferences:
+        category_jail: [ $profileobject:a2$, $profileobject:b2$ ]
+  -
+    type: perspective
+    data:
+      name: 3
+      preferences:
+        category_jail: [ $profileobject:a3$, $profileobject:b3$ ]
+  -
+    type: perspective
+    data:
+      name: ALL
+      preferences:
+        category_jail: [ $profileobject:tree_a$, $profileobject:tree_b$ ]

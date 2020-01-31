@@ -4755,7 +4755,7 @@ class TikiLib extends TikiDb_Bridge
 		$pointedPages = $parserlib->get_pages($data, true);
 
 		if (! isset($_SERVER["SERVER_NAME"])) {
-			$_SERVER["SERVER_NAME"] = $_SERVER["HTTP_HOST"];
+			$_SERVER["SERVER_NAME"] = $_SERVER["HTTP_HOST"] ?? '';
 		}
 
 		if ($this->page_exists($name)) {
@@ -4868,7 +4868,7 @@ class TikiLib extends TikiDb_Bridge
 			//  Deal with mail notifications.
 			include_once(__DIR__ . '/notifications/notificationemaillib.php');
 
-			$foo = parse_url($_SERVER["REQUEST_URI"]);
+			$foo = parse_url($_SERVER["REQUEST_URI"] ?? '');
 			$machine = self::httpPrefix(true) . dirname($foo["path"]);
 			sendWikiEmailNotification('wiki_page_created', $name, $user, $comment, 1, $data, $machine, '', false, $hash['contributions']);
 			if ($prefs['feature_contribution'] == 'y') {

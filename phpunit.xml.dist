@@ -32,6 +32,7 @@
 			<group>marked-as-incomplete</group>
 			<!-- require pref lang_google_api_key -->
 			<group>GoogleTranslate</group>
+			<group>RequiresWebserver</group>
 		</exclude>
 	</groups>
 

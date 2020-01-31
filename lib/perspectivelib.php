@@ -213,31 +213,59 @@ class PerspectiveLib
 
 		$preferred_perspective = $this->get_preferred_perspective($user);
 
-		if ($this->get_perspective($perspective) || empty($perspective)) {
-			if ($prefs['multidomain_switchdomain'] == 'y') {
-				foreach ($this->get_domain_map() as $domain => $persp) {
-					if ($persp == $perspective && isset($_SERVER['HTTP_HOST']) && $domain != $_SERVER['HTTP_HOST']) {
-						$path = $tikiroot;
-						if ($by_area && ! empty($_SERVER['REQUEST_URI'])) {
-							$path = $_SERVER['REQUEST_URI'];
-						}
-						$targetUrl = $url_scheme . '://' . $domain . $path;
-
-						if ($prefs['feature_areas'] === 'y') {
-							header('HTTP/1.0 301 Found');
-						}
-						header('Location: ' . $targetUrl);
-						exit;
-					}
-				}
-			}
-		}
 		if (empty($perspective) && !$preferred_perspective) {
 			unset($_SESSION['current_perspective']);
 			unset($_SESSION['current_perspective_name']);
 		} else {
 			$_SESSION['current_perspective'] = $perspective;
 			$_SESSION['current_perspective_name'] = $this->get_perspective_name($_SESSION['current_perspective']);
+		}
+
+		if ($this->perspective_exists($perspective) || empty($perspective)) {
+			if ($prefs['multidomain_switchdomain'] == 'y') {
+				$perspectiveFound = false;
+				$domainFound = false;
+				foreach ($this->get_domain_map() as $domain => $persp) {
+					$domainFound = $domainFound || (isset($_SERVER['HTTP_HOST']) && $domain == $_SERVER['HTTP_HOST']);
+					if ($persp == $perspective) {
+						if(isset($_SERVER['HTTP_HOST']) && $domain != $_SERVER['HTTP_HOST']) {
+							$path = $tikiroot;
+							if ($by_area && ! empty($_SERVER['REQUEST_URI'])) {
+								$path = $_SERVER['REQUEST_URI'];
+							}
+							$targetUrl = $url_scheme . '://' . $domain . $path;
+
+							if ($prefs['feature_areas'] === 'y') {
+								header('HTTP/1.0 301 Found');
+							}
+							header('Location: ' . $targetUrl);
+							exit;
+						}
+						$perspectiveFound = true;
+						break;
+					}
+				}
+				if (! $perspectiveFound && $domainFound) {
+					$accesslib = TikiLib::lib('access');
+					if (! empty($prefs['multidomain_default_not_categorized'])) {
+						if ($prefs['multidomain_default_not_categorized'] != $_SERVER['HTTP_HOST']) {
+							$saveHttpHost = $_SERVER['HTTP_HOST'];
+							// selfUrl uses HTTP_HOST, and redirect will exit after redirect, so no problem on "tampering" with $_SERVER
+							$_SERVER['HTTP_HOST'] = $prefs['multidomain_default_not_categorized'];
+							$accesslib->redirect($accesslib->selfUrl(), '', 301);
+							$_SERVER['HTTP_HOST'] = $saveHttpHost; // this should never be reach
+						}
+					} else {
+						$accesslib->display_error(
+							$accesslib->selfUrl(),
+							tra("Perspective misconfiguration"),
+							500,
+							false,
+							tra('The resource you requested is not available in the current perspective, and the system administrator did not define a default domain to redirect to. Please contact your system administrator, or check the documentation in <a href="http://doc.tiki.org/Perspectives">http://doc.tiki.org/Perspectives</a> related with multi-domain configurations.')
+						);
+					}
+				}
+			}
 		}
 	}
 

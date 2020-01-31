@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f84345c70b924fe14aa2133780a541a6",
+    "content-hash": "0e9215d61aad76dfcdbf0c403972510c",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -225,7 +225,7 @@
             "version": "5.12.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "url": "git@github.com:FortAwesome/Font-Awesome.git",
                 "reference": "d8db3d032d22e7a5e21f3b40905b7867be19bb02"
             },
             "dist": {
@@ -3315,7 +3315,9 @@
             },
             "type": "npm-asset",
             "extra": {
-                "patches_applied": []
+                "patches_applied": {
+                    "Remove native javascript for bootstrap": "../installer/composer-patches/jcbrand-conversejs_remove-native-javascript-for-bootstrap.patch"
+                }
             },
             "license": [
                 "MPL-2.0"
@@ -8136,6 +8138,61 @@
             "time": "2019-10-21T16:45:58+00:00"
         },
         {
+            "name": "fabpot/goutte",
+            "version": "v3.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FriendsOfPHP/Goutte.git",
+                "reference": "4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FriendsOfPHP/Goutte/zipball/4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae",
+                "reference": "4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^6.0",
+                "php": "^7.1.3",
+                "symfony/browser-kit": "^4.4|^5.0",
+                "symfony/css-selector": "^4.4|^5.0",
+                "symfony/dom-crawler": "^4.4|^5.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "^5.0"
+            },
+            "type": "application",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Goutte\\": "Goutte"
+                },
+                "exclude-from-classmap": [
+                    "Goutte/Tests"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "A simple PHP Web Scraper",
+            "homepage": "https://github.com/FriendsOfPHP/Goutte",
+            "keywords": [
+                "scraper"
+            ],
+            "time": "2019-12-06T13:11:18+00:00"
+        },
+        {
             "name": "mikey179/vfsstream",
             "version": "v1.6.8",
             "source": {
@@ -9620,6 +9677,126 @@
                 "standards"
             ],
             "time": "2020-01-30T22:20:29+00:00"
+        },
+        {
+            "name": "symfony/browser-kit",
+            "version": "v5.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/browser-kit.git",
+                "reference": "b0294489a7fbb4f3f39c39efe6f0328cb09731b9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/symfony/browser-kit/symfony-browser-kit-b0294489a7fbb4f3f39c39efe6f0328cb09731b9-zip-b72b74.zip",
+                "reference": "b0294489a7fbb4f3f39c39efe6f0328cb09731b9",
+                "shasum": "6a57e5ac6a83e320865658d37267b94b44f619d8"
+            },
+            "require": {
+                "php": "^7.2.5",
+                "symfony/dom-crawler": "^4.4|^5.0"
+            },
+            "require-dev": {
+                "symfony/css-selector": "^4.4|^5.0",
+                "symfony/http-client": "^4.4|^5.0",
+                "symfony/mime": "^4.4|^5.0",
+                "symfony/process": "^4.4|^5.0"
+            },
+            "suggest": {
+                "symfony/process": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\BrowserKit\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony BrowserKit Component",
+            "homepage": "https://symfony.com",
+            "time": "2020-01-04T14:08:26+00:00"
+        },
+        {
+            "name": "symfony/dom-crawler",
+            "version": "v5.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/dom-crawler.git",
+                "reference": "439c3c7be4daa569deef0dd1e30cf3562108d062"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/symfony/dom-crawler/symfony-dom-crawler-439c3c7be4daa569deef0dd1e30cf3562108d062-zip-012802.zip",
+                "reference": "439c3c7be4daa569deef0dd1e30cf3562108d062",
+                "shasum": "30cae13f55913e984d93906e628ec3ce25eaa369"
+            },
+            "require": {
+                "php": "^7.2.5",
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-mbstring": "~1.0"
+            },
+            "conflict": {
+                "masterminds/html5": "<2.6"
+            },
+            "require-dev": {
+                "masterminds/html5": "^2.6",
+                "symfony/css-selector": "^4.4|^5.0"
+            },
+            "suggest": {
+                "symfony/css-selector": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\DomCrawler\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony DomCrawler Component",
+            "homepage": "https://symfony.com",
+            "time": "2020-01-04T14:08:26+00:00"
         },
         {
             "name": "webmozart/assert",

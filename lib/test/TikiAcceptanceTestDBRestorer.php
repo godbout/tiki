@@ -32,20 +32,37 @@ abstract class TikiAcceptanceTestDBRestorer
  * less reliable.
  */
 {
+	const EMPTY_DB = 'emptyDb.sql';
 
 	protected $host = "localhost";
+
 	protected $tiki_test_db = "tiki_db_for_acceptance_tests";
-	protected $tiki_test_db_dump = "tiki_db_for_acceptance_tests_dump.sql";
 	protected $tiki_test_db_user = "tiki_automated_test_user";
 	protected $tiki_test_db_pwd = "tiki_automated_test_user";
+
+	protected $tiki_test_db_dump = "tiki_db_for_acceptance_tests_dump.sql";
+
 	protected $mysql_data_dir = "";
 	protected $tiki_schema_file_start = "dump_schema_tiki_start.txt";
 	protected $tiki_restore_db_file_name = "tiki_testdb_restore_file.sql";
 	protected $tiki_bare_bones_db_dump = "bareBonesDBDump.sql";
 
 
-	function __construct()
+	public function __construct()
 	{
+		if (getenv('MYSQL_HOST')){
+			$this->host = getenv('MYSQL_HOST');
+		}
+		if (getenv('MYSQL_DATABASE')){
+			$this->tiki_test_db = getenv('MYSQL_DATABASE');
+		}
+		if (getenv('MYSQL_USER')){
+			$this->tiki_test_db_user = getenv('MYSQL_USER');
+		}
+		if (getenv('MYSQL_PASSWORD')){
+			$this->tiki_test_db_pwd = getenv('MYSQL_PASSWORD');
+		}
+
 		$this->current_dir = getcwd();
 		$this->mysql_data_dir = $this->set_mysql_data_dir();
 	}
@@ -115,9 +132,17 @@ class TikiAcceptanceTestDBRestorerSQLDumps extends TikiAcceptanceTestDBRestorer
 	 * the snapshot was restored.
 	 */
 
-	function __construct()
+	public function __construct()
 	{
 		parent::__construct();
+
+		// enable this to run from the tiki temp folder as a cache dir
+		if (realpath(__DIR__ . '/../../temp')) {
+			$this->mysql_data_dir = realpath(__DIR__ . '/../../temp') . '/testcache/';
+			if ( ! is_dir($this->mysql_data_dir)) {
+				mkdir($this->mysql_data_dir);
+			}
+		}
 	}
 
 	function check_if_dump_and_schema_start_files_exist($dump_file)
@@ -144,7 +169,7 @@ class TikiAcceptanceTestDBRestorerSQLDumps extends TikiAcceptanceTestDBRestorer
 		// 			echo "\nDumping the whole tiki database: ";
 		//			$begTime = microtime(true);
 
-		$mysqldump_command_line = "mysqldump --user=$this->tiki_test_db_user --password=$this->tiki_test_db_pwd $this->tiki_test_db > $dump_file";
+		$mysqldump_command_line = "MYSQL_PWD=$this->tiki_test_db_pwd mysqldump --host=$this->host --user=$this->tiki_test_db_user $this->tiki_test_db > $dump_file";
 		shell_exec($mysqldump_command_line);
 		//			echo (microtime(true) -$begTime)." sec\n";
 		chdir($this->current_dir);
@@ -157,7 +182,7 @@ class TikiAcceptanceTestDBRestorerSQLDumps extends TikiAcceptanceTestDBRestorer
 		chdir($this->mysql_data_dir);
 		// 			echo "\n\rDumping start tables and times from information_schema: ";
 		//			$begTime = microtime(true);
-		$mysql_select_from_schema_command = "echo select TABLE_NAME,UPDATE_TIME from information_schema.TABLES WHERE TABLE_SCHEMA='$this->tiki_test_db' | mysql --user=$this->tiki_test_db_user --password=$this->tiki_test_db_pwd > $this->tiki_schema_file_start";
+		$mysql_select_from_schema_command = "echo select TABLE_NAME,UPDATE_TIME from information_schema.TABLES WHERE TABLE_SCHEMA=\'$this->tiki_test_db\' | MYSQL_PWD=$this->tiki_test_db_pwd mysql --host=$this->host --user=$this->tiki_test_db_user > $this->tiki_schema_file_start";
 		exec($mysql_select_from_schema_command);
 		//		    echo (microtime(true) - $begTime)." sec\n";
 		chdir($this->current_dir);
@@ -193,7 +218,7 @@ class TikiAcceptanceTestDBRestorerSQLDumps extends TikiAcceptanceTestDBRestorer
 			//		    	echo "\n\rDumping end tables and times from information_schema: ";
 			//				$begTime = microtime(true);
 
-			$mysql_select_from_schema_command = "echo select TABLE_NAME,UPDATE_TIME from information_schema.TABLES WHERE TABLE_SCHEMA='$this->tiki_test_db' | mysql --user=$this->tiki_test_db_user --password=$this->tiki_test_db_pwd > $tiki_schema_file_end";
+			$mysql_select_from_schema_command = "echo select TABLE_NAME,UPDATE_TIME from information_schema.TABLES WHERE TABLE_SCHEMA=\'$this->tiki_test_db\' | MYSQL_PWD=$this->tiki_test_db_pwd mysql --host=$this->host --user=$this->tiki_test_db_user > $tiki_schema_file_end";
 			shell_exec($mysql_select_from_schema_command);
 			//		   		echo (microtime(true) -$begTime)." sec";
 
@@ -206,17 +231,18 @@ class TikiAcceptanceTestDBRestorerSQLDumps extends TikiAcceptanceTestDBRestorer
 			$diff = array_diff($start_file_lines, $end_file_lines);
 
 			//GET ONLY TABLE_NAMES THAT CHANGED
-			array_walk($diff, 'TikiAcceptanceTestDBRestorer::get_table_name');
+			array_walk($diff, array($this,'get_table_name'));
 
 			//		    	echo (microtime(true) -$begTime)." sec";
 
 			//		    	echo "\n\rCreate restore sql file: ";
 			//				$begTime = microtime(true);
 
-			$tiki_test_db_dump_as_string = file_get_contents($this->tiki_test_db_dump);
+			$tiki_test_db_dump_as_string = file_get_contents($tiki_test_db_dump);
 
 			//CREATE SQL FILE THAT WILL RESTORE ONLY THE CHANGED TABLES
-			$tiki_restore_db_file = fopen($this->tiki_restore_db_file_name, 'w') or die("can't open file for restoring DB" . $this->tiki_restore_db_file_name);
+			$tiki_restore_db_file = fopen($this->tiki_restore_db_file_name, 'w') or die("can't open file for restoring DB" . $this->tiki_restore_db_file_name);/**/
+			fwrite($tiki_restore_db_file, "-- Nothing\n\n");
 			foreach ($diff as $table_name) {
 				$match_this = "/(LOCK TABLES `" . $table_name . "`.+UNLOCK TABLES;)/Us";
 				$is_matched = preg_match($match_this, $tiki_test_db_dump_as_string, $matches);
@@ -258,7 +284,7 @@ class TikiAcceptanceTestDBRestorerSQLDumps extends TikiAcceptanceTestDBRestorer
 	function restoreBareBonesDB()
 	{
 		chdir($this->mysql_data_dir);
-		$mysql_restore_db_command = "mysql --user=$this->tiki_test_db_user --password=$this->tiki_test_db_pwd $this->tiki_test_db < $this->tiki_bare_bones_db_dump";
+		$mysql_restore_db_command = "MYSQL_PWD=$this->tiki_test_db_pwd mysql --host=$this->host --user=$this->tiki_test_db_user $this->tiki_test_db < $this->tiki_bare_bones_db_dump";
 		shell_exec($mysql_restore_db_command);
 		chdir($this->current_dir);
 	}

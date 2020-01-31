@@ -16,6 +16,7 @@ class Tiki_Profile_InstallHandler_Forum extends Tiki_Profile_InstallHandler
 		$data = $this->obj->getData();
 
 		$defaults = [
+			'parentId' => 0,
 			'description' => '',
 			'flood_interval' => 120,
 			'moderator' => 'admin',
@@ -117,6 +118,7 @@ class Tiki_Profile_InstallHandler_Forum extends Tiki_Profile_InstallHandler
 
 		$id = $comments->replace_forum(
 			0,
+			$data['parentId'],
 			$data['name'],
 			$data['description'],
 			$data['enable_flood_control'],

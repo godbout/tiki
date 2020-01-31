@@ -38,5 +38,13 @@ function prefs_multidomain_list()
 			],
 			'default' => 'n',
 		],
+		'multidomain_default_not_categorized' => [
+			'name' => tra('Default domain for non categorized content'),
+			'description' => tra('The domain (hostname only) to be used when redirecting the user if he tries to read content that is not bound to the category/perspective configured for the current domain.'),
+			'perspective' => false,
+			'type' => 'text',
+			'size' => 255,
+			'default' => '',
+		],
 	];
 }
