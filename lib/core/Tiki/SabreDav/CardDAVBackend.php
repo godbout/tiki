@@ -34,9 +34,13 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
      */
     public function getAddressBooksForUser($principalUri)
     {
-        global $prefs;
+        global $prefs, $user;
 
-        $user = PrincipalBackend::mapUriToUser($principalUri);
+        $principal = PrincipalBackend::mapUriToUser($principalUri);
+
+        if ($principal != $user) {
+            throw new DAV\Exception\Forbidden("You don't have permission to view this user's address books.");
+        }
 
         $result = [];
 
@@ -97,6 +101,8 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
             throw new DAV\Exception\Forbidden("Address book is read-only.");
         }
 
+        $this->enforceAddressBookPermisions($addressBookId);
+
         $supportedProperties = [
             '{DAV:}displayname',
             '{'.CardDAV\Plugin::NS_CARDDAV.'}addressbook-description',
@@ -130,7 +136,13 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
      */
     public function createAddressBook($principalUri, $url, array $properties)
     {
-        $user = PrincipalBackend::mapUriToUser($principalUri);
+        global $user;
+
+        $principal = PrincipalBackend::mapUriToUser($principalUri);
+
+        if ($principal != $user) {
+            throw new DAV\Exception\Forbidden("You don't have permission to create address books for this user.");
+        }
 
         $values = [
             'name' => null,
@@ -166,6 +178,8 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
             throw new DAV\Exception\Forbidden("Address book is read-only.");
         }
 
+        $this->enforceAddressBookPermisions($addressBookId);
+
         TikiLib::lib('addressbook')->delete_address_book($addressBookId);
     }
 
@@ -194,10 +208,13 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
         global $user;
         if (preg_match('/^(webmail|system).(.*)$/', $addressBookId, $m)) {
             $type = $m[1];
-            $user = $m[2];
+            $principal = $m[2];
         } else {
             $type = 'custom';
-            $user = null;
+            $principal = null;
+        }
+        if ($principal && $principal != $user) {
+            throw new DAV\Exception\Forbidden("You don't have permission to access this address book.");
         }
         $result = [];
         switch($type) {
@@ -279,13 +296,16 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
         global $user;
         if (preg_match('/^(webmail|system).(.*)$/', $addressBookId, $m)) {
             $type = $m[1];
-            $user = $m[2];
+            $principal = $m[2];
             $uris = array_map(function($uri){
                 return str_replace('.vcf', '', $uri);
             }, $uris);
         } else {
             $type = 'custom';
-            $user = null;
+            $principal = null;
+        }
+        if ($principal && $principal != $user) {
+            throw new DAV\Exception\Forbidden("You don't have permission to access this address book.");
         }
         $result = [];
         switch($type) {
@@ -437,7 +457,7 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
             throw new DAV\Exception\Forbidden("Address book is read-only.");
         }
         $addressbook = TikiLib::lib('addressbook')->get_address_book($addressBookId);
-        if (! $addressbook || $addressbook->user != $user) {
+        if (! $addressbook || $addressbook['user'] != $user) {
             throw new DAV\Exception\Forbidden("You don't have permission to modify this address book.");
         }
     }

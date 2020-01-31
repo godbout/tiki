@@ -17,7 +17,7 @@ use Sabre\DAVACL;
  *
  */
 class AclPlugin extends DAVACL\Plugin {
-  /**
+    /**
      * Checks if the current user has the specified privilege(s).
      * Always return true as real ACL is done in corresponding backends.
      *
@@ -25,6 +25,7 @@ class AclPlugin extends DAVACL\Plugin {
      */
     public function checkPrivileges($uri, $privileges, $recursion = self::R_PARENT, $throwExceptions = true)
     {
-      return true;
+        
+        return true;
     }
 }

@@ -51,6 +51,7 @@ $server->addPlugin(new CalDAV\ICSExportPlugin());
 
 // ACL plugin
 $aclPlugin = new AclPlugin();
+$aclPlugin->allowUnauthenticatedAccess = false;
 $server->addPlugin($aclPlugin);
 
 // Support for html frontend
