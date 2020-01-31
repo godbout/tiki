@@ -65,16 +65,16 @@
 				</h6>
 				<div class="dropdown-divider"></div>
 				{if $pdf_export eq 'y'}
-					<a class="dropdown-item" href="{$smarty.server.PHP_SELF}?{query display='pdf'}">
+					<a class="dropdown-item" href="{$smarty.server.SCRIPT_NAME}?{query display='pdf'}">
 						{icon name="pdf"} {tr}PDF{/tr}
 					</a>
 					{/if}
-					<a class="dropdown-item" href="{$smarty.server.PHP_SELF}?{query display='print'}">
+					<a class="dropdown-item" href="{$smarty.server.SCRIPT_NAME}?{query display='print'}">
 						{icon name="print"} {tr}Print this page{/tr}
 					</a>
 				</li>
 				<li class="dropdown-item">
-					<a href="{$smarty.server.PHP_SELF}?{query display='print_all'}">
+					<a href="{$smarty.server.SCRIPT_NAME}?{query display='print_all'}">
 						{icon name="print"} {tr}Print all pages{/tr}
 					</a>
 				{if $prefs.sefurl_short_url eq 'y'}
@@ -85,11 +85,11 @@
 				{/if}
 				{if $prefs.feature_forum_topics_archiving eq 'y' && $tiki_p_admin_forum eq 'y'}
 					{if $thread_info.archived eq 'y'}
-						<a class="dropdown-item" href="{$smarty.server.PHP_SELF}?{query archive="n"}">
+						<a class="dropdown-item" href="{$smarty.server.SCRIPT_NAME}?{query archive="n"}">
 							{icon name="file-archive-open"} {tr}Unarchive{/tr}
 						</a>
 					{else}
-						<a class="dropdown-item" href="{$smarty.server.PHP_SELF}?{query archive='y'}">
+						<a class="dropdown-item" href="{$smarty.server.SCRIPT_NAME}?{query archive='y'}">
 							{icon name="file-archive"} {tr}Archive{/tr}
 						</a>
 					{/if}

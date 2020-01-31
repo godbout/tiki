@@ -4,7 +4,7 @@
 
 <p>Change any individual values and click the 'Update' button to submit the revised values and to resave them in the File Gallery XML file.</p>
 
-<form action="{$smarty.server.PHP_SELF}?{query}" method="post" class="form-inline">
+<form action="{$smarty.server.SCRIPT_NAME}?{query}" method="post" class="form-inline">
 	<hr>
 	<table>
 		<tr>

@@ -10,7 +10,7 @@
 					<img src="show_image.php?id={$modLastImages[ix].imageId}&amp;thumb=1" title="{$modLastImages[ix].name|escape}" alt="{$modLastImages[ix].description|escape}">
 				</a>
 			</span>
-			{if strstr($smarty.server.PHP_SELF, 'tiki-editpage.php')}
+			{if strstr($smarty.server.SCRIPT_NAME, 'tiki-editpage.php')}
 			<span class="module">
 				<a class="linkmodule" href="javascript:insertAt('editwiki','{literal}{{/literal}img src=show_image.php?id={$modLastImages[ix].imageId}{literal}}{/literal}');">
 					{tr}insert original{/tr}

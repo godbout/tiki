@@ -1,4 +1,4 @@
-<form action="{$smarty.server.PHP_SELF}?{query}" method="post" class="form-inline">
+<form action="{$smarty.server.SCRIPT_NAME}?{query}" method="post" class="form-inline">
 	<div class="input-group">
 		<input type="text" class="form-control" name="{$wp_addfreetag|escape}">
 		<div class="input-group-append">

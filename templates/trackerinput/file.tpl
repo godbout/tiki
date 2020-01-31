@@ -10,7 +10,7 @@
 		{icon name='floppy'}
 	</a>
 	{if ($tiki_p_admin_trackers eq 'y' or $field.info.user eq $user) and $field.isMandatory ne 'y'}
-		<a href="{$smarty.server.PHP_SELF}?{query removeattach=$field.value}" class="tips" title=":{tr}Remove{/tr}">{icon name='delete'}</a>
+		<a href="{$smarty.server.SCRIPT_NAME}?{query removeattach=$field.value}" class="tips" title=":{tr}Remove{/tr}">{icon name='delete'}</a>
 	{/if}
 	{if $field.isMandatory eq 'y'}<input type="hidden" value="{$field.value}" class="file_{$field.ins_id}">{/if}
 {/if}

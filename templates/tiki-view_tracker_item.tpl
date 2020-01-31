@@ -32,7 +32,7 @@
 
                 {if $pdf_export eq 'y'}
 					<li class="dropdown-item">
-						<a href="{$smarty.server.PHP_SELF}?{query pdf='y'}">
+						<a href="{$smarty.server.SCRIPT_NAME}?{query pdf='y'}">
 							{icon name="pdf"} {tr}PDF{/tr}
 						</a>
 					</li>

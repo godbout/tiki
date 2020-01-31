@@ -589,7 +589,7 @@
 						<tr>
 							<td>
 								{if $tiki_p_admin eq 'y'}
-									<form method="post" action="{$smarty.server.PHP_SELF}?{$smarty.server.QUERY_STRING}"/>
+									<form method="post" action="{$smarty.server.SCRIPT_NAME}?{$smarty.server.QUERY_STRING}"/>
 										<span class="input_submit_container">
 										<input type="submit" class="btn btn-primary btn-sm" name="export_bbb" value="{tr}Export{/tr}" />
 										</span>

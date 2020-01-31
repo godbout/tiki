@@ -7,7 +7,7 @@
 	{if $user}
 		<br>
 		{if $field.user_subscription} {tr}You have subscribed{/tr}.{else}{tr}You have not yet subscribed{/tr}.{/if}
-		<form method="post" action="{$smarty.server.PHP_SELF}?{query}">
+		<form method="post" action="{$smarty.server.SCRIPT_NAME}?{query}">
 			{if not $field.user_subscription}
 				<input type="submit" class="btn btn-primary btn-sm" name="user_subscribe" value="{tr}Subscribe{/tr}"> {tr}with{/tr}
 				{if $field.list}

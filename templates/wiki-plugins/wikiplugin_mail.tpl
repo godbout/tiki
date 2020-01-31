@@ -145,7 +145,7 @@
 			var mailform = $(this).closest('form');
 			mailform.tikiModal("{tr}Please wait while your email is being sent...{/tr}");
 			var postData = mailform.serializeArray();
-			var formURL = "{{$smarty.server.PHP_SELF}}?{{query _urlencode=n}}";
+			var formURL = "{{$smarty.server.SCRIPT_NAME}}?{{query _urlencode=n}}";
 			$.ajax({
 				url : formURL,
 				type: "POST",

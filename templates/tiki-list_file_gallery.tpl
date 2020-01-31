@@ -200,7 +200,7 @@
 	{remarksbox type="note" title="{tr}Note{/tr}"}
 		{$fileChangedMessage}
 		<form method="post"
-				action="{$smarty.server.PHP_SELF}{if !empty($filegals_manager) and $filegals_manager neq ''}?filegals_manager={$filegals_manager|escape}{/if}"
+				action="{$smarty.server.SCRIPT_NAME}{if !empty($filegals_manager) and $filegals_manager neq ''}?filegals_manager={$filegals_manager|escape}{/if}"
 				class="form-inline">
 			<input type="hidden" name="galleryId" value="{$galleryId|escape}">
 			<input type="hidden" name="fileId" value="{$fileId|escape}">

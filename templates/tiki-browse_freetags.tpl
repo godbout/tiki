@@ -57,10 +57,10 @@
 					{if empty($maxPopular)}
 						{assign var=maxPopular value=50+$prefs.freetags_browse_amount_tags_in_cloud}
 					{/if}
-					<a class='more' href="{$smarty.server.PHP_SELF}?{query maxPopular=$maxPopular tagString=$tagString}">{tr}More Popular Tags{/tr}</a>
+					<a class='more' href="{$smarty.server.SCRIPT_NAME}?{query maxPopular=$maxPopular tagString=$tagString}">{tr}More Popular Tags{/tr}</a>
 				</div>
 				<div class="text-center">
-					<a href="{$smarty.server.PHP_SELF}?{query tsort_mode=tag_asc}">{tr}Alphabetically{/tr}</a> | <a href="{$smarty.server.PHP_SELF}?{query tsort_mode=count_desc tagString=$tagString}">{tr}By Size{/tr}</a> | <a href="{$smarty.server.PHP_SELF}?{query mode=c tagString=$tagString}">{tr}Cloud{/tr}</a> | <a href="{$smarty.server.PHP_SELF}?{query mode=l tagString=$tagString}">{tr}List{/tr}</a>
+					<a href="{$smarty.server.SCRIPT_NAME}?{query tsort_mode=tag_asc}">{tr}Alphabetically{/tr}</a> | <a href="{$smarty.server.SCRIPT_NAME}?{query tsort_mode=count_desc tagString=$tagString}">{tr}By Size{/tr}</a> | <a href="{$smarty.server.SCRIPT_NAME}?{query mode=c tagString=$tagString}">{tr}Cloud{/tr}</a> | <a href="{$smarty.server.SCRIPT_NAME}?{query mode=l tagString=$tagString}">{tr}List{/tr}</a>
 				</div>
 			</div>
 		</div>

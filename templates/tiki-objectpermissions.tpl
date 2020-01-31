@@ -23,7 +23,7 @@
 		{if $prefs.feature_tabs neq 'y'}
 			<h2>{tr}Edit Permissions{/tr}</h2>
 		{/if}
-		<form method="post" action="{$smarty.server.PHP_SELF}?{query}">
+		<form method="post" action="{$smarty.server.SCRIPT_NAME}?{query}">
 			{capture name="notices"}
 				{if empty($filegals_manager)}
 					{if $objectType eq 'global'}
@@ -153,7 +153,7 @@
 	{/if}
 
 	{tab name="{tr}Select groups{/tr}"}
-		<form method="post" action="{$smarty.server.PHP_SELF}?{query}">
+		<form method="post" action="{$smarty.server.SCRIPT_NAME}?{query}">
 		<div>
 			<input type="hidden" name="referer" value="{$referer|escape}">
 			{if isset($groupsFiltered)}
@@ -189,7 +189,7 @@
 	{/tab}
 
 	{tab name="{tr}Select features{/tr}"}
-		<form method="post" action="{$smarty.server.PHP_SELF}?{query}">
+		<form method="post" action="{$smarty.server.SCRIPT_NAME}?{query}">
 		<div>
 			<input type="hidden" name="referer" value="{$referer|escape}">
 			{if isset($featuresFiltered)}
@@ -218,7 +218,7 @@
 
 	{if $prefs.feature_quick_object_perms eq 'y'}
 		{tab name="{tr}Quick Permissions{/tr}"}
-		<form name="allperms" method="post" action="{$smarty.server.PHP_SELF}?{query}">
+		<form name="allperms" method="post" action="{$smarty.server.SCRIPT_NAME}?{query}">
 		<div>
 		<input type="hidden" name="quick_perms" value="true">
 
