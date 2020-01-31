@@ -56,6 +56,12 @@ function wikiplugin_diagram_info()
 				'description' => tr('Parameter that will allow to parse wiki markup language inside the diagram if the value is "1"'),
 				'since' => '21.0',
 			],
+			'compressXml' => [
+				'required' => false,
+				'name' => tr('Compress XML'),
+				'description' => tr('Parameter that will allow inline diagram data be saved compressed.'),
+				'since' => '21.0',
+			],
 		],
 	];
 
@@ -72,6 +78,13 @@ function wikiplugin_diagram($data, $params)
 {
 
 	global $tikilib, $cachelib, $user, $page, $wikiplugin_included_page, $tiki_p_upload_files;
+
+	$compressXml = true;
+	if (empty($params['fileId'])
+		&& isset($params['compressXml'])
+		&& in_array($params['compressXml'], ['false', '0'])) {
+			$compressXml = false;
+	}
 
 	$diagramIdentifier = ! empty($params['fileId']) ? $params['fileId'] : $data;
 	$info = wikiplugin_diagram_info();
@@ -259,6 +272,7 @@ EOF;
 	$smarty->assign('alignment', $alignment);
 	$smarty->assign('mxgraph_prefix', $vendorPath);
 	$smarty->assign('page_name', $pageName);
+	$smarty->assign('compressXml', $compressXml);
 
 	return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl') . '~/np~';
 }

@@ -9,12 +9,18 @@ $exportImageCache = (int)($prefs['fgal_export_diagram_on_image_save'] == 'y');
 $xmlContent = isset($_POST['xml']) ? $_POST['xml'] : false;
 $page = isset($_POST['page']) ? $_POST['page'] : false;
 $index = isset($_POST['index']) ? $_POST['index'] : null;
+$compressXml = empty($_POST['compressXml']) ? false : true;
 
 $galleryId = isset($_REQUEST['galleryId']) ? $_REQUEST['galleryId'] : 0;
 $backLocation = '';
 
 if ($xmlContent) {
 	$xmlContent = base64_decode($xmlContent);
+
+	$xmlContent = str_replace('<mxfile compressed="false"', '<mxfile', $xmlContent);
+	if (! $compressXml) {
+		$xmlContent = str_replace('<mxfile', '<mxfile compressed="false"', $xmlContent);
+	}
 }
 
 $newDiagram = isset($_REQUEST['newDiagram']) ?: false;
@@ -112,7 +118,14 @@ $js = "(function()
 
 			function saveDiagramFlow(closeWindow)
 			{
-				let node = editorUi.getXmlFileData();
+				let compressXml = '{$compressXml}';
+
+				if (compressXml) {
+					var node = editorUi.getXmlFileData();
+				} else {
+					var node = editorUi.getXmlFileData(true, false, true);
+				}
+
 				var content = mxUtils.getXml(node);
 				var galleryId = {$galleryId};
 				var pagesAmount = node.children.length;

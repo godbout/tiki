@@ -10,6 +10,7 @@
 					<input type="hidden" value="{$graph_data_base64}" name="xml">
 					<input type="hidden" value="{$sourcepage}" name="page">
 					<input type="hidden" value="{$index}" name="index">
+					<input type="hidden" value="{$compressXml}" name="compressXml">
 				{/if}
 				<a class="btn btn-link" href="javascript:void(0)" onclick="$('#edit-diagram-{$index}').submit()">{icon name="pencil"} Edit diagram</a>
 			</form>
