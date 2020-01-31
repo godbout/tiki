@@ -24,5 +24,5 @@ if ($prefs['feature_categories'] == 'y' && Perms::get([ 'type' => $cat_type, 'ob
 		$_REQUEST['cat_categories'] = null;
 	}
 	$categlib = TikiLib::lib('categ');
-	$categlib->update_object_categories(isset($_REQUEST['cat_categories']) ? $_REQUEST['cat_categories'] : '', $cat_objid, $cat_type, $cat_desc, $cat_name, $cat_href, $_REQUEST['cat_managed']);
+	$categlib->update_object_categories(isset($_REQUEST['cat_categories']) ? $_REQUEST['cat_categories'] : [], $cat_objid, $cat_type, $cat_desc, $cat_name, $cat_href, $_REQUEST['cat_managed']);
 }
