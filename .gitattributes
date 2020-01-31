@@ -5678,8 +5678,6 @@ templates/mail/share.tpl -text
 templates/mail/share_subject.tpl -text
 templates/mail/submission_notification.tpl -text
 templates/mail/submission_notification_subject.tpl -text
-templates/mail/tellAFriend.tpl -text
-templates/mail/tellAFriend_subject.tpl -text
 templates/mail/tracker_changed_notification.tpl -text
 templates/mail/tracker_changed_notification_subject.tpl -text
 templates/mail/unsuccessful_logins.tpl -text
@@ -6368,7 +6366,6 @@ templates/tiki-survey_stats_survey.tpl -text
 templates/tiki-syslog.tpl -text
 templates/tiki-take_quiz.tpl -text
 templates/tiki-take_survey.tpl -text
-templates/tiki-tell_a_friend.tpl -text
 templates/tiki-tests_edit.tpl -text
 templates/tiki-tests_list.tpl -text
 templates/tiki-tests_menubar.tpl -text
@@ -8282,7 +8279,6 @@ themes/yeti/templates/index.php -text
 /tiki-take_quiz.php -text
 /tiki-take_survey.php -text
 /tiki-tc.php -text
-/tiki-tell_a_friend.php -text
 /tiki-testGD.php -text
 /tiki-theme_control.php -text
 /tiki-theme_control_objects.php -text

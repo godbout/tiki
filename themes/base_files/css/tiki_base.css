@@ -1465,10 +1465,10 @@ li.archivedate {
 .navbar-form .siteloginbar_poppedup .form-control, .navbar-form .siteloginbar_poppedup .form-group.text-center {
   width: 100%; }
 
-.tellafriend, .share {
+.share {
   text-align: right; }
 
-a.flip, a.flip:visited, .tellafriend a, .share a, .tellafriend a:visited, .share a:visited, a.flip:hover, .tellafriend a:hover, .share a:hover {
+a.flip, a.flip:visited, .share a, .share a:visited, a.flip:hover, .share a:hover {
   font-size: 80%;
   text-decoration: none; }
 

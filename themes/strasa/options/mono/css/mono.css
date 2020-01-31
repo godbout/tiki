@@ -327,20 +327,16 @@ a.flip:hover {
 	color: #666666;
 	text-decoration: none}
 
-.tellafriend a,
 .share a,
-.tellafriend a:visited,
 .share a:visited {
 	background: transparent url('../images/fold-topright.jpg') 0 0 no-repeat;
 	color: #fff;
 }
 
-.tellafriend a:hover,
 .share a:hover {
 	color: #fff;
 }
 
-.tellafriend,
 .share {
 	border-bottom: solid 1px #e5e5e5;
 }

@@ -30,7 +30,6 @@
 				<legend>{tr}Additional options{/tr}</legend>
 				<div class="adminoptionbox">
 					{preference name=feature_invite}
-					{preference name=auth_token_tellafriend}
 					{preference name=auth_token_share}
 					{preference name=feature_group_transition}
 					<div class="adminoptionboxchild" id="feature_group_transition_childcontainer">

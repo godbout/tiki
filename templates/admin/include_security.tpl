@@ -242,7 +242,6 @@
 			{preference name=auth_token_access}
 			{preference name=auth_token_access_maxtimeout}
 			{preference name=auth_token_access_maxhits}
-			{preference name=auth_token_tellafriend}
 			{preference name=auth_token_share}
 			{preference name=auth_token_preserve_tempusers}
 		{/tab}

@@ -219,7 +219,6 @@ if ($fullscreen) {
 	$('#footer').hide();
 	$('#tikifeedback').hide();
 	$('.share').hide();
-	$('.tellafriend').hide();
 }
 
 $(window).resize();

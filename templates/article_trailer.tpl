@@ -33,11 +33,6 @@
 						{if $prefs.user_favorites eq 'y'}
 							{favorite type="article" object=$articleId button_classes="dropdown-item icon"}
 						{/if}
-						{if $prefs.feature_tell_a_friend eq 'y' && $tiki_p_tell_a_friend eq 'y'}
-							<a  class="dropdown-item" href="tiki-tell_a_friend.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
-								{icon name='envelope'} {tr}Send a link{/tr}
-							</a>
-						{/if}
 						{if $prefs.feature_share eq 'y' && $tiki_p_share eq 'y'}
 							<a class="dropdown-item tips" href="tiki-share.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
 								{icon name='share'} {tr}Share{/tr}

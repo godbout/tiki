@@ -119,7 +119,6 @@
 						<fieldset>
 							<legend>{tr}Mail and Sharing{/tr}</legend>
 							{preference name=feature_socialnetworks}
-							{preference name=feature_tell_a_friend}
 							{preference name=feature_share}
 							{preference name=feature_webmail}
 							{preference name=feature_mailin}

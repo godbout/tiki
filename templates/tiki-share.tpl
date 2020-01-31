@@ -6,8 +6,13 @@
 {if isset($sent) && empty($errors)}
 	<div id="success" class="alert alert-success">
 		{icon name='ok' alt="{tr}OK{/tr}" style="vertical-align:middle" align="left"}
-		{tr}Page shared:{/tr}<br>
-		{if isset($emailSent)}
+		{if $report ne 'y'}
+			{tr}Page shared{/tr}
+			<br>
+		{else}
+			{tr}Your report was sent to the Webmaster{/tr}
+		{/if}
+		{if isset($emailSent) and $report ne 'y'}
 			<div>
 				{tr}The link was sent via email to the following addresses:{/tr} {$addresses|escape}
 			</div>
@@ -157,16 +162,24 @@
 					<input type="hidden" value="{$name}" name="name">
 					<input type="hidden" value="{$email}" name="email">
 				{/if}
+				{if $prefs.auth_token_share eq 'y' and $user!='' and $report !='y'}
+					<div class="form-group row">
+						<div class="offset-sm-3 col-sm-9">
+							<div class="form-check">
+								<label class="form-check-label">
+									<input type="checkbox" class="form-check-input" value="1" name="share_access" id="share_access" {if $share_access}checked="checked" {/if}> {tr}Share access rights{/tr}
+								</label>
+							</div>
+						</div>
+					</div>
+				{/if}
 				{if $prefs.share_token_notification eq 'y'}
 					<div class="form-group row">
 						<div class="offset-sm-3 col-sm-9">
 							<div class="form-check">
 								<label class="form-check-label">
-									<input type="checkbox" class="form-check-input" value="y" name="share_token_notification" {if $share_token_notification eq 'y'}checked="checked" {/if}> {tr}Subscribe{/tr}
+									<input type="checkbox" class="form-check-input" value="y" name="share_token_notification" {if $share_token_notification eq 'y'}checked="checked" {/if}> {tr}Receive notifications when the link is accessed{/tr}
 								</label>
-								<span class="form-text">
-									{tr}Recipients can subscribe to token notifications{/tr}
-								</span>
 							</div>
 						</div>
 					</div>
@@ -412,13 +425,6 @@
 			<button type="submit" class="btn btn-secondary" name="send">
 				{icon name="share"} {tr}Share{/tr}
 			</button>
-			{if $share_access}
-				<input type="hidden" name="share_access" value="1">
-			{/if}
-			{if $prefs.auth_tokens_share eq 'y' and $user!='' and $report !='y'}
-				<input type="checkbox" name="share_access" value="1" id="share_access" {if $share_access}checked="checked" {/if}>
-				<label for="share_access">{tr}Share access rights{/tr}</label>
-			{/if}
 		</div>
 	</form>
 {else}

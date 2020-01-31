@@ -4,9 +4,9 @@
 	<div class="{if !$share_icons}site_report {/if}mod-share-item" id="site_report_{$share_mod_usage_counter}">
 		{if (!isset($module_params.report) or $module_params.report neq 'n') and $tiki_p_site_report eq 'y'}
 			{if $share_icons}
-				{icon name='comment' title="{tr}Report to Webmaster{/tr}" href="tiki-tell_a_friend.php?report=y&amp;url={$smarty.server.REQUEST_URI|escape:'url'}" class='btn-link'}
+				{icon name='comment' title="{tr}Report to Webmaster{/tr}" href="tiki-share.php?report=y&amp;url={$smarty.server.REQUEST_URI|escape:'url'}" class='btn-link'}
 			{else}
-				<a href="tiki-tell_a_friend.php?report=y&amp;url={$smarty.server.REQUEST_URI|escape:'url'}">
+				<a href="tiki-share.php?report=y&amp;url={$smarty.server.REQUEST_URI|escape:'url'}">
 					{tr}Report to Webmaster{/tr}
 				</a>
 			{/if}
@@ -17,15 +17,6 @@
 			{else}
 				<a href="tiki-share.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
 					{tr}Share this page{/tr}
-				</a>
-			{/if}
-		{/if}
-		{if (!isset($module_params.email) or $module_params.email neq 'n') and $tiki_p_tell_a_friend eq 'y'}
-			{if $share_icons}
-				{icon name='envelope' title="{tr}Send a link{/tr}" href="tiki-tell_a_friend.php?url={$smarty.server.REQUEST_URI|escape:'url'}" class='btn-link'}
-			{else}
-				<a href="tiki-tell_a_friend.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
-					{tr}Email this page{/tr}
 				</a>
 			{/if}
 		{/if}

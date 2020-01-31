@@ -266,11 +266,6 @@
 				{icon _menu_text=$menu_text _menu_icon=$menu_icon name='share' alt="{tr}Share a link to this file{/tr}"}
 			</a>
 		{/if}
-		{if $prefs.feature_tell_a_friend eq 'y' and $tiki_p_tell_a_friend eq 'y'}
-			<a href="tiki-tell_a_friend.php?url={$tikiroot}{$file.id|sefurl:file|escape:'url'}">
-				{icon _menu_text=$menu_text _menu_icon=$menu_icon name='envelope' alt="{tr}Email a link to this file{/tr}"}
-			</a>
-		{/if}
 
 		{if $file.perms.tiki_p_admin_file_galleries eq 'y'
 			or (!$file.lockedby and (($user and $user eq $file.user)

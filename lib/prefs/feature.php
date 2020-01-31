@@ -477,15 +477,6 @@ function prefs_feature_list($partial = false)
 			'tags' => ['experimental'],
 			'view' => 'tiki-live_support_admin.php',
 		],
-		'feature_tell_a_friend' => [
-			'name' => tra('Tell a friend'),
-			'description' => tra('Add to each page an "Email this page" link'),
-			'help' => 'Tell+a+Friend',
-            'warning' => tra('The Share feature has better spam protection and will replace tell a friend in an upcoming version of Tiki'),
-			'type' => 'flag',
-			'default' => 'n',
-			'tags' => ['deprecated'],
-		],
 		'feature_share' => [
 			'name' => tra('Share'),
 			'description' => tra('Add a "Share" link in all pages to send it via email, Twitter, Facebook, message or forums'),
@@ -1973,16 +1964,6 @@ function prefs_feature_list($partial = false)
 				'sender_email',
 			],
 			'default' => '',
-		],
-		'feature_site_send_link' => [
-			'name' => tra('Email this page'),
-			'hint' => tra('Adds a link at the bottom if set, otherwise adds a link at the top'),
-			'type' => 'flag',
-			'description' => tr('This enables users to share a page with others, by emailing a short message and link to the page.'),
-			'dependencies' => [
-				'feature_tell_a_friend',
-			],
-			'default' => 'n',
 		],
 		'feature_layoutshadows' => [
 			'name' => tra('Shadow layer'),

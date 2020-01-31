@@ -56,17 +56,6 @@ function prefs_auth_list()
 			'units' => tra('hits'),
 			'default' => 10,
 		],
-		'auth_token_tellafriend' => [
-			'name' => tra('Share access rights with friends when using Tell a friend'),
-			'description' => tra('Allow users to share their access rights for the current page with a friend when sending the link by email. The lifespan of the link is defined by the site.'),
-			'type' => 'flag',
-			'perspective' => false,
-			'dependencies' => [
-				'auth_token_access',
-				'feature_tell_a_friend',
-			],
-			'default' => 'n',
-		],
 		'auth_token_preserve_tempusers' => [
 			'name' => tra('Do not delete temporary users when token is deleted/expired'),
 			'description' => tra('Normally temporary users created (see tiki-adminusers.php) are deleted when their access token is deleted/expired. If turned on, this will keep those users around (and can be manually deleted later) but they will have no groups and therefore no perms'),

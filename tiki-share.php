@@ -169,6 +169,10 @@ if (isset($_REQUEST['send'])) {
 		$smarty->assign('share_token_notification', $_REQUEST['share_token_notification']);
 	}
 
+	if (! empty($_REQUEST['share_access_rights'])) {
+		$smarty->assign('share_access_rights', $_REQUEST['share_access_rights']);
+	}
+
 	if (! empty($_REQUEST['how_much_time_access'])) {
 		$smarty->assign('how_much_time_access', $_REQUEST['how_much_time_access']);
 	}
@@ -185,22 +189,20 @@ if (isset($_REQUEST['send'])) {
 			$_REQUEST['addresses'] = $email;
 			$_REQUEST['do_email'] = 1;
 		}
-
 		if (isset($_REQUEST['do_email']) and $_REQUEST['do_email'] == 1) {
-			// send
-
 			// Fix for multi adresses with autocomplete funtionnality
 			if (substr($_REQUEST['addresses'], -2) == ', ') {
 				$_REQUEST['addresses'] = substr($_REQUEST['addresses'], 0, -2);
 			}
 			// Call checkAddresses with error = false to avoid double error reporting
+
 			$adresses = checkAddresses($_REQUEST['addresses'], false);
 
 			require_once 'lib/auth/tokens.php';
 			if ($prefs['share_can_choose_how_much_time_access']
-						&& isset($_REQUEST['how_much_time_access'])
-						&& is_numeric($_REQUEST['how_much_time_access'])
-						&& $_REQUEST['how_much_time_access'] >= 1
+				&& isset($_REQUEST['how_much_time_access'])
+				&& is_numeric($_REQUEST['how_much_time_access'])
+				&& $_REQUEST['how_much_time_access'] >= 1
 			) {
 				$prefs['auth_token_access_maxhits'] = $_REQUEST['how_much_time_access'];
 
@@ -210,6 +212,7 @@ if (isset($_REQUEST['send'])) {
 				}
 			}
 
+			$share_access_rights = isset($_POST['share_access']);
 			if ($_REQUEST['share_token_notification'] == 'y') {
 				// list all users to give an unique token for notification
 				$tokenlib = AuthTokens::build($prefs);
@@ -217,19 +220,17 @@ if (isset($_REQUEST['send'])) {
 				if (is_array($adresses)) {
 					$contactlib = TikiLib::lib('contact');
 					foreach ($adresses as $adresse) {
-						$tokenlist[] = $tokenlib->includeToken($url_for_friend, $globalperms->getGroups(), $adresse);
+						$tokenlist[] = $tokenlib->includeToken($url_for_friend, $share_access_rights ? $globalperms->getGroups() : ['Anonymous'], $adresse);
 						// if preference share_contact_add_non_existant_contact the add auomaticly to contact
 						if ($prefs['share_contact_add_non_existant_contact'] == 'y' && $prefs['feature_contacts'] == 'y') {
 							// check if email exist for at least one contact in
-							if (! $contactlib->exist_contact($adresse, $user)) {
+							if (!$contactlib->exist_contact($adresse, $user)) {
 								$contacts = [['email' => $adresse]];
 								$contactlib->add_contacts($contacts, $user);
 							}
 						}
 					}
 				}
-
-				$smarty->assign('share_access', true);
 
 				if (is_array($tokenlist)) {
 					foreach ($tokenlist as $i => $data) {
@@ -241,8 +242,10 @@ if (isset($_REQUEST['send'])) {
 						$tikilib->add_user_watch($user, 'auth_token_called', $detailtoken['tokenId'], 'security', tra('Token called'), $data);
 					}
 				}
+
+
 			} else {
-				if ($prefs['auth_token_share'] == 'y' && ($prefs['auth_token_access'] == 'y' || isset($_POST['share_access']))) {
+				if ($share_access_rights) {
 					$tokenlib = AuthTokens::build($prefs);
 					$url_for_friend = $tokenlib->includeToken($url_for_friend, $globalperms->getGroups(), $_REQUEST['addresses']);
 					$smarty->assign('share_access', true);
@@ -252,17 +255,17 @@ if (isset($_REQUEST['send'])) {
 
 			$smarty->assign_by_ref('email', $_REQUEST['email']);
 
-			if (! empty($_REQUEST['addresses'])) {
+			if (!empty($_REQUEST['addresses'])) {
 				$smarty->assign('addresses', $_REQUEST['addresses']);
 			}
 
-			if (! empty($_REQUEST['name'])) {
+			if (!empty($_REQUEST['name'])) {
 				$smarty->assign('name', $_REQUEST['name']);
 			}
 			$emailSent = sendMail($_REQUEST['email'], $_REQUEST['addresses'], $subject, $tokenlist);
 			$smarty->assign('emailSent', $emailSent);
 			$ok = $ok && $emailSent;
-		} // do_email
+		}
 
 		if ($report != 'y') {
 			if (isset($_REQUEST['do_tweet']) and $_REQUEST['do_tweet'] == 1) {
@@ -314,13 +317,27 @@ if (isset($_REQUEST['send'])) {
 		} //report != y
 
 		$smarty->assign('errortype', 'no_redirect_login');
-		if ($ok && $report == 'y') {
+		/*if ($ok && $report == 'y') {
 			$access->redirect($_REQUEST['url'], tra('Your link was sent.'));
-		}
+		}*/
 		$smarty->assign('sent', true);
 		$smarty->assign('back_url', $_REQUEST['back_url']);
+
+		// Display a nice message when no email/tweet/fb/forum/message is selected
+		if (empty($errors)
+			&& ((!isset($_REQUEST['do_email']) || $_REQUEST['do_email'] == 0)
+			&& (!isset($_REQUEST['do_tweet']) || $_REQUEST['do_tweet'] == 0)
+			&& (!isset($_REQUEST['do_fb']) || $_REQUEST['do_fb'] == 0)
+			&& (!isset($_REQUEST['do_message']) || $_REQUEST['do_message'] == 0)
+			&& (!isset($_REQUEST['do_forum']) || $_REQUEST['do_forum'] == 0))) {
+			$errors[] = tra('No channel selected for share');
+		}
+
 	}
-	$smarty->assign_by_ref('errors', $errors);
+	if(! empty($errors)){
+		$smarty->assign_by_ref('errors', $errors);
+	}
+
 } else {
 	$smarty->assign_by_ref('name', $user);
 	$smarty->assign('email', $userlib->get_user_email($user));

@@ -224,12 +224,6 @@
 									{assign var="hasPageAction" value="1"}
 							</a>
 						{/if}
-						{if $prefs.feature_tell_a_friend eq 'y' && $tiki_p_tell_a_friend eq 'y'}
-							<a  class="dropdown-item" href="tiki-tell_a_friend.php?url={$smarty.server.REQUEST_URI|escape:'url'}">
-									{icon name="envelope"} {tr}Send link{/tr}
-									{assign var="hasPageAction" value="1"}
-							</a>
-						{/if}
 						{* if we want a ShareThis icon and we show it under the single-action icons dropdown singl-click *}
 						{if $prefs.feature_wiki_sharethis eq "y" and $prefs.wiki_sharethis_encourage neq "y"}
 							{* Similar as in the blogs except there can be only one per page, so it is simpler *}

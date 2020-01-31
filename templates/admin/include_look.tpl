@@ -176,7 +176,6 @@
 					<legend>{tr}Site report bar{/tr}</legend>
 					{preference name=feature_site_report}
 					{preference name=feature_site_report_email}
-					{preference name=feature_site_send_link}
 				</fieldset>
 			</div>
 			<hr>

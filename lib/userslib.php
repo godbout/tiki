@@ -6262,15 +6262,6 @@ class UsersLib extends TikiLib
 				'scope' => 'object',
 			],
 			[
-				'name' => 'tiki_p_tell_a_friend',
-				'description' => tra('Can send a link to a friend'),
-				'level' => 'basic',
-				'type' => 'tiki',
-				'admin' => false,
-				'prefs' => ['feature_tell_a_friend'],
-				'scope' => 'global',
-			],
-			[
 				'name' => 'tiki_p_share',
 				'description' => tra('Can share a page (email, Twitter, Facebook, message, forums)'),
 				'level' => 'basic',
