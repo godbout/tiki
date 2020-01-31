@@ -7311,3 +7311,6 @@ input[type="text"].chosen-focus-input {
   width: 1% !important; }
   .input-group .chosen-choices .search-field {
     min-height: 1.96875rem; }
+
+.btn-secondary, .btn-secondary:hover {
+  color: #fff; }
