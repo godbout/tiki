@@ -8,7 +8,7 @@
 			{include file='admin/include_apply_top.tpl'}
 		</div>
 	</div>
-	<fieldset>
+	<fieldset id="Comments">
 		<legend>{tr}Site-wide features{/tr}</legend>
 		<div class="admin featurelist">
 			{preference name=feature_comments_moderation}

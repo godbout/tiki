@@ -53,11 +53,11 @@
 			<div role="separator" class="dropdown-divider"></div>
 			{* First the language of the object *}
 			{if $object_type eq 'wiki page'}
-				<a href="tiki-index.php?page={$trads[0].objName|escape:url}&amp;no_bl=y" class="dropdown-item tips selected" title="{tr}Current language{/tr}: {$trads[0].objName}">
+				<a href="tiki-index.php?page={$trads[0].objName|escape:url}&amp;no_bl=y" class="dropdown-item tips selected" title="{tr}Current language:{/tr} {$trads[0].objName}">
 					<em>{$trads[0].langName|escape} ({$trads[0].lang|escape})</em>
 				</a>
 			{elseif $object_type eq 'article'}
-				<a href="tiki-read_article.php?articleId={$trads[0].objId}" title="{tr}Current language{/tr}: {$trads[0].objName}" class="dropdown-item tips selected">
+				<a href="tiki-read_article.php?articleId={$trads[0].objId}" title="{tr}Current language:{/tr} {$trads[0].objName}" class="dropdown-item tips selected">
 					<em>{$trads[0].langName|escape} ({$trads[0].lang|escape})</em>
 				</a>
 			{/if}
@@ -65,13 +65,13 @@
 			{section name=i loop=$trads}
 				{* For wiki pages *}
 				{if $object_type eq 'wiki page' and $trads[i] neq $trads[0]}
-					<a href="tiki-index.php?page={$trads[i].objName|escape}&no_bl=y" title="{tr}View{/tr}: {$trads[i].objName}" class="dropdown-item tips {$trads[i].class}">
+					<a href="tiki-index.php?page={$trads[i].objName|escape}&no_bl=y" title="{tr}View:{/tr} {$trads[i].objName}" class="dropdown-item tips {$trads[i].class}">
 						{$trads[i].langName|escape} ({$trads[i].lang|escape})
 					</a>
 				{/if}
 				{* For articles *}
 				{if $object_type eq 'article' and $trads[i] neq $trads[0]}
-					<a  href="tiki-read_article.php?articleId={$trads[i].objId}" title="{tr}View{/tr}: {$trads[i].objName}" class="dropdown-item tips {$trads[i].class}">
+					<a  href="tiki-read_article.php?articleId={$trads[i].objId}" title="{tr}View:{/tr} {$trads[i].objName}" class="dropdown-item tips {$trads[i].class}">
 						{$trads[i].langName|escape} ({$trads[i].lang|escape})
 					</a>
 				{/if}

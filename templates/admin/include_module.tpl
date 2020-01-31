@@ -16,7 +16,7 @@
 		</div>
 	</div>
 
-	<fieldset>
+	<fieldset id="Modules">
 		<legend>{tr}{$crumbs[$crumb]->description}{/tr}{help crumb=$crumbs[$crumb]}</legend>
 
 		{preference name=feature_modulecontrols}

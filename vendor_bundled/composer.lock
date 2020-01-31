@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "206aad54e2114962b193f002c118da5b",
+    "content-hash": "f84345c70b924fe14aa2133780a541a6",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -2741,9 +2741,9 @@
             "authors": [
                 {
                     "name": "Matthias Mullie",
-                    "role": "Developer",
                     "email": "pathconverter@mullie.eu",
-                    "homepage": "http://www.mullie.eu"
+                    "homepage": "http://www.mullie.eu",
+                    "role": "Developer"
                 }
             ],
             "description": "Relative path converter",
@@ -9572,17 +9572,17 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.5.3",
+            "version": "3.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "557a1fc7ac702c66b0bbfe16ab3d55839ef724cb"
+                "reference": "dceec07328401de6211037abbb18bda423677e26"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/squizlabs/php_codesniffer/squizlabs-php_codesniffer-557a1fc7ac702c66b0bbfe16ab3d55839ef724cb-zip-5fa975.zip",
-                "reference": "557a1fc7ac702c66b0bbfe16ab3d55839ef724cb",
-                "shasum": "ba9b0d1e9f90950ab3450aea25da46328fd15c08"
+                "url": "https://composer.tiki.org/dist/squizlabs/php_codesniffer/squizlabs-php_codesniffer-dceec07328401de6211037abbb18bda423677e26-zip-2fcd18.zip",
+                "reference": "dceec07328401de6211037abbb18bda423677e26",
+                "shasum": "32521c5de7a5cf175f5d7c2a081239f2a9d45e45"
             },
             "require": {
                 "ext-simplexml": "*",
@@ -9619,7 +9619,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2019-12-04T04:46:47+00:00"
+            "time": "2020-01-30T22:20:29+00:00"
         },
         {
             "name": "webmozart/assert",

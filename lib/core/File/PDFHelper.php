@@ -64,6 +64,11 @@ class PDFHelper
 			$convertFail = true;
 			$message = sprintf("Failed to convert document %s (id: %s) to pdf. Error: %s", $file->filename, $fileId, $e->getMessage());
 			$logsLib = \TikiLib::lib('logs');
+			$previous = $e->getPrevious();
+			while ($previous) {
+				$logsLib->add_log('Unoconv', $previous->getMessage());
+				$previous = $previous->getMessage();
+			}
 			$logsLib->add_log('Unoconv', $message);
 		}
 

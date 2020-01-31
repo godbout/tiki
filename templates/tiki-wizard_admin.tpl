@@ -16,7 +16,7 @@
 		{if !empty($wizard_toc)}
 			<div class="col-sm-4">
 				<div class="card">
-					<div class="card-header font-weight-bold adminWizardTOCTitle">{if $useDefaultPrefs}{tr}Profiles Wizard{/tr}{elseif $useChangesWizard}{tr}Changes Wizard{/tr}{else}{tr}Configuration Wizard{/tr}{/if} - {tr}steps{/tr}:</div>
+					<div class="card-header font-weight-bold adminWizardTOCTitle">{if $useDefaultPrefs}{tr}Profiles Wizard{/tr}{elseif $useChangesWizard}{tr}Changes Wizard{/tr}{else}{tr}Configuration Wizard{/tr}{/if} - {tr}steps:{/tr}</div>
 					{$wizard_toc}
 				</div>
 			</div>

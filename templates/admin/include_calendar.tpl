@@ -6,7 +6,7 @@
 		</a>
 		{include file='admin/include_apply_top.tpl'}
 	</div>
-	<fieldset>
+	<fieldset id="Calendar">
 		<legend>{tr}Activate the feature{/tr}</legend>
 		{preference name=feature_calendar visible="always"}
 	</fieldset>

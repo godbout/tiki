@@ -1,5 +1,5 @@
 {* $Id$ *}
-{title help="Menus" url="tiki-admin_menu_options.php?menuId=$menuId" admpage="general&amp;cookietab=3"}{tr}Menu{/tr}: {$editable_menu_info.name}{/title}
+{title help="Menus" url="tiki-admin_menu_options.php?menuId=$menuId" admpage="general&amp;cookietab=3"}{tr}Menu:{/tr} {$editable_menu_info.name}{/title}
 
 <div class="t_navbar mb-4">
 	<a class="btn btn-link" href="tiki-admin_menus.php">
@@ -195,7 +195,7 @@
 			<form action="{service controller='menu' action='preview'}" class="form-inline preview mb-4">
 				<input type="hidden" name="menuId" value="{$menuId}">
 				<div class="form-group col-sm-3">
-					<label for="preview_type" class="col-form-label mr-2">{tr}Type{/tr}:</label>
+					<label for="preview_type" class="col-form-label mr-2">{tr}Type:{/tr}</label>
 					<select id="preview_type" class="form-control" name="preview_type">
 						<option value="vert"{if $preview_type eq 'vert'} selected{/if}>{tr}Vertical{/tr}</option>
 						<option value="horiz"{if $preview_type eq 'horiz'} selected{/if}>{tr}Horizontal{/tr}</option>

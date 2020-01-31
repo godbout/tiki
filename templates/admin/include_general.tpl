@@ -210,7 +210,7 @@
 		{/tab}
 		{tab name="{tr}Navigation{/tr}"}
 			<br>
-			<fieldset>
+			<fieldset id="Menus">
 				<legend>{tr}Menus{/tr}</legend>
 				<div class="adminoptionbox">
 					{preference name=feature_cssmenus}

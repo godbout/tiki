@@ -20,7 +20,7 @@
 
 			{tab name="{tr}Polls{/tr}"}
 				<br>
-				<fieldset>
+				<fieldset id="Polls">
 					<legend>{tr}Activate the feature{/tr}</legend>
 					{preference name=feature_polls visible="always"}
 				</fieldset>

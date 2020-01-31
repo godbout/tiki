@@ -1,8 +1,8 @@
-diff --git dist/converse.js dist/converse.js
-index acdaed8..3fba12c 100644
---- dist/converse.js
-+++ dist/converse.js
-@@ -2987,1554 +2987,15 @@ backbone.nativeview = __webpack_require__(/*! backbone.nativeview */ "./node_mod
+diff --git a/dist/converse.js b/dist/converse.js
+index ada17aa..86b1874 100644
+--- a/dist/converse.js
++++ b/dist/converse.js
+@@ -24541,1554 +24541,15 @@ module.exports = isObjectLike;
  				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
    } else { var bsn; }
  }(this, function () {
@@ -1565,10 +1565,10 @@ index acdaed8..3fba12c 100644
    };
  }));
  
-@@ -98338,4 +96799,4 @@ _headless_utils_core__WEBPACK_IMPORTED_MODULE_16__["default"].xForm2webForm = fu
- /***/ })
+@@ -75865,4 +74326,4 @@ converse_core.initialize = function (settings, callback) {
  
- /******/ });
+ /***/ })
+ /******/ ]);
 -//# sourceMappingURL=converse.js.map
 \ No newline at end of file
 +//# sourceMappingURL=converse.js.map

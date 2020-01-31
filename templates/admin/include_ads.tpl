@@ -10,7 +10,7 @@
 		</div>
 	</div>
 
-	<fieldset>
+	<fieldset id="Banners">
 		<legend>{tr}Activate the feature{/tr}</legend>
 		{preference name=feature_banners visible="always"}
 	</fieldset>

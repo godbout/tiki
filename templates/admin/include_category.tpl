@@ -16,7 +16,7 @@
 		</div>
 	</div>
 
-	<fieldset>
+	<fieldset id="Categories">
 		<legend>{tr}Activate the feature{/tr}</legend>
 		{preference name=feature_categories visible="always"}
 	</fieldset>
