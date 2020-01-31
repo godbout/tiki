@@ -24,20 +24,20 @@
 			<div class="form-group row">
 				<label for="from" class="col-sm-3 col-form-label">{tr}Your email{/tr}:</label>
 				<div class="col-sm-9">
-					<input type="text" id="from" name="from" value="{$from}" class="form-control">
+					<input type="text" id="from" name="from" value="{$from|escape}" class="form-control">
 				</div>
 			</div>
 		{/if}
 		<div class="form-group row">
 			<label for="subject" class="col-sm-3 col-form-label">{tr}Subject:{/tr}</label>
 			<div class="col-sm-9">
-				<input type="text" id="subject" name="subject" value="{$subject}" class="form-control">
+				<input type="text" id="subject" name="subject" value="{$subject|escape}" class="form-control">
 			</div>
 		</div>
 		<div class="form-group row">
 			<label for="body" class="col-sm-3 col-form-label">{tr}Message:{/tr}</label>
 			<div class="col-sm-9">
-				{textarea rows="20" name="body" id="body" class="form-control" _simple='y' _toolbars='n'}{$body}{/textarea}
+				{textarea rows="20" name="body" id="body" class="form-control" _simple='y' _toolbars='n'}{$body|escape}{/textarea}
 			</div>
 		</div>
 		{if $prefs.feature_antibot eq 'y' && $user eq ''}
