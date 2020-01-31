@@ -149,7 +149,8 @@ function wikiplugin_tracker_info()
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
-				]
+				],
+				'advanced' => true,
 			],
 			'email' => [
 				'required' => false,
@@ -198,6 +199,7 @@ function wikiplugin_tracker_info()
 				'filter' => 'url',
 				'separator' => ':',
 				'default' => '',
+				'advanced' => true,
 			],
 			'target' => [
 				'required' => false,
@@ -212,7 +214,8 @@ function wikiplugin_tracker_info()
 					['text' => tra('Parent'), 'value' => '_parent'],
 					['text' => tra('Self'), 'value' => '_self'],
 					['text' => tra('Top'), 'value' => '_top']
-				]
+				],
+				'advanced' => true,
 			],
 			'overwrite' => [
 				'required' => false,
@@ -230,7 +233,8 @@ function wikiplugin_tracker_info()
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
-				]
+				],
+				'advanced' => true,
 			],
 			'sort' => [
 				'required' => false,
@@ -286,6 +290,7 @@ function wikiplugin_tracker_info()
 				'description' => tra('User field to filter user tracker items to:') . ' <code>view="user&field"</code>',
 				'since' => '15.3',
 				'default' => '',
+				'advanced' => true,
 			],
 			'fieldtofilter' => [
 				'required' => false,
@@ -293,6 +298,7 @@ function wikiplugin_tracker_info()
 				'description' => tra('Field to filter user tracker items to:') . ' <code>view="user&field"</code>',
 				'since' => '15.3',
 				'default' => '',
+				'advanced' => true,
 			],
 			'fieldtofiltervalue' => [
 				'required' => false,
@@ -300,6 +306,7 @@ function wikiplugin_tracker_info()
 				'description' => tra('Value to filter user tracker items to:') . ' <code>view="user&field"</code>',
 				'since' => '15.3',
 				'default' => '',
+				'advanced' => true,
 			],
 			'fieldtofiltercriteria' => [
 				'required' => false,
@@ -314,6 +321,7 @@ function wikiplugin_tracker_info()
 					['text' => tra('creationDate - Ascending'), 'value' => 'creationAsc'],
 					['text' => tra('creationDate - Descending'), 'value' => 'creationDesc']
 				],
+				'advanced' => true,
 			],
 			'status'                   => [
 				'required' => false,
@@ -321,6 +329,7 @@ function wikiplugin_tracker_info()
 				'description' => tra('Status of the item used in combination with:') . ' <code>view="user"</code>' . tra('or') . '<code>view="user&field"</code>',
 				'since' => '6.0',
 				'default' => '',
+				'advanced' => true,
 			],
 			'transactionName'          => [
 				'required' => false,
@@ -331,6 +340,7 @@ function wikiplugin_tracker_info()
 				'since' => '15.0',
 				'filter' => 'alpha',
 				'default' => '',
+				'advanced' => true,
 			],
 			'transactionStep'          => [
 				'required' => false,
@@ -340,6 +350,7 @@ function wikiplugin_tracker_info()
 				'since' => '15.0',
 				'filter' => 'digits',
 				'default' => '0',
+				'advanced' => true,
 			],
 			'transactionFinalStep'     => [
 				'required'    => false,
@@ -352,7 +363,8 @@ function wikiplugin_tracker_info()
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
-				]
+				],
+			'advanced' => true,
 			],
 			'transactionPreviousURL'   => [
 				'required'    => false,
@@ -361,6 +373,7 @@ function wikiplugin_tracker_info()
 				'since'       => '18.4',
 				'filter'      => 'url',
 				'default'     => '',
+				'advanced' => true,
 			],
 			'transactionPreviousLabel' => [
 				'required'    => false,
@@ -369,6 +382,7 @@ function wikiplugin_tracker_info()
 				'since'       => '18.4',
 				'filter'      => 'text',
 				'default'     => tr(''),
+				'advanced' => true,
 			],
 			'itemId'                   => [
 				'required' => false,
@@ -396,7 +410,8 @@ function wikiplugin_tracker_info()
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
-				]
+				],
+				'advanced' => true,
 			],
 			'tpl'                      => [
 				'required' => false,
@@ -448,6 +463,7 @@ function wikiplugin_tracker_info()
 				'since' => '3.0',
 				'default' => '',
 				'accepted' => '## or ##%',
+				'advanced' => true,
 			],
 			'autosavefields' => [
 				'required' => false,
@@ -461,6 +477,7 @@ function wikiplugin_tracker_info()
 				'profile_reference' => 'tracker_field',
 				'parent' => 'input[name="params[trackerId]"]',
 				'parentkey' => 'tracker_id',
+				'advanced' => true,
 			],
 			'autosavevalues' => [
 				'required' => false,
@@ -477,6 +494,7 @@ function wikiplugin_tracker_info()
 				'filter' => 'text',
 				'separator' => ':',
 				'default' => '',
+				'advanced' => true,
 			],
 			'levelupfields' => [
 				'required' => false,
@@ -495,6 +513,7 @@ function wikiplugin_tracker_info()
 				'profile_reference' => 'tracker_field',
 				'parent' => 'input[name="params[trackerId]"]',
 				'parentkey' => 'tracker_id',
+				'advanced' => true,
 			],
 			'registration' => [
 				'required' => false,
@@ -543,6 +562,7 @@ function wikiplugin_tracker_info()
 				'profile_reference' => 'tracker_field',
 				'parent' => 'input[name="params[trackerId]"]',
 				'parentkey' => 'tracker_id',
+				'advanced' => true,
 			],
 			'discarditem' => [
 				'required' => false,
@@ -557,7 +577,8 @@ function wikiplugin_tracker_info()
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
-				]
+				],
+				'advanced' => true,
 			],
 			'outputwiki' => [
 				'required' => false,
@@ -578,6 +599,7 @@ function wikiplugin_tracker_info()
 				'filter' => 'pagename',
 				'default' => '',
 				'profile_reference' => 'wiki_page',
+				'advanced' => true,
 			],
 			'outputwikinamespace' => [
 				'required' => false,
@@ -587,6 +609,7 @@ function wikiplugin_tracker_info()
 				'since' => '13.0',
 				'filter' => 'pagename',
 				'default' => '',
+				'advanced' => true,
 			],
 			'outputwikirelation' => [
 				'required' => false,
@@ -608,7 +631,8 @@ function wikiplugin_tracker_info()
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
-				]
+				],
+				'advanced' => true,
 			],
 			'fieldsfill' => [
 				'required' => false,
@@ -622,6 +646,7 @@ function wikiplugin_tracker_info()
 				'profile_reference' => 'tracker_field',
 				'parent' => 'input[name="params[trackerId]"]',
 				'parentkey' => 'tracker_id',
+				'advanced' => true,
 			],
 			'fieldsfillseparator' => [
 				'required' => false,
@@ -630,6 +655,7 @@ function wikiplugin_tracker_info()
 					Default is pipe (%0|%1).', '<code>', '</code>'),
 				'since' => '9.0',
 				'default' => '|',
+				'advanced' => true,
 			],
 			'fieldsfilldefaults' => [
 				'required' => false,
@@ -637,6 +663,7 @@ function wikiplugin_tracker_info()
 				'description' => tra('Colon-separated list of default values for Multiple Fill Fields.'),
 				'since' => '9.0',
 				'default' => '',
+				'advanced' => true,
 			],
 			'formtag' => [
 				'required' => false,
@@ -652,7 +679,8 @@ function wikiplugin_tracker_info()
 					['text' => '', 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
-				]
+				],
+				'advanced' => true,
 			],
 			'ajax' => [
 				'required' => false,
