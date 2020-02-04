@@ -396,7 +396,7 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 	 **/
 	protected function _basename($path)
 	{
-		return ($stat = $this->stat($path)) ? $stat['name'] : false;
+		return ($stat = $this->stat($path) && isset($stat['name'])) ? $stat['name'] : false;
 	}
 
 	/**
@@ -472,9 +472,9 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 		$path = '';
 		foreach ($parentsIds as $id) {
 			$dir = $this->stat($id);
-			$path .= $dir['name'] . $this->separator;
+			$path .= isset($dir['name']) ? $dir['name'] : '' . $this->separator;
 		}
-		return $path . $file['name'];
+		return $path . isset($file['name']) ? $file['name'] : '';
 	}
 
 	/**
