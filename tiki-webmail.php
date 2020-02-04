@@ -27,6 +27,13 @@ $access->check_feature('feature_webmail');
 $access->check_permission_either(['tiki_p_use_webmail', 'tiki_p_use_group_webmail']);
 $access->check_user($user);
 
+if (empty($_SESSION['cypht']['username']) || $_SESSION['cypht']['username'] != $user) {
+  unset($_SESSION['cypht']);
+  $headerlib = TikiLib::lib('header');
+  $headerlib->add_jq_onready('Hm_Utils.clear_local_storage();');
+  $headerlib->add_jq_onready('Hm_Folders.reload_folders(true);');
+}
+
 $_SESSION['cypht']['preference_name'] = 'cypht_user_config';
 
 define('VENDOR_PATH', $tikipath.'/vendor_bundled/vendor/');
