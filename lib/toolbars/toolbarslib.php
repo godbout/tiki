@@ -1519,7 +1519,7 @@ class ToolbarFileGallery extends Toolbar
 	{
 		global $prefs;
 		$smarty = TikiLib::lib('smarty');
-		if ($prefs['fgal_elfinder_feature'] !== 'y') {
+		if ($prefs['fgal_elfinder_feature'] !== 'y' || $prefs['fgal_elfinder_on_toolbar'] !== 'y') {
 			$smarty->loadPlugin('smarty_function_filegal_manager_url');
 			return 'openFgalsWindow(\'' . htmlentities(smarty_function_filegal_manager_url(['area_id' => $areaId], $smarty->getEmptyInternalTemplate())) . '\', true);';
 		} else {

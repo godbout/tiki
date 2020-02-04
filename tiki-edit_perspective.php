@@ -41,7 +41,8 @@ if (isset($_REQUEST['id'])) {
 }
 
 if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'remove' && $selectedId && $objectperms->perspective_admin) {
-	check_ticket('remove_perspective');
+	$perspectiveInfo = $perspectivelib->get_perspective($selectedId);
+	$access->check_authenticity(tr('Are you sure you want to remove the "%0" perspective?', $perspectiveInfo['name']));
 
 	$perspectivelib->remove_perspective($selectedId);
 	$selectedId = 0;

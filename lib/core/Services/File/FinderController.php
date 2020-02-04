@@ -61,7 +61,7 @@ class Services_File_FinderController
 				}
 			}
 			$tiki_files = TikiDb::get()->table('tiki_files');
-			$this->parentIds['files'] = $tiki_files->fetchMap('fileId', 'galleryId', []);
+			$this->parentIds['files'] = array_map('intval', $tiki_files->fetchMap('fileId', 'galleryId', []));
 		}
 
 		// turn off some elfinder commands here too (stops the back-end methods being accessible)
