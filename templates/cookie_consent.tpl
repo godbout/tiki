@@ -1,10 +1,20 @@
 {* $Id$ *}
 {strip}
-	<div id="{$prefs.cookie_consent_dom_id}" class="alert alert-primary col-sm-8 mx-auto" role="alert"
-		{if $prefs.javascript_enabled eq 'y' and not empty($prefs.cookie_consent_mode)}
-			style="display:none;" class="{$prefs.cookie_consent_mode}"
-		{/if}
-	>
+	{if $prefs.cookie_consent_mode eq 'dialog'}
+		<div class="modal" tabindex="-1" role="dialog" id="{$prefs.cookie_consent_dom_id}">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">{tr}Cookie Consent{/tr}</h5>
+					</div>
+					<div class="modal-body">
+			{else}
+		<div id="{$prefs.cookie_consent_dom_id}" class="alert alert-primary col-sm-8 mx-auto" role="alert"
+			{if $prefs.javascript_enabled eq 'y' and not empty($prefs.cookie_consent_mode)}
+				style="display:none;" class="{$prefs.cookie_consent_mode}"
+			{/if}
+		>
+	{/if}
 		<form method="POST">
 			<div class="description mb-3">
 				{wiki}{tr}{$prefs.cookie_consent_description}{/tr}{/wiki}
@@ -27,6 +37,9 @@
 				</div>
 			</div>
 		</form>
+	{if $prefs.cookie_consent_mode eq 'dialog'}
+		</div></div></div>
+	{/if}
 	</div>
 	{jq}
 		$("#cookie_consent_button").click(function(){
@@ -36,23 +49,22 @@
 				jqueryTiki.no_cookie = false;
 				setCookie("{{$prefs.cookie_consent_name}}", "y", "", exp);
 				$(document).trigger("cookies.consent.agree");
-			}
-			$container = $("#cookie_consent_div").parents(".ui-dialog");
-			if ($container.length) {
-				$("#cookie_consent_div").dialog("close");
-			} else {
-				$("#cookie_consent_div").fadeOut("fast");
+				{{if $prefs.cookie_consent_mode eq 'dialog'}}
+		$("#{{$prefs.cookie_consent_dom_id}}").modal("hide");
+				{{else}}
+		$("#{{$prefs.cookie_consent_dom_id}}").fadeOut("fast");
+				{{/if}}
 			}
 			return false;
 		});
 	{/jq}
 	{if $prefs.cookie_consent_mode eq 'banner'}
 		{jq}
-			setTimeout(function () {$("#cookie_consent_div").slideDown("slow");}, 500);
+			setTimeout(function () {$("#{{$prefs.cookie_consent_dom_id}}").slideDown("slow");}, 500);
 		{/jq}
 	{elseif $prefs.cookie_consent_mode eq 'dialog'}
 		{jq}
-			setTimeout(function () {$("#cookie_consent_div").dialog({modal:true});}, 500);
+			setTimeout(function () {$("#{{$prefs.cookie_consent_dom_id}}").modal({backdrop: "static",keyboard:false,});}, 500);
 		{/jq}
 	{/if}
 {/strip}
