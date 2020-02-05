@@ -391,7 +391,8 @@ div.tiki_plugin {
   text-decoration: none
 }
 
-@media (max-width: breakpoint-max(xs)) {
+@media (max-width: breakpoint-max(sm)) {
+	#autotoc, #page-data.page-data-autotoc { max-width: 100%; }
 	.autotoc > .nav {
 		position: static;
 		max-width: calc(100vw - 30px);
