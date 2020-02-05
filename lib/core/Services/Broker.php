@@ -150,7 +150,7 @@ class Services_Broker
 
 		if ($internal) {
 			$layout = "layouts/internal/layout_view.tpl";
-		} elseif ($access->is_xml_http_request()) {
+		} elseif ($layout = $request->modal->int() || $access->is_xml_http_request()) {
 			$layout = $request->modal->int()
 				? 'layouts/internal/modal.tpl'
 				: 'layouts/internal/ajax.tpl';

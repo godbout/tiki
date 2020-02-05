@@ -120,7 +120,13 @@ function smarty_modifier_sefurl($source, $type = 'wiki', $with_next = '', $all_l
 			if ($replacementpage) {
 				return TikiLib::tikiUrlOpt($wikilib->sefurl($replacementpage, $with_next, $all_langs));
 			} else {
-				$href = 'tiki-view_tracker_item.php?itemId=' . $source;
+				if ($prefs['pwa_feature'] == 'y') {
+					$trklib = TikiLib::lib('trk');
+					$item = $trklib->get_item_info($source);
+					$href = 'tiki-ajax_services.php?controller=tracker&action=update_item&trackerId=' . $item['trackerId'] . '&itemId=' . $source;
+				} else {
+					$href = 'tiki-view_tracker_item.php?itemId=' . $source;
+				}
 			}
 			break;
 

@@ -99,7 +99,7 @@
 			{if ! $js}</li></ul>{/if}
 		</div>
 		{if $canModify && $prefs.tracker_legacy_insert neq 'y'}
-			{if not empty($smarty.request.from)}{$from = $smarty.request.from}{else}{$from=''}{/if}
+			{if not empty($smarty.request.from) and $prefs.pwa_feature ne 'y'}{$from = $smarty.request.from}{else}{$from=''}{/if}
 			<a class="btn btn-primary" href="{bootstrap_modal controller=tracker action=update_item trackerId=$trackerId itemId=$itemId redirect=$from size='modal-lg'}">{icon name="edit"} {tr}Edit{/tr}</a>
 		{/if}
 
