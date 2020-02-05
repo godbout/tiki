@@ -112,7 +112,7 @@
 		"symfony/process": "^3.2.6",
 		"symfony/yaml": "^3.2.6",
 		"tijsverkoyen/css-to-inline-styles": "^2.2.0",
-		"twbs/bootstrap": "~4.1.3",
+		"twbs/bootstrap": "^4.1",
 		"undojs/undojs": "1",
 		"vimeo/froogaloop": "1.0",
 		"webuni/commonmark-attributes-extension": "1.0.0",
