@@ -11,8 +11,6 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
 	exit;
 }
 
-require_once('lib/wiki/renderlib.php');
-
 /*
  * smarty_function_button: Display a Tiki button
  *
@@ -46,7 +44,6 @@ require_once('lib/wiki/renderlib.php');
  */
 function smarty_function_button($params, $smarty)
 {
-	$page = $params['href'] ?? '';
 	if (! is_array($params) || (! isset($params['_text']) && ! isset($params['_icon_name']))) {
 		return '';
 	}
@@ -215,14 +212,5 @@ function smarty_function_button($params, $smarty)
 
 	$auto_query_args = $auto_query_args_orig;
 	$html = preg_replace('/<a /', '<a class="btn btn-' . $type . ' ' . $class . '" data-role="button" data-inline="true" ' . $id . ' ', $html);
-
-	//check if user has permission to see the wiki page, if not the button is hidden
-	$info = $tikilib->get_page_info($page);
-	$pageRenderer = new WikiRenderer($info, '');
-	$pageRenderer->applyPermissions();
-	if ($pageRenderer->canView) {
-		return $html;
-	}
-
-	return '';
+	return $html;
 }
