@@ -47,5 +47,12 @@ function smarty_modifier_slug($string, $length = 70, $mixedCase = false, $breakW
 		$string = mb_strtolower($string);
 	}
 
-	return TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $string, $prefs['url_only_ascii'] === 'y');
+	$asciiOnly = $prefs['url_only_ascii'] === 'y';
+
+	$str = TikiLib::lib('slugmanager')->generate($prefs['wiki_url_scheme'], $string, $asciiOnly);
+
+	if (!$asciiOnly) {
+		$str = urlencode($str);
+	}
+	return $str;
 }
