@@ -30,8 +30,15 @@ $access->check_user($user);
 if (empty($_SESSION['cypht']['username']) || $_SESSION['cypht']['username'] != $user) {
   unset($_SESSION['cypht']);
   $headerlib = TikiLib::lib('header');
-  $headerlib->add_jq_onready('Hm_Utils.clear_local_storage();');
-  $headerlib->add_jq_onready('Hm_Folders.reload_folders(true);');
+  $headerlib->add_js('
+document.cookie = "hm_reload_folders=1";
+for(var i =0; i < sessionStorage.length; i++){
+    var key = sessionStorage.key(i);
+    if (key.indexOf(window.location.pathname) > -1) {
+        sessionStorage.removeItem(key);
+    }
+}
+  ');
 }
 
 $_SESSION['cypht']['preference_name'] = 'cypht_user_config';
