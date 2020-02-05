@@ -4412,7 +4412,9 @@ div.tiki_plugin {
   color: #563d7c;
   text-decoration: none; }
 
-@media (max-width: 575.98px) {
+@media (max-width: 767.98px) {
+  #autotoc, #page-data.page-data-autotoc {
+    max-width: 100%; }
   .autotoc > .nav {
     position: static;
     max-width: calc(100vw - 30px); } }
