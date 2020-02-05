@@ -130,7 +130,7 @@ class MailinLib extends TikiDb_Bridge
 	*  @param 0 $categoryId
 	* @return bool
 	 */
-	function replace_mailin_account($accountId, $account, $protocol, $host, $port, $username, $clearpass, $type, $active, $anonymous, $admin, $attachments, $routing, $article_topicId = null, $article_type = null, $discard_after = null, $show_inlineImages = 'n', $save_html = 'y', $categoryId = 0, $namespace = '', $respond_email = 'y', $leave_email = 'n')
+	function replace_mailin_account($accountId, $account, $protocol, $host, $port, $username, $clearpass, $type, $active, $anonymous, $admin, $attachments, $routing, $article_topicId = null, $article_type = null, $discard_after = null, $show_inlineImages = 'n', $save_html = 'y', $categoryId = 0, $namespace = '', $respond_email = 'y', $leave_email = 'n', $galleryId = null)
 	{
 		// Fix values
 		if ($attachments == null) {
@@ -158,6 +158,7 @@ class MailinLib extends TikiDb_Bridge
 			'namespace' => $namespace,
 			'respond_email' => $respond_email,
 			'leave_email' => $leave_email,
+			'galleryId' => $galleryId,
 		];
 
 		if ($clearpass) {

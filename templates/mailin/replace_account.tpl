@@ -84,7 +84,7 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label for="article_type" class="col-form-label col-md-3">{tr}Article Topic{/tr}</label>
+				<label for="article_type" class="col-form-label col-md-3">{tr}Article Type{/tr}</label>
 				<div class="col-md-9">
 					<select name="article_type" class="form-control">
 						<option value="">{tr}None{/tr}</option>
@@ -97,6 +97,23 @@
 							<a href="tiki-admin_types.php" class="link">{tr}Admin Types{/tr}</a>
 						</div>
 					{/if}
+				</div>
+			</div>
+		{/if}
+		{if $prefs.feature_file_galleries eq 'y'}
+			<div class="form-group row">
+				<label for="galleryId" class="col-form-label col-md-3">{tr}File Gallery{/tr}</label>
+				<div class="col-md-9">
+					<select name="galleryId" class="form-control">
+						<option value="">{tr}None{/tr}</option>
+						<option value="{$prefs.fgal_root_id}" {if $info.galleryId eq $prefs.fgal_root_id}selected="selected"{/if}>{tr}Root{/tr}</option>
+						{foreach $galleries.data as $galInfo}
+							<option value="{$galInfo.id|escape}" {if $info.galleryId eq $galInfo.id}selected="selected"{/if}>{$galInfo.name|escape}</option>
+						{/foreach}
+					</select>
+					<div class="form-text">
+						<a href="tiki-list_file_gallery.php" class="link">{tr}View file galleries{/tr}</a>
+					</div>
 				</div>
 			</div>
 		{/if}

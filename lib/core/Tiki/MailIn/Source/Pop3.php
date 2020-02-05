@@ -63,6 +63,12 @@ class Pop3 implements SourceInterface
 			$message->setRecipient($source->to);
 			$message->setHtmlBody($this->getBody($source, 'text/html'));
 			$message->setBody($this->getBody($source, 'text/plain'));
+			$content = '';
+			foreach ($source->getHeaders() as $header) {
+				$content .= $header->toString()."\n";
+			}
+			$content .= "\n".$source->getContent();
+			$message->setContent($content);
 
 			$this->handleAttachments($message, $source);
 

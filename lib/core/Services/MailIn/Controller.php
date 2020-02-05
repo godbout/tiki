@@ -54,7 +54,8 @@ class Services_MailIn_Controller
 				$input->categoryId->int(),
 				$input->namespace->pagename(),
 				$input->respond_email->int() ? 'y' : 'n',
-				$input->leave_email->int() ? 'y' : 'n'
+				$input->leave_email->int() ? 'y' : 'n',
+				$input->galleryId->int()
 			);
 
 			if ($result) {
@@ -79,6 +80,7 @@ class Services_MailIn_Controller
 				'title' => $info ? tr('Modify Account') : tr('Create Account'),
 				'types' => $artlib->list_types(),
 				'topics' => $artlib->list_topics(),
+				'galleries' => TikiLib::lib('filegal')->getSubGalleries(0, true, 'upload_files'),
 				'accountId' => $accountId,
 				'mailinTypes' => $mailinlib->list_available_types(),
 				'info' => $info ?: [
@@ -102,6 +104,7 @@ class Services_MailIn_Controller
 					'namespace' => '',
 					'respond_email' => 'y',
 					'leave_email' => 'n',
+					'galleryId' => '',
 				],
 			];
 		}

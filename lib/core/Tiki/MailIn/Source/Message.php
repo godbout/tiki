@@ -20,6 +20,7 @@ class Message
 	private $subject;
 	private $body;
 	private $htmlBody;
+	private $content;
 	private $attachments = [];
 
 	private $associatedUser;
@@ -108,6 +109,16 @@ class Message
 		} else {
 			return $this->htmlBody;
 		}
+	}
+
+	function setContent($content)
+	{
+		$this->content = $content;
+	}
+
+	function getContent()
+	{
+		return $this->content;
 	}
 
 	function addAttachment($contentId, $name, $type, $size, $data)
