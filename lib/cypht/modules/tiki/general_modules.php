@@ -43,6 +43,7 @@ Class Hm_Handler_check_for_tiki_redirect extends Hm_Handler_Module {
     public function process() {
         if ($this->get('msg_sent') && $this->session->get('pageaftersend')) {
             $this->out('redirect_url', $this->session->get('pageaftersend'));
+            $this->session->del('pageaftersend');
         }
     }
 }
