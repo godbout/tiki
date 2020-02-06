@@ -2625,6 +2625,14 @@ td.journalDeleted {
     margin-left: 3px;
     margin-right: 3px; }
 
+.calhours {
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid #dee2e6; }
+
+.calweek {
+  border: 1px solid #dee2e6; }
+
 .box-data .calnavigation {
   font-size: 1.1em;
   font-weight: 700;

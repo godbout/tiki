@@ -7,8 +7,8 @@
 	<table border="0" cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;border:1px solid #ccc">
 		{foreach key=k item=h from=$hr_display}
 			<tr valign="middle" style="height:24px">
-				<td id="rowLeft_{$h[0]}" class="calHours" style="width:10%">{$h[1]}</td>
-				<td id="row_{$h[0]}" class="calWeek" style="background:none">&nbsp;</td>
+				<td id="rowLeft_{$h[0]}" class="calhours" style="width:10%">{$h[1]}</td>
+				<td id="row_{$h[0]}" class="calweek" style="background:none">&nbsp;</td>
 			</tr>
 		{/foreach}
 	</table>
