@@ -13,7 +13,6 @@
 			itemId={$itemId}
 			item_label={$item_label}
 			status={$status}
-			redirect={$redirect}
 			confirm=1
 			}">
 				<p>

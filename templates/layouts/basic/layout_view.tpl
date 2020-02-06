@@ -135,6 +135,10 @@
 {/if}
 </div>
 {include file='footer.tpl'}
+{*try to load cache when logged in*}
+{if (isset($pagespwa))}
+	{include file='../../../templates/pwa/pwa.tpl'}
+{/if}
 </body>
 </html>
 {if $prefs.feature_debug_console eq 'y' and not empty($smarty.request.show_smarty_debug)}

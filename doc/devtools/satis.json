@@ -2038,6 +2038,7 @@
 		"npm-asset/chartjs-color": ">=2.2.0",
 		"npm-asset/color-name": ">=1.1.4",
 		"npm-asset/converse.js": "^5.0.1",
+		"npm-asset/dexie": "2.0.4",
 		"npm-asset/emojis-list": ">=2.1.0",
 		"npm-asset/eslint":"^5.13.0",
 		"npm-asset/fast-deep-equal": ">=1.1.0",

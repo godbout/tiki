@@ -131,6 +131,18 @@
 					{preference name=feature_faqs}
 					{preference name=feature_galleries}
 				</div>
+				<fieldset class="mb-3 w-100 clearfix featurelist">
+					<legend> {tr}Progressive Web App{/tr} </legend>
+					{preference name=pwa_feature}
+					<div class="adminoptionboxchild" id="pwa_feature_childcontainer">
+						{remarksbox type="warning" title="{tr}Warning{/tr}" close="n"}
+							{if $prefs.feature_sefurl eq 'y'}
+								{tr}Search Engine Friendly URL feature needs to be disabled.{/tr}<br/>
+							{/if}
+							{tr}PWA feature requires bypassing CSRF Tokens, this represents a security issue.{/tr}
+						{/remarksbox}
+					</div>
+				</fieldset>
 			</fieldset>
 
 			<fieldset>

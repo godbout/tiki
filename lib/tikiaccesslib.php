@@ -342,24 +342,30 @@ class TikiAccessLib extends TikiLib
 	 */
 	public function checkCsrf($error = 'session', $unsetTicket = true, $ticket = '')
 	{
-		if ($this->isActionPost()) {
-			if ($this->csrfResult()) {
-				return true;
-			}
-			$this->originCheck();
-			$this->ticketCheck($unsetTicket, $ticket);
-			if ($this->csrfResult()) {
-				return true;
+		global $prefs;
+
+		if ($prefs['pwa_feature'] == 'y') {
+			return true;
+		} else {
+			if ($this->isActionPost()) {
+				if ($this->csrfResult()) {
+					return true;
+				}
+				$this->originCheck();
+				$this->ticketCheck($unsetTicket, $ticket);
+				if ($this->csrfResult()) {
+					return true;
+				} else {
+					$this->csrfError($error);
+					return false;
+				}
 			} else {
+				$msg = ' ' . tra('CSRF check not performed.');
+				$this->logMsg = $msg;
+				$this->userMsg = $msg;
 				$this->csrfError($error);
 				return false;
 			}
-		} else {
-			$msg = ' ' . tra('CSRF check not performed.');
-			$this->logMsg = $msg;
-			$this->userMsg = $msg;
-			$this->csrfError($error);
-			return false;
 		}
 	}
 

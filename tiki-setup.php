@@ -11,6 +11,8 @@
 // $Id$
 
 // die if called directly.
+use Tiki\Package\VendorHelper;
+
 /**
  * @global array $prefs
  * @global array $tikilib
@@ -264,6 +266,30 @@ if ($prefs['feature_wysiwyg'] == 'y') {
 	$smarty->assign_by_ref('wysiwyg', $_SESSION['wysiwyg']);
 } else {
 	$smarty->assign('wysiwyg', 'n');
+}
+
+if ($prefs['pwa_feature'] == 'y') { //pwa test propose, pages to cache
+	$headerlib->add_jsfile(VendorHelper::getAvailableVendorPath('dexie', 'npm-asset/dexie/dist/dexie.min.js'), true);
+	$pages = ['trackers' => [], 'wiki' => []];
+
+	if(isset($user)){
+		$trackerlib = TikiLib::lib('trk');
+
+		$trackers = $trackerlib->list_trackers();
+		foreach ($trackers['data'] as $tracker) {
+			$items = $trackerlib->get_all_tracker_items($tracker['trackerId']);
+			$pages['trackers'] = array_merge($pages['trackers'], array_map(function ($item) use ($tracker) {
+				return ['id' => $tracker['trackerId'], 'itemId' => $item];
+			}, $items));
+		}
+
+		$pagesAll = $tikilib->get_all_pages();
+		$pages['wiki'] = array_map(function ($m) {
+			return str_replace(' ', '-', $m['pageName']);
+		}, $pagesAll);
+	}
+
+	$smarty->assign('pagespwa', json_encode($pages));
 }
 
 

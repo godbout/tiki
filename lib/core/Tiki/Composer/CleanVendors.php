@@ -36,7 +36,7 @@ class CleanVendors
 		'testing',
 		'tests',
 		'test.html',
-		'vendor',
+//		'vendor',	// needed by twbs/bootstrap
 		'www',
 		'.gitattributes',
 		'.gitignore',
