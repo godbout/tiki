@@ -9,7 +9,11 @@ $exportImageCache = (int)($prefs['fgal_export_diagram_on_image_save'] == 'y');
 $xmlContent = isset($_POST['xml']) ? $_POST['xml'] : false;
 $page = isset($_POST['page']) ? $_POST['page'] : false;
 $index = isset($_POST['index']) ? $_POST['index'] : null;
-$compressXml = empty($_POST['compressXml']) ? false : true;
+$compressXml = ($prefs['fgal_use_diagram_compression_by_default'] !== 'y') ? false : true;
+
+if (! empty($_POST['compressXmlParam']) && ! empty($_POST['compressXml']) && $_POST['compressXml'] === 'false') {
+	$compressXml = false;
+}
 
 $galleryId = isset($_REQUEST['galleryId']) ? $_REQUEST['galleryId'] : 0;
 $backLocation = '';

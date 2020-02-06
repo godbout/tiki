@@ -706,5 +706,11 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'type' => 'flag',
 			'default' => 'n'
 		],
+		'fgal_use_diagram_compression_by_default' => [
+			'name' => tra('Use diagram compression by default'),
+			'description' => tra('if this setting is enabled, diagram will use compression by default.'),
+			'type' => 'flag',
+			'default' => 'y'
+		],
 	];
 }

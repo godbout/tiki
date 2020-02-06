@@ -77,13 +77,16 @@ function wikiplugin_diagram_info()
 function wikiplugin_diagram($data, $params)
 {
 
-	global $tikilib, $cachelib, $user, $page, $wikiplugin_included_page, $tiki_p_upload_files;
+	global $tikilib, $cachelib, $user, $page, $wikiplugin_included_page, $tiki_p_upload_files, $prefs;
 
-	$compressXml = true;
+	$compressXml = ($prefs['fgal_use_diagram_compression_by_default'] !== 'y') ? false : true;
+	$compressXmlParam = false;
+
 	if (empty($params['fileId'])
 		&& isset($params['compressXml'])
 		&& in_array($params['compressXml'], ['false', '0'])) {
 			$compressXml = false;
+			$compressXmlParam = true;
 	}
 
 	$diagramIdentifier = ! empty($params['fileId']) ? $params['fileId'] : $data;
@@ -273,6 +276,7 @@ EOF;
 	$smarty->assign('mxgraph_prefix', $vendorPath);
 	$smarty->assign('page_name', $pageName);
 	$smarty->assign('compressXml', $compressXml);
+	$smarty->assign('compressXmlParam', $compressXmlParam);
 
 	return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_diagram.tpl') . '~/np~';
 }
