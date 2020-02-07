@@ -2721,6 +2721,9 @@ a.fc-event:hover {
     padding-right: 0; }
   #editcalitem .wikitext .summary {
     padding-top: 0 !important; }
+  #editcalitem label {
+    padding-bottom: 0;
+    font-weight: bold; }
   #filtercal {
     left: 0; } }
 
