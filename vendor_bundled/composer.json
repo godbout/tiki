@@ -158,12 +158,12 @@
 		"fabpot/goutte": "^3.2",
 		"mikey179/vfsstream": "^1",
 		"overtrue/phplint": "^1.1",
+		"phpcompatibility/php-compatibility": "^9.3",
 		"phpunit/dbunit": "^2",
 		"phpunit/phpunit": "^5",
 		"phpunit/phpunit-selenium": "^3",
 		"sensiolabs/security-checker": "^5.0",
 		"squizlabs/php_codesniffer": "^3.1",
-		"wimg/php-compatibility": ">=8.1",
 		"ext-xdebug": "*"
 	},
 	"extra": {
