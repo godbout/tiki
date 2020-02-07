@@ -111,7 +111,7 @@
 							{/foreach}
 						</select>
 					{else}
-						<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
+						<div class="summary" style="margin-bottom: 0; padding-top: 7px;">
 							{$listcals[$calitem.calendarId].name|escape}
 						</div>
 					{/if}
@@ -124,7 +124,7 @@
 					{if $edit}
 						<input type="text" name="save[name]" value="{$calitem.name|escape}" size="32" class="form-control">
 					{else}
-						<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
+						<div class="summary" style="margin-bottom: 0; padding-top: 7px;">
 							{$calitem.name|escape}
 						</div>
 					{/if}
@@ -134,7 +134,7 @@
 			<div class="form-group row">
 				<label class="col-form-label col-sm-3">{tr}Created by{/tr}</label>
 				<div class="col-sm-9">
-					<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
+					<div class="summary" style="margin-bottom: 0; padding-top: 7px;">
 							{$calitem.user|escape}
 					</div>
 
@@ -434,7 +434,7 @@
 					</div>
 				{else}
 					<div class="col-sm-9">
-						<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
+						<div class="summary" style="margin-bottom: 0; padding-top: 7px;">
 							{if $calitem.allday}
 								<abbr class="dtstart" title="{$calitem.start|tiki_short_date:'n'}">
 									{$calitem.start|tiki_long_date}
@@ -474,7 +474,7 @@
 					</div>
 				{else}
 					<div class="col-sm-9">
-						<div class="summary" style="margin-bottom: 0; padding-top: 9px;">
+						<div class="summary" style="margin-bottom: 0; padding-top: 7px;">
 							{if $calitem.allday}
 								{if $calitem.end}
 									<abbr class="dtend" title="{$calitem.end|tiki_short_date:'n'}">
@@ -513,7 +513,7 @@
 								{/textarea}
 							{/strip}
 						{else}
-							<div{if $prefs.calendar_description_is_html neq 'y'} class="description"{/if}  style="margin-bottom: 0; padding-top: 9px;">
+							<div{if $prefs.calendar_description_is_html neq 'y'} class="description"{/if}  style="margin-bottom: 0; padding-top: 7px;">
 								{$calitem.parsed|default:"<i>{tr}No description{/tr}</i>"}
 							</div>
 						{/if}

@@ -14,6 +14,16 @@
 	}
 }
 
+.calhours {
+	vertical-align: middle;
+	text-align: center;
+	border: 1px solid $table-border-color;
+}
+
+.calweek {
+	border: 1px solid $table-border-color;
+}
+
 .box-data .calnavigation {
 	font-size: 1.1em;
 	font-weight: 700;
@@ -142,6 +152,7 @@ a.fc-event:hover {
 
 	#editcalitem {
 		.wikitext .summary { padding-top: 0 !important; }
+		label { padding-bottom: 0; font-weight: bold; }
 	}
 
 	#filtercal {

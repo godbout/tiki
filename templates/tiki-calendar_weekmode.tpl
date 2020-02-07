@@ -40,12 +40,12 @@
 		</tr>
 		{foreach key=k item=h from=$hr_display}
 			<tr valign="middle" style="height:24px">
-				<td id="rowLeft_{$h[0]}" class="calHours">
+				<td id="rowLeft_{$h[0]}" class="calhours">
 					{$h[1]}
 				</td>
 				{section name=weekday loop=$weekdays}
 					{if isset($smarty.section.weekday.index) and in_array($smarty.section.weekday.index,$viewdays)}
-						<td id="row_{$h[0]}_{$smarty.section.weekday.index}" class="calWeek">&nbsp;
+						<td id="row_{$h[0]}_{$smarty.section.weekday.index}" class="calweek">&nbsp;
 
 						</td>
 					{/if}

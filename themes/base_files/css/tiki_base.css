@@ -2625,6 +2625,14 @@ td.journalDeleted {
     margin-left: 3px;
     margin-right: 3px; }
 
+.calhours {
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid #dee2e6; }
+
+.calweek {
+  border: 1px solid #dee2e6; }
+
 .box-data .calnavigation {
   font-size: 1.1em;
   font-weight: 700;
@@ -2713,6 +2721,9 @@ a.fc-event:hover {
     padding-right: 0; }
   #editcalitem .wikitext .summary {
     padding-top: 0 !important; }
+  #editcalitem label {
+    padding-bottom: 0;
+    font-weight: bold; }
   #filtercal {
     left: 0; } }
 

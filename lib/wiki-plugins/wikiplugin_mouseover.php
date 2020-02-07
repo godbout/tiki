@@ -277,6 +277,7 @@ function wikiplugin_mouseover($data, $params)
 
 	$js = "\$('#$id-link').mouseover(function(event) {
 	var pos  = $(this).position();
+	$(this).closest('td').css('position', 'relative');
 	\$('#$id').css('position', 'absolute').css('left', pos.left + $offsetx + 'px').css('top', pos.top + $offsety + 'px');
 	showJQ('#$id', '$effect', '$speed'); $closeDelayStr });
 ";
