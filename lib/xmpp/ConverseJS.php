@@ -159,6 +159,7 @@ class ConverseJS
 
 	public function render()
 	{
+		global $user;
 		$options = $this->get_options();
 
 		array_map(
@@ -171,6 +172,19 @@ class ConverseJS
 		array_map([TikiLib::lib('header'), 'add_jsfile'], $this->get_js_dependencies());
 
 		$output = '';
+
+		if (empty($_SESSION['chat-session-init'])) {
+			$_SESSION['chat-session-init'] = time();
+		}
+		$chat_session_init = ($user ?: 'anonymous') . $_SESSION['chat-session-init'];
+
+		$output .= ';(function(){';
+		$output .= "if (localStorage['chat-session-init'] == '{$chat_session_init}') { return; }";
+		$output .= " localStorage['chat-session-init'] = '{$chat_session_init}';";
+		$output .= ' for (var key in localStorage) { key.match(/converse/) && localStorage.removeItem(key); }';
+		$output .= ' for (var key in sessionStorage) { key.match(/converse/) && localStorage.removeItem(key); }';
+		$output .= '})();';
+
 		if ($this->get_option('view_mode') === 'embedded') {
 			// TODO: remove this a line after fixing conversejs
 			$output .= 'delete sessionStorage["converse.chatboxes-' . $this->get_option('jid') . '"];' . PHP_EOL;
