@@ -105,7 +105,6 @@ if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
 	$tx = TikiDb::get()->begin();
 	$fid = $commentslib->replace_forum(
 		$_REQUEST["forumId"],
-		$_REQUEST["parentId"],
 		$_REQUEST["name"],
 		$_REQUEST["description"],
 		$controlFlood,
@@ -161,7 +160,8 @@ if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
 		$_REQUEST['topics_list_lastpost_title'],
 		$_REQUEST['topics_list_lastpost_avatar'],
 		$_REQUEST['topics_list_author_avatar'],
-		$_REQUEST['forumLanguage']
+		$_REQUEST['forumLanguage'],
+		$_REQUEST["parentId"]
 	);
 
 	if ($fid) {
