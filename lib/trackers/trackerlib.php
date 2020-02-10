@@ -2703,6 +2703,8 @@ class TrackerLib extends TikiLib
 						if (empty($val)) {
 							$mandatory_fields[] = $f;
 						}
+					} elseif ($f['type'] == 'r' && empty(array_filter((array) $f['value']))) {	// ItemLink - '0' counts as empty
+						$mandatory_fields[] = $f;
 					} elseif (! isset($f['value']) || ! is_array($f['value']) && strlen($f['value']) == 0 || is_array($f['value']) && empty($f['value'])) {
 						$mandatory_fields[] = $f;
 					}
