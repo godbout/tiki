@@ -109,8 +109,8 @@ function wikiplugin_rr_info()
 				'since' => 'PluginR 0.1',
 				'options' => [
 					['text' => '', 'value' => ''],
-					['text' => tra('0'), 'value' => '0'],
-					['text' => tra('1'), 'value' => '1'],
+					['text' => '0', 'value' => '0'],
+					['text' => '1', 'value' => '1'],
 				],
 				'advanced' => true,
 			],

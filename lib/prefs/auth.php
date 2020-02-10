@@ -104,7 +104,7 @@ function prefs_auth_list()
 			'type' => 'list',
 			'perspective' => false,
 			'options' => [
-				'3' => tra('3'),
+				'3' => '3',
 			],
 			'default' => 3,
 		],
