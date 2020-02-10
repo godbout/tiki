@@ -1075,11 +1075,13 @@ class Services_Tracker_Controller
 				//only need feedback if success - feedback already set if there was an update error
 			}
 			if (isset($input['edit']) && $input['edit'] === 'inline') {
-				if ($suppressFeedback !== true) {
+				if ($result && $suppressFeedback !== true) {
 					Feedback::success(tr('Tracker item %0 has been updated', $itemId), true);
+				} else {
+					Feedback::send_headers();
 				}
 			} else {
-				if ($suppressFeedback !== true) {
+				if ($result && $suppressFeedback !== true) {
 					if ($input->ajax->bool()) {
 						$trackerinfo = $definition->getInformation();
 						$trackername = tr($trackerinfo['name']);
@@ -1091,6 +1093,8 @@ class Services_Tracker_Controller
 					} else {
 						Feedback::success(tr('Tracker item %0 has been updated', $itemId));
 					}
+				} else {
+					Feedback::send_headers();
 				}
 				$redirect = $input->redirect->url();
 
