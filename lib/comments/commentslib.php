@@ -1170,7 +1170,6 @@ class Comments extends TikiLib
 	 */
 	function replace_forum(
 		$forumId = 0,
-		$parentId = 0,
 		$name = '',
 		$description = '',
 		$controlFlood = 'n',
@@ -1226,7 +1225,8 @@ class Comments extends TikiLib
 		$topics_list_lastpost_title = 'y',
 		$topics_list_lastpost_avatar = 'n',
 		$topics_list_author_avatar = 'n',
-		$forumLanguage = ''
+		$forumLanguage = '',
+		$parentId = 0
 	) {
 
 		global $prefs;
