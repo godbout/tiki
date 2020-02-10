@@ -2029,6 +2029,7 @@
 		"lcobucci/jwt": "^3.2.2",
 		"leafo/scssphp": ">=0.6.7",
 		"league/commonmark": ">=1.0",
+		"league/commonmark-extras": ">=1.1.0",
 		"league/event": "^2.1",
 		"league/oauth2-server": "^7.3",
 		"legolasbo/photoswipe": ">=4.1.1",
