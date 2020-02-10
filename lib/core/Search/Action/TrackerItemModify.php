@@ -75,6 +75,7 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 	{
 		$object_id = $data->object_id->int();
 		$aggregateFields = $data->aggregate_fields->none();
+		$executed = false;
 
 		if ($aggregateFields) {
 			$unifiedsearchlib = TikiLib::lib('unifiedsearch');
@@ -85,15 +86,18 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 				$query->filterIdentifier((string)$value, $agField);
 			}
 			$result = $query->search($index);
+			$ok = true;
 			foreach ($result as $entry) {
-				$this->executeOnItem($entry['object_id'], $data);
+				if (! $this->executeOnItem($entry['object_id'], $data)) {
+					$ok = false;
+				}
 			}
+			$executed = $ok;
 		} else {
-			$this->executeOnItem($object_id, $data);
+			$executed = $this->executeOnItem($object_id, $data);
 		}
 
-
-		return true;
+		return $executed;
 	}
 
 	function requiresInput(JitFilter $data)
@@ -191,7 +195,7 @@ class Search_Action_TrackerItemModify implements Search_Action_Action
 		}
 
 		$utilities = new Services_Tracker_Utilities;
-		$utilities->updateItem(
+		return $utilities->updateItem(
 			$definition,
 			[
 				'itemId' => $object_id,
