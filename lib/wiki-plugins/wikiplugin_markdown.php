@@ -25,8 +25,15 @@ function wikiplugin_markdown_info() {
 
 //use League\CommonMark\CommonMarkConverter;
 use League\CommonMark\Converter;
-use League\CommonMark\DocParser;
+
+// common requirement for extension packages
 use League\CommonMark\Environment;
+
+// requirement for league/commonmark-extras extension
+use League\CommonMark\Extras\CommonMarkExtrasExtension;
+
+// requirements for webuni/commonmark-attributes-extension 
+use League\CommonMark\DocParser;
 use League\CommonMark\HtmlRenderer;
 use Webuni\CommonMark\AttributesExtension\AttributesExtension;
 
@@ -42,15 +49,19 @@ function wikiplugin_markdown($data, $params) {
 	$md = str_replace('<x>', '', $md);
 
 	$environment = Environment::createCommonMarkEnvironment();
+
+	// add commonmark-extras extension
+	$environment->addExtension(new CommonMarkExtrasExtension());
+
+	// add commonmark-attributes-extension
 	$environment->addExtension(new AttributesExtension());
+
+	// let's define our configuration
 	$environment->setConfig(['html_input' => 'escape', 'allow_unsafe_links' => false]);
 
 	$converter = new Converter(new DocParser($environment), new HtmlRenderer($environment));
 
 	$md = $converter->convertToHtml($md);
-
-	// $converter = new CommonMarkConverter(['html_input' => 'escape', 'allow_unsafe_links' => false]);
-	// $md = $converter->convertToHtml($md);
 
 	# TODO: "if param wiki then" $md = TikiLib::lib('parser')->parse_data($md, ['is_html' => true, 'parse_wiki' => true]);
 	return $md;
