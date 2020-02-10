@@ -9,6 +9,16 @@ use Tiki\Package\ComposerManager;
 
 class PreferencesLib
 {
+	const DEFAULT_HIDDEN_PREFERENCES = [
+		'feature_editcss',
+		'feature_edit_templates',
+		'feature_purifier',
+		'smarty_security_functions',
+		'smarty_security_modifiers',
+		'smarty_security_dirs',
+		'tiki_allow_trust_input',
+	];
+
 	private $data = [];
 	private $usageArray;
 	private $file = '';
@@ -380,14 +390,16 @@ class PreferencesLib
 
 		if (is_null($rules)) {
 			global $systemConfiguration;
-			$rules = $systemConfiguration->rules->toArray();
+			$rules = array_merge($this->getDefaultSystemPreferences(), $systemConfiguration->rules->toArray());
 			krsort($rules, SORT_NUMERIC);
 
-			foreach ($rules as & $rule) {
+			foreach ($rules as &$rule) {
 				$parts = explode(' ', $rule);
 				$type = array_shift($parts);
 				$rule = [$type, $parts];
 			}
+
+			unset($rule);
 		}
 
 
@@ -1331,5 +1343,21 @@ class PreferencesLib
 		}
 
 		return $hiddenPreferences;
+	}
+
+	/**
+	 * Function responsible for getting the default system preferences.
+	 * Logic related to getting default system preferences should be set here
+	 * @return array
+	 */
+	private function getDefaultSystemPreferences()
+	{
+		$defaultSystemPreferences = [];
+
+		foreach (self::DEFAULT_HIDDEN_PREFERENCES as $hiddenPreference) {
+			$defaultSystemPreferences[] = 'hide ' . $hiddenPreference;
+		}
+
+		return $defaultSystemPreferences;
 	}
 }
