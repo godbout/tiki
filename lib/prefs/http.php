@@ -63,8 +63,8 @@ function prefs_http_list()
 			'name' => tra('Header value'),
 			'type' => 'list',
 			'options' => [
-				'0' => tra('0'),
-				'1' => tra('1'),
+				'0' => '0',
+				'1' => '1',
 				'1;mode=block' => tra('1;mode=block'),
 			],
 			'default' => '1;mode=block',
