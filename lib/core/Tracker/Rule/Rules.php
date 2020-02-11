@@ -53,7 +53,7 @@ class Rules
 		}
 
 		foreach ($this->conditions->predicates as $predicate) {
-			$conditions[] = '$("[name=\'' . $predicate->target_id . '\']")' . $this->getPredicateSyntax($predicate, 'Operator');
+			$conditions[] = '$("[name=\'' . $predicate->target_id . '\']:last")' . $this->getPredicateSyntax($predicate, 'Operator');
 		}
 
 		$js = "\nif (" . implode($operator, $conditions) . ')';
@@ -90,7 +90,7 @@ class Rules
 			$js .= "\n";
 		}
 
-		$js = '$("[name=ins_' . $fieldId . ']").change(function () {' . $js . '}).change();';
+		$js = '$("[name=\'ins_' . $fieldId . '\']:last").change(function () {' . $js . "}).change();\n";
 
 		return $js;
 	}
@@ -107,7 +107,9 @@ class Rules
 		/** @var Operator\Operator $operatorObject */
 		$operatorObject = new $operatorClass();
 		$syntax = $operatorObject->getSyntax();
-		$syntax = str_replace('%argument%', $predicate->argument, $syntax);
+		if ($predicate->argument !== null) {
+			$syntax = str_replace('%argument%', $predicate->argument, $syntax);
+		}
 
 		return $syntax;
 	}

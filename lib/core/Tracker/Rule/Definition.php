@@ -22,6 +22,7 @@ class Definition
 		$definition = [
 			'operators' => [
 				new Operator\BooleanTrueFalse(),
+				new Operator\CollectionContains(),
 				new Operator\DateTimeAfter(),
 				new Operator\DateTimeBefore(),
 				new Operator\DateTimeOn(),
@@ -37,6 +38,7 @@ class Definition
 			],
 			'types' => [
 				new Type\Boolean(),
+				new Type\Collection(),
 				new Type\DateTime(),
 				new Type\Field(),
 				new Type\Nothing(),

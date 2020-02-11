@@ -71,6 +71,7 @@
 	import DateArgument from "./vue_DateArgument.js";
 	import NoArgument from "./vue_NoArgument.js";
 	import BoolArgument from "./vue_BoolArgument.js";
+	import CollectionArgument from "./vue_CollectionArgument.js";
 
 
 	export default {
@@ -82,7 +83,7 @@
 				conditionsoutput: {},
 				actionoutput: {},
 				elseoutput: {},
-				conditionsData: this.$parent.rules.conditions,
+				conditionsData: null,
 				conditionsColumns: {
 					targets: null,
 					// besides array list names, everything else follows convention
@@ -123,6 +124,10 @@
 						{
 							argumentType_id: "Nothing",
 							component: NoArgument,
+						},
+						{
+							argumentType_id: "Collection",
+							component: CollectionArgument,
 						},
 					],
 				},
@@ -172,22 +177,24 @@
 				this.elseoutput = diff;
 			},
 		},
-		mounted: function () {
+		beforeMount: function () {
 
-			this.conditionsColumns.operators = this.$parent.definitiion.operators;
-			this.conditionsColumns.types     = this.$parent.definitiion.types;
-			this.actionsColumns.operators    = this.$parent.definitiion.actions;
-			this.actionsColumns.types        = this.$parent.definitiion.types;
+			let fields = this.$parent.targetFields,
+				field = {},
+				thisvue = this,
+				conditionsTargets = [],
+				actionsTargets = [];
 
-			if (this.$parent.targetFields !== undefined) {
-				let fields = this.$parent.targetFields,
-					conditionsTargets = [],
-					actionsTargets = [];
+			thisvue.conditionsColumns.operators = thisvue.$parent.definitiion.operators;
+			thisvue.conditionsColumns.types     = thisvue.$parent.definitiion.types;
+			thisvue.actionsColumns.operators    = thisvue.$parent.definitiion.actions;
+			thisvue.actionsColumns.types        = thisvue.$parent.definitiion.types;
+
+			if (fields !== undefined) {
 
 				fields.forEach(function (value) {
-					if (value.argumentType === "Array") {
+					if (value.argumentType === "Collection") {
 						value.fieldId += "[]";
-						value.argumentType = "Text";
 					}
 					conditionsTargets.push({
 						target_id: "ins_" + value.fieldId,
@@ -199,10 +206,43 @@
 						label: value.name,
 						type_id: "Field",
 					});
+
+					if (value.fieldId === thisvue.$parent.fileId ||
+						value.argumentType === "Collection" && value.fieldId === (thisvue.$parent.fileId + "[]")) {
+						field = value;
+					}
 				});
 
-				this.conditionsColumns.targets = conditionsTargets;
-				this.actionsColumns.targets    = actionsTargets;
+				thisvue.conditionsColumns.targets = conditionsTargets;
+				thisvue.actionsColumns.targets    = actionsTargets;
+			}
+
+			// set conditions field to thids one if nothing else set
+			if (! thisvue.$parent.rules.conditions) {
+				let operatorId = "";
+
+				if (field.argumentType === "Text") {
+					operatorId = "TextContains";
+				} else if (field.argumentType === "Number") {
+					operatorId = "NumberEquals";
+				} else if (field.argumentType === "Boolean") {
+					operatorId = "BooleanTrueFalse";
+				} else if (field.argumentType === "DateTime") {
+					operatorId = "DateTimeOn";
+				} else if (field.argumentType === "Collection") {
+					operatorId = "CollectionContains";
+				}
+
+				thisvue.conditionsData = {
+					logicalType_id: "any",
+					predicates: [{
+						target_id: "ins_" + field.fieldId,
+						operator_id: operatorId,
+						argument: "",
+					}]
+				}
+			} else {
+				thisvue.conditionsData = thisvue.$parent.rules.conditions;
 			}
 		}
 	};
