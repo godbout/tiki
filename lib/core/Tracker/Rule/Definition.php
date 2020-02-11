@@ -59,10 +59,6 @@ class Definition
 			);
 		}
 
-		$out['actions'] = array_map(function (Action\Action $action) {
-			return $action->get();
-		}, $actions);
-
 		return $out;
 	}
 
