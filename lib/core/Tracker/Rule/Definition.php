@@ -22,6 +22,7 @@ class Definition
 		$definition = [
 			'operators' => [
 				new Operator\BooleanTrueFalse(),
+				new Operator\CollectionContains(),
 				new Operator\DateTimeAfter(),
 				new Operator\DateTimeBefore(),
 				new Operator\DateTimeOn(),
@@ -37,6 +38,7 @@ class Definition
 			],
 			'types' => [
 				new Type\Boolean(),
+				new Type\Collection(),
 				new Type\DateTime(),
 				new Type\Field(),
 				new Type\Nothing(),
@@ -48,6 +50,7 @@ class Definition
 				new Action\NotRequired(),
 				new Action\Required(),
 				new Action\Show(),
+				new Action\NoOp(),
 			]];
 
 		foreach ($definition as $name => $objects) {
@@ -58,10 +61,6 @@ class Definition
 				}, $objects
 			);
 		}
-
-		$out['actions'] = array_map(function (Action\Action $action) {
-			return $action->get();
-		}, $actions);
 
 		return $out;
 	}

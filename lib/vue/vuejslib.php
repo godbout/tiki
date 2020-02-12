@@ -130,31 +130,11 @@ var vm = new Vue({
 		}
 
 		foreach ($params['targetFields'] as & $field) {
-			switch ($field['type']) {
-				case 'f':    // datetime
-				case 'j':    // datepicker
-				case 'CAL':  // calendar item
-					$field['argumentType'] = 'DateTime';
-					break;
-				case 'n':    // number
-				case 'b':    // currency
-					$field['argumentType'] = 'Number';
-					break;
-				case 'c':    // checkbox
-					$field['argumentType'] = 'Boolean';
-					break;
-				case 'e':    // Category
-				case 'd':    // DropDown
-				case 'D':    // DropDown with Other
-				case 'M':    // Multiselect
-				case 'w':    // DynamicList
-					$field['argumentType'] = 'Array';
-					break;
-				default:
-					$field['argumentType'] = 'Text';
-					break;
-			}
+			$this->setFieldType($field);
 		}
+
+		// remove auto-inc and other non-compatible field types
+		$params['targetFields'] = array_values(array_filter($params['targetFields']));
 
 		if (is_string($params['rules'])) {
 			$params['rules'] = json_decode(html_entity_decode($params['rules']));
@@ -175,8 +155,9 @@ var vm = new Vue({
 		$appHtml .= $this->processVue('lib/vue/rules/TextArgument.vue', 'TextArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/NumberArgument.vue', 'NumberArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/DateArgument.vue', 'DateArgument');
-		$appHtml .= $this->processVue('lib/vue/rules/NoArgument.vue', 'NoArgument');
+		$appHtml .= $this->processVue('lib/vue/rules/NothingArgument.vue', 'NoArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/BoolArgument.vue', 'BoolArgument');
+		$appHtml .= $this->processVue('lib/vue/rules/CollectionArgument.vue', 'CollectionArgument');
 
 		$appHtml .= $this->processVue('lib/vue/rules/TrackerRules.vue', 'TrackerRules');
 
@@ -185,13 +166,27 @@ var vm = new Vue({
 
 	public function generateTrackerRulesJS($fields, $parentSelector = '.form-group:first', $insPrefix = 'ins_') {
 
+		global $prefs;
+
 		$js = '';
 
 		foreach ($fields as $field) {
 			if (! empty( $field['rules'])) {
+
+				$this->setFieldType($field);
+				if ($field['argumentType'] === 'Collection') {
+					$append = '[]';
+				} else {
+					$append = '';
+				}
+
 				$rules = Tiki\Lib\core\Tracker\Rule\Rules::fromData($field['fieldId'], $field['rules']);
-				$js .= $rules->getJavaScript($field['fieldId'], $parentSelector);
+				$js .= $rules->getJavaScript($field['fieldId'] . $append, $parentSelector);
 			}
+		}
+
+		if ($prefs['jquery_ui_chosen'] === 'y') {
+			$js .= "\$(document).trigger('chosen:update');\n";
 		}
 
 		return $js;
@@ -294,6 +289,42 @@ var vm = new Vue({
 			// seems to be a custom vue or ui-predicate event?
 			'initialize',
 		];
+	}
+
+	/**
+	 * @param $field
+	 */
+	private function setFieldType(&$field): void
+	{
+		switch ($field['type']) {
+			case 'f':    // datetime
+			case 'j':    // datepicker
+			case 'CAL':  // calendar item
+				$field['argumentType'] = 'DateTime';
+				break;
+			case 'n':    // number
+			case 'b':    // currency
+				$field['argumentType'] = 'Number';
+				break;
+			case 'c':    // checkbox
+				$field['argumentType'] = 'Boolean';
+				break;
+			case 'e':    // Category
+			case 'M':    // Multiselect
+			case 'w':    // DynamicList
+				$field['argumentType'] = 'Collection';
+				break;
+			case 'q':    // auto increment (not used client-side)
+				$field = [];
+				break;
+			default:
+				$field['argumentType'] = 'Text';
+				break;
+		}
+		if ($field['type'] === 'r' && $field['options_map']['selectMultipleValues'] ||	// ItemLink
+				$field['type'] === 'u' && $field['options_map']['multiple']) {			// UserSelector
+			$field['argumentType'] = 'Collection';
+		}
 	}
 
 }
