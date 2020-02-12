@@ -37,11 +37,3 @@ Version 21.0
 ------------------
 
 ----------------------------------------------
-Version 20.1
-<http://doc.tiki.org/Tiki20>
-------------------
-
-----------------------------------------------
-Changelog for Tiki version 20.1, or older, available at:
-https://sourceforge.net/p/tikiwiki/code/HEAD/tree/tags/20.1/changelog.txt
-
