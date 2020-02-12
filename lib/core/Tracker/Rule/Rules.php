@@ -56,41 +56,49 @@ class Rules
 			$conditions[] = '$("[name=\'' . $predicate->target_id . '\']:last")' . $this->getPredicateSyntax($predicate, 'Operator');
 		}
 
-		$js = "\nif (" . implode($operator, $conditions) . ')';
+		$js = "\n  if (" . implode($operator, $conditions) . ')';
 
 		$actions = [];
 
 		foreach($this->actions->predicates as $predicate) {
-			if (strpos($predicate->operator_id, 'Required') === false) {
-				// show/hide etc needs the parent object
-				$actions[] = '  $("[name=\'' . $predicate->target_id . '\']").parents("' . $parentSelector . '")' .
-					$this->getPredicateSyntax($predicate, 'Action') . ';';
-			} else {
-				// validation doesn't need parent
-				$actions[] = '  $("[name=\'' . $predicate->target_id . '\']")' .
-					$this->getPredicateSyntax($predicate, 'Action') . ';';
-			}
-		}
-
-		$js .= " {\n" . implode("\n", $actions) . "\n}";
-
-		if ($this->else->predicates) {
-			$else = [];
-			foreach ($this->else->predicates as $predicate) {
+			if ($predicate->operator_id !== 'NoOp') {
 				if (strpos($predicate->operator_id, 'Required') === false) {
-					$else[] = '  $("[name=\'' . $predicate->target_id . '\']").parents("' . $parentSelector . '")' .
+					// show/hide etc needs the parent object
+					$actions[] = '    $("[name=\'' . $predicate->target_id . '\']").parents("' . $parentSelector . '")' .
 						$this->getPredicateSyntax($predicate, 'Action') . ';';
 				} else {
-					$else[] = '  $("[name=\'' . $predicate->target_id . '\']")' .
+					// validation doesn't need parent
+					$actions[] = '    $("[name=\'' . $predicate->target_id . '\']")' .
 						$this->getPredicateSyntax($predicate, 'Action') . ';';
 				}
 			}
-			$js .= " else {\n" . implode("\n", $else) . "\n}\n";
+		}
+
+		$js .= " {\n" . implode("\n", $actions) . "\n  }";
+
+		$else = [];
+		if ($this->else->predicates) {
+			foreach ($this->else->predicates as $predicate) {
+				if ($predicate->operator_id !== 'NoOp') {
+					if (strpos($predicate->operator_id, 'Required') === false) {
+						$else[] = '    $("[name=\'' . $predicate->target_id . '\']").parents("' . $parentSelector . '")' .
+							$this->getPredicateSyntax($predicate, 'Action') . ';';
+					} else {
+						$else[] = '    $("[name=\'' . $predicate->target_id . '\']")' .
+							$this->getPredicateSyntax($predicate, 'Action') . ';';
+					}
+				}
+			}
+			$js .= " else {\n" . implode("\n", $else) . "\n  }\n";
 		} else {
 			$js .= "\n";
 		}
 
-		$js = '$("[name=\'ins_' . $fieldId . '\']:last").change(function () {' . $js . "}).change();\n";
+		if ($actions || $else) {
+			$js = '$("[name=\'ins_' . $fieldId . '\']:last").change(function () {' . $js . "}).change();\n";
+		} else {
+			$js = '';
+		}
 
 		return $js;
 	}

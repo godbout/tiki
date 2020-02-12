@@ -50,6 +50,7 @@ class Definition
 				new Action\NotRequired(),
 				new Action\Required(),
 				new Action\Show(),
+				new Action\NoOp(),
 			]];
 
 		foreach ($definition as $name => $objects) {

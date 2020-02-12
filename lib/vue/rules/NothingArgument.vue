@@ -3,7 +3,7 @@
 
 <script>
 	export default {
-		name: 'null-argument',
+		name: 'nothing-argument',
 		methods: {},
 		props: {}
 	}

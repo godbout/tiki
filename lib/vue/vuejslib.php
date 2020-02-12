@@ -155,7 +155,7 @@ var vm = new Vue({
 		$appHtml .= $this->processVue('lib/vue/rules/TextArgument.vue', 'TextArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/NumberArgument.vue', 'NumberArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/DateArgument.vue', 'DateArgument');
-		$appHtml .= $this->processVue('lib/vue/rules/NoArgument.vue', 'NoArgument');
+		$appHtml .= $this->processVue('lib/vue/rules/NothingArgument.vue', 'NoArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/BoolArgument.vue', 'BoolArgument');
 		$appHtml .= $this->processVue('lib/vue/rules/CollectionArgument.vue', 'CollectionArgument');
 

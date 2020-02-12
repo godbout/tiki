@@ -183,7 +183,12 @@
 				field = {},
 				thisvue = this,
 				conditionsTargets = [],
-				actionsTargets = [];
+				actionsTargets = [{
+					target_id: "NoTarget",
+					label: "",
+					type_id: "Nothing",
+
+				}];
 
 			thisvue.conditionsColumns.operators = thisvue.$parent.definitiion.operators;
 			thisvue.conditionsColumns.types     = thisvue.$parent.definitiion.types;
