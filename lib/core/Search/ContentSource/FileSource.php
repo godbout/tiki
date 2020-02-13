@@ -37,6 +37,8 @@ class Search_ContentSource_FileSource implements Search_ContentSource_Interface,
 
 	function getDocument($objectId, Search_Type_Factory_Interface $typeFactory)
 	{
+		global $prefs;
+
 		$filegallib = Tikilib::lib('filegal');
 
 		$file = $filegallib->get_file_info($objectId, true, false);
@@ -73,6 +75,24 @@ class Search_ContentSource_FileSource implements Search_ContentSource_Interface,
 			'parent_view_permission' => $typeFactory->identifier('tiki_p_download_files'),
 		];
 
+		if ($prefs['fgal_enable_email_indexing'] === 'y' && $file['filetype'] == 'message/rfc822') {
+			$file_object = Tiki\FileGallery\File::id($file['fileId']);
+			$parsed_fields = (new Tiki\FileGallery\Manipulator\EmailParser($file_object))->run();
+			if ($parsed_fields) {
+				$data += [
+					'email_subject' => $typeFactory->plaintext($parsed_fields['subject']),
+					'email_from' => $typeFactory->plaintext($parsed_fields['from']),
+					'email_sender' => $typeFactory->plaintext($parsed_fields['sender']),
+					'email_recipient' => $typeFactory->plaintext($parsed_fields['recipient']),
+					'email_date' => $typeFactory->timestamp($parsed_fields['date']),
+					'email_content_type' => $typeFactory->plaintext($parsed_fields['content_type']),
+					'email_body' => $typeFactory->plainmediumtext($parsed_fields['body']),
+					'email_plaintext' => $typeFactory->plainmediumtext($parsed_fields['plaintext']),
+					'email_html' => $typeFactory->plainmediumtext($parsed_fields['html']),
+				];
+			}
+		}
+
 		return $data;
 	}
 
@@ -99,6 +119,16 @@ class Search_ContentSource_FileSource implements Search_ContentSource_Interface,
 			'parent_view_permission',
 			'parent_object_id',
 			'parent_object_type',
+
+			'email_subject',
+			'email_from',
+			'email_sender',
+			'email_recipient',
+			'email_date',
+			'email_content_type',
+			'email_body',
+			'email_plaintext',
+			'email_html',
 		];
 	}
 

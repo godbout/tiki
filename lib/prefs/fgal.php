@@ -227,6 +227,12 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'default' => 'n',
 			'type' => 'flag',
 		],
+		'fgal_enable_email_indexing' => [
+			'name' => tra('Automatic indexing of emails stored as files'),
+			'description' => tra('Parses message/rfc822 types of files (aka eml files) and stores individual email headers and content in search index.'),
+			'default' => 'n',
+			'type' => 'flag',
+		],
 		'fgal_asynchronous_indexing' => [
 			'name' => tra('Asynchronous indexing'),
 			'type' => 'flag',

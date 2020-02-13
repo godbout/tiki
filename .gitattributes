@@ -3025,6 +3025,7 @@ lib/core/Tiki/FileGallery/Handler/Podcast.php -text
 lib/core/Tiki/FileGallery/Handler/Preloaded.php -text
 lib/core/Tiki/FileGallery/Handler/System.php -text
 lib/core/Tiki/FileGallery/Handler/index.php -text
+lib/core/Tiki/FileGallery/Manipulator/EmailParser.php -text
 lib/core/Tiki/FileGallery/Manipulator/ImageTransformer.php -text
 lib/core/Tiki/FileGallery/Manipulator/Manipulator.php -text
 lib/core/Tiki/FileGallery/Manipulator/MetadataExtractor.php -text
@@ -3039,6 +3040,7 @@ lib/core/Tiki/MailIn/Action/ArticlePut.php -text
 lib/core/Tiki/MailIn/Action/Comment.php -text
 lib/core/Tiki/MailIn/Action/DirectFactory.php -text
 lib/core/Tiki/MailIn/Action/FactoryInterface.php -text
+lib/core/Tiki/MailIn/Action/FilePut.php -text
 lib/core/Tiki/MailIn/Action/RecipientPlaceholderFactory.php -text
 lib/core/Tiki/MailIn/Action/SubjectPrefixFactory.php -text
 lib/core/Tiki/MailIn/Action/WikiAppend.php -text
@@ -3052,6 +3054,7 @@ lib/core/Tiki/MailIn/Exception/index.php -text
 lib/core/Tiki/MailIn/Provider/ArticlePutProvider.php -text
 lib/core/Tiki/MailIn/Provider/BasicWikiProvider.php -text
 lib/core/Tiki/MailIn/Provider/CompilerPass.php -text
+lib/core/Tiki/MailIn/Provider/FilePutProvider.php -text
 lib/core/Tiki/MailIn/Provider/ProviderInterface.php -text
 lib/core/Tiki/MailIn/Provider/ProviderList.php -text
 lib/core/Tiki/MailIn/Provider/ReplyHandlerProvider.php -text

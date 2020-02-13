@@ -280,6 +280,7 @@ function wikiplugin_cypht($data, $params)
 		if (empty($_SESSION['cypht']['user_data']['imap_servers'])) {
 			$_SESSION['cypht']['user_data']['imap_servers'] = [];
 		}
+		$found = false;
 		foreach ($_SESSION['cypht']['user_data']['imap_servers'] as $server) {
 			if ($server['server'] == $attributes['server'] && $server['tls'] == $attributes['tls'] && $server['port'] == $attributes['port'] && $server['user'] == $attributes['user']) {
 				$found = true;

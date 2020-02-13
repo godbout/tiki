@@ -242,6 +242,7 @@
 		{tab name="{tr}Search Indexing{/tr}"}
 			<br>
 			{preference name=fgal_enable_auto_indexing}
+			{preference name=fgal_enable_email_indexing}
 			{preference name=fgal_asynchronous_indexing}
 			{preference name=ocr_enable}
 				<div class="adminoptionboxchild" id="ocr_enable_childcontainer">

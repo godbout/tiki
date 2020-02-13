@@ -151,6 +151,7 @@
 			<fieldset>
 				<legend>{tr}File galleries searches{/tr}{help url="Search-within-files" desc='You will need to rebuild the search index to see these changes'}</legend>
                 {preference name=fgal_enable_auto_indexing}
+                {preference name=fgal_enable_email_indexing}
                 {preference name=fgal_asynchronous_indexing}
 				<div class="adminoptionboxchild">
 					<fieldset>
