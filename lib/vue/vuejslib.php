@@ -129,12 +129,15 @@ var vm = new Vue({
 			Feedback::error(tr('No fieldId for Field Rules'));
 		}
 
-		foreach ($params['targetFields'] as & $field) {
+		// remove empties (?)
+		$targetFields = array_values(array_filter($params['targetFields']));
+
+		foreach ($targetFields as & $field) {
 			$this->setFieldType($field);
 		}
 
 		// remove auto-inc and other non-compatible field types
-		$params['targetFields'] = array_values(array_filter($params['targetFields']));
+		$params['targetFields'] = array_values(array_filter($targetFields));
 
 		if (is_string($params['rules'])) {
 			$params['rules'] = json_decode(html_entity_decode($params['rules']));
@@ -311,7 +314,6 @@ var vm = new Vue({
 				break;
 			case 'e':    // Category
 			case 'M':    // Multiselect
-			case 'w':    // DynamicList
 				$field['argumentType'] = 'Collection';
 				break;
 			case 'q':    // auto increment (not used client-side)
@@ -321,8 +323,10 @@ var vm = new Vue({
 				$field['argumentType'] = 'Text';
 				break;
 		}
-		if ($field['type'] === 'r' && $field['options_map']['selectMultipleValues'] ||	// ItemLink
-				$field['type'] === 'u' && $field['options_map']['multiple']) {			// UserSelector
+		if ($field['type'] === 'r' && $field['options_map']['selectMultipleValues'] ||		// ItemLink
+			$field['type'] === 'w' && $field['options_map']['selectMultipleValues'] ||	// DynamicItemsList
+			$field['type'] === 'u' && $field['options_map']['multiple']) {				// UserSelector
+
 			$field['argumentType'] = 'Collection';
 		}
 	}
