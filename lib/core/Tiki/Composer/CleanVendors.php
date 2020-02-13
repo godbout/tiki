@@ -158,13 +158,6 @@ class CleanVendors
 			]
 		);
 		self::remove(
-			$vendors . 'jquery/jtrack',
-			[
-				'js/jquery.json-2.2.min.js',
-				'js/jquery-1.4.2.min.js'
-			]
-		);
-		self::remove(
 			$vendors . 'jquery/md5',
 			['css',
 			 'js/md5.min.js'

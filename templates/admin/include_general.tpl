@@ -374,7 +374,6 @@
 			{preference name=jquery_timeago}
 			{preference name=wikiplugin_now}
 			{preference name=wikiplugin_countdown}
-			{preference name=wikiplugin_timesheet}
 			{preference name=wikiplugin_convene}
 		{/tab}
 	{/tabset}

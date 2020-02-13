@@ -127,7 +127,6 @@
 					{preference name=feature_docs}
 					{preference name=feature_slideshow}
 					{preference name=feature_slideshow_pdfexport}
-					{preference name=feature_time_sheet}
 					{preference name=feature_faqs}
 					{preference name=feature_galleries}
 				</div>

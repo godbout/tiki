@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "99ebd40b626cbbf0fc64c63dd8b96d08",
+    "content-hash": "6c21796bf4aada6e8ba33aac5480925e",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -2230,16 +2230,6 @@
                 "type": "zip",
                 "url": "https://composer.tiki.org/dist/jquery/jquery-timepicker-addon/jquery-jquery-timepicker-addon-1.6.3.zip",
                 "shasum": "9c66e144dec7cd433ee7366070bae73fd230d226"
-            },
-            "type": "library"
-        },
-        {
-            "name": "jquery/jtrack",
-            "version": "1.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/jquery/jtrack/jquery-jtrack-1.0.zip",
-                "shasum": "e03e9c5536173e82e61df48477ea024f05b3be7e"
             },
             "type": "library"
         },

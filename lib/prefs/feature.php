@@ -2832,16 +2832,6 @@ function prefs_feature_list($partial = false)
 			'admin' => 'blogs',
 			'perspective' => false,
 		],
-		'feature_time_sheet' => [
-			'name' => tra('Time sheet'),
-			'description' => tra('A project time manager'),
-			'type' => 'flag',
-			'help' => 'TimeSheet',
-			'keywords' => 'timesheet time sheet project',
-			'default' => 'n',
-			'tags' => ['deprecated'],
-			'warning' => tra('This feature will be removed after Tiki18 and before Tiki19'),
-		],
 		'feature_htmlfeed' => [
 			'name' => tra('HTML feed'),
 			'description' => tra('A way to transfer HTML content from one Tiki site to another'),
