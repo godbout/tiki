@@ -23,6 +23,8 @@ class Definition
 			'operators' => [
 				new Operator\BooleanTrueFalse(),
 				new Operator\CollectionContains(),
+				new Operator\CollectionEmpty(),
+				new Operator\CollectionNotContains(),
 				new Operator\DateTimeAfter(),
 				new Operator\DateTimeBefore(),
 				new Operator\DateTimeOn(),
