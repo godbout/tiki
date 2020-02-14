@@ -193,9 +193,11 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 		}
 		$this->set('output_modules', $output_modules);
 		$this->set('handler_modules', $handler_modules);
-		$this->user_defaults['timezone_setting'] = TikiLib::lib('tiki')->get_display_timezone();
-		if (isset($_SESSION['cypht']['user_data'])) {
-			$_SESSION['cypht']['user_data']['timezone_setting'] = $this->user_defaults['timezone_setting'];
+		if (empty($_SESSION['cypht']['user_data']['timezone_setting'])) {
+			$this->user_defaults['timezone_setting'] = TikiLib::lib('tiki')->get_display_timezone();
+			if (isset($_SESSION['cypht']['user_data'])) {
+				$_SESSION['cypht']['user_data']['timezone_setting'] = $this->user_defaults['timezone_setting'];
+			}
 		}
 	}
 }
