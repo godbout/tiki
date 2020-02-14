@@ -1,7 +1,30 @@
 .tiki-webmail, .tiki-cypht, .mobile.tiki-cypht, .inline-cypht {
-    background: $body-bg;
+    background: $body-bg !important;
     font-family: $font-family-base;
-    color: $body-color;
+    color: $body-color !important;
+
+
+    // override colors when not using cypht default theme
+    img { opacity: 1 !important; }
+    ul, li { background-color: transparent !important; }
+    .card { border-color: $card-border-color !important; }
+    .card-header {
+        color: $card-cap-color !important;
+        border-color: $card-border-color !important;
+    }
+    .dropdown-menu { border-color: $dropdown-border-color !important; }
+    .dropdown-divider { border-color: $dropdown-divider-bg !important; }
+    a:not(.dropdown-item) .icon, .btn-link {
+        border-color: transparent !important;
+        color: $link-color !important;
+        &:hover { color: $link-hover-color !important; }
+    }
+    .form-control {
+        background-color: $input-bg !important;
+        border-color: $input-border-color !important;
+    }
+    // override colors when not using cypht default theme
+
 
     a:not(.btn), a.btn-link {
         color: $link-color;

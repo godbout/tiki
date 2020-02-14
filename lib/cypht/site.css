@@ -554,6 +554,9 @@ body {
 .inline-cypht input, .inline-cypht option, .inline-cypht select {
   padding: 5px 10px;
 }
+.inline-cypht main, .inline-cypht div {
+  border-radius: 0;
+}
 .inline-cypht .btn-outline-secondary:hover {
   text-decoration: none;
 }
