@@ -7672,6 +7672,10 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     background-color: #fff !important;
     border-color: #ced4da !important;
     color: #52575C !important; }
+    .tiki-webmail .chosen-container .chosen-results li.active-result.text-muted.bg-info, .tiki-cypht .chosen-container .chosen-results li.active-result.text-muted.bg-info, .mobile.tiki-cypht .chosen-container .chosen-results li.active-result.text-muted.bg-info, .inline-cypht .chosen-container .chosen-results li.active-result.text-muted.bg-info {
+      background-color: #5bc0de !important; }
+    .tiki-webmail .chosen-container .chosen-results li.active-result.result-selected, .tiki-cypht .chosen-container .chosen-results li.active-result.result-selected, .mobile.tiki-cypht .chosen-container .chosen-results li.active-result.result-selected, .inline-cypht .chosen-container .chosen-results li.active-result.result-selected, .tiki-webmail .chosen-container .chosen-results li.active-result.highlighted, .tiki-cypht .chosen-container .chosen-results li.active-result.highlighted, .mobile.tiki-cypht .chosen-container .chosen-results li.active-result.highlighted, .inline-cypht .chosen-container .chosen-results li.active-result.highlighted {
+      background-color: #fff !important; }
   .tiki-webmail a:not(.btn), .tiki-cypht a:not(.btn), .mobile.tiki-cypht a:not(.btn), .inline-cypht a:not(.btn), .tiki-webmail a.btn-link, .tiki-cypht a.btn-link, .mobile.tiki-cypht a.btn-link, .inline-cypht a.btn-link {
     color: #fff; }
     .tiki-webmail a:not(.btn):hover, .tiki-cypht a:not(.btn):hover, .mobile.tiki-cypht a:not(.btn):hover, .inline-cypht a:not(.btn):hover, .tiki-webmail a.btn-link:hover, .tiki-cypht a.btn-link:hover, .mobile.tiki-cypht a.btn-link:hover, .inline-cypht a.btn-link:hover {
