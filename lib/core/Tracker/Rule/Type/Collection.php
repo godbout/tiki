@@ -12,6 +12,8 @@ class Collection extends Type
 	{
 		parent::__construct('Collection', [
 			new Operator\CollectionContains(),
+			new Operator\CollectionEmpty(),
+			new Operator\CollectionNotContains(),
 		]);
 	}
 }

@@ -1,7 +1,39 @@
 .tiki-webmail, .tiki-cypht, .mobile.tiki-cypht, .inline-cypht {
-    background: $body-bg;
+    background: $body-bg !important;
     font-family: $font-family-base;
-    color: $body-color;
+    color: $body-color !important;
+
+
+    // override colors when not using cypht default theme
+    img { opacity: 1 !important; }
+    ul, li { background-color: transparent !important; }
+    .card { border-color: $card-border-color !important; }
+    .card-header {
+        color: $card-cap-color !important;
+        border-color: $card-border-color !important;
+    }
+    .card-body {
+        .nav-link {
+            &, small { color: $link-color !important; }
+        }
+    }
+    .dropdown-menu {
+        background-color: $dropdown-bg !important;
+        border-color: $dropdown-border-color !important;
+    }
+    .dropdown-divider { border-color: $dropdown-divider-bg !important; }
+    a:not(.dropdown-item) .icon, .btn-link {
+        border-color: transparent !important;
+        color: $link-color !important;
+        &:hover { color: $link-hover-color !important; }
+    }
+    .form-control {
+        background-color: $input-bg !important;
+        border-color: $input-border-color !important;
+        color: $input-color !important;
+    }
+    // override colors when not using cypht default theme
+
 
     a:not(.btn), a.btn-link {
         color: $link-color;
@@ -17,15 +49,16 @@
     }
 
     .navbar-light .navbar-nav .nav-link {
-        color: $navbar-light-color;
+        color: $navbar-light-color !important;
         &:hover, &:focus { color: $navbar-light-hover-color !important; }
     }
     .navbar-dark .navbar-nav .nav-link {
-        color: $navbar-dark-color;
+        color: $navbar-dark-color !important;
         &:hover, &:focus { color: $navbar-dark-hover-color !important; }
     }
     .dropdown-menu .dropdown-item {
-        color: $dropdown-link-color;
+        border-radius: 0;
+        color: $dropdown-link-color !important;
         &:hover, &:focus { color: $dropdown-link-hover-color !important; }
     }
 }

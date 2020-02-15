@@ -1,7 +1,7 @@
 {
 	"name": "tiki/tiki",
 	"description": "Tiki Wiki CMS Groupware",
-	"license": "LGPL-2.1",
+	"license": "LGPL-2.1-only",
 	"homepage": "https://tiki.org",
 	"minimum-stability": "stable",
 	"require": {

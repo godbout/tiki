@@ -14,6 +14,7 @@ body { min-width: 100%; }
 .inline-cypht {
 	position: relative;
 	input, option, select { padding: 5px 10px; }
+	main, div { border-radius: 0; }
 	.btn-outline-secondary:hover { text-decoration: none; }
 	.src_name { max-height: 100px; }
 	.sys_messages { padding: 15px; }

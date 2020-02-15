@@ -131,7 +131,7 @@
 						},
 					],
 				},
-				actionsData: this.$parent.rules.actions,
+				actionsData: null,
 				actionsColumns: {
 					targets: null,
 					operators: null,
@@ -158,7 +158,7 @@
 						},
 					],
 				},
-				elseData: this.$parent.rules.else,
+				elseData: null,
 			};
 		},
 		methods: {
@@ -248,6 +248,29 @@
 				}
 			} else {
 				thisvue.conditionsData = thisvue.$parent.rules.conditions;
+			}
+
+			// validate the targets in case options have changed or fields deleted
+			let getPredicates = function (predicates) {
+				return predicates.filter(function (predicate) {
+					let found = thisvue.actionsColumns.targets.find(function (target) {
+						if (predicate.target_id === target.target_id) {
+							return true;
+						}
+					});
+					if (!found) {
+						console.error("Tracker Field Rules: field " + predicate.target_id + " not found in actions");
+					}
+					return found;
+				});
+			};
+			if (thisvue.$parent.rules.actions) {
+				thisvue.actionsData = thisvue.$parent.rules.actions;
+				thisvue.actionsData.predicates = getPredicates(thisvue.$parent.rules.actions.predicates);
+			}
+			if (thisvue.$parent.rules.else) {
+				thisvue.elseData = thisvue.$parent.rules.else;
+				thisvue.elseData.predicates = getPredicates(thisvue.$parent.rules.else.predicates);
 			}
 		}
 	};
