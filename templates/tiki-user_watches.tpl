@@ -192,13 +192,6 @@
 							<th id="checkbox">
                                 {select_all checkbox_names='checked[]'}
 							</th>
-
-{*						<th style="text-align:center;">*}
-{*                            {select_all checkbox_names='watch[]'}*}
-{*                            {select_all checkbox_names='watch[]' value={$w.watchId}}*}
-{*                            {assign var=numbercol value=$numbercol+1}*}
-{*							{select_all checkbox_names='watch[{$w.watchId}]' label="{tr}Select/deselect{/tr}"}*}
-{*						</th>*}
 					{/if}
 					<th>{tr}Event{/tr}</th>
 					<th>{tr}Object{/tr}</th>
