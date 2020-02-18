@@ -593,18 +593,27 @@ EXPORT;
 		return $newTrackerId;
 	}
 
+	/**
+	 * @param Tracker_Definition $definition
+	 * @param array $itemData
+	 * @param int $itemId
+	 *
+	 * @return Tracker_Item
+	 * @throws Exception
+	 */
 	function cloneItem($definition, $itemData, $itemId)
 	{
 		$transaction = TikiLib::lib('tiki')->begin();
 
-		$id = $this->insertItem($definition, $itemData);
-
 		foreach ($definition->getFields() as $field) {
 			$handler = $definition->getFieldFactory()->getHandler($field, $itemData);
 			if (method_exists($handler, 'handleClone')) {
-				$handler->handleClone();
+				$newData = $handler->handleClone();
+				$itemData['fields'][$field['permName']] = $newData['value'];
 			}
 		}
+
+		$id = $this->insertItem($definition, $itemData);
 
 		$itemObject = Tracker_Item::fromId($id);
 

@@ -222,17 +222,17 @@
         },
         {
             "name": "bower-asset/fontawesome",
-            "version": "5.12.0",
+            "version": "5.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FortAwesome/Font-Awesome.git",
-                "reference": "d8db3d032d22e7a5e21f3b40905b7867be19bb02"
+                "reference": "0d1f27efb836eb2ab994ba37221849ed64a73e5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-d8db3d032d22e7a5e21f3b40905b7867be19bb02-zip-0a996b.zip",
-                "reference": "d8db3d032d22e7a5e21f3b40905b7867be19bb02",
-                "shasum": "a1e4df451fc6a0af90fc57fb81e1d33118979cd2"
+                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-0d1f27efb836eb2ab994ba37221849ed64a73e5c-zip-a175a6.zip",
+                "reference": "0d1f27efb836eb2ab994ba37221849ed64a73e5c",
+                "shasum": "87a7ca0aa5342b0deca3db3f143468cb3b7538a2"
             },
             "type": "bower-asset"
         },
@@ -1944,13 +1944,13 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/jasonmunro/cypht.git",
-                "reference": "58f9c65c2e97d20cbd440461fcd3b6338d6b85b4"
+                "reference": "1769ba9b8f19f69caa01cae4a9c8af5da06367ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-58f9c65c2e97d20cbd440461fcd3b6338d6b85b4-zip-b80e84.zip",
-                "reference": "58f9c65c2e97d20cbd440461fcd3b6338d6b85b4",
-                "shasum": "4454a80735f095ae16c82db4a7a212e0b48f78f3"
+                "url": "https://composer.tiki.org/dist/jason-munro/cypht/jason-munro-cypht-1769ba9b8f19f69caa01cae4a9c8af5da06367ec-zip-ea41bb.zip",
+                "reference": "1769ba9b8f19f69caa01cae4a9c8af5da06367ec",
+                "shasum": "9517d14f15317aeb9ce8181ac77b9bd77576e774"
             },
             "require": {
                 "christian-riesen/base32": "1.3.2",
@@ -2001,7 +2001,7 @@
                 "webmail",
                 "webmail-client"
             ],
-            "time": "2020-01-07T01:20:50+00:00"
+            "time": "2020-02-16T20:31:35+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -2803,17 +2803,17 @@
         },
         {
             "name": "laminas/laminas-filter",
-            "version": "2.9.2",
+            "version": "2.9.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-filter.git",
-                "reference": "4d8c0c25e40836bd617335e744009c2c950c4ad5"
+                "reference": "52b5cdbef8902280996e687e7352a648a8e22f31"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-filter/laminas-laminas-filter-4d8c0c25e40836bd617335e744009c2c950c4ad5-zip-142dbb.zip",
-                "reference": "4d8c0c25e40836bd617335e744009c2c950c4ad5",
-                "shasum": "8043ba5db948d8e275046e0cff9e4d3a5490fecd"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-filter/laminas-laminas-filter-52b5cdbef8902280996e687e7352a648a8e22f31-zip-86c42a.zip",
+                "reference": "52b5cdbef8902280996e687e7352a648a8e22f31",
+                "shasum": "ca152b8406a356508b5178971d2f1ce5453f77dd"
             },
             "require": {
                 "laminas/laminas-stdlib": "^2.7.7 || ^3.1",
@@ -2868,7 +2868,7 @@
                 "filter",
                 "laminas"
             ],
-            "time": "2019-12-31T16:54:29+00:00"
+            "time": "2020-01-07T20:43:53+00:00"
         },
         {
             "name": "laminas/laminas-http",
@@ -3988,17 +3988,17 @@
         },
         {
             "name": "laminas/laminas-validator",
-            "version": "2.13.0",
+            "version": "2.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-validator.git",
-                "reference": "2a03c207d5ae038259f0abb588f64851cebdcb1a"
+                "reference": "36702f033486bf1953e254f5299aad205302e79d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-validator/laminas-laminas-validator-2a03c207d5ae038259f0abb588f64851cebdcb1a-zip-558944.zip",
-                "reference": "2a03c207d5ae038259f0abb588f64851cebdcb1a",
-                "shasum": "0455f2b1993bcbe088976cfdcac5bcacb3c10ed2"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-validator/laminas-laminas-validator-36702f033486bf1953e254f5299aad205302e79d-zip-2aea50.zip",
+                "reference": "36702f033486bf1953e254f5299aad205302e79d",
+                "shasum": "612c491275bf95c64d72e818a5fb55e00887fb22"
             },
             "require": {
                 "container-interop/container-interop": "^1.1",
@@ -4021,7 +4021,7 @@
                 "laminas/laminas-servicemanager": "^2.7.5 || ^3.0.3",
                 "laminas/laminas-session": "^2.8",
                 "laminas/laminas-uri": "^2.5",
-                "phpunit/phpunit": "^6.0.8 || ^5.7.15",
+                "phpunit/phpunit": "^7.5.20 || ^8.5.2",
                 "psr/http-client": "^1.0",
                 "psr/http-factory": "^1.0",
                 "psr/http-message": "^1.0"
@@ -4063,7 +4063,7 @@
                 "laminas",
                 "validator"
             ],
-            "time": "2019-12-31T17:57:49+00:00"
+            "time": "2020-01-15T09:59:30+00:00"
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
@@ -4174,30 +4174,31 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.2.2",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "34cf4ddb3892c715ae785c880e6691d839cff88d"
+                "reference": "4f30be7a2cbf3bfa5788abab71384713e48f451f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/league/commonmark/league-commonmark-34cf4ddb3892c715ae785c880e6691d839cff88d-zip-13b302.zip",
-                "reference": "34cf4ddb3892c715ae785c880e6691d839cff88d",
-                "shasum": "fb0b1226cc9b37216b141a6a41c56c372543c484"
+                "url": "https://composer.tiki.org/dist/league/commonmark/league-commonmark-4f30be7a2cbf3bfa5788abab71384713e48f451f-zip-f866e3.zip",
+                "reference": "4f30be7a2cbf3bfa5788abab71384713e48f451f",
+                "shasum": "a3ad3815d47919529d2c68851f5c84356db71dd3"
             },
             "require": {
                 "ext-mbstring": "*",
                 "php": "^7.1"
             },
-            "replace": {
-                "colinodell/commonmark-php": "*"
+            "conflict": {
+                "scrutinizer/ocular": "1.7.*"
             },
             "require-dev": {
                 "cebe/markdown": "~1.0",
                 "commonmark/commonmark.js": "0.29.1",
                 "erusev/parsedown": "~1.0",
                 "ext-json": "*",
+                "github/gfm": "0.29.0",
                 "michelf/php-markdown": "~1.4",
                 "mikehaertl/php-shellcommand": "^1.4",
                 "phpstan/phpstan-shim": "^0.11.5",
@@ -4205,16 +4206,13 @@
                 "scrutinizer/ocular": "^1.5",
                 "symfony/finder": "^4.2"
             },
-            "suggest": {
-                "league/commonmark-extras": "Library of useful extensions including smart punctuation"
-            },
             "bin": [
                 "bin/commonmark"
             ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.3-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -4234,14 +4232,19 @@
                     "role": "Lead Developer"
                 }
             ],
-            "description": "PHP Markdown parser based on the CommonMark spec",
+            "description": "Highly-extensible PHP Markdown parser which fully supports the CommonMark spec and Github-Flavored Markdown (GFM)",
             "homepage": "https://commonmark.thephpleague.com",
             "keywords": [
                 "commonmark",
+                "flavored",
+                "gfm",
+                "github",
+                "github-flavored",
                 "markdown",
+                "md",
                 "parser"
             ],
-            "time": "2020-01-16T01:18:13+00:00"
+            "time": "2020-02-08T23:42:03+00:00"
         },
         {
             "name": "league/event",
@@ -5945,17 +5948,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.52.1",
+            "version": "v1.52.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "216b58760aefdf8dd92c770f8ee7f62f38c03e95"
+                "reference": "52a5d83609a8e3b5cc36b15430a8871a160dc996"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-216b58760aefdf8dd92c770f8ee7f62f38c03e95-zip-64da5f.zip",
-                "reference": "216b58760aefdf8dd92c770f8ee7f62f38c03e95",
-                "shasum": "24a33c59bbf7160e7d514af54d6a4e96e8e0ec33"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-52a5d83609a8e3b5cc36b15430a8871a160dc996-zip-c3be8b.zip",
+                "reference": "52a5d83609a8e3b5cc36b15430a8871a160dc996",
+                "shasum": "bccd88dce78294c312552f65b5545fc29d796e5c"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -5977,7 +5980,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2020-01-13T21:06:52+00:00"
+            "time": "2020-02-03T20:26:16+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -7399,17 +7402,17 @@
         },
         {
             "name": "symfony/polyfill-ctype",
-            "version": "v1.13.1",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-ctype.git",
-                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3"
+                "reference": "fbdeaec0df06cf3d51c93de80c7eb76e271f5a38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-ctype/symfony-polyfill-ctype-f8f0b461be3385e56d6de3dbb5a0df24c0c275e3-zip-08c160.zip",
-                "reference": "f8f0b461be3385e56d6de3dbb5a0df24c0c275e3",
-                "shasum": "af6a4740e4e9d058adae34cceaec2a9b3adba294"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-ctype/symfony-polyfill-ctype-fbdeaec0df06cf3d51c93de80c7eb76e271f5a38-zip-a47cd8.zip",
+                "reference": "fbdeaec0df06cf3d51c93de80c7eb76e271f5a38",
+                "shasum": "fac38e4265876617a7785cc5fe22acda4a89a3b6"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -7420,7 +7423,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -7453,21 +7456,21 @@
                 "polyfill",
                 "portable"
             ],
-            "time": "2019-11-27T13:56:44+00:00"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.13.1",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
+                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-7b4aab9743c30be783b73de055d24a39cf4b954f-zip-ea1380.zip",
-                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
-                "shasum": "46a73e85993989a811f8ecbec0990992e613e4e0"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-mbstring/symfony-polyfill-mbstring-34094cfa9abe1f0f14f48f490772db7a775559f2-zip-d33011.zip",
+                "reference": "34094cfa9abe1f0f14f48f490772db7a775559f2",
+                "shasum": "0433bacfbc7ecc4773c879cbd66ccfe884bf7dc8"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -7478,7 +7481,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -7512,21 +7515,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-11-27T14:18:11+00:00"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "symfony/polyfill-php56",
-            "version": "v1.13.1",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php56.git",
-                "reference": "53dd1cdf3cb986893ccf2b96665b25b3abb384f4"
+                "reference": "16ec91cb06998b609501b55b7177b7d7c02badb3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-php56/symfony-polyfill-php56-53dd1cdf3cb986893ccf2b96665b25b3abb384f4-zip-85215c.zip",
-                "reference": "53dd1cdf3cb986893ccf2b96665b25b3abb384f4",
-                "shasum": "5fb1043305050e87adcf32f8167078250028c2bb"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-php56/symfony-polyfill-php56-16ec91cb06998b609501b55b7177b7d7c02badb3-zip-aec7e1.zip",
+                "reference": "16ec91cb06998b609501b55b7177b7d7c02badb3",
+                "shasum": "e49050b10f3661c435615acca9a3e704dc9d8706"
             },
             "require": {
                 "php": ">=5.3.3",
@@ -7535,7 +7538,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -7568,21 +7571,21 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-11-27T13:56:44+00:00"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "symfony/polyfill-util",
-            "version": "v1.13.1",
+            "version": "v1.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-util.git",
-                "reference": "964a67f293b66b95883a5ed918a65354fcd2258f"
+                "reference": "ba3cfcea6d0192cae46c62041f61cbb704b526d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/symfony/polyfill-util/symfony-polyfill-util-964a67f293b66b95883a5ed918a65354fcd2258f-zip-683b71.zip",
-                "reference": "964a67f293b66b95883a5ed918a65354fcd2258f",
-                "shasum": "efc4e22faf2c4a2be0624bb12832367cc59ac092"
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-util/symfony-polyfill-util-ba3cfcea6d0192cae46c62041f61cbb704b526d3-zip-877ee9.zip",
+                "reference": "ba3cfcea6d0192cae46c62041f61cbb704b526d3",
+                "shasum": "d8ee7e95814be4d35db897eef3e356d2c9fef415"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -7590,7 +7593,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.13-dev"
+                    "dev-master": "1.14-dev"
                 }
             },
             "autoload": {
@@ -7620,7 +7623,7 @@
                 "polyfill",
                 "shim"
             ],
-            "time": "2019-11-27T13:56:44+00:00"
+            "time": "2020-01-13T11:15:53+00:00"
         },
         {
             "name": "symfony/process",
@@ -8533,41 +8536,38 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "4.3.4",
+            "version": "5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "da3fd972d6bafd628114f7e7e036f45944b62e9c"
+                "reference": "a48807183a4b819072f26e347bbd0b5199a9d15f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpdocumentor/reflection-docblock/phpdocumentor-reflection-docblock-da3fd972d6bafd628114f7e7e036f45944b62e9c-zip-a971c5.zip",
-                "reference": "da3fd972d6bafd628114f7e7e036f45944b62e9c",
-                "shasum": "d3a6a3d593711e5947c3f0387711a958d4a5e90e"
+                "url": "https://composer.tiki.org/dist/phpdocumentor/reflection-docblock/phpdocumentor-reflection-docblock-a48807183a4b819072f26e347bbd0b5199a9d15f-zip-54d819.zip",
+                "reference": "a48807183a4b819072f26e347bbd0b5199a9d15f",
+                "shasum": "a0bd0ee7b18efce69a2405bf7c5f55e85d3f1486"
             },
             "require": {
-                "php": "^7.0",
-                "phpdocumentor/reflection-common": "^1.0.0 || ^2.0.0",
-                "phpdocumentor/type-resolver": "~0.4 || ^1.0.0",
-                "webmozart/assert": "^1.0"
+                "ext-filter": "^7.1",
+                "php": "^7.2",
+                "phpdocumentor/reflection-common": "^2.0",
+                "phpdocumentor/type-resolver": "^1.0",
+                "webmozart/assert": "^1"
             },
             "require-dev": {
-                "doctrine/instantiator": "^1.0.5",
-                "mockery/mockery": "^1.0",
-                "phpdocumentor/type-resolver": "0.4.*",
-                "phpunit/phpunit": "^6.4"
+                "doctrine/instantiator": "^1",
+                "mockery/mockery": "^1"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.x-dev"
+                    "dev-master": "5.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "phpDocumentor\\Reflection\\": [
-                        "src/"
-                    ]
+                    "phpDocumentor\\Reflection\\": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -8578,10 +8578,14 @@
                 {
                     "name": "Mike van Riel",
                     "email": "me@mikevanriel.com"
+                },
+                {
+                    "name": "Jaap van Otterdijk",
+                    "email": "account@ijaap.nl"
                 }
             ],
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
-            "time": "2019-12-28T18:55:12+00:00"
+            "time": "2020-02-09T09:16:15+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -9940,17 +9944,17 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.6.0",
+            "version": "1.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "573381c0a64f155a0d9a23f4b0c797194805b925"
+                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/webmozart/assert/webmozart-assert-573381c0a64f155a0d9a23f4b0c797194805b925-zip-cda370.zip",
-                "reference": "573381c0a64f155a0d9a23f4b0c797194805b925",
-                "shasum": "08a897dbb4d92c66a715cca23acac5dfb21d44e4"
+                "url": "https://composer.tiki.org/dist/webmozart/assert/webmozart-assert-aed98a490f9a8f78468232db345ab9cf606cf598-zip-7d7973.zip",
+                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598",
+                "shasum": "6c1eabf74b01f7ee89e0da9a27c5e779090810a2"
             },
             "require": {
                 "php": "^5.3.3 || ^7.0",
@@ -9984,7 +9988,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2019-11-24T13:36:37+00:00"
+            "time": "2020-02-14T12:15:55+00:00"
         },
         {
             "name": "wimg/php-compatibility",
