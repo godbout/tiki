@@ -1632,10 +1632,10 @@ function wikiplugin_img($data, $params)
 	) {
 		//Make the div surrounding the image 2 pixels bigger than the image
 		if (empty($height)) {
-			$height = '';
+			$height = 0;
 		}
 		if (empty($width)) {
-			$width = '';
+			$width = 0;
 		}
 		$boxwidth = $width + 2;
 		$boxheight = $height + 2;
