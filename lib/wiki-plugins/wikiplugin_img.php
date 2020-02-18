@@ -1679,8 +1679,12 @@ function wikiplugin_img($data, $params)
 			} else {
 				$styleboxplus = $alignbox . ' max-width: 100%; width:' . $boxwidth . 'px;';
 			}
-		} elseif (! empty($imgdata['button']) || ! empty($imgdata['desc']) || ! empty($imgdata['metadata'])) {
-			$styleboxplus = ' max-width: 100%; width:' . $boxwidth . 'px;';
+		} elseif (! empty($imgdata['button']) || ! empty($imgdata['desc']) || ! empty($imgdata['metadata'])) {		
+			if($boxwidth==2){
+				$styleboxplus = ' max-width: 100%; width: 100%;';			
+			}else{
+				$styleboxplus = ' max-width: 100%; width: '.$boxwidth.'px;';
+			}
 		} elseif ($boxwidth === 2) {
 			$styleboxplus = ' width: auto;';
 		}
