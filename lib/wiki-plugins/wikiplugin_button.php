@@ -113,6 +113,21 @@ function wikiplugin_button_info()
 				'default' => '',
 				'safe' => true,
 			],
+			'_target' => [
+				'required' => false,
+				'name' => tra('Target'),
+				'description' => tr('A target attribute specifies where to open the linked document. Set to _self by default'),
+				'since' => '21.0',
+				'filter' => 'text',
+				'options' => [
+					['text' => tra('_self'), 'value' => ''],
+					['text' => tra('_blank'), 'value' => '_blank'],
+					['text' => tra('_parent'), 'value' => '_parent'],
+					['text' => tra('_top'), 'value' => '_top']
+				],
+				'default' => '',
+				'safe' => true,
+			],
 			'_auto_args' => [
 				'required' => false,
 				'name' => tra('Auto Arguments'),
