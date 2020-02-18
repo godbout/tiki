@@ -167,6 +167,9 @@ class Services_File_FinderController
 		}
 */
 		// run elFinder
+
+		session_write_close();
+
 		$elFinder = new tikiElFinder($opts);
 		$connector = new elFinderConnector($elFinder);
 
