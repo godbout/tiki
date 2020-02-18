@@ -189,9 +189,9 @@
 			<table class="table table-striped table-hover">
 				<tr>
 					{if $watches}
-							<th id="checkbox">
-                                {select_all checkbox_names='checked[]'}
-							</th>
+						<th id="checkbox">
+							{select_all checkbox_names='checked[]'}
+						</th>
 					{/if}
 					<th>{tr}Event{/tr}</th>
 					<th>{tr}Object{/tr}</th>
