@@ -189,7 +189,9 @@
 			<table class="table table-striped table-hover">
 				<tr>
 					{if $watches}
-						<th style="text-align:center;"></th>
+							<th id="checkbox">
+                                {select_all checkbox_names='checked[]'}
+							</th>
 					{/if}
 					<th>{tr}Event{/tr}</th>
 					<th>{tr}Object{/tr}</th>
@@ -200,7 +202,7 @@
 						{if $watches}
 							<td class="checkbox-cell">
 								<div class="form-check">
-									<input type="checkbox" name="watch[{$w.watchId}]">
+									<input type="checkbox" name="checked[]" value="{$w.watchId}">
 								</div>
 							</td>
 						{/if}

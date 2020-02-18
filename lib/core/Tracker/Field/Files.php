@@ -523,21 +523,23 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 
 		$itemId = $this->getItemId();
 
-		$relationlib = TikiLib::lib('relation');
-		$relations = $relationlib->get_relations_from('trackeritem', $itemId, 'tiki.file.attach');
-		foreach ($relations as $existing) {
-			if ($existing['type'] != 'file') {
-				continue;
+		if ($itemId) {
+			$relationlib = TikiLib::lib('relation');
+			$relations = $relationlib->get_relations_from('trackeritem', $itemId, 'tiki.file.attach');
+			foreach ($relations as $existing) {
+				if ($existing['type'] != 'file') {
+					continue;
+				}
+
+				if (in_array($existing['itemId'], $remove)) {
+					$relationlib->remove_relation($existing['relationId']);
+				}
 			}
 
-			if (in_array($existing['itemId'], $remove)) {
-				$relationlib->remove_relation($existing['relationId']);
-			}
-		}
-
-		foreach ($new as $fileId) {
-			if (! empty($fileId)) {
-				$relationlib->add_relation('tiki.file.attach', 'trackeritem', $itemId, 'file', $fileId);
+			foreach ($new as $fileId) {
+				if (! empty($fileId)) {
+					$relationlib->add_relation('tiki.file.attach', 'trackeritem', $itemId, 'file', $fileId);
+				}
 			}
 		}
 

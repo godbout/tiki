@@ -58,6 +58,8 @@ if ($prefs['feature_categories'] == 'y') {
 }
 if (isset($_REQUEST["maxRecords"])) {
 	$maxRecords = $_REQUEST["maxRecords"];
+} else {
+	$maxRecords = 10;
 }
 $smarty->assign('maxRecords', $maxRecords);
 
@@ -161,6 +163,9 @@ if (isset($_REQUEST['replace']) && $searchtext) {
 			$curposadjuster = $curposadjuster + strlen($replacetext) - $searchtextLength;
 			$last_page_id = $page_id;
 		}
+	}
+	if (empty($message)) {
+		$message = tra('Nothing was replaced. Try selecting fewer items or increasing the limit change max_input_vars in php.ini.');
 	}
 	$smarty->assign('message', $message);
 }

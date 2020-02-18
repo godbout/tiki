@@ -127,9 +127,10 @@ if (isset($_REQUEST["add"]) && $access->checkCsrf()) {
 	}
 }
 // no confirmation needed as it is easy to add back a watch
-if (isset($_REQUEST["delete"]) && isset($_REQUEST['watch']) && $access->checkCsrf()) {
+if (isset($_REQUEST["delete"]) && isset($_REQUEST['checked']) && $access->checkCsrf()) {
+	$checked = is_array($_REQUEST['checked']) ? $_REQUEST['checked'] : [$_REQUEST['checked']];
 	/* CSRL doesn't work if param as passed not in the uri */
-	foreach (array_keys($_REQUEST["watch"]) as $item) {
+	foreach ($checked as $item) {
 		$result = $tikilib->remove_user_watch_by_id($item);
 		if ($result && $result->numRows()) {
 			Feedback::success(tr('User watch deleted'));

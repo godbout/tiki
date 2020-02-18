@@ -166,7 +166,7 @@ $(window).resize(function () {
 	});
 
 	$('#appframe .anchor-container')
-		.css('z-index', 100000)
+		.css('z-index', 1000)
 		.css('position', 'absolute')
 		.css('top', 150)
 		.css('right', 0)

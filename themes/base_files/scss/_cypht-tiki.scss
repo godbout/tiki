@@ -32,6 +32,10 @@
         border-color: $input-border-color !important;
         color: $input-color !important;
     }
+    .chosen-container .chosen-results li.active-result {
+        &.text-muted.bg-info { background-color: $info !important; }
+        &.result-selected, &.highlighted { background-color: $link-color !important; }
+    }
     // override colors when not using cypht default theme
 
 
