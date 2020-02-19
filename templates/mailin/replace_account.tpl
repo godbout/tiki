@@ -100,6 +100,19 @@
 				</div>
 			</div>
 		{/if}
+		{if $prefs.feature_trackers eq 'y'}
+			<div class="form-group row">
+				<label for="galleryId" class="col-form-label col-md-3">{tr}Tracker{/tr}</label>
+				<div class="col-md-9">
+					<select name="trackerId" class="form-control">
+						<option value="">{tr}None{/tr}</option>
+					</select>
+					<div class="form-text">
+						<a href="tiki-list_trackers.php" class="link">{tr}View trackers{/tr}</a>
+					</div>
+				</div>
+			</div>
+		{/if}
 		{if $prefs.feature_file_galleries eq 'y'}
 			<div class="form-group row">
 				<label for="galleryId" class="col-form-label col-md-3">{tr}File Gallery{/tr}</label>
@@ -154,6 +167,20 @@
 					</div>
 				{else}
 					<a href="tiki-admin.php?page=wiki&cookietab=2&highlight=feature_wiki_attachments">Activate attachments</a>
+				{/if}
+			</div>
+		</div>
+		<div class="form-group row">
+			<div class="offset-md-3 col-md-9">
+				{if $prefs.trackerfield_files eq 'y'}
+					<div class="form-check">
+						<label>
+							<input type="checkbox" class="form-check-input" name="tracker_attachments" value="1" {if $info.attachments eq 'y'}checked{/if}>
+							{tr}Allow attachments for Store Mail in Tracker{/tr}
+						</label>
+					</div>
+				{else}
+					<a href="tiki-admin.php?page=trackers#content_admin1-3">Enable Files Tracker Field</a>
 				{/if}
 			</div>
 		</div>

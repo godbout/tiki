@@ -45,6 +45,7 @@ class Services_MailIn_Controller
 				$input->anonymous->int() ? 'y' : 'n',
 				$input->admin->int() ? 'y' : 'n',
 				$input->attachments->int() ? 'y' : 'n',
+				$input->tracker_attachments->int() ? 'y' : 'n',
 				$input->routing->int() ? 'y' : 'n',
 				$input->article_topicId->int(),
 				$input->article_type->text(),
@@ -55,7 +56,8 @@ class Services_MailIn_Controller
 				$input->namespace->pagename(),
 				$input->respond_email->int() ? 'y' : 'n',
 				$input->leave_email->int() ? 'y' : 'n',
-				$input->galleryId->int()
+				$input->galleryId->int(),
+				$input->trackerId->int()
 			);
 
 			if ($result) {
@@ -105,6 +107,7 @@ class Services_MailIn_Controller
 					'respond_email' => 'y',
 					'leave_email' => 'n',
 					'galleryId' => '',
+					'trackerId' => '',
 				],
 			];
 		}

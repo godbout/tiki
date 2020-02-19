@@ -109,6 +109,11 @@ class Tracker_Definition
 		}
 	}
 
+	function setFields($fields)
+	{
+		$this->fields = $fields;
+	}
+
 	function getField($id)
 	{
 		if (is_numeric($id)) {

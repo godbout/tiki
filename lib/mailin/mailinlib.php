@@ -130,11 +130,16 @@ class MailinLib extends TikiDb_Bridge
 	*  @param 0 $categoryId
 	* @return bool
 	 */
-	function replace_mailin_account($accountId, $account, $protocol, $host, $port, $username, $clearpass, $type, $active, $anonymous, $admin, $attachments, $routing, $article_topicId = null, $article_type = null, $discard_after = null, $show_inlineImages = 'n', $save_html = 'y', $categoryId = 0, $namespace = '', $respond_email = 'y', $leave_email = 'n', $galleryId = null)
+	function replace_mailin_account($accountId, $account, $protocol, $host, $port, $username, $clearpass, $type, $active, $anonymous, $admin, $attachments, $tracker_attachments, $routing, $article_topicId = null, $article_type = null, $discard_after = null, $show_inlineImages = 'n', $save_html = 'y', $categoryId = 0, $namespace = '', $respond_email = 'y', $leave_email = 'n', $galleryId = null, $trackerId = null)
 	{
 		// Fix values
 		if ($attachments == null) {
 			$attachments = 'n';
+		}
+
+		// if account is Store Mail in Tracker
+		if($type == 'tracker') {
+			$attachments = $tracker_attachments;
 		}
 
 		$data = [
@@ -159,6 +164,7 @@ class MailinLib extends TikiDb_Bridge
 			'respond_email' => $respond_email,
 			'leave_email' => $leave_email,
 			'galleryId' => $galleryId,
+			'trackerId' => $trackerId,
 		];
 
 		if ($clearpass) {

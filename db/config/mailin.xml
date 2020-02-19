@@ -51,5 +51,8 @@
 		<service id="tiki.mailin.provider.fileput" class="Tiki\MailIn\Provider\FilePutProvider">
 			<tag name="tiki.mailin.provider"/>
 		</service>
+		<service id="tiki.mailin.provider.tracker" class="Tiki\MailIn\Provider\TrackerProvider">
+			<tag name="tiki.mailin.provider"/>
+		</service>
 	</services>
 </container>

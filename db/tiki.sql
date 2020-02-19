@@ -1563,6 +1563,7 @@ CREATE TABLE `tiki_mailin_accounts` (
   `respond_email` char(1) NOT NULL default 'y',
   `leave_email` char(1) NOT NULL default 'n',
   `galleryId` int(11) NULL DEFAULT NULL,
+  `trackerId` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`accountId`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
