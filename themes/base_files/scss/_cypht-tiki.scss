@@ -8,10 +8,7 @@
     img { opacity: 1 !important; }
     ul, li { background-color: transparent !important; }
     .card { border-color: $card-border-color !important; }
-    .card-header {
-        color: $card-cap-color !important;
-        border-color: $card-border-color !important;
-    }
+    .card-header { border-color: $card-border-color !important; }
     .card-body {
         .nav-link {
             &, small { color: $link-color !important; }
@@ -22,6 +19,8 @@
         border-color: $dropdown-border-color !important;
     }
     .dropdown-divider { border-color: $dropdown-divider-bg !important; }
+    .dropdown-header { color: $dropdown-header-color !important; }
+    .moduletitle { color: $body-color !important; }
     a:not(.dropdown-item) .icon, .btn-link {
         border-color: transparent !important;
         color: $link-color !important;
@@ -40,7 +39,7 @@
 
 
     a:not(.btn), a.btn-link {
-        color: $link-color;
+        color: $link-color !important;
         &:hover {
             color: $link-hover-color !important;
             text-decoration: inherit;
@@ -62,8 +61,10 @@
     }
     .dropdown-menu .dropdown-item {
         border-radius: 0;
-        color: $dropdown-link-color !important;
-        &:hover, &:focus { color: $dropdown-link-hover-color !important; }
+        &, .icon { color: $dropdown-link-color !important; }
+        &:hover, &:focus {
+            &, .icon { color: $dropdown-link-hover-color !important; }
+        }
     }
 }
 
