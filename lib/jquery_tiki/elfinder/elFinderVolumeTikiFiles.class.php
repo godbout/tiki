@@ -168,13 +168,19 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 	/**
 	 * Resize image
 	 *
-	 * @param  string   $hash    image file
-	 * @param  int      $width   new width
-	 * @param  int      $height  new height
-	 * @param  bool     $crop    crop image
+	 * @param string $hash   image file
+	 * @param int    $width  new width
+	 * @param int    $height new height
+	 * @param        $x
+	 * @param        $y
+	 * @param string $mode
+	 * @param string $bg
+	 * @param int    $degree
+	 * @param null   $jpgQuality
+	 *
 	 * @return array|false
-	 **/
-	public function resize($hash, $width, $height, $x, $y, $mode = 'resize', $bg = '', $degree = 0)
+	 */
+	public function resize($hash, $width, $height, $x, $y, $mode = 'resize', $bg = '', $degree = 0, $jpgQuality = null)
 	{
 
 		   return false;
