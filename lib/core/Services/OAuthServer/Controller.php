@@ -98,6 +98,7 @@ class Services_OAuthServer_Controller
 		global $user;
 
 		$params = $request->getQueryParams();
+		/** @var OAuthServerLib $oauthserverlib */
 		$oauthserverlib = TikiLib::lib('oauthserver');
 		$accesslib = TikiLib::lib('access');
 		$servicelib = TikiLib::lib('service');

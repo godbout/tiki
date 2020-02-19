@@ -287,7 +287,7 @@ if (jqueryTiki.no_cookie) {
 							{if $mode eq 'header' && $module_params.show_forgot eq 'y' && $prefs.forgotPass eq 'y'}
 								&nbsp;|&nbsp;
 							{/if}
-							<li class="pass{if $mode eq 'popup'} dropdown-item{/if} list-item"><a href="/tiki-login_scr.php?twoFactorForm" title="{tr}Login with two-factor authenticator{/tr}">{if $mode eq 'popup'} {tr}Login with 2FA{/tr}{else}{tr}Login with two-factor authenticator{/tr}{/if}</a></li>
+							<li class="pass{if $mode eq 'popup'} dropdown-item{/if} list-item"><a href="tiki-login_scr.php?twoFactorForm" title="{tr}Login with two-factor authenticator{/tr}">{if $mode eq 'popup'} {tr}Login with 2FA{/tr}{else}{tr}Login with two-factor authenticator{/tr}{/if}</a></li>
 						{/if}
 					</ul></div>
 				{/strip}

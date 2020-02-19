@@ -742,6 +742,7 @@ function wikiplugin_img($data, $params)
 	$imagegalpath = ($absolute_links ? $base_url : '') . 'show_image.php?id=';
 	$filegalpath = ($absolute_links ? $base_url : '') . 'tiki-download_file.php?fileId=';
 	$attachpath = ($absolute_links ? $base_url : '') . 'tiki-download_wiki_attachment.php?attId=';
+	$dbinfo = [];
 
 	//get random image and treat as file gallery image afterwards
 	if (! empty($imgdata['randomGalleryId'])) {
@@ -810,9 +811,11 @@ function wikiplugin_img($data, $params)
 				$dbinfot2 = $imagegallib->get_image($imgdata['id'], 't');
 				$dbinfot = isset($dbinfot) && isset($dbinfot2) ? array_merge($dbinfot, $dbinfot2) : [];
 				$basepath = $prefs['gal_use_dir'];
-			} elseif (! isset($dbinfo) && ! empty($imgdata['fileId'])) {
+			} elseif (empty($dbinfo) && ! empty($imgdata['fileId'])) {
 				$imgdata['file'] = \Tiki\FileGallery\File::id($imgdata['fileId']);
-				$dbinfo = $imgdata['file']->getParams();
+				if ($imgdata['file']->fileId) {
+					$dbinfo = $imgdata['file']->getParams();
+				}
 			} elseif ($prefs['feature_use_fgal_for_wiki_attachments'] === 'y' && ! isset($dbinfo) && ! empty($imgdata['attId'])) {
 				$imgdata['file'] = \Tiki\FileGallery\File::id($imgdata['attId']);
 				$dbinfo = $imgdata['file']->getParams();
