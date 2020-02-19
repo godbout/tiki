@@ -33,3 +33,7 @@
 //.topbar .navbar-light .navbar-nav > li > a:hover,
 //.topbar .nav > li:hover { background: $navbar-light-hover-bg;}
 
+// overriding some cypht stuff
+.tiki-webmail, .tiki-cypht, .mobile.tiki-cypht, .inline-cypht {
+    .moduletitle { color: $cyan !important; }
+}
