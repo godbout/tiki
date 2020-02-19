@@ -95,7 +95,7 @@ class SemiAutoMergeCommand extends Command
 
 		if (! isset($logFile['logentry'])) {
 		    // if there was no results returned, remove any empty array elements
-		    $logFile = false;
+		    $logFile = [];
         } elseif (isset($logFile['logentry'][0])) {
             // the logentry is an multidimensional array if more than one result is returned, so lets make them all even so we can loop through.
 		    $logFile = $logFile['logentry'];
