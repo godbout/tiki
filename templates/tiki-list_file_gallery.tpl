@@ -388,6 +388,9 @@ window.handleFinderFile = function (file, elfinder) {
 			{{if !empty($filegals_manager)}}
 				filegals_manager: "{{$filegals_manager}}",
 			{{/if}}
+			{{if !empty($insertion_syntax)}}
+				insertion_syntax: "{{$insertion_syntax}}",
+			{{/if}}
 			hash: hash
 		},
 		success: function (data) {
