@@ -17,6 +17,7 @@ class Tiki_Profile_InstallHandler_Webmail extends Tiki_Profile_InstallHandler
 			'to' => '',
 			'cc' => '',
 			'bcc' => '',
+			'from' => '',             // specify a from email address to search for correct profile in cypht settings
 			'subject' => '',
 			'body' => '',
 			'fattId' => null,         // add a File Gallery file as an attachment
@@ -44,7 +45,7 @@ class Tiki_Profile_InstallHandler_Webmail extends Tiki_Profile_InstallHandler
 
 	function _install()
 	{
-		global $tikilib, $user;
+		global $tikilib, $tikipath, $user;
 		$data = $this->getData();
 
 		$this->replaceReferences($data);
@@ -60,7 +61,21 @@ class Tiki_Profile_InstallHandler_Webmail extends Tiki_Profile_InstallHandler
 		$data['to']      = trim(str_replace(["\n","\r"], "", html_entity_decode(strip_tags($data['to']))), ' ,');
 		$data['cc']      = trim(str_replace(["\n","\r"], "", html_entity_decode(strip_tags($data['cc']))), ' ,');
 		$data['bcc']     = trim(str_replace(["\n","\r"], "", html_entity_decode(strip_tags($data['bcc']))), ' ,');
+		$data['from']    = trim(str_replace(["\n","\r"], "", html_entity_decode(strip_tags($data['from']))), ' ,');
 		$data['subject'] = trim(str_replace(["\n","\r"], "", html_entity_decode(strip_tags($data['subject']))));
+
+		$smtp_id = '';
+		if ($data['from']) {
+			$config = TikiLib::lib('tiki')->get_user_preference($user, 'cypht_user_config');
+			$config = json_decode($config);
+			if (! empty($config->smtp_servers)) {
+				foreach ($config->smtp_servers as $key => $server) {
+					if ($server->name == $data['from']) {
+						$smtp_id = $key;
+					}
+				}
+			}
+		}
 
 		$drafts = $_SESSION['cypht']['compose_drafts'] ?? [];
 		$drafts[] = [
@@ -69,7 +84,8 @@ class Tiki_Profile_InstallHandler_Webmail extends Tiki_Profile_InstallHandler
 			'draft_bcc' => $data['bcc'],
 			'draft_subject' => $data['subject'],
 			'draft_body' => $data['body'],
-			'draft_fattId' => $data['fattId']
+			'draft_fattId' => $data['fattId'],
+			'draft_smtp' => $smtp_id,
 		];
 		$draft_id = count($drafts)-1;
 		$_SESSION['cypht']['compose_drafts'] = $drafts;
