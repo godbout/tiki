@@ -748,7 +748,7 @@ body {
 }
 
 .mobile .inline-cypht {
-  padding-top: 20px;
+  padding-top: 50px;
 }
 .mobile .inline-cypht .content_cell {
   padding: 20px 0 20px;
@@ -1012,6 +1012,12 @@ body {
 }
 .tiki-webmail.mobile .topbar {
   margin-bottom: 0;
+}
+.tiki-webmail.mobile #page-header {
+  display: none;
+}
+.tiki-webmail.mobile #topbar_modules {
+  display: none !important;
 }
 .tiki-webmail.mobile #row-middle {
   margin-left: -15px;
