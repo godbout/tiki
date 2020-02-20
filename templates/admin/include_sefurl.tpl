@@ -66,22 +66,24 @@
 		<legend>{tr}Settings{/tr}</legend>
 		{preference name=feature_sefurl_filter}
 		<div class="adminoptionbox clearfix">
-			<label for="feature_sefurl_paths" class="col-form-label col-md-4">
-				{tr}URL parameters{/tr}
-			</label>
-			{strip}
-				{capture name=paths}
-					{foreach name=loop from=$prefs.feature_sefurl_paths item=path}
-						{$path}
-						{if !$smarty.foreach.loop.last}/{/if}
-					{/foreach}
-				{/capture}
-			{/strip}
-			<div class="col-md-8">
-				<input type="text" class="form-control" id="feature_sefurl_paths" name="feature_sefurl_paths" value="{$smarty.capture.paths|escape}" />
-				<span class="form-text">
-					{tr}List of Url Parameters that should go in the path{/tr}
-				</span>
+			<div class="adminoption form-group row">
+				<label for="feature_sefurl_paths" class="col-form-label col-md-4">
+					{tr}URL parameters{/tr}
+				</label>
+				{strip}
+					{capture name=paths}
+						{foreach name=loop from=$prefs.feature_sefurl_paths item=path}
+							{$path}
+							{if !$smarty.foreach.loop.last}/{/if}
+						{/foreach}
+					{/capture}
+				{/strip}
+				<div class="col-md-8">
+					<input type="text" class="form-control" id="feature_sefurl_paths" name="feature_sefurl_paths" value="{$smarty.capture.paths|escape}" />
+					<span class="form-text">
+						{tr}List of Url Parameters that should go in the path{/tr}
+					</span>
+				</div>
 			</div>
 		</div>
 		{preference name=feature_sefurl_title_max_size}
