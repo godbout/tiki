@@ -71,11 +71,11 @@ class Patch
 	function record()
 	{
 		Installer::getInstance()->query("INSERT INTO tiki_schema (patch_name, install_date) VALUES(?, NOW())", [$this->name]);
-		$this->pushPatchNameToBrowrser('build_patch', $this->name);
+		$this->pushPatchNameToBrowser('build_patch', $this->name);
 		self::$list[$this->name]->setStatus(self::NEWLY_APPLIED);
 	}
 
-	function pushPatchNameToBrowrser($targetElement, $content) 
+	function pushPatchNameToBrowser($targetElement, $content) 
 	{
 		$scripts = <<<JS
 		<script class="progress_bar_script">
