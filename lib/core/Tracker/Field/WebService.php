@@ -172,6 +172,9 @@ class Tracker_Field_WebService extends Tracker_Field_Abstract
 				}
 			} elseif (isset($response->data['status']) && $response->data['status'] !== 'OK') {
 				$error = $response->data['status'];					// e.g. google places api
+				if (! empty($response->data['error_message'])) {
+					$error .= ' : ' . $response->data['error_message'];
+				}
 			} elseif (! empty($response->data['hasErrors'])) {
 				if (! empty($response->data['errorCode'])) {			// others
 					$error = tr('Unknown webservice error (code: %0)', $response->data['errorCode']);
