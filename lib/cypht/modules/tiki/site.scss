@@ -150,7 +150,7 @@ body { min-width: 100%; }
 //
 .mobile {
 	.inline-cypht {
-		padding-top: 20px;
+		padding-top: 50px;
 
 		.content_cell {
 			padding: 20px 0 20px; border: none;
@@ -313,6 +313,8 @@ body { min-width: 100%; }
 .tiki-webmail.mobile {
 	.box-logo, .pagetitle, .pagetitle + .t_navbar { display: none; }
 	.topbar { margin-bottom: 0; }
+	#page-header { display: none; }
+	#topbar_modules { display: none !important; }
 	#row-middle { margin-left: -15px; margin-right: -15px; border: none; }
 	#col1 { padding: 0; border: none; }
 	#col2, #col3 { margin-left: 15px; margin-right: 15px; }

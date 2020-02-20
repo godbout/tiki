@@ -123,26 +123,26 @@ if ($(this).val() != '') {
 								<input type="text" id="archives" name="archives" value="{$gal_info.archives|escape}" class="form-control">
 								<span class="form-text">{tr}Use{/tr}: 0={tr}unlimited{/tr}, -1={tr}none{/tr}.</span>
 
-								{if $galleryId neq $treeRootId}
 							</div>
 						</div>
 					</div>
-					<div class="form-group row">
-						<label for="parentId" class="col-sm-4 col-form-label">{tr}Parent gallery{/tr}</label>
-						<div class="col-sm-8">
-							<select name="parentId" id="parentId" class="form-control">
-								<option value="{$treeRootId}"{if $parentId eq $treeRootId} selected="selected"{/if}>{tr}none{/tr}</option>
-								{foreach from=$all_galleries key=key item=item}
-									{if $galleryId neq $item.id}
-										<option value="{$item.id}"{if $parentId eq $item.id} selected="selected"{/if}>{$item.label|escape}</option>
-									{/if}
-								{/foreach}
-							</select>
-							{else}
-								<input type="hidden" name="parentId" value="{$parentId|escape}">
-							{/if}
+					{if $galleryId neq $treeRootId}
+						<div class="form-group row">
+							<label for="parentId" class="col-sm-4 col-form-label">{tr}Parent gallery{/tr}</label>
+							<div class="col-sm-8">
+								<select name="parentId" id="parentId" class="form-control">
+									<option value="{$treeRootId}"{if $parentId eq $treeRootId} selected="selected"{/if}>{tr}none{/tr}</option>
+									{foreach from=$all_galleries key=key item=item}
+										{if $galleryId neq $item.id}
+											<option value="{$item.id}"{if $parentId eq $item.id} selected="selected"{/if}>{$item.label|escape}</option>
+										{/if}
+									{/foreach}
+								</select>
+							</div>
 						</div>
-					</div>
+					{else}
+						<input type="hidden" name="parentId" value="{$parentId|escape}">
+					{/if}
 				{/if}
 				{if $tiki_p_admin eq 'y' or $tiki_p_admin_file_galleries eq 'y'}
 					<div class="form-group row">
