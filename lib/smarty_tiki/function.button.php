@@ -114,6 +114,12 @@ function smarty_function_button($params, $smarty)
 
 	unset($params['_class']);
 
+	//target parameter
+	if (! empty($params['_target'])) {
+		$target = $params['_target'];
+	}
+
+	unset($params['_target']);
 
 	if (! $disabled) {
 		$flip_id = '';
@@ -211,6 +217,6 @@ function smarty_function_button($params, $smarty)
 	$type = isset($params['_type']) ? $params['_type'] : 'primary';
 
 	$auto_query_args = $auto_query_args_orig;
-	$html = preg_replace('/<a /', '<a class="btn btn-' . $type . ' ' . $class . '" data-role="button" data-inline="true" ' . $id . ' ', $html);
+	$html = preg_replace('/<a /', '<a class="btn btn-' . $type . ' ' . $class . '" target="' . $target . '" data-role="button" data-inline="true" ' . $id . ' ', $html);
 	return $html;
 }
