@@ -593,5 +593,5 @@ class EnglishDevUpdateCommand extends Command
 // create the application and new console
 $console = new Application;
 $console->add(new EnglishUpdateCommand);
-$console->setDefaultCommand('englishupdate');
+$console->setDefaultCommand('translation:englishupdate');
 $console->run();
