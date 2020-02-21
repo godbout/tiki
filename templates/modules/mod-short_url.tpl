@@ -11,7 +11,7 @@
 				<div class="form-group">
 					<input type="text" class="form-control" readonly="readonly">
 				</div>
-				<button id="short-url-copy" class="btn btn-primary btn-sm form-control">{icon name="clipboard"}{tr}Copy{/tr}</button>
+				<button id="short-url-copy" class="btn btn-primary btn-sm form-control">{icon name="clipboard"} {tr}Copy{/tr}</button>
 			</div>
 
 		</div>
@@ -52,7 +52,7 @@
 
 		var defaultText = $('#short-url-copy').html();
 		var successText = '{{icon name="check"}} {tr}Copied{/tr}';
-		var errorText = '{{icon name="close"}} Error copying url';
+		var errorText = '{{icon name="close"}} {tr}Error copying url{/tr}';
 
 		try {
 			document.execCommand('copy');
