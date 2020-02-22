@@ -14,30 +14,20 @@
 		<div>
 			<div class="simplebox">
 				<div class='titlebar'>
-					<b>doc.t.o/Tiki20</b>: {tr}To see it in full size out of this frame{/tr}, <a class="wiki external" target="_blank" href="https://doc.tiki.org/tiki-index_p.php?page=Tiki20" rel="external nofollow">{tr}click here{/tr}</a>
+					<b>doc.t.o/Tiki21</b>: {tr}To see it in full size out of this frame{/tr}, <a class="wiki external" target="_blank" href="https://doc.tiki.org/tiki-index_p.php?page=Tiki21" rel="external nofollow">{tr}click here{/tr}</a>
 					<img src="img/icons/external_link.gif" width="15" height="14" class="icon" />
 				</div>
-				<p><iframe name="Documentation of changes from Tiki 19 to Tiki 20" width="100%" height="300" align="middle" frameborder="1" marginheight="0" marginwidth="0" scrolling="auto" src="https://doc.tiki.org/tiki-index_p.php?page=Tiki20"></iframe></p>
+				<p><iframe name="Documentation of changes from Tiki 20 to Tiki 21" width="100%" height="300" align="middle" frameborder="1" marginheight="0" marginwidth="0" scrolling="auto" src="https://doc.tiki.org/tiki-index_p.php?page=Tiki21"></iframe></p>
 			</div>
 			<br/><br/>
 		</div>
 		<div>
 			<div class="simplebox">
 				<div class='titlebar'>
-					<b>doc.t.o/Tiki19</b>: {tr}To see it in full size out of this frame{/tr}, <a class="wiki external" target="_blank" href="https://doc.tiki.org/tiki-index_p.php?page=Tiki19" rel="external nofollow">{tr}click here{/tr}</a>
+					<b>doc.t.o/Tiki21from18</b>: {tr}To see it in full size out of this frame{/tr}, <a class="wiki external" target="_blank" href="https://doc.tiki.org/tiki-index_p.php?page=Tiki21from18" rel="external nofollow">{tr}click here{/tr}</a>
 					<img src="img/icons/external_link.gif" width="15" height="14" class="icon" />
 				</div>
-				<p><iframe name="Documentation of changes from Tiki 18 to Tiki 19" width="100%" height="300" align="middle" frameborder="1" marginheight="0" marginwidth="0" scrolling="auto" src="https://doc.tiki.org/tiki-index_p.php?page=Tiki19"></iframe></p>
-			</div>
-			<br/><br/>
-		</div>
-		<div>
-			<div class="simplebox">
-				<div class='titlebar'>
-					<b>doc.t.o/Tiki18from15</b>: {tr}To see it in full size out of this frame{/tr}, <a class="wiki external" target="_blank" href="https://doc.tiki.org/tiki-index_p.php?page=Tiki18from15" rel="external nofollow">{tr}click here{/tr}</a>
-					<img src="img/icons/external_link.gif" width="15" height="14" class="icon" />
-				</div>
-				<p><iframe name="Documentation of changes from Tiki 15 to Tiki 18" width="100%" height="300" align="middle" frameborder="1" marginheight="0" marginwidth="0" scrolling="auto" src="https://doc.tiki.org/tiki-index_p.php?page=Tiki18from15"></iframe></p>
+				<p><iframe name="Documentation of changes from Tiki 18 to Tiki 21" width="100%" height="300" align="middle" frameborder="1" marginheight="0" marginwidth="0" scrolling="auto" src="https://doc.tiki.org/tiki-index_p.php?page=Tiki21from18"></iframe></p>
 			</div>
 			<br/><br/>
 		</div>
