@@ -135,6 +135,9 @@ if ($useDefaultPrefs) {
 	require_once('lib/wizard/pages/changes_new_in_20.php');
 	$pages[] = new ChangesWizardNewIn20();
 
+	require_once('lib/wizard/pages/changes_new_in_21.php');
+	$pages[] = new ChangesWizardNewIn21();
+
     require_once('lib/wizard/pages/changes_doc_page_iframe.php');
 	$pages[] = new ChangesWizardDocPageIframe();
 

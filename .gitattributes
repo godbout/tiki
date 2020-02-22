@@ -5097,6 +5097,7 @@ lib/wizard/pages/changes_new_in_17.php -text
 lib/wizard/pages/changes_new_in_18.php -text
 lib/wizard/pages/changes_new_in_19.php -text
 lib/wizard/pages/changes_new_in_20.php -text
+lib/wizard/pages/changes_new_in_21.php -text
 lib/wizard/pages/changes_novice_admin_assistance.php -text
 lib/wizard/pages/changes_others.php -text
 lib/wizard/pages/changes_permissions_and_logs.php -text
@@ -6643,6 +6644,7 @@ templates/wizard/changes_new_in_17.tpl -text
 templates/wizard/changes_new_in_18.tpl -text
 templates/wizard/changes_new_in_19.tpl -text
 templates/wizard/changes_new_in_20.tpl -text
+templates/wizard/changes_new_in_21.tpl -text
 templates/wizard/changes_novice_admin_assistance.tpl -text
 templates/wizard/changes_others.tpl -text
 templates/wizard/changes_permissions_and_logs.tpl -text
