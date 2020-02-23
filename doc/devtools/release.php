@@ -39,7 +39,7 @@ error_reporting(ERROR_REPORTING_LEVEL);
 chdir(ROOT . '/');
 
 require_once ROOT . '/lib/setup/third_party.php';
-require_once ROOT . 'doc/devtools/vcscommons.php';
+require_once ROOT . '/doc/devtools/vcscommons.php';
 
 if (version_compare(PHP_VERSION, '5.0.0', '<')) {
 	error("You need PHP version 5 or more to run this script\n");
