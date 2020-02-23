@@ -4972,8 +4972,9 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     color: white;
     line-height: 2em; }
   #tiki-installer .nav .nav-item .nav-link {
-    color: black;
-    padding: 0 5px; }
+        color: white;
+        padding: 0;
+        background-color: transparent; }
   #tiki-installer .nav .nav-item.active {
     color: blue; }
   #tiki-installer .nav .nav-item.active .nav-link {
