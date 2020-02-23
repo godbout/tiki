@@ -71,8 +71,8 @@ td.numeric {
 	padding-right: 1px;
 }
 
-/*	Chrome & safari do not break urls or filenames at all. This causes
-	serous display issues within tables with long urls/filenames.*/
+/* Chrome & safari do not break urls or filenames at all. This causes
+	serious display issues within tables with long urls/filenames. */
 td.url{
 	word-break: break-all;
 }
@@ -89,26 +89,26 @@ td.url{
 
 // /* odd and even classes for tr, td, and li */
 // .odd {
-//   background: @table-bg;
-//   color: @text-color;
+//	 background: @table-bg;
+//	 color: @text-color;
 // }
 //
 // .even {
-//   background: @table-accent-bg;
-//   color: @text-color;
+//	 background: @table-accent-bg;
+//	 color: @text-color;
 // }
 #score-table tbody.event-section tr:first-child{
-  background: $gray-200;
-  color: $black;
+	background: $gray-200;
+	color: $black;
 }
 #score-table .condition-row, .table .advanced-row {
  padding: 1em;
 }
 #score-table .condition-row td {
-  border-bottom: none;
+	border-bottom: none;
 }
 #score-table .advanced-row td {
-  border-top: none;
+	border-top: none;
 }
 
 #score-table .chosen-container {
