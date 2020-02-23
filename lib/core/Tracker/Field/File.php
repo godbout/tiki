@@ -21,7 +21,8 @@ class Tracker_Field_File extends Tracker_Field_Abstract
 				'description' => tr('Deprecated in favor of the Files field.'),
 				'help' => 'Attachment Field',
 				'prefs' => ['trackerfield_file'],
-				'tags' => ['basic'],
+				'tags' => ['deprecated'],
+				'warning' => tra('Deprecated in favor of the Files field.'),
 				'default' => 'n',
 				'params' => [
 					'listview' => [

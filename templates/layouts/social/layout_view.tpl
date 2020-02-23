@@ -21,133 +21,133 @@
 	</style>{/if}
 </head>
 <body{html_body_attributes class="navbar-padding"}{if $prefs.theme_navbar_fixed_topbar_offset ne ''} style="padding-top: {$prefs.theme_navbar_fixed_topbar_offset}px"{/if}>
-{$cookie_consent_html}
+	{$cookie_consent_html}
 
-{include file="layout_fullscreen_check.tpl"}
+	{include file="layout_fullscreen_check.tpl"}
 
-{if $prefs.feature_ajax eq 'y'}
-	{include file='tiki-ajax_header.tpl'}
-{/if}
-<div class="middle_outer" id="middle_outer">
-	{if $smarty.session.fullscreen ne 'y'}
-		<div class="fixed-topbar"></div>
+	{if $prefs.feature_ajax eq 'y'}
+		{include file='tiki-ajax_header.tpl'}
 	{/if}
-	<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std middle" id="middle">
+	<div class="middle_outer" id="middle_outer">
 		{if $smarty.session.fullscreen ne 'y'}
-		<div class="row topbar mx-0 {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if}" id="topbar">
-			{modulelist zone=topbar class='topbar_modules d-flex justify-content-between w-100'}
-		</div>
+			<div class="fixed-topbar"></div>
 		{/if}
-		{*<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std">*}
+		<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std middle" id="middle">
+			{if $smarty.session.fullscreen ne 'y'}
+			<div class="row topbar mx-0 {if $prefs.theme_navbar_color_variant eq 'dark'}navbar-dark bg-dark {else}navbar-light bg-light{/if}" id="topbar">
+				{modulelist zone=topbar class='topbar_modules d-flex justify-content-between w-100'}
+			</div>
+			{/if}
+			{*<div class="container{if $smarty.session.fullscreen eq 'y'}-fluid{/if} container-std">*}
 
-		<div class="row row-middle" id="row-middle">
-			{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
-				<div class="d-flex flex-row flex-wrap w-100">
-				<div class="col col1 col-md-12 pb-4" id="col1">
-					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
-						{modulelist zone=pagetop}
-					{/if}
-					{feedback}
-					{block name=quicknav}{/block}
-					{block name=title}{/block}
-					{block name=navigation}{/block}
-					{block name=content}{/block}
-					{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-						{modulelist zone=pagebottom class='mt-3'}
-					{/if}
-				</div>
-			</div>
-			{elseif zone_is_empty('left') or $prefs.feature_left_column eq 'n'}
-				{if $prefs.feature_right_column eq 'user'}
-					<div class="col-md-12 side-col-toggle-container justify-content-end">
-						{$icon_name = (not empty($smarty.cookies.hide_zone_right)) ? 'toggle-left' : 'toggle-right'}
-						{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
+			<div class="row row-middle" id="row-middle">
+				{if (zone_is_empty('left') or $prefs.feature_left_column eq 'n') and (zone_is_empty('right') or $prefs.feature_right_column eq 'n')}
+					<div class="d-flex flex-row flex-wrap w-100">
+					<div class="col col1 col-md-12 pb-4" id="col1">
+						{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
+							{modulelist zone=pagetop}
+						{/if}
+						{feedback}
+						{block name=quicknav}{/block}
+						{block name=title}{/block}
+						{block name=navigation}{/block}
+						{block name=content}{/block}
+						{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
+							{modulelist zone=pagebottom class='mt-3'}
+						{/if}
 					</div>
-				{/if}
-			<div class="d-flex flex-row flex-wrap w-100">
-				<div class="col col1 col-md-12 col-lg-9 pb-4" id="col1">
-					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
-						{modulelist zone=pagetop}
-					{/if}
-					{feedback}
-					{block name=quicknav}{/block}
-					{block name=title}{/block}
-					{block name=navigation}{/block}
-					{block name=content}{/block}
-					{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-						{modulelist zone=pagebottom class='mt-3'}
-					{/if}
 				</div>
-				<div class="col col3 col-md-12 col-lg-3" id="col3">
-					{modulelist zone=right}
-				</div>
-			</div>
-			{elseif zone_is_empty('right') or $prefs.feature_right_column eq 'n'}
-				{if $prefs.feature_left_column eq 'user'}
-					<div class="col-md-12 side-col-toggle-container justify-content-start">
-						{$icon_name = (not empty($smarty.cookies.hide_zone_left)) ? 'toggle-right' : 'toggle-left'}
-						{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
-					</div>
-				{/if}
-			<div class="d-flex flex-row flex-wrap w-100">
-				<div class="col col1 col-md-12 col-lg-9 order-md-1 order-lg-2 pb-4" id="col1">
-					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
-						{modulelist zone=pagetop}
-					{/if}
-					{feedback}
-					{block name=quicknav}{/block}
-					{block name=title}{/block}
-					{block name=navigation}{/block}
-					{block name=content}{/block}
-					{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-						{modulelist zone=pagebottom class='mt-3'}
-					{/if}
-				</div>
-				<div class="col col2 col-md-12 col-lg-3 order-sm-2 order-md-2 order-lg-1" id="col2">
-					{modulelist zone=left}
-				</div>
-			</div>
-			{else}
-				<div class="col-sm-12 side-col-toggle-container d-flex">
-					{if $prefs.feature_left_column eq 'user'}
-						<div class="text-left side-col-toggle flex-fill">
-							{$icon_name = (not empty($smarty.cookies.hide_zone_left)) ? 'toggle-right' : 'toggle-left'}
-							{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
-						</div>
-					{/if}
+				{elseif zone_is_empty('left') or $prefs.feature_left_column eq 'n'}
 					{if $prefs.feature_right_column eq 'user'}
-						<div class="text-right side-col-toggle flex-fill">
+						<div class="col-md-12 side-col-toggle-container justify-content-end">
 							{$icon_name = (not empty($smarty.cookies.hide_zone_right)) ? 'toggle-left' : 'toggle-right'}
 							{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
 						</div>
 					{/if}
+				<div class="d-flex flex-row flex-wrap w-100">
+					<div class="col col1 col-md-12 col-lg-9 pb-4" id="col1">
+						{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
+							{modulelist zone=pagetop}
+						{/if}
+						{feedback}
+						{block name=quicknav}{/block}
+						{block name=title}{/block}
+						{block name=navigation}{/block}
+						{block name=content}{/block}
+						{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
+							{modulelist zone=pagebottom class='mt-3'}
+						{/if}
+					</div>
+					<div class="col col3 col-md-12 col-lg-3" id="col3">
+						{modulelist zone=right}
+					</div>
 				</div>
-			<div class="d-flex flex-row flex-wrap w-100">
-				<div class="col col1 col-sm-12 col-lg-8 order-xs-1 order-lg-2 pb-4" id="col1">
-					{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
-						{modulelist zone=pagetop}
+				{elseif zone_is_empty('right') or $prefs.feature_right_column eq 'n'}
+					{if $prefs.feature_left_column eq 'user'}
+						<div class="col-md-12 side-col-toggle-container justify-content-start">
+							{$icon_name = (not empty($smarty.cookies.hide_zone_left)) ? 'toggle-right' : 'toggle-left'}
+							{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
+						</div>
 					{/if}
-					{feedback}
-					{block name=quicknav}{/block}
-					{block name=title}{/block}
-					{block name=navigation}{/block}
-					{block name=content}{/block}
-					{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
-						{modulelist zone=pagebottom class='mt-3'}
-					{/if}
+				<div class="d-flex flex-row flex-wrap w-100">
+					<div class="col col1 col-md-12 col-lg-9 order-md-1 order-lg-2 pb-4" id="col1">
+						{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
+							{modulelist zone=pagetop}
+						{/if}
+						{feedback}
+						{block name=quicknav}{/block}
+						{block name=title}{/block}
+						{block name=navigation}{/block}
+						{block name=content}{/block}
+						{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
+							{modulelist zone=pagebottom class='mt-3'}
+						{/if}
+					</div>
+					<div class="col col2 col-md-12 col-lg-3 order-sm-2 order-md-2 order-lg-1" id="col2">
+						{modulelist zone=left}
+					</div>
 				</div>
-				<div class="col col2 col-sm-6 col-lg-2 order-md-2 order-lg-1" id="col2">
-					{modulelist zone=left}
+				{else}
+					<div class="col-sm-12 side-col-toggle-container d-flex">
+						{if $prefs.feature_left_column eq 'user'}
+							<div class="text-left side-col-toggle flex-fill">
+								{$icon_name = (not empty($smarty.cookies.hide_zone_left)) ? 'toggle-right' : 'toggle-left'}
+								{icon name=$icon_name class='toggle_zone left' href='#' title='{tr}Toggle left modules{/tr}'}
+							</div>
+						{/if}
+						{if $prefs.feature_right_column eq 'user'}
+							<div class="text-right side-col-toggle flex-fill">
+								{$icon_name = (not empty($smarty.cookies.hide_zone_right)) ? 'toggle-left' : 'toggle-right'}
+								{icon name=$icon_name class='toggle_zone right' href='#' title='{tr}Toggle right modules{/tr}'}
+							</div>
+						{/if}
+					</div>
+				<div class="d-flex flex-row flex-wrap w-100">
+					<div class="col col1 col-sm-12 col-lg-8 order-xs-1 order-lg-2 pb-4" id="col1">
+						{if $prefs.module_zones_pagetop eq 'fixed' or ($prefs.module_zones_pagetop ne 'n' && ! zone_is_empty('pagetop'))}
+							{modulelist zone=pagetop}
+						{/if}
+						{feedback}
+						{block name=quicknav}{/block}
+						{block name=title}{/block}
+						{block name=navigation}{/block}
+						{block name=content}{/block}
+						{if $prefs.module_zones_pagebottom eq 'fixed' or ($prefs.module_zones_pagebottom ne 'n' && ! zone_is_empty('pagebottom'))}
+							{modulelist zone=pagebottom class='mt-3'}
+						{/if}
+					</div>
+					<div class="col col2 col-sm-6 col-lg-2 order-md-2 order-lg-1" id="col2">
+						{modulelist zone=left}
+					</div>
+					<div class="col col3 col-sm-6 col-lg-2 order-md-3" id="col3">
+						{modulelist zone=right}
+					</div>
 				</div>
-				<div class="col col3 col-sm-6 col-lg-2 order-md-3" id="col3">
-					{modulelist zone=right}
-				</div>
-			</div>
-			{/if}
+				{/if}
 
-		</div> {* row *}
-	</div> {* container *}
-
+			</div> {* row *}
+		</div> {* container *}
+	</div> {* middle_outer *}
 	{if !isset($smarty.session.fullscreen) || $smarty.session.fullscreen ne 'y'}
 		<footer class="footer main-footer" id="footer">
 			<div class="footer_liner">
@@ -175,9 +175,9 @@
 		</div> {* container *}
 
 		</nav>
-		{/if}
+	{/if}
 
-		{include file='footer.tpl'}
+	{include file='footer.tpl'}
 </body>
 </html>
 {if $prefs.feature_debug_console eq 'y' and not empty($smarty.request.show_smarty_debug)}
