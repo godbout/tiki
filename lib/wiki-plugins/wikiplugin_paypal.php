@@ -398,10 +398,10 @@ function wikiplugin_paypal($data, $params)
 			'
 $(document).bind("' . $csearchEvent . '", function () {
 	' . $csearchInit . ' $.getScript("' . $jsfile . '", function() {
-			PAYPAL.apps.MiniCart.render(' . $miniParamStr . ');
+			paypal.minicart.render(' . $miniParamStr . ');
 		});
 });'
-		);
+		)->add_css('#PPMiniCart {z-index: 1040;}');	// make sure it clears the fixed page-header
 	}
 	unset($params['minicart']);
 
