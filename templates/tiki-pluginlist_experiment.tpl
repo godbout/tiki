@@ -3,7 +3,7 @@
 
 {block name=content}
 	{if $tiki_p_edit == 'y'}
-        {title help="http://doc.tiki.org/LIST+-+Troubleshooting+The+List+Plugin" url=''}{tr}Experiment with plugin LIST{/tr}{/title}
+        {title help="LIST+-+Troubleshooting+The+List+Plugin#Using_the_Experiment_with_Plugin_LIST_page" url=''}{tr}Experiment with plugin LIST{/tr}{/title}
 		<form method="post" class="form-horizontal">
 			<div class="row">
 				<div class="col">
