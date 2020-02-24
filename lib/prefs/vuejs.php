@@ -14,6 +14,7 @@ function prefs_vuejs_list()
 			'type'        => 'flag',
 			'default'     => 'n',
 			'tags'        => ['experimental'],
+			'keywords' => 'vue js vuejs vue_js',
 		],
 		'vuejs_build_mode' => [
 			'name'        => tra('Vue.js Deployment Mode'),
@@ -30,6 +31,7 @@ function prefs_vuejs_list()
 			'dependencies' => [
 				'vuejs_enable',
 			],
+			'keywords' => 'vue js vuejs vue_js',
 		],
 		'vuejs_always_load' => [
 			'name'        => tra('Always Load Vue.js'),
@@ -40,6 +42,7 @@ function prefs_vuejs_list()
 			'dependencies' => [
 				'vuejs_enable',
 			],
+			'keywords' => 'vue js vuejs vue_js',
 		],
 	];
 }
