@@ -5836,17 +5836,17 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.23",
+            "version": "2.0.24",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "c78eb5058d5bb1a183133c36d4ba5b6675dfa099"
+                "reference": "40998159a0907cc523e1f2d1904d45765613a617"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-c78eb5058d5bb1a183133c36d4ba5b6675dfa099-zip-0eea4b.zip",
-                "reference": "c78eb5058d5bb1a183133c36d4ba5b6675dfa099",
-                "shasum": "354c1dd1e4ba029432941afd3965b26e7666aa98"
+                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-40998159a0907cc523e1f2d1904d45765613a617-zip-c70047.zip",
+                "reference": "40998159a0907cc523e1f2d1904d45765613a617",
+                "shasum": "7b83dfeb45b52ebc104c57ca01afa028c41d7e17"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5924,7 +5924,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2019-09-17T03:41:22+00:00"
+            "time": "2020-02-04T12:15:04+00:00"
         },
         {
             "name": "player/flv",
@@ -6765,17 +6765,17 @@
         },
         {
             "name": "scssphp/scssphp",
-            "version": "1.0.7",
+            "version": "1.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/scssphp/scssphp.git",
-                "reference": "e2dadd21ef6188f038aaf72cd2d55d0e1b522741"
+                "reference": "20d661952d19d4d75508180c453a594423b4f10b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-e2dadd21ef6188f038aaf72cd2d55d0e1b522741-zip-372597.zip",
-                "reference": "e2dadd21ef6188f038aaf72cd2d55d0e1b522741",
-                "shasum": "455674bee834a5ae1ac835bd4d5c5c3dedbe9499"
+                "url": "https://composer.tiki.org/dist/scssphp/scssphp/scssphp-scssphp-20d661952d19d4d75508180c453a594423b4f10b-zip-df283c.zip",
+                "reference": "20d661952d19d4d75508180c453a594423b4f10b",
+                "shasum": "3da81a3e62b59e5f809da1170a37a23269d8928c"
             },
             "require": {
                 "ext-ctype": "*",
@@ -6822,7 +6822,7 @@
                 "scss",
                 "stylesheet"
             ],
-            "time": "2020-01-31T16:45:58+00:00"
+            "time": "2020-02-20T16:44:03+00:00"
         },
         {
             "name": "simile_timeline/simile_timeline",
@@ -10080,9 +10080,7 @@
         "ext-iconv": "*",
         "ext-zip": "*"
     },
-    "platform-dev": {
-        "ext-xdebug": "*"
-    },
+    "platform-dev": [],
     "platform-overrides": {
         "ext-ldap": "0",
         "ext-soap": "0"

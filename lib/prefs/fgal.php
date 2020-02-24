@@ -57,6 +57,7 @@ function prefs_fgal_list()
 		],
 		'fgal_limit_hits_per_file' => [
 			'name' => tra('Allow download limit per file'),
+			'description' => tra(''),
 			'type' => 'flag',
 			'help' => 'File+Gallery+config',
 			'default' => 'n',
