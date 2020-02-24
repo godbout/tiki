@@ -57,6 +57,7 @@ function prefs_fgal_list()
 		],
 		'fgal_limit_hits_per_file' => [
 			'name' => tra('Allow download limit per file'),
+			'description' => tra('This option will allow to limit the number of version you can have for the same file independently for each file gallery. Once enabled, you can set the limit in the file gallery properties.'),
 			'type' => 'flag',
 			'help' => 'File+Gallery+config',
 			'default' => 'n',
