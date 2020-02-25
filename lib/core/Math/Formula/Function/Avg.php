@@ -24,7 +24,19 @@ class Math_Formula_Function_Avg extends Math_Formula_Function
 		if (empty($list)) {
 			return 0;
 		} else {
-			return array_sum($list) / count($list);
+			$initial = array_shift($list);
+			$sum = array_reduce($list, function($carry, $item) {
+				if ($carry instanceof Math_Formula_Applicator) {
+					return $carry->add($item);
+				} else {
+					return $carry + $item;
+				}
+			}, $initial);
+			if ($sum instanceof Math_Formula_Applicator) {
+				return $sum->div(count($list)+1);
+			} else {
+				return $sum / (count($list)+1);
+			}
 		}
 	}
 }

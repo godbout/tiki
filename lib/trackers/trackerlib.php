@@ -6297,6 +6297,13 @@ class TrackerLib extends TikiLib
 	 * @return array of exchange rates
 	 */
 	public function exchange_rates($trackerId, $date) {
+		if (is_numeric($date)) {
+			$date = date('Y-m-d', $date);
+		} elseif (! empty($date)) {
+			$date = date('Y-m-d', strtotime($date));
+		} else {
+			$date = date('Y-m-d');
+		}
 		static $rates = [];
 		if (isset($rates[$date])) {
 			return $rates[$date];

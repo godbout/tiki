@@ -22,6 +22,10 @@ class Math_Formula_Function_Ceil extends Math_Formula_Function
 
 		$number = array_shift($elements);
 
-		return ceil($number);
+		if ($number instanceof Math_Formula_Applicator) {
+			return $number->ceil();
+		} else {
+			return ceil($number);
+		}
 	}
 }

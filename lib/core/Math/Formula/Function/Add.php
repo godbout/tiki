@@ -24,7 +24,14 @@ class Math_Formula_Function_Add extends Math_Formula_Function
 		if (empty($list)) {
 			return 0;
 		} else {
-			return array_sum($list);
+			$initial = array_shift($list);
+			return array_reduce($list, function($carry, $item) {
+				if ($carry instanceof Math_Formula_Applicator) {
+					return $carry->add($item);
+				} else {
+					return $carry + $item;
+				}
+			}, $initial);
 		}
 	}
 }

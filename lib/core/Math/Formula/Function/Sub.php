@@ -18,7 +18,9 @@ class Math_Formula_Function_Sub extends Math_Formula_Function
 		$out = array_shift($elements);
 
 		foreach ($elements as $element) {
-			if (is_numeric($element)) {
+			if ($out instanceof Math_Formula_Applicator) {
+				$out = $out->sub($element);
+			} elseif (is_numeric($element)) {
 				$out -= $element;
 			}
 		}

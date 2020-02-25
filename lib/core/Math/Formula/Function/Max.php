@@ -12,7 +12,14 @@ class Math_Formula_Function_Max extends Math_Formula_Function
 		$out = $this->evaluateChild($element[0]);
 
 		foreach ($element as $child) {
-			$out = max($out, $this->evaluateChild($child));
+			$evaluated = $this->evaluateChild($child);
+			if ($out instanceof Math_Formula_Applicator) {
+				if ($out->lessThan($evaluated)) {
+					$out = $evaluated;
+				}
+			} else {
+				$out = max($out, $evaluated);
+			}
 		}
 
 		return $out;

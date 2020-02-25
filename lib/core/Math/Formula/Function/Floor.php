@@ -22,6 +22,10 @@ class Math_Formula_Function_Floor extends Math_Formula_Function
 
 		$number = array_shift($elements);
 
-		return floor($number);
+		if ($number instanceof Math_Formula_Applicator) {
+			return $number->floor();
+		} else {
+			return floor($number);
+		}
 	}
 }

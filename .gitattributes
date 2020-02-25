@@ -2364,6 +2364,8 @@ lib/core/JisonParser/index.php -text
 lib/core/JitFilter.php -text
 lib/core/JitFilter/Element.php -text
 lib/core/JitFilter/index.php -text
+lib/core/Math/Formula/Applicator.php -text
+lib/core/Math/Formula/Currency.php -text
 lib/core/Math/Formula/Element.php -text
 lib/core/Math/Formula/Exception.php -text
 lib/core/Math/Formula/Function.php -text
@@ -4405,6 +4407,7 @@ lib/test/core/JitFilter/AccessTest.php -text
 lib/test/core/JitFilter/FilterTest.php -text
 lib/test/core/JitFilter/IteratorTest.php -text
 lib/test/core/JitFilter/index.php -text
+lib/test/core/Math/Formula/CurrencyTest.php -text
 lib/test/core/Math/Formula/DummyFunction/FortyTwo.php -text
 lib/test/core/Math/Formula/DummyFunction/Testop.php -text
 lib/test/core/Math/Formula/DummyFunction/index.php -text

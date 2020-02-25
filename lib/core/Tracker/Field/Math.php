@@ -92,7 +92,7 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 
 		if ('index' == $this->getOption('recalculate')) {
 			$runner = $this->getFormulaRunner();
-			$data = [];
+			$data = ['itemId' => $this->getItemId()];
 
 			foreach ($runner->inspect() as $fieldName) {
 				if (is_string($fieldName) || is_numeric($fieldName)) {
@@ -139,6 +139,9 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 	{
 		try {
 			$this->prepareFieldValues($data);
+			if (! isset($data['itemId'])) {
+				$data['itemId'] = $this->getItemId();
+			}
 			$runner = $this->getFormulaRunner();
 			$runner->setVariables($data);
 

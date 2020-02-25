@@ -12,7 +12,14 @@ class Math_Formula_Function_Min extends Math_Formula_Function
 		$out = $this->evaluateChild($element[0]);
 
 		foreach ($element as $child) {
-			$out = min($out, $this->evaluateChild($child));
+      $evaluated = $this->evaluateChild($child);
+      if ($out instanceof Math_Formula_Applicator) {
+        if ($out->moreThan($evaluated)) {
+          $out = $evaluated;
+        }
+      } else {
+        $out = min($out, $evaluated);
+      }
 		}
 
 		return $out;

@@ -15,12 +15,21 @@ class Math_Formula_Function_LessThan extends Math_Formula_Function
 		}
 
 		$reference = $this->evaluateChild($element[0]);
-
 		$mynumber = $this->evaluateChild($element[1]);
-		if ($mynumber < $reference) {
-			return false;
-		}
 
+		if ($mynumber instanceof Math_Formula_Applicator) {
+			if ($mynumber->lessThan($reference)) {
+				return false;
+			}
+		} elseif ($reference instanceof Math_Formula_Applicator) {
+			if ($reference->moreThan($mynumber)) {
+				return false;
+			}
+		} else {
+			if ($mynumber < $reference) {
+				return false;
+			}
+		}
 
 		return true;
 	}
