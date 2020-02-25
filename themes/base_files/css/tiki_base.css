@@ -1764,7 +1764,7 @@ td.numeric {
   padding-right: 1px; }
 
 /* Chrome & safari do not break urls or filenames at all. This causes
- serious display issues within tables with long urls/filenames.*/
+ serious display issues within tables with long urls/filenames. */
 td.url {
   word-break: break-all; }
 
@@ -4959,26 +4959,26 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     right: 1em; }
   #tiki-installer .menus {
     margin-top: 5em; }
-  #tiki-installer .menus .menu {
-    color: white;
-    margin-top: 1em; }
+    #tiki-installer .menus .menu {
+      color: white;
+      margin-top: 1em; }
   #tiki-installer ol.nav {
     list-style-type: decimal;
     list-style-position: outside;
     margin-left: 2em; }
   #tiki-installer .nav {
     margin-left: 1em; }
-  #tiki-installer .nav .nav-item {
-    color: white;
-    line-height: 2em; }
-  #tiki-installer .nav .nav-item .nav-link {
+    #tiki-installer .nav .nav-item {
+      color: white;
+      line-height: 2em; }
+      #tiki-installer .nav .nav-item .nav-link {
         color: white;
         padding: 0;
         background-color: transparent; }
-  #tiki-installer .nav .nav-item.active {
-    color: blue; }
-  #tiki-installer .nav .nav-item.active .nav-link {
-    color: blue; }
+      #tiki-installer .nav .nav-item.active {
+        color: blue; }
+        #tiki-installer .nav .nav-item.active .nav-link {
+          color: blue; }
   #tiki-installer .install-step8 .enter-tiki .btn {
     white-space: normal; }
 

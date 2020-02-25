@@ -7,6 +7,22 @@
     // override colors when not using cypht default theme
     img { opacity: 1 !important; }
     ul, li { background-color: transparent !important; }
+    main, div { border-radius: 0; }
+    .ui-widget-content { background-color: $ui-default-bg !important; }
+    .ui-menu-item-wrapper { color: $body-color !important; }
+    .ui-state-active { color: $ui-default-link-active-color !important; }
+    .popover-header { color: $popover-header-color !important; }
+    .popover-body { color: $popover-body-color !important; }
+    .btn-primary {
+        color: color-yiq($primary) !important;
+        background-color: $primary !important;
+        &:hover, &:focus { background-color: darken($primary, 7.5%) !important; }
+    }
+    .btn-info {
+        color: color-yiq($info) !important;
+        background-color: $info !important;
+        &:hover, &:focus { background-color: darken($info, 7.5%) !important; }
+    }
     .card { border-color: $card-border-color !important; }
     .card-header { border-color: $card-border-color !important; }
     .card-body {
