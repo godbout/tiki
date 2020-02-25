@@ -367,7 +367,7 @@ function wikiplugin_paypal($data, $params)
 		if (! empty($_SERVER['HTTP_REFERER'])) {
 			$returnUrl = $_SERVER['HTTP_REFERER'];
 		}
-		$csearchInit = 'PAYPAL = {}; $("#PPMiniCart").fadeOut().remove();';
+		$csearchInit = 'paypal = {}; $("#PPMiniCart").fadeOut().remove();';
 	} else {
 		$csearchEvent = 'ready';
 		$csearchInit = '';
@@ -391,12 +391,12 @@ function wikiplugin_paypal($data, $params)
 		$miniParams['strings']['shipping']   = tra($params['stringShipping']);
 		$miniParams['strings']['processing'] = tra($params['stringProcessing']);
 		// this seems to be the only secure URL for these assets, minicart.com uses github's SSL certificate
-		$miniParams['assetURL'] = 'https://github.com/jeffharrell/minicart/raw/2.6.1/';
+		$miniParams['assetURL'] = 'https://github.com/jeffharrell/minicart/raw/3.0.6/';
 		$miniParamStr = json_encode($miniParams);
 
 		TikiLib::lib('header')->add_js(
 			'
-$(document).bind("' . $csearchEvent . '", function () {
+$(document).on("' . $csearchEvent . '", function () {
 	' . $csearchInit . ' $.getScript("' . $jsfile . '", function() {
 			paypal.minicart.render(' . $miniParamStr . ');
 		});
