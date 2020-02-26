@@ -6748,6 +6748,7 @@ themes/base_files/other/site_closed.html -text
 themes/base_files/scss/_bootswatch_overrides.scss -text
 themes/base_files/scss/_bs3-bs4-transition.scss -text
 themes/base_files/scss/_child_theme_button_color_selectors.scss -text
+themes/base_files/scss/_child_theme_cypht_colors.scss -text
 themes/base_files/scss/_child_theme_twbs_buttons_excerpt_for_colors.scss -text
 themes/base_files/scss/_child_theme_twbs_buttons_mixin_excerpt.scss -text
 themes/base_files/scss/_conversejs-tiki.scss -text
