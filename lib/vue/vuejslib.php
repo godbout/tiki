@@ -171,7 +171,7 @@ var vm = new Vue({
 		$js = '';
 
 		foreach ($fields as $field) {
-			if (! empty( $field['rules'])) {
+			if (! empty( $field['rules']) && $field['rules'] !== '{"conditions":null,"actions":null,"else":null}') {
 
 				$this->setFieldType($field);
 				if ($field['argumentType'] === 'Collection') {
