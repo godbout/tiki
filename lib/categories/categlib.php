@@ -20,7 +20,7 @@ $objectlib = TikiLib::lib('object');
 class CategLib extends ObjectLib
 {
 	private $parentCategories = [];
-	private $currentObjectCategories;
+	private $currentObjectCategories = [];
 
 	// Returns a string representing the specified category's path.
 	// The path includes all parent categories ordered from the root to the category's parent, and the category itself.
