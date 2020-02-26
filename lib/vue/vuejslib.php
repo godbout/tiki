@@ -39,7 +39,7 @@ class VueJsLib
 			// template and ui-predicate tags are expected, so ignore them...
 		    /* @var $error LibXMLError */
 			if (! in_array($error->message, ["Tag template invalid\n", "Tag ui-predicate invalid\n"])) {
-				Feedback::warning($error->message);
+				trigger_error($error->message);
 			}
 		}
 		libxml_clear_errors();
@@ -51,8 +51,6 @@ class VueJsLib
 		if (! $name && $app) {
 			$name = 'App';
 		}
-
-		$nameLowerCase = strtolower($name);
 
 		if ($script->length) {    // required
 			$javascript = $script[0]->nodeValue;
@@ -71,7 +69,7 @@ class VueJsLib
 			}
 			global $tikidomainslash;
 			$tempDir = './temp/public/' . $tikidomainslash;
-			$hash = $nameLowerCase ? $nameLowerCase : md5(serialize($javascript));
+			$hash = $name ? $name : md5(serialize($javascript));
 
 			$file = $tempDir . "vue_" . $hash . ".js";
 			if ($minify) {
@@ -92,10 +90,10 @@ import $name from \"$file\";
 var vm = new Vue({
 	  render: h => h($name),
 	  data: function () { return $data; },
-	}).\$mount(`#$nameLowerCase`);
+	}).\$mount(`#$name`);
 "
 				);
-				return "<div id=\"$nameLowerCase\"></div>";
+				return "<div id=\"$name\"></div>";
 			}
 		}
 
