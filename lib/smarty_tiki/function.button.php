@@ -117,6 +117,8 @@ function smarty_function_button($params, $smarty)
 	//target parameter
 	if (! empty($params['_target'])) {
 		$target = $params['_target'];
+	} else {
+		$target = '';
 	}
 
 	unset($params['_target']);
