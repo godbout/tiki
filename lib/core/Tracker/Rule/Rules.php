@@ -23,7 +23,7 @@ class Rules
 		}
 
 		if (! isset($data->conditions) || ! isset($data->actions) || ! isset($data->else)) {
-			throw new Exception(tr('Rule creation from data failed'));
+			throw new \Exception(tr('Rule creation from data failed'));
 		}
 
 		$this->conditions = $data->conditions;
