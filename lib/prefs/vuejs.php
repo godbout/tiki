@@ -27,7 +27,7 @@ function prefs_vuejs_list()
 				'vue.runtime.js' => tra('Development runtime only'),
 			],
 			'default'     => 'vue.min.js',
-			'tags'        => [],
+			'tags'        => ['advanced'],
 			'dependencies' => [
 				'vuejs_enable',
 			],
@@ -38,7 +38,7 @@ function prefs_vuejs_list()
 			'description' => tra('Loads the vue.js library for every page.'),
 			'type'        => 'flag',
 			'default'     => 'n',
-			'tags'        => [],
+			'tags'        => ['advanced'],
 			'dependencies' => [
 				'vuejs_enable',
 			],
