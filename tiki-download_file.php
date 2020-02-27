@@ -380,6 +380,11 @@ if (isset($_GET['preview']) || isset($_GET['thumbnail']) || isset($_GET['display
 			$info['filetype'] = 'image/svg+xml';
 			$content = '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">' . "\n" . $content;
 		}
+
+		if ($info['filetype'] === 'text/plain') {
+			$content = nl2br($content);
+		}
+
 		if ($use_cache && ! empty($content)) {
 			// Remove all existing thumbnails for this file, to avoid taking too much disk space
 			// (only one thumbnail size is handled at the same time)

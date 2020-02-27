@@ -502,8 +502,14 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 							$viewicon
 						</a>";
 					} else {
+						$dataAttributes = [];
+
+						if ($file['filetype'] === 'text/plain') {
+							$dataAttributes[] = 'data-is-text="1"';
+						}
+
 						$src = smarty_modifier_sefurl($file['fileId'], 'display');
-						$ret .= " <a href='" . $src . "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "' data-box='box-" . $this->getConfiguration('fieldId') . "'>
+						$ret .= " <a href='" . $src . "' target='_blank' class='tips' title='Preview: " . $file['filename'] . "' data-box='box-" . $this->getConfiguration('fieldId') . "' " . implode($dataAttributes, ' ') . ">
 							$viewicon
 						</a>";
 					}
