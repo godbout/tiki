@@ -132,7 +132,7 @@
     .msg_text_inner > table { background-color: #fff; }
 
     .msg_headers th:hover, .settings_subtitle,
-    .server_section { color: $popover-body-color !important; }
+    .server_section { color: inherit !important; }
 
     .total_unread_count, .unread_count { color: #000; }
     .btn-outline-secondary:hover { color: #fff !important; }

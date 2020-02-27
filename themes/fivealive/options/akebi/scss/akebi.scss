@@ -21,19 +21,3 @@
 @import "../../../../base_files/scss/child_theme_twbs_buttons_excerpt_for_colors";
 @import "../../../../base_files/scss/child_theme_button_color_selectors";
 @import "../../../../base_files/scss/child_theme_cypht_colors";
-
-
-
-// cypht sub themes colors overrides
-.tiki {
-    &.tiki-webmail, &.tiki-cypht, &.mobile.tiki-cypht, .inline-cypht {
-        &.layout_basic #top_modules {
-            .siteloginbar_popup > .btn-link { color: #f8f8f8 !important; }
-        }
-        #page-header {
-            h1, h2, h3 a, a, a:hover {
-                &, .icon { color: #f8f8f8 !important; }
-            }
-        }
-    }
-}

@@ -28,5 +28,14 @@
             border-color: $input-border-color !important;
             color: $input-color !important;
         }
+
+        .nav-tabs .nav-link {
+        	color: $nav-tabs-link-color !important;
+        }
+
+        .nav-tabs .nav-link.active,
+        .nav-tabs .nav-item.show .nav-link {
+        	color: $nav-tabs-link-active-color !important;
+        }
     }
 }

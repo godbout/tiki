@@ -7603,7 +7603,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .msg_text_inner > table {
     background-color: #fff; }
   .inline-cypht .msg_headers th:hover, .inline-cypht .settings_subtitle, .inline-cypht .server_section {
-    color: #222 !important; }
+    color: inherit !important; }
   .inline-cypht .total_unread_count, .inline-cypht .unread_count {
     color: #000; }
   .inline-cypht .btn-outline-secondary:hover {
