@@ -8358,3 +8358,14 @@ vendor_bundled/composer.json -text
 vendor_bundled/composer.lock -text
 /web_config -text
 /xmlrpc.php -text
+lib/cypht/modules/smtp/assets/kindeditor/lang/ar.js text eol=CRLF
+lib/cypht/modules/smtp/assets/kindeditor/lang/en.js text eol=CRLF
+lib/cypht/modules/smtp/assets/kindeditor/lang/zh-CN.js text eol=CRLF
+lib/cypht/modules/smtp/assets/kindeditor/plugins/lineheight/lineheight.js text eol=CRLF
+lib/cypht/modules/smtp/assets/kindeditor/plugins/link/link.js text eol=CRLF
+lib/cypht/modules/smtp/assets/kindeditor/plugins/pagebreak/pagebreak.js text eol=CRLF
+lib/cypht/modules/smtp/assets/kindeditor/plugins/plainpaste/plainpaste.js text eol=CRLF
+lib/cypht/modules/smtp/assets/kindeditor/plugins/preview/preview.js text eol=CRLF
+lib/cypht/modules/smtp/assets/kindeditor/plugins/table/table.js text eol=CRLF
+lib/cypht/modules/smtp/assets/kindeditor/plugins/wordpaste/wordpaste.js text eol=CRLF
+lib/cypht/modules/themes/assets/so_alone.css text eol=CRLF
