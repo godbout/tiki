@@ -10,8 +10,8 @@
 					<div class="form-group row">
 						<div class="row">
 							<div class="col">
-								<label for="editwiki">Plugin LIST content:</label><br />
-								<small>{tr}Use the following output block to see all the returned values{/tr}: {literal}{output(template="debug")}{/literal}</small>
+								<label for="editwiki">{tr}Plugin LIST content:{tr/}</label><br />
+								<small>{tr}Use the following output block to see all the returned values:{/tr} {literal}{output(template="debug")}{/literal}</small>
 							</div>
 						</div>
 						<textarea class="form-control" rows="5" name="editwiki" id="editwiki">{$listtext}</textarea>
