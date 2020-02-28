@@ -252,12 +252,13 @@ class UnifiedSearchLib
 
 			$stat['total tiki fields indexed'] = $index->getFieldCount();
 
-			if(! is_null($engineResults)) {
+			if (! is_null($engineResults)) {
 				$fieldsCount = $engineResults->getEngineFieldsCount();
 
 				if ($fieldsCount !== $stat['total tiki fields indexed']) {
 					$stat['total fields used in the ' . $prefs['unified_engine'] . ' search index: '] = $engineResults->getEngineFieldsCount();
 				}
+				$tikilib->set_preference('unified_total_fields', $fieldsCount);
 			}
 
 			$tikilib->set_preference('unified_field_count', $index->getFieldCount());
@@ -800,6 +801,29 @@ class UnifiedSearchLib
 		global $prefs;
 
 		switch ($prefs['unified_engine']) {
+			case 'mysql':
+				global $tikilib;
+				$unifiedsearchlib = TikiLib::lib('unifiedsearch');
+				$unifiedTotalFields = intval($tikilib->get_preference('unified_total_fields'));
+				$info = [];
+
+				list($engine, $version, $indexName) = $unifiedsearchlib->getCurrentEngineDetails();
+				if (! empty($version)) {
+					$info['MySQL Version'] = $version;
+				}
+				if (! empty($indexName)) {
+					$info[tr('MySQL Index %0', $indexName)] = tr(
+						'%0 documents',
+						$unifiedTotalFields
+					);
+				}
+
+				$lastRebuild = $tikilib->get_preference('unified_last_rebuild');
+				if (! empty($lastRebuild)) {
+					$info['MySQL Last Rebuild Index'] = $tikilib->get_long_date($lastRebuild) . ', ' . $tikilib->get_long_time($lastRebuild);
+				}
+
+				return $info;
 			case 'elastic':
 				$info = [];
 
@@ -1183,7 +1207,7 @@ class UnifiedSearchLib
 
 			$facets[] = Search_Query_Facet_Term::fromField('_index')
 				->setLabel(tr('Federated Search'))
-				->setRenderCallback(function ($index) use (& $indexMap) {
+				->setRenderCallback(function ($index) use (&$indexMap) {
 					$out = tr('Index not found');
 					if (isset($indexMap[$index])) {
 						$out = $indexMap[$index];
