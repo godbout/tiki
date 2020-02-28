@@ -11,6 +11,9 @@ class BOMChecker_Scanner
 	// Tiki source folder
 	protected $sourceDir = __DIR__ . '/../../../';
 
+	protected $excludeDir = [];
+	protected $scanFiles = [];
+
 	protected $scanExtensions = [
 		'php',
 		'tpl'
@@ -22,11 +25,14 @@ class BOMChecker_Scanner
 	// The list of files detected with BOM
 	protected $bomFiles = [];
 
+	// The list of files detected without BOM
+	protected $withoutBomFiles = [];
+
 	/**
 	 * @param string $scanDir The file directory to scan.
 	 * @param array $scanExtensions An array with the file extensions to scan for BOM.
 	 */
-	public function __construct($scanDir = null, $scanExtensions = [])
+	public function __construct($scanDir = null, $scanExtensions = [], $excludeDir = [], $scanFiles = [])
 	{
 		if (! empty($scanDir) && is_dir($scanDir)) {
 			$this->sourceDir = $scanDir;
@@ -34,6 +40,14 @@ class BOMChecker_Scanner
 
 		if (is_array($scanExtensions)&&count($scanExtensions)) {
 			$this->scanExtensions = $scanExtensions;
+		}
+
+		if (! empty($excludeDir)) {
+			$this->excludeDir = $excludeDir;
+		}
+
+		if (! empty($scanFiles)) {
+			$this->scanFiles = $scanFiles;
 		}
 	}
 
@@ -44,7 +58,12 @@ class BOMChecker_Scanner
 	 */
 	public function scan()
 	{
-		$this->checkDir($this->sourceDir);
+		if (! empty($this->scanFiles)) {
+			$this->checkListFiles($this->scanFiles);
+		} else {
+			$this->checkDir($this->sourceDir);
+		}
+
 		return $this->bomFiles;
 	}
 
@@ -56,6 +75,10 @@ class BOMChecker_Scanner
 	 */
 	protected function checkDir($sourceDir)
 	{
+		if (! empty($this->excludeDir) && in_array($sourceDir, $this->excludeDir)) {
+			return;
+		}
+
 		$sourceDir = $this->fixDirSlash($sourceDir);
 
 		// Copy files and directories.
@@ -77,9 +100,37 @@ class BOMChecker_Scanner
 				|| ! in_array($this->getFileExtension($sourcefilePath), $this->scanExtensions)
 				|| ! $this->checkUtf8Bom($sourcefilePath)
 			) {
+				if (in_array($this->getFileExtension($sourcefilePath), $this->scanExtensions)
+					&& ! $this->checkUtf8Bom($sourcefilePath)
+				) {
+					$this->withoutBomFiles[] = $sourcefilePath;
+				}
 				continue;
 			}
 			$this->bomFiles[] = str_replace($this->sourceDir, '', $sourcefilePath);
+		}
+	}
+
+	/**
+	 * Check a list of files
+	 *
+	 * @param string $listFiles
+	 * @return void
+	 */
+	protected function checkListFiles($listFiles)
+	{
+		if (empty($listFiles)) {
+			return;
+		}
+
+		foreach ($listFiles as $file) {
+			if (in_array($this->getFileExtension($file), $this->scanExtensions)) {
+				if (! $this->checkUtf8Bom($file)) {
+					$this->withoutBomFiles[] = $file;
+				} else {
+					$this->bomFiles[] = $file;
+				}
+			}
 		}
 	}
 
@@ -147,5 +198,15 @@ class BOMChecker_Scanner
 	public function getBomFiles()
 	{
 		return $this->bomFiles;
+	}
+
+	/**
+	 * Get the list of files detected without BOM.
+	 *
+	 * @return array
+	 */
+	public function getWithoutBomFiles()
+	{
+		return $this->withoutBomFiles;
 	}
 }

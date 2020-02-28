@@ -162,7 +162,8 @@
 		"phpunit/phpunit": "^5",
 		"phpunit/phpunit-selenium": "^3",
 		"sensiolabs/security-checker": "^5.0",
-		"squizlabs/php_codesniffer": "^3.1"
+		"squizlabs/php_codesniffer": "^3.1",
+		"umakantp/smartylint": "^0.1"
 	},
 	"extra": {
 		"patches-file": "../installer/composer-patches/composer-patches.json"

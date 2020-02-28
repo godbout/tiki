@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7a09cfebcc606db415863dbb308f92dd",
+    "content-hash": "17f366b2e78a50145c2fafeb32753ddf",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -9941,6 +9941,16 @@
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
             "time": "2020-01-04T14:08:26+00:00"
+        },
+        {
+            "name": "umakantp/smartylint",
+            "version": "0.1.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/umakantp/smartylint/umakantp-smartylint-0.1.4.zip",
+                "shasum": "7fd6d148e53164cbe04db28b5a477557e50d3927"
+            },
+            "type": "library"
         },
         {
             "name": "webmozart/assert",

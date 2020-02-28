@@ -49,13 +49,41 @@ phpcs:
 
 phplint:
   stage: lint
+  variables:
+    TARGET: HEAD^
   script:
-    - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
-    - git log -m --first-parent -1 --name-only --diff-filter=d --pretty="format:" | grep -v "^$" | sort -u | grep '\.php$' - 2>&1 > /dev/null || { git log -m -1 --name-only && echo && echo 'No files to be processed. Skipping...' && echo && exit 0; }
-    - git log -m -1 --name-only
-    # Because we just lint changed files we need to filter by php extension before call bin/phplint
-    - git log -m --first-parent -1 --name-only --diff-filter=d --pretty="format:" | grep -v "^$" | sort -u | grep '\.php$' | xargs php bin/phplint -n
+  - git diff --name-status $TARGET | grep -v "^D" | cut -c 3- | sort -u | grep '\.php$' - 2>&1 > /dev/null || { git diff --name-status $TARGET && echo && echo 'No files to be processed. Skipping...' && echo && exit 0; }
+  - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+  - git diff --name-status $TARGET
+  # Because we just lint changed files we need to filter by php extension before call bin/phplint
+  - git diff --name-status $TARGET | grep -v "^D" | cut -c 3- | sort -u | grep '\.php$' | xargs php bin/phplint -n
   allow_failure: false
+
+smarty-lint:
+  stage: lint
+  variables:
+    TARGET: HEAD^
+  script:
+  - git diff --name-status $TARGET | grep -v "^D" | cut -c 3- | sort -u | grep '\.tpl$' - 2>&1 > /dev/null || { git diff --name-status $TARGET && echo && echo 'No files to be processed. Skipping...' && echo && exit 0; }
+  - composer --ansi install -d vendor_bundled --no-progress --prefer-dist -n
+  - git diff --name-status $TARGET
+  - git diff --name-status $TARGET | grep -v "^D" | cut -c 3- | sort -u | grep '\.tpl$' | xargs -I 0 php vendor_bundled/vendor/umakantp/smartylint/smartyl --files=0 --ignore-rules=doc/devtools/smartyl.rules.xml
+  allow_failure: true
+
+eslint:
+  image: docker:stable-git
+  stage: lint
+  variables:
+    TARGET: HEAD^
+  services:
+    - docker:stable-dind
+  script:
+    - git diff --name-status $TARGET | grep -v "^D" | cut -c 3- | sort -u | grep '\.js$' - 2>&1 > /dev/null || { git diff --name-status $TARGET && echo && echo 'No files to be processed. Skipping...' && echo && exit 0; }
+    - git diff --name-status $TARGET
+    - git diff --name-status $TARGET | grep -v "^D" | cut -c 3- | sort -u | grep '\.js$' | xargs docker run -v "$PWD":/data --volume /var/run/docker.sock:/var/run/docker.sock cytopia/eslint
+  allow_failure: true
+  tags:
+    - docker
 
 #
 # Check Tikiwiki development specific check (related also with release)
@@ -91,6 +119,24 @@ translation-standards:
   stage: tiki-check
   script:
     - php doc/devtools/check_template_translation_standards.php --all
+  allow_failure: true
+
+check-bom-encoding:
+  stage: tiki-check
+  script:
+  - git log -m --first-parent -1 --name-only --diff-filter=d --pretty="format:" | grep -v "^$" | sort -u | xargs php doc/devtools/check_bom_encoding.php
+  allow_failure: true
+
+unix-ending-line:
+  stage: tiki-check
+  script:
+  - git log -m --first-parent -1 --name-only --diff-filter=d --pretty="format:" | grep -v "^$" | sort -u | xargs php doc/devtools/check_unix_ending_line.php
+  allow_failure: true
+
+check-directories:
+  stage: tiki-check
+  script:
+  - php doc/devtools/check_tiki_directories.php
   allow_failure: true
 
 composer-lock:
