@@ -17,7 +17,7 @@
                                 <button class="btn-link nav-link"
                                     name="install_step" value="{$step}"
                                     {if $disabled}disabled="disabled"{/if}
-                                    id="install_step{$step}">
+                                    title="{$title}">
                                     {$title}
                                 </button>
                             </li>
