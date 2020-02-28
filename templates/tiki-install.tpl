@@ -286,7 +286,7 @@
                                 {tr}Tiki found an automatic database connection for your environment.{/tr}
                             {/if}
                             {/remarksbox}
-                            <div class="text-center">
+                            <div class="mb-3 text-center">
                                 <form action="tiki-install.php" method="post" role="form">
                                     <input type="hidden" name="install_step" value="4">
                                     {if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
