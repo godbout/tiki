@@ -16985,7 +16985,6 @@ $lang = array(
 // "The following item(s) include this one with Plugin Include and might be affected by these changes. Renaming sections can break related item(s)" => "The following item(s) include this one with Plugin Include and might be affected by these changes. Renaming sections can break related item(s)",
 // "A contribution is mandatory " => "A contribution is mandatory ",
 // "An edit summary is mandatory " => "An edit summary is mandatory ",
-// "Translate from" => "Translate from",
 // "Changes that need to be translated are highlighted below" => "Changes that need to be translated are highlighted below",
 // "No comment" => "No comment",
 // "All Versions" => "All Versions",
