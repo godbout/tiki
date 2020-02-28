@@ -17,8 +17,8 @@
                                 <button class="btn-link nav-link"
                                     name="install_step" value="{$step}"
                                     {if $disabled}disabled="disabled"{/if}
-                                    title="{tr}{$title}{/tr}">
-                                    {tr}{$title}{/tr}
+                                    title="{$title}">
+                                    {$title}
                                 </button>
                             </li>
                             {/function}
@@ -26,63 +26,63 @@
                             <!-- step 0 -->
                             {call name="printStepItem"
                                 step="0"
-                                title="Welcome"
+                                title="{tr}Welcome{/tr}"
                                 disabled=$install_step==0
                                 active=$install_step==0}
                                 
                             <!-- step 1 -->
                             {call name="printStepItem"
                                 step="1"
-                                title="License"
+                                title="{tr}License{/tr}"
                                 disabled=$install_step==1
                                 active=$install_step==1}
 
                             <!-- step 2 -->
                             {call name="printStepItem"
                                 step="2"
-                                title="Review the System Requirements"
+                                title="{tr}Review the System Requirements{/tr}"
                                 disabled=$install_step <= 2 && $dbcon !='y'
                                 active=$install_step==2}
 
                             <!-- step 3 -->
                             {call name="printStepItem"
                                 step="3"
-                                title={{$dbcon eq 'y'}|ternary:"Reset the Database Connection":"Database Connection"}
+                                title={{$dbcon eq 'y'}|ternary:"{tr}Reset the Database Connection{/tr}":"{tr}Database Connection{/tr}"}
                                 disabled=$install_step <= 3 && $dbcon !='y'
                                 active=$install_step==3}
 
                             <!-- step 4 -->
                             {call name="printStepItem"
                                 step="4"
-                                title={$tikidb_created|ternary:"Install/Upgrade":"Install"}
+                                title={$tikidb_created|ternary:"{tr}Install/Upgrade{/tr}":"{tr}Install{/tr}"}
                                 disabled=$install_step <= 4 && $dbcon !='y' || !isset($smarty.post.scratch) || isset($smarty.post.update)
                                 active=$install_step==4}
 
                             <!-- step 5 -->
                             {call name="printStepItem"
                                 step="5"
-                                title={isset($smarty.post.update)|ternary:"Review the Upgrade":"Review the Installation"}
+                                title={isset($smarty.post.update)|ternary:"{tr}Review the Upgrade{/tr}":"{tr}Review the Installation{/tr}"}
                                 disabled=$install_step <= 5 && !$tikidb_is20
                                 active=$install_step==5}
 
                             <!-- step 6 -->
                             {call name="printStepItem"
                                 step="6"
-                                title="Configure the General Settings"
+                                title="{tr}Configure the General Settings{/tr}"
                                 disabled=$install_step <= 6 && !$tikidb_is20 || isset($smarty.post.update)
                                 active=$install_step==6}
 
                             <!-- step 7 -->
                             {call name="printStepItem"
                                 step="7"
-                                title="Last Notes"
+                                title="{tr}Last Notes{/tr}"
                                 disabled=$install_step <= 7 && !$tikidb_is20
                                 active=$install_step==7}
 
                             <!-- step 8 -->
                             {call name="printStepItem"
                                 step="8"
-                                title="Enter Your Tiki"
+                                title="{tr}Enter Your Tiki{/tr}"
                                 disabled=$install_step <= 8 && !$tikidb_is20
                                 active=$install_step==8}
                         </ol>
