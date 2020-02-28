@@ -10,7 +10,7 @@
 					<div class="form-group row">
 						<div class="row">
 							<div class="col">
-								<label for="editwiki">{tr}Plugin LIST content:{tr/}</label><br />
+								<label for="editwiki">{tr}Plugin LIST content:{/tr}</label><br />
 								<small>{tr}Use the following output block to see all the returned values:{/tr} {literal}{output(template="debug")}{/literal}</small>
 							</div>
 						</div>
