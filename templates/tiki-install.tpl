@@ -16,8 +16,7 @@
                             <li class="nav-item {if $active}active{/if}">
                                 <button class="btn-link nav-link"
                                     name="install_step" value="{$step}"
-                                    {if $disabled}disabled="disabled"{/if}
-                                    title="{$title}">
+                                    {if $disabled}disabled="disabled"{/if}>
                                     {$title}
                                 </button>
                             </li>
