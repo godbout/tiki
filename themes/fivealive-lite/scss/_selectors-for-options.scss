@@ -56,7 +56,8 @@ nav.fixed-top {
 .layout_classic #top_modules.bg-dark,
 .layout_classic #top_modules.bg-light,
 .header_outer,
-.header_outer .navbar-dark.bg-dark {
+.header_outer .navbar-dark.bg-dark,
+.postbody-title {
 	background: $top-bg !important;
 	color: $top-color;
 	a { color: $top-link-color; }
