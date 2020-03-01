@@ -16,21 +16,21 @@ $imagePathToImgDir: "../../../img/";
 
 //.layout_social,
 //.layout_social_modules {
-  .navbar-dark > a,
-  .navbar-dark .cssmenu_horiz > li > a {
+	.navbar-dark > a,
+	.navbar-dark .cssmenu_horiz > li > a {
 	color: $navbar-dark-color;
 	&:hover {
-	  color: $navbar-dark-hover-color;
-	  text-decoration: none;
+		color: $navbar-dark-hover-color;
+		text-decoration: none;
 	}
-  }
-  .navbar-dark .sitetitle a {
+	}
+	.navbar-dark .sitetitle a {
 	color: $navbar-dark-brand-color;
 	&:hover {
-	  color: $navbar-dark-hover-color;
-	  text-decoration: none;
+		color: $navbar-dark-hover-color;
+		text-decoration: none;
 	}
-  }
+	}
 //}
 
 // tiki-boxes_and_panels.less
@@ -124,17 +124,17 @@ a.fc-event:hover {
 
 .cssmenu_horiz ul,
 .cssmenu_vert ul {
-	border: $cssmenu_ul_border; //  $dropdown-border-color;
+	border: $cssmenu_ul_border; //	$dropdown-border-color;
 }
 
 .cssmenu_horiz ul li a,
 .cssmenu_vert ul li a,
 .cssmenu_horiz ul li button.btn-link.link-list,
 .cssmenu_vert ul li button.btn-link.link-list {
-	background: $cssmenu_ul_li_a_bg; //   $dropdown-bg;
-	color: $cssmenu_ul_li_a_color; //  $dropdown-link-color;
-	//  padding-top: ; (tiki-cssmenus.less edited to conform to BS dropdown-link top and bottom padding - 3px.)
-	//  padding-bottom: ;
+	background: $cssmenu_ul_li_a_bg; //	$dropdown-bg;
+	color: $cssmenu_ul_li_a_color; //	$dropdown-link-color;
+	//	padding-top: ; (tiki-cssmenus.less edited to conform to BS dropdown-link top and bottom padding - 3px.)
+	//	padding-bottom: ;
 }
 
 
@@ -150,8 +150,8 @@ a.fc-event:hover {
 .cssmenu_vert > ul > li:hover > a,
 .cssmenu_horiz > ul > li:hover > form > button.btn-link.link-list,
 .cssmenu_vert > ul > li:hover > form > button.btn-link.link-list {
-	color: $cssmenu_ul_li_hover_a_color; //  $dropdown-link-hover-color;
-	background: $cssmenu_ul_li_hover_a_bg; //  $dropdown-link-hover-bg;
+	color: $cssmenu_ul_li_hover_a_color; //	$dropdown-link-hover-color;
+	background: $cssmenu_ul_li_hover_a_bg; //	$dropdown-link-hover-bg;
 }
 
 // styling for both css and generated arrows 
@@ -191,17 +191,17 @@ a.fc-event:hover {
 //	//.topbar .cssmenu_horiz ul,
 //.topbar .navbar-default .navbar-nav > li,
 //.topbar .nav > li {
-//	background: $topbar_bg; //  $navbar-dark-bg;
-//	color: $topbar_color; //  $navbar-dark-color;
+//	background: $topbar_bg; //	$navbar-dark-bg;
+//	color: $topbar_color; //	$navbar-dark-color;
 //	> a {
 //		color: $topbar_link_color; // $navbar-dark-link-color;
-//		//    background: $navbar-dark-link-bg;
-//		padding-top: $topbar_link_padding_top; //  $navbar-padding-y;
+//		//		background: $navbar-dark-link-bg;
+//		padding-top: $topbar_link_padding_top; //	$navbar-padding-y;
 //		padding-bottom: $topbar_link_padding_bottom; // $navbar-padding-y;
 //	}
 //	> a:hover,
 //	> a:focus {
-//		color: $topbar_link_hover_color; //  $navbar-dark-hover-color;
+//		color: $topbar_link_hover_color; //	$navbar-dark-hover-color;
 //	}
 //}
 
@@ -503,23 +503,23 @@ div.cvsup {
 //}
 
 .navbar-light {
-  .dropdown-toggle,
-  a.nav-link.dropdown-toggle,
-  h1.sitetitle a,
-  h2.sitesubtitle,
-  .cssmenu_horiz .menuLevel0 > a {
+	.dropdown-toggle,
+	a.nav-link.dropdown-toggle,
+	h1.sitetitle a,
+	h2.sitesubtitle,
+	.cssmenu_horiz .menuLevel0 > a {
 	color: $navbar-light-color
-  }
+	}
 }
 
 .navbar-dark {
-  .dropdown-toggle,
-  a.nav-link.dropdown-toggle,
-  h1.sitetitle a,
-  h2.sitesubtitle,
-  .cssmenu_horiz .menuLevel0 > a {
+	.dropdown-toggle,
+	a.nav-link.dropdown-toggle,
+	h1.sitetitle a,
+	h2.sitesubtitle,
+	.cssmenu_horiz .menuLevel0 > a {
 	color: $navbar-dark-color
-  }
+	}
 }
 
 // tiki-mytiki.less
@@ -534,8 +534,8 @@ div.cvsup {
 
 .prio5 {
 //	background: inherit;
-  color: $body-color;
-  a { color: $body-color; }
+	color: $body-color;
+	a { color: $body-color; }
 }
 
 .prio4 {
@@ -693,13 +693,13 @@ li.toolbar {
 
 a.toolbar:hover,
 li.toolbar:hover {
-	color:  lighten($body-color, 25%);
+	color: lighten($body-color, 25%);
 	text-shadow: -1px -1px 4px rgba(0,0,0,.2);
 }
 
 a.toolbar:active,
 li.toolbar:active {
-	color:  $danger;
+	color: $danger;
 	text-shadow: 2px 2px 4px rgba(0,0,0,.5);
 }
 
@@ -1106,7 +1106,7 @@ div.drillshow {
 .chosen-container-single .chosen-search input[type="text"] {
 	background-color: $input-bg;
 	border: 1px solid $input-border-color;
-	//  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.071);
+	//	box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.071);
 }
 
 .chosen-container .chosen-results li.active-result {
@@ -1134,7 +1134,7 @@ div.drillshow {
 
 // jQuery-UI
 .tiki .ui-widget-content,
-span.plugin-mouseover  {
+span.plugin-mouseover {
 	background: $modal-content-bg;
 	color: $body-color;
 	border: 1px solid $modal-content-border-color;
@@ -1269,28 +1269,28 @@ input[type="checkbox"].preffilter-toggle-round + label:after {
 input[type="checkbox"].preffilter-toggle-round:checked + label:before {
 	background-color: $success;
 	border-color: darken($primary, 10%);
-  $n: $success;
+	$n: $success;
 	$color-brightness: round((red($n) * 299) + (green($n) * 587) + (blue($n) * 114) / 1000);
 	$light-color: round((red(#ffffff) * 299) + (green(#ffffff) * 587) + (blue(#ffffff) * 114) / 1000);
 
 	@if abs($color-brightness) < ($light-color/2){
-	  color: white;
+		color: white;
 	}
 
 	@else {
-	  color: black;
+		color: black;
 	}
-  }
+	}
 
 //jQuery-ui
 .tiki .ui-widget {
-  font-family: $font-family-base;
-  font-size: $font-size-base;
+	font-family: $font-family-base;
+	font-size: $font-size-base;
 }
 
 // Hack to give .btn-secondary color to the "Files" button in tiki-page_bar.tpl.
 .btn-primary.btn-files {
-  @include button-variant($secondary, $secondary, $secondary);
+	@include button-variant($secondary, $secondary, $secondary);
 }
 
 .chosen-container-single .chosen-single div {

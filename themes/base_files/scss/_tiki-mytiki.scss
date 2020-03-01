@@ -6,55 +6,55 @@
 .prio3,
 .prio4,
 .prio5 {
-	//  border: 1px solid $panel-default-border;
+	//	border: 1px solid $panel-default-border;
 	padding-left: 2px;
 }
 
 // .prio1 {
-//   background: $panel-danger-heading-bg;
+// 	background: $panel-danger-heading-bg;
 // }
 //
 // .prio2 {
-//   background: $panel-warning-heading-bg;
+// 	background: $panel-warning-heading-bg;
 // }
 //
 // .prio3 {
-//   background: $panel-success-heading-bg;
+// 	background: $panel-success-heading-bg;
 // }
 //
 // .prio4 {
-//   background: $panel-info-heading-bg;
+// 	background: $panel-info-heading-bg;
 // }
 //
 // .prio5 {
-//   background: $panel-default-heading-bg;
+// 	background: $panel-default-heading-bg;
 // }
 //
 .messureadflag {
-	//   background: $gray;
+	//	background: $gray;
 	padding-left: 5px;
 }
 
 .messureadhead {
 	background: $gray-300;
-	//   margin-top: 2px;
+	//	margin-top: 2px;
 }
 
 .messureadbody {
-	//   margin-top: 5px;
+	//	margin-top: 5px;
 	background: $gray-200;
 }
 
 .readlink {
-	//   font-size: .95em;
+	//	font-size: .95em;
 	color: #000000;
 }
 
 // /* webmail & groupmail */
 .webmail_item {
-	//   font-size: .9em;
+	//	font-size: .9em;
 	border: 1px solid $card-border-color;
-	//   margin: 1px 0;
+	//	margin: 1px 0;
 	padding: 0 1px;
 }
 
@@ -63,30 +63,30 @@
 }
 
 // .webmail_list .odd {
-//   background: $table-accent-bg;
+//	background: $table-accent-bg;
 // }
 
 .webmail_list .button {
-	//   background: $body-bg;
-	//   border: 1px solid $panel-primary-border;
+	//	background: $body-bg;
+	//	border: 1px solid $panel-primary-border;
 	padding: 0 2px;
 }
 
 // .webmail_list .webmail_read {
-//   background: $state-info-bg;
+//	background: $state-info-bg;
 // }
 
 // .webmail_list .webmail_replied {
-//   background: $state-success-bg;
+//	background: $state-success-bg;
 // }
 
 // .webmail_list .webmail_taken {
-//   border: $state-warning-border;
-//   color: $state-warning-text;
+//	border: $state-warning-border;
+//	color: $state-warning-text;
 // }
 //
 // .webmail_message {
-//   background: $body-bg;
+//	background: $body-bg;
 // }
 
 .webmail_mono {
@@ -95,7 +95,7 @@
 }
 
 .webmail_message_headers {
-	//   background: $body-bg;
+	//	background: $body-bg;
 	width: 100%;
 	padding: 0 5em .5em 0;
 }
@@ -104,11 +104,11 @@
 	font-style: italic;
 	text-align: right;
 	border: none;
-	//   background: transparent;
+	//	background: transparent;
 	width: 6em;
 }
 
-// /* Friendship / Community  */
+// /* Friendship / Community */
 //.user-info {
 //	font-size: .9em;
 //	padding-bottom: 2em;
@@ -151,10 +151,10 @@
 
 /* avatar upload */
 .user-avatar-preview {
-  margin-right: 1em;
+	margin-right: 1em;
 }
 .user-avatar-preview img {
-  width: 100%;
+	width: 100%;
 }
 
 /* webmail & groupmail */

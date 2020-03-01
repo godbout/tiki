@@ -3,8 +3,8 @@
 $imagePathToIcons: "../../img/icons/";
 
 form.simple label.error {
-	//  background: url('#{$imagePath}error.png') no-repeat 0 4px; (moved to _tiki-selectors.scss)
-	//  color: $state-danger-text;
+	//	background: url('#{$imagePath}error.png') no-repeat 0 4px; (moved to _tiki-selectors.scss)
+	//	color: $state-danger-text;
 	padding: 4px 0 0 20px;
 	margin-left: 0.5em;
 }
@@ -24,7 +24,7 @@ form.simple label .description {
 
 form.simple label .warning {
 	padding-top: 12px;
-	//  color: $state-danger-text;
+	//	color: $state-danger-text;
 }
 
 form.simple textarea,
@@ -51,7 +51,7 @@ form.simple textarea.export {
 
 .tiki-modal .mask {
 	position: absolute;
-	//  background-color: $body-bg;
+	//	background-color: $body-bg;
 	display: none;
 	width: 100%;
 	height: auto;
@@ -67,8 +67,8 @@ form.simple textarea.export {
 // /* end $.fn.modal */
 
 // .ui-dialog {
-//  background: $body-bg;
-//  color: $body-color;
+// 	background: $body-bg;
+// 	color: $body-color;
 // }
 
 body > .ui-front {

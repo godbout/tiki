@@ -2,7 +2,7 @@
 
 header.container,
 .middle_outer > .container {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 // Enable topbar backgrounds to extend left and right to contain margins.
@@ -11,8 +11,8 @@ header.container,
 //.layout_basic .header_container .page-header,
 //.layout_classic .header_container .page-header,
 //.layout_classic .container .topbar {
-//  margin-left: -15px;
-//  margin-right: -15px;
+//	margin-left: -15px;
+//	margin-right: -15px;
 //}
 
 #top_modules,
@@ -35,10 +35,10 @@ header.container,
 }
 
 //.bottom_modules {
-//  display: grid;
-//  grid-template-columns: repeat(auto-fill, minmax(273px, 1fr));
-//  grid-gap: 30px;
-//  grid-row-gap: 30px;
+//	display: grid;
+//	grid-template-columns: repeat(auto-fill, minmax(273px, 1fr));
+//	grid-gap: 30px;
+//	grid-row-gap: 30px;
 //}
 
 //***** Site Header & Identity *****/
@@ -52,7 +52,7 @@ header.container,
 
 .box-quickadmin .cssmenu_horiz ul li {
 	padding-left: 1em;
-	//  background-color: $body-bg; (moved to _tiki-selectors.scss)
+	//	background-color: $body-bg; (moved to _tiki-selectors.scss)
 }
 
 .mod-share-item {
@@ -92,12 +92,12 @@ li.archivedate {
 
 .box-switch_lang .box-data img.highlight {
 	padding: .1em;
-	//  border: .1em solid $alert-danger-border;
+	//	border: .1em solid $alert-danger-border;
 }
 
-// .box-switch_lang .box-data .highlight {
-//  border: .1em solid $alert-danger-border;
-// }
+//.box-switch_lang .box-data .highlight {
+//	border: .1em solid $alert-danger-border;
+//}
 
 .box-switch_lang li {
 	list-style: none;
@@ -367,7 +367,7 @@ div.cvsup {
 		line-height: 2;
 		margin-bottom: 0;
 		margin-left: 1rem;
-		//    color: $navbar-dark-brand-color; (This and the following commented-out lines moved to _tiki-selectors.scss)
+		//		color: $navbar-dark-brand-color; (This and the following commented-out lines moved to _tiki-selectors.scss)
 	}
 	.sitesubtitle {
 		float: left;
@@ -386,11 +386,11 @@ div.cvsup {
 	.btn-link {
 		margin-top: $navbar-fixed-height / 7;
 	}
-	//  .navbar-inverse .navbar-collapse,
-	//  .navbar-inverse .navbar-form,
-	//  .navbar-inverse {
-	//    border-color: transparent;
-	//  }
+	//	.navbar-inverse .navbar-collapse,
+	//	.navbar-inverse .navbar-form,
+	//	.navbar-inverse {
+	//		border-color: transparent;
+	//	}
 }
 
 .navbar-fixed-top,

@@ -3,7 +3,7 @@
 
 // Obey the non-fixed width!
 //body:not(.fixed_width) .page-header > div > div {
-//  width: auto !important;
+//	width: auto !important;
 //}
 body:not(.fixed_width) .container {
 	padding-left: ($grid-gutter-width / 2);
@@ -17,15 +17,15 @@ body:not(.fixed_width) .container {
 //}
 
 @media(max-width:768px) {
-  .tiki .col-md-12 {
+	.tiki .col-md-12 {
 	flex-basis: 100%;
-	  width: 100% !important;
-  }
-  // Prevent column from imploding horizontally if it contains only narrow content.
-  .col2 .module,
-  .col3 .module {
+		width: 100% !important;
+	}
+	// Prevent column from imploding horizontally if it contains only narrow content.
+	.col2 .module,
+	.col3 .module {
 	flex-basis: 100%;
-  }
+	}
 }
 
 //legend + p,
@@ -57,7 +57,7 @@ body.tiki.navbar-padding {
 
 body.layout_social.tiki.navbar-padding {
 	padding-top: $navbar-fixed-height + 2rem;
-  padding-bottom: 0;
+	padding-bottom: 0;
 }
 
 body.fullscreen.tiki.navbar-padding {
@@ -90,8 +90,8 @@ body.fullscreen.tiki.navbar-padding {
 //}
 
 //.tiki .popover {
-// word-wrap: break-word;
-//  word-break: break-all;
+//	word-wrap: break-word;
+//	word-break: break-all;
 //}
 
 // .tiki .popover.tour-tour { max-width: 276px; } Not needed since default is now this width.
@@ -154,7 +154,7 @@ body.fullscreen.tiki.navbar-padding {
 
 // columns with action icons in shouldn't wrap
 .tiki .table-responsive > .table td.action {
-  white-space: nowrap;
+	white-space: nowrap;
 }
 
 
@@ -293,31 +293,31 @@ body.fullscreen.tiki.navbar-padding {
 
 // Left col toggled on, right col assigned off
 .hide_zone_right #col1.col-lg-9.order-lg-2 {
-  width: 75%;
-  flex: 0 0 75%;
-  max-width: 75%;
+	width: 75%;
+	flex: 0 0 75%;
+	max-width: 75%;
 }
 
 // Left col assigned off, right col toggled off
 .hide_zone_right #col1.col-lg-9:not(.order-lg-2) {
-  width: 100%;
-  flex: 0 0 100%;
-  max-width: 100%;
+	width: 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
 }
 
 // Right col assigned off, left col toggled off
 .hide_zone_right.hide_zone_left .side-col-toggle + #col1.col-lg-9.order-lg-2,
 .hide_zone_left .side-col-toggle + #col1.col-lg-9.order-lg-2{
-  width: 100%;
-  flex: 0 0 100%;
-  max-width: 100%;
+	width: 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
 }
 
 .hide_zone_left.hide_zone_right #col1.col-lg-8,
 .hide_zone_left.hide_zone_right #col1.col-lg-9 { // when both are hidden, in 3-col and 2-col cases
-  width: 100%;
-  flex: 0 0 100%;
-  max-width: 100%;
+	width: 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
 }
 }
 // End overrides for wide side column layout

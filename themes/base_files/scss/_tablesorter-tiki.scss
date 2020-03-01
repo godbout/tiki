@@ -2,12 +2,12 @@
 //Less file for the jQuery tablesorter plugin
 //base formatting that apply to all Tiki themes and included in tiki.less
 
-$filterTransitionTime  : 0.1s;
+$filterTransitionTime : 0.1s;
 $filterRowHiddenHeight : 4px;
 // becomes height using padding (so it's divided by 2)
 
 // url(icons/loading.gif);
-$processingIcon        : url('data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=');
+$processingIcon : url('data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQBCgACACwAAAAAFAAUAAACQZRvoIDtu1wLQUAlqKTVxqwhXIiBnDg6Y4eyx4lKW5XK7wrLeK3vbq8J2W4T4e1nMhpWrZCTt3xKZ8kgsggdJmUFACH5BAEKAAIALAcAAAALAAcAAAIUVB6ii7jajgCAuUmtovxtXnmdUAAAIfkEAQoAAgAsDQACAAcACwAAAhRUIpmHy/3gUVQAQO9NetuugCFWAAAh+QQBCgACACwNAAcABwALAAACE5QVcZjKbVo6ck2AF95m5/6BSwEAIfkEAQoAAgAsBwANAAsABwAAAhOUH3kr6QaAcSrGWe1VQl+mMUIBACH5BAEKAAIALAIADQALAAcAAAIUlICmh7ncTAgqijkruDiv7n2YUAAAIfkEAQoAAgAsAAAHAAcACwAAAhQUIGmHyedehIoqFXLKfPOAaZdWAAAh+QQFCgACACwAAAIABwALAAACFJQFcJiXb15zLYRl7cla8OtlGGgUADs=');
 
 // Filter widget transition
 @mixin filterWidgetTransition {
@@ -18,7 +18,7 @@ $processingIcon        : url('data:image/gif;base64,R0lGODlhFAAUAKEAAO7u7lpaWgAA
 }
 
 // Arrows
-$arrowPosition         : center right;
+$arrowPosition : center right;
 
 // div around table
 div.tablesorter-resizable-container {
@@ -35,7 +35,7 @@ table.tablesorter {
 			th.tablesorter-header {
 				background-repeat: no-repeat;
 				background-position: $arrowPosition;
-			  	background-color: $body-bg; // Added by Gary as a test.
+				background-color: $body-bg; // Added by Gary as a test.
 				cursor: pointer;
 				i {
 					font-weight: 400;
@@ -215,7 +215,7 @@ div.ts-wrapperdiv {
 table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter,
 table.tablesorter thead tr.tablesorter-filter-row td input.dateFrom,
 table.tablesorter thead tr.tablesorter-filter-row td input.dateTo {
-  color: $input-color;
-  background: $input-bg;
-  border: $input-border-color;
+	color: $input-color;
+	background: $input-bg;
+	border: $input-border-color;
 }
