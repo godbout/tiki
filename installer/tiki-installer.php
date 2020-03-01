@@ -570,6 +570,8 @@ function initTikiDB(&$api, &$driver, $host, $user, $pass, $dbname, $client_chars
 			$sql = "CREATE DATABASE IF NOT EXISTS `$dbname_clean` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
 			$dbTiki->queryError($sql, $error);
 			if (empty($error)) {
+				// assure the DB has the right default encoding (if the DB already existed)
+				$dbTiki->query("ALTER DATABASE `$dbname_clean` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
 				Feedback::success(tra("Database `%0` was created.", '', false, [$dbname_clean]));
 			} else {
 				Feedback::error(tra("Database `%0` creation failed. You need to create the database.", '', false, [$dbname_clean]));
