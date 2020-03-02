@@ -521,3 +521,18 @@ blockquote {
 // Improve horizontal spacing of breadcrumb icons and separators
 .breadcrumb-item { padding-right: 0.5rem;}
 .breadcrumb .tips { padding-right: 0.5rem;}
+
+// Vertical Smartmenus hack, until a proper solution is committed
+// For a vertical menu, assign a bootstrap menu, type "horiz", and add "smartmenu_vert" as containing class.
+.smartmenu_vert .navbar-nav { flex-direction: column; }
+@media (min-width: 768px) {
+	.smartmenu_vert .navbar-nav .dropdown-menu { margin-left: 6rem !important; margin-top: -1.8rem !important; }
+}
+.smartmenu_vert .navbar, .smartmenu_vert .navbar.bg-light, .smartmenu_vert .navbar.bg-dark { background: transparent !important; }
+.smartmenu_vert .navbar-nav:not(.sm-collapsible) .nav-link .sub-arrow {
+	margin-left: .255em;
+	vertical-align: .0em;
+	border-left: .3em solid;
+	border-top: .3em solid transparent;
+	border-bottom: .3em solid transparent;
+}
