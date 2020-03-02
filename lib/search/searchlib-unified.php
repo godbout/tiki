@@ -818,6 +818,17 @@ class UnifiedSearchLib
 					);
 				}
 
+				$query = "SELECT table_name, table_rows FROM information_schema.tables " .
+						 "WHERE table_schema = DATABASE() AND table_name like 'index_pref%'";
+
+				$prefIndexes = TikiDb::get()->query($query);
+
+				foreach ($prefIndexes->result as $prefIndex) {
+					$prefIndexName = $prefIndex['table_name'];
+					$prefTotalDocs = $prefIndex['table_rows'];
+					$info[tr('MySQL Index %0', $prefIndexName)] = tr('%0 documents', $prefTotalDocs);
+				}
+
 				$lastRebuild = $tikilib->get_preference('unified_last_rebuild');
 				if (! empty($lastRebuild)) {
 					$info['MySQL Last Rebuild Index'] = $tikilib->get_long_date($lastRebuild) . ', ' . $tikilib->get_long_time($lastRebuild);
