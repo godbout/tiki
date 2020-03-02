@@ -1324,6 +1324,24 @@ blockquote {
 .breadcrumb .tips {
   padding-right: 0.5rem; }
 
+.smartmenu_vert .navbar-nav {
+  flex-direction: column; }
+
+@media (min-width: 768px) {
+  .smartmenu_vert .navbar-nav .dropdown-menu {
+    margin-left: 6rem !important;
+    margin-top: -1.8rem !important; } }
+
+.smartmenu_vert .navbar, .smartmenu_vert .navbar.bg-light, .smartmenu_vert .navbar.bg-dark {
+  background: transparent !important; }
+
+.smartmenu_vert .navbar-nav:not(.sm-collapsible) .nav-link .sub-arrow {
+  margin-left: 0.255em;
+  vertical-align: 0em;
+  border-left: 0.3em solid;
+  border-top: 0.3em solid transparent;
+  border-bottom: 0.3em solid transparent; }
+
 header.container, .middle_outer > .container {
   margin-bottom: 0; }
 
