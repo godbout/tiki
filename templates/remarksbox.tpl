@@ -9,7 +9,7 @@
 	<h4>
 		{icon name="$remarksbox_icon"}
 		&nbsp;
-		<span class="rboxtitle">{$remarksbox_title|escape}</span>
+		<span class="rboxtitle">{tr}{$remarksbox_title|escape}{/tr}</span>
 	</h4>
 	{else}
 		{icon name="$remarksbox_icon"}&nbsp; 
