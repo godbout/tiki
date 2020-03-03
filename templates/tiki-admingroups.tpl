@@ -640,7 +640,7 @@
 								{/foreach}
 							</select>
 						</div>
-						<div>
+						<div class="mt-1">
 							<button
 								type="submit"
 								class="btn btn-link tips"
@@ -649,7 +649,7 @@
 								title=":{tr}Add to group{/tr}"
 								onclick="confirmAjax(event)"
 							>
-								{icon name=add size=2}
+								{icon name=add}
 							</button>
 							<button
 								type="submit"
@@ -659,7 +659,7 @@
 								title=":{tr}Ban from group{/tr}"
 								onclick="confirmAjax(event)"
 							>
-								{icon name=ban iclass="text-danger" size=2}
+								{icon name=ban iclass="text-danger"}
 							</button>
 						</div>
 						<input type="hidden" name="group" value="{$groupname|escape}">
