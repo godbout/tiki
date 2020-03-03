@@ -154,7 +154,7 @@ class Table_Code_Other extends Table_Code_Manager
 		if (parent::$pager) {
 			$pagerdiv = [
 				'<div class="btn-group">',
-				'	<label for="gotoPage" class="right-margin">Page</label>',
+				'	<label for="gotoPage" class="right-margin mx-1">' . tra("Page") . '</label>',
 				'	<select id="gotoPage" class="gotoPage form-control-sm right-margin"></select>',
 				'</div>',
 				'<div class="btn-group">',
@@ -182,7 +182,7 @@ class Table_Code_Other extends Table_Code_Manager
 			if (isset($opt)) {
 				$pagerdiv[] = $this->iterate(
 					$opt,
-					'<div class="btn-group"><label for="pagesize" class="right-margin">Rows</label><select id="pagesize" class="pagesize form-control-sm">',
+					'<div class="btn-group"><label for="pagesize" class="right-margin mx-1">' . tra("Rows") . '</label><select id="pagesize" class="pagesize form-control-sm">',
 					'</select></div>',
 					'<option',
 					'</option>',
