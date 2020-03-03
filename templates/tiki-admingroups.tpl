@@ -659,7 +659,7 @@
 								title=":{tr}Ban from group{/tr}"
 								onclick="confirmAjax(event)"
 							>
-								{icon name=ban iclass="alert-danger" size=2}
+								{icon name=ban iclass="text-danger" size=2}
 							</button>
 						</div>
 						<input type="hidden" name="group" value="{$groupname|escape}">
