@@ -16,7 +16,8 @@
                             <li class="nav-item {if $active}active{/if}">
                                 <button class="btn-link nav-link"
                                     name="install_step" value="{$step}"
-                                    {if $disabled}disabled="disabled"{/if}>
+                                    {if $disabled}disabled="disabled"{/if}
+                                    id="install_step{$step}">
                                     {$title}
                                 </button>
                             </li>
@@ -1005,7 +1006,7 @@
                         {tr}Are you upgrading an existing Tiki site?{/tr}
                         {tr}Go directly to the <strong>Install/Upgrade</strong> step.{/tr}
                         {if $dbcon eq 'y' or isset($smarty.post.scratch) or isset($smarty.post.update)}
-                            {icon name="next" href="#" onclick="$('#install_step4').submit();return false;" title="{tr}Install/Upgrade{/tr}"}
+                            {icon name="next" href="#" onclick="$('#install_step4').prop('disabled', false).click();return false;" title="{tr}Install/Upgrade{/tr}"}
                         {/if}
                         {/remarksbox}
                     </div>
