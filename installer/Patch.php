@@ -75,17 +75,19 @@ class Patch
 		self::$list[$this->name]->setStatus(self::NEWLY_APPLIED);
 	}
 
-	function pushPatchNameToBrowser($targetElement, $content) 
+	function pushPatchNameToBrowser($targetElement, $content)
 	{
-		$scripts = <<<JS
+		$scripts = <<<HTML
 		<script class="progress_bar_script">
 			var element = parent.document.getElementById("{$targetElement}");
-			element.innerHTML = "{$content}";
+			if (element) {
+				element.innerHTML = "{$content}";
+			}
 		</script>
-JS;
+HTML;
 		$working_env = php_sapi_name();
-		if($working_env != 'cli') {
-			echo $scripts;		
+		if ($working_env != 'cli') {
+			echo $scripts;
 			ob_flush();
 		}
 	}
