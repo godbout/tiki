@@ -20,6 +20,7 @@ class ConfigureCommand extends Command
 		$this
 			->setName('database:configure')
 			->setDescription('Database: Configure (write local.php)')
+			->setHelp('Creates the db/local.php file with the specified database credentials')
 			->addArgument(
 				'username',
 				InputArgument::REQUIRED,
