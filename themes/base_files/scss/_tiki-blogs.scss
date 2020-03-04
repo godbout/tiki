@@ -5,12 +5,12 @@
 // Themes can reinstate these totally or partially to match the theme style.
 
 .tiki_blogs .card.blogpost {
-  &,
-  & .card-header,
-  & .card-footer {
+	&,
+	& .card-header,
+	& .card-footer {
 	background-color: transparent;
 	border: none;
-  }
+	}
 }
 
 .blogheading {
@@ -57,7 +57,7 @@ span.posthead {
 }
 
 //body.tiki_blogs .post_single {
-//  padding-bottom: 30px;
+//	padding-bottom: 30px;
 //}
 
 .breadcrumb {

@@ -8,7 +8,7 @@ body.filegal_popup #tiki-center {
 }
 
 .thumbinfosothers {
-	//  color: $gray-300;// #888
+	//	color: $gray-300;// #888
 	font-size: 95%;
 }
 
@@ -61,11 +61,11 @@ table.treetable tr.expanded span.indenter a {
 }
 
 // table.treetable.objectperms td.added {
-//  background-color: $state-success-bg// #dfd
+// 	background-color: $state-success-bg// #dfd
 // }
 
 // table.treetable.objectperms td.removed {
-//  background-color: $state-warning-bg; // #fdd
+// 	background-color: $state-warning-bg; // #fdd
 // }
 
 //* tree browser */
@@ -75,7 +75,7 @@ table.treetable tr.expanded span.indenter a {
 }
 
 .thumbnailcontener {
-	//  border: solid 1px $thumbnail-border; // #d3d3d3
+	//	border: solid 1px $thumbnail-border; // #d3d3d3
 	margin: 1px;
 //	padding: 2px;
 	text-align: center;
@@ -142,7 +142,7 @@ table.treetable tr.expanded span.indenter a {
 .progressBarError {
 	width: 0;
 	height: 20px;
-	//  background-color: $state-info-text;
+	//	background-color: $state-info-text;
 	margin-top: 2px;
 	color: white;
 	text-align: center;
@@ -151,13 +151,13 @@ table.treetable tr.expanded span.indenter a {
 
 .progressBarComplete {
 	width: 100%;
-	//  background-color: $state-success-text;
+	//	background-color: $state-success-text;
 	visibility: hidden;
 }
 
 .progressBarError {
 	width: 100%;
-	//  background-color: $state-warning-text;
+	//	background-color: $state-warning-text;
 	visibility: hidden;
 }
 
@@ -176,8 +176,8 @@ table.treetable tr.expanded span.indenter a {
 .progressContainer {
 	margin: 5px;
 	padding: 4px;
-	//  border: solid 1px $modal-content-border-color;
-	//  background-color: $modal-content-bg;
+	//	border: solid 1px $modal-content-border-color;
+	//	background-color: $modal-content-bg;
 	overflow: hidden;
 }
 
@@ -193,41 +193,41 @@ table.treetable tr.expanded span.indenter a {
 /* additions for jquery file upload */
 
 .files .file-list {
-  //overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
+	//overflow-x: scroll;
+	overflow-y: hidden;
+	white-space: nowrap;
 }
 
 .files .file-list .file-to-upload {
-  display: inline-block;
-  width: 120px;
-  overflow: hidden;
-  padding: 10px;
-  text-overflow: ellipsis;
+	display: inline-block;
+	width: 120px;
+	overflow: hidden;
+	padding: 10px;
+	text-overflow: ellipsis;
 }
 
 .files .file-list .file-to-upload span {
-  font-size: x-small;
+	font-size: x-small;
 }
 
 .files .file-list .file-to-upload span.text-danger{
-  white-space: normal;
+	white-space: normal;
 }
 
 .files .file-list .file-to-upload code {
-  font-size: x-small;
-  white-space: normal;
+	font-size: x-small;
+	white-space: normal;
 }
 
 .files .file-list .buttons {
-  clear: both;
-  margin: 10px;
+	clear: both;
+	margin: 10px;
 }
 
 .files .file-list span.icon {
-  font-size: 90px;
-  width: 100px;
-  height: 100px;
+	font-size: 90px;
+	width: 100px;
+	height: 100px;
 }
 
 .file-uploader {

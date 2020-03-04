@@ -112,6 +112,8 @@ class Installer extends TikiDb_Bridge implements SplSubject
 			}
 		}
 
+		$this->assureDefaultCharSetIsAlignedWithTikiSchema();
+
 		$TWV = new TWVersion;
 		$dbversion_tiki = $TWV->version;
 
@@ -535,6 +537,60 @@ class Installer extends TikiDb_Bridge implements SplSubject
 	{
 		foreach ($this->observers as $observer) {
 			$observer->update($this);
+		}
+	}
+
+	/**
+	 * Compares the charset encoding of the database with the one from tiki_schema, column patch_name (used as reference)
+	 *
+	 * If they are different, attempts to update teh default charset and collation from the database to
+	 * match the one from tiki_schema, as it should be the reference for the encoding of that tiki database.
+	 * The key case for both charset not to match is when the tiki db was restored to a new db but the encoding
+	 * of that new db was not set to the right values. That will then cause that new tables won't be created with
+	 * the right encoding (aligned with the rest of the tiki tables)
+	 */
+	protected function assureDefaultCharSetIsAlignedWithTikiSchema()
+	{
+		$databaseInfoResult = $this->query(
+			'SELECT SCHEMA_NAME, DEFAULT_CHARACTER_SET_NAME, DEFAULT_COLLATION_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = DATABASE()'
+		);
+		if (! $databaseInfoResult || ! $databaseInfo = $databaseInfoResult->fetchRow()) {
+			return;
+		}
+
+		$tableInfoResult = $this->query(
+			'SELECT TABLE_SCHEMA, CHARACTER_SET_NAME, COLLATION_NAME from INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = "tiki_schema" AND COLUMN_NAME="patch_name"'
+		);
+		if (! $tableInfoResult || ! $tableInfo = $tableInfoResult->fetchRow()) {
+			return;
+		}
+
+		if (! $databaseInfo || ! $tableInfo) { // if we cant retrieve the info we can not do anything
+			return;
+		}
+
+		if ($databaseInfo['DEFAULT_CHARACTER_SET_NAME'] === $tableInfo['CHARACTER_SET_NAME']
+			&& $databaseInfo['DEFAULT_COLLATION_NAME'] === $tableInfo['COLLATION_NAME']) {
+			// all OK, charset and collation are aligned
+			return;
+		}
+
+		// Info is not aligned, forcing to align the default values for the database with tiki_schema
+		// Someone may have restored the db without setting the right default values for teh database for instance.
+		switch ($tableInfo['CHARACTER_SET_NAME']) {
+			case 'utf8':
+				$this->query(
+					'ALTER DATABASE `' . $tableInfo['TABLE_SCHEMA'] . '` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci'
+				);
+				break;
+			case 'utf8mb4':
+				$this->query(
+					'ALTER DATABASE `' . $tableInfo['TABLE_SCHEMA'] . '` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci'
+				);
+				break;
+			default:
+				// we will only attempt to align for some char sets, other configuration needs to be done manually
+				break;
 		}
 	}
 }

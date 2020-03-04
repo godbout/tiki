@@ -68,7 +68,7 @@
 				{/remarksbox}
 			{/if}
 			{tabset}
-				{foreach from=$module_zone_list key=zone_initial item=zone_info}
+				{foreach $module_zone_list as $zone_initial => $zone_info}
 					{tab name=$zone_info.name|capitalize}
 						<div id="{$zone_info.id}_modules" class="{if $js}table-responsive{/if}"> {* table-responsive class cuts off css drop-down menus *}
 							<div>
@@ -83,47 +83,45 @@
 										<th></th>
 									</tr>
 
-									{foreach from=$assigned_modules[$zone_initial] item=module name=assigned_foreach}
+									{foreach $assigned_modules[$zone_initial] as $module}
 										<tr>
 											<td>{$module.name|escape}</td>
 											<td>{$module.ord}</td>
 											<td>{$module.cache_time}</td>
 											<td>{$module.rows}</td>
-											<td style="font-size:smaller;">{$module.params_presentable}</td>
-											<td style="font-size:smaller;">{$module.module_groups}</td>
+											<td class="small">{$module.params_presentable}</td>
+											<td class="small">{$module.module_groups}</td>
 											<td>
 												{actions}
 													{strip}
-														{if !$smarty.section.user.first}
-															<action>
-																<form href="tiki-admin_modules.php" method="post">
-																	{ticket}
-																	<button
-																		type="submit"
-																		name="modup"
-																		value="{$module.moduleId}"
-																		class="btn btn-link link-list"
-																	>
-																		{icon name="up"} {tr}Move up{/tr}
-																	</button>
-																</form>
-															</action>
-														{/if}
-														{if !$smarty.section.user.last}
-															<action>
-																<form href="tiki-admin_modules.php" method="post">
-																	{ticket}
-																	<button
-																		type="submit"
-																		name="moddown"
-																		value="{$module.moduleId}"
-																		class="btn btn-link link-list"
-																	>
-																		{icon name="down"} {tr}Move down{/tr}
-																	</button>
-																</form>
-															</action>
-														{/if}
+														<action>
+															<form href="tiki-admin_modules.php" method="post">
+																{ticket}
+																<button
+																	type="submit"
+																	name="modup"
+																	value="{$module.moduleId}"
+																	class="btn btn-link link-list"
+																	{if $module@first} disabled="disabled"{/if}
+																>
+																	{icon name="up"} {tr}Move up{/tr}
+																</button>
+															</form>
+														</action>
+														<action>
+															<form href="tiki-admin_modules.php" method="post">
+																{ticket}
+																<button
+																	type="submit"
+																	name="moddown"
+																	value="{$module.moduleId}"
+																	class="btn btn-link link-list"
+																	{if $module@last} disabled="disabled" class="disabled"{/if}
+																>
+																	{icon name="down"} {tr}Move down{/tr}
+																</button>
+															</form>
+														</action>
 														<action>
 															<a href="tiki-admin_modules.php?edit_assign={$module.moduleId}&cookietab=2#content_admin_modules1-2">
 																{icon name='edit' _menu_text='y' _menu_icon='y' alt="{tr}Edit{/tr}"}

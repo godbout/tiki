@@ -102,7 +102,7 @@ class CheckAttachmentGallery extends AbstractCheckGallery
 	protected function areFilesStoredInDatabase()
 	{
 		global $prefs;
-		return $prefs[$this->type . '_use_db'] === 'y';
+		return isset($prefs[$this->type . '_use_db']) ? $prefs[$this->type . '_use_db'] === 'y' : false;
 	}
 
 	/**
@@ -113,6 +113,6 @@ class CheckAttachmentGallery extends AbstractCheckGallery
 	protected function getPathOnDisk()
 	{
 		global $prefs;
-		return $prefs[$this->type . '_use_dir'];
+		return isset($prefs[$this->type . '_use_dir']) ? $prefs[$this->type . '_use_dir'] : false;
 	}
 }

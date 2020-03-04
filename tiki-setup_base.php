@@ -90,6 +90,8 @@ $needed_prefs = [
 	'https_port' => '443',
 ];
 
+$error = '';
+
 /// check that tiki_preferences is there
 if ($tikilib->query("SHOW TABLES LIKE 'tiki_preferences'")->numRows() == 0) {
 	if (defined('TIKI_CONSOLE')) {

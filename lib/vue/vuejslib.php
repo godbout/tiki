@@ -31,7 +31,18 @@ class VueJsLib
 		$str = preg_replace('/\s(@)(?=' . implode('|', $this->jsEvents()) . ')\b/', ' v-on:', $str);
 
 		$dom = new DOMDocument('1.0', 'UTF-8');
+		libxml_use_internal_errors(true);
 		$dom->loadHTML("<html lang=\"en\"><body>$str</body></html>");
+		$errors = libxml_get_errors();
+		foreach ($errors as $error)
+		{
+			// template and ui-predicate tags are expected, so ignore them...
+		    /* @var $error LibXMLError */
+			if (! in_array($error->message, ["Tag template invalid\n", "Tag ui-predicate invalid\n"])) {
+				trigger_error($error->message);
+			}
+		}
+		libxml_clear_errors();
 
 		$script = $dom->getElementsByTagName('script');
 		$template = $dom->getElementsByTagName('template');
@@ -40,20 +51,6 @@ class VueJsLib
 		if (! $name && $app) {
 			$name = 'App';
 		}
-
-		$nameLowerCase = strtolower($name);
-
-		if (! $name && $app) {
-			$name = 'App';
-		}
-
-		$nameLowerCase = strtolower($name);
-
-		if (! $name && $app) {
-			$name = 'App';
-		}
-
-		$nameLowerCase = strtolower($name);
 
 		if ($script->length) {    // required
 			$javascript = $script[0]->nodeValue;
@@ -72,7 +69,7 @@ class VueJsLib
 			}
 			global $tikidomainslash;
 			$tempDir = './temp/public/' . $tikidomainslash;
-			$hash = $nameLowerCase ? $nameLowerCase : md5(serialize($javascript));
+			$hash = $name ? $name : md5(serialize($javascript));
 
 			$file = $tempDir . "vue_" . $hash . ".js";
 			if ($minify) {
@@ -93,10 +90,10 @@ import $name from \"$file\";
 var vm = new Vue({
 	  render: h => h($name),
 	  data: function () { return $data; },
-	}).\$mount(`#$nameLowerCase`);
+	}).\$mount(`#$name`);
 "
 				);
-				return "<div id=\"$nameLowerCase\"></div>";
+				return "<div id=\"$name\"></div>";
 			}
 		}
 
@@ -174,7 +171,7 @@ var vm = new Vue({
 		$js = '';
 
 		foreach ($fields as $field) {
-			if (! empty( $field['rules'])) {
+			if (! empty( $field['rules']) && $field['rules'] !== '{"conditions":null,"actions":null,"else":null}') {
 
 				$this->setFieldType($field);
 				if ($field['argumentType'] === 'Collection') {
@@ -318,7 +315,7 @@ var vm = new Vue({
 				break;
 			case 'q':    // auto increment (not used client-side)
 				$field = [];
-				break;
+				return;
 			default:
 				$field['argumentType'] = 'Text';
 				break;

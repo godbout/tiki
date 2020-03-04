@@ -165,7 +165,34 @@ composer-lock:
     - '[ ! -d doc/devtools/dbdiff/cache ] && mkdir doc/devtools/dbdiff/cache'
     - '[ ! -f doc/devtools/dbdiff/cache/$DBFILE ] && curl -sS https://gitlab.com/tikiwiki/tikiwiki-ci-databases/raw/master/$DBFILE.gz -o doc/devtools/dbdiff/cache/$DBFILE.gz && gzip -d doc/devtools/dbdiff/cache/$DBFILE.gz'
     - php -d display_errors=On doc/devtools/check_schema_upgrade.php -m $DBVER -e $ENGINE --db1=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikiold --db2=$MYSQL_USER:$MYSQL_PASSWORD@mysql:tikinew
+  after_script:
+    - echo "SHOW CREATE DATABASE tikiold" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
+    - echo "SHOW CREATE DATABASE tikinew" | mysql -u root --password=$MYSQL_ROOT_PASSWORD -h mysql
+    - mysqldump -u root --password=$MYSQL_ROOT_PASSWORD -h mysql tikiold > tikiold.sql
+    - mysqldump -u root --password=$MYSQL_ROOT_PASSWORD -h mysql tikinew > tikinew.sql
+  artifacts:
+    paths:
+      - tikiold.sql
+      - tikinew.sql
+    expire_in: 2 days
+    when: always
   allow_failure: false
+
+db-upgrade-20:
+  <<: *template-tiki-schema-upgrade
+  variables:
+    DBFILE: ci_20.sql
+    DBVER: 20
+    IMAGE: mysql:5.6
+    ENGINE: InnoDB
+
+db-upgrade-19:
+  <<: *template-tiki-schema-upgrade
+  variables:
+    DBFILE: ci_19.sql
+    DBVER: 19
+    IMAGE: mysql:5.6
+    ENGINE: InnoDB
 
 db-upgrade-18-lts:
   <<: *template-tiki-schema-upgrade
@@ -180,46 +207,6 @@ db-upgrade-18-lts-myisam:
   variables:
     DBFILE: ci_18.sql
     DBVER: 18
-    IMAGE: mysql:5.5
-    ENGINE: MyISAM
-
-db-upgrade-17:
-  <<: *template-tiki-schema-upgrade
-  variables:
-    DBFILE: ci_17.sql
-    DBVER: 17
-    IMAGE: mysql:5.7
-    ENGINE: InnoDB
-
-db-upgrade-15-lts:
-  <<: *template-tiki-schema-upgrade
-  variables:
-    DBFILE: ci_15.sql
-    DBVER: 15
-    IMAGE: mysql:5.6
-    ENGINE: InnoDB
-
-db-upgrade-15-lts-5.5-mariadb:
-  <<: *template-tiki-schema-upgrade
-  variables:
-    DBFILE: ci_15.sql
-    DBVER: 15
-    IMAGE: mariadb:5.5
-    ENGINE: MyISAM
-
-db-upgrade-15-lts-10.2-mariadb:
-  <<: *template-tiki-schema-upgrade
-  variables:
-    DBFILE: ci_15.sql
-    DBVER: 15
-    IMAGE: mariadb:10.2
-    ENGINE: InnoDB
-
-db-upgrade-12-lts:
-  <<: *template-tiki-schema-upgrade
-  variables:
-    DBFILE: ci_12.sql
-    DBVER: 12
     IMAGE: mysql:5.5
     ENGINE: MyISAM
 

@@ -10,3 +10,19 @@
 @import "../../base_files/scss/_bs3-bs4-transition.scss";
 @import "_tiki-selectors.scss";
 @import "../../base_files/scss/_external-scripts.scss";
+
+
+
+// cypht sub themes colors overrides
+.tiki {
+    &.tiki-webmail, &.tiki-cypht, &.mobile.tiki-cypht, .inline-cypht {
+        &.layout_basic #top_modules {
+            .siteloginbar_popup > .btn-link { color: #f8f8f8 !important; }
+        }
+        #page-header {
+            h1, h2, h3 a, a, a:hover {
+                &, .icon { color: #f8f8f8 !important; }
+            }
+        }
+    }
+}

@@ -225,7 +225,7 @@ EOF;
 	if (! empty($wikiplugin_included_page)) {
 		$sourcepage = $wikiplugin_included_page;
 	} else {
-		$sourcepage = $page;
+	$sourcepage = $page;
 	}
 
 	//checking if user has edit permissions on the wiki page/file using the current permission library to obey global/categ/object perms

@@ -66,8 +66,8 @@
 .cssmenu_vert ul {
 	-webkit-box-shadow: 2px 2px 6px rgba(0, 0, 0, .2);
 	box-shadow: 2px 2px 6px rgba(0, 0, 0, .2);
-	//  min-width: 12em; /* allow long menu items to determine submenu width */
-	//  *width: 12em; /* no auto sub width for IE7, see white-space comment below */
+//	min-width: 12em; /* allow long menu items to determine submenu width */
+//	*width: 12em; /* no auto sub width for IE7, see white-space comment below */
 }
 
 .cssmenu_horiz a:first-of-type,
@@ -81,18 +81,18 @@
 .cssmenu_horiz button.btn-link.link-list:last-of-type,
 .cssmenu_vert button.btn-link.link-list:last-of-type {
 	padding-bottom: 7px;
- }
+}
 
 // .cssmenu_horiz a,
 // .cssmenu_vert a {
-//  color: $navbar-dark-link-color;
+// 	color: $navbar-dark-link-color;
 // }
 
 .cssmenu_horiz li,
 .cssmenu_vert li {
-	//  background: inherit;
-	white-space: normal; //  white-space: nowrap; /* no need for Supersubs plugin */
-	//  *white-space: normal; /* ...unless you support IE7 (let it wrap) */
+//	background: inherit;
+	white-space: normal; //	white-space: nowrap; /* no need for Supersubs plugin */
+//	*white-space: normal; /* ...unless you support IE7 (let it wrap) */
 	-webkit-transition: background .2s;
 	-moz-transition: background .2s;
 	-o-transition: background .2s;

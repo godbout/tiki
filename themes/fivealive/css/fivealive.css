@@ -7540,6 +7540,28 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     opacity: 1 !important; }
   .tiki-webmail ul, .tiki-cypht ul, .mobile.tiki-cypht ul, .inline-cypht ul, .tiki-webmail li, .tiki-cypht li, .mobile.tiki-cypht li, .inline-cypht li {
     background-color: transparent !important; }
+  .tiki-webmail main, .tiki-cypht main, .mobile.tiki-cypht main, .inline-cypht main, .tiki-webmail div, .tiki-cypht div, .mobile.tiki-cypht div, .inline-cypht div {
+    border-radius: 0; }
+  .tiki-webmail .ui-widget-content, .tiki-cypht .ui-widget-content, .mobile.tiki-cypht .ui-widget-content, .inline-cypht .ui-widget-content {
+    background-color: #fff !important; }
+  .tiki-webmail .ui-menu-item-wrapper, .tiki-cypht .ui-menu-item-wrapper, .mobile.tiki-cypht .ui-menu-item-wrapper, .inline-cypht .ui-menu-item-wrapper {
+    color: #343a40 !important; }
+  .tiki-webmail .ui-state-active, .tiki-cypht .ui-state-active, .mobile.tiki-cypht .ui-state-active, .inline-cypht .ui-state-active {
+    color: #495057 !important; }
+  .tiki-webmail .popover-header, .tiki-cypht .popover-header, .mobile.tiki-cypht .popover-header, .inline-cypht .popover-header {
+    color: inherit !important; }
+  .tiki-webmail .popover-body, .tiki-cypht .popover-body, .mobile.tiki-cypht .popover-body, .inline-cypht .popover-body {
+    color: #343a40 !important; }
+  .tiki-webmail .btn-primary, .tiki-cypht .btn-primary, .mobile.tiki-cypht .btn-primary, .inline-cypht .btn-primary {
+    color: #fff !important;
+    background-color: #1174a5 !important; }
+    .tiki-webmail .btn-primary:hover, .tiki-cypht .btn-primary:hover, .mobile.tiki-cypht .btn-primary:hover, .inline-cypht .btn-primary:hover, .tiki-webmail .btn-primary:focus, .tiki-cypht .btn-primary:focus, .mobile.tiki-cypht .btn-primary:focus, .inline-cypht .btn-primary:focus {
+      background-color: #0d5c82 !important; }
+  .tiki-webmail .btn-info, .tiki-cypht .btn-info, .mobile.tiki-cypht .btn-info, .inline-cypht .btn-info {
+    color: #fff !important;
+    background-color: #4d3a7d !important; }
+    .tiki-webmail .btn-info:hover, .tiki-cypht .btn-info:hover, .mobile.tiki-cypht .btn-info:hover, .inline-cypht .btn-info:hover, .tiki-webmail .btn-info:focus, .tiki-cypht .btn-info:focus, .mobile.tiki-cypht .btn-info:focus, .inline-cypht .btn-info:focus {
+      background-color: #3d2e63 !important; }
   .tiki-webmail .card, .tiki-cypht .card, .mobile.tiki-cypht .card, .inline-cypht .card {
     border-color: rgba(0, 0, 0, 0.125) !important; }
   .tiki-webmail .card-header, .tiki-cypht .card-header, .mobile.tiki-cypht .card-header, .inline-cypht .card-header {
@@ -7621,7 +7643,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   .inline-cypht .msg_text_inner > table {
     background-color: #fff; }
   .inline-cypht .msg_headers th:hover, .inline-cypht .settings_subtitle, .inline-cypht .server_section {
-    color: #343a40 !important; }
+    color: inherit !important; }
   .inline-cypht .total_unread_count, .inline-cypht .unread_count {
     color: #000; }
   .inline-cypht .btn-outline-secondary:hover {
@@ -8089,3 +8111,8 @@ input[type="text"].chosen-focus-input {
   width: 1% !important; }
   .input-group .chosen-choices .search-field {
     min-height: calc(1.5em + 0.75rem); }
+
+.tiki.tiki-webmail.layout_basic #top_modules .siteloginbar_popup > .btn-link, .tiki.tiki-cypht.layout_basic #top_modules .siteloginbar_popup > .btn-link, .tiki.mobile.tiki-cypht.layout_basic #top_modules .siteloginbar_popup > .btn-link, .tiki .inline-cypht.layout_basic #top_modules .siteloginbar_popup > .btn-link {
+  color: #f8f8f8 !important; }
+.tiki.tiki-webmail #page-header h1, .tiki.tiki-cypht #page-header h1, .tiki.mobile.tiki-cypht #page-header h1, .tiki .inline-cypht #page-header h1, .tiki.tiki-webmail #page-header h2, .tiki.tiki-cypht #page-header h2, .tiki.mobile.tiki-cypht #page-header h2, .tiki .inline-cypht #page-header h2, .tiki.tiki-webmail #page-header h3 a, .tiki.tiki-cypht #page-header h3 a, .tiki.mobile.tiki-cypht #page-header h3 a, .tiki .inline-cypht #page-header h3 a, .tiki.tiki-webmail #page-header a, .tiki.tiki-cypht #page-header a, .tiki.mobile.tiki-cypht #page-header a, .tiki .inline-cypht #page-header a, .tiki.tiki-webmail #page-header a:hover, .tiki.tiki-cypht #page-header a:hover, .tiki.mobile.tiki-cypht #page-header a:hover, .tiki .inline-cypht #page-header a:hover, .tiki.tiki-webmail #page-header h1 .icon, .tiki.tiki-cypht #page-header h1 .icon, .tiki.mobile.tiki-cypht #page-header h1 .icon, .tiki .inline-cypht #page-header h1 .icon, .tiki.tiki-webmail #page-header h2 .icon, .tiki.tiki-cypht #page-header h2 .icon, .tiki.mobile.tiki-cypht #page-header h2 .icon, .tiki .inline-cypht #page-header h2 .icon, .tiki.tiki-webmail #page-header h3 a .icon, .tiki.tiki-cypht #page-header h3 a .icon, .tiki.mobile.tiki-cypht #page-header h3 a .icon, .tiki .inline-cypht #page-header h3 a .icon, .tiki.tiki-webmail #page-header a .icon, .tiki.tiki-cypht #page-header a .icon, .tiki.mobile.tiki-cypht #page-header a .icon, .tiki .inline-cypht #page-header a .icon, .tiki.tiki-webmail #page-header a:hover .icon, .tiki.tiki-cypht #page-header a:hover .icon, .tiki.mobile.tiki-cypht #page-header a:hover .icon, .tiki .inline-cypht #page-header a:hover .icon {
+  color: #f8f8f8 !important; }

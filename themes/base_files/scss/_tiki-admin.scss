@@ -2,8 +2,8 @@
 
 .adminanchors {
 	font-size: 1.6rem;
-  	.navbar-nav {
-	  flex-direction: row;
+		.navbar-nav {
+		flex-direction: row;
 	}
 	.nav li {
 		display: flex;
@@ -12,32 +12,32 @@
 
 a.admbox,
 a.admbox:visited {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 120px;
-  text-align: center;
-  vertical-align: middle;
-  overflow: hidden;
-  margin: .4em;
-  background-repeat: no-repeat;
-  background-position: center;
-  padding: 15px 6px;
-  text-decoration: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 120px;
+	text-align: center;
+	vertical-align: middle;
+	overflow: hidden;
+	margin: .4em;
+	background-repeat: no-repeat;
+	background-position: center;
+	padding: 15px 6px;
+	text-decoration: none;
 }
 
 a.admbox .icon {
-  font-size: 2rem;
-  margin-bottom: 6px;
+	font-size: 2rem;
+	margin-bottom: 6px;
 }
 
 a.admbox span.title {
-  display: block;
-  font-size: 1.1rem;
-  text-align: center;
-  margin: .1em;
-  white-space: normal;
-  word-wrap: break-word;
+	display: block;
+	font-size: 1.1rem;
+	text-align: center;
+	margin: .1em;
+	white-space: normal;
+	word-wrap: break-word;
 }
 
 // Make disabled feature icons clickable for navigation to feature activation page.
@@ -113,7 +113,7 @@ a.admbox.btn.btn-primary.disabled.disabled-clickable {
 	margin: 1em 0;
 }
 
-//  Conditions and Terms validation
+// Conditions and Terms validation
 .age-validation .form-control {
 	width: auto;
 	display: inline;
@@ -211,8 +211,8 @@ input[type="checkbox"].preffilter-toggle-round:checked + label:after {
 }
 
 .filter-menu.navbar-nav > li > a {
-    padding-top: 12px;
-    padding-bottom: 12px;
+		padding-top: 12px;
+		padding-bottom: 12px;
 }
 
 .filter-menu.navbar-nav .dropdown-menu {

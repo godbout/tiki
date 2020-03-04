@@ -8369,3 +8369,4 @@ lib/cypht/modules/smtp/assets/kindeditor/plugins/preview/preview.js text eol=CRL
 lib/cypht/modules/smtp/assets/kindeditor/plugins/table/table.js text eol=CRLF
 lib/cypht/modules/smtp/assets/kindeditor/plugins/wordpaste/wordpaste.js text eol=CRLF
 lib/cypht/modules/themes/assets/so_alone.css text eol=CRLF
+themes/base_files/scss/_child_theme_cypht_colors.scss -text

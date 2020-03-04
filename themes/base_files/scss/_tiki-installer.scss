@@ -1,83 +1,83 @@
 #tiki-installer {
-    background-color: #aeaeae;
+	background-color: #aeaeae;
 
-    /* re-style buttons to be link links */
-    .btn-link {
-        border: none;
-        display: inline;
-        text-align: left;
-        -webkit-appearance: none;
+	/* re-style buttons to be link links */
+	.btn-link {
+		border: none;
+		display: inline;
+		text-align: left;
+		-webkit-appearance: none;
 
-        &:not([disable]):hover {
-            cursor: pointer;
-            text-decoration: underline;
-        }
-    }
+		&:not([disable]):hover {
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	}
 
-    .sidebar {
-        margin: 1.5em 1.5em 0 0;
-        padding-bottom: 2em;
-    }
+	.sidebar {
+		margin: 1.5em 1.5em 0 0;
+		padding-bottom: 2em;
+	}
 
-    .installer-content {
-        background-color: white;
-        min-height: 100vh;
-        padding-top: 5em;
-        padding-bottom: 5em;
-    }
+	.installer-content {
+		background-color: white;
+		min-height: 100vh;
+		padding-top: 5em;
+		padding-bottom: 5em;
+	}
 
-    .floating-links {
-        position: fixed;
-        bottom: 1em;
-        right: 1em;
-    }
+	.floating-links {
+		position: fixed;
+		bottom: 1em;
+		right: 1em;
+	}
 
-    .menus {
-        margin-top: 5em;
+	.menus {
+		margin-top: 5em;
 
-        .menu {
-            color: white;
-            margin-top: 1em;
-        }
-    }
+		.menu {
+			color: white;
+			margin-top: 1em;
+		}
+	}
 
-    ol.nav {
-        list-style-type: decimal;
-        list-style-position: outside;
-        margin-left: 2em;
-    }
+	ol.nav {
+		list-style-type: decimal;
+		list-style-position: outside;
+		margin-left: 2em;
+	}
 
-    .nav {
-        margin-left: 1em;
-        .nav-item {
-            color: white;
-            line-height: 2em;
+	.nav {
+		margin-left: 1em;
+		.nav-item {
+			color: white;
+			line-height: 2em;
 
-            .nav-link {
-                color: white;
-                padding: 0;
-                background-color: transparent;
-            }
+			.nav-link {
+				color: white;
+				padding: 0;
+				background-color: transparent;
+			}
 
-            &.active {
-                color: blue;
-                .nav-link {
-                    color: blue;
-                }
-            }
-        }
-    }
+			&.active {
+				color: blue;
+				.nav-link {
+					color: blue;
+				}
+			}
+		}
+	}
 
-    .install-step8 .enter-tiki {
-        .btn { white-space: normal; }
-    }
+	.install-step8 .enter-tiki {
+		.btn { white-space: normal; }
+	}
 }
 
 @media (max-width: breakpoint-max(sm)) {
-    #tiki-installer {
-        .install-body {
-            margin-left: 0 !important;
-            margin-right: 0;
-        }
-    }
+	#tiki-installer {
+		.install-body {
+			margin-left: 0 !important;
+			margin-right: 0;
+		}
+	}
 }

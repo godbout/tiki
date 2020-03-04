@@ -772,7 +772,7 @@ class Exif
 			unset($exif['EXIF']['MakerNote']['rawval']);
 		}
 		if (isset($exif['MAKERNOTE'])) {
-			$exif['MAKERNOTE'] = "";
+			$exif['MAKERNOTE'] = [];
 			$exif['MAKERNOTE']['Note']['label'] = "";
 			$exif['MAKERNOTE']['Note']['newval'] = "(Not processed)";
 		}

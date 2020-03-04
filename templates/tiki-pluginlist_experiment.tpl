@@ -3,14 +3,15 @@
 
 {block name=content}
 	{if $tiki_p_edit == 'y'}
-        {title help="http://doc.tiki.org/LIST+-+Troubleshooting+The+List+Plugin" url=''}{tr}Experiment with plugin LIST{/tr}{/title}
+        {title help="LIST+-+Troubleshooting+The+List+Plugin#Using_the_Experiment_with_Plugin_LIST_page" url=''}{tr}Experiment with plugin LIST{/tr}{/title}
 		<form method="post" class="form-horizontal">
 			<div class="row">
 				<div class="col">
 					<div class="form-group row">
 						<div class="row">
 							<div class="col">
-								<label for="editwiki">Plugin LIST content:</label>
+								<label for="editwiki">{tr}Plugin LIST content:{/tr}</label><br />
+								<small>{tr}Use the following output block to see all the returned values:{/tr} {literal}{output(template="debug")}{/literal}</small>
 							</div>
 						</div>
 						<textarea class="form-control" rows="5" name="editwiki" id="editwiki">{$listtext}</textarea>
