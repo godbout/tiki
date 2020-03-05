@@ -16,11 +16,13 @@
 	.btn-primary {
 		color: color-yiq($primary) !important;
 		background-color: $primary !important;
+		border-color: darken($primary, 7.5%) !important;
 		&:hover, &:focus { background-color: darken($primary, 7.5%) !important; }
 	}
 	.btn-info {
 		color: color-yiq($info) !important;
 		background-color: $info !important;
+		border-color: darken($info, 7.5%) !important;
 		&:hover, &:focus { background-color: darken($info, 7.5%) !important; }
 	}
 	.card { border-color: $card-border-color !important; }

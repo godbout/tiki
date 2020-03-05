@@ -7520,12 +7520,14 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
     color: #888 !important; }
   .tiki-webmail .btn-primary, .tiki-cypht .btn-primary, .mobile.tiki-cypht .btn-primary, .inline-cypht .btn-primary {
     color: #fff !important;
-    background-color: #2A9FD6 !important; }
+    background-color: #2A9FD6 !important;
+    border-color: #2387b7 !important; }
     .tiki-webmail .btn-primary:hover, .tiki-cypht .btn-primary:hover, .mobile.tiki-cypht .btn-primary:hover, .inline-cypht .btn-primary:hover, .tiki-webmail .btn-primary:focus, .tiki-cypht .btn-primary:focus, .mobile.tiki-cypht .btn-primary:focus, .inline-cypht .btn-primary:focus {
       background-color: #2387b7 !important; }
   .tiki-webmail .btn-info, .tiki-cypht .btn-info, .mobile.tiki-cypht .btn-info, .inline-cypht .btn-info {
     color: #fff !important;
-    background-color: #9933CC !important; }
+    background-color: #9933CC !important;
+    border-color: #822bad !important; }
     .tiki-webmail .btn-info:hover, .tiki-cypht .btn-info:hover, .mobile.tiki-cypht .btn-info:hover, .inline-cypht .btn-info:hover, .tiki-webmail .btn-info:focus, .tiki-cypht .btn-info:focus, .mobile.tiki-cypht .btn-info:focus, .inline-cypht .btn-info:focus {
       background-color: #822bad !important; }
   .tiki-webmail .card, .tiki-cypht .card, .mobile.tiki-cypht .card, .inline-cypht .card {

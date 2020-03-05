@@ -996,3 +996,7 @@ footer#footer .footer_liner {
   color: #000 !important; }
 .tiki.tiki-webmail .nav-tabs .nav-link.active, .tiki.tiki-cypht .nav-tabs .nav-link.active, .tiki.mobile.tiki-cypht .nav-tabs .nav-link.active, .tiki .inline-cypht .nav-tabs .nav-link.active, .tiki.tiki-webmail .nav-tabs .nav-item.show .nav-link, .tiki.tiki-cypht .nav-tabs .nav-item.show .nav-link, .tiki.mobile.tiki-cypht .nav-tabs .nav-item.show .nav-link, .tiki .inline-cypht .nav-tabs .nav-item.show .nav-link {
   color: #fff !important; }
+.tiki.tiki-webmail .btn-primary, .tiki.tiki-cypht .btn-primary, .tiki.mobile.tiki-cypht .btn-primary, .tiki .inline-cypht .btn-primary {
+  border-color: #d01333 !important; }
+.tiki.tiki-webmail .btn-info, .tiki.tiki-cypht .btn-info, .tiki.mobile.tiki-cypht .btn-info, .tiki .inline-cypht .btn-info {
+  border-color: #85182c !important; }
