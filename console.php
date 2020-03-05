@@ -39,6 +39,14 @@ if (function_exists('pcntl_signal')) {
 	pcntl_signal(SIGINT, $exit);
 }
 
+// we autoload if autoloading is available, otherwise we continue so Tiki can throw its regular errors.
+if (include('vendor_bundled/vendor/autoload.php')) {
+
+	// Set MultiTiki status before Tiki is initialized
+	$input = new ArgvInput();
+	$_SERVER['TIKI_VIRTUAL'] = $input->getParameterOption(['--site']) ?: null;
+}
+
 try {
 	$bypass_siteclose_check = true;
 	require_once 'tiki-setup.php';
@@ -71,9 +79,6 @@ define('IS_INSTALLED', $statusCode > 1001);
 define('DB_STATUS', $statusCode > 1002);
 define('DB_TIKI_SETUP', $statusCode > 1003);
 define('DB_SYNCHRONAL', $statusCode > 1004);
-
-$input = new ArgvInput();
-$_SERVER['TIKI_VIRTUAL'] = $input->getParameterOption(['--site']) ?: null;
 
 if (DB_TIKI_SETUP) {
 	$asUser = $input->getParameterOption(['--as-user']) ?: 'admin';
