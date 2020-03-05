@@ -155,10 +155,10 @@
 	.chosen-container-single { min-width: 8em; }
 }
 
-.currency_number{
+.currency_number , 
+.currency_code{
 	border: $input-btn-border-width solid $input-border-color !important
 }
-
 @media (max-width: breakpoint-max(sm)) {
 	.tracker-item-files {
 		-webkit-column-count: 1;
