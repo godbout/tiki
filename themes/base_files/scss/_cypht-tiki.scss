@@ -16,11 +16,13 @@
 	.btn-primary {
 		color: color-yiq($primary) !important;
 		background-color: $primary !important;
+		border-color: darken($primary, 7.5%) !important;
 		&:hover, &:focus { background-color: darken($primary, 7.5%) !important; }
 	}
 	.btn-info {
 		color: color-yiq($info) !important;
 		background-color: $info !important;
+		border-color: darken($info, 7.5%) !important;
 		&:hover, &:focus { background-color: darken($info, 7.5%) !important; }
 	}
 	.card { border-color: $card-border-color !important; }
@@ -50,6 +52,13 @@
 	.chosen-container .chosen-results li.active-result {
 		&.text-muted.bg-info { background-color: $info !important; }
 		&.result-selected, &.highlighted { background-color: $link-color !important; }
+	}
+	.nav-tabs {
+		border: none !important;
+		border-bottom: 1px solid $nav-tabs-border-color !important;
+		.nav-link { color: $link-color !important; }
+		.nav-link.active, .nav-item.show .nav-link { color: $link-hover-color !important; }
+		.nav-link:not(.active) { border: none !important; }
 	}
 	// override colors when not using cypht default theme
 

@@ -30,12 +30,15 @@
 		}
 
 		.nav-tabs .nav-link {
-			color: $nav-tabs-link-color !important;
+			&, .icon, .icon:hover { color: $nav-tabs-link-color !important; }
 		}
 
 		.nav-tabs .nav-link.active,
 		.nav-tabs .nav-item.show .nav-link {
-			color: $nav-tabs-link-active-color !important;
+			&, .icon { color: $nav-tabs-link-active-color !important; }
 		}
+
+		.btn-primary { border-color: darken($child-btn-primary, 7.5%) !important; }
+		.btn-info { border-color: darken($child-btn-info, 7.5%) !important; }
 	}
 }
