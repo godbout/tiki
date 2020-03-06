@@ -53,6 +53,13 @@
 		&.text-muted.bg-info { background-color: $info !important; }
 		&.result-selected, &.highlighted { background-color: $link-color !important; }
 	}
+	.nav-tabs {
+		border: none !important;
+		border-bottom: 1px solid $nav-tabs-border-color !important;
+		.nav-link { color: $link-color !important; }
+		.nav-link.active, .nav-item.show .nav-link { color: $link-hover-color !important; }
+		.nav-link:not(.active) { border: none !important; }
+	}
 	// override colors when not using cypht default theme
 
 

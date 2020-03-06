@@ -992,9 +992,9 @@ footer#footer .footer_liner {
   background-color: #ffdace !important;
   border-color: #faada1 !important;
   color: #555555 !important; }
-.tiki.tiki-webmail .nav-tabs .nav-link, .tiki.tiki-cypht .nav-tabs .nav-link, .tiki.mobile.tiki-cypht .nav-tabs .nav-link, .tiki .inline-cypht .nav-tabs .nav-link {
-  color: #000 !important; }
-.tiki.tiki-webmail .nav-tabs .nav-link.active, .tiki.tiki-cypht .nav-tabs .nav-link.active, .tiki.mobile.tiki-cypht .nav-tabs .nav-link.active, .tiki .inline-cypht .nav-tabs .nav-link.active, .tiki.tiki-webmail .nav-tabs .nav-item.show .nav-link, .tiki.tiki-cypht .nav-tabs .nav-item.show .nav-link, .tiki.mobile.tiki-cypht .nav-tabs .nav-item.show .nav-link, .tiki .inline-cypht .nav-tabs .nav-item.show .nav-link {
+  .tiki.tiki-webmail .nav-tabs .nav-link, .tiki.tiki-cypht .nav-tabs .nav-link, .tiki.mobile.tiki-cypht .nav-tabs .nav-link, .tiki .inline-cypht .nav-tabs .nav-link, .tiki.tiki-webmail .nav-tabs .nav-link .icon, .tiki.tiki-cypht .nav-tabs .nav-link .icon, .tiki.mobile.tiki-cypht .nav-tabs .nav-link .icon, .tiki .inline-cypht .nav-tabs .nav-link .icon, .tiki.tiki-webmail .nav-tabs .nav-link .icon:hover, .tiki.tiki-cypht .nav-tabs .nav-link .icon:hover, .tiki.mobile.tiki-cypht .nav-tabs .nav-link .icon:hover, .tiki .inline-cypht .nav-tabs .nav-link .icon:hover {
+    color: #000 !important; }
+.tiki.tiki-webmail .nav-tabs .nav-link.active, .tiki.tiki-cypht .nav-tabs .nav-link.active, .tiki.mobile.tiki-cypht .nav-tabs .nav-link.active, .tiki .inline-cypht .nav-tabs .nav-link.active, .tiki.tiki-webmail .nav-tabs .nav-item.show .nav-link, .tiki.tiki-cypht .nav-tabs .nav-item.show .nav-link, .tiki.mobile.tiki-cypht .nav-tabs .nav-item.show .nav-link, .tiki .inline-cypht .nav-tabs .nav-item.show .nav-link, .tiki.tiki-webmail .nav-tabs .nav-link.active .icon, .tiki.tiki-cypht .nav-tabs .nav-link.active .icon, .tiki.mobile.tiki-cypht .nav-tabs .nav-link.active .icon, .tiki .inline-cypht .nav-tabs .nav-link.active .icon, .tiki.tiki-webmail .nav-tabs .nav-item.show .nav-link .icon, .tiki.tiki-cypht .nav-tabs .nav-item.show .nav-link .icon, .tiki.mobile.tiki-cypht .nav-tabs .nav-item.show .nav-link .icon, .tiki .inline-cypht .nav-tabs .nav-item.show .nav-link .icon {
   color: #fff !important; }
 .tiki.tiki-webmail .btn-primary, .tiki.tiki-cypht .btn-primary, .tiki.mobile.tiki-cypht .btn-primary, .tiki .inline-cypht .btn-primary {
   border-color: #d01333 !important; }
