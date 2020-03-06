@@ -9,7 +9,7 @@ class Services_Cypht_Controller
 {
 	function action_ajax($input)
 	{
-		global $tikipath;
+		global $tikipath, $logslib;
 
 		define('VENDOR_PATH', $tikipath.'/vendor_bundled/vendor/');
 		define('APP_PATH', VENDOR_PATH.'jason-munro/cypht/');
@@ -27,6 +27,14 @@ class Services_Cypht_Controller
 
 		/* process the request */
 		$dispatcher = new Hm_Dispatch($config);
+
+		if(! empty($_SESSION['cypht']['user_data']['debug_mode_setting'])) {
+			$msgs = Hm_Debug::get();
+			foreach ($msgs as $msg) {
+				$logslib->add_log('cypht', $msg);
+			}
+		}
+
 		// either html or already json encoded, so skip broker/accesslib output and do it here
 		echo $dispatcher->output;
 		exit;

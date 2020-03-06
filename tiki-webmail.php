@@ -65,8 +65,16 @@ $config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc');
 /* process the request */
 $dispatcher = new Hm_Dispatch($config);
 
+if(! empty($_SESSION['cypht']['user_data']['debug_mode_setting'])) {
+  $msgs = Hm_Debug::get();
+  foreach ($msgs as $msg) {
+    $logslib->add_log('cypht', $msg);
+  }
+}
+
 $smarty->assign('output_data', '<div class="inline-cypht"><input type="hidden" id="hm_page_key" value="'.Hm_Request_Key::generate().'" />'
 	. $dispatcher->output
 	. "</div>");
 $smarty->assign('mid', 'tiki-webmail.tpl');
 $smarty->display('tiki.tpl');
+

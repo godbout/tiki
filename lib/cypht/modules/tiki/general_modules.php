@@ -88,3 +88,29 @@ class Hm_Output_tiki_contacts_page_link extends Hm_Output_Module {
         $this->concat('formatted_folder_list', $res);
     }
 }
+
+/**
+ * Save debug setting
+ * @subpackage tiki/handler
+ */
+class Hm_Handler_process_debug_mode extends Hm_Handler_Module {
+    public function process() {
+        function debug_mode_callback($val) { return $val; }
+        process_site_setting('debug_mode', $this, 'debug_mode_callback', false, true);
+    }
+}
+
+/**
+ * Expose debug setting
+ * @subpackage tiki/output
+ */
+class Hm_Output_debug_mode_setting extends Hm_Output_Module {
+    protected function output() {
+        $debug_mode = false;
+        $settings = $this->get('user_settings', array());
+        if (array_key_exists('debug_mode', $settings)) {
+            $debug_mode = $settings['debug_mode'];
+        }
+        return '<tr class="general_setting"><td>'.tr('Debug mode messages to Tiki Log (caution: this may flood the logs if used extensively)').'</td><td><input type="checkbox" name="debug_mode" value="1" '.($debug_mode ? 'checked' : '').'></td></tr>';
+    }
+}

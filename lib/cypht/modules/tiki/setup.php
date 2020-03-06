@@ -93,6 +93,10 @@ add_handler('ajax_remove_from_calendar', 'load_imap_servers_from_config',  true,
 add_handler('ajax_remove_from_calendar', 'imap_message_content',  true, 'imap', 'load_imap_servers_from_config', 'after');
 add_handler('ajax_remove_from_calendar', 'remove_from_calendar', true, 'tiki', 'imap_message_content', 'after');
 
+/* debug mode */
+add_handler('settings', 'process_debug_mode', true, 'tiki', 'save_user_settings', 'before');
+add_output('settings', 'debug_mode_setting', true, 'tiki', 'start_unread_settings', 'before');
+
 return array(
 	'allowed_pages' => array(
     'groupmail',
@@ -117,5 +121,6 @@ return array(
 		'msgid' => FILTER_SANITIZE_STRING,
     'rsvp_action' => FILTER_SANITIZE_STRING,
     'calendar_id' => FILTER_VALIDATE_INT,
+    'debug_mode' => FILTER_VALIDATE_INT,
 	)
 );
