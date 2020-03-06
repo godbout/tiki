@@ -182,9 +182,12 @@
 				}
 			}
 			var params = $(this).find('option:selected').data('input');
-			if( typeof params === "object" && typeof params[0] === "object") {
+			if(typeof params === "object") {
+				params = Object.values(params).filter(function(el){ return !!el; }).shift();
+			}
+			if (typeof params === "object") {
 				$("#list_input_container").load(
-					$.service('tracker', 'fetch_item_field', params[0]),
+					$.service('tracker', 'fetch_item_field', params),
 					function () {
 						$(this).tiki_popover().applyChosen();
 					}

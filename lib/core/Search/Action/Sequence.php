@@ -54,6 +54,9 @@ class Search_Action_Sequence
 		$success = true;
 		foreach ($this->steps as $step) {
 			$success = $step->execute($entry) && $success;
+			if (method_exists($step, 'changeObject')) {
+				$entry = $step->changeObject($entry);
+			}
 		}
 
 		return $success;

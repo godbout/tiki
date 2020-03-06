@@ -72,6 +72,14 @@ class Search_Action_ActionStep implements Search_Action_Step
 		return $this->action->requiresInput(new JitFilter($this->definition));
 	}
 
+	function changeObject($data)
+	{
+		if (method_exists($this->action, 'changeObject')) {
+			$data = $this->action->changeObject($data);
+		}
+		return $data;
+	}
+
 	private function prepare($entry)
 	{
 		$out = [];
