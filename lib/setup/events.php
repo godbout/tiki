@@ -375,7 +375,9 @@ function tiki_setup_events()
 
 	if (function_exists('fastcgi_finish_request')) {
 		// If available, try to send everything to the user at this point
-		$events->bindPriority(-10, 'tiki.process.shutdown', 'fastcgi_finish_request');
+		$events->bindPriority(-10, 'tiki.process.shutdown', function() {
+			fastcgi_finish_request();
+		});
 	}
 
 	// if article indexing is on as part of the rss article generator bind the categorization of objects to ensure
