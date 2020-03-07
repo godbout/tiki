@@ -131,11 +131,28 @@ div.form-group label.error {
 // toolbar layout fix
 .tiki .elfinder .elfinder-button-search {
 	padding-top: 2px;
+	margin-right: 50px;
 }
-.tiki .elfinder .elfinder-button-search input {
-	-webkit-box-sizing: content-box;
-	-moz-box-sizing: content-box;
-	box-sizing: content-box;
+
+.tiki .elfinder-button-search input[type=text] {
+	width: 115px;
+}
+
+.tiki .elfinder-button-search.ui-state-active input[type=text] {
+	width: 100%;
+}
+
+.tiki .elfinder-ltr .elfinder-button-search .ui-icon-close {
+    right: -40px;
+}
+
+// prevent hover making the filenames bold which messes the layout up
+.tiki .elfinder .elfinder-cwd-filename.ui-state-active {
+	font-weight: normal;
+}
+
+.tiki .elfinder .elfinder-cwd-file.ui-state-hover {
+	border: none;
 }
 
 // h5p tweaks
