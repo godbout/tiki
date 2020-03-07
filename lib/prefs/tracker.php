@@ -213,6 +213,7 @@ function prefs_tracker_list()
 			'dependencies' => [
 				'feature_trackers',
 				'vuejs_enable',
+				'feature_jquery_validation',
 			],
 			'tags' => [ 'experimental' ],
 			'warning' => tra('Experimental new feature, expect some issues.'),

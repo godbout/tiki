@@ -1,6 +1,6 @@
 <template>
 	<div class="tracker-rules">
-		<div class="card mb-2">
+		<div class="card mb-3">
 			<div class="card-header">
 				Conditions
 			</div>
@@ -8,7 +8,7 @@
 				<ui-predicate v-model="conditionsData" :columns="conditionsColumns" @changed="onChangeConditions" @initialized="onChangeConditions"/>
 			</div>
 		</div>
-		<div class="card mb-2">
+		<div class="card mb-3">
 			<div class="card-header">
 				Actions
 			</div>
@@ -16,7 +16,7 @@
 				<ui-predicate v-model="actionsData" :columns="actionsColumns" @changed="onChangeActions" @initialized="onChangeActions"/>
 			</div>
 		</div>
-		<div class="card mb-2">
+		<div class="card mb-3">
 			<div class="card-header">
 				Else
 			</div>
@@ -36,7 +36,7 @@
 			</article>
 		</div>
 
-		<div class="card">
+		<div class="card d-none">
 			<div class="card-header">
 				Conditions Output
 			</div>
@@ -44,7 +44,7 @@
 				<textarea name="conditions" class="form-control" readonly="readonly">{{ conditionsoutput }}</textarea>
 			</div>
 		</div>
-		<div class="card">
+		<div class="card d-none">
 			<div class="card-header">
 				Actions Output
 			</div>
@@ -52,7 +52,7 @@
 				<textarea name="actions" class="form-control" readonly="readonly">{{ actionoutput }}</textarea>
 			</div>
 		</div>
-		<div class="card">
+		<div class="card d-none">
 			<div class="card-header">
 				Else Output
 			</div>
