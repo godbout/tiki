@@ -181,9 +181,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/bacon/bacon-qr-code/bacon-bacon-qr-code-eaac909da3ccc32b748a65b127acd8918f58d9b0-zip-89eef4.zip",
+                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/eaac909da3ccc32b748a65b127acd8918f58d9b0",
                 "reference": "eaac909da3ccc32b748a65b127acd8918f58d9b0",
-                "shasum": "4ac4c301e860247d8a28187cc8d503bebfe6ba56"
+                "shasum": ""
             },
             "require": {
                 "dasprid/enum": "^1.0",
@@ -211,9 +211,9 @@
             "authors": [
                 {
                     "name": "Ben Scholzen 'DASPRiD'",
+                    "role": "Developer",
                     "email": "mail@dasprids.de",
-                    "homepage": "http://www.dasprids.de",
-                    "role": "Developer"
+                    "homepage": "http://www.dasprids.de"
                 }
             ],
             "description": "BaconQrCode is a QR code generator for PHP.",
@@ -712,9 +712,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
+                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
+                "shasum": ""
             },
             "type": "component",
             "extra": {
@@ -957,9 +957,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/dasprid/enum/dasprid-enum-631ef6e638e9494b0310837fa531bedd908fc22b-zip-f6ef6d.zip",
+                "url": "https://api.github.com/repos/DASPRiD/Enum/zipball/631ef6e638e9494b0310837fa531bedd908fc22b",
                 "reference": "631ef6e638e9494b0310837fa531bedd908fc22b",
-                "shasum": "384a45962fcf1dcb23d1466ff6e372d33dcd21a8"
+                "shasum": ""
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.4",
@@ -1227,7 +1227,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Üngür",
+                    "name": "Osman Ungur",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1708,9 +1708,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
+                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
+                "shasum": ""
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2317,9 +2317,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
+                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.1",
@@ -3365,17 +3365,17 @@
         },
         {
             "name": "laminas/laminas-mime",
-            "version": "2.7.2",
+            "version": "2.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-mime.git",
-                "reference": "2dbace2c69542e5a251af3becb6d7209ac9fb42b"
+                "reference": "e844abb02e868fae154207929190292ad25057cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-mime/laminas-laminas-mime-2dbace2c69542e5a251af3becb6d7209ac9fb42b-zip-cac84e.zip",
-                "reference": "2dbace2c69542e5a251af3becb6d7209ac9fb42b",
-                "shasum": "48b10c2f3973cc1db66172fb1018225a3249e4cf"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-mime/laminas-laminas-mime-e844abb02e868fae154207929190292ad25057cc-zip-901de4.zip",
+                "reference": "e844abb02e868fae154207929190292ad25057cc",
+                "shasum": "e196f91a58123976be375e5478d7857495e509a7"
             },
             "require": {
                 "laminas/laminas-stdlib": "^2.7 || ^3.0",
@@ -3388,7 +3388,7 @@
             "require-dev": {
                 "laminas/laminas-coding-standard": "~1.0.0",
                 "laminas/laminas-mail": "^2.6",
-                "phpunit/phpunit": "^5.7.21 || ^6.3"
+                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.20"
             },
             "suggest": {
                 "laminas/laminas-mail": "Laminas\\Mail component"
@@ -3415,7 +3415,7 @@
                 "laminas",
                 "mime"
             ],
-            "time": "2019-12-31T17:25:27+00:00"
+            "time": "2020-03-06T08:38:03+00:00"
         },
         {
             "name": "laminas/laminas-oauth",
@@ -3650,17 +3650,17 @@
         },
         {
             "name": "laminas/laminas-session",
-            "version": "2.9.1",
+            "version": "2.9.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-session.git",
-                "reference": "60b5cc844e09627d4f1a2a547e13268f376ccb3d"
+                "reference": "fdba34c1b257235dba2fff6ed4df1844390f85f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-session/laminas-laminas-session-60b5cc844e09627d4f1a2a547e13268f376ccb3d-zip-b91ef5.zip",
-                "reference": "60b5cc844e09627d4f1a2a547e13268f376ccb3d",
-                "shasum": "e7b61a28a635de811cb5e22e31985b909807d828"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-session/laminas-laminas-session-fdba34c1b257235dba2fff6ed4df1844390f85f6-zip-0e44cc.zip",
+                "reference": "fdba34c1b257235dba2fff6ed4df1844390f85f6",
+                "shasum": "a1cbb4af341de64fb296c59538436ce8e4cc5ea9"
             },
             "require": {
                 "laminas/laminas-eventmanager": "^2.6.2 || ^3.0",
@@ -3681,7 +3681,7 @@
                 "laminas/laminas-validator": "^2.6",
                 "mongodb/mongodb": "^1.0.1",
                 "php-mock/php-mock-phpunit": "^1.1.2 || ^2.0",
-                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.16"
+                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.20"
             },
             "suggest": {
                 "laminas/laminas-cache": "Laminas\\Cache component",
@@ -3717,7 +3717,7 @@
                 "laminas",
                 "session"
             ],
-            "time": "2019-12-31T17:46:59+00:00"
+            "time": "2020-03-06T09:44:45+00:00"
         },
         {
             "name": "laminas/laminas-soap",
@@ -4467,9 +4467,9 @@
             "authors": [
                 {
                     "name": "Matthias Mullie",
+                    "role": "Developer",
                     "email": "pathconverter@mullie.eu",
-                    "homepage": "http://www.mullie.eu",
-                    "role": "Developer"
+                    "homepage": "http://www.mullie.eu"
                 }
             ],
             "description": "Relative path converter",
@@ -4673,9 +4673,9 @@
             "authors": [
                 {
                     "name": "Fabian Grutschus",
+                    "role": "developer",
                     "email": "f.grutschus@lubyte.de",
-                    "homepage": "http://www.lubyte.de/",
-                    "role": "developer"
+                    "homepage": "http://www.lubyte.de/"
                 }
             ],
             "description": "Library for XMPP protocol (Jabber) connections",
@@ -4688,17 +4688,17 @@
         },
         {
             "name": "mottie/tablesorter",
-            "version": "v2.31.2",
+            "version": "v2.31.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Mottie/tablesorter.git",
-                "reference": "6a32e5acc294be5b6c420c83d70d66e096533d8f"
+                "reference": "7202d5faf8105a5ecd1a2b7a653777618713ffe5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-6a32e5acc294be5b6c420c83d70d66e096533d8f-zip-e9e018.zip",
-                "reference": "6a32e5acc294be5b6c420c83d70d66e096533d8f",
-                "shasum": "9936d73fcce65fdfa9742e96880a6591941f7b83"
+                "url": "https://composer.tiki.org/dist/mottie/tablesorter/mottie-tablesorter-7202d5faf8105a5ecd1a2b7a653777618713ffe5-zip-a978d2.zip",
+                "reference": "7202d5faf8105a5ecd1a2b7a653777618713ffe5",
+                "shasum": "b63008585a1508cd0eb5497c2199a26c8802273d"
             },
             "require": {
                 "components/jquery": ">=1.2.6"
@@ -4735,7 +4735,7 @@
                 "sorting",
                 "table"
             ],
-            "time": "2019-12-01T13:49:52+00:00"
+            "time": "2020-03-03T13:46:03+00:00"
         },
         {
             "name": "mrrio/jspdf",
@@ -5127,9 +5127,8 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
-                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
+                "type": "tar",
+                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -5486,18 +5485,18 @@
             "authors": [
                 {
                     "name": "Chuck Hagenbuch",
-                    "email": "chuck@horde.org",
-                    "role": "Lead"
+                    "role": "Lead",
+                    "email": "chuck@horde.org"
                 },
                 {
                     "name": "Aleksander Machniak",
-                    "email": "alec@php.net",
-                    "role": "Lead"
+                    "role": "Lead",
+                    "email": "alec@php.net"
                 },
                 {
                     "name": "Stig Bakken",
-                    "email": "stig@php.net",
-                    "role": "Lead"
+                    "role": "Lead",
+                    "email": "stig@php.net"
                 }
             ],
             "description": "More info available on: http://pear.php.net/package/Net_Socket",
@@ -5948,17 +5947,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.52.2",
+            "version": "v1.52.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "52a5d83609a8e3b5cc36b15430a8871a160dc996"
+                "reference": "80262b5194d625d750260b1dc64cb952cd1fb1cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-52a5d83609a8e3b5cc36b15430a8871a160dc996-zip-c3be8b.zip",
-                "reference": "52a5d83609a8e3b5cc36b15430a8871a160dc996",
-                "shasum": "bccd88dce78294c312552f65b5545fc29d796e5c"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-80262b5194d625d750260b1dc64cb952cd1fb1cd-zip-92ead6.zip",
+                "reference": "80262b5194d625d750260b1dc64cb952cd1fb1cd",
+                "shasum": "894d389c47dea2e413f710ff8815f8008ebbb3b5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -5980,7 +5979,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2020-02-03T20:26:16+00:00"
+            "time": "2020-03-02T21:22:21+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -6317,9 +6316,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
+                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
+                "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -7792,9 +7791,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/true/punycode/true-punycode-a4d0c11a36dd7f4e7cd7096076cab6d3378a071e-zip-4ceb35.zip",
+                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
                 "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
-                "shasum": "0153b28196219934ea010de766dea03de32a7d89"
+                "shasum": ""
             },
             "require": {
                 "php": ">=5.3.0",
@@ -8635,17 +8634,17 @@
         },
         {
             "name": "phpspec/prophecy",
-            "version": "v1.10.2",
+            "version": "v1.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpspec/prophecy.git",
-                "reference": "b4400efc9d206e83138e2bb97ed7f5b14b831cd9"
+                "reference": "451c3cd1418cf640de218914901e51b064abb093"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpspec/prophecy/phpspec-prophecy-b4400efc9d206e83138e2bb97ed7f5b14b831cd9-zip-20953c.zip",
-                "reference": "b4400efc9d206e83138e2bb97ed7f5b14b831cd9",
-                "shasum": "3e3952f6e17225f425b38bc7752c9f0a59a86249"
+                "url": "https://composer.tiki.org/dist/phpspec/prophecy/phpspec-prophecy-451c3cd1418cf640de218914901e51b064abb093-zip-e9b346.zip",
+                "reference": "451c3cd1418cf640de218914901e51b064abb093",
+                "shasum": "5ceaba084b28de8667d9a0cc11e28632817247b3"
             },
             "require": {
                 "doctrine/instantiator": "^1.0.2",
@@ -8694,7 +8693,7 @@
                 "spy",
                 "stub"
             ],
-            "time": "2020-01-20T15:57:02+00:00"
+            "time": "2020-03-05T15:02:03+00:00"
         },
         {
             "name": "phpunit/dbunit",
