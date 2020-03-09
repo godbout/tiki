@@ -155,9 +155,6 @@ function createPage($title, $content)
                 </div>
 			<div class="row mb-2">
 				<div class="col" id="col1">
-					<h1 class="text-center">
-						$title
-					</h1>
 					<div class="text-center">
                     $content
                 </div>
