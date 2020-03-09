@@ -765,7 +765,7 @@
 
                             {if $upgradefix eq 'y' && $install_type eq 'update'}
                                 <fieldset>
-                                    <legend><span class="text-warning">{icon name="warning"}</span>{tr}Upgrade fix{/tr}</legend>
+                                    <legend><span class="text-warning">{icon name="warning"}</span> {tr}Upgrade fix{/tr}</legend>
                                     <p>{tr}Experiencing problems with the upgrade? Your administrator account lost its privileges? This may occur if you upgraded from a very old version of Tiki.</p>
                                     <p>We can fix it! Doing so will:{/tr}</p>
                                     <ol>
@@ -909,8 +909,8 @@
                                 {if $client_charset_in_file eq 'utf8'}
                                     <div class="form-row align-items-center">
                                         <div class="input-group col-auto">
-                                            <label class="col-form-label" for="previous_encoding" class="mr-2">{tr}Previous table encoding:{/tr}</label>
-                                            <select class="form-control" name="previous_encoding" id="previous_encoding">
+                                            <label class="col-form-label" for="previous_encoding">{tr}Previous table encoding:{/tr}</label>
+                                            <select class="form-control ml-2" name="previous_encoding" id="previous_encoding">
                                                 <option value="">{tr}Please select{/tr}</option>
                                                 <option value="armscii8" title="Armenian, Binary">armscii8</option>
                                                 <option value="ascii" title="West European (multilingual), Binary">ascii</option>
