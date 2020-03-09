@@ -23,14 +23,14 @@ class CommandUnavailableException extends Exception
 	public const CHECK_DEV = 102;
 	/**
 	 * Error when Tiki has not been installed
-	 * @see ConsoleApplicationBuilder::checkIsInstalled() Throws this error
+	 * @see ConsoleApplicationBuilder::checkIsDbRunning() Throws this error
 	 */
-	public const CHECK_INSTALLED = 201;
+	public const CHECK_RUNNING = 201;
 	/**
-	 * Error for when the database is not accessible
-	 * @see ConsoleApplicationBuilder::checkIsDatabaseAvailable() Throws this error
+	 * Error for when the database is running but not populated with Tiki (or otherwise not functioning)
+	 * @see ConsoleApplicationBuilder::checkIsDatabaseInstalled() Throws this error
 	 */
-	public const CHECK_DATABASE = 202;
+	public const CHECK_INSTALLED = 202;
 	/**
 	 * Error for when Tiki-setup did not entirely complete because of a database error. (normally database:update fixes this)
 	 * @see ConsoleApplicationBuilder::checkTikiSetupComplete() Throws this error
@@ -38,7 +38,7 @@ class CommandUnavailableException extends Exception
 	public const CHECK_TIKI_SETUP = 203;
 	/**
 	 * Error for when the Database is out of sync, (it needs to be updated)
-	 * @see ConsoleApplicationBuilder::checkDatabaseUpToUpdate()
+	 * @see ConsoleApplicationBuilder::checkDatabaseUpToDate()
 	 */
 	
 	public const CHECK_UPDATED = 204;

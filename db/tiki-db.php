@@ -237,7 +237,7 @@ if (! $db && ! defined('TIKI_IN_INSTALLER')) {
 	if (http_response_code() === false) {  // if running in cli
 		$error = 'Did you forget to start your database or is there a problem connecting to it?';
 		if (defined('TIKI_CONSOLE')) {
-			throw new ConsoleSetupException($error, 1002);
+			throw new ConsoleSetupException($error, 1001);
 		}
 			die("\e[31m" . $error . "\e[0m\n");
 	}

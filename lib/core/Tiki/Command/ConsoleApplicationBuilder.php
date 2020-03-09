@@ -10,7 +10,6 @@ namespace Tiki\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Tiki\Command\CommandUnavailableException as UnavailableException;
-use TikiInit;
 
 /**
  * Builds the Tiki console application
@@ -50,8 +49,25 @@ class ConsoleApplicationBuilder
 	/**
 	 * List of commands registered on the console
 	 *
-	 * When you need to register a new command, just add it to the right group, or create a new group if
-	 * you need to test a new/different condition to register / not register a command.
+	 * When you need to register a new command, just add it to the right group.
+	 *
+	 * You can also create another group if you need to set specific conditions for when commands
+	 * will be registered (300x series commands).
+	 *
+	 * Within the 200 series commands the convention is for unavailable commands to be listed one 'tear'
+	 * above the highest registered state. So if there is no database function, you can see commands that
+	 * are available when the database is running, but not those available when the database is installed, etc.
+	 * Within the 300 series commands (feature specific commands) convention dictates that commands
+	 * are not listed until the feature-specific condition is met. So for example, profile commands
+	 * are not shown unless profiles are configured.
+	 *
+	 * The groups are (roughly) in order of least Tiki functioning needed to greatest. This is to ensure
+	 * that potential errors in later commands won't prevent more basic commands from being called.
+	 * So the 100x 200x and 300x series checks should be performed in order.
+	 *
+	 * Actions can be set by specifying an error code, along with the action to take.
+	 * Actions are applied against any lessor error code.
+	 * What error codes are produced is partly determined by the order in which checks are performed.
 	 *
 	 * @return array the list of commands, grouped by test
 	 */
@@ -59,7 +75,7 @@ class ConsoleApplicationBuilder
 	{
 		return [
 			'checkVendorsLoaded' => [
-				'action' => [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_CALLABLE],
+				'action' => [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,],
 				'commands' => [
 					new ConfigureCommand,
 					new InstallerLockCommand,
@@ -71,17 +87,27 @@ class ConsoleApplicationBuilder
 				],
 			],
 			'checkIsVCS' => [
-				'action' => [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE],
+				'action' => [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_CALLABLE],
 				'commands' => [
 					new VCSUpdateCommand,
 					new FixSVNKeyIdsCommand,
 					new SemiAutoMergeCommand,
 				],
 			],
-			'checkIsDatabaseAvailable' => [
+			'checkIsDbRunning' => [
 				'action' => [
 					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
-					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
+				],
+				'commands' => [
+					new InstallCommand,
+					new MultiTikiListCommand,
+					new MultiTikiMoveCommand,
+				],
+			],
+			'checkIsDatabaseInstalled' => [
+				'action' => [
+					UnavailableException::CHECK_RUNNING => self::ACTION_NOT_PUBLISHED,
+					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
 				],
 				'commands' => [
 					new CacheClearCommand,
@@ -93,12 +119,13 @@ class ConsoleApplicationBuilder
 					new PluginListRunCommand,
 					new PluginRefreshRunCommand,
 					new PatchCommand,
+					new UpdateCommand,
 				],
 			],
 			'checkTikiSetupComplete' => [
 				'action' => [
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
 					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
+					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
 				],
 				'commands' => [
 					new PreferencesGetCommand,
@@ -107,9 +134,9 @@ class ConsoleApplicationBuilder
 					new PreferencesExportCommand,
 				],
 			],
-			'checkDatabaseUpToUpdate' => [
+			'checkDatabaseUpToDate' => [
 				'action' => [
-					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
+					UnavailableException::CHECK_TIKI_SETUP => self::ACTION_NOT_PUBLISHED,
 					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
 				],
 				'commands' => [
@@ -160,30 +187,11 @@ class ConsoleApplicationBuilder
 					new StatsCommand,
 				],
 			],
-			'checkConfigurationIsAvailable' => [
-				'action' => [
-					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
-				],
-				'commands' => [
-					new InstallCommand,
-					new MultiTikiListCommand,
-					new MultiTikiMoveCommand,
-				],
-			],
-			'checkConfigurationAndDatabaseIsAvailable' => [
-				'action' => [
-					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
-				],
-				'commands' => [
-					new UpdateCommand,
-				],
-			],
 			'checkIsOCRAvailable' => [
 				'action' => [
-					UnavailableException::CHECK_DATABASE => self::ACTION_NOT_PUBLISHED,
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
+					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
+					UnavailableException::CHECK_TIKI_SETUP => self::ACTION_NOT_AVAILABLE,
+					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,
 				],
 				'commands' => [
 					new OCRFileCommand,
@@ -193,7 +201,11 @@ class ConsoleApplicationBuilder
 				],
 			],
 			'checkProfileInfoExists' => [
-				'action' => [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED],
+				'action' => [
+					UnavailableException::CHECK_RUNNING => self::ACTION_NOT_PUBLISHED,
+					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_AVAILABLE,
+					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,
+				],
 				'commands' => [
 					new ProfileExport\ActivityRuleSet,
 					new ProfileExport\ActivityStreamRule,
@@ -225,8 +237,9 @@ class ConsoleApplicationBuilder
 			],
 			'checkForLocalRedactDb' => [
 				'action' => [
-					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
+					UnavailableException::CHECK_RUNNING => self::ACTION_NOT_PUBLISHED,
+					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_AVAILABLE,
+					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,
 				],
 				'commands' => [
 					new RedactDBCommand,
@@ -254,7 +267,7 @@ class ConsoleApplicationBuilder
 	 * 2. Installation Checks (200x)
 	 *    Standard Tiki checks that test the install status of Tiki
 	 *    These are independent from the first checks. They generally test the state Tiki.
-	 *    checkIsInstalled -> checkIsDatabaseAvailable -> checkTikiSetupComplete -> checkDatabaseUpToUpdate
+	 *    checkIsDbRunning -> checkIsDatabaseInstalled -> checkTikiSetupComplete -> checkDatabaseUpToDate
 	 *
 	 * 3. Feature checks (300x)
 	 *    Check for aspects related to a feature of subset of Tiki.
@@ -284,7 +297,7 @@ class ConsoleApplicationBuilder
 	{
 		if (! (is_dir('.svn') || is_dir('.git'))) {
 			throw new UnavailableException(
-				'You mist be running Tiki as a VCS see: https://dev.tiki.org/Get-code',
+				'You must be running Tiki as a VCS see: https://dev.tiki.org/Get-code',
 				UnavailableException::CHECK_VCS
 			);
 		}
@@ -309,50 +322,48 @@ class ConsoleApplicationBuilder
 	}
 
 	/**
-	 * Check that Tiki is installed.
-	 * WARNING: This NO LONGER checks if the database is working.
+	 * Check that the database is running. Does not require a Tiki database structure, just that MariaDB/MySQL connects.
 	 *
-	 * @throws CommandUnavailableException When Tiki is not installed.
-	 * @see checkIsDatabaseAvailable()
+	 * @throws CommandUnavailableException When Tiki is not installed, or complete database failure
 	 */
-	protected function checkIsInstalled() : void
+	protected function checkIsDbRunning() : void
 	{
-		if (! IS_INSTALLED) {
+		if (! DB_RUNNING) {
 			throw new UnavailableException(
-				'Tiki must be installed first. See http://doc.tiki.org/Installation for more information.',
-				UnavailableException::CHECK_INSTALLED
+				'Your database must be running and have valid credentials in the local.php file. See http://doc.tiki.org/Installation for more information.',
+				UnavailableException::CHECK_RUNNING
 			);
 		}
 	}
 
 	/**
 	 * Check if the Tiki database is working.
-	 * Since Tiki must be installed before a connection can be made, we also check if Tiki is installed first.
+	 * Since the database must be running before the database is installed, we also check for that.
 	 *
 	 * @throws CommandUnavailableException When the database can not be initialized.
 	 */
-	protected function checkIsDatabaseAvailable() : void
+	protected function checkIsDatabaseInstalled() : void
 	{
 		// we want to provide the right feedback, so lets check pre-requirements first.
-		$this->checkIsInstalled();
+		$this->checkIsDbRunning();
 		if (! DB_STATUS) {
 			throw new UnavailableException(
-				'Cannot initiate Database. Is your database down?',
-				UnavailableException::CHECK_DATABASE
+				'Cannot initiate Database. Probably because the database needs updating.',
+				UnavailableException::CHECK_INSTALLED
 			);
 		}
 	}
 
 	/**
-	 * Checks if tiki-setup has completed successfully, without any database errors.
+	 * Checks if tiki-setup.php has completed successfully, without any database errors.
 	 * The database has previously been loaded, and much of tiki-check is likely to hae completed. However
 	 * it is likely that critical changes were made to Tiki that causes severe database errors.
 	 *
-	 * @throws CommandUnavailableException WHen Tiki-setup.php did not complete. (core database errors)
+	 * @throws CommandUnavailableException When tiki-setup.php did not complete. (core database errors)
 	 */
 	protected function checkTikiSetupComplete() : void
 	{
-		$this->checkIsDatabaseAvailable();
+		$this->checkIsDatabaseInstalled();
 		if (! DB_TIKI_SETUP) {
 			throw new UnavailableException(
 				'Database errors prevented tiki-setup from completing. Try running php console.php database:update',
@@ -368,7 +379,7 @@ class ConsoleApplicationBuilder
 	 *
 	 * @throws CommandUnavailableException When the Tiki database needs updating. (feature specific database errors)
 	 */
-	protected function checkDatabaseUpToUpdate() : void
+	protected function checkDatabaseUpToDate() : void
 	{
 		// we want to provide the right feedback, so lets check pre-requirements first.
 		$this->checkTikiSetupComplete();
@@ -382,46 +393,16 @@ class ConsoleApplicationBuilder
 	}
 
 	/**
-	 * Check if db configuration is available
-	 *
-	 * @throws CommandUnavailableException
-	 */
-	protected function checkConfigurationIsAvailable() : void
-	{
-		$this->checkIsInstalled();
-		$local_php = TikiInit::getCredentialsFile();
-		if (is_readable($local_php)) {
-			// TikiInit::getCredentialsFile will reset all globals below, requiring $local_php again to restore the environment.
-			global $api_tiki, $db_tiki, $dbversion_tiki, $host_tiki, $user_tiki, $pass_tiki, $dbs_tiki, $tikidomain, $dbfail_url;
-			require $local_php;
-		}
-		if (! (is_file($local_php) || TikiInit::getEnvironmentCredentials())) {
-			throw new UnavailableException('Credentials file (local.php) not available. ', 310);
-		}
-	}
-
-	/**
-	 * Check if db configuration is available
-	 *
-	 * @throws CommandUnavailableException
-	 */
-	protected function checkConfigurationAndDatabaseIsAvailable() : void
-	{
-		$this->checkConfigurationIsAvailable();
-		$this->checkIsDatabaseAvailable();
-	}
-
-	/**
 	 * Check if the profile info.ini file exists
 	 *
 	 * @throws CommandUnavailableException if the info.ini file is not present
 	 */
 	protected function checkProfileInfoExists() : void
 	{
-		$this->checkIsDatabaseAvailable();
 		if (! file_exists(TIKI_PATH . '/profiles/info.ini')) {
 			throw new UnavailableException('The /profiles/info.ini file does not exist', 311);
 		}
+		$this->checkIsDatabaseInstalled();
 	}
 
 	/**
@@ -431,10 +412,10 @@ class ConsoleApplicationBuilder
 	 */
 	protected function checkForLocalRedactDb() : void
 	{
-		$this->checkIsDatabaseAvailable();
 		if (! isset($_SERVER['TIKI_VIRTUAL']) || $_SERVER['TIKI_VIRTUAL'] !== 'redact' || ! is_file(TIKI_PATH . '/db/redact/local.php')) {
 			throw new UnavailableException('The /profiles/info.ini file does not exist', 312);
 		}
+		$this->checkIsDatabaseInstalled();
 	}
 
 	/**
@@ -444,13 +425,15 @@ class ConsoleApplicationBuilder
 	 */
 	protected function checkIsOCRAvailable() : void
 	{
-		$this->checkDatabaseUpToUpdate();
 
+		// we check if the database is running first so we can safely check preferences
+		$this->checkIsDatabaseInstalled();
 		global $prefs;
 
 		if (! empty($prefs['ocr_enable']) && $prefs['ocr_enable'] !== 'y') {
 			throw new UnavailableException('You need to enable your Tiki OCR preference before continuing.', 313);
 		}
+		$this->checkDatabaseUpToDate();
 	}
 
 	/**
@@ -461,7 +444,7 @@ class ConsoleApplicationBuilder
 	protected function checkIsDevModeAndDatabase() : void
 	{
 		$this->checkIsDevMode();
-		$this->checkIsDatabaseAvailable();
+		$this->checkIsDatabaseInstalled();
 	}
 
 	/**

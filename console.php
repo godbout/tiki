@@ -57,8 +57,8 @@ try {
 	/**
 	 * @var int The code representing different stages of Tki functioning. Each builds on the next.
 	 * Auto-loading is always present. Most codes show progressive stages of tiki-setup.php being loaded.
-	 *          * 1001 - Tiki is not installed (we are running in auto-load only mode)
-	 *          * 1002 - Database not initialised (but Tiki is installed)
+	 *          * 1001 - No database available. (we are running in auto-load only mode)
+	 *          * 1002 - Database connected, but tiki not installed.
 	 *          * 1003 - Tiki-Setup stopped by Database errors - probably because the database needs updating (and database initialized)
 	 *			* 1004 - Tiki-Setup completed successfully (but the database is not up to date)
 	 *			* 1100 - The database is up to date (and Tiki-setup completed successfully)
@@ -75,7 +75,7 @@ try {
  * Define our constants, based on what error (if any) was thrown
  * @see $statusCode For explanations on what these constants these do.
  */
-define('IS_INSTALLED', $statusCode > 1001);
+define('DB_RUNNING', $statusCode > 1001);
 define('DB_STATUS', $statusCode > 1002);
 define('DB_TIKI_SETUP', $statusCode > 1003);
 define('DB_SYNCHRONAL', $statusCode > 1004);
@@ -104,12 +104,11 @@ try {
 $output->writeln('');
 
 if ($input->getFirstArgument() === null) {
-	$output->write('Tiki Status: ');
-	$output->write('<options=bold>Autoloading</>->');
-	$output->write((IS_INSTALLED ? '<options=bold>' : '<fg=red>') . 'Installed</>->');
-	$output->write((DB_STATUS ? '<options=bold>' : '<fg=red>') . 'Database-Running</>->');
-	$output->write((DB_TIKI_SETUP ? '<options=bold>' : '<fg=red>') . 'Tiki-Initialized</>->');
-	$output->writeln((DB_SYNCHRONAL ? '<options=bold>' : '<fg=red>') . 'Database-in-Sync</>');
+	$output->write('<options=bold>Tiki-Files-Installed</>->');
+	$output->write((DB_RUNNING ? '<options=bold>' : '<fg=red>') . 'DB-Running</>->');
+	$output->write((DB_STATUS ? '<options=bold>' : '<fg=red>') . 'DB-Installed</>->');
+	$output->write((DB_TIKI_SETUP ? '<options=bold>' : '<fg=red>') . 'DB-Initialized</>->');
+	$output->writeln((DB_SYNCHRONAL ? '<options=bold>' : '<fg=red>') . 'DB-in-Sync</>');
 	$output->writeln('');
 }
 if (isset($exceptionToRender)) {
