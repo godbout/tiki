@@ -497,11 +497,10 @@ if (function_exists('exec')) {
 }
 
 // PHP Server API (SAPI)
-$s = php_sapi_name();
-if (substr($s, 0, 3) == 'cgi') {
+if (substr(PHP_SAPI, 0, 3) === 'cgi') {
 	$php_properties['PHP Server API'] = array(
 		'fitness' => tra('info'),
-		'setting' => $s,
+		'setting' => PHP_SAPI,
 		'message' => tra('PHP is being run as CGI. Feel free to use a threaded Apache MPM to increase performance.')
 	);
 
@@ -509,10 +508,10 @@ if (substr($s, 0, 3) == 'cgi') {
 		'message' => tra('Looks like you are running PHP as FPM/CGI/FastCGI, you may be able to override some of your PHP configurations by add them to .user.ini files, see:'),
 		'link' => 'http://php.net/manual/en/configuration.file.per-user.php'
 	);
-} elseif (substr($s, 0, 3) == 'fpm') {
+} elseif (substr(PHP_SAPI, 0, 3) === 'fpm') {
 	$php_properties['PHP Server API'] = array(
 		'fitness' => tra('info'),
-		'setting' => $s,
+		'setting' => PHP_SAPI,
 		'message' => tra('PHP is being run using FPM (Fastcgi Process Manager). Feel free to use a threaded Apache MPM to increase performance.')
 	);
 
@@ -521,7 +520,7 @@ if (substr($s, 0, 3) == 'cgi') {
 		'link' => 'http://php.net/manual/en/configuration.file.per-user.php'
 	);
 } else {
-	if (substr($s, 0, 6) == 'apache') {
+	if (substr(PHP_SAPI, 0, 6) === 'apache') {
 		$php_sapi_info = array(
 			'message' => tra('Looks like you are running PHP as a module in Apache, you may be able to override some of your PHP configurations by add them to .htaccess files, see:'),
 			'link' => 'http://php.net/manual/en/configuration.changes.php#configuration.changes.apache'
@@ -530,7 +529,7 @@ if (substr($s, 0, 3) == 'cgi') {
 
 	$php_properties['PHP Server API'] = array(
 		'fitness' => tra('info'),
-		'setting' => $s,
+		'setting' => PHP_SAPI,
 		'message' => tra('PHP is not being run as CGI. Be aware that PHP is not thread-safe and you should not use a threaded Apache MPM (like worker).')
 	);
 }
@@ -567,8 +566,7 @@ if (function_exists('apc_sma_info') && ini_get('apc.enabled')) {
 	if (function_exists('wincache_ocache_fileinfo')) {
 		// Wincache version 1
 		if (ini_get('wincache.ocenabled') == '1') {
-			$sapi_type = php_sapi_name();
-			if ($sapi_type == 'cgi-fcgi') {
+			if (PHP_SAPI == 'cgi-fcgi') {
 				$php_properties['ByteCode Cache'] = array(
 					'fitness' => tra('good'),
 					'setting' => 'WinCache',
@@ -587,8 +585,7 @@ if (function_exists('apc_sma_info') && ini_get('apc.enabled')) {
 	} else {
 		// Wincache version 2 or higher
 		if (ini_get('wincache.fcenabled') == '1') {
-			$sapi_type = php_sapi_name();
-			if ($sapi_type == 'cgi-fcgi') {
+			if (PHP_SAPI == 'cgi-fcgi') {
 				$php_properties['ByteCode Cache'] = array(
 					'fitness' => tra('info'),
 					'setting' => 'WinCache',

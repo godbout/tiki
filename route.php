@@ -267,14 +267,13 @@ function tiki_route_attempt_custom_route_redirect()
 	}
 }
 
-$sapi = php_sapi_name();
 $base = null;
 $path = null;
 $inclusion = null;
 
 // This portion may need to vary depending on the webserver/configuration
 
-switch ($sapi) {
+switch (PHP_SAPI) {
 	case 'apache2handler':
 	default:
 		// Fix $_SERVER['REQUEST_URI', which is ASCII encoded on IIS
