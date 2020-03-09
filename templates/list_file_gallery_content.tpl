@@ -327,9 +327,9 @@
 									{/if}
 									{if not empty($insertion_syntax)}
 										{if $query}{$query = $query|cat:'&'}{/if}
-										{$query = $query|cat:'insertion_syntax=':cat:$insertion_syntax}
+										{$query = $query|cat:'insertion_syntax='|cat:$insertion_syntax}
 									{/if}
-									href="{$files[changes].id|sefurl:'filegallery'}{if $query}{if $prefs.feature_sefurl eq 'y'}?{else}&amp;{/if}{$query|escape}{/if}"
+									href="{$files[changes].id|sefurl:'filegallery':$query}{$query|escape}"
 								{else}
 
 									{if !empty($filegals_manager)}
