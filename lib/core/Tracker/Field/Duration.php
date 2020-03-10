@@ -23,7 +23,7 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 				'prefs' => ['trackerfield_duration'],
 				'tags' => ['basic'],
 				'default' => 'y',
-				'supported_changes' => ['n'],
+				'supported_changes' => ['DUR', 'n'],
 				'params' => [
 					'storage_unit' => [
 						'name' => tr('Storage unit'),
