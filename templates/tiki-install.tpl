@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="sidebar">
-                <img alt="{tr}Tiki Wiki CMS Groupware{/tr}" class="img-fluid" src="img/tiki/Tiki_WCG.png">
+                <img alt="{tr}Tiki Wiki CMS Groupware{/tr}" class="img-fluid" src="img/tiki/Tiki_WCG_light.png">
                 <div class="menus">
                     <form class="installer-menu menu" action="tiki-install.php" method="post">
                         {if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
