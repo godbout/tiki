@@ -29,7 +29,7 @@
 			</div>
 			<div class="form-group row">
 				<div class="offset-sm-3 offset-md-2 col-sm-9 offset-xs-0">
-					<strong>{tr}OR{/tr}</strong>
+					<strong class="text-uppercase">{tr}or{/tr}</strong>
 				</div>
 			</div>
 		{/if}
