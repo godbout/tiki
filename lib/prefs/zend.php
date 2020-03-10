@@ -83,13 +83,14 @@ function prefs_zend_list()
 		'zend_mail_queue'         => [
 			'name' => tra('Mail delivery'),
 			'description' => tr(
-				'When set to Queue, messages will be stored in the database. Requires using the shell script %0 to be run for actual delivery. Only works with SMTP mail.',
+				'When set to Queue, messages will be stored in the database. Requires using the shell script %0 to be run for actual delivery. Only works with SMTP mail. When set to Redirect, all emails will be send to the catch-all email address.',
 				'<code>php console.php mail-queue:send</code>'
 			),
 			'type' => 'list',
 			'options' => [
 				'' => tra('Send immediately'),
 				'y' => tra('Queue'),
+				'redirect' => tra('Redirect (hijack)')
 			],
 			'default' => '',
 		],
@@ -111,6 +112,14 @@ function prefs_zend_list()
 			'type'        => 'flag',
 			'default'     => 'n',
 			'extensions'  => ['curl'],
+		],
+		'zend_mail_redirect' => [
+			'name' => tra('Catch-all email address'),
+			'description' => tra('Tiki will send all emails to this email address instead of the target recipients. Mail delivery option must be set to Redirect.'),
+			'type' => 'text',
+			'size' => '20',
+			'perspective' => false,
+			'default' => '',
 		],
 	];
 }

@@ -177,7 +177,13 @@ function tiki_send_admin_mail($email, $recipientName, $subject, $textBody)
 
 function tiki_send_email($email)
 {
+	global $prefs;
+
 	tiki_mail_setup();
+
+	if ($prefs['zend_mail_queue'] == 'redirect') {
+		$email->setTo($prefs['zend_mail_redirect']);
+	}
 
 	/* @var $tiki_maillib__zend_mail_default_transport Zend\Mail\Transport\TransportInterface */
 	global $tiki_maillib__zend_mail_default_transport;
