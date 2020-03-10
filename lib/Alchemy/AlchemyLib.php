@@ -14,6 +14,7 @@ use MediaAlchemyst\Specification\Image;
 use MediaVorus\Media\MediaInterface;
 use MediaVorus\MediaVorus;
 use Neutron\TemporaryFilesystem\Manager as FsManager;
+use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeGuesser;
 use TikiLib;
 
 /**
@@ -29,6 +30,9 @@ class AlchemyLib
 
 	/** @var MediaVorus */
 	protected $mediavorus;
+
+	/** @var Guesser */
+	private static $mimeTypeGuesserInstance = null;
 
 	/**
 	 * AlchemyLib constructor.
@@ -151,5 +155,36 @@ class AlchemyLib
 		}
 
 		return null;
+	}
+
+	/**
+	 * Allow to instruct the MimeTypeGuesser to take a given mime type as the type for a given file
+	 *
+	 * @param string $filePath
+	 * @param string $mimeType
+	 */
+	public static function hintMimeTypeByFilePath($filePath, $mimeType)
+	{
+		if (!self::isLibraryAvailable()) {
+			return;
+		}
+
+		self::getMimeTypeGuesserInstance()->add($filePath, $mimeType);
+	}
+
+
+	/**
+	 * Return the Guesser Instance registered by AlchemyLib in Symfony MimeTypeGuesser
+	 *
+	 * @return Guesser
+	 */
+	public static function getMimeTypeGuesserInstance()
+	{
+		if ( null === self::$mimeTypeGuesserInstance ) {
+			self::$mimeTypeGuesserInstance = new Guesser();
+			MimeTypeGuesser::getInstance()->register(self::$mimeTypeGuesserInstance);
+		}
+
+		return self::$mimeTypeGuesserInstance;
 	}
 }
