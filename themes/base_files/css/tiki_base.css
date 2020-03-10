@@ -2438,12 +2438,12 @@ table.treetable tr.expanded span.indenter a {
 .tracker-form-text {
   margin-top: -15px; }
 
-.card-accordian .card-header {
+.card-accordian > .card-header {
   padding: 0; }
-  .card-accordian .card-header h4.card-title {
+  .card-accordian > .card-header h4.card-title {
     padding: 0;
     margin: 0; }
-    .card-accordian .card-header h4.card-title a {
+    .card-accordian > .card-header h4.card-title a {
       display: block;
       padding: 0.75rem 1.25rem; }
 
@@ -4966,7 +4966,7 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
       font-size: 0.8em; }
 
 #tiki-installer {
-  background-color: #aeaeae;
+  background-color: #48497A;
   /* re-style buttons to be link links */ }
   #tiki-installer .btn-link {
     border: none;
@@ -4979,6 +4979,9 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
   #tiki-installer .sidebar {
     margin: 1.5em 1.5em 0 0;
     padding-bottom: 2em; }
+  #tiki-installer .sidebar > img {
+    display: block;
+    margin: auto; }
   #tiki-installer .installer-content {
     background-color: white;
     min-height: 100vh;
@@ -4989,7 +4992,7 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
     bottom: 1em;
     right: 1em; }
   #tiki-installer .menus {
-    margin-top: 5em; }
+    margin-top: 3rem; }
     #tiki-installer .menus .menu {
       color: white;
       margin-top: 1em; }
@@ -5007,9 +5010,10 @@ h2:hover .heading-link, h3:hover .heading-link, h4:hover .heading-link, h5:hover
         padding: 0;
         background-color: transparent; }
       #tiki-installer .nav .nav-item.active {
-        color: blue; }
+        color: white; }
         #tiki-installer .nav .nav-item.active .nav-link {
-          color: blue; }
+          color: white;
+          font-weight: bold; }
   #tiki-installer .install-step8 .enter-tiki .btn {
     white-space: normal; }
 

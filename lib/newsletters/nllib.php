@@ -890,7 +890,7 @@ class NlLib extends TikiLib
 		$query = "select tn.nlId, tn.`name`, tn.`description`, tn.`users`, tn.`editions`, tn.`author`, max(tsn.`sent`) as lastSent 
 		from `tiki_newsletters` tn 
 		left join `tiki_sent_newsletters` tsn on (tn.`nlId` = tsn.`nlId`) $mid 
-		group by tn.`nlId`, tn.`name`, tn.`description`, tn.`users`, tn.`editions`, tn.`author`, " . $this->convertSortmode("$sort_mode") . "
+		group by tn.`nlId`, tn.`name`, tn.`description`, tn.`users`, tn.`editions`, tn.`author`
 		order by " . $this->convertSortmode("$sort_mode");
 		$result = $this->query($query, $bindvars, $maxRecords, $offset);
 		$query_cant = "select count(*) from  `tiki_newsletters` as tn $mid";

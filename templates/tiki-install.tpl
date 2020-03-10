@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-3">
             <div class="sidebar">
-                <img alt="{tr}Tiki Wiki CMS Groupware{/tr}" class="img-fluid" src="img/tiki/Tiki_WCG.png">
+                <img alt="{tr}Tiki Wiki CMS Groupware{/tr}" class="img-fluid" src="img/tiki/Tiki_WCG_light.png">
                 <div class="menus">
                     <form class="installer-menu menu" action="tiki-install.php" method="post">
                         {if $multi}<input type="hidden" name="multi" value="{$multi}">{/if}
@@ -16,8 +16,7 @@
                             <li class="nav-item {if $active}active{/if}">
                                 <button class="btn-link nav-link"
                                     name="install_step" value="{$step}"
-                                    {if $disabled}disabled="disabled"{/if}
-                                    id="install_step{$step}">
+                                    {if $disabled}disabled="disabled"{/if}>
                                     {$title}
                                 </button>
                             </li>
@@ -766,7 +765,7 @@
 
                             {if $upgradefix eq 'y' && $install_type eq 'update'}
                                 <fieldset>
-                                    <legend><span class="text-warning">{icon name="warning"}</span>{tr}Upgrade fix{/tr}</legend>
+                                    <legend><span class="text-warning">{icon name="warning"}</span> {tr}Upgrade fix{/tr}</legend>
                                     <p>{tr}Experiencing problems with the upgrade? Your administrator account lost its privileges? This may occur if you upgraded from a very old version of Tiki.</p>
                                     <p>We can fix it! Doing so will:{/tr}</p>
                                     <ol>
@@ -775,7 +774,7 @@
                                         <li>{tr}Add the administrator account to the group, if missing{/tr}</li>
                                     </ol>
                                     <p><strong>{tr}To do so enter the name of the main admin account in the field below{/tr}</strong></p>
-                                    <div class="form-group row"><label class="col-form-label col-sm-4" for="admin_account">{tr}Administrator account (optional):</label><div class="col-sm-4"> <input type="text" name="admin_account" class="form-control"></div><div class="col-sm-4"><em>The default account is <strong>admin</strong></em>{/tr}</div></div>
+                                    <div class="form-group row"><label class="col-form-label col-sm-4" for="admin_account">{tr}Administrator account (optional):{/tr}</label><div class="col-sm-4"> <input type="text" name="admin_account" class="form-control"></div><div class="col-sm-4"><em>{tr}The default account is <strong>admin</strong>{/tr}</em></div></div>
                                     {if !empty($disableAccounts)}
                                         <hr>
                                         <label class="col-form-label" for="fix_disable_accounts">{tr}Check this box if you have a lot of disabled accounts after an upgrade to tiki4.{/tr}</label>
@@ -910,8 +909,8 @@
                                 {if $client_charset_in_file eq 'utf8'}
                                     <div class="form-row align-items-center">
                                         <div class="input-group col-auto">
-                                            <label class="col-form-label" for="previous_encoding" class="mr-2">{tr}Previous table encoding:{/tr}</label>
-                                            <select class="form-control" name="previous_encoding" id="previous_encoding">
+                                            <label class="col-form-label" for="previous_encoding">{tr}Previous table encoding:{/tr}</label>
+                                            <select class="form-control ml-2" name="previous_encoding" id="previous_encoding">
                                                 <option value="">{tr}Please select{/tr}</option>
                                                 <option value="armscii8" title="Armenian, Binary">armscii8</option>
                                                 <option value="ascii" title="West European (multilingual), Binary">ascii</option>

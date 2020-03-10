@@ -122,7 +122,7 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 			break;
 	}
 
-	if ($prefs['javascript_enabled'] != 'y') {
+	if (isset($prefs['javascript_enabled']) && $prefs['javascript_enabled'] != 'y') {
 		$params['close'] = false;
 		$params['store_cookie'] = false;
 		$cookie_hash = '';
