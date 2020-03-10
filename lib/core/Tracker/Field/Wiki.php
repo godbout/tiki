@@ -41,7 +41,7 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 							'none' => tr('No namespace'),
 							'custom' => tr('Custom namespace'),
 						],
-						'default' => 'default',
+						'default' => ($prefs['namespace_enabled'] === 'y' ? 'default' : 'none'),
 					],
 					'customnamespace' => [
 						'name' => tr('Custom Namespace'),
@@ -147,7 +147,7 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 	/**
 	 * @param $ins_fields_data
 	 * @param int $itemId           set to itemId when importing
-	 * @return bool|mixed|string
+	 * @return bool
 	 */
 	function isValid($ins_fields_data, $itemId = 0)
 	{
@@ -159,17 +159,25 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 			$itemId = $this->getItemId();
 		}
 
+		if ($this->getOption('namespace') !== 'none' && $prefs['namespace_enabled'] !== 'y') {
+			Feedback::error(tr('Warning: You need to enable the Namespace feature to use the namespace field.'));
+			return false;
+		}
+
+
 		if (TikiLib::lib('trk')->check_field_value_exists($pagename, $pagenameField, $itemId)) {
-			return tr('The page name provided already exists. Please choose another.');
+			Feedback::error(tr('The page name provided already exists. Please choose another.'));
+			return false;
 		}
 
 		if ($prefs['wiki_badchar_prevent'] == 'y' && TikiLib::lib('wiki')->contains_badchars($pagename)) {
 			$bad_chars = TikiLib::lib('wiki')->get_badchars();
-			return tr(
+			Feedback::error(tr(
 				'The page name specified "%0" contains unallowed characters. It will not be possible to save the page until those are removed: %1',
 				$pagename,
 				$bad_chars
-			);
+			));
+			return false;
 		}
 
 		return true;
@@ -264,7 +272,7 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 		}
 
 		if (empty($page_name) && $_SERVER['REQUEST_METHOD'] === 'POST' && empty($requestData[$insForPagenameField])) {
-			// saving a new item may have the wiki page name misasing if it is an autoincrement field, so show a warning - TODO better somehow?
+			// saving a new item may have the wiki page name missing if it is an autoincrement field, so show a warning - TODO better somehow?
 			Feedback::error(tr('Missing Page Name field #%0 value for Wiki field #%1 (so page not created)', $this->getOption('fieldIdForPagename'), $fieldId));
 		}
 
