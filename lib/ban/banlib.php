@@ -251,23 +251,45 @@ class BanLib extends TikiLib
 		$count = TikiDb::get()->table('tiki_banning')->fetchCount(['banId' => $banId]);
 		if ($banId && $count > 0) {
 			$query = "update `tiki_banning` set `title`=?, `ip1`=?, `ip2`=?, `ip3`=?, `ip4`=?, `user`=?, " .
-					 "`date_from` = FROM_UNIXTIME(?), `date_to` = FROM_UNIXTIME(?), `use_dates` = ?, `message` = ? where `banId`=?";
+				"`date_from` = FROM_UNIXTIME(?), `date_to` = FROM_UNIXTIME(?), `use_dates` = ?, `message` = ? where `banId`=?";
 
-			$result = $this->query($query, [$title, $ip1, $ip2, $ip3, $ip4, $user, $date_from, $date_to, $use_dates, $message, $banId]);
+			$resultUpdate = $this->query($query, [$title, $ip1, $ip2, $ip3, $ip4, $user, $date_from, $date_to, $use_dates, $message, $banId]);
 		} else {
 			$query = "insert into `tiki_banning`(`mode`,`title`,`ip1`,`ip2`,`ip3`,`ip4`,`user`,`date_from`,`date_to`,`use_dates`,`message`,`created`) " .
-					 "values(?,?,?,?,?,?,?,FROM_UNIXTIME(?),FROM_UNIXTIME(?),?,?,?)";
-			$result = $this->query($query, [$mode, $title, $ip1, $ip2, $ip3, $ip4, $user, $date_from, $date_to, $use_dates, $message, $this->now]);
+				"values(?,?,?,?,?,?,?,FROM_UNIXTIME(?),FROM_UNIXTIME(?),?,?,?)";
+			$resultInsert = $this->query($query, [$mode, $title, $ip1, $ip2, $ip3, $ip4, $user, $date_from, $date_to, $use_dates, $message, $this->now]);
 			$banId = $this->getOne("select max(`banId`) from `tiki_banning` where `created`=?", [$this->now]);
 		}
 
+		$oldSections = TikiDb::get()->table('tiki_banning_sections')->fetchColumn('section',['banId' => $banId]);
 		$query = "delete from `tiki_banning_sections` where `banId`=?";
 		$this->query($query, [$banId]);
 
 		foreach ($sections as $section) {
 			$query = "insert into `tiki_banning_sections`(`banId`,`section`) values(?,?)";
 
-			$this->query($query, [$banId, $section]);
+			$resultSections = $this->query($query, [$banId, $section]);
+		}
+		$newSections = TikiDb::get()->table('tiki_banning_sections')->fetchColumn('section',['banId' => $banId]);
+
+		if (isset($resultInsert)) {
+			$result = $resultInsert;
+		} elseif (isset($resultUpdate)) {
+			// for updates, must check both tiki_banning and tiki_banning_sections to see if anything changed
+			if ($resultUpdate->numRows()) {
+				// something was changed in tiki_banning
+				$result = $resultUpdate;
+			} else {
+				if ($oldSections != $newSections) {
+					// something was changed in tiki_banning_sections
+					$result = $resultSections;
+				} else {
+					// update didn't change anything
+					$result = $resultUpdate;
+				}
+			}
+		} else {
+			$result = false;
 		}
 		return $result;
 	}
