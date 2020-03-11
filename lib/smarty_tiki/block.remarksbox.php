@@ -127,7 +127,7 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 		$params['store_cookie'] = false;
 		$cookie_hash = '';
 		$hidden = false;
-	} elseif ($params['store_cookie'] === 'y') {
+	} elseif ($params['store_cookie'] === 'y' && function_exists('getCookie')) {
 		$params['close'] = $params['close'] !== 'n';
 		$params['store_cookie'] = $params['store_cookie'] !== 'n';
 		$cookie_hash = md5($params['title'] . $params['version'] . $content);
