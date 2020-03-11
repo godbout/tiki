@@ -26,6 +26,9 @@ function prefs_namespace_list()
 			'default' => ':_:',
 			'keywords' => 'Namespaces',
 			'perspective' => false,
+			'dependencies' => [
+				'namespace_enabled',
+			],
 		],
 		'namespace_default' => [
 			'name' => tr('Default namespace'),
@@ -39,18 +42,27 @@ function prefs_namespace_list()
 			'description' => tra('Hide namespace indicator in structure path.'),
 			'type' => 'flag',
 			'default' => 'n',
+			'dependencies' => [
+				'namespace_separator',
+			],
 		],
 		'namespace_indicator_in_page_title' => [
 			'name' => tra('Hide namespace indicator in page title'),
 			'description' => tra('Hide namespace indicator in page title.'),
 			'type' => 'flag',
 			'default' => 'n',
+			'dependencies' => [
+				'namespace_enabled',
+			],
 		],
 		'namespace_force_links' => [
 			'name' => tra('Force all non-namespace page links to the same namespace'),
 			'description' => tra('If the current page is in a namespace, all links without a namespace will have it added automatically'),
 			'type' => 'flag',
 			'default' => 'n',
+			'dependencies' => [
+				'namespace_enabled',
+			],
 		],
 	];
 }
