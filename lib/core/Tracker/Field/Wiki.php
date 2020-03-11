@@ -41,7 +41,7 @@ class Tracker_Field_Wiki extends Tracker_Field_Text implements Tracker_Field_Exp
 							'none' => tr('No namespace'),
 							'custom' => tr('Custom namespace'),
 						],
-						'default' => ($prefs['namespace_enabled'] === 'y' ? 'default' : 'none'),
+						'default' => (isset($prefs['namespace_enabled']) && $prefs['namespace_enabled'] === 'y' ? 'default' : 'none'),
 					],
 					'customnamespace' => [
 						'name' => tr('Custom Namespace'),
