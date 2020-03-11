@@ -59,37 +59,41 @@ class Tracker_Field_Freetags extends Tracker_Field_Abstract implements Tracker_F
 
 	function getFieldData(array $requestData = [])
 	{
+		$perms = Perms::get('tiki_p_view_freetags');
 		$data = [];
+		if($perms->$permission) {
 
-		$ins_id = $this->getInsertId();
+			$ins_id = $this->getInsertId();
 
-		if (isset($requestData[$ins_id])) {
-			$data['value'] = $requestData[$ins_id];
-		} else {
-			global $prefs;
+			if (isset($requestData[$ins_id])) {
+				$data['value'] = $requestData[$ins_id];
+			} else {
+				global $prefs;
 
-			$data['value'] = $this->getValue();
+				$data['value'] = $this->getValue();
 
-			$langutil = new Services_Language_Utilities;
-			$itemLang = null;
-			if ($this->getItemId()) {
-				try {
-					$itemLang = $langutil->getLanguage('trackeritem', $this->getItemId());
-				} catch (Services_Exception $e) {
-					$itemLang = null;
+				$langutil = new Services_Language_Utilities;
+				$itemLang = null;
+				if ($this->getItemId()) {
+					try {
+						$itemLang = $langutil->getLanguage('trackeritem', $this->getItemId());
+					} catch (Services_Exception $e) {
+						$itemLang = null;
+					}
+				}
+				$freetaglib = TikiLib::lib('freetag');
+				$data['freetags'] = $freetaglib->_parse_tag($data['value']);
+				if ($this->getOption('hidesuggest') == '') {
+					$data['tag_suggestion'] = $freetaglib->get_tag_suggestion(
+						implode(' ', $data['freetags']),
+						$prefs['freetags_browse_amount_tags_suggestion'],
+						$itemLang
+					);
+				} else {
+					$data['all_tags'] = $freetaglib->silly_list(-1);
 				}
 			}
-			$freetaglib = TikiLib::lib('freetag');
-			$data['freetags'] = $freetaglib->_parse_tag($data['value']);
-			if ($this->getOption('hidesuggest') == '') {
-				$data['tag_suggestion'] = $freetaglib->get_tag_suggestion(
-					implode(' ', $data['freetags']),
-					$prefs['freetags_browse_amount_tags_suggestion'],
-					$itemLang
-				);
-			} else {
-				$data['all_tags'] = $freetaglib->silly_list(-1);
-			}
+
 		}
 
 		return $data;
