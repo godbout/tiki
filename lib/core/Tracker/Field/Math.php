@@ -91,19 +91,23 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 		$value = $this->getValue();
 
 		if ('index' == $this->getOption('recalculate')) {
-			$runner = $this->getFormulaRunner();
-			$data = [];
+			try {
+				$runner = $this->getFormulaRunner();
+				$data = [];
 
-			foreach ($runner->inspect() as $fieldName) {
-				if (is_string($fieldName) || is_numeric($fieldName)) {
-					$data[$fieldName] = $this->getItemField($fieldName);
+				foreach ($runner->inspect() as $fieldName) {
+					if (is_string($fieldName) || is_numeric($fieldName)) {
+						$data[$fieldName] = $this->getItemField($fieldName);
+					}
 				}
+
+				$this->prepareFieldValues($data);
+				$runner->setVariables($data);
+
+				$value = $runner->evaluate();
+			} catch (Math_Formula_Exception $e) {
+				$value = $e->getMessage();
 			}
-
-			$this->prepareFieldValues($data);
-			$runner->setVariables($data);
-
-			$value = $runner->evaluate();
 
 			if ($value !== $this->getValue()) {
 				$trklib = TikiLib::lib('trk');
