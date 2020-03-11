@@ -110,6 +110,8 @@ class Math_Formula_Currency implements Math_Formula_Applicator {
       $amount = $another->convertTo($this->currency)->getAmount();
     } elseif (is_numeric($another)) {
       $amount = $another;
+    } elseif (empty($another)) {
+      $amount = 0;
     } else {
       throw new Math_Formula_Exception(tr('Currency calculation tried with unknown entity: %0', $another));
     }
