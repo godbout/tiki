@@ -55,8 +55,14 @@ if (isset($_REQUEST['openpost'])) {
 $smarty->assign('forumId', $_REQUEST['forumId']);
 $tikilib->get_perm_object($_REQUEST['forumId'], 'forum', $forum_info, true);
 
+if (! isset($_REQUEST["sort_mode"])) {
+	$sort_mode = $prefs['forums_ordering'];
+} else {
+	$sort_mode = $_REQUEST["sort_mode"];
+}
+
 //get sub forums list
-$channels = $commentslib->list_forums(0, -1, 'name_asc', '', $_REQUEST['forumId']);
+$channels = $commentslib->list_forums(0, -1, $sort_mode, '', $_REQUEST['forumId']);
 //get parent forums
 $parents = $commentslib->get_forum_parents($forum_info);
 $smarty->assign('parents', $parents);
@@ -415,7 +421,7 @@ if ($prefs['feature_user_watches'] == 'y') {
 }
 
 if ($tiki_p_admin_forum == 'y' || $prefs['feature_forum_quickjump'] == 'y') {
-	$all_forums = $commentslib->list_forums(0, -1, 'name_asc', '');
+	$all_forums = $commentslib->list_forums(0, -1, $sort_mode, '');
 	$temp_max = count($all_forums['data']);
 	for ($i = 0; $i < $temp_max; $i++) {
 		if ($userlib->object_has_one_permission($all_forums['data'][$i]['forumId'], 'forum')) {

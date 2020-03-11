@@ -435,6 +435,54 @@ class Services_Forum_Controller
 		}
 	}
 
+	/**
+	 * Action to order forums
+	 *
+	 * @param $input
+	 * @return array
+	 * @throws Exception
+	 */
+	function action_order_forum($input)
+	{
+		$util = new Services_Utilities();
+		$util->setVars($input, $this->filters, 'forumsId');
+		$perms = Perms::get('forum', $util->items);
+		if (! $perms->admin_forum) {
+			throw new Services_Exception_Denied(tr('Reserved for forum administrators'));
+		}
+
+		if ($util->notConfirmPost()) {
+			if ($util->itemsCount > 0) {
+				$util->items = $this->getForumNames($util->items);
+				$msg = tra('Reorder the following forums?');
+				return $util->confirm($msg, tra('Reorder'));
+			} else {
+				Services_Utilities::modalException(tra('No forum order specified, please specify the order of the forums.'));
+			}
+		} elseif ($util->checkCsrf()) {
+			$util->setDecodedVars($input, $this->filters);
+			$orders = $util->extra['order'];
+			$i = 0;
+			foreach ($util->items as $id => $name) {
+				if (is_numeric($id)) {
+					$this->lib->reorder_forum($id, $orders[$i]);
+				}
+				$i++;
+			}
+			//prepare feedback
+			$msg = tra('Forums have been reorded');
+
+			$feedback = [
+				'tpl' => 'action',
+				'mes' => $msg,
+				'items' => $util->items,
+			];
+			Feedback::success($feedback);
+			//return to page
+			return Services_Utilities::refresh($util->extra['referer'], 'queryAndAnchor');
+		}
+	}
+
 	private function checkPerms($forumId)
 	{
 		$perm = $this->lib->admin_forum($forumId);

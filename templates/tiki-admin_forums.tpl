@@ -1,6 +1,8 @@
 {* $Id$ *}
 {if !$ts.ajax}
-	{title help="Forums" admpage="forums" url='tiki-admin_forums.php'}{tr}Admin Forums{/tr}{/title}
+	{title help="Forums" admpage="forums" url='tiki-admin_forums.php'}
+		{tr}Admin Forums{/tr}{if isset($parent)}: {$parent.name}{/if}
+	{/title}
 
 	<div class="t_navbar mb-4">
 		{if $tiki_p_admin_forum eq 'y' && $forumId > 0 or (isset($dup_mode) and $dup_mode eq 'y')}
@@ -14,6 +16,9 @@
 		{/if}
 		{if $tiki_p_admin_forum eq 'y'}
 			{button _type="link" class="btn btn-link" href="tiki-forum_import.php" _icon_name="import" _text="{tr}Import{/tr}"}
+		{/if}
+		{if $tiki_p_admin_forum eq 'y'}
+			{button _type="link" class="btn btn-link" href="tiki-admin.php?page=forums&cookietab=2&highlight=forums_ordering" _icon_name="cog" _text="{tr}Forum Ordering{/tr}"}
 		{/if}
 		{if $tiki_p_forum_read eq 'y'}
 			{button _type="link" class="btn btn-link" href="tiki-forums.php" _icon_name="list" _text="{tr}List{/tr}"}
@@ -46,6 +51,10 @@
 								{self_link _sort_arg='sort_mode' _sort_field='threads'}{tr}Topics{/tr}{/self_link}
 								{$numbercol = $numbercol+1}
 							</th>
+							<th id="threads">
+								{self_link _sort_arg='sort_mode' _sort_field='threads'}{tr}Order{/tr}{/self_link}
+								{$numbercol = $numbercol+1}
+							</th>
 							<th id="comments">
 								{self_link _sort_arg='sort_mode' _sort_field='comments'}{tr}Comments{/tr}{/self_link}
 								{$numbercol = $numbercol+1}
@@ -74,6 +83,10 @@
 									<a class="link" href="{$channels[user].forumId|sefurl:'forum'}" title="{tr}View{/tr}">{$channels[user].name|escape}</a>
 								</td>
 								<td class="integer"><span class="badge badge-secondary">{$channels[user].threads}<span></td>
+								<td class="integer">
+									<input type="number" name="order[]" value="{$channels[user].forumOrder|escape}">
+									<input type="hidden" name="forumsId[]" value="{$channels[user].forumId|escape}">
+								</td>
 								<td class="integer"><span class="badge badge-secondary">{$channels[user].comments}<span></td>
 								<td class="integer"><span class="badge badge-secondary">{$channels[user].users}<span></td>
 								<td class="integer"><span class="badge badge-secondary">{$channels[user].age}<span></td>
@@ -156,6 +169,7 @@
 								</option>
 								{if $tiki_p_admin_forum eq 'y'}
 									<option value="delete_forum">{tr}Delete{/tr}</option>
+									<option value="order_forum">{tr}Reorder forums{/tr}</option>
 								{/if}
 							</select>
 							<span class="input-group-append">
@@ -248,6 +262,14 @@
 								</div>
 							</div>
 						{/if}
+						<div class="form-group row">
+							<label class="col-sm-4 col-form-label" for="image">{tr}Forum Order{/tr}</label>
+							<div class="col-sm-8">
+								<div class="form-text">
+									{tr}{$forumOrder|escape}{/tr}
+								</div>
+							</div>
+						</div>
 						<div class="form-group row">
 							<label class="col-sm-4 form-check-label" for="is_flat">{tr}Only allow replies to the first message (flat forum){/tr}</label>
 							<div class="col-sm-8">

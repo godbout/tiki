@@ -1360,6 +1360,18 @@ class Comments extends TikiLib
 
 	/**
 	 * @param $forumId
+	 * @param $newOrder
+	 * @return bool
+	 */
+	function reorder_forum($forumId, $newOrder)
+	{
+		$this->table('tiki_forums')->update(['forumOrder' => $newOrder],['forumId' => $forumId]);
+
+		return true;
+	}
+
+	/**
+	 * @param $forumId
 	 * @return bool
 	 */
 	function remove_forum($forumId)
@@ -1442,7 +1454,7 @@ class Comments extends TikiLib
 			$res['threads'] = (int) $this->count_comments_threads('forum:' . $res['forumId']);
 
 			//Get sub forums
-			$res['sub_forums'] = $this->get_sub_forums($res['forumId']);
+			$res['sub_forums'] = $this->get_sub_forums($res['forumId'], $query_sort_mode);
 
 			// Get number of posts on this forum
 			$res['comments'] = (int) $this->count_comments('forum:' . $res['forumId']);
@@ -1864,9 +1876,10 @@ class Comments extends TikiLib
 
 	/**
 	 * @param $parentId
+	 * @param $query_sort_mode
 	 * @return mixed
 	 */
-	function get_sub_forums($parentId = 0)
+	function get_sub_forums($parentId = 0, $query_sort_mode = 'name_asc')
 	{
 		$bindvars = [];
 		$query_sort_mode = 'name_asc';

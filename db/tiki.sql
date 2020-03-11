@@ -1002,6 +1002,7 @@ DROP TABLE IF EXISTS `tiki_forums`;
 CREATE TABLE `tiki_forums` (
   `forumId` int(8) NOT NULL auto_increment,
   `parentId` int(8) NOT NULL default 0,
+  `forumOrder` int(8) NOT NULL default 0,
   `name` varchar(255) default NULL,
   `description` text,
   `created` int(14) default NULL,

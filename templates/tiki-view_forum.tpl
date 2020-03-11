@@ -20,6 +20,7 @@
 		{if $tiki_p_admin_forum eq 'y'}
 			{button href="tiki-admin_forums.php?parentId=$thisforum_info&amp;cookietab=2#content_admin_forums1-2" _icon_name="create" _type="link" class="btn btn-link" _text="{tr}Add Sub Forum{/tr}"}
 			{button href="tiki-admin_forums.php?forumId=$thisforum_info&amp;cookietab=2#content_admin_forums1-2" _icon_name="edit" _type="link" class="btn btn-link" _text="{tr}Edit Forum{/tr}"}
+			{button href="tiki-admin_forums.php?parentId=$thisforum_info" _icon_name="cog" _type="link" class="btn btn-link" _text="{tr}Admin{/tr}"}
 		{/if}
 		{if $tiki_p_admin_forum eq 'y' or !isset($all_forums) or $all_forums|@count > 1}
 			{* No need for users to go to forum list if they are already looking at the only forum BUT note that all_forums only defined with quickjump feature *}

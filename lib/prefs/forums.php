@@ -20,6 +20,8 @@ function prefs_forums_list()
 				'hits_desc' => tra('Visits (desc)'),
 				'name_desc' => tra('Name (desc)'),
 				'name_asc' => tra('Name (asc)'),
+				'forumOrder_desc' => tra('Arbitrary (desc)'),
+				'forumOrder_asc' => tra('Arbitrary (asc)'),
 			],
 			'default' => 'created_desc',
 		],

@@ -289,7 +289,7 @@ foreach ($info as $key => $value) {
 	}
 }
 if (! isset($_REQUEST["sort_mode"])) {
-	$sort_mode = 'name_asc';
+	$sort_mode = $prefs['forums_ordering'];
 } else {
 	$sort_mode = $_REQUEST["sort_mode"];
 }
@@ -311,7 +311,11 @@ if (isset($_REQUEST['numrows'])) {
 } else {
 	$maxRecords = $prefs['maxRecords'];
 }
-$channels = $commentslib->list_forums($offset, $maxRecords, $sort_mode, $find,0);
+$channels = $commentslib->list_forums($offset, $maxRecords, $sort_mode, $find,$_REQUEST['parentId']);
+if($_REQUEST['parentId'] > 0) {
+	$forumParent = $commentslib->get_forum($_REQUEST['parentId']);
+	$smarty->assign('parent',$forumParent);
+}
 $max = count($channels["data"]);
 for ($i = 0; $i < $max; $i++) {
 	if ($userlib->object_has_one_permission($channels["data"][$i]["forumId"], 'forum')) {
