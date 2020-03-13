@@ -16,6 +16,7 @@ class Search_Indexer
 
 	private $cacheGlobals = null;
 	private $cacheTypes = [];
+	private $cacheErrors = [];
 
 	private $contentFilters = [];
 
@@ -60,11 +61,7 @@ class Search_Indexer
 						break;
 				}
 
-				$this->log->err($error . ': ' . $errstr, [
-					'code' => $errno,
-					'file' => $errfile,
-					'line' => $errline,
-				]);
+				$this->cacheErrors[] = compact('error', 'errstr', 'errfile', 'errline');
 
 				return true;
 			}, E_ALL);
@@ -159,6 +156,14 @@ class Search_Indexer
 				Feedback::error($msg);
 				$this->log->err($msg);
 			}
+			foreach ($this->cacheErrors as $err) {
+				$this->log->err($err['error'] . ': ' . $err['errstr'], [
+						'code' => $err['errno'],
+						'file' => $err['errfile'],
+						'line' => $err['errline'],
+					]);
+			}
+			$this->cacheErrors = [];
 		}
 
 		return count($data);
