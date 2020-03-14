@@ -77,7 +77,7 @@ function wikiplugin_diagram_info()
 function wikiplugin_diagram($data, $params)
 {
 
-	global $tikilib, $cachelib, $user, $page, $wikiplugin_included_page, $tiki_p_upload_files, $prefs;
+	global $tikilib, $cachelib, $user, $page, $tiki_p_upload_files, $prefs;
 
 	$compressXml = ($prefs['fgal_use_diagram_compression_by_default'] !== 'y') ? false : true;
 	$compressXmlParam = false;
@@ -221,12 +221,7 @@ EOF;
 		}
 	}
 
-	//checking if user can see edit button
-	if (! empty($wikiplugin_included_page)) {
-		$sourcepage = $wikiplugin_included_page;
-	} else {
 	$sourcepage = $page;
-	}
 
 	//checking if user has edit permissions on the wiki page/file using the current permission library to obey global/categ/object perms
 	if ($fileId) {
