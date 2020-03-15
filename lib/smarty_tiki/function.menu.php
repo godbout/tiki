@@ -65,21 +65,33 @@ function smarty_function_menu($params, $smarty)
 
 	$objectCategories = TikiLib::lib('categ')->get_current_object_categories();
 
-	list($categGroups) = array_values(array_filter(array_map(function ($categId) {
-		$categ = TikiLib::lib('categ')->get_category($categId);
-		$parent = TikiLib::lib('categ')->get_category($categ["parentId"]);
-		if (! $parent || $parent["id"] != 0 || ! $parent["tplGroupContainerId"]) {
-			return null;
-		}
-		$templatedgroupid = TikiLib::lib('attribute')->get_attribute("category", $categId, "tiki.category.templatedgroupid");
-		$tplGroup = TikiLib::lib('user')->get_groupId_info($templatedgroupid);
-		if (empty($tplGroup['groupName'])) {
-			return null;
-		}
-		return [$parent["tplGroupContainerId"] => $tplGroup['groupName']];
-	}, $objectCategories), function ($group) {
-		return $group != null;
-	}));
+	if ($objectCategories) {
+		list($categGroups) = array_values(
+			array_filter(
+				array_map(
+					function ($categId) {
+						$categ = TikiLib::lib('categ')->get_category($categId);
+						$parent = TikiLib::lib('categ')->get_category($categ["parentId"]);
+						if (! $parent || $parent["id"] != 0 || ! $parent["tplGroupContainerId"]) {
+							return null;
+						}
+						$templatedgroupid = TikiLib::lib('attribute')->get_attribute(
+							"category", $categId, "tiki.category.templatedgroupid"
+						);
+						$tplGroup = TikiLib::lib('user')->get_groupId_info($templatedgroupid);
+						if (empty($tplGroup['groupName'])) {
+							return null;
+						}
+						return [$parent["tplGroupContainerId"] => $tplGroup['groupName']];
+					}, $objectCategories
+				), function ($group) {
+				return $group != null;
+			}
+			)
+		);
+	} else {
+		$categGroups = [];
+	}
 
 	if (isset($params['bootstrap']) && $params['bootstrap'] !== 'n' && $prefs['javascript_enabled'] === 'y') {
 		$structured = [];

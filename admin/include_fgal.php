@@ -21,10 +21,10 @@ if (isset($_REQUEST['fgal_use_dir'])) {
 	$filegallib->setupDirectory($_REQUEST["fgal_use_dir"]);
 }
 // Check for last character being a / or a \
-if (substr($_REQUEST["fgal_podcast_dir"], -1) != "\\" && substr($_REQUEST["fgal_podcast_dir"], -1) != "/" && $_REQUEST["fgal_podcast_dir"] != "") {
+if (isset($_REQUEST["fgal_podcast_dir"]) && substr($_REQUEST["fgal_podcast_dir"], -1) != "\\" && substr($_REQUEST["fgal_podcast_dir"], -1) != "/" && $_REQUEST["fgal_podcast_dir"] != "") {
 	$_REQUEST["fgal_podcast_dir"] .= "/";
 }
-if (substr($_REQUEST["fgal_batch_dir"], -1) != "\\" && substr($_REQUEST["fgal_batch_dir"], -1) != "/" && $_REQUEST["fgal_batch_dir"] != "") {
+if (isset($_REQUEST["fgal_batch_dir"]) && substr($_REQUEST["fgal_batch_dir"], -1) != "\\" && substr($_REQUEST["fgal_batch_dir"], -1) != "/" && $_REQUEST["fgal_batch_dir"] != "") {
 	$_REQUEST["fgal_batch_dir"] .= "/";
 }
 simple_set_value("fgal_use_dir");

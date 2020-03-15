@@ -50,7 +50,7 @@ class ocrLib extends TikiLib
 	public const PDF_MIME = ['application/pdf'];
 
 	/** @var array All file types that will be available for OCRing */
-	public $ocrMime;
+	public $ocrMime = [];
 
 	/** @var string The minimum version requirement of Tesseract that needs to be installed on the OS */
 	private const TESSERACT_BINARY_VERSION = '3.5.1';

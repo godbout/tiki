@@ -48,16 +48,17 @@ function module_quickadmin_info()
 function module_quickadmin($mod_reference, $module_params)
 {
 
-	if (! empty($module_params['display'])) {
-		if ($module_params['display'] == 'shortcuts') {
-			TikiLib::lib('smarty')->assign('only_shortcuts', 'y');
-		}
-		if ($module_params['display'] == 'history') {
-			TikiLib::lib('smarty')->assign('only_prefs_history', 'y');
-			TikiLib::lib('smarty')->assign('recent_prefs', TikiLib::lib('prefs')->getRecent());
-		}
-		if ($module_params['display'] == 'both') {
-			TikiLib::lib('smarty')->assign('recent_prefs', TikiLib::lib('prefs')->getRecent());
-		}
+	if (empty($module_params['display'])) {
+		$module_params['display'] = 'both';
+	}
+	if ($module_params['display'] == 'shortcuts') {
+		TikiLib::lib('smarty')->assign('only_shortcuts', 'y');
+	}
+	if ($module_params['display'] == 'history') {
+		TikiLib::lib('smarty')->assign('only_prefs_history', 'y');
+		TikiLib::lib('smarty')->assign('recent_prefs', TikiLib::lib('prefs')->getRecent());
+	}
+	if ($module_params['display'] == 'both') {
+		TikiLib::lib('smarty')->assign('recent_prefs', TikiLib::lib('prefs')->getRecent());
 	}
 }

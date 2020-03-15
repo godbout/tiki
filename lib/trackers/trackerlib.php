@@ -5943,24 +5943,28 @@ class TrackerLib extends TikiLib
 		// get the handler for the specific fieldtype.
 		$handler = $this->get_field_handler($field, $item);
 
-		if ($handler && isset($params['process']) && $params['process'] == 'y') {
-			if ($field['type'] === 'e') {	// category
-				if (! is_array($field['value'])) {
-					$categIds = explode(',', $field['value']);
-				} else {
-					$categIds = $field['value'];
-				}
-				$requestData = ['ins_' . $field['fieldId'] => $categIds];
-			} else {
-				$requestData = $field;
-			}
-			$linkedField = $handler->getFieldData($requestData);
-			$field = array_merge($field, $linkedField);
-			$field['ins_id'] = 'ins_' . $field['fieldId'];
-			$handler = $this->get_field_handler($field, $item);
-		}
-
 		if ($handler) {
+			if (! isset($field['value'])) {
+				$field['value'] = $handler->getFieldData();
+			}
+
+			if (isset($params['process']) && $params['process'] == 'y') {
+				if ($field['type'] === 'e') {	// category
+					if (! is_array($field['value'])) {
+						$categIds = explode(',', $field['value']);
+					} else {
+						$categIds = $field['value'];
+					}
+					$requestData = ['ins_' . $field['fieldId'] => $categIds];
+				} else {
+					$requestData = $field;
+				}
+				$linkedField = $handler->getFieldData($requestData);
+				$field = array_merge($field, $linkedField);
+				$field['ins_id'] = 'ins_' . $field['fieldId'];
+				$handler = $this->get_field_handler($field, $item);
+			}
+
 			$context = $params;
 			$fieldId = $field['fieldId'];
 			unset($context['item']);
