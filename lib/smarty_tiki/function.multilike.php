@@ -116,8 +116,8 @@ function smarty_function_multilike($params, $smarty)
 	$smarty->assign("totalCount", $totalCount);
 	$smarty->assign("totalPoints", $totalPoints);
 	$smarty->assign("relation_prefix", $params['relation_prefix']);
-	$smarty->assign("icon_unselected", $params['icon_unselected']);
-	$smarty->assign("icon_selected", $params['icon_selected']);
+	$smarty->assign("icon_unselected", $config['icon_unselected']);
+	$smarty->assign("icon_selected", $config['icon_selected']);
 	$smarty->assign("multilike_many", $config['allow_multi']);
 
 	$smarty->assign("uses_values", isset($config['values']));
