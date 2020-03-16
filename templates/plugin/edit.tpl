@@ -113,7 +113,7 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 			{if not empty($info.advancedParams)}
 				{button _text='Advanced' _onclick="$('.form-group.advanced.default').toggle('fast'); return false;" _class='btn btn-sm mb-4'}
 				{foreach $info.advancedParams as $name => $param}
-					<div class="form-group advanced default" style="display: none;">
+					<div class="form-group advanced row default" style="display: none;">
 						{plugin_edit_row param=$param name=$name info=$info pluginArgs=$pluginArgs}
 					</div>
 				{/foreach}
