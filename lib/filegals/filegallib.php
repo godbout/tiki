@@ -3957,7 +3957,7 @@ class FileGalLib extends TikiLib
 			if ($node['parentId'] == $id) {
 				// If the current user has permission to access the gallery, then add gallery to the hierarchy.
 				if($node['perms']['tiki_p_view_file_gallery'] == 'y'){
-					$htmlnodes .= "<option value='" . $node['id'] . "'>" . $sub . '&nbsp;' . $node['name'];
+					$htmlnodes .= "<option value='" . $node['id'] . "'>" . $sub . '&nbsp;' . htmlentities($node['name']);
 					$htmlnodes .= $this->getNodes($nodes,$node['id'],$sub . '&mdash;');
 				}
 			}

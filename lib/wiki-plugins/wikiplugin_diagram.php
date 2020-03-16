@@ -178,7 +178,7 @@ function wikiplugin_diagram($data, $params)
 					if($gal['parentId'] == -1){
 						// If the current user has permission to access the gallery, then add gallery to the hierarchy.
 						if($gal['perms']['tiki_p_view_file_gallery']=='y'){
-							$galHtml .= "<option value='" . $gal['id'] . "'>" . $gal['name'];
+							$galHtml .= "<option value='" . $gal['id'] . "'>" . htmlentities($gal['name']);
 						}
 						$galHtml .= $filegallib->getNodes($gals['data'],$gal['id'],"");
 						$galHtml .= "</option>";
