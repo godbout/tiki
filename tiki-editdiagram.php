@@ -344,7 +344,34 @@ $js = "(function()
 	                }
 	            }
 	        };
-		};
+	        mxResources.parse('saveUnchanged=Unsaved changes. Click here to save.');
+		
+			editorUi.menubar.addMenu(mxResources.get('saveUnchanged'), function(){
+				saveDiagramFlow(false);
+				$('.geMenubar').children().last().hide();
+			 } );
+			 
+			 $('.geMenubar').children().last().css(
+				{'background-color': '#f2dede', 'color': '#a94442 !important', 'padding': '4px 6px 4px 6px',
+				'border': '1px solid #ebccd1', 'border-radius': '3px', 'font-size': '12px'}
+			 );
+			 
+			$('.geMenubar').children().last().hide();
+			 
+			editor.graph.model.addListener(mxEvent.CHANGE, function(sender, evt){
+				var changes = evt.getProperty('edit').changes;
+				console.log(changes);
+				for (var i = 0; i < changes.length; i++)
+				{
+					var change = changes[i];
+					if (change instanceof mxChildChange || change instanceof mxGeometryChange || change instanceof mxStyleChange){
+						
+						$('.geMenubar').children().last().show();
+					}
+				}
+			});
+			
+		};    
 		// Adds required resources (disables loading of fallback properties, this can only
 		// be used if we know that all keys are defined in the language specific file)
 		mxResources.loadDefaultBundle = false;
