@@ -557,7 +557,7 @@ class Tracker_Field_Files extends Tracker_Field_Abstract implements Tracker_Fiel
 	/**
 	 * called from action_clone_item and duplicates the related files if option duplicateGalleryID is set
 	 */
-	function handleClone()
+	function handleClone($strict = false)
 	{
 		global $prefs;
 

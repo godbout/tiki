@@ -597,18 +597,19 @@ EXPORT;
 	 * @param Tracker_Definition $definition
 	 * @param array $itemData
 	 * @param int $itemId
+	 * @param boolean $strict
 	 *
 	 * @return Tracker_Item
 	 * @throws Exception
 	 */
-	function cloneItem($definition, $itemData, $itemId)
+	function cloneItem($definition, $itemData, $itemId, $strict = false)
 	{
 		$transaction = TikiLib::lib('tiki')->begin();
 
 		foreach ($definition->getFields() as $field) {
 			$handler = $definition->getFieldFactory()->getHandler($field, $itemData);
 			if (method_exists($handler, 'handleClone')) {
-				$newData = $handler->handleClone();
+				$newData = $handler->handleClone($strict);
 				$itemData['fields'][$field['permName']] = $newData['value'];
 			}
 		}
@@ -632,7 +633,7 @@ EXPORT;
 				foreach ($childDefinition->getFields() as $field) {
 					$handler = $childDefinition->getFieldFactory()->getHandler($field, $data);
 					if (method_exists($handler, 'handleClone')) {
-						$newData = $handler->handleClone();
+						$newData = $handler->handleClone($strict);
 						$data['fields'][$field['permName']] = $newData['value'];
 					}
 				}

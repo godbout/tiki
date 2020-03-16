@@ -477,14 +477,19 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 
 	/**
 	 * called from action_clone_item - sets to current user if autoassign == 1 or 2 (Creator or Modifier)
+	 * @param boolean $strict - strict copy will not modify values based on settings and logged user
 	 */
-	function handleClone()
+	function handleClone($strict = false)
 	{
 		global $user;
 
 		$value = $this->getValue('');
-		$autoassign = (int) $this->getOption('autoassign');
 
+		if ($strict) {
+			return ['value' => $value];
+		}
+
+		$autoassign = (int) $this->getOption('autoassign');
 		if ($autoassign === 1 || $autoassign === 2) {
 			if ($this->getOption('multiple') && $value) {
 				$value = TikiLib::lib('trk')->parse_user_field($value);

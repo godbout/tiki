@@ -53,7 +53,7 @@ class Search_Action_TrackerItemClone implements Search_Action_Action
 		}
 
 		$utilities = new Services_Tracker_Utilities;
-		$itemObject = $utilities->cloneItem($itemObject->getDefinition(), $itemData, $object_id);
+		$itemObject = $utilities->cloneItem($itemObject->getDefinition(), $itemData, $object_id, $strict = true);
 		if ($itemObject) {
 			$this->cloned_object_id = $itemObject->getId();
 			return true;
