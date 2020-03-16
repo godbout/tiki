@@ -103,7 +103,7 @@ class Math_Formula_Runner
 	{
 		$op = $this->getOperation($element);
 
-		$op->evaluateTemplate($element, [ $this, 'inspectData' ]);
+		$op->evaluateTemplateFull($element, [ $this, 'inspectData' ]);
 	}
 
 	function inspectData($data)

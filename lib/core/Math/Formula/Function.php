@@ -15,6 +15,16 @@ abstract class Math_Formula_Function
 		return $this->evaluate($element);
 	}
 
+	function evaluateTemplateFull($element, $evaluateCallback)
+	{
+		$this->callback = $evaluateCallback;
+		if (method_exists($this, 'evaluateFull')) {
+			return $this->evaluateFull($element);
+		} else {
+			return $this->evaluate($element);
+		}
+	}
+
 	abstract function evaluate($element);
 
 	protected function evaluateChild($child, array $extraVariables = [])
