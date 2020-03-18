@@ -155,7 +155,8 @@
 	.chosen-container-single { min-width: 8em; }
 }
 
-.currency_number{
+.currency_number ,
+.currency_code{
 	border: $input-btn-border-width solid $input-border-color !important
 }
 
