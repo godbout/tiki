@@ -120,6 +120,16 @@ function prefs_unified_list()
 			'filter' => 'text',
 			'default' => "title:2.5\nallowed_groups:0.0001\ncategories:0.0001\ndeep_categories:0.0001",
 		],
+		'unified_numeric_field_scroll' => [
+			'name' => tra('Numeric field data modification via scroll'),
+			'description' => tra('Allow the numeric field data to be changed on movement of mousepad or mouse scroll'),
+			'type' => 'list',
+			'options' => [
+				'none' => tra('Disabled'),
+				'browser' => tra('Use default behavior of the browser(browsers have different behaviors)'),
+			],
+			'default' => 'none',
+		],
 		'unified_default_content' => [
 			'name' => tra('Default content fields'),
 			'description' => tra('All of the content is aggregated in the contents field. For custom weighting to apply, the fields must be included in the query. This option allows other fields to be included in the default content search.'),
