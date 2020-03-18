@@ -517,6 +517,19 @@ class Search_Elastic_Connection
 		$content = json_decode($response->getBody());
 
 		if ($response->isSuccess()) {
+			if (isset($content->items)) {
+				foreach($content->items as $item) {
+					foreach($item as $res) {
+						if (isset($res->error)) {
+							$message = $res->error;
+							if (is_object($message) && ! empty($message->reason)) {
+								$message = $message->reason;
+							}
+							throw new Search_Elastic_Exception((string)$message);
+						}
+					}
+				}
+			}
 			return $content;
 		} elseif (isset($content->exists) && $content->exists === false) {
 			throw new Search_Elastic_NotFoundException($content->_type, $content->_id);
