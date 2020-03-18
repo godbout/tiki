@@ -61,7 +61,7 @@ class Tracker_Field_Freetags extends Tracker_Field_Abstract implements Tracker_F
 	{
 		$perms = Perms::get('tiki_p_view_freetags');
 		$data = [];
-		if($perms->$permission) {
+		if ($perms->$permission) {
 
 			$ins_id = $this->getInsertId();
 
