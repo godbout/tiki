@@ -244,32 +244,17 @@ if( $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFi
 	// inline edit fix
 	$("<input type=\"hidden\" name=\"ins_' . $filterFieldIdHere . '\">").val(' . json_encode($filterFieldValueHere) . ').insertBefore("select[name=' . $insertId . ']").trigger("change");
 }
-
-		// Add select and unselect if it is possible to select multiple values
-		checked = false;
-		$("#checkAll_' . $filterFieldIdHere . '").click(function(){
-			if (checked == false) {
-				$("select[name=\'' . $insertId . '\'] option").prop(\'selected\', true);
-				checked = true;
-			} else {
-				$("select[name=\'' . $insertId . '\'] option").prop(\'selected\', false);
-				checked = false;
-			}
-		});
 		'
 		); // add_jq_onready
 		TikiLib::lib('header')->add_jq_onready('
 $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldIdHere . ']").trigger("change", "initial");
 ', 1);
 
-		// Add select and unselect if it is possible to select multiple values
-		if ( $selectMultipleValues == 1 ) {
-			return '<select class="form-control"' . $multiple . ' name="' . $insertId . '"></select>'.
-				'<input type="button" class="btn btn-sm btn-outline py-0 m-1" id="checkAll_' . $filterFieldIdHere . '" value="' . tra('Select all') . '/' . tra('Unselect all') . '">';
-		} else {
-			return '<select class="form-control"' . $multiple . ' name="' . $insertId . '"></select>';
-		}
+		return '<select class="form-control"' . $multiple . ' name="' . $insertId . '"></select>';
 	}
+
+
+
 
 	// If you make changes here check also tiki-tracker_http_request.php as long as it is not integrated in ajax-services
 	// @TODO Move parts of this to getFieldData()
