@@ -24,8 +24,11 @@ class Math_Formula_Function_Div extends Math_Formula_Function
 			} elseif ($element && is_numeric($out) && is_numeric($element)) {
 				$out /= $element;
 			} else {
-				Feedback::warning(tr('Divide by zero on "%0"', implode(',', $elements)));
-				$out = false;
+				// suppress error with division by zero only when inspecting formula as it will always have 'zero' data
+				if (! $this->suppress_error) {
+					$this->error(tr('Divide by zero on "%0"', implode(',', $elements)));
+				}
+				return false;
 			}
 		}
 
