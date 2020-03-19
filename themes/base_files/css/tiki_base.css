@@ -2503,9 +2503,7 @@ table.treetable tr.expanded span.indenter a {
 
 .currency_number {
   border: 1px solid #ced4da !important; }
-  
-.currency_code {
-    border: 1px solid #ced4da !important; }
+
 @media (max-width: 767.98px) {
   .tracker-item-files {
     -webkit-column-count: 1;
