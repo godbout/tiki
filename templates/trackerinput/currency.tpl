@@ -13,7 +13,8 @@
 
 	<div class="col-auto">
 		{if $data.currencies}
-			<select name="{$field.ins_id|escape}_currency" id="{$field.ins_id|escape}_currency" class="currency_code form-control">
+			<select name="{$field.ins_id|escape}_currency" id="{$field.ins_id|escape}_currency" class="currency_code form-control"
+			required {if !empty($field.amount)}required{/if}>
 			<option value=""></option>
 				{foreach from=$data.currencies item=c}
 					<option value="{$c}" {if $c eq $field.currency}selected{/if}>{$c}</option>
