@@ -158,6 +158,14 @@ class Feedback
 	}
 
 	/**
+	 * Clear local feedback storage
+	 */
+	public static function clear()
+	{
+		$_SESSION['tikifeedback'] = [];
+	}
+
+	/**
 	 * Utility to ensure $feedback parameter is in the right format
 	 *
 	 * @param $feedback
@@ -293,6 +301,49 @@ class Feedback
 		}
 	}
 
+	/**
+	 * Print any feedback out to a log file
+	 *
+	 * @param \Zend\Log\Logger $log
+	 * @param bool $clear - remove existing entries from the local storage after sending to log file
+	 */
+	public static function printToLog($log, $clear = false) {
+		$errors = \Feedback::get();
+		if (is_array($errors)) {
+			foreach ($errors as $type => $message) {
+				if (is_array($message)) {
+					if (is_array($message[0]) && ! empty($message[0]['mes'])) {
+						$out = '';
+						foreach ($message as $msg) {
+							$type = $msg['type'];
+							$out .= $type . ': ' . str_replace('<br />', "\n", $msg['mes'][0]) . "\n";
+						}
+						$message = $out;
+					} elseif (! empty($message['mes'])) {
+						$message = $type . ': ' . str_replace('<br />', "\n", $message['mes']);
+					}
+
+					switch ($type) {
+						case 'error':
+							$log->err($message);
+							break;
+						case 'warning':
+							$log->warn($message);
+							break;
+						case 'feedback':
+						case 'success':
+							$log->info($message);
+							break;
+						case 'note':
+							$log->notice($message);
+							break;
+					}
+				} else {
+					$log->err($message);
+				}
+			}
+		}
+	}
 
 	/**
 	 * Remove a specific message from feedback

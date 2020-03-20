@@ -273,6 +273,10 @@ class UnifiedSearchLib
 		// Force destruction to clear locks
 		if ($indexer) {
 			$indexer->clearSources();
+			$indexer->log->info("Indexed");
+			foreach ($stats['default'] as $key => $val) {
+				$indexer->log->info("  $key: $val");
+			}
 			unset($indexer);
 		}
 

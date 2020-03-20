@@ -21,6 +21,7 @@ class Search_Indexer
 	private $contentFilters = [];
 
 	public $log = null;
+	private $logWriter = null;
 
 	public function __construct(Search_Index_Interface $searchIndex, $logWriter = null)
 	{
@@ -74,6 +75,7 @@ class Search_Indexer
 		$logWriter->setFormatter(new Zend\Log\Formatter\Simple());
 		$this->log = new Zend\Log\Logger();
 		$this->log->addWriter($logWriter);
+		$this->logWriter = $logWriter;
 
 		$this->searchIndex = $searchIndex;
 
@@ -154,7 +156,6 @@ class Search_Indexer
 					$e->getMessage()
 				);
 				Feedback::error($msg);
-				$this->log->err($msg);
 			}
 			foreach ($this->cacheErrors as $err) {
 				$this->log->err($err['error'] . ': ' . $err['errstr'], [
@@ -164,6 +165,11 @@ class Search_Indexer
 					]);
 			}
 			$this->cacheErrors = [];
+			// log file display feedback messages after each document line to make it easier to track
+			if (! $this->logWriter instanceof Zend\Log\Writer\Noop) {
+				Feedback::printToLog($this->log);
+				Feedback::clear();
+			}
 		}
 
 		return count($data);
