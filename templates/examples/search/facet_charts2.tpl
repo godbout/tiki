@@ -32,15 +32,22 @@ ChartJS options can be added in JSON format only so far (sorry), but single quot
 
     {chart _type="pie" _options="{'plugins':{'labels':{'render':'value'}},'responsive':true,'animation':{'animateRotate':false}}"}
     (this example uses an extra plugin from https://github.com/emn178/chartjs-plugin-labels)
+
+Debugging:
+	Add _debug="1" to the first chart adds var_dump output on most useful parameters and variables, e.g.
+	{chart _type="pie" label="Test" backgroundColor="red:grey:pink:black" _debug="1"}
  *}
-<pre style="display: none;" class="results-dump">{$results|var_dump}</pre>
-<pre style="display: none;" class="facets-dump">{$facets|var_dump}</pre>
+
+{* if only one chart plugin is used it arrives on it's own, not in an array *}
+{if not isset($chart[0])}{$chart = [$chart]}{/if}
+
+{if not empty($chart[0]['_debug'])}
+	<pre style="display: none;" class="results-dump">{$results|var_dump}</pre>
+	<pre style="display: none;" class="facets-dump">{$facets|var_dump}</pre>
+	<pre style="display: none;" class="charts-dump">{$chart|var_dump}</pre>
+{/if}
 
 {if not empty($facets)}
-	<pre style="display: none;" class="facets-data">{$facets|var_dump}</pre>
-	<pre style="display: none;" class="charts-data">{$chart|var_dump}</pre>
-
-	{if not isset($chart[0])}{$chart = [$chart]}{/if}
 
 	{if empty($container)}
 		{$containerClass = 'row'}
@@ -100,7 +107,7 @@ ChartJS options can be added in JSON format only so far (sorry), but single quot
 				{/if}
 				{$data = ['data' => ['labels' => $labels,'datasets' => $datasets]]}
 
-				<pre style="display: none;" class="data-data">{$data|var_dump}</pre>
+				{if not empty($chart[0]['_debug'])}<pre style="display: none;" class="data-dump">{$data|var_dump}</pre>{/if}
 
 				{if not isset($chart[$i]._options)}
 					{$options = ['responsive' => true, 'maintainAspectRatio' => false]}{* some handy defaults *}
@@ -108,7 +115,7 @@ ChartJS options can be added in JSON format only so far (sorry), but single quot
 					{*convert ' to " as we're coming from inside a wiki plugin param value *}
 					{$options = $chart[$i]._options|replace:'\'': '"'|json_decode:false}
 				{/if}
-				<pre style="display: none;" class="data-options-options">{$options|var_dump}</pre>
+				{if not empty($chart[0]['_debug'])}<pre style="display: none;" class="data-options-options-dump">{$options|var_dump}</pre>{/if}
 
 				{$data.options = $options}
 
@@ -120,7 +127,7 @@ ChartJS options can be added in JSON format only so far (sorry), but single quot
 							{$facet.label|replace:' (Tree)':''|tr_if|escape}
 						{/if}
 					</label>
-					<pre style="display: none;" class="data-options">{$data|var_dump}</pre>
+					{if not empty($chart[0]['_debug'])}<pre style="display: none;" class="data-options-dump">{$data|var_dump}</pre>{/if}
 
 					{wikiplugin _name='chartjs' type=$chart[$i]._type id=$chart[$i]._id width=$chart[$i]._size[0] height=$chart[$i]._size[1] debug=1}
 						{$data|json_encode}
