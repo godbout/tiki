@@ -112,6 +112,11 @@ class LanguageTranslations extends TikiDb_Bridge
 			return;
 		}
 
+		//don't change anything if the language is english
+		if ($this->lang == 'en'){
+			return;
+		}
+
 		// If the translation is not in the database and the new translation is the same as the translation defined by the filesystem, ignore it (do not insert in the database)
 		if (isset(${"lang_$this->lang"}[$originalStr]) && ${"lang_$this->lang"}[$originalStr] == $translatedStr) {
 			{
