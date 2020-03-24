@@ -47,7 +47,7 @@
 				var exp = new Date();
 				exp.setTime(exp.getTime()+(24*60*60*1000*{{$prefs.cookie_consent_expires}}));
 				jqueryTiki.no_cookie = false;
-				setCookie("{{$prefs.cookie_consent_name}}", "y", "", exp);
+				setCookieBrowser("{{$prefs.cookie_consent_name}}", exp.getTime(), "", exp);	// set to cookie value to the expiry time
 				$(document).trigger("cookies.consent.agree");
 				{{if $prefs.cookie_consent_mode eq 'dialog'}}
 		$("#{{$prefs.cookie_consent_dom_id}}").modal("hide");

@@ -68,19 +68,19 @@ class Search_Query_FacetWikiBuilder
 					$real = Search_Query_Facet_DateRange::fromField($real->getField())->setLabel($real->getLabel());
 				}
 
-				if ($facet['operator']) {
+				if (isset($facet['operator']) && $facet['operator']) {
 					$real->setOperator($facet['operator']);
 				}
 
-				if ($facet['count']) {
+				if (isset($facet['count']) && $facet['count']) {
 					$real->setCount($facet['count']);
 				}
 
-				if ($facet['order']) {
+				if (isset($facet['order']) && $facet['order']) {
 					$real->setOrder($facet['order']);
 				}
 
-				if ($facet['min'] !== null) {
+				if (isset($facet['min']) && $facet['min'] !== null) {
 					$real->setMinDocCount($facet['min']);
 				}
 

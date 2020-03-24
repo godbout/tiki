@@ -151,7 +151,7 @@ require_once('lib/setup/theme.php');
 /* Cookie consent setup, has to be after the JS decision and wiki setup */
 
 $cookie_consent_html = '';
-if ($prefs['cookie_consent_feature'] === 'y') {
+if ($prefs['cookie_consent_feature'] === 'y' && strpos($_SERVER['PHP_SELF'], 'tiki-cookie-jar.php') === false) {
 	if (! empty($_REQUEST['cookie_consent_checkbox']) || $prefs['site_closed'] === 'y') {
 		// js disabled
 		setCookieSection($prefs['cookie_consent_name'], 'y');	// set both real cookie and tiki_cookie_jar
@@ -172,6 +172,10 @@ if ($prefs['cookie_consent_feature'] === 'y') {
 		}
 		$cookie_consent_html = $smarty->fetch('cookie_consent.tpl');
 	} else {
+		// check if it was a client-side cookie and turn into a server-side one to get longer than 7 days expiry
+		if ($cookie_consent !== 'y') {
+			setcookie($prefs['cookie_consent_name'], 'y', $cookie_consent / 1000);
+		}
 		$feature_no_cookie = false;
 	}
 }

@@ -170,6 +170,14 @@ class Search_Indexer
 				Feedback::printToLog($this->log);
 				Feedback::clear();
 			}
+			foreach ($this->cacheErrors as $err) {
+				$this->log->err($err['error'] . ': ' . $err['errstr'], [
+						'code' => $err['errno'],
+						'file' => $err['errfile'],
+						'line' => $err['errline'],
+					]);
+			}
+			$this->cacheErrors = [];
 		}
 
 		return count($data);

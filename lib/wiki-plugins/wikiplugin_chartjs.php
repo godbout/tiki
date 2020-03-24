@@ -145,14 +145,16 @@ function wikiplugin_chartjs($data, $params)
 
 	// Disable animation
 	if ($to_PDF) {
-		$options = 'animation: { duration: 0 }';
+		$options['animation'] = [		// 'animation: { duration: 0 }'
+			'duration' => 0,
+		];
 	}
 
 	$script = '
 	var chartjs_' . $params['id'] . ' = new Chart("' . $params['id'] . '", {
 		type: "' . $params['type'] . '",
 		data: ' . json_encode($data) . ',
-		options: { ' . $options . ' }
+		options: ' . json_encode($options) . '
 	});
 ';
 
