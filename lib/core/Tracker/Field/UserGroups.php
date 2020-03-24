@@ -58,7 +58,7 @@ class Tracker_Field_UserGroups extends Tracker_Field_Abstract implements Tracker
 		if ($itemId) {
 			$fields = $this->getOption('specifyFields');
 
-			if (empty(array_filter($fields))) {
+			if (empty($fields) or empty(array_filter($fields))) {
 				$itemUsers = $this->getTrackerDefinition()->getItemUsers($itemId);
 			} else {
 				$trackerId = $this->getConfiguration('trackerId');
