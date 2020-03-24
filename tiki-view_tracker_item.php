@@ -312,6 +312,9 @@ if (! isset($tracker_info["userCanSeeOwn"]) or (isset($utid) and ($trackerId != 
 if (! isset($tracker_info["writerGroupCanModify"]) or (isset($gtid) and ($trackerId != $gtid['groupTrackerId']))) {
 	$tracker_info["writerGroupCanModify"] = 'n';
 }
+if (! isset($tracker_info["groupCanSeeOwn"]) or (isset($gtid) and ($trackerId != $gtid['groupTrackerId']))) {
+	$tracker_info["groupCanSeeOwn"] = 'n';
+}
 $tikilib->get_perm_object($trackerId, 'tracker', $tracker_info);
 if (! $itemObject->canView()) {
 	$smarty->assign('errortype', 403);

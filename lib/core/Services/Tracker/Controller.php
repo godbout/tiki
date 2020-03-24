@@ -1876,6 +1876,7 @@ class Services_Tracker_Controller
 				'outboundEmail' => $input->outboundEmail->email(),
 				'simpleEmail' => $input->simpleEmail->int() ? 'y' : 'n',
 				'userCanSeeOwn' => $input->userCanSeeOwn->int() ? 'y' : 'n',
+				'groupCanSeeOwn' => $input->groupCanSeeOwn->int() ? 'y' : 'n',
 				'writerCanModify' => $input->writerCanModify->int() ? 'y' : 'n',
 				'writerCanRemove' => $input->writerCanRemove->int() ? 'y' : 'n',
 				'userCanTakeOwnership' => $input->userCanTakeOwnership->int() ? 'y' : 'n',

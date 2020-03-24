@@ -35,6 +35,16 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 						],
 						'legacy_index' => 0,
 					],
+					'owner' => [
+						'name' => tr('Item Owner'),
+						'description' => tr('Field that determines permissions of the item when "Group can see their own items" is enabled for the tracker'),
+						'filter' => 'int',
+						'options' => [
+							0 => tr('No'),
+							1 => tr('Yes'),
+						],
+						'default' => 0,
+					],
 					'groupId' => [
 						'name' => tr('Group Filter'),
 						'description' => tr('Limit listed groups to those including the specified group.'),

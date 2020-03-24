@@ -1086,7 +1086,7 @@ function wikiplugin_trackerlist($data, $params)
 		}
 		$userCreatorFieldIds = $definition->getItemOwnerFields();
 		$groupCreatorFieldId = $definition->getWriterGroupField();
-		if ($perms['tiki_p_view_trackers'] != 'y' && ! $definition->isEnabled('writerCanModify') && ! $definition->isEnabled('userCanSeeOwn') && empty($userCreatorFieldIds) && empty($groupCreatorFieldId)) {
+		if ($perms['tiki_p_view_trackers'] != 'y' && ! $definition->isEnabled('writerCanModify') && ! $definition->isEnabled('userCanSeeOwn') && ! $definition->isEnabled('groupCanSeeOwn') && empty($userCreatorFieldIds) && empty($groupCreatorFieldId)) {
 			return;
 		}
 		$smarty->assign_by_ref('perms', $perms);
@@ -1679,6 +1679,16 @@ function wikiplugin_trackerlist($data, $params)
 					$smarty->assign_by_ref('tr_user', $exactvalue);
 				}
 				if ($definition->isEnabled('writerCanModify') or $definition->isEnabled('userCanSeeOwn')) {
+					$skip_status_perm_check = true;
+				}
+			}
+		}
+		if ((isset($view) && $view == 'group')) {
+			if ($f = $definition->getItemGroupOwnerFields()) {
+				$filterfield[] = ['usersearch' => $f];
+				$filtervalue[] = '';
+				$exactvalue[] = $tikilib->get_user_groups(empty($user) ? 'Anonymous' : $user);
+				if ($definition->isEnabled('groupCanSeeOwn')) {
 					$skip_status_perm_check = true;
 				}
 			}

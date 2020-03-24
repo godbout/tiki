@@ -60,7 +60,8 @@ if (! empty($_REQUEST['show']) && $_REQUEST['show'] == 'view') {
 	$cookietab = '2';
 } elseif (empty($_REQUEST['cookietab'])) {
 	if ((isset($tracker_info['writerCanModify']) && $tracker_info['writerCanModify'] == 'y' && $user) or
-		(isset($tracker_info['userCanSeeOwn']) && $tracker_info['userCanSeeOwn'] == 'y' && $user)) {
+		(isset($tracker_info['userCanSeeOwn']) && $tracker_info['userCanSeeOwn'] == 'y' && $user) or
+		(isset($tracker_info['groupCanSeeOwn']) && $tracker_info['groupCanSeeOwn'] == 'y' && $user)) {
 		$cookietab = '1';
 	} elseif (! ($tiki_p_view_trackers == 'y' || $tiki_p_admin == 'y' || $tiki_p_admin_trackers == 'y') && $tiki_p_create_tracker_items == 'y') {
 		$cookietab = "2";
@@ -114,13 +115,17 @@ if ($tracker_info['adminOnlyViewEditItem'] === 'y') {
 }
 
 if ($tiki_p_view_trackers != 'y') {
+	$userOwnerFieldId = $trackerDefinition->getItemOwnerFields();
+	$groupOwnerFieldId = $trackerDefinition->getItemGroupOwnerFields();
 	$userCreatorFieldId = $trackerDefinition->getWriterField();
 	$groupCreatorFieldId = $trackerDefinition->getWriterGroupField();
-	if ($user && ! $my and ( (isset($tracker_info['writerCanModify']) and $tracker_info['writerCanModify'] == 'y') or
-							(isset($tracker_info['userCanSeeOwn']) and $tracker_info['userCanSeeOwn'] == 'y'))
-							 and ! empty($userCreatorFieldId)) {
+	if ($user && ! $my and isset($tracker_info['userCanSeeOwn']) and $tracker_info['userCanSeeOwn'] == 'y' and ! empty($userOwnerFieldId)) {
 		$my = $user;
-	} elseif ($user && ! $ours and isset($tracker_info['writerGroupCanModify']) and $tracker_info['writerGroupCanModify'] == 'y' and ! empty($groupCreatorFieldId)) {
+	} elseif ($user && ! $my and isset($tracker_info['writerCanModify']) and $tracker_info['writerCanModify'] == 'y' and ! empty($userCreatorFieldId)) {
+		$my = $user;
+	} elseif ($group && ! $ours and isset($tracker_info['groupCanSeeOwn']) and $tracker_info['groupCanSeeOwn'] == 'y' and ! empty($groupOwnerFieldId)) {
+		$ours = $group;
+	} elseif ($group && ! $ours and isset($tracker_info['writerGroupCanModify']) and $tracker_info['writerGroupCanModify'] == 'y' and ! empty($groupCreatorFieldId)) {
 		$ours = $group;
 	}
 }
