@@ -55,6 +55,7 @@
 				{preference name=unified_trackeritem_category_names}
 				{preference name=tracker_change_field_type}
 				{preference name=tracker_field_rules}
+				{preference name=unified_numeric_field_scroll}
 			</fieldset>
 
 			<fieldset class="admin">
