@@ -126,7 +126,7 @@ function prefs_unified_list()
 			'type' => 'list',
 			'options' => [
 				'none' => tra('Disabled'),
-				'browser' => tra('Use default behavior of the browser (browsers have different behaviors)'),
+				'browser' => tra('Use default behavior of the browser(browsers have different behaviors)'),
 			],
 			'default' => 'none',
 		],
