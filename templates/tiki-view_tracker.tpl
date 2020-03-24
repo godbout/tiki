@@ -138,7 +138,7 @@
 
 {tabset name='tabs_view_tracker' skipsingle=1}
 
-	{if $tiki_p_view_trackers eq 'y' or (($tracker_info.writerCanModify eq 'y' or $tracker_info.userCanSeeOwn eq 'y' or $tracker_info.writerGroupCanModify eq 'y') and $user)}
+	{if $tiki_p_view_trackers eq 'y' or (($tracker_info.writerCanModify eq 'y' or $tracker_info.userCanSeeOwn eq 'y' or $tracker_info.groupCanSeeOwn eq 'y' or $tracker_info.writerGroupCanModify eq 'y') and $user)}
 		{tab name="{tr}Tracker Items{/tr}"}
 			<h2>{tr}Items{/tr} <span class="badge badge-secondary" style="vertical-align: middle">{$item_count}</span></h2>
 			{* -------------------------------------------------- tab with list --- *}

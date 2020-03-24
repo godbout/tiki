@@ -209,6 +209,21 @@ class Tracker_Definition
 		return array_filter($ownerFields);
 	}
 
+	function getItemGroupOwnerFields()
+	{
+		$ownerFields = [];
+		foreach ($this->getFields() as $field) {
+			if ($field['type'] == 'g'
+				&& $field['options_map']['owner'] == 1) {
+				$ownerFields[] = $field['fieldId'];
+			}
+		}
+		if (! $ownerFields) {
+			$ownerFields = [$this->getWriterGroupField()];
+		}
+		return array_filter($ownerFields);
+	}
+
 	function getArticleField()
 	{
 		foreach ($this->getFields() as $field) {

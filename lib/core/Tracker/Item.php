@@ -26,6 +26,7 @@ class Tracker_Item
 
 	private $owners;
 	private $ownerGroup;
+	private $writerGroup;
 	private $perms;
 
 	private $isNew = false;
@@ -172,12 +173,16 @@ class Tracker_Item
 			$users = array_unique(array_merge($users, $this->owners));
 		}
 
+		if ($operation == 'View' && $this->definition->getConfiguration('groupCanSeeOwn') == 'y' && $this->ownerGroup && in_array($this->ownerGroup, $this->perms->getGroups())) {
+			$users = array_unique(array_merge($users, TikiLib::lib('user')->get_group_users($this->ownerGroup)));
+		}
+
 		if ($this->definition->getConfiguration('writerCan' . $operation, 'n') == 'y') {
 			$users = array_unique(array_merge($users, $this->owners));
 		}
 
-		if ($this->definition->getConfiguration('writerGroupCan' . $operation, 'n') == 'y' && $this->ownerGroup && in_array($this->ownerGroup, $this->perms->getGroups())) {
-			$users = array_unique(array_merge($users, TikiLib::lib('user')->get_group_users($this->ownerGroup)));
+		if ($this->definition->getConfiguration('writerGroupCan' . $operation, 'n') == 'y' && $this->writerGroup && in_array($this->writerGroup, $this->perms->getGroups())) {
+			$users = array_unique(array_merge($users, TikiLib::lib('user')->get_group_users($this->writerGroup)));
 		}
 
 		return $users;
@@ -213,8 +218,15 @@ class Tracker_Item
 			return false;
 		}
 
-		if ($this->definition->getConfiguration('userCanSeeOwn') == 'y') {
-			return ! empty($user) && $this->owners && in_array($user, $this->owners);
+		if ($this->definition->getConfiguration('userCanSeeOwn') == 'y' && ! empty($user) && $this->owners && in_array($user, $this->owners)) {
+			return true;
+		}
+
+		if ($this->definition->getConfiguration('groupCanSeeOwn') == 'y' && ! empty($user) && $this->ownerGroup) {
+			$usergroups = TikiLib::lib('tiki')->get_user_groups($user);
+			if (in_array($this->ownerGroup, $usergroups)) {
+				return true;
+			}
 		}
 
 		return false;
@@ -224,6 +236,7 @@ class Tracker_Item
 	{
 		$this->owners = $this->getItemOwners();
 		$this->ownerGroup = $this->getItemGroupOwner();
+		$this->writerGroup = $this->getItemGroupWriter();
 		$this->perms = $this->getItemPermissions();
 	}
 
@@ -275,6 +288,19 @@ class Tracker_Item
 	}
 
 	private function getItemGroupOwner()
+	{
+		if (! is_object($this->definition)) {
+			return; // TODO: This is a temporary fix, we should be able to getItemOwner always
+		}
+
+		$groupFields = $this->definition->getItemGroupOwnerFields();
+
+		if ($groupFields) {
+			return $this->getValue($groupFields[0]);
+		}
+	}
+
+	private function getItemGroupWriter()
 	{
 		if (! is_object($this->definition)) {
 			return; // TODO: This is a temporary fix, we should be able to getItemOwner always

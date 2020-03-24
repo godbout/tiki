@@ -358,6 +358,17 @@
 			</div>
 			<div class="form-check">
 				<label>
+					<input type="checkbox" class="form-check-input" name="groupCanSeeOwn" value="1"
+						{if $info.groupCanSeeOwn eq 'y'}checked="checked"{/if}>
+					{tr}Group can see their own items{/tr}
+				</label>
+				<div class="description form-text mb-4">
+					{tr}The tracker needs a group field with the item-owner activated{/tr}.
+					{tr}No extra permission is needed at the tracker permissions level to allow a group of users to see just their own items through Plugin TrackerList with the param view=group{/tr}
+				</div>
+			</div>
+			<div class="form-check">
+				<label>
 					<input type="checkbox" class="form-check-input" name="writerCanModify" value="1"
 						{if $info.writerCanModify eq 'y'}checked="checked"{/if}>
 					{tr}Item creator can modify his items{/tr}

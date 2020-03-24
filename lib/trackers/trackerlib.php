@@ -1619,8 +1619,9 @@ class TrackerLib extends TikiLib
 		// optimize permission check - preload ownership fields to be able to quickly enforce canSeeOwn or wrtier group can modify permissions
 		$definition = Tracker_Definition::get($trackerId);
 		$ownershipFields = $definition->getItemOwnerFields();
+		$groupOwnershipFields = $definition->getItemGroupOwnerFields();
 		if ($groupField = $definition->getWriterGroupField()) {
-			$ownershipFields[] = $groupField;
+			$groupOwnershipFields[] = $groupField;
 		}
 
 		while (! $finished) {
@@ -1643,6 +1644,13 @@ class TrackerLib extends TikiLib
 				]);
 				foreach ($rows as $row) {
 					$ownershipData[$row['itemId']][$row['fieldId']] = $this->parse_user_field($row['value']);
+				}
+				$rows = $table->fetchAll(['itemId', 'fieldId', 'value'], [
+					'itemId' => $table->in(array_map(function($row){ return $row['itemId']; }, $ret1)),
+					'fieldId' => $table->in($groupOwnershipFields)
+				]);
+				foreach ($rows as $row) {
+					$ownershipData[$row['itemId']][$row['fieldId']] = $row['value'];
 				}
 			}
 
