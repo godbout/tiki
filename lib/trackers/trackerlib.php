@@ -5157,12 +5157,6 @@ class TrackerLib extends TikiLib
 		$new_values = $args['values'];
 		$old_values = $args['old_values'];
 
-		$the_data = $this->generate_watch_data($old_values, $new_values, $trackerId, $itemId, $args['version']);
-
-		if (empty($the_data) && $prefs['tracker_always_notify'] !== 'y') {
-			return;
-		}
-
 		$tracker_definition = Tracker_Definition::get($trackerId);
 		if (! $tracker_definition) {
 			return;
@@ -5189,11 +5183,6 @@ class TrackerLib extends TikiLib
 				} else {
 					$desc = $this->get_item_value($trackerId, $itemId, $mail_main_value_fieldId);
 				}
-				if ($tracker_info['doNotShowEmptyField'] === 'y') {
-					// remove empty fields if tracker says so
-					$the_data = preg_replace('/\[-\[.*?\]-\] -\[\(.*?\)\]-:\n\n----------\n/', '', $the_data);
-				}
-
 				$smarty = TikiLib::lib('smarty');
 
 				$smarty->assign('mail_date', $this->now);
@@ -5247,6 +5236,19 @@ class TrackerLib extends TikiLib
 					$content = $this->parse_notification_template($watcher['template']);
 
 					$subject = $smarty->fetchLang($watcher['language'], $content['subject']);
+
+					// get the diff for changes for this watcher
+					$the_data = $this->generate_watch_data($old_values, $new_values, $trackerId, $itemId, $args['version'], $watcher['user']);
+
+					if (empty($the_data) && $prefs['tracker_always_notify'] !== 'y') {
+						continue;
+					}
+
+					if ($tracker_info['doNotShowEmptyField'] === 'y') {
+						// remove empty fields if tracker says so
+						$the_data = preg_replace('/\[-\[.*?\]-\] -\[\(.*?\)\]-:\n\n----------\n/', '', $the_data);
+					}
+
 					list($watcher_data, $watcher_subject) = $this->translate_watch_data($the_data, $subject, $watcher['language']);
 
 					$smarty->assign('mail_data', $watcher_data);
@@ -5288,6 +5290,12 @@ class TrackerLib extends TikiLib
 					if (! empty($fieldId)) {
 						$my_sender = $this->get_item_value($trackerId, $itemId, $fieldId);
 					}
+				}
+
+				$the_data = $this->generate_watch_data($old_values, $new_values, $trackerId, $itemId, $args['version']);
+
+				if (empty($the_data) && $prefs['tracker_always_notify'] !== 'y') {
+					return;
 				}
 
 				// Try to find a Subject in $the_data looking for strings marked "-[Subject]-" TODO: remove the tra (language translation by submitter)
@@ -5390,9 +5398,11 @@ class TrackerLib extends TikiLib
 		return [$watcher_data, $watcher_subject];
 	}
 
-	private function generate_watch_data($old, $new, $trackerId, $itemId, $version)
+	private function generate_watch_data($old, $new, $trackerId, $itemId, $version, $watcher = '')
 	{
 		global $prefs;
+
+		$userslib = TikiLib::lib('user');
 
 		$tracker_definition = Tracker_Definition::get($trackerId);
 		if (! $tracker_definition) {
@@ -5433,7 +5443,20 @@ class TrackerLib extends TikiLib
 
 			$handler = $this->get_field_handler($field);
 			if ($handler) {
-				$the_data .= $handler->watchCompare($old_value, $new_value);
+				$userOk = (!$watcher || $watcher === 'admin');
+				if (! $userOk && is_array($field['visibleBy']) && ! empty($field['visibleBy'])) {
+					foreach ($field['visibleBy'] as $group) {
+						$userOk = $userslib->user_is_in_group($watcher, $group);
+						if ($userOk) {
+							break;
+						}
+					}
+				} else {
+					$userOk = true;
+				}
+				if ($userOk) {
+					$the_data .= $handler->watchCompare($old_value, $new_value);
+				}
 			} else {
 				$the_data .= tr('Tracker field not enabled: fieldId=%0 type=%1', $field['fieldId'], tra($field['type'])) . "\n";
 			}
