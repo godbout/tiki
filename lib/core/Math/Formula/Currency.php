@@ -16,10 +16,30 @@ class Math_Formula_Currency implements Math_Formula_Applicator {
     $this->rates = $rates;
   }
 
+  /**
+   * Initialize a currency object from a currency tracker field.
+   *
+   * @param $handler - currency field handler
+   * @return Math_Formula_Currency
+   */
   public static function fromCurrencyField($handler) {
     $data = $handler->getFieldData();
     $rates = TikiLib::lib('trk')->exchange_rates($handler->getOption('currencyTracker'), $data['date']);
     return new self($data['amount'], $data['currency'], $rates);
+  }
+
+  /**
+   * Parse a string and return currency object.
+   *
+   * @param $currency - string
+   * @return Math_Formula_Currency if string is a currency representation or the $currency param otherwise. This does not initialize the currency object with any rates.
+   */
+  public static function tryFromString($currency) {
+    if (preg_match("/^(\d+(\.\d+)?)([A-Z]{3})$/i", $currency, $m)) {
+      return new self($m[1], $m[3]);
+    } else {
+      return $currency;
+    }
   }
 
   public function getAmount() {

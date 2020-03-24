@@ -74,6 +74,8 @@ class Math_Formula_Runner
 				// but variables can contain other valuable top level information like itemId
 				$handler = $definition->getFieldFactory()->getHandler($field, $this->variables + ['fields' => $this->variables]);
 				$out = Math_Formula_Currency::fromCurrencyField($handler);
+			} elseif ($field && $field['type'] === 'math') {
+				$out = Math_Formula_Currency::tryFromString($out);
 			}
 		} elseif (false !== $value = $this->findVariable(explode('.', $data), $this->variables)) {
 			$out = $value;
