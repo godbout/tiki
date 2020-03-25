@@ -31,6 +31,10 @@ class SaveHandler
     if (! $this->file->exists()) {
       $fileId = $this->insertFile();
       $final_event = 'tiki.file.create';
+    } elseif (! $initialFileId) {
+      // Edge case: when using the migration script from image galleries to file galleries,
+      // the file "exists" but has no fileId and still needs to be inserted.
+      $fileId = $this->insertFile();
     } else {
       if ($prefs['feature_file_galleries_save_draft'] == 'y') {
         $this->insertDraft();
@@ -96,11 +100,20 @@ class SaveHandler
 
     $file = $this->file;
 
-    if ($file->exists()) {
+    $initialFileId = (int)$file->param['fileId'];
+    $sendWatches = TRUE;
+
+    // Edge case: If one is migrating files from image galleries to file galleries, the file exists but has no fileId yet and needs to be inserted.
+    // This is detected with $initialFileId == 0
+    if ($file->exists() && $initialFileId != 0) {
       $this->filesTable->update($file->getParamsForDB(), ['fileId' => $file->fileId]);
       $fileId = $file->fileId;
     } else {
       $fileId = $this->filesTable->insert($file->getParamsForDB());
+      if ($initialFileId == 0) {
+        // In case of a migration from image galleries to file galleries, don't send out a huge number of useless emails.
+        $sendWatches = FALSE;
+      }
     }
 
     if ($prefs['feature_actionlog'] == 'y') {
@@ -109,12 +122,14 @@ class SaveHandler
     }
 
     //Watches
-    $smarty = TikiLib::lib('smarty');
-    $smarty->assign('galleryId', $file->galleryId);
-    $smarty->assign('fname', $file->name);
-    $smarty->assign('filename', $file->filename);
-    $smarty->assign('fdescription', $file->description);
-    TikiLib::lib('filegal')->notify($file->galleryId, $file->name, $file->filename, $file->description, 'upload file', $user, $fileId);
+    if ($sendWatches) {
+      $smarty = TikiLib::lib('smarty');
+      $smarty->assign('galleryId', $file->galleryId);
+      $smarty->assign('fname', $file->name);
+      $smarty->assign('filename', $file->filename);
+      $smarty->assign('fdescription', $file->description);
+      TikiLib::lib('filegal')->notify($file->galleryId, $file->name, $file->filename, $file->description, 'upload file', $user, $fileId);
+    }
 
     return $fileId;
   }
