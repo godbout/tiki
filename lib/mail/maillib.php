@@ -183,6 +183,8 @@ function tiki_send_email($email)
 
 	if ($prefs['zend_mail_queue'] == 'redirect') {
 		$email->setTo($prefs['zend_mail_redirect']);
+		$email->setCc([]);
+		$email->setBcc([]);
 	}
 
 	/* @var $tiki_maillib__zend_mail_default_transport Zend\Mail\Transport\TransportInterface */
