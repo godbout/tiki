@@ -483,6 +483,7 @@ function wikiplugin_trackerlist_info()
 				 'name' => tra('View'),
 				 'description' => tr('Display only the items of the following:') . '<br />'
 					. '<code>user</code> - ' . tra('the current user') . '<br>'
+					. '<code>group</code> - ' . tra('the current user\'s groups') . '<br>'
 					. '<code>page</code> - ' . tra('the current page name') . '<br>'
 					. '<code>ip</code> - ' . tra('the current IP address') . '<br>',
 				 'since' => '2.0',
@@ -494,6 +495,7 @@ function wikiplugin_trackerlist_info()
 					 ['text' => '', 'value' => ''],
 					 ['text' => tra('Page'), 'value' => 'page'],
 					 ['text' => tra('User'), 'value' => 'user'],
+					 ['text' => tra('Group'), 'value' => 'group'],
 					 ['text' => tra('IP address'), 'value' => 'ip']
 				 ]
 			 ],
