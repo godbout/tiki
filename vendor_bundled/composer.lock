@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "825668774cb46e8b2939a23782aa2b34",
+    "content-hash": "d2bd347d74edad939ff445776e2a3ae4",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -181,9 +181,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Bacon/BaconQrCode/zipball/eaac909da3ccc32b748a65b127acd8918f58d9b0",
+                "url": "https://composer.tiki.org/dist/bacon/bacon-qr-code/bacon-bacon-qr-code-eaac909da3ccc32b748a65b127acd8918f58d9b0-zip-89eef4.zip",
                 "reference": "eaac909da3ccc32b748a65b127acd8918f58d9b0",
-                "shasum": ""
+                "shasum": "4ac4c301e860247d8a28187cc8d503bebfe6ba56"
             },
             "require": {
                 "dasprid/enum": "^1.0",
@@ -211,9 +211,9 @@
             "authors": [
                 {
                     "name": "Ben Scholzen 'DASPRiD'",
-                    "role": "Developer",
                     "email": "mail@dasprids.de",
-                    "homepage": "http://www.dasprids.de"
+                    "homepage": "http://www.dasprids.de",
+                    "role": "Developer"
                 }
             ],
             "description": "BaconQrCode is a QR code generator for PHP.",
@@ -222,17 +222,17 @@
         },
         {
             "name": "bower-asset/fontawesome",
-            "version": "5.12.1",
+            "version": "5.13.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:FortAwesome/Font-Awesome.git",
-                "reference": "0d1f27efb836eb2ab994ba37221849ed64a73e5c"
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "4e6402443679e0a9d12c7401ac8783ef4646657f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-0d1f27efb836eb2ab994ba37221849ed64a73e5c-zip-a175a6.zip",
-                "reference": "0d1f27efb836eb2ab994ba37221849ed64a73e5c",
-                "shasum": "87a7ca0aa5342b0deca3db3f143468cb3b7538a2"
+                "url": "https://composer.tiki.org/dist/bower-asset/fontawesome/bower-asset-fontawesome-4e6402443679e0a9d12c7401ac8783ef4646657f-zip-66f7c7.zip",
+                "reference": "4e6402443679e0a9d12c7401ac8783ef4646657f",
+                "shasum": "92b662a9ca7a6e427a9708d9fa36445df7b72b77"
             },
             "type": "bower-asset"
         },
@@ -342,9 +342,9 @@
             "authors": [
                 {
                     "name": "Christian Riesen",
+                    "role": "Developer",
                     "email": "chris.riesen@gmail.com",
-                    "homepage": "http://christianriesen.com",
-                    "role": "Developer"
+                    "homepage": "http://christianriesen.com"
                 }
             ],
             "description": "Base32 encoder/decoder according to RFC 4648",
@@ -369,17 +369,17 @@
         },
         {
             "name": "ckeditor/ckeditor",
-            "version": "4.13.1",
+            "version": "4.14.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ckeditor/ckeditor4-releases.git",
-                "reference": "83ca48a5356d10cc7aec6a9e36f327b8bc1b5f2a"
+                "reference": "998e43cd6305bca24304b9538a682da123ac5b73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-83ca48a5356d10cc7aec6a9e36f327b8bc1b5f2a-zip-0219a9.zip",
-                "reference": "83ca48a5356d10cc7aec6a9e36f327b8bc1b5f2a",
-                "shasum": "a6ff424aa5fb595ec7832ccb2eb7c87c962a10db"
+                "url": "https://composer.tiki.org/dist/ckeditor/ckeditor/ckeditor-ckeditor-998e43cd6305bca24304b9538a682da123ac5b73-zip-7b534d.zip",
+                "reference": "998e43cd6305bca24304b9538a682da123ac5b73",
+                "shasum": "412b986800f35c316c809cc116c6510a14654a53"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -407,7 +407,7 @@
                 "text",
                 "wysiwyg"
             ],
-            "time": "2019-12-09T13:24:37+00:00"
+            "time": "2020-03-04T13:19:40+00:00"
         },
         {
             "name": "codeitnowin/barcode",
@@ -712,9 +712,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/revealjs/zipball/85e95cc14987dbb30bef3cb11ab8acddf5267819",
+                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
                 "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": ""
+                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
             },
             "type": "component",
             "extra": {
@@ -933,9 +933,9 @@
             "authors": [
                 {
                     "name": "Cameron Spear",
+                    "role": "Developer",
                     "email": "cam@cameronspear.com",
-                    "homepage": "http://cameronspear.com",
-                    "role": "Developer"
+                    "homepage": "http://cameronspear.com"
                 }
             ],
             "description": "An unofficial Bootstrap plugin to enable Bootstrap dropdowns to activate on hover and provide a nice user experience.",
@@ -957,9 +957,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/DASPRiD/Enum/zipball/631ef6e638e9494b0310837fa531bedd908fc22b",
+                "url": "https://composer.tiki.org/dist/dasprid/enum/dasprid-enum-631ef6e638e9494b0310837fa531bedd908fc22b-zip-f6ef6d.zip",
                 "reference": "631ef6e638e9494b0310837fa531bedd908fc22b",
-                "shasum": ""
+                "shasum": "384a45962fcf1dcb23d1466ff6e372d33dcd21a8"
             },
             "require-dev": {
                 "phpunit/phpunit": "^6.4",
@@ -1227,7 +1227,7 @@
             ],
             "authors": [
                 {
-                    "name": "Osman Ungur",
+                    "name": "Osman Üngür",
                     "email": "osmanungur@gmail.com"
                 },
                 {
@@ -1708,9 +1708,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/harvesthq/chosen-package/zipball/ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
+                "url": "https://composer.tiki.org/dist/harvesthq/chosen/harvesthq-chosen-ad86732b668627c131e61ee8f0e6e9ed52e4db8d-zip-4474a1.zip",
                 "reference": "ad86732b668627c131e61ee8f0e6e9ed52e4db8d",
-                "shasum": ""
+                "shasum": "fa12f07bf546d99a533bcc625421fec1ac48a3e5"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -2317,9 +2317,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kriswallsmith/assetic/zipball/e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
+                "url": "https://composer.tiki.org/dist/kriswallsmith/assetic/kriswallsmith-assetic-e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1-zip-5b3422.zip",
                 "reference": "e911c437dbdf006a8f62c2f59b15b2d69a5e0aa1",
-                "shasum": ""
+                "shasum": "33e3acdb5b45cbe7e60ac6e9c15f832b256576ce"
             },
             "require": {
                 "php": ">=5.3.1",
@@ -2736,17 +2736,17 @@
         },
         {
             "name": "laminas/laminas-feed",
-            "version": "2.12.0",
+            "version": "2.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-feed.git",
-                "reference": "64d25e18a6ea3db90c27fe2d6b95630daa1bf602"
+                "reference": "c9356994eb80d0f6b46d7e12ba048d450bf0cd72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-feed/laminas-laminas-feed-64d25e18a6ea3db90c27fe2d6b95630daa1bf602-zip-3a513f.zip",
-                "reference": "64d25e18a6ea3db90c27fe2d6b95630daa1bf602",
-                "shasum": "0b7cf678c6287ece564fdae705e3645f02ff82cd"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-feed/laminas-laminas-feed-c9356994eb80d0f6b46d7e12ba048d450bf0cd72-zip-d2f801.zip",
+                "reference": "c9356994eb80d0f6b46d7e12ba048d450bf0cd72",
+                "shasum": "6eb00af7fdc47eb4ee177eb1de603bc62bb8481d"
             },
             "require": {
                 "ext-dom": "*",
@@ -2766,7 +2766,7 @@
                 "laminas/laminas-http": "^2.7",
                 "laminas/laminas-servicemanager": "^2.7.8 || ^3.3",
                 "laminas/laminas-validator": "^2.10.1",
-                "phpunit/phpunit": "^5.7.23 || ^6.4.3",
+                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.20",
                 "psr/http-message": "^1.0.1"
             },
             "suggest": {
@@ -2799,7 +2799,7 @@
                 "feed",
                 "laminas"
             ],
-            "time": "2019-12-31T16:46:54+00:00"
+            "time": "2020-03-23T10:40:31+00:00"
         },
         {
             "name": "laminas/laminas-filter",
@@ -2930,17 +2930,17 @@
         },
         {
             "name": "laminas/laminas-i18n",
-            "version": "2.10.1",
+            "version": "2.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-i18n.git",
-                "reference": "815be447f1c77f70a86bf24d00087fcb975b39ff"
+                "reference": "9699c98d97d2f519def3da8d4128dfe6e6ad11bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-i18n/laminas-laminas-i18n-815be447f1c77f70a86bf24d00087fcb975b39ff-zip-9f6a38.zip",
-                "reference": "815be447f1c77f70a86bf24d00087fcb975b39ff",
-                "shasum": "a10fab139ae9377b4f6c3e75cb152f8864546a1d"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-i18n/laminas-laminas-i18n-9699c98d97d2f519def3da8d4128dfe6e6ad11bf-zip-c3ab4b.zip",
+                "reference": "9699c98d97d2f519def3da8d4128dfe6e6ad11bf",
+                "shasum": "f238150a16035f83066054f0062e41f4fdc9480f"
             },
             "require": {
                 "ext-intl": "*",
@@ -3001,7 +3001,7 @@
                 "i18n",
                 "laminas"
             ],
-            "time": "2019-12-31T17:07:17+00:00"
+            "time": "2020-03-20T11:57:14+00:00"
         },
         {
             "name": "laminas/laminas-json",
@@ -3064,17 +3064,17 @@
         },
         {
             "name": "laminas/laminas-ldap",
-            "version": "2.10.1",
+            "version": "2.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-ldap.git",
-                "reference": "52d67bbe6095da4e7e3578407e44322a6d7874ce"
+                "reference": "7410927ff02ddc8e5d0e1c0e93079599d7788d8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-ldap/laminas-laminas-ldap-52d67bbe6095da4e7e3578407e44322a6d7874ce-zip-d17903.zip",
-                "reference": "52d67bbe6095da4e7e3578407e44322a6d7874ce",
-                "shasum": "20779eec2694c48c9d6ba353a362b7130909a3a9"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-ldap/laminas-laminas-ldap-7410927ff02ddc8e5d0e1c0e93079599d7788d8d-zip-db6fe6.zip",
+                "reference": "7410927ff02ddc8e5d0e1c0e93079599d7788d8d",
+                "shasum": "afdb3241c98f28c117eaac084fa5c95c5e904e2d"
             },
             "require": {
                 "ext-ldap": "*",
@@ -3090,7 +3090,7 @@
                 "laminas/laminas-eventmanager": "^2.6.3 || ^3.0.1",
                 "laminas/laminas-stdlib": "^2.7 || ^3.0",
                 "php-mock/php-mock-phpunit": "^1.1.2 || ^2.1.1",
-                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2"
+                "phpunit/phpunit": "^5.7.27 || ^6.5.14 || ^7.5.20"
             },
             "suggest": {
                 "laminas/laminas-eventmanager": "Laminas\\EventManager component"
@@ -3117,7 +3117,7 @@
                 "laminas",
                 "ldap"
             ],
-            "time": "2019-12-31T17:15:47+00:00"
+            "time": "2020-03-15T11:24:38+00:00"
         },
         {
             "name": "laminas/laminas-loader",
@@ -3988,17 +3988,17 @@
         },
         {
             "name": "laminas/laminas-validator",
-            "version": "2.13.1",
+            "version": "2.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-validator.git",
-                "reference": "36702f033486bf1953e254f5299aad205302e79d"
+                "reference": "e7bf6a2eedc0508ebde0ebc66662efeb0abbcb2c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/laminas/laminas-validator/laminas-laminas-validator-36702f033486bf1953e254f5299aad205302e79d-zip-2aea50.zip",
-                "reference": "36702f033486bf1953e254f5299aad205302e79d",
-                "shasum": "612c491275bf95c64d72e818a5fb55e00887fb22"
+                "url": "https://composer.tiki.org/dist/laminas/laminas-validator/laminas-laminas-validator-e7bf6a2eedc0508ebde0ebc66662efeb0abbcb2c-zip-825425.zip",
+                "reference": "e7bf6a2eedc0508ebde0ebc66662efeb0abbcb2c",
+                "shasum": "8e476e355db263e9fc2d83d4cdec955438b4ec46"
             },
             "require": {
                 "container-interop/container-interop": "^1.1",
@@ -4063,7 +4063,7 @@
                 "laminas",
                 "validator"
             ],
-            "time": "2020-01-15T09:59:30+00:00"
+            "time": "2020-03-16T11:38:27+00:00"
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
@@ -4174,17 +4174,17 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.3.1",
+            "version": "1.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "8015f806173c6ee54de25a87c2d69736696e88db"
+                "reference": "75542a366ccbe1896ed79fcf3e8e68206d6c4257"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/league/commonmark/league-commonmark-8015f806173c6ee54de25a87c2d69736696e88db-zip-2e2e5a.zip",
-                "reference": "8015f806173c6ee54de25a87c2d69736696e88db",
-                "shasum": "8c37d03b8b94a244dcb5b0ce2605152177e0492d"
+                "url": "https://composer.tiki.org/dist/league/commonmark/league-commonmark-75542a366ccbe1896ed79fcf3e8e68206d6c4257-zip-e44496.zip",
+                "reference": "75542a366ccbe1896ed79fcf3e8e68206d6c4257",
+                "shasum": "ee6a28870b2189773d678e9a83e9d2c77af21084"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -4244,7 +4244,7 @@
                 "md",
                 "parser"
             ],
-            "time": "2020-02-28T18:53:50+00:00"
+            "time": "2020-03-25T19:55:28+00:00"
         },
         {
             "name": "league/event",
@@ -4467,9 +4467,9 @@
             "authors": [
                 {
                     "name": "Matthias Mullie",
-                    "role": "Developer",
                     "email": "pathconverter@mullie.eu",
-                    "homepage": "http://www.mullie.eu"
+                    "homepage": "http://www.mullie.eu",
+                    "role": "Developer"
                 }
             ],
             "description": "Relative path converter",
@@ -4551,9 +4551,9 @@
             "authors": [
                 {
                     "name": "Michel Fortin",
+                    "role": "Developer",
                     "email": "michel.fortin@michelf.ca",
-                    "homepage": "https://michelf.ca/",
-                    "role": "Developer"
+                    "homepage": "https://michelf.ca/"
                 },
                 {
                     "name": "John Gruber",
@@ -5127,8 +5127,9 @@
             "name": "npm-asset/sass-svg-uri",
             "version": "1.0.0",
             "dist": {
-                "type": "tar",
-                "url": "https://registry.npmjs.org/sass-svg-uri/-/sass-svg-uri-1.0.0.tgz"
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/sass-svg-uri/npm-asset-sass-svg-uri-1.0.0.zip",
+                "shasum": "7c188e107890d085834ebd8286d9b26d1204e25a"
             },
             "type": "npm-asset",
             "license": [
@@ -5485,18 +5486,18 @@
             "authors": [
                 {
                     "name": "Chuck Hagenbuch",
-                    "role": "Lead",
-                    "email": "chuck@horde.org"
+                    "email": "chuck@horde.org",
+                    "role": "Lead"
                 },
                 {
                     "name": "Aleksander Machniak",
-                    "role": "Lead",
-                    "email": "alec@php.net"
+                    "email": "alec@php.net",
+                    "role": "Lead"
                 },
                 {
                     "name": "Stig Bakken",
-                    "role": "Lead",
-                    "email": "stig@php.net"
+                    "email": "stig@php.net",
+                    "role": "Lead"
                 }
             ],
             "description": "More info available on: http://pear.php.net/package/Net_Socket",
@@ -5835,17 +5836,17 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.25",
+            "version": "2.0.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "c18159618ed7cd7ff721ac1a8fec7860a475d2f0"
+                "reference": "09655fcc1f8bab65727be036b28f6f20311c126c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-c18159618ed7cd7ff721ac1a8fec7860a475d2f0-zip-ca66c1.zip",
-                "reference": "c18159618ed7cd7ff721ac1a8fec7860a475d2f0",
-                "shasum": "c21a7709dd234f9753793ad21b4722058c17278b"
+                "url": "https://composer.tiki.org/dist/phpseclib/phpseclib/phpseclib-phpseclib-09655fcc1f8bab65727be036b28f6f20311c126c-zip-6cf764.zip",
+                "reference": "09655fcc1f8bab65727be036b28f6f20311c126c",
+                "shasum": "e05dc92ea89d6d7f686dd7b02468d6efb5c682e1"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -5923,7 +5924,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2020-02-25T04:16:50+00:00"
+            "time": "2020-03-13T04:15:39+00:00"
         },
         {
             "name": "player/flv",
@@ -6138,17 +6139,17 @@
         },
         {
             "name": "psr/log",
-            "version": "1.1.2",
+            "version": "1.1.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801"
+                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/psr/log/psr-log-446d54b4cb6bf489fc9d75f55843658e6f25d801-zip-062ba4.zip",
-                "reference": "446d54b4cb6bf489fc9d75f55843658e6f25d801",
-                "shasum": "eb60874e2c03a8bab3d2585111ddb3638a5779db"
+                "url": "https://composer.tiki.org/dist/psr/log/psr-log-0f73288fd15629204f9d42b7055f72dacbe811fc-zip-eb4a75.zip",
+                "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
+                "shasum": "258ca9c789bfda31bb591d37ac123599b536074c"
             },
             "require": {
                 "php": ">=5.3.0"
@@ -6181,7 +6182,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2019-11-01T11:05:21+00:00"
+            "time": "2020-03-23T09:12:05+00:00"
         },
         {
             "name": "ralouphie/getallheaders",
@@ -6316,9 +6317,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/component-installer/zipball/908a859aa7c4949ba9ad67091e67bac10b66d3d7",
+                "url": "https://composer.tiki.org/dist/robloach/component-installer/robloach-component-installer-908a859aa7c4949ba9ad67091e67bac10b66d3d7-zip-343382.zip",
                 "reference": "908a859aa7c4949ba9ad67091e67bac10b66d3d7",
-                "shasum": ""
+                "shasum": "393701b38d2d24dc33c101fec6e01c5221070ac9"
             },
             "require": {
                 "composer-plugin-api": "^1.0",
@@ -6918,17 +6919,17 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.53",
+            "version": "2.1.55",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "bff6f1a3eb651f2b1e1b2f94a343aa9edc5d725a"
+                "reference": "7d7174dbadbadc19b1178ded8b62fbff738df877"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-bff6f1a3eb651f2b1e1b2f94a343aa9edc5d725a-zip-6b5650.zip",
-                "reference": "bff6f1a3eb651f2b1e1b2f94a343aa9edc5d725a",
-                "shasum": "7859d1e0ebd5369bdee53301695ef250129192bb"
+                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-7d7174dbadbadc19b1178ded8b62fbff738df877-zip-97b785.zip",
+                "reference": "7d7174dbadbadc19b1178ded8b62fbff738df877",
+                "shasum": "fed08bc89ec05a28c8ba6720eaab5e6e4122263a"
             },
             "require": {
                 "php": ">=5.2"
@@ -6972,7 +6973,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2020-01-25T14:09:50+00:00"
+            "time": "2020-03-18T11:37:50+00:00"
         },
         {
             "name": "svg-edit/svg-edit",
@@ -7791,9 +7792,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/true/php-punycode/zipball/a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
+                "url": "https://composer.tiki.org/dist/true/punycode/true-punycode-a4d0c11a36dd7f4e7cd7096076cab6d3378a071e-zip-4ceb35.zip",
                 "reference": "a4d0c11a36dd7f4e7cd7096076cab6d3378a071e",
-                "shasum": ""
+                "shasum": "0153b28196219934ea010de766dea03de32a7d89"
             },
             "require": {
                 "php": ">=5.3.0",
@@ -10032,6 +10033,7 @@
     "platform-dev": [],
     "platform-overrides": {
         "ext-ldap": "0",
-        "ext-soap": "0"
+        "ext-soap": "0",
+        "php": "7.2.5"
     }
 }
