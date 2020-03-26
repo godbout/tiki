@@ -174,7 +174,8 @@
 		"component-dir": "vendor/components",
 		"platform": {
 			"ext-ldap": "0",
-			"ext-soap": "0"
+			"ext-soap": "0",
+			"php": "7.2.5"
 		},
 		"secure-http": false
 	},
