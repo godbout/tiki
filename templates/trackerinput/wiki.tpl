@@ -30,7 +30,7 @@
 				{button _keepall='y' href=$field.value|sefurl admin='y' _text="{tr}View{/tr}" _title="|{tr}View stand alone wiki page{/tr}" _class='btn-sm tips' _type='info' _target='_blank'}
 			{/if}
 			{if $data.perms.edit}
-				{button _keepall='y' href='tiki-editpage' page=$field.value _text="{tr}Edit{/tr}" _title="|{tr}Edit stand alone wiki page{/tr}" _class='btn-sm tips' _target='_blank'}
+				{button _keepall='y' href='tiki-editpage.php' page=$field.value _text="{tr}Edit{/tr}" _title="|{tr}Edit stand alone wiki page{/tr}" _class='btn-sm tips' _target='_blank'}
 			{/if}
 			{if $prefs.feature_source eq 'y' and $data.perms.wiki_view_source}
 				{button _keepall='y' href='tiki-pagehistory.php' page=$field.value source='0' _text="{tr}Source{/tr}" _title="|{tr}Source of wiki page{/tr}" _class='btn-sm tips' _type='info' _target='_blank'}
