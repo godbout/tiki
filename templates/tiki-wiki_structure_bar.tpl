@@ -16,17 +16,17 @@
 				{/if}
 			{/if}
 			{if $prev_info and $prev_info.page_ref_id}{if $prev_info.page_alias}{assign var=icon_title value=$prev_info.page_alias}{else}{assign var=icon_title value=$prev_info.pageName}{/if}
-				<a href="{sefurl page=$prev_info.pageName structure=$home_info.pageName page_ref_id=$prev_info.page_ref_id}" class="tips" title="{tr}Previous page{/tr}:{$icon_title}">
+				<a href="{sefurl page=$prev_info.pageName structure=$home_info.pageName page_ref_id=$prev_info.page_ref_id}" class="tips mt-1" title="{tr}Previous page{/tr}:{$icon_title}">
 					{icon name="caret-left"}
 				</a>
 			{/if}
 			{if $parent_info}{if $parent_info.page_alias}{assign var=icon_title value=$parent_info.page_alias}{else}{assign var=icon_title value=$parent_info.pageName}{/if}
-				<a href="{sefurl page=$parent_info.pageName structure=$home_info.pageName page_ref_id=$parent_info.page_ref_id}" class="tips" title="{tr}Parent page{/tr}:{$icon_title}">
+				<a href="{sefurl page=$parent_info.pageName structure=$home_info.pageName page_ref_id=$parent_info.page_ref_id}" class="tips mt-1" title="{tr}Parent page{/tr}:{$icon_title}">
 					{icon name="up"}
 				</a>
 			{/if}
 			{if $next_info and $next_info.page_ref_id}{if $next_info.page_alias}{assign var=icon_title value=$next_info.page_alias}{else}{assign var=icon_title value=$next_info.pageName}{/if}
-				<a href="{sefurl page=$next_info.pageName structure=$home_info.pageName page_ref_id=$next_info.page_ref_id}" class="tips" title="{tr}Next page{/tr}:{$icon_title}">
+				<a href="{sefurl page=$next_info.pageName structure=$home_info.pageName page_ref_id=$next_info.page_ref_id}" class="tips mr-5 mt-1" title="{tr}Next page{/tr}:{$icon_title}">
 					{icon name="caret-right"}
 				</a>
 			{/if}
