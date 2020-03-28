@@ -197,7 +197,9 @@ class Search_IndexerTest extends PHPUnit_Framework_TestCase
 
 		$typeFactory = $index->getTypeFactory();
 		$this->assertEquals($typeFactory->plainmediumtext('foobar baz Hello '), $document['contents']);
-		$this->assertEquals(['wiki page' => 1], $stats);
+		$this->assertEquals(['wiki page' => 1], $stats['counts']);
+		$this->assertArrayHasKey('wiki page', $stats['times']);
+		$this->assertArrayHasKey('total', $stats['times']);
 	}
 
 	function testContentSourceWithMultipleResults()
@@ -221,7 +223,9 @@ class Search_IndexerTest extends PHPUnit_Framework_TestCase
 
 		$typeFactory = $index->getTypeFactory();
 		$this->assertEquals($typeFactory->plaintext('Hello (latest)'), $document['title']);
-		$this->assertEquals(['wiki page' => 2], $stats);
+		$this->assertEquals(['wiki page' => 2], $stats['counts']);
+		$this->assertArrayHasKey('wiki page', $stats['times']);
+		$this->assertArrayHasKey('total', $stats['times']);
 	}
 
 	function testTemporaryFields()
