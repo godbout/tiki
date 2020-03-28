@@ -160,12 +160,14 @@ class UnifiedSearchLib
 	}
 
 	/**
-	 * @param int $loggit 0=no logging, 1=log to Search_Indexer.log, 2=log to Search_Indexer_console.log
+	 * @param int  $loggit   0=no logging, 1=log to Search_Indexer.log, 2=log to Search_Indexer_console.log
 	 * @param bool $fallback If the fallback index is being rebuild
+	 * @param Symfony\Component\Console\Helper\ProgressBar $progress progress bar object from rebuild console command
+	 *
 	 * @return array|bool
 	 * @throws Exception
 	 */
-	public function rebuild($loggit = 0, $fallback = false)
+	public function rebuild($loggit = 0, $fallback = false, $progress = null)
 	{
 		global $prefs;
 		$engineResults = null;
@@ -243,10 +245,12 @@ class UnifiedSearchLib
 		try {
 			$index = new Search_Index_TypeAnalysisDecorator($index);
 			$indexer = $this->buildIndexer($index, $loggit);
+			$lastStats = $tikilib->get_preference('unified_last_rebuild_stats', [], true);
+
 			$stat = $tikilib->allocate_extra(
 				'unified_rebuild',
-				function () use ($indexer) {
-					return $indexer->rebuild();
+				function () use ($indexer, $lastStats, $progress) {
+					return $indexer->rebuild($lastStats, $progress);
 				}
 			);
 
@@ -338,6 +342,7 @@ class UnifiedSearchLib
 		}
 
 		$tikilib->set_preference('unified_last_rebuild', $tikilib->now);
+		$tikilib->set_preference('unified_last_rebuild_stats', $stats);
 
 		$this->isRebuildingNow = false;
 		$access->preventRedirect(false);

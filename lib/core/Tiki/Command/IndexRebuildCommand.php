@@ -9,6 +9,7 @@ namespace Tiki\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\FormatterHelper;
+use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -37,6 +38,12 @@ class IndexRebuildCommand extends Command
 				null,
 				InputOption::VALUE_NONE,
 				'Only output error messages'
+			)
+			->addOption(
+				'progress',
+				'p',
+				InputOption::VALUE_NONE,
+				'Show progress bar'
 			);
 	}
 
@@ -93,10 +100,49 @@ class IndexRebuildCommand extends Command
 			$memory_limiter = new \Tiki_MemoryLimit($prefs['allocate_memory_unified_rebuild']);
 		}
 
-		$result = $unifiedsearchlib->rebuild($log);
+		if ($input->getOption('progress') && ! $cron) {
+
+			$lastStats = \TikiLib::lib('tiki')->get_preference('unified_last_rebuild_stats', [], true);
+			if (isset($lastStats['default']['counts'])) {
+				if (isset($lastStats['default']['times']['total'])) {
+					$steps = $lastStats['default']['times']['total'] * 1000 + 5000;	// milliseconds plus 5 seconds for prefs (guess)
+				} else {
+					$steps = array_sum($lastStats['default']['counts']);
+				}
+			} else {
+				$steps = 0;
+			}
+
+			$progress = new ProgressBar($output, $steps);	// TODO consider the prefs indexing time that happens after the main one
+			if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
+				$progress->setOverwrite(false);
+			}
+			$progress->setRedrawFrequency(10);
+			if ($steps) {
+				$progress->setFormatDefinition('custom', ' %elapsed%/%estimated% [%bar%] -- %message%');
+			} else {
+				$progress->setFormatDefinition('custom', ' %current%/%max% [%bar%] -- %message%');
+			}
+			$progress->setFormat('custom');
+			$progress->setMessage(tr('Rebuilding...'));
+			$progress->start();
+		} else {
+			$progress = null;
+		}
+
+		$result = $unifiedsearchlib->rebuild($log, false, $progress);
+
+		if ($progress) {
+			$progress->setMessage(tr('Rebuilding preferences index'));
+			$progress->advance();
+		}
 
 		// Also rebuild admin index
 		\TikiLib::lib('prefs')->rebuildIndex();
+
+		if ($progress) {
+			$progress->finish();
+		}
 
 		// Back up original memory limit if possible
 		if (isset($memory_limiter)) {
@@ -109,8 +155,11 @@ class IndexRebuildCommand extends Command
 
 		if ($result) {
 			if (! $cron) {
+				if ($progress) {
+					$output->writeln('');
+				}
 				$output->writeln("Indexed");
-				foreach ($result['default'] as $key => $val) {
+				foreach ($result['default']['counts'] as $key => $val) {
 					$output->writeln("  $key: $val");
 				}
 				$output->writeln('Rebuilding index done');

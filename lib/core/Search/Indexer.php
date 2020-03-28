@@ -107,18 +107,57 @@ class Search_Indexer
 
 	/**
 	 * Rebuild the entire index.
+	 *
+	 * @param array $lastStats array from prefs containing the last stats info
+	 * @param Symfony\Component\Console\Helper\ProgressBar $progress progress bar object from rebuild console command
+	 *
 	 * @return array
 	 */
-	public function rebuild()
+	public function rebuild($lastStats = [], $progress = null)
 	{
 		$this->log('Starting rebuild');
-		$stat = array_fill_keys(array_keys($this->contentSources), 0);
+		$contentTypes = array_fill_keys(array_keys($this->contentSources), 0);
+
+		if ($progress) {
+			$progress->start();
+		}
+		$stat = [];
+		$stat['counts'] = $contentTypes;
+		$stat['times'] = $contentTypes;
+
+		$timer = new timer();
 
 		foreach ($this->contentSources as $objectType => $contentSource) {
-			foreach ($contentSource->getDocuments() as $objectId) {
-				$stat[$objectType] += $this->addDocument($objectType, $objectId);
+
+			if ($progress) {
+				if (! empty($lastStats['default']['times'][$objectType]) && ! empty($lastStats['default']['counts'][$objectType])) {
+					$docTime = $lastStats['default']['times'][$objectType] * 1000 / $lastStats['default']['counts'][$objectType];
+				} else {
+					$docTime = 1;
+				}
+				$progress->setMessage(tr('Processing %0 documents', $objectType));
 			}
+			$timer->start();
+			$documents = $contentSource->getDocuments();
+
+			foreach ($documents as $objectId) {
+				$stat['counts'][$objectType] += $this->addDocument($objectType, $objectId);
+
+				if ($progress) {
+					$progress->advance($docTime);
+				}
+			}
+
+			$stat['times'][$objectType] = $timer->stop();
 		}
+
+		$totalTime = 0;
+
+		foreach ($stat['times'] as $time) {
+			$totalTime += $time;
+		}
+
+		$stat['times']['total'] = $totalTime;
 
 		$this->log('Starting optimization');
 		$this->searchIndex->optimize();

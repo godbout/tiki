@@ -373,5 +373,13 @@ function prefs_unified_list()
 			'tags' => ['advanced'],
 			'help' => 'PluginList',
 		],
+		'unified_last_rebuild_stats' => [
+			'name' => tra('Last rebuild statistics'),
+			'description' => tra('Record of last rebuild object counts and timings.'),
+			'hint' => tra('Do not change this value unless you know what you are doing.'),
+			'type' => 'text',
+			'default' => [],
+			'tags' => ['advanced'],
+		],
 	];
 }
