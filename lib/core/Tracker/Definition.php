@@ -213,8 +213,7 @@ class Tracker_Definition
 	{
 		$ownerFields = [];
 		foreach ($this->getFields() as $field) {
-			if ($field['type'] == 'g'
-				&& $field['options_map']['owner'] == 1) {
+			if ($field['type'] == 'g' && ! empty($field['options_map']['owner'])) {
 				$ownerFields[] = $field['fieldId'];
 			}
 		}
