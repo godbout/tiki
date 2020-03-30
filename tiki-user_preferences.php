@@ -73,8 +73,7 @@ if ($prefs['feature_perspective'] === 'y') {
 }
 
 
-if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) && $access->checkOrigin()) {
-	check_ticket('user-prefs');
+if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) && $access->checkCsrf()) {
 	// setting preferences
 	if ($prefs['change_theme'] == 'y' && empty($group_theme)) {
 		if (isset($_REQUEST['mytheme'])) {
@@ -300,8 +299,7 @@ if ($prefs['auth_method'] == 'ldap' && $user == 'admin' && $prefs['ldap_skip_adm
 
 
 $tfaSecret = $userlib->get_2_factor_secret($userwatch);
-if (isset($_REQUEST['chgadmin']) && $access->checkOrigin()) {
-	check_ticket('user-prefs');
+if (isset($_REQUEST['chgadmin']) && $access->checkCsrf()) {
 	if (isset($_REQUEST['pass'])) {
 		$pass = $_REQUEST['pass'];
 	} else {
@@ -386,8 +384,7 @@ if ($prefs['twoFactorAuth'] == 'y' && ! empty($tfaSecret)) {
 	$smarty->assign('tfaSecretQR', $tfaSecretQR);
 }
 
-if (isset($_REQUEST['deleteaccount']) && $tiki_p_delete_account == 'y' && $access->checkOrigin()) {
-	check_ticket('user-prefs');
+if (isset($_REQUEST['deleteaccount']) && $tiki_p_delete_account == 'y' && $access->checkCsrf()) {
 	if (! isset($_REQUEST['deleteaccountconfirm']) || $_REQUEST['deleteaccountconfirm'] != '1') {
 		$smarty->assign('msg', tra("If you really want to delete your account, you must check the checkbox"));
 		$smarty->display("error.tpl");
@@ -539,6 +536,5 @@ if ($prefs['feature_wiki'] == 'y' and $prefs['feature_wiki_userpage'] == 'y') {
 	}
 }
 include_once('tiki-section_options.php');
-ask_ticket('user-prefs');
 $smarty->assign('mid', 'tiki-user_preferences.tpl');
 $smarty->display("tiki.tpl");

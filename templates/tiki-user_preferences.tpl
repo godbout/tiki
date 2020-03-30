@@ -19,6 +19,7 @@
 		{tab name="{tr}Personal Information{/tr}"}
 			<h2>{tr}Personal Information{/tr}</h2>
 			<form role="form" action="tiki-user_preferences.php" method="post" class="form-horizontal">
+				{ticket}
 				<input type="hidden" name="view_user" value="{$userwatch|escape}">
 				<div class="form-group row">
 					<label class="col-form-label col-md-4" for="userIn">
@@ -183,6 +184,7 @@
 			<h2>{tr}Preferences{/tr}</h2>
 			<legend>{tr}General settings{/tr}</legend>
 			<form role="form" action="tiki-user_preferences.php" method="post" class="form-horizontal">
+				{ticket}
 				<input type="hidden" name="view_user" value="{$userwatch|escape}">
 				<div class="form-group row">
 					<label class="col-form-label col-md-4" for="email_isPublic">
@@ -599,6 +601,7 @@
 		{tab name="{tr}Account Information{/tr}"}
 			<h2>{tr}Account Information{/tr}</h2>
 			<form action="tiki-user_preferences.php" method="post" class="form-horizontal">
+				{ticket}
 				<input type="hidden" name="view_user" value="{$userwatch|escape}">
 					{if $prefs.auth_method neq 'cas' || ($prefs.cas_skip_admin eq 'y' && $user eq 'admin')}
 						{if $prefs.change_password neq 'n' and ($prefs.login_is_email ne 'y' or $userinfo.login eq 'admin')}
@@ -727,6 +730,7 @@
 			<div class="jumbotron text-center">
 				<h2>{tr}Account Deletion{/tr}</h2>
 				<form role="form" class="form-horizontal" action="tiki-user_preferences.php" method="post" onsubmit='return confirm("{tr _0=$userwatch|escape}Are you really sure you want to delete the account %0?{/tr}");'>
+					{ticket}
 					{if !empty($userwatch)}<input type="hidden" name="view_user" value="{$userwatch|escape}">{/if}
 					<p>
 						<div class="form-check">
