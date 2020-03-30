@@ -17,7 +17,7 @@ class Tiki_Profile_Writer_ExternalWriter
 		$files = array_filter(
 			scandir($dataPath),
 			function ($file) {
-				return $file{0} != '.';
+				return $file[0] != '.';
 			}
 		);
 

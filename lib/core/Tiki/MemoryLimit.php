@@ -42,7 +42,7 @@ class Tiki_MemoryLimit
 	{
 		$limitString = trim($limitString);
 		$bytes = (int) $limitString;
-		$lastCharacter = strtolower($limitString{strlen($limitString) - 1});
+		$lastCharacter = strtolower($limitString[strlen($limitString) - 1]);
 		$units = ['k' => 1, 'm' => 2, 'g' => 3];
 		if (array_key_exists($lastCharacter, $units)) {
 			$bytes = $bytes * (1024 ** $units[$lastCharacter]);

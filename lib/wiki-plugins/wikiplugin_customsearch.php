@@ -672,11 +672,11 @@ function cs_design_categories($id, $fieldname, $fieldid, $arguments, $default, &
 			$fieldid = $orig_fieldid . "_cat$categId";
 			$level = count($c['tepath']);
 			if ($level > $currentlevel) {
-				$ul{$level} = $document->createElement('ul');
+				$ul[$level] = $document->createElement('ul');
 				if ($currentlevel) {
-					$ul{$currentlevel}->appendChild($ul{$level});
+					$ul[$currentlevel]->appendChild($ul[$level]);
 				} else {
-					$document->appendChild($ul{$level});
+					$document->appendChild($ul[$level]);
 				}
 				$currentlevel = $level;
 			} elseif ($level < $currentlevel) {
@@ -684,7 +684,7 @@ function cs_design_categories($id, $fieldname, $fieldid, $arguments, $default, &
 			}
 			$li = $document->createElement('li');
 			$li->setAttribute('class', $_style);
-			$ul{$currentlevel}->appendChild($li);
+			$ul[$currentlevel]->appendChild($li);
 			$input = $document->createElement('input');
 			$input->setAttribute('type', $_style);
 			cs_design_setbasic($input, $fieldid, $fieldname, $arguments);

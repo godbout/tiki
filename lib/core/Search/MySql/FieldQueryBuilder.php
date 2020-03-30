@@ -28,7 +28,7 @@ class Search_MySql_FieldQueryBuilder
 					}
 				} elseif ($node instanceof OrX) {
 					foreach ($childNodes as $node) {
-						if ($node{0} == '-') {
+						if ($node[0] == '-') {
 							throw new Search_MySql_QueryException('Semantic impossible to express.');
 						}
 					}
@@ -38,7 +38,7 @@ class Search_MySql_FieldQueryBuilder
 				} elseif ($node instanceof AndX) {
 					$negatives = 0;
 					foreach ($childNodes as $node) {
-						if ($node{0} == '-') {
+						if ($node[0] == '-') {
 							$negatives++;
 						}
 					}

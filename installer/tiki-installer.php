@@ -1212,7 +1212,7 @@ if ($install_step == '2') {
 
 	// copy of most of $tikilib->return_bytes() not available at this stage
 	$memory_limit = trim(ini_get('memory_limit'));
-	$last = strtolower($memory_limit{strlen($memory_limit) - 1});
+	$last = strtolower($memory_limit[strlen($memory_limit) - 1]);
 	switch ($last) {
 		// The 'G' modifier is available since PHP 5.1.0
 		case 'g':

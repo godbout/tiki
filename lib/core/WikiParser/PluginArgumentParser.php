@@ -24,7 +24,7 @@ class WikiParser_PluginArgumentParser
 			}
 
 			// Consider =>
-			if ($data{$pos + 1} == '>') {
+			if ($data[$pos + 1] == '>') {
 				$pos++;
 			}
 
@@ -32,11 +32,11 @@ class WikiParser_PluginArgumentParser
 			$data = substr($data, $pos + 1);
 			$data = ltrim($data);
 
-			if (! empty($data) && $data{0} == '"') {
+			if (! empty($data) && $data[0] == '"') {
 				$quote = 0;
 				// Parameter between quotes, find closing quote not escaped by a \
 				while (false !== $quote = strpos($data, '"', $quote + 1)) {
-					if ($data{$quote - 1} != "\\") {
+					if ($data[$quote - 1] != "\\") {
 						break;
 					}
 				}

@@ -867,10 +867,10 @@ class ToolbarBlock extends ToolbarInline // Will change in the future
 			case 'h1':
 			case 'h2':
 			case 'h3':
-				$label = tra('Heading') . ' ' . $tagName{1};
+				$label = tra('Heading') . ' ' . $tagName[1];
 				$iconname = $tagName;
 				$wysiwyg = null;
-				$syntax = str_repeat('!', $tagName{1}) . ' text';
+				$syntax = str_repeat('!', $tagName[1]) . ' text';
 				break;
 			case 'titlebar':
 				$label = tra('Title bar');

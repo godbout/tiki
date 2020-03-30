@@ -366,9 +366,9 @@ class UsersLib extends TikiLib
 
 		for ($i = 0; $i < $passlen; $i++) {
 			if ($i % 2) {
-				$r .= $vocales{rand(0, strlen($vocales) - 1)};
+				$r .= $vocales[rand(0, strlen($vocales) - 1)];
 			} else {
-				$r .= $consonantes{rand(0, strlen($consonantes) - 1)};
+				$r .= $consonantes[rand(0, strlen($consonantes) - 1)];
 			}
 		}
 

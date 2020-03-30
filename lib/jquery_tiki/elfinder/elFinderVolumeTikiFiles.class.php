@@ -193,7 +193,7 @@ class elFinderVolumeTikiFiles extends elFinderVolumeDriver
 	{
 		$path = $this->decode($target);
 		$id = $this->pathToId($path);
-		$isGal = ($path{0} !== 'f');
+		$isGal = ($path[0] !== 'f');
 		$smarty = TikiLib::lib('smarty');
 		$smarty->loadPlugin('smarty_function_object_link');
 

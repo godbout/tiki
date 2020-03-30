@@ -190,7 +190,7 @@ function filter_out_sefurl($tpl_output, $type = null, $title = '', $with_next = 
 		$eqpos = strpos($tpl_output, '=');
 		if ($amppos !== false && ($eqpos === false || $eqpos > $amppos)) {
 			if (substr($tpl_output, $amppos, 5) !== '&amp;') {
-				$tpl_output{$amppos} = '?';
+				$tpl_output[$amppos] = '?';
 			} else {
 				$tpl_output = substr($tpl_output, 0, $amppos) . '?' . substr($tpl_output, $amppos + 5);
 			}

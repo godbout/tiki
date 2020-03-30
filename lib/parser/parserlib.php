@@ -272,7 +272,7 @@ class ParserLib extends TikiDb_Bridge
 			}
 
 			// If it is a true plugin
-			if ($plugins[0]{0} == "{") {
+			if ($plugins[0][0] == "{") {
 				$pos = strpos($data, $plugins[0]); // where plugin starts
 				$pos_end = $pos + strlen($plugins[0]); // where character after ( is
 
@@ -1439,7 +1439,7 @@ class ParserLib extends TikiDb_Bridge
 			$description = $pages[6][$i];
 			$anchor = null;
 
-			if ($description && $description{0} == '#') {
+			if ($description && $description[0] == '#') {
 				$temp = $description;
 				$anchor = strtok($temp, '|');
 				$description = strtok('|');

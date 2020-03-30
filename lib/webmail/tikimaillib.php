@@ -382,7 +382,7 @@ class TikiMail
 		$headerlib = TikiLib::lib('header');
 		$files = $headerlib->get_css_files();
 		$contents = array_map(function ($file) {
-			if ($file{0} == '/') {
+			if ($file[0] == '/') {
 				return file_get_contents($file);
 			} elseif (substr($file, 0, 4) == 'http') {
 				return TikiLib::lib('tiki')->httprequest($file);

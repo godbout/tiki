@@ -303,12 +303,12 @@ class Search_Indexer
 		$toRemove = array_filter(
 			$keys,
 			function ($key) {
-				return $key{0} === '_';
+				return $key[0] === '_';
 			}
 		);
 
 		foreach ($keys as $key) {
-			if ($key{0} === '_') {
+			if ($key[0] === '_') {
 				unset($data[$key]);
 			}
 		}

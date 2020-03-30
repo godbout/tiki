@@ -308,7 +308,7 @@ class FilegalBatchLib extends FileGalLib
 		}
 
 		foreach ($allfile as $filefile) {
-			if ('.' === $filefile{0}) {
+			if ('.' === $filefile[0]) {
 				continue;
 			}
 

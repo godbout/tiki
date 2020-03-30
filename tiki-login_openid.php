@@ -37,9 +37,8 @@ function setupFromAddress() // {{{
 	if (! isset($_SESSION['loginfrom'])) {
 		$_SESSION['loginfrom'] = (isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $prefs['tikiIndex']);
 		if (! preg_match('/^http/', $_SESSION['loginfrom'])) {
-			if ($_SESSION['loginfrom'] {
-				0
-			} == '/') {
+			if ($_SESSION['loginfrom'] [
+				0] == '/') {
 				$_SESSION['loginfrom'] = $url_scheme . '://' . $url_host . (($url_port != '') ? ":$url_port" : '') . $_SESSION['loginfrom'];
 			} else {
 				$_SESSION['loginfrom'] = $base_url . $_SESSION['loginfrom'];

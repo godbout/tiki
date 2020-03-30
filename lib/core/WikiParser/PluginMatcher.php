@@ -386,7 +386,7 @@ class WikiParser_PluginMatcher_Match
 			$this->matchType = self::LONG;
 
 			// Parenthesis required when using long syntax
-			if ($candidate{strlen($name) } != '(') {
+			if ($candidate[strlen($name)] != '(') {
 				$this->invalidate();
 				return false;
 			}
@@ -599,7 +599,7 @@ class WikiParser_PluginMatcher_Match
 		$pos = -1;
 		while (false !== $pos = strpos($string, '"', $pos + 1)) {
 			++$count;
-			if ($pos > 0 && $string{ $pos - 1} == "\\") {
+			if ($pos > 0 && $string[$pos - 1] == "\\") {
 				--$count;
 			}
 		}

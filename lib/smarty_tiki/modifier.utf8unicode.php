@@ -17,7 +17,7 @@ function smarty_modifier_utf8unicode($utf8_text)
 	$output = [ ];
 
 	for ($pos = 0, $pos_strlen_utf8_text = strlen($utf8_text); $pos < $pos_strlen_utf8_text; $pos++) {
-		$chval = ord($utf8_text{$pos});
+		$chval = ord($utf8_text[$pos]);
 
 		$bytes = 0;
 		if (( $chval >= 0x00 ) && ( $chval <= 0x7F )) {
@@ -38,7 +38,7 @@ function smarty_modifier_utf8unicode($utf8_text)
 					$pos++;
 					$bytes--;
 
-					$outputval = $outputval * 0x40 + ( (ord($utf8_text{$pos})) & 0x3F );
+					$outputval = $outputval * 0x40 + ( (ord($utf8_text[$pos])) & 0x3F );
 				}
 				if ($outputval != 0) {
 					$output[] = $outputval;

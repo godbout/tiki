@@ -16,7 +16,7 @@ class Math_Formula_Tokenizer
 		$inString = false;
 
 		for ($i = 0; $len > $i; ++$i) {
-			$chr = $string{$i};
+			$chr = $string[$i];
 
 			$end = false;
 			$extra = null;

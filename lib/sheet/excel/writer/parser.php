@@ -1123,7 +1123,7 @@ class Spreadsheet_Excel_Writer_Parser extends PEAR
         $col    = 0;
         for ($i=0, $tmp_len = strlen($col_ref); $i < $tmp_len; $i++)
         {
-            $col += (ord($col_ref{$i}) - ord('A') + 1) * pow(26, $expn);
+            $col += (ord($col_ref[$i]) - ord('A') + 1) * pow(26, $expn);
             $expn--;
         }
     
@@ -1145,19 +1145,19 @@ class Spreadsheet_Excel_Writer_Parser extends PEAR
         // eat up white spaces
         if ($i < strlen($this->_formula))
         {
-            while ($this->_formula{$i} == " ") {
+            while ($this->_formula[$i] == " ") {
                 $i++;
             }
             if ($i < strlen($this->_formula) - 1) {
-                $this->_lookahead = $this->_formula{$i+1};
+                $this->_lookahead = $this->_formula[$i+1];
             }
             $token = "";
         }
         while ($i < strlen($this->_formula))
         {
-            $token .= $this->_formula{$i};
+            $token .= $this->_formula[$i];
             if ($i < strlen($this->_formula) - 1) {
-                $this->_lookahead = $this->_formula{$i+1};
+                $this->_lookahead = $this->_formula[$i+1];
             }
             else {
                 $this->_lookahead = '';
@@ -1172,7 +1172,7 @@ class Spreadsheet_Excel_Writer_Parser extends PEAR
                 return 1;
             }
             if ($i < strlen($this->_formula) - 2) {
-                $this->_lookahead = $this->_formula{$i+2};
+                $this->_lookahead = $this->_formula[$i+2];
             }
             // if we run out of characters _lookahead becomes empty
             else {
@@ -1323,7 +1323,7 @@ class Spreadsheet_Excel_Writer_Parser extends PEAR
     {
         $this->_current_char = 0;
         $this->_formula      = $formula;
-        $this->_lookahead    = $formula{1};
+        $this->_lookahead    = $formula[1];
         $this->_advance();
         $this->_parse_tree   = $this->_condition();
         if (PEAR::isError($this->_parse_tree)) {

@@ -187,7 +187,7 @@ function scanfiles($folder, &$files) // {{{
 
 	while (false !== $file = readdir($handle)) {
 		// Skip self and parent
-		if ($file{0} == '.' || $file{0} == '..') {
+		if ($file[0] == '.' || $file[0] == '..') {
 			continue;
 		}
 

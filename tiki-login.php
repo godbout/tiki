@@ -59,9 +59,8 @@ if ($prefs['session_silent'] == 'y') {
 if (! isset($_SESSION['loginfrom']) && isset($_SERVER['HTTP_REFERER']) && ! preg_match('|/login|', $_SERVER['HTTP_REFERER']) && ! preg_match('|logout|', $_SERVER['HTTP_REFERER'])) {
 	$_SESSION['loginfrom'] = $_SERVER['HTTP_REFERER'];
 	if (! preg_match('/^http/', $_SESSION['loginfrom'])) {
-		if ($_SESSION['loginfrom'] {
-			0
-		} == '/') {
+		if ($_SESSION['loginfrom'] [
+			0] == '/') {
 			$_SESSION['loginfrom'] = $url_scheme . '://' . $url_host . (($url_port != '') ? ":$url_port" : '') . $_SESSION['loginfrom'];
 		} else {
 			$_SESSION['loginfrom'] = $base_url . $_SESSION['loginfrom'];

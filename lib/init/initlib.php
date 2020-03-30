@@ -242,7 +242,7 @@ class TikiInit
 	 */
 	static function is__writable($path)
 	{
-		if ($path{strlen($path) - 1} == '/') { // recursively return a temporary file path
+		if ($path[strlen($path) - 1] == '/') { // recursively return a temporary file path
 			return self::is__writable($path . uniqid(mt_rand()) . '.tmp');
 		} elseif (is_dir($path)) {
 			return self::is__writable($path . '/' . uniqid(mt_rand()) . '.tmp');

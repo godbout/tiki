@@ -19,7 +19,7 @@ class Search_Expr_Tokenizer
 
 		$length = strlen($string);
 		for ($i = 0; $length > $i; ++$i) {
-			$char = $string{$i};
+			$char = $string[$i];
 
 			if ($open) {
 				if ($char === self::QUOTE) {

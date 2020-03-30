@@ -551,7 +551,7 @@ class ModLib extends TikiLib
 			foreach ((array) $params['theme'] as $t) {
 				// remove any css extension
 				$t = preg_replace('/\.css$/i', '', $t);
-				if ($t{0} != '!') { // usual behavior
+				if ($t[0] != '!') { // usual behavior
 					if (! empty($tc_theme) && $t === $tc_theme) {
 						$ok = true;
 					} elseif ($t === $prefs['theme'] && empty($tc_theme)) {

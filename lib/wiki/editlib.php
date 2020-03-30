@@ -1077,7 +1077,7 @@ class EditLib
 						case 'h5':
 						case 'h6':
 							$p['wiki_lbr']++; // force wiki line break mode
-							$hlevel = (int) $node['data']['name']{1};
+							$hlevel = (int) $node['data']['name'][1];
 							if (isset($node['pars']['style']['value']) && strpos($node['pars']['style']['value'], 'text-align: center;') !== false) {
 								if ($prefs['feature_use_three_colon_centertag'] == 'y') {
 									$src .= $this->startNewLine($src) . str_repeat('!', $hlevel) . ':::';
