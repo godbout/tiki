@@ -297,7 +297,7 @@ function check_session_save_path()
 		}
 
 		if ($errors) {
-				$save_path = TikiInit::tempdir();
+				$save_path = sys_get_temp_dir();
 
 			if (is_dir($save_path) && TikiInit::is_writeable($save_path)) {
 					ini_set('session.save_path', $save_path);

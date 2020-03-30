@@ -299,18 +299,6 @@ class TikiInit
 		return set_include_path($include_path);
 	}
 
-
-	/** Return system defined temporary directory.
-	 * In Unix, this is usually /tmp
-	 * In Windows, this is usually c:\windows\temp or c:\winnt\temp
-	 * @static
-	 * @deprecated by sys_get_temp_dir()
-	 */
-	static function tempdir()
-	{
-		return sys_get_temp_dir();
-	}
-
 	/**
 	 * Convert a string to UTF-8. Fixes a bug in PHP decode
 	 * From http://w3.org/International/questions/qa-forms-utf-8.html

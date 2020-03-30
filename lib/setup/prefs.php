@@ -215,7 +215,7 @@ function get_default_prefs()
 
 	// Special default values
 
-	$_SESSION['tmpDir'] = class_exists('TikiInit') ? TikiInit::tempdir() : '/tmp';
+	$_SESSION['tmpDir'] = sys_get_temp_dir();
 
 	$prefs['feature_bidi'] = 'n';
 	$prefs['feature_lastup'] = 'y';
