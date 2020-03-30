@@ -4731,6 +4731,7 @@ $lang = array(
 "Set Image gal homepage first" => "Weka ukurasa wa kwanza wa nyumba ya sanaa ya picha",
 "Set Forum homepage first" => "Set Forum homepage first",
 "Since passwords are encrypted, it's not possible to tell the user what the password is. It's only possible to change it." => "Kwa kuwa nenosiri ni encrypted, haiwezekani kumwambia mtumiaji nenosiri. Inawezekana tu kubadili.",
+"Since passwords are stored securely, it's not possible to tell the user what the password is. It's only possible to change it" => "Kwa kuwa nenosiri ni encrypted, haiwezekani kumwambia mtumiaji nenosiri. Inawezekana tu kubadili.",
 "Validate user's email server" => "Thibitisha seva ya barua pepe ya mtumiaji",
 // "Displays the required passcode on the registration form. This is helpful for legitimate users who want to register while making it difficult for automated robots because the passcode is unique for each site and because it is displayed in JavaScript" => "Displays the required passcode on the registration form. This is helpful for legitimate users who want to register while making it difficult for automated robots because the passcode is unique for each site and because it is displayed in JavaScript",
 "The group name will be the same as the user's username" => "Jina la kikundi litakuwa sawa na jina la mtumiaji",

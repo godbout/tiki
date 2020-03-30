@@ -193,7 +193,7 @@ function prefs_global_list($partial = false)
 			'name' => tra('Forgot password'),
 			'description' => tra('Users can request a password reset. They will receive a link by email.'),
 			'type' => 'flag',
-			'detail' => tra("Since passwords are encrypted, it's not possible to tell the user what the password is. It's only possible to change it."),
+			'detail' => tra("Since passwords are stored securely, it's not possible to tell the user what the password is. It's only possible to change it."),
 			'default' => 'y',
 			'tags' => ['basic'],
 		],

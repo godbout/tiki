@@ -4732,6 +4732,7 @@ $lang = array(
 "Set Image gal homepage first" => "Establir Image pàgina gal primer",
 "Set Forum homepage first" => "Establir pàgina d'inici Fòrum primer",
 "Since passwords are encrypted, it's not possible to tell the user what the password is. It's only possible to change it" => "Atès que les contrasenyes estan encriptades, no és possible indicar a l'usuari quina és la contrasenya. Només és possible canviar",
+"Since passwords are stored securely, it's not possible to tell the user what the password is. It's only possible to change it" => "Atès que les contrasenyes estan encriptades, no és possible indicar a l'usuari quina és la contrasenya. Només és possible canviar",
 "Validate user's email server" => "Validar servidor de correu electrònic de l'usuari",
 "Displays the required passcode on the registration form. This is helpful for legitimate users who want to register while making it difficult for automated robots because the passcode is unique for each site and because it is displayed in JavaScript" => "Mostra el codi d'accés requerit en el formulari de registre. Això és útil per als usuaris legítims que volen inscriure en fer que sigui difícil per als robots automatitzats perquè el codi és únic per a cada lloc i ja que es mostra en JavaScript",
 "The group name will be the same as the user's username" => "El grup es dirà idèntic al nom d'usuari de l'usuari",

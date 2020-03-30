@@ -4734,6 +4734,7 @@ $lang = array(
 "Set Forum homepage first" => "먼저 게시판 홈페이지 설정",
 "Forum:" => "게시판:",
 "Since passwords are encrypted, it's not possible to tell the user what the password is. It's only possible to change it" => "비밀번호가 암호화되어 있어서, 사용자에게 비밀번호가 무엇인지 말해주는 것은 가능하지 않습니다. 변경하는 것만이 가능합니다",
+"Since passwords are stored securely, it's not possible to tell the user what the password is. It's only possible to change it" => "비밀번호가 암호화되어 있어서, 사용자에게 비밀번호가 무엇인지 말해주는 것은 가능하지 않습니다. 변경하는 것만이 가능합니다",
 "Validate user's email server" => "사용자의 이메일 서버 확인",
 // "Displays the required passcode on the registration form. This is helpful for legitimate users who want to register while making it difficult for automated robots because the passcode is unique for each site and because it is displayed in JavaScript" => "Displays the required passcode on the registration form. This is helpful for legitimate users who want to register while making it difficult for automated robots because the passcode is unique for each site and because it is displayed in JavaScript",
 "The group name will be the same as the user's username" => "그룹은 사용자의 사용자명과 동일한 이름이 주어집니다",

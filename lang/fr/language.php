@@ -4731,6 +4731,7 @@ $lang = array(
 "Set Image gal homepage first" => "Choisir d'abord la page d'accueil de la galerie d'image",
 "Set Forum homepage first" => "Choisir d'abord la page d'accueil du forum",
 "Since passwords are encrypted, it's not possible to tell the user what the password is. It's only possible to change it" => "Puisque les mots de passe sont encryptés, il n'est pas possible d'indiquer à l'utilisateur quel est son mot de passe. Il est seulement possible de le modifier",
+"Since passwords are stored securely, it's not possible to tell the user what the password is. It's only possible to change it" => "Puisque les mots de passe sont encryptés, il n'est pas possible d'indiquer à l'utilisateur quel est son mot de passe. Il est seulement possible de le modifier",
 "Validate user's email server" => "Valider le serveur mail de l'utilisateur",
 // "Displays the required passcode on the registration form. This is helpful for legitimate users who want to register while making it difficult for automated robots because the passcode is unique for each site and because it is displayed in JavaScript" => "Displays the required passcode on the registration form. This is helpful for legitimate users who want to register while making it difficult for automated robots because the passcode is unique for each site and because it is displayed in JavaScript",
 "The group name will be the same as the user's username" => "Le groupe portera le même nom que celui de l'utilisateur",
