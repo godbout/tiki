@@ -119,7 +119,7 @@ if ($view == 'admin') {
 			$fgal_options[$k_gal]['value'] = isset($gal_info[$k_gal]) ? $gal_info[$k_gal] : null;
 		} else {
 			// normal gallery view
-			$fgal_options[$k_gal]['value'] = ( isset($gal_info) && isset($gal_info[$k_gal]) ) ? $gal_info[$k_gal] : isset($prefs[$k_prefs]) ? $prefs[$k_prefs] : null;
+			$fgal_options[$k_gal]['value'] = (isset($gal_info) && isset($gal_info[$k_gal])) ? $gal_info[$k_gal] : (isset($prefs[$k_prefs]) ? $prefs[$k_prefs] : null);
 		}
 	}
 }

@@ -220,7 +220,7 @@ if ($prefs['session_silent'] == 'y' && empty($_COOKIE[session_name()]) && empty(
 }
 
 // If called from the CDN, refuse to execute anything
-$cdn_pref = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? $prefs['tiki_cdn_ssl'] : isset($prefs['tiki_cdn']) ? $prefs['tiki_cdn'] : '' ;
+$cdn_pref = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? $prefs['tiki_cdn_ssl'] : isset($prefs['tiki_cdn'])) ? $prefs['tiki_cdn'] : '';
 if ($cdn_pref) {
 	$host = parse_url($cdn_pref, PHP_URL_HOST);
 	if (isset($_SERVER['HTTP_HOST']) && $host == $_SERVER['HTTP_HOST']) {
