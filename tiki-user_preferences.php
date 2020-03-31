@@ -73,11 +73,11 @@ if ($prefs['feature_perspective'] === 'y') {
 }
 
 
-if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) && $access->checkCsrf()) {
+if ($prefs['feature_userPreferences'] == 'y' && isset($_POST["new_prefs"]) && $access->checkCsrf()) {
 	// setting preferences
 	if ($prefs['change_theme'] == 'y' && empty($group_theme)) {
-		if (isset($_REQUEST['mytheme'])) {
-			$themeandoption = $themelib->extract_theme_and_option($_REQUEST['mytheme']);
+		if (isset($_POST['mytheme'])) {
+			$themeandoption = $themelib->extract_theme_and_option($_POST['mytheme']);
 			$theme = $themeandoption[0];
 			$themeOption = $themeandoption[1];
 			$tikilib->set_user_preference($userwatch, 'theme', $theme);
@@ -89,29 +89,29 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) &&
 			//$access->redirect($_SERVER['REQUEST_URI'], '', 200);
 		}
 	}
-	if (isset($_REQUEST["userbreadCrumb"])) {
-		$tikilib->set_user_preference($userwatch, 'userbreadCrumb', $_REQUEST["userbreadCrumb"]);
+	if (isset($_POST["userbreadCrumb"])) {
+		$tikilib->set_user_preference($userwatch, 'userbreadCrumb', $_POST["userbreadCrumb"]);
 	}
 	$langLib = TikiLib::lib('language');
-	if (isset($_REQUEST["language"]) && $langLib->is_valid_language($_REQUEST['language'])) {
+	if (isset($_POST["language"]) && $langLib->is_valid_language($_POST['language'])) {
 		if ($tiki_p_admin || $prefs['change_language'] == 'y') {
-			$tikilib->set_user_preference($userwatch, 'language', $_REQUEST["language"]);
+			$tikilib->set_user_preference($userwatch, 'language', $_POST["language"]);
 		}
 		if ($userwatch == $user) {
-			include('lang/' . $_REQUEST["language"] . '/language.php');
+			include('lang/' . $_POST["language"] . '/language.php');
 		}
 	} else {
 		$tikilib->set_user_preference($userwatch, 'language', '');
 	}
 	$smarty->assign('tiki_p_admin', $tiki_p_admin);
-	if ($tiki_p_admin && isset($_REQUEST['languageAdmin']) && $langLib->is_valid_language($_REQUEST['languageAdmin'])) {
-		$tikilib->set_user_preference($userwatch, 'language_admin', $_REQUEST['languageAdmin']);
+	if ($tiki_p_admin && isset($_POST['languageAdmin']) && $langLib->is_valid_language($_POST['languageAdmin'])) {
+		$tikilib->set_user_preference($userwatch, 'language_admin', $_POST['languageAdmin']);
 	} else {
 		$tikilib->set_user_preference($userwatch, 'language_admin', '');
 	}
-	if (isset($_REQUEST['read_language'])) {
+	if (isset($_POST['read_language'])) {
 		$list = [];
-		$tok = strtok($_REQUEST['read_language'], ' ');
+		$tok = strtok($_POST['read_language'], ' ');
 		while (false !== $tok) {
 			$list[] = $tok;
 			$tok = strtok(' ');
@@ -122,18 +122,18 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) &&
 		$list = implode(' ', $list);
 		$tikilib->set_user_preference($userwatch, 'read_language', $list);
 	}
-	if (isset($_REQUEST['display_timezone'])) {
-		$tikilib->set_user_preference($userwatch, 'display_timezone', $_REQUEST['display_timezone']);
+	if (isset($_POST['display_timezone'])) {
+		$tikilib->set_user_preference($userwatch, 'display_timezone', $_POST['display_timezone']);
 	}
-	$tikilib->set_user_preference($userwatch, 'user_information', $_REQUEST['user_information']);
-	if (isset($_REQUEST['display_12hr_clock']) && $_REQUEST['display_12hr_clock'] == 'on') {
+	$tikilib->set_user_preference($userwatch, 'user_information', $_POST['user_information']);
+	if (isset($_POST['display_12hr_clock']) && $_POST['display_12hr_clock'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'display_12hr_clock', 'y');
 		$smarty->assign('display_12hr_clock', 'y');
 	} else {
 		$tikilib->set_user_preference($userwatch, 'display_12hr_clock', 'n');
 		$smarty->assign('display_12hr_clock', 'n');
 	}
-	if (isset($_REQUEST['diff_versions']) && $_REQUEST['diff_versions'] == 'on') {
+	if (isset($_POST['diff_versions']) && $_POST['diff_versions'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'diff_versions', 'y');
 		$smarty->assign('diff_versions', 'y');
 	} else {
@@ -141,7 +141,7 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) &&
 		$smarty->assign('diff_versions', 'n');
 	}
 	if ($prefs['feature_community_mouseover'] == 'y') {
-		if (isset($_REQUEST['show_mouseover_user_info']) && $_REQUEST['show_mouseover_user_info'] == 'on') {
+		if (isset($_POST['show_mouseover_user_info']) && $_POST['show_mouseover_user_info'] == 'on') {
 			$tikilib->set_user_preference($userwatch, 'show_mouseover_user_info', 'y');
 			$smarty->assign('show_mouseover_user_info', 'y');
 		} else {
@@ -150,35 +150,35 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) &&
 		}
 	}
 
-	$tikilib->set_user_preference($userwatch, 'remember_closed_rboxes', empty($_REQUEST['remember_closed_rboxes']) ? 'n' : 'y');
+	$tikilib->set_user_preference($userwatch, 'remember_closed_rboxes', empty($_POST['remember_closed_rboxes']) ? 'n' : 'y');
 
-	$email_isPublic = isset($_REQUEST['email_isPublic']) ? $_REQUEST['email_isPublic'] : 'n';
+	$email_isPublic = isset($_POST['email_isPublic']) ? $_POST['email_isPublic'] : 'n';
 	$tikilib->set_user_preference($userwatch, 'email is public', $email_isPublic);
-	$tikilib->set_user_preference($userwatch, 'mailCharset', $_REQUEST['mailCharset']);
+	$tikilib->set_user_preference($userwatch, 'mailCharset', $_POST['mailCharset']);
 	// Custom fields
 	foreach ($customfields as $custpref => $prefvalue) {
-		if (isset($_REQUEST[$customfields[$custpref]['prefName']])) {
-			$tikilib->set_user_preference($userwatch, $customfields[$custpref]['prefName'], $_REQUEST[$customfields[$custpref]['prefName']]);
+		if (isset($_POST[$customfields[$custpref]['prefName']])) {
+			$tikilib->set_user_preference($userwatch, $customfields[$custpref]['prefName'], $_POST[$customfields[$custpref]['prefName']]);
 		}
 	}
-	if (isset($_REQUEST["realName"]) && ($prefs['auth_ldap_nameattr'] == '' || $prefs['auth_method'] != 'ldap')) {
-		$tikilib->set_user_preference($userwatch, 'realName', $_REQUEST["realName"]);
+	if (isset($_POST["realName"]) && ($prefs['auth_ldap_nameattr'] == '' || $prefs['auth_method'] != 'ldap')) {
+		$tikilib->set_user_preference($userwatch, 'realName', $_POST["realName"]);
 		if ($prefs['user_show_realnames'] == 'y') {
 			$cachelib = TikiLib::lib('cache');
 			$cachelib->invalidate('userlink.' . $user . '0');
 		}
 	}
 	if ($prefs['feature_community_gender'] == 'y') {
-		if (isset($_REQUEST["gender"])) {
-			$tikilib->set_user_preference($userwatch, 'gender', $_REQUEST["gender"]);
+		if (isset($_POST["gender"])) {
+			$tikilib->set_user_preference($userwatch, 'gender', $_POST["gender"]);
 		}
 	}
-	if (isset($_REQUEST["homePage"])) {
-		$tikilib->set_user_preference($userwatch, 'homePage', $_REQUEST["homePage"]);
+	if (isset($_POST["homePage"])) {
+		$tikilib->set_user_preference($userwatch, 'homePage', $_POST["homePage"]);
 	}
 
-	if (isset($_REQUEST['location'])) {
-		if ($coords = TikiLib::lib('geo')->parse_coordinates($_REQUEST['location'])) {
+	if (isset($_POST['location'])) {
+		if ($coords = TikiLib::lib('geo')->parse_coordinates($_POST['location'])) {
 			$tikilib->set_user_preference($userwatch, 'lat', $coords['lat']);
 			$tikilib->set_user_preference($userwatch, 'lon', $coords['lon']);
 			if (isset($coords['zoom'])) {
@@ -191,94 +191,94 @@ if ($prefs['feature_userPreferences'] == 'y' && isset($_REQUEST["new_prefs"]) &&
 	foreach ($customfields as $custpref => $prefvalue) {
 		// print $customfields[$custpref]['prefName'];
 		// print $_REQUEST[$customfields[$custpref]['prefName']];
-		$tikilib->set_user_preference($userwatch, $customfields[$custpref]['prefName'], $_REQUEST[$customfields[$custpref]['prefName']]);
+		$tikilib->set_user_preference($userwatch, $customfields[$custpref]['prefName'], $_POST[$customfields[$custpref]['prefName']]);
 	}
-	$tikilib->set_user_preference($userwatch, 'country', $_REQUEST["country"]);
-	if (isset($_REQUEST['mess_maxRecords'])) {
-		$tikilib->set_user_preference($userwatch, 'mess_maxRecords', $_REQUEST['mess_maxRecords']);
+	$tikilib->set_user_preference($userwatch, 'country', $_POST["country"]);
+	if (isset($_POST['mess_maxRecords'])) {
+		$tikilib->set_user_preference($userwatch, 'mess_maxRecords', $_POST['mess_maxRecords']);
 	}
-	if (isset($_REQUEST['mess_archiveAfter'])) {
-		$tikilib->set_user_preference($userwatch, 'mess_archiveAfter', $_REQUEST['mess_archiveAfter']);
+	if (isset($_POST['mess_archiveAfter'])) {
+		$tikilib->set_user_preference($userwatch, 'mess_archiveAfter', $_POST['mess_archiveAfter']);
 	}
-	if (isset($_REQUEST['mess_sendReadStatus']) && $_REQUEST['mess_sendReadStatus'] == 'on') {
+	if (isset($_POST['mess_sendReadStatus']) && $_POST['mess_sendReadStatus'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'mess_sendReadStatus', 'y');
 	} else {
 		$tikilib->set_user_preference($userwatch, 'mess_sendReadStatus', 'n');
 	}
-	if (isset($_REQUEST['minPrio'])) {
-		$tikilib->set_user_preference($userwatch, 'minPrio', $_REQUEST['minPrio']);
+	if (isset($_POST['minPrio'])) {
+		$tikilib->set_user_preference($userwatch, 'minPrio', $_POST['minPrio']);
 	}
 	if ($prefs['allowmsg_is_optional'] == 'y') {
-		if (isset($_REQUEST['allowMsgs']) && $_REQUEST['allowMsgs'] == 'on') {
+		if (isset($_POST['allowMsgs']) && $_POST['allowMsgs'] == 'on') {
 			$tikilib->set_user_preference($userwatch, 'allowMsgs', 'y');
 		} else {
 			$tikilib->set_user_preference($userwatch, 'allowMsgs', 'n');
 		}
 	}
-	if (isset($_REQUEST['mytiki_pages']) && $_REQUEST['mytiki_pages'] == 'on') {
+	if (isset($_POST['mytiki_pages']) && $_POST['mytiki_pages'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'mytiki_pages', 'y');
 	} else {
 		$tikilib->set_user_preference($userwatch, 'mytiki_pages', 'n');
 	}
-	if (isset($_REQUEST['mytiki_blogs']) && $_REQUEST['mytiki_blogs'] == 'on') {
+	if (isset($_POST['mytiki_blogs']) && $_POST['mytiki_blogs'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'mytiki_blogs', 'y');
 	} else {
 		$tikilib->set_user_preference($userwatch, 'mytiki_blogs', 'n');
 	}
-	if (isset($_REQUEST['mytiki_gals']) && $_REQUEST['mytiki_gals'] == 'on') {
+	if (isset($_POST['mytiki_gals']) && $_POST['mytiki_gals'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'mytiki_gals', 'y');
 	} else {
 		$tikilib->set_user_preference($userwatch, 'mytiki_gals', 'n');
 	}
-	if (isset($_REQUEST['mytiki_msgs']) && $_REQUEST['mytiki_msgs'] == 'on') {
+	if (isset($_POST['mytiki_msgs']) && $_POST['mytiki_msgs'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'mytiki_msgs', 'y');
 	} else {
 		$tikilib->set_user_preference($userwatch, 'mytiki_msgs', 'n');
 	}
-	if (isset($_REQUEST['mytiki_tasks']) && $_REQUEST['mytiki_tasks'] == 'on') {
+	if (isset($_POST['mytiki_tasks']) && $_POST['mytiki_tasks'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'mytiki_tasks', 'y');
 	} else {
 		$tikilib->set_user_preference($userwatch, 'mytiki_tasks', 'n');
 	}
-	if (isset($_REQUEST['mytiki_forum_topics']) && $_REQUEST['mytiki_forum_topics'] == 'on') {
+	if (isset($_POST['mytiki_forum_topics']) && $_POST['mytiki_forum_topics'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'mytiki_forum_topics', 'y');
 	} else {
 		$tikilib->set_user_preference($userwatch, 'mytiki_forum_topics', 'n');
 	}
-	if (isset($_REQUEST['mytiki_forum_replies']) && $_REQUEST['mytiki_forum_replies'] == 'on') {
+	if (isset($_POST['mytiki_forum_replies']) && $_POST['mytiki_forum_replies'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'mytiki_forum_replies', 'y');
 	} else {
 		$tikilib->set_user_preference($userwatch, 'mytiki_forum_replies', 'n');
 	}
-	if (isset($_REQUEST['mytiki_items']) && $_REQUEST['mytiki_items'] == 'on') {
+	if (isset($_POST['mytiki_items']) && $_POST['mytiki_items'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'mytiki_items', 'y');
 	} else {
 		$tikilib->set_user_preference($userwatch, 'mytiki_items', 'n');
 	}
-	if (isset($_REQUEST['mytiki_articles']) && $_REQUEST['mytiki_articles'] == 'on') {
+	if (isset($_POST['mytiki_articles']) && $_POST['mytiki_articles'] == 'on') {
 		$tikilib->set_user_preference($userwatch, 'mytiki_articles', 'y');
 	} else {
 		$tikilib->set_user_preference($userwatch, 'mytiki_articles', 'n');
 	}
-	if (isset($_REQUEST['tasks_maxRecords'])) {
-		$tikilib->set_user_preference($userwatch, 'tasks_maxRecords', $_REQUEST['tasks_maxRecords']);
+	if (isset($_POST['tasks_maxRecords'])) {
+		$tikilib->set_user_preference($userwatch, 'tasks_maxRecords', $_POST['tasks_maxRecords']);
 	}
 	if ($prefs['feature_intertiki'] == 'y' && ! empty($prefs['feature_intertiki_mymaster']) && $prefs['feature_intertiki_import_preferences'] == 'y') { //send to the master
 		$userlib->interSendUserInfo($prefs['interlist'][$prefs['feature_intertiki_mymaster']], $userwatch);
 	}
 
-	if (isset($_REQUEST['xmpp_jid'])) {
-		$tikilib->set_user_preference($userwatch, 'xmpp_jid', $_REQUEST['xmpp_jid']);
+	if (isset($_POST['xmpp_jid'])) {
+		$tikilib->set_user_preference($userwatch, 'xmpp_jid', $_POST['xmpp_jid']);
 	}
-	if (isset($_REQUEST['xmpp_password'])) {
-		$tikilib->set_user_preference($userwatch, 'xmpp_password', $_REQUEST['xmpp_password']);
+	if (isset($_POST['xmpp_password'])) {
+		$tikilib->set_user_preference($userwatch, 'xmpp_password', $_POST['xmpp_password']);
 	}
-	if (isset($_REQUEST['xmpp_custom_server_http_bind'])) {
-		$tikilib->set_user_preference($userwatch, 'xmpp_custom_server_http_bind', $_REQUEST['xmpp_custom_server_http_bind']);
+	if (isset($_POST['xmpp_custom_server_http_bind'])) {
+		$tikilib->set_user_preference($userwatch, 'xmpp_custom_server_http_bind', $_POST['xmpp_custom_server_http_bind']);
 	}
 
-	if (isset($_REQUEST['perspective_preferred']) &&  $perspectivelib->perspective_exists($_REQUEST['perspective_preferred'])) {
-		$tikilib->set_user_preference($userwatch, 'perspective_preferred', $_REQUEST['perspective_preferred']);
+	if (isset($_POST['perspective_preferred']) &&  $perspectivelib->perspective_exists($_POST['perspective_preferred'])) {
+		$tikilib->set_user_preference($userwatch, 'perspective_preferred', $_POST['perspective_preferred']);
 	} else {
 		$tikilib->set_user_preference($userwatch, 'perspective_preferred', null);
 	}
@@ -299,9 +299,9 @@ if ($prefs['auth_method'] == 'ldap' && $user == 'admin' && $prefs['ldap_skip_adm
 
 
 $tfaSecret = $userlib->get_2_factor_secret($userwatch);
-if (isset($_REQUEST['chgadmin']) && $access->checkCsrf()) {
-	if (isset($_REQUEST['pass'])) {
-		$pass = $_REQUEST['pass'];
+if (isset($_POST['chgadmin']) && $access->checkCsrf()) {
+	if (isset($_POST['pass'])) {
+		$pass = $_POST['pass'];
 	} else {
 		$pass = '';
 	}
@@ -322,42 +322,42 @@ if (isset($_REQUEST['chgadmin']) && $access->checkCsrf()) {
 			die;
 		}
 	}
-	if (! empty($_REQUEST['email']) && ($prefs['login_is_email'] != 'y' || $user == 'admin') && $_REQUEST['email'] != $userlib->get_user_email($userwatch)) {
-		if (validate_email($_REQUEST['email'])) {
-			$userlib->change_user_email($userwatch, $_REQUEST['email'], $pass);
-			Feedback::success(sprintf(tra('Email is set to %s'), $_REQUEST['email']));
+	if (! empty($_POST['email']) && ($prefs['login_is_email'] != 'y' || $user == 'admin') && $_POST['email'] != $userlib->get_user_email($userwatch)) {
+		if (validate_email($_POST['email'])) {
+			$userlib->change_user_email($userwatch, $_POST['email'], $pass);
+			Feedback::success(sprintf(tra('Email is set to %s'), $_POST['email']));
 			if ($prefs['feature_intertiki'] == 'y' && ! empty($prefs['feature_intertiki_mymaster']) && $prefs['feature_intertiki_import_preferences'] == 'y') { //send to the master
 				$userlib->interSendUserInfo($prefs['interlist'][$prefs['feature_intertiki_mymaster']], $userwatch);
 			}
 		} else {
-			Feedback::error(tr('Invalid email address "%0"', $_REQUEST['email']));
+			Feedback::error(tr('Invalid email address "%0"', $_POST['email']));
 		}
 	}
 	// If user has provided new password, let's try to change
-	if (! empty($_REQUEST["pass1"])) {
-		if ($_REQUEST["pass1"] != $_REQUEST["pass2"]) {
+	if (! empty($_POST["pass1"])) {
+		if ($_POST["pass1"] != $_POST["pass2"]) {
 			$smarty->assign('msg', tra("The passwords did not match"));
 			$smarty->display("error.tpl");
 			die;
 		}
-		$polerr = $userlib->check_password_policy($_REQUEST["pass1"]);
+		$polerr = $userlib->check_password_policy($_POST["pass1"]);
 		if (strlen($polerr) > 0) {
 			$smarty->assign('msg', $polerr);
 			$smarty->display("error.tpl");
 			die;
 		}
-		$userlib->change_user_password($userwatch, $_REQUEST["pass1"]);
+		$userlib->change_user_password($userwatch, $_POST["pass1"]);
 		if ($prefs['feature_user_encryption'] === 'y') {
 			// Notify CryptLib about the login
 			$cryptlib = TikiLib::lib('crypt');
-			$cryptlib->onChangeUserPassword($_REQUEST["pass"], $_REQUEST["pass1"]);
+			$cryptlib->onChangeUserPassword($_POST["pass"], $_POST["pass1"]);
 		}
 		Feedback::success(sprintf(tra('Password has been changed')));
 	}
 
-	if (! empty($_REQUEST["tfaEnable"]) && empty($tfaSecret)) {
+	if (! empty($_POST["tfaEnable"]) && empty($tfaSecret)) {
 		$tfaSecret = $userlib->generate_2_factor_secret($userwatch);
-	} elseif (empty($_REQUEST["tfaEnable"])) {
+	} elseif (empty($_POST["tfaEnable"])) {
 		$tfaSecret = $userlib->remove_2_factor_secret($userwatch);
 	}
 }
@@ -384,8 +384,8 @@ if ($prefs['twoFactorAuth'] == 'y' && ! empty($tfaSecret)) {
 	$smarty->assign('tfaSecretQR', $tfaSecretQR);
 }
 
-if (isset($_REQUEST['deleteaccount']) && $tiki_p_delete_account == 'y' && $access->checkCsrf()) {
-	if (! isset($_REQUEST['deleteaccountconfirm']) || $_REQUEST['deleteaccountconfirm'] != '1') {
+if (isset($_POST['deleteaccount']) && $tiki_p_delete_account == 'y' && $access->checkCsrf()) {
+	if (! isset($_POST['deleteaccountconfirm']) || $_POST['deleteaccountconfirm'] != '1') {
 		$smarty->assign('msg', tra("If you really want to delete your account, you must check the checkbox"));
 		$smarty->display("error.tpl");
 		die;
