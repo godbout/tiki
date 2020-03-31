@@ -8,6 +8,14 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+$inputConfiguration =	[[
+	'staticKeyFilters'	=> [
+		'userId'		=> 'digits',
+		'view_user'		=> 'word',
+	],
+	'catchAllUnset'		=> null
+]];
+
 require_once('tiki-setup.php');
 $messulib = TikiLib::lib('message');
 
@@ -80,7 +88,6 @@ if (! empty($prefs['user_tracker_infos'])) {
 	}
 	$smarty->assign("template_fields", $template_fields);
 }
-ask_ticket('user-information');
 $userprefslib = TikiLib::lib('userprefs');
 if ($user_picture_id = $userprefslib->get_user_picture_id($userwatch)) {
 	$smarty->assign('user_picture_id', $user_picture_id);
