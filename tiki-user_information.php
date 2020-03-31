@@ -8,6 +8,22 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+$inputConfiguration =	[[
+	'staticKeyFilters'	=> [
+		'userId'		=> 'digits',
+		'view_user'		=> 'word',
+		'send'			=> 'bool',
+		'subject'		=> 'text',
+		'body'			=> 'html',
+		'to'			=> 'text',
+		'bccme'			=> 'bcc',
+		'priority'		=> 'digits',
+		'replytome'		=> 'bool',
+
+	],
+	'catchAllUnset'		=> null
+]];
+
 require_once('tiki-setup.php');
 $messulib = TikiLib::lib('message');
 
