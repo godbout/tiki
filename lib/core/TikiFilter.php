@@ -4,6 +4,12 @@
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
+use Zend\Filter\Boolean;
+use Zend\Filter\Digits;
+use Zend\Filter\FilterInterface;
+use Zend\Filter\PregReplace;
+use Zend\Filter\StripTags;
+use Zend\Filter\ToInt;
 
 /**
  * Class TikiFilter
@@ -19,15 +25,15 @@ class TikiFilter
 	/**
 	 * Provides an object implementing Zend\Filter\FilterInterface based on the input
 	 *
-	 * @param \Zend\Filter\FilterInterface|string $filter		A filter shortcut name, or the filter itself.
-	 * @return \Zend\Filter\FilterInterface 					The filter object requested
+	 * @param FilterInterface|string $filter		A filter shortcut name, or the filter itself.
+	 * @return TikiFilter_Alnum|TikiFilter_Alpha|TikiFilter_AttributeType|TikiFilter_HtmlPurifier|TikiFilter_IsoDate|TikiFilter_Lang|TikiFilter_None|TikiFilter_PregFilter|TikiFilter_PreventXss|TikiFilter_RawUnsafe|TikiFilter_RelativeURL|TikiFilter_WikiContent|Boolean|Digits|FilterInterface|PregReplace|StripTags|ToInt
 	 *
 	 * @link https://dev.tiki.org/Filtering+Best+Practices
 	 * @link https://zendframework.github.io/zend-filter/
 	 */
 	public static function get($filter)
 	{
-		if ($filter instanceof \Zend\Filter\FilterInterface) {
+		if ($filter instanceof FilterInterface) {
 			return $filter;
 		}
 
@@ -44,15 +50,15 @@ class TikiFilter
 			case 'int':
 				// Test Return 0
 				// Transforms a scalar phrase into an integer. eg. '-4 is less than 0' returns -4, while '' returns 0
-				return new Zend\Filter\ToInt;
+				return new ToInt;
 
 			/** Boolean return types **/
 			case 'bool':
 				// Test Return (true)
 				// False upon:	false, 0, '0', 0.0, '', array(), null, 'false', 'no', 'n' and php casting equivalent to false.
 				// True upon:	Everything else returns true. Case insensitive evaluation.
-				return new Zend\Filter\Boolean([
-					'type'			=> Zend\Filter\Boolean::TYPE_ALL,
+				return new Boolean([
+					'type'			=> Boolean::TYPE_ALL,
 					'translations'	=> ['n' => false, 'N' => false]
 				]);
 
@@ -95,22 +101,22 @@ class TikiFilter
 			case 'digits':
 				// Test Return "4"
 				// Removes everything except digits eg. ' 12345 to 67890' returns '1234567890', while '-5' returns '5'
-				return new Zend\Filter\Digits;
+				return new Digits;
 			case 'digitscolons':
 				// Test Return "::4��"
 				// Removes everything except digits and colons, e.g., for colon-separated ID numbers.
 				// Only characters matched, not patterns - eg 'x75::xx44:' will return '75::44:'
-				return new Zend\Filter\PregReplace('/[^\p{N}:]*/', '');
+				return new PregReplace('/[^\p{N}:]*/', '');
 			case 'digitscommas':
 				// Test Return ",4��"
 				// Removes everything except digits and commas, e.g., for comma-separated ID numbers.
 				// Only characters matched, not patterns - eg 'x75,,xx44,' will return '75,,44,'
-				return new Zend\Filter\PregReplace('/[^\p{N},]*/', '');
+				return new PregReplace('/[^\p{N},]*/', '');
 			case 'digitspipes':
 				// Test Return "|4��"
 				// Removes everything except digits and pipes, e.g., for pipe-separated ID numbers.
 				// Only characters matched, not patterns - eg 'x75||xx44|' will return '75||44|'
-				return new Zend\Filter\PregReplace('/[^\p{N}\|]*/', '');
+				return new PregReplace('/[^\p{N}\|]*/', '');
 
 			/** Alpha Filters (no Digits or HTML) String Return Type **/
 			case 'alpha':
@@ -126,11 +132,11 @@ class TikiFilter
 			case 'word':
 				// Test Return: "g4h_onclickbscript"
 				// Strips everything but digit and alpha and underscore characters. Unicode support.
-				return new Zend\Filter\PregReplace('/\W+/', '');
+				return new PregReplace('/\W+/', '');
 			case 'wordspace':
 				// Test Return " g4hΔ δ_コン onclickbscript "
 				// Words and spaces only (no trimming)
-				return new Zend\Filter\PregReplace('/[^\p{L}\p{M}\p{N}_\p{Zs}]*/u', '');
+				return new PregReplace('/[^\p{L}\p{M}\p{N}_\p{Zs}]*/u', '');
 			case 'alnum':
 				// Test Return "g4hΔδコンonclickbscript"
 				// Only alphabetic characters and digits. All other characters are suppressed. Unicode support.
@@ -139,7 +145,7 @@ class TikiFilter
 				// Test Return "g4h��_���onclickbscript"
 				// Removes everything except alphabetic characters, digits, dashes and underscores. Could be used for
 				// class names, sortmode values, etc.
-				return new Zend\Filter\PregReplace('/[^\p{L}\p{N}\p{Pc}\p{Pd}]*/', '');
+				return new PregReplace('/[^\p{L}\p{N}\p{Pc}\p{Pd}]*/', '');
 			case 'alnumspace':
 				// Test Return " g4hΔ δコン onclickbscript "
 				// Only alphabetic characters, digits and spaces. All other characters are suppressed. Unicode support
@@ -158,7 +164,7 @@ class TikiFilter
 			case 'striptags':
 				// Test Return " :/g.,:|4h&#Δ δ_🍘コン onclick "
 				// Strips XML and HTML tags
-				return new Zend\Filter\StripTags;
+				return new StripTags;
 
 			/** HTML Permitted, String Return Type **/
 			case 'purifier':
