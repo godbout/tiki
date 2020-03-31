@@ -168,6 +168,7 @@ class TikiFilter
 
 			/** HTML Permitted, String Return Type **/
 			case 'purifier':
+			case 'html':
 				// Test Return " :/g.,:|4hΔ δ_🍘コン onclick<b></b>"
 				// Strips non-valid HTML and potentially malicious HTML
 				return new TikiFilter_HtmlPurifier('temp/cache');
