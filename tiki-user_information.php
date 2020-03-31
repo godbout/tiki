@@ -54,15 +54,15 @@ if ($tiki_p_admin != 'y') {
 }
 if ($user) {
 	$smarty->assign('sent', 0);
-	if (isset($_REQUEST['send']) && $access->checkCsrf()) {
+	if (isset($_POST['send']) && $access->checkCsrf()) {
 		$smarty->assign('sent', 1);
 		$message = '';
-		if (empty($_REQUEST['subject']) && empty($_REQUEST['body'])) {
+		if (empty($_POST['subject']) && empty($_POST['body'])) {
 			$smarty->assign('message', tra('ERROR: Either the subject or body must be non-empty'));
 			$smarty->display("tiki.tpl");
 			die;
 		}
-		$sent = $messulib->post_message($userwatch, $user, $_REQUEST['to'], '', $_REQUEST['subject'], $_REQUEST['body'], $_REQUEST['priority'], '', isset($_REQUEST['replytome']) ? 'y' : '', isset($_REQUEST['bccme']) ? 'y' : '');
+		$sent = $messulib->post_message($userwatch, $user, $_POST['to'], '', $_POST['subject'], $_POST['body'], $_POST['priority'], '', isset($_POST['replytome']) ? 'y' : '', isset($_POST['bccme']) ? 'y' : '');
 		if ($sent) {
 			$message = tra('Message sent to') . ':' . $userlib->clean_user($userwatch) . '<br />';
 		} else {
