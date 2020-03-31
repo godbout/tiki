@@ -54,8 +54,7 @@ if ($tiki_p_admin != 'y') {
 }
 if ($user) {
 	$smarty->assign('sent', 0);
-	if (isset($_REQUEST['send'])) {
-		check_ticket('user-information');
+	if (isset($_REQUEST['send']) && $access->checkCsrf()) {
 		$smarty->assign('sent', 1);
 		$message = '';
 		if (empty($_REQUEST['subject']) && empty($_REQUEST['body'])) {
@@ -211,7 +210,6 @@ if ($prefs['user_tracker_infos']) {
 		$smarty->assign('userItem', []);
 	}
 }
-ask_ticket('user-information');
 // Get full user picture if it is set
 if ($prefs["user_store_file_gallery_picture"] == 'y') {
 	$userprefslib = TikiLib::lib('userprefs');
