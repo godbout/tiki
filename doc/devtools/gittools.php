@@ -134,10 +134,31 @@ function commit($msg, $displaySuccess = true, $dieOnRemainingChanges = true)
 
 	return get_revision('.');
 }
+function commit_specific_lang($lang, $msg, $displaySuccess = true, $dieOnRemainingChanges = true)
+{
+	$msg = escapeshellarg($msg);
+	`git add ./lang/$lang`;
+	`git commit -m $msg ./lang/$lang`;
+
+	if (! has_uncommited_changes("./lang/$lang")) {
+		error("Commit seems to have failed. Uncommitted changes exist in the working folder.\n");
+	}
+
+	return get_revision("./lang/$lang");
+}
+
 
 function push()
 {
 	`git push`;
+}
+
+function push_create_merge_request($merge_title, $merge_desciption, $target_branch, $current_branch = "master")
+{
+	$merge_title = escapeshellarg($merge_title);
+	$merge_desciption = escapeshellarg($merge_desciption);
+	$target_branch = escapeshellarg($target_branch);
+	`git push -u origin $current_branch -o merge_request.create -o merge_request.target=$target_branch -o merge_request.title=$merge_title -o merge_request.description=$merge_desciption`;
 }
 
 /**
@@ -261,4 +282,3 @@ function export($source, $dest)
 		}
 	}
 }
-

@@ -18,7 +18,7 @@ require_once('tiki-setup.php');
 require_once('lang/langmapping.php');
 require_once('lib/language/Language.php');
 require_once('lib/language/LanguageTranslations.php');
-require_once('svntools.php');
+require_once('gittools.php');
 
 
 $langlib = new LanguageTranslations();
@@ -60,13 +60,22 @@ foreach ($final_commit_list as $trans) {
 	$lang_found = $langmap[$trans['lang']];
 	array_push($user_translations, array("user" => $trans['usernames'], "lang" => $lang_found, "langdir"=>$trans['lang']));
 }
-if (has_uncommited_changes(".")) {
+if (has_uncommited_changes("./lang")) {
 	echo "there is uncommitted changes \n";
+	$description_merge = array();
+	$title_merge = "[TRA] Automatic Merge request of translations contributed to http://i18n.tiki.org";
 	foreach ($user_translations as $all_translations) {
-		$final_phrase = "[TRA] Automatic commit of $all_translations[lang] translation contributed By $all_translations[user] to http://i18n.tiki.org";
-		$return_value = commit_specific_lang($all_translations['langdir'], $final_phrase);
+		if (empty($all_translations['user'])){
+			$all_translations['user'] = 'Anonymous';
+		}
+		$commit_description = "Automatic commit of $all_translations[lang] translation contributed by $all_translations[user] to http://i18n.tiki.org";
+		$description_merge[] = $commit_description;
+		$return_value = commit_specific_lang($all_translations['langdir'], $commit_description);
 		echo "commit :  " . $return_value;
 	}
+	$description_merge = implode(" , ", $description_merge);
+	push_create_merge_request($title_merge, $description_merge, "master");
+
 } else {
-	echo "There is not translation to commit";
+	echo "There is no translation to commit";
 }
