@@ -22,9 +22,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 /**
- * Fix the Id's of SVN Keyword for all files within Tiki.
+ * Fix BOM encoding, windows formatting and other invisible weirdness.
  *
- * Reads the beginning of each file in Tiki, and adds a svn Keyword id if the $Id$ marker is found.
+ * Uses dos2unix on all Tiki files
  *
  * @package Tiki\Command
  */
