@@ -1,8 +1,8 @@
-diff --git a/dist/converse.js b/dist/converse.js
-index ada17aa..86b1874 100644
---- a/dist/converse.js
-+++ b/dist/converse.js
-@@ -24541,1554 +24541,15 @@ module.exports = isObjectLike;
+diff --git dist/converse.js dist/converse.js
+index 7739b2e..ca49c55 100644
+--- dist/converse.js
++++ dist/converse.js
+@@ -24541,1555 +24541,16 @@ module.exports = isObjectLike;
  				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
    } else { var bsn; }
  }(this, function () {
@@ -1544,7 +1544,7 @@ index ada17aa..86b1874 100644
 -  // bulk initialize all components
 -  DOC[body] ? initCallback() : on( DOC, 'DOMContentLoaded', function(){ initCallback(); } );
 -  
-   return {
+-  return {
 -    Alert: Alert,
 -    Button: Button,
 -    Collapse: Collapse,
@@ -1554,6 +1554,8 @@ index ada17aa..86b1874 100644
 -    Tab: Tab,
 -    Toast: Toast,
 -    Tooltip: Tooltip
+-  };
++   return {
 +    Alert: bootstrap.Alert,
 +    Button: bootstrap.Button,
 +    Collapse: bootstrap.Collapse,
@@ -1562,13 +1564,7 @@ index ada17aa..86b1874 100644
 +    Popover: bootstrap.Popover,
 +    Tab: bootstrap.Tab,
 +    Tooltip: bootstrap.Tooltip
-   };
++   };
  }));
  
-@@ -75865,4 +74326,4 @@ converse_core.initialize = function (settings, callback) {
- 
- /***/ })
- /******/ ]);
--//# sourceMappingURL=converse.js.map
-\ No newline at end of file
-+//# sourceMappingURL=converse.js.map
+ /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(18)))
