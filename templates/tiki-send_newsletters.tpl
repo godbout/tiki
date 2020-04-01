@@ -28,7 +28,7 @@
 
 {if $emited eq 'y'}
 	{remarksbox type="note" title="{tr}Notice{/tr}" icon="lock"}
-		{tr}The newsletter was sent to {$sent} email addresses{/tr}
+		{tr _0=$sent}The newsletter was sent to %0 email addresses{/tr}
 	{/remarksbox}
 
 	{if $errors}

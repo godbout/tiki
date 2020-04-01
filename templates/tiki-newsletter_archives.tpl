@@ -30,7 +30,7 @@
 		{/if}
 		<div class="newsletter_trailer">
 			{assign var="sent" value=$edition.users}
-			{tr}The newsletter was sent to {$sent} email addresses{/tr}<br>
+			{tr _0=$sent}The newsletter was sent to %0 email addresses{/tr}<br>
 			{$edition.sent|tiki_short_datetime}
 		</div>
 	{/if}

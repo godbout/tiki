@@ -10,7 +10,7 @@
 {if not empty($mail_contributions)}{tr}Contribution:{/tr} {$mail_contributions}
 {/if}
 
-{if $mail_action eq 'delete'}{tr}The page {$prefs.mail_template_custom_text}"{$mail_page}" was deleted but used to be here:{/tr}
+{if $mail_action eq 'delete'}{tr _0=$prefs.mail_template_custom_text _1=$mail_page}The page %0"%1" was deleted but used to be here:{/tr}
 {else}{tr}You can view the page by following this link:{/tr}
 {/if}
 {$mail_machine_raw}/{$mail_page|sefurl}

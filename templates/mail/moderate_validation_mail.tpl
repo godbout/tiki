@@ -1,7 +1,7 @@
 {* $Id$ *}{tr}Hi{/tr},
 
 {if $mail_again}
-{tr}{$mail_user} <{$mail_email}> has requested a new password on {$mail_site}, but you need to validate his {$prefs.mail_template_custom_text}account first{/tr}
+{tr _0=$mail_user _1=$mail_email _2=$mail_site _3=$prefs.mail_template_custom_text}%0 <%1> has requested a new password on %2, but you need to validate his %3 account first{/tr}
 {else}
 {$mail_user} <{$mail_email}> {tr}has requested an account on{/tr} {$mail_site}
 {if isset($chosenGroup)}
