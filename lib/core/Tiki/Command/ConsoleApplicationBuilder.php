@@ -71,191 +71,194 @@ class ConsoleApplicationBuilder
 	 *
 	 * @return array the list of commands, grouped by test
 	 */
-	protected static function listOfRegisteredConsoleCommands() : array
+	protected static function registeredCommands(): array
 	{
-		return [
-			'checkVendorsLoaded' => [
-				'action' => [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,],
-				'commands' => [
-					new ConfigureCommand,
-					new InstallerLockCommand,
-					new ScssCompileCommand,
-					new EnglishUpdateCommand,
-					new VCSUpdateCommand,
-					new FixBOMandUnixCommand,
-					new GetStringsCommand,
+		return [[
+			'condition'	=> 'checkVendorsLoaded',
+			'actions'	=> [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,],
+			'commands'	=> [
+				new ConfigureCommand,
+				new InstallerLockCommand,
+				new ScssCompileCommand,
+				new EnglishUpdateCommand,
+				new VCSUpdateCommand,
+				new FixBOMandUnixCommand,
+				new GetStringsCommand,
 				],
-			],
-			'checkIsVCS' => [
-				'action' => [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_CALLABLE],
-				'commands' => [
-					new VCSUpdateCommand,
-					new FixSVNKeyIdsCommand,
-					new SemiAutoMergeCommand,
+			],[
+			'condition'	=> 'checkIsVCS',
+			'actions'	=> [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_CALLABLE],
+			'commands'	=> [
+				new VCSUpdateCommand,
+				new FixSVNKeyIdsCommand,
+				new SemiAutoMergeCommand,
+				new DevConfigureCommand,
 				],
-			],
-			'checkIsDbRunning' => [
-				'action' => [
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
+			],[
+			'condition'	=> 'checkIsDevMode',
+			'actions'	=> [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,],
+			'commands'	=> [
+				new DevUnInstallCommand,
+				new DevUnitCommand,
 				],
-				'commands' => [
+			],[
+			'condition'	=> 'checkIsDbRunning',
+			'actions'	=> [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,],
+			'commands'	=> [
 					new InstallCommand,
 					new MultiTikiListCommand,
 					new MultiTikiMoveCommand,
 				],
-			],
-			'checkIsDatabaseInstalled' => [
-				'action' => [
+			],[
+			'condition'	=> 'checkIsDatabaseInstalled',
+			'actions'	=> [
 					UnavailableException::CHECK_RUNNING => self::ACTION_NOT_PUBLISHED,
 					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
 				],
-				'commands' => [
-					new CacheClearCommand,
-					new CacheGenerateCommand,
-					new BackupDBCommand,
-					new BackupFilesCommand,
-					new ProfileBaselineCommand,
-					new PluginApproveRunCommand,
-					new PluginListRunCommand,
-					new PluginRefreshRunCommand,
-					new PatchCommand,
-					new UpdateCommand,
+			'commands'	=> [
+				new CacheClearCommand,
+				new CacheGenerateCommand,
+				new BackupDBCommand,
+				new BackupFilesCommand,
+				new ProfileBaselineCommand,
+				new PluginApproveRunCommand,
+				new PluginListRunCommand,
+				new PluginRefreshRunCommand,
+				new PatchCommand,
+				new UpdateCommand,
 				],
+			],[
+			'condition'	=> 'checkTikiSetupComplete',
+			'actions'	=> [
+				UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
+				UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
 			],
-			'checkTikiSetupComplete' => [
-				'action' => [
-					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
+			'commands'	=> [
+				new PreferencesGetCommand,
+				new PreferencesSetCommand,
+				new PreferencesDeleteCommand,
+				new PreferencesExportCommand,
 				],
-				'commands' => [
-					new PreferencesGetCommand,
-					new PreferencesSetCommand,
-					new PreferencesDeleteCommand,
-					new PreferencesExportCommand,
+			],[
+			'condition'	=> 'checkDatabaseUpToDate',
+			'actions'	=> [
+				UnavailableException::CHECK_VCS => self::ACTION_NOT_PUBLISHED,
+				UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
 				],
-			],
-			'checkDatabaseUpToDate' => [
-				'action' => [
-					UnavailableException::CHECK_TIKI_SETUP => self::ACTION_NOT_PUBLISHED,
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
+			'commands'	=> [
+				new PackageDisableCommand,
+				new PackageEnableCommand,
+				new DailyReportSendCommand,
+				new FakerCommentsCommand,
+				new FakerTrackerCommand,
+				new GalleryMigrateCommand,
+				new GoalCheckCommand,
+				new FilesBatchuploadCommand,
+				new FilesCheckCommand,
+				new FilesCopyCommand,
+				new FilesDeleteoldCommand,
+				new FilesMoveCommand,
+				new IndexRebuildCommand,
+				new IndexOptimizeCommand,
+				new IndexCatchUpCommand,
+				new ListExecuteCommand,
+				new MailInPollCommand,
+				new MailQueueSendCommand,
+				new NotificationDigestCommand,
+				new ObjectsNotifyMaintainersCommand,
+				new PackageClearCacheCommand,
+				new PackageInstallCommand,
+				new PackageListCommand,
+				new PackageRemoveCommand,
+				new PackageUpdateCommand,
+				new ProfileForgetCommand,
+				new ProfileInstallCommand,
+				new ProfileExport\Init,
+				new RecommendationBatchCommand,
+				new RefreshRssCommand,
+				new RssClearCacheCommand,
+				new SchedulerRunCommand,
+				new ThemeInstallCommand,
+				new ThemeRemoveCommand,
+				new ThemeUpdateCommand,
+				new SchedulerHealCommand,
+				new TrackerExportCommand,
+				new TrackerImportCommand,
+				new SitemapGenerateCommand,
+				new TikiInfoCommand,
+				new TrackerClearCommand,
+				new AdminIndexRebuildCommand,
+				new UsersListCommand,
+				new UsersPasswordCommand,
+				new StatsCommand,
 				],
-				'commands' => [
-					new PackageDisableCommand,
-					new PackageEnableCommand,
-					new DailyReportSendCommand,
-					new FakerCommentsCommand,
-					new FakerTrackerCommand,
-					new GalleryMigrateCommand,
-					new GoalCheckCommand,
-					new FilesBatchuploadCommand,
-					new FilesCheckCommand,
-					new FilesCopyCommand,
-					new FilesDeleteoldCommand,
-					new FilesMoveCommand,
-					new IndexRebuildCommand,
-					new IndexOptimizeCommand,
-					new IndexCatchUpCommand,
-					new ListExecuteCommand,
-					new MailInPollCommand,
-					new MailQueueSendCommand,
-					new NotificationDigestCommand,
-					new ObjectsNotifyMaintainersCommand,
-					new PackageClearCacheCommand,
-					new PackageInstallCommand,
-					new PackageListCommand,
-					new PackageRemoveCommand,
-					new PackageUpdateCommand,
-					new ProfileForgetCommand,
-					new ProfileInstallCommand,
-					new ProfileExport\Init,
-					new RecommendationBatchCommand,
-					new RefreshRssCommand,
-					new RssClearCacheCommand,
-					new SchedulerRunCommand,
-					new ThemeInstallCommand,
-					new ThemeRemoveCommand,
-					new ThemeUpdateCommand,
-					new SchedulerHealCommand,
-					new TrackerExportCommand,
-					new TrackerImportCommand,
-					new SitemapGenerateCommand,
-					new TikiInfoCommand,
-					new TrackerClearCommand,
-					new AdminIndexRebuildCommand,
-					new UsersListCommand,
-					new UsersPasswordCommand,
-					new StatsCommand,
+			],[
+			'condition'	=> 'checkIsOCRAvailable',
+			'actions'	=> [
+				UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
+				UnavailableException::CHECK_TIKI_SETUP => self::ACTION_NOT_AVAILABLE,
+				UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,
 				],
-			],
-			'checkIsOCRAvailable' => [
-				'action' => [
-					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_PUBLISHED,
-					UnavailableException::CHECK_TIKI_SETUP => self::ACTION_NOT_AVAILABLE,
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,
+			'commands'	=> [
+				new OCRFileCommand,
+				new OCRAllCommand,
+				new OCRStatusCommand,
+				new OCRSetCommand,
 				],
-				'commands' => [
-					new OCRFileCommand,
-					new OCRAllCommand,
-					new OCRStatusCommand,
-					new OCRSetCommand,
+			],[
+			'condition'	=> 'checkProfileInfoExists',
+			'actions'	=> [
+				UnavailableException::CHECK_RUNNING => self::ACTION_NOT_PUBLISHED,
+				UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_AVAILABLE,
+				UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,
 				],
-			],
-			'checkProfileInfoExists' => [
-				'action' => [
-					UnavailableException::CHECK_RUNNING => self::ACTION_NOT_PUBLISHED,
-					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_AVAILABLE,
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,
+			'commands'	=> [
+				new ProfileExport\ActivityRuleSet,
+				new ProfileExport\ActivityStreamRule,
+				new ProfileExport\Article,
+				new ProfileExport\ArticleTopic,
+				new ProfileExport\ArticleType,
+				new ProfileExport\AllModules,
+				new ProfileExport\Calendar,
+				new ProfileExport\Category,
+				new ProfileExport\FileGallery,
+				new ProfileExport\Forum,
+				new ProfileExport\Goal,
+				new ProfileExport\GoalSet,
+				new ProfileExport\Group,
+				new ProfileExport\IncludeProfile,
+				new ProfileExport\Menu,
+				new ProfileExport\Module,
+				new ProfileExport\Preference,
+				new ProfileExport\RatingConfig,
+				new ProfileExport\RatingConfigSet,
+				new ProfileExport\RecentChanges,
+				new ProfileExport\Rss,
+				new ProfileExport\Tracker,
+				new ProfileExport\TrackerField,
+				new ProfileExport\TrackerItem,
+				new ProfileExport\WikiPage,
+				new ProfileExport\Finalize,
 				],
-				'commands' => [
-					new ProfileExport\ActivityRuleSet,
-					new ProfileExport\ActivityStreamRule,
-					new ProfileExport\Article,
-					new ProfileExport\ArticleTopic,
-					new ProfileExport\ArticleType,
-					new ProfileExport\AllModules,
-					new ProfileExport\Calendar,
-					new ProfileExport\Category,
-					new ProfileExport\FileGallery,
-					new ProfileExport\Forum,
-					new ProfileExport\Goal,
-					new ProfileExport\GoalSet,
-					new ProfileExport\Group,
-					new ProfileExport\IncludeProfile,
-					new ProfileExport\Menu,
-					new ProfileExport\Module,
-					new ProfileExport\Preference,
-					new ProfileExport\RatingConfig,
-					new ProfileExport\RatingConfigSet,
-					new ProfileExport\RecentChanges,
-					new ProfileExport\Rss,
-					new ProfileExport\Tracker,
-					new ProfileExport\TrackerField,
-					new ProfileExport\TrackerItem,
-					new ProfileExport\WikiPage,
-					new ProfileExport\Finalize,
+			],[
+			'condition'	=> 'checkForLocalRedactDb',
+			'actions'	=> [
+				UnavailableException::CHECK_RUNNING => self::ACTION_NOT_PUBLISHED,
+				UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_AVAILABLE,
+				UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,
 				],
-			],
-			'checkForLocalRedactDb' => [
-				'action' => [
-					UnavailableException::CHECK_RUNNING => self::ACTION_NOT_PUBLISHED,
-					UnavailableException::CHECK_INSTALLED => self::ACTION_NOT_AVAILABLE,
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,
+			'commands' => [new RedactDBCommand,],
+			],[
+			'condition'	=> 'checkIsDevModeAndDatabase',
+			'actions'	=> [
+				UnavailableException::CHECK_VCS => self::ACTION_NOT_CALLABLE,
+				UnavailableException::CHECK_DEV => self::ACTION_NOT_PUBLISHED,
+				UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
 				],
-				'commands' => [
-					new RedactDBCommand,
+			'commands'	=> [
+				new VendorSecurityCommand,
 				],
-			],
-			'checkIsDevModeAndDatabase' => [
-				'action' => [
-					UnavailableException::CHECK_VCS => self::ACTION_NOT_CALLABLE,
-					UnavailableException::CHECK_DEV => self::ACTION_NOT_PUBLISHED,
-					UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_AVAILABLE,
-					],
-				'commands' => [
-					new VendorSecurityCommand,
-				],
-			],
-		];
+			]];
 	}
 
 	/*
@@ -308,14 +311,14 @@ class ConsoleApplicationBuilder
 	 *
 	 * @throws CommandUnavailableException If development files are not installed.
 	 */
-	protected function checkIsDevMode () : void
+	protected function checkIsDevMode() : void
 	{
 		$this->checkIsVCS();
 
 		// check to see if something from the dev-mode packages has been auto-loaded
 		if (! class_exists('PHPUnit\Framework\TestCase')) {
 			throw new UnavailableException(
-				'You need to be running in dev mode. To Fix run: ./temp/composer.phar update --prefer-dist --working-dir="vendor_bundled"',
+				'You need to be running in dev mode. To Fix run: php console.php dev:configure',
 				UnavailableException::CHECK_DEV
 			);
 		}
@@ -456,7 +459,7 @@ class ConsoleApplicationBuilder
 	 * @param boolean $returnLastInstance
 	 * @return Application
 	 */
-	public function create( bool $returnLastInstance = false) : Application
+	public function create(bool $returnLastInstance = false) : Application
 	{
 		if ($returnLastInstance && self::$lastInstance instanceof self) {
 			return self::$lastInstance;
@@ -470,10 +473,13 @@ class ConsoleApplicationBuilder
 		$commandCalled = $_SERVER['argv'][1] ?? false;
 
 		/**
-		 * @var  $condition string The name of the check method to be executed
-		 * @var  $CommandGroupDefinition array A group of commands that get evaluated under the same checks
+		 * @var  $condition	string	The name of the check method to be executed
+		 * @var  $actions	array	List of actions that should apply to a group of commands
+		 * @var  $commands	array	List of commands
 		 */
-		foreach (self::listOfRegisteredConsoleCommands() as $condition => $CommandGroupDefinition) {
+
+		foreach (self::registeredCommands() as list('condition' => $condition, 'actions' => $actions, 'commands' => $commands)) {
+
 			/** The code that will determine the action status of the command */
 			$actionCode = UnavailableException::CHECK_DEFAULT;
 			try {
@@ -485,23 +491,23 @@ class ConsoleApplicationBuilder
 				$errorCode = $e->getCode();
 				/**
 				 * Now we find the right status to apply.
-				 * @see listOfRegisteredConsoleCommands() Status codes defined here
+				 * @see registeredCommands() Status codes defined here
 				 */
-				foreach ($CommandGroupDefinition['action'] as $code => $check) {
+				foreach ($actions as $code => $check) {
 					if (($errorCode <= $code) && ($code <= $actionCode)) {
 						$actionCode = $code;
 					}
 				}
 			}
 			/** $actionStatus True when available, error message when not available */
-			$actionStatus = $CommandGroupDefinition['action'][$actionCode];
+			$actionStatus = $actions[$actionCode];
 			// if actions are 'not callable', then dont't evaluate the rest of the commands in this group.
 			if ($availableStatus !== true && $actionStatus === self::ACTION_NOT_CALLABLE) {
 				break;
 			}
 
 			/** @var $command ConfigureCommand A single command that will be evaluated for how-if it is added to the console */
-			foreach ($CommandGroupDefinition['commands'] as $command) {
+			foreach ($commands as $command) {
 				if ($actionStatus === self::ACTION_UNLISTED) {
 					$command->setHidden(true);
 				}
