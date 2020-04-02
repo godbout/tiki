@@ -46,6 +46,11 @@ class TWVersion
 		return $this->latestMinorRelease;
 	}
 
+	/**
+	 * Provides the version and subversion of Tiki without any preceding alpha characters eg. 22.0
+	 *
+	 * @return string
+	 */
 	function getBaseVersion()
 	{
 		return preg_replace("/^(\d+\.\d+).*$/", '$1', $this->version);
@@ -301,12 +306,10 @@ class TWVersion
 	function getStar()
 	{
 		$stars = $this->tikiStars();
-		$star = $stars[count($stars)];
-
-		return $star;
+		return $stars[count($stars)];
 	}
 
-	// Determines the currently-running version of Tiki.
+	// Determines the currently-running version of Tiki. eg. 22.0vcs
 	function getVersion()
 	{
 		return $this->version;
