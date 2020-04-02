@@ -344,7 +344,7 @@ $js = "(function()
 	                }
 	            }
 	        };
-	        mxResources.parse('saveUnchanged=Unsaved changes. Click here to save.');
+	        mxResources.parse(tr('saveUnchanged=Unsaved changes. Click here to save.'));
 		
 			editorUi.menubar.addMenu(mxResources.get('saveUnchanged'), function(){
 				saveDiagramFlow(false);
