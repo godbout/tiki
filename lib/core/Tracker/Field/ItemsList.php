@@ -673,6 +673,23 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 
 				return $items;
 			}
+			// e = category, might be mulitple categories so need to find multiple values
+			if ($filterFieldHere['type'] == 'e' && $localValue) {
+				if (! is_array($localValue)) {
+					$categories = explode(',', $localValue);
+				} else {
+					$categories = $localValue;
+				}
+				$items = [];
+				foreach ($categories as $category) {
+					$items = array_merge(
+						$items,
+						$trklib->get_items_list($trackerId, $filterFieldIdThere, $category, $status, true, $sortFieldIds)
+					);
+				}
+
+				return $items;
+			}
 			// Skip nulls
 			if ($localValue) {
 				$items = $trklib->get_items_list($trackerId, $filterFieldIdThere, $localValue, $status, false, $sortFieldIds);
