@@ -20,7 +20,7 @@ See https://dev.tiki.org/Tiki-Unit-Testing for more info
 
 */
 $db_tiki='mysqli';
-$dbversion_tiki='20.0';
+$dbversion_tiki='22.0';
 $host_tiki='localhost';
 $user_tiki='tiki_tester';
 $pass_tiki='tiki_tester_pass';
