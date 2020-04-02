@@ -32,11 +32,12 @@ class Math_Formula_Currency implements Math_Formula_Applicator {
    * Parse a string and return currency object.
    *
    * @param $currency - string
-   * @return Math_Formula_Currency if string is a currency representation or the $currency param otherwise. This does not initialize the currency object with any rates.
+   * @return Math_Formula_Currency if string is a currency representation or the $currency param otherwise.
    */
   public static function tryFromString($currency) {
     if (preg_match("/^(\d+(\.\d+)?)([A-Z]{3})$/i", $currency, $m)) {
-      return new self($m[1], $m[3]);
+      $rates = TikiLib::lib('trk')->exchange_rates(null, null);
+      return new self($m[1], $m[3], $rates);
     } else {
       return $currency;
     }

@@ -6351,6 +6351,16 @@ class TrackerLib extends TikiLib
 		}
 		$rates[$date] = [];
 		$currencyField = $dateField = $rateField = null;
+		if (empty($trackerId)) {
+			// TODO: consider using system trackers here
+			$rates_trackers = $this->list_trackers(0, -1, 'trackerId_asc', 'exchange rate');
+			if (! empty($rates_trackers['data'])) {
+				$trackerId = $rates_trackers['data'][0]['trackerId'];
+			}
+		}
+		if (empty($trackerId)) {
+			return $rates[$date];
+		}
 		$definition = Tracker_Definition::get($trackerId);
 		$fields = $definition->getFields();
 		foreach ($fields as $field) {
