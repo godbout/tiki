@@ -85,7 +85,10 @@ class ocrLib extends TikiLib
 			throw new Exception('exec() is not enabled. Could not execute command.');
 		}
 		$executable = escapeshellarg($executable);
-		exec('type -p ' . $executable . ' 2>&1',$output, $return);
+		$return = 1;
+		if (function_exists('exec')) {
+			exec('type -p ' . $executable . ' 2>&1',$output, $return);
+		}
 		if ($return === 1){				// if "type" did not find the command on the system
 			return null;
 		}elseif ($return !== 0) {
