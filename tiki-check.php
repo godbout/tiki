@@ -2935,7 +2935,10 @@ function commandIsAvailable($command)
 		$template = "command -v %s 2>/dev/null";
 	}
 
-	exec(sprintf($template, escapeshellarg($command)), $output, $returnCode);
+	$returnCode = '';
+	if (function_exists('exec')) {
+		exec(sprintf($template, escapeshellarg($command)), $output, $returnCode);
+	}
 
 	return $returnCode === 0 ? true : false;
 }
