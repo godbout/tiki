@@ -55,7 +55,8 @@ class ocrLib extends TikiLib
 	/** @var string The minimum version requirement of Tesseract that needs to be installed on the OS */
 	private const TESSERACT_BINARY_VERSION = '3.5.1';
 
-	public function setMimeTypes() {
+	public function setMimeTypes()
+	{
 		global $prefs;
 		if (empty($prefs['ocr_enable']) || $prefs['ocr_enable'] === 'n') {
 			return [];
@@ -71,12 +72,12 @@ class ocrLib extends TikiLib
 	}
 
 	/**
-	 * Produces the absolute file path of any command. Unix and windows safe.
+	 * Produces the absolute file path of any command. Unix and Windows safe.
 	 * @param $executable string	The file name you want to find the absolute path of
 	 *
-	 * @return string|null			The absolute file path or null on no command found
-	 * @throws Exception			If no suitable command was found
-	 * todo 						Find the correct exit code on windows if the "where" does not find the command.
+	 * @return string|null		The absolute file path or null on no command found
+	 * @throws Exception		If no suitable command was found
+	 * todo 			Find the correct exit code on Windows if the "where" does not find the command.
 	 */
 
 	public function whereIsExecutable(string $executable) : ?string
@@ -87,20 +88,20 @@ class ocrLib extends TikiLib
 		$executable = escapeshellarg($executable);
 		$return = 1;
 		if (function_exists('exec')) {
-			exec('type -p ' . $executable . ' 2>&1',$output, $return);
+			exec('type -p ' . $executable . ' 2>&1', $output, $return);
 		}
-		if ($return === 1){				// if "type" did not find the command on the system
+		if ($return === 1) {				// if "type" did not find the command on the system
 			return null;
-		}elseif ($return !== 0) {
+		} elseif ($return !== 0) {
 			unset($output);
-			exec('where ' . $executable . ' 2>&1',$output, $return); // windows command
-		}elseif ($return !== 0) {
+			exec('where ' . $executable . ' 2>&1', $output, $return); // windows command
+		} elseif ($return !== 0) {
 			unset($output);
-			exec('which ' . $executable . ' 2>&1',$output, $return); // alternative unix command but relies on $PATH
+			exec('which ' . $executable . ' 2>&1', $output, $return); // alternative unix command but relies on $PATH
 			if ($return === 1) {			// if "which" did not find the command on the system
 				return null;
 			}
-		}elseif ($return !== 0) {
+		} elseif ($return !== 0) {
 			throw new Exception('There was no suitable system command found. Could not execute command');
 		}
 		if (empty($output[0])) {                // if for some reason there was no output, return null
@@ -338,7 +339,8 @@ class ocrLib extends TikiLib
 		$this->setNextOCRFile();
 		// Sets $ocrIngNow with the current file flagged as currently being processed.
 		$this->ocrIngNow = $this->table('tiki_files')->fetchOne(
-			'fileId', ['ocr_state' => self::OCR_STATUS_PROCESSING]
+			'fileId',
+			['ocr_state' => self::OCR_STATUS_PROCESSING]
 		);
 
 		$file = TikiLib::lib('filegal')->get_file($this->ocrIngNow);
@@ -403,14 +405,15 @@ class ocrLib extends TikiLib
 			if (is_dir($fileName)) {
 				$OCRText = '';
 				foreach (glob($fileName . '*.tif') as $tiffFile) {
-					$OCRText.= ($this->newTesseract($tiffFile))->lang(...$langs)->run();
+					$OCRText .= ($this->newTesseract($tiffFile))->lang(...$langs)->run();
 				}
 			} else {
 				$OCRText = ($this->newTesseract($fileName))->lang(...$langs)->run();
 			}
 			$OCRText = TikiFilter::get('striptags')->filter($OCRText);
 			$this->table('tiki_files')->update(
-				['ocr_data' => $OCRText], ['fileId' => $this->ocrIngNow]
+				['ocr_data' => $OCRText],
+				['fileId' => $this->ocrIngNow]
 			);
 			$unifiedsearchlib = TikiLib::lib('unifiedsearch');
 			$unifiedsearchlib->invalidateObject('file', $this->ocrIngNow);
@@ -420,7 +423,7 @@ class ocrLib extends TikiLib
 				['ocr_state' => self::OCR_STATUS_FINISHED],
 				['fileId' => $this->ocrIngNow]
 			);
-		}catch(Exception $e) {
+		} catch (Exception $e) {
 			@$filesystem->remove($fileName);
 			@$filesystem->remove($tempFile);
 			// Set the database flag to reflect that it is no longer processing but, still needs to be OCR'd
