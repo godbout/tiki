@@ -4886,6 +4886,8 @@ class TrackerLib extends TikiLib
 			$bindvars[] = $page[count($page) - 1]['version'];
 		}
 
+		$itemObject = Tracker_Item::fromId($item_info['itemId']);
+
 		$query = 'SELECT ttifl.`version`, ttifl.`fieldId`, ttifl.`value`, ta.`user`, ta.`lastModif` ' .
 					'FROM `tiki_tracker_item_field_logs` ttifl ' .
 					'LEFT JOIN `tiki_actionlog` ta ON (ta.`comment`=ttifl.`version` AND ta.`objectType`=? AND ta.`object`=' . $join . ') ' .
@@ -4897,6 +4899,9 @@ class TrackerLib extends TikiLib
 		foreach ($all as $hist) {
 			$hist['new'] = isset($last[$hist['fieldId']]) ? $last[$hist['fieldId']] : '';
 			if ($hist['new'] == $hist['value']) {
+				continue;
+			}
+			if (! $itemObject->canViewField($hist['fieldId'])) {
 				continue;
 			}
 			$history['data'][] = $hist;
