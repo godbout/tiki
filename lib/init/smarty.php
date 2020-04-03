@@ -725,9 +725,10 @@ class Smarty_Tiki extends Smarty
 	 */
 	public function getEmptyInternalTemplate()
 	{
+		global $prefs;
 		$tpl = new Smarty_Internal_Template('empty', $this);
 		$tpl->assign('app_name', $this->getTemplateVars('app_name'));
-		$tpl->assignByRef('prefs', $this->getTemplateVars('prefs'));
+		$tpl->assignByRef('prefs', $prefs);
 		return $tpl;
 	}
 }
