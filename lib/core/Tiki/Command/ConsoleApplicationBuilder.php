@@ -99,7 +99,6 @@ class ConsoleApplicationBuilder
 			'actions'	=> [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,],
 			'commands'	=> [
 				new DevUnInstallCommand,
-				new DevUnitCommand,
 				],
 			],[
 			'condition'	=> 'checkIsDbRunning',

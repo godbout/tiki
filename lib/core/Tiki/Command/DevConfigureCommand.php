@@ -41,8 +41,6 @@ class DevConfigureCommand extends Command
 
 		$output->writeln('Checking composer development files');
 		if (! class_exists('PHPUnit\Framework\TestCase')) {
-			$output->writeln('Checking composer files');
-
 			exec('php temp/composer.phar --ansi install -d vendor_bundled --no-progress --prefer-dist -n 2>&1', $raw, $error);
 			if ($error) {
 				$output->writeln('<error>Error: composer files not installed. Check temp/composer.phar</error>');
@@ -53,6 +51,18 @@ class DevConfigureCommand extends Command
 
 		} else {
 			$output->writeln('<info>Done: Composer dev files already installed</info>');
+		}
+
+		$output->writeln('Checking phpunit');
+		if (file_exists('phpunit')) {
+			$output->writeln('<info>Done: phpunit was already callable via "php phpunit" in the project root.</info>');
+		} else {
+			if (symlink('vendor_bundled/vendor/phpunit/phpunit/phpunit', 'phpunit')) {
+				$output->writeln('<info>Done: phpunit is now callable via "php phpunit" in the project root.</info>');
+			} else {
+				$output->writeln('<error>Could not create symlink</error>');
+				$output->writeln('Try using the following command: ln -s vendor_bundled/vendor/phpunit/phpunit/phpunit phpunit');
+			}
 		}
 
 		$output->writeln('Checking PHP Unit local.php file');

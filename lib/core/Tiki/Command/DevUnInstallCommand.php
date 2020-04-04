@@ -39,11 +39,22 @@ class DevUnInstallCommand extends Command
 			exit(1);
 		}
 
+		// remove phpunit symlink from root directory first (wont work after composer files are removed.
+		if (file_exists('phpunit')) {
+			if (unlink('phpunit')) {
+				$output->writeln('phpunit was removed from the root directory');
+			} else {
+				$output->writeln('<error>phpunit could not be removed from the root directory, delete manually.</error>');
+			}
+		} else {
+			$output->writeln('phpunit was not present in root directory');
+		}
+
 		if (class_exists('PHPUnit\Framework\TestCase')) {
 			$output->writeln('Removing composer development files');
 			exec('php temp/composer.phar --ansi install -d vendor_bundled --no-progress --prefer-dist -n --no-dev 2>&1', $raw, $error);
 			if ($error) {
-				$output->writeln('composer error. Check temp/composer.phar');
+				$output->writeln('<error>composer error. Check temp/composer.phar</error>');
 			} else {
 				$output->writeln($raw, OutputInterface::VERBOSITY_VERY_VERBOSE);
 				$output->writeln('Composer dev files removed');
@@ -58,20 +69,22 @@ class DevUnInstallCommand extends Command
 				$error = '';
 
 				require_once('lib/test/local.php');
-				$output->writeln('Removing Database');
 				$query = "DROP SCHEMA IF EXISTS $dbs_tiki;";
 				$tikilib->queryError($query, $error);
 				if (! empty($error)) {
 					$output->writeln('<comment>Could not remove database</comment>');
 					$output->writeln($error, OutputInterface::VERBOSITY_DEBUG);
+				} else {
+					$output->writeln('PHPUnit database removed');
 				}
 
-				$output->writeln('Removing User');
 				$query = "DROP USER IF EXISTS $user_tiki;";
 				$tikilib->queryError($query, $error);
 				if (! empty($error)) {
 					$output->writeln('<comment>Could not remove database user</comment>');
 					$output->writeln($error, OutputInterface::VERBOSITY_DEBUG);
+				} else {
+					$output->writeln('PHPUnit database user removed');
 				}
 			} else {
 				$output->writeln('<comment>Database not available, could not remove automatically.</comment>');
@@ -81,7 +94,7 @@ class DevUnInstallCommand extends Command
 			if (unlink('lib/test/local.php')) {
 					$output->writeln('Unit test configuration removed');
 			} else {
-					$output->writeln('Unit test configuration cold not be removed');
+					$output->writeln('<error>Unit test configuration cold not be removed</error>');
 			}
 		} else {
 			$output->writeln('Unit test configuration file not found');
