@@ -11,7 +11,7 @@ namespace Tiki\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Process\Process;
+use Symfony\Component\Process\PhpProcess;
 
 /**
  * Update Tiki development files
@@ -56,7 +56,7 @@ class DevUnitCommand extends Command
 		}
 		mysqli_close($link);
 
-		$process = new Process(['php', 'vendor_bundled/vendor/phpunit/phpunit/phpunit']);
+		$process = new PhpProcess("<?php require('vendor_bundled/vendor/phpunit/phpunit/phpunit');");
 		$process->start();
 		while ($process->isRunning()) {
 			$raw = $process->getIncrementalOutput();
