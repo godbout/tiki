@@ -10,7 +10,6 @@ use thiagoalessio\TesseractOCR\FriendlyErrors;
 use Tiki\Lib\Alchemy;
 use Symfony\Component\Filesystem\Filesystem;
 
-
 /**
  *
  * A Group of functions related to OCR processing, indexing & accounting
