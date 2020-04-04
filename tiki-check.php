@@ -57,7 +57,6 @@ if (file_exists('./db/local.php') && file_exists('./templates/tiki-check.tpl')) 
 	// This page is an admin tool usually used in the early stages of setting up Tiki, before layout considerations.
 	// Restricting the width is contrary to its purpose.
 	$prefs['feature_fixed_width'] = 'n';
-
 } else {
 	$standalone = true;
 	$render = "";
@@ -81,7 +80,7 @@ if (file_exists('./db/local.php') && file_exists('./templates/tiki-check.tpl')) 
 	  * @param $var
 	  * @param $style
 	  */
-	function renderTable($var,$style="")
+	function renderTable($var, $style = "")
 	{
 		global $render;
 		$morestyle = "";
@@ -865,7 +864,7 @@ if ($max_file_uploads) {
 		'setting' => $max_file_uploads,
 		'message' => tra('The max_file_uploads is at') . ' ' . $max_file_uploads . '. ' . tra('This is the maximum number of files allowed to be uploaded simultaneously.') . ' <a href="#php_conf_info">' . tra('How to change this value') . '</a>'
 	);
-}else {
+} else {
 	$php_properties['max_file_uploads'] = array(
 		'fitness' => tra('info'),
 		'setting' => 'Not Available',
@@ -1262,7 +1261,7 @@ if ($s) {
 
 $s = extension_loaded('mcrypt');
 $msg = tra('MCrypt is abandonware and is being phased out. Starting in version 18, Tiki uses OpenSSL where it previously used MCrypt, except perhaps via third-party libraries.');
-if (!$standalone) {
+if (! $standalone) {
 	$msg .= ' ' . tra('Tiki still uses MCrypt to decrypt user data encrypted with MCrypt, when converting that data to OpenSSL.') . ' ' . tra('Please check the \'User Data Encryption\' section to see if there is user data encrypted with MCrypt.');
 
 	//User Data Encryption MCrypt
@@ -1938,12 +1937,12 @@ if (! $standalone) {
 		$ocrStatus = 'bad';
 	}
 
-	$ocrToDisplay = [[
+	$ocrToDisplay = array(array(
 						 'name'    => tra('Tesseract package'),
 						 'version' => $ocrVersion,
 						 'status'  => $ocrStatus,
 						 'message' => $ocrMessage,
-					 ]];
+					 ));
 
 	/**
 	 * Tesseract Binary dependency Check
@@ -1962,11 +1961,11 @@ if (! $standalone) {
 		$ocrStatus = 'unsure';
 	}
 
-	$ocrToDisplay[] = [
+	$ocrToDisplay[] = array(
 		'name'    => tra('Tesseract languages'),
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
-	];
+	);
 
 	if ($ocrVersion !== 'Not Installed') {
 		$ocrVersion = $ocr->getTesseractVersion();
@@ -1992,12 +1991,12 @@ if (! $standalone) {
 		$ocrStatus = 'bad';
 	}
 
-	$ocrToDisplay[] = [
+	$ocrToDisplay[] = array(
 		'name'    => tra('Tesseract binary'),
 		'version' => $ocrVersion,
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
-	];
+	);
 	try {
 		if (empty($prefs['ocr_tesseract_path'])	|| $prefs['ocr_tesseract_path'] === 'tesseract') {
 			$ocrStatus = 'bad';
@@ -2031,18 +2030,18 @@ if (! $standalone) {
 		}
 	}
 
-	$ocrToDisplay[] = [
+	$ocrToDisplay[] = array(
 		'name'    => tra('Tesseract path'),
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
-	];
+	);
 
 
 	$pdfimages = Tikilib::lib('pdfimages');
 	$pdfimages->setVersion();
 
 	//lets fall back to configured options for a binary path if its not found with default options.
-	if (!$pdfimages->version) {
+	if (! $pdfimages->version) {
 		$pdfimages->setBinaryPath();
 		$pdfimages->setVersion();
 	}
@@ -2050,17 +2049,17 @@ if (! $standalone) {
 	if ($pdfimages->version) {
 		$ocrStatus = 'good';
 		$ocrMessage = tra('It appears that pdfimages is installed on your system.');
-	}else{
+	} else {
 		$ocrStatus = 'bad';
 		$ocrMessage = tra('Could not find pdfimages. PDF files will not be processed.');
 	}
 
-	$ocrToDisplay[] = [
+	$ocrToDisplay[] = array(
 		'name'    => tra('Pdfimages binary'),
 		'version' => $pdfimages->version,
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
-	];
+	);
 
 	try {
 		if (empty($prefs['ocr_pdfimages_path']) || $prefs['ocr_pdfimages_path'] === 'pdfimages') {
@@ -2086,28 +2085,28 @@ if (! $standalone) {
 		}
 	}
 
-	$ocrToDisplay[] = [
+	$ocrToDisplay[] = array(
 		'name'    => tra('Pdfimages path'),
 		'status'  => $ocrStatus,
 		'message' => $ocrMessage,
-	];
+	);
 
 	// check if scheduler is set up properly.
 	$scheduleDb = $ocr->table('tiki_scheduler');
 	$conditions['status'] = 'active';
 	$conditions['params'] = $scheduleDb->contains('ocr:all');
 	if ($scheduleDb->fetchBool($conditions)) {
-		$ocrToDisplay[] = [
+		$ocrToDisplay[] = array(
 			'name'    => tra('Scheduler'),
 			'status'  => 'good',
 			'message' => tra('Scheduler has been successfully setup.'),
-		];
+		);
 	} else {
-		$ocrToDisplay[] = [
+		$ocrToDisplay[] = array(
 			'name'    => tra('Scheduler'),
 			'status'  => 'bad',
 			'message' => tra('Scheduler needs to have a console command of "ocr:all" set.'),
-		];
+		);
 	}
 
 	$smarty->assign('ocr', $ocrToDisplay);
@@ -2665,7 +2664,7 @@ if ($standalone && ! $nagios) {
 	$render .= '<h2>Tiki Security</h2>';
 	renderTable($tiki_security);
 	$render .= '<h2>MySQL Variables</h2>';
-	renderTable($mysql_variables,'wrap');
+	renderTable($mysql_variables, 'wrap');
 
 	$render .= '<h2>File Gallery Search Indexing</h2>';
 	$render .= '<em>More info <a href="https://doc.tiki.org/Search+within+files">here</a></em>
@@ -2872,7 +2871,7 @@ function checkPackageWarnings(&$warnings, $package)
 			if (! AlchemyLib::hasReadWritePolicies()) {
 				$warnings[] = tr(
 					'Alchemy requires "Read" and "Write" policy rights. More info: <a href="%0" target="_blank">%1</a>',
-				'https://doc.tiki.org/tiki-index.php?page=Media+Alchemyst#Document_to_Image_issues',
+					'https://doc.tiki.org/tiki-index.php?page=Media+Alchemyst#Document_to_Image_issues',
 					'Media Alchemyst - Document to Image issues'
 				);
 			}
@@ -2899,7 +2898,7 @@ function checkPreferences(array $preferences)
 			if (isset($prefs[$prefKey]) && ! file_exists($prefs[$prefKey])) {
 				$warnings[] = tr("The path '%0' on preference '%1' does not exist", $prefs[$prefKey], $pref['name']);
 			}
-		} elseif($pref['type'] == 'classOptions') {
+		} elseif ($pref['type'] == 'classOptions') {
 			if (isset($prefs[$prefKey])) {
 				$options = $pref['options'][$prefs[$prefKey]];
 
