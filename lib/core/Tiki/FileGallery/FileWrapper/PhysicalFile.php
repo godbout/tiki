@@ -50,11 +50,18 @@ class PhysicalFile implements WrapperInterface
 
 	function replaceContents($data) {
 		$dest = $this->fullPath();
-		if(is_writable($this->basePath) && (! file_exists($dest) || is_writable($dest))) {
+		$baseDir = dirname($dest);
+
+		if (! file_exists($baseDir)) {
+			mkdir($baseDir, umask() ^ 0777, true);
+		}
+
+		if (is_writable($baseDir) && (! file_exists($dest) || is_writable($dest))) {
 			$result = file_put_contents($dest, $data);
 		} else {
 			$result = false;
 		}
+
 		if ($result === false) {
 			throw new WriteException(tr("Unable to write to destination path: %0", $dest));
 		}
