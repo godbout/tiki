@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-if (isset($_SERVER['REQUEST_METHOD'])) {
+if (PHP_SAPI !== 'cli') {
 	die('Only available through command-line.');
 }
 
