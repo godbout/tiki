@@ -721,7 +721,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 
 	public function testValidateInputShouldRaiseExceptionIfInvalidFile()
 	{
-		$this->setExpectedException('DOMException');
+		$this->expectException('DOMException');
 
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_invalid.xml');
@@ -730,7 +730,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 
 	public function testValidateInputShouldRaiseExceptionForMediawikiFile()
 	{
-		$this->setExpectedException('DOMException');
+		$this->expectException('DOMException');
 
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/mediawiki_sample.xml');

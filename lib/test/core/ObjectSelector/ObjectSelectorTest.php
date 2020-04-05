@@ -1,7 +1,7 @@
 <?php
 namespace Test\ObjectSelector;
 
-class ObjectSelectorTest extends \PHPUnit_Framework_TestCase
+class ObjectSelectorTest extends \PHPUnit\Framework\TestCase
 {
 	private $selector;
 	private $mock;

@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Services_Comment_ControllerTest extends PHPUnit_Framework_TestCase
+class Services_Comment_ControllerTest extends PHPUnit\Framework\TestCase
 {
 	protected $subject;
 

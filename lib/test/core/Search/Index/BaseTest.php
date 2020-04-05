@@ -8,7 +8,7 @@
 /**
  * @group unit
  */
-abstract class Search_Index_BaseTest extends PHPUnit_Framework_TestCase
+abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 {
 	const DOCUMENT_DATE = 1234567890;
 	protected $index;

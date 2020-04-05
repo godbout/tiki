@@ -10,7 +10,7 @@
 /**
  * @group importer
  */
-abstract class TikiImporter_TestCase extends PHPUnit_Framework_TestCase
+abstract class TikiImporter_TestCase extends PHPUnit\Framework\TestCase
 {
 	protected $backupGlobals = false;
 }

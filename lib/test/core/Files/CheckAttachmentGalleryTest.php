@@ -11,7 +11,7 @@ use org\bovigo\vfs\vfsStream;
 use Tiki\Files\CheckAttachmentGallery;
 use TikiLib;
 
-class CheckAttachmentGalleryTest extends \PHPUnit_Framework_TestCase
+class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 {
 	protected $file_root;
 	protected $files_dir;

@@ -9,7 +9,7 @@
  * @group integration
  */
 
-class TikiLib_UrlEncodeAccentTest extends PHPUnit_Framework_TestCase
+class TikiLib_UrlEncodeAccentTest extends PHPUnit\Framework\TestCase
 {
 	protected function setUp()
 	{

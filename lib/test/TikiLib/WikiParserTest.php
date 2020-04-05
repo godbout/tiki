@@ -10,7 +10,7 @@
  *
  */
 
-class TikiLib_WikiParserTest extends PHPUnit_Framework_TestCase
+class TikiLib_WikiParserTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @covers ParserLib::parse_data

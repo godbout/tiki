@@ -1,6 +1,6 @@
 <?php
 
-class TikiLib_UriMergeTest extends PHPUnit_Framework_TestCase
+class TikiLib_UriMergeTest extends PHPUnit\Framework\TestCase
 {
 	function testFullReplace()
 	{

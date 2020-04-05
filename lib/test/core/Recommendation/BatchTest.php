@@ -9,7 +9,7 @@ namespace Tiki\Recommendation;
 
 use Tiki\Recommendation\Input\UserInput as U;
 
-class BatchTest extends \PHPUnit_Framework_TestCase implements Store\StoreInterface
+class BatchTest extends \PHPUnit\Framework\TestCase implements Store\StoreInterface
 {
 	private $inputs = false;
 	private $storeCalls = [];

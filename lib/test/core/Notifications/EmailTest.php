@@ -9,7 +9,7 @@ namespace Tiki\Tests\Notifications;
 
 use Tiki\Notifications\Email;
 
-class EmailTest extends \PHPUnit_Framework_TestCase
+class EmailTest extends \PHPUnit\Framework\TestCase
 {
 	protected static $objects = [];
 

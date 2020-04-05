@@ -1,6 +1,6 @@
 <?php
 
-class Profile_BuilderTest extends PHPUnit_Framework_TestCase
+class Profile_BuilderTest extends PHPUnit\Framework\TestCase
 {
 	function testBasicProfile()
 	{

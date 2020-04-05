@@ -8,7 +8,7 @@
 /**
  * @group unit
  */
-class Search_IndexerTest extends PHPUnit_Framework_TestCase
+class Search_IndexerTest extends PHPUnit\Framework\TestCase
 {
 	function testWithoutContentSource()
 	{

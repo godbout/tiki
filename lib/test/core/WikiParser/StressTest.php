@@ -9,7 +9,7 @@
  * @group slow
  */
 
-class WikiParser_StressTest extends PHPUnit_Framework_TestCase
+class WikiParser_StressTest extends PHPUnit\Framework\TestCase
 {
 	function testMessProvidedByJonny()
 	{

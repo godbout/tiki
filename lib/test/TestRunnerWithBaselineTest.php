@@ -8,7 +8,7 @@
 require_once(__DIR__ . '/../test/TestRunnerWithBaseline.php');
 require_once(__DIR__ . '/../debug/Tracer.php');
 
-class TestRunnerWithBaselineTest extends PHPUnit_Framework_TestCase
+class TestRunnerWithBaselineTest extends PHPUnit\Framework\TestCase
 {
 	public $runner;
 	private $old_cmdline = null;

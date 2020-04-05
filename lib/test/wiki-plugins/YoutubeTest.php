@@ -7,7 +7,7 @@
 
 require_once(__DIR__ . '/../../wiki-plugins/wikiplugin_youtube.php');
 
-class WikiPlugin_YoutubeTest extends PHPUnit_Framework_TestCase
+class WikiPlugin_YoutubeTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider provider

@@ -12,7 +12,7 @@ use Tiki\CustomRoute\Controller;
 /**
  * Class ControllerTest
  */
-class ControllerTest extends \PHPUnit_Framework_TestCase
+class ControllerTest extends \PHPUnit\Framework\TestCase
 {
 
 	/**

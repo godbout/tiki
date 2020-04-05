@@ -12,7 +12,7 @@ use Tiki\Files\CheckFileGallery;
 use TikiLib;
 use FileGalLib;
 
-class CheckFileGalleryTest extends \PHPUnit_Framework_TestCase
+class CheckFileGalleryTest extends \PHPUnit\Framework\TestCase
 {
 	protected $fileRoot;
 

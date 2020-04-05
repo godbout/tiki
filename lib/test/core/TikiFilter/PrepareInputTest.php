@@ -5,14 +5,16 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class TikiFilter_PrepareInputTest extends PHPUnit_Framework_TestCase
+class TikiFilter_PrepareInputTest extends PHPUnit\Framework\TestCase
 {
-	function setUp()
+	private $obj;
+
+	protected function setUp()
 	{
 		$this->obj = new TikiFilter_PrepareInput('.');
 	}
 
-	function testNormalInput()
+	public function testNormalInput()
 	{
 		$input = [
 			'foo' => 'bar',
@@ -22,7 +24,7 @@ class TikiFilter_PrepareInputTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($input, $this->obj->prepare($input));
 	}
 
-	function testConvertArray()
+	public function testConvertArray()
 	{
 		$input = [
 			'foo.baz' => 'bar',
@@ -49,7 +51,7 @@ class TikiFilter_PrepareInputTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($expect, $this->obj->prepare($input));
 	}
 
-	function testNormalFlatten()
+	public function testNormalFlatten()
 	{
 		$input = [
 			'foo' => 'bar',
@@ -59,7 +61,7 @@ class TikiFilter_PrepareInputTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($input, $this->obj->flatten($input));
 	}
 
-	function testConvertArrayFlatten()
+	public function testConvertArrayFlatten()
 	{
 		$input = [
 			'foo' => [

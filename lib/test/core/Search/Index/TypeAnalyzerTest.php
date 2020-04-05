@@ -8,7 +8,7 @@
 /**
  * @group unit
  */
-abstract class Search_Index_TypeAnalyzerTest extends PHPUnit_Framework_TestCase
+abstract class Search_Index_TypeAnalyzerTest extends PHPUnit\Framework\TestCase
 {
 	abstract protected function getIndex();
 

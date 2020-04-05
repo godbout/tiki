@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-abstract class Search_Index_PaginationTest extends PHPUnit_Framework_TestCase
+abstract class Search_Index_PaginationTest extends PHPUnit\Framework\TestCase
 {
 	protected $index;
 

@@ -1,6 +1,6 @@
 <?php
 
-class Search_Elastic_FederatedQueryTest extends PHPUnit_Framework_TestCase
+class Search_Elastic_FederatedQueryTest extends PHPUnit\Framework\TestCase
 {
 	private $indexA;
 	private $indexB;

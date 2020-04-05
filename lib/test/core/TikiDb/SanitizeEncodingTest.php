@@ -9,7 +9,7 @@ namespace Tiki\Tests\TikiDb;
 
 use Tiki\TikiDb\SanitizeEncoding;
 
-class SanitizeEncodingTest extends \PHPUnit_Framework_TestCase
+class SanitizeEncodingTest extends \PHPUnit\Framework\TestCase
 {
 	/**
 	 * @param $input

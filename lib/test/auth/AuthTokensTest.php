@@ -26,7 +26,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 		return $this->createMySQLXMLDataSet(__DIR__ . '/fixtures/auth_tokens_dataset.xml');
 	}
 
-	function setUp()
+	function setUp() : void
 	{
 		$this->db = TikiDb::get();
 

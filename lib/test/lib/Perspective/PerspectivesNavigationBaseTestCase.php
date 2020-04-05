@@ -14,7 +14,7 @@ use Tiki\Test\TestHelpers\WebClientHelper;
 /**
  * @group RequiresWebServer
  */
-class PerspectivesNavigationBaseTestCase extends \PHPUnit_Framework_TestCase
+class PerspectivesNavigationBaseTestCase extends \PHPUnit\Framework\TestCase
 {
 	/**
 	 * Value used in the fixture files for TIKI_TEST_HOST

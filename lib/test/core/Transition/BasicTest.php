@@ -10,7 +10,7 @@
  *
  */
 
-class Transition_BasicTest extends PHPUnit_Framework_TestCase
+class Transition_BasicTest extends PHPUnit\Framework\TestCase
 {
 	function testSimpleTransition()
 	{

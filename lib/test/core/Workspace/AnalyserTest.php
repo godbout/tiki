@@ -1,6 +1,6 @@
 <?php
 
-class Profile_AnalyserTest extends PHPUnit_Framework_TestCase
+class Profile_AnalyserTest extends PHPUnit\Framework\TestCase
 {
 	function testReadGroupList()
 	{

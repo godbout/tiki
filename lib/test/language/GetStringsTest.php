@@ -43,7 +43,7 @@ class Language_GetStringsTest extends TikiTestCase
 
 	public function testConstruct_shouldRaiseExceptionForInvalidBaseDir()
 	{
-		$this->setExpectedException('Language_Exception');
+		$this->expectException('Language_Exception');
 		$this->obj = new Language_GetStrings($this->collectFiles, $this->writeFileFactory, ['baseDir' => 'invalidDir']);
 	}
 
@@ -75,7 +75,7 @@ class Language_GetStringsTest extends TikiTestCase
 
 	public function testCollectStrings_shouldRaiseExceptionIfEmptyFileTypes()
 	{
-		$this->setExpectedException('Language_Exception');
+		$this->expectException('Language_Exception');
 		$this->obj->collectStrings('file.php');
 	}
 
@@ -162,7 +162,7 @@ class Language_GetStringsTest extends TikiTestCase
 
 	public function testRun_shouldRaiseExceptionIfEmptyFileTypes()
 	{
-		$this->setExpectedException('Language_Exception');
+		$this->expectException('Language_Exception');
 		$this->obj->run();
 	}
 
@@ -216,7 +216,7 @@ class Language_GetStringsTest extends TikiTestCase
 	public function testSetLanguages_shouldRaiseExceptionForInvalidLanguage()
 	{
 		$languages = ['en', 'invalid'];
-		$this->setExpectedException('Language_Exception');
+		$this->expectException('Language_Exception');
 		$this->obj->setLanguages($languages);
 	}
 

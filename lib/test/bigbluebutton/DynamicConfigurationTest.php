@@ -1,11 +1,11 @@
 <?php
 use Tiki\BigBlueButton\Configuration;
 
-class BigBlueButton_DynamicConfigurationTest extends PHPUnit_Framework_TestCase
+class BigBlueButton_DynamicConfigurationTest extends PHPUnit\Framework\TestCase
 {
 	private $xml;
 
-	function __construct()
+	function setUp() : void
 	{
 		$this->xml = file_get_contents(__DIR__ . '/config.xml');
 	}

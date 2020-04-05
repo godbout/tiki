@@ -12,7 +12,7 @@
 namespace Tiki\Lib\wiki;
 use TikiLib;
 
-class WikiLibTest extends \PHPUnit_Framework_TestCase
+class WikiLibTest extends \PHPUnit\Framework\TestCase
 {
 
 	private $pageName = 'WikiLib Test Page';

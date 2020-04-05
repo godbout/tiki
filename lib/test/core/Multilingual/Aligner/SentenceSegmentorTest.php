@@ -21,7 +21,7 @@ class Multilingual_Aligner_SentenceSegmentorTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 */
-	public function test_This_is_how_you_create_a_SentenceSegmentor()
+	public function This_is_how_you_create_a_SentenceSegmentor()
 	{
 		$segmentor = new Multilingual_Aligner_SentenceSegmentor();
 	}
@@ -29,7 +29,7 @@ class Multilingual_Aligner_SentenceSegmentorTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 */
-	public function test_this_is_how_you_segment_text_into_sentences()
+	public function this_is_how_you_segment_text_into_sentences()
 	{
 		$segmentor = new Multilingual_Aligner_SentenceSegmentor();
 		$text = "hello. world";

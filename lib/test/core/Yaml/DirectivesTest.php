@@ -7,11 +7,11 @@
 
 namespace Tiki\Tests\Yaml;
 
-use PHPUnit_Framework_TestCase;
+use PhpUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 use Tiki\Yaml\Directives as Directives;
 
-class DirectivesTest extends PHPUnit_Framework_TestCase
+class DirectivesTest extends TestCase
 {
 	/**
 	 * @var Directives

@@ -14,7 +14,7 @@ use TikiLib;
 /**
  * Class ItemTest
  */
-class ManagerTest extends \PHPUnit_Framework_TestCase
+class ManagerTest extends \PHPUnit\Framework\TestCase
 {
 
 	protected static $items = [];

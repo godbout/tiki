@@ -11,7 +11,7 @@
 
 //require_once (version_compare(PHPUnit_Runner_Version::id(), '3.5.0', '>=')) ? 'PHPUnit/Autoload.php' : 'PHPUnit/Framework.php';
 
-abstract class TikiDatabaseTestCase extends PHPUnit_Extensions_Database_TestCase
+abstract class TikiDatabaseTestCase extends PHPUnit\DbUnit\TestCase
 {
 	static private $pdo = null;
 

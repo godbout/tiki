@@ -8,7 +8,7 @@
 /**
  * @group unit
  */
-abstract class Search_Index_StemmingTest extends PHPUnit_Framework_TestCase
+abstract class Search_Index_StemmingTest extends PHPUnit\Framework\TestCase
 {
 	protected $index;
 

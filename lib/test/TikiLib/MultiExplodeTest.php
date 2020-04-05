@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class TikiLib_MultiExplodeTest extends PHPUnit_Framework_TestCase
+class TikiLib_MultiExplodeTest extends PHPUnit\Framework\TestCase
 {
 	private $saved;
 

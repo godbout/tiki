@@ -1,6 +1,6 @@
 <?php
 
-class Search_Elastic_MoreLikeThisTest extends PHPUnit_Framework_TestCase
+class Search_Elastic_MoreLikeThisTest extends PHPUnit\Framework\TestCase
 {
 	private $index;
 	private $indexer;

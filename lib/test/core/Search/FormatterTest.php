@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Search_FormatterTest extends PHPUnit_Framework_TestCase
+class Search_FormatterTest extends PHPUnit\Framework\TestCase
 {
 	function testBasicFormatter()
 	{

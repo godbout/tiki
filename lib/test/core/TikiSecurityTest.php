@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class TikiSecurityTest extends PHPUnit_Framework_TestCase
+class TikiSecurityTest extends PHPUnit\Framework\TestCase
 {
 	function testValidData()
 	{

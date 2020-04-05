@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Search_MySql_LargeDatasetTest extends PHPUnit_Framework_TestCase
+class Search_MySql_LargeDatasetTest extends PHPUnit\Framework\TestCase
 {
 	protected $index;
 

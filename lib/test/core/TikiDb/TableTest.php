@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class TikiDb_TableTest extends PHPUnit_Framework_TestCase
+class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 {
 	protected $obj;
 

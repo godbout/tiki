@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Perms_BuilderTest extends PHPUnit_Framework_TestCase
+class Perms_BuilderTest extends PHPUnit\Framework\TestCase
 {
 	function testDefaultBuilder()
 	{

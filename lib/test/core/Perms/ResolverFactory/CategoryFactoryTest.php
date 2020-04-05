@@ -10,7 +10,7 @@
  *
  */
 
-class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit_Framework_TestCase
+class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCase
 {
 	private $tableData;
 

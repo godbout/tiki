@@ -16,7 +16,7 @@ use Search_Expr_MoreLikeThis as MoreLikeThis;
 use Search_Expr_ImplicitPhrase as ImplicitPhrase;
 use Search_Expr_ExplicitPhrase as ExplicitPhrase;
 
-class Search_Elastic_RescoreQueryBuilderTest extends PHPUnit_Framework_TestCase
+class Search_Elastic_RescoreQueryBuilderTest extends PHPUnit\Framework\TestCase
 {
 	function testSimpleQuery()
 	{

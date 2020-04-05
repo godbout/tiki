@@ -34,7 +34,7 @@ class Multilingual_Aligner_ShortestPathFinderTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 */
-	public function test_This_is_how_you_create_a_ShortestPathFinder()
+	public function this_is_how_you_create_a_ShortestPathFinder()
 	{
 
 		// First, generate a distance matrix.
@@ -54,7 +54,7 @@ class Multilingual_Aligner_ShortestPathFinderTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 */
-	public function test_This_is_how_you_find_shortest_path_from_the_origin_to_another_node()
+	public function this_is_how_you_find_shortest_path_from_the_origin_to_another_node()
 	{
 		$origin_node_num = 0;
 		$destination_node_num = 2;
@@ -67,7 +67,7 @@ class Multilingual_Aligner_ShortestPathFinderTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 */
-	public function test_node_names_do_not_have_to_be_numbers()
+	public function node_names_do_not_have_to_be_numbers()
 	{
 		$distances_matrix['paris']['lyon'] = 11;
 		$distances_matrix['paris']['marseilles'] = 23;

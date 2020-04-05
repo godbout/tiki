@@ -14,7 +14,7 @@ use TikiLib;
 /**
  * Class CustomRouteTest
  */
-class CustomRouteTest extends \PHPUnit_Framework_TestCase
+class CustomRouteTest extends \PHPUnit\Framework\TestCase
 {
 	protected static $routes = [];
 

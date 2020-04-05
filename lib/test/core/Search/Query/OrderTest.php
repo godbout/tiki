@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Search_Query_OrderTest extends PHPUnit_Framework_TestCase
+class Search_Query_OrderTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider sortMatches

@@ -12,7 +12,7 @@ use Tiki\CustomRoute\Item;
 /**
  * Class ItemTest
  */
-class ItemTest extends \PHPUnit_Framework_TestCase
+class ItemTest extends \PHPUnit\Framework\TestCase
 {
 
 	/** @var Item */

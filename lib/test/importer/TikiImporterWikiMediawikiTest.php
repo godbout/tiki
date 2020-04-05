@@ -94,7 +94,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	{
 		require_once(__DIR__ . '/../../init/tra.php');
 		$_FILES['importFile']['type'] = 'invalid/type';
-		$this->setExpectedException('UnexpectedValueException');
+		$this->expectException('UnexpectedValueException');
 		$this->obj->import(__DIR__ . '/fixtures/mediawiki_sample.xml');
 	}
 
@@ -126,7 +126,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/mediawiki_sample_v0.2.xml');
-		$this->setExpectedException('DOMException');
+		$this->expectException('DOMException');
 		$this->obj->validateInput();
 	}
 
@@ -134,7 +134,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/mediawiki_invalid.xml');
-		$this->setExpectedException('DOMException');
+		$this->expectException('DOMException');
 		$this->obj->validateInput();
 	}
 
@@ -142,7 +142,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
-		$this->setExpectedException('DOMException');
+		$this->expectException('DOMException');
 		$this->obj->validateInput();
 	}
 
@@ -424,7 +424,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$pages = $dom->getElementsByTagName('page');
 
 		foreach ($pages as $page) {
-			$this->setExpectedException('Exception');
+			$this->expectException('Exception');
 			$this->assertNull($obj->extractInfo($page));
 		}
 	}
@@ -467,7 +467,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$revisions = $dom->getElementsByTagName('revision');
 
 		foreach ($revisions as $revision) {
-			$this->setExpectedException('ImporterParserException');
+			$this->expectException('ImporterParserException');
 			$this->assertNull($obj->extractRevision($revision));
 		}
 	}

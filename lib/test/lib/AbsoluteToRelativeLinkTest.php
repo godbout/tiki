@@ -7,10 +7,10 @@
 
 namespace Tiki\Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use TikiLib;
 
-class AbsoluteToRelativeLinkTest extends PHPUnit_Framework_TestCase
+class AbsoluteToRelativeLinkTest extends TestCase
 {
 
 	const BASE_URL = 'https://tiki.org/';

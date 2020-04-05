@@ -15,7 +15,7 @@ class Reports_UsersTest extends TikiDatabaseTestCase
 
 	protected $reportsCache;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->db = TikiDb::get();
 

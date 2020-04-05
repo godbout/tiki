@@ -61,7 +61,7 @@ class TikiFilter_MapTest extends TikiTestCase
 
 	/**
 	 * Triggered errors become exceptions...
-	 * @expectedException PHPUnit_Framework_Error
+	 * @expectedException PHPUnit\Framework\Error\Error
 	 */
 	function testUnknown()
 	{

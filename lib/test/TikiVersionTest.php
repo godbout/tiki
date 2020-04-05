@@ -6,7 +6,7 @@
 // $Id$
 
 
-class TikiVersionTest extends PHPUnit_Framework_TestCase
+class TikiVersionTest extends PHPUnit\Framework\TestCase
 {
 	function versions()
 	{

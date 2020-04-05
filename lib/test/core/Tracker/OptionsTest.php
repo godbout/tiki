@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Tracker_OptionsTest extends PHPUnit_Framework_TestCase
+class Tracker_OptionsTest extends PHPUnit\Framework\TestCase
 {
 	function testBuildLegacyStringBuilder()
 	{

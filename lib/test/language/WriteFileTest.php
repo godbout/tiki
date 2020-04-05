@@ -35,7 +35,7 @@ class Language_WriteFileTest extends TikiTestCase
 	public function testConstruct_shouldRaiseExceptionIfFileIsNotWritable()
 	{
 		$this->langFile->chmod(0444);
-		$this->setExpectedException('Language_Exception');
+		$this->expectException('Language_Exception');
 		new Language_WriteFile($this->parseFile);
 	}
 

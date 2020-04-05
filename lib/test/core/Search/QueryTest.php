@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Search_QueryTest extends PHPUnit_Framework_TestCase
+class Search_QueryTest extends PHPUnit\Framework\TestCase
 {
 	function testQueryGlobalText()
 	{

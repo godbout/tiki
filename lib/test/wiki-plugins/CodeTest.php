@@ -7,7 +7,7 @@
 
 require_once(__DIR__ . '/../../wiki-plugins/wikiplugin_code.php');
 
-class WikiPlugin_CodeTest extends PHPUnit_Framework_TestCase
+class WikiPlugin_CodeTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider provider

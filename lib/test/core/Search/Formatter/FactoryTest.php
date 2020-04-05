@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Search_Formatter_FactoryTest extends PHPUnit_Framework_TestCase
+class Search_Formatter_FactoryTest extends PHPUnit\Framework\TestCase
 {
 	private $plugin;
 

@@ -7,7 +7,7 @@
 
 namespace Tiki\Recommendation;
 
-class EngineSetTest extends \PHPUnit_Framework_TestCase
+class EngineSetTest extends \PHPUnit\Framework\TestCase
 {
 	function testNoEngines()
 	{

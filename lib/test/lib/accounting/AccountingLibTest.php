@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class AccountingLibTest extends PHPUnit_Framework_TestCase
+class AccountingLibTest extends PHPUnit\Framework\TestCase
 {
 	/** @var TestHelpers */
 	protected $testHelpers;
@@ -109,7 +109,7 @@ class AccountingLibTest extends PHPUnit_Framework_TestCase
 
 		$accountList = $accountinglib->getExtendedAccounts($bookA, true);
 
-		$this->assertInternalType(PHPUnit_Framework_Constraint_IsType::TYPE_ARRAY, $accountList);
+		$this->assertInternalType(PHPUnit\Framework\Constraint\IsType::TYPE_ARRAY, $accountList);
 		$this->assertCount(2, $accountList);
 
 		$account = null;
@@ -118,7 +118,7 @@ class AccountingLibTest extends PHPUnit_Framework_TestCase
 				$account = $item;
 			}
 		}
-		$this->assertInternalType(PHPUnit_Framework_Constraint_IsType::TYPE_ARRAY, $account);
+		$this->assertInternalType(PHPUnit\Framework\Constraint\IsType::TYPE_ARRAY, $account);
 		$this->assertEquals(30, $account['credit']);
 		$this->assertEquals(30, $account['debit']);
 	}

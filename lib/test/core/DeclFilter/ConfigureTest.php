@@ -48,7 +48,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 
 	/**
 	 * Triggered errors become exceptions...
-	 * @expectedException PHPUnit_Framework_Error
+	 * @expectedException PHPUnit\Framework\Error\Error
 	 */
 	function testDisallowed()
 	{
@@ -60,7 +60,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 	}
 
 	/**
-	 * @expectedException PHPUnit_Framework_Error
+	 * @expectedException PHPUnit\Framework\Error\Error
 	 */
 	function testMissingLevel()
 	{

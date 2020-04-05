@@ -60,7 +60,7 @@ class Multilingual_Aligner_UpdatePagesTest extends TikiTestCase
 	//    These tests illustrate how to use this class.
 	////////////////////////////////////////////////////////////////
 
-	public function test_this_is_how_you_create_a_UpdatePages()
+	public function this_is_how_you_create_a_UpdatePages()
 	{
 		$test = new Multilingual_Aligner_UpdatePages();
 	}

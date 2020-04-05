@@ -9,7 +9,7 @@ class Reports_CacheTest extends TikiDatabaseTestCase
 {
 	protected $obj;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$db = TikiDb::get();
 		$dt = new DateTime();

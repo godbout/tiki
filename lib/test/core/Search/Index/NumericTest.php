@@ -1,6 +1,6 @@
 <?php
 
-abstract class Search_Index_NumericTest extends PHPUnit_Framework_TestCase
+abstract class Search_Index_NumericTest extends PHPUnit\Framework\TestCase
 {
 	protected $index;
 

@@ -10,7 +10,7 @@
  *
  */
 
-class Perms_Check_AlternateTest extends PHPUnit_Framework_TestCase
+class Perms_Check_AlternateTest extends PHPUnit\Framework\TestCase
 {
 	function testUnconfigured()
 	{

@@ -13,7 +13,7 @@ use Tiki\Files\CheckFileGallery;
 use Tiki\Files\CheckImageGallery;
 use TikiLib;
 
-class CheckImageGalleryTest extends \PHPUnit_Framework_TestCase
+class CheckImageGalleryTest extends \PHPUnit\Framework\TestCase
 {
 	protected $fileRoot;
 	protected $imagesDir;

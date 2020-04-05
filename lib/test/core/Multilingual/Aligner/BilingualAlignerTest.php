@@ -24,10 +24,7 @@ class Multilingual_Aligner_BilingualAlignerTest extends TikiTestCase
 	//    These tests illustrate how to use this class.
 	////////////////////////////////////////////////////////////////
 
-	/**
-	 * @group multilingual
-	 */
-	public function test_this_is_how_you_create_a_BilingualAligner()
+	public function this_is_how_you_create_a_BilingualAligner()
 	{
 		$aligner = new Multilingual_Aligner_BilingualAligner();
 	}
@@ -43,10 +40,7 @@ class Multilingual_Aligner_BilingualAlignerTest extends TikiTestCase
 		$this->aligner = new Multilingual_Aligner_BilingualAligner();
 	}
 
-	/**
-	 * @group multilingual
-	 */
-	public function test_this_is_how_you_align_two_texts()
+	public function this_is_how_you_align_two_texts()
 	{
 		$aligner = new Multilingual_Aligner_BilingualAligner();
 		$en_entences = ["Hello earthlings. Take me to your leader."];

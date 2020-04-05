@@ -7,7 +7,7 @@
 
 namespace Tiki\Recommendation;
 
-class RecommendationSetTest extends \PHPUnit_Framework_TestCase
+class RecommendationSetTest extends \PHPUnit\Framework\TestCase
 {
 	function testAddFiltersRecommendations()
 	{

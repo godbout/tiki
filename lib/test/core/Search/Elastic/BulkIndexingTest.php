@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Search_Elastic_BulkIndexingTest extends PHPUnit_Framework_TestCase
+class Search_Elastic_BulkIndexingTest extends PHPUnit\Framework\TestCase
 {
 	function testBasicBulk()
 	{

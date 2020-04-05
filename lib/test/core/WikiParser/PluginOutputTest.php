@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class WikiParser_PluginOutputTest extends PHPUnit_Framework_TestCase
+class WikiParser_PluginOutputTest extends PHPUnit\Framework\TestCase
 {
 	function testWikiToWikiOutput()
 	{

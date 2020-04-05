@@ -10,7 +10,7 @@
  *
  */
 
-class Transition_AtLeastTest extends PHPUnit_Framework_TestCase
+class Transition_AtLeastTest extends PHPUnit\Framework\TestCase
 {
 	function testOver()
 	{

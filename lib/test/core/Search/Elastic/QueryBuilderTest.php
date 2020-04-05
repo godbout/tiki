@@ -14,7 +14,7 @@ use Search_Expr_Range as Range;
 use Search_Expr_Initial as Initial;
 use Search_Expr_MoreLikeThis as MoreLikeThis;
 
-class Search_Elastic_QueryBuilderTest extends PHPUnit_Framework_TestCase
+class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 {
 	protected $prefErrorMissingField;
 
