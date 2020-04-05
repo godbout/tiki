@@ -21,7 +21,6 @@ function post_20140705_page_slug_tiki($installer)
 			for ($i=0;$i<=999;$i++) {
 				$pageSlug = $prefixPageSlug . "_$i";
 				$duplicates = $pages->fetchColumn('pageName', ['pageSlug' => $pageSlug ]);
-				var_dump(count($duplicates));
 				if (count($duplicates) == 0) {
 					$pages->update(['pageSlug' => $pageSlug], ['pageName' => $name]);
 					break;
