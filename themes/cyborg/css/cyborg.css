@@ -7268,6 +7268,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   padding: 5px; }
 .tiki table.pvtTable tr td {
   color: #888;
+  cursor: pointer;
   background-color: transparent;
   border-color: #282828; }
 .tiki .pvtTotal, .tiki .pvtGrandTotal {
