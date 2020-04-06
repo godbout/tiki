@@ -7243,6 +7243,7 @@ table.tablesorter thead tr.tablesorter-filter-row td input.tablesorter-filter, t
   padding: 5px; }
 .tiki table.pvtTable tr td {
   color: #3E3F3A;
+  cursor: pointer;
   background-color: transparent;
   border-color: #DFD7CA; }
 .tiki .pvtTotal, .tiki .pvtGrandTotal {

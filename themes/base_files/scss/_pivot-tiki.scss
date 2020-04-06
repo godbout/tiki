@@ -20,6 +20,7 @@
 
 	table.pvtTable tr td {
 		color: $pvt-color;
+		cursor: pointer; // indicate that the cell is clickable
 		//	padding: 5px;
 		background-color: $pvt-table-bg;
 		border-color: $pvt-table-border-color;
