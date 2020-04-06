@@ -154,6 +154,14 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'default' => 'storage/fgal/',
 			'tags' => ['basic'],
 		],
+		'fgal_preserve_filenames' => [
+			'name' => tra('Preserve filenames'),
+			'description' => tra('Preserve original filename instead assigning a hash as name'),
+			'type' => 'flag',
+			'perspective' => false,
+			'default' => 'n',
+			'tags' => ['basic'],
+		],
 		'fgal_search_in_content' => [
 			'name' => tra('Searchable file gallery content'),
 			'description' => tra('Include the search form on the current gallery page just after "Find"'),

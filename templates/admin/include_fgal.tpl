@@ -33,6 +33,9 @@
 			{preference name='fgal_use_db'}
 			<div class="adminoptionboxchild fgal_use_db_childcontainer n">
 				<div class="mb-sm-3">
+					{preference name='fgal_preserve_filenames'}
+				</div>
+				<div class="mb-sm-3">
 					{preference name='fgal_use_dir'}
 					<button role="button" type="submit" class="btn btn-primary" name="move" value="to_fs">
 						{tr}Move files from database to directory{/tr}
