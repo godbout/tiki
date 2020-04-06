@@ -56,9 +56,6 @@ class Validators
 	{
 		$validationjs = 'rules: { ';
 		foreach ($fields_data as $field_value) {
-			if ($field_value['type'] == 'b'){
-				$validationjs .= $prefix . $field_value['fieldId'] . '_currency: {required:true,}';
-			}
 			if ($field_value['validation'] || $field_value['isMandatory'] == 'y') {
 				if ($field_value['type'] == 'e' || $field_value['type'] == 'M') {
 					$validationjs .= '"' . $prefix . $field_value['fieldId'] . '[]": { ';
@@ -135,9 +132,6 @@ class Validators
 		$validationjs .= '}, ';
 		$validationjs .= 'messages: { ';
 		foreach ($fields_data as $field_value) {
-			if ($field_value['type'] == 'b'){
-				$validationjs .= $prefix . $field_value['fieldId'] . '_currency: "' . tra($field_value['validationMessage']) . '",';
-			}
 			if ($field_value['validationMessage'] && $field_value['isMandatory'] == 'y') {
 				if ($field_value['type'] == 'e' || $field_value['type'] == 'M') {
 					$validationjs .= '"' . $prefix . $field_value['fieldId'] . '[]": { ';
