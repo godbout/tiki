@@ -143,8 +143,8 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$formatter = new Search_Formatter($plugin);
 		$output = $formatter->format($resultSet);
 
-		$this->assertStringContainsString($this->highlight('Bonjour'), $output);
-		$this->assertStringNotContainsString('<body>', $output);
+		$this->assertContains($this->highlight('Bonjour'), $output);
+		$this->assertNotContains('<body>', $output);
 	}
 
 	function testInvalidQueries()
