@@ -14,7 +14,8 @@
 		 convertNoticesToExceptions="true"
 		 convertWarningsToExceptions="true"
 		 stopOnFailure="false"
-		 backupGlobals="false">
+		 backupGlobals="false"
+		 cacheResultFile="temp/cache">
 
 	<testsuites>
 		<testsuite name="Tiki test suite">
