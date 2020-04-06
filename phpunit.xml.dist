@@ -16,6 +16,8 @@
 		 stopOnFailure="false"
 		 backupGlobals="false"
 		 beStrictAboutOutputDuringTests="true"
+		 beStrictAboutTodoAnnotatedTests="true"
+		 beStrictAboutCoversAnnotation="true"
 		 cacheResultFile="temp/cache">
 
 	<testsuites>
