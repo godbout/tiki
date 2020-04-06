@@ -236,6 +236,11 @@ function tiki_route_attempt_custom_route_redirect()
 	$GLOBALS['tikipath'] = $tikipath;
 
 	require_once __DIR__ . '/db/tiki-db.php';
+
+	if (! TikiDb::get()) {
+		exit;
+	}
+
 	require_once __DIR__ . '/lib/tikilib.php';
 
 	$tikilib = new TikiLib;

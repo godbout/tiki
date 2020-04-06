@@ -75,7 +75,7 @@ class Services_Search_Controller
 
 		return [
 			'title' => tr('Rebuild Index'),
-			'stat' => $stat['default'],
+			'stat' => $stat['default']['counts'],
 			'search_engine' => $engine,
 			'search_version' => $version,
 			'search_index' => $index,
