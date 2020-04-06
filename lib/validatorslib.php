@@ -139,11 +139,7 @@ class Validators
 		$validationjs .= 'messages: { ';
 		foreach ($fields_data as $field_value) {
 			if ($field_value['type'] == 'b'){
-				if ($field_value['validationMessage']){
-					$validationjs .= $prefix . $field_value['fieldId'] . '_currency: "' . tra($field_value['validationMessage']) . '",';
-				}else{
-					$validationjs .= $prefix . $field_value['fieldId'] . '_currency: "'. tra('This field is required') . '",';
-				}
+				$validationjs .= $prefix . $field_value['fieldId'] . '_currency: "' . tra($field_value['validationMessage']) . '",';
 			}
 			if ($field_value['validationMessage'] && $field_value['isMandatory'] == 'y') {
 				if ($field_value['type'] == 'e' || $field_value['type'] == 'M') {
