@@ -57,7 +57,7 @@ class Validators
 		$validationjs = 'rules: { ';
 		foreach ($fields_data as $field_value) {
 			if ($field_value['type'] == 'b'){
-				$validationjs .= $prefix . $field_value['fieldId'] . '_currency: {required:true,},';
+				$validationjs .= $prefix . $field_value['fieldId'] . '_currency: {required:true,}';
 			}
 			if ($field_value['validation'] || $field_value['isMandatory'] == 'y') {
 				if ($field_value['type'] == 'e' || $field_value['type'] == 'M') {
