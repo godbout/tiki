@@ -15,6 +15,7 @@
 		 convertWarningsToExceptions="true"
 		 stopOnFailure="false"
 		 backupGlobals="false"
+		 beStrictAboutOutputDuringTests="true"
 		 cacheResultFile="temp/cache">
 
 	<testsuites>
