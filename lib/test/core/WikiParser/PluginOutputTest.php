@@ -18,7 +18,7 @@ class WikiParser_PluginOutputTest extends PHPUnit\Framework\TestCase
 	{
 		$output = WikiParser_PluginOutput::wiki('^Hello world!^');
 
-		$this->assertContains('<div class="card bg-light"><div class="card-body">Hello world!</div></div>', $output->toHtml());
+		$this->assertStringContainsString('<div class="card bg-light"><div class="card-body">Hello world!</div></div>', $output->toHtml());
 	}
 
 	function testHtmlToWikiOutput()
@@ -39,13 +39,13 @@ class WikiParser_PluginOutputTest extends PHPUnit\Framework\TestCase
 	{
 		$output = WikiParser_PluginOutput::internalError(tra('Unknown conversion'));
 
-		$this->assertContains('Unknown conversion', $output->toHtml());
+		$this->assertStringContainsString('Unknown conversion', $output->toHtml());
 	}
 
 	function testMissingArguments()
 	{
 		$output = WikiParser_PluginOutput::argumentError(['id', 'test']);
 
-		$this->assertContains('<li>id</li>', $output->toHtml());
+		$this->assertStringContainsString('<li>id</li>', $output->toHtml());
 	}
 }

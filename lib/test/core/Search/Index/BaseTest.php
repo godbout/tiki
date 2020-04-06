@@ -129,7 +129,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertResultCount(1, 'filterRange', 2, 2000000000); // Check lexicography
 	}
 
-	function testIndexProvidesHighlightHelper()
+	function testIndexIndexProvidesHighlightHelper()
 	{
 		$query = new Search_Query('foobar or Bonjour');
 		$resultSet = $query->search($this->index);
@@ -143,8 +143,8 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$formatter = new Search_Formatter($plugin);
 		$output = $formatter->format($resultSet);
 
-		$this->assertContains($this->highlight('Bonjour'), $output);
-		$this->assertNotContains('<body>', $output);
+		$this->assertStringContainsString($this->highlight('Bonjour'), $output);
+		$this->assertStringNotContainsString('<body>', $output);
 	}
 
 	function testInvalidQueries()

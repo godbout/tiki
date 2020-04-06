@@ -14,8 +14,8 @@ class JitFilter_IteratorTest extends TikiTestCase
 {
 	private $array;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->array = [
 			'foo' => 'bar',
 			'bar' => 10,
@@ -29,8 +29,8 @@ class JitFilter_IteratorTest extends TikiTestCase
 		$this->array->setDefaultFilter(new Zend\Filter\StringToUpper);
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		$this->array = null;
 	}
 

@@ -18,7 +18,7 @@ use function foo\func;
  */
 class PerspectivesTest extends PerspectivesNavigationBaseTestCase
 {
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass() : void
 	{
 		parent::setUpBeforeClass();
 

@@ -9,8 +9,8 @@ TikiLib::lib('cart');
 
 class Payment_CartTest extends TikiTestCase
 {
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		global $prefs;
 		$prefs['feature_sefurl'] = 'n';
 		$this->obj = $this->getMockBuilder('CartLib')
@@ -19,8 +19,8 @@ class Payment_CartTest extends TikiTestCase
 		$_SERVER['REQUEST_URI'] = '/tiki-index.php';
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		unset($_SESSION['cart']);
 	}
 
@@ -278,7 +278,7 @@ T-456|Foobar|1|120.50
 		TikiDb::get()->query('DELETE FROM tiki_payment_requests WHERE paymentRequestId = ?', [$id]);
 
 		$this->assertEquals(246, $payment['amount_original']);
-		$this->assertContains('123|test|2|123', $payment['detail']);
+		$this->assertStringContainsString('123|test|2|123', $payment['detail']);
 	}
 
 	function testRegisteredBehaviorsOnItems()

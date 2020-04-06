@@ -143,10 +143,10 @@ DOC;
 
 	/**
 	 * @dataProvider badStrings
-	 * @expectedException Math_Formula_Parser_Exception
 	 */
 	function testBadParse($string)
 	{
+		$this->expectException(Math_Formula_Parser_Exception::class);
 		$parser = new Math_Formula_Parser;
 
 		$parser->parse($string);

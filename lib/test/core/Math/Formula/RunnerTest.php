@@ -9,8 +9,8 @@ class Math_Formula_RunnerTest extends TikiTestCase
 {
 	private $runner;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->runner = new Math_Formula_Runner(
 			[
 				'Math_Formula_Function_' => null,
@@ -38,20 +38,16 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(['test'], $required);
 	}
 
-	/**
-	 * @expectedException Math_Formula_Runner_Exception
-	 */
 	function testUnknownOperator()
 	{
+		$this->expectException('Math_Formula_Runner_Exception');
 		$this->runner->setFormula('(foobar abc)');
 		$this->runner->inspect();
 	}
 
-	/**
-	 * @expectedException Math_Formula_Runner_Exception
-	 */
 	function testNoFormulaSpecified()
 	{
+		$this->expectException('Math_Formula_Runner_Exception');
 		$this->runner->inspect();
 	}
 
@@ -100,11 +96,9 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(20, $this->runner->evaluate());
 	}
 
-	/**
-	 * @expectedException Math_Formula_Exception
-	 */
 	function testMissingVariable()
 	{
+		$this->expectException('Math_Formula_Exception');
 		$this->runner->setFormula('(mul foobar 2)');
 		$this->runner->evaluate();
 	}
@@ -119,11 +113,9 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals('aaa123456', $this->runner->evaluate());
 	}
 
-	/**
-	 * @expectedException Math_Formula_Exception
-	 */
 	function testInvalidData()
 	{
+		$this->expectException('Math_Formula_Exception');
 		$this->runner->setFormula('(testop (object test) (concat 456))');
 
 		$this->runner->inspect();

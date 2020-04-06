@@ -18,8 +18,8 @@ class CustomRouteTest extends \PHPUnit\Framework\TestCase
 {
 	protected static $routes = [];
 
-	public static function tearDownAfterClass()
-	{
+	public static function tearDownAfterClass() : void
+{
 		$routeLib = TikiLib::lib('custom_route');
 
 		foreach (self::$routes as $routeId) {

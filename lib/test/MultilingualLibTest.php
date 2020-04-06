@@ -11,7 +11,7 @@ class MultilingualLibTest extends TikiTestCase
 {
 	public $orig_user;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		global $user, $prefs;
 		$tikilib = TikiLib::lib('tiki');
@@ -48,7 +48,7 @@ class MultilingualLibTest extends TikiTestCase
 		$tikilib->create_page($page_name, 0, $content, null, '', null, $user, '', $lang);
 	}
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		global $tikilib, $user;
 

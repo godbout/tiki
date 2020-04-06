@@ -35,7 +35,7 @@ class Multilingual_Aligner_BilingualAlignerTest extends TikiTestCase
 	//       created as above.
 	////////////////////////////////////////////////////////////////
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->aligner = new Multilingual_Aligner_BilingualAligner();
 	}
@@ -480,7 +480,7 @@ class Multilingual_Aligner_BilingualAlignerTest extends TikiTestCase
 	{
 		$got_delta = $this->aligner->_sentence_length_delta($l1_sentence, $l2_sentence);
 		$message = $message . "\nSentence length delta was wrong.";
-		$this->assertEquals($exp_delta, $got_delta, $message, 0.001);
+		$this->assertEqualsWithDelta($exp_delta, $got_delta, 0.001, $message);
 	}
 
 	private function _setup_segmented_sentences()
@@ -546,11 +546,11 @@ class Multilingual_Aligner_BilingualAlignerTest extends TikiTestCase
 
 		$got_cost = $this->aligner->_compute_node_transition_cost($destination_node);
 		$tolerance = 0.01;
-		$this->assertEquals(
+		$this->assertEqualsWithDelta(
 			$exp_cost,
 			$got_cost,
-			$message . "\nTransition cost to node '$destination_node' was wrong",
-			$tolerance
+			$tolerance,
+			$message . "\nTransition cost to node '$destination_node' was wrong"
 		);
 	}
 }

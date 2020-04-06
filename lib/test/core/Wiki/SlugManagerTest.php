@@ -10,8 +10,8 @@ class SlugManagerTest extends \PHPUnit\Framework\TestCase
 {
 	private $manager;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->manager = new SlugManager;
 		$this->manager->setValidationCallback(function () {
 			return false;

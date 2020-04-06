@@ -14,15 +14,15 @@ class EditLib_ParseToWiki_ListTest extends TikiTestCase
 
 	private $el = null; // the EditLib
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		TikiLib::lib('edit');
 		$this->el = new EditLib();
 	}
 
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 	}
 
 

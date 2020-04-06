@@ -172,8 +172,8 @@ class AuthTokensTest extends TikiDatabaseTestCase
 		$new = $this->obj->includeToken($url);
 
 		$this->assertRegExp('/TOKEN=[a-z0-9]{32}/i', $new);
-		$this->assertContains('http://example.com/tiki/tiki-index.php', $new);
-		$this->assertContains('page=SomePage', $new);
+		$this->assertStringContainsString('http://example.com/tiki/tiki-index.php', $new);
+		$this->assertStringContainsString('page=SomePage', $new);
 	}
 
 	function testIncludeTokenNoPath()
@@ -182,7 +182,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 		$new = $this->obj->includeToken($url);
 
 		$this->assertRegExp('/TOKEN=[a-z0-9]{32}/i', $new);
-		$this->assertContains('http://example.com/tiki-index.php', $new);
+		$this->assertStringContainsString('http://example.com/tiki-index.php', $new);
 	}
 
 	function testWithFragment()

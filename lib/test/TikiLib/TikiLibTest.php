@@ -14,14 +14,14 @@ class TikiLibTest extends TikiTestCase
 	private $some_page_name2 = 'SomePage2';
 	private $some_page_name3 = 'SomePage3';
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		global $testhelpers;
 
 		$testhelpers->simulate_tiki_script_context();
 	}
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		global $testhelpers;
 

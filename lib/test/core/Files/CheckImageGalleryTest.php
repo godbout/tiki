@@ -29,7 +29,7 @@ class CheckImageGalleryTest extends \PHPUnit\Framework\TestCase
 
 	protected $imageGalleryId;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->testImage = TIKI_PATH . '/img/tiki/tikilogo.png';
 		if (! file_exists($this->testImage)) {

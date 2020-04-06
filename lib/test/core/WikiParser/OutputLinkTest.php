@@ -9,8 +9,8 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 {
 	private $info;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->info = [];
 	}
 

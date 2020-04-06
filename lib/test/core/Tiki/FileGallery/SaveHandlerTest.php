@@ -16,7 +16,8 @@ use Tiki\FileGallery\SaveHandler;
 
 class Tiki_FileGallery_Manipulator_SaveHandlerTest extends TikiTestCase
 {
-  function setUp() {
+  protected function setUp() : void
+	{
     global $prefs;
     $this->oldPrefs = $prefs;
     $prefs['fgal_use_db'] = 'y';
@@ -26,7 +27,8 @@ class Tiki_FileGallery_Manipulator_SaveHandlerTest extends TikiTestCase
     $this->cleanup();
   }
 
-  function tearDown() {
+  protected function tearDown() : void
+	{
     global $prefs;
     $prefs = $this->oldPrefs;
     $this->cleanup();

@@ -9,8 +9,8 @@ class Search_Elastic_FacetReaderTest extends PHPUnit\Framework\TestCase
 {
 	private $reader;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->reader = new Search_Elastic_FacetReader(
 			(object) [
 				'facets' => (object) [

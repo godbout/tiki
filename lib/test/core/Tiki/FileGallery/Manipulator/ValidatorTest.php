@@ -15,13 +15,15 @@ use Tiki\FileGallery\Manipulator\Validator;
 
 class Tiki_FileGallery_Manipulator_ValidatorTest extends TikiTestCase
 {
-  function setUp() {
+  protected function setUp() : void
+	{
     global $prefs;
     $this->oldPrefs = $prefs;
     parent::setUp();
   }
 
-  function tearDown() {
+  protected function tearDown() : void
+	{
     global $prefs;
     $prefs = $this->oldPrefs;
   }

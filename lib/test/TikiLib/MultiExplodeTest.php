@@ -9,13 +9,13 @@ class TikiLib_MultiExplodeTest extends PHPUnit\Framework\TestCase
 {
 	private $saved;
 
-	function setUp()
+	function setUp() : void
 	{
 		global $prefs;
 		$this->saved = $prefs['namespace_separator'];
 	}
 
-	function tearDown()
+	function tearDown() : void
 	{
 		global $prefs;
 		$prefs['namespace_separator'] = $this->saved;

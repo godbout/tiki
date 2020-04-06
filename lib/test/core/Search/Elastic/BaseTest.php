@@ -7,8 +7,8 @@
 
 class Search_Elastic_BaseTest extends Search_Index_BaseTest
 {
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		static $count = 0;
 
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
@@ -25,14 +25,14 @@ class Search_Elastic_BaseTest extends Search_Index_BaseTest
 		$this->populate($this->index);
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		if ($this->index) {
 			$this->index->destroy();
 		}
 	}
 
-	function testIndexProvidesHighlightHelper()
+	function testElasticIndexProvidesHighlightHelper()
 	{
 		$query = new Search_Query('foobar or bonjour');
 		$resultSet = $query->search($this->index);

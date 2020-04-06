@@ -9,8 +9,8 @@ class Rating_AggregationTest extends TikiTestCase
 	protected $ratingDefaultOptions;
 	protected $ratingAllowMultipleVotes;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		global $user, $testhelpers, $prefs;
 
 		$user = null;
@@ -34,8 +34,8 @@ class Rating_AggregationTest extends TikiTestCase
 		$prefs['rating_allow_multi_votes'] = 'y';
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		global $testhelpers, $user, $prefs;
 		$user = null;
 		parent::tearDown();
@@ -93,7 +93,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$lib->record_user_vote('abc', 'test', 112, 3, time() - 1000);
 		$lib->record_anonymous_vote('deadbeef01234567', 'test', 111, 3, time() - 1000);
 
-		$this->assertEquals(10 / 3, $lib->collect('test', 111, 'avg'), '', 1 / 1000);
+		$this->assertEqualsWithDelta(10 / 3, $lib->collect('test', 111, 'avg'), 1 / 1000);
 	}
 
 	function testGetGlobalAverageSingleVote()
@@ -107,7 +107,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$lib->record_user_vote('abc', 'test', 112, 3, time() - 1000);
 		$lib->record_anonymous_vote('deadbeef01234567', 'test', 111, 3, time() - 1000);
 
-		$this->assertEquals(5 / 2, $lib->collect('test', 111, 'avg'), '', 1 / 1000);
+		$this->assertEqualsWithDelta(5 / 2, $lib->collect('test', 111, 'avg'),1 / 1000);
 	}
 
 	function testBadAggregateFunction()
@@ -215,10 +215,9 @@ class Rating_AggregationTest extends TikiTestCase
 
 		$this->assertEquals(10.0, $lib->collect('test', 111, 'sum', ['keep' => 'oldest', 'revote' => 2500]));
 
-		$this->assertEquals(
+		$this->assertEqualsWithDelta(
 			10 / 3,
 			$lib->collect('test', 111, 'avg', ['keep' => 'oldest', 'revote' => 2500]),
-			'',
 			1 / 1000
 		);
 	}
@@ -236,10 +235,9 @@ class Rating_AggregationTest extends TikiTestCase
 
 		$this->assertEquals(6.0, $lib->collect('test', 111, 'sum', ['keep' => 'oldest', 'revote' => 2500]));
 
-		$this->assertEquals(
+		$this->assertEqualsWithDelta(
 			6 / 2,
 			$lib->collect('test', 111, 'avg', ['keep' => 'oldest', 'revote' => 2500]),
-			'',
 			1 / 1000
 		);
 	}

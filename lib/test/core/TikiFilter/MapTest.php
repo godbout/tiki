@@ -61,10 +61,10 @@ class TikiFilter_MapTest extends TikiTestCase
 
 	/**
 	 * Triggered errors become exceptions...
-	 * @expectedException PHPUnit\Framework\Error\Error
 	 */
 	function testUnknown()
 	{
+		$this->expectException('PHPUnit\Framework\Error\Error');
 		$this->assertTrue(TikiFilter::get('does_not_exist') instanceof TikiFilter_PreventXss);
 	}
 

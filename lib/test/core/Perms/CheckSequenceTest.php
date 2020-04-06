@@ -15,8 +15,8 @@ class Perms_CheckSequenceTest extends TikiTestCase
 	private $mockA;
 	private $mockB;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$perms = new Perms;
 		$perms->setResolverFactories(
 			[

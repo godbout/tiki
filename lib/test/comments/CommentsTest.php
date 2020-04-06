@@ -10,8 +10,8 @@ class CommentsTest extends TikiTestCase
 
 	private $lib;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->lib = TikiLib::lib('comments');
 	}
 

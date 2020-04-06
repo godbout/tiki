@@ -13,8 +13,8 @@ class Language_FileType_PhpTest extends TikiTestCase
 
 	protected $obj;
 
-	protected function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->obj = new Language_FileType_Php();
 	}
 

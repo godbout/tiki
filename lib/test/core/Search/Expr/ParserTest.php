@@ -9,8 +9,8 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 {
 	private $parser;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->parser = new Search_Expr_Parser;
 	}
 

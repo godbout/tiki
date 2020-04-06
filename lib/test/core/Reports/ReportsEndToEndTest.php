@@ -9,7 +9,7 @@ require_once('lib/test/TikiDatabaseTestCase.php');
 
 class Reports_EndToEndTest extends TikiDatabaseTestCase
 {
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->markTestSkipped('Strangely enough, this loads two different classes if TikiMail');
 		$this->dt = new DateTime;

@@ -9,8 +9,8 @@ class Search_Elastic_BulkIncrementalUpdateTest extends Search_Index_IncrementalU
 {
 	protected $index;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->index = $this->getIndex();
 		$this->index->destroy();
 
@@ -31,8 +31,8 @@ class Search_Elastic_BulkIncrementalUpdateTest extends Search_Index_IncrementalU
 		return new Search_Elastic_Index($connection, 'test_index');
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		if ($this->index) {
 			$this->index->destroy();
 		}

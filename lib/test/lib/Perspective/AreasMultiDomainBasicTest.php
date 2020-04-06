@@ -16,7 +16,7 @@ use Tiki\Test\TestHelpers\WebClientHelper;
  */
 class AreasMultiDomainBasicTest extends PerspectivesNavigationBaseTestCase
 {
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass() : void
 	{
 		parent::setUpBeforeClass();
 

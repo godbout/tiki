@@ -10,7 +10,7 @@ class UserWatchesTest extends TikiTestCase
 
 	private $lib;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->lib = TikiLib::lib('tiki');
 		$this->userWatches = $this->lib->table('tiki_user_watches');
@@ -26,8 +26,8 @@ class UserWatchesTest extends TikiTestCase
 		]);
 	}
 
-	protected function tearDown()
-	{
+	protected function tearDown() : void
+{
 		$this->userWatches->deleteMultiple(['user' => 'tester']);
 	}
 

@@ -15,8 +15,8 @@ class Tiki_Command_ProfileExport_TrackerItemTest extends TikiTestCase
 {
 	protected $writer;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		// create a sample writer that will never write to disk (save is mocked)
 		$this->writer = $this->getMockBuilder(\Tiki_Profile_Writer::class)
 			->setMethods(['save'])

@@ -25,7 +25,7 @@ class PerspectivesNavigationBaseTestCase extends \PHPUnit\Framework\TestCase
 	 */
 	const FIXTURE_SITE = 'tiki-a.localdomain';
 
-	public static function setUpBeforeClass()
+	public static function setUpBeforeClass() : void
 	{
 		if (! getenv('TIKI_TEST_HOST') || ! getenv('TIKI_TEST_HOST_A') || ! getenv('TIKI_TEST_HOST_B')) {
 			self::markTestSkipped(

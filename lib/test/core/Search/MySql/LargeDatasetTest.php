@@ -9,8 +9,8 @@ class Search_MySql_LargeDatasetTest extends PHPUnit\Framework\TestCase
 {
 	protected $index;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->index = $this->getIndex();
 		$this->index->destroy();
 	}
@@ -20,18 +20,16 @@ class Search_MySql_LargeDatasetTest extends PHPUnit\Framework\TestCase
 		return new Search_MySql_Index(TikiDb::get(), 'test_index');
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		if ($this->index) {
 			$this->index->destroy();
 		}
 	}
 
-	/**
-	 * @expectedException Search_MySql_LimitReachedException
-	 */
 	function testManyColumns()
 	{
+		$this->expectException('Search_MySql_LimitReachedException');
 		$typeFactory = $this->index->getTypeFactory();
 		$document = [
 			'object_type' => $typeFactory->identifier('test'),
@@ -47,11 +45,9 @@ class Search_MySql_LargeDatasetTest extends PHPUnit\Framework\TestCase
 		$this->index->addDocument($document);
 	}
 
-	/**
-	 * @expectedException Search_MySql_LimitReachedException
-	 */
 	function testManyIndexes()
 	{
+		$this->expectException('Search_MySql_LimitReachedException');
 		$typeFactory = $this->index->getTypeFactory();
 		$document = [
 			'object_type' => $typeFactory->identifier('test'),

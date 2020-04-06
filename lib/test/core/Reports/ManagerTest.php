@@ -13,7 +13,7 @@ class Reports_ManagerTest extends TikiTestCase
 
 	protected $reportsCache;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->reportsUsers = $this->getMockBuilder('Reports_Users')->disableOriginalConstructor()->getMock();
 		$this->reportsCache = $this->getMockBuilder('Reports_Cache')->disableOriginalConstructor()->getMock();

@@ -13,7 +13,7 @@ class Reports_SendTest extends TikiTestCase
 
 	protected $dt;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->dt = new DateTime;
 		$this->dt->setTimestamp(strtotime('2012-03-27 15:55:16'));

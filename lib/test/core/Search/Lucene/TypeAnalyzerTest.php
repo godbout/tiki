@@ -12,14 +12,14 @@ class Search_Lucene_TypeAnalyzerTest extends Search_Index_TypeAnalyzerTest
 {
 	private $dir;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->dir = __DIR__ . '/test_index';
 		$this->tearDown();
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		$this->getIndex()->destroy();
 	}
 

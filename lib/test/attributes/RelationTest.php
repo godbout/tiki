@@ -9,14 +9,14 @@ $relationlib = TikiLib::lib('relation');
 
 class RelationTest extends TikiTestCase
 {
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		parent::setUp();
 		TikiDb::get()->query('DELETE FROM `tiki_object_relations` WHERE `relation` LIKE ?', ['tiki.test%']);
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		parent::tearDown();
 		TikiDb::get()->query('DELETE FROM `tiki_object_relations` WHERE `relation` LIKE ?', ['tiki.test%']);
 	}

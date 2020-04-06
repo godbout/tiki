@@ -17,8 +17,8 @@ class WikiLibTest extends \PHPUnit\Framework\TestCase
 
 	private $pageName = 'WikiLib Test Page';
 
-	protected function setUp()
-	{
+	protected function setUp() : void
+{
 		global $testhelpers;
 
 		require_once(__DIR__ . '/../TestHelpers.php');
@@ -27,8 +27,8 @@ class WikiLibTest extends \PHPUnit\Framework\TestCase
 		require_once(__DIR__ . '/../../../lib/wiki/renderlib.php');
 	}
 
-	protected function tearDown()
-	{
+	protected function tearDown() : void
+{
 		global $testhelpers;
 
 		$testhelpers->remove_all_versions($this->pageName);
@@ -71,38 +71,38 @@ Some more text
 		$wikilib->processPageDisplayOptions();
 		$tags = $headerlib->output_js_files();
 		$expected = 'lib/jquery_tiki/autoToc.js';
-		$this->assertContains($expected, $tags, 'Autotoc on, page set to default');
+		$this->assertStringContainsString($expected, $tags, 'Autotoc on, page set to default');
 
 		$headerlib->clear_js(true);
 		$wikilib->set_page_auto_toc($this->pageName, -1);
 		$wikilib->processPageDisplayOptions();
 		$tags = $headerlib->output_js_files();
-		$this->assertNotContains($expected, $tags, 'Autotoc on, page set to off');
+		$this->assertStringNotContainsString($expected, $tags, 'Autotoc on, page set to off');
 
 		$headerlib->clear_js(true);
 		$wikilib->set_page_auto_toc($this->pageName, 1);
 		$wikilib->processPageDisplayOptions();
 		$tags = $headerlib->output_js_files();
-		$this->assertContains($expected, $tags, 'Autotoc on, page set to on');
+		$this->assertStringContainsString($expected, $tags, 'Autotoc on, page set to on');
 
 		$prefs['wiki_toc_default'] = 'off';
 		$headerlib->clear_js(true);
 		$wikilib->set_page_auto_toc($this->pageName, 0);
 		$wikilib->processPageDisplayOptions();
 		$tags = $headerlib->output_js_files();
-		$this->assertNotContains($expected, $tags, 'Autotoc off, page set to default');
+		$this->assertStringNotContainsString($expected, $tags, 'Autotoc off, page set to default');
 
 		$tags = $headerlib->output_js_files();
 		$wikilib->set_page_auto_toc($this->pageName, -1);
 		$wikilib->processPageDisplayOptions();
 		$headerlib->clear_js(true);
-		$this->assertNotContains($expected, $tags, 'Autotoc off, page set to off');
+		$this->assertStringNotContainsString($expected, $tags, 'Autotoc off, page set to off');
 
 		$headerlib->clear_js(true);
 		$wikilib->set_page_auto_toc($this->pageName, 1);
 		$wikilib->processPageDisplayOptions();
 		$tags = $headerlib->output_js_files();
-		$this->assertContains($expected, $tags, 'Autotoc off, page set to on');
+		$this->assertStringContainsString($expected, $tags, 'Autotoc off, page set to on');
 
 	}
 }

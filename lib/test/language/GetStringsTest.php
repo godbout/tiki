@@ -27,8 +27,8 @@ class Language_GetStringsTest extends TikiTestCase
 	private $writeFileFactory;
 	private $writeFile;
 
-	protected function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->baseDir = __DIR__ . '/../../../';
 		$this->collectFiles = $this->createMock('Language_CollectFiles');
 		$this->fileType = $this->createMock('Language_FileType_Php');

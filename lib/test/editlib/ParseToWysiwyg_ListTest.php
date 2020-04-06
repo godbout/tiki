@@ -14,8 +14,8 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 
 	private $el = null; // the EditLib
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 
 		TikiLib::lib('edit');
 		$_SERVER['HTTP_HOST'] = ''; // editlib expects that HTTP_HOST is defined
@@ -24,8 +24,8 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	}
 
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 	}
 
 

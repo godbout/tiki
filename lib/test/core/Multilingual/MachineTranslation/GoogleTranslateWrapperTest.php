@@ -24,7 +24,7 @@ class Multilingual_MachineTranslation_GoogleTranslateWrapperTest extends TikiTes
 	private $translator;
 	private $provider;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		global $prefs;
 

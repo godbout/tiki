@@ -16,14 +16,16 @@ use Tiki\FileGallery\File;
 
 class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 {
-	function setUp() {
+	protected function setUp() : void
+	{
 		global $prefs;
 		$this->oldPrefs = $prefs;
 		parent::setUp();
 		\TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
 	}
 
-	function tearDown() {
+	protected function tearDown() : void
+	{
 		global $prefs;
 		$prefs = $this->oldPrefs;
 		\TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();

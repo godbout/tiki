@@ -7,16 +7,16 @@
 
 class Search_MySql_SortTest extends Search_Index_SortTest
 {
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->index = new Search_MySql_Index(TikiDb::get(), 'test_index');
 		$this->index->destroy();
 
 		$this->populate($this->index);
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		if ($this->index) {
 			$this->index->destroy();
 		}

@@ -23,7 +23,7 @@ class BigBlueButton_DynamicConfigurationTest extends PHPUnit\Framework\TestCase
 		$config->removeModule('PhoneModule');
 
 		$xml = $config->getXml();
-		$this->assertNotContains('<module name="PhoneModule"', $xml);
+		$this->assertStringNotContainsString('<module name="PhoneModule"', $xml);
 	}
 
 	function testDisableModuleWithDependencies()
@@ -32,7 +32,7 @@ class BigBlueButton_DynamicConfigurationTest extends PHPUnit\Framework\TestCase
 		$config->removeModule('PresentModule');
 
 		$xml = $config->getXml();
-		$this->assertNotContains('<module name="PresentModule"', $xml);
-		$this->assertNotContains('<module name="WhiteboardModule"', $xml);
+		$this->assertStringNotContainsString('<module name="PresentModule"', $xml);
+		$this->assertStringNotContainsString('<module name="WhiteboardModule"', $xml);
 	}
 }

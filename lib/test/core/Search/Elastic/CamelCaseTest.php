@@ -9,8 +9,8 @@ class Search_Elastic_CamelCaseTest extends PHPUnit\Framework\TestCase
 {
 	private $connection;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
 		$connection = new Search_Elastic_Connection('http://' . $elasticSearchHost . ':9200');
 

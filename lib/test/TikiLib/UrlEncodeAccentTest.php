@@ -11,7 +11,7 @@
 
 class TikiLib_UrlEncodeAccentTest extends PHPUnit\Framework\TestCase
 {
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->tikilib = TikiLib::lib('tiki');
 	}

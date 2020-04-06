@@ -13,8 +13,8 @@ class JitFilter_FilterTest extends TikiTestCase
 {
 	private $array;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->array = [
 			'foo' => 'bar123',
 			'bar' => 10,
@@ -29,8 +29,8 @@ class JitFilter_FilterTest extends TikiTestCase
 		$this->array->setDefaultFilter(new Zend\I18n\Filter\Alnum);
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		$this->array = null;
 	}
 

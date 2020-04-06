@@ -9,14 +9,14 @@ $attributelib = TikiLib::lib('attribute');
 
 class AttributeTest extends TikiTestCase
 {
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		parent::setUp();
 		TikiDb::get()->query('DELETE FROM `tiki_object_attributes` WHERE `attribute` LIKE ?', ['tiki.test%']);
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		parent::tearDown();
 		TikiDb::get()->query('DELETE FROM `tiki_object_attributes` WHERE `attribute` LIKE ?', ['tiki.test%']);
 	}

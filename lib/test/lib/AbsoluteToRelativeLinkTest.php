@@ -19,8 +19,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	const DEMO_TEXT = 'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,' .
 	' ut fermentum massa justo sit amet risus ##### Fermentum Fringilla Dapibus.';
 
-	public function setUp()
-	{
+	protected function setUp() : void
+{
 		global $base_url, $base_url_http, $base_url_https, $prefs, $page_regex;
 
 		$base_url = self::BASE_URL;

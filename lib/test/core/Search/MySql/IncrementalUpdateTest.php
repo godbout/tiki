@@ -9,8 +9,8 @@ class Search_MySql_IncrementalUpdateTest extends Search_Index_IncrementalUpdateT
 {
 	protected $index;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->index = $this->getIndex();
 		$this->index->destroy();
 
@@ -22,8 +22,8 @@ class Search_MySql_IncrementalUpdateTest extends Search_Index_IncrementalUpdateT
 		return new Search_MySql_Index(TikiDb::get(), 'test_index');
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		if ($this->index) {
 			$this->index->destroy();
 		}

@@ -2,8 +2,8 @@
 
 class Search_Elastic_NumericTest extends Search_Index_NumericTest
 {
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
 		$connection = new Search_Elastic_Connection('http://' . $elasticSearchHost . ':9200');
 
@@ -18,8 +18,8 @@ class Search_Elastic_NumericTest extends Search_Index_NumericTest
 		$this->populate($this->index);
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		if ($this->index) {
 			$this->index->destroy();
 		}

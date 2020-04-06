@@ -35,7 +35,7 @@ class Multilingual_Aligner_UpdatePagesTest extends TikiTestCase
 	private $extra_target_sentence = "Cette phrase a été ajoutée du côté source.";
 	private $mt_extra_target_sentence = "This sentence was added on the target side.";
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->updater = new Multilingual_Aligner_UpdatePages();
 		$this->updater->alignments = new Multilingual_Aligner_SentenceAlignments();

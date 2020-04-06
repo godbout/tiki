@@ -12,8 +12,8 @@ class Rating_RegisterVoteTest extends TikiTestCase
 	protected $ratingDefaultOptions;
 	protected $ratingAllowMultipleVotes;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		global $user, $prefs;
 		$user = null;
 		parent::setUp();
@@ -27,8 +27,8 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		$prefs['rating_allow_multi_votes'] = 'y';
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		global $user, $prefs;
 		$user = null;
 		parent::tearDown();

@@ -2,8 +2,8 @@
 
 class Search_Lucene_NumericTest extends Search_Index_NumericTest
 {
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->dir = __DIR__ . '/test_index';
 		$this->tearDown();
 
@@ -13,8 +13,8 @@ class Search_Lucene_NumericTest extends Search_Index_NumericTest
 		$this->index = $index;
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		if ($this->index) {
 			$this->index->destroy();
 		}

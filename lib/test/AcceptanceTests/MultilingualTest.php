@@ -256,7 +256,7 @@ class AcceptanceTests_MultilingualTest extends TikiSeleniumTestCase
 	 * Helper methods
 	 **************************************/
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->markTestSkipped("These tests are still too experimental, so skipping it.");
 		$this->setBrowserUrl('http://localhost/');

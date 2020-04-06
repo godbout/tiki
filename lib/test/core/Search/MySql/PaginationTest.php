@@ -7,14 +7,14 @@
 
 class Search_MySql_PaginationTest extends Search_Index_PaginationTest
 {
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->index = new Search_MySql_Index(TikiDb::get(), 'test_index');
 		$this->index->destroy();
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		if ($this->index) {
 			$this->index->destroy();
 		}

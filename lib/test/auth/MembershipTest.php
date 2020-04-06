@@ -12,8 +12,8 @@ class MembershipTest extends TikiTestCase
 
 	protected $userlib;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		parent::setUp();
 		$cachelib = TikiLib::lib('cache');
 
@@ -41,8 +41,8 @@ class MembershipTest extends TikiTestCase
 		$this->userlib->assign_user_to_group('membershiptest_b', 'MembershipTest');
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		parent::tearDown();
 		$this->userlib->remove_user('membershiptest_a');
 		$this->userlib->remove_user('membershiptest_b');

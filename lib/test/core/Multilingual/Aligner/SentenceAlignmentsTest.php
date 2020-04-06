@@ -18,7 +18,7 @@ class Multilingual_Aligner_SentenceAlignmentsTest extends TikiTestCase
 		$this->fail("remember to reactivate all tests in SentenceAlignments");
 	}
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->alignments = new Multilingual_Aligner_SentenceAlignments();
 	}

@@ -18,7 +18,7 @@ class Multilingual_Aligner_ShortestPathFinderTest extends TikiTestCase
 	//    These tests illustrate how to use this class.
 	////////////////////////////////////////////////////////////////
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$distances_matrix[0][1] = 11;
 		$distances_matrix[0][2] = 23;

@@ -39,16 +39,16 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		}
 	}
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->backupTable('users_objectpermissions');
 		$this->backupTable('tiki_objects');
 		$this->backupTable('tiki_category_objects');
 		$this->backupTable('tiki_tracker_items');
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		$this->restoreTable('users_objectpermissions');
 		$this->restoreTable('tiki_objects');
 		$this->restoreTable('tiki_category_objects');

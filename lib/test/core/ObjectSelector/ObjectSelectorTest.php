@@ -8,8 +8,8 @@ class ObjectSelectorTest extends \PHPUnit\Framework\TestCase
 
 	private $calls = [];
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->selector = new \Tiki\Object\Selector($this);
 	}
 

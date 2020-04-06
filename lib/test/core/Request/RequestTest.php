@@ -7,13 +7,13 @@
 
 class RequestTest extends TikiTestCase
 {
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->obj = new Tiki_Request();
 	}
 
-	protected function tearDown()
-	{
+	protected function tearDown() : void
+{
 		unset($_REQUEST);
 		unset($_POST);
 		unset($_SERVER['argv']);

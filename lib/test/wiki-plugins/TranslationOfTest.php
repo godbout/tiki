@@ -15,8 +15,8 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 
 	private $page_containing_plugin = "PageToBeCreated";
 
-	protected function setUp()
-	{
+	protected function setUp() : void
+{
 		global $user, $prefs;
 		$multilinguallib = TikiLib::lib('multilingual');
 		$tikilib = TikiLib::lib('tiki');
@@ -34,8 +34,8 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 		//
 	}
 
-	protected function tearDown()
-	{
+	protected function tearDown() : void
+{
 		global $tikilib, $user, $testhelpers;
 
 		$testhelpers->remove_all_versions($this->page_containing_plugin);

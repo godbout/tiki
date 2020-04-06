@@ -13,13 +13,13 @@ class EmailTest extends \PHPUnit\Framework\TestCase
 {
 	protected static $objects = [];
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$_SERVER["SERVER_NAME"] = 'test.example.org';
 	}
 
-	public static function tearDownAfterClass()
-	{
+	public static function tearDownAfterClass() : void
+{
 		$commentslib = \TikiLib::lib('comments');
 		foreach (self::$objects['comments'] as $commentId) {
 			$commentslib->remove_comment($commentId);

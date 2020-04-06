@@ -199,7 +199,7 @@ OUT;
 		$this->assertRegExp('/<li[^>]*><a[^>]*>2<\/a><\/li>/', $output);
 		$this->assertRegExp('/<li[^>]*><a[^>]*>2<\/a><\/li>/', $output);
 		$this->assertRegExp('/<li[^>]*><span[^>]*>3 <span[^>]*>/', $output);
-		$this->assertNotContains('>4<', $output);
+		$this->assertStringNotContainsString('>4<', $output);
 	}
 
 	function testSpecifyDataSource()
@@ -327,7 +327,7 @@ OUT;
 		$formatter = new Search_Formatter($plugin);
 		$output = $formatter->format($resultSet);
 
-		$this->assertContains('<strong>Hello</strong>', $output);
+		$this->assertStringContainsString('<strong>Hello</strong>', $output);
 	}
 }
 

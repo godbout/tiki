@@ -9,8 +9,8 @@ class Tiki_Event_ManagerTest extends PHPUnit\Framework\TestCase
 {
 	private $called;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->called = 0;
 	}
 

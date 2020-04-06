@@ -26,8 +26,8 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	}
 
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$_SERVER['HTTP_HOST'] = ''; // editlib expects that HTTP_HOST is defined
 		$_SERVER['SERVER_NAME'] = 'myserver'; // the ParserLib expects the servername to be set
 
@@ -41,8 +41,8 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	/**
 	* remove the external Wikis defined in the tests
 	*/
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		$tikilib = TikiLib::lib('tiki');
 
 		$query = 'SELECT `name`, `extwikiId` FROM `tiki_extwiki`';
@@ -83,7 +83,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$inData = "(($this->ext1:Download))";
 		$ex = '<a href="http://tikiwiki.org/tiki-index.php?page=Download" class="wiki ext_page test_ext1">Download</a>';
 		$out = trim($p->parse_data($inData));
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 
 
 		/*
@@ -94,7 +94,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$inData = "(($this->ext1:Download|#LTS_-_the_Long_Term_Support_release))";
 		$ex = '<a href="http://tikiwiki.org/tiki-index.php?page=Download#LTS_-_the_Long_Term_Support_release" class="wiki ext_page test_ext1">Download</a>';
 		$out = trim($p->parse_data($inData));
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 
 
 		/*
@@ -106,7 +106,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$inData = "(($this->ext1:Download|#LTS_-_the_Long_Term_Support_release|Download LTS))";
 		$ex = '<a href="http://tikiwiki.org/tiki-index.php?page=Download#LTS_-_the_Long_Term_Support_release" class="wiki ext_page test_ext1">Download LTS</a>';
 		$out = trim($p->parse_data($inData));
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 	}
 
 
@@ -123,7 +123,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$ex = '<a class="wiki" href="#A_Heading" rel="">Link to heading</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
 		$out = preg_replace('/  /', ' ', $out); // the parser writes to many spaces
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 
 
 		/*
@@ -133,7 +133,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$ex = '<a class="wiki" href="#A_Heading" rel="">#A_Heading</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
 		$out = preg_replace('/  /', ' ', $out); // the parser writes to many spaces
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 	}
 
 
@@ -149,7 +149,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$inData = '[mailto:sombody@nowhere.xyz]';
 		$ex = '<a class="wiki"  href="mailto:sombody@nowhere.xyz" rel="">mailto:sombody@nowhere.xyz</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 
 
 		/*
@@ -158,7 +158,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$inData = '[mailto:sombody@nowhere.xyz|Mail to "Somebody"]';
 		$ex = '<a class="wiki"  href="mailto:sombody@nowhere.xyz" rel="">Mail to "Somebody"</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 	}
 
 
@@ -174,12 +174,12 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$inData = '[article1]';
 		$ex = '<a class="wiki"  href="article1" rel="">article1</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 
 		$inData = '[article1|An Article]';
 		$ex = '<a class="wiki"  href="article1" rel="">An Article</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 
 
 		/*
@@ -188,12 +188,12 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$inData = '[blog1]';
 		$ex = '<a class="wiki"  href="blog1" rel="">blog1</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 
 		$inData = '[blog1|A Blog]';
 		$ex = '<a class="wiki"  href="blog1" rel="">A Blog</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 
 
 		/*
@@ -202,12 +202,12 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$inData = '[forum1]';
 		$ex = '<a class="wiki"  href="forum1" rel="">forum1</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 
 		$inData = '[forum1|A Forum]';
 		$ex = '<a class="wiki"  href="forum1" rel="">A Forum</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($ex, $out);
+		$this->assertStringContainsString($ex, $out);
 	}
 
 

@@ -14,8 +14,8 @@ class Language_MergeFilesTest extends TikiTestCase
 {
 	protected $obj;
 
-	protected function setUp()
-	{
+	protected function setUp() : void
+{
 		$root = vfsStream::setup('root');
 		$this->sourceFile = new vfsStreamFile('language_source.php');
 		$this->targetFile = new vfsStreamFile('language_target.php');

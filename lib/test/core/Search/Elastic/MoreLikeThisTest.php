@@ -5,8 +5,8 @@ class Search_Elastic_MoreLikeThisTest extends PHPUnit\Framework\TestCase
 	private $index;
 	private $indexer;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
 		$connection = new Search_Elastic_Connection('http://' . $elasticSearchHost . ':9200');
 		$connection->startBulk();
@@ -22,8 +22,8 @@ class Search_Elastic_MoreLikeThisTest extends PHPUnit\Framework\TestCase
 		$this->populate($this->index);
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		if ($this->index) {
 			$this->index->destroy();
 		}

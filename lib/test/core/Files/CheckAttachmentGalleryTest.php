@@ -17,7 +17,7 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 	protected $files_dir;
 	protected $default_file_content = 'this is a test';
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		global $prefs;
 
@@ -27,8 +27,8 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 		$this->removeAttachmentsFromDb();
 	}
 
-	protected function tearDown()
-	{
+	protected function tearDown() : void
+{
 		$this->removeAttachmentsFromDb();
 	}
 

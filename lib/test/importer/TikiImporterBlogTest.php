@@ -14,8 +14,8 @@ require_once(__DIR__ . '/../../importer/tikiimporter_blog.php');
 class TikiImporter_Blog_Test extends TikiImporter_TestCase
 {
 
-	protected function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->obj = new TikiImporter_Blog();
 	}
 

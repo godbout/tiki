@@ -15,8 +15,8 @@ class Math_Formula_CurrencyTest extends TikiTestCase
 		'CAD' => 1.308020
 	];
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->currency1 = new Math_Formula_Currency(100, 'USD', $this->rates);
 		$this->currency2 = new Math_Formula_Currency(100, 'CAD', $this->rates);
 		$this->runner = new Math_Formula_Runner(

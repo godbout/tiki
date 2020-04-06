@@ -14,8 +14,8 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 {
 	private $el = null; // the EditLib
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		TikiLib::lib('edit');
 		$_SERVER['HTTP_HOST'] = ''; // editlib expects that HTTP_HOST is defined
 
@@ -23,8 +23,8 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	}
 
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 	}
 
 
@@ -56,7 +56,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 		$inData = '{FONT(type="span", font-size="12px")}text{FONT}';
 		$exp = '<span style="font-size:12px;">text<span>';
 		$out = $el->parseToWysiwyg($inData);
-		$this->assertContains($exp, $out);
+		$this->assertStringContainsString($exp, $out);
 	}
 
 
@@ -65,7 +65,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 		$inData = '__bold__';
 		$exp = '<strong>bold</strong>'; // like CKE
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($exp, $out);
+		$this->assertStringContainsString($exp, $out);
 	}
 
 
@@ -74,7 +74,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 		$inData = '\'\'italic\'\'';
 		$exp = '<em>italic</em>'; // like CKE
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($exp, $out);
+		$this->assertStringContainsString($exp, $out);
 	}
 
 
@@ -83,7 +83,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 		$inData = '===underlined===';
 		$exp = '<u>underlined</u>'; // like CKE
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($exp, $out);
+		$this->assertStringContainsString($exp, $out);
 	}
 
 
@@ -92,7 +92,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 		$inData = '--strike through--';
 		$exp = '<strike>strike through</strike>'; // like CKE
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($exp, $out);
+		$this->assertStringContainsString($exp, $out);
 	}
 
 
@@ -160,16 +160,16 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 		$inData = '~~#112233:text~~';
 		$exp = '<span style="color:#112233">text</span>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($exp, $out);
+		$this->assertStringContainsString($exp, $out);
 
 		$inData = '~~ ,#112233:text~~';
 		$exp = '<span style="background-color:#112233">text</span>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($exp, $out);
+		$this->assertStringContainsString($exp, $out);
 
 		$inData = '~~#AABBCC,#112233:text~~';
 		$exp = '<span style="color:#AABBCC; background-color:#112233">text</span>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$this->assertContains($exp, $out);
+		$this->assertStringContainsString($exp, $out);
 	}
 }

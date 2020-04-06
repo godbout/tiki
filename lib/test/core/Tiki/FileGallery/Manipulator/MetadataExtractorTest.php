@@ -15,7 +15,8 @@ use Tiki\FileGallery\Manipulator\MetadataExtractor;
 
 class Tiki_FileGallery_Manipulator_MetadataExtractorTest extends TikiTestCase
 {
-  function setUp() {
+  protected function setUp() : void
+	{
     global $prefs;
     $this->oldPrefs = $prefs;
     $prefs['fgal_use_db'] = 'y';
@@ -27,7 +28,8 @@ class Tiki_FileGallery_Manipulator_MetadataExtractorTest extends TikiTestCase
     parent::setUp();
   }
 
-  function tearDown() {
+  protected function tearDown() : void
+	{
     global $prefs;
     $prefs = $this->oldPrefs;
   }
@@ -64,7 +66,7 @@ class Tiki_FileGallery_Manipulator_MetadataExtractorTest extends TikiTestCase
 
   function testCreatedSoon() {
     (new MetadataExtractor($this->file))->run();
-    $this->assertEquals(time(), $this->file->created, '', 3600); // this is a 1 hour delta from beginning of test suite...
+    $this->assertEqualsWithDelta(time(), $this->file->created, 3600); // this is a 1 hour delta from beginning of test suite...
   }
 
   function testCreatedUnchangedForExistingFiles() {
@@ -75,7 +77,7 @@ class Tiki_FileGallery_Manipulator_MetadataExtractorTest extends TikiTestCase
 
   function testLastModifSoon() {
     (new MetadataExtractor($this->file))->run();
-    $this->assertEquals(time(), $this->file->lastModif, '', 3600); // this is a 1 hour delta from beginning of test suite...
+    $this->assertEqualsWithDelta(time(), $this->file->lastModif, 3600); // this is a 1 hour delta from beginning of test suite...
   }
 
   function testFiletypeFix() {

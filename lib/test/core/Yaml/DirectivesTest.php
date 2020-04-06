@@ -19,8 +19,8 @@ class DirectivesTest extends TestCase
 	protected $directives;
 	protected $fixtures;
 
-	public function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->fixtures = __DIR__ . '/Fixtures/';
 		$this->directives = new Directives(null, $this->fixtures);
 	}

@@ -21,7 +21,7 @@
 class AcceptanceTests_TikiLibrariesAccessTest extends TikiTestCase
 {
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		$this->markTestSkipped("TikiLibrariesAccessTest is still experimental. So skipping it for now.");
 	}

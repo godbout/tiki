@@ -9,7 +9,7 @@ class Services_Comment_ControllerTest extends PHPUnit\Framework\TestCase
 {
 	protected $subject;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		global $prefs, $user;
 		$user = '';

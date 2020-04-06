@@ -7,16 +7,16 @@
 
 class Search_MySql_BaseTest extends Search_Index_BaseTest
 {
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->index = new Search_MySql_Index(TikiDb::get(), 'test_index');
 		$this->index->destroy();
 
 		$this->populate($this->index);
 	}
 
-	function tearDown()
-	{
+	protected function tearDown() : void
+{
 		if ($this->index) {
 			$this->index->destroy();
 		}

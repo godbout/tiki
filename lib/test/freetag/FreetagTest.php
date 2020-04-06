@@ -12,8 +12,8 @@ class FreetagTest extends TikiTestCase
 
 	private $lib;
 
-	function setUp()
-	{
+	protected function setUp() : void
+{
 		$this->lib = new FreetagLib();
 	}
 

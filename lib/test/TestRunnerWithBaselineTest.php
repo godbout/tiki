@@ -13,7 +13,7 @@ class TestRunnerWithBaselineTest extends PHPUnit\Framework\TestCase
 	public $runner;
 	private $old_cmdline = null;
 
-	protected function setUp()
+	protected function setUp() : void
 	{
 		global $argv;
 
@@ -26,7 +26,7 @@ class TestRunnerWithBaselineTest extends PHPUnit\Framework\TestCase
 		$this->old_cmdline = $argv;
 	}
 
-	protected function tearDown()
+	protected function tearDown() : void
 	{
 		$argv = $this->old_cmdline;
 	}
@@ -35,7 +35,7 @@ class TestRunnerWithBaselineTest extends PHPUnit\Framework\TestCase
 	/**
 	 * @dataProvider dataProvider_process_phpunit_log_data
 	 */
-	public function test_process_phpunit_log_data($log_data, $exp_failures, $exp_errors, $exp_pass, $message)
+	public function test_process_phpunit_log_data($log_data, $exp_failures, $exp_errors, $exp_pass, $message) : void
 	{
 		$issues = $this->runner->process_phpunit_log_data($log_data);
 		$this->assertEquals(
@@ -57,7 +57,7 @@ class TestRunnerWithBaselineTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	public function dataProvider_process_phpunit_log_data()
+	public function dataProvider_process_phpunit_log_data() : array
 	{
 		return
 			[
@@ -121,7 +121,7 @@ class TestRunnerWithBaselineTest extends PHPUnit\Framework\TestCase
 	/**
 	 * @dataProvider dataProvider_compare_two_test_runs
 	 */
-	public function test_compare_two_test_runs($baseline_issues, $current_issues, $exp_differences, $message)
+	public function test_compare_two_test_runs($baseline_issues, $current_issues, $exp_differences, $message) : void
 	{
 		$got_differences = $this->runner->compare_two_test_runs($baseline_issues, $current_issues);
 		$this->assertEquals(
@@ -131,7 +131,7 @@ class TestRunnerWithBaselineTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	public function dataProvider_compare_two_test_runs()
+	public function dataProvider_compare_two_test_runs() : array
 	{
 		return
 			[
