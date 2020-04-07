@@ -55,39 +55,20 @@ class DevConfigureCommand extends Command
 
 		$output->writeln('Checking phpunit');
 		if (file_exists('phpunit')) {
-			$output->writeln('<info>Done: phpunit was already callable via "php phpunit" in the project root.</info>');
+			$output->writeln('<info>Done: phpunit was already callable via "php phpunit" in the project root</info>');
 		} else {
 			if (symlink('vendor_bundled/vendor/phpunit/phpunit/phpunit', 'phpunit')) {
-				$output->writeln('<info>Done: phpunit is now callable via "php phpunit" in the project root.</info>');
+				$output->writeln('<info>Done: phpunit is now callable via "php phpunit" in the project root</info>');
 			} else {
 				$output->writeln('<error>Could not create symlink</error>');
 				$output->writeln('Try using the following command: ln -s vendor_bundled/vendor/phpunit/phpunit/phpunit phpunit');
 			}
 		}
 
-		$output->writeln('Checking PHP Unit local.php file');
-		include_once('lib/setup/twversion.class.php');
-		$tikiVersion = new TWVersion();
-		$tikiVersion = $tikiVersion->getBaseVersion();
+		$output->writeln('Checking PHPUnit local.php file');
 		if (file_exists('lib/test/local.php')) {
-			$config = file_get_contents('lib/test/local.php');
-			preg_match('/\$dbversion_tiki=\'([\d.]+)\';/', $config, $matches);
-			$version = $matches[1];
-			if (empty($version)) {
-				$output->write('<comment>Warning: Could not find database version in file, consider deleting lib/test/local.php and re-running command</comment>');
-			} else {
-				if ($tikiVersion === $version) {
-					$output->writeln('<info>Done: Database version already current in config</info>');
-				} else {
-					$output->writeln("<info>Done: Updated database version in config from $version to $tikiVersion</info>");
-					str_replace($version, $tikiVersion, $config);
-					if (file_put_contents('lib/test/local.php', $config)) {
-						$output->writeln("<info>Done: Updated database version in config from $version to $tikiVersion</info>");
-					} else {
-						$output->writeln('<error>Could not write to lib/test/local.php while updating database version</error>');
-					}
-				}
-			}
+			$output->writeln('<info>Done: PHPUnit database credentials file already present</info>');
+			$output->writeln('* You many configure lib/test/local.php manually if needed</error>', OutputInterface::VERBOSITY_VERBOSE);
 		} else {
 			$output->writeln('No unit test config file found', OutputInterface::VERBOSITY_VERY_VERBOSE);
 			$config = <<<EOT
@@ -97,7 +78,6 @@ File written by php console.php dev:configure
 */
 
 \$db_tiki='mysqli';
-\$dbversion_tiki='$tikiVersion';
 \$host_tiki='localhost';
 \$user_tiki='tiki_tester';
 \$pass_tiki='tiki_tester_pass';
@@ -112,7 +92,7 @@ EOT;
 			}
 		}
 
-		$output->writeln('Checking PHP Unit database status');
+		$output->writeln('Checking PHPUnit database status');
 		if ($this->databaseConnect()) {
 			$output->writeln('<info>Done: Database already connecting</info>');
 		} elseif ((include('lib/test/local.php'))) {
@@ -120,37 +100,37 @@ EOT;
 				$tikilib = TikiLib::lib('tiki');
 				$error = '';
 
-				$output->writeln('Creating Database User', OutputInterface::VERBOSITY_VERBOSE);
+				$output->writeln('* Creating Database User', OutputInterface::VERBOSITY_VERBOSE);
 				$query = "CREATE USER IF NOT EXISTS `$user_tiki`@`$host_tiki` IDENTIFIED BY '$pass_tiki';";
 				$tikilib->queryError($query, $error);
 				if (! empty($error)) {
-					$output->writeln('<comment>Could not create user</comment>', OutputInterface::VERBOSITY_VERBOSE);
+					$output->writeln('<comment>* Could not create user</comment>', OutputInterface::VERBOSITY_VERBOSE);
 					$output->writeln($error, OutputInterface::VERBOSITY_DEBUG);
 				}
 
-				$output->writeln('Creating Database', OutputInterface::VERBOSITY_VERBOSE);
+				$output->writeln('* Creating Database', OutputInterface::VERBOSITY_VERBOSE);
 				$query = "CREATE DATABASE IF NOT EXISTS `$dbs_tiki` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;";
 				$tikilib->queryError($query, $error);
 				if (! empty($error)) {
-					$output->writeln('<comment>Could not create database</comment>', OutputInterface::VERBOSITY_VERBOSE);
+					$output->writeln('<comment>* Could not create database</comment>', OutputInterface::VERBOSITY_VERBOSE);
 					$output->writeln($error, OutputInterface::VERBOSITY_DEBUG);
 				}
 
-				$output->writeln('Assigning user rights on database', OutputInterface::VERBOSITY_VERBOSE);
+				$output->writeln('* Assigning user rights on database', OutputInterface::VERBOSITY_VERBOSE);
 				$query = "GRANT ALL ON $dbs_tiki.* TO `$user_tiki`@`$host_tiki`;";
 				$tikilib->queryError($query, $error);
 				if (! empty($error)) {
-					$output->writeln('<comment>Could not assign user rights</comment>', OutputInterface::VERBOSITY_VERBOSE);
+					$output->writeln('<comment>* Could not assign user rights</comment>', OutputInterface::VERBOSITY_VERBOSE);
 					$output->writeln($error, OutputInterface::VERBOSITY_DEBUG);
 				}
 			}
 			if ($this->databaseConnect()) {
-				$output->writeln('<info>Done: PHP Unit database configured</info>');
+				$output->writeln('<info>Done: PHPUnit database configured</info>');
 			} else {
 				if (DB_STATUS) {
-					$output->writeln('<error>Error: PHP Unit database setup error</error>');
+					$output->writeln('<error>Error: PHPUnit database setup error</error>');
 				} else {
-					$output->writeln('<comment>Could not detect that PHP Unit database has been setup</comment>');
+					$output->writeln('<comment>Could not detect that PHPUnit database has been setup</comment>');
 					$output->writeln('Tiki database is not connecting, are you sure that mysql is running?');
 				}
 				$output->writeln('You may try the following:');
@@ -169,12 +149,12 @@ EOT;
 			}
 		} else {
 			$output->writeln('<error>Error: database config not found</error>');
-			$output->writeln('Try running this command again, or follow instructions in lib/test/local.php.dist', OutputInterface::VERBOSITY_VERBOSE);
+			$output->writeln('* Try running this command again, or follow instructions in lib/test/local.php.dist', OutputInterface::VERBOSITY_VERBOSE);
 		}
 	}
 
 	/**
-	 * Checks if a database connection can be made to PHP Unit database
+	 * Checks if a database connection can be made to PHPUnit database
 	 *
 	 * @return bool true on success, false on failure.
 	 */
