@@ -64,7 +64,7 @@ class PatchCypht
 		file_put_contents($cypht.'site.js', $js);
 
 		// copy stock assets
-		`cp -rp {$vendors}jason-munro/cypht/modules/smtp/assets {$cypht}modules/smtp/`;
-		`cp -rp {$vendors}jason-munro/cypht/modules/themes/assets {$cypht}modules/themes/`;
+		$fs->copy($vendors.'jason-munro/cypht/modules/smtp/assets', $cypht.'modules/smtp/assets');
+		$fs->copy($vendors.'jason-munro/cypht/modules/themes/assets', $cypht.'modules/themes/assets');
 	}
 }
