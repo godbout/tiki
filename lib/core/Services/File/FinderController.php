@@ -70,7 +70,7 @@ class Services_File_FinderController
 
 		// check for a "userfiles" gallery - currently although elFinder can support more than one root, it always starts in the first one
 		$opts = [
-			'debug' => true,
+			'debug' => ($prefs['fgal_elfinder_debug'] === 'y'),
 			'roots' => [],
 			'bind'  => [
 				//check csrf prior to executing state-changing actions
