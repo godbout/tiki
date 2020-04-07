@@ -43,6 +43,10 @@ class Math_Formula_Currency implements Math_Formula_Applicator {
     }
   }
 
+  public function clone($amount) {
+    return new self($amount, $this->currency, $this->rates);
+  }
+
   public function getAmount() {
     return $this->amount;
   }

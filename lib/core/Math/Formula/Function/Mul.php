@@ -24,7 +24,7 @@ class Math_Formula_Function_Mul extends Math_Formula_Function
 		if (empty($list)) {
 			return 1;
 		} else {
-			$initial = array_shift($list);
+			$initial = $this->firstOrApplicator($list);
 			return array_reduce($list, function($carry, $item) {
 				if ($carry instanceof Math_Formula_Applicator) {
 					return $carry->mul($item);

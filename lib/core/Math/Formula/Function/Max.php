@@ -17,6 +17,10 @@ class Math_Formula_Function_Max extends Math_Formula_Function
 				if ($out->lessThan($evaluated)) {
 					$out = $evaluated;
 				}
+			} elseif ($evaluated instanceof Math_Formula_Applicator) {
+				if ($evaluated->moreThan($out)) {
+					$out = $evaluated;
+				}
 			} else {
 				$out = max($out, $evaluated);
 			}

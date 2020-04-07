@@ -39,4 +39,14 @@ abstract class Math_Formula_Function
 	{
 		throw new Math_Formula_Exception($message);
 	}
+
+	protected function firstOrApplicator(&$elements) {
+		foreach ($elements as $key => $element) {
+			if ($element instanceof Math_Formula_Applicator) {
+				array_splice($elements, $key, 1);
+				return $element;
+			}
+		}
+		return array_shift($elements);
+	}
 }

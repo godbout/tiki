@@ -16,4 +16,5 @@ interface Math_Formula_Applicator
   function round($decimals);
   function lessThan($another);
   function moreThan($another);
+  function clone($number);
 }

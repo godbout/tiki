@@ -17,6 +17,14 @@ class Math_Formula_Function_Div extends Math_Formula_Function
 		}
 
 		$out = array_shift($elements);
+		if (! $out instanceof Math_Formula_Applicator) {
+			foreach ($elements as $element) {
+				if ($element instanceof Math_Formula_Applicator) {
+					$out = $element->clone($out);
+					break;
+				}
+			}
+		}
 
 		foreach ($elements as $element) {
 			if ($out instanceof Math_Formula_Applicator) {
