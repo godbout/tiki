@@ -346,6 +346,15 @@ When the limit is reached, no more files can be uploaded. The user will see an e
 			'help' => 'elFinder',
 			'dependencies' => ['fgal_elfinder_feature'],
 		],
+		'fgal_elfinder_debug' => [
+			'name' => tra('Enable elFinder debug mode'),
+			'description' => tra('Shows errors and warnings in the elFinder window and adds debugging information to service calls.'),
+			'type' => 'flag',
+			'filter' => 'alpha',
+			'default' => 'n',
+			'help' => 'elFinder',
+			'dependencies' => ['fgal_elfinder_feature'],
+		],
 		'fgal_viewerjs_feature' => [
 			'name' => tra('Use Viewer JS'),
 			'description' => tra('Uses ViewerJS from http://viewerjs.org if available (needs a separate install due to licensing restrictions), and allows displaying ODF files (odt, ods, odp) as well as pdf in web pages'),

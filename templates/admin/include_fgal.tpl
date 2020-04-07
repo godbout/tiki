@@ -360,6 +360,7 @@
 				{preference name='fgal_elfinder_feature'}
 				<div class="adminoptionboxchild" id="fgal_elfinder_feature_childcontainer">
 					{preference name='fgal_elfinder_on_toolbar'}
+					{preference name='fgal_elfinder_debug'}
 				</div>
 				{preference name='feature_docs'}
 				{preference name='fgal_pdfjs_feature'}

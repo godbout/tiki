@@ -70,7 +70,7 @@ class Services_File_FinderController
 
 		// check for a "userfiles" gallery - currently although elFinder can support more than one root, it always starts in the first one
 		$opts = [
-			'debug' => true,
+			'debug' => ($prefs['fgal_elfinder_debug'] === 'y'),
 			'roots' => [],
 			'bind'  => [
 				//check csrf prior to executing state-changing actions
@@ -272,6 +272,24 @@ class Services_File_FinderController
 		} else {
 			$perms = TikiLib::lib('tiki')->get_perm_object($id, 'file', TikiLib::lib('filegal')->get_file($id));
 		}
+
+		$perms = array_merge([
+			'tiki_p_admin_file_galleries'     => 'n',
+			'tiki_p_download_files'           => 'n',
+			'tiki_p_upload_files'             => 'n',
+			'tiki_p_view_file_gallery'        => 'n',
+			'tiki_p_remove_files'             => 'n',
+			'tiki_p_create_file_galleries'    => 'n',
+			'tiki_p_edit_gallery_file'        => 'n',
+			'tiki_p_list_file_galleries'      => 'n',
+			'tiki_p_assign_perm_file_gallery' => 'n',
+			'tiki_p_batch_upload_file_dir'    => 'n',
+			'tiki_p_batch_upload_files'       => 'n',
+			'tiki_p_view_fgal_explorer'       => 'n',
+			'tiki_p_view_fgal_path'           => 'n',
+			'tiki_p_upload_javascript'        => 'n',
+			'tiki_p_upload_svg'               => 'n',
+		], $perms);
 
 		switch ($attr) {
 			case 'read':
