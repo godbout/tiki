@@ -274,6 +274,19 @@ function wikiplugin_pivottable_info()
 					['text' => tra('No'), 'value' => 'n'],
 					['text' => tra('Yes'), 'value' => 'y']
 				]
+			],
+			'displayBeforeFilter' => [
+				'name' => tr('Load data before filters are applied'),
+				'description' => tr('Load PivotTable results on initial page load even before applying "editable" filters. Turn this off if you have a large data set and plan to use "editable" filters to dynamically filter it.') . ' ' . tr('Default value: Yes'),
+				'since' => '21.1',
+				'required' => false,
+				'filter' => 'alpha',
+				'default' => 'y',
+				'options' => [
+					['text' => '', 'value' => ''],
+					['text' => tra('No'), 'value' => 'n'],
+					['text' => tra('Yes'), 'value' => 'y']
+				]
 			]
 		],
 	];
@@ -450,8 +463,10 @@ function wikiplugin_pivottable($data, $params)
 		}
 
 		$result = [];
-		foreach ($query->scroll($index) as $row) {
-			$result[] = $row;
+		if (empty($params['displayBeforeFilter']) || $params['displayBeforeFilter'] !== 'n' || $_SERVER['REQUEST_METHOD'] == 'POST') {
+			foreach ($query->scroll($index) as $row) {
+				$result[] = $row;
+			}
 		}
 		$result = Search_ResultSet::create($result);
 		$result->setId('wppivottable-' . $id);
