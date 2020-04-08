@@ -43,6 +43,15 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 							'index' => tr('Indexing'),
 						],
 					],
+					'mirrorField' => [
+						'name' => tr('Mirror field'),
+						'description' => tr('Field ID from this tracker that governs the output of this calculation. Useful if you want to mimic the behavior and output of a specific field but with value coming from a calculation: e.g. currency calculations, itemlink fields.'),
+						'filter' => 'int',
+						'profile_reference' => 'tracker_field',
+						'parent' => 'input[name=trackerId]',
+						'parentkey' => 'tracker_id',
+						'sort_order' => 'position_nasc',
+					],
 				],
 			],
 		];
@@ -68,7 +77,15 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 
 	function renderOutput($context = [])
 	{
-		return $this->getValue();
+		$mirrorField = $this->getOption('mirrorField');
+		if ($mirrorField && $mirrorField != $this->getFieldId()) {
+			return TikiLib::lib('trk')->field_render_value([
+				'fieldId' => $mirrorField,
+				'value' => $this->getValue(),
+			]);
+		} else {
+			return $this->getValue();
+		}
 	}
 
 	function importRemote($value)
