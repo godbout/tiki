@@ -28,6 +28,14 @@ else
     MR_TITLE="$1"
 fi;
 
+if [ -z $TARGET_PROJECT_ID ]; then 
+  TARGET_PROJECT_ID=${CI_PROJECT_ID}
+fi;
+
+if [ -z $SET_MERGE ]; then
+  SET_MERGE=0
+fi;
+
 # The description of our new MR, we want to remove the branch after the MR has
 # been closed
 BODY="{
@@ -37,7 +45,8 @@ BODY="{
     \"remove_source_branch\": true,
     \"merge_when_pipeline_succeeds\": true,
     \"title\": \"${MR_TITLE}\",
-    \"assignee_id\":\"${GITLAB_USER_ID}\"
+    \"assignee_id\":\"${GITLAB_USER_ID}\",
+    \"target_project_id\":\"${TARGET_PROJECT_ID}\"
 }";
 
 # Require a list of all the merge request and take a look if there is already
