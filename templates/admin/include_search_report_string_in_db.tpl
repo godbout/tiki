@@ -78,6 +78,7 @@
 		{/foreach}
 		</table>
 		</p>
+		<hr>
 	{/if}
 
 	{if isset($tableHeaders)}

@@ -253,7 +253,7 @@ class UsersLib extends TikiLib
 	 * @param string $redir : url to redirect to. Uses home page according to prefs if empty
 	 * @return void : redirects to suitable homepage or redir param if not remote
 	 */
-	function user_logout($user, $remote = false, $redir = '')
+	function user_logout($user, $remote_logout = false, $redir = '')
 	{
 		global $prefs, $user_cookie_site;
 

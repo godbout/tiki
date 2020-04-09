@@ -312,16 +312,15 @@ update_vendor_bundled_dependencies:
     - DATE=`date +%Y%m%d`
     - BRANCH_NAME="${BRANCH_NAME}_${DATE}"
     - php doc/devtools/update_vendor_bundled.php
+    - if git diff --quiet --exit-code vendor_bundled/composer.lock; then exit 0; fi;
+    - if git rev-parse --verify ${BRANCH_NAME}; then git branch -D ${BRANCH_NAME}; fi;
+    - git checkout -b ${BRANCH_NAME}
+    - git add vendor_bundled/composer.lock
+    - git commit -m "${COMMIT_MESSAGE}"
+    - git push ${CI_REPOSITORY_URL} HEAD:${BRANCH_NAME} --quiet
     - |
-      if ! git diff --exit-code vendor_bundled/composer.lock; then \
-      if git rev-parse --verify ${BRANCH_NAME}; then git branch -D ${BRANCH_NAME}; fi; \
-      git checkout -b ${BRANCH_NAME} \
-      && git add vendor_bundled/composer.lock \
-      && git commit -m "${COMMIT_MESSAGE}" \
-      && git push ${CI_REPOSITORY_URL} HEAD:${BRANCH_NAME} --quiet \
-      && HOST=${CI_PROJECT_URL} CI_PROJECT_ID=${CI_PROJECT_ID} SOURCE_BRANCH=${BRANCH_NAME} TARGET_BRANCH=${CI_COMMIT_REF_NAME} GITLAB_USER_ID=${GITLAB_USER_ID} PRIVATE_TOKEN=${GITLAB_USER_TOKEN} \
-      /bin/bash ./doc/devtools/gitlab/auto_merge_request.sh "${COMMIT_MESSAGE} (${DATE})";\
-      fi;
+      HOST=${CI_PROJECT_URL} CI_PROJECT_ID=${CI_PROJECT_ID} SOURCE_BRANCH=${BRANCH_NAME} TARGET_BRANCH=${CI_COMMIT_REF_NAME} GITLAB_USER_ID=${GITLAB_USER_ID} PRIVATE_TOKEN=${GITLAB_USER_TOKEN} TARGET_PROJECT_ID=${TARGET_PROJECT_ID} SET_MERGE=${SET_MERGE} \
+      /bin/bash ./doc/devtools/gitlab/auto_merge_request.sh "${COMMIT_MESSAGE} (${DATE})"
   only:
     refs:
       - schedules
