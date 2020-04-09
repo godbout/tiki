@@ -4,11 +4,12 @@
 <form action="tiki-admin_webservices.php" method="post">
 	<div class="t_navbar mb-4">
 		{foreach from=$webservices item=name}
-			{button href="tiki-admin_webservices.php?name=$name" class="btn btn-primary" _text=$name}
+			{button href="tiki-admin_webservices.php?name=$name" _type="info" _text=$name}
 		{/foreach}
 		{if $storedName}
-			{button href="tiki-admin_webservices.php" class="btn btn-primary" _text="{tr}Create New{/tr}"}
+			{button href="tiki-admin_webservices.php" _type="primary" _text="{tr}Create New{/tr}"}
 		{/if}
+		{button href="tiki-admin_dsn.php" _type="link" _text="{tr}Content Authentication{/tr}"}
 	</div>
 
 	{if $storedName and not $edit}
