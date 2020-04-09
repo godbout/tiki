@@ -14,7 +14,8 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * Added in 2018 for tiki 19 - need to change the defaults for datetimes from 0000-00-00 to null for mysql > 5.6
  * @param $installer
  */
-function upgrade_20111231_change_datetime_defaults_to_null_tiki($installer) {
+function upgrade_20111231_change_datetime_defaults_to_null_tiki($installer)
+{
 
 	// time_to_send was dropped in 20120123_remove_column_from_tiki_user_reports_tiki.sql
 	$query = $installer->query("SHOW COLUMNS FROM `tiki_user_reports` LIKE 'time_to_send';");
@@ -27,4 +28,3 @@ function upgrade_20111231_change_datetime_defaults_to_null_tiki($installer) {
 	$installer->query("ALTER TABLE `tiki_user_reports_cache` CHANGE `time` `time` DATETIME  NULL;");
 	$installer->query("ALTER TABLE `tiki_payment_requests` CHANGE `due_date` `due_date` DATETIME  NULL;");
 }
-

@@ -22,12 +22,10 @@ function upgrade_20190123_h5p_move_storage_assets_to_new_dir_tiki($installer)
 	if (! is_dir($newH5Pdir)) {
 		if (mkdir($newH5Pdir)) {
 			foreach (['cachedassets', 'content', 'exports','libraries','temp'] as $dir) {
-
 				if (is_dir('storage/public/' . $dir)) {
 					rename('storage/public/' . $dir, $newH5Pdir . '/' . $dir);
 				}
 			}
-
 		}
 	}
 }
