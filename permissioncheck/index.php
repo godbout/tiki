@@ -31,7 +31,7 @@
 	.writeno	{background-color: red;}
 	.writeno	{background-color: orange;}
 	.writeno	{background-color: #88FFCC;} */
-	?>
+?>
 	.writeno	{background-color: #FF88CC;}
 <?php /*
 	.writeyes	{background-color: green;}
@@ -256,7 +256,7 @@
 		//echo '<td class="' . $css_class_writable . '">' . $perms_asc . '</td><td>' . $perms_oct . '</td><td>' . $usersubmittedfile . '</td></tr>' . "\n  ";
 		echo '<td class="' . $css_class_writable . '">' . $perms_asc . '</td><td>' . $perms_oct . '</td><td>' . $display_name . '</td></tr>' . "\n  ";
 	}
-?>
+	?>
  </table></div>
  <div>&nbsp;</div>
  <form method="post"><input type="text" name="usersubmittedfile" size="42"> <input type="submit" class="btn btn-primary btn-sm" name="checkfile" value="check path or file"></form>
