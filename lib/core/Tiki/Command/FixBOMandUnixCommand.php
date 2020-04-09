@@ -62,7 +62,7 @@ class FixBOMandUnixCommand extends Command
 			'*',
 			GLOB_BRACE,
 			'',
-			['vendor_', 'vendor/', 'temp/', '.png', '.jpg', '.gif']
+			['vendor_', 'vendor/', 'temp/', 'lib/cypht', '.png', '.jpg', '.gif']
 		);
 		$progress = new ProgressBar($output, count($files));
 		if ($output->getVerbosity() >= OutputInterface::VERBOSITY_VERBOSE) {
