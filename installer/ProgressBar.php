@@ -21,7 +21,7 @@ class ProgressBar implements SplObserver
 
 			if (strtoupper($match[3]) === 'TABLE') {
 				$label_id = 'table_name';
-			} else if (in_array(strtoupper($match[2]), ['FULLTEXT INDEX', 'INDEX'])) {
+			} elseif (in_array(strtoupper($match[2]), ['FULLTEXT INDEX', 'INDEX'])) {
 				$label_id = 'table_index';
 			}
 
