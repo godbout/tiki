@@ -130,21 +130,16 @@
 			<div class="col-sm-9">
 				<input type="url" name="post_url" id="post_url" class="form-control">
 			</div>
+			<h5>{tr}Arguments{/tr}</h5>
 		</div>
-		<div class="form-group row">
-			<label class="col-form-label offset-sm-3 col-sm-2">{tr}Name{/tr}</label>
-			<div class="col-sm-7">
-				<input type="text" name="post_new_field" class="form-control">
+		<div class="form-group row post-arg-form">
+			<div class="col-sm-3">
+				<input type="text" name="post_new_field" class="form-control" placeholder="{tr}Name{/tr}">
 			</div>
-		</div>
-		<div class="form-group row">
-			<label class="col-form-label offset-sm-3 col-sm-2">{tr}Value{/tr}</label>
-			<div class="col-sm-7">
-				<input type="text" name="post_new_value" class="form-control">
+			<div class="col-sm-8">
+				<input type="text" name="post_new_value" class="form-control" placeholder="{tr}Value{/tr}">
 			</div>
-		</div>
-		<div class="form-group row mb-4">
-			<div class="offset-sm-5 col-sm-7">
+			<div class="col-sm-1 pt-1">
 				<input type="submit" class="btn btn-primary btn-sm" name="post_new_add" value="{tr}Add{/tr}">
 			</div>
 		</div>
@@ -189,14 +184,14 @@ $('#source-form').each(function () {
 			});
 		},
 		addPostRow = function (name, value) {
-			var row = $('<tr/>');
-			row.append($('<td/>').text(name));
-			row.append($('<td/>').text(value));
-			row.append($('<td>{{icon name=remove}}</td>').css('cursor', 'pointer').click(function () {
-				$(this).closest('tr').remove();
+			var row = $('<div class="form-group row post-arg">');
+			row.append($('<label class="col-sm-3 col-form-label" for="' + name + '">').text(name));
+			row.append($('<div class="col-sm-8 pt-2 overflow-hidden text-truncate" id="' + name + '">').text(value));
+			row.append($('<div class="col-sm-1">{{icon name='remove' iclass='text-danger'}}</div>').css('cursor', 'pointer').click(function () {
+				$(this).closest('div.row').remove();
 				return false;
 			}));
-			$('fieldset.method.post tbody', form).append(row);
+			$('fieldset.method.post .row.post-arg-form', form).before(row);
 		},
 		fetchAuthentication = function(identifier) {
 			$(form.identifier).hide();
@@ -277,9 +272,8 @@ $('#source-form').each(function () {
 		case 'post':
 			data['arguments~post_url'] = $(form.post_url).val();
 
-			$('fieldset.method.post tbody tr').each(function () {
-				var name = this.childNodes[0], value = this.childNodes[1];
-				data['arguments~' + $(name).text()] = $(value).text();
+			$('fieldset.method.post .post-arg').each(function () {
+				data['arguments~' + $("label", this).text()] = $("div:first", this).text();
 			});
 			break;
 		case 'header':
