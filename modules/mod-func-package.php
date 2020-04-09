@@ -55,7 +55,7 @@ function module_package($mod_reference, $module_params)
 		return;
 	}
 
-	if (!$extensionPackage = \Tiki\Package\ExtensionManager::get($module_params['package'])) {
+	if (! $extensionPackage = \Tiki\Package\ExtensionManager::get($module_params['package'])) {
 		return tr('Package %0 is not enabled', $module_params['package']);
 	}
 
@@ -70,7 +70,7 @@ function module_package($mod_reference, $module_params)
 	require_once($path);
 
 	$namespace = $extensionPackage->getBaseNamespace();
-	if (!empty($namespace)) {
+	if (! empty($namespace)) {
 		$namespace .= '\\Views\\';
 	}
 	$functionname = $namespace . $module_params['view'];

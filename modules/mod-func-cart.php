@@ -76,7 +76,7 @@ function module_cart_info()
  * @param $mod_reference
  * @param $module_params
  */
-function module_cart($mod_reference, & $module_params)
+function module_cart($mod_reference, &$module_params)
 {
 	global $jitRequest;
 

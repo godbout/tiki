@@ -294,14 +294,15 @@ function module_since_last_visit_new($mod_reference, $params = null)
 			$bindvars = [(int) $last, time()];
 		} else {
 			$query = 'select `articleId`,`title`,`publishDate`,`authorName` from `tiki_articles` where `publishDate`>? and `publishDate`<=? and `expireDate`>? order by `articleId` desc';
-      $bindvars = [(int) $last,time(),time()];
+			$bindvars = [(int) $last,time(),time()];
 		}
 		$result = $tikilib->fetchAll($query, $bindvars, $resultCount);
 
 		$articleIds = array_map(
-			function($res) {
+			function ($res) {
 				return $res['articleId'];
-			}, $result
+			},
+			$result
 		);
 		Perms::bulk(['type' => 'article'], 'object', $articleIds);
 

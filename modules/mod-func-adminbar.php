@@ -39,7 +39,7 @@ function module_adminbar($mod_reference, $module_params)
 	if ($tiki_p_admin != 'y') {
 		return;
 	}
-	$headerlib=TikiLib::lib("header");
+	$headerlib = TikiLib::lib("header");
 	$headerlib->add_css('div.contributors div br {clear: both;}');
 
 
