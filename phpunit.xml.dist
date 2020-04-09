@@ -17,7 +17,6 @@
 		 backupGlobals="false"
 		 beStrictAboutOutputDuringTests="true"
 		 beStrictAboutTodoAnnotatedTests="true"
-		 beStrictAboutCoversAnnotation="true"
 		 cacheResultFile="temp/cache">
 
 	<testsuites>
@@ -50,19 +49,21 @@
 			<directory suffix=".php">./lib</directory>
 			<exclude>
 				<directory suffix=".php">lib/test</directory>
+				<directory suffix="index.php">./</directory>
 			</exclude>
 		</whitelist>
 	</filter>
 
 
 	<logging>
-		<log type="junit" target="lib/test/junit.xml"/>
+		<log type="junit" target="temp/phpunit.junit.xml"/>
 		<!--
-		Coverage analysis more than double the time to run tests.  So instead of enabling this,
-		on the build server command line, use:
-		- -coverage-clover lib/test/clover.xml
+		Coverage analysis more than double the time to run tests.
+		Instead of enabling this, on the build server, use:
+		1. Setup phpStorm integration http://dev.tiki.org/PhpStorm?latest=1#Set_up_PHPUnit_in_Run_Debug_Config
+		2. Run from the command line with with the option: coverage-clover temp/clover.xml
 		Note that you will need php-xdebug installed to run it.
-		<log type="coverage-clover" target="lib/test/clover.xml" />
+		<log type="coverage-clover" target="temp/clover.xml" />
 		<log type="coverage-text" target="php://stdout" showUncoveredFiles="false" showOnlySummary="true" />
 	  -->
 	</logging>

@@ -80,3 +80,4 @@ lib/test/core/Search/Lucene/test_index/*
 permissioncheck/.htaccess
 /whelp
 /phpunit
+/.phpunit.result.cache
