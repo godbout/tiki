@@ -50,7 +50,7 @@ $copy = false;      // copy the attachments to the filegal
 if (isset($argv[4]) && $argv[4] === 'remove') {
 	$remove = true;
 	$copy = true;
-} else if (isset($argv[4]) && $argv[4] === 'copy') {
+} elseif (isset($argv[4]) && $argv[4] === 'copy') {
 	$copy = true;
 }
 

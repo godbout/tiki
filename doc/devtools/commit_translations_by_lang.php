@@ -24,25 +24,26 @@ require_once('svntools.php');
 $langlib = new LanguageTranslations();
 $langguage = new Language();
 $retour = $langlib->getAllDbTranslations();
-$user_translations = array();
+$user_translations = [];
 
-function  rangeByLang($changes, $lang) {
-	$usernames = array();
+function rangeByLang($changes, $lang)
+{
+	$usernames = [];
 	foreach ($changes['translations'] as $change) {
-		if ($change['lang'] == $lang){
+		if ($change['lang'] == $lang) {
 			array_push($usernames, $change['user']);
 		}
 	}
 	$usernames = array_unique($usernames, SORT_REGULAR);
-	$specific_tring =join(",", $usernames);
+	$specific_tring = join(",", $usernames);
 	return $specific_tring;
 }
 
-$final_commit_list = array();
+$final_commit_list = [];
 
 foreach ($retour['translations'] as $current_lang) {
 	$usernames = rangeByLang($retour, $current_lang['lang']);
-	array_push($final_commit_list, array('lang'=> $current_lang['lang'], 'usernames' => $usernames));
+	array_push($final_commit_list, ['lang' => $current_lang['lang'], 'usernames' => $usernames]);
 }
 $final_commit_list = array_unique($final_commit_list, SORT_REGULAR);
 
@@ -51,7 +52,7 @@ $final_commit_list = array_unique($final_commit_list, SORT_REGULAR);
 foreach ($final_commit_list as $trans) {
 	$langmap = $langguage::get_language_map();
 	$lang_found = $langmap[$trans['lang']];
-	array_push($user_translations, array("user" => $trans['usernames'], "lang" => $lang_found, "langdir"=>$trans['lang']));
+	array_push($user_translations, ["user" => $trans['usernames'], "lang" => $lang_found, "langdir" => $trans['lang']]);
 }
 if (has_uncommited_changes(".")) {
 	echo "there is uncommitted changes \n";

@@ -101,9 +101,7 @@ if (! isset($wikiPage)) {
 	$output .= "This page is generated automatically. Please do not change it.\n\n";
 	$output .= "The total number of strings is different for each language due to unused translations present in the language.php files.\n\n";
 	$output .= "__Global stats:__\n* {$globalStats['70+']} languages with more than 70% translated\n* {$globalStats['30+']} languages with more than 30% translated\n* {$globalStats['0+']} languages with less than 30% translated\n\n";
-
-
-}else {
+} else {
 	$output = "{HTML()}  <h1 class='text-center text-info'> {HTML}{TR()}Status of Tiki translations{TR}{HTML()}</h1> {HTML}";
 	$output .= "{HTML()} <p class='text-center text-info'>{HTML}{TR()}Page last modified on " . $tikilib->date_format($prefs['long_date_format']) . " {TR}{HTML()}</p><br/> {HTML}";
 	$output .= "{HTML()} <p class='text-danger'>{HTML}{TR()}This page is generated automatically. Please do not change it. {TR}{HTML()}</p> {HTML}";

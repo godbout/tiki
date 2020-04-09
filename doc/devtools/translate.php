@@ -377,7 +377,7 @@ class EnglishDevUpdateCommand extends Command
 		}
 		// check that scm is being used and validate
 		$scm = $input->getOption('scm');
-		if (!empty($scm) && ! in_array($scm, ['svn', 'git'])) {
+		if (! empty($scm) && ! in_array($scm, ['svn', 'git'])) {
 			$help = new HelpCommand();
 			$help->setCommand($this);
 			$help->run($input, $output);

@@ -47,7 +47,7 @@ if (! empty($file)) {
 
 if (! empty($all)) {
 	$message = '';
-	foreach($templates as $file) {
+	foreach ($templates as $file) {
 		$check = check($file);
 		if (isset($check)) {
 			$message .= $check . PHP_EOL;
@@ -67,8 +67,8 @@ function getAllTemplateFiles($currentDir)
 	$templateDir = new RecursiveDirectoryIterator($currentDir . '/../../templates');
 	$ite = new RecursiveIteratorIterator($templateDir);
 	$files = new RegexIterator($ite, '/.*tpl/', RegexIterator::GET_MATCH);
-	$templateList = array();
-	foreach($files as $file) {
+	$templateList = [];
+	foreach ($files as $file) {
 		if (file_exists($file[0])) {
 			$templateList = array_merge($templateList, $file);
 		}
@@ -86,7 +86,7 @@ function check($file)
 			while ($line = fgets($fileHandler)) {
 				$i++;
 				if (strpos($line, '{/tr}:') !== false || strpos($line, '{/tr},') !== false) {
-					$lineNumber .=  $i . ",";
+					$lineNumber .= $i . ",";
 				}
 			}
 			fclose($fileHandler);
