@@ -384,7 +384,7 @@ class SvnUpCommand extends Command
 			$progress->advance();
 			try {
 				$this->dbUpdate($output);
-			}catch (\Exception $e) {
+			} catch (\Exception $e) {
 				$logger->error('Database update error: ' . $e->getMessage());
 				$logslib->add_action('svn update', 'Database update error: ' . $e, 'system');
 			}
@@ -445,6 +445,6 @@ $console->add(new SvnUpCommand);
 $console->setDefaultCommand('svnup');
 try {
 	$console->run();
-}catch (Exception $e){
+} catch (Exception $e) {
 	echo 'Problem running svnup:' . $e->getMessage();
 }

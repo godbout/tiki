@@ -82,7 +82,7 @@ function checkmyfile_exists($filename)
  </div>
  <p>PHP check: <?php
 				echo "PHP works";
-		?>
+	?>
  </p>
 
 <br /><hr>
@@ -95,7 +95,7 @@ if (isset($_POST['check'])) {
 	$x = 'no check';
 }
 if ($x == 'readwritedelete') {
-?>
+	?>
 <p>PHP file check: <?php
 	$filename = 'test-php-write.txt';
 	checkmyfile_exists($filename);
@@ -131,7 +131,7 @@ if ($write_permission) {
 <p>PHP read check: <?php
 	checkmyfile_readable($filename);
 ?> (should not be readable now)</p>
-<?php
+	<?php
 }
 ?>
 

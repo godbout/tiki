@@ -17,32 +17,32 @@ require_once('tiki-setup.php');
 require_once('lang/langmapping.php');
 require_once('lib/language/Language.php');
 require_once('lib/language/LanguageTranslations.php');
-require_once ('svntools.php');
+require_once('svntools.php');
 
 
 
 $langlib = new LanguageTranslations();
 $langguage = new Language();
 $retour = $langlib->getAllDbTranslations();
-$user_translations = array();
-foreach ($retour['translations'] as $trans){
+$user_translations = [];
+foreach ($retour['translations'] as $trans) {
 	$langmap = $langguage::get_language_map();
 	$lang_found = $langmap[$trans['lang']];
-	array_push($user_translations, array("user" => $trans['user'], "lang" => $lang_found));
+	array_push($user_translations, ["user" => $trans['user'], "lang" => $lang_found]);
 }
 $user_translations = array_unique($user_translations, SORT_REGULAR);
 $final_phrase = "";
 
-foreach ($user_translations as $all_translations){
+foreach ($user_translations as $all_translations) {
 	$final_phrase .= "[TRA] Automatic commit of $all_translations[lang] translation contributed By $all_translations[user] to http://i18n.tiki.org \n";
 }
 
-if (has_uncommited_changes(".")){
+if (has_uncommited_changes(".")) {
 	$langlib = new LanguageTranslations();
 	echo "there is uncommitted changes \n";
 	$retour = $langlib->getDbTranslations();
 	 $return_value = commit_lang($final_phrase);
-	 echo "commit :  ".$return_value;
-}else{
+	 echo "commit :  " . $return_value;
+} else {
 	echo "There is not translation to commit";
 }

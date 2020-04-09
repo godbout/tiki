@@ -125,7 +125,7 @@ function collect_raw_data($fields)
 /**
  * @param $data
  */
-function remove_fake_descriptions(& $data)
+function remove_fake_descriptions(&$data)
 {
 	foreach ($data as & $row) {
 		if ($row['name'] == $row['description']) {
@@ -138,7 +138,7 @@ function remove_fake_descriptions(& $data)
  * @param $data
  * @param $prefs
  */
-function set_default_values(& $data, $prefs)
+function set_default_values(&$data, $prefs)
 {
 	foreach ($data as & $row) {
 		$row['default'] = isset($prefs[$row['preference']]) ? $prefs[$row['preference']] : '';
@@ -174,7 +174,7 @@ function index_data($data, $field)
 /**
  * @param $data
  */
-function collect_locations(& $data)
+function collect_locations(&$data)
 {
 	$prefslib = TikiLib::lib('prefs');
 
@@ -192,7 +192,7 @@ function collect_locations(& $data)
  * @param $index
  * @param $stopWords
  */
-function update_search_flag(& $data, $index, $stopWords)
+function update_search_flag(&$data, $index, $stopWords)
 {
 	foreach ($data as & $row) {
 		$name = strtolower($row['name']);
