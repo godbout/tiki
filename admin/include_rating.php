@@ -25,7 +25,7 @@ if (isset($_REQUEST['test']) && $access->is_machine_request()) {
 			]
 		);
 		exit;
-	}
+}
 
 //*** begin state-changing actions
 if (isset($_POST['create']) && ! empty($jitPost->name->text()) && $access->checkCsrf()) {

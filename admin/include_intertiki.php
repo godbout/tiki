@@ -54,8 +54,7 @@ if (! empty($_POST['known_hosts']) && $access->checkCsrf()) {
 		if (empty($_POST['known_hosts'][$k]['name'])
 			&& empty($_POST['known_hosts'][$k]['key'])
 			&& empty($_POST['known_hosts'][$k]['ip'])
-			&& empty($_POST['known_hosts'][$k]['contact']))
-		{
+			&& empty($_POST['known_hosts'][$k]['contact'])) {
 			unset($_POST['known_hosts'][$k]);
 		}
 	}

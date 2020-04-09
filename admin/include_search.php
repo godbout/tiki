@@ -166,7 +166,7 @@ if ($tiki_p_admin == 'y') {
 	$tikilib = TikiLib::lib('tiki');
 	$allTables = $tikilib->listTables();
 	foreach ($allTables as $table) {
-		if (substr($table,0, 6) !== 'index_' || substr($table,0, 10) == 'index_pref') {
+		if (substr($table, 0, 6) !== 'index_' || substr($table, 0, 10) == 'index_pref') {
 			$tables[] = $table;
 		}
 	}

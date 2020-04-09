@@ -94,8 +94,8 @@ if (isset($_REQUEST["filegalredosearch"])) {
 $ocr = Tikilib::lib('ocr');
 if (isset($_POST["ocrstalledreset"])) {
 	$ocrCount = $ocr->releaseAllStalled();
-	if ($ocrCount){
-		Feedback::success( $ocrCount . tra(' stalled files will attempt to OCR again.'));
+	if ($ocrCount) {
+		Feedback::success($ocrCount . tra(' stalled files will attempt to OCR again.'));
 	} else {
 		Feedback::error(tra("Was not able to change status of OCR files from stalled to pending."));
 	}
@@ -136,7 +136,7 @@ $vnd_ms_files_exist = false;
 // check if files can be indexed, or if they will be indexed via an OCR process
 $ocr->setMimeTypes();
 foreach ($usedTypes as $type) {
-	if (! $filegallib->get_parse_app($type, true) && !in_array($type, $ocr->ocrMime)) {
+	if (! $filegallib->get_parse_app($type, true) && ! in_array($type, $ocr->ocrMime)) {
 		$missingHandlers[] = $type;
 		if (strpos($type, '/vnd.ms-') !== false) {
 			$vnd_ms_files_exist = true;

@@ -77,17 +77,18 @@ if ($prefs['pass_chr_special'] === 'y') {
 $length = $prefs['min_pass_length'];
 
 
-if (isset($_POST['uploadIndex']) && $access->checkCsrf()){
-	if ($_FILES['passwordlist']['error'] === 4) {Feedback::error(tr('You need to select a file to upload.'));
-	} elseif ($_FILES['passwordlist']['error']) {Feedback::error(tr('File Upload Error: ' . $_FILES['passwordlist']['error']));
-	}else{  // if file has been uploaded, and there are no errors, then index the file in the database.
+if (isset($_POST['uploadIndex']) && $access->checkCsrf()) {
+	if ($_FILES['passwordlist']['error'] === 4) {
+		Feedback::error(tr('You need to select a file to upload.'));
+	} elseif ($_FILES['passwordlist']['error']) {
+		Feedback::error(tr('File Upload Error: ' . $_FILES['passwordlist']['error']));
+	} else {  // if file has been uploaded, and there are no errors, then index the file in the database.
 		$blackL->deletePassIndex();
 		$blackL->createPassIndex();
-		$blackL->loadPassIndex($_FILES['passwordlist']['tmp_name'],$_POST['loaddata']);
+		$blackL->loadPassIndex($_FILES['passwordlist']['tmp_name'], $_POST['loaddata']);
 		Feedback::success(tra('Uploaded file has been populated into database and indexed. Ready to generate password lists.'));
 	}
 } elseif (isset($_POST['saveblacklist']) || isset($_POST['viewblacklist'])) {
-
 	// if creating a blacklist, use selected values instead of defaults
 	$charnum = 0;
 	$special = 0;
@@ -108,7 +109,7 @@ if (isset($_POST['uploadIndex']) && $access->checkCsrf()){
 	}
 	// else if save blacklist chosen
 	if ($blackL->generatePassList(true)&& $access->checkCsrf()) {
-		$filename = dirname($_SERVER['SCRIPT_FILENAME']).'/'.$blackL->generateBlacklistName();
+		$filename = dirname($_SERVER['SCRIPT_FILENAME']) . '/' . $blackL->generateBlacklistName();
 		$blackL->set_preference('pass_blacklist_file', $blackL->generateBlacklistName(false));
 		$blackL->loadBlacklist($filename);
 	} else {
