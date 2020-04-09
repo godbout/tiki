@@ -306,6 +306,17 @@ class TikiLib extends TikiDb_Bridge
 		$response = $client->send();
 		$client->resetParameters();
 
+		// check for oauth2 password post returning a Authorization: Bearer token
+		if (! empty($arguments['grant_type']) && $arguments['grant_type'] === 'password') {	// TODO other grant_types may need this too
+			$body = json_decode($response->getBody());
+			if ($body && $body->access_token) {
+				$headers = $client->getRequest()->getHeaders();
+				// add the Bearer token to the request headers
+				$headers->addHeader(new Zend\Http\Header\Authorization('Bearer ' . $body->access_token));
+				$client->setHeaders($headers);
+			}
+		}
+
 		return $client;
 	}
 
