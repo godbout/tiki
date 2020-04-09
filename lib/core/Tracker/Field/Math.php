@@ -11,7 +11,7 @@
  * Letter key: ~GF~
  *
  */
-class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable, Tracker_Field_Indexable, Tracker_Field_Exportable
+class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable, Tracker_Field_Indexable, Tracker_Field_Exportable, Tracker_Field_Filterable
 {
 	private static $runner;
 
@@ -185,6 +185,68 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 			;
 
 		return $schema;
+	}
+
+	function getFilterCollection()
+	{
+		$collection = new Tracker\Filter\Collection($this->getTrackerDefinition());
+		$permName = $this->getConfiguration('permName');
+		$name = $this->getConfiguration('name');
+		$baseKey = $this->getBaseKey();
+
+		$mirrorField = $this->getOption('mirrorField');
+		$handler = false;
+
+		if ($mirrorField && $mirrorField != $this->getFieldId()) {
+			$field = TikiLib::lib('trk')->get_field_info($mirrorField);
+			$item = TikiLib::lib('trk')->get_tracker_item($this->getItemId());
+			$handler = TikiLib::lib('trk')->get_field_handler($field, $item);
+		}
+
+		if ($handler && $handler instanceof Tracker_Field_Filterable) {
+			$handler->setBaseKeyPrefix($permName . '_');
+			$sub = $handler->getFilterCollection();
+			foreach ($sub->getFilters() as $subfilter) {
+				$subfilter->setLabel($name);
+			}
+			$collection->addCloned($permName, $sub);
+		} else {
+			$collection->addNew($permName, 'fulltext')
+				->setLabel($name)
+				->setHelp(tr('Full-text search of the content of the field.'))
+				->setControl(new Tracker\Filter\Control\TextField("tf_{$permName}_ft"))
+				->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+					$value = $control->getValue();
+
+					if ($value) {
+						$query->filterContent($value, $baseKey);
+					}
+				});
+			$collection->addNew($permName, 'initial')
+				->setLabel($name)
+				->setHelp(tr('Search for a value prefix.'))
+				->setControl(new Tracker\Filter\Control\TextField("tf_{$permName}_init"))
+				->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+					$value = $control->getValue();
+
+					if ($value) {
+						$query->filterInitial($value, $baseKey);
+					}
+				});
+			$collection->addNew($permName, 'exact')
+				->setLabel($name)
+				->setHelp(tr('Search for a precise value.'))
+				->setControl(new Tracker\Filter\Control\TextField("tf_{$permName}_em"))
+				->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+					$value = $control->getValue();
+
+					if ($value) {
+						$query->filterIdentifier($value, $baseKey);
+					}
+				});
+		}
+
+		return $collection;
 	}
 
 	/**
