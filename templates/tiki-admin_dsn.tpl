@@ -215,6 +215,7 @@ $('#source-form').each(function () {
 					break;
 				case 'post':
 					$(form.post_url).val(data.arguments.post_url);
+					$('fieldset.method.post .row.post-arg', form).remove();
 					$.each(data.arguments, function (key, value) {
 						if (key !== 'post_url') {
 							addPostRow(key, value);
