@@ -48,13 +48,12 @@ if (isset($_POST['forget'], $_POST['pp'], $_POST['pd']) && $access->checkCsrf())
 
 	$profilefeedback = $installer->getFeedback();
 
-		if ($target = $profile->getInstructionPage()) {
-
-			foreach ($profilefeedback as $feedback) {
-				if (strpos($feedback, tra('An error occurred: ')) === 0) {
-					Feedback::error($feedback);
-				}
+	if ($target = $profile->getInstructionPage()) {
+		foreach ($profilefeedback as $feedback) {
+			if (strpos($feedback, tra('An error occurred: ')) === 0) {
+				Feedback::error($feedback);
 			}
+		}
 
 		$wikilib = TikiLib::lib('wiki');
 		$target = $wikilib->sefurl($target);
@@ -82,7 +81,7 @@ if (isset($_POST['install'], $_POST['pd'], $_POST['pp'])) {
 	$installer->setUserData($data);
 	$profile = Tiki_Profile::fromNames($_POST['pd'], $_POST['pp']);
 	$dryRun = isset($_POST['dryrun']) ? true : false;
-	if ($dryRun || $access->checkCsrf() ) {
+	if ($dryRun || $access->checkCsrf()) {
 		$installer->install($profile, 'all', $dryRun);
 	}
 
@@ -186,11 +185,11 @@ if (isset($_GET['getinfo'], $_GET['pd'], $_GET['pp'])) {
 
 	// Check if profile is available.
 	// This will not be the case for a misconfigured profile server
-	if (empty($profile )) {
+	if (empty($profile)) {
 		$error = "Profile is not available: " . $_GET['pd'] . ", " . $_GET['pp'];
 	} else {
 		$profileData = $profile->getData();
-		if (! empty( $profileData['error'])) {
+		if (! empty($profileData['error'])) {
 			$error = $profileData['error'];
 		}
 	}
@@ -223,7 +222,7 @@ if (isset($_GET['getinfo'], $_GET['pd'], $_GET['pp'])) {
 		}
 		$parsed = $parserlib->parse_data($profile->pageContent);
 		$installed = $installer->isInstalled($profile);
-		$url =  $profile->url;
+		$url = $profile->url;
 		$feedback = $profile->getFeedback();
 	}
 	echo json_encode(
@@ -315,16 +314,20 @@ if (isset($_REQUEST['export'])) {
 	if ($_REQUEST['export_type'] === 'prefs') {
 		$export_yaml = Yaml::dump(
 			[ 'preferences' => $_REQUEST['prefs_to_export'] ],
-			20, 1, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK
+			20,
+			1,
+			Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK
 		);
-	} else if ($_REQUEST['export_type'] === 'modules') {
+	} elseif ($_REQUEST['export_type'] === 'modules') {
 		$modules_to_export = [];
 		foreach ($_REQUEST['modules_to_export'] as $k => $v) {
 			$modules_to_export[] = $assigned_modules_for_export[$k];
 		}
 		$export_yaml = Yaml::dump(
 			[ 'objects' => $modules_to_export],
-			20, 1, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK
+			20,
+			1,
+			Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK
 		);
 	} else {
 		$export_yaml = '';		// something went wrong?
