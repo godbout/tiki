@@ -384,12 +384,12 @@ function iconset_default()
 			'close' => [
 				'id' => 'times',
 			],
-            'cloud-download' => [
-                'id' => 'cloud-download-alt',
-            ],
-            'cloud-upload' => [
-                'id' => 'cloud-upload-alt',
-            ],
+			'cloud-download' => [
+				'id' => 'cloud-download-alt',
+			],
+			'cloud-upload' => [
+				'id' => 'cloud-upload-alt',
+			],
 			//code in defaults
 			'code_file' => [
 				'id' => 'file-code',
@@ -440,25 +440,25 @@ function iconset_default()
 				'id' => 'css3',
 				'prepend' => 'fab fa-'
 			],
-            'dashboard' => [
-                'id' => 'tachometer-alt',
-            ],
-            'dashcube' => [
+			'dashboard' => [
+				'id' => 'tachometer-alt',
+			],
+			'dashcube' => [
 				'id' => 'dashcube',
 				'prepend' => 'fab fa-'
-            ],
+			],
 			//database in defaults
 			'delete' => [
 				'id' => 'times',
 			],
-            'delicious' => [
+			'delicious' => [
 				'id' => 'delicious',
 				'prepend' => 'fab fa-'
-            ],
-            'deviantart' => [
+			],
+			'deviantart' => [
 				'id' => 'deviantart',
 				'prepend' => 'fab fa-'
-            ],
+			],
 			'difference' => [
 				'id' => 'strikethrough',
 			],
@@ -471,38 +471,38 @@ function iconset_default()
 			'down' => [
 				'id' => 'sort-down',
 			],
-            'dribbble' => [
+			'dribbble' => [
 				'id' => 'dribbble',
 				'prepend' => 'fab fa-'
-            ],
-            'dropbox' => [
+			],
+			'dropbox' => [
 				'id' => 'dropbox',
 				'prepend' => 'fab fa-'
-            ],
-            'drupal' => [
+			],
+			'drupal' => [
 				'id' => 'drupal',
 				'prepend' => 'fab fa-'
-            ],
-            'edge' => [
+			],
+			'edge' => [
 				'id' => 'edge',
 				'prepend' => 'fab fa-'
-            ],
+			],
 			//edit in defaults
 			'education' => [
 				'id' => 'graduation-cap',
 			],
-            'empire' => [
+			'empire' => [
 				'id' => 'empire',
 				'prepend' => 'fab fa-'
-            ],
+			],
 			'envelope' => [
 				'id' => 'envelope',
 				'prepend' => 'far fa-'
 			],
-            'envira' => [
+			'envira' => [
 				'id' => 'envira',
 				'prepend' => 'fab fa-'
-            ],
+			],
 			'erase' => [
 				'id' => 'eraser',
 			],
@@ -520,10 +520,10 @@ function iconset_default()
 				'id' => 'minus-square',
 				'prepend' => 'far fa-'
 			],
-            'expeditedssl' => [
+			'expeditedssl' => [
 				'id' => 'expeditedssl',
 				'prepend' => 'fab fa-'
-            ],
+			],
 			'export' => [
 				'id' => 'download',
 			],
@@ -601,66 +601,66 @@ function iconset_default()
 			'fullscreen' => [
 				'id' => 'expand-arrows-alt',
 			],
-            'get-pocket' => [
-                'id' => 'get-pocket',
-                'prepend' => 'fab fa-'
-            ],
-            'gg' => [
-                'id' => 'gg',
-                'prepend' => 'fab fa-'
-            ],
-            'gg-circle' => [
-                'id' => 'gg-circle',
-                'prepend' => 'fab fa-'
-            ],
-            'git' => [
-                'id' => 'git',
-                'prepend' => 'fab fa-'
-            ],
-            'git-square' => [
-                'id' => 'git-square',
-                'prepend' => 'fab fa-'
-            ],
-            'github' => [
-                'id' => 'github',
-                'prepend' => 'fab fa-'
-            ],
-            'github-alt' => [
-                'id' => 'github-alt',
-                'prepend' => 'fab fa-'
-            ],
-            'github-square' => [
-                'id' => 'github-square',
-                'prepend' => 'fab fa-'
-            ],
-            'gitlab' => [
-                'id' => 'gitlab',
-                'prepend' => 'fab fa-'
-            ],
-            'glide' => [
-                'id' => 'glide',
-                'prepend' => 'fab fa-'
-            ],
-            'glide-g' => [
-                'id' => 'glide-g',
-                'prepend' => 'fab fa-'
-            ],
-            'google' => [
-                'id' => 'google',
-                'prepend' => 'fab fa-'
-            ],
-            'google-plus' => [
-                'id' => 'google-plus',
-                'prepend' => 'fab fa-'
-            ],
-            'google-plus-g' => [
-                'id' => 'google-plus-g',
-                'prepend' => 'fab fa-'
-            ],
-            'google-plus-square' => [
-                'id' => 'google-plus-square',
-                'prepend' => 'fab fa-'
-            ],
+			'get-pocket' => [
+				'id' => 'get-pocket',
+				'prepend' => 'fab fa-'
+			],
+			'gg' => [
+				'id' => 'gg',
+				'prepend' => 'fab fa-'
+			],
+			'gg-circle' => [
+				'id' => 'gg-circle',
+				'prepend' => 'fab fa-'
+			],
+			'git' => [
+				'id' => 'git',
+				'prepend' => 'fab fa-'
+			],
+			'git-square' => [
+				'id' => 'git-square',
+				'prepend' => 'fab fa-'
+			],
+			'github' => [
+				'id' => 'github',
+				'prepend' => 'fab fa-'
+			],
+			'github-alt' => [
+				'id' => 'github-alt',
+				'prepend' => 'fab fa-'
+			],
+			'github-square' => [
+				'id' => 'github-square',
+				'prepend' => 'fab fa-'
+			],
+			'gitlab' => [
+				'id' => 'gitlab',
+				'prepend' => 'fab fa-'
+			],
+			'glide' => [
+				'id' => 'glide',
+				'prepend' => 'fab fa-'
+			],
+			'glide-g' => [
+				'id' => 'glide-g',
+				'prepend' => 'fab fa-'
+			],
+			'google' => [
+				'id' => 'google',
+				'prepend' => 'fab fa-'
+			],
+			'google-plus' => [
+				'id' => 'google-plus',
+				'prepend' => 'fab fa-'
+			],
+			'google-plus-g' => [
+				'id' => 'google-plus-g',
+				'prepend' => 'fab fa-'
+			],
+			'google-plus-square' => [
+				'id' => 'google-plus-square',
+				'prepend' => 'fab fa-'
+			],
 			'group' => [
 				'id' => 'users',
 			],
@@ -961,10 +961,10 @@ function iconset_default()
 				'id' => 'pagelines',
 				'prepend' => 'fab fa-'
 			],
-            'paypal' => [
-                'id' => 'paypal',
-                'prepend' => 'fab fa-'
-            ],
+			'paypal' => [
+				'id' => 'paypal',
+				'prepend' => 'fab fa-'
+			],
 			//paste in defaults
 			//pause in defaults
 			'pdf' => [
@@ -1094,18 +1094,18 @@ function iconset_default()
 			'shorten' => [
 				'id' => 'crop',
 			],
-            'simplybuilt' => [
-                'id' => 'simplybuilt',
-                'prepend' => 'fab fa-'
-            ],
-            'skyatlas' => [
-                'id' => 'skyatlas',
-                'prepend' => 'fab fa-'
-            ],
-            'skype' => [
-                'id' => 'skype',
-                'prepend' => 'fab fa-'
-            ],
+			'simplybuilt' => [
+				'id' => 'simplybuilt',
+				'prepend' => 'fab fa-'
+			],
+			'skyatlas' => [
+				'id' => 'skyatlas',
+				'prepend' => 'fab fa-'
+			],
+			'skype' => [
+				'id' => 'skype',
+				'prepend' => 'fab fa-'
+			],
 			'slack' => [
 				'id' => 'slack',
 				'prepend' => 'fab fa-'
@@ -1388,30 +1388,30 @@ function iconset_default()
 			'wysiwyg' => [
 				'id' => 'file-alt',
 			],
-            'xbox' => [
-                'id' => 'xbox',
-                'prepend' => 'fab fa-'
-            ],
-            'xing' => [
-                'id' => 'xing',
-                'prepend' => 'fab fa-'
-            ],
-            'xing-square' => [
-                'id' => 'xing-square',
-                'prepend' => 'fab fa-'
-            ],
-            'yahoo' => [
-                'id' => 'yahoo',
-                'prepend' => 'fab fa-'
-            ],
-            'youtube' => [
-                'id' => 'youtube',
-                'prepend' => 'fab fa-'
-            ],
-            'youtube-square' => [
-                'id' => 'youtube-square',
-                'prepend' => 'fab fa-'
-            ],
+			'xbox' => [
+				'id' => 'xbox',
+				'prepend' => 'fab fa-'
+			],
+			'xing' => [
+				'id' => 'xing',
+				'prepend' => 'fab fa-'
+			],
+			'xing-square' => [
+				'id' => 'xing-square',
+				'prepend' => 'fab fa-'
+			],
+			'yahoo' => [
+				'id' => 'yahoo',
+				'prepend' => 'fab fa-'
+			],
+			'youtube' => [
+				'id' => 'youtube',
+				'prepend' => 'fab fa-'
+			],
+			'youtube-square' => [
+				'id' => 'youtube-square',
+				'prepend' => 'fab fa-'
+			],
 			'zip' => [
 				'id' => 'file-archive',
 				'prepend' => 'far fa-'
