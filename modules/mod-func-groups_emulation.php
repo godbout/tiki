@@ -90,7 +90,7 @@ function module_groups_emulation($mod_reference, $module_params)
 		$chooseGroups["Registered"] = "included";
 	}
 
-	$headerlib=TikiLib::lib("header");
+	$headerlib = TikiLib::lib("header");
 	$moduleId = $mod_reference['moduleId'];
 	if (isset($allGroups) && $showallgroups == 'y') {
 		$headerlib->add_js('$(document).ready(function() {
@@ -98,8 +98,7 @@ function module_groups_emulation($mod_reference, $module_params)
 			$("#module_' . $moduleId . ' #mge-all-legend").click(function(){
 				$("#module_' . $moduleId . ' #mge-all").fadeToggle();
 			});
-		});'
-		);
+		});');
 	}
 	if ($showyourgroups == 'y') {
 		$headerlib->add_js('$(document).ready(function() {
@@ -107,8 +106,7 @@ function module_groups_emulation($mod_reference, $module_params)
 			$("#module_' . $moduleId . ' #mge-mine-legend").click(function(){
 				$("#module_' . $moduleId . ' #mge-mine").fadeToggle();
 			});
-		});'
-		);
+		});');
 	}
 	if ($groups_are_emulated == 'y') {
 		$headerlib->add_js('$(document).ready(function() {
@@ -116,8 +114,7 @@ function module_groups_emulation($mod_reference, $module_params)
 			$("#module_' . $moduleId . ' #mge-emulated-legend").click(function(){
 				$("#module_' . $moduleId . ' #mge-emulated").fadeToggle();
 			});
-		});'
-		);
+		});');
 	}
 
 	$smarty->assign_by_ref('userGroups', $userGroups);

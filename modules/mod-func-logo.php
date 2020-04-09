@@ -74,7 +74,7 @@ function module_logo_info()
  * @param $mod_reference
  * @param $module_params
  */
-function module_logo($mod_reference, & $module_params)
+function module_logo($mod_reference, &$module_params)
 {
 	global $prefs;
 
