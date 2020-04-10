@@ -2667,6 +2667,13 @@ class TrackerLib extends TikiLib
 		$erroneous_values = [];
 		if (isset($ins_fields)&&isset($ins_fields['data'])) {
 			foreach ($ins_fields['data'] as $f) {
+				if ($f['type'] == 'b' && ! empty($f['value'])){
+					$ins_id = 'ins_' . $f['fieldId'];
+					if (empty($_REQUEST[$ins_id . '_currency']) ) {
+						$f['name']= $f['name'].' Currency';
+						$mandatory_fields[] = $f;
+					}
+				}
 				if ($f['type'] == 'f' && $f['isMandatory'] != 'y' && empty($f['value'])) {
 					$ins_id = 'ins_' . $f['fieldId'];
 					if (! empty($_REQUEST[$ins_id . 'Month']) || ! empty($_REQUEST[$ins_id . 'Day']) || ! empty($_REQUEST[$ins_id . 'Year']) ||
