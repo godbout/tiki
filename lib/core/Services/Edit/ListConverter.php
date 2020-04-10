@@ -104,6 +104,9 @@ class Services_Edit_ListConverter
 				case 'showlinks':
 					$this->columnOptions['links'] = $value === 'y';
 					break;
+				case 'url':
+					$this->columnOptions['url'] = $value;
+					break;
 				case 'status':
 					$filters[] = [
 						'field' => 'tracker_status',
@@ -382,6 +385,7 @@ class Services_Edit_ListConverter
 
 		$permName = $field['permName'];
 		$rawMode = false;
+		$url = '';
 
 		$display = [
 			'default' => '',
@@ -399,7 +403,11 @@ class Services_Edit_ListConverter
 			$rawMode = true;
 		}
 		if ($this->columnOptions['links'] && $field['isMain'] === 'y') {
-			$display['format'] = 'objectlink';
+			if (! empty($this->columnOptions['url'])) {
+				$url = $this->columnOptions['url'];
+			} else {
+				$display['format'] = 'objectlink';
+			}
 			$this->titleFound = true;
 			$rawMode = true;
 		}
@@ -419,11 +427,17 @@ class Services_Edit_ListConverter
 				$display['format'] = 'date';
 			}
 		}
+		// TODO: should 'icon' really be in the list below?
 		if (in_array($field['type'], ['a', 'e', 'FG', 'G', 'icon', 'L', 'p', 'r', 'u', 'w', 'y']) || ! empty($display['editable'])) {
 			$display['format'] = 'trackerrender';
 			$rawMode = true;
 		}
 		$displays = rtrim($this->arrayToInlinePluginString('display', [$display]));
+
+		if (! empty($url)) {
+			$displays = '<a href="' . $url . '{display name="object_id"}">' . $displays . '</a>';
+		}
+
 		if ($this->columnOptions['first']) {
 			$arr = array_reverse($this->formats, true);
 			$arr[$permName] = $displays;
