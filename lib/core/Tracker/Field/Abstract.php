@@ -525,6 +525,11 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 		$this->baseKeyPrefix = $prefix;
 	}
 
+	function replaceBaseKey($permName)
+	{
+		$this->definition['permName'] = $permName;
+	}
+
 	/**
 	 * Default implementation is to replace the value
 	 */

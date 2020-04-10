@@ -204,7 +204,7 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 		}
 
 		if ($handler && $handler instanceof Tracker_Field_Filterable) {
-			$handler->setBaseKeyPrefix($permName . '_');
+			$handler->replaceBaseKey($permName);
 			$sub = $handler->getFilterCollection();
 			foreach ($sub->getFilters() as $subfilter) {
 				$subfilter->setLabel($name);
