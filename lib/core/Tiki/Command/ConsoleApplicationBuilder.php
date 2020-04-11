@@ -98,6 +98,7 @@ class ConsoleApplicationBuilder
 			'condition'	=> 'checkIsDevMode',
 			'actions'	=> [UnavailableException::CHECK_DEFAULT => self::ACTION_NOT_PUBLISHED,],
 			'commands'	=> [
+				new DevFixStyleCommand,
 				new DevUnInstallCommand,
 				],
 			],[
