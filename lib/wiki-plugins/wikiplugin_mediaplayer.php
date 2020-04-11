@@ -229,7 +229,7 @@ function wikiplugin_mediaplayer($data, $params)
 			if (! empty($file['filetype']) && $file['fileId'] == $fileId) {
 				$fileExtension = pathinfo($file['filename'], PATHINFO_EXTENSION);
 				$params['type'] = $fileExtension;
-				if (! in_array($fileExtension, ['pdf', 'odt', 'ods', 'odp'])) {
+				if (! in_array($fileExtension, ['pdf', 'odt', 'ods', 'odp', 'viewerjs'])) {
 					$params['style'] = ! empty($params['style']) ? $params['style'] : 'native';
 					$params['type'] = $file['filetype'];
 				}
@@ -279,7 +279,7 @@ function wikiplugin_mediaplayer($data, $params)
 				} 
 			} );";
 
-		if (in_array($params['type'], ['pdf', 'odt', 'ods', 'odp'])) {
+		if (in_array($params['type'], ['pdf', 'odt', 'ods', 'odp', 'viewerjs'])) { // If the type parameter indicates a format supported by ViewerJS ( http://viewerjs.org ), or if viewerjs was explicitly requested
 			if ($prefs['fgal_pdfjs_feature'] === 'y') {
 				$smarty = TikiLib::lib('smarty');
 
@@ -361,6 +361,10 @@ function wikiplugin_mediaplayer($data, $params)
 
 				$smarty->assign('source_link', $sourceLink);
 				return '~np~' . $smarty->fetch('wiki-plugins/wikiplugin_mediaplayer_pdfjs.tpl') . '~/np~';
+			} elseif ($prefs['fgal_viewerjs_feature'] === 'y') {
+				$src = $prefs['fgal_viewerjs_uri'] . '#' . TikiLib::lib('access')->absoluteUrl($params['src']);
+				$out = "<iframe width=\"{$params['width']}\" height=\"{$params['height']}\" src=\"{$src}\" allowfullscreen webkitallowfullscreen></iframe>";
+				return $out;
 			} elseif ($params['type'] === 'pdf') {
 				$js = '
 var found = false;

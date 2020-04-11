@@ -211,6 +211,10 @@ class Services_File_FinderController
 
 					if (strpos($info['filetype'], 'image/') !== false) {
 						$url .= '&display';
+					} elseif ($prefs['fgal_viewerjs_feature'] === 'y' &&
+							($info['filetype'] === 'application/pdf' or
+									strpos($info['filetype'], 'application/vnd.oasis.opendocument.') !== false)) {
+						$url = TikiLib::lib('access')->absoluteUrl($prefs['fgal_viewerjs_uri'] . '#' . $url);
 					}
 				}
 

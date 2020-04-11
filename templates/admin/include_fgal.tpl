@@ -362,6 +362,15 @@
 				</div>
 				{preference name='feature_docs'}
 				{preference name='fgal_pdfjs_feature'}
+				{preference name='fgal_viewerjs_feature'}
+				<div class="adminoptionboxchild" id="fgal_viewerjs_feature_childcontainer">
+					{preference name='fgal_viewerjs_uri'}
+					{if $viewerjs_err}
+						<div class="col-sm-8 float-sm-right">
+							{remarksbox type='errors' title="{tr}Warning{/tr}"}{$viewerjs_err}{/remarksbox}
+						</div>
+					{/if}
+				</div>
 			</fieldset>
 			<fieldset>
 				<legend>{tr}H5P{/tr}</legend>
