@@ -56,6 +56,12 @@ class Validators
 	{
 		$validationjs = 'rules: { ';
 		foreach ($fields_data as $field_value) {
+			if ($field_value['type'] == 'b'){
+				$validationjs .= $prefix . $field_value['fieldId'] . '_currency: {required:
+					function(element){
+						return $("#'.$prefix . $field_value['fieldId'] .'").val()!="";
+					},},';
+			}
 			if ($field_value['validation'] || $field_value['isMandatory'] == 'y') {
 				if ($field_value['type'] == 'e' || $field_value['type'] == 'M') {
 					$validationjs .= '"' . $prefix . $field_value['fieldId'] . '[]": { ';
@@ -132,6 +138,13 @@ class Validators
 		$validationjs .= '}, ';
 		$validationjs .= 'messages: { ';
 		foreach ($fields_data as $field_value) {
+			if ($field_value['type'] == 'b'){
+				if ($field_value['validationMessage']){
+					$validationjs .= $prefix . $field_value['fieldId'] . '_currency: "' . tra($field_value['validationMessage']) . '",';
+				}else{
+					$validationjs .= $prefix . $field_value['fieldId'] . '_currency: "'. tra('This field is required') . '",';
+				}
+			}
 			if ($field_value['validationMessage'] && $field_value['isMandatory'] == 'y') {
 				if ($field_value['type'] == 'e' || $field_value['type'] == 'M') {
 					$validationjs .= '"' . $prefix . $field_value['fieldId'] . '[]": { ';
