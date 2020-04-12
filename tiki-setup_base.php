@@ -99,13 +99,13 @@ if ($tikilib->query("SHOW TABLES LIKE 'tiki_preferences'")->numRows() == 0) {
 	}
 	// smarty not initialised at this point to do a polite message, sadly
 	header('location: tiki-install.php');
-	exit;
+	exit(1);
 }
 if (! $tikilib->getOne("SELECT COUNT(*) FROM `information_schema`.`character_sets` WHERE `character_set_name` = 'utf8mb4';")) {
 	if (PHP_SAPI === 'cli') {
-		die("\033[31mYour database does not support the utf8mb4 character set required in Tiki19 and above\033[0m\n");
+		$error = ("\033[31mYour database does not support the utf8mb4 character set required in Tiki19 and above\033[0m\n");
 	} else {
-		die(tr('Your database does not support the utf8mb4 character set required in Tiki19 and above. You need to upgrade your mysql or mariadb installation.'));
+		$error = (tr('Your database does not support the utf8mb4 character set required in Tiki19 and above. You need to upgrade your mysql or mariadb installation.'));
 	}
 }
 
@@ -563,7 +563,7 @@ if (isset($_SESSION["$user_cookie_site"])) {
 			} else {
 				header('WWW-Authenticate: Basic realm="' . $tikidomain . '"');
 				header('HTTP/1.0 401 Unauthorized');
-				exit;
+				exit(1);
 			}
 		}
 	}

@@ -31,7 +31,8 @@ if (! file_exists(__DIR__ . '/../../vendor_bundled/vendor/autoload.php')) {
 	if (http_response_code() === false) { // if running in cli
 		$error = "\033[31m" . $error . "\e[0m\n";
 	}
-	die($error);
+	echo $error;
+	exit(1);
 }
 
 require_once __DIR__ . '/../../vendor_bundled/vendor/autoload.php'; // vendor libs bundled into tiki
@@ -73,7 +74,7 @@ if (is_dir(__DIR__ . '/../../vendor_custom')) {
 			 // Autoload extension packages libs
 			$packagePath = $fileInfo->getPathname();
 			if (is_dir($packagePath . '/lib/') && $composerJson = json_decode(file_get_contents($packagePath . '/composer.json'), true)) {
-				$packageName = $composerJson['name'] ?? ''; 
+				$packageName = $composerJson['name'] ?? '';
 				if ($packageName && \Tiki\Package\ExtensionManager::isExtension($packageName, $packagePath) && \Tiki\Package\ExtensionManager::isEnabled($packageName)) {
 					$autoloader->addPsr4(str_replace('/', '\\', $packageName) . '\\', $packagePath . '/lib/');
 				}

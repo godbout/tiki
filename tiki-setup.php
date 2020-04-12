@@ -214,7 +214,7 @@ if (! empty($varcheck_errors)) {
 	if (isset($_SERVER['HTTP_X_REQUESTED_WITH'])
 		&& $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
 		Feedback::error($varcheck_errors, true);
-		die;
+		exit(1);
 	} else {
 		$varcheck_errors['tpl'] = 'error_raw.tpl';
 		Feedback::errorPage($varcheck_errors);
@@ -276,7 +276,7 @@ if ($prefs['pwa_feature'] == 'y') { //pwa test propose, pages to cache
 	$headerlib->add_jsfile(VendorHelper::getAvailableVendorPath('dexie', 'npm-asset/dexie/dist/dexie.min.js'), true);
 	$pages = ['trackers' => [], 'wiki' => []];
 
-	if(isset($user)){
+	if (isset($user)) {
 		$trackerlib = TikiLib::lib('trk');
 
 		$trackers = $trackerlib->list_trackers();
@@ -306,7 +306,7 @@ if ($prefs['feature_antibot'] == 'y' && empty($user)) {
 				$headerlib->add_jsfile_cdn("$url_scheme://www.google.com/recaptcha/api.js");
 			}
 		} else {
-            $headerlib->add_jsfile_cdn("$url_scheme://www.google.com/recaptcha/api.js?render=".$prefs['recaptcha_pubkey']);
+			$headerlib->add_jsfile_cdn("$url_scheme://www.google.com/recaptcha/api.js?render=" . $prefs['recaptcha_pubkey']);
 		}
 	}
 	$captchalib = TikiLib::lib('captcha');
@@ -784,7 +784,7 @@ if (! empty($prefs['access_control_allow_origin']) && ! empty($_SERVER['HTTP_ORI
 if (isset($token_error)) {
 	$smarty->assign('token_error', $token_error);
 	$smarty->display('error.tpl');
-	die;
+	exit(1);
 }
 
 require_once('lib/setup/plugins_actions.php');

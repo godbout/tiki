@@ -11,6 +11,7 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 	exit;
 }
 
+use Laminas\Config\Config;
 use Tiki\Command\ConsoleSetupException;
 
 require_once('lib/init/initlib.php');
@@ -72,7 +73,7 @@ if ($parts = TikiInit::getEnvironmentCredentials()) {
 unset($host_map, $db_tiki, $host_tiki, $user_tiki, $pass_tiki, $dbs_tiki, $shadow_user, $shadow_pass, $shadow_host, $shadow_dbs);
 
 global $systemConfiguration;
-$systemConfiguration = new Zend\Config\Config(
+$systemConfiguration = new Config(
 	[
 		'preference' => [],
 		'rules' => [],
@@ -81,7 +82,12 @@ $systemConfiguration = new Zend\Config\Config(
 );
 if (isset($_SERVER['TIKI_INI_FILE'])) {
 	if (! is_readable($_SERVER['TIKI_INI_FILE'])) {
-		die('Configuration file could not be read.');
+		$error = $_SERVER['TIKI_INI_FILE'] . ' could not be read' . PHP_EOL ;
+		if (defined('TIKI_CONSOLE')) {
+			throw new ConsoleSetupException($error, 1001);
+		}
+		echo $error;
+		exit(1);
 	}
 
 	$configReader = new Tiki_Config_Ini();
@@ -91,7 +97,12 @@ if (isset($_SERVER['TIKI_INI_FILE'])) {
 }
 if (isset($system_configuration_file)) {
 	if (! is_readable($system_configuration_file)) {
-		die('Configuration file could not be read.');
+		$error = $system_configuration_file . ' could not be read' . PHP_EOL ;
+		if (defined('TIKI_CONSOLE')) {
+			throw new ConsoleSetupException($error, 1001);
+		}
+		echo $error;
+		exit(1);
 	}
 	if (! isset($system_configuration_identifier)) {
 		$system_configuration_identifier = null;
@@ -115,7 +126,7 @@ if (isset($system_configuration_file)) {
 		$configData = $configReader->fromFile($system_configuration_file);
 	}
 
-	$systemConfiguration = $systemConfiguration->merge(new Zend\Config\Config($configData));
+	$systemConfiguration = $systemConfiguration->merge(new Config($configData));
 }
 
 if ($re === false) {
@@ -132,7 +143,7 @@ if ($re === false) {
 		} else {
 			header('location: tiki-install.php');
 		}
-		exit;
+		exit(1);
 	}
 	// we are in the installer don't redirect...
 	return;
@@ -194,9 +205,13 @@ class TikiDb_LegacyErrorHandler implements TikiDb_ErrorHandler
 
 		header("Cache-Control: no-cache, pre-check=0, post-check=0");
 
+		if (defined('TIKI_CONSOLE')) {
+			throw new ConsoleSetupException($msg, 1001);
+		}
 		$smarty->display('database-connection-error.tpl');
 		$this->log($msg . ' - ' . $q);
-		die;
+
+		exit(1);
 	} // }}}
 	/**
 	 * @param $msg
@@ -243,7 +258,7 @@ if (! $db && ! defined('TIKI_IN_INSTALLER')) {
 	}
 	if (! empty($dbfail_url)) {
 		header('location: ' . $dbfail_url);
-		exit;
+		exit(1);
 	}
 		echo file_get_contents('templates/database_connection_error.html');
 }
