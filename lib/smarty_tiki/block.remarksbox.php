@@ -30,7 +30,7 @@
  * 			errors|error|danger: Error message (or extremely important warning?)
  *  - title		    Text as a label. Leave out for no label (or icon)
  *  - highlight	    "y|n" default=n
- *  - icon		    Override default icons. See function.icon.php for more info
+ *  - icon		    Override default icons. See function.icon.php for more info (use empty string for no icon)
  *  - close		    "y|n" default=y (close button)
  *  - width		    e.g. "50%", "200px" default=""
  *  - store_cookie  "y|n" default y, set to n to not store closed state in a cookie
@@ -56,12 +56,15 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 	$params = array_merge([	// default params
 		'type' => 'tip',
 		'title' => '',
-		'icon' => '',
+		'highlight' => '',
+//		'icon' => '',	// can be empty
 		'close' => 'y',
 		'width' => '',
+		'store_cookie' => 'y',
 		'id' => 'rbox_' . $remarksboxInstance,
 		'version' => '',
-		'store_cookie' => 'y',
+		'title_tag' => 'div',
+		'title_class' => 'alert-heading h4',
 	], $params);
 
 	if ($params['close'] != 'y' || $prefs['remember_closed_rboxes'] === 'n') {
@@ -74,53 +77,40 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 		$highlightClass = '';
 	}
 
-	// If a custom icon is part of the paramters we assign it to the $custom_icon
-	if (isset($params['icon'])) {
-		$custom_icon = $params['icon'];
-	};
-
 	switch ($params['type']) {
 		case 'error':
 		case 'errors':
 		case 'danger':
 			$class = 'alert-danger';
-			if (! empty($custom_icon)) {
-				$icon = $custom_icon;
-			} else {
-				$icon = 'error';
-			}
+			$icon = 'error';
 			break;
 		case 'warning':
 			$class = 'alert-warning';
-			if (! empty($custom_icon)) {
-				$icon = $custom_icon;
-			} else {
-				$icon = 'warning';
-			}
+			$icon = 'warning';
 			break;
 		case 'success':
 		case 'confirm':
 		case 'feedback': // Deprecated
 			$class = 'alert-success';
-			if (! empty($custom_icon)) {
-				$icon = $custom_icon;
-			} else {
-				$icon = 'success';
-			}
+			$icon = 'success';
 			break;
 		case 'comment':
+			$class = 'alert-info';
+			$icon = 'comment';
+			break;
 		case 'info':
 		case 'note':
 		case 'tip':
 		default:
 			$class = 'alert-info';
-			if (! empty($custom_icon)) {
-				$icon = $custom_icon;
-			} else {
-				$icon = 'information';
-			}
+			$icon = 'information';
 			break;
 	}
+
+	// If a custom icon is part of the paramters we assign it to the $custom_icon
+	if (isset($params['icon'])) {
+		$icon = $params['icon'];
+	};
 
 	if (isset($prefs['javascript_enabled']) && $prefs['javascript_enabled'] != 'y') {
 		$params['close'] = false;
@@ -150,6 +140,8 @@ function smarty_block_remarksbox($params, $content, $smarty, &$repeat)
 	$smarty->assign('remarksbox_highlight', $highlightClass);
 	$smarty->assign('remarksbox_close', $params['close']);
 	$smarty->assign('remarksbox_width', $params['width']);
+	$smarty->assign('remarksbox_title_tag', $params['title_tag']);
+	$smarty->assign('remarksbox_title_class', $params['title_class']);
 	$smarty->assignByRef('remarksbox_content', $content);
 	return $smarty->fetch('remarksbox.tpl');
 }
