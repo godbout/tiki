@@ -176,6 +176,15 @@ class Tracker_Field_Numeric extends Tracker_Field_Abstract implements Tracker_Fi
 				}
 			});
 
+		$filters->addNew($permName, 'range')
+			->setLabel($name)
+			->setControl(new Tracker\Filter\Control\NumericRange("tf_{$permName}_range", $this->getOption('decimals')))
+			->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+				if ($control->hasValue()) {
+					$query->filterNumericRange($control->getFrom(), $control->getTo(), $baseKey);
+				}
+			});
+
 		return $filters;
 	}
 }

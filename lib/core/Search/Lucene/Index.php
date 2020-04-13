@@ -357,11 +357,19 @@ class Search_Lucene_Index implements Search_Index_Interface
 			$from = $this->buildTerm($from);
 			$to = $this->buildTerm($to);
 
-			// Range search not supported for phrases, so revert to normal token matching
+			// Range search not supported for phrases unless phrases contain a single term, so revert to normal token matching
 			if (method_exists($from, 'getTerm')) {
 				$range = new ZendSearch\Lucene\Search\Query\Range(
 					$from->getTerm(),
 					$to->getTerm(),
+					true // inclusive
+				);
+
+				$term = $range;
+			} elseif (method_exists($from, 'getTerms') && count($from->getTerms()) == 1) {
+				$range = new ZendSearch\Lucene\Search\Query\Range(
+					$from->getTerms()[0],
+					$to->getTerms()[0],
 					true // inclusive
 				);
 

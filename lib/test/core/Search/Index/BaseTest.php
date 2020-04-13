@@ -27,6 +27,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 				'categories' => $typeFactory->multivalue([1, 2, 5, 6]),
 				'allowed_groups' => $typeFactory->multivalue(['Project Lead', 'Editor', 'Admins']),
 				'contents' => $typeFactory->plaintext('a description for the page Bonjour world!'),
+				'number' => $typeFactory->numeric(123),
 				'relations' => $typeFactory->multivalue(
 					[
 						Search_Query_Relation::token('tiki.content.link', 'wiki page', 'About'),
@@ -127,6 +128,10 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertResultCount(1, 'filterRange', self::DOCUMENT_DATE - 1000, self::DOCUMENT_DATE + 1000);
 		$this->assertResultCount(0, 'filterRange', self::DOCUMENT_DATE - 1000, self::DOCUMENT_DATE - 500);
 		$this->assertResultCount(1, 'filterRange', 2, 2000000000); // Check lexicography
+		$this->assertResultCount(1, 'filterTextRange', 'Home', 'Page');
+		$this->assertResultCount(0, 'filterTextRange', 'Homezzz', 'Page');
+		$this->assertResultCount(1, 'filterNumericRange', 100, 200, 'number');
+		$this->assertResultCount(0, 'filterNumericRange', 200, 300, 'number');
 	}
 
 	function testIndexProvidesHighlightHelper()

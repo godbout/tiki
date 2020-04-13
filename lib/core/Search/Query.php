@@ -179,6 +179,17 @@ class Search_Query implements Search_Query_Interface
 		$this->addPart(new Search_Expr_Range($from, $to), 'plaintext', $field);
 	}
 
+	function filterNumericRange($from, $to, $field)
+	{
+		/* make the range filter work regardless of ordering - if from > to, swap */
+		if ($to < $from) {
+			$temp = $to;
+			$to = $from;
+			$from = $temp;
+		}
+		$this->addPart(new Search_Expr_Range($from, $to), 'numeric', $field);
+	}
+
 	function filterInitial($initial, $field = 'title')
 	{
 		$this->addPart(new Search_Expr_Initial($initial), 'plaintext', $field);
