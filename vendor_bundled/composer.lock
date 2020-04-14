@@ -5152,11 +5152,11 @@
         },
         {
             "name": "npm-asset/popper.js",
-            "version": "1.16.1",
+            "version": "1.16.1-patch1",
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/popper-js/npm-asset-popper-js-1.16.1.zip",
-                "shasum": "7488c29f3ec7a057d2eaf4e0b29e14f6ee903823"
+                "url": "https://composer.tiki.org/dist/npm-asset/popper-js/npm-asset-popper-js-1.16.1-patch1.zip",
+                "shasum": "f833083984ba48fa1c1cf9899c0585cd9c95bda1"
             },
             "type": "npm-asset",
             "license": [
@@ -5561,17 +5561,17 @@
         },
         {
             "name": "pear/pear",
-            "version": "v1.10.10",
+            "version": "v1.10.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/pear/pear-core.git",
-                "reference": "fda04666873ec0fe2b4e5843f8f77cce88f7bb28"
+                "reference": "f0f16689347c65f4992a00e59ead7dcd4133fc7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/pear/pear/pear-pear-fda04666873ec0fe2b4e5843f8f77cce88f7bb28-zip-a69b8c.zip",
-                "reference": "fda04666873ec0fe2b4e5843f8f77cce88f7bb28",
-                "shasum": "24534ba564cc9299633aeb914d07ac9dfb9ca22f"
+                "url": "https://composer.tiki.org/dist/pear/pear/pear-pear-f0f16689347c65f4992a00e59ead7dcd4133fc7b-zip-97e268.zip",
+                "reference": "f0f16689347c65f4992a00e59ead7dcd4133fc7b",
+                "shasum": "1241c5d1cd7c94ea4292f68c146bb8652bd135e5"
             },
             "require": {
                 "ext-pcre": "*",
@@ -5652,7 +5652,7 @@
                 }
             ],
             "description": "This is the definitive source of PEAR's core files.",
-            "time": "2019-11-19T18:59:16+00:00"
+            "time": "2020-04-10T19:38:15+00:00"
         },
         {
             "name": "pear/pear_exception",
@@ -6975,17 +6975,17 @@
         },
         {
             "name": "studio-42/elfinder",
-            "version": "2.1.55",
+            "version": "2.1.56",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Studio-42/elFinder.git",
-                "reference": "7d7174dbadbadc19b1178ded8b62fbff738df877"
+                "reference": "fa09409aaffe855e1e33b958301d5597c2036062"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-7d7174dbadbadc19b1178ded8b62fbff738df877-zip-97b785.zip",
-                "reference": "7d7174dbadbadc19b1178ded8b62fbff738df877",
-                "shasum": "fed08bc89ec05a28c8ba6720eaab5e6e4122263a"
+                "url": "https://composer.tiki.org/dist/studio-42/elfinder/studio-42-elfinder-fa09409aaffe855e1e33b958301d5597c2036062-zip-8319f9.zip",
+                "reference": "fa09409aaffe855e1e33b958301d5597c2036062",
+                "shasum": "1060a1913fc92d089dc5db077123416839ca0a88"
             },
             "require": {
                 "php": ">=5.2"
@@ -7029,7 +7029,7 @@
             ],
             "description": "File manager for web",
             "homepage": "http://elfinder.org",
-            "time": "2020-03-18T11:37:50+00:00"
+            "time": "2020-04-09T02:33:28+00:00"
         },
         {
             "name": "svg-edit/svg-edit",
@@ -8168,17 +8168,17 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.2.6",
+            "version": "1.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/ca-bundle.git",
-                "reference": "47fe531de31fca4a1b997f87308e7d7804348f7e"
+                "reference": "95c63ab2117a72f48f5a55da9740a3273d45b7fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/composer/ca-bundle/composer-ca-bundle-47fe531de31fca4a1b997f87308e7d7804348f7e-zip-dc0441.zip",
-                "reference": "47fe531de31fca4a1b997f87308e7d7804348f7e",
-                "shasum": "0ad01fd6ea80ecf4e4434f3f0f4745356cca41ec"
+                "url": "https://composer.tiki.org/dist/composer/ca-bundle/composer-ca-bundle-95c63ab2117a72f48f5a55da9740a3273d45b7fd-zip-9ba602.zip",
+                "reference": "95c63ab2117a72f48f5a55da9740a3273d45b7fd",
+                "shasum": "017fa16cd889a864b6303123a6a2e730923f4aa1"
             },
             "require": {
                 "ext-openssl": "*",
@@ -8220,7 +8220,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2020-01-13T10:02:55+00:00"
+            "time": "2020-04-08T08:27:21+00:00"
         },
         {
             "name": "doctrine/instantiator",
