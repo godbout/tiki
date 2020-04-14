@@ -38,6 +38,7 @@ function smarty_function_currency($params, $smarty)
 	if (! empty($exchangeRatesTrackerId)) {
 		$rates = $trk->exchange_rates($exchangeRatesTrackerId, $date);
 
+		$defaultCurrency = array_search(1, $rates);
 		if (empty($defaultCurrency)) {
 			$defaultCurrency = 'USD';
 		}
