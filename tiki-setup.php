@@ -292,7 +292,8 @@ if ($prefs['pwa_feature'] == 'y') { //pwa test propose, pages to cache
 			return str_replace(' ', '-', $m['pageName']);
 		}, $pagesAll);
 	}
-
+	$urls = explode(PHP_EOL, $prefs['pwa_cache_links']);
+	$pages['urls'] = $urls;
 	$smarty->assign('pagespwa', json_encode($pages));
 }
 

@@ -20,6 +20,16 @@ function prefs_pwa_list()
 			'default' => 'n',
 			'packages_required' => ['npm-asset/dexie' => VendorHelper::getAvailableVendorPath('dexie', 'npm-asset/dexie/dist/dexie.js')],
 
+		],
+		'pwa_cache_links' => [
+			'name' => tra('Links to cache in PWA Mode'),
+			'description' => tra('List of links to be cached when PWA is enabled'),
+			'help' => 'Example: tiki-index.php?page=HomePage',
+			'warning' => tra('Experimental feature.'),
+			'type' => 'textarea',
+			'dependencies' => ['pwa_feature'],
+			'size' => 6,
+			'default' => '',
 		]
 	];
 }

@@ -2,7 +2,6 @@ const OFFLINE_URL = 'lib/pwa/offline.html';
 importScripts("vendor/npm-asset/dexie/dist/dexie.min.js")
 const staticAssets = [
 	'.',
-	'themes/base_files/favicons/manifest.json',
 	'themes/base_files/css/tiki_base.css',
 	'vendor_bundled/vendor/bower-asset/fontawesome/css/all.css',
 	'themes/default/css/default.css',
