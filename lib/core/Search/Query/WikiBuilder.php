@@ -269,6 +269,14 @@ class Search_Query_WikiBuilder
 		$query->filterTextRange($arguments['from'], $arguments['to'], $value);
 	}
 
+	function wpquery_filter_numericrange($query, $value, array $arguments)
+	{
+		if (! isset($arguments['from'], $arguments['to'])) {
+			Feedback::error(tr('The range filter is missing \"from\" or \"to\".'));
+		}
+		$query->filterNumericRange($arguments['from'], $arguments['to'], $value);
+	}
+
 	function wpquery_filter_personalize($query, $type, array $arguments)
 	{
 		global $user;
