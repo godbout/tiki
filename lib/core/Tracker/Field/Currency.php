@@ -11,7 +11,7 @@
  * Letter key: ~b~
  *
  */
-class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable, Tracker_Field_Exportable
+class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_Field_Synchronizable, Tracker_Field_Exportable, Tracker_Field_Filterable
 {
 	public static function getTypes()
 	{
@@ -172,22 +172,21 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 
 	function renderInput($context = [])
 	{
-		$data = [];
-
-		$trk = TikiLib::lib('trk');
-		$currencyTracker = $this->getOption('currencyTracker');
-		
-		if ($currencyTracker) {
-			$fieldId = $trk->get_field_by_name($currencyTracker, 'Currency');
-			if ($fieldId) {
-				$data['currencies'] = $trk->list_tracker_field_values($currencyTracker, $fieldId);
-				sort($data['currencies']);
-			} else {
-				$data['error'] = 'Missing Currency field in tracker '.$currencyTracker;
-			}
-		}
-
+		$data = $this->getAvailableCurrencies();
 		return $this->renderTemplate('trackerinput/currency.tpl', $context, $data);
+	}
+
+	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
+	{
+		$value = $this->getValue();
+		$defaultAmount = $this->convertToDefaultCurrency($this->getFieldData());
+		$baseKey = $this->getBaseKey();
+
+		$out = [
+			$baseKey => $typeFactory->plaintext($value),
+			"{$baseKey}_base" => $typeFactory->numeric($defaultAmount),
+		];
+		return $out;
 	}
 
 	function importRemote($value)
@@ -221,5 +220,77 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 			;
 
 		return $schema;
+	}
+
+	function getFilterCollection()
+	{
+		$filters = new Tracker\Filter\Collection($this->getTrackerDefinition());
+		$permName = $this->getConfiguration('permName');
+		$name = $this->getConfiguration('name');
+		$baseKey = $this->getBaseKey();
+		$data = $this->getAvailableCurrencies();
+		$data['size'] = $this->getOption('size');
+
+		$filters->addNew($permName, 'range')
+			->setLabel($name)
+			->setControl(new Tracker\Filter\Control\CurrencyRange("tf_{$permName}_range", $data))
+			->setApplyCondition(function ($control, Search_Query $query) use ($baseKey) {
+				if ($control->hasValue()) {
+					$data = $this->getFieldData();
+					$data['amount'] = $control->getFrom();
+					$data['currency'] = $control->getFromCurrency();
+					$from = $this->convertToDefaultCurrency($data);
+					$data['amount'] = $control->getTo();
+					$data['currency'] = $control->getToCurrency();
+					$to = $this->convertToDefaultCurrency($data);
+					$query->filterNumericRange($from, $to, "{$baseKey}_base");
+				}
+			});
+
+		return $filters;
+	}
+
+	private function getAvailableCurrencies() {
+		$data = [];
+
+		$trk = TikiLib::lib('trk');
+		$currencyTracker = $this->getOption('currencyTracker');
+
+		if ($currencyTracker) {
+			$fieldId = $trk->get_field_by_name($currencyTracker, 'Currency');
+			if ($fieldId) {
+				$data['currencies'] = $trk->list_tracker_field_values($currencyTracker, $fieldId);
+				sort($data['currencies']);
+			} else {
+				$data['error'] = 'Missing Currency field in tracker '.$currencyTracker;
+			}
+		}
+
+		return $data;
+	}
+
+	private function convertToDefaultCurrency($data) {
+		$trk = TikiLib::lib('trk');
+		$currencyTracker = $this->getOption('currencyTracker');
+
+		if (! empty($currencyTracker)) {
+			$rates = $trk->exchange_rates($currencyTracker, $data['date']);
+
+			$defaultCurrency = array_search(1, $rates);
+			if (empty($defaultCurrency)) {
+				$defaultCurrency = 'USD';
+			}
+
+			$sourceCurrency = $data['currency'];
+
+			$defaultAmount = $data['amount'];
+			if ($sourceCurrency != $defaultCurrency && !empty($rates[$sourceCurrency])) {
+				$defaultAmount = (float)$defaultAmount / (float)$rates[$sourceCurrency];
+			}
+		} else {
+			$defaultAmount = 0;
+		}
+
+		return $defaultAmount;
 	}
 }

@@ -132,10 +132,17 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 			}
 		}
 
+		$handler = $this->getMirroredHandler();
+		$out = [];
+
+		if ($handler && $handler instanceof Tracker_Field_Indexable) {
+			$out = $handler->getDocumentPart($typeFactory);
+		}
+
 		$baseKey = $this->getBaseKey();
-		return [
-			$baseKey => $typeFactory->sortable($value),
-		];
+		$out[$baseKey] = $typeFactory->sortable($value);
+
+		return $out;
 	}
 
 	function getProvidedFields()
@@ -193,18 +200,9 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 		$permName = $this->getConfiguration('permName');
 		$name = $this->getConfiguration('name');
 		$baseKey = $this->getBaseKey();
-
-		$mirrorField = $this->getOption('mirrorField');
-		$handler = false;
-
-		if ($mirrorField && $mirrorField != $this->getFieldId()) {
-			$field = TikiLib::lib('trk')->get_field_info($mirrorField);
-			$item = TikiLib::lib('trk')->get_tracker_item($this->getItemId());
-			$handler = TikiLib::lib('trk')->get_field_handler($field, $item);
-		}
+		$handler = $this->getMirroredHandler();
 
 		if ($handler && $handler instanceof Tracker_Field_Filterable) {
-			$handler->replaceBaseKey($permName);
 			$sub = $handler->getFilterCollection();
 			foreach ($sub->getFilters() as $subfilter) {
 				$subfilter->setLabel($name);
@@ -308,5 +306,22 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 	public static function resetRunner()
 	{
 		self::$runner = null;
+	}
+
+	private function getMirroredHandler()
+	{
+		$mirrorField = $this->getOption('mirrorField');
+		$handler = false;
+
+		if ($mirrorField && $mirrorField != $this->getFieldId()) {
+			$field = TikiLib::lib('trk')->get_field_info($mirrorField);
+			$item = TikiLib::lib('trk')->get_tracker_item($this->getItemId());
+			// use calculated value as the mirrored field value to allow handler produce results based on the math calculation
+			$item[$mirrorField] = $item[$this->getFieldId()];
+			$handler = TikiLib::lib('trk')->get_field_handler($field, $item);
+			$handler->replaceBaseKey($this->getConfiguration('permName'));
+		}
+
+		return $handler;
 	}
 }
