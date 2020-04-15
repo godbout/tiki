@@ -2463,6 +2463,94 @@ if (isset($_REQUEST['benchmark'])) {
 	$benchmark = '';
 }
 
+$diffDatabase = false;
+$diffDbTables = array();
+$diffDbColumns = array();
+$diffFileTables = array();
+$diffFileColumns = array();
+$dynamicTables = array();
+$sqlFileTables = array();
+if (isset($_REQUEST['dbmismatches']) && ! $standalone && file_exists('db/tiki.sql')) {
+	$diffDatabase = true;
+	$tikiSql = file_get_contents('db/tiki.sql');
+	preg_match_all('/CREATE TABLE (?:.(?!;[^\S]))+./s', $tikiSql, $tables);
+
+	foreach ($tables[0] as $table) {
+		preg_match('/CREATE TABLE[\s\t]*`?(\w+)`?/', $table, $matches);
+		$tableName = trim($matches[1]);
+		$sqlFileTables[$tableName] = array();
+
+		preg_match_all('/^[\s\t]*`?(?!CREATE|KEY|PRIMARY|UNIQUE|INDEX)(\w+)`?/m', $table, $fields);
+
+		foreach ($fields[1] as $field) {
+			$sqlFileTables[$tableName][] = $field;
+		}
+	}
+
+	$query = <<<SQL
+SELECT TABLE_NAME, COLUMN_NAME
+FROM information_schema.columns
+WHERE table_schema = database()
+  AND (TABLE_NAME NOT LIKE "index_%" OR TABLE_NAME LIKE "zzz_unused_%");
+SQL;
+
+	$result = query($query);
+	$diffFileTables = array_keys($sqlFileTables);
+	$diffFileColumns = $sqlFileTables;
+	foreach ($result as $tables) {
+		$dbTable = $tables['TABLE_NAME'];
+		$dbColumn = $tables['COLUMN_NAME'];
+
+		// Table in DB and SQL
+		$key = array_search($dbTable, $diffFileTables);
+		if ($key !== false) {
+			unset($diffFileTables[$key]);
+		}
+
+		// Table in DB but not in SQL file
+		if (! array_key_exists($dbTable, $sqlFileTables)) {
+			if (! in_array($dbTable, $diffDbTables)) {
+				$diffDbTables[] = $dbTable;
+			}
+
+			continue;
+		}
+
+		// Column in DB but not in SQL file
+		if (! in_array($dbColumn, $sqlFileTables[$dbTable])) {
+			$diffDbColumns[$dbTable][] = $dbColumn;
+		}
+
+		if (isset($diffFileColumns[$dbTable])) {
+			$key = array_search($dbColumn, $diffFileColumns[$dbTable]);
+			unset($diffFileColumns[$dbTable][$key]);
+		}
+
+		if (empty($diffFileColumns[$dbTable])) {
+			unset($diffFileColumns[$dbTable]);
+		}
+	}
+
+	// If table is missing, then all columns will be missing too (remove from columns diff)
+	foreach ($diffFileTables as $table) {
+		if (isset($diffFileColumns[$table])) {
+			unset($diffFileColumns[$table]);
+		}
+	}
+
+	$query = <<<SQL
+SELECT TABLE_NAME
+FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = database()
+  AND (TABLE_NAME LIKE "index_%" OR TABLE_NAME LIKE "zzz_unused_%");
+SQL;
+
+	$result = query($query);
+	foreach ($result as $tables) {
+		$dynamicTables[] = $tables['TABLE_NAME'];
+	}
+}
+
 /**
  * TRIM (Tiki Remote Instance Manager) Section
  **/
@@ -2850,6 +2938,12 @@ if ($standalone && ! $nagios) {
 	$smarty->assign('sensitive_data_detected_files', $sensitiveDataDetectedFiles);
 
 	$smarty->assign('benchmark', $benchmark);
+	$smarty->assign('diffDatabase', $diffDatabase);
+	$smarty->assign('diffDbTables', $diffDbTables);
+	$smarty->assign('diffDbColumns', $diffDbColumns);
+	$smarty->assign('diffFileTables', $diffFileTables);
+	$smarty->assign('diffFileColumns', $diffFileColumns);
+	$smarty->assign('dynamicTables', $dynamicTables);
 	$smarty->assign('users_with_mcrypt_data', $usersWithMCrypt);
 	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 	$smarty->assign('mid', 'tiki-check.tpl');

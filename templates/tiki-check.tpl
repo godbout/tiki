@@ -56,6 +56,121 @@
 	</table>
 </div>
 
+<a name="dbmismatches"></a>
+<h2>{tr}Database mismatches{/tr}</h2>
+{tr}Check for database tables and columns that are not synced with db/tiki.sql{/tr}.<br>
+<a href="tiki-check.php?dbmismatches=run&ts={$smarty.now}#dbmismatches" class="btn btn-primary btn-sm" style="margin-bottom: 10px;">{tr}Check{/tr}</a>
+{if !empty($diffDatabase)}
+	<br />
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<tr>
+				<th>{tr}Tables in database and missing in db/tiki.sql{/tr}</th>
+			</tr>
+			{if !empty($diffDbTables)}
+				{foreach from=$diffDbTables key=key item=item}
+					<tr>
+						<td class="text">{$item}</td>
+					</tr>
+				{/foreach}
+			{else}
+				<td class="text">
+					<span class="text-success">
+						<span class="icon icon-ok fas fa-check-circle "></span> good
+					</span>
+				</td>
+			{/if}
+		</table>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<tr>
+				<th>{tr}Columns in database and missing in db/tiki.sql{/tr}</th>
+			</tr>
+			{if !empty($diffDbColumns)}
+				{foreach from=$diffDbColumns key=key item=item}
+					<tr>
+						<td class="text">{$key}
+							<ul>
+							{foreach from=$diffDbColumns[$key] key=key item=item}
+								<li>{$item}</li>
+							{/foreach}
+							</ul>
+						</td>
+					</tr>
+				{/foreach}
+			{else}
+				<td class="text">
+					<span class="text-success">
+						<span class="icon icon-ok fas fa-check-circle "></span> good
+					</span>
+				</td>
+			{/if}
+		</table>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<tr>
+				<th>{tr}Tables in db/tiki.sql and missing in database{/tr}</th>
+			</tr>
+			{if !empty($diffFileTables)}
+				{foreach from=$diffFileTables key=key item=item}
+					<tr>
+						<td class="text">{$item}</td>
+					</tr>
+				{/foreach}
+			{else}
+				<td class="text">
+					<span class="text-success">
+						<span class="icon icon-ok fas fa-check-circle "></span> good
+					</span>
+				</td>
+			{/if}
+		</table>
+	</div>
+	<div class="table-responsive">
+		<table class="table table-striped table-hover">
+			<tr>
+				<th>{tr}Columns in db/tiki.sql and missing in database{/tr}</th>
+			</tr>
+			{if !empty($diffFileColumns)}
+				{foreach from=$diffFileColumns key=key item=item}
+					<tr>
+						<td class="text">{$key}
+							<ul>
+								{foreach from=$diffFileColumns[$key] key=key item=item}
+									<li>{$item}</li>
+								{/foreach}
+							</ul>
+						</td>
+					</tr>
+				{/foreach}
+			{else}
+				<td class="text">
+					<span class="text-success">
+						<span class="icon icon-ok fas fa-check-circle "></span> good
+					</span>
+				</td>
+			{/if}
+		</table>
+	</div>
+
+	{if !empty($dynamicTables)}
+		<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<tr>
+					<th>{tr}Dynamic tables in database{/tr}</th>
+				</tr>
+				{foreach from=$dynamicTables key=key item=item}
+					<tr>
+						<td class="text">{$item}</td>
+					</tr>
+				{/foreach}
+			</table>
+		</div>
+	{/if}
+{/if}
+
 <h2>{tr}Test sending emails{/tr}</h2>
 {tr}To test if your installation is capable of sending emails please visit the <a href="tiki-install.php">Tiki Installer</a>{/tr}.
 
