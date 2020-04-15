@@ -134,6 +134,12 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertResultCount(0, 'filterNumericRange', 200, 300, 'number');
 	}
 
+	function testRangeFilterBounds()
+	{
+		$this->assertResultCount(1, 'filterNumericRange', 123, 200, 'number');
+		$this->assertResultCount(1, 'filterNumericRange', 100, 123, 'number');
+	}
+
 	function testIndexProvidesHighlightHelper()
 	{
 		$query = new Search_Query('foobar or Bonjour');

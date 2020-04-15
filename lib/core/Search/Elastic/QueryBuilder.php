@@ -148,10 +148,9 @@ class Search_Elastic_QueryBuilder
 			return [
 				'range' => [
 					$this->getNodeField($node) => [
-						"from" => $this->getTerm($node->getToken('from')),
-						"to" => $this->getTerm($node->getToken('to')),
+						"gte" => $this->getTerm($node->getToken('from')),
+						"lte" => $this->getTerm($node->getToken('to')),
 						"boost" => $node->getWeight(),
-						"include_upper" => false,
 					],
 				],
 			];

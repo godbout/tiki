@@ -235,10 +235,9 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				"range" => [
 					"title" => [
-						"from" => "hello",
-						"to" => "world",
+						"gte" => "hello",
+						"lte" => "world",
 						"boost" => 1.5,
-						"include_upper" => false,
 					],
 				],
 			],
