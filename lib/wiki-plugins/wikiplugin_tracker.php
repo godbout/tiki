@@ -2274,13 +2274,13 @@ FILL;
 					. tra($transactionPreviousLabel) . '"/> ';
 			}
 			if (! empty($reset)) {
-					$back .= '<input class="button submit preview" type="reset" name="tr_reset" value="' . tra($reset) . '" />';
+					$back .= '<input class="btn btn-warning button reset" type="reset" name="tr_reset" value="' . tra($reset) . '" />';
 			}
 			if (! empty($preview)) {
 					$back .= '<input class="btn btn-primary button submit preview" type="submit" name="tr_preview" value="' . tra($preview) . '" />';
 			}
 			foreach ($action as $key => $act) {
-					$back .= '<input class="button submit ' . $action_style[$key] . '" type="submit" name="action' . $key . '" value="' . tra($act) . '" onclick="needToConfirm=false" />';
+					$back .= '<input class="button submit mx-2 ' . $action_style[$key] . '" type="submit" name="action' . $key . '" value="' . tra($act) . '" onclick="needToConfirm=false" />';
 			}
 			$back .= '</div></div>';
 		}
