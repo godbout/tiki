@@ -78,6 +78,16 @@ function smarty_function_button($params, $smarty)
 	}
 
 	$disabled = false ;
+	//check if it's a wiki page in format ((Page Name)) and check permission
+	if (preg_match('|^\(\((.+?)\)\)$|', $params['href'], $matches)) {
+		$params['href'] = rawurlencode($matches[1]);
+		$perms = Perms::get(['type' => 'wiki page', 'object' => $matches[1]]);
+		if(! ($perms->view && $perms->wiki_view_ref)) {
+			$disabled = true;
+			$params['_title'] = tr('You don\'t have permission to view the linked page');
+		}
+	}
+
 	if (! empty($params['_disabled'])) {
 		if ($params['_disabled'] == 'y') {
 			$disabled = true;
@@ -220,5 +230,6 @@ function smarty_function_button($params, $smarty)
 
 	$auto_query_args = $auto_query_args_orig;
 	$html = preg_replace('/<a /', '<a class="btn btn-' . $type . ' ' . $class . '" target="' . $target . '" data-role="button" data-inline="true" ' . $id . ' ', $html);
+
 	return $html;
 }

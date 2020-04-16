@@ -22,8 +22,8 @@ function wikiplugin_button_info()
 			'href' => [
 				'required' => true,
 				'name' => tra('Url'),
-				'description' => tr('URL to be produced by the button. You can use wiki argument variables like
-					%0 in it', '<code>{{itemId}}</code>'),
+				'description' => tr('URL to be produced by the button. For Wiki page uses %0 format. You can use wiki argument variables like
+					%1 in it', '<code>((Page Name))</code>', '<code>{{itemId}}</code>'),
 				'since' => '6.1',
 				'filter' => 'url',
 				'default' => '',
