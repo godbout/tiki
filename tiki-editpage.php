@@ -1334,7 +1334,7 @@ if (isset($_REQUEST["save"])
 								$emailData = [
 									'siteName' => TikiLib::lib('tiki')->get_preference('browsertitle'),
 									'mentionedBy' => $mentionedBy['login'],
-									'section' => $info_new['pageName'] . '#mentioned-' . $user . '-section-' . $count
+									'section' => urlencode($info_new['pageName']) . '#mentioned-' . $user . '-section-' . $count
 								];
 
 								Tiki\Notifications\Email::sendMentionNotification('mention_notification_subject.tpl', 'mention_notification.tpl', $emailData, [$userInfo]);
