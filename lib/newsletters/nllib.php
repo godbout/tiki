@@ -1572,7 +1572,7 @@ class NlLib extends TikiLib
 		$toSend = [];
 		foreach ($users as $uInfo) {
 			$userEmail = $uInfo['login'];
-			$email = trim($uInfo['email']);
+			$email = $uInfo['email'];
 			if ($userEmail == '') {
 				$userEmail = $userlib->get_user_by_email($email);
 			}

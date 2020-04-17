@@ -364,7 +364,7 @@ function wikiplugin_tracker_info()
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n']
 				],
-			'advanced' => true,
+				'advanced' => true,
 			],
 			'transactionPreviousURL'   => [
 				'required'    => false,
@@ -760,12 +760,14 @@ function wikiplugin_tracker($data, $params)
 	$stepExist = isset($transactionStep) && strlen($transactionStep) > 0;
 	if ($nameExist xor $stepExist) {
 		return WikiParser_PluginOutput::error(
-			tr('Transactions'), tr('You need to define both transaction name and transaction step, or none of the two.')
+			tr('Transactions'),
+			tr('You need to define both transaction name and transaction step, or none of the two.')
 		);
 	} elseif ($nameExist && $stepExist) {
 		if (empty($transactionFinalStep)) {
 			return WikiParser_PluginOutput::error(
-				tr('Transactions'), tr('You need to choose transactionFinalStep (y/n).')
+				tr('Transactions'),
+				tr('You need to choose transactionFinalStep (y/n).')
 			);
 		}
 		if ((empty($transactionPreviousURL) && ! empty($transactionPreviousLabel))
@@ -797,7 +799,7 @@ function wikiplugin_tracker($data, $params)
 				$_SESSION[$transactionName]['values'] = [];
 			}
 			$_SESSION[$transactionName]['itemId'] = $_REQUEST['itemId'];
-		} else if (! empty($_SESSION[$transactionName]['itemId'])) {
+		} elseif (! empty($_SESSION[$transactionName]['itemId'])) {
 			$_REQUEST['itemId'] = $_SESSION[$transactionName]['itemId'];
 			// jquery validation needs the itemId in the $jitRequest
 			global $jitRequest;
@@ -1028,7 +1030,7 @@ function wikiplugin_tracker($data, $params)
 			foreach ($definition->getFields() as $field) {
 				// User and group on autoassign create/modify
 				if (($user || $registration == 'y' || (isset($transactionName) && isset($_SESSION[$transactionName]) && isset($_SESSION[$transactionName]['registrationName'])))
-				   && ($field['type'] == 'u' || $field['type'] == 'g') ) {
+				   && ($field['type'] == 'u' || $field['type'] == 'g')) {
 					$autoassign = $field['options_map']['autoassign'];
 					if ($autoassign == 1 || $autoassign == 2) {
 						if ($user) {
@@ -1099,12 +1101,12 @@ function wikiplugin_tracker($data, $params)
 		foreach ($unfiltered['data'] as $f) {
 			if ($itemObject->canModifyField($f['fieldId']) || $registration == 'y' && empty($item_info)) {
 				$flds['data'][] = $f;
-			} else if ($itemObject->canViewField($f['fieldId']) && ! empty($item_info)) {
+			} elseif ($itemObject->canViewField($f['fieldId']) && ! empty($item_info)) {
 				$flds['data'][] = [
-					'fieldId' =>$f['fieldId'],
-					'trackerId' =>$f['trackerId'],
-					'permName' =>$f['permName'],
-					'type' =>$f['type'],
+					'fieldId' => $f['fieldId'],
+					'trackerId' => $f['trackerId'],
+					'permName' => $f['permName'],
+					'type' => $f['type'],
 					'readonly' => true,
 				];
 			}
@@ -1211,7 +1213,7 @@ function wikiplugin_tracker($data, $params)
 
 			if (isset($userField)
 			  && ( ($registration == 'y' && isset($_REQUEST['name']))
-				|| (isset($transactionName) && isset($_SESSION[$transactionName]) && isset($_SESSION[$transactionName]['registrationName'])) ) ) {
+				|| (isset($transactionName) && isset($_SESSION[$transactionName]) && isset($_SESSION[$transactionName]['registrationName'])) )) {
 				$userFieldDef = $definition->getField($userField);
 				if (isset($_REQUEST['name'])) {
 					$userFieldDef['value'] = $_REQUEST['name'];
@@ -1333,7 +1335,8 @@ function wikiplugin_tracker($data, $params)
 					}
 					// NB array key needs a string ins_ prepended so array merge preserves the field id's
 					$_SESSION[$transactionName]['values'] = array_merge(
-						$_SESSION[$transactionName]['values'], $transactionValues
+						$_SESSION[$transactionName]['values'],
+						$transactionValues
 					);
 
 					if ($transactionFinalStep == 'y' && ! isset($_REQUEST['tr_previous'])) {
@@ -1361,7 +1364,6 @@ function wikiplugin_tracker($data, $params)
 										)
 									);
 								}
-
 							}
 						}
 						$rid = wikiplugin_tracker_save_item($saveThis);
@@ -1546,8 +1548,7 @@ function wikiplugin_tracker($data, $params)
 						$tplKey = '-' . $tplSubject[$subjectCounter] . '-' . $emailOptions[2][$templateCounter];
 
 						foreach ($ueos as $ueo) {
-
-							if (!in_array($ueo . $tplKey, $sentMails)) {
+							if (! in_array($ueo . $tplKey, $sentMails)) {
 								try {
 									$mail->send($ueo);
 									$sentMails[] = $ueo . $tplKey;
@@ -1558,8 +1559,8 @@ function wikiplugin_tracker($data, $params)
 								if ($title == 'mail error') {
 									// Log the email error at the tiki syslog
 									$logslib = TikiLib::lib('logs');
-								$logslib->add_log('mail error', 'plugin tracker email error / ' . $ueo . ' / item' . $rid);
-							} elseif ($title == 'mail' && $prefs['log_mail'] == 'y') {
+									$logslib->add_log('mail error', 'plugin tracker email error / ' . $ueo . ' / item' . $rid);
+								} elseif ($title == 'mail' && $prefs['log_mail'] == 'y') {
 									// Log the email at the tiki syslog
 									$logslib = TikiLib::lib('logs');
 									$logslib->add_log('mail', 'plugin tracker email sent / ' . $ueo . ' / item' . $rid);
@@ -1922,9 +1923,8 @@ function wikiplugin_tracker($data, $params)
 		}
 
 		if ($params['formtag'] == 'y') {
-
 			// if we're using ajax, we need to know whether we're updating or creating
-			$ajax_action = !empty($itemId) ? 'data-ajax_action="update" data-item_id="' . $itemId . '"' : 'data-ajax_action="create"';
+			$ajax_action = ! empty($itemId) ? 'data-ajax_action="update" data-item_id="' . $itemId . '"' : 'data-ajax_action="create"';
 
 			//if using ajax, set data-attributes in the form so that we can retrieve them in javascript later
 			$ajax_datas = $params['ajax'] == 'y' ? 'data-ajax="true" ' . $ajax_action . ' data-tracker_id="' . $params['trackerId'] . '"' : "";
@@ -1999,7 +1999,6 @@ function wikiplugin_tracker($data, $params)
 				} else {
 					$item[$f['fieldId']] = $f['value'];
 				}
-
 			}
 		}
 		if (! empty($showstatus) && $showstatus == 'y') {
@@ -2063,7 +2062,10 @@ function wikiplugin_tracker($data, $params)
 		foreach ($flds['data'] as $f) {
 			if (! empty($transactionName)) {
 				$renderedField = wikiplugin_tracker_render_input(
-					$f, $item, $dynamicSave, $_SESSION[$transactionName]['values']
+					$f,
+					$item,
+					$dynamicSave,
+					$_SESSION[$transactionName]['values']
 				);
 			} else {
 				$renderedField = wikiplugin_tracker_render_input($f, $item, $dynamicSave);
@@ -2083,7 +2085,7 @@ function wikiplugin_tracker($data, $params)
 						$prettyout = '<span class="outputPretty" id="track_' . $f['fieldId'] . '" name="track_' . $f['fieldId'] . '">' . wikiplugin_tracker_render_value($f, $item) . '</span>';
 						$smarty->assign('f_' . $f['fieldId'], $prettyout);
 						$smarty->assign('f_' . $f['permName'], $prettyout);
-					} else if (! empty($f['readonly'])) {
+					} elseif (! empty($f['readonly'])) {
 						$prettyout = '<span class="outputPretty" id="track_' . $f['fieldId'] . '" name="track_' . $f['fieldId'] . '">' . wikiplugin_tracker_render_value($f, $item) . '</span>';
 						$smarty->assign('f_' . $f['fieldId'], $prettyout);
 						$smarty->assign('f_' . $f['permName'], $prettyout);
@@ -2274,13 +2276,13 @@ FILL;
 					. tra($transactionPreviousLabel) . '"/> ';
 			}
 			if (! empty($reset)) {
-					$back .= '<input class="button submit preview" type="reset" name="tr_reset" value="' . tra($reset) . '" />';
+					$back .= '<input class="btn btn-warning button reset" type="reset" name="tr_reset" value="' . tra($reset) . '" />';
 			}
 			if (! empty($preview)) {
 					$back .= '<input class="btn btn-primary button submit preview" type="submit" name="tr_preview" value="' . tra($preview) . '" />';
 			}
 			foreach ($action as $key => $act) {
-					$back .= '<input class="button submit ' . $action_style[$key] . '" type="submit" name="action' . $key . '" value="' . tra($act) . '" onclick="needToConfirm=false" />';
+					$back .= '<input class="button submit mx-2 ' . $action_style[$key] . '" type="submit" name="action' . $key . '" value="' . tra($act) . '" onclick="needToConfirm=false" />';
 			}
 			$back .= '</div></div>';
 		}
