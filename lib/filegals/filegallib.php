@@ -29,7 +29,7 @@ class FileGalLib extends TikiLib
 		if (empty($gal_info)) {
 			$gal_info = $this->get_file_gallery_info((int)$galleryId);
 		}
-		if (($gal_info["type"] == "podcast") || ($gal_info["type"] == "vidcast")) {
+		if (isset($gal_info['type']) && in_array($gal_info['type'], ['podcast', 'vidcast'])) {
 			return true;
 		} else {
 			return false;
@@ -3388,9 +3388,11 @@ class FileGalLib extends TikiLib
 	public function fileContentIsSVG(&$data)
 	{
 		$finfo = new finfo(FILEINFO_MIME);
+
 		$type = $finfo->buffer($data) . "\n";
 
-		if (substr($type, 0, 18) == 'application/x-gzip') {
+		if (substr($type, 0, 18) == 'application/x-gzip' ||
+			substr($type, 0, 16) == 'application/gzip') {
 			$data = gzdecode($data);
 			$finfo = new finfo(FILEINFO_MIME);
 			$type = $finfo->buffer($data);

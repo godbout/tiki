@@ -117,7 +117,7 @@ class AuthTokens
 			if ($data['entry'] !== $sefurl && $full_entry_encoded !== $sefurl && $convertedSefurl !== $sefurl) {
 				return null;	// entry doesn't match
 			}
-		} elseif ($data['entry'] != $entry) {
+		} elseif (! isset($data['entry']) || $data['entry'] != $entry) {
 			return null;	// entry doesn't match
 		}
 

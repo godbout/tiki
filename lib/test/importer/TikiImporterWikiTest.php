@@ -129,7 +129,14 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		   ->getMock();
 		$obj->expects($this->exactly(6))->method('insertPage')->will($this->onConsecutiveCalls(true, true, false, true, false, true));
 
-		$parsedData = [1, 2, 3, 4, 5, 6];
+		$parsedData = [
+			['name' => 'Page1'],
+			['name' => 'Page2'],
+			['name' => 'Page3'],
+			['name' => 'Page4'],
+			['name' => 'Page5'],
+			['name' => 'Page6'],
+		];
 		$countData = $obj->insertData($parsedData);
 		$expectedResult = ['totalPages' => 6, 'importedPages' => 4];
 
