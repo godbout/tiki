@@ -2668,8 +2668,7 @@ class TrackerLib extends TikiLib
 		if (isset($ins_fields)&&isset($ins_fields['data'])) {
 			foreach ($ins_fields['data'] as $f) {
 				if ($f['type'] == 'b' && ! empty($f['value'])){
-					$ins_id = 'ins_' . $f['fieldId'];
-					if (empty($_REQUEST[$ins_id . '_currency']) ) {
+					if (is_numeric($f['value'])) {
 						$f['name']= $f['name'].' Currency';
 						$mandatory_fields[] = $f;
 					}
