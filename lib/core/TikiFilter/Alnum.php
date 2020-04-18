@@ -5,32 +5,44 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class TikiFilter_Alnum extends Zend\Filter\PregReplace
-{
-	private $filter;
+//namespace Tiki\TikiFilter;
 
-	function __construct($space = false)
+use Laminas\Filter\PregReplace;
+use Laminas\Stdlib\StringUtils;
+use Laminas\I18n\Filter\AbstractLocale;
+
+class TikiFilter_Alnum extends AbstractLocale
+{
+	private $pattern;
+
+	/**
+	 * Much of the logic for this function is taken directly from the Zend Alnum filter
+	 *
+	 * @param string $extraChar	Match an extra preg sequence (like white space, etc)
+	 *
+	 */
+	public function __construct(string $extraChar = '')
 	{
-		$space = is_bool($space) ? $space : false;
-		$whiteSpace = $space === true ? '\s' : '';
-		if (! extension_loaded('intl')) {
-			$this->filter = null;
-			if (! Zend\Stdlib\StringUtils::hasPcreUnicodeSupport()) {
-				parent::__construct('/[^a-zA-Z0-9' . $whiteSpace . ']/', ''); // a straight copy from \Zend\I18n\Filter\Alnum::filter
-			} else {
-				parent::__construct('/[^\p{L}\p{N}' . $whiteSpace . ']/u', ''); // a straight copy from \Zend\I18n\Filter\Alnum::filter
-			}
+		parent::__construct();
+		if (! StringUtils::hasPcreUnicodeSupport()) {
+			// POSIX named classes are not supported, use alternative a-zA-Z0-9 match
+			$this->pattern = '/[^a-zA-Z0-9' . $extraChar . ']/';
+		} elseif (in_array(Locale::getPrimaryLanguage($this->getLocale()), ['ja', 'ko', 'zh'], true)) {
+			// Use english alphabet
+			$this->pattern = '/[^a-zA-Z0-9' . $extraChar . ']/u';
 		} else {
-			$this->filter = new \Zend\I18n\Filter\Alnum($space);
+			// Use native language alphabet
+			$this->pattern = '/[^\p{L}\p{N}' . $extraChar . ']/u';
 		}
 	}
 
-	function filter($value)
+	/**
+	 * @param mixed  $value		The string to be filtered
+	 *
+	 * @return PregReplace		The filtered value
+	 */
+	public function filter($value) : string
 	{
-		if (! extension_loaded('intl')) {
-			return parent::filter($value);
-		} else {
-			return $this->filter->filter($value);
-		}
+		return preg_replace($this->pattern, '', $value);
 	}
 }

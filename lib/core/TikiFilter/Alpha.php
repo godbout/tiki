@@ -5,6 +5,9 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Laminas\I18n\Filter\Alpha;
+use Laminas\Stdlib\StringUtils;
+
 class TikiFilter_Alpha extends Zend\Filter\PregReplace
 {
 	private $filter;
@@ -15,13 +18,13 @@ class TikiFilter_Alpha extends Zend\Filter\PregReplace
 		$whiteSpace = $space === true ? '\s' : '';
 		if (! extension_loaded('intl')) {
 			$this->filter = null;
-			if (! Zend\Stdlib\StringUtils::hasPcreUnicodeSupport()) {
+			if (! StringUtils::hasPcreUnicodeSupport()) {
 				parent::__construct('/[^a-zA-Z' . $whiteSpace . ']/', ''); // a straight copy from \Zend\I18n\Filter\Alpha::filter
 			} else {
 				parent::__construct('/[^\p{L}' . $whiteSpace . ']/u', ''); // a straight copy from \Zend\I18n\Filter\Alpha::filter
 			}
 		} else {
-			$this->filter = new \Zend\I18n\Filter\Alpha($space);
+			$this->filter = new Alpha($space);
 		}
 	}
 

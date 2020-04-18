@@ -21,7 +21,7 @@ class Services_Group_Controller
 		'home' => 'pagename',
 		'groupstracker' => 'int',
 		'userstracker' => 'int',
-		'registrationUsersFieldIds' => 'digitscolons',
+		'registrationUsersFieldIds' => 'intsscolons',
 		'userChoice' => 'word',
 		'defcat' => 'int',
 		'theme' => 'themename',

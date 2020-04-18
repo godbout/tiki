@@ -115,7 +115,7 @@ class OCRSetCommand extends Command
 			$output->writeln('<error>Must specify a valid option. Use Q to Queue files or S to Skip Files.</error>');
 			return;
 		}
-		$range = TikiFilter::get('digitscolons')->filter($input->getArgument('File ID'));
+		$range = TikiFilter::get('intscolons')->filter($input->getArgument('File ID'));
 		$range = explode(':', $range);
 		sort($range);											// we need lower values first for search results to match
 

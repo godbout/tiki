@@ -5,9 +5,14 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+/**
+ * Exotic filter which will remove the '<x>', for values previously "neutered" by the PreventXss filter
+ * Class TikiFilter_RawUnsafe
+ */
+
 class TikiFilter_RawUnsafe implements Zend\Filter\FilterInterface
 {
-	function filter($value)
+	public function filter($value)
 	{
 		return str_replace('<x>', '', $value);
 	}

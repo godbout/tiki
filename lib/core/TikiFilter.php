@@ -4,12 +4,13 @@
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
-use Zend\Filter\Boolean;
-use Zend\Filter\Digits;
-use Zend\Filter\FilterInterface;
-use Zend\Filter\PregReplace;
-use Zend\Filter\StripTags;
-use Zend\Filter\ToInt;
+
+use Laminas\Filter\Boolean;
+use Laminas\Filter\Digits;
+use Laminas\Filter\FilterInterface;
+use Laminas\Filter\PregReplace;
+use Laminas\Filter\StripTags;
+use Laminas\Filter\ToInt;
 
 /**
  * Class TikiFilter
@@ -100,23 +101,24 @@ class TikiFilter
 			/** Digit Filters (no Alpha or HTML) String Return Type **/
 			case 'digits':
 				// Test Return "4"
+				// Multilingual digits. May return characters like ½ or 四 (Japanese for 4)
 				// Removes everything except digits eg. ' 12345 to 67890' returns '1234567890', while '-5' returns '5'
 				return new Digits;
-			case 'digitscolons':
-				// Test Return "::4��"
-				// Removes everything except digits and colons, e.g., for colon-separated ID numbers.
+			case 'intscolons':
+				// Test Return "::4"
+				// Removes everything except digits and colons, e.g., for colon-separated ID numbers. No negatives or decimals
 				// Only characters matched, not patterns - eg 'x75::xx44:' will return '75::44:'
-				return new PregReplace('/[^\p{N}:]*/', '');
-			case 'digitscommas':
-				// Test Return ",4��"
-				// Removes everything except digits and commas, e.g., for comma-separated ID numbers.
+				return new PregReplace('/[^0-9:]/', '');
+			case 'intscommas':
+				// Test Return ",4"
+				// Removes everything except digits and commas, e.g., for comma-separated ID numbers.  No negatives or decimals
 				// Only characters matched, not patterns - eg 'x75,,xx44,' will return '75,,44,'
-				return new PregReplace('/[^\p{N},]*/', '');
-			case 'digitspipes':
-				// Test Return "|4��"
-				// Removes everything except digits and pipes, e.g., for pipe-separated ID numbers.
+				return new PregReplace('/[^0-9,]/', '');
+			case 'intspipes':
+				// Test Return "|4"
+				// Removes everything except digits and pipes, e.g., for pipe-separated ID numbers. No negatives or decimals
 				// Only characters matched, not patterns - eg 'x75||xx44|' will return '75||44|'
-				return new PregReplace('/[^\p{N}\|]*/', '');
+				return new PregReplace('/[^0-9|]/', '');
 
 			/** Alpha Filters (no Digits or HTML) String Return Type **/
 			case 'alpha':
@@ -131,25 +133,25 @@ class TikiFilter
 				/** Digits & Alpha (no HTML) String Return Type **/
 			case 'word':
 				// Test Return: "g4h_onclickbscript"
-				// Strips everything but digit and alpha and underscore characters. Unicode support.
+				// Strips everything but digit and alpha and underscore characters. Strips Unicode.
 				return new PregReplace('/\W+/', '');
 			case 'wordspace':
-				// Test Return " g4hΔ δ_コン onclickbscript "
+				// Test Return " g4h_ onclickbscript "
 				// Words and spaces only (no trimming)
-				return new PregReplace('/[^\p{L}\p{M}\p{N}_\p{Zs}]*/u', '');
+				return new PregReplace('/[^\s\w]+/', '');
 			case 'alnum':
 				// Test Return "g4hΔδコンonclickbscript"
 				// Only alphabetic characters and digits. All other characters are suppressed. Unicode support.
 				return new TikiFilter_Alnum;
 			case 'alnumdash':
-				// Test Return "g4h��_���onclickbscript"
+				// Test Return "g4hΔδ_コンonclickbscript"
 				// Removes everything except alphabetic characters, digits, dashes and underscores. Could be used for
 				// class names, sortmode values, etc.
-				return new PregReplace('/[^\p{L}\p{N}\p{Pc}\p{Pd}]*/', '');
+				return new TikiFilter_Alnum('_-');
 			case 'alnumspace':
 				// Test Return " g4hΔ δコン onclickbscript "
 				// Only alphabetic characters, digits and spaces. All other characters are suppressed. Unicode support
-				return new TikiFilter_Alnum(true);
+				return new TikiFilter_Alnum('\s');
 			case 'username':
 			case 'groupname':
 			case 'pagename':
