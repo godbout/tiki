@@ -105,8 +105,10 @@ class Services_Edit_ListConverter
 					$this->columnOptions['links'] = $value === 'y';
 					break;
 				case 'url':
-					$this->columnOptions['url'] = $value;
-					break;
+					if (preg_match('/itemId/i', $value) || $value === 'sefurl') { // we convert some cases of 'url' parameter. See other still not converted cases in http://doc.tiki.org/PluginTrackerList#content_index2-3
+						$this->columnOptions['url'] = $value;
+						break;
+					}
 				case 'status':
 					$filters[] = [
 						'field' => 'tracker_status',
@@ -403,7 +405,8 @@ class Services_Edit_ListConverter
 			$rawMode = true;
 		}
 		if ($this->columnOptions['links'] && $field['isMain'] === 'y') {
-			if (! empty($this->columnOptions['url'])) {
+			// we convert some cases of 'url' parameter. See other still not converted cases in http://doc.tiki.org/PluginTrackerList#content_index2-3
+			if (! empty($this->columnOptions['url']) && ((preg_match('/itemId/i', $this->columnOptions['url']) || $this->columnOptions['url'] === 'sefurl'))) {
 				$url = $this->columnOptions['url'];
 			} else {
 				$display['format'] = 'objectlink';
@@ -435,9 +438,16 @@ class Services_Edit_ListConverter
 		$displays = rtrim($this->arrayToInlinePluginString('display', [$display]));
 
 		if (! empty($url)) {
-			$displays = '<a href="' . $url . '{display name="object_id"}">' . $displays . '</a>';
+			if (preg_match('/itemId/i', $url)) {
+				$displays = '[' . $url . '{display name="object_id"}|' . $displays . ']';
+			} elseif ($url === 'sefurl') {
+				$displays = '[item{display name="object_id"}|' . $displays . ']';
+			}
+			// TODO: treat these cases as per http://doc.tiki.org/PluginTrackerList#content_index2-3
+			// "mypage?tr_offset"
+			// "mypage?vi_tpl"
+			// "mypage?ei_tpl"
 		}
-
 		if ($this->columnOptions['first']) {
 			$arr = array_reverse($this->formats, true);
 			$arr[$permName] = $displays;
