@@ -1216,7 +1216,7 @@ class EditLib
 							break;
 						default:
 							$e = end($p['stack']);
-							if ($node['data']['name'] == $e['tag']) {
+							if (isset($e['tag']) && $node['data']['name'] == $e['tag']) {
 								$src .= $e['string'];
 								array_pop($p['stack']);
 							}

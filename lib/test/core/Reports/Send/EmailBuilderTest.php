@@ -67,7 +67,9 @@ class Reports_Send_EmailBuilderTest extends TikiTestCase
 			->will($this->returnValue('2011-09-12 20:30'));
 
 		$trklib = $this->createMock(get_class(TikiLib::lib('trk')));
-		$trklib->expects($this->once())->method('get_tracker');
+		$trklib->expects($this->once())
+			->method('get_tracker')
+			->will($this->returnValue(['id' => '2', 'name' => 'Test Tracker']));
 		$trklib->expects($this->once())
 			->method('get_isMain_value')
 			->will($this->returnValue('Tracker item name'));

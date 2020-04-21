@@ -251,6 +251,10 @@ unit-tests-72:
 unit-tests-73:
   <<: *template-unit-tests
   image: rjsmelo/ubuntu-php:7.3-qa
+
+unit-tests-74:
+  <<: *template-unit-tests
+  image: rjsmelo/ubuntu-php:7.4-qa
   allow_failure: true
 
 #

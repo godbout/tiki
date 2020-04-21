@@ -3537,7 +3537,7 @@ class UsersLib extends TikiLib
 			$utr['usersTrackerId'] = '';
 			foreach ($utr['groups'] as $gr) {
 				$utrid = $this->get_usertrackerid($gr);
-				if ($utrid['usersTrackerId'] and $utrid['usersFieldId']) {
+				if (! empty($utrid['usersTrackerId']) && ! empty($utrid['usersFieldId'])) {
 					$utrid['group'] = $gr;
 					$utrid['user'] = $utr['login'];
 					$utr = $utrid;

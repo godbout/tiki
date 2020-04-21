@@ -1397,23 +1397,24 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.5.2",
+            "version": "6.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "43ece0e75098b7ecd8d13918293029e555a50f82"
+                "reference": "aab4ebd862aa7d04f01a4b51849d657db56d882e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/guzzlehttp/guzzle/guzzlehttp-guzzle-43ece0e75098b7ecd8d13918293029e555a50f82-zip-377a9d.zip",
-                "reference": "43ece0e75098b7ecd8d13918293029e555a50f82",
-                "shasum": "967d9901efc13f05913112c60e0a31faa901d2f5"
+                "url": "https://composer.tiki.org/dist/guzzlehttp/guzzle/guzzlehttp-guzzle-aab4ebd862aa7d04f01a4b51849d657db56d882e-zip-e1b936.zip",
+                "reference": "aab4ebd862aa7d04f01a4b51849d657db56d882e",
+                "shasum": "b36e4dbc8387affcdd78de7e4cd2f7dc83203d39"
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/promises": "^1.0",
                 "guzzlehttp/psr7": "^1.6.1",
-                "php": ">=5.5"
+                "php": ">=5.5",
+                "symfony/polyfill-intl-idn": "^1.11"
             },
             "require-dev": {
                 "ext-curl": "*",
@@ -1421,7 +1422,6 @@
                 "psr/log": "^1.1"
             },
             "suggest": {
-                "ext-intl": "Required for Internationalized Domain Name (IDN) support",
                 "psr/log": "Required for using the Log middleware"
             },
             "type": "library",
@@ -1460,7 +1460,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2019-12-23T11:57:10+00:00"
+            "time": "2020-04-18T10:38:46+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -2001,7 +2001,7 @@
                 "webmail",
                 "webmail-client"
             ],
-            "time": "2020-02-16T20:31:35+00:00"
+            "time": "2020-04-16T06:09:30+00:00"
         },
         {
             "name": "jquery-form/form",
@@ -4174,17 +4174,17 @@
         },
         {
             "name": "league/commonmark",
-            "version": "1.3.3",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/commonmark.git",
-                "reference": "5a67afc2572ec6d430526cdc9c637ef124812389"
+                "reference": "517cbe1c6faf90afeb38a0e917c73acc6d3051ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/league/commonmark/league-commonmark-5a67afc2572ec6d430526cdc9c637ef124812389-zip-7c5998.zip",
-                "reference": "5a67afc2572ec6d430526cdc9c637ef124812389",
-                "shasum": "84b29e9342b449ee3535bf42fe340822b1736555"
+                "url": "https://composer.tiki.org/dist/league/commonmark/league-commonmark-517cbe1c6faf90afeb38a0e917c73acc6d3051ce-zip-eee679.zip",
+                "reference": "517cbe1c6faf90afeb38a0e917c73acc6d3051ce",
+                "shasum": "e2b6ba4d526bb71103e705a987aaf995cda1f540"
             },
             "require": {
                 "ext-mbstring": "*",
@@ -4201,7 +4201,7 @@
                 "github/gfm": "0.29.0",
                 "michelf/php-markdown": "~1.4",
                 "mikehaertl/php-shellcommand": "^1.4",
-                "phpstan/phpstan-shim": "^0.11.5",
+                "phpstan/phpstan": "^0.12",
                 "phpunit/phpunit": "^7.5",
                 "scrutinizer/ocular": "^1.5",
                 "symfony/finder": "^4.2"
@@ -4244,7 +4244,7 @@
                 "md",
                 "parser"
             ],
-            "time": "2020-04-05T16:01:48+00:00"
+            "time": "2020-04-18T20:46:13+00:00"
         },
         {
             "name": "league/commonmark-extras",
@@ -6892,23 +6892,24 @@
         },
         {
             "name": "smarty/smarty",
-            "version": "v3.1.34",
+            "version": "v3.1.36",
             "source": {
                 "type": "git",
                 "url": "https://github.com/smarty-php/smarty.git",
-                "reference": "c9f0de05f41b9e52798b268ab1e625fac3b8578c"
+                "reference": "fd148f7ade295014fff77f89ee3d5b20d9d55451"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/smarty/smarty/smarty-smarty-c9f0de05f41b9e52798b268ab1e625fac3b8578c-zip-f29c63.zip",
-                "reference": "c9f0de05f41b9e52798b268ab1e625fac3b8578c",
-                "shasum": "6beb75c1ff2fef41aef8bcb58ae8017aa1d2603f"
+                "url": "https://composer.tiki.org/dist/smarty/smarty/smarty-smarty-fd148f7ade295014fff77f89ee3d5b20d9d55451-zip-5b44c2.zip",
+                "reference": "fd148f7ade295014fff77f89ee3d5b20d9d55451",
+                "shasum": "27e85096abf72fc8af9ce34f7ed8a5905f8fcb87"
             },
             "require": {
                 "php": ">=5.2"
             },
             "require-dev": {
-                "phpunit/phpunit": "6.4.1"
+                "phpunit/phpunit": "6.4.1",
+                "smarty/smarty-lexer": "^3.1"
             },
             "type": "library",
             "extra": {
@@ -6944,7 +6945,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2019-02-28T06:42:20+00:00"
+            "time": "2020-04-14T14:44:26+00:00"
         },
         {
             "name": "sorich87/bootstrap-tour",
@@ -7515,6 +7516,68 @@
             "time": "2020-02-27T09:26:54+00:00"
         },
         {
+            "name": "symfony/polyfill-intl-idn",
+            "version": "v1.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-intl-idn.git",
+                "reference": "47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-intl-idn/symfony-polyfill-intl-idn-47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf-zip-192fa2.zip",
+                "reference": "47bd6aa45beb1cd7c6a16b7d1810133b728bdfcf",
+                "shasum": "ddd3899ed78274d9610565c01c6a1abafe68bc8a"
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/polyfill-mbstring": "^1.3",
+                "symfony/polyfill-php72": "^1.10"
+            },
+            "suggest": {
+                "ext-intl": "For best performance"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.15-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Intl\\Idn\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Laurent Bassin",
+                    "email": "laurent@bassin.info"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill for intl's idn_to_ascii and idn_to_utf8 functions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "idn",
+                "intl",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2020-03-09T19:04:49+00:00"
+        },
+        {
             "name": "symfony/polyfill-mbstring",
             "version": "v1.15.0",
             "source": {
@@ -7628,6 +7691,61 @@
                 "shim"
             ],
             "time": "2020-03-09T19:04:49+00:00"
+        },
+        {
+            "name": "symfony/polyfill-php72",
+            "version": "v1.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php72.git",
+                "reference": "37b0976c78b94856543260ce09b460a7bc852747"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/symfony/polyfill-php72/symfony-polyfill-php72-37b0976c78b94856543260ce09b460a7bc852747-zip-c667a0.zip",
+                "reference": "37b0976c78b94856543260ce09b460a7bc852747",
+                "shasum": "41a62c8980485ef849001e1948c5b2d22850dcd2"
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.15-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php72\\": ""
+                },
+                "files": [
+                    "bootstrap.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 7.2+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "time": "2020-02-27T09:26:54+00:00"
         },
         {
             "name": "symfony/polyfill-util",
@@ -8483,21 +8601,58 @@
             "time": "2020-01-17T21:11:47+00:00"
         },
         {
-            "name": "overtrue/phplint",
-            "version": "1.2.1",
+            "name": "n98/junit-xml",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/overtrue/phplint.git",
-                "reference": "deaee8c3459087ea5d17031206b8722a96dd330b"
+                "url": "https://github.com/cmuench/junit-xml.git",
+                "reference": "7df0dbaf413fcaa1a63ffbcef18654e7a4cceb46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/overtrue/phplint/overtrue-phplint-deaee8c3459087ea5d17031206b8722a96dd330b-zip-b0b281.zip",
-                "reference": "deaee8c3459087ea5d17031206b8722a96dd330b",
-                "shasum": "962ef7c578be59cb5fab43051dd8b8097d90f625"
+                "url": "https://composer.tiki.org/dist/n98/junit-xml/n98-junit-xml-7df0dbaf413fcaa1a63ffbcef18654e7a4cceb46-zip-849876.zip",
+                "reference": "7df0dbaf413fcaa1a63ffbcef18654e7a4cceb46",
+                "shasum": "f82eb14b3867b6d854236feca1c219305abda719"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "N98\\JUnitXml": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christian Münch",
+                    "email": "c.muench@netz98.de"
+                }
+            ],
+            "description": "JUnit XML Document generation library",
+            "time": "2013-11-23T13:11:26+00:00"
+        },
+        {
+            "name": "overtrue/phplint",
+            "version": "1.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/phplint.git",
+                "reference": "05bef7df401f8e250436bbb008c25d1b344c0e5e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/overtrue/phplint/overtrue-phplint-05bef7df401f8e250436bbb008c25d1b344c0e5e-zip-b01a7f.zip",
+                "reference": "05bef7df401f8e250436bbb008c25d1b344c0e5e",
+                "shasum": "b9513359a7b38e512d135717d10af4347658335d"
             },
             "require": {
                 "ext-json": "*",
+                "n98/junit-xml": "1.0.0",
                 "php": ">=5.5.9",
                 "symfony/console": "^3.2|^4.0|^5.0",
                 "symfony/finder": "^3.0|^4.0|^5.0",
@@ -8505,12 +8660,24 @@
                 "symfony/yaml": "^3.0|^4.0|^5.0"
             },
             "require-dev": {
+                "brainmaestro/composer-git-hooks": "^2.7",
+                "friendsofphp/php-cs-fixer": "^2.16",
                 "jakub-onderka/php-console-highlighter": "^0.3.2 || ^0.4"
             },
             "bin": [
                 "bin/phplint"
             ],
             "type": "library",
+            "extra": {
+                "hooks": {
+                    "pre-commit": [
+                        "composer fix-style"
+                    ],
+                    "pre-push": [
+                        "composer check-style"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Overtrue\\PHPLint\\": "src/"
@@ -8526,14 +8693,14 @@
                     "email": "anzhengchao@gmail.com"
                 }
             ],
-            "description": "a php syntax check tool.",
+            "description": "`phplint` is a tool that can speed up linting of php files by running several lint processes at once.",
             "keywords": [
                 "check",
                 "lint",
                 "phplint",
                 "syntax"
             ],
-            "time": "2019-12-07T13:46:15+00:00"
+            "time": "2020-04-17T06:35:56+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -9981,17 +10148,17 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "3.5.4",
+            "version": "3.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "dceec07328401de6211037abbb18bda423677e26"
+                "reference": "73e2e7f57d958e7228fce50dc0c61f58f017f9f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/squizlabs/php_codesniffer/squizlabs-php_codesniffer-dceec07328401de6211037abbb18bda423677e26-zip-2fcd18.zip",
-                "reference": "dceec07328401de6211037abbb18bda423677e26",
-                "shasum": "32521c5de7a5cf175f5d7c2a081239f2a9d45e45"
+                "url": "https://composer.tiki.org/dist/squizlabs/php_codesniffer/squizlabs-php_codesniffer-73e2e7f57d958e7228fce50dc0c61f58f017f9f6-zip-ea39b4.zip",
+                "reference": "73e2e7f57d958e7228fce50dc0c61f58f017f9f6",
+                "shasum": "170ddab40591e88491351ef58ca97ddeba4ec14c"
             },
             "require": {
                 "ext-simplexml": "*",
@@ -10028,7 +10195,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2020-01-30T22:20:29+00:00"
+            "time": "2020-04-17T01:09:41+00:00"
         },
         {
             "name": "symfony/browser-kit",
@@ -10202,24 +10369,24 @@
         },
         {
             "name": "webmozart/assert",
-            "version": "1.7.0",
+            "version": "1.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webmozart/assert.git",
-                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598"
+                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/webmozart/assert/webmozart-assert-aed98a490f9a8f78468232db345ab9cf606cf598-zip-7d7973.zip",
-                "reference": "aed98a490f9a8f78468232db345ab9cf606cf598",
-                "shasum": "6c1eabf74b01f7ee89e0da9a27c5e779090810a2"
+                "url": "https://composer.tiki.org/dist/webmozart/assert/webmozart-assert-ab2cb0b3b559010b75981b1bdce728da3ee90ad6-zip-5a8a4f.zip",
+                "reference": "ab2cb0b3b559010b75981b1bdce728da3ee90ad6",
+                "shasum": "f4f3a00be289adeeaf8f6f996a212adef277c8d2"
             },
             "require": {
                 "php": "^5.3.3 || ^7.0",
                 "symfony/polyfill-ctype": "^1.8"
             },
             "conflict": {
-                "vimeo/psalm": "<3.6.0"
+                "vimeo/psalm": "<3.9.1"
             },
             "require-dev": {
                 "phpunit/phpunit": "^4.8.36 || ^7.5.13"
@@ -10246,7 +10413,7 @@
                 "check",
                 "validate"
             ],
-            "time": "2020-02-14T12:15:55+00:00"
+            "time": "2020-04-18T12:12:48+00:00"
         }
     ],
     "aliases": [],

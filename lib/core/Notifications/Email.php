@@ -99,8 +99,8 @@ class Email
 		$tikilib = \TikiLib::lib('tiki');
 		$smarty = \TikiLib::lib('smarty');
 
-		$machine = parse_url($_SERVER['REQUEST_URI']);
-		$machine = $tikilib->httpPrefix(true);
+		$foo = parse_url($_SERVER['REQUEST_URI']);
+		$machine = $tikilib->httpPrefix(true) . dirname($foo['path']);
 
 		$smarty->assign('siteName', $info['siteName']);
 		$smarty->assign('mentionedBy', $info['mentionedBy']);
