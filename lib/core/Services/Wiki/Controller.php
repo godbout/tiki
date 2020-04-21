@@ -123,7 +123,7 @@ class Services_Wiki_Controller
 				} else {
 					$one = false;
 				}
-				$pdesc = count($util->items) === 1 ? 'page' : 'pages';
+				$pdesc = count($util->items) === 1 ? tr('page') : tr('pages');
 				if ($one) {
 					$vdesc = tr('the only version of');
 				} elseif ($v === 'all') {
