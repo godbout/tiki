@@ -62,9 +62,5 @@ class PatchCypht
 		$js = str_replace("xhr.open('POST', '', true);", "xhr.open('POST', 'tiki-ajax_services.php?controller=cypht&action=ajax&'+window.location.search.substr(1), true);", $js);
 		$js = preg_replace("#^.*/\* swipe event handler \*/#s", "", $js);
 		file_put_contents($cypht.'site.js', $js);
-
-		// copy stock assets
-		$fs->copy($vendors.'jason-munro/cypht/modules/smtp/assets', $cypht.'modules/smtp/assets');
-		$fs->copy($vendors.'jason-munro/cypht/modules/themes/assets', $cypht.'modules/themes/assets');
 	}
 }

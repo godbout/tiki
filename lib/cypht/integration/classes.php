@@ -13,23 +13,23 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 
 class Tiki_Hm_Output_HTTP {
 	public function send_response($response, $input=array()) {
-	if (array_key_exists('http_headers', $input)) {
-		return $this->output_content($response, $input['http_headers']);
-	}
-	else {
-		return $this->output_content($response, array());
-	}
+		if (array_key_exists('http_headers', $input)) {
+			return $this->output_content($response, $input['http_headers']);
+		}
+		else {
+			return $this->output_content($response, array());
+		}
 	}
 
 	protected function output_headers($headers) {
-	foreach ($headers as $name => $value) {
-		Hm_Functions::header($name.': '.$value);
-	}
+		foreach ($headers as $name => $value) {
+			Hm_Functions::header($name.': '.$value);
+		}
 	}
 
 	protected function output_content($content, $headers=array()) {
-	$this->output_headers($headers);
-	return $content;
+		$this->output_headers($headers);
+		return $content;
 	}
 }
 
@@ -170,9 +170,6 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 				unset($output_modules[$page]['header_css']);
 				$headerlib->add_cssfile('lib/cypht/site.css');
 				$headerlib->add_cssfile('lib/cypht/modules/tiki/site.css');
-				if (!empty($_SESSION['cypht']['user_data']['theme_setting']) && $_SESSION['cypht']['user_data']['theme_setting'] != 'default') {
-					$headerlib->add_cssfile('lib/cypht/modules/themes/assets/'.$_SESSION['cypht']['user_data']['theme_setting'].'.css');
-				}
 			}
 			if( isset($output_modules[$page]['page_js']) ) {
 				unset($output_modules[$page]['page_js']);
