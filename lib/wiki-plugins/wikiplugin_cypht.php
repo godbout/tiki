@@ -236,6 +236,18 @@ function wikiplugin_cypht($data, $params)
 		return tra("You do not have the permission that is needed to use this feature:") . " " . $perm;
 	}
 
+	if( $params['use_global_settings'] === 'n' ) {
+		$preference_name = substr('cypht_user_config_'.$page, 0, 40);
+	} else {
+		$preference_name = 'cypht_user_config';
+	}
+
+	if (empty($_SESSION['cypht']['preference_name']) || $_SESSION['cypht']['preference_name'] != $preference_name) {
+		// resetting the session on purpose - could be coming from tiki-webmail
+		$_SESSION['cypht'] = [];
+		$_SESSION['cypht']['preference_name'] = $preference_name;
+	}
+
 	$_SESSION['cypht']['groupmail'] = $params['groupmail'];
 	$_SESSION['cypht']['group'] = $params['group'];
 	$_SESSION['cypht']['trackerId'] = $params['trackerId'];
@@ -246,12 +258,6 @@ function wikiplugin_cypht($data, $params)
 	$_SESSION['cypht']['accountFId'] = $params['accountFId'];
 	$_SESSION['cypht']['datetimeFId'] = $params['datetimeFId'];
 	$_SESSION['cypht']['operatorFId'] = $params['operatorFId'];
-
-	if( $params['use_global_settings'] === 'n' ) {
-		$_SESSION['cypht']['preference_name'] = substr('cypht_user_config_'.$page, 0, 40);
-	} else {
-		$_SESSION['cypht']['preference_name'] = 'cypht_user_config';
-	}
 
 	define('VENDOR_PATH', $tikipath.'/vendor_bundled/vendor/');
 	define('APP_PATH', VENDOR_PATH.'jason-munro/cypht/');
@@ -269,6 +275,16 @@ function wikiplugin_cypht($data, $params)
 		$_SESSION['cypht']['request_key'] = Hm_Crypt::unique_id();
 	}
 	$_SESSION['cypht']['username'] = $user;
+
+	TikiLib::lib('header')->add_css("
+.inline-cypht * { box-sizing: content-box; }
+.inline-cypht { position: relative; }
+	");
+
+	/* get configuration */
+	$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc');
+
+	// merge existing configuration with plugin params for smtp/imap servers
 	if(!empty($params['imap_server']) && !empty($params['imap_username']) && !empty($params['imap_password'])) {
 		$attributes = array(
 			'name' => empty($params['imap_name']) ? $params['imap_username'] : $params['imap_name'],
@@ -319,14 +335,6 @@ function wikiplugin_cypht($data, $params)
 			$_SESSION['cypht']['user_data']['smtp_servers'][] = $attributes;
 		}
 	}
-
-	TikiLib::lib('header')->add_css("
-.inline-cypht * { box-sizing: content-box; }
-.inline-cypht { position: relative; }
-	");
-
-	/* get configuration */
-	$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc');
 
 	/* process the request */
 	$dispatcher = new Hm_Dispatch($config);

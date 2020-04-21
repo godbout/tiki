@@ -41,7 +41,11 @@ for(var i =0; i < sessionStorage.length; i++){
   ');
 }
 
-$_SESSION['cypht']['preference_name'] = 'cypht_user_config';
+if (empty($_SESSION['cypht']['preference_name']) || $_SESSION['cypht']['preference_name'] != 'cypht_user_config') {
+  // resetting the session on purpose - could be coming from PluginCypht
+  $_SESSION['cypht'] = [];
+  $_SESSION['cypht']['preference_name'] = 'cypht_user_config';
+}
 
 define('VENDOR_PATH', $tikipath.'/vendor_bundled/vendor/');
 define('APP_PATH', VENDOR_PATH.'jason-munro/cypht/');

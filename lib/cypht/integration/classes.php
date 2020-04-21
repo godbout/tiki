@@ -152,7 +152,6 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 		$this->set('auth_type', 'custom');
 		$this->set('output_class', 'Tiki_Hm_Output_HTTP');
 		$this->set('cookie_path', ini_get('session.cookie_path'));
-		$request = filter_input_array(INPUT_GET, array('page' => FILTER_SANITIZE_STRING), false);
 		if ($user && (empty($_SESSION['cypht']['user_data']) || count($_SESSION['cypht']['user_data']) == 2)) {
 			$user_config = new Tiki_Hm_User_Config($this);
 			$user_config->load($user);
