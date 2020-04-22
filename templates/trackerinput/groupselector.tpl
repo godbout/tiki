@@ -1,4 +1,4 @@
-{if $field.options lt 1 or $tiki_p_admin_trackers eq 'y'}
+{if $field.options_map.autoassign lt 1 or $tiki_p_admin_trackers eq 'y'}
 	{if $tiki_p_group_add_member ne 'y' and $tiki_p_group_view ne 'y'}
 		{remarksbox type="error" close="n" title="{tr}You do not have permission to add a member to a group.{/tr}"}{/remarksbox}
 	{else}
@@ -13,7 +13,7 @@
 			{/section}
 		</select>
 	{/if}
-{elseif $field.options}
+{elseif not empty($field.options_map.autoassign)}
 	{$field.defvalue}
 	<input type="hidden" name="{$field.ins_id}" value="{$field.defvalue}">
 {/if}
