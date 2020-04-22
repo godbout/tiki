@@ -100,26 +100,64 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 
 	function getFieldData(array $requestData = [])
 	{
+		// $group is set to the default group in lib/setup/user_prefs.php
 		global $tiki_p_admin_trackers, $group, $user;
+		$usersLib = TikiLib::lib('user');
 
 		$ins_id = $this->getInsertId();
 
 		$data = [];
+		$defGroup = $group;
+		$userGroups = $usersLib->get_user_groups_inclusion($user);
 
 		$groupId = $this->getOption('groupId');
 		if (empty($groupId)) {
 			if ($this->getOption('userGroups')) {
-				$data['list'] = array_keys(TikiLib::lib('user')->get_user_groups_inclusion($user));
+				$data['list'] = array_keys($userGroups);
 				sort($data['list']);
 			} else {
-				$data['list'] = TikiLib::lib('user')->list_all_groups_with_permission();
+				$data['list'] = $usersLib->list_all_groups_with_permission();
 			}
 		} else {
 			if (ctype_digit($groupId)) {
-				$group_info = TikiLib::lib('user')->get_groupId_info($groupId);
-				$data['list'] =	TikiLib::lib('user')->get_including_groups($group_info['groupName']);
-			} elseif (TikiLib::lib('user')->group_exists($groupId)) {
-				$data['list'] = TikiLib::lib('user')->get_including_groups($groupId);
+				$group_info = $usersLib->get_groupId_info($groupId);
+				$data['list'] =	$usersLib->get_including_groups($group_info['groupName']);
+			} elseif ($usersLib->group_exists($groupId)) {
+				$data['list'] = $usersLib->get_including_groups($groupId);
+			}
+		}
+
+		// check the default group is one of the groups we are looking for
+		if (! in_array($defGroup, $data['list'])) {
+			// find the one in the list this user is in
+			$includedGroups = array_intersect(array_keys($userGroups), $data['list']);
+			if (empty($includedGroups)) {
+				// user not in any of the required groups, use the global default $group and warn
+				$defGroup = $group;
+				Feedback::warning(tr('User not in any of the required groups for GroupSelector field'));
+			} else if (count($includedGroups) === 1) {
+				// just the one, easy
+				$defGroup = array_shift($includedGroups);
+			} else {
+				// more than one?
+				if (in_array($group, $includedGroups)) {
+					// use the user's default group if there
+					$defGroup = $group;
+				} else {
+					$found = false;
+					foreach ($userGroups as $userGroup => $membership) {
+						if (in_array($userGroup, $includedGroups) && $membership === 'real') {
+							// use the first group this user is a real member of, not just included
+							$defGroup = $userGroup;
+							$found = true;
+							break;
+						}
+					}
+					if (! $found) {
+						// use the first one as a fall back
+						$defGroup = array_shift($includedGroups);
+					}
+				}
 			}
 		}
 
@@ -128,16 +166,16 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 				$data['value'] = in_array($requestData[$ins_id], $data['list']) ? $requestData[$ins_id] : '';
 			} else {
 				if ($this->getOption('autoassign') == 2) {
-					$data['defvalue'] = $group;
-					$data['value'] = $group;
+					$data['defvalue'] = $defGroup;
+					$data['value'] = $defGroup;
 				} elseif ($this->getOption('autoassign') == 1) {
-					$data['value'] = $group;
+					$data['value'] = $defGroup;
 				} else {
 					$data['value'] = '';
 				}
 			}
 		} else {
-			$data['defvalue'] = $group;
+			$data['defvalue'] = $defGroup;
 			$data['value'] = $this->getValue();
 		}
 
