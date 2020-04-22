@@ -396,6 +396,11 @@ $("input[name=ins_' . $filterFieldIdHere . '], select[name=ins_' . $filterFieldI
 		return $out;
 	}
 
+	function getProvidedFields() {
+		$baseKey = $this->getBaseKey();
+		return [$baseKey, "{$baseKey}_text"];
+	}
+
 	function getItemList()
 	{
 		return TikiLib::lib('trk')->get_all_items(

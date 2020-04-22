@@ -727,18 +727,15 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 		return $out;
 	}
 
-	public function getProvidedFields() {
+	function getProvidedFields() {
 		global $prefs;
 
 		$baseKey = $this->getBaseKey();
-		$out = [
-			$baseKey,              // multivalue id's
-			"{$baseKey}_text",     // space separated string of id's
-		];
+		$out = [$baseKey, "{$baseKey}_text"];
 
-		if ($prefs['unified_trackeritem_category_names'] === 'y') {
-			$out["{$baseKey}_names"];     // comma separated category names
-			$out["{$baseKey}_paths"];     // comma separated category paths
+		if ($prefs['unified_trackeritem_category_names'] === 'y'){
+			$out[] = "{$baseKey}_names";
+			$out[] = "{$baseKey}_paths";
 		}
 
 		return $out;
@@ -752,6 +749,7 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 		} else {
 			$out = [];
 		}
+
 		return $out;
 	}
 

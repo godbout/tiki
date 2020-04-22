@@ -187,6 +187,11 @@ class Tracker_Field_AutoIncrement extends Tracker_Field_Abstract implements Trac
 		return $out;
 	}
 
+	function getProvidedFields() {
+		$baseKey = $this->getBaseKey();
+		return [$baseKey, "{$baseKey}_text"];
+	}
+
 	// if we need to update after field save then do it here
 	function handleFieldSave($data)
 	{
