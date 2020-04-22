@@ -884,10 +884,6 @@ $('#$fieldid').change(function() {
 		}
 
 		$option = $document->createElement('option', $body);
-		if (strpos($opt, ' ') !== false) {
-			// quote values with spaces in
-			$opt = '"' . $opt . '"';
-		}
 		$option->setAttribute('value', $opt);
 		if ($default && in_array($opt, (array) $default)) {
 			$option->setAttribute('selected', 'selected');
