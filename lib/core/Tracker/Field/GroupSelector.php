@@ -218,6 +218,11 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 		];
 	}
 
+	function getProvidedFields() {
+		$baseKey = $this->getBaseKey();
+		return [$baseKey, "{$baseKey}_text"];
+	}
+
 	function getFilterCollection()
 	{
 		$userlib = TikiLib::lib('user');

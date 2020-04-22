@@ -727,6 +727,17 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 		return $out;
 	}
 
+	function getProvidedFields() {
+		global $prefs;
+		$baseKey = $this->getBaseKey();
+		$out = [$baseKey, "{$baseKey}_text"];
+		if ($prefs['unified_trackeritem_category_names'] === 'y'){
+			$out[] = "{$baseKey}_names";
+			$out[] = "{$baseKey}_paths";
+		}
+		return $out;
+	}
+
 	public static function syncCategoryFields($args)
 	{
 		if ($args['type'] == 'trackeritem') {

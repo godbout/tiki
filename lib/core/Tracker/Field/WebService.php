@@ -311,4 +311,9 @@ class Tracker_Field_WebService extends Tracker_Field_Abstract
 			"{$baseKey}_json" => $typeFactory->json($value),
 		];
 	}
+
+	function getProvidedFields() {
+		$baseKey = $this->getBaseKey();
+		return [$baseKey, "{$baseKey}_text", "{$baseKey}_json"];
+	}
 }

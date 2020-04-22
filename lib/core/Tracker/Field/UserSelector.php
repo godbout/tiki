@@ -427,6 +427,11 @@ class Tracker_Field_UserSelector extends Tracker_Field_Abstract implements Track
 		];
 	}
 
+	function getProvidedFields() {
+		$baseKey = $this->getBaseKey();
+		return [$baseKey, "{$baseKey}_text", "{$baseKey}_unstemmed"];
+	}
+
 	/**
 	 * tell the indexer about the real name _text field if using showRealname
 	 *
