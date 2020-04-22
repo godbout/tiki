@@ -23,7 +23,7 @@ class Search_EngineResult_Elastic implements Search_EngineResult_Interface
 		$fieldMappings = $this->index->getFieldMappings();
 
 		foreach ($fieldMappings as $unique_item_type) {
-			if (empty($fieldMappings)) {
+			if (empty($unique_item_type)) {
 				continue;
 			}
 

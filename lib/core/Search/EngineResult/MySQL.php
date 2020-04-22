@@ -19,6 +19,6 @@ class Search_EngineResult_MySQL implements Search_EngineResult_Interface
 	 */
 	public function getEngineFieldsCount()
 	{
-		return count($this->index->getFieldMappings());
+		return $this->index->getFieldsCount();
 	}
 }
