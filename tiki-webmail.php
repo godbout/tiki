@@ -41,7 +41,8 @@ for(var i =0; i < sessionStorage.length; i++){
   ');
 }
 
-if (empty($_SESSION['cypht']['preference_name']) || $_SESSION['cypht']['preference_name'] != 'cypht_user_config') {
+if (empty($_SESSION['cypht']['preference_name']) || $_SESSION['cypht']['preference_name'] != 'cypht_user_config'
+  || (! empty($_SESSION['cypht']['username']) && $_SESSION['cypht']['username'] != $user)) {
   // resetting the session on purpose - could be coming from PluginCypht
   $_SESSION['cypht'] = [];
   $_SESSION['cypht']['preference_name'] = 'cypht_user_config';

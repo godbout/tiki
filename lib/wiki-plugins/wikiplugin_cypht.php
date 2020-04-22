@@ -242,7 +242,8 @@ function wikiplugin_cypht($data, $params)
 		$preference_name = 'cypht_user_config';
 	}
 
-	if (empty($_SESSION['cypht']['preference_name']) || $_SESSION['cypht']['preference_name'] != $preference_name) {
+	if (empty($_SESSION['cypht']['preference_name']) || $_SESSION['cypht']['preference_name'] != $preference_name
+		|| (! empty($_SESSION['cypht']['username']) && $_SESSION['cypht']['username'] != $user)) {
 		// resetting the session on purpose - could be coming from tiki-webmail
 		$_SESSION['cypht'] = [];
 		$_SESSION['cypht']['preference_name'] = $preference_name;
