@@ -227,6 +227,34 @@ function wikiplugin_cypht($data, $params)
 	}
 	$called = true;
 
+	if (empty($params['imap_port'])) {
+		$params['imap_port'] = 993;
+	}
+
+	if (empty($params['imap_tls'])) {
+		$params['imap_tls'] = 'y';
+	}
+
+	if (empty($params['smtp_port'])) {
+		$params['smtp_port'] = 587;
+	}
+
+	if (empty($params['smtp_tls'])) {
+		$params['smtp_tls'] = 'y';
+	}
+
+	if (empty($params['smtp_no_auth'])) {
+		$params['smtp_no_auth'] = 'n';
+	}
+
+	if (empty($params['use_global_settings'])) {
+		$params['use_global_settings'] = 'y';
+	}
+
+	if (empty($params['groupmail'])) {
+		$params['groupmail'] = 'n';
+	}
+
 	if ($params['groupmail'] == 'y') {
 		$perm = 'tiki_p_use_group_webmail';
 	} else {
