@@ -164,10 +164,9 @@ EOT;
 		if (! (include 'lib/test/local.php')) {
 			return false;
 		}
-		$link = mysqli_connect($host_tiki, $user_tiki, $pass_tiki, $dbs_tiki);
+		$link = @mysqli_connect($host_tiki, $user_tiki, $pass_tiki, $dbs_tiki);
 
 		if (! $link) {
-			mysqli_close($link);
 			return false;
 		}
 		mysqli_close($link);
