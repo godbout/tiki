@@ -1,0 +1,121 @@
+.duration-picker {
+    position: relative;
+}
+
+.dp-amount--container {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.dp-amount--preview {
+    cursor: pointer;
+}
+
+.dp-amount--preview__unit {
+    margin-left: 1px;
+}
+
+.dp-amount--input__container {
+    position: absolute;
+    width: 250px;
+    padding: 10px;
+    border-radius: 2px;
+    -webkit-box-shadow: 0px 4px 20px -7px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 4px 20px -7px rgba(0,0,0,0.75);
+    box-shadow: 0px 4px 20px -7px rgba(0,0,0,0.75);
+    background: white;
+}
+
+.dp-amount--input__wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dp-amount--input__wrapper input {
+    width: 100%;
+    outline: none;
+    border: none;
+    font-size: 2.7rem;
+}
+
+.dp-amount--input__wrapper input {
+    -moz-appearance:textfield;
+}
+
+.dp-amount--input__wrapper input::-webkit-outer-spin-button,
+.dp-amount--input__wrapper input::-webkit-inner-spin-button {
+    display: none;
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+
+.dp-amount--input__label {
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.dp-amount--input__unit {
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 6px;
+    /* width: 71px; */
+    text-align: center;
+    border-radius: 2px;
+}
+
+.dp-amount--input__unit:active {
+    background-color: #f2f2f2;
+}
+
+.dp-amount--input__unit.active {
+    background-color: #a3d7f0;
+}
+
+.dp-amount--input__left-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.dp-amount--input__right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dp-amount--input__controls .dp-amount--input__btn {
+    display: inline-block;
+    cursor: pointer;
+    width: 63px;
+    height: 43px;
+    padding: 1px 15px;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.dp-amount--input__controls .dp-amount--input__btn:first-child {
+    border-right: 1px lightgrey solid;
+}
+
+.dp-amount--input__controls .dp-amount--input__btn:active {
+    color: #89cff0;
+    background-color: #f2f2f2;
+}
+
+.dp-amount--input__close {
+    position: absolute;
+    font-weight: bold;
+    cursor: pointer;
+    top: 0;
+    color: grey;
+}
+
+/* Utils */
+.unselectable {
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
+}

@@ -2070,6 +2070,7 @@
 		"npm-asset/lozad": ">=1.6.0",
 		"npm-asset/node-ensure": ">=0.0.0",
 		"npm-asset/moment": ">=2.24.0",
+		"npm-asset/moment-duration-format": ">=2.3.2",
 		"npm-asset/pdfjs-dist": ">=2.0.487",
 		"npm-asset/pdfjs-dist-viewer-min": "^2.1.266",
 		"npm-asset/popper.js": ">=1.14.3",

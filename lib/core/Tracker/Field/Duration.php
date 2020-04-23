@@ -150,6 +150,13 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 			if ($unit = $this->getOption('storage_unit')) {
 				$value /= $factors[$unit];
 			}
+		} elseif(isset($requestData[$ins_id])) {
+			// milliseconds coming from vue.js component
+			$factors = $this->getFactors();
+			$value = intval($requestData[$ins_id]) / 1000;
+			if ($unit = $this->getOption('storage_unit')) {
+				$value /= $factors[$unit];
+			}
 		} else {
 			$value = $this->getValue();
 		}
@@ -164,10 +171,47 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 
 	function renderInput($context = [])
 	{
-		return $this->renderTemplate('trackerinput/duration.tpl', $context, [
-			'amounts' => $this->denormalize(),
-			'units' => array_keys($this->getFactors())
-		]);
+		global $prefs;
+
+		if ($prefs['vuejs_enable'] === 'n') {
+			return $this->renderTemplate('trackerinput/duration.tpl', $context, [
+				'amounts' => $this->denormalize(),
+				'units' => array_keys($this->getFactors())
+			]);
+		}
+
+		// vue.js integration
+		$headerlib = TikiLib::lib('header');
+
+		if ($prefs['vuejs_always_load'] === 'n') {
+			$headerlib->add_jsfile_cdn("vendor_bundled/vendor/npm-asset/vue/dist/{$prefs['vuejs_build_mode']}");
+		}
+
+		$headerlib->add_cssfile('lib/vue/duration/styles.css');
+		$headerlib->add_jsfile('vendor_bundled/vendor/moment/moment/min/moment.min.js', true);
+		$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/moment-duration-format/lib/moment-duration-format.js');
+		$headerlib->add_jsfile('lib/vue/duration/store.js');
+		$headerlib->add_js('
+momentDurationFormatSetup(moment);
+var dpStore = DurationPickerStore();
+dpStore.setDuration({
+	value: '.json_encode($this->getValueInMilliseconds()).',
+	units: ["years","months","days","hours","minutes","seconds","milliseconds"]
+});
+dpStore.setInputName('.json_encode($this->getInsertId()).');
+		');
+
+		$vuejslib = TikiLib::lib('vuejs');
+
+		$params = [
+			'store' => 'dpStore'
+		];
+
+		$appHtml = $vuejslib->processVue('lib/vue/duration/DurationPicker.vue', 'DurationPickerApp', true, $params);
+		$appHtml .= $vuejslib->processVue('lib/vue/duration/DurationPickerAmount.vue', 'DurationPickerAmount');
+		$appHtml .= $vuejslib->processVue('lib/vue/duration/DurationPickerModal.vue', 'DurationPickerModal');
+
+		return $appHtml;
 	}
 
 	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
@@ -180,6 +224,12 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 			$baseKey.'_text' => $typeFactory->sortable($this->humanize()),
 		];
 		return $out;
+	}
+
+	function getProvidedFields()
+	{
+		$baseKey = $this->getBaseKey();
+		return [$baseKey, "{$baseKey}_text"];
 	}
 
 	function importRemote($value)
@@ -220,7 +270,7 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 	}
 
 	private function denormalize() {
-		$value = $this->getValue();
+		$value = intval($this->getValue());
 		$factors = $this->getFactors();
 
 		$calculated = [];
@@ -245,5 +295,13 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 		}
 
 		return $output;
+	}
+
+	private function getValueInMilliseconds() {
+		$value = intval($this->getValue());
+		$factors = $this->getFactors();
+		$value *= $factors[$this->getOption('storage_unit')] ?? 1;
+		$value *= 1000;
+		return $value;
 	}
 }
