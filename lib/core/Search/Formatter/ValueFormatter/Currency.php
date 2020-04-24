@@ -48,11 +48,18 @@ class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFor
 		}
 		
 		if ($this->currency_field) {
-			$field = $tracker->getField(preg_replace('/^tracker_field_/', '', $this->currency_field));
+			$field = preg_replace('/^tracker_field_/', '', $this->currency_field);
 		} else {
-			$field = $tracker->getField(substr($name, 14));
+			$field = substr($name, 14);
 		}
-		if( !$field || $field['type'] != 'b') {
+		$field = $tracker->getField(preg_replace("/_base$/", "", $field));
+		if ($field && $field['type'] == 'math') {
+			$handler = $trklib->get_field_handler($field);
+			if ($handler && $handler->getOption('mirrorField')) {
+				$field = $tracker->getField($handler->getOption('mirrorField'));
+			}
+		}
+		if (!$field || $field['type'] != 'b') {
 			return 'Field is not a Currency tracker field.';
 		}
 
@@ -74,52 +81,29 @@ class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFor
 		}
 
 		$currencyTracker = $handler->getOption('currencyTracker');
-		if (! $currencyTracker) {
-			return $value;
-		}
-
-		$rates = $trklib->exchange_rates($currencyTracker, $this->date);
 		$data = $handler->getFieldData();
 		$amount = $data['amount'];
-		$source_currency = $data['currency'];
-		$target_currency = $this->target_currency;
-		$default_currency = $handler->getOption('currency');
-		if (empty($default_currency)) {
-			$default_currency = 'USD';
-		}
-		if (empty($source_currency)) {
-			$source_currency = $default_currency;
-		}
-		if (empty($target_currency)) {
-			$target_currency = $default_currency;
-		}
-		$currency = $source_currency;
-		// convert amount to default currency before converting to other currencies
-		if ($source_currency != $default_currency && !empty($rates[$source_currency])) {
-			$amount = (float)$amount / (float)$rates[$source_currency];
-			$currency = $default_currency;
-		}
-		if ($target_currency != $default_currency && !empty($rates[$target_currency])) {
-			$amount = (float)$rates[$target_currency] * (float)$amount;
-			$currency = $target_currency;
-		}
-
-		$locale = $handler->getOption('locale');
-		if (! $locale) {
-			$locale = 'en_US';
-		}
-
-		$symbol = 'n';
-		if ($this->symbol != 'y') {
-			$symbol = 'i';
-		}
+		$currency = $data['currency'];
 
 		if ($this->amount_only) {
 			TikiLib::lib('smarty')->loadPlugin('smarty_modifier_number_format');
 			return '~np~' . smarty_modifier_number_format($amount, 2, '.', '') . '~/np~';;
 		} else {
-			TikiLib::lib('smarty')->loadPlugin('smarty_modifier_money_format');
-			return '~np~' . smarty_modifier_money_format($amount, $locale, $currency, '%(#10'.$symbol, 1) . '~/np~';
+			return smarty_function_currency(
+				[
+				'amount' => $amount,
+				'sourceCurrency' => $currency,
+				'exchangeRatesTrackerId' => $currencyTracker,
+				'date' => $this->date,
+				'prepend' => $handler->getOption('prepend'),
+				'append' => $handler->getOption('append'),
+				'locale' => $handler->getOption('locale'),
+				'defaultCurrency' => $handler->getOption('currency'),
+				'symbol' => $handler->getOption('symbol'),
+				'allSymbol' => $handler->getOption('all_symbol'),
+				],
+				TikiLib::lib('smarty')->getEmptyInternalTemplate()
+			);
 		}
 	}
 }
