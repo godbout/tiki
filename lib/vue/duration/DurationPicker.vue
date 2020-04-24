@@ -5,8 +5,8 @@
 								<DurationPickerAmount :value="store.state.duration.amounts[dUnit]" :unit="dUnit"></DurationPickerAmount>
 						</div>
 				</template>
-		<input type="hidden" :name="store.state.inputName" :value="getMilliseconds">
-		<DurationPickerModal v-if="show" :initialUnit="unit" :handleCloseModal="handleCloseModal"></DurationPickerModal>
+		<input type="hidden" :name="store.state.inputName" :value="getValue">
+		<DurationPickerModal v-if="show" :initial-unit="unit" :handle-close-modal="handleCloseModal"></DurationPickerModal>
 		</div>
 </template>
 
@@ -24,12 +24,12 @@ export default {
 		return {
 			show: false,
 			unit: '',
-			store: eval(this.$parent.store)
+			store: window[this.$parent.store]
 		}
 	},
 	computed: {
-		getMilliseconds: function() {
-			return this.store.state.duration.milliseconds;
+		getValue: function() {
+			return this.store.getFormattedDuration();
 		}
 	},
 	methods: {

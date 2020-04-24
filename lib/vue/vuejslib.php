@@ -37,8 +37,8 @@ class VueJsLib
 		foreach ($errors as $error)
 		{
 			// template and ui-predicate tags are expected, so ignore them...
-		    /* @var $error LibXMLError */
-			if (! in_array($error->message, ["Tag template invalid\n", "Tag ui-predicate invalid\n"])) {
+			/* @var $error LibXMLError */
+			if (! in_array($error->message, ["Tag template invalid\n", "Tag ui-predicate invalid\n", "Tag durationpickeramount invalid\n", "Tag durationpickermodal invalid\n"])) {
 				trigger_error($error->message);
 			}
 		}

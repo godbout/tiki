@@ -25,23 +25,6 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 				'default' => 'y',
 				'supported_changes' => ['DUR', 'n'],
 				'params' => [
-					'storage_unit' => [
-						'name' => tr('Storage unit'),
-						'description' => tr('Store entered duration in this unit. Changing this once there are entries for this field is dangerous.'),
-						'deprecated' => false,
-						'filter' => 'alpha',
-						'default' => 'seconds',
-						'options' => [
-							'seconds' => tr('Seconds'),
-							'minutes' => tr('Minutes'),
-							'hours' => tr('Hours'),
-							'days' => tr('Days'),
-							'weeks' => tr('Weeks'),
-							'months' => tr('Months'),
-							'years' => tr('Years'),
-						],
-						'legacy_index' => 0,
-					],
 					'seconds' => [
 						'name' => tr('Seconds'),
 						'description' => tr('Allow selection of seconds.'),
@@ -136,27 +119,9 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 		$ins_id = $this->getInsertId();
 
 		if (isset($requestData[$ins_id]) && is_array($requestData[$ins_id])) {
-			$factors = $this->getFactors();
-
-			$value = 0;
-			foreach ($requestData[$ins_id] as $unit => $amount) {
-				if (isset($factors[$unit])) {
-					$value += floatval($amount) * $factors[$unit];
-				} else {
-					$value += floatval($amount);
-				}
-			}
-
-			if ($unit = $this->getOption('storage_unit')) {
-				$value /= $factors[$unit];
-			}
-		} elseif(isset($requestData[$ins_id])) {
-			// milliseconds coming from vue.js component
-			$factors = $this->getFactors();
-			$value = intval($requestData[$ins_id]) / 1000;
-			if ($unit = $this->getOption('storage_unit')) {
-				$value /= $factors[$unit];
-			}
+			$value = json_encode($requestData[$ins_id]);
+		} elseif (isset($requestData[$ins_id])) {
+			$value = $requestData[$ins_id];
 		} else {
 			$value = $this->getValue();
 		}
@@ -195,8 +160,8 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 momentDurationFormatSetup(moment);
 var dpStore = DurationPickerStore();
 dpStore.setDuration({
-	value: '.json_encode($this->getValueInMilliseconds()).',
-	units: ["years","months","days","hours","minutes","seconds","milliseconds"]
+	value: '.$this->getValue().',
+	units: '.json_encode($this->enabledUnits()).'
 });
 dpStore.setInputName('.json_encode($this->getInsertId()).');
 		');
@@ -216,13 +181,13 @@ dpStore.setInputName('.json_encode($this->getInsertId()).');
 
 	function getDocumentPart(Search_Type_Factory_Interface $typeFactory)
 	{
-		$value = $this->getValue();
 		$baseKey = $this->getBaseKey();
 
 		$out = [
-			$baseKey => $typeFactory->numeric($value),
+			$baseKey => $typeFactory->numeric($this->getValueInSeconds()),
 			$baseKey.'_text' => $typeFactory->sortable($this->humanize()),
 		];
+
 		return $out;
 	}
 
@@ -264,44 +229,55 @@ dpStore.setInputName('.json_encode($this->getInsertId()).');
 			'hours' => 3600,
 			'days' => 86400,
 			'weeks' => 604800,
-			'months' => 2629800,
-			'years' => 31587840,
+			'months' => 2629746,
+			'years' => 31556952,
 		];
 	}
 
 	private function denormalize() {
-		$value = intval($this->getValue());
-		$factors = $this->getFactors();
-
-		$calculated = [];
-		$seconds = $value * ($factors[$this->getOption('storage_unit')] ?? 1);
-		foreach (array_reverse($factors) as $unit => $factor) {
-			if ($this->getOption($unit)) {
-				$factor = $factors[$unit] ?? 1;
-				$calculated[$unit] = floor($seconds / $factor);
-				$seconds -= ($calculated[$unit] * $factor);
-			}
+		$value = json_decode($this->getValue(), true);
+		if (! is_array($value)) {
+			$value = [];
 		}
-
-		return $calculated;
+		return $value;
 	}
 
 	private function humanize() {
-		$calculated = $this->denormalize();
+		$value = $this->denormalize();
 
 		$output = '';
-		foreach ($calculated as $unit => $amount) {
+		foreach ($value as $unit => $amount) {
 			$output .= ($output ? ', ' : '')."$amount $unit";
 		}
 
 		return $output;
 	}
 
-	private function getValueInMilliseconds() {
-		$value = intval($this->getValue());
+	private function getValueInSeconds() {
 		$factors = $this->getFactors();
-		$value *= $factors[$this->getOption('storage_unit')] ?? 1;
-		$value *= 1000;
+
+		$value = 0;
+		foreach ($this->denormalize() as $unit => $amount) {
+			if (isset($factors[$unit])) {
+				$value += floatval($amount) * $factors[$unit];
+			} else {
+				$value += floatval($amount);
+			}
+		}
+
 		return $value;
+	}
+
+	private function enabledUnits() {
+		return array_reverse(
+			array_values(
+				array_filter(
+					array_keys($this->getFactors()),
+					function($unit) {
+						return $this->getOption($unit);
+					}
+				)
+			)
+		);
 	}
 }
