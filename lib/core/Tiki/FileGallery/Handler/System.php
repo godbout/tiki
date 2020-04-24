@@ -19,7 +19,9 @@ class System implements HandlerInterface
 
 		if ($prefs['fgal_use_db'] == 'n') {
 			$this->real = new FileSystem($prefs['fgal_use_dir']);
-			$this->real->setPreserveFilename($prefs['fgal_preserve_filenames'] == 'y');
+			if (! empty($prefs['fgal_preserve_filenames'])) {
+				$this->real->setPreserveFilename($prefs['fgal_preserve_filenames'] == 'y');
+			}
 		} else {
 			$this->real = new Preloaded;
 		}
