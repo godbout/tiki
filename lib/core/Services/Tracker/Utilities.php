@@ -315,8 +315,15 @@ class Services_Tracker_Utilities
 		);
 
 		$out = [];
+		$trklib = TikiLib::lib('trk');
 		foreach ($keyMap as $fieldId => $name) {
-			if (isset($dataMap[$fieldId])) {
+			$info = $trklib->get_field_info($fieldId);
+
+			if ($info['type'] === 'p') {
+				$handler = $trklib->get_field_handler($info, $trklib->get_tracker_item($itemId));
+				$data = $handler->getFieldData();
+				$out[$name] = $data['value'];
+			} else if (isset($dataMap[$fieldId])) {
 				$out[$name] = $dataMap[$fieldId];
 			} else {
 				$out[$name] = '';
