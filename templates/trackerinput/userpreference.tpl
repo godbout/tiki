@@ -10,16 +10,16 @@
 				{$languages[ix].name}
 			</option>
 		{/section}
-		<option value='' {if !$field.value}selected="selected"{/if}>{tr}Site default{/tr}</option>
+		<option value=''{if !$field.value} selected="selected"{/if}>{tr}Site default{/tr}</option>
 	</select>
 {elseif $field.options_map.type eq 'country'}
 	<select name="{$field.ins_id}" class="form-control">
-		<option value="Other" {if $user_prefs.country eq "Other"}selected="selected"{/if}>
+		<option value="Other"{if $field.value eq "Other"} selected="selected"{/if}>
 			{tr}Other{/tr}
 		</option>
 		{foreach from=$context.flags item=flag key=fval}{strip}
 			{if $fval ne "Other"}
-				<option value="{$fval|escape}" {if $field.value eq $fval}selected="selected"{/if}>
+				<option value="{$fval|escape}"{if $field.value eq $fval} selected="selected"{/if}>
 					{$flag|stringfix}
 				</option>
 			{/if}
@@ -30,14 +30,13 @@
 		<option value="" style="font-style:italic;">
 			{tr}Detect user time zone if browser allows, otherwise site default{/tr}
 		</option>
-		<option value="Site" style="font-style:italic;border-bottom:1px dashed #666;"
-				{if isset($user_prefs.display_timezone) and $user_prefs.display_timezone eq 'Site'} selected="selected"{/if}>
+		<option value="Site" style="font-style:italic;border-bottom:1px dashed #666;"{if $field.value eq 'Site'} selected="selected"{/if}>
 			{tr}Site default{/tr}
 		</option>
 		{foreach key=tz item=tzinfo from=$context.timezones}
 			{math equation="floor(x / (3600000))" x=$tzinfo.offset assign=offset}
 			{math equation="(x - (y*3600000)) / 60000" y=$offset x=$tzinfo.offset assign=offset_min format="%02d"}
-			<option value="{$tz|escape}"{if isset($user_prefs.display_timezone) and $user_prefs.display_timezone eq $tz} selected="selected"{/if}>
+			<option value="{$tz|escape}"{if $field.value eq $tz} selected="selected"{/if}>
 				{$tz|escape} (UTC{if $offset >= 0}+{/if}{$offset}h{if $offset_min gt 0}{$offset_min}{/if})
 			</option>
 		{/foreach}

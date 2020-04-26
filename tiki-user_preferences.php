@@ -13,6 +13,8 @@ require_once('tiki-setup.php');
 $modlib = TikiLib::lib('mod');
 $userprefslib = TikiLib::lib('userprefs');
 $perspectivelib = TikiLib::lib('perspective');
+
+use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use PragmaRX\Google2FA\Google2FA;
 use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\Image\ImagickImageBackEnd;
@@ -365,7 +367,6 @@ if (isset($_POST['chgadmin']) && $access->checkCsrf()) {
 $userinfo = $userlib->get_user_info($userwatch);
 
 if ($prefs['twoFactorAuth'] == 'y' && ! empty($tfaSecret)) {
-	$smarty->assign('twoFactorAuth', 'y');
 	$google2fa = new Google2FA();
 	$smarty->assign('tfaSecretQR', $tfaSecret);
 	$g2faUrl = $google2fa->getQRCodeUrl(
@@ -374,13 +375,22 @@ if ($prefs['twoFactorAuth'] == 'y' && ! empty($tfaSecret)) {
 		$tfaSecret
 	);
 
+	if (extension_loaded('imagick')) {
+		$imageBackEnd = new ImagickImageBackEnd();
+		$imageType = 'png';
+	} else {
+		$imageBackEnd = new SvgImageBackEnd();
+		$imageType = 'svg+xml';
+	}
+
 	$writer = new Writer(
 		new ImageRenderer(
 			new RendererStyle(350),
-			new ImagickImageBackEnd()
+			$imageBackEnd
 		)
 	);
 	$tfaSecretQR = base64_encode($writer->writeString($g2faUrl));
+	$tfaSecretQR = '<img src="data:image/' . $imageType . ';base64,' . $tfaSecretQR . '"/>';
 	$smarty->assign('tfaSecretQR', $tfaSecretQR);
 }
 
