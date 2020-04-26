@@ -677,6 +677,7 @@
 										$("#twoFactorAuthShow").text("Show QRCode");
 									}
 									$("#twoFactorAuthCard").slideToggle(400);
+									return false;
 								})
 							{/jq}
 							<div class="form-group row">
@@ -697,7 +698,7 @@
 								<div class="col-md-12 card" id="twoFactorAuthCard" style="display: none">
 									<div class="card-body">
 										<div class="row">
-											<div class="col-md-6"><img src="data:image/png;base64,{$tfaSecretQR}"/></div>
+											<div class="col-md-6">{$tfaSecretQR}</div>
 											<div class="col-md-6 align-content-center">
 												<div class="d-flex align-items-center" style="height: 100%">
 													<ol>
