@@ -2477,13 +2477,13 @@ if (isset($_REQUEST['dbmismatches']) && ! $standalone && file_exists('db/tiki.sq
 
 	foreach ($tables[0] as $table) {
 		preg_match('/CREATE TABLE[\s\t]*`?(\w+)`?/', $table, $matches);
-		$tableName = trim($matches[1]);
+		$tableName = strtolower(trim($matches[1]));
 		$sqlFileTables[$tableName] = array();
 
 		preg_match_all('/^[\s\t]*`?(?!CREATE|KEY|PRIMARY|UNIQUE|INDEX)(\w+)`?/m', $table, $fields);
 
 		foreach ($fields[1] as $field) {
-			$sqlFileTables[$tableName][] = $field;
+			$sqlFileTables[$tableName][] = strtolower($field);
 		}
 	}
 
@@ -2498,8 +2498,8 @@ SQL;
 	$diffFileTables = array_keys($sqlFileTables);
 	$diffFileColumns = $sqlFileTables;
 	foreach ($result as $tables) {
-		$dbTable = $tables['TABLE_NAME'];
-		$dbColumn = $tables['COLUMN_NAME'];
+		$dbTable = strtolower($tables['TABLE_NAME']);
+		$dbColumn = strtolower($tables['COLUMN_NAME']);
 
 		// Table in DB and SQL
 		$key = array_search($dbTable, $diffFileTables);
@@ -2542,7 +2542,7 @@ SQL;
 SELECT TABLE_NAME
 FROM information_schema.TABLES
 WHERE TABLE_SCHEMA = database()
-  AND (TABLE_NAME LIKE "index_%" OR TABLE_NAME LIKE "zzz_unused_%");
+  AND TABLE_NAME LIKE "index_%";
 SQL;
 
 	$result = query($query);
