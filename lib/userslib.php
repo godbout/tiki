@@ -3172,10 +3172,16 @@ class UsersLib extends TikiLib
 			$body = $realn;
 		}
 
-		$isSelf = ($auser == $user) ? true : false;
+		if ($elementId) {
+			$idStr = " id=\"$elementId\"";
+		} else {
+			$idStr = '';
+		}
+
+		$isSelf = ($auser === $user) ? true : false;
 		// Only process if feature_friends enabled, user_information public or we query ourselfs
 		if (($this->get_user_preference($auser, 'user_information', 'public') != 'public') && ($prefs['feature_friends'] != 'y') && ! $isSelf) {
-			return "<span id=\"" . $elementId . "\">" . $body . "</span>";
+			return "<span{$idStr}>$body</span>";
 		}
 
 
@@ -3184,10 +3190,6 @@ class UsersLib extends TikiLib
 			return $body;
 		}
 
-
-		include_once('tiki-sefurl.php');
-		$url = "tiki-user_information.php?userId=$id";
-		$url = filter_out_sefurl($url);
 		$extra = '';
 		if ($show_popup == "n") {
 			//do nothing for adding a tip
@@ -3241,7 +3243,13 @@ class UsersLib extends TikiLib
 			}
 		}
 
-		$body = "<a id=\"" . $elementId . "\" title=\"" . htmlspecialchars($title, ENT_QUOTES) . "\" href=\"$url\" class=\"$class\"$extra>" . $body . '</a>';
+		if ($title) {
+			$titleStr = ' title="' . htmlspecialchars($title, ENT_QUOTES) . '"';
+		} else {
+			$titleStr = '';
+		}
+
+		$body = "<a{$idStr}{$titleStr} href=\"$url\" class=\"$class\"$extra>" . $body . '</a>';
 
 		return $body;
 	}

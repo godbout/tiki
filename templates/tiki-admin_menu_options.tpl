@@ -28,8 +28,8 @@
 
 		<div class="navbar mb-4 clearfix">
 			{button _text='{tr}Save Options{/tr}' _class='save_menu  btn btn-sm disabled float-left mb-2' _type='primary' _ajax='n' _auto_args='save_menu,page_ref_id'}
-			<ol class="new-option col-sm-12">
-				<li id="node_new" class="clearfix new">
+			<ol class="new-option">
+				<li id="node_new" class="clearfix new row">
 					<div class="col-sm-12">
 						<div class="float-left label-group">
 							<div class="input-group input-group-sm" style="max-width: 100%">
@@ -81,7 +81,7 @@
 				<ol id="options">
 					{$prevpos = 0}
 					{foreach $options as $option}
-						<li id="node_{$option.optionId}" class="clearfix" data-position="{$option.position}" data-parent="{$option.parent}" data-type="{$option.type}">
+						<li class="row" id="node_{$option.optionId}" class="clearfix" data-position="{$option.position}" data-parent="{$option.parent}" data-type="{$option.type}">
 							<div class="col-sm-12">
 								{if $option.name}
 									{capture assign='tooltip'}{strip}
@@ -188,7 +188,7 @@
 
 	</div>
 {/tab}
-{tab name="{tr}Preview{/tr}"}
+{tab name="{tr}Preview and Deploy{/tr}"}
 	<h2>{tr}Preview menu{/tr}</h2>
 
 
