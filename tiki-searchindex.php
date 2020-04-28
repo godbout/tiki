@@ -79,6 +79,24 @@ if (count($filter) || count($postfilter)) {
 				}
 			);	// strip out null values
 		}
+		// add facet/aggregations to the serialised outout
+		if ($prefs['search_use_facets'] == 'y') {
+			$facets = array_map(
+				function ($facet) {
+					return $facet->getOptions();
+				},
+				$results->getFacets()
+			);
+			$resultArray = [
+				'count' => $results->count(),
+				'maxRecords' => $results->getMaxRecords(),
+				'offset' => $results->getOffset(),
+				'result' => (array) $results,
+				'facets' => $facets,
+			];
+			$results = $resultArray;
+		}
+
 		$access->output_serialized(
 			$results,
 			[
