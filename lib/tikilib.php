@@ -2589,6 +2589,11 @@ class TikiLib extends TikiDb_Bridge
 
 		$counter = count($matches[0]);
 		for ($i = 0; $i < $counter; $i++) {
+			$label = ! empty($matches[3][$i]) ? ltrim($matches[3][$i], '|') : '';
+			if (! empty($label) && $matches[2][$i] == $label) {
+				$data = str_replace($matches[0][$i], '[' . $matches[2][$i] . ']', $data);
+			}
+
 			// Check if link part is valid url
 			if (filter_var($matches[2][$i], FILTER_VALIDATE_URL) === false) {
 				continue;
