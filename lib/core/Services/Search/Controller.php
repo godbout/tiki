@@ -160,7 +160,7 @@ class Services_Search_Controller
 							// otherwise its hard to distingish which field that is if multiple tracker use the same fieldname
 							// example: setup of trackerfield item-link: choose some fields from a list. currently this list show all fields of all trackers
 							if ($item['object_type'] == 'trackerfield') {
-								return $item[$key] . ' (Tracker-' . $item['tracker_id'] . ')';
+								return $item[$key] . ' (Tracker-' . $item['tracker_id'] . ', Field-' . $item['object_id'] . ')';
 							} else {
 								return $item[$key];
 							}

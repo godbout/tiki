@@ -57,11 +57,11 @@
 					{elseif $def.selector_type}
 						{if $def.separator}
 							<div class="col-12">
-								{object_selector_multi type=$def.selector_type _separator=$def.separator _simplename="option~`$param`" _simplevalue=$options[$param] _simpleid="option-`$param`" _parent=$def.parent _parentkey=$def.parentkey _sort=$def.sort_order _format=$def.format _sort=$def.sort}
+								{object_selector_multi type=$def.selector_type _separator=$def.separator _simplename="option~`$param`" _simplevalue=$options[$param] _simpleid="option-`$param`" _parent=$def.parent _parentkey=$def.parentkey _sort=$def.sort_order _format=$def.format _sort=$def.sort _filter=$def.searchfilter}
 							</div>
 						{else}
 							<div class="col-12">
-								{object_selector type=$def.selector_type _simplename="option~`$param`" _simplevalue=$options[$param] _simpleid="option-`$param`" _parent=$def.parent _parentkey=$def.parentkey _format=$def.format _sort=$def.sort}
+								{object_selector type=$def.selector_type _simplename="option~`$param`" _simplevalue=$options[$param] _simpleid="option-`$param`" _parent=$def.parent _parentkey=$def.parentkey _format=$def.format _sort=$def.sort _filter=$def.searchfilter}
 							</div>
 						{/if}
 					{elseif $def.separator}

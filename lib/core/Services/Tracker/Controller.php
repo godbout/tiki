@@ -427,7 +427,7 @@ class Services_Tracker_Controller
 			}
 		}
 
-		array_walk($typeInfo['params'], function (& $param) {
+		array_walk($typeInfo['params'], function (& $param) use ($fieldId) {
 			if (isset($param['profile_reference'])) {
 				$lib = TikiLib::lib('object');
 				$param['selector_type'] = $lib->getSelectorType($param['profile_reference']);
@@ -441,6 +441,7 @@ class Services_Tracker_Controller
 				$param['parentkey'] = isset($param['parentkey']) ? $param['parentkey'] : null;
 				$param['sort_order'] = isset($param['sort_order']) ? $param['sort_order'] : null;
 				$param['format'] = isset($param['format']) ? $param['format'] : null;
+				$param['searchfilter'] = ['object_id' => 'NOT '.$fieldId];
 			} else {
 				$param['selector_type'] = null;
 			}
