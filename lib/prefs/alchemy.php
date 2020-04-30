@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Lib\Unoconv\UnoconvLib;
+
 function prefs_alchemy_list()
 {
 	$prefs = [
@@ -62,16 +64,16 @@ function prefs_alchemy_list()
 			'type' => 'text',
 			'size' => '5',
 			'filter' => 'digits',
-			'default' => 2002,
+			'default' => UnoconvLib::DEFAULT_PORT,
 		],
 	];
 
-	if (!class_exists('\Imagick')) {
-		$prefs['alchemy_imagine_driver']['options']['imagick'] .=  tr(' (Extension not loaded)');
+	if (! class_exists('\Imagick')) {
+		$prefs['alchemy_imagine_driver']['options']['imagick'] .= tr(' (Extension not loaded)');
 	}
 
-	if (!extension_loaded('gd')) {
-		$prefs['alchemy_imagine_driver']['options']['gd'] .=  tr(' (Extension not loaded)');
+	if (! extension_loaded('gd')) {
+		$prefs['alchemy_imagine_driver']['options']['gd'] .= tr(' (Extension not loaded)');
 	}
 
 	return $prefs;

@@ -18,6 +18,8 @@ class UnoconvLib
 
 	static $homeEnvCopy;
 
+	const DEFAULT_PORT = 2002;
+
 	/**
 	 * UnoconvLib constructor.
 	 */
@@ -96,5 +98,23 @@ class UnoconvLib
 		} else {
 			unset($_ENV['HOME']);
 		}
+	}
+
+	/**
+	 * Check if the port for alchemy lib is currently being used
+	 * @return bool True if port is not in use, False otherwise
+	 */
+	public static function isPortAvailable()
+	{
+		global $prefs;
+
+		$port = $prefs['alchemy_unoconv_port'] ?: self::DEFAULT_PORT;
+		$socket = @fsockopen(gethostname(), $port, $error, $error_details, 10);
+
+		if ($socket) {
+			fclose($socket);
+		}
+
+		return $socket === false;
 	}
 }

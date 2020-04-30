@@ -16,6 +16,7 @@ tiki-check.php should not crash but rather avoid running tests which lead to tik
 */
 
 use Tiki\Lib\Alchemy\AlchemyLib;
+use Tiki\Lib\Unoconv\UnoconvLib;
 use Tiki\Package\ComposerManager;
 
 // TODO : Create sane 3rd mode for Monitoring Software like Nagios, Icinga, Shinken
@@ -2957,6 +2958,8 @@ if ($standalone && ! $nagios) {
  */
 function checkPackageWarnings(&$warnings, $package)
 {
+	global $prefs;
+
 	switch ($package['name']) {
 		case 'media-alchemyst/media-alchemyst':
 			if (! AlchemyLib::hasReadWritePolicies()) {
@@ -2964,6 +2967,13 @@ function checkPackageWarnings(&$warnings, $package)
 					'Alchemy requires "Read" and "Write" policy rights. More info: <a href="%0" target="_blank">%1</a>',
 					'https://doc.tiki.org/tiki-index.php?page=Media+Alchemyst#Document_to_Image_issues',
 					'Media Alchemyst - Document to Image issues'
+				);
+			}
+
+			if (! UnoconvLib::isPortAvailable()) {
+				$warnings[] = tr(
+					'The configured port (%0) to execute unoconv is in use by another process. The port can be set in \'unoconv port\' preference.',
+					$prefs['alchemy_unoconv_port'] ?: UnoconvLib::DEFAULT_PORT
 				);
 			}
 
