@@ -104,12 +104,35 @@
     background-color: #f2f2f2;
 }
 
+.dp-amount--input__header {
+    position: relative;
+}
+
 .dp-amount--input__close {
     position: absolute;
     font-weight: bold;
     cursor: pointer;
-    top: 0;
+    top: -5px;
+    right: 0;
     color: grey;
+}
+
+.dp-toggle-mode {
+    cursor: pointer;
+    font-style: italic;
+}
+
+.dp-chronometer-btn {
+    cursor: pointer;
+}
+
+.dp-chronometer__group {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dp-chronometer__info {
+    font-weight: bold;
 }
 
 /* Utils */

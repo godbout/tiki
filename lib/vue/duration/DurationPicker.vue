@@ -1,24 +1,20 @@
 <template>
-		<div class="duration-picker" v-click-outside="handleCloseModal">
-				<template v-for="(dUnit) in store.state.duration.units">
-						<div class="dp-amount--container" v-on:click="handleOpenModal(dUnit, $event)" :key="dUnit">
-								<DurationPickerAmount :value="store.state.duration.amounts[dUnit]" :unit="dUnit"></DurationPickerAmount>
-						</div>
-				</template>
+	<div class="duration-picker" v-click-outside="handleCloseModal">
+		<DurationPickerAmounts v-on:unit="loadAmount" :duration="store.state.duration"></DurationPickerAmounts>
+		<DurationPickerModal v-show="show" :initial-unit="unit" :handle-close-modal="handleCloseModal"></DurationPickerModal>
 		<input type="hidden" :name="store.state.inputName" :value="getValue">
-		<DurationPickerModal v-if="show" :initial-unit="unit" :handle-close-modal="handleCloseModal"></DurationPickerModal>
-		</div>
+	</div>
 </template>
 
 <script>
-import DurationPickerAmount from "./vue_DurationPickerAmount.js";
+import DurationPickerAmounts from "./vue_DurationPickerAmounts.js";
 import DurationPickerModal from "./vue_DurationPickerModal.js";
 
 export default {
 	name: "DurationPicker",
 	components: {
-		durationpickeramount: DurationPickerAmount,
-		durationpickermodal: DurationPickerModal
+        durationpickeramounts: DurationPickerAmounts,
+        durationpickermodal: DurationPickerModal
 	},
 	data: function () {
 		return {
@@ -29,14 +25,14 @@ export default {
 	},
 	computed: {
 		getValue: function() {
-			return this.store.getFormattedDuration();
+			return JSON.stringify(this.store.state.duration.amounts);
 		}
 	},
 	methods: {
 		handleCloseModal: function () {
 			this.show = false;
 		},
-		handleOpenModal: function (unit) {
+		loadAmount: function (unit) {
 			this.unit = unit;
 			this.show = true;
 		}
@@ -46,7 +42,7 @@ export default {
 			bind: function (el, binding, vnode) {
 				el.clickOutsideEvent = function (event) {
 					// here I check that click was outside the el and his childrens
-					if (!(el == event.target || el.contains(event.target))) {
+					if (!(el === event.target || el.contains(event.target))) {
 						// and if it did, call method provided in attribute value
 						vnode.context[binding.expression](event);
 					}

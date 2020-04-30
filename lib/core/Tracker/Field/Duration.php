@@ -157,13 +157,13 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 		$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/moment-duration-format/lib/moment-duration-format.js');
 		$headerlib->add_jsfile('lib/vue/duration/store.js');
 		$headerlib->add_js('
-momentDurationFormatSetup(moment);
-var dpStore = DurationPickerStore();
-dpStore.setDuration({
-	value: '.$this->getValue().',
-	units: '.json_encode($this->enabledUnits()).'
-});
-dpStore.setInputName('.json_encode($this->getInsertId()).');
+			momentDurationFormatSetup(moment);
+			var dpStore = DurationPickerStore();
+			dpStore.setInitialDuration({
+				value: '.$this->getValue().',
+				units: '.json_encode($this->enabledUnits()).'
+			});
+			dpStore.setInputName('.json_encode($this->getInsertId()).');
 		');
 
 		$vuejslib = TikiLib::lib('vuejs');
@@ -172,9 +172,11 @@ dpStore.setInputName('.json_encode($this->getInsertId()).');
 			'store' => 'dpStore'
 		];
 
-		$appHtml = $vuejslib->processVue('lib/vue/duration/DurationPicker.vue', 'DurationPickerApp', true, $params);
-		$appHtml .= $vuejslib->processVue('lib/vue/duration/DurationPickerAmount.vue', 'DurationPickerAmount');
+		$appHtml = $vuejslib->processVue('lib/vue/duration/DurationPicker.vue', 'DurationPicker', true, $params);
 		$appHtml .= $vuejslib->processVue('lib/vue/duration/DurationPickerModal.vue', 'DurationPickerModal');
+		$appHtml .= $vuejslib->processVue('lib/vue/duration/DurationPickerAmounts.vue', 'DurationPickerAmounts');
+		$appHtml .= $vuejslib->processVue('lib/vue/duration/DurationPickerEditor.vue', 'DurationPickerEditor');
+		$appHtml .= $vuejslib->processVue('lib/vue/duration/DurationPickerChronometer.vue', 'DurationPickerChronometer');
 
 		return $appHtml;
 	}
