@@ -190,6 +190,9 @@
 			<a class="dropdown-item" href="tiki-admin_security.php">{tr}Security Admin{/tr}</a>
 			<a class="dropdown-item" href="tiki-check.php">{tr}Server Check{/tr}</a>
 			<a class="dropdown-item" href="tiki-admin_sync.php">{tr}Synchronize Dev{/tr}</a>
+			{if $prefs.feature_trackers eq "y" and $tiki_p_admin eq "y"}
+				<a class="dropdown-item" href="tiki-admin_orphaned.php">{tr}Orphaned Field Names{/tr}</a>
+			{/if}
 			{if $tiki_p_clean_cache eq "y"}
 				<a class="dropdown-item" href="tiki-admin_system.php">{tr}System Cache{/tr}</a>
 			{/if}
