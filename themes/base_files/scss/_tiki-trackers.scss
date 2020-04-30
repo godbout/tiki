@@ -92,7 +92,7 @@
 	}
 }
 
-.tiki .chosen-container .chosen-results li.result-selected {
+.tiki .chosen-container .chosen-results li.result-selected[class*="tracker-status-"] {
 	&:before {
 		top: 0;
 		width: auto;
