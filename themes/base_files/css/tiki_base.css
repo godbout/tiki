@@ -2462,7 +2462,7 @@ table.treetable tr.expanded span.indenter a {
 [class*="tracker-status"].highlighted:before {
   color: inherit !important; }
 
-.tiki .chosen-container .chosen-results li.result-selected:before {
+.tiki .chosen-container .chosen-results li.result-selected[class*="tracker-status-"]:before {
   top: 0;
   width: auto;
   height: auto;
