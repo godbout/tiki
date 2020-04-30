@@ -591,6 +591,27 @@
 {/if}
 
 <h2>{tr}Tiki Packages{/tr}</h2>
+<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<th>{tr}Requirements{/tr}</th>
+			<th>{tr}Status{/tr}</th>
+			<th>{tr}Message{/tr}</th>
+		</tr>
+		{foreach from=$composer_checks key=key item=item}
+			<tr>
+				<td class="text">{$key}</td>
+				<td class="text">
+				<span class="text-{$fmap[$item.fitness]['class']}">
+					{icon name="{$fmap[$item.fitness]['icon']}"} {$item.fitness}
+				</span>
+				</td>
+				<td class="text">{$item.message}</td>
+			</tr>
+		{/foreach}
+	</table>
+</div>
+
 {if ! $composer_available}
 	{remarksbox type="warning" title="{tr}Composer not found{/tr}"}
 		{tr}Composer could not be executed, so the automated check on the packages cannot be performed.{/tr}

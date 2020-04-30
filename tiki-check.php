@@ -2438,7 +2438,46 @@ if (! $standalone) {
 		$smarty->assign('engineTypeNote', false);
 	}
 
-	$smarty->assign('composer_available', $composerManager->composerIsAvailable());
+	//Verify composer and composer install requirements: bzip and unzip bin
+	if ($composerAvailable = $composerManager->composerIsAvailable()) {
+		$composerChecks['composer'] = array(
+			'fitness' => tra('good'),
+			'message' => tra('Composer found')
+		);
+	} else {
+		$composerChecks['composer'] = array(
+			'fitness' => tra('bad'),
+			'message' => tra('Composer not found')
+		);
+	}
+
+	if (extension_loaded('bz2')) {
+		$composerChecks['php-bz2'] = array(
+			'fitness' => tra('good'),
+			'message' => tra('Extension loaded in PHP')
+		);
+	} else {
+		$composerChecks['php-bz2'] = array(
+			'fitness' => tra('bad'),
+			'message' => tra('Bz2 extension not loaded in PHP. It may be needed to install composer packages.')
+		);
+	}
+
+	if (commandIsAvailable('unzip')) {
+		$composerChecks['unzip'] = array(
+			'fitness' => tra('good'),
+			'message' => tra('Command found')
+		);
+	} else {
+		$composerChecks['unzip'] = array(
+			'fitness' => tra('unsure'),
+			'message' => tra('Command not found. As there is no \'unzip\' command installed zip files are being unpacked using the PHP zip extension.
+			This may cause invalid reports of corrupted archives. Besides, any UNIX permissions (e.g. executable) defined in the archives will be lost.')
+		);
+	}
+
+	$smarty->assign('composer_available', $composerAvailable);
+	$smarty->assign('composer_checks', $composerChecks);
 	$smarty->assign('packages', $packagesToDisplay);
 }
 
