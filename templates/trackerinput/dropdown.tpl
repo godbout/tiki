@@ -30,7 +30,7 @@
 	{else}
 		<select name="{$field.ins_id|escape}" class="form-control{if $field.type eq 'D'} group_{$field.ins_id|escape}{/if}">
 			{if $field.isMandatory ne 'y' || empty($field.value)}
-				<option value="">&nbsp;</option>
+				<option value=""></option>
 			{/if}
 			{foreach from=$field.possibilities key=value item=label}
 				{if $value eq 'other' or $value eq "{tr}other{/tr}"}

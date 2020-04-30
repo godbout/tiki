@@ -433,7 +433,7 @@
 					</label>
 					<div class="col-sm-2">
 						<select id="groupforAlert" name="groupforAlert" class="form-control">
-							<option value="">&nbsp;</option>
+							<option value=""></option>
 							{foreach key=k item=i from=$groupforAlertList}
 								<option value="{$k|escape}" {$i}>{$k|escape}</option>
 							{/foreach}

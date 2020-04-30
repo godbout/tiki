@@ -179,7 +179,7 @@ if ($(this).val() != '') {
 							<label for="groupforAlert" class="col-sm-4 col-form-label">{tr}Group of users alerted when file gallery is modified{/tr}</label>
 							<div class="col-sm-8">
 								<select id="groupforAlert" name="groupforAlert" class="form-control">
-									<option value="">&nbsp;</option>
+									<option value=""></option>
 									{foreach key=k item=i from=$groupforAlertList}
 										<option value="{$k}" {$i}>{$k}</option>
 									{/foreach}

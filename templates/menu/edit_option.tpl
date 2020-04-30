@@ -53,7 +53,7 @@
 
 				<div class="col-md-9">
 					<select id="menu_groupname" name="groupname[]" class="form-control mb-4" multiple="multiple">
-						<option value="">&nbsp;</option>
+						<option value=""></option>
 						{foreach $option_groups as $groupname => $selected}
 							<option value="{$groupname|escape}" {$selected}>{$groupname|escape}</option>
 						{/foreach}
