@@ -411,6 +411,7 @@ class Services_Edit_PluginController
 
 					$text = $matches->getText();
 					$text .= $converter->getErrorsComment();
+					$text .= $converter->getAdditionalComments('wiki');
 
 					$tikilib->update_page(
 						$page,

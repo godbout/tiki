@@ -109,6 +109,9 @@ class Services_Edit_ListConverter
 						$this->columnOptions['url'] = $value;
 						break;
 					}
+				case 'wiki';
+					$this->columnOptions['wiki'] = $value;
+					break;
 				case 'status':
 					$filters[] = [
 						'field' => 'tracker_status',
@@ -279,6 +282,9 @@ class Services_Edit_ListConverter
 					}
 				}
 			}
+			if (! empty($this->columnOptions['wiki'])) { // will be used to convert the wiki from using f_n to permnames
+				$this->wikiFields[$field['fieldId']] = $field['permName'];
+			}
 		}
 
 		if ($this->columnOptions['links'] && ! $this->titleFound) {    // object link not listed in fields
@@ -328,14 +334,20 @@ class Services_Edit_ListConverter
 			$result .= $this->arrayToInlinePluginString('pagination', [$pagination]);
 		}
 
-		$result .= "{OUTPUT(template=\"table\")}\n";
-		$result .= $this->arrayToInlinePluginString('column', $this->columns);
+		if (! empty($this->columnOptions['wiki'])) {
+			$result .= "{OUTPUT()}\n";
+			$result .= $this->convertWiki($this->columnOptions['wiki']);
+			$result .= "{OUTPUT}\n";
+		} else {
+			$result .= "{OUTPUT(template=\"table\")}\n";
+			$result .= $this->arrayToInlinePluginString('column', $this->columns);
 
-		if ($tableSorter['sortable'] === 'y') {
-			$result .= $this->arrayToInlinePluginString('tablesorter', [$tableSorter]);
+			if ($tableSorter['sortable'] === 'y') {
+				$result .= $this->arrayToInlinePluginString('tablesorter', [$tableSorter]);
+			}
+
+			$result .= "{OUTPUT}\n";
 		}
-
-		$result .= "{OUTPUT}\n";
 
 		$result .= $this->arrayToBlockPluginString('format', $this->formats);
 
@@ -351,6 +363,31 @@ class Services_Edit_ListConverter
 		}
 
 		return "~tc~$errors~/tc~\n";
+	}
+
+	public function getAdditionalComments($param)
+	{
+
+		$comments = '';
+
+		if ($param === 'wiki' && ! empty($this->columnOptions['wiki'])) {
+			$comments = "~tc~\n" . tr("The following wiki was converted and now it resides inside the List plugin: \"%0\". You can delete it after reviewing the conversion results.", $this->columnOptions['wiki']) . "\n~/tc~\n";
+		}
+
+		return $comments;
+	}
+
+	private function convertWiki($wiki) // convert wiki's {$f_n} into {display name="permName"}
+	{
+
+		$infoWiki = TikiLib::lib('tiki')->get_page_info($wiki);
+		$convertedWiki = $infoWiki['data'];
+
+		foreach ($this->wikiFields as $fieldId => $permName) {
+			$convertedWiki = str_replace("{\$f_$fieldId}", "{display name=\"$permName\"}", $convertedWiki);
+		}
+
+		return $convertedWiki;
 	}
 
 	private function arrayToInlinePluginString($type, $params)
