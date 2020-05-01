@@ -178,24 +178,29 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$prefs['feature_absolute_to_relative_links'] = 'n';
 		$text = 'Nullam quis risus eget urna mollis ornare vel eu leo. #1' .
 			' Praesent commodo cursus magna, vel scelerisque nisl consectetur et. #2' .
-			' Aenean lacinia bibendum nulla sed consectetur. #3';
+			' Aenean lacinia bibendum nulla sed consectetur. #3' .
+			' Dapibus Tellus Nibh Tortor Porta #4';
 
 		$link1 = '[' . $baseUrl . 'tiki-index.php|' . $baseUrl . 'tiki-index.php]';
 		$link2 = '[' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink|' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink]';
 		$link3 = '((Homepage|Homepage))';
+		$link4 = '[tiki-pagehistory.php?page=193&newver=12&oldver=11|tiki-pagehistory.php?page=193&newver=12&oldver=11]';
 
 		$data = str_replace('#1', $link1, $text);
 		$data = str_replace('#2', $link2, $data);
 		$data = str_replace('#3', $link3, $data);
+		$data = str_replace('#4', $link4, $data);
 
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
 
 		$expectedLink1 = '[' . $baseUrl . 'tiki-index.php]';
 		$expectedLink2 = '[' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink]';
 		$expectedLink3 = '((Homepage))';
+		$expectedLink4 = '[tiki-pagehistory.php?page=193&newver=12&oldver=11]';
 		$dataResult = str_replace('#1', $expectedLink1, $text);
 		$dataResult = str_replace('#2', $expectedLink2, $dataResult);
 		$dataResult = str_replace('#3', $expectedLink3, $dataResult);
+		$dataResult = str_replace('#4', $expectedLink4, $dataResult);
 
 		$this->assertEquals($dataResult, $dataConverted);
 	}

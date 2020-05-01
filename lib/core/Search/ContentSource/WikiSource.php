@@ -67,6 +67,7 @@ class Search_ContentSource_WikiSource implements Search_ContentSource_Interface
 
 			'wiki_content' => $typeFactory->wikitext($info['data']),
 			'wiki_keywords' => $typeFactory->plaintext($info['keywords']),
+			'page_id' => $typeFactory->identifier($info['page_id']),
 
 			'view_permission' => $typeFactory->identifier('tiki_p_view'),
 			'url' => $typeFactory->identifier($wikilib->sefurl($info['pageName'])),
@@ -135,6 +136,7 @@ class Search_ContentSource_WikiSource implements Search_ContentSource_Interface
 
 			'wiki_content',
 			'wiki_keywords',
+			'page_id',
 
 			'view_permission',
 			'hash',

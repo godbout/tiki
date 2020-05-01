@@ -6,14 +6,14 @@
 	{include file='access/include_items.tpl'}
 	{$iname = ''}
 	{if $extra.version === 'last'}
-		{$iname = 'all'}
-		{$idesc = 'all versions'}
+		{$iname = '{tr}all{/tr}'}
+		{$idesc = '{tr}all versions{/tr}'}
 	{elseif $extra.version === 'all'}
-		{$iname = 'last'}
-		{$idesc = 'last version only'}
+		{$iname = '{tr}last{/tr}'}
+		{$idesc = '{tr}last version only{/tr}'}
 	{/if}
         {if isset($included_by)}
-                {remarksbox type='Warning' title="{tr}Warning{/tr}"}
+                {remarksbox type='Warning' title="Warning"}
                         {tr}The following item(s) include page(s) being deleted and will break.{/tr}
 		        {include file='tiki-edit-page-included_by.tpl'}
                 {/remarksbox}
@@ -23,7 +23,7 @@
 		{if !empty($iname) && !$extra.one}
 			<div class="form-check">
 				<label class="form-check-label">
-					<input class="form-check-input" type="checkbox" name="{$iname}" onclick="$('#div_checkbox_redirect').toggle(); if (!this.checked) $('#div_redirect').hide(); return true;"> {tr}Remove {$idesc}{/tr}
+					<input class="form-check-input" type="checkbox" name="{$iname}" onclick="$('#div_checkbox_redirect').toggle(); if (!this.checked) $('#div_redirect').hide(); return true;"> {tr}Remove{/tr} {$idesc}
 				</label>
 			</div>
 			{$div_checkbox_redirect_display = 'none'}

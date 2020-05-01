@@ -9,7 +9,6 @@ namespace Tiki\Package;
 
 use Symfony\Component\Process\Exception\ExceptionInterface as ProcessExceptionInterface;
 use Symfony\Component\Process\Process;
-use Symfony\Component\Process\ProcessBuilder;
 
 /**
  * Wrapper to composer.phar to allow installation of packages from the admin interface
@@ -176,11 +175,8 @@ class ComposerCli
 	 */
 	protected function getPhpVersion($php)
 	{
-		$builder = new ProcessBuilder();
-		$builder->setPrefix($php);
-		$builder->setArguments(['--version']);
-		$builder->setEnv('HTTP_ACCEPT_ENCODING', '');
-		$process = $builder->getProcess();
+		$process = new Process([$php, '--version'], null, ['HTTP_ACCEPT_ENCODING' => '']);
+		$process->inheritEnvironmentVariables();
 		$process->run();
 		foreach (explode("\n", $process->getOutput()) as $line) {
 			$parts = explode(' ', $line);
@@ -208,17 +204,13 @@ class ComposerCli
 		// try to check the PHP binary path using operating system resolution mechanisms
 		foreach (self::PHP_COMMAND_NAMES as $cli) {
 			$possibleCli = $cli;
-			$builder = new ProcessBuilder();
+			$prefix = 'command';
 			if (\TikiInit::isWindows()) {
 				$possibleCli .= '.exe';
-				$builder->setPrefix('where');
-				$builder->setArguments([$possibleCli]);
-			} else {
-				$builder->setPrefix('command');
-				$builder->setArguments(['-v', $possibleCli]);
+				$prefix = 'where';
 			}
-			$builder->setEnv('HTTP_ACCEPT_ENCODING', '');
-			$process = $builder->getProcess();
+			$process = new Process([$prefix, $possibleCli], null, ['HTTP_ACCEPT_ENCODING' => '']);
+			$process->inheritEnvironmentVariables();
 			$process->setTimeout($this->timeout);
 			$process->run();
 			$output = $process->getOutput();
@@ -299,31 +291,24 @@ class ComposerCli
 		$command = $output = $errors = '';
 
 		try {
-			$builder = new ProcessBuilder();
+			$composerPath = $this->getComposerPharPath();
+			array_unshift($args, $composerPath);
 
 			$cmd = $this->getPhpPath();
 			if ($cmd) {
-				$builder->setPrefix($cmd);
-				array_unshift($args, $this->getComposerPharPath());
-			} else {
-				$builder->setPrefix($this->getComposerPharPath());
+				array_unshift($args, $cmd);
 			}
-
-			$builder->setArguments($args);
 
 			if (! getenv('COMPOSER_HOME')) {
-				$builder->setEnv('COMPOSER_HOME', $this->basePath . self::COMPOSER_HOME);
+				$env['COMPOSER_HOME'] = $this->basePath . self::COMPOSER_HOME;
 			}
-
 			// HTTP_ACCEPT_ENCODING interfere with the composer output, so set it to know value
-			$builder->setEnv('HTTP_ACCEPT_ENCODING', '');
+			$env['HTTP_ACCEPT_ENCODING'] = '';
 
-			$process = $builder->getProcess();
-
+			$process = new Process($args, null, $env);
+			$process->inheritEnvironmentVariables();
 			$command = $process->getCommandLine();
-
 			$process->setTimeout($this->timeout);
-
 			$process->run();
 
 			$code = $process->getExitCode();
@@ -743,6 +728,7 @@ class ComposerCli
 
 		$command = [$this->getPhpPath(), self::COMPOSER_SETUP, '--quiet', '--install-dir=temp'];
 		$process = new Process($command, null, $env);
+		$process->inheritEnvironmentVariables();
 		$process->run();
 
 		$output = $process->getOutput();
@@ -776,6 +762,7 @@ class ComposerCli
 
 		$command = [$this->getComposerPharPath(), 'self-update', '--no-progress'];
 		$process = new Process($command, null, $env);
+		$process->inheritEnvironmentVariables();
 		$process->start();
 		$output = '';
 		foreach ($process as $type => $data) {
