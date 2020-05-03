@@ -11,6 +11,8 @@
 class UnifiedSearchLib
 {
 	const INCREMENT_QUEUE = 'search-increment';
+	const INCREMENT_QUEUE_REBUILD = 'search-increment-rebuild';
+
 	private $batchToken;
 	private $isRebuildingNow = false;
 	private $indices;
@@ -62,12 +64,12 @@ class UnifiedSearchLib
 			return;
 		}
 
-		if ($this->rebuildInProgress()) {
-			return;
-		}
-
 		$queuelib = TikiLib::lib('queue');
 		$toProcess = $queuelib->pull(self::INCREMENT_QUEUE, $count);
+		if ($this->rebuildInProgress()) {
+			// Requeue to add to new index too (that is rebuilding)
+			$queuelib->pushAll(self::INCREMENT_QUEUE_REBUILD, $toProcess);
+		}
 		$access = TikiLib::lib('access');
 		$access->preventRedirect(true);
 
@@ -236,6 +238,7 @@ class UnifiedSearchLib
 		$tikilib = TikiLib::lib('tiki');
 		if (! $fallback) {
 			TikiLib::lib('queue')->clear(self::INCREMENT_QUEUE);
+			TikiLib::lib('queue')->clear(self::INCREMENT_QUEUE_REBUILD);
 		}
 
 		$access = TikiLib::lib('access');
@@ -336,6 +339,15 @@ class UnifiedSearchLib
 			$stats['fallback'] = $this->rebuild($loggit, true);
 			$prefs['unified_engine'] = $defaultEngine;
 		}
+
+		// Requeue messages that were added and processed in old index,
+		// while rebuilding the new index
+		$queueLib = TikiLib::lib('queue');
+		$toProcess = $queueLib->pull(
+			self::INCREMENT_QUEUE_REBUILD,
+			$queueLib->count(self::INCREMENT_QUEUE_REBUILD)
+		);
+		$queueLib->pushAll(self::INCREMENT_QUEUE, $toProcess);
 
 		// Process the documents updated while we were processing the update
 		$this->processUpdateQueue(1000);

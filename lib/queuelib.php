@@ -14,6 +14,13 @@ class QueueLib extends TikiDb_Bridge
 		$this->queue = $this->table('tiki_queue');
 	}
 
+	public function pushAll($queue, array $messages)
+	{
+		foreach ($messages as $message) {
+			$this->push($queue, $message);
+		}
+	}
+
 	function push($queue, array $message)
 	{
 		$this->queue->insert(
