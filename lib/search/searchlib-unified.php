@@ -145,6 +145,9 @@ class UnifiedSearchLib
 			$name = $this->getIndexLocation('data');
 			$connection = $this->getElasticConnection(true);
 			return $connection->isRebuilding($name);
+		} elseif ($prefs['unified_engine'] == 'mysql') {
+			$lockName = TikiLib::lib('tiki')->get_preference('unified_mysql_index_rebuilding');
+			return empty($lockName) ? false : TikiDb::get()->isLocked($lockName);
 		}
 
 		return false;
@@ -173,6 +176,8 @@ class UnifiedSearchLib
 	{
 		global $prefs;
 		$engineResults = null;
+
+		$tikilib = TikiLib::lib('tiki');
 
 		switch ($prefs['unified_engine']) {
 			case 'lucene':
@@ -219,6 +224,8 @@ class UnifiedSearchLib
 				$indexName = 'index_' . uniqid();
 				$index = new Search_MySql_Index(TikiDb::get(), $indexName);
 				$engineResults = new Search_EngineResult_MySQL($index);
+				$tikilib->set_preference('unified_mysql_index_rebuilding', $indexName);
+				TikiDb::get()->getLock($indexName);
 
 				TikiLib::events()->bind(
 					'tiki.process.shutdown',
@@ -235,7 +242,6 @@ class UnifiedSearchLib
 		}
 
 		// Build in -new
-		$tikilib = TikiLib::lib('tiki');
 		if (! $fallback) {
 			TikiLib::lib('queue')->clear(self::INCREMENT_QUEUE);
 			TikiLib::lib('queue')->clear(self::INCREMENT_QUEUE_REBUILD);
@@ -316,6 +322,7 @@ class UnifiedSearchLib
 				$oldIndex = $this->getIndex('data');
 
 				$tikilib->set_preference('unified_mysql_index_current', $indexName);
+				TikiDb::get()->releaseLock($indexName);
 
 				break;
 		}

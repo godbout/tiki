@@ -298,6 +298,14 @@ function prefs_unified_list()
 			'size' => '20',
 			'default' => '',
 		],
+		'unified_mysql_index_rebuilding' => [
+			'name' => tra('The current MySQL index name that is being rebuild (Internal)'),
+			'description' => tra('This value helps to determine if there is a rebuild in progress, for incremental search.'),
+			'type' => 'text',
+			'filter' => 'word',
+			'size' => '20',
+			'default' => '',
+		],
 		'unified_identifier_fields' => [
 			'name' => tr('Unified index identifier fields (Internal)'),
 			'description' => tr('Used to store the fields to be considered as identifiers. This is overwritten after each index rebuilding.'),
