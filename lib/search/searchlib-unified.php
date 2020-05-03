@@ -20,7 +20,7 @@ class UnifiedSearchLib
 	/**
 	 * @return string
 	 */
-	function startBatch()
+	public function startBatch()
 	{
 		if (! $this->batchToken) {
 			$this->batchToken = uniqid();
@@ -32,7 +32,7 @@ class UnifiedSearchLib
 	 * @param $token
 	 * @param int $count
 	 */
-	function endBatch($token, $count = 100)
+	public function endBatch($token, $count = 100)
 	{
 		if ($token && $this->batchToken === $token) {
 			$this->batchToken = null;
@@ -53,7 +53,7 @@ class UnifiedSearchLib
 	/**
 	 * @param int $count
 	 */
-	function processUpdateQueue($count = 10)
+	public function processUpdateQueue($count = 10)
 	{
 		global $prefs;
 		if (! isset($prefs['unified_engine'])) {
@@ -124,7 +124,7 @@ class UnifiedSearchLib
 	/**
 	 * @return array
 	 */
-	function getQueueCount()
+	public function getQueueCount()
 	{
 		$queuelib = TikiLib::lib('queue');
 		return $queuelib->count(self::INCREMENT_QUEUE);
@@ -133,7 +133,7 @@ class UnifiedSearchLib
 	/**
 	 * @return bool
 	 */
-	function rebuildInProgress()
+	public function rebuildInProgress()
 	{
 		global $prefs;
 		if ($prefs['unified_engine'] == 'lucene') {
@@ -155,7 +155,7 @@ class UnifiedSearchLib
 
 	/**
 	 */
-	function stopRebuild()
+	public function stopRebuild()
 	{
 		global $prefs;
 		if ($prefs['unified_engine'] == 'lucene') {
@@ -268,7 +268,7 @@ class UnifiedSearchLib
 
 			$stat['total tiki fields indexed'] = $index->getFieldCount();
 
-			if(! is_null($engineResults)) {
+			if (! is_null($engineResults)) {
 				$fieldsCount = $engineResults->getEngineFieldsCount();
 
 				if ($fieldsCount !== $stat['total tiki fields indexed']) {
@@ -368,6 +368,7 @@ class UnifiedSearchLib
 
 		$this->isRebuildingNow = false;
 		$access->preventRedirect(false);
+
 		return $stats;
 	}
 
@@ -457,7 +458,7 @@ class UnifiedSearchLib
 	 * @param $type
 	 * @param $objectId
 	 */
-	function invalidateObject($type, $objectId)
+	public function invalidateObject($type, $objectId)
 	{
 		TikiLib::lib('queue')->push(
 			self::INCREMENT_QUEUE,
@@ -541,7 +542,7 @@ class UnifiedSearchLib
 	}
 
 
-	function getLastLogItem()
+	public function getLastLogItem()
 	{
 		global $prefs;
 		$files['web'] = $this->getLogFilename(1);
@@ -759,7 +760,7 @@ class UnifiedSearchLib
 	/**
 	 * @return Search_Index_Interface
 	 */
-	function getIndex($indexType = 'data', $useCache = true)
+	public function getIndex($indexType = 'data', $useCache = true)
 	{
 		global $prefs, $tiki_p_admin;
 
@@ -822,7 +823,7 @@ class UnifiedSearchLib
 		return new Search_Index_Memory;
 	}
 
-	function getEngineInfo()
+	public function getEngineInfo()
 	{
 		global $prefs;
 
@@ -941,7 +942,7 @@ class UnifiedSearchLib
 	 * @param string $mode
 	 * @return Search_Formatter_DataSource_Interface
 	 */
-	function getDataSource($mode = 'formatting')
+	public function getDataSource($mode = 'formatting')
 	{
 		global $prefs;
 
@@ -981,7 +982,7 @@ class UnifiedSearchLib
 		return $dataSource;
 	}
 
-	function getProfileExportHelper()
+	public function getProfileExportHelper()
 	{
 		$helper = new Tiki_Profile_Writer_SearchFieldHelper;
 		$this->addSources($helper, 'indexing'); // Need all fields, so use indexing
@@ -992,7 +993,7 @@ class UnifiedSearchLib
 	/**
 	 * @return Search_Query_WeightCalculator_Field
 	 */
-	function getWeightCalculator()
+	public function getWeightCalculator()
 	{
 		global $prefs;
 
@@ -1011,14 +1012,14 @@ class UnifiedSearchLib
 		return new Search_Query_WeightCalculator_Field($weights);
 	}
 
-	function initQuery(Search_Query $query)
+	public function initQuery(Search_Query $query)
 	{
 		$this->initQueryBase($query);
 		$this->initQueryPermissions($query);
 		$this->initQueryPresentation($query);
 	}
 
-	function initQueryBase($query, $applyJail = true)
+	public function initQueryBase($query, $applyJail = true)
 	{
 		global $prefs;
 
@@ -1031,7 +1032,7 @@ class UnifiedSearchLib
 		}
 	}
 
-	function initQueryPermissions($query)
+	public function initQueryPermissions($query)
 	{
 		global $user;
 
@@ -1040,7 +1041,7 @@ class UnifiedSearchLib
 		}
 	}
 
-	function initQueryPresentation($query)
+	public function initQueryPresentation($query)
 	{
 		$query->applyTransform(new Search_Formatter_Transform_DynamicLoader($this->getDataSource('formatting')));
 	}
@@ -1049,7 +1050,7 @@ class UnifiedSearchLib
 	 * @param array $filter
 	 * @return Search_Query
 	 */
-	function buildQuery(array $filter, $query = null)
+	public function buildQuery(array $filter, $query = null)
 	{
 		if (! $query) {
 			$query = new Search_Query;
@@ -1145,7 +1146,7 @@ class UnifiedSearchLib
 		return $query;
 	}
 
-	function getFacetProvider()
+	public function getFacetProvider()
 	{
 		global $prefs;
 		$types = $this->getSupportedTypes();
@@ -1210,7 +1211,7 @@ class UnifiedSearchLib
 
 			$facets[] = Search_Query_Facet_Term::fromField('_index')
 				->setLabel(tr('Federated Search'))
-				->setRenderCallback(function ($index) use (& $indexMap) {
+				->setRenderCallback(function ($index) use (&$indexMap) {
 					$out = tr('Index not found');
 					if (isset($indexMap[$index])) {
 						$out = $indexMap[$index];
@@ -1234,7 +1235,7 @@ class UnifiedSearchLib
 		return $provider;
 	}
 
-	function getRawArray($document)
+	public function getRawArray($document)
 	{
 		return array_map(function ($entry) {
 			if (is_object($entry)) {
@@ -1249,7 +1250,7 @@ class UnifiedSearchLib
 		}, $document);
 	}
 
-	function isOutdated()
+	public function isOutdated()
 	{
 
 		global $prefs;
