@@ -233,8 +233,11 @@ class UnifiedSearchLib
 		}
 
 		// Build in -new
-		TikiLib::lib('queue')->clear(self::INCREMENT_QUEUE);
 		$tikilib = TikiLib::lib('tiki');
+		if (! $fallback) {
+			TikiLib::lib('queue')->clear(self::INCREMENT_QUEUE);
+		}
+
 		$access = TikiLib::lib('access');
 		$access->preventRedirect(true);
 
