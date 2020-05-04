@@ -67,7 +67,11 @@ $("#picker_{{$name|escape}}").parent().click(function () {
 						{jq notonready=true}$("#{{$inputId}}").attr("data-parent_name", "{{$param.parentparam.name}}").attr("data-parent_value", "{{$param.parentparam.value}}");{/jq}
 					{/if}
 				{else}
-					<input value="{$val|escape}" class="form-control{$groupClass}" id="{$inputId}" type="text" name="params[{$name|escape}]"{$dataAttribute}>
+					{if $param.filter eq "password"}
+						<input value="{$val|escape}" class="form-control{$groupClass}" id="{$inputId}" type="password" name="params[{$name|escape}]"{$dataAttribute}>
+					{else}
+						<input value="{$val|escape}" class="form-control{$groupClass}" id="{$inputId}" type="text" name="params[{$name|escape}]"{$dataAttribute}>
+					{/if}
 					{if not empty($param.filter)}
 						{if $param.filter eq "pagename"}
 							{jq}$({{$inputId}}).tiki("autocomplete", "pagename");{/jq}

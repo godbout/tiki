@@ -12,14 +12,13 @@ function wikiplugin_cypht_info()
 		'documentation' => 'PluginCypht',
 		'description' => tra('Embed Cypht webmail and news reader.'),
 		'prefs' => [ 'wikiplugin_cypht' ],
-		'body' => tra('text'),
 		'iconname' => 'envelope',
 		'introduced' => '20.0',
 		'format' => 'html',
 		'tags' => [ 'basic' ],
 		'params' => [
 			'imap_name' => [
-				'name' => tr('Mailbox name'),
+				'name' => tr('IMAP connection name'),
 				'description' => tr("UI display presentational purposes only."),
 				'required' => false,
 				'default' => '',
@@ -66,7 +65,7 @@ function wikiplugin_cypht_info()
 				'name' => tra('IMAP password'),
 				'description' => tr('Account mailbox password.'),
 				'required' => false,
-				'filter' => 'text',
+				'filter' => 'password',
 				'default' => '',
 				'since' => '20.0',
 			],
@@ -94,6 +93,22 @@ function wikiplugin_cypht_info()
 				'filter' => 'text',
 				'since' => '20.0',
 			],
+			'smtp_username' => [
+				'name' => tra('SMTP username'),
+				'description' => tr('Account SMTP username.'),
+				'required' => false,
+				'filter' => 'text',
+				'default' => '',
+				'since' => '21.1',
+			],
+			'smtp_password' => [
+				'name' => tra('SMTP password'),
+				'description' => tr('Account SMTP password.'),
+				'required' => false,
+				'filter' => 'password',
+				'default' => '',
+				'since' => '21.1',
+			],
 			'smtp_tls' => [
 				'name' => tra('SMTP use TLS'),
 				'description' => tr('Use secure TLS/SSL connection to SMTP server.'),
@@ -114,6 +129,7 @@ function wikiplugin_cypht_info()
 				'default' => 'n',
 				'since' => '20.0',
 				'options' => [
+					['text' => tra('Default'), 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n'],
 				],
@@ -126,6 +142,7 @@ function wikiplugin_cypht_info()
 				'default' => 'y',
 				'since' => '20.0',
 				'options' => [
+					['text' => tra('Default'), 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n'],
 				],
@@ -138,6 +155,7 @@ function wikiplugin_cypht_info()
 				'default' => 'n',
 				'since' => '20.0',
 				'options' => [
+					['text' => tra('Default'), 'value' => ''],
 					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n'],
 				],
@@ -337,15 +355,15 @@ function wikiplugin_cypht($data, $params)
 		}
 	}
 
-	if (!empty($params['smtp_server'])) {
+	if (!empty($params['smtp_server']) && !empty($params['smtp_username']) && !empty($params['smtp_password'])) {
 		$attributes = array(
-			'name' => $params['smtp_name'] ?? 'Default SMTP server',
+			'name' => empty($params['smtp_name']) ? $params['smtp_username'] : $params['smtp_name'],
 			'default' => true,
 			'server' => $params['smtp_server'],
 			'port' => $params['smtp_port'],
 			'tls' => $params['smtp_tls'] == 'y',
-			'user' => $params['imap_username'],
-			'pass' => $params['imap_password']
+			'user' => $params['smtp_username'],
+			'pass' => $params['smtp_password']
 		);
 		if ($params['smtp_no_auth'] == 'y') {
 			$attributes['no_auth'] = true;
