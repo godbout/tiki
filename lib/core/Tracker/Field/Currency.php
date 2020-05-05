@@ -244,10 +244,10 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 					$data = $this->getFieldData();
 					$data['amount'] = $control->getFrom();
 					$data['currency'] = $control->getFromCurrency();
-					$from = $this->convertToDefaultCurrency($data);
+					$from = round($this->convertToDefaultCurrency($data), 2);
 					$data['amount'] = $control->getTo();
 					$data['currency'] = $control->getToCurrency();
-					$to = $this->convertToDefaultCurrency($data);
+					$to = round($this->convertToDefaultCurrency($data), 2);
 					$query->filterNumericRange($from, $to, "{$baseKey}_base");
 				}
 			});
@@ -286,16 +286,10 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 				$defaultCurrency = 'USD';
 			}
 
-			$sourceCurrency = $data['currency'];
-
-			$defaultAmount = $data['amount'];
-			if ($sourceCurrency != $defaultCurrency && !empty($rates[$sourceCurrency])) {
-				$defaultAmount = (float)$defaultAmount / (float)$rates[$sourceCurrency];
-			}
+			$currency = new Math_Formula_Currency($data['amount'], $data['currency'], $rates);
+			return $currency->convertTo($defaultCurrency)->getAmount();
 		} else {
-			$defaultAmount = 0;
+			return 0;
 		}
-
-		return $defaultAmount;
 	}
 }

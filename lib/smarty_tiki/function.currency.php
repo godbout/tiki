@@ -43,6 +43,10 @@ function smarty_function_currency($params, $smarty)
 			$defaultCurrency = 'USD';
 		}
 
+		if (empty($sourceCurrency)) {
+			$sourceCurrency = $defaultCurrency;
+		}
+
 		// convert amount to default currency before converting to other currencies
 		$defaultAmount = $amount;
 		if ($sourceCurrency != $defaultCurrency && !empty($rates[$sourceCurrency])) {
