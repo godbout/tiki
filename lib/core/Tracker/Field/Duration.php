@@ -164,7 +164,7 @@ dpStore.setInitialDuration({
 	units: '.json_encode($this->enabledUnits()).'
 });
 dpStore.setInputName('.json_encode($this->getInsertId()).');
-		');
+');
 
 		$vuejslib = TikiLib::lib('vuejs');
 
