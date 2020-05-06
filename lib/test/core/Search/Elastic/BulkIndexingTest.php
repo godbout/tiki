@@ -27,8 +27,8 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit\Framework\TestCase
 		$this->assertCount(1, $parts);
 
 		$this->assertStringContainsString(json_encode(['a' => 3]) . "\n", $parts[0]);
-		$this->assertStringContainsString(json_encode(['index' => ['_index' => 'test', '_type' => '_doc', '_id' => 'foo-2']]) . "\n", $parts[0]);
-		$this->assertStringContainsString(json_encode(['delete' => ['_index' => 'test', '_type' => '_doc', '_id' => 'bar-4']]) . "\n", $parts[0]);
+		$this->assertStringContainsString(json_encode(['index' => ['_index' => 'test', '_id' => 'foo-2', '_type' => '_doc']]) . "\n", $parts[0]);
+		$this->assertStringContainsString(json_encode(['delete' => ['_index' => 'test', '_id' => 'bar-4', '_type' => '_doc']]) . "\n", $parts[0]);
 	}
 
 	function testDoubleFlushHasNoImpact()
