@@ -167,6 +167,9 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 			if ($prefs['unified_trackerfield_keys'] === 'permName' && isset($field['permName']) && strlen($field['permName']) > Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE) {
 				continue;
 			}
+			if ($prefs['unified_exclude_nonsearchable_fields'] === 'y' && $field['isSearchable'] !== 'y') {
+				continue;
+			}
 			$handler = $factory->getHandler($field, $item);
 
 			if ($handler instanceof $interface) {

@@ -31,6 +31,10 @@ class Search_ContentSource_TrackerFieldSource implements Search_ContentSource_In
 			return false;
 		}
 
+		if ($prefs['unified_exclude_nonsearchable_fields'] === 'y' && $field['isSearchable'] !== 'y') {
+			return false;
+		}
+
 		if ($prefs['unified_trackerfield_keys'] === 'permName' && isset($field['permName']) && strlen($field['permName']) > Tracker_Item::PERM_NAME_MAX_ALLOWED_SIZE) {
 			Feedback::error(tr(
 				'Object "%0" (type %1) was not indexed because its "Permanent name" contains more than %2 characters. It\'s recommended to change its value.',
