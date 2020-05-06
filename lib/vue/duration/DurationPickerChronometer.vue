@@ -1,5 +1,5 @@
 <template>
-	<div class="dp-chronometer__container">
+    <div class="dp-chronometer__container">
         <div class="dp-chronometer__group">
             <span class="dp-chronometer-btn unselectable">
                 <i class="fas fa-play" v-show="show" v-on:click="startTimer"></i>
@@ -23,7 +23,7 @@
             <span>total time:</span>
             <span class="dp-chronometer__info">{{ calcSpentTime }}</span>
         </div>
-	</div>
+    </div>
 </template>
 
 <script>

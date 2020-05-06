@@ -14,19 +14,19 @@ import DurationPickerEditor from "./vue_DurationPickerEditor.js";
 import DurationPickerChronometer from "./vue_DurationPickerChronometer.js";
 
 export default {
-	name: "DurationPickerModal",
+    name: "DurationPickerModal",
     components: {
         durationpickerchronometer: DurationPickerChronometer,
         durationpickereditor: DurationPickerEditor
     },
-	data: function () {
-		return {
+    data: function () {
+        return {
             mode: 'Switch to chronometer',
-			show: false,
-			store: this.$parent.store
-		}
-	},
-	props: {
+            show: false,
+            store: this.$parent.store
+        }
+    },
+    props: {
         initialUnit: String,
         handleCloseModal: Function
     },

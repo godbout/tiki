@@ -40,28 +40,28 @@
 
 <script>
 export default {
-	name: "DurationPickerEditor",
-	data: function () {
-		return {
-			duration: this.$parent.store.state.duration,
-			value: this.$parent.store.state.duration.amounts[this.initialUnit],
+    name: "DurationPickerEditor",
+    data: function () {
+        return {
+            duration: this.$parent.store.state.duration,
+            value: this.$parent.store.state.duration.amounts[this.initialUnit],
             unit: this.initialUnit,
             interval: false,
-			store: this.$parent.store
-		}
-	},
-	props: {
+            store: this.$parent.store
+        }
+    },
+    props: {
         initialUnit: String,
-	},
+    },
     mounted: function () {
         this.$nextTick(function () {
             this.$refs.input.focus();
         });
     },
-	updated: function () {
-		this.$nextTick(function () {
+    updated: function () {
+        this.$nextTick(function () {
             this.$refs.input.focus();
-		})
+        })
     },
     beforeDestroy: function () {
         clearInterval(this.interval);
@@ -74,10 +74,10 @@ export default {
     watch: {
         initialUnit: function(newVal) {
             this.value = this.duration.amounts[newVal];
-			this.unit = newVal;
+            this.unit = newVal;
         }
-	},
-	methods: {
+    },
+    methods: {
         handleKeypress: function (e) {
             if (e.target.value.length > 3) {
                 // e.preventDefault();
@@ -90,9 +90,9 @@ export default {
             }
             this.store.setDurationValue(value, this.unit);
         },
-		handleClickUnit: function(unit) {
+        handleClickUnit: function(unit) {
             this.$refs.input.focus();
-			this.value = this.duration.amounts[unit];
+            this.value = this.duration.amounts[unit];
             this.unit = unit;
         },
         handleTabKeys: function(e) {
@@ -104,15 +104,15 @@ export default {
                 this.nextAmount();
             }
         },
-		nextAmount: function() {
+        nextAmount: function() {
             const { unit } = this.store.getAmountAfter(this.unit);
             this.unit = unit;
         },
         prevAmount: function() {
             const { unit } = this.store.getAmountBefore(this.unit);
             this.unit = unit;
-		},
-		handleSubtraction: function () {
+        },
+        handleSubtraction: function () {
             let value = parseInt(this.$refs.input.value, 10);
             let newValue = value - 1;
             this.store.setDurationValue(newValue, this.unit);
@@ -121,7 +121,7 @@ export default {
             let value = parseInt(this.$refs.input.value, 10);
             let newValue = value + 1;
             this.store.setDurationValue(newValue, this.unit);
-		},
+        },
         startSubtraction: function () {
             if (!this.interval) {
                 this.handleSubtraction();
@@ -144,6 +144,6 @@ export default {
             this.interval = false;
             this.$refs.input.focus();
         }
-	}
+    }
 };
 </script>

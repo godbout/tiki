@@ -157,13 +157,13 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 		$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/moment-duration-format/lib/moment-duration-format.js');
 		$headerlib->add_jsfile('lib/vue/duration/store.js');
 		$headerlib->add_js('
-			momentDurationFormatSetup(moment);
-			var dpStore = DurationPickerStore();
-			dpStore.setInitialDuration({
-				value: '.$this->getValue().',
-				units: '.json_encode($this->enabledUnits()).'
-			});
-			dpStore.setInputName('.json_encode($this->getInsertId()).');
+momentDurationFormatSetup(moment);
+var dpStore = DurationPickerStore();
+dpStore.setInitialDuration({
+	value: '.$this->getValue().',
+	units: '.json_encode($this->enabledUnits()).'
+});
+dpStore.setInputName('.json_encode($this->getInsertId()).');
 		');
 
 		$vuejslib = TikiLib::lib('vuejs');
