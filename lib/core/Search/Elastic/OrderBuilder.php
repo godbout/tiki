@@ -74,7 +74,7 @@ class Search_Elastic_OrderBuilder
 		if ((empty($mapping) || empty((array)$mapping)) && $prefs['search_error_missing_field'] === 'y') {
 			if (preg_match('/^tracker_field_/', $field)) {
 				$msg = tr('Field %0 does not exist in the current index. Please check field permanent name and if you have any items in that tracker.', $field);
-				if ($prefs['unified_exclude_nonsearchable_fields']) {
+				if ($prefs['unified_exclude_nonsearchable_fields'] === 'y') {
 					$msg .= ' '.tr('You have disabled indexing non-searchable tracker fields. Check if this field is marked as searchable.');
 				}
 			} else {
