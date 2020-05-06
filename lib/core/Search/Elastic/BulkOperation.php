@@ -35,12 +35,7 @@ class Search_Elastic_BulkOperation
 	{
 		$this->append(
 			[
-				['index' => [
-						'_index' => $index,
-						'_type' => $this->mapping_type,
-						'_id' => $type.'-'.$id,
-					]
-				],
+				['index' => $this->formatIndexId($index, $type, $id)],
 				$data,
 			]
 		);
@@ -50,12 +45,7 @@ class Search_Elastic_BulkOperation
 	{
 		$this->append(
 			[
-				['delete' => [
-						'_index' => $index,
-						'_type' => $this->mapping_type,
-						'_id' => $type.'-'.$id,
-					]
-				],
+				['delete' => $this->formatIndexId($index, $type, $id)],
 			]
 		);
 	}
@@ -70,5 +60,17 @@ class Search_Elastic_BulkOperation
 		if ($this->count >= $this->limit) {
 			$this->flush();
 		}
+	}
+
+	private function formatIndexId($index, $type, $id)
+	{
+		$index = [
+			'_index' => $index,
+			'_id' => $type.'-'.$id,
+		];
+		if (! empty($this->mapping_type)) {
+			$index['_type'] = $this->mapping_type;
+		}
+		return $index;
 	}
 }

@@ -222,7 +222,7 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 				'analyzer' => [
 					'default' => [
 						'tokenizer' => $this->camelCase ? 'camel' : 'standard',
-						'filter' => ['standard', 'lowercase', 'asciifolding'],
+						'filter' => $this->connection->getVersion() >= 7.0 ? ['lowercase', 'asciifolding'] : ['standard', 'lowercase', 'asciifolding'],
 					],
 					'sortable' => [
 						'tokenizer' => 'keyword',
@@ -263,7 +263,7 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 		$definition['analysis']['analyzer']['sortable']['filter'][] = 'tiki_stop';
 
 
-		return $definition;
+		return ['settings' => $definition];
 	}
 
 	function endUpdate()
@@ -457,6 +457,11 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 		} // END: Prepare query for search and actually perform search to get results back
 
 		$hits = $result->hits;
+
+		if (isset($hits->total->value)) {
+			// TODO: new in 7.0 total might be approximate, so consider using track_total_hits:true
+			$hits->total = $hits->total->value;
+		}
 
 		/**
 		 * Sorted Search size adjustment (part 2) - Checks to see if the number of results returned

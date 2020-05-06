@@ -43,7 +43,7 @@ class Search_Elastic_Connection
 			function ($data) {
 				$this->postBulk($data);
 			},
-			$this->mapping_type
+			($this->getVersion() >= 7.0 ? '' : $this->mapping_type)
 		);
 	}
 
@@ -393,7 +393,7 @@ class Search_Elastic_Connection
 			$this->indices[$index] = true;
 		}
 
-		$result = $this->put("/$index/_mapping/{$this->mapping_type}", json_encode($data));
+		$result = $this->put("/$index/_mapping/".($this->getVersion() >= 7.0 ? '' : $this->mapping_type), json_encode($data));
 
 		return $result;
 	}
@@ -439,7 +439,7 @@ class Search_Elastic_Connection
 		}
 
 		if ($this->getVersion() >= 5) {
-			$this->put("/$index/_mapping/{$this->mapping_type}", json_encode([
+			$this->put("/$index/_mapping/".($this->getVersion() >= 7.0 ? '' : $this->mapping_type), json_encode([
 				'properties' => [
 					'query' => [
 						'type' => 'percolator'
