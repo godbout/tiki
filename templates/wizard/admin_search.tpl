@@ -38,6 +38,9 @@
 							{preference name="unified_elastic_index_prefix"}
 							{preference name="unified_elastic_index_current"}
 						</div>
+						<div class="adminoptionboxchild unified_engine_childcontainer mysql">
+							{preference name="unified_mysql_short_field_names"}
+						</div>
 					</div>
 				</fieldset>
 			</div>

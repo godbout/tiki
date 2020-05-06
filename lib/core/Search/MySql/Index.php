@@ -10,6 +10,7 @@ class Search_MySql_Index implements Search_Index_Interface
 	private $db;
 	private $table;
 	private $builder;
+	private $tfTranslator;
 
 	private $providedMappings = [];
 
@@ -18,6 +19,7 @@ class Search_MySql_Index implements Search_Index_Interface
 		$this->db = $db;
 		$this->table = new Search_MySql_Table($db, $index);
 		$this->builder = new Search_MySql_QueryBuilder($db);
+		$this->tfTranslator = new Search_MySql_TrackerFieldTranslator;
 	}
 
 	function destroy()
@@ -119,12 +121,22 @@ class Search_MySql_Index implements Search_Index_Interface
 				$scoreCalc = '';
 				foreach ($scoreFields as $field) {
 					$scoreCalc .= $scoreCalc ? ' + ' : '';
-					$scoreCalc .= "ROUND(MATCH(`{$field['field']}`) AGAINST ($str),2) * {$field['weight']}";
+					$scoreCalc .= "ROUND(MATCH(`{$this->tfTranslator->shortenize($field['field'])}`) AGAINST ($str),2) * {$field['weight']}";
 				}
 				$selectFields['score'] = $this->table->expr($scoreCalc);
 			}
 			$count = $this->table->fetchCount($conditions);
 			$entries = $this->table->fetchAll($selectFields, $conditions, $resultCount, $resultStart, $order);
+
+			foreach ($entries as &$entry) {
+				foreach ($entry as $key => $val) {
+					$normalized = $this->tfTranslator->normalize($key);
+					if ($normalized != $key) {
+						$entry[$normalized] = $val;
+						unset($entry[$key]);
+					}
+				}
+			}
 
 			$resultSet = new Search_ResultSet($entries, $count, $resultStart, $resultCount);
 			$resultSet->setHighlightHelper(new Search_MySql_HighlightHelper($words));
@@ -178,9 +190,9 @@ class Search_MySql_Index implements Search_Index_Interface
 		$this->table->ensureHasIndex($order->getField(), 'sort');
 
 		if ($order->getMode() == Search_Query_Order::MODE_NUMERIC) {
-			return $this->table->expr("CAST(`{$order->getField()}` as SIGNED) {$order->getOrder()}");
+			return $this->table->expr("CAST(`{$this->tfTranslator->shortenize($order->getField())}` as SIGNED) {$order->getOrder()}");
 		} else {
-			return $this->table->expr("`{$order->getField()}` {$order->getOrder()}");
+			return $this->table->expr("`{$this->tfTranslator->shortenize($order->getField())}` {$order->getOrder()}");
 		}
 	}
 

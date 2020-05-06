@@ -13,6 +13,7 @@ class Search_MySql_Table extends TikiDb_Table
 
 	private $schemaBuffer;
 	private $dataBuffer;
+	private $tfTranslator;
 
 	function __construct($db, $table)
 	{
@@ -21,6 +22,7 @@ class Search_MySql_Table extends TikiDb_Table
 		$table = $this->escapeIdentifier($this->tableName);
 		$this->schemaBuffer = new Search_MySql_QueryBuffer($db, 2000, "ALTER TABLE $table ");
 		$this->dataBuffer = new Search_MySql_QueryBuffer($db, 100, '-- '); // Null Object, replaced later
+		$this->tfTranslator = new Search_MySql_TrackerFieldTranslator;
 	}
 
 	function __destruct()
@@ -54,7 +56,7 @@ class Search_MySql_Table extends TikiDb_Table
 
 	function insert(array $values, $ignore = false)
 	{
-		$keySet = implode(', ', array_map([$this, 'escapeIdentifier'], array_keys($values)));
+		$keySet = implode(', ', array_map([$this, 'escapeIdentifier'], array_map([$this->tfTranslator, 'shortenize'], array_keys($values))));
 
 		$valueSet = '(' . implode(', ', array_map([$this->db, 'qstr'], $values)) . ')';
 
@@ -132,13 +134,13 @@ class Search_MySql_Table extends TikiDb_Table
 		$result = $this->db->fetchAll("DESC $table");
 		$this->definition = [];
 		foreach ($result as $row) {
-			$this->definition[$row['Field']] = $row['Type'];
+			$this->definition[$this->tfTranslator->normalize($row['Field'])] = $row['Type'];
 		}
 
 		$result = $this->db->fetchAll("SHOW INDEXES FROM $table");
 		$this->indexes = [];
 		foreach ($result as $row) {
-			$this->indexes[$row['Key_name']] = true;
+			$this->indexes[$this->tfTranslator->normalize($row['Key_name'])] = true;
 		}
 	}
 
@@ -162,7 +164,7 @@ class Search_MySql_Table extends TikiDb_Table
 	private function addField($fieldName, $type)
 	{
 		$table = $this->escapeIdentifier($this->tableName);
-		$fieldName = $this->escapeIdentifier($fieldName);
+		$fieldName = $this->escapeIdentifier($this->tfTranslator->shortenize($fieldName));
 		$this->schemaBuffer->push("ADD COLUMN $fieldName $type");
 	}
 
@@ -173,8 +175,8 @@ class Search_MySql_Table extends TikiDb_Table
 
 		$indexName = $fieldName . '_index';
 		$table = $this->escapeIdentifier($this->tableName);
-		$escapedIndex = $this->escapeIdentifier($indexName);
-		$escapedField = $this->escapeIdentifier($fieldName);
+		$escapedIndex = $this->escapeIdentifier($this->tfTranslator->shortenize($indexName));
+		$escapedField = $this->escapeIdentifier($this->tfTranslator->shortenize($fieldName));
 
 		if ($currentType == 'TEXT' || $currentType == 'text') {
 			$this->schemaBuffer->push("MODIFY COLUMN $escapedField VARCHAR(235)");
@@ -188,8 +190,8 @@ class Search_MySql_Table extends TikiDb_Table
 	{
 		$indexName = $fieldName . '_fulltext';
 		$table = $this->escapeIdentifier($this->tableName);
-		$escapedIndex = $this->escapeIdentifier($indexName);
-		$escapedField = $this->escapeIdentifier($fieldName);
+		$escapedIndex = $this->escapeIdentifier($this->tfTranslator->shortenize($indexName));
+		$escapedField = $this->escapeIdentifier($this->tfTranslator->shortenize($fieldName));
 		$this->schemaBuffer->push("ADD FULLTEXT INDEX $escapedIndex ($escapedField)");
 	}
 

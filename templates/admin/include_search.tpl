@@ -102,6 +102,10 @@
 						{preference name="unified_elastic_mysql_search_fallback"}
 					</div>
 
+					<div class="adminoptionboxchild unified_engine_childcontainer mysql">
+						{preference name="unified_mysql_short_field_names"}
+					</div>
+
 					{preference name="unified_lucene_default_operator"}
 					{preference name=unified_excluded_categories}
 					{preference name=unified_excluded_plugins}
