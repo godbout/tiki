@@ -17,7 +17,7 @@
 
 .dp-amount--input__container {
     position: absolute;
-    width: 250px;
+    width: 270px;
     padding: 10px;
     border-radius: 2px;
     -webkit-box-shadow: 0px 4px 20px -7px rgba(0,0,0,0.75);
@@ -59,9 +59,9 @@
     cursor: pointer;
     font-size: 0.9rem;
     padding: 6px;
-    /* width: 71px; */
+    width: 85px;
     text-align: center;
-    border-radius: 2px;
+    border-radius: 0.25rem;
 }
 
 .dp-amount--input__unit:active {
@@ -69,7 +69,8 @@
 }
 
 .dp-amount--input__unit.active {
-    background-color: #a3d7f0;
+    color: white;
+    background-color: #007bff;
 }
 
 .dp-amount--input__left-section {
@@ -120,10 +121,12 @@
 .dp-toggle-mode {
     cursor: pointer;
     font-style: italic;
+    color: #6d35a6;
 }
 
 .dp-chronometer-btn {
     cursor: pointer;
+    color: #007bff;
 }
 
 .dp-chronometer__group {
