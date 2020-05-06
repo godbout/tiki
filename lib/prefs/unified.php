@@ -298,6 +298,12 @@ function prefs_unified_list()
 			'size' => '20',
 			'default' => '',
 		],
+		'unified_mysql_short_field_names' => [
+			'name' => tra('MySQL use short field names'),
+			'description' => tra('Due to frm file constraints, number of search fields that one index can hold is usually limited to about 1500. This can be exceeded if you have numerous tracker fields. Enabling this option will try to shorten the field names internally that should allow you to use 300-500 more fields. Switching this option requires full index rebuild.'),
+			'type' => 'flag',
+			'default' => 'n',
+		],
 		'unified_identifier_fields' => [
 			'name' => tr('Unified index identifier fields (Internal)'),
 			'description' => tr('Used to store the fields to be considered as identifiers. This is overwritten after each index rebuilding.'),

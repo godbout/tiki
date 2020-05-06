@@ -19,6 +19,7 @@ class Search_MySql_QueryBuilder
 	private $db;
 	private $factory;
 	private $fieldBuilder;
+	private $tfTranslator;
 	private $indexes = [];
 
 	function __construct($db)
@@ -26,6 +27,7 @@ class Search_MySql_QueryBuilder
 		$this->db = $db;
 		$this->factory = new Search_MySql_TypeFactory;
 		$this->fieldBuilder = new Search_MySql_FieldQueryBuilder;
+		$this->tfTranslator = new Search_MySql_TrackerFieldTranslator;
 	}
 
 	function build(Search_Expr_Interface $expr)
@@ -54,7 +56,7 @@ class Search_MySql_QueryBuilder
 		if ($node instanceof Token && count($fields) == 1 && $this->getQuoted($node) === $this->db->qstr('')) {
 			$value = $this->getQuoted($node);
 			$this->requireIndex($node->getField(), 'index', $node->getWeight());
-			return "(`{$node->getField()}` = $value OR `{$node->getField()}` IS NULL)";
+			return "(`{$this->tfTranslator->shortenize($node->getField())}` = $value OR `{$this->tfTranslator->shortenize($node->getField())}` IS NULL)";
 		}
 
 		try {
@@ -67,7 +69,7 @@ class Search_MySql_QueryBuilder
 				$type = $this->fieldBuilder->isInverted()
 					? 'NOT MATCH'
 					: 'MATCH';
-				return "$type (`{$fields[0]}`) AGAINST ($str IN BOOLEAN MODE)";
+				return "$type (`{$this->tfTranslator->shortenize($fields[0])}`) AGAINST ($str IN BOOLEAN MODE)";
 			}
 		} catch (Search_MySql_QueryException $e) {
 			// Try to build the query with the SQL logic when fulltext is not an option
@@ -89,21 +91,21 @@ class Search_MySql_QueryBuilder
 			if (is_numeric($raw) && (int)$raw != $raw) {
 				$from = $this->db->qstr($raw - 0.00001);
 				$to = $this->db->qstr($raw + 0.00001);
-				return "`{$node->getField()}` BETWEEN $from AND $to";
+				return "`{$this->tfTranslator->shortenize($node->getField())}` BETWEEN $from AND $to";
 			} else {
 				$value = $this->getQuoted($node);
 				$this->requireIndex($node->getField(), 'index', $node->getWeight());
-				return "`{$node->getField()}` = $value";
+				return "`{$this->tfTranslator->shortenize($node->getField())}` = $value";
 			}
 		} elseif ($node instanceof Initial) {
 			$value = $this->getQuoted($node, '%');
 			$this->requireIndex($node->getField(), 'index', $node->getWeight());
-			return "`{$node->getField()}` LIKE $value";
+			return "`{$this->tfTranslator->shortenize($node->getField())}` LIKE $value";
 		} elseif ($node instanceof Range) {
 			$from = $this->getQuoted($node->getToken('from'));
 			$to = $this->getQuoted($node->getToken('to'));
 			$this->requireIndex($node->getField(), 'index', $node->getWeight());
-			return "`{$node->getField()}` BETWEEN $from AND $to";
+			return "`{$this->tfTranslator->shortenize($node->getField())}` BETWEEN $from AND $to";
 		} else {
 			// Throw initial exception if fallback fails
 			throw $exception ?: new Exception(tr('Feature not supported: %0', get_class($node)));
