@@ -115,6 +115,7 @@
 						{preference name=unified_included_plugins}
 					</div>
 
+					{preference name=unified_exclude_nonsearchable_fields}
 					{preference name=unified_forum_deepindexing}
 
 					{preference name=unified_tokenize_version_numbers}

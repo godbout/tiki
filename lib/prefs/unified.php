@@ -242,6 +242,12 @@ function prefs_unified_list()
 			],
 			'default' => [],
 		],
+		'unified_exclude_nonsearchable_fields' => [
+			'name' => tra('Don\'t index non searchable fields'),
+			'description' => tra('Indexing will skip adding all tracker fields that are not marked as "searchable". This will free index space but also make it impossible to use those fields in search index queries.'),
+			'type' => 'flag',
+			'default' => 'n',
+		],
 		'unified_elastic_url' => [
 			'name' => tra('Elasticsearch URL'),
 			'description' => tra('URL of any node in the cluster'),
