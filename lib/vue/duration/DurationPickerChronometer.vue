@@ -93,6 +93,7 @@ export default {
         resetTimer: function () {
             clearInterval(this.interval);
             this.interval = false;
+            this.show = true;
 
             this.store.setDuration(this.initialAmounts);
             this.startTime = '--';
