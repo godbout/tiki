@@ -107,8 +107,8 @@ class Services_Edit_ListConverter
 				case 'url':
 					if (preg_match('/itemId/i', $value) || $value === 'sefurl') { // we convert some cases of 'url' parameter. See other still not converted cases in http://doc.tiki.org/PluginTrackerList#content_index2-3
 						$this->columnOptions['url'] = $value;
-						break;
 					}
+					break;
 				case 'wiki';
 					$this->columnOptions['wiki'] = $value;
 					break;
@@ -166,7 +166,11 @@ class Services_Edit_ListConverter
 					break;
 				// *********************** pagination *************************
 				case 'max':
-					$pagination = ['max' => $value];
+					if ($value > 0) {
+						$pagination = ['max' => $value];
+					} else {
+						$this->missed[$param] = $value;
+					}
 					break;
 				// *********************** tablesorter *************************
 				case 'sortable':
