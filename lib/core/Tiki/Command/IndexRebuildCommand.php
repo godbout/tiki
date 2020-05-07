@@ -13,6 +13,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 class IndexRebuildCommand extends Command
 {
@@ -52,6 +53,8 @@ class IndexRebuildCommand extends Command
 		global $num_queries;
 		global $prefs;
 
+		$io = new SymfonyStyle($input, $output);
+
 		$force = $input->getOption('force');
 		if ($input->getOption('log')) {
 			$log = 2;
@@ -75,12 +78,13 @@ class IndexRebuildCommand extends Command
 				$message .= ' logging to file: ' . $unifiedsearchlib->getLogFilename($log);
 			}
 			$output->writeln($message);
-		}
 
-		if (! $cron) {
+			$io->section('Unified search');
+
 			list($engine, $version) = $unifiedsearchlib->getCurrentEngineDetails();
+
 			if (! empty($engine)) {
-				$engineMessage = 'Unified search engine: ' . $engine;
+				$engineMessage = 'Engine: ' . $engine;
 				if (! empty($version)) {
 					$engineMessage .= ', version ' . $version;
 				}
@@ -168,20 +172,22 @@ class IndexRebuildCommand extends Command
 				$output->writeln('Index: ' . $index);
 
 				if ($fallbackEngineDetails = \TikiLib::lib('unifiedsearch')->getFallbackEngineDetails()) {
-					if (! empty($result['fallback'])) {
-						$output->writeln('Fallback index was also rebuilt');
-					} else {
-						$output->writeln('<comment>Fallback index was not rebuilt</comment>');
-					}
-
 					list($engine, $engineName, $version, $index) = $fallbackEngineDetails;
-					$fallbackEngineMessage = 'Fallback unified search engine: ' . $engineName;
-					if (! empty($version)) {
-						$fallbackEngineMessage .= ', version ' . $version;
+					$io->section("\nFallback unified search");
+
+					if (empty($result['fallback'])) {
+						$output->writeln('<error>Fallback index was not rebuilt</error>');
+					} else {
+						$fallbackEngineMessage = 'Engine: ' . $engineName;
+						if (! empty($version)) {
+							$fallbackEngineMessage .= ', version ' . $version;
+						}
+						$output->writeln($fallbackEngineMessage);
+						$output->writeln('Index: ' . $index);
 					}
-					$output->writeln($fallbackEngineMessage);
-					$output->writeln('Fallback index: ' . $index);
 				}
+
+				$io->section("\nExecution Statistics");
 				$output->writeln('Execution time: ' . FormatterHelper::formatTime($timer->stop()));
 				$output->writeln('Current Memory usage: ' . FormatterHelper::formatMemory(memory_get_usage()));
 				$output->writeln('Memory peak usage before indexing: ' . FormatterHelper::formatMemory($memory_peak_usage_before));
