@@ -39,6 +39,8 @@ if (! empty($_REQUEST['submit'])) {
 		return $field['permName'];
 	}, $fields);
 
+	$suffixes = "/_(text|json|[a-z]{2}|exact|base|raw|[a-z]{2}_raw|creation_date|modification_date|freshness_days|names|paths|calitemid|recurrenceId|multi|plain|count|sum|unstemmed|n?desc|n?asc)$/";
+
 	$results = [];
 
 	if (! empty($_REQUEST['search']) && in_array('wiki_pages', $_REQUEST['search'])) {
@@ -48,7 +50,7 @@ if (! empty($_REQUEST['submit'])) {
 		foreach ($result['data'] as $page) {
 			preg_match_all("/tracker_field_([a-z0-9_\-]+)/i", $page['data'], $matches);
 			foreach ($matches[1] as $possiblePermName) {
-				$possiblePermNameBase = preg_replace("/_(text|json|[a-z]{2}|exact|base|raw|[a-z]{2}_raw|creation_date|modification_date|freshness_days|names|paths|calitemid|recurrenceId|multi|plain|count|sum|unstemmed|desc|asc)$/", "", $possiblePermName);
+				$possiblePermNameBase = preg_replace($suffixes, "", $possiblePermName);
 				if (! in_array($possiblePermName, $permanentNames) && ! in_array($possiblePermNameBase, $permanentNames)) {
 					$results[] = [
 						'page' => $page['pageName'],
@@ -64,7 +66,7 @@ if (! empty($_REQUEST['submit'])) {
 		foreach ($fields as $field) {
 			preg_match_all("/tracker_field_([a-z0-9_\-]+)/i", $field['options'], $matches);
 			foreach ($matches[1] as $possiblePermName) {
-				$possiblePermNameBase = preg_replace("/_(text|json|[a-z]{2}|exact|base|raw|[a-z]{2}_raw|creation_date|modification_date|freshness_days|names|paths|calitemid|recurrenceId|multi|plain|count|sum|unstemmed|desc|asc)$/", "", $possiblePermName);
+				$possiblePermNameBase = preg_replace($suffixes, "", $possiblePermName);
 				if (! in_array($possiblePermName, $permanentNames) && ! in_array($possiblePermNameBase, $permanentNames)) {
 					$results[] = [
 						'trackerId' => $field['trackerId'],
