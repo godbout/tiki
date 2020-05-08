@@ -122,6 +122,7 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 				$value = (string)$runner->evaluate();
 			} catch (Math_Formula_Exception $e) {
 				$value = $e->getMessage();
+				trigger_error("Error in Math field calculation: ".$value, E_USER_ERROR);
 			}
 
 			if ($value !== $this->getValue()) {
