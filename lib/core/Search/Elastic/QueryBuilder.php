@@ -201,7 +201,12 @@ class Search_Elastic_QueryBuilder
 	private function getTerm($node)
 	{
 		$value = $node->getValue($this->factory);
-		return mb_strtolower($value->getValue());
+		$value = $value->getValue();
+		if ($node->getType() === 'timestamp') {
+			return $value;
+		}else {
+			return mb_strtolower($value);
+		}
 	}
 
 	private function handleToken($node)
