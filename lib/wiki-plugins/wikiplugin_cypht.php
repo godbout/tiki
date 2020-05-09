@@ -19,7 +19,7 @@ function wikiplugin_cypht_info()
 		'params' => [
 			'imap_name' => [
 				'name' => tr('IMAP connection name'),
-				'description' => tr("UI display presentational purposes only."),
+				'description' => tr('Name for the IMAP connection. E.g. "My Mailbox"'),
 				'required' => false,
 				'default' => '',
 				'filter' => 'text',
@@ -55,7 +55,7 @@ function wikiplugin_cypht_info()
 			],
 			'imap_username' => [
 				'name' => tra('IMAP username'),
-				'description' => tr('Account mailbox username.'),
+				'description' => tr('Account IMAP username.'),
 				'required' => false,
 				'filter' => 'text',
 				'default' => '',
@@ -63,7 +63,7 @@ function wikiplugin_cypht_info()
 			],
 			'imap_password' => [
 				'name' => tra('IMAP password'),
-				'description' => tr('Account mailbox password.'),
+				'description' => tr('Account IMAP password.'),
 				'required' => false,
 				'filter' => 'password',
 				'default' => '',
@@ -71,7 +71,7 @@ function wikiplugin_cypht_info()
 			],
 			'smtp_name' => [
 				'name' => tr('SMTP connection name'),
-				'description' => tr("UI display presentational purposes only."),
+				'description' => tr('Name for the SMTP connection. E.g. "My Account"'),
 				'required' => false,
 				'default' => '',
 				'filter' => 'text',
@@ -126,7 +126,7 @@ function wikiplugin_cypht_info()
 				'description' => tr('Disable SMTP authentication if your server does not support it.'),
 				'required' => false,
 				'filter' => 'alpha',
-				'default' => 'n',
+				'default' => '',
 				'since' => '20.0',
 				'options' => [
 					['text' => tra('Default'), 'value' => ''],
@@ -139,7 +139,7 @@ function wikiplugin_cypht_info()
 				'description' => tr('Use global Cypht settings available at Tiki Webmail page. Choosing "No" will make this instance of Cypht use its own settings. Useful if this is a Groupmail box or you don\'t want to mix mailbox server and/or site settings from other pages.'),
 				'required' => false,
 				'filter' => 'alpha',
-				'default' => 'y',
+				'default' => '',
 				'since' => '20.0',
 				'options' => [
 					['text' => tra('Default'), 'value' => ''],
@@ -152,7 +152,7 @@ function wikiplugin_cypht_info()
 				'description' => tr('Share this mailbox for Groupmail usage or keep it private.'),
 				'required' => false,
 				'filter' => 'alpha',
-				'default' => 'n',
+				'default' => '',
 				'since' => '20.0',
 				'options' => [
 					['text' => tra('Default'), 'value' => ''],
@@ -262,11 +262,11 @@ function wikiplugin_cypht($data, $params)
 	}
 
 	if (empty($params['smtp_no_auth'])) {
-		$params['smtp_no_auth'] = 'n';
+		$params['smtp_no_auth'] = '';
 	}
 
 	if (empty($params['use_global_settings'])) {
-		$params['use_global_settings'] = 'y';
+		$params['use_global_settings'] = '';
 	}
 
 	if (empty($params['groupmail'])) {
@@ -332,7 +332,7 @@ function wikiplugin_cypht($data, $params)
 	$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc');
 
 	// merge existing configuration with plugin params for smtp/imap servers
-	if(!empty($params['imap_server']) && !empty($params['imap_username']) && !empty($params['imap_password'])) {
+	if(! empty($params['imap_server']) && ! empty($params['imap_username']) && ! empty($params['imap_password'])) {
 		$attributes = array(
 			'name' => empty($params['imap_name']) ? $params['imap_username'] : $params['imap_name'],
 			'server' => $params['imap_server'],
@@ -355,7 +355,7 @@ function wikiplugin_cypht($data, $params)
 		}
 	}
 
-	if (!empty($params['smtp_server']) && !empty($params['smtp_username']) && !empty($params['smtp_password'])) {
+	if (! empty($params['smtp_server']) && ! empty($params['smtp_username']) && ! empty($params['smtp_password'])) {
 		$attributes = array(
 			'name' => empty($params['smtp_name']) ? $params['smtp_username'] : $params['smtp_name'],
 			'default' => true,
