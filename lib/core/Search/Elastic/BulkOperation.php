@@ -54,7 +54,20 @@ class Search_Elastic_BulkOperation
 	{
 		$this->count += 1;
 		foreach ($lines as $line) {
-			$this->buffer .= json_encode($line) . "\n";
+			$json = json_encode($line);
+			if ($json) {
+				$this->buffer .= $json . "\n";
+			} else {
+				if (isset($line['object_id'])) {
+					$id = $line['object_type'] . '-' . $line['object_id'];
+				} else {
+					$id = 'unknown';
+				}
+				$message = tr('Failed to bulk index "%0" (%1)', $id, json_last_error_msg());
+				trigger_error($message);
+				Feedback::warning($message);
+				$this->buffer .= "{}\n";	// avoid "failed to parse, document is empty" exception in es7
+			}
 		}
 
 		if ($this->count >= $this->limit) {
