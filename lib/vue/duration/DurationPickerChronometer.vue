@@ -32,22 +32,25 @@
 		data: function () {
 			return {
 				store: this.$parent.store,
-				interval: false,
+				startId: false,
 				startTime: '--',
 				stopTime: '--',
 				initialAmounts: this.$parent.store.state.duration.amounts,
+				intervalTime: null,
 				initialDurationMilliseconds: 0,
+				millisecondsDiff: 0,
 				initialTime: 0,
 				totalTime: 0,
-				show: true
+				show: true,
+				timestamps: []
 			};
 		},
 		beforeDestroy: function () {
-			clearInterval(this.interval);
+			cancelAnimationFrame(this.startId);
 		},
 		computed: {
 			calcSpentTime: function () {
-				return moment.duration(this.totalTime).format('h [hrs], m [min], s [sec], S [ms]');
+				return moment.duration(this.totalTime).format('h [hrs], m [min], s [sec]', 2);
 			},
 			formatStartTime: function () {
 				if (this.startTime !== '--') {
@@ -66,40 +69,50 @@
 		},
 		methods: {
 			startTimer: function () {
-				if (!this.interval) {
+				if (!this.startId) {
+					this.stopTime = '--';
 					this.show = false;
 					this.initialDurationMilliseconds = moment.duration(this.store.state.duration.amounts).asMilliseconds();
-
 					this.initialTime = this.totalTime;
-
 					this.startTime = moment();
-
-					this.interval = setInterval(() => {
-						let millisecondsDiff = moment().diff(this.startTime);
-						this.store.setDuration(this.initialDurationMilliseconds + millisecondsDiff);
-
-						this.totalTime = this.initialTime + millisecondsDiff;
-					}, 100);
-
-					this.stopTime = '--';
+					this.startId = requestAnimationFrame(this.startChronometer);
 				}
 			},
+			startChronometer: function() {
+				this.intervalTime = moment();
+				this.millisecondsDiff = this.intervalTime.diff(this.startTime);
+				this.store.setDuration(this.initialDurationMilliseconds + this.millisecondsDiff);
+				this.totalTime = this.initialTime + this.millisecondsDiff;
+				this.startId = requestAnimationFrame(this.startChronometer);
+			},
 			stopTimer: function () {
-				clearInterval(this.interval);
+				cancelAnimationFrame(this.startId);
+				this.startId = false;
 				this.show = true;
-				this.interval = false;
-				this.stopTime = moment();
+				this.stopTime = this.intervalTime;
+				this.recordTimestamp();
 			},
 			resetTimer: function () {
-				clearInterval(this.interval);
-				this.interval = false;
+				cancelAnimationFrame(this.startId);
+				this.startId = false;
 				this.show = true;
 
 				this.store.setDuration(this.initialAmounts);
+				this.clearTimestamps();
 				this.startTime = '--';
 				this.stopTime = '--';
 				this.initialTime = 0;
 				this.totalTime = 0;
+			},
+			recordTimestamp: function () {
+				this.timestamps.push({
+					start: this.startTime,
+					stop: this.stopTime,
+					total: moment(this.stopTime).diff(this.startTime)
+				});
+			},
+			clearTimestamps: function () {
+				this.timestamps = [];
 			}
 		}
 	};
