@@ -149,7 +149,12 @@ class PreferencesLib
 		}
 
 		$value = isset($source[$name]) ? $source[$name] : null;
-		if (! empty($value) && is_string($value) && (strlen($value) > 1 && $value[1] == ':') && false !== $unserialized = @unserialize($value)) {
+		if (
+			! empty($value) &&
+			is_string($value) &&
+			(strlen($value) > 1 && $value[1] == ':' && strpos($value, '{') !== false) &&
+			false !== $unserialized = @unserialize($value)
+		) {
 			$value = $unserialized;
 		}
 
@@ -723,6 +728,9 @@ class PreferencesLib
 
 			foreach ($data as $pref => $info) {
 				$prefInfo = $this->getPreference($pref);
+				if (! empty($prefInfo['hide'])) {
+					continue;	// hidden prefs have had their info removed, so no point indexing them
+				}
 				if ($prefInfo) {
 					$info = $prefInfo;
 				} else {
