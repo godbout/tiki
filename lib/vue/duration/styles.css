@@ -17,7 +17,7 @@
 
 .dp-amount--input__container {
 	position: absolute;
-	width: 270px;
+	width: 300px;
 	padding: 10px;
 	border-radius: 2px;
 	-webkit-box-shadow: 0px 4px 20px -7px rgba(0,0,0,0.75);
@@ -136,6 +136,10 @@
 
 .dp-chronometer__info {
 	font-weight: bold;
+}
+
+.dp-history--container {
+	font-size: 0.85rem;
 }
 
 /* Utils */

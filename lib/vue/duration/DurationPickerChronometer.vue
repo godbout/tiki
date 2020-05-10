@@ -1,40 +1,38 @@
 <template>
 	<div class="dp-chronometer__container">
 		<div class="dp-chronometer__group">
-			<span class="dp-chronometer-btn unselectable">
+			<span class="dp-chronometer-btn unselectable" title="start">
 				<i class="fas fa-play" v-show="show" v-on:click="startTimer"></i>
 			</span>
-			<span class="dp-chronometer-btn unselectable">
+			<span class="dp-chronometer-btn unselectable" title="pause">
 				<i class="fas fa-pause" v-show="!show" v-on:click="stopTimer"></i>
 			</span>
-			<span class="dp-chronometer-btn unselectable" v-on:click="resetTimer">
-				<i class="fas fa-undo-alt"></i>
+			<span class="dp-chronometer-btn unselectable" title="reset">
+				<i class="fas fa-undo-alt" v-on:click="resetTimer"></i>
 			</span>
-		</div>
-		<div class="dp-chronometer__group">
-			<span class="unselectable">start at:</span>
-			<span class="dp-chronometer__info">{{ formatStartTime }}</span>
-		</div>
-		<div class="dp-chronometer__group">
-			<span class="unselectable">stop at:</span>
-			<span class="dp-chronometer__info">{{ formatStopTime }}</span>
 		</div>
 		<div class="dp-chronometer__group">
 			<span>total time:</span>
 			<span class="dp-chronometer__info">{{ calcSpentTime }}</span>
 		</div>
+		<DurationPickerHistory :timestamps="timestamps"/>
 	</div>
 </template>
 
 <script>
+	import DurationPickerHistory from "./vue_DurationPickerHistory.js";
+
 	export default {
 		name: "DurationPickerChronometer",
+		components: {
+			durationpickerhistory: DurationPickerHistory,
+		},
 		data: function () {
 			return {
 				store: this.$parent.store,
 				startId: false,
-				startTime: '--',
-				stopTime: '--',
+				startTime: null,
+				stopTime: null,
 				initialAmounts: this.$parent.store.state.duration.amounts,
 				intervalTime: null,
 				initialDurationMilliseconds: 0,
@@ -51,26 +49,11 @@
 		computed: {
 			calcSpentTime: function () {
 				return moment.duration(this.totalTime).format('h [hrs], m [min], s [sec]', 2);
-			},
-			formatStartTime: function () {
-				if (this.startTime !== '--') {
-					return moment(this.startTime).format('YYYY-MM-DD HH:mm:ss');
-				} else {
-					return this.startTime;
-				}
-			},
-			formatStopTime: function () {
-				if (this.stopTime !== '--') {
-					return moment(this.stopTime).format('YYYY-MM-DD HH:mm:ss');
-				} else {
-					return this.stopTime;
-				}
 			}
 		},
 		methods: {
 			startTimer: function () {
 				if (!this.startId) {
-					this.stopTime = '--';
 					this.show = false;
 					this.initialDurationMilliseconds = moment.duration(this.store.state.duration.amounts).asMilliseconds();
 					this.initialTime = this.totalTime;
@@ -93,22 +76,22 @@
 				this.recordTimestamp();
 			},
 			resetTimer: function () {
-				cancelAnimationFrame(this.startId);
-				this.startId = false;
-				this.show = true;
+				if (this.timestamps.length > 0 && confirm("Remove all timestamps?")) {
+					cancelAnimationFrame(this.startId);
+					this.startId = false;
+					this.show = true;
 
-				this.store.setDuration(this.initialAmounts);
-				this.clearTimestamps();
-				this.startTime = '--';
-				this.stopTime = '--';
-				this.initialTime = 0;
-				this.totalTime = 0;
+					this.store.setDuration(this.initialAmounts);
+					this.clearTimestamps();
+					this.initialTime = 0;
+					this.totalTime = 0;
+				}
 			},
 			recordTimestamp: function () {
 				this.timestamps.push({
-					start: this.startTime,
-					stop: this.stopTime,
-					total: moment(this.stopTime).diff(this.startTime)
+					startTime: this.startTime,
+					stopTime: this.stopTime,
+					spentTime: moment(this.stopTime).diff(this.startTime)
 				});
 			},
 			clearTimestamps: function () {

@@ -177,6 +177,7 @@ dpStore.setInputName('.json_encode($this->getInsertId()).');
 		$appHtml .= $vuejslib->processVue('lib/vue/duration/DurationPickerAmounts.vue', 'DurationPickerAmounts');
 		$appHtml .= $vuejslib->processVue('lib/vue/duration/DurationPickerEditor.vue', 'DurationPickerEditor');
 		$appHtml .= $vuejslib->processVue('lib/vue/duration/DurationPickerChronometer.vue', 'DurationPickerChronometer');
+		$appHtml .= $vuejslib->processVue('lib/vue/duration/DurationPickerHistory.vue', 'DurationPickerHistory');
 
 		return $appHtml;
 	}
