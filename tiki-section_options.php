@@ -12,9 +12,12 @@ if ($prefs['feature_theme_control'] == 'y') {
 	include('tiki-tc.php');
 }
 if ($prefs['feature_banning'] == 'y') {
-	if ($msg = $tikilib->check_rules($user, $section)) {
-		$smarty->assign('msg', $msg);
-		$smarty->display("error.tpl");
-		die;
+	global $user;
+	if ($msg = TikiLib::lib('tiki')->check_rules($user, $section)) {
+		if (isset($ajaxRequest) && $ajaxRequest) {
+			Services_Utilities::modalException(tra('No users were selected. Please select one or more users.'));
+		} else {
+			Feedback::errorPage($msg);
+		}
 	}
 }
