@@ -122,7 +122,9 @@ class PackageUpdateCommand extends Command
 			);
 		}
 
-		$this->updatePackages($packagesToUpdate);
+		foreach ($packagesToUpdate as $package) {
+			$this->updatePackage($package);
+		}
 	}
 
 	protected function promptPackageUpdate($packages)
@@ -150,17 +152,31 @@ class PackageUpdateCommand extends Command
 	}
 
 	/**
-	 * @param array $packages
+	 * @param $package
 	 */
-	protected function updatePackages(array $packages)
+	protected function updatePackage($package)
 	{
-		foreach ($packages as $package) {
-			$this->io->writeln(
-				'<info>' . tr('Updating package: ') . $package . '</info>'
-			);
-			$result = $this->composerManager->updatePackage($package);
+		$this->io->writeln(
+			'<info>' . tr('Updating package `%0`', $package) . '</info>'
+		);
+
+		$result = $this->composerManager->updatePackage($package);
+
+		$error = ! preg_match('/composer\.json has been updated/', $result);
+
+		if ($error || $this->io->isVerbose()) {
 			$this->io->newLine();
-			$this->io->text($result);
+			$this->io->writeln($result);
 		}
+
+		$message = '<info>' . tr('Package `%0` was updated', $package)
+			. '</info>';
+
+		if ($error) {
+			$message = '<error>' .
+				tr('Failed to update package `%0`', $package) . '</error>';
+		}
+
+		$this->io->writeln($message);
 	}
 }
