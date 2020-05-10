@@ -53,10 +53,17 @@ function wikiplugin_preference($data, $params)
 	}
 
 	$names = array_unique(explode(',', $name)); //prevent duplicated preferences
+	$names = array_map(function ($prefName) {
+		return trim($prefName);
+	}, $names);
 
 	$values = array_filter(array_combine(
 		array_values($names),
-		array_map(function ($name) {
+		array_map(function ($name) use ($prefslib) {
+			$prefDetail = $prefslib->getPreference($name);
+			if (empty($_POST[$name]) && $prefDetail['type'] == 'flag') {
+				return 'n';
+			}
 			return $_POST[$name];
 		}, $names)
 	), function ($val) {
@@ -87,7 +94,8 @@ function wikiplugin_preference($data, $params)
 	$smarty->assign('names', $names);
 	$smarty->assign('url', $url);
 	$html = $smarty->fetch('wiki-plugins/wikiplugin_preference.tpl');
-	return html_entity_decode(preg_replace('/(\v|\s)+/', ' ', $html), ENT_QUOTES, 'utf-8');
+	$html = preg_replace('/(\v|\s)+/', ' ', $html);
+	return '~np~' . html_entity_decode($html, ENT_HTML5, 'utf-8') . '~/np~';
 }
 
 if (! function_exists('add_feedback')) {

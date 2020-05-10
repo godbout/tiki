@@ -9,12 +9,19 @@ class QueueLib extends TikiDb_Bridge
 {
 	private $queue;
 
-	function __construct()
+	public function __construct()
 	{
 		$this->queue = $this->table('tiki_queue');
 	}
 
-	function push($queue, array $message)
+	public function pushAll($queue, array $messages)
+	{
+		foreach ($messages as $message) {
+			$this->push($queue, $message);
+		}
+	}
+
+	public function push($queue, array $message)
 	{
 		$this->queue->insert(
 			[
@@ -25,17 +32,17 @@ class QueueLib extends TikiDb_Bridge
 		);
 	}
 
-	function clear($queue)
+	public function clear($queue)
 	{
 		$this->queue->deleteMultiple(['queue' => $queue,]);
 	}
 
-	function count($queue)
+	public function count($queue)
 	{
 		return $this->queue->fetchCount(['queue' => $queue,]);
 	}
 
-	function pull($queue, $count = 1)
+	public function pull($queue, $count = 1)
 	{
 		$handler = uniqid();
 

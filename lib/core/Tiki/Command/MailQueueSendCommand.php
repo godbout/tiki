@@ -39,7 +39,7 @@ class MailQueueSendCommand extends Command
 			$mail = unserialize($message['message']);
 			$error = '';
 
-			if ($mail && get_class($mail) === 'Zend\Mail\Message') {
+			if ($mail && (get_class($mail) === 'Laminas\Mail\Message' || get_class($mail) === 'Zend\Mail\Message')) {
 				try {
 					tiki_send_email($mail);
 					$title = 'mail';

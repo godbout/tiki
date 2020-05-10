@@ -68,6 +68,9 @@ function smarty_function_preference($params, $smarty)
 		if (isset($params['fgal_picker'])) {
 			$info['fgal_picker'] = true;
 		}
+		if (isset($params['show_tags']) && ! $params['show_tags']) {
+			$info['tags'] = [];
+		}
 
 		$smarty->assign('p', $info);
 

@@ -11,6 +11,8 @@
 class UnifiedSearchLib
 {
 	const INCREMENT_QUEUE = 'search-increment';
+	const INCREMENT_QUEUE_REBUILD = 'search-increment-rebuild';
+
 	private $batchToken;
 	private $isRebuildingNow = false;
 	private $indices;
@@ -18,7 +20,7 @@ class UnifiedSearchLib
 	/**
 	 * @return string
 	 */
-	function startBatch()
+	public function startBatch()
 	{
 		if (! $this->batchToken) {
 			$this->batchToken = uniqid();
@@ -30,7 +32,7 @@ class UnifiedSearchLib
 	 * @param $token
 	 * @param int $count
 	 */
-	function endBatch($token, $count = 100)
+	public function endBatch($token, $count = 100)
 	{
 		if ($token && $this->batchToken === $token) {
 			$this->batchToken = null;
@@ -51,7 +53,7 @@ class UnifiedSearchLib
 	/**
 	 * @param int $count
 	 */
-	function processUpdateQueue($count = 10)
+	public function processUpdateQueue($count = 10)
 	{
 		global $prefs;
 		if (! isset($prefs['unified_engine'])) {
@@ -62,12 +64,12 @@ class UnifiedSearchLib
 			return;
 		}
 
-		if ($this->rebuildInProgress()) {
-			return;
-		}
-
 		$queuelib = TikiLib::lib('queue');
 		$toProcess = $queuelib->pull(self::INCREMENT_QUEUE, $count);
+		if ($this->rebuildInProgress()) {
+			// Requeue to add to new index too (that is rebuilding)
+			$queuelib->pushAll(self::INCREMENT_QUEUE_REBUILD, $toProcess);
+		}
 		$access = TikiLib::lib('access');
 		$access->preventRedirect(true);
 
@@ -122,7 +124,7 @@ class UnifiedSearchLib
 	/**
 	 * @return array
 	 */
-	function getQueueCount()
+	public function getQueueCount()
 	{
 		$queuelib = TikiLib::lib('queue');
 		return $queuelib->count(self::INCREMENT_QUEUE);
@@ -131,7 +133,7 @@ class UnifiedSearchLib
 	/**
 	 * @return bool
 	 */
-	function rebuildInProgress()
+	public function rebuildInProgress()
 	{
 		global $prefs;
 		if ($prefs['unified_engine'] == 'lucene') {
@@ -143,6 +145,9 @@ class UnifiedSearchLib
 			$name = $this->getIndexLocation('data');
 			$connection = $this->getElasticConnection(true);
 			return $connection->isRebuilding($name);
+		} elseif ($prefs['unified_engine'] == 'mysql') {
+			$lockName = TikiLib::lib('tiki')->get_preference('unified_mysql_index_rebuilding');
+			return empty($lockName) ? false : TikiDb::get()->isLocked($lockName);
 		}
 
 		return false;
@@ -150,7 +155,7 @@ class UnifiedSearchLib
 
 	/**
 	 */
-	function stopRebuild()
+	public function stopRebuild()
 	{
 		global $prefs;
 		if ($prefs['unified_engine'] == 'lucene') {
@@ -171,6 +176,8 @@ class UnifiedSearchLib
 	{
 		global $prefs;
 		$engineResults = null;
+
+		$tikilib = TikiLib::lib('tiki');
 
 		switch ($prefs['unified_engine']) {
 			case 'lucene':
@@ -217,6 +224,8 @@ class UnifiedSearchLib
 				$indexName = 'index_' . uniqid();
 				$index = new Search_MySql_Index(TikiDb::get(), $indexName);
 				$engineResults = new Search_EngineResult_MySQL($index);
+				$tikilib->set_preference('unified_mysql_index_rebuilding', $indexName);
+				TikiDb::get()->getLock($indexName);
 
 				TikiLib::events()->bind(
 					'tiki.process.shutdown',
@@ -233,8 +242,11 @@ class UnifiedSearchLib
 		}
 
 		// Build in -new
-		TikiLib::lib('queue')->clear(self::INCREMENT_QUEUE);
-		$tikilib = TikiLib::lib('tiki');
+		if (! $fallback) {
+			TikiLib::lib('queue')->clear(self::INCREMENT_QUEUE);
+			TikiLib::lib('queue')->clear(self::INCREMENT_QUEUE_REBUILD);
+		}
+
 		$access = TikiLib::lib('access');
 		$access->preventRedirect(true);
 
@@ -315,6 +327,7 @@ class UnifiedSearchLib
 				$oldIndex = $this->getIndex('data');
 
 				$tikilib->set_preference('unified_mysql_index_current', $indexName);
+				TikiDb::get()->releaseLock($indexName);
 
 				break;
 		}
@@ -339,6 +352,15 @@ class UnifiedSearchLib
 			$prefs['unified_engine'] = $defaultEngine;
 		}
 
+		// Requeue messages that were added and processed in old index,
+		// while rebuilding the new index
+		$queueLib = TikiLib::lib('queue');
+		$toProcess = $queueLib->pull(
+			self::INCREMENT_QUEUE_REBUILD,
+			$queueLib->count(self::INCREMENT_QUEUE_REBUILD)
+		);
+		$queueLib->pushAll(self::INCREMENT_QUEUE, $toProcess);
+
 		// Process the documents updated while we were processing the update
 		$this->processUpdateQueue(1000);
 
@@ -351,6 +373,7 @@ class UnifiedSearchLib
 
 		$this->isRebuildingNow = false;
 		$access->preventRedirect(false);
+
 		return $stats;
 	}
 
@@ -440,7 +463,7 @@ class UnifiedSearchLib
 	 * @param $type
 	 * @param $objectId
 	 */
-	function invalidateObject($type, $objectId)
+	public function invalidateObject($type, $objectId)
 	{
 		TikiLib::lib('queue')->push(
 			self::INCREMENT_QUEUE,
@@ -524,7 +547,7 @@ class UnifiedSearchLib
 	}
 
 
-	function getLastLogItem()
+	public function getLastLogItem()
 	{
 		global $prefs;
 		$files['web'] = $this->getLogFilename(1);
@@ -742,7 +765,7 @@ class UnifiedSearchLib
 	/**
 	 * @return Search_Index_Interface
 	 */
-	function getIndex($indexType = 'data', $useCache = true)
+	public function getIndex($indexType = 'data', $useCache = true)
 	{
 		global $prefs, $tiki_p_admin;
 
@@ -805,7 +828,7 @@ class UnifiedSearchLib
 		return new Search_Index_Memory;
 	}
 
-	function getEngineInfo()
+	public function getEngineInfo()
 	{
 		global $prefs;
 
@@ -958,7 +981,7 @@ class UnifiedSearchLib
 	 * @param string $mode
 	 * @return Search_Formatter_DataSource_Interface
 	 */
-	function getDataSource($mode = 'formatting')
+	public function getDataSource($mode = 'formatting')
 	{
 		global $prefs;
 
@@ -998,7 +1021,7 @@ class UnifiedSearchLib
 		return $dataSource;
 	}
 
-	function getProfileExportHelper()
+	public function getProfileExportHelper()
 	{
 		$helper = new Tiki_Profile_Writer_SearchFieldHelper;
 		$this->addSources($helper, 'indexing'); // Need all fields, so use indexing
@@ -1009,7 +1032,7 @@ class UnifiedSearchLib
 	/**
 	 * @return Search_Query_WeightCalculator_Field
 	 */
-	function getWeightCalculator()
+	public function getWeightCalculator()
 	{
 		global $prefs;
 
@@ -1028,14 +1051,14 @@ class UnifiedSearchLib
 		return new Search_Query_WeightCalculator_Field($weights);
 	}
 
-	function initQuery(Search_Query $query)
+	public function initQuery(Search_Query $query)
 	{
 		$this->initQueryBase($query);
 		$this->initQueryPermissions($query);
 		$this->initQueryPresentation($query);
 	}
 
-	function initQueryBase($query, $applyJail = true)
+	public function initQueryBase($query, $applyJail = true)
 	{
 		global $prefs;
 
@@ -1048,7 +1071,7 @@ class UnifiedSearchLib
 		}
 	}
 
-	function initQueryPermissions($query)
+	public function initQueryPermissions($query)
 	{
 		global $user;
 
@@ -1057,7 +1080,7 @@ class UnifiedSearchLib
 		}
 	}
 
-	function initQueryPresentation($query)
+	public function initQueryPresentation($query)
 	{
 		$query->applyTransform(new Search_Formatter_Transform_DynamicLoader($this->getDataSource('formatting')));
 	}
@@ -1066,7 +1089,7 @@ class UnifiedSearchLib
 	 * @param array $filter
 	 * @return Search_Query
 	 */
-	function buildQuery(array $filter, $query = null)
+	public function buildQuery(array $filter, $query = null)
 	{
 		if (! $query) {
 			$query = new Search_Query;
@@ -1162,7 +1185,7 @@ class UnifiedSearchLib
 		return $query;
 	}
 
-	function getFacetProvider()
+	public function getFacetProvider()
 	{
 		global $prefs;
 		$types = $this->getSupportedTypes();
@@ -1251,7 +1274,7 @@ class UnifiedSearchLib
 		return $provider;
 	}
 
-	function getRawArray($document)
+	public function getRawArray($document)
 	{
 		return array_map(function ($entry) {
 			if (is_object($entry)) {
@@ -1266,7 +1289,7 @@ class UnifiedSearchLib
 		}, $document);
 	}
 
-	function isOutdated()
+	public function isOutdated()
 	{
 
 		global $prefs;
