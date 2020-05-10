@@ -356,7 +356,12 @@ class Search_Elastic_Connection
 	function flush()
 	{
 		if ($this->bulk) {
-			$this->bulk->flush();
+			try {
+				$this->bulk->flush();
+			} catch (Exception $e) {
+				// report exception and try to carry on
+				Feedback::error($e->getMessage());
+			}
 		}
 	}
 
@@ -525,7 +530,10 @@ class Search_Elastic_Connection
 							if (is_object($message) && ! empty($message->reason)) {
 								$message = $message->reason;
 							}
-							throw new Search_Elastic_Exception((string)$message);
+							if (! empty($res->_id)) {
+								$message = ((string) $message) . ' (for object ' . $res->_id . ')';
+							}
+							throw new Search_Elastic_Exception($message);
 						}
 					}
 				}
