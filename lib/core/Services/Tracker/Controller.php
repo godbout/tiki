@@ -1417,8 +1417,6 @@ class Services_Tracker_Controller
 			$smarty->assign('attextra', $attextra);
 		}
 
-		include_once('tiki-section_options.php');
-
 		ask_ticket('view-trackers-items');
 
 		$smarty->assign('canView', $itemObject->canView());
