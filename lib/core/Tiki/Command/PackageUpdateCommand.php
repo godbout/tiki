@@ -9,6 +9,7 @@ namespace Tiki\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Style\SymfonyStyle;
@@ -17,6 +18,14 @@ use Tiki\Package\PackageCommandHelper;
 
 class PackageUpdateCommand extends Command
 {
+	private $output;
+
+	/* @var SymfonyStyle */
+	protected $io;
+
+	/** @var ComposerManager */
+	protected $composerManager;
+
 	/**
 	 * Configures the current command.
 	 */
@@ -30,6 +39,12 @@ class PackageUpdateCommand extends Command
 				'package',
 				InputArgument::OPTIONAL,
 				'Package ID'
+			)
+			->addOption(
+				'all',
+				'a',
+				InputOption::VALUE_NONE,
+				tr('Update all packages')
 			);
 	}
 
@@ -42,56 +57,110 @@ class PackageUpdateCommand extends Command
 	protected function execute(InputInterface $input, OutputInterface $output)
 	{
 		global $tikipath;
-		$composerManager = new ComposerManager($tikipath);
+		$this->io = new SymfonyStyle($input, $output);
+		$this->output = $output;
+		$this->composerManager = new ComposerManager($tikipath);
 
-		if ($composerManager->composerIsAvailable()) {
-			$installedComposerPackages = $composerManager->getInstalled();
+		if (! $this->composerManager->composerIsAvailable()) {
+			$output->writeln(
+				'<error>' . tr('Composer could not be executed.') . '</error>'
+			);
+			return 1;
+		}
 
-			if ($installedComposerPackages === false) {
-				$output->writeln('<comment>' . tr('No packages found in composer.json in the root of the project.') . '</comment>');
-			} else {
-				$updatablePackages = PackageCommandHelper::getUpdatablePackages($installedComposerPackages);
-				if (empty($installedComposerPackages) || empty($updatablePackages)) {
-					$output->writeln('<comment>' . tr('No packages available to be updated.') . '</comment>');
-				} else {
-					$io = new SymfonyStyle($input, $output);
-					$packageKey = $input->getArgument('package');
-					if (isset($packageKey) && ! empty($packageKey)) {
-						if (in_array($packageKey, array_column($updatablePackages, 'key'))) {
-							$output->writeln('<info>' . tr('Updating package: ') . $packageKey . '</info>');
-							$result = $composerManager->updatePackage($packageKey);
-							$io->newLine();
-							$output->writeln($result);
-						} else {
-							$output->writeln('<error>' . tr('Invalid Package: ') . $packageKey . '</error>');
-							return;
-						}
-					} else {
-						$io->newLine();
-
-						$updatablePackagesInfo = PackageCommandHelper::getInstalledPackagesInfo($updatablePackages);
-
-						$output->writeln(tr('Packages that can be updated'));
-						PackageCommandHelper::renderInstalledPackagesTable($output, $updatablePackagesInfo);
-
-						$helper = $this->getHelper('question');
-						$question = PackageCommandHelper::getQuestion('Which package do you want to update', null, '?');
-						$question->setValidator(function ($answer) use ($updatablePackages) {
-							return PackageCommandHelper::validatePackageSelection($answer, $updatablePackages);
-						});
-
-						$packageKey = $helper->ask($input, $output, $question);
-
-						$output->writeln('<info>' . tr('Updating package: ') . $packageKey . '</info>');
-						$result = $composerManager->updatePackage($packageKey);
-						$io->newLine();
-						$output->writeln($result);
-					}
-				}
-			}
-		} else {
-			$output->writeln('<error>' . tr('Composer could not be executed.') . '</error>');
+		$installedPackages = $this->composerManager->getInstalled();
+		if ($installedPackages === false) {
+			$output->writeln(
+				'<comment>' .
+				tr(
+					'No packages found in composer.json in the root of the project.'
+				) .
+				'</comment>'
+			);
 			return;
+		}
+
+		$updatablePackages = PackageCommandHelper::getUpdatablePackages(
+			$installedPackages
+		);
+
+		if (empty($updatablePackages)) {
+			$output->writeln(
+				'<comment>' . tr('No packages available to be updated.')
+				. '</comment>'
+			);
+			return;
+		}
+
+		$packagesToUpdate = [];
+		$all = $input->getOption('all');
+		$packageKey = $input->getArgument('package');
+
+		if (! empty($packageKey)
+			&& ! in_array($packageKey, array_column($updatablePackages, 'key'))
+		) {
+			$output->writeln(
+				'<error>' .
+				tr('Package `%0` not available for update.', $packageKey) .
+				'</error>'
+			);
+			return;
+		}
+
+		if ($all) {
+			$packagesToUpdate = array_map(
+				function ($package) {
+					return $package['key'];
+				},
+				$updatablePackages
+			);
+		} elseif ($packageKey) {
+			$packagesToUpdate[] = $packageKey;
+		} else {
+			$packagesToUpdate = $this->promptPackageUpdate(
+				$updatablePackages
+			);
+		}
+
+		$this->updatePackages($packagesToUpdate);
+	}
+
+	protected function promptPackageUpdate($packages)
+	{
+		$packagesInfo = PackageCommandHelper::getInstalledPackagesInfo(
+			$packages
+		);
+
+		$this->io->writeln(tr('Packages that can be updated'));
+		PackageCommandHelper::renderInstalledPackagesTable(
+			$this->output,
+			$packagesInfo
+		);
+		$validator = function ($answer) use ($packages) {
+			return PackageCommandHelper::validatePackageSelection(
+				$answer,
+				$packages
+			);
+		};
+		$packagesToUpdate[] = $this->io->ask(
+			'Which package do you want to update',
+			null,
+			$validator
+		);
+	}
+
+	/**
+	 * @param array $packages
+	 */
+	protected function updatePackages(array $packages)
+	{
+		foreach ($packages as $package) {
+			$this->io->writeln(
+				'<info>' . tr('Updating package: ') . $package . '</info>'
+			);
+			$result = $this->composerManager->updatePackage($package);
+			$this->io->newLine();
+			$this->io->text($result);
 		}
 	}
 }
