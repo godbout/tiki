@@ -15,7 +15,7 @@
 			<span>total time:</span>
 			<span class="dp-chronometer__info">{{ calcSpentTime }}</span>
 		</div>
-		<DurationPickerHistory :timestamps="timestamps"/>
+		<DurationPickerHistory />
 	</div>
 </template>
 
@@ -38,9 +38,8 @@
 				initialDurationMilliseconds: 0,
 				millisecondsDiff: 0,
 				initialTime: 0,
-				totalTime: 0,
 				show: true,
-				timestamps: []
+				timestamps: this.$parent.store.state.timestamps
 			};
 		},
 		beforeDestroy: function () {
@@ -48,7 +47,7 @@
 		},
 		computed: {
 			calcSpentTime: function () {
-				return moment.duration(this.totalTime).format('h [hrs], m [min], s [sec]', 2);
+				return moment.duration(this.$parent.store.state.totalTime).format('h [hrs], m [min], s [sec]', 2);
 			}
 		},
 		methods: {
@@ -56,7 +55,7 @@
 				if (!this.startId) {
 					this.show = false;
 					this.initialDurationMilliseconds = moment.duration(this.store.state.duration.amounts).asMilliseconds();
-					this.initialTime = this.totalTime;
+					this.initialTime = this.$parent.store.state.totalTime;
 					this.startTime = moment();
 					this.startId = requestAnimationFrame(this.startChronometer);
 				}
@@ -65,7 +64,7 @@
 				this.intervalTime = moment();
 				this.millisecondsDiff = this.intervalTime.diff(this.startTime);
 				this.store.setDuration(this.initialDurationMilliseconds + this.millisecondsDiff);
-				this.totalTime = this.initialTime + this.millisecondsDiff;
+				this.store.setTotalTime(this.initialTime + this.millisecondsDiff);
 				this.startId = requestAnimationFrame(this.startChronometer);
 			},
 			stopTimer: function () {
@@ -84,18 +83,18 @@
 					this.store.setDuration(this.initialAmounts);
 					this.clearTimestamps();
 					this.initialTime = 0;
-					this.totalTime = 0;
+					this.store.setTotalTime(0);
 				}
 			},
 			recordTimestamp: function () {
-				this.timestamps.push({
+				this.store.setTimestamp('add', {
 					startTime: this.startTime,
 					stopTime: this.stopTime,
 					spentTime: moment(this.stopTime).diff(this.startTime)
 				});
 			},
 			clearTimestamps: function () {
-				this.timestamps = [];
+				this.store.setTimestamp('delete_all')
 			}
 		}
 	};

@@ -1,5 +1,5 @@
 <template>
-	<div class="duration-picker" v-click-outside="handleCloseModal">
+	<div class="duration-picker">
 		<DurationPickerAmounts v-on:unit="loadAmount" :duration="store.state.duration"></DurationPickerAmounts>
 		<DurationPickerModal v-show="show" :initial-unit="unit" :handle-close-modal="handleCloseModal"></DurationPickerModal>
 		<input type="hidden" :name="store.state.inputName" :value="getValue">
@@ -35,23 +35,6 @@
 			loadAmount: function (unit) {
 				this.unit = unit;
 				this.show = true;
-			}
-		},
-		directives: {
-			clickOutside: {
-				bind: function (el, binding, vnode) {
-					el.clickOutsideEvent = function (event) {
-						// here I check that click was outside the el and his childrens
-						if (!(el === event.target || el.contains(event.target))) {
-							// and if it did, call method provided in attribute value
-							vnode.context[binding.expression](event);
-						}
-					};
-					document.body.addEventListener('click', el.clickOutsideEvent)
-				},
-				unbind: function (el) {
-					document.body.removeEventListener('click', el.clickOutsideEvent)
-				},
 			}
 		}
 	};
