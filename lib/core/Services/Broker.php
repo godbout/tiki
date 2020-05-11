@@ -101,7 +101,13 @@ class Services_Broker
 			$method = 'action_' . $action;
 
 			if (method_exists($handler, $method)) {
-				if (method_exists($handler, 'setUp')) {
+				if (method_exists($handler, 'getSection')) {
+					$banningOnly = true;
+					$ajaxRequest = true;
+					$section = $handler->getSection();
+					include_once('tiki-section_options.php');
+				}
+					if (method_exists($handler, 'setUp')) {
 					$handler->setUp();
 				}
 

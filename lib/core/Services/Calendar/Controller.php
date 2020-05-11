@@ -12,6 +12,15 @@ class Services_Calendar_Controller
 		Services_Exception_Disabled::check('feature_calendar');
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'calendar';
+	}
+
 	function action_move($input)
 	{
 		$itemId = $this->getItemId($input);

@@ -16,6 +16,15 @@ class Services_ContentTemplate_Controller
 		}
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'wiki page';
+	}
+
 	function action_list($input)
 	{
 		// Validate access

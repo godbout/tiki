@@ -20,6 +20,15 @@ class Services_Tracker_Controller
 		Services_Exception_Disabled::check('feature_trackers');
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'trackers';
+	}
+
 	function action_view($input)
 	{
 		$item = Tracker_Item::fromId($input->id->int());

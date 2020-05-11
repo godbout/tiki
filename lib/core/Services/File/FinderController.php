@@ -34,6 +34,15 @@ class Services_File_FinderController
 		$this->parentIds = null;
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'file_galleries';
+	}
+
 	/**********************
 	 * elFinder functions *
 	 *********************/

@@ -19,6 +19,14 @@ class Services_Edit_Controller
 		Services_Exception_Disabled::check('feature_wiki');
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'wiki page';
+	}
 
 	function action_towiki($input)
 	{

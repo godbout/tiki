@@ -25,6 +25,15 @@ class Services_File_Controller
 	}
 
 	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'file_galleries';
+	}
+
+	/**
 	 * Call to prepare the upload in modal dialog, and then after the upload has happened
 	 * Here we add a description if that's enabled
 	 *

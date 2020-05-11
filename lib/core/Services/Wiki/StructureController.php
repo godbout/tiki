@@ -13,6 +13,15 @@ class Services_Wiki_StructureController
 		Services_Exception_Disabled::check('feature_wiki_structure');
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'wiki page';
+	}
+
 	function action_save_structure($input)
 	{
 		$data = json_decode($input->data->text());

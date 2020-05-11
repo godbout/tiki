@@ -27,6 +27,15 @@ class Services_Tracker_SyncController
 		}
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'trackers';
+	}
+
 	function action_clone_remote($input)
 	{
 		$url = $input->url->url();

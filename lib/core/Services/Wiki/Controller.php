@@ -30,6 +30,15 @@ class Services_Wiki_Controller
 	}
 
 	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'wiki page';
+	}
+
+	/**
 	 * @param $input
 	 * @return array
 	 * @throws Services_Exception_NotFound

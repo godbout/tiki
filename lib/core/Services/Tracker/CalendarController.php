@@ -12,6 +12,15 @@ class Services_Tracker_CalendarController
 		Services_Exception_Disabled::check('calendar_fullcalendar');
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'trackers';
+	}
+
 	function action_list($input)
 	{
 		global $prefs, $user, $tikilib;

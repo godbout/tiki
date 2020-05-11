@@ -12,6 +12,15 @@ class Services_Tracker_TabularController
 		Services_Exception_Disabled::check('tracker_tabular_enabled');
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'trackers';
+	}
+
 	function action_manage($input)
 	{
 		Services_Exception_Denied::checkGlobal('tiki_p_tabular_admin');

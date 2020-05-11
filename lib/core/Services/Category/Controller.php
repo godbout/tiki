@@ -16,6 +16,15 @@ class Services_Category_Controller
 		}
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'categories';
+	}
+
 	function action_list_categories($input)
 	{
 		global $prefs;

@@ -20,6 +20,15 @@ class Services_Tracker_TodoController
 		}
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'trackers';
+	}
+
 	function action_view($input)
 	{
 		$trackerId = $input->trackerId->int();

@@ -28,6 +28,15 @@ class Services_Edit_PluginController
 	}
 
 	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'wiki page';
+	}
+
+	/**
 	 * List all or some of the plugins for the textarea control panel
 	 *
 	 * @param JitFilter $input

@@ -22,6 +22,15 @@ class Services_H5P_Controller
 		}
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'file_galleries';
+	}
+
 	function action_embed($input)
 	{
 		$smarty = TikiLib::lib('smarty');

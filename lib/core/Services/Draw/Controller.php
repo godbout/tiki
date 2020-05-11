@@ -20,6 +20,15 @@ class Services_Draw_Controller
 		}
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'file_galleries';
+	}
+
 	function action_edit($input)
 	{
 		global $drawFullscreen;

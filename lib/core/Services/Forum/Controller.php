@@ -40,6 +40,15 @@ class Services_Forum_Controller
 	}
 
 	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'forums';
+	}
+
+	/**
 	 * Admin forums "perform with checked" but with no action selected
 	 *
 	 * @param $input

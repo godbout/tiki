@@ -12,6 +12,15 @@ class Services_Article_Controller
 		Services_Exception_Disabled::check('feature_articles');
 	}
 
+	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'cms';
+	}
+
 	function action_create_from_url($input)
 	{
 		Services_Exception_Disabled::check('page_content_fetch');

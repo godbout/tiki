@@ -25,6 +25,15 @@ class Services_Edit_SemaphoreController
 	}
 
 	/**
+	 * Returns the section for use with certain features like banning
+	 * @return string
+	 */
+	function getSection()
+	{
+		return 'wiki page';
+	}
+
+	/**
 	 * @param JitFilter $input
 	 * @return mixed
 	 */
