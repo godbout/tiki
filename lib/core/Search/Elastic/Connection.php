@@ -359,8 +359,11 @@ class Search_Elastic_Connection
 			try {
 				$this->bulk->flush();
 			} catch (Exception $e) {
-				// report exception and try to carry on
-				Feedback::error($e->getMessage());
+				// report error and exception and try to carry on
+				$message = tr('Elastic search flush error: %0', $e->getMessage());
+
+				Feedback::error($message);	// for browser and console output
+				trigger_error($message);	// gets logged while indexing
 			}
 		}
 	}
