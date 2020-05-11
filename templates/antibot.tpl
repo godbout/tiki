@@ -90,7 +90,7 @@
 				}
 			}, 100); // wait for captcha to load
 		{/jq}
-		{if $captchalib->type eq 'recaptcha30'}
+		{if $captchalib->type eq 'recaptcha30' && $form eq ''}
 		{literal}
 			<script>
 				function genToken() {
