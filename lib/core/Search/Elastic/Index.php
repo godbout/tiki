@@ -263,7 +263,11 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 		$definition['analysis']['analyzer']['sortable']['filter'][] = 'tiki_stop';
 
 
-		return ['settings' => $definition];
+		if ($this->connection->getVersion() > 5.0) {
+			return ['settings' => $definition];
+		} else {
+			return $definition;		// ES 1 and 2 want analysis as the top level for index settings
+		}
 	}
 
 	function endUpdate()
