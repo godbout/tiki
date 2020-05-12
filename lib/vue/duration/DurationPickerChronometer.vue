@@ -52,13 +52,12 @@
 		},
 		methods: {
 			startTimer: function () {
-				if (!this.startId) {
-					this.show = false;
-					this.initialDurationMilliseconds = moment.duration(this.store.state.duration.amounts).asMilliseconds();
-					this.initialTime = this.$parent.store.state.totalTime;
-					this.startTime = moment();
-					this.startId = requestAnimationFrame(this.startChronometer);
-				}
+				if (this.startId) return;
+				this.show = false;
+				this.initialDurationMilliseconds = moment.duration(this.store.state.duration.amounts).asMilliseconds();
+				this.initialTime = this.$parent.store.state.totalTime;
+				this.startTime = moment();
+				this.startId = requestAnimationFrame(this.startChronometer);
 			},
 			startChronometer: function() {
 				this.intervalTime = moment();
