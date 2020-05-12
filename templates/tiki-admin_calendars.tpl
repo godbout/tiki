@@ -198,9 +198,7 @@
 					{tr}Description{/tr}
 				</label>
 				<div class="col-sm-5">
-					<textarea name="description" rows="5" wrap="virtual" class="form-control" id="calendarDescription">
-						{$description|escape}
-					</textarea>
+					<textarea name="description" rows="5" wrap="virtual" class="form-control" id="calendarDescription">{$description|escape}</textarea>
 				</div>
 				<div class="checkbox col-sm-3">
 					<label for="showCalDescriptionPopup" class="col-form-label">
