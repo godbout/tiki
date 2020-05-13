@@ -103,9 +103,9 @@
 			{/jq}
 			{/if}
 			{jq}
-				$("select[name={{$field.ins_id}}]").parent().find(".insert-tracker-item").clickModal({
+				$("select[name='{{$field.ins_id}}{{if $data.selectMultipleValues}[]{/if}}']").parent().find(".insert-tracker-item").clickModal({
 					success: function (data) {
-						var $select = $("select[name={{$field.ins_id}}]");
+						var $select = $("select[name='{{$field.ins_id}}{{if $data.selectMultipleValues}[]{/if}}']");
 						$('<option>')
 							.attr('value', data.itemId)
 							.text(data.{{if not empty($data.otherFieldPermName)}fields.{$data.otherFieldPermName}{else}itemTitle{/if}})
