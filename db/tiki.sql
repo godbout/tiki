@@ -71,7 +71,7 @@ CREATE TABLE `sessions` (
   `sesskey` char(32) NOT NULL,
   `expiry` int(11) unsigned NOT NULL,
   `expireref` varchar(64),
-  `data` text NOT NULL,
+  `data` longblob NOT NULL,
   PRIMARY KEY (`sesskey`),
   KEY `expiry` (expiry)
 ) ENGINE=MyISAM;
