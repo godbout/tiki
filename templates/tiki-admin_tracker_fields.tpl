@@ -25,6 +25,9 @@
 					<th>{tr}ID{/tr}</th>
 					<th>{tr}Name{/tr}</th>
 					<th>{tr}Type{/tr}</th>
+					{if $prefs.tracker_field_rules eq 'y'}
+						<th id="rulesColumn">{tr}Rules{/tr}</th>
+					{/if}
 					<th>{tr}List{/tr}</th>
 					<th>{tr}Title{/tr}</th>
 					<th>{tr}Search{/tr}</th>
