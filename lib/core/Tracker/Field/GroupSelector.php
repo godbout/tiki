@@ -101,7 +101,7 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 	function getFieldData(array $requestData = [])
 	{
 		// $group is set to the default group in lib/setup/user_prefs.php
-		global $tiki_p_admin_trackers, $group, $user;
+		global $group, $user;
 		$usersLib = TikiLib::lib('user');
 
 		$ins_id = $this->getInsertId();
@@ -109,6 +109,7 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 		$data = [];
 		$defGroup = $group;
 		$userGroups = $usersLib->get_user_groups_inclusion($user);
+		$perms = Perms::get('tracker', $this->getConfiguration('trackerId'));
 
 		$groupId = $this->getOption('groupId');
 		if (empty($groupId)) {
@@ -131,7 +132,7 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 		if (! in_array($defGroup, $data['list'])) {
 			// find the one in the list this user is in
 			$includedGroups = array_intersect(array_keys($userGroups), $data['list']);
-			if (empty($includedGroups)) {
+			if (empty($includedGroups) && ! $perms->admin_trackers) {
 				// user not in any of the required groups, use the global default $group and warn
 				$defGroup = $group;
 				Feedback::warning(tr('User not in any of the required groups for GroupSelector field'));
@@ -162,7 +163,7 @@ class Tracker_Field_GroupSelector extends Tracker_Field_Abstract implements Trac
 		}
 
 		if (isset($requestData[$ins_id])) {
-			if ($this->getOption('autoassign') < 1 || $tiki_p_admin_trackers === 'y') {
+			if ($this->getOption('autoassign') < 1 || $perms->admin_trackers) {
 				$data['value'] = in_array($requestData[$ins_id], $data['list']) ? $requestData[$ins_id] : '';
 			} else {
 				if ($this->getOption('autoassign') == 2) {
