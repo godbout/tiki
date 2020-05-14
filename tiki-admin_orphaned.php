@@ -39,7 +39,7 @@ if (! empty($_REQUEST['submit'])) {
 		return $field['permName'];
 	}, $fields);
 
-	$suffixes = "/_(text|json|[a-z]{2}|exact|base|raw|[a-z]{2}_raw|creation_date|modification_date|freshness_days|names|paths|calitemid|recurrenceId|multi|plain|count|sum|unstemmed|n?desc|n?asc)$/";
+	$suffixes = "/_(text|json|[a-z]{2}|exact|base|raw|[a-z]{2}_raw|creation_date|modification_date|freshness_days|names|paths|calitemid|recurrenceId|multi|plain|count|sum|unstemmed|n?desc|n?asc|base_n?desc|base_n?asc)$/";
 
 	$results = [];
 
