@@ -107,6 +107,7 @@
 
 .dp-amount--input__header {
 	position: relative;
+	min-height: 20px;
 }
 
 .dp-amount--input__close {

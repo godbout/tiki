@@ -1,6 +1,6 @@
 <template>
 	<div class="duration-picker">
-		<DurationPickerAmounts v-on:unit="loadAmount" :duration="store.state.duration"></DurationPickerAmounts>
+		<DurationPickerAmounts v-on:unit="loadAmount" :duration="store.state.duration" :amounts="amounts"></DurationPickerAmounts>
 		<DurationPickerModal v-show="show" :initial-unit="unit" :handle-close-modal="handleCloseModal"></DurationPickerModal>
 		<input type="hidden" :name="store.state.inputName" :value="getValue">
 	</div>
@@ -20,12 +20,15 @@
 			return {
 				show: false,
 				unit: '',
-				store: window[this.$parent.store]
+				store: window[this.$parent.store],
+				amounts: {}
 			}
 		},
 		computed: {
 			getValue: function() {
-				return JSON.stringify(this.store.state.duration.amounts);
+				let amounts = this.store.__calcDuration(this.store.state.duration.value);
+				this.amounts = amounts;
+				return JSON.stringify(amounts);
 			}
 		},
 		methods: {

@@ -33,7 +33,7 @@
 				startId: false,
 				startTime: null,
 				stopTime: null,
-				initialAmounts: this.$parent.store.state.duration.amounts,
+				initialAmounts: this.$parent.store.state.duration.value,
 				intervalTime: null,
 				initialDurationMilliseconds: 0,
 				millisecondsDiff: 0,
@@ -54,7 +54,7 @@
 			startTimer: function () {
 				if (this.startId) return;
 				this.show = false;
-				this.initialDurationMilliseconds = moment.duration(this.store.state.duration.amounts).asMilliseconds();
+				this.initialDurationMilliseconds = this.store.state.duration.value;
 				this.initialTime = this.$parent.store.state.totalTime;
 				this.startTime = moment();
 				this.startId = requestAnimationFrame(this.startChronometer);
@@ -62,8 +62,8 @@
 			startChronometer: function() {
 				this.intervalTime = moment();
 				this.millisecondsDiff = this.intervalTime.diff(this.startTime);
-				this.store.setDuration(this.initialDurationMilliseconds + this.millisecondsDiff);
-				this.store.setTotalTime(this.initialTime + this.millisecondsDiff);
+				this.store.setDuration(this.initialDurationMilliseconds.clone().add(moment.duration(this.millisecondsDiff)));
+				this.store.setTotalTime(this.initialTime.clone().add(moment.duration(this.millisecondsDiff)));
 				this.startId = requestAnimationFrame(this.startChronometer);
 			},
 			stopTimer: function () {
@@ -71,7 +71,11 @@
 				this.startId = false;
 				this.show = true;
 				this.stopTime = this.intervalTime;
-				this.recordTimestamp();
+				this.store.setTimestamp('add', {
+					startTime: this.startTime,
+					stopTime: this.stopTime,
+					spentTime: moment(this.stopTime).diff(this.startTime)
+				});
 			},
 			resetTimer: function () {
 				if (this.timestamps.length > 0 && confirm("Remove all timestamps?")) {
@@ -80,20 +84,10 @@
 					this.show = true;
 
 					this.store.setDuration(this.initialAmounts);
-					this.clearTimestamps();
-					this.initialTime = 0;
-					this.store.setTotalTime(0);
+					this.store.setTimestamp('delete_all');
+					this.initialTime = moment.duration(0);
+					this.store.setTotalTime(moment.duration(0));
 				}
-			},
-			recordTimestamp: function () {
-				this.store.setTimestamp('add', {
-					startTime: this.startTime,
-					stopTime: this.stopTime,
-					spentTime: moment(this.stopTime).diff(this.startTime)
-				});
-			},
-			clearTimestamps: function () {
-				this.store.setTimestamp('delete_all')
 			}
 		}
 	};

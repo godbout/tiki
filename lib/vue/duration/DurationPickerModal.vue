@@ -1,11 +1,11 @@
 <template>
 	<div class="dp-amount--input__container">
 		<div class="dp-amount--input__header">
-			<div class="dp-toggle-mode unselectable" v-on:click="toggleMode">{{ mode }}</div>
+			<div class="dp-toggle-mode unselectable" v-if="store.state.chronometer" v-on:click="toggleMode">{{ mode }}</div>
 			<div class="dp-amount--input__close" v-on:click="handleCloseModal" title="close">x</div>
 		</div>
 		<DurationPickerEditor v-show="!show" :initial-unit="initialUnit" />
-		<DurationPickerChronometer v-show="show" />
+		<DurationPickerChronometer v-if="store.state.chronometer" v-show="show" />
 	</div>
 </template>
 

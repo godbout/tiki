@@ -44,7 +44,7 @@
 		data: function () {
 			return {
 				duration: this.$parent.store.state.duration,
-				value: this.$parent.store.state.duration.amounts[this.initialUnit],
+				currentValue: 0,
 				unit: this.initialUnit,
 				interval: false,
 				store: this.$parent.store
@@ -68,12 +68,13 @@
 		},
 		computed: {
 			convertValue: function() {
-				return this.store.state.duration.amounts[this.unit];
+				let amounts = this.store.__calcDuration(this.store.state.duration.value);
+				this.currentValue = amounts[this.unit];
+				return amounts[this.unit];
 			}
 		},
 		watch: {
 			initialUnit: function(newVal) {
-				this.value = this.duration.amounts[newVal];
 				this.unit = newVal;
 			}
 		},
@@ -88,11 +89,10 @@
 				if (isNaN(value)) {
 					value = 0;
 				}
-				this.store.setDurationValue(value, this.unit);
+				this.store.setDurationValue(value - this.currentValue, this.unit);
 			},
 			handleClickUnit: function(unit) {
 				this.$refs.input.focus();
-				this.value = this.duration.amounts[unit];
 				this.unit = unit;
 			},
 			handleTabKeys: function(e) {
@@ -105,22 +105,16 @@
 				}
 			},
 			nextAmount: function() {
-				const { unit } = this.store.getAmountAfter(this.unit);
-				this.unit = unit;
+				this.unit = this.store.getAmountAfter(this.unit);
 			},
 			prevAmount: function() {
-				const { unit } = this.store.getAmountBefore(this.unit);
-				this.unit = unit;
+				this.unit = this.store.getAmountBefore(this.unit);
 			},
 			handleSubtraction: function () {
-				let value = parseInt(this.$refs.input.value, 10);
-				let newValue = value - 1;
-				this.store.setDurationValue(newValue, this.unit);
+				this.store.setDurationValue(-1, this.unit);
 			},
 			handleAddition: function () {
-				let value = parseInt(this.$refs.input.value, 10);
-				let newValue = value + 1;
-				this.store.setDurationValue(newValue, this.unit);
+				this.store.setDurationValue(1, this.unit);
 			},
 			startSubtraction: function () {
 				if (!this.interval) {

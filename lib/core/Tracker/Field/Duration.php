@@ -109,6 +109,18 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 						'default' => 0,
 						'legacy_index' => 7,
 					],
+					'chronometer' => [
+						'name' => tr('Chronometer'),
+						'description' => tr('Allow chronometer.'),
+						'deprecated' => false,
+						'filter' => 'int',
+						'options' => [
+							0 => tr('No'),
+							1 => tr('Yes'),
+						],
+						'default' => 0,
+						'legacy_index' => 8,
+					],
 				],
 			],
 		];
@@ -161,7 +173,8 @@ momentDurationFormatSetup(moment);
 var dpStore = DurationPickerStore();
 dpStore.setInitialDuration({
 	value: '.$this->getValue().',
-	units: '.json_encode($this->enabledUnits()).'
+	units: '.json_encode($this->enabledUnits()).',
+	chronometer: true
 });
 dpStore.setInputName('.json_encode($this->getInsertId()).');
 ');
