@@ -282,7 +282,7 @@ class Services_Group_Controller
 					if (! empty($permissions)) {
 						$groups = $userlib->get_group_info($input['include_groups']->asArray());
 						foreach ($groups as $group) {
-							if ($group["isTplGroup"] == "y") {	// FIXME
+							if ($group["isTplGroup"] == "y") {
 								Services_Utilities::modalException(tr('Template Group children cannot have permission: %0', $group["groupName"]));
 							}
 						}
