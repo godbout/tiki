@@ -7477,6 +7477,7 @@ class UsersLib extends TikiLib
 				$home,
 				$utracker,
 				$gtracker,
+				$rufields,
 				$userChoice,
 				$defcat,
 				$theme,
