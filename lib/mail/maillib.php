@@ -181,7 +181,7 @@ function tiki_send_email($email)
 
 	tiki_mail_setup();
 
-	if ($prefs['zend_mail_queue'] == 'redirect') {
+	if (! empty($prefs['zend_mail_redirect'])) {
 		$email->setTo($prefs['zend_mail_redirect']);
 		$email->setCc([]);
 		$email->setBcc([]);
