@@ -171,6 +171,8 @@ if ($tiki_p_admin == 'y') {
 		}
 	}
 	$smarty->assign('tables', $tables);
+	$popularTables = ['tiki_articles', 'tiki_blog_posts', 'tiki_calendar_items', 'tiki_comments', 'tiki_pages', 'tiki_tracker_item_fields'];
+	$smarty->assign('popularTables', $popularTables);
 }
 
 $lastLogItem = $unifiedsearchlib->getLastLogItem();

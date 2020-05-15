@@ -7,7 +7,12 @@
 	<div class="col-sm-7">
 		<div class="input-group">
 			<select name="string_in_db_search_table" class="form-control" id="string_in_db_search_table">
-			<option value="">All tables</option>
+			<option value="">{tr}All tables{/tr}</option>
+			<option disabled="disabled">─────{tr}Popular tables{/tr}─────</option>
+			{foreach $popularTables as $popularTable}
+				<option value="{$popularTable|escape}" {if isset($tableFilter) && $popularTable eq $tableFilter} selected="selected"{/if}>{$popularTable|escape}</option>
+			{/foreach}
+			<option disabled="disabled">─────{tr}Other tables{/tr}─────</option>
 			{foreach $tables as $table}
 				<option value="{$table|escape}" {if isset($tableFilter) && $table eq $tableFilter} selected="selected"{/if}>{$table|escape}</option>
 			{/foreach}
