@@ -111,7 +111,7 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 					],
 					'chronometer' => [
 						'name' => tr('Chronometer'),
-						'description' => tr('Allow chronometer.'),
+						'description' => tr('Add chronometer type of UI with start/stop and reset buttons to count elapsed time.'),
 						'deprecated' => false,
 						'filter' => 'int',
 						'options' => [
@@ -174,7 +174,7 @@ var dpStore = DurationPickerStore();
 dpStore.setInitialDuration({
 	value: '.$this->getValue().',
 	units: '.json_encode($this->enabledUnits()).',
-	chronometer: true
+	chronometer: '.$this->getOption("chronometer").'
 });
 dpStore.setInputName('.json_encode($this->getInsertId()).');
 ');
