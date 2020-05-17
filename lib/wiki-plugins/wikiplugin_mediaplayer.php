@@ -280,6 +280,9 @@ function wikiplugin_mediaplayer($data, $params)
 			} );";
 
 		if (in_array($params['type'], ['pdf', 'odt', 'ods', 'odp'])) {
+			if ($prefs['fgal_pdfjs_feature'] === 'n'){
+				return "<p>".tr('PDF.js feature is disabled. If you do not have permission to enable, ask the site administrator.')."</p>";
+			}
 			if ($prefs['fgal_pdfjs_feature'] === 'y') {
 				$smarty = TikiLib::lib('smarty');
 
