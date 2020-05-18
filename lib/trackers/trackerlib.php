@@ -205,7 +205,7 @@ class TrackerLib extends TikiLib
 		return $this->comments()->fetchCount(['object' => (int) $itemId, 'objectType' => 'trackeritem']);
 	}
 
-	public function list_all_attachements($offset = 0, $maxRecords = -1, $sort_mode = 'created_desc', $find = '')
+	public function list_all_attachments($offset = 0, $maxRecords = -1, $sort_mode = 'created_desc', $find = '')
 	{
 		$attachments = $this->attachments();
 
@@ -3692,7 +3692,7 @@ class TrackerLib extends TikiLib
 	}
 
 	/*
-	** function only used for the popup for more infos on attachements
+	** function only used for the popup for more infos on attachments
 	*  returns an array with field=>value
 	*/
 	public function get_moreinfo($attId)

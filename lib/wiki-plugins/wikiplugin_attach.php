@@ -211,7 +211,7 @@ function wikiplugin_attach($data, $params)
 	$url = '';
 
 	if (isset($all) && (int)$all > 0) {
-		$atts = $wikilib->list_all_attachements(0, -1, 'page_asc', '');
+		$atts = $wikilib->list_all_attachments(0, -1, 'page_asc', '');
 	} elseif (! empty($page)) {
 		if (! $tikilib->page_exists($page)) {
 			return "''" . tr('Page "%0" does not exist', $page) . "''";

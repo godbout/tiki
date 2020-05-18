@@ -252,7 +252,7 @@ class Comments extends TikiLib
 		return $res[0];
 	}
 
-	public function list_all_attachements($offset = 0, $maxRecords = -1, $sort_mode = 'attId_asc', $find = '')
+	public function list_all_attachments($offset = 0, $maxRecords = -1, $sort_mode = 'attId_asc', $find = '')
 	{
 		$attachments = $this->table('tiki_forum_attachments');
 

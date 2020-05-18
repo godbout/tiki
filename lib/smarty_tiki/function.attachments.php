@@ -171,7 +171,7 @@ function smarty_function_attachments($params, $template)
 
 	foreach ($files[ 'data' ] as &$file) {
 		// First disable file galleries "assign perms" & "admin" perms that allows too much actions on the list of files or that are related to subgalleries
-		//   (attachements display should be simple)
+		//   (attachments display should be simple)
 		$file['perms'][ 'tiki_p_admin_file_galleries' ] = 'n';
 		$file['perms'][ 'tiki_p_assign_perm_file_gallery' ] = 'n';
 

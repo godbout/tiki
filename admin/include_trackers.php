@@ -37,17 +37,17 @@ if (isset($_POST['action']) && isset($_POST['attId']) && $access->checkCsrf()) {
 }
 
 if (isset($_POST['all2db']) && $access->checkCsrf()) {
-	$attachements = $trklib->list_all_attachements();
-	for ($i = 0; $i < $attachements['cant']; $i++) {
-		if ($attachements['data'][$i]['path']) {
-			$trklib->file_to_db($prefs['t_use_dir'] . $attachements['data'][$i]['path'], $attachements['data'][$i]['attId']);
+	$attachments = $trklib->list_all_attachments();
+	for ($i = 0; $i < $attachments['cant']; $i++) {
+		if ($attachments['data'][$i]['path']) {
+			$trklib->file_to_db($prefs['t_use_dir'] . $attachments['data'][$i]['path'], $attachments['data'][$i]['attId']);
 		}
 	}
 } elseif (isset($_POST['all2file']) && $access->checkCsrf()) {
-	$attachements = $trklib->list_all_attachements();
-	for ($i = 0; $i < $attachements['cant']; $i++) {
-		if (! $attachements['data'][$i]['path']) {
-			$trklib->db_to_file($prefs['t_use_dir'] . md5($attachements['data'][$i]['filename']), $attachements['data'][$i]['attId']);
+	$attachments = $trklib->list_all_attachments();
+	for ($i = 0; $i < $attachments['cant']; $i++) {
+		if (! $attachments['data'][$i]['path']) {
+			$trklib->db_to_file($prefs['t_use_dir'] . md5($attachments['data'][$i]['filename']), $attachments['data'][$i]['attId']);
 		}
 	}
 }
@@ -67,10 +67,10 @@ $smarty->assign_by_ref('find', $find);
 $smarty->assign_by_ref('offset', $offset);
 $smarty->assign_by_ref('sort_mode', $sort_mode);
 
-$attachements = $trklib->list_all_attachements($offset, $maxRecords, $sort_mode, $find);
-$smarty->assign_by_ref('cant_pages', $attachements['cant']);
+$attachments = $trklib->list_all_attachments($offset, $maxRecords, $sort_mode, $find);
+$smarty->assign_by_ref('cant_pages', $attachments['cant']);
 $headerlib->add_cssfile('themes/base_files/feature_css/admin.css');
-$smarty->assign_by_ref('attachements', $attachements['data']);
+$smarty->assign_by_ref('attachments', $attachments['data']);
 
 $factory = new Tracker_Field_Factory(false);
 $fieldPreferences = [];

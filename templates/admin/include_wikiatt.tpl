@@ -21,8 +21,8 @@
 				<th>&nbsp;</th>
 			</tr>
 
-			{section name=x loop=$attachements}
-				{if $attachements[x].path}
+			{section name=x loop=$attachments}
+				{if $attachments[x].path}
 					{$current = 'file'}{$move = 'move2db'}{$confirm = "{tr}Move attachment to database?{/tr}"}
 					{$tip = "{tr}Move to database{/tr}"}
 				{else}
@@ -30,20 +30,20 @@
 					{$tip = "{tr}Move to file system{/tr}"}
 				{/if}
 				<tr class={cycle}>
-					<td>{$attachements[x].user}</td>
-					<td><a href="tiki-index.php?page={$attachements[x].page}">{$attachements[x].page}</a></td>
+					<td>{$attachments[x].user}</td>
+					<td><a href="tiki-index.php?page={$attachments[x].page}">{$attachments[x].page}</a></td>
 					<td>
-						<a href="tiki-download_wiki_attachment.php?attId={$attachements[x].attId}">{$attachements[x].filename}</a>
+						<a href="tiki-download_wiki_attachment.php?attId={$attachments[x].attId}">{$attachments[x].filename}</a>
 					</td>
-					<td>{$attachements[x].filesize|kbsize}</td>
-					<td>{$attachements[x].filetype}</td>
+					<td>{$attachments[x].filesize|kbsize}</td>
+					<td>{$attachments[x].filetype}</td>
 					<td>{$current}</td>
-					<td>{$attachements[x].created|tiki_short_date}</td>
-					<td>{$attachements[x].hits}</td>
+					<td>{$attachments[x].created|tiki_short_date}</td>
+					<td>{$attachments[x].hits}</td>
 					<td>
 						<form action="tiki-admin.php?page=wikiatt" method="post">
 							{ticket}
-							<input type="hidden" name="attId" value="{$attachements[x].attId}&amp;action={$move}">
+							<input type="hidden" name="attId" value="{$attachments[x].attId}&amp;action={$move}">
 							<input type="hidden" name="action" value="{$move}">
 							<button  class="btn btn-link tips" title=":{$tip}" onclick="confirmSimple(event, '{$confirm}')">{icon name=move}</button>
 						</form>

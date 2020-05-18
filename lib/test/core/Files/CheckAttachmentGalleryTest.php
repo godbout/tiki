@@ -319,7 +319,7 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 
 		foreach ($types as $type) {
 			$lib = $this->getLib($type);
-			$attachments = $lib->list_all_attachements();
+			$attachments = $lib->list_all_attachments();
 
 			foreach ($attachments['data'] as $attachment) {
 				$this->removeAttachment($type, $attachment['attId']);

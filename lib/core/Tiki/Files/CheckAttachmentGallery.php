@@ -73,7 +73,7 @@ class CheckAttachmentGallery extends AbstractCheckGallery
 	}
 
 	/**
-	 * Gets attachments based on their type. "list_all_attachements" is common to all of these libs
+	 * Gets attachments based on their type. "list_all_attachments" is common to all of these libs
 	 * @return array
 	 * @throws \Exception
 	 */
@@ -91,7 +91,7 @@ class CheckAttachmentGallery extends AbstractCheckGallery
 				break;
 		}
 
-		return $lib->list_all_attachements();
+		return $lib->list_all_attachments();
 	}
 
 	/**

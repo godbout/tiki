@@ -921,7 +921,7 @@ class WikiLib extends TikiLib
 		$retval['cant'] = $cant;
 		return $retval;
 	}
-	public function list_all_attachements($offset = 0, $maxRecords = -1, $sort_mode = 'created_desc', $find = '')
+	public function list_all_attachments($offset = 0, $maxRecords = -1, $sort_mode = 'created_desc', $find = '')
 	{
 		if ($find) {
 			$findesc = '%' . $find . '%';

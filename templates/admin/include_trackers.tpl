@@ -141,7 +141,7 @@
 <fieldset>
 	<legend>{tr}Tracker attachments{/tr}</legend>
 	<div class="table">
-		{if $attachements}
+		{if $attachments}
 			<form action="tiki-admin.php?page=trackers" method="post">
 				{ticket}
 				<input type="text" name="find" value="{$find|escape}">
@@ -182,19 +182,19 @@
 					<th>{tr}Switch storage{/tr}</th>
 				</tr>
 
-				{section name=x loop=$attachements}
+				{section name=x loop=$attachments}
 					<tr class={cycle}>
-						<td class="id"><a href="tiki-download_item_attachment.php?attId={$attachements[x].attId}" title="{tr}Download{/tr}">{$attachements[x].attId}</a></td>
-						<td class="username">{$attachements[x].user}</td>
-						<td class="text">{$attachements[x].filename}</td>
-						<td class="integer">{$attachements[x].filesize|kbsize}</td>
-						<td class="text">{$attachements[x].filetype}</td>
-						<td class="integer">{$attachements[x].hits}</td>
-						<td class="integer">{$attachements[x].itemId}</td>
-						<td class="text">{if $attachements[x].path}file{else}db{/if}</td>
-						<td class="date">{$attachements[x].created|tiki_short_date}</td>
+						<td class="id"><a href="tiki-download_item_attachment.php?attId={$attachments[x].attId}" title="{tr}Download{/tr}">{$attachments[x].attId}</a></td>
+						<td class="username">{$attachments[x].user}</td>
+						<td class="text">{$attachments[x].filename}</td>
+						<td class="integer">{$attachments[x].filesize|kbsize}</td>
+						<td class="text">{$attachments[x].filetype}</td>
+						<td class="integer">{$attachments[x].hits}</td>
+						<td class="integer">{$attachments[x].itemId}</td>
+						<td class="text">{if $attachments[x].path}file{else}db{/if}</td>
+						<td class="date">{$attachments[x].created|tiki_short_date}</td>
 						<td class="action">
-							<a href="tiki-admin.php?page=trackers&amp;attId={$attachements[x].attId}&amp;action={if $attachements[x].path}move2db{else}move2file{/if}">
+							<a href="tiki-admin.php?page=trackers&amp;attId={$attachments[x].attId}&amp;action={if $attachments[x].path}move2db{else}move2file{/if}">
 								{icon name='refresh' iclass='tips' title=":{tr}Switch storage{/tr}"}
 							</a>
 						</td>
@@ -207,7 +207,7 @@
 
 		{pagination_links cant=$cant_pages step=$prefs.maxRecords offset=$offset}{/pagination_links}
 	</div>
-	{if $attachements}
+	{if $attachments}
 		<table>
 			<tr>
 				<td>

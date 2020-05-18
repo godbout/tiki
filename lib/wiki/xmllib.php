@@ -584,7 +584,7 @@ class page_Parser extends XML_Parser
 		$this->currentTag = null;
 		switch ($name) {
 			case 'comments':
-			case 'attachements':
+			case 'attachments':
 			case 'history':
 			case 'images':
 				$this->context = null;

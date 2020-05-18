@@ -29,17 +29,17 @@ if (isset($_POST['action']) and isset($_POST['attId'])) {
 }
 
 if (isset($_POST['all2db']) && $access->checkCsrf()) {
-	$attachements = $wikilib->list_all_attachements();
-	for ($i = 0; $i < $attachements['cant']; $i++) {
-		if ($attachements['data'][$i]['path']) {
-			$wikilib->file_to_db($prefs['w_use_dir'] . $attachements['data'][$i]['path'], $attachements['data'][$i]['attId']);
+	$attachments = $wikilib->list_all_attachments();
+	for ($i = 0; $i < $attachments['cant']; $i++) {
+		if ($attachments['data'][$i]['path']) {
+			$wikilib->file_to_db($prefs['w_use_dir'] . $attachments['data'][$i]['path'], $attachments['data'][$i]['attId']);
 		}
 	}
 } elseif (isset($_POST['all2file']) && $access->checkCsrf()) {
-	$attachements = $wikilib->list_all_attachements();
-	for ($i = 0; $i < $attachements['cant']; $i++) {
-		if (! $attachements['data'][$i]['path']) {
-			$wikilib->db_to_file($attachements['data'][$i]['filename'], $attachements['data'][$i]['attId']);
+	$attachments = $wikilib->list_all_attachments();
+	for ($i = 0; $i < $attachments['cant']; $i++) {
+		if (! $attachments['data'][$i]['path']) {
+			$wikilib->db_to_file($attachments['data'][$i]['filename'], $attachments['data'][$i]['attId']);
 		}
 	}
 }
@@ -58,9 +58,9 @@ if (isset($_REQUEST['sort_mode'])) {
 $smarty->assign_by_ref('find', $find);
 $smarty->assign_by_ref('offset', $offset);
 $smarty->assign_by_ref('sort_mode', $sort_mode);
-$attachements = $wikilib->list_all_attachements($offset, $maxRecords, $sort_mode, $find);
-$smarty->assign_by_ref('cant_pages', $attachements['cant']);
-$smarty->assign_by_ref('attachements', $attachements['data']);
+$attachments = $wikilib->list_all_attachments($offset, $maxRecords, $sort_mode, $find);
+$smarty->assign_by_ref('cant_pages', $attachments['cant']);
+$smarty->assign_by_ref('attachments', $attachments['data']);
 $urlquery['find'] = $find;
 $urlquery['page'] = 'wikiatt';
 $urlquery['sort_mode'] = $sort_mode;
