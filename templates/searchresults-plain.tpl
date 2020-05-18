@@ -26,7 +26,7 @@
 		    $(this)
 		        .find('input[name]')
 		        .filter(function () {
-		            return !this.value;
+		            return ! this.value && this.name !== 'filter~content';
 		        })
 		        .prop('name', '');
 		});
