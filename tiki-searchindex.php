@@ -120,7 +120,7 @@ if (count($filter) || count($postfilter)) {
 				$isCached = true;
 			}
 		}
-		$excludedFacets = $prefs['search_excluded_facets'];
+		$excludedFacets = tiki_searchindex_get_excluded_facets();
 		if (! $isCached) {
 			$results = tiki_searchindex_get_results($filter, $postfilter, $offset, $maxRecords);
 			$facets = array_filter(array_map(
@@ -247,7 +247,7 @@ function tiki_searchindex_get_results($filter, $postfilter, $offset, $maxRecords
 
 		foreach ($provider->getFacets() as $facet) {
 			$name = $facet->getName();
-			if (! in_array($name, $prefs['search_excluded_facets'])) {
+			if (! in_array($name, tiki_searchindex_get_excluded_facets())) {
 				if ($prefs['search_avoid_duplicated_facet_labels'] === 'y') {
 					$label = $facet->getLabel();
 					if (key_exists($label, $duplicateLabels)) {
@@ -290,3 +290,22 @@ function tiki_searchindex_get_results($filter, $postfilter, $offset, $maxRecords
 
 	return new Search_ResultSet([], 0, 0, -1);
 }
+
+/**
+ * Temporarily exclude the two date range facets from tiki-searchindex.php as they don't work
+ *
+ * @return array
+ */
+function tiki_searchindex_get_excluded_facets()
+{
+	global $prefs;
+
+	return array_merge(
+		$prefs['search_excluded_facets'],
+		[
+			'date_histogram',
+			'date_range',
+		]
+	);
+}
+
