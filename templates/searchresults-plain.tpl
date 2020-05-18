@@ -21,6 +21,15 @@
 			$('#search-form').submit();
 		});
 
+		// remove empty inputs to keep the url clean
+		$('#search-form').submit(function () {
+		    $(this)
+		        .find('input[name]')
+		        .filter(function () {
+		            return ! this.value && this.name !== 'filter~content';
+		        })
+		        .prop('name', '');
+		});
 	{/jq}
 {/if}
 <div>
