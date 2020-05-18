@@ -22,8 +22,8 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * To maintain the order of loading Javascript and to allow minifying, the following "ranks" are supported:
  * '10dynamic': loaded first to allow minification of the other ranks. Usually module and plugin descriptions.
  * '20cdn' : loaded after 'dynamic', no minification possible // main libs like jquery from jquery/google cdn (no user cdns)
- * '30dependancy': loaded after 'cdn', minification possible  // main libs like jquery, codemirror
- * '40external': loaded after 'dependancy', minification possible // custom libs that require main libs
+ * '30dependency': loaded after 'cdn', minification possible  // main libs like jquery, codemirror
+ * '40external': loaded after 'dependency', minification possible // custom libs that require main libs
  * '50standard': loaded after 'external', minification possible // standard js that might require main / custom libs
  * '60late': loaded after 'standard', minification possible // page specific js
  *   Note: this rank is activated in tiki-setup.php to separate page specific JS from common JS
@@ -44,7 +44,7 @@ if (strpos($_SERVER["SCRIPT_NAME"], basename(__FILE__)) !== false) {
  * It will however be concatenated to a single JS file.
 
  * add_jsfile_cdn($url) - add a JS File from a CDN
- * add_jsfile_dependancy($filename, $skip_minify) - add a JS File to the section dependancy
+ * add_jsfile_dependency($filename, $skip_minify) - add a JS File to the section dependency
  * add_jsfile_external($filename, $skip_minify) - add a JS File to the section external
  * add_jsfile($filename, $skip_minify) - add a JS File to the section standard
  * add_jsfile_late($filename, $skip_minify) - add a JS File to the section late
@@ -234,15 +234,15 @@ class HeaderLib
 	 * @param bool $skip_minify true if the file must not be minified, false if it can
 	 * @return HeaderLib Current object
 	 */
-	function add_jsfile_dependancy($file, $skip_minify = false)
+	function add_jsfile_dependency($file, $skip_minify = false)
 	{
-		$this->add_jsfile_by_rank($file, '30dependancy', $skip_minify);
+		$this->add_jsfile_by_rank($file, '30dependency', $skip_minify);
 		return $this;
 	}
 
 
 	/**
-	 * Add a js file to load after dependancy . That file must not be loaded from an external source.
+	 * Add a js file to load after dependency . That file must not be loaded from an external source.
 	 * Theses are usually custom libraries like raphael, gaffle etc.
 	 * Depending on prefs, it could be minified and put into a single js file.
 	 * @param string $filename with path relative to tiki dir
@@ -609,7 +609,7 @@ class HeaderLib
 		$minifyActive = isset($prefs['tiki_minify_javascript']) && $prefs['tiki_minify_javascript'] == 'y' ? true : false;
 
 		if (! $minifyActive) {
-			$ranks = ['30dependancy', '40external', '50standard', '60late'];
+			$ranks = ['30dependency', '40external', '50standard', '60late'];
 			foreach ($ranks as $rank) {
 				if (isset($jsfiles[$rank])) {
 					foreach ($jsfiles[$rank] as $entry) {
@@ -625,7 +625,7 @@ class HeaderLib
 			// better to accept 2 js request: a big one which rarely changes and small ones that include (page specific) late stuff.
 			// at the end we could get rid of this pref though
 
-			$ranks = ['30dependancy', '40external', '50standard'];
+			$ranks = ['30dependency', '40external', '50standard'];
 			 $entry = $this->minifyJSFiles($jsfiles, $ranks);
 			$output[] .= '<script type="text/javascript" src="' . smarty_modifier_escape($entry) . '"></script>';
 

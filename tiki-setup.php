@@ -388,17 +388,17 @@ $headerlib->add_jsfile('lib/tiki-js.js');
 if (isset($prefs['javascript_cdn']) && $prefs['javascript_cdn'] == 'google') {
 	$headerlib->add_jsfile_cdn("$url_scheme://ajax.googleapis.com/ajax/libs/jquery/$headerlib->jquery_version/jquery.min.js");
 	// goggle is not hosting migrate so load from local
-	$headerlib->add_jsfile_dependancy("vendor_bundled/vendor/components/jquery-migrate/jquery-migrate.min.js", true);
+	$headerlib->add_jsfile_dependency("vendor_bundled/vendor/components/jquery-migrate/jquery-migrate.min.js", true);
 } elseif (isset($prefs['javascript_cdn']) && $prefs['javascript_cdn'] == 'jquery') {
 	$headerlib->add_jsfile_cdn("$url_scheme://code.jquery.com/jquery-$headerlib->jquery_version.min.js");
 	$headerlib->add_jsfile_cdn("$url_scheme://code.jquery.com/jquery-migrate-$headerlib->jquerymigrate_version.min.js");
 } else {
 	if (isset($prefs['tiki_minify_javascript']) && $prefs['tiki_minify_javascript'] === 'y') {
-		$headerlib->add_jsfile_dependancy("vendor_bundled/vendor/components/jquery/jquery.min.js", true);
-		$headerlib->add_jsfile_dependancy("vendor_bundled/vendor/components/jquery-migrate/jquery-migrate.min.js", true);
+		$headerlib->add_jsfile_dependency("vendor_bundled/vendor/components/jquery/jquery.min.js", true);
+		$headerlib->add_jsfile_dependency("vendor_bundled/vendor/components/jquery-migrate/jquery-migrate.min.js", true);
 	} else {
-		$headerlib->add_jsfile_dependancy("vendor_bundled/vendor/components/jquery/jquery.js", true);
-		$headerlib->add_jsfile_dependancy("vendor_bundled/vendor/components/jquery-migrate/jquery-migrate.js", true);
+		$headerlib->add_jsfile_dependency("vendor_bundled/vendor/components/jquery/jquery.js", true);
+		$headerlib->add_jsfile_dependency("vendor_bundled/vendor/components/jquery-migrate/jquery-migrate.js", true);
 	}
 }
 
@@ -462,7 +462,7 @@ if ($prefs['feature_syntax_highlighter'] == 'y') {
 	//add codemirror stuff
 	$headerlib
 		->add_cssfile('vendor_bundled/vendor/codemirror/codemirror/lib/codemirror.css')
-		->add_jsfile_dependancy('vendor_bundled/vendor/codemirror/codemirror/lib/codemirror.js')
+		->add_jsfile_dependency('vendor_bundled/vendor/codemirror/codemirror/lib/codemirror.js')
 		->add_jsfile('vendor_bundled/vendor/codemirror/codemirror/addon/search/searchcursor.js')
 		->add_jsfile('vendor_bundled/vendor/codemirror/codemirror/addon/mode/overlay.js')
 	//add tiki stuff
@@ -491,9 +491,9 @@ if ($prefs['feature_jquery_ui'] == 'y') {
 		$headerlib->add_jsfile_cdn("$url_scheme://code.jquery.com/ui/$headerlib->jqueryui_version/jquery-ui.min.js");
 	} else {
 		if ($prefs['tiki_minify_javascript'] === 'y') {
-			$headerlib->add_jsfile_dependancy("vendor_bundled/vendor/components/jqueryui/jquery-ui.min.js", true);
+			$headerlib->add_jsfile_dependency("vendor_bundled/vendor/components/jqueryui/jquery-ui.min.js", true);
 		} else {
-			$headerlib->add_jsfile_dependancy("vendor_bundled/vendor/components/jqueryui/jquery-ui.js");
+			$headerlib->add_jsfile_dependency("vendor_bundled/vendor/components/jqueryui/jquery-ui.js");
 		}
 	}
 
