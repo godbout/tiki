@@ -75,9 +75,9 @@ if (! isset($_REQUEST['status'])) {
 if (! isset($_REQUEST['initial'])) {
 	$_REQUEST['initial'] = '';
 }
-$filterFields = '';
-$values = '';
-$exactValues = '';
+$filterFields = [];
+$values = [];
+$exactValues = [];
 foreach ($_REQUEST as $key => $val) {
 	if (substr($key, 0, 2) == 'f_' && ! empty($val) && (! is_array($val) || ! empty($val[0]))) {
 		$fieldId = substr($key, 2);
