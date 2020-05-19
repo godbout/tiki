@@ -245,7 +245,9 @@ if (tour) {
 	$wp_tour['template'] = preg_replace('/<\!\-\-.*?\-\->/', '', $template);		// remove html comments
 
 	if ($params['next'] == -1 || $params['path']) {
-		$js = '// Instance the tour
+		$js = '
+		$.fn.tooltip.Constructor.Default.whiteList.button.push("data-role");
+		// Instance the tour
 tour = new Tour(' . json_encode($wp_tour) . ');
 ';
 		$headerlib->add_jq_onready($js, 12);
