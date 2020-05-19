@@ -187,6 +187,8 @@ class Services_Edit_SemaphoreController
 		$object_type = $input->object_type->pagename();
 		$object_type = $object_type ? $object_type : 'wiki page';
 
+		$this->removeExpired($input->limit->int());
+
 		$semUser = $this->table->fetchOne(
 			'user',
 			[

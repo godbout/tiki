@@ -999,10 +999,13 @@ class Services_Tracker_Controller
 	 * @throws Services_Exception_Denied
 	 * @throws Services_Exception_MissingValue
 	 * @throws Services_Exception_NotFound
+	 * @throws Services_Exception_EditConflict
 	 *
 	 */
 	function action_update_item($input)
 	{
+		global $prefs;
+
 		$trackerId = $input->trackerId->int();
 		$definition = Tracker_Definition::get($trackerId);
 		$suppressFeedback = $input->suppressFeedback->bool();
@@ -1023,6 +1026,12 @@ class Services_Tracker_Controller
 		$itemObject = Tracker_Item::fromInfo($itemInfo);
 		if (! $itemObject->canModify()) {
 			throw new Services_Exception_Denied;
+		}
+
+		if ($prefs['feature_warn_on_edit'] == 'y') {
+			// TODO: offer a way to override lock and continue editing
+			Services_Exception_EditConflict::checkSemaphore($itemId, 'trackeritem');
+			TikiLib::lib('service')->internal('semaphore', 'set', ['object_id' => $itemId, 'object_type' => 'trackeritem']);
 		}
 
 		global $prefs;
@@ -1078,6 +1087,10 @@ class Services_Tracker_Controller
 					'fields' => $fields,
 				]
 			);
+
+			if ($prefs['feature_warn_on_edit'] == 'y') {
+				TikiLib::lib('service')->internal('semaphore', 'unset', ['object_id' => $itemId, 'object_type' => 'trackeritem']);
+			}
 
 			if ($result !== false) {
 				TikiLib::lib('unifiedsearch')->processUpdateQueue();
@@ -1546,6 +1559,8 @@ class Services_Tracker_Controller
 
 	function action_fetch_item_field($input)
 	{
+		global $prefs;
+
 		$trackerId = $input->trackerId->int();
 		$mode = $input->mode->word();						// output|input (default input)
 		$listMode = $input->listMode->word();
@@ -1572,6 +1587,11 @@ class Services_Tracker_Controller
 		} else {
 			$itemObject = Tracker_Item::newItem($trackerId);
 			$processed = $itemObject->prepareFieldInput($field, $input->none());
+		}
+
+		if ($itemId && $mode != 'output' && $prefs['feature_warn_on_edit'] == 'y') {
+			Services_Exception_EditConflict::checkSemaphore($itemId, 'trackeritem');
+			TikiLib::lib('service')->internal('semaphore', 'set', ['object_id' => $itemId, 'object_type' => 'trackeritem']);
 		}
 
 		return [

@@ -390,6 +390,9 @@ foreach ($fieldDefinitions as &$fieldDefinition) {
 unset($fieldDefinition);
 
 if (isset($_REQUEST["save"]) || isset($_REQUEST["save_return"]) || isset($_REQUEST['save_and_comment'])) {
+	if ($prefs['feature_warn_on_edit'] == 'y') {
+		TikiLib::lib('service')->internal('semaphore', 'unset', ['object_id' => $itemId, 'object_type' => 'trackeritem']);
+	}
 	foreach ($fieldDefinitions as $i => $current_field) {
 		$fid = $current_field["fieldId"];
 		$fieldIsVisible = $itemObject->canViewField($fid);
@@ -801,6 +804,25 @@ $smarty->assign('canView', $itemObject->canView());
 $smarty->assign('canModify', $itemObject->canModify());
 $smarty->assign('canRemove', $itemObject->canRemove());
 
+if ($itemObject->canModify() && $prefs['tracker_legacy_insert'] == 'y' && $prefs['feature_warn_on_edit'] == 'y' && empty($_REQUEST['conflictoverride'])) {
+	$otherUser = TikiLib::lib('service')->internal('semaphore', 'get_user',
+		[
+			'object_id' => $itemId,
+			'object_type' => 'trackeritem',
+			'check' => 1,
+		]
+	);
+	if ($otherUser && $otherUser !== $user) {
+		$smarty->loadPlugin('smarty_modifier_username');
+		$msg = tr("This tracker item is being edited by user %0. Please check with the user before editing, otherwise conflicts will occur and data might be lost.", smarty_modifier_username($otherUser));
+		$msg .= '<br /><br /><a href="' . filter_out_sefurl('tiki-view_tracker_item.php?itemId=' . $itemId . '&conflictoverride=y') . '">' . tra('Override lock and carry on with edit') . '</a>';
+		$smarty->assign('msg', $msg);
+		$smarty->assign('errortitle', tra('Item is currently being edited'));
+		$smarty->display("error.tpl");
+		die;
+	}
+	TikiLib::lib('service')->internal('semaphore', 'set', ['object_id' => $itemId, 'object_type' => 'trackeritem']);
+}
 
 // Add view/edit template. Override an optional template defined in the tracker by a template passed via request
 // Note: Override is only allowed if a default template was set already in the tracker.
