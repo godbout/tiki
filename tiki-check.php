@@ -1239,9 +1239,27 @@ if (is_file('.svn/wc.db')) {
 	}
 }
 
+$s = extension_loaded('sodium');
+$msg = tra('Enable safe, encrypted storage of data such as passwords. Since Tiki 22, Sodium lib (included in PHP 7.2 core) is used for the User Encryption feature and improves encryption in other features, when available.');
+if ($s) {
+	$php_properties['sodium'] = array(
+		'fitness' => tra('good'),
+		'setting' => 'Loaded',
+		'message' => $msg
+	);
+} else {
+	$php_properties['sodium'] = array(
+		'fitness' => tra('unsure'),
+		'setting' => 'Not available',
+		'message' => $msg
+	);
+}
 
 $s = extension_loaded('openssl');
-$msg = tra('Enable safe, encrypted storage of data such as passwords. Required for the User Encryption feature and improves encryption in other features, when available.');
+$msg = tra('Enable safe, encrypted storage of data such as passwords. Tiki 21 and earlier versions, require OpenSSL for the User Encryption feature and improves encryption in other features, when available.');
+if (! $standalone) {
+	$msg .= ' ' . tra('Tiki still uses OpenSSL to decrypt user data encrypted with OpenSSL, when converting that data to Sodium (PHP 7.2+).') . ' ' . tra('Please check the \'User Data Encryption\' section to see if there is user data encrypted with OpenSSL.');
+}
 if ($s) {
 	$php_properties['openssl'] = array(
 		'fitness' => tra('good'),
@@ -1258,12 +1276,9 @@ if ($s) {
 
 
 $s = extension_loaded('mcrypt');
-$msg = tra('MCrypt is abandonware and is being phased out. Starting in version 18, Tiki uses OpenSSL where it previously used MCrypt, except perhaps via third-party libraries.');
+$msg = tra('MCrypt is abandonware and is being phased out. Starting in version 18 up to 21, Tiki uses OpenSSL where it previously used MCrypt, except perhaps via third-party libraries.');
 if (! $standalone) {
 	$msg .= ' ' . tra('Tiki still uses MCrypt to decrypt user data encrypted with MCrypt, when converting that data to OpenSSL.') . ' ' . tra('Please check the \'User Data Encryption\' section to see if there is user data encrypted with MCrypt.');
-
-	//User Data Encryption MCrypt
-	$usersWithMCrypt = check_userPreferencesMCrypt();
 }
 if ($s) {
 	$php_properties['mcrypt'] = array(
@@ -2984,7 +2999,14 @@ if ($standalone && ! $nagios) {
 	$smarty->assign('diffFileTables', $diffFileTables);
 	$smarty->assign('diffFileColumns', $diffFileColumns);
 	$smarty->assign('dynamicTables', $dynamicTables);
-	$smarty->assign('users_with_mcrypt_data', $usersWithMCrypt);
+
+	$criptLib = TikiLib::lib('crypt');
+	$smarty->assign('user_encryption_stats', array(
+		'Sodium' => $criptLib->getUserCryptDataStats('sodium'),
+		'OpenSSL' => $criptLib->getUserCryptDataStats('openssl'),
+		'MCrypt' => $criptLib->getUserCryptDataStats('mcrypt'),
+	));
+
 	$smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 	$smarty->assign('mid', 'tiki-check.tpl');
 	$smarty->display('tiki.tpl');
@@ -3372,18 +3394,6 @@ function check_isIIS()
 function check_hasIIS_UrlRewriteModule()
 {
 	return isset($_SERVER['IIS_UrlRewriteModule']) == true;
-}
-
-/**
- * Returns the number of users with data preferences encrypted with mcrypt
- * @return bool|int|mixed
- */
-function check_userPreferencesMCrypt()
-{
-	global $tikilib;
-
-	$query = 'SELECT count(DISTINCT user) FROM `tiki_user_preferences` WHERE `prefName` like \'dp.%\'';
-	return $tikilib->getOne($query);
 }
 
 function get_content_from_url($url)

@@ -66,6 +66,9 @@ class CryptLib extends TikiLib
 	private $key;					// crypt key
 	private $prefprefix = 'ds';		// prefix for user pref keys: 'test' => 'ds.test'
 
+	// Sodium attributes
+	private $hasSodium = false;
+
 	//
 	// Init and release
 	////////////////////////////////
@@ -91,6 +94,11 @@ class CryptLib extends TikiLib
 
 	function initSeed($phraseMD5)
 	{
+		if (extension_loaded('sodium')) {
+			$this->hasSodium = true;
+			$this->prefprefix = 'du';
+		}
+
 		if (extension_loaded('openssl')) {
 			$this->hasOpenSSL = true;
 			$this->key = $phraseMD5;
@@ -124,6 +132,16 @@ class CryptLib extends TikiLib
 	//
 	// Test/Check utilities
 	////////////////////////////////
+
+	/**
+	 * Check if Sodium encryption is used
+	 *
+	 * @return bool
+	 */
+	function hasSodiumCrypt()
+	{
+		return $this->hasSodium;
+	}
 
 	// Check if encryption is used (and not Base64)
 	function hasCrypt()
@@ -160,7 +178,7 @@ class CryptLib extends TikiLib
 
 	/**
 	 * Get the number of rows associated with the specified cryptographic method
-	 * @param string $method "mcrypt" for MCrypt, or "openssl" for OpenSSL
+	 * @param string $method "mcrypt" for MCrypt, or "openssl" for OpenSSL, or "sodium" for Sodium
 	 * @return int Number of rows
 	 */
 	function getUserCryptDataStats($method)
@@ -169,6 +187,8 @@ class CryptLib extends TikiLib
 			$pattern = 'dp.%';
 		} elseif ($method == 'openssl') {
 			$pattern = 'ds.%';
+		} elseif ($method == 'sodium') {
+			$pattern = 'du.%';
 		} else {
 			throw new DomainException('Invalid method');
 		}
@@ -387,7 +407,8 @@ class CryptLib extends TikiLib
 		// Store the pass phrase in a session variable
 		$_SESSION['cryptphrase'] = $phraseMD5;
 
-		$this->convertMCryptDataToOpenSSL($user, $cleartextPwd);
+		$this->convertMCryptDataToOpenSSL($user);
+		$this->convertOpenSSLDataToSodium($user);
 	}
 
 	// User has changed the password
@@ -459,9 +480,13 @@ class CryptLib extends TikiLib
 
 	// Use OpenSSL if available. Otherwise Base64 encode only
 	// Return base64 encoded string, containing either the crypttext with the iv prepended, or the cleartext if on base64 encoding is used
-	private function encrypt($cleartext, $iv)
+	private function encrypt($cleartext)
 	{
-		if ($this->hasCrypt()) {
+		if ($this->hasSodiumCrypt()) {
+			$key = random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
+			$nonce = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
+			$crypttext = $key . sodium_crypto_secretbox($cleartext, $nonce, $key) . $nonce;
+		} elseif ($this->hasCrypt()) {
 			$ivSize = openssl_cipher_iv_length($this->cryptMethod);
 			$iv = openssl_random_pseudo_bytes($ivSize);
 
@@ -485,7 +510,13 @@ class CryptLib extends TikiLib
 	// Return cleartext
 	private function decrypt($crypttext)
 	{
-		if ($this->hasCrypt()) {
+		if ($this->hasSodiumCrypt()) {
+			$key = trim(substr($crypttext, 0, SODIUM_CRYPTO_SECRETBOX_KEYBYTES));
+			$nonce = trim(substr($crypttext, -SODIUM_CRYPTO_SECRETBOX_NONCEBYTES));
+			$ciphertextLength = strlen($crypttext) - (SODIUM_CRYPTO_SECRETBOX_KEYBYTES + SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
+			$crypttext = trim(substr($crypttext, SODIUM_CRYPTO_SECRETBOX_KEYBYTES, $ciphertextLength));
+			$rawcleartext = sodium_crypto_secretbox_open($crypttext, $nonce, $key);
+		} elseif ($this->hasCrypt()) {
 			$ivSize = openssl_cipher_iv_length($this->cryptMethod);
 			$iv = substr($crypttext, 0, $ivSize);
 			$ciphertext = substr($crypttext, $ivSize);
@@ -513,6 +544,37 @@ class CryptLib extends TikiLib
 	// Old MCrypt coded data conversion
 	////////////////////////////////
 
+	/**
+	 * Decrypt OpenSSL data
+	 *
+	 * @param $crypttext
+	 * @return Mixed
+	 */
+	private function decryptOpenSll($crypttext)
+	{
+		$cleartext = null;
+
+		if ($this->hasCrypt()) {
+			$crypttext = base64_decode($crypttext);
+			$ivSize = openssl_cipher_iv_length($this->cryptMethod);
+			$iv = substr($crypttext, 0, $ivSize);
+			$ciphertext = substr($crypttext, $ivSize);
+
+			$cleartext = openssl_decrypt(
+				$ciphertext,
+				$this->cryptMethod,
+				$this->key,
+				OPENSSL_RAW_DATA,
+				$iv
+			);
+
+			// Clear trailing null-characters
+			$cleartext = rtrim($cleartext);
+		}
+
+		return $cleartext;
+	}
+
 	// Use MCrypt if available. Otherwise Base64 decode
 	// Return cleartext
 	private function decryptMcrypt($cryptData64)
@@ -535,7 +597,7 @@ class CryptLib extends TikiLib
 		return $cleartext;
 	}
 
-	private function convertMCryptDataToOpenSSL($login, $cleartextPwd)
+	private function convertMCryptDataToOpenSSL($login)
 	{
 		$this->init();
 
@@ -559,6 +621,46 @@ class CryptLib extends TikiLib
 				}
 
 				// Delete old Mcrypt coded user data
+				$userPreferences = $this->table('tiki_user_preferences', false);
+				$userPreferences->delete(['user' => $login, 'prefName' => $orgPrefName]);
+			}
+		}
+	}
+
+	/**
+	 * Convert OpenSSL encrypted data to Sodium
+	 *
+	 * @param $login
+	 * @return null
+	 */
+	private function convertOpenSSLDataToSodium($login)
+	{
+		$this->init();
+
+		// Convert encrypted OpenSSL data, if Sodium is installed
+		if ($this->hasSodiumCrypt()) {
+			$query = 'SELECT `prefName` , `value` FROM `tiki_user_preferences` WHERE `prefName` like \'ds.%\' and  `user` = ?';
+			$result = $this->query($query, [$login]);
+
+			while ($row = $result->fetchRow()) {
+				$orgPrefName = $row['prefName'];
+				$storedPwdMCrypt64 = $row['value'];
+
+				if ($this->hasCrypt()) {
+					$cleartext = $this->decryptOpenSll($storedPwdMCrypt64, $orgPrefName);
+
+					if (empty($cleartext)) {
+						continue;
+					}
+
+					// Strip ds. from prefName
+					$prefName = str_replace('ds.', '', $orgPrefName);
+
+					// Add new Sodium coded user data
+					$this->setUserData($prefName, $cleartext);
+				}
+
+				// Delete old OpenSSL coded user data
 				$userPreferences = $this->table('tiki_user_preferences', false);
 				$userPreferences->delete(['user' => $login, 'prefName' => $orgPrefName]);
 			}

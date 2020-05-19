@@ -87,12 +87,14 @@
 				<legend>{tr}User Encryption{/tr}{help url="User Encryption"}</legend>
 				{preference name=feature_user_encryption}
 				<div class="adminoptionboxchild" id="feature_user_encryption_childcontainer">
-					{if $openssl_available}
+					{if $sodium_available}
+						{tr}Requires the Sodium PHP extension for encryption.{/tr} {tr}You have Sodium installed.{/tr}<br>
+					{elseif $openssl_available}
 						{tr}Requires the OpenSSL PHP extension for encryption.{/tr} {tr}You have OpenSSL installed.{/tr}<br>
 					{else}
-						{remarksbox type="warning" title="{tr}OpenSSL is not loaded{/tr}"}
-						{tr}User Encryption requires the PHP extension OpenSSL for encryption.
-							You should activate OpenSSL before activating User Encryption{/tr}.
+						{remarksbox type="warning" title="{tr}Sodium is not loaded{/tr}"}
+						{tr}User Encryption requires the PHP extension Sodium for encryption.
+							You should activate Sodium before activating User Encryption{/tr}.
 						{/remarksbox}
 					{/if}
 					{tr}You may also want to add the Domain Password module somewhere.{/tr}<br>
@@ -103,6 +105,7 @@
 					{if $prefs.feature_user_encryption eq 'y' and $show_user_encyption_stats eq 'y'}
 						{tr}Statistics for existing data:{/tr}
 						<ul>
+							<li>Sodium: {$user_encryption_stat_sodium}</li>
 							<li>OpenSSL: {$user_encryption_stat_openssl}</li>
 							<li>MCrypt: {$user_encryption_stat_mcrypt}</li>
 						</ul>

@@ -580,15 +580,29 @@
 {/if}
 
 <h2>{tr}User Data Encryption{/tr}</h2>
-{if users_with_mcrypt_data > 0}
-	{remarksbox type='error' title='{tr}MCrypt encryption found in users data preferences{/tr}' close='n'}
-		<p>{tr _0=$users_with_mcrypt_data}Found %0 user(s) with data preferences encrypted with MCrypt.{/tr}</p>
-		<p>If MCrypt library gets removed, non-converted user encrypted data can no longer be decrypted. The data is
-			thus lost and must be re-entered.</p>
-	{/remarksbox}
-{else}
-	<p>{tr}No user preferences were found with data encrypted with MCrypt.{/tr}</p>
-{/if}
+<div class="table-responsive">
+	<table class="table">
+		<tr>
+			<th>{tr}Encryption Method{/tr}</th>
+			<th>{tr}Encrypted Preferences{/tr}</th>
+			<th>{tr}Message{/tr}</th>
+		</tr>
+		{foreach from=$user_encryption_stats key=method item=stats}
+			<tr>
+				<td class="text">{$method}</td>
+				<td class="text">{$stats}</td>
+				<td class="text">
+					{if ($method eq 'MCrypt' or $method eq 'OpenSSL') and $stats > 0}
+						<p>{tr _0=$method}If %0 library gets removed, non-converted user encrypted data can no longer be decrypted. The data is
+							thus lost and must be re-entered.{/tr}</p>
+					{/if}
+				</td>
+			</tr>
+		{foreachelse}
+			{norecords _colspan=2}
+		{/foreach}
+	</table>
+</div>
 
 <h2>{tr}Tiki Packages{/tr}</h2>
 <div class="table-responsive">

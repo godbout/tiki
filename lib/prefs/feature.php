@@ -636,7 +636,7 @@ function prefs_feature_list($partial = false)
 			'warning' => tra('This is an experimental feature. Using it may cause loss of the encrypted data.'),
 			'type' => 'flag',
 			'default' => 'n',
-			'extensions' => ['mcrypt'],
+			'extensions' => ['sodium'],
 			'tags' => ['experimental'],
 		],
 		'feature_password_domains' => [
