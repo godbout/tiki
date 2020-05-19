@@ -57,6 +57,11 @@
 				this.initialDurationMilliseconds = this.store.state.duration.value;
 				this.initialTime = this.$parent.store.state.totalTime;
 				this.startTime = moment();
+				this.timestamp = this.store.setTimestamp('add', {
+					startTime: this.startTime,
+					stopTime: null,
+					spentTime: null
+				});
 				this.startId = requestAnimationFrame(this.startChronometer);
 			},
 			startChronometer: function() {
@@ -71,8 +76,8 @@
 				this.startId = false;
 				this.show = true;
 				this.stopTime = this.intervalTime;
-				this.store.setTimestamp('add', {
-					startTime: this.startTime,
+				this.store.setTimestamp('update', {
+					...this.timestamps[this.timestamps.length - 1],
 					stopTime: this.stopTime,
 					spentTime: moment(this.stopTime).diff(this.startTime)
 				});

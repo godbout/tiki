@@ -18,8 +18,14 @@
 						</span>
 					</th>
 					<td>{{ formatTime(timestamp.startTime) }}</td>
-					<td>{{ formatTime(timestamp.stopTime) }}</td>
-					<td>{{ formatDuration(timestamp.spentTime) }}</td>
+					<td>
+						<i class="fas fa-history fa-spin" v-if="!timestamp.stopTime"></i>
+						<span v-if="timestamp.stopTime">{{ formatTime(timestamp.stopTime) }}</span>
+					</td>
+					<td>
+						<i class="fas fa-history fa-spin" v-if="!timestamp.spentTime"></i>
+						<span v-if="timestamp.spentTime">{{ formatDuration(timestamp.spentTime) }}</span>
+					</td>
 				</tr>
 			</tbody>
 		</table>
