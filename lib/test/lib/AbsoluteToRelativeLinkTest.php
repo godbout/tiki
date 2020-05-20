@@ -20,7 +20,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	' ut fermentum massa justo sit amet risus ##### Fermentum Fringilla Dapibus.';
 
 	protected function setUp() : void
-{
+	{
 		global $base_url, $base_url_http, $base_url_https, $prefs, $page_regex;
 
 		$base_url = self::BASE_URL;
@@ -77,6 +77,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$this->testReplaceInsidePlugins($baseUrl);
 		$this->testOtherMarkups($baseUrl);
 		$this->testMixMultipleLinks($baseUrl);
+		$this->testUnescapedLinks($baseUrl);
+		$this->testUnescapedLinksReplacement($baseUrl);
 	}
 
 	/**
@@ -166,6 +168,44 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$expectedLink = '[Documentation|Tiki Documentation]';
 		$dataResult = str_replace('#####', $expectedLink, self::DEMO_TEXT);
 		$this->assertEquals($dataResult, $dataConverted);
+	}
+
+	/**
+	 * @dataProvider urlBases
+	 */
+	public function testUnescapedLinks($baseUrl)
+	{
+		$tikilib = TikiLib::lib('tiki');
+		$link = "==$baseUrl/HomePage==";
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$this->assertEquals($data, $dataConverted);
+
+		$link = "==$baseUrl/index.php?page=Homepage==";
+		$data = str_replace('#####', $link, self::DEMO_TEXT);
+		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$this->assertEquals($data, $dataConverted);
+	}
+
+	/**
+	 * @dataProvider urlBases
+	 */
+	public function testUnescapedLinksReplacement($baseUrl)
+	{
+		$parserlib = TikiLib::lib('parser');
+		$link = "$baseUrl/HomePage";
+		$data = str_replace('#####', "==$link==", self::DEMO_TEXT);
+		$parsedData = $parserlib->parse_data_simple($data);
+		$expectedData = $parserlib->autolinks($link);
+		$data = str_replace('#####', $expectedData, self::DEMO_TEXT);
+		$this->assertEquals($data, $parsedData);
+
+		$link = "$baseUrl/index.php?page=Homepage";
+		$data = str_replace('#####', "==$link==", self::DEMO_TEXT);
+		$parsedData = $parserlib->parse_data_simple($data);
+		$expectedData = $parserlib->autolinks($link);
+		$data = str_replace('#####', $expectedData, self::DEMO_TEXT);
+		$this->assertEquals($data, $parsedData);
 	}
 
 	/**

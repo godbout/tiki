@@ -2720,7 +2720,7 @@ class TikiLib extends TikiDb_Bridge
 		}
 
 		// Detect links outside wikiplugin or wiki markers
-		preg_match_all('/(http|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/', $data, $matches);
+		preg_match_all('/(?<!==)(http|https):\/\/([\w_-]+(?:(?:\.[\w_-]+)+))([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/', $data, $matches);
 
 		$counter = count($matches[0]);
 		for ($i = 0; $i < $counter; $i++) {

@@ -1589,6 +1589,9 @@ class ParserLib extends TikiDb_Bridge
 		// Replace italic text
 		$line = preg_replace("/\'\'(.*?)\'\'/", "<em>$1</em>", $line);
 
+		// Links that were ignored by convertAbsoluteLinksToRelative (autolinks will highlight)
+		$line = preg_replace("/(^|\s)==(.*?)==(\s|$)/", "$1$2$3", $line);
+
 		if (! $ck_editor) {
 			if ($prefs['feature_hotwords'] == 'y') {
 				// Replace Hotwords before begin
