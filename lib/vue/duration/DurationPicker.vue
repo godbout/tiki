@@ -1,8 +1,10 @@
 <template>
 	<div class="duration-picker">
-		<DurationPickerAmounts v-on:unit="loadAmount" :duration="store.state.duration" :amounts="amounts"></DurationPickerAmounts>
-		<DurationPickerModal v-show="show" :initial-unit="unit" :handle-close-modal="handleCloseModal"></DurationPickerModal>
-		<input type="hidden" :name="store.state.inputName" :value="getValue">
+		<div v-on:click="showModal">
+			<DurationPickerAmounts :duration="store.state.duration" :amounts="getTotalAmounts"></DurationPickerAmounts>
+		</div>
+		<DurationPickerModal v-show="show" :handle-close-modal="handleCloseModal"></DurationPickerModal>
+		<input type="hidden" :name="store.state.inputName" :value="getAmountsTotalStringified">
 	</div>
 </template>
 
@@ -19,15 +21,19 @@
 		data: function () {
 			return {
 				show: false,
-				unit: '',
 				store: window[this.$parent.store],
 				amounts: {}
 			}
 		},
 		computed: {
-			getValue: function() {
-				let amounts = this.store.__calcDuration(this.store.state.duration.value);
-				this.amounts = amounts;
+			getTotalAmounts: function() {
+				const totalDuration = this.store.getTotalDuration();
+				const amounts = this.store.__calcDuration(totalDuration);
+				return amounts;
+			},
+			getAmountsTotalStringified: function() {
+				const totalDuration = this.store.getTotalDuration();
+				const amounts = this.store.__calcDuration(totalDuration);
 				return JSON.stringify(amounts);
 			}
 		},
@@ -35,8 +41,7 @@
 			handleCloseModal: function () {
 				this.show = false;
 			},
-			loadAmount: function (unit) {
-				this.unit = unit;
+			showModal: function () {
 				this.show = true;
 			}
 		}

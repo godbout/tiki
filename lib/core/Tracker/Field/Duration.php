@@ -168,11 +168,15 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 		$headerlib->add_jsfile('vendor_bundled/vendor/moment/moment/min/moment.min.js', true);
 		$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/moment-duration-format/lib/moment-duration-format.js');
 		$headerlib->add_jsfile('lib/vue/duration/store.js');
+		$value = $this->getValue();
+		if (!$value) {
+			$value = 0;
+		}
 		$headerlib->add_js('
 momentDurationFormatSetup(moment);
 var dpStore = DurationPickerStore();
 dpStore.setInitialDuration({
-	value: '.$this->getValue().',
+	value: '.$value.',
 	units: '.json_encode($this->enabledUnits()).',
 	chronometer: '.$this->getOption("chronometer").'
 });

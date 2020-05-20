@@ -1,6 +1,9 @@
 <template>
 	<div class="dp-chronometer__container">
 		<div class="dp-chronometer__group">
+			<span class="dp-chronometer-btn unselectable" title="add time">
+				<i class="fas fa-plus" v-on:click="addTimer"></i>
+			</span>
 			<span class="dp-chronometer-btn unselectable" title="start">
 				<i class="fas fa-play" v-show="show" v-on:click="startTimer"></i>
 			</span>
@@ -10,10 +13,6 @@
 			<span class="dp-chronometer-btn unselectable" title="reset">
 				<i class="fas fa-undo-alt" v-on:click="resetTimer"></i>
 			</span>
-		</div>
-		<div class="dp-chronometer__group">
-			<span>total time:</span>
-			<span class="dp-chronometer__info">{{ calcSpentTime }}</span>
 		</div>
 		<DurationPickerHistory />
 	</div>
@@ -25,74 +24,67 @@
 	export default {
 		name: "DurationPickerChronometer",
 		components: {
-			durationpickerhistory: DurationPickerHistory,
+			durationpickerhistory: DurationPickerHistory
 		},
 		data: function () {
 			return {
 				store: this.$parent.store,
 				startId: false,
-				startTime: null,
-				stopTime: null,
-				initialAmounts: this.$parent.store.state.duration.value,
-				intervalTime: null,
-				initialDurationMilliseconds: 0,
-				millisecondsDiff: 0,
-				initialTime: 0,
+				startDuration: null,
 				show: true,
-				timestamps: this.$parent.store.state.timestamps
+				timestamp: null
 			};
 		},
 		beforeDestroy: function () {
 			cancelAnimationFrame(this.startId);
 		},
 		computed: {
-			calcSpentTime: function () {
-				return moment.duration(this.$parent.store.state.totalTime).format('h [hrs], m [min], s [sec]', 2);
-			}
+			// calcSpentTime: function () {
+			// 	return moment.duration(this.$parent.store.state.totalTime).format('h [hrs], m [min], s [sec]', 2);
+			// },
 		},
 		methods: {
 			startTimer: function () {
 				if (this.startId) return;
+				this.store.setPlaying(true);
 				this.show = false;
-				this.initialDurationMilliseconds = this.store.state.duration.value;
-				this.initialTime = this.$parent.store.state.totalTime;
 				this.startTime = moment();
-				this.timestamp = this.store.setTimestamp('add', {
-					startTime: this.startTime,
-					stopTime: null,
-					spentTime: null
-				});
+				this.timestamp = this.store.getTimestamp(this.store.state.activeTimestamp);
+
 				this.startId = requestAnimationFrame(this.startChronometer);
 			},
 			startChronometer: function() {
-				this.intervalTime = moment();
-				this.millisecondsDiff = this.intervalTime.diff(this.startTime);
-				this.store.setDuration(this.initialDurationMilliseconds.clone().add(moment.duration(this.millisecondsDiff)));
-				this.store.setTotalTime(this.initialTime.clone().add(moment.duration(this.millisecondsDiff)));
+				const momentCurrentTime = moment();
+				const millisecondsDiff = momentCurrentTime.diff(this.startTime);
+				this.store.setTimestamp('update', {
+					...this.store.getTimestamp(this.store.state.activeTimestamp),
+					startTime: this.startTime,
+					stopTime: momentCurrentTime,
+					spentTime: moment.duration(millisecondsDiff).add(this.timestamp.spentTime)
+				});
 				this.startId = requestAnimationFrame(this.startChronometer);
 			},
 			stopTimer: function () {
 				cancelAnimationFrame(this.startId);
 				this.startId = false;
 				this.show = true;
-				this.stopTime = this.intervalTime;
-				this.store.setTimestamp('update', {
-					...this.timestamps[this.timestamps.length - 1],
-					stopTime: this.stopTime,
-					spentTime: moment(this.stopTime).diff(this.startTime)
-				});
+				this.store.setPlaying(false);
 			},
 			resetTimer: function () {
-				if (this.timestamps.length > 0 && confirm("Remove all timestamps?")) {
+				if (this.store.state.playing) return;
+				if (confirm("Remove all timestamps?")) {
 					cancelAnimationFrame(this.startId);
 					this.startId = false;
 					this.show = true;
 
-					this.store.setDuration(this.initialAmounts);
-					this.store.setTimestamp('delete_all');
-					this.initialTime = moment.duration(0);
-					this.store.setTotalTime(moment.duration(0));
+					this.store.resetIntitialDuration();
 				}
+			},
+			addTimer: function() {
+				if (this.store.state.playing) return;
+				this.store.setTimestamp('add', {
+					spentTime: moment.duration(0)
+				});
 			}
 		}
 	};

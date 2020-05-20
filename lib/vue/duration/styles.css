@@ -11,6 +11,10 @@
 	cursor: pointer;
 }
 
+.dp-amount--preview.active {
+	border-bottom: 1px solid;
+}
+
 .dp-amount--preview__unit {
 	margin-left: 1px;
 }
@@ -141,6 +145,14 @@
 
 .dp-history--container {
 	font-size: 0.85rem;
+}
+
+.dp-history--container tr {
+	cursor: pointer;
+}
+
+.dp-history--container tr.active {
+    background-color: #e0efff;
 }
 
 .dp-history--remove {

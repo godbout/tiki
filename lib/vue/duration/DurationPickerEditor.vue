@@ -11,7 +11,7 @@
 				v-on:keypress="handleKeypress"
 				:value="convertValue"
 			>
-			<div class="dp-amount--input__label">{{ unit }}</div>
+			<div class="dp-amount--input__label">{{ store.state.activeUnit }}</div>
 			<div class="dp-amount--input__controls">
 				<div class="dp-amount--input__btn unselectable" 
 					v-on:mousedown="startSubtraction"
@@ -29,7 +29,7 @@
 			<template v-for="(dUnit) in duration.units">
 				<span 
 					class="dp-amount--input__unit unselectable"
-					:class="{ active: dUnit === unit }"
+					:class="{ active: dUnit === store.state.activeUnit }"
 					:key="dUnit"
 					v-on:click="handleClickUnit(dUnit)"
 				>{{ dUnit }}</span>
@@ -45,7 +45,6 @@
 			return {
 				duration: this.$parent.store.state.duration,
 				currentValue: 0,
-				unit: this.initialUnit,
 				interval: false,
 				store: this.$parent.store
 			}
@@ -68,16 +67,16 @@
 		},
 		computed: {
 			convertValue: function() {
-				let amounts = this.store.__calcDuration(this.store.state.duration.value);
-				this.currentValue = amounts[this.unit];
-				return amounts[this.unit];
+				const amounts = this.store.__calcDuration(this.store.getTimestamp(this.store.state.activeTimestamp).spentTime);
+				this.currentValue = amounts[this.store.state.activeUnit];
+				return amounts[this.store.state.activeUnit];
 			}
 		},
-		watch: {
-			initialUnit: function(newVal) {
-				this.unit = newVal;
-			}
-		},
+		// watch: {
+		// 	initialUnit: function(newVal) {
+		// 		this.unit = newVal;
+		// 	}
+		// },
 		methods: {
 			handleKeypress: function (e) {
 				if (e.target.value.length > 3) {
@@ -89,11 +88,11 @@
 				if (isNaN(value)) {
 					value = 0;
 				}
-				this.store.setDurationValue(value - this.currentValue, this.unit);
+				this.store.setDurationValue(value - this.currentValue, this.store.state.activeUnit);
 			},
 			handleClickUnit: function(unit) {
 				this.$refs.input.focus();
-				this.unit = unit;
+				this.store.setActiveUnit(unit);
 			},
 			handleTabKeys: function(e) {
 				if (e.shiftKey && e.which === 9) {
@@ -105,16 +104,18 @@
 				}
 			},
 			nextAmount: function() {
-				this.unit = this.store.getAmountAfter(this.unit);
+				const unit = this.store.getAmountAfter(this.store.state.activeUnit);
+				this.store.setActiveUnit(unit);
 			},
 			prevAmount: function() {
-				this.unit = this.store.getAmountBefore(this.unit);
+				const unit = this.store.getAmountBefore(this.store.state.activeUnit);
+				this.store.setActiveUnit(unit);
 			},
 			handleSubtraction: function () {
-				this.store.setDurationValue(-1, this.unit);
+				this.store.setDurationValue(-1, this.store.state.activeUnit);
 			},
 			handleAddition: function () {
-				this.store.setDurationValue(1, this.unit);
+				this.store.setDurationValue(1, this.store.state.activeUnit);
 			},
 			startSubtraction: function () {
 				if (!this.interval) {

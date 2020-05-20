@@ -1,7 +1,7 @@
 <template>
 	<div class="dp-history--container">
-		<table class="table table-striped">
-			<thead>
+		<table class="table">
+			<thead class="thead-light">
 				<tr>
 					<th scope="col">#</th>
 					<th scope="col">Start time</th>
@@ -10,20 +10,25 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(timestamp, index) in timestamps" :key="timestamp.id">
+				<tr :class="{ active: store.state.activeTimestamp === index }" 
+					v-for="(timestamp, index) in timestamps" :key="timestamp.id"
+					v-on:click="selectTimestamp(index)">
 					<th scope="row">
 						<span>{{ index + 1 }}</span>
-						<span class="dp-history--remove" v-on:click="deleteTimestamp(timestamp)">
+						<span v-if="index !== 0" class="dp-history--remove" v-on:click="deleteTimestamp($event, timestamp)" title="delete timestamp">
 							<i class="fas fa-trash"></i>
 						</span>
 					</th>
-					<td>{{ formatTime(timestamp.startTime) }}</td>
 					<td>
-						<i class="fas fa-history fa-spin" v-if="!timestamp.stopTime"></i>
+						<span v-if="!timestamp.startTime">--</span>
+						<span v-if="timestamp.startTime">{{ formatTime(timestamp.startTime) }}</span>
+					</td>
+					<td>
+						<span v-if="!timestamp.stopTime">--</span>
 						<span v-if="timestamp.stopTime">{{ formatTime(timestamp.stopTime) }}</span>
 					</td>
 					<td>
-						<i class="fas fa-history fa-spin" v-if="!timestamp.spentTime"></i>
+						<span v-if="!timestamp.spentTime">--</span>
 						<span v-if="timestamp.spentTime">{{ formatDuration(timestamp.spentTime) }}</span>
 					</td>
 				</tr>
@@ -42,8 +47,10 @@
 			};
 		},
 		methods: {
-			deleteTimestamp: function (timestamp) {
-				if (confirm(`Remove timestamp ${moment.duration(timestamp.spentTime).format('h [hrs], m [min], s [sec]', 2)}?`)) {
+			deleteTimestamp: function ($event, timestamp) {
+				$event.stopPropagation();
+				if (this.store.state.playing) return;
+				if (confirm(`Remove timestamp ${timestamp.spentTime.format('h [hrs], m [min], s [sec]')}?`)) {
 					this.store.setTimestamp('delete', timestamp);
 				}
 			},
@@ -51,7 +58,11 @@
 				return moment(time).format('YYYY-MM-DD HH:mm:ss');
 			},
 			formatDuration: function (duration) {
-				return moment.duration(duration).format('h [hrs], m [min], s [sec]', 2);
+				return moment.duration(duration).format('h [hrs], m [min], s [sec]');
+			},
+			selectTimestamp: function (index) {
+				if (this.store.state.playing) return;
+				this.store.setActiveTimestamp(index);
 			}
 		}
 	};
