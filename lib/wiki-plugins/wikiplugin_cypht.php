@@ -126,12 +126,11 @@ function wikiplugin_cypht_info()
 				'description' => tr('Disable SMTP authentication if your server does not support it.'),
 				'required' => false,
 				'filter' => 'alpha',
-				'default' => '',
+				'default' => 'n',
 				'since' => '20.0',
 				'options' => [
-					['text' => tra('Default'), 'value' => ''],
-					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n'],
+					['text' => tra('Yes'), 'value' => 'y'],
 				],
 			],
 			'use_global_settings' => [
@@ -139,12 +138,11 @@ function wikiplugin_cypht_info()
 				'description' => tr('Use global Cypht settings available at Tiki Webmail page. Choosing "No" will make this instance of Cypht use its own settings. Useful if this is a Groupmail box or you don\'t want to mix mailbox server and/or site settings from other pages.'),
 				'required' => false,
 				'filter' => 'alpha',
-				'default' => '',
+				'default' => 'n',
 				'since' => '20.0',
 				'options' => [
-					['text' => tra('Default'), 'value' => ''],
-					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n'],
+					['text' => tra('Yes'), 'value' => 'y'],
 				],
 			],
 			'groupmail' => [
@@ -152,12 +150,11 @@ function wikiplugin_cypht_info()
 				'description' => tr('Share this mailbox for Groupmail usage or keep it private.'),
 				'required' => false,
 				'filter' => 'alpha',
-				'default' => '',
+				'default' => 'n',
 				'since' => '20.0',
 				'options' => [
-					['text' => tra('Default'), 'value' => ''],
-					['text' => tra('Yes'), 'value' => 'y'],
 					['text' => tra('No'), 'value' => 'n'],
+					['text' => tra('Yes'), 'value' => 'y'],
 				],
 			],
 			'group' => [
@@ -262,11 +259,11 @@ function wikiplugin_cypht($data, $params)
 	}
 
 	if (empty($params['smtp_no_auth'])) {
-		$params['smtp_no_auth'] = '';
+		$params['smtp_no_auth'] = 'n';
 	}
 
 	if (empty($params['use_global_settings'])) {
-		$params['use_global_settings'] = '';
+		$params['use_global_settings'] = 'n';
 	}
 
 	if (empty($params['groupmail'])) {
