@@ -157,6 +157,7 @@ class ConsoleApplicationBuilder
 				new FilesCheckCommand,
 				new FilesCopyCommand,
 				new FilesDeleteoldCommand,
+				new FilesIndexCommand,
 				new FilesMoveCommand,
 				new IndexRebuildCommand,
 				new IndexOptimizeCommand,

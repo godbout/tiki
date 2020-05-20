@@ -88,7 +88,8 @@ if (isset($_REQUEST["filegalfixvndmsfiles"]) && $access->checkCsrf()) {
 //*** end state-changing actions
 
 if (isset($_REQUEST["filegalredosearch"])) {
-	$filegallib->reindex_all_files_for_search_text();
+	$searchTextReindexedFilesAmount = $filegallib->reindex_all_files_for_search_text();
+	Feedback::success(tr("The search text was reindexed for a total of %0 files.", $searchTextReindexedFilesAmount));
 }
 
 $ocr = Tikilib::lib('ocr');

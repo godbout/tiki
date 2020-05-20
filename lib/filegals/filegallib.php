@@ -955,6 +955,7 @@ class FileGalLib extends TikiLib
 	{
 		@ini_set('memory_limit', -1);
 		$files = $this->table('tiki_files');
+		$reindexFilesCount = 0;
 
 		for ($offset = 0, $maxRecords = 10;; $offset += $maxRecords) {
 			$rows = $files->fetchAll(['fileId', 'filename', 'filesize', 'filetype', 'data', 'path', 'galleryId'], ['archiveId' => 0], $maxRecords, $offset);
@@ -966,12 +967,16 @@ class FileGalLib extends TikiLib
 				$file = new TikiFile($row);
 				$search_text = $this->get_search_text_for_data($file);
 				if ($search_text !== false) {
-					$files->update(['search_data' => $search_text], ['fileId' => $row['fileId']]);
+					if ($files->update(['search_data' => $search_text], ['fileId' => $row['fileId']])) {
+						$reindexFilesCount++;
+					}
 				}
 			}
 		}
 		include_once("lib/search/refresh-functions.php");
 		refresh_index('files');
+
+		return $reindexFilesCount;
 	}
 
 	function get_parse_app($type, $skipDefault = true)
