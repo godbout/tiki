@@ -5981,7 +5981,8 @@ class TrackerLib extends TikiLib
 
 		if ($handler) {
 			if (! isset($field['value'])) {
-				$field['value'] = $handler->getFieldData();
+				$data = $handler->getFieldData();
+				$field['value'] = $data['value'];
 			}
 
 			if (isset($params['process']) && $params['process'] == 'y') {
