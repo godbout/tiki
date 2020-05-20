@@ -744,7 +744,8 @@ function wikiplugin_tracker($data, $params)
 	$default = ['overwrite'            => 'n', 'embedded' => 'n', 'showtitle' => 'n', 'showdesc' => 'n',
 				'showfieldsdesc'       => 'y', 'sort' => 'n', 'showmandatory' => 'y', 'status' => '',
 				'transactionFinalStep' => '', 'registration' => 'n', 'chosenGroup' => 'Registered',
-				'validateusers'        => '', 'emailformat' => 'text', 'ajax' => 'n'];
+				'validateusers'        => '', 'emailformat' => 'text', 'ajax' => 'n',
+				'rules' => 'n', 'rulesparent' => '.form-group:first'];
 	$params = array_merge($default, $params);
 	$item = [];
 
