@@ -1028,13 +1028,45 @@ class Services_Tracker_Controller
 			throw new Services_Exception_Denied;
 		}
 
-		if ($prefs['feature_warn_on_edit'] == 'y') {
-			// TODO: offer a way to override lock and continue editing
-			Services_Exception_EditConflict::checkSemaphore($itemId, 'trackeritem');
+		if ($prefs['feature_warn_on_edit'] == 'y' && $input->conflictoverride->int() !== 1) {
+			try {
+				Services_Exception_EditConflict::checkSemaphore($itemId, 'trackeritem');
+			} catch (Services_Exception_EditConflict $e) {
+				if ($input->modal->int() && TikiLib::lib('access')->is_xml_http_request()) {
+					$smarty = TikiLib::lib('smarty');
+					$smarty->loadPlugin('smarty_function_service');
+					$href = smarty_function_service([
+						'controller' => 'tracker',
+						'action' => 'update_item',
+						'trackerId' => $trackerId,
+						'itemId' => $itemId,
+						'redirect' => $input->redirect->url(),
+						'conflictoverride' => 1,
+						'modal' => 1,
+					], $smarty);
+					TikiLib::lib('header')->add_jq_onready('
+	var lock_link = $(\'<a href="'.$href.'">'.tra('Override lock and carry on with edit').'</a>\');
+	lock_link.on("click", function(e) {
+		var $link = $(this);
+		e.preventDefault();
+		$.closeModal({
+			done: function() {
+				$.openModal({
+					size: "modal-lg",
+					remote: $link.attr("href"),
+				});
+			}
+		});
+		return false;
+	})
+	$(".modal.fade.show .modal-body").append(lock_link);
+					');
+				}
+				throw($e);
+			}
 			TikiLib::lib('service')->internal('semaphore', 'set', ['object_id' => $itemId, 'object_type' => 'trackeritem']);
 		}
 
-		global $prefs;
 		if ($prefs['feature_jquery_validation'] === 'y') {
 			$validationjs = TikiLib::lib('validators')->generateTrackerValidateJS(
 				$definition->getFields(),
@@ -1238,6 +1270,7 @@ class Services_Tracker_Controller
 			'redirect' => $input->redirect->none(),
 			'saveAndComment' => $saveAndComment,
 			'suppressFeedback' => $suppressFeedback,
+			'conflictoverride' => $input->conflictoverride->int(),
 		];
 	}
 

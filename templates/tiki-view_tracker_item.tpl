@@ -246,6 +246,7 @@
 					{if $cant}
 						<input type="hidden" name="cant" value="{$cant}">
 					{/if}
+					<input type="hidden" name="conflictoverride" value="{$conflictoverride}">
 
 					<div class="previewTrackerItem"></div>
 

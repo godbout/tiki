@@ -28,6 +28,7 @@
 				{/foreach}
 				<input type="button" class="btn btn-primary previewItemBtn" title="{tr}Preview your changes.{/tr}" name="preview" value="{tr}Preview{/tr}">
 				<input type="hidden" name="redirect" value="{$redirect|escape}">
+				<input type="hidden" name="conflictoverride" value="{$conflictoverride|escape}">
 				<input type="submit" class="btn btn-secondary" value="{$button_label}" onclick="needToConfirm=false;">
 			</div>
 		</form>
@@ -46,6 +47,7 @@
 				{/foreach}
 				<input type="button" class="btn btn-primary previewItemBtn" title="{tr}Preview your changes.{/tr}" name="preview" value="{tr}Preview{/tr}">
 				<input type="hidden" name="redirect" value="{$redirect|escape}">
+				<input type="hidden" name="conflictoverride" value="{$conflictoverride|escape}">
 				<input type="submit" class="btn btn-secondary" value="{$button_label}" onclick="needToConfirm=false;">
 			</div>
 		</form>

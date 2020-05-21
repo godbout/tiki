@@ -803,6 +803,7 @@ $smarty->assign('pdf_export', ($prefs['print_pdf_from_url'] != 'none') ? 'y' : '
 $smarty->assign('canView', $itemObject->canView());
 $smarty->assign('canModify', $itemObject->canModify());
 $smarty->assign('canRemove', $itemObject->canRemove());
+$smarty->assign('conflictoverride', !empty($_REQUEST['conflictoverride']));
 
 if ($itemObject->canModify() && $prefs['tracker_legacy_insert'] == 'y' && $prefs['feature_warn_on_edit'] == 'y' && empty($_REQUEST['conflictoverride'])) {
 	$otherUser = TikiLib::lib('service')->internal('semaphore', 'get_user',
