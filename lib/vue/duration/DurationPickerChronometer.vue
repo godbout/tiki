@@ -1,17 +1,23 @@
 <template>
 	<div class="dp-chronometer__container">
 		<div class="dp-chronometer__group">
-			<span class="dp-chronometer-btn unselectable" title="add time">
-				<i class="fas fa-plus" v-on:click="addTimer"></i>
+			<span class="dp-chronometer-btn unselectable" v-on:click="addTimer" title="add time">
+				<i class="fas fa-plus"></i>
 			</span>
-			<span class="dp-chronometer-btn unselectable" title="start">
-				<i class="fas fa-play" v-show="show" v-on:click="startTimer"></i>
+			<span class="dp-chronometer-btn unselectable" v-if="show" v-on:click="startTimer" title="start">
+				<i class="fas fa-play"></i>
 			</span>
-			<span class="dp-chronometer-btn unselectable" title="pause">
-				<i class="fas fa-pause" v-show="!show" v-on:click="stopTimer"></i>
+			<span class="dp-chronometer-btn unselectable" v-if="!show" v-on:click="stopTimer" title="pause">
+				<i class="fas fa-pause"></i>
 			</span>
-			<span class="dp-chronometer-btn unselectable" title="reset">
-				<i class="fas fa-undo-alt" v-on:click="resetTimer"></i>
+			<span class="dp-chronometer-btn unselectable" title="edit">
+				<i class="fas fa-edit"></i>
+			</span>
+			<span class="dp-chronometer-btn unselectable dp-danger" v-on:click="deleteTimestamp" title="delete">
+				<i class="fas fa-trash"></i>
+			</span>
+			<span class="dp-chronometer-btn unselectable dp-danger" v-on:click="resetTimer" title="reset">
+				<i class="fas fa-undo-alt"></i>
 			</span>
 		</div>
 		<DurationPickerHistory />
@@ -37,11 +43,6 @@
 		},
 		beforeDestroy: function () {
 			cancelAnimationFrame(this.startId);
-		},
-		computed: {
-			// calcSpentTime: function () {
-			// 	return moment.duration(this.$parent.store.state.totalTime).format('h [hrs], m [min], s [sec]', 2);
-			// },
 		},
 		methods: {
 			startTimer: function () {
@@ -72,7 +73,7 @@
 			},
 			resetTimer: function () {
 				if (this.store.state.playing) return;
-				if (confirm("Remove all timestamps?")) {
+				if (confirm("Reset to initial state ?")) {
 					cancelAnimationFrame(this.startId);
 					this.startId = false;
 					this.show = true;
@@ -85,6 +86,20 @@
 				this.store.setTimestamp('add', {
 					spentTime: moment.duration(0)
 				});
+			},
+			deleteTimestamp: function () {
+				if (this.store.state.playing) {
+					confirm(`Can't delete while playing...`)
+					return;
+				}
+				if (this.store.state.playing || this.store.state.activeTimestamp === 0) {
+					confirm(`Can't delete first timestamp...`)
+					return;
+				}
+				const timestamp = this.store.getTimestamp(this.store.state.activeTimestamp);
+				if (confirm(`Remove timestamp ${timestamp.spentTime.format('h [hrs], m [min], s [sec]')}?`)) {
+					this.store.setTimestamp('delete', timestamp);
+				}
 			}
 		}
 	};

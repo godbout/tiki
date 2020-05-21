@@ -1,12 +1,13 @@
 <template>
 	<div class="dp-history--container">
-		<table class="table">
+		<table class="table table-sm table-borderless">
 			<thead class="thead-light">
 				<tr>
 					<th scope="col">#</th>
 					<th scope="col">Start time</th>
 					<th scope="col">Stop time</th>
 					<th scope="col">Spent Time</th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -15,9 +16,6 @@
 					v-on:click="selectTimestamp(index)">
 					<th scope="row">
 						<span>{{ index + 1 }}</span>
-						<span v-if="index !== 0" class="dp-history--remove" v-on:click="deleteTimestamp($event, timestamp)" title="delete timestamp">
-							<i class="fas fa-trash"></i>
-						</span>
 					</th>
 					<td>
 						<span v-if="!timestamp.startTime">--</span>
@@ -30,6 +28,11 @@
 					<td>
 						<span v-if="!timestamp.spentTime">--</span>
 						<span v-if="timestamp.spentTime">{{ formatDuration(timestamp.spentTime) }}</span>
+					</td>
+					<td>
+						<span v-show="store.state.activeTimestamp === index && store.state.playing">
+							<i class="far fa-clock fa-spin"></i>
+						</span>
 					</td>
 				</tr>
 			</tbody>
@@ -47,13 +50,6 @@
 			};
 		},
 		methods: {
-			deleteTimestamp: function ($event, timestamp) {
-				$event.stopPropagation();
-				if (this.store.state.playing) return;
-				if (confirm(`Remove timestamp ${timestamp.spentTime.format('h [hrs], m [min], s [sec]')}?`)) {
-					this.store.setTimestamp('delete', timestamp);
-				}
-			},
 			formatTime: function (time) {
 				return moment(time).format('YYYY-MM-DD HH:mm:ss');
 			},

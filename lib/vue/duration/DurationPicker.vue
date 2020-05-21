@@ -3,7 +3,9 @@
 		<div v-on:click="showModal">
 			<DurationPickerAmounts :duration="store.state.duration" :amounts="getTotalAmounts"></DurationPickerAmounts>
 		</div>
-		<DurationPickerModal v-show="show" :handle-close-modal="handleCloseModal"></DurationPickerModal>
+		<transition name="fade">
+			<DurationPickerModal v-show="show" :handle-close-modal="handleCloseModal"></DurationPickerModal>
+		</transition>
 		<input type="hidden" :name="store.state.inputName" :value="getAmountsTotalStringified">
 	</div>
 </template>

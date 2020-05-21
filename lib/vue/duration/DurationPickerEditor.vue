@@ -1,46 +1,59 @@
 <template>
-	<div class="dp-amount--input__wrapper" v-on:keydown="handleTabKeys">
-		<div class="dp-amount--input__left-section">
-			<input
-				ref="input"
-				class="numeric"
-				type="number"
-				placeholder="__"
-				min="-1"
-				v-on:input="handleInput"
-				v-on:keypress="handleKeypress"
-				:value="convertValue"
-			>
-			<div class="dp-amount--input__label">{{ store.state.activeUnit }}</div>
-			<div class="dp-amount--input__controls">
-				<div class="dp-amount--input__btn unselectable" 
-					v-on:mousedown="startSubtraction"
-					v-on:mouseleave="stopSubtraction"
-					v-on:mouseup="stopSubtraction"
-				>-</div>
-				<div class="dp-amount--input__btn unselectable"
-					v-on:mousedown="startAddition"
-					v-on:mouseleave="stopAddition"
-					v-on:mouseup="stopAddition"
-				>+</div>
-			</div>
+	<div>
+		<div>
+			<span v-if="store.state.chronometer">
+				<strong>Time entry {{store.state.activeTimestamp + 1}}:</strong>
+			</span>
+			<DurationPickerAmounts :duration="store.state.duration" :amounts="getAmounts"></DurationPickerAmounts>
 		</div>
-		<div class="dp-amount--input__right-section">
-			<template v-for="(dUnit) in duration.units">
-				<span 
-					class="dp-amount--input__unit unselectable"
-					:class="{ active: dUnit === store.state.activeUnit }"
-					:key="dUnit"
-					v-on:click="handleClickUnit(dUnit)"
-				>{{ dUnit }}</span>
-			</template>
+		<div class="dp-amount--input__wrapper" v-on:keydown="handleTabKeys">
+			<div class="dp-amount--input__left-section">
+				<input
+					ref="input"
+					class="numeric"
+					type="number"
+					placeholder="__"
+					min="-1"
+					v-on:input="handleInput"
+					v-on:keypress="handleKeypress"
+					:value="convertValue"
+				>
+				<div class="dp-amount--input__label">{{ store.state.activeUnit }}</div>
+				<div class="dp-amount--input__controls">
+					<div class="dp-amount--input__btn unselectable" 
+						v-on:mousedown="startSubtraction"
+						v-on:mouseleave="stopSubtraction"
+						v-on:mouseup="stopSubtraction"
+					>-</div>
+					<div class="dp-amount--input__btn unselectable"
+						v-on:mousedown="startAddition"
+						v-on:mouseleave="stopAddition"
+						v-on:mouseup="stopAddition"
+					>+</div>
+				</div>
+			</div>
+			<div class="dp-amount--input__right-section">
+				<template v-for="(dUnit) in duration.units">
+					<span 
+						class="dp-amount--input__unit unselectable"
+						:class="{ active: dUnit === store.state.activeUnit }"
+						:key="dUnit"
+						v-on:click="handleClickUnit(dUnit)"
+					>{{ dUnit }}</span>
+				</template>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
+	import DurationPickerAmounts from "./vue_DurationPickerAmounts.js";
+
 	export default {
 		name: "DurationPickerEditor",
+		components: {
+			durationpickeramounts: DurationPickerAmounts
+		},
 		data: function () {
 			return {
 				duration: this.$parent.store.state.duration,
@@ -70,6 +83,12 @@
 				const amounts = this.store.__calcDuration(this.store.getTimestamp(this.store.state.activeTimestamp).spentTime);
 				this.currentValue = amounts[this.store.state.activeUnit];
 				return amounts[this.store.state.activeUnit];
+			},
+			getAmounts: function() {
+				const index = this.store.state.activeTimestamp;
+				const duration = this.store.state.timestamps[index].spentTime;
+				const amounts = this.store.__calcDuration(duration);
+				return amounts;
 			}
 		},
 		// watch: {
