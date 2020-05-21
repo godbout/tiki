@@ -67,6 +67,19 @@ function wikiplugin_subscribenewsletter_info()
 					['text' => tra('No'), 'value' => 'n']
 				],
 			],
+			'usecaptcha' => [
+				'required' => false,
+				'safe' => true,
+				'name' => tra('Use captcha'),
+				'description' => tra('Captcha verification for anonymous visitors (yes by default). Turning off this option may lead to have this newsletter list filled by Spambot'),
+				'since' => '22.0',
+				'filter' => 'int',
+				'default' => 1,
+				'options' => [
+					['text' => tra('Yes'), 'value' => 1],
+					['text' => tra('No'), 'value' => 0]
+				]
+			],
 		],
 	];
 }
@@ -121,9 +134,13 @@ function wikiplugin_subscribenewsletter($data, $params)
 	$wpSubscribe = '';
 	$wpError = '';
 	$subscribeEmail = '';
+	$useCaptcha = $params['usecaptcha'];
+	if ($params['usecaptcha'] !== 0) {	// To keep previous behaviour with previous versions where the parameter doesn't exist
+		$useCaptcha = 1;
+	}
 	if (isset($_REQUEST['wpSubscribe']) && $_REQUEST['wpNlId'] == $nlId) {
 		$captchalib = TikiLib::lib('captcha');
-		if (! $user && $prefs['feature_antibot'] == 'y' && ! $captchalib->validate()) {
+		if ($useCaptcha != 0 && ! $user && $prefs['feature_antibot'] == 'y' && ! $captchalib->validate()) {
 			$wpError = $captchalib->getErrors();
 		} elseif (! $user && empty($_REQUEST['wpEmail'])) {
 			$wpError = tra('Invalid Email');
@@ -144,6 +161,7 @@ function wikiplugin_subscribenewsletter($data, $params)
 	$smarty->assign('subcribeMessage', empty($button) ? $data : $button);
 	$smarty->assign('inmodule', !empty($inmodule) ? "moduleSubscribeNL" : "");
 	$smarty->assign_by_ref('subscribeInfo', $info);
+	$smarty->assign('useCaptcha', $useCaptcha);
 	$res = $smarty->fetch('wiki-plugins/wikiplugin_subscribenewsletter.tpl');
 	if (isset($params["wikisyntax"]) && $params["wikisyntax"] == 1) {
 		return $res;

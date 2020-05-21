@@ -21,8 +21,10 @@
 				</div>
 			</div>
 		{/if}
-		{if !$user and $prefs.feature_antibot eq 'y'}
-			{include file='antibot.tpl' antibot_table="y" showmandatory="y" form="$inmodule"}
+        {if $useCaptcha !== 0}
+			{if !$user and $prefs.feature_antibot eq 'y'}
+				{include file='antibot.tpl' antibot_table="y" showmandatory="y" form="$inmodule"}
+			{/if}
 		{/if}
 		<div class="form-group text-center">
 			{if empty($subcribeMessage)}
