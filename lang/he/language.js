@@ -45,6 +45,8 @@ lang = {
 	"OK" : "אישור",
 	"Loading..." : "טוען...",
 	"Saving..." : "שמןר...",
-
-// remember the IE does not support ending comma on last item
+	"Upload" : "Envoyer",
+	"Clear" : "Vider",
+	// remember the IE does not support ending comma on last item
+	"Clear" : "Vider"
 };
