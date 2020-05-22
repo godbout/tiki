@@ -85,7 +85,10 @@ class Tracker_Field_UserGroups extends Tracker_Field_Abstract implements Tracker
 			natcasesort($value);
 		}
 
-		return ['value' => $value];
+		return [
+			'value' => implode(',', $value),
+			'groups' => $value
+		];
 	}
 
 	function renderInput($context = [])
@@ -98,6 +101,14 @@ class Tracker_Field_UserGroups extends Tracker_Field_Abstract implements Tracker
 		return $this->renderTemplate('trackeroutput/usergroups.tpl', $context);
 	}
 
+	function renderDiff($context = [])
+	{
+		if (isset($context['oldValue'])) {
+			$context['renderedOldValue'] = $context['oldValue'];
+		}
+		return parent::renderDiff($context);
+	}
+
 	public function watchCompare($old, $new)
 	{
 		// TODO properly
@@ -108,10 +119,10 @@ class Tracker_Field_UserGroups extends Tracker_Field_Abstract implements Tracker
 	{
 		$baseKey = $this->getBaseKey();
 		$data = $this->getFieldData();
-		$listtext = implode(' ', $data['value']);
+		$listtext = implode(' ', $data['groups']);
 
 		return [
-			$baseKey => $typeFactory->multivalue($data['value']),
+			$baseKey => $typeFactory->multivalue($data['groups']),
 			"{$baseKey}_text" => $typeFactory->plaintext($listtext),
 		];
 	}
