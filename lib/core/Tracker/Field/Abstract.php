@@ -180,6 +180,9 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 		}
 		$old_definition = $this->definition;
 		$key = 'ins_' . $this->getConfiguration('fieldId');
+		if ($this->getConfiguration('type') === 'e' && is_string($old)) {	// category fields need an array input
+			$old = explode(',', $old);
+		}
 		$this->definition = array_merge($this->definition, $this->getFieldData([$key => $old]));
 		$this->itemData[$this->getConfiguration('fieldId')] = $old;
 		$old = $this->renderInnerOutput(['list_mode' => 'csv']);
