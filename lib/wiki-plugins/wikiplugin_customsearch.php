@@ -831,7 +831,7 @@ function cs_design_select($id, $fieldname, $fieldid, $arguments, $default, &$scr
 			}
 		} elseif ($field['type'] === 'u') {	// User Selector (only when in dropdown list mode)
 			$html = $handler->renderInput();
-			$html = preg_replace('/id=[\'"].*?[\'"]/', 'id="' . $fieldid . '"', $html);
+			$fieldid = 'user_selector_' . $field['fieldId'];
 			$script .= "
 $('#$fieldid').change(function() {
 	customsearch$id.add('$fieldid', {
