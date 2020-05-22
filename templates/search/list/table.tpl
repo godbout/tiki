@@ -1,5 +1,5 @@
 {* $Id$ *}
-{if empty($iListExecute)}{assign var=iListExecute value=$id}{/if}
+{if empty($iListExecute)}{assign var=iListExecute value=$id|replace:'wplistexecute-':''}{/if}
 {if isset($tableparams.title)}
 	<div class="list-table-heading">{wiki}{$tableparams.title|escape}{/wiki}</div>
 {/if}
@@ -56,7 +56,7 @@
 					{$fieldcount = 1}
 					<th>
 						<input type="checkbox" class="form-check-input listexecute-select-all" name="selectall" value="">
-						<input type="hidden" name="objects[]" value="" class="listexecute-all">
+						<input type="hidden" name="objects{$iListExecute}[]" value="" class="listexecute-all">
 					</th>
 				{/if}
 				{foreach from=$column item=col}
@@ -106,7 +106,7 @@
 			<tr>
 				{if $actions}
 					<td>
-						<input type="checkbox" name="objects[]" class="checkbox_objects form-check-input" value="{$row.object_type|escape}:{$row.object_id|escape}">
+						<input type="checkbox" name="objects{$iListExecute}[]" class="checkbox_objects form-check-input" value="{$row.object_type|escape}:{$row.object_id|escape}">
 						{if $row.report_status eq 'success'}
 							{icon name='ok'}
 						{elseif $row.report_status eq 'error'}
