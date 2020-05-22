@@ -67,14 +67,16 @@ function wikiplugin_listexecute($data, $params)
 		$query->setOrder($_REQUEST[$paginationArguments['sort_arg']]);
 	}
 
-	if (isset($_POST['objects']) && is_array($_POST['objects'])) {
+	$selectedObjects = $_POST["objects$iListExecute"] ?? [];
+
+	if (! empty($selectedObjects)) {
 		$searchQuery = clone $query;
-		if (in_array('ALL', $_POST['objects'])) {
+		if (in_array('ALL', $selectedObjects)) {
 			// unified search needs a hard limit and we want to apply the action to as many items as possible
 			$query->setRange(0, 9999);
 		} else {
 			// select only the items to apply the action to
-			foreach ($_POST['objects'] as $identifier) {
+			foreach ($selectedObjects as $identifier) {
 				list($type, $id) = explode(':', $identifier);
 				if ($type && $type != 'aggregate' && $id) {
 					$query->addObject($type, $id);
@@ -146,9 +148,8 @@ function wikiplugin_listexecute($data, $params)
 		$formatter->setCounter($iListExecute);
 	}
 
-	if (isset($_POST['list_action'], $_POST['objects'])) {
+	if (isset($_POST['list_action']) && ! empty($selectedObjects)) {
 		$action = $_POST['list_action'];
-		$objects = (array) $_POST['objects'];
 
 		if ($result->count() > 9999) {
 			Feedback::error(tr("There are too many search result items to apply %0 action to.", $_POST['list_action']));
@@ -165,7 +166,7 @@ function wikiplugin_listexecute($data, $params)
 
 			foreach ($list as $entry) {
 				$identifier = "{$entry['object_type']}:{$entry['object_id']}";
-				if (in_array($identifier, $objects) || in_array('ALL', $objects)) {
+				if (in_array($identifier, $selectedObjects) || in_array('ALL', $selectedObjects)) {
 					if (isset($_POST['list_input'])) {
 						$entry['value'] = $_POST['list_input'];
 					}

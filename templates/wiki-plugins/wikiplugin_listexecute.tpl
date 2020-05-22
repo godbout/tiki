@@ -4,7 +4,7 @@
 	<ol>
 		{foreach from=$results item=entry}
 			<li>
-				<input type="checkbox" name="objects[]" value="{$entry.object_type|escape}:{$entry.object_id|escape}">
+				<input type="checkbox" name="objects{$iListExecute}[]" value="{$entry.object_type|escape}:{$entry.object_id|escape}">
 				{if $entry.report_status eq 'success'}
 					{icon name='ok'}
 				{elseif $entry.report_status eq 'error'}
