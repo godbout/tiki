@@ -186,6 +186,10 @@ if (isset($_REQUEST['act']) || isset($_REQUEST['preview']) || isset($_REQUEST['c
 		}
 		$save['participants'] = $participants;
 	}
+
+	if (is_array($save['participants'])) {
+		$save['participants'] = array_filter($save['participants']);
+	}
 }
 
 $impossibleDates = false;
