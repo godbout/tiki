@@ -1,4 +1,4 @@
-{foreach from=$field.value item=val name=ix}
+{foreach from=$field.groups item=val name=ix}
 	<div>
 		{$val|escape}
 	</div>
