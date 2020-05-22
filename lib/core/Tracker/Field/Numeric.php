@@ -93,6 +93,22 @@ class Tracker_Field_Numeric extends Tracker_Field_Abstract implements Tracker_Fi
 
 	function renderInnerOutput($context = [])
 	{
+		$decimals = $this->getOption('decimals');
+		$dec_point = $this->getOption('dec_point');
+		$thousands = $this->getOption('thousands');
+		if (empty($decimals) && empty($dec_point)) {
+			if (empty($thousands)) {
+				return $this->getValue();
+			} else {
+				return number_format($this->getValue());
+			}
+		} else {
+			return number_format($this->getValue(), $decimals, $dec_point, $thousands);
+		}
+	}
+
+	function renderOutput($context = [])
+	{
 		return $this->renderTemplate('trackeroutput/numeric.tpl', $context);
 	}
 

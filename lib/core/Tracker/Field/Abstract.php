@@ -176,8 +176,17 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 		if ($context['value']) {
 			$new = $context['value'];
 		} else {
-			$new = $this->renderInnerOutput(['list_mode' => 'csv']);
+			$new = $this->getValue('');
 		}
+		$old_definition = $this->definition;
+		$key = 'ins_' . $this->getConfiguration('fieldId');
+		$this->definition = array_merge($this->definition, $this->getFieldData([$key => $old]));
+		$this->itemData[$this->getConfiguration('fieldId')] = $old;
+		$old = $this->renderInnerOutput(['list_mode' => 'csv']);
+		$old = str_replace(['%%%', '<br>', '<br/>'], ["\n", ' ', ' '], $old);
+		$this->definition = $old_definition;
+		$this->itemData[$this->getConfiguration('fieldId')] = $new;
+		$new = $this->renderInnerOutput(['list_mode' => 'csv']);
 		$new = str_replace(['%%%', '<br>', '<br/>'], ["\n", ' ', ' '], $new);
 		if (empty($context['diff_style'])) {
 			$context['diff_style'] = 'inlinediff';
