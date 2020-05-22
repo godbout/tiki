@@ -177,7 +177,7 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		);
 	}
 
-	function renderOutput($context = [])
+	function renderInnerOutput($context = [])
 	{
 		if ($context['list_mode'] === 'csv') {
 			$fieldId = $this->getConfiguration('fieldId');
@@ -212,6 +212,25 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 					$this->getConfiguration('relations')
 				)
 			);
+		} else {
+			return implode(
+				"<br/>",
+				array_map(
+					function ($identifier) {
+						list($type, $object) = explode(':', $identifier, 2);
+						return TikiLib::lib('object')->get_title($type, $object, $this->getOption('format'));
+					},
+					$this->getConfiguration('relations')
+				)
+			);
+		}
+	}
+
+	function renderOutput($context = [])
+	{
+		$list_mode = $context['list_mode'] ?? '';
+		if ($list_mode === 'csv' || $list_mode === 'text') {
+			return $this->renderInnerOutput($context);
 		} else {
 			$display = $this->getOption('display');
 			if (! in_array($display, ['list', 'count', 'toggle'])) {

@@ -139,6 +139,30 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 
 	function renderInnerOutput($context = [])
 	{
+		$data = $this->getFieldData();
+		$locale = $this->getOption('locale', 'en_US');
+		$currency = $data['currency'] ?? $this->getOption('currency', 'USD');
+		$symbol = $this->getOption('symbol');
+		if (empty($symbol)) {
+			$part1a = '%(!#10n';
+			$part1b = '%(#10n';
+		} else {
+			$part1a = '%(!#10';
+			$part1b = '%(#10';
+		}
+		$smarty = TikiLib::lib('smarty');
+		$smarty->loadPlugin('smarty_modifier_money_format');
+		if (!empty($context['reloff']) && $this->getOption('all_symbol') != 1) {
+			$format = $part1a.$symbol;
+			return smarty_modifier_money_format($data['amount'], $locale, $currency, $format, 0);
+		} else {
+			$format = $part1b.$symbol;
+			return smarty_modifier_money_format($data['amount'], $locale, $currency, $format, 1);
+		}
+	}
+
+	function renderOutput($context = [])
+	{
 		$smarty = TikiLib::lib('smarty');
 
 		$data = $this->getFieldData();
