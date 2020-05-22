@@ -99,7 +99,7 @@ function wikiplugin_swiper_info()
 				'name' => tr('Slider Parallax Background Image'),
 				'description' => tr('Enter image url for parallax background behind swiper'),
 				'filter' => 'text',
-				'default' => 1,
+				'default' => '',
 				'advanced' => true,
 				'since' => '19.0'
 			],
