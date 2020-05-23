@@ -1,6 +1,6 @@
 <template>
-	<div>
-		<div>
+	<div class="dp-editor--container">
+		<div class="dp-amount--editor__header">
 			<span v-if="store.state.chronometer">
 				<strong>Time entry {{store.state.activeTimestamp + 1}}:</strong>
 			</span>
@@ -24,12 +24,12 @@
 						v-on:mousedown="startSubtraction"
 						v-on:mouseleave="stopSubtraction"
 						v-on:mouseup="stopSubtraction"
-					>-</div>
-					<div class="dp-amount--input__btn unselectable"
+					><i class="fas fa-minus"></i>
+					</div><div class="dp-amount--input__btn unselectable"
 						v-on:mousedown="startAddition"
 						v-on:mouseleave="stopAddition"
 						v-on:mouseup="stopAddition"
-					>+</div>
+					><i class="fas fa-plus"></i></div>
 				</div>
 			</div>
 			<div class="dp-amount--input__right-section">
@@ -91,11 +91,6 @@
 				return amounts;
 			}
 		},
-		// watch: {
-		// 	initialUnit: function(newVal) {
-		// 		this.unit = newVal;
-		// 	}
-		// },
 		methods: {
 			handleKeypress: function (e) {
 				if (e.target.value.length > 3) {

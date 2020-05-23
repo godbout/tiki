@@ -1,9 +1,8 @@
 <template>
-	<div>
-		<div v-for="unit in duration.units" class="dp-amount--container" :key="unit">
-			<div class="dp-amount--preview" :class="{ active: store.state.activeUnit === unit  }" :title="unit" v-on:click="setUnit(unit)">
-				<span class="dp-amount--preview__value">{{ amounts[unit] }}</span>
-				<span class="dp-amount--preview__unit">{{ unit.charAt(0) }}</span>
+	<div class="dp-amount--container">
+		<div v-for="unit in duration.units" class="dp-amount--view" :class="{ active: store.state.activeUnit === unit }" :key="unit">
+			<div :title="unit" v-on:click="setUnit(unit)">
+				<span class="dp-amount--preview__value">{{ amounts[unit] }}{{ unit.charAt(0) }}</span>
 			</div>
 		</div>
 		<span>

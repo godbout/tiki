@@ -10,9 +10,6 @@
 			<span class="dp-chronometer-btn unselectable" v-if="!show" v-on:click="stopTimer" title="pause">
 				<i class="fas fa-pause"></i>
 			</span>
-			<span class="dp-chronometer-btn unselectable" title="edit">
-				<i class="fas fa-edit"></i>
-			</span>
 			<span class="dp-chronometer-btn unselectable dp-danger" v-on:click="deleteTimestamp" title="delete">
 				<i class="fas fa-trash"></i>
 			</span>
@@ -20,18 +17,12 @@
 				<i class="fas fa-undo-alt"></i>
 			</span>
 		</div>
-		<DurationPickerHistory />
 	</div>
 </template>
 
 <script>
-	import DurationPickerHistory from "./vue_DurationPickerHistory.js";
-
 	export default {
 		name: "DurationPickerChronometer",
-		components: {
-			durationpickerhistory: DurationPickerHistory
-		},
 		data: function () {
 			return {
 				store: this.$parent.store,

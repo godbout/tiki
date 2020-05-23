@@ -3,14 +3,21 @@
 		<div class="dp-modal--container">
 			<div class="dp-amount--input__container">
 				<div class="dp-amount--input__header">
-					<span class="dp-toggle-mode unselectable" v-on:click="toggleMode">Edit</span>
-					<span class="dp-toggle-mode unselectable" v-if="store.state.chronometer" v-on:click="toggleMode">Timesheets</span>
+					<span class="dp-amount--input__header--btn unselectable" :class="{ active: store.state.view === 'editor'}" v-on:click="gotoEditor">
+						Duration picker
+						<i class="fas fa-edit"></i>
+					</span>
+					<span class="dp-amount--input__header--btn unselectable" :class="{ active: store.state.view === 'chronometer'}" v-if="store.state.chronometer" v-on:click="gotoChronometer">
+						Start/Stop
+						<i class="fas fa-stream"></i>
+					</span>
 					<div class="dp-amount--input__close" v-on:click="handleCloseModal" title="close">
 						<i class="fas fa-times"></i>
 					</div>
 				</div>
-				<DurationPickerEditor v-show="!showChronometer" />
-				<DurationPickerChronometer v-if="store.state.chronometer" v-show="showChronometer" />
+				<DurationPickerEditor v-show="store.state.view === 'editor'" />
+				<DurationPickerHistory v-if="store.state.chronometer" v-show="store.state.view === 'chronometer'" />
+				<DurationPickerChronometer v-if="store.state.chronometer" />
 			</div>
 		</div>
 	</div>
@@ -19,16 +26,17 @@
 <script>
 	import DurationPickerEditor from "./vue_DurationPickerEditor.js";
 	import DurationPickerChronometer from "./vue_DurationPickerChronometer.js";
+	import DurationPickerHistory from "./vue_DurationPickerHistory.js";
 
 	export default {
 		name: "DurationPickerModal",
 		components: {
 			durationpickerchronometer: DurationPickerChronometer,
-			durationpickereditor: DurationPickerEditor
+			durationpickereditor: DurationPickerEditor,
+			durationpickerhistory: DurationPickerHistory
 		},
 		data: function () {
 			return {
-				showChronometer: this.$parent.store.state.chronometer ? true : false,
 				store: this.$parent.store,
 			}
 		},
@@ -36,8 +44,11 @@
 			handleCloseModal: Function
 		},
 		methods: {
-			toggleMode: function() {
-				this.showChronometer = !this.showChronometer;
+			gotoEditor: function() {
+				this.store.setView('editor')
+			},
+			gotoChronometer: function() {
+				this.store.setView('chronometer')
 			}
 		}
 	};
