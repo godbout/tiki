@@ -16,6 +16,12 @@
 			<span class="dp-chronometer-btn unselectable dp-danger" v-on:click="resetTimer" title="reset">
 				<i class="fas fa-undo-alt"></i>
 			</span>
+			<span class="dp-chronometer-btn unselectable" v-on:click="prevTimestamp" title="prev">
+				<i class="fas fa-chevron-left"></i>
+			</span>
+			<span class="dp-chronometer-btn unselectable" v-on:click="nextTimestamp" title="next">
+				<i class="fas fa-chevron-right"></i>
+			</span>
 		</div>
 	</div>
 </template>
@@ -94,6 +100,12 @@
 					...this.store.getTimestamp(this.store.state.activeTimestamp),
 					...updatesObj
 				});
+			},
+			prevTimestamp: function () {
+				this.store.setActiveTimestamp(this.store.state.activeTimestamp - 1);
+			},
+			nextTimestamp: function () {
+				this.store.setActiveTimestamp(this.store.state.activeTimestamp + 1);
 			}
 		}
 	};

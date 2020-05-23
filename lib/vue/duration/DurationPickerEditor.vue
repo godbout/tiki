@@ -1,9 +1,7 @@
 <template>
 	<div class="dp-editor--container">
 		<div class="dp-amount--editor__header">
-			<span v-if="store.state.chronometer">
-				<strong>Time entry {{store.state.activeTimestamp + 1}}:</strong>
-			</span>
+			<DurationPickerTitle v-if="store.state.chronometer" />
 			<DurationPickerAmounts :duration="store.state.duration" :amounts="getAmounts"></DurationPickerAmounts>
 		</div>
 		<div class="dp-amount--input__wrapper" v-on:keydown="handleTabKeys">
@@ -48,11 +46,13 @@
 
 <script>
 	import DurationPickerAmounts from "./vue_DurationPickerAmounts.js";
+	import DurationPickerTitle from "./vue_DurationPickerTitle.js";
 
 	export default {
 		name: "DurationPickerEditor",
 		components: {
-			durationpickeramounts: DurationPickerAmounts
+			durationpickeramounts: DurationPickerAmounts,
+			durationpickertitle: DurationPickerTitle
 		},
 		data: function () {
 			return {
@@ -70,11 +70,11 @@
 				this.$refs.input.focus();
 			});
 		},
-		updated: function () {
-			this.$nextTick(function () {
-				this.$refs.input.focus();
-			})
-		},
+		// updated: function () {
+		// 	this.$nextTick(function () {
+		// 		this.$refs.input.focus();
+		// 	})
+		// },
 		beforeDestroy: function () {
 			clearInterval(this.interval);
 		},
