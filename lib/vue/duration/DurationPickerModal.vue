@@ -9,7 +9,7 @@
 					</span>
 					<span class="dp-amount--input__header--btn unselectable" :class="{ active: store.state.view === 'chronometer'}" v-if="store.state.chronometer" v-on:click="gotoChronometer">
 						Start/Stop
-						<i class="fas fa-stream"></i>
+						<i class="fas fa-stopwatch"></i>
 					</span>
 					<div class="dp-amount--input__close" v-on:click="handleCloseModal" title="close">
 						<i class="fas fa-times"></i>

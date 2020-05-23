@@ -42,18 +42,14 @@
 				this.show = false;
 				this.startTime = moment();
 				this.timestamp = this.store.getTimestamp(this.store.state.activeTimestamp);
+				this.updateActiveTimestamp({startTime: this.startTime});
 
 				this.startId = requestAnimationFrame(this.startChronometer);
 			},
 			startChronometer: function() {
 				const momentCurrentTime = moment();
 				const millisecondsDiff = momentCurrentTime.diff(this.startTime);
-				this.store.setTimestamp('update', {
-					...this.store.getTimestamp(this.store.state.activeTimestamp),
-					startTime: this.startTime,
-					stopTime: momentCurrentTime,
-					spentTime: moment.duration(millisecondsDiff).add(this.timestamp.spentTime)
-				});
+				this.updateActiveTimestamp({spentTime: moment.duration(millisecondsDiff).add(this.timestamp.spentTime)})
 				this.startId = requestAnimationFrame(this.startChronometer);
 			},
 			stopTimer: function () {
@@ -61,6 +57,7 @@
 				this.startId = false;
 				this.show = true;
 				this.store.setPlaying(false);
+				this.updateActiveTimestamp({stopTime: moment()});
 			},
 			resetTimer: function () {
 				if (this.store.state.playing) return;
@@ -91,6 +88,12 @@
 				if (confirm(`Remove timestamp ${timestamp.spentTime.format('h [hrs], m [min], s [sec]')}?`)) {
 					this.store.setTimestamp('delete', timestamp);
 				}
+			},
+			updateActiveTimestamp: function (updatesObj) {
+				this.store.setTimestamp('update', {
+					...this.store.getTimestamp(this.store.state.activeTimestamp),
+					...updatesObj
+				});
 			}
 		}
 	};

@@ -51,7 +51,7 @@
 		},
 		methods: {
 			formatTime: function (time) {
-				return moment(time).format('YYYY-MM-DD HH:mm:ss');
+				return moment(time).format('MMM Do HH:mm:ss');
 			},
 			formatDuration: function (duration) {
 				return moment.duration(duration).format('h [hrs], m [min], s [sec]');
