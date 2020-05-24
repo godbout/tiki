@@ -8,6 +8,19 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+$inputConfiguration = [
+	['staticKeyFilters' => [
+		'faqId' => 'int',
+		'sort_mode' => 'alpha',
+		'find' => 'text',
+		'sugg' => 'word',
+		'suggested_question' => 'text',
+		'suggested_answer' => 'purifier',
+		'print' => 'word']
+	],
+	[ 'catchAllUnset' => null ],
+];
+
 $section = 'faqs';
 require_once('tiki-setup.php');
 $faqlib = TikiLib::lib('faq');
@@ -17,7 +30,7 @@ if ($prefs['feature_categories'] == 'y') {
 
 $access->check_feature('feature_faqs');
 
-if (! isset($_REQUEST["faqId"])) {
+if (empty($_REQUEST["faqId"])) {
 	$smarty->assign('msg', tra("No FAQ indicated"));
 	$smarty->display("error.tpl");
 	die;
