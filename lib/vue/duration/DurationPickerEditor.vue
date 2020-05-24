@@ -18,27 +18,27 @@
 				>
 				<div class="dp-amount--input__label">{{ store.state.activeUnit }}</div>
 				<div class="dp-amount--input__controls">
-					<div class="dp-amount--input__btn unselectable" 
-						v-on:mousedown="startSubtraction"
-						v-on:mouseleave="stopSubtraction"
-						v-on:mouseup="stopSubtraction"
-					><i class="fas fa-minus"></i>
-					</div><div class="dp-amount--input__btn unselectable"
-						v-on:mousedown="startAddition"
-						v-on:mouseleave="stopAddition"
-						v-on:mouseup="stopAddition"
-					><i class="fas fa-plus"></i></div>
+					<div class="dp-amount--input__btn unselectable" title="-5"
+						v-on:mousedown="startArithmetic(-5)"
+						v-on:mouseleave="stopArithmetic"
+						v-on:mouseup="stopArithmetic"
+					><i class="fas fa-angle-double-down"></i></div>
+					<div class="dp-amount--input__btn unselectable" title="-1"
+						v-on:mousedown="startArithmetic(-1)"
+						v-on:mouseleave="stopArithmetic"
+						v-on:mouseup="stopArithmetic"
+					><i class="fas fa-angle-down"></i></div>
+					<div class="dp-amount--input__btn unselectable" title="+1"
+						v-on:mousedown="startArithmetic(1)"
+						v-on:mouseleave="stopArithmetic"
+						v-on:mouseup="stopArithmetic"
+					><i class="fas fa-angle-up"></i></div>
+					<div class="dp-amount--input__btn unselectable" title="+5"
+						v-on:mousedown="startArithmetic(5)"
+						v-on:mouseleave="stopArithmetic"
+						v-on:mouseup="stopArithmetic"
+					><i class="fas fa-angle-double-up"></i></div>
 				</div>
-			</div>
-			<div class="dp-amount--input__right-section">
-				<template v-for="(dUnit) in duration.units">
-					<span 
-						class="dp-amount--input__unit unselectable"
-						:class="{ active: dUnit === store.state.activeUnit }"
-						:key="dUnit"
-						v-on:click="handleClickUnit(dUnit)"
-					>{{ dUnit }}</span>
-				</template>
 			</div>
 		</div>
 	</div>
@@ -56,7 +56,6 @@
 		},
 		data: function () {
 			return {
-				duration: this.$parent.store.state.duration,
 				currentValue: 0,
 				interval: false,
 				store: this.$parent.store
@@ -125,30 +124,16 @@
 				const unit = this.store.getAmountBefore(this.store.state.activeUnit);
 				this.store.setActiveUnit(unit);
 			},
-			handleSubtraction: function () {
-				this.store.setDurationValue(-1, this.store.state.activeUnit);
+			handleArithmetic: function (step) {
+				this.store.setDurationValue(step, this.store.state.activeUnit);
 			},
-			handleAddition: function () {
-				this.store.setDurationValue(1, this.store.state.activeUnit);
-			},
-			startSubtraction: function () {
+			startArithmetic: function (step) {
 				if (!this.interval) {
-					this.handleSubtraction();
-					this.interval = setInterval(this.handleSubtraction, 180);	
+					this.handleArithmetic(step);
+					this.interval = setInterval(this.handleArithmetic, 180, step);	
 				}
 			},
-			stopSubtraction: function () {
-				clearInterval(this.interval);
-				this.interval = false;
-				this.$refs.input.focus();
-			},
-			startAddition: function () {
-				if (!this.interval) {
-					this.handleAddition();
-					this.interval = setInterval(this.handleAddition, 180);
-				}
-			},
-			stopAddition: function () {
+			stopArithmetic: function () {
 				clearInterval(this.interval);
 				this.interval = false;
 				this.$refs.input.focus();

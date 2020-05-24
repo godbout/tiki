@@ -23,12 +23,19 @@
 }
 
 .dp-amount--editor__header .dp-amount--container {
-	font-size: 1.3rem;
+	font-size: 1.5rem;
+	text-align: center;
 }
 
-.dp-editor--task-title__wrapper span {
+.dp-editor--task-title__input,
+.dp-editor--task-title__textarea {
+	color: #495057;
 	font-weight: 500;
+	outline: none;
+	border: none;
+	padding: 5px 15px;
 }
+
 
 .dp-editor--task-title__wrapper input,
 .dp-editor--task-title__wrapper textarea {
@@ -39,14 +46,25 @@
 	width: 90%;
 }
 
+.dp-clock-spin {
+	color: #6d35a6;
+}
+
 .dp-amount--view {
 	display: inline-block;
 	cursor: pointer;
-	margin-right: 5px;
+	padding: 0px 2px;
+    border-radius: 4px;
+}
+
+.dp-amount--editor__header .dp-amount--view {
+	padding: 3px 5px;
+    border-radius: 4px;
 }
 
 .dp-amount--editor__header .dp-amount--view.active {
-	border-bottom: 2px solid #495057;
+	background-color: #6d35a6;
+	color: white;
 }
 
 .dp-editor--container {
@@ -56,9 +74,8 @@
 .dp-amount--input__container {
 	display: flex;
 	flex-direction: column;
-	height: 97%;
-	width: 95%;
-	padding: 10px;
+	height: 98%;
+	width: 98%;
 	border-radius: 0.25rem;
 	-webkit-box-shadow: 0px 4px 20px -7px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 4px 20px -7px rgba(0,0,0,0.75);
@@ -68,12 +85,10 @@
 }
 
 .dp-amount--input__wrapper {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	max-width: 325px;
 	margin-left: auto;
-    margin-right: auto;
+	margin-right: auto;
+	margin-bottom: 20px;
 }
 
 .dp-amount--input__wrapper input {
@@ -99,24 +114,6 @@
 	margin-bottom: 1rem;
 }
 
-.dp-amount--input__unit {
-	cursor: pointer;
-	font-size: 1rem;
-	padding: 6px;
-	width: 85px;
-	text-align: center;
-	border-radius: 0.25rem;
-}
-
-.dp-amount--input__unit:active {
-	background-color: #f2f2f2;
-}
-
-.dp-amount--input__unit.active {
-	color: white;
-	background-color: #007bff;
-}
-
 .dp-amount--input__left-section {
 	display: flex;
 	flex-direction: column;
@@ -124,25 +121,19 @@
 	align-items: center;
 }
 
-.dp-amount--input__right-section {
+.dp-amount--input__controls {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
 }
 
 .dp-amount--input__controls .dp-amount--input__btn {
 	display: inline-block;
 	cursor: pointer;
-	width: 63px;
+	width: 54px;
 	height: 43px;
 	padding: 1px 15px;
 	text-align: center;
 	line-height: 2.2;
 	font-size: 1.2rem;
-}
-
-.dp-amount--input__controls .dp-amount--input__btn:first-child {
-	border-right: 1px lightgrey solid;
 }
 
 .dp-amount--input__controls .dp-amount--input__btn:active {
@@ -151,16 +142,16 @@
 
 .dp-amount--input__header {
 	position: relative;
-	padding-bottom: 7px;
-	border-bottom: 1px grey solid;
+	padding: 12px;
+	border-bottom: 1px #b1b1b1 solid;
 }
 
 .dp-amount--input__close {
 	position: absolute;
 	font-weight: bold;
 	cursor: pointer;
-	top: 0px;
-	right: 5px;
+	top: 7px;
+	right: 10px;
 	color: grey;
 	transition: color 0.5s ease;
 }
@@ -186,30 +177,24 @@
 	color: #6d35a6;
 }
 
+.dp-chronometer__container {
+	background-color: #6d35a6;
+}
+
 .dp-chronometer__group {
 	display: flex;
 	align-items: center;
-	margin-top: 5px;
-	margin-bottom: 5px;
 }
 
 .dp-chronometer-btn {
 	flex-grow: 1;
 	text-align: center;
-	height: 55px;
+	height: 60px;
 	cursor: pointer;
-	color: black;
-	line-height: 3.25rem;
+	color: rgb(236, 236, 236);
+	line-height: 3.6rem;
 	border-radius: 4px;
 	transition: color 0.5s ease;
-}
-
-.dp-chronometer-btn:hover {
-	color: #007bff;
-}
-
-.dp-danger:hover {
-	color: #dc3545;
 }
 
 .dp-chronometer__info {
@@ -245,7 +230,7 @@
 	opacity: 0;
 }
 
-@media (min-width: 991px) {
+@media (min-width: 768px) {
 	.dp-amount--input__container {
 		width: 550px;
 		height: auto;

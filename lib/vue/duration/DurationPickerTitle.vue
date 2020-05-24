@@ -1,19 +1,23 @@
 <template>
 	<div class="dp-editor--task-title__wrapper">
-		<span>{{store.state.activeTimestamp + 1}}. </span>
-		<input
-			type="text"
-			placeholder="Time entry title"
-			v-on:input="handleInputTitle"
-			:value="getTitle"
-		>
-		<textarea
-			style="width: 100%"
-			type="text"
-			placeholder="Description"
-			v-on:input="handleInputDescription"
-			:value="getDescription"
-		>
+		<div class="dp-editor--task-title__input">
+			<span>{{store.state.activeTimestamp + 1}}. </span>
+			<input
+				type="text"
+				placeholder="Title"
+				v-on:input="handleInputTitle"
+				:value="getTitle"
+			>
+		</div>
+		<div class="dp-editor--task-title__textarea">
+			<textarea
+				style="width: 100%"
+				type="text"
+				placeholder="Description"
+				v-on:input="handleInputDescription"
+				:value="getDescription"
+			>
+		</div>
 	</div>
 </template>
 

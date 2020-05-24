@@ -1,11 +1,12 @@
 <template>
 	<div class="dp-amount--container">
-		<div v-for="unit in duration.units" class="dp-amount--view" :class="{ active: store.state.activeUnit === unit }" :key="unit">
-			<div :title="unit" v-on:click="setUnit(unit)">
-				<span class="dp-amount--preview__value">{{ amounts[unit] }}{{ unit.charAt(0) }}</span>
-			</div>
+		<div v-for="unit in duration.units" :key="unit"
+			class="dp-amount--view" :class="{ active: store.state.activeUnit === unit }"
+			:title="unit" v-on:click="setUnit(unit)"
+		>
+			<span class="dp-amount--preview__value">{{ amounts[unit] }}{{ unit.charAt(0) }}</span>
 		</div>
-		<span>
+		<span class="dp-clock-spin">
 			<i class="far fa-clock fa-spin" v-if="store.state.playing"></i>
 		</span>
 	</div>
