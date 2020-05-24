@@ -8,6 +8,26 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+$inputConfiguration = [
+	['staticKeyFilters' => [
+		'faqId' => 'int',
+		'sort_mode' => 'text',
+		'find' => 'text',
+		'questionId' => 'int',
+		'remove' => 'int',
+		'filter' => 'text',
+		'useq' => 'word',
+		'usequestionId' => 'int',
+		'offset' => 'int',
+		'remove_suggested' => 'int',
+		'approve_suggested' => 'int',
+		'save' => 'word',
+		'question' => 'text',
+		'answer' => 'purifyer']
+	],
+	[ 'catchAllUnset' => null ],
+];
+
 $section = 'faqs';
 require_once('tiki-setup.php');
 
