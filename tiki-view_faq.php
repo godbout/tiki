@@ -57,21 +57,21 @@ if (isset($_REQUEST["find"])) {
 $smarty->assign('find', $find);
 $channels = $faqlib->list_faq_questions($_REQUEST["faqId"], 0, -1, 'position_asc,questionId_asc', $find);
 $smarty->assign_by_ref('channels', $channels["data"]);
-if (isset($_REQUEST["sugg"])) {
+if (isset($_POST["sugg"])) {
 	check_ticket('view-faq');
 	if ($tiki_p_suggest_faq == 'y') {
 		if (empty($user) && $prefs['feature_antibot'] == 'y' && ! $captchalib->validate()) {
 			Feedback::error(['mes' => $captchalib->getErrors()]);
 			// Save the pending question and answer if antibot code is wrong
-			$smarty->assign('pendingquestion', $_REQUEST["suggested_question"]);
-			$smarty->assign('pendinganswer', $_REQUEST["suggested_answer"]);
+			$smarty->assign('pendingquestion', $_POST["suggested_question"]);
+			$smarty->assign('pendinganswer', $_POST["suggested_answer"]);
 		} else {
-			if (! empty($_REQUEST["suggested_question"])) {
-				$faqlib->add_suggested_faq_question($_REQUEST["faqId"], $_REQUEST["suggested_question"], $_REQUEST["suggested_answer"], $user);
+			if (! empty($_POST["suggested_question"])) {
+				$faqlib->add_suggested_faq_question($_POST["faqId"], $_POST["suggested_question"], $_POST["suggested_answer"], $user);
 			} else {
 				Feedback::error(tra('You must suggest a question; please try again.'));
 				// Save the pending answer if question is empty
-				$smarty->assign('pendinganswer', $_REQUEST["suggested_answer"]);
+				$smarty->assign('pendinganswer', $_POST["suggested_answer"]);
 			}
 		}
 	}
