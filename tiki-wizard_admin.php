@@ -20,8 +20,10 @@ $inputConfiguration = [[
 		'stepNr'			=> 'int',			// get
 		'back'				=> 'alnum',			// post
 	],
-
-	// catchAllUnset not advised because 'lm_preference' has variable array content.
+	['staticKeyFiltersForArrays' => [
+		'lm_preference' => 'xss',
+	]],
+	[ 'catchAllUnset' => null ],
 ]];
 
 require 'tiki-setup.php';

@@ -8,6 +8,37 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+$inputConfiguration = [[
+	   'staticKeyFilters'	=> [
+		   'use-default-prefs'	=> 'alnum', 		// request
+		   'use-changes-wizard' => 'alnum', 		// request
+		   'url'				=> 'relativeurl',	// request
+		   'close'				=> 'alnum',			// post
+		   'showOnLogin'		=> 'alnum',			// post
+		   'wizard_step'		=> 'int',			// post
+		   'stepNr'			=> 'int',			// get
+		   'back'				=> 'alnum',			// post
+	   ],
+	   ['staticKeyFiltersForArrays' => [
+		   'lm_preference' => 'xss',
+	   ]],
+	   [ 'catchAllUnset' => null ],
+   ]];
+
+/**
+$inputConfiguration = [
+	['staticKeyFilters' => [
+		'faqId' => 'int',
+		'sort_mode' => 'alpha',
+		'find' => 'text',
+		'sugg' => 'word',
+		'suggested_question' => 'text',
+		'suggested_answer' => 'purifier',
+		'print' => 'word']
+	],
+	[ 'catchAllUnset' => null ],
+];**/
+
 require 'tiki-setup.php';
 
 // User preferences screen
