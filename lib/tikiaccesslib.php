@@ -360,9 +360,13 @@ class TikiAccessLib extends TikiLib
 					return false;
 				}
 			} else {
-				$msg = ' ' . tra('CSRF check not performed.');
+				if (! $this->requestIsPost()) {
+					$msg = ' ' . tr('The request was not a POST request as required.');
+				} else {
+					$msg = ' ' . tr('There was no security ticket submitted with the request.');
+				}
 				$this->logMsg = $msg;
-				$this->userMsg = $msg;
+				$this->userMsg = ' ' . $this->logMsg;
 				$this->csrfError($error);
 				return false;
 			}
@@ -443,20 +447,20 @@ class TikiAccessLib extends TikiLib
 		//error message
 		if (! $this->originMatch()) {
 			if ($this->originSource === 'empty') {
-				$this->userMsg .= ' ' . tra('Required headers are missing.');
-				$this->logMsg .= ' ' . tr(
-					'Requesting site could not be identified because %0 and %1 were empty.',
+				$this->logMsg .= tr(
+					'The requesting site could not be identified because %0 and %1 were empty.',
 					'HTTP_ORIGIN',
 					'HTTP_REFERER'
 				);
+				$this->userMsg .= ' ' . tr('The requesting site could not be identified.');
 			} else {
-				$this->userMsg .= ' ' . tra('Request needs to originate from this site.');
-				$this->logMsg .= ' ' . tr(
+				$this->logMsg .= tr(
 					'The %0 host (%1) does not match this server (%2).',
 					$this->originSource,
 					$this->origin,
 					$this->base
 				);
+				$this->userMsg .= ' ' . tr('The requesting site domain does not match this site\'s domain.');
 			}
 		}
 	}
@@ -492,15 +496,22 @@ class TikiAccessLib extends TikiLib
 		//check that request ticket matches server ticket
 		if ($this->ticket && !empty($_SESSION['tickets'][$this->ticket])) {
 			//check that ticket has not expired
-			$ticketTime = $_SESSION['tickets'][$this->ticket];
 			global $prefs;
 			$maxTime = $prefs['site_security_timeout'];
-			if ($ticketTime <= time() && $ticketTime > (time() - $maxTime)) {
+			$ticketTime = $_SESSION['tickets'][$this->ticket];
+			$requestTime = $_SERVER['REQUEST_TIME'];
+			if ($ticketTime <= $requestTime && $ticketTime > ($requestTime - $maxTime)) {
+				//ticket is still valid
 				$this->ticketMatch = true;
 			} else {
 				//ticket is expired
-				$this->userMsg = ' ' . tra('Ticket has expired. Reload the page.');
-				$this->logMsg = ' ' . tra('Ticket matches but is expired.');
+				$msg = tr('The security ticket matches but is expired.');
+				$ticketAgeSeconds = $requestTime - $ticketTime;
+				$ticketAgeMinutes = $ticketAgeSeconds < 60 ? '' : ' (' . round($ticketAgeSeconds / 60, 1)
+					. ' ' . tr('minutes'). ')';
+				$this->logMsg = $msg . PHP_EOL . '  ' . tr('Age of security ticket:') . ' '
+					. $ticketAgeSeconds . ' ' . tr('seconds') . $ticketAgeMinutes;
+				$this->userMsg = ' ' . $msg . ' ' . tr('Reload the page.');
 				$this->ticketMatch = false;
 			}
 			if ($unsetTicket) {
@@ -508,8 +519,13 @@ class TikiAccessLib extends TikiLib
 			}
 		} else {
 			//ticket doesn't match or is missing
-			$this->userMsg = ' ' . tra('Reloading the page may help.');
-			$this->logMsg = ' ' . tra('Ticket does not match or is missing.');
+			if (! $this->ticket) {
+				$msg = tr('The security ticket is missing from the request.');
+			} else {
+				$msg = tr('The security ticket included in the request does not match a ticket on the server.');
+			}
+			$this->logMsg = $msg;
+			$this->userMsg = ' ' . $this->logMsg . ' ' . tr('Reloading the page may help.');
 			$this->ticketMatch = false;
 		}
 	}
@@ -577,12 +593,16 @@ class TikiAccessLib extends TikiLib
 	private function csrfError($error = 'session')
 	{
 		if ($error !== 'none') {
-			$this->userMsg = tra('Potential cross-site request forgery (CSRF) detected. Operation blocked.')
-				. $this->userMsg;
-			$this->logMsg = tr('Request to %0 failed CSRF check.', $_SERVER['SCRIPT_NAME'])
-				. $this->logMsg;
+			$log = ! empty(ini_get('error_log'));
+			if ($log) {
+				$moreUserMsg = ' ' . tr('For more information, administrators can check the server php error log as defined in php.ini.');
+			} else {
+				$moreUserMsg = ' ' . tr('For more information in the future, administrators can define the error_log setting in the php.ini file.');
+			}
+			$this->userMsg = tr('Request could not be completed due to problems encountered in the security check.')
+				. $this->userMsg . $moreUserMsg;
 			//log message
-			TikiLib::lib('logs')->add_log('CSRF', $this->logMsg);
+			$this->csrfPhpErrorLog($this->logMsg);
 			//user feedback
 			switch ($error) {
 				case 'services':
@@ -706,6 +726,37 @@ class TikiAccessLib extends TikiLib
 		} else {
 			return $this->checkCsrf($error);
 		}
+	}
+
+	/**
+	 * Utility to compose and write the error message from CSRF errors to the server php error log, adding on
+	 * certain information regarding the environment. Broken into two pieces since the the GET and POST
+	 * parameters have the potential to exceed the character limit.
+	 *
+	 * @param $msg	string		Description of the specific error which will be placed first ahead of
+	 *                     the environmental information
+	 */
+	private function csrfPhpErrorLog($msg)
+	{
+		global $prefs;
+		error_log(PHP_EOL
+			. '**** '. tr('Start CSRF error from') . $_SERVER['SERVER_NAME'] . ' *****' . PHP_EOL
+			. '  ' . $msg . PHP_EOL
+			. '  site_security_timeout' .  tr('preference:') . $prefs['site_security_timeout']
+			. tr('seconds') . '(' . $prefs['site_security_timeout'] / 60 . ' minutes)' . PHP_EOL
+			. '  SCRIPT_NAME: ' . $_SERVER['SCRIPT_NAME'] . PHP_EOL
+			. '  REQUEST_URI: ' . $_SERVER['REQUEST_URI'] . PHP_EOL
+			. '  HTTP_ORIGIN: ' . $_SERVER['HTTP_ORIGIN'] . PHP_EOL
+			. '  HTTP_REFERER: ' . $_SERVER['HTTP_REFERER'] . PHP_EOL
+			. '  REQUEST_METHOD: ' . $_SERVER['REQUEST_METHOD'] . PHP_EOL
+		);
+		$get = count($_GET) ? json_encode($_GET, JSON_PRETTY_PRINT) : tr('empty');
+		$post = count($_POST) ? json_encode($_POST, JSON_PRETTY_PRINT) : tr('empty');
+		error_log(PHP_EOL
+			. '  $_GET: ' . $get . PHP_EOL
+			. '  $_POST: ' . $post . PHP_EOL
+			. '**** ' . tr('End CSRF error from')  . $_SERVER['SERVER_NAME'] . ' *****'
+		);
 	}
 
 
