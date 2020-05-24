@@ -75,6 +75,7 @@
 	<div class="faq_suggestions" id="faqsugg" style="display:{if !empty($error)}block{else}none{/if};">
 		<br>
 		<form action="tiki-view_faq.php" method="post">
+            {ticket}
 			<input type="hidden" name="faqId" value="{$faqId|escape}">
 			<table class="formcolor">
 				<tr>

@@ -58,7 +58,7 @@ $smarty->assign('find', $find);
 $channels = $faqlib->list_faq_questions($_REQUEST["faqId"], 0, -1, 'position_asc,questionId_asc', $find);
 $smarty->assign_by_ref('channels', $channels["data"]);
 if (isset($_POST["sugg"])) {
-	check_ticket('view-faq');
+	$access->checkCsrf();
 	if ($tiki_p_suggest_faq == 'y') {
 		if (empty($user) && $prefs['feature_antibot'] == 'y' && ! $captchalib->validate()) {
 			Feedback::error(['mes' => $captchalib->getErrors()]);
@@ -85,7 +85,6 @@ if ($prefs['feature_theme_control'] == 'y') {
 	$cat_objid = $_REQUEST["faqId"];
 	include('tiki-tc.php');
 }
-ask_ticket('view-faq');
 // Display the template
 $smarty->assign('mid', 'tiki-view_faq.tpl');
 if (isset($_REQUEST['print'])) {
