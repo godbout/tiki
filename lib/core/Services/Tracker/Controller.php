@@ -399,11 +399,15 @@ class Services_Tracker_Controller
 				$type = $field['type'];
 			}
 
-			$rules = [
-				'conditions' => json_decode($input->conditions->text()),
-				'actions'    => json_decode($input->actions->text()),
-				'else'    => json_decode($input->else->text()),
-			];
+			if ($input->conditions->text()) {
+				$rules = json_encode([
+					'conditions' => json_decode($input->conditions->text()),
+					'actions'    => json_decode($input->actions->text()),
+					'else'       => json_decode($input->else->text()),
+				]);
+			} else {
+				$rules = '';
+			}
 
 			$data = [
 				'name' => $input->name->text(),
@@ -420,7 +424,7 @@ class Services_Tracker_Controller
 				'errorMsg' => $input->error_message->text(),
 				'permName' => $permName,
 				'type' => $type,
-				'rules' => json_encode($rules),
+				'rules' => $rules,
 			];
 
 			$this->utilities->updateField(

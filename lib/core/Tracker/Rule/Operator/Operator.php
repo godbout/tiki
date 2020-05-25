@@ -20,7 +20,12 @@ abstract class Operator extends Column
 	}
 
 	/**
-	 * @return string JavaScript condition syntax using %argument% as the arg placeholder
+	 * @return string JavaScript condition syntax
+	 *
+	 * Use %argument% as the arg placeholder and %field% for the field name
+	 *
+	 * Syntax will always be prepended with $("[name=ins_XX:last]") as the jQuery object,
+	 * so use .val() for inputs and .text() for other elements to get the value to test
 	 */
 	public function getSyntax(): string
 	{

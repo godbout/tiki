@@ -26,14 +26,15 @@
 		</div>
 
 		<div class="card">
-			<article class="message is-info">
-				<div class="message-header">
-					<p>Tips</p>
+			<div class="card-body tips">
+				<h5 class="card-title">Tips</h5>
+				<div class="card=text">
+					<p>Tips: Use <code>alt + click</code> to create a sub-group.</p>
+					<p>
+						<button class="btn btn-warning btn-sm" @click="onResetClicked">Clear All</button>
+					</p>
 				</div>
-				<div class="message-body">
-					Tips: Use <code>alt + click</code> to create a sub-group.
-				</div>
-			</article>
+			</div>
 		</div>
 
 		<div class="card d-none">
@@ -162,7 +163,6 @@
 			};
 		},
 		methods: {
-			// TODO probably near here: set new predicates target to this field as the default
 
 			onChangeConditions(diff)
 			{
@@ -175,6 +175,17 @@
 			onChangeElse(diff)
 			{
 				this.elseoutput = diff;
+			},
+			onResetClicked(event)
+			{
+				this.conditionsoutput = "";
+				this.actionoutput = "";
+				this.elseoutput = "";
+
+				$(this.$el).find(".card-body:not(.tips)").empty();
+
+				event.preventDefault();
+				return false;
 			},
 		},
 		beforeMount: function () {
@@ -222,8 +233,37 @@
 				thisvue.actionsColumns.targets    = actionsTargets;
 			}
 
-			// set conditions field to thids one if nothing else set
-			if (! thisvue.$parent.rules.conditions) {
+			// validate the targets in case options have changed or fields deleted
+			let getPredicates = function (predicates) {
+				return predicates.filter(predicate => {
+					let found = thisvue.actionsColumns.targets.find(target => {
+						if (predicate.target_id === target.target_id) {
+							return true;
+						}
+					});
+					if (! found) {
+						// try for partial matches - can happen if field options change (from or to a collection)
+						found = thisvue.actionsColumns.targets.find(target => {
+							if (predicate.target_id.indexOf(target.target_id) > -1 || target.target_id.indexOf(predicate.target_id) > -1) {
+								return true;
+							}
+						});
+
+						if (found) {
+							if (predicate.target_id.indexOf("[]") > -1) {
+								predicate.target_id = predicate.target_id.replace("[]", "");
+							} else {
+								predicate.target_id = predicate.target_id + "[]";
+							}
+						} else {
+							console.error("Tracker Field Rules: field " + predicate.target_id + " not found in predicates");
+						}
+					}
+					return found;
+				});
+			};
+
+			let defaultCondition = function () {
 				let operatorId = "";
 
 				if (field.argumentType === "Text") {
@@ -238,32 +278,29 @@
 					operatorId = "CollectionContains";
 				}
 
-				thisvue.conditionsData = {
+				return {
 					logicalType_id: "any",
 					predicates: [{
 						target_id: "ins_" + field.fieldId,
 						operator_id: operatorId,
 						argument: "",
 					}]
-				}
+				};
+			};
+
+			// set conditions field to this one if nothing else set
+			if (! thisvue.$parent.rules.conditions) {
+				thisvue.conditionsData = defaultCondition();
 			} else {
 				thisvue.conditionsData = thisvue.$parent.rules.conditions;
+				thisvue.conditionsData.predicates = getPredicates(thisvue.$parent.rules.conditions.predicates);
+
+				if (thisvue.conditionsData.predicates.length === 0) {
+					// we need at least one condition
+					thisvue.conditionsData = defaultCondition();
+				}
 			}
 
-			// validate the targets in case options have changed or fields deleted
-			let getPredicates = function (predicates) {
-				return predicates.filter(function (predicate) {
-					let found = thisvue.actionsColumns.targets.find(function (target) {
-						if (predicate.target_id === target.target_id) {
-							return true;
-						}
-					});
-					if (!found) {
-						console.error("Tracker Field Rules: field " + predicate.target_id + " not found in actions");
-					}
-					return found;
-				});
-			};
 			if (thisvue.$parent.rules.actions) {
 				thisvue.actionsData = thisvue.$parent.rules.actions;
 				thisvue.actionsData.predicates = getPredicates(thisvue.$parent.rules.actions.predicates);
