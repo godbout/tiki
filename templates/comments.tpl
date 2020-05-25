@@ -10,7 +10,7 @@
 	{* WARNING: when previewing a new reply to a forum post, $parent_com is also set *}
 
 	{if $comments_cant gt 0}
-		<form method="get" id="comment-form" class="comments">
+		<form method="post" id="comment-form" class="comments">
 			{section name=i loop=$comments_request_data}
 				<input type="hidden" name="{$comments_request_data[i].name|escape}" value="{$comments_request_data[i].value|escape}">
 			{/section}
@@ -47,7 +47,7 @@
 								title=":{tr}Merge{/tr}"
 								form="comment-form"
 								class="btn btn-primary btn-sm mx-2 tips"
-								onclick="confirmAjax(event)"
+								onclick="confirmPopup()"
 							>
 								{icon name="merge"}
 							</button>
@@ -58,7 +58,7 @@
 							title=":{tr}Delete{/tr}"
 							form="comment-form"
 							class="btn btn-danger btn-sm mx-2 tips"
-							onclick="confirmAjax(event)"
+							onclick="confirmPopup()"
 						>
 							{icon name="remove"}
 						</button>

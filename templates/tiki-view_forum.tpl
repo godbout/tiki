@@ -544,7 +544,7 @@
 							formaction="{bootstrap_modal controller=forum action=merge_topic}"
 							title=":{tr}Merge{/tr}"
 							class="btn btn-primary btn-sm tips"
-							onclick="confirmAjax(event)"
+							onclick="confirmPopup()"
 						>
 							{icon name="merge"}
 						</button>
@@ -555,7 +555,7 @@
 							formaction="{bootstrap_modal controller=forum action=move_topic}"
 							title=":{tr}Move{/tr}"
 							class="btn btn-primary btn-sm tips"
-							onclick="confirmAjax(event)"
+							onclick="confirmPopup()"
 						>
 							{icon name="move"}
 						</button>
@@ -566,7 +566,7 @@
 							formaction="{bootstrap_modal controller=forum action=lock_topic}"
 							title=":{tr}Lock{/tr}"
 							class="btn btn-primary btn-sm tips"
-							onclick="confirmAjax(event)"
+							onclick="confirmPopup()"
 						>
 							{icon name="lock"}
 						</button>
@@ -575,7 +575,7 @@
 							formaction="{bootstrap_modal controller=forum action=unlock_topic}"
 							title=":{tr}Unlock{/tr}"
 							class="btn btn-primary btn-sm tips"
-							onclick="confirmAjax(event)"
+							onclick="confirmPopup()"
 						>
 							{icon name="unlock"}
 						</button>
@@ -584,7 +584,7 @@
 							formaction="{bootstrap_modal controller=forum action=delete_topic}"
 							title=":{tr}Delete{/tr}"
 							class="btn btn-primary btn-sm tips"
-							onclick="confirmAjax(event)"
+							onclick="confirmPopup()"
 						>
 							{icon name="remove"}
 						</button>

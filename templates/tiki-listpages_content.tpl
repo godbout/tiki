@@ -458,7 +458,7 @@
 					form="checkboxes_on"
 					formaction="{bootstrap_modal controller=wiki version=all}"
 					class="btn btn-primary"
-					onclick="confirmAjax(event)"
+					onclick="confirmPopup()"
 				>
 					{tr}OK{/tr}
 				</button>

@@ -255,20 +255,27 @@
 														{/if}
 														{if $users[user].user ne 'admin'}
 															{if $users[user].waiting eq 'a'}
+																{* Use a form for the next three actions since they change the database.
+																	No confirm needed, confirmPopup() only checks if the ticket has expired
+																*}
 																<action>
-																	<a href="tiki-login_validate.php?user={$users[user].user|escape:url}&amp;pass={$users[user].valid|escape:url}">
-																		{icon name="ok" _menu_text='y' _menu_icon='y' alt="{tr}Validate user{/tr}"}
-																	</a>
+																	<form action="tiki-login_validate.php" method="post">
+																		{ticket}
+																		<input type="hidden" name="user" value="{$users[user].user|escape:'attr'}">
+																		<input type="hidden" name="pass" value="{$users[user].valid|escape:'attr'}">
+																		<button type="submit" class="btn btn-link link-list">
+																			{icon name="ok"} {tr}Validate user{/tr}
+																		</button>
+																	</form>
 																</action>
 															{/if}
-															{* Use a form for the next two actions since they change the database but can easily be undone so no confirm needed*}
 															{if $users[user].waiting eq 'u'}
 																<action>
 																	<form action="tiki-confirm_user_email.php" method="post">
 																		{ticket}
 																		<input type="hidden" name="user" value="{$users[user].user|escape:'attr'}">
 																		<input type="hidden" name="pass" value="{$users[user].provpass|md5|escape:'attr'}">
-																		<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+																		<button type="submit" class="btn btn-link link-list">
 																			{icon name="thumbs-up"} {tr}Validate user{/tr}
 																		</button>
 																	</form>
@@ -279,7 +286,7 @@
 																	<form action="tiki-adminusers.php" method="post">
 																		{ticket}
 																		<input type="hidden" name="user" value="{$users[user].user|escape:'attr'}">
-																		<button type="submit" name="action" value="email_due" class="btn btn-link link-list" onclick="checkTimeout()">
+																		<button type="submit" name="action" value="email_due" class="btn btn-link link-list">
 																			{icon name="thumbs-down"} {tr}Invalidate user{/tr}
 																		</button>
 																	</form>
@@ -294,7 +301,7 @@
 														{* Use a confirm here since action cannot easily be undone *}
 														{if !empty($users[user].openid_url)}
 															<action>
-																<a href="tiki-adminusers.php?userId={$userId=$users[user].userId|escape:url}&amp;action=remove_openid" onclick="confirmSimple(event, '{tr}Remove link with OpenID for this user?{/tr}', '{ticket mode=get}')">
+																<a href="tiki-adminusers.php?userId={$userId=$users[user].userId|escape:url}&amp;action=remove_openid" onclick="confirmPopup('{tr}Remove link with OpenID for this user?{/tr}', '{ticket mode=get}')">
 																	{icon name="link" _menu_text='y' _menu_icon='y' alt="{tr}Remove link with OpenID account{/tr}"}
 																</a>
 															</action>
@@ -352,7 +359,7 @@
 									type="submit"
 									formaction="{bootstrap_modal controller=user}"
 									class="btn btn-primary"
-									onclick="confirmAjax(event)"
+									onclick="confirmPopup()"
 								>
 									{tr}OK{/tr}
 								</button>
@@ -578,7 +585,7 @@
 									class="btn btn-primary"
 									name="save"
 									value="{tr}Save{/tr}"
-									onclick="confirmSimple(event, '{tr}Modify this user\'s data?{/tr}')"
+									onclick="confirmPopup('{tr}Modify this user\'s data?{/tr}')"
 								>
 							{else}
 								<input
@@ -586,7 +593,6 @@
 									class="btn btn-primary"
 									name="newuser"
 									value="{tr}Add{/tr}"
-									onclick="checkTimeout()"
 								>
 							{/if}
 						</div>
@@ -716,7 +722,7 @@
 				</div>
 				<div class="form-group row">
 					<div class="col-md-9 offset-md-3">
-						<input type="submit" class="btn btn-secondary" name="batch" value="{tr}Add{/tr}" onclick="checkTimeout()">
+						<input type="submit" class="btn btn-secondary" name="batch" value="{tr}Add{/tr}">
 					</div>
 				</div>
 			</form>

@@ -140,12 +140,11 @@
 												<action>
 													{permission_link mode=text type=forum permType=forums id=$channels[user].forumId title=$channels[user].name}
 												</action>
-												{* g	o ahead and set action to delete_forum since that is the only action available in the multi selct dropdown *}
-													<action>
+												<action>
 													<a href="{bootstrap_modal controller=forum action=delete_forum checked={$channels[user].forumId}}">
 														{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 													</a>
-													</action>
+												</action>
 											{/if}
 										{/strip}
 									{/actions}
@@ -178,7 +177,7 @@
 								form='admin_forums'
 								formaction="{bootstrap_modal controller=forum}"
 								class="btn btn-secondary"
-								onclick="confirmAjax(event)"
+								onclick="confirmPopup()"
 							>
 								{tr}OK{/tr}
 							</button>

@@ -524,7 +524,7 @@
 						form="pagehistory"
 						formaction="{bootstrap_modal controller=wiki}"
 						class="btn btn-warning"
-						onclick="confirmAjax(event)"
+						onclick="confirmPopup()"
 					>
 						{tr}OK{/tr}
 					</button>
