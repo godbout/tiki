@@ -16,7 +16,9 @@ class Search_ContentSource_TrackerFieldSource implements Search_ContentSource_In
 
 	function getDocuments()
 	{
-		return $this->db->table('tiki_tracker_fields')->fetchColumn('fieldId', []);
+		return $this->db->table('tiki_tracker_fields')->fetchColumn('fieldId', [
+			'type' => $this->db->table('tiki_tracker_fields')->notIn(['h'])
+		]);
 	}
 
 	function getDocument($objectId, Search_Type_Factory_Interface $typeFactory)
@@ -27,7 +29,7 @@ class Search_ContentSource_TrackerFieldSource implements Search_ContentSource_In
 
 		$field = $lib->get_tracker_field($objectId);
 
-		if (! $field) {
+		if (! $field || $field['type'] === 'h') {
 			return false;
 		}
 
