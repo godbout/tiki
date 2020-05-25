@@ -35,8 +35,7 @@ if (! ($info = $tikilib->get_page_info($page))) {
 // Now check permissions to rename this page
 $access->check_permission(['view', 'rename'], tr('Rename wiki page'), 'wiki page', $page);
 
-if ((isset($_REQUEST["rename"]) || isset($_REQUEST["confirm"])) && $access->checkOrigin()) {
-	check_ticket('rename-page');
+if ((isset($_REQUEST["rename"]) || isset($_REQUEST["confirm"])) && $access->checkCsrf()) {
 	// If the new pagename does match userpage prefix then display an error
 	$newName = isset($_REQUEST["confirm"]) ? $_REQUEST['badname'] : $_REQUEST['newpage'];
 	if (stristr($newName, $prefs['feature_wiki_userpage_prefix']) == $newName) {
@@ -52,13 +51,18 @@ if ((isset($_REQUEST["rename"]) || isset($_REQUEST["confirm"])) && $access->chec
 	} else {
 		try {
 			$result = $wikilib->wiki_rename_page($page, $newName);
+			if ($result) {
+				Feedback::success(tr('Page renamed'));
+			} else {
+				Feedback::error(tr('Page not renamed'));
+			}
 		} catch (Exception $e) {
 			switch ($e->getCode()) {
 				case 1:
 					$smarty->assign('page_badchars_display', $wikilib->get_badchars());
 					break;
 				case 2:
-					$smarty->assign('msg', tra("Page already exists"));
+					Feedback::error(tr('Page already exists'));
 					break;
 				default:
 					throw $e;
@@ -90,7 +94,6 @@ if ((isset($_REQUEST["rename"]) || isset($_REQUEST["confirm"])) && $access->chec
 		$access->redirect($wikilib->sefurl($newName));
 	}
 }
-ask_ticket('rename-page');
 include_once('tiki-section_options.php');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');

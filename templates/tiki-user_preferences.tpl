@@ -730,7 +730,7 @@
 		{tab name="{tr}Account Deletion{/tr}"}
 			<div class="jumbotron text-center">
 				<h2>{tr}Account Deletion{/tr}</h2>
-				<form role="form" class="form-horizontal" action="tiki-user_preferences.php" method="post" onsubmit='return confirm("{tr _0=$userwatch|escape}Are you really sure you want to delete the account %0?{/tr}");'>
+				<form role="form" class="form-horizontal" action="tiki-user_preferences.php" method="post">
 					{ticket}
 					{if !empty($userwatch)}<input type="hidden" name="view_user" value="{$userwatch|escape}">{/if}
 					<p>
@@ -741,7 +741,7 @@
 						</div>
 					</p>
 					<p>
-						<input type="submit" class="btn btn-danger btn-lg" name="deleteaccount" value="{if !empty($userwatch)}{tr}Delete the account:{/tr} {$userwatch|escape}{else}{tr}Delete my account{/tr}{/if}">
+						<input type="submit" class="btn btn-danger btn-lg" name="deleteaccount" value="{if !empty($userwatch)}{tr}Delete the account:{/tr} {$userwatch|escape}{else}{tr}Delete my account{/tr}{/if}" onclick="confirmPopup('{tr _0=$userwatch|escape}Delete account for %0?{/tr}')">
 					</p>
 				</form>
 			</div>

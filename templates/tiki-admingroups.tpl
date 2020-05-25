@@ -3,8 +3,6 @@
 {title help="Groups Management" admpage="login"}{tr}Admin groups{/tr}{/title}
 {if !$ts.ajax}
 	<div class="t_navbar mb-4">
-		{button href="tiki-adminusers.php" class="btn btn-primary" _type="link" _icon_name="user" _text="{tr}Admin Users{/tr}"}
-		{button href="tiki-admingroups.php?clean=y" class="btn btn-link" _type="link" _icon_name="trash" _text="{tr}Clear cache{/tr}"}
 		{if $groupname}
 			{if $prefs.feature_tabs ne 'y'}
 				{button href="tiki-admingroups.php?add=1&amp;cookietab=2#tab2" class="btn btn-primary" _icon_name="create" _text="{tr}Add New Group{/tr}"}
@@ -12,9 +10,17 @@
 				{button href="tiki-admingroups.php?add=1&amp;cookietab=2" class="btn btn-primary" _icon_name="create" _text="{tr}Add New Group{/tr}"}
 			{/if}
 		{/if}
+		<form method="post" class="form-horizontal d-inline">
+			{ticket}
+			<input type="hidden" name="clean" value="1">
+			<button type="submit" class="btn btn-primary">
+				{icon name="trash"} {tr}Clear cache{/tr}
+			</button>
+		</form>
+		{button href="tiki-adminusers.php" class="btn btn-primary" _type="link" _icon_name="user" _text="{tr}Admin Users{/tr}"}
 		{button href="tiki-objectpermissions.php" class="btn btn-link" _type="link" _icon_name="permission" _text="{tr}Permissions{/tr}"}
 		{if $prefs.feature_invite eq 'y' and $tiki_p_invite eq 'y'}
-			{button href="tiki-list_invite.php" class="btn btn-primary" _type="link" _icon_name="thumbs-up" _text="{tr}Invitation List{/tr}"}
+			{button href="tiki-list_invite.php" class="btn btn-link" _type="link" _icon_name="thumbs-up" _text="{tr}Invitation List{/tr}"}
 		{/if}
 	</div>
 {/if}
@@ -122,17 +128,24 @@
 			</tbody>
 		</table>
 	{if !$ts.ajax}
-		</div>
-		<div class="input-group col-sm-8">
-			<label for="submit_mult" class="col-form-label sr-only">{tr}Select action to perform with checked{/tr}</label>
-			<select name="action" class="form-control">
-				<option value="no_action" selected="selected">{tr}Select action to perform with checked{/tr}...</option>
-				<option value="remove_groups">{tr}Remove{/tr}</option>
-			</select>
-			<div class="input-group-append">
-				<input type="submit" form="checkform1" formaction="{bootstrap_modal controller=group}" class="btn btn-secondary" value="{tr}OK{/tr}" onclick="confirmAjax(event)">
 			</div>
-		</div>
+				<div class="input-group col-sm-8">
+					<label for="submit_mult" class="col-form-label sr-only">{tr}Select action to perform with checked{/tr}</label>
+						<select name="action" class="form-control">
+							<option value="no_action" selected="selected">{tr}Select action to perform with checked{/tr}...</option>
+							<option value="remove_groups">{tr}Remove{/tr}</option>
+						</select>
+					<div class="input-group-append">
+						<input
+							type="submit"
+							form="checkform1"
+							formaction="{bootstrap_modal controller=group}"
+							class="btn btn-secondary"
+							value="{tr}OK{/tr}"
+							onclick="confirmPopup()"
+						>
+					</div>
+				</div>
 		</form>
 		{if !$ts.enabled}
 			{pagination_links cant=$cant_pages step=$prefs.maxRecords offset=$offset}{/pagination_links}
@@ -153,15 +166,21 @@
 	{if !$ts.ajax}
 		{if !empty($user) and $prefs.feature_user_watches eq 'y' && !empty($groupname)}
 			<div class="float-sm-right">
-				{if not $group_info.isWatching}
-					{self_link watch=$groupname _class="tips" _title="{$groupname}:{tr}Group is NOT being monitored. Click icon to START monitoring.{/tr}"}
-					{icon name='watch' alt="{tr}Group is NOT being monitored. Click icon to START monitoring.{/tr}"}
-					{/self_link}
-				{else}
-					{self_link unwatch=$groupname _class="tips" _title="{$groupname}:{tr}Group IS being monitored. Click icon to STOP monitoring.{/tr}"}
-					{icon name='stop-watching' alt="{tr}Group IS being monitored. Click icon to STOP monitoring.{/tr}"}
-					{/self_link}
-				{/if}
+				<form method="post">
+					{ticket}
+					{if not $group_info.isWatching}
+						<input type="hidden" name="watch" value="{$groupname}">
+						{$title = "{$groupname}:{tr}Group is NOT being monitored. Click icon to START monitoring.{/tr}"}
+						{$iconname = 'watch'}
+					{else}
+						<input type="hidden" name="unwatch" value="{$groupname}">
+						{$title = "{$groupname}:{tr}Group IS being monitored. Click icon to STOP monitoring.{/tr}"}
+						{$iconname = 'stop-watching'}
+					{/if}
+					<button type="submit" class="tips btn btn-link" title="{$title}">
+						{icon name="{$iconname}"}
+					</button>
+				</form>
 			</div>
 		{/if}
 		<h2>{$tabaddeditgroup_admgrp}</h2>
@@ -487,11 +506,23 @@
 				<div class="col-md-9 offset-md-3">
 					{if $group ne ''}
 						<input type="hidden" name="olgroup" value="{$group|escape}">
-						<button type="submit" class="btn btn-secondary" form="groupEdit" formaction="{bootstrap_modal controller=group action=modify_group}" onclick="confirmAjax(event)">
+						<button
+							type="submit"
+							class="btn btn-secondary"
+							form="groupEdit"
+							formaction="{bootstrap_modal controller=group action=modify_group}"
+							onclick="confirmPopup()"
+						>
 							{tr}Save{/tr}
 						</button>
 					{else}
-						<button type="submit" class="btn btn-secondary" form="groupEdit" formaction="{bootstrap_modal controller=group action=new_group}" onclick="confirmAjax(event)">
+						<button
+							type="submit"
+							class="btn btn-secondary"
+							form="groupEdit"
+							formaction="{bootstrap_modal controller=group action=new_group}"
+							onclick="confirmPopup()"
+						>
 							{tr}Add{/tr}
 						</button>
 					{/if}
@@ -581,15 +612,23 @@
 				{if !$ts.ajax}
 					</div>
 
-					{if $groupname neq 'Registered'}
-						<div class="input-group">
-							<select class="form-control" name="action">
-								<option value="no_action" selected="selected">
-									{tr}Select action to perform with checked{/tr}...
-								</option>
-								<option value="manage_groups">{tr}Unassign{/tr}</option>
-							</select> <span class="input-group-append">
-										<input type="submit" class="btn btn-primary" form="checkform2" formaction="{bootstrap_modal controller=user groupremove="$groupname" anchor='#contenttabs_admingroups-3'}" value="{tr}OK{/tr}" onclick="confirmAjax(event)">
+							{if $groupname neq 'Registered'}
+								<div class="input-group">
+									<select class="form-control" name="action">
+										<option value="no_action" selected="selected">
+											{tr}Select action to perform with checked{/tr}...
+										</option>
+										<option value="manage_groups">{tr}Unassign{/tr}</option>
+									</select>
+									<span class="input-group-append">
+										<input
+											type="submit"
+											class="btn btn-primary"
+											form="checkform2"
+											formaction="{bootstrap_modal controller=user groupremove="$groupname" anchor='#contenttabs_admingroups-3'}"
+											value="{tr}OK{/tr}"
+											onclick="confirmPopup(event, true)"
+										>
 									</span>
 						</div>
 					{/if}
@@ -605,65 +644,77 @@
 					<em>{tr}No members{/tr}</em>
 				</div>
 			{/if}
-			<div class="col-lg-4">
-				<form id="addorban" method="post" action="tiki-admingroups.php">
-					<h2>{tr}Add or ban users{/tr}</h2>
-					<div>
-						<select name="user[]" multiple="multiple" size="10" class="custom-select">
-							{foreach from=$userslist item=iuser}
-								<option>{$iuser|escape}</option>
-							{/foreach}
-						</select>
-					</div>
-					<div class="mt-1">
-						<button type="submit" class="btn btn-link tips" form="addorban" formaction="{bootstrap_modal controller=group action=add_user}" title=":{tr}Add to group{/tr}" onclick="confirmAjax(event)">
-							{icon name=add}
-						</button>
-						<button type="submit" class="btn btn-link tips" form="addorban" formaction="{bootstrap_modal controller=group action=ban_user}" title=":{tr}Ban from group{/tr}" onclick="confirmAjax(event)">
-							{icon name=ban iclass="text-danger"}
-						</button>
-					</div>
-					<input type="hidden" name="group" value="{$groupname|escape}">
-				</form>
+				<div class="col-lg-4">
+					<form id="addorban" method="post" action="tiki-admingroups.php">
+						<h2>{tr}Add or ban users{/tr}</h2>
+						<div>
+							<select name="user[]" multiple="multiple" size="10" class="custom-select">
+								{foreach from=$userslist item=iuser}
+									<option>{$iuser|escape}</option>
+								{/foreach}
+							</select>
+						</div>
+						<div>
+							<button
+								type="submit"
+								class="btn btn-link tips"
+								form="addorban"
+								formaction="{bootstrap_modal controller=group action=add_user}"
+								title=":{tr}Add to group{/tr}"
+								onclick="confirmPopup(event, true)"
+							>
+								{icon name=add size=2}
+							</button>
+							<button
+								type="submit"
+								class="btn btn-link tips"
+								form="addorban"
+								formaction="{bootstrap_modal controller=group action=ban_user}"
+								title=":{tr}Ban from group{/tr}"
+								onclick="confirmPopup(event, true)"
+							>
+								{icon name=ban iclass="alert-danger" size=2}
+							</button>
+						</div>
+						<input type="hidden" name="group" value="{$groupname|escape}">
+					</form>
+				</div>
 			</div>
-		</div>
-	{/tab}
+		{/tab}
 
 	{assign var=tabgroup_bannedtabgroup value="{tr}Users banned from{/tr}"}
 	{$gname = "{$groupname|escape}"}
 
 	{tab name="{$tabgroup_bannedtabgroup} {$gname}"}
-	{* ----------------------- tab with users banned from group --------------------------------------- *}
-		<h2>{tr}Banned members{/tr} <span class="badge badge-secondary">{$bannedCount}</span></h2>
-		{if $bannedlist|count > 0}
-			<div class="{if $js}table-responsive {/if}ts-wrapperdiv"> {* table-responsive class cuts off css drop-down menus *}
-				<form id="checkform3" method="post">
-					<table id="bannedMembers" class="table normal table-striped table-hover" data-count="{$bannedCount}">
-						<thead>
-						<tr>
-							<th id="checkbox" class="auto">{select_all checkbox_names='user[]'}</th>
-							<th id="user">{tr}User{/tr}</th>
-							<th id="unban">{tr}Unban user{/tr}</th>
-						</tr>
-						</thead>
-						<tbody>
-						{foreach from=$bannedlist item=member}
-							<tr>
-								<td class="checkbox-cell">
-									<div class="form-check"><input type="checkbox" name="user[]" value="{$member}"></div>
-								</td>
-								<td class="username">{$member|userlink}</td>
-								<td class="action">
-									<a href="{bootstrap_modal controller=group action=unban_user user=$member group=$groupname}" class="tips" title=":{tr _0=$member _1=$group}Unban user %0 from group %1{/tr}">
-										{icon name="ok"}
-									</a>
-								</td>
-							</tr>
-						{/foreach}
-						</tbody>
-					</table>
-					<input type="hidden" name="group" value="{$groupname}">
-			</div>
+			{* ----------------------- tab with users banned from group --------------------------------------- *}
+			<h2>{tr}Banned members{/tr} <span class="badge badge-secondary">{$bannedCount}</span></h2>
+			{if $bannedlist|count > 0}
+				<div class="{if $js}table-responsive {/if}ts-wrapperdiv"> {* table-responsive class cuts off css drop-down menus *}
+					<form id="checkform3" method="post">
+						<table id="bannedMembers" class="table normal table-striped table-hover" data-count="{$bannedCount}">
+							<thead>
+								<tr>
+									<th id="checkbox" class="auto">{select_all checkbox_names='user[]'}</th>
+									<th id="user">{tr}User{/tr}</th>
+									<th id="unban">{tr}Unban user{/tr}</th>
+								</tr>
+							</thead>
+							<tbody>
+								{foreach from=$bannedlist item=member}
+									<tr>
+										<td class="checkbox-cell"><div class="form-check"><input type="checkbox" name="user[]" value="{$member}"></div></td>
+										<td class="username">{$member|userlink}</td>
+										<td class="action">
+											<a href="{bootstrap_modal controller=group action=unban_user user=$member group=$groupname}" class="tips" title=":{tr _0=$member _1=$group}Unban user %0 from group %1{/tr}">
+												{icon name="ok"}
+											</a>
+										</td>
+									</tr>
+								{/foreach}
+							</tbody>
+						</table>
+						<input type="hidden" name="group" value="{$groupname}">
+				</div>
 			{if !$ts.ajax}
 				<div class="input-group col-sm-8">
 					<select class="form-control" name="action">
@@ -671,9 +722,17 @@
 							{tr}Select action to perform with checked{/tr}...
 						</option>
 						<option value="unban_user">{tr}Unban{/tr}</option>
-					</select> <span class="input-group-append">
-							<input type="submit" class="btn btn-primary" form="checkform3" formaction="{bootstrap_modal controller=group}" value="{tr}OK{/tr}" onclick="confirmAjax(event)">
-						</span>
+					</select>
+					<span class="input-group-append">
+						<input
+							type="submit"
+							class="btn btn-primary"
+							form="checkform3"
+							formaction="{bootstrap_modal controller=group}"
+							value="{tr}OK{/tr}"
+							onclick="confirmPopup(event, true)"
+						>
+					</span>
 				</div>
 				</form>
 				<br>
@@ -696,6 +755,7 @@
 
 		{if !$ts.ajax}
 			<form method="post" action="tiki-admingroups.php" enctype="multipart/form-data" class="form-horizontal">
+				{ticket}
 				<input type="hidden" name="group" value="{$groupname|escape}">
 
 				<h2>{tr}Export group users (CSV file){/tr}</h2>				<br>

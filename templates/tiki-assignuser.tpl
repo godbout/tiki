@@ -42,15 +42,35 @@
 				{foreach from=$user_info.groups item=what key=grp name=groups}
 					{if $what eq 'included'}<i>{/if}{$grp|escape}{if $what eq 'included'}</i>{/if}
 					{if $grp != "Anonymous" && $grp != "Registered" and $what neq 'included'}
-						<a class="tips" href="tiki-assignuser.php?{if $offset}offset={$offset}&amp;{/if}maxRecords={$prefs.maxRecords}&amp;sort_mode={$sort_mode}{if $assign_user}&amp;assign_user={$assign_user|escape:url}{/if}&amp;action=removegroup&amp;group={$grp|escape:url}" title=":{tr}Remove{/tr}">
-							{icon name='remove' style="vertical-align:middle"}
-						</a>
+						<form method="post" class="form-horizontal d-inline">
+							{ticket}
+							<input type="hidden" value="{$grp|escape}" name="group">
+							<input type="hidden" value="removegroup" name="action">
+							<input type="hidden" value="{$user_info.login|escape}" name="login">
+							<input type="hidden" value="{$prefs.maxRecords}" name="maxRecords">
+							{if isset($offset)}
+								<input type="hidden" value="{$offset}" name="offset">
+							{/if}
+							{if $assign_user}
+								<input type="hidden" value="{$assign_user|escape}" name="assign_user">
+							{/if}
+							<input type="hidden" value="{$sort_mode}" name="sort_mode">
+							<button
+								type="submit"
+								class="btn btn-link p-0 tips"
+								title=":{tr}Remove{/tr}"
+								onclick="confirmPopup('{tr}Remove user from group?{/tr}')"
+							>
+								{icon name='remove' style="vertical-align:middle"}
+							</button>
+						</form>
 					{/if}{if !$smarty.foreach.groups.last},{/if}&nbsp;&nbsp;
 				{/foreach}
 			</div>
 		</div>
 	</form>
-	<form method="post" action="tiki-assignuser.php{if $assign_user}?assign_user={$assign_user|escape:'url'}{/if}" class="form-horizontal">
+	<form method="post" action="tiki-assignuser.php" class="form-horizontal">
+		{ticket}
 		<div class="form-group row">
 			<label class="col-sm-3 col-form-label">{tr}Default Group{/tr}</label>
 			<div class="col-sm-6">
@@ -60,6 +80,9 @@
 						<option value="{$name|escape}" {if $name eq $user_info.default_group}selected="selected"{/if}>{$name|escape}</option>
 					{/foreach}
 				</select>
+				{if $assign_user}
+					<input type="hidden" value="{$assign_user|escape}" name="assign_user">
+				{/if}
 				<input type="hidden" value="{$user_info.login|escape}" name="login">
 				<input type="hidden" value="{$prefs.maxRecords}" name="maxRecords">
 				<input type="hidden" value="{$offset}" name="offset">
@@ -76,6 +99,7 @@
 {include file='find.tpl' find_show_num_rows='y'}
 
 <form method="post" action="tiki-assignuser.php{if $assign_user}?assign_user={$assign_user|escape:'url'}{/if}">
+	{ticket}
 	<div class="{if $js}table-responsive{/if}"> {*the table-responsive class cuts off dropdown menus *}
 <table class="table table-striped table-hover">
 	<tr>
@@ -104,23 +128,34 @@
 
 				{/if}</td>
 				<td class="action">
-					{actions}
-						{strip}
-							{if $users[user].what ne 'real'}
-								<action>
-									<a href="tiki-assignuser.php?{if $offset}offset={$offset}&amp;{/if}maxRecords={$prefs.maxRecords}&amp;sort_mode={$sort_mode}&amp;action=assign&amp;group={$users[user].groupName|escape:url}{if $assign_user}&amp;assign_user={$assign_user|escape:url}{/if}">
-										{icon name='add' _menu_text='y' _menu_icon='y' alt="{tr}Assign{/tr}"}
-									</a>
-								</action>
-							{elseif $users[user].groupName ne "Registered"}
-								<action>
-									<a href="tiki-assignuser.php?{if $offset}offset={$offset}&amp;{/if}maxRecords={$prefs.maxRecords}&amp;sort_mode={$sort_mode}{if $assign_user}&amp;assign_user={$assign_user|escape:url}{/if}&amp;action=removegroup&amp;group={$users[user].groupName|escape:url}">
-										{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Unassign{/tr}"}
-									</a>
-								</action>
-							{/if}
-						{/strip}
-					{/actions}
+					{if $users[user].what ne 'real'}
+						{$action = 'assign'}
+						{$tooltip = "{tr}Assign{/tr}"}
+						{$iconname = 'add'}
+					{elseif $users[user].groupName ne "Registered"}
+						{$action = 'removegroup'}
+						{$tooltip = "{tr}Unassign{/tr}"}
+						{$iconname = 'remove'}
+					{/if}
+					<form method="post" action="tiki-assignuser.php" class="form-horizontal">
+						{ticket}
+						{if $assign_user}
+							<input type="hidden" value="{$assign_user|escape}" name="assign_user">
+						{/if}
+						<input type="hidden" value="{$users[user].groupName|escape}" name="group">
+						<input type="hidden" value="{$prefs.maxRecords}" name="maxRecords">
+						<input type="hidden" value="{$offset}" name="offset">
+						<input type="hidden" value="{$sort_mode}" name="sort_mode">
+						<button
+							type="submit"
+							name="{$action}"
+							value="assign"
+							class="btn btn-link link-list tips"
+							title=":{$tooltip}"
+						>
+							{icon name="{$iconname}"}
+						</button>
+					</form>
 				</td>
 			</tr>
 		{/if}

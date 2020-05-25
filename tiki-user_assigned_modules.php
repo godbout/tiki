@@ -27,8 +27,13 @@ if (isset($_REQUEST["recreate"]) && $access->checkCsrf()) {
 }
 
 // Initial setup of default modules - no ticket required even though this changes the database. Origin is checked.
-if (! $usermoduleslib->user_has_assigned_modules($user) && $access->checkOrigin()) {
-	$usermoduleslib->create_user_assigned_modules($user);
+if (! $usermoduleslib->user_has_assigned_modules($user) && $access->checkCsrf(tr('As the first step in assigning user modules, click "Confirm action" to create the default module assignments'))) {
+	$result = $usermoduleslib->create_user_assigned_modules($user);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Default user modules assigned'));
+	} else {
+		Feedback::error(tr('Default user modules not assigned'));
+	}
 }
 
 if (isset($_REQUEST["unassign"]) && $access->checkCsrf()) {

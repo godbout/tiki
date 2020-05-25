@@ -32,48 +32,70 @@ if (! isset($_REQUEST["assign_user"]) || ($tiki_p_admin != 'y' && $tiki_p_admin_
 
 $assign_user = $_REQUEST["assign_user"];
 
-if (isset($_REQUEST["action"]) && $access->checkOrigin()) {
+if (isset($_REQUEST["action"])) {
 	if (! isset($_REQUEST["group"])) {
-		$smarty->assign('msg', tra("You have to indicate a group"));
-		$smarty->display("error.tpl");
-		die;
-	}
-
-	$access->check_authenticity(tr('Are you sure you want to add user %0 to group %1', $_REQUEST['assign_user'], $_REQUEST['group']));
-
-	if ($userChoice == 'y') {
-		$gps = $userlib->get_groups(0, -1, 'groupName_asc', '', '', '', '', $userChoice);
-		$groups = [];
-		foreach ($gps['data'] as $g) {
-			$groups[$g['groupName']] = $g;
+		Feedback::error(tr('A group must be indicated'));
+	} else {
+		if ($userChoice == 'y') {
+			$gps = $userlib->get_groups(0, -1, 'groupName_asc', '', '', '', '', $userChoice);
+			$groups = [];
+			foreach ($gps['data'] as $g) {
+				$groups[$g['groupName']] = $g;
+			}
+		} elseif ($tiki_p_admin != 'y') {
+			$groups = $userlib->get_user_groups_inclusion($user);
 		}
-	} elseif ($tiki_p_admin != 'y') {
-		$groups = $userlib->get_user_groups_inclusion($user);
-	}
-	if ($_REQUEST["action"] == 'assign') {
-		if (! $userlib->group_exists($_REQUEST["group"])) {
-			$smarty->assign('msg', tra("This group is invalid"));
-			$smarty->display("error.tpl");
-			die;
+		if ($_REQUEST["action"] == 'assign' && $access->checkCsrf()) {
+			if (! $userlib->group_exists($_REQUEST["group"])) {
+				Feedback::error(tr('Invalid group'));
+			} elseif ($tiki_p_admin_users == 'y'
+				||($tiki_p_admin_users == 'y' && array_key_exists($_REQUEST["group"], $groups))
+			) {
+				$result = $userlib->assign_user_to_group($_REQUEST["assign_user"], $_REQUEST["group"]);
+				if ($result && $result->numRows()) {
+					Feedback::success(tr('Assigned user %0 to group %1',
+						htmlspecialchars($_REQUEST["assign_user"]),
+						htmlspecialchars($_REQUEST["group"]))
+					);
+					$logslib->add_log('perms', sprintf("Assigned %s in group %s", $_REQUEST["assign_user"], $_REQUEST["group"]));
+				} else {
+					Feedback::error(tr('User %0 not assigned to group %1',
+							htmlspecialchars($_REQUEST["assign_user"]),
+							htmlspecialchars($_REQUEST["group"]))
+					);
+				}
+			}
+		} elseif ($_REQUEST["action"] == 'removegroup' && ($tiki_p_admin == 'y' && $access->checkCsrf()
+				|| ($tiki_p_admin_users == 'y' && array_key_exists($_REQUEST["group"], $groups) && $access->checkCsrf()))) {
+			$result = $userlib->remove_user_from_group($_REQUEST["assign_user"], $_REQUEST["group"]);
+			if ($result && $result->numRows()) {
+				Feedback::success(tr('Removed user %0 from group %1',
+						htmlspecialchars($_REQUEST["assign_user"]),
+						htmlspecialchars($_REQUEST["group"]))
+				);
+				$logslib->add_log('perms', sprintf("Removed %s from group %s", $_REQUEST["assign_user"], $_REQUEST["group"]));
+			} else {
+				Feedback::error(tr('User %0 not removed from group %1',
+						htmlspecialchars($_REQUEST["assign_user"]),
+						htmlspecialchars($_REQUEST["group"]))
+				);
+			}
 		}
-		if ($tiki_p_admin_users == 'y' ||($tiki_p_admin_users == 'y' && array_key_exists($_REQUEST["group"], $groups))) {
-			$userlib->assign_user_to_group($_REQUEST["assign_user"], $_REQUEST["group"]);
-			$logslib->add_log('perms', sprintf("Assigned %s in group %s", $_REQUEST["assign_user"], $_REQUEST["group"]));
-		}
-	} elseif ($_REQUEST["action"] == 'removegroup' && ($tiki_p_admin == 'y' || ($tiki_p_admin_users == 'y' && array_key_exists($_REQUEST["group"], $groups)))) {
-		$access->check_authenticity();
-		$userlib->remove_user_from_group($_REQUEST["assign_user"], $_REQUEST["group"]);
-		$logslib->add_log('perms', sprintf("Removed %s from group %s", $_REQUEST["assign_user"], $_REQUEST["group"]));
 	}
 }
 
-if (isset($_REQUEST['set_default']) && $access->checkOrigin()) {
-	$userlib->set_default_group($_REQUEST['login'], $_REQUEST['defaultgroup']);
+if (isset($_REQUEST['set_default']) && $access->checkCsrf()) {
+	$result = $userlib->set_default_group($_REQUEST['login'], $_REQUEST['defaultgroup']);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Default group set'));
+	} else {
+		Feedback::error(tr('Default group not set'));
+	}
 }
 
 $user_info = $userlib->get_user_info($assign_user, true);
 $smarty->assign_by_ref('user_info', $user_info);
-if (! empty($_REQUEST['save']) && $access->checkOrigin()) {
+if (! empty($_REQUEST['save']) && $access->checkCsrf()) {
 	foreach ($_REQUEST as $r => $v) {
 		if (strpos($r, 'new_') === 0) {
 			$g = substr($r, 4);
@@ -82,7 +104,12 @@ if (! empty($_REQUEST['save']) && $access->checkOrigin()) {
 				$t = $tikilib->make_time(date('H', $t), date('i', $t), 0, date('m', $t), date('d', $t), date('Y', $t));
 				if ($t !== false) {
 					$g_info = $userlib->get_groupId_info($g);
-					$userlib->extend_membership($assign_user, $g_info['groupName'], 0, $t);
+					$result = $userlib->extend_membership($assign_user, $g_info['groupName'], 0, $t);
+					if ($result && $result->numRows()) {
+						Feedback::success(tr('Default group set'));
+					} else {
+						Feedback::error(tr('Default group not set'));
+					}
 				}
 			}
 		}

@@ -33,7 +33,7 @@ $auto_query_args = ['userId', 'view_user'];
 
 $headerlib->add_map();
 
-// Make sure user preferences uses https if set
+// Make sure user preferences uses https if SET
 if (! $https_mode && isset($https_login) && $https_login == 'required') {
 	header('Location: ' . $base_url_https . 'tiki-user_preferences.php');
 	die;
@@ -394,12 +394,7 @@ if ($prefs['twoFactorAuth'] == 'y' && ! empty($tfaSecret)) {
 	$smarty->assign('tfaSecretQR', $tfaSecretQR);
 }
 
-if (isset($_POST['deleteaccount']) && $tiki_p_delete_account == 'y' && $access->checkCsrf()) {
-	if (! isset($_POST['deleteaccountconfirm']) || $_POST['deleteaccountconfirm'] != '1') {
-		$smarty->assign('msg', tra("If you really want to delete your account, you must check the checkbox"));
-		$smarty->display("error.tpl");
-		die;
-	}
+if (isset($_POST['deleteaccount']) && $tiki_p_delete_account == 'y' && $access->checkCsrf(true)) {
 	$userlib->remove_user($userwatch);
 	if ($user == $userwatch) {
 		header('Location: tiki-logout.php');

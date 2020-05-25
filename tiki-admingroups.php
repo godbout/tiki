@@ -79,9 +79,9 @@ $smarty->assign('trackers', $trackers);
 if ($prefs['feature_user_watches'] == 'y') {
 	if (! empty($user)) {
 		$tikilib = TikiLib::lib('tiki');
-		if (isset($_REQUEST['watch']) && $access->checkOrigin()) {
+		if (isset($_REQUEST['watch']) && $access->checkCsrf()) {
 			$tikilib->add_user_watch($user, 'user_joins_group', $_REQUEST['watch'], 'group');
-		} elseif (isset($_REQUEST['unwatch']) && $access->checkOrigin()) {
+		} elseif (isset($_REQUEST['unwatch']) && $access->checkCsrf()) {
 			$tikilib->remove_user_watch($user, 'user_joins_group', $_REQUEST['unwatch'], 'group');
 		}
 	}
@@ -100,11 +100,11 @@ if (isset($_REQUEST["theme"])) {
 	$ag_theme = $_REQUEST["theme"];
 }
 
-if (isset($_REQUEST['clean']) && $access->checkOrigin()) {
+if (isset($_REQUEST['clean']) && $access->checkCsrf()) {
 	$cachelib = TikiLib::lib('cache');
-	check_ticket('admin-groups');
 	$cachelib->invalidate('grouplist');
 	$cachelib->invalidate('groupIdlist');
+	Feedback::success(tr('Group cache cleared'));
 }
 if (! isset($_REQUEST['maxRecords'])) {
 	$numrows = $maxRecords;
@@ -361,7 +361,7 @@ if (! empty($_REQUEST['group']) && isset($_REQUEST['export'])) {
 	echo $data;
 	die;
 }
-if (! empty($_REQUEST['group']) && isset($_REQUEST['import']) && $access->checkOrigin()) {
+if (! empty($_REQUEST['group']) && isset($_REQUEST['import']) && $access->checkCsrf()) {
 	$fname = $_FILES['csvlist']['tmp_name'];
 	$fhandle = fopen($fname, 'r');
 	$fields = fgetcsv($fhandle, 1000);
@@ -384,7 +384,7 @@ if (! empty($_REQUEST['group']) && isset($_REQUEST['import']) && $access->checkO
 				$errors[] = $data[0];
 			} else {
 				$res = $userlib->assign_user_to_group($data[0], $_REQUEST['group']);
-				if ($res) {
+				if ($res && $res->numRows()) {
 					$successes[] = $data[0];
 				}
 			}
@@ -441,8 +441,6 @@ $smarty->assign('group_info', $re);
 $smarty->assign('isRole', $isRole);
 $smarty->assign('isTplGroup', $isTplGroup);
 
-ask_ticket('admin-groups');
-
 // Assign the list of groups
 $smarty->assign_by_ref('users', $users["data"]);
 // disallow robots to index page:
@@ -453,7 +451,9 @@ $smarty->display("tiki.tpl");
 
 /**
  * @param $direct_groups
+ *
  * @return array
+ * @throws Exception
  */
 function indirectly_inherited_groups($direct_groups)
 {
