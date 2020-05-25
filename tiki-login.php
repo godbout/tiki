@@ -67,7 +67,7 @@ if (! isset($_SESSION['loginfrom']) && isset($_SERVER['HTTP_REFERER']) && ! preg
 		}
 	}
 }
-if (isset($_REQUEST['su']) && $access->checkCsrfForm(tr('Switch user?'))) {
+if (isset($_REQUEST['su']) && $access->checkCsrf(true)) {
 	$loginlib = TikiLib::lib('login');
 
 	if ($loginlib->isSwitched() && $_REQUEST['su'] == 'revert') {
@@ -121,7 +121,7 @@ $smarty->assign('twoFactorForm', $twoFactorForm);
 
 // Go through the intertiki process
 if (isset($_REQUEST['intertiki']) and in_array($_REQUEST['intertiki'], array_keys($prefs['interlist']))
-	&& $access->checkCsrf('page')) {
+	&& $access->checkCsrf(null, null, null, null, null, 'page')) {
 	$rpcauth = $userlib->intervalidate($prefs['interlist'][$_REQUEST['intertiki']], $requestedUser, $pass, ! empty($prefs['feature_intertiki_mymaster']) ? true : false);
 	if (! $rpcauth) {
 		$logslib->add_log('login', 'intertiki : ' . $requestedUser . '@' . $_REQUEST['intertiki'] . ': Failed');
@@ -226,7 +226,7 @@ if (isset($_REQUEST['intertiki']) and in_array($_REQUEST['intertiki'], array_key
 	// If the password is valid but it is due then force the user to change the password by
 	// sending the user to the new password change screen without letting him use tiki
 	// The user must re-enter the old password so no security risk here
-	if (! $isvalid && $error === ACCOUNT_WAITING_USER && $access->checkCsrf('page')) {
+	if (! $isvalid && $error === ACCOUNT_WAITING_USER && $access->checkCsrf(null, null, null, null, null, 'page')) {
 		if ($requestedUser != 'admin') { // admin has not necessarely an email
 			if ($userlib->is_email_due($requestedUser)) {
 				$userlib->send_confirm_email($requestedUser);
@@ -253,7 +253,7 @@ if (isset($_REQUEST['intertiki']) and in_array($_REQUEST['intertiki'], array_key
 	}
 }
 
-if ($isvalid && $access->checkCsrf('page')) {
+if ($isvalid && $access->checkCsrf(null, null, null, null, null, 'page')) {
 	$userlib->set_unsuccessful_logins($requestedUser, 0);
 	if ($prefs['feature_invite'] == 'y') {
 		// tiki-invite, this part is just here to add groups to users which just registered after received an
@@ -519,7 +519,7 @@ if ($isvalid && $access->checkCsrf('page')) {
 	$smarty->display('tiki.tpl');
 	exit;
 }
-if (isset($user) && $access->checkCsrf('page')) {
+if (isset($user) && $access->checkCsrf(null, null, null, null, null, 'page')) {
 	TikiLib::events()->trigger(
 		'tiki.user.login',
 		[
@@ -554,7 +554,7 @@ if (defined('SID') && SID != '') {
 // Check if a wizard should be run.
 // If a wizard is run, it will return to the $url location when it has completed. Thus no code after $wizardlib->onLogin will be executed
 // The user must be actually logged in before onLogin is called. If $isdue is set, then: "Note that the user is not logged in he's just validated to change his password"
-if (! $isdue && $access->checkCsrf('page')) {
+if (! $isdue && $access->checkCsrf(null, null, null, null, null, 'page')) {
 	if ($prefs['feature_user_encryption'] === 'y') {
 		// Notify CryptLib about the login
 		$cryptlib = TikiLib::lib('crypt');
