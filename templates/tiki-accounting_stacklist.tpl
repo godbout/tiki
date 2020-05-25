@@ -61,7 +61,7 @@
 								type="submit"
 								class="btn btn-link"
 								style="float:left;padding:unset;border:none"
-								onclick="confirmSimple(event, '{tr _0="{$s.stackId|escape:'attr'}" _1="{$book.bookName|escape:'attr'}"}Delete stack %0 from book %1?{/tr}')"
+								onclick="confirmPopup('{tr _0="{$s.stackId|escape:'attr'}" _1="{$book.bookName|escape:'attr'}"}Delete stack %0 from book %1?{/tr}')"
 							>
 								{icon name="remove" title=":{tr}Remove transaction{/tr}" class="tips"}
 							</button>
@@ -72,7 +72,7 @@
 									type="submit"
 									class="btn btn-link"
 									style="float:left;padding:unset;border:none"
-									onclick="confirmSimple(event, '{tr _0="{$s.stackId|escape:'attr'}" _1="{$book.bookName|escape:'attr'}"}Confirm stack %0 for book %1?{/tr}')"
+									onclick="confirmPopup('{tr _0="{$s.stackId|escape:'attr'}" _1="{$book.bookName|escape:'attr'}"}Confirm stack %0 for book %1?{/tr}')"
 								>
 									{icon name="ok" title=":{tr}Confirm transaction{/tr}" class="tips"}
 								</button>

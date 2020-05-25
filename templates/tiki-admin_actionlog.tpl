@@ -319,7 +319,7 @@
 														</a>
 													</action>
 													<action>
-														<a href="tiki-admin_actionlog.php?checked={$actionlog.actionId}&amp;action=remove" onclick="confirmSimple(event, '{tr}Delete action from log?{/tr}', '{ticket mode=get}')">
+														<a href="tiki-admin_actionlog.php?checked={$actionlog.actionId}&amp;action=remove" onclick="confirmPopup('{tr}Delete action from log?{/tr}', '{ticket mode=get}')">
 															{icon name='delete' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 														</a>
 													</action>
@@ -344,7 +344,7 @@
 							</option>
 							<option
 								value="remove"
-								class="confirm-simple"
+								class="confirm-popup"
 								data-confirm-text="{tr}Delete selected actions from log?{/tr}"
 							>
 								{tr}Remove{/tr}
@@ -354,7 +354,7 @@
 							<button
 								type="submit"
 								class="btn btn-secondary"
-								onclick="confirmSimple(event)"
+								onclick="confirmPopup()"
 							>
 								{tr}OK{/tr}
 							</button>

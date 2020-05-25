@@ -71,7 +71,7 @@
 					class="btn btn-danger btn-sm float-sm-right"
 					name="delete"
 					value="{tr}Delete{/tr}"
-					onclick="confirmSimple(event, '{tr}Delete archive message?{/tr}')"
+					onclick="confirmPopup('{tr}Delete archive message?{/tr}')"
 				>
 			</form>
 	</div>

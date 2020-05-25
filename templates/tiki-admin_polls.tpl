@@ -170,7 +170,7 @@
 										{/self_link}
 									</action>
 									<action>
-										<a href="tiki-admin_polls.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].pollId}" onclick="confirmSimple(event, '{tr}Delete poll?{/tr}', '{ticket mode=get}')">
+										<a href="tiki-admin_polls.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].pollId}" onclick="confirmPopup('{tr}Delete poll?{/tr}', '{ticket mode=get}')">
 											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 										</a>
 									</action>

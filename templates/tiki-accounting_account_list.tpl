@@ -71,7 +71,7 @@
 							<action>
 								<a href="tiki-accounting_account.php?bookId={$bookId|escape:'attr'}&accountId={$a.accountId|escape:'attr'}&action=delete"
 									class="iconmenu"
-									onclick="confirmSimple(event, '{tr}Remove account?{/tr}', '{ticket mode=get}')"
+									onclick="confirmPopup('{tr}Remove account?{/tr}', '{ticket mode=get}')"
 								>
 									{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>

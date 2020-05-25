@@ -143,7 +143,7 @@
 								</action>
 								<action>
 									<a href="tiki-admin_calendars.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;drop={$id}&amp;calendarId={$id}"
-										onclick="confirmSimple(event, '{tr}Delete calendar?{/tr}', '{ticket mode=get}')"
+										onclick="confirmPopup('{tr}Delete calendar?{/tr}', '{ticket mode=get}')"
 									>
 										{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 									</a>
@@ -488,7 +488,7 @@
 						class="btn btn-warning offset-sm-4"
 						name="clean"
 						value="{tr}Delete{/tr}"
-						onclick="confirmSimple(event, '{tr}Delete old events?{/tr}')"
+						onclick="confirmPopup('{tr}Delete old events?{/tr}')"
 					>
 				</div>
 			</fieldset>

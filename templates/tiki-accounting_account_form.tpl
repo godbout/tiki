@@ -68,7 +68,7 @@
 							class="btn btn-warning"
 							name="action"
 							value="delete"
-							onclick="confirmSimple(event, '{tr _0="{$account.accountName|escape:'attr'}" _1="{$book.bookName|escape:'attr'}"}Delete account %0 from book %1?{/tr}')"
+							onclick="confirmPopup('{tr _0="{$account.accountName|escape:'attr'}" _1="{$book.bookName|escape:'attr'}"}Delete account %0 from book %1?{/tr}')"
 						>
 							{tr}Delete this account{/tr}
 						</button>

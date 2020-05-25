@@ -234,7 +234,7 @@
 												name="um_remove"
 												value="{$user_modules[user].name|escape}"
 												class="btn btn-link link-list"
-												onclick="confirmSimple(event, '{tr}Delete custom module?{/tr}')"
+												onclick="confirmPopup('{tr}Delete custom module?{/tr}')"
 											>
 												{icon name='remove'} {tr}Delete{/tr}
 											</button>

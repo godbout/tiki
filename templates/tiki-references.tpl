@@ -82,7 +82,7 @@
 											</a>
 										</action>
 										<action>
-											<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id action=delete}" onclick="confirmSimple(event, '{tr}Delete reference?{/tr}', '{ticket mode=get}')">
+											<a href="{query _noauto='y' _type='relative' referenceId=$references[reference].ref_id action=delete}" onclick="confirmPopup('{tr}Delete reference?{/tr}', '{ticket mode=get}')">
 												{icon name="remove" _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 											</a>
 										</action>

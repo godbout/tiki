@@ -45,7 +45,7 @@
 							{ticket}
 							<input type="hidden" name="attId" value="{$attachments[x].attId}&amp;action={$move}">
 							<input type="hidden" name="action" value="{$move}">
-							<button  class="btn btn-link tips" title=":{$tip}" onclick="confirmSimple(event, '{$confirm}')">{icon name=move}</button>
+							<button  class="btn btn-link tips" title=":{$tip}" onclick="confirmPopup('{$confirm}')">{icon name=move}</button>
 						</form>
 					</td>
 				</tr>

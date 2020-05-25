@@ -111,7 +111,7 @@
 							form="galremove"
 							name="rmvorphimg"
 							value="1"
-							onclick="confirmSimple(event, '{tr}Remove orphan images?{/tr}')"
+							onclick="confirmPopup('{tr}Remove orphan images?{/tr}')"
 						>
 							{tr}Remove{/tr}
 						</button>

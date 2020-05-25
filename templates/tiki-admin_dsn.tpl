@@ -60,7 +60,7 @@
 								{permission_link mode=text type=dsn id=$channels[user].name title=$channels[user].name}
 							</action>
 							<action>
-								<a id="delete-link" href="tiki-admin_dsn.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].dsnId}" onclick="confirmSimple(event, '{tr}Remove DSN?{/tr}', '{ticket mode=get}')">
+								<a id="delete-link" href="tiki-admin_dsn.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].dsnId}" onclick="confirmPopup('{tr}Remove DSN?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>

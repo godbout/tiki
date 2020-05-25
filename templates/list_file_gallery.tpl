@@ -111,7 +111,7 @@
 								{if $tiki_p_admin_file_galleries eq 'y' or $tiki_p_remove_files eq 'y'}
 									<option
 										value="delsel_x"
-										class="confirm-simple"
+										class="confirm-popup"
 										data-confirm-text="{tr}Delete selected items?{/tr}"
 									>
 										{tr}Delete{/tr}
@@ -134,7 +134,7 @@
 									{if $tiki_p_admin_file_galleries eq 'y'}
 										<option
 											value="defaultsel_x"
-											class="confirm-simple"
+											class="confirm-popup"
 											data-confirm-text="{tr}Reset to default list view settings?{/tr}"
 										>
 											{tr}Reset to default list view settings{/tr}
@@ -150,7 +150,7 @@
 									class="btn btn-primary"
 									form="fgalform"
 									type="submit"
-									onclick="confirmSimple(event)"
+									onclick="confirmPopup()"
 								>
 									{tr}OK{/tr}
 								</button>
@@ -230,7 +230,6 @@
 								type="submit"
 								name="permsel"
 								value="{tr}Assign{/tr}"
-								onclick="checkTimeout()"
 							>
 						</div>
 					</div>

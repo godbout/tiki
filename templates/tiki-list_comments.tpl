@@ -67,7 +67,6 @@
 											name="action"
 											value="unarchive"
 											class="btn btn-link link-list"
-											onclick="checkTimeout()"
 										>
 											{icon name='file-archive-open'} {tr}Unarchive{/tr}
 										</button>
@@ -83,7 +82,6 @@
 											name="action"
 											value="archive"
 											class="btn btn-link link-list"
-											onclick="checkTimeout()"
 										>
 											{icon name='file-archive'} {tr}Archive{/tr}
 										</button>
@@ -92,7 +90,7 @@
 							{/if}
 						{/if}
 						<action>
-							<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=remove" onclick="confirmSimple(event, '{tr}Delete comment?{/tr}', '{ticket mode=get}')">
+							<a href="tiki-list_comments.php?checked={$id|escape:'url'}&amp;action=remove" onclick="confirmPopup('{tr}Delete comment?{/tr}', '{ticket mode=get}')">
 								{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 							</a>
 						</action>
@@ -170,7 +168,7 @@
 			<option value="no_action" selected="selected">
 				{tr}Select action to perform with checked{/tr}...
 			</option>
-			<option value="remove" class="confirm-simple" data-confirm-text="{tr}Delete selected comments?{/tr}">
+			<option value="remove" class="confirm-popup" data-confirm-text="{tr}Delete selected comments?{/tr}">
 				{tr}Delete{/tr}
 			</option>
 			{if $tiki_p_admin_comments eq 'y' and $prefs.feature_banning eq 'y'}
@@ -179,7 +177,7 @@
 				</option>
 				<option
 					value="ban_remove"
-					class="confirm-simple"
+					class="confirm-popup"
 					data-confirm-text="{tr}Delete and ban selected comments?{/tr}"
 				>
 					{tr}Delete and ban{/tr}
@@ -203,7 +201,7 @@
 			{/if}
 		</select>
 		<span class="input-group-append">
-			<button type="submit" class="btn btn-secondary" onclick="confirmSimple(event)">
+			<button type="submit" class="btn btn-secondary" onclick="confirmPopup()">
 				{tr}OK{/tr}
 			</button>
 		</span>

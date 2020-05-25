@@ -70,7 +70,7 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].extwikiId}" onclick="confirmSimple(event, '{tr}Remove external wiki?{/tr}', '{ticket mode=get}')">
+								<a href="tiki-admin_external_wikis.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].extwikiId}" onclick="confirmPopup('{tr}Remove external wiki?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>

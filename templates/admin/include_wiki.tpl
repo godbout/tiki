@@ -228,16 +228,16 @@
 						</div>
 						{if !empty($prefs.w_use_dir)}
 							{tr}If you change storage, it is better to move all the files for easy backup...{/tr}
-							{button href="tiki-admin.php?page=wikiatt&all2db=1" _text="{tr}Change all to db{/tr}" _onclick="confirmSimple(event, '{tr}Move all attachments to database?{/tr}', '{ticket mode=get}')"}
-							{button href="tiki-admin.php?page=wikiatt&all2file=1" _text="{tr}Change all to file{/tr}" _onclick="confirmSimple(event, '{tr}Move all attachments to file system?{/tr}', '{ticket mode=get}')"}
+							{button href="tiki-admin.php?page=wikiatt&all2db=1" _text="{tr}Change all to db{/tr}" _onclick="confirmPopup('{tr}Move all attachments to database?{/tr}', '{ticket mode=get}')"}
+							{button href="tiki-admin.php?page=wikiatt&all2file=1" _text="{tr}Change all to file{/tr}" _onclick="confirmPopup('{tr}Move all attachments to file system?{/tr}', '{ticket mode=get}')"}
 						{/if}
 					</div>
 					{preference name=feature_wiki_pictures}
 					<div class="adminoptionboxchild" id="feature_wiki_pictures_childcontainer">
 						{preference name=feature_filegals_manager}
 						<div class="offset-sm-4 col-sm-8">
-							{button href="tiki-admin.php?page=wiki&amp;rmvunusedpic=1" _text="{tr}Remove unused pictures{/tr}" _onclick="confirmSimple(event, '{tr}Remove unused pictures?{/tr}', '{ticket mode=get}')"}
-							{button href="tiki-admin.php?page=wiki&amp;moveWikiUp=1" _text="{tr}Move images from wiki_up to the home file gallery{/tr}" _onclick="confirmSimple(event, '{tr}Move images to home gallery?{/tr}', '{ticket mode=get}')"}
+							{button href="tiki-admin.php?page=wiki&amp;rmvunusedpic=1" _text="{tr}Remove unused pictures{/tr}" _onclick="confirmPopup('{tr}Remove unused pictures?{/tr}', '{ticket mode=get}')"}
+							{button href="tiki-admin.php?page=wiki&amp;moveWikiUp=1" _text="{tr}Move images from wiki_up to the home file gallery{/tr}" _onclick="confirmPopup('{tr}Move images to home gallery?{/tr}', '{ticket mode=get}')"}
 							<span class="form-text">
 								{tr}If you use these buttons please make sure to have a backup of the database and the directory wiki_up{/tr}
 							</span>

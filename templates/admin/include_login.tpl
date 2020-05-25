@@ -193,7 +193,7 @@
 			<fieldset>
 				<div class="form-group row">
 					<div class="col-sm-8 offset-sm-4">
-						{button href="?page=login&amp;refresh_email_group=y" _onclick="confirmSimple(event, '{tr}Assign users to groups based on email patterns?{/tr}', '{ticket mode=get}')" _text="{tr}Assign users to groups by matching email patterns{/tr}"}
+						{button href="?page=login&amp;refresh_email_group=y" _onclick="confirmPopup('{tr}Assign users to groups based on email patterns?{/tr}', '{ticket mode=get}')" _text="{tr}Assign users to groups by matching email patterns{/tr}"}
 						<div class="form-text">{tr}An email pattern must be defined in the settings for at least one group for this to produce any results.{/tr}</div>
 					</div>
 				</div>
@@ -517,7 +517,7 @@
 								value="{tr}Delete Temporary Index{/tr}"
 								name="deleteIndex"
 								class="btn btn-danger btn-sm"
-								onclick="confirmSimple(event, '{tr}Delete temporary index?{/tr}')"
+								onclick="confirmPopup('{tr}Delete temporary index?{/tr}')"
 							>
 							{help desc="{tr}It is recommended that you delete indexed passwords from your database after your done generating your password lists.
 							They can take up quite a lot of space and serve no pourpose after processing is complete.{/tr}"}

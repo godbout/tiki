@@ -33,8 +33,8 @@
 										<button
 											type="submit"
 											class="tips btn-link"
-											title=":{tr}Close book{/tr}"{if $js}
-											onclick="confirmSimple(event, '{tr}Close book? (This action cannot be undone){/tr}')"{/if}
+											title=":{tr}Close book{/tr}"
+											onclick="confirmPopup('{tr}Close book? (This action cannot be undone){/tr}')"
 										>
 											{tr}open{/tr} {icon name="file-archive"}
 										</button>

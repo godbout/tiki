@@ -140,7 +140,7 @@ var account='';
 				name="bookstack"
 				id="bookstack"
 				value="{tr}Book{/tr}"
-				onclick="confirmSimple(event, '{$text|escape:'attr'}')"
+				onclick="confirmPopup('{$text|escape:'attr'}')"
 			>
 			{button href="tiki-accounting.php?bookId=$bookId" _text="{tr}Back to book page{/tr}"}
 		</form>

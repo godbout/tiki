@@ -119,7 +119,7 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_html_pages.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].pageName|escape:"url"}" onclick="confirmSimple(event, '{tr}Remove HTML page?{/tr}', '{ticket mode=get}')">
+								<a href="tiki-admin_html_pages.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].pageName|escape:"url"}" onclick="confirmPopup('{tr}Remove HTML page?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>

@@ -55,7 +55,7 @@ if (jqueryTiki.no_cookie) {
 								type="submit"
 								class="btn btn-primary"
 								name="actsu"
-								onclick="confirmSimple(event, '{tr}Return to main user?{/tr}')"
+								onclick="confirmPopup('{tr}Return to main user?{/tr}')"
 							>
 								{tr}Switch{/tr}
 							</button>
@@ -97,7 +97,7 @@ if (jqueryTiki.no_cookie) {
 								type="submit"
 								class="btn btn-primary"
 								name="actsu"
-								onclick="confirmSimple(event, '{tr}Switch user?{/tr}')"
+								onclick="confirmPopup('{tr}Switch user?{/tr}')"
 							>
 								{tr}Switch{/tr}
 							</button>

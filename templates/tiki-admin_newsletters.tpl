@@ -70,7 +70,7 @@
 										{/self_link}
 									</action>
 									<action>
-										{self_link _icon_name='remove' _menu_text='y' _menu_icon='y' remove=$channels[user].nlId _onclick="confirmSimple(event, '{tr}Remove newsletter?{/tr}', '{ticket mode=get}')"}
+										{self_link _icon_name='remove' _menu_text='y' _menu_icon='y' remove=$channels[user].nlId _onclick="confirmPopup('{tr}Remove newsletter?{/tr}', '{ticket mode=get}')"}
 											{tr}Remove{/tr}
 										{/self_link}
 									</action>

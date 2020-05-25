@@ -60,7 +60,7 @@
 								<a class="tips text-danger"
 								   title=":{tr}Remove{/tr}"
 								   href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$groups_g[ix].nlId|urlencode}&amp;group={$groups_g[ix].groupName|urlencode}"
-								   onclick="confirmSimple(event, '{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
+								   onclick="confirmPopup('{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
 								>
 									{icon name='remove'}
 								</a>
@@ -92,7 +92,7 @@
 								<a class="tips text-danger"
 								   title=":{tr}Remove{/tr}"
 								   href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$nlId|urlencode}&amp;included={$incId|urlencode}"
-								   onclick="confirmSimple(event, '{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
+								   onclick="confirmPopup('{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
 								>
 									{icon name='remove'}
 								</a>
@@ -124,7 +124,7 @@
 								<a class="tips text-danger"
 								   title=":{tr}Remove{/tr}"
 								   href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;remove={$pages[ix].nlId|urlencode}&amp;page={$pages[ix].wikiPageName|urlencode}"
-								   onclick="confirmSimple(event, '{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
+								   onclick="confirmPopup('{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
 								>
 									{icon name='remove'}
 								</a>
@@ -179,7 +179,7 @@
 									class="link"
 									href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;valid={$channels[user].nlId|urlencode}&amp;{if $channels[user].isUser eq "y"}user{else}email{/if}={$channels[user].email|escape:"url"}"
 									title="{tr}Valid{/tr}"
-									onclick="confirmSimple(event, '{tr}Mark subscription as valid?{/tr}', '{ticket mode=get}')"
+									onclick="confirmPopup('{tr}Mark subscription as valid?{/tr}', '{ticket mode=get}')"
 								>
 									{tr}No{/tr}
 								</a>
@@ -195,7 +195,7 @@
 								class="tips text-danger"
 								title=":{tr}Remove{/tr}"
 								href="tiki-admin_newsletter_subscriptions.php?nlId={$nlId|urlencode}&amp;offset={$offset|urlencode}&amp;sort_mode={$sort_mode|urlencode}&amp;remove={$channels[user].nlId|urlencode}&amp;{if $channels[user].isUser eq "y"}subuser{else}email{/if}={$channels[user].email|escape:"url"}"
-								onclick="confirmSimple(event, '{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
+								onclick="confirmPopup('{tr}Remove subscription?{/tr}', '{ticket mode=get}')"
 							>
 								{icon name='remove'}
 							</a>
@@ -215,7 +215,7 @@
 					</option>
 					<option
 						value="delsel_x"
-						class="confirm-simple"
+						class="confirm-popup"
 						data-confirm-text="{tr}Remove selected subscriptions?{/tr}"
 					>
 						{tr}Remove subscription{/tr}
@@ -225,7 +225,7 @@
 					<button
 						type="submit"
 						class="btn btn-secondary"
-						onclick="confirmSimple(event)"
+						onclick="confirmPopup()"
 					>
 						{tr}OK{/tr}
 					</button>

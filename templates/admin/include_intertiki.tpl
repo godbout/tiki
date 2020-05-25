@@ -90,7 +90,7 @@
 												value="{$k}"
 												class="btn btn-link tips"
 												title="{tr}Delete master server{/tr}:{$k}"
-												onclick="confirmSimple(event, '{tr}Remove this server?{/tr}')"
+												onclick="confirmPopup('{tr}Remove this server?{/tr}')"
 											>
 												{icon name='delete'}
 											</button>
@@ -142,7 +142,7 @@
 													class="btn btn-link tips"
 													value="{$k|escape:'attr'}"
 													title=":{tr}Delete{/tr}"
-													onclick="confirmSimple(event, '{tr}Remove this host?{/tr}')"
+													onclick="confirmPopup('{tr}Remove this host?{/tr}')"
 												>
 													{icon name='delete'}
 												</button>

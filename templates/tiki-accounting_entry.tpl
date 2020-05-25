@@ -44,7 +44,7 @@ var account='';
 					<td class="accompactlist">
 						{if $tiki_p_acct_manage_accounts =='y'}
 							<a href="tiki-accounting_account.php?bookId={$bookId}&action=edit&accountId={$a.accountId}">{icon name=edit}</a>
-							<a href="tiki-accounting_account.php?bookId={$bookId}&action=delete&accountId={$a.accountId}" onclick="confirmSimple(event, '{tr _0="{$a.accountName|escape:'attr'}"}Delete account %0?{/tr}', '{ticket mode=get}')">{icon name=delete}</a>
+							<a href="tiki-accounting_account.php?bookId={$bookId}&action=delete&accountId={$a.accountId}" onclick="confirmPopup('{tr _0="{$a.accountName|escape:'attr'}"}Delete account %0?{/tr}', '{ticket mode=get}')">{icon name=delete}</a>
 						{/if}
 						<a href="javascript:setAccount({$a.accountId})">{$a.accountId}</a>
 					</td>
@@ -152,7 +152,7 @@ var account='';
 			name="book"
 			id="book"
 			value="{tr}Book{/tr}"
-			onclick="confirmSimple(event, '{tr _0="{$book.bookName|escape:'attr'}"}Record entry in book %0?{/tr}')"
+			onclick="confirmPopup('{tr _0="{$book.bookName|escape:'attr'}"}Record entry in book %0?{/tr}')"
 		>
 		{button href="tiki-accounting.php?bookId=$bookId" _text="{tr}Back to book page{/tr}"}
 	</form>

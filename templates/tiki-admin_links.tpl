@@ -34,7 +34,7 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_links.php?remove={$links[user].url|escape:"url"}" onclick="confirmSimple(event, '{tr}Remove featured link?{/tr}', '{ticket mode=get}')">
+								<a href="tiki-admin_links.php?remove={$links[user].url|escape:"url"}" onclick="confirmPopup('{tr}Remove featured link?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>

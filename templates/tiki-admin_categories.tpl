@@ -214,7 +214,7 @@
 									</div>
 								</td>
 								<td class="icon">
-									<a href="tiki-admin_categories.php?parentId={$parentId}&amp;removeObject={$objects[ix].catObjectId}&amp;fromCateg={$parentId}" class="tips text-danger" title=":{tr}Remove from this category{/tr}" onclick="confirmSimple(event, '{tr}Remove object from category?{/tr}', '{ticket mode=get}')">
+									<a href="tiki-admin_categories.php?parentId={$parentId}&amp;removeObject={$objects[ix].catObjectId}&amp;fromCateg={$parentId}" class="tips text-danger" title=":{tr}Remove from this category{/tr}" onclick="confirmPopup('{tr}Remove object from category?{/tr}', '{ticket mode=get}')">
 										{icon name='remove'}
 									</a>
 								</td>
@@ -276,7 +276,7 @@ $("#remove_object_form").unbind("submit").submit(function (e) {
 								class="btn btn-primary btn-sm"
 								name="unassign"
 								value="{tr}OK{/tr}"
-								onclick="confirmSimple(event, '{tr}Unassign objects from category?{/tr}')"
+								onclick="confirmPopup('{tr}Unassign objects from category?{/tr}')"
 							>
 						</div>
 					</div>

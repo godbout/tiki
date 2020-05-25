@@ -29,11 +29,11 @@
 			{/if}
 			{if $user and $prefs.feature_user_watches eq 'y'}
 				{if $user_watching_blog eq 'n'}
-					<a class="dropdown-item" href="tiki-view_blog.php?blogId={$blogId}&amp;watch_event=blog_post&amp;watch_object={$blogId}&amp;watch_action=add" onclick="confirmSimple(event, '{tr}Monitor this?{/tr}', '{ticket mode=get}')">
+					<a class="dropdown-item" href="tiki-view_blog.php?blogId={$blogId}&amp;watch_event=blog_post&amp;watch_object={$blogId}&amp;watch_action=add" onclick="confirmPopup('{tr}Monitor?{/tr}', '{ticket mode=get}')">
 						{icon name='watch'} {tr}Monitor{/tr}
 					</a>
 				{else}
-					<a class="dropdown-item" href="tiki-view_blog.php?blogId={$blogId}&amp;watch_event=blog_post&amp;watch_object={$blogId}&amp;watch_action=remove" onclick="confirmSimple(event, '{tr}Remove this item?{/tr}', '{ticket mode=get}')">
+					<a class="dropdown-item" href="tiki-view_blog.php?blogId={$blogId}&amp;watch_event=blog_post&amp;watch_object={$blogId}&amp;watch_action=remove" onclick="confirmPopup('{tr}Stop monitoring?{/tr}', '{ticket mode=get}')">
 						{icon name='stop_watching'} {tr}Stop monitoring{/tr}
 					</a>
 				{/if}

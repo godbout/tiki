@@ -47,7 +47,7 @@
 			<td class="text">{$words[user].word}</td>
 			<td class="text">{$words[user].url}</td>
 			<td class="action">
-				<a class="tips" href="tiki-admin_hotwords.php?remove={$words[user].word|escape:"url"}{if $offset}&amp;offset={$offset}{/if}&amp;sort_mode={$sort_mode}" title=":{tr}Delete{/tr}" onclick="confirmSimple(event, '{tr}Delete hotword?{/tr}', '{ticket mode=get}')">
+				<a class="tips" href="tiki-admin_hotwords.php?remove={$words[user].word|escape:"url"}{if $offset}&amp;offset={$offset}{/if}&amp;sort_mode={$sort_mode}" title=":{tr}Delete{/tr}" onclick="confirmPopup('{tr}Delete hotword?{/tr}', '{ticket mode=get}')">
 					{icon name='remove'}
 				</a>
 			</td>

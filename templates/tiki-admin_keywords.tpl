@@ -66,7 +66,7 @@
 												name="remove_keywords"
 												value="1"
 												class="btn btn-link link-list"
-												onclick="confirmSimple(event, '{tr}Remove keywords for this page?{/tr}')"
+												onclick="confirmPopup('{tr}Remove keywords for this page?{/tr}')"
 											>
 												{icon name='remove'} {tr}Remove{/tr}
 											</button>

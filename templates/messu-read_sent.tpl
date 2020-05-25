@@ -71,7 +71,7 @@
 				class="btn btn-primary btn-sm float-sm-right"
 				name="delete"
 				value="{tr}Delete{/tr}"
-				onclick="confirmSimple(event, '{tr}Delete sent message?{/tr}')"
+				onclick="confirmPopup('{tr}Delete sent message?{/tr}')"
 			>
 		</form>
 	</div>

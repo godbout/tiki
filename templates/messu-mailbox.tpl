@@ -114,7 +114,7 @@
 			class="btn btn-warning btn-sm ml-2"
 			name="delete"
 			value="{tr}Delete{/tr}"{if $js}
-			onclick="confirmSimple(event, '{tr}Delete selected messages?{/tr}')"{/if}
+			onclick="confirmPopup('{tr}Delete selected messages?{/tr}')"{/if}
 		>
 		<input type="submit" class="btn btn-primary btn-sm" name="archive" value="{tr}Archive{/tr}">
 		<input type="submit" class="btn btn-primary btn-sm" name="download" value="{tr}Download{/tr}">

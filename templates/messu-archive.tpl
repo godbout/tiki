@@ -64,7 +64,7 @@
 			class="btn btn-danger btn-sm"
 			name="delete"
 			value="{tr}Delete{/tr}"
-			onclick="confirmSimple(event, '{tr}Delete selected messages?{/tr}')"
+			onclick="confirmPopup('{tr}Delete selected messages?{/tr}')"
 		>
 		<input type="submit" class="btn btn-primary btn-sm" name="unarchive" value="{tr}Unarchive{/tr}">
 		<input type="submit" class="btn btn-primary btn-sm" name="download" value="{tr}Download{/tr}">

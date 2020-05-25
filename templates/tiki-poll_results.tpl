@@ -145,7 +145,7 @@
 									value="1"
 									class="btn btn-link p-0 tips"
 									title=":{tr}Remove{/tr}"
-									onclick="confirmSimple(event, '{tr}Delete vote?{/tr}')"
+									onclick="confirmPopup('{tr}Delete vote?{/tr}')"
 								>
 									{icon name="remove"}
 								</button>

@@ -40,7 +40,7 @@
 		{/if}
 
 		{if $file.perms.tiki_p_create_file_galleries eq 'y'}
-			{self_link _icon_name='remove' _menu_text=$menu_text _menu_icon=$menu_icon removegal=$file.id _onclick="confirmSimple(event, '{tr}Delete gallery?{/tr}', '{ticket mode=get}')"}
+			{self_link _icon_name='remove' _menu_text=$menu_text _menu_icon=$menu_icon removegal=$file.id _onclick="confirmPopup('{tr}Delete gallery?{/tr}', '{ticket mode=get}')"}
 				{tr}Delete{/tr}
 			{/self_link}
 		{/if}
@@ -158,10 +158,10 @@
 			or $file.perms.tiki_p_edit_gallery_file eq 'y'))}
 			{if $file.archiveId == 0}
 				{if $prefs.feature_file_galleries_save_draft eq 'y' and $file.nbDraft gt 0}
-					{self_link _icon_name='ok' _menu_text=$menu_text _menu_icon=$menu_icon validate=$file.fileId galleryId=$file.galleryId _onclick="confirmSimple(event, '{tr}Validate draft?{/tr}', '{ticket mode=get}')"}
+					{self_link _icon_name='ok' _menu_text=$menu_text _menu_icon=$menu_icon validate=$file.fileId galleryId=$file.galleryId _onclick="confirmPopup('{tr}Validate draft?{/tr}', '{ticket mode=get}')"}
 						{tr}Validate your draft{/tr}
 					{/self_link}
-					{self_link _icon_name='remove' _menu_text=$menu_text _menu_icon=$menu_icon draft=remove remove=$file.fileId galleryId=$file.galleryId _onclick="confirmSimple(event, '{tr}Delete draft?{/tr}', '{ticket mode=get}')"}
+					{self_link _icon_name='remove' _menu_text=$menu_text _menu_icon=$menu_icon draft=remove remove=$file.fileId galleryId=$file.galleryId _onclick="confirmPopup('{tr}Delete draft?{/tr}', '{ticket mode=get}')"}
 						{tr}Delete your draft{/tr}
 					{/self_link}
 				{/if}
@@ -179,7 +179,7 @@
 							{icon _menu_text=$menu_text _menu_icon=$menu_icon name='edit' alt="{tr}Edit properties{/tr}"}
 						</a>
 						{* using &amp; causes an error for some reason - therefore using plain & *}
-						<a href="tiki-list_file_gallery.php?galleryId={$file.galleryId}&fileId={$file.id}&action=refresh_metadata{if isset($view)}&view={$view}{/if}" onclick="confirmSimple(event, '{tr}Refresh metadata?{/tr}', '{ticket mode=get}')">
+						<a href="tiki-list_file_gallery.php?galleryId={$file.galleryId}&fileId={$file.id}&action=refresh_metadata{if isset($view)}&view={$view}{/if}" onclick="confirmPopup('{tr}Refresh metadata?{/tr}', '{ticket mode=get}')">
 							{icon _menu_text=$menu_text _menu_icon=$menu_icon name='tag' alt="{tr}Refresh metadata{/tr}"}
 						</a>
 						{if $view != 'page'}
@@ -200,7 +200,7 @@
 					{if $file.lockedby}
 						{* Notify user in confirm message when file is locked by another user *}
 						{if $user && $user !== $file.user}
-							{self_link _icon_name='unlock' _menu_text=$menu_text _menu_icon=$menu_icon lock='n' fileId=$file.fileId galleryId=$file.galleryId _onclick="confirmSimple(event, '{tr _0="$file.user"}File already locked by %0{/tr}', '{ticket mode=get}')"}
+							{self_link _icon_name='unlock' _menu_text=$menu_text _menu_icon=$menu_icon lock='n' fileId=$file.fileId galleryId=$file.galleryId _onclick="confirmPopup('{tr _0="$file.user"}File already locked by %0{/tr}', '{ticket mode=get}')"}
 								{tr}Unlock{/tr}
 							{/self_link}
 						{else}
@@ -209,7 +209,7 @@
 								<input type="hidden" name="lock" value="n">
 								<input type="hidden" name="fileId" value="{$file.fileId|escape:'attr'}">
 								<input type="hidden" name="galleryId" value="{$file.galleryId|escape:'attr'}">
-								<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+								<button type="submit" class="btn btn-link link-list">
 									{icon name='unlock'} {tr}Unlock{/tr}
 								</button>
 							</form>
@@ -219,7 +219,7 @@
 							or (!isset($file.p_download_files) and $file.perms.tiki_p_download_files eq 'y')}
 							{if $prefs.javascript_enabled eq 'y'}
 								{* with javascript, the main page will be reloaded to lock the file and change its lockedby information *}
-								{self_link _icon_name='download' _menu_text=$menu_text _menu_icon=$menu_icon lock='y' fileId=$file.fileId galleryId=$file.galleryId _onclick="window.open('{$file.fileId|sefurl:file:with_next}'); confirmSimple(event, '{tr}Lock file?{/tr}', '{ticket mode=get}')"}
+								{self_link _icon_name='download' _menu_text=$menu_text _menu_icon=$menu_icon lock='y' fileId=$file.fileId galleryId=$file.galleryId _onclick="window.open('{$file.fileId|sefurl:file:with_next}'); confirmPopup('{tr}Lock file?{/tr}', '{ticket mode=get}')"}
 									{tr}Download and lock{/tr}
 								{/self_link}
 							{else}
@@ -234,7 +234,7 @@
 							<input type="hidden" name="lock" value="y">
 							<input type="hidden" name="fileId" value="{$file.fileId|escape:'attr'}">
 							<input type="hidden" name="galleryId" value="{$file.galleryId|escape:'attr'}">
-							<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+							<button type="submit" class="btn btn-link link-list">
 								{icon name='lock'} {tr}Lock{/tr}
 							</button>
 						</form>
@@ -267,7 +267,7 @@
 			or (!$file.lockedby and (($user and $user eq $file.user)
 			or ($file.perms.tiki_p_edit_gallery_file eq 'y'
 			and $file.perms.tiki_p_remove_files eq 'y')))}
-				<a href="tiki-list_file_gallery.php?remove={$file.fileId}&galleryId={$file.galleryId}" onclick="confirmSimple(event, '{tr}Delete file?{/tr}', '{ticket mode=get}')">
+				<a href="tiki-list_file_gallery.php?remove={$file.fileId}&galleryId={$file.galleryId}" onclick="confirmPopup('{tr}Delete file?{/tr}', '{ticket mode=get}')">
 					{icon _menu_text=$menu_text _menu_icon=$menu_icon name='remove' alt="{tr}Delete{/tr}"}
 				</a>
 		{/if}

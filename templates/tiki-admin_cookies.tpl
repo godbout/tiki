@@ -37,7 +37,7 @@
 <h2>{tr}Cookies{/tr}</h2>
 {if $channels}
 	<div class="t_navbar">
-		{button href="?removeall=1" _icon_name="trash" _text="{tr}Remove all cookies{/tr}" _onclick="confirmSimple(event, '{tr}Remove all cookies?{/tr}', '{ticket mode=get}')"}
+		{button href="?removeall=1" _icon_name="trash" _text="{tr}Remove all cookies{/tr}" _onclick="confirmPopup('{tr}Remove all cookies?{/tr}', '{ticket mode=get}')"}
 	</div>
 {/if}
 
@@ -69,7 +69,7 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_cookies.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].cookieId}" onclick="confirmSimple(event, '{tr}Remove cookie?{/tr}', '{ticket mode=get}')">
+								<a href="tiki-admin_cookies.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].cookieId}" onclick="confirmPopup('{tr}Remove cookie?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>

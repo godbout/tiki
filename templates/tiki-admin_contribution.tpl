@@ -136,7 +136,7 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_contribution.php?remove={$contributions[ix].contributionId}" onclick="confirmSimple(event, '{tr}Remove contribution?{/tr}', '{ticket mode=get}')">
+								<a href="tiki-admin_contribution.php?remove={$contributions[ix].contributionId}" onclick="confirmPopup('{tr}Remove contribution?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 								</a>
 							</action>

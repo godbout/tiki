@@ -200,7 +200,7 @@
 							class="btn btn-warning btn-sm tips"
 							name="del" value="{tr}x{/tr}"
 							title=":{tr}Remove{/tr}"
-							onclick="confirmSimple(event,'{tr}Delete selected banning rules?{/tr}')"
+							onclick="confirmPopup('{tr}Delete selected banning rules?{/tr}')"
 						>
 					{/if}
 				</th>
@@ -239,7 +239,7 @@
 									</a>
 								</action>
 								<action>
-									<a href="tiki-admin_banning.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;find={$find}&amp;delsec[{$items[user].banId}]=y&amp;del=y" onclick="confirmSimple(event, '{tr}Delete banning rule?{/tr}', '{ticket mode=get}', );">
+									<a href="tiki-admin_banning.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;find={$find}&amp;delsec[{$items[user].banId}]=y&amp;del=y" onclick="confirmPopup('{tr}Delete banning rule?{/tr}', '{ticket mode=get}', );">
 										{icon name='delete' _menu_text='y' _menu_icon='y' alt="{tr}Delete{/tr}"}
 									</a>
 								</action>

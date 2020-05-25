@@ -129,7 +129,7 @@
 						{$channels[user].user|escape}
 					</td>
 					<td class="action">
-						{icon name="delete" class="tips" href="{$smarty.server.SCRIPT_NAME}?{query removeevent=$channels[user].watchId removetype=$channels[user].watchtype}" title=":{tr}Delete{/tr}" onclick="confirmSimple(event, '{tr}Delete mail notification event?{/tr}', '{ticket mode=get}')"}
+						{icon name="delete" class="tips" href="{$smarty.server.SCRIPT_NAME}?{query removeevent=$channels[user].watchId removetype=$channels[user].watchtype}" title=":{tr}Delete{/tr}" onclick="confirmPopup('{tr}Delete mail notification event?{/tr}', '{ticket mode=get}')"}
 					</td>
 				</tr>
 			{sectionelse}
@@ -146,14 +146,14 @@
 				</option>
 				<option
 					value="delete"
-					class="confirm-simple"
+					class="confirm-popup"
 					data-confirm-text="{tr}Delete selected notification events?{/tr}"
 				>
 					{tr}Remove{/tr}
 				</option>
 			</select>
 			<span class="input-group-append">
-				<button type="submit" class="btn btn-primary" onclick="confirmSimple(event)">
+				<button type="submit" class="btn btn-primary" onclick="confirmPopup()">
 					{tr}OK{/tr}
 				</button>
 			</span>

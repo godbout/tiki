@@ -42,7 +42,7 @@
 						{section name=ix loop=$channels[user].sections}
 							{$channels[user].sections[ix]}
 							{if $channels[user].edit}
-								<a class="tips" title=":{tr}Delete{/tr}" class="link" href="tiki-admin_content_templates.php?removesection={$channels[user].sections[ix]}&amp;rtemplateId={$channels[user].templateId}" onclick="confirmSimple(event, '{tr}Remove section?{/tr}', '{ticket mode=get}')">
+								<a class="tips" title=":{tr}Delete{/tr}" class="link" href="tiki-admin_content_templates.php?removesection={$channels[user].sections[ix]}&amp;rtemplateId={$channels[user].templateId}" onclick="confirmPopup('{tr}Remove section?{/tr}', '{ticket mode=get}')">
 									{icon name='remove' alt="{tr}Remove section{/tr}"}
 								</a>
 							{/if}
@@ -74,7 +74,7 @@
 									{/if}
 									{if $channels[user].remove}
 										<action>
-											<a href="tiki-admin_content_templates.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].templateId}" onclick="confirmSimple(event, '{tr}Remove template?{/tr}', '{ticket mode=get}')">
+											<a href="tiki-admin_content_templates.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].templateId}" onclick="confirmPopup('{tr}Remove template?{/tr}', '{ticket mode=get}')">
 												{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 											</a>
 										</action>
