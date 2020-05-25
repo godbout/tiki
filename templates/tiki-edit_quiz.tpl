@@ -48,30 +48,33 @@
 						<td class="integer">{$channels[user].questions}</td>
 						<td class="integer">{$channels[user].results}</td>
 						<td class="action">
-							{capture name=edit_quiz_actions}
+							{actions}
 								{strip}
-									<a href="tiki-edit_quiz_questions.php?quizId={$channels[user].quizId}">
-										{icon name='help' _menu_text='y' _menu_icon='y' alt="{tr}Questions{/tr}"}
-									</a>
-									<a href="tiki-edit_quiz_results.php?quizId={$channels[user].quizId}">
-										{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}Results{/tr}"}
-									</a>
-									{permission_link mode=text type=quiz permType=quizzes id=$channels[user].quizId title=$channels[user].name}
-									{self_link _icon_name='edit' _menu_text='y' _menu_icon='y' cookietab='2' _anchor='anchor2' quizId=$channels[user].quizId}
-										{tr}Edit{/tr}
-									{/self_link}
-									<a href="tiki-edit_quiz.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].quizId}">
-										{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-									</a>
+									<action>
+										<a href="tiki-edit_quiz_questions.php?quizId={$channels[user].quizId}">
+											{icon name='help' _menu_text='y' _menu_icon='y' alt="{tr}Questions{/tr}"}
+										</a>
+									</action>
+									<action>
+										<a href="tiki-edit_quiz_results.php?quizId={$channels[user].quizId}">
+											{icon name='view' _menu_text='y' _menu_icon='y' alt="{tr}Results{/tr}"}
+										</a>
+									</action>
+									<action>
+										{permission_link mode=text type=quiz permType=quizzes id=$channels[user].quizId title=$channels[user].name}
+									</action>
+									<action>
+										{self_link _icon_name='edit' _menu_text='y' _menu_icon='y' cookietab='2' _anchor='anchor2' quizId=$channels[user].quizId}
+											{tr}Edit{/tr}
+										{/self_link}
+									</action>
+									<action>
+										<a href="tiki-edit_quiz.php?offset={$offset}&amp;sort_mode={$sort_mode}&amp;remove={$channels[user].quizId}">
+											{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
+										</a>
+									</action>
 								{/strip}
-							{/capture}
-							<a class="tips"
-								title="{tr}Actions{/tr}"
-								href="#" {popup fullhtml="1" center=true text=$smarty.capture.edit_quiz_actions}
-								style="padding:0; margin:0; border:0"
-									>
-								{icon name='wrench'}
-							</a>
+							{/actions}
 						</td>
 					</tr>
 					{sectionelse}
