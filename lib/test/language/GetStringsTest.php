@@ -34,7 +34,7 @@ class Language_GetStringsTest extends TikiTestCase
 		$this->fileType = $this->createMock('Language_FileType_Php');
 		$this->writeFileFactory = $this->createMock('Language_WriteFile_Factory');
 		$this->writeFile = $this->getMockBuilder('Language_WriteFile')
-								->setMethods(['writeStringsToFile'])
+								->onlyMethods(['writeStringsToFile'])
 								->disableOriginalConstructor()
 								->getMock();
 
@@ -103,7 +103,7 @@ class Language_GetStringsTest extends TikiTestCase
 	public function testCollectStrings_shouldCallRegexPostProcessMethodIfOneExists()
 	{
 		$php = $this->getMockBuilder('Language_FileType_Php')
-					->setMethods(['getExtensions', 'getCleanupRegexes', 'singleQuoted', 'doubleQuoted'])
+					->onlyMethods(['getExtensions', 'getCleanupRegexes', 'singleQuoted', 'doubleQuoted'])
 					->getMock();
 
 		$php->expects($this->exactly(2))->method('getExtensions')->willReturn(['.php']);
@@ -181,7 +181,7 @@ class Language_GetStringsTest extends TikiTestCase
 		$this->collectFiles->expects($this->exactly(1))->method('run')->with($this->baseDir)->willReturn($files);
 
 		$obj = $this->getMockBuilder('Language_GetStrings')
-					->setMethods(['collectStrings', 'writeToFiles'])
+					->onlyMethods(['collectStrings', 'writeToFiles'])
 					->setConstructorArgs([
 						$this->collectFiles,
 						$this->writeFileFactory,
@@ -223,7 +223,7 @@ class Language_GetStringsTest extends TikiTestCase
 	public function testSetLanguages_shouldCallGetAllLanguagesIfLanguageParamIsNull()
 	{
 		$obj = $this->getMockBuilder('Language_GetStrings')
-					->setMethods(['getAllLanguages'])
+					->onlyMethods(['getAllLanguages'])
 					->setConstructorArgs([$this->collectFiles, $this->writeFileFactory])
 					->getMock();
 
@@ -289,7 +289,7 @@ class Language_GetStringsTest extends TikiTestCase
 		];
 
 		$obj = $this->getMockBuilder('Language_GetStrings')
-					->setMethods(['collectStrings', 'setLanguages'])
+					->onlyMethods(['collectStrings', 'setLanguages'])
 					->setConstructorArgs([$this->collectFiles, $this->writeFileFactory])
 					->getMock();
 
@@ -312,7 +312,7 @@ class Language_GetStringsTest extends TikiTestCase
 		];
 
 		$obj = $this->getMockBuilder('Language_GetStrings')
-					->setMethods(['collectStrings', 'setLanguages'])
+					->onlyMethods(['collectStrings', 'setLanguages'])
 					->setConstructorArgs([$this->collectFiles, $this->writeFileFactory, ['outputFiles' => true]])
 					->getMock();
 

@@ -109,7 +109,7 @@ class Language_FileTest extends TikiTestCase
 		];
 
 		$obj = $this->getMockBuilder('Language_File')
-					->setMethods(['parse'])
+					->onlyMethods(['parse'])
 					->setConstructorArgs([$this->filePath])
 					->getMock();
 

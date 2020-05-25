@@ -7,7 +7,7 @@ class UserLibTest extends TikiTestCase
 	{
 		$userLibMock = $this
 			->getMockBuilder('UsersLib')
-			->setMethods(['get_user_preference', 'get_user_email', 'set_user_fields'])
+			->onlyMethods(['get_user_preference', 'get_user_email', 'set_user_fields'])
 			->getMock();
 
 		//realName - get_user_preference

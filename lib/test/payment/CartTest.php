@@ -14,7 +14,7 @@ class Payment_CartTest extends TikiTestCase
 		global $prefs;
 		$prefs['feature_sefurl'] = 'n';
 		$this->obj = $this->getMockBuilder('CartLib')
-			->setMethods(['get_gift_certificate_code'])
+			->onlyMethods(['get_gift_certificate_code'])
 			->getMock();
 		$_SERVER['REQUEST_URI'] = '/tiki-index.php';
 	}

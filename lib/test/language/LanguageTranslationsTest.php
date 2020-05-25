@@ -187,12 +187,12 @@ class LanguageTranslationsTest extends TikiTestCase
 
 	public function testGetFileUntranslated()
 	{
-		$cachelib = $this->getMockBuilder('Cachelib')->setMethods(['getSerialized', 'cacheItem'])->getMock();
+		$cachelib = $this->getMockBuilder('Cachelib')->onlyMethods(['getSerialized', 'cacheItem'])->getMock();
 		$cachelib->expects($this->once())->method('getSerialized')->with('untranslatedStrings.test_language.1234', 'untranslatedStrings')->willReturn(null);
 		$cachelib->expects($this->once())->method('cacheItem');
 
 		$obj = $this->getMockBuilder('LanguageTranslations')
-					->setMethods(['_getCacheLib', '_getFileHash'])
+					->onlyMethods(['_getCacheLib', '_getFileHash'])
 					->setConstructorArgs([$this->lang])
 					->getMock();
 
@@ -285,7 +285,7 @@ class LanguageTranslationsTest extends TikiTestCase
 				];
 
 		$obj = $this->getMockBuilder('LanguageTranslations')
-					->setMethods(['getFileTranslations', '_getDbTranslations'])
+					->onlyMethods(['getFileTranslations', '_getDbTranslations'])
 					->getMock();
 
 		$obj->expects($this->once())->method('getFileTranslations')->willReturn($fileTranslations);
@@ -308,7 +308,7 @@ class LanguageTranslationsTest extends TikiTestCase
 				];
 
 		$obj = $this->getMockBuilder('LanguageTranslations')
-					->setMethods(['getFileTranslations', '_getDbTranslations'])
+					->onlyMethods(['getFileTranslations', '_getDbTranslations'])
 					->getMock();
 
 		$obj->expects($this->once())->method('getFileTranslations')->willReturn($fileTranslations);
@@ -330,7 +330,7 @@ class LanguageTranslationsTest extends TikiTestCase
 				];
 
 		$obj = $this->getMockBuilder('LanguageTranslations')
-					->setMethods(['getFileTranslations', '_getDbTranslations'])
+					->onlyMethods(['getFileTranslations', '_getDbTranslations'])
 					->getMock();
 
 		$obj->expects($this->once())->method('getFileTranslations')->willReturn($fileTranslations);
@@ -352,7 +352,7 @@ class LanguageTranslationsTest extends TikiTestCase
 				];
 
 		$obj = $this->getMockBuilder('LanguageTranslations')
-					->setMethods(['getFileTranslations', '_getDbTranslations'])
+					->onlyMethods(['getFileTranslations', '_getDbTranslations'])
 					->getMock();
 
 		$obj->expects($this->once())->method('getFileTranslations')->willReturn($fileTranslations);
@@ -376,7 +376,7 @@ class LanguageTranslationsTest extends TikiTestCase
 	public function testGetDbTranslations()
 	{
 		$obj = $this->getMockBuilder('LanguageTranslations')
-					->setMethods(['_diff'])
+					->onlyMethods(['_diff'])
 					->setConstructorArgs(['test_language'])
 					->getMock();
 
@@ -390,7 +390,7 @@ class LanguageTranslationsTest extends TikiTestCase
 	public function testGetDbTranslationsMaxrecordsAndOffset()
 	{
 		$obj = $this->getMockBuilder('LanguageTranslations')
-					->setMethods(['_diff'])
+					->onlyMethods(['_diff'])
 					->setConstructorArgs(['test_language'])
 					->getMock();
 
@@ -404,7 +404,7 @@ class LanguageTranslationsTest extends TikiTestCase
 	public function testGetDbTranslationsSearch()
 	{
 		$obj = $this->getMockBuilder('LanguageTranslations')
-					->setMethods(['_diff'])
+					->onlyMethods(['_diff'])
 					->setConstructorArgs(['test_language'])
 					->getMock();
 
@@ -493,7 +493,7 @@ class LanguageTranslationsTest extends TikiTestCase
 	public function testGetAllUntranslated($dbUntranslated, $fileUntranslated, $dbTranslations)
 	{
 		$obj = $this->getMockBuilder('LanguageTranslations')
-					->setMethods(['getFileUntranslated', '_getDbUntranslated', '_getDbTranslations'])
+					->onlyMethods(['getFileUntranslated', '_getDbUntranslated', '_getDbTranslations'])
 					->getMock();
 
 		$obj->expects($this->once())->method('getFileUntranslated')->willReturn($fileUntranslated);

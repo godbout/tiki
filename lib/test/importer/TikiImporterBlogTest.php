@@ -24,7 +24,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
-			->setMethods(['parseData', 'insertData', 'setupTiki'])
+			->onlyMethods(['parseData', 'insertData', 'setupTiki'])
 			->getMock();
 		$obj->expects($this->once())->method('parseData');
 		$obj->expects($this->once())->method('insertData');
@@ -42,7 +42,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 
 		$expectedImportFeedback = ['importedPages' => 10, 'totalPages' => '13'];
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
-			->setMethods(['parseData', 'insertData', 'saveAndDisplayLog', 'setupTiki'])
+			->onlyMethods(['parseData', 'insertData', 'saveAndDisplayLog', 'setupTiki'])
 			->getMock();
 		$obj->expects($this->once())->method('parseData');
 		$obj->expects($this->once())->method('insertData')->willReturn($expectedImportFeedback);
@@ -63,7 +63,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
-			->setMethods(['insertItem', 'createBlog'])
+			->onlyMethods(['insertItem', 'createBlog'])
 			->getMock();
 		$obj->expects($this->once())->method('createBlog');
 		$obj->expects($this->exactly(6))->method('insertItem');
@@ -95,7 +95,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
-			->setMethods(['insertItem'])
+			->onlyMethods(['insertItem'])
 			->getMock();
 		$obj->expects($this->never())->method('insertItem');
 		$obj->parsedData = [
@@ -114,7 +114,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
-			->setMethods(['insertItem', 'createBlog'])
+			->onlyMethods(['insertItem', 'createBlog'])
 			->getMock();
 		$obj->expects($this->once())->method('createBlog');
 		$obj->expects($this->exactly(6))->method('insertItem')->willReturnOnConsecutiveCalls(true, true, true, true, false, true);
@@ -149,7 +149,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
-			->setMethods(['insertItem', 'createTags', 'createCategories', 'createBlog'])
+			->onlyMethods(['insertItem', 'createTags', 'createCategories', 'createBlog'])
 			->getMock();
 		$obj->expects($this->exactly(0))->method('insertItem');
 		$obj->expects($this->exactly(0))->method('createTags');
@@ -178,7 +178,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
-			->setMethods(['insertComments', 'insertPage'])
+			->onlyMethods(['insertComments', 'insertPage'])
 			->getMock();
 		$obj->expects($this->once())->method('insertComments')->with('Any name', 'wiki page');
 		$obj->expects($this->once())->method('insertPage')->willReturnOnConsecutiveCalls(true);
@@ -195,7 +195,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
-			->setMethods(['insertComments', 'insertPost'])
+			->onlyMethods(['insertComments', 'insertPost'])
 			->getMock();
 		$obj->expects($this->once())->method('insertComments')->with('Any name', 'blog post');
 		$obj->expects($this->once())->method('insertPost')->willReturnOnConsecutiveCalls(true);
@@ -210,7 +210,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
-			->setMethods(['insertComments', 'insertPost'])
+			->onlyMethods(['insertComments', 'insertPost'])
 			->getMock();
 		$obj->expects($this->once())->method('insertComments')->with(22, 'blog post', [1, 2]);
 		$obj->expects($this->once())->method('insertPost')->willReturnOnConsecutiveCalls(22);
@@ -228,7 +228,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
-			->setMethods(['insertComments', 'insertPost'])
+			->onlyMethods(['insertComments', 'insertPost'])
 			->getMock();
 		$obj->expects($this->exactly(0))->method('insertComments');
 		$obj->expects($this->once())->method('insertPost')->willReturnOnConsecutiveCalls(null);
@@ -251,7 +251,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$commentslib = TikiLib::lib('comments');
 
 		$commentslib = $this->getMockBuilder('Comments')
-			->setMethods(['post_new_comment'])
+			->onlyMethods(['post_new_comment'])
 			->getMock();
 		$commentslib->expects($this->exactly(2))
 							->method('post_new_comment')
@@ -275,7 +275,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$commentslib = TikiLib::lib('comments');
 
 		$commentslib = $this->getMockBuilder('Comments')
-			->setMethods(['post_new_comment', 'approve_comment'])
+			->onlyMethods(['post_new_comment', 'approve_comment'])
 			->getMock();
 		$commentslib->expects($this->exactly(2))
 						->method('post_new_comment')
@@ -300,17 +300,17 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$objectlib = TikiLib::lib('object');
 
 		$objectlib = $this->getMockBuilder('ObjectLib')
-			->setMethods(['insert_object'])
+			->onlyMethods(['insert_object'])
 			->getMock();
 		$objectlib->expects($this->once())->method('insert_object');
 
 		$importerWiki = $this->getMockBuilder('TikiImporter_Wiki')
-			->setMethods(['insertPage'])
+			->onlyMethods(['insertPage'])
 			->getMock();
 		$importerWiki->expects($this->once())->method('insertPage')->willReturn('HomePage');
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
-			->setMethods(['instantiateImporterWiki'])
+			->onlyMethods(['instantiateImporterWiki'])
 			->getMock();
 		$obj->expects($this->once())->method('instantiateImporterWiki');
 
@@ -330,12 +330,12 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$bloglib = TikiLib::lib('blog');
 
 		$bloglib = $this->getMockBuilder('BlogLib')
-			->setMethods(['blog_post'])
+			->onlyMethods(['blog_post'])
 			->getMock();
 		$bloglib->expects($this->once())->method('blog_post')->willReturn(1);
 
 		$objectlib = $this->getMockBuilder('ObjectLib')
-			->setMethods(['insert_object'])
+			->onlyMethods(['insert_object'])
 			->getMock();
 		$objectlib->expects($this->once())->method('insert_object');
 
@@ -353,7 +353,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 
 		$freetaglib = TikiLib::lib('freetag');
 		$freetaglib = $this->getMockBuilder('FreetagLib')
-			->setMethods(['find_or_create_tag'])
+			->onlyMethods(['find_or_create_tag'])
 			->getMock();
 		$freetaglib->expects($this->exactly(4))->method('find_or_create_tag');
 
@@ -371,7 +371,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 
 		$categlib = TikiLib::lib('categ');
 		$categlib = $this->getMockBuilder('CategLib')
-			->setMethods(['add_category', 'get_category_id'])
+			->onlyMethods(['add_category', 'get_category_id'])
 			->getMock();
 		$categlib->expects($this->exactly(3))->method('add_category');
 		$categlib->expects($this->exactly(1))->method('get_category_id');
@@ -394,7 +394,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 
 		$freetaglib = TikiLib::lib('freetag');
 		$freetaglib = $this->getMockBuilder('FreetagLib')
-			->setMethods(['_tag_object_array'])
+			->onlyMethods(['_tag_object_array'])
 			->getMock();
 		$freetaglib->expects($this->once())->method('_tag_object_array');
 
@@ -412,7 +412,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 
 		$categlib = TikiLib::lib('categ');
 		$categlib = $this->getMockBuilder('CategLib')
-			->setMethods(['get_category_id', 'get_object_id', 'categorize', 'add_categorized_object'])
+			->onlyMethods(['get_category_id', 'get_object_id', 'categorize', 'add_categorized_object'])
 			->getMock();
 		$categlib->expects($this->exactly(4))->method('get_category_id');
 		$categlib->expects($this->exactly(4))->method('get_category_id');
@@ -433,7 +433,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 
 		$bloglib = TikiLib::lib('blog');
 		$bloglib = $this->getMockBuilder('BlogLib')
-			->setMethods(['replace_blog'])
+			->onlyMethods(['replace_blog'])
 			->getMock();
 		$bloglib->expects($this->once())->method('replace_blog');
 
@@ -451,12 +451,12 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 
 		$bloglib = TikiLib::lib('blog');
 		$bloglib = $this->getMockBuilder('BlogLib')
-			->setMethods(['replace_blog'])
+			->onlyMethods(['replace_blog'])
 			->getMock();
 		$bloglib->expects($this->once())->method('replace_blog');
 
 		$tikilib = $this->getMockBuilder('TikiLib')
-			->setMethods(['set_preference'])
+			->onlyMethods(['set_preference'])
 			->getMock();
 		$tikilib->expects($this->exactly(2))->method('set_preference');
 

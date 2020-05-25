@@ -49,7 +49,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	{
 
 		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
-			->setMethods(['getListOfPackagesFromConfig'])
+			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
 
@@ -72,7 +72,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	{
 
 		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
-			->setMethods(['getListOfPackagesFromConfig'])
+			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
 
@@ -97,7 +97,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	{
 
 		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
-			->setMethods(['getListOfPackagesFromConfig'])
+			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
 
@@ -131,7 +131,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	{
 
 		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
-			->setMethods(['getListOfPackagesFromConfig'])
+			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
 
@@ -164,7 +164,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	function testInstallNotExistingPackage()
 	{
 		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
-			->setMethods(['installPackage'])
+			->onlyMethods(['installPackage'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
 
@@ -181,7 +181,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	function testInstallPackage()
 	{
 		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
-			->setMethods(['canExecuteComposer', 'installMissingPackages'])
+			->onlyMethods(['canExecuteComposer', 'installMissingPackages'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
 
@@ -213,7 +213,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	function testGetInstalled()
 	{
 		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
-			->setMethods(['getListOfPackagesFromConfig'])
+			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
 
@@ -258,7 +258,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	function testGetInstalledCaseMismatch()
 	{
 		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
-			->setMethods(['getListOfPackagesFromConfig'])
+			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
 
@@ -294,7 +294,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	function testRemoveUnknownPackageFails()
 	{
 		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
-			->setMethods(['removePackage'])
+			->onlyMethods(['removePackage'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
 
@@ -315,7 +315,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	function testRemovePackage()
 	{
 		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
-			->setMethods(['removePackage'])
+			->onlyMethods(['removePackage'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
 

@@ -23,7 +23,7 @@ class Language_WriteFileTest extends TikiTestCase
 		$lang->addChild($this->langFile);
 
 		$this->parseFile = $this->getMockBuilder('Language_File')
-								->setMethods(['getTranslations'])
+								->onlyMethods(['getTranslations'])
 								->setConstructorArgs([vfsStream::url('lang/language.php')])
 								->getMock();
 
@@ -49,7 +49,7 @@ class Language_WriteFileTest extends TikiTestCase
 		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn([]);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
-					->setMethods(['fileHeader'])
+					->onlyMethods(['fileHeader'])
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
@@ -98,7 +98,7 @@ class Language_WriteFileTest extends TikiTestCase
 		);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
-					->setMethods(['fileHeader'])
+					->onlyMethods(['fileHeader'])
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
@@ -125,7 +125,7 @@ class Language_WriteFileTest extends TikiTestCase
 		);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
-				->setMethods(['fileHeader'])
+				->onlyMethods(['fileHeader'])
 				->setConstructorArgs([$this->parseFile])
 				->getMock();
 
@@ -152,7 +152,7 @@ class Language_WriteFileTest extends TikiTestCase
 		);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
-					->setMethods(['fileHeader'])
+					->onlyMethods(['fileHeader'])
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
@@ -181,7 +181,7 @@ class Language_WriteFileTest extends TikiTestCase
 		);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
-					->setMethods(['fileHeader'])
+					->onlyMethods(['fileHeader'])
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
@@ -213,7 +213,7 @@ class Language_WriteFileTest extends TikiTestCase
 		);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
-					->setMethods(['fileHeader'])
+					->onlyMethods(['fileHeader'])
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
@@ -233,7 +233,7 @@ class Language_WriteFileTest extends TikiTestCase
 						->method('getTranslations')->willReturn(['Errors' => 'Ошибки',]);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
-					->setMethods(['fileHeader'])
+					->onlyMethods(['fileHeader'])
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 

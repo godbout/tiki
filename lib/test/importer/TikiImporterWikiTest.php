@@ -19,7 +19,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 	{
 		ob_start();
 		$obj = $this->getMockBuilder('TikiImporter_Wiki')
-		   ->setMethods(['validateInput', 'parseData', 'insertData'])
+		   ->onlyMethods(['validateInput', 'parseData', 'insertData'])
 		   ->getMock();
 		$obj->expects($this->once())->method('validateInput');
 		$obj->expects($this->once())->method('parseData');
@@ -36,7 +36,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Wiki')
-		   ->setMethods(['validateInput', 'parseData', 'insertData'])
+		   ->onlyMethods(['validateInput', 'parseData', 'insertData'])
 		   ->getMock();
 		$_POST['alreadyExistentPageName'] = 'override';
 		$_POST['wikiRevisions'] = 100;
@@ -62,7 +62,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 
 		$expectedImportFeedback = ['importedPages' => 10, 'totalPages' => '13'];
 		$obj = $this->getMockBuilder('TikiImporter_Wiki')
-		   ->setMethods(['validateInput', 'parseData', 'insertData', 'saveAndDisplayLog'])
+		   ->onlyMethods(['validateInput', 'parseData', 'insertData', 'saveAndDisplayLog'])
 		   ->getMock();
 		$obj->expects($this->once())->method('validateInput');
 		$obj->expects($this->once())->method('parseData');
@@ -83,7 +83,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Wiki')
-		   ->setMethods(['insertPage'])
+		   ->onlyMethods(['insertPage'])
 		   ->getMock();
 		$obj->expects($this->exactly(4))->method('insertPage');
 		$parsedData = [['name' => '1'],['name' => '2'],['name' => '3'],['name' => '4'],];
@@ -97,7 +97,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Wiki')
-		   ->setMethods(['insertPage'])
+		   ->onlyMethods(['insertPage'])
 		   ->getMock();
 		$obj->expects($this->once())->method('insertPage')->with(['name' => '1']);
 		$parsedData = [['name' => '1'],];
@@ -111,7 +111,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Wiki')
-		   ->setMethods(['insertPage'])
+		   ->onlyMethods(['insertPage'])
 		   ->getMock();
 		$obj->expects($this->never())->method('insertPage');
 		$parsedData = [];
@@ -125,7 +125,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Wiki')
-		   ->setMethods(['insertPage'])
+		   ->onlyMethods(['insertPage'])
 		   ->getMock();
 		$obj->expects($this->exactly(6))->method('insertPage')->willReturnOnConsecutiveCalls(true, true, false, true, false, true);
 
@@ -154,7 +154,7 @@ class TikiImporter_Wiki_InsertPage_Test extends TikiImporter_TestCase
 		require_once(__DIR__ . '/fixtures/mediawiki_page_as_array.php');
 		global $tikilib;
 		$tikilib = $this->getMockBuilder('TikiLib')
-		   ->setMethods(['create_page', 'update_page', 'page_exists', 'remove_all_versions'])
+		   ->onlyMethods(['create_page', 'update_page', 'page_exists', 'remove_all_versions'])
 		   ->getMock();
 		$this->obj = new TikiImporter_Wiki_Mediawiki;
 		$this->obj->revisionsNumber = 0;

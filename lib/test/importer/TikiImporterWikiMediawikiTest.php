@@ -27,7 +27,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$parsedData = 'Some text';
 
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-			->setMethods(['validateInput', 'parseData', 'insertData', 'configureParser'])
+			->onlyMethods(['validateInput', 'parseData', 'insertData', 'configureParser'])
 			->getMock();
 		$obj->expects($this->once())->method('validateInput');
 		$obj->expects($this->once())->method('parseData')->willReturn($parsedData);
@@ -52,9 +52,9 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 
 		global $tikilib;
 		$tikilib = $this->getMockBuilder('TikiLib')
-			->setMethods(['create_page', 'update_page', 'page_exists', 'remove_all_versions'])
+			->onlyMethods(['create_page', 'update_page', 'page_exists', 'remove_all_versions'])
 			->getMock();
-		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')->setMethods(['saveAndDisplayLog'])->getMock();
+		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')->onlyMethods(['saveAndDisplayLog'])->getMock();
 		$obj->expects($this->exactly(12))->method('saveAndDisplayLog');
 
 		$expectedImportFeedback = ['totalPages' => 4, 'importedPages' => 4];
@@ -73,7 +73,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$parsedData = 'Some text';
 
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-			->setMethods(['validateInput', 'parseData', 'insertData', 'checkRequirementsForAttachments', 'downloadAttachments', 'configureParser'])
+			->onlyMethods(['validateInput', 'parseData', 'insertData', 'checkRequirementsForAttachments', 'downloadAttachments', 'configureParser'])
 			->getMock();
 		$obj->expects($this->once())->method('validateInput');
 		$obj->expects($this->once())->method('parseData')->willReturn($parsedData);
@@ -151,7 +151,8 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-			->setMethods(['extractInfo', 'downloadAttachment'])
+			->addMethods(['downloadAttachment'])
+			->onlyMethods(['extractInfo'])
 			->getMock();
 		$obj->dom = new DOMDocument;
 		$obj->dom->load(__DIR__ . '/fixtures/mediawiki_sample.xml');
@@ -166,7 +167,8 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	public function testParseDataShouldPrintMessageIfErrorToParseAPageWhenExtractInfoReturnException()
 	{
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-			->setMethods(['extractInfo', 'saveAndDisplayLog', 'downloadAttachment'])
+			->addMethods(['downloadAttachment'])
+			->onlyMethods(['extractInfo', 'saveAndDisplayLog'])
 			->getMock();
 		$obj->expects($this->exactly(4))->method('extractInfo')->willthrowException(new ImporterParserException(''));
 		$obj->expects($this->exactly(5))->method('saveAndDisplayLog')->willReturn('');
@@ -180,7 +182,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	public function testParseDataHandleDifferentlyPagesAndFilePages()
 	{
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-			->setMethods(['extractInfo', 'saveAndDisplayLog'])
+			->onlyMethods(['extractInfo', 'saveAndDisplayLog'])
 			->getMock();
 		$obj->expects($this->exactly(4))->method('extractInfo')->willReturn([]);
 		$obj->importAttachments = true;
@@ -287,7 +289,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$i = 0;
 		foreach ($pages as $page) {
 			$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-				->setMethods(['extractRevision'])
+				->onlyMethods(['extractRevision'])
 				->getMock();
 			$obj->revisionsNumber = 0;
 			$obj->expects($this->atLeastOnce())->method('extractRevision')->willReturn('revision');
@@ -315,7 +317,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$i = 0;
 		foreach ($pages as $page) {
 			$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-				->setMethods(['extractRevision'])
+				->onlyMethods(['extractRevision'])
 				->getMock();
 			$obj->revisionsNumber = 5;
 			$obj->expects($this->exactly($expectedCalls[$i]))->method('extractRevision')->willReturn('revision');
@@ -344,7 +346,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$i = 0;
 		foreach ($pages as $page) {
 			$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-				->setMethods(['extractRevision'])
+				->onlyMethods(['extractRevision'])
 				->getMock();
 			$obj->revisionsNumber = 0;
 			$obj->expects($this->exactly($expectedCalls[$i]))->method('extractRevision')->willReturn('revision');
@@ -373,7 +375,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$i = 0;
 		foreach ($pages as $page) {
 			$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-				->setMethods(['extractRevision'])
+				->onlyMethods(['extractRevision'])
 				->getMock();
 			$obj->revisionsNumber = 15;
 			$obj->expects($this->exactly($expectedCalls[$i]))->method('extractRevision')->willReturn('revision');
@@ -393,7 +395,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		ob_start();
 
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-			->setMethods(['extractRevision'])
+			->onlyMethods(['extractRevision'])
 			->getMock();
 		$obj->revisionsNumber = 0;
 		$obj->expects($this->exactly(10))->method('extractRevision')->willReturnOnConsecutiveCalls([], [], $this->throwException(new ImporterParserException));
@@ -413,7 +415,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	public function testExtractInfoShouldThrowExceptionIfUnableToParseAllRevisionsOfPage()
 	{
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-			->setMethods(['extractRevision', 'saveAndDisplayLog'])
+			->onlyMethods(['extractRevision', 'saveAndDisplayLog'])
 			->getMock();
 		$obj->revisionsNumber = 0;
 		$obj->expects($this->exactly(8))->method('extractRevision')->willThrowException(new ImporterParserException);
@@ -445,7 +447,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$i = 0;
 		foreach ($revisions as $revision) {
 			$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-				->setMethods(['convertMarkup', 'extractContributor'])
+				->onlyMethods(['convertMarkup', 'extractContributor'])
 				->getMock();
 			$obj->expects($this->once())->method('convertMarkup')->willReturn('Some text');
 			$obj->expects($this->once())->method('extractContributor')->willReturn($extractContributorReturn[$i]);
@@ -457,7 +459,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	public function testExtractRevisionShouldRaiseExceptionForInvalidSyntax()
 	{
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
-			->setMethods(['convertMarkup', 'extractContributor'])
+			->onlyMethods(['convertMarkup', 'extractContributor'])
 			->getMock();
 		$obj->expects($this->once())->method('convertMarkup')->willReturn(new PEAR_Error('some message'));
 		$obj->expects($this->once())->method('extractContributor')->willReturn([]);
