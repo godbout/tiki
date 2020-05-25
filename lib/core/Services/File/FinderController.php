@@ -383,7 +383,7 @@ class Services_File_FinderController
 	{
 		$access = TikiLib::lib('access');
 		//don't unset ticket since multiple actions may be performed without refreshing the page
-		if ($access->checkCsrf('none', false)) {
+		if ($access->checkCsrf(null, null, null, false, null, 'none')) {
 			$access->setTicket();
 			$elfinder->setCustomData('ticket', $access->getTicket());
 		} else {
