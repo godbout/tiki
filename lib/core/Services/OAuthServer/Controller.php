@@ -52,7 +52,8 @@ class Services_OAuthServer_Controller
 			}
 
 			// this should throw exception on failure
-			$accesslib->checkTicket('services');
+			// TODO If this is a POST then second parameter should be false
+			$accesslib->checkCsrf(null, true, 'ticket', null, null, 'services');
 		}
 
 		$oauthserverlib->determineServerGrant();
