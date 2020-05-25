@@ -20,7 +20,7 @@ class Perms_Check_DirectTest extends TikiTestCase
 		$mock->expects($this->once())
 			->method('check')
 			->with($this->equalTo('view'), $this->equalTo(['Admins', 'Anonymous']))
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$this->assertTrue($direct->check($mock, [], 'view', ['Admins', 'Anonymous']));
 	}
@@ -33,7 +33,7 @@ class Perms_Check_DirectTest extends TikiTestCase
 		$mock->expects($this->once())
 			->method('check')
 			->with($this->equalTo('view'), $this->equalTo(['Admins', 'Anonymous']))
-			->will($this->returnValue(false));
+			->willReturn(false);
 
 		$this->assertFalse($direct->check($mock, [], 'view', ['Admins', 'Anonymous']));
 	}

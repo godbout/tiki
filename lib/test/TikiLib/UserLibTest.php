@@ -15,21 +15,21 @@ class UserLibTest extends TikiTestCase
 			->expects($this->at(0))
 			->method('get_user_preference')
 			->with($this->equalTo($user), $this->equalTo('realName'))
-			->will($this->returnValue($name));
+			->willReturn($name);
 
 		//email - get_user_email
 		$userLibMock
 			->expects($this->at(1))
 			->method('get_user_email')
 			->with($this->equalTo($user))
-			->will($this->returnValue($email));
+			->willReturn($email);
 
 		//country - get_user_preference
 		$userLibMock
 			->expects($this->at(2))
 			->method('get_user_preference')
 			->with($this->equalTo($user), $this->equalTo('country'))
-			->will($this->returnValue($country));
+			->willReturn($country);
 
 		if ($setWillBeCalled) {
 			// set_user_fields
@@ -37,7 +37,7 @@ class UserLibTest extends TikiTestCase
 				->expects($this->at(3))
 				->method('set_user_fields')
 				->with($this->equalTo($setValues))
-				->will($this->returnValue(true));
+				->willReturn(true);
 		}
 
 		return $userLibMock;

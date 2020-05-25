@@ -31,7 +31,7 @@ class Perms_Check_IndirectTest extends TikiTestCase
 		$mock->expects($this->once())
 			->method('check')
 			->with($this->equalTo('admin_wiki'), $this->equalTo(['Admins', 'Anonymous']))
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$this->assertTrue($indirect->check($mock, [], 'view', ['Admins', 'Anonymous']));
 	}
@@ -44,7 +44,7 @@ class Perms_Check_IndirectTest extends TikiTestCase
 		$mock->expects($this->once())
 			->method('check')
 			->with($this->equalTo('admin_wiki'), $this->equalTo(['Admins', 'Anonymous']))
-			->will($this->returnValue(false));
+			->willReturn(false);
 
 		$this->assertFalse($indirect->check($mock, [], 'view', ['Admins', 'Anonymous']));
 	}

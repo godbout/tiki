@@ -38,7 +38,7 @@ class Perms_Check_CreatorTest extends TikiTestCase
 		$mock->expects($this->once())
 			->method('check')
 			->with($this->equalTo('view_own'), $this->equalTo(['Registered']))
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$creator = new Perms_Check_Creator('foobar');
 		$this->assertTrue($creator->check($mock, ['creator' => 'foobar'], 'view', ['Registered']));

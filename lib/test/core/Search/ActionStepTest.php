@@ -12,7 +12,7 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$action = $this->createMock('Search_Action_Action');
 		$action->expects($this->any())
 			->method('getValues')
-			->will($this->returnValue(['hello' => true]));
+			->willReturn(['hello' => true]);
 
 		$step = new Search_Action_ActionStep($action, []);
 		$this->expectException(Search_Action_Exception::class);
@@ -26,11 +26,11 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$action = $this->createMock('Search_Action_Action');
 		$action->expects($this->any())
 			->method('getValues')
-			->will($this->returnValue(['hello' => false]));
+			->willReturn(['hello' => false]);
 		$action->expects($this->once())
 			->method('validate')
 			->with($this->equalTo(new JitFilter(['hello' => null])))
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$step = new Search_Action_ActionStep($action, []);
 		$this->assertTrue($step->validate([]));
@@ -42,11 +42,11 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$action = $this->createMock('Search_Action_Action');
 		$action->expects($this->any())
 			->method('getValues')
-			->will($this->returnValue(['hello' => true]));
+			->willReturn(['hello' => true]);
 		$action->expects($this->once())
 			->method('validate')
 			->with($this->equalTo(new JitFilter(['hello' => 'world'])))
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$step = new Search_Action_ActionStep($action, ['hello' => 'world']);
 		$this->assertTrue($step->validate([]));
@@ -58,11 +58,11 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$action = $this->createMock('Search_Action_Action');
 		$action->expects($this->any())
 			->method('getValues')
-			->will($this->returnValue(['hello' => true]));
+			->willReturn(['hello' => true]);
 		$action->expects($this->once())
 			->method('validate')
 			->with($this->equalTo(new JitFilter(['hello' => 'world'])))
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$step = new Search_Action_ActionStep($action, []);
 		$this->assertTrue($step->validate(['hello' => 'world']));
@@ -74,11 +74,11 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$action = $this->createMock('Search_Action_Action');
 		$action->expects($this->any())
 			->method('getValues')
-			->will($this->returnValue(['hello' => true]));
+			->willReturn(['hello' => true]);
 		$action->expects($this->once())
 			->method('validate')
 			->with($this->equalTo(new JitFilter(['hello' => 'world'])))
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$step = new Search_Action_ActionStep($action, ['hello_field' => 'test']);
 		$this->assertTrue($step->validate(['test' => 'world']));
@@ -90,11 +90,11 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$action = $this->createMock('Search_Action_Action');
 		$action->expects($this->any())
 			->method('getValues')
-			->will($this->returnValue(['hello' => true]));
+			->willReturn(['hello' => true]);
 		$action->expects($this->once())
 			->method('validate')
 			->with($this->equalTo(new JitFilter(['hello' => 'right'])))
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$step = new Search_Action_ActionStep($action, ['hello_field_coalesce' => 'foo,bar,test,baz,hello']);
 		$this->assertTrue($step->validate(['test' => 'right', 'baz' => 'wrong']));
@@ -106,7 +106,7 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$action = $this->createMock('Search_Action_Action');
 		$action->expects($this->any())
 			->method('getValues')
-			->will($this->returnValue(['hello' => true]));
+			->willReturn(['hello' => true]);
 
 		$step = new Search_Action_ActionStep($action, ['hello_field_coalesce' => 'foo,bar,test,baz,hello']);
 		$this->expectException(Search_Action_Exception::class);
@@ -119,11 +119,11 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$action = $this->createMock('Search_Action_Action');
 		$action->expects($this->any())
 			->method('getValues')
-			->will($this->returnValue(['hello+' => false]));
+			->willReturn(['hello+' => false]);
 		$action->expects($this->once())
 			->method('validate')
 			->with($this->equalTo(new JitFilter(['hello' => []])))
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$step = new Search_Action_ActionStep($action, []);
 		$this->assertTrue($step->validate([]));
@@ -135,11 +135,11 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$action = $this->createMock('Search_Action_Action');
 		$action->expects($this->any())
 			->method('getValues')
-			->will($this->returnValue(['hello+' => false]));
+			->willReturn(['hello+' => false]);
 		$action->expects($this->once())
 			->method('validate')
 			->with($this->equalTo(new JitFilter(['hello' => ['world']])))
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$step = new Search_Action_ActionStep($action, ['hello' => 'world']);
 		$this->assertTrue($step->validate([]));
@@ -151,11 +151,11 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$action = $this->createMock('Search_Action_Action');
 		$action->expects($this->any())
 			->method('getValues')
-			->will($this->returnValue(['hello+' => false]));
+			->willReturn(['hello+' => false]);
 		$action->expects($this->once())
 			->method('validate')
 			->with($this->equalTo(new JitFilter(['hello' => ['a', 'b']])))
-			->will($this->returnValue(true));
+			->willReturn(true);
 
 		$step = new Search_Action_ActionStep($action, ['hello_field_multiple' => 'foo,bar,baz']);
 		$this->assertTrue($step->validate(['foo' => 'a', 'baz' => 'b']));

@@ -46,14 +46,14 @@ class Language_WriteFileTest extends TikiTestCase
 
 	public function testWriteStringsToFile_shouldWriteSimpleStrings()
 	{
-		$this->parseFile->expects($this->once())->method('getTranslations')->will($this->returnValue([]));
+		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn([]);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
 					->setMethods(['fileHeader'])
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
-		$obj->expects($this->once())->method('fileHeader')->will($this->returnValue("// File header\n\n"));
+		$obj->expects($this->once())->method('fileHeader')->willReturn("// File header\n\n");
 
 		$strings = [
 			'First string' => ['name' => 'First string'],
@@ -102,7 +102,7 @@ class Language_WriteFileTest extends TikiTestCase
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
-		$obj->expects($this->once())->method('fileHeader')->will($this->returnValue("// File header\n\n"));
+		$obj->expects($this->once())->method('fileHeader')->willReturn("// File header\n\n");
 
 		$obj->writeStringsToFile($strings);
 
@@ -129,7 +129,7 @@ class Language_WriteFileTest extends TikiTestCase
 				->setConstructorArgs([$this->parseFile])
 				->getMock();
 
-		$obj->expects($this->once())->method('fileHeader')->will($this->returnValue("// File header\n\n"));
+		$obj->expects($this->once())->method('fileHeader')->willReturn("// File header\n\n");
 
 		$obj->writeStringsToFile($strings);
 
@@ -156,7 +156,7 @@ class Language_WriteFileTest extends TikiTestCase
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
-		$obj->expects($this->once())->method('fileHeader')->will($this->returnValue("// File header\n\n"));
+		$obj->expects($this->once())->method('fileHeader')->willReturn("// File header\n\n");
 
 		$obj->writeStringsToFile($strings, true);
 
@@ -185,7 +185,7 @@ class Language_WriteFileTest extends TikiTestCase
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
-		$obj->expects($this->once())->method('fileHeader')->will($this->returnValue("// File header\n\n"));
+		$obj->expects($this->once())->method('fileHeader')->willReturn("// File header\n\n");
 
 		$strings['Login:'] = ['name' => 'Login:'];
 		$strings['Add user:'] = ['name' => 'Add user:'];
@@ -217,7 +217,7 @@ class Language_WriteFileTest extends TikiTestCase
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
-		$obj->expects($this->once())->method('fileHeader')->will($this->returnValue("// File header\n\n"));
+		$obj->expects($this->once())->method('fileHeader')->willReturn("// File header\n\n");
 
 		$strings["Congratulations!\n\nYour server can send emails.\n\n"] = ['name' => "Congratulations!\n\nYour server can send emails.\n\n"];
 		$strings['Handling actions of plugin "%s" failed'] = ['name' => 'Handling actions of plugin "%s" failed'];
@@ -230,14 +230,14 @@ class Language_WriteFileTest extends TikiTestCase
 	public function testWriteStringsToFile_shouldNotKeepTranslationsWithPunctuationOnSuccessiveCalls()
 	{
 		$this->parseFile->expects($this->at(0))
-						->method('getTranslations')->will($this->returnValue(['Errors' => 'Ошибки',]));
+						->method('getTranslations')->willReturn(['Errors' => 'Ошибки',]);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
 					->setMethods(['fileHeader'])
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
-		$obj->expects($this->any())->method('fileHeader')->will($this->returnValue("// File header\n\n"));
+		$obj->expects($this->any())->method('fileHeader')->willReturn("// File header\n\n");
 
 		$strings = [
 			'Errors' => ['name' => 'Errors'],
@@ -247,7 +247,7 @@ class Language_WriteFileTest extends TikiTestCase
 		$obj->writeStringsToFile($strings);
 
 		$this->parseFile->expects($this->at(0))
-						->method('getTranslations')->will($this->returnValue(['Errors:' => 'خطاها:',]));
+						->method('getTranslations')->willReturn(['Errors:' => 'خطاها:',]);
 
 		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_writestringstofile_first_call.php'), file_get_contents($this->filePath));
 

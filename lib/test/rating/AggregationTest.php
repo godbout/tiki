@@ -16,7 +16,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$user = null;
 
 		$tikilib = $this->createMock('TikiLib');
-		$tikilib->expects($this->any())->method('get_ip_address')->will($this->returnValue('127.0.0.1'));
+		$tikilib->expects($this->any())->method('get_ip_address')->willReturn('127.0.0.1');
 
 		$testableTikiLib = new TestableTikiLib;
 		$testableTikiLib->overrideLibs(['tiki' => $tikilib]);

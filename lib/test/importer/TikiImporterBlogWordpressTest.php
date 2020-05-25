@@ -36,7 +36,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 			->setMethods(['validateInput', 'extractBlogInfo', 'parseData', 'insertData', 'setupTiki', 'extractPermalinks'])
 			->getMock();
 		$obj->expects($this->once())->method('validateInput');
-		$obj->expects($this->once())->method('extractBlogInfo')->will($this->returnValue([]));
+		$obj->expects($this->once())->method('extractBlogInfo')->willReturn([]);
 		$obj->expects($this->once())->method('parseData');
 		$obj->expects($this->once())->method('insertData');
 		$obj->expects($this->once())->method('setupTiki');
@@ -61,7 +61,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 			->setMethods(['validateInput', 'extractBlogInfo', 'parseData', 'insertData', 'downloadAttachments', 'setupTiki', 'extractPermalinks'])
 			->getMock();
 		$obj->expects($this->once())->method('validateInput');
-		$obj->expects($this->once())->method('extractBlogInfo')->will($this->returnValue([]));
+		$obj->expects($this->once())->method('extractBlogInfo')->willReturn([]);
 		$obj->expects($this->once())->method('parseData');
 		$obj->expects($this->once())->method('insertData');
 		$obj->expects($this->once())->method('downloadAttachments');
@@ -105,7 +105,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')
 			->setMethods(['extractItems', 'extractTags', 'extractCategories'])
 			->getMock();
-		$obj->expects($this->once())->method('extractItems')->will($this->returnValue(['posts' => [], 'pages' => []]));
+		$obj->expects($this->once())->method('extractItems')->willReturn(['posts' => [], 'pages' => []]);
 		$obj->parseData();
 		$this->assertEquals(4, count($obj->parsedData));
 
@@ -188,7 +188,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 			->getMock();
 		$obj->dom = new DOMDocument;
 		$obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
-		$obj->expects($this->exactly(4))->method('extractInfo')->will($this->returnValue([]));
+		$obj->expects($this->exactly(4))->method('extractInfo')->willReturn([]);
 
 		$expectedResult = [
 			'posts' => [[], [], []],
@@ -248,9 +248,9 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')
 			->setMethods(['extractComment', 'parseContent', 'identifyInternalLinks'])
 			->getMock();
-		$obj->expects($this->exactly(3))->method('extractComment')->will($this->returnValue(true));
-		$obj->expects($this->any())->method('parseContent')->will($this->returnValue('Test'));
-		$obj->expects($this->once())->method('identifyInternalLinks')->will($this->returnValue(true));
+		$obj->expects($this->exactly(3))->method('extractComment')->willReturn(true);
+		$obj->expects($this->any())->method('parseContent')->willReturn('Test');
+		$obj->expects($this->once())->method('identifyInternalLinks')->willReturn(true);
 
 		$obj->permalinks = ['not empty'];
 
@@ -296,9 +296,9 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')
 			->setMethods(['extractComment', 'parseContent', 'identifyInternalLinks'])
 			->getMock();
-		$obj->expects($this->exactly(0))->method('extractComment')->will($this->returnValue(true));
-		$obj->expects($this->any())->method('parseContent')->will($this->returnValue('Test'));
-		$obj->expects($this->once())->method('identifyInternalLinks')->will($this->returnValue(true));
+		$obj->expects($this->exactly(0))->method('extractComment')->willReturn(true);
+		$obj->expects($this->any())->method('parseContent')->willReturn('Test');
+		$obj->expects($this->once())->method('identifyInternalLinks')->willReturn(true);
 
 		$obj->permalinks = ['not empty'];
 
@@ -489,7 +489,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$file = $this->getMockBuilder('Tiki\FileGallery\File')
 			->setMethods(['replace',])
 			->getMock();
-		$file->expects($this->exactly(0))->method('replace')->will($this->returnValue(1));
+		$file->expects($this->exactly(0))->method('replace')->willReturn(1);
 
 		$this->obj->dom = new DOMDocument;
 		$this->obj->downloadAttachments();
@@ -529,8 +529,8 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')
 			->setMethods(['getHttpClient', 'createFileGallery'])
 			->getMock();
-		$obj->expects($this->once())->method('getHttpClient')->will($this->returnValue($client));
-		$obj->expects($this->once())->method('createFileGallery')->will($this->returnValue(1));
+		$obj->expects($this->once())->method('getHttpClient')->willReturn($client);
+		$obj->expects($this->once())->method('createFileGallery')->willReturn(1);
 		$obj->dom = new DOMDocument;
 		$obj->dom->load(__DIR__ . '/fixtures/wordpress_attachments.xml');
 
@@ -611,8 +611,8 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')
 			->setMethods(['getHttpClient', 'createFileGallery'])
 			->getMock();
-		$obj->expects($this->once())->method('createFileGallery')->will($this->returnValue(1));
-		$obj->expects($this->once())->method('getHttpClient')->will($this->returnValue($client));
+		$obj->expects($this->once())->method('createFileGallery')->willReturn(1);
+		$obj->expects($this->once())->method('getHttpClient')->willReturn($client);
 		$obj->dom = new DOMDocument;
 		$obj->dom->load(__DIR__ . '/fixtures/wordpress_attachments.xml');
 
@@ -647,8 +647,8 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')
 			->setMethods(['getHttpClient', 'createFileGallery'])
 			->getMock();
-		$obj->expects($this->once())->method('createFileGallery')->will($this->returnValue(1));
-		$obj->expects($this->once())->method('getHttpClient')->will($this->returnValue($client));
+		$obj->expects($this->once())->method('createFileGallery')->willReturn(1);
+		$obj->expects($this->once())->method('getHttpClient')->willReturn($client);
 		$obj->dom = new DOMDocument;
 		$obj->dom->load(__DIR__ . '/fixtures/wordpress_attachments.xml');
 
@@ -770,7 +770,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 			->setMethods(['storeNewLink', 'insertPost'])
 			->getMock();
 		$obj->expects($this->once())->method('storeNewLink');
-		$obj->expects($this->once())->method('insertPost')->will($this->onConsecutiveCalls(false));
+		$obj->expects($this->once())->method('insertPost')->willReturnOnConsecutiveCalls(false);
 
 		$item = ['type' => 'post', 'name' => 'Any name'];
 
@@ -848,7 +848,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 			->setMethods(['insertItem', 'createBlog', 'replaceInternalLinks'])
 			->getMock();
 		$obj->expects($this->once())->method('createBlog');
-		$obj->expects($this->exactly(2))->method('insertItem')->will($this->onConsecutiveCalls(2, 'Page name'));
+		$obj->expects($this->exactly(2))->method('insertItem')->willReturnOnConsecutiveCalls(2, 'Page name');
 
 		$obj->permalinks = ['not empty'];
 
@@ -884,7 +884,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 			->setMethods(['insertItem', 'createBlog', 'replaceInternalLinks'])
 			->getMock();
 		$obj->expects($this->once())->method('createBlog');
-		$obj->expects($this->exactly(2))->method('insertItem')->will($this->onConsecutiveCalls(2, 'Page name'));
+		$obj->expects($this->exactly(2))->method('insertItem')->willReturnOnConsecutiveCalls(2, 'Page name');
 		$obj->expects($this->exactly(0))->method('replaceInternalLinks');
 
 		$obj->parsedData = [

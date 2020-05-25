@@ -54,7 +54,7 @@ class Perms_CheckSequenceTest extends TikiTestCase
 	{
 		$this->mockA->expects($this->once())
 			->method('check')
-			->will($this->returnValue(true));
+			->willReturn(true);
 		$this->mockB->expects($this->never())
 			->method('check');
 
@@ -65,10 +65,10 @@ class Perms_CheckSequenceTest extends TikiTestCase
 	{
 		$this->mockA->expects($this->once())
 			->method('check')
-			->will($this->returnValue(false));
+			->willReturn(false);
 		$this->mockB->expects($this->once())
 			->method('check')
-			->will($this->returnValue(false));
+			->willReturn(false);
 
 		$this->assertFalse(Perms::get()->view);
 	}

@@ -102,11 +102,11 @@ class Perms_BaseTest extends TikiTestCase
 
 		$mock->expects($this->exactly(2))
 			->method('getHash')
-			->will($this->returnValue('123'));
+			->willReturn('123');
 
 		$mock->expects($this->once())
 			->method('getResolver')
-			->will($this->returnValue(new Perms_Resolver_Default(true)));
+			->willReturn(new Perms_Resolver_Default(true));
 
 		$perms = new Perms;
 		$perms->setResolverFactories([$mock,]);
@@ -122,11 +122,11 @@ class Perms_BaseTest extends TikiTestCase
 
 		$mock->expects($this->exactly(2))
 			->method('getHash')
-			->will($this->returnValue('123'));
+			->willReturn('123');
 
 		$mock->expects($this->once())
 			->method('getResolver')
-			->will($this->returnValue(false));
+			->willReturn(false);
 
 		$perms = new Perms;
 		$perms->setResolverFactories([$mock,]);
@@ -145,18 +145,18 @@ class Perms_BaseTest extends TikiTestCase
 
 		$mock1->expects($this->exactly(2))
 			->method('getHash')
-			->will($this->returnValue('123'));
+			->willReturn('123');
 
 		$mock2->expects($this->exactly(2))
 			->method('getHash')
-			->will($this->returnValue('456'));
+			->willReturn('456');
 
 		$mock1->expects($this->once())
 			->method('getResolver')
-			->will($this->returnValue(false));
+			->willReturn(false);
 		$mock2->expects($this->once())
 			->method('getResolver')
-			->will($this->returnValue($defaultResolver));
+			->willReturn($defaultResolver);
 
 		$perms = new Perms;
 		$perms->setResolverFactories([$mock1,$mock2]);
@@ -182,15 +182,15 @@ class Perms_BaseTest extends TikiTestCase
 		$mockObject->expects($this->once())
 			->method('bulk')
 			->with($this->equalTo(['type' => 'wiki page']), $this->equalTo('object'), $this->equalTo(['A', 'B', 'C', 'D', 'E']))
-			->will($this->returnValue(['A', 'C', 'E']));
+			->willReturn(['A', 'C', 'E']);
 		$mockCategory->expects($this->once())
 			->method('bulk')
 			->with($this->equalTo(['type' => 'wiki page']), $this->equalTo('object'), $this->equalTo(['A', 'C', 'E']))
-			->will($this->returnValue(['C']));
+			->willReturn(['C']);
 		$mockGlobal->expects($this->once())
 			->method('bulk')
 			->with($this->equalTo(['type' => 'wiki page']), $this->equalTo('object'), $this->equalTo(['C']))
-			->will($this->returnArgument(0));
+			->willreturnArgument(0);
 
 		$data = [
 			['pageId' => 1, 'pageName' => 'A', 'content' => 'Hello World'],
@@ -263,7 +263,7 @@ class Perms_BaseTest extends TikiTestCase
 		$mock->expects($this->once())
 			->method('getHash')
 			->with($this->equalTo(['type' => 'wiki page', 'object' => 'Hello World', 'creator' => 'admin']))
-			->will($this->returnValue(null));
+			->willReturn(null);
 		$mock->expects($this->once())
 			->method('bulk');
 

@@ -25,13 +25,13 @@ class Perms_MixedTest extends TikiTestCase
 
 		$resolver->expects($this->any())
 			->method('getResolver')
-			->will($this->returnValue(null));
+			->willReturn(null);
 		$resolver->expects($this->exactly(3))
 			->method('bulk')
-			->will($this->returnValue([]));
+			->willReturn([]);
 		$resolver->expects($this->at(0))
 			->method('bulk')
-			->will($this->returnValue([]))
+			->willReturn([])
 			->with(
 				$this->equalTo(['type' => 'wiki page']),
 				$this->equalTo('object'),
@@ -39,7 +39,7 @@ class Perms_MixedTest extends TikiTestCase
 			);
 		$resolver->expects($this->at(1))
 			->method('bulk')
-			->will($this->returnValue([]))
+			->willReturn([])
 			->with(
 				$this->equalTo(['type' => 'category']),
 				$this->equalTo('object'),

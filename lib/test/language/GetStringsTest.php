@@ -50,10 +50,10 @@ class Language_GetStringsTest extends TikiTestCase
 	public function testAddFileType()
 	{
 		$php = $this->createMock('Language_FileType_Php');
-		$php->expects($this->once())->method('getExtensions')->will($this->returnValue(['.php']));
+		$php->expects($this->once())->method('getExtensions')->willReturn(['.php']);
 
 		$tpl = $this->createMock('Language_FileType_Tpl');
-		$tpl->expects($this->once())->method('getExtensions')->will($this->returnValue(['.tpl']));
+		$tpl->expects($this->once())->method('getExtensions')->willReturn(['.tpl']);
 
 		$this->obj->addFileType($php);
 		$this->obj->addFileType($tpl);
@@ -67,7 +67,7 @@ class Language_GetStringsTest extends TikiTestCase
 		$this->expectException('Language_Exception');
 
 		$php = $this->createMock('Language_FileType_Php');
-		$php->expects($this->exactly(1))->method('getExtensions')->will($this->returnValue(['.php']));
+		$php->expects($this->exactly(1))->method('getExtensions')->willReturn(['.php']);
 
 		$this->obj->addFileType($php);
 		$this->obj->addFileType($php);
@@ -82,7 +82,7 @@ class Language_GetStringsTest extends TikiTestCase
 	public function testCollectStrings_shouldRaiseExceptionIfInvalidFileExtension()
 	{
 		$this->expectException('Language_Exception');
-		$this->fileType->expects($this->any())->method('getExtensions')->will($this->returnValue(['.php']));
+		$this->fileType->expects($this->any())->method('getExtensions')->willReturn(['.php']);
 		$this->obj->addFileType($this->fileType);
 		$this->obj->collectStrings('file.');
 	}
@@ -106,10 +106,10 @@ class Language_GetStringsTest extends TikiTestCase
 					->setMethods(['getExtensions', 'getCleanupRegexes', 'singleQuoted', 'doubleQuoted'])
 					->getMock();
 
-		$php->expects($this->exactly(2))->method('getExtensions')->will($this->returnValue(['.php']));
-		$php->expects($this->exactly(1))->method('getCleanupRegexes')->will($this->returnValue([]));
-		$php->expects($this->exactly(1))->method('singleQuoted')->will($this->returnValue([0 => '', 1 => '']));
-		$php->expects($this->exactly(1))->method('doubleQuoted')->will($this->returnValue([0 => '', 1 => '']));
+		$php->expects($this->exactly(2))->method('getExtensions')->willReturn(['.php']);
+		$php->expects($this->exactly(1))->method('getCleanupRegexes')->willReturn([]);
+		$php->expects($this->exactly(1))->method('singleQuoted')->willReturn([0 => '', 1 => '']);
+		$php->expects($this->exactly(1))->method('doubleQuoted')->willReturn([0 => '', 1 => '']);
 
 		$this->obj->addFileType($php);
 		$this->obj->addFileType(new Language_FileType_Tpl);
@@ -178,7 +178,7 @@ class Language_GetStringsTest extends TikiTestCase
 		];
 
 		$this->collectFiles->expects($this->exactly(1))->method('setExtensions');
-		$this->collectFiles->expects($this->exactly(1))->method('run')->with($this->baseDir)->will($this->returnValue($files));
+		$this->collectFiles->expects($this->exactly(1))->method('run')->with($this->baseDir)->willReturn($files);
 
 		$obj = $this->getMockBuilder('Language_GetStrings')
 					->setMethods(['collectStrings', 'writeToFiles'])
@@ -189,11 +189,11 @@ class Language_GetStringsTest extends TikiTestCase
 			->getMock();
 
 		$obj->expects($this->exactly(1))->method('writeToFiles')->with($strings);
-		$obj->expects($this->at(0))->method('collectStrings')->with('file1')->will($this->returnValue(['string1', 'string2']));
-		$obj->expects($this->at(1))->method('collectStrings')->with('file2')->will($this->returnValue(['string2', 'string3']));
-		$obj->expects($this->at(2))->method('collectStrings')->with('file3')->will($this->returnValue(['string3', 'string4']));
+		$obj->expects($this->at(0))->method('collectStrings')->with('file1')->willReturn(['string1', 'string2']);
+		$obj->expects($this->at(1))->method('collectStrings')->with('file2')->willReturn(['string2', 'string3']);
+		$obj->expects($this->at(2))->method('collectStrings')->with('file3')->willReturn(['string3', 'string4']);
 
-		$this->fileType->expects($this->exactly(1))->method('getExtensions')->will($this->returnValue(['.php']));
+		$this->fileType->expects($this->exactly(1))->method('getExtensions')->willReturn(['.php']);
 		$obj->addFileType($this->fileType);
 
 		$this->assertNull($obj->run());
@@ -240,15 +240,15 @@ class Language_GetStringsTest extends TikiTestCase
 		$this->obj->setLanguages(['en', 'es', 'pt-br']);
 
 		$this->writeFileFactory->expects($this->at(0))->method('factory')
-			->will($this->returnValue($this->writeFile))
+			->willReturn($this->writeFile)
 			->with($this->stringContains('en/language.php'));
 
 		$this->writeFileFactory->expects($this->at(1))->method('factory')
-			->will($this->returnValue($this->writeFile))
+			->willReturn($this->writeFile)
 			->with($this->stringContains('es/language.php'));
 
 		$this->writeFileFactory->expects($this->at(2))->method('factory')
-			->will($this->returnValue($this->writeFile))
+			->willReturn($this->writeFile)
 			->with($this->stringContains('pt-br/language.php'));
 
 		$this->obj->writeToFiles($strings);
@@ -259,7 +259,7 @@ class Language_GetStringsTest extends TikiTestCase
 		$strings = ['string1', 'string2', 'string3', 'string4'];
 
 		$this->writeFile->expects($this->atLeastOnce())->method('writeStringsToFile')->with($strings, true);
-		$this->writeFileFactory->expects($this->atLeastOnce())->method('factory')->will($this->returnValue($this->writeFile));
+		$this->writeFileFactory->expects($this->atLeastOnce())->method('factory')->willReturn($this->writeFile);
 
 		$obj = new Language_GetStrings($this->collectFiles, $this->writeFileFactory, ['outputFiles' => true, 'baseDir' => $this->baseDir]);
 
@@ -271,7 +271,7 @@ class Language_GetStringsTest extends TikiTestCase
 		$strings = ['string1', 'string2', 'string3', 'string4'];
 
 		$this->writeFile->expects($this->once())->method('writeStringsToFile')->with($strings, false);
-		$this->writeFileFactory->expects($this->once())->method('factory')->with($this->stringContains('language_r.php'))->will($this->returnValue($this->writeFile));
+		$this->writeFileFactory->expects($this->once())->method('factory')->with($this->stringContains('language_r.php'))->willReturn($this->writeFile);
 
 		$obj = new Language_GetStrings($this->collectFiles, $this->writeFileFactory, ['baseDir' => $this->baseDir, 'lang' => 'es', 'fileName' => 'language_r.php']);
 		$obj->writeToFiles($strings);
@@ -293,9 +293,9 @@ class Language_GetStringsTest extends TikiTestCase
 					->setConstructorArgs([$this->collectFiles, $this->writeFileFactory])
 					->getMock();
 
-		$obj->expects($this->at(0))->method('collectStrings')->with('file1')->will($this->returnValue(['string1', 'string2']));
-		$obj->expects($this->at(1))->method('collectStrings')->with('file2')->will($this->returnValue(['string2', 'string3']));
-		$obj->expects($this->at(2))->method('collectStrings')->with('file3')->will($this->returnValue(['string3', 'string4']));
+		$obj->expects($this->at(0))->method('collectStrings')->with('file1')->willReturn(['string1', 'string2']);
+		$obj->expects($this->at(1))->method('collectStrings')->with('file2')->willReturn(['string2', 'string3']);
+		$obj->expects($this->at(2))->method('collectStrings')->with('file3')->willReturn(['string3', 'string4']);
 
 		$this->assertEquals($strings, $obj->scanFiles($files));
 	}
@@ -316,9 +316,9 @@ class Language_GetStringsTest extends TikiTestCase
 					->setConstructorArgs([$this->collectFiles, $this->writeFileFactory, ['outputFiles' => true]])
 					->getMock();
 
-		$obj->expects($this->at(0))->method('collectStrings')->with('file1')->will($this->returnValue(['string1', 'string2']));
-		$obj->expects($this->at(1))->method('collectStrings')->with('file2')->will($this->returnValue(['string2', 'string3']));
-		$obj->expects($this->at(2))->method('collectStrings')->with('file3')->will($this->returnValue(['string3', 'string4']));
+		$obj->expects($this->at(0))->method('collectStrings')->with('file1')->willReturn(['string1', 'string2']);
+		$obj->expects($this->at(1))->method('collectStrings')->with('file2')->willReturn(['string2', 'string3']);
+		$obj->expects($this->at(2))->method('collectStrings')->with('file3')->willReturn(['string3', 'string4']);
 
 		$this->assertEquals($strings, $obj->scanFiles($files));
 	}

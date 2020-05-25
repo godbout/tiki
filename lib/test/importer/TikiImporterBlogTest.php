@@ -45,7 +45,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 			->setMethods(['parseData', 'insertData', 'saveAndDisplayLog', 'setupTiki'])
 			->getMock();
 		$obj->expects($this->once())->method('parseData');
-		$obj->expects($this->once())->method('insertData')->will($this->returnValue($expectedImportFeedback));
+		$obj->expects($this->once())->method('insertData')->willReturn($expectedImportFeedback);
 		$obj->expects($this->once())->method('saveAndDisplayLog');
 		$obj->expects($this->once())->method('setupTiki');
 
@@ -117,7 +117,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 			->setMethods(['insertItem', 'createBlog'])
 			->getMock();
 		$obj->expects($this->once())->method('createBlog');
-		$obj->expects($this->exactly(6))->method('insertItem')->will($this->onConsecutiveCalls(true, true, true, true, false, true));
+		$obj->expects($this->exactly(6))->method('insertItem')->willReturnOnConsecutiveCalls(true, true, true, true, false, true);
 
 		$obj->permalinks = ['not empty'];
 
@@ -181,7 +181,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 			->setMethods(['insertComments', 'insertPage'])
 			->getMock();
 		$obj->expects($this->once())->method('insertComments')->with('Any name', 'wiki page');
-		$obj->expects($this->once())->method('insertPage')->will($this->onConsecutiveCalls(true));
+		$obj->expects($this->once())->method('insertPage')->willReturnOnConsecutiveCalls(true);
 
 		$page = ['type' => 'page', 'name' => 'Any name', 'comments' => [1, 2, 3]];
 
@@ -198,7 +198,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 			->setMethods(['insertComments', 'insertPost'])
 			->getMock();
 		$obj->expects($this->once())->method('insertComments')->with('Any name', 'blog post');
-		$obj->expects($this->once())->method('insertPost')->will($this->onConsecutiveCalls(true));
+		$obj->expects($this->once())->method('insertPost')->willReturnOnConsecutiveCalls(true);
 
 				$post = ['type' => 'post', 'name' => 'Any name', 'comments' => [1, 2]];
 
@@ -213,7 +213,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 			->setMethods(['insertComments', 'insertPost'])
 			->getMock();
 		$obj->expects($this->once())->method('insertComments')->with(22, 'blog post', [1, 2]);
-		$obj->expects($this->once())->method('insertPost')->will($this->onConsecutiveCalls(22));
+		$obj->expects($this->once())->method('insertPost')->willReturnOnConsecutiveCalls(22);
 
 				$post = ['type' => 'post', 'name' => 'Any name', 'comments' => [1, 2]];
 
@@ -231,7 +231,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 			->setMethods(['insertComments', 'insertPost'])
 			->getMock();
 		$obj->expects($this->exactly(0))->method('insertComments');
-		$obj->expects($this->once())->method('insertPost')->will($this->onConsecutiveCalls(null));
+		$obj->expects($this->once())->method('insertPost')->willReturnOnConsecutiveCalls(null);
 
 				$post = ['type' => 'post', 'name' => 'Any name', 'comments' => [1, 2]];
 
@@ -279,7 +279,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 			->getMock();
 		$commentslib->expects($this->exactly(2))
 						->method('post_new_comment')
-						->with('wiki page:2', 0, null, '', 'asdf', '', '', 'n', '', '', '', '', 1234, '', '')->will($this->returnValue(22));
+						->with('wiki page:2', 0, null, '', 'asdf', '', '', 'n', '', '', '', '', 1234, '', '')->willReturn(22);
 		$commentslib->expects($this->once())->method('approve_comment')->with(22, 'n');
 
 		$comments = [
@@ -307,7 +307,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$importerWiki = $this->getMockBuilder('TikiImporter_Wiki')
 			->setMethods(['insertPage'])
 			->getMock();
-		$importerWiki->expects($this->once())->method('insertPage')->will($this->returnValue('HomePage'));
+		$importerWiki->expects($this->once())->method('insertPage')->willReturn('HomePage');
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog')
 			->setMethods(['instantiateImporterWiki'])
@@ -332,7 +332,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 		$bloglib = $this->getMockBuilder('BlogLib')
 			->setMethods(['blog_post'])
 			->getMock();
-		$bloglib->expects($this->once())->method('blog_post')->will($this->returnValue(1));
+		$bloglib->expects($this->once())->method('blog_post')->willReturn(1);
 
 		$objectlib = $this->getMockBuilder('ObjectLib')
 			->setMethods(['insert_object'])

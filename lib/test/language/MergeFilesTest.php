@@ -60,8 +60,8 @@ class Language_MergeFilesTest extends TikiTestCase
 			'Tiki Admin' => ['key' => 'Tiki Admin', 'translation' => 'Administração do Tiki', 'translated' => true],
 		];
 
-		$this->sourceFileObj->expects($this->once())->method('parse')->will($this->returnValue($sourceFileData));
-		$this->targetFileObj->expects($this->once())->method('parse')->will($this->returnValue($targetFileData));
+		$this->sourceFileObj->expects($this->once())->method('parse')->willReturn($sourceFileData);
+		$this->targetFileObj->expects($this->once())->method('parse')->willReturn($targetFileData);
 
 		$this->obj->merge();
 

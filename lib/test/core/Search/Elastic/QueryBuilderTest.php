@@ -847,7 +847,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		$mockIndex->expects($this->any())
 			->method('getFieldMapping')
 			->with('field_date')
-			->will($this->returnValue((object)['type' => 'date']));
+			->willReturn((object)['type' => 'date']);
 		return $mockIndex;
 	}
 }

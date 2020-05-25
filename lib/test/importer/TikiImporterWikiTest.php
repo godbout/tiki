@@ -66,7 +66,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		   ->getMock();
 		$obj->expects($this->once())->method('validateInput');
 		$obj->expects($this->once())->method('parseData');
-		$obj->expects($this->once())->method('insertData')->will($this->returnValue($expectedImportFeedback));
+		$obj->expects($this->once())->method('insertData')->willReturn($expectedImportFeedback);
 		$obj->expects($this->once())->method('saveAndDisplayLog');
 
 		$obj->log = 'some log string';
@@ -127,7 +127,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		$obj = $this->getMockBuilder('TikiImporter_Wiki')
 		   ->setMethods(['insertPage'])
 		   ->getMock();
-		$obj->expects($this->exactly(6))->method('insertPage')->will($this->onConsecutiveCalls(true, true, false, true, false, true));
+		$obj->expects($this->exactly(6))->method('insertPage')->willReturnOnConsecutiveCalls(true, true, false, true, false, true);
 
 		$parsedData = [
 			['name' => 'Page1'],
@@ -164,7 +164,7 @@ class TikiImporter_Wiki_InsertPage_Test extends TikiImporter_TestCase
 	{
 		global $tikilib, $page;
 
-		$tikilib->expects($this->once())->method('page_exists')->with($page['name'])->will($this->returnValue(false));
+		$tikilib->expects($this->once())->method('page_exists')->with($page['name'])->willReturn(false);
 		$tikilib->expects($this->once())->method('create_page')->with($page['name'], 0, $page['revisions'][0]['data'], $page['revisions'][0]['lastModif'], $page['revisions'][0]['comment'], $page['revisions'][0]['user'], $page['revisions'][0]['ip']);
 	   // TODO: how to test parameters for update_page for the 7 different calls
 		$tikilib->expects($this->exactly(7))->method('update_page');
@@ -176,7 +176,7 @@ class TikiImporter_Wiki_InsertPage_Test extends TikiImporter_TestCase
 	public function testInsertPageAlreadyExistentPageNameOverride()
 	{
 		global $tikilib, $page;
-		$tikilib->expects($this->once())->method('page_exists')->with($page['name'])->will($this->returnValue(true));
+		$tikilib->expects($this->once())->method('page_exists')->with($page['name'])->willReturn(true);
 		$tikilib->expects($this->once())->method('remove_all_versions')->with($page['name']);
 		$tikilib->expects($this->once())->method('create_page');
 		$tikilib->expects($this->exactly(7))->method('update_page');
@@ -191,7 +191,7 @@ class TikiImporter_Wiki_InsertPage_Test extends TikiImporter_TestCase
 
 		$newPageName = $this->obj->softwareName . '_' . $page['name'];
 
-		$tikilib->expects($this->once())->method('page_exists')->with($page['name'])->will($this->returnValue(true));
+		$tikilib->expects($this->once())->method('page_exists')->with($page['name'])->willReturn(true);
 		$tikilib->expects($this->once())->method('create_page')->with($newPageName);
 		$tikilib->expects($this->exactly(7))->method('update_page')->with($newPageName);
 
@@ -203,7 +203,7 @@ class TikiImporter_Wiki_InsertPage_Test extends TikiImporter_TestCase
 	{
 		global $tikilib, $page;
 
-		$tikilib->expects($this->once())->method('page_exists')->with($page['name'])->will($this->returnValue(true));
+		$tikilib->expects($this->once())->method('page_exists')->with($page['name'])->willReturn(true);
 		$tikilib->expects($this->never())->method('create_page');
 		$tikilib->expects($this->never())->method('update_page');
 

@@ -29,12 +29,12 @@ class Reports_Send_EmailBuilderTest extends TikiTestCase
 	public function testMakeEmailBody_shouldReturnCalendarChangedReportInDetailedViewMode()
 	{
 		$this->tikilib->expects($this->exactly(2))->method('get_short_datetime')
-			->will($this->returnValue('2011-09-13 11:19'));
+			->willReturn('2011-09-13 11:19');
 
 		$calendarlib = $this->createMock(get_class(TikiLib::lib('calendar')));
 		$calendarlib->expects($this->exactly(2))
 			->method('get_item')
-			->will($this->returnValue(['name' => 'Calendar item name']));
+			->willReturn(['name' => 'Calendar item name']);
 
 		$tikilib = new TestableTikiLib;
 		$tikilib->overrideLibs(['calendar' => $calendarlib]);
@@ -64,15 +64,15 @@ class Reports_Send_EmailBuilderTest extends TikiTestCase
 	public function testMakeEmailBody_shouldReturnTrackerItemCommentReportInDetailedViewMode()
 	{
 		$this->tikilib->expects($this->once())->method('get_short_datetime')
-			->will($this->returnValue('2011-09-12 20:30'));
+			->willReturn('2011-09-12 20:30');
 
 		$trklib = $this->createMock(get_class(TikiLib::lib('trk')));
 		$trklib->expects($this->once())
 			->method('get_tracker')
-			->will($this->returnValue(['id' => '2', 'name' => 'Test Tracker']));
+			->willReturn(['id' => '2', 'name' => 'Test Tracker']);
 		$trklib->expects($this->once())
 			->method('get_isMain_value')
-			->will($this->returnValue('Tracker item name'));
+			->willReturn('Tracker item name');
 
 		$tikilib = new TestableTikiLib;
 		$tikilib->overrideLibs(['trk' => $trklib]);
@@ -112,7 +112,7 @@ class Reports_Send_EmailBuilderTest extends TikiTestCase
 		$categoryChanged->expects($this->once())->method('getOutput');
 
 		$this->factory->expects($this->once())->method('build')
-			->with('category_changed')->will($this->returnValue($categoryChanged));
+			->with('category_changed')->willReturn($categoryChanged);
 
 		$obj->makeEmailBody($reportCache, $this->defaultReportPreferences);
 	}

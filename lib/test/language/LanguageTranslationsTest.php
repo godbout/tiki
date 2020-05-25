@@ -188,7 +188,7 @@ class LanguageTranslationsTest extends TikiTestCase
 	public function testGetFileUntranslated()
 	{
 		$cachelib = $this->getMockBuilder('Cachelib')->setMethods(['getSerialized', 'cacheItem'])->getMock();
-		$cachelib->expects($this->once())->method('getSerialized')->with('untranslatedStrings.test_language.1234', 'untranslatedStrings')->will($this->returnValue(null));
+		$cachelib->expects($this->once())->method('getSerialized')->with('untranslatedStrings.test_language.1234', 'untranslatedStrings')->willReturn(null);
 		$cachelib->expects($this->once())->method('cacheItem');
 
 		$obj = $this->getMockBuilder('LanguageTranslations')
@@ -196,8 +196,8 @@ class LanguageTranslationsTest extends TikiTestCase
 					->setConstructorArgs([$this->lang])
 					->getMock();
 
-		$obj->expects($this->once())->method('_getCacheLib')->will($this->returnValue($cachelib));
-		$obj->expects($this->once())->method('_getFileHash')->will($this->returnValue(1234));
+		$obj->expects($this->once())->method('_getCacheLib')->willReturn($cachelib);
+		$obj->expects($this->once())->method('_getFileHash')->willReturn(1234);
 
 		$expectedResult = [
 				"Kalture Video" => ['source' => "Kalture Video", 'tran' => null],
@@ -288,8 +288,8 @@ class LanguageTranslationsTest extends TikiTestCase
 					->setMethods(['getFileTranslations', '_getDbTranslations'])
 					->getMock();
 
-		$obj->expects($this->once())->method('getFileTranslations')->will($this->returnValue($fileTranslations));
-		$obj->expects($this->once())->method('_getDbTranslations')->will($this->returnValue($dbTranslations));
+		$obj->expects($this->once())->method('getFileTranslations')->willReturn($fileTranslations);
+		$obj->expects($this->once())->method('_getDbTranslations')->willReturn($dbTranslations);
 
 		$this->assertEquals($expectedResult, $obj->getAllTranslations());
 	}
@@ -311,8 +311,8 @@ class LanguageTranslationsTest extends TikiTestCase
 					->setMethods(['getFileTranslations', '_getDbTranslations'])
 					->getMock();
 
-		$obj->expects($this->once())->method('getFileTranslations')->will($this->returnValue($fileTranslations));
-		$obj->expects($this->once())->method('_getDbTranslations')->will($this->returnValue($dbTranslations));
+		$obj->expects($this->once())->method('getFileTranslations')->willReturn($fileTranslations);
+		$obj->expects($this->once())->method('_getDbTranslations')->willReturn($dbTranslations);
 
 		$this->assertEquals($expectedResult, $obj->getAllTranslations(2, 3));
 	}
@@ -333,8 +333,8 @@ class LanguageTranslationsTest extends TikiTestCase
 					->setMethods(['getFileTranslations', '_getDbTranslations'])
 					->getMock();
 
-		$obj->expects($this->once())->method('getFileTranslations')->will($this->returnValue($fileTranslations));
-		$obj->expects($this->once())->method('_getDbTranslations')->will($this->returnValue($dbTranslations));
+		$obj->expects($this->once())->method('getFileTranslations')->willReturn($fileTranslations);
+		$obj->expects($this->once())->method('_getDbTranslations')->willReturn($dbTranslations);
 
 		$this->assertEquals($expectedResult, $obj->getAllTranslations(2, 1, 're'));
 	}
@@ -355,8 +355,8 @@ class LanguageTranslationsTest extends TikiTestCase
 					->setMethods(['getFileTranslations', '_getDbTranslations'])
 					->getMock();
 
-		$obj->expects($this->once())->method('getFileTranslations')->will($this->returnValue($fileTranslations));
-		$obj->expects($this->once())->method('_getDbTranslations')->will($this->returnValue($dbTranslations));
+		$obj->expects($this->once())->method('getFileTranslations')->willReturn($fileTranslations);
+		$obj->expects($this->once())->method('_getDbTranslations')->willReturn($dbTranslations);
 
 		$this->assertEquals($expectedResult, $obj->getAllTranslations(-1, 0, 'rê'));
 	}
@@ -496,9 +496,9 @@ class LanguageTranslationsTest extends TikiTestCase
 					->setMethods(['getFileUntranslated', '_getDbUntranslated', '_getDbTranslations'])
 					->getMock();
 
-		$obj->expects($this->once())->method('getFileUntranslated')->will($this->returnValue($fileUntranslated));
-		$obj->expects($this->once())->method('_getDbUntranslated')->will($this->returnValue($dbUntranslated));
-		$obj->expects($this->once())->method('_getDbTranslations')->will($this->returnValue($dbTranslations));
+		$obj->expects($this->once())->method('getFileUntranslated')->willReturn($fileUntranslated);
+		$obj->expects($this->once())->method('_getDbUntranslated')->willReturn($dbUntranslated);
+		$obj->expects($this->once())->method('_getDbTranslations')->willReturn($dbTranslations);
 
 		$expectedResult = [
 				'translations' => [

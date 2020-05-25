@@ -46,7 +46,7 @@ class Reports_ManagerTest extends TikiTestCase
 		$users = ['admin', 'test'];
 
 		$this->reportsUsers->expects($this->once())->method('getAllUsers')
-			->will($this->returnValue($users));
+			->willReturn($users);
 
 		$this->reportsCache->expects($this->once())->method('add')->with($watches, $data, $users);
 

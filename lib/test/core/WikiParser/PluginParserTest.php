@@ -62,7 +62,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 				$this->equalTo('Hello'),
 				$this->equalTo(['hello' => 'world'])
 			)
-			->will($this->returnValue('test'));
+			->willReturn('test');
 
 		$data = 'This is a {TEST(hello=world)}Hello{TEST} and will change';
 		$parser = new WikiParser_PluginParser;
@@ -85,7 +85,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 				$this->equalTo(null),
 				$this->equalTo(['hello' => 'world'])
 			)
-			->will($this->returnValue('test'));
+			->willReturn('test');
 
 		$data = 'This is a {test hello=world} and will change';
 		$parser = new WikiParser_PluginParser;
@@ -108,7 +108,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 				$this->equalTo(null),
 				$this->equalTo([])
 			)
-			->will($this->returnValue('test'));
+			->willReturn('test');
 
 		$data = 'This is a {test} and will change';
 		$parser = new WikiParser_PluginParser;
@@ -127,7 +127,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 			->expects($this->once())
 			->method('run')
 			->with($this->equalTo('b'), $this->equalTo(null), $this->equalTo([]))
-			->will($this->returnValue('return'));
+			->willReturn('return');
 
 		$data = '~np~ {a} ~/np~ {b} ~np~ {c} ~/np~';
 		$parser = new WikiParser_PluginParser;
@@ -146,7 +146,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 			->expects($this->once())
 			->method('run')
 			->with($this->equalTo('a'), $this->equalTo(' {b} '), $this->equalTo([]))
-			->will($this->returnValue('no plugin'));
+			->willReturn('no plugin');
 
 		$data = '{A()} {b} {A}';
 		$parser = new WikiParser_PluginParser;
@@ -164,7 +164,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$mock = $this->createMock('WikiParser_PluginRunner')
 			->expects($this->exactly(2))
 			->method('run')
-			->will($this->onConsecutiveCalls('__{b}__', 'hello'));
+			->willReturnOnConsecutiveCalls('__{b}__', 'hello');
 
 		$parser = new WikiParser_PluginParser;
 		$parser->setPluginRunner($mock);
@@ -181,7 +181,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$mock = $this->createMock('WikiParser_PluginRunner')
 			->expects($this->exactly(2))
 			->method('run')
-			->will($this->onConsecutiveCalls('__{b}__', 'hello'));
+			->willReturnOnConsecutiveCalls('__{b}__', 'hello');
 
 		$parser = new WikiParser_PluginParser;
 		$parser->setPluginRunner($mock);
@@ -198,7 +198,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$mock = $this->createMock('WikiParser_PluginRunner')
 			->expects($this->once())
 			->method('run')
-			->will($this->returnValue('~np~{b}~/np~'));
+			->willReturn('~np~{b}~/np~');
 
 		$parser = new WikiParser_PluginParser;
 		$parser->setPluginRunner($mock);

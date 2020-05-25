@@ -65,7 +65,7 @@ class Reports_SendTest extends TikiTestCase
 		$emailBody = 'body';
 
 		$this->builder->expects($this->once())->method('emailBody')
-			->with($userData, $reportPreferences, $reportCache)->will($this->returnValue($emailBody));
+			->with($userData, $reportPreferences, $reportCache)->willReturn($emailBody);
 		$this->mail->expects($this->once())->method('setUser')->with('test');
 		$this->mail->expects($this->once())->method('setHtml')->with($emailBody);
 		$this->mail->expects($this->once())->method('setSubject')->with('Report on test from 2012-03-27 (no changes)');

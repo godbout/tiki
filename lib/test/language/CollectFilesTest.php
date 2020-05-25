@@ -66,8 +66,8 @@ class Language_CollectFilesTest extends TikiTestCase
 		$obj = $this->getMockBuilder('Language_CollectFiles')
 					->setMethods(['scanDir', 'getIncludeFiles'])
 					->getMock();
-		$obj->expects($this->once())->method('scanDir')->will($this->returnValue(['lib/test.php', 'tiki-test.php']));
-		$obj->expects($this->once())->method('getIncludeFiles')->will($this->returnValue(['tiki-test.php', 'tiki-index.php']));
+		$obj->expects($this->once())->method('scanDir')->willReturn(['lib/test.php', 'tiki-test.php']);
+		$obj->expects($this->once())->method('getIncludeFiles')->willReturn(['tiki-test.php', 'tiki-index.php']);
 
 		$this->assertEquals(['lib/test.php', 'tiki-test.php', 'tiki-index.php'], $obj->run('.'));
 	}
@@ -90,7 +90,7 @@ class Language_CollectFilesTest extends TikiTestCase
 					->setMethods(['getExcludeDirs'])
 					->getMock();
 
-		$obj->expects($this->exactly(5))->method('getExcludeDirs')->will($this->returnValue(['vfs://root/dir1']));
+		$obj->expects($this->exactly(5))->method('getExcludeDirs')->willReturn(['vfs://root/dir1']);
 		$expectedResult = ['vfs://root/dir2/file2.php', 'vfs://root/dir2/file3.php'];
 		$this->assertEquals($expectedResult, $obj->scanDir(vfsStream::url('root')));
 	}
@@ -101,8 +101,8 @@ class Language_CollectFilesTest extends TikiTestCase
 					->setMethods(['getExcludeDirs', 'getIncludeFiles'])
 					->getMock();
 
-		$obj->expects($this->exactly(3))->method('getExcludeDirs')->will($this->returnValue(['vfs://root/dir2']));
-		$obj->expects($this->exactly(2))->method('getIncludeFiles')->will($this->returnValue(['vfs://root/dir2/file3.php']));
+		$obj->expects($this->exactly(3))->method('getExcludeDirs')->willReturn(['vfs://root/dir2']);
+		$obj->expects($this->exactly(2))->method('getIncludeFiles')->willReturn(['vfs://root/dir2/file3.php']);
 
 		$expectedResult = ['vfs://root/dir1/file1.tpl', 'vfs://root/dir2/file3.php'];
 		$this->assertEquals($expectedResult, $obj->scanDir(vfsStream::url('root')));

@@ -24,7 +24,7 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$mock->expects($this->once())
 			->method('lastInsertId')
 			->with()
-			->will($this->returnValue(42));
+			->willReturn(42);
 
 		$table = new TikiDb_Table($mock, 'my_table');
 		$this->assertEquals(
@@ -49,7 +49,7 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$mock->expects($this->once())
 			->method('lastInsertId')
 			->with()
-			->will($this->returnValue(12));
+			->willReturn(12);
 
 		$table = new TikiDb_Table($mock, 'test_table');
 		$this->assertEquals(
@@ -353,7 +353,7 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$tikiDb = $this->createMock('TikiDb');
 		$tikiDb->expects($this->once())->method('fetchAll')
 			->with($query, [], -1, -1)
-			->will($this->returnValue($expectedResult));
+			->willReturn($expectedResult);
 
 		$table = new TikiDb_Table($tikiDb, 'users_users');
 
@@ -372,7 +372,7 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$tikiDb = $this->createMock('TikiDb');
 		$tikiDb->expects($this->exactly(2))->method('fetchAll')
 			->with($query, [], -1, -1)
-			->will($this->returnValue($expectedResult));
+			->willReturn($expectedResult);
 
 		$table = new TikiDb_Table($tikiDb, 'users_users');
 
@@ -391,7 +391,7 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$mock->expects($this->once())
 			->method('fetchAll')
 			->with($this->equalTo($query), $this->equalTo([42]), $this->equalTo(1), $this->equalTo(0))
-			->will($this->returnValue([$row,]));
+			->willReturn([$row,]);
 
 		$table = new TikiDb_Table($mock, 'users_users');
 
@@ -407,7 +407,7 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$mock->expects($this->once())
 			->method('fetchAll')
 			->with($this->equalTo($query), $this->equalTo([42]), $this->equalTo(1), $this->equalTo(0))
-			->will($this->returnValue([[15],]));
+			->willReturn([[15],]);
 
 		$table = new TikiDb_Table($mock, 'users_users');
 
@@ -425,7 +425,7 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$mock->expects($this->once())
 			->method('fetchAll')
 			->with($this->equalTo($query), $this->equalTo([42]), $this->equalTo(1), $this->equalTo(0))
-			->will($this->returnValue([$row,]));
+			->willReturn([$row,]);
 
 		$table = new TikiDb_Table($mock, 'users_users');
 
@@ -441,13 +441,8 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$mock->expects($this->once())
 			->method('fetchAll')
 			->with($this->equalTo($query), $this->equalTo([42]), $this->equalTo(-1), $this->equalTo(-1))
-			->will(
-				$this->returnValue(
-					[
-						['user' => 'hello', 'email' => 'hello@example.com'],
-						['user' => 'world', 'email' => 'world@example.com'],
-					]
-				)
+			->willReturn(
+				[['user' => 'hello', 'email' => 'hello@example.com'], ['user' => 'world', 'email' => 'world@example.com'],]
 			);
 
 		$table = new TikiDb_Table($mock, 'users_users');
