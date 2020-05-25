@@ -10,6 +10,9 @@ class DateTimeOn extends Operator
 {
 	function __construct()
 	{
-		parent::__construct(tr('on'), DateTime::class, '' /* TODO */);
+		$syntax = '.val() * 1 - $("[name=tzoffset]").val() * 60 >= (new Date("%argument%")).getTime() / 1000 && ' .
+			'$("[name=%field%:last]").val() * 1 - $("[name=tzoffset]").val() * 60 < ((new Date("%argument%")).getTime() / 1000 + 86400)';
+
+		parent::__construct(tr('on'), DateTime::class, $syntax);
 	}
 }

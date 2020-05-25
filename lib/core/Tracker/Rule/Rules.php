@@ -117,6 +117,7 @@ class Rules
 		$syntax = $operatorObject->getSyntax();
 		if ($predicate->argument !== null) {
 			$syntax = str_replace('%argument%', $predicate->argument, $syntax);
+			$syntax = str_replace('%field%', $predicate->target_id, $syntax);
 		} else if (strpos($syntax, '%argument%') !== false) {
 			$syntax = str_replace('%argument%', tr('No argument for \"%0\" rule', $predicate->operator_id), $syntax);
 		}
