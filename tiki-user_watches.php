@@ -53,11 +53,13 @@ if (isset($_REQUEST['categwatch'])) {
 	}
 }
 // request from unsubscribe email link, like in templates/mail/user_watch_map_changed.tpl
+// TODO would be better to provide a token with the unsubscribe link that could be matched to the database
+// TODO so that the user doesn't have to log in to unsubscribe - similar to unsubscribe in tiki-newsletter.php
 if (isset($_REQUEST['id'])) {
 	if ($tiki_p_admin_notifications != 'y' && $user != $tikilib->get_user_notification($_REQUEST['id'])) {
 		Feedback::errorPage(['mes' => tr('Permission denied'), 'errortype' => 401]);
 	}
-	if ($access->confirmRedirect(tr('Unsubscribe from user watch email notifications?'))) {
+	if ($access->checkCsrf()) {
 		$result = $tikilib->remove_user_watch_by_id($_REQUEST['id']);
 	}
 	if ($result && $result->numRows()) {
