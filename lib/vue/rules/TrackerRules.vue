@@ -26,14 +26,15 @@
 		</div>
 
 		<div class="card">
-			<article class="message is-info">
-				<div class="message-header">
-					<p>Tips</p>
+			<div class="card-body tips">
+				<h5 class="card-title">Tips</h5>
+				<div class="card=text">
+					<p>Tips: Use <code>alt + click</code> to create a sub-group.</p>
+					<p>
+						<button class="btn btn-warning btn-sm" @click="onResetClicked">Clear All</button>
+					</p>
 				</div>
-				<div class="message-body">
-					Tips: Use <code>alt + click</code> to create a sub-group.
-				</div>
-			</article>
+			</div>
 		</div>
 
 		<div class="card d-none">
@@ -162,7 +163,6 @@
 			};
 		},
 		methods: {
-			// TODO probably near here: set new predicates target to this field as the default
 
 			onChangeConditions(diff)
 			{
@@ -175,6 +175,17 @@
 			onChangeElse(diff)
 			{
 				this.elseoutput = diff;
+			},
+			onResetClicked(event)
+			{
+				this.conditionsoutput = "";
+				this.actionoutput = "";
+				this.elseoutput = "";
+
+				$(this.$el).find(".card-body:not(.tips)").empty();
+
+				event.preventDefault();
+				return false;
 			},
 		},
 		beforeMount: function () {
