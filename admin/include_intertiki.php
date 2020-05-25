@@ -19,7 +19,7 @@ if (! isset($_REQUEST['known_hosts'])) {
 
 //*** begin state-changing actions
 //TODO Avoid altering $_POST variable directly in this section
-if (isset($_POST['del']) && $access->checkCsrfForm(tra('Remove this server?'))) {
+if (isset($_POST['del']) && $access->checkCsrf(true)) {
 	foreach ($prefs['interlist'] as $k => $i) {
 		if ($k == $_POST['del']) {
 			unset($_POST['interlist'][$k]);
@@ -29,7 +29,7 @@ if (isset($_POST['del']) && $access->checkCsrfForm(tra('Remove this server?'))) 
 	//to refresh interlist dropdown - not sure if there's a better way to do this
 	$access->redirect($_SERVER['REQUEST_URI'], '', 200);
 }
-if (isset($_POST['delk']) && $access->checkCsrfForm(tra('Remove this host?'))) {
+if (isset($_POST['delk']) && $access->checkCsrf(true)) {
 	foreach ($prefs['known_hosts'] as $k => $i) {
 		if ($k == $_POST['delk']) {
 			unset($_POST['known_hosts'][$k]);

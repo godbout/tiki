@@ -378,7 +378,7 @@ if (isset($_REQUEST['assign']) && $access->checkCsrf()) {
 	}
 }
 
-if (isset($_REQUEST['um_remove']) && $access->checkCsrfForm(tr('Delete custom module?'))) {
+if (isset($_REQUEST['um_remove']) && $access->checkCsrf(true)) {
 	$result = $modlib->remove_user_module($_REQUEST['um_remove']);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Custom module deleted'));

@@ -66,7 +66,7 @@ if ($entry === false) {
 }
 $smarty->assign('entry', $entry);
 
-if ($access->checkCsrfForm(tr('Cancel journal %0 in book %1?', $journalId, $book['bookName']))) {
+if ($access->checkCsrf(true)) {
 	$accountinglib->cancelTransaction($bookId, $journalId);
 	if (!empty($errors)) {
 		Feedback::error(['mes' => $errors]);

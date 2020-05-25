@@ -125,7 +125,7 @@ if ((isset($_POST['send']) && $access->checkCsrf()) || isset($_POST['preview']))
 				$smarty->assign('confirmSubmitName', 'send');
 				$smarty->assign('confirmSubmitValue', 1);
 				unset($_POST['preview']);
-				$access->checkCsrfForm(tra('See below for how the broadcast message will be handled upon confirmation'));
+				$access->checkCsrf(true);
 			}
 		} else {
 			$message[] = tra('No valid users to send the message to.');

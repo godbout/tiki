@@ -72,7 +72,7 @@ if (isset($_REQUEST["add"]) && $access->checkCsrf() ) {
 	}
 }
 
-if (isset($_REQUEST["removeevent"]) && isset($_REQUEST['removetype']) && $access->checkCsrfForm(tr('Delete mail notification event?'))) {
+if (isset($_REQUEST["removeevent"]) && isset($_REQUEST['removetype']) && $access->checkCsrf(true)) {
 	if ($_REQUEST['removetype'] == 'user') {
 		$result = $tikilib->remove_user_watch_by_id($_REQUEST["removeevent"]);
 	} else {
@@ -87,7 +87,7 @@ if (isset($_REQUEST["removeevent"]) && isset($_REQUEST['removetype']) && $access
 if (isset($_REQUEST['action'])
 	&& $_REQUEST['action'] == 'delete'
 	&& isset($_REQUEST['checked'])
-	&& $access->checkCsrfForm(tr('Delete selected notification events?')))
+	&& $access->checkCsrf(true))
 {
 	$i = 0;
 	$i = 0;

@@ -56,7 +56,7 @@ if ($_REQUEST["editurl"] != 'n') {
 }
 $smarty->assign('editurl', $_REQUEST["editurl"]);
 
-if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove featured link?'))) {
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
 	$result = $flinkslib->remove_featured_link($_REQUEST["remove"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Featured link removed'));

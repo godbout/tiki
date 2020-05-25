@@ -30,7 +30,7 @@ if (isset($_REQUEST['checked'])) {
 		header('Location: tiki-admin_banning.php?mass_ban_ip_actionlog=' . $mass_ban_ip);
 		exit;
 	} elseif (isset($_REQUEST['action']) && $_REQUEST['action'] === 'remove' && $tiki_p_admin == 'y'
-		&& $access->checkCsrfForm(tra('Remove selected actions?')))
+		&& $access->checkCsrf(true))
 	{
 		$rowsDeleted = 0;
 		foreach ($checked as $action) {

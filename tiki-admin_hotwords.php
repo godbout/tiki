@@ -25,7 +25,7 @@ if (isset($_REQUEST["add"]) && $access->checkCsrf()) {
 		Feedback::error(tr('Hotword not added'));
 	}
 }
-if (isset($_REQUEST["remove"]) && ! empty($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Delete hotword?'))) {
+if (isset($_REQUEST["remove"]) && ! empty($_REQUEST["remove"]) && $access->checkCsrf(true)) {
 	$result = $hotwordlib->remove_hotword($_REQUEST["remove"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Hotword deleted'));

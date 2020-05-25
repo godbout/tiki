@@ -25,7 +25,7 @@ if ((! isset($_REQUEST['msgId']) || $_REQUEST['msgId'] == 0) && empty($_POST['ms
 if (isset($_POST['action']) && $access->checkCsrf()) {
 	$messulib->flag_message($user, $_POST['msgId'], $_POST['action'], $_POST['actionval'], 'sent');
 }
-if (isset($_POST['msgdel']) && $access->checkCsrfForm(tra('Delete sent message?'))) {
+if (isset($_POST['msgdel']) && $access->checkCsrf(true)) {
 	$result = $messulib->delete_message($user, $_POST['msgdel'], 'sent');
 	if ($result->numRows()) {
 		Feedback::success(tr('Sent message deleted'));

@@ -166,7 +166,7 @@ if (isset($_REQUEST['action']) && isset($ref_id)) {
 		$linkedreferences = $referenceslib->get_reference_from_code($currentlibreference['data'][0]['biblio_code']);
 
 		if (count($linkedreferences['data']) === 1) {
-			if ($_REQUEST['action'] == 'delete' && $access->checkCsrfForm(tra('Delete reference?'))) {
+			if ($_REQUEST['action'] == 'delete' && $access->checkCsrf(true)) {
 				$referenceslib->remove_reference($ref_id);
 			}
 		} else {
@@ -177,7 +177,7 @@ if (isset($_REQUEST['action']) && isset($ref_id)) {
 			Feedback::error(['mes' => $msg]);
 		}
 	} else {
-		if ($_REQUEST['action'] == 'delete' && $access->checkCsrfForm(tra('Delete reference?'))) {
+		if ($_REQUEST['action'] == 'delete' && $access->checkCsrf(true)) {
 			$referenceslib->remove_reference($ref_id);
 		}
 	}

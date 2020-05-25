@@ -38,7 +38,7 @@ if (count($out) && $access->checkCsrf()) {
 if ((count($in) || count($out))  && $access->checkCsrf()) {
 	add_feedback('registration_choices', tra('registration choices'), 2);
 }
-if (! empty($_REQUEST['refresh_email_group']) && $access->checkCsrfForm(tra('Assign users to groups based on email patterns?'))) {
+if (! empty($_REQUEST['refresh_email_group']) && $access->checkCsrf(true)) {
 	$nb = $userlib->refresh_set_email_group();
 	if ($nb > 0) {
 		Feedback::success(tra(sprintf(tra("%d users were assigned to groups based on user emails matching the patterns defined for the groups."), $nb)));
@@ -115,7 +115,7 @@ if (isset($_POST['uploadIndex']) && $access->checkCsrf()) {
 	} else {
 		Feedback::error(tr('Unable to Write Password File to Disk'));
 	}
-} elseif (isset($_POST['deleteIndex'])&& $access->checkCsrfForm(tra('Delete temporary index?'))) {
+} elseif (isset($_POST['deleteIndex'])&& $access->checkCsrf(true)) {
 	$blackL->deletePassIndex();
 }
 

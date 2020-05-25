@@ -82,7 +82,7 @@ $cat_objid = $_REQUEST['templateId'];
 include_once("categorize_list.php");
 
 $smarty->assign_by_ref('info', $info);
-if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove template?'))) {
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
 	$result = $templateslib->remove_template($_REQUEST["remove"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Template removed'));
@@ -90,7 +90,7 @@ if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove template?'))
 		Feedback::error(tr('Template not removed'));
 	}
 }
-if (isset($_REQUEST["removesection"]) && $access->checkCsrfForm(tr('Remove section?'))) {
+if (isset($_REQUEST["removesection"]) && $access->checkCsrf(true)) {
 	$result = $templateslib->remove_template_from_section($_REQUEST["rtemplateId"], $_REQUEST["removesection"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Section removed'));

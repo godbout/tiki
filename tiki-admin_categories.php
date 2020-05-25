@@ -38,7 +38,7 @@ $smarty->assign('parentId', $_REQUEST['parentId']);
 
 $access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['parentId']);
 
-if (! empty($_REQUEST['unassign']) && $access->checkCsrfForm(tra('Unassign objects from category?'))) {
+if (! empty($_REQUEST['unassign']) && $access->checkCsrf(true)) {
 	$result = $categlib->unassign_all_objects($_REQUEST['parentId']);
 	if ($result->numrows()) {
 		$msg = $result->numrows() === 1 ? tr('One object unassigned from category')
@@ -180,7 +180,7 @@ if (isset($categorizedObject) && ! isset($_REQUEST["addpage"])) {
 	$categlib->notify($values);
 }
 
-if (isset($_REQUEST["removeObject"]) && $access->checkCsrfForm(tr('Remove object from category?'))) {
+if (isset($_REQUEST["removeObject"]) && $access->checkCsrf(true)) {
 	$category = $categlib->get_category($_REQUEST["parentId"]);
 	$categorizedObject = $categlib->get_categorized_object_via_category_object_id($_REQUEST["removeObject"]);
 	$result = $categlib->remove_object_from_category($_REQUEST["removeObject"], $_REQUEST["parentId"]);
@@ -212,7 +212,7 @@ if (isset($_REQUEST["removeObject"]) && $access->checkCsrfForm(tr('Remove object
 	}
 }
 if (isset($_REQUEST["removeCat"]) && $info = $categlib->get_category($_REQUEST['removeCat'])
-		&& $access->checkCsrfForm(tr('Delete category?')))
+		&& $access->checkCsrf(true))
 {
 	$access->check_permission('tiki_p_admin_categories', '', 'category', $_REQUEST['removeCat']);
 	$result = $categlib->remove_category($_REQUEST["removeCat"]);
@@ -406,7 +406,7 @@ foreach ($categories as $category) {
 			. $category['parentId']
 			. '&amp;removeCat='
 			. $category['categId']
-			. '" onclick="confirmSimple(event, \'' . tr('Delete category?') . '\', \''
+			. '" onclick="confirmPopup(\'' . tr('Delete category?') . '\', \''
 			. smarty_function_ticket(['mode' => 'get'], $smarty) . '\')">'
 			. smarty_function_icon(
 				[

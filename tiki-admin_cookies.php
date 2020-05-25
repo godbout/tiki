@@ -24,7 +24,7 @@ if ($_REQUEST["cookieId"]) {
 	$info["cookie"] = '';
 }
 $smarty->assign('cookie', $info["cookie"]);
-if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove cookie?'))) {
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
 	$result = $taglinelib->remove_cookie($_REQUEST["remove"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Cookie removed'));
@@ -32,7 +32,7 @@ if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove cookie?'))) 
 		Feedback::error(tr('Cookie not removed'));
 	}
 }
-if (isset($_REQUEST["removeall"]) && $access->checkCsrfForm(tr('Remove all cookies?'))) {
+if (isset($_REQUEST["removeall"]) && $access->checkCsrf(true)) {
 	$result = $taglinelib->remove_all_cookies();
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('All cookies removed'));

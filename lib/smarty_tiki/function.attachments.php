@@ -46,7 +46,7 @@ function s_f_attachments_actionshandler($params)
 					}
 					$pageRenderer->setShowAttachments( 'y' );
 				*/
-				if ($access->checkCsrfForm(tr('Delete file?'))) {
+				if ($access->checkCsrf(true)) {
 					$result = $filegallib->actionHandler('removeFile', [ 'fileId' => $v ]);
 					if ($result && $result->numrows()) {
 						Feedback::success(tr('File (ID %0) removed', $v));

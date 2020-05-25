@@ -99,7 +99,7 @@ if (isset($_POST['cancel'])) {
 // Exit edit mode (with javascript)
 $smarty->assign('referer', ! empty($_POST['referer']) ? $_POST['referer'] : (empty($_SERVER['HTTP_REFERER']) ? 'tiki-view_blog.php?blogId=' . $blogId : $_SERVER['HTTP_REFERER']));
 
-if (isset($_REQUEST['remove_image']) && $access->checkCsrfForm(tra('Delete this item?'))) {
+if (isset($_REQUEST['remove_image']) && $access->checkCsrf(true)) {
 	$bloglib->remove_post_image($_POST['remove_image']);
 }
 

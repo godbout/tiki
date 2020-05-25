@@ -212,7 +212,7 @@ if (isset($_REQUEST['movesel']) && $access->checkCsrf()) {
 if (isset($_REQUEST['fgal_actions'])) {
 	if ($_REQUEST['fgal_actions'] === 'delsel_x') {
 		$access->check_permission_either(['admin_file_galleries', 'remove_files']);
-		if (isset($_REQUEST['file']) && $access->checkCsrfForm('Delete selected files?')) {
+		if (isset($_REQUEST['file']) && $access->checkCsrf(true)) {
 			$failedFiles = $totalFiles = count($_REQUEST['file']);
 			foreach (array_values($_REQUEST['file']) as $file) {
 				if ($info = $filegallib->get_file_info($file)) {
@@ -225,7 +225,7 @@ if (isset($_REQUEST['fgal_actions'])) {
 		}
 
 		if (isset($_REQUEST['subgal']) && $tiki_p_admin_file_galleries == 'y'
-			&& $access->checkCsrfForm('Delete selected galleries?'))
+			&& $access->checkCsrf(true))
 		{
 			$failedGals = $totalGals = count($_REQUEST['subgal']);
 			foreach (array_values($_REQUEST['subgal']) as $subgal) {
@@ -261,7 +261,7 @@ if (isset($_REQUEST['fgal_actions'])) {
 		}
 	}
 
-	if ($_REQUEST['fgal_actions'] === 'defaultsel_x' && $access->checkCsrfForm('Reset to default list view settings?')) {
+	if ($_REQUEST['fgal_actions'] === 'defaultsel_x' && $access->checkCsrf(true)) {
 		$access->check_permission('admin_file_galleries');
 		$galCount = 0;
 		if (! empty($_REQUEST['subgal'])) {
@@ -391,7 +391,7 @@ if (isset($_REQUEST['lock']) && isset($_REQUEST['fileId']) && $_REQUEST['fileId'
 				$error_msg = sprintf(tr('The file is already locked by %s'), $fileInfo['lockedby']);
 			} else {
 				if ($fileInfo['lockedby'] != $user
-					&& $access->checkCsrfForm(printf(tr('The file is already locked by %s'), $fileInfo['lockedby'])))
+					&& $access->checkCsrf(true))
 				{
 					$filegallib->unlock_file($_REQUEST['fileId']);
 				} elseif ($access->checkCsrf()) {
@@ -433,7 +433,7 @@ if (! empty($_REQUEST['validate']) && $prefs['feature_file_galleries_save_draft'
 		}
 	} elseif (! $info = $filegallib->get_file_info($_REQUEST['validate'])) {
 		Feedback::error(tr('Error retrieving file'));
-	} elseif ($access->checkCsrfForm(tr('Validate draft?'))) {
+	} elseif ($access->checkCsrf(true)) {
 		$result = $filegallib->validate_draft($info['fileId']);
 		if ($result && $result->numRows()) {
 			Feedback::success(tr('Draft validated'));
@@ -443,7 +443,7 @@ if (! empty($_REQUEST['validate']) && $prefs['feature_file_galleries_save_draft'
 	}
 }
 
-if (! empty($_REQUEST['remove']) && $access->checkCsrfForm('Delete file?')) {
+if (! empty($_REQUEST['remove']) && $access->checkCsrf(true)) {
 	$result = $filegallib->actionHandler(
 		'removeFile',
 		[
@@ -460,7 +460,7 @@ if (! empty($_REQUEST['remove']) && $access->checkCsrfForm('Delete file?')) {
 
 if (isset($_REQUEST['action']) && $_REQUEST['action'] == 'refresh_metadata'
 	//popup confirm used here because request may be GET
-	&& $access->checkCsrfForm('Refresh metadata?'))
+	&& $access->checkCsrf(true))
 {
 	$result = $filegallib->metadataAction($_REQUEST['fileId'], 'refresh');
 	if ($result && $result->numRows()) {
@@ -805,7 +805,7 @@ if (! empty($_REQUEST['duplicate']) && ! empty($_REQUEST['name']) && ! empty($ga
 }
 
 // Process removal of a gallery
-if (! empty($_REQUEST['removegal']) && $access->checkCsrfForm(tr(tr('Remove file gallery %0?', $gal_info['name'])))) {
+if (! empty($_REQUEST['removegal']) && $access->checkCsrf(true)) {
 	if (! ($gal_info = $filegallib->get_file_gallery_info($_REQUEST['removegal']))) {
 		Feedback::errorPage(tr('Incorrect gallery ID'));
 	}

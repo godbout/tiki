@@ -25,7 +25,7 @@ if ($_REQUEST["dsnId"]) {
 	$info['name'] = '';
 }
 $smarty->assign('info', $info);
-if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove DSN?'))) {
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
 	$result = $adminlib->remove_dsn($_REQUEST["remove"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('DSN removed'));

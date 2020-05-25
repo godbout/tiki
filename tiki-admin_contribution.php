@@ -90,7 +90,7 @@ if (isset($_REQUEST['replace'])
 	}
 	unset($_REQUEST['contributionId']);
 }
-if (isset($_REQUEST['remove']) && $access->checkCsrfForm(tr('Remove contribution?'))) {
+if (isset($_REQUEST['remove']) && $access->checkCsrf(true)) {
 	$result = $contributionlib->remove_contribution($_REQUEST['remove']);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Contribution removed'));

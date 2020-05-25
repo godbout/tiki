@@ -134,7 +134,7 @@ if (! isset($_GET['thumbnail']) && ! isset($_GET['icon'])) {
 		$logslib->add_action('Downloaded', $info['galleryId'], 'file gallery', 'fileId=' . $info['fileId']);
 	}
 
-	if (! empty($_REQUEST['lock']) && $access->checkCsrfForm(tr('Lock file?'))) {
+	if (! empty($_REQUEST['lock']) && $access->checkCsrf(true)) {
 		if (! empty($info['lockedby']) && $info['lockedby'] != $user) {
 			Feedback::error(tr(sprintf('The file has been locked by %s', $info['lockedby'])));
 		}

@@ -18,7 +18,7 @@ $auto_query_args = [ 'banId' ];
 if (isset($_REQUEST['del'])) {
 	if (!isset($_REQUEST['delsec'])) {
 		Feedback::error(tra('No rule selected for deletion. No deletions were performed.'));
-	} elseif($access->checkCsrfForm(tr('Delete selected banning rules?'))) {
+	} elseif($access->checkCsrf(true)) {
 		$items = array_keys($_POST['delsec']);
 		$resultRowsDeleted = 0;
 		foreach ($items as $sec) {

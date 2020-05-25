@@ -33,7 +33,7 @@ if (isset($_REQUEST['galfeatures'])) {
 }
 
 //*** begin state-changing actions
-if (isset($_POST['rmvorphimg']) && $access->checkCsrfForm(tra('Remove orphan images?'))) {
+if (isset($_POST['rmvorphimg']) && $access->checkCsrf(true)) {
 	$adminlib->remove_orphan_images();
 	Feedback::success(tra('Orphan images successfully removed'));
 }

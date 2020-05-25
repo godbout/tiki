@@ -31,7 +31,7 @@ if (! isset($_REQUEST["calendarId"])) {
 		$access->display_error('', tra('Permission denied') . ": " . 'tiki_p_admin_calendar', '403');
 	}
 }
-if (isset($_REQUEST["drop"]) && $access->checkCsrfForm(tra('Delete calendar?'))) {
+if (isset($_REQUEST["drop"]) && $access->checkCsrf(true)) {
 	$result = $calendarlib->drop_calendar($_REQUEST['calendarId']);
 	if ($result->numRows()) {
 		Feedback::success(tr('Calendar %0 deleted', (int) $_REQUEST['calendarId']));
@@ -124,7 +124,7 @@ if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
 	$cookietab = 1;
 	$_REQUEST['calendarId'] = 0;
 }
-if (isset($_REQUEST['clean']) && isset($_REQUEST['days']) && $access->checkCsrfForm(tra('Delete old events?'))) {
+if (isset($_REQUEST['clean']) && isset($_REQUEST['days']) && $access->checkCsrf(true)) {
 	$result = $calendarlib->cleanEvents($_REQUEST['calendarId'], $_REQUEST['days']);
 	if ($result->numRows() === 1) {
 		Feedback::success(tra('One calendar event deleted'));

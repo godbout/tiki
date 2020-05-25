@@ -173,9 +173,7 @@ if (! empty($_REQUEST['action'])) {
 		case 'delete':
 			$account = $accountinglib->getAccount($bookId, $accountId, true);
 			$smarty->assign('account', $account);
-			if ($access->checkCsrfForm(tr(/** @lang text */
-				'Delete account %0 from book %1?', $account['accountName'],
-				$bookId)))
+			if ($access->checkCsrf(true))
 			{
 				$result = $accountinglib->deleteAccount($bookId, $accountId);
 			} else {

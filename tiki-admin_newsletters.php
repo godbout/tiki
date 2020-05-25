@@ -59,7 +59,7 @@ if ($_REQUEST["nlId"]) {
 	$update = "y";
 }
 $smarty->assign('info', $info);
-if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove newsletter?')) ) {
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true) ) {
 	$result = $nllib->remove_newsletter($_REQUEST["remove"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Newsletter removed'));

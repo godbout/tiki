@@ -35,7 +35,7 @@ if ($_REQUEST['menuId']) {
 }
 $smarty->assign_by_ref('info', $info);
 
-if (isset($_REQUEST['remove']) && $access->checkCsrfForm(tr('Delete menu ID %0?', $_REQUEST['remove'])))
+if (isset($_REQUEST['remove']) && $access->checkCsrf(true))
 {
 	$menulib->remove_menu($_REQUEST['remove']);
 }
@@ -63,7 +63,7 @@ if (isset($_REQUEST['save']) && $access->checkCsrf()) {
 }
 
 if (isset($_REQUEST['reset'])
-	&& $access->checkCsrfForm(tra('Reset the Application Menu to the current system default?')))
+	&& $access->checkCsrf(true))
 {
 	$menulib->reset_app_menu();
 }

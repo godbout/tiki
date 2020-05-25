@@ -28,7 +28,7 @@ if ($_REQUEST["extwikiId"]) {
 	];
 }
 $smarty->assign('info', $info);
-if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove external wiki?'))) {
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
 	$result = $adminlib->remove_extwiki($_REQUEST["remove"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('External wiki removed'));

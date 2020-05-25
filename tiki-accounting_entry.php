@@ -64,7 +64,7 @@ if ($_POST['journal_Year']) {
 	);
 }
 
-if (isset($_POST['book']) && $access->checkCsrfForm(tr('Record entry in book %0?', $book['bookName']))) {
+if (isset($_POST['book']) && $access->checkCsrf(true)) {
 	$result = $accountinglib->book(
 		$bookId,
 		$journalDate,

@@ -62,7 +62,7 @@ if (isset($_REQUEST["activeall"]) && $access->checkCsrf()) {
 		Feedback::error(tr('Polls not activated'));
 	}
 }
-if (isset($_REQUEST["remove"]) && $access->checkCsrfForm()) {
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
 	$result = $polllib->remove_poll($_REQUEST["remove"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('Poll deleted'));

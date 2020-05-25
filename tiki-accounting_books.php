@@ -97,7 +97,7 @@ if (! empty($_REQUEST['action'])) {
 		case 'close':
 			if (! $globalperms->acct_create_book) {
 				Feedback::error(tra('You do not have permission to close this book'));
-			} elseif ($access->checkCsrfForm(tra('Close book (this action cannot be undone)?'))) {
+			} elseif ($access->checkCsrf(true)) {
 				$res = $accountinglib->closeBook($_POST['bookId']);
 				if ($res) {
 					Feedback::success(tra('Book successfully closed'));

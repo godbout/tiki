@@ -61,7 +61,7 @@ if (isset($_POST["mark"])) {
 }
 // Delete messages if the delete button was pressed
 if (isset($_POST["delete"])) {
-	if (isset($_POST["msg"]) && $access->checkCsrfForm(tra('Delete selected messages?'))) {
+	if (isset($_POST["msg"]) && $access->checkCsrf(true)) {
 		$i = 0;
 		foreach (array_keys($_POST["msg"]) as $msg) {
 			$result = $messulib->delete_message($user, $msg);

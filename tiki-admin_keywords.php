@@ -91,7 +91,7 @@ $offset = 0;
 $offset = (int)$_REQUEST['offset'];
 
 if ((isset($_REQUEST['save_keywords']) && isset($_REQUEST['new_keywords']) && isset($_REQUEST['page']) && $access->checkCsrf())
-	|| (isset($_REQUEST['remove_keywords']) && isset($_REQUEST['page']) && $access->checkCsrfForm(tr('Remove keywords?')))
+	|| (isset($_REQUEST['remove_keywords']) && isset($_REQUEST['page']) && $access->checkCsrf(true))
 	) {
 	//Set page and new_keywords var for both remove_keywords and
 	//save_keywords actions at the same time

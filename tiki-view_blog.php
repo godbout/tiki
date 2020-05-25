@@ -85,7 +85,7 @@ $smarty->assign('creator', $blog_data["user"]);
 $smarty->assign('activity', $blog_data["activity"]);
 $smarty->assign('use_excerpt', $blog_data["use_excerpt"]);
 $smarty->assign('blog_data', $blog_data);
-if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tra('Remove this Item?'))) {
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
 	$data = $bloglib->get_post($_POST["remove"]);
 	if ($user && $blog_data['public'] == 'y' && $tikilib->user_has_perm_on_object($user, $_POST['blogId'], 'blog', 'tiki_p_blog_post')) {
 		$data["user"] = $user;
@@ -134,12 +134,12 @@ $smarty->assign('maxRecords', $maxRecords);
 // If there're more records then assign next_offset
 $smarty->assign_by_ref('listpages', $listpages["data"]);
 $smarty->assign_by_ref('cant', $listpages["cant"]);
-if ($user && $prefs['feature_notepad'] == 'y' && $tiki_p_notepad == 'y' && isset($_REQUEST['savenotepad']) && $access->checkCsrfForm(tra('Save to notepad?'))) {
+if ($user && $prefs['feature_notepad'] == 'y' && $tiki_p_notepad == 'y' && isset($_REQUEST['savenotepad']) && $access->checkCsrf(true)) {
 	$post_info = $bloglib->get_post($_POST['savenotepad']);
 	$tikilib->replace_note($user, 0, $post_info['title'] ? $post_info['title'] : $tikilib->date_format("%d/%m/%Y [%H:%M]", $post_info['created']), $post_info['data']);
 }
 if ($prefs['feature_user_watches'] == 'y') {
-if ($user && isset($_REQUEST['watch_event']) && $access->checkCsrfForm(tra('Modify Watch?'))) {
+if ($user && isset($_REQUEST['watch_event']) && $access->checkCsrf(true)) {
 		if ($_POST['watch_action'] == 'add') {
 			$tikilib->add_user_watch($user, $_POST['watch_event'], $_POST['watch_object'], 'blog', $blog_data['title'], "tiki-view_blog.php?blogId=" . $_POST['blogId']);
 		} else {

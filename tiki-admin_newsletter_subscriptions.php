@@ -42,7 +42,7 @@ $access->check_permission('tiki_p_admin_newsletters');
 if (isset($_REQUEST['action'])
 	&& $_REQUEST['action'] === 'delsel_x'
 	&& isset($_REQUEST['checked'])
-	&& $access->checkCsrfForm(tr('Remove selected subscriptions?')))
+	&& $access->checkCsrf(true))
 {
 	$i = 0;
 	foreach ($_REQUEST['checked'] as $check) {
@@ -60,7 +60,7 @@ if (isset($_REQUEST['action'])
 }
 
 $smarty->assign('nl_info', $info);
-if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove subscription?')) ) {
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true) ) {
 	$result = false;
 	if (isset($_REQUEST["email"])) {
 		$result = $nllib->remove_newsletter_subscription($_REQUEST["remove"], $_REQUEST["email"], "n");
@@ -80,7 +80,7 @@ if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove subscription
 	}
 }
 
-if (isset($_REQUEST["valid"]) && $access->checkCsrfForm(tr('Mark subscription as valid?'))) {
+if (isset($_REQUEST["valid"]) && $access->checkCsrf(true)) {
 	if (isset($_REQUEST["email"])) {
 		$result = $nllib->valid_subscription($_REQUEST["valid"], $_REQUEST["email"], "n");
 		if ($result && $result->numRows()) {

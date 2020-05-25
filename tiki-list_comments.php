@@ -98,7 +98,7 @@ if (isset($_REQUEST['checked'])) {
 	if (isset($_REQUEST['action'])) {
 		// Delete comment(s)
 		// Use $_REQUEST and confirmation form because a link can generate this request if js is not enabled
-		if ($_REQUEST['action'] === 'remove' && $access->checkCsrfForm(tra('Delete selected comments?'))) {
+		if ($_REQUEST['action'] === 'remove' && $access->checkCsrf(true)) {
 			foreach ($checked as $id) {
 				$commentslib->remove_comment($id);
 			}
@@ -118,7 +118,7 @@ if (isset($_REQUEST['checked'])) {
 			exit;
 		}
 		// Ban IP addresses of multiple spammers and remove comments
-		if ($_POST['action'] === 'ban_remove' && $access->checkCsrfForm(tra('Delete selected comments and ban?'))) {
+		if ($_POST['action'] === 'ban_remove' && $access->checkCsrf(true)) {
 			foreach ($checked as $id) {
 				$commentslib->remove_comment($id);
 			}

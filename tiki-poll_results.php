@@ -46,7 +46,7 @@ if (isset($_REQUEST['which_date'])) {
 if ($tiki_p_admin == 'y'
 	&& ! empty($_REQUEST['deletevote'])
 	&& ! empty($_REQUEST['optionId'])
-	&& $access->checkCsrfForm())
+	&& $access->checkCsrf(true))
 {
 	$result = $polllib->delete_vote($_REQUEST['pollId'], $_REQUEST['user'], $_REQUEST['ip'], $_REQUEST['optionId']);
 	if ($result && $result->numRows()) {

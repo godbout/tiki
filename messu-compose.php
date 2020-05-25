@@ -262,7 +262,8 @@ if ((isset($_POST['send']) && $access->checkCsrf()) || isset($_POST['preview']))
 			$smarty->assign('confirmSubmitName', 'send');
 			$smarty->assign('confirmSubmitValue', 1);
 			unset($_POST['preview']);
-			$access->checkCsrfForm(tra('See below for how message will be handled upon confirmation'));
+			// sending to confirmation to show message on who the message will be sent to
+			$access->checkCsrf(true);
 		}
 	} else {
 		Feedback::error(['mes' => $message]);

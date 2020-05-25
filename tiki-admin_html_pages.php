@@ -26,7 +26,7 @@ if ($_REQUEST["pageName"]) {
 	$info["type"] = 's';
 }
 $smarty->assign('info', $info);
-if (isset($_REQUEST["remove"]) && $access->checkCsrfForm(tr('Remove HTML page?'))) {
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
 	$result = $htmlpageslib->remove_html_page($_REQUEST["remove"]);
 	if ($result && $result->numRows()) {
 		Feedback::success(tr('HTML page removed'));

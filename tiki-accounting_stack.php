@@ -78,7 +78,7 @@ if ($_POST['stack_Year']) {
 
 if (isset($_POST['action'])) {
 	if ($_POST['action'] == 'book') {
-		if ($stackId == 0  && $access->checkCsrfForm(tr('Record stack entry in book %0?', $book['bookName']))) {
+		if ($stackId == 0  && $access->checkCsrf(true)) {
 			// new entry
 			$result = $accountinglib->stackBook(
 				$bookId,
@@ -91,7 +91,7 @@ if (isset($_POST['action'])) {
 				$_POST['debitText'],
 				$_POST['creditText']
 			);
-		} elseif ($access->checkCsrfForm(tr('Modify stack entry in book %0?', $book['bookName']))) {
+		} elseif ($access->checkCsrf(true)) {
 			// modify old entry
 			$result = $accountinglib->stackUpdate(
 				$bookId,
@@ -113,13 +113,12 @@ if (isset($_POST['action'])) {
 			$stackId = 0; //success means we can create a new entry
 		}
 	} elseif ($_POST['action'] == 'delete'
-		&& $access->checkCsrfForm(tr(/** @lang text */
-			'Delete stack %0 from book %1?', $stackId, $book['bookName'])))
+		&& $access->checkCsrf(true))
 	{
 		$result = $accountinglib->stackDelete($bookId, $stackId);
 		$stackId = 0;
 	} elseif ($_POST['action'] == 'confirm'
-		&& $access->checkCsrfForm(tr('Confirm stack %0 for book %0?', $stackId, $book['bookName'])))
+		&& $access->checkCsrf(true))
 	{
 		$result = $accountinglib->stackConfirm($bookId, $stackId);
 		$stackId = 0;

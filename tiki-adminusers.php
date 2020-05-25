@@ -366,7 +366,7 @@ if (isset($_REQUEST['batch']) && is_uploaded_file($_FILES['csvlist']['tmp_name']
 
 	if (
 		$_REQUEST['action'] == 'remove_openid' && isset($_REQUEST['userId'])
-		&& $access->checkCsrfForm(tra('Remove link with OpenID for this user?'))
+		&& $access->checkCsrf(true)
 	) {
 		$result = $userlib->remove_openid_link($_REQUEST['userId']);
 		if ($result->numRows()) {
@@ -445,7 +445,7 @@ if (isset($_REQUEST['user']) and $_REQUEST['user']) {
 
 	if (
 		isset($_POST['edituser']) and isset($_POST['login']) and isset($_POST['email'])
-		&& $access->checkCsrfForm(tra('Modify this user\'s data?'))
+		&& $access->checkCsrf(true)
 	) {
 		if (!empty($_POST['login'])) {
 			if ($userinfo['login'] != $_POST['login'] && $userinfo['login'] != 'admin') {
