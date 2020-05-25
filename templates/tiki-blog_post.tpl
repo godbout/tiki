@@ -143,7 +143,7 @@
 	</fieldset>
 	<div class="text-center">
 		<input type="submit" class="wikiaction btn btn-info" name="preview" value="{tr}Preview{/tr}" onclick="needToConfirm=false;">
-		<input type="submit" class="wikiaction btn btn-secondary" name="save" value="{tr}Save{/tr}" onclick="checkTimeout();needToConfirm=false;">
+		<input type="submit" class="wikiaction btn btn-secondary" name="save" value="{tr}Save{/tr}" onclick="needToConfirm=false;">
 		<input type="hidden" name="referer" value="{$referer|escape}">
 		<input type="submit" class="btn btn-link" name="cancel" onclick='document.location="{$referer|escape:'html'}";needToConfirm=false;return false;' value="{tr}Cancel{/tr}">
 	</div>

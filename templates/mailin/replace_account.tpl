@@ -256,7 +256,7 @@
 			</div>
 		</div>
 		<div class="submit offset-md-3 col-md-9">
-			<input type="submit" name="new_acc" value="{if $accountId eq 0}{tr}Add Account{/tr}{else}{tr}Save{/tr}{/if}" class="btn btn-primary" onclick="checkTimeout()">
+			<input type="submit" name="new_acc" value="{if $accountId eq 0}{tr}Add Account{/tr}{else}{tr}Save{/tr}{/if}" class="btn btn-primary">
 		</div>
 	</form>
 {/block}
