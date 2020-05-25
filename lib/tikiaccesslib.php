@@ -311,100 +311,120 @@ class TikiAccessLib extends TikiLib
 	}
 
 	/**
-	 * CSRF protection - This method performs two checks: that the origin matches the tiki site and that the ticket
-	 * is valid (i.e., the ticket submitted in the form matches a ticket on the server that has not expired).
-	 *
-	 * This method does not stop execution upon failure of one of the checks, instead it returns false, so the
-	 * executing code should be made conditional on the result of this method
-	 *
-	 * Typically called at the point of determining whether to perform a state-changing action that does not require
-	 * confirmation, for example:
-	 * if ($_POST['create'] && $access->checkCsrf()) {
-	 *        //create item here
-	 * }
-	 *
-	 * Call after checking the $_POST variable otherwise other $_GET requests will throw errors.
-	 * The related submit element (usually in a smarty template) should use the checkTimeout() onclick function
-	 *
-	 * @param string $error         Options include 'session', 'none', 'services' and 'page'. Used in csrfError()
-	 * @param bool   $unsetTicket   Whether to unset $_SESSION ticket after checking. Normally, should unset,
-	 *                              however infrequently it is easier to use a ticket more than once.
-	 *                              Other code should unset the ticket after the multiple uses are complete and ensure
-	 *                              repeated use does not create a vulnerability
-	 *
+	 * @param bool|string $postConfirm    Whether a confirmation is needed before performing a POST action. Generally,
+	 *                                    confirms are needed POST requests that cannot be easily undone. Default is false.
+	 *                                    If a confirm is desired, can be set to true or a string that will be used as
+	 *                                    the confirmation text.
+	 * @param bool $getNoConfirm          Allow GET requests without a confirm. If true, then no confirmation is necessary
+	 *                                    (this should be rare and well controlled). Remember that a ticket should not be
+	 *                                    included in a GET request so it will need to be provided otherwise or the $checkWhat
+	 *                                    parameter could be impacted. If false (default), then the method will create a
+	 *                                    confirmation popup.
+	 * @param string $checkWhat           'hostTicket' to check origin host domain and ticket - this is recommended and the default
+	 *                                    'host' to check origin host domain only
+	 *                                    'ticket' to check ticket only
+	 * @param bool   $unsetTicket		   By default a ticket on the server is unset once used (true) - in rare cases
+	 *                             		   it may need to be reused by setting this parameter to false. Nevertheless, during
+	 *                                	   a single page request the same ticket can be used for multiple uses of checkCsrf()
+	 *                                     since since a successful check result is maintained throught the request
 	 * @param string $ticket		Ticket may be provided, e.g., in cases where it is used more than once and is
 	 *                        		stored in a session variable rather than being part of the $_POST. Only tickets
-	 *                        		that originated in a $_POST should be used.
+	 *                        		that originated in a $_POST should be used. Can be used in conjunction with
+	 *                        		$unsetTicket
+	 * @param string $error			See csrfError for information on error types and uses
 	 *
 	 * @return bool					True if CSRF check passed, false otherwise
 	 * @throws Services_Exception
 	 * @see csrfError() for further details on error types and uses.
 	 */
-	public function checkCsrf($error = 'session', $unsetTicket = true, $ticket = '')
+	public function checkCsrf(
+		$postConfirm = false,
+		$getNoConfirm = false,
+		$checkWhat = 'hostTicket',
+		$unsetTicket = true,
+		$ticket = '',
+		$error = 'session'
+	)
 	{
 		global $prefs;
-
 		if ($prefs['pwa_feature'] == 'y') {
 			return true;
-		} else {
-			if ($this->isActionPost()) {
-				if ($this->csrfResult()) {
-					return true;
-				}
-				$this->originCheck();
-				$this->ticketCheck($unsetTicket, $ticket);
-				if ($this->csrfResult()) {
-					return true;
-				} else {
-					$this->csrfError($error);
-					return false;
-				}
-			} else {
-				if (! $this->requestIsPost()) {
-					$msg = ' ' . tr('The request was not a POST request as required.');
-				} else {
-					$msg = ' ' . tr('There was no security ticket submitted with the request.');
-				}
-				$this->logMsg = $msg;
-				$this->userMsg = ' ' . $this->logMsg;
-				$this->csrfError($error);
-				return false;
-			}
 		}
-	}
 
-	/**
-	 * Similar to above but a confirmation form for the user to acknowledge the action is shown first. Once the
-	 * confirmation form is submitted then this function will perform the origin and ticket checks.
-	 * Used when a confirmation from the user is desired before performing the action. Typically, this is for
-	 * state-changing actions that cannot be undone (like delete).
-	 *
-	 * Also, any state-changing action that can be triggered from a link should be conditioned on this function so
-	 * that the action is only performed after the confirmation form is posted.
-	 *
-	 * The related submit element (usually in a smarty template) should use the confirmSimple() onclick function which
-	 * will generate the confirmation form in a popup if javascript is enabled. If javascript is not enabled, this
-	 * function will redirect to a confirmation page.
-	 *
-	 * @param string $confirmText		Optional confirmation text. Default is "Confirm action"
-	 * @param string $error				Options include 'session', 'none', 'services' and 'page'. Used in csrfError()
-	 * @return bool						Returns true if both checks match, false if either fails
-	 * @throws Exception
-	 * @throws Services_Exception
-	 * @see csrfError() for further details on error types and uses.
-	 */
-	public function checkCsrfForm($confirmText = '', $error = 'session')
-	{
-		if (empty($_POST['confirmForm']) || $_POST['confirmForm'] !== 'y') {
-			if ($this->checkOrigin()) {
-				$this->confirmRedirect($confirmText, $error);
+		// allow null value to equate to default for skipped parameters
+		if ($postConfirm === null) {
+			$postConfirm = false;
+		} elseif ($postConfirm === true || (is_string($postConfirm) && ! empty($postConfirm))) {
+			if (is_string($postConfirm) && ! empty($postConfirm)) {
+				$confirmText = $postConfirm;
+			} else {
+				$confirmText = tr('Confirm action');
+			}
+			$postConfirm = true;
+		}
+		if ($getNoConfirm === null) {
+			$getNoConfirm = false;
+		}
+		if ($checkWhat === null) {
+			$checkWhat = 'hostTicket';
+		}
+		if ($unsetTicket === null) {
+			$unsetTicket = true;
+		}
+		if ($ticket === null) {
+			$ticket = '';
+		}
+		//send requests requiring confirmation to confirmation form
+		if (($getNoConfirm === false && ! $this->requestIsPost())
+			|| ($postConfirm && (empty($_POST['confirmForm']) || $_POST['confirmForm'] !== 'y'))
+		)
+		{
+			$this->confirmRedirect($confirmText, $error);
+			//perform check if action post or required confirmation post
+		} elseif ((! $postConfirm && ($this->isActionPost() || $getNoConfirm === true))
+			|| ($postConfirm && ! empty($_POST['confirmForm']) && $_POST['confirmForm'] === 'y')
+		) {
+			//return true if check already performed - e.g., multiple checks on tiki-login.php for same request
+			if ($this->csrfResult()) {
+				return true;
+			}
+			$result = false;
+			//check origin host
+			if (in_array($checkWhat, ['hostTicket', 'host'])) {
+				$this->originCheck();
+				//note result if only checking host
+				if ($checkWhat === 'host') {
+					$result = $this->originMatch();
+				}
+			}
+			//check ticket
+			if (in_array($checkWhat, ['hostTicket', 'ticket'])) {
+				$this->ticketCheck($unsetTicket, $ticket);
+				//note result if only checking ticket
+				if ($checkWhat === 'ticket') {
+					$result = $this->ticketMatch();
+				}
+			}
+			//check both host and ticket
+			if ($checkWhat === 'hostTicket') {
+				$result = $this->csrfResult();
+			}
+			if ($result) {
+				return true;
 			} else {
 				$this->csrfError($error);
 				return false;
 			}
-		} else {
-			return $this->checkCsrf($error);
 		}
+		if (! $this->requestIsPost()) {
+			$msg = ' ' . tr('The request was not a POST request as required.');
+		} else {
+			$msg = ' ' . tr('There was no security ticket submitted with the request.');
+		}
+		$this->logMsg = $msg;
+		$this->userMsg = ' ' . $this->logMsg;
+		$this->csrfError($error);
+		return false;
 	}
 
 	/**
@@ -531,57 +551,6 @@ class TikiAccessLib extends TikiLib
 	}
 
 	/**
-	 * Check http origin/referer and provide error feedback if it doesn't match the site domain
-	 * Differs from checkCsrf() in that only the origin/referer is checked, not a ticket
-	 *
-	 * @param string $error		Options include 'session', 'none', 'services' and 'page'. Used in csrfError()
-	 * @return bool				Returns true if origin check matches, false if not
-	 * @throws Exception
-	 * @throws Services_Exception
-	 * @see csrfError() for further details on error types and uses.
-	 * @see crsfCheck() crsfCheck() or crsfCheckForm() should be used under most typial conditions.
-	 */
-	public function checkOrigin($error = 'session')
-	{
-		$this->originCheck();
-		if ($this->originMatch()) {
-			return true;
-		} else {
-			$this->csrfError($error);
-			return false;
-		}
-	}
-
-	/**
-	 * Check CSRF ticket and provide error feedback if it doesn't match the site domain
-	 * Differs from checkCsrf() in that only the ticket is checked, not the origin/referer
-	 *
-	 * @param string $error 		Options include 'session', 'none', 'services' and 'page'. Used in csrfError()
-	 * @param bool   $unsetTicket   Whether to unset $_SESSION ticket after checking. Normally, should unset,
-	 *                              however infrequently it is easier to use a ticket more than once.
-	 *                              Other code should unset the ticket after the multiple uses are complete and ensure
-	 *                              repeated use does not create a vulnerability
-	 *
-	 * @param string $ticket		Ticket may be provided, e.g., in cases where it is used more than once and is
-	 *                        		stored in a session variable rather than being part of the $_POST. Only tickets
-	 *                        		that originated in a $_POST should be used.
-	 *
-	 * @return bool                Returns true if origin check matches, false if not
-	 * @throws Services_Exception
-	 * @see csrfError() for further details on error types and uses.
-	 */
-	public function checkTicket($error = 'session', $unsetTicket = true, $ticket = '')
-	{
-		$this->ticketCheck($unsetTicket, $ticket);
-		if ($this->ticketMatch()) {
-			return true;
-		} else {
-			$this->csrfError($error);
-			return false;
-		}
-	}
-
-	/**
 	 * Generate tiki log entry and user feedback for CSRF errors
 	 * @param string $error		* 'session'		The regular way of providing feedback (the anti-csrf error message) using the standard Feedback class.
 	 *							* 'services'	Used to provide feedback for ajax services.
@@ -620,21 +589,11 @@ class TikiAccessLib extends TikiLib
 	}
 
 	/**
-	 * CSRF ticket - Check that the ticket has been created
-	 *
-	 * @return bool		Returns true if ticket has been set, false if not
-	 */
-	public function ticketSet()
-	{
-		return ! empty($this->ticket);
-	}
-
-	/**
 	 * CSRF ticket - Check that the ticket has been matched to the previous ticket set
 	 *
 	 * @return bool		Returns true if the request ticket matches the server ticket and is not expired, false if not
 	 */
-	public function ticketMatch()
+	private function ticketMatch()
 	{
 		return $this->ticketMatch === true;
 	}
@@ -654,7 +613,7 @@ class TikiAccessLib extends TikiLib
 	 *
 	 * @return bool		Returns true if the request method is POST, false if not
 	 */
-	function requestIsPost()
+	public function requestIsPost()
 	{
 		return $_SERVER['REQUEST_METHOD'] === 'POST';
 	}
@@ -705,7 +664,7 @@ class TikiAccessLib extends TikiLib
 	 * @throws Services_Exception
 	 * @see csrfError() for further details on error types and uses.
 	 */
-	public function confirmRedirect($confirmText, $error = 'session')
+	private function confirmRedirect($confirmText, $error = 'session')
 	{
 		if (empty($_POST['confirmForm']) || $_POST['confirmForm'] !== 'y') {
 			if (empty($confirmText)) {
@@ -761,9 +720,8 @@ class TikiAccessLib extends TikiLib
 
 
 	/**
-	 * ***** Note: Being replaced by checkCsrfForm method above *************
+	 * ***** Note: Being replaced by checkCsrf method above *************
 	 *
-	 * Similar method as checkCsrfForm()
 	 *
 	 * @param string $confirmation_text Custom text to use if a confirmation page is brought up first
 	 * @param bool $returnHtml Set to false to not use the standard confirmation page and to not use the
@@ -773,14 +731,13 @@ class TikiAccessLib extends TikiLib
 	 * @throws Exception
 	 * @throws Services_Exception
 	 * @deprecated replaced by checkCsrfForm() and checkCsrf()
-	 * @see checkCsrfForm()			For post/get validation with conformation check
-	 * @see checkCsrf()				For post validation with no conformation check
+	 * @see checkCsrf()				For post validation with or without confirmation check
 	 */
 	function check_authenticity($confirmation_text = '', $returnHtml = true, $errorMsg = false)
 	{
 		$check = true;
 		if (empty($_POST['confirmForm']) || $_POST['confirmForm'] !== 'y') {
-			if ($this->checkOrigin()) {
+			if ($this->checkCsrf(null, null, 'host')) {
 				if ($returnHtml) {
 					//redirect to a confirmation page
 					if (empty($confirmation_text)) {
