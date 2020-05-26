@@ -50,28 +50,22 @@ class TikiLibTest extends TikiTestCase
 		$relationlib->add_relation($relation_name, 'wiki page', $this->some_page_name3, 'wiki page', $this->some_page_name1);
 
 		$got_relations = $relationlib->get_relations_from('wiki page', $this->some_page_name1, $relation_name);
-		$this->assertEquals(
-			1,
-			count($got_relations),
-			"Initially, there should have been 1 relation from " . $this->some_page_name1
+		$this->assertCount(
+			1, $got_relations, "Initially, there should have been 1 relation from " . $this->some_page_name1
 		);
 		$got_relations = $relationlib->get_relations_to('wiki page', $this->some_page_name1, $relation_name);
-		$this->assertEquals(
-			1,
-			count($got_relations),
-			"Initially, there should have been 1 relation to " . $this->some_page_name1
+		$this->assertCount(
+			1, $got_relations, "Initially, there should have been 1 relation to " . $this->some_page_name1
 		);
 
 		$tikilib->remove_all_versions($this->some_page_name1);
 		$got_relations = $relationlib->get_relations_from('wiki page', $this->some_page_name1, $relation_name);
-		$this->assertEquals(
-			0, count($got_relations),
-			"After deleting the page, there shouldn't be any relations left from " . $this->some_page_name1
+		$this->assertCount(
+			0, $got_relations, "After deleting the page, there shouldn't be any relations left from " . $this->some_page_name1
 		);
 		$got_relations = $relationlib->get_relations_to('wiki page', $this->some_page_name1, $relation_name);
-		$this->assertEquals(
-			0, count($got_relations),
-			"After deleting the page, there shouldn't be any relations left to " . $this->some_page_name1
+		$this->assertCount(
+			0, $got_relations, "After deleting the page, there shouldn't be any relations left to " . $this->some_page_name1
 		);
 	}
 }

@@ -207,7 +207,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 
 		$tokens = $this->obj->getTokens();
 
-		$this->assertEquals(3, count($tokens));
+		$this->assertCount(3, $tokens);
 		$this->assertEquals($token1, $tokens[0]['token']);
 		$this->assertEquals($token2, $tokens[1]['token']);
 		$this->assertEquals($token3, $tokens[2]['token']);

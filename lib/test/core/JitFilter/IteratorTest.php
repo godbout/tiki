@@ -45,7 +45,7 @@ class JitFilter_IteratorTest extends TikiTestCase
 					$this->assertEquals(10, $value);
 					break;
 				case 'baz':
-					$this->assertEquals(2, count($value));
+					$this->assertCount(2, $value);
 					break;
 				default:
 					$this->assertTrue(false, 'Unknown key found');

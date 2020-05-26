@@ -107,7 +107,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 			->getMock();
 		$obj->expects($this->once())->method('extractItems')->willReturn(['posts' => [], 'pages' => []]);
 		$obj->parseData();
-		$this->assertEquals(4, count($obj->parsedData));
+		$this->assertCount(4, $obj->parsedData);
 
 		$output = ob_get_clean();
 		$this->assertEquals("\nExtracting data from XML file:\n", $output);

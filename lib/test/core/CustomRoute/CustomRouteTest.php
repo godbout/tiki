@@ -56,7 +56,7 @@ class CustomRouteTest extends \PHPUnit\Framework\TestCase
 		$url = 'https://tiki.org/Homepage';
 		$route = CustomRoute::getShortUrlRoute($url, 'Test route');
 
-		$this->assertTrue(in_array($route->id, self::$routes));
+		$this->assertContains($route->id, self::$routes);
 	}
 
 	/**

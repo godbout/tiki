@@ -158,7 +158,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$obj->dom->load(__DIR__ . '/fixtures/mediawiki_sample.xml');
 		$obj->expects($this->exactly(4))->method('extractInfo')->willReturn([]);
 
-		$this->assertEquals(4, count($obj->parseData()));
+		$this->assertCount(4, $obj->parseData());
 
 		$output = ob_get_clean();
 		$this->assertEquals("\nParsing pages:\n", $output);
@@ -189,7 +189,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 
 		$obj->dom = new DOMDocument;
 		$obj->dom->load(__DIR__ . '/fixtures/mediawiki_sample.xml');
-		$this->assertEquals(4, count($obj->parseData()));
+		$this->assertCount(4, $obj->parseData());
 	}
 
 	public function testDownloadAttachment()
@@ -324,7 +324,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 
 			$return = $obj->extractInfo($page);
 			$this->assertEquals($expectedNames[$i], $return['name']);
-			$this->assertEquals($expectedCalls[$i], count($return['revisions']));
+			$this->assertCount($expectedCalls[$i], $return['revisions']);
 			$i++;
 		}
 
@@ -353,7 +353,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 
 			$return = $obj->extractInfo($page);
 			$this->assertEquals($expectedNames[$i], $return['name']);
-			$this->assertEquals($expectedCalls[$i], count($return['revisions']));
+			$this->assertCount($expectedCalls[$i], $return['revisions']);
 			$i++;
 		}
 
@@ -382,7 +382,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 
 			$return = $obj->extractInfo($page);
 			$this->assertEquals($expectedNames[$i], $return['name']);
-			$this->assertEquals($expectedCalls[$i], count($return['revisions']));
+			$this->assertCount($expectedCalls[$i], $return['revisions']);
 			$i++;
 		}
 

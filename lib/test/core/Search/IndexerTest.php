@@ -162,7 +162,7 @@ class Search_IndexerTest extends PHPUnit\Framework\TestCase
 
 		$result = $query->search($index);
 
-		$this->assertEquals(3, count($result));
+		$this->assertCount(3, $result);
 
 		$doc0 = $result[0];
 		$doc1 = $result[1];

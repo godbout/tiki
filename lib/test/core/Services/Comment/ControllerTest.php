@@ -101,7 +101,7 @@ class Services_Comment_ControllerTest extends PHPUnit\Framework\TestCase
 
 		$tiki = TikiLib::lib('tiki');
 		$user_watches = $tiki->get_user_event_watches($user, 'thread_comment_replied', $threads);
-		$this->assertEquals(1, count($user_watches));
+		$this->assertCount(1, $user_watches);
 		$this->assertEquals('tester@example.org', $user_watches[0]['user']);
 		$this->assertEquals($threads[0], $user_watches[0]['object']);
 

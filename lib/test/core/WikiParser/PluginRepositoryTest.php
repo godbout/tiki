@@ -34,7 +34,7 @@ class WikiParser_PluginRepositoryTest extends TikiTestCase
 
 		$info = $repository->getInfo('foo');
 
-		$this->assertEquals(2, count($info['params']));
+		$this->assertCount(2, $info['params']);
 		$this->assertEquals(tra('Foo'), $info['name']);
 	}
 

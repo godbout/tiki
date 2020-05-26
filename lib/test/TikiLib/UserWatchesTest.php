@@ -36,17 +36,17 @@ class UserWatchesTest extends TikiTestCase
 		$set1 = $this->lib->get_user_event_watches('tester', 'thread_comment_replied', 1);
 		$set2 = $this->lib->get_user_event_watches('tester', 'thread_comment_replied', [1, 2]);
 		$set3 = $this->lib->get_user_event_watches('tester', 'thread_comment_replied', 33);
-		$this->assertEquals(1, count($set1));
-		$this->assertEquals(2, count($set2));
-		$this->assertEquals(0, count($set3));
+		$this->assertCount(1, $set1);
+		$this->assertCount(2, $set2);
+		$this->assertCount(0, $set3);
 	}
 
 	public function testGetEventWatches()
 	{
 		$watches = $this->lib->get_event_watches('thread_comment_replied', 1);
-		$this->assertEquals(1, count($watches));
+		$this->assertCount(1, $watches);
 		$this->assertEquals('tester', $watches[0]['user']);
 		$watches = $this->lib->get_event_watches('wiki_comment_changes', 'Test Page');
-		$this->assertEquals(0, count($watches));
+		$this->assertCount(0, $watches);
 	}
 }

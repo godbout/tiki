@@ -28,8 +28,8 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 
 		$ret = $this->toArray($matches);
 
-		$this->assertEquals($expecting, count($matches));
-		$this->assertEquals($expecting, count($ret));
+		$this->assertCount($expecting, $matches);
+		$this->assertCount($expecting, $ret);
 
 		return $ret;
 	}
@@ -177,14 +177,14 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 	{
 		$string = '{c}';
 		$matches = WikiParser_PluginMatcher::match($string);
-		$this->assertEquals(1, count($matches));
+		$this->assertCount(1, $matches);
 	}
 
 	function testSimpleReplacement()
 	{
 		$string = '{c} {A()} {b} {A} {b}';
 		$matches = WikiParser_PluginMatcher::match($string);
-		$this->assertEquals(4, count($matches));
+		$this->assertCount(4, $matches);
 
 		$orig = $this->toArray($matches);
 
@@ -197,7 +197,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 	{
 		$string = '{c} {A()} {B()/} {A} {b}';
 		$matches = WikiParser_PluginMatcher::match($string);
-		$this->assertEquals(4, count($matches));
+		$this->assertCount(4, $matches);
 
 		$orig = $this->toArray($matches);
 
@@ -210,7 +210,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 	{
 		$string = '{c} {A()} {B() /} {A} {b}';
 		$matches = WikiParser_PluginMatcher::match($string);
-		$this->assertEquals(4, count($matches));
+		$this->assertCount(4, $matches);
 
 		$orig = $this->toArray($matches);
 
@@ -223,7 +223,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 	{
 		$string = '{c} {A()} {b} {A} {b}';
 		$matches = WikiParser_PluginMatcher::match($string);
-		$this->assertEquals(4, count($matches));
+		$this->assertCount(4, $matches);
 
 		$orig = $this->toArray($matches);
 
@@ -235,7 +235,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 	function testMatchReplacementChangesOffsets()
 	{
 		$matches = $this->doMatch('{c} {A()} {b} {A} {b}', 4);
-		$this->assertEquals(4, count($matches));
+		$this->assertCount(4, $matches);
 
 		$lastMatch = $matches[3];
 		$innerMatch = $matches[2];
@@ -267,20 +267,20 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$string = '{c} {A()} {b} {A} {b}';
 		$matches = WikiParser_PluginMatcher::match($string);
 
-		$this->assertEquals(4, count($matches));
+		$this->assertCount(4, $matches);
 
 		$orig = $this->toArray($matches);
 
 		$orig[1]->replaceWith('Hello');
 
-		$this->assertEquals(2, count($matches));
+		$this->assertCount(2, $matches);
 	}
 
 	function testIterationSurvivesReplacement()
 	{
 		$string = '{c} {A()} {b} {A} {d}';
 		$matches = WikiParser_PluginMatcher::match($string);
-		$this->assertEquals(4, count($matches));
+		$this->assertCount(4, $matches);
 
 		$expected = ['c', 'a', 'd'];
 		$iteration = 0;
@@ -301,7 +301,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 	{
 		$string = '{c} {A()} {b} {A} {d}';
 		$matches = WikiParser_PluginMatcher::match($string);
-		$this->assertEquals(4, count($matches));
+		$this->assertCount(4, $matches);
 
 		$expected = ['c', 'a', 'b', 'f', 'd'];
 		$iteration = 0;
@@ -321,7 +321,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$strings = " {A(a=1)}{A(a=2)}{a a=3}{A}{A} ";
 
 		$matches = WikiParser_PluginMatcher::match($strings);
-		$this->assertEquals(3, count($matches));
+		$this->assertCount(3, $matches);
 
 		$replacements = [
 			'~np~<div>~/np~{A(a=2)}{a a=3}{A}~np~</div>~/np~',
@@ -332,7 +332,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 			$match->replaceWith(array_shift($replacements));
 		}
 
-		$this->assertEquals(0, count($matches));
+		$this->assertCount(0, $matches);
 	}
 
 	function testIntegrityPreservedOnReplacement()
