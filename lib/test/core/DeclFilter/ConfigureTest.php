@@ -39,11 +39,11 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 			]
 		);
 
-		$this->assertEquals($data['hello'], '123');
-		$this->assertEquals($data['world'], 'abc');
+		$this->assertEquals('123', $data['hello']);
+		$this->assertEquals('abc', $data['world']);
 		$this->assertContains('123', $data['foo']);
 		$this->assertContains('456', $data['foo']);
-		$this->assertEquals($data['bar'], 'UNDECLARED');
+		$this->assertEquals('UNDECLARED', $data['bar']);
 	}
 
 	/**
@@ -88,7 +88,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 
 		$this->assertFalse(isset($data['hello']));
 		$this->assertFalse(isset($data['world']));
-		$this->assertEquals($data['bar'], 'UNDECLARED');
+		$this->assertEquals('UNDECLARED', $data['bar']);
 	}
 
 	function testUnsetOthers()
@@ -111,8 +111,8 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 			]
 		);
 
-		$this->assertEquals($data['hello'], '123');
-		$this->assertEquals($data['world'], 'abc');
+		$this->assertEquals('123', $data['hello']);
+		$this->assertEquals('abc', $data['world']);
 		$this->assertFalse(isset($data['bar']));
 	}
 
@@ -141,9 +141,9 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 			]
 		);
 
-		$this->assertEquals($data['hello123'], '123');
-		$this->assertEquals($data['hello456'], '123');
-		$this->assertEquals($data['world'], '123abc');
+		$this->assertEquals('123', $data['hello123']);
+		$this->assertEquals('123', $data['hello456']);
+		$this->assertEquals('123abc', $data['world']);
 		$this->assertContains('abc', $data['foo']);
 		$this->assertContains('def', $data['foo']);
 	}
@@ -168,6 +168,6 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 
 		$this->assertFalse(isset($data['hello123']));
 		$this->assertFalse(isset($data['hello456']));
-		$this->assertEquals($data['world'], '123abc');
+		$this->assertEquals('123abc', $data['world']);
 	}
 }

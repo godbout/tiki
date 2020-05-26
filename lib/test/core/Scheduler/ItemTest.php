@@ -158,11 +158,11 @@ class ItemTest extends \PHPUnit\Framework\TestCase
 		$lastRun = $scheduler->getLastRun();
 
 		// Assert that run has been finished
-		$this->assertEquals($lastRun['status'], 'done');
+		$this->assertEquals('done', $lastRun['status']);
 
 		// Get scheduler with updated information. It should be inactive as it should only run once
 		$scheduler = $schedlib->get_scheduler($scheduler->id);
-		$this->assertEquals($scheduler['status'], Scheduler_Item::STATUS_INACTIVE);
+		$this->assertEquals(Scheduler_Item::STATUS_INACTIVE, $scheduler['status']);
 	}
 
 	/**

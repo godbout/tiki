@@ -45,9 +45,9 @@ class DeclFilter_KeyPatternFilterTest extends TikiTestCase
 		$rule->apply($data, 'foo_123');
 		$rule->apply($data, 'bar_abc');
 
-		$this->assertEquals($data['foo_123'], '123');
-		$this->assertEquals($data['bar_abc'], 'abc');
-		$this->assertEquals($data['foo'], '123abc');
+		$this->assertEquals('123', $data['foo_123']);
+		$this->assertEquals('abc', $data['bar_abc']);
+		$this->assertEquals('123abc', $data['foo']);
 	}
 
 	function testApplyOnElements()
@@ -65,6 +65,6 @@ class DeclFilter_KeyPatternFilterTest extends TikiTestCase
 
 		$rule->apply($data, 'foo_123');
 
-		$this->assertEquals($data['foo_123'], ['123', '456']);
+		$this->assertEquals(['123', '456'], $data['foo_123']);
 	}
 }

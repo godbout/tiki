@@ -29,7 +29,7 @@ class DeclFilter_CatchAllFilterTest extends TikiTestCase
 
 		$rule->apply($data, 'hello');
 
-		$this->assertEquals($data['hello'], '123');
+		$this->assertEquals('123', $data['hello']);
 	}
 
 	function testApplyRecursive()
@@ -46,7 +46,7 @@ class DeclFilter_CatchAllFilterTest extends TikiTestCase
 
 		$rule->apply($data, 'hello');
 
-		$this->assertEquals($data['hello'][0], '123');
-		$this->assertEquals($data['hello'][1], '456');
+		$this->assertEquals('123', $data['hello'][0]);
+		$this->assertEquals('456', $data['hello'][1]);
 	}
 }

@@ -102,28 +102,28 @@ class JitFilter_AccessTest extends TikiTestCase
 	{
 		$this->array['new'] = 'foo';
 
-		$this->assertEquals($this->array['new'], 'foo');
+		$this->assertEquals('foo', $this->array['new']);
 	}
 
 	function testGetSingleWithoutPresetGeneric()
 	{
-		$this->assertEquals($this->array->foo->filter(new Zend\Filter\StringToUpper), 'BAR');
+		$this->assertEquals('BAR', $this->array->foo->filter(new Zend\Filter\StringToUpper));
 	}
 
 	function testGetSinfleWithoutPresetNamed()
 	{
-		$this->assertEquals($this->array->bar->digits(), '10');
+		$this->assertEquals('10', $this->array->bar->digits());
 	}
 
 	function testGetStructuredWithoutPresetGeneric()
 	{
 		$filtered = $this->array->baz->filter(new Zend\Filter\StringToUpper);
-		$this->assertEquals($filtered, ['HELLO', 'WORLD']);
+		$this->assertEquals(['HELLO', 'WORLD'], $filtered);
 	}
 
 	function testGetStructuredWithoutPresetNamed()
 	{
 		$filtered = $this->array->baz->alpha();
-		$this->assertEquals($filtered, ['hello', 'world']);
+		$this->assertEquals(['hello', 'world'], $filtered);
 	}
 }

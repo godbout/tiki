@@ -65,14 +65,12 @@ class TikiLibTest extends TikiTestCase
 		$tikilib->remove_all_versions($this->some_page_name1);
 		$got_relations = $relationlib->get_relations_from('wiki page', $this->some_page_name1, $relation_name);
 		$this->assertEquals(
-			count($got_relations),
-			0,
+			0, count($got_relations),
 			"After deleting the page, there shouldn't be any relations left from " . $this->some_page_name1
 		);
 		$got_relations = $relationlib->get_relations_to('wiki page', $this->some_page_name1, $relation_name);
 		$this->assertEquals(
-			count($got_relations),
-			0,
+			0, count($got_relations),
 			"After deleting the page, there shouldn't be any relations left to " . $this->some_page_name1
 		);
 	}

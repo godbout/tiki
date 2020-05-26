@@ -47,6 +47,6 @@ class DeclFilter_KeyPatternUnsetTest extends TikiTestCase
 
 		$this->assertFalse(isset($data['foo_123']));
 		$this->assertFalse(isset($data['bar_abc']));
-		$this->assertEquals($data['foo'], '123abc');
+		$this->assertEquals('123abc', $data['foo']);
 	}
 }

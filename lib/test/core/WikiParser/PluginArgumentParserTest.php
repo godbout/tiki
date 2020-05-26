@@ -69,8 +69,8 @@ class WikiParser_PluginArgumentParserTest extends TikiTestCase
 	function testNoArgument()
 	{
 		$parser = new WikiParser_PluginArgumentParser;
-		$this->assertEquals($parser->parse(''), []);
-		$this->assertEquals($parser->parse('foo'), []);
+		$this->assertEquals([], $parser->parse(''));
+		$this->assertEquals([], $parser->parse('foo'));
 	}
 
 	function testInvalidEnd()

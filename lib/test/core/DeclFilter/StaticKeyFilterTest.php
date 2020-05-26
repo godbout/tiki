@@ -44,8 +44,8 @@ class DeclFilter_StaticKeyFilterTest extends TikiTestCase
 		$rule->apply($data, 'hello');
 		$rule->apply($data, 'world');
 
-		$this->assertEquals($data['hello'], '123');
-		$this->assertEquals($data['world'], 'abc');
-		$this->assertEquals($data['foo'], '123abc');
+		$this->assertEquals('123', $data['hello']);
+		$this->assertEquals('abc', $data['world']);
+		$this->assertEquals('123abc', $data['foo']);
 	}
 }

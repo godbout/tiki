@@ -29,8 +29,8 @@ class DeclFilter_BaseTest extends TikiTestCase
 
 		$data = $filter->filter($data);
 
-		$this->assertEquals($data['numeric'], '123');
-		$this->assertEquals($data['alpha'], 'alpha');
+		$this->assertEquals('123', $data['numeric']);
+		$this->assertEquals('alpha', $data['alpha']);
 	}
 
 	function testStructure()
@@ -64,8 +64,8 @@ class DeclFilter_BaseTest extends TikiTestCase
 			]
 		);
 
-		$this->assertEquals($data['world'], 'abc');
-		$this->assertEquals($data['hello'], '123');
+		$this->assertEquals('abc', $data['world']);
+		$this->assertEquals('123', $data['hello']);
 	}
 
 	function testNoDefault()
@@ -80,7 +80,7 @@ class DeclFilter_BaseTest extends TikiTestCase
 			]
 		);
 
-		$this->assertEquals($data['world'], '123abc');
-		$this->assertEquals($data['hello'], '123');
+		$this->assertEquals('123abc', $data['world']);
+		$this->assertEquals('123', $data['hello']);
 	}
 }
