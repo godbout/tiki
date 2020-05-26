@@ -1397,24 +1397,24 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.5.3",
+            "version": "6.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "aab4ebd862aa7d04f01a4b51849d657db56d882e"
+                "reference": "a4a1b6930528a8f7ee03518e6442ec7a44155d9d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/guzzlehttp/guzzle/guzzlehttp-guzzle-aab4ebd862aa7d04f01a4b51849d657db56d882e-zip-e1b936.zip",
-                "reference": "aab4ebd862aa7d04f01a4b51849d657db56d882e",
-                "shasum": "b36e4dbc8387affcdd78de7e4cd2f7dc83203d39"
+                "url": "https://composer.tiki.org/dist/guzzlehttp/guzzle/guzzlehttp-guzzle-a4a1b6930528a8f7ee03518e6442ec7a44155d9d-zip-066034.zip",
+                "reference": "a4a1b6930528a8f7ee03518e6442ec7a44155d9d",
+                "shasum": "e7ec013d7a851e70543f3a30e239ccc508b3d773"
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/promises": "^1.0",
                 "guzzlehttp/psr7": "^1.6.1",
                 "php": ">=5.5",
-                "symfony/polyfill-intl-idn": "^1.11"
+                "symfony/polyfill-intl-idn": "1.17.0"
             },
             "require-dev": {
                 "ext-curl": "*",
@@ -1460,7 +1460,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2020-04-18T10:38:46+00:00"
+            "time": "2020-05-25T19:35:05+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -9292,17 +9292,17 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.4",
+            "version": "8.5.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "8474e22d7d642f665084ba5ec780626cbd1efd23"
+                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-8474e22d7d642f665084ba5ec780626cbd1efd23-zip-3f5184.zip",
-                "reference": "8474e22d7d642f665084ba5ec780626cbd1efd23",
-                "shasum": "8a518e970c027d1f015a0477bccd44bbdcd74839"
+                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-63dda3b212a0025d380a745f91bdb4d8c985adb7-zip-08b224.zip",
+                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7",
+                "shasum": "f90353bc63b1500919e5746b5fee21c488aa0e5e"
             },
             "require": {
                 "doctrine/instantiator": "^1.2.0",
@@ -9371,7 +9371,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-04-23T04:39:42+00:00"
+            "time": "2020-05-22T13:51:52+00:00"
         },
         {
             "name": "phpunit/phpunit-selenium",
@@ -10413,5 +10413,6 @@
         "ext-ldap": "0",
         "ext-soap": "0",
         "php": "7.2.5"
-    }
+    },
+    "plugin-api-version": "1.1.0"
 }
