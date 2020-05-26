@@ -2,11 +2,12 @@
 
 namespace Test\Wiki;
 
+use PHPUnit\Framework\TestCase;
 use Tiki\Wiki\SlugManager;
 use Tiki\Wiki\SlugManager\UrlencodeGenerator;
 use Tiki\Wiki\SlugManager\UnderscoreGenerator;
 
-class SlugManagerTest extends \PHPUnit\Framework\TestCase
+class SlugManagerTest extends TestCase
 {
 	private $manager;
 

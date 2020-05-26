@@ -9,11 +9,14 @@ namespace Tiki\Test\Files;
 
 use ImageGalsLib;
 use org\bovigo\vfs\vfsStream;
+use Perms;
+use Perms_Builder;
+use PHPUnit\Framework\TestCase;
 use Tiki\Files\CheckFileGallery;
 use Tiki\Files\CheckImageGallery;
 use TikiLib;
 
-class CheckImageGalleryTest extends \PHPUnit\Framework\TestCase
+class CheckImageGalleryTest extends TestCase
 {
 	protected $fileRoot;
 	protected $imagesDir;
@@ -40,8 +43,8 @@ class CheckImageGalleryTest extends \PHPUnit\Framework\TestCase
 
 		// impersonate admin
 		$user = 'admin';
-		$builder = new \Perms_Builder;
-		\Perms::set($builder->build());
+		$builder = new Perms_Builder;
+		Perms::set($builder->build());
 
 		// setup defaults for preferences
 		$prefs['feature_galleries'] = 'y';
@@ -260,7 +263,7 @@ class CheckImageGalleryTest extends \PHPUnit\Framework\TestCase
 
 		/** @var ImageGalsLib $imageGalleryLib */
 		$imageGalleryLib = TikiLib::lib('imagegal');
-		$imageId = $imageGalleryLib->insert_image(
+		return $imageGalleryLib->insert_image(
 			$this->imageGalleryId,
 			$baseName,
 			$baseName,
@@ -274,8 +277,6 @@ class CheckImageGalleryTest extends \PHPUnit\Framework\TestCase
 			$data,
 			'image/png'
 		);
-
-		return $imageId;
 	}
 
 	protected function getImagePath($imageId)

@@ -7,12 +7,13 @@
 
 namespace Tiki\Tests\CustomRoute;
 
+use PHPUnit\Framework\TestCase;
 use Tiki\CustomRoute\Controller;
 
 /**
  * Class ControllerTest
  */
-class ControllerTest extends \PHPUnit\Framework\TestCase
+class ControllerTest extends TestCase
 {
 
 	/**

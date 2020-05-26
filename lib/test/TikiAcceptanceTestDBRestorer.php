@@ -324,11 +324,9 @@ class TikiAcceptanceTestDBRestorerBinaryDumps extends TikiAcceptanceTestDBRestor
 
 	private function dump_file_path($dump_name)
 	{
-		$dump_fpath =
-			$this->mysql_data_dir . DIRECTORY_SEPARATOR .
-			$dump_name .
-			"." . $this->dump_file_extension;
-		return $dump_fpath;
+        return $this->mysql_data_dir . DIRECTORY_SEPARATOR .
+        $dump_name .
+        "." . $this->dump_file_extension;
 	}
 
 	function check_if_dump_exists($dump_file)

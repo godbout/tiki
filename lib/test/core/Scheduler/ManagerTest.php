@@ -7,14 +7,17 @@
 
 namespace Tiki\Tests\Scheduler;
 
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LogLevel;
 use Scheduler_Item;
+use Scheduler_Manager;
 use Tiki_Log;
 use TikiLib;
 
 /**
  * Class ItemTest
  */
-class ManagerTest extends \PHPUnit\Framework\TestCase
+class ManagerTest extends TestCase
 {
 
 	protected static $items = [];
@@ -34,7 +37,7 @@ class ManagerTest extends \PHPUnit\Framework\TestCase
 	public function testSchedulersRunAtSameRunTime()
 	{
 
-		$logger = new Tiki_Log('UnitTests', \Psr\Log\LogLevel::ERROR);
+		$logger = new Tiki_Log('UnitTests', LogLevel::ERROR);
 		$scheduler1 = new Scheduler_Item(
 			null,
 			'Test Scheduler',
@@ -69,7 +72,7 @@ class ManagerTest extends \PHPUnit\Framework\TestCase
 		self::$items[] = $scheduler1->id;
 		self::$items[] = $scheduler2->id;
 
-		$manager = new \Scheduler_Manager($logger);
+		$manager = new Scheduler_Manager($logger);
 		$manager->run();
 
 		$this->assertNotEmpty($scheduler1->getLastRun());

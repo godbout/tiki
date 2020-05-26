@@ -7,6 +7,8 @@
 
 namespace Tiki\Test\Lib\Perspective;
 
+use PHPUnit\Framework\TestCase;
+use Symfony\Component\BrowserKit\Response;
 use Tiki\Test\TestHelpers\TikiDbHelper;
 use Tiki\Test\TestHelpers\TikiProfileHelper;
 use Tiki\Test\TestHelpers\WebClientHelper;
@@ -14,7 +16,7 @@ use Tiki\Test\TestHelpers\WebClientHelper;
 /**
  * @group RequiresWebServer
  */
-class PerspectivesNavigationBaseTestCase extends \PHPUnit\Framework\TestCase
+class PerspectivesNavigationBaseTestCase extends TestCase
 {
 	/**
 	 * Value used in the fixture files for TIKI_TEST_HOST
@@ -51,7 +53,7 @@ class PerspectivesNavigationBaseTestCase extends \PHPUnit\Framework\TestCase
 				$crawler = $client->request('GET', $url);
 			}
 
-			/** @var \Symfony\Component\BrowserKit\Response $response */
+			/** @var Response $response */
 			$response = $client->getResponse();
 
 			$this->assertEquals($httpCode, $response->getStatusCode(), 'Comparing HTTP Code #' . $stepIndex);

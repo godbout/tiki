@@ -3,9 +3,8 @@
 class Search_Elastic_MoreLikeThisTest extends PHPUnit\Framework\TestCase
 {
 	private $index;
-	private $indexer;
 
-	protected function setUp() : void
+    protected function setUp() : void
 	{
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
 		$connection = new Search_Elastic_Connection('http://' . $elasticSearchHost . ':9200');
@@ -66,10 +65,10 @@ class Search_Elastic_MoreLikeThisTest extends PHPUnit\Framework\TestCase
 			]
 		);
 
-		$this->indexer = new Search_Indexer($index);
-		$this->indexer->addContentSource('wiki page', $source);
+		$indexer = new Search_Indexer($index);
+		$indexer->addContentSource('wiki page', $source);
 
-		$this->indexer->rebuild();
+		$indexer->rebuild();
 	}
 
 	function testObtainSimilarDocument()

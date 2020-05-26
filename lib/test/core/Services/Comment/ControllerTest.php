@@ -78,7 +78,7 @@ class Services_Comment_ControllerTest extends PHPUnit\Framework\TestCase
 		global $user, $prefs;
 		$user = 'tester@example.org';
 
-		/** @var \UsersLib $userLib */
+		/** @var UsersLib $userLib */
 		$userLib = TikiLib::lib('user');
 		if (! $userLib->user_exists($user)) {
 			$userLib->add_user($user, $user, $user); // ensure user exists

@@ -33,6 +33,5 @@ function wikiplugin_foo($data, $params)
 {
 	extract($params, EXTR_SKIP);
 
-	$ret = "foo face=$face size=$size :: $data";
-	return $ret;
+    return "foo face=$face size=$size :: $data";
 }

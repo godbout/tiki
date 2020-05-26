@@ -15,7 +15,7 @@ class WebClientHelper
 	/**
 	 * @var bool $followRedirects if the client should automatically follow redirects
 	 *
-	 * @return \Goutte\Client
+	 * @return GoutteClient
 	 */
 	public static function createTestClient($followRedirects = true)
 	{

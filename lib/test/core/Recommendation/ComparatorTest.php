@@ -7,7 +7,9 @@
 
 namespace Tiki\Recommendation;
 
-class ComparatorTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+class ComparatorTest extends TestCase
 {
 	function testNoEngines()
 	{

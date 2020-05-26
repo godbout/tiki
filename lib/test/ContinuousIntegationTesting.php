@@ -107,15 +107,12 @@ class ContinuousIntegrationTesting
 	private function revision_log_fpath($revision)
 	{
 		$fname = "phpunit-log." . $revision . ".json";
-		$fpath = implode(DIRECTORY_SEPARATOR, [$this->tiki_root_dir, 'lib', 'test', $fname]);
-
-		return $fpath;
+        return implode(DIRECTORY_SEPARATOR, [$this->tiki_root_dir, 'lib', 'test', $fname]);
 	}
 
 	private function revision_last_tested_fpath()
 	{
-		$fpath = implode(DIRECTORY_SEPARATOR, [$this->tiki_root_dir, 'lib', 'test', 'revision_last_tested.txt']);
-		return $fpath;
+        return implode(DIRECTORY_SEPARATOR, [$this->tiki_root_dir, 'lib', 'test', 'revision_last_tested.txt']);
 	}
 
 	private function update_revision_last_tested()
@@ -132,8 +129,6 @@ class ContinuousIntegrationTesting
 
 	private function output_fpath()
 	{
-		$fpath = implode(DIRECTORY_SEPARATOR, [$this->tiki_root_dir, 'lib', 'test', 'phpunit-output.' . $this->current_revision . ".txt"]);
-
-		return $fpath;
+        return implode(DIRECTORY_SEPARATOR, [$this->tiki_root_dir, 'lib', 'test', 'phpunit-output.' . $this->current_revision . ".txt"]);
 	}
 }

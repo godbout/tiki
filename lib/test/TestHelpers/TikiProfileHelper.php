@@ -8,6 +8,8 @@
 namespace Tiki\Test\TestHelpers;
 
 use Exception;
+use Tiki_Profile;
+use Tiki_Profile_Installer;
 
 class TikiProfileHelper
 {
@@ -19,13 +21,13 @@ class TikiProfileHelper
 	 */
 	public static function applyProfile($profileDomain, $profileName)
 	{
-		$profile = \Tiki_Profile::fromNames($profileDomain, $profileName);
+		$profile = Tiki_Profile::fromNames($profileDomain, $profileName);
 
 		if (! $profile->validateNamedObjectsReferences()) { // sanity check on the Named Objects references
-			throw new \Exception('Some of the named object references in the profile are invalid');
+			throw new Exception('Some of the named object references in the profile are invalid');
 		}
 
-		$installer = new \Tiki_Profile_Installer;
+		$installer = new Tiki_Profile_Installer;
 		$result = $installer->install($profile, 'all', false);
 
 		if (! $result) {
@@ -33,7 +35,7 @@ class TikiProfileHelper
 			foreach ($installer->getFeedback() as $error) {
 				$errorString .= $error . "\n";
 			}
-			throw new \Exception($errorString);
+			throw new Exception($errorString);
 		}
 	}
 

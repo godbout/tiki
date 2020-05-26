@@ -21,14 +21,14 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		global $prefs;
 		$this->oldPrefs = $prefs;
 		parent::setUp();
-		\TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
+		TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
 	}
 
 	protected function tearDown() : void
 	{
 		global $prefs;
 		$prefs = $this->oldPrefs;
-		\TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
+		TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
 	}
 
 	function testInstantiation()

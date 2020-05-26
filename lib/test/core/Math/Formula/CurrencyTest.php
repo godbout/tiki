@@ -7,8 +7,7 @@
 
 class Math_Formula_CurrencyTest extends TikiTestCase
 {
-	private $currency1;
-	private $currency2;
+    private $currency2;
 	private $runner;
 	private $rates = [
 		'USD' => 1,
@@ -17,7 +16,7 @@ class Math_Formula_CurrencyTest extends TikiTestCase
 
 	protected function setUp() : void
 	{
-		$this->currency1 = new Math_Formula_Currency(100, 'USD', $this->rates);
+		$currency1 = new Math_Formula_Currency(100, 'USD', $this->rates);
 		$this->currency2 = new Math_Formula_Currency(100, 'CAD', $this->rates);
 		$this->runner = new Math_Formula_Runner(
 			[
@@ -26,7 +25,7 @@ class Math_Formula_CurrencyTest extends TikiTestCase
 			]
 		);
 		$this->runner->setVariables([
-			'currency1' => $this->currency1,
+			'currency1' => $currency1,
 			'currency2' => $this->currency2,
 		]);
 	}

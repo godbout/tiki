@@ -7,14 +7,13 @@
 
 class Search_Lucene_BaseTest extends Search_Index_BaseTest
 {
-	private $dir;
 
 	protected function setUp() : void
 	{
-		$this->dir = __DIR__ . '/test_index';
+		$dir = __DIR__ . '/test_index';
 		$this->tearDown();
 
-		$index = new Search_Lucene_Index($this->dir);
+		$index = new Search_Lucene_Index($dir);
 		$this->populate($index);
 		$this->index = $index;
 	}

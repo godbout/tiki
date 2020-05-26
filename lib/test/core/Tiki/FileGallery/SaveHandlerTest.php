@@ -156,15 +156,13 @@ class Tiki_FileGallery_Manipulator_SaveHandlerTest extends TikiTestCase
 			'type' => 'default'
 			], $params)
 		);
-		$fileId = TikiLib::lib('filegal')->table('tiki_files')->insert([
-		'filename' => 'test.zip',
-		'data' => 'test123',
-		'galleryId' => $galleryId,
-		'created' => time(),
-		'user' => $user
-		]);
-
-		return $fileId;
+        return TikiLib::lib('filegal')->table('tiki_files')->insert([
+        'filename' => 'test.zip',
+        'data' => 'test123',
+        'galleryId' => $galleryId,
+        'created' => time(),
+        'user' => $user
+        ]);
 	}
 
 	private function cleanup()

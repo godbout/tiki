@@ -9,15 +9,14 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit\Framework\TestCas
 {
 	private $indexer;
 	private $index;
-	private $globalAlternate;
-	private $perms;
+    private $perms;
 
 	protected function setUp() : void
 	{
 		$perms = new Perms;
 		$perms->setCheckSequence(
 			[
-				$this->globalAlternate = new Perms_Check_Alternate('admin'),
+				$globalAlternate = new Perms_Check_Alternate('admin'),
 				new Perms_Check_Direct,
 			]
 		);

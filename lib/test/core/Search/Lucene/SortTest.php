@@ -10,14 +10,13 @@
  */
 class Search_Lucene_SortTest extends Search_Index_SortTest
 {
-	private $dir;
 
-	protected function setUp() : void
+    protected function setUp() : void
 	{
-		$this->dir = __DIR__ . '/test_index';
+		$dir = __DIR__ . '/test_index';
 		$this->tearDown();
 
-		$this->index = new Search_Lucene_Index($this->dir);
+		$this->index = new Search_Lucene_Index($dir);
 
 		$this->populate($this->index);
 	}

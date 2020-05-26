@@ -15,7 +15,9 @@
 
 //require_once (version_compare(PHPUnit_Runner_Version::id(), '3.5.0', '>=')) ? 'PHPUnit/Autoload.php' : 'PHPUnit/Framework.php';
 
-abstract class TikiTestCase extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+abstract class TikiTestCase extends TestCase
 {
 	protected $backupGlobals = false;
 }

@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\Yaml\Yaml;
+
 class ProfileTest extends TikiTestCase
 {
 	/**
@@ -20,7 +22,7 @@ class ProfileTest extends TikiTestCase
 		return [
 			[
 				'{CODE(caption=>YAML,wrap=1)}' .
-				\Symfony\Component\Yaml\Yaml::dump(
+				Yaml::dump(
 					[
 						'profile' => [
 							'tiki' => '^19.0'
@@ -109,7 +111,7 @@ class ProfileTest extends TikiTestCase
 			$expected = $item['expected'];
 			foreach ($item['tiki'] as $version) {
 				$data[] = [
-					sprintf($code, \Symfony\Component\Yaml\Yaml::dump($base)),
+					sprintf($code, Yaml::dump($base)),
 					$version,
 					$expected
 				];
@@ -118,21 +120,21 @@ class ProfileTest extends TikiTestCase
 
 		$base['profile']['tiki'] = '';
 		$data[] = [
-			sprintf($code, \Symfony\Component\Yaml\Yaml::dump($base)),
+			sprintf($code, Yaml::dump($base)),
 			'19.x',
 			true
 		];
 
 		unset($base['profile']['tiki']);
 		$data[] = [
-			sprintf($code, \Symfony\Component\Yaml\Yaml::dump($base)),
+			sprintf($code, Yaml::dump($base)),
 			'19.x',
 			true
 		];
 
 		unset($base['profile']);
 		$data[] = [
-			sprintf($code, \Symfony\Component\Yaml\Yaml::dump($base)),
+			sprintf($code, Yaml::dump($base)),
 			'19.x',
 			true
 		];
@@ -184,19 +186,19 @@ class ProfileTest extends TikiTestCase
 
 		$data = [];
 		$data[] = [
-			sprintf($code, \Symfony\Component\Yaml\Yaml::dump($base)),
+			sprintf($code, Yaml::dump($base)),
 			[['domain' => 'profiles.tiki.org', 'profile' => 'Test_All_Themes', 'object' => 'Test_All_Themes']],
 		];
 
 		$base['dependencies'] = ['$profiles.tiki.org:Test_All_Themes'];
 		$data[] = [
-			sprintf($code, \Symfony\Component\Yaml\Yaml::dump($base)),
+			sprintf($code, Yaml::dump($base)),
 			[['domain' => 'profiles.tiki.org', 'profile' => 'Test_All_Themes', 'object' => null]]
 		];
 
 		$base['dependencies'] = ['$profiles.tiki.org:Test_All_Themes', '$profiles.tiki.org:Test_All_Modules:Test_All_Modules'];
 		$data[] = [
-			sprintf($code, \Symfony\Component\Yaml\Yaml::dump($base)),
+			sprintf($code, Yaml::dump($base)),
 			[
 				['domain' => 'profiles.tiki.org', 'profile' => 'Test_All_Themes', 'object' => null],
 				['domain' => 'profiles.tiki.org', 'profile' => 'Test_All_Modules', 'object' => 'Test_All_Modules']

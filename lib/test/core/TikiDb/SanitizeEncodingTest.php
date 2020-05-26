@@ -7,9 +7,11 @@
 
 namespace Tiki\Tests\TikiDb;
 
+use PHPUnit\Framework\TestCase;
 use Tiki\TikiDb\SanitizeEncoding;
+use TikiLib;
 
-class SanitizeEncodingTest extends \PHPUnit\Framework\TestCase
+class SanitizeEncodingTest extends TestCase
 {
 	/**
 	 * @param $input
@@ -96,7 +98,7 @@ class SanitizeEncodingTest extends \PHPUnit\Framework\TestCase
 		$fullUtf8String = 'Sample Emoji: 😀 😁 🐶 🐱 🏳 🏴';
 		$filteredString = 'Sample Emoji: ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c . ' ' . $c;
 
-		$tikiLib = \TikiLib::lib('tiki');
+		$tikiLib = TikiLib::lib('tiki');
 		$table = $tikiLib->table('tiki_files');
 		$record = $table->insert(['name' => $fullUtf8String, 'data' => $fullUtf8String]);
 		$row = $table->fetchFullRow(['fileId' => $record]);

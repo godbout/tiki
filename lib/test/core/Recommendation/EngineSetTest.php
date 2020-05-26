@@ -7,7 +7,9 @@
 
 namespace Tiki\Recommendation;
 
-class EngineSetTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+class EngineSetTest extends TestCase
 {
 	function testNoEngines()
 	{

@@ -11,9 +11,11 @@
 
 namespace Tiki\Lib\wiki;
 
+use Exception;
+use PHPUnit\Framework\TestCase;
 use TikiLib;
 
-class WikiLibTest extends \PHPUnit\Framework\TestCase
+class WikiLibTest extends TestCase
 {
 
 	private $pageName = 'WikiLib Test Page';
@@ -40,7 +42,7 @@ class WikiLibTest extends \PHPUnit\Framework\TestCase
 	/**
 	 * Test per wiki page autotoc settings
 	 *
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testProcessPageDisplayOptions()
 	{

@@ -3,9 +3,8 @@
 class Search_Elastic_FederatedQueryTest extends PHPUnit\Framework\TestCase
 {
 	private $indexA;
-	private $indexB;
 
-	protected function setUp() : void
+    protected function setUp() : void
 	{
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
 		$connection = new Search_Elastic_Connection('http://' . $elasticSearchHost . ':9200');
@@ -25,10 +24,10 @@ class Search_Elastic_FederatedQueryTest extends PHPUnit\Framework\TestCase
 			'url' => $factory->identifier('PageA'),
 		]);
 
-		$this->indexB = new Search_Elastic_Index($connection, 'test_index_b_foo');
-		$this->indexB->destroy();
-		$factory = $this->indexB->getTypeFactory();
-		$this->indexB->addDocument([
+		$indexB = new Search_Elastic_Index($connection, 'test_index_b_foo');
+		$indexB->destroy();
+		$factory = $indexB->getTypeFactory();
+		$indexB->addDocument([
 			'object_type' => $factory->identifier('wiki page'),
 			'object_id' => $factory->identifier('PageB'),
 			'contents' => $factory->plaintext('Hello World B'),

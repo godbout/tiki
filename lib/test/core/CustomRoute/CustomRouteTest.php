@@ -7,6 +7,7 @@
 
 namespace Tiki\Tests\CustomRoute;
 
+use PHPUnit\Framework\TestCase;
 use Tiki\CustomRoute\CustomRoute;
 use Tiki\CustomRoute\Item;
 use TikiLib;
@@ -14,7 +15,7 @@ use TikiLib;
 /**
  * Class CustomRouteTest
  */
-class CustomRouteTest extends \PHPUnit\Framework\TestCase
+class CustomRouteTest extends TestCase
 {
 	protected static $routes = [];
 

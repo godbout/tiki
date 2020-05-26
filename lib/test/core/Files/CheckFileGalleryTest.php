@@ -8,11 +8,12 @@
 namespace Tiki\Test\Files;
 
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
 use Tiki\Files\CheckFileGallery;
 use TikiLib;
 use FileGalLib;
 
-class CheckFileGalleryTest extends \PHPUnit\Framework\TestCase
+class CheckFileGalleryTest extends TestCase
 {
 	protected $fileRoot;
 
@@ -373,9 +374,7 @@ class CheckFileGalleryTest extends \PHPUnit\Framework\TestCase
 
 		/** @var FileGalLib $fileGalleryLib */
 		$fileGalleryLib = TikiLib::lib('filegal');
-		$fileId = $fileGalleryLib->upload_single_file($gallery, $baseName . '.png', $size, 'image/png', $data);
-
-		return $fileId;
+		return $fileGalleryLib->upload_single_file($gallery, $baseName . '.png', $size, 'image/png', $data);
 	}
 
 	protected function getFilePath($id)

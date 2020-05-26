@@ -7,9 +7,10 @@
 
 namespace Tiki\Recommendation;
 
+use PHPUnit\Framework\TestCase;
 use Tiki\Recommendation\Input\UserInput as U;
 
-class BatchTest extends \PHPUnit\Framework\TestCase implements Store\StoreInterface
+class BatchTest extends TestCase implements Store\StoreInterface
 {
 	private $inputs = false;
 	private $storeCalls = [];

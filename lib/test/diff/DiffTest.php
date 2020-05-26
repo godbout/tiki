@@ -7,6 +7,7 @@
 
 namespace Tiki\Tests\diff;
 
+use TikiLib;
 use TikiTestCase;
 
 require_once __DIR__ . '/../../diff/difflib.php';
@@ -96,13 +97,11 @@ class DiffTest extends TikiTestCase
 
 	protected function loadAndParseFile($file)
 	{
-		$parserLib = \TikiLib::lib('parser');
+		$parserLib = TikiLib::lib('parser');
 
 		$data = file_get_contents($file);
 
 		$parse_options = ['is_html' => false, 'noheadinc' => true, 'suppress_icons' => true, 'noparseplugins' => true];
-		$html = $parserLib->parse_data($data, $parse_options);
-
-		return $html;
+        return $parserLib->parse_data($data, $parse_options);
 	}
 }

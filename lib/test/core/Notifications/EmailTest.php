@@ -7,9 +7,12 @@
 
 namespace Tiki\Tests\Notifications;
 
+use Comments;
+use PHPUnit\Framework\TestCase;
 use Tiki\Notifications\Email;
+use TikiLib;
 
-class EmailTest extends \PHPUnit\Framework\TestCase
+class EmailTest extends TestCase
 {
 	protected static $objects = [];
 
@@ -20,18 +23,18 @@ class EmailTest extends \PHPUnit\Framework\TestCase
 
 	public static function tearDownAfterClass() : void
 	{
-		$commentslib = \TikiLib::lib('comments');
+		$commentslib = TikiLib::lib('comments');
 		foreach (self::$objects['comments'] as $commentId) {
 			$commentslib->remove_comment($commentId);
 		}
 
-		$commentslib = \TikiLib::lib('comments');
+		$commentslib = TikiLib::lib('comments');
 		foreach (self::$objects['forums'] as $forumId) {
 			$commentslib->remove_forum($forumId);
 		}
 
 		// Remove forum, removes all forum posts/comments
-		$bloglib = \TikiLib::lib('blog');
+		$bloglib = TikiLib::lib('blog');
 		foreach (self::$objects['blogs'] as $blogId) {
 			$bloglib->remove_blog($blogId);
 		}
@@ -44,8 +47,8 @@ class EmailTest extends \PHPUnit\Framework\TestCase
 	{
 		global $user;
 
-		/** @var \Comments $commentsLib */
-		$commentsLib = \TikiLib::lib('comments');
+		/** @var Comments $commentsLib */
+		$commentsLib = TikiLib::lib('comments');
 		$forumId = $commentsLib->replace_forum(0, 'Test Forum');
 
 		self::$objects['forums'][] = $forumId;
@@ -146,8 +149,8 @@ class EmailTest extends \PHPUnit\Framework\TestCase
 	{
 		global $user;
 
-		$commentsLib = \TikiLib::lib('comments');
-		$blogLib = \TikiLib::lib('blog');
+		$commentsLib = TikiLib::lib('comments');
+		$blogLib = TikiLib::lib('blog');
 		$blogId = $blogLib->replace_blog('Test Blog', '', 'admin', 'y', 25, 0, '', 'y', 'y', 'y', 'y', 'y', 'y', 'n', 'y', 'n', 'n', '', 'n', 5, 'n');
 
 		self::$objects['blogs'][] = $blogId;

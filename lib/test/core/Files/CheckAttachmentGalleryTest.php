@@ -7,11 +7,16 @@
 
 namespace Tiki\Test\Files;
 
+use Comments;
+use Exception;
 use org\bovigo\vfs\vfsStream;
+use PHPUnit\Framework\TestCase;
 use Tiki\Files\CheckAttachmentGallery;
 use TikiLib;
+use TrackerLib;
+use WikiLib;
 
-class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
+class CheckAttachmentGalleryTest extends TestCase
 {
 	protected $file_root;
 	protected $files_dir;
@@ -87,7 +92,7 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 
 	/**
 	 * @dataProvider getTypes
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testAttachmentWithOneFileOnDisk($type)
 	{
@@ -107,7 +112,7 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 	/**
 	 * @dataProvider getTypes()
 	 * @param $type
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testAttachmentWithOneFileOnDb($type)
 	{
@@ -160,7 +165,7 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 	/**
 	 * @dataProvider getTypes
 	 * @param $type
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testAttachmentMismatchFile($type)
 	{
@@ -203,7 +208,7 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 	 *
 	 * @dataProvider getTypes
 	 * @param $type
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testAttachmentMissingFile($type)
 	{
@@ -256,7 +261,7 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 	 * @param $base_name
 	 * @param $type
 	 * @return mixed
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	protected function insertAttachment($file)
 	{
@@ -311,7 +316,7 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 
 	/**
 	 * Clears and prepares the DB to run the tests
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	protected function removeAttachmentsFromDb()
 	{
@@ -329,9 +334,11 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 
 	/**
 	 * Gets the lib related to a specific attachment type
+	 *
 	 * @param $type
-	 * @return \WikiLib|\TrackerLib|\Comments
-	 * @throws \Exception
+	 *
+	 * @return WikiLib|TrackerLib|Comments
+	 * @throws Exception
 	 */
 	protected function getLib($type)
 	{
@@ -348,7 +355,7 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 	/**
 	 * Gets the method responsible for removing an attachment based on the type
 	 * @param $type
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	protected function removeAttachment($type, $id)
 	{

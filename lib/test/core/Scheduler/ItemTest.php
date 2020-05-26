@@ -7,6 +7,9 @@
 
 namespace Tiki\Tests\Scheduler;
 
+use Exception;
+use PHPUnit\Framework\TestCase;
+use Psr\Log\LogLevel;
 use Scheduler_Item;
 use Tiki_Log;
 use TikiLib;
@@ -14,7 +17,7 @@ use TikiLib;
 /**
  * Class ItemTest
  */
-class ItemTest extends \PHPUnit\Framework\TestCase
+class ItemTest extends TestCase
 {
 
 	protected static $items = [];
@@ -35,7 +38,7 @@ class ItemTest extends \PHPUnit\Framework\TestCase
 	{
 		global $prefs;
 
-		$logger = new Tiki_Log('UnitTests', \Psr\Log\LogLevel::ERROR);
+		$logger = new Tiki_Log('UnitTests', LogLevel::ERROR);
 		$scheduler = new Scheduler_Item(
 			null,
 			'Test Scheduler',
@@ -89,7 +92,7 @@ class ItemTest extends \PHPUnit\Framework\TestCase
 	{
 		global $prefs;
 
-		$logger = new Tiki_Log('UnitTests', \Psr\Log\LogLevel::ERROR);
+		$logger = new Tiki_Log('UnitTests', LogLevel::ERROR);
 		$scheduler = new Scheduler_Item(
 			null,
 			'Test Scheduler',
@@ -129,12 +132,12 @@ class ItemTest extends \PHPUnit\Framework\TestCase
 
 	/**
 	 * Tests run_only_once scheduler status
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testRunOnlyOnce()
 	{
 		global $prefs, $tikilib;
-		$logger = new Tiki_Log('UnitTests', \Psr\Log\LogLevel::ERROR);
+		$logger = new Tiki_Log('UnitTests', LogLevel::ERROR);
 		$scheduler = new Scheduler_Item(
 			null,
 			'Test Scheduler',
@@ -172,7 +175,7 @@ class ItemTest extends \PHPUnit\Framework\TestCase
 	{
 		global $prefs, $tikilib;
 
-		$logger = new Tiki_Log('UnitTests', \Psr\Log\LogLevel::ERROR);
+		$logger = new Tiki_Log('UnitTests', LogLevel::ERROR);
 		$scheduler = new Scheduler_Item(
 			null,
 			'Test Scheduler',
