@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "537188a3657ddf1da42b25ab4463bfb2",
+    "content-hash": "b5e23d9ea20dcdb7e62369cf3ac6e0e7",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -342,9 +342,9 @@
             "authors": [
                 {
                     "name": "Christian Riesen",
-                    "role": "Developer",
                     "email": "chris.riesen@gmail.com",
-                    "homepage": "http://christianriesen.com"
+                    "homepage": "http://christianriesen.com",
+                    "role": "Developer"
                 }
             ],
             "description": "Base32 encoder/decoder according to RFC 4648",
@@ -703,6 +703,56 @@
             "time": "2016-09-16T05:47:55+00:00"
         },
         {
+            "name": "components/revealjs",
+            "version": "3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/revealjs.git",
+                "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
+                "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
+                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
+            },
+            "type": "component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "js/reveal.js"
+                    ],
+                    "styles": [
+                        "css/reveal.css"
+                    ],
+                    "files": [
+                        "css/reveal.min.css",
+                        "js/reveal.min.js",
+                        "css/theme/*.css",
+                        "css/print/*.css",
+                        "plugin/**",
+                        "lib/**"
+                    ],
+                    "shim": {
+                        "exports": "Reveal"
+                    }
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Hakim El Hattab",
+                    "homepage": "http://hakim.se/"
+                }
+            ],
+            "description": "The HTML Presentation Framework",
+            "homepage": "http://lab.hakim.se/reveal-js/",
+            "time": "2018-02-18T16:58:50+00:00"
+        },
+        {
             "name": "composer/semver",
             "version": "1.5.1",
             "source": {
@@ -883,9 +933,9 @@
             "authors": [
                 {
                     "name": "Cameron Spear",
-                    "role": "Developer",
                     "email": "cam@cameronspear.com",
-                    "homepage": "http://cameronspear.com"
+                    "homepage": "http://cameronspear.com",
+                    "role": "Developer"
                 }
             ],
             "description": "An unofficial Bootstrap plugin to enable Bootstrap dropdowns to activate on hover and provide a nice user experience.",
@@ -1347,24 +1397,24 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.5.4",
+            "version": "6.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/guzzle.git",
-                "reference": "a4a1b6930528a8f7ee03518e6442ec7a44155d9d"
+                "reference": "aab4ebd862aa7d04f01a4b51849d657db56d882e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/guzzlehttp/guzzle/guzzlehttp-guzzle-a4a1b6930528a8f7ee03518e6442ec7a44155d9d-zip-066034.zip",
-                "reference": "a4a1b6930528a8f7ee03518e6442ec7a44155d9d",
-                "shasum": "e7ec013d7a851e70543f3a30e239ccc508b3d773"
+                "url": "https://composer.tiki.org/dist/guzzlehttp/guzzle/guzzlehttp-guzzle-aab4ebd862aa7d04f01a4b51849d657db56d882e-zip-e1b936.zip",
+                "reference": "aab4ebd862aa7d04f01a4b51849d657db56d882e",
+                "shasum": "b36e4dbc8387affcdd78de7e4cd2f7dc83203d39"
             },
             "require": {
                 "ext-json": "*",
                 "guzzlehttp/promises": "^1.0",
                 "guzzlehttp/psr7": "^1.6.1",
                 "php": ">=5.5",
-                "symfony/polyfill-intl-idn": "1.17.0"
+                "symfony/polyfill-intl-idn": "^1.11"
             },
             "require-dev": {
                 "ext-curl": "*",
@@ -1410,7 +1460,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2020-05-25T19:35:05+00:00"
+            "time": "2020-04-18T10:38:46+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -4519,9 +4569,9 @@
             "authors": [
                 {
                     "name": "Michel Fortin",
-                    "role": "Developer",
                     "email": "michel.fortin@michelf.ca",
-                    "homepage": "https://michelf.ca/"
+                    "homepage": "https://michelf.ca/",
+                    "role": "Developer"
                 },
                 {
                     "name": "John Gruber",
@@ -4641,9 +4691,9 @@
             "authors": [
                 {
                     "name": "Fabian Grutschus",
-                    "role": "developer",
                     "email": "f.grutschus@lubyte.de",
-                    "homepage": "http://www.lubyte.de/"
+                    "homepage": "http://www.lubyte.de/",
+                    "role": "developer"
                 }
             ],
             "description": "Library for XMPP protocol (Jabber) connections",
@@ -5090,19 +5140,6 @@
                 "shasum": "a5a380fab28e73d2912aaa53de19da847b1dea1f"
             },
             "type": "npm-asset"
-        },
-        {
-            "name": "npm-asset/reveal.js",
-            "version": "3.9.2",
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/npm-asset/reveal-js/npm-asset-reveal-js-3.9.2.zip",
-                "shasum": "0de63206c3dcbbeddeab6c6aee0f25d3d3dfd2f0"
-            },
-            "type": "npm-asset",
-            "license": [
-                "MIT"
-            ]
         },
         {
             "name": "npm-asset/sass-svg-uri",
@@ -9255,17 +9292,17 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.5",
+            "version": "8.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7"
+                "reference": "8474e22d7d642f665084ba5ec780626cbd1efd23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-63dda3b212a0025d380a745f91bdb4d8c985adb7-zip-08b224.zip",
-                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7",
-                "shasum": "f90353bc63b1500919e5746b5fee21c488aa0e5e"
+                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-8474e22d7d642f665084ba5ec780626cbd1efd23-zip-3f5184.zip",
+                "reference": "8474e22d7d642f665084ba5ec780626cbd1efd23",
+                "shasum": "8a518e970c027d1f015a0477bccd44bbdcd74839"
             },
             "require": {
                 "doctrine/instantiator": "^1.2.0",
@@ -9334,7 +9371,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-05-22T13:51:52+00:00"
+            "time": "2020-04-23T04:39:42+00:00"
         },
         {
             "name": "phpunit/phpunit-selenium",
@@ -10376,6 +10413,5 @@
         "ext-ldap": "0",
         "ext-soap": "0",
         "php": "7.2.5"
-    },
-    "plugin-api-version": "1.1.0"
+    }
 }
