@@ -11,7 +11,6 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use TikiLib;
-use TWVersion;
 
 /**
  * Install or update Tiki development files
@@ -28,7 +27,9 @@ class DevConfigureCommand extends Command
 		$this
 			->setName('dev:configure')
 			->setDescription('Install or update development files')
-			->setHelp('Install or update and configure composer development vendor files and unit test config & database.');
+			->setHelp(
+				'Install or update and configure composer development vendor files and unit test config & database.'
+			);
 	}
 
 	protected function execute(InputInterface $input, OutputInterface $output)
@@ -40,29 +41,74 @@ class DevConfigureCommand extends Command
 		}
 
 		$output->writeln('Checking composer development files');
-		if (! class_exists('PHPUnit\Framework\TestCase')) {
-			exec('php temp/composer.phar --ansi install -d vendor_bundled --no-progress --prefer-dist -n 2>&1', $raw, $error);
+		if (! class_exists(\PHPUnit\Framework\TestCase::class)) {
+			exec(
+				'php temp/composer.phar --ansi install -d vendor_bundled --no-progress --prefer-dist -n 2>&1',
+				$raw,
+				$error
+			);
 			if ($error) {
-				$output->writeln('<error>Error: composer files not installed. Check temp/composer.phar</error>');
+				$output->writeln(
+					'<error>Error: composer files not installed. Check temp/composer.phar</error>'
+				);
 			} else {
 				$output->writeln($raw, OutputInterface::VERBOSITY_VERY_VERBOSE);
-				$output->writeln('<info>Done: Composer dev files installed</info>');
+				$output->writeln(
+					'<info>Done: Composer dev files installed</info>'
+				);
 			}
 
 		} else {
-			$output->writeln('<info>Done: Composer dev files already installed</info>');
+			$output->writeln(
+				'<info>Done: Composer dev files already installed</info>'
+			);
+		}
+
+		$output->writeln('Checking phplint');
+		if (file_exists('phplint')) {
+			$output->writeln(
+				'<info>Done: phplint was already callable via "php phplint" in the project root</info>'
+			);
+		} elseif (symlink('vendor_bundled/vendor/overtrue/phplint/bin/phplint', 'phplint')
+		) {
+			$output->writeln(
+				'<info>Done: phplint is now callable via "php phplint" in the project root</info>'
+			);
+		} else {
+			$output->writeln('<error>Could not create symlink</error>');
+			$output->writeln(
+				'Try using the following command: ln -s vendor_bundled/vendor/overtrue/phplint/bin/phplint phplint'
+			);
+		}
+
+		$config = <<<EOT
+path: ./
+jobs: 8
+cache: temp/phplint.cache
+extensions:
+  - php
+exclude:
+  - vendor
+  - vendor_bundled
+
+EOT;
+
+		if (file_exists('.phplint.yml')) {
+			$output->writeln('<info>Done: .phplint.yml was already present in the project root</info>', OutputInterface::VERBOSITY_VERBOSE);
+		} elseif (file_put_contents('.phplint.yml', $config)) {
+			$output->writeln('<info>Done: phplint config written</info>');
+		} else {
+			$output->writeln('<error>Could not create .phplint.yml</error>');
 		}
 
 		$output->writeln('Checking phpunit');
 		if (file_exists('phpunit')) {
 			$output->writeln('<info>Done: phpunit was already callable via "php phpunit" in the project root</info>');
+		} elseif (symlink('vendor_bundled/vendor/phpunit/phpunit/phpunit', 'phpunit')) {
+			$output->writeln('<info>Done: phpunit is now callable via "php phpunit" in the project root</info>');
 		} else {
-			if (symlink('vendor_bundled/vendor/phpunit/phpunit/phpunit', 'phpunit')) {
-				$output->writeln('<info>Done: phpunit is now callable via "php phpunit" in the project root</info>');
-			} else {
-				$output->writeln('<error>Could not create symlink</error>');
-				$output->writeln('Try using the following command: ln -s vendor_bundled/vendor/phpunit/phpunit/phpunit phpunit');
-			}
+			$output->writeln('<error>Could not create symlink</error>');
+			$output->writeln('Try using the following command: ln -s vendor_bundled/vendor/phpunit/phpunit/phpunit phpunit');
 		}
 
 		$output->writeln('Checking PHPUnit local.php file');

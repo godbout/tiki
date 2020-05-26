@@ -11,7 +11,6 @@ namespace Tiki\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use TWVersion;
 
 /**
  * Remove Tiki development files
@@ -39,7 +38,29 @@ class DevUnInstallCommand extends Command
 			exit(1);
 		}
 
-		// remove phpunit symlink from root directory first (wont work after composer files are removed.
+		// remove phplint symlink from root directory first (wont work after composer files are removed)
+		if (file_exists('phplint')) {
+			if (unlink('phplint')) {
+				$output->writeln('phplint was removed from the root directory');
+			} else {
+				$output->writeln('<error>phplint could not be removed from the root directory, delete manually.</error>');
+			}
+		} else {
+			$output->writeln('phplint was not present in root directory');
+		}
+
+		// remove phplint config
+		if (file_exists('.phplint.yml')) {
+			if (unlink('.phplint.yml')) {
+				$output->writeln('.phplint.yml was removed from the root directory', OutputInterface::VERBOSITY_VERBOSE);
+			} else {
+				$output->writeln('<error>.phplint.yml could not be removed from the root directory, delete manually.</error>');
+			}
+		} else {
+			$output->writeln('.phplint.yml was not present in root directory', OutputInterface::VERBOSITY_VERY_VERBOSE);
+		}
+
+		// remove phpunit symlink from root directory first (wont work after composer files are removed)
 		if (file_exists('phpunit')) {
 			if (unlink('phpunit')) {
 				$output->writeln('phpunit was removed from the root directory');
@@ -50,7 +71,7 @@ class DevUnInstallCommand extends Command
 			$output->writeln('phpunit was not present in root directory');
 		}
 
-		if (class_exists('PHPUnit\Framework\TestCase')) {
+		if (class_exists(\PHPUnit\Framework\TestCase::class)) {
 			$output->writeln('Removing composer development files');
 			exec('php temp/composer.phar --ansi install -d vendor_bundled --no-progress --prefer-dist -n --no-dev 2>&1', $raw, $error);
 			if ($error) {

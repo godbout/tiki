@@ -318,7 +318,7 @@ class ConsoleApplicationBuilder
 		$this->checkIsVCS();
 
 		// check to see if something from the dev-mode packages has been auto-loaded
-		if (! class_exists('PHPUnit\Framework\TestCase')) {
+		if (! class_exists(\PHPUnit\Framework\TestCase::class)) {
 			throw new UnavailableException(
 				'You need to be running in dev mode. To Fix run: php console.php dev:configure',
 				UnavailableException::CHECK_DEV
