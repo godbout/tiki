@@ -35,7 +35,7 @@ class Math_Formula_Currency implements Math_Formula_Applicator {
    * @return Math_Formula_Currency if string is a currency representation or the $currency param otherwise.
    */
   public static function tryFromString($currency) {
-    if (preg_match("/^(\d+(\.\d+)?)([A-Z]{3})$/i", $currency, $m)) {
+    if (preg_match("/^(-?\d+(\.\d+)?)([A-Z]{3})$/i", $currency, $m)) {
       $rates = TikiLib::lib('trk')->exchange_rates(null, null);
       return new self($m[1], $m[3], $rates);
     } else {
