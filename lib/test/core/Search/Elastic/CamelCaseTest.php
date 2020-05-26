@@ -69,6 +69,6 @@ class Search_Elastic_CamelCaseTest extends PHPUnit\Framework\TestCase
 
 		$query = new Search_Query;
 		$query->filterContent('Camel AND Word', 'title');
-		$this->assertCount(0, $index);
+		$this->assertCount(0, $query->search($index));
 	}
 }
