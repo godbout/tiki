@@ -157,7 +157,7 @@
 		"bafs/testify": "dev-master",
 		"fabpot/goutte": "^3.2",
 		"mikey179/vfsstream": "^1",
-		"overtrue/phplint": "^1.1",
+		"overtrue/phplint": "^2.0",
 		"phpcompatibility/php-compatibility": "^9.3",
 		"kornrunner/dbunit": "^5",
 		"phpunit/phpunit": "^8",

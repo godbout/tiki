@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b5e23d9ea20dcdb7e62369cf3ac6e0e7",
+    "content-hash": "e51edbc88d2b9066e1ca560c6666009e",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -8603,17 +8603,17 @@
         },
         {
             "name": "overtrue/phplint",
-            "version": "1.2.4",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/phplint.git",
-                "reference": "05bef7df401f8e250436bbb008c25d1b344c0e5e"
+                "reference": "8b1e27094c82ad861ff7728cf50d349500c39fe2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/overtrue/phplint/overtrue-phplint-05bef7df401f8e250436bbb008c25d1b344c0e5e-zip-b01a7f.zip",
-                "reference": "05bef7df401f8e250436bbb008c25d1b344c0e5e",
-                "shasum": "b9513359a7b38e512d135717d10af4347658335d"
+                "url": "https://composer.tiki.org/dist/overtrue/phplint/overtrue-phplint-8b1e27094c82ad861ff7728cf50d349500c39fe2-zip-5f7f25.zip",
+                "reference": "8b1e27094c82ad861ff7728cf50d349500c39fe2",
+                "shasum": "ab1b2d0266b423d76160483fcda29e231f6c0539"
             },
             "require": {
                 "ext-json": "*",
@@ -8665,7 +8665,7 @@
                 "phplint",
                 "syntax"
             ],
-            "time": "2020-04-17T06:35:56+00:00"
+            "time": "2020-04-23T02:04:34+00:00"
         },
         {
             "name": "phar-io/manifest",
