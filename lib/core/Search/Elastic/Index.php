@@ -222,7 +222,10 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 				'analyzer' => [
 					'default' => [
 						'tokenizer' => $this->camelCase ? 'camel' : 'standard',
-						'filter' => $this->connection->getVersion() >= 7.0 ? ['lowercase', 'asciifolding'] : ['standard', 'lowercase', 'asciifolding'],
+						'char_filter' => [
+ 							'versions_filter'
+ 						],
+						'filter' => $this->connection->getVersion() >= 7.0 ? ['lowercase', 'asciifolding', 'word_delimiter'] : ['standard', 'lowercase', 'asciifolding', 'word_delimiter'],
 					],
 					'sortable' => [
 						'tokenizer' => 'keyword',
@@ -240,6 +243,13 @@ class Search_Elastic_Index implements Search_Index_Interface, Search_Index_Query
 					'tiki_stop' => [
 						'type' => 'stop',
 						'stopwords' => $prefs['unified_stopwords'],
+					],
+				],
+				'char_filter' => [
+					'versions_filter' => [
+						'type'        => 'pattern_replace',
+						'pattern'     => '(\\d+)\.(?=\\d)',
+						'replacement' => '$1',
 					],
 				],
 			],

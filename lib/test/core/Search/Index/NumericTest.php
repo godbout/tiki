@@ -30,6 +30,11 @@ abstract class Search_Index_NumericTest extends PHPUnit\Framework\TestCase
 		$this->assertResultCount(0, '5.3');
 	}
 
+	public function testNoMatches()
+	{
+		$this->assertResultCount(0, '2.3.5');
+	}
+
 	public function testMatchHigherVersionPortion()
 	{
 		$this->assertResultCount(1, '2.5');
