@@ -31,6 +31,12 @@ class DevFixStyleCommand extends Command
 			->setDescription('Fix code style of changed files')
 			->setHelp('Fixes code style issues that are correctable with phpcbf via Tiki\'s coding standard. Will only change files modified in your working copy.')
 			->addOption(
+				'directory',
+				'd',
+				InputOption::VALUE_REQUIRED,
+				'A specific directory to process.'
+			)
+			->addOption(
 				'all',
 				'a',
 				InputOption::VALUE_NONE,
@@ -45,7 +51,10 @@ class DevFixStyleCommand extends Command
 			$output->writeln('<error>Must enable exec() for this command</error>');
 			exit(1);
 		}
-
+		if ($input->getOption('all') && $input->getOption('directory')) {
+			$output->writeln('<error>--directory and --all can not be used together');
+			exit(1);
+		}
 		if ($input->getOption('all')) {
 			// apply filter only to these file types, excluding any vendor files.
 			$files = $this->globRecursive(
@@ -54,6 +63,19 @@ class DevFixStyleCommand extends Command
 				'',
 				['vendor_', 'vendor/', 'temp/', 'lib/cypht']
 			);
+		} elseif ($input->getOption('directory')) {
+			$dir = $input->getOption('directory');
+			if (! is_dir($dir)) {
+				$output->writeln("<error>$dir does not exist");
+				die(1);
+			}
+				// apply filter only to these file types, excluding any vendor files.
+				$files = $this->globRecursive(
+					'*.php',
+					GLOB_BRACE,
+					$dir,
+					['vendor_', 'vendor/', 'temp/', 'lib/cypht']
+				);
 		} else {
 			$processes = new Process(['git', 'diff', '--name-only']);
 			$processes->run();
