@@ -696,7 +696,7 @@
 				<div class="col-sm-9">
 					{if isset($calitem.participants)}
 						{if $edit}
-							{user_selector name='save[participants]' select=$calitem.selected_participants multiple='true' allowNone='y' editable='y'}
+							{user_selector name='participants' select=$calitem.selected_participants multiple='true' allowNone='y' editable='y' realnames='n'}
 							<br>
 							<div class="row">
 								<div class="col-sm-9">

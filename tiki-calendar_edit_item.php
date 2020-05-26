@@ -185,10 +185,8 @@ if (isset($_REQUEST['act']) || isset($_REQUEST['preview']) || isset($_REQUEST['c
 			];
 		}
 		$save['participants'] = $participants;
-	}
-
-	if (is_array($save['participants'])) {
-		$save['participants'] = array_filter($save['participants']);
+	} else {
+		$save['participants'] = [];
 	}
 }
 
@@ -531,8 +529,12 @@ if (isset($_REQUEST["delete"]) and ($_REQUEST["delete"]) and isset($_REQUEST["ca
 		'recurrenceId' => 0,
 		'allday' => $calendar['allday'] == 'y' ? 1 : 0,
 		'organizers' => [$user],
-		'participants' => [],
-		'selected_participants' => []
+		'participants' => [[
+			'username' => $user,
+			'role' => '',
+			'partstat' => ''
+		]],
+		'selected_participants' => [$user]
 		];
 	$hour_minmax = abs(ceil(($calendar['startday'] - 1) / (60 * 60))) . '-' . ceil(($calendar['endday']) / (60 * 60));
 	$id = 0;
