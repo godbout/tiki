@@ -299,7 +299,7 @@ function wikiplugin_slideshow($data, $params)
     $revealSettings.='viewDistance:3,display:"block"';
 	$headerlib = TikiLib::lib('header');
 	if(!isset($_REQUEST['theme'])) {
-		$headerlib->add_cssfile('vendor_bundled/vendor/npm-asset/reveal.js/css/theme/'.$params['theme'].'.css',1);
+		$headerlib->add_cssfile('vendor_bundled/vendor/components/revealjs/css/theme/'.$params['theme'].'.css',1);
 		$headerlib->add_js(
 			'$( "#showtheme" ).val( "'.$params['theme'].'" );'
 		);

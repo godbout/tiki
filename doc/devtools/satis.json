@@ -1918,7 +1918,6 @@
 		"components/jquery-migrate": ">=3.0.0",
 		"components/jqueryui": ">=1.12",
 		"components/revealjs": ">=3.6",
-		"npm-asset/reveal.js": ">=3.9.2",
 		"composer/semver": "^1.5",
 		"container-interop/container-interop": ">=1.0",
 		"css-tricks/anythingslider-themes": ">=1.4.1",
