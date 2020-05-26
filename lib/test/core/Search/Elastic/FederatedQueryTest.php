@@ -6,7 +6,7 @@ class Search_Elastic_FederatedQueryTest extends PHPUnit\Framework\TestCase
 	private $indexB;
 
 	protected function setUp() : void
-{
+	{
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
 		$connection = new Search_Elastic_Connection('http://' . $elasticSearchHost . ':9200');
 

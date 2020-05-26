@@ -16,7 +16,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 	private $ext1 = 'test_ext1'; // name of the external Wiki 1
 
 	protected function setUp() : void
-{
+	{
 		TikiLib::lib('edit');
 		$this->el = new EditLib();
 	}
@@ -25,7 +25,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 	 * remove the external Wikis defined in the tests
 	 */
 	protected function tearDown() : void
-{
+	{
 		global $tikilib;
 
 		$query = 'SELECT `name`, `extwikiId` FROM `tiki_extwiki`';

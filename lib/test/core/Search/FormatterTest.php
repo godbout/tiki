@@ -217,11 +217,10 @@ OUT;
 		for ($i = 0; $i < 4; $i++) {
 			$source->expects($this->at($i))
 				->method('getData')
-				->willReturnCallback(function ($entry, $field) use (& $withData, $i) {
+				->willReturnCallback(function ($entry, $field) use (&$withData, $i) {
 						$this->assertContains($field, ['object_id', 'description']);
 						return $withData[(int)($i / 2)];
-					}
-				);
+				});
 		}
 
 		$plugin = new Search_Formatter_Plugin_WikiTemplate("* {display name=object_id} ({display name=description})\n");

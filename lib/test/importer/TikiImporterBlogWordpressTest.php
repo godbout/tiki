@@ -15,13 +15,13 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 {
 
 	protected function setUp() : void
-{
+	{
 		date_default_timezone_set('UTC');
 		$this->obj = new TikiImporter_Blog_Wordpress;
 	}
 
 	protected function tearDown() : void
-{
+	{
 		TikiDb::get()->query('DELETE FROM tiki_pages WHERE pageName = "materia"');
 		TikiDb::get()->query('DELETE FROM tiki_blog_posts WHERE postId = 10');
 		unset($GLOBALS['prefs']['feature_sefurl']);

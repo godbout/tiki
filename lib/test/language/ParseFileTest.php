@@ -17,7 +17,7 @@ class Language_FileTest extends TikiTestCase
 	protected $filePath;
 
 	protected function setUp() : void
-{
+	{
 		$this->filePath = __DIR__ . '/fixtures/language_to_parse_file.php';
 		$this->obj = new Language_File($this->filePath);
 	}

@@ -67,7 +67,7 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
 	protected $composerCli;
 
 	protected function setUp() : void
-{
+	{
 		parent::setUp();
 
 		$this->root = vfsStream::setup(__CLASS__);

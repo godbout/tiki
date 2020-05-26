@@ -40,7 +40,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 	}
 
 	protected function setUp() : void
-{
+	{
 		$this->backupTable('users_objectpermissions');
 		$this->backupTable('tiki_tracker_items');
 		$this->backupTable('tiki_files');
@@ -51,7 +51,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		$this->restoreTable('users_objectpermissions');
 		$this->restoreTable('tiki_tracker_items');
 		$this->restoreTable('tiki_files');

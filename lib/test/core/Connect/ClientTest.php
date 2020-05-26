@@ -25,7 +25,7 @@ class Connect_Client_Test extends TikiTestCase
 	 * This method is called after a test is executed.
 	 */
 	protected function tearDown() : void
-{
+	{
 	}
 
 	public function testBuildConnectData()

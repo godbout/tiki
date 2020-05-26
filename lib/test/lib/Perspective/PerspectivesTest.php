@@ -89,7 +89,7 @@ class PerspectivesTest extends PerspectivesNavigationBaseTestCase
 		$crawler = $client->request('GET', 'http://' . $host . '/tiki-listpages.php');
 
 		$pages = [];
-		$crawler->filter('#listpages1 > tbody > tr')->each(function(Crawler $node) use (&$pages) {
+		$crawler->filter('#listpages1 > tbody > tr')->each(function (Crawler $node) use (&$pages) {
 			$pages[] = trim($node->filter('td:nth-child(1)')->text());
 		});
 
@@ -98,5 +98,4 @@ class PerspectivesTest extends PerspectivesNavigationBaseTestCase
 		sort($pages);
 		$this->assertEquals($expected, $pages);
 	}
-
 }

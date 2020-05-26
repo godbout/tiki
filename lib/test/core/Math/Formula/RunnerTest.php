@@ -10,7 +10,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 	private $runner;
 
 	protected function setUp() : void
-{
+	{
 		$this->runner = new Math_Formula_Runner(
 			[
 				'Math_Formula_Function_' => null,

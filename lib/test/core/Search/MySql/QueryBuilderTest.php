@@ -18,7 +18,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 	private $builder;
 
 	protected function setUp() : void
-{
+	{
 		$this->builder = new QueryBuilder(TikiDb::get());
 	}
 

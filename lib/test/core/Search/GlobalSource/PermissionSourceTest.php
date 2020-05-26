@@ -13,7 +13,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit\Framework\TestCas
 	private $perms;
 
 	protected function setUp() : void
-{
+	{
 		$perms = new Perms;
 		$perms->setCheckSequence(
 			[

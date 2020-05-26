@@ -21,7 +21,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	protected $composerManager;
 
 	protected function setUp() : void
-{
+	{
 		parent::setUp();
 
 		$this->root = vfsStream::setup(__CLASS__);

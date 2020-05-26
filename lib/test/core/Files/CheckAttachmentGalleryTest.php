@@ -28,7 +28,7 @@ class CheckAttachmentGalleryTest extends \PHPUnit\Framework\TestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		$this->removeAttachmentsFromDb();
 	}
 

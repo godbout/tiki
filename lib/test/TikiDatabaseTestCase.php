@@ -13,7 +13,7 @@
 
 abstract class TikiDatabaseTestCase extends PHPUnit\DbUnit\TestCase
 {
-	static private $pdo = null;
+	private static $pdo = null;
 
 	private $conn = null;
 

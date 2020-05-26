@@ -11,7 +11,7 @@
 class Search_Elastic_StemmingTest extends Search_Index_StemmingTest
 {
 	protected function setUp() : void
-{
+	{
 		static $count = 0;
 
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
@@ -29,7 +29,7 @@ class Search_Elastic_StemmingTest extends Search_Index_StemmingTest
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if ($this->index) {
 			$this->index->destroy();
 		}

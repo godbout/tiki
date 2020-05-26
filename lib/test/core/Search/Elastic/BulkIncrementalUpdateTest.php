@@ -10,7 +10,7 @@ class Search_Elastic_BulkIncrementalUpdateTest extends Search_Index_IncrementalU
 	protected $index;
 
 	protected function setUp() : void
-{
+	{
 		$this->index = $this->getIndex();
 		$this->index->destroy();
 
@@ -32,7 +32,7 @@ class Search_Elastic_BulkIncrementalUpdateTest extends Search_Index_IncrementalU
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if ($this->index) {
 			$this->index->destroy();
 		}

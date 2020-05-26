@@ -42,7 +42,7 @@ class TikiVersionTest extends PHPUnit\Framework\TestCase
 		$checker->setVersion('9.0');
 
 		$response = $checker->check(
-			function ($url) use (& $out) {
+			function ($url) use (&$out) {
 				$out = $url;
 				return <<<O
 9.0
@@ -63,7 +63,7 @@ O;
 		$checker->setVersion('8.4');
 
 		$response = $checker->check(
-			function ($url) use (& $out) {
+			function ($url) use (&$out) {
 				$out = $url;
 				return <<<O
 9.0
@@ -88,7 +88,7 @@ O;
 		$checker->setVersion('8.2');
 
 		$response = $checker->check(
-			function ($url) use (& $out) {
+			function ($url) use (&$out) {
 				$out = $url;
 				return <<<O
 9.0
@@ -114,7 +114,7 @@ O;
 		$checker->setVersion('8.4beta3');
 
 		$response = $checker->check(
-			function ($url) use (& $out) {
+			function ($url) use (&$out) {
 				$out = $url;
 				return <<<O
 9.0
@@ -140,7 +140,7 @@ O;
 		$checker->setVersion('4.3');
 
 		$response = $checker->check(
-			function ($url) use (& $out) {
+			function ($url) use (&$out) {
 				$out = $url;
 				return <<<O
 8.4
@@ -165,7 +165,7 @@ O;
 		$checker->setVersion('10.0');
 
 		$response = $checker->check(
-			function ($url) use (& $out) {
+			function ($url) use (&$out) {
 				$out = $url;
 				return <<<O
 8.4

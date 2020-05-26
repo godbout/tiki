@@ -19,7 +19,7 @@ class EmailTest extends \PHPUnit\Framework\TestCase
 	}
 
 	public static function tearDownAfterClass() : void
-{
+	{
 		$commentslib = \TikiLib::lib('comments');
 		foreach (self::$objects['comments'] as $commentId) {
 			$commentslib->remove_comment($commentId);
@@ -239,6 +239,6 @@ class EmailTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals($messageId4, $headers4['Message-Id']);
 		$this->assertEquals($messageId2, $headers4['In-Reply-To']);
-		$this->assertEquals($md5Header . ' ' . $messageId  . ' ' . $messageId2, $headers4['References']);
+		$this->assertEquals($md5Header . ' ' . $messageId . ' ' . $messageId2, $headers4['References']);
 	}
 }

@@ -13,7 +13,7 @@ abstract class Search_Lucene_IncrementalUpdateTest extends Search_Index_Incremen
 	private $dir;
 
 	protected function setUp() : void
-{
+	{
 		$this->dir = __DIR__ . '/test_index';
 		$this->tearDown();
 
@@ -22,7 +22,7 @@ abstract class Search_Lucene_IncrementalUpdateTest extends Search_Index_Incremen
 	}
 
 	protected function tearDown() : void
-{
+	{
 		$this->getIndex()->destroy();
 	}
 

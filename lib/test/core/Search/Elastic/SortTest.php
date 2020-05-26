@@ -10,7 +10,7 @@ class Search_Elastic_SortTest extends Search_Index_SortTest
 	private $unified_stopwords;
 
 	protected function setUp() : void
-{
+	{
 		global $prefs;
 		$this->unified_stopwords = $prefs['unified_stopwords'];
 		$prefs['unified_stopwords'] = '';
@@ -32,7 +32,7 @@ class Search_Elastic_SortTest extends Search_Index_SortTest
 	}
 
 	protected function tearDown() : void
-{
+	{
 		global $prefs;
 		$prefs['unified_stopwords'] = $this->unified_stopwords;
 

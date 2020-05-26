@@ -13,7 +13,7 @@ class RequestTest extends TikiTestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		unset($_REQUEST);
 		unset($_POST);
 		unset($_SERVER['argv']);

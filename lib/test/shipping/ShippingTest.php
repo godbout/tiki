@@ -13,7 +13,7 @@ class ShippingTest extends TikiTestCase implements ShippingProvider
 	private $packages;
 
 	protected function setUp() : void
-{
+	{
 		$this->from = null;
 		$this->to = null;
 		$this->packages = null;

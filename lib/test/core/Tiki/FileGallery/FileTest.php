@@ -91,10 +91,10 @@ class Tiki_FileGallery_FileTest extends TikiTestCase
 		$file = new File(['filename' => 'test.txt', 'data' => '', 'path' => 'abcdtest']);
 		$prefs['fgal_use_db'] = 'n';
 		$prefs['fgal_use_dir'] = vfsStream::setup(uniqid('', true), null)->url();
-		file_put_contents($prefs['fgal_use_dir'].'/'.$file->path, 'test content');
+		file_put_contents($prefs['fgal_use_dir'] . '/' . $file->path, 'test content');
 
 		$file->replaceContents('updated content');
-		$this->assertEquals('updated content', file_get_contents($prefs['fgal_use_dir'].'/'.$file->path));
+		$this->assertEquals('updated content', file_get_contents($prefs['fgal_use_dir'] . '/' . $file->path));
 		$this->assertEmpty($file->data);
 	}
 }

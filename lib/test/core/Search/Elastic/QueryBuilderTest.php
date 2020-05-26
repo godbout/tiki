@@ -19,14 +19,14 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 	protected $prefErrorMissingField;
 
 	protected function setUp() : void
-{
+	{
 		global $prefs;
 		$this->prefErrorMissingField = $prefs['search_error_missing_field'];
 		$prefs['search_error_missing_field'] = 'n';
 	}
 
 	protected function tearDown() : void
-{
+	{
 		global $prefs;
 		$prefs['search_error_missing_field'] = $this->prefErrorMissingField;
 	}

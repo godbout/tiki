@@ -8,7 +8,7 @@
 class Search_Elastic_BaseTest extends Search_Index_BaseTest
 {
 	protected function setUp() : void
-{
+	{
 		static $count = 0;
 
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
@@ -26,7 +26,7 @@ class Search_Elastic_BaseTest extends Search_Index_BaseTest
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if ($this->index) {
 			$this->index->destroy();
 		}

@@ -14,7 +14,7 @@ class JitFilter_FilterTest extends TikiTestCase
 	private $array;
 
 	protected function setUp() : void
-{
+	{
 		$this->array = [
 			'foo' => 'bar123',
 			'bar' => 10,
@@ -30,7 +30,7 @@ class JitFilter_FilterTest extends TikiTestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		$this->array = null;
 	}
 

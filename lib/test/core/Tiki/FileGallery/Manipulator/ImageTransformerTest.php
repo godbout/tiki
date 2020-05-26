@@ -15,23 +15,23 @@ use Tiki\FileGallery\Manipulator\ImageTransformer;
 
 class Tiki_FileGallery_Manipulator_ImageTransformerTest extends TikiTestCase
 {
-  function testResize()
-  {
-    global $prefs;
+	function testResize()
+	{
+		global $prefs;
 
-    $old_pref = $prefs['fgal_use_db'];
-    $prefs['fgal_use_db'] = 'y';
+		$old_pref = $prefs['fgal_use_db'];
+		$prefs['fgal_use_db'] = 'y';
 
-    $path = __DIR__ . '/../../../../filegals/testdata.png';
-    $data = file_get_contents($path);
-    $file = new File(['filename' => 'testdata.png', 'filetype' => 'image/png', 'data' => $data]);
+		$path = __DIR__ . '/../../../../filegals/testdata.png';
+		$data = file_get_contents($path);
+		$file = new File(['filename' => 'testdata.png', 'filetype' => 'image/png', 'data' => $data]);
 
-    (new ImageTransformer($file))->run(['width' => 20, 'height' => 20]);
+		(new ImageTransformer($file))->run(['width' => 20, 'height' => 20]);
 
-    $size = getimagesize($file->getWrapper()->getReadableFile());
+		$size = getimagesize($file->getWrapper()->getReadableFile());
 
-    $this->assertEquals(20, max($size[0], $size[1]));
+		$this->assertEquals(20, max($size[0], $size[1]));
 
-    $prefs['fgal_use_db'] = $old_pref;
-  }
+		$prefs['fgal_use_db'] = $old_pref;
+	}
 }

@@ -16,7 +16,7 @@ class Math_Formula_CurrencyTest extends TikiTestCase
 	];
 
 	protected function setUp() : void
-{
+	{
 		$this->currency1 = new Math_Formula_Currency(100, 'USD', $this->rates);
 		$this->currency2 = new Math_Formula_Currency(100, 'CAD', $this->rates);
 		$this->runner = new Math_Formula_Runner(
@@ -39,7 +39,7 @@ class Math_Formula_CurrencyTest extends TikiTestCase
 	function testAdd()
 	{
 		$this->runner->setFormula('(add currency1 currency2)');
-		$this->assertEquals((100+100/1.308020).'USD', (string)$this->runner->evaluate());
+		$this->assertEquals((100 + 100 / 1.308020) . 'USD', (string)$this->runner->evaluate());
 	}
 
 	function testAddNumber()
@@ -51,25 +51,25 @@ class Math_Formula_CurrencyTest extends TikiTestCase
 	function testSub()
 	{
 		$this->runner->setFormula('(sub currency1 currency2)');
-		$this->assertEquals((100-100/1.308020).'USD', (string)$this->runner->evaluate());
+		$this->assertEquals((100 - 100 / 1.308020) . 'USD', (string)$this->runner->evaluate());
 	}
 
 	function testMul()
 	{
 		$this->runner->setFormula('(mul currency1 currency2)');
-		$this->assertEquals((100*100/1.308020).'USD', (string)$this->runner->evaluate());
+		$this->assertEquals((100 * 100 / 1.308020) . 'USD', (string)$this->runner->evaluate());
 	}
 
 	function testDiv()
 	{
 		$this->runner->setFormula('(div currency1 currency2)');
-		$this->assertEquals((100/(100/1.308020)).'USD', (string)$this->runner->evaluate());
+		$this->assertEquals((100 / (100 / 1.308020)) . 'USD', (string)$this->runner->evaluate());
 	}
 
 	function testComplex()
 	{
 		$this->runner->setFormula('(round (avg currency1 currency2) 2)');
-		$this->assertEquals(round((100+100/1.308020)/2,2).'USD', (string)$this->runner->evaluate());
+		$this->assertEquals(round((100 + 100 / 1.308020) / 2, 2) . 'USD', (string)$this->runner->evaluate());
 	}
 
 	function testMax()

@@ -47,11 +47,11 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		$prefs['fgal_use_dir'] = vfsStream::setup(uniqid('', true), null)->url();
 
 		$file = new File(['data' => '', 'path' => 'abcdtest']);
-		file_put_contents($prefs['fgal_use_dir'].'/'.$file->path, 'test contents');
+		file_put_contents($prefs['fgal_use_dir'] . '/' . $file->path, 'test contents');
 
 		$file->galleryDefinition()->delete($file);
 
-		$this->assertFalse(file_exists($prefs['fgal_use_dir'].'/abcdtest'));
+		$this->assertFalse(file_exists($prefs['fgal_use_dir'] . '/abcdtest'));
 	}
 
 	function testFixFileLocationDbToDb()
@@ -75,13 +75,13 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		$prefs['fgal_use_dir'] = vfsStream::setup(uniqid('', true), null)->url();
 
 		$file = new File(['data' => 'test contents', 'path' => '']);
-		
+
 		$file->galleryDefinition()->fixFileLocation($file);
 
 		$this->assertEquals('', $file->data);
 		$this->assertNotEmpty($file->path);
 
-		$this->assertEquals('test contents', file_get_contents($prefs['fgal_use_dir'].'/'.$file->path));
+		$this->assertEquals('test contents', file_get_contents($prefs['fgal_use_dir'] . '/' . $file->path));
 	}
 
 	function testFixFileLocationDiskToDb()
@@ -92,14 +92,14 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		$prefs['fgal_use_dir'] = vfsStream::setup(uniqid('', true), null)->url();
 
 		$file = new File(['data' => '', 'path' => 'abcdtest']);
-		file_put_contents($prefs['fgal_use_dir'].'/'.$file->path, 'test contents');
-		
+		file_put_contents($prefs['fgal_use_dir'] . '/' . $file->path, 'test contents');
+
 		$file->galleryDefinition()->fixFileLocation($file);
 
 		$this->assertEquals('test contents', $file->data);
 		$this->assertEquals('', $file->path);
 
-		$this->assertFalse(file_exists($prefs['fgal_use_dir'].'/abcdtest'));
+		$this->assertFalse(file_exists($prefs['fgal_use_dir'] . '/abcdtest'));
 	}
 
 	function testFixFileLocationDiskToDisk()
@@ -110,13 +110,13 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		$prefs['fgal_use_dir'] = vfsStream::setup(uniqid('', true), null)->url();
 
 		$file = new File(['data' => '', 'path' => 'abcdtest']);
-		file_put_contents($prefs['fgal_use_dir'].'/'.$file->path, 'test contents');
-		
+		file_put_contents($prefs['fgal_use_dir'] . '/' . $file->path, 'test contents');
+
 		$file->galleryDefinition()->fixFileLocation($file);
 
 		$this->assertEquals('', $file->data);
 		$this->assertNotEmpty($file->path);
 
-		$this->assertEquals('test contents', file_get_contents($prefs['fgal_use_dir'].'/'.$file->path));
+		$this->assertEquals('test contents', file_get_contents($prefs['fgal_use_dir'] . '/' . $file->path));
 	}
 }

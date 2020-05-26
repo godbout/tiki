@@ -10,7 +10,7 @@ class Search_Expr_TokenizerTest extends PHPUnit\Framework\TestCase
 	private $tokenizer;
 
 	protected function setUp() : void
-{
+	{
 		$this->tokenizer = new Search_Expr_Tokenizer;
 	}
 

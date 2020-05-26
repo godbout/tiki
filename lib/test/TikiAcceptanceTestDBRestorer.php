@@ -50,16 +50,16 @@ abstract class TikiAcceptanceTestDBRestorer
 
 	public function __construct()
 	{
-		if (getenv('MYSQL_HOST')){
+		if (getenv('MYSQL_HOST')) {
 			$this->host = getenv('MYSQL_HOST');
 		}
-		if (getenv('MYSQL_DATABASE')){
+		if (getenv('MYSQL_DATABASE')) {
 			$this->tiki_test_db = getenv('MYSQL_DATABASE');
 		}
-		if (getenv('MYSQL_USER')){
+		if (getenv('MYSQL_USER')) {
 			$this->tiki_test_db_user = getenv('MYSQL_USER');
 		}
-		if (getenv('MYSQL_PASSWORD')){
+		if (getenv('MYSQL_PASSWORD')) {
 			$this->tiki_test_db_pwd = getenv('MYSQL_PASSWORD');
 		}
 
@@ -139,7 +139,7 @@ class TikiAcceptanceTestDBRestorerSQLDumps extends TikiAcceptanceTestDBRestorer
 		// enable this to run from the tiki temp folder as a cache dir
 		if (realpath(__DIR__ . '/../../temp')) {
 			$this->mysql_data_dir = realpath(__DIR__ . '/../../temp') . '/testcache/';
-			if ( ! is_dir($this->mysql_data_dir)) {
+			if (! is_dir($this->mysql_data_dir)) {
 				mkdir($this->mysql_data_dir);
 			}
 		}
@@ -231,7 +231,7 @@ class TikiAcceptanceTestDBRestorerSQLDumps extends TikiAcceptanceTestDBRestorer
 			$diff = array_diff($start_file_lines, $end_file_lines);
 
 			//GET ONLY TABLE_NAMES THAT CHANGED
-			array_walk($diff, array($this,'get_table_name'));
+			array_walk($diff, [$this,'get_table_name']);
 
 			//		    	echo (microtime(true) -$begTime)." sec";
 

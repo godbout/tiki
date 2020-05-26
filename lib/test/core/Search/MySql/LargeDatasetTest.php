@@ -10,7 +10,7 @@ class Search_MySql_LargeDatasetTest extends PHPUnit\Framework\TestCase
 	protected $index;
 
 	protected function setUp() : void
-{
+	{
 		$this->index = $this->getIndex();
 		$this->index->destroy();
 	}
@@ -21,7 +21,7 @@ class Search_MySql_LargeDatasetTest extends PHPUnit\Framework\TestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if ($this->index) {
 			$this->index->destroy();
 		}

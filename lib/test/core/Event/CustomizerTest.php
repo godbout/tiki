@@ -14,7 +14,7 @@ class Tiki_Event_CustomizerTest extends PHPUnit\Framework\TestCase
 	private $lastArguments;
 
 	protected function setUp() : void
-{
+	{
 		$this->called = 0;
 		$manager = $this->manager = new Tiki_Event_Manager;
 		$self = $this;

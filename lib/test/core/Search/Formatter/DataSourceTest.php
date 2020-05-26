@@ -12,7 +12,7 @@ class Search_Formatter_DataSourceTest extends PHPUnit\Framework\TestCase
 	private $permissionSource;
 
 	protected function setUp() : void
-{
+	{
 		$this->wikiSource = new Search_ContentSource_Static(
 			['Test' => ['description' => 'ABC'],],
 			['description' => 'sortable']

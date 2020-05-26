@@ -10,7 +10,7 @@ TikiLib::lib('cart');
 class Payment_CartTest extends TikiTestCase
 {
 	protected function setUp() : void
-{
+	{
 		global $prefs;
 		$prefs['feature_sefurl'] = 'n';
 		$this->obj = $this->getMockBuilder('CartLib')
@@ -20,7 +20,7 @@ class Payment_CartTest extends TikiTestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		unset($_SESSION['cart']);
 	}
 

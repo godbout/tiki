@@ -10,7 +10,7 @@ class Search_MySql_IncrementalUpdateTest extends Search_Index_IncrementalUpdateT
 	protected $index;
 
 	protected function setUp() : void
-{
+	{
 		$this->index = $this->getIndex();
 		$this->index->destroy();
 
@@ -23,7 +23,7 @@ class Search_MySql_IncrementalUpdateTest extends Search_Index_IncrementalUpdateT
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if ($this->index) {
 			$this->index->destroy();
 		}

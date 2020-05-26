@@ -20,7 +20,7 @@ class ItemTest extends \PHPUnit\Framework\TestCase
 	protected static $items = [];
 
 	public static function tearDownAfterClass() : void
-{
+	{
 		$schedlib = TikiLib::lib('scheduler');
 
 		foreach (self::$items as $itemId) {

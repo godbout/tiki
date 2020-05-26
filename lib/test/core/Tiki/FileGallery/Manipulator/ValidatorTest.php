@@ -15,54 +15,54 @@ use Tiki\FileGallery\Manipulator\Validator;
 
 class Tiki_FileGallery_Manipulator_ValidatorTest extends TikiTestCase
 {
-  protected function setUp() : void
+	protected function setUp() : void
 	{
-    global $prefs;
-    $this->oldPrefs = $prefs;
-    parent::setUp();
-  }
+		global $prefs;
+		$this->oldPrefs = $prefs;
+		parent::setUp();
+	}
 
-  protected function tearDown() : void
+	protected function tearDown() : void
 	{
-    global $prefs;
-    $prefs = $this->oldPrefs;
-  }
+		global $prefs;
+		$prefs = $this->oldPrefs;
+	}
 
-  function testFilenameValidByDefault()
-  {
-    $file = new File(['filename' => 'test.zip']);
-    $this->assertTrue((new Validator($file))->run());
-  }
+	function testFilenameValidByDefault()
+	{
+		$file = new File(['filename' => 'test.zip']);
+		$this->assertTrue((new Validator($file))->run());
+	}
 
-  function testFilenameInvalidByRegexp()
-  {
-    global $prefs;
+	function testFilenameInvalidByRegexp()
+	{
+		global $prefs;
 
-    $prefs['fgal_match_regex'] = ".*\.png$";
+		$prefs['fgal_match_regex'] = ".*\.png$";
 
-    $file = new File(['filename' => 'test.zip']);
-    $this->assertFalse((new Validator($file))->run());
-  }
+		$file = new File(['filename' => 'test.zip']);
+		$this->assertFalse((new Validator($file))->run());
+	}
 
-  function testFilenameValidByRegexp()
-  {
-    global $prefs;
+	function testFilenameValidByRegexp()
+	{
+		global $prefs;
 
-    $prefs['fgal_match_regex'] = ".*\.zip$";
+		$prefs['fgal_match_regex'] = ".*\.zip$";
 
-    $file = new File(['filename' => 'test.zip']);
-    $this->assertTrue((new Validator($file))->run());
-  }
+		$file = new File(['filename' => 'test.zip']);
+		$this->assertTrue((new Validator($file))->run());
+	}
 
-  function testDuplicateChecksum()
-  {
-    global $prefs;
+	function testDuplicateChecksum()
+	{
+		global $prefs;
 
-    $prefs['fgal_allow_duplicates'] = 'n';
-    $filesTable = TikiLib::lib('filegal')->table('tiki_files');
-    $filesTable->insert(['hash' => '123456789']);
+		$prefs['fgal_allow_duplicates'] = 'n';
+		$filesTable = TikiLib::lib('filegal')->table('tiki_files');
+		$filesTable->insert(['hash' => '123456789']);
 
-    $file = new File(['filename' => 'test.zip', 'hash' => '123456789']);
-    $this->assertFalse((new Validator($file))->run());
-  }
+		$file = new File(['filename' => 'test.zip', 'hash' => '123456789']);
+		$this->assertFalse((new Validator($file))->run());
+	}
 }

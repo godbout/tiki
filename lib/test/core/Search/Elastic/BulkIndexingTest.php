@@ -12,7 +12,7 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit\Framework\TestCase
 		$parts = [];
 		$bulk = new Search_Elastic_BulkOperation(
 			10,
-			function ($data) use (& $parts) {
+			function ($data) use (&$parts) {
 				$parts[] = $data;
 			},
 			'_doc'
@@ -36,7 +36,7 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit\Framework\TestCase
 		$parts = [];
 		$bulk = new Search_Elastic_BulkOperation(
 			10,
-			function ($data) use (& $parts) {
+			function ($data) use (&$parts) {
 				$parts[] = $data;
 			},
 			'_doc'
@@ -57,7 +57,7 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit\Framework\TestCase
 		$parts = [];
 		$bulk = new Search_Elastic_BulkOperation(
 			10,
-			function ($data) use (& $parts) {
+			function ($data) use (&$parts) {
 				$parts[] = $data;
 			},
 			'_doc'
@@ -77,7 +77,7 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit\Framework\TestCase
 		$parts = [];
 		$bulk = new Search_Elastic_BulkOperation(
 			15,
-			function ($data) use (& $parts) {
+			function ($data) use (&$parts) {
 				$parts[] = $data;
 			},
 			'_doc'

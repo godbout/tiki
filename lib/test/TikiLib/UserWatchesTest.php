@@ -27,7 +27,7 @@ class UserWatchesTest extends TikiTestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		$this->userWatches->deleteMultiple(['user' => 'tester']);
 	}
 

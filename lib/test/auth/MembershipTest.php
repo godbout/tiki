@@ -13,7 +13,7 @@ class MembershipTest extends TikiTestCase
 	protected $userlib;
 
 	protected function setUp() : void
-{
+	{
 		parent::setUp();
 		$cachelib = TikiLib::lib('cache');
 
@@ -42,7 +42,7 @@ class MembershipTest extends TikiTestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		parent::tearDown();
 		$this->userlib->remove_user('membershiptest_a');
 		$this->userlib->remove_user('membershiptest_b');

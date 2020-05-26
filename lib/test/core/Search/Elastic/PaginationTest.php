@@ -8,7 +8,7 @@
 class Search_Elastic_PaginationTest extends Search_Index_PaginationTest
 {
 	protected function setUp() : void
-{
+	{
 		static $count = 0;
 
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
@@ -25,7 +25,7 @@ class Search_Elastic_PaginationTest extends Search_Index_PaginationTest
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if ($this->index) {
 			$this->index->destroy();
 		}

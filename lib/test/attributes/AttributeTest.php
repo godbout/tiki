@@ -10,13 +10,13 @@ $attributelib = TikiLib::lib('attribute');
 class AttributeTest extends TikiTestCase
 {
 	protected function setUp() : void
-{
+	{
 		parent::setUp();
 		TikiDb::get()->query('DELETE FROM `tiki_object_attributes` WHERE `attribute` LIKE ?', ['tiki.test%']);
 	}
 
 	protected function tearDown() : void
-{
+	{
 		parent::tearDown();
 		TikiDb::get()->query('DELETE FROM `tiki_object_attributes` WHERE `attribute` LIKE ?', ['tiki.test%']);
 	}

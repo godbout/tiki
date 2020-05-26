@@ -15,7 +15,7 @@ class Perms_ResolverFactory_GlobalFactoryTest extends PHPUnit\Framework\TestCase
 	private $tableData = [];
 
 	protected function setUp() : void
-{
+	{
 		$db = TikiDb::get();
 
 		$result = $db->query('SELECT groupName, permName FROM users_grouppermissions');
@@ -27,7 +27,7 @@ class Perms_ResolverFactory_GlobalFactoryTest extends PHPUnit\Framework\TestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		$db = TikiDb::get();
 
 		$db->query('DELETE FROM users_grouppermissions');

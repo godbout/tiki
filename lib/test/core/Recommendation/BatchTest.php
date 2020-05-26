@@ -16,7 +16,7 @@ class BatchTest extends \PHPUnit\Framework\TestCase implements Store\StoreInterf
 	private $checkCallback;
 
 	protected function setUp() : void
-{
+	{
 		$this->checkCallback = function ($input, $recomendation) {
 			return false;
 		};
@@ -85,7 +85,7 @@ class BatchTest extends \PHPUnit\Framework\TestCase implements Store\StoreInterf
 	{
 		$i = 0;
 
-		$this->checkCallback = function ($input, $rec) use (& $i) {
+		$this->checkCallback = function ($input, $rec) use (&$i) {
 			return $i++ == 0;
 		};
 

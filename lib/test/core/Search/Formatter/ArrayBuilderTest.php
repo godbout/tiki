@@ -10,7 +10,7 @@ class Search_Formatter_ArrayBuilderTest extends PHPUnit\Framework\TestCase
 	private $builder;
 
 	protected function setUp() : void
-{
+	{
 		$this->builder = new Search_Formatter_ArrayBuilder;
 	}
 

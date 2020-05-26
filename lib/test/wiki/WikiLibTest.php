@@ -10,6 +10,7 @@
  */
 
 namespace Tiki\Lib\wiki;
+
 use TikiLib;
 
 class WikiLibTest extends \PHPUnit\Framework\TestCase
@@ -18,7 +19,7 @@ class WikiLibTest extends \PHPUnit\Framework\TestCase
 	private $pageName = 'WikiLib Test Page';
 
 	protected function setUp() : void
-{
+	{
 		global $testhelpers;
 
 		require_once(__DIR__ . '/../TestHelpers.php');
@@ -28,7 +29,7 @@ class WikiLibTest extends \PHPUnit\Framework\TestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		global $testhelpers;
 
 		$testhelpers->remove_all_versions($this->pageName);
@@ -103,6 +104,5 @@ Some more text
 		$wikilib->processPageDisplayOptions();
 		$tags = $headerlib->output_js_files();
 		$this->assertStringContainsString($expected, $tags, 'Autotoc off, page set to on');
-
 	}
 }

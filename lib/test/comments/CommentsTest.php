@@ -11,7 +11,7 @@ class CommentsTest extends TikiTestCase
 	private $lib;
 
 	protected function setUp() : void
-{
+	{
 		$this->lib = TikiLib::lib('comments');
 	}
 

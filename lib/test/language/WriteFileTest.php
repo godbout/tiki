@@ -16,7 +16,7 @@ class Language_WriteFileTest extends TikiTestCase
 	protected $obj;
 
 	protected function setUp() : void
-{
+	{
 		// setup a mock filesystem
 		$lang = vfsStream::setup('lang');
 		$this->langFile = new vfsStreamFile('language.php');

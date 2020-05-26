@@ -18,7 +18,7 @@ use org\bovigo\vfs\vfsStreamDirectory;
 class Language_GetStringsEndToEndTest extends TikiTestCase
 {
 	protected function setUp() : void
-{
+	{
 		// setup a mock filesystem with directories and files
 		$root = vfsStream::setup('root');
 		$dir1 = new vfsStreamDirectory('dir1');

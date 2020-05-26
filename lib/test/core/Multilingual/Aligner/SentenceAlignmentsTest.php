@@ -67,7 +67,6 @@ class Multilingual_Aligner_SentenceAlignmentsTest extends TikiTestCase
 	{
 		$en_sentence = "hello world";
 		$fr_sentence = $this->alignments->getSentenceInOtherLanguage($en_sentence, 'en');
-
 	}
 
 

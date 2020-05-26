@@ -10,7 +10,7 @@ class Search_Lucene_BaseTest extends Search_Index_BaseTest
 	private $dir;
 
 	protected function setUp() : void
-{
+	{
 		$this->dir = __DIR__ . '/test_index';
 		$this->tearDown();
 
@@ -20,7 +20,7 @@ class Search_Lucene_BaseTest extends Search_Index_BaseTest
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if ($this->index) {
 			$this->index->destroy();
 		}

@@ -19,7 +19,7 @@ class ItemTest extends \PHPUnit\Framework\TestCase
 	protected $item;
 
 	protected function setUp() : void
-{
+	{
 		$id = 10;
 		$from = 'test-route';
 		$type = 'Direct';

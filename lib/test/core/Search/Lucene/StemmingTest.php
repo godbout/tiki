@@ -13,7 +13,7 @@ class Search_Lucene_StemmingTest extends Search_Index_StemmingTest
 	private $dir;
 
 	protected function setUp() : void
-{
+	{
 		$this->dir = __DIR__ . '/test_index';
 		$this->tearDown();
 
@@ -24,7 +24,7 @@ class Search_Lucene_StemmingTest extends Search_Index_StemmingTest
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if ($this->index) {
 			$this->index->destroy();
 		}

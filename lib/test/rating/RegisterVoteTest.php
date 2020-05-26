@@ -13,7 +13,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 	protected $ratingAllowMultipleVotes;
 
 	protected function setUp() : void
-{
+	{
 		global $user, $prefs;
 		$user = null;
 		parent::setUp();
@@ -28,7 +28,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		global $user, $prefs;
 		$user = null;
 		parent::tearDown();

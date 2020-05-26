@@ -10,7 +10,7 @@ class Rating_AggregationTest extends TikiTestCase
 	protected $ratingAllowMultipleVotes;
 
 	protected function setUp() : void
-{
+	{
 		global $user, $testhelpers, $prefs;
 
 		$user = null;
@@ -35,7 +35,7 @@ class Rating_AggregationTest extends TikiTestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		global $testhelpers, $user, $prefs;
 		$user = null;
 		parent::tearDown();
@@ -107,7 +107,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$lib->record_user_vote('abc', 'test', 112, 3, time() - 1000);
 		$lib->record_anonymous_vote('deadbeef01234567', 'test', 111, 3, time() - 1000);
 
-		$this->assertEqualsWithDelta(5 / 2, $lib->collect('test', 111, 'avg'),1 / 1000);
+		$this->assertEqualsWithDelta(5 / 2, $lib->collect('test', 111, 'avg'), 1 / 1000);
 	}
 
 	function testBadAggregateFunction()

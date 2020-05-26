@@ -8,7 +8,7 @@
 class Search_Elastic_FacetTest extends PHPUnit\Framework\TestCase
 {
 	protected function setUp() : void
-{
+	{
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
 		$connection = new Search_Elastic_Connection('http://' . $elasticSearchHost . ':9200');
 
@@ -24,7 +24,7 @@ class Search_Elastic_FacetTest extends PHPUnit\Framework\TestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if ($this->index) {
 			$this->index->destroy();
 		}

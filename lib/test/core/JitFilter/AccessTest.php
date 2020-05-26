@@ -15,7 +15,7 @@ class JitFilter_AccessTest extends TikiTestCase
 	private $array;
 
 	protected function setUp() : void
-{
+	{
 		$this->array = [
 			'foo' => 'bar',
 			'bar' => 10,
@@ -29,7 +29,7 @@ class JitFilter_AccessTest extends TikiTestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		$this->array = null;
 	}
 

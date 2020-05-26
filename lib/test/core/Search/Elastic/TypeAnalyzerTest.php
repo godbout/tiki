@@ -10,7 +10,7 @@ class Search_Elastic_TypeAnalyzerTest extends Search_Index_TypeAnalyzerTest
 	protected $index;
 
 	protected function setUp() : void
-{
+	{
 		$elasticSearchHost = empty(getenv('ELASTICSEARCH_HOST')) ? 'localhost' : getenv('ELASTICSEARCH_HOST');
 		$connection = new Search_Elastic_Connection('http://' . $elasticSearchHost . ':9200');
 		$connection->startBulk(100);
@@ -30,7 +30,7 @@ class Search_Elastic_TypeAnalyzerTest extends Search_Index_TypeAnalyzerTest
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if ($this->index) {
 			$this->index->destroy();
 		}

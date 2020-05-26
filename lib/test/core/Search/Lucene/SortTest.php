@@ -13,7 +13,7 @@ class Search_Lucene_SortTest extends Search_Index_SortTest
 	private $dir;
 
 	protected function setUp() : void
-{
+	{
 		$this->dir = __DIR__ . '/test_index';
 		$this->tearDown();
 
@@ -23,7 +23,7 @@ class Search_Lucene_SortTest extends Search_Index_SortTest
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if ($this->index) {
 			$this->index->destroy();
 		}

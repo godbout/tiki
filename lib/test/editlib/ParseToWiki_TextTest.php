@@ -16,14 +16,14 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	private $el = null; // the EditLib
 
 	protected function setUp() : void
-{
+	{
 		TikiLib::lib('edit');
 		$this->el = new EditLib();
 	}
 
 
 	protected function tearDown() : void
-{
+	{
 		global $prefs;
 		// restore preference default state
 		$prefs['feature_use_three_colon_centertag'] = 'n';

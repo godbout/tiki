@@ -25,7 +25,7 @@ class LanguageTranslationsTest extends TikiTestCase
 	protected $tikiroot;
 
 	protected function setUp() : void
-{
+	{
 		$this->tikiroot = __DIR__ . '/../../../';
 		$this->lang = 'test_language';
 		$this->langDir = $this->tikiroot . 'lang/' . $this->lang;
@@ -58,7 +58,7 @@ class LanguageTranslationsTest extends TikiTestCase
 	}
 
 	protected function tearDown() : void
-{
+	{
 		if (file_exists($this->langDir . '/language.php')) {
 			unlink($this->langDir . '/language.php');
 		}
