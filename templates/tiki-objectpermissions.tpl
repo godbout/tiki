@@ -24,6 +24,7 @@
 			<h2>{tr}Edit Permissions{/tr}</h2>
 		{/if}
 		<form method="post" action="{$smarty.server.SCRIPT_NAME}?{query}">
+			{ticket}
 			{capture name="notices"}
 				{if empty($filegals_manager)}
 					{if $objectType eq 'global'}
@@ -82,9 +83,30 @@
 				<input type="hidden" name="permType" value="{$permType|escape}">
 
 				<div class="input_submit_container" style="text-align: center">
-					<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}">
+					<input
+						type="submit"
+						class="btn btn-secondary btn-sm"
+						name="assign"
+						value="{tr}Assign{/tr}"
+						onclick="confirmPopup('{tr}Modify permissions?{/tr}')"
+					>
 					{if $permissions_displayed eq 'direct' and $objectType neq 'global'}
-						<input type="submit" class="btn btn-danger btn-sm" name="remove" value="{if $objectType eq 'category'}{tr}Delete category permissions{/tr}{else}{tr}Delete object permissions{/tr}{/if}" class="tips" title="{tr}Reset Perms{/tr}|{if $objectType neq 'category'}{tr}This will remove all the settings here and permissions will be reset to inherit any category permissions that are set, or the global sitewide permissions.{/tr}{else}{tr}This will remove all the settings here and permissions will be reset to inherit the global sitewide permissions.{/tr}{/if}">
+						{if $objectType == 'category'}
+							{$value="{tr}Delete category permissions{/tr}"}
+							{$title="{tr}This will remove all the settings here and permissions will be reset to inherit the global sitewide permissions.{/tr}"}
+							{$confirm="{tr}Delete category permissions?{/tr}"}
+						{else}
+							{$value="{tr}Delete object permissions{/tr}"}
+							{$title="{tr}This will remove all the settings here and permissions will be reset to inherit any category permissions that are set, or the global sitewide permissions.{/tr}"}
+							{$confirm="{tr}Delete object permissions?{/tr}"}
+						{/if}
+						<input
+							type="submit"
+							class="btn btn-danger btn-sm"
+							name="remove"
+							value="{$value}"
+							class="tips"
+							title="{tr}Reset Perms{/tr}:{$title}"
 					{/if}
 					<input type="submit" class="btn btn-primary btn-sm" name="copy" value="{tr}Copy{/tr}" class="tips" title="{tr}Permissions Clipboard{/tr}|{tr}Copy the permissions set here{/tr}">
 					{if !empty($perms_clipboard_source)}<input type="submit" class="btn btn-primary btn-sm" name="paste" value="{tr}Paste{/tr}" class="tips" title="{tr}Permissions Clipboard{/tr}|{tr}Paste copied permissions from {/tr}<em>{$perms_clipboard_source}</em>" />{/if}
@@ -130,7 +152,13 @@
 			{if ($perms|@count) eq '0'}{remarksbox type="warning" title="{tr}Warning{/tr}"}{tr}You must select at least one feature{/tr}.{/remarksbox}{/if}
 
 			<div class="input_submit_container" style="text-align: center">
-				<input type="submit" class="btn btn-secondary btn-sm" name="assign" value="{tr}Assign{/tr}">
+				<input
+					type="submit"
+					class="btn btn-secondary btn-sm"
+					name="assign"
+					value="{tr}Assign{/tr}"
+					onclick="confirmPopup('{tr}Modify permissions?{/tr}')"
+				>
 				{if $permissions_displayed eq 'direct' and $objectType neq 'global'}
 					<input type="submit" class="btn btn-danger btn-sm" name="remove" value="{if $objectType eq 'category'}{tr}Delete category permissions{/tr}{else}{tr}Delete object permissions{/tr}{/if}" class="tips" title="{tr}Reset Perms{/tr}|{tr}This will remove all the settings here and permissions will be reset to inherit the global sitewide permissions.{/tr}">
 				{/if}
