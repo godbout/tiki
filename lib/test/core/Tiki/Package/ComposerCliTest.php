@@ -129,7 +129,7 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
 			$this->root
 		);
 
-		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
+		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['checkConfigExists', 'canExecuteComposer', 'execShow'])
 			->setConstructorArgs([vfsStream::url(__CLASS__)])
 			->getMock();

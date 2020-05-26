@@ -5,6 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\Package\ComposerCli;
 use Tiki\Package\ComposerManager;
 use org\bovigo\vfs\vfsStream;
 use org\bovigo\vfs\vfsStreamDirectory;
@@ -37,7 +38,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 
 	function testGetComposer()
 	{
-		$this->assertInstanceOf('Tiki\Package\ComposerCli', $this->composerManager->getComposer());
+		$this->assertInstanceOf(ComposerCli::class, $this->composerManager->getComposer());
 	}
 
 	function testComposerPath()
@@ -48,7 +49,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	function testBrokenYaml()
 	{
 
-		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
+		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
@@ -71,7 +72,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	function testIfNoPackageIsInstalledAllAreAvailable()
 	{
 
-		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
+		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
@@ -96,7 +97,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	function testPackageNotAvailableIfInstalled()
 	{
 
-		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
+		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
@@ -130,7 +131,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	function testAllPackagesAvailableIfNotFiltered()
 	{
 
-		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
+		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
@@ -163,7 +164,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 
 	function testInstallNotExistingPackage()
 	{
-		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
+		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['installPackage'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
@@ -180,7 +181,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 
 	function testInstallPackage()
 	{
-		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
+		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['canExecuteComposer', 'installMissingPackages'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
@@ -212,7 +213,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 
 	function testGetInstalled()
 	{
-		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
+		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
@@ -257,7 +258,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 
 	function testGetInstalledCaseMismatch()
 	{
-		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
+		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['getListOfPackagesFromConfig'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
@@ -293,7 +294,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 
 	function testRemoveUnknownPackageFails()
 	{
-		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
+		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['removePackage'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();
@@ -314,7 +315,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 
 	function testRemovePackage()
 	{
-		$composerCli = $this->getMockBuilder('Tiki\Package\ComposerCli')
+		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['removePackage'])
 			->setConstructorArgs([$this->rootPath])
 			->getMock();

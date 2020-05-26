@@ -51,7 +51,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 	 */
 	function testDisallowed()
 	{
-		$this->expectException('PHPUnit\Framework\Error\Error');
+		$this->expectError();
 		$configuration = [
 			['catchAllFilter' => new Zend\Filter\StringToUpper],
 		];
@@ -61,7 +61,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 
 	function testMissingLevel()
 	{
-		$this->expectException('PHPUnit\Framework\Error\Error');
+		$this->expectError();
 		$configuration = [
 			'catchAllUnset' => null,
 		];

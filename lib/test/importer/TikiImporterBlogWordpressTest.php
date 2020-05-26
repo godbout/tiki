@@ -5,6 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+use Tiki\FileGallery\File;
+
 require_once(__DIR__ . '/tikiimporter_testcase.php');
 require_once(__DIR__ . '/../../importer/tikiimporter_blog_wordpress.php');
 
@@ -486,7 +488,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 	{
 		ob_start();
 
-		$file = $this->getMockBuilder('Tiki\FileGallery\File')
+		$file = $this->getMockBuilder(File::class)
 			->onlyMethods(['replace',])
 			->getMock();
 		$file->expects($this->exactly(0))->method('replace')->willReturn(1);
@@ -597,7 +599,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 	{
 		ob_start();
 
-		$file = $this->getMockBuilder('Tiki\FileGallery\File')
+		$file = $this->getMockBuilder(File::class)
 			->onlyMethods(['replace'])
 			->getMock();
 		$file->expects($this->exactly(0))->method('replace');
@@ -627,7 +629,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 	{
 		ob_start();
 
-		$file = $this->getMockBuilder('Tiki\FileGallery\File')
+		$file = $this->getMockBuilder(File::class)
 			->onlyMethods(['replace'])
 			->getMock();
 		$file->expects($this->exactly(0))->method('replace');
