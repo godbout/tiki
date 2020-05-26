@@ -550,7 +550,7 @@ class Services_User_Controller
 						if ($groupperm || (array_key_exists($group, $userGroups) && $userperm)) {
 							if ($add_remove === 'add') {
 								$res = $this->lib->assign_user_to_group($assign_user, $group);
-								if ($res) {
+								if ($res && $res->numRows()) {
 									$logmsg = sprintf(tra('%s %s assigned to %s %s.'), tra('user'), $assign_user, tra('group'), $group);
 									$logslib->add_log('adminusers', $logmsg, $user);
 								} else {

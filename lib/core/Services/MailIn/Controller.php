@@ -65,10 +65,10 @@ class Services_MailIn_Controller
 
 				try {
 					if (! Tiki\MailIn\Account::test($account)) {
-						throw new Services_Exception(tr('Failed to connect or authenticate with remote host.'));
+						Feedback::error(tr('Failed to connect or authenticate with remote host.'));
 					}
 				} catch (Exception $e) {
-					throw new Services_Exception_FieldError('username', $e->getMessage());
+					Feedback::error('<!--field[username]-->' . $e->getMessage());
 				}
 			} else {
 				Feedback::error(tr('Account not created or modified'));
