@@ -2412,6 +2412,14 @@ class UsersLib extends TikiLib
 		}
 	}
 
+	/**
+	 * @param      $user
+	 * @param      $group
+	 * @param bool $bulk
+	 *
+	 * @return TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 * @throws Exception
+	 */
 	function remove_user_from_group($user, $group, $bulk = false)
 	{
 		global $prefs;
@@ -2439,6 +2447,8 @@ class UsersLib extends TikiLib
 		]);
 
 		$_SESSION['u_info']['group'] = 'Registered';
+
+		return $result;
 	}
 
 	function remove_user_from_all_groups($user)
@@ -3312,11 +3322,13 @@ class UsersLib extends TikiLib
 			$this->assign_user_to_group($user, $group);
 		}
 		$query = 'update `users_users` set `default_group` = ? where `login` = ?';
-		$this->query($query, [$group, $user]);
+		$result = $this->query($query, [$group, $user]);
 
 		if ($user == $_SESSION['u_info']['login']) {
 			$_SESSION['u_info']['group'] = $group;
 		}
+
+		return $result;
 	}
 
 	function set_email_group($user, $email)
@@ -6703,6 +6715,14 @@ class UsersLib extends TikiLib
 		return $res;
 	}
 
+	/**
+	 * @param      $user
+	 * @param      $group
+	 * @param bool $bulk
+	 *
+	 * @return bool|TikiDb_Pdo_Result|TikiDb_Adodb_Result
+	 * @throws Services_Exception
+	 */
 	function assign_user_to_group($user, $group, $bulk = false)
 	{
 		if (! $this->group_exists($group)) {
@@ -6736,17 +6756,16 @@ class UsersLib extends TikiLib
 		$tikilib->invalidate_usergroups_cache($user);
 		$this->invalidate_usergroups_cache($user); // this is needed as cache is present in this instance too
 
-		$group_ret = false;
+		$result = false;
 		$userid = $this->get_user_id($user);
 
 		if ($userid > 0) {
 			$query = "insert ignore into `users_usergroups`(`userId`,`groupName`, `created`) values(?,?,?)";
 			$result = $this->query($query, [$userid, $group, $tikilib->now], -1, -1, false);
-			$group_ret = true;
 		}
 		$this->update_group_expiries();
 
-		if ($group_ret) {
+		if ($result && $result->numRows()) {
 			$watches = $tikilib->get_event_watches('user_joins_group', $group);
 			if (count($watches)) {
 				require_once("lib/notifications/notificationemaillib.php");
@@ -6763,7 +6782,7 @@ class UsersLib extends TikiLib
 			]);
 		}
 
-		return $group_ret;
+		return $result;
 	}
 
 	function assign_user_to_groups($user, $groups)
@@ -8257,7 +8276,7 @@ class UsersLib extends TikiLib
 			$extend_until_info['timestamp'] = $date;
 		}
 
-		$this->query(
+		return $this->query(
 			'UPDATE `users_usergroups` SET `expire` = ? WHERE `userId` = ? AND `groupName` = ?',
 			[$extend_until_info['timestamp'], $userInfo['userId'], $group]
 		);
