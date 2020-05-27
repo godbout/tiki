@@ -243,8 +243,11 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$link3 = '((Homepage|Homepage))';
 		$link4 = '[tiki-pagehistory.php?page=193&newver=12&oldver=11|tiki-pagehistory.php?page=193&newver=12&oldver=11]';
 
-		$data = str_replace(['#1', '#2'], [$link1, $link2], $text);
-		$data = str_replace(['#3', '#4'], [$link3, $link4], $data);
+		$data = str_replace(
+			['#1', '#2', '#3', '#4'],
+			[$link1, $link2, $link3, $link4],
+			$text
+		);
 
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
 
@@ -253,14 +256,10 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$expectedLink3 = '((Homepage))';
 		$expectedLink4 = '[tiki-pagehistory.php?page=193&newver=12&oldver=11]';
 		$dataResult = str_replace(
-			['#1', '#2'],
-			[$expectedLink1, $expectedLink2],
+			['#1', '#2', '#3', '#4'],
+			[$expectedLink1, $expectedLink2, $expectedLink3,
+				  $expectedLink4],
 			$text
-		);
-		$dataResult = str_replace(
-			['#3', '#4'],
-			[$expectedLink3, $expectedLink4],
-			$dataResult
 		);
 
 		$this->assertEquals($dataResult, $dataConverted);
@@ -370,18 +369,20 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$link1 = '((' . $baseUrl . 'tiki-index.php|Homepage))';
 		$link2 = '[' . $baseUrl . 'tiki-index.php|Homepage]';
 		$link3 = '[https://doc.tiki.org/Documentation]';
-		$data = str_replace('#1', $link1, $text);
-		$data = str_replace(['#2', '#3'], [$link2, $link3], $data);
+		$data = str_replace(
+			['#1', '#2', '#3'],
+			[$link1, $link2, $link3],
+			$text
+		);
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
 
 		$expectedLink1 = '((tiki-index.php|Homepage))';
 		$expectedLink2 = '[tiki-index.php|Homepage]';
 		$expectedLink3 = '[https://doc.tiki.org/Documentation]';
-		$dataResult = str_replace('#1', $expectedLink1, $text);
 		$dataResult = str_replace(
-			['#2', '#3'],
-			[$expectedLink2, $expectedLink3],
-			$dataResult
+			['#1', '#2', '#3'],
+			[$expectedLink1, $expectedLink2, $expectedLink3],
+			$text
 		);
 
 		$this->assertEquals($dataResult, $dataConverted);
@@ -400,8 +401,11 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$link1 = '((' . $baseUrl . 'tiki-index.php|Homepage))';
 		$link2 = '[' . $baseUrl . 'tiki-index.php|Homepage]';
 		$link3 = '[https://doc.tiki.org/Documentation]';
-		$data = str_replace('#1', $link1, $text);
-		$data = str_replace(['#2', '#3'], [$link2, $link3], $data);
+		$data = str_replace(
+			['#1', '#2', '#3'],
+			[$link1, $link2, $link3],
+			$text
+		);
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
 
 		$this->assertEquals($data, $dataConverted);

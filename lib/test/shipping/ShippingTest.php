@@ -85,7 +85,7 @@ class ShippingTest extends TikiTestCase implements ShippingProvider
 		);
 	}
 
-	public function getRates(array $from, array $to, array $packages)
+	public function getRates(array $from, array $to, array $packages): array
 	{
 		$this->from = $from;
 		$this->to = $to;

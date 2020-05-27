@@ -46,7 +46,7 @@ class TikiImporter_Test extends TikiImporter_TestCase
 
 class TikiImporterFirstChild extends TikiImporter
 {
-	public static function importOptions()
+	public static function importOptions(): array
 	{
 		return [
 			['name' => 'someName', 'property1' => 'someProperty'],
@@ -57,7 +57,7 @@ class TikiImporterFirstChild extends TikiImporter
 
 class TikiImporterSecondChild extends TikiImporter
 {
-	public static function importOptions()
+	public static function importOptions() : array
 	{
 		return [
 			['name' => 'otherName'],
@@ -68,7 +68,7 @@ class TikiImporterSecondChild extends TikiImporter
 
 class TikiImporterGranSon extends TikiImporterSecondChild
 {
-	public static function importOptions()
+	public static function importOptions(): array
 	{
 		 return [
 			 ['name' => 'name']

@@ -13,7 +13,7 @@
 
 class EditLibTest extends TikiTestCase
 {
-	private $el = null; // the EditLib
+	private $el; // the EditLib
 
 	protected function setUp() : void
 	{

@@ -14,10 +14,10 @@ class PasswordTest extends TikiTestCase
 		$passwords = ['1234', 'abcd', '123abc', '123ABc', '123AAbc*'];
 		foreach ($passwords as $pass) {
 			$res = $userlib->check_password_policy($pass);
-			$this->assertEquals("$pass=n", "$pass=" . ($res == '' ? 'y' : 'n'));
+			$this->assertEquals("$pass=n", "$pass=" . ($res === '' ? 'y' : 'n'));
 		}
 		$pass = '123ABcd*';
 		$res = $userlib->check_password_policy($pass);
-		$this->assertEquals("$pass=y", "$pass=" . ($res == '' ? 'y' : 'n'));
+		$this->assertEquals("$pass=y", "$pass=" . ($res === '' ? 'y' : 'n'));
 	}
 }

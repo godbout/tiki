@@ -11,7 +11,7 @@
  */
 class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 {
-	private $el = null; // the EditLib
+	private $el; // the EditLib
 	private $ext1 = 'test_ext1'; // name of the external Wiki 1
 
 

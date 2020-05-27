@@ -12,7 +12,7 @@
 class EditLib_ParseToWiki_ListTest extends TikiTestCase
 {
 
-	private $el = null; // the EditLib
+	private $el; // the EditLib
 
 	protected function setUp() : void
 	{
