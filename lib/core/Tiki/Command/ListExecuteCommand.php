@@ -60,7 +60,9 @@ class ListExecuteCommand extends Command
 		}
 
 		$_POST['list_action'] = $action;
-		$_POST['objects'] = ['ALL'];
+		for ($i = 1; $i <= 10; $i++) {
+			$_POST['objects'.$i] = ['ALL'];
+		}
 		$_POST['list_input'] = $input->getArgument('input');
 
 		$_GET = $_REQUEST = $_POST; // wiki_argvariable needs this
