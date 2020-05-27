@@ -68,7 +68,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$found->filterContent('description', 'description');
 
 		$this->assertGreaterThan(0, count($found->search($this->index)));
-		$this->assertEquals(0, count($off->search($this->index)));
+		$this->assertCount(0, $off->search($this->index));
 	}
 
 	function testWithOrCondition()
@@ -77,7 +77,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$negative = new Search_Query('foobar or baz');
 
 		$this->assertGreaterThan(0, count($positive->search($this->index)));
-		$this->assertEquals(0, count($negative->search($this->index)));
+		$this->assertCount(0, $negative->search($this->index));
 	}
 
 	function testWithNotCondition()
@@ -85,7 +85,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$negative = new Search_Query('not world and bonjour');
 		$positive = new Search_Query('not foobar and bonjour');
 
-		$this->assertEquals(0, count($negative->search($this->index)));
+		$this->assertCount(0, $negative->search($this->index));
 		$this->assertGreaterThan(0, count($positive->search($this->index)));
 	}
 
@@ -222,7 +222,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		}
 		call_user_func_array([$query, $filterMethod], $arguments);
 
-		$this->assertEquals($count, count($query->search($this->index)));
+		$this->assertCount($count, $query->search($this->index));
 	}
 
 	protected function highlight($word)

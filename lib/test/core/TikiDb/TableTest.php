@@ -286,10 +286,8 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$mock->expects($this->once())
 			->method('fetchAll')
 			->with($this->equalTo($query), $this->equalTo([42]), $this->equalTo(1), $this->equalTo(0))
-			->will(
-				$this->returnValue(
-					[['user' => 'hello'],]
-				)
+			->willReturn(
+				[['user' => 'hello'],]
 			);
 
 		$table = new TikiDb_Table($mock, 'tiki_user_watches');
@@ -306,13 +304,11 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$mock->expects($this->once())
 			->method('fetchAll')
 			->with($this->equalTo($query), $this->equalTo([42, 'foobar']), $this->equalTo(-1), $this->equalTo(-1))
-			->will(
-				$this->returnValue(
-					[
-						['group' => 'hello'],
-							['group' => 'world'],
-					]
-				)
+			->willReturn(
+				[
+					['group' => 'hello'],
+					['group' => 'world'],
+				]
 			);
 
 		$table = new TikiDb_Table($mock, 'tiki_group_watches');
@@ -328,13 +324,11 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$mock->expects($this->once())
 			->method('fetchAll')
 			->with($this->equalTo($query), $this->equalTo([42, 'foobar']), $this->equalTo(-1), $this->equalTo(-1))
-			->will(
-				$this->returnValue(
-					[
-						['group' => 'hello'],
-						['group' => 'world'],
-					]
-				)
+			->willReturn(
+				[
+					['group' => 'hello'],
+					['group' => 'world'],
+				]
 			);
 
 		$table = new TikiDb_Table($mock, 'tiki_group_watches');
@@ -463,13 +457,11 @@ class TikiDb_TableTest extends PHPUnit\Framework\TestCase
 		$mock->expects($this->once())
 			->method('fetchAll')
 			->with($this->equalTo($query), $this->equalTo([42]), $this->equalTo(-1), $this->equalTo(-1))
-			->will(
-				$this->returnValue(
-					[
-						['user' => 'hello', 'address' => 'hello@example.com'],
-						['user' => 'world', 'address' => 'world@example.com'],
-					]
-				)
+			->willReturn(
+				[
+					['user' => 'hello', 'address' => 'hello@example.com'],
+					['user' => 'world', 'address' => 'world@example.com'],
+				]
 			);
 
 		$table = new TikiDb_Table($mock, 'users_users');

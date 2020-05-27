@@ -145,7 +145,10 @@ class LanguageTranslationsTest extends TikiTestCase
 	{
 		copy(__DIR__ . '/fixtures/language_orig.php', $this->langDir . '/language.php');
 		$this->obj->writeLanguageFile();
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_modif.php'), file_get_contents($this->langDir . '/language.php'));
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_modif.php',
+			$this->langDir . '/language.php'
+		);
 	}
 
 	public function testWriteLanguageFileCallingTwoTimes_shouldNotDuplicateStringsInTheFile()
@@ -153,7 +156,10 @@ class LanguageTranslationsTest extends TikiTestCase
 		copy(__DIR__ . '/fixtures/language_orig.php', $this->langDir . '/language.php');
 		$this->obj->writeLanguageFile();
 		$this->obj->writeLanguageFile();
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_modif.php'), file_get_contents($this->langDir . '/language.php'));
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_modif.php',
+			$this->langDir . '/language.php'
+		);
 	}
 
 	public function testWriteLanguage_shouldReturnTheNumberOfNewStringsInLanguageFile()
@@ -169,7 +175,10 @@ class LanguageTranslationsTest extends TikiTestCase
 		TikiDb::get()->query('INSERT INTO `tiki_language` (`source`, `lang`, `tran`, `changed`) VALUES (?, ?, ?, ?)', ['', $this->lang, '', 1]);
 		copy(__DIR__ . '/fixtures/language_orig.php', $this->langDir . '/language.php');
 		$this->obj->writeLanguageFile();
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_modif.php'), file_get_contents($this->langDir . '/language.php'));
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_modif.php',
+			$this->langDir . '/language.php'
+		);
 	}
 
 	public function testWriteLanguage_shouldRaiseExceptionForInvalidLanguagePhp()

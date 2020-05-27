@@ -11,21 +11,21 @@ class TestableTikiLibTest extends TikiTestCase
 	{
 		$obj = new TestableTikiLib;
 
-		$this->assertEquals('TikiLib', get_class(TikiLib::lib('tiki')));
+		$this->assertInstanceOf(\TikiLib::class, TikiLib::lib('tiki'));
 		$obj->overrideLibs(['tiki' => new stdClass]);
-		$this->assertEquals('stdClass', get_class(TikiLib::lib('tiki')));
+		$this->assertInstanceOf(\stdClass::class, TikiLib::lib('tiki'));
 	}
 
 	public function testOverrideLib_shouldRestoreDefaultValueAfterObjectDestruction()
 	{
 		$obj = new TestableTikiLib;
 
-		$this->assertEquals('TikiLib', get_class(TikiLib::lib('tiki')));
+		$this->assertInstanceOf(\TikiLib::class, TikiLib::lib('tiki'));
 		$obj->overrideLibs(['tiki' => new stdClass]);
-		$this->assertEquals('stdClass', get_class(TikiLib::lib('tiki')));
+		$this->assertInstanceOf(\stdClass::class, TikiLib::lib('tiki'));
 
 		unset($obj);
-		$this->assertEquals('TikiLib', get_class(TikiLib::lib('tiki')));
+		$this->assertInstanceOf(\TikiLib::class, TikiLib::lib('tiki'));
 	}
 
 	public function testOverrideLib_shouldWorkWithMockObjects()
@@ -35,13 +35,13 @@ class TestableTikiLibTest extends TikiTestCase
 		$calendarlib = $this->createMock(get_class(TikiLib::lib('calendar')));
 		$calendarlib->expects($this->never())->method('get_item');
 
-		$this->assertEquals('CalendarLib', get_class(TikiLib::lib('calendar')));
+		$this->assertInstanceOf(\CalendarLib::class, TikiLib::lib('calendar'));
 		$obj->overrideLibs(['calendar' => $calendarlib]);
 		$this->assertStringContainsString('Mock_CalendarLib_', get_class(TikiLib::lib('calendar')));
 	}
 
 	public function testOverrideLib_checkIfLibReturnedToOriginalStateAfterLastTest()
 	{
-		$this->assertEquals('CalendarLib', get_class(TikiLib::lib('calendar')));
+		$this->assertInstanceOf(\CalendarLib::class, TikiLib::lib('calendar'));
 	}
 }

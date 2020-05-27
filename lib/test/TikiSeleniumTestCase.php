@@ -83,7 +83,7 @@ class TikiSeleniumTestCase extends PHPUnit_Extensions_Selenium2TestCase
 		$this->assertElementPresent($selectElementID, "$message\nMarkup element '$selectElementID' did not exist");
 		$selectElementLabels = $this->getSelectOptions($selectElementID);
 		foreach ($expItems as $anItem => $anItemValue) {
-			$this->assertTrue(in_array($anItem, $selectElementLabels), "$message\n$anItem is not in the select element list");
+			$this->assertContains($anItem, $selectElementLabels, "$message\n$anItem is not in the select element list");
 			$thisItemElementID = "$selectElementID/option[@value='$anItemValue']";
 			$this->assertElementPresent($thisItemElementID);
 		}

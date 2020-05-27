@@ -40,6 +40,6 @@ abstract class Search_Index_NumericTest extends PHPUnit\Framework\TestCase
 		$query = new Search_Query;
 		$query->filterContent($argument);
 
-		$this->assertEquals($count, count($query->search($this->index)));
+		$this->assertCount($count, $query->search($this->index));
 	}
 }

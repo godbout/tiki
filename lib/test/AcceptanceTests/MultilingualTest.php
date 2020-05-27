@@ -53,7 +53,7 @@ class AcceptanceTests_MultilingualTest extends TikiSeleniumTestCase
 		$this->openTikiPage('tiki-index.php?page=Multilingual+Test+Page+1');
 		$this->logInIfNecessaryAs('admin');
 		$this->doSwitchLanguageTo('Français');
-		$this->assertTrue(preg_match("/page\=Page\+de\+test\+multilingue\+1/", $this->getLocation()) == 1);
+		$this->assertEquals(preg_match("/page\=Page\+de\+test\+multilingue\+1/", $this->getLocation()), 1);
 	}
 
 
@@ -65,7 +65,7 @@ class AcceptanceTests_MultilingualTest extends TikiSeleniumTestCase
 		$this->openTikiPage('tiki-index.php?page=Multilingual+Test+Page+1');
 		$this->logInIfNecessaryAs('admin');
 		$this->doSwitchLanguageTo('Français');
-		$this->assertTrue(preg_match('/page=Page\+de\+test\+multilingue\+1/', $this->getLocation()) == 1);
+		$this->assertEquals(preg_match('/page=Page\+de\+test\+multilingue\+1/', $this->getLocation()), 1);
 		$this->assertElementPresent("link=Page de test multilingue 1");
 		$this->assertLanguagePicklistHasLanguages(
 			['Français' => 'Page de test multilingue 1', 'English' => 'Multilingual Test Page 1']

@@ -87,13 +87,13 @@ abstract class Search_Index_StemmingTest extends PHPUnit\Framework\TestCase
 	function testStopWords()
 	{
 		$query = new Search_Query('a for the');
-		$this->assertEquals(0, count($query->search($this->index)));
+		$this->assertCount(0, $query->search($this->index));
 	}
 
 	function testHebrewString()
 	{
 		$query = new Search_Query;
 		$query->filterContent('מחשב', 'hebrew');
-		$this->assertEquals(1, count($query->search($this->index)));
+		$this->assertCount(1, $query->search($this->index));
 	}
 }

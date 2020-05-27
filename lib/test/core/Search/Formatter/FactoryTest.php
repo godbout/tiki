@@ -17,7 +17,7 @@ class Search_Formatter_FactoryTest extends PHPUnit\Framework\TestCase
 	function testInstantiation()
 	{
 		$formatter = Search_Formatter_Factory::newFormatter($this->plugin);
-		$this->assertEquals('Search_Formatter', get_class($formatter));
+		$this->assertInstanceOf(\Search_Formatter::class, $formatter);
 	}
 
 	function testSequence()

@@ -9,12 +9,12 @@ class TikiLib_LibTest extends PHPUnit\Framework\TestCase
 {
 	public function testLib_shouldReturnInstanceOfTikiLib()
 	{
-		$this->assertEquals('TikiLib', get_class(TikiLib::lib('tiki')));
+		$this->assertInstanceOf(\TikiLib::class, TikiLib::lib('tiki'));
 	}
 
 	public function testLib_shouldReturnInstanceOfCalendar()
 	{
-		$this->assertEquals('CalendarLib', get_class(TikiLib::lib('calendar')));
+		$this->assertInstanceOf(\CalendarLib::class, TikiLib::lib('calendar'));
 	}
 
 	public function testLib_shouldReturnNullForInvalidClass()

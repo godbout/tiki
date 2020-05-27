@@ -64,9 +64,12 @@ class Language_WriteFileTest extends TikiTestCase
 		$obj->writeStringsToFile($strings);
 
 		// check if a backup of old language file (in this case an empty file) was created
-		$this->assertTrue(file_exists($this->filePath . '.old'));
+		$this->assertFileExists($this->filePath . '.old');
 
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_simple.php'), file_get_contents($this->filePath));
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_simple.php',
+			$this->filePath
+		);
 	}
 
 	public function writeStringsToFile_provider()
@@ -88,14 +91,12 @@ class Language_WriteFileTest extends TikiTestCase
 	 */
 	public function testWriteStringsToFile_shouldKeepTranslationsEvenIfTheyAreEqualToEnglishString($strings)
 	{
-		$this->parseFile->expects($this->exactly(1))->method('getTranslations')->will(
-			$this->returnValue(
-				[
-					'Unused string' => 'Some translation',
-					'Used string' => 'Another translation',
-					'Translation is the same as English string' => 'Translation is the same as English string',
-				]
-			)
+		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn(
+			[
+				'Unused string'                             => 'Some translation',
+				'Used string'                               => 'Another translation',
+				'Translation is the same as English string' => 'Translation is the same as English string',
+			]
 		);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
@@ -107,7 +108,10 @@ class Language_WriteFileTest extends TikiTestCase
 
 		$obj->writeStringsToFile($strings);
 
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_with_translations.php'), file_get_contents($this->filePath));
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_with_translations.php',
+			$this->filePath
+		);
 	}
 
 	/**
@@ -116,14 +120,12 @@ class Language_WriteFileTest extends TikiTestCase
 	 */
 	public function testWriteStringsToFile_shouldIgnoreUnusedStrings($strings)
 	{
-		$this->parseFile->expects($this->exactly(1))->method('getTranslations')->will(
-			$this->returnValue(
-				[
-					'Unused string' => 'Some translation',
-					'Used string' => 'Another translation',
-					'Translation is the same as English string' => 'Translation is the same as English string',
-				]
-			)
+		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn(
+			[
+				'Unused string'                             => 'Some translation',
+				'Used string'                               => 'Another translation',
+				'Translation is the same as English string' => 'Translation is the same as English string',
+			]
 		);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
@@ -135,7 +137,10 @@ class Language_WriteFileTest extends TikiTestCase
 
 		$obj->writeStringsToFile($strings);
 
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_with_translations.php'), file_get_contents($this->filePath));
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_with_translations.php',
+			$this->filePath
+		);
 	}
 
 	/**
@@ -144,14 +149,12 @@ class Language_WriteFileTest extends TikiTestCase
 	 */
 	public function testWriteStringsToFile_shouldOutputFileWhereStringsWasFound($strings)
 	{
-		$this->parseFile->expects($this->exactly(1))->method('getTranslations')->will(
-			$this->returnValue(
-				[
-					'Unused string' => 'Some translation',
-					'Used string' => 'Another translation',
-					'Translation is the same as English string' => 'Translation is the same as English string',
-				]
-			)
+		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn(
+			[
+				'Unused string'                             => 'Some translation',
+				'Used string'                               => 'Another translation',
+				'Translation is the same as English string' => 'Translation is the same as English string',
+			]
 		);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
@@ -163,7 +166,10 @@ class Language_WriteFileTest extends TikiTestCase
 
 		$obj->writeStringsToFile($strings, true);
 
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_with_translations_and_file_paths.php'), file_get_contents($this->filePath));
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_with_translations_and_file_paths.php',
+			$this->filePath
+		);
 	}
 
 	/**
@@ -172,16 +178,14 @@ class Language_WriteFileTest extends TikiTestCase
 	 */
 	public function testWriteStringsToFile_shouldConsiderStringsWithPunctuationInEndASpecialCase($strings)
 	{
-		$this->parseFile->expects($this->exactly(1))->method('getTranslations')->will(
-			$this->returnValue(
-				[
-					'Unused string' => 'Some translation',
-					'Used string' => 'Another translation',
-					'Translation is the same as English string' => 'Translation is the same as English string',
-					'Login' => 'Another translation',
-					'Add user:' => 'Translation',
-				]
-			)
+		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn(
+			[
+				'Unused string'                             => 'Some translation',
+				'Used string'                               => 'Another translation',
+				'Translation is the same as English string' => 'Translation is the same as English string',
+				'Login'                                     => 'Another translation',
+				'Add user:'                                 => 'Translation',
+			]
 		);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
@@ -197,7 +201,10 @@ class Language_WriteFileTest extends TikiTestCase
 
 		$obj->writeStringsToFile($strings);
 
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_punctuations.php'), file_get_contents($this->filePath));
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_punctuations.php',
+			$this->filePath
+		);
 	}
 
 	/**
@@ -206,15 +213,13 @@ class Language_WriteFileTest extends TikiTestCase
 	 */
 	public function testWriteStringsToFile_shouldProperlyHandleSpecialCharactersInsideStrings($strings)
 	{
-		$this->parseFile->expects($this->exactly(1))->method('getTranslations')->will(
-			$this->returnValue(
-				[
-					'Unused string' => 'Some translation',
-					'Used string' => 'Another translation',
-					'Translation is the same as English string' => 'Translation is the same as English string',
-					"Congratulations!\n\nYour server can send emails.\n\n" => "Gratulation!\n\nDein Server kann Emails senden.\n\n",
-				]
-			)
+		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn(
+			[
+				'Unused string'                                        => 'Some translation',
+				'Used string'                                          => 'Another translation',
+				'Translation is the same as English string'            => 'Translation is the same as English string',
+				"Congratulations!\n\nYour server can send emails.\n\n" => "Gratulation!\n\nDein Server kann Emails senden.\n\n",
+			]
 		);
 
 		$obj = $this->getMockBuilder('Language_WriteFile')
@@ -229,7 +234,10 @@ class Language_WriteFileTest extends TikiTestCase
 
 		$obj->writeStringsToFile($strings);
 
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_escape_special_characters.php'), file_get_contents($this->filePath));
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_escape_special_characters.php',
+			$this->filePath
+		);
 	}
 
 	public function testWriteStringsToFile_shouldNotKeepTranslationsWithPunctuationOnSuccessiveCalls()
@@ -254,10 +262,16 @@ class Language_WriteFileTest extends TikiTestCase
 		$this->parseFile->expects($this->at(0))
 						->method('getTranslations')->willReturn(['Errors:' => 'خطاها:',]);
 
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_writestringstofile_first_call.php'), file_get_contents($this->filePath));
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_writestringstofile_first_call.php',
+			$this->filePath
+		);
 
 		$obj->writeStringsToFile($strings);
 
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_writestringstofile_second_call.php'), file_get_contents($this->filePath));
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_writestringstofile_second_call.php',
+			$this->filePath
+		);
 	}
 }

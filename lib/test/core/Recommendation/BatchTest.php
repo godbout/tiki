@@ -144,7 +144,7 @@ class BatchTest extends TestCase implements Store\StoreInterface
 
 	function getInputs()
 	{
-		$this->assertTrue(is_array($this->inputs));
+		$this->assertIsArray($this->inputs);
 		return $this->inputs;
 	}
 

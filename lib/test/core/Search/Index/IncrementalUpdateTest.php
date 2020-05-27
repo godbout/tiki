@@ -78,7 +78,7 @@ abstract class Search_Index_IncrementalUpdateTest extends PHPUnit\Framework\Test
 		$query = new Search_Query($word);
 		$result = $query->search($index);
 
-		$this->assertEquals($count, count($result));
+		$this->assertCount($count, $result);
 	}
 
 	private function addDocument($index, $type, $id, $data)

@@ -72,9 +72,9 @@ class Language_GetStringsEndToEndTest extends TikiTestCase
 			self::getLangDefinition(file_get_contents(vfsStream::url('root/lang/es/language.php')))
 		);
 
-		$this->assertEquals(
-			file_get_contents(__DIR__ . '/fixtures/language_end_to_end_test_original.php'),
-			file_get_contents(vfsStream::url('root/lang/es/language.php.old'))
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_end_to_end_test_original.php',
+			vfsStream::url('root/lang/es/language.php.old')
 		);
 	}
 
@@ -101,9 +101,9 @@ class Language_GetStringsEndToEndTest extends TikiTestCase
 			self::getLangDefinition(file_get_contents(vfsStream::url("root/lang/es/$fileName")))
 		);
 
-		$this->assertEquals(
-			file_get_contents(__DIR__ . '/fixtures/language_end_to_end_test_original.php'),
-			file_get_contents(vfsStream::url("root/lang/es/$fileName.old"))
+		$this->assertFileEquals(
+			__DIR__ . '/fixtures/language_end_to_end_test_original.php',
+			vfsStream::url("root/lang/es/$fileName.old")
 		);
 	}
 

@@ -30,6 +30,6 @@ class Language_WriteFile_FactoryTest extends TikiTestCase
 	public function testFactory_shouldReturnWriteFileObject()
 	{
 		$writeFile = $this->obj->factory($this->filePath);
-		$this->assertEquals('Language_WriteFile', get_class($writeFile));
+		$this->assertInstanceOf(\Language_WriteFile::class, $writeFile);
 	}
 }

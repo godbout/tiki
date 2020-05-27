@@ -48,7 +48,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$obj->import(__DIR__ . '/fixtures/wordpress_sample.xml');
 		unset($_FILES['importFile']);
 
-		$this->assertTrue($obj->dom instanceof DOMDocument);
+		$this->assertInstanceOf(DOMDocument::class, $obj->dom);
 		$this->assertTrue($obj->dom->hasChildNodes());
 
 		$output = ob_get_clean();
@@ -933,12 +933,14 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$newPageContent = TikiDb::get()->getOne('SELECT data FROM tiki_pages WHERE pageName = "materia"');
 		$newPostContent = TikiDb::get()->getOne('SELECT data FROM tiki_blog_posts WHERE postId = 10');
 
-		$this->assertEquals(
-			file_get_contents(__DIR__ . '/fixtures/wordpress_post_content_internal_links_replaced.txt'),
+		$this->assertStringEqualsFile(
+			__DIR__
+			. '/fixtures/wordpress_post_content_internal_links_replaced.txt',
 			$newPageContent
 		);
-		$this->assertEquals(
-			file_get_contents(__DIR__ . '/fixtures/wordpress_post_content_internal_links_replaced.txt'),
+		$this->assertStringEqualsFile(
+			__DIR__
+			. '/fixtures/wordpress_post_content_internal_links_replaced.txt',
 			$newPostContent
 		);
 	}

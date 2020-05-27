@@ -42,7 +42,7 @@ class JitFilter_AccessTest extends TikiTestCase
 
 	function testRecursiveness()
 	{
-		$this->assertTrue($this->array['baz'] instanceof JitFilter);
+		$this->assertInstanceOf(JitFilter::class, $this->array['baz']);
 	}
 
 	function testDefinition()

@@ -36,7 +36,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 
 		$obj->import(__DIR__ . '/fixtures/mediawiki_sample.xml');
 
-		$this->assertTrue($obj->dom instanceof DOMDocument);
+		$this->assertInstanceOf(DOMDocument::class, $obj->dom);
 		$this->assertTrue($obj->dom->hasChildNodes());
 
 		$output = ob_get_clean();
@@ -61,7 +61,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 
 				$obj->import(__DIR__ . '/fixtures/mediawiki_sample.xml');
 
-		$this->assertTrue($obj->dom instanceof DOMDocument);
+		$this->assertInstanceOf(DOMDocument::class, $obj->dom);
 		$this->assertTrue($obj->dom->hasChildNodes());
 		$this->assertEquals($expectedImportFeedback, $_SESSION['tiki_importer_feedback']);
 	}
@@ -108,7 +108,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/mediawiki_sample.xml');
 		$this->obj->configureParser();
-		$this->assertEquals('Text_Wiki_Mediawiki', get_class($this->obj->parser));
+		$this->assertInstanceOf(\Text_Wiki_Mediawiki::class, $this->obj->parser);
 	}
 
 	public function testValidateInput()

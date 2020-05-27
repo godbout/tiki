@@ -67,7 +67,8 @@ class Language_GetStringsTest extends TikiTestCase
 		$this->expectException('Language_Exception');
 
 		$php = $this->createMock('Language_FileType_Php');
-		$php->expects($this->exactly(1))->method('getExtensions')->willReturn(['.php']);
+		$php->expects($this->once(
+		))->method('getExtensions')->willReturn(['.php']);
 
 		$this->obj->addFileType($php);
 		$this->obj->addFileType($php);
@@ -107,9 +108,11 @@ class Language_GetStringsTest extends TikiTestCase
 					->getMock();
 
 		$php->expects($this->exactly(2))->method('getExtensions')->willReturn(['.php']);
-		$php->expects($this->exactly(1))->method('getCleanupRegexes')->willReturn([]);
-		$php->expects($this->exactly(1))->method('singleQuoted')->willReturn([0 => '', 1 => '']);
-		$php->expects($this->exactly(1))->method('doubleQuoted')->willReturn([0 => '', 1 => '']);
+		$php->expects($this->once())->method('getCleanupRegexes')->willReturn([]);
+		$php->expects($this->once(
+		))->method('singleQuoted')->willReturn([0 => '', 1 => '']);
+		$php->expects($this->once(
+		))->method('doubleQuoted')->willReturn([0 => '', 1 => '']);
 
 		$this->obj->addFileType($php);
 		$this->obj->addFileType(new Language_FileType_Tpl);
@@ -177,8 +180,8 @@ class Language_GetStringsTest extends TikiTestCase
 			'string4' => ['name' => 'string4'],
 		];
 
-		$this->collectFiles->expects($this->exactly(1))->method('setExtensions');
-		$this->collectFiles->expects($this->exactly(1))->method('run')->with($this->baseDir)->willReturn($files);
+		$this->collectFiles->expects($this->once())->method('setExtensions');
+		$this->collectFiles->expects($this->once())->method('run')->with($this->baseDir)->willReturn($files);
 
 		$obj = $this->getMockBuilder('Language_GetStrings')
 					->onlyMethods(['collectStrings', 'writeToFiles'])
@@ -188,12 +191,12 @@ class Language_GetStringsTest extends TikiTestCase
 						['baseDir' => $this->baseDir]])
 			->getMock();
 
-		$obj->expects($this->exactly(1))->method('writeToFiles')->with($strings);
+		$obj->expects($this->once())->method('writeToFiles')->with($strings);
 		$obj->expects($this->at(0))->method('collectStrings')->with('file1')->willReturn(['string1', 'string2']);
 		$obj->expects($this->at(1))->method('collectStrings')->with('file2')->willReturn(['string2', 'string3']);
 		$obj->expects($this->at(2))->method('collectStrings')->with('file3')->willReturn(['string3', 'string4']);
 
-		$this->fileType->expects($this->exactly(1))->method('getExtensions')->willReturn(['.php']);
+		$this->fileType->expects($this->once())->method('getExtensions')->willReturn(['.php']);
 		$obj->addFileType($this->fileType);
 
 		$this->assertNull($obj->run());

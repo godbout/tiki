@@ -39,7 +39,7 @@ class Reports_SendTest extends TikiTestCase
 
 	public function testEmailSubject_oneChange()
 	{
-		$this->mail->expects($this->exactly(1))->method('setSubject')->with('Report on test from 2012-03-27 (1 change)');
+		$this->mail->expects($this->once())->method('setSubject')->with('Report on test from 2012-03-27 (1 change)');
 
 		$userData = ['login' => 'test', 'email' => 'test@test.com'];
 		$reportPreferences = ['type' => 'html'];
@@ -49,7 +49,7 @@ class Reports_SendTest extends TikiTestCase
 
 	public function testEmailSubject_multipleChanges()
 	{
-		$this->mail->expects($this->exactly(1))->method('setSubject')->with('Report on test from 2012-03-27 (2 changes)');
+		$this->mail->expects($this->once())->method('setSubject')->with('Report on test from 2012-03-27 (2 changes)');
 
 		$userData = ['login' => 'test', 'email' => 'test@test.com'];
 		$reportPreferences = ['type' => 'html'];

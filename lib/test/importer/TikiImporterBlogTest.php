@@ -374,7 +374,7 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 			->onlyMethods(['add_category', 'get_category_id'])
 			->getMock();
 		$categlib->expects($this->exactly(3))->method('add_category');
-		$categlib->expects($this->exactly(1))->method('get_category_id');
+		$categlib->expects($this->once())->method('get_category_id');
 
 		$categories = [
 			['parent' => '', 'name' => 'categ1', 'description' => ''],

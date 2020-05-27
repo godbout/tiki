@@ -30,7 +30,7 @@ abstract class Search_Index_PaginationTest extends PHPUnit\Framework\TestCase
 
 		$result = $query->search($this->index);
 
-		$this->assertEquals($count, count($result), 'total count');
+		$this->assertCount($count, $result, 'total count');
 
 		$real = [];
 		foreach ($result as $hit) {

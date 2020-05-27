@@ -65,6 +65,6 @@ class Language_MergeFilesTest extends TikiTestCase
 
 		$this->obj->merge();
 
-		$this->assertEquals(file_get_contents(__DIR__ . '/fixtures/language_merge_files_result.php'), file_get_contents(vfsStream::url('root/language_target.php')));
+		$this->assertFileEquals(__DIR__ . '/fixtures/language_merge_files_result.php', vfsStream::url('root/language_target.php'));
 	}
 }
