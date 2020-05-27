@@ -251,7 +251,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 			->onlyMethods(['extractComment', 'parseContent', 'identifyInternalLinks'])
 			->getMock();
 		$obj->expects($this->exactly(3))->method('extractComment')->willReturn(true);
-		$obj->expects($this->any())->method('parseContent')->willReturn('Test');
+		$obj->method('parseContent')->willReturn('Test');
 		$obj->expects($this->once())->method('identifyInternalLinks')->willReturn(true);
 
 		$obj->permalinks = ['not empty'];
@@ -299,7 +299,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 			->onlyMethods(['extractComment', 'parseContent', 'identifyInternalLinks'])
 			->getMock();
 		$obj->expects($this->exactly(0))->method('extractComment')->willReturn(true);
-		$obj->expects($this->any())->method('parseContent')->willReturn('Test');
+		$obj->method('parseContent')->willReturn('Test');
 		$obj->expects($this->once())->method('identifyInternalLinks')->willReturn(true);
 
 		$obj->permalinks = ['not empty'];

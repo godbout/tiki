@@ -389,7 +389,7 @@ class LanguageTranslationsTest extends TikiTestCase
 					->setConstructorArgs(['test_language'])
 					->getMock();
 
-		$obj->expects($this->any())->method('_diff');
+		$obj->method('_diff');
 
 		$dbTranslations = $obj->getDbTranslations('source_asc', -1, 0);
 		$this->assertGreaterThan(0, $dbTranslations['total']);
@@ -403,7 +403,7 @@ class LanguageTranslationsTest extends TikiTestCase
 					->setConstructorArgs(['test_language'])
 					->getMock();
 
-		$obj->expects($this->any())->method('_diff');
+		$obj->method('_diff');
 
 		$dbTranslations = $obj->getDbTranslations('source_asc', 2, 1);
 		$this->assertEquals(2, $dbTranslations['total']);
@@ -417,7 +417,7 @@ class LanguageTranslationsTest extends TikiTestCase
 					->setConstructorArgs(['test_language'])
 					->getMock();
 
-		$obj->expects($this->any())->method('_diff');
+		$obj->method('_diff');
 
 		$dbTranslations = $obj->getDbTranslations('source_asc', -1, 0, 'Approved');
 		$this->assertEquals(1, $dbTranslations['total']);

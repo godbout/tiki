@@ -82,7 +82,7 @@ class Language_GetStringsTest extends TikiTestCase
 	public function testCollectStrings_shouldRaiseExceptionIfInvalidFileExtension()
 	{
 		$this->expectException('Language_Exception');
-		$this->fileType->expects($this->any())->method('getExtensions')->willReturn(['.php']);
+		$this->fileType->method('getExtensions')->willReturn(['.php']);
 		$this->obj->addFileType($this->fileType);
 		$this->obj->collectStrings('file.');
 	}

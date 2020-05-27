@@ -242,7 +242,7 @@ class Language_WriteFileTest extends TikiTestCase
 					->setConstructorArgs([$this->parseFile])
 					->getMock();
 
-		$obj->expects($this->any())->method('fileHeader')->willReturn("// File header\n\n");
+		$obj->method('fileHeader')->willReturn("// File header\n\n");
 
 		$strings = [
 			'Errors' => ['name' => 'Errors'],

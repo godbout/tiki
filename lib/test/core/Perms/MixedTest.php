@@ -23,7 +23,7 @@ class Perms_MixedTest extends TikiTestCase
 		);
 		Perms::set($perms);
 
-		$resolver->expects($this->any())
+		$resolver
 			->method('getResolver')
 			->willReturn(null);
 		$resolver->expects($this->exactly(3))

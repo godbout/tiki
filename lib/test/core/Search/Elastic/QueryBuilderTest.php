@@ -844,7 +844,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 	private function dateFieldMappingIndexMock()
 	{
 		$mockIndex = $this->createMock('Search_Elastic_Index');
-		$mockIndex->expects($this->any())
+		$mockIndex
 			->method('getFieldMapping')
 			->with('field_date')
 			->willReturn((object)['type' => 'date']);
