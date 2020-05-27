@@ -4855,15 +4855,6 @@ class TrackerLib extends TikiLib
 		}
 
 		$last[-1] = $item_info['status'];
-		if (! empty($filter)) {
-			foreach ($filter as $key => $f) {
-				switch ($key) {
-					case 'version':
-						$mid[] = 'ttifl.`version`=?';
-						$bindvars[] = $f;
-				}
-			}
-		}
 		if (empty($item_info['itemId'])) {
 			$join = 'ttifl.`itemId`';
 			$bindvars = array_merge(['trackeritem'], $bindvars);
@@ -4895,19 +4886,19 @@ class TrackerLib extends TikiLib
 
 		$all = $this->fetchAll($query, $bindvars);
 		$history['data'] = [];
-		$i = 0;
 		foreach ($all as $hist) {
 			$hist['new'] = isset($last[$hist['fieldId']]) ? $last[$hist['fieldId']] : '';
 			if ($hist['new'] == $hist['value']) {
 				continue;
 			}
+			$last[$hist['fieldId']] = $hist['value'];
 			if (! $itemObject->canViewField($hist['fieldId'])) {
 				continue;
 			}
+			if (! empty($filter['version']) && $filter['version'] != $hist['version']) {
+				continue;
+			}
 			$history['data'][] = $hist;
-
-			$last[$hist['fieldId']] = $hist['value'];
-			++$i;
 		}
 		$history['cant'] = $count;
 		return $history;
