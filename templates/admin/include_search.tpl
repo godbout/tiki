@@ -104,6 +104,7 @@
 
 					<div class="adminoptionboxchild unified_engine_childcontainer mysql">
 						{preference name="unified_mysql_short_field_names"}
+						{preference name="unified_mysql_restore_indexes"}
 					</div>
 
 					{preference name="unified_lucene_default_operator"}

@@ -224,4 +224,29 @@ class Search_MySql_Index implements Search_Index_Interface
 	function getFieldsCount() {
 		return count($this->db->fetchAll("show columns from `{$this->index_name}`"));
 	}
+
+	/**
+	 * Function responsible for restoring old indexes
+	 * @param $indexesToRestore
+	 * @param $currentIndexTableName
+	 * @throws Exception
+	 */
+	public function restoreOldIndexes($indexesToRestore, $currentIndexTableName)
+	{
+		$columns = array_column(TikiDb::get()->fetchAll("SHOW COLUMNS FROM $currentIndexTableName"), 'Field');
+
+		foreach ($indexesToRestore as $indexToRestore) {
+			if (! in_array($indexToRestore['Column_name'], $columns)) {
+				continue;
+			}
+
+			$indexType = strtolower($indexToRestore['Index_type']) == 'fulltext' ? 'fulltext' : 'index';
+
+			try {
+				$this->table->ensureHasIndex($indexToRestore['Column_name'], $indexType);
+			} catch (Search_MySql_QueryException $exception) {
+				// Left blank on purpose
+			}
+		}
+	}
 }

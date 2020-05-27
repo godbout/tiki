@@ -318,6 +318,13 @@ function prefs_unified_list()
 			'type' => 'flag',
 			'default' => 'n',
 		],
+		'unified_mysql_restore_indexes' => [
+			'name' => tra('Restore old MySQL indexes during reindex'),
+			'description' => tra('If set, after the reindex is performed, old table MySQL indexes will be restored to the reindex related table.'),
+			'type' => 'flag',
+			'default' => 'n',
+			'tags' => ['experimental'],
+		],
 		'unified_identifier_fields' => [
 			'name' => tr('Unified index identifier fields (Internal)'),
 			'description' => tr('Used to store the fields to be considered as identifiers. This is overwritten after each index rebuilding.'),

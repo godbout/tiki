@@ -222,6 +222,7 @@ class UnifiedSearchLib
 				break;
 			case 'mysql':
 				$indexName = 'index_' . uniqid();
+				$indexesToRestore = $this->getIndexesToRestore();
 				$index = new Search_MySql_Index(TikiDb::get(), $indexName);
 				$engineResults = new Search_EngineResult_MySQL($index);
 				$tikilib->set_preference('unified_mysql_index_rebuilding', $indexName);
@@ -255,8 +256,8 @@ class UnifiedSearchLib
 		$stat = [];
 		$indexer = null;
 		try {
-			$index = new Search_Index_TypeAnalysisDecorator($index);
-			$indexer = $this->buildIndexer($index, $loggit);
+			$indexDecorator = new Search_Index_TypeAnalysisDecorator($index);
+			$indexer = $this->buildIndexer($indexDecorator, $loggit);
 			$lastStats = $tikilib->get_preference('unified_last_rebuild_stats', [], true);
 
 			$stat = $tikilib->allocate_extra(
@@ -266,7 +267,11 @@ class UnifiedSearchLib
 				}
 			);
 
-			$stat['total tiki fields indexed'] = $index->getFieldCount();
+			if (! empty($indexesToRestore)) {
+				$index->restoreOldIndexes($indexesToRestore, $indexName);
+			}
+
+			$stat['total tiki fields indexed'] = $indexDecorator->getFieldCount();
 
 			if (! is_null($engineResults)) {
 				$fieldsCount = $engineResults->getEngineFieldsCount();
@@ -277,8 +282,8 @@ class UnifiedSearchLib
 				$tikilib->set_preference('unified_total_fields', $fieldsCount);
 			}
 
-			$tikilib->set_preference('unified_field_count', $index->getFieldCount());
-			$tikilib->set_preference('unified_identifier_fields', $index->getIdentifierFields());
+			$tikilib->set_preference('unified_field_count', $indexDecorator->getFieldCount());
+			$tikilib->set_preference('unified_identifier_fields', $indexDecorator->getIdentifierFields());
 		} catch (Exception $e) {
 			Feedback::error(tr('The search index could not be rebuilt.') . '<br />' . $e->getMessage());
 		}
@@ -296,7 +301,7 @@ class UnifiedSearchLib
 			unset($indexer);
 		}
 
-		unset($index);
+		unset($indexDecorator, $index);
 
 		$oldIndex = null;
 		switch ($prefs['unified_engine']) {
@@ -1460,5 +1465,32 @@ class UnifiedSearchLib
 		}
 
 		return null;
+	}
+
+	/**
+	 * Get Indexes to restore depending on the Tiki's configuration
+	 *
+	 * @return array
+	 */
+	private function getIndexesToRestore()
+	{
+		global $prefs;
+
+		$currentIndex = $prefs['unified_mysql_index_current'];
+		if ($prefs['unified_mysql_restore_indexes'] == 'n'
+			|| empty($currentIndex)) {
+			return [];
+		}
+
+		// The excluded indexes are hardcoded on the index table creation query
+		$indexesToRestore = TikiDb::get()->fetchAll(
+			"SHOW INDEXES
+			FROM $currentIndex
+			WHERE Key_name != 'PRIMARY'
+			AND (Key_name != 'object_type' AND Column_name != 'object_type')
+			AND (Key_name != 'object_type' AND Column_name != 'object_id')"
+		);
+
+		return $indexesToRestore;
 	}
 }
