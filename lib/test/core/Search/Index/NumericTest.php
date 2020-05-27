@@ -20,17 +20,17 @@ abstract class Search_Index_NumericTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testMatchVersion()
+	public function testMatchVersion()
 	{
 		$this->assertResultCount(1, '2.5.3');
 	}
 
-	function testNoMatchLesserVersionPortion()
+	public function testNoMatchLesserVersionPortion()
 	{
 		$this->assertResultCount(0, '5.3');
 	}
 
-	function testMatchHigherVersionPortion()
+	public function testMatchHigherVersionPortion()
 	{
 		$this->assertResultCount(1, '2.5');
 	}

@@ -9,12 +9,12 @@ abstract class Search_Index_PaginationTest extends PHPUnit\Framework\TestCase
 {
 	protected $index;
 
-	function testNoPagingRequired()
+	public function testNoPagingRequired()
 	{
 		$this->assertResultCorrect(15, 0, 25, 1, 15);
 	}
 
-	function testGetSecondPage()
+	public function testGetSecondPage()
 	{
 		$this->assertResultCorrect(30, 10, 10, 11, 20);
 	}

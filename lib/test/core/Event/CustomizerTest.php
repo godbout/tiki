@@ -34,7 +34,7 @@ class Tiki_Event_CustomizerTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testBindThroughCustomizedEventFilter()
+	public function testBindThroughCustomizedEventFilter()
 	{
 		$this->manager->bind('custom.event', [$this, 'callbackAdd']);
 
@@ -47,7 +47,7 @@ class Tiki_Event_CustomizerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(1, $this->called);
 	}
 
-	function testPassCustomArguments()
+	public function testPassCustomArguments()
 	{
 		$this->manager->bind('custom.event', [$this, 'callbackAdd']);
 
@@ -74,7 +74,7 @@ class Tiki_Event_CustomizerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(5, $this->called);
 	}
 
-	function testDirectArgumentRecording()
+	public function testDirectArgumentRecording()
 	{
 		$customizer = new Tiki_Event_Customizer;
 		$customizer->addRule('tiki.trackeritem.save', '(event-record event args)');
@@ -93,7 +93,7 @@ class Tiki_Event_CustomizerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($args, $this->lastArguments);
 	}
 
-	function testChainedArgumentRecording()
+	public function testChainedArgumentRecording()
 	{
 		$customizer = new Tiki_Event_Customizer;
 		$customizer->addRule('tiki.trackeritem.save', '(event-record event args)');
@@ -113,7 +113,7 @@ class Tiki_Event_CustomizerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($args, $this->lastArguments);
 	}
 
-	function testCustomEventRecording()
+	public function testCustomEventRecording()
 	{
 
 		$customizer = new Tiki_Event_Customizer;
@@ -148,17 +148,17 @@ class Tiki_Event_CustomizerTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function callbackAdd($arguments)
+	public function callbackAdd($arguments)
 	{
 		$this->called += $arguments['amount'] ?? 1;
 	}
 
-	function callbackMultiply($arguments)
+	public function callbackMultiply($arguments)
 	{
 		$this->called *= $arguments['amount'] ?? 2;
 	}
 
-	function recordEvent($event, $arguments)
+	public function recordEvent($event, $arguments)
 	{
 		$this->lastEvent = $event;
 		$this->lastArguments = $arguments;

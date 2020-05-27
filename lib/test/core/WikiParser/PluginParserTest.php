@@ -13,7 +13,7 @@
 
 class WikiParser_PluginParserTest extends TikiTestCase
 {
-	function testNothingToParse()
+	public function testNothingToParse()
 	{
 		$data = 'Hello world this is a simple test';
 		$parser = new WikiParser_PluginParser;
@@ -24,7 +24,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testCallToArgumentParser()
+	public function testCallToArgumentParser()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
 		$mock = $this->createMock('WikiParser_PluginArgumentParser')
@@ -40,7 +40,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 		$parser->parse($data);
 	}
 
-	function testPluginWithoutRunner()
+	public function testPluginWithoutRunner()
 	{
 		$data = 'This is a {TEST(hello=world)}Hello{TEST} without any changes';
 		$parser = new WikiParser_PluginParser;
@@ -51,7 +51,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testFullSyntax()
+	public function testFullSyntax()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
 		$mock = $this->createMock('WikiParser_PluginRunner')
@@ -74,7 +74,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testShortSyntax()
+	public function testShortSyntax()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
 		$mock = $this->createMock('WikiParser_PluginRunner')
@@ -97,7 +97,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testShortSyntaxWithoutArguments()
+	public function testShortSyntaxWithoutArguments()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
 		$mock = $this->createMock('WikiParser_PluginRunner')
@@ -120,7 +120,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testSkipNoParse()
+	public function testSkipNoParse()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
 		$mock = $this->createMock('WikiParser_PluginRunner')
@@ -139,7 +139,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testNestingNoSecondCall()
+	public function testNestingNoSecondCall()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
 		$mock = $this->createMock('WikiParser_PluginRunner')
@@ -158,7 +158,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testPluginReturningPlugin()
+	public function testPluginReturningPlugin()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
 		$mock = $this->createMock('WikiParser_PluginRunner')
@@ -175,7 +175,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testInnerPluginNotExecutedFirst()
+	public function testInnerPluginNotExecutedFirst()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
 		$mock = $this->createMock('WikiParser_PluginRunner')
@@ -192,7 +192,7 @@ class WikiParser_PluginParserTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testPluginReturnsNonParseCode()
+	public function testPluginReturnsNonParseCode()
 	{
 		$this->markTestIncomplete('Implementation not written yet');
 		$mock = $this->createMock('WikiParser_PluginRunner')

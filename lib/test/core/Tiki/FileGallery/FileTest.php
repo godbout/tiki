@@ -31,20 +31,20 @@ class Tiki_FileGallery_FileTest extends TikiTestCase
 		TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
 	}
 
-	function testInstantiation()
+	public function testInstantiation()
 	{
 		$file = new File();
 		$this->assertEquals(0, $file->fileId);
 		$this->assertFalse($file->exists());
 	}
 
-	function testInitialization()
+	public function testInitialization()
 	{
 		$file = new File(['filename' => 'test.zip']);
 		$this->assertEquals('test.zip', $file->filename);
 	}
 
-	function testLoading()
+	public function testLoading()
 	{
 		$file = new File(['filename' => 'test.zip']);
 		$filesTable = TikiLib::lib('filegal')->table('tiki_files');
@@ -56,7 +56,7 @@ class Tiki_FileGallery_FileTest extends TikiTestCase
 		$filesTable->delete(['fileId' => $fileId]);
 	}
 
-	function testCorrectWrapper()
+	public function testCorrectWrapper()
 	{
 		global $prefs;
 
@@ -75,7 +75,7 @@ class Tiki_FileGallery_FileTest extends TikiTestCase
 		$this->assertEmpty($file->data);
 	}
 
-	function testReplaceContents()
+	public function testReplaceContents()
 	{
 		global $prefs;
 

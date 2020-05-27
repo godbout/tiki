@@ -40,7 +40,7 @@ class Perms_CheckSequenceTest extends TikiTestCase
 		Perms::set($perms);
 	}
 
-	function testOnlyFirstCalledWhenGranted()
+	public function testOnlyFirstCalledWhenGranted()
 	{
 		$this->mockA->expects($this->never())
 			->method('check');
@@ -50,7 +50,7 @@ class Perms_CheckSequenceTest extends TikiTestCase
 		$this->assertTrue(Perms::get()->admin_wiki);
 	}
 
-	function testFirstFallbackHandles()
+	public function testFirstFallbackHandles()
 	{
 		$this->mockA->expects($this->once())
 			->method('check')
@@ -61,7 +61,7 @@ class Perms_CheckSequenceTest extends TikiTestCase
 		$this->assertTrue(Perms::get()->view);
 	}
 
-	function testNoneCatching()
+	public function testNoneCatching()
 	{
 		$this->mockA->expects($this->once())
 			->method('check')

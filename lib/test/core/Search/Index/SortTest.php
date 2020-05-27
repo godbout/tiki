@@ -19,7 +19,7 @@ abstract class Search_Index_SortTest extends PHPUnit\Framework\TestCase
 		$this->add($index, 'C', '2', 'Baz', 'Baz');
 	}
 
-	function sortCases()
+	public function sortCases()
 	{
 		return [
 			['numeric_field_nasc', 'ACB'],
@@ -40,7 +40,7 @@ abstract class Search_Index_SortTest extends PHPUnit\Framework\TestCase
 	 * @param $mode
 	 * @param $expected
 	 */
-	function testOrdering($mode, $expected)
+	public function testOrdering($mode, $expected)
 	{
 		$query = new Search_Query;
 		$query->filterType('wiki page');
@@ -51,7 +51,7 @@ abstract class Search_Index_SortTest extends PHPUnit\Framework\TestCase
 		$this->assertOrderIs($expected, $results);
 	}
 
-	function testWeightImpact()
+	public function testWeightImpact()
 	{
 		$query = new Search_Query;
 		$query->setWeightCalculator(
@@ -69,7 +69,7 @@ abstract class Search_Index_SortTest extends PHPUnit\Framework\TestCase
 		$this->assertOrderIs('BA', $results);
 	}
 
-	function returnOnlyCases()
+	public function returnOnlyCases()
 	{
 		return [
 			[[1, 2, 3, 4, 5, 6], 'ACB'],
@@ -89,7 +89,7 @@ abstract class Search_Index_SortTest extends PHPUnit\Framework\TestCase
 	 * @param array $returnOnlyValue
 	 * @param string $expected
 	 */
-	function testReturnOnly($returnOnlyValue, $expected)
+	public function testReturnOnly($returnOnlyValue, $expected)
 	{
 		$query = new Search_Query;
 		$query->filterType('wiki page');

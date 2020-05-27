@@ -36,17 +36,17 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		);
 	}
 
-	function testGetComposer()
+	public function testGetComposer()
 	{
 		$this->assertInstanceOf(ComposerCli::class, $this->composerManager->getComposer());
 	}
 
-	function testComposerPath()
+	public function testComposerPath()
 	{
 		$this->assertEquals($this->composerManager->composerPath(), $this->rootPath . '/temp/composer.phar');
 	}
 
-	function testBrokenYaml()
+	public function testBrokenYaml()
 	{
 
 		$composerCli = $this->getMockBuilder(ComposerCli::class)
@@ -69,7 +69,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		$this->assertCount(0, $response);
 	}
 
-	function testIfNoPackageIsInstalledAllAreAvailable()
+	public function testIfNoPackageIsInstalledAllAreAvailable()
 	{
 
 		$composerCli = $this->getMockBuilder(ComposerCli::class)
@@ -94,7 +94,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		$this->assertContains('enygma/expose', $nameOfPackages);
 	}
 
-	function testPackageNotAvailableIfInstalled()
+	public function testPackageNotAvailableIfInstalled()
 	{
 
 		$composerCli = $this->getMockBuilder(ComposerCli::class)
@@ -128,7 +128,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		$this->assertContains('enygma/expose', $nameOfPackages);
 	}
 
-	function testAllPackagesAvailableIfNotFiltered()
+	public function testAllPackagesAvailableIfNotFiltered()
 	{
 
 		$composerCli = $this->getMockBuilder(ComposerCli::class)
@@ -162,7 +162,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		$this->assertContains('enygma/expose', $nameOfPackages);
 	}
 
-	function testInstallNotExistingPackage()
+	public function testInstallNotExistingPackage()
 	{
 		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['installPackage'])
@@ -179,7 +179,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		$this->assertNull($composerManager->installPackage('FooBar'));
 	}
 
-	function testInstallPackage()
+	public function testInstallPackage()
 	{
 		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['canExecuteComposer', 'installMissingPackages'])
@@ -211,7 +211,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		);
 	}
 
-	function testGetInstalled()
+	public function testGetInstalled()
 	{
 		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['getListOfPackagesFromConfig'])
@@ -256,7 +256,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		$this->assertEquals('Foo/Bar', $response[1]['name']);
 	}
 
-	function testGetInstalledCaseMismatch()
+	public function testGetInstalledCaseMismatch()
 	{
 		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['getListOfPackagesFromConfig'])
@@ -292,7 +292,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		$this->assertEquals('JEROME-BRETON/casperjs-installer', $response[0]['name']);
 	}
 
-	function testRemoveUnknownPackageFails()
+	public function testRemoveUnknownPackageFails()
 	{
 		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['removePackage'])
@@ -313,7 +313,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		$this->assertNull($composerManager->removePackage('FooBar'));
 	}
 
-	function testRemovePackage()
+	public function testRemovePackage()
 	{
 		$composerCli = $this->getMockBuilder(ComposerCli::class)
 			->onlyMethods(['removePackage'])
@@ -341,7 +341,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	 * @param $files
 	 * @param $expected
 	 */
-	function testCheckThatCanInstallPackages($files, $expected)
+	public function testCheckThatCanInstallPackages($files, $expected)
 	{
 		foreach ($files as $file) {
 			[$path, $isDir, $mode] = $file;
@@ -360,7 +360,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 		$this->assertEquals($expected, $result);
 	}
 
-	function providerForTestCheckThatCanInstallPackages()
+	public function providerForTestCheckThatCanInstallPackages()
 	{
 		return [
 			[ // root dir writable, no files

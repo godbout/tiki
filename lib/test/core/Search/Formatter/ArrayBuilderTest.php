@@ -14,12 +14,12 @@ class Search_Formatter_ArrayBuilderTest extends PHPUnit\Framework\TestCase
 		$this->builder = new Search_Formatter_ArrayBuilder;
 	}
 
-	function testEmpty()
+	public function testEmpty()
 	{
 		$this->assertEquals([], $this->builder->getData(''));
 	}
 
-	function testSingleValue()
+	public function testSingleValue()
 	{
 		$string = <<<STR
 {hello foo=bar}
@@ -28,7 +28,7 @@ STR;
 		$this->assertEquals(['hello' => ['foo' => 'bar']], $this->builder->getData($string));
 	}
 
-	function testDifferentKeys()
+	public function testDifferentKeys()
 	{
 		$string = <<<STR
 {hello foo=bar bar=test}
@@ -44,7 +44,7 @@ STR;
 		);
 	}
 
-	function testGenerateList()
+	public function testGenerateList()
 	{
 		$string = <<<STR
 {test foo=bar}

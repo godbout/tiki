@@ -21,21 +21,21 @@ class SlugManagerTest extends TestCase
 		$this->manager->addGenerator(new UnderscoreGenerator);
 	}
 
-	function testGenerateSimple()
+	public function testGenerateSimple()
 	{
 		$slug = $this->manager->generate('urlencode', 'Hello World');
 
 		$this->assertEquals('Hello+World', $slug);
 	}
 
-	function testGenerateUnderscore()
+	public function testGenerateUnderscore()
 	{
 		$slug = $this->manager->generate('underscore', 'Hello World');
 
 		$this->assertEquals('Hello_World', $slug);
 	}
 
-	function testDuplicateAddsSuffix()
+	public function testDuplicateAddsSuffix()
 	{
 		$tracker = new SlugManager\InMemoryTracker;
 		$tracker->add('Hello_World');
@@ -54,12 +54,12 @@ class SlugManagerTest extends TestCase
 	 * @param $page
 	 * @param $suffix
 	 */
-	function testGeneratorCases($gen, $slug, $page, $suffix)
+	public function testGeneratorCases($gen, $slug, $page, $suffix)
 	{
 		$this->assertEquals($slug, $gen->generate($page, $suffix));
 	}
 
-	function testManagerIsClonable()
+	public function testManagerIsClonable()
 	{
 		$manager = clone $this->manager;
 
@@ -74,7 +74,7 @@ class SlugManagerTest extends TestCase
 		$this->assertEquals('Hello_World_2', $slug2);
 	}
 
-	function generatorCases()
+	public function generatorCases()
 	{
 		return [
 			[new UrlencodeGenerator, 'Hello', 'Hello', null],

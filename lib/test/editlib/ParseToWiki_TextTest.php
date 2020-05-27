@@ -33,7 +33,7 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	/**
 	 * Align Divs 'left'
 	 */
-	function testBlockAlignLeft()
+	public function testBlockAlignLeft()
 	{
 		global $prefs;
 
@@ -65,7 +65,7 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	/**
 	 * Align Divs 'center'
 	 */
-	function testBlockAlignCentered()
+	public function testBlockAlignCentered()
 	{
 		global $prefs;
 
@@ -161,7 +161,7 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	/**
 	 * Align Divs 'right'
 	 */
-	function testBlockAlignRight()
+	public function testBlockAlignRight()
 	{
 		global $prefs;
 
@@ -188,7 +188,7 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	/**
 	 * Align Divs 'justify'
 	 */
-	function testBlockAlignJustified()
+	public function testBlockAlignJustified()
 	{
 		global $prefs;
 
@@ -218,7 +218,7 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testParagraphAlignLeft()
+	public function testParagraphAlignLeft()
 	{
 
 		$this->markTestIncomplete('Work in progress.');
@@ -246,7 +246,7 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	/**
 	 * Centered headings must use style attribute
 	 */
-	function testCenterdHeadings()
+	public function testCenterdHeadings()
 	{
 		global $prefs;
 
@@ -285,7 +285,7 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	/**
 	 * Headings 1-6
 	 */
-	function testNumberedHeadings()
+	public function testNumberedHeadings()
 	{
 
 		// all levels, no line break
@@ -362,7 +362,7 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	/**
 	 * Align paragraphs 'center'
 	 */
-	function testParagraphAlignCentered()
+	public function testParagraphAlignCentered()
 	{
 		global $prefs;
 
@@ -437,7 +437,7 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testParagraphAlignRight()
+	public function testParagraphAlignRight()
 	{
 
 		$this->markTestIncomplete('Work in progress.');
@@ -467,7 +467,7 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testParagraphAlignJustified()
+	public function testParagraphAlignJustified()
 	{
 
 		$this->markTestIncomplete('Work in progress.');
@@ -495,7 +495,7 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	/**
 	 * Headings 1-6
 	 */
-	function testUnnumberedHeadings()
+	public function testUnnumberedHeadings()
 	{
 
 		// all levels, no line break

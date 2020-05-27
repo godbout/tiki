@@ -9,19 +9,19 @@ class TikiLib_MultiExplodeTest extends PHPUnit\Framework\TestCase
 {
 	private $saved;
 
-	function setUp() : void
+	public function setUp() : void
 	{
 		global $prefs;
 		$this->saved = $prefs['namespace_separator'];
 	}
 
-	function tearDown() : void
+	public function tearDown() : void
 	{
 		global $prefs;
 		$prefs['namespace_separator'] = $this->saved;
 	}
 
-	function testSimple()
+	public function testSimple()
 	{
 		$lib = TikiLib::lib('tiki');
 		$this->assertEquals(['A', 'B'], $lib->multi_explode(':', 'A:B'));
@@ -29,7 +29,7 @@ class TikiLib_MultiExplodeTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['A', '', '', 'B'], $lib->multi_explode(':', 'A:::B'));
 	}
 
-	function testEmpty()
+	public function testEmpty()
 	{
 		$lib = TikiLib::lib('tiki');
 		$this->assertEquals([''], $lib->multi_explode(':', ''));
@@ -38,7 +38,7 @@ class TikiLib_MultiExplodeTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['A', ''], $lib->multi_explode(':', 'A:'));
 	}
 
-	function testIgnoreCharactersUsedInNamespace()
+	public function testIgnoreCharactersUsedInNamespace()
 	{
 		global $prefs;
 		$lib = TikiLib::lib('tiki');
@@ -52,7 +52,7 @@ class TikiLib_MultiExplodeTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['A:-:B', '+', 'C', 'A', '+', 'B'], $lib->multi_explode(':', 'A:-:B:+:C:A:+:B'));
 	}
 
-	function testSimpleImplode()
+	public function testSimpleImplode()
 	{
 		$lib = TikiLib::lib('tiki');
 		$this->assertEquals('A:B', $lib->multi_implode(':', ['A', 'B']));

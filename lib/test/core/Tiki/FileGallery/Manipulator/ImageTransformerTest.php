@@ -15,7 +15,7 @@ use Tiki\FileGallery\Manipulator\ImageTransformer;
 
 class Tiki_FileGallery_Manipulator_ImageTransformerTest extends TikiTestCase
 {
-	function testResize()
+	public function testResize()
 	{
 		global $prefs;
 

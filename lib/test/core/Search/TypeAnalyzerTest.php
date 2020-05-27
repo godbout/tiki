@@ -7,7 +7,7 @@
 
 class Search_TypeAnalyzerTest extends PHPUnit\Framework\TestCase
 {
-	function mappingProvider()
+	public function mappingProvider()
 	{
 		return [
 			'empty' => ['plaintext', 'test', ''],
@@ -39,7 +39,7 @@ class Search_TypeAnalyzerTest extends PHPUnit\Framework\TestCase
 	 * @param $key
 	 * @param $value
 	 */
-	function testMapping($expectedType, $key, $value)
+	public function testMapping($expectedType, $key, $value)
 	{
 		$analyzer = new Search_Type_Analyzer;
 

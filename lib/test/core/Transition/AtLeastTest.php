@@ -12,7 +12,7 @@
 
 class Transition_AtLeastTest extends PHPUnit\Framework\TestCase
 {
-	function testOver()
+	public function testOver()
 	{
 		$transition = new Tiki_Transition('A', 'B');
 		$transition->setStates(['A', 'C', 'D', 'F']);
@@ -21,7 +21,7 @@ class Transition_AtLeastTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals([], $transition->explain());
 	}
 
-	function testRightOn()
+	public function testRightOn()
 	{
 		$transition = new Tiki_Transition('A', 'B');
 		$transition->setStates(['A', 'C', 'D', 'F']);
@@ -30,7 +30,7 @@ class Transition_AtLeastTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals([], $transition->explain());
 	}
 
-	function testUnder()
+	public function testUnder()
 	{
 		$transition = new Tiki_Transition('A', 'B');
 		$transition->setStates(['A', 'C', 'D', 'F']);
@@ -42,7 +42,7 @@ class Transition_AtLeastTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testImpossibleCondition()
+	public function testImpossibleCondition()
 	{
 		$transition = new Tiki_Transition('A', 'B');
 		$transition->setStates(['A', 'C', 'D', 'F']);

@@ -2,32 +2,32 @@
 
 class TikiLib_UriMergeTest extends PHPUnit\Framework\TestCase
 {
-	function testFullReplace()
+	public function testFullReplace()
 	{
 		$this->assertEquals('http://www.example.com/', $this->merge('http://example.com/foo/bar?x=y', 'http://www.example.com'));
 	}
 
-	function testAbsolutePath()
+	public function testAbsolutePath()
 	{
 		$this->assertEquals('http://example.com/foo/baz', $this->merge('http://example.com/foo/bar?x=y', '/foo/baz'));
 	}
 
-	function testRelativePath()
+	public function testRelativePath()
 	{
 		$this->assertEquals('http://example.com/foo/baz', $this->merge('http://example.com/foo/bar?x=y', 'baz'));
 	}
 
-	function testShortRelativePath()
+	public function testShortRelativePath()
 	{
 		$this->assertEquals('http://example.com/baz', $this->merge('http://example.com/foo', 'baz'));
 	}
 
-	function testNoCurrentPath()
+	public function testNoCurrentPath()
 	{
 		$this->assertEquals('http://example.com/foo/baz', $this->merge('http://example.com', 'foo/baz'));
 	}
 
-	function testWithQueryString()
+	public function testWithQueryString()
 	{
 		$this->assertEquals('http://example.com/foo/baz?y=x&a=b', $this->merge('http://example.com/foo/bar?x=y', 'baz?y=x&a=b'));
 	}

@@ -14,14 +14,14 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		$this->parser = new Search_Expr_Parser;
 	}
 
-	function testSimpleWord()
+	public function testSimpleWord()
 	{
 		$result = $this->parser->parse('hello');
 
 		$this->assertEquals($result, new Search_Expr_Token('hello'));
 	}
 
-	function testMultipleWords()
+	public function testMultipleWords()
 	{
 		$result = $this->parser->parse('"hello world" test again');
 		$this->assertEquals(
@@ -36,7 +36,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testMultipleSimpleWords()
+	public function testMultipleSimpleWords()
 	{
 		$result = $this->parser->parse('hello world test again');
 		$this->assertEquals(
@@ -50,7 +50,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testSimpleParenthesis()
+	public function testSimpleParenthesis()
 	{
 		$result = $this->parser->parse('(test again)');
 		$this->assertEquals(
@@ -62,7 +62,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testMatchParenthesis()
+	public function testMatchParenthesis()
 	{
 		$result = $this->parser->parse('(hello (bob roger)) (test again)');
 		$this->assertEquals(
@@ -83,7 +83,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testStripOr()
+	public function testStripOr()
 	{
 		$result = $this->parser->parse('(bob roger) or (test again)');
 
@@ -98,7 +98,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testRecongnizeAnd()
+	public function testRecongnizeAnd()
 	{
 		$result = $this->parser->parse('(bob roger) and (test again)');
 
@@ -113,7 +113,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testSequence()
+	public function testSequence()
 	{
 		$result = $this->parser->parse('1 and 2 and 3');
 
@@ -133,7 +133,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testEquivalenceBetweenPlusAndAnd()
+	public function testEquivalenceBetweenPlusAndAnd()
 	{
 		$result = $this->parser->parse('a php + framework');
 		$expect = $this->parser->parse('a php and framework');
@@ -141,7 +141,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $result);
 	}
 
-	function testSequenceWithOr()
+	public function testSequenceWithOr()
 	{
 		$result = $this->parser->parse('1 or 2 or 3');
 
@@ -161,7 +161,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testRecongnizePlus()
+	public function testRecongnizePlus()
 	{
 		$result = $this->parser->parse('(bob roger) + (test again)');
 
@@ -176,7 +176,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testCheckPriority()
+	public function testCheckPriority()
 	{
 		$result = $this->parser->parse('bob AND test OR again');
 
@@ -191,7 +191,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testCheckLowerSpacePriority()
+	public function testCheckLowerSpacePriority()
 	{
 		$result = $this->parser->parse('bob AND test again');
 
@@ -204,7 +204,7 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testNotOperator()
+	public function testNotOperator()
 	{
 		$result = $this->parser->parse('bob AND NOT (roger alphonse)');
 
@@ -219,28 +219,28 @@ class Search_Expr_ParserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testDoubleParenthesisClose()
+	public function testDoubleParenthesisClose()
 	{
 		$result = $this->parser->parse('hello (test) foo) bar');
 
 		$this->assertEquals($this->parser->parse('hello (test) foo bar'), $result);
 	}
 
-	function testMissingClose()
+	public function testMissingClose()
 	{
 		$result = $this->parser->parse('hello (test foo bar');
 
 		$this->assertEquals($this->parser->parse('hello (test foo bar)'), $result);
 	}
 
-	function testConsecutiveKeywords()
+	public function testConsecutiveKeywords()
 	{
 		$result = $this->parser->parse('hello and and or + or world');
 
 		$this->assertEquals($this->parser->parse('hello and world'), $result);
 	}
 
-	function testNotWithNoValue()
+	public function testNotWithNoValue()
 	{
 		$result = $this->parser->parse('hello and (not )');
 

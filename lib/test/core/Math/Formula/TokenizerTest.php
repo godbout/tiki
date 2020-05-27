@@ -7,59 +7,59 @@
 
 class Math_Formula_TokenizerTest extends TikiTestCase
 {
-	function testSimpleToken()
+	public function testSimpleToken()
 	{
 		$tokenizer = new Math_Formula_Tokenizer;
 
 		$this->assertEquals(['test'], $tokenizer->getTokens('test'));
 	}
 
-	function testWithParenthesis()
+	public function testWithParenthesis()
 	{
 		$tokenizer = new Math_Formula_Tokenizer;
 
 		$this->assertEquals(['test', ')'], $tokenizer->getTokens('test)'));
 	}
 
-	function testWithMultipleParenthesis()
+	public function testWithMultipleParenthesis()
 	{
 		$tokenizer = new Math_Formula_Tokenizer;
 
 		$this->assertEquals(['(', 'test', ')'], $tokenizer->getTokens('(test)'));
 	}
 
-	function testIgnoreSpaces()
+	public function testIgnoreSpaces()
 	{
 		$tokenizer = new Math_Formula_Tokenizer;
 
 		$this->assertEquals(['(', 'test', ')'], $tokenizer->getTokens(" (test\n\t\r) "));
 	}
 
-	function testWithMultipleWords()
+	public function testWithMultipleWords()
 	{
 		$tokenizer = new Math_Formula_Tokenizer;
 		$this->assertEquals(['hello', 'world', 'foo-bar'], $tokenizer->getTokens('hello world foo-bar'));
 	}
 
-	function testWordsAfterParenthesis()
+	public function testWordsAfterParenthesis()
 	{
 		$tokenizer = new Math_Formula_Tokenizer;
 		$this->assertEquals(['hello', '(', 'world', ')', 'foo-bar'], $tokenizer->getTokens('hello (world) foo-bar'));
 	}
 
-	function testQuotesAroundArguments()
+	public function testQuotesAroundArguments()
 	{
 		$tokenizer = new Math_Formula_Tokenizer;
 		$this->assertEquals(['hello', '(', 'world', '"test hello"', '"foo bar baz"', ')', 'foo-bar'], $tokenizer->getTokens('hello (world "test hello" "foo bar baz") foo-bar'));
 	}
 
-	function testUnterminatedString()
+	public function testUnterminatedString()
 	{
 		$tokenizer = new Math_Formula_Tokenizer;
 		$this->assertEquals(['hello', '(', 'world', '"test hello) foo-bar'], $tokenizer->getTokens('hello (world "test hello) foo-bar'));
 	}
 
-	function testEndWithString()
+	public function testEndWithString()
 	{
 		$tokenizer = new Math_Formula_Tokenizer;
 		$this->assertEquals(['hello', '(', 'world', '"(test hello)"'], $tokenizer->getTokens('hello (world "(test hello)"'));

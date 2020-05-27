@@ -22,7 +22,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		$this->builder = new QueryBuilder(TikiDb::get());
 	}
 
-	function testSimpleQuery()
+	public function testSimpleQuery()
 	{
 		$expr = new Token('Hello', 'plaintext', 'contents', 1.5);
 
@@ -35,7 +35,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testSimplePhrase()
+	public function testSimplePhrase()
 	{
 		$expr = new Token('Hello World', 'plaintext', 'contents', 1.5);
 
@@ -48,7 +48,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testQueryWithSinglePart()
+	public function testQueryWithSinglePart()
 	{
 		$expr = new AndX(
 			[
@@ -65,7 +65,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testBuildOrQuery()
+	public function testBuildOrQuery()
 	{
 		$expr = new OrX(
 			[
@@ -83,7 +83,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testAndQuery()
+	public function testAndQuery()
 	{
 		$expr = new AndX(
 			[
@@ -101,7 +101,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testNotBuild()
+	public function testNotBuild()
 	{
 		$expr = new NotX(
 			new Token('Hello', 'plaintext', 'contents', 1.5)
@@ -116,7 +116,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testFlattenNot()
+	public function testFlattenNot()
 	{
 		$expr = new AndX(
 			[
@@ -135,7 +135,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testBuildOrQueryDifferentField()
+	public function testBuildOrQueryDifferentField()
 	{
 		$expr = new OrX(
 			[
@@ -154,7 +154,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testAndQueryDifferentField()
+	public function testAndQueryDifferentField()
 	{
 		$expr = new AndX(
 			[
@@ -173,7 +173,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testNotBuildNotIdentifier()
+	public function testNotBuildNotIdentifier()
 	{
 		$expr = new NotX(
 			new Token('Hello', 'identifier', 'object_id', 1.5)
@@ -188,7 +188,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testFlattenNotDifferentField()
+	public function testFlattenNotDifferentField()
 	{
 		$expr = new AndX(
 			[
@@ -207,7 +207,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testFilterWithIdentifier()
+	public function testFilterWithIdentifier()
 	{
 		$expr = new Token('Some entry', 'identifier', 'username', 1.5);
 
@@ -220,7 +220,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testRangeFilter()
+	public function testRangeFilter()
 	{
 		$expr = new Range('Hello', 'World', 'plaintext', 'title', 1.5);
 
@@ -233,7 +233,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testInitialMatchFilter()
+	public function testInitialMatchFilter()
 	{
 		$expr = new Initial('Hello', 'plaintext', 'title', 1.5);
 
@@ -246,7 +246,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testNestedOr()
+	public function testNestedOr()
 	{
 		$expr = new OrX(
 			[
@@ -269,7 +269,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testNestedAnd()
+	public function testNestedAnd()
 	{
 		$expr = new AndX(
 			[
@@ -298,7 +298,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testInvertNotOnlyMatchStatements()
+	public function testInvertNotOnlyMatchStatements()
 	{
 		$expr = new AndX(
 			[
@@ -316,7 +316,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testOrNot()
+	public function testOrNot()
 	{
 		$expr = new OrX(
 			[
@@ -334,7 +334,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testEmptyAnd()
+	public function testEmptyAnd()
 	{
 		$expr = new AndX(
 			[]
@@ -348,7 +348,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testEmptyAndPart()
+	public function testEmptyAndPart()
 	{
 		$expr = new AndX(
 			[

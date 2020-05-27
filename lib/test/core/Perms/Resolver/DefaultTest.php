@@ -12,7 +12,7 @@
 
 class Perms_Resolver_DefaultTest extends TikiTestCase
 {
-	function testAsExpected()
+	public function testAsExpected()
 	{
 		$resolver = new Perms_Resolver_Default(true);
 		$this->assertTrue($resolver->check('view', []));
@@ -21,7 +21,7 @@ class Perms_Resolver_DefaultTest extends TikiTestCase
 		$this->assertFalse($resolver->check('view', []));
 	}
 
-	function testApplicableGroups()
+	public function testApplicableGroups()
 	{
 		$resolver = new Perms_Resolver_Default(true);
 		$this->assertContains('Anonymous', $resolver->applicableGroups());

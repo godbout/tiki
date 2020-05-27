@@ -173,7 +173,7 @@ class Multilingual_Aligner_BilingualAlignerTest extends TikiTestCase
 		);
 	}
 
-	function ___test_generate_shortest_path_matrix()
+	public function ___test_generate_shortest_path_matrix()
 	{
 
 		$this->fail("Expected distance matrix is missing some destinations after some changes we made. Fix it.");
@@ -337,7 +337,7 @@ class Multilingual_Aligner_BilingualAlignerTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 */
-	function test__parse_node_ID()
+	public function test__parse_node_ID()
 	{
 		$this->assert_parse_node_ID_yields(
 			'3m1|5m1',
@@ -368,7 +368,7 @@ class Multilingual_Aligner_BilingualAlignerTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 */
-	function test__generate_node_ID()
+	public function test__generate_node_ID()
 	{
 		$this->_setup_segmented_sentences();
 
@@ -393,7 +393,7 @@ class Multilingual_Aligner_BilingualAlignerTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 */
-	function test__sentences_at_this_node()
+	public function test__sentences_at_this_node()
 	{
 		$this->assert_sentences_at_this_node(
 			'3m1|5m1',
@@ -423,7 +423,7 @@ class Multilingual_Aligner_BilingualAlignerTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 */
-	function test__sentences_preceding_this_node()
+	public function test__sentences_preceding_this_node()
 	{
 		$node = '3m1|5m1';
 		$sentences_preceding_node = $this->aligner->_sentences_preceding_this_node($node);

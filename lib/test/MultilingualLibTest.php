@@ -84,7 +84,7 @@ class MultilingualLibTest extends TikiTestCase
 	}
 
 
-	function dataProvider_translateLinksInPageContent()
+	public function dataProvider_translateLinksInPageContent()
 	{
 		return [
 
@@ -115,7 +115,7 @@ class MultilingualLibTest extends TikiTestCase
 	 * @param $message
 	 * @throws Exception
 	 */
-	function test_defaultTargetLanguageForNewTranslation(
+	public function test_defaultTargetLanguageForNewTranslation(
 		$src_lang,
 		$langs_already_translated,
 		$user_langs,
@@ -129,7 +129,7 @@ class MultilingualLibTest extends TikiTestCase
 		$this->assertEquals($got_lang, $exp_lang, $message . "\nThe default target language was not as expected.");
 	}
 
-	function dataProvider_defaultTargetLanguageForNewTranslation()
+	public function dataProvider_defaultTargetLanguageForNewTranslation()
 	{
 		return [
 
@@ -153,7 +153,7 @@ class MultilingualLibTest extends TikiTestCase
 	 * @param $message
 	 * @throws Exception
 	 */
-	function test_partiallyPretranslateContentOfPage($source_page, $targ_lang, $exp_pretranslation, $message)
+	public function test_partiallyPretranslateContentOfPage($source_page, $targ_lang, $exp_pretranslation, $message)
 	{
 		$multilinguallib = TikiLib::lib('multilingual');
 
@@ -161,7 +161,7 @@ class MultilingualLibTest extends TikiTestCase
 		$this->assertEquals($got_pretranslation, $exp_pretranslation, "$message\nSource page was not properly pretranslated.");
 	}
 
-	function dataProvider_partiallyPretranslateContentOfPage()
+	public function dataProvider_partiallyPretranslateContentOfPage()
 	{
 		return [
 			["SomePage", "fr",

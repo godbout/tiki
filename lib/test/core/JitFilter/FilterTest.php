@@ -34,18 +34,18 @@ class JitFilter_FilterTest extends TikiTestCase
 		$this->array = null;
 	}
 
-	function testValid()
+	public function testValid()
 	{
 		$this->assertEquals('bar123', $this->array['foo']);
 		$this->assertEquals(10, $this->array['bar']);
 	}
 
-	function testInvalid()
+	public function testInvalid()
 	{
 		$this->assertEquals('world', $this->array['baz'][1]);
 	}
 
-	function testSpecifiedFilter()
+	public function testSpecifiedFilter()
 	{
 		$this->assertEquals('bar123', $this->array['foo']);
 
@@ -53,7 +53,7 @@ class JitFilter_FilterTest extends TikiTestCase
 		$this->assertEquals('123', $this->array['foo']);
 	}
 
-	function testMultipleFilters()
+	public function testMultipleFilters()
 	{
 		$this->array->replaceFilters(
 			[
@@ -68,7 +68,7 @@ class JitFilter_FilterTest extends TikiTestCase
 		$this->assertEquals('WORLD !', $this->array['baz'][1]);
 	}
 
-	function testNestedDefault()
+	public function testNestedDefault()
 	{
 		$this->array->replaceFilters(
 			[

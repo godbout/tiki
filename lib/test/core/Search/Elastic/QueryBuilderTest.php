@@ -31,7 +31,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		$prefs['search_error_missing_field'] = $this->prefErrorMissingField;
 	}
 
-	function testSimpleQuery()
+	public function testSimpleQuery()
 	{
 		$builder = new QueryBuilder;
 
@@ -47,7 +47,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testQueryWithSinglePart()
+	public function testQueryWithSinglePart()
 	{
 		$builder = new QueryBuilder;
 
@@ -69,7 +69,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testBuildOrQuery()
+	public function testBuildOrQuery()
 	{
 		$builder = new QueryBuilder;
 
@@ -104,7 +104,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testAndQuery()
+	public function testAndQuery()
 	{
 		$builder = new QueryBuilder;
 
@@ -138,7 +138,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testNotBuild()
+	public function testNotBuild()
 	{
 		$builder = new QueryBuilder;
 
@@ -164,7 +164,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testFlattenNot()
+	public function testFlattenNot()
 	{
 		$builder = new QueryBuilder;
 
@@ -206,7 +206,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testFilterWithIdentifier()
+	public function testFilterWithIdentifier()
 	{
 		$builder = new QueryBuilder;
 
@@ -225,7 +225,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testRangeFilter()
+	public function testRangeFilter()
 	{
 		$builder = new QueryBuilder;
 
@@ -245,7 +245,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testInitialMatchFilter()
+	public function testInitialMatchFilter()
 	{
 		$builder = new QueryBuilder;
 
@@ -264,7 +264,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testFlattenOr()
+	public function testFlattenOr()
 	{
 		$builder = new QueryBuilder;
 
@@ -309,7 +309,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testFlattenAnd()
+	public function testFlattenAnd()
 	{
 		$builder = new QueryBuilder;
 
@@ -376,7 +376,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testFlattenSingledOutOr()
+	public function testFlattenSingledOutOr()
 	{
 		$builder = new QueryBuilder;
 
@@ -423,7 +423,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testFlattenSingledOutAnd()
+	public function testFlattenSingledOutAnd()
 	{
 		$builder = new QueryBuilder;
 
@@ -469,7 +469,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testMoreLikeThisQuery()
+	public function testMoreLikeThisQuery()
 	{
 		$builder = new QueryBuilder;
 		$builder->setDocumentReader(
@@ -502,7 +502,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testMoreLikeThisThroughAbstraction()
+	public function testMoreLikeThisThroughAbstraction()
 	{
 		$builder = new QueryBuilder;
 		$builder->setDocumentReader(
@@ -556,7 +556,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testEmptyString()
+	public function testEmptyString()
 	{
 		$builder = new QueryBuilder;
 
@@ -578,7 +578,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testEmptyStringWithAnd()
+	public function testEmptyStringWithAnd()
 	{
 		$builder = new QueryBuilder;
 
@@ -614,7 +614,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testEmptyStringWithOr()
+	public function testEmptyStringWithOr()
 	{
 		$builder = new QueryBuilder;
 
@@ -655,7 +655,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testEmptyStringWithNot()
+	public function testEmptyStringWithNot()
 	{
 		$builder = new QueryBuilder;
 
@@ -691,7 +691,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testNonEmptyString()
+	public function testNonEmptyString()
 	{
 		$builder = new QueryBuilder;
 
@@ -717,7 +717,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testNonEmptyStringWithAnd()
+	public function testNonEmptyStringWithAnd()
 	{
 		$builder = new QueryBuilder;
 
@@ -753,7 +753,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testNonEmptyStringWithNot()
+	public function testNonEmptyStringWithNot()
 	{
 		$builder = new QueryBuilder;
 
@@ -793,7 +793,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testEmptyDate()
+	public function testEmptyDate()
 	{
 		$builder = new QueryBuilder($this->dateFieldMappingIndexMock());
 
@@ -815,7 +815,7 @@ class Search_Elastic_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testNonEmptyDate()
+	public function testNonEmptyDate()
 	{
 		$builder = new QueryBuilder($this->dateFieldMappingIndexMock());
 

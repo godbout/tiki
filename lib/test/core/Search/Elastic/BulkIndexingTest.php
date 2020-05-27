@@ -7,7 +7,7 @@
 
 class Search_Elastic_BulkIndexingTest extends PHPUnit\Framework\TestCase
 {
-	function testBasicBulk()
+	public function testBasicBulk()
 	{
 		$parts = [];
 		$bulk = new Search_Elastic_BulkOperation(
@@ -31,7 +31,7 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit\Framework\TestCase
 		$this->assertStringContainsString(json_encode(['delete' => ['_index' => 'test', '_id' => 'bar-4', '_type' => '_doc']]) . "\n", $parts[0]);
 	}
 
-	function testDoubleFlushHasNoImpact()
+	public function testDoubleFlushHasNoImpact()
 	{
 		$parts = [];
 		$bulk = new Search_Elastic_BulkOperation(
@@ -52,7 +52,7 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit\Framework\TestCase
 		$this->assertCount(1, $parts);
 	}
 
-	function testAutomaticFlushWhenLimitReached()
+	public function testAutomaticFlushWhenLimitReached()
 	{
 		$parts = [];
 		$bulk = new Search_Elastic_BulkOperation(
@@ -72,7 +72,7 @@ class Search_Elastic_BulkIndexingTest extends PHPUnit\Framework\TestCase
 		$this->assertCount(2, $parts);
 	}
 
-	function testFlushOnLimit()
+	public function testFlushOnLimit()
 	{
 		$parts = [];
 		$bulk = new Search_Elastic_BulkOperation(

@@ -50,7 +50,7 @@ class MembershipTest extends TikiTestCase
 		$this->userlib->remove_group('MembershipTest');
 	}
 
-	function testExtendMembership()
+	public function testExtendMembership()
 	{
 		//$this->markTestIncomplete('Marking this test as incomplete since it is failing and the problem is the test itself and not the code that is being tested. If you are familiar with these test please fix it.');
 		$id = $this->userlib->get_user_id('membershiptest_a');
@@ -89,7 +89,7 @@ class MembershipTest extends TikiTestCase
 		);
 	}
 
-	function testExtendExpiredMembership()
+	public function testExtendExpiredMembership()
 	{
 		$id = $this->userlib->get_user_id('membershiptest_b');
 

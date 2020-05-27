@@ -12,7 +12,7 @@
 
 class DeclFilter_StaticKeyFilterTest extends TikiTestCase
 {
-	function testMatch()
+	public function testMatch()
 	{
 		$rule = new DeclFilter_StaticKeyFilterRule(
 			[
@@ -26,7 +26,7 @@ class DeclFilter_StaticKeyFilterTest extends TikiTestCase
 		$this->assertFalse($rule->match('baz'));
 	}
 
-	function testApply()
+	public function testApply()
 	{
 		$rule = new DeclFilter_StaticKeyFilterRule(
 			[

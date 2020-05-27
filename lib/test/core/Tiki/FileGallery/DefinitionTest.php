@@ -31,7 +31,7 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		TikiLib::lib('filegal')->clearLoadedGalleryDefinitions();
 	}
 
-	function testInstantiation()
+	public function testInstantiation()
 	{
 		$definition = new Definition(['type' => 'system']);
 		$info = $definition->getInfo();
@@ -39,7 +39,7 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		$this->assertEquals('system', $info['type']);
 	}
 
-	function testDeleteFile()
+	public function testDeleteFile()
 	{
 		global $prefs;
 
@@ -54,7 +54,7 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		$this->assertFileNotExists($prefs['fgal_use_dir'] . '/abcdtest');
 	}
 
-	function testFixFileLocationDbToDb()
+	public function testFixFileLocationDbToDb()
 	{
 		global $prefs;
 
@@ -67,7 +67,7 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		$this->assertEquals('', $file->path);
 	}
 
-	function testFixFileLocationDbToDisk()
+	public function testFixFileLocationDbToDisk()
 	{
 		global $prefs;
 
@@ -84,7 +84,7 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		$this->assertEquals('test contents', file_get_contents($prefs['fgal_use_dir'] . '/' . $file->path));
 	}
 
-	function testFixFileLocationDiskToDb()
+	public function testFixFileLocationDiskToDb()
 	{
 		global $prefs;
 
@@ -102,7 +102,7 @@ class Tiki_FileGallery_DefinitionTest extends TikiTestCase
 		$this->assertFileNotExists($prefs['fgal_use_dir'] . '/abcdtest');
 	}
 
-	function testFixFileLocationDiskToDisk()
+	public function testFixFileLocationDiskToDisk()
 	{
 		global $prefs;
 

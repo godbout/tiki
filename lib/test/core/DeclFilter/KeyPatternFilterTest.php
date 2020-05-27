@@ -12,7 +12,7 @@
 
 class DeclFilter_KeyPatternFilterTest extends TikiTestCase
 {
-	function testMatch()
+	public function testMatch()
 	{
 		$rule = new DeclFilter_KeyPatternFilterRule(
 			[
@@ -27,7 +27,7 @@ class DeclFilter_KeyPatternFilterTest extends TikiTestCase
 		$this->assertFalse($rule->match('baz'));
 	}
 
-	function testApply()
+	public function testApply()
 	{
 		$rule = new DeclFilter_KeyPatternFilterRule(
 			[
@@ -50,7 +50,7 @@ class DeclFilter_KeyPatternFilterTest extends TikiTestCase
 		$this->assertEquals('123abc', $data['foo']);
 	}
 
-	function testApplyOnElements()
+	public function testApplyOnElements()
 	{
 		$rule = new DeclFilter_KeyPatternFilterRule(
 			[

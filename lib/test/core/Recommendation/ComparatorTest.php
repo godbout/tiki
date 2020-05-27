@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class ComparatorTest extends TestCase
 {
-	function testNoEngines()
+	public function testNoEngines()
 	{
 		$engineSet = new EngineSet;
 		$comparator = new Comparator($engineSet);
@@ -21,7 +21,7 @@ class ComparatorTest extends TestCase
 		$this->assertEmpty($comparator->generate($input));
 	}
 
-	function testSingleEngine()
+	public function testSingleEngine()
 	{
 		$engineSet = new EngineSet;
 		$engineSet->register('test-a', new Engine\FakeEngine([
@@ -39,7 +39,7 @@ class ComparatorTest extends TestCase
 		$this->assertEquals([$expect], $comparator->generate($input));
 	}
 
-	function testMultipleEngine()
+	public function testMultipleEngine()
 	{
 		$engineSet = new EngineSet;
 		$engineSet->register('test-a', new Engine\FakeEngine([
@@ -60,7 +60,7 @@ class ComparatorTest extends TestCase
 		$this->assertEquals([$expectA, $expectB], $comparator->generate($input));
 	}
 
-	function testEngineProvidesDebugInformation()
+	public function testEngineProvidesDebugInformation()
 	{
 		$engineSet = new EngineSet;
 		$engineSet->register('test-a', new Engine\FakeEngine([

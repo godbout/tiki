@@ -31,7 +31,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testFontFamily()
+	public function testFontFamily()
 	{
 		$this->markTestIncomplete('Work in progress.');
 
@@ -47,7 +47,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testFontSize()
+	public function testFontSize()
 	{
 		$this->markTestIncomplete('Work in progress.');
 
@@ -60,7 +60,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	}
 
 
-	function testBold()
+	public function testBold()
 	{
 		$inData = '__bold__';
 		$exp = '<strong>bold</strong>'; // like CKE
@@ -69,7 +69,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	}
 
 
-	function testItalic()
+	public function testItalic()
 	{
 		$inData = '\'\'italic\'\'';
 		$exp = '<em>italic</em>'; // like CKE
@@ -78,7 +78,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	}
 
 
-	function testUnderlined()
+	public function testUnderlined()
 	{
 		$inData = '===underlined===';
 		$exp = '<u>underlined</u>'; // like CKE
@@ -87,7 +87,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	}
 
 
-	function testStrike()
+	public function testStrike()
 	{
 		$inData = '--strike through--';
 		$exp = '<strike>strike through</strike>'; // like CKE
@@ -99,7 +99,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testSubscript()
+	public function testSubscript()
 	{
 		$this->markTestIncomplete('Work in progress.');
 		$inData = '{SUB()}subscript{SUB}';
@@ -112,7 +112,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testSuperscript()
+	public function testSuperscript()
 	{
 		$this->markTestIncomplete('Work in progress.');
 
@@ -127,7 +127,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testMonospaced()
+	public function testMonospaced()
 	{
 		$this->markTestIncomplete('Work in progress.');
 
@@ -142,7 +142,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	function testTeletype()
+	public function testTeletype()
 	{
 		$this->markTestIncomplete('Work in progress.');
 
@@ -155,7 +155,7 @@ class EditLib_ParseToWysiwyg_CharacterTest extends TikiTestCase
 	}
 
 
-	function testColor()
+	public function testColor()
 	{
 		$inData = '~~#112233:text~~';
 		$exp = '<span style="color:#112233">text</span>';

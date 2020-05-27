@@ -14,13 +14,13 @@ class Search_Query_OrderTest extends PHPUnit\Framework\TestCase
 	 * @param $order
 	 * @param $type
 	 */
-	function testParse($mode, $field, $order, $type)
+	public function testParse($mode, $field, $order, $type)
 	{
 		$obtained = Search_Query_Order::parse($mode);
 		$this->assertEquals(new Search_Query_Order($field, $type, $order), $obtained);
 	}
 
-	function sortMatches()
+	public function sortMatches()
 	{
 		return [
 			['', 'score', 'desc', 'numeric'],

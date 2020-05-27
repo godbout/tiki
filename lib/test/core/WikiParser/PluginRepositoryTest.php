@@ -12,13 +12,13 @@
 
 class WikiParser_PluginRepositoryTest extends TikiTestCase
 {
-	function testPluginDoesNotExist()
+	public function testPluginDoesNotExist()
 	{
 		$repository = new WikiParser_PluginRepository;
 		$this->assertFalse($repository->pluginExists('test'));
 	}
 
-	function testTestPhysicalPlugin()
+	public function testTestPhysicalPlugin()
 	{
 		$repository = new WikiParser_PluginRepository;
 		$repository->addPluginFolder(__DIR__);
@@ -27,7 +27,7 @@ class WikiParser_PluginRepositoryTest extends TikiTestCase
 		$this->assertFalse($repository->pluginExists('fake'));
 	}
 
-	function testObtainInfoForNormalPlugin()
+	public function testObtainInfoForNormalPlugin()
 	{
 		$repository = new WikiParser_PluginRepository;
 		$repository->addPluginFolder(__DIR__);
@@ -38,7 +38,7 @@ class WikiParser_PluginRepositoryTest extends TikiTestCase
 		$this->assertEquals(tra('Foo'), $info['name']);
 	}
 
-	function testGetListWithNormalOnly()
+	public function testGetListWithNormalOnly()
 	{
 		$repository = new WikiParser_PluginRepository;
 		$repository->addPluginFolder(__DIR__);

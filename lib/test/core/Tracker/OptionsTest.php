@@ -7,7 +7,7 @@
 
 class Tracker_OptionsTest extends PHPUnit\Framework\TestCase
 {
-	function testBuildLegacyStringBuilder()
+	public function testBuildLegacyStringBuilder()
 	{
 		$options = Tracker_Options::fromSerialized(
 			json_encode(['a' => 3, 'b' => 2, 'c' => 1]),
@@ -32,7 +32,7 @@ class Tracker_OptionsTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['1', '2', '3'], $options->buildOptionsArray());
 	}
 
-	function testSeparatorOnEmptyData()
+	public function testSeparatorOnEmptyData()
 	{
 		$options = Tracker_Options::fromString(
 			'a,,b',

@@ -30,60 +30,60 @@ class Math_Formula_CurrencyTest extends TikiTestCase
 		]);
 	}
 
-	function testStringRepresentation()
+	public function testStringRepresentation()
 	{
 		$this->assertEquals('100CAD', (string)$this->currency2);
 	}
 
-	function testAdd()
+	public function testAdd()
 	{
 		$this->runner->setFormula('(add currency1 currency2)');
 		$this->assertEquals((100 + 100 / 1.308020) . 'USD', (string)$this->runner->evaluate());
 	}
 
-	function testAddNumber()
+	public function testAddNumber()
 	{
 		$this->runner->setFormula('(add currency1 10)');
 		$this->assertEquals('110USD', (string)$this->runner->evaluate());
 	}
 
-	function testSub()
+	public function testSub()
 	{
 		$this->runner->setFormula('(sub currency1 currency2)');
 		$this->assertEquals((100 - 100 / 1.308020) . 'USD', (string)$this->runner->evaluate());
 	}
 
-	function testMul()
+	public function testMul()
 	{
 		$this->runner->setFormula('(mul currency1 currency2)');
 		$this->assertEquals((100 * 100 / 1.308020) . 'USD', (string)$this->runner->evaluate());
 	}
 
-	function testDiv()
+	public function testDiv()
 	{
 		$this->runner->setFormula('(div currency1 currency2)');
 		$this->assertEquals((100 / (100 / 1.308020)) . 'USD', (string)$this->runner->evaluate());
 	}
 
-	function testComplex()
+	public function testComplex()
 	{
 		$this->runner->setFormula('(round (avg currency1 currency2) 2)');
 		$this->assertEquals(round((100 + 100 / 1.308020) / 2, 2) . 'USD', (string)$this->runner->evaluate());
 	}
 
-	function testMax()
+	public function testMax()
 	{
 		$this->runner->setFormula('(max currency1 currency2)');
 		$this->assertEquals('100USD', (string)$this->runner->evaluate());
 	}
 
-	function testMin()
+	public function testMin()
 	{
 		$this->runner->setFormula('(min currency1 currency2)');
 		$this->assertEquals('100CAD', (string)$this->runner->evaluate());
 	}
 
-	function testLessThan()
+	public function testLessThan()
 	{
 		$this->runner->setFormula('(less-than currency1 currency2)');
 		$this->assertEquals(0, $this->runner->evaluate());
@@ -91,7 +91,7 @@ class Math_Formula_CurrencyTest extends TikiTestCase
 		$this->assertEquals(1, $this->runner->evaluate());
 	}
 
-	function testMoreThan()
+	public function testMoreThan()
 	{
 		$this->runner->setFormula('(more-than currency1 currency2)');
 		$this->assertEquals(1, $this->runner->evaluate());

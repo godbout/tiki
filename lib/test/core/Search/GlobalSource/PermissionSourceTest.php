@@ -42,7 +42,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit\Framework\TestCas
 		$this->perms = $perms;
 	}
 
-	function testSingleGroup()
+	public function testSingleGroup()
 	{
 		$contentSource = new Search_ContentSource_Static(
 			[
@@ -61,7 +61,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit\Framework\TestCas
 		$this->assertEquals($typeFactory->multivalue(['Registered']), $document['allowed_groups']);
 	}
 
-	function testMultipleGroup()
+	public function testMultipleGroup()
 	{
 		$contentSource = new Search_ContentSource_Static(
 			['HomePage' => ['view_permission' => 'tiki_p_view'],],
@@ -78,7 +78,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit\Framework\TestCas
 		$this->assertEquals($typeFactory->multivalue(['Anonymous', 'Registered']), $document['allowed_groups']);
 	}
 
-	function testNoMatches()
+	public function testNoMatches()
 	{
 		$contentSource = new Search_ContentSource_Static(
 			['HomePage' => ['view_permission' => 'tiki_p_do_stuff'],],
@@ -95,7 +95,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit\Framework\TestCas
 		$this->assertEquals($typeFactory->multivalue([]), $document['allowed_groups']);
 	}
 
-	function testUndeclaredPermission()
+	public function testUndeclaredPermission()
 	{
 		$contentSource = new Search_ContentSource_Static(
 			[
@@ -114,7 +114,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit\Framework\TestCas
 		$this->assertEquals($typeFactory->multivalue([]), $document['allowed_groups']);
 	}
 
-	function testWithParentPermissionSpecified()
+	public function testWithParentPermissionSpecified()
 	{
 		$contentSource = new Search_ContentSource_Static(
 			[
@@ -141,7 +141,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit\Framework\TestCas
 		$this->assertEquals($typeFactory->multivalue(['Registered']), $document['allowed_groups']);
 	}
 
-	function testWithBothSpecified()
+	public function testWithBothSpecified()
 	{
 		$contentSource = new Search_ContentSource_Static(
 			[

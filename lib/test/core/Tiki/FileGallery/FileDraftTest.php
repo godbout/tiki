@@ -15,7 +15,7 @@ use Tiki\FileGallery\FileDraft;
 
 class Tiki_FileGallery_FileDraftTest extends TikiTestCase
 {
-	function testFromFile()
+	public function testFromFile()
 	{
 		$file = new File(['filename' => 'test.zip', 'name' => 'test']);
 		$draft = FileDraft::fromFile($file);
@@ -24,7 +24,7 @@ class Tiki_FileGallery_FileDraftTest extends TikiTestCase
 		$this->assertFalse(isset($params['name']));
 	}
 
-	function testFromFileDraft()
+	public function testFromFileDraft()
 	{
 		$draft = FileDraft::fromFileDraft(['filename' => 'test.zip']);
 		$this->assertEquals('test.zip', $draft->filename);

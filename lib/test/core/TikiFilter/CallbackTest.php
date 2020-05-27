@@ -12,7 +12,7 @@
 
 class TikiFilter_CallbackTest extends TikiTestCase
 {
-	function testSimple()
+	public function testSimple()
 	{
 		$filter = new TikiFilter_Callback('strtoupper');
 

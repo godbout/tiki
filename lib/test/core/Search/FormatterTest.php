@@ -7,7 +7,7 @@
 
 class Search_FormatterTest extends PHPUnit\Framework\TestCase
 {
-	function testBasicFormatter()
+	public function testBasicFormatter()
 	{
 		$plugin = new Search_Formatter_Plugin_WikiTemplate("* {display name=object_id} ({display name=object_type})\n");
 
@@ -28,7 +28,7 @@ OUT;
 		$this->assertEquals($expect, $output);
 	}
 
-	function testSpecifyFormatter()
+	public function testSpecifyFormatter()
 	{
 		global $prefs;
 		$prefs['short_date_format'] = '%b %e, %Y';
@@ -60,7 +60,7 @@ OUT;
 		$this->assertEquals($expect, $output);
 	}
 
-	function testUnknownFormattingRule()
+	public function testUnknownFormattingRule()
 	{
 		$plugin = new Search_Formatter_Plugin_WikiTemplate("* {display name=object_id} ({display name=object_type format=doesnotexist})\n");
 
@@ -81,7 +81,7 @@ OUT;
 		$this->assertEquals($expect, $output);
 	}
 
-	function testValueNotFound()
+	public function testValueNotFound()
 	{
 		$plugin = new Search_Formatter_Plugin_WikiTemplate("* {display name=doesnotexist} ({display name=doesnotexisteither default=Test})\n");
 
@@ -96,7 +96,7 @@ OUT;
 		$this->assertEquals($expect, $output);
 	}
 
-	function testBasicSmartyFormatter()
+	public function testBasicSmartyFormatter()
 	{
 		$plugin = new Search_Formatter_Plugin_SmartyTemplate(__DIR__ . '/basic.tpl');
 		$plugin->setData(['foo' => ['bar' => 'baz'],]);
@@ -125,7 +125,7 @@ OUT;
 		$this->assertXmlStringEqualsXmlString($expect, "<div>$output</div>");
 	}
 
-	function testForEmbeddedMode()
+	public function testForEmbeddedMode()
 	{
 		$plugin = new Search_Formatter_Plugin_SmartyTemplate(__DIR__ . '/embedded.tpl', true);
 
@@ -150,7 +150,7 @@ OUT;
 		$this->assertXmlStringEqualsXmlString($expect, "<div>$output</div>");
 	}
 
-	function testAdditionalFieldDefinition()
+	public function testAdditionalFieldDefinition()
 	{
 		$plugin = new Search_Formatter_Plugin_SmartyTemplate(__DIR__ . '/basic.tpl');
 
@@ -178,7 +178,7 @@ OUT;
 		$this->assertXmlStringEqualsXmlString($expect, "<div>$output</div>");
 	}
 
-	function testPaginationInformationProvided()
+	public function testPaginationInformationProvided()
 	{
 		$plugin = new Search_Formatter_Plugin_SmartyTemplate(__DIR__ . '/paginate.tpl');
 
@@ -202,7 +202,7 @@ OUT;
 		$this->assertStringNotContainsString('>4<', $output);
 	}
 
-	function testSpecifyDataSource()
+	public function testSpecifyDataSource()
 	{
 		$searchResult = Search_ResultSet::create([
 			['object_type' => 'wiki page', 'object_id' => 'HomePage'],
@@ -238,7 +238,7 @@ OUT;
 		$this->assertEquals($expect, $output);
 	}
 
-	function testFormatValueAsLink()
+	public function testFormatValueAsLink()
 	{
 		global $prefs;
 		$prefs['feature_sefurl'] = 'y';
@@ -270,7 +270,7 @@ OUT;
 		$this->assertEquals($expect, $output);
 	}
 
-	function testLinkInsideSmartyTemplate()
+	public function testLinkInsideSmartyTemplate()
 	{
 		global $prefs;
 		$prefs['feature_sefurl'] = 'y';
@@ -300,7 +300,7 @@ OUT;
 		$this->assertXmlStringEqualsXmlString($expect, "<div>$output</div>");
 	}
 
-	function testHighlightRequested()
+	public function testHighlightRequested()
 	{
 		$plugin = new Search_Formatter_Plugin_WikiTemplate('{display name=highlight}');
 
@@ -332,7 +332,7 @@ OUT;
 
 class Search_FormatterTest_HighlightHelper implements Zend\Filter\FilterInterface
 {
-	function filter($content)
+	public function filter($content)
 	{
 		return str_replace('Hello', '<strong>Hello</strong>', $content);
 	}

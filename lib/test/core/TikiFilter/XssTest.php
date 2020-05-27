@@ -7,7 +7,7 @@
 
 class TikiFilter_XssTest extends TikiTestCase
 {
-	function testSimple()
+	public function testSimple()
 	{
 		$filter = new TikiFilter_PreventXss;
 

@@ -10,7 +10,7 @@
  */
 class Search_IndexerTest extends PHPUnit\Framework\TestCase
 {
-	function testWithoutContentSource()
+	public function testWithoutContentSource()
 	{
 		$index = new Search_Index_Memory();
 
@@ -20,7 +20,7 @@ class Search_IndexerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(0, $index->size());
 	}
 
-	function testSingleContentProvider()
+	public function testSingleContentProvider()
 	{
 		$timeA = strtotime('2010-10-10 10:10:10');
 		$timeB = strtotime('2010-10-26 12:00:00');
@@ -52,7 +52,7 @@ class Search_IndexerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($typeFactory->timestamp($timeA), $document['modification_date']);
 	}
 
-	function testSourceAggregation()
+	public function testSourceAggregation()
 	{
 		$timeA = strtotime('2010-10-10 10:10:10');
 		$timeB = strtotime('2010-10-26 12:00:00');
@@ -87,7 +87,7 @@ class Search_IndexerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(3, $index->size());
 	}
 
-	function testGlobalCollection()
+	public function testGlobalCollection()
 	{
 		$contentSource = new Search_ContentSource_Static(
 			[
@@ -119,7 +119,7 @@ class Search_IndexerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($typeFactory->multivalue([1, 2, 3]), $document['categories']);
 	}
 
-	function testPartialUpdate()
+	public function testPartialUpdate()
 	{
 		$initialSource = new Search_ContentSource_Static(
 			[
@@ -175,7 +175,7 @@ class Search_IndexerTest extends PHPUnit\Framework\TestCase
 		`rm -Rf $edir`;
 	}
 
-	function testGlobalAssembly()
+	public function testGlobalAssembly()
 	{
 		$contentSource = new Search_ContentSource_Static(
 			['HomePage' => ['title' => 'Hello'],],
@@ -202,7 +202,7 @@ class Search_IndexerTest extends PHPUnit\Framework\TestCase
 		$this->assertArrayHasKey('total', $stats['times']);
 	}
 
-	function testContentSourceWithMultipleResults()
+	public function testContentSourceWithMultipleResults()
 	{
 		$contentSource = new Search_ContentSource_Static(
 			[
@@ -228,7 +228,7 @@ class Search_IndexerTest extends PHPUnit\Framework\TestCase
 		$this->assertArrayHasKey('total', $stats['times']);
 	}
 
-	function testTemporaryFields()
+	public function testTemporaryFields()
 	{
 		$contentSource = new Search_ContentSource_Static(
 			['HomePage' => ['_title' => 'Hello'],],

@@ -46,7 +46,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$prefs['rating_allow_multi_votes'] = $this->ratingAllowMultipleVotes;
 	}
 
-	function testGetGlobalSum()
+	public function testGetGlobalSum()
 	{
 		$lib = new RatingLib;
 		$lib->record_user_vote('abc', 'test', 111, 4, time() - 3000);
@@ -57,7 +57,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$this->assertEquals(9.0, $lib->collect('test', 111, 'sum'));
 	}
 
-	function testGetGlobalSumSingleVote()
+	public function testGetGlobalSumSingleVote()
 	{
 		global $prefs;
 		$prefs['rating_allow_multi_votes'] = '';
@@ -71,21 +71,21 @@ class Rating_AggregationTest extends TikiTestCase
 		$this->assertEquals(5.0, $lib->collect('test', 111, 'sum'));
 	}
 
-	function testSumWithNoData()
+	public function testSumWithNoData()
 	{
 		$lib = new RatingLib;
 
 		$this->assertEquals(0.0, $lib->collect('test', 111, 'sum'));
 	}
 
-	function testAverageWithNoData()
+	public function testAverageWithNoData()
 	{
 		$lib = new RatingLib;
 
 		$this->assertEquals(0.0, $lib->collect('test', 111, 'avg'));
 	}
 
-	function testGetGlobalAverage()
+	public function testGetGlobalAverage()
 	{
 		$lib = new RatingLib;
 		$lib->record_user_vote('abc', 'test', 111, 5, time() - 3000);
@@ -96,7 +96,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$this->assertEqualsWithDelta(10 / 3, $lib->collect('test', 111, 'avg'), 1 / 1000);
 	}
 
-	function testGetGlobalAverageSingleVote()
+	public function testGetGlobalAverageSingleVote()
 	{
 		global $prefs;
 		$prefs['rating_allow_multi_votes'] = '';
@@ -110,7 +110,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$this->assertEqualsWithDelta(5 / 2, $lib->collect('test', 111, 'avg'), 1 / 1000);
 	}
 
-	function testBadAggregateFunction()
+	public function testBadAggregateFunction()
 	{
 		$lib = new RatingLib;
 		$lib->record_user_vote('abc', 'test', 111, 5, time() - 3000);
@@ -121,7 +121,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$this->assertFalse($lib->collect('test', 111, 'foobar'));
 	}
 
-	function testTimeRangeLimiter()
+	public function testTimeRangeLimiter()
 	{
 		$lib = new RatingLib;
 		$lib->record_user_vote('abc', 'test', 111, 5, time() - 3000);
@@ -132,7 +132,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$this->assertEquals(5.0, $lib->collect('test', 111, 'sum', ['range' => 2500]));
 	}
 
-	function testIgnoreAnonymous()
+	public function testIgnoreAnonymous()
 	{
 		$lib = new RatingLib;
 		$lib->record_user_vote('abc', 'test', 111, 5, time() - 3000);
@@ -143,7 +143,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$this->assertEquals(10.0, $lib->collect('test', 111, 'sum', ['ignore' => 'anonymous']));
 	}
 
-	function testIgnoreAnonymousSingleVote()
+	public function testIgnoreAnonymousSingleVote()
 	{
 		global $prefs;
 		$prefs['rating_allow_multi_votes'] = '';
@@ -157,7 +157,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$this->assertEquals(3.0, $lib->collect('test', 111, 'sum', ['ignore' => 'anonymous']));
 	}
 
-	function testKeepLatest()
+	public function testKeepLatest()
 	{
 		$lib = new RatingLib;
 		$lib->record_user_vote('abc', 'test', 111, 5, time() - 3000);
@@ -172,7 +172,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$this->assertEquals(0.0, $lib->collect('test', 111, 'sum', ['keep' => 'latest', 'range' => 1200,	'ignore' => 'anonymous']));
 	}
 
-	function testKeepOldest()
+	public function testKeepOldest()
 	{
 		$lib = new RatingLib;
 		$lib->record_user_vote('abc', 'test', 111, 5, time() - 3000);
@@ -187,7 +187,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$this->assertEquals(2.0, $lib->collect('test', 111, 'sum', ['keep' => 'oldest', 'range' => 2500,	'ignore' => 'anonymous']));
 	}
 
-	function testKeepOldestSingleVote()
+	public function testKeepOldestSingleVote()
 	{
 		global $prefs;
 		$prefs['rating_allow_multi_votes'] = '';
@@ -205,7 +205,7 @@ class Rating_AggregationTest extends TikiTestCase
 		$this->assertEquals(3.0, $lib->collect('test', 111, 'sum', ['keep' => 'oldest', 'range' => 2500,	'ignore' => 'anonymous']));
 	}
 
-	function testConsiderPerPeriod()
+	public function testConsiderPerPeriod()
 	{
 		$lib = new RatingLib;
 		$lib->record_user_vote('abc', 'test', 111, 5, time() - 3000); // kept
@@ -222,7 +222,7 @@ class Rating_AggregationTest extends TikiTestCase
 		);
 	}
 
-	function testConsiderPerPeriodSingleVote()
+	public function testConsiderPerPeriodSingleVote()
 	{
 		global $prefs;
 		$prefs['rating_allow_multi_votes'] = '';

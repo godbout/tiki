@@ -9,7 +9,7 @@ class Services_ResultLoaderTest extends PHPUnit\Framework\TestCase
 {
 	private $read;
 
-	function testFetchNothing()
+	public function testFetchNothing()
 	{
 		$this->read = [
 			[],
@@ -17,7 +17,7 @@ class Services_ResultLoaderTest extends PHPUnit\Framework\TestCase
 		$this->assertLoaderData([], new Services_ResultLoader([$this, 'read']));
 	}
 
-	function testFetchOnePartial()
+	public function testFetchOnePartial()
 	{
 		$this->read = [
 			[2, 4, 6],
@@ -25,7 +25,7 @@ class Services_ResultLoaderTest extends PHPUnit\Framework\TestCase
 		$this->assertLoaderData([2, 4, 6], new Services_ResultLoader([$this, 'read']));
 	}
 
-	function testFetchMultipleComplete()
+	public function testFetchMultipleComplete()
 	{
 		$this->read = [
 			[2, 4, 6],
@@ -35,7 +35,7 @@ class Services_ResultLoaderTest extends PHPUnit\Framework\TestCase
 		$this->assertLoaderData([2, 4, 6, 8, 9, 0], new Services_ResultLoader([$this, 'read'], 3));
 	}
 
-	function testCompleteAndPartial()
+	public function testCompleteAndPartial()
 	{
 		$this->read = [
 			[2, 4, 6],
@@ -44,7 +44,7 @@ class Services_ResultLoaderTest extends PHPUnit\Framework\TestCase
 		$this->assertLoaderData([2, 4, 6, 8], new Services_ResultLoader([$this, 'read'], 3));
 	}
 
-	function assertLoaderData($expect, $loader)
+	public function assertLoaderData($expect, $loader)
 	{
 		$accumulate = [];
 		foreach ($loader as $value) {
@@ -54,7 +54,7 @@ class Services_ResultLoaderTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $accumulate);
 	}
 
-	function read($offset, $count)
+	public function read($offset, $count)
 	{
 		$this->assertEquals(0, $offset % $count);
 		return array_shift($this->read);

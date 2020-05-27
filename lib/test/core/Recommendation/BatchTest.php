@@ -23,7 +23,7 @@ class BatchTest extends TestCase implements Store\StoreInterface
 		};
 	}
 
-	function testNoEngines()
+	public function testNoEngines()
 	{
 		$engineSet = new EngineSet;
 
@@ -34,7 +34,7 @@ class BatchTest extends TestCase implements Store\StoreInterface
 		$this->assertCount(0, $this->storeCalls);
 	}
 
-	function testNoInput()
+	public function testNoInput()
 	{
 		$engineSet = new EngineSet;
 		$engineSet->register('test-a', new Engine\FakeEngine([
@@ -49,7 +49,7 @@ class BatchTest extends TestCase implements Store\StoreInterface
 		$this->assertCount(0, $this->storeCalls);
 	}
 
-	function testNoRecommendations()
+	public function testNoRecommendations()
 	{
 		$engineSet = new EngineSet;
 		$engineSet->register('test-a', new Engine\FakeEngine([
@@ -62,7 +62,7 @@ class BatchTest extends TestCase implements Store\StoreInterface
 		$this->assertCount(0, $this->storeCalls);
 	}
 
-	function testProcessOne()
+	public function testProcessOne()
 	{
 		$engineSet = new EngineSet;
 		$engineSet->register('test-a', new Engine\FakeEngine([
@@ -82,7 +82,7 @@ class BatchTest extends TestCase implements Store\StoreInterface
 		$this->assertEquals([new U('a'), $expect], $this->storeCalls[0]);
 	}
 
-	function testFilterAlreadyReceied()
+	public function testFilterAlreadyReceied()
 	{
 		$i = 0;
 
@@ -111,7 +111,7 @@ class BatchTest extends TestCase implements Store\StoreInterface
 		$this->assertEquals([new U('b'), $expectB], $this->storeCalls[1]);
 	}
 
-	function testBatchIgnoresDebugInformation()
+	public function testBatchIgnoresDebugInformation()
 	{
 		$engineSet = new EngineSet;
 		$engineSet->register('test-a', new Engine\FakeEngine([
@@ -131,24 +131,24 @@ class BatchTest extends TestCase implements Store\StoreInterface
 
 	// StoreInterface
 
-	function isReceived($input, Recommendation $recommendation)
+	public function isReceived($input, Recommendation $recommendation)
 	{
 		$cb = $this->checkCallback;
 		return $cb($input, $recommendation);
 	}
 
-	function store($input, RecommendationSet $recommendation)
+	public function store($input, RecommendationSet $recommendation)
 	{
 		$this->storeCalls[] = func_get_args();
 	}
 
-	function getInputs()
+	public function getInputs()
 	{
 		$this->assertIsArray($this->inputs);
 		return $this->inputs;
 	}
 
-	function terminate()
+	public function terminate()
 	{
 		$this->inputs = false;
 	}

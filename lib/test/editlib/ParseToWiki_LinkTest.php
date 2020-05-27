@@ -46,7 +46,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 	 *
 	 * Note: Links with an invalid wiki identifier are parsed as regular Wiki page links.
 	 */
-	function testExternalWiki()
+	public function testExternalWiki()
 	{
 
 		/*
@@ -126,7 +126,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 	/**
 	 * Test link to anchor within a page
 	 */
-	function testInPage()
+	public function testInPage()
 	{
 
 		/*
@@ -161,7 +161,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 	/**
 	 * Test link for creating e-mail
 	 */
-	function testMailTo()
+	public function testMailTo()
 	{
 
 
@@ -197,7 +197,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 	/**
 	 * Test links to articles, blogs, ...
 	 */
-	function testOtherTikiPages()
+	public function testOtherTikiPages()
 	{
 
 
@@ -265,7 +265,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 	/**
 	 * Test links to web pages
 	 */
-	function testWebResource()
+	public function testWebResource()
 	{
 
 		/*
@@ -376,7 +376,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 	/**
 	 * Test links to internal wiki pages
 	 */
-	function testWikiPage()
+	public function testWikiPage()
 	{
 
 
@@ -443,7 +443,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 	/*
 	 * Test anchors conversion to {ANAME}
 	 */
-	function testPluginAname()
+	public function testPluginAname()
 	{
 
 		$ex = "{ANAME()}anchor{ANAME}";

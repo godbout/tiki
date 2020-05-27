@@ -59,12 +59,12 @@ class Search_Elastic_FacetReaderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testReadUnavailable()
+	public function testReadUnavailable()
 	{
 		$this->assertNull($this->reader->getFacetFilter(new Search_Query_Facet_Term('foobar')));
 	}
 
-	function testReadAvailable()
+	public function testReadAvailable()
 	{
 		$facet = new Search_Query_Facet_Term('categories');
 		$expect = new Search_ResultSet_FacetFilter(
@@ -79,7 +79,7 @@ class Search_Elastic_FacetReaderTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $this->reader->getFacetFilter($facet));
 	}
 
-	function testIgnoreEmptyValue()
+	public function testIgnoreEmptyValue()
 	{
 		$facet = new Search_Query_Facet_Term('tracker_field_priority');
 		$expect = new Search_ResultSet_FacetFilter(

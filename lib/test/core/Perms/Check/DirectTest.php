@@ -12,7 +12,7 @@
 
 class Perms_Check_DirectTest extends TikiTestCase
 {
-	function testCallForwarded()
+	public function testCallForwarded()
 	{
 		$direct = new Perms_Check_Direct;
 
@@ -25,7 +25,7 @@ class Perms_Check_DirectTest extends TikiTestCase
 		$this->assertTrue($direct->check($mock, [], 'view', ['Admins', 'Anonymous']));
 	}
 
-	function testCallForwardedWhenFalseToo()
+	public function testCallForwardedWhenFalseToo()
 	{
 		$direct = new Perms_Check_Direct;
 

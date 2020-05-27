@@ -22,7 +22,7 @@ class Search_Elastic_CamelCaseTest extends PHPUnit\Framework\TestCase
 		$this->connection = $connection;
 	}
 
-	function testCamelCaseEnabled()
+	public function testCamelCaseEnabled()
 	{
 		$index = new Search_Elastic_Index($this->connection, 'test_index');
 		$index->setCamelCaseEnabled(true);
@@ -39,7 +39,7 @@ class Search_Elastic_CamelCaseTest extends PHPUnit\Framework\TestCase
 		$this->assertGreaterThan(0, count($query->search($index)));
 	}
 
-	function testCamelCaseEnabledWithStemming()
+	public function testCamelCaseEnabledWithStemming()
 	{
 		$index = new Search_Elastic_Index($this->connection, 'test_index');
 		$index->setCamelCaseEnabled(true);
@@ -56,7 +56,7 @@ class Search_Elastic_CamelCaseTest extends PHPUnit\Framework\TestCase
 		$this->assertGreaterThan(0, count($query->search($index)));
 	}
 
-	function testCamelCaseNotEnabled()
+	public function testCamelCaseNotEnabled()
 	{
 		$index = new Search_Elastic_Index($this->connection, 'test_index');
 		$index->destroy();

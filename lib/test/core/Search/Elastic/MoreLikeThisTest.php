@@ -28,7 +28,7 @@ class Search_Elastic_MoreLikeThisTest extends PHPUnit\Framework\TestCase
 		}
 	}
 
-	function populate($index)
+	public function populate($index)
 	{
 		$data = [
 			'X' => [
@@ -71,7 +71,7 @@ class Search_Elastic_MoreLikeThisTest extends PHPUnit\Framework\TestCase
 		$indexer->rebuild();
 	}
 
-	function testObtainSimilarDocument()
+	public function testObtainSimilarDocument()
 	{
 		$query = new Search_Query;
 		$query->filterSimilar('wiki page', 12);
@@ -81,7 +81,7 @@ class Search_Elastic_MoreLikeThisTest extends PHPUnit\Framework\TestCase
 		$this->assertGreaterThan(0, count($results));
 	}
 
-	function testDocumentTooDifferent()
+	public function testDocumentTooDifferent()
 	{
 		$query = new Search_Query;
 		$query->filterSimilar('wiki page', 'X');

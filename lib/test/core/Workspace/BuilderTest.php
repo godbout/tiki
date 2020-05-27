@@ -2,7 +2,7 @@
 
 class Profile_BuilderTest extends PHPUnit\Framework\TestCase
 {
-	function testBasicProfile()
+	public function testBasicProfile()
 	{
 		$builder = new Services_Workspace_ProfileBuilder;
 
@@ -12,7 +12,7 @@ EXPECT;
 		$this->assertIs($expect, $builder->getContent());
 	}
 
-	function testAddObjects()
+	public function testAddObjects()
 	{
 		$builder = new Services_Workspace_ProfileBuilder;
 		$builder->addObject(
@@ -48,7 +48,7 @@ EXPECT;
 		$this->assertIs($expect, $builder->getContent());
 	}
 
-	function testGroups()
+	public function testGroups()
 	{
 		$builder = new Services_Workspace_ProfileBuilder;
 		$builder->addGroup('Base', $builder->user('group'));
@@ -99,7 +99,7 @@ EXPECT;
 		$this->assertIs($expect, $builder->getContent());
 	}
 
-	function testReplaceSimpleSyntax()
+	public function testReplaceSimpleSyntax()
 	{
 		$builder = new Services_Workspace_ProfileBuilder;
 		$builder->addGroup('Base', '{group}');
@@ -124,7 +124,7 @@ EXPECT;
 		$this->assertIs($expect, $builder->getContent());
 	}
 
-	function testAssignDefaultGroup()
+	public function testAssignDefaultGroup()
 	{
 		$builder = new Services_Workspace_ProfileBuilder;
 		$builder->addObject(

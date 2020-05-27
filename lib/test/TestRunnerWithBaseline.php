@@ -36,14 +36,14 @@ class TestRunnerWithBaseline
 	public $filter = '';
 	public $diffs;
 
-	function __construct($baseline_log_fpath = null, $current_log_fpath = null, $output_fpath = null)
+	public function __construct($baseline_log_fpath = null, $current_log_fpath = null, $output_fpath = null)
 	{
 		$this->baseline_log_fpath = $baseline_log_fpath;
 		$this->current_log_fpath = $current_log_fpath;
 		$this->output_fpath = $output_fpath;
 	}
 
-	function run()
+	public function run()
 	{
 		global $tracer;
 
@@ -62,7 +62,7 @@ class TestRunnerWithBaseline
 		}
 	}
 
-	function run_tests()
+	public function run_tests()
 	{
 		global $tracer;
 
@@ -97,7 +97,7 @@ class TestRunnerWithBaseline
 		}
 	}
 
-	function print_diffs_with_baseline()
+	public function print_diffs_with_baseline()
 	{
 		global $tracer;
 
@@ -164,7 +164,7 @@ See above details about each error or failure.
 		$this->do_echo("\n\n");
 	}
 
-	function logpath_current()
+	public function logpath_current()
 	{
 
 		$path = __DIR__ . DIRECTORY_SEPARATOR . $this->logname_stem . ".current.json";
@@ -174,7 +174,7 @@ See above details about each error or failure.
 		return $path;
 	}
 
-	function logpath_baseline()
+	public function logpath_baseline()
 	{
 
 		$path = __DIR__ . DIRECTORY_SEPARATOR . $this->logname_stem . ".baseline.json";
@@ -184,7 +184,7 @@ See above details about each error or failure.
 		return $path;
 	}
 
-	function ask_if_want_to_create_baseline()
+	public function ask_if_want_to_create_baseline()
 	{
 		$answer = $this->prompt_for(
 			"There is no baseline log. Would you like to log current failures and errors as the baseline?",
@@ -195,7 +195,7 @@ See above details about each error or failure.
 		}
 	}
 
-	function process_phpunit_log_data($log_data)
+	public function process_phpunit_log_data($log_data)
 	{
 		global $tracer;
 
@@ -247,7 +247,7 @@ See above details about each error or failure.
 		return $issues;
 	}
 
-	function compare_two_test_runs($baseline_issues, $current_issues)
+	public function compare_two_test_runs($baseline_issues, $current_issues)
 	{
 		global $tracer;
 
@@ -287,7 +287,7 @@ See above details about each error or failure.
 		return $diffs;
 	}
 
-	function save_current_log_as_baseline()
+	public function save_current_log_as_baseline()
 	{
 		if ($this->total_new_issues_found() > 0) {
 			$answer = $this->prompt_for(
@@ -304,7 +304,7 @@ See above details about each error or failure.
 		copy($this->logpath_current(), $this->logpath_baseline());
 	}
 
-	function prompt_for($prompt, $eligible_answers)
+	public function prompt_for($prompt, $eligible_answers)
 	{
 		$prompt = "\n\n$prompt (" . implode('|', $eligible_answers) . ")\n> ";
 		$answer = null;
@@ -322,7 +322,7 @@ See above details about each error or failure.
 		return $answer;
 	}
 
-	function read_log_file($log_file_path)
+	public function read_log_file($log_file_path)
 	{
 		global $tracer;
 
@@ -341,7 +341,7 @@ See above details about each error or failure.
 		return $this->process_phpunit_log_data($json_decoded);
 	}
 
-	function config_from_cmdline_options()
+	public function config_from_cmdline_options()
 	{
 		global $argv, $tracer;
 
@@ -365,7 +365,7 @@ See above details about each error or failure.
 		}
 	}
 
-	function validate_cmdline_options($options)
+	public function validate_cmdline_options($options)
 	{
 		global $tracer;
 
@@ -387,7 +387,7 @@ See above details about each error or failure.
 		return $options;
 	}
 
-	function usage($error_message = null)
+	public function usage($error_message = null)
 	{
 		global $argv;
 
@@ -430,12 +430,12 @@ Options
 		exit("\n$help");
 	}
 
-	function make_empty_issues_list()
+	public function make_empty_issues_list()
 	{
 		return ['pass' => [], 'failures' => [], 'errors' => []];
 	}
 
-	function total_new_issues_found()
+	public function total_new_issues_found()
 	{
 		global $tracer;
 		$total = count($this->diffs['errors_introduced']) + count($this->diffs['failures_introduced']);

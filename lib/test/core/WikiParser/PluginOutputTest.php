@@ -7,42 +7,42 @@
 
 class WikiParser_PluginOutputTest extends PHPUnit\Framework\TestCase
 {
-	function testWikiToWikiOutput()
+	public function testWikiToWikiOutput()
 	{
 		$output = WikiParser_PluginOutput::wiki('^Hello world!^');
 
 		$this->assertEquals('^Hello world!^', $output->toWiki());
 	}
 
-	function testWikiToHtmlOutput()
+	public function testWikiToHtmlOutput()
 	{
 		$output = WikiParser_PluginOutput::wiki('^Hello world!^');
 
 		$this->assertStringContainsString('<div class="card bg-light"><div class="card-body">Hello world!</div></div>', $output->toHtml());
 	}
 
-	function testHtmlToWikiOutput()
+	public function testHtmlToWikiOutput()
 	{
 		$output = WikiParser_PluginOutput::html('<div>Hello</div>');
 
 		$this->assertEquals('~np~<div>Hello</div>~/np~', $output->toWiki());
 	}
 
-	function testHtmlToHtmlOutput()
+	public function testHtmlToHtmlOutput()
 	{
 		$output = WikiParser_PluginOutput::html('<div>Hello</div>');
 
 		$this->assertEquals('<div>Hello</div>', $output->toHtml());
 	}
 
-	function testInternalError()
+	public function testInternalError()
 	{
 		$output = WikiParser_PluginOutput::internalError(tra('Unknown conversion'));
 
 		$this->assertStringContainsString('Unknown conversion', $output->toHtml());
 	}
 
-	function testMissingArguments()
+	public function testMissingArguments()
 	{
 		$output = WikiParser_PluginOutput::argumentError(['id', 'test']);
 

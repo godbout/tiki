@@ -7,7 +7,7 @@
 
 class Search_QueryTest extends PHPUnit\Framework\TestCase
 {
-	function testQueryGlobalText()
+	public function testQueryGlobalText()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query('hello');
@@ -24,7 +24,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['hello'], $query->getTerms());
 	}
 
-	function testCompositeQuery()
+	public function testCompositeQuery()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query('hello world');
@@ -46,7 +46,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['hello', 'world'], $query->getTerms());
 	}
 
-	function testFilterType()
+	public function testFilterType()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query('hello');
@@ -65,7 +65,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['hello'], $query->getTerms());
 	}
 
-	function testFilterCategory()
+	public function testFilterCategory()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -88,7 +88,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals([], $query->getTerms());
 	}
 
-	function testDeepFilterCategory()
+	public function testDeepFilterCategory()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -110,7 +110,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expr, $index->getLastQuery());
 	}
 
-	function testFilterLanguage()
+	public function testFilterLanguage()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -133,7 +133,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals([], $query->getTerms());
 	}
 
-	function testDefaultSearchOrder()
+	public function testDefaultSearchOrder()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -143,7 +143,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(Search_Query_Order::searchResult(), $index->getLastOrder());
 	}
 
-	function testSpecifiedOrder()
+	public function testSpecifiedOrder()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -155,7 +155,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(Search_Query_Order::recentChanges(), $index->getLastOrder());
 	}
 
-	function testOrderFromString()
+	public function testOrderFromString()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -167,7 +167,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(new Search_Query_Order('title', 'text', 'asc'), $index->getLastOrder());
 	}
 
-	function testFilterBasedOnPermissions()
+	public function testFilterBasedOnPermissions()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -190,7 +190,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expr, $index->getLastQuery());
 	}
 
-	function testDefaultPagination()
+	public function testDefaultPagination()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -201,7 +201,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(50, $index->getLastCount());
 	}
 
-	function testSpecifiedPaginationRange()
+	public function testSpecifiedPaginationRange()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -213,7 +213,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(30, $index->getLastCount());
 	}
 
-	function testWithQueryRange()
+	public function testWithQueryRange()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -228,7 +228,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expr, $index->getLastQuery());
 	}
 
-	function testFilterTags()
+	public function testFilterTags()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -250,7 +250,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expr, $index->getLastQuery());
 	}
 
-	function testFilterContentSpanMultipleFields()
+	public function testFilterContentSpanMultipleFields()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -282,7 +282,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expr, $index->getLastQuery());
 	}
 
-	function testApplyWeight()
+	public function testApplyWeight()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -318,7 +318,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expr, $index->getLastQuery());
 	}
 
-	function testEmptySubQueryIsMainQuery()
+	public function testEmptySubQueryIsMainQuery()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -337,7 +337,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['hello'], $query->getTerms());
 	}
 
-	function testSubQueryCreatesOrStatement()
+	public function testSubQueryCreatesOrStatement()
 	{
 		$index = new Search_Index_Memory;
 		$query = new Search_Query;
@@ -374,7 +374,7 @@ class Search_QueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['hello'], $query->getTerms());
 	}
 
-	function testQueryCloning()
+	public function testQueryCloning()
 	{
 		$query = new Search_Query('Hello World');
 		$clone = clone $query;

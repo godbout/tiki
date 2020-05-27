@@ -34,7 +34,7 @@ class Tiki_FileGallery_Manipulator_MetadataExtractorTest extends TikiTestCase
 		$prefs = $this->oldPrefs;
 	}
 
-	function testMetadata()
+	public function testMetadata()
 	{
 		global $prefs;
 
@@ -45,21 +45,21 @@ class Tiki_FileGallery_Manipulator_MetadataExtractorTest extends TikiTestCase
 		$this->assertEquals(strlen($this->file->data), $meta['Basic Information']['File Data']['size']['newval']);
 	}
 
-	function testNameSanitizing()
+	public function testNameSanitizing()
 	{
 		$this->file->setParam('name', ' <b>testdata.png</b>');
 		(new MetadataExtractor($this->file))->run();
 		$this->assertEquals('testdata.png', $this->file->filename);
 	}
 
-	function testDescriptionSanitizing()
+	public function testDescriptionSanitizing()
 	{
 		$this->file->setParam('description', '<p>HTML formatted <strong>text</strong>.</p>');
 		(new MetadataExtractor($this->file))->run();
 		$this->assertEquals('HTML formatted text.', $this->file->description);
 	}
 
-	function testNameExtractionFromFilename()
+	public function testNameExtractionFromFilename()
 	{
 		$this->file->setParam('name', 'test-data.png');
 		$this->file->setParam('filename', 'test-data.png');
@@ -67,26 +67,26 @@ class Tiki_FileGallery_Manipulator_MetadataExtractorTest extends TikiTestCase
 		$this->assertEquals('Test Data', $this->file->name);
 	}
 
-	function testCreatedSoon()
+	public function testCreatedSoon()
 	{
 		(new MetadataExtractor($this->file))->run();
 		$this->assertEqualsWithDelta(time(), $this->file->created, 3600); // this is a 1 hour delta from beginning of test suite...
 	}
 
-	function testCreatedUnchangedForExistingFiles()
+	public function testCreatedUnchangedForExistingFiles()
 	{
 		$this->file->setParam('created', 123);
 		(new MetadataExtractor($this->file))->run();
 		$this->assertEquals(123, $this->file->created);
 	}
 
-	function testLastModifSoon()
+	public function testLastModifSoon()
 	{
 		(new MetadataExtractor($this->file))->run();
 		$this->assertEqualsWithDelta(time(), $this->file->lastModif, 3600); // this is a 1 hour delta from beginning of test suite...
 	}
 
-	function testFiletypeFix()
+	public function testFiletypeFix()
 	{
 		global $prefs;
 		$prefs['fgal_fix_mime_type'] = 'y';

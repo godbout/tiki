@@ -12,7 +12,7 @@
 
 class Perms_ApplierTest extends TikiTestCase
 {
-	function testApplyFromNothing()
+	public function testApplyFromNothing()
 	{
 		$global = new Perms_Reflection_PermissionSet;
 		$global->add('Anonymous', 'view');
@@ -42,7 +42,7 @@ class Perms_ApplierTest extends TikiTestCase
 		$applier->apply($newSet);
 	}
 
-	function testFromExistingSet()
+	public function testFromExistingSet()
 	{
 		$global = new Perms_Reflection_PermissionSet;
 		$global->add('Anonymous', 'view');
@@ -78,7 +78,7 @@ class Perms_ApplierTest extends TikiTestCase
 		$applier->apply($newSet);
 	}
 
-	function testAsParent()
+	public function testAsParent()
 	{
 		$global = new Perms_Reflection_PermissionSet;
 		$global->add('Anonymous', 'view');
@@ -109,7 +109,7 @@ class Perms_ApplierTest extends TikiTestCase
 		$applier->apply($newSet);
 	}
 
-	function testParentNotAvailable()
+	public function testParentNotAvailable()
 	{
 		$global = new Perms_Reflection_PermissionSet;
 		$global->add('Anonymous', 'view');
@@ -134,7 +134,7 @@ class Perms_ApplierTest extends TikiTestCase
 		$applier->apply($newSet);
 	}
 
-	function testMultipleTargets()
+	public function testMultipleTargets()
 	{
 		$global = new Perms_Reflection_PermissionSet;
 		$global->add('Anonymous', 'view');
@@ -174,7 +174,7 @@ class Perms_ApplierTest extends TikiTestCase
 		$applier->apply($newSet);
 	}
 
-	function testRestrictChangedPermissions()
+	public function testRestrictChangedPermissions()
 	{
 		$before = new Perms_Reflection_PermissionSet;
 		$before->add('Admin', 'admin');
@@ -204,7 +204,7 @@ class Perms_ApplierTest extends TikiTestCase
 		$applier->apply($newSet);
 	}
 
-	function testNoRevertToParentWithRestrictions()
+	public function testNoRevertToParentWithRestrictions()
 	{
 		$current = new Perms_Reflection_PermissionSet;
 		$current->add('Anonymous', 'view');
@@ -236,7 +236,7 @@ class Perms_ApplierTest extends TikiTestCase
 		$applier->apply($newSet);
 	}
 
-	function testRevertIfWithinBounds()
+	public function testRevertIfWithinBounds()
 	{
 		$current = new Perms_Reflection_PermissionSet;
 		$current->add('Anonymous', 'view');

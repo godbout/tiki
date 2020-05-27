@@ -12,7 +12,7 @@
 
 class Category_ManipulatorTest extends TikiTestCase
 {
-	function testSimpleManipulation()
+	public function testSimpleManipulation()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(
@@ -32,7 +32,7 @@ class Category_ManipulatorTest extends TikiTestCase
 		$this->assertEquals([3, 7], $manip->getRemovedCategories());
 	}
 
-	function testManipulationWithoutSpecifyingManaged()
+	public function testManipulationWithoutSpecifyingManaged()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(
@@ -51,7 +51,7 @@ class Category_ManipulatorTest extends TikiTestCase
 		$this->assertEquals([3, 7], $manip->getRemovedCategories());
 	}
 
-	function testLimitationOnRange()
+	public function testLimitationOnRange()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(
@@ -71,7 +71,7 @@ class Category_ManipulatorTest extends TikiTestCase
 		$this->assertEquals([3], $manip->getRemovedCategories());
 	}
 
-	function testNotAllowedToModifyObject()
+	public function testNotAllowedToModifyObject()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(
@@ -95,7 +95,7 @@ class Category_ManipulatorTest extends TikiTestCase
 		$this->assertEquals([], $manip->getRemovedCategories());
 	}
 
-	function testCannotAddAny()
+	public function testCannotAddAny()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(
@@ -119,7 +119,7 @@ class Category_ManipulatorTest extends TikiTestCase
 		$this->assertEquals([3], $manip->getRemovedCategories());
 	}
 
-	function testCannotRemoveAny()
+	public function testCannotRemoveAny()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(
@@ -143,7 +143,7 @@ class Category_ManipulatorTest extends TikiTestCase
 		$this->assertEquals([], $manip->getRemovedCategories());
 	}
 
-	function testDefaultSet()
+	public function testDefaultSet()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(
@@ -166,7 +166,7 @@ class Category_ManipulatorTest extends TikiTestCase
 		$this->assertEquals([3, 7], $manip->getRemovedCategories());
 	}
 
-	function testConstraintAppliesBeyondPermissions()
+	public function testConstraintAppliesBeyondPermissions()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(
@@ -195,7 +195,7 @@ class Category_ManipulatorTest extends TikiTestCase
 		$this->assertEquals([3, 7], $manip->getRemovedCategories());
 	}
 
-	function testUnmanagedFilter()
+	public function testUnmanagedFilter()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(
@@ -215,7 +215,7 @@ class Category_ManipulatorTest extends TikiTestCase
 		$this->assertEquals([7], $manip->getRemovedCategories());
 	}
 
-	function testSkipPermissionChecks()
+	public function testSkipPermissionChecks()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(

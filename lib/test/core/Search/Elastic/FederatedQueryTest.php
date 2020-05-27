@@ -48,7 +48,7 @@ class Search_Elastic_FederatedQueryTest extends PHPUnit\Framework\TestCase
 		$connection->assignAlias('test_index_b', 'test_index_b_foo');
 	}
 
-	function testSearchAffectsAllForeign()
+	public function testSearchAffectsAllForeign()
 	{
 		$query = new Search_Query('hello');
 		$sub = new Search_Query('hello');
@@ -60,7 +60,7 @@ class Search_Elastic_FederatedQueryTest extends PHPUnit\Framework\TestCase
 		$this->assertCount(3, $result);
 	}
 
-	function testResultsIndicateOriginIndex()
+	public function testResultsIndicateOriginIndex()
 	{
 		$query = new Search_Query('foobar');
 		$sub = new Search_Query('C');
@@ -73,7 +73,7 @@ class Search_Elastic_FederatedQueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals('test_index_c', $first['_index']);
 	}
 
-	function testUnexpandAliases()
+	public function testUnexpandAliases()
 	{
 		$query = new Search_Query('foobar');
 		$sub = new Search_Query('B');
@@ -87,7 +87,7 @@ class Search_Elastic_FederatedQueryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals('test_index_b', $first['_index']);
 	}
 
-	function testTransformsApplyPerIndex()
+	public function testTransformsApplyPerIndex()
 	{
 		$query = new Search_Query('Hello');
 		$query->applyTransform(new Search\Federated\UrlPrefixTransform('http://foo.example.com'));

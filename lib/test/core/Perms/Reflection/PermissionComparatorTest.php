@@ -11,7 +11,7 @@
 
 class Perms_Reflection_PermissionComparatorTest extends TikiTestCase
 {
-	function testIdenticalSets()
+	public function testIdenticalSets()
 	{
 		$a = new Perms_Reflection_PermissionSet;
 		$a->add('Anonymous', 'view');
@@ -23,7 +23,7 @@ class Perms_Reflection_PermissionComparatorTest extends TikiTestCase
 		$this->assertTrue($comparator->equal());
 	}
 
-	function testLeftHasLessPermissions()
+	public function testLeftHasLessPermissions()
 	{
 		$a = new Perms_Reflection_PermissionSet;
 		$a->add('Anonymous', 'view');
@@ -36,7 +36,7 @@ class Perms_Reflection_PermissionComparatorTest extends TikiTestCase
 		$this->assertFalse($comparator->equal());
 	}
 
-	function testLeftHasLessGroups()
+	public function testLeftHasLessGroups()
 	{
 		$a = new Perms_Reflection_PermissionSet;
 		$a->add('Anonymous', 'view');
@@ -49,7 +49,7 @@ class Perms_Reflection_PermissionComparatorTest extends TikiTestCase
 		$this->assertFalse($comparator->equal());
 	}
 
-	function testRightHasLessPermissions()
+	public function testRightHasLessPermissions()
 	{
 		$a = new Perms_Reflection_PermissionSet;
 		$a->add('Anonymous', 'view');
@@ -62,7 +62,7 @@ class Perms_Reflection_PermissionComparatorTest extends TikiTestCase
 		$this->assertFalse($comparator->equal());
 	}
 
-	function testRightHasLessGroups()
+	public function testRightHasLessGroups()
 	{
 		$a = new Perms_Reflection_PermissionSet;
 		$a->add('Anonymous', 'view');
@@ -75,7 +75,7 @@ class Perms_Reflection_PermissionComparatorTest extends TikiTestCase
 		$this->assertFalse($comparator->equal());
 	}
 
-	function testGetRemovals()
+	public function testGetRemovals()
 	{
 		$a = new Perms_Reflection_PermissionSet;
 		$a->add('Anonymous', 'view');
@@ -95,7 +95,7 @@ class Perms_Reflection_PermissionComparatorTest extends TikiTestCase
 		);
 	}
 
-	function testGetAdditions()
+	public function testGetAdditions()
 	{
 		$a = new Perms_Reflection_PermissionSet;
 		$a->add('Anonymous', 'view');
@@ -115,7 +115,7 @@ class Perms_Reflection_PermissionComparatorTest extends TikiTestCase
 		);
 	}
 
-	function testIdenticalHasNoDifferences()
+	public function testIdenticalHasNoDifferences()
 	{
 		$a = new Perms_Reflection_PermissionSet;
 		$a->add('Anonymous', 'view');

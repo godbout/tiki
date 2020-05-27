@@ -12,7 +12,7 @@
 
 class DeclFilter_StaticKeyUnsetTest extends TikiTestCase
 {
-	function testMatch()
+	public function testMatch()
 	{
 		$rule = new DeclFilter_StaticKeyUnsetRule(['hello', 'world']);
 
@@ -21,7 +21,7 @@ class DeclFilter_StaticKeyUnsetTest extends TikiTestCase
 		$this->assertFalse($rule->match('baz'));
 	}
 
-	function testApply()
+	public function testApply()
 	{
 		$rule = new DeclFilter_StaticKeyUnsetRule(['hello', 'world']);
 

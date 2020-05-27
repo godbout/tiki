@@ -12,7 +12,7 @@
 
 class Perms_MixedTest extends TikiTestCase
 {
-	function testFilterMixed()
+	public function testFilterMixed()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(

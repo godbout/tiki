@@ -37,7 +37,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testFontFamily()
+	public function testFontFamily()
 	{
 		$this->markTestIncomplete('Work in progress.');
 
@@ -87,7 +87,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * - <strong>
 	 * - 'font-weight:bold'
 	 */
-	function testBold()
+	public function testBold()
 	{
 
 		// simple
@@ -133,7 +133,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * - <i>
 	 * - 'font-style:italic'
 	 */
-	function testItalic()
+	public function testItalic()
 	{
 
 		$ex = '\'\'italic\'\'';
@@ -177,7 +177,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * - <u>
 	 * - 'text-decoration:underline'
 	 */
-	function testUnderlined()
+	public function testUnderlined()
 	{
 
 		$ex = '===underlined===';
@@ -214,7 +214,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * - <s>
 	 * - 'text-decoration:line-through'
 	 */
-	function testStrikethrough()
+	public function testStrikethrough()
 	{
 
 		$ex = '--strikethrough--';
@@ -267,7 +267,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * => {SUB()}
 	 * - <sub>
 	 */
-	function testSubscript()
+	public function testSubscript()
 	{
 
 		$ex = '{SUB()}subscript{SUB}';
@@ -284,7 +284,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * => {SUP()}
 	 * - <sup>
 	 */
-	function testSuperscript()
+	public function testSuperscript()
 	{
 
 		$ex = '{SUP()}subscript{SUP}';
@@ -303,7 +303,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testMonospace()
+	public function testMonospace()
 	{
 
 		$ex = '-+monospaced+-';
@@ -327,7 +327,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * => {DIV(type="tt")}
 	 * - <tt>
 	 */
-	function testTeletype()
+	public function testTeletype()
 	{
 
 		$ex = '{DIV(type="tt")}typewriter{DIV}';
@@ -345,7 +345,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * - 'background'
 	 * - 'background-color'
 	 */
-	function testColor()
+	public function testColor()
 	{
 
 		/*

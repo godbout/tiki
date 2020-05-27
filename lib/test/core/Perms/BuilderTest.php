@@ -7,7 +7,7 @@
 
 class Perms_BuilderTest extends PHPUnit\Framework\TestCase
 {
-	function testDefaultBuilder()
+	public function testDefaultBuilder()
 	{
 		$builder = new Perms_Builder;
 		$perms = $builder->build();
@@ -16,7 +16,7 @@ class Perms_BuilderTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $perms);
 	}
 
-	function testBuildAdminPermissionMap()
+	public function testBuildAdminPermissionMap()
 	{
 		$builder = new Perms_Builder;
 		$perms = $builder
@@ -27,7 +27,7 @@ class Perms_BuilderTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $perms);
 	}
 
-	function testAdminIndirects()
+	public function testAdminIndirects()
 	{
 		$builder = new Perms_Builder;
 		$perms = $builder->withDefinitions(
@@ -55,7 +55,7 @@ class Perms_BuilderTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $perms);
 	}
 
-	function testGlobalChecksOnly()
+	public function testGlobalChecksOnly()
 	{
 		$builder = new Perms_Builder;
 

@@ -14,7 +14,7 @@ class Tiki_Event_ManagerTest extends PHPUnit\Framework\TestCase
 		$this->called = 0;
 	}
 
-	function testTriggerUnknown()
+	public function testTriggerUnknown()
 	{
 		$manager = new Tiki_Event_Manager;
 		$manager->trigger('tiki.wiki.update');
@@ -22,7 +22,7 @@ class Tiki_Event_ManagerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(0, $this->called);
 	}
 
-	function testBindAndTrigger()
+	public function testBindAndTrigger()
 	{
 		$manager = new Tiki_Event_Manager;
 		$manager->bind('tiki.wiki.update', [$this, 'callbackAdd']);
@@ -32,7 +32,7 @@ class Tiki_Event_ManagerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(1, $this->called);
 	}
 
-	function testChaining()
+	public function testChaining()
 	{
 		$manager = new Tiki_Event_Manager;
 
@@ -48,7 +48,7 @@ class Tiki_Event_ManagerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(4, $this->called);
 	}
 
-	function testProvideBindingArguments()
+	public function testProvideBindingArguments()
 	{
 		$manager = new Tiki_Event_Manager;
 		$manager->bind(
@@ -68,7 +68,7 @@ class Tiki_Event_ManagerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(9, $this->called);
 	}
 
-	function testCalltimeArgumentsOverrideBinding()
+	public function testCalltimeArgumentsOverrideBinding()
 	{
 		$manager = new Tiki_Event_Manager;
 
@@ -83,7 +83,7 @@ class Tiki_Event_ManagerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(16, $this->called);
 	}
 
-	function testGenerateInheritenceGraph()
+	public function testGenerateInheritenceGraph()
 	{
 		$manager = new Tiki_Event_Manager;
 
@@ -114,7 +114,7 @@ class Tiki_Event_ManagerTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testBindWithPriority()
+	public function testBindWithPriority()
 	{
 		$manager = new Tiki_Event_Manager;
 
@@ -130,7 +130,7 @@ class Tiki_Event_ManagerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(1, $this->called);
 	}
 
-	function testIndependentTriggers()
+	public function testIndependentTriggers()
 	{
 		$manager = new Tiki_Event_Manager;
 
@@ -154,12 +154,12 @@ class Tiki_Event_ManagerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(1, $this->called);
 	}
 
-	function callbackAdd($arguments)
+	public function callbackAdd($arguments)
 	{
 		$this->called += $arguments['amount'] ?? 1;
 	}
 
-	function callbackMultiply($arguments)
+	public function callbackMultiply($arguments)
 	{
 		$this->called *= $arguments['amount'] ?? 2;
 	}

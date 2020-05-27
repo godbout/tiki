@@ -15,7 +15,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	private $ext1 = 'test_ext1'; // name of the external Wiki 1
 
 
-	function __construct()
+	public function __construct()
 	{
 		// we must set the page regex, otherwise the links get not parsed
 		// taken from: 'lib/setup/wiki.php' with  $prefs['wiki_page_regex'] == 'full'
@@ -65,7 +65,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	 *
 	 * Note: Links with an invalid wiki identifier are parsed as regular Wiki page links.
 	 */
-	function testExternalWiki()
+	public function testExternalWiki()
 	{
 
 		/*
@@ -113,7 +113,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	/**
 	 * Test link to anchor within a page
 	 */
-	function testInPage()
+	public function testInPage()
 	{
 
 		/*
@@ -140,7 +140,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	/**
 	 * Test link for creating e-mail
 	 */
-	function testMailTo()
+	public function testMailTo()
 	{
 
 		/*
@@ -165,7 +165,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	/**
 	 * Test links to articles, blogs, ...
 	 */
-	function testOtherTikiPages()
+	public function testOtherTikiPages()
 	{
 
 		/*
@@ -215,7 +215,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	 * Test links to web pages
 	 *
 	 */
-	function testWebResource()
+	public function testWebResource()
 	{
 
 		/*		$this->markTestSkipped(
@@ -313,7 +313,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	 *
 	 * @group marked-as-skipped
 	 */
-	function testWikiPage()
+	public function testWikiPage()
 	{
 
 		$tikilib = TikiLib::lib('tiki');
@@ -440,7 +440,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testPluginAname()
+	public function testPluginAname()
 	{
 		$this->markTestIncomplete('Work in progress.');
 

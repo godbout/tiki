@@ -34,7 +34,7 @@ class JitFilter_IteratorTest extends TikiTestCase
 		$this->array = null;
 	}
 
-	function testForeach()
+	public function testForeach()
 	{
 		foreach ($this->array as $key => $value) {
 			switch ($key) {

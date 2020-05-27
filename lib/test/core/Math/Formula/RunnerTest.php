@@ -19,7 +19,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		);
 	}
 
-	function testSimpleOperations()
+	public function testSimpleOperations()
 	{
 		$this->runner->setFormula('(mul (add foobar 2) test-variable)');
 		$required = $this->runner->inspect();
@@ -27,7 +27,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(['foobar', 'test-variable'], $required);
 	}
 
-	function testSimpleOperationPreparsed()
+	public function testSimpleOperationPreparsed()
 	{
 		$parser = new Math_Formula_Parser;
 		$element = $parser->parse('(mul (add 1 2) test)');
@@ -38,33 +38,33 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(['test'], $required);
 	}
 
-	function testUnknownOperator()
+	public function testUnknownOperator()
 	{
 		$this->expectException('Math_Formula_Runner_Exception');
 		$this->runner->setFormula('(foobar abc)');
 		$this->runner->inspect();
 	}
 
-	function testNoFormulaSpecified()
+	public function testNoFormulaSpecified()
 	{
 		$this->expectException('Math_Formula_Runner_Exception');
 		$this->runner->inspect();
 	}
 
-	function testSimpleEvaluation()
+	public function testSimpleEvaluation()
 	{
 		$this->runner->setFormula('(add 1 2)');
 		$this->assertEquals(3, $this->runner->evaluate());
 	}
 
-	function testSum()
+	public function testSum()
 	{
 		$this->runner->setFormula('(add list)');
 		$this->runner->setVariables(['list' => [1,2,3]]);
 		$this->assertEquals(6, $this->runner->evaluate());
 	}
 
-	function testMin()
+	public function testMin()
 	{
 		$this->runner->setFormula('(min -10 0 20)');
 		$this->assertEquals(-10, $this->runner->evaluate());
@@ -73,7 +73,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(10, $this->runner->evaluate());
 	}
 
-	function testMax()
+	public function testMax()
 	{
 		$this->runner->setFormula('(max -10 0 20)');
 		$this->assertEquals(20, $this->runner->evaluate());
@@ -82,28 +82,28 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(-5, $this->runner->evaluate());
 	}
 
-	function testWithVariables()
+	public function testWithVariables()
 	{
 		$this->runner->setFormula('(mul foobar 2)');
 		$this->runner->setVariables(['foobar' => 2.5,]);
 		$this->assertEquals(5, $this->runner->evaluate());
 	}
 
-	function testProductList()
+	public function testProductList()
 	{
 		$this->runner->setFormula('(mul list)');
 		$this->runner->setVariables(['list' => [2.5,2,4]]);
 		$this->assertEquals(20, $this->runner->evaluate());
 	}
 
-	function testMissingVariable()
+	public function testMissingVariable()
 	{
 		$this->expectException('Math_Formula_Exception');
 		$this->runner->setFormula('(mul foobar 2)');
 		$this->runner->evaluate();
 	}
 
-	function testSearchingForConfiguration()
+	public function testSearchingForConfiguration()
 	{
 		$this->runner->setFormula('(testop (object test 123) (concat 456))');
 		$this->runner->setVariables(['test' => 'aaa']);
@@ -113,7 +113,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals('aaa123456', $this->runner->evaluate());
 	}
 
-	function testInvalidData()
+	public function testInvalidData()
 	{
 		$this->expectException('Math_Formula_Exception');
 		$this->runner->setFormula('(testop (object test) (concat 456))');
@@ -121,20 +121,20 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->runner->inspect();
 	}
 
-	function testCamelCaseOperation()
+	public function testCamelCaseOperation()
 	{
 		$this->runner->setFormula('(forty-two)');
 		$this->assertEquals(42, $this->runner->evaluate());
 	}
 
-	function testEmptyMap()
+	public function testEmptyMap()
 	{
 		$this->runner->setFormula('(map)');
 
 		$this->assertEquals([], $this->runner->evaluate());
 	}
 
-	function testGenerateMap()
+	public function testGenerateMap()
 	{
 		$this->runner->setFormula('(map (a A) (b B))');
 		$this->runner->setVariables(['A' => 1, 'B' => 2]);
@@ -142,7 +142,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(['a' => 1, 'b' => 2], $this->runner->evaluate());
 	}
 
-	function testEquals()
+	public function testEquals()
 	{
 		$this->runner->setFormula('(equals test 123)');
 
@@ -153,7 +153,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(0, $this->runner->evaluate());
 	}
 
-	function testNotEquals()
+	public function testNotEquals()
 	{
 		$this->runner->setFormula('(not-equals test 123)');
 
@@ -164,7 +164,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(1, $this->runner->evaluate());
 	}
 
-	function testIf()
+	public function testIf()
 	{
 		$this->runner->setFormula('(if condition then else)');
 		$this->runner->setVariables(
@@ -188,7 +188,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(456, $this->runner->evaluate());
 	}
 
-	function testIfWithoutElse()
+	public function testIfWithoutElse()
 	{
 		$this->runner->setFormula('(if condition then)');
 		$this->runner->setVariables(
@@ -210,7 +210,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(0, $this->runner->evaluate());
 	}
 
-	function testAnd()
+	public function testAnd()
 	{
 		$this->runner->setFormula('(and)');
 		$this->assertEquals(0, $this->runner->evaluate());
@@ -231,7 +231,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(1, $this->runner->evaluate());
 	}
 
-	function testOr()
+	public function testOr()
 	{
 		$this->runner->setFormula('(or)');
 		$this->assertEquals(0, $this->runner->evaluate());
@@ -252,7 +252,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals(0, $this->runner->evaluate());
 	}
 
-	function testExtractParts()
+	public function testExtractParts()
 	{
 		$this->runner->setFormula('(split-list (content string) (separator :) (keys object-type object-id))');
 		$this->runner->setVariables(
@@ -268,7 +268,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		], $this->runner->evaluate());
 	}
 
-	function testSplitWithSingleKey()
+	public function testSplitWithSingleKey()
 	{
 		$this->runner->setFormula('(split-list (content string) (separator ,) (key id))');
 		$this->runner->setVariables(
@@ -284,7 +284,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		], $this->runner->evaluate());
 	}
 
-	function testMapList()
+	public function testMapList()
 	{
 		$this->runner->setFormula('(for-each (list list) (formula (mul a b c)))');
 		$this->runner->setVariables([
@@ -299,7 +299,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals([20, 60, 120], $this->runner->evaluate());
 	}
 
-	function testAverageList()
+	public function testAverageList()
 	{
 		$this->runner->setFormula('(avg a b)');
 		$this->runner->setVariables([
@@ -315,7 +315,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 	 * @param $in
 	 * @param $out
 	 */
-	function testStringConcat($in, $out)
+	public function testStringConcat($in, $out)
 	{
 		$this->runner->setFormula($in);
 		$this->runner->setVariables([
@@ -326,7 +326,7 @@ class Math_Formula_RunnerTest extends TikiTestCase
 		$this->assertEquals($out, $this->runner->evaluate());
 	}
 
-	function stringConcats()
+	public function stringConcats()
 	{
 		return [
 			['(str a b)', 'a b'],

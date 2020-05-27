@@ -12,7 +12,7 @@
 
 class WikiParser_PluginMatcherTest extends TikiTestCase
 {
-	function toArray($matcher)
+	public function toArray($matcher)
 	{
 		$ret = [];
 		foreach ($matcher as $match) {
@@ -22,7 +22,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		return $ret;
 	}
 
-	function doMatch($string, $expecting)
+	public function doMatch($string, $expecting)
 	{
 		$matches = WikiParser_PluginMatcher::match($string);
 
@@ -34,7 +34,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		return $ret;
 	}
 
-	function testShortMatch()
+	public function testShortMatch()
 	{
 		$matches = $this->doMatch(' {img src=foo.png} ', 1);
 
@@ -46,7 +46,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertEquals(18, $match->getEnd());
 	}
 
-	function testShortLegacySyntax()
+	public function testShortLegacySyntax()
 	{
 		$matches = $this->doMatch(' {IMG(src=foo.png)/} ', 1);
 
@@ -58,7 +58,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertEquals(20, $match->getEnd());
 	}
 
-	function testFullMatch()
+	public function testFullMatch()
 	{
 		$matches = $this->doMatch('{DIV(hello=>world)} foobar {DIV}', 1);
 
@@ -70,7 +70,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertEquals(32, $match->getEnd());
 	}
 
-	function testNestedShortMatch()
+	public function testNestedShortMatch()
 	{
 		$matches = $this->doMatch('{A(foo=>bar)} {a hello=world} {A}', 2);
 
@@ -92,7 +92,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertFalse($matches[0]->inside($matches[1]));
 	}
 
-	function testSideBySideFullMatch()
+	public function testSideBySideFullMatch()
 	{
 		$matches = $this->doMatch('{A(hello=world)} middle {A} between {A(bar=baz)} center {A}', 2);
 
@@ -113,7 +113,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertFalse($matches[1]->inside($matches[0]));
 	}
 
-	function testNestedFullMatch()
+	public function testNestedFullMatch()
 	{
 		$matches = $this->doMatch('{A(foo=>bar)} {A(hello=world)} middle {A} between {A(bar=baz)} center {A} {A}', 3);
 
@@ -147,7 +147,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertFalse($matches[2]->inside($matches[1]));
 	}
 
-	function testUnclosedFullMatch()
+	public function testUnclosedFullMatch()
 	{
 		$matches = $this->doMatch('{A(unclosed=>bar)} {A(unclosed=world)} middle {A}', 1);
 
@@ -157,7 +157,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertEquals(' middle ', $match->getBody());
 	}
 
-	function testQuotesSkipInArguments()
+	public function testQuotesSkipInArguments()
 	{
 		$matches = $this->doMatch('{a foo=>"bar \" } {"}', 1);
 
@@ -166,21 +166,21 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertEquals('foo=>"bar \" } {"', $match->getArguments());
 	}
 
-	function testSkipNoParse()
+	public function testSkipNoParse()
 	{
 		$matches = $this->doMatch('{A()} ~np~ {A} {b} {B()} {B} ~/np~ {A} ~np~ {b} ~/np~', 1);
 		$this->assertEquals(' ~np~ {A} {b} {B()} {B} ~/np~ ', $matches[0]->getBody());
 	}
 
 
-	function testVerySimpleMatch()
+	public function testVerySimpleMatch()
 	{
 		$string = '{c}';
 		$matches = WikiParser_PluginMatcher::match($string);
 		$this->assertCount(1, $matches);
 	}
 
-	function testSimpleReplacement()
+	public function testSimpleReplacement()
 	{
 		$string = '{c} {A()} {b} {A} {b}';
 		$matches = WikiParser_PluginMatcher::match($string);
@@ -193,7 +193,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertEquals('{c} {A()} Hello {A} {b}', $matches->getText());
 	}
 
-	function testLegacyReplacement()
+	public function testLegacyReplacement()
 	{
 		$string = '{c} {A()} {B()/} {A} {b}';
 		$matches = WikiParser_PluginMatcher::match($string);
@@ -206,7 +206,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertEquals('{c} {A()} Hello {A} {b}', $matches->getText());
 	}
 
-	function testLegacyReplacementWithSpace()
+	public function testLegacyReplacementWithSpace()
 	{
 		$string = '{c} {A()} {B() /} {A} {b}';
 		$matches = WikiParser_PluginMatcher::match($string);
@@ -219,7 +219,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertEquals('{c} {A()} Hello {A} {b}', $matches->getText());
 	}
 
-	function testLargerReplacement()
+	public function testLargerReplacement()
 	{
 		$string = '{c} {A()} {b} {A} {b}';
 		$matches = WikiParser_PluginMatcher::match($string);
@@ -232,7 +232,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertEquals('{c} Hello {b}', $matches->getText());
 	}
 
-	function testMatchReplacementChangesOffsets()
+	public function testMatchReplacementChangesOffsets()
 	{
 		$matches = $this->doMatch('{c} {A()} {b} {A} {b}', 4);
 		$this->assertCount(4, $matches);
@@ -262,7 +262,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertFalse($innerMatch->getEnd());
 	}
 
-	function testMatchReplacementDecreasesCount()
+	public function testMatchReplacementDecreasesCount()
 	{
 		$string = '{c} {A()} {b} {A} {b}';
 		$matches = WikiParser_PluginMatcher::match($string);
@@ -276,7 +276,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertCount(2, $matches);
 	}
 
-	function testIterationSurvivesReplacement()
+	public function testIterationSurvivesReplacement()
 	{
 		$string = '{c} {A()} {b} {A} {d}';
 		$matches = WikiParser_PluginMatcher::match($string);
@@ -297,7 +297,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertEquals(3, $iteration);
 	}
 
-	function testGeneratedPluginsGetMatched()
+	public function testGeneratedPluginsGetMatched()
 	{
 		$string = '{c} {A()} {b} {A} {d}';
 		$matches = WikiParser_PluginMatcher::match($string);
@@ -316,7 +316,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		}
 	}
 
-	function testNestingWithoutSpaces()
+	public function testNestingWithoutSpaces()
 	{
 		$strings = " {A(a=1)}{A(a=2)}{a a=3}{A}{A} ";
 
@@ -335,7 +335,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertCount(0, $matches);
 	}
 
-	function testIntegrityPreservedOnReplacement()
+	public function testIntegrityPreservedOnReplacement()
 	{
 		$strings = '{A(a=1)}{a a=2}{A(a=3)/}{A}';
 
@@ -365,7 +365,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		);
 	}
 
-	function testWithPrettyVariablePrior()
+	public function testWithPrettyVariablePrior()
 	{
 		$strings = '{$f_13}{foo hello=world}';
 
@@ -377,7 +377,7 @@ class WikiParser_PluginMatcherTest extends TikiTestCase
 		$this->assertEquals('{$f_13}X', $matches->getText());
 	}
 
-	function testReplacePluginInsideOther()
+	public function testReplacePluginInsideOther()
 	{
 		$init = <<<CONTENT
 {BOX(a=1)}

@@ -13,12 +13,12 @@
 class TikiSeleniumTestCase extends PHPUnit_Extensions_Selenium2TestCase
 {
 	protected $backupGlobals = false;
-	var $current_test_db;
-	var $user_credentials = [
+	public $current_test_db;
+	public $user_credentials = [
 			'admin' => 'tiki'
 			];
 
-	function __construct($name = '')
+	public function __construct($name = '')
 	{
 		parent::__construct($name);
 		$this->configure();

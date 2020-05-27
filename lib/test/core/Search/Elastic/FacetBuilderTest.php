@@ -7,13 +7,13 @@
 
 class Search_Elastic_FacetBuilderTest extends PHPUnit\Framework\TestCase
 {
-	function testBuildNoFacet()
+	public function testBuildNoFacet()
 	{
 		$builder = new Search_Elastic_FacetBuilder;
 		$this->assertEquals([], $builder->build([]));
 	}
 
-	function testBuildSingleFacet()
+	public function testBuildSingleFacet()
 	{
 		$builder = new Search_Elastic_FacetBuilder;
 		$this->assertEquals(
@@ -32,7 +32,7 @@ class Search_Elastic_FacetBuilderTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testBuildMultipleFacets()
+	public function testBuildMultipleFacets()
 	{
 		$builder = new Search_Elastic_FacetBuilder(8);
 		$this->assertEquals(

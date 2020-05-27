@@ -7,7 +7,7 @@
 
 class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 {
-	function testMissingField()
+	public function testMissingField()
 	{
 		$action = $this->createMock('Search_Action_Action');
 		$action
@@ -21,7 +21,7 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['hello'], $step->getFields());
 	}
 
-	function testMissingValueButNotRequired()
+	public function testMissingValueButNotRequired()
 	{
 		$action = $this->createMock('Search_Action_Action');
 		$action
@@ -37,7 +37,7 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['hello'], $step->getFields());
 	}
 
-	function testValueProvidedStaticInDefinition()
+	public function testValueProvidedStaticInDefinition()
 	{
 		$action = $this->createMock('Search_Action_Action');
 		$action
@@ -53,7 +53,7 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals([], $step->getFields());
 	}
 
-	function testValueProvidedInEntryDirectly()
+	public function testValueProvidedInEntryDirectly()
 	{
 		$action = $this->createMock('Search_Action_Action');
 		$action
@@ -69,7 +69,7 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['hello'], $step->getFields());
 	}
 
-	function testDefinitionDefersToSingleField()
+	public function testDefinitionDefersToSingleField()
 	{
 		$action = $this->createMock('Search_Action_Action');
 		$action
@@ -85,7 +85,7 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['test'], $step->getFields());
 	}
 
-	function testDefinitionCoalesceField()
+	public function testDefinitionCoalesceField()
 	{
 		$action = $this->createMock('Search_Action_Action');
 		$action
@@ -101,7 +101,7 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['foo', 'bar', 'test', 'baz', 'hello'], $step->getFields());
 	}
 
-	function testDefinitionCoalesceFieldNoMatch()
+	public function testDefinitionCoalesceFieldNoMatch()
 	{
 		$action = $this->createMock('Search_Action_Action');
 		$action
@@ -114,7 +114,7 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['foo', 'bar', 'test', 'baz', 'hello'], $step->getFields());
 	}
 
-	function testRequiresValueAsArrayButMissing()
+	public function testRequiresValueAsArrayButMissing()
 	{
 		$action = $this->createMock('Search_Action_Action');
 		$action
@@ -130,7 +130,7 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['hello'], $step->getFields());
 	}
 
-	function testRequiresValueAsArrayAndSingleValue()
+	public function testRequiresValueAsArrayAndSingleValue()
 	{
 		$action = $this->createMock('Search_Action_Action');
 		$action
@@ -146,7 +146,7 @@ class Search_ActionStepTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals([], $step->getFields());
 	}
 
-	function testRequiresValueAsArrayAndMultipleValues()
+	public function testRequiresValueAsArrayAndMultipleValues()
 	{
 		$action = $this->createMock('Search_Action_Action');
 		$action

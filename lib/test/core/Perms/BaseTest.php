@@ -12,7 +12,7 @@
 
 class Perms_BaseTest extends TikiTestCase
 {
-	function testWithoutConfiguration()
+	public function testWithoutConfiguration()
 	{
 		Perms::set(new Perms);
 		$accessor = Perms::get();
@@ -22,7 +22,7 @@ class Perms_BaseTest extends TikiTestCase
 		$this->assertEquals($expect, $accessor);
 	}
 
-	function testGroupsPropagateToAccessor()
+	public function testGroupsPropagateToAccessor()
 	{
 		$perms = new Perms;
 		$perms->setGroups(['Registered', 'Administrator']);
@@ -34,14 +34,14 @@ class Perms_BaseTest extends TikiTestCase
 		$this->assertEquals($expect, Perms::get());
 	}
 
-	function testContextPropagatesToAccessor()
+	public function testContextPropagatesToAccessor()
 	{
 		$accessor = Perms::get(['context']);
 
 		$this->assertEquals(['context'], $accessor->getContext());
 	}
 
-	function testWithoutArrayContext()
+	public function testWithoutArrayContext()
 	{
 		$expect = Perms::get(['type' => 'wiki page', 'object' => 'HomePage', 'parentId' => null]);
 		$accessor = Perms::get('wiki page', 'HomePage');
@@ -54,7 +54,7 @@ class Perms_BaseTest extends TikiTestCase
 	 * @param $context
 	 * @param $expectedResolver
 	 */
-	function testResolverFactoryChaining($context, $expectedResolver)
+	public function testResolverFactoryChaining($context, $expectedResolver)
 	{
 		$perms = new Perms;
 
@@ -85,7 +85,7 @@ class Perms_BaseTest extends TikiTestCase
 		$this->assertSame($$expectedResolver, Perms::get($context)->getResolver());
 	}
 
-	function resolverMatches()
+	public function resolverMatches()
 	{
 		return [
 			'testObjectA' => [['object' => 'a'], 'rA'],
@@ -98,7 +98,7 @@ class Perms_BaseTest extends TikiTestCase
 		];
 	}
 
-	function testResolverNotCalledTwiceWhenFound()
+	public function testResolverNotCalledTwiceWhenFound()
 	{
 		$mock = $this->createMock('Perms_ResolverFactory');
 
@@ -118,7 +118,7 @@ class Perms_BaseTest extends TikiTestCase
 		Perms::get();
 	}
 
-	function testResolverNotCalledTwiceWhenNotFound()
+	public function testResolverNotCalledTwiceWhenNotFound()
 	{
 		$mock = $this->createMock('Perms_ResolverFactory');
 
@@ -138,7 +138,7 @@ class Perms_BaseTest extends TikiTestCase
 		Perms::get();
 	}
 
-	function testResolverCacheValidValues()
+	public function testResolverCacheValidValues()
 	{
 		$defaultResolver = new Perms_Resolver_Default(true);
 
@@ -171,7 +171,7 @@ class Perms_BaseTest extends TikiTestCase
 		$this->assertSame($defaultResolver, $perms->getResolver());
 	}
 
-	function testBulkLoading()
+	public function testBulkLoading()
 	{
 		$mockObject = $this->createMock('Perms_ResolverFactory');
 		$mockCategory = $this->createMock('Perms_ResolverFactory');
@@ -205,12 +205,12 @@ class Perms_BaseTest extends TikiTestCase
 		Perms::bulk(['type' => 'wiki page'], 'object', $data, 'pageName');
 	}
 
-	function customHash($context)
+	public function customHash($context)
 	{
 		return serialize($context);
 	}
 
-	function testFiltering()
+	public function testFiltering()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(
@@ -254,7 +254,7 @@ class Perms_BaseTest extends TikiTestCase
 		$this->assertEquals($expect, $out);
 	}
 
-	function testContextBuilding()
+	public function testContextBuilding()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(
@@ -276,7 +276,7 @@ class Perms_BaseTest extends TikiTestCase
 		Perms::filter(['type' => 'wiki page'], 'object', $data, ['object' => 'pageName', 'creator' => 'creator'], 'view');
 	}
 
-	function testSkipBulkOnEmptySet()
+	public function testSkipBulkOnEmptySet()
 	{
 		$perms = new Perms;
 		$perms->setResolverFactories(

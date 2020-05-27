@@ -7,7 +7,7 @@
 
 class Math_Formula_ElementTest extends TikiTestCase
 {
-	function testGetArgument()
+	public function testGetArgument()
 	{
 		$element = new Math_Formula_Element('test', [1, 2, 3]);
 		$this->assertEquals(1, $element[0]);
@@ -15,7 +15,7 @@ class Math_Formula_ElementTest extends TikiTestCase
 		$this->assertNull($element[3]);
 	}
 
-	function testGetKey()
+	public function testGetKey()
 	{
 		$element = new Math_Formula_Element(
 			'test',

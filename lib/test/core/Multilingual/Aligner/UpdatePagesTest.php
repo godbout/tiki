@@ -291,7 +291,7 @@ class Multilingual_Aligner_UpdatePagesTest extends TikiTestCase
 	// Helper functions.
 	////////////////////////////////////////////////////////////////
 
-	function insertSentenceAtIndex($index, $sentenceToAdd, $sentenceList)
+	public function insertSentenceAtIndex($index, $sentenceToAdd, $sentenceList)
 	{
 		$modifiedSentenceList = [];
 		foreach ($sentenceList as $ii => $iiValue) {
@@ -303,7 +303,7 @@ class Multilingual_Aligner_UpdatePagesTest extends TikiTestCase
 		return $modifiedSentenceList;
 	}
 
-	function removeSentenceAtIndex($index, $sentenceList)
+	public function removeSentenceAtIndex($index, $sentenceList)
 	{
 		array_splice($sentenceList, $index, 1);
 		return $sentenceList;

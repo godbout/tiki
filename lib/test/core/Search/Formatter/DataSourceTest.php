@@ -31,7 +31,7 @@ class Search_Formatter_DataSourceTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testObtainInformationFromContentSource()
+	public function testObtainInformationFromContentSource()
 	{
 		$source = new Search_Formatter_DataSource_Declarative;
 		$source->addContentSource('wiki page', $this->wikiSource);
@@ -39,7 +39,7 @@ class Search_Formatter_DataSourceTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['description' => 'ABC'], $source->getData(['object_type' => 'wiki page', 'object_id' => 'Test'], 'description'));
 	}
 
-	function testRequestedValueNotProvided()
+	public function testRequestedValueNotProvided()
 	{
 		$source = new Search_Formatter_DataSource_Declarative;
 		$source->addContentSource('wiki page', $this->wikiSource);
@@ -47,7 +47,7 @@ class Search_Formatter_DataSourceTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals([], $source->getData(['object_type' => 'wiki page', 'object_id' => 'Test'], 'title'));
 	}
 
-	function testValueFromGlobal()
+	public function testValueFromGlobal()
 	{
 		$source = new Search_Formatter_DataSource_Declarative;
 		$source->addGlobalSource($this->categorySource);
@@ -57,7 +57,7 @@ class Search_Formatter_DataSourceTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['allowed_groups' => ['Editors', 'Admins']], $source->getData(['object_type' => 'wiki page', 'object_id' => 'Test'], 'allowed_groups'));
 	}
 
-	function testContentSourceNotAvailable()
+	public function testContentSourceNotAvailable()
 	{
 		$source = new Search_Formatter_DataSource_Declarative;
 		$this->assertEquals([], $source->getData(['object_type' => 'wiki page', 'object_id' => 'Test'], 'title'));

@@ -12,7 +12,7 @@
 
 class Transition_AtMostTest extends PHPUnit\Framework\TestCase
 {
-	function testOver()
+	public function testOver()
 	{
 		$transition = new Tiki_Transition('A', 'B');
 		$transition->setStates(['A', 'C', 'D', 'F']);
@@ -24,7 +24,7 @@ class Transition_AtMostTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testRightOn()
+	public function testRightOn()
 	{
 		$transition = new Tiki_Transition('A', 'B');
 		$transition->setStates(['A', 'C', 'D', 'F']);
@@ -33,7 +33,7 @@ class Transition_AtMostTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals([], $transition->explain());
 	}
 
-	function testUnder()
+	public function testUnder()
 	{
 		$transition = new Tiki_Transition('A', 'B');
 		$transition->setStates(['A', 'C', 'D', 'F']);

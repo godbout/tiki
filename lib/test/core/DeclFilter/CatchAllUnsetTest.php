@@ -12,14 +12,14 @@
 
 class DeclFilter_CatchAllUnsetTest extends TikiTestCase
 {
-	function testMatch()
+	public function testMatch()
 	{
 		$rule = new DeclFilter_CatchAllUnsetRule();
 
 		$this->assertTrue($rule->match('hello'));
 	}
 
-	function testApply()
+	public function testApply()
 	{
 		$rule = new DeclFilter_CatchAllUnsetRule();
 

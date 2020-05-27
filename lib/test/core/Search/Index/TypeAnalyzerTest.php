@@ -12,7 +12,7 @@ abstract class Search_Index_TypeAnalyzerTest extends PHPUnit\Framework\TestCase
 {
 	abstract protected function getIndex();
 
-	function testIdentifierTypes()
+	public function testIdentifierTypes()
 	{
 		$index = $this->getIndex();
 		$typeFactory = $index->getTypeFactory();

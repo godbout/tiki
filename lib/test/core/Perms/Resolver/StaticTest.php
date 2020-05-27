@@ -12,7 +12,7 @@
 
 class Perms_Resolver_StaticTest extends TikiTestCase
 {
-	function testGroupNotDefined()
+	public function testGroupNotDefined()
 	{
 		$static = new Perms_Resolver_Static([]);
 
@@ -20,7 +20,7 @@ class Perms_Resolver_StaticTest extends TikiTestCase
 		$this->assertEquals([], $static->applicableGroups());
 	}
 
-	function testNotRightGroup()
+	public function testNotRightGroup()
 	{
 		$static = new Perms_Resolver_Static(
 			['Registered' => ['view', 'edit'],]
@@ -30,7 +30,7 @@ class Perms_Resolver_StaticTest extends TikiTestCase
 		$this->assertEquals(['Registered'], $static->applicableGroups());
 	}
 
-	function testRightGroup()
+	public function testRightGroup()
 	{
 		$static = new Perms_Resolver_Static(
 			[

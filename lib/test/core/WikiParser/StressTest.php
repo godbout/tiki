@@ -11,7 +11,7 @@
 
 class WikiParser_StressTest extends PHPUnit\Framework\TestCase
 {
-	function testMessProvidedByJonny()
+	public function testMessProvidedByJonny()
 	{
 		$content = <<<WIKI
 {HTML()}<img style="margin-bottom: 10px" src="Web-Images/headers/Directory-Header_wide.jpg" border="0" />{HTML}{DIV(class="dark_acme1")}{DIV(class="wrapper")}{DIV(class="halffloat clearfix")}{DIV(class="box")}~tc~directory item photo~/tc~{\$f_130}

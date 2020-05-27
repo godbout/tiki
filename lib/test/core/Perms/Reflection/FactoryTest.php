@@ -12,14 +12,14 @@
 
 class Perms_Reflection_FactoryTest extends TikiTestCase
 {
-	function testEmptyFactory()
+	public function testEmptyFactory()
 	{
 		$factory = new Perms_Reflection_Factory;
 
 		$this->assertNull($factory->get('wiki page', 'HomePage'));
 	}
 
-	function testConfiguredPositive()
+	public function testConfiguredPositive()
 	{
 		$factory = new Perms_Reflection_Factory;
 		$factory->register('wiki page', 'Perms_Reflection_Object');
@@ -30,7 +30,7 @@ class Perms_Reflection_FactoryTest extends TikiTestCase
 		$this->assertEquals($expect, $get);
 	}
 
-	function testConfiguredNegative()
+	public function testConfiguredNegative()
 	{
 		$factory = new Perms_Reflection_Factory;
 		$factory->register('category', 'Perms_Reflection_Category');
@@ -38,7 +38,7 @@ class Perms_Reflection_FactoryTest extends TikiTestCase
 		$this->assertNull($factory->get('wiki page', 'HomePage'));
 	}
 
-	function testFallback()
+	public function testFallback()
 	{
 		$factory = new Perms_Reflection_Factory;
 		$factory->registerFallback('Perms_Reflection_Object');
@@ -49,7 +49,7 @@ class Perms_Reflection_FactoryTest extends TikiTestCase
 		);
 	}
 
-	function testFallbackPrevented()
+	public function testFallbackPrevented()
 	{
 		$factory = new Perms_Reflection_Factory;
 		$factory->registerFallback('Perms_Reflection_Object');
@@ -59,7 +59,7 @@ class Perms_Reflection_FactoryTest extends TikiTestCase
 		$this->assertEquals($expect, $factory->get('category', 4));
 	}
 
-	function testDefaultConfiguration()
+	public function testDefaultConfiguration()
 	{
 		$expect = new Perms_Reflection_Factory;
 		$expect->registerFallback('Perms_Reflection_Object');

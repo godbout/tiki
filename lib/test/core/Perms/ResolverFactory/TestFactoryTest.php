@@ -18,14 +18,14 @@ class Perms_ResolverFactory_TestFactoryTest extends TikiTestCase
 	 * @param $in
 	 * @param $out
 	 */
-	function testHashCorrect($known, $in, $out)
+	public function testHashCorrect($known, $in, $out)
 	{
 		$factory = new Perms_ResolverFactory_TestFactory($known, []);
 
 		$this->assertEquals($out, $factory->getHash($in));
 	}
 
-	function hashes()
+	public function hashes()
 	{
 		return [
 			'empty' => [[], [], 'test:'],
@@ -37,7 +37,7 @@ class Perms_ResolverFactory_TestFactoryTest extends TikiTestCase
 		];
 	}
 
-	function testFetchKnown()
+	public function testFetchKnown()
 	{
 		$factory = new Perms_ResolverFactory_TestFactory(
 			['a'],
@@ -47,7 +47,7 @@ class Perms_ResolverFactory_TestFactoryTest extends TikiTestCase
 		$this->assertSame($a, $factory->getResolver(['a' => 1]));
 	}
 
-	function testFetchUnknown()
+	public function testFetchUnknown()
 	{
 		$factory = new Perms_ResolverFactory_TestFactory(
 			['a'],

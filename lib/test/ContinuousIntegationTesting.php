@@ -83,7 +83,7 @@ class ContinuousIntegrationTesting
 		return $revision;
 	}
 
-	function needs_testing($current_revision)
+	public function needs_testing($current_revision)
 	{
 		$answer = true;
 		if ($this->revision_last_tested == $current_revision) {
@@ -92,7 +92,7 @@ class ContinuousIntegrationTesting
 		return $answer;
 	}
 
-	function run_tests()
+	public function run_tests()
 	{
 		echo("\n\nRunning the tests.\n\n");
 

@@ -15,7 +15,7 @@ use org\bovigo\vfs\vfsStream;
 class Tiki_Package_ComposerCliTest extends TikiTestCase
 {
 
-	const COMPOSER_JSON_DIST = '{
+	public const COMPOSER_JSON_DIST = '{
 	"name": "tiki/tiki-custom",
 	"description": "Tiki Wiki CMS Groupware",
 	"license": "LGPL-2.1",
@@ -30,7 +30,7 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
 	}
 }';
 
-	const SAMPLE_COMPOSER = '{
+	public const SAMPLE_COMPOSER = '{
     "name": "tiki/tiki-custom",
     "description": "Tiki Wiki CMS Groupware",
     "license": "LGPL-2.1",
@@ -46,7 +46,7 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
     }
 }';
 
-	const SAMPLE_COMPOSER_BIG = '{
+	public const SAMPLE_COMPOSER_BIG = '{
   "name": "tiki/tiki-custom",
   "description": "Tiki Wiki CMS Groupware - composer.json",
   "license": "LGPL-2.1",
@@ -120,7 +120,7 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
 	 *
 	 * @dataProvider getListOfPackagesFromConfigProvider
 	 */
-	function testGetListOfPackagesFromConfig($composerJson, $showResult, $expected)
+	public function testGetListOfPackagesFromConfig($composerJson, $showResult, $expected)
 	{
 		vfsStream::create(
 			[
@@ -276,7 +276,7 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
 	 * @param $scripts
 	 * @param $expected
 	 */
-	function testAddComposerPackageToJson($composerJson, $package, $version, $scripts, $expected)
+	public function testAddComposerPackageToJson($composerJson, $package, $version, $scripts, $expected)
 	{
 
 		$result = $this->composerCli->addComposerPackageToJson(

@@ -14,22 +14,22 @@ class Search_Expr_TokenizerTest extends PHPUnit\Framework\TestCase
 		$this->tokenizer = new Search_Expr_Tokenizer;
 	}
 
-	function testSingleWord()
+	public function testSingleWord()
 	{
 		$this->assertEquals(['hello'], $this->tokenizer->tokenize('hello'));
 	}
 
-	function testMultipleWords()
+	public function testMultipleWords()
 	{
 		$this->assertEquals(['hello', 'world', 'who', 'listens'], $this->tokenizer->tokenize('hello world who listens'));
 	}
 
-	function testWithQuotedText()
+	public function testWithQuotedText()
 	{
 		$this->assertEquals(['hello world', 'who listens'], $this->tokenizer->tokenize('"hello world" "who listens"'));
 	}
 
-	function testWithParenthesis()
+	public function testWithParenthesis()
 	{
 		$this->assertEquals(
 			[

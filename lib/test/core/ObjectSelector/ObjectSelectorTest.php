@@ -17,23 +17,23 @@ class ObjectSelectorTest extends TestCase
 		$this->selector = new Selector($this);
 	}
 
-	function testReadEmpty()
+	public function testReadEmpty()
 	{
 		$this->assertEquals(null, $this->selector->read(''));
 	}
 
-	function testReadObjectFromString()
+	public function testReadObjectFromString()
 	{
 		$expect = new SelectorItem($this->selector, 'wiki page', 'HomePage');
 		$this->assertEquals($expect, $this->selector->read('wiki page:HomePage'));
 	}
 
-	function testReadMultiple()
+	public function testReadMultiple()
 	{
 		$this->assertEquals([], $this->selector->readMultiple(''));
 	}
 
-	function testReadMultipleFromString()
+	public function testReadMultipleFromString()
 	{
 		$this->assertEquals([
 			$this->selector->read('wiki page:HomePage'),
@@ -41,7 +41,7 @@ class ObjectSelectorTest extends TestCase
 		], $this->selector->readMultiple("wiki page:HomePage\r\ntrackeritem:12\r\n"));
 	}
 
-	function testReadMultipleFromArray()
+	public function testReadMultipleFromArray()
 	{
 		$this->assertEquals([
 			$this->selector->read('wiki page:HomePage'),
@@ -52,7 +52,7 @@ class ObjectSelectorTest extends TestCase
 		]));
 	}
 
-	function testExcludeDuplicates()
+	public function testExcludeDuplicates()
 	{
 		$this->assertEquals([
 			$this->selector->read('trackeritem:12'),
@@ -62,14 +62,14 @@ class ObjectSelectorTest extends TestCase
 		]));
 	}
 
-	function testObtainTitle()
+	public function testObtainTitle()
 	{
 		$object = $this->selector->read('trackeritem:12');
 
 		$this->assertEquals('Foobar', $object->getTitle());
 	}
 
-	function testArrayAccess()
+	public function testArrayAccess()
 	{
 		$object = $this->selector->read('trackeritem:12');
 
@@ -79,12 +79,12 @@ class ObjectSelectorTest extends TestCase
 		$this->assertEquals('trackeritem:12', (string) $object);
 	}
 
-	function testReadMultipleSimpleOnEmpty()
+	public function testReadMultipleSimpleOnEmpty()
 	{
 		$this->assertEquals([], $this->selector->readMultipleSimple('trackeritem', '', ','));
 	}
 
-	function testReadMultipleSimpleFromString()
+	public function testReadMultipleSimpleFromString()
 	{
 		$this->assertEquals([
 			$this->selector->read('trackeritem:14'),
@@ -92,14 +92,14 @@ class ObjectSelectorTest extends TestCase
 		], $this->selector->readMultipleSimple('trackeritem', '14:12', ':'));
 	}
 
-	function testReadMultipleSimpleEliminatesDuplicates()
+	public function testReadMultipleSimpleEliminatesDuplicates()
 	{
 		$this->assertEquals([
 			$this->selector->read('trackeritem:14'),
 		], $this->selector->readMultipleSimple('trackeritem', '14,14', ','));
 	}
 
-	function testReadMultipleSimpleHandlesArrays()
+	public function testReadMultipleSimpleHandlesArrays()
 	{
 		$this->assertEquals([
 			$this->selector->read('trackeritem:14'),
@@ -107,7 +107,7 @@ class ObjectSelectorTest extends TestCase
 		], $this->selector->readMultipleSimple('trackeritem', ['14', '12'], ':'));
 	}
 
-	function get_title($type, $id)
+	public function get_title($type, $id)
 	{
 		return 'Foobar';
 	}

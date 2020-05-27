@@ -28,13 +28,13 @@ class Tiki_FileGallery_Manipulator_ValidatorTest extends TikiTestCase
 		$prefs = $this->oldPrefs;
 	}
 
-	function testFilenameValidByDefault()
+	public function testFilenameValidByDefault()
 	{
 		$file = new File(['filename' => 'test.zip']);
 		$this->assertTrue((new Validator($file))->run());
 	}
 
-	function testFilenameInvalidByRegexp()
+	public function testFilenameInvalidByRegexp()
 	{
 		global $prefs;
 
@@ -44,7 +44,7 @@ class Tiki_FileGallery_Manipulator_ValidatorTest extends TikiTestCase
 		$this->assertFalse((new Validator($file))->run());
 	}
 
-	function testFilenameValidByRegexp()
+	public function testFilenameValidByRegexp()
 	{
 		global $prefs;
 
@@ -54,7 +54,7 @@ class Tiki_FileGallery_Manipulator_ValidatorTest extends TikiTestCase
 		$this->assertTrue((new Validator($file))->run());
 	}
 
-	function testDuplicateChecksum()
+	public function testDuplicateChecksum()
 	{
 		global $prefs;
 

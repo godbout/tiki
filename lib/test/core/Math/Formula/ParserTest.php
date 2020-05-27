@@ -7,7 +7,7 @@
 
 class Math_Formula_ParserTest extends TikiTestCase
 {
-	function testEmptyElement()
+	public function testEmptyElement()
 	{
 		$parser = new Math_Formula_Parser;
 
@@ -16,7 +16,7 @@ class Math_Formula_ParserTest extends TikiTestCase
 		$this->assertEquals($element, $parser->parse('(score)'));
 	}
 
-	function testWithArguments()
+	public function testWithArguments()
 	{
 		$parser = new Math_Formula_Parser;
 
@@ -24,7 +24,7 @@ class Math_Formula_ParserTest extends TikiTestCase
 		$this->assertEquals($element, $parser->parse('(object input-type input-object-id)'));
 	}
 
-	function testNesting()
+	public function testNesting()
 	{
 		$parser = new Math_Formula_Parser;
 
@@ -36,7 +36,7 @@ class Math_Formula_ParserTest extends TikiTestCase
 		$this->assertEquals($element, $parser->parse('(score (object type object))'));
 	}
 
-	function testMultipleElements()
+	public function testMultipleElements()
 	{
 		$parser = new Math_Formula_Parser;
 
@@ -51,7 +51,7 @@ class Math_Formula_ParserTest extends TikiTestCase
 		$this->assertEquals($element, $parser->parse('(score (object type object) (range 3600))'));
 	}
 
-	function testMultipleNesting()
+	public function testMultipleNesting()
 	{
 		$parser = new Math_Formula_Parser;
 
@@ -69,7 +69,7 @@ class Math_Formula_ParserTest extends TikiTestCase
 		$this->assertEquals($element, $parser->parse('(score (object type object) (range (mul 3600 60)))'));
 	}
 
-	function testSkipComments()
+	public function testSkipComments()
 	{
 		$equivalent = '(score (object type object) (range (mul 3600 60)))';
 		$documented = <<<DOC
@@ -86,7 +86,7 @@ DOC;
 		$this->assertEquals($parser->parse($equivalent), $parser->parse($documented));
 	}
 
-	function testWithString()
+	public function testWithString()
 	{
 		$parser = new Math_Formula_Parser;
 
@@ -107,7 +107,7 @@ DOC;
 		$this->assertEquals($element, $parser->parse('(score (object "wiki page" "HomePage") (range (mul 3600 60)))'));
 	}
 
-	function testWithZero()
+	public function testWithZero()
 	{
 		$parser = new Math_Formula_Parser;
 		$element = new Math_Formula_Element(
@@ -129,7 +129,7 @@ DOC;
 		);
 	}
 
-	function badStrings()
+	public function badStrings()
 	{
 		return [
 			'noOpening' => ['test'],
@@ -146,7 +146,7 @@ DOC;
 	 * @param $string
 	 * @throws Math_Formula_Parser_Exception
 	 */
-	function testBadParse($string)
+	public function testBadParse($string)
 	{
 		$this->expectException(Math_Formula_Parser_Exception::class);
 		$parser = new Math_Formula_Parser;

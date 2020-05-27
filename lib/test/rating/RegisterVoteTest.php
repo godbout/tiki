@@ -38,7 +38,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		$prefs['rating_allow_multi_votes'] = $this->ratingAllowMultipleVotes;
 	}
 
-	function tokenFormats()
+	public function tokenFormats()
 	{
 		return [
 			'unknown' => ['foobar', 233, null],
@@ -57,14 +57,14 @@ class Rating_RegisterVoteTest extends TikiTestCase
 	 * @param $object
 	 * @param $token
 	 */
-	function testGetToken($type, $object, $token)
+	public function testGetToken($type, $object, $token)
 	{
 		$lib = new RatingLib;
 
 		$this->assertEquals($token, $lib->get_token($type, $object));
 	}
 
-	function testRecordUserVotes()
+	public function testRecordUserVotes()
 	{
 		$lib = new RatingLib;
 		$this->assertTrue($lib->record_user_vote('abc', 'test', 111, 3));
@@ -87,7 +87,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		);
 	}
 
-	function testRecordUserVotesSingleVote()
+	public function testRecordUserVotesSingleVote()
 	{
 		global $prefs;
 		$prefs['rating_allow_multi_votes'] = '';
@@ -112,7 +112,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		);
 	}
 
-	function testAnonymousVotes()
+	public function testAnonymousVotes()
 	{
 		$lib = new RatingLib;
 
@@ -138,7 +138,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		);
 	}
 
-	function testAnonymousVotesSingleVote()
+	public function testAnonymousVotesSingleVote()
 	{
 		global $prefs;
 		$prefs['rating_allow_multi_votes'] = '';
@@ -166,7 +166,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		);
 	}
 
-	function testDiscardInvalidValue()
+	public function testDiscardInvalidValue()
 	{
 		$lib = new RatingLib;
 		$this->assertFalse($lib->record_user_vote('abc', 'test', '123', 6));
@@ -178,7 +178,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		);
 	}
 
-	function testGetWikiPageRange()
+	public function testGetWikiPageRange()
 	{
 		global $prefs;
 		$prefs['wiki_simple_ratings_options'] = range(2, 8);
@@ -187,7 +187,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		$this->assertEquals(range(2, 8), $lib->get_options('wiki page', 'HomePage'));
 	}
 
-	function testGetArticleRange()
+	public function testGetArticleRange()
 	{
 		global $prefs;
 		$prefs['article_user_rating_options'] = range(-2, 2);
@@ -196,7 +196,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		$this->assertEquals(range(-2, 2), $lib->get_options('article', 1));
 	}
 
-	function testGetUserVote()
+	public function testGetUserVote()
 	{
 		$lib = new RatingLib;
 		$this->assertTrue($lib->record_user_vote('abc', 'test', 111, 4, time() - 3000));
@@ -207,13 +207,13 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		$this->assertEquals(2.0, $lib->get_user_vote('abc', 'test', 111));
 	}
 
-	function testGetMissingVote()
+	public function testGetMissingVote()
 	{
 		$lib = new RatingLib;
 		$this->assertNull($lib->get_user_vote('abc', 'test', 111));
 	}
 
-	function testGetAnonymousVote()
+	public function testGetAnonymousVote()
 	{
 		$lib = new RatingLib;
 		$this->assertTrue($lib->record_user_vote('abc', 'test', 111, 4, time() - 3000));
@@ -224,7 +224,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		$this->assertEquals(3.0, $lib->get_anonymous_vote('deadbeef12345678', 'test', 111));
 	}
 
-	function testEnvironmentUserLookup()
+	public function testEnvironmentUserLookup()
 	{
 		global $user;
 		$user = 'foobar';
@@ -242,7 +242,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		$this->assertEquals(2.0, $lib->get_vote('test', '123'));
 	}
 
-	function testEnvironmentAnonymousLookup()
+	public function testEnvironmentAnonymousLookup()
 	{
 		$sessionId = session_id();
 
@@ -259,7 +259,7 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		$this->assertEquals(2.0, $lib->get_vote('test', '123'));
 	}
 
-	function testCannotRecordOnUnknownObjectType()
+	public function testCannotRecordOnUnknownObjectType()
 	{
 		$lib = new RatingLib;
 		$this->assertFalse($lib->record_user_vote('abc', 'foobar', 111, 4));

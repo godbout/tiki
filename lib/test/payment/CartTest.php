@@ -24,13 +24,13 @@ class Payment_CartTest extends TikiTestCase
 		unset($_SESSION['cart']);
 	}
 
-	function testEmptyCart()
+	public function testEmptyCart()
 	{
 		$this->obj->expects($this->once())->method('get_gift_certificate_code');
 		$this->assertEquals(0.0, $this->obj->get_total());
 	}
 
-	function testAddToCart()
+	public function testAddToCart()
 	{
 		$this->obj->add_product(
 			'T-123',
@@ -44,7 +44,7 @@ class Payment_CartTest extends TikiTestCase
 		$this->assertEquals(301.29, $this->obj->get_total());
 	}
 
-	function testUpdateQuantity()
+	public function testUpdateQuantity()
 	{
 		$this->obj->add_product(
 			'T-123',
@@ -60,7 +60,7 @@ class Payment_CartTest extends TikiTestCase
 		$this->assertEquals(100.43, $this->obj->get_total());
 	}
 
-	function testMultipleProducts()
+	public function testMultipleProducts()
 	{
 		$this->obj->add_product(
 			'T-123',
@@ -82,7 +82,7 @@ class Payment_CartTest extends TikiTestCase
 		$this->assertEquals(301.29, $this->obj->get_total());
 	}
 
-	function testProductWithConflictingInformation()
+	public function testProductWithConflictingInformation()
 	{
 		$this->obj->add_product(
 			'T-123',
@@ -104,14 +104,14 @@ class Payment_CartTest extends TikiTestCase
 		$this->assertEquals(301.29, $this->obj->get_total());
 	}
 
-	function testUpdateMissingProduct()
+	public function testUpdateMissingProduct()
 	{
 		$this->obj->update_quantity('1234', 3);
 
 		$this->assertEquals(0, $this->obj->get_quantity('1234'));
 	}
 
-	function testPrecision()
+	public function testPrecision()
 	{
 		$this->obj->add_product(
 			'T-456',
@@ -125,7 +125,7 @@ class Payment_CartTest extends TikiTestCase
 		$this->assertEquals(1.01, $this->obj->get_total());
 	}
 
-	function testNegativeQuantity()
+	public function testNegativeQuantity()
 	{
 		$this->obj->add_product(
 			'T-456',
@@ -139,7 +139,7 @@ class Payment_CartTest extends TikiTestCase
 		$this->assertEquals(1.01, $this->obj->get_total());
 	}
 
-	function testNegativePrice()
+	public function testNegativePrice()
 	{
 		$this->obj->add_product(
 			'T-456',
@@ -153,7 +153,7 @@ class Payment_CartTest extends TikiTestCase
 		$this->assertEquals(0, $this->obj->get_total());
 	}
 
-	function testZeroQuantityRemovedLine()
+	public function testZeroQuantityRemovedLine()
 	{
 		$this->obj->add_product(
 			'T-123',
@@ -169,7 +169,7 @@ class Payment_CartTest extends TikiTestCase
 		$this->assertEquals([], $this->obj->get_content());
 	}
 
-	function testPricePadded()
+	public function testPricePadded()
 	{
 		$this->obj->add_product(
 			'T-123',
@@ -184,7 +184,7 @@ class Payment_CartTest extends TikiTestCase
 		$this->assertSame('100.40', $content['T-123']['price']);
 	}
 
-	function testTotalPadded()
+	public function testTotalPadded()
 	{
 		$this->obj->add_product(
 			'T-123',
@@ -198,7 +198,7 @@ class Payment_CartTest extends TikiTestCase
 		$this->assertSame('200.80', $this->obj->get_total());
 	}
 
-	function testRequestPaymentClearsCart()
+	public function testRequestPaymentClearsCart()
 	{
 		global $user;
 		$user = 'admin';
@@ -219,12 +219,12 @@ class Payment_CartTest extends TikiTestCase
 		$this->assertEquals([], $this->obj->get_content());
 	}
 
-	function testEmptyCartRequestsNothing()
+	public function testEmptyCartRequestsNothing()
 	{
 		$this->assertEquals(0, $this->obj->request_payment());
 	}
 
-	function testCollectDescription()
+	public function testCollectDescription()
 	{
 		$this->obj->add_product(
 			'T-123',
@@ -254,7 +254,7 @@ T-456|Foobar|1|120.50
 		);
 	}
 
-	function testWithItemsRegistersPayment()
+	public function testWithItemsRegistersPayment()
 	{
 		$paymentlib = TikiLib::lib('payment');
 
@@ -281,7 +281,7 @@ T-456|Foobar|1|120.50
 		$this->assertStringContainsString('123|test|2|123', $payment['detail']);
 	}
 
-	function testRegisteredBehaviorsOnItems()
+	public function testRegisteredBehaviorsOnItems()
 	{
 		$paymentlib = TikiLib::lib('payment');
 
@@ -362,7 +362,7 @@ T-456|Foobar|1|120.50
 	/**
 	 * @group marked-as-skipped
 	 */
-	function testGetGiftCertificateCode_shouldReturnCodeIfNotNull()
+	public function testGetGiftCertificateCode_shouldReturnCodeIfNotNull()
 	{
 		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");
 		$obj = new CartLib;
@@ -370,7 +370,7 @@ T-456|Foobar|1|120.50
 		$this->assertEquals($code, $obj->get_gift_certificate_code($code));
 	}
 
-	function testGetGiftCertificateCode_shouldReturnValueStoreInSession()
+	public function testGetGiftCertificateCode_shouldReturnValueStoreInSession()
 	{
 		$obj = new CartLib;
 		$code = null;

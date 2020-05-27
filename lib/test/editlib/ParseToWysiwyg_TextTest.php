@@ -34,7 +34,7 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testBlockAlignLeft()
+	public function testBlockAlignLeft()
 	{
 		global $prefs;
 
@@ -66,7 +66,7 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testBlockAlignCentered()
+	public function testBlockAlignCentered()
 	{
 		global $prefs;
 
@@ -99,7 +99,7 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testBlockAlignRight()
+	public function testBlockAlignRight()
 	{
 		global $prefs;
 
@@ -117,7 +117,7 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testBlockAlignJustified()
+	public function testBlockAlignJustified()
 	{
 		global $prefs;
 
@@ -135,7 +135,7 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testParagraphAlignLeft()
+	public function testParagraphAlignLeft()
 	{
 		$this->markTestIncomplete('Work in progress.');
 
@@ -149,7 +149,7 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	/**
 	 * Centered headings must use style attribute
 	 */
-	function testCenterdHeadings()
+	public function testCenterdHeadings()
 	{
 		global $prefs;
 
@@ -190,7 +190,7 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	/**
 	 * Headings 1-6
 	 */
-	function testNumberedHeadings()
+	public function testNumberedHeadings()
 	{
 		$inData = '!#Heading Level 1';
 		$ex = '<h1 class="showhide_heading" id="Heading_Level_1">1. Heading Level&nbsp;1</h1>';
@@ -239,7 +239,7 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testParagraphAlignCentered()
+	public function testParagraphAlignCentered()
 	{
 		$this->markTestIncomplete('Work in progress.');
 
@@ -255,7 +255,7 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testParagraphAlignRight()
+	public function testParagraphAlignRight()
 	{
 		$this->markTestIncomplete('Work in progress.');
 
@@ -271,7 +271,7 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	function testParagraphAlignJustified()
+	public function testParagraphAlignJustified()
 	{
 		$this->markTestIncomplete('Work in progress.');
 
@@ -285,7 +285,7 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	/**
 	 * Headings 1-6
 	 */
-	function testUnnumberedHeadings()
+	public function testUnnumberedHeadings()
 	{
 		$inData = '!Heading Level 1';
 		$ex = '<h1 class="showhide_heading" id="Heading_Level_1">Heading Level&nbsp;1</h1>';

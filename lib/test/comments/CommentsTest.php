@@ -15,13 +15,13 @@ class CommentsTest extends TikiTestCase
 		$this->lib = TikiLib::lib('comments');
 	}
 
-	function testGetHref()
+	public function testGetHref()
 	{
 		$this->assertEquals('tiki-index.php?page=HomePage&amp;threadId=9&amp;comzone=show#threadId9', $this->lib->getHref('wiki page', 'HomePage', 9));
 		$this->assertEquals('tiki-view_blog_post.php?postId=1&amp;threadId=10&amp;comzone=show#threadId10', $this->lib->getHref('blog post', 1, 10));
 	}
 
-	function testGetRootPath()
+	public function testGetRootPath()
 	{
 		$comments = $this->lib->table('tiki_comments');
 		$parentId = $comments->insert([

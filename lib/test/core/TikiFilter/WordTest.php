@@ -12,7 +12,7 @@
 
 class TikiFilter_WordTest extends TikiTestCase
 {
-	function testFilter()
+	public function testFilter()
 	{
 		$filter = TikiFilter::get('word');
 

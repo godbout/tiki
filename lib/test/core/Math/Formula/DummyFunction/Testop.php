@@ -7,7 +7,7 @@
 
 class Math_Formula_DummyFunction_Testop extends Math_Formula_Function
 {
-	function evaluate($element)
+	public function evaluate($element)
 	{
 		$object = $element->object;
 		$concat = $element->concat;

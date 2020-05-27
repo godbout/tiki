@@ -61,40 +61,40 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->restoreTable('tiki_calendar_items');
 	}
 
-	function testHash()
+	public function testHash()
 	{
 		$factory = new Perms_ResolverFactory_ObjectFactory;
 
 		$this->assertEquals('object:wiki page:homepage', $factory->getHash(['type' => 'wiki page', 'object' => 'HomePage']));
 	}
 
-	function testHashParent()
+	public function testHashParent()
 	{
 		$factory = new Perms_ResolverFactory_ObjectFactory('parent');
 
 		$this->assertEquals('object:trackeritemparent:12', $factory->getHash(['type' => 'trackeritem', 'object' => '12']));
 	}
 
-	function testHashParentId()
+	public function testHashParentId()
 	{
 		$factory = new Perms_ResolverFactory_ObjectFactory('parent');
 
 		$this->assertEquals('object:tracker:1', $factory->getHash(['type' => 'trackeritem', 'object' => '12', 'parentId' => 1]));
 	}
 
-	function testHashMissingType()
+	public function testHashMissingType()
 	{
 		$factory = new Perms_ResolverFactory_ObjectFactory;
 		$this->assertEquals('', $factory->getHash(['object' => 'HomePage']));
 	}
 
-	function testHashMissingObject()
+	public function testHashMissingObject()
 	{
 		$factory = new Perms_ResolverFactory_ObjectFactory;
 		$this->assertEquals('', $factory->getHash(['type' => 'wiki page']));
 	}
 
-	function testObtainPermissions()
+	public function testObtainPermissions()
 	{
 		$data = [
 			['Anonymous', 'tiki_p_view', 'wiki page', md5('wiki pagehomepage')],
@@ -122,7 +122,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $factory->getResolver(['type' => 'wiki page', 'object' => 'HomePage']));
 	}
 
-	function testObtainParentTrackerPermissions()
+	public function testObtainParentTrackerPermissions()
 	{
 		$data = [
 			['Anonymous', 'tiki_p_tracker_view', 'tracker', md5('tracker1')],
@@ -150,7 +150,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $factory->getResolver(['type' => 'trackeritem', 'object' => 2]));
 	}
 
-	function testObtainParentFileGalleryPermissions()
+	public function testObtainParentFileGalleryPermissions()
 	{
 		$data = [
 			['Anonymous', 'tiki_p_view_file_gallery', 'file gallery', md5('file gallery1')],
@@ -179,7 +179,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $factory->getResolver(['type' => 'file', 'object' => 2]));
 	}
 
-	function testObtainParentTopicPermissions()
+	public function testObtainParentTopicPermissions()
 	{
 		$data = [
 			['Anonymous', 'tiki_p_read_article', 'topic', md5('topic1')],
@@ -208,7 +208,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $factory->getResolver(['type' => 'article', 'object' => 2]));
 	}
 
-	function testObtainParentBlogPermissions()
+	public function testObtainParentBlogPermissions()
 	{
 		$data = [
 			['Anonymous', 'tiki_p_read_blog', 'blog', md5('blog1')],
@@ -237,7 +237,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $factory->getResolver(['type' => 'blog post', 'object' => 2]));
 	}
 
-	function testObtainParentForumPermissions()
+	public function testObtainParentForumPermissions()
 	{
 		$data = [
 			['Anonymous', 'tiki_p_forum_read', 'forum', md5('forum1')],
@@ -266,7 +266,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $factory->getResolver(['type' => 'thread', 'object' => 2]));
 	}
 
-	function testObtainParentCalendarPermissions()
+	public function testObtainParentCalendarPermissions()
 	{
 		$data = [
 			['Anonymous', 'tiki_p_view_calendar', 'calendar', md5('calendar1')],
@@ -295,7 +295,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($expect, $factory->getResolver(['type' => 'event', 'object' => 2]));
 	}
 
-	function testObtainPermissionsWhenNoneSpecific()
+	public function testObtainPermissionsWhenNoneSpecific()
 	{
 		$data = [
 			['Anonymous', 'tiki_p_view', 'wiki page', md5('wiki pagehomepage')],
@@ -315,7 +315,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertNull($factory->getResolver(['type' => 'blog', 'object' => '234']));
 	}
 
-	function testObtainParentPermissionsWhenNoneSpecific()
+	public function testObtainParentPermissionsWhenNoneSpecific()
 	{
 		$data = [
 			['Anonymous', 'tiki_p_tracker_view', 'tracker', md5('tracker1')],
@@ -335,7 +335,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertNull($factory->getResolver(['type' => 'trackeritem', 'object' => 2]));
 	}
 
-	function testObtainResolverIncompleteContext()
+	public function testObtainResolverIncompleteContext()
 	{
 		$factory = new Perms_ResolverFactory_ObjectFactory;
 
@@ -343,7 +343,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertNull($factory->getResolver(['object' => 'HomePage']));
 	}
 
-	function testBulkLoading()
+	public function testBulkLoading()
 	{
 		$data = [
 			['Anonymous', 'tiki_p_view', 'wiki page', md5('wiki pagehomepage')],
@@ -365,7 +365,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['HelloWorld'], $out);
 	}
 
-	function testBulkLoadingWithoutObject()
+	public function testBulkLoadingWithoutObject()
 	{
 		$factory = new Perms_ResolverFactory_ObjectFactory;
 		$out = $factory->bulk(['type' => 'wiki page'], 'objectId', ['HomePage', 'UserPageFoobar', 'HelloWorld']);
@@ -373,7 +373,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['HomePage', 'UserPageFoobar', 'HelloWorld'], $out);
 	}
 
-	function testBulkLoadingWithoutType()
+	public function testBulkLoadingWithoutType()
 	{
 		$factory = new Perms_ResolverFactory_ObjectFactory;
 		$out = $factory->bulk([], 'object', ['HomePage', 'UserPageFoobar', 'HelloWorld']);
@@ -381,7 +381,7 @@ class Perms_ResolverFactory_ObjectFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['HomePage', 'UserPageFoobar', 'HelloWorld'], $out);
 	}
 
-	function testBulkLoadingParentWithWrongType()
+	public function testBulkLoadingParentWithWrongType()
 	{
 		$factory = new Perms_ResolverFactory_ObjectFactory('parent');
 		$out = $factory->bulk(['type' => 'wiki page'], 'object', ['HomePage', 'UserPageFoobar', 'HelloWorld']);

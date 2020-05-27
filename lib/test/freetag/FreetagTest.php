@@ -17,14 +17,14 @@ class FreetagTest extends TikiTestCase
 		$this->lib = new FreetagLib();
 	}
 
-	function testDumbParseTagsShouldReturnEmptyArray()
+	public function testDumbParseTagsShouldReturnEmptyArray()
 	{
 		$this->assertEquals([], $this->lib->dumb_parse_tags(null));
 		$this->assertEquals([], $this->lib->dumb_parse_tags([]));
 		$this->assertEquals([], $this->lib->dumb_parse_tags(''));
 	}
 
-	function testDumbParseTagsShouldReturnParsedArray()
+	public function testDumbParseTagsShouldReturnParsedArray()
 	{
 		//TODO: mock FreetagLib::_parse_tag() and FreetagLib::normalize_tag()
 		$expectedResult = [

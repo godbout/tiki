@@ -12,7 +12,7 @@
 
 class Perms_Check_IndirectTest extends TikiTestCase
 {
-	function testUnknownIndirectionIsFalse()
+	public function testUnknownIndirectionIsFalse()
 	{
 		$indirect = new Perms_Check_Indirect(['view' => 'admin_wiki',]);
 
@@ -23,7 +23,7 @@ class Perms_Check_IndirectTest extends TikiTestCase
 		$this->assertFalse($indirect->check($mock, [], 'edit', ['Admins', 'Anonymous']));
 	}
 
-	function testCallForwarded()
+	public function testCallForwarded()
 	{
 		$indirect = new Perms_Check_Indirect(['view' => 'admin_wiki',]);
 
@@ -36,7 +36,7 @@ class Perms_Check_IndirectTest extends TikiTestCase
 		$this->assertTrue($indirect->check($mock, [], 'view', ['Admins', 'Anonymous']));
 	}
 
-	function testCallForwardedWhenFalseToo()
+	public function testCallForwardedWhenFalseToo()
 	{
 		$indirect = new Perms_Check_Indirect(['view' => 'admin_wiki',]);
 

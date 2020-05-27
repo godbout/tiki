@@ -32,7 +32,7 @@ class Search_Elastic_BaseTest extends Search_Index_BaseTest
 		}
 	}
 
-	function testIndexProvidesHighlightHelper()
+	public function testIndexProvidesHighlightHelper()
 	{
 		$query = new Search_Query('foobar or bonjour');
 		$resultSet = $query->search($this->index);

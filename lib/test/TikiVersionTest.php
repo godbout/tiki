@@ -8,7 +8,7 @@
 
 class TikiVersionTest extends PHPUnit\Framework\TestCase
 {
-	function versions()
+	public function versions()
 	{
 		return [
 			['9.0', new Tiki_Version_Version(9, 0)],
@@ -24,7 +24,7 @@ class TikiVersionTest extends PHPUnit\Framework\TestCase
 	 * @param $string
 	 * @param $version
 	 */
-	function testParseVersions($string, $version)
+	public function testParseVersions($string, $version)
 	{
 		$this->assertEquals($version, Tiki_Version_Version::get($string));
 	}
@@ -34,12 +34,12 @@ class TikiVersionTest extends PHPUnit\Framework\TestCase
 	 * @param $string
 	 * @param $version
 	 */
-	function testWriteVersions($string, $version)
+	public function testWriteVersions($string, $version)
 	{
 		$this->assertEquals($string, (string) $version);
 	}
 
-	function testVerifyLatestVersion()
+	public function testVerifyLatestVersion()
 	{
 		$checker = new Tiki_Version_Checker;
 		$checker->setCycle('regular');
@@ -60,7 +60,7 @@ O;
 		$this->assertEquals([], $response);
 	}
 
-	function testVerifyPastSupportedVersion()
+	public function testVerifyPastSupportedVersion()
 	{
 		$checker = new Tiki_Version_Checker;
 		$checker->setCycle('regular');
@@ -85,7 +85,7 @@ O;
 		);
 	}
 
-	function testVerifyMinorUpdate()
+	public function testVerifyMinorUpdate()
 	{
 		$checker = new Tiki_Version_Checker;
 		$checker->setCycle('regular');
@@ -111,7 +111,7 @@ O;
 		);
 	}
 
-	function testVerifyUpgradePrerelease()
+	public function testVerifyUpgradePrerelease()
 	{
 		$checker = new Tiki_Version_Checker;
 		$checker->setCycle('regular');
@@ -137,7 +137,7 @@ O;
 		);
 	}
 
-	function testUpgradeFromUnsupportedVersion()
+	public function testUpgradeFromUnsupportedVersion()
 	{
 		$checker = new Tiki_Version_Checker;
 		$checker->setCycle('regular');
@@ -162,7 +162,7 @@ O;
 		);
 	}
 
-	function testCurrentVersionMoreRecent()
+	public function testCurrentVersionMoreRecent()
 	{
 		$checker = new Tiki_Version_Checker;
 		$checker->setCycle('regular');
@@ -187,12 +187,12 @@ O;
 	 * @param $string
 	 * @param $upgrade
 	 */
-	function testObtainMessages($string, $upgrade)
+	public function testObtainMessages($string, $upgrade)
 	{
 		$this->assertEquals($string, $upgrade->getMessage());
 	}
 
-	function upgradeMessages()
+	public function upgradeMessages()
 	{
 		return [
 			['Version 8.2 is no longer supported. A minor upgrade to 8.4 is strongly recommended.', new Tiki_Version_Upgrade('8.2', '8.4', true)],

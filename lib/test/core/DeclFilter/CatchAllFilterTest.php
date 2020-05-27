@@ -12,14 +12,14 @@
 
 class DeclFilter_CatchAllFilterTest extends TikiTestCase
 {
-	function testMatch()
+	public function testMatch()
 	{
 		$rule = new DeclFilter_CatchAllFilterRule('digits');
 
 		$this->assertTrue($rule->match('hello'));
 	}
 
-	function testApply()
+	public function testApply()
 	{
 		$rule = new DeclFilter_CatchAllFilterRule('digits');
 
@@ -32,7 +32,7 @@ class DeclFilter_CatchAllFilterTest extends TikiTestCase
 		$this->assertEquals('123', $data['hello']);
 	}
 
-	function testApplyRecursive()
+	public function testApplyRecursive()
 	{
 		$rule = new DeclFilter_CatchAllFilterRule('digits');
 		$rule->applyOnElements();

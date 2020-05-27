@@ -21,14 +21,14 @@ class AttributeTest extends TikiTestCase
 		TikiDb::get()->query('DELETE FROM `tiki_object_attributes` WHERE `attribute` LIKE ?', ['tiki.test%']);
 	}
 
-	function testNoAttributes()
+	public function testNoAttributes()
 	{
 		$lib = new AttributeLib;
 
 		$this->assertEquals([], $lib->get_attributes('test', 'HelloWorld'));
 	}
 
-	function testSetAttributes()
+	public function testSetAttributes()
 	{
 		$lib = new AttributeLib;
 		$lib->set_attribute('test', 'HelloWorld', 'tiki.test.abc', 121.22);
@@ -42,7 +42,7 @@ class AttributeTest extends TikiTestCase
 		);
 	}
 
-	function testReplaceValue()
+	public function testReplaceValue()
 	{
 		$lib = new AttributeLib;
 		$this->assertTrue($lib->set_attribute('test', 'HelloWorld', 'tiki.test.abc', 121.22));
@@ -54,7 +54,7 @@ class AttributeTest extends TikiTestCase
 		);
 	}
 
-	function testEnforceFormat()
+	public function testEnforceFormat()
 	{
 		$lib = new AttributeLib;
 		$this->assertFalse($lib->set_attribute('test', 'HelloWorld', 'tiki.test', 121.22));
@@ -62,7 +62,7 @@ class AttributeTest extends TikiTestCase
 		$this->assertEquals([], $lib->get_attributes('test', 'HelloWorld'));
 	}
 
-	function testLowecase()
+	public function testLowecase()
 	{
 		$lib = new AttributeLib;
 		$this->assertTrue($lib->set_attribute('test', 'HelloWorld', 'tiki.TEST.aaa', 121.22));
@@ -73,7 +73,7 @@ class AttributeTest extends TikiTestCase
 		);
 	}
 
-	function testFilterUndesired()
+	public function testFilterUndesired()
 	{
 		$lib = new AttributeLib;
 		$this->assertTrue($lib->set_attribute('test', 'HelloWorld', 'tiki . test . aaa55bBb', 121.22));
@@ -84,7 +84,7 @@ class AttributeTest extends TikiTestCase
 		);
 	}
 
-	function testRemoveEmpty()
+	public function testRemoveEmpty()
 	{
 		$lib = new AttributeLib;
 		$lib->set_attribute('test', 'HelloWorld', 'tiki.test.abc', 121.22);

@@ -13,10 +13,10 @@ use TikiLib;
 class AbsoluteToRelativeLinkTest extends TestCase
 {
 
-	const BASE_URL = 'https://tiki.org/';
-	const BASE_URL_HTTP = 'http://tiki.org/';
+	public const BASE_URL = 'https://tiki.org/';
+	public const BASE_URL_HTTP = 'http://tiki.org/';
 
-	const DEMO_TEXT = 'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,' .
+	public const DEMO_TEXT = 'Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,' .
 	' ut fermentum massa justo sit amet risus ##### Fermentum Fringilla Dapibus.';
 
 	protected function setUp() : void

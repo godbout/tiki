@@ -37,7 +37,7 @@ class Perms_ResolverFactory_GlobalFactoryTest extends PHPUnit\Framework\TestCase
 		}
 	}
 
-	function testHashIsConstant()
+	public function testHashIsConstant()
 	{
 		$factory = new Perms_ResolverFactory_GlobalFactory;
 
@@ -45,7 +45,7 @@ class Perms_ResolverFactory_GlobalFactoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals('global', $factory->getHash(['type' => 'wiki page', 'object' => 'HomePage']));
 	}
 
-	function testObtainGlobalPermissions()
+	public function testObtainGlobalPermissions()
 	{
 		$db = TikiDb::get();
 		$query = 'INSERT INTO users_grouppermissions (groupName, permName) VALUES(?,?)';

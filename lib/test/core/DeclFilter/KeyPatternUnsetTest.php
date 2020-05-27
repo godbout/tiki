@@ -12,7 +12,7 @@
 
 class DeclFilter_KeyPatternUnsetTest extends TikiTestCase
 {
-	function testMatch()
+	public function testMatch()
 	{
 		$rule = new DeclFilter_KeyPatternUnsetRule(
 			[
@@ -27,7 +27,7 @@ class DeclFilter_KeyPatternUnsetTest extends TikiTestCase
 		$this->assertFalse($rule->match('baz'));
 	}
 
-	function testApply()
+	public function testApply()
 	{
 		$rule = new DeclFilter_KeyPatternUnsetRule(
 			[

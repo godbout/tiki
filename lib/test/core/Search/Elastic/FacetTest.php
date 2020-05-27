@@ -30,7 +30,7 @@ class Search_Elastic_FacetTest extends PHPUnit\Framework\TestCase
 		}
 	}
 
-	function testRequireFacet()
+	public function testRequireFacet()
 	{
 		$facet = new Search_Query_Facet_Term('categories');
 

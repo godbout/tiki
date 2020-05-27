@@ -12,7 +12,7 @@
 
 class DeclFilter_BaseTest extends TikiTestCase
 {
-	function testSimple()
+	public function testSimple()
 	{
 		$data = [
 			'numeric' => '123abc',
@@ -33,7 +33,7 @@ class DeclFilter_BaseTest extends TikiTestCase
 		$this->assertEquals('alpha', $data['alpha']);
 	}
 
-	function testStructure()
+	public function testStructure()
 	{
 		$data = [
 			'num_array' => [134, '456', 'abc', '123abc'],
@@ -51,7 +51,7 @@ class DeclFilter_BaseTest extends TikiTestCase
 		$this->assertNotContains('abc', $data);
 	}
 
-	function testDefault()
+	public function testDefault()
 	{
 		$filter = new DeclFilter;
 		$filter->addStaticKeyFilters(['hello' => 'digits',]);
@@ -68,7 +68,7 @@ class DeclFilter_BaseTest extends TikiTestCase
 		$this->assertEquals('123', $data['hello']);
 	}
 
-	function testNoDefault()
+	public function testNoDefault()
 	{
 		$filter = new DeclFilter;
 		$filter->addStaticKeyFilters(['hello' => 'digits',]);

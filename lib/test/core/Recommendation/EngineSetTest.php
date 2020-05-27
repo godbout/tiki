@@ -11,13 +11,13 @@ use PHPUnit\Framework\TestCase;
 
 class EngineSetTest extends TestCase
 {
-	function testNoEngines()
+	public function testNoEngines()
 	{
 		$engineSet = new EngineSet;
 		$this->assertEquals(0, $engineSet->getCount());
 	}
 
-	function testMultipleEngines()
+	public function testMultipleEngines()
 	{
 		$engineSet = new EngineSet;
 		$engineSet->register('a', new Engine\FakeEngine([]));
@@ -25,7 +25,7 @@ class EngineSetTest extends TestCase
 		$this->assertEquals(2, $engineSet->getCount());
 	}
 
-	function testMultipleWeightedEngines()
+	public function testMultipleWeightedEngines()
 	{
 		$engineSet = new EngineSet;
 		$engineSet->registerWeighted('a', 1, new Engine\FakeEngine([]));
@@ -33,7 +33,7 @@ class EngineSetTest extends TestCase
 		$this->assertEquals(2, $engineSet->getCount());
 	}
 
-	function testDuplicateNames()
+	public function testDuplicateNames()
 	{
 		$engineSet = new EngineSet;
 		$engineSet->register('a', new Engine\FakeEngine([]));
@@ -41,7 +41,7 @@ class EngineSetTest extends TestCase
 		$this->assertEquals(1, $engineSet->getCount());
 	}
 
-	function testRegisterGenerator()
+	public function testRegisterGenerator()
 	{
 		$a = new Engine\FakeEngine([]);
 		$b = new Engine\FakeEngine([]);
@@ -69,7 +69,7 @@ class EngineSetTest extends TestCase
 		], $out);
 	}
 
-	function testRegisterWeightedGenerator()
+	public function testRegisterWeightedGenerator()
 	{
 		$a = new Engine\FakeEngine([]);
 		$b = new Engine\FakeEngine([]);

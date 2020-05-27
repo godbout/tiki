@@ -12,14 +12,14 @@
 
 class Perms_Reflection_PermissionSetTest extends TikiTestCase
 {
-	function testEmptySet()
+	public function testEmptySet()
 	{
 		$set = new Perms_Reflection_PermissionSet;
 
 		$this->assertEquals([], $set->getPermissionArray());
 	}
 
-	function testBasicSet()
+	public function testBasicSet()
 	{
 		$set = new Perms_Reflection_PermissionSet;
 		$set->add('Registered', 'view');
@@ -35,7 +35,7 @@ class Perms_Reflection_PermissionSetTest extends TikiTestCase
 		);
 	}
 
-	function testDuplicateEntry()
+	public function testDuplicateEntry()
 	{
 		$set = new Perms_Reflection_PermissionSet;
 		$set->add('Registered', 'view');
@@ -48,7 +48,7 @@ class Perms_Reflection_PermissionSetTest extends TikiTestCase
 		);
 	}
 
-	function testPositiveHas()
+	public function testPositiveHas()
 	{
 		$set = new Perms_Reflection_PermissionSet;
 		$set->add('Anonymous', 'view');
@@ -56,14 +56,14 @@ class Perms_Reflection_PermissionSetTest extends TikiTestCase
 		$this->assertTrue($set->has('Anonymous', 'view'));
 	}
 
-	function testNegativeHas()
+	public function testNegativeHas()
 	{
 		$set = new Perms_Reflection_PermissionSet;
 
 		$this->assertFalse($set->has('Anonymous', 'view'));
 	}
 
-	function testAddMultiple()
+	public function testAddMultiple()
 	{
 		$equivalent = new Perms_Reflection_PermissionSet;
 		$equivalent->add('Anonymous', 'a');

@@ -12,7 +12,7 @@
 
 class Perms_Reflection_QuickTest extends TikiTestCase
 {
-	function testUnconfigured()
+	public function testUnconfigured()
 	{
 		$quick = new Perms_Reflection_Quick;
 
@@ -26,7 +26,7 @@ class Perms_Reflection_QuickTest extends TikiTestCase
 		$this->assertEquals(new Perms_Reflection_PermissionSet, $obtained);
 	}
 
-	function testSimpleConfigurations()
+	public function testSimpleConfigurations()
 	{
 		$quick = new Perms_Reflection_Quick;
 		$quick->configure('tester', ['view', 'edit', 'comment']);
@@ -50,7 +50,7 @@ class Perms_Reflection_QuickTest extends TikiTestCase
 		$this->assertEquals($expect, $obtained);
 	}
 
-	function testInheritance()
+	public function testInheritance()
 	{
 		$quick = new Perms_Reflection_Quick;
 		$quick->configure('basic', ['view']);
@@ -77,7 +77,7 @@ class Perms_Reflection_QuickTest extends TikiTestCase
 		$this->assertEquals($expect, $obtained);
 	}
 
-	function testAssignNone()
+	public function testAssignNone()
 	{
 		$quick = new Perms_Reflection_Quick;
 		$current = new Perms_Reflection_PermissionSet;
@@ -93,7 +93,7 @@ class Perms_Reflection_QuickTest extends TikiTestCase
 		$this->assertEquals($expect, $obtained);
 	}
 
-	function testOnbtainUserdefined()
+	public function testOnbtainUserdefined()
 	{
 		$quick = new Perms_Reflection_Quick;
 		$current = new Perms_Reflection_PermissionSet;
@@ -110,7 +110,7 @@ class Perms_Reflection_QuickTest extends TikiTestCase
 		$this->assertEquals($expect, $obtained);
 	}
 
-	function testDefaultRetrieveGroups()
+	public function testDefaultRetrieveGroups()
 	{
 		$quick = new Perms_Reflection_Quick;
 
@@ -127,7 +127,7 @@ class Perms_Reflection_QuickTest extends TikiTestCase
 		$this->assertEquals($expect, $obtained);
 	}
 
-	function testMatch()
+	public function testMatch()
 	{
 		$quick = new Perms_Reflection_Quick;
 		$quick->configure('basic', ['view']);
@@ -142,7 +142,7 @@ class Perms_Reflection_QuickTest extends TikiTestCase
 		$this->assertEquals($expect, $obtained);
 	}
 
-	function testNoMatchOnExtra()
+	public function testNoMatchOnExtra()
 	{
 		$quick = new Perms_Reflection_Quick;
 		$quick->configure('basic', ['view']);
@@ -158,7 +158,7 @@ class Perms_Reflection_QuickTest extends TikiTestCase
 		$this->assertEquals($expect, $obtained);
 	}
 
-	function testNoMatchOnMissing()
+	public function testNoMatchOnMissing()
 	{
 		$quick = new Perms_Reflection_Quick;
 		$quick->configure('basic', ['view', 'edit']);
@@ -173,7 +173,7 @@ class Perms_Reflection_QuickTest extends TikiTestCase
 		$this->assertEquals($expect, $obtained);
 	}
 
-	function testInheritenceAppiesInMatching()
+	public function testInheritenceAppiesInMatching()
 	{
 		$quick = new Perms_Reflection_Quick;
 		$quick->configure('basic', ['view']);
@@ -190,7 +190,7 @@ class Perms_Reflection_QuickTest extends TikiTestCase
 		$this->assertEquals($expect, $obtained);
 	}
 
-	function testRegisterNoneIsIgnored()
+	public function testRegisterNoneIsIgnored()
 	{
 		$quick = new Perms_Reflection_Quick;
 		$quick->configure('none', ['view']);
@@ -199,7 +199,7 @@ class Perms_Reflection_QuickTest extends TikiTestCase
 		$this->assertEquals($expect, $quick);
 	}
 
-	function testRegisterUserDefinedIsIgnored()
+	public function testRegisterUserDefinedIsIgnored()
 	{
 		$quick = new Perms_Reflection_Quick;
 		$quick->configure('userdefined', ['view']);

@@ -14,7 +14,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->info = [];
 	}
 
-	function testCreateLink()
+	public function testCreateLink()
 	{
 		// ((Test)) on missing page
 		$link = new WikiParser_OutputLink;
@@ -23,7 +23,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="tiki-editpage.php?page=Test" title="Create page: Test" class="wiki wikinew text-danger tips">Test</a>', $link->getHtml());
 	}
 
-	function testCreateLinkWithLanguage()
+	public function testCreateLinkWithLanguage()
 	{
 		// ((Test)) on missing page, with multilingual specified
 		$link = new WikiParser_OutputLink;
@@ -33,7 +33,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="tiki-editpage.php?page=Test&lang=fr" title="Create page: Test" class="wiki wikinew text-danger tips">Test</a>', $link->getHtml());
 	}
 
-	function testCreateLinkWithDescription()
+	public function testCreateLinkWithDescription()
 	{
 		// ((Test|Hello World))
 		$link = new WikiParser_OutputLink;
@@ -43,7 +43,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="tiki-editpage.php?page=Test" title="Create page: Test" class="wiki wikinew text-danger tips">Hello World</a>', $link->getHtml());
 	}
 
-	function testCreateLinkWithRelationType()
+	public function testCreateLinkWithRelationType()
 	{
 		// (real(Test))
 		$link = new WikiParser_OutputLink;
@@ -53,7 +53,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="tiki-editpage.php?page=Test" title="Create page: Test" class="wiki wikinew text-danger tips real">Test</a>', $link->getHtml());
 	}
 
-	function testCreateLinkWithVeryBigName()
+	public function testCreateLinkWithVeryBigName()
 	{
 		// If page name exceeds 158 characters, it must be trimmed.
 		// Link will be to trimmed page while displayed text will be full name
@@ -63,7 +63,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="tiki-editpage.php?page=TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSize" title="Create page: TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSize" class="wiki wikinew text-danger tips">TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabase</a>', $link->getHtml());
 	}
 
-	function testCreateExistingLinkWithVeryBigName()
+	public function testCreateExistingLinkWithVeryBigName()
 	{
 		// If page name exceeds 158 characters, it must be trimmed.
 		// Link will be to trimmed page while displayed text will be full name
@@ -81,7 +81,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSize" title="Testing" class="wiki wiki_page">TestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeOfTheDatabaseTestWithAVeryBigNameThatExceedsTheColumnSizeTHISMUSTBETRIMMED</a>', $link->getHtml());
 	}
 
-	function testPageDoesExist()
+	public function testPageDoesExist()
 	{
 		$this->info['Test'] = [
 			'pageName' => 'Test',
@@ -97,7 +97,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="Test" title="Testing" class="wiki wiki_page">Test</a>', $link->getHtml());
 	}
 
-	function testInfoFunctionProvidesAlias()
+	public function testInfoFunctionProvidesAlias()
 	{
 		$this->info['Test'] = [
 			'pageName' => 'Test1.2',
@@ -113,7 +113,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="Test1.2" title="Testing" class="wiki wiki_page">Test</a>', $link->getHtml());
 	}
 
-	function testExistsWithRelType()
+	public function testExistsWithRelType()
 	{
 		$this->info['Test'] = [
 			'pageName' => 'Test',
@@ -130,7 +130,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="Test" title="Testing" class="wiki wiki_page abc">Test</a>', $link->getHtml());
 	}
 
-	function testUndefinedExternalLink()
+	public function testUndefinedExternalLink()
 	{
 		$link = new WikiParser_OutputLink;
 		$link->setIdentifier('out:Test');
@@ -140,7 +140,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="tiki-editpage.php?page=out%3ATest" title="Create page: out:Test" class="wiki wikinew text-danger tips">out:Test</a>', $link->getHtml());
 	}
 
-	function testWithDefinedExternal()
+	public function testWithDefinedExternal()
 	{
 		$link = new WikiParser_OutputLink;
 		$link->setIdentifier('out:Test');
@@ -154,7 +154,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="http://example.com/Test" class="wiki ext_page out">Test</a>', $link->getHtml());
 	}
 
-	function testWithDefinedExternalAndDescription()
+	public function testWithDefinedExternalAndDescription()
 	{
 		$link = new WikiParser_OutputLink;
 		$link->setIdentifier('out:Test');
@@ -169,7 +169,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="http://example.com/Test" class="wiki ext_page out">ABC</a>', $link->getHtml());
 	}
 
-	function testHandlePlural()
+	public function testHandlePlural()
 	{
 		$this->info['Policies'] = false;
 		$this->info['Policy'] = [
@@ -187,7 +187,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="Policy" title="Some Page" class="wiki wiki_page">Policies</a>', $link->getHtml());
 	}
 
-	function testRenderCreateLinkWithNamespace()
+	public function testRenderCreateLinkWithNamespace()
 	{
 		// ((Test)) within a page in HelloWorld namespace
 		$link = new WikiParser_OutputLink;
@@ -197,7 +197,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="tiki-editpage.php?page=HelloWorld_Test" title="Create page: HelloWorld_Test" class="wiki wikinew text-danger tips">Test</a>', $link->getHtml());
 	}
 
-	function testRenderLinkWithinSameNamespace()
+	public function testRenderLinkWithinSameNamespace()
 	{
 		$this->info['HelloWorld_Test'] = [
 			'pageName' => 'HelloWorld_Test',
@@ -218,7 +218,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="HelloWorld_Test" title="HelloWorld / Test" class="wiki wiki_page">Test</a>', $link->getHtml());
 	}
 
-	function testRenderFromDifferentNamespace()
+	public function testRenderFromDifferentNamespace()
 	{
 		$this->info['HelloWorld_Test'] = [
 			'pageName' => 'HelloWorld_Test',
@@ -239,7 +239,7 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="HelloWorld_Test" title="HelloWorld / Test" class="wiki wiki_page"><span class="namespace first last">HelloWorld</span>Test</a>', $link->getHtml());
 	}
 
-	function testRenderFromDifferentNamespaceWithMultipleParts()
+	public function testRenderFromDifferentNamespaceWithMultipleParts()
 	{
 		$this->info['Abc_Def_HelloWorld_Test'] = [
 			'pageName' => 'Abc_Def_HelloWorld_Test',
@@ -260,14 +260,14 @@ class WikiParser_OutputLinkTest extends TikiTestCase
 		$this->assertLinkIs('<a href="Abc_Def_HelloWorld_Test" title="Abc / Def / HelloWorld / Test" class="wiki wiki_page"><span class="namespace first">Abc</span><span class="namespace">Def</span><span class="namespace last">HelloWorld</span>Test</a>', $link->getHtml());
 	}
 
-	function getPageInfo($page)
+	public function getPageInfo($page)
 	{
 		if (isset($this->info[$page])) {
 			return $this->info[$page];
 		}
 	}
 
-	function getWikiLink($page)
+	public function getWikiLink($page)
 	{
 		return $page;
 	}

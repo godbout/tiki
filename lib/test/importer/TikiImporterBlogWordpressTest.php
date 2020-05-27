@@ -499,7 +499,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals("\n\nNo attachments found to import!\n", $output);
 	}
 
-	function testCreateFileGallery()
+	public function testCreateFileGallery()
 	{
 		$last_id = TikiDb::get()->getOne('SELECT max(galleryId) FROM tiki_file_galleries');
 

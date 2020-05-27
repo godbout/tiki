@@ -2,7 +2,7 @@
 
 class Profile_AnalyserTest extends PHPUnit\Framework\TestCase
 {
-	function testReadGroupList()
+	public function testReadGroupList()
 	{
 		$builder = new Services_Workspace_ProfileBuilder;
 		$builder->addGroup('Base', $builder->user('group'));
@@ -46,7 +46,7 @@ class Profile_AnalyserTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testGetObjects()
+	public function testGetObjects()
 	{
 		$builder = new Services_Workspace_ProfileBuilder;
 		$builder->addObject(

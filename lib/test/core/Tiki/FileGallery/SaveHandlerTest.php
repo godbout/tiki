@@ -34,7 +34,7 @@ class Tiki_FileGallery_Manipulator_SaveHandlerTest extends TikiTestCase
 		$this->cleanup();
 	}
 
-	function testFileCreation()
+	public function testFileCreation()
 	{
 		$file = new File(['filename' => 'test.zip', 'data' => 'test123', 'galleryId' => 222]);
 		$filegallib = TikiLib::lib('filegal');
@@ -50,7 +50,7 @@ class Tiki_FileGallery_Manipulator_SaveHandlerTest extends TikiTestCase
 		$this->assertEquals($file->data, $filesTable->fetchOne('data', ['filename' => $file->filename]));
 	}
 
-	function testFileUpdatePlain()
+	public function testFileUpdatePlain()
 	{
 		global $prefs;
 
@@ -72,7 +72,7 @@ class Tiki_FileGallery_Manipulator_SaveHandlerTest extends TikiTestCase
 		$this->assertEquals('changed', $filesTable->fetchOne('data', ['fileId' => $fileId]));
 	}
 
-	function testFileArchiveNewId()
+	public function testFileArchiveNewId()
 	{
 		global $prefs;
 
@@ -95,7 +95,7 @@ class Tiki_FileGallery_Manipulator_SaveHandlerTest extends TikiTestCase
 		$this->assertNotEquals($fileId, $origFileId);
 	}
 
-	function testFileArchiveKeepId()
+	public function testFileArchiveKeepId()
 	{
 		global $prefs;
 
@@ -117,7 +117,7 @@ class Tiki_FileGallery_Manipulator_SaveHandlerTest extends TikiTestCase
 		$this->assertEquals('test123', $filesTable->fetchOne('data', ['archiveId' => $fileId]));
 	}
 
-	function testFileDraftAndValidation()
+	public function testFileDraftAndValidation()
 	{
 		global $prefs;
 

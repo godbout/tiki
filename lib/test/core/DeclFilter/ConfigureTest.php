@@ -12,7 +12,7 @@
 
 class DeclFilter_ConfigureTest extends TikiTestCase
 {
-	function testSimple()
+	public function testSimple()
 	{
 		$configuration = [
 			['staticKeyFilters' => [
@@ -49,7 +49,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 	/**
 	 * Triggered errors become exceptions...
 	 */
-	function testDisallowed()
+	public function testDisallowed()
 	{
 		$this->expectError();
 		$configuration = [
@@ -59,7 +59,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 		$filter = DeclFilter::fromConfiguration($configuration, ['catchAllFilter']);
 	}
 
-	function testMissingLevel()
+	public function testMissingLevel()
 	{
 		$this->expectError();
 		$configuration = [
@@ -69,7 +69,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 		$filter = DeclFilter::fromConfiguration($configuration);
 	}
 
-	function testUnsetSome()
+	public function testUnsetSome()
 	{
 		$configuration = [
 			['staticKeyUnset' => ['hello', 'world']],
@@ -91,7 +91,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 		$this->assertEquals('UNDECLARED', $data['bar']);
 	}
 
-	function testUnsetOthers()
+	public function testUnsetOthers()
 	{
 		$configuration = [
 			['staticKeyFilters' => [
@@ -116,7 +116,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 		$this->assertFalse(isset($data['bar']));
 	}
 
-	function testFilterPattern()
+	public function testFilterPattern()
 	{
 		$configuration = [
 			['keyPatternFilters' => [
@@ -148,7 +148,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 		$this->assertContains('def', $data['foo']);
 	}
 
-	function testUnsetPattern()
+	public function testUnsetPattern()
 	{
 		$configuration = [
 			['keyPatternUnset' => [

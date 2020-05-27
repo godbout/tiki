@@ -55,7 +55,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->restoreTable('tiki_tracker_items');
 	}
 
-	function testHash()
+	public function testHash()
 	{
 		$objectQuery = 'INSERT INTO tiki_objects (objectId, type, itemId) VALUES(?, ?, ?)';
 		$categQuery = 'INSERT INTO tiki_category_objects (catObjectId, categId) VALUES(?, ?)';
@@ -90,7 +90,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->assertEquals('category:1', $factory->getHash(['type' => 'trackeritem', 'object' => 12]));
 	}
 
-	function testHashMissingType()
+	public function testHashMissingType()
 	{
 		$objectQuery = 'INSERT INTO tiki_objects (objectId, type, itemId) VALUES(?, ?, ?)';
 		$categQuery = 'INSERT INTO tiki_category_objects (catObjectId, categId) VALUES(?, ?)';
@@ -111,7 +111,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->assertEquals('', $factory->getHash(['object' => 'HomePage']));
 	}
 
-	function testHashMissingObject()
+	public function testHashMissingObject()
 	{
 		$objectQuery = 'INSERT INTO tiki_objects (objectId, type, itemId) VALUES(?, ?, ?)';
 		$categQuery = 'INSERT INTO tiki_category_objects (catObjectId, categId) VALUES(?, ?)';
@@ -132,7 +132,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->assertEquals('', $factory->getHash(['type' => 'wiki page']));
 	}
 
-	function testObtainPermissions()
+	public function testObtainPermissions()
 	{
 		$objectQuery = 'INSERT INTO tiki_objects (objectId, type, itemId) VALUES(?, ?, ?)';
 		$categQuery = 'INSERT INTO tiki_category_objects (catObjectId, categId) VALUES(?, ?)';
@@ -176,7 +176,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->assertEquals($expect, $factory->getResolver(['type' => 'blog', 'object' => 4]));
 	}
 
-	function testObtainParentPermissions()
+	public function testObtainParentPermissions()
 	{
 		$objectQuery = 'INSERT INTO tiki_objects (objectId, type, itemId) VALUES(?, ?, ?)';
 		$categQuery = 'INSERT INTO tiki_category_objects (catObjectId, categId) VALUES(?, ?)';
@@ -226,7 +226,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->assertEquals($expect, $factory->getResolver(['type' => 'trackeritem', 'object' => 12]));
 	}
 
-	function testGetResolverWithoutCategories()
+	public function testGetResolverWithoutCategories()
 	{
 		$objectQuery = 'INSERT INTO tiki_objects (objectId, type, itemId) VALUES(?, ?, ?)';
 		$categQuery = 'INSERT INTO tiki_category_objects (catObjectId, categId) VALUES(?, ?)';
@@ -250,7 +250,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->assertNull($factory->getResolver(['type' => 'wiki page', 'object' => 'HomePage']));
 	}
 
-	function testObtainPermissionsWhenNoneSpecific()
+	public function testObtainPermissionsWhenNoneSpecific()
 	{
 		$objectQuery = 'INSERT INTO tiki_objects (objectId, type, itemId) VALUES(?, ?, ?)';
 		$categQuery = 'INSERT INTO tiki_category_objects (catObjectId, categId) VALUES(?, ?)';
@@ -276,7 +276,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->assertNull($factory->getResolver(['type' => 'wiki page', 'object' => 'Contact']));
 	}
 
-	function testObtainResolverIncompleteContext()
+	public function testObtainResolverIncompleteContext()
 	{
 		$factory = new Perms_ResolverFactory_CategoryFactory;
 
@@ -284,7 +284,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->assertNull($factory->getResolver(['object' => 'HomePage']));
 	}
 
-	function testBulkLoading()
+	public function testBulkLoading()
 	{
 		$objectQuery = 'INSERT INTO tiki_objects (objectId, type, itemId) VALUES(?, ?, ?)';
 		$categQuery = 'INSERT INTO tiki_category_objects (catObjectId, categId) VALUES(?, ?)';
@@ -314,7 +314,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->assertEquals(['UserPageFoobar'], $out);
 	}
 
-	function testBulkLoadingWithoutObject()
+	public function testBulkLoadingWithoutObject()
 	{
 		$factory = new Perms_ResolverFactory_CategoryFactory;
 		$out = $factory->bulk(['type' => 'wiki page'], 'objectId', ['HomePage', 'UserPageFoobar', 'HelloWorld']);
@@ -322,7 +322,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->assertEquals(['HomePage', 'UserPageFoobar', 'HelloWorld'], $out);
 	}
 
-	function testBulkLoadingWithoutType()
+	public function testBulkLoadingWithoutType()
 	{
 		$factory = new Perms_ResolverFactory_CategoryFactory;
 		$out = $factory->bulk([], 'object', ['HomePage', 'UserPageFoobar', 'HelloWorld']);
@@ -330,7 +330,7 @@ class Perms_ResolverFactory_CategoryFactoryTest extends PHPUnit\Framework\TestCa
 		$this->assertEquals(['HomePage', 'UserPageFoobar', 'HelloWorld'], $out);
 	}
 
-	function testBulkLoadingParentWithWrongType()
+	public function testBulkLoadingParentWithWrongType()
 	{
 		$factory = new Perms_ResolverFactory_CategoryFactory('parent');
 		$out = $factory->bulk(['type' => 'wiki page'], 'object', ['HomePage', 'UserPageFoobar', 'HelloWorld']);

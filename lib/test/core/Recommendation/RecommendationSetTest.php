@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class RecommendationSetTest extends TestCase
 {
-	function testAddFiltersRecommendations()
+	public function testAddFiltersRecommendations()
 	{
 		$set = new RecommendationSet('X');
 		$set->add(new Debug\SourceDocument('forum post', 1));
@@ -24,7 +24,7 @@ class RecommendationSetTest extends TestCase
 		$this->assertEquals($expect, $set);
 	}
 
-	function testDebugInformationExcludedFromIteration()
+	public function testDebugInformationExcludedFromIteration()
 	{
 		$set = new RecommendationSet('X');
 		$set->addDebug(new Debug\SourceDocument('forum post', 1));

@@ -38,7 +38,7 @@ class Search_Elastic_QueryRepositoryTest extends PHPUnit\Framework\TestCase
 		}
 	}
 
-	function testNothingToMatch()
+	public function testNothingToMatch()
 	{
 		$tf = $this->index->getTypeFactory();
 		$names = $this->index->getMatchingQueries([
@@ -50,7 +50,7 @@ class Search_Elastic_QueryRepositoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals([], $names);
 	}
 
-	function testFilterBasicContent()
+	public function testFilterBasicContent()
 	{
 		$query = new Search_Query('Hello World');
 		$query->store('my_custom_name', $this->index);
@@ -65,7 +65,7 @@ class Search_Elastic_QueryRepositoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(['my_custom_name'], $names);
 	}
 
-	function testFilterFailsToFindContent()
+	public function testFilterFailsToFindContent()
 	{
 		$query = new Search_Query('Foobar');
 		$query->store('my_custom_name', $this->index);
@@ -80,7 +80,7 @@ class Search_Elastic_QueryRepositoryTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals([], $names);
 	}
 
-	function testRemoveQuery()
+	public function testRemoveQuery()
 	{
 		$query = new Search_Query('Hello World');
 		$query->store('my_custom_name', $this->index);

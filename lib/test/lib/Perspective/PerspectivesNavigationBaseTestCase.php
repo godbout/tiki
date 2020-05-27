@@ -21,11 +21,11 @@ class PerspectivesNavigationBaseTestCase extends TestCase
 	/**
 	 * Value used in the fixture files for TIKI_TEST_HOST
 	 */
-	const FIXTURE_HOST = 'tiki.localdomain';
+	public const FIXTURE_HOST = 'tiki.localdomain';
 	/**
 	 * Value used in the fixture files for TIKI_TEST_HOST_A
 	 */
-	const FIXTURE_SITE = 'tiki-a.localdomain';
+	public const FIXTURE_SITE = 'tiki-a.localdomain';
 
 	public static function setUpBeforeClass() : void
 	{

@@ -10,7 +10,7 @@
  */
 abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 {
-	const DOCUMENT_DATE = 1234567890;
+	public const DOCUMENT_DATE = 1234567890;
 	protected $index;
 
 	protected function populate($index)
@@ -40,7 +40,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testBasicSearch()
+	public function testBasicSearch()
 	{
 		$positive = new Search_Query('Bonjour');
 		$negative = new Search_Query('NotInDocument');
@@ -60,7 +60,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		return $out;
 	}
 
-	function testFieldSpecificSearch()
+	public function testFieldSpecificSearch()
 	{
 		$off = new Search_Query;
 		$off->filterContent('description', 'title');
@@ -71,7 +71,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertCount(0, $off->search($this->index));
 	}
 
-	function testWithOrCondition()
+	public function testWithOrCondition()
 	{
 		$positive = new Search_Query('foobar or bonjour');
 		$negative = new Search_Query('foobar or baz');
@@ -80,7 +80,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertCount(0, $negative->search($this->index));
 	}
 
-	function testWithNotCondition()
+	public function testWithNotCondition()
 	{
 		$negative = new Search_Query('not world and bonjour');
 		$positive = new Search_Query('not foobar and bonjour');
@@ -89,14 +89,14 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertGreaterThan(0, count($positive->search($this->index)));
 	}
 
-	function testFilterType()
+	public function testFilterType()
 	{
 		$this->assertResultCount(1, 'filterType', 'wiki page');
 		$this->assertResultCount(0, 'filterType', 'wiki');
 		$this->assertResultCount(0, 'filterType', 'blog post');
 	}
 
-	function testFilterCategories()
+	public function testFilterCategories()
 	{
 		$this->assertResultCount(0, 'filterCategory', '3');
 		$this->assertResultCount(1, 'filterCategory', '1 and 2');
@@ -104,7 +104,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertResultCount(1, 'filterCategory', '1 and (2 or 3)');
 	}
 
-	function testLanguageFilter()
+	public function testLanguageFilter()
 	{
 		$this->assertResultCount(1, 'filterLanguage', 'en');
 		$this->assertResultCount(1, 'filterLanguage', 'en or fr');
@@ -114,7 +114,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertResultCount(0, 'filterLanguage', 'NOT en');
 	}
 
-	function testFilterPermissions()
+	public function testFilterPermissions()
 	{
 		$this->assertResultCount(0, 'filterPermissions', ['Anonymous']);
 		$this->assertResultCount(0, 'filterPermissions', ['Registered']);
@@ -123,7 +123,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertResultCount(0, 'filterPermissions', ['Project']);
 	}
 
-	function testRangeFilter()
+	public function testRangeFilter()
 	{
 		$this->assertResultCount(1, 'filterRange', self::DOCUMENT_DATE - 1000, self::DOCUMENT_DATE + 1000);
 		$this->assertResultCount(0, 'filterRange', self::DOCUMENT_DATE - 1000, self::DOCUMENT_DATE - 500);
@@ -134,13 +134,13 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertResultCount(0, 'filterNumericRange', 200, 300, 'number');
 	}
 
-	function testRangeFilterBounds()
+	public function testRangeFilterBounds()
 	{
 		$this->assertResultCount(1, 'filterNumericRange', 123, 200, 'number');
 		$this->assertResultCount(1, 'filterNumericRange', 100, 123, 'number');
 	}
 
-	function testIndexProvidesHighlightHelper()
+	public function testIndexProvidesHighlightHelper()
 	{
 		$query = new Search_Query('foobar or Bonjour');
 		$resultSet = $query->search($this->index);
@@ -158,13 +158,13 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertStringNotContainsString('<body>', $output);
 	}
 
-	function testInvalidQueries()
+	public function testInvalidQueries()
 	{
 		$this->assertResultCount(0, 'filterContent', 'in*lid');
 		$this->assertResultCount(0, 'filterContent', 'i?lid');
 	}
 
-	function testMatchInitial()
+	public function testMatchInitial()
 	{
 		$this->assertResultCount(1, 'filterInitial', 'a description for', 'description');
 		$this->assertResultCount(0, 'filterInitial', 'a description about', 'description');
@@ -177,7 +177,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertResultCount(0, 'filterInitial', 'Home Page');
 	}
 
-	function testNotMatchInitial()
+	public function testNotMatchInitial()
 	{
 		$this->assertResultCount(0, 'filterNotInitial', 'a description for', 'description');
 		$this->assertResultCount(1, 'filterNotInitial', 'a description about', 'description');
@@ -190,7 +190,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 		$this->assertResultCount(1, 'filterNotInitial', 'Home Page');
 	}
 
-	function testFilterRelations()
+	public function testFilterRelations()
 	{
 		$about = new Search_Query_Relation('tiki.content.link', 'wiki page', 'About');
 		$contact = new Search_Query_Relation('tiki.content.link', 'wiki page', 'Contact');

@@ -12,7 +12,7 @@
 
 class Perms_Check_AlternateTest extends PHPUnit\Framework\TestCase
 {
-	function testUnconfigured()
+	public function testUnconfigured()
 	{
 		$resolver = new Perms_Resolver_Default(true);
 
@@ -20,7 +20,7 @@ class Perms_Check_AlternateTest extends PHPUnit\Framework\TestCase
 		$this->assertFalse($check->check($resolver, [], 'view', ['Registered']));
 	}
 
-	function testWithReplacementResolver()
+	public function testWithReplacementResolver()
 	{
 		$resolver = new Perms_Resolver_Default(false);
 		$replacement = new Perms_Resolver_Static(
@@ -32,7 +32,7 @@ class Perms_Check_AlternateTest extends PHPUnit\Framework\TestCase
 		$this->assertTrue($check->check($resolver, [], 'view', ['Registered']));
 	}
 
-	function testWithReplacementNotAllowing()
+	public function testWithReplacementNotAllowing()
 	{
 		$resolver = new Perms_Resolver_Default(false);
 		$replacement = new Perms_Resolver_Static(

@@ -11,7 +11,7 @@ use TikiAcceptanceTestDBRestorerSQLDumps;
 
 class TikiDbHelper
 {
-	const EMPTY_DB = 'emptyDb.sql';
+	public const EMPTY_DB = 'emptyDb.sql';
 
 	public static function refreshDb($database = self::EMPTY_DB)
 	{

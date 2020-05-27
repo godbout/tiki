@@ -12,7 +12,7 @@ class Search_GlobalSource_TitleInitialTest extends PHPUnit\Framework\TestCase
 	 * @param $letter
 	 * @param $string
 	 */
-	function testTitlePresent($letter, $string)
+	public function testTitlePresent($letter, $string)
 	{
 		$factory = new Search_Type_Factory_Direct;
 		$source = new Search_GlobalSource_TitleInitialSource;
@@ -23,7 +23,7 @@ class Search_GlobalSource_TitleInitialTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($factory->identifier($letter), $out['title_initial']);
 	}
 
-	function mapping()
+	public function mapping()
 	{
 		return [
 			'basic' => ['H', 'Hello World'],

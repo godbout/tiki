@@ -19,7 +19,7 @@ abstract class Search_Index_IncrementalUpdateTest extends PHPUnit\Framework\Test
 		$index->endUpdate();
 	}
 
-	function testAddNewDocument()
+	public function testAddNewDocument()
 	{
 		$index = $this->getIndex();
 		$index->invalidateMultiple(
@@ -38,7 +38,7 @@ abstract class Search_Index_IncrementalUpdateTest extends PHPUnit\Framework\Test
 		$this->assertResultFound('world', $index);
 	}
 
-	function testReplaceDocument()
+	public function testReplaceDocument()
 	{
 		$index = $this->getIndex();
 		$index->invalidateMultiple(
@@ -56,7 +56,7 @@ abstract class Search_Index_IncrementalUpdateTest extends PHPUnit\Framework\Test
 		$this->assertResultFound('content', $index, 0);
 	}
 
-	function testRemoveDocument()
+	public function testRemoveDocument()
 	{
 		$index = $this->getIndex();
 		$index->invalidateMultiple(

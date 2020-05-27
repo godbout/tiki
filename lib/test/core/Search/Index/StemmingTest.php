@@ -26,49 +26,49 @@ abstract class Search_Index_StemmingTest extends PHPUnit\Framework\TestCase
 		);
 	}
 
-	function testSearchWithAdditionalS()
+	public function testSearchWithAdditionalS()
 	{
 		$query = new Search_Query('description');
 
 		$this->assertGreaterThan(0, count($query->search($this->index)));
 	}
 
-	function testSearchWithMissingS()
+	public function testSearchWithMissingS()
 	{
 		$query = new Search_Query('page');
 
 		$this->assertGreaterThan(0, count($query->search($this->index)));
 	}
 
-	function testSearchAccents()
+	public function testSearchAccents()
 	{
 		$query = new Search_Query('education');
 
 		$this->assertGreaterThan(0, count($query->search($this->index)));
 	}
 
-	function testSearchAccentExactMatch()
+	public function testSearchAccentExactMatch()
 	{
 		$query = new Search_Query('éducation');
 
 		$this->assertGreaterThan(0, count($query->search($this->index)));
 	}
 
-	function testSearchExtraAccents()
+	public function testSearchExtraAccents()
 	{
 		$query = new Search_Query('pagé');
 
 		$this->assertGreaterThan(0, count($query->search($this->index)));
 	}
 
-	function testCaseSensitivity()
+	public function testCaseSensitivity()
 	{
 		$query = new Search_Query('casE');
 
 		$this->assertGreaterThan(0, count($query->search($this->index)));
 	}
 
-	function testFilterIdentifierExactly()
+	public function testFilterIdentifierExactly()
 	{
 		$query = new Search_Query;
 		$query->filterType('wikipage?!');
@@ -76,7 +76,7 @@ abstract class Search_Index_StemmingTest extends PHPUnit\Framework\TestCase
 		$this->assertGreaterThan(0, count($query->search($this->index)));
 	}
 
-	function testSearchObject()
+	public function testSearchObject()
 	{
 		$query = new Search_Query;
 		$query->addObject('wikipage?!', 'Comité Wiki');
@@ -84,13 +84,13 @@ abstract class Search_Index_StemmingTest extends PHPUnit\Framework\TestCase
 		$this->assertGreaterThan(0, count($query->search($this->index)));
 	}
 
-	function testStopWords()
+	public function testStopWords()
 	{
 		$query = new Search_Query('a for the');
 		$this->assertCount(0, $query->search($this->index));
 	}
 
-	function testHebrewString()
+	public function testHebrewString()
 	{
 		$query = new Search_Query;
 		$query->filterContent('מחשב', 'hebrew');

@@ -14,13 +14,13 @@ class Search_Formatter_FactoryTest extends PHPUnit\Framework\TestCase
 		$this->plugin = new Search_Formatter_Plugin_WikiTemplate("");
 	}
 
-	function testInstantiation()
+	public function testInstantiation()
 	{
 		$formatter = Search_Formatter_Factory::newFormatter($this->plugin);
 		$this->assertInstanceOf(Search_Formatter::class, $formatter);
 	}
 
-	function testSequence()
+	public function testSequence()
 	{
 		$formatter1 = Search_Formatter_Factory::newFormatter($this->plugin);
 		$formatter2 = Search_Formatter_Factory::newFormatter($this->plugin);
