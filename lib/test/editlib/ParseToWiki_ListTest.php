@@ -31,7 +31,7 @@ class EditLib_ParseToWiki_ListTest extends TikiTestCase
 	 *
 	 * Test single lines with different numbers of <ul>
 	 */
-	public function testBulletList()
+	public function testBulletList(): void
 	{
 
 		/*
@@ -68,7 +68,7 @@ class EditLib_ParseToWiki_ListTest extends TikiTestCase
 	 *
 	 * Test level one and two
 	 */
-	public function testBulletListContinuation()
+	public function testBulletListContinuation(): void
 	{
 
 		/*
@@ -109,7 +109,7 @@ class EditLib_ParseToWiki_ListTest extends TikiTestCase
 	 *
 	 * Test single lines with different numbers of <ol>
 	 */
-	public function testNumberedList()
+	public function testNumberedList(): void
 	{
 
 		/*
@@ -146,7 +146,7 @@ class EditLib_ParseToWiki_ListTest extends TikiTestCase
 	 *
 	 * Test level one and two
 	 */
-	public function testNumberedListContinuation()
+	public function testNumberedListContinuation(): void
 	{
 
 		/*

@@ -19,7 +19,7 @@ class TikiProfileHelper
 	 *
 	 * @throws Exception
 	 */
-	public static function applyProfile($profileDomain, $profileName)
+	public static function applyProfile($profileDomain, $profileName): void
 	{
 		$profile = Tiki_Profile::fromNames($profileDomain, $profileName);
 
@@ -47,7 +47,7 @@ class TikiProfileHelper
 	 * @return string the folder (profileDomain) that was generated
 	 * @throws Exception if the temporary folder of tiki can't be found
 	 */
-	public static function applyTemplateProfile($sourceDirectory, $profileName, $search = [], $replace = [])
+	public static function applyTemplateProfile($sourceDirectory, $profileName, $search = [], $replace = []): string
 	{
 		$folder = TikiProfileHelper::createTemporaryDomainFromTemplate($sourceDirectory, $profileName, $search, $replace);
 		TikiProfileHelper::applyProfile($folder, $profileName);
@@ -63,7 +63,7 @@ class TikiProfileHelper
 	 * @return string the folder (profileDomain) that was generated
 	 * @throws Exception if the temporary folder of tiki can't be found
 	 */
-	public static function createTemporaryDomainFromTemplate($sourceDirectory, $profileName, $search = [], $replace = [])
+	public static function createTemporaryDomainFromTemplate($sourceDirectory, $profileName, $search = [], $replace = []): string
 	{
 		// use the temp folder to drop the new profile
 		$destinationFolder = realpath(

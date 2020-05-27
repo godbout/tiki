@@ -37,7 +37,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	public function testFontFamily()
+	public function testFontFamily(): void
 	{
 		$this->markTestIncomplete('Work in progress.');
 
@@ -87,7 +87,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * - <strong>
 	 * - 'font-weight:bold'
 	 */
-	public function testBold()
+	public function testBold(): void
 	{
 
 		// simple
@@ -133,7 +133,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * - <i>
 	 * - 'font-style:italic'
 	 */
-	public function testItalic()
+	public function testItalic(): void
 	{
 
 		$ex = '\'\'italic\'\'';
@@ -177,7 +177,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * - <u>
 	 * - 'text-decoration:underline'
 	 */
-	public function testUnderlined()
+	public function testUnderlined(): void
 	{
 
 		$ex = '===underlined===';
@@ -214,7 +214,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * - <s>
 	 * - 'text-decoration:line-through'
 	 */
-	public function testStrikethrough()
+	public function testStrikethrough(): void
 	{
 
 		$ex = '--strikethrough--';
@@ -267,7 +267,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * => {SUB()}
 	 * - <sub>
 	 */
-	public function testSubscript()
+	public function testSubscript(): void
 	{
 
 		$ex = '{SUB()}subscript{SUB}';
@@ -284,7 +284,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * => {SUP()}
 	 * - <sup>
 	 */
-	public function testSuperscript()
+	public function testSuperscript(): void
 	{
 
 		$ex = '{SUP()}subscript{SUP}';
@@ -303,7 +303,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	public function testMonospace()
+	public function testMonospace(): void
 	{
 
 		$ex = '-+monospaced+-';
@@ -327,7 +327,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * => {DIV(type="tt")}
 	 * - <tt>
 	 */
-	public function testTeletype()
+	public function testTeletype(): void
 	{
 
 		$ex = '{DIV(type="tt")}typewriter{DIV}';
@@ -345,7 +345,7 @@ class EditLib_ParseToWiki_CharacterTest extends TikiTestCase
 	 * - 'background'
 	 * - 'background-color'
 	 */
-	public function testColor()
+	public function testColor(): void
 	{
 
 		/*

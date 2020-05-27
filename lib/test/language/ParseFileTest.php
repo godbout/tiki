@@ -22,7 +22,7 @@ class Language_FileTest extends TikiTestCase
 		$this->obj = new Language_File($this->filePath);
 	}
 
-	public function provider()
+	public function provider(): array
 	{
 		return [[[
 			'Bytecode Cache' => ['key' => 'Bytecode Cache', 'translated' => false],
@@ -35,14 +35,14 @@ class Language_FileTest extends TikiTestCase
 		]]];
 	}
 
-	public function testConstruct_shouldThrowExceptionForInvalidFile()
+	public function testConstruct_shouldThrowExceptionForInvalidFile(): void
 	{
 		$this->expectException('Language_Exception');
 		$this->expectExceptionMessage('Path invalidFile does not exist.');
 		new Language_File('invalidFile');
 	}
 
-	public function testConstruct_shouldSetFilePath()
+	public function testConstruct_shouldSetFilePath(): void
 	{
 		$obj = new Language_File($this->filePath);
 		$this->assertEquals($this->filePath, $obj->filePath);
@@ -52,12 +52,12 @@ class Language_FileTest extends TikiTestCase
 	 * @dataProvider provider
 	 * @param $expectedResult
 	 */
-	public function testParse_shouldReturnDataStructureRepresentingLanguageFile($expectedResult)
+	public function testParse_shouldReturnDataStructureRepresentingLanguageFile($expectedResult): void
 	{
 		$this->assertEquals($expectedResult, $this->obj->parse());
 	}
 
-	public function testParse_shouldSetContentLoadedProperty()
+	public function testParse_shouldSetContentLoadedProperty(): void
 	{
 		$reflectionClass = new ReflectionClass($this->obj);
 		$property = $reflectionClass->getProperty('contentLoaded');
@@ -67,7 +67,7 @@ class Language_FileTest extends TikiTestCase
 		$this->assertTrue($property->getValue($this->obj));
 	}
 
-	public function testGetStats_shouldReturnEmptyStats()
+	public function testGetStats_shouldReturnEmptyStats(): void
 	{
 		$expectedResult = [
 			'total' => 0,
@@ -85,7 +85,7 @@ class Language_FileTest extends TikiTestCase
 		$this->assertEquals($expectedResult, $obj->getStats());
 	}
 
-	public function testGetStats_shouldReturnLangFileStats()
+	public function testGetStats_shouldReturnLangFileStats(): void
 	{
 		$expectedResult = [
 			'total' => 7,
@@ -102,7 +102,7 @@ class Language_FileTest extends TikiTestCase
 	 * @param $content
 	 * @throws ReflectionException
 	 */
-	public function testGetStats_shouldNotCallParseIfContentIsAlreadyLoaded($content)
+	public function testGetStats_shouldNotCallParseIfContentIsAlreadyLoaded($content): void
 	{
 		$expectedResult = [
 			'total' => 7,
@@ -129,7 +129,7 @@ class Language_FileTest extends TikiTestCase
 		$this->assertEquals($expectedResult, $obj->getStats());
 	}
 
-	public function testGetTranslations_shouldReturnEmptyArray()
+	public function testGetTranslations_shouldReturnEmptyArray(): void
 	{
 		$root = vfsStream::setup('root');
 		$root->addChild(new vfsStreamFile('language.php'));
@@ -137,7 +137,7 @@ class Language_FileTest extends TikiTestCase
 		$this->assertEquals([], $obj->getTranslations());
 	}
 
-	public function testGetTranslations_shouldReturnTranslations()
+	public function testGetTranslations_shouldReturnTranslations(): void
 	{
 		$expectedResult = [
 			"Used" => "Usado",

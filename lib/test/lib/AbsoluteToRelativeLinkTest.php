@@ -36,7 +36,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testPluginHtml($baseUrl)
+	public function testPluginHtml($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$data = '{HTML()}<span class="button"><a href="' . $baseUrl . 'tiki-index.php">Save changes</a></span> with my custom buttom to the page PluginHTML';
@@ -53,7 +53,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testTextLink($baseUrl)
+	public function testTextLink($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$link = $baseUrl . 'tiki-index.php';
@@ -69,7 +69,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testTextLinkSubFolder($baseUrl)
+	public function testTextLinkSubFolder($baseUrl): void
 	{
 		global $base_url, $base_url_http, $base_url_https;
 		$base_url .= "xxxx/";
@@ -93,7 +93,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testWikiLink($baseUrl)
+	public function testWikiLink($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$link = '((' . $baseUrl . 'tiki-index.php|Homepage))';
@@ -165,7 +165,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testExternalLink($baseUrl)
+	public function testExternalLink($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$link = '[https://doc.tiki.org/Documentation|Tiki Documentation]';
@@ -186,7 +186,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testUnescapedLinks($baseUrl)
+	public function testUnescapedLinks($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$link = "==$baseUrl/HomePage==";
@@ -205,7 +205,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testUnescapedLinksReplacement($baseUrl)
+	public function testUnescapedLinksReplacement($baseUrl): void
 	{
 		$parserlib = TikiLib::lib('parser');
 		$link = "$baseUrl/HomePage";
@@ -228,7 +228,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testPreferenceDisabled($baseUrl)
+	public function testPreferenceDisabled($baseUrl): void
 	{
 		global $prefs;
 		$tikilib = TikiLib::lib('tiki');
@@ -271,7 +271,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testReplaceInsidePlugins($baseUrl)
+	public function testReplaceInsidePlugins($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$link = '{CODE()}' . $baseUrl . 'HomePage{CODE}';
@@ -287,7 +287,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testOtherMarkups($baseUrl)
+	public function testOtherMarkups($baseUrl): void
 	{
 
 		$tikilib = TikiLib::lib('tiki');
@@ -360,7 +360,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testMixMultipleLinks($baseUrl)
+	public function testMixMultipleLinks($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$text = 'Nullam quis risus eget urna mollis ornare vel eu leo. #1' .
@@ -392,7 +392,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testLinkInsidePlugin($baseUrl)
+	public function testLinkInsidePlugin($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$text = "{CODE()}\n* #1\n* #2\n* #3\n{CODE}";
@@ -412,7 +412,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testLinkOutsidePlugin($baseUrl)
+	public function testLinkOutsidePlugin($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$text = 'Nullam quis risus eget urna mollis ornare vel eu leo. #1' .
@@ -432,7 +432,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$this->assertEquals($dataResult, $dataConverted);
 	}
 
-	public function testInternalSameTitleAndLink()
+	public function testInternalSameTitleAndLink(): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$text = 'Nullam quis risus eget urna mollis ornare vel eu leo. #1';
@@ -453,7 +453,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testExternalSameTitleAndLink($baseUrl)
+	public function testExternalSameTitleAndLink($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$text = 'Nullam quis risus eget urna mollis ornare vel eu leo. #1';
@@ -474,7 +474,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testMultipleSameTitleAndLinks($baseUrl)
+	public function testMultipleSameTitleAndLinks($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$text = 'Nullam quis risus eget urna mollis ornare vel eu leo. #1' .
@@ -502,7 +502,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	 * @param $baseUrl
 	 * @throws Exception
 	 */
-	public function testWikiMarkerInUrlShouldBeIgnored($baseUrl)
+	public function testWikiMarkerInUrlShouldBeIgnored($baseUrl): void
 	{
 		$tikilib = TikiLib::lib('tiki');
 		$text = 'https://dev.tiki.org/Online+Publishing+House+-+Output+formats ' . PHP_EOL .
@@ -522,7 +522,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$this->assertEquals($dataResult, $dataConverted);
 	}
 
-	public function urlBases()
+	public function urlBases(): array
 	{
 		return [
 			[self::BASE_URL],

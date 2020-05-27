@@ -27,7 +27,7 @@ class EditLibTest extends TikiTestCase
 	}
 
 
-	public function testParseColor()
+	public function testParseColor(): void
 	{
 		$el = new EditLib();
 
@@ -53,7 +53,7 @@ class EditLibTest extends TikiTestCase
 	}
 
 
-	public function testParseStyleAttribute()
+	public function testParseStyleAttribute(): void
 	{
 		$el = new EditLib();
 
@@ -162,7 +162,7 @@ class EditLibTest extends TikiTestCase
 	}
 
 
-	public function testParseStyleList()
+	public function testParseStyleList(): void
 	{
 		$el = new EditLib();
 
@@ -195,7 +195,7 @@ class EditLibTest extends TikiTestCase
 	}
 
 
-	public function testParseToWikiSpaces()
+	public function testParseToWikiSpaces(): void
 	{
 		/*
 		 * The EditLib eats spaces after the tags
@@ -213,7 +213,7 @@ class EditLibTest extends TikiTestCase
 	 * In Wiki, the colors specifications cannot be nested.
 	 * Hence some reordering is required.
 	 */
-	public function testParseToWikiNestedColors()
+	public function testParseToWikiNestedColors(): void
 	{
 		/*
 		 * <span><span>text</span></span>
@@ -258,7 +258,7 @@ class EditLibTest extends TikiTestCase
 	/**
 	 * Nested colors with wiki inline
 	 */
-	public function testParseToWikiNestedColorsWithWikiInline()
+	public function testParseToWikiNestedColorsWithWikiInline(): void
 	{
 
 		$inData = '<span style="color: rgb(255, 0, 0);">';
@@ -283,7 +283,7 @@ class EditLibTest extends TikiTestCase
 	 * This test verifies that the tags are written in the correct
 	 * order to the output stream.
 	 */
-	public function testParseToWikiNestedInline()
+	public function testParseToWikiNestedInline(): void
 	{
 
 		$ex = '__bold\'\'bold italic\'\'__\n__\'\'bold italic\'\'__';
@@ -308,7 +308,7 @@ class EditLibTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	public function testSpanNestedTitle()
+	public function testSpanNestedTitle(): void
 	{
 		$this->markTestIncomplete('Work in progress.');
 		$ex = '--===text===--';

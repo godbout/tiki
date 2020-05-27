@@ -50,13 +50,13 @@ class Language_GetStringsEndToEndTest extends TikiTestCase
 	 * @param $fileContents Contents of the language file
 	 * @return string Part of the language file which defines $lang only
 	 */
-	private static function getLangDefinition($fileContents)
+	private static function getLangDefinition($fileContents): string
 	{
 		$start = strpos($fileContents, '$lang');
 		return substr($fileContents, $start);
 	}
 
-	public function testGetStrings_endToEnd()
+	public function testGetStrings_endToEnd(): void
 	{
 		$obj = new Language_GetStrings(
 			new Language_CollectFiles,
@@ -78,7 +78,7 @@ class Language_GetStringsEndToEndTest extends TikiTestCase
 		);
 	}
 
-	public function testGetStrings_endToEnd_customLanguageFileName()
+	public function testGetStrings_endToEnd_customLanguageFileName(): void
 	{
 		$fileName = 'language_r.php';
 
@@ -107,7 +107,7 @@ class Language_GetStringsEndToEndTest extends TikiTestCase
 		);
 	}
 
-	public function testGetStrings_endToEnd_severalLanguageFiles()
+	public function testGetStrings_endToEnd_severalLanguageFiles(): void
 	{
 		$ruDir = new vfsStreamDirectory('ru');
 		$faDir = new vfsStreamDirectory('fa');

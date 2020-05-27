@@ -20,7 +20,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->obj = new TikiImporter_Wiki_Mediawiki;
 	}
 
-	public function testImport()
+	public function testImport(): void
 	{
 		ob_start();
 
@@ -46,7 +46,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	/**
 	 * @group marked-as-skipped
 	 */
-	public function testImportWithoutInternalMocking()
+	public function testImportWithoutInternalMocking(): void
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as the underlying PEAR is out of date.');
 
@@ -66,7 +66,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals($expectedImportFeedback, $_SESSION['tiki_importer_feedback']);
 	}
 
-	public function testImportShouldHandleAttachments()
+	public function testImportShouldHandleAttachments(): void
 	{
 		ob_start();
 
@@ -90,7 +90,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
-	public function testImportShouldRaiseExceptionForInvalidMimeType()
+	public function testImportShouldRaiseExceptionForInvalidMimeType(): void
 	{
 		require_once(__DIR__ . '/../../init/tra.php');
 		$_FILES['importFile']['type'] = 'invalid/type';
@@ -101,7 +101,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	/**
 	 * @group marked-as-skipped
 	 */
-	public function testConfigureParser()
+	public function testConfigureParser(): void
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as the underlying PEAR is out of date.');
 
@@ -111,7 +111,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertInstanceOf(Text_Wiki_Mediawiki::class, $this->obj->parser);
 	}
 
-	public function testValidateInput()
+	public function testValidateInput(): void
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/mediawiki_sample.xml');
@@ -122,7 +122,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertTrue($this->obj->validateInput());
 	}
 
-	public function testValidateInputShouldRaiseExceptionForUnsupportedXmlFileVersion()
+	public function testValidateInputShouldRaiseExceptionForUnsupportedXmlFileVersion(): void
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/mediawiki_sample_v0.2.xml');
@@ -130,7 +130,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->obj->validateInput();
 	}
 
-	public function testValidateInputShouldRaiseExceptionForInvalidXmlFile()
+	public function testValidateInputShouldRaiseExceptionForInvalidXmlFile(): void
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/mediawiki_invalid.xml');
@@ -138,7 +138,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->obj->validateInput();
 	}
 
-	public function testValidateInputShouldRaiseExceptionForWordpressFile()
+	public function testValidateInputShouldRaiseExceptionForWordpressFile(): void
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
@@ -146,7 +146,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->obj->validateInput();
 	}
 
-	public function testParseData()
+	public function testParseData(): void
 	{
 		ob_start();
 
@@ -164,7 +164,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("\nParsing pages:\n", $output);
 	}
 
-	public function testParseDataShouldPrintMessageIfErrorToParseAPageWhenExtractInfoReturnException()
+	public function testParseDataShouldPrintMessageIfErrorToParseAPageWhenExtractInfoReturnException(): void
 	{
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
 			->addMethods(['downloadAttachment'])
@@ -179,7 +179,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals([], $obj->parseData());
 	}
 
-	public function testParseDataHandleDifferentlyPagesAndFilePages()
+	public function testParseDataHandleDifferentlyPagesAndFilePages(): void
 	{
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
 			->onlyMethods(['extractInfo', 'saveAndDisplayLog'])
@@ -192,7 +192,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertCount(4, $obj->parseData());
 	}
 
-	public function testDownloadAttachment()
+	public function testDownloadAttachment(): void
 	{
 		ob_start();
 
@@ -227,7 +227,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("\n\nImporting attachments:\nFile test2.jpg successfully imported!\nFile test.jpg successfully imported!\n", $output);
 	}
 
-	public function testDownloadAttachmentShouldNotImportIfFileAlreadyExist()
+	public function testDownloadAttachmentShouldNotImportIfFileAlreadyExist(): void
 	{
 		ob_start();
 
@@ -252,7 +252,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("\n\nImporting attachments:\nFile test2.jpg is not being imported because there is already a file with the same name in the destination directory (" . $this->obj->attachmentsDestDir . ")\nFile test.jpg is not being imported because there is already a file with the same name in the destination directory (" . $this->obj->attachmentsDestDir . ")\n", $output);
 	}
 
-	public function testDownloadAttachmentsShouldDisplayMessageIfNoAttachments()
+	public function testDownloadAttachmentsShouldDisplayMessageIfNoAttachments(): void
 	{
 		ob_start();
 
@@ -263,7 +263,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("\n\nNo attachments were found to import. Be sure to create the XML file with the dumpDump.php script and with the option --uploads. This is the only way to import attachments.\n", $output);
 	}
 
-	public function testDownloadAttachmentsShouldDisplayMessageIfUnableToDownloadFile()
+	public function testDownloadAttachmentsShouldDisplayMessageIfUnableToDownloadFile(): void
 	{
 		ob_start();
 
@@ -276,7 +276,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("\n\nImporting attachments:\nUnable to download file Qlandkartegt-0.11.1.tar.gz. File not found.\nUnable to download file Passelivre.jpg. File not found.\n", $output);
 	}
 
-	public function testExtractInfo()
+	public function testExtractInfo(): void
 	{
 		ob_start();
 
@@ -303,7 +303,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("Page \"Redes de ensino\" successfully parsed with 8 revisions (from a total of 8 revisions).\nPage \"Academia Colarossi\" successfully parsed with 2 revisions (from a total of 2 revisions).\n", $output);
 	}
 
-	public function testExtractInfoShouldNotParseMoreThanFiveRevisions()
+	public function testExtractInfoShouldNotParseMoreThanFiveRevisions(): void
 	{
 		ob_start();
 
@@ -332,7 +332,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("Page \"Redes de ensino\" successfully parsed with 5 revisions (from a total of 8 revisions).\nPage \"Academia Colarossi\" successfully parsed with 2 revisions (from a total of 2 revisions).\n", $output);
 	}
 
-	public function testExtractInfoShouldParseAllRevisions()
+	public function testExtractInfoShouldParseAllRevisions(): void
 	{
 		ob_start();
 
@@ -361,7 +361,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("Page \"Redes de ensino\" successfully parsed with 8 revisions (from a total of 8 revisions).\nPage \"Academia Colarossi\" successfully parsed with 2 revisions (from a total of 2 revisions).\n", $output);
 	}
 
-	public function testExtractInfoShouldAlsoParseAllRevisions()
+	public function testExtractInfoShouldAlsoParseAllRevisions(): void
 	{
 		ob_start();
 
@@ -390,7 +390,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("Page \"Redes de ensino\" successfully parsed with 8 revisions (from a total of 8 revisions).\nPage \"Academia Colarossi\" successfully parsed with 2 revisions (from a total of 2 revisions).\n", $output);
 	}
 
-	public function testExtractInfoShouldPrintErrorMessageIfProblemWithRevision()
+	public function testExtractInfoShouldPrintErrorMessageIfProblemWithRevision(): void
 	{
 		ob_start();
 
@@ -412,7 +412,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("Error while parsing revision 3 of the page \"Redes de ensino\". There could be a problem in the page syntax or in the Text_Wiki parser used by the importer.\nPage \"Redes de ensino\" successfully parsed with 7 revisions (from a total of 8 revisions).\nPage \"Academia Colarossi\" successfully parsed with 2 revisions (from a total of 2 revisions).\n", $output);
 	}
 
-	public function testExtractInfoShouldThrowExceptionIfUnableToParseAllRevisionsOfPage()
+	public function testExtractInfoShouldThrowExceptionIfUnableToParseAllRevisionsOfPage(): void
 	{
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
 			->onlyMethods(['extractRevision', 'saveAndDisplayLog'])
@@ -431,7 +431,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		}
 	}
 
-	public function testExtractRevision()
+	public function testExtractRevision(): void
 	{
 		$dom = new DOMDocument;
 		$dom->load(__DIR__ . '/fixtures/mediawiki_revision.xml');
@@ -456,7 +456,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		}
 	}
 
-	public function testExtractRevisionShouldRaiseExceptionForInvalidSyntax()
+	public function testExtractRevisionShouldRaiseExceptionForInvalidSyntax(): void
 	{
 		$obj = $this->getMockBuilder('TikiImporter_Wiki_Mediawiki')
 			->onlyMethods(['convertMarkup', 'extractContributor'])
@@ -474,7 +474,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		}
 	}
 
-	public function testExtractContributor()
+	public function testExtractContributor(): void
 	{
 		$dom = new DOMDocument;
 		$dom->load(__DIR__ . '/fixtures/mediawiki_contributor.xml');
@@ -495,7 +495,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	/**
 	 * @group marked-as-skipped
 	 */
-	public function testConvertMarkup()
+	public function testConvertMarkup(): void
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as the underlying PEAR is out of date.');
 
@@ -509,7 +509,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 	/**
 	 * @group marked-as-skipped
 	 */
-	public function testConvertMarkupShouldReturnNullIfEmptyMediawikiText()
+	public function testConvertMarkupShouldReturnNullIfEmptyMediawikiText(): void
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as the underlying PEAR is out of date.');
 

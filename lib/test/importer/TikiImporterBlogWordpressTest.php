@@ -29,7 +29,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		unset($GLOBALS['prefs']['feature_sefurl'], $GLOBALS['base_url']);
 	}
 
-	public function testImport()
+	public function testImport(): void
 	{
 		ob_start();
 
@@ -54,7 +54,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$this->assertEquals("Loading and validating the XML file\n\nImportation completed!\n\n<b><a href=\"tiki-importer.php\">Click here</a> to finish the import process</b>", $output);
 	}
 
-	public function testImportShouldHandleAttachments()
+	public function testImportShouldHandleAttachments(): void
 	{
 		ob_start();
 
@@ -77,7 +77,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
-	public function testReplaceParagraphWithLineBreak()
+	public function testReplaceParagraphWithLineBreak(): void
 	{
 		$expectedOutput = "Hello world<br />Here is Foo<br />Talking from Bar<br />Thanks";
 
@@ -90,7 +90,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$this->assertEquals($expectedOutput, $output, "When there is a tag '<br>' this one is also replaced by '\n'");
 	}
 
-	public function testParseYoutubeEmbedded()
+	public function testParseYoutubeEmbedded(): void
 	{
 		$expectedOutput = "{youtube movie=\"h80QuuYxbhk\" width=\"560\" height=\"315\" quality=\"high\" allowFullScreen=\"y\"}";
 
@@ -99,7 +99,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$this->assertEquals($expectedOutput, $output, "iframe tag should be replaced Youtube Plugin Tiki code");
 	}
 
-	public function testParseData()
+	public function testParseData(): void
 	{
 		ob_start();
 
@@ -114,7 +114,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$this->assertEquals("\nExtracting data from XML file:\n", $output);
 	}
 
-	public function testExtractPermalinks()
+	public function testExtractPermalinks(): void
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
@@ -156,7 +156,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$this->assertEquals($expectedResult, $this->obj->extractPermalinks());
 	}
 
-	public function testIdentifyInternalLinks()
+	public function testIdentifyInternalLinks(): void
 	{
 		$this->obj->permalinks = [
 			107 => [
@@ -182,7 +182,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$this->assertFalse($this->obj->identifyInternalLinks($item));
 	}
 
-	public function testExtractItems()
+	public function testExtractItems(): void
 	{
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')
 			->onlyMethods(['extractInfo'])
@@ -199,7 +199,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$this->assertEquals($expectedResult, $obj->extractItems());
 	}
 
-	public function testExtractTags()
+	public function testExtractTags(): void
 	{
 		$expectedResult = ['alta montanha', 'barcelona', 'bicicleta', 'bicicletada', 'buenos aires', 'caminhada', 'canadá', 'carga',
 			'cerro plata', 'chapada diamantina', 'chapada dos veadeiras', 'chile', 'cicloativismo', 'cicloturismo', 'cidade', 'cidades',
@@ -217,7 +217,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$this->assertEquals($expectedResult, $this->obj->extractTags());
 	}
 
-	public function testExtractCategories()
+	public function testExtractCategories(): void
 	{
 		$expectedResult = [
 			['parent' => '', 'name' => 'bicicleta', 'description' => 'Qualquer descrição'],
@@ -242,7 +242,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$this->assertEquals($expectedResult, $this->obj->extractCategories());
 	}
 
-	public function testExtractInfoPost()
+	public function testExtractInfoPost(): void
 	{
 		ob_start();
 
@@ -290,7 +290,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
-	public function testExtractInfoPage()
+	public function testExtractInfoPage(): void
 	{
 		ob_start();
 
@@ -345,7 +345,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
-	public function testExtractCommentShouldReturnFalseForSpamOrTrashOrPingback()
+	public function testExtractCommentShouldReturnFalseForSpamOrTrashOrPingback(): void
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_comment_spam.xml');
@@ -360,7 +360,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 		$this->assertFalse($this->obj->extractComment($this->obj->dom->getElementsByTagName('comment')->item(2)));
 	}
 
-	public function testExtractCommentShouldReturnCommentArray()
+	public function testExtractCommentShouldReturnCommentArray(): void
 	{
 		$expectedResult = [
 			'author' => 'rodrigo',
@@ -388,7 +388,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals($expectedResult, $comment);
 	}
 
-	public function testExtractBlogCreatedDate()
+	public function testExtractBlogCreatedDate(): void
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
@@ -396,7 +396,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals(1173636811, $this->obj->extractBlogCreatedDate());
 	}
 
-	public function testExtractBlogInfo()
+	public function testExtractBlogInfo(): void
 	{
 		$expectedResult = [
 			'title' => 'example.com',
@@ -413,7 +413,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals($expectedResult, $this->obj->blogInfo);
 	}
 
-	public function testExtractAttachmentsInfo()
+	public function testExtractAttachmentsInfo(): void
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_attachments.xml');
@@ -483,7 +483,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals($expectedResult, $attachments);
 	}
 
-	public function testDownloadAttachmentsShouldDisplayMessageIfNoAttachments()
+	public function testDownloadAttachmentsShouldDisplayMessageIfNoAttachments(): void
 	{
 		ob_start();
 
@@ -499,7 +499,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals("\n\nNo attachments found to import!\n", $output);
 	}
 
-	public function testCreateFileGallery()
+	public function testCreateFileGallery(): void
 	{
 		$last_id = TikiDb::get()->getOne('SELECT max(galleryId) FROM tiki_file_galleries');
 
@@ -509,7 +509,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals($last_id + 1, $filegalId);
 	}
 
-	public function testDownloadAttachment()
+	public function testDownloadAttachment(): void
 	{
 		ob_start();
 
@@ -594,7 +594,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals("\n\nImporting attachments:\nAttachment tadv2.jpg successfully imported!\nAttachment 1881232-hostelaria-las-torres-0.jpg successfully imported!\nAttachment 1881259-caminhando-no-gelo-no-vale-do-sil-ncio-0.jpg successfully imported!\n3 attachments imported and 0 errors.\n", $output);
 	}
 
-	public function testDownloadAttachmentShouldNotCallInsertFileWhenZendHttpClientFails()
+	public function testDownloadAttachmentShouldNotCallInsertFileWhenZendHttpClientFails(): void
 	{
 		ob_start();
 
@@ -624,7 +624,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		ob_get_clean();
 	}
 
-	public function testDownloadAttachmentShouldNotCallInsertFileWhen404()
+	public function testDownloadAttachmentShouldNotCallInsertFileWhen404(): void
 	{
 		ob_start();
 
@@ -661,7 +661,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals("\n\nImporting attachments:\nUnable to download attachment tadv2.jpg. Error message was: 404 NOT FOUND\nUnable to download attachment 1881232-hostelaria-las-torres-0.jpg. Error message was: 404 NOT FOUND\nUnable to download attachment 1881259-caminhando-no-gelo-no-vale-do-sil-ncio-0.jpg. Error message was: 404 NOT FOUND\n0 attachments imported and 3 errors.\n", $output);
 	}
 
-	public function testParseContentAttachmentsUrl()
+	public function testParseContentAttachmentsUrl(): void
 	{
 
 		$this->obj->newFiles = [
@@ -706,21 +706,21 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals($expectedResult, $this->obj->parseContentAttachmentsUrl($content));
 	}
 
-	public function testParseContentAttachmentsUrlShouldReturnSameContentIfNewFilesIsEmpty()
+	public function testParseContentAttachmentsUrlShouldReturnSameContentIfNewFilesIsEmpty(): void
 	{
 		$content = '';
 		$this->obj->newFiles = [];
 		$this->assertEquals($content, $this->obj->parseContentAttachmentsUrl($content));
 	}
 
-	public function testValidateInput()
+	public function testValidateInput(): void
 	{
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/wordpress_sample.xml');
 		$this->assertTrue($this->obj->validateInput());
 	}
 
-	public function testValidateInputShouldRaiseExceptionIfInvalidFile()
+	public function testValidateInputShouldRaiseExceptionIfInvalidFile(): void
 	{
 		$this->expectException('DOMException');
 
@@ -729,7 +729,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->obj->validateInput();
 	}
 
-	public function testValidateInputShouldRaiseExceptionForMediawikiFile()
+	public function testValidateInputShouldRaiseExceptionForMediawikiFile(): void
 	{
 		$this->expectException('DOMException');
 
@@ -738,7 +738,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->obj->validateInput();
 	}
 
-	public function testMatchWordpressShortcodes()
+	public function testMatchWordpressShortcodes(): void
 	{
 		$content = "[my-shortcode] [my-shortcode/] [my-shortcode foo='bar' bar='foo'] [my-shortcode foo='bar'/]
 			[my-shortcode2]content[/my-shortcode2] [my-shortcode2 foo='bar' bar='foo']content[/my-shortcode2]
@@ -758,14 +758,14 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals($expectedResult, $this->obj->matchWordpressShortcodes($content));
 	}
 
-	public function testParseWordpressShortcodes()
+	public function testParseWordpressShortcodes(): void
 	{
 		$content = file_get_contents(__DIR__ . '/fixtures/wordpress_post_content_shortcodes.txt');
 		$expectedResult = file_get_contents(__DIR__ . '/fixtures/wordpress_post_content_shortcodes_parsed.txt');
 		$this->assertEquals($expectedResult, $this->obj->parseWordpressShortcodes($content));
 	}
 
-	public function testInsertItem_shouldCallStoreNewLink()
+	public function testInsertItem_shouldCallStoreNewLink(): void
 	{
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')
 			->onlyMethods(['storeNewLink', 'insertPost'])
@@ -778,7 +778,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$obj->insertItem($item);
 	}
 
-	public function testStoreNewLinkWithSefUrlEnabled()
+	public function testStoreNewLinkWithSefUrlEnabled(): void
 	{
 		global $prefs, $base_url;
 		$prefs['feature_sefurl'] = 'y';
@@ -809,7 +809,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals($expectedResult, $this->obj->permalinks);
 	}
 
-	public function testStoreNewLinkWithSefUrlDisabled()
+	public function testStoreNewLinkWithSefUrlDisabled(): void
 	{
 		global $prefs, $base_url;
 		$prefs['feature_sefurl'] = 'n';
@@ -840,7 +840,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		$this->assertEquals($expectedResult, $this->obj->permalinks);
 	}
 
-	public function testInsertData_shouldSetObjIdOnItemsArray()
+	public function testInsertData_shouldSetObjIdOnItemsArray(): void
 	{
 		ob_start();
 		$_POST['replaceInternalLinks'] = 'on';
@@ -878,7 +878,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		ob_get_clean();
 	}
 
-	public function testInsertData_shouldNotCallReplaceInternalLinks()
+	public function testInsertData_shouldNotCallReplaceInternalLinks(): void
 	{
 		ob_start();
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')
@@ -904,7 +904,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		ob_get_clean();
 	}
 
-	public function testReplaceInternalLinks()
+	public function testReplaceInternalLinks(): void
 	{
 		$this->obj->permalinks = [
 			36 => [
@@ -944,7 +944,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		);
 	}
 
-	public function testGetHtaccessRules()
+	public function testGetHtaccessRules(): void
 	{
 		$this->obj->permalinks = [
 			[

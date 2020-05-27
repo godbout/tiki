@@ -19,14 +19,14 @@ class ShippingTest extends TikiTestCase implements ShippingProvider
 		$this->packages = null;
 	}
 
-	public function testWithoutProvider()
+	public function testWithoutProvider(): void
 	{
 		$lib = new ShippingLib;
 
 		$this->assertEquals([], $lib->getRates(['zip' => '12345'], ['zip' => '23456'], [['weight' => 5]]));
 	}
 
-	public function testCountryPreserved()
+	public function testCountryPreserved(): void
 	{
 		$lib = new ShippingLib;
 		$lib->addProvider($this);
@@ -36,7 +36,7 @@ class ShippingTest extends TikiTestCase implements ShippingProvider
 		$this->assertEquals('FR', $this->from['country']);
 	}
 
-	public function testCountryCompleted()
+	public function testCountryCompleted(): void
 	{
 		$lib = new ShippingLib;
 		$lib->addProvider($this);
@@ -47,7 +47,7 @@ class ShippingTest extends TikiTestCase implements ShippingProvider
 		$this->assertEquals('CA', $this->to['country']);
 	}
 
-	public function testZipUpperCased()
+	public function testZipUpperCased(): void
 	{
 		$lib = new ShippingLib;
 		$lib->addProvider($this);
@@ -58,7 +58,7 @@ class ShippingTest extends TikiTestCase implements ShippingProvider
 		$this->assertEquals('CA', $this->to['country']);
 	}
 
-	public function testUnknownFormat()
+	public function testUnknownFormat(): void
 	{
 		$lib = new ShippingLib;
 		$lib->addProvider($this);
@@ -68,7 +68,7 @@ class ShippingTest extends TikiTestCase implements ShippingProvider
 		$this->assertArrayNotHasKey('country', $this->from);
 	}
 
-	public function testPackageExpansion()
+	public function testPackageExpansion(): void
 	{
 		$lib = new ShippingLib;
 		$lib->addProvider($this);

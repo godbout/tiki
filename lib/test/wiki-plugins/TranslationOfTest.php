@@ -49,12 +49,12 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 	 * @param array $params
 	 * @param string $message
 	 */
-	public function testWikiPlugin_TranslationOf($data, $expectedOutput, $params = [], $message = "")
+	public function testWikiPlugin_TranslationOf($data, $expectedOutput, $params = [], $message = ""): void
 	{
 		$this->assertEquals($expectedOutput, wikiplugin_translationof($data, $params), $message);
 	}
 
-	public function provider()
+	public function provider(): array
 	{
 		return [
 			['', '<a href="tiki-index.php?page=SomePage"  data-toggle="popover" data-container="body" data-trigger="click" data-content="&lt;a&#x20;href&#x3D;&quot;tiki-edit_translation.php&#x3F;page&#x3D;SomePage&amp;target_lang&#x3D;fr&#x23;new_translation&quot;&gt;Translate&#x20;this&#x20;link&lt;&#x2F;a&gt;"  data-delay=\'{"show":"0","hide":"100"}\'>SomePage</a>',
@@ -66,7 +66,7 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 		];
 	}
 
-	public function test_create_page_that_contains_a_TranslationOf_plugin_generates_an_object_relation()
+	public function test_create_page_that_contains_a_TranslationOf_plugin_generates_an_object_relation(): void
 	{
 		global $prefs;
 		$tikilib = TikiLib::lib('tiki');

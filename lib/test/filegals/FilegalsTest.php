@@ -7,7 +7,7 @@
 
 class FilegalsTest extends TikiTestCase
 {
-	public function testPNGIsNotSVG()
+	public function testPNGIsNotSVG(): void
 	{
 		$fgallib = TikiLib::lib('filegal');
 		$path = __DIR__ . '/../filegals/testdata.png';
@@ -15,7 +15,7 @@ class FilegalsTest extends TikiTestCase
 		$this->assertFalse($fgallib->fileContentIsSVG($data));
 	}
 
-	public function testSVGDetect()
+	public function testSVGDetect(): void
 	{
 		$fgallib = TikiLib::lib('filegal');
 		$path = __DIR__ . '/../filegals/testdata.svg';
@@ -23,7 +23,7 @@ class FilegalsTest extends TikiTestCase
 		$this->assertTrue($fgallib->fileContentIsSVG($data));
 	}
 
-	public function testCompressedPNGIsNotSVG()
+	public function testCompressedPNGIsNotSVG(): void
 	{
 		$fgallib = TikiLib::lib('filegal');
 		$path = __DIR__ . '/../filegals/testdata.png.gz';
@@ -31,7 +31,7 @@ class FilegalsTest extends TikiTestCase
 		$this->assertFalse($fgallib->fileContentIsSVG($data));
 	}
 
-	public function testSVGDetectGzipped()
+	public function testSVGDetectGzipped(): void
 	{
 		$fgallib = TikiLib::lib('filegal');
 		$path = __DIR__ . '/../filegals/testdata.svgz';
@@ -39,7 +39,7 @@ class FilegalsTest extends TikiTestCase
 		$this->assertTrue($fgallib->fileContentIsSVG($data));
 	}
 
-	public function testSVGWithPNGExtensionIsNotSafe()
+	public function testSVGWithPNGExtensionIsNotSafe(): void
 	{
 		global $prefs;
 		$prefs['fgal_allow_svg'] = 'n';
@@ -63,7 +63,7 @@ class FilegalsTest extends TikiTestCase
 		$this->assertTrue($caught);
 	}
 
-	public function testHTMLFileWithSVGExtensionIsNotSafe()
+	public function testHTMLFileWithSVGExtensionIsNotSafe(): void
 	{
 		global $prefs;
 		$prefs['fgal_allow_svg'] = 'n';

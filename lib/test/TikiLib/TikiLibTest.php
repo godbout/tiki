@@ -35,7 +35,7 @@ class TikiLibTest extends TikiTestCase
 		$testhelpers->stop_simulating_tiki_script_context();
 	}
 
-	public function test__remove_all_versions__Removes_all_relations_also()
+	public function test__remove_all_versions__Removes_all_relations_also(): void
 	{
 		global $testhelpers;
 		$relationlib = TikiLib::lib('relation');

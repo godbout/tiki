@@ -20,7 +20,7 @@ class TikiLib_WikiParserTest extends PHPUnit\Framework\TestCase
 	 * @param array $options
 	 * @throws Exception
 	 */
-	public function testWikiParser($input, $output, $options = [])
+	public function testWikiParser($input, $output, $options = []): void
 	{
 		global $prefs;
 		$prefs['feature_page_title'] = 'y';
@@ -30,7 +30,7 @@ class TikiLib_WikiParserTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($output, TikiLib::lib('parser')->parse_data($input, $options));
 	}
 
-	public function provider()
+	public function provider(): array
 	{
 		return [
 			['', ''],

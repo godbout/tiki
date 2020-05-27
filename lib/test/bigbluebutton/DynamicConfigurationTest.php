@@ -10,14 +10,14 @@ class BigBlueButton_DynamicConfigurationTest extends PHPUnit\Framework\TestCase
 		$this->xml = file_get_contents(__DIR__ . '/config.xml');
 	}
 
-	public function testPassthrough()
+	public function testPassthrough(): void
 	{
 		$config = new Configuration($this->xml);
 
 		$this->assertXmlStringEqualsXmlString($this->xml, $config->getXml());
 	}
 
-	public function testDisableModule()
+	public function testDisableModule(): void
 	{
 		$config = new Configuration($this->xml);
 		$config->removeModule('PhoneModule');
@@ -26,7 +26,7 @@ class BigBlueButton_DynamicConfigurationTest extends PHPUnit\Framework\TestCase
 		$this->assertStringNotContainsString('<module name="PhoneModule"', $xml);
 	}
 
-	public function testDisableModuleWithDependencies()
+	public function testDisableModuleWithDependencies(): void
 	{
 		$config = new Configuration($this->xml);
 		$config->removeModule('PresentModule');

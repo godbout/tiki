@@ -16,13 +16,13 @@ class WikiPlugin_CodeTest extends PHPUnit\Framework\TestCase
 	 * @param $expectedOutput
 	 * @param array $params
 	 */
-	public function testWikiPluginCode($data, $expectedOutput, $params = [])
+	public function testWikiPluginCode($data, $expectedOutput, $params = []): void
 	{
 		$this->markTestSkipped("As of 2013-09-30, this tesst is broken. Skipping it for now.");
 		$this->assertEquals($expectedOutput, wikiplugin_code($data, $params));
 	}
 
-	public function provider()
+	public function provider(): array
 	{
 		return [
 			['', '<pre class="codelisting"  data-wrap="1"  dir="ltr"  style="white-space:pre-wrap; white-space:-moz-pre-wrap !important; white-space:-pre-wrap; white-space:-o-pre-wrap; word-wrap:break-word;" id="codebox1" >~np~~/np~</pre>'],

@@ -44,7 +44,7 @@ class WikiLibTest extends TestCase
 	 *
 	 * @throws Exception
 	 */
-	public function testProcessPageDisplayOptions()
+	public function testProcessPageDisplayOptions(): void
 	{
 		global $prefs, $testhelpers, $headerlib;
 		$wikilib = TikiLib::lib('wiki');

@@ -15,7 +15,7 @@ require_once(__DIR__ . '/../../importer/tikiimporter_wiki_mediawiki.php');
 class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 {
 
-	public function testImportShouldCallMethodsToStartImportProcess()
+	public function testImportShouldCallMethodsToStartImportProcess(): void
 	{
 		ob_start();
 		$obj = $this->getMockBuilder('TikiImporter_Wiki')
@@ -31,7 +31,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		$this->assertEquals("\nImportation completed!\n\n<b><a href=\"tiki-importer.php\">Click here</a> to finish the import process</b>", $output);
 	}
 
-	public function testImportShouldSetInstanceProperties()
+	public function testImportShouldSetInstanceProperties(): void
 	{
 		ob_start();
 
@@ -55,7 +55,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
-	public function testImportShouldSetSessionVariables()
+	public function testImportShouldSetSessionVariables(): void
 	{
 		ob_start();
 
@@ -77,7 +77,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
-	public function testInsertDataCallInsertPageFourTimes()
+	public function testInsertDataCallInsertPageFourTimes(): void
 	{
 		ob_start();
 
@@ -91,7 +91,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
-	public function testInsertDataCallInsertPageOnceWithProperParam()
+	public function testInsertDataCallInsertPageOnceWithProperParam(): void
 	{
 		ob_start();
 
@@ -105,7 +105,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
-	public function testInsertDataShouldNotCallInsertPage()
+	public function testInsertDataShouldNotCallInsertPage(): void
 	{
 		ob_start();
 
@@ -119,7 +119,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		ob_get_clean();
 	}
 
-	public function testInsertDataShouldReturnCountData()
+	public function testInsertDataShouldReturnCountData(): void
 	{
 		ob_start();
 
@@ -159,7 +159,7 @@ class TikiImporter_Wiki_InsertPage_Test extends TikiImporter_TestCase
 		$this->obj->revisionsNumber = 0;
 	}
 
-	public function testInsertPage()
+	public function testInsertPage(): void
 	{
 		global $tikilib, $page;
 
@@ -172,7 +172,7 @@ class TikiImporter_Wiki_InsertPage_Test extends TikiImporter_TestCase
 		$this->assertEquals('Redes de ensino', $this->obj->insertPage($page));
 	}
 
-	public function testInsertPageAlreadyExistentPageNameOverride()
+	public function testInsertPageAlreadyExistentPageNameOverride(): void
 	{
 		global $tikilib, $page;
 		$tikilib->expects($this->once())->method('page_exists')->with($page['name'])->willReturn(true);
@@ -184,7 +184,7 @@ class TikiImporter_Wiki_InsertPage_Test extends TikiImporter_TestCase
 		$this->assertEquals('Redes de ensino', $this->obj->insertPage($page));
 	}
 
-	public function testInsertPageAlreadyExistentPageNameAppendPrefix()
+	public function testInsertPageAlreadyExistentPageNameAppendPrefix(): void
 	{
 		global $tikilib, $page;
 
@@ -198,7 +198,7 @@ class TikiImporter_Wiki_InsertPage_Test extends TikiImporter_TestCase
 		$this->assertEquals('Mediawiki_Redes de ensino', $this->obj->insertPage($page));
 	}
 
-	public function testInsertPageAlreadyExistentPageNameDoNotImport()
+	public function testInsertPageAlreadyExistentPageNameDoNotImport(): void
 	{
 		global $tikilib, $page;
 

@@ -36,7 +36,7 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 *
 	 * @group marked-as-skipped
 	 */
-	public function testBulletList()
+	public function testBulletList(): void
 	{
 
 		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");
@@ -76,7 +76,7 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 *
 	 * @group marked-as-skipped
 	 */
-	public function testBulletListContinuation()
+	public function testBulletListContinuation(): void
 	{
 
 		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");
@@ -119,7 +119,7 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 *
 	 * @group marked-as-skipped
 	 */
-	public function testNumberedList()
+	public function testNumberedList(): void
 	{
 
 		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");
@@ -159,7 +159,7 @@ class EditLib_ParseToWysiwyg_ListTest extends TikiTestCase
 	 *
 	 * @group marked-as-skipped
 	 */
-	public function testNumberedListContinuation()
+	public function testNumberedListContinuation(): void
 	{
 
 		$this->markTestSkipped("As of 2013-10-02, this test is broken, and nobody knows how to fix it. Mark as Skipped for now.");

@@ -13,7 +13,7 @@ class TikiDbHelper
 {
 	public const EMPTY_DB = 'emptyDb.sql';
 
-	public static function refreshDb($database = self::EMPTY_DB)
+	public static function refreshDb($database = self::EMPTY_DB): void
 	{
 		$dbRestorer = new TikiAcceptanceTestDBRestorerSQLDumps();
 		$dbRestorer->restoreDBDump($database);

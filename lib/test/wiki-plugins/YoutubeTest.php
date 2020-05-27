@@ -15,12 +15,12 @@ class WikiPlugin_YoutubeTest extends PHPUnit\Framework\TestCase
 	 * @param $expectedOutput
 	 * @param array $params
 	 */
-	public function testWikiPluginCode($data, $expectedOutput, $params = [])
+	public function testWikiPluginCode($data, $expectedOutput, $params = []): void
 	{
 		$this->assertEquals($expectedOutput, wikiplugin_youtube($data, $params));
 	}
 
-	public function provider()
+	public function provider(): array
 	{
 		return [
 			['', '^Plugin YouTube error: the movie parameter is empty.'],

@@ -6,7 +6,7 @@
 // $Id$
 class PasswordTest extends TikiTestCase
 {
-	public function test_pass()
+	public function test_pass(): void
 	{
 		global $prefs;
 		$userlib = TikiLib::lib('user');

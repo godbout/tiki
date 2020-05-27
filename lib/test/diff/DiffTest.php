@@ -22,14 +22,14 @@ class DiffTest extends TikiTestCase
 	 * @param $page2
 	 * @param $expected
 	 */
-	public function testDiffByType($type, $page1, $page2, $expected)
+	public function testDiffByType($type, $page1, $page2, $expected): void
 	{
 		$result = diff2($page1, $page2, $type);
 
 		$this->assertEquals($expected, $result);
 	}
 
-	public function providerDiffByType()
+	public function providerDiffByType(): array
 	{
 		return [
 			[

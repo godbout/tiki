@@ -51,7 +51,7 @@ class UserLibTest extends TikiTestCase
 	 * @param $ldapAttributes
 	 * @param $setValues
 	 */
-	public function testLdapSyncUserDataUserWithoutPreferences($name, $email, $country, $ldapAttributes, $setValues)
+	public function testLdapSyncUserDataUserWithoutPreferences($name, $email, $country, $ldapAttributes, $setValues): void
 	{
 		global $prefs;
 		$prefs['auth_ldap_nameattr'] = 'cn';
@@ -69,7 +69,7 @@ class UserLibTest extends TikiTestCase
 		$userLib->ldap_sync_user_data($user, $ldapAttributes);
 	}
 
-	public function dataForLdapSyncUserDataUserWithoutPreferences()
+	public function dataForLdapSyncUserDataUserWithoutPreferences(): array
 	{
 		return [
 			[ // empty values

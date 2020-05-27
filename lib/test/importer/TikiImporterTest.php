@@ -12,7 +12,7 @@ require_once(__DIR__ . '/../../importer/tikiimporter.php');
  */
 class TikiImporter_Test extends TikiImporter_TestCase
 {
-	public function testGetOptions()
+	public function testGetOptions(): void
 	{
 		$expectedResult = [['name' => 'name'],
 								['name' => 'otherName'],
@@ -26,7 +26,7 @@ class TikiImporter_Test extends TikiImporter_TestCase
 		$this->assertEquals($expectedResult, $object->getOptions());
 	}
 
-	public function testChangePhpSettings()
+	public function testChangePhpSettings(): void
 	{
 		TikiImporter::changePhpSettings();
 		$this->assertEquals(E_ALL & ~E_DEPRECATED, ini_get('error_reporting'), 'Should change the value of the error reporting');
@@ -34,7 +34,7 @@ class TikiImporter_Test extends TikiImporter_TestCase
 		$this->assertEquals(0, ini_get('max_execution_time'), 'Should change the value of max_execution_time');
 	}
 
-	public function testDisplayPhpUploadError()
+	public function testDisplayPhpUploadError(): void
 	{
 		$this->assertNull(TikiImporter::displayPhpUploadError(-1), 'Should return null if invalid code passed as param');
 		$this->assertEquals('No file was uploaded.', TikiImporter::displayPhpUploadError(4));

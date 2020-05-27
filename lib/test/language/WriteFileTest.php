@@ -32,19 +32,19 @@ class Language_WriteFileTest extends TikiTestCase
 		$this->obj = new Language_WriteFile($this->parseFile);
 	}
 
-	public function testConstruct_shouldRaiseExceptionIfFileIsNotWritable()
+	public function testConstruct_shouldRaiseExceptionIfFileIsNotWritable(): void
 	{
 		$this->langFile->chmod(0444);
 		$this->expectException('Language_Exception');
 		new Language_WriteFile($this->parseFile);
 	}
 
-	public function testWriteStringsToFile_shouldReturnFalseIfEmptyParam()
+	public function testWriteStringsToFile_shouldReturnFalseIfEmptyParam(): void
 	{
 		$this->assertFalse($this->obj->writeStringsToFile([]));
 	}
 
-	public function testWriteStringsToFile_shouldWriteSimpleStrings()
+	public function testWriteStringsToFile_shouldWriteSimpleStrings(): void
 	{
 		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn([]);
 
@@ -72,7 +72,7 @@ class Language_WriteFileTest extends TikiTestCase
 		);
 	}
 
-	public function writeStringsToFile_provider()
+	public function writeStringsToFile_provider(): array
 	{
 		$strings = [
 			'First string' => ['name' => 'First string', 'files' => ['file1', 'file3']],
@@ -89,7 +89,7 @@ class Language_WriteFileTest extends TikiTestCase
 	 * @dataProvider writeStringsToFile_provider
 	 * @param $strings
 	 */
-	public function testWriteStringsToFile_shouldKeepTranslationsEvenIfTheyAreEqualToEnglishString($strings)
+	public function testWriteStringsToFile_shouldKeepTranslationsEvenIfTheyAreEqualToEnglishString($strings): void
 	{
 		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn(
 			[
@@ -118,7 +118,7 @@ class Language_WriteFileTest extends TikiTestCase
 	 * @dataProvider writeStringsToFile_provider
 	 * @param $strings
 	 */
-	public function testWriteStringsToFile_shouldIgnoreUnusedStrings($strings)
+	public function testWriteStringsToFile_shouldIgnoreUnusedStrings($strings): void
 	{
 		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn(
 			[
@@ -147,7 +147,7 @@ class Language_WriteFileTest extends TikiTestCase
 	 * @dataProvider writeStringsToFile_provider
 	 * @param $strings
 	 */
-	public function testWriteStringsToFile_shouldOutputFileWhereStringsWasFound($strings)
+	public function testWriteStringsToFile_shouldOutputFileWhereStringsWasFound($strings): void
 	{
 		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn(
 			[
@@ -176,7 +176,7 @@ class Language_WriteFileTest extends TikiTestCase
 	 * @dataProvider writeStringsToFile_provider
 	 * @param $strings
 	 */
-	public function testWriteStringsToFile_shouldConsiderStringsWithPunctuationInEndASpecialCase($strings)
+	public function testWriteStringsToFile_shouldConsiderStringsWithPunctuationInEndASpecialCase($strings): void
 	{
 		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn(
 			[
@@ -211,7 +211,7 @@ class Language_WriteFileTest extends TikiTestCase
 	 * @dataProvider writeStringsToFile_provider
 	 * @param $strings
 	 */
-	public function testWriteStringsToFile_shouldProperlyHandleSpecialCharactersInsideStrings($strings)
+	public function testWriteStringsToFile_shouldProperlyHandleSpecialCharactersInsideStrings($strings): void
 	{
 		$this->parseFile->expects($this->once())->method('getTranslations')->willReturn(
 			[
@@ -240,7 +240,7 @@ class Language_WriteFileTest extends TikiTestCase
 		);
 	}
 
-	public function testWriteStringsToFile_shouldNotKeepTranslationsWithPunctuationOnSuccessiveCalls()
+	public function testWriteStringsToFile_shouldNotKeepTranslationsWithPunctuationOnSuccessiveCalls(): void
 	{
 		$this->parseFile->expects($this->at(0))
 						->method('getTranslations')->willReturn(['Errors' => 'Ошибки',]);

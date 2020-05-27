@@ -38,7 +38,7 @@ class Language_MergeFilesTest extends TikiTestCase
 		$this->obj = new Language_MergeFiles($this->sourceFileObj, $this->targetFileObj);
 	}
 
-	public function testMerge_shouldUpdateTargetFileWithTranslationsFromSourceFile()
+	public function testMerge_shouldUpdateTargetFileWithTranslationsFromSourceFile(): void
 	{
 		$sourceFileData = [
 			'Bytecode Cache' => ['key' => 'Bytecode Cache', 'translated' => false],

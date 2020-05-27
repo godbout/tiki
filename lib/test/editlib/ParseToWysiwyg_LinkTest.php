@@ -65,7 +65,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	 *
 	 * Note: Links with an invalid wiki identifier are parsed as regular Wiki page links.
 	 */
-	public function testExternalWiki()
+	public function testExternalWiki(): void
 	{
 
 		/*
@@ -113,7 +113,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	/**
 	 * Test link to anchor within a page
 	 */
-	public function testInPage()
+	public function testInPage(): void
 	{
 
 		/*
@@ -140,7 +140,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	/**
 	 * Test link for creating e-mail
 	 */
-	public function testMailTo()
+	public function testMailTo(): void
 	{
 
 		/*
@@ -165,7 +165,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	/**
 	 * Test links to articles, blogs, ...
 	 */
-	public function testOtherTikiPages()
+	public function testOtherTikiPages(): void
 	{
 
 		/*
@@ -215,7 +215,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	 * Test links to web pages
 	 *
 	 */
-	public function testWebResource()
+	public function testWebResource(): void
 	{
 
 		/*		$this->markTestSkipped(
@@ -313,7 +313,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	 *
 	 * @group marked-as-skipped
 	 */
-	public function testWikiPage()
+	public function testWikiPage(): void
 	{
 
 		$tikilib = TikiLib::lib('tiki');
@@ -440,7 +440,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 	 *
 	 * @group marked-as-incomplete
 	 */
-	public function testPluginAname()
+	public function testPluginAname(): void
 	{
 		$this->markTestIncomplete('Work in progress.');
 

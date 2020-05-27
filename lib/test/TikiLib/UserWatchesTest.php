@@ -31,7 +31,7 @@ class UserWatchesTest extends TikiTestCase
 		$this->userWatches->deleteMultiple(['user' => 'tester']);
 	}
 
-	public function testGetUserEventWatches()
+	public function testGetUserEventWatches(): void
 	{
 		$set1 = $this->lib->get_user_event_watches('tester', 'thread_comment_replied', 1);
 		$set2 = $this->lib->get_user_event_watches('tester', 'thread_comment_replied', [1, 2]);
@@ -41,7 +41,7 @@ class UserWatchesTest extends TikiTestCase
 		$this->assertCount(0, $set3);
 	}
 
-	public function testGetEventWatches()
+	public function testGetEventWatches(): void
 	{
 		$watches = $this->lib->get_event_watches('thread_comment_replied', 1);
 		$this->assertCount(1, $watches);

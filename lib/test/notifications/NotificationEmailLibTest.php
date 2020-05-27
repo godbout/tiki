@@ -8,7 +8,7 @@
 class NotificationEmailLibTest extends TikiTestCase
 {
 
-	public function testSendCommentNotification()
+	public function testSendCommentNotification(): void
 	{
 		$tiki = TikiLib::lib('tiki');
 		$comment1 = $tiki->table('tiki_comments')->insert([

@@ -17,7 +17,7 @@ class WebClientHelper
 	 *
 	 * @return GoutteClient
 	 */
-	public static function createTestClient($followRedirects = true)
+	public static function createTestClient($followRedirects = true): GoutteClient
 	{
 		$client = new GoutteClient();
 		$client->setClient(

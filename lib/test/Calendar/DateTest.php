@@ -9,14 +9,14 @@ class Calendar_DateTest extends TikiTestCase
 	/**
 	 * @group marked-as-incomplete
 	 */
-	public function testMake_time()
+	public function testMake_time(): void
 	{
 		$this->markTestIncomplete('skiping because it is failing');
 		$date = TikiLib::make_time(0, 0, 0, 8, 1, 2010);
 		$this->assertEquals('2010-08-01 00:00', TikiLib::date_format('%Y-%m-%d %H:%m', $date));
 	}
 
-	public function testInfoDate()
+	public function testInfoDate(): void
 	{
 		$calendarlib = TikiLib::lib('calendar');
 		$date = TikiLib::make_time(0, 0, 0, 8, 1, 2010);
@@ -24,7 +24,7 @@ class Calendar_DateTest extends TikiTestCase
 		$this->assertEquals('2010-08-01', TikiLib::date_format('%Y-%m-%d', $focus['date']));
 	}
 
-	public function testFocusToStartEnd()
+	public function testFocusToStartEnd(): void
 	{
 		$calendarlib = TikiLib::lib('calendar');
 		$date = TikiLib::make_time(0, 0, 0, 8, 1, 2010);
@@ -42,7 +42,7 @@ class Calendar_DateTest extends TikiTestCase
 		$this->assertEquals('2010-05-01', TikiLib::date_format('%Y-%m-%d', $startNext['date']));
 	}
 
-	public function testFocusToCell()
+	public function testFocusToCell(): void
 	{
 		$calendarlib = TikiLib::lib('calendar');
 		$start = $startNext = [];
@@ -60,7 +60,7 @@ class Calendar_DateTest extends TikiTestCase
 		$this->assertEquals('2010-09-05', TikiLib::date_format('%Y-%m-%d', $cell[5][6]['date']));
 	}
 
-	public function testPrevious()
+	public function testPrevious(): void
 	{
 		$calendarlib = TikiLib::lib('calendar');
 		$date = TikiLib::make_time(0, 0, 0, 7, 20, 2010);
@@ -74,7 +74,7 @@ class Calendar_DateTest extends TikiTestCase
 		$this->assertEquals('2009-11-30', TikiLib::date_format('%Y-%m-%d', $previous['date']));
 	}
 
-	public function testNext()
+	public function testNext(): void
 	{
 		$calendarlib = TikiLib::lib('calendar');
 		$date = TikiLib::make_time(0, 0, 0, 8, 31, 2010);

@@ -7,7 +7,7 @@
 
 class TikiSecurityTest extends PHPUnit\Framework\TestCase
 {
-	public function testValidData()
+	public function testValidData(): void
 	{
 		$data = ['foo' => 'bar'];
 
@@ -17,7 +17,7 @@ class TikiSecurityTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($data, $security->decode($string));
 	}
 
-	public function testDecodeWithWrongHash()
+	public function testDecodeWithWrongHash(): void
 	{
 		$data = ['foo' => 'bar'];
 
@@ -31,7 +31,7 @@ class TikiSecurityTest extends PHPUnit\Framework\TestCase
 	/**
 	 * @group marked-as-skipped
 	 */
-	public function testAlterData()
+	public function testAlterData(): void
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");
 
