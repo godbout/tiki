@@ -7,7 +7,7 @@
 
 class Math_Formula_CurrencyTest extends TikiTestCase
 {
-    private $currency2;
+	private $currency2;
 	private $runner;
 	private $rates = [
 		'USD' => 1,

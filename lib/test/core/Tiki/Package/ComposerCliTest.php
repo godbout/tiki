@@ -267,7 +267,14 @@ class Tiki_Package_ComposerCliTest extends TikiTestCase
 
 	/**
 	 * Test addComposerPackageToJson
+	 *
 	 * @dataProvider addComposerPackageToJsonProvider
+	 *
+	 * @param $composerJson
+	 * @param $package
+	 * @param $version
+	 * @param $scripts
+	 * @param $expected
 	 */
 	function testAddComposerPackageToJson($composerJson, $package, $version, $scripts, $expected)
 	{

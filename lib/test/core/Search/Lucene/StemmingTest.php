@@ -11,7 +11,7 @@
 class Search_Lucene_StemmingTest extends Search_Index_StemmingTest
 {
 
-    protected function setUp() : void
+	protected function setUp() : void
 	{
 		$dir = __DIR__ . '/test_index';
 		$this->tearDown();

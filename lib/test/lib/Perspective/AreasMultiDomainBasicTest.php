@@ -32,6 +32,9 @@ class AreasMultiDomainBasicTest extends PerspectivesNavigationBaseTestCase
 
 	/**
 	 * @dataProvider navigations
+	 * @param $testName
+	 * @param $cleanCookies
+	 * @param $steps
 	 */
 	public function testAreasMultiDomainBasic($testName, $cleanCookies, $steps)
 	{

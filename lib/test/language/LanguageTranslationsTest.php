@@ -269,6 +269,9 @@ class LanguageTranslationsTest extends TikiTestCase
 
 	/**
 	 * @dataProvider getAllTranslations_dataProvider
+	 *
+	 * @param $fileTranslations
+	 * @param $dbTranslations
 	 */
 	public function testGetAllTranslations($fileTranslations, $dbTranslations)
 	{
@@ -296,6 +299,8 @@ class LanguageTranslationsTest extends TikiTestCase
 
 	/**
 	 * @dataProvider getAllTranslations_dataProvider
+	 * @param $fileTranslations
+	 * @param $dbTranslations
 	 */
 	public function testGetAllTranslations_filterByMaxRecordsAndOffset($fileTranslations, $dbTranslations)
 	{
@@ -319,6 +324,8 @@ class LanguageTranslationsTest extends TikiTestCase
 
 	/**
 	 * @dataProvider getAllTranslations_dataProvider
+	 * @param $fileTranslations
+	 * @param $dbTranslations
 	 */
 	public function testGetAllTranslations_filterByMaxRecordsOffsetAndSearch($fileTranslations, $dbTranslations)
 	{
@@ -341,6 +348,8 @@ class LanguageTranslationsTest extends TikiTestCase
 
 	/**
 	 * @dataProvider getAllTranslations_dataProvider
+	 * @param $fileTranslations
+	 * @param $dbTranslations
 	 */
 	public function testGetAllTranslations_searchByTranslation($fileTranslations, $dbTranslations)
 	{
@@ -489,6 +498,9 @@ class LanguageTranslationsTest extends TikiTestCase
 
 	/**
 	 * @dataProvider getAllUntranslated_dataProvider
+	 * @param $dbUntranslated
+	 * @param $fileUntranslated
+	 * @param $dbTranslations
 	 */
 	public function testGetAllUntranslated($dbUntranslated, $fileUntranslated, $dbTranslations)
 	{

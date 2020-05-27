@@ -35,6 +35,9 @@ class Search_TypeAnalyzerTest extends PHPUnit\Framework\TestCase
 
 	/**
 	 * @dataProvider mappingProvider
+	 * @param $expectedType
+	 * @param $key
+	 * @param $value
 	 */
 	function testMapping($expectedType, $key, $value)
 	{

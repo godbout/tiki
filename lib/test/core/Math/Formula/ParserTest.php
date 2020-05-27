@@ -143,6 +143,8 @@ DOC;
 
 	/**
 	 * @dataProvider badStrings
+	 * @param $string
+	 * @throws Math_Formula_Parser_Exception
 	 */
 	function testBadParse($string)
 	{

@@ -65,6 +65,11 @@ class MultilingualLibTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 * @dataProvider dataProvider_translateLinksInPageContent
+	 * @param $src_content
+	 * @param $targ_lang
+	 * @param $exp_translated_content
+	 * @param $message
+	 * @throws Exception
 	 */
 	public function test_translateLinksInPageContent($src_content, $targ_lang, $exp_translated_content, $message)
 	{
@@ -103,6 +108,12 @@ class MultilingualLibTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 * @dataProvider dataProvider_defaultTargetLanguageForNewTranslation
+	 * @param $src_lang
+	 * @param $langs_already_translated
+	 * @param $user_langs
+	 * @param $exp_lang
+	 * @param $message
+	 * @throws Exception
 	 */
 	function test_defaultTargetLanguageForNewTranslation(
 		$src_lang,
@@ -136,6 +147,11 @@ class MultilingualLibTest extends TikiTestCase
 	/**
 	 * @group multilingual
 	 * @dataProvider dataProvider_partiallyPretranslateContentOfPage
+	 * @param $source_page
+	 * @param $targ_lang
+	 * @param $exp_pretranslation
+	 * @param $message
+	 * @throws Exception
 	 */
 	function test_partiallyPretranslateContentOfPage($source_page, $targ_lang, $exp_pretranslation, $message)
 	{

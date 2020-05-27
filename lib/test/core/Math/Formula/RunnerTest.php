@@ -312,6 +312,8 @@ class Math_Formula_RunnerTest extends TikiTestCase
 
 	/**
 	 * @dataProvider stringConcats
+	 * @param $in
+	 * @param $out
 	 */
 	function testStringConcat($in, $out)
 	{

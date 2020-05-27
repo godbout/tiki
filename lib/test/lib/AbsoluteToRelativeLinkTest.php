@@ -32,6 +32,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testPluginHtml($baseUrl)
 	{
@@ -47,6 +49,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testTextLink($baseUrl)
 	{
@@ -61,6 +65,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testTextLinkSubFolder($baseUrl)
 	{
@@ -83,6 +89,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testWikiLink($baseUrl)
 	{
@@ -153,6 +161,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testExternalLink($baseUrl)
 	{
@@ -172,6 +182,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testUnescapedLinks($baseUrl)
 	{
@@ -189,6 +201,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testUnescapedLinksReplacement($baseUrl)
 	{
@@ -210,6 +224,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testPreferenceDisabled($baseUrl)
 	{
@@ -247,6 +263,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testReplaceInsidePlugins($baseUrl)
 	{
@@ -261,6 +279,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testOtherMarkups($baseUrl)
 	{
@@ -332,6 +352,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testMixMultipleLinks($baseUrl)
 	{
@@ -360,6 +382,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testLinkInsidePlugin($baseUrl)
 	{
@@ -379,6 +403,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testLinkOutsidePlugin($baseUrl)
 	{
@@ -418,6 +444,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testExternalSameTitleAndLink($baseUrl)
 	{
@@ -437,6 +465,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testMultipleSameTitleAndLinks($baseUrl)
 	{
@@ -461,6 +491,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 	/**
 	 * @dataProvider urlBases
+	 * @param $baseUrl
+	 * @throws \Exception
 	 */
 	public function testWikiMarkerInUrlShouldBeIgnored($baseUrl)
 	{

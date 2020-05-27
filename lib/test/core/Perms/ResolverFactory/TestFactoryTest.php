@@ -14,6 +14,9 @@ class Perms_ResolverFactory_TestFactoryTest extends TikiTestCase
 {
 	/**
 	 * @dataProvider hashes
+	 * @param $known
+	 * @param $in
+	 * @param $out
 	 */
 	function testHashCorrect($known, $in, $out)
 	{

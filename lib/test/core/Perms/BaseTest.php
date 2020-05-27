@@ -51,6 +51,8 @@ class Perms_BaseTest extends TikiTestCase
 
 	/**
 	 * @dataProvider resolverMatches
+	 * @param $context
+	 * @param $expectedResolver
 	 */
 	function testResolverFactoryChaining($context, $expectedResolver)
 	{

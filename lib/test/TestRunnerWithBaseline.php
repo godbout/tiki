@@ -347,7 +347,7 @@ See above details about each error or failure.
 
 		$json_decoded = json_decode($json_string, true);
 
-        return $this->process_phpunit_log_data($json_decoded);
+		return $this->process_phpunit_log_data($json_decoded);
 	}
 
 	function config_from_cmdline_options()
@@ -447,7 +447,7 @@ Options
 
 	function make_empty_issues_list()
 	{
-        return ['pass' => [], 'failures' => [], 'errors' => []];
+		return ['pass' => [], 'failures' => [], 'errors' => []];
 	}
 
 	function total_new_issues_found()

@@ -36,6 +36,9 @@ abstract class Search_Index_SortTest extends PHPUnit\Framework\TestCase
 
 	/**
 	 * @dataProvider sortCases
+	 *
+	 * @param $mode
+	 * @param $expected
 	 */
 	function testOrdering($mode, $expected)
 	{

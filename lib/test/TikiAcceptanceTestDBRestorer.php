@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 // (c) Copyright by authors of the Tiki Wiki CMS Groupware Project
 //
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
@@ -324,9 +324,9 @@ class TikiAcceptanceTestDBRestorerBinaryDumps extends TikiAcceptanceTestDBRestor
 
 	private function dump_file_path($dump_name)
 	{
-        return $this->mysql_data_dir . DIRECTORY_SEPARATOR .
-        $dump_name .
-        "." . $this->dump_file_extension;
+		return $this->mysql_data_dir . DIRECTORY_SEPARATOR .
+		$dump_name .
+		"." . $this->dump_file_extension;
 	}
 
 	function check_if_dump_exists($dump_file)

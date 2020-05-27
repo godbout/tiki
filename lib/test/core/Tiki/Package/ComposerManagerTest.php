@@ -337,6 +337,9 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 
 	/**
 	 * @dataProvider providerForTestCheckThatCanInstallPackages
+	 *
+	 * @param $files
+	 * @param $expected
 	 */
 	function testCheckThatCanInstallPackages($files, $expected)
 	{

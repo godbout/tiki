@@ -50,6 +50,7 @@ class Language_FileTest extends TikiTestCase
 
 	/**
 	 * @dataProvider provider
+	 * @param $expectedResult
 	 */
 	public function testParse_shouldReturnDataStructureRepresentingLanguageFile($expectedResult)
 	{
@@ -98,6 +99,8 @@ class Language_FileTest extends TikiTestCase
 
 	/**
 	 * @dataProvider provider
+	 * @param $content
+	 * @throws ReflectionException
 	 */
 	public function testGetStats_shouldNotCallParseIfContentIsAlreadyLoaded($content)
 	{

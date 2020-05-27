@@ -34,6 +34,11 @@ class TestRunnerWithBaselineTest extends PHPUnit\Framework\TestCase
 
 	/**
 	 * @dataProvider dataProvider_process_phpunit_log_data
+	 * @param $log_data
+	 * @param $exp_failures
+	 * @param $exp_errors
+	 * @param $exp_pass
+	 * @param $message
 	 */
 	public function test_process_phpunit_log_data($log_data, $exp_failures, $exp_errors, $exp_pass, $message) : void
 	{
@@ -120,6 +125,10 @@ class TestRunnerWithBaselineTest extends PHPUnit\Framework\TestCase
 
 	/**
 	 * @dataProvider dataProvider_compare_two_test_runs
+	 * @param $baseline_issues
+	 * @param $current_issues
+	 * @param $exp_differences
+	 * @param $message
 	 */
 	public function test_compare_two_test_runs($baseline_issues, $current_issues, $exp_differences, $message) : void
 	{

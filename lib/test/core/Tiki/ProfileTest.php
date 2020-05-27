@@ -144,6 +144,9 @@ class ProfileTest extends TikiTestCase
 
 	/**
 	 * @dataProvider profileDependencies
+	 *
+	 * @param $profileData
+	 * @param $expected
 	 */
 	public function testGetReferences($profileData, $expected)
 	{

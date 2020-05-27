@@ -9,7 +9,7 @@ class Search_GlobalSource_PermissionSourceTest extends PHPUnit\Framework\TestCas
 {
 	private $indexer;
 	private $index;
-    private $perms;
+	private $perms;
 
 	protected function setUp() : void
 	{

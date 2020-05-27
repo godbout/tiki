@@ -102,6 +102,10 @@ class AcceptanceTests_SearchTest extends TikiSeleniumTestCase
 	 * Helper methods
 	 **************************************/
 
+	 /**
+	 * @param $query
+	 */
+
 	private function _searchFor($query)
 	{
 		$this->type("highlight", $query);

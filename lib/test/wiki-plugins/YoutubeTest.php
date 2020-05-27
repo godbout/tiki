@@ -11,6 +11,9 @@ class WikiPlugin_YoutubeTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider provider
+	 * @param $data
+	 * @param $expectedOutput
+	 * @param array $params
 	 */
 	public function testWikiPluginCode($data, $expectedOutput, $params = [])
 	{

@@ -21,6 +21,8 @@ class TikiVersionTest extends PHPUnit\Framework\TestCase
 
 	/**
 	 * @dataProvider versions
+	 * @param $string
+	 * @param $version
 	 */
 	function testParseVersions($string, $version)
 	{
@@ -29,6 +31,8 @@ class TikiVersionTest extends PHPUnit\Framework\TestCase
 
 	/**
 	 * @dataProvider versions
+	 * @param $string
+	 * @param $version
 	 */
 	function testWriteVersions($string, $version)
 	{
@@ -180,6 +184,8 @@ O;
 
 	/**
 	 * @dataProvider upgradeMessages
+	 * @param $string
+	 * @param $upgrade
 	 */
 	function testObtainMessages($string, $upgrade)
 	{

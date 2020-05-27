@@ -102,6 +102,6 @@ class DiffTest extends TikiTestCase
 		$data = file_get_contents($file);
 
 		$parse_options = ['is_html' => false, 'noheadinc' => true, 'suppress_icons' => true, 'noparseplugins' => true];
-        return $parserLib->parse_data($data, $parse_options);
+		return $parserLib->parse_data($data, $parse_options);
 	}
 }

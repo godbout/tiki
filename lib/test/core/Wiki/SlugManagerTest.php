@@ -48,6 +48,11 @@ class SlugManagerTest extends TestCase
 
 	/**
 	 * @dataProvider generatorCases
+	 *
+	 * @param $gen
+	 * @param $slug
+	 * @param $page
+	 * @param $suffix
 	 */
 	function testGeneratorCases($gen, $slug, $page, $suffix)
 	{

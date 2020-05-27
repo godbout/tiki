@@ -45,6 +45,11 @@ class UserLibTest extends TikiTestCase
 
 	/**
 	 * @dataProvider dataForLdapSyncUserDataUserWithoutPreferences
+	 * @param $name
+	 * @param $email
+	 * @param $country
+	 * @param $ldapAttributes
+	 * @param $setValues
 	 */
 	public function testLdapSyncUserDataUserWithoutPreferences($name, $email, $country, $ldapAttributes, $setValues)
 	{

@@ -9,6 +9,8 @@ class Search_GlobalSource_TitleInitialTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider mapping
+	 * @param $letter
+	 * @param $string
 	 */
 	function testTitlePresent($letter, $string)
 	{

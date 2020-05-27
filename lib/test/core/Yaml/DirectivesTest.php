@@ -37,6 +37,9 @@ class DirectivesTest extends TestCase
 
 	/**
 	 * @dataProvider includeDataProvider
+	 *
+	 * @param $yamlFile
+	 * @param $yamlResultFile
 	 */
 	public function testInclude($yamlFile, $yamlResultFile)
 	{

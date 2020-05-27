@@ -8,7 +8,7 @@
 class Search_Lucene_PaginationTest extends Search_Index_PaginationTest
 {
 
-    protected function setUp() : void
+	protected function setUp() : void
 	{
 		$dir = __DIR__ . '/test_index';
 		$this->tearDown();

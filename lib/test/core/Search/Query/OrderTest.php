@@ -9,6 +9,10 @@ class Search_Query_OrderTest extends PHPUnit\Framework\TestCase
 {
 	/**
 	 * @dataProvider sortMatches
+	 * @param $mode
+	 * @param $field
+	 * @param $order
+	 * @param $type
 	 */
 	function testParse($mode, $field, $order, $type)
 	{

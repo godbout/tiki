@@ -66,6 +66,8 @@ class CheckAttachmentGalleryTest extends TestCase
 
 	/**
 	 * @dataProvider getTypes()
+	 *
+	 * @param $type
 	 */
 	public function testAttachmentEmptyAttachmentsNoProblemOnDisk($type)
 	{
@@ -92,6 +94,7 @@ class CheckAttachmentGalleryTest extends TestCase
 
 	/**
 	 * @dataProvider getTypes
+	 * @param $type
 	 * @throws Exception
 	 */
 	public function testAttachmentWithOneFileOnDisk($type)
@@ -247,7 +250,8 @@ class CheckAttachmentGalleryTest extends TestCase
 
 	/**
 	 * Configures the preferences to set the storage in the disk for a specific type
-	 * @param $type
+	 * @param      $type
+	 * @param bool $use_db
 	 */
 	protected function configToStoreFiles($type, $use_db = false)
 	{
@@ -258,8 +262,7 @@ class CheckAttachmentGalleryTest extends TestCase
 
 	/**
 	 * Inserts a TXT file attachment for a specific type
-	 * @param $base_name
-	 * @param $type
+	 * @param $file
 	 * @return mixed
 	 * @throws Exception
 	 */
@@ -304,7 +307,6 @@ class CheckAttachmentGalleryTest extends TestCase
 	 * Function to create a local file with a specific content
 	 * @param $file_name
 	 * @param $content
-	 * @param string $extension
 	 */
 	protected function createFileOnDisk($file_name, $content)
 	{
@@ -355,6 +357,7 @@ class CheckAttachmentGalleryTest extends TestCase
 	/**
 	 * Gets the method responsible for removing an attachment based on the type
 	 * @param $type
+	 * @param $id
 	 * @throws Exception
 	 */
 	protected function removeAttachment($type, $id)

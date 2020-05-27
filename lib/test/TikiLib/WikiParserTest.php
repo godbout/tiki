@@ -13,8 +13,12 @@
 class TikiLib_WikiParserTest extends PHPUnit\Framework\TestCase
 {
 	/**
-	 * @covers ParserLib::parse_data
+	 * @covers       ParserLib::parse_data
 	 * @dataProvider provider
+	 * @param $input
+	 * @param $output
+	 * @param array $options
+	 * @throws Exception
 	 */
 	public function testWikiParser($input, $output, $options = [])
 	{

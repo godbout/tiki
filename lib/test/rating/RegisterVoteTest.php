@@ -53,6 +53,9 @@ class Rating_RegisterVoteTest extends TikiTestCase
 
 	/**
 	 * @dataProvider tokenFormats
+	 * @param $type
+	 * @param $object
+	 * @param $token
 	 */
 	function testGetToken($type, $object, $token)
 	{

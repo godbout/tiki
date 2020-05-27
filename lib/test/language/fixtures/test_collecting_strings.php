@@ -9,8 +9,11 @@
  * simple_set_toggle
  *
  * @param mixed $feature
+ *
  * @access public
  * @return void
+ * @throws Exception
+ * @throws Exception
  */
 function simple_set_toggle($feature)
 {

@@ -132,6 +132,10 @@ class CustomRouteTest extends TestCase
 
 	/**
 	 * @dataProvider getDirectRouteData
+	 *
+	 * @param $from
+	 * @param $routerDetails
+	 * @param $expectError
 	 */
 	public function testAddInvalidDirectCustomRoute($from, $routerDetails, $expectError)
 	{
@@ -194,6 +198,9 @@ class CustomRouteTest extends TestCase
 
 	/**
 	 * @dataProvider getTikiObjectRouteData
+	 * @param $from
+	 * @param $routerDetails
+	 * @param $expectError
 	 */
 	public function testAddInvalidTikiObjectCustomRoute($from, $routerDetails, $expectError)
 	{
@@ -275,6 +282,9 @@ class CustomRouteTest extends TestCase
 
 	/**
 	 * @dataProvider getTrackerFieldRouteData
+	 * @param $from
+	 * @param $routerDetails
+	 * @param $expectError
 	 */
 	public function testAddValidTrackerFieldCustomRoute($from, $routerDetails, $expectError)
 	{

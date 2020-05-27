@@ -28,6 +28,9 @@ class PerspectivesTest extends PerspectivesNavigationBaseTestCase
 
 	/**
 	 * @dataProvider navigations
+	 * @param $testName
+	 * @param $cleanCookies
+	 * @param $steps
 	 */
 	public function testPerspectives($testName, $cleanCookies, $steps)
 	{

@@ -26,7 +26,9 @@ class TestableTikiLib extends TikiLib
 	 * value should be the mock object used as replacement.
 	 *
 	 * @param array $libs
-	 * @return
+	 *
+	 * @return void
+	 * @throws Exception
 	 */
 	public function overrideLibs(array $libs)
 	{

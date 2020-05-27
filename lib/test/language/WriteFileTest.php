@@ -84,6 +84,7 @@ class Language_WriteFileTest extends TikiTestCase
 
 	/**
 	 * @dataProvider writeStringsToFile_provider
+	 * @param $strings
 	 */
 	public function testWriteStringsToFile_shouldKeepTranslationsEvenIfTheyAreEqualToEnglishString($strings)
 	{
@@ -111,6 +112,7 @@ class Language_WriteFileTest extends TikiTestCase
 
 	/**
 	 * @dataProvider writeStringsToFile_provider
+	 * @param $strings
 	 */
 	public function testWriteStringsToFile_shouldIgnoreUnusedStrings($strings)
 	{
@@ -138,6 +140,7 @@ class Language_WriteFileTest extends TikiTestCase
 
 	/**
 	 * @dataProvider writeStringsToFile_provider
+	 * @param $strings
 	 */
 	public function testWriteStringsToFile_shouldOutputFileWhereStringsWasFound($strings)
 	{
@@ -165,6 +168,7 @@ class Language_WriteFileTest extends TikiTestCase
 
 	/**
 	 * @dataProvider writeStringsToFile_provider
+	 * @param $strings
 	 */
 	public function testWriteStringsToFile_shouldConsiderStringsWithPunctuationInEndASpecialCase($strings)
 	{
@@ -198,6 +202,7 @@ class Language_WriteFileTest extends TikiTestCase
 
 	/**
 	 * @dataProvider writeStringsToFile_provider
+	 * @param $strings
 	 */
 	public function testWriteStringsToFile_shouldProperlyHandleSpecialCharactersInsideStrings($strings)
 	{

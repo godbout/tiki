@@ -48,6 +48,10 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 	/**
 	 * @dataProvider provider
 	 * @group marked-as-skipped
+	 * @param $data
+	 * @param $expectedOutput
+	 * @param array $params
+	 * @param string $message
 	 */
 	public function testWikiPlugin_TranslationOf($data, $expectedOutput, $params = [], $message = "")
 	{
