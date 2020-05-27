@@ -18,8 +18,6 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 	protected function setUp() : void
 	{
 		global $user, $prefs;
-		$multilinguallib = TikiLib::lib('multilingual');
-		$tikilib = TikiLib::lib('tiki');
 		$this->orig_user = $user;
 
 		$prefs['site_language'] = 'en';
@@ -36,7 +34,7 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 
 	protected function tearDown() : void
 	{
-		global $tikilib, $user, $testhelpers;
+		global $user, $testhelpers;
 
 		$testhelpers->remove_all_versions($this->page_containing_plugin);
 
@@ -46,7 +44,6 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 
 	/**
 	 * @dataProvider provider
-	 * @group marked-as-skipped
 	 * @param $data
 	 * @param $expectedOutput
 	 * @param array $params
@@ -54,17 +51,16 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 	 */
 	public function testWikiPlugin_TranslationOf($data, $expectedOutput, $params = [], $message = "")
 	{
-		$this->markTestSkipped('SkipBroken: 2017-10-14, wikiplugin_translationof broken with commit https://sourceforge.net/p/tikiwiki/code/62640/');
 		$this->assertEquals($expectedOutput, wikiplugin_translationof($data, $params), $message);
 	}
 
 	public function provider()
 	{
 		return [
-			['', '<a href="tiki-index.php?page=SomePage"  data-toggle="popover" data-container="body" data-trigger="click" data-content="<a href=\"tiki-edit_translation.php?page=SomePage&target_lang=fr#new_translation\">Translate this link</a>"  data-delay=\'{"show":"0","hide":"10"}\'>SomePage</a>',
+			['', '<a href="tiki-index.php?page=SomePage"  data-toggle="popover" data-container="body" data-trigger="click" data-content="&lt;a&#x20;href&#x3D;&quot;tiki-edit_translation.php&#x3F;page&#x3D;SomePage&amp;target_lang&#x3D;fr&#x23;new_translation&quot;&gt;Translate&#x20;this&#x20;link&lt;&#x2F;a&gt;"  data-delay=\'{"show":"0","hide":"100"}\'>SomePage</a>',
 				  ['orig_page' => 'SomePage', 'translation_lang' => 'fr'],
 				  "Happy Path Case"],
-			['', '<a href="tiki-index.php?page=SomePage"  data-toggle="popover" data-container="body" data-trigger="click" data-content="<a href=\"tiki-edit_translation.php?page=SomePage&target_lang=fr&translation_name=UnePage#new_translation\">Translate this link</a>"  data-delay=\'{"show":"0","hide":"10"}\'>UnePage</a>',
+			['', '<a href="tiki-index.php?page=SomePage"  data-toggle="popover" data-container="body" data-trigger="click" data-content="&lt;a&#x20;href&#x3D;&quot;tiki-edit_translation.php&#x3F;page&#x3D;SomePage&amp;target_lang&#x3D;fr&amp;translation_name&#x3D;UnePage&#x23;new_translation&quot;&gt;Translate&#x20;this&#x20;link&lt;&#x2F;a&gt;"  data-delay=\'{"show":"0","hide":"100"}\'>UnePage</a>',
 				  ['orig_page' => 'SomePage', 'translation_lang' => 'fr', 'translation_page' => 'UnePage'],
 				  "Case with name of translated page provided"],
 		];
@@ -75,7 +71,6 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 		global $prefs;
 		$tikilib = TikiLib::lib('tiki');
 		$relationlib = TikiLib::lib('relation');
-		$testhelpers = new TestHelpers();
 
 		// Make sure the page doesn't exist to start with.
 		$tikilib->remove_all_versions($this->page_containing_plugin);

@@ -35,7 +35,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 		foreach ($tmp_wikis as $w) {
 			if (isset($wikis[$w])) {
 				$id = $wikis[$w];
-				$tikilib->lib('admin')->remove_extwiki($id);
+				$tikilib::lib('admin')->remove_extwiki($id);
 			}
 		}
 	}
@@ -53,7 +53,7 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 		 * setup the external wikis and the parser
 		 */
 		global $tikilib;
-		$tikilib->lib('admin')->replace_extwiki(0, 'http://tikiwiki.org/tiki-index.php?page=$page', $this->ext1);
+		$tikilib::lib('admin')->replace_extwiki(0, 'http://tikiwiki.org/tiki-index.php?page=$page', $this->ext1);
 
 
 		/*

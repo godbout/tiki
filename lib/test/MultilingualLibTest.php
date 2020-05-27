@@ -57,8 +57,7 @@ class MultilingualLibTest extends TikiTestCase
 		$tikilib->remove_all_versions("Une page déjà traduite");
 		$tikilib->remove_all_versions("A Page That Is NOT Already Translated");
 
-		unset($_SERVER['HTTP_HOST']);
-		unset($_SERVER['REQUEST_URI']);
+		unset($_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
 		$user = $this->orig_user;
 	}
 

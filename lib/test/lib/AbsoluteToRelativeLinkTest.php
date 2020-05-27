@@ -7,6 +7,7 @@
 
 namespace Tiki\Tests;
 
+use Exception;
 use PHPUnit\Framework\TestCase;
 use TikiLib;
 
@@ -33,7 +34,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testPluginHtml($baseUrl)
 	{
@@ -50,7 +51,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testTextLink($baseUrl)
 	{
@@ -66,7 +67,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testTextLinkSubFolder($baseUrl)
 	{
@@ -90,7 +91,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testWikiLink($baseUrl)
 	{
@@ -162,7 +163,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testExternalLink($baseUrl)
 	{
@@ -183,7 +184,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testUnescapedLinks($baseUrl)
 	{
@@ -202,7 +203,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testUnescapedLinksReplacement($baseUrl)
 	{
@@ -225,7 +226,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testPreferenceDisabled($baseUrl)
 	{
@@ -242,10 +243,8 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$link3 = '((Homepage|Homepage))';
 		$link4 = '[tiki-pagehistory.php?page=193&newver=12&oldver=11|tiki-pagehistory.php?page=193&newver=12&oldver=11]';
 
-		$data = str_replace('#1', $link1, $text);
-		$data = str_replace('#2', $link2, $data);
-		$data = str_replace('#3', $link3, $data);
-		$data = str_replace('#4', $link4, $data);
+		$data = str_replace(['#1', '#2'], [$link1, $link2], $text);
+		$data = str_replace(['#3', '#4'], [$link3, $link4], $data);
 
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
 
@@ -253,10 +252,16 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$expectedLink2 = '[' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink]';
 		$expectedLink3 = '((Homepage))';
 		$expectedLink4 = '[tiki-pagehistory.php?page=193&newver=12&oldver=11]';
-		$dataResult = str_replace('#1', $expectedLink1, $text);
-		$dataResult = str_replace('#2', $expectedLink2, $dataResult);
-		$dataResult = str_replace('#3', $expectedLink3, $dataResult);
-		$dataResult = str_replace('#4', $expectedLink4, $dataResult);
+		$dataResult = str_replace(
+			['#1', '#2'],
+			[$expectedLink1, $expectedLink2],
+			$text
+		);
+		$dataResult = str_replace(
+			['#3', '#4'],
+			[$expectedLink3, $expectedLink4],
+			$dataResult
+		);
 
 		$this->assertEquals($dataResult, $dataConverted);
 	}
@@ -264,7 +269,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testReplaceInsidePlugins($baseUrl)
 	{
@@ -280,7 +285,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testOtherMarkups($baseUrl)
 	{
@@ -353,7 +358,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testMixMultipleLinks($baseUrl)
 	{
@@ -366,16 +371,18 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$link2 = '[' . $baseUrl . 'tiki-index.php|Homepage]';
 		$link3 = '[https://doc.tiki.org/Documentation]';
 		$data = str_replace('#1', $link1, $text);
-		$data = str_replace('#2', $link2, $data);
-		$data = str_replace('#3', $link3, $data);
+		$data = str_replace(['#2', '#3'], [$link2, $link3], $data);
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
 
 		$expectedLink1 = '((tiki-index.php|Homepage))';
 		$expectedLink2 = '[tiki-index.php|Homepage]';
 		$expectedLink3 = '[https://doc.tiki.org/Documentation]';
 		$dataResult = str_replace('#1', $expectedLink1, $text);
-		$dataResult = str_replace('#2', $expectedLink2, $dataResult);
-		$dataResult = str_replace('#3', $expectedLink3, $dataResult);
+		$dataResult = str_replace(
+			['#2', '#3'],
+			[$expectedLink2, $expectedLink3],
+			$dataResult
+		);
 
 		$this->assertEquals($dataResult, $dataConverted);
 	}
@@ -383,7 +390,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testLinkInsidePlugin($baseUrl)
 	{
@@ -394,8 +401,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 		$link2 = '[' . $baseUrl . 'tiki-index.php|Homepage]';
 		$link3 = '[https://doc.tiki.org/Documentation]';
 		$data = str_replace('#1', $link1, $text);
-		$data = str_replace('#2', $link2, $data);
-		$data = str_replace('#3', $link3, $data);
+		$data = str_replace(['#2', '#3'], [$link2, $link3], $data);
 		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
 
 		$this->assertEquals($data, $dataConverted);
@@ -404,7 +410,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testLinkOutsidePlugin($baseUrl)
 	{
@@ -445,7 +451,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testExternalSameTitleAndLink($baseUrl)
 	{
@@ -466,7 +472,7 @@ class AbsoluteToRelativeLinkTest extends TestCase
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testMultipleSameTitleAndLinks($baseUrl)
 	{
@@ -476,23 +482,25 @@ class AbsoluteToRelativeLinkTest extends TestCase
 
 		$link1 = '[' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink|' . $baseUrl . 'tiki-pagehistory.php?page=sametitleandlink]';
 		$link2 = '((HomePage|HomePage))';
-		$data = str_replace('#1', $link1, $text);
-		$data = str_replace('#2', $link2, $text);
+		$data1 = str_replace('#1', $link1, $text);
+		$data2 = str_replace('#2', $link2, $text);
 
-		$dataConverted = $tikilib->convertAbsoluteLinksToRelative($data);
+		$dataConverted1 = $tikilib->convertAbsoluteLinksToRelative($data1);
+		$dataConverted2 = $tikilib->convertAbsoluteLinksToRelative($data2);
 
 		$expectedLink1 = '[tiki-pagehistory.php?page=sametitleandlink]';
 		$expectedLink2 = '((HomePage))';
-		$dataResult = str_replace('#1', $expectedLink1, $text);
-		$dataResult = str_replace('#2', $expectedLink2, $text);
+		$dataResult1 = str_replace('#1', $expectedLink1, $text);
+		$dataResult2 = str_replace('#2', $expectedLink2, $text);
 
-		$this->assertEquals($dataResult, $dataConverted);
+		$this->assertEquals($dataResult1, $dataConverted1);
+		$this->assertEquals($dataResult2, $dataConverted2);
 	}
 
 	/**
 	 * @dataProvider urlBases
 	 * @param $baseUrl
-	 * @throws \Exception
+	 * @throws Exception
 	 */
 	public function testWikiMarkerInUrlShouldBeIgnored($baseUrl)
 	{

@@ -52,7 +52,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		foreach ($tmp_wikis as $w) {
 			if (isset($wikis[$w])) {
 				$id = $wikis[$w];
-				$tikilib->lib('admin')->remove_extwiki($id);
+				$tikilib::lib('admin')->remove_extwiki($id);
 			}
 		}
 	}
@@ -72,8 +72,8 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		 * setup the external wikis and the parser
 		 */
 		$tikilib = TikiLib::lib('tiki');
-		$tikilib->lib('admin')->replace_extwiki(0, 'http://tikiwiki.org/tiki-index.php?page=$page', $this->ext1);
-		$p = $tikilib->lib('parser');
+		$tikilib::lib('admin')->replace_extwiki(0, 'http://tikiwiki.org/tiki-index.php?page=$page', $this->ext1);
+		$p = $tikilib::lib('parser');
 
 
 		/*
@@ -122,7 +122,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$inData = '[#A_Heading|Link to heading]';
 		$ex = '<a class="wiki" href="#A_Heading" rel="">Link to heading</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$out = preg_replace('/  /', ' ', $out); // the parser writes to many spaces
+		$out = preg_replace('/ {2}/', ' ', $out); // the parser writes to many spaces
 		$this->assertStringContainsString($ex, $out);
 
 
@@ -132,7 +132,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		$inData = '[#A_Heading]';
 		$ex = '<a class="wiki" href="#A_Heading" rel="">#A_Heading</a>';
 		$out = trim($this->el->parseToWysiwyg($inData));
-		$out = preg_replace('/  /', ' ', $out); // the parser writes to many spaces
+		$out = preg_replace('/ {2}/', ' ', $out); // the parser writes to many spaces
 		$this->assertStringContainsString($ex, $out);
 	}
 
@@ -362,7 +362,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		 */
 		$inData = "(($noPage))";
 		$ex = 'Page does not exist not exist<a href="tiki-editpage.php?page=Page+does+not+exist+not+exist" title="Create page: Page does not exist not exist" class="wiki wikinew">?</a>';
-		$out = trim($tikilib->lib('parser')->parse_Data($inData));
+		$out = trim($tikilib::lib('parser')->parse_Data($inData));
 		$this->assertStringContainsString($ex, $out);
 
 		/*
@@ -373,7 +373,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		 */
 		$inData = "(($noPage|Page does not exist))";
 		$ex = 'Page does not exist<a href="tiki-editpage.php?page=Page+does+not+exist+not+exist" title="Create page: Page does not exist not exist" class="wiki wikinew">?</a>';
-		$out = trim($tikilib->lib('parser')->parse_Data($inData));
+		$out = trim($tikilib::lib('parser')->parse_Data($inData));
 		$this->assertStringContainsString($ex, $out);
 
 
@@ -386,7 +386,7 @@ class EditLib_ParseToWysiwyg_LinkTest extends TikiTestCase
 		 */
 		$inData = "(($noPage|#anchor|Page does not exist))";
 		$ex = 'Page does not exist<a href="tiki-editpage.php?page=Page+does+not+exist+not+exist" title="Create page: Page does not exist not exist" class="wiki wikinew">?</a>';
-		$out = trim($tikilib->lib('parser')->parse_Data($inData));
+		$out = trim($tikilib::lib('parser')->parse_Data($inData));
 		$this->assertStringContainsString($ex, $out);
 
 

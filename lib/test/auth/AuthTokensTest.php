@@ -59,7 +59,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 
 		$queryTable = $this->getConnection()->createQueryTable('tiki_auth_tokens', 'SELECT * FROM tiki_auth_tokens');
 
-		$this->assertTablesEqual($expectedTable, $queryTable);
+		self::assertTablesEqual($expectedTable, $queryTable);
 	}
 
 	public function testTokenMatchesCompleteHash()
@@ -129,7 +129,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 				'maxTimeout' => 10,
 			]
 		);
-		$token = $lib->createToken('tiki-index.php', ['page' => 'HomePage'], ['Registered'], ['timeout' => 3600]);
+		$lib->createToken('tiki-index.php', ['page' => 'HomePage'], ['Registered'], ['timeout' => 3600]);
 
 		$this->assertEquals(10, $this->db->getOne('SELECT timeout FROM tiki_auth_tokens ORDER BY creation desc'));
 	}
@@ -161,7 +161,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 				'maxHits' => 10,
 			]
 		);
-		$token = $lib->createToken('tiki-index.php', ['page' => 'HomePage'], ['Registered'], ['hits' => 3600]);
+		$lib->createToken('tiki-index.php', ['page' => 'HomePage'], ['Registered'], ['hits' => 3600]);
 
 		$this->assertEquals(10, $this->db->getOne('SELECT hits FROM tiki_auth_tokens WHERE tokenId = 1'));
 	}
@@ -215,7 +215,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 
 	public function testDeleteToken()
 	{
-		$token = $this->obj->createToken('tiki-user_send_reports.php', [], ['Registered']);
+		$this->obj->createToken('tiki-user_send_reports.php', [], ['Registered']);
 		$tokenId = $this->db->getOne('SELECT tokenId FROM tiki_auth_tokens ORDER BY creation desc');
 
 		$this->obj->deleteToken($tokenId);
@@ -232,7 +232,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 
 		$queryTable = $this->getConnection()->createQueryTable('tiki_auth_tokens', 'SELECT * FROM tiki_auth_tokens');
 
-		$this->assertTablesEqual($expectedTable, $queryTable);
+		self::assertTablesEqual($expectedTable, $queryTable);
 	}
 
 	public function testGetGroups_shouldDeleteTokensWithoutHitsLeft()
@@ -250,7 +250,7 @@ class AuthTokensTest extends TikiDatabaseTestCase
 
 		$queryTable = $this->getConnection()->createQueryTable('tiki_auth_tokens', 'SELECT * FROM tiki_auth_tokens');
 
-		$this->assertTablesEqual($expectedTable, $queryTable);
+		self::assertTablesEqual($expectedTable, $queryTable);
 	}
 
 	public function testGetGroups_shouldDecrementHits()

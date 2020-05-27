@@ -17,10 +17,10 @@ class Reports_EndToEndTest extends TikiDatabaseTestCase
 
 		$this->mail = $this->createMock('TikiMail');
 
-		$this->tikilib = $this->createMock('TikiLib', ['get_user_preference']);
+		$this->tikilib = $this->createMock('TikiLib');
 
 		$this->overrideLibs = new TestableTikiLib;
-		$this->overrideLibs->overrideLibs(['calendar' => $this->createMock('MockCalendarLib', ['get_item'])]);
+		$this->overrideLibs->overrideLibs(['calendar' => $this->createMock('MockCalendarLib')]);
 
 		$tikiPrefs = ['short_date_format' => '%Y-%m-%d'];
 

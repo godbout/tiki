@@ -31,7 +31,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.5],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -44,7 +44,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.5],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -61,7 +61,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.0],	// seems it returns the weight of the AndX, not the Token?
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -79,7 +79,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.0],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -97,7 +97,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.0],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -112,7 +112,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.5],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -131,7 +131,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.0],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -150,7 +150,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 				['field' => 'foobar', 'type' => 'fulltext', 'weight' => 1.5],
 				['field' => 'baz', 'type' => 'fulltext', 'weight' => 1.0],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -169,7 +169,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 				['field' => 'foobar', 'type' => 'fulltext', 'weight' => 1.5],
 				['field' => 'baz', 'type' => 'fulltext', 'weight' => 1.0],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -184,7 +184,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'object_id', 'type' => 'index', 'weight' => 1.5],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -203,7 +203,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.0],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -216,7 +216,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'username', 'type' => 'index', 'weight' => 1.5],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -229,7 +229,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'title', 'type' => 'index', 'weight' => 1.5],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -242,7 +242,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'title', 'type' => 'index', 'weight' => 1.5],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -265,7 +265,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.0],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -294,7 +294,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 					['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.0],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -312,7 +312,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.0],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -330,7 +330,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'contents', 'type' => 'fulltext', 'weight' => 1.5],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -344,7 +344,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals(
 			[
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 
@@ -362,7 +362,7 @@ class Search_MySql_QueryBuilderTest extends PHPUnit\Framework\TestCase
 			[
 				['field' => 'object_id', 'type' => 'index', 'weight' => 1.5],
 			],
-			$this->builder->getRequiredIndexes($expr)
+			$this->builder->getRequiredIndexes()
 		);
 	}
 }

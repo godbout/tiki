@@ -35,8 +35,6 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	 */
 	public function testBlockAlignLeft()
 	{
-		global $prefs;
-
 		/*
 		 * default
 		 */
@@ -163,8 +161,6 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	 */
 	public function testBlockAlignRight()
 	{
-		global $prefs;
-
 		$ex = '{DIV(align="right")}This text is aligned right{DIV}';
 
 
@@ -190,8 +186,6 @@ class EditLib_ParseToWiki_TextTest extends TikiTestCase
 	 */
 	public function testBlockAlignJustified()
 	{
-		global $prefs;
-
 		$ex = '{DIV(align="justify")}This text is justified{DIV}';
 
 

@@ -18,7 +18,7 @@ class Reports_FactoryTest extends TikiTestCase
 
 	public function testBuild_shouldThrowExceptionForUnknownClass()
 	{
-		$this->expectException('Exception', 'Unknown class Unknown_Class');
+		$this->expectException('Exception');
 		Reports_Factory::build('Unknown_Class');
 	}
 }

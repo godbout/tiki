@@ -248,8 +248,6 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");
 
-		$commentslib = TikiLib::lib('comments');
-
 		$commentslib = $this->getMockBuilder('Comments')
 			->onlyMethods(['post_new_comment'])
 			->getMock();
@@ -271,8 +269,6 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	public function testInsertCommentsShouldConsiderIfCommentIsApprovedOrNot()
 	{
 		$this->markTestSkipped("As of 2013-09-30, this test is broken. Skipping it for now.");
-
-		$commentslib = TikiLib::lib('comments');
 
 		$commentslib = $this->getMockBuilder('Comments')
 			->onlyMethods(['post_new_comment', 'approve_comment'])
@@ -296,8 +292,6 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	public function testInsertPage()
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
-
-		$objectlib = TikiLib::lib('object');
 
 		$objectlib = $this->getMockBuilder('ObjectLib')
 			->onlyMethods(['insert_object'])
@@ -326,9 +320,6 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
 
-		$objectlib = TikiLib::lib('object');
-		$bloglib = TikiLib::lib('blog');
-
 		$bloglib = $this->getMockBuilder('BlogLib')
 			->onlyMethods(['blog_post'])
 			->getMock();
@@ -351,7 +342,6 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
 
-		$freetaglib = TikiLib::lib('freetag');
 		$freetaglib = $this->getMockBuilder('FreetagLib')
 			->onlyMethods(['find_or_create_tag'])
 			->getMock();
@@ -369,7 +359,6 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
 
-		$categlib = TikiLib::lib('categ');
 		$categlib = $this->getMockBuilder('CategLib')
 			->onlyMethods(['add_category', 'get_category_id'])
 			->getMock();
@@ -392,7 +381,6 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
 
-		$freetaglib = TikiLib::lib('freetag');
 		$freetaglib = $this->getMockBuilder('FreetagLib')
 			->onlyMethods(['_tag_object_array'])
 			->getMock();
@@ -410,7 +398,6 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
 
-		$categlib = TikiLib::lib('categ');
 		$categlib = $this->getMockBuilder('CategLib')
 			->onlyMethods(['get_category_id', 'get_object_id', 'categorize', 'add_categorized_object'])
 			->getMock();
@@ -431,7 +418,6 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
 
-		$bloglib = TikiLib::lib('blog');
 		$bloglib = $this->getMockBuilder('BlogLib')
 			->onlyMethods(['replace_blog'])
 			->getMock();
@@ -449,7 +435,6 @@ class TikiImporter_Blog_Test extends TikiImporter_TestCase
 	{
 		$this->markTestSkipped('2016-09-26 Skipped as dependency injection has stopped mock objects working like this.');
 
-		$bloglib = TikiLib::lib('blog');
 		$bloglib = $this->getMockBuilder('BlogLib')
 			->onlyMethods(['replace_blog'])
 			->getMock();

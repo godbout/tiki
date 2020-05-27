@@ -54,6 +54,7 @@ class FilegalsTest extends TikiTestCase
 			$caught = true;
 		}
 		$this->assertTrue($caught);
+		unset($caught);
 		try {
 			$fgallib->assertUploadedFileIsSafe($path);
 		} catch (FileIsNotSafeException $e) {
@@ -77,6 +78,7 @@ class FilegalsTest extends TikiTestCase
 			$caught = true;
 		}
 		$this->assertTrue($caught);
+		unset($caught);
 		try {
 			$fgallib->assertUploadedFileIsSafe($path);
 		} catch (FileIsNotSafeException $e) {

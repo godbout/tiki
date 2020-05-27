@@ -124,7 +124,7 @@ class Reports_UsersTest extends TikiDatabaseTestCase
 
 		$this->dt->setTimestamp('1326896528');
 
-		$obj = new Reports_Users($this->db, $this->dt, $this->reportsCache);
+		$obj = new Reports_Users($this->db, $this->dt);
 		$obj->updateLastReport('test');
 
 		$queryTable = $this->getConnection()->createQueryTable('tiki_user_reports', 'SELECT * FROM tiki_user_reports');

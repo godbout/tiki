@@ -39,7 +39,7 @@ class Language_FileTest extends TikiTestCase
 	{
 		$this->expectException('Language_Exception');
 		$this->expectExceptionMessage('Path invalidFile does not exist.');
-		$obj = new Language_File('invalidFile');
+		new Language_File('invalidFile');
 	}
 
 	public function testConstruct_shouldSetFilePath()

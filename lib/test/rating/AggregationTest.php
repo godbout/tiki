@@ -26,8 +26,6 @@ class Rating_AggregationTest extends TikiTestCase
 
 		$testhelpers = new TestHelpers();
 
-		$ratinglib = TikiLib::lib('rating');
-
 		$this->ratingDefaultOptions = $prefs['rating_default_options'];
 		$prefs['rating_default_options'] = '0,1,2,3,4,5';
 		$this->ratingAllowMultipleVotes = $prefs['rating_allow_multi_votes'];

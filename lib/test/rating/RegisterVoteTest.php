@@ -19,8 +19,6 @@ class Rating_RegisterVoteTest extends TikiTestCase
 		parent::setUp();
 		TikiDb::get()->query('DELETE FROM `tiki_user_votings` WHERE `id` LIKE ?', ['test.%']);
 
-		$ratinglib = TikiLib::lib('rating');
-
 		$this->ratingDefaultOptions = $prefs['rating_default_options'];
 		$prefs['rating_default_options'] = '0,1,2,3,4,5';
 		$this->ratingAllowMultipleVotes = $prefs['rating_allow_multi_votes'];

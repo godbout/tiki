@@ -36,8 +36,6 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	 */
 	public function testBlockAlignLeft()
 	{
-		global $prefs;
-
 		$this->markTestIncomplete('Work in progress.');
 
 		$ex = 'This text is aligned left';
@@ -101,8 +99,6 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	 */
 	public function testBlockAlignRight()
 	{
-		global $prefs;
-
 		$this->markTestIncomplete('Work in progress.');
 
 		$ex = '<div style="text-align: right;">This text is aligned right</div>';
@@ -119,8 +115,6 @@ class EditLib_ParseToWysiwyg_TextTest extends TikiTestCase
 	 */
 	public function testBlockAlignJustified()
 	{
-		global $prefs;
-
 		$this->markTestIncomplete('Work in progress.');
 
 		$ex = '<div style="text-align: justify;">This text is justified</div>';
