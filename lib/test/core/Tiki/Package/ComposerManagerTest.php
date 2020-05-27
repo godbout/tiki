@@ -344,7 +344,7 @@ class Tiki_Package_ComposerManagerTest extends TikiTestCase
 	function testCheckThatCanInstallPackages($files, $expected)
 	{
 		foreach ($files as $file) {
-			list( $path, $isDir, $mode) = $file;
+			[$path, $isDir, $mode] = $file;
 			if ($path === '/') {
 				$this->root->chmod($mode);
 			}

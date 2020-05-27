@@ -264,10 +264,10 @@ class Multilingual_Aligner_UpdatePagesTest extends TikiTestCase
 		//		echo "<pre>-- UpdatePagesTest.do_test_basic_updating: \$modified_target_array="; var_dump($modified_target_array); echo "</pre>\n";
 		//		echo "<pre>-- UpdatePagesTest.do_test_basic_updating: \$expected_updated_target_array="; var_dump($expected_updated_target_array); echo "</pre>\n";
 
-		$orig_source = join(' ', $orig_source_array);
-		$modified_source = join(' ', $modified_source_array);
-		$orig_target = join(' ', $orig_target_array);
-		$modified_target = join(' ', $modified_target_array);
+		$orig_source = implode(' ', $orig_source_array);
+		$modified_source = implode(' ', $modified_source_array);
+		$orig_target = implode(' ', $orig_target_array);
+		$modified_target = implode(' ', $modified_target_array);
 
 
 		$this->updater->SetAlignment($this->source_alignment, $this->target_alignment, $source_lng, $target_lng);
@@ -294,12 +294,11 @@ class Multilingual_Aligner_UpdatePagesTest extends TikiTestCase
 	function insertSentenceAtIndex($index, $sentenceToAdd, $sentenceList)
 	{
 		$modifiedSentenceList = [];
-		$ii;
-		for ($ii = 0, $csentenceList = count($sentenceList); $ii < $csentenceList; $ii++) {
-			if ($ii == $index) {
+		foreach ($sentenceList as $ii => $iiValue) {
+			if ($ii === $index) {
 				$modifiedSentenceList[] = $sentenceToAdd;
 			}
-			$modifiedSentenceList[] = $sentenceList[$ii];
+			$modifiedSentenceList[] = $iiValue;
 		}
 		return $modifiedSentenceList;
 	}

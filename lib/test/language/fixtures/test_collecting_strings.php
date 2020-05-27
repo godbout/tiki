@@ -20,8 +20,8 @@ function simple_set_toggle($feature)
 	global $prefs;
 	$tikilib = TikiLib::lib('tiki');
 	$logslib = TikiLib::lib('logs');
-	if (isset($_REQUEST[$feature]) && $_REQUEST[$feature] == 'on') {
-		if ((! isset($prefs[$feature]) || $prefs[$feature] != 'y')) {
+	if (isset($_REQUEST[$feature]) && $_REQUEST[$feature] === 'on') {
+		if ((! isset($prefs[$feature]) || $prefs[$feature] !== 'y')) {
 			// not yet set at all or not set to y
 			if ($tikilib->set_preference($feature, 'y')) {
 				add_feedback($feature, tr('%0 enabled', $feature), 1, 1);
@@ -29,7 +29,7 @@ function simple_set_toggle($feature)
 			}
 		}
 	} else {
-		if ((! isset($prefs[$feature]) || $prefs[$feature] != 'n')) {
+		if ((! isset($prefs[$feature]) || $prefs[$feature] !== 'n')) {
 			// not yet set at all or not set to n
 			if ($tikilib->set_preference($feature, 'n')) {
 				add_feedback($feature, tr('%0 disabled', $feature), 0, 1);
@@ -44,22 +44,22 @@ function simple_set_toggle($feature)
 
 if (isset($_REQUEST['page'])) {
 	$adminPage = $_REQUEST['page'];
-	if ($adminPage == 'features') {
+	if ($adminPage === 'features') {
 		$admintitle = 'Features'; //get_strings tra('Features')
 		$description = 'Enable/disable Tiki features here, but configure them elsewhere'; //get_strings tra('Enable/disable Tiki features here, but configure them elsewhere')
 		$helpUrl = 'Features+Admin';
 		include_once('tiki-admin_include_features.php');
-	} elseif ($adminPage == 'general') {
+	} elseif ($adminPage === 'general') {
 		$admintitle = 'General'; //get_strings tra('General')
 		$description = 'General preferences and settings'; //get_strings tra('General preferences and settings')
 		$helpUrl = 'General+Admin';
 		include_once('tiki-admin_include_general.php');
-	} elseif ($adminPage == 'login') {
+	} elseif ($adminPage === 'login') {
 		$admintitle = 'Login'; //get_strings tra('Login')
 		$description = 'User registration, login and authentication'; //get_strings tra('User registration, login and authentication')
 		$helpUrl = 'Login+Config';
 		include_once('tiki-admin_include_login.php');
-	} elseif ($adminPage == 'wiki') {
+	} elseif ($adminPage === 'wiki') {
 		$admintitle = tra('Wiki');
 		$description = tra('Wiki settings');
 		$helpUrl = 'Wiki+Config';

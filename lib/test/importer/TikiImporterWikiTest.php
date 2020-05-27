@@ -46,8 +46,7 @@ class TikiImporter_Wiki_Test extends TikiImporter_TestCase
 		$this->assertEquals(100, $obj->revisionsNumber);
 		$this->assertEquals('override', $obj->alreadyExistentPageName);
 
-		unset($_POST['alreadyExistentPageName']);
-		unset($_POST['wikiRevisions']);
+		unset($_POST['alreadyExistentPageName'], $_POST['wikiRevisions']);
 		$obj->import();
 
 		$this->assertEquals(0, $obj->revisionsNumber);

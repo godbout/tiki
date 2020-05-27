@@ -275,7 +275,7 @@ class CheckAttachmentGalleryTest extends TestCase
 		$useDB = isset($file['db']) && $file['db'];
 
 		$string = $this->default_file_content;
-		$size = isset($file['size']) ? $file['size'] : strlen($string);
+		$size = $file['size'] ?? strlen($string);
 		$type = $file['type'];
 
 		$lib = $this->getLib($type);
@@ -283,7 +283,7 @@ class CheckAttachmentGalleryTest extends TestCase
 		$fhash = null;
 
 		if (! $useDB) {
-			$fhash = isset($file['fhash']) ? $file['fhash'] : md5($base_name . $tikilib->now);
+			$fhash = $file['fhash'] ?? md5($base_name . $tikilib->now);
 			$this->createFileOnDisk($fhash, $string);
 			$string = null;
 		}

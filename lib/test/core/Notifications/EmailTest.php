@@ -41,7 +41,7 @@ class EmailTest extends TestCase
 	}
 
 	/**
-	 * @covers Tiki\Notifications\Email::getEmailThreadHeaders()
+	 * @covers \Tiki\Notifications\Email::getEmailThreadHeaders()
 	 */
 	public function testGetEmailThreadHeadersForForums()
 	{
@@ -54,7 +54,7 @@ class EmailTest extends TestCase
 		self::$objects['forums'][] = $forumId;
 
 		$messageId = '';
-		$rand = rand(0, 9);
+		$rand = random_int(0, 9);
 
 		//In a forumthread there is a first post (no parent available):
 		$commentId = $commentsLib->post_new_comment(
@@ -78,7 +78,7 @@ class EmailTest extends TestCase
 		//2nd post in same thread:
 
 		$messageId2 = '';
-		$rand2 = rand(10, 19);
+		$rand2 = random_int(10, 19);
 
 		$commentId2 = $commentsLib->post_new_comment(
 			'forum:' . $forumId,
@@ -100,7 +100,7 @@ class EmailTest extends TestCase
 
 		//3rd post in same thread (no reply):
 		$messageId3 = '';
-		$rand3 = rand(20, 29);
+		$rand3 = random_int(20, 29);
 
 		$commentId3 = $commentsLib->post_new_comment(
 			'forum:' . $forumId,
@@ -121,7 +121,7 @@ class EmailTest extends TestCase
 
 		//4th post in same thread, reply to comment 2:
 		$messageId4 = '';
-		$rand4 = rand(30, 39);
+		$rand4 = random_int(30, 39);
 
 		$commentId4 = $commentsLib->post_new_comment(
 			'forum:' . $forumId,
@@ -143,7 +143,7 @@ class EmailTest extends TestCase
 	}
 
 	/**
-	 * @covers Tiki\Notifications\Email::getEmailThreadHeaders()
+	 * @covers \Tiki\Notifications\Email::getEmailThreadHeaders()
 	 */
 	public function testGetEmailThreadHeadersForBlogPosts()
 	{
@@ -160,7 +160,7 @@ class EmailTest extends TestCase
 
 
 		$messageId = '';
-		$rand = rand(0, 9);
+		$rand = random_int(0, 9);
 
 		//1st comment:
 		$commentId = $commentsLib->post_new_comment(
@@ -183,7 +183,7 @@ class EmailTest extends TestCase
 
 		//2nd comment (reply to first - will have a parentId but no in_reply_to in database)
 		$messageId2 = '';
-		$rand2 = rand(10, 19);
+		$rand2 = random_int(10, 19);
 
 		$commentId2 = $commentsLib->post_new_comment(
 			'blog post:' . $blogPostId,
@@ -204,7 +204,7 @@ class EmailTest extends TestCase
 
 		//3rd comment (no reply to other comment):
 		$messageId3 = '';
-		$rand3 = rand(20, 29);
+		$rand3 = random_int(20, 29);
 
 		$commentId3 = $commentsLib->post_new_comment(
 			'blog post:' . $blogPostId,
@@ -225,7 +225,7 @@ class EmailTest extends TestCase
 
 		//4th comment, reply to comment 2:
 		$messageId4 = '';
-		$rand4 = rand(30, 39);
+		$rand4 = random_int(30, 39);
 
 		$commentId4 = $commentsLib->post_new_comment(
 			'blog post:' . $blogPostId,

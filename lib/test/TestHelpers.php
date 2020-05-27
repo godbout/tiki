@@ -42,8 +42,7 @@ class TestHelpers
 	{
 		global $tikilib, $user;
 
-		unset($_SERVER['HTTP_HOST']);
-		unset($_SERVER['REQUEST_URI']);
+		unset($_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
 		$user = $this->orig_user;
 	}
 

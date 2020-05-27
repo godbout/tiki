@@ -400,13 +400,13 @@ CONTENT;
 				$justReplaced = false;
 				continue;
 			}
-			if ($m->getName() == 'box') {
+			if ($m->getName() === 'box') {
 				$m->replaceWithPlugin('box', ['a' => 1], $m->getBody());
 				$justReplaced = true;
-			} elseif ($m->getName() == 'list') {
+			} elseif ($m->getName() === 'list') {
 				$m->replaceWithPlugin('list', [], "\n    {filter categories=abc1234567890abc1234567890}\n  ");
 				$justReplaced = true;
-			} elseif ($m->getName() == 'filter') {
+			} elseif ($m->getName() === 'filter') {
 				$m->replaceWithPlugin('filter', ['categories' => 'abc1234567890abc1234567890'], "");
 				$justReplaced = true;
 			}

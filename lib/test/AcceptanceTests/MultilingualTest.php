@@ -310,7 +310,7 @@ class AcceptanceTests_MultilingualTest extends TikiSeleniumTestCase
 	{
 		global $tikilib, $prefs;
 		$tikilib->set_preference('feature_machine_translation', $y_or_n);
-		if ($prefs['feature_machine_translation'] == 'y') {
+		if ($prefs['feature_machine_translation'] === 'y') {
 			print "\nfeature_machine_translation ENABLED\n";
 		}
 	}

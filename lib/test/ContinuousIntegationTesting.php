@@ -123,8 +123,6 @@ class ContinuousIntegrationTesting
 	private function get_revision_last_tested()
 	{
 		$this->revision_last_tested = file_get_contents($this->revision_last_tested_fpath());
-
-		return;
 	}
 
 	private function output_fpath()

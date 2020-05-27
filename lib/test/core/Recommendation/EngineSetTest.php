@@ -57,7 +57,7 @@ class EngineSetTest extends TestCase
 
 		$engines = $engineSet->getGenerator();
 		for ($i = 0; $i < 10; ++$i) {
-			list($set, $engine) = $engines->current();
+			[$set, $engine] = $engines->current();
 			$engines->next();
 
 			$out[spl_object_hash($engine)]++;
@@ -85,7 +85,7 @@ class EngineSetTest extends TestCase
 
 		$engines = $engineSet->getGenerator();
 		for ($i = 0; $i < 10; ++$i) {
-			list($set, $engine) = $engines->current();
+			[$set, $engine] = $engines->current();
 			$engines->next();
 
 			$out[spl_object_hash($engine)]++;

@@ -25,7 +25,7 @@ $tikidomain = '';
 $api_tiki = null;
 require 'db/local.php';
 
-if (extension_loaded("pdo") and $api_tiki == 'pdo') {
+if (extension_loaded("pdo") && $api_tiki === 'pdo') {
 	require_once('db/tiki-db-pdo.php');
 } else {
 	require_once('db/tiki-db-adodb.php');

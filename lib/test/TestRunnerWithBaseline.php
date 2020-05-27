@@ -57,7 +57,7 @@ class TestRunnerWithBaseline
 
 		$this->print_diffs_with_baseline();
 
-		if ($this->action == 'update_baseline') {
+		if ($this->action === 'update_baseline') {
 			$this->save_current_log_as_baseline();
 		}
 	}
@@ -190,7 +190,7 @@ See above details about each error or failure.
 			"There is no baseline log. Would you like to log current failures and errors as the baseline?",
 			['y', 'n']
 		);
-		if ($answer == 'y') {
+		if ($answer === 'y') {
 			$this->save_current_log_as_baseline();
 		}
 	}
@@ -207,41 +207,32 @@ See above details about each error or failure.
 			];
 
 		foreach ($log_data as $log_entry) {
-			$event = '';
-			if (isset($log_entry['event'])) {
-				$event = $log_entry['event'];
-			}
+			$event = $log_entry['event'] ?? '';
 
-			if ($event != 'testStart' && $event != 'test') {
+			if ($event !== 'testStart' && $event !== 'test') {
 				continue;
 			}
 
-			$test = '';
-			if (isset($log_entry['test'])) {
-				$test = $log_entry['test'];
-			}
+			$test = $log_entry['test'] ?? '';
 
-			if ($event == 'testStart') {
+			if ($event === 'testStart') {
 				$this->last_test_started = $test;
 				continue;
-			} else {
-				$this->last_test_started = null;
 			}
+
+			$this->last_test_started = null;
 
 			/* For some reason, sometimes an event=test entry does not have
 			   a 'status' field.
 			   Whenever that happens, it seems to be a sign of an error.
 			*/
-			$status = 'fail';
-			if (isset($log_entry['status'])) {
-				$status = $log_entry['status'];
-			}
+			$status = $log_entry['status'] ?? 'fail';
 
-			if ($status == 'fail') {
+			if ($status === 'fail') {
 				array_push($issues['failures'], $test);
-			} elseif ($status == 'error') {
+			} elseif ($status === 'error') {
 				array_push($issues['errors'], $test);
-			} elseif ($status == 'pass') {
+			} elseif ($status === 'pass') {
 				array_push($issues['pass'], $test);
 			}
 		}
@@ -303,7 +294,7 @@ See above details about each error or failure.
 				"Some new failures and/or errors were introduced (see above for details).\n\nAre you SURE you want to save the current run as a baseline?\n",
 				['y', 'n']
 			);
-			if ($answer == 'n') {
+			if ($answer === 'n') {
 				$this->do_echo("\nThe current run was NOT saved as the new baseline.\n");
 				return;
 			}
@@ -378,18 +369,12 @@ See above details about each error or failure.
 	{
 		global $tracer;
 
-		$action = '';
-		if (isset($options['action'])) {
-			$action = $options['action'];
-		}
-		if ($action == 'update_baseline' && isset($options['phpunit-options'])) {
+		$action = $options['action'] ?? '';
+		if ($action === 'update_baseline' && isset($options['phpunit-options'])) {
 			$this->usage("Cannot specify --phpunit-options with --action=update_baseline.");
 		}
 
-		$phpunit_options = '';
-		if (isset($options['phpunit-options'])) {
-			$phpunit_options = $options['phpunit-options'];
-		}
+		$phpunit_options = $options['phpunit-options'] ?? '';
 		if (preg_match('/--log-json/', $phpunit_options)) {
 			$this->usage("You cannot specify '--log-json' option in the '--phpunit-options' option.");
 		}

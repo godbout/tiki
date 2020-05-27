@@ -150,12 +150,12 @@ class Tiki_Event_CustomizerTest extends PHPUnit\Framework\TestCase
 
 	function callbackAdd($arguments)
 	{
-		$this->called += isset($arguments['amount']) ? $arguments['amount'] : 1;
+		$this->called += $arguments['amount'] ?? 1;
 	}
 
 	function callbackMultiply($arguments)
 	{
-		$this->called *= isset($arguments['amount']) ? $arguments['amount'] : 2;
+		$this->called *= $arguments['amount'] ?? 2;
 	}
 
 	function recordEvent($event, $arguments)

@@ -17,7 +17,7 @@ class ControllerTest extends TestCase
 {
 
 	/**
-	 * @covers Tiki\CustomRoute\Controller::populateFromRequest()
+	 * @covers \Tiki\CustomRoute\Controller::populateFromRequest()
 	 */
 	public function testPopulateFromRequest()
 	{

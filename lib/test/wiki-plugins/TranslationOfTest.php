@@ -40,8 +40,7 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 
 		$testhelpers->remove_all_versions($this->page_containing_plugin);
 
-		unset($_SERVER['HTTP_HOST']);
-		unset($_SERVER['REQUEST_URI']);
+		unset($_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI']);
 		$user = $this->orig_user;
 	}
 
@@ -85,9 +84,8 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 		$link_target_page = "TargetPage";
 
 		$relation_id = $relationlib->get_relation_id('tiki.wiki.translationof', 'wiki page', $this->page_containing_plugin, 'wiki page', $link_target_page);
-		$this->assertEquals(
+		$this->assertFalse(
 			$relation_id,
-			null,
 			"Before creating a page that contains a TranslationOf plugin, there should NOT have been a 'translationof' relation from $this->page_containing_plugin to $link_target_page."
 		);
 
@@ -98,9 +96,8 @@ class WikiPlugin_TranslationOfTest extends TikiTestCase
 		$tikilib->create_page($this->page_containing_plugin, 0, $page_containing_plugin_content, time(), "");
 
 		$relation_id = $relationlib->get_relation_id('tiki.wiki.translationof', 'wiki page', $this->page_containing_plugin, 'wiki page', $link_target_page);
-		$this->assertNotEquals(
+		$this->assertNotNull(
 			$relation_id,
-			null,
 			"After we created a page that contains a TranslationOf plugin, there SHOULD have been a 'translationof' relation from $this->page_containing_plugin to $link_target_page."
 		);
 	}

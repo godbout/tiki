@@ -9,7 +9,7 @@ use Laminas\Config\Config;
 
 const TIKI_IN_TEST = 1;
 
-define('TIKI_PATH', realpath(__DIR__ . '/../../'));
+define('TIKI_PATH', dirname(dirname(__DIR__)) . '/');
 chdir(TIKI_PATH);
 
 ini_set('display_errors', 'on');
@@ -71,7 +71,7 @@ if (! $installer->tableExists('tiki_preferences')) {
 	$installer->update();
 	if (count($installer->queries['failed'])) {
 		foreach ($installer->queries['failed'] as $key => $error) {
-			list( $query, $message, $patch ) = $error;
+			[$query, $message, $patch] = $error;
 
 			echo "Error $key in $patch\n\t$query\n\t$message\n\n";
 		}

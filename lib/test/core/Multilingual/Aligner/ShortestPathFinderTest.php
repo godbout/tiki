@@ -149,7 +149,7 @@ class Multilingual_Aligner_ShortestPathFinderTest extends TikiTestCase
 
 	function assertShortestPathIs($destination, $exp_path, $exp_dist, $message)
 	{
-		$got_dist = $distance = $this->pfinder->shortestDistanceTo($destination);
+		$got_dist = $this->pfinder->shortestDistanceTo($destination);
 		$this->assertEquals($exp_dist, $got_dist, "Shortest distance to node $destination was wrong.");
 		$got_path = $this->pfinder->shortestPathTo($destination);
 		$this->assertEquals($exp_path, $got_path, "$message\nShortest path to node $destination was wrong.");

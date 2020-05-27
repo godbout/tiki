@@ -14,11 +14,7 @@ class RequestTest extends TikiTestCase
 
 	protected function tearDown() : void
 	{
-		unset($_REQUEST);
-		unset($_POST);
-		unset($_SERVER['argv']);
-		unset($_SERVER['argc']);
-		unset($_SERVER['REQUEST_METHOD']);
+		unset($_REQUEST, $_POST, $_SERVER['argv'], $_SERVER['argc'], $_SERVER['REQUEST_METHOD']);
 	}
 
 	public function testEndToEndHttp()

@@ -217,7 +217,7 @@ abstract class Search_Index_BaseTest extends PHPUnit\Framework\TestCase
 
 		$query = new Search_Query;
 		// add something positive  to search as Lucene negative only search returns no results
-		if ($filterMethod == 'filterNotInitial') {
+		if ($filterMethod === 'filterNotInitial') {
 			$query->filterContent('description');
 		}
 		call_user_func_array([$query, $filterMethod], $arguments);

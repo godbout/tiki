@@ -40,9 +40,9 @@ class TikiSeleniumTestCase extends PHPUnit_Extensions_Selenium2TestCase
 		echo "-- TikiSeleniumTestCase.configure: After evaluating config file: \$test_site_url='$test_site_url'\n";
 		if ($test_tiki_root_url == null) {
 			exit("Variable \$test_tiki_root_url MUST be defined in test configuration file: '$config_fpath'");
-		} else {
-			$this->setBrowserUrl($test_tiki_root_url);
 		}
+
+		$this->setBrowserUrl($test_tiki_root_url);
 		if (! preg_match('/^http\:\/\/local/', $test_tiki_root_url)) {
 			exit("Error found in test configuration file '$config_fpath'\n" .
 					"The URL specified by \$test_tiki_root_url should start with http://local, in order to prevent accidentally running tests on a non-local test site.\n" .

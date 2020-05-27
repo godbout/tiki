@@ -26,8 +26,7 @@ class TikiImporter_Blog_Wordpress_Test extends TikiImporter_TestCase
 	{
 		TikiDb::get()->query('DELETE FROM tiki_pages WHERE pageName = "materia"');
 		TikiDb::get()->query('DELETE FROM tiki_blog_posts WHERE postId = 10');
-		unset($GLOBALS['prefs']['feature_sefurl']);
-		unset($GLOBALS['base_url']);
+		unset($GLOBALS['prefs']['feature_sefurl'], $GLOBALS['base_url']);
 	}
 
 	public function testImport()

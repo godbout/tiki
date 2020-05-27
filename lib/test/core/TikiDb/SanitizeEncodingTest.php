@@ -103,7 +103,7 @@ class SanitizeEncodingTest extends TestCase
 		$record = $table->insert(['name' => $fullUtf8String, 'data' => $fullUtf8String]);
 		$row = $table->fetchFullRow(['fileId' => $record]);
 
-		if (in_array('name', $table->getUtf8Fields())) { // utf8
+		if (in_array('name', $table->getUtf8Fields(), true)) { // utf8
 			$this->assertEquals($filteredString, $row['name'], 'name should be filtered when using utf8');
 		} else {  // utf8mb4
 			$this->assertNotEquals($filteredString, $row['name'], 'name should be filtered when using utf8mb4');

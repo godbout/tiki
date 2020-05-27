@@ -41,7 +41,7 @@ class PerspectivesNavigationBaseTestCase extends TestCase
 		$client = WebClientHelper::createTestClient(false);
 
 		foreach ($steps as $stepIndex => $step) {
-			list($url, $httpCode, $location, $perspective) = $step;
+			[$url, $httpCode, $location, $perspective] = $step;
 
 			if ($cleanCookies) {
 				$client->getCookieJar()->clear();
@@ -67,7 +67,7 @@ class PerspectivesNavigationBaseTestCase extends TestCase
 			}
 
 			if (! empty($perspective)) {
-				if ($perspective[0] == '!') {
+				if ($perspective[0] === '!') {
 					$this->assertNotContains(
 						substr($perspective, 1),
 						$crawler->filter('body')->attr('class'),

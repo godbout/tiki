@@ -18,8 +18,8 @@ class Math_Formula_DummyFunction_Testop extends Math_Formula_Function
 			$other = $this->evaluateChild($concat[0]);
 
 			return $type . $id . $other;
-		} else {
-			$this->error('Wrong argument count for testop');
 		}
+
+		$this->error('Wrong argument count for testop');
 	}
 }

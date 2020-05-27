@@ -108,7 +108,7 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$this->obj->dom = new DOMDocument;
 		$this->obj->dom->load(__DIR__ . '/fixtures/mediawiki_sample.xml');
 		$this->obj->configureParser();
-		$this->assertInstanceOf(\Text_Wiki_Mediawiki::class, $this->obj->parser);
+		$this->assertInstanceOf(Text_Wiki_Mediawiki::class, $this->obj->parser);
 	}
 
 	public function testValidateInput()
@@ -425,8 +425,8 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$dom->load(__DIR__ . '/fixtures/mediawiki_page.xml');
 		$pages = $dom->getElementsByTagName('page');
 
+		$this->expectException('Exception');
 		foreach ($pages as $page) {
-			$this->expectException('Exception');
 			$this->assertNull($obj->extractInfo($page));
 		}
 	}
@@ -468,8 +468,8 @@ class TikiImporter_Wiki_Mediawiki_Test extends TikiImporter_TestCase
 		$dom->load(__DIR__ . '/fixtures/mediawiki_revision_invalid_syntax.xml');
 		$revisions = $dom->getElementsByTagName('revision');
 
+		$this->expectException('ImporterParserException');
 		foreach ($revisions as $revision) {
-			$this->expectException('ImporterParserException');
 			$this->assertNull($obj->extractRevision($revision));
 		}
 	}
