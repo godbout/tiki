@@ -296,7 +296,7 @@ function wikiplugin_slideshow($data, $params)
         }
     }
     $revealSettings =str_replace(array("'y'","'n'"),array("true","false"),$revealSettings);
-    $revealSettings.='viewDistance:3,display:"block"';
+    $revealSettings.='viewDistance:3,display:"block",hash:true';
 	$headerlib = TikiLib::lib('header');
 	if(!isset($_REQUEST['theme'])) {
 		$headerlib->add_cssfile('vendor_bundled/vendor/npm-asset/reveal.js/css/theme/'.$params['theme'].'.css',1);
