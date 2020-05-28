@@ -160,10 +160,10 @@ if (isset($_REQUEST['pdf'])) {
 		} else {
 			//getting css
 			$customCSS .= file_get_contents(
-				'vendor_bundled/vendor/components/revealjs/css/reveal.css'
+				'vendor_bundled/vendor/npm-asset/reveal.js/css/reveal.css'
 			);
 			$customCSS .= file_get_contents(
-				'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme
+				'vendor_bundled/vendor/npm-asset/reveal.js/css/theme/' . $theme
 				. '.css'
 			);
 			$customCSS .= '.reveal section{width:90%;text-align:center;padding-top:30px;margin:auto;} section{text-align:center;margin: auto;width:100%;} .ss-heading{line-height:2.5em,padding-bottom:20px;}';
@@ -205,13 +205,13 @@ include_once('tiki-section_options.php');
 
 
 $headerlib->add_jsfile(
-	'vendor_bundled/vendor/components/revealjs/js/reveal.js'
+	'vendor_bundled/vendor/npm-asset/reveal.js/js/reveal.js'
 );
 $headerlib->add_cssfile(
-	'vendor_bundled/vendor/components/revealjs/css/reveal.css'
+	'vendor_bundled/vendor/npm-asset/reveal.js/css/reveal.css'
 );
 $headerlib->add_cssfile(
-	'vendor_bundled/vendor/components/revealjs/css/theme/' . $theme . '.css'
+	'vendor_bundled/vendor/npm-asset/reveal.js/css/theme/' . $theme . '.css'
 );
 $headerlib->add_css(
 	'.reveal span{font-family: "Font Awesome 5 Free";font-style: normal;font-weight:900} .reveal .controls{z-index:103;}#ss-settings-holder{position:fixed;top:10px;left:0px;width:10%;height:30px;text-align:left;padding-left:15px;cursor:pointer;z-index:102;line-height:1.5rem}#ss-options{position:fixed;top:50px;left:-2000px;width:230px;background-color:rgba(00,00,00,0.8);font-size:1.1rem;line-height:2.2rem;color:#fff;z-index:101;padding: 10px;border-top-right-radius: 25px;border-bottom-right-radius: 25px;} #ss-options a{color:#999} #ss-options a:hover{color:#fff} #page-bar,.icon_edit_section,.editplugin, #show-errors-button, .wikitext, .icon_edit_section, #toc,.heading-link {display:none} .fade:not(.show) { opacity: 1;}@media only screen and (max-width: 786px) {.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:500em !important}} @media all and (orientation: portrait){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section {font-size:135% !important} .reveal p {margin 10px 0 !important;}.reveal li, .reveal li ul li{font-size:130%; !important}} @media all and (orientation: landscape) and (max-width:1024px){.reveal section div,.reveal span,.reveal p,.reveal blockquote,.reveal pre,.reveal ol,.reveal ul,.reveal article,.reveal section{font-size:125% !important}} #reveal-controls span,#listSlides{cursor:pointer;color:#999;padding:0.15em} #reveal-controls span:hover,#listSlides:hover{color:#fff} footer{visibility:hidden}  @media (max-width: 1024px) and (orientation: portrait) {#ss-options {min-width:50% !important; font-size:2rem;line-height:4rem;top:8% !important} #reveal-controls span{font-size:150% !important} .p-2{width:100%;display:block;text-align:center} .form-control{font-size:45px !important; height:5rem !important}  #ss-settings-holder{padding-top:4% !important} #ss-settings-holder span{font-size:300% !important}} .scale-1{transform:scale(0.9);transform-origin:top center} .scale-2{transform:scale(0.8);transform-origin:top center} .scale-3{transform:scale(0.7);transform-origin:top center} .scale-4{transform:scale(0.6);transform-origin:top center} .scale-5{transform:scale(0.5);transform-origin:top center} .scale-6{transform:scale(0.45);transform-origin:top center}');
@@ -298,7 +298,7 @@ $headerlib->add_jq_onready(
 
 		$( "#showtheme" ).change(function() {
 			var selectedCSS=$("#showtheme" ).val();
-			$("#themeCSS").attr("href","vendor_bundled/vendor/components/revealjs/css/theme/"+selectedCSS+".css");
+			$("#themeCSS").attr("href","vendor_bundled/vendor/npm-asset/reveal.js/css/theme/"+selectedCSS+".css");
 		});
 		$( "#showtransition" ).change(function() {
 			var selectedTransition=$("#showtransition" ).val();
