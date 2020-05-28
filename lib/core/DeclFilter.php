@@ -31,7 +31,7 @@ class DeclFilter implements \Zend\Filter\FilterInterface
 				foreach ($list as $method => $argument) {
 					$real = 'add' . ucfirst($method);
 
-					// Accept all methods begining with 'add' except those that are disallowed
+					// Accept all methods beginning with 'add' except those that are disallowed
 					if (method_exists($filter, $real)
 						&& ! in_array($method, $reject)
 						) {
