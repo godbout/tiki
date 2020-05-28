@@ -8,6 +8,17 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
+$inputConfiguration = [[
+		'staticKeyFilters'	=> [
+			'itemId'		=> 'int',
+			'fieldId'		=> 'int',
+			'version'		=> 'int',
+			'offset'		=> 'int',
+			'diff_style'	=> 'word',
+			'Filter'		=> 'word',
+		]],
+			['catchAllUnset' => null],
+];
 $section = 'trackers';
 require_once('tiki-setup.php');
 
