@@ -15,7 +15,6 @@ $inputConfiguration = [[
 			'version'		=> 'int',
 			'offset'		=> 'int',
 			'diff_style'	=> 'word',
-			'Filter'		=> 'word',
 		]],
 			['catchAllUnset' => null],
 ];
@@ -28,8 +27,8 @@ $trklib = TikiLib::lib('trk');
 
 $auto_query_args = ['offset', 'itemId', 'fieldId', 'filter'];
 
-if (! empty($_REQUEST['itemId'])) {
-	$item_info = $trklib->get_tracker_item($_REQUEST['itemId']);
+if (! empty($_GET['itemId'])) {
+	$item_info = $trklib->get_tracker_item($_GET['itemId']);
 	$item = Tracker_Item::fromInfo($item_info);
 	if (! $item->canView()) {
 		$smarty->assign('errortype', 401);
@@ -37,14 +36,14 @@ if (! empty($_REQUEST['itemId'])) {
 		$smarty->display('error.tpl');
 		die;
 	}
-	$fieldId = empty($_REQUEST['fieldId']) ? 0 : $_REQUEST['fieldId'];
+	$fieldId = empty($_GET['fieldId']) ? 0 : $_GET['fieldId'];
 	$smarty->assign_by_ref('fieldId', $fieldId);
 	$filter = [];
-	if (! empty($_REQUEST['version'])) {
-		$filter['version'] = $_REQUEST['version'];
+	if (! empty($_GET['version'])) {
+		$filter['version'] = $_GET['version'];
 	}
 	$smarty->assign_by_ref('filter', $filter);
-	$offset = empty($_REQUEST['offset']) ? 0 : $_REQUEST['offset'];
+	$offset = empty($_GET['offset']) ? 0 : $_GET['offset'];
 	$smarty->assign('offset', $offset);
 
 	if (! empty($item_info)) {
@@ -67,9 +66,8 @@ if (! empty($_REQUEST['itemId'])) {
 			}
 		}
 
-		$diff_style = empty($_REQUEST['diff_style']) ? $prefs['tracker_history_diff_style'] : $_REQUEST['diff_style'];
+		$diff_style = empty($_GET['diff_style']) ? $prefs['tracker_history_diff_style'] : $_GET['diff_style'];
 		$smarty->assign('diff_style', $diff_style);
-
 		$smarty->assign_by_ref('item_info', $item_info);
 		$smarty->assign_by_ref('field_option', $field_option);
 	}

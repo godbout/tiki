@@ -10,7 +10,8 @@
 {/if}
 
 <div class="clearfix">
-	<form method="post" class="form">
+	<form method="get" class="form">
+		<input type="hidden" name="itemId" value="{$item_info.itemId}">
 		<div class="row align-items-end">
 			<div class="form-group col-sm">
 				<label class="col-form-label">{tr}Version{/tr}
@@ -40,7 +41,7 @@
 				</label>
 			</div>
 			<div class="form-group col-sm mb-4">
-				<input type="submit" class="btn btn-primary" name="Filter" value="{tr}Filter{/tr}">
+				<input type="submit" class="btn btn-primary" value="{tr}Filter{/tr}">
 			</div>
 		</div>
 	</form>
