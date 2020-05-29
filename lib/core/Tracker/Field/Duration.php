@@ -164,7 +164,6 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 			$headerlib->add_jsfile_cdn("vendor_bundled/vendor/npm-asset/vue/dist/{$prefs['vuejs_build_mode']}");
 		}
 
-		$headerlib->add_cssfile('lib/vue/duration/styles.css');
 		$headerlib->add_jsfile('vendor_bundled/vendor/moment/moment/min/moment.min.js', true);
 		$headerlib->add_jsfile('vendor_bundled/vendor/npm-asset/moment-duration-format/lib/moment-duration-format.js');
 		$headerlib->add_jsfile('lib/vue/duration/store.js');

@@ -643,6 +643,7 @@ if ($prefs['feature_file_galleries'] == 'y') {
 
 if ($prefs['feature_trackers'] == 'y') {
 	$headerlib->add_jsfile('lib/jquery_tiki/tiki-trackers.js');
+	$headerlib->add_cssfile('lib/vue/duration/styles.css');
 
 	if ($prefs['feed_tracker'] === 'y') {
 		$opts = TikiLib::lib('trk')->get_trackers_options(null, 'publishRSS', 'y');
