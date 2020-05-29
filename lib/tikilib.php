@@ -175,7 +175,7 @@ class TikiLib extends TikiDb_Bridge
 		];
 
 		if ($prefs['use_proxy'] == 'y') {
-			$config['adapter'] = 'Zend\Http\Client\Adapter\Proxy';
+			$config['adapter'] = 'Laminas\Http\Client\Adapter\Proxy';
 			$config["proxy_host"] = $prefs['proxy_host'];
 			$config["proxy_port"] = $prefs['proxy_port'];
 
@@ -185,7 +185,7 @@ class TikiLib extends TikiDb_Bridge
 			}
 		} elseif (function_exists('curl_init') && $prefs['zend_http_use_curl'] === 'y') {
 			// Zend\Http\Client defaults to sockets, which aren't allowed in all environments so use curl when available if selected
-			$config['adapter'] = 'Zend\Http\Client\Adapter\Curl';
+			$config['adapter'] = 'Laminas\Http\Client\Adapter\Curl';
 		}
 
 		if ($prefs['zend_http_sslverifypeer'] == 'y') {
