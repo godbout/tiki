@@ -79,7 +79,7 @@ function smarty_function_button($params, $smarty)
 
 	$disabled = false ;
 	//check if it's a wiki page in format ((Page Name)) and check permission
-	if (preg_match('|^\(\((.+?)\)\)$|', $params['href'], $matches)) {
+	if (isset($params['href']) && preg_match('|^\(\((.+?)\)\)$|', $params['href'], $matches)) {
 		$params['href'] = rawurlencode($matches[1]);
 		$perms = Perms::get(['type' => 'wiki page', 'object' => $matches[1]]);
 		if(! ($perms->view && $perms->wiki_view_ref)) {
