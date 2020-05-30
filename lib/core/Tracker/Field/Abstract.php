@@ -173,7 +173,7 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 		} else {
 			$old = '';
 		}
-		if ($context['value']) {
+		if (! empty($context['value'])) {
 			$new = $context['value'];
 		} else {
 			$new = $this->getValue('');
