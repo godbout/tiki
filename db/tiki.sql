@@ -2841,7 +2841,7 @@ CREATE TABLE `tiki_webmail_contacts` (
   `user` varchar(200) NOT NULL default '',
   `uri` VARCHAR(200) NULL DEFAULT NULL,
   PRIMARY KEY (`contactId`),
-  INDEX `user-uri` (`user`, `uri`)
+  INDEX `user-uri` (`user`(100), `uri`(91))
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
 DROP TABLE IF EXISTS `tiki_webmail_contacts_groups`;
