@@ -286,6 +286,10 @@ FileETag none
 # If possible, it's better to change the following settings through your php.ini file, or through your webhosting control panel.
 # Some web hosts will not allow you to change these setting through the .htaccess file.
 
+# If you are not using PHP as an apache module, the following PHP settings will likely have no effect.
+# For instance, if you use PHP-FPM, you will need to create a file named .user.ini and the syntax is a little different.
+# For instance, a sample line would be "memory_limit=256M" (without the quotes)
+
 # To activate the error display, uncomment the following line.
 # Read more http://php.net/manual/en/errorfunc.configuration.php#ini.display-errors
 #php_flag display_errors on

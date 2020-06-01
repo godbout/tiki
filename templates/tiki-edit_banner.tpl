@@ -88,7 +88,7 @@
 			<div class="form-group row">
 				<label class="col-sm-4 col-form-label"></label>
 				<div class="col-sm-7">
-					<input type="submit" class="btn btn-primary btn-sm" name="create_zone" value="{tr}Create{/tr}">
+					<input type="submit" class="btn btn-primary btn-sm" name="create_zone" value="{tr}Create a new Zone{/tr}">
 				</div>
 			</div>
 		</div>

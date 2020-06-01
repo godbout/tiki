@@ -1309,7 +1309,7 @@ if (! $standalone) {
 		$math_random['fitness'] = tra('unsure');
 		$math_random['setting'] = 'Not available';
 	}
-	$php_properties['\Zend\Math\Rand'] = $math_random;
+	$php_properties['\Laminas\Math\Rand'] = $math_random;
 }
 
 

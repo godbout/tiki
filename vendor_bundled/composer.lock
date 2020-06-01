@@ -1242,17 +1242,17 @@
         },
         {
             "name": "fullcalendar/fullcalendar",
-            "version": "v3.10.1",
+            "version": "v3.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fullcalendar/fullcalendar.git",
-                "reference": "b493fa11619caa8a01094cf28b08bf3f4a08d876"
+                "reference": "ac0971e6864e65708f408bd074a7d10d4cae479d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/fullcalendar/fullcalendar/fullcalendar-fullcalendar-b493fa11619caa8a01094cf28b08bf3f4a08d876-zip-8e2aac.zip",
-                "reference": "b493fa11619caa8a01094cf28b08bf3f4a08d876",
-                "shasum": "b9df7225205c192d0fc998aeb9543573f7b75a12"
+                "url": "https://composer.tiki.org/dist/fullcalendar/fullcalendar/fullcalendar-fullcalendar-ac0971e6864e65708f408bd074a7d10d4cae479d-zip-fa5981.zip",
+                "reference": "ac0971e6864e65708f408bd074a7d10d4cae479d",
+                "shasum": "5efc1ca677c4ecf0a9f45c8bb878b760233259b8"
             },
             "require": {
                 "components/jquery": "2 - 3",
@@ -1299,7 +1299,7 @@
                 "full-sized",
                 "jquery-plugin"
             ],
-            "time": "2019-08-10T16:04:40+00:00"
+            "time": "2020-05-19T03:38:54+00:00"
         },
         {
             "name": "gidkom/php-openfire-restapi",
@@ -4541,17 +4541,17 @@
         },
         {
             "name": "moment/moment",
-            "version": "2.25.3",
+            "version": "2.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/moment/moment.git",
-                "reference": "1872bb22ff6cd19c56e7dc30c5765489d48e65f1"
+                "reference": "a0f3c74374b638b769d9ab1ae54ba5266ef0976f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/moment/moment/moment-moment-1872bb22ff6cd19c56e7dc30c5765489d48e65f1-zip-77d9bf.zip",
-                "reference": "1872bb22ff6cd19c56e7dc30c5765489d48e65f1",
-                "shasum": "0abbccbfe79f005a47f75c40a4f287aea389682e"
+                "url": "https://composer.tiki.org/dist/moment/moment/moment-moment-a0f3c74374b638b769d9ab1ae54ba5266ef0976f-zip-2ac964.zip",
+                "reference": "a0f3c74374b638b769d9ab1ae54ba5266ef0976f",
+                "shasum": "07e3e888e58231b8e9a3ca5c1f8342b39233c032"
             },
             "require": {
                 "robloach/component-installer": "*"
@@ -4591,7 +4591,7 @@
                 "time",
                 "validate"
             ],
-            "time": "2020-05-04T15:09:59+00:00"
+            "time": "2020-05-20T06:42:01+00:00"
         },
         {
             "name": "montefuscolo/xmpp",
@@ -8280,20 +8280,20 @@
         },
         {
             "name": "doctrine/instantiator",
-            "version": "1.3.0",
+            "version": "1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/instantiator.git",
-                "reference": "ae466f726242e637cebdd526a7d991b9433bacf1"
+                "reference": "f350df0268e904597e3bd9c4685c53e0e333feea"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/doctrine/instantiator/doctrine-instantiator-ae466f726242e637cebdd526a7d991b9433bacf1-zip-10f3b0.zip",
-                "reference": "ae466f726242e637cebdd526a7d991b9433bacf1",
-                "shasum": "9d0b474fb46209927ec8ff4d6185caf49b50b74f"
+                "url": "https://composer.tiki.org/dist/doctrine/instantiator/doctrine-instantiator-f350df0268e904597e3bd9c4685c53e0e333feea-zip-11a760.zip",
+                "reference": "f350df0268e904597e3bd9c4685c53e0e333feea",
+                "shasum": "0844274a5e03596f26d836302745fc537d85e514"
             },
             "require": {
-                "php": "^7.1"
+                "php": "^7.1 || ^8.0"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^6.0",
@@ -8332,7 +8332,7 @@
                 "constructor",
                 "instantiate"
             ],
-            "time": "2019-10-21T16:45:58+00:00"
+            "time": "2020-05-29T17:27:14+00:00"
         },
         {
             "name": "fabpot/goutte",
