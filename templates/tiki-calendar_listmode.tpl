@@ -54,6 +54,11 @@
 									</a>
 								</action>
 								<action>
+									<a href="tiki-calendar_edit_item.php?calitemId={$event.calitemId}&new=1">
+										{icon name='save' _menu_text='y' _menu_icon='y' alt="{tr}Save as{/tr}"}
+									</a>
+								</action>
+								<action>
 									<a class="text-danger" href="tiki-calendar_edit_item.php?calitemId={$event.calitemId}&amp;delete=1">
 										{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
 									</a>

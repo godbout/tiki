@@ -83,7 +83,9 @@ foreach ($rawcals["data"] as $cal_data) {
 	}
 }
 $smarty->assign('listcals', $caladd);
-
+if (isset($_REQUEST['new'])) {
+	$smarty->assign('saveas', true);
+}
 if (! isset($_REQUEST["calendarId"])) {
 	if (isset($_REQUEST['calitemId'])) {
 		$calID = $calendarlib->get_calendarid($_REQUEST['calitemId']);
@@ -303,6 +305,10 @@ if (isset($_POST['act'])) {
 				if (array_key_exists('recurrenceId', $_POST)) {
 					$save['recurrenceId'] = $_POST['recurrenceId'];
 					$save['changed'] = 1;
+				}
+				//save event as new
+				if (isset($_POST['saveas'])) {
+					$save['calitemId'] = 0;
 				}
 				$calitemId = $calendarlib->set_item($user, $save['calitemId'], $save);
 				// Save the ip at the log for the addition of new calendar items
