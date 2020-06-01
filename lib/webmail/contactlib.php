@@ -153,6 +153,15 @@ class ContactLib extends TikiLib
 		return $result;
 	}
 
+	function get_contact_by_uri($uri, $user) {
+		$query = "select * from `tiki_webmail_contacts` where (`contactId` = ? OR `uri` = ?) AND `user` = ?";
+		$result = $this->query($query, [(int)$uri, $uri, $user]);
+		if (! $result->numRows()) {
+			return false;
+		}
+		return $result->fetchRow();
+	}
+
 	function replace_contact(
 		$contactId,
 		$firstName,
@@ -176,7 +185,6 @@ class ContactLib extends TikiLib
 				$query = "update `tiki_webmail_contacts` set `firstName`=?, `lastName`=?, `email`=?, `nickname`=? where `contactId`=?";
 				$bindvars = [$firstName, $lastName, $email, $nickname, (int)$contactId];
 				$result = $this->query($query, $bindvars);
-				$this->query('delete from `tiki_webmail_contacts_groups` where `contactId`=?', [(int)$contactId]);
 			} else {
 				return false;
 			}

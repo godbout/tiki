@@ -10,7 +10,6 @@ namespace Tiki\SabreDav;
 
 use Sabre\CardDAV;
 use Sabre\DAV;
-use Sabre\VObject;
 
 use TikiLib;
 use Perms;
@@ -34,7 +33,7 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
      */
     public function getAddressBooksForUser($principalUri)
     {
-        global $prefs, $user;
+        global $user;
 
         $principal = PrincipalBackend::mapUriToUser($principalUri);
 
@@ -44,37 +43,15 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
 
         $result = [];
 
-        if ($prefs['feature_webmail'] === 'y') {
-            $result[] = [
-                'id' => "webmail.$user",
-                'uri' => 'webmail',
-                'principaluri' => PrincipalBackend::mapUserToUri($user),
-                '{DAV:}displayname' => 'Webmail Contacts',
-                '{'.CardDAV\Plugin::NS_CARDDAV.'}addressbook-description' => 'Webmail contacts managed by Tiki.',
-            ];
-        }
+        $addressBookTypes = AddressBookType\Factory::all($user);
 
-        $users = TikiLib::lib('user')->list_all_users();
-        if ($users) {
-            $result[] = [
-                'id' => "system.$user",
-                'uri' => 'system',
-                'principaluri' => PrincipalBackend::mapUserToUri($user),
-                '{DAV:}displayname' => 'System Users',
-                '{'.CardDAV\Plugin::NS_CARDDAV.'}addressbook-description' => 'Tiki system users.',
-            ];
-        }
-
-
-        $address_books = TikiLib::lib('addressbook')->list_address_books($user);
-        foreach ($address_books as $row) {
-            $result[] = [
-                'id' => $row['addressBookId'],
-                'uri' => $row['uri'],
-                'principaluri' => PrincipalBackend::mapUserToUri($user),
-                '{DAV:}displayname' => $row['name'],
-                '{'.CardDAV\Plugin::NS_CARDDAV.'}addressbook-description' => $row['description'],
-            ];
+        foreach ($addressBookTypes as $abt) {
+            if (!$abt->isEnabled()) {
+                continue;
+            }
+            foreach ($abt->getAddressBooks() as $ab) {
+                $result[] = $ab;
+            }
         }
 
         return $result;
@@ -97,11 +74,12 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
      */
     public function updateAddressBook($addressBookId, \Sabre\DAV\PropPatch $propPatch)
     {
-        if (intval($addressBookId) == 0) {
-            throw new DAV\Exception\Forbidden("Address book is read-only.");
-        }
+        global $user;
+        $addressBook = AddressBookType\Factory::fromId($addressBookId, $user);
 
-        $this->enforceAddressBookPermisions($addressBookId);
+        if (! $addressBook instanceOf AddressBookType\Custom) {
+            throw new DAV\Exception\Forbidden("Address book properties are read-only.");
+        }
 
         $supportedProperties = [
             '{DAV:}displayname',
@@ -174,11 +152,12 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
      */
     public function deleteAddressBook($addressBookId)
     {
-        if (intval($addressBookId) == 0) {
-            throw new DAV\Exception\Forbidden("Address book is read-only.");
-        }
+        global $user;
+        $addressBook = AddressBookType\Factory::fromId($addressBookId, $user);
 
-        $this->enforceAddressBookPermisions($addressBookId);
+        if (! $addressBook instanceOf AddressBookType\Custom) {
+            throw new DAV\Exception\Forbidden("Address book cannot be deleted.");
+        }
 
         TikiLib::lib('addressbook')->delete_address_book($addressBookId);
     }
@@ -206,58 +185,8 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
     public function getCards($addressBookId)
     {
         global $user;
-        if (preg_match('/^(webmail|system).(.*)$/', $addressBookId, $m)) {
-            $type = $m[1];
-            $principal = $m[2];
-        } else {
-            $type = 'custom';
-            $principal = null;
-        }
-        if ($principal && $principal != $user) {
-            throw new DAV\Exception\Forbidden("You don't have permission to access this address book.");
-        }
-        $result = [];
-        switch($type) {
-            case 'webmail':
-                $contacts = TikiLib::lib('contact')->list_contacts($user);
-                foreach ($contacts as $row) {
-                    $data = $this->constructCardDataFromContact($row);
-                    $result[] = [
-                        'id' => $row['contactId'],
-                        'uri' => $row['contactId'].'.vcf',
-                        'lastmodified' => time(),
-                        'etag' => '"'.md5($data).'"',
-                        'size' => strlen($data),
-                    ];
-                }
-                break;
-            case 'system':
-                $users = TikiLib::lib('user')->get_users();
-                foreach ($users['data'] as $userInfo) {
-                    $data = $this->constructCardDataFromUser($userInfo);
-                    $result[] = [
-                        'id' => $userInfo['login'],
-                        'uri' => $userInfo['login'].'.vcf',
-                        'lastmodified' => time(),
-                        'etag' => '"'.md5($data).'"',
-                        'size' => strlen($data),
-                    ];
-                }
-                break;
-            case 'custom':
-                $this->enforceAddressBookPermisions($addressBookId);
-                $cards = TikiLib::lib('addressbook')->list_cards($addressBookId);
-                foreach ($cards as $card) {
-                    $result[] = [
-                        'id' => $card['addressCardId'],
-                        'uri' => $card['uri'],
-                        'lastmodified' => $card['lastmodified'],
-                        'etag' => '"'.$card['etag'].'"',
-                        'size' => $card['size'],
-                    ];
-                }
-        }
-        return $result;
+        $addressBook = AddressBookType\Factory::fromId($addressBookId, $user);
+        return $addressBook->getCards();
     }
 
     /**
@@ -294,67 +223,8 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
     public function getMultipleCards($addressBookId, array $uris)
     {
         global $user;
-        if (preg_match('/^(webmail|system).(.*)$/', $addressBookId, $m)) {
-            $type = $m[1];
-            $principal = $m[2];
-            $uris = array_map(function($uri){
-                return str_replace('.vcf', '', $uri);
-            }, $uris);
-        } else {
-            $type = 'custom';
-            $principal = null;
-        }
-        if ($principal && $principal != $user) {
-            throw new DAV\Exception\Forbidden("You don't have permission to access this address book.");
-        }
-        $result = [];
-        switch($type) {
-            case 'webmail':
-                $rows = TikiLib::lib('contact')->list_contacts($user, -1, -1, 'contactId_asc', null, false, '', 'email', $uris);
-                foreach ($rows as $row) {
-                    $data = $this->constructCardDataFromContact($row);
-                    $result[] = [
-                        'id' => $row['contactId'],
-                        'uri' => $row['contactId'].'.vcf',
-                        'carddata' => $data,
-                        'lastmodified' => time(),
-                        'etag' => '"'.md5($data).'"',
-                        'size' => strlen($data),
-                    ];
-                }
-                break;
-            case 'system':
-                $users = TikiLib::lib('user')->get_users();
-                foreach ($users['data'] as $userInfo) {
-                    if (! in_array($userInfo['login'], $uris)) {
-                        continue;
-                    }
-                    $data = $this->constructCardDataFromUser($userInfo);
-                    $result[] = [
-                        'id' => $userInfo['login'],
-                        'uri' => $userInfo['login'].'.vcf',
-                        'carddata' => $data,
-                        'lastmodified' => time(),
-                        'etag' => '"'.md5($data).'"',
-                        'size' => strlen($data),
-                    ];
-                }
-                break;
-            case 'custom':
-                $this->enforceAddressBookPermisions($addressBookId);
-                $cards = TikiLib::lib('addressbook')->list_cards($addressBookId, -1, -1, $uris);
-                foreach ($cards as $card) {
-                    $result[] = [
-                        'id' => $card['addressCardId'],
-                        'uri' => $card['uri'],
-                        'carddata' => $card['carddata'],
-                        'lastmodified' => $card['lastmodified'],
-                        'etag' => '"'.$card['etag'].'"',
-                        'size' => $card['size'],
-                    ];
-                }
-        }
-        return $result;
+        $addressBook = AddressBookType\Factory::fromId($addressBookId, $user);
+        return $addressBook->getCards($uris);
     }
 
     /**
@@ -385,17 +255,9 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
      */
     public function createCard($addressBookId, $cardUri, $cardData)
     {
-        $this->enforceAddressBookPermisions($addressBookId);
-        $data = [
-            'carddata' => $cardData,
-            'uri' => $cardUri,
-            'addressBookId' => $addressBookId,
-            'lastmodified' => time(),
-            'size' => strlen($cardData),
-            'etag' => md5($cardData)
-        ];
-        TikiLib::lib('addressbook')->create_card($data);
-        return '"'.$data['etag'].'"';
+        global $user;
+        $addressBook = AddressBookType\Factory::fromId($addressBookId, $user);
+        return $addressBook->createCard($cardUri, $cardData);
     }
 
     /**
@@ -426,15 +288,9 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
      */
     public function updateCard($addressBookId, $cardUri, $cardData)
     {
-        $this->enforceAddressBookPermisions($addressBookId);
-        $data = [
-            'carddata' => $cardData,
-            'lastmodified' => time(),
-            'size' => strlen($cardData),
-            'etag' => md5($cardData)
-        ];
-        TikiLib::lib('addressbook')->update_card($addressBookId, $cardUri, $data);
-        return '"'.$data['etag'].'"';
+        global $user;
+        $addressBook = AddressBookType\Factory::fromId($addressBookId, $user);
+        return $addressBook->updateCard($cardUri, $cardData);
     }
 
     /**
@@ -447,71 +303,8 @@ class CardDAVBackend extends CardDAV\Backend\AbstractBackend
      */
     public function deleteCard($addressBookId, $cardUri)
     {
-        $this->enforceAddressBookPermisions($addressBookId);
-        return TikiLib::lib('addressbook')->delete_card($addressBookId, $cardUri);
-    }
-
-    private function enforceAddressBookPermisions($addressBookId) {
         global $user;
-        if (intval($addressBookId) == 0) {
-            throw new DAV\Exception\Forbidden("Address book is read-only.");
-        }
-        $addressbook = TikiLib::lib('addressbook')->get_address_book($addressBookId);
-        if (! $addressbook || $addressbook['user'] != $user) {
-            throw new DAV\Exception\Forbidden("You don't have permission to modify this address book.");
-        }
-    }
-
-    private function constructCardDataFromContact($contact) {
-        global $url_host;
-        $vcard = new VObject\Component\VCard([
-            'UID'      => "tiki-$url_host-webmail-".$contact['contactId'],
-            'FN'       => $contact['firstName'].' '.$contact['lastName'],
-            'EMAIL'    => $contact['email'],
-            'N'        => [$contact['lastName'], $contact['firstName'], '', '', ''],
-            'NICKNAME' => $contact['nickname'],
-        ]);
-        return $vcard->serialize();
-    }
-
-    private function constructCardDataFromUser($userInfo) {
-        global $url_host;
-        $tikilib = TikiLib::lib('tiki');
-        $user = $userInfo['login'];
-        $realName = $tikilib->get_user_preference($user, 'realName', '');
-        $nameParts = explode(' ', $realName, 2);
-        $email = TikiLib::lib('user')->get_user_email($user);
-        $vcard = new VObject\Component\VCard([
-            'UID'   => "tiki-$url_host-user-$user",
-            'FN'    => $realName,
-            'EMAIL' => $email,
-            'N'     => [$nameParts[1], $nameParts[0], '', '', ''],
-        ]);
-        $gender = $tikilib->get_user_preference($user, 'gender', '');
-        if ($gender) {
-            $vcard->GENDER = $gender;
-        }
-        $lang = $tikilib->get_language($user);
-        if ($lang) {
-            $vcard->LANG = $lang;
-        }
-        $country = $tikilib->get_user_preference($user, 'country', 'Other');
-        if ($country && $country != 'Other') {
-            $vcard->ADR = ['', '', '', '', '', '', $country];
-            $lat = $tikilib->get_user_preference($user, 'lat', '');
-            $lon = $tikilib->get_user_preference($user, 'lon', '');
-            if ($lat && $lon) {
-                $vcard->ADR['GEO'] = "$lat,$lon";
-            }
-        }
-        $homePage = $tikilib->get_user_preference($user, 'homePage', '');
-        if ($homePage) {
-            $vcard->URL = $homePage;
-        }
-        $avatar = $tikilib->get_user_avatar_inline($user);
-        if ($avatar) {
-            $vcard->PHOTO = $avatar;
-        }
-        return $vcard->serialize();
+        $addressBook = AddressBookType\Factory::fromId($addressBookId, $user);
+        return $addressBook->updateCard($cardUri, $cardData);
     }
 }
