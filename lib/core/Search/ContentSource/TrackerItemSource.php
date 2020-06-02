@@ -79,7 +79,7 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 
 				'view_permission' => $typeFactory->identifier($permNeeded),
 
-				'parent_view_permission' => $typeFactory->identifier('tiki_p_view_trackers'),
+				'parent_view_permission' => $typeFactory->identifier($permNeeded),
 				'parent_object_id' => $typeFactory->identifier($item['trackerId']),
 				'parent_object_type' => $typeFactory->identifier('tracker'),
 
