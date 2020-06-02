@@ -101,7 +101,7 @@ class Services_Search_Controller
 	{
 		Services_Exception_Denied::checkGlobal('admin');
 
-		$batch = $input->batch->int() ?: 50;
+		$batch = $input->batch->int() ?: 0;
 
 		$unifiedsearchlib = TikiLib::lib('unifiedsearch');
 		$stat = null;
