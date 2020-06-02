@@ -161,7 +161,7 @@ now/m,now+1m/m,Next Month
 			'name' => tra('Excluded facets'),
 			'description' => tra('List of facets (a.k.a. aggregations) to exclude from the default search results'),
 			'hint' => 'For example: object_type,title_initial,title_firstword,tracker_field_userName',
-			'type' => 'textarea',
+			'type' => 'text',
 			'filter' => 'word',
 			'separator' => ',',
 			'default' => [],
