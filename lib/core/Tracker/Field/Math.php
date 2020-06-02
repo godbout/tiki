@@ -36,7 +36,7 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 					'recalculate' => [
 						'name' => tr('Re-calculation event'),
 						'type' => 'list',
-						'description' => tr('Allow specifying special calculation handling. Selection of indexing is useful for dynamic score fields that will not be displayed.'),
+						'description' => tr('Set this to "Indexing" to update the value during reindexing as well as when saving. Selection of indexing is useful for dynamic score fields that will not be displayed.'),
 						'filter' => 'word',
 						'options' => [
 							'save' => tr('Save'),

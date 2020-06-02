@@ -214,6 +214,7 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 		$selected_categories = $this->getConfiguration('selected_categories');
 		$categories = $this->getConfiguration('list');
 		$ret = [];
+		$rendered = empty($context['list_mode']) || $context['list_mode'] !== 'csv';
 		foreach ($selected_categories as $categId) {
 			foreach ($categories as $category) {
 				if ($category['categId'] == $categId) {
@@ -222,7 +223,7 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 					} else {
 						$str = $category['name'];
 					}
-					if (strpos($this->getOption('outputtype'), 'links') !== false) {
+					if (strpos($this->getOption('outputtype'), 'links') !== false && $rendered) {
 						TikiLib::lib('smarty')->loadPlugin('smarty_modifier_sefurl');
 						$deep = $this->getOption('descendants') != 0;
 						$href = smarty_modifier_sefurl($categId, 'category', $deep, '', 'y', $str);
@@ -236,7 +237,7 @@ class Tracker_Field_Category extends Tracker_Field_Abstract implements Tracker_F
 				}
 			}
 		}
-		if (strpos($this->getOption('outputtype'), 'ul') === 0) {
+		if (strpos($this->getOption('outputtype'), 'ul') === 0 && $rendered) {
 			if (count($ret)) {
 				$out = '<ul class="tracker_field_category">';
 				foreach ($ret as $li) {
