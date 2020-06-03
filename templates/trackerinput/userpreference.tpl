@@ -27,7 +27,7 @@
 	</select>
 {elseif $field.options_map.type eq 'display_timezone'}
 	<select name="{$field.ins_id}" class="form-control">
-		<option value="" style="font-style:italic;">
+		<option value=""{if empty($field.value)} selected="selected"{/if} style="font-style:italic;">
 			{tr}Detect user time zone if browser allows, otherwise site default{/tr}
 		</option>
 		<option value="Site" style="font-style:italic;border-bottom:1px dashed #666;"{if $field.value eq 'Site'} selected="selected"{/if}>

@@ -70,6 +70,8 @@ class Tracker_Field_UserPreference extends Tracker_Field_Abstract
 		$value = $fieldData['value'];
 		if ($this->getOption('type') === 'country') {
 			$value = str_replace('_', ' ', $value);
+		} else if ($this->getOption('type') === 'display_timezone' && empty($value)) {
+			$value = tr('Detect user time zone if browser allows, otherwise site default');
 		}
 		return $value;
 	}
