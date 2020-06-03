@@ -3127,7 +3127,7 @@ class FileGalLib extends TikiLib
 					}
 
 					try {
-						$this->assertUploadedContentIsSafe($data, $file_name, $galleryId);
+						$this->assertUploadedContentIsSafe($data, $file_name, $params['galleryId']);
 					} catch (Exception $e) {
 						$errors[] = $e->getMessage();
 					}
