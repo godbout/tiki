@@ -3255,11 +3255,7 @@ class FileGalLib extends TikiLib
 		if (empty($params['returnUrl'])) {
 			if (count($errors)) {
 				$errors = implode('. ', $errors);
-				if ($prefs['javascript_enabled'] == 'y') {
-					Feedback::error($errors, true);
-				} else {
-					Feedback::error($errors, false);
-				}
+				Feedback::error($errors);
 				$errors = [];
 			}
 		}
