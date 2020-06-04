@@ -120,7 +120,7 @@ if (! empty($theme_option_active)) {
 	}
 }
 
-$custom_css = $themelib->get_theme_path($prefs['theme'], $prefs['theme_option'], 'custom.css');
+$custom_css = $themelib->get_theme_path($theme_active, $theme_option_active, 'custom.css');
 if (empty($custom_css)) {
 	$custom_css = $themelib->get_theme_path('', '', 'custom.css');
 }

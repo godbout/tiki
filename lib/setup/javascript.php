@@ -113,7 +113,12 @@ if ($prefs['javascript_enabled'] == 'y') {	// we have JavaScript
 
 	/** Use custom.js in themes or options dir if there **/
 	$themelib = TikiLib::lib('theme');
-	$custom_js = $themelib->get_theme_path($prefs['theme'], $prefs['theme_option'], 'custom.js');
+	//consider Admin Theme
+	if (! empty($prefs['theme_admin']) && ($section === 'admin' || empty($section))) {		// use admin theme if set
+		$custom_js = $themelib->get_theme_path($prefs['theme_admin'], $prefs['theme_option_admin'], 'custom.js');
+	} else {
+		$custom_js = $themelib->get_theme_path($prefs['theme'], $prefs['theme_option'], 'custom.js');
+	}
 	if (! empty($custom_js)) {
 		$headerlib->add_jsfile($custom_js);
 	} else {															// there's no custom.js in the current theme or option
