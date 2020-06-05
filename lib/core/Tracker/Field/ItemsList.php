@@ -765,7 +765,17 @@ $("input[name=ins_' . $this->getOption('fieldIdHere') . '], select[name=ins_' . 
 			if ($displayFields) {
 				foreach ($displayFields as $fieldId) {
 					$field = $definition->getField($fieldId);
-					$itemValues[$field['permName']] = isset($item[$fieldId]) ? $item[$fieldId] : '';
+					if (isset($item[$fieldId])) {
+						if ($field['type'] == 'l') {
+							$factory = $definition->getFieldFactory();
+							$handler = $factory->getHandler($field, $item);
+							$itemValues[$field['permName']] = $handler->renderOutput(['list_mode' => 'csv']);
+						} else {
+							$itemValues[$field['permName']] = $item[$fieldId];
+						}
+					} else {
+						$itemValues[$field['permName']] = '';
+					}
 				}
 			}
 			$itemsValues[] = $itemValues;
