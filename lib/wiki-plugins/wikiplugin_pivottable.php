@@ -513,6 +513,8 @@ function wikiplugin_pivottable($data, $params)
 				function ($f) {
 					if (in_array($f['permName'], ['object_id', 'object_type', 'creation_date', 'modification_date', 'tracker_status'])) {
 						return '{display name="' . $f['permName'] . '" default=" "}';
+					} elseif ($f['type'] == 'e') {
+						return '{display name="tracker_field_' . $f['permName'] . '" format="categorylist" singleList="y" separator=" "}';
 					} else {
 						return '{display name="tracker_field_' . $f['permName'] . '" default=" "}';
 					}
