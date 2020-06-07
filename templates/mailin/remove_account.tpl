@@ -16,7 +16,7 @@
 			<div class="form-group row">{tr _0=$info.account}Do you really want to remove the %0 account?{/tr}</div>
 			<div class="form-group submit">
 				<input type="hidden" name="accountId" value="{$info.accountId|escape}"/>
-				<input class="btn btn-danger" type="submit" value="{tr}Delete Account{/tr}" onclick="checkTimeout()"/>
+				<input class="btn btn-danger" type="submit" value="{tr}Delete Account{/tr}"/>
 			</div>
 		</form>
 	{/if}

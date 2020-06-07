@@ -87,7 +87,7 @@
 							<input type="hidden" name="watch_event" value="file_gallery_changed">
 							<input type="hidden" name="watch_object" value="{$galleryId|escape:'attr'}">
 							<input type="hidden" name="watch_action" value="add">
-							<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+							<button type="submit" class="btn btn-link link-list">
 								{icon name='watch'} {tr}Monitor{/tr}
 							</button>
 						</form>
@@ -98,7 +98,7 @@
 							<input type="hidden" name="watch_event" value="file_gallery_changed">
 							<input type="hidden" name="watch_object" value="{$galleryId|escape:'attr'}">
 							<input type="hidden" name="watch_action" value="remove">
-							<button type="submit" class="btn btn-link link-list" onclick="checkTimeout()">
+							<button type="submit" class="btn btn-link link-list">
 								{icon name='stop-watching'} {tr}Stop monitoring{/tr}
 							</button>
 						</form>

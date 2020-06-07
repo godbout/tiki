@@ -164,7 +164,6 @@
 	</fieldset>
 	<fieldset>
 		<div class="form-group text-center">
-			{* checkTimeout() onclick function applied in JQuery code below *}
 			<input type="submit" class="btn btn-primary" name="save" value="{tr}Save{/tr}">
 			<input type="submit" class="btn btn-danger" name="delete" value="{tr}Delete{/tr}">
 		</div>
@@ -253,7 +252,6 @@ $('#source-form').each(function () {
 	reload();
 
 	$(form.save).click(function () {
-		checkTimeout();
 		var data = {
 			action: 'save',
 			identifier: $(form.identifier).val(),
@@ -297,7 +295,6 @@ $('#source-form').each(function () {
 	});
 
 	$(form.delete).click(function () {
-		checkTimeout();
 		if (confirm(tr('Delete authentication?'))) {
 			$.post($(form).attr('action'), {
 				action: 'delete',

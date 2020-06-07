@@ -39,7 +39,6 @@
 					type="submit"
 					class="btn btn-primary"
 					value="{tr}Create{/tr}"
-					onclick="checkTimeout();needToConfirm=false;"
 				>
 				{foreach from=$forced key=permName item=value}
 					<input type="hidden" name="forced~{$permName|escape}" value="{$value|escape}">
