@@ -802,7 +802,7 @@
 								type="submit"
 								class="btn btn-secondary"
 								value="{tr}Invite{/tr}"
-								onclick="postForm(event)"
+								onclick="postForm()"
 							>
 						</div>
 					</div>
