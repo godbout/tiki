@@ -146,6 +146,8 @@ class Tracker_Field_Factory
 				}
 			}
 
+			$field_info = array_merge($info, $field_info);
+
 			if (class_exists($class) && is_callable([$class, 'build'])) {
 				return call_user_func([$class, 'build'], $type, $this->trackerDefinition, $field_info, $itemData);
 			} else {

@@ -187,7 +187,7 @@
 			}
 			if (typeof params === "object") {
 				$("#list_input_container_{{$id}}").load(
-					$.service('tracker', 'fetch_item_field', params),
+					$.service('tracker', 'fetch_item_field', params[0]),
 					function () {
 						$(this).tiki_popover().applyChosen();
 					}

@@ -8,7 +8,6 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-$section = 'wiki page';
 $auto_query_args = ['page_ref_id', 'offset', 'find_objects'];
 require_once('tiki-setup.php');
 
