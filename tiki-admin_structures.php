@@ -8,7 +8,6 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-$section = 'wiki page';
 require_once('tiki-setup.php');
 $structlib = TikiLib::lib('struct');
 $categlib = TikiLib::lib('categ');
