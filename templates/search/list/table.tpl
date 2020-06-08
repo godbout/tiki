@@ -146,7 +146,7 @@
 				{/foreach}
 			</select>
 		</div>
-		<div class="col-sm-4" id="list_input_container">
+		<div class="col-sm-4" id="list_input_container_{$id}">
 		</div>
 		<input type="text" name="list_input" value="" class="form-control" style="display:none">
 	</div>
@@ -186,7 +186,7 @@
 				params = Object.values(params).filter(function(el){ return !!el; }).shift();
 			}
 			if (typeof params === "object") {
-				$("#list_input_container").load(
+				$("#list_input_container_{{$id}}").load(
 					$.service('tracker', 'fetch_item_field', params),
 					function () {
 						$(this).tiki_popover().applyChosen();
@@ -194,10 +194,10 @@
 				).show();
 			} else if( params ) {
 				$(this).siblings('input[name=list_input]').show();
-				$("#list_input_container").hide();
+				$("#list_input_container_{{$id}}").hide();
 			} else {
 				$(this).siblings('input[name=list_input]').hide();
-				$("#list_input_container").hide();
+				$("#list_input_container_{{$id}}").hide();
 			}
 		});
 	$( "#{{$id}}-div .checkbox_objects" ).on( "click", countChecked );
@@ -213,7 +213,7 @@
 			inp.val(filters[i].value);
 			$('#listexecute-{{$iListExecute}}').append(inp);
 		}
-		var trackerInputs = $("input,select,textarea", "#list_input_container").serializeArray();
+		var trackerInputs = $("input,select,textarea", "#list_input_container_{{$id}}").serializeArray();
 		if (trackerInputs) {
 			for (i = 0; i < trackerInputs.length; i++) {
 				inp = $('<input type="hidden">');
