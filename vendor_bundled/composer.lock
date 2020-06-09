@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e03bacefc494bf2063b98229e053493e",
+    "content-hash": "7f15bb4f67fcb118c5ec936f75aa192a",
     "packages": [
         {
             "name": "Sam152/Javascript-Equal-Height-Responsive-Rows",
@@ -701,56 +701,6 @@
             ],
             "description": "jQuery UI is a curated set of user interface interactions, effects, widgets, and themes built on top of the jQuery JavaScript Library. Whether you're building highly interactive web applications or you just need to add a date picker to a form control, jQuery UI is the perfect choice.",
             "time": "2016-09-16T05:47:55+00:00"
-        },
-        {
-            "name": "components/revealjs",
-            "version": "3.6.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/components/revealjs.git",
-                "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://composer.tiki.org/dist/components/revealjs/components-revealjs-85e95cc14987dbb30bef3cb11ab8acddf5267819-zip-d39ddc.zip",
-                "reference": "85e95cc14987dbb30bef3cb11ab8acddf5267819",
-                "shasum": "0bb4d7264ed3bf028c5e46316afbb18855ab00d9"
-            },
-            "type": "component",
-            "extra": {
-                "component": {
-                    "scripts": [
-                        "js/reveal.js"
-                    ],
-                    "styles": [
-                        "css/reveal.css"
-                    ],
-                    "files": [
-                        "css/reveal.min.css",
-                        "js/reveal.min.js",
-                        "css/theme/*.css",
-                        "css/print/*.css",
-                        "plugin/**",
-                        "lib/**"
-                    ],
-                    "shim": {
-                        "exports": "Reveal"
-                    }
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Hakim El Hattab",
-                    "homepage": "http://hakim.se/"
-                }
-            ],
-            "description": "The HTML Presentation Framework",
-            "homepage": "http://lab.hakim.se/reveal-js/",
-            "time": "2018-02-18T16:58:50+00:00"
         },
         {
             "name": "composer/semver",
@@ -5150,6 +5100,19 @@
                 "shasum": "a5a380fab28e73d2912aaa53de19da847b1dea1f"
             },
             "type": "npm-asset"
+        },
+        {
+            "name": "npm-asset/reveal.js",
+            "version": "3.9.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://composer.tiki.org/dist/npm-asset/reveal-js/npm-asset-reveal-js-3.9.2.zip",
+                "shasum": "0de63206c3dcbbeddeab6c6aee0f25d3d3dfd2f0"
+            },
+            "type": "npm-asset",
+            "license": [
+                "MIT"
+            ]
         },
         {
             "name": "npm-asset/sass-svg-uri",
