@@ -363,6 +363,8 @@ $themesArr=[['black','Black'],
 			['sky','Sky'],
 			['solarized','Solarized']];
 
+$themeOptions = '';
+
 foreach($themesArr as $themeOption){
 	$themeOption[0]==$theme?$selected='selected="selected"':$selected='';
 	$themeOptions.='<option value="'.$themeOption[0].'" '.$selected.'>'.tra($themeOption[1]).'</option>';
@@ -384,8 +386,12 @@ function formatContent($content, $tagArr)
 {
 
 	$doc = new DOMDocument();
+
+	// set error level
+	$internalErrors = libxml_use_internal_errors(true);
+
 	$doc->loadHTML(
-		mb_convert_encoding('<html>' . $content . '</html>', 'HTML-ENTITIES', 'UTF-8'),
+		mb_convert_encoding('<html lang="en"><body>' . $content . '</body></html>', 'HTML-ENTITIES', 'UTF-8'),
 		LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD
 	);
 	$xpath = new DOMXpath($doc);
@@ -403,9 +409,7 @@ function formatContent($content, $tagArr)
 		);
 		for ($i = 0; $i < $list->length; $i++) {
 			$p = $list->item($i);
-			if ($tag[3]
-				== 1
-			) { //the parameter checks if content of tag has to be preserved
+			if (isset($tag[3]) && $tag[3] == 1) { //the parameter checks if content of tag has to be preserved
 				$attributes = $p->attributes;
 				while ($attributes->length) {
 					//preserving href
@@ -427,6 +431,8 @@ function formatContent($content, $tagArr)
 
 	$content = str_replace(['<html>', '</html>'], '', $doc->saveHTML());
 
+	// restore error level
+	libxml_use_internal_errors($internalErrors);
 
 	$headingsTags = preg_split('/<h[123]/', $content);
 	$firstSlide = 0;
@@ -440,6 +446,9 @@ function formatContent($content, $tagArr)
 		$slideStart='</td></tr><tr><td>';
 		$slideEnd="</td></tr></table>";
 	}
+
+	$slideContent = '';
+
 	foreach ($headingsTags as $slide) {
 		if ($firstSlide == 0) {
 			//checking if first slide has pluginSlideShowSlide instance, then concat with main text, otherwise ignore

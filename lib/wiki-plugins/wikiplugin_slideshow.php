@@ -266,7 +266,7 @@ function wikiplugin_slideshow($data, $params)
 		return;
 	}
 
-	if($_REQUEST['pdf']==1){
+	if(! empty($_REQUEST['pdf'])){
 		global $pdfStyles;
 		if(isset($params['parallaxBackgroundImage'])) {
 			$pdfStyles='<style>@page,body,div.reveal{background-image-resize:0 !important;
@@ -278,7 +278,7 @@ function wikiplugin_slideshow($data, $params)
     foreach ($plugininfo['params'] as $key => $param) {
         $defaults["$key"] = $param['default'];
         //separating digits filter parameters
-        if($param['filter']=="digits") {
+        if(isset($param['filter']) && $param['filter'] === "digits") {
             $slideshowDigitsParams[]=$key;
         }
     }
@@ -287,13 +287,14 @@ function wikiplugin_slideshow($data, $params)
     $revealParams=array('parallaxBackgroundImage','parallaxBackgroundSize','parallaxBackgroundHorizontal','parallaxBackgroundVertical','slideSeconds','transition','transitionSpeed','backgroundTransition','controls','controlsLayout','controlsBackArrows','progress','slideNumber','autoSlide','autoSlideStoppable');
     $revealSettings = '';
     foreach($revealParams as $revealParam) {
-        $revealSettings.=$revealParam.":";
-        if(!in_array($revealParam,$slideshowDigitsParams)) {
-            $revealSettings.="'".$params[$revealParam]."',";
-        }
-        else {
-            $revealSettings.=$params[$revealParam].",";
-        }
+		if (isset($params[$revealParam])) {
+			$revealSettings .= $revealParam . ":";
+			if (! in_array($revealParam, $slideshowDigitsParams)) {
+				$revealSettings .= "'" . $params[$revealParam] . "',";
+			} else {
+				$revealSettings .= $params[$revealParam] . ",";
+			}
+		}
     }
     $revealSettings =str_replace(array("'y'","'n'"),array("true","false"),$revealSettings);
     $revealSettings.='viewDistance:3,display:"block",hash:true';
