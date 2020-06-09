@@ -580,7 +580,7 @@ composer_core()
 	# todo : move "if exists php;" to function composer
 
 	# check if we are in development mode so we can prevent uninstalling of development files
-	DEVELOPMENT="--no-dev"
+	DEVELOPMENT="--no-dev --optimize-autoloader"
 		if [ -d vendor_bundled/vendor/phpunit ]; then
 		    DEVELOPMENT=""
 		fi
