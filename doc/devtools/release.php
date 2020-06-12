@@ -63,6 +63,7 @@ if ($options['devmode']) {
 	$options['no-commit'] = true;
 	$options['no-check-vcs'] = true;
 	$options['no-first-update'] = true;
+	$options['debug-packaging'] = true;
 }
 if ($options['howto']) {
 	display_howto();
@@ -543,10 +544,29 @@ function build_packages($releaseVersion)
 	}
 
 	echo "Downloading composer.phar" . "\n";
-	if (! file_put_contents($workDir . '/composer.phar', file_get_contents('http://getcomposer.org/composer.phar'))) {
-		echo "Can't create tikipack/composer.phar. Aborting." . "\n";
+	$checksum = file_get_contents('https://composer.github.io/installer.sig');
+	$composerInstaller = $workDir . '/composer-setup.php';
+	if (! file_put_contents($composerInstaller, file_get_contents('http://getcomposer.org/installer'))) {
+		echo "Can't create tikipack/composer-setup.php. Aborting." . "\n";
 		die();
 	}
+
+	if ($checksum !== hash_file('sha384', $composerInstaller)) {
+		echo "Invalid composer installer checksum. Aborting." . "\n";
+		unlink($composerInstaller);
+		die();
+	}
+
+	$shellout = shell_exec('php ' . escapeshellarg($composerInstaller) . ' --quiet --install-dir=' . $workDir . ' 2>&1');
+
+	if ($shellout) {
+		echo "Composer installer failed. Aborting." . "\n";
+		unlink($composerInstaller);
+		die();
+	}
+
+	// tidy up
+	unlink($composerInstaller);
 
 	echo 'Installing dependencies through composer' . "\n";
 	$shellout = shell_exec('php ' . escapeshellarg($workDir . '/composer.phar') . ' install -d ' . escapeshellarg($sourceDir . '/vendor_bundled') . ' --prefer-dist --no-dev 2>&1');
@@ -554,12 +574,18 @@ function build_packages($releaseVersion)
 		echo $shellout . "\n";
 	}
 
-	if (strpos($shellout, 'Fatal error:') || strpos($shellout, 'Installation failed,')) {
-		echo 'Composer Instillation Failed. Exiting' . "\n";
-		die();
-	}
 	if ($options['debug-packaging']) {
 		echo $shellout . "\n";
+	}
+
+	if (
+		strpos($shellout, 'Fatal error:') !== false ||
+		strpos($shellout, 'Installation failed,') !== false ||
+		// symfony/dependency-injection comes in quite late in the list and is required - sometimes no error is reported even though it didn't work
+		strpos($shellout, 'symfony/dependency-injection') === false
+	) {
+		echo 'Vendor bundled packages installation Failed. Exiting' . "\n";
+		die();
 	}
 
 	echo "Removing development files\n";
