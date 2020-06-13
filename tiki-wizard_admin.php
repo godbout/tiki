@@ -20,10 +20,10 @@ $inputConfiguration = [[
 		'stepNr'			=> 'int',			// get
 		'back'				=> 'alnum',			// post
 	],
-	['staticKeyFiltersForArrays' => [
+	'staticKeyFiltersForArrays' => [
 		'lm_preference' => 'xss',
-	]],
-	[ 'catchAllUnset' => null ],
+	],
+	'catchAllUnset' => null,
 ]];
 
 require 'tiki-setup.php';
