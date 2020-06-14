@@ -10,7 +10,7 @@
  *
  * Use to create Tiki filters based on the PHP preg_filter() method
  */
-class TikiFilter_PregFilter implements Zend\Filter\FilterInterface
+class TikiFilter_PregFilter implements Laminas\Filter\FilterInterface
 {
 
 	/**

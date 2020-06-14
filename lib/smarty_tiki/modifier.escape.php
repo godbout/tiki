@@ -114,7 +114,7 @@ function smarty_modifier_escape($string, $esc_type = 'html', $char_set = 'UTF-8'
 			return rawurldecode($string);
 
 		case 'attr':
-			$esc = new Zend\Escaper\Escaper();
+			$esc = new Laminas\Escaper\Escaper();
 			return $esc->escapeHtmlAttr((string) $string);
 
 		default:

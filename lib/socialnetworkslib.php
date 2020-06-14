@@ -90,13 +90,13 @@ class SocialNetworksLib extends LogsLib
 		$this->options['consumerSecret'] = $prefs['socialnetworks_twitter_consumer_secret'];
 
 		try {
-			$consumer = new ZendOAuth\Consumer($this->options);
+			$consumer = new Laminas\OAuth\Consumer($this->options);
 			$httpClient = TikiLib::lib('tiki')->get_http_client();
 			$consumer->setHttpClient($httpClient);
 			$token = $consumer->getRequestToken();
 			$_SESSION['TWITTER_REQUEST_TOKEN'] = serialize($token);
 			$consumer->redirect();
-		} catch (ZendOAuth\Exception\ExceptionInterface $e) {
+		} catch (Laminas\OAuth\Exception\ExceptionInterface $e) {
 			return false;
 		}
 	}
@@ -124,7 +124,7 @@ class SocialNetworksLib extends LogsLib
 		$this->options['consumerKey'] = $prefs['socialnetworks_twitter_consumer_key'];
 		$this->options['consumerSecret'] = $prefs['socialnetworks_twitter_consumer_secret'];
 
-		$consumer = new ZendOAuth\Consumer($this->options);
+		$consumer = new Laminas\OAuth\Consumer($this->options);
 		$httpClient = TikiLib::lib('tiki')->get_http_client();
 		$consumer->setHttpClient($httpClient);
 		$token = $consumer->getAccessToken($_GET, unserialize($_SESSION['TWITTER_REQUEST_TOKEN']));

@@ -1142,7 +1142,7 @@ class FileGalLib extends TikiLib
 		global $tiki_p_admin_file_galleries, $prefs, $user;
 		$userlib = TikiLib::lib('user');
 		$list = [];
-		$temp = '/' . md5(\Zend\Math\Rand::getBytes(10)) . '/';
+		$temp = '/' . md5(\Laminas\Math\Rand::getBytes(10)) . '/';
 		if (! mkdir(sys_get_temp_dir() . $temp)) {
 			$temp = sys_get_temp_dir() . $temp;
 		} elseif (mkdir('temp' . $temp)) {
@@ -3588,7 +3588,7 @@ class FileGalLib extends TikiLib
 				'expires' => $expiryDate,
 				'etag' => $etag,
 			];
-		} catch (Zend\Http\Exception\ExceptionInterface $e) {
+		} catch (Laminas\Http\Exception\ExceptionInterface $e) {
 			TikiLib::lib('logs')->add_action($action, $url, 'url', 'error=' . $e->getMessage());
 			return false;
 		}

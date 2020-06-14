@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class OpenPGP_Zend_Mail_Transport_Smtp extends Zend\Mail\Transport\Smtp
+class OpenPGP_Zend_Mail_Transport_Smtp extends Laminas\Mail\Transport\Smtp
 {
 	/**
 	 * Prepare header string from message
@@ -13,7 +13,7 @@ class OpenPGP_Zend_Mail_Transport_Smtp extends Zend\Mail\Transport\Smtp
 	 * @param  Message $message
 	 * @return string
 	 */
-	protected function prepareHeaders(Zend\Mail\Message $message)
+	protected function prepareHeaders(Laminas\Mail\Message $message)
 	{
 		$originalSubject = '';
 
@@ -24,18 +24,18 @@ class OpenPGP_Zend_Mail_Transport_Smtp extends Zend\Mail\Transport\Smtp
 		}
 
 		$body = $message->getBody();
-		if ($body instanceof Zend\Mime\Message) {
+		if ($body instanceof Laminas\Mime\Message) {
 			$parts = $body->getParts();
 			foreach ($parts as $part) {
-				/* @var $part Zend\Mime\Part */
-				if ($part->getType() == Zend\Mime\Mime::TYPE_HTML) {
+				/* @var $part Laminas\Mime\Part */
+				if ($part->getType() == Laminas\Mime\Mime::TYPE_HTML) {
 					$part->setContent("******** PGP/MIME-ENCRYPTED MESSAGE ********<br>\n"
 						. "Subject: "
 						. $originalSubject
 						. "<br><br>\n"
 						. $part->getContent());
 				}
-				if ($part->getType() == Zend\Mime\Mime::TYPE_TEXT) {
+				if ($part->getType() == Laminas\Mime\Mime::TYPE_TEXT) {
 					$part->setContent("******** PGP/MIME-ENCRYPTED MESSAGE ********\n"
 						. "Subject: "
 						. $originalSubject
@@ -79,7 +79,7 @@ class OpenPGP_Zend_Mail_Transport_Smtp extends Zend\Mail\Transport\Smtp
 	 * @param  Message $message
 	 * @return string
 	 */
-	protected function prepareBody(Zend\Mail\Message $message)
+	protected function prepareBody(Laminas\Mail\Message $message)
 	{
 		return $this->OpenGPGStoreMailBody;
 	}

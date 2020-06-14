@@ -1296,8 +1296,8 @@ if ($s) {
 
 
 if (! $standalone) {
-	// check Zend captcha will work which depends on \Zend\Math\Rand
-	$captcha = new Zend\Captcha\Dumb;
+	// check Zend captcha will work which depends on \Laminas\Math\Rand
+	$captcha = new Laminas\Captcha\Dumb;
 	$math_random = array(
 		'fitness' => tra('good'),
 		'setting' => 'Available',

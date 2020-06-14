@@ -8,10 +8,10 @@
 namespace Tiki\MailIn\Source;
 
 use Tiki\MailIn\Exception\TransportException;
-use Zend\Mail\Header\ContentType;
-use Zend\Mail\Storage\Part;
-use Zend\Mail\Storage\Pop3 as ZendPop3;
-use Zend\Mail\Exception\ExceptionInterface as ZendMailException;
+use Laminas\Mail\Header\ContentType;
+use Laminas\Mail\Storage\Part;
+use Laminas\Mail\Storage\Pop3 as ZendPop3;
+use Laminas\Mail\Exception\ExceptionInterface as ZendMailException;
 
 class Pop3 implements SourceInterface
 {
@@ -50,7 +50,7 @@ class Pop3 implements SourceInterface
 		$toDelete = [];
 
 		foreach ($pop as $i => $source) {
-			/* @var $source \Zend\Mail\Storage\Message */
+			/* @var $source \Laminas\Mail\Storage\Message */
 			$message = new Message($i, function () use ($i, & $toDelete) {
 				$toDelete[] = $i;
 			});
@@ -86,7 +86,7 @@ class Pop3 implements SourceInterface
 	}
 
 	/**
-	 * @return \Zend\Mail\Storage\Pop3
+	 * @return \Laminas\Mail\Storage\Pop3
 	 * @throws TransportException
 	 */
 	protected function connect()

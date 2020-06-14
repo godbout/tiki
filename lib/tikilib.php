@@ -163,7 +163,7 @@ class TikiLib extends TikiDb_Bridge
 	/**
 	 * @param bool $url
 	 * @param array $options
-	 * @return mixed|Zend\Http\Client
+	 * @return mixed|Laminas\Http\Client
 	 */
 	function get_http_client($url = false, $options = null)
 	{
@@ -184,7 +184,7 @@ class TikiLib extends TikiDb_Bridge
 				$config["proxy_pass"] = $prefs['proxy_pass'];
 			}
 		} elseif (function_exists('curl_init') && $prefs['zend_http_use_curl'] === 'y') {
-			// Zend\Http\Client defaults to sockets, which aren't allowed in all environments so use curl when available if selected
+			// Laminas\Http\Client defaults to sockets, which aren't allowed in all environments so use curl when available if selected
 			$config['adapter'] = 'Laminas\Http\Client\Adapter\Curl';
 		}
 
@@ -201,13 +201,13 @@ class TikiLib extends TikiDb_Bridge
 			}
 		}
 
-		$client = new Zend\Http\Client(null, $config);
+		$client = new Laminas\Http\Client(null, $config);
 		$client->setArgSeparator('&');
 
 		if ($url) {
 			$client = $this->prepare_http_client($client, $url);
 
-			$client->setUri($this->urlencode_accent($url));	// Zend\Http\Client seems to fail with accents in urls (jb june 2011)
+			$client->setUri($this->urlencode_accent($url));	// Laminas\Http\Client seems to fail with accents in urls (jb june 2011)
 		}
 
 		return $client;
@@ -263,7 +263,7 @@ class TikiLib extends TikiDb_Bridge
 	 */
 	private function prepare_http_auth_basic($client, $arguments)
 	{
-		$client->setAuth($arguments['username'], $arguments['password'], Zend\Http\Client::AUTH_BASIC);
+		$client->setAuth($arguments['username'], $arguments['password'], Laminas\Http\Client::AUTH_BASIC);
 
 		return $client;
 	}
@@ -277,8 +277,8 @@ class TikiLib extends TikiDb_Bridge
 	{
 		$url = $arguments['url'];
 
-		$client->setUri($this->urlencode_accent($url)); // Zend\Http\Client seems to fail with accents in urls
-		$client->setMethod(Zend\Http\Request::METHOD_GET);
+		$client->setUri($this->urlencode_accent($url)); // Laminas\Http\Client seems to fail with accents in urls
+		$client->setMethod(Laminas\Http\Request::METHOD_GET);
 		$response = $client->send();
 		$client->resetParameters();
 
@@ -295,14 +295,14 @@ class TikiLib extends TikiDb_Bridge
 		$url = $arguments['post_url'];
 		unset($arguments['post_url']);
 
-		$client->setUri($this->urlencode_accent($url)); // Zend\Http\Client seems to fail with accents in urls
-		$client->setMethod(Zend\Http\Request::METHOD_GET);
+		$client->setUri($this->urlencode_accent($url)); // Laminas\Http\Client seems to fail with accents in urls
+		$client->setMethod(Laminas\Http\Request::METHOD_GET);
 		$response = $client->send();
 		$client->resetParameters();
 
-		$client->setUri($this->urlencode_accent($url)); // Zend\Http\Client seems to fail with accents in urls
+		$client->setUri($this->urlencode_accent($url)); // Laminas\Http\Client seems to fail with accents in urls
 		$client->setParameterPost($arguments);
-		$client->setMethod(Zend\Http\Request::METHOD_POST);
+		$client->setMethod(Laminas\Http\Request::METHOD_POST);
 		$response = $client->send();
 		$client->resetParameters();
 
@@ -312,7 +312,7 @@ class TikiLib extends TikiDb_Bridge
 			if ($body && $body->access_token) {
 				$headers = $client->getRequest()->getHeaders();
 				// add the Bearer token to the request headers
-				$headers->addHeader(new Zend\Http\Header\Authorization('Bearer ' . $body->access_token));
+				$headers->addHeader(new Laminas\Http\Header\Authorization('Bearer ' . $body->access_token));
 				$client->setHeaders($headers);
 			}
 		}
@@ -323,19 +323,19 @@ class TikiLib extends TikiDb_Bridge
 	/**
 	 * Authorization header method
 	 *
-	 * @param $client     \Zend\Http\Client
+	 * @param $client     \Laminas\Http\Client
 	 * @param $arguments  array
-	 * @return \Zend\Http\Client
+	 * @return \Laminas\Http\Client
 	 */
 	private function prepare_http_auth_header($client, $arguments)
 	{
 		$url = $arguments['url'];
 
-		$client->setUri($this->urlencode_accent($url)); // Zend\Http\Client seems to fail with accents in urls
-		$client->setMethod(Zend\Http\Request::METHOD_GET);
+		$client->setUri($this->urlencode_accent($url)); // Laminas\Http\Client seems to fail with accents in urls
+		$client->setMethod(Laminas\Http\Request::METHOD_GET);
 
 		$headers = $client->getRequest()->getHeaders();
-		$headers->addHeader(new Zend\Http\Header\Authorization($arguments['header']));
+		$headers->addHeader(new Laminas\Http\Header\Authorization($arguments['header']));
 		$client->setHeaders($headers);
 
 		return $client;
@@ -399,14 +399,14 @@ class TikiLib extends TikiDb_Bridge
 	}
 
 	/**
-	 * @param Zend\Uri\Http $uri
+	 * @param Laminas\Uri\Http $uri
 	 * @param $relative
-	 * @return Zend\Uri\Http
+	 * @return Laminas\Uri\Http
 	 */
-	function http_get_uri(Zend\Uri\Http $uri, $relative)
+	function http_get_uri(Laminas\Uri\Http $uri, $relative)
 	{
 		if (strpos($relative, 'http://') === 0 || strpos($relative, 'https://') === 0) {
-			$uri = new Zend\Uri\Http($relative);
+			$uri = new Laminas\Uri\Http($relative);
 		} else {
 			$uri = clone $uri;
 			$uri->setQuery([]);
@@ -449,7 +449,7 @@ class TikiLib extends TikiDb_Bridge
 
 		try {
 			$client = $this->get_http_client($url);
-			/* @var $response Zend\Http\Response */
+			/* @var $response Laminas\Http\Response */
 			$response = $this->http_perform_request($client);
 
 			if (! $response->isSuccess()) {
@@ -457,7 +457,7 @@ class TikiLib extends TikiDb_Bridge
 			}
 
 			return $response->getBody();
-		} catch (Zend\Http\Exception\ExceptionInterface $e) {
+		} catch (Laminas\Http\Exception\ExceptionInterface $e) {
 			return false;
 		}
 	}
@@ -6596,7 +6596,7 @@ class TikiLib extends TikiDb_Bridge
 
 	/**
 	 * * Unaccent the input string string. An example string like `ÀØėÿᾜὨζὅБю`
-	 * will be translated to `AOeyIOzoBY` 
+	 * will be translated to `AOeyIOzoBY`
 	 * @param $str
 	 * @return string unaccented string
 	 */
@@ -6695,7 +6695,7 @@ class TikiLib extends TikiDb_Bridge
 			'ო' => 'o','პ' => 'p','ჟ' => 'z','რ' => 'r','ს' => 's','ტ' => 't',
 			'უ' => 'u','ფ' => 'p','ქ' => 'k','ღ' => 'g','ყ' => 'q','შ' => 's',
 			'ჩ' => 'c','ც' => 't','ძ' => 'd','წ' => 't','ჭ' => 'c','ხ' => 'k',
-			'ჯ' => 'j','ჰ' => 'h' 
+			'ჯ' => 'j','ჰ' => 'h'
 			);
 		$str = str_replace( array_keys( $transliteration ),array_values( $transliteration ),$str);
 		return $str;
@@ -7551,7 +7551,7 @@ function validate_email($email, $validate = null)
 		$validate = $prefs['validateEmail'];
 	}
 
-	$options = ['allow' => Zend\Validator\Hostname::ALLOW_ALL,];
+	$options = ['allow' => Laminas\Validator\Hostname::ALLOW_ALL,];
 
 	if ($validate === 'n') {
 		return true;
@@ -7563,7 +7563,7 @@ function validate_email($email, $validate = null)
 		$options['useMxCheck'] = true;
 		$options['useDeepMxCheck'] = true;
 	}
-	$validator = new Zend\Validator\EmailAddress($options);
+	$validator = new Laminas\Validator\EmailAddress($options);
 	return $validator->isValid($email);
 }
 

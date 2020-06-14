@@ -78,9 +78,9 @@ class Search_Action_EmailAction implements Search_Action_Action
 
 			$mail->setSubject(strip_tags($subject));
 
-			$bodyPart = new \Zend\Mime\Message();
-			$bodyMessage = new \Zend\Mime\Part($content);
-			$bodyMessage->type = \Zend\Mime\Mime::TYPE_HTML;
+			$bodyPart = new \Laminas\Mime\Message();
+			$bodyMessage = new \Laminas\Mime\Part($content);
+			$bodyMessage->type = \Laminas\Mime\Mime::TYPE_HTML;
 			if ($prefs['default_mail_charset']) {
 				$bodyMessage->setCharset($prefs['default_mail_charset']);
 			}
@@ -95,11 +95,11 @@ class Search_Action_EmailAction implements Search_Action_Action
 				$pdfContent = $this->getPDFAttachment($pageName);
 
 				if ($pdfContent) {
-					$attachment = new \Zend\Mime\Part($pdfContent);
+					$attachment = new \Laminas\Mime\Part($pdfContent);
 					$attachment->type = 'application/pdf';
 					$attachment->filename = $fileName;
-					$attachment->disposition = \Zend\Mime\Mime::DISPOSITION_ATTACHMENT;
-					$attachment->encoding = \Zend\Mime\Mime::ENCODING_BASE64;
+					$attachment->disposition = \Laminas\Mime\Mime::DISPOSITION_ATTACHMENT;
+					$attachment->encoding = \Laminas\Mime\Mime::ENCODING_BASE64;
 
 					$messageParts[] = $attachment;
 				} else {

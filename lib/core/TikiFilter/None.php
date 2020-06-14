@@ -6,7 +6,7 @@
 // $Id$
 
 // Dummy filter (identity function)
-class TikiFilter_None implements Zend\Filter\FilterInterface
+class TikiFilter_None implements Laminas\Filter\FilterInterface
 {
 	function filter($value)
 	{

@@ -30,7 +30,7 @@ class Services_ResultLoader_WebService
 		);
 		$this->client->setHeaders(['Accept' => 'application/json']);
 
-		$this->client->setMethod(Zend\Http\Request::METHOD_POST);
+		$this->client->setMethod(Laminas\Http\Request::METHOD_POST);
 		$response = $this->client->send();
 
 		if (! $response->isSuccess()) {

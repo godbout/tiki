@@ -139,7 +139,7 @@ class RSSLib extends TikiDb_Bridge
 	}
 
 	/**
-	 * Generate a feed (ATOM 1.0 or RSS 2.0 using Zend\Feed\Writer\Feed
+	 * Generate a feed (ATOM 1.0 or RSS 2.0 using Laminas\Feed\Writer\Feed
 	 *
 	 * @param string $section Tiki feature the feed is related to
 	 * @param string $uniqueid
@@ -213,7 +213,7 @@ class RSSLib extends TikiDb_Bridge
 		$desc = htmlspecialchars($desc);
 		$read = $URLPrefix . $itemurl;
 
-		$feed = new Zend\Feed\Writer\Feed();
+		$feed = new Laminas\Feed\Writer\Feed();
 		$feed->setTitle($title);
 		$feed->setDescription($desc);
 
@@ -513,8 +513,8 @@ class RSSLib extends TikiDb_Bridge
 
 		try {
 			$content = $tikilib->httprequest($url);
-			$feed = Zend\Feed\Reader\Reader::importString($content);
-		} catch (Zend\Feed\Exception\ExceptionInterface $e) {
+			$feed = Laminas\Feed\Reader\Reader::importString($content);
+		} catch (Laminas\Feed\Exception\ExceptionInterface $e) {
 			$this->modules->update(
 				[
 					'lastUpdated' => $tikilib->now,
@@ -897,7 +897,7 @@ class RSSLib extends TikiDb_Bridge
 		require_once 'lib/smarty_tiki/modifier.sefurl.php';
 
 		$tikilib = TikiLib::lib('tiki');
-		$writer = new Zend\Feed\Writer\Feed();
+		$writer = new Laminas\Feed\Writer\Feed();
 		$writer->setTitle($feed_descriptor['feedTitle']);
 		$writer->setDescription($feed_descriptor['feedDescription']);
 		$writer->setLink($tikilib->tikiUrl(''));

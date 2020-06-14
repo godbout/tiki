@@ -614,7 +614,7 @@ class UnifiedSearchLib
 		$logWriter = null;
 
 		if ($loggit) {
-			$logWriter = new Zend\Log\Writer\Stream($this->getLogFilename($loggit), 'w');
+			$logWriter = new Laminas\Log\Writer\Stream($this->getLogFilename($loggit), 'w');
 		}
 
 		$indexer = new Search_Indexer($index, $logWriter);

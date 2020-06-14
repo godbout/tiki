@@ -16,7 +16,7 @@ class TikiFilter_Alnum extends AbstractLocale
 	private $pattern;
 
 	/**
-	 * Much of the logic for this function is taken directly from the Zend Alnum filter
+	 * Much of the logic for this function is taken directly from the Laminas Alnum filter
 	 *
 	 * @param string $extraChar	Match an extra preg sequence (like white space, etc)
 	 *

@@ -36,7 +36,7 @@ define('AUTH_LOGIN_OK', 0);
 use PragmaRX\Google2FA\Google2FA;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
-use Zend\Ldap\Exception\LdapException;
+use Laminas\Ldap\Exception\LdapException;
 use OneLogin\Saml2;
 
 class UsersLib extends TikiLib

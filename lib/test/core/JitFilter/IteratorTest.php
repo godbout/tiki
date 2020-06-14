@@ -26,7 +26,7 @@ class JitFilter_IteratorTest extends TikiTestCase
 		];
 
 		$this->array = new JitFilter($this->array);
-		$this->array->setDefaultFilter(new Zend\Filter\StringToUpper);
+		$this->array->setDefaultFilter(new Laminas\Filter\StringToUpper);
 	}
 
 	protected function tearDown() : void

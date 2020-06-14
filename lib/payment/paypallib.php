@@ -158,7 +158,7 @@ class PaypalLib extends TikiDb_Bridge
 		ini_set('arg_separator.output', '&');
 
 		$client->setParameterPost(array_merge($base, $ipn_data));
-		$client->setMethod(Zend\Http\Request::METHOD_POST);
+		$client->setMethod(Laminas\Http\Request::METHOD_POST);
 
 		$response = $client->send();
 
@@ -189,7 +189,7 @@ class PaypalLib extends TikiDb_Bridge
 		ini_set('arg_separator.output', '&');
 
 		$client->setParameterPost($post);
-		$client->setMethod(Zend\Http\Request::METHOD_POST);
+		$client->setMethod(Laminas\Http\Request::METHOD_POST);
 
 		$response = $client->send();
 

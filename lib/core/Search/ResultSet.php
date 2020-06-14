@@ -52,7 +52,7 @@ class Search_ResultSet extends ArrayObject implements JsonSerializable
 		return $return;
 	}
 
-	function setHighlightHelper(Zend\Filter\FilterInterface $helper)
+	function setHighlightHelper(Laminas\Filter\FilterInterface $helper)
 	{
 		$this->highlightHelper = $helper;
 	}

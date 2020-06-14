@@ -177,7 +177,7 @@ function get_remotetikiurl($autologin_remotetiki, $redirect_page)
 	$base = [ 'uname' => $user, 'email' => $email, 'realName' => $realName, 'page' => $redirect_page, 'base_url' => $base_url, 'groups' => $groups ];
 	try {
 		$client->setParameterPost($base);
-		$client->setMethod(Zend\Http\Request::METHOD_POST);
+		$client->setMethod(Laminas\Http\Request::METHOD_POST);
 		$response = $client->send();
 		if ($response->isSuccess()) {
 			return $response->getBody();
@@ -185,7 +185,7 @@ function get_remotetikiurl($autologin_remotetiki, $redirect_page)
 			TikiLib::lib('access')->display_error('', $response->getReasonPhrase(), $response->getStatusCode());
 			die;
 		}
-	} catch (Zend\Http\Exception\ExceptionInterface $e) {
+	} catch (Laminas\Http\Exception\ExceptionInterface $e) {
 		throw new Exception($e->getMessage());
 	}
 }

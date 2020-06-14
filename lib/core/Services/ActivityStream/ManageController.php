@@ -375,7 +375,7 @@ $customArguments
 
 	/**
 	 * Private function to get details of an activity rule
-	 * @param int|Zend\Filter\ToInt $id
+	 * @param int|Laminas\Filter\ToInt $id
 	 * @return array|mixed
 	 * @throws Math_Formula_Parser_Exception
 	 */
@@ -509,7 +509,7 @@ $customArguments
 
 	/**
 	 * Private function to get the status of an activity rule
-	 * @param int|Zend\Filter\ToInt $id
+	 * @param int|Laminas\Filter\ToInt $id
 	 * @return string
 	 * @throws Math_Formula_Parser_Exception
 	 */

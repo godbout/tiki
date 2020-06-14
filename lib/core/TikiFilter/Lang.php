@@ -10,7 +10,7 @@
  *
  * Filters for valid language values
  */
-class TikiFilter_Lang implements Zend\Filter\FilterInterface
+class TikiFilter_Lang implements Laminas\Filter\FilterInterface
 {
 	/**
 	 * Based on is_valid_language() method in lib/language/Language.php. The Language class isn't used here because

@@ -1349,7 +1349,7 @@ class ParserLib extends TikiDb_Bridge
 		$matches[1] = trim($matches[1]);
 		$matches[3] = trim($matches[3]);
 
-		$esc = new Zend\Escaper\Escaper();
+		$esc = new Laminas\Escaper\Escaper();
 		$color = ! empty($matches[1]) ? 'color:' . str_replace('&#x23;', '#', $esc->escapeHtmlAttr($matches[1])) : '';
 		$background = ! empty($matches[3]) ? 'background-color:' . str_replace('&#x23;', '#', $esc->escapeHtmlAttr($matches[3])) : '';
 		$semi = ! empty($color) && ! empty($background) ? '; ' : '';

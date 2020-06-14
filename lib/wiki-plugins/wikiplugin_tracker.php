@@ -1554,7 +1554,7 @@ function wikiplugin_tracker($data, $params)
 									$mail->send($ueo);
 									$sentMails[] = $ueo . $tplKey;
 									$title = 'mail';
-								} catch (Zend\Mail\Exception\ExceptionInterface $e) {
+								} catch (Laminas\Mail\Exception\ExceptionInterface $e) {
 									$title = 'mail error';
 								}
 								if ($title == 'mail error') {

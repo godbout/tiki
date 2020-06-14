@@ -330,7 +330,7 @@ OUT;
 	}
 }
 
-class Search_FormatterTest_HighlightHelper implements Zend\Filter\FilterInterface
+class Search_FormatterTest_HighlightHelper implements Laminas\Filter\FilterInterface
 {
 	public function filter($content)
 	{

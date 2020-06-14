@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Tiki_Config_Ini extends Zend\Config\Reader\Ini
+class Tiki_Config_Ini extends Laminas\Config\Reader\Ini
 {
 
 	const SECTION_SEPARATOR = ':';

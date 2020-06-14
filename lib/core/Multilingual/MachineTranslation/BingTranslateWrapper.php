@@ -138,7 +138,7 @@ class Multilingual_MachineTranslation_BingTranslateWrapper implements Multilingu
 		$client->getRequest()->getPost()->set('scope', 'http://api.microsofttranslator.com');
 		$client->getRequest()->getPost()->set('grant_type', 'client_credentials');
 
-		$client->setMethod(Zend\Http\Request::METHOD_POST);
+		$client->setMethod(Laminas\Http\Request::METHOD_POST);
 		$response = $client->send();
 
 		$data = json_decode($response->getBody());

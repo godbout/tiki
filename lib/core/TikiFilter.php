@@ -15,7 +15,7 @@ use Laminas\Filter\ToInt;
 /**
  * Class TikiFilter
  *
- * Just offers a get method to obtain an instance of a Zend\Filter\FilterInterface implementation, either stock (Zend) or custom.
+ * Just offers a get method to obtain an instance of a Laminas\Filter\FilterInterface implementation, either stock (Zend) or custom.
  * The objects are "filters" in an extended sense. Data is not necessarily just filtered, but can be otherwise altered.
  * For example, special characters can be escaped.
  *
@@ -24,7 +24,7 @@ use Laminas\Filter\ToInt;
 class TikiFilter
 {
 	/**
-	 * Provides an object implementing Zend\Filter\FilterInterface based on the input
+	 * Provides an object implementing Laminas\Filter\FilterInterface based on the input
 	 *
 	 * @param FilterInterface|string $filter		A filter shortcut name, or the filter itself.
 	 * @return TikiFilter_Alnum|TikiFilter_Alpha|TikiFilter_AttributeType|TikiFilter_HtmlPurifier|TikiFilter_IsoDate|TikiFilter_Lang|TikiFilter_None|TikiFilter_PregFilter|TikiFilter_PreventXss|TikiFilter_RawUnsafe|TikiFilter_RelativeURL|TikiFilter_WikiContent|Boolean|Digits|FilterInterface|PregReplace|StripTags|ToInt

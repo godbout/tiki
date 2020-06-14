@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Captcha_Questions extends Zend\Captcha\AbstractWord
+class Captcha_Questions extends Laminas\Captcha\AbstractWord
 {
 
 	protected $name = "questions";
@@ -84,7 +84,7 @@ class Captcha_Questions extends Zend\Captcha\AbstractWord
 	/**
 	 * Validate the answer
 	 *
-	 * @see    Zend\Validator\Interface::isValid()
+	 * @see    Laminas\Validator\Interface::isValid()
 	 * @param  mixed $value
 	 * @param  array|null $context
 	 * @return boolean

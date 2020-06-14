@@ -7,8 +7,8 @@
 namespace Tiki\Theme;
 
 use TikiLib;
-use Zend\Filter\Word\DashToCamelCase as DashToCamelCase;
-use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
+use Laminas\Filter\Word\DashToCamelCase as DashToCamelCase;
+use Laminas\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
 
 /**
  * Class that handles tiki theme operations

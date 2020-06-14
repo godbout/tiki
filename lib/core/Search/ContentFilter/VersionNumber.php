@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Search_ContentFilter_VersionNumber implements Zend\Filter\FilterInterface
+class Search_ContentFilter_VersionNumber implements Laminas\Filter\FilterInterface
 {
 	public function filter($value)
 	{

@@ -93,7 +93,7 @@ if (isset($_SERVER['TIKI_INI_FILE'])) {
 	$configReader = new Tiki_Config_Ini();
 	$configReader->setFilterSection(isset($_SERVER['TIKI_INI_IDENTIFIER']) ? $_SERVER['TIKI_INI_IDENTIFIER'] : null);
 	$configData = $configReader->fromFile($_SERVER['TIKI_INI_FILE']);
-	$systemConfiguration = $systemConfiguration->merge(new Zend\Config\Config($configData));
+	$systemConfiguration = $systemConfiguration->merge(new Laminas\Config\Config($configData));
 }
 if (isset($system_configuration_file)) {
 	if (! is_readable($system_configuration_file)) {

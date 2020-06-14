@@ -34,6 +34,6 @@ class TikiLib_UriMergeTest extends PHPUnit\Framework\TestCase
 
 	private function merge($first, $last)
 	{
-		return TikiLib::lib('tiki')->http_get_uri(new Zend\Uri\Http($first), $last)->toString();
+		return TikiLib::lib('tiki')->http_get_uri(new Laminas\Uri\Http($first), $last)->toString();
 	}
 }

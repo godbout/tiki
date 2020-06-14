@@ -8,7 +8,7 @@
 use Laminas\I18n\Filter\Alpha;
 use Laminas\Stdlib\StringUtils;
 
-class TikiFilter_Alpha extends Zend\Filter\PregReplace
+class TikiFilter_Alpha extends Laminas\Filter\PregReplace
 {
 	private $filter;
 
@@ -19,9 +19,9 @@ class TikiFilter_Alpha extends Zend\Filter\PregReplace
 		if (! extension_loaded('intl')) {
 			$this->filter = null;
 			if (! StringUtils::hasPcreUnicodeSupport()) {
-				parent::__construct('/[^a-zA-Z' . $whiteSpace . ']/', ''); // a straight copy from \Zend\I18n\Filter\Alpha::filter
+				parent::__construct('/[^a-zA-Z' . $whiteSpace . ']/', ''); // a straight copy from \Laminas\I18n\Filter\Alpha::filter
 			} else {
-				parent::__construct('/[^\p{L}' . $whiteSpace . ']/u', ''); // a straight copy from \Zend\I18n\Filter\Alpha::filter
+				parent::__construct('/[^\p{L}' . $whiteSpace . ']/u', ''); // a straight copy from \Laminas\I18n\Filter\Alpha::filter
 			}
 		} else {
 			$this->filter = new Alpha($space);

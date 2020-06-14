@@ -12,7 +12,7 @@
 class TikiMail
 {
 	/**
-	 * @var \Zend\Mail\Message
+	 * @var \Laminas\Mail\Message
 	 */
 	private $mail;
 	private $charset;
@@ -100,13 +100,13 @@ class TikiMail
 		}
 
 		$body = $this->mail->getBody();
-		if (! ($body instanceof \Zend\Mime\Message) && ! empty($body)) {
+		if (! ($body instanceof \Laminas\Mime\Message) && ! empty($body)) {
 			$this->convertBodyToMime($body);
 			$body = $this->mail->getBody();
 		}
 
-		if (! $body instanceof Zend\Mime\Message) {
-			$body = new Zend\Mime\Message();
+		if (! $body instanceof Laminas\Mime\Message) {
+			$body = new Laminas\Mime\Message();
 		}
 
 		$partHtml = false;
@@ -114,14 +114,14 @@ class TikiMail
 
 		$parts = [];
 		foreach ($body->getParts() as $part) {
-			/* @var $part Zend\Mime\Part */
-			if ($part->getType() == Zend\Mime\Mime::TYPE_HTML) {
+			/* @var $part Laminas\Mime\Part */
+			if ($part->getType() == Laminas\Mime\Mime::TYPE_HTML) {
 				$partHtml = $part;
 				$part->setContent($html);
 				if ($this->charset) {
 					$part->setCharset($this->charset);
 				}
-			} elseif ($part->getType() == Zend\Mime\Mime::TYPE_TEXT) {
+			} elseif ($part->getType() == Laminas\Mime\Mime::TYPE_TEXT) {
 				$partText = $part;
 				if ($text) {
 					$part->setContent($text);
@@ -135,8 +135,8 @@ class TikiMail
 		}
 
 		if (! $partText && $text) {
-			$partText = new Zend\Mime\Part($text);
-			$partText->setType(Zend\Mime\Mime::TYPE_TEXT);
+			$partText = new Laminas\Mime\Part($text);
+			$partText->setType(Laminas\Mime\Mime::TYPE_TEXT);
 			if ($this->charset) {
 				$partText->setCharset($this->charset);
 			}
@@ -146,8 +146,8 @@ class TikiMail
 		}
 
 		if (! $partHtml) {
-			$partHtml = new Zend\Mime\Part($html);
-			$partHtml->setType(Zend\Mime\Mime::TYPE_HTML);
+			$partHtml = new Laminas\Mime\Part($html);
+			$partHtml->setType(Laminas\Mime\Mime::TYPE_HTML);
 			if ($this->charset) {
 				$partHtml->setCharset($this->charset);
 			}
@@ -165,12 +165,12 @@ class TikiMail
 	function setText($text = '')
 	{
 		$body = $this->mail->getBody();
-		if ($body instanceof \Zend\Mime\Message) {
+		if ($body instanceof \Laminas\Mime\Message) {
 			$parts = $body->getParts();
 			$textPartFound = false;
 			foreach ($parts as $part) {
-				/* @var $part Zend\Mime\Part */
-				if ($part->getType() == Zend\Mime\Mime::TYPE_TEXT) {
+				/* @var $part Laminas\Mime\Part */
+				if ($part->getType() == Laminas\Mime\Mime::TYPE_TEXT) {
 					$part->setContent($text);
 					if ($this->charset) {
 						$part->setCharset($this->charset);
@@ -180,8 +180,8 @@ class TikiMail
 				}
 			}
 			if (! $textPartFound) {
-				$part = new Zend\Mime\Part($text);
-				$part->setType(Zend\Mime\Mime::TYPE_TEXT);
+				$part = new Laminas\Mime\Part($text);
+				$part->setType(Laminas\Mime\Mime::TYPE_TEXT);
 				if ($this->charset) {
 					$part->setCharset($this->charset);
 				}
@@ -219,13 +219,13 @@ class TikiMail
 		$headers = $this->mail->getHeaders();
 		switch ($name) {
 			case 'Message-Id':
-				$headers->addHeader(Zend\Mail\Header\MessageId::fromString('Message-ID: ' . trim($value)));
+				$headers->addHeader(Laminas\Mail\Header\MessageId::fromString('Message-ID: ' . trim($value)));
 				break;
 			case 'In-Reply-To':
-				$headers->addHeader(Zend\Mail\Header\InReplyTo::fromString('In-Reply-To: ' . trim($value)));
+				$headers->addHeader(Laminas\Mail\Header\InReplyTo::fromString('In-Reply-To: ' . trim($value)));
 				break;
 			case 'References':
-				$headers->addHeader(Zend\Mail\Header\References::fromString('References: ' . trim($value)));
+				$headers->addHeader(Laminas\Mail\Header\References::fromString('References: ' . trim($value)));
 				break;
 			default:
 				$this->mail->getHeaders()->addHeaderLine($name, $value);
@@ -235,11 +235,11 @@ class TikiMail
 
 	function addPart($content, $type) {
 		$body = $this->mail->getBody();
-		if (! ($body instanceof \Zend\Mime\Message)) {
+		if (! ($body instanceof \Laminas\Mime\Message)) {
 			$this->convertBodyToMime($body);
 			$body = $this->mail->getBody();
 		}
-		$part = new Zend\Mime\Part($content);
+		$part = new Laminas\Mime\Part($content);
 		$part->setType($type);
 		$part->setCharset($this->charset);
 		$body->addPart($part);
@@ -251,9 +251,9 @@ class TikiMail
 	}
 
 	/**
-	 * Get the Zend Message object
+	 * Get the Laminas Message object
 	 *
-	 * @return \Zend\Mail\Message
+	 * @return \Laminas\Mail\Message
 	 */
 	function getMessage() {
 		return $this->mail;
@@ -268,7 +268,7 @@ class TikiMail
 		foreach ((array) $recipients as $to) {
 			try {
 				$this->mail->addTo($to);
-			} catch (Zend\Mail\Exception\InvalidArgumentException $e) {
+			} catch (Laminas\Mail\Exception\InvalidArgumentException $e) {
 				$title = 'mail error';
 				$error = $e->getMessage();
 				$this->errors[] = $error;
@@ -287,7 +287,7 @@ class TikiMail
 				tiki_send_email($this->mail);
 				$title = 'mail';
 				$error = '';
-			} catch (Zend\Mail\Exception\ExceptionInterface $e) {
+			} catch (Laminas\Mail\Exception\ExceptionInterface $e) {
 				$title = 'mail error';
 				$error = $e->getMessage();
 				$this->errors[] = $error;
@@ -305,9 +305,9 @@ class TikiMail
 
 	protected function convertBodyToMime($text)
 	{
-		$textPart = new Zend\Mime\Part($text);
-		$textPart->setType(Zend\Mime\Mime::TYPE_TEXT);
-		$newBody = new Zend\Mime\Message();
+		$textPart = new Laminas\Mime\Part($text);
+		$textPart->setType(Laminas\Mime\Mime::TYPE_TEXT);
+		$newBody = new Laminas\Mime\Message();
 		$newBody->addPart($textPart);
 		$this->mail->setBody($newBody);
 	}
@@ -315,16 +315,16 @@ class TikiMail
 	function addAttachment($data, $filename, $mimetype)
 	{
 		$body = $this->mail->getBody();
-		if (! ($body instanceof \Zend\Mime\Message)) {
+		if (! ($body instanceof \Laminas\Mime\Message)) {
 			$this->convertBodyToMime($body);
 			$body = $this->mail->getBody();
 		}
 
-		$attachment = new Zend\Mime\Part($data);
+		$attachment = new Laminas\Mime\Part($data);
 		$attachment->setFileName($filename);
 		$attachment->setType($mimetype);
-		$attachment->setEncoding(Zend\Mime\Mime::ENCODING_BASE64);
-		$attachment->setDisposition(Zend\Mime\Mime::DISPOSITION_INLINE);
+		$attachment->setEncoding(Laminas\Mime\Mime::ENCODING_BASE64);
+		$attachment->setDisposition(Laminas\Mime\Mime::DISPOSITION_INLINE);
 		$body->addPart($attachment);
 	}
 

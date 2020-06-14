@@ -468,8 +468,8 @@ class NlLib extends TikiLib
 			include_once 'lib/mail/maillib.php';
 			$zmail = tiki_get_admin_mail();
 			$zmail->setSubject(tra('Newsletter subscription information at') . ' ' . $_SERVER["SERVER_NAME"]);
-			$textPart = new Zend\Mime\Part($mail_data);
-			$textPart->setType(Zend\Mime\Mime::TYPE_TEXT);
+			$textPart = new Laminas\Mime\Part($mail_data);
+			$textPart->setType(Laminas\Mime\Mime::TYPE_TEXT);
 			//////////////////////////////////////////////////////////////////////////////////
 			//										//
 			// [BUG FIX] hollmeer 2012-11-04: 						//
@@ -498,10 +498,10 @@ class NlLib extends TikiLib
 					$mail_data_html = $mail_data;
 				}
 			}
-			$htmlPart = new Zend\Mime\Part($mail_data_html);
-			$htmlPart->setType(Zend\Mime\Mime::TYPE_HTML);
+			$htmlPart = new Laminas\Mime\Part($mail_data_html);
+			$htmlPart->setType(Laminas\Mime\Mime::TYPE_HTML);
 
-			$emailBody = new \Zend\Mime\Message();
+			$emailBody = new \Laminas\Mime\Message();
 			if ($noDuplicateTextPart) {
 				$emailBody->setParts([$htmlPart]);
 			} else {
@@ -516,7 +516,7 @@ class NlLib extends TikiLib
 				tiki_send_email($zmail);
 
 				return true;
-			} catch (Zend\Mail\Exception\ExceptionInterface $e) {
+			} catch (Laminas\Mail\Exception\ExceptionInterface $e) {
 				return false;
 			}
 		} else {
@@ -574,8 +574,8 @@ class NlLib extends TikiLib
 		$mail_data = $smarty->fetchLang($lg, 'mail/newsletter_welcome_subject.tpl');
 		$zmail->setSubject(sprintf($mail_data, $info["name"], $_SERVER["SERVER_NAME"]));
 		$mail_data = $smarty->fetchLang($lg, 'mail/newsletter_welcome.tpl');
-		$textPart = new Zend\Mime\Part($mail_data);
-		$textPart->setType(Zend\Mime\Mime::TYPE_TEXT);
+		$textPart = new Laminas\Mime\Part($mail_data);
+		$textPart->setType(Laminas\Mime\Mime::TYPE_TEXT);
 		//////////////////////////////////////////////////////////////////////////////////
 		//										//
 		// [BUG FIX] hollmeer 2012-11-04: 						//
@@ -604,10 +604,10 @@ class NlLib extends TikiLib
 				$mail_data_html = $mail_data;
 			}
 		}
-		$htmlPart = new Zend\Mime\Part($mail_data_html);
-		$htmlPart->setType(Zend\Mime\Mime::TYPE_HTML);
+		$htmlPart = new Laminas\Mime\Part($mail_data_html);
+		$htmlPart->setType(Laminas\Mime\Mime::TYPE_HTML);
 
-		$emailBody = new \Zend\Mime\Message();
+		$emailBody = new \Laminas\Mime\Message();
 		if ($noDuplicateTextPart) {
 			$emailBody->setParts([$htmlPart]);
 		} else {
@@ -623,7 +623,7 @@ class NlLib extends TikiLib
 			tiki_send_email($zmail);
 
 			return $this->get_newsletter($res["nlId"]);
-		} catch (Zend\Mail\Exception\ExceptionInterface $e) {
+		} catch (Laminas\Mail\Exception\ExceptionInterface $e) {
 			return false;
 		}
 	}
@@ -674,8 +674,8 @@ class NlLib extends TikiLib
 			$mail_data = $smarty->fetchLang($lg, 'mail/newsletter_byebye_subject.tpl');
 			$zmail->setSubject(sprintf($mail_data, $info["name"], $_SERVER["SERVER_NAME"]));
 			$mail_data = $smarty->fetchLang($lg, 'mail/newsletter_byebye.tpl');
-			$textPart = new Zend\Mime\Part($mail_data);
-			$textPart->setType(Zend\Mime\Mime::TYPE_TEXT);
+			$textPart = new Laminas\Mime\Part($mail_data);
+			$textPart->setType(Laminas\Mime\Mime::TYPE_TEXT);
 			//////////////////////////////////////////////////////////////////////////////////
 			//										//
 			// [BUG FIX] hollmeer 2012-11-04: 						//
@@ -701,10 +701,10 @@ class NlLib extends TikiLib
 					$mail_data_html = $mail_data;
 				}
 			}
-			$htmlPart = new Zend\Mime\Part($mail_data_html);
-			$htmlPart->setType(Zend\Mime\Mime::TYPE_HTML);
+			$htmlPart = new Laminas\Mime\Part($mail_data_html);
+			$htmlPart->setType(Laminas\Mime\Mime::TYPE_HTML);
 
-			$emailBody = new \Zend\Mime\Message();
+			$emailBody = new \Laminas\Mime\Message();
 			$emailBody->setParts([$htmlPart, $textPart]);
 
 			$zmail->setBody($emailBody);
@@ -714,7 +714,7 @@ class NlLib extends TikiLib
 
 			try {
 				tiki_send_email($zmail);
-			} catch (Zend\Mail\Exception\ExceptionInterface $e) {
+			} catch (Laminas\Mail\Exception\ExceptionInterface $e) {
 			}
 		}
 		/*$this->update_users($res["nlId"]);*/
@@ -1461,7 +1461,7 @@ class NlLib extends TikiLib
 			$info['files'] = $this->get_edition_files($editionId);
 
 			include_once 'lib/mail/maillib.php';
-			/* @var Zend\Mail\Message $zmail */
+			/* @var Laminas\Mail\Message $zmail */
 			$zmail = tiki_get_admin_mail();
 			$emailMimeParts = [];
 
@@ -1476,10 +1476,10 @@ class NlLib extends TikiLib
 
 			foreach ($info['files'] as $f) {
 				$fpath = isset($f['path']) ? $f['path'] : $prefs['tmpDir'] . '/newsletterfile-' . $f['filename'];
-				$att = new Zend\Mime\Part(file_get_contents($fpath));
+				$att = new Laminas\Mime\Part(file_get_contents($fpath));
 				$att->filename = $f['name'];
 				$att->type = $f['type'];
-				$att->encoding = Zend\Mime\Mime::ENCODING_BASE64;
+				$att->encoding = Laminas\Mime\Mime::ENCODING_BASE64;
 				$emailMimeParts[] = $att;
 			}
 
@@ -1509,17 +1509,17 @@ class NlLib extends TikiLib
 
 		$zmail = $cache['zmail'];
 
-		$textPart = new Zend\Mime\Part($cache['text'] . strip_tags($unsubmsg));
+		$textPart = new Laminas\Mime\Part($cache['text'] . strip_tags($unsubmsg));
 		$textPart->setCharset('UTF-8');
-		$textPart->setType(Zend\Mime\Mime::TYPE_TEXT);
+		$textPart->setType(Laminas\Mime\Mime::TYPE_TEXT);
 		$emailMimeParts[] = $textPart;
 
-		$htmlPart = new Zend\Mime\Part($html);
+		$htmlPart = new Laminas\Mime\Part($html);
 		$htmlPart->setCharset('UTF-8');
-		$htmlPart->setType(Zend\Mime\Mime::TYPE_HTML);
+		$htmlPart->setType(Laminas\Mime\Mime::TYPE_HTML);
 		$emailMimeParts[] = $htmlPart;
 
-		$emailBody = new \Zend\Mime\Message();
+		$emailBody = new \Laminas\Mime\Message();
 		$emailBody->setParts($emailMimeParts);
 
 		$zmail->setBody($emailBody);
@@ -1650,7 +1650,7 @@ class NlLib extends TikiLib
 					}
 					$this->delete_edition_subscriber($info['editionId'], $us);
 					$logStatus = 'OK';
-				} catch (Zend\Mail\Exception\ExceptionInterface $e) {
+				} catch (Laminas\Mail\Exception\ExceptionInterface $e) {
 					if ($browser) {
 						print '<div class="confirmation">' . ' Total emails sent: ' . count($sent)
 							. tr(' after error in sending to') . ' <b>' . $email . '</b>: <span class="text-danger">'

@@ -101,7 +101,7 @@ function smarty_function_popup($params, $smarty)
 
 	$retval = '';
 	foreach ($options as $k => $v) {
-		$retval .= $k . '="' . (new Zend\Escaper\Escaper())->escapeHtmlAttr($v) . '" ';
+		$retval .= $k . '="' . (new Laminas\Escaper\Escaper())->escapeHtmlAttr($v) . '" ';
 	}
 
 	//handle delay param here since slashes added by the above break the code

@@ -7,22 +7,22 @@
 
 /**
  * Class JitFilter_Element
- * @method Zend\I18n\Filter\Alpha|TikiFilter_Alpha alpha
- * @method Zend\I18n\Filter\Alnum|TikiFilter_Alnum alnum
- * @method Zend\Filter\Digits digits
- * @method Zend\Filter\ToInt int
- * @method Zend\Filter\StripTags username
- * @method Zend\Filter\StripTags groupname
- * @method Zend\Filter\StripTags pagename
- * @method Zend\Filter\StripTags topicname
- * @method Zend\Filter\StripTags themename
- * @method Zend\Filter\StripTags email
- * @method Zend\Filter\StripTags url
- * @method Zend\Filter\StripTags text
- * @method Zend\Filter\StripTags date
- * @method Zend\Filter\StripTags time
- * @method Zend\Filter\StripTags datetime
- * @method Zend\Filter\StripTags striptags
+ * @method Laminas\I18n\Filter\Alpha|TikiFilter_Alpha alpha
+ * @method Laminas\I18n\Filter\Alnum|TikiFilter_Alnum alnum
+ * @method Laminas\Filter\Digits digits
+ * @method Laminas\Filter\ToInt int
+ * @method Laminas\Filter\StripTags username
+ * @method Laminas\Filter\StripTags groupname
+ * @method Laminas\Filter\StripTags pagename
+ * @method Laminas\Filter\StripTags topicname
+ * @method Laminas\Filter\StripTags themename
+ * @method Laminas\Filter\StripTags email
+ * @method Laminas\Filter\StripTags url
+ * @method Laminas\Filter\StripTags text
+ * @method Laminas\Filter\StripTags date
+ * @method Laminas\Filter\StripTags time
+ * @method Laminas\Filter\StripTags datetime
+ * @method Laminas\Filter\StripTags striptags
  * @method TikiFilter_Word word
  * @method TikiFilter_PreventXss xss
  * @method TikiFilter_HtmlPurifier purifier

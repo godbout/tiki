@@ -54,7 +54,7 @@ class Services_RemoteController
 	{
 		$client = $this->getClient($action, $postArguments);
 		$client->setHeaders(['Accept' => 'application/json']);
-		$client->setMethod(Zend\Http\Request::METHOD_POST);
+		$client->setMethod(Laminas\Http\Request::METHOD_POST);
 		$response = $client->send();
 
 		if (! $response->isSuccess()) {

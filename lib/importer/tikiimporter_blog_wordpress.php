@@ -388,7 +388,7 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 
 			try {
 				$response = $client->send();
-			} catch (Zend\Http\Exception\ExceptionInterface $e) {
+			} catch (Laminas\Http\Exception\ExceptionInterface $e) {
 				$this->saveAndDisplayLog(
 					'Unable to download file ' . $attachment['fileName'] . '. Error message was: ' . $e->getMessage() . "\n",
 					true
@@ -924,11 +924,11 @@ class TikiImporter_Blog_Wordpress extends TikiImporter_Blog
 		return $created;
 	}
 
-	//TODO: check if a proxy is configured and than use Zend\Http\Client\Adapter\Proxy
+	//TODO: check if a proxy is configured and than use Laminas\Http\Client\Adapter\Proxy
 	/**
-	 * Set $this->httpClient property as an instance of Zend\Http\Client
+	 * Set $this->httpClient property as an instance of Laminas\Http\Client
 	 *
-	 * @return Zend\Http\Client
+	 * @return Laminas\Http\Client
 	 */
 	function getHttpClient()
 	{

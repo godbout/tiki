@@ -4,14 +4,14 @@
 // All Rights Reserved. See copyright.txt for details and a complete list of authors.
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
-use Zend\Uri\Exception\InvalidUriPartException;
+use Laminas\Uri\Exception\InvalidUriPartException;
 
 /**
  * Class TikiFilter_RelativeURL
  *
  * Filters for valid relative URL's, and strips any tags.
  */
-class TikiFilter_RelativeURL implements Zend\Filter\FilterInterface
+class TikiFilter_RelativeURL implements Laminas\Filter\FilterInterface
 {
 	/**
 	 *
@@ -23,11 +23,11 @@ class TikiFilter_RelativeURL implements Zend\Filter\FilterInterface
 	public function filter($input) : string
 	{
 
-		$filter = new Zend\Filter\StripTags();
+		$filter = new Laminas\Filter\StripTags();
 		$url = $filter->filter($input);
 
 		try {
-			$url = Zend\Uri\UriFactory::factory($url);
+			$url = Laminas\Uri\UriFactory::factory($url);
 		} catch (InvalidUriPartException $e) {
 			// if the url is invalid, return a blank string.
 			return '';

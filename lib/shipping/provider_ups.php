@@ -45,7 +45,7 @@ class ShippingProvider_Ups implements ShippingProvider
 			$client->setUri('https://www.ups.com/ups.app/xml/Rate');
 			$client->setRawBody($auth . $request);
 
-			$client->setMethod(Zend\Http\Request::METHOD_POST);
+			$client->setMethod(Laminas\Http\Request::METHOD_POST);
 			$response = $client->send();
 			$body = $response->getBody();
 
@@ -53,7 +53,7 @@ class ShippingProvider_Ups implements ShippingProvider
 			$dom->loadXML($body);
 
 			return $dom;
-		} catch (Zend\Http\Exception\ExceptionInterface $e) {
+		} catch (Laminas\Http\Exception\ExceptionInterface $e) {
 			return null;
 		}
 	}

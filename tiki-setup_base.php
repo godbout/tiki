@@ -244,7 +244,7 @@ if (isset($_SERVER["REQUEST_URI"])) {
 		}
 
 		try {
-			Zend\Session\Container::getDefaultManager()->start();
+			Laminas\Session\Container::getDefaultManager()->start();
 
 			/* This portion may seem strange, but it is an extra validation against session
 			 * collisions. An extra cookie is set with an additional random value. When loading
@@ -260,7 +260,7 @@ if (isset($_SERVER["REQUEST_URI"])) {
 				if ($cookie !== $_SESSION['extra_validation']) {
 					TikiLib::lib('logs')->add_log('system', 'session cookie validation failed');
 
-					Zend\Session\Container::getDefaultManager()->destroy();
+					Laminas\Session\Container::getDefaultManager()->destroy();
 					header('Location: ' . $_SERVER['REQUEST_URI']);
 					exit;
 				}
@@ -270,9 +270,9 @@ if (isset($_SERVER["REQUEST_URI"])) {
 				setcookie($extra_cookie_name, $sequence, time() + 365 * 24 * 3600, ini_get('session.cookie_path'), null, null, true);
 				unset($sequence);
 			}
-		} catch (Zend\Session\Exception\ExceptionInterface $e) {
+		} catch (Laminas\Session\Exception\ExceptionInterface $e) {
 			// Ignore
-		} catch (Zend\Stdlib\Exception\InvalidArgumentException $e) {
+		} catch (Laminas\Stdlib\Exception\InvalidArgumentException $e) {
 			// Ignore
 		}
 	}

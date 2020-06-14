@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class TikiFilter_WikiContent implements Zend\Filter\FilterInterface
+class TikiFilter_WikiContent implements Laminas\Filter\FilterInterface
 {
 	function filter($value)
 	{

@@ -25,8 +25,8 @@ class Search_Indexer
 
 	public function __construct(Search_Index_Interface $searchIndex, $logWriter = null)
 	{
-		if (! $logWriter instanceof \Zend\Log\Writer\AbstractWriter) {
-			$logWriter = new Zend\Log\Writer\Noop();
+		if (! $logWriter instanceof \Laminas\Log\Writer\AbstractWriter) {
+			$logWriter = new Laminas\Log\Writer\Noop();
 		} else {
 			// writing logs
 			set_error_handler(function ($errno, $errstr, $errfile = '', $errline = 0) {
@@ -72,8 +72,8 @@ class Search_Indexer
 			Smarty_Tiki::muteExpectedErrors();
 		}
 
-		$logWriter->setFormatter(new Zend\Log\Formatter\Simple());
-		$this->log = new Zend\Log\Logger();
+		$logWriter->setFormatter(new Laminas\Log\Formatter\Simple());
+		$this->log = new Laminas\Log\Logger();
 		$this->log->addWriter($logWriter);
 		$this->logWriter = $logWriter;
 
@@ -102,7 +102,7 @@ class Search_Indexer
 		$this->globalSources = [];
 	}
 
-	public function addContentFilter(Zend\Filter\FilterInterface $filter)
+	public function addContentFilter(Laminas\Filter\FilterInterface $filter)
 	{
 		$this->contentFilters[] = $filter;
 	}
@@ -205,7 +205,7 @@ class Search_Indexer
 			}
 			$this->cacheErrors = [];
 			// log file display feedback messages after each document line to make it easier to track
-			if (! $this->logWriter instanceof Zend\Log\Writer\Noop) {
+			if (! $this->logWriter instanceof Laminas\Log\Writer\Noop) {
 				Feedback::printToLog($this->log);
 				Feedback::clear();
 			}

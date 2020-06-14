@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Search_Lucene_HighlightHelper implements Zend\Filter\FilterInterface
+class Search_Lucene_HighlightHelper implements Laminas\Filter\FilterInterface
 {
 	private $query;
 	private $snippetHelper;

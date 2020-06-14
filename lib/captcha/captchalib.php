@@ -12,22 +12,22 @@ if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) != false) {
 }
 
 /**
- * A simple class to switch between Zend\Captcha\Image and
- * Zend\Captcha\ReCaptcha based on admin preference
+ * A simple class to switch between Laminas\Captcha\Image and
+ * Laminas\Captcha\ReCaptcha based on admin preference
  */
 class Captcha
 {
 
 	/**
-	 * The type of the captch ('default' when using Zend\Captcha\Image
-	 * or 'recaptcha' when using Zend\Captcha\ReCaptcha)
+	 * The type of the captch ('default' when using Laminas\Captcha\Image
+	 * or 'recaptcha' when using Laminas\Captcha\ReCaptcha)
 	 *
 	 * @var string
 	 */
 	public $type = '';
 
 	/**
-	 * An instance of Zend\Captcha\Image or Zend\Captcha\ReCaptcha
+	 * An instance of Laminas\Captcha\Image or Laminas\Captcha\ReCaptcha
 	 * depending on the value of $this->type
 	 *
 	 * @var object
@@ -36,7 +36,7 @@ class Captcha
 
 	/**
 	 * Class constructor: decides whether to create an instance of
-	 * Zend\Captcha\Image or Zend\Captcha\ReCaptcha or Captcha_Question
+	 * Laminas\Captcha\Image or Laminas\Captcha\ReCaptcha or Captcha_Question
 	 *
 	 * @param string $type recaptcha|questions|default|dumb
 	 */
@@ -63,7 +63,7 @@ class Captcha
 		}
 
 		if ($type === 'recaptcha') {
-			$this->captcha = new Zend\Captcha\ReCaptcha(
+			$this->captcha = new Laminas\Captcha\ReCaptcha(
 				[
 					'private_key' => $prefs['recaptcha_privkey'],
 					'public_key' => $prefs['recaptcha_pubkey'],
@@ -103,7 +103,7 @@ class Captcha
 
 			$this->recaptchaCustomTranslations();
 		} elseif ($type === 'default') {
-			$this->captcha = new Zend\Captcha\Image(
+			$this->captcha = new Laminas\Captcha\Image(
 				[
 					'wordLen' => $prefs['captcha_wordLen'],
 					'timeout' => 600,
@@ -131,7 +131,7 @@ class Captcha
 			include_once('lib/captcha/Captcha_Questions.php');
 			$this->captcha = new Captcha_Questions($questions);
 		} else {		// implied $type==='dumb'
-			$this->captcha = new Zend\Captcha\Dumb;
+			$this->captcha = new Laminas\Captcha\Dumb;
 			$this->captcha->setWordlen($prefs['captcha_wordLen']);
 			$this->captcha->setLabel(tra('Please type this word backwards'));
 			$this->type = 'dumb';
@@ -198,9 +198,9 @@ Recaptcha.create("' . $this->captcha->getPubKey() . '",
 		} else {
 			if (in_array($this->type, ['recaptcha20', 'recaptcha30'])) {
 				return $this->captcha->render();
-			} elseif ($this->captcha instanceof Zend\Captcha\ReCaptcha) {
+			} elseif ($this->captcha instanceof Laminas\Captcha\ReCaptcha) {
 				return $this->captcha->getService()->getHtml();
-			} elseif ($this->captcha instanceof Zend\Captcha\Dumb) {
+			} elseif ($this->captcha instanceof Laminas\Captcha\Dumb) {
 				return $this->captcha->getLabel() . ': <b>'
 				. strrev($this->captcha->getWord())
 				. '</b>';
@@ -250,7 +250,7 @@ Recaptcha.create("' . $this->captcha->getPubKey() . '",
 	}
 
 	/**
-	 * Translate Zend\Captcha\Image, Zend\Captcha\Dumb and Zend\Captcha\ReCaptcha
+	 * Translate Laminas\Captcha\Image, Laminas\Captcha\Dumb and Laminas\Captcha\ReCaptcha
 	 * default error messages
 	 *
 	 * @return void

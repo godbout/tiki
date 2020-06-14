@@ -10,7 +10,7 @@
  * Class TikiFilter_RawUnsafe
  */
 
-class TikiFilter_RawUnsafe implements Zend\Filter\FilterInterface
+class TikiFilter_RawUnsafe implements Laminas\Filter\FilterInterface
 {
 	public function filter($value)
 	{

@@ -6,7 +6,7 @@
 // $Id$
 
 // FIXME: This may quietly alter the value. Users of this filter should report if the value is modified.
-class TikiFilter_PreventXss implements Zend\Filter\FilterInterface
+class TikiFilter_PreventXss implements Laminas\Filter\FilterInterface
 {
 	function filter($value)
 	{

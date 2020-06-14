@@ -131,7 +131,7 @@ class Search_Query implements Search_Query_Interface
 	}
 
 	/**
-	 * Sets up Zend search term for a date range
+	 * Sets up Laminas search term for a date range
 	 *
 	 * @param string	$from date - a unix timestamp or most date strings such as 'now', '2011-11-21', 'last week' etc
 	 * @param string	$to date as with $from (other examples: '-42 days', 'last tuesday')

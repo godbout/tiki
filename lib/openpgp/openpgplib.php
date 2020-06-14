@@ -1113,7 +1113,7 @@ class OpenPGPLib
 
 	//////////////////////////////////////////////////////////
 	/**
-	 * Prepend header name to header value; copied here from Zend/Mail/Transport/Abstract
+	 * Prepend header name to header value; copied here from Laminas/Mail/Transport/Abstract
 	 * See usage in the array_walk in function below
 	 * @param string $item
 	 * @param string $key

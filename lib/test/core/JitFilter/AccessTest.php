@@ -75,7 +75,7 @@ class JitFilter_AccessTest extends TikiTestCase
 	public function testAsArraySplit()
 	{
 		$test = new JitFilter(['foo' => '1|2a|3']);
-		$test->setDefaultFilter(new Zend\Filter\Digits);
+		$test->setDefaultFilter(new Laminas\Filter\Digits);
 
 		$this->assertEquals(['1', '2', '3'], $test->asArray('foo', '|'));
 	}
@@ -107,7 +107,7 @@ class JitFilter_AccessTest extends TikiTestCase
 
 	public function testGetSingleWithoutPresetGeneric()
 	{
-		$this->assertEquals('BAR', $this->array->foo->filter(new Zend\Filter\StringToUpper));
+		$this->assertEquals('BAR', $this->array->foo->filter(new Laminas\Filter\StringToUpper));
 	}
 
 	public function testGetSinfleWithoutPresetNamed()
@@ -117,7 +117,7 @@ class JitFilter_AccessTest extends TikiTestCase
 
 	public function testGetStructuredWithoutPresetGeneric()
 	{
-		$filtered = $this->array->baz->filter(new Zend\Filter\StringToUpper);
+		$filtered = $this->array->baz->filter(new Laminas\Filter\StringToUpper);
 		$this->assertEquals(['HELLO', 'WORLD'], $filtered);
 	}
 

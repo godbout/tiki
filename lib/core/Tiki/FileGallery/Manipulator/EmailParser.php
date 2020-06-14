@@ -22,7 +22,7 @@ class EmailParser extends Manipulator
 
 		$message_content = $file->getContents();
 		try {
-			$message = \Zend\Mail\Message::fromString($message_content);
+			$message = \Laminas\Mail\Message::fromString($message_content);
 		} catch (\Exception\RuntimeException $e) {
 			Feedback::error(tr('Failed parsing file %0 as an email.', $file->fileId) . '<br />' . $e->getMessage());
 			return false;
@@ -74,7 +74,7 @@ class EmailParser extends Manipulator
 
 		if ($headers->has('mime-version') && $boundary) {
 			try {
-				$mime = \Zend\Mime\Message::createFromMessage($message_content, $boundary);
+				$mime = \Laminas\Mime\Message::createFromMessage($message_content, $boundary);
 				foreach ($mime->getParts() as $part) {
 					$content_type = '';
 					$headers = $part->getHeadersArray();

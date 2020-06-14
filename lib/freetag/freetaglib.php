@@ -1639,7 +1639,7 @@ class FreetagLib extends ObjectLib
 	}
 
 	/**
-	 * @return Zend\Tag\Cloud
+	 * @return Laminas\Tag\Cloud
 	 */
 	function get_cloud()
 	{
@@ -1650,6 +1650,6 @@ class FreetagLib extends ObjectLib
 			$row['params'] = ['url' => $row['tagId']];
 		}
 
-		return new Zend\Tag\Cloud(['tags' => $result]);
+		return new Laminas\Tag\Cloud(['tags' => $result]);
 	}
 }

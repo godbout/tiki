@@ -198,7 +198,7 @@ class BigBlueButtonLib
 			]
 		);
 
-		$client->getRequest()->setMethod(Zend\Http\Request::METHOD_POST);
+		$client->getRequest()->setMethod(Laminas\Http\Request::METHOD_POST);
 		$response = $client->send();
 		$document = $response->getBody();
 

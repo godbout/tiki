@@ -514,7 +514,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 		ob_start();
 
 		$last_id = TikiDb::get()->getOne('SELECT max(fileId) FROM tiki_files');
-		$adapter = new Zend\Http\Client\Adapter\Test();
+		$adapter = new Laminas\Http\Client\Adapter\Test();
 
 		$adapter->setResponse(
 			"HTTP/1.1 200 OK" . "\r\n" .
@@ -524,7 +524,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 			'empty content'
 		);
 
-		$client = new Zend\Http\Client();
+		$client = new Laminas\Http\Client();
 		$client->setAdapter($adapter);
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')
@@ -603,10 +603,10 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 			->getMock();
 		$file->expects($this->exactly(0))->method('replace');
 
-		$adapter = new Zend\Http\Client\Adapter\Test();
+		$adapter = new Laminas\Http\Client\Adapter\Test();
 		$adapter->setNextRequestWillFail(true);
 
-		$client = new Zend\Http\Client();
+		$client = new Laminas\Http\Client();
 		$client->setAdapter($adapter);
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')
@@ -632,7 +632,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 			->onlyMethods(['replace'])
 			->getMock();
 		$file->expects($this->exactly(0))->method('replace');
-		$adapter = new Zend\Http\Client\Adapter\Test();
+		$adapter = new Laminas\Http\Client\Adapter\Test();
 
 		$adapter->setResponse(
 			"HTTP/1.1 404 NOT FOUND" . "\r\n" .
@@ -642,7 +642,7 @@ Estou a disposição para te ajudar com mais informações. Abraços, Rodrigo.',
 			'empty content'
 		);
 
-		$client = new Zend\Http\Client();
+		$client = new Laminas\Http\Client();
 		$client->setAdapter($adapter);
 
 		$obj = $this->getMockBuilder('TikiImporter_Blog_Wordpress')

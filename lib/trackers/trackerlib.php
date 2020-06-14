@@ -2727,7 +2727,7 @@ class TrackerLib extends TikiLib
 					switch ($f['type']) {
 						// IP address (only for IPv4)
 						case 'I':
-							$validator = new Zend\Validator\Ip;
+							$validator = new Laminas\Validator\Ip;
 							if (! $validator->isValid($f['value'])) {
 								$erroneous_values[] = $f;
 							}

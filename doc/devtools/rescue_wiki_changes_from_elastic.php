@@ -253,7 +253,7 @@ class ESRescueCommand extends Command
 		$client = \TikiLib::lib('tiki')->get_http_client($full);
 
 		$client->setRawBody($data);
-		$client->setMethod(\Zend\Http\Request::METHOD_GET);
+		$client->setMethod(\Laminas\Http\Request::METHOD_GET);
 		$client->setHeaders(['Content-Type: application/json']);
 		try {
 			$response = $client->send();
@@ -316,7 +316,7 @@ class ESRescueCommand extends Command
 		$client = \TikiLib::lib('tiki')->get_http_client($full);
 
 		$client->setRawBody($data);
-		$client->setMethod(\Zend\Http\Request::METHOD_GET);
+		$client->setMethod(\Laminas\Http\Request::METHOD_GET);
 		$client->setHeaders(['Content-Type: application/json']);
 
 		$response = $client->send();

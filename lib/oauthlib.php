@@ -39,14 +39,14 @@ class OAuthLib extends TikiDb_Bridge
 		}
 
 		if (isset($arguments['post'])) {
-			$client->setMethod(Zend\Http\Request::METHOD_POST);
+			$client->setMethod(Laminas\Http\Request::METHOD_POST);
 			foreach ($arguments['post'] as $key => $value) {
 				$client->getRequest()->getPost()->set($key, $value);
 			}
 		}
 
 		if (isset($arguments['patch'])) {
-			$client->setMethod(Zend\Http\Request::METHOD_PATCH);
+			$client->setMethod(Laminas\Http\Request::METHOD_PATCH);
 			foreach ($arguments['patch'] as $key => $value) {
 				$client->getRequest()->getPost()->set($key, $value);
 			}
@@ -59,14 +59,14 @@ class OAuthLib extends TikiDb_Bridge
 		}
 
 		if (isset($arguments['delete'])) {
-			$client->setMethod(Zend\Http\Request::METHOD_DELETE);
+			$client->setMethod(Laminas\Http\Request::METHOD_DELETE);
 		}
 
 		try {
 			$response = $client->send();
 
 			return $response;
-		} catch (Zend\Http\Exception\ExceptionInterface $e) {
+		} catch (Laminas\Http\Exception\ExceptionInterface $e) {
 			return null;
 		}
 	}
@@ -80,7 +80,7 @@ class OAuthLib extends TikiDb_Bridge
 				$_SESSION['OAUTH_REQUEST_' . $provider_key] = serialize($consumer->getRequestToken());
 				$consumer->redirect();
 			}
-		} catch (ZendOAuth\Exception\ExceptionInterface $e) {
+		} catch (Laminas\Oauth\Exception\ExceptionInterface $e) {
 			$oauth_ex = $e->getPrevious();
 			$prevErr = '';
 			if ($oauth_ex != null) {
@@ -102,7 +102,7 @@ class OAuthLib extends TikiDb_Bridge
 				$this->store_token($provider_key, $accessToken);
 
 				unset($_SESSION[$key]);
-			} catch (ZendOAuth\Exception\ExceptionInterface $e) {
+			} catch (Laminas\OAuth\Exception\ExceptionInterface $e) {
 				$oauth_ex = $e->getPrevious();
 				$prevErr = '';
 				if ($oauth_ex != null) {
@@ -129,7 +129,7 @@ class OAuthLib extends TikiDb_Bridge
 		}
 
 		if (! empty($config['accessToken']) && ! empty($config['accessTokenSecret'])) {
-			$token = new ZendOAuth\Token\Access();
+			$token = new Laminas\OAuth\Token\Access();
 			$token->setParams(
 				[
 					'oauth_token' => $config['accessToken'],
@@ -188,7 +188,7 @@ class OAuthLib extends TikiDb_Bridge
 	private function get_consumer($provider_key)
 	{
 		if ($configuration = $this->get_configuration($provider_key)) {
-			$consumer = new ZendOAuth\Consumer($configuration);
+			$consumer = new Laminas\OAuth\Consumer($configuration);
 			$httpClient = TikiLib::lib('tiki')->get_http_client();
 			$consumer->setHttpClient($httpClient);
 			return $consumer;

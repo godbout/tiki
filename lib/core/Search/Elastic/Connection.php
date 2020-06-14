@@ -467,11 +467,11 @@ class Search_Elastic_Connection
 			if ($data) {
 				$client->setRawBody($data);
 			}
-			$client->setMethod(Zend\Http\Request::METHOD_GET);
+			$client->setMethod(Laminas\Http\Request::METHOD_GET);
 			$client->setHeaders(['Content-Type: application/json']);
 			$response = $client->send();
 			return $this->handleResponse($response);
-		} catch (Zend\Http\Exception\ExceptionInterface $e) {
+		} catch (Laminas\Http\Exception\ExceptionInterface $e) {
 			throw new Search_Elastic_TransportException($e->getMessage());
 		}
 	}
@@ -480,13 +480,13 @@ class Search_Elastic_Connection
 	{
 		try {
 			$client = $this->getClient($path);
-			$client->getRequest()->setMethod(Zend\Http\Request::METHOD_PUT);
+			$client->getRequest()->setMethod(Laminas\Http\Request::METHOD_PUT);
 			$client->getRequest()->setContent($data);
 			$client->setHeaders(['Content-Type: application/json']);
 			$response = $client->send();
 
 			return $this->handleResponse($response);
-		} catch (Zend\Http\Exception\ExceptionInterface $e) {
+		} catch (Laminas\Http\Exception\ExceptionInterface $e) {
 			throw new Search_Elastic_TransportException($e->getMessage());
 		}
 	}
@@ -495,13 +495,13 @@ class Search_Elastic_Connection
 	{
 		try {
 			$client = $this->getClient($path);
-			$client->getRequest()->setMethod(Zend\Http\Request::METHOD_POST);
+			$client->getRequest()->setMethod(Laminas\Http\Request::METHOD_POST);
 			$client->getRequest()->setContent($data);
 			$client->setHeaders(['Content-Type: application/json']);
 			$response = $client->send();
 
 			return $this->handleResponse($response);
-		} catch (Zend\Http\Exception\ExceptionInterface $e) {
+		} catch (Laminas\Http\Exception\ExceptionInterface $e) {
 			throw new Search_Elastic_TransportException($e->getMessage());
 		}
 	}
@@ -510,12 +510,12 @@ class Search_Elastic_Connection
 	{
 		try {
 			$client = $this->getClient($path);
-			$client->getRequest()->setMethod(Zend\Http\Request::METHOD_DELETE);
+			$client->getRequest()->setMethod(Laminas\Http\Request::METHOD_DELETE);
 			$client->setHeaders(['Content-Type: application/json']);
 			$response = $client->send();
 
 			return $this->handleResponse($response);
-		} catch (Zend\Http\Exception\ExceptionInterface $e) {
+		} catch (Laminas\Http\Exception\ExceptionInterface $e) {
 			throw new Search_Elastic_TransportException($e->getMessage());
 		}
 	}
@@ -579,7 +579,7 @@ class Search_Elastic_Connection
 		$tikilib = TikiLib::lib('tiki');
 		try {
 			return $tikilib->get_http_client($full);
-		} catch (\Zend\Http\Exception\ExceptionInterface $e) {
+		} catch (\Laminas\Http\Exception\ExceptionInterface $e) {
 			throw new Search_Elastic_TransportException($e->getMessage());
 		}
 	}

@@ -22,7 +22,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 			['staticKeyFiltersForArrays' => [
 				'foo' => 'digits',
 			]],
-			['catchAllFilter' => new Zend\Filter\StringToUpper],
+			['catchAllFilter' => new Laminas\Filter\StringToUpper],
 		];
 
 		$filter = DeclFilter::fromConfiguration($configuration);
@@ -53,7 +53,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 	{
 		$this->expectError();
 		$configuration = [
-			['catchAllFilter' => new Zend\Filter\StringToUpper],
+			['catchAllFilter' => new Laminas\Filter\StringToUpper],
 		];
 
 		$filter = DeclFilter::fromConfiguration($configuration, ['catchAllFilter']);
@@ -73,7 +73,7 @@ class DeclFilter_ConfigureTest extends TikiTestCase
 	{
 		$configuration = [
 			['staticKeyUnset' => ['hello', 'world']],
-			['catchAllFilter' => new Zend\Filter\StringToUpper],
+			['catchAllFilter' => new Laminas\Filter\StringToUpper],
 		];
 
 		$filter = DeclFilter::fromConfiguration($configuration);

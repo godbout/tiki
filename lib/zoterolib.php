@@ -52,7 +52,7 @@ class ZoteroLib extends TikiDb_Bridge
 		);
 
 		if ($response && $response->isSuccessful()) {
-			$feed = Zend\Feed\Reader\Reader::importString($response->getBody());
+			$feed = Laminas\Feed\Reader\Reader::importString($response->getBody());
 
 			$data = [];
 			foreach ($feed as $entry) {
@@ -111,7 +111,7 @@ class ZoteroLib extends TikiDb_Bridge
 		if ($response->isSuccessful()) {
 			$entry = $response->getBody();
 			$entry = str_replace('<entry ', '<feed xmlns="http://www.w3.org/2005/Atom"><entry ', $entry) . '</feed>';
-			$feed = Zend\Feed\Reader\Reader::importString($entry);
+			$feed = Laminas\Feed\Reader\Reader::importString($entry);
 
 			foreach ($feed as $entry) {
 				return [

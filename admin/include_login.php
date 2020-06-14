@@ -52,7 +52,7 @@ $smarty->assign('gd_lib_found', function_exists('gd_info') ? 'y' : 'n');
 
 if ($prefs['feature_antibot'] === 'y' && $prefs['captcha_questions_active'] !== 'y' && $prefs['recaptcha_enabled'] !== 'y') {
 	// check Zend captcha will work
-	$captcha = new Zend\Captcha\Dumb;
+	$captcha = new Laminas\Captcha\Dumb;
 
 	try {
 		$captchaId = $captcha->getId();	// simple test for missing random generator

@@ -96,7 +96,7 @@ class Xmp
 				}
 			}
 			//now we can process fields
-			$filter   = new Zend\Filter\Word\CamelCaseToSeparator();
+			$filter   = new Laminas\Filter\Word\CamelCaseToSeparator();
 			foreach ($xmparray as $group => $fields) {
 				foreach ($fields as $name => $field) {
 					if (isset($this->specs[$group][$name])) {

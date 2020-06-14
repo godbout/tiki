@@ -26,7 +26,7 @@ class JitFilter_FilterTest extends TikiTestCase
 		];
 
 		$this->array = new JitFilter($this->array);
-		$this->array->setDefaultFilter(new Zend\I18n\Filter\Alnum);
+		$this->array->setDefaultFilter(new Laminas\I18n\Filter\Alnum);
 	}
 
 	protected function tearDown() : void
@@ -49,7 +49,7 @@ class JitFilter_FilterTest extends TikiTestCase
 	{
 		$this->assertEquals('bar123', $this->array['foo']);
 
-		$this->array->replaceFilter('foo', new Zend\Filter\Digits);
+		$this->array->replaceFilter('foo', new Laminas\Filter\Digits);
 		$this->assertEquals('123', $this->array['foo']);
 	}
 
@@ -57,9 +57,9 @@ class JitFilter_FilterTest extends TikiTestCase
 	{
 		$this->array->replaceFilters(
 			[
-				'foo' => new Zend\Filter\Digits,
-				'content' => new Zend\Filter\StripTags,
-				'baz' => [1 => new Zend\Filter\StringToUpper,],
+				'foo' => new Laminas\Filter\Digits,
+				'content' => new Laminas\Filter\StripTags,
+				'baz' => [1 => new Laminas\Filter\StringToUpper,],
 			]
 		);
 
@@ -72,9 +72,9 @@ class JitFilter_FilterTest extends TikiTestCase
 	{
 		$this->array->replaceFilters(
 			[
-				'foo' => new Zend\Filter\Digits,
-				'content' => new Zend\Filter\StripTags,
-				'baz' => new Zend\Filter\StringToUpper,
+				'foo' => new Laminas\Filter\Digits,
+				'content' => new Laminas\Filter\StripTags,
+				'baz' => new Laminas\Filter\StringToUpper,
 			]
 		);
 
@@ -82,11 +82,11 @@ class JitFilter_FilterTest extends TikiTestCase
 		$this->assertEquals('10  5 ', $this->array['content']);
 		$this->assertEquals('WORLD !', $this->array['baz'][1]);
 
-		$this->array->replaceFilter('baz', new Zend\I18n\Filter\Alpha);
+		$this->array->replaceFilter('baz', new Laminas\I18n\Filter\Alpha);
 		$this->assertEquals('world', $this->array['baz'][1]);
 
 		$this->array->replaceFilters(
-			['baz' => [1 => new Zend\Filter\Digits,],]
+			['baz' => [1 => new Laminas\Filter\Digits,],]
 		);
 
 		$this->assertEquals('hello', $this->array['baz'][0]);

@@ -8,8 +8,8 @@
 namespace Tiki\MailIn\Source;
 
 use Tiki\MailIn\Exception\TransportException;
-use Zend\Mail\Storage\Imap as ZendImap;
-use Zend\Mail\Exception\ExceptionInterface as ZendMailException;
+use Laminas\Mail\Storage\Imap as ZendImap;
+use Laminas\Mail\Exception\ExceptionInterface as ZendMailException;
 
 class Imap extends Pop3
 {

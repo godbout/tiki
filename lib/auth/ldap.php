@@ -10,10 +10,10 @@
  *  from a LDAP directory
  */
 
-use Zend\Ldap\Filter;
-use Zend\Ldap\Ldap;
-use Zend\Ldap\Exception\LdapException;
-use Zend\Ldap\Collection\DefaultIterator as LdapCollectionIterator;
+use Laminas\Ldap\Filter;
+use Laminas\Ldap\Ldap;
+use Laminas\Ldap\Exception\LdapException;
+use Laminas\Ldap\Collection\DefaultIterator as LdapCollectionIterator;
 
 class TikiLdapLib
 {
@@ -251,7 +251,7 @@ class TikiLdapLib
 		];
 
 		$options = [];
-		//create options array to handle it to \Zend\Ldap\Ldap
+		//create options array to handle it to \Laminas\Ldap\Ldap
 		foreach ($permittedOptions as $o) {
 			if (isset($this->options[$o])) {
 				$options[$o] = $this->options[$o];

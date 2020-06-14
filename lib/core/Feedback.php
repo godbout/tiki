@@ -304,7 +304,7 @@ class Feedback
 	/**
 	 * Print any feedback out to a log file
 	 *
-	 * @param \Zend\Log\Logger $log
+	 * @param \Laminas\Log\Logger $log
 	 * @param bool $clear - remove existing entries from the local storage after sending to log file
 	 */
 	public static function printToLog($log, $clear = false) {

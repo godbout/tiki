@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class Search_MySql_HighlightHelper implements Zend\Filter\FilterInterface
+class Search_MySql_HighlightHelper implements Laminas\Filter\FilterInterface
 {
 	private $words = [];
 	private $replacements = [];

@@ -93,13 +93,13 @@ function tiki_mail_setup()
 		if ($prefs['openpgp_gpg_pgpmimemail'] == 'y') {
 			$transport = new OpenPGP_Zend_Mail_Transport_Smtp();
 		} else {
-			$transport = new Zend\Mail\Transport\Smtp();
+			$transport = new Laminas\Mail\Transport\Smtp();
 		}
-		$transportOptions = new Zend\Mail\Transport\SmtpOptions($options);
+		$transportOptions = new Laminas\Mail\Transport\SmtpOptions($options);
 		$transport->setOptions($transportOptions);
 	} elseif ($prefs['zend_mail_handler'] == 'file') {
-		$transport = new Zend\Mail\Transport\File();
-		$transportOptions = new Zend\Mail\Transport\FileOptions(
+		$transport = new Laminas\Mail\Transport\File();
+		$transportOptions = new Laminas\Mail\Transport\FileOptions(
 			[
 				'path' => TIKI_PATH . '/temp',
 				'callback' => function ($transport) {
@@ -110,9 +110,9 @@ function tiki_mail_setup()
 		$transport->setOptions($transportOptions);
 	} elseif ($prefs['zend_mail_handler'] == 'sendmail' && ! empty($prefs['sender_email'])) {
 		// from http://framework.zend.com/manual/1.12/en/zend.mail.introduction.html#zend.mail.introduction.sendmail
-		$transport = new Zend\Mail\Transport\Sendmail('-f' . $prefs['sender_email']);
+		$transport = new Laminas\Mail\Transport\Sendmail('-f' . $prefs['sender_email']);
 	} else {
-		$transport = new Zend\Mail\Transport\Sendmail();
+		$transport = new Laminas\Mail\Transport\Sendmail();
 	}
 
 	$tiki_maillib__zend_mail_default_transport = $transport;
@@ -121,12 +121,12 @@ function tiki_mail_setup()
 }
 
 /**
- * @return Zend\Mail\Message
+ * @return Laminas\Mail\Message
  */
 function tiki_get_basic_mail()
 {
 	tiki_mail_setup();
-	$mail = new Zend\Mail\Message();
+	$mail = new Laminas\Mail\Message();
 	$mail->setEncoding('UTF-8');
 	$mail->getHeaders()->addHeaderLine('X-Tiki', 'yes');
 	return $mail;
@@ -134,7 +134,7 @@ function tiki_get_basic_mail()
 
 /**
  * @param string|null $fromName Optional name to be used when sending emails
- * @return Zend\Mail\Message
+ * @return Laminas\Mail\Message
  */
 function tiki_get_admin_mail($fromName = null)
 {
@@ -187,7 +187,7 @@ function tiki_send_email($email)
 		$email->setBcc([]);
 	}
 
-	/* @var $tiki_maillib__zend_mail_default_transport Zend\Mail\Transport\TransportInterface */
+	/* @var $tiki_maillib__zend_mail_default_transport Laminas\Mail\Transport\TransportInterface */
 	global $tiki_maillib__zend_mail_default_transport;
 
 	$tiki_maillib__zend_mail_default_transport->send($email);

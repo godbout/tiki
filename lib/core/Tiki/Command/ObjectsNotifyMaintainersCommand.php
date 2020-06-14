@@ -86,9 +86,9 @@ class ObjectsNotifyMaintainersCommand extends Command
 
 						$mail->setSubject("Freshness notification");
 
-						$bodyPart = new \Zend\Mime\Message();
-						$bodyMessage = new \Zend\Mime\Part($content);
-						$bodyMessage->type = \Zend\Mime\Mime::TYPE_HTML;
+						$bodyPart = new \Laminas\Mime\Message();
+						$bodyMessage = new \Laminas\Mime\Part($content);
+						$bodyMessage->type = \Laminas\Mime\Mime::TYPE_HTML;
 						if ($prefs['default_mail_charset']) {
 							$bodyMessage->setCharset($prefs['default_mail_charset']);
 						}

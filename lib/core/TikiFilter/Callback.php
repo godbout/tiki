@@ -5,7 +5,7 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-class TikiFilter_Callback implements Zend\Filter\FilterInterface
+class TikiFilter_Callback implements Laminas\Filter\FilterInterface
 {
 	private $callback;
 
