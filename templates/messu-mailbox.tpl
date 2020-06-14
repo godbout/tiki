@@ -117,7 +117,7 @@
 			onclick="confirmPopup('{tr}Delete selected messages?{/tr}')"{/if}
 		>
 		<input type="submit" class="btn btn-primary btn-sm" name="archive" value="{tr}Archive{/tr}">
-		<input type="submit" class="btn btn-primary btn-sm" name="download" value="{tr}Download{/tr}">
+		<input type="submit" class="btn btn-primary btn-sm no-timeout" name="download" value="{tr}Download{/tr}">
 		<select name="action" class="form-control ml-4 mr-2">
 			<option value="isRead_y">{tr}Mark as read{/tr}</option>
 			<option value="isRead_n">{tr}Mark as unread{/tr}</option>
