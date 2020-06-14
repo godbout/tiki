@@ -22,12 +22,10 @@ $smarty->assign('menu_info', $menu_info);
 if (! isset($_REQUEST["optionId"])) {
 	$_REQUEST["optionId"] = 0;
 }
-if (isset($_REQUEST["remove"])) {
-	$access->check_authenticity();
+if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
 	$polllib->remove_poll_option($_REQUEST["remove"]);
 }
-if (isset($_REQUEST["save"])) {
-	check_ticket('admin-poll-options');
+if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
 	$polllib->replace_poll_option($_REQUEST["pollId"], $_REQUEST["optionId"], $_REQUEST["title"], $_REQUEST['position']);
 	$_REQUEST["optionId"] = 0;
 }
@@ -45,7 +43,6 @@ $smarty->assign('votes', $info["votes"]);
 $channels = $polllib->list_poll_options($_REQUEST["pollId"]);
 $smarty->assign('ownurl', $tikilib->httpPrefix() . $_SERVER["REQUEST_URI"]);
 $smarty->assign_by_ref('channels', $channels);
-ask_ticket('admin-poll-options');
 // disallow robots to index page:
 $smarty->assign('metatag_robots', 'NOINDEX, NOFOLLOW');
 // Display the template
