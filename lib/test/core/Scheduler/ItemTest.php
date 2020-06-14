@@ -49,6 +49,7 @@ class ItemTest extends TestCase
 			'active',
 			0,
 			0,
+			null,
 			$logger
 		);
 
@@ -103,6 +104,7 @@ class ItemTest extends TestCase
 			'active',
 			0,
 			0,
+			null,
 			$logger
 		);
 
@@ -148,6 +150,7 @@ class ItemTest extends TestCase
 			'active',
 			0,
 			1,
+			null,
 			$logger
 		);
 
@@ -186,6 +189,7 @@ class ItemTest extends TestCase
 			'active',
 			0,
 			0,
+			null,
 			$logger
 		);
 

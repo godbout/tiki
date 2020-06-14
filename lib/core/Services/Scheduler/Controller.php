@@ -69,6 +69,8 @@ class Services_Scheduler_Controller
 	 */
 	public function action_run($input)
 	{
+		global $user;
+
 		Services_Exception_Denied::checkGlobal('admin_users');
 
 		$schedulerId = $input->schedulerId->int();
@@ -87,7 +89,7 @@ class Services_Scheduler_Controller
 		// Prevent feedback collection during scheduler run from UI
 		$feedback = isset($_SESSION['tikifeedback']) ? $_SESSION['tikifeedback'] : [];
 
-		$result = $schedulerTask->execute(true);
+		$result = $schedulerTask->execute($user);
 
 		// Remove feedback collected during the scheduler process
 		$_SESSION['tikifeedback'] = $feedback;
@@ -106,6 +108,46 @@ class Services_Scheduler_Controller
 			'schedulerId' => $schedulerId,
 			'name' => $scheduler['name'],
 			'message' => $message,
+		];
+	}
+
+	/**
+	 * Execute scheduler in the next time the “scheduler” runs
+	 *
+	 * @param $input
+	 * @return array
+	 * @throws Services_Exception_Denied
+	 * @throws Services_Exception_NotFound
+	 */
+	public function action_run_background($input)
+	{
+		global $user;
+
+		Services_Exception_Denied::checkGlobal('admin_users');
+
+		$schedulerId = $input->schedulerId->int();
+
+		$scheduler = $this->lib->get_scheduler($schedulerId);
+		if (! $scheduler) {
+			throw new Services_Exception_NotFound;
+		}
+
+		$schedulerId = $this->lib->set_scheduler(
+			$scheduler['name'],
+			$scheduler['description'],
+			$scheduler['task'],
+			$scheduler['params'],
+			$scheduler['run_time'],
+			$scheduler['status'],
+			$scheduler['re_run'],
+			$scheduler['run_only_once'],
+			$scheduler['id'],
+			null,
+			$user
+		);
+		return [
+			'title' => tr('Scheduler %0 will be executed on next cron run', $scheduler['name']),
+			'schedulerId' => $schedulerId,
 		];
 	}
 

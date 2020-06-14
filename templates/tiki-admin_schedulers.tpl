@@ -96,6 +96,11 @@
 													{icon name="play" _menu_text='y' _menu_icon='y' alt="{tr}Run now{/tr}"}
 												</a>
 											</action>
+											<action>
+												<a href="{service controller=scheduler action=run_background schedulerId=$schedulers[scheduler].id}" onclick="runNowBackground(event)" disabled>
+													{icon name="play" _menu_text='y' _menu_icon='y' alt="{tr}Run now{/tr} ({tr}Background{/tr})"}
+												</a>
+											</action>
 										{/if}
 										<action>
 											<a href="tiki-admin_schedulers.php?scheduler={$schedulers[scheduler].id}">

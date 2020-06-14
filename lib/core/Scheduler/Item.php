@@ -20,6 +20,7 @@ class Scheduler_Item
 	public $re_run;
 	public $run_only_once;
 	public $creation_date;
+	public $user_run_now;
 	private $logger;
 
 	const STATUS_ACTIVE = 'active';
@@ -32,7 +33,7 @@ class Scheduler_Item
 		'TikiCheckerCommandTask' => 'TikiCheckerCommand',
 	];
 
-	public function __construct($id, $name, $description, $task, $params, $run_time, $status, $re_run, $run_only_once, LoggerInterface $logger)
+	public function __construct($id, $name, $description, $task, $params, $run_time, $status, $re_run, $run_only_once, $user_run_now, LoggerInterface $logger)
 	{
 		$this->id = $id;
 		$this->name = $name;
@@ -43,6 +44,7 @@ class Scheduler_Item
 		$this->status = $status;
 		$this->re_run = $re_run;
 		$this->run_only_once = $run_only_once;
+		$this->user_run_now = $user_run_now;
 		$this->logger = $logger;
 	}
 
@@ -67,7 +69,8 @@ class Scheduler_Item
 			$this->re_run,
 			$this->run_only_once,
 			$this->id,
-			$this->creation_date
+			$this->creation_date,
+			$this->user_run_now
 		);
 
 		if ($id) {
@@ -231,14 +234,12 @@ class Scheduler_Item
 	}
 
 	/**
-	 * @param bool	$userTriggered	True if user triggered the execution, false otherwise.
+	 * @param string	$userTriggered	True if user triggered the execution, false otherwise.
 	 *
 	 * @return	array	The execution status and output message
 	 */
-	public function execute($userTriggered = false)
+	public function execute($userTriggered = null)
 	{
-		global $user, $prefs;
-
 		$schedlib = TikiLib::lib('scheduler');
 		$status = $schedlib->get_run_status($this->id);
 
@@ -268,7 +269,7 @@ class Scheduler_Item
 			];
 		}
 
-		if($this->run_only_once) {
+		if ($this->run_only_once) {
 			$schedlib->setInactive($this->id);
 		}
 
@@ -291,10 +292,10 @@ class Scheduler_Item
 		$executionStatus = $result ? 'done' : 'failed';
 		$outputMessage = $task->getOutput();
 
-		if ($userTriggered) {
+		if (isset($userTriggered)) {
 			$userlib = TikiLib::lib('user');
-			$email = $userlib->get_user_email($user);
-			$outputMessage = sprintf('Run triggered by %s - %s.' . PHP_EOL, $user, $email) . (empty($outputMessage) ? '' : '<hr>') . $outputMessage;
+			$email = $userlib->get_user_email($userTriggered);
+			$outputMessage = sprintf('Run triggered by %s - %s.' . PHP_EOL, $userTriggered, $email) . (empty($outputMessage) ? '' : '<hr>') . $outputMessage;
 		}
 
 		$endTime = $schedlib->end_scheduler_run($this->id, $runId, $executionStatus, $outputMessage, null, 0);
@@ -345,6 +346,7 @@ class Scheduler_Item
 			$scheduler['status'],
 			$scheduler['re_run'],
 			$scheduler['run_only_once'],
+			$scheduler['user_run_now'],
 			$logger
 		);
 	}

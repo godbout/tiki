@@ -1,0 +1,1 @@
+ALTER TABLE `tiki_scheduler` ADD `user_run_now` VARCHAR(255) NULL DEFAULT NULL;

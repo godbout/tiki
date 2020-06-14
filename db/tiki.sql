@@ -4143,7 +4143,8 @@ CREATE TABLE `tiki_scheduler` (
   `status` VARCHAR(10),
   `re_run` TINYINT,
   `run_only_once` TINYINT,
-  `creation_date` INT(14)
+  `creation_date` INT(14),
+  `user_run_now` VARCHAR(255) NULL DEFAULT NULL
 ) ENGINE=MyISAM;
 
 DROP TABLE IF EXISTS `tiki_scheduler_run`;

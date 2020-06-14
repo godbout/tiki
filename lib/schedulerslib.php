@@ -53,9 +53,10 @@ class SchedulersLib extends TikiLib
 	 * @param int $run_only_once 0 or 1 to run a scheduler only once
 	 * @param int|null $scheduler_id The scheduler id (optional)
 	 * @param int|null $creation_date schedule created date
+	 * @param string $user_run_now user that request a run now in background
 	 * @return int    The scheduler id
 	 */
-	public function set_scheduler($name, $description, $task, $params, $run_time, $status, $re_run, $run_only_once, $scheduler_id = null, $creation_date = null)
+	public function set_scheduler($name, $description, $task, $params, $run_time, $status, $re_run, $run_only_once, $scheduler_id = null, $creation_date = null, $user_run_now = null)
 	{
 
 		$values = [
@@ -67,6 +68,7 @@ class SchedulersLib extends TikiLib
 			'status' => $status,
 			're_run' => $re_run,
 			'run_only_once' => $run_only_once,
+			'user_run_now' => $user_run_now,
 		];
 
 		$schedulersTable = $this->table('tiki_scheduler');
@@ -182,6 +184,12 @@ class SchedulersLib extends TikiLib
 			'id' => $run_id,
 		]);
 
+		$schedulersTable = $this->table('tiki_scheduler');
+		$schedulersTable->update([
+			'user_run_now' => null
+		], [
+			'id' => $scheduler_id
+		]);
 		return $end_time;
 	}
 

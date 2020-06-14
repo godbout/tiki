@@ -23,7 +23,9 @@ class Scheduler_Manager
 
 		// Get all active schedulers
 		$schedLib = TikiLib::lib('scheduler');
-		$activeSchedulers = $schedLib->get_scheduler(null, 'active');
+		$schedulersTable = TikiDb::get()->table('tiki_scheduler');
+		$conditions['status'] = $schedulersTable->expr('($$ = ? OR user_run_now IS NOT NULL)', ['active']);
+		$activeSchedulers = $schedLib->get_scheduler(null, null, $conditions);
 
 		$this->logger->info(sprintf("Found %d active scheduler(s).", sizeof($activeSchedulers)));
 
@@ -54,7 +56,8 @@ class Scheduler_Manager
 				$lastRunDate = (int)($lastRunDate - ($lastRunDate % 60));
 				$lastShould = Scheduler_Utils::get_previous_run_date($scheduler['run_time']);
 
-				if (isset($lastRunDate) && $lastShould >= $lastRunDate) {
+				if ((isset($lastRunDate) && $lastShould >= $lastRunDate)
+					|| ! empty($scheduler['user_run_now'])) {
 					$runTasks[] = $scheduler;
 					$this->logger->info(sprintf("Run scheduler %s", $scheduler['name']));
 					continue;
@@ -91,7 +94,7 @@ class Scheduler_Manager
 			$schedulerTask = Scheduler_Item::fromArray($runTask, $this->logger);
 
 			$this->logger->notice(sprintf(tra('***** Running scheduler %s *****'), $schedulerTask->name));
-			$result = $schedulerTask->execute();
+			$result = $schedulerTask->execute($runTask['user_run_now']);
 
 			if ($result['status'] == 'failed') {
 				$this->logger->error(sprintf(tra("***** Scheduler %s - FAILED *****\n%s"), $schedulerTask->name, $result['message']));
