@@ -14,9 +14,7 @@ $access->check_feature('feature_polls');
 $access->check_permission('tiki_p_admin_polls');
 
 if (! isset($_REQUEST["pollId"])) {
-	$smarty->assign('msg', tra("No poll indicated"));
-	$smarty->display("error.tpl");
-	die;
+	Feedback::error(tr('No poll indicated'));
 }
 $smarty->assign('pollId', $_REQUEST["pollId"]);
 $menu_info = $polllib->get_poll($_REQUEST["pollId"]);
