@@ -22,10 +22,10 @@
 	{/if}
 	{tab name=$title}
 		<h2>{$title}</h2>
-		<form action="tiki-admin_polls.php?save=1" method="post">
+		<form action="tiki-admin_polls.php" method="post">
 			{ticket}
-			<input type="hidden" name="pollId" value="{$pollId|escape}">
-
+			<input type="hidden" name="pollId" value="{$pollId|escape:'attr'}">
+			<input type="hidden" name="save" value="1">
 			<div class="form-group row">
 				<label class="col-sm-3 col-form-label" for="title">{tr}Title{/tr}</label>
 				<div class="col-sm-7">
