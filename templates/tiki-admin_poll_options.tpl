@@ -67,9 +67,14 @@
 								</a>
 							</action>
 							<action>
-								<a href="tiki-admin_poll_options.php?pollId={$pollId}&amp;remove={$channels[user].optionId}">
-									{icon name='remove' _menu_text='y' _menu_icon='y' alt="{tr}Remove{/tr}"}
-								</a>
+								<form action="tiki-admin_poll_options.php" method="post">
+									{ticket}
+									<input type="hidden" name="pollId" value="{$pollId|escape:'attr'}">
+									<input type="hidden" name="remove" value="{$channels[user].optionId|escape:'attr'}">
+									<button type="submit" class="btn btn-link link-list" onclick="confirmPopup('{tr}Remove poll option?{/tr}')">
+										{icon name="remove"} {tr}Remove{/tr}
+									</button>
+								</form>
 							</action>
 						{/strip}
 					{/actions}
