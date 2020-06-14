@@ -23,10 +23,20 @@ if (! isset($_REQUEST["optionId"])) {
 	$_REQUEST["optionId"] = 0;
 }
 if (isset($_REQUEST["remove"]) && $access->checkCsrf(true)) {
-	$polllib->remove_poll_option($_REQUEST["remove"]);
+	$result = $polllib->remove_poll_option($_REQUEST["remove"]);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Poll option removed'));
+	} else {
+		Feedback::error(tr('Poll option not removed'));
+	}
 }
 if (isset($_REQUEST["save"]) && $access->checkCsrf()) {
-	$polllib->replace_poll_option($_REQUEST["pollId"], $_REQUEST["optionId"], $_REQUEST["title"], $_REQUEST['position']);
+	$result = $polllib->replace_poll_option($_REQUEST["pollId"], $_REQUEST["optionId"], $_REQUEST["title"], $_REQUEST['position']);
+	if ($result && $result->numRows()) {
+		Feedback::success(tr('Poll option added or changed'));
+	} else {
+		Feedback::error(tr('No poll options added or changed'));
+	}
 	$_REQUEST["optionId"] = 0;
 }
 $smarty->assign('optionId', $_REQUEST["optionId"]);
