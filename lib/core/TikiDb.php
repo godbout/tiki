@@ -32,8 +32,15 @@ abstract class TikiDb
 	public static function get() // {{{
 	{
 		if (empty(self::$instance)) {
-			echo file_get_contents('templates/database_connection_error.html');
-			die();
+			global $dbfail_url;
+
+			if (! empty($dbfail_url)) {
+				header('location: ' . $dbfail_url);
+				exit(1);
+			} else {
+				echo file_get_contents('templates/database_connection_error.html');
+				die();
+			}
 		}
 
 		return self::$instance;
