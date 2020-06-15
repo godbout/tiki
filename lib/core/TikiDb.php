@@ -31,6 +31,11 @@ abstract class TikiDb
 	 */
 	public static function get() // {{{
 	{
+		if (empty(self::$instance)) {
+			echo file_get_contents('templates/database_connection_error.html');
+			die();
+		}
+
 		return self::$instance;
 	} // }}}
 
