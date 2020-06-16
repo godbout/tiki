@@ -5940,17 +5940,17 @@
         },
         {
             "name": "plotly/plotly.js",
-            "version": "v1.54.1",
+            "version": "v1.54.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/plotly/plotly.js.git",
-                "reference": "36b478d1a39e77d77ad10219d58f1b223884d167"
+                "reference": "fbb5742241dcc46b84f508bad812c975d7f06b16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-36b478d1a39e77d77ad10219d58f1b223884d167-zip-abd713.zip",
-                "reference": "36b478d1a39e77d77ad10219d58f1b223884d167",
-                "shasum": "5e86dba36e997098145d7c5388150d321c556504"
+                "url": "https://composer.tiki.org/dist/plotly/plotly-js/plotly-plotly-js-fbb5742241dcc46b84f508bad812c975d7f06b16-zip-1f7c2a.zip",
+                "reference": "fbb5742241dcc46b84f508bad812c975d7f06b16",
+                "shasum": "35218b919b084244de046e2261b3158493b0ab87"
             },
             "type": "library",
             "notification-url": "https://packagist.org/downloads/",
@@ -5972,7 +5972,7 @@
                 "plotting",
                 "visualization"
             ],
-            "time": "2020-05-04T23:23:47+00:00"
+            "time": "2020-06-10T13:41:51+00:00"
         },
         {
             "name": "pragmarx/google2fa",
@@ -6983,7 +6983,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.4.41",
+            "version": "v3.4.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -7047,7 +7047,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.41",
+            "version": "v3.4.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
@@ -7119,7 +7119,7 @@
         },
         {
             "name": "symfony/css-selector",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -7172,7 +7172,7 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.4.9",
+            "version": "v4.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
@@ -7229,7 +7229,7 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v3.4.41",
+            "version": "v3.4.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
@@ -7300,7 +7300,7 @@
         },
         {
             "name": "symfony/filesystem",
-            "version": "v4.4.9",
+            "version": "v4.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -7350,7 +7350,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.4.9",
+            "version": "v4.4.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -7803,7 +7803,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.41",
+            "version": "v3.4.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -7852,7 +7852,7 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.4.41",
+            "version": "v3.4.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -9329,17 +9329,17 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "8.5.5",
+            "version": "8.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7"
+                "reference": "3f9c4079d1407cd84c51c02c6ad1df6ec2ed1348"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-63dda3b212a0025d380a745f91bdb4d8c985adb7-zip-08b224.zip",
-                "reference": "63dda3b212a0025d380a745f91bdb4d8c985adb7",
-                "shasum": "f90353bc63b1500919e5746b5fee21c488aa0e5e"
+                "url": "https://composer.tiki.org/dist/phpunit/phpunit/phpunit-phpunit-3f9c4079d1407cd84c51c02c6ad1df6ec2ed1348-zip-903f89.zip",
+                "reference": "3f9c4079d1407cd84c51c02c6ad1df6ec2ed1348",
+                "shasum": "c698097ce1542f9f5f0328280c540c8e3ebe3892"
             },
             "require": {
                 "doctrine/instantiator": "^1.2.0",
@@ -9408,7 +9408,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-05-22T13:51:52+00:00"
+            "time": "2020-06-15T10:45:47+00:00"
         },
         {
             "name": "phpunit/phpunit-selenium",
@@ -10198,7 +10198,7 @@
         },
         {
             "name": "symfony/browser-kit",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/browser-kit.git",
@@ -10257,7 +10257,7 @@
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v5.1.0",
+            "version": "v5.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
