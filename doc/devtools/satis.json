@@ -2151,6 +2151,7 @@
 		"squizlabs/php_codesniffer": "^3.1",
 		"studio-42/elfinder": ">=2.1",
 		"svg-edit/svg-edit": ">=2.6",
+		"svg-edit/svgedit": "^5.1",
 		"symfony/config": ">=2.4.3",
 		"symfony/console": ">=2.4.1",
 		"symfony/css-selector": ">=3.0",
