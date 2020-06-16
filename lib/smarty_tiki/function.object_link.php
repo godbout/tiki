@@ -120,7 +120,7 @@ function smarty_function_object_link_default($smarty, $object, $title = null, $t
 		$text = TikiLib::lib('wiki')->get_without_namespace($title);
 	}
 
-	$escapedText = smarty_modifier_escape($text ? $text : tra('No title specified'));
+	$escapedText = smarty_modifier_escape($text ? $text : tra('No title specified'), 'html', 'UTF-8', false);
 
 	if ($url) {
 		$escapedHref = smarty_modifier_escape(TikiLib::tikiUrlOpt($url));
