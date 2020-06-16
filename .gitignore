@@ -81,3 +81,5 @@ permissioncheck/.htaccess
 /whelp
 /phpunit
 /.phpunit.result.cache
+/.phplint.yml
+/phplint
