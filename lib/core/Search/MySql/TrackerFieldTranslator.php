@@ -7,28 +7,30 @@
 
 class Search_MySql_TrackerFieldTranslator
 {
-  private $unified_mysql_short_field_names;
+	private $unified_mysql_short_field_names;
 
-  public function __construct()
-  {
-    global $prefs;
-    $this->unified_mysql_short_field_names = isset($prefs['unified_mysql_short_field_names'])
-      && $prefs['unified_mysql_short_field_names'] === 'y';
-  }
+	public function __construct()
+	{
+		global $prefs;
+		$this->unified_mysql_short_field_names = isset($prefs['unified_mysql_short_field_names'])
+			&& $prefs['unified_mysql_short_field_names'] === 'y';
+	}
 
-  public function shortenize($fieldName) {
-    if ($this->unified_mysql_short_field_names && substr($fieldName, 0, 14) === 'tracker_field_') {
-      return 'tf_'.substr($fieldName, 14);
-    } else {
-      return $fieldName;
-    }
-  }
+	public function shortenize($fieldName)
+	{
+		if ($this->unified_mysql_short_field_names && substr($fieldName, 0, 14) === 'tracker_field_') {
+			return 'tf_' . substr($fieldName, 14);
+		} else {
+			return $fieldName;
+		}
+	}
 
-  public function normalize($fieldName) {
-    if ($this->unified_mysql_short_field_names && substr($fieldName, 0, 3) === 'tf_') {
-      return 'tracker_field_'.substr($fieldName, 3);
-    } else {
-      return $fieldName;
-    }
-  }
+	public function normalize($fieldName)
+	{
+		if ($this->unified_mysql_short_field_names && substr($fieldName, 0, 3) === 'tf_') {
+			return 'tracker_field_' . substr($fieldName, 3);
+		} else {
+			return $fieldName;
+		}
+	}
 }
