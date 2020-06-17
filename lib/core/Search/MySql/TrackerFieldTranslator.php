@@ -7,9 +7,17 @@
 
 class Search_MySql_TrackerFieldTranslator
 {
-  public function shortenize($fieldName) {
+  private $unified_mysql_short_field_names;
+
+  public function __construct()
+  {
     global $prefs;
-    if ($prefs['unified_mysql_short_field_names'] === 'y' && substr($fieldName, 0, 14) === 'tracker_field_') {
+    $this->unified_mysql_short_field_names = isset($prefs['unified_mysql_short_field_names'])
+      && $prefs['unified_mysql_short_field_names'] === 'y';
+  }
+
+  public function shortenize($fieldName) {
+    if ($this->unified_mysql_short_field_names && substr($fieldName, 0, 14) === 'tracker_field_') {
       return 'tf_'.substr($fieldName, 14);
     } else {
       return $fieldName;
@@ -17,8 +25,7 @@ class Search_MySql_TrackerFieldTranslator
   }
 
   public function normalize($fieldName) {
-    global $prefs;
-    if ($prefs['unified_mysql_short_field_names'] === 'y' && substr($fieldName, 0, 3) === 'tf_') {
+    if ($this->unified_mysql_short_field_names && substr($fieldName, 0, 3) === 'tf_') {
       return 'tracker_field_'.substr($fieldName, 3);
     } else {
       return $fieldName;
