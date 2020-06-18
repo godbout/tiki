@@ -141,6 +141,7 @@ function prefs_jquery_list($partial = false)
 			'type' => 'flag',
 			'default' => 'n',
 			'tags' => ['advanced'],
+			'keywords' => 'smart menu',
 		],
 		'jquery_smartmenus_mode' => [
 			'name' => tra('SmartMenus Mode'),
