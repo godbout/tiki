@@ -97,16 +97,15 @@ function smarty_function_menu($params, $smarty)
 		$structured = [];
 		$activeSection = null;
 		foreach ($channels['data'] as $element) {
-				$attribute = TikiLib::lib('attribute')->get_attribute('menu', $element["optionId"], 'tiki.menu.templatedgroupid');
-				if ($attribute && $catName = $categGroups[$attribute]) {
-					$element["name"] = str_replace("--groupname--", $catName, $element["name"]);
-					$element["url"] = str_replace("--groupname--", $catName, $element["name"]);
-					$element["sefurl"] = str_replace("--groupname--", $catName, $element["sefurl"]);
-					$element["canonic"] = str_replace("--groupname--", $catName, $element["canonic"]);
-				} elseif ($attribute && ! $categGroups[$attribute]) {
-					continue;
-				}
-
+			$attribute = TikiLib::lib('attribute')->get_attribute('menu', $element["optionId"], 'tiki.menu.templatedgroupid');
+			if ($attribute && $catName = $categGroups[$attribute]) {
+				$element["name"] = str_replace("--groupname--", $catName, $element["name"]);
+				$element["url"] = str_replace("--groupname--", $catName, $element["name"]);
+				$element["sefurl"] = str_replace("--groupname--", $catName, $element["sefurl"]);
+				$element["canonic"] = str_replace("--groupname--", $catName, $element["canonic"]);
+			} elseif ($attribute && ! $categGroups[$attribute]) {
+				continue;
+			}
 
 			if ($element['type'] == 's') {
 				$structured[] = $element;
@@ -130,17 +129,19 @@ function smarty_function_menu($params, $smarty)
 				$level = (int)$element['type'];
 				if ($activeSection) {
 					//If the element is at a higher level than active section
-					if($level < ((int)$activeSection['type']) || $activeSection['type'] == 'o') {
+					if ($level < (int) $activeSection['type'] || $activeSection['type'] == 'o') {
 						$structured[] = $element;
 						$structuredSize = count($structured);
 						$activeSection = &$structured[$structuredSize-1];
 
 						$activeSection['children'] = [];
+					} else 	if ($level === (int) $activeSection['type'] || $activeSection['type'] === 'o') {
+						$element['parent'] = &$activeSection['parent'];
+						$activeSection['parent']['children'][] = $element;
 					} else {
-						$element['parent'] = $activeSection;
+						$element['parent'] = &$activeSection;
 						$activeSection['children'][] = $element;
-						$activeSectionSize = count($activeSection['children']);
-						$activeSection = &$activeSection['children'][$activeSectionSize-1];
+						$activeSection = &$activeSection['children'][count($activeSection['children']) - 1];
 					}
 				} else {
 					$structured[] = $element;

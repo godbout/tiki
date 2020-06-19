@@ -260,7 +260,11 @@ class MenuLib extends TikiLib
 				if ($option['type'] === 's' || $option['type'] === 'r') {
 					$parent = 0;
 				}
-				$option['parent'] = $parent;
+				if ($option['type'] === $treeOut[$parent]['type']) {
+					$option['parent'] = $treeOut[$parent]['parent'];
+				} else {
+					$option['parent'] = $parent;
+				}
 				$option['type_description'] = tra($types[$option['type']]);
 				$parent = (int) $option['optionId'];
 				$treeOut[$option['optionId']] = $option;

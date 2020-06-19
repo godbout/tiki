@@ -81,7 +81,7 @@
 				<ol id="options">
 					{$prevpos = 0}
 					{foreach $options as $option}
-						<li class="row" id="node_{$option.optionId}" class="clearfix" data-position="{$option.position}" data-parent="{$option.parent}" data-type="{$option.type}">
+						<li class="row clearfix" id="node_{$option.optionId}" data-position="{$option.position}" data-parent="{$option.parent}" data-type="{$option.type}">
 							<div class="col-sm-12">
 								{if $option.name}
 									{capture assign='tooltip'}{strip}
