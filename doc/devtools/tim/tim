@@ -12,21 +12,23 @@ usage()
 {
 cat << EOF
 TIM - Tiki Instance Manager
-usage: $0 -c <command>[:subcommand] -u <user> -t <svn tag> -i <instance id>
+usage: $0 -c <command>[:subcommand] -u <user> -g <git branch> -t <svn tag> -i <instance id>
 
 OPTIONS:
    -h      Show this message
    -c      Command (one of: create, destroy, snapshot, debug, info[:versions|diskspace], update, reset)
    -i      id of instance
    -u      username on Tiki.org 
-   -U      userid on Tiki.org 
+   -U      userid on Tiki.org
+   -r      GIT Repository
+   -g      GIT Branch
    -t      SVN Tag (Tiki version)
    -p      admin password (simple passwords only)
    -P      Subdirectory path
 EOF
 }
 
-while getopts “hc:i:t:u:U:p:P:s:” OPTION
+while getopts “hc:i:t:u:U:p:P:s:g:r:” OPTION
 do
 	case $OPTION in
 		h)
@@ -44,6 +46,9 @@ do
 		i)
 			ID=$(echo "$OPTARG" | sed -e 's/[^0-9]//g')
 			;;
+		g)
+			GITBRANCH="$OPTARG"
+			;;
 		t)
 			SVNTAG=$(echo "$OPTARG" | sed -e 's/[^a-zA-Z0-9.]//g')
 			;;
@@ -60,6 +65,9 @@ do
 		P)
 			TPATH="$OPTARG"
 			;;
+		r)
+			GITREP="$OPTARG"
+			;;
 		?)
 			usage
 			exit
@@ -73,11 +81,18 @@ then
 	exit 1
 fi
 
+if [[ -z $GITREP ]]
+then
+	GITREP='https://gitlab.com/tikiwiki/tiki.git'
+fi
+
 setup
 
 debug()
 {
 	echo "COMMAND: $COMMAND"
+	echo "GITREP: $GITREP"
+	echo "GITBRANCH: $GITBRANCH"
 	echo "SVNTAG: $SVNTAG"
 	echo "TUSER: $TUSER"
 	echo "TUSERID: $TUSERID"
@@ -137,10 +152,18 @@ update()
 	startlog
 	echo "UPDATE" > $INSTANCE_LOCK
 	cd $INSTANCE_DIR
-	log "Doing SVN upgrade (just in case)"
-	svn upgrade
-	log "SVN upping"
-	svn up
+
+	if [[ ! -z $GITBRANCH ]]
+	then
+		log "GIT pull"
+		git pull
+	else
+		log "Doing SVN upgrade (just in case)"
+		svn upgrade
+		log "SVN upping"
+		svn up
+	fi
+
 	log "Running setup.sh"
 	sh setup.sh -u $TIM_USER -g $TIM_GROUP -n fix
 	log "Running php console.php d:u (database upgrade)"
@@ -233,7 +256,7 @@ info()
 case ${COMMAND} in
 	create)
 		# TODO: Check INSTANCE_DIR not exists
-		if [[ -z $TUSERID ]] || [[ -z $SVNTAG ]]
+		if [[ -z $TUSERID ]] && ([[ -z $SVNTAG ]] || ([[ -z $GITBRANCH ]] && [[ -z $GITREP ]]))
 		then
 			echo "FAIL: Missing parameters"
 			usage
@@ -249,7 +272,12 @@ case ${COMMAND} in
 			exit 1
 		fi
 		# This is simply too long for synchronous feedback
-		$PREFIX/tim-create -t "$SVNTAG" -u "$TUSER" -U "$TUSERID" -i "$ID" &
+		if [[ ! -z $GITBRANCH ]]
+		then
+			$PREFIX/tim-create -r "$GITREP" -g "$GITBRANCH" -u "$TUSER" -U "$TUSERID" -i "$ID" &
+		else
+			$PREFIX/tim-create -t "$SVNTAG" -u "$TUSER" -U "$TUSERID" -i "$ID" &
+		fi
 		exit 0
 		;;
 	destroy)

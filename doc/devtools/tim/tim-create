@@ -30,19 +30,21 @@ usage()
 {
 cat << EOF
 TIM-create - Tiki Instance Creator
-usage: $0 -u <user> -t <svn tag> -i <instance id>
+usage: $0 -u <user> -t <svn tag> -g <git branch> -i <instance id>
 
 OPTIONS:
    -h      Show this message
    -i      id of instance
-   -u      username on Tiki.org 
-   -U      userid on Tiki.org 
+   -u      username on Tiki.org
+   -U      userid on Tiki.org
+   -r      GIT Repository
+   -g      GIT branch
    -t      SVN Tag (Tiki version)
    -P      Subdirectory path
 EOF
 }
 
-while getopts “hc:i:t:u:U:p:” OPTION
+while getopts “hc:i:t:u:U:p:g:r:” OPTION
 do
 	case $OPTION in
 		h)
@@ -51,6 +53,9 @@ do
 			;;
 		i)
 			ID=$OPTARG
+			;;
+		g)
+			GITBRANCH=$OPTARG
 			;;
 		t)
 			SVNTAG=$OPTARG
@@ -64,6 +69,9 @@ do
 		p)
 			TPATH=$OPTARG
 			;;
+		r)
+			GITREP="$OPTARG"
+			;;
 		?)
 			usage
 			exit
@@ -71,7 +79,7 @@ do
 	esac
 done
 
-if [[ -z $SVNTAG ]] || [[ -z $TUSER ]] || [[ -z $ID ]]
+if ([[ -z $SVNTAG ]] && [[ -z $GITBRANCH ]] && [[ -z $GITREP ]]) || [[ -z $TUSER ]] || [[ -z $ID ]]
 then
 	usage
 	exit 1
@@ -82,6 +90,8 @@ setup
 debug()
 {
 	echo "COMMAND: $COMMAND"
+	echo "GITREP: $GITREP"
+	echo "GITBRANCH: $GITBRANCH"
 	echo "SVNTAG: $SVNTAG"
 	echo "TUSER: $TUSER"
 	echo "ID: $ID"
@@ -118,21 +128,31 @@ create()
 
 	# Trunk cache gets updated via cron every now and then
 	# we lock it, so we don't install from a broken tarball
-	while [[ -e $SVN_CACHE/$SVNTAG.lock ]];
-	do
-		log "Waiting for tarball lock"
-		sleep 5
-	done
-
-	log "Unpacking tarball"
-	tar -C $INSTANCE_DIR -xzf $SVN_CACHE/$SVNTAG.tar.gz
-
-	if echo $BRANCHES | grep ${SVNTAG} > /dev/null;
+	if [[ ! -z $SVNTAG ]]
 	then
-		log "SVN upping because this is $SVNTAG"
-		cd $INSTANCE_DIR
-		svn upgrade
-		svn up
+		while [[ -e $SVN_CACHE/$SVNTAG.lock ]];
+		do
+			log "Waiting for tarball lock"
+			sleep 5
+		done
+
+		log "Unpacking tarball"
+		tar -C $INSTANCE_DIR -xzf $SVN_CACHE/$SVNTAG.tar.gz
+
+		if echo $BRANCHES | grep ${SVNTAG} > /dev/null;
+		then
+			log "SVN upping because this is $SVNTAG"
+			cd $INSTANCE_DIR
+			svn upgrade
+			svn up
+		fi
+	fi
+
+	# GIT
+	if [[ ! -z $GITBRANCH ]]
+	then
+		log "Cloning git $GITBRANCH from $GITREP"
+		git clone --depth 1 -b $GITBRANCH $GITREP $INSTANCE_DIR --quiet
 	fi
 
 	log "Chown-ing everything to TIM user and group"
@@ -152,7 +172,7 @@ create()
 	cat > $INSTANCE_DIR/db/local.php <<EOF
 <?php
 \$db_tiki='mysql';
-\$dbversion_tiki='${SVNTAG}';
+\$dbversion_tiki='$([ ! -z $GITBRANCH ] && echo $GITBRANCH || echo $SVNTAG)';
 \$host_tiki='localhost';
 \$user_tiki='tiki';
 \$pass_tiki='password';
@@ -191,21 +211,38 @@ EOF
 	read -r -d '' infotext <<EOT
 This Tiki instance was created on the Tiki show community website
 Creation date: `date -u +%Y-%m-%d_%H-%M-%S`
-Version: ${SVNTAG}
+Version: $([ ! -z $GITBRANCH ] && echo $GITBRANCH || echo $SVNTAG)
 Related to Wish: http://dev.tiki.org/item${ID}
 Wish was created by user ${FRIENDLYUSERNAME}http://dev.tiki.org/user${TUSERID}
 Created as http://${SUBDOMAIN}.show.tikiwiki.org/
 Installation log: http://${SUBDOMAIN}.show.tikiwiki.org/install_log.txt
 This information is also kept here: http://${SUBDOMAIN}.show.tikiwiki.org/info.txt
 
+EOT
+
+if [[ ! -z $GITBRANCH ]]
+then
+	read -r -d '' infotextversion <<EOT
+GIT status
+Working Copy Root Path: `pwd`
+`cat .git/config | grep url | tr -d '[:blank:]' | sed 's/url=/URL: /'`
+Branch: `git branch | grep '*' | sed 's/* //'`
+Commit: `git rev-parse HEAD`
+`git log --max-count=1 | grep Author | sed 's/Author:/Last Changed Author:/'`
+`git log --max-count=1 | grep Date | sed 's/Date:  /Last Changed Date:/'`
+EOT
+else
+	read -r -d '' infotextversion <<EOT
 SVN info
 `svn info`
 EOT
+fi
 
 	# Create info.txt file with data useful to developers
 	echo "Creating file http://${SUBDOMAIN}.show.tikiwiki.org/info.txt with extra info for developers"
 	INFOFILE=$INSTANCE_DIR/info.txt
 	echo "$infotext" > ${INFOFILE}
+	echo "$infotextversion" >> ${INFOFILE}
 	# Cannot inject data useful to developers as remarksbox on top of homepage because page is not created et until first login
 
 }

@@ -50,7 +50,7 @@ mk_info()
 	read -r -d '' header <<EOT
 This Tiki instance was created on the Tiki show community website
 Creation date: `date -u +%Y-%m-%d_%H-%M-%S`
-Version: ${SVNTAG}
+Version: $([ ! -z $GITBRANCH ] && echo $GITBRANCH || echo $SVNTAG)
 Related to Wish: http://dev.tiki.org/item${ID}
 Created as http://${SUBDOMAIN}.show.tikiwiki.org/
 Installation log: http://${SUBDOMAIN}.show.tikiwiki.org/install_log.txt
@@ -61,6 +61,21 @@ EOT
 
 FORMER_HIST=$(cat $INSTANCE_INFO | sed -e "1,/===== Instance History =====/d")
 
+if [[ ! -z $GITBRANCH ]]
+then
+	read -r -d '' infotext <<EOT
+$header
+== `date` TIM action: `echo $COMMAND | tr '[:lower:]' '[:upper:]'`
+Working Copy Root Path: `pwd`
+`cat .git/config | grep url | tr -d '[:blank:]' | sed 's/url=/URL: /'`
+Branch: `git branch | grep '*' | sed 's/* //'`
+Commit: `git rev-parse HEAD`
+`git log --max-count=1 | grep Author | sed 's/Author:/Last Changed Author:/'`
+`git log --max-count=1 | grep Date | sed 's/Date:  /Last Changed Date:/'`
+
+$FORMER_HIST
+EOT
+else
 	read -r -d '' infotext <<EOT
 $header
 == `date` TIM action: `echo $COMMAND | tr '[:lower:]' '[:upper:]'`
@@ -68,6 +83,7 @@ $header
 
 $FORMER_HIST
 EOT
+fi
 
 	# Create info.txt file with data useful to developers
 	log "Creating file http://${SUBDOMAIN}.show.tikiwiki.org/info.txt with extra info for developers"
