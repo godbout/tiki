@@ -112,9 +112,11 @@
 									{assign var="show_details_for_profile_num" value="$k"}
 									{assign var="show_details_for_fullname" value=$profile.name|escape}
 									{assign var="show_details_for_domain" value=$profile.domain|escape}
+									{assign var="show_details_for_event" value={ticket mode=get}}
+									{$show=true}
 									<td>{$profile.name|escape}: {tr}See profile info below (may take a few seconds to load){/tr}.</td>
 								{else}
-									<td><a href="#" onclick="$.profilesShowDetails( '{$baseURI}', 'profile-{$k}', '{$profile.domain|escape}', '{$profile.name|escape}', event); return false"
+									<td><a href="#" onclick="$.profilesShowDetails( '{$baseURI}', 'profile-{$k}', '{$profile.domain|escape}', '{$profile.name|escape}', event, '{$show}'); return false"
 										   data-ticket="{ticket mode=get}"
 										>
 											{$profile.name|escape}
@@ -131,7 +133,7 @@
 						{/if}
 					</table>
 					{if isset($show_details_for_profile_num) && $show_details_for_profile_num != ""}
-						{jq}$.profilesShowDetails('{{$baseURI}}', 'profile-{{$show_details_for_profile_num}}', '{{$show_details_for_domain}}', '{{$show_details_for_fullname}}');{/jq}
+						{jq}$.profilesShowDetails('{{$baseURI}}', 'profile-{{$show_details_for_profile_num}}', '{{$show_details_for_domain}}', '{{$show_details_for_fullname}}', '{{$show_details_for_event}}', '{{$show}}');{/jq}
 					{/if}
 				</div>
 			{/if}
