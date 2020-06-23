@@ -10,6 +10,8 @@ class Search_Action_EmailAction implements Search_Action_Action
 	function getValues()
 	{
 		return [
+			'object_type' => true,
+			'object_id' => true,
 			'replyto' => false,
 			'to+' => true,
 			'cc+' => false,
@@ -19,6 +21,8 @@ class Search_Action_EmailAction implements Search_Action_Action
 			'content' => true,
 			'is_html' => false,
 			'pdf_page_attachment' => false,
+			'file_attachment_field' => false,
+			'file_attachment_gal' => false,
 		];
 	}
 
@@ -104,6 +108,60 @@ class Search_Action_EmailAction implements Search_Action_Action
 					$messageParts[] = $attachment;
 				} else {
 					return false;
+				}
+			}
+
+			if (! empty($data->file_attachment_field->text()) || ! empty($data->file_attachment_gal->text())) {
+				$objectType = $data->object_type->text();
+				if ($objectType !== 'trackeritem') {
+					Feedback::error(tr('Parameters file_attachment_field and file_attachment_gal can only be used with trackeritem'));
+					return false;
+				}
+
+				$fileIds = [];
+
+				// get fileIds from Files field
+				if (! empty($data->file_attachment_field->text())){
+					// get the contents of indicated Files field, i.e., the file ids
+					$object_id = $data->object_id->int();
+					$trklib = TikiLib::lib('trk');
+					$info = $trklib->get_tracker_item($object_id);
+					$definition = Tracker_Definition::get($info['trackerId']);
+					$field = str_replace('tracker_field_','', $data->file_attachment_field->word());
+					$fieldInfo = $definition->getField($field);
+					$handler = $definition->getFieldFactory()->getHandler($fieldInfo, $info);
+					$values = $handler->getFieldData();
+					$filesFieldValue = $values['value'];
+					$fileIds = explode(',', $filesFieldValue);
+				}
+
+				// get fileIds of all files in a Gallery
+				if (! empty($data->file_attachment_gal->text())){
+					$fileGal = TikiLib::lib('filegal');
+					$files = $fileGal->get_files_info_from_gallery_id($data->file_attachment_gal->text());
+					foreach ($files as $file) {
+						$fileId = $file['fileId'];
+						if (! in_array($fileId, $fileIds)) {
+							$fileIds[] = $fileId;
+						}
+					}
+				}
+
+				foreach ($fileIds as $fileId) {
+					$file = $this->getFileAttachment($fileId);
+					if ($file) {
+						$type = $file['filetype'];
+						$fileName = $file['filename'];
+						$attachment = new \Laminas\Mime\Part($file['contents']);
+						$attachment->type = $type;
+						$attachment->filename = $fileName;
+						$attachment->disposition = \Laminas\Mime\Mime::DISPOSITION_ATTACHMENT;
+						$attachment->encoding = \Laminas\Mime\Mime::ENCODING_BASE64;
+
+						$messageParts[] = $attachment;
+					} else {
+						return false;
+					}
 				}
 			}
 
@@ -227,4 +285,26 @@ class Search_Action_EmailAction implements Search_Action_Action
 			return $generator->getPdf('tiki-print.php', $params, $pdata);
 		}
 	}
+
+	private function getFileAttachment($fileId)
+	{
+
+		// TODO: keep in mind that list execute might be run with default admin user or without a user when running via cron.
+		$file = \Tiki\FileGallery\File::id($fileId);
+		if (! $file->exists() || ! Perms::get('file', $fileId)->download_files) {
+			return;
+		}
+
+		$contents = $file->getContents();
+
+		if (empty($contents)) {
+			Feedback::error(sprintf(tra('File id %s cannot be found'), $fileId));
+			return false;
+		}
+		$filetype = $file->filetype;
+		$filename = $file->filename;
+
+		return(['contents' => $contents, 'filetype' => $filetype, 'filename' => $filename]);
+	}
+
 }
