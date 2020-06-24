@@ -219,6 +219,7 @@
 			<div class="adminoptionbox clearfix">
 				<fieldset class="mb-3 w-100">
 					<legend>{tr}Attachments{/tr}</legend>
+					{preference name=feature_use_fgal_for_wiki_attachments}
 					{preference name=feature_wiki_attachments}
 					<div class="adminoptionboxchild" id="feature_wiki_attachments_childcontainer">
 						{preference name=w_displayed_default}
