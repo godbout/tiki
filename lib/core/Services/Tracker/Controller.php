@@ -1093,6 +1093,7 @@ class Services_Tracker_Controller
 		}
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			TikiLib::lib('access')->preventRedirect(true);
 			//fetch the processed fields and the changes made in the form. Put them in the 'fields' variable
 			$processedFields = $itemObject->prepareInput($input);
 			$fields = [];
@@ -1131,6 +1132,8 @@ class Services_Tracker_Controller
 			if ($prefs['feature_warn_on_edit'] == 'y') {
 				TikiLib::lib('service')->internal('semaphore', 'unset', ['object_id' => $itemId, 'object_type' => 'trackeritem']);
 			}
+
+			TikiLib::lib('access')->preventRedirect(false);
 
 			if ($result !== false) {
 				TikiLib::lib('unifiedsearch')->processUpdateQueue();
