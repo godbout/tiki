@@ -178,12 +178,14 @@ class ConverseJS
 		}
 		$chat_session_init = ($user ?: 'anonymous') . $_SESSION['chat-session-init'];
 
-		$output .= ';(function(){';
-		$output .= "if (localStorage['chat-session-init'] == '{$chat_session_init}') { return; }";
-		$output .= " localStorage['chat-session-init'] = '{$chat_session_init}';";
-		$output .= ' for (var key in localStorage) { key.match(/converse/) && localStorage.removeItem(key); }';
-		$output .= ' for (var key in sessionStorage) { key.match(/converse/) && localStorage.removeItem(key); }';
-		$output .= '})();';
+		$output .= PHP_EOL . ';(function(){';
+		$output .= PHP_EOL . "  if (localStorage['chat-session-init'] !== '{$chat_session_init}') {";
+		$output .= PHP_EOL . "      localStorage['chat-session-init'] = '{$chat_session_init}';";
+		$output .= PHP_EOL . '      for (var key in localStorage) { key.match(/converse/) && localStorage.removeItem(key); }';
+		$output .= PHP_EOL . '      for (var key in sessionStorage) { key.match(/converse/) && localStorage.removeItem(key); }';
+		$output .= PHP_EOL . "  }";
+		$output .= PHP_EOL . '})();';
+		$output .= PHP_EOL;
 
 		if ($this->get_option('view_mode') === 'embedded') {
 			// TODO: remove this a line after fixing conversejs
