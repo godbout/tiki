@@ -2943,7 +2943,7 @@ function prefs_feature_list($partial = false)
 			'description' => tra('Convert \"straight\" quotes to “curly” ones, also convert ’ apostrophe and ‘single’ quotes'),
 			'type' => 'flag',
 			'tags' => ['basic'],
-			'default' => 'y',
+			'default' => 'n',
 			'dependencies' => [
 				'feature_typo_enable',
 			],
