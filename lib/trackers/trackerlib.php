@@ -1244,6 +1244,9 @@ class TrackerLib extends TikiLib
 					case 'CAL':	// CalendarItem
 						$numsort = true;
 						break;
+					case 'DUR':
+						$csort_mode = Tracker_Field_Duration::getSortModeSql();
+						break;
 					case 'l':
 						// Do nothing, value is dynamic and thus cannot be sorted on
 						$csort_mode = 1;

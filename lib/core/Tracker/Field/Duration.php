@@ -17,8 +17,8 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 	{
 		return [
 			'DUR' => [
-				'name' => tr('Duration Field'),
-				'description' => tr('Provide a convenient way to enter time duration in different units.'),
+				'name' => tr('Duration'),
+				'description' => tr('Provide a convenient way to enter time duration in different units. It is highly advisable to turn Vue.js integration on for a better user interface.'),
 				'help' => 'Duration Tracker Field',
 				'prefs' => ['trackerfield_duration'],
 				'tags' => ['basic'],
@@ -153,7 +153,7 @@ class Tracker_Field_Duration extends Tracker_Field_Abstract implements Tracker_F
 		if ($prefs['vuejs_enable'] === 'n') {
 			return $this->renderTemplate('trackerinput/duration.tpl', $context, [
 				'amounts' => $this->denormalize(),
-				'units' => array_keys($this->getFactors())
+				'units' => array_keys(self::getFactors())
 			]);
 		}
 
@@ -242,7 +242,16 @@ dpStore.setInputName('.json_encode($this->getInsertId()).');
 		// TODO
 	}
 
-	private function getFactors() {
+	public static function getSortModeSql() {
+		$parts = [];
+		$factors = self::getFactors();
+		foreach ($factors as $unit => $multiplier) {
+			$parts[] = 'COALESCE(sttif.`value`->>"$.'.$unit.'", 0) * '.$multiplier;
+		}
+		return 'IF(JSON_VALID(sttif.`value`), '.implode($parts, '+').', 0)';
+	}
+
+	public static function getFactors() {
 		return [
 			'seconds' => 1,
 			'minutes' => 60,
@@ -274,7 +283,7 @@ dpStore.setInputName('.json_encode($this->getInsertId()).');
 	}
 
 	private function getValueInSeconds() {
-		$factors = $this->getFactors();
+		$factors = self::getFactors();
 
 		$value = 0;
 		foreach ($this->denormalize() as $unit => $amount) {
@@ -292,7 +301,7 @@ dpStore.setInputName('.json_encode($this->getInsertId()).');
 		return array_reverse(
 			array_values(
 				array_filter(
-					array_keys($this->getFactors()),
+					array_keys(self::getFactors()),
 					function($unit) {
 						return $this->getOption($unit);
 					}

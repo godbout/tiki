@@ -17,7 +17,7 @@ class Tracker_Field_Currency extends Tracker_Field_Abstract implements Tracker_F
 	{
 		return [
 			'b' => [
-				'name' => tr('Currency Field'),
+				'name' => tr('Currency'),
 				'description' => tr('Provide a one-line field for numeric input only. Prepended or appended values may be alphanumeric.'),
 				'help' => 'Currency Amount Tracker Field',
 				'prefs' => ['trackerfield_currency'],
