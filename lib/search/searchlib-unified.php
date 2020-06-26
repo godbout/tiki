@@ -850,8 +850,10 @@ class UnifiedSearchLib
 				}
 				if (! empty($indexName)) {
 					$info[tr('MySQL Index %0', $indexName)] = tr(
-						'%0 documents',
-						$unifiedTotalFields
+						'%0 documents, using %1 of %2 indexes',
+						$unifiedTotalFields,
+						count(TikiDb::get()->fetchAll("SHOW INDEXES FROM $indexName")),
+						Search_MySql_Table::MAX_MYSQL_INDEXES_PER_TABLE
 					);
 				}
 

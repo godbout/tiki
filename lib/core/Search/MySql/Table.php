@@ -7,6 +7,8 @@
 
 class Search_MySql_Table extends TikiDb_Table
 {
+	const MAX_MYSQL_INDEXES_PER_TABLE = 64;
+
 	private $definition = false;
 	private $indexes = [];
 	private $exists = null;
@@ -108,7 +110,7 @@ class Search_MySql_Table extends TikiDb_Table
 		$indexName = $fieldName . '_' . $type;
 
 		// Static MySQL limit on 64 indexes per table
-		if (! isset($this->indexes[$indexName]) && count($this->indexes) < 64) {
+		if (! isset($this->indexes[$indexName]) && count($this->indexes) < self::MAX_MYSQL_INDEXES_PER_TABLE) {
 			if ($type == 'fulltext') {
 				$this->addFullText($fieldName);
 			} elseif ($type == 'index') {
