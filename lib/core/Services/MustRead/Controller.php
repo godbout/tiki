@@ -7,8 +7,12 @@
 
 class Services_MustRead_Controller
 {
+	/** @var UnifiedSearchLib $unifiedsearchlib */
+	private $unifiedsearchlib;
+
 	function setUp()
 	{
+		$this->unifiedsearchlib = TikiLib::lib('unifiedsearch');
 		Services_Exception_Denied::checkAuth();
 		Services_Exception_Disabled::check('mustread_enabled');
 	}
@@ -23,9 +27,8 @@ class Services_MustRead_Controller
 			$selection = $this->getItem($input->id->int());
 		}
 
-		$lib = TikiLib::lib('unifiedsearch');
 		$query = $this->getListQuery();
-		$result = $query->search($lib->getIndex());
+		$result = $query->search($this->unifiedsearchlib->getIndex());
 
 		foreach ($result as & $row) {
 			$row['reason'] = $this->findReason($row['object_id']);
@@ -93,11 +96,10 @@ class Services_MustRead_Controller
 		$item = $this->getItem($input->id->int());
 		$itemId = $item->getId();
 
-		$lib = TikiLib::lib('unifiedsearch');
 		$query = $this->getUsers($itemId, $input->notification->word());
 		$result = false;
 		if ($query) {
-			$result = $query->search($lib->getIndex());
+			$result = $query->search($this->unifiedsearchlib->getIndex());
 		}
 
 		return [
@@ -267,7 +269,6 @@ class Services_MustRead_Controller
 		$object = $input->object->text();
 
 		$objectlib = TikiLib::lib('object');
-		$servicelib = TikiLib::lib('service');
 		if (! $type || ! $object || ! $title = $objectlib->get_title($type, $object)) {
 			throw new Services_Exception_NotFound(tr('Object not found.'));
 		}
@@ -275,7 +276,6 @@ class Services_MustRead_Controller
 		$list = [];
 
 		if ($field['type'] == 'REL') {
-			$searchlib = TikiLib::lib('unifiedsearch');
 			$query = $this->getListQuery();
 			$main = '"' . Search_Query_Relation::token($field['options_map']['relation'], $type, $object) . '"';
 			$invert = '"' . Search_Query_Relation::token($field['options_map']['relation'] . '.invert', $type, $object) . '"';
@@ -286,7 +286,7 @@ class Services_MustRead_Controller
 				$query->filterRelation($main);
 			}
 
-			$list = $query->search($searchlib->getIndex());
+			$list = $query->search($this->unifiedsearchlib->getIndex());
 		}
 
 
@@ -385,8 +385,7 @@ class Services_MustRead_Controller
 		$owner = Search_Query_Relation::token('tiki.mustread.owns.invert', 'user', $user);
 		$complete = Search_Query_Relation::token('tiki.mustread.complete.invert', 'user', $user);
 
-		$lib = TikiLib::lib('unifiedsearch');
-		$query = $lib->buildQuery([
+		$query = $this->unifiedsearchlib->buildQuery([
 			'type' => 'trackeritem',
 			'tracker_id' => $prefs['mustread_tracker'],
 		]);
@@ -406,8 +405,7 @@ class Services_MustRead_Controller
 
 	protected function getUsers($itemId, $list)
 	{
-		$lib = TikiLib::lib('unifiedsearch');
-		$query = $lib->buildQuery([
+		$query = $this->unifiedsearchlib->buildQuery([
 			'object_type' => 'user',
 		]);
 
@@ -435,10 +433,9 @@ class Services_MustRead_Controller
 
 	protected function getUserCount($itemId, $list)
 	{
-		$lib = TikiLib::lib('unifiedsearch');
 		$query = $this->getUsers($itemId, $list);
 		$query->setRange(0, 0);
-		$resultset = $query->search($lib->getIndex());
+		$resultset = $query->search($this->unifiedsearchlib->getIndex());
 
 		return $resultset->count();
 	}

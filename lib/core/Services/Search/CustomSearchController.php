@@ -167,6 +167,7 @@ class Services_Search_CustomSearchController
 			}
 		}
 
+		/** @var UnifiedSearchLib $unifiedsearchlib */
 		$unifiedsearchlib = TikiLib::lib('unifiedsearch');
 		$unifiedsearchlib->initQuery($query); // Done after cache because permissions vary
 
