@@ -411,6 +411,41 @@ if ($isvalid && $access->checkCsrf(null, null, null, null, null, 'page')) {
 	// check if site is closed
 	if ($prefs['site_closed'] === 'y') {
 		unset($bypass_siteclose_check);
+		if(isset($_REQUEST['ticket'])){
+			unset($_SESSION['tickets'][$_REQUEST['ticket']]);
+		}
+		switch ($error) {
+			case PASSWORD_INCORRECT:
+				$error = tra('Invalid username or password');
+				break;
+			case TWO_FA_INCORRECT:
+				$error = tra('Invalid two-factor code ');
+				break;
+			case USER_NOT_FOUND:
+				$error = tra('Invalid username or password');
+				break;
+			case ACCOUNT_DISABLED:
+				$error = tra('Account requires administrator approval.');
+				break;
+			case ACCOUNT_WAITING_USER:
+				$error = tra('You did not validate your account.');
+				break;
+			case USER_AMBIGOUS:
+				$error = tra('You must use the right case for your username.');
+				break;
+			case USER_NOT_VALIDATED:
+				$error = tra('You are not yet validated.');
+				break;
+			case USER_ALREADY_LOGGED:
+				$error = tra('You are already logged in.');
+				break;
+			case EMAIL_AMBIGUOUS:
+				$error = tra("There is more than one user account with this email. Please contact the administrator.");
+				break;
+			default:
+				$error = tra('Authentication error');
+		}
+		$error_login = $error;
 		include 'lib/setup/site_closed.php';
 	}
 

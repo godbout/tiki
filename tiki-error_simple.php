@@ -19,6 +19,13 @@ if (! empty($_REQUEST['title'])) {
 	$title = '';
 }
 
+if (! empty($_REQUEST['login_error'])) {
+	$login_error = $filter->filter($_REQUEST["login_error"]);
+} else {
+	$login_error = '';
+}
+$style_alert = ''.$login_error !='' ? 'alert alert-danger' : '';
+$style_alert_btn = ''.$login_error !='' ? '' : 'display:none';
 session_start();
 $ticket = strtr(str_replace('=', '', base64_encode(\phpseclib\Crypt\Random::string(32))), '+/', '-_');
 $_SESSION['tickets'][$ticket] = time();
@@ -31,6 +38,11 @@ $login = '<form class="form-detail" id="myform" action="tiki-login.php?page=tiki
 			<div class="form-row form-row-1">
 				<label for="password">Password</label>
 				<input type="password" name="pass" id="password" class="input-text" required>
+			</div>
+			<div class="'.$style_alert.'" role="alert">'.$login_error.'
+				<button type="button" class="close" style="'.$style_alert_btn.'" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
 			</div>
 			<div class="form-row-last">
 				<input type="hidden" class="ticket" name="ticket" value="' . $ticket . '" />
