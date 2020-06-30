@@ -77,6 +77,10 @@
 	{/remarksbox}
 {/if}
 
+{if $prefs.feature_system_suggestions eq 'y'}
+	{include file="admin/admin_suggestion.tpl"}
+{/if}
+
 {if $template_not_found eq 'y'}
 	{remarksbox type="error" title="{tr}Error{/tr}"}
 		{tr _0="page" _1={$include|escape}}The <strong>%0</strong> parameter has an invalid value: <strong>%1</strong>.{/tr}

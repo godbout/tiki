@@ -10,6 +10,7 @@
 
 
 use Tiki\Package\ExtensionManager;
+use Tiki\Suggestion\Rules;
 
 $section = 'admin';
 
@@ -141,6 +142,47 @@ $helpDescription = $description = '';
 $url = 'tiki-admin.php';
 $adminPage = '';
 
+/*
+ * Tiki System Suggestions
+ */
+$tikiShowSuggestionsPopup = false;
+if ($prefs['feature_system_suggestions'] == 'y' && empty($_POST)) {
+	$adminLogin = ! empty($_SESSION['u_info']['id']) ? $_SESSION['u_info']['id'] : '';
+	$suggestionMessages = ! empty($_SESSION['suggestions_user_id_' . $adminLogin]) ? $_SESSION['suggestions_user_id_' . $adminLogin] : [];
+
+	if (isset($_REQUEST['tikiSuggestionPopup'])) {
+		$_SESSION['suggestions_popup_off_user_id_' . $adminLogin] = true;
+		return;
+	}
+
+	if (! empty($adminLogin)
+		&& ! isset($_SESSION['suggestions_off_user_id_' . $adminLogin])
+		&& TikiLib::lib('user')->user_is_in_group($user, 'Admins')
+	) {
+		if (isset($_REQUEST['tikiSuggestion'])) {
+			$_SESSION['suggestions_off_user_id_' . $adminLogin] = true;
+			return;
+		}
+
+		if (empty($suggestionMessages)) {
+			$suggestionRules = new Rules();
+			$suggestionMessages = $suggestionRules->getAllMessages();
+		}
+
+		if (! empty($suggestionMessages)) {
+			$feedback['title'] = tra('Tiki Suggestions');
+			$feedback['mes'] = $suggestionMessages;
+			Feedback::note($feedback);
+			$_SESSION['suggestions_user_id_' . $adminLogin] = $suggestionMessages;
+		}
+	}
+
+	if (! empty($suggestionMessages) && ! isset($_SESSION['suggestions_popup_off_user_id_' . $adminLogin])) {
+		$tikiShowSuggestionsPopup = true;
+	}
+}
+$smarty->assign('tikiShowSuggestionsPopup', $tikiShowSuggestionsPopup);
+
 $prefslib = TikiLib::lib('prefs');
 
 if (isset($_REQUEST['pref_filters']) && $access->checkCsrf()) {
@@ -182,7 +224,7 @@ if (isset($_POST['pass_blacklist'])) {    // if preferences were updated and bla
 $temp_filters = isset($_REQUEST['filters']) ? explode(' ', $_REQUEST['filters']) : null;
 $smarty->assign('pref_filters', $prefslib->getFilters($temp_filters));
 
-if (isset($_POST['lm_preference'] ) && $access->checkCsrf()) {
+if (isset($_POST['lm_preference']) && $access->checkCsrf()) {
 	$changes = $prefslib->applyChanges((array) $_POST['lm_preference'], $_POST);
 	foreach ($changes as $pref => $val) {
 		if ($val['type'] == 'reset') {

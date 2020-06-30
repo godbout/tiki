@@ -398,6 +398,53 @@
 
 /* end profiles */
 
+/* Admin Suggestions */
+
+#suggestionsPopup {
+	position: fixed;
+	z-index: 100;
+	bottom: 0px;
+	right: 0px;
+	width: 300px;
+	background-color: #f8f9fa;
+	text-align: right;
+	margin-right: 20px;
+	margin-bottom: 20px;
+	border: 1px solid rgba(0, 0, 0, 0.125);
+	border-radius: 0.25rem;
+}
+
+#suggestionsPopup .sug-header .sug-button-close {
+	float:right;
+}
+
+#suggestionsPopup .sug-header .sug-button-close button {
+	margin-left: 20px;
+}
+
+#suggestionsPopup .sug-header {
+	padding: 0.75rem 1.25rem;
+	margin-bottom: 0;
+	background-color: rgba(0, 0, 0, 0.03);
+	border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+#suggestionsPopup .sug-header .sug-title {
+	float:right;
+	width: 220px;
+}
+
+#suggestionsPopup .sug-header .sug-title h3
+{
+	font-size: 1.25rem;
+	margin-bottom: 0px;
+}
+
+#suggestionsPopup .sug-body {
+	flex: 1 1 auto;
+	padding: 0.50rem 1.25rem 0 1.25rem;
+}
+
 @media (max-width: 767px) {
 	.toolbars-admin .rows {
 		padding: 0;
