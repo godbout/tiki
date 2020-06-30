@@ -361,6 +361,7 @@ class Services_File_Controller
 	{
 		$galleryId = $input->galleryId->int();
 
+		/** @var UnifiedSearchLib $lib */
 		$lib = TikiLib::lib('unifiedsearch');
 		$query = $lib->buildQuery([
 			'type' => 'file',
