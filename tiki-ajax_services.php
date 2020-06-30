@@ -21,10 +21,13 @@ $inputConfiguration = [[
 	'staticKeyFilters' => [
 		'action' => 'word',
 		'controller' => 'text',
+		'sort_mode' => 'word',		// templates/search/list/table.tpl:68
+		'watch' => 'alpha',			// templates/comment/post.tpl:58
+		'confirmForm' => 'alpha',	// \Services_Utilities::isConfirmPost
 	],
 ]];
 
-if (isset($_REQUEST['controller'], $_REQUEST['action'])) {
+if (isset($_REQUEST['controller'], $_REQUEST['action']) || isset($_GET['controller'], $_GET['action'])) {
 	$inputConfiguration[] = ['catchAllUnset' => null];
 }
 

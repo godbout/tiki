@@ -1458,11 +1458,11 @@ class Services_Tracker_Controller
 		}
 
 		if ($trackerInfo["useAttachments"] == 'y') {
-			if (isset($_REQUEST["removeattach"])) {
+			if ($input->removeattach->int()) {
 				$_REQUEST["show"] = "att";
 			}
-			if (isset($_REQUEST["editattach"])) {
-				$att = $trklib->get_item_attachment($_REQUEST["editattach"]);
+			if ($input->editattach->int()) {
+				$att = $trklib->get_item_attachment($input->editattach->int());
 				$smarty->assign("attach_comment", $att['comment']);
 				$smarty->assign("attach_version", $att['version']);
 				$smarty->assign("attach_longdesc", $att['longdesc']);
