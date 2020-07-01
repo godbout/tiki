@@ -43,7 +43,8 @@
 				endField: data.end,
 				resourceField: data.resource,
 				coloringField: data.coloring,
-				filters: data.body
+				filters: data.body,
+				maxRecords: data.maxEvents
 			})),
 			resources: data.resourceList,
 			minTime: data.minHourOfDay,

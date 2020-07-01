@@ -60,7 +60,8 @@ class Services_Tracker_CalendarController
 		}
 
 		$query->filterRange($from, $to, [$start, $end]);
-		$query->setRange(0, $prefs['unified_lucene_max_result']);
+		$maxRecords = $input->maxRecords->int() ?: null;
+		$query->setRange(0, $maxRecords);
 
 		if ($body = $input->filters->none()) {
 			$builder = new Search_Query_WikiBuilder($query, $input);

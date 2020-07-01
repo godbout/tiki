@@ -382,6 +382,14 @@ function wikiplugin_trackercalendar_info()
 					['text' => tra('No'), 'value' => 'n']
 				]
 			],
+			'maxEvents' => [
+				'required' => false,
+				'name' => tra('The maximum of events to retrieve'),
+				'description' => tra('Adjust the maximum number of events to display in calendar views'),
+				'since' => '22',
+				'filter' => 'int',
+				'default' => 200,
+			],
 		],
 	];
 }
@@ -541,6 +549,8 @@ function wikiplugin_trackercalendar($data, $params)
 		$eventOverlap = true;
 	}
 
+	$maxEvents = $params['maxEvents'] ?: 200;
+
 	// Format the default date as Y-m-d instead of Y-n-d, required by MomentJs
 	$dDate = (new DateTime($dYear . '-' . $dMonth . '-' . $dDay))->format('Y-m-d');
 
@@ -599,6 +609,7 @@ function wikiplugin_trackercalendar($data, $params)
 			'timeFormat' => $prefs['display_12hr_clock'] === 'y' ? 'h(:mm)TT' : 'HH:mm',
 			'weekends' => $params['weekends'] === 'y' ? 1 : 0,
 			'utcOffset' => TikiDate::tzServerOffset(TikiLib::lib('tiki')->get_display_timezone()) / 60, // In minutes
+			'maxEvents' => $maxEvents
 		]
 	);
 	$smarty->assign('filters', $filters);
