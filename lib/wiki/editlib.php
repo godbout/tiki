@@ -768,7 +768,11 @@ class EditLib
 
 	function parseToWysiwyg($inData, $fromWiki = false, $isHtml = false, $options = [])
 	{
-		global $tikiroot;
+		global $tikiroot, $prefs;
+
+		$allowImageLazyLoad = $prefs['allowImageLazyLoad'];
+		$prefs['allowImageLazyLoad'] = 'n';
+
 		// Parsing page data for wysiwyg editor
 		$inData = $this->partialParseWysiwygToWiki($inData);	// remove any wysiwyg plugins so they don't get double parsed
 		$parsed = preg_replace('/(!!*)[\+\-]/m', '$1', $inData);		// remove show/hide headings
@@ -815,6 +819,8 @@ class EditLib
 			// also if first
 			$parsed = preg_replace('/^<(div|span) class="tiki_plugin"/', '&nbsp;<$1 class="tiki_plugin"', $parsed);
 		}
+
+		$prefs['allowImageLazyLoad'] = $allowImageLazyLoad;
 
 		return $parsed;
 	}
