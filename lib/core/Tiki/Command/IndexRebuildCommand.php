@@ -23,12 +23,6 @@ class IndexRebuildCommand extends Command
 			->setName('index:rebuild')
 			->setDescription('Fully rebuild the unified search index')
 			->addOption(
-				'force',
-				null,
-				InputOption::VALUE_NONE,
-				'Destroy failed indexes prior to rebuild'
-			)
-			->addOption(
 				'log',
 				null,
 				InputOption::VALUE_NONE,
@@ -55,7 +49,6 @@ class IndexRebuildCommand extends Command
 
 		$io = new SymfonyStyle($input, $output);
 
-		$force = $input->getOption('force');
 		if ($input->getOption('log')) {
 			$log = 2;
 		} else {
@@ -64,13 +57,6 @@ class IndexRebuildCommand extends Command
 		$cron = $input->getOption('cron');
 
 		$unifiedsearchlib = \TikiLib::lib('unifiedsearch');
-
-		if ($force && $unifiedsearchlib->rebuildInProgress()) {
-			if (! $cron) {
-				$output->writeln('<info>Removing leftovers...</info>');
-			}
-			$unifiedsearchlib->stopRebuild();
-		}
 
 		if (! $cron) {
 			$message = '[' . \TikiLib::lib('tiki')->get_short_datetime(0) . '] Started rebuilding index...';

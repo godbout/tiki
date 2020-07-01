@@ -54,7 +54,7 @@ class Search_Expr_ImplicitPhrase implements Search_Expr_Interface
 	function getBasicOperator()
 	{
 		global $prefs;
-		if ($prefs['unified_lucene_default_operator'] == 1) {
+		if ($prefs['unified_search_default_operator'] == 1) {
 			return new Search_Expr_And($this->parts);
 		} else {
 			return new Search_Expr_Or($this->parts);

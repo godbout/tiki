@@ -119,62 +119,6 @@ class Search_IndexerTest extends PHPUnit\Framework\TestCase
 		$this->assertEquals($typeFactory->multivalue([1, 2, 3]), $document['categories']);
 	}
 
-	public function testPartialUpdate()
-	{
-		$initialSource = new Search_ContentSource_Static(
-			[
-				'HomePage' => ['data' => 'initial'],
-				'SomePage' => ['data' => 'initial'],
-				'Untouchable' => ['data' => 'initial'],
-			],
-			['data' => 'sortable']
-		);
-
-		$finalSource = new Search_ContentSource_Static(
-			[
-				'SomePage' => ['data' => 'final'],
-				'OtherPage' => ['data' => 'final'],
-				'Untouchable' => ['data' => 'final'],
-			],
-			['data' => 'sortable']
-		);
-
-		$dir = __DIR__ . '/test_index';
-		$edir = escapeshellarg($dir);
-		`rm -Rf $edir`;
-		$index = new Search_Lucene_Index($dir);
-		$indexer = new Search_Indexer($index);
-		$indexer->addContentSource('wiki page', $initialSource);
-		$indexer->rebuild();
-
-		$indexer = new Search_Indexer($index);
-		$indexer->addContentSource('wiki page', $finalSource);
-		$indexer->update(
-			[
-				['object_type' => 'wiki page', 'object_id' => 'HomePage'],
-				['object_type' => 'wiki page', 'object_id' => 'SomePage'],
-				['object_type' => 'wiki page', 'object_id' => 'OtherPage'],
-			]
-		);
-
-		$query = new Search_Query;
-		$query->filterType('wiki page');
-
-		$result = $query->search($index);
-
-		$this->assertCount(3, $result);
-
-		$doc0 = $result[0];
-		$doc1 = $result[1];
-		$doc2 = $result[2];
-
-		$this->assertEquals('Untouchable', $doc0['object_id']);
-		$this->assertEquals('initial', $doc0['data']);
-		$this->assertEquals('final', $doc1['data']);
-		$this->assertEquals('final', $doc2['data']);
-		`rm -Rf $edir`;
-	}
-
 	public function testGlobalAssembly()
 	{
 		$contentSource = new Search_ContentSource_Static(

@@ -188,7 +188,7 @@ class Search_Expr_Parser
 
 	/**
 	 * when using AND as the default operator queries including stopped words fail
-	 * so remove them here for the relevant engines (elastic and lucene only so far)
+	 * so remove them here for the relevant engines (elastic only so far)
 	 *
 	 * @param string $word
 	 * @return boolean
@@ -197,7 +197,7 @@ class Search_Expr_Parser
 	{
 		global $prefs;
 
-		if ($prefs['unified_lucene_default_operator'] == 0 || $prefs['unified_engine'] === 'mysql') {
+		if ($prefs['unified_search_default_operator'] == 0 || $prefs['unified_engine'] === 'mysql') {
 			return false;
 		}
 

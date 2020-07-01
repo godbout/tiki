@@ -187,7 +187,6 @@
 			{preference name=categories_cache_refresh_on_object_cat}
 			{preference name=feature_actionlog_bytes}
 			{preference name=search_parsed_snippet}
-			{preference name="unified_lucene_highlight"}
 			{preference name=feature_blog_heading}
 			{preference name=error_reporting_level}
 			{preference name=feature_typo_enable}

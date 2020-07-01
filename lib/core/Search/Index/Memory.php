@@ -37,7 +37,7 @@ class Search_Index_Memory implements Search_Index_Interface
 
 	function getTypeFactory()
 	{
-		return new Search_Lucene_TypeFactory;
+		return new Search_MySql_TypeFactory;
 	}
 
 	function optimize()

@@ -30,9 +30,6 @@
 					<div class="adminoptionboxchild" id="feature_search_childcontainer">
 						{preference name="unified_incremental_update"}
 						{preference name="unified_engine"}
-						<div class="adminoptionboxchild unified_engine_childcontainer lucene">
-							{preference name="unified_lucene_default_operator"}
-						</div>
 						<div class="adminoptionboxchild unified_engine_childcontainer elastic">
 							{preference name="unified_elastic_url"}
 							{preference name="unified_elastic_index_prefix"}
@@ -41,6 +38,7 @@
 						<div class="adminoptionboxchild unified_engine_childcontainer mysql">
 							{preference name="unified_mysql_short_field_names"}
 						</div>
+						{preference name="unified_search_default_operator"}
 					</div>
 				</fieldset>
 			</div>

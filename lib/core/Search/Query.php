@@ -57,7 +57,7 @@ class Search_Query implements Search_Query_Interface
 	function filterContent($query, $field = 'contents')
 	{
 		global $prefs;
-		if ($prefs['unified_lucene_default_operator'] == 1 && strpos($query, '*') !== false) {
+		if ($prefs['unified_search_default_operator'] == 1 && strpos($query, '*') !== false) {
 			// Wildcard queries with spaces need to be OR otherwise "*foo bar*" won't match "foo bar" if set to AND.
 			$query = preg_replace('/\s+/', '* *', trim($query));
 		}
