@@ -120,6 +120,17 @@ class EditLib_ParseToWiki_LinkTest extends TikiTestCase
 		$out = $this->el->parseToWiki($inData);
 		$out = preg_replace('/\n/', '\n', $out); // fix LF encoding for comparison
 		$this->assertEquals($ex, $out);
+
+		/*
+		 * External Site
+		 * - pipe chars in href parameters
+		 */
+		$inData = '<a class="wiki external" target="_blank" href="https://tiki.org/Community?not%7Ca%7Cwiki%7Ctable" rel="external">link with pipes</a>';
+		$ex = '[https://tiki.org/Community?not%7Ca%7Cwiki%7Ctable|link with pipes]';
+		$out = $this->el->parseToWiki($inData);
+		$out = preg_replace('/\n/', '\n', $out); // fix LF encoding for comparison
+		$this->assertEquals($ex, $out);
+
 	}
 
 
