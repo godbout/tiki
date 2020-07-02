@@ -275,6 +275,8 @@ class EditLib
 		 */
 		if (isset($args['href'])) {
 			$href = urldecode($args['href']['value']);
+			// replace pipe chars as that's the delimiter in a wiki/external link
+			$href = str_replace('|', '%7C', $href);
 			$matches = explode('#', $href);
 			if (count($matches) == 2) {
 				$target = $matches[0];
