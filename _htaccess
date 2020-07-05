@@ -26,7 +26,7 @@
     </IfModule>
 </FilesMatch>
 # -- Prevent Browsing of Certain File Names -- #
-<FilesMatch "(changelog\.txt|_htaccess|README|INSTALL|web_config|copyright\.txt)$">
+<FilesMatch "(changelog\.txt|_htaccess|README|INSTALL|web_config|copyright\.txt|composer\..*)$">
     <IfModule mod_authz_core.c>
        Require all denied
     </IfModule>
