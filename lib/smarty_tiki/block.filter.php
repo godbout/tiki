@@ -40,11 +40,13 @@ function smarty_block_filter($params, $content, $smarty, &$repeat)
 		$filter = array_merge($filter, $params['filter']);
 	}
 
+	$filter = new JitFilter($filter);
+
 	// General
 	$smarty->assign('filter_action', $params['action']);
 
-	$smarty->assign('filter_content', isset($filter['content']) ? $filter['content'] : '');
-	$smarty->assign('filter_type', isset($filter['type']) ? $filter['type'] : $prefs['search_default_where']);
+	$smarty->assign('filter_content', $filter->content->text());
+	$smarty->assign('filter_type', $filter->type->wordspace() ? $filter->type->wordspace() : $prefs['search_default_where']);
 	$smarty->assign('filter_types', $types);
 
 	$sort_mode = isset($_REQUEST['sort_mode']) ? $_REQUEST['sort_mode'] : 'score_ndesc';
@@ -60,8 +62,8 @@ function smarty_block_filter($params, $content, $smarty, &$repeat)
 
 	// Categories
 	if ($prefs['feature_categories'] == 'y' && $prefs['search_show_category_filter'] == 'y') {
-		$smarty->assign('filter_deep', isset($filter['deep']));
-		$smarty->assign('filter_categories', isset($filter['categories']) ? $filter['categories'] : '');
+		$smarty->assign('filter_deep', $filter->offsetExists('deep'));
+		$smarty->assign('filter_categories', $filter->categories->wordspace());
 		$smarty->assign('filter_categmap', json_encode(TikiDb::get()->fetchMap('SELECT categId, name FROM tiki_categories')));
 
 		// Generate the category tree {{{
@@ -100,7 +102,7 @@ BODY;
 	if ($prefs['feature_freetags'] == 'y') {
 		$freetaglib = TikiLib::lib('freetag');
 
-		$smarty->assign('filter_tags', isset($filter['tags']) ? $filter['tags'] : '');
+		$smarty->assign('filter_tags', $filter->tags->wordspace());
 		$smarty->assign('filter_tagmap', json_encode(TikiDb::get()->fetchMap('SELECT tagId, tag FROM tiki_freetags')));
 		$smarty->assign('filter_tags_picker', (string) $freetaglib->get_cloud());
 	}
@@ -110,8 +112,8 @@ BODY;
 		$langLib = TikiLib::lib('language');
 		$languages = $langLib->list_languages();
 		$smarty->assign('filter_languages', $languages);
-		$smarty->assign('filter_language_unspecified', isset($filter['language_unspecified']));
-		$smarty->assign('filter_language', isset($filter['language']) ? $filter['language'] : '');
+		$smarty->assign('filter_language_unspecified', $filter->offsetExists('language_unspecified'));
+		$smarty->assign('filter_language', $filter->language->text());
 	}
 
 	return $smarty->fetch('filter.tpl');
