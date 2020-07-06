@@ -6372,6 +6372,9 @@ class TrackerLib extends TikiLib
 			return $rates[$date];
 		}
 		$definition = Tracker_Definition::get($trackerId);
+		if (empty($definition)) {
+			return $rates[$date];
+		}
 		$fields = $definition->getFields();
 		foreach ($fields as $field) {
 			switch ($field['type']) {
