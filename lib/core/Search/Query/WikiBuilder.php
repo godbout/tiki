@@ -340,6 +340,26 @@ class Search_Query_WikiBuilder
 		$query->filterDistance($value, $arguments['lat'], $arguments['lon']);
 	}
 
+	function wpquery_filter_similar($query, $value, array $arguments)
+	{
+		$object = [];
+		if (! empty($arguments['similar']) && strpos($arguments['similar'], ':')) {
+			$similar = explode(':', $arguments['similar']);
+			if (count($similar) === 2) {
+				$object['type'] = $similar[0];
+				$object['object'] = $similar[1];
+			} else {
+				Feedback::error(tr('The similar filter object reference not parsed: %0', $arguments['similar']));
+			}
+		} else if (empty($arguments['similar']) || $arguments['similar'] === 'this') {
+			$object = current_object();
+		}
+
+		if (! empty($object)) {
+			$query->filterSimilar($object['type'], $object['object']);
+		}
+	}
+
 	function wpquery_sort_mode($query, $value, array $arguments)
 	{
 		if ($value == 'randommode') {
