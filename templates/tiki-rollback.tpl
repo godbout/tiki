@@ -4,6 +4,7 @@
 	<input type="submit" class="btn btn-primary btn-sm" name="rollback" value="{tr}Roll back{/tr}">
 	<div class="wikitext">{$preview.data}</div>
 	<div>
+		{ticket}
 		<input type="hidden" name="page" value="{$page|escape}">
 		<input type="hidden" name="version" value="{$version|escape}">
 		<label for="comment">{tr}Describe the reason for roll back{/tr} {help url='Using+Wiki+Pages' desc="{tr}Enter some text to describe the reason for rolling back{/tr}"}</label>
