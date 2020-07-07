@@ -21,8 +21,8 @@ function wikiplugin_perm_info()
 			'perms' => [
 				'required' => false,
 				'name' => tra('Possible Permissions'),
-				'description' => tra('Pipe-separated list of permissions, one of which is needed to view the default
-					text.') . ' ' . tra('Example:') . ' <code>tiki_p_rename|tiki_p_edit</code>',
+				'description' => tra('Pipe-separated list of permissions, one of which is needed to view the default text.') .
+					' ' . tra('Example:') . ' <code>tiki_p_rename|tiki_p_edit</code>',
 				'since' => '5.0',
 				'filter' => 'text',
 				'separator' => '|',
@@ -31,8 +31,8 @@ function wikiplugin_perm_info()
 			'notperms' => [
 				'required' => false,
 				'name' => tra('Forbidden Permissions'),
-				'description' => tra('Pipe-separated list of permissions, any of which will cause the default text
-					not to show.') . ' ' . tra('Example:') . ' <code>tiki_p_rename|tiki_p_edit</code>',
+				'description' => tra('Pipe-separated list of permissions, any of which will cause the default text not to show.') .
+					' ' . tra('Example:') . ' <code>tiki_p_rename|tiki_p_edit</code>',
 				'since' => '5.0',
 				'filter' => 'text',
 				'separator' => '|',
@@ -51,6 +51,22 @@ function wikiplugin_perm_info()
 					['text' => tra('No'), 'value' => '0']
 				],
 			],
+			'object' => [
+				'required' => false,
+				'name' => tra('Object ID'),
+				'description' => tra('Name or ID of the object to test if not global or the current object'),
+				'since' => '21.3',
+				'filter' => 'text',
+				'default' => '',
+			],
+			'type' => [
+				'required' => false,
+				'name' => tra('Type'),
+				'description' => tra('Type of object referred to in Object ID'),
+				'since' => '21.3',
+				'filter' => 'wordspace',
+				'default' => '',
+			],
 		]
 	];
 }
@@ -65,10 +81,21 @@ function wikiplugin_perm($data, $params)
 	if (! empty($params['notperms'])) {
 		$notperms = $params['notperms'];
 	}
-	if (! empty($params['global']) && $params['global'] == '1') {
+
+	if (! $perms && ! $notperms) {
+		Feedback::error(tr('One of either parameter %0perms%1 or %0notperms%1 are required.', '<code>', '</code>'));
+		return '';
+	}
+	if ($params['global']) {
 		$global = true;
 	} else {
 		$global = false;
+	}
+
+	if (! empty($params['object']) && ! empty($params['type'])) {
+		$objectPerms = Perms::get([ 'type' => $params['type'], 'object' => $params['object'] ]);
+	} else {
+		$objectPerms = null;
 	}
 
 	if (strpos($data, '{ELSE}')) {
@@ -86,6 +113,11 @@ function wikiplugin_perm($data, $params)
 					$ok = true;
 					break;
 				}
+			} else if ($objectPerms) {
+				$ok = $objectPerms->$perm;
+				if ($ok) {
+					break;
+				}
 			} else {
 				global $$perm;
 				if ($$perm == 'y') {
@@ -93,9 +125,6 @@ function wikiplugin_perm($data, $params)
 					break;
 				}
 			}
-		}
-		if (! $ok) {
-			return $dataelse;
 		}
 	}
 	if (! empty($notperms)) {
@@ -106,6 +135,11 @@ function wikiplugin_perm($data, $params)
 					$ok = false;
 					break;
 				}
+			} else if ($objectPerms) {
+				$ok = ! $objectPerms->$perm;
+				if (! $ok) {
+					break;
+				}
 			} else {
 				global $$perm;
 				if ($$perm == 'y') {
@@ -114,10 +148,11 @@ function wikiplugin_perm($data, $params)
 				}
 			}
 		}
-		if (! $ok) {
-			return $dataelse;
-		}
 	}
 
-	return $data;
+	if ($ok) {
+		return $data;
+	} else {
+		return $dataelse;
+	}
 }
