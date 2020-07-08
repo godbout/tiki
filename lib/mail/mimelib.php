@@ -226,16 +226,8 @@ class mime
 							break;
 
 			case 'quoted-printable':
-				$input = preg_replace('/=\r?\n/', '', $input);
-				if (preg_match_all('/=[A-Z0-9]{2}/', $input, $matches)) {
-					$matches = array_unique($matches[0]);
-					foreach ($matches as $value) {
-						$input = str_replace($value, chr(hexdec(substr($value, 1))), $input);
-					}
-				}
-				return $input;
-
-							break;
+				return quoted_printable_decode($input);
+				break;
 
 			case 'base64':
 				return base64_decode($input);
