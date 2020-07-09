@@ -5,8 +5,8 @@
 // Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See license.txt for details.
 // $Id$
 
-use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessTimedOutException;
+use Symfony\Component\Process\Process;
 
 class Scheduler_Task_ShellCommandTask extends Scheduler_Task_CommandTask
 {
@@ -27,7 +27,13 @@ class Scheduler_Task_ShellCommandTask extends Scheduler_Task_CommandTask
 			$process->setIdleTimeout($params['timeout']);
 		}
 		try {
-			$process->run();
+			$process->run(
+				function ($type, $message) {
+					if ($type != 'err') {
+						$this->output->write($message);
+					}
+				}
+			);
 		} catch (ProcessTimedOutException $e) {
 			$this->errorMessage = $e->getMessage();
 			return false;

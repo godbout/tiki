@@ -6,6 +6,8 @@
 // $Id$
 
 //this script may only be included - so its better to die if called directly.
+use Tiki\Lib\core\Scheduler\Output\SchedulerRunOutput;
+
 if (strpos($_SERVER['SCRIPT_NAME'], basename(__FILE__)) !== false) {
 	header('location: index.php');
 	exit;
@@ -98,7 +100,11 @@ class SchedulersLib extends TikiLib
 
 		$schedulersRunTable = $this->table('tiki_scheduler_run');
 
-		return $schedulersRunTable->fetchAll([], ['scheduler_id' => $scheduler_id], $limit, $offset, ['id' => 'DESC']);
+		$runs = $schedulersRunTable->fetchAll([], ['scheduler_id' => $scheduler_id], $limit, $offset, ['id' => 'DESC']);
+		if (! empty($runs) && $runs[0]['status'] == 'running') {
+			$runs[0]['output'] = SchedulerRunOutput::getTempLog($runs[0]['id']);
+		}
+		return $runs;
 	}
 
 	/**

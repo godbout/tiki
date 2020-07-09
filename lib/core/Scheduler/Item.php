@@ -6,6 +6,7 @@
 // $Id$
 
 use Psr\Log\LoggerInterface;
+use Tiki\Lib\core\Scheduler\Output\SchedulerRunOutput;
 
 class Scheduler_Item
 {
@@ -286,7 +287,8 @@ class Scheduler_Item
 			];
 		}
 
-		$task = new $class($this->logger);
+		$output = new SchedulerRunOutput($runId);
+		$task = new $class($this->logger, $output);
 		$result = $task->execute($params);
 
 		$executionStatus = $result ? 'done' : 'failed';
@@ -302,7 +304,7 @@ class Scheduler_Item
 		$this->logger->debug("End time: " . $endTime);
 
 		$this->reduceLogs();
-
+		$output->clear();
 		return [
 			'status' => $executionStatus,
 			'message' => $outputMessage,

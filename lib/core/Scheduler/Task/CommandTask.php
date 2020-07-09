@@ -6,20 +6,38 @@
 // $Id$
 
 use Psr\Log\LoggerInterface;
+use Symfony\Component\Console\Output\NullOutput;
+use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class Scheduler_Task_CommandTask
 {
 	protected $errorMessage;
+
+	/** @var LoggerInterface */
 	protected $logger;
 
-	public function __construct(LoggerInterface $logger)
+	/** @var OutputInterface */
+	protected $output;
+
+	public function __construct(LoggerInterface $logger, OutputInterface $output = null)
 	{
 		$this->logger = $logger;
+		$this->output = $output ?? new NullOutput();
 	}
 
+	/**
+	 * @param null $params
+	 *
+	 * @return mixed
+	 */
 	abstract protected function execute($params = null);
 
 	abstract protected function getParams();
+
+	public function setOutput(OutputInterface $output)
+	{
+		$this->output = $output;
+	}
 
 	public function getOutput()
 	{

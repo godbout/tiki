@@ -6,8 +6,6 @@
 // $Id$
 
 use Symfony\Component\Console\Input\ArgvInput;
-use Symfony\Component\Console\Output\BufferedOutput;
-use Tiki\Command\Application;
 
 class Scheduler_Task_ConsoleCommandTask extends Scheduler_Task_CommandTask
 {
@@ -37,10 +35,9 @@ class Scheduler_Task_ConsoleCommandTask extends Scheduler_Task_CommandTask
 			$input = new ArgvInput($args);
 			$input->setInteractive(false);
 
-			$output = new BufferedOutput();
-			$statusCode = $command->run($input, $output);
+			$statusCode = $command->run($input, $this->output);
 
-			$content = $output->fetch();
+			$content = $this->output->fetch();
 			$this->errorMessage = $content;
 
 			return $statusCode === 0;
