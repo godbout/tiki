@@ -252,7 +252,7 @@
 					<tr>
 						<td>{$schedulerruns[run].id}</td>
 						<td>{$schedulerruns[run].start_time|tiki_short_datetime}</td>
-						<td>{$schedulerruns[run].end_time|tiki_short_datetime}</td>
+						<td>{if $schedulerruns[run].end_time ne null}{$schedulerruns[run].end_time|tiki_short_datetime}{/if}</td>
 						<td>
 							{if $schedulerruns[run].status eq 'running'}
 								<span class="badge badge-warning">{tr}Running{/tr}</span>
