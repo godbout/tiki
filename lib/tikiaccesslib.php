@@ -354,6 +354,7 @@ class TikiAccessLib extends TikiLib
 		// allow null value to equate to default for skipped parameters
 		if ($postConfirm === null) {
 			$postConfirm = false;
+			$confirmText = '';
 		} elseif ($postConfirm === true || (is_string($postConfirm) && ! empty($postConfirm))) {
 			if (is_string($postConfirm) && ! empty($postConfirm)) {
 				$confirmText = $postConfirm;
