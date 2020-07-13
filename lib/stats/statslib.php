@@ -155,12 +155,12 @@ class StatsLib extends TikiLib
 		$stats["forums"] = $this->getOne("select count(*) from `tiki_forums`", []);
 		$stats["topics"] = $this->getOne(
 			"select count(*) from `tiki_comments`,`tiki_forums`" .
-			" where `object`=`forumId` and `objectType`=? and `parentId`=?",
+			" where `object`=`forumId` and `objectType`=? and `tiki_comments`.`parentId`=?",
 			['forum',0]
 		);
 		$stats["threads"] = $this->getOne(
 			"select count(*) from `tiki_comments`,`tiki_forums`" .
-			" where `object`=`forumId` and `objectType`=? and `parentId`<>?",
+			" where `object`=`forumId` and `objectType`=? and `tiki_comments`.`parentId`<>?",
 			['forum',0]
 		);
 		$stats["tpf"] = ($stats["forums"] ? $stats["topics"] / $stats["forums"] : 0);
