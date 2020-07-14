@@ -261,11 +261,8 @@ class Tracker_Field_Math extends Tracker_Field_Abstract implements Tracker_Field
 			}
 		}
 		foreach ($data as $permName => $value) {
-			if (! empty($value)) {
-				continue;
-			}
 			$field = $this->getTrackerDefinition()->getFieldFromPermName($permName);
-			if (! $field || $field['type'] != 'l') {
+			if (! $field || ($field['type'] != 'l' && $field['type'] != 'REL')) {
 				continue;
 			}
 			$handler = TikiLib::lib('trk')->get_field_handler($field, $fieldData);

@@ -568,4 +568,42 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 		return ["{$baseKey}_plain" => true];	// index contents with the object titles
 	}
 
+	/**
+	 * Get related items' formatted values in an array. Useful in
+	 * Math calculations where individual field values are needed.
+	 * @return array associated array of field names and values
+	 */
+	public function getItemValues()
+	{
+		$lib = TikiLib::lib('unifiedsearch');
+
+		$itemsValues = [];
+
+		$data = $this->getFieldData();
+		$objects = array_map(function($row) {
+			list($object_type, $object_id) = explode(':', $row);
+			return compact('object_type', 'object_id');
+		}, $data['relations']);
+
+		$format = $this->getOption('format');
+		foreach ($objects as $object) {
+			$query = $lib->buildQuery($object);
+			$result = $query->search($lib->getIndex());
+			$result->applyTransform(function ($item) use ($format) {
+				$values = [];
+				preg_replace_callback('/\{(\w+)\}/', function ($matches) use ($item, $format, &$values) {
+					$key = $matches[1];
+					$value_key = str_replace('tracker_field_', '', $key);
+					if (isset($item[$key])) {
+						$values[$value_key] = $item[$key];
+					} else {
+						$values[$value_key] = '';
+					}
+				}, $format);
+				return $values;
+			});
+			$itemsValues[] = $result->getArrayCopy()[0];
+		}
+		return $itemsValues;
+	}
 }
