@@ -24,11 +24,11 @@
 				{/if}
 			{/if}
 
-			<div>{strip}
+			<div class="calendar-nav">{strip}
 
 	{*previous*}
-				<div style="display:inline-block; padding-right: 6px; position: relative; bottom: 20px;{* right: 100px*}">
-					<a class="tips text-info" href="{query _type='relative' _ajax=$ajax _class='prev' todate=$focus_prev}" title=":{tr}Previous {$viewmode|escape}{/tr}">
+				<div class="cal-prev" style="display:inline-block; padding-right: 6px; position: relative; bottom: 20px;{* right: 100px*}">
+					<a class="tips text-info" href="{query _type='relative' _ajax=$ajax _class='prev' todate=$focus_prev}" title=":{tr _0="{$viewmode|escape}"}Previous %0 {/tr}">
 						{icon name="previous"}
 					</a>
 				</div>
@@ -57,8 +57,8 @@
 				</div>
 
 	{*next*}
-				<div style="display:inline-block; padding-left: 6px; position: relative; bottom: 20px;{* left: 100px*}">
-					<a class="tips text-info" href="{query _type='relative' _ajax=$ajax _class='next' todate=$focus_next}" title=":{tr}Next {$viewmode|escape}{/tr}">
+				<div class="cal-next" style="display:inline-block; padding-left: 6px; position: relative; bottom: 20px;{* left: 100px*}">
+					<a class="tips text-info" href="{query _type='relative' _ajax=$ajax _class='next' todate=$focus_next}" title=":{tr _0="{$viewmode|escape}"}Next %0{/tr}">
 						{icon name="next"}
 					</a>
 				</div>
