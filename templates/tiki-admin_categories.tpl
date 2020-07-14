@@ -87,7 +87,7 @@
 					</div>
 				</div>
 			{/if}
-			{if $tiki_p_admin_categories == 'y'}
+			{if $tiki_p_admin_categories == 'y' and $prefs.feature_templated_groups eq 'y'}
 				{jq}
 					$('input[type=checkbox][name=applyRoles]').change(function(ele){
 						if($('input[type=checkbox][name=applyRoles]:checked').length > 0){

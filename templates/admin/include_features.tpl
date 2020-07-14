@@ -69,6 +69,7 @@
 					{preference name=feature_htmlfeed}
 					{preference name=feature_areas}
 					{preference name=feature_system_suggestions}
+					{preference name=feature_templated_groups}
 					<legend>{tr}Watches{/tr}</legend>
 					<div class="adminoptionboxchild">
 						<fieldset>

@@ -75,10 +75,10 @@
 						<a class="link tips" href="{$href}"{$onclick} title="{tr}Edit group{/tr}:{$users[user].groupName|escape}">
 							{$users[user].groupName|escape}
 						</a>
-						{if $users[user].isTplGroup eq 'y'}
+						{if $users[user].isTplGroup eq 'y' and $prefs.feature_templated_groups eq 'y'}
 							<sup class="tikihelp" title="{tr}Templated Groups Container{/tr}"> T </sup>
 						{/if}
-						{if $users[user].isRole eq 'y'}
+						{if $users[user].isRole eq 'y' and $prefs.feature_templated_groups eq 'y'}
 							<sup class="tikihelp" title="{tr}Role Group{/tr}"> R </sup>
 						{/if}
 						<div class="text">{tr}{$users[user].groupDesc|escape|nl2br}{/tr}</div>
@@ -467,30 +467,30 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="form-group row">
-				<label class="col-form-label col-md-3">{tr}Role Group{/tr}</label>
-				<div class="col-md-9">
-					<div class="form-check">
-						<label class="form-check-label">
-							<input class="form-check-input" type="checkbox" name="isRole"{if $isRole eq 'y'} checked="checked"{/if}>
-							{tr}This group is used as a role{/tr}
-						</label>
+			{if $prefs.feature_templated_groups eq 'y'}
+				<div class="form-group row">
+					<label class="col-form-label col-md-3">{tr}Role Group{/tr}</label>
+					<div class="col-md-9">
+						<div class="form-check">
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" name="isRole"{if $isRole eq 'y'} checked="checked"{/if}>
+								{tr}This group is used as a role{/tr}
+							</label>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-form-label col-md-3">{tr}Templated Groups{/tr}</label>
-				<div class="col-md-9">
-					<div class="form-check">
-						<label class="form-check-label">
-							<input class="form-check-input" type="checkbox" name="isTplGroup"{if $isTplGroup eq 'y'} checked="checked"{/if}>
-							{tr}This group is a container for templated groups{/tr}
-						</label>
+				<div class="form-group row">
+					<label class="col-form-label col-md-3">{tr}Templated Groups{/tr}</label>
+					<div class="col-md-9">
+						<div class="form-check">
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox" name="isTplGroup"{if $isTplGroup eq 'y'} checked="checked"{/if}>
+								{tr}This group is a container for templated groups{/tr}
+							</label>
+						</div>
 					</div>
 				</div>
-			</div>
-
+			{/if}
 			{if $group ne '' and $groupname neq 'Anonymous'}
 				<div class="form-group row">
 					<label class="col-form-label col-md-3">{tr}Assign group<em>management</em>permissions{/tr}</label>

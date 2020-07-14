@@ -117,7 +117,7 @@
 				</div>
 			{/if}
 
-			{if $tiki_p_admin_categories == 'y'}
+			{if $tiki_p_admin_categories == 'y' and $prefs.feature_templated_groups eq 'y'}
 				<div class="form-group row">
 					<div class="col-sm-12">
 						<label>

@@ -3047,5 +3047,14 @@ function prefs_feature_list($partial = false)
 			'default' => 'y',
 			'tags' => ['advanced'],
 		],
+		'feature_templated_groups' => [
+			'name' => tra('Templated Groups'),
+			'description' => tra('Templated Groups enables Organic Groups, although strictly speaking not all Templated Groups are Organic in the sense of being created by users since they can be completely admin managed.'),
+			'type' => 'flag',
+			'dependencies' => [
+				'feature_categories',
+			],
+			'default' => 'n',
+		],
 	];
 }
