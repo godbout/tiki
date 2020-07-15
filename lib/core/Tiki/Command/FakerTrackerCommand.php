@@ -122,6 +122,16 @@ class FakerTrackerCommand extends Command
 				$fakerForField = $fieldFakerOverride[$field['fieldId']];
 			} elseif (isset($fieldFakerOverride[$field['permName']])) { // override by permName
 				$fakerForField = $fieldFakerOverride[$field['permName']];
+			} elseif (preg_match('/~tc~faker:(.*)~\/tc~/', $field['description'], $matches)) {
+				// check field descriptions for a faker formatter in the form of
+				// ~tc~faker:lastName~/tc~ or ~tc~faker: numberBetween,1,100~/tc~ or ~tc~faker:dateTimeBetween,-6 months~/tc~
+				// full list is here https://github.com/fzaninotto/Faker#formatters
+				$parts = explode(',', trim($matches[1]));
+				$formatter = array_shift($parts);
+				if (! empty($parts)) {
+					$formatter = [$formatter, $parts];
+				}
+				$fakerForField = $formatter;
 			} elseif (isset($fakerFieldTypes[$field['type']])) { // default for field type
 				$fakerForField = $fakerFieldTypes[$field['type']];
 			} else { // if not defined, empty
@@ -162,6 +172,9 @@ class FakerTrackerCommand extends Command
 				}
 
 				if (isset($value)) {
+					if (is_object($value) && get_class($value) === 'DateTime') {
+						$value = $value->format('U');
+					}
 					$fieldData[] = [
 						'fieldId' => $fieldFaker['fieldId'],
 						'value' => $value,
