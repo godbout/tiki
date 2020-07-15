@@ -524,6 +524,20 @@ function wikiplugin_img_info()
 				'since' => '20.1',
 				'advanced' => true,
 			],
+			'lazyLoad' => [
+				'required' => false,
+				'name' => tra('Lazy Loading'),
+				'filter' => 'alpha',
+				'description' => tr('Set to "n" to prevent lazy loading if enabled. Useful in carousels and so on sometimes.'),
+				'since' => '21.3',
+				'doctype' => 'show',
+				'default' => '',
+				'options' => [
+					['text' => tra('Default'), 'value' => ''],
+					['text' => tra('No'), 'value' => 'n'],
+				],
+				'advanced' => true,
+			],
 			'default' => [
 				'required' => false,
 				'name' => tra('Default Settings'),
@@ -1164,7 +1178,11 @@ function wikiplugin_img($data, $params)
 	}
 
 	$lozardImg = false;
-	if ($prefs['allowImageLazyLoad'] === 'y' && empty(preg_match("/tiki-print.php/", $_SERVER['REQUEST_URI']))) {
+	if (
+		$prefs['allowImageLazyLoad'] === 'y' &&
+		empty(preg_match("/tiki-print.php/", $_SERVER['REQUEST_URI'])) &&
+		(empty($params['lazyLoad']) || $params['lazyLoad'] !== 'n')
+	) {
 		$lozadJsPath = VendorHelper::getAvailableVendorPath('lozad', 'npm-asset/lozad/dist/lozad.js');
 
 		if (! $lozadJsPath) {
