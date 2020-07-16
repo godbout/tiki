@@ -233,7 +233,7 @@ if ( \$('#$id') ) {
 		if ($this->option['ck_editor']) {
 			$data = preg_replace(';~tc~(.*?)~/tc~;s', '<tikicomment>$1</tikicomment>', $this->markup);
 		} else {
-			$data = preg_replace(';~tc~(.*?)~/tc~;s', '', $this->markup);
+			$data = preg_replace(';(?<!~np~)~tc~(.*?)~/tc~(?!~/np~);s', '', $this->markup);
 		}
 
 		$this->parse_wiki_argvariable($data);
