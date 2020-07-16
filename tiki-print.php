@@ -28,6 +28,8 @@ if (! isset($_REQUEST["page"])) {
 	$page = $_REQUEST["page"];
 	$smarty->assign_by_ref('page', $_REQUEST["page"]);
 }
+$cat_type = 'wiki page';
+$cat_objid = $page;
 // If the page doesn't exist then display an error
 if (! ($info = $tikilib->get_page_info($page))) {
 	$smarty->assign('msg', tra('Page cannot be found'));
