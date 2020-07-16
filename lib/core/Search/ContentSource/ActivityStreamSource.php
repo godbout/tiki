@@ -11,6 +11,8 @@ class Search_ContentSource_ActivityStreamSource implements Search_ContentSource_
 	private $relationlib;
 	private $tikilib;
 	private $source;
+	private $mapping;
+	private $trackerLib;
 
 	function __construct($source = null)
 	{
@@ -19,6 +21,8 @@ class Search_ContentSource_ActivityStreamSource implements Search_ContentSource_
 		$this->source = $source;
 		$this->relationlib = TikiLib::lib('relation');
 		$this->tikilib = TikiLib::lib('tiki');
+		$this->mapping = $this->lib->getMapping();
+		$this->trackerLib = TikiLib::lib('trk');
 	}
 
 	function getDocuments()
@@ -30,11 +34,9 @@ class Search_ContentSource_ActivityStreamSource implements Search_ContentSource_
 	{
 		global $prefs;
 
-		if (! $info = $this->lib->getActivity($objectId, $typeFactory)) {
+		if (! $info = $this->lib->getActivity($objectId)) {
 			return false;
 		}
-
-		$mapping = $this->lib->getMapping();
 
 		$document = [
 			'event_type' => $typeFactory->identifier($info['eventType']),
@@ -45,7 +47,7 @@ class Search_ContentSource_ActivityStreamSource implements Search_ContentSource_
 		];
 
 		foreach ($info['arguments'] as $key => $value) {
-			$type = isset($mapping[$key]) ? $mapping[$key] : '';
+			$type = isset($this->mapping[$key]) ? $this->mapping[$key] : '';
 
 			if ($type) {
 				$document[$key] = $typeFactory->$type($value);
@@ -74,7 +76,7 @@ class Search_ContentSource_ActivityStreamSource implements Search_ContentSource_
 		if (isset($document['type'], $document['object'])) {
 			// Add tracker special perms
 			if ($info['arguments']['type'] == 'trackeritem') {
-				$item = TikiLib::lib('trk')->get_tracker_item($info['arguments']['object']);
+				$item = $this->trackerLib->get_tracker_item($info['arguments']['object']);
 				if (empty($item)) {
 					return false;
 				}
