@@ -191,6 +191,8 @@ class ParserLib extends TikiDb_Bridge
 			if (isset($preparsed["key"]) and count($preparsed["key"]) and count($preparsed["key"]) == count($preparsed["data"])) {
 				$data = str_replace($preparsed["key"], $preparsed["data"], $data);
 			}
+			// nested keys in plugins like {CODE} get the section chars encoded
+			$data = preg_replace('/&sect;(\w{32})&sect;/', '§$1§', $data);
 			$data2 = $data;
 		}
 
