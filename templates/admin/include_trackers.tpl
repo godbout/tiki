@@ -103,7 +103,6 @@
 				{preference name=wikiplugin_trackerprefill}
 				{preference name=wikiplugin_trackertimeline}
 				{preference name=wikiplugin_trackertoggle}
-				{preference name=wikiplugin_prettytrackerviews}
 				{preference name=wikiplugin_trackerpasscode}
 				{preference name=wikiplugin_trackeritemcopy}
 				{preference name=wikiplugin_trackerquerytemplate}
