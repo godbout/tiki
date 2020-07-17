@@ -163,7 +163,6 @@
 				<legend>{tr}Plugins{/tr}</legend>
 				{preference name=wikiplugin_addtocart}
 				{preference name=wikiplugin_adjustinventory}
-				{preference name=wikiplugin_cartmissinguserinfo}
 				{preference name=wikiplugin_extendcarthold}
 				{preference name=wikiplugin_hasbought}
 				{preference name=wikiplugin_memberpayment}
