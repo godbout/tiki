@@ -164,7 +164,6 @@
 				{preference name=wikiplugin_addtocart}
 				{preference name=wikiplugin_adjustinventory}
 				{preference name=wikiplugin_extendcarthold}
-				{preference name=wikiplugin_hasbought}
 				{preference name=wikiplugin_memberpayment}
 				{preference name=wikiplugin_payment}
 				{preference name=wikiplugin_shopperinfo}
