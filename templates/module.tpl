@@ -18,12 +18,25 @@
 						<span class="moduletitle">{$module_title}</span>
 					{/if}
 					{if $module_flip eq 'y' and $prefs.javascript_enabled ne 'n'}
-						<span class="moduleflip" id="moduleflip-{$smarty.capture.name}">
+						<div class="moduleflip" id="moduleflip-{$smarty.capture.name}">
+							{* Only show edit and delete options in module title if on tiki-admin_modules.php page *}
+							{if $smarty.server.SCRIPT_NAME == $url_path|cat:'tiki-admin_modules.php'}
+								<form action="tiki-admin_modules.php" method="post">
+									{ticket}
+									<input type="hidden" name="unassign" value="{$moduleId}">
+									<button type="submit" class="btn btn-link close" title="{tr}Unassign module{/tr}">
+										{icon name="remove"}
+									</button>
+								</form>
+								<a href="#" title="{tr}Edit module{/tr}" class="close" style="font-size: 16px" onclick="$(this).parents('.module:first').dblclick();">
+									{icon name="edit"}
+								</a>
+							{/if}
 							<a title="{tr}Toggle module contents{/tr}" class="flipmodtitle close"
 								 href="javascript:icntoggle('mod-{$smarty.capture.name}','module.png');">
 								{icon id="icnmod-"|cat:$smarty.capture.name class="flipmodimage" name="bars" alt="[{tr}Toggle{/tr}]"}
 							</a>
-						</span>
+						</div>
 					{/if}
 				</h3>
 			{/if}
@@ -37,12 +50,25 @@
 			{/if}
 			{$module_title}
 			{if $module_flip eq 'y' and $prefs.javascript_enabled ne 'n'}
-				<span class="moduleflip" id="moduleflip-{$smarty.capture.name}">
-				<a title="{tr}Toggle module contents{/tr}" class="flipmodtitle"
-					 href="javascript:icntoggle('mod-{$smarty.capture.name}','module.png');">
-					{icon id="icnmod-"|cat:$smarty.capture.name class="flipmodimage" name="module" alt="[{tr}Toggle{/tr}]"}
-				</a>
-			</span>
+				<div class="moduleflip" id="moduleflip-{$smarty.capture.name}">
+					{* Only show edit and delete options in module title if on tiki-admin_modules.php page *}
+					{if $smarty.server.SCRIPT_NAME == $url_path|cat:'tiki-admin_modules.php'}
+						<form action="tiki-admin_modules.php" method="post">
+							{ticket}
+							<input type="hidden" name="unassign" value="{$moduleId}">
+							<button type="submit" class="btn btn-link close" title="{tr}Unassign module{/tr}">
+								{icon name="remove"}
+							</button>
+						</form>
+						<a href="#" title="{tr}Edit module{/tr}" class="close" style="font-size: 16px" onclick="$(this).parents('.module:first').dblclick();">
+							{icon name="edit"}
+						</a>
+					{/if}
+					<a title="{tr}Toggle module contents{/tr}" class="flipmodtitle"
+						 href="javascript:icntoggle('mod-{$smarty.capture.name}','module.png');">
+						{icon id="icnmod-"|cat:$smarty.capture.name class="flipmodimage" name="module" alt="[{tr}Toggle{/tr}]"}
+					</a>
+				</div>
 			{/if}
 		</h3>
 		{/if}
