@@ -276,7 +276,7 @@ class UnifiedSearchLib
 				break;
 			case 'mysql':
 				// Obtain the old index and destroy it after permanently replacing it.
-				$oldIndex = $this->getIndex('data');
+				$oldIndex = $this->getIndex('data', false);
 
 				$tikilib->set_preference('unified_mysql_index_current', $indexName);
 				TikiDb::get()->releaseLock($indexName);
@@ -724,7 +724,9 @@ class UnifiedSearchLib
 				$index->setPossessiveStemmerEnabled($prefs['unified_elastic_possessive_stemmer'] == 'y');
 				$index->setFacetCount($prefs['search_facet_default_amount']);
 
-				$this->indices[$indexType] = $index;
+				if ($useCache) {
+					$this->indices[$indexType] = $index;
+				}
 				return $index;
 			}
 
@@ -737,6 +739,10 @@ class UnifiedSearchLib
 
 		if (($engine == 'mysql' || $fallbackMySQL) && $index = $this->getIndexLocation($indexType, 'mysql')) {
 			$index = new Search_MySql_Index(TikiDb::get(), $index);
+
+			if ($useCache) {
+				$this->indices[$indexType] = $index;
+			}
 			return $index;
 		}
 
