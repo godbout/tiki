@@ -30,7 +30,7 @@ class WikiParser_PluginRepository
 		include_once "{$location}/$functionName.php";
 
 		if (! function_exists($functionName)) {
-			$this->pluginsFound[ $pluginName ] = false;
+			$this->pluginsFound[ $pluginName ] = false;
 			return null;
 		}
 
