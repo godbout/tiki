@@ -210,12 +210,10 @@ class WikipluginDBReportContent
 	}
 	public function append_variable($name)
 	{
-		unset($this->elements);
 		$this->elements[] = new WikipluginDBReportField('$' . $name);
 	}
 	public function append_string($text)
 	{
-		unset($this->elements);
 		$this->elements[] = new WikipluginDBReportString($text);
 	}
 	public function append($text)
@@ -1324,7 +1322,6 @@ function wikiplugin_dbreport_parse(&$code)
 							unset($next_token);	// consume the token
 							break;
 						case 'txt':
-							unset($parse_object->elements);
 							$parse_object->elements[] = new WikipluginDBReportText($token);
 							unset($next_token);	// consume the token
 							break;
@@ -1843,7 +1840,7 @@ function wikiplugin_dbreport($data, $params)
 			return $ret;
 		} else {
 			// execute sql query
-			$ado->SetFetchMode(ADODB_FETCH_NUM);
+			$ado->SetFetchMode(ADODB_FETCH_BOTH);
 			$query =& $ado->Execute($report->sql, $bindvars);
 			$field_count = $query->FieldCount();
 			$fetchfield = 'FetchField';
@@ -1860,6 +1857,11 @@ function wikiplugin_dbreport($data, $params)
 	//	$field_count = $query->FieldCount();
 	for ($index = 0; $index < $field_count; $index++) {
 		$column =& $query->$fetchfield($index);
+		// some PDO connections (eg. oci) won't be able to return meta info on the column
+		if ($column->name == 'bad getColumnMeta()' && $ado->fetchMode === ADODB_FETCH_BOTH) {
+			$internal_field_keys = array_keys($query->fields);
+			$column->name = $internal_field_keys[$index * 2];
+		}
 		$field_index[$column->name] = $index;
 	}
 	// go through the parsed fields and assign indexes

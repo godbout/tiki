@@ -16,6 +16,7 @@ function wikiplugin_sql_info()
 		'validate' => 'all',
 		'iconname' => 'database',
 		'introduced' => 1,
+		'extraparams' => true,
 		'params' => [
 			'db' => [
 				'required' => true,
@@ -81,10 +82,26 @@ function wikiplugin_sql($data, $params)
 	if ($nb = preg_match_all("/\?/", $data, $out)) {
 		foreach ($params as $key => $value) {
 			if (preg_match('/^[0-9]*$/', $key)) {
-				if (strpos($value, "$") === 0) {
-					$value = substr($value, 1);
-					global $$value;
-					$bindvars[$key] = $$value;
+				if (preg_match('/(.*)\[\$([^\]]*)\](.*)/', $value, $variable)) {
+					$originalVarValue = $varValue = '{{' . $variable[2] . '}}';
+					$varName = $variable[2];
+					TikiLib::lib('parser')->parse_wiki_argvariable($varValue);
+					if ($originalVarValue !== $varValue) {
+						$bindvars[$key] = $variable[1] . $varValue . $variable[3];
+					} else {
+						global $$varName;
+						$bindvars[$key] = $variable[1] . $$varName . $variable[3];
+					}
+				} elseif (strpos($value, "$") === 0) {
+					$varName = substr($value, 1);
+					$originalVarValue = $varValue = '{{' . $varName . '}}';
+					TikiLib::lib('parser')->parse_wiki_argvariable($varName);
+					if ($originalVarValue !== $varValue) {
+						$bindvars[$key] = $varValue;
+					} else {
+						global $$varName;
+						$bindvars[$key] = $$varName;
+					}
 				} else {
 					$bindvars[$key] = $value;
 				}
