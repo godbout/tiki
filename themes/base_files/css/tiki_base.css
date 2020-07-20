@@ -3968,7 +3968,21 @@ body.fullscreen.tiki.navbar-padding {
   .hide_zone_left.hide_zone_right #col1.col-lg-8, .hide_zone_left.hide_zone_right #col1.col-lg-9 {
     width: 100%;
     flex: 0 0 100%;
-    max-width: 100%; } }
+    max-width: 100%; }
+  .tiki-admin_modules.hide_zone_left #col2 {
+    display: block;
+    opacity: 0.6; }
+  .tiki-admin_modules.hide_zone_right #col3 {
+    display: block;
+    opacity: 0.6; }
+  .tiki-admin_modules.hide_zone_left #col1.col-lg-8, .tiki-admin_modules.hide_zone_right #col1.col-lg-8 {
+    width: 66.6666666667%;
+    flex: 0 0 66.6666666667%;
+    max-width: 66.6666666667%; }
+  .tiki-admin_modules.hide_zone_left #col1.col-lg-9, .tiki-admin_modules.hide_zone_right #col1.col-lg-9 {
+    width: 75%;
+    flex: 0 0 75%;
+    max-width: 75%; } }
 
 @media (max-width: 767.98px) {
   #col1 {
