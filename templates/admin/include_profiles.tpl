@@ -3,7 +3,8 @@
 {$headerlib->add_jsfile("lib/jquery_tiki/tiki-profile.js")}
 
 {remarksbox type="tip" title="{tr}Tip{/tr}"}
-	<a class="alert-link" href="http://profiles.tiki.org">{tr}Tiki Configuration Profiles{/tr}</a>
+	<a class="alert-link" href="http://profiles.tiki.org">{tr}Tiki Configuration Profiles{/tr}</a>.
+	{tr}You can revert a profile you applied through the <a href="tiki-syslog.php">Tiki logs</a>{/tr}.
 {/remarksbox}
 
 {if isset($profilefeedback)}
