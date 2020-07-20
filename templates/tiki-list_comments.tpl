@@ -129,16 +129,21 @@
 			{if $tiki_p_admin_comments eq 'y' and $prefs.feature_comments_moderation eq 'y'}
 				<td class="approval">
 					{if $comments[ix].approved eq 'n'}
-						{self_link action='approve' checked=$id _icon_name='ok' _class='tips' _title=":{tr}Approve{/tr}"}
-						{/self_link}
-						{self_link action='reject' checked=$id _icon_name='delete' _class='tips' _title=":{tr}Reject{/tr}"}
-						{/self_link}
+						<a href="#" data-action="approve" data-checked="{$id}" class="tips moderation-post text-success" title=":{tr}Approve{/tr}">{icon name='ok'}</a>
+						<a href="#" data-action="reject" data-checked="{$id}" class="tips moderation-post text-danger" title=":{tr}Reject{/tr}">{icon name='delete'}</a>
 					{elseif $comments[ix].approved eq 'y'}
 						&nbsp;{tr}Approved{/tr}&nbsp;
 					{elseif $comments[ix].approved eq 'r'}
 						<span>&nbsp;{tr}Rejected{/tr}&nbsp;</span>
 					{/if}
 				</td>
+				{jq}$(".moderation-post").click(function () {
+	let $this = $(this), $form = $this.parents("form");
+	$form.find("select[name=action]").val($this.data("action"));
+	$this.parents("tr:first").tikiModal(tr("Saving...")).find("input[type=checkbox]").prop("checked", true);
+	$form.submit();
+	return false;
+});{/jq}
 			{/if}
 
 			<td>
