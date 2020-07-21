@@ -25,6 +25,7 @@ class Search_ContentSource_WebserviceSource implements Search_ContentSource_Inte
 		$rows = $this->tiki_webservice_template->fetchAll(['service', 'template', 'output',], ['engine' => 'index']);
 
 		$out = [];
+		$dataObject = [];
 
 		foreach ($rows as $row) {
 			if ($row['output'] === 'mindex') {	// multi-index
@@ -32,9 +33,17 @@ class Search_ContentSource_WebserviceSource implements Search_ContentSource_Inte
 				if ($data) {
 					foreach ($data['mapping'] as $topObject => $topValue) {
 						if (is_array($data['data'][$topObject])) {
-							foreach ($data['data'][$topObject] as $key => $val) {
-								$out[] = $row['template'] . ':' . $key;
+							$dataObject = $data['data'][$topObject];
+						} else {
+							foreach ($data['data'] as $item) {
+								if (is_array($item[$topObject])) {
+									$dataObject = $item[$topObject];
+									break;
+								}
 							}
+						}
+						foreach ($dataObject as $key => $val) {
+							$out[] = $row['template'] . ':' . $key;
 						}
 					}
 				}
@@ -113,14 +122,25 @@ class Search_ContentSource_WebserviceSource implements Search_ContentSource_Inte
 		];
 
 		$rows = [];
+		$dataObject = [];
+
 
 		if (is_array($output['mapping'])) {
 			foreach ($output['mapping'] as $topObject => $topValue) {
-				if (! isset($output['data'][$topObject])) {
+				if (is_array($output['data'][$topObject])) {
+					$dataObject = $output['data'][$topObject];
+				} else {
+					foreach ($output['data'] as $item) {
+						if (is_array($item[$topObject])) {
+							$dataObject = $item[$topObject];
+							break;
+						}
+					}
+				}
+				if (! $dataObject) {
 					Feedback::warning(tr('Webservice %0 field "%1" not found', $serviceName, $topObject));
 					continue;
 				}
-				$dataObject = $output['data'][$topObject];
 				if (is_array($dataObject)) {
 					foreach ($dataObject as $key => $val) {
 						if (is_int($key) && $index !== false) {            // array of objects
