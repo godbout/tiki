@@ -10,7 +10,7 @@ function prefs_short_list()
 	return [
 		'short_date_format' => [
 			'name' => tra('Short date format'),
-			'descriprion' => tra('Specify how Tiki displays the date (shorter version)'),
+			'description' => tra('Specify how Tiki displays the date (shorter version)'),
 			'help' => 'Date-and-Time#Date_and_Time_Formats',
 			'type' => 'text',
 			'size' => '30',
@@ -20,7 +20,7 @@ function prefs_short_list()
 		],
 		'short_time_format' => [
 			'name' => tra('Short time format'),
-			'descriprion' => tra('Specify how Tiki displays the time (shorter version)'),
+			'description' => tra('Specify how Tiki displays the time (shorter version)'),
 			'help' => 'Date-and-Time#Date_and_Time_Formats',
 			'type' => 'text',
 			'size' => '30',

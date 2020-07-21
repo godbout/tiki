@@ -17,7 +17,7 @@ function prefs_users_list()
 		],
 		'users_prefs_display_timezone' => [
 			'name' => tra('Displayed time zone'),
-			'descriprion' => tra('Use time zone set from user preferences, or the automatically detected time zone for anonymous (if browser allows). Site default is used as fallback.'),
+			'description' => tra('Use time zone set from user preferences, or the automatically detected time zone for anonymous (if browser allows). Site default is used as fallback.'),
 			'type' => 'radio',
 			'options' => [
 				'Site' => tra('Always the site default time zone.'),
