@@ -10,11 +10,13 @@ class Search_ContentSource_WebserviceSource implements Search_ContentSource_Inte
 	private $db;
 
 	private $tiki_webservice_template;
+	private $output;
 
 	function __construct()
 	{
 		$this->db = TikiDb::get();
 		$this->tiki_webservice_template = $this->db->table('tiki_webservice_template');
+		$this->output = [];
 	}
 
 	function getDocuments()
@@ -183,11 +185,15 @@ class Search_ContentSource_WebserviceSource implements Search_ContentSource_Inte
 	/**
 	 * @param string $serviceName
 	 * @param string $templateName
-	 * @param array $params
+	 * @param array|mixed $params
 	 * @return bool|mixed|string
 	 */
 	function getData($serviceName, $templateName, $params = null)
 	{
+		if ($this->output) {
+			return $this->output;
+		}
+
 		require_once 'lib/webservicelib.php';
 
 		$webservice = \Tiki_Webservice::getService($serviceName);
@@ -205,7 +211,8 @@ class Search_ContentSource_WebserviceSource implements Search_ContentSource_Inte
 		$template = $webservice->getTemplate($templateName);
 
 		if ($template && $response) {
-			return $template->render($response, 'index');
+			$this->output = $template->render($response, 'index');
+			return $this->output;
 		} else {
 			return false;
 		}
