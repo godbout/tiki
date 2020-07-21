@@ -473,6 +473,10 @@ class OIntegrate_Engine_Index implements OIntegrate_Engine
 		$mappingString = file_get_contents($templateFile);
 		$mapping = json_decode($mappingString, true);
 
+		if ($mappingString && ! $mapping) {
+			Feedback::error(tr('Could decode JSON webservice template for indexing, check the syntax'));
+		}
+
 		return [
 			'data' => $data,
 			'mapping' => $mapping,
