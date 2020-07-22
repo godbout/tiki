@@ -758,6 +758,21 @@ class UnifiedSearchLib
 		return new Search_Index_Memory;
 	}
 
+	/**
+	 * Return the number of documents created in the last rebuild.
+	 * @param string $index Index name
+	 * @return int
+	 */
+	public function getLastRebuildDocsCount($index = 'default')
+	{
+		global $tikilib;
+		$lastStats = $tikilib->get_preference('unified_last_rebuild_stats', [], true);
+		if (! isset($lastStats[$index])) {
+			return 0;
+		}
+		return array_sum($lastStats[$index]['counts']);
+	}
+
 	public function getEngineInfo()
 	{
 		global $prefs;
@@ -766,7 +781,8 @@ class UnifiedSearchLib
 			case 'mysql':
 				global $tikilib;
 				$unifiedsearchlib = TikiLib::lib('unifiedsearch');
-				$unifiedTotalFields = intval($tikilib->get_preference('unified_total_fields'));
+				$totalDocuments = $this->getLastRebuildDocsCount();
+
 				$info = [];
 
 				list($engine, $version, $indexName) = $unifiedsearchlib->getCurrentEngineDetails();
@@ -776,7 +792,7 @@ class UnifiedSearchLib
 				if (! empty($indexName)) {
 					$info[tr('MySQL Index %0', $indexName)] = tr(
 						'%0 documents, using %1 of %2 indexes',
-						$unifiedTotalFields,
+						$totalDocuments,
 						count(TikiDb::get()->fetchAll("SHOW INDEXES FROM $indexName")),
 						Search_MySql_Table::MAX_MYSQL_INDEXES_PER_TABLE
 					);
@@ -1099,7 +1115,6 @@ class UnifiedSearchLib
 		}
 
 		if (isset($filter['range']) && is_array($filter['range']) && isset($filter['range']['from'], $filter['range']['to'])) {
-
 			$field = isset($filter['range']['field']) ? $filter['range']['field'] : 'date';
 			$query->filterRange($filter['range']['from'], $filter['range']['to'], $field);
 
