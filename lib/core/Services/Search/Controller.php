@@ -131,6 +131,7 @@ class Services_Search_Controller
 			$filter = $input->filter->none() ?: [];
 			$format = $input->format->text() ?: '{title}';
 
+			/** @var UnifiedSearchLib $lib */
 			$lib = TikiLib::lib('unifiedsearch');
 
 			if (! empty($filter['title']) && preg_match_all('/\{(\w+)\}/', $format, $matches)) {
