@@ -62,13 +62,15 @@ class Rules
 
 		foreach($this->actions->predicates as $predicate) {
 			if ($predicate->operator_id !== 'NoOp') {
+				$targetSelector = "\$(\"[name='{$predicate->target_id}']\")";
+				$actions[] = "    if ($targetSelector.length === 0) { console.error('Tracker Rules: element $predicate->target_id not found'); return; }";
 				if (strpos($predicate->operator_id, 'Required') === false) {
 					// show/hide etc needs the parent object
-					$actions[] = '    $("[name=\'' . $predicate->target_id . '\']").parents("' . $parentSelector . '")' .
+					$actions[] = "    $targetSelector.parents('$parentSelector')" .
 						$this->getPredicateSyntax($predicate, 'Action') . ';';
 				} else {
 					// validation doesn't need parent
-					$actions[] = '    $("[name=\'' . $predicate->target_id . '\']")' .
+					$actions[] = "    $targetSelector" .
 						$this->getPredicateSyntax($predicate, 'Action') . ';';
 				}
 			}
@@ -80,11 +82,13 @@ class Rules
 		if ($this->else->predicates) {
 			foreach ($this->else->predicates as $predicate) {
 				if ($predicate->operator_id !== 'NoOp') {
+					$targetSelector = "\$(\"[name='{$predicate->target_id}']\")";
+					$else[] = "    if ($targetSelector.length === 0) { console.error('Tracker Rules: element $predicate->target_id not found'); return; }";
 					if (strpos($predicate->operator_id, 'Required') === false) {
-						$else[] = '    $("[name=\'' . $predicate->target_id . '\']").parents("' . $parentSelector . '")' .
+						$else[] = "    $targetSelector.parents('$parentSelector')" .
 							$this->getPredicateSyntax($predicate, 'Action') . ';';
 					} else {
-						$else[] = '    $("[name=\'' . $predicate->target_id . '\']")' .
+						$else[] = "    $targetSelector" .
 							$this->getPredicateSyntax($predicate, 'Action') . ';';
 					}
 				}
