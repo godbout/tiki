@@ -281,27 +281,30 @@ function wikiplugin_cypht($data, $params)
 
 	if( $params['use_global_settings'] === 'n' ) {
 		$preference_name = substr('cypht_user_config_'.$page, 0, 40);
+		$session_prefix = substr('cypht_'.$page, 0, 20);
 	} else {
 		$preference_name = 'cypht_user_config';
+		$session_prefix = 'cypht';
 	}
 
-	if (empty($_SESSION['cypht']['preference_name']) || $_SESSION['cypht']['preference_name'] != $preference_name
-		|| (! empty($_SESSION['cypht']['username']) && $_SESSION['cypht']['username'] != $user)) {
+	if (empty($_SESSION[$session_prefix]['preference_name']) || $_SESSION[$session_prefix]['preference_name'] != $preference_name
+		|| (! empty($_SESSION[$session_prefix]['username']) && $_SESSION[$session_prefix]['username'] != $user)) {
 		// resetting the session on purpose - could be coming from tiki-webmail
-		$_SESSION['cypht'] = [];
-		$_SESSION['cypht']['preference_name'] = $preference_name;
+		$_SESSION[$session_prefix] = [];
 	}
 
-	$_SESSION['cypht']['groupmail'] = $params['groupmail'];
-	$_SESSION['cypht']['group'] = $params['group'];
-	$_SESSION['cypht']['trackerId'] = $params['trackerId'];
-	$_SESSION['cypht']['fromFId'] = $params['fromFId'];
-	$_SESSION['cypht']['subjectFId'] = $params['subjectFId'];
-	$_SESSION['cypht']['messageFId'] = $params['messageFId'];
-	$_SESSION['cypht']['contentFId'] = $params['contentFId'];
-	$_SESSION['cypht']['accountFId'] = $params['accountFId'];
-	$_SESSION['cypht']['datetimeFId'] = $params['datetimeFId'];
-	$_SESSION['cypht']['operatorFId'] = $params['operatorFId'];
+	$_SESSION[$session_prefix]['preference_name'] = $preference_name;
+
+	$_SESSION[$session_prefix]['groupmail'] = $params['groupmail'];
+	$_SESSION[$session_prefix]['group'] = $params['group'];
+	$_SESSION[$session_prefix]['trackerId'] = $params['trackerId'];
+	$_SESSION[$session_prefix]['fromFId'] = $params['fromFId'];
+	$_SESSION[$session_prefix]['subjectFId'] = $params['subjectFId'];
+	$_SESSION[$session_prefix]['messageFId'] = $params['messageFId'];
+	$_SESSION[$session_prefix]['contentFId'] = $params['contentFId'];
+	$_SESSION[$session_prefix]['accountFId'] = $params['accountFId'];
+	$_SESSION[$session_prefix]['datetimeFId'] = $params['datetimeFId'];
+	$_SESSION[$session_prefix]['operatorFId'] = $params['operatorFId'];
 
 	define('VENDOR_PATH', $tikipath.'/vendor_bundled/vendor/');
 	define('APP_PATH', VENDOR_PATH.'jason-munro/cypht/');
@@ -315,10 +318,10 @@ function wikiplugin_cypht($data, $params)
 	require_once APP_PATH.'lib/framework.php';
 	require_once $tikipath.'/lib/cypht/integration/classes.php';
 
-	if (empty($_SESSION['cypht']['request_key'])) {
-		$_SESSION['cypht']['request_key'] = Hm_Crypt::unique_id();
+	if (empty($_SESSION[$session_prefix]['request_key'])) {
+		$_SESSION[$session_prefix]['request_key'] = Hm_Crypt::unique_id();
 	}
-	$_SESSION['cypht']['username'] = $user;
+	$_SESSION[$session_prefix]['username'] = $user;
 
 	TikiLib::lib('header')->add_css("
 .inline-cypht * { box-sizing: content-box; }
@@ -326,7 +329,7 @@ function wikiplugin_cypht($data, $params)
 	");
 
 	/* get configuration */
-	$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc');
+	$config = new Tiki_Hm_Site_Config_File(APP_PATH.'hm3.rc', $session_prefix);
 
 	// merge existing configuration with plugin params for smtp/imap servers
 	if(! empty($params['imap_server']) && ! empty($params['imap_username']) && ! empty($params['imap_password'])) {
@@ -338,18 +341,18 @@ function wikiplugin_cypht($data, $params)
 			'user' => $params['imap_username'],
 			'pass' => $params['imap_password']
 		);
-		if (empty($_SESSION['cypht']['user_data']['imap_servers'])) {
-			$_SESSION['cypht']['user_data']['imap_servers'] = [];
+		if (empty($_SESSION[$session_prefix]['user_data']['imap_servers'])) {
+			$_SESSION[$session_prefix]['user_data']['imap_servers'] = [];
 		}
 		$found = false;
-		foreach ($_SESSION['cypht']['user_data']['imap_servers'] as $server) {
+		foreach ($_SESSION[$session_prefix]['user_data']['imap_servers'] as $server) {
 			if ($server['server'] == $attributes['server'] && $server['tls'] == $attributes['tls'] && $server['port'] == $attributes['port'] && $server['user'] == $attributes['user']) {
 				$found = true;
 				break;
 			}
 		}
 		if (! $found) {
-			$_SESSION['cypht']['user_data']['imap_servers'][] = $attributes;
+			$_SESSION[$session_prefix]['user_data']['imap_servers'][] = $attributes;
 		}
 	}
 
@@ -366,32 +369,34 @@ function wikiplugin_cypht($data, $params)
 		if ($params['smtp_no_auth'] == 'y') {
 			$attributes['no_auth'] = true;
 		}
-		if (empty($_SESSION['cypht']['user_data']['smtp_servers'])) {
-			$_SESSION['cypht']['user_data']['smtp_servers'] = [];
+		if (empty($_SESSION[$session_prefix]['user_data']['smtp_servers'])) {
+			$_SESSION[$session_prefix]['user_data']['smtp_servers'] = [];
 		}
 		$found = false;
-		foreach ($_SESSION['cypht']['user_data']['smtp_servers'] as $server) {
+		foreach ($_SESSION[$session_prefix]['user_data']['smtp_servers'] as $server) {
 			if ($server['server'] == $attributes['server'] && $server['tls'] == $attributes['tls'] && $server['port'] == $attributes['port'] && $server['user'] == $attributes['user']) {
 				$found = true;
 				break;
 			}
 		}
 		if (! $found) {
-			$_SESSION['cypht']['user_data']['smtp_servers'][] = $attributes;
+			$_SESSION[$session_prefix]['user_data']['smtp_servers'][] = $attributes;
 		}
 	}
 
 	/* process the request */
 	$dispatcher = new Hm_Dispatch($config);
 
-	if(! empty($_SESSION['cypht']['user_data']['debug_mode_setting'])) {
+	if(! empty($_SESSION[$session_prefix]['user_data']['debug_mode_setting'])) {
 		$msgs = Hm_Debug::get();
 		foreach ($msgs as $msg) {
 			$logslib->add_log('cypht', $msg);
 		}
 	}
 
-	return '<div class="inline-cypht"><input type="hidden" id="hm_page_key" value="'.Hm_Request_Key::generate().'" />'
+	return '<div class="inline-cypht">'
+		. '<input type="hidden" id="hm_page_key" value="'.Hm_Request_Key::generate().'" />'
+		. '<input type="hidden" id="hm_session_prefix" value="'.htmlentities($session_prefix).'" />'
 		. $dispatcher->output
 		. "</div>";
 }

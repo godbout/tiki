@@ -75,10 +75,10 @@ class Tiki_Hm_Custom_Session extends Hm_Session {
 	 */
 	public function get($name, $default=false, $user=false) {
 		if ($user) {
-			return array_key_exists('cypht', $_SESSION) && array_key_exists('user_data', $_SESSION['cypht']) && array_key_exists($name, $_SESSION['cypht']['user_data']) ? $_SESSION['cypht']['user_data'][$name] : $default;
+			return array_key_exists($this->session_prefix(), $_SESSION) && array_key_exists('user_data', $_SESSION[$this->session_prefix()]) && array_key_exists($name, $_SESSION[$this->session_prefix()]['user_data']) ? $_SESSION[$this->session_prefix()]['user_data'][$name] : $default;
 		}
 		else {
-			return array_key_exists('cypht', $_SESSION) && array_key_exists($name, $_SESSION['cypht']) ? $_SESSION['cypht'][$name] : $default;
+			return array_key_exists($this->session_prefix(), $_SESSION) && array_key_exists($name, $_SESSION[$this->session_prefix()]) ? $_SESSION[$this->session_prefix()][$name] : $default;
 		}
 	}
 
@@ -90,10 +90,10 @@ class Tiki_Hm_Custom_Session extends Hm_Session {
 	 */
 	public function set($name, $value, $user=false) {
 		if ($user) {
-			$_SESSION['cypht']['user_data'][$name] = $value;
+			$_SESSION[$this->session_prefix()]['user_data'][$name] = $value;
 		}
 		else {
-			$_SESSION['cypht'][$name] = $value;
+			$_SESSION[$this->session_prefix()][$name] = $value;
 		}
 	}
 
@@ -103,8 +103,8 @@ class Tiki_Hm_Custom_Session extends Hm_Session {
 	 * @return void
 	 */
 	public function del($name) {
-		if (array_key_exists('cypht', $_SESSION) && array_key_exists($name, $_SESSION['cypht'])) {
-			unset($_SESSION['cypht'][$name]);
+		if (array_key_exists($this->session_prefix(), $_SESSION) && array_key_exists($name, $_SESSION[$this->session_prefix()])) {
+			unset($_SESSION[$this->session_prefix()][$name]);
 		}
 	}
 
@@ -127,12 +127,16 @@ class Tiki_Hm_Custom_Session extends Hm_Session {
 		if (function_exists('delete_uploaded_files')) {
 			delete_uploaded_files($this);
 		}
-		unset($_SESSION['cypht']);
+		unset($_SESSION[$this->session_prefix()]);
 		$this->active = false;
 	}
 
 	public function close_early() {
 		// noop;
+	}
+
+	protected function session_prefix() {
+		return $this->site_config->get('session_prefix') ?? 'cypht';
 	}
 }
 
@@ -142,20 +146,21 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 	 * Overrides default configuration for Tiki integration
 	 * @param string $source source location for site configuration
 	 */
-	public function __construct($source) {
+	public function __construct($source, $session_prefix = 'cypht') {
 		global $user;
 		parent::__construct($source);
 		// override
 		$headerlib = TikiLib::lib('header');
 		$this->set('session_type', 'custom');
 		$this->set('session_class', 'Tiki_Hm_Custom_Session');
+		$this->set('session_prefix', $session_prefix);
 		$this->set('auth_type', 'custom');
 		$this->set('output_class', 'Tiki_Hm_Output_HTTP');
 		$this->set('cookie_path', ini_get('session.cookie_path'));
-		if ($user && (empty($_SESSION['cypht']['user_data']) || count($_SESSION['cypht']['user_data']) == 2)) {
+		if ($user && (empty($_SESSION[$session_prefix]['user_data']) || count($_SESSION[$session_prefix]['user_data']) == 2)) {
 			$user_config = new Tiki_Hm_User_Config($this);
 			$user_config->load($user);
-			$_SESSION['cypht']['user_data'] = $user_config->dump();
+			$_SESSION[$session_prefix]['user_data'] = $user_config->dump();
 		}
 		$output_modules = $this->get('output_modules');
 		$handler_modules = $this->get('handler_modules');
@@ -189,10 +194,10 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 		}
 		$this->set('output_modules', $output_modules);
 		$this->set('handler_modules', $handler_modules);
-		if (empty($_SESSION['cypht']['user_data']['timezone_setting'])) {
+		if (empty($_SESSION[$session_prefix]['user_data']['timezone_setting'])) {
 			$this->user_defaults['timezone_setting'] = TikiLib::lib('tiki')->get_display_timezone();
-			if (isset($_SESSION['cypht']['user_data'])) {
-				$_SESSION['cypht']['user_data']['timezone_setting'] = $this->user_defaults['timezone_setting'];
+			if (isset($_SESSION[$session_prefix]['user_data'])) {
+				$_SESSION[$session_prefix]['user_data']['timezone_setting'] = $this->user_defaults['timezone_setting'];
 			}
 		}
 	}
@@ -206,6 +211,7 @@ class Tiki_Hm_Site_Config_file extends Hm_Site_Config_File {
 class Tiki_Hm_User_Config extends Hm_Config {
 	/* username */
 	private $username;
+	private $site_config;
 
 	/**
 	 * Load site configuration
@@ -213,6 +219,7 @@ class Tiki_Hm_User_Config extends Hm_Config {
 	 */
 	public function __construct($config) {
 		$this->config = array_merge($this->config, $config->user_defaults);
+		$this->site_config = $config;
 	}
 
 	/**
@@ -223,7 +230,7 @@ class Tiki_Hm_User_Config extends Hm_Config {
 	 */
 	public function load($username, $key = null) {
 		$this->username = $username;
-		$data = TikiLib::lib('tiki')->get_user_preference($username, $_SESSION['cypht']['preference_name']);
+		$data = TikiLib::lib('tiki')->get_user_preference($username, $_SESSION[$this->site_config->get('session_prefix')]['preference_name']);
 		if ($data) {
 			$data = $this->decode($data);
 			$this->config = array_merge($this->config, $data);
@@ -253,7 +260,7 @@ class Tiki_Hm_User_Config extends Hm_Config {
 		$this->shuffle();
 		$removed = $this->filter_servers();
 		$data = json_encode($this->config);
-		TikiLib::lib('tiki')->set_user_preference($username, $_SESSION['cypht']['preference_name'], $data);
+		TikiLib::lib('tiki')->set_user_preference($username, $_SESSION[$this->site_config->get('session_prefix')]['preference_name'], $data);
 		$this->restore_servers($removed);
 	}
 
