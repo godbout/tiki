@@ -65,7 +65,7 @@
 								</div>
 							</div>
 
-							<div class="btn-group search_mod_buttons box" style="display: none; position: absolute; right: 0; z-index: 2; white-space: nowrap;">{* TODO: move the style to themes/base_files/scss/_tiki-modules.scss *}
+							<div class="btn-group search_mod_buttons box" style="display: none; position: absolute; right: 0; z-index: 3; white-space: nowrap;">{* TODO: move the style to themes/base_files/scss/_tiki-modules.scss *}
 							{else}
 								<div class="btn-group my-1">
 							{/if}
