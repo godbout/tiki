@@ -1422,6 +1422,13 @@ li.archivedate {
 #col2 .box-search .btn-group .btn, #col3 .box-search .btn-group .btn {
   font-size: 0.6rem; }
 
+.box-search .search_mod_buttons {
+  display: none;
+  position: absolute;
+  right: 0;
+  z-index: 3;
+  white-space: nowrap; }
+
 #col2 .module, #col3 .module, #pagetop_modules .module {
   margin-bottom: 1.25rem; }
 

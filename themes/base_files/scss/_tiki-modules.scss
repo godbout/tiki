@@ -147,7 +147,13 @@ li.archivedate {
 	font-size: .6rem;
 }
 
-
+.box-search .search_mod_buttons {
+	display: none;
+	position: absolute;
+	right: 0;
+	z-index: 3;
+	white-space: nowrap;
+}
 
 // Modules with nobox=y should have same whitespace below as cards do.
 #col2 .module,
