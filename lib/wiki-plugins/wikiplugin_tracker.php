@@ -2092,7 +2092,7 @@ function wikiplugin_tracker($data, $params)
 						$smarty->assign('f_' . $f['permName'], $prettyout);
 					} else {
 						$mand = ($showmandatory == 'y' and $f['isMandatory'] == 'y') ? "&nbsp;<strong class='mandatory_star text-danger tips' title=':" . tra("This field is mandatory") . "'>*</strong>&nbsp;" : '';
-						if (! empty($f['description'])) {
+						if ($showfielddesc === 'y' && ! empty($f['description'])) {
 							$desc = $f['descriptionIsParsed'] == 'y' ? TikiLib::lib('parser')->parse_data($f['description']) : htmlspecialchars(tra($f['description']));
 							$desc = '<div class="trackerplugindesc">' . $desc . '</div>';
 						} else {
