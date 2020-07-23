@@ -1908,14 +1908,14 @@ class UsersLib extends TikiLib
 		$user = $res['login'];
 
 		// check for account flags
-		if ($res['waiting'] == 'u') {				// if account is in validation mode.
-			if ($pass == $res['valid']) { 			// if user successfully provides code from email
+		if ($res['waiting'] === 'u') {				// if account is in validation mode.
+			if (!empty($pass) && $pass === $res['valid']) { 			// if user successfully provides code from email
 				return [USER_VALID, $user];
 			} else {
 				return [ACCOUNT_WAITING_USER, $user];  // if code validation fails, (or user tries to log in before verifying)
 			}
-		} elseif ($res['waiting'] == 'a') {         // if account needs administrator validation
-			if ($pass == $res['valid']) { 			// if admin successfully validates account
+		} elseif ($res['waiting'] === 'a') {         // if account needs administrator validation
+			if (!empty($res['valid']) && $pass === $res['valid']) { 			// if admin successfully validates account
 				return [USER_VALID, $user];
 			} else {
 				return [ACCOUNT_DISABLED, $user];
