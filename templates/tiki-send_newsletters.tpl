@@ -335,6 +335,7 @@
 							value="{tr}Preview{/tr}"
 							class="wikiaction tips btn btn-primary"
 							title="{tr}Send Newsletters{/tr}|{tr}Preview your changes.{/tr}"
+							onclick="needToConfirm=false;"
 						>
 						&nbsp;
 						<input
