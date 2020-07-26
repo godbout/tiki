@@ -91,9 +91,9 @@
 					</div>
 				</div>
 	<div class="col-md-6">
-		<h4>{tr}GeoCMS Maps{/tr}</h4> (<a href="tiki-admin.php?ticket={ticket mode=get}&profile=GeoCMS_Maps_18&show_details_for=GeoCMS_Maps_18&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
+		<h4>{tr}GeoCMS Maps{/tr}</h4> (<a href="tiki-admin.php?ticket={ticket mode=get}&profile=GeoCMS_Maps_22&show_details_for=GeoCMS_Maps_22&categories%5B%5D={$tikiMajorVersion}.x&repository=http%3a%2f%2fprofiles.tiki.org%2fprofiles&page=profiles&preloadlist=y&list=List#step2" target="_blank">{tr}apply profile now{/tr}</a>)
 		<br/>
-		{tr}This profile demonstrates common uses of geolocation of different tiki objects (wiki pages, blog posts, articles and tracker items) to produce separated or combined maps.{/tr}
+		{tr}This profile demonstrates common uses of geolocation of different tiki objects (wiki pages, blog posts, articles, tracker items and web services) to produce separated or combined maps.{/tr}
 		<br/>
 		<div class="row">
 			<div class="col-md-8 offset-md-2">
