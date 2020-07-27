@@ -8408,9 +8408,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/Goutte/zipball/4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae",
+                "url": "https://composer.tiki.org/dist/fabpot/goutte/fabpot-goutte-4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae-zip-208db9.zip",
                 "reference": "4ab5199e3ec0ffde0ee0b5ecf568a4fb8398dbae",
-                "shasum": ""
+                "shasum": "57622d134d0b5693c3de5d72d3f04b5600105eda"
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.0",
@@ -8463,9 +8463,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kornrunner/dbunit/zipball/ff4c76a8f2eb0daa3d87b028cb945d8429ce3c57",
+                "url": "https://composer.tiki.org/dist/kornrunner/dbunit/kornrunner-dbunit-ff4c76a8f2eb0daa3d87b028cb945d8429ce3c57-zip-aff625.zip",
                 "reference": "ff4c76a8f2eb0daa3d87b028cb945d8429ce3c57",
-                "shasum": ""
+                "shasum": "f04c4a97c431b9052413a0634064756531d8bda8"
             },
             "require": {
                 "ext-pdo": "*",
