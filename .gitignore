@@ -10,7 +10,7 @@
 /.well-known
 /ZendPlatform
 /ZendStudioServer
-_custom/lib/setup/custom.php
+_custom/*
 /bin
 /composer.json
 /composer.lock
