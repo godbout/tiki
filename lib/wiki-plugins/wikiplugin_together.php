@@ -28,6 +28,14 @@ function wikiplugin_together_info()
 				'filter' => 'text',
 				'default' => tra('CoWrite with TogetherJS')
 			],
+			'serverurl' => [
+				'required' => false,
+				'name' => tra('Server URL'),
+				'description' => tra('Hub server URL address if the default one is not working or you are willing to host your own hub server.'),
+				'since' => '21.0',
+				'filter' => 'text',
+				'default' => ''
+			],
 		]
 	];
 }
@@ -40,6 +48,7 @@ function wikiplugin_together($data, $params)
 	}
 	TikiLib::lib('header')->add_jq_onready('
 if(! window.startTogetherJS) {
+	'.(! empty($params['serverurl']) ? "window.TogetherJSConfig_hubBase = ".json_encode($params['serverurl']).";\n" : '').'
 	window.TogetherJSConfig_on_ready = function() {
 		if(m = window.location.href.match(/tiki-editpage.php\?page=([^&#]+)/)) {
 			var session = TogetherJS.require("session");
