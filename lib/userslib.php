@@ -1941,15 +1941,15 @@ class UsersLib extends TikiLib
 			}
 		}
 
-		if ($res['hash'] == md5($pass)) { 						// very method md5(pass), for compatibility
+		if (! empty($pass) && $res['hash'] === md5($pass)) { 								// very method md5(pass), for compatibility
 			$this->set_user_password($res['userId'], $pass);
 			return [USER_VALID, $user];
 		}
-		if ($res['hash'] == md5($user . $pass)) { 					// ancient method md5(user.pass), for compatibility
+		if (! empty($pass) && $res['hash'] === md5($user . $pass)) { 					// ancient method md5(user.pass), for compatibility
 			$this->set_user_password($res['userId'], $pass);
 			return [USER_VALID, $user];
 		}
-		if ($res['hash'] == md5($user . $pass . trim($res['email']))) { // very ancient method md5(user.pass.email), for compatibility
+		if (! empty($pass) && $res['hash'] === md5($user . $pass . trim($res['email']))) { // very ancient method md5(user.pass.email), for compatibility
 			$this->set_user_password($res['userId'], $pass);
 			return [USER_VALID, $user];
 		}
