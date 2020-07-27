@@ -257,9 +257,12 @@ class UnifiedSearchLib
 		if ($indexer) {
 			$indexer->clearSources();
 			$indexer->log->info("Indexed");
-			foreach ($stats['default'] as $key => $val) {
+			foreach ($stats['default']['counts'] as $key => $val) {
 				$indexer->log->info("  $key: $val");
 			}
+			$indexer->log->info("  total tiki fields indexed: {$stats['default']['total tiki fields indexed']}");
+			$indexer->log->info("  total fields used in the mysql search index: : {$stats['default']['total fields used in the mysql search index: ']}");
+
 			unset($indexer);
 		}
 
