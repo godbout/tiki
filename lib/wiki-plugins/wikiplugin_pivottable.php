@@ -358,42 +358,51 @@ function wikiplugin_pivottable($data, $params)
 	}
 
 	if ($dataType === "tracker") {
-		$trackerId = $params['data'][1];
-		$definition = Tracker_Definition::get($trackerId);
-		if (! $definition) {
-			return WikiParser_PluginOutput::userError(tr('Tracker data source not found.'));
-		}
+		$trackerIds = preg_split('/\s*,\s*/', $params['data'][1]);
+		$definitions = [];
+		$fields = [];
 
-		$perms = Perms::get(['type' => 'tracker', 'object' => $trackerId]);
+		foreach ($trackerIds as $trackerId) {
+			$definition = Tracker_Definition::get($trackerId);
+			if (! $definition) {
+				return WikiParser_PluginOutput::userError(tr('Tracker data source not found.'));
+			}
 
-		$fields = $definition->getFields();
+			$definitions[] = $definition;
 
-		if (! $perms->admin_trackers && $params['overridePermissions'] !== 'y') {
-			$hasFieldPermissions = false;
-			foreach ($fields as $key => $field) {
-				$isHidden = $field['isHidden'];
-				$visibleBy = $field['visibleBy'];
+			$perms = Perms::get(['type' => 'tracker', 'object' => $trackerId]);
 
-				if ($isHidden != 'n' || ! empty($visibleBy)) {
-					$hasFieldPermissions = true;
-				}
+			$tracker_fields = $definition->getFields();
 
-				if ($isHidden == 'c') {
-					// creators can see their own items coming from the search index
-				} elseif ($isHidden == 'y') {
-					// Visible by administrator only
-					unset($fields[$key]);
-				} elseif (! empty($visibleBy)) {
-					// Permission based on visibleBy apply
-					$commonGroups = array_intersect($visibleBy, $perms->getGroups());
-					if (count($commonGroups) == 0) {
-						unset($fields[$key]);
+			if (! $perms->admin_trackers && $params['overridePermissions'] !== 'y') {
+				$hasFieldPermissions = false;
+				foreach ($tracker_fields as $key => $field) {
+					$isHidden = $field['isHidden'];
+					$visibleBy = $field['visibleBy'];
+
+					if ($isHidden != 'n' || ! empty($visibleBy)) {
+						$hasFieldPermissions = true;
+					}
+
+					if ($isHidden == 'c') {
+						// creators can see their own items coming from the search index
+					} elseif ($isHidden == 'y') {
+						// Visible by administrator only
+						unset($tracker_fields[$key]);
+					} elseif (! empty($visibleBy)) {
+						// Permission based on visibleBy apply
+						$commonGroups = array_intersect($visibleBy, $perms->getGroups());
+						if (count($commonGroups) == 0) {
+							unset($tracker_fields[$key]);
+						}
 					}
 				}
+				if (! $hasFieldPermissions && ! $perms->view_trackers && ! $definition->isEnabled('userCanSeeOwn') && ! $definition->isEnabled('groupCanSeeOwn') && ! $definition->isEnabled('writerCanModify')) {
+					return WikiParser_PluginOutput::userError(tr('You do not have rights to view tracker data.'));
+				}
 			}
-			if (! $hasFieldPermissions && ! $perms->view_trackers && ! $definition->isEnabled('userCanSeeOwn') && ! $definition->isEnabled('groupCanSeeOwn') && ! $definition->isEnabled('writerCanModify')) {
-				return WikiParser_PluginOutput::userError(tr('You do not have rights to view tracker data.'));
-			}
+
+			$fields = array_merge($fields, $tracker_fields);
 		}
 
 		$fields[] = [
@@ -443,7 +452,7 @@ function wikiplugin_pivottable($data, $params)
 
 		$query = new Search_Query;
 		$query->filterType('trackeritem');
-		$query->filterContent($trackerId, 'tracker_id');
+		$query->filterContent(implode(' OR ', $trackerIds), 'tracker_id');
 
 		$unifiedsearchlib = TikiLib::lib('unifiedsearch');
 		if (! empty($params['overridePermissions']) && $params['overridePermissions'] === 'y') {
@@ -659,7 +668,7 @@ function wikiplugin_pivottable($data, $params)
 	foreach ($entries as $entry) {
 		$row = [];
 		foreach ($entry as $fieldName => $value) {
-			if ($entry['object_type'] != 'activity' && $field = $definition->getFieldFromPermName($fieldName)) {
+			if ($entry['object_type'] != 'activity' && $field = wikiplugin_pivottable_field_from_definitions($fieldName, $definitions)) {
 				// Actual data values
 				if ($translate) {
 					$row[$field['name']] = tra($value);
@@ -675,7 +684,7 @@ function wikiplugin_pivottable($data, $params)
 	}
 
 	foreach ($splittedAttributes as $arguments) {
-		$field = $definition->getFieldFromPermName($arguments['field']);
+		$field = wikiplugin_pivottable_field_from_definitions($arguments['field'], $definitions);
 		if (empty($field)) {
 			continue;
 		} else {
@@ -706,7 +715,7 @@ function wikiplugin_pivottable($data, $params)
 	$cols = [];
 	if (! empty($params['cols'])) {
 		foreach ($params['cols'] as $colName) {
-			if ($params['data'][0] !== 'activitystream' && $field = $definition->getFieldFromPermName(trim($colName))) {
+			if ($params['data'][0] !== 'activitystream' && $field = wikiplugin_pivottable_field_from_definitions(trim($colName), $definitions)) {
 				$cols[] = $field['name'];
 			} else {
 				$cols[] = $colName;
@@ -719,7 +728,7 @@ function wikiplugin_pivottable($data, $params)
 	$rows = [];
 	if (! empty($params['rows'])) {
 		foreach ($params['rows'] as $rowName) {
-			if ($params['data'][0] !== 'activitystream' && $field = $definition->getFieldFromPermName(trim($rowName))) {
+			if ($params['data'][0] !== 'activitystream' && $field = wikiplugin_pivottable_field_from_definitions(trim($rowName), $definitions)) {
 				$rows[] = $field['name'];
 			} else {
 				$rows[] = $rowName;
@@ -730,7 +739,7 @@ function wikiplugin_pivottable($data, $params)
 	$vals = [];
 	if (! empty($params['vals'])) {
 		foreach ($params['vals'] as $valName) {
-			if ($params['data'][0] !== 'activitystream' && $field = $definition->getFieldFromPermName(trim($valName))) {
+			if ($params['data'][0] !== 'activitystream' && $field = wikiplugin_pivottable_field_from_definitions(trim($valName), $definitions)) {
 				$vals[] = $field['name'];
 			} else {
 				$vals[] = $valName;
@@ -745,6 +754,7 @@ function wikiplugin_pivottable($data, $params)
 	$fieldsArr = [];
 	$dateFields = [];
 	foreach ($fields as $field) {
+		$field = wikiplugin_pivottable_field_from_definitions($field['permName'], $definitions, $field);
 		$fieldsArr[$field['name']] = $field['permName'];
 		if ($field['type'] == 'f') {
 			$dateFields[] = $field['name'];
@@ -764,7 +774,7 @@ function wikiplugin_pivottable($data, $params)
 	if (! empty($params['aggregateDetails']) && ! empty($params['aggregateDetails'][0])) {
 		$aggregateDetails = [];
 		foreach ($params['aggregateDetails'] as $fieldName) {
-			if ($params['data'][0] != 'activitystream' && $field = $definition->getFieldFromPermName(trim($fieldName))) {
+			if ($params['data'][0] != 'activitystream' && $field = wikiplugin_pivottable_field_from_definitions(trim($fieldName), $definitions)) {
 				$aggregateDetails[] = $field['name'];
 			} else {
 				$aggregateDetails[] = trim($fieldName);
@@ -794,9 +804,12 @@ function wikiplugin_pivottable($data, $params)
 
 	$highlight = [];
 	if (! empty($params['highlightMine']) && $params['highlightMine'] === 'y' && $params['data'][0] !== 'activitystream') {
-		$ownerFields = array_map(function ($fieldId) use ($definition) {
-			return $definition->getField($fieldId);
-		}, $definition->getItemOwnerFields());
+		$ownerFields = [];
+		foreach ($definitions as $definition) {
+			foreach ($definition->getItemOwnerFields() as $fieldId) {
+				$ownerFields[] = $definition->getField($fieldId);
+			}
+		}
 		foreach ($pivotData as $item) {
 			foreach ($ownerFields as $ownerField) {
 				$itemUsers = TikiLib::lib('trk')->parse_user_field(@$item[$ownerField['name']]);
@@ -873,7 +886,7 @@ function wikiplugin_pivottable($data, $params)
 		'id' => 'pivottable' . $id,
 		'trows' => $rows,
 		'tcolumns' => $cols,
-		'dataSource' => $dataType == 'activitystream' ? $dataType : $dataType . ':' . $trackerId,
+		'dataSource' => $dataType == 'activitystream' ? $dataType : $dataType . ':' . implode(',', $trackerIds),
 		'data' => $pivotData,
 		'derivedAttributes' => $derivedAttributes,
 		'rendererName' => $rendererName,
@@ -903,4 +916,16 @@ function wikiplugin_pivottable($data, $params)
 	$out .= $smarty->fetch('wiki-plugins/wikiplugin_pivottable.tpl');
 
 	return $out;
+}
+
+function wikiplugin_pivottable_field_from_definitions($permName, $definitions, $default = null) {
+	foreach ($definitions as $definition) {
+		if ($field = $definition->getFieldFromPermName($permName)) {
+			if (count($definitions) > 1) {
+				$field['name'] = $definition->getConfiguration('name').' - '.$field['name'];
+			}
+			return $field;
+		}
+	}
+	return $default;
 }
