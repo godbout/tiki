@@ -578,8 +578,7 @@ function build_packages($releaseVersion)
 		echo $shellout . "\n";
 	}
 
-	if (
-		strpos($shellout, 'Fatal error:') !== false ||
+	if (strpos($shellout, 'Fatal error:') !== false ||
 		strpos($shellout, 'Installation failed,') !== false ||
 		// symfony/dependency-injection comes in quite late in the list and is required - sometimes no error is reported even though it didn't work
 		strpos($shellout, 'symfony/dependency-injection') === false
@@ -1413,7 +1412,8 @@ function get_contributors_data($path, &$contributors, $minRevision, $maxRevision
 	}
 
 	get_contributors($path, $contributors, $minRevision, $maxRevision, $step);
-	$nbCommiters = array_filter($contributors, function ($contributor){ // Get count contributors with commits
+	$nbCommiters = array_filter($contributors, function ($contributor) {
+		// Get count contributors with commits
 		return count($contributor) > 2;
 	});
 	return $contributors;
@@ -1502,7 +1502,7 @@ UPGRADES
 COPYRIGHT
 
 Copyright (c) 2002-$year, Luis Argerich, Garland Foster, Eduardo Polidor, et. al.
-Tiki was started under the name tikiwiki by Luis Argerich, Garland Foster, Eduardo Polidor, et. al. 
+Tiki was started under the name tikiwiki by Luis Argerich, Garland Foster, Eduardo Polidor, et. al.
 All Rights Reserved. See $copyrights_file for details and a complete list of authors.
 Licensed under the GNU LESSER GENERAL PUBLIC LICENSE. See $license_file for details.
 
