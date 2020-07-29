@@ -60,6 +60,7 @@ class PatchCypht
 		$js = str_replace("url: ''", "url: 'tiki-ajax_services.php?controller=cypht&action=ajax&'+window.location.search.substr(1)", $js);
 		$js = str_replace("xhr.open('POST', window.location.href)", "xhr.open('POST', 'tiki-ajax_services.php?controller=cypht&action=ajax&'+window.location.search.substr(1))", $js);
 		$js = str_replace("xhr.open('POST', '', true);", "xhr.open('POST', 'tiki-ajax_services.php?controller=cypht&action=ajax&'+window.location.search.substr(1), true);", $js);
+		$js = str_replace("var ajax = new Hm_Ajax_Request", "var ajax = new tiki_Hm_Ajax_Request", $js);
 		$js = preg_replace("#^.*/\* swipe event handler \*/#s", "", $js);
 		file_put_contents($cypht.'site.js', $js);
 	}
