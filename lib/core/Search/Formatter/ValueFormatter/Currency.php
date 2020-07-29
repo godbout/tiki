@@ -56,7 +56,11 @@ class Search_Formatter_ValueFormatter_Currency extends Search_Formatter_ValueFor
 		if ($field && $field['type'] == 'math') {
 			$handler = $trklib->get_field_handler($field);
 			if ($handler && $handler->getOption('mirrorField')) {
-				$field = $tracker->getField($handler->getOption('mirrorField'));
+				$field = $trklib->get_field_info($handler->getOption('mirrorField'));
+				if ($field) {
+					$tracker = Tracker_Definition::get($field['trackerId']);
+					$field = $tracker->getField($field['fieldId']);
+				}
 			}
 		}
 		if (!$field || $field['type'] != 'b') {
