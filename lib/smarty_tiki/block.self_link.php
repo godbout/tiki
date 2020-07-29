@@ -77,7 +77,12 @@ function smarty_block_self_link($params, $content, $smarty, &$repeat = false)
 			if (! isset($params['_sort_field'])) {
 				$params['_sort_field'] = '';
 			} elseif ($params['_sort_arg'] != '' and ! isset($params[$params['_sort_arg']])) {
-				$params[$params['_sort_arg']] = $params['_sort_field'] . '_asc,' . $params['_sort_field'] . '_desc';
+				if (preg_match('/(_nasc|_ndesc)$/', $params['_sort_field'])) {
+					$params['_sort_field'] = preg_replace('/(_nasc|_ndesc)$/', '', $params['_sort_field']);
+					$params[$params['_sort_arg']] = $params['_sort_field'] . '_nasc,' . $params['_sort_field'] . '_ndesc';
+				} else {
+					$params[$params['_sort_arg']] = $params['_sort_field'] . '_asc,' . $params['_sort_field'] . '_desc';
+				}
 			}
 			// Complete _script path if needed (not empty, not an anchor, ...)
 			if (! empty($params['_script']) && $params['_script'][0] != '#' && $params['_script'] != 'javascript:void(0)' && stripos($params['_script'], 'mailto:') !== 0) {
