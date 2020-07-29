@@ -602,7 +602,10 @@ class Tracker_Field_Relation extends Tracker_Field_Abstract
 				}, $format);
 				return $values;
 			});
-			$itemsValues[] = $result->getArrayCopy()[0];
+			// result might be empty if item is no longer in db or user does not have permission to see it
+			if ($result->count() > 0) {
+				$itemsValues[] = $result->getArrayCopy()[0];
+			}
 		}
 		return $itemsValues;
 	}
