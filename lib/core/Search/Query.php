@@ -129,6 +129,8 @@ class Search_Query implements Search_Query_Interface
 		} else {
 			$this->addPart($or, 'multivalue', 'allowed_groups');
 		}
+
+		$this->applyTransform(new Search_Formatter_Transform_FieldPermissionEnforcer);
 	}
 
 	/**

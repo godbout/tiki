@@ -61,8 +61,19 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 			return $data;
 		}
 
+		$fieldPermissions = [];
+
 		foreach (self::getIndexableHandlers($definition, $item) as $handler) {
-			$data = array_merge($data, $handler->getDocumentPart($typeFactory, $this->mode));
+			$documentPart = $handler->getDocumentPart($typeFactory, $this->mode);
+			$data = array_merge($data, $documentPart);
+
+			$field = $handler->getFieldDefinition();
+			if ($field['isHidden'] != 'n') {
+				$fieldPermissions[$field['permName']] = array_merge(
+					$itemObject->getAllowedUserGroupsForField($field),
+					['perm_names' => array_keys($documentPart)]
+				);
+			}
 		}
 
 		$ownerGroup = $itemObject->getOwnerGroup();
@@ -82,6 +93,8 @@ class Search_ContentSource_TrackerItemSource implements Search_ContentSource_Int
 				'parent_view_permission' => $typeFactory->identifier($permNeeded),
 				'parent_object_id' => $typeFactory->identifier($item['trackerId']),
 				'parent_object_type' => $typeFactory->identifier('tracker'),
+
+				'field_permissions' => $typeFactory->json(json_encode($fieldPermissions)),
 
 				// Fake attributes, removed before indexing
 				'_extra_users' => $specialUsers,

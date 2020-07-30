@@ -312,6 +312,32 @@ class Tracker_Item
 		}
 	}
 
+	public function getAllowedUserGroupsForField($field) {
+		$isHidden = $field['isHidden'];
+		$visibleBy = $field['visibleBy'];
+
+		$allowed = [
+			'allowed_users' => [],
+			'allowed_groups' => [],
+		];
+
+		if ($isHidden == 'c') {
+			// Creator or creator group check when field can be modified by creator only
+			if ($this->definition->getConfiguration('writerCanModify', 'n') == 'y' && $this->owners) {
+				$allowed['users'] = $this->owners;
+			}
+			if ($this->definition->getConfiguration('writerGroupCanModify', 'n') == 'y' && $this->ownerGroup) {
+				$allowed['groups'] = [$this->ownerGroup];
+			}
+		} elseif ($isHidden == 'y') {
+			// Visible by administrator only
+		} else {
+			// Permission based on visibleBy apply
+			$allowed['groups'] = $visibleBy;
+		}
+		return $allowed;
+	}
+
 	function canViewField($fieldId)
 	{
 		$fieldId = $this->prepareFieldId($fieldId);

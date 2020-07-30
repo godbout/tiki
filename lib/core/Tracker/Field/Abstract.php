@@ -61,6 +61,10 @@ abstract class Tracker_Field_Abstract implements Tracker_Field_Interface, Tracke
 		$this->trackerDefinition = $trackerDefinition;
 	}
 
+	public function getFieldDefinition() {
+		return $this->definition;
+	}
+
 
 	/**
 	 * Not implemented here. Its upto to the extending class.

@@ -80,6 +80,9 @@ class Search_Formatter
 		foreach ($list as $pre) {
 			if ($preload) {
 				foreach ($fields as $f) {
+					if (isset($pre['ignored_fields']) && in_array($f, $pre['ignored_fields'])) {
+						continue;
+					}
 					if (isset($pre[$f])) {
 						$pre[$f]; // Dynamic loading if applicable
 					}
