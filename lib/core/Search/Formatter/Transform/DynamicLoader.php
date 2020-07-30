@@ -36,7 +36,9 @@ class Search_Formatter_Transform_DynamicLoaderWrapper extends ArrayObject
 
 	function offsetExists($name)
 	{
-		$this->load($name);
+		if ($name !== 'ignored_fields') {
+			$this->load($name);
+		}
 		return parent::offsetExists($name);
 	}
 
