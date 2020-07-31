@@ -38,8 +38,12 @@ abstract class TikiDb
 				header('location: ' . $dbfail_url);
 				exit(1);
 			} else {
+				if (http_response_code() === false) { // if we are running in cli
+					echo "\nDatabase connection error\n";
+					die(1);
+				}
 				echo file_get_contents('templates/database_connection_error.html');
-				die();
+				die(1);
 			}
 		}
 
